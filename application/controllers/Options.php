@@ -306,7 +306,7 @@ class Options extends CI_Controller {
 			if ($updateSuccessful) {
 				$this->session->set_flashdata('success', __("The settings were saved successfully."));
 			} else {
-				$this->session->set_flashdata('error', __("Something went wrong with saving the settings. Try again."));
+				$this->session->set_flashdata('saveFailed', __("Something went wrong with saving the settings. Try again."));
 			}
 
 			// Redirect back to /email
@@ -348,12 +348,12 @@ class Options extends CI_Controller {
 			$this->email->message($message['body']);
 
 			if (! $this->email->send()){
-				$this->session->set_flashdata('error', __("Testmail failed. Something went wrong."));
+				$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));
 			} else {
-				$this->session->set_flashdata('success', __("Testmail sent. Email settings seem to be correct."));
+				$this->session->set_flashdata('testmailSuccess', __("Testmail sent. Email settings seem to be correct."));
 			}
 		} else {
-			$this->session->set_flashdata('error', __("Testmail failed. Something went wrong."));
+			$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));
 		}
 
 		redirect('/options/email');
@@ -475,16 +475,16 @@ class Options extends CI_Controller {
 
 		$version_dialog_header_update = $this->optionslib->update('version_dialog_header', $this->input->post('version_dialog_header'), 'yes');
 		if($version_dialog_header_update == TRUE) {
-			$this->session->set_flashdata('success', __("Version Info Header changed to")." "."'".$this->input->post('version_dialog_header')."'");
+			$this->session->set_flashdata('success0', __("Version Info Header changed to")." "."'".$this->input->post('version_dialog_header')."'");
 		}
 		$version_dialog_mode_update = $this->optionslib->update('version_dialog', $this->input->post('version_dialog_mode'), 'yes');
 		if($version_dialog_mode_update == TRUE) {
-			$this->session->set_flashdata('success', __("Version Info Mode changed to")." "."'".$this->input->post('version_dialog_mode')."'");
+			$this->session->set_flashdata('success1', __("Version Info Mode changed to")." "."'".$this->input->post('version_dialog_mode')."'");
 		}
 		if ($this->input->post('version_dialog_mode') == "both" || $this->input->post('version_dialog_mode') == "custom_text" ) {
 			$version_dialog_custom_text_update = $this->optionslib->update('version_dialog_text', $this->input->post('version_dialog_custom_text'), 'yes');
 			if($version_dialog_custom_text_update == TRUE) {
-				$this->session->set_flashdata('success', __("Version Info Custom Text saved!"));
+				$this->session->set_flashdata('success2', __("Version Info Custom Text saved!"));
 			}
 		}
 
@@ -495,7 +495,7 @@ class Options extends CI_Controller {
 	function version_dialog_show_to_all() {
 		$update_vd_confirmation_to_false = $this->user_options_model->set_option_at_all_users('version_dialog', 'confirmed', array('boolean' => 'false'));
 		if($update_vd_confirmation_to_false == TRUE) {
-			$this->session->set_flashdata('success', __("Version Info will be shown to all users again"));
+			$this->session->set_flashdata('success_trigger', __("Version Info will be shown to all users again"));
 		}
 		redirect('/options/version_dialog');
 	}
@@ -503,7 +503,7 @@ class Options extends CI_Controller {
 	function version_dialog_show_to_none() {
 		$update_vd_confirmation_to_true = $this->user_options_model->set_option_at_all_users('version_dialog', 'confirmed', array('boolean' => 'true'));
 		if($update_vd_confirmation_to_true == TRUE) {
-			$this->session->set_flashdata('success', __("Version Info will not be shown to any user"));
+			$this->session->set_flashdata('success_trigger', __("Version Info will not be shown to any user"));
 		}
 		redirect('/options/version_dialog');
 	}
