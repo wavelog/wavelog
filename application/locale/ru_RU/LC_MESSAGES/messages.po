@@ -234,7 +234,8 @@ msgstr "Тропосферное прохождение"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Oqrs.php:12
+#: application/controllers/Oqrs.php:397
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -1010,35 +1011,41 @@ msgstr "Редактирование задачи"
 #: application/views/debug/index.php:714 application/views/debug/index.php:720
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
+#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
 msgid "never"
 msgstr "никогда"
 
-#: application/controllers/Cron.php:234
+#: application/controllers/Cron.php:234 application/controllers/Cron.php:239
 msgid "calculating..."
 msgstr "расчёт..."
 
 #: application/controllers/Cron.php:245 application/views/cron/index.php:84
+#: application/controllers/Cron.php:250
 msgid "healthy"
 msgstr "норма"
 
 #: application/controllers/Cron.php:247 application/views/cron/index.php:86
+#: application/controllers/Cron.php:252
 msgid "failed"
 msgstr "ошибка"
 
 #: application/controllers/Cron.php:249 application/views/cron/index.php:88
+#: application/controllers/Cron.php:254
 msgid "pending"
 msgstr "в ожидании"
 
 #: application/controllers/Cron.php:254 application/views/cron/index.php:93
+#: application/controllers/Cron.php:259
 msgid "disabled"
 msgstr "отключено"
 
 #: application/controllers/Cron.php:293
 #: application/views/interface_assets/footer.php:41
+#: application/controllers/Cron.php:298
 msgid "OK"
 msgstr "ОК"
 
-#: application/controllers/Cron.php:297
+#: application/controllers/Cron.php:297 application/controllers/Cron.php:302
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1047,7 +1054,7 @@ msgstr ""
 "Последний запуск произошел более %s секунд назад.%sПроверьте ваш основной "
 "cron! Он должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:300 application/controllers/Cron.php:305
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1057,6 +1064,7 @@ msgstr ""
 "работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
 #: application/controllers/Cron.php:305 application/views/cron/index.php:43
+#: application/controllers/Cron.php:310
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Не работает"
@@ -2542,33 +2550,36 @@ msgstr "Информация о версии не будет показана п
 #: application/controllers/Visitor.php:244
 #: application/controllers/Visitor.php:279
 #: application/controllers/Visitor.php:547
-#: application/controllers/Widgets.php:68
+#: application/controllers/Widgets.php:68 application/controllers/Oqrs.php:39
 msgid "Unknown Public Page."
 msgstr "Неизвестная публичная страница."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
+#: application/controllers/Oqrs.php:51 application/controllers/Oqrs.php:60
+#: application/controllers/Oqrs.php:125 application/controllers/Oqrs.php:137
 msgid "Log Search & OQRS"
 msgstr "Поиск в журнале и OQRS"
 
-#: application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:85 application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
 msgstr "Недействительный идентификатор станции"
 
-#: application/controllers/Oqrs.php:108
+#: application/controllers/Oqrs.php:108 application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
 msgstr "Недействительный идентификатор станции"
 
 #: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
+#: application/controllers/Oqrs.php:174
 msgid "OQRS Requests"
 msgstr "Запросы OQRS"
 
-#: application/controllers/Oqrs.php:380
+#: application/controllers/Oqrs.php:380 application/controllers/Oqrs.php:381
 msgid "QSO match deleted successfully."
 msgstr "Совпадение QSO успешно удалено."
 
-#: application/controllers/Oqrs.php:389
+#: application/controllers/Oqrs.php:389 application/controllers/Oqrs.php:391
 msgid "QSO match added successfully."
 msgstr "Совпадение QSO успешно добавлено."
 
@@ -18053,8 +18064,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -18868,8 +18879,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -19204,8 +19216,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:441
 msgid ""

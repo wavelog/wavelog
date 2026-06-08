@@ -230,7 +230,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Oqrs.php:12
+#: application/controllers/Oqrs.php:397
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -1003,35 +1004,41 @@ msgstr "Redigera Cronjob"
 #: application/views/debug/index.php:714 application/views/debug/index.php:720
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
+#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
 msgid "never"
 msgstr "aldrig"
 
-#: application/controllers/Cron.php:234
+#: application/controllers/Cron.php:234 application/controllers/Cron.php:239
 msgid "calculating..."
 msgstr "beräknar..."
 
 #: application/controllers/Cron.php:245 application/views/cron/index.php:84
+#: application/controllers/Cron.php:250
 msgid "healthy"
 msgstr "hälsosam"
 
 #: application/controllers/Cron.php:247 application/views/cron/index.php:86
+#: application/controllers/Cron.php:252
 msgid "failed"
 msgstr "misslyckades"
 
 #: application/controllers/Cron.php:249 application/views/cron/index.php:88
+#: application/controllers/Cron.php:254
 msgid "pending"
 msgstr "väntande"
 
 #: application/controllers/Cron.php:254 application/views/cron/index.php:93
+#: application/controllers/Cron.php:259
 msgid "disabled"
 msgstr "inaktiverad"
 
 #: application/controllers/Cron.php:293
 #: application/views/interface_assets/footer.php:41
+#: application/controllers/Cron.php:298
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:297
+#: application/controllers/Cron.php:297 application/controllers/Cron.php:302
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1040,7 +1047,7 @@ msgstr ""
 "Senaste körningen inträffade för mer än %s sekunder sedan.%sVänligen "
 "kontrollera din master-cron! Den bör köras varje minut (* * * * *)."
 
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:300 application/controllers/Cron.php:305
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1050,6 +1057,7 @@ msgstr ""
 "din Mastercron inte körs!%sDen bör köras varje minut (* * * * *)."
 
 #: application/controllers/Cron.php:305 application/views/cron/index.php:43
+#: application/controllers/Cron.php:310
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Inte igång"
@@ -2531,33 +2539,36 @@ msgstr "Versionsinformation kommer inte att visas för någon användare"
 #: application/controllers/Visitor.php:244
 #: application/controllers/Visitor.php:279
 #: application/controllers/Visitor.php:547
-#: application/controllers/Widgets.php:68
+#: application/controllers/Widgets.php:68 application/controllers/Oqrs.php:39
 msgid "Unknown Public Page."
 msgstr "Okänd offentlig sida."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
+#: application/controllers/Oqrs.php:51 application/controllers/Oqrs.php:60
+#: application/controllers/Oqrs.php:125 application/controllers/Oqrs.php:137
 msgid "Log Search & OQRS"
 msgstr "Loggsökning & OQRS"
 
-#: application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:85 application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
 msgstr "Ogiltigt stations-ID"
 
-#: application/controllers/Oqrs.php:108
+#: application/controllers/Oqrs.php:108 application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
 msgstr "Ogiltig stationsslug"
 
 #: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
+#: application/controllers/Oqrs.php:174
 msgid "OQRS Requests"
 msgstr "OQRS Förfrågningar"
 
-#: application/controllers/Oqrs.php:380
+#: application/controllers/Oqrs.php:380 application/controllers/Oqrs.php:381
 msgid "QSO match deleted successfully."
 msgstr "QSO-matchning raderades framgångsrikt."
 
-#: application/controllers/Oqrs.php:389
+#: application/controllers/Oqrs.php:389 application/controllers/Oqrs.php:391
 msgid "QSO match added successfully."
 msgstr "QSO-matchning har lagts till framgångsrikt."
 
@@ -7782,8 +7793,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -13525,8 +13536,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -18766,8 +18777,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
