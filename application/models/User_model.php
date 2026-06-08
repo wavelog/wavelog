@@ -213,7 +213,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: bool add($username, $password, $email, $type)
 	// Add a user
 	// !!!!!!!!!!!!!!!!
-	// !! IMPORTANT NOTICE: Please inform DJ7NT and/or DF2ET when adding/removing/changing parameters here. 
+	// !! IMPORTANT NOTICE: Please inform DJ7NT and/or DF2ET when adding/removing/changing parameters here.
 	// !! Also make sure you modify Header_auth::_create_user accordingly, otherwise SSO user creation will break.
 	// !! Also modify User_model::update_sso_claims with attributes that can be modified by IdP
 	// !!!!!!!!!!!!!!!!
@@ -424,6 +424,8 @@ class User_Model extends CI_Model {
 				$this->session->set_userdata('user_dashboard_map',xss_clean($fields['user_dashboard_map'] ?? 'Y'));
 				$this->session->set_userdata('user_dashboard_banner',xss_clean($fields['user_dashboard_banner'] ?? 'Y'));
 				$this->session->set_userdata('user_dashboard_solar',xss_clean($fields['user_dashboard_solar'] ?? 'N'));
+				$this->session->set_userdata('user_dashboard_show_dxpeditions',xss_clean($fields['user_dashboard_show_dxpeditions'] ?? '1'));
+				$this->session->set_userdata('user_dashboard_show_contests',xss_clean($fields['user_dashboard_show_contests'] ?? '1'));
 				$this->session->set_userdata('user_dxwaterfall_enable',xss_clean($fields['user_dxwaterfall_enable'] ?? 'N'));
 
 				// Check to see if the user is allowed to change user levels
@@ -595,6 +597,8 @@ class User_Model extends CI_Model {
 			'user_dashboard_map' => ((($this->session->userdata('user_dashboard_map') ?? 'Y') == 'Y') ? $this->user_options_model->get_options('dashboard', array('option_name' => 'show_map', 'option_key' => 'boolean'))->row()->option_value ?? 'Y' : $this->session->userdata('user_dashboard_map')),
 			'user_dashboard_banner' => ((($this->session->userdata('user_dashboard_banner') ?? 'Y') == 'Y') ? $this->user_options_model->get_options('dashboard', array('option_name' => 'show_dashboard_banner', 'option_key' => 'boolean'))->row()->option_value ?? 'Y' : $this->session->userdata('user_dashboard_banner')),
 			'user_dashboard_solar' => ((($this->session->userdata('user_dashboard_solar') ?? 'N') == 'Y') ? $this->session->userdata('user_dashboard_solar') : $this->user_options_model->get_options('dashboard', array('option_name' => 'show_dashboard_solar', 'option_key' => 'boolean'))->row()->option_value ?? 'N'),
+            'user_dashboard_show_dxpeditions' => ((($this->session->userdata('user_dashboard_show_dxpeditions') ?? '0') == '1') ? $this->session->userdata('user_dashboard_show_dxpeditions') : $this->user_options_model->get_options('dashboard', array('option_name' => 'show_dxpeditions', 'option_key' => 'boolean'))->row()->option_value ?? '0'),
+			'user_dashboard_show_contests' => ((($this->session->userdata('user_dashboard_show_contests') ?? '0') == '1') ? $this->session->userdata('user_dashboard_show_contests') : $this->user_options_model->get_options('dashboard', array('option_name' => 'show_contests', 'option_key' => 'boolean'))->row()->option_value ?? '0'),
 			'user_qso_db_search_priority' => ((($this->session->userdata('user_qso_db_search_priority') ?? 'Y') == 'Y') ? $this->session->userdata('user_qso_db_search_priority') : $this->user_options_model->get_options('qso_db_search_priority', array('option_name' => 'enable', 'option_key' => 'boolean'))->row()->option_value ?? 'Y'),
 			'user_dxwaterfall_enable' => ((($this->session->userdata('user_dxwaterfall_enable') ?? 'N') == 'Y') ? $this->session->userdata('user_dxwaterfall_enable') : $this->user_options_model->get_options('dxwaterfall', array('option_name' => 'enable', 'option_key' => 'boolean'))->row()->option_value ?? 'N'),
 			'user_date_format' => $u->row()->user_date_format,
