@@ -19,6 +19,11 @@
             <form action="<?= site_url('contesting/' . $method); ?>" method="post" id="contestSessionForm">
                 <div class="modal-body">
                     <p class="text-muted mb-4"><?= __("Enter all required information to create a new contest session."); ?></p>
+                    <div class="mb-4" id="custom_name_wrapper">
+                        <label for="custom_name" class="form-label"><?= __("Contest Name") ?></label>
+                        <input type="text" class="form-control" id="custom_name" name="custom_name" maxlength="100" placeholder="<?= htmlspecialchars(__("Enter a name for this contest")); ?>" value="<?php if (isset($session_info) && !empty($session_info['custom_name'])) echo htmlspecialchars($session_info['custom_name']); ?>">
+                        <small class="text-muted d-block mt-2"><?= __("This name will be used only internally.") ?></small>
+                    </div>
                     <div class="mb-4">
                         <label for="contest_adif_id" class="form-label"><?= __("Contest") ?> <span class="text-danger">*</span></label>
                         <select class="form-select p-0" id="contest_adif_id" name="contest_adif_id" required placeholder="<?= htmlspecialchars(__("Please select a contest")); ?>">

@@ -64,7 +64,13 @@ class Contesting extends CI_Controller {
 		$this->load->is_loaded('form_validation') ?: $this->load->library('form_validation');
 
 		$data['page_title'] = __("Contest Management");
-		$data['my_contests'] = $this->contesting_model->get_user_contests();
+		// is a custom name set, we use this one and the ADIF name in brackets, otherwise we just use the ADIF name
+		$data['my_contests'] = array_map(function($row) {
+			$row['display_name'] = !empty($row['custom_name'])
+				? htmlspecialchars($row['custom_name']) . ' <span class="text-muted">(' . htmlspecialchars($row['contestname']) . ')</span>'
+				: htmlspecialchars($row['contestname'] ?? '-');
+			return $row;
+		}, $this->contesting_model->get_user_contests());
 
 		if ($this->session->userdata('user_date_format')) {
 			$data['custom_date_format'] = $this->session->userdata('user_date_format');
@@ -129,7 +135,8 @@ class Contesting extends CI_Controller {
 
 		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
 
-		$data['page_title']         = sprintf(__("CBR Export: %s"), $session_info['contest_name']) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
+		$effective_name = !empty($session_info['custom_name']) ? $session_info['custom_name'] : $session_info['contest_name'];
+		$data['page_title']         = sprintf(__("CBR Export: %s"), $effective_name) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
 		$data['session_info']       = $session_info;
 		$data['cabrillo']           = $cabrillo;
 		$data['qso_count']          = $this->contesting_model->get_session_qso_count($contest_session_id);
@@ -163,7 +170,8 @@ class Contesting extends CI_Controller {
 		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
 		$session_bands = $this->contesting_model->get_session_bands($contest_session_id);
 
-		$data['page_title']         = sprintf(__("Export: %s"), $session_info['contest_name']) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
+		$effective_name = !empty($session_info['custom_name']) ? $session_info['custom_name'] : $session_info['contest_name'];
+		$data['page_title']         = sprintf(__("Export: %s"), $effective_name) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
 		$data['session_info']       = $session_info;
 		$data['reg1test']           = $reg1test;
 		$data['bands']				= $session_bands;
@@ -484,7 +492,9 @@ class Contesting extends CI_Controller {
 		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
 
 		$data['operator'] = $this->user_model->get_by_id($decoded_token['user_id'])->row()->user_callsign;
-		$data['page_title'] = $data['session_info']['contest_name'];
+		$data['page_title'] = !empty($data['session_info']['custom_name'])
+			? $data['session_info']['custom_name']
+			: $data['session_info']['contest_name'];
 		$data['is_club_station'] = (bool) ($this->session->userdata('clubstation') ?? false);
 
 		// Load available radios for CAT control
@@ -605,8 +615,9 @@ class Contesting extends CI_Controller {
 				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
 				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
+				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
 
-				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup);
+				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup, $custom_name);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session created successfully."));
@@ -656,8 +667,9 @@ class Contesting extends CI_Controller {
 				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
 				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
+				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup);
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup, $custom_name);
 
 				if ($result) {
 					$this->cache->delete(self::CACHE_KEY_SESSION_SETTINGS . $contest_session_id); // Clear session cache to reflect changes immediately
