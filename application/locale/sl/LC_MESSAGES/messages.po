@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-09 07:01+0000\n"
-"PO-Revision-Date: 2026-06-03 11:00+0000\n"
+"PO-Revision-Date: 2026-06-09 11:38+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -1298,15 +1298,15 @@ msgstr "Vsi eQSL-ji so označeni kot naloženi"
 
 #: application/controllers/Errors.php:22
 msgid "Page Not Found"
-msgstr ""
+msgstr "Strani ni bilo mogoče najti"
 
 #: application/controllers/Errors.php:23
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ? ... brez odgovora."
 
 #: application/controllers/Errors.php:24
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Nihče ne oddaja na tej frekvenci."
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -10755,21 +10755,21 @@ msgstr[3] "Prikazanih je največ %d prejšnjih zvez"
 #: application/views/dashboard/index.php:403
 #: application/views/user/edit.php:734
 msgid "Active Expeditions"
-msgstr ""
+msgstr "Aktivne odprave"
 
 #: application/views/dashboard/index.php:411
 msgid "Dates"
-msgstr ""
+msgstr "Datumi"
 
 #: application/views/dashboard/index.php:449
 #: application/views/user/edit.php:741
 msgid "Active Contests"
-msgstr ""
+msgstr "Tekmovanja v teku"
 
 #: application/views/dashboard/index.php:465
 #: application/views/view_log/qso.php:621
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: application/views/dashboard/index.php:476
 #: application/views/visitor/index.php:262
@@ -11319,7 +11319,7 @@ msgstr "Trenutna migracija je %s"
 #: application/views/debug/index.php:73
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "Selitev bi morala biti %s"
 
 #: application/views/debug/index.php:78
 msgid "Environment"
@@ -11831,90 +11831,92 @@ msgstr "Ukrainian"
 
 #: application/views/distancerecords/index.php:6
 msgid "This page lists distance records per satellite based on gridsquares."
-msgstr ""
+msgstr "Ta stran navaja zapise razdalj za vsak satelit na podlagi UL polj."
 
 #: application/views/distancerecords/index.php:24
 msgid "My Gridsquare"
-msgstr ""
+msgstr "Moje UL polje"
 
 #: application/views/distancerecords/index.php:25
 msgid "DX Gridsquare"
-msgstr ""
+msgstr "DX UL polje"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
-msgstr ""
+msgstr "Za to stran ni bilo najdenih zvez, ki bi ustrezale kriterijem!"
 
 #: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
 #: application/views/simplefle/index.php:72
 msgid "QSO Data"
-msgstr ""
+msgstr "Podatki o zvezah"
 
 #: application/views/distances/index.php:7
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "Zveze so bile prikazane. %s Vaša najdaljša zveza je bila z"
 
 #: application/views/distances/index.php:8
 msgid "in gridsquare"
-msgstr ""
+msgstr "V UL polju"
 
 #: application/views/distances/index.php:9
 msgid "the distance was"
-msgstr ""
+msgstr "razdalja je bila"
 
 #: application/views/distances/index.php:12
 msgid "Callsign(s) worked (max 5 shown)"
-msgstr ""
+msgstr "Delani klicni znak(i) (prikazanih največ 5)"
 
 #: application/views/distances/index.php:23
 msgid "Band selection"
-msgstr ""
+msgstr "Izbira banda"
 
 #: application/views/dxatlas/index.php:3
 msgid "DX Atlas Export"
-msgstr ""
+msgstr "Izvoz DX Atlas"
 
 #: application/views/dxatlas/index.php:7
 msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
+"Izvozite svoj dnevnik za uporabo v DX Atlasu za prikaz delanih/potrjenih UL "
+"polj."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
-msgstr ""
+msgstr "Izvoženi bodo samo QSO-ji z definiranimi UL polji!"
 
 #: application/views/dxcalendar/index.php:18
 #: application/views/view_log/qso.php:448
 msgid "QSL Info"
-msgstr ""
+msgstr "Informacije o QSL"
 
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Ponastavitev gesla za račun Wavelog"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
 msgid "Hello %s"
-msgstr ""
+msgstr "Živjo %s"
 
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
-msgstr ""
+msgstr "Skrbnik je sprožil ponastavitev gesla za vaš račun Wavelog."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "Vaše uporabniško ime je: %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr ""
+msgstr "Kliknite tukaj za ponastavitev gesla: %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -11925,11 +11927,17 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Če niste zahtevali ponastavitve gesla, preprosto prezrite to e-pošto in se "
+"pogovorite s skrbnikom vašega primerka Wavelog.\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "Vaša raven dovoljenj za Clubstation %s je bila spremenjena"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -11939,11 +11947,15 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"Spoštovani %s,\n"
+"\n"
+"Vaša raven dovoljenj za Clubstation %s je bila spremenjena. Do tega klicnega "
+"znaka lahko dostopate prek svojega računa na %s."
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "Vaša nova raven dovoljenj je: %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -11954,11 +11966,16 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Prijavite se in preverite!\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Novo članstvo %s na Wavelogu!"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -11968,6 +11985,10 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"Spoštovani %s\n"
+"\n"
+"Dodani ste bili v Clubstation %s. Do tega klicnega znaka lahko zdaj "
+"dostopate prek svojega računa na %s."
 
 #: application/views/email/club/new_member.php:9
 #, php-format
@@ -12160,31 +12181,35 @@ msgstr ""
 
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "Izberite postajo (lokacijo), ki ji pripada datoteka eQSL:"
 
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
-msgstr ""
+msgstr "Dnevniške datoteke morajo imeti vrsto datoteke .adi"
 
 #: application/views/eqsl/import.php:53
 msgid "Import directly from eQSL"
-msgstr ""
+msgstr "Uvozi neposredno iz eQSL"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"S tem se zveze NE naložijo. Zveze se le označijo kot poslane. Če uporabite "
+"ta gumb, jih morate ročno naložiti na spletno mesto eQSL.cc."
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "Označi vse zveze kot poslane eQSL"
 
 #: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
 msgstr ""
+"Uporabite to možnost, če imate veliko zvez za nalaganje na eQSL, saj boste s "
+"tem prihranili strežniku časovno omejitev."
 
 #: application/views/eqslcard/index.php:8
 #, php-format
