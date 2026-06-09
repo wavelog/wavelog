@@ -450,7 +450,7 @@ class QsoFormComponent {
 		const bands = Object.keys(window.ContestLoggerConfig?.bandDefaults ?? {});
 		const opts = bands.map(b => {
 			const sel = b === currentBand ? ' selected' : '';
-			return `<option value="${this._esc(b)}"${sel}>${this._esc(b)}</option>`;
+			return `<option value="${this._esc(b)}"${sel}>${this._esc(b.toLowerCase())}</option>`;
 		}).join('');
 		return `<select class="form-select form-select-sm p-0 px-1" style="min-width:4rem;" name="band">${opts}</select>`;
 	}
@@ -489,7 +489,7 @@ class QsoFormComponent {
 			  display: callsignToDisplay(qso.callsign || ''),
 			  edit: inp(callsignToDisplay(qso.callsign || ''), 'callsign', 'fw-bold text-uppercase') },
 			{ title: editMode ? '' : qrg_mhz,
-			  display: band || '-',
+			  display: (band || '-').toLowerCase(),
 			  edit: this._buildBandSelect(band) },
 			{ display: qso.mode || '-',
 			  edit: this._buildModeSelect(qso.mode) },
