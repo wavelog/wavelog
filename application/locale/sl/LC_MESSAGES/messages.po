@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-09 07:01+0000\n"
-"PO-Revision-Date: 2026-06-09 11:38+0000\n"
+"PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -12214,18 +12214,18 @@ msgstr ""
 #: application/views/eqslcard/index.php:8
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr ""
+msgstr "Za shranjevanje sredstev kartice eQSL uporabljate %s prostora na disku"
 
 #: application/views/eqslcard/index.php:14
 #: application/views/interface_assets/header.php:123
 msgid "View eQSL Cards"
-msgstr ""
+msgstr "Oglejte si eQSL kartice"
 
 #: application/views/eqslcard/index.php:39
 #: application/views/qslcard/index.php:48
 #: application/views/qslcard/index.php:124
 msgid "QSL Date"
-msgstr ""
+msgstr "Datum QSL"
 
 #: application/views/eqslcard/index.php:68
 #: application/views/interface_assets/footer.php:2648
@@ -12234,16 +12234,17 @@ msgstr ""
 #: application/views/interface_assets/footer.php:2705
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:739
+#, fuzzy
 msgid "View"
-msgstr ""
+msgstr "Ogled"
 
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
-msgstr ""
+msgstr "Nazaj na nadzorno ploščo"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "Oglejte si zemljevid delanih/potrjenih UL polj"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
@@ -12263,11 +12264,12 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:530
 #: application/views/logbookadvanced/index.php:705
 msgid "Empty"
-msgstr ""
+msgstr "Prazno"
 
 #: application/views/hamsat/index.php:10
+#, fuzzy
 msgid "Satellite Rovers"
-msgstr ""
+msgstr "Satellite Rovers"
 
 #: application/views/hamsat/index.php:27
 #, php-format
@@ -12275,68 +12277,75 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
+"Brez zasebnega ključa vira ni mogoče filtrirati samo prehodov, ki jih je "
+"možno delati. Nastavite ključ vira v %s."
 
 #: application/views/hamsat/index.php:27
 msgid "your profile"
-msgstr ""
+msgstr "tvoj profil"
 
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "Označi zveze"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
 msgstr ""
+"Tukaj si lahko ogledate vse zveze, ki še niso bile naložene v dnevnik HRDLog."
 
 #: application/views/hrdlog/export.php:23
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"V profilu postaje morate nastaviti kodo API za dnevnik HRDLog. Prikazani so "
+"samo profili postaj z nastavljenim ključem API."
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "Kodo lahko zahtevate na %s"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr ""
+msgstr "To lahko traja nekaj časa, saj se nalaganje zvez obdeluje zaporedno."
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
+"Ni najdenih lokacij postaj z veljavnimi nastavitvami HRDlog. Preverite "
+"poverilnice HRDlog v nastavitvah lokacije postaj!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
 #: application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
-msgstr ""
+msgstr "Če datumsko obdobje ni izbrano, bodo označene vse zveze!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "Označi zveze kot izvožene v dnevnik HRDLog"
 
 #: application/views/hrdlog/mark_hrdlog.php:12
 #: application/views/qrz/mark_qrz.php:12
 #: application/views/webadif/mark_webadif.php:12
 msgid "QSOs marked"
-msgstr ""
+msgstr "Zveze označene"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "Jupi, končano je!"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "Zveze so označene kot izvožene v dnevnik HRDLog."
 
 #: application/views/interface_assets/footer.php:32
 #: application/views/search/search_result_ajax.php:456
@@ -12344,33 +12353,34 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:613
 #: application/views/view_log/qso.php:551
 msgid "Edit QSO"
-msgstr ""
+msgstr "Uredi zvezo"
 
 #: application/views/interface_assets/footer.php:33
 msgid "Share QSO"
-msgstr ""
+msgstr "Deli zvezo"
 
 #: application/views/interface_assets/footer.php:35
 #: application/views/logbookadvanced/index.php:50
 msgid "ERROR"
-msgstr ""
+msgstr "NAPAKA"
 
 #: application/views/interface_assets/footer.php:36
+#, fuzzy
 msgid "Attention"
-msgstr ""
+msgstr "Pozor"
 
 #: application/views/interface_assets/footer.php:43
 msgid "Warning! Are you sure you want delete QSO with "
-msgstr ""
+msgstr "Opozorilo! Ste prepričani, da želite izbrisati zvezo z "
 
 #: application/views/interface_assets/footer.php:44
 #: application/views/user/edit.php:594
 msgid "Colors"
-msgstr ""
+msgstr "Barve"
 
 #: application/views/interface_assets/footer.php:46
 msgid "Worked not confirmed"
-msgstr ""
+msgstr "Delane, nepotrjene"
 
 #: application/views/interface_assets/footer.php:53
 #: application/views/qso/edit_ajax.php:198
