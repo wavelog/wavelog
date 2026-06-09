@@ -249,13 +249,12 @@ class Contesting_model extends CI_Model {
 	 */
 	function get_session_qsos($contest_session_id, $band = "all") {
 
-		//prepare bindings
-		if($band != 'all'){
-			$band_contraint = " AND lb.COL_BAND = ?";
-			$bindings = [$contest_session_id, $band];
-		} else {
-			$band_contraint = '';
-			$bindings = [$contest_session_id];
+		$band_constraint = '';
+		$bindings = [$contest_session_id];
+
+		if ($band !== 'all') {
+			$band_constraint = " AND lb.COL_BAND = ?";
+			$bindings[] = $band;
 		}
 		
 		$sql = "SELECT
@@ -280,7 +279,7 @@ class Contesting_model extends CI_Model {
 				FROM contest_qsos cq
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
-				WHERE cq.contest_session_id = ? {$band_contraint}
+				WHERE cq.contest_session_id = ? {$band_constraint}
 				ORDER BY cq.id ASC";
 
 		$query = $this->db->query($sql, $bindings);
@@ -543,13 +542,12 @@ class Contesting_model extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		$table = $this->config->item('table_name');
 
-			//prepare bindings
-		if($band != 'all'){
-			$band_contraint = " AND {$table}.COL_BAND = ?";
-			$bindings = [$contest_session_id, $user_id, $band];
-		} else {
-			$band_contraint = '';
-			$bindings = [$contest_session_id, $user_id];
+		$band_constraint = '';
+		$bindings = [$contest_session_id, $user_id];
+
+		if ($band !== 'all') {
+			$band_constraint = " AND {$table}.COL_BAND = ?";
+			$bindings[] = $band;
 		}
 
 		$sql = "SELECT {$table}.COL_FREQ, {$table}.COL_MODE, {$table}.COL_TIME_ON,
@@ -562,7 +560,7 @@ class Contesting_model extends CI_Model {
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN {$table} ON {$table}.COL_PRIMARY_KEY = cq.qso_id
 				JOIN station_profile ON station_profile.station_id = {$table}.station_id
-				WHERE cq.contest_session_id = ? AND cs.user_id = ? {$band_contraint}
+				WHERE cq.contest_session_id = ? AND cs.user_id = ? {$band_constraint}
 				ORDER BY {$table}.COL_TIME_ON ASC";
 
 		return $this->db->query($sql, $bindings);
