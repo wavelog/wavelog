@@ -3,6 +3,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Qslpostcard extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+
+        $this->load->model('Qslpostcard_model');
+        $this->load->helper(array('url', 'security'));
+    }
+
+	public function index() {
+        $data['page_title'] = 'QSL Postcard Designer';
+        $data['templates']  = $this->Qslpostcard_model->list_templates();
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/qslpostcard.js',
+		];
+
+        $this->load->view('interface_assets/header', $data);
+        $this->load->view('qslpostcard/designer', $data);
+        $this->load->view('interface_assets/footer', $footerData);
+    }
+
     public function upload_preview() {
 
         $config['upload_path']   = FCPATH . 'uploads/qsl_postcards/';
@@ -37,26 +64,6 @@ class Qslpostcard extends CI_Controller {
                 'url' => $url,
                 'path' => 'uploads/qsl_postcards/' . $data['file_name']
             ]));
-    }
-
-    public function __construct() {
-        parent::__construct();
-
-        // Typical Wavelog pattern (adjust if your auth model differs)
-        // $this->load->model('user_model');
-        // $this->user_model->authorize(2);
-
-        $this->load->model('Qslpostcard_model');
-        $this->load->helper(array('url', 'security'));
-    }
-
-    public function index() {
-        $data['page_title'] = 'QSL Postcard Designer';
-        $data['templates']  = $this->Qslpostcard_model->list_templates();
-
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('qslpostcard/designer', $data);
-        $this->load->view('interface_assets/footer');
     }
 
     // AJAX: GET template JSON
@@ -140,6 +147,7 @@ class Qslpostcard extends CI_Controller {
             show_error('QSL Postcard PDF failed: ' . $e->getMessage());
         }
     }
+
     public function printqueue() {
         $data['page_title'] = 'Print QSL Postcards';
         $data['templates']  = $this->Qslpostcard_model->list_templates();

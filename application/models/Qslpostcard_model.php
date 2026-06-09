@@ -498,7 +498,7 @@ class Qslpostcard_model extends CI_Model {
     }
 
     public function get_qsl_queue_qsos($filters = []) {
-        $this->db->from('TABLE_HRD_CONTACTS_V01');
+        $this->db->from($this->config->item('table_name'));
 
         // Most likely starting point for physical cards:
         // requested cards or unsent cards
@@ -545,7 +545,7 @@ class Qslpostcard_model extends CI_Model {
         }
 
         $q = $this->db
-            ->from('TABLE_HRD_CONTACTS_V01')
+            ->from($this->config->item('table_name'))
             ->where_in('COL_PRIMARY_KEY', $ids)
             ->order_by('COL_TIME_ON', 'DESC')
             ->get();

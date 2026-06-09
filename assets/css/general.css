@@ -1481,3 +1481,64 @@ svg text.month { fill: #AAA; }
     justify-content: center !important;
     align-items: center !important;
 }
+
+/* QSL Postcard Designer */
+#stageWrap {
+    display: flex;
+    justify-content: center;
+}
+
+#rulerWrap {
+    position: relative;
+    width: 940px;
+    height: 640px;
+}
+
+#rulerTop {
+    position: absolute;
+    left: 40px;
+    top: 0;
+    width: 900px;
+    height: 40px;
+    background: #f6f6f6;
+    border: 1px solid #ddd;
+}
+
+#rulerLeft {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 40px;
+    height: 600px;
+    background: #f6f6f6;
+    border: 1px solid #ddd;
+}
+
+#stage {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 900px;
+    height: 600px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    background-image: none;
+    background-position: center;
+    background-repeat: no-repeat;
+	background:
+	linear-gradient(to right, rgba(0, 0, 0, .06) 1px, transparent 1px),
+	linear-gradient(to bottom, rgba(0, 0, 0, .06) 1px, transparent 1px);
+	background-size: 37.5px 37.5px;
+	background-color: #ffffff;
+}
+
+#rulerTop,
+#rulerLeft {
+	color: #111111 !important;
+	font-weight: 600;
+}
+
+#rulerTop div,
+#rulerLeft div {
+	color: #111111 !important;
+}

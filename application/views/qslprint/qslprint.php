@@ -16,31 +16,6 @@ if (empty($station_id)) {
 ?><form method="post" action="<?= site_url('qslpostcard/printqueue_selected') ?>" id="postcardQueueForm">
 <?php
 
-if ($qsos->result() != NULL) {
-        echo '<div style="padding-top: 10px; margin-top: 0px;" class="container logbook mb-4">';
-	echo '<table style="width:100%" class="table table-sm table-bordered table-hover table-striped table-condensed qslprint" id="qslprint_table">
-<thead>
-<tr>
-<th style=\'text-align: center\'><div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div></th>
-<th style=\'text-align: center\'>'.__("Callsign").'</th>
-<th style=\'text-align: center\'>' . __("Date") . '</th>
-<th style=\'text-align: center\'>'. __("Time") .'</th>
-<th style=\'text-align: center\'>' . __("Mode") . '</th>
-<th class=\'col-band\' style=\'text-align: center\'>' . __("Band") . '</th>
-<th class=\'col-freq\' style=\'text-align: center;display:none;\'>' . __("Frequency") . '</th>
-<th style=\'text-align: center\'>' . __("RST (S)") . '</th>
-<th style=\'text-align: center\'>' . __("RST (R)") . '</th>
-<th style=\'text-align: center\'>' . __("QSL") . ' ' . __("Via") . '</th>
-<th style=\'text-align: center\'>' . __("Station") . '</th>
-<th style=\'text-align: center\'>' . __("Profile name") . '</th>
-<th style=\'text-align: center\'>' . __("Send Method") . '</th>
-<th style=\'text-align: center\'>' . __("Previous QSL") . '</th>
-<th style=\'text-align: center\'>' . __("Mark as sent") . '</th>
-<th style=\'text-align: center\'>' . __("Remove") . '</th>
-<th style=\'text-align: center\'>' . __("QSO List") . '</th>
-</tr>
-</thead><tbody>';
-
 // Get Date format
 	if($this->session->userdata('user_date_format')) {
 		// If Logged in and session exists
