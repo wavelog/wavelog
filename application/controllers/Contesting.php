@@ -1157,12 +1157,7 @@ class Contesting extends CI_Controller {
 					break;
 				}
 				$fresh = $this->contesting_model->get_session_info($session_info['contest_session_id']);
-				$response['data']['session_settings'] = [
-					'exchangefields'  => $fresh['exchangefields'],
-					'exchangetype'    => $fresh['exchangetype'],
-					'copyexchangeto'  => $fresh['copyexchangeto'],
-					'callbook_lookup' => $fresh['callbook_lookup'],
-				];
+				$response['data']['session_settings'] = $fresh;
 				$this->cache->save($cache_key, $response['data']['session_settings'], 3600); // Cache for 1h
 				break;
 
