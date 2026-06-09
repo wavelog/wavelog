@@ -805,6 +805,9 @@ msgstr "Modifica banda"
 #: application/controllers/Options.php:144
 #: application/controllers/Options.php:155
 #: application/views/options/sidebar.php:7
+#: application/controllers/Options.php:141
+#: application/controllers/Options.php:153
+#: application/views/options/tabs.php:22
 msgid "DXCluster"
 msgstr "DXCluster"
 
@@ -2441,12 +2444,34 @@ msgstr ""
 #: application/controllers/Options.php:380
 #: application/controllers/Options.php:456
 #: application/controllers/Options.php:466
+#: application/controllers/Options.php:26
+#: application/controllers/Options.php:42
+#: application/controllers/Options.php:104
+#: application/controllers/Options.php:116
+#: application/controllers/Options.php:140
+#: application/controllers/Options.php:152
+#: application/controllers/Options.php:190
+#: application/controllers/Options.php:236
+#: application/controllers/Options.php:248
+#: application/controllers/Options.php:364
+#: application/controllers/Options.php:384
+#: application/controllers/Options.php:460
+#: application/controllers/Options.php:471
+#: application/views/options/appearance.php:2
+#: application/views/options/dxcluster.php:2
+#: application/views/options/email.php:2 application/views/options/hon.php:2
+#: application/views/options/index.php:2
+#: application/views/options/maptiles.php:2
+#: application/views/options/radios.php:2
+#: application/views/options/version_dialog.php:2
 msgid "Wavelog Options"
 msgstr "Opzioni di Wavelog"
 
 #: application/controllers/Options.php:34
 #: application/controllers/Options.php:49
 #: application/views/options/sidebar.php:4
+#: application/controllers/Options.php:27
+#: application/controllers/Options.php:43 application/views/options/tabs.php:7
 msgid "Appearance"
 msgstr "Aspetto"
 
@@ -2455,70 +2480,96 @@ msgstr "Aspetto"
 #: application/controllers/Options.php:83
 #: application/controllers/Options.php:91
 #: application/controllers/Options.php:99
+#: application/controllers/Options.php:62
+#: application/controllers/Options.php:70
+#: application/controllers/Options.php:78
+#: application/controllers/Options.php:86
+#: application/controllers/Options.php:94
 msgid "Options saved"
 msgstr "Opzioni salvate"
 
 #: application/controllers/Options.php:110
 #: application/controllers/Options.php:121
 #: application/views/options/sidebar.php:9
+#: application/controllers/Options.php:105
+#: application/controllers/Options.php:117
+#: application/views/options/tabs.php:32
 msgid "Hams Of Note"
 msgstr "Hams Of Note"
 
 #: application/controllers/Options.php:136
+#: application/controllers/Options.php:133
 msgid "Hams-Of-Note URL changed to "
 msgstr "URL di Hams-Of-Note cambiato in "
 
 #: application/controllers/Options.php:172
+#: application/controllers/Options.php:171
 msgid "de continent changed to "
 msgstr "il continente del reporter è stato cambiato in "
 
 #: application/controllers/Options.php:177
+#: application/controllers/Options.php:176
 msgid "Maximum age of spots changed to "
 msgstr "Età massima degli spot cambiata in "
 
 #: application/controllers/Options.php:182
+#: application/controllers/Options.php:181
 msgid "DXCluster Cache URL changed to "
 msgstr "URL della cache DXCluster cambiata in "
 
 #: application/controllers/Options.php:192
 #: application/controllers/Options.php:203
+#: application/controllers/Options.php:191
 msgid "Radio Settings"
 msgstr "Impostazioni radio"
 
 #: application/controllers/Options.php:224
+#: application/controllers/Options.php:225
 msgid "Radio Timeout Warning changed to "
 msgstr "Avviso timeout radio cambiato in "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:247
 #: application/views/options/sidebar.php:6
+#: application/controllers/Options.php:237
+#: application/controllers/Options.php:249
+#: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "Email"
 
 #: application/controllers/Options.php:304
+#: application/controllers/Options.php:307
 msgid "The settings were saved successfully."
 msgstr "Impostazioni salvate con successo."
 
 #: application/controllers/Options.php:306
+#: application/controllers/Options.php:309
 msgid "Something went wrong with saving the settings. Try again."
 msgstr "Qualcosa è andato storto durante il salvataggio. Riprova."
 
 #: application/controllers/Options.php:348
 #: application/controllers/Options.php:353
+#: application/controllers/Options.php:351
+#: application/controllers/Options.php:356
 msgid "Testmail failed. Something went wrong."
 msgstr "Invio mail di prova non riuscito. Riprova."
 
 #: application/controllers/Options.php:350
+#: application/controllers/Options.php:353
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr "Invio mail di prova riuscito. Le impostazioni sono state validate."
 
 #: application/controllers/Options.php:362
 #: application/controllers/Options.php:381
 #: application/views/options/sidebar.php:8
+#: application/controllers/Options.php:365
+#: application/controllers/Options.php:385
+#: application/views/options/tabs.php:27
 msgid "Maptiles Server"
 msgstr "Server Maptiles"
 
 #: application/controllers/Options.php:440
+#: application/controllers/Options.php:444
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
@@ -2527,36 +2578,45 @@ msgstr ""
 "cartella al percorso: %s"
 
 #: application/controllers/Options.php:444
+#: application/controllers/Options.php:448
 msgid "Maptile Options saved!"
 msgstr "Optioni di Maptiles salvate!"
 
 #: application/controllers/Options.php:446
+#: application/controllers/Options.php:450
 msgid "Maptile Options could not be saved!"
 msgstr "Le opzioni di Maptile non possono essere salvate!"
 
 #: application/controllers/Options.php:457
 #: application/controllers/Options.php:467
+#: application/controllers/Options.php:461
+#: application/controllers/Options.php:472
 msgid "Version Info Settings"
 msgstr "Impostazioni informazioni sulla versione"
 
 #: application/controllers/Options.php:473
+#: application/controllers/Options.php:478
 msgid "Version Info Header changed to"
 msgstr "Testata informazioni sulla versione cambiata in"
 
 #: application/controllers/Options.php:477
+#: application/controllers/Options.php:482
 msgid "Version Info Mode changed to"
 msgstr "Modalità Informazioni versione modificata in"
 
 #: application/controllers/Options.php:482
+#: application/controllers/Options.php:487
 msgid "Version Info Custom Text saved!"
 msgstr "Testo personalizzato delle informazioni sulla versione salvato!"
 
 #: application/controllers/Options.php:493
+#: application/controllers/Options.php:498
 msgid "Version Info will be shown to all users again"
 msgstr ""
 "Le informazioni sulla versione saranno nuovamente mostrate a tutti gli utenti"
 
 #: application/controllers/Options.php:501
+#: application/controllers/Options.php:506
 msgid "Version Info will not be shown to any user"
 msgstr "Le informazioni sulla versione non saranno mostrate a nessun utente"
 
@@ -3060,6 +3120,10 @@ msgstr "Errore. Collegamento già in uso!"
 #: application/views/user/edit.php:561 application/views/user/edit.php:719
 #: application/views/user/edit.php:729 application/views/user/edit.php:736
 #: application/views/user/edit.php:743
+#: application/views/options/appearance.php:31
+#: application/views/options/appearance.php:40
+#: application/views/options/appearance.php:49
+#: application/views/options/version_dialog.php:30
 msgid "Disabled"
 msgstr "Disabilitato"
 
@@ -4824,6 +4888,7 @@ msgstr "Importazione CBR"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/options/maptiles.php:12
 msgid "Important"
 msgstr "Importante"
 
@@ -5352,6 +5417,12 @@ msgstr "Nome semplice per descrivere per cosa usi questa API."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/options/appearance.php:64
+#: application/views/options/dxcluster.php:40
+#: application/views/options/email.php:78 application/views/options/hon.php:17
+#: application/views/options/maptiles.php:44
+#: application/views/options/radios.php:18
+#: application/views/options/version_dialog.php:42
 msgid "Save"
 msgstr "Salva"
 
@@ -6561,6 +6632,7 @@ msgstr "Includi eliminati"
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:251 application/views/qso/index.php:488
 #: application/views/view_log/qso.php:309
+#: application/views/options/dxcluster.php:29
 msgid "Antarctica"
 msgstr "Antartide"
 
@@ -6575,6 +6647,7 @@ msgstr "Antartide"
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:250 application/views/qso/index.php:487
 #: application/views/view_log/qso.php:306
+#: application/views/options/dxcluster.php:28
 msgid "Africa"
 msgstr "Africa"
 
@@ -6589,6 +6662,7 @@ msgstr "Africa"
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:252 application/views/qso/index.php:489
 #: application/views/view_log/qso.php:312
+#: application/views/options/dxcluster.php:30
 msgid "Asia"
 msgstr "Asia"
 
@@ -6603,6 +6677,7 @@ msgstr "Asia"
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:253 application/views/qso/index.php:490
 #: application/views/view_log/qso.php:315
+#: application/views/options/dxcluster.php:31
 msgid "Europe"
 msgstr "Europa"
 
@@ -6617,6 +6692,7 @@ msgstr "Europa"
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:254 application/views/qso/index.php:491
 #: application/views/view_log/qso.php:318
+#: application/views/options/dxcluster.php:32
 msgid "North America"
 msgstr "America del Nord"
 
@@ -6631,6 +6707,7 @@ msgstr "America del Nord"
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:256 application/views/qso/index.php:493
 #: application/views/view_log/qso.php:324
+#: application/views/options/dxcluster.php:34
 msgid "South America"
 msgstr "America del Sud"
 
@@ -6645,6 +6722,7 @@ msgstr "America del Sud"
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:255 application/views/qso/index.php:492
 #: application/views/view_log/qso.php:321
+#: application/views/options/dxcluster.php:33
 msgid "Oceania"
 msgstr "Oceania"
 
@@ -10595,6 +10673,9 @@ msgstr "Identificativo"
 #: application/views/user/edit.php:718 application/views/user/edit.php:728
 #: application/views/user/edit.php:1050 application/views/user/edit.php:737
 #: application/views/user/edit.php:744 application/views/user/edit.php:1064
+#: application/views/options/appearance.php:30
+#: application/views/options/appearance.php:39
+#: application/views/options/appearance.php:48
 msgid "Enabled"
 msgstr "Abilitato"
 
@@ -12954,6 +13035,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:219
 #: application/views/interface_assets/header.php:554
 #: application/views/options/sidebar.php:10
+#: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Informazioni sulla versione"
 
@@ -15807,28 +15889,34 @@ msgstr "Devi fornire il tuo nominativo personale."
 
 #: application/views/options/appearance.php:39
 #: application/views/user/edit.php:220
+#: application/views/options/appearance.php:12
 msgid "Theme"
 msgstr "Tema"
 
 #: application/views/options/appearance.php:51
+#: application/views/options/appearance.php:24
 msgid "Global Theme Choice, this is used when users arent logged in."
 msgstr ""
 "Scelta del tema globale, questo viene utilizzato quando gli utenti non sono "
 "connessi."
 
 #: application/views/options/appearance.php:55
+#: application/views/options/appearance.php:28
 msgid "Logbook Map"
 msgstr "Mappa del registro di stazione"
 
 #: application/views/options/appearance.php:60
+#: application/views/options/appearance.php:33
 msgid "This allows to disable the map in the logbook."
 msgstr "Questo consente di disabilitare la mappa nel registro di stazione."
 
 #: application/views/options/appearance.php:64
+#: application/views/options/appearance.php:37
 msgid "Public Maps"
 msgstr "Mappe pubbliche"
 
 #: application/views/options/appearance.php:69
+#: application/views/options/appearance.php:42
 msgid ""
 "This allows to disable all maps in the public view. This affects the main "
 "map and the gridsquares map."
@@ -15837,31 +15925,38 @@ msgstr ""
 "influisce sulla mappa principale e sulla mappa dei locatori."
 
 #: application/views/options/appearance.php:73
+#: application/views/options/appearance.php:46
 msgid "Public Github Button"
 msgstr "Pulsante Github pubblico"
 
 #: application/views/options/appearance.php:78
+#: application/views/options/appearance.php:51
 msgid "This enables the button to Wavelog's Github page in the public view"
 msgstr ""
 "Questo abilita il pulsante alla pagina Github di Wavelog nella vista pubblica"
 
 #: application/views/options/appearance.php:82
+#: application/views/options/appearance.php:55
 msgid "Public Login Button"
 msgstr "Pulsante di accesso pubblico"
 
 #: application/views/options/appearance.php:87
+#: application/views/options/appearance.php:60
 msgid "This enables the button to login to Wavelog in the public view"
 msgstr "Questo abilita il pulsante per accedere a Wavelog nella vista pubblica"
 
 #: application/views/options/dxcluster.php:38
+#: application/views/options/dxcluster.php:11
 msgid "Provider of DXClusterCache"
 msgstr "Fornitore di DXClusterCache"
 
 #: application/views/options/dxcluster.php:39
+#: application/views/options/dxcluster.php:12
 msgid "DXClusterAPI"
 msgstr "DXClusterAPI"
 
 #: application/views/options/dxcluster.php:39
+#: application/views/options/dxcluster.php:12
 #, php-format
 msgid ""
 "The Provider of the DXCluster-Cache. You can set up your own Cache with %s "
@@ -15871,72 +15966,89 @@ msgstr ""
 "usarne una pubblica"
 
 #: application/views/options/dxcluster.php:41
+#: application/views/options/dxcluster.php:14
 #, php-format
 msgid "URL of the DXCluster-Cache. e.g. %s"
 msgstr "URL della cache DXCluster. ad esempio %s"
 
 #: application/views/options/dxcluster.php:44
+#: application/views/options/dxcluster.php:17
 msgid "Maximum Age of spots taken care of"
 msgstr "Età massima degli spot"
 
 #: application/views/options/dxcluster.php:46
+#: application/views/options/dxcluster.php:19
 msgid "2 Hours"
 msgstr "2 ore"
 
 #: application/views/options/dxcluster.php:47
+#: application/views/options/dxcluster.php:20
 msgid "60 Minutes"
 msgstr "60 minuti"
 
 #: application/views/options/dxcluster.php:48
+#: application/views/options/dxcluster.php:21
 msgid "30 Minutes"
 msgstr "30 minuti"
 
 #: application/views/options/dxcluster.php:50
+#: application/views/options/dxcluster.php:23
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
 msgstr "L'età in minuti degli spot, che verranno gestiti al bandplan/lookup"
 
 #: application/views/options/dxcluster.php:53
+#: application/views/options/dxcluster.php:26
 msgid "Show spots which are spotted from following continent"
 msgstr "Mostra gli spot segnalati dal seguente continente"
 
 #: application/views/options/dxcluster.php:63
+#: application/views/options/dxcluster.php:36
 msgid "Only spots by spotters from this continent are shown"
 msgstr "Vengono mostrati solo gli spot degli spotter di questo continente"
 
 #: application/views/options/email.php:45
+#: application/views/options/email.php:11
 msgid "Outgoing Protocol"
 msgstr "Protocollo in uscita"
 
 #: application/views/options/email.php:50
+#: application/views/options/email.php:16
 msgid "The protocol that will be used to send out emails."
 msgstr "Il protocollo che verrà utilizzato per inviare le email."
 
 #: application/views/options/email.php:54
+#: application/views/options/email.php:20
 msgid "SMTP Encryption"
 msgstr "Crittografia SMTP"
 
 #: application/views/options/email.php:56
+#: application/views/options/email.php:22
 msgid "No Encryption"
 msgstr "Nessuna crittografia"
 
 #: application/views/options/email.php:60
+#: application/views/options/email.php:26
 msgid "Choose whether emails should be sent with TLS or SSL."
 msgstr "Scegli se le email devono essere inviate con TLS o SSL."
 
 #: application/views/options/email.php:64
+#: application/views/options/email.php:30
 msgid "Email Sender Name"
 msgstr "Nome da visualizzare come mittente dell'email"
 
 #: application/views/options/email.php:67
+#: application/views/options/email.php:33
 msgid "The email sender name, e.g. 'Wavelog'"
 msgstr "Il nome del mittente dell'email, ad esempio 'Wavelog'"
 
 #: application/views/options/email.php:72 application/views/user/edit.php:79
 #: application/views/user/forgot_password.php:47
+#: application/views/options/email.php:38
 msgid "Email Address"
 msgstr "Indirizzo email"
 
 #: application/views/options/email.php:75
+#: application/views/options/email.php:41
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
@@ -15944,10 +16056,12 @@ msgstr ""
 "'wavelog@example.com'"
 
 #: application/views/options/email.php:80
+#: application/views/options/email.php:46
 msgid "SMTP Host"
 msgstr "Host SMTP"
 
 #: application/views/options/email.php:83
+#: application/views/options/email.php:49
 msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
@@ -15956,10 +16070,12 @@ msgstr ""
 "'ssl://' o 'tls://')"
 
 #: application/views/options/email.php:88
+#: application/views/options/email.php:54
 msgid "SMTP Port"
 msgstr "Porta SMTP"
 
 #: application/views/options/email.php:91
+#: application/views/options/email.php:57
 msgid ""
 "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
 "used -> '465'"
@@ -15968,10 +16084,12 @@ msgstr ""
 "'587', se viene utilizzato SSL -> '465'"
 
 #: application/views/options/email.php:96
+#: application/views/options/email.php:62
 msgid "SMTP Username"
 msgstr "Nome utente SMTP"
 
 #: application/views/options/email.php:99
+#: application/views/options/email.php:65
 msgid ""
 "The username to log in to the mail server, usually this is the email address "
 "that is used."
@@ -15980,28 +16098,32 @@ msgstr ""
 "email che viene utilizzato."
 
 #: application/views/options/email.php:104
+#: application/views/options/email.php:70
 msgid "SMTP Password"
 msgstr "Password SMTP"
 
 #: application/views/options/email.php:107
+#: application/views/options/email.php:73
 msgid "The password to log in to the mail server."
 msgstr "La password per accedere al server di posta."
 
 #: application/views/options/email.php:116
+#: application/views/options/email.php:82
 msgid "Send Test-Mail"
 msgstr "Invia e-mail di prova"
 
 #: application/views/options/email.php:117
+#: application/views/options/email.php:83
 msgid "The email will be sent to the address defined in your account settings."
 msgstr ""
 "L'email verrà inviata all'indirizzo definito nelle impostazioni del tuo "
 "account."
 
-#: application/views/options/hon.php:38
+#: application/views/options/hon.php:38 application/views/options/hon.php:11
 msgid "Provider for Hams Of Note"
 msgstr "Fornitore per Hams of Note"
 
-#: application/views/options/hon.php:39
+#: application/views/options/hon.php:39 application/views/options/hon.php:12
 #, php-format
 msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
@@ -16010,16 +16132,16 @@ msgstr ""
 "L'URL che fornisce l'elenco Hams Of Note. Vedi l'esempio e come funziona qui "
 "%s"
 
-#: application/views/options/hon.php:39
+#: application/views/options/hon.php:39 application/views/options/hon.php:12
 msgid "Wiki"
 msgstr "Documentazione"
 
-#: application/views/options/hon.php:41
+#: application/views/options/hon.php:41 application/views/options/hon.php:14
 #, php-format
 msgid "URL of the Hams Of Note List. e.g. %s"
 msgstr "URL della lista Hams Of Note. es. %s"
 
-#: application/views/options/index.php:13
+#: application/views/options/index.php:13 application/views/options/index.php:6
 msgid ""
 "Wavelog Options are global settings used for all users of the installation, "
 "which are overridden if there's a setting on a user level."
@@ -16029,6 +16151,7 @@ msgstr ""
 "livello utente."
 
 #: application/views/options/maptiles.php:49
+#: application/views/options/maptiles.php:13
 #, php-format
 msgid ""
 "This modifies the map source in various locations within Wavelog. Do not "
@@ -16040,6 +16163,7 @@ msgstr ""
 "che stai facendo. Testa ogni modifica sul tuo %sDashboard%s!"
 
 #: application/views/options/maptiles.php:50
+#: application/views/options/maptiles.php:14
 #, php-format
 msgid ""
 "You can find a list of tested settings and all default values in the "
@@ -16049,18 +16173,22 @@ msgstr ""
 "predefiniti nel %sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
+#: application/views/options/maptiles.php:18
 msgid "Maptiles Server URL"
 msgstr "URL del server Maptiles"
 
 #: application/views/options/maptiles.php:56
+#: application/views/options/maptiles.php:20
 msgid "URL of the map server which serves the maptiles."
 msgstr "URL del server delle mappe che fornisce le mappe."
 
 #: application/views/options/maptiles.php:59
+#: application/views/options/maptiles.php:23
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
 msgstr "URL del server Maptiles per Dark Tiles - SOLO API mappa statica"
 
 #: application/views/options/maptiles.php:61
+#: application/views/options/maptiles.php:25
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
@@ -16069,10 +16197,12 @@ msgstr ""
 "la Mappa Statica."
 
 #: application/views/options/maptiles.php:64
+#: application/views/options/maptiles.php:28
 msgid "Subdomain System of Maptile Server"
 msgstr "Sistema di sottodomini del server Maptile"
 
 #: application/views/options/maptiles.php:66
+#: application/views/options/maptiles.php:30
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
@@ -16081,30 +16211,37 @@ msgstr ""
 "bilanciamento del carico."
 
 #: application/views/options/maptiles.php:69
+#: application/views/options/maptiles.php:33
 msgid "URL of the Copyright Source"
 msgstr "URL della fonte del copyright"
 
 #: application/views/options/maptiles.php:71
+#: application/views/options/maptiles.php:35
 msgid "Source URL for the copyright tag."
 msgstr "URL di origine per il tag di copyright."
 
 #: application/views/options/maptiles.php:74
+#: application/views/options/maptiles.php:38
 msgid "Name of the Copyright Source"
 msgstr "Nome della fonte del copyright"
 
 #: application/views/options/maptiles.php:76
+#: application/views/options/maptiles.php:40
 msgid "Text for the copyright tag."
 msgstr "Testo per il tag di copyright."
 
 #: application/views/options/maptiles.php:81
+#: application/views/options/maptiles.php:45
 msgid "Reset to Defaults"
 msgstr "Ripristina le impostazioni predefinite"
 
 #: application/views/options/radios.php:38
+#: application/views/options/radios.php:11
 msgid "Radio Timeout Warning"
 msgstr "Avviso di timeout radio"
 
 #: application/views/options/radios.php:39
+#: application/views/options/radios.php:12
 msgid ""
 "The Radio Timeout Warning is used on the QSO entry panel to alert you to "
 "radio interface disconnects."
@@ -16113,40 +16250,49 @@ msgstr ""
 "QSO per avvisarti delle disconnessioni dell'interfaccia radio."
 
 #: application/views/options/radios.php:41
+#: application/views/options/radios.php:14
 msgid "This number is in seconds."
 msgstr "Questo numero è in secondi."
 
 #: application/views/options/sidebar.php:5
+#: application/views/options/tabs.php:12
 msgid "Radios"
 msgstr "Radio"
 
 #: application/views/options/version_dialog.php:47
+#: application/views/options/version_dialog.php:11
 msgid "Version Info Header"
 msgstr "Intestazione delle informazioni sulla versione"
 
 #: application/views/options/version_dialog.php:49
+#: application/views/options/version_dialog.php:13
 msgid "You can change the header of the version info dialog."
 msgstr ""
 "Puoi cambiare l'intestazione della finestra di dialogo delle informazioni "
 "sulla versione."
 
 #: application/views/options/version_dialog.php:53
+#: application/views/options/version_dialog.php:17
 msgid "Version Info Mode"
 msgstr "Informazioni sulla versione"
 
 #: application/views/options/version_dialog.php:57
+#: application/views/options/version_dialog.php:21
 msgid "Only Release Notes"
 msgstr "Solo note di rilascio"
 
 #: application/views/options/version_dialog.php:60
+#: application/views/options/version_dialog.php:24
 msgid "Only Custom Text"
 msgstr "Solo testo personalizzato"
 
 #: application/views/options/version_dialog.php:63
+#: application/views/options/version_dialog.php:27
 msgid "Release Notes and Custom Text"
 msgstr "Note di rilascio e testo personalizzato"
 
 #: application/views/options/version_dialog.php:68
+#: application/views/options/version_dialog.php:32
 msgid ""
 "The Version Info is shown to every user. The user has the option to dismiss "
 "the dialog after he read it. Select if you want to show only release notes "
@@ -16158,26 +16304,31 @@ msgstr ""
 "personalizzato o entrambi."
 
 #: application/views/options/version_dialog.php:72
+#: application/views/options/version_dialog.php:36
 msgid "Version Info Custom Text"
 msgstr "Informazioni sulla versione Testo personalizzato"
 
 #: application/views/options/version_dialog.php:74
+#: application/views/options/version_dialog.php:38
 msgid "This is the custom text which is shown in the dialog."
 msgstr ""
 "Questo è il testo personalizzato che viene mostrato nella finestra di "
 "dialogo."
 
 #: application/views/options/version_dialog.php:84
+#: application/views/options/version_dialog.php:48
 msgid "Show/Hide Version Info Dialog for all Users"
 msgstr ""
 "Mostra/Nascondi finestra di dialogo delle informazioni sulla versione per "
 "tutti gli utenti"
 
 #: application/views/options/version_dialog.php:97
+#: application/views/options/version_dialog.php:54
 msgid "Show for all Users"
 msgstr "Mostra per tutti gli utenti"
 
 #: application/views/options/version_dialog.php:99
+#: application/views/options/version_dialog.php:56
 msgid ""
 "This will show the version dialog automatically to all users on their next "
 "page reload."
@@ -16186,10 +16337,12 @@ msgstr ""
 "tutti gli utenti al prossimo ricaricamento della pagina."
 
 #: application/views/options/version_dialog.php:104
+#: application/views/options/version_dialog.php:61
 msgid "Hide for all Users"
 msgstr "Nascondi per tutti gli utenti"
 
 #: application/views/options/version_dialog.php:106
+#: application/views/options/version_dialog.php:63
 msgid ""
 "This will deactivate the automatic popup of the version dialog for all users."
 msgstr ""
