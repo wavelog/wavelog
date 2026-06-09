@@ -162,8 +162,12 @@ class cron extends CI_Controller {
 	}
 
 	public function editDialog() {
-
-		$cron_query = $this->cron_model->cron(xss_clean($this->input->post('id', true)));
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		$cron_query = $this->cron_model->cron($this->input->post('id', true));
 
 		$data['cron'] = $cron_query->row();
 		$data['page_title'] = __("Edit Cronjob");
@@ -178,10 +182,10 @@ class cron extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		$id = xss_clean($this->input->post('cron_id', true));
-		$description = xss_clean($this->input->post('cron_description', true));
-		$expression = xss_clean($this->input->post('cron_expression', true));
-		$enabled = xss_clean($this->input->post('cron_enabled', true));
+		$id = $this->input->post('cron_id', true);
+		$description = $this->input->post('cron_description', true);
+		$expression = $this->input->post('cron_expression', true);
+		$enabled = $this->input->post('cron_enabled', true);
 
 		$data = array(
 			'expression' => $expression,
@@ -226,6 +230,11 @@ class cron extends CI_Controller {
 	}
 
 	public function fetchCrons() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'Not allowed']);
+			return;
+		}
 		$hres = [];
 		$result = $this->cron_model->get_crons();
 
