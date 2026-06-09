@@ -58,6 +58,7 @@
 
     <title>
         <?php if (isset($page_title)) {
+            $page_title = $page_title == 'Other' ? 'Contest' : $page_title; // Other is not a very descriptive title for a contest logger window, so we rename it to "Contest"
             echo $page_title . " - Wavelog";
         } else {
             echo "WL Contest Engine"; // brand name. We keep this ;-)
