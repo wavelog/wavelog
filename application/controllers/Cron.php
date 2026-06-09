@@ -162,8 +162,12 @@ class cron extends CI_Controller {
 	}
 
 	public function editDialog() {
-
-		$cron_query = $this->cron_model->cron(xss_clean($this->input->post('id', true)));
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		$cron_query = $this->cron_model->cron($this->input->post('id', true));
 
 		$data['cron'] = $cron_query->row();
 		$data['page_title'] = __("Edit Cronjob");
@@ -178,10 +182,10 @@ class cron extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		$id = xss_clean($this->input->post('cron_id', true));
-		$description = xss_clean($this->input->post('cron_description', true));
-		$expression = xss_clean($this->input->post('cron_expression', true));
-		$enabled = xss_clean($this->input->post('cron_enabled', true));
+		$id = $this->input->post('cron_id', true);
+		$description = $this->input->post('cron_description', true);
+		$expression = $this->input->post('cron_expression', true);
+		$enabled = $this->input->post('cron_enabled', true);
 
 		$data = array(
 			'expression' => $expression,
@@ -206,9 +210,14 @@ class cron extends CI_Controller {
 	}
 
 	public function toogleEnableCronSwitch() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'Not allowed']);
+			return;
+		}
 
-		$id = xss_clean($this->input->post('id', true));
-		$cron_enabled = xss_clean($this->input->post('checked', true));
+		$id = $this->input->post('id', true);
+		$cron_enabled = $this->input->post('checked', true);
 
 		if ($id ?? '' != '') {
 			$this->cron_model->set_cron_enabled($id, $cron_enabled);
@@ -221,6 +230,11 @@ class cron extends CI_Controller {
 	}
 
 	public function fetchCrons() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'Not allowed']);
+			return;
+		}
 		$hres = [];
 		$result = $this->cron_model->get_crons();
 
@@ -279,15 +293,15 @@ class cron extends CI_Controller {
 	private function get_mastercron_status() {
 		$warning_timelimit_seconds = 120; 	// yellow - warning please check
 		$error_timelimit_seconds = 600; 	// red - "not running"
-	
+
 		$result = array();
-	
+
 		$last_run = $this->optionslib->get_option('mastercron_last_run') ?? null;
-	
+
 		if ($last_run != null) {
 			$timestamp_last_run = DateTime::createFromFormat('Y-m-d H:i:s', $last_run, new DateTimeZone('UTC'));
-			$now = new DateTime(); 
-			$diff = $now->getTimestamp() - $timestamp_last_run->getTimestamp(); 
+			$now = new DateTime();
+			$diff = $now->getTimestamp() - $timestamp_last_run->getTimestamp();
 
 			if ($diff >= 0 && $diff <= $warning_timelimit_seconds) {
 				$result['status'] = __("OK");
@@ -305,8 +319,8 @@ class cron extends CI_Controller {
 			$result['status'] = _pgettext("Master Cron", "Not running");
 			$result['status_class'] = 'danger';
 		}
-	
+
 		return $result;
 	}
-		
+
 }

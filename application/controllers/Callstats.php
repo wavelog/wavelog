@@ -71,6 +71,7 @@ class Callstats extends CI_Controller
 	    $data['satselect'] = $sat;
 	    $data['propagationselect'] = $propagation;
 	    $data['user_default_band'] = $this->session->userdata('user_default_band');
+	    $data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
@@ -95,6 +96,7 @@ class Callstats extends CI_Controller
 		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
 		$propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
 		$data['results'] = $this->callstats_model->qso_details($searchphrase, $band, $mode, $sat, $orbit, $propagation);
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		// Render Page
 		$data['page_title'] = __("Log View");

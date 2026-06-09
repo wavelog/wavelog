@@ -126,6 +126,7 @@
             \"dok\":{\"show\":\"true\"},
             \"wwff\":{\"show\":\"true\"},
             \"sig\":{\"show\":\"true\"},
+            \"sig_info\":{\"show\":\"false\"},
             \"continent\":{\"show\":\"true\"},
             \"qrz\":{\"show\":\"true\"},
             \"profilename\":{\"show\":\"true\"},
@@ -198,6 +199,10 @@
     }
     if (!isset($current_opts->sig)) {
         echo "\nvar o_template = { sig: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->sig_info)) {
+        echo "\nvar o_template = { sig_info: {show: 'false'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
     if (!isset($current_opts->continent)) {
@@ -422,24 +427,9 @@ $options = json_decode($options);
                                         <select id="selectPropagation" class="form-select form-select-sm border border-secondary filter-field" name="propmode">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="None"><?= _pgettext("Propagation Mode", "None/Empty"); ?></option>
-                                            <option value="AS"><?= _pgettext("Propagation Mode", "Aircraft Scatter"); ?></option>
-                                            <option value="AUR"><?= _pgettext("Propagation Mode", "Aurora"); ?></option>
-                                            <option value="AUE"><?= _pgettext("Propagation Mode", "Aurora-E"); ?></option>
-                                            <option value="BS"><?= _pgettext("Propagation Mode", "Back scatter"); ?></option>
-                                            <option value="ECH"><?= _pgettext("Propagation Mode", "EchoLink"); ?></option>
-                                            <option value="EME"><?= _pgettext("Propagation Mode", "Earth-Moon-Earth"); ?></option>
-                                            <option value="ES"><?= _pgettext("Propagation Mode", "Sporadic E"); ?></option>
-                                            <option value="FAI"><?= _pgettext("Propagation Mode", "Field Aligned Irregularities"); ?></option>
-                                            <option value="F2"><?= _pgettext("Propagation Mode", "F2 Reflection"); ?></option>
-                                            <option value="INTERNET"><?= _pgettext("Propagation Mode", "Internet-assisted"); ?></option>
-                                            <option value="ION"><?= _pgettext("Propagation Mode", "Ionoscatter"); ?></option>
-                                            <option value="IRL"><?= _pgettext("Propagation Mode", "IRLP"); ?></option>
-                                            <option value="MS"><?= _pgettext("Propagation Mode", "Meteor scatter"); ?></option>
-                                            <option value="RPT"><?= _pgettext("Propagation Mode", "Terrestrial or atmospheric repeater or transponder"); ?></option>
-                                            <option value="RS"><?= _pgettext("Propagation Mode", "Rain scatter"); ?></option>
-                                            <option value="SAT"><?= _pgettext("Propagation Mode", "Satellite"); ?></option>
-                                            <option value="TEP"><?= _pgettext("Propagation Mode", "Trans-equatorial"); ?></option>
-                                            <option value="TR"><?= _pgettext("Propagation Mode", "Tropospheric ducting"); ?></option>
+                                            <?php foreach ($adif_propmodes as $mode => $desc) {
+                                               echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
+                                            } ?>
                                         </select>
                                     </div>
                                     <div <?php if (($options->cqzone->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -918,11 +908,11 @@ $options = json_decode($options);
 
         </form>
         <div id="csv-button-container" class="mb-2"></div>
-        <table style="width:100%" class="table-sm table table-hover table-striped table-bordered table-condensed text-center" id="qsoList">
+        <table style="width:100%" class="table-sm lbatable table table-hover table-striped table-bordered table-condensed text-center" id="qsoList">
             <thead>
                 <tr>
                     <th>
-                        <div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div>
                     </th>
                     <?php if (($options->datetime->show ?? "true") == "true") {
                         echo '<th>' . __("Date/Time") . '</th>';
@@ -1022,6 +1012,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->sig->show ?? "true") == "true") {
                         echo '<th>SIG</th>';
+                    } ?>
+                    <?php if (($options->sig_info->show ?? "false") == "true") {
+                        echo '<th>' . __("SIG Info") . '</th>';
                     } ?>
                     <?php if (($options->region->show ?? "true") == "true") {
                         echo '<th>' . __("Region") . '</th>';

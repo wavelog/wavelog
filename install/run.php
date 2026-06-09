@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+$form_token = $_POST['form_token'] ?? '';
+if (empty($form_token) || !isset($_SESSION['form_token']) || !hash_equals($_SESSION['form_token'], $form_token)) {
+	header('Location: index.php', true, 303);
+	exit;
+}
+unset($_SESSION['form_token']);
+
+$_SESSION['installer_token'] = bin2hex(random_bytes(32));
+?>
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +51,7 @@
                     <p><?= sprintf(__("All install steps went through. Redirect to user login in %s seconds..."), "<span id='countdown'>4</span>"); ?></p>
                 </div>
                 <div class="mb-3" id="success_button" style="display: none;">
-                    <a class="btn btn-primary" href="<?php echo $_POST['websiteurl']; ?>index.php/user/login/1"><?= __("Done. Go to the user login ->"); ?></a>
+                    <a class="btn btn-primary" href="<?= htmlspecialchars($_POST['websiteurl'] ?? '', ENT_QUOTES, 'UTF-8') ?>index.php/user/login/1"><?= __("Done. Go to the user login ->"); ?></a>
                 </div>
                 <div id="error_message"></div>
                 <div class="container mt-5">
@@ -58,21 +70,23 @@
 </body>
 
 <script>
-    let _POST = <?php echo json_encode($_POST); ?>;
+    let _POST = <?php echo json_encode($_POST, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+    let _installer_token = '<?= $_SESSION['installer_token'] ?>';
+
+    $.ajaxSetup({
+        headers: { 'X-Installer-Token': _installer_token }
+    });
 
     $(document).ready(async function() {
         init_read_log();
         try {
-            await check_lockfile();
-
             await config_file();
             await database_file();
             await database_tables();
             await database_migrations();
             await update_dxcc();
-            await installer_lock();
-
             await log_message('info', 'Finish. Installer went through successfully.');
+            await installer_lock();
 
             if ($('#logContainer').css('display') == 'none') {
                 // after all install steps went through we can show a success message and redirect to the user/login
@@ -104,7 +118,7 @@
     });
 
     function init_read_log() {
-        setInterval(function() {
+        var interval = setInterval(function() {
             $.ajax({
                 type: 'POST',
                 url: 'ajax.php',
@@ -113,6 +127,11 @@
                 },
                 success: function(response) {
                     $("#debuglog").text(response);
+                },
+                error: function(xhr) {
+                    if (xhr.status === 403) {
+                        clearInterval(interval);
+                    }
                 }
             });
         }, 500);
@@ -128,33 +147,6 @@
         }
     });
 
-    // if a user goes back to the installer we need to redirect him
-    async function check_lockfile() {
-
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                type: 'POST',
-                url: 'ajax.php',
-                data: {
-                    check_lockfile: 1
-                },
-                success: async function(response) {
-                    if (response != 'installer_locked') {
-                        resolve();
-                    } else {
-                        await log_message('error', 'Attention: Installer is locked. Redirect to user/login.');
-                        reject(response);
-                        window.location.href = "<?php echo str_replace('run.php', '', $websiteurl); ?>" + "index.php/user/login";
-                    }
-                },
-                error: async function(error) {
-                    await log_message('error', "Install Lock Check went wrong... Ajax failed. Error: " + error.status);
-                    reject(error);
-                    window.location.href = "<?php echo str_replace('run.php', '', $websiteurl); ?>" + "index.php/user/login";
-                }
-            });
-        });
-    }
 
     async function config_file() {
 
@@ -268,7 +260,7 @@
 
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/migrate",
+                url: <?= json_encode(($_POST['websiteurl'] ?? '') . 'index.php/migrate', JSON_HEX_TAG | JSON_HEX_AMP) ?>,
                 dataType: 'json',
                 success: async function(response) {
                     if (response.status == 'success') {
@@ -297,7 +289,7 @@
 
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/update/dxcc",
+                url: <?= json_encode(($_POST['websiteurl'] ?? '') . 'index.php/update/dxcc', JSON_HEX_TAG | JSON_HEX_AMP) ?>,
                 success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
@@ -334,7 +326,6 @@
                     if (response == 'success') {
                         localStorage.clear();
                         running(field, false);
-                        await log_message('debug', 'Successfully created .lock file in folder /install');
                         resolve();
                     } else {
                         running(field, false, true);

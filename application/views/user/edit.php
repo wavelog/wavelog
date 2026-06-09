@@ -703,7 +703,8 @@
 											<label for="user_dashboard_map"><?= __("Show Dashboard Map"); ?></label>
 											<?php if(!isset($user_dashboard_map)) { $user_dashboard_map='Y'; }?>
 											<select class="form-select" id="user_dashboard_map" name="user_dashboard_map" aria-describedby="user_dashboard_map_Help" required>
-												<option value='Y' <?php if($user_dashboard_map == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
+												<option value='Y' <?php if($user_dashboard_map == "Y") { echo "selected=\"selected\""; } ?>><?= __("Map on top"); ?></option>
+												<option value='map_at_left' <?php if($user_dashboard_map == "map_at_left") { echo "selected=\"selected\""; } ?>><?= __("Map at left"); ?></option>
 												<option value='map_at_right' <?php if($user_dashboard_map == "map_at_right") { echo "selected=\"selected\""; } ?>><?= __("Map at right"); ?></option>
 												<option value='N' <?php if($user_dashboard_map == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
 											</select>
@@ -728,6 +729,20 @@
 												<option value='N' <?php if($user_dashboard_solar == "N") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
 											</select>
 											<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("This switches the display of the solar and propagation data on the dashboard."); ?></small>
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="dashboardShowDxpeditions"><?= __("Active Expeditions"); ?></label>
+											<select name="user_dashboard_show_dxpeditions" class="form-select" id="dashboardShowDxpeditions">
+												<option value="0" <?php if (!($user_dashboard_show_dxpeditions ?? true)) { echo 'selected="selected"'; } ?>><?= __("Disabled"); ?></option>
+												<option value="1" <?php if ($user_dashboard_show_dxpeditions ?? true) { echo 'selected="selected"'; } ?>><?= __("Enabled"); ?></option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="dashboardShowContests"><?= __("Active Contests"); ?></label>
+											<select name="user_dashboard_show_contests" class="form-select" id="dashboardShowContests">
+												<option value="0" <?php if (!($user_dashboard_show_contests ?? true)) { echo 'selected="selected"'; } ?>><?= __("Disabled"); ?></option>
+												<option value="1" <?php if ($user_dashboard_show_contests ?? true) { echo 'selected="selected"'; } ?>><?= __("Enabled"); ?></option>
+											</select>
 										</div>
 									</div>
 								</div>

@@ -96,7 +96,7 @@ class Cabrilloformat {
             $freq = "3.4G";
          }
          if ($freq >= 2320000 && $freq <= 2450000 ) {
-            $freq = "2.4G";
+            $freq = "2.3G";
          }
          if ($freq >= 1240000 && $freq <= 1300000 ) {
             $freq = "1.2G";

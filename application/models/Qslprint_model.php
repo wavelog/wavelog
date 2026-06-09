@@ -68,20 +68,25 @@ class Qslprint_model extends CI_Model {
 	 * It will be provided when calling the function when the dropdown is changed and the javascript fires
 	 */
 	function get_qsos_for_print($station_id = 'All') {
-		$binding=[];
-		$binding[]=$this->session->userdata('user_id');
-		$sql="SELECT count(distinct oldlog.col_primary_key) as previous_qsl, log.COL_QSL_SENT, log.COL_PRIMARY_KEY, log.COL_DXCC, log.COL_CALL, log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_BAND_RX, log.COL_FREQ as frequency, log.COL_FREQ_RX as frequency_rx, log.COL_TIME_ON, log.COL_MODE, log.COL_RST_SENT, log.COL_RST_RCVD, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA, log.COL_SUBMODE, log.COL_BAND, sp.station_id, sp.station_callsign, sp.station_profile_name, o.qsoid
+		$binding = [];
+		$binding[] = $this->session->userdata('user_id');
+		$sql = "SELECT count(distinct oldlog.col_primary_key) as previous_qsl,
+			count(distinct sentlog.col_primary_key) as qsl_sent_to_call,
+			count(distinct rcvdlog.col_primary_key) as qsl_rcvd_from_call,
+			log.COL_QSL_SENT, log.COL_PRIMARY_KEY, log.COL_DXCC, log.COL_CALL, log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_BAND_RX, log.COL_FREQ as frequency, log.COL_FREQ_RX as frequency_rx, log.COL_TIME_ON, log.COL_MODE, log.COL_RST_SENT, log.COL_RST_RCVD, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA, log.COL_SUBMODE, log.COL_BAND, sp.station_id, sp.station_callsign, sp.station_profile_name, o.qsoid
 			FROM ".$this->config->item('table_name')." log
 			INNER JOIN station_profile sp ON sp.`station_id` = log.`station_id`
 			LEFT OUTER JOIN oqrs o ON o.`qsoid` = log.`COL_PRIMARY_KEY`
-			LEFT OUTER JOIN ".$this->config->item('table_name')." oldlog on (oldlog.COL_QSL_SENT = 'Y' and oldlog.station_id=sp.station_id and oldlog.COL_BAND=log.col_band and oldlog.COL_CALL=log.col_call and oldlog.COL_MODE=log.col_mode and oldlog.COL_SAT_NAME=log.col_sat_name and oldlog.COL_PRIMARY_KEY!=log.col_primary_key)
+			LEFT OUTER JOIN ".$this->config->item('table_name')." oldlog on (oldlog.COL_QSL_SENT = 'Y' and oldlog.station_id=sp.station_id and oldlog.COL_BAND=log.col_band and oldlog.COL_CALL=log.col_call and oldlog.COL_MODE=log.col_mode and oldlog.COL_SAT_NAME=log.col_sat_name and oldlog.COL_PRIMARY_KEY != log.col_primary_key)
+			LEFT OUTER JOIN ".$this->config->item('table_name')." sentlog on (sentlog.COL_QSL_SENT = 'Y' and sentlog.station_id=sp.station_id and sentlog.COL_CALL=log.col_call)
+			LEFT OUTER JOIN ".$this->config->item('table_name')." rcvdlog on (rcvdlog.COL_QSL_RCVD = 'Y' and rcvdlog.station_id=sp.station_id and rcvdlog.COL_CALL=log.col_call)
 			WHERE sp.`user_id` = ?";
 		if ($station_id != 'All') {
-			$sql.=' AND log.`station_id` = ?';
-			$binding[]=$station_id;
+			$sql .= ' AND log.`station_id` = ?';
+			$binding[] = $station_id;
 		}
-		$sql.=" AND log.`COL_QSL_SENT` IN('R', 'Q')
-			GROUP BY log.col_primary_key
+		$sql .= " AND log.`COL_QSL_SENT` IN('R', 'Q')
+			GROUP BY log.col_primary_key, log.COL_QSL_SENT, log.COL_PRIMARY_KEY, log.COL_DXCC, log.COL_CALL, log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_BAND_RX, log.COL_FREQ, log.COL_FREQ_RX, log.COL_TIME_ON, log.COL_MODE, log.COL_RST_SENT, log.COL_RST_RCVD, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA, log.COL_SUBMODE, log.COL_BAND, sp.station_id, sp.station_callsign, sp.station_profile_name, o.qsoid
 			ORDER BY log.`COL_DXCC` ASC, log.`COL_CALL` ASC, log.`COL_SAT_NAME` ASC, log.`COL_SAT_MODE` ASC, log.`COL_BAND_RX` ASC, log.`COL_TIME_ON` ASC, log.`COL_MODE` ASC LIMIT 1000";
 
 		$query = $this->db->query($sql, $binding);
@@ -133,52 +138,45 @@ class Qslprint_model extends CI_Model {
 	}
 
 	function open_qso_list($callsign) {
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		// always filter user. this ensures that no inaccesible QSOs will be returned
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->where('(COL_CALL like "%/'.$callsign.'/%" OR COL_CALL like "%/'.$callsign.'" OR COL_CALL like "'.$callsign.'/%" OR COL_CALL = "'.$callsign.'")');
-		$this->db->where('coalesce(COL_QSL_SENT, "") not in ("R", "Q")');
-		$this->db->order_by("COL_DXCC", "ASC");
-		$this->db->order_by("COL_CALL", "ASC");
-		$this->db->order_by("COL_SAT_NAME", "ASC");
-		$this->db->order_by("COL_SAT_MODE", "ASC");
-		$this->db->order_by("COL_BAND_RX", "ASC");
-		$this->db->order_by("COL_TIME_ON", "ASC");
-		$this->db->order_by("COL_MODE", "ASC");
-		$query = $this->db->get($this->config->item('table_name'));
+		$binding = [];
 
+		$sql = "SELECT log.COL_QSL_SENT, log.COL_QSLRDATE, log.COL_QSL_RCVD, log.COL_QSL_RCVD_VIA, log.COL_QSLSDATE, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA,
+			log.COL_LOTW_QSL_SENT, log.COL_LOTW_QSLSDATE, log.COL_LOTW_QSL_RCVD, log.COL_LOTW_QSLRDATE,
+			log.COL_PRIMARY_KEY, log.COL_DXCC, log.COL_CALL, log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_BAND_RX, log.COL_FREQ,
+			log.COL_FREQ_RX, log.COL_TIME_ON, log.COL_MODE, log.COL_RST_SENT, log.COL_RST_RCVD,
+			log.COL_SUBMODE, log.COL_BAND, sp.station_id, sp.station_callsign, sp.station_profile_name,
+			(SELECT COUNT(*) FROM ".$this->config->item('table_name')." sentlog WHERE sentlog.COL_QSL_SENT = 'Y' AND sentlog.station_id = log.station_id AND sentlog.COL_CALL = log.COL_CALL) as qsl_sent_to_call,
+			(SELECT COUNT(*) FROM ".$this->config->item('table_name')." rcvdlog WHERE rcvdlog.COL_QSL_RCVD = 'Y' AND rcvdlog.station_id = log.station_id AND rcvdlog.COL_CALL = log.COL_CALL) as qsl_rcvd_from_call,
+			(SELECT COUNT(*) FROM ".$this->config->item('table_name')." prevlog WHERE prevlog.COL_QSL_SENT = 'Y' AND prevlog.station_id = log.station_id AND prevlog.COL_BAND = log.COL_BAND AND prevlog.COL_CALL = log.COL_CALL AND prevlog.COL_MODE = log.COL_MODE AND COALESCE(prevlog.COL_SAT_NAME, '') = COALESCE(log.COL_SAT_NAME, '') AND prevlog.COL_PRIMARY_KEY != log.COL_PRIMARY_KEY) as previous_qsl
+			FROM ".$this->config->item('table_name')." log
+			JOIN station_profile sp ON sp.`station_id` = log.`station_id`
+			WHERE sp.`user_id` = ?
+			AND (log.COL_CALL like ? OR log.COL_CALL like ? OR log.COL_CALL like ? OR log.COL_CALL = ?)
+			AND coalesce(log.COL_QSL_SENT, '') not in ('R', 'Q')
+			ORDER BY log.`COL_DXCC` ASC, log.`COL_CALL` ASC, log.`COL_SAT_NAME` ASC, log.`COL_SAT_MODE` ASC, log.`COL_BAND_RX` ASC, log.`COL_TIME_ON` ASC, log.`COL_MODE` ASC LIMIT 1000";
+
+		$binding[] = $this->session->userdata('user_id');
+		$binding[] = "%/".$callsign."/%";
+		$binding[] = "%/".$callsign;
+		$binding[] = $callsign."/%";
+		$binding[] = $callsign;
+
+		$query = $this->db->query($sql, $binding);
 		return $query;
 	}
 
-	function get_previous_qsls($qso_id) {
-		if (empty($qso_id)) {
-			return 0;
-		}
-
-		$table_name = $this->config->item('table_name');
-		$sql = "SELECT COUNT(COL_PRIMARY_KEY) AS previous_qsl
-				FROM $table_name
-				WHERE COL_QSL_SENT = 'Y'
-				AND station_id = (SELECT station_id FROM $table_name WHERE COL_PRIMARY_KEY = ?)
-				AND (COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '')) =
-					(SELECT COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '')
-					 FROM $table_name
-					 WHERE COL_PRIMARY_KEY = ?)
-				GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME";
-
-		// we only return the count of previous QSLs as an integer
-		return (int) ($this->db->query($sql, [$qso_id, $qso_id])->row()->previous_qsl ?? 0);
-	}
-
 	function show_oqrs($id) {
-		$this->db->select('requesttime as "Request time", requestcallsign as "Requester", email as "Email", note as "Note"');
-		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
-		// always filter user. this ensures that no inaccesible QSOs will be returned
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->where('oqrs.id = ' .$id);
-		$query = $this->db->get('oqrs');
+		$sql = "SELECT requesttime as 'Request time', requestcallsign as 'Requester', email as 'Email', note as 'Note'
+		FROM oqrs
+		JOIN station_profile ON station_profile.station_id = oqrs.station_id
+		WHERE station_profile.user_id = ?
+		AND oqrs.id = ?";
 
-		return $query->result();
+		$binding = [];
+		$binding[] = $this->session->userdata('user_id');
+		$binding[] = $id;
+
+		return $this->db->query($sql, $binding)->result();
 	}
 
 }

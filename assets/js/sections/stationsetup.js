@@ -369,7 +369,7 @@ $(document).ready(function () {
 			});
 		} else {
 			$('.visitorSaveButton').prop("disabled", false);
-			$('#visitorLinkInfo').append('<div class="alertvisitor alert alert-danger" role="alert">Invalid characters entered in link!</div>');
+			$('#visitorLinkInfo').append('<div class="alertvisitor alert alert-danger" role="alert">'+lang_invalid_characters+'</div>');
 		}
 		return false;
 	}

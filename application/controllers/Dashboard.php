@@ -104,18 +104,26 @@ class Dashboard extends CI_Controller {
 		$data['month_qsos'] = $qso_counts['month'];
 		$data['year_qsos'] = $qso_counts['year'];
 
-		$rawstreak=$this->dayswithqso_model->getAlmostCurrentStreak();
+		$rawstreak = $this->dayswithqso_model->getCurrentStreak();
 		if (is_array($rawstreak)) {
-			$data['current_streak']=$rawstreak['highstreak'];
+			$data['current_streak'] = $rawstreak['highstreak'];
 		} else {
-			$data['current_streak']=0;
+			$rawstreak = $this->dayswithqso_model->getAlmostCurrentStreak();
+			if (is_array($rawstreak)) {
+				$data['current_streak'] = $rawstreak['highstreak'];
+			} else {
+				$data['current_streak'] = 0;
+			}
 		}
+
+		$data['almost_current_streak'] = $data['current_streak'];
 
 		// Load Dashboard stats (countries + QSL stats in one query)
 		$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array);
 
 		// Country stats
 		$data['total_countries'] = $stats['Countries_Worked'];
+			$data['unique_callsigns'] = $stats['Unique_Callsigns'];
 		$data['total_countries_confirmed_paper'] = $stats['Countries_Worked_QSL'];
 		$data['total_countries_confirmed_eqsl'] = $stats['Countries_Worked_EQSL'];
 		$data['total_countries_confirmed_lotw'] = $stats['Countries_Worked_LOTW'];
@@ -216,6 +224,18 @@ class Dashboard extends CI_Controller {
 				$data['solar_bandconditions'] = $this->Hamqsl_model->get_bandconditions_array();
 				$data['solar_solardata'] = $this->Hamqsl_model->get_solarinformation_array();
 			}
+		}
+
+		// Active Expeditions and Contests for Dashboard cards
+		$data['dashboard_show_dxpeditions'] = ($this->session->userdata('user_dashboard_show_dxpeditions') ?? '0') == '1' ? true : false;
+		$data['dashboard_show_contests'] = ($this->session->userdata('user_dashboard_show_contests') ?? '0') == '1' ? true : false;
+		$data['active_dxpeditions'] = false;
+		$data['active_contests'] = false;
+
+		if ($data['dashboard_show_dxpeditions'] || $data['dashboard_show_contests']) {
+			$this->load->model('Calendar_model');
+			$data['active_dxpeditions'] = $data['dashboard_show_dxpeditions'] ? $this->Calendar_model->get_active_dxpeditions() : false;
+			$data['active_contests'] = $data['dashboard_show_contests'] ? $this->Calendar_model->get_contests_today() : false;
 		}
 
 		// Load the views

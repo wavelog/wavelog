@@ -24,7 +24,8 @@ class Publicsearch extends CI_Model {
 	function get_userid_for_slug($slug) {
 		$sql = "SELECT user_id FROM station_logbooks WHERE public_slug = ?";
 		$query = $this->db->query($sql, array($slug));
-		return $query->result_array()[0]['user_id'];
+		$row = $query->result_array();
+		return $row ? $row[0]['user_id'] : null;
 	}
 
 	function public_search_enabled($slug) {
@@ -32,7 +33,8 @@ class Publicsearch extends CI_Model {
 			$sql = "SELECT public_search FROM station_logbooks WHERE public_slug = ?";
 			$query = $this->db->query($sql, array($slug));
 
-			if ($query->result_array()[0]['public_search'] == 1) {
+			$result = $query->result_array();
+			if (!empty($result) && $result[0]['public_search'] == 1) {
 				return true;
 			}
 		}

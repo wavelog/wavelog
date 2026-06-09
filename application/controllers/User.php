@@ -781,6 +781,22 @@ class User extends CI_Controller {
 				}
 			}
 
+			// Dashboard show expeditions
+			if($this->input->post('user_dashboard_show_dxpeditions') !== null) {
+				$data['user_dashboard_show_dxpeditions'] = $this->input->post('user_dashboard_show_dxpeditions', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dxpeditions','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				$data['user_dashboard_show_dxpeditions'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
+			}
+
+			// Dashboard show contests
+			if($this->input->post('user_dashboard_show_contests') !== null) {
+				$data['user_dashboard_show_contests'] = $this->input->post('user_dashboard_show_contests', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_contests','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				$data['user_dashboard_show_contests'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
+			}
+
 			// DX Waterfall enable option
 			if($this->input->post('user_dxwaterfall_enable')) {
 				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable', false);
@@ -1054,6 +1070,8 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
+					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') == '1' ? '1' : '0')), $user_id);
+					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') == '1' ? '1' : '0')), $user_id);
 
 					if($this->session->userdata('user_id') == $user_id) {
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
@@ -1358,7 +1376,7 @@ class User extends CI_Controller {
 		}
 	}
 
-	function logout($custom_message = null, $hard_logout = true) {
+	function logout($custom_message = null, $hard_logout = true, $enable_idp = true) {
 		$this->load->model('user_model');
 
 		$user_name = $this->session->userdata('user_name');
@@ -1377,7 +1395,7 @@ class User extends CI_Controller {
 			$this->input->set_cookie('tmp_msg', json_encode(['notice', sprintf(__("User %s logged out."), $user_name)]), 10, '');
 		}
 
-		if ($this->config->item('auth_header_enable')) {
+		if ($this->config->item('auth_header_enable') && $enable_idp) {
 			$this->config->load('sso', true, true);
 			$logout = $this->config->item('auth_header_url_logout', 'sso') ?: null;
 			if ($logout !== null) {
@@ -1873,6 +1891,6 @@ class User extends CI_Controller {
 
 		// log out on the regular way
 		$msg = ['notice', sprintf(__("You have been logged out of the account %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
-		$this->logout($msg, false);
+		$this->logout($msg, false, false);
 	}
 }

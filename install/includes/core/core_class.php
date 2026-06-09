@@ -32,11 +32,12 @@ class Core
 		}
 
 		if ($data['directory'] ?? '' != "") {
-			if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'])) {
-				//pass folders real
+			$doc_root = realpath($_SERVER['DOCUMENT_ROOT']);
+			$target   = realpath($_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory']);
+			if ($doc_root !== false && $target !== false && strpos($target . '/', $doc_root . '/') === 0) {
 				$counter++;
 			} else {
-				$errors[] = "Directory " . $data['directory'] . " does not exist.";
+				$errors[] = "Directory does not exist or is outside the web root.";
 			}
 		} else {
 			// directory is not set so nothing to check here
@@ -111,8 +112,16 @@ class Core
 			$errors[] = "Invalid Timezone.";
 		}
 
+		// Validate Website URL
+		if (isset($data['websiteurl']) && filter_var($data['websiteurl'], FILTER_VALIDATE_URL) &&
+			in_array(parse_url($data['websiteurl'], PHP_URL_SCHEME), ['http', 'https'])) {
+			$counter++;
+		} else {
+			$errors[] = "Invalid or missing Website URL (must start with http:// or https://).";
+		}
+
 		// Check if all the required fields have been entered
-		if ($counter == 13) {
+		if ($counter == 14) {
 			log_message('info', 'Data validation passed.');
 			return true;
 		} else {
@@ -129,6 +138,13 @@ class Core
 
 		$template_path 	= 'config/database.php';
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/database.php';
+
+		// if config file already exists, we stop early and fail
+		if (file_exists($output_path)) {
+			log_message('error', 'database.php config file already exists');
+			return false;
+		}
+
 		if (isset($_ENV['CI_ENV'])) {
 			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/database.php';
 			log_message('info', 'CI_ENV is set to ' . $_ENV['CI_ENV'] . '. Using ' . $_ENV['CI_ENV'] . ' database.php config path.');
@@ -149,14 +165,10 @@ class Core
 		}
 		log_message('info', 'database.php template file read successfully.');
 
-		// Sanitize DB Password from single quotes
-		$sanitized_db_pwd = preg_replace("/\\\\/i",'\\\\\\\\',$data['db_password'] ?? '');       	// Escape the Escape char ( '\' becomes '\\' )
-		$sanitized_db_pwd = preg_replace("/\'/i",'\\\\\'',$sanitized_db_pwd);  				 		// Escape the ' ( ' becomes \' )
-
-		$new  = str_replace("%HOSTNAME%", $data['db_hostname'], $database_file);
-		$new  = str_replace("%USERNAME%", $data['db_username'], $new);
-		$new  = str_replace("%PASSWORD%", $sanitized_db_pwd, $new);
-		$new  = str_replace("%DATABASE%", $data['db_name'], $new);
+		$new  = str_replace("%HOSTNAME%", $this->_sanitize($data['db_hostname']), $database_file);
+		$new  = str_replace("%USERNAME%", $this->_sanitize($data['db_username']), $new);
+		$new  = str_replace("%PASSWORD%", $this->_sanitize($data['db_password'] ?? ''), $new);
+		$new  = str_replace("%DATABASE%", $this->_sanitize($data['db_name']), $new);
 		log_message('info', 'Database config file prepared successfully. Writing to file...');
 
 		// Write the new database.php file
@@ -191,6 +203,13 @@ class Core
 
 		$template_path 	= 'config/config.php';
 		$output_path 	= '../application/config/config.php';
+
+		// if config file already exists, we stop early and fail
+		if (file_exists($output_path)) {
+			log_message('error', 'config.php config file already exists');
+			return false;
+		}
+
 		if (isset($_ENV['CI_ENV'])) {
 			$output_path = '../application/config/'.$_ENV['CI_ENV'].'/config.php';
 			$output_dir = dirname($output_path);
@@ -218,34 +237,43 @@ class Core
 		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
 
 		$new  = str_replace("%baselocator%", strtoupper($data['userlocator']), $config_file);
-		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
-		$new  = str_replace("%directory%", $data['directory'], $new);
-		$new  = str_replace("%callbook%", $data['global_call_lookup'], $new);
+		$new  = str_replace("%websiteurl%", $this->_sanitize($data['websiteurl']), $new);
+		$new  = str_replace("%directory%", $this->_sanitize($data['directory']), $new);
+		$new  = str_replace("%callbook%", $this->_sanitize($data['global_call_lookup']), $new);
 
-		$callbooks = ['qrz', 'hamqth', 'qrzcq', 'qrzru'];
-		
-		if (in_array($data['global_call_lookup'], $callbooks)) {
-			$c_username = '%' . $data['global_call_lookup'] . '_username%';
-			$c_password = '%' . $data['global_call_lookup'] . '_password%';
+		// Username/password-based providers
+		$callbooks_userpass = ['qrz', 'hamqth', 'qrzcq', 'qrzru'];
+		// Token-based providers (single "<provider>_token" placeholder)
+		$callbooks_token    = ['qrzcall'];
 
-			$rest_callbooks = array_diff($callbooks, [$data['global_call_lookup']]);
+		$selected = $data['global_call_lookup'] ?? '';
 
-			foreach ($rest_callbooks as $callbook) {
-				$new = str_replace('%' . $callbook . '_username%', '', $new);
-				$new = str_replace('%' . $callbook . '_password%', '', $new);
-			}
+		// Substitute the selected provider's credentials, blank out everything else.
+		if (in_array($selected, $callbooks_userpass, true)) {
+			$c_username = '%' . $selected . '_username%';
+			$c_password = '%' . $selected . '_password%';
+			$new = str_replace($c_username, $this->_sanitize($data['callbook_username'] ?? ''), $new);
+			$new = str_replace($c_password, $this->_sanitize($data['callbook_password'] ?? ''), $new);
+		}
+		if (in_array($selected, $callbooks_token, true)) {
+			$c_token = '%' . $selected . '_token%';
+			$new = str_replace($c_token, $this->_sanitize($data['callbook_token'] ?? ''), $new);
+		}
 
-			$new = str_replace($c_username, $data['callbook_username'], $new);
-			$new = str_replace($c_password, $data['callbook_password'], $new);
-		} else {
-			foreach ($callbooks as $callbook) {
-				$new = str_replace('%' . $callbook . '_username%', '', $new);
-				$new = str_replace('%' . $callbook . '_password%', '', $new);
-			}
+		// Blank out all non-selected provider placeholders so the generated
+		// config has empty strings for the inactive ones.
+		foreach ($callbooks_userpass as $cb) {
+			if ($cb === $selected) continue;
+			$new = str_replace('%' . $cb . '_username%', '', $new);
+			$new = str_replace('%' . $cb . '_password%', '', $new);
+		}
+		foreach ($callbooks_token as $cb) {
+			if ($cb === $selected) continue;
+			$new = str_replace('%' . $cb . '_token%', '', $new);
 		}
 
 		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
-		$new = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
+		$new = str_replace("'%log_threshold%'", (int)$data['log_threshold'], $new);
 		log_message('info', 'Config.php file prepared successfully. Writing to file...');
 
 		// Write the new config.php file
@@ -273,5 +301,10 @@ class Core
 			log_message('error', 'config.php path is not writable.');
 			return false;
 		}
+	}
+
+	private function _sanitize($value){
+		$value = str_replace('\\', '\\\\', $value ?? '');
+		return str_replace("'", "\\'", $value);
 	}
 }

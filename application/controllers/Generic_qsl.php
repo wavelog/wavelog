@@ -13,11 +13,12 @@ class Generic_qsl extends CI_Controller {
 	}
 
 	// View for filtering and showing confirmations on LoTW/QSL/eQSL/QRZ/HRDLog/Clublog
-	public function confirmations() {
+	public function confirmations($type = null) {
 		// Render Page
 		$data['page_title'] = __("Confirmations");
 
 		$pageData['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
+		$pageData['confirmation_type'] = $type;
 
 		$footerData = [];
 		$footerData['scripts'] = [

@@ -20,17 +20,17 @@ class Database {
 		}
 
 		$newpw = password_hash($data['password'], PASSWORD_DEFAULT);
-		$newquery  = str_replace("%%FIRSTUSER_NAME%%", str_replace("'", "\\'", $data['username']), $query);
+		$newquery  = str_replace("%%FIRSTUSER_NAME%%", $mysqli->real_escape_string($data['username']), $query);
 		$newquery  = str_replace("%%FIRSTUSER_PASS%%", $newpw, $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_MAIL%%", $data['user_email'], $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_CALL%%", strtoupper($data['callsign']), $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_LOCATOR%%", strtoupper($data['userlocator']), $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_FIRSTNAME%%", str_replace("'", "\\'", $data['firstname']), $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_LASTNAME%%", str_replace("'", "\\'", $data['lastname']), $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_TIMEZONE%%", $data['timezone'], $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_DXCC%%", $data['dxcc'], $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_CITY%%", str_replace("'", "\\'", $data['city']), $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_USERLANGUAGE%%", $data['userlanguage'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_MAIL%%", $mysqli->real_escape_string($data['user_email']), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_CALL%%", $mysqli->real_escape_string(strtoupper($data['callsign'])), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_LOCATOR%%", $mysqli->real_escape_string(strtoupper($data['userlocator'])), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_FIRSTNAME%%", $mysqli->real_escape_string($data['firstname']), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_LASTNAME%%", $mysqli->real_escape_string($data['lastname']), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_TIMEZONE%%", (int)$data['timezone'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_DXCC%%", (int)$data['dxcc'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_CITY%%", $mysqli->real_escape_string($data['city']), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_USERLANGUAGE%%", $mysqli->real_escape_string($data['userlanguage']), $newquery);
 		log_message('info', 'SQL queries prepared successfully. Writing to database...');
 
 
@@ -77,6 +77,9 @@ class Database {
 				throw new Exception("Connection Error: " . $link->connect_error);
 			}
 	
+			if (!preg_match('/^[a-zA-Z0-9_-]{1,64}$/', $data['db_name'])) {
+				throw new Exception("Invalid database name. Only letters, numbers, underscores and hyphens are allowed.");
+			}
 			if (!$link->query("CREATE DATABASE IF NOT EXISTS `" . $data['db_name'] . "`")) {
 				throw new Exception("Unable to create database: " . $link->error);
 			}

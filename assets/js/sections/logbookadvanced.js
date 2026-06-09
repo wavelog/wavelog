@@ -160,6 +160,9 @@ function updateRow(qso) {
 	if ((user_options.sig) && ((user_options.sig.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.sig);
 	}
+	if ((user_options.sig_info) && ((user_options.sig_info.show ?? 'false') == "true")){
+		cells.eq(c++).html(qso.sig_info);
+	}
 	if ((user_options.region) && ((user_options.region.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.region);
 	}
@@ -222,6 +225,7 @@ function loadQSOTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+			order: [],
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
 			paging: false,
@@ -402,6 +406,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.sig.show ?? 'true') == "true"){
 			data.push(qso.sig);
+		}
+		if ((user_options.sig_info.show ?? 'false') == "true"){
+			data.push(qso.sig_info);
 		}
 		if ((user_options.region.show ?? 'true') == "true"){
 			data.push(qso.region);
@@ -914,7 +921,7 @@ $(document).ready(function () {
 			success: function (html) {
 				BootstrapDialog.show({
 					title: lang_gen_advanced_logbook_help,
-					size: BootstrapDialog.SIZE_NORMAL,
+					size: BootstrapDialog.SIZE_WIDE,
 					cssClass: 'options',
 					nl2br: false,
 					message: html,
@@ -1010,12 +1017,16 @@ $(document).ready(function () {
 			};
 
 		if (id_list.length > 0) {
+			reverse = false;
 			// Post data to URL which handles post request
 			xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
+			if(event.shiftKey) {
+				reverse = true;
+			}
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			// You should set responseType as blob for binary responses
 			xhttp.responseType = 'blob';
-			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortcolumn=" +$('#sortcolumn').val()+"&sortdirection=" +$('#sortdirection').val());
+			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortcolumn=" +$('#sortcolumn').val()+"&sortdirection=" +$('#sortdirection').val()+"&reverse="+reverse);
 		} else {
 
 			// Post data to URL which handles post request
@@ -2068,6 +2079,7 @@ function saveOptions() {
 				dok: $('input[name="dok"]').is(':checked') ? true : false,
 				wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 				sig: $('input[name="sig"]').is(':checked') ? true : false,
+				sig_info: $('input[name="sig_info"]').is(':checked') ? true : false,
 				region: $('input[name="region"]').is(':checked') ? true : false,
 				continent: $('input[name="continent"]').is(':checked') ? true : false,
 				distance: $('input[name="distance"]').is(':checked') ? true : false,

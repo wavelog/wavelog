@@ -340,6 +340,10 @@ function stopImpersonate_modal() {
     <script id="waejs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/wae.js'); ?>"></script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "amsat_rover") ) { ?>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/amsat_award.js'); ?>"></script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "statistics" && $this->uri->segment(2) == "") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chart.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chartjs-plugin-piechart-outlabels.js'); ?>"></script>
@@ -1716,7 +1720,7 @@ $(document).ready(function(){
     $('.tabledxcc').DataTable({
         "pageLength": 25,
         responsive: false,
-        ordering: false,
+        ordering: true,
         "scrollY":        "400px",
         "scrollCollapse": true,
         "paging":         false,

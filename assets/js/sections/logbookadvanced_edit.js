@@ -109,6 +109,24 @@ function prepareEditDialog() {
 		var statedxcc = $('#editDxccState').val();
 		changeState(statedxcc);
 	});
+
+	$('#clearSig').change(function(){
+		if ($("#clearSig").prop("checked")) {
+			$('#editSig').prop("disabled", true);
+			$('#editSig').val("");
+		} else {
+			$('#editSig').prop("disabled", false);
+		}
+	});
+
+	$('#clearSigInfo').change(function(){
+		if ($("#clearSigInfo").prop("checked")) {
+			$('#editSigInfo').prop("disabled", true);
+			$('#editSigInfo').val("");
+		} else {
+			$('#editSigInfo').prop("disabled", false);
+		}
+	});
 }
 
 function propagationCopy() {
@@ -223,6 +241,12 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'qslsentmethod' || column == 'qslreceivedmethod') {
 		value = $("#editQslMethod").val();
 	}
+	if (column == 'sig') {
+		value = $("#editSig").val();
+		value2 = $("#clearSig").prop('checked');
+		value3 = $("#editSigInfo").val();
+		value4 = $("#clearSigInfo").prop('checked');
+	}
 
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/saveBatchEditQsos',
@@ -285,6 +309,14 @@ function changeEditType(type) {
 	$('#editFrequencyRx').hide();
 	$('#editFrequencyTxLabel').hide();
 	$('#editFrequencyRxLabel').hide();
+	$('#editSig').hide();
+	$('#clearSig').hide();
+	$('#clearSigLabel').hide();
+	$('#editSigLabel').hide();
+	$('#editSigInfo').hide();
+	$('#clearSigInfo').hide();
+	$('#clearSigInfoLabel').hide();
+	$('#editSigInfoLabel').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -332,8 +364,10 @@ function changeEditType(type) {
 		$('#editEqsl').show();
 	} else if (type == "continent") {
 		$('#editContinent').show();
-	} else if (type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == "stationpower" || type == 'stxstring' || type == 'rsts' || type == 'rstr') {
-		$('#editTextInput').show();
+	} else if (type == "stationpower") {
+		$('#editTextInput').attr('type', 'number').attr('step', 'any').show();
+	} else if (type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == 'stxstring' || type == 'rsts' || type == 'rstr') {
+		$('#editTextInput').attr('type', 'text').removeAttr('step').show();
 	} else if (type == "region") {
 		$('#editRegion').show();
 	} else if (type == "clublogsent"  || type == "clublogreceived") {
@@ -354,6 +388,15 @@ function changeEditType(type) {
 		$('#editFrequencyRx').show();
 		$('#editFrequencyTxLabel').show();
 		$('#editFrequencyRxLabel').show();
+	} else if (type == "sig") {
+		$('#editSig').show();
+		$('#clearSig').show();
+		$('#clearSigLabel').show();
+		$('#editSigLabel').show();
+		$('#editSigInfo').show();
+		$('#clearSigInfo').show();
+		$('#clearSigInfoLabel').show();
+		$('#editSigInfoLabel').show();
 	}
 }
 

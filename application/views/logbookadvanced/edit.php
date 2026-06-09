@@ -1,3 +1,7 @@
+<div class="alert alert-info" role="alert">
+	<i class="fas fa-exclamation-circle me-2"></i>
+	<?= __("Not all columns are available for batch editing. If you can't find the column you are looking for, use the regular QSO edit (click the callsign, then click the edit QSO button)."); ?>
+</div>
 <?= __("Please choose the column to be edited:"); ?><br/><br/>
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
@@ -32,6 +36,7 @@
 				<option value="region"><?= __("Region"); ?></option>
 				<option value="sota"><?= __("SOTA"); ?></option>
 				<option value="state"><?= __("State"); ?></option>
+				<option value="sig"><?= __("SIG / SIG_INFO"); ?></option>
 				<option value="wwff"><?= __("WWFF"); ?></option>
 			</optgroup>
 
@@ -135,10 +140,10 @@
 		</select>
 
 		<label style="display:none" id="editFrequencyTxLabel" class="mx-2 w-auto" for="editFrequency"><?= __("Frequency TX (Hz)"); ?></label>
-		<input style="display:none" class="form-control form-control-sm w-auto" id="editFrequency" type="text" name="editFrequency" placeholder="" aria-label="editFrequency">
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editFrequency" type="number" step="1" name="editFrequency" placeholder="" aria-label="editFrequency">
 
 		<label style="display:none" id="editFrequencyRxLabel" class="mx-2 w-auto" for="editFrequencyRx"><?= __("Frequency RX (Hz)"); ?></label>
-		<input style="display:none" class="form-control form-control-sm w-auto" id="editFrequencyRx" type="text" name="editFrequencyRx" placeholder="" aria-label="editFrequencyRx">
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editFrequencyRx" type="number" step="1" name="editFrequencyRx" placeholder="" aria-label="editFrequencyRx">
 
 		<select style="display:none" id="editMode" class="form-select mode form-select-sm w-auto" name="editMode">
 		<?php
@@ -244,7 +249,14 @@
 		</select>
 
 		<label style="display:none" id="editDistanceInputLabel" class="mx-2 w-auto" for="editDistanceInput"><?= __("Distance (in km). Leave blank to recalculate distance. (It will only work if a gridsquare is set)."); ?></label>
-		<input style="display:none" class="form-control form-control-sm w-auto" id="editDistanceInput" type="text" name="editDistanceInput" placeholder="" aria-label="editDistanceInput">
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editDistanceInput" type="number" step="any" name="editDistanceInput" placeholder="" aria-label="editDistanceInput">
 		<input style="display:none" class="form-control form-control-sm w-auto uppercase" id="editDokInput" type="text" name="editDokInput" placeholder="" aria-label="editDokInput">
 		<input style="display:none" class="form-control form-control-sm w-auto uppercase" id="editGridsquareInput" type="text" name="editGridsquareInput" placeholder="" aria-label="editGridsquareInput">
+
+		<label style="display:none" id="editSigLabel" class="mx-2 w-auto" for="editSig"><?= __("SIG"); ?></label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editSig" type="text" name="editSig" placeholder="" aria-label="editSig">
+		<input style="display:none" id="clearSig" class="mx-2 w-auto" type="checkbox" name="clearSig"><label style="display:none" id="clearSigLabel" for="clearSig"><?= __("clear"); ?></label>
+		<label style="display:none" id="editSigInfoLabel" class="mx-2 w-auto" for="editSigInfo"><?= __("SIG_INFO"); ?></label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editSigInfo" type="text" name="editSigInfo" placeholder="" aria-label="editSigInfo">
+		<input style="display:none" id="clearSigInfo" class="mx-2 w-auto" type="checkbox" name="clearSigInfo"><label style="display:none" id="clearSigInfoLabel" for="clearSigInfo"><?= __("clear"); ?></label>
 	</form>

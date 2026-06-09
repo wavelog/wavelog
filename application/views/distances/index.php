@@ -1,6 +1,4 @@
-<div class="container">
-
-    <br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
     <h2><?= __("Distances Worked"); ?></h2>
     <script>
@@ -14,6 +12,12 @@
         var lang_statistics_distances_callsigns_worked = '<?= __("Callsign(s) worked (max 5 shown)"); ?>';
         var lang_statistics_distances_qsos_with = '<?= __("QSOs with"); ?>';
     </script>
+
+	    <div class="card">
+	      <div class="card-header">
+	        <?= __("Distances Worked"); ?>
+	      </div>
+	      <div class="card-body">
     <div id="distances_div">
         <form class="d-flex align-items-center">
             <label class="my-1 me-2" for="distplot_bands"><?= __("Band selection"); ?></label>
@@ -56,28 +60,15 @@
                         <option value="All"><?= __("All"); ?></option>
                         <option value="NoSAT"><?= __("All but SAT"); ?></option>
                         <option value="None"><?= __("None/Empty"); ?></option>
-                        <option value="AS"><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
-                        <option value="AUR"><?= _pgettext("Propagation Mode","Aurora"); ?></option>
-                        <option value="AUE"><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
-                        <option value="BS"><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
-                        <option value="ECH"><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
-                        <option value="EME"><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
-                        <option value="ES"><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
-                        <option value="FAI"><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
-                        <option value="F2"><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
-                        <option value="INTERNET"><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
-                        <option value="ION"><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
-                        <option value="IRL"><?= _pgettext("Propagation Mode","IRLP"); ?></option>
-                        <option value="MS"><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
-                        <option value="RPT"><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
-                        <option value="RS"><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
-                        <option value="SAT"><?= _pgettext("Propagation Mode","Satellite"); ?></option>
-                        <option value="TEP"><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
-                        <option value="TR"><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
+                        <?php foreach ($adif_propmodes as $mode => $desc) {
+                           echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
+                        } ?>
                     </select>
                 </div>
             <button id="plot" type="button" name="plot" class="btn btn-primary ld-ext-right ld-ext-right-plot" onclick="distPlot(this.form)"><?= __("Show")?><div class="ld ld-ring ld-spin"></div></button>
         </form>
     </div>
 
+	      </div>
+	    </div>
 </div>

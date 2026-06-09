@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |	'app_name'		Name of the App 'Wavelog'
 |	'directory'		directory where wavelog is installed eg "logger"
-|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but also supports: "qrz", "qrzcq" and "qrzru"
+|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but also supports: "qrz", "qrzcq", "qrzru" and "qrzcall"
 */
 
 $config['app_name'] = 'Wavelog';
@@ -19,7 +19,7 @@ $config['directory'] = 'logbook';
 |--------------------------------------------------------------------------
 | Callbook Settings
 |--------------------------------------------------------------------------
-| Options are hamqth, qrz, qrzcq or qrzru
+| Options are hamqth, qrz, qrzcq, qrzru or qrzcall
 | For a single callbook configure just one value as string. Example:
 | $config['callbook'] = 'hamqth';
 | This can also be set to an array of callbooks to search sequentially until a match is found. Example:
@@ -89,6 +89,20 @@ $config['qrzcq_password'] = '';
 */
 $config['qrzru_username'] = '';
 $config['qrzru_password'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| QRZCALL.EU Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzcall_token'	QRZCALL.EU Personal Access Token (starts with "pat_")
+|
+| Generate the token at https://qrzcall.eu/ → My Profile → Account →
+| API Tokens. Requires a Data or Extra subscription. Tokens are
+| revocable individually so this Wavelog install can be locked out
+| without changing your QRZCALL.EU password or disturbing other clients.
+*/
+$config['qrzcall_token'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -199,17 +213,6 @@ $config['url_suffix'] = '';
 |
 */
 $config['charset'] = 'UTF-8';
-
-/*
-|--------------------------------------------------------------------------
-| Enable/Disable System Hooks
-|--------------------------------------------------------------------------
-|
-| If you would like to use the 'hooks' feature you must enable it by
-| setting this variable to TRUE (boolean).  See the user guide for details.
-|
-*/
-$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

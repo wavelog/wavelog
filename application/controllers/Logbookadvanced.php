@@ -48,6 +48,8 @@ class Logbookadvanced extends CI_Controller {
 		$data['mapoptions'] = $mapoptions;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
+
 		$active_station_id = $this->stations->find_active();
 		$station_profile = $this->stations->profile($active_station_id);
 
@@ -175,11 +177,7 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
 			$qsoArray = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$qsoArray['flag'] = ' '.$flag;
-			} else {
-				$qsoArray['flag'] = '';
-			}
+			$qsoArray['flag'] = $this->flag_html($flag);
 			$qsos[] = $qsoArray;
 		}
 
@@ -216,11 +214,7 @@ class Logbookadvanced extends CI_Controller {
 		$cleaned_qso = $qsoObj->toArray();	// And back to Array for the JSON
 
 		$flag = $this->dxccflag->get($qsoObj->getDXCCId());
-		if ($flag != null) {
-			$cleaned_qso['flag'] = ' ' . $flag;
-		} else {
-			$cleaned_qso['flag'] = '';
-		}
+		$cleaned_qso['flag'] = $this->flag_html($flag);
 
 		header("Content-Type: application/json");
 		echo json_encode($cleaned_qso);
@@ -238,6 +232,7 @@ class Logbookadvanced extends CI_Controller {
 		$sortdirection = xss_clean($this->input->post('sortdirection'));
 		$user_id = (int)$this->session->userdata('user_id');
 
+		$data['reverse'] = (xss_clean($this->input->post('reverse')) == "true") ? true : false;
 		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortcolumn, $sortdirection);
 
 		$this->load->view('adif/data/exportall', $data);
@@ -283,11 +278,7 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($qsos as $qso) {
 			$singleQso = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
-			} else {
-				$singleQso['flag'] = '';
-			}
+			$singleQso['flag'] = $this->flag_html($flag);
 			$q[]=$singleQso;
 		}
 
@@ -320,11 +311,7 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($qsos as $qso) {
 			$singleQso = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
-			} else {
-				$singleQso['flag'] = '';
-			}
+			$singleQso['flag'] = $this->flag_html($flag);
 			$q[]=$singleQso;
 		}
 
@@ -611,6 +598,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['sota']['show'] = $this->def_boolean($this->input->post('sota'));
 		$json_string['dok']['show'] = $this->def_boolean($this->input->post('dok'));
 		$json_string['sig']['show'] = $this->def_boolean($this->input->post('sig'));
+		$json_string['sig_info']['show'] = $this->def_boolean($this->input->post('sig_info'));
 		$json_string['wwff']['show'] = $this->def_boolean($this->input->post('wwff'));
 		$json_string['continent']['show'] = $this->def_boolean($this->input->post('continent'));
 		$json_string['qrz']['show'] = $this->def_boolean($this->input->post('qrz'));
@@ -1019,6 +1007,14 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		echo json_encode($cleaned_qso);
+	}
+
+	private function flag_html($flag) {
+		if ($flag != null) {
+			return ' <span class="flag-emoji">'.$flag.'</span>';
+		} else {
+			return '';
+		}
 	}
 
 }

@@ -24,6 +24,10 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	private function sanitize_utf8(array $data): array {
+		return array_map(fn($v) => is_string($v) ? mb_convert_encoding($v, 'UTF-8', 'UTF-8') : $v, $data);
+	}
+
 	/* Add QSO to Logbook */
 	function create_qso($qso_data, $use_custom_date_format = true) {
 		// Get user-preferred date format
@@ -906,8 +910,9 @@ class Logbook_model extends CI_Model {
 
 		// Add QSO to database
 		if ($batchmode) {
-			return $data;
+			return $this->sanitize_utf8($data);
 		} else {
+			$data = $this->sanitize_utf8($data);
 			$this->db->insert($this->config->item('table_name'), $data);
 
 			$last_id = $this->db->insert_id();
@@ -1375,6 +1380,9 @@ class Logbook_model extends CI_Model {
 					$sat_name = 'SONATE-2_[SSTV]';
 				}
 				break;
+			case (substr($data['COL_SAT_NAME'], 0, 5) == 'TEV2-'):
+				$sat_name = 'TEVEL2-'.substr($data['COL_SAT_NAME'], 5, 1).'_[FM]';
+				break;
 			default:
 				return;
 		}
@@ -1788,6 +1796,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
+		$data = $this->sanitize_utf8($data);
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
@@ -4350,6 +4359,8 @@ class Logbook_model extends CI_Model {
 
 			$sql = "SELECT
 				-- Country stats (COUNT DISTINCT - filtered to valid DXCC only)
+				-- Callsign stats
+				COUNT(DISTINCT t.COL_CALL) as Unique_Callsigns,
 				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked,
 				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_QSL,
 				COUNT(DISTINCT CASE WHEN t.COL_EQSL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_EQSL,
@@ -4389,6 +4400,7 @@ class Logbook_model extends CI_Model {
 				$row = $query->row();
 				return [
 					// Country stats
+				'Unique_Callsigns' => $row->Unique_Callsigns,
 					'Countries_Worked' => $row->Countries_Worked,
 					'Countries_Worked_QSL' => $row->Countries_Worked_QSL,
 					'Countries_Worked_EQSL' => $row->Countries_Worked_EQSL,
@@ -5684,12 +5696,12 @@ class Logbook_model extends CI_Model {
 					$data['COL_MY_SIG'] = strtoupper(trim($row['station_sig'] ?? ''));
 					$data['COL_MY_SIG_INFO'] = strtoupper(trim($row['station_sig_info'] ?? ''));
 
-					$data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign']));
-					$data['COL_MY_DXCC'] = strtoupper(trim($row['station_dxcc']));
-					$data['COL_MY_COUNTRY'] = strtoupper(trim($row['station_country']));
+					$data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign'] ?? ''));
+					$data['COL_MY_DXCC'] = strtoupper(trim($row['station_dxcc'] ?? ''));
+					$data['COL_MY_COUNTRY'] = strtoupper(trim($row['station_country'] ?? ''));
 					$data['COL_MY_CNTY'] = strtoupper(trim($row['station_cnty'] ?? ''));
-					$data['COL_MY_CQ_ZONE'] = strtoupper(trim($row['station_cq']));
-					$data['COL_MY_ITU_ZONE'] = strtoupper(trim($row['station_itu']));
+					$data['COL_MY_CQ_ZONE'] = strtoupper(trim($row['station_cq'] ?? ''));
+					$data['COL_MY_ITU_ZONE'] = strtoupper(trim($row['station_itu'] ?? ''));
 				}
 			}
 
