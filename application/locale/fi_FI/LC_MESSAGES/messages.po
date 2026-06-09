@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-09 07:01+0000\n"
-"PO-Revision-Date: 2026-05-26 06:31+0000\n"
+"PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
@@ -1300,15 +1300,15 @@ msgstr "Kaikki eQSL:t merkitty ladatuiksi"
 
 #: application/controllers/Errors.php:22
 msgid "Page Not Found"
-msgstr ""
+msgstr "Sivua ei löytynyt"
 
 #: application/controllers/Errors.php:23
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ? ... ei vastausta."
 
 #: application/controllers/Errors.php:24
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Kukaan ei lähetä tällä taajuudella."
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -9429,7 +9429,7 @@ msgstr "Lokistasi ei löytynyt kilpailuja."
 
 #: application/views/callstats/index.php:5
 msgid "View statistics for worked callsigns"
-msgstr ""
+msgstr "Tarkastele tilastoja työskennellyistä kutsuista"
 
 #: application/views/callstats/index.php:75
 #: application/views/gridmap/index.php:96
@@ -10435,7 +10435,7 @@ msgstr "VUCC Lokaattori"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
-msgstr ""
+msgstr "Katso maanosan tilastoja"
 
 #: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
@@ -10726,18 +10726,18 @@ msgstr "Vähintään yksi varmenteistasi vanhenee"
 
 #: application/views/dashboard/index.php:234
 msgid "Total QSOs"
-msgstr ""
+msgstr "Kokonaistyhteyksien määrä"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
-msgstr ""
+msgstr "Nykyinen putki"
 
 #: application/views/dashboard/index.php:277
 #, php-format
 msgid "%d Day"
 msgid_plural "%d Days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d päivä"
+msgstr[1] "%d päivää"
 
 #: application/views/dashboard/index.php:284
 #: application/views/statistics/index.php:119
@@ -10748,7 +10748,7 @@ msgstr "Erillisiä kutsuja"
 #: application/views/dashboard/index.php:328
 #: application/views/view_log/index.php:26
 msgid "Recent QSOs"
-msgstr ""
+msgstr "Viimeaikaiset QSO: t"
 
 #: application/views/dashboard/index.php:380
 #: application/views/qso/index.php:914
@@ -10761,16 +10761,16 @@ msgstr[1] "Enint. %d edellistä yhteyttä näytetään."
 #: application/views/dashboard/index.php:403
 #: application/views/user/edit.php:734
 msgid "Active Expeditions"
-msgstr ""
+msgstr "Aktiiviset peditiot"
 
 #: application/views/dashboard/index.php:411
 msgid "Dates"
-msgstr ""
+msgstr "Päivämäärät"
 
 #: application/views/dashboard/index.php:449
 #: application/views/user/edit.php:741
 msgid "Active Contests"
-msgstr ""
+msgstr "Aktiiviset kontestit"
 
 #: application/views/dashboard/index.php:465
 #: application/views/view_log/qso.php:621
@@ -10931,11 +10931,11 @@ msgstr "Tiedot tarjoaa HAMqsl."
 
 #: application/views/dashboard/index.php:715
 msgid "Day"
-msgstr ""
+msgstr "Päivä"
 
 #: application/views/dashboard/index.php:722
 msgid "Night"
-msgstr ""
+msgstr "Yö"
 
 #: application/views/dashboard/index.php:732
 msgid "Solar Flux Index"
@@ -11851,7 +11851,7 @@ msgstr "DX lokaattori"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
-msgstr ""
+msgstr "Ei löydy yhtään QSOa jotka täyttäisivät tämän sivun ehdot!"
 
 #: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
@@ -12288,11 +12288,11 @@ msgstr "Näytä"
 
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
-msgstr ""
+msgstr "Palaa takaisin hallintapaneeliin"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "Katso työskenneltyjen / vahvistettujen ruutujen kartta"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
@@ -12316,7 +12316,7 @@ msgstr "Tyhjä"
 
 #: application/views/hamsat/index.php:10
 msgid "Satellite Rovers"
-msgstr ""
+msgstr "Satelliittirooverit"
 
 #: application/views/hamsat/index.php:27
 #, php-format
@@ -16208,7 +16208,7 @@ msgstr "Varoitus! Haluatko varmasti poistaa QSO-osuman?"
 
 #: application/views/oqrs/showrequests.php:29
 msgid "Manage OQRS Requests"
-msgstr ""
+msgstr "Hallitse OQRS-pyyntöjä"
 
 #: application/views/oqrs/showrequests.php:47
 #: application/views/oqrs/showrequests.php:95
@@ -16365,7 +16365,7 @@ msgstr ""
 
 #: application/views/qslcard/confirmations.php:7
 msgid "View QSO Confirmations"
-msgstr ""
+msgstr "Näytä QSO-vahvistukset"
 
 #: application/views/qslcard/confirmations.php:14
 msgid "Confirmation type"
@@ -16457,17 +16457,17 @@ msgstr "QSO-lista"
 #: application/views/qslprint/qslprint.php:67
 #: application/views/qslprint/qsolist.php:70
 msgid "Previous QSL sent (same band/mode)"
-msgstr ""
+msgstr "Edellinen QSL lähetetty (sama bandi/mode)"
 
 #: application/views/qslprint/qslprint.php:68
 #: application/views/qslprint/qsolist.php:71
 msgid "QSL sent to callsign (total)"
-msgstr ""
+msgstr "Tälle kutsutunnukselle lähetetyt QSLt (yhteensä)"
 
 #: application/views/qslprint/qslprint.php:69
 #: application/views/qslprint/qsolist.php:72
 msgid "QSL received from callsign (total)"
-msgstr ""
+msgstr "Tältä kutsulta saadut QSLt (yhteensä)"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "Mark QSOs for a certain QSL Method:"
@@ -17337,7 +17337,7 @@ msgstr "Lisää satelliitin mode"
 
 #: application/views/satellite/flightpath.php:38
 msgid "View a map with satellite flightpaths"
-msgstr ""
+msgstr "Katso kartta satelliittien lentoratojen kera"
 
 #: application/views/satellite/flightpath.php:54
 msgid ""
@@ -17393,7 +17393,7 @@ msgstr "Skedipartneri"
 
 #: application/views/satellite/pass.php:123
 msgid "Only satellites with TLE data are shown here!"
-msgstr ""
+msgstr "Täällä näytetään vain satelliitit, joilla on TLE-tiedot!"
 
 #: application/views/satellite/pass.php:136
 msgid "Min. time"
@@ -17413,7 +17413,7 @@ msgstr "Tallenna nykyiset asetukset"
 
 #: application/views/satellite/pass.php:165
 msgid "Pass Predictions"
-msgstr ""
+msgstr "Ylilentoennusteet"
 
 #: application/views/satellite/pass.php:175
 msgid "Save Settings"
@@ -18424,7 +18424,7 @@ msgstr "Irrota asemasijainnin linkitys"
 
 #: application/views/stationsetup/stationsetup.php:3
 msgid "Invalid characters entered in link! Enter only the slug."
-msgstr ""
+msgstr "Linkkiin on syötetty virheellisiä merkkejä! Syötä vain tunnus."
 
 #: application/views/stationsetup/stationsetup.php:25
 msgid ""
@@ -18557,7 +18557,7 @@ msgstr "Vierailu julkisella sivulla"
 
 #: application/views/statistics/antennaanalytics.php:5
 msgid "View azimuth and elevation data"
-msgstr ""
+msgstr "Näytä azimuutin ja elevaation tiedot"
 
 #: application/views/statistics/antennaanalytics.php:15
 msgid "Elevation"
@@ -18648,6 +18648,8 @@ msgid ""
 "This page allows you to view the initials of all EME QSOs you have worked. "
 "You can select a band and mode to filter the results."
 msgstr ""
+"Tämä sivu antaa sinulle mahdollisuuden katsella kaikkien EME QSOjesi "
+"alkukirjaimia. Voit valita bandin ja tilan tulosten suodattamiseksi."
 
 #: application/views/statistics/qsltable.php:7
 msgid "Absolute"
@@ -18845,7 +18847,7 @@ msgstr "Lisää teema"
 
 #: application/views/timeline/index.php:6
 msgid "View timeline statistics"
-msgstr ""
+msgstr "Katso tilastot aikajanana"
 
 #: application/views/timeline/index.php:102
 msgid "All Years"
@@ -18869,7 +18871,7 @@ msgstr "Workitut kutsumerkit (enintään 5)"
 
 #: application/views/timeplotter/index.php:14
 msgid "View a heatmap or a chart of QSOs"
-msgstr ""
+msgstr "Näytä lämpökartta tai kaavio QSOista"
 
 #: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
@@ -18885,7 +18887,7 @@ msgstr "Paras mode"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
-msgstr ""
+msgstr "Kartalle piirrettyjen QSOjen määrä"
 
 #: application/views/timeplotter/index.php:132
 msgid "Heatmap"
@@ -19293,11 +19295,11 @@ msgstr "Näytä hallintapaneelin kartta"
 
 #: application/views/user/edit.php:706
 msgid "Map on top"
-msgstr ""
+msgstr "Kartta päällä"
 
 #: application/views/user/edit.php:707
 msgid "Map at left"
-msgstr ""
+msgstr "Kartta vasemmalla"
 
 #: application/views/user/edit.php:708
 msgid "Map at right"
