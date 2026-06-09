@@ -249,14 +249,12 @@ class Contesting_model extends CI_Model {
 	 */
 	function get_session_qsos($contest_session_id, $band = "all") {
 
-		//load band contraint
-		$band_contraint = $band != 'all' ? " AND lb.COL_BAND = ?" : '';
-
 		//prepare bindings
 		if($band != 'all'){
+			$band_contraint = " AND lb.COL_BAND = ?";
 			$bindings = [$contest_session_id, $band];
-		}else
-		{
+		} else {
+			$band_contraint = '';
 			$bindings = [$contest_session_id];
 		}
 		
@@ -545,7 +543,14 @@ class Contesting_model extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		$table = $this->config->item('table_name');
 
-		$band_contraint = $band != 'all' ? " AND {$table}.COL_BAND = ?" : '';
+			//prepare bindings
+		if($band != 'all'){
+			$band_contraint = " AND {$table}.COL_BAND = ?";
+			$bindings = [$contest_session_id, $user_id, $band];
+		} else {
+			$band_contraint = '';
+			$bindings = [$contest_session_id, $user_id];
+		}
 
 		$sql = "SELECT {$table}.COL_FREQ, {$table}.COL_MODE, {$table}.COL_TIME_ON,
 					   {$table}.COL_CALL, {$table}.COL_RST_SENT, {$table}.COL_RST_RCVD,
@@ -560,11 +565,7 @@ class Contesting_model extends CI_Model {
 				WHERE cq.contest_session_id = ? AND cs.user_id = ? {$band_contraint}
 				ORDER BY {$table}.COL_TIME_ON ASC";
 
-		if($band != 'all'){
-			return $this->db->query($sql, [$contest_session_id, $user_id, $band_contraint]);
-		}else{
-			return $this->db->query($sql, [$contest_session_id, $user_id]);
-		}
+		return $this->db->query($sql, $bindings);
 		
 	}
 }
