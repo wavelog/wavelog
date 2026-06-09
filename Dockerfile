@@ -16,13 +16,6 @@ RUN install-php-extensions \
     a2enmod rewrite; \
     apt-get clean
 
-# Enabling custom upload settings in PHP
-RUN printf "file_uploads = On\n\
-memory_limit = 256M\n\
-upload_max_filesize = 64M\n\
-post_max_size = 64M\n\
-max_execution_time = 600\n" > $PHP_INI_DIR/conf.d/wavelog.ini
-
 # Copy proper file to target image
 COPY ./ /var/www/html/
 WORKDIR /var/www/html
@@ -50,3 +43,8 @@ RUN touch /etc/cron.d/wavelog; \
     crontab /etc/cron.d/wavelog;\
     mkdir -p /var/log/cron; \
     sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground;
+
+RUN mv ./docker/entrypoint.sh /usr/local/bin/wavelog-entrypoint.sh; \
+    chmod +x /usr/local/bin/wavelog-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/wavelog-entrypoint.sh"]
+CMD ["apache2-foreground"]
