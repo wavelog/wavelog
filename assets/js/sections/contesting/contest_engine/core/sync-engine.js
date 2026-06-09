@@ -117,9 +117,9 @@ export class SyncEngine {
 		this.heartbeatInterval = null; // Clear our own timer reference — we are now executing
 		if (!this.isRunning) return;
 
-		// We don't need to run the heartbeat if the tab is not active/visible
-		if (document.hidden) {
-			if (!this._workerDriven) this.heartbeatInterval = setTimeout(() => this._heartbeat(), this.syncInterval);
+		// We don't need to run the heartbeat if the tab is not active/visible (only if not worker-driven)
+		if (document.hidden && !this._workerDriven) {
+			this.heartbeatInterval = setTimeout(() => this._heartbeat(), this.syncInterval);
 			return;
 		}
 
