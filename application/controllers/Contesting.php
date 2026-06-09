@@ -810,7 +810,8 @@ class Contesting extends CI_Controller {
 					if ($key === 'time_on' && $val !== null) {
 						$dt = DateTime::createFromFormat('Y-m-d H:i:s', trim((string)$val));
 						// getLastErrors() catches overflow (e.g. 25:00:00 silently wrapping to next day)
-						if (!$dt || array_sum(DateTime::getLastErrors())) throw new Exception('Invalid time_on value');
+						$dt_errors = DateTime::getLastErrors();
+						if (!$dt || ($dt_errors && array_sum($dt_errors))) throw new Exception('Invalid time_on value');
 						$val = $dt->format('Y-m-d H:i:s');
 					}
 					$fields[$col] = $val;
