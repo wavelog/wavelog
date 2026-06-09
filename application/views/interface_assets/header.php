@@ -495,6 +495,8 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
+
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
 									</ul>
 								</li>
 
