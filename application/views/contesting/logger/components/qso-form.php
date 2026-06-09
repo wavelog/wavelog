@@ -64,7 +64,7 @@ $config = [
 							<!-- Callsign -->
 							<div class="col-field-wide">
 								<label for="qso-callsign" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Callsign"); ?></label>
-								<input type="text" id="qso-callsign" name="callsign" class="form-control fw-bold" autocomplete="off" style="letter-spacing: 2px;">
+								<input type="text" id="qso-callsign" name="callsign" class="form-control fw-bold" autocomplete="off">
 								<input type="hidden" id="qso-dxcc" name="dxcc_id" value="">
 								<input type="hidden" id="qso-dxcc-adif" name="dxcc_adif" value="">
 								<input type="hidden" id="qso-dxcc-cont" name="dxcc_cont" value="">
