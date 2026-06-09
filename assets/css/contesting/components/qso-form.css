@@ -60,6 +60,19 @@
 	text-transform: uppercase;
 }
 
+/* QSO log table typography */
+#qso-tbody {
+	font-family: 'Courier New', monospace;
+}
+
+#qso-tbody td.callsign-col,
+#qso-tbody td.serial-col,
+#qso-tbody td.gridsquare-col,
+#qso-tbody td.exchange-text-col,
+#qso-tbody td.operator-col {
+	letter-spacing: 1px;
+}
+
 /* Distribute available space across visible form fields */
 #qso-form .row {
 	flex-wrap: nowrap;

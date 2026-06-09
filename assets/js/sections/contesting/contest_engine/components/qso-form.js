@@ -485,7 +485,7 @@ class QsoFormComponent {
 			{ cls: 'text-nowrap', style: editMode ? 'font-size:0.75rem;' : '',
 			  display: timeStr,
 			  edit: `<input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:5rem;" name="time_on" placeholder="HH:MM:SS" maxlength="8" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 8)}">` },
-			{ cls: editMode ? '' : 'fw-bold',
+			{ cls: editMode ? 'callsign-col' : 'callsign-col fw-bold',
 			  display: callsignToDisplay(qso.callsign || ''),
 			  edit: inp(callsignToDisplay(qso.callsign || ''), 'callsign', 'fw-bold text-uppercase') },
 			{ title: editMode ? '' : qrg_mhz,
@@ -542,7 +542,8 @@ class QsoFormComponent {
 		inputs.forEach(input => {
 			// Skip inputs inside hidden cells — their empty values would overwrite DB data
 			if (input.closest('td')?.offsetParent !== null) {
-				let val = input.value.trim().toUpperCase();
+				let val = input.value.trim();
+				if (input.name !== 'band') val = val.toUpperCase();
 				if (input.name === 'callsign') val = callsignToRaw(val);
 				data[input.name] = val;
 			}
