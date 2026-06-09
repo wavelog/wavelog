@@ -39,25 +39,6 @@ function cbr_selected($cbr, $key, $value, $default = '') {
 		</div>
 	<?php endif; ?>
 
-	<!-- ─── ADIF Export ─────────────────────────────────────────────────── -->
-	<div class="mb-4">
-		<div class="card">
-				<div class="card-header fw-semibold">
-					<i class="fas fa-file-export me-2"></i><?= __("ADIF Export") ?>
-				</div>
-				<div class="card-body d-flex flex-column">
-					<p><?= sprintf(__("Download all %d QSOs of this session as a standard ADIF file. All contest exchange fields (serial numbers, exchanges) are included."), $qso_count) ?></p>
-					<div class="mt-auto">
-						<form method="post" action="<?php echo site_url('contesting/export_adif/' . $contest_session_id) ?>">
-								<button type="submit" class="btn btn-primary" <?php echo clubaccess_check(6) ? '' : 'disabled' ?>>
-								<i class="fas fa-download me-2"></i><?= __("Download ADIF") ?>
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-	</div>
-
 	<!-- ─── Cabrillo Export ─────────────────────────────────────────────── -->
 	<div class="mb-4">
 		<div class="card">

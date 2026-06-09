@@ -134,7 +134,7 @@ class Qra {
 
 	function getMaxDistanceQSO($mylocator, $qsos, $unit = "M") {
 		//return nothing for empty QSO set
-		if (count($qsos->result()) < 1) {
+		if (count($qsos) < 1) {
 			return null;
 		}
 
@@ -143,14 +143,14 @@ class Qra {
 		$maxdistanceqso = null;
 
 		//iterate through all qsos
-		foreach ($qsos->result() as $row) {
+		foreach ($qsos as $row) {
 
-			if (empty($row->COL_GRIDSQUARE)) {
+			if (empty($row['gridsquare_recv'])) {
 				continue;
 			}
 
 			//get distance in kilometers
-			$distance = $this->distance($mylocator, $row->COL_GRIDSQUARE, $unit);
+			$distance = $this->distance($mylocator, $row['gridsquare_recv'], $unit);
 
 			//store new highscore if present
 			if ($distance > $maxdistance) {

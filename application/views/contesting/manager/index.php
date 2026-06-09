@@ -21,7 +21,7 @@
                     <button class="btn btn-primary btn-sm" onclick="create_modal();"><i class="fas fa-plus"></i> <?= __("Create New Contest") ?></button>
                     <a class="btn btn-primary btn-sm" href="<?php echo site_url('contesting/quickstart'); ?>" target="_blank"><i class="fas fa-play"></i> <?= __("Quick Start") ?></a>
                     <hr>
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="overflow: visible;">
                         <table id="user_contests_table" class="table-sm table table-hover table-striped table-condensed">
                             <thead>
                                 <tr>
@@ -65,9 +65,42 @@
                                         <td><?php echo isset($row['comment']) ? $row['comment'] : '-'; ?></td>
                                         <td><?php echo isset($row['qso_count']) ? $row['qso_count'] : '0'; ?></td>
                                         <td>
-                                            <button onclick="edit_modal('<?php echo $row['contest_session_id']; ?>');" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="<?= __("Edit") ?>"><i class="fas fa-edit"></i></button>
-                                            <button onclick="delete_modal('<?php echo $row['contest_session_id']; ?>');" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" title="<?= __("Delete") ?>"><i class="fas fa-trash-alt"></i></button>
-                                            <a href="<?php echo site_url('contesting/export') . "/" . $row['contest_session_id']; ?>" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" title="<?= __("Export") ?>"><i class="fas fa-file-export"></i></a>
+                                            <button onclick="edit_modal('<?php echo $row['contest_session_id']; ?>');"
+                                                    class="btn btn-primary btn-sm"
+                                                    data-bs-toggle="tooltip"
+                                                    title="<?= __("Edit") ?>">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+
+                                            <button onclick="delete_modal('<?php echo $row['contest_session_id']; ?>');"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    data-bs-toggle="tooltip"
+                                                    title="<?= __("Delete") ?>">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+
+                                            <div class="dropdown d-inline-block">
+                                                <a class="btn btn-secondary btn-sm dropdown-toggle contest-export-dropdown"
+                                                    href="#"
+                                                    role="button"
+                                                    id="dropdownExportMenuLink_<?= $row['contest_session_id']; ?>"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                        <i class="fas fa-file-export"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" style="z-index: 99999;" aria-labelledby="dropdownExportMenuLink_<?= $row['contest_session_id']; ?>">
+                                                    <a class="dropdown-item" href="<?php echo site_url('contesting/export_adif') . "/" . $row['contest_session_id']; ?>">
+                                                        <i class="fas fa-file-export"></i> <?= __("Export ADIF"); ?>
+                                                    </a>
+                                                    <a class="dropdown-item" href="<?php echo site_url('contesting/export_cbr') . "/" . $row['contest_session_id'];  ?>">
+                                                        <i class="fas fa-file-export"></i> <?= __("Export CBR"); ?>
+                                                    </a>
+                                                    <a class="dropdown-item" href="<?php echo site_url('contesting/export_edi') . "/" . $row['contest_session_id']; ?>">
+                                                        <i class="fas fa-file-export"></i> <?= __("Export EDI"); ?>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -84,6 +117,18 @@
     var custom_date_format = "<?php echo $custom_date_format ?>";
     var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
     var lang_error = "<?= __("Error") ?>";
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.contest-export-dropdown').forEach(function (dropdownToggle) {
+            new bootstrap.Dropdown(dropdownToggle, {
+                boundary: document.body,
+                popperConfig: function (defaultBsPopperConfig) {
+                    defaultBsPopperConfig.strategy = 'fixed';
+                    return defaultBsPopperConfig;
+                }
+            });
+        });
+    });
 </script>
 <?php 
 /**
