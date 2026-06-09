@@ -1,3 +1,9 @@
+/** 0 → Ø for callsign display in input fields */
+function callsignToDisplay(call) { return call ? call.replace(/0/g, 'Ø') : call; }
+
+/** Ø → 0 for callsign storage/lookup */
+function callsignToRaw(call)     { return call ? call.replace(/Ø/g, '0') : call; }
+
 /**
  * QSO Form Component
  * Handles QSO logging via DataStore
@@ -286,10 +292,10 @@ class QsoFormComponent {
 		const callsignInput = this.container.querySelector('#qso-callsign');
 		if (callsignInput) {
 			callsignInput.addEventListener('input', (e) => {
-				e.target.value = e.target.value.toUpperCase().trim();
+				e.target.value = callsignToDisplay(e.target.value.toUpperCase().trim());
 				const callsign = e.target.value;
 
-				if (this.lastDxccCallsign && callsign !== this.lastDxccCallsign) {
+				if (this.lastDxccCallsign && callsignToRaw(callsign) !== this.lastDxccCallsign) {
 					this.lastDxccCallsign = null;
 					this.lastDxccInfo = null;
 					this.updateDxccInfoDisplay(null);
@@ -480,8 +486,8 @@ class QsoFormComponent {
 			  display: timeStr,
 			  edit: `<input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:5rem;" name="time_on" placeholder="HH:MM:SS" maxlength="8" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 8)}">` },
 			{ cls: editMode ? '' : 'fw-bold',
-			  display: qso.callsign,
-			  edit: inp(qso.callsign, 'callsign', 'fw-bold text-uppercase') },
+			  display: callsignToDisplay(qso.callsign || ''),
+			  edit: inp(callsignToDisplay(qso.callsign || ''), 'callsign', 'fw-bold text-uppercase') },
 			{ title: editMode ? '' : qrg_mhz,
 			  display: band || '-',
 			  edit: this._buildBandSelect(band) },
@@ -536,7 +542,9 @@ class QsoFormComponent {
 		inputs.forEach(input => {
 			// Skip inputs inside hidden cells — their empty values would overwrite DB data
 			if (input.closest('td')?.offsetParent !== null) {
-				data[input.name] = input.value.trim().toUpperCase();
+				let val = input.value.trim().toUpperCase();
+				if (input.name === 'callsign') val = callsignToRaw(val);
+				data[input.name] = val;
 			}
 		});
 
@@ -642,7 +650,7 @@ class QsoFormComponent {
 	}
 
 	async handleCallsignBlur(e) {
-		const callsign = e.target.value.trim().toUpperCase();
+		const callsign = callsignToRaw(e.target.value.trim().toUpperCase());
 		if (!callsign) {
 			this.resetLookupState();
 			this.updateWorkedBeforeWarning('');
@@ -849,7 +857,7 @@ class QsoFormComponent {
 		}
 
 		for (const qso of this.dataStore.getPattern('qso.*').values()) {
-			if ((qso.callsign || '').toUpperCase() !== callsign) {
+			if ((qso.callsign || '').toUpperCase() !== callsignToRaw(callsign)) {
 				continue;
 			}
 			const qsoBand = qso.band || this.convertQrgToBand(parseInt(qso.frequency));

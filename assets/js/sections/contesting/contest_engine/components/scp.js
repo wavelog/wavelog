@@ -1,3 +1,9 @@
+/** 0 → Ø for callsign display */
+function callsignToDisplay(call) { return call ? call.replace(/0/g, 'Ø') : call; }
+
+/** Ø → 0 for callsign storage/lookup */
+function callsignToRaw(call)     { return call ? call.replace(/Ø/g, '0') : call; }
+
 /**
  * SCP (Super Check Partial) Component
  * Provides fast callsign lookup from MASTER.SCP and Clublog databases
@@ -370,9 +376,12 @@ class SCPComponent {
 			return;
 		}
 
+		// Normalize to raw (0) for matching against MASTER.SCP data; keep display form for highlighting
+		const rawQuery = callsignToRaw(query);
+
 		// Check cache first
-		if (this.prefixCache.has(query)) {
-			this.displayResults(this.prefixCache.get(query), query);
+		if (this.prefixCache.has(rawQuery)) {
+			this.displayResults(this.prefixCache.get(rawQuery), query);
 			return;
 		}
 
@@ -381,12 +390,12 @@ class SCPComponent {
 		const maxResults = 200;
 
 		// Check if query contains wildcard (?)
-		const hasWildcard = query.includes('?');
+		const hasWildcard = rawQuery.includes('?');
 		let regex = null;
 
 		if (hasWildcard) {
 			// Convert ? to . for regex (any single character)
-			const pattern = '^' + query.replace(/\?/g, '.') + '.*';
+			const pattern = '^' + rawQuery.replace(/\?/g, '.') + '.*';
 			regex = new RegExp(pattern);
 		}
 
@@ -398,7 +407,7 @@ class SCPComponent {
 				isMatch = regex.test(callsign);
 			} else {
 				// Simple prefix search
-				isMatch = callsign.startsWith(query);
+				isMatch = callsign.startsWith(rawQuery);
 			}
 
 			if (isMatch) {
@@ -415,8 +424,8 @@ class SCPComponent {
 			return a.localeCompare(b);
 		});
 
-		// Cache results
-		this.prefixCache.set(query, matches);
+		// Cache results under the raw key
+		this.prefixCache.set(rawQuery, matches);
 
 		// Display
 		this.displayResults(matches, query);
@@ -440,8 +449,9 @@ class SCPComponent {
 
 		resultsContainer.style.display = 'block';
 		resultsContainer.innerHTML = matches.map(callsign => {
-			// Highlight matching prefix
-			const highlighted = this.highlightMatch(callsign, query);
+			// Convert 0→Ø for display; keep raw form in data-callsign for selectCallsign
+			const displayCallsign = callsignToDisplay(callsign);
+			const highlighted = this.highlightMatch(displayCallsign, query);
 			return `
 				<div class="scp-result-item font-monospace" data-callsign="${callsign}">
 					<span class="scp-callsign">${highlighted}</span>
@@ -500,7 +510,7 @@ class SCPComponent {
 		// Try to insert into QSO form if available
 		const qsoCallsignInput = document.querySelector('#qso-callsign');
 		if (qsoCallsignInput) {
-			qsoCallsignInput.value = callsign;
+			qsoCallsignInput.value = callsignToDisplay(callsign);
 			// Simulate a Tab press: fire blur (triggers the callbook lookup) and
 			// move focus to the next field in tab order (tabindex=2), so the
 			// operator can keep logging without pressing an extra Tab key.

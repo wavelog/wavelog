@@ -803,6 +803,9 @@ class Contesting extends CI_Controller {
 					                    'serial_sent', 'serial_rcvd', 'exchange_sent',
 					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
 						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
+						if ($key === 'callsign' && $val !== null) {
+							$val = str_replace('Ø', '0', $val);
+						}
 					}
 					if (in_array($key, ['serial_sent', 'serial_rcvd']) && $val === '') {
 						$val = null;
