@@ -17,7 +17,7 @@ class Qslpostcard extends CI_Controller {
     }
 
 	public function index() {
-        $data['page_title'] = 'QSL Postcard Designer';
+        $data['page_title'] = __("QSL Postcard Designer");
         $data['templates']  = $this->Qslpostcard_model->list_templates();
 
 		$footerData = [];
@@ -110,13 +110,13 @@ class Qslpostcard extends CI_Controller {
         try {
             $tpl = $this->Qslpostcard_model->get_template((int)$template_id);
             if (!$tpl) {
-                show_error('Template not found');
+                show_error(__("Template not found"));
                 return;
             }
 
             $layout = json_decode($tpl['layout_json'], true);
             if (!is_array($layout)) {
-                show_error('Template JSON is invalid');
+                show_error(__("Template JSON is invalid"));
                 return;
             }
 
@@ -124,14 +124,14 @@ class Qslpostcard extends CI_Controller {
             $qsos = $this->Qslpostcard_model->get_sample_qsos(25);
 
             if (empty($qsos)) {
-                show_error('No QSOs returned by get_sample_qsos()');
+                show_error(__("No QSOs returned by get_sample_qsos()"));
                 return;
             }
 
             $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos);
 
             if (!$pdfPath || !file_exists($pdfPath)) {
-                show_error('PDF file was not created');
+                show_error(__("PDF file was not created"));
                 return;
             }
 
@@ -144,12 +144,12 @@ class Qslpostcard extends CI_Controller {
         } catch (Throwable $e) {
             log_message('error', 'QSLPOSTCARD pdf() failed: ' . $e->getMessage());
             log_message('error', $e->getTraceAsString());
-            show_error('QSL Postcard PDF failed: ' . $e->getMessage());
+            show_error(__("QSL Postcard PDF failed: ") . $e->getMessage());
         }
     }
 
     public function printqueue() {
-        $data['page_title'] = 'Print QSL Postcards';
+        $data['page_title'] = __("Print QSL Postcards");
         $data['templates']  = $this->Qslpostcard_model->list_templates();
 
         // preserve incoming filter params from qsl queue
@@ -164,13 +164,13 @@ class Qslpostcard extends CI_Controller {
         try {
             $tpl = $this->Qslpostcard_model->get_template((int)$template_id);
             if (!$tpl) {
-                show_error('Template not found');
+                show_error(__("Template not found"));
                 return;
             }
 
             $layout = json_decode($tpl['layout_json'], true);
             if (!is_array($layout)) {
-                show_error('Template JSON is invalid');
+                show_error(__("Template JSON is invalid"));
                 return;
             }
 
@@ -184,7 +184,7 @@ class Qslpostcard extends CI_Controller {
                 $qsos = $this->Qslpostcard_model->dedupe_qsos_by_call($qsos);
             }
             if (empty($qsos)) {
-                show_error('No QSOs found for postcard printing');
+                show_error(__("No QSOs found for postcard printing"));
                 return;
             }
 
@@ -199,7 +199,7 @@ class Qslpostcard extends CI_Controller {
         } catch (Throwable $e) {
             log_message('error', 'QSLPOSTCARD pdfqueue() failed: ' . $e->getMessage());
             log_message('error', $e->getTraceAsString());
-            show_error('QSL Postcard Queue PDF failed: ' . $e->getMessage());
+            show_error(__("QSL Postcard Queue PDF failed: ") . $e->getMessage());
         }
     }
 
@@ -207,11 +207,11 @@ class Qslpostcard extends CI_Controller {
         $selected_ids = $this->input->post('selected_qsos');
 
         if (!is_array($selected_ids) || empty($selected_ids)) {
-            show_error('No QSOs were selected');
+            show_error(__("No QSOs were selected"));
             return;
         }
 
-        $data['page_title'] = 'Print Selected QSL Postcards';
+        $data['page_title'] = __("Print Selected QSL Postcards");
         $data['templates'] = $this->Qslpostcard_model->list_templates();
         $data['selected_ids'] = array_values(array_filter(array_map('intval', $selected_ids)));
 
@@ -224,19 +224,19 @@ class Qslpostcard extends CI_Controller {
         try {
             $tpl = $this->Qslpostcard_model->get_template((int)$template_id);
             if (!$tpl) {
-                show_error('Template not found');
+                show_error(__("Template not found"));
                 return;
             }
 
             $layout = json_decode($tpl['layout_json'], true);
             if (!is_array($layout)) {
-                show_error('Template JSON is invalid');
+                show_error(__("Template JSON is invalid"));
                 return;
             }
 
             $selected_ids = $this->input->post('selected_ids');
             if (!is_array($selected_ids) || empty($selected_ids)) {
-                show_error('No selected QSO IDs were provided');
+                show_error(__("No selected QSO IDs were provided"));
                 return;
             }
 
@@ -248,7 +248,7 @@ class Qslpostcard extends CI_Controller {
             }
 
             if (empty($qsos)) {
-                show_error('No QSOs found for postcard printing');
+                show_error(__("No QSOs found for postcard printing"));
                 return;
             }
 
@@ -263,7 +263,7 @@ class Qslpostcard extends CI_Controller {
         } catch (Throwable $e) {
             log_message('error', 'QSLPOSTCARD pdfselected() failed: ' . $e->getMessage());
             log_message('error', $e->getTraceAsString());
-            show_error('Selected QSL Postcard PDF failed: ' . $e->getMessage());
+            show_error(__("Selected QSL Postcard PDF failed: ") . $e->getMessage());
         }
     }
 
