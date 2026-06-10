@@ -632,7 +632,7 @@ class User_Model extends CI_Model {
 			'active_station_logbook' 		=> $u->active_station_logbook,
 			'user_language' 				=> isset($u->user_language) ? $u->user_language: 'english',
 			'isWinkeyEnabled' 				=> $u->winkey,
-			'FirstLoginWizard' 				=> ((($sess['FirstLoginWizard'] ?? '') == '') ? ($user_options['FirstLoginWizard']['shown']['boolean'] ?? null) : $sess['FirstLoginWizard']),
+			'FirstLoginWizard' 				=> ((($sess['FirstLoginWizard'] ?? '') == '') ? ($user_options['FirstLoginWizard']['showed']['boolean'] ?? null) : $sess['FirstLoginWizard']),
 			'hasQrzKey' 					=> $this->hasQrzKey($u->user_id),
 			'impersonate' 					=> $sess['impersonate'] ?? false,
 			'clubstation' 					=> $u->clubstation,
