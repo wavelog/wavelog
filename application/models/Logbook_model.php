@@ -1787,6 +1787,41 @@ class Logbook_model extends CI_Model {
 	}
 
 	/*
+	 * Update a QSO with a prebuilt COL_* data array (REST API edit path).
+	 *
+	 * Unlike edit() above this reads nothing from POST or the session, so it
+	 * works for sessionless contexts. Ownership must be verified by the caller
+	 * via check_qso_is_accessible() beforehand.
+	 */
+	function update_qso_columns($id, $data) {
+		$data = $this->sanitize_utf8($data);
+
+		// Flag the QSO as modified for HRDLog re-upload, same as edit() does.
+		// Fall back to the QSO's current station when the update doesn't move it.
+		if (!isset($data['station_id'])) {
+			$this->db->select('station_id');
+			$this->db->where('COL_PRIMARY_KEY', $id);
+			$row = $this->db->get($this->config->item('table_name'))->row();
+			$station_id = $row->station_id ?? null;
+		} else {
+			$station_id = $data['station_id'];
+		}
+		if ($station_id !== null && $this->exists_hrdlog_credentials($station_id)) {
+			$data['COL_HRDLOG_QSO_UPLOAD_STATUS'] = 'M';
+		}
+
+		$this->db->where('COL_PRIMARY_KEY', $id);
+		$this->db->update($this->config->item('table_name'), $data);
+
+		// Invalidate DXCluster cache for this callsign
+		if (isset($data['COL_CALL'])) {
+			$this->dxclustercache->invalidate_for_callsign($data['COL_CALL']);
+		}
+
+		return true;
+	}
+
+	/*
 	 * Whether $call is a syntactically valid amateur radio callsign.
 	 * This is rather a soft check to catch malicious input, not a full validation of the callsign. 
 	 * (e.g. dashes are allowed, even though they are not valid, but they are used by the people and
@@ -3862,11 +3897,19 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Delete QSO based on the QSO ID */
-	function delete($id) {
-		if ($this->check_qso_is_accessible($id)) {
-			// Get callsign before deleting for cache invalidation
-			$qso = $this->get_qso($id);
-			$callsign = ($qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+	/**
+	 * Delete a QSO (and its OQRS/QSL/eQSL artefacts) after an ownership check.
+	 *
+	 * @param int      $id      QSO primary key (COL_PRIMARY_KEY).
+	 * @param int|null $user_id User to authorise against. Defaults to the
+	 *                          session user; pass an explicit id for the REST API.
+	 */
+	function delete($id, $user_id = null) {
+		if ($this->check_qso_is_accessible($id, $user_id)) {
+			// Get callsign before deleting for cache invalidation. Accessibility
+			// was just verified, so read it trusted (works without a session too).
+			$qso = $this->get_qso($id, true);
+			$callsign = ($qso !== null && $qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
 
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
@@ -4232,6 +4275,10 @@ class Logbook_model extends CI_Model {
 		$custom_errors['qsocount'] = count($a_qsos);
 		if ($custom_errors['qsocount'] > 0) {
 			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+			// Expose the primary key of the first inserted QSO. For a single
+			// QSO import (e.g. the REST API) this is the new record's id; read
+			// it here before any later inserts (AMSAT) can overwrite it.
+			$custom_errors['inserted_id'] = $this->db->insert_id();
 			$this->notify_qso_change($station_profile->user_id);
 		}
 		foreach ($amsat_qsos as $amsat_qso) {
@@ -5607,11 +5654,12 @@ class Logbook_model extends CI_Model {
 		return $this->db->get($this->config->item('table_name'));
 	}
 
-	public function check_qso_is_accessible($id) {
+	public function check_qso_is_accessible($id, $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');
 		// check if qso belongs to user
 		$this->db->select($this->config->item('table_name') . '.COL_PRIMARY_KEY');
 		$this->db->join('station_profile', $this->config->item('table_name') . '.station_id = station_profile.station_id');
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->where('station_profile.user_id', $user_id);
 		$this->db->where($this->config->item('table_name') . '.COL_PRIMARY_KEY', $id);
 		$query = $this->db->get($this->config->item('table_name'));
 		if ($query->num_rows() == 1) {

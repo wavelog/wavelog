@@ -38,6 +38,38 @@ function copyApiUrl(urlText) {
    copyToClipboard(urlText, apiUrlField);
 }
 
+function copyApiV2Url(urlText) {
+   var apiUrlField = $('#apiV2Url');
+   copyToClipboard(urlText, apiUrlField);
+}
+
+function copyNewToken(token) {
+   copyToClipboard(token, $('#newTokenValue'));
+}
+
 $(function () {
    $('[data-bs-toggle="tooltip"]').tooltip({'delay': { show: 500, hide: 0 }, 'placement': 'right'});
+
+   // One-time reveal of a freshly created API v2 token
+   var newTokenModal = document.getElementById('newTokenModal');
+   if (newTokenModal) {
+      new bootstrap.Modal(newTokenModal).show();
+   }
+
+   // Scope group toggle: checks/unchecks every scope of the resource at once.
+   // Pure UI convenience - only the individual scope checkboxes submit.
+   $('.scope-group-toggle').on('change', function () {
+      $('.scope-checkbox[value^="' + $(this).data('group') + ':"]').prop('checked', this.checked);
+   });
+
+   // Keep the group toggle in sync with its children (indeterminate when
+   // only some scopes of the resource are selected).
+   $('.scope-checkbox').on('change', function () {
+      var group = this.value.split(':')[0];
+      var boxes = $('.scope-checkbox[value^="' + group + ':"]');
+      var checked = boxes.filter(':checked').length;
+      $('#scopegroup_' + group)
+         .prop('checked', checked === boxes.length)
+         .prop('indeterminate', checked > 0 && checked < boxes.length);
+   });
 });
