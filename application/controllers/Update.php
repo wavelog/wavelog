@@ -19,7 +19,7 @@ class Update extends CI_Controller {
 
 	public function index() {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['page_title'] = __("Updates");
 		$this->load->view('interface_assets/header', $data);
@@ -315,6 +315,9 @@ class Update extends CI_Controller {
 	}
 
 	public function update_status($done=""){
+
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
         if(!$this->load->is_loaded('Paths')) {
         	$this->load->library('Paths');
