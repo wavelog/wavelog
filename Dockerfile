@@ -4,7 +4,7 @@ FROM php:8.4-apache
 ENV CI_ENV=docker
 
 # prepare the php install helper
-COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=ghcr.io/mlocati/php-extension-installer:v2.11.6 /usr/bin/install-php-extensions /usr/local/bin/
 
 # system packages
 RUN apt-get update \
