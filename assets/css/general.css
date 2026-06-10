@@ -1542,3 +1542,38 @@ svg text.month { fill: #AAA; }
 #rulerLeft div {
 	color: #111111 !important;
 }
+
+.qsl_designer_field {
+	cursor: grab;
+	user-select: none;
+	padding: 6px 8px;
+	border: 1px solid #cfcfcf;
+	margin-bottom: 6px;
+	border-radius: 6px;
+	background: #ffffff;
+	color: #111111 !important;
+	font-weight: 600;
+}
+
+.qsl_designer_field:hover {
+	background: #f3f7ff;
+	border-color: #8fb4ff;
+}
+
+.qsl_designer_placed {
+	position: absolute;
+	padding: 4px 6px;
+	border: 2px solid #1f6feb;
+	border-radius: 6px;
+	background: #ffffff;
+	color: #111111 !important;
+	font-weight: 600;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+	cursor: move;
+	white-space: nowrap;
+}
+
+.qsl_designer_placed.selected {
+	border-color: #ff7a00;
+	box-shadow: 0 0 0 3px rgba(255, 122, 0, .25);
+}
