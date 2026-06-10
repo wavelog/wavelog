@@ -53,6 +53,23 @@ class cron extends CI_Controller {
 
 		// This is the main function, which handles all crons, runs them if enabled and writes the 'next run' timestamp to the database
 
+		// Rate limit: this function may only be triggered once every minute. To prevent attack vectors we lock the cron runner for 30 seconds after it's last run.
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
+		$rate_limit_key = 'cron_run_rate_limit';
+		if ($this->cache->get($rate_limit_key) !== false) {
+			http_response_code(429); // Too Many Requests
+			log_message('debug', 'CRON: run() called within the 30s rate limit window, skipping.');
+			echo "CRON: rate limit active, skipping. Try again in a few seconds.\n";
+			return;
+		}
+		// Set the lock for 30 seconds
+		$this->cache->save($rate_limit_key, time(), 30);
+
 		// check for min. PHP version
 		if (version_compare(PHP_VERSION, $this->min_php_version) >= 0) {
 
