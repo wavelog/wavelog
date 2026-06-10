@@ -6,19 +6,20 @@ use Wavelog\Label\FPDF;
 class Qslpostcard_model extends CI_Model {
 
     public function list_templates() {
-        return $this->db->order_by('updated_at', 'DESC')
-            ->get('qsl_postcard_templates')
-            ->result_array();
+		$sql = "SELECT id, name FROM qsl_postcard_templates WHERE user_id = ? ORDER BY updated_at DESC";
+		return $this->db->query($sql, [$this->session->userdata('user_id')])->result_array();
     }
 
     public function get_template($id) {
-        return $this->db->get_where('qsl_postcard_templates', ['id' => $id])->row_array();
+		$sql = "SELECT * FROM qsl_postcard_templates WHERE id = ? AND user_id = ?";
+		return $this->db->query($sql, [$id, $this->session->userdata('user_id')])->row_array();
     }
 
     public function save_template($id, $name, $layout_json, $preview_image = null) {
         $row = [
             'name' => $name,
             'layout_json' => $layout_json,
+			'user_id' => $this->session->userdata('user_id'),
         ];
 
         if ($preview_image !== null) {
@@ -26,7 +27,7 @@ class Qslpostcard_model extends CI_Model {
         }
 
         if ($id > 0) {
-            $this->db->where('id', $id)->update('qsl_postcard_templates', $row);
+            $this->db->where('id', $id)->where('user_id', $this->session->userdata('user_id'))->update('qsl_postcard_templates', $row);
             return $id;
         } else {
             $row['orientation'] = 'landscape';

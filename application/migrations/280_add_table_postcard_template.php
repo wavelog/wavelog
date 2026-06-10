@@ -16,6 +16,12 @@ class Migration_add_table_postcard_template extends CI_Migration {
                     'auto_increment' => TRUE,
                     'null' => FALSE
                 ),
+				'user_id' => array(
+                    'type' => 'INT',
+                    'constraint' => 11,
+                    'unsigned' => TRUE,
+                    'null' => FALSE
+                ),
                 'name' => array(
                     'type' => 'VARCHAR',
                     'constraint' => 100,
