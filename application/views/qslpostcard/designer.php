@@ -37,7 +37,7 @@
                     <?= __("Upload Preview Image"); ?>
                 </button>
 
-                <div id="previewImageStatus" class="small mb-2" style="color:#333;"></div>
+                <div id="previewImageStatus" class="small mb-2"></div>
                 <button id="btnSave" class="btn btn-primary w-100 mb-2"><?= __("Save Template"); ?></button>
 
                 <div class="small text-muted mb-2">
