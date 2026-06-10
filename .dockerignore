@@ -2,7 +2,10 @@
 .github
 .editorconfig
 .gitignore
+.dockerignore
 Dockerfile
+**/*.yml
+**/*.yaml
 *.md
 **/*.sh
 !docker/entrypoint.sh
