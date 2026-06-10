@@ -60,7 +60,11 @@
 									<td><?php echo $row->user_callsign; ?></td>
 								<?php } ?>
 								<td>
-									<?php if ($row->rights == "rw") {
+									<?php
+									$api_type = isset($row->api_type) ? $row->api_type : 'standard';
+									if ($api_type === 'mobile_app') {
+										echo "<span class=\"badge bg-info\">" . __("Mobile App") . "</span>";
+									} elseif ($row->rights == "rw") {
 										echo "<span class=\"badge bg-warning\">" . __("Read & Write") . "</span>";
 									} elseif ($row->rights == "r") {
 										echo "<span class=\"badge bg-success\">" . __("Read-Only") . "</span>";
@@ -109,6 +113,11 @@
 					<input type="hidden" name="rights" value="r">
 					<button type="submit" class="btn btn-primary">
 						<i class="fas fa-plus"></i> <?= __("Create a read-only key"); ?>
+					</button>
+				</form>
+				<form method="post" action="<?php echo site_url('api_mobile/generate_key'); ?>" style="display:inline;">
+					<button type="submit" class="btn btn-info">
+						<i class="fas fa-mobile-alt"></i> <?= __("Create a Mobile App key"); ?>
 					</button>
 				</form>
 			</p>
