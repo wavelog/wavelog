@@ -2,10 +2,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-        Tag Wavelog as Version 2.4.1
-*/
-
 class Migration_add_table_postcard_template extends CI_Migration {
 
     public function up()
