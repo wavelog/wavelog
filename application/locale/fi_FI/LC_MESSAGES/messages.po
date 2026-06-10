@@ -230,7 +230,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198
 msgid "You're not allowed to do that!"
 msgstr "Tämä ei ole sallittu!"
 
@@ -994,6 +995,7 @@ msgid "Cron Manager"
 msgstr "Cron manageri"
 
 #: application/controllers/Cron.php:173 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:190
 msgid "Edit Cronjob"
 msgstr "Muokkaa cron-tehtävää"
 
@@ -1005,35 +1007,41 @@ msgstr "Muokkaa cron-tehtävää"
 #: application/views/debug/index.php:714 application/views/debug/index.php:720
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 msgid "never"
 msgstr "ei koskaan"
 
-#: application/controllers/Cron.php:248
+#: application/controllers/Cron.php:248 application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "laskee..."
 
 #: application/controllers/Cron.php:259 application/views/cron/index.php:84
+#: application/controllers/Cron.php:276
 msgid "healthy"
 msgstr "terve"
 
 #: application/controllers/Cron.php:261 application/views/cron/index.php:86
+#: application/controllers/Cron.php:278
 msgid "failed"
 msgstr "epäonnistui"
 
 #: application/controllers/Cron.php:263 application/views/cron/index.php:88
+#: application/controllers/Cron.php:280
 msgid "pending"
 msgstr "odottaa"
 
 #: application/controllers/Cron.php:268 application/views/cron/index.php:93
+#: application/controllers/Cron.php:285
 msgid "disabled"
 msgstr "poistettu käytöstä"
 
 #: application/controllers/Cron.php:307
 #: application/views/interface_assets/footer.php:41
+#: application/controllers/Cron.php:324
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311
+#: application/controllers/Cron.php:311 application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1042,7 +1050,7 @@ msgstr ""
 "Viimeisin suoritus tapahtui yli %s sekuntia sitten.%sTarkista pää-cron-"
 "tehtäväsi! Sen tulisi ajaa joka minuutti (* * * * *)."
 
-#: application/controllers/Cron.php:314
+#: application/controllers/Cron.php:314 application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1052,6 +1060,7 @@ msgstr ""
 "taida olla käynnissä!%sSe tulisi ajaa joka minuutti (* * * * *)."
 
 #: application/controllers/Cron.php:319 application/views/cron/index.php:43
+#: application/controllers/Cron.php:336
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Ei käynnissä"
@@ -7453,8 +7462,8 @@ msgstr ""
 "on oma yhdistyksensä, joka määrittelee kyseisen yhdistyksen SOTA-huiput. "
 "Jokaisesta huipusta saa aktivaattoreille ja hunttereille pisteitä, jotka "
 "liittyvät huipun korkeuteen. Erilaisista pistemääristä saa todistuksia, "
-"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' -"
-"palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
+"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' "
+"-palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
 "SOTAn online-tietokannassa."
 
 #: application/views/awards/vucc/index.php:7
@@ -12685,8 +12694,8 @@ msgstr "Lokaattorin muotoilu"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: IO77,"
-"IO78"
+"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:115
 msgid "live"
@@ -12772,8 +12781,8 @@ msgstr "Sijainti haetaan DXCC-koordinaateista (ei lokaattoria annettu)"
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
-"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on -"
-"NONE-"
+"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on "
+"-NONE-"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -13798,8 +13807,8 @@ msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
 msgstr ""
-"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä DXCC:"
-"tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
+"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä "
+"DXCC:tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
 
 #: application/views/logbookadvanced/checkresult.php:393
 msgid "QSO DXCC"
@@ -19737,8 +19746,8 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
-"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu -"
-"tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
+"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu "
+"-tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
 "tavallinen käyttäjätili, jossa on joitakin erityistoimintoja ja rajoituksia."
 
 #: application/views/user/index.php:143

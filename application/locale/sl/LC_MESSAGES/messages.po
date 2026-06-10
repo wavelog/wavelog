@@ -228,7 +228,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198
 msgid "You're not allowed to do that!"
 msgstr "To vam ni dovoljeno!"
 
@@ -991,6 +992,7 @@ msgid "Cron Manager"
 msgstr "Cron Manager"
 
 #: application/controllers/Cron.php:173 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:190
 msgid "Edit Cronjob"
 msgstr "Uredi Cronjob"
 
@@ -1002,35 +1004,41 @@ msgstr "Uredi Cronjob"
 #: application/views/debug/index.php:714 application/views/debug/index.php:720
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 msgid "never"
 msgstr "nikoli"
 
-#: application/controllers/Cron.php:248
+#: application/controllers/Cron.php:248 application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "preračunavam..."
 
 #: application/controllers/Cron.php:259 application/views/cron/index.php:84
+#: application/controllers/Cron.php:276
 msgid "healthy"
 msgstr "zdravi"
 
 #: application/controllers/Cron.php:261 application/views/cron/index.php:86
+#: application/controllers/Cron.php:278
 msgid "failed"
 msgstr "neuspelo"
 
 #: application/controllers/Cron.php:263 application/views/cron/index.php:88
+#: application/controllers/Cron.php:280
 msgid "pending"
 msgstr "na čakanju"
 
 #: application/controllers/Cron.php:268 application/views/cron/index.php:93
+#: application/controllers/Cron.php:285
 msgid "disabled"
 msgstr "onemogočeno"
 
 #: application/controllers/Cron.php:307
 #: application/views/interface_assets/footer.php:41
+#: application/controllers/Cron.php:324
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311
+#: application/controllers/Cron.php:311 application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1039,7 +1047,7 @@ msgstr ""
 "Zadnji zagon se je zgodil pred več kot %s sekundami.%sPreverite svoj master "
 "cron! Zagnati bi se moral vsako minuto (* * * * *)."
 
-#: application/controllers/Cron.php:314
+#: application/controllers/Cron.php:314 application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1049,6 +1057,7 @@ msgstr ""
 "Mastercron ne deluje!%sMoral bi se izvajati vsako minuto (* * * * *)."
 
 #: application/controllers/Cron.php:319 application/views/cron/index.php:43
+#: application/controllers/Cron.php:336
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Se ne izvaja"
@@ -7796,9 +7805,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough "
-"Reef/506) and valid State (ADIF: DXCC and STATE)"
+"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, HongKong/"
+"321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and "
+"valid State (ADIF: DXCC and STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
