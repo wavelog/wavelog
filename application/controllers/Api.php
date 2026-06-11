@@ -7,6 +7,28 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class API extends CI_Controller {
 
+	public function __construct() {
+		parent::__construct();
+
+		// Web UI endpoints that don't need CORS
+		$web_ui_methods = ['index', 'help', 'edit', 'generate', 'delete'];
+		$method = $this->uri->segment(2, 'index');
+
+		if (!in_array($method, $web_ui_methods, true)) {
+			// Preflight
+			if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+				header('Access-Control-Allow-Origin: *');
+				header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+				header('Access-Control-Allow-Headers: Content-Type');
+				header('Access-Control-Max-Age: 86400');
+				http_response_code(200);
+				exit(0);
+			}
+
+			header('Access-Control-Allow-Origin: *');
+		}
+	}
+
 	function index() {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -1005,16 +1027,6 @@ class API extends CI_Controller {
 
 	function radio() {
 		session_write_close();
-
-                if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { // Preflight CORS-Check: Allow posting from web-application as well (key is still needed!)
-                        header('Access-Control-Allow-Origin: *');
-                        header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-                        header('Access-Control-Allow-Headers: Content-Type');
-                        header('Access-Control-Max-Age: 86400');
-                        http_response_code(200);
-                        exit(0);
-                }
-                header('Access-Control-Allow-Origin: *'); // Allow posting from web-application as well (key is still needed!)
 
 		header('Content-type: application/json');
 

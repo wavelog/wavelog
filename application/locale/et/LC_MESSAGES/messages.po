@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-10 05:07+0000\n"
+"POT-Creation-Date: 2026-06-11 15:54+0000\n"
 "PO-Revision-Date: 2025-02-11 12:33+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -121,9 +121,9 @@ msgstr ""
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -205,7 +205,7 @@ msgstr ""
 #: application/controllers/Satellite.php:666
 #: application/controllers/Satellite.php:675
 #: application/controllers/Sattimers.php:9
-#: application/controllers/Search.php:11
+#: application/controllers/Search.php:10
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:16
@@ -362,49 +362,49 @@ msgstr ""
 msgid "POTA Data Imported"
 msgstr ""
 
-#: application/controllers/Api.php:19
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "API kirjeldus"
 
-#: application/controllers/Api.php:64
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "API võti on kohustuslik. Ärge muutke seda välja"
 
-#: application/controllers/Api.php:69
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "Muuda API kirjeldust"
 
-#: application/controllers/Api.php:79
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API võtme %s kirjeldus on muudetud."
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr ""
 
-#: application/controllers/Api.php:100
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "Ebakorrektsed API õigused"
 
-#: application/controllers/Api.php:114
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "API võti genereeritud"
 
-#: application/controllers/Api.php:116
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "API võtme genereerimine ebaõnnestus"
 
-#: application/controllers/Api.php:134
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr ""
 
-#: application/controllers/Api.php:143
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API võti %s on kustutatud"
@@ -2819,7 +2819,7 @@ msgstr "siin"
 msgid "Satellite Timers"
 msgstr ""
 
-#: application/controllers/Search.php:15 application/views/bandmap/list.php:578
+#: application/controllers/Search.php:14 application/views/bandmap/list.php:578
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:399
@@ -2842,11 +2842,11 @@ msgstr ""
 msgid "Search"
 msgstr "Otsi"
 
-#: application/controllers/Search.php:24
+#: application/controllers/Search.php:23
 msgid "Search & Filter Logbook"
 msgstr ""
 
-#: application/controllers/Search.php:52
+#: application/controllers/Search.php:51
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -3973,7 +3973,6 @@ msgid "Accumulated number of WAJA worked"
 msgstr ""
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:244
 #: application/views/dayswithqso/index.php:47
 #: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
@@ -3989,7 +3988,6 @@ msgid "Yearly"
 msgstr ""
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:254
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
@@ -4654,6 +4652,7 @@ msgstr ""
 
 #: application/views/adif/import.php:93 application/views/adif/import.php:400
 #: application/views/adif/import.php:423 application/views/api/index.php:22
+#: application/views/cron/index.php:18
 #: application/views/dashboard/index.php:181
 #: application/views/dashboard/index.php:214
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -5719,7 +5718,6 @@ msgstr ""
 #: application/views/awards/itu/index.php:59
 #: application/views/awards/wae/index.php:41
 #: application/views/contestcalendar/index.php:44
-#: application/views/dashboard/index.php:264
 #: application/views/dashboard/index.php:511
 #: application/views/dashboard/index.php:545
 #: application/views/dashboard/index.php:574
@@ -10018,7 +10016,7 @@ msgstr ""
 
 #: application/views/cron/index.php:21
 #, php-format
-msgid "For more information or help, take a look in the %s."
+msgid "For more information or help, take a look in the %sWiki%s."
 msgstr ""
 
 #: application/views/cron/index.php:28
@@ -10210,6 +10208,18 @@ msgstr ""
 
 #: application/views/dashboard/index.php:234
 msgid "Total QSOs"
+msgstr ""
+
+#: application/views/dashboard/index.php:244
+msgid "QSOs this year"
+msgstr ""
+
+#: application/views/dashboard/index.php:254
+msgid "QSOs this month"
+msgstr ""
+
+#: application/views/dashboard/index.php:264
+msgid "QSOs today"
 msgstr ""
 
 #: application/views/dashboard/index.php:274

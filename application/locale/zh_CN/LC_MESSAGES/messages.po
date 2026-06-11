@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-10 05:07+0000\n"
-"PO-Revision-Date: 2026-06-02 11:16+0000\n"
-"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
+"POT-Creation-Date: 2026-06-11 15:54+0000\n"
+"PO-Revision-Date: 2026-06-08 07:58+0000\n"
+"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -146,9 +146,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -230,7 +230,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Satellite.php:666
 #: application/controllers/Satellite.php:675
 #: application/controllers/Sattimers.php:9
-#: application/controllers/Search.php:11
+#: application/controllers/Search.php:10
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:16
@@ -387,49 +387,49 @@ msgstr "POTA导入"
 msgid "POTA Data Imported"
 msgstr "POTA数据已导入"
 
-#: application/controllers/Api.php:19
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "API 说明"
 
-#: application/controllers/Api.php:64
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "API Key 为必填项，请勿修改此字段"
 
-#: application/controllers/Api.php:69
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "编辑 API 说明"
 
-#: application/controllers/Api.php:79
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API Key %s 的说明信息已更新。"
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "无效的请求方法"
 
-#: application/controllers/Api.php:100
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "无效的 API 权限"
 
-#: application/controllers/Api.php:114
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "已生成 API Key"
 
-#: application/controllers/Api.php:116
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "无法生成 API Key"
 
-#: application/controllers/Api.php:134
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "无效的API密钥"
 
-#: application/controllers/Api.php:143
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "已删除 API Key %s"
@@ -1317,15 +1317,15 @@ msgstr "所有 eQSL 已标记为已上传"
 
 #: application/controllers/Errors.php:22
 msgid "Page Not Found"
-msgstr ""
+msgstr "页面未找到"
 
 #: application/controllers/Errors.php:23
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ？…无回复。"
 
 #: application/controllers/Errors.php:24
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "没有人在此频率发射。"
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -2849,7 +2849,7 @@ msgstr "这里"
 msgid "Satellite Timers"
 msgstr "卫星时钟"
 
-#: application/controllers/Search.php:15 application/views/bandmap/list.php:578
+#: application/controllers/Search.php:14 application/views/bandmap/list.php:578
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:399
@@ -2872,11 +2872,11 @@ msgstr "卫星时钟"
 msgid "Search"
 msgstr "搜索"
 
-#: application/controllers/Search.php:24
+#: application/controllers/Search.php:23
 msgid "Search & Filter Logbook"
 msgstr "搜索 & 筛选日志"
 
-#: application/controllers/Search.php:52
+#: application/controllers/Search.php:51
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -4013,7 +4013,6 @@ msgid "Accumulated number of WAJA worked"
 msgstr "累计通联的 WAJA 数量"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:244
 #: application/views/dayswithqso/index.php:47
 #: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
@@ -4029,7 +4028,6 @@ msgid "Yearly"
 msgstr "每年"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:254
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
@@ -4696,6 +4694,7 @@ msgstr "CBR 导入"
 
 #: application/views/adif/import.php:93 application/views/adif/import.php:400
 #: application/views/adif/import.php:423 application/views/api/index.php:22
+#: application/views/cron/index.php:18
 #: application/views/dashboard/index.php:181
 #: application/views/dashboard/index.php:214
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -5809,7 +5808,6 @@ msgstr "预设日期"
 #: application/views/awards/itu/index.php:59
 #: application/views/awards/wae/index.php:41
 #: application/views/contestcalendar/index.php:44
-#: application/views/dashboard/index.php:264
 #: application/views/dashboard/index.php:511
 #: application/views/dashboard/index.php:545
 #: application/views/dashboard/index.php:574
@@ -9189,7 +9187,7 @@ msgstr "在日志中未发现任何竞赛。"
 
 #: application/views/callstats/index.php:5
 msgid "View statistics for worked callsigns"
-msgstr ""
+msgstr "查看通联呼号统计"
 
 #: application/views/callstats/index.php:75
 #: application/views/gridmap/index.php:96
@@ -10169,7 +10167,7 @@ msgstr "VUCC 网格"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
-msgstr ""
+msgstr "查看大洲统计数据"
 
 #: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
@@ -10250,8 +10248,8 @@ msgstr "实现原理"
 
 #: application/views/cron/index.php:21
 #, php-format
-msgid "For more information or help, take a look in the %s."
-msgstr "如需更多信息或帮助，请查看 %s 。"
+msgid "For more information or help, take a look in the %sWiki%s."
+msgstr ""
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -10444,9 +10442,21 @@ msgstr "你至少一张证书即将过期"
 msgid "Total QSOs"
 msgstr "总计 QSO"
 
+#: application/views/dashboard/index.php:244
+msgid "QSOs this year"
+msgstr ""
+
+#: application/views/dashboard/index.php:254
+msgid "QSOs this month"
+msgstr ""
+
+#: application/views/dashboard/index.php:264
+msgid "QSOs today"
+msgstr ""
+
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
-msgstr "单日记录"
+msgstr "连续通联"
 
 #: application/views/dashboard/index.php:277
 #, php-format
@@ -10645,7 +10655,7 @@ msgstr "数据由 HAMqsl 提供。"
 
 #: application/views/dashboard/index.php:715
 msgid "Day"
-msgstr "天"
+msgstr "白天"
 
 #: application/views/dashboard/index.php:722
 msgid "Night"
@@ -11539,7 +11549,7 @@ msgstr "对方网格"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
-msgstr ""
+msgstr "未找到符合此页面条件的 QSO！"
 
 #: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
@@ -11962,11 +11972,11 @@ msgstr "查看"
 
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
-msgstr ""
+msgstr "返回仪表盘"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "查看已通联 / 已确认网格地图"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
@@ -11990,7 +12000,7 @@ msgstr "空"
 
 #: application/views/hamsat/index.php:10
 msgid "Satellite Rovers"
-msgstr ""
+msgstr "卫星漫游者"
 
 #: application/views/hamsat/index.php:27
 #, php-format
@@ -15904,7 +15914,7 @@ msgstr "为保障运行流畅，表格数据限制在 1000 行以内。"
 
 #: application/views/qslcard/confirmations.php:7
 msgid "View QSO Confirmations"
-msgstr ""
+msgstr "查看 QSO 确认"
 
 #: application/views/qslcard/confirmations.php:14
 msgid "Confirmation type"
@@ -16854,7 +16864,7 @@ msgstr "添加卫星模式"
 
 #: application/views/satellite/flightpath.php:38
 msgid "View a map with satellite flightpaths"
-msgstr ""
+msgstr "查看卫星飞行路径地图"
 
 #: application/views/satellite/flightpath.php:54
 msgid ""
@@ -16909,7 +16919,7 @@ msgstr "预约通联友台"
 
 #: application/views/satellite/pass.php:123
 msgid "Only satellites with TLE data are shown here!"
-msgstr ""
+msgstr "此处仅显示有 TLE 数据的卫星！"
 
 #: application/views/satellite/pass.php:136
 msgid "Min. time"
@@ -16929,7 +16939,7 @@ msgstr "保存当前设置"
 
 #: application/views/satellite/pass.php:165
 msgid "Pass Predictions"
-msgstr ""
+msgstr "过顶预测"
 
 #: application/views/satellite/pass.php:175
 msgid "Save Settings"
@@ -18023,7 +18033,7 @@ msgstr "访问公开页面"
 
 #: application/views/statistics/antennaanalytics.php:5
 msgid "View azimuth and elevation data"
-msgstr ""
+msgstr "查看方位角和仰角数据"
 
 #: application/views/statistics/antennaanalytics.php:15
 msgid "Elevation"
@@ -18298,7 +18308,7 @@ msgstr "添加主题"
 
 #: application/views/timeline/index.php:6
 msgid "View timeline statistics"
-msgstr ""
+msgstr "查看时间线统计数据"
 
 #: application/views/timeline/index.php:102
 msgid "All Years"
@@ -18322,7 +18332,7 @@ msgstr "通联的呼号（最大 5）"
 
 #: application/views/timeplotter/index.php:14
 msgid "View a heatmap or a chart of QSOs"
-msgstr ""
+msgstr "查看 QSO 热图或图表"
 
 #: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
@@ -18338,7 +18348,7 @@ msgstr "最佳模式"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
-msgstr ""
+msgstr "参与统计的 QSO 总数"
 
 #: application/views/timeplotter/index.php:132
 msgid "Heatmap"
@@ -18731,15 +18741,15 @@ msgstr "显示首页地图"
 
 #: application/views/user/edit.php:706
 msgid "Map on top"
-msgstr ""
+msgstr "地图在上"
 
 #: application/views/user/edit.php:707
 msgid "Map at left"
-msgstr ""
+msgstr "地图靠左"
 
 #: application/views/user/edit.php:708
 msgid "Map at right"
-msgstr "地图右侧"
+msgstr "地图靠右"
 
 #: application/views/user/edit.php:711
 msgid "Choose whether to show map on dashboard or not"
@@ -19780,6 +19790,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#, php-format
+#~ msgid "For more information or help, take a look in the %s."
+#~ msgstr "如需更多信息或帮助，请查看 %s 。"
 
 #~ msgid "Add sked partner"
 #~ msgstr "添加通联友台"

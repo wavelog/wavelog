@@ -241,7 +241,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-calendar"></i> <?= __("Year"); ?></h6>
+					<h6 class="mb-0"><i class="fas fa-calendar"></i> <?= __("QSOs this year"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $year_qsos; ?></h4>
@@ -251,7 +251,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-calendar-day"></i> <?= __("Month"); ?></h6>
+					<h6 class="mb-0"><i class="fas fa-calendar-day"></i> <?= __("QSOs this month"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $month_qsos; ?></h4>
@@ -261,7 +261,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-clock"></i> <?= __("Today"); ?></h6>
+					<h6 class="mb-0"><i class="fas fa-clock"></i> <?= __("QSOs today"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $todays_qsos; ?></h4>
