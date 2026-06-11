@@ -314,10 +314,7 @@ class Update extends CI_Controller {
 		}
 	}
 
-	public function update_status($done=""){
-
-		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+	private function update_status($done=""){
 
         if(!$this->load->is_loaded('Paths')) {
         	$this->load->library('Paths');
