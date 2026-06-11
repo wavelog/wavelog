@@ -60,7 +60,7 @@ class Qsl_model extends CI_Model {
 					return "No Image";				// Image doesn't belong to user, so return
 				}
 			}
-			$image=$this->get_imagePath('p',$row->user_id).'/'.$row->filename;
+			$image = $this->paths->getUserdataPath('qsl_card', 'p',$row->user_id).'/'.$row->filename;
 			unlink($image);
 			$this->db->delete('qsl_images', array('id' => $row->id));
 		}
@@ -80,7 +80,7 @@ class Qsl_model extends CI_Model {
 			return;
 		}
 		// We cannot call del_image_for_qso here, since this one only deletes ONE QSL-Card (Multiple QSL-Cards can belong to one QSO)
-		$path = $this->get_imagePath('p');
+		$path = $this->paths->getUserdataPath('qsl_card', 'p');
 		$file = $this->getFilename($clean_id)->row();
 		$filename = basename($file->filename);
 		unlink($path.'/'.$filename);
@@ -139,44 +139,6 @@ class Qsl_model extends CI_Model {
 		$this->db->insert('qsl_images', $data);
 
 		return $this->db->insert_id();
-	}
-
-	// return path of qsl file : u=url / p=real path
-	function get_imagePath($pathorurl='u', $user_id=null) {
-
-		// test if new folder directory option is enabled
-		$userdata_dir = $this->config->item('userdata');
-
-		if (isset($userdata_dir)) {
-
-			$qsl_dir = "qsl_card"; // make sure this is the same as in Debug_model.php function migrate_userdata()
-
-			if (($user_id ?? '') == '') {
-				$user_id = $this->session->userdata('user_id');
-			}
-
-			// check if there is a user_id in the session data and it's not empty
-			if ($user_id != '') {
-
-				// create the folder
-				if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir)) {
-					mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir, 0755, true);
-				}
-
-				// and return it
-				if ($pathorurl=='u') {
-					return $userdata_dir.'/'.$user_id.'/'.$qsl_dir;
-				} else {
-					return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir;
-				}
-			} else {
-				log_message('info', 'Can not get qsl card image path because no user_id in session data');
-			}
-		} else {
-
-			// if the config option is not set we just return the old path
-			return 'assets/qslcard';
-		}
 	}
 
 	function getConfirmations($confirmationtype) {

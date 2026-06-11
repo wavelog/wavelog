@@ -22,7 +22,7 @@
             echo ' active';
         }
         echo '">';
-        echo '<img class="img-fluid w-qsl" src="' . base_url() . '/'. $this->paths->getPathQsl() .'/' . $image->filename .'" alt="' . __("QSL picture #") . $i++.'">';
+        echo '<img class="img-fluid w-qsl" src="' . base_url() . '/'. $this->paths->getUserdataPath('qsl_card') .'/' . $image->filename .'" alt="' . __("QSL picture #") . $i++.'">';
         echo '</div>';
     }
     ?>
