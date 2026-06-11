@@ -44,4 +44,7 @@ if [ -n "$PUID" ] || [ -n "$PGID" ]; then
 	done < /var/www/html/docker/writable-dirs
 fi
 
+# start cron daemon (runs as wavelog via /etc/cron.d/wavelog)
+cron
+
 exec "$@"
