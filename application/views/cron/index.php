@@ -15,10 +15,10 @@
 						<i class="bi bi-info-square-fill"></i>
 					</div>
 					<div>
-						<strong class="d-block"><i class="fas fa-info-circle me-2"></i> Important</strong>
+						<strong class="d-block"><i class="fas fa-info-circle me-2"></i> <?= __("Important"); ?></strong>
 
 						<div>
-							<?= sprintf(__("For more information or help, take a look in the %s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://docs.wavelog.org/admin-guide/administration/cron-jobs/">'.'Wiki'.'</a>'); ?>
+							<?= sprintf(__("For more information or help, take a look in the %sWiki%s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://docs.wavelog.org/admin-guide/administration/cron-jobs/">', '</a>'); ?>
 						</div>
 					</div>
 				</div>
