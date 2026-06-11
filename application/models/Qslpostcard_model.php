@@ -5,6 +5,14 @@ use Wavelog\Label\FPDF;
 
 class Qslpostcard_model extends CI_Model {
 
+    function __construct() {
+        $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+    }
+
     public function list_templates() {
 		$sql = "SELECT id, name FROM qsl_postcard_templates WHERE user_id = ? ORDER BY updated_at DESC";
 		return $this->db->query($sql, [$this->session->userdata('user_id')])->result_array();
@@ -38,6 +46,7 @@ class Qslpostcard_model extends CI_Model {
         }
     }
 
+    // TODO: Remove
     // v1 demo: fetch last N QSOs from the logbook table.
     // You will adjust table/column names based on your schema.
     public function get_sample_qsos($limit = 25) {
@@ -65,32 +74,34 @@ class Qslpostcard_model extends CI_Model {
 
     public function resolve_address($callsign) {
         $callsign = strtoupper(trim($callsign));
-        if ($callsign === '') return null;
+        if (empty($callsign)) return null;
 
         // cache first
-        $row = $this->db->get_where('callbook_cache', ['callsign' => $callsign])->row_array();
-        if ($row && strtotime($row['expires_at']) > time()) {
-            return json_decode($row['address_json'], true);
+        $cache = $this->cache->get('callbook_cache_' . md5($callsign));
+        if ($cache) {
+            return json_decode($cache['address_json'], true);
         }
+
+        // TODO: use Callbook Lib here!
 
         // 1) HamQTH
         $addr = $this->hamqth_lookup($callsign);
         if ($this->is_mailable_address($addr)) {
-            $this->store_cached_address($callsign, 'hamqth', $addr);
+            $this->cache_address($callsign, 'hamqth', $addr);
             return $addr;
         }
 
         // 2) QRZCQ
         $addr = $this->qrzcq_lookup($callsign);
         if ($this->is_mailable_address($addr)) {
-            $this->store_cached_address($callsign, 'qrzcq', $addr);
+            $this->cache_address($callsign, 'qrzcq', $addr);
             return $addr;
         }
 
         // 3) QRZ
         $addr = $this->qrz_lookup($callsign);
         if ($this->is_mailable_address($addr)) {
-            $this->store_cached_address($callsign, 'qrz', $addr);
+            $this->cache_address($callsign, 'qrz', $addr);
             return $addr;
         }
 
@@ -109,29 +120,25 @@ class Qslpostcard_model extends CI_Model {
 
         // Must at least have street line plus either
         // city/state/zip info or country
-        if ($addr1 === '') {
+        if (empty($addr1)) {
             return false;
         }
 
-        $has_locality = ($city !== '') || ($state !== '') || ($zip !== '');
-        $has_country  = ($country !== '');
+        $has_locality = !empty($city) || !empty($state) || !empty($zip);
+        $has_country  = !empty($country);
 
         return $has_locality || $has_country;
     }
 
-    private function store_cached_address($callsign, $source, $addr) {
-        $addr['source'] = $source;
-
-        $now = date('Y-m-d H:i:s');
-        $exp = date('Y-m-d H:i:s', time() + 60 * 60 * 24 * 30);
-
-        $this->db->replace('callbook_cache', [
+    private function cache_address($callsign, $source, $addr) {
+        $addr['source'] = $source; // TODO: this is duped.. check if we can reduce this
+        $data = [
             'callsign'     => $callsign,
             'source'       => $source,
             'address_json' => json_encode($addr, JSON_UNESCAPED_SLASHES),
-            'fetched_at'   => $now,
-            'expires_at'   => $exp,
-        ]);
+        ];
+
+        $this->cache->save('callbook_cache_' . md5($callsign), $data, 60 * 60 * 24 * 20); // cache for 20 days
     }
 
     private function hamqth_lookup($callsign) {
@@ -441,6 +448,7 @@ class Qslpostcard_model extends CI_Model {
         return $deduped;
     }
 
+    // TODO: Unused, check if needed anymore
     private function extract_qso_date_parts($qso) {
         $raw = trim($qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '');
 
@@ -470,6 +478,7 @@ class Qslpostcard_model extends CI_Model {
         return ['year' => '', 'month' => '', 'day' => ''];
     }
 
+    // TODO: Unused, check if needed anymore
     private function extract_qso_time_hm($qso) {
         $raw = trim($qso['COL_TIME_ON'] ?? $qso['time_on'] ?? '');
 
