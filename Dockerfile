@@ -4,7 +4,7 @@ FROM php:8.4-apache
 ENV CI_ENV=docker
 
 # prepare the php install helper
-COPY --from=ghcr.io/hb9hil/php-extension-installer:fix-libssl3 /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=ghcr.io/mlocati/php-extension-installer:2.11.9 /usr/bin/install-php-extensions /usr/local/bin/
 
 # system packages
 RUN apt-get update \
