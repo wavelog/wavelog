@@ -39,9 +39,12 @@ if [ -n "$PUID" ] || [ -n "$PGID" ]; then
 		case "$dir" in ''|'#'*) continue ;; esac
 		path="/var/www/html/$dir"
 		if [ -d "$path" ] && [ "$(stat -c '%g' "$path")" != "$PGID" ]; then
-			chown -R root:www-data "$path"
+			chown -R wavelog:www-data "$path"
 		fi
 	done < /var/www/html/docker/writable-dirs
 fi
+
+# start cron daemon (runs as wavelog via /etc/cron.d/wavelog)
+cron
 
 exec "$@"
