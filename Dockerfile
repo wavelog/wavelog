@@ -1,4 +1,4 @@
-FROM php:8.4-apache
+FROM php:8.5-apache-trixie
 
 # we always need this env var, otherwise wavelog can't work properly in a docker environment
 ENV CI_ENV=docker
@@ -21,18 +21,22 @@ RUN install-php-extensions \
         apcu \
         gd
 
+# dedicated non-root user for files and cronjob
+# (apache itself keeps running as root)
+RUN useradd --system --no-create-home --shell /usr/sbin/nologin --gid www-data --uid 999 wavelog
+
 # server config
 RUN a2enmod rewrite \
-    && echo "* * * * * root curl --silent http://localhost/index.php/cron/run >/dev/null 2>&1" > /etc/cron.d/wavelog \
+    && echo "* * * * * wavelog /usr/bin/curl --silent http://localhost/index.php/cron/run >/dev/null 2>&1" > /etc/cron.d/wavelog \
     && chmod 0644 /etc/cron.d/wavelog
 
 # application
 WORKDIR /var/www/html
-COPY --chown=root:www-data ./ ./
+COPY --chown=wavelog:www-data ./ ./
 
 # basic setup steps and permissions
 RUN mkdir -p ./application/config/docker \
-    && chown root:www-data ./application/config/docker \
+    && chown wavelog:www-data ./application/config/docker \
     && mv ./htaccess.sample ./.htaccess \
     && sed -i "s/\$config\['index_page'\] = 'index.php';/\$config\['index_page'\] = '';/g" ./install/config/config.php \
     && while read -r dir || [ -n "$dir" ]; do \
