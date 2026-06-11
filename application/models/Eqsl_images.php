@@ -39,8 +39,10 @@ class Eqsl_images extends CI_Model {
 				return "No Image"; // Image doesn't belong to user, so return
 			}
 			$image = $this->paths->getUserdataPath('eqsl_card', 'p', $row->user_id) . '/' . $row->image_file;
-			unlink($image);
-			$this->db->delete('eQSL_images', [['id' => $row->id]]);
+			if (file_exists($image)) {
+				unlink($image);
+			}
+			$this->db->delete('eQSL_images', ['id' => $row->id]);
 			return $image;
 		}
 	}
