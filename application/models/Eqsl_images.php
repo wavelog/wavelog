@@ -19,7 +19,6 @@ class Eqsl_images extends CI_Model {
 	}
 
 	function del_image($qso_id, $user_id = null) {
-		$this->load->library('paths');
 		// QSO belongs to station_profile. But since we have folders for Users (and therefore an extra indirect relation) we need to lookup user for station first...
 		$table_name = $this->config->item('table_name');
 		$sql = "SELECT e.image_file,e.id, qso.station_id, s.user_id 
