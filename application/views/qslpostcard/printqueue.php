@@ -18,6 +18,12 @@
                 <?= __("One postcard per callsign") ?>
             </label>
         </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="print_background">
+            <label class="form-check-label" for="print_background">
+                <?= __("Print background image (uncheck for pre-printed cards)") ?>
+            </label>
+        </div>
         <button id="btnPrintQueue" class="btn btn-success w-auto">
             <?= __("Generate Postcard PDF") ?>
         </button>
@@ -29,6 +35,8 @@
         const tpl = document.getElementById('template_id').value;
 
         const params = new URLSearchParams(<?= json_encode($filters) ?>);
+        params.set('dedupe_by_call', document.getElementById('dedupe_by_call').checked ? '1' : '0');
+        params.set('print_background', document.getElementById('print_background').checked ? '1' : '0');
         window.location.href = `<?= site_url('qslpostcard/pdfqueue') ?>/${tpl}?` + params.toString();
     });
 </script>

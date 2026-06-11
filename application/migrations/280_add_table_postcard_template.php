@@ -51,12 +51,6 @@ class Migration_add_table_postcard_template extends CI_Migration {
                     'null' => TRUE,
                     'default' => NULL
                 ),
-                'print_background' => array(
-                    'type' => 'TINYINT',
-                    'constraint' => 1,
-                    'null' => FALSE,
-                    'default' => 0
-                ),
                 'layout_json' => array(
                     'type' => 'LONGTEXT',
                     'null' => FALSE
