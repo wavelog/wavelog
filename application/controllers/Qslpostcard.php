@@ -25,7 +25,7 @@ class Qslpostcard extends CI_Controller {
 		];
 
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('qslpostcard/designer', $data);
+        $this->load->view('qslpostcard/designer');
         $this->load->view('interface_assets/footer', $footerData);
     }
 
@@ -155,7 +155,7 @@ class Qslpostcard extends CI_Controller {
         $data['filters'] = $this->input->get(NULL, true);
 
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('qslpostcard/printqueue', $data);
+        $this->load->view('qslpostcard/printqueue');
         $this->load->view('interface_assets/footer');
     }
 
@@ -215,7 +215,7 @@ class Qslpostcard extends CI_Controller {
         $data['selected_ids'] = array_values(array_filter(array_map('intval', $selected_ids)));
 
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('qslpostcard/printqueue_selected', $data);
+        $this->load->view('qslpostcard/printqueue_selected');
         $this->load->view('interface_assets/footer');
     }
 
