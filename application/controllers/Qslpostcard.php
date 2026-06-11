@@ -13,7 +13,6 @@ class Qslpostcard extends CI_Controller {
 		}
 
         $this->load->model('Qslpostcard_model');
-        $this->load->helper(array('url', 'security'));
     }
 
 	public function index() {
