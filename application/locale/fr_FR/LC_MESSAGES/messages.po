@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-09 07:01+0000\n"
-"PO-Revision-Date: 2026-06-04 22:43+0000\n"
+"POT-Creation-Date: 2026-06-11 10:04+0000\n"
+"PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -136,9 +136,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -155,8 +155,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:167
-#: application/controllers/Cron.php:181 application/controllers/Csv.php:8
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198 application/controllers/Csv.php:8
 #: application/controllers/Csv.php:32
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -377,49 +377,49 @@ msgstr "Importation des POTA"
 msgid "POTA Data Imported"
 msgstr "Données des POTA importées"
 
-#: application/controllers/Api.php:19
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "Description de l'API"
 
-#: application/controllers/Api.php:64
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "La clé API est requise. Ne modifiez pas ce champ"
 
-#: application/controllers/Api.php:69
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "Modifier la description de l'API"
 
-#: application/controllers/Api.php:79
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "Les informations sur la clé API %s ont été mises à jour."
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "Méthode de requête invalide"
 
-#: application/controllers/Api.php:100
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "Droits d'API invalides"
 
-#: application/controllers/Api.php:114
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "Clé API générée"
 
-#: application/controllers/Api.php:116
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "La clé API n'a pas pu être générée"
 
-#: application/controllers/Api.php:134
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "Clé API invalide"
 
-#: application/controllers/Api.php:143
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "La clé API %s a été supprimée"
@@ -1007,11 +1007,11 @@ msgstr "Continents"
 msgid "Cron Manager"
 msgstr "Gestion des Cron"
 
-#: application/controllers/Cron.php:173 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:190 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Modifier les traitements Cron"
 
-#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1022,32 +1022,32 @@ msgstr "Modifier les traitements Cron"
 msgid "never"
 msgstr "jamais"
 
-#: application/controllers/Cron.php:248
+#: application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "calcul en cours..."
 
-#: application/controllers/Cron.php:259 application/views/cron/index.php:84
+#: application/controllers/Cron.php:276 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "sain"
 
-#: application/controllers/Cron.php:261 application/views/cron/index.php:86
+#: application/controllers/Cron.php:278 application/views/cron/index.php:86
 msgid "failed"
 msgstr "échoué"
 
-#: application/controllers/Cron.php:263 application/views/cron/index.php:88
+#: application/controllers/Cron.php:280 application/views/cron/index.php:88
 msgid "pending"
 msgstr "en attente"
 
-#: application/controllers/Cron.php:268 application/views/cron/index.php:93
+#: application/controllers/Cron.php:285 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "désactivé"
 
-#: application/controllers/Cron.php:307
+#: application/controllers/Cron.php:324
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311
+#: application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1056,7 +1056,7 @@ msgstr ""
 "La dernière exécution a eu lieu il y a plus de %s secondes.%sVeuillez "
 "vérifier votre cron maître ! Il devrait s'exécuter chaque minute (* * * * *)."
 
-#: application/controllers/Cron.php:314
+#: application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1066,7 +1066,7 @@ msgstr ""
 "votre Mastercron ne fonctionne pas !%sIl devrait s'exécuter chaque minute (* "
 "* * * *)."
 
-#: application/controllers/Cron.php:319 application/views/cron/index.php:43
+#: application/controllers/Cron.php:336 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Ne fonctionne pas"
@@ -1316,15 +1316,15 @@ msgstr "Toutes les eQSL marquées comme téléchargées"
 
 #: application/controllers/Errors.php:22
 msgid "Page Not Found"
-msgstr ""
+msgstr "Page introuvable"
 
 #: application/controllers/Errors.php:23
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ ? … pas de réponse."
 
 #: application/controllers/Errors.php:24
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Personne n'émet sur cette fréquence."
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -4112,7 +4112,6 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Nombre total de WAJA contactés"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:244
 #: application/views/dayswithqso/index.php:47
 #: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
@@ -4128,7 +4127,6 @@ msgid "Yearly"
 msgstr "Annuel"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:254
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
@@ -4796,6 +4794,7 @@ msgstr "Importation CBR"
 
 #: application/views/adif/import.php:93 application/views/adif/import.php:400
 #: application/views/adif/import.php:423 application/views/api/index.php:22
+#: application/views/cron/index.php:18
 #: application/views/dashboard/index.php:181
 #: application/views/dashboard/index.php:214
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -5987,7 +5986,6 @@ msgstr "Préréglages de date"
 #: application/views/awards/itu/index.php:59
 #: application/views/awards/wae/index.php:41
 #: application/views/contestcalendar/index.php:44
-#: application/views/dashboard/index.php:264
 #: application/views/dashboard/index.php:511
 #: application/views/dashboard/index.php:545
 #: application/views/dashboard/index.php:574
@@ -10643,8 +10641,8 @@ msgstr "Comment ça fonctionne"
 
 #: application/views/cron/index.php:21
 #, php-format
-msgid "For more information or help, take a look in the %s."
-msgstr "Pour plus d'informations ou d'aide, jetez un coup d'œil au %s."
+msgid "For more information or help, take a look in the %sWiki%s."
+msgstr ""
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -10863,6 +10861,18 @@ msgstr "Au moins un de vos certificats expire"
 msgid "Total QSOs"
 msgstr "QSOs totaux"
 
+#: application/views/dashboard/index.php:244
+msgid "QSOs this year"
+msgstr ""
+
+#: application/views/dashboard/index.php:254
+msgid "QSOs this month"
+msgstr ""
+
+#: application/views/dashboard/index.php:264
+msgid "QSOs today"
+msgstr ""
+
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
 msgstr "Série actuelle"
@@ -10896,16 +10906,16 @@ msgstr[1] "Max. %d contacts précédents sont affichés"
 #: application/views/dashboard/index.php:403
 #: application/views/user/edit.php:734
 msgid "Active Expeditions"
-msgstr ""
+msgstr "Expéditions actives"
 
 #: application/views/dashboard/index.php:411
 msgid "Dates"
-msgstr ""
+msgstr "Dates"
 
 #: application/views/dashboard/index.php:449
 #: application/views/user/edit.php:741
 msgid "Active Contests"
-msgstr ""
+msgstr "Concours en cours"
 
 #: application/views/dashboard/index.php:465
 #: application/views/view_log/qso.php:621
@@ -12441,7 +12451,7 @@ msgstr "Voir"
 
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
-msgstr ""
+msgstr "Retour au tableau de bord"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -17628,7 +17638,7 @@ msgstr "Partenaire de Sked"
 
 #: application/views/satellite/pass.php:123
 msgid "Only satellites with TLE data are shown here!"
-msgstr ""
+msgstr "Seuls les satellites disposant de données TLE sont affichés ici !"
 
 #: application/views/satellite/pass.php:136
 msgid "Min. time"
@@ -17648,7 +17658,7 @@ msgstr "Enregistrer les paramètres actuels"
 
 #: application/views/satellite/pass.php:165
 msgid "Pass Predictions"
-msgstr ""
+msgstr "Prédictions de passes"
 
 #: application/views/satellite/pass.php:175
 msgid "Save Settings"
@@ -20697,6 +20707,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#, php-format
+#~ msgid "For more information or help, take a look in the %s."
+#~ msgstr "Pour plus d'informations ou d'aide, jetez un coup d'œil au %s."
 
 #~ msgid "Look for satellite passes"
 #~ msgstr "Recherchez les passages des satellites"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-09 07:01+0000\n"
-"PO-Revision-Date: 2026-05-26 06:31+0000\n"
+"POT-Creation-Date: 2026-06-11 10:04+0000\n"
+"PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
@@ -125,9 +125,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -144,8 +144,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:167
-#: application/controllers/Cron.php:181 application/controllers/Csv.php:8
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198 application/controllers/Csv.php:8
 #: application/controllers/Csv.php:32
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -366,49 +366,49 @@ msgstr "POTA-tietojen tuonti"
 msgid "POTA Data Imported"
 msgstr "POTA-tiedot tuotu"
 
-#: application/controllers/Api.php:19
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "API-kuvaus"
 
-#: application/controllers/Api.php:64
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "API-avain on pakollinen. Älä muuta tätä kenttää"
 
-#: application/controllers/Api.php:69
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "Muokkaa API-kuvausta"
 
-#: application/controllers/Api.php:79
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API-avaimen %s kuvaus on päivitetty."
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "Virheellinen pyyntömenetelmä"
 
-#: application/controllers/Api.php:100
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "Virheelliset API-oikeudet"
 
-#: application/controllers/Api.php:114
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "API-avain luotu"
 
-#: application/controllers/Api.php:116
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "API-avainta ei voitu luoda"
 
-#: application/controllers/Api.php:134
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "Virheellinen API-avain"
 
-#: application/controllers/Api.php:143
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API-avain %s on poistettu"
@@ -993,11 +993,11 @@ msgstr "Mantereet"
 msgid "Cron Manager"
 msgstr "Cron manageri"
 
-#: application/controllers/Cron.php:173 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:190 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Muokkaa cron-tehtävää"
 
-#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1008,32 +1008,32 @@ msgstr "Muokkaa cron-tehtävää"
 msgid "never"
 msgstr "ei koskaan"
 
-#: application/controllers/Cron.php:248
+#: application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "laskee..."
 
-#: application/controllers/Cron.php:259 application/views/cron/index.php:84
+#: application/controllers/Cron.php:276 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "terve"
 
-#: application/controllers/Cron.php:261 application/views/cron/index.php:86
+#: application/controllers/Cron.php:278 application/views/cron/index.php:86
 msgid "failed"
 msgstr "epäonnistui"
 
-#: application/controllers/Cron.php:263 application/views/cron/index.php:88
+#: application/controllers/Cron.php:280 application/views/cron/index.php:88
 msgid "pending"
 msgstr "odottaa"
 
-#: application/controllers/Cron.php:268 application/views/cron/index.php:93
+#: application/controllers/Cron.php:285 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "poistettu käytöstä"
 
-#: application/controllers/Cron.php:307
+#: application/controllers/Cron.php:324
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311
+#: application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1042,7 +1042,7 @@ msgstr ""
 "Viimeisin suoritus tapahtui yli %s sekuntia sitten.%sTarkista pää-cron-"
 "tehtäväsi! Sen tulisi ajaa joka minuutti (* * * * *)."
 
-#: application/controllers/Cron.php:314
+#: application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1051,7 +1051,7 @@ msgstr ""
 "Viimeisin suoritus tapahtui yli %s minuuttia sitten.%sPää-cron-tehtäväsi ei "
 "taida olla käynnissä!%sSe tulisi ajaa joka minuutti (* * * * *)."
 
-#: application/controllers/Cron.php:319 application/views/cron/index.php:43
+#: application/controllers/Cron.php:336 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Ei käynnissä"
@@ -1300,15 +1300,15 @@ msgstr "Kaikki eQSL:t merkitty ladatuiksi"
 
 #: application/controllers/Errors.php:22
 msgid "Page Not Found"
-msgstr ""
+msgstr "Sivua ei löytynyt"
 
 #: application/controllers/Errors.php:23
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ? ... ei vastausta."
 
 #: application/controllers/Errors.php:24
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Kukaan ei lähetä tällä taajuudella."
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -4068,7 +4068,6 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Kertyneiden WAJA-yhteyksien määrä"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:244
 #: application/views/dayswithqso/index.php:47
 #: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
@@ -4084,7 +4083,6 @@ msgid "Yearly"
 msgstr "Vuosittain"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:254
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
@@ -4751,6 +4749,7 @@ msgstr "CBR-tuonti"
 
 #: application/views/adif/import.php:93 application/views/adif/import.php:400
 #: application/views/adif/import.php:423 application/views/api/index.php:22
+#: application/views/cron/index.php:18
 #: application/views/dashboard/index.php:181
 #: application/views/dashboard/index.php:214
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -5918,7 +5917,6 @@ msgstr "Päivämäärien esiasetukset"
 #: application/views/awards/itu/index.php:59
 #: application/views/awards/wae/index.php:41
 #: application/views/contestcalendar/index.php:44
-#: application/views/dashboard/index.php:264
 #: application/views/dashboard/index.php:511
 #: application/views/dashboard/index.php:545
 #: application/views/dashboard/index.php:574
@@ -9429,7 +9427,7 @@ msgstr "Lokistasi ei löytynyt kilpailuja."
 
 #: application/views/callstats/index.php:5
 msgid "View statistics for worked callsigns"
-msgstr ""
+msgstr "Tarkastele tilastoja työskennellyistä kutsuista"
 
 #: application/views/callstats/index.php:75
 #: application/views/gridmap/index.php:96
@@ -10435,7 +10433,7 @@ msgstr "VUCC Lokaattori"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
-msgstr ""
+msgstr "Katso maanosan tilastoja"
 
 #: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
@@ -10516,8 +10514,8 @@ msgstr "Miten se toimii"
 
 #: application/views/cron/index.php:21
 #, php-format
-msgid "For more information or help, take a look in the %s."
-msgstr "Saat lisätietoja tai apua katsomalla %s."
+msgid "For more information or help, take a look in the %sWiki%s."
+msgstr ""
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -10726,18 +10724,30 @@ msgstr "Vähintään yksi varmenteistasi vanhenee"
 
 #: application/views/dashboard/index.php:234
 msgid "Total QSOs"
+msgstr "Kokonaistyhteyksien määrä"
+
+#: application/views/dashboard/index.php:244
+msgid "QSOs this year"
+msgstr ""
+
+#: application/views/dashboard/index.php:254
+msgid "QSOs this month"
+msgstr ""
+
+#: application/views/dashboard/index.php:264
+msgid "QSOs today"
 msgstr ""
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
-msgstr ""
+msgstr "Nykyinen putki"
 
 #: application/views/dashboard/index.php:277
 #, php-format
 msgid "%d Day"
 msgid_plural "%d Days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d päivä"
+msgstr[1] "%d päivää"
 
 #: application/views/dashboard/index.php:284
 #: application/views/statistics/index.php:119
@@ -10748,7 +10758,7 @@ msgstr "Erillisiä kutsuja"
 #: application/views/dashboard/index.php:328
 #: application/views/view_log/index.php:26
 msgid "Recent QSOs"
-msgstr ""
+msgstr "Viimeaikaiset QSO: t"
 
 #: application/views/dashboard/index.php:380
 #: application/views/qso/index.php:914
@@ -10761,16 +10771,16 @@ msgstr[1] "Enint. %d edellistä yhteyttä näytetään."
 #: application/views/dashboard/index.php:403
 #: application/views/user/edit.php:734
 msgid "Active Expeditions"
-msgstr ""
+msgstr "Aktiiviset peditiot"
 
 #: application/views/dashboard/index.php:411
 msgid "Dates"
-msgstr ""
+msgstr "Päivämäärät"
 
 #: application/views/dashboard/index.php:449
 #: application/views/user/edit.php:741
 msgid "Active Contests"
-msgstr ""
+msgstr "Aktiiviset kontestit"
 
 #: application/views/dashboard/index.php:465
 #: application/views/view_log/qso.php:621
@@ -10931,11 +10941,11 @@ msgstr "Tiedot tarjoaa HAMqsl."
 
 #: application/views/dashboard/index.php:715
 msgid "Day"
-msgstr ""
+msgstr "Päivä"
 
 #: application/views/dashboard/index.php:722
 msgid "Night"
-msgstr ""
+msgstr "Yö"
 
 #: application/views/dashboard/index.php:732
 msgid "Solar Flux Index"
@@ -11851,7 +11861,7 @@ msgstr "DX lokaattori"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
-msgstr ""
+msgstr "Ei löydy yhtään QSOa jotka täyttäisivät tämän sivun ehdot!"
 
 #: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
@@ -12288,11 +12298,11 @@ msgstr "Näytä"
 
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
-msgstr ""
+msgstr "Palaa takaisin hallintapaneeliin"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "Katso työskenneltyjen / vahvistettujen ruutujen kartta"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
@@ -12316,7 +12326,7 @@ msgstr "Tyhjä"
 
 #: application/views/hamsat/index.php:10
 msgid "Satellite Rovers"
-msgstr ""
+msgstr "Satelliittirooverit"
 
 #: application/views/hamsat/index.php:27
 #, php-format
@@ -16208,7 +16218,7 @@ msgstr "Varoitus! Haluatko varmasti poistaa QSO-osuman?"
 
 #: application/views/oqrs/showrequests.php:29
 msgid "Manage OQRS Requests"
-msgstr ""
+msgstr "Hallitse OQRS-pyyntöjä"
 
 #: application/views/oqrs/showrequests.php:47
 #: application/views/oqrs/showrequests.php:95
@@ -16365,7 +16375,7 @@ msgstr ""
 
 #: application/views/qslcard/confirmations.php:7
 msgid "View QSO Confirmations"
-msgstr ""
+msgstr "Näytä QSO-vahvistukset"
 
 #: application/views/qslcard/confirmations.php:14
 msgid "Confirmation type"
@@ -16457,17 +16467,17 @@ msgstr "QSO-lista"
 #: application/views/qslprint/qslprint.php:67
 #: application/views/qslprint/qsolist.php:70
 msgid "Previous QSL sent (same band/mode)"
-msgstr ""
+msgstr "Edellinen QSL lähetetty (sama bandi/mode)"
 
 #: application/views/qslprint/qslprint.php:68
 #: application/views/qslprint/qsolist.php:71
 msgid "QSL sent to callsign (total)"
-msgstr ""
+msgstr "Tälle kutsutunnukselle lähetetyt QSLt (yhteensä)"
 
 #: application/views/qslprint/qslprint.php:69
 #: application/views/qslprint/qsolist.php:72
 msgid "QSL received from callsign (total)"
-msgstr ""
+msgstr "Tältä kutsulta saadut QSLt (yhteensä)"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "Mark QSOs for a certain QSL Method:"
@@ -17337,7 +17347,7 @@ msgstr "Lisää satelliitin mode"
 
 #: application/views/satellite/flightpath.php:38
 msgid "View a map with satellite flightpaths"
-msgstr ""
+msgstr "Katso kartta satelliittien lentoratojen kera"
 
 #: application/views/satellite/flightpath.php:54
 msgid ""
@@ -17393,7 +17403,7 @@ msgstr "Skedipartneri"
 
 #: application/views/satellite/pass.php:123
 msgid "Only satellites with TLE data are shown here!"
-msgstr ""
+msgstr "Täällä näytetään vain satelliitit, joilla on TLE-tiedot!"
 
 #: application/views/satellite/pass.php:136
 msgid "Min. time"
@@ -17413,7 +17423,7 @@ msgstr "Tallenna nykyiset asetukset"
 
 #: application/views/satellite/pass.php:165
 msgid "Pass Predictions"
-msgstr ""
+msgstr "Ylilentoennusteet"
 
 #: application/views/satellite/pass.php:175
 msgid "Save Settings"
@@ -18424,7 +18434,7 @@ msgstr "Irrota asemasijainnin linkitys"
 
 #: application/views/stationsetup/stationsetup.php:3
 msgid "Invalid characters entered in link! Enter only the slug."
-msgstr ""
+msgstr "Linkkiin on syötetty virheellisiä merkkejä! Syötä vain tunnus."
 
 #: application/views/stationsetup/stationsetup.php:25
 msgid ""
@@ -18557,7 +18567,7 @@ msgstr "Vierailu julkisella sivulla"
 
 #: application/views/statistics/antennaanalytics.php:5
 msgid "View azimuth and elevation data"
-msgstr ""
+msgstr "Näytä azimuutin ja elevaation tiedot"
 
 #: application/views/statistics/antennaanalytics.php:15
 msgid "Elevation"
@@ -18648,6 +18658,8 @@ msgid ""
 "This page allows you to view the initials of all EME QSOs you have worked. "
 "You can select a band and mode to filter the results."
 msgstr ""
+"Tämä sivu antaa sinulle mahdollisuuden katsella kaikkien EME QSOjesi "
+"alkukirjaimia. Voit valita bandin ja tilan tulosten suodattamiseksi."
 
 #: application/views/statistics/qsltable.php:7
 msgid "Absolute"
@@ -18845,7 +18857,7 @@ msgstr "Lisää teema"
 
 #: application/views/timeline/index.php:6
 msgid "View timeline statistics"
-msgstr ""
+msgstr "Katso tilastot aikajanana"
 
 #: application/views/timeline/index.php:102
 msgid "All Years"
@@ -18869,7 +18881,7 @@ msgstr "Workitut kutsumerkit (enintään 5)"
 
 #: application/views/timeplotter/index.php:14
 msgid "View a heatmap or a chart of QSOs"
-msgstr ""
+msgstr "Näytä lämpökartta tai kaavio QSOista"
 
 #: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
@@ -18885,7 +18897,7 @@ msgstr "Paras mode"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
-msgstr ""
+msgstr "Kartalle piirrettyjen QSOjen määrä"
 
 #: application/views/timeplotter/index.php:132
 msgid "Heatmap"
@@ -19293,11 +19305,11 @@ msgstr "Näytä hallintapaneelin kartta"
 
 #: application/views/user/edit.php:706
 msgid "Map on top"
-msgstr ""
+msgstr "Kartta päällä"
 
 #: application/views/user/edit.php:707
 msgid "Map at left"
-msgstr ""
+msgstr "Kartta vasemmalla"
 
 #: application/views/user/edit.php:708
 msgid "Map at right"
@@ -20393,6 +20405,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#, php-format
+#~ msgid "For more information or help, take a look in the %s."
+#~ msgstr "Saat lisätietoja tai apua katsomalla %s."
 
 #~ msgid "Add sked partner"
 #~ msgstr "Lisää skedipartneri"
