@@ -27,8 +27,9 @@ RUN useradd --system --no-create-home --shell /usr/sbin/nologin --gid www-data -
 
 # server config
 RUN a2enmod rewrite \
-    && echo "* * * * * wavelog curl --silent http://localhost/index.php/cron/run >/dev/null 2>&1" > /etc/cron.d/wavelog \
-    && chmod 0644 /etc/cron.d/wavelog
+    && echo "* * * * * wavelog /usr/bin/curl --silent http://localhost/index.php/cron/run >/dev/null 2>&1" > /etc/cron.d/wavelog \
+    && chmod 0644 /etc/cron.d/wavelog \
+    && sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground;
 
 # application
 WORKDIR /var/www/html
