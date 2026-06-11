@@ -38,8 +38,8 @@ if [ -n "$PUID" ] || [ -n "$PGID" ]; then
 	while read -r dir || [ -n "$dir" ]; do
 		case "$dir" in ''|'#'*) continue ;; esac
 		path="/var/www/html/$dir"
-		if [ -d "$path" ] && [ "$(stat -c '%g' "$path")" != "$PGID" ]; then
-			chown -R wavelog:www-data "$path"
+		if [ -d "$path" ] && { [ "$(stat -c '%u' "$path")" != "$PUID" ] || [ "$(stat -c '%g' "$path")" != "$PGID" ]; }; then
+			chown -R www-data:www-data "$path"
 		fi
 	done < /var/www/html/docker/writable-dirs
 fi
