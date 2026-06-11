@@ -192,6 +192,10 @@ class Search extends CI_Controller {
 			}
 			$this->db->group_end();
 		} else {
+			if (!is_string($object['field'] ?? null) || !preg_match('/^[A-Za-z0-9_]+$/', $object['field'])) {
+				log_message('error', 'Search filter rejected: invalid field identifier');
+				show_error('Invalid search field', 400);
+			}
 			$object['field'] = $this->config->item('table_name') . '.' . $object['field'];
 
 			if ($object['operator'] == "equal") {
