@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-11 08:18+0000\n"
+"POT-Creation-Date: 2026-06-11 10:04+0000\n"
 "PO-Revision-Date: 2026-06-08 07:58+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -4694,6 +4694,7 @@ msgstr "CBR 导入"
 
 #: application/views/adif/import.php:93 application/views/adif/import.php:400
 #: application/views/adif/import.php:423 application/views/api/index.php:22
+#: application/views/cron/index.php:18
 #: application/views/dashboard/index.php:181
 #: application/views/dashboard/index.php:214
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -10247,8 +10248,8 @@ msgstr "实现原理"
 
 #: application/views/cron/index.php:21
 #, php-format
-msgid "For more information or help, take a look in the %s."
-msgstr "如需更多信息或帮助，请查看 %s 。"
+msgid "For more information or help, take a look in the %sWiki%s."
+msgstr ""
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -19789,6 +19790,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#, php-format
+#~ msgid "For more information or help, take a look in the %s."
+#~ msgstr "如需更多信息或帮助，请查看 %s 。"
 
 #~ msgid "Add sked partner"
 #~ msgstr "添加通联友台"
