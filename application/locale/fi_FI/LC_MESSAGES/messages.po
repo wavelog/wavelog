@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-09 07:01+0000\n"
+"POT-Creation-Date: 2026-06-11 08:18+0000\n"
 "PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -125,9 +125,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -144,8 +144,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:167
-#: application/controllers/Cron.php:181 application/controllers/Csv.php:8
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198 application/controllers/Csv.php:8
 #: application/controllers/Csv.php:32
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -230,10 +230,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52 application/controllers/Cron.php:184
-#: application/controllers/Cron.php:198 application/controllers/Update.php:320
-#: application/controllers/Api.php:34 application/controllers/Api.php:77
-#: application/controllers/Api.php:117 application/controllers/Api.php:152
+#: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr "Tämä ei ole sallittu!"
 
@@ -369,51 +366,49 @@ msgstr "POTA-tietojen tuonti"
 msgid "POTA Data Imported"
 msgstr "POTA-tiedot tuotu"
 
-#: application/controllers/Api.php:19 application/controllers/Api.php:41
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
-#: application/controllers/Api.php:85
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "API-kuvaus"
 
-#: application/controllers/Api.php:64 application/controllers/Api.php:86
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "API-avain on pakollinen. Älä muuta tätä kenttää"
 
-#: application/controllers/Api.php:69 application/controllers/Api.php:91
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "Muokkaa API-kuvausta"
 
-#: application/controllers/Api.php:79 application/controllers/Api.php:101
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API-avaimen %s kuvaus on päivitetty."
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
-#: application/controllers/Qso.php:580 application/controllers/Api.php:111
-#: application/controllers/Api.php:146
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
+#: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "Virheellinen pyyntömenetelmä"
 
-#: application/controllers/Api.php:100 application/controllers/Api.php:122
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "Virheelliset API-oikeudet"
 
-#: application/controllers/Api.php:114 application/controllers/Api.php:136
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "API-avain luotu"
 
-#: application/controllers/Api.php:116 application/controllers/Api.php:138
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "API-avainta ei voitu luoda"
 
-#: application/controllers/Api.php:134 application/controllers/Api.php:156
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "Virheellinen API-avain"
 
-#: application/controllers/Api.php:143 application/controllers/Api.php:165
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API-avain %s on poistettu"
@@ -998,12 +993,11 @@ msgstr "Mantereet"
 msgid "Cron Manager"
 msgstr "Cron manageri"
 
-#: application/controllers/Cron.php:173 application/views/cron/edit.php:5
-#: application/controllers/Cron.php:190
+#: application/controllers/Cron.php:190 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Muokkaa cron-tehtävää"
 
-#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1011,41 +1005,35 @@ msgstr "Muokkaa cron-tehtävää"
 #: application/views/debug/index.php:714 application/views/debug/index.php:720
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
-#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 msgid "never"
 msgstr "ei koskaan"
 
-#: application/controllers/Cron.php:248 application/controllers/Cron.php:265
+#: application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "laskee..."
 
-#: application/controllers/Cron.php:259 application/views/cron/index.php:84
-#: application/controllers/Cron.php:276
+#: application/controllers/Cron.php:276 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "terve"
 
-#: application/controllers/Cron.php:261 application/views/cron/index.php:86
-#: application/controllers/Cron.php:278
+#: application/controllers/Cron.php:278 application/views/cron/index.php:86
 msgid "failed"
 msgstr "epäonnistui"
 
-#: application/controllers/Cron.php:263 application/views/cron/index.php:88
-#: application/controllers/Cron.php:280
+#: application/controllers/Cron.php:280 application/views/cron/index.php:88
 msgid "pending"
 msgstr "odottaa"
 
-#: application/controllers/Cron.php:268 application/views/cron/index.php:93
-#: application/controllers/Cron.php:285
+#: application/controllers/Cron.php:285 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "poistettu käytöstä"
 
-#: application/controllers/Cron.php:307
-#: application/views/interface_assets/footer.php:41
 #: application/controllers/Cron.php:324
+#: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311 application/controllers/Cron.php:328
+#: application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1054,7 +1042,7 @@ msgstr ""
 "Viimeisin suoritus tapahtui yli %s sekuntia sitten.%sTarkista pää-cron-"
 "tehtäväsi! Sen tulisi ajaa joka minuutti (* * * * *)."
 
-#: application/controllers/Cron.php:314 application/controllers/Cron.php:331
+#: application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1063,8 +1051,7 @@ msgstr ""
 "Viimeisin suoritus tapahtui yli %s minuuttia sitten.%sPää-cron-tehtäväsi ei "
 "taida olla käynnissä!%sSe tulisi ajaa joka minuutti (* * * * *)."
 
-#: application/controllers/Cron.php:319 application/views/cron/index.php:43
-#: application/controllers/Cron.php:336
+#: application/controllers/Cron.php:336 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Ei käynnissä"
@@ -3217,122 +3204,98 @@ msgid "DONE"
 msgstr "VALMIS"
 
 #: application/controllers/Update.php:326
-#: application/controllers/Update.php:329
 msgid "Updating..."
 msgstr "Päivitys käynnissä..."
 
 #: application/controllers/Update.php:329
-#: application/controllers/Update.php:332
 msgid "Dxcc Entities:"
 msgstr "DXCC-alueet:"
 
 #: application/controllers/Update.php:330
-#: application/controllers/Update.php:333
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc-poikkeukset:"
 
 #: application/controllers/Update.php:331
-#: application/controllers/Update.php:334
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc-etuliitteet:"
 
 #: application/controllers/Update.php:362
-#: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
 msgstr "SCP-päivitys valmis. Tulos: "
 
 #: application/controllers/Update.php:364
-#: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
 msgstr "SCP-päivitys epäonnistui. Tulos: "
 
 #: application/controllers/Update.php:401
-#: application/controllers/Update.php:404
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-käyttäjien päivitys valmis. Tulos: "
 
 #: application/controllers/Update.php:403
-#: application/controllers/Update.php:406
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-käyttäjien päivitys epäonnistui. Tulokset: "
 
 #: application/controllers/Update.php:438
-#: application/controllers/Update.php:441
 msgid "DOK Update complete. Result: "
 msgstr "DOK-päivitys valmis. Tulos: "
 
 #: application/controllers/Update.php:440
-#: application/controllers/Update.php:443
 msgid "DOK Update failed. Result: "
 msgstr "DOK-päivitys epäonnistui. Tulokset: "
 
 #: application/controllers/Update.php:473
-#: application/controllers/Update.php:476
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-päivitys valmis. Tulokset: "
 
 #: application/controllers/Update.php:475
-#: application/controllers/Update.php:478
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-päivitys epäonnistui. Tulos: "
 
 #: application/controllers/Update.php:508
-#: application/controllers/Update.php:511
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-päivitys valmis. Tulos: "
 
 #: application/controllers/Update.php:510
-#: application/controllers/Update.php:513
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-päivitys epäonnistui. Tulos: "
 
 #: application/controllers/Update.php:544
-#: application/controllers/Update.php:547
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl-päivitys valmis. Tulos: "
 
 #: application/controllers/Update.php:546
-#: application/controllers/Update.php:549
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl-päivitys epäonnistui. Tulos: "
 
 #: application/controllers/Update.php:579
-#: application/controllers/Update.php:582
 msgid "POTA Update complete. Result: "
 msgstr "POTA-päivitys valmis. Tulos: "
 
 #: application/controllers/Update.php:581
-#: application/controllers/Update.php:584
 msgid "POTA Update failed. Result: "
 msgstr "POTA-päivitys epäonnistui. Tuloksena: "
 
 #: application/controllers/Update.php:610
-#: application/controllers/Update.php:613
 msgid "TLE Update complete. Result: "
 msgstr "TLE-päivitys valmis. Tulos: "
 
 #: application/controllers/Update.php:612
-#: application/controllers/Update.php:615
 msgid "TLE Update failed. Result: "
 msgstr "TLE-päivitys epäonnistui. Tulos: "
 
 #: application/controllers/Update.php:639
-#: application/controllers/Update.php:642
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT päivitys"
 
 #: application/controllers/Update.php:667
-#: application/controllers/Update.php:670
 msgid "Update of Hams of Note"
 msgstr "Päivitä Hams of Note"
 
 #: application/controllers/Update.php:707
-#: application/controllers/Update.php:710
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC-ruututiedoston päivitys valmis. Tulokset: "
 
 #: application/controllers/Update.php:709
-#: application/controllers/Update.php:712
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC-ruututiedoston päivitys epäonnistui. Tulos: "
 
@@ -4105,7 +4068,6 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Kertyneiden WAJA-yhteyksien määrä"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:244
 #: application/views/dayswithqso/index.php:47
 #: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
@@ -4121,7 +4083,6 @@ msgid "Yearly"
 msgstr "Vuosittain"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:254
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
@@ -5955,7 +5916,6 @@ msgstr "Päivämäärien esiasetukset"
 #: application/views/awards/itu/index.php:59
 #: application/views/awards/wae/index.php:41
 #: application/views/contestcalendar/index.php:44
-#: application/views/dashboard/index.php:264
 #: application/views/dashboard/index.php:511
 #: application/views/dashboard/index.php:545
 #: application/views/dashboard/index.php:574
@@ -7490,8 +7450,8 @@ msgstr ""
 "on oma yhdistyksensä, joka määrittelee kyseisen yhdistyksen SOTA-huiput. "
 "Jokaisesta huipusta saa aktivaattoreille ja hunttereille pisteitä, jotka "
 "liittyvät huipun korkeuteen. Erilaisista pistemääristä saa todistuksia, "
-"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' "
-"-palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
+"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' -"
+"palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
 "SOTAn online-tietokannassa."
 
 #: application/views/awards/vucc/index.php:7
@@ -10765,6 +10725,18 @@ msgstr "Vähintään yksi varmenteistasi vanhenee"
 msgid "Total QSOs"
 msgstr "Kokonaistyhteyksien määrä"
 
+#: application/views/dashboard/index.php:244
+msgid "QSOs this year"
+msgstr ""
+
+#: application/views/dashboard/index.php:254
+msgid "QSOs this month"
+msgstr ""
+
+#: application/views/dashboard/index.php:264
+msgid "QSOs today"
+msgstr ""
+
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
 msgstr "Nykyinen putki"
@@ -12722,8 +12694,8 @@ msgstr "Lokaattorin muotoilu"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: "
-"IO77,IO78"
+"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: IO77,"
+"IO78"
 
 #: application/views/interface_assets/footer.php:115
 msgid "live"
@@ -12809,8 +12781,8 @@ msgstr "Sijainti haetaan DXCC-koordinaateista (ei lokaattoria annettu)"
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
-"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on "
-"-NONE-"
+"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on -"
+"NONE-"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -13835,8 +13807,8 @@ msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
 msgstr ""
-"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä "
-"DXCC:tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
+"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä DXCC:"
+"tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
 
 #: application/views/logbookadvanced/checkresult.php:393
 msgid "QSO DXCC"
@@ -19774,8 +19746,8 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
-"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu "
-"-tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
+"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu -"
+"tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
 "tavallinen käyttäjätili, jossa on joitakin erityistoimintoja ja rajoituksia."
 
 #: application/views/user/index.php:143
@@ -20432,18 +20404,6 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
-
-#: application/views/dashboard/index.php:244
-msgid "QSOs this year"
-msgstr ""
-
-#: application/views/dashboard/index.php:254
-msgid "QSOs this month"
-msgstr ""
-
-#: application/views/dashboard/index.php:264
-msgid "QSOs today"
-msgstr ""
 
 #~ msgid "Add sked partner"
 #~ msgstr "Lisää skedipartneri"

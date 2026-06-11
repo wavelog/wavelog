@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-09 07:01+0000\n"
+"POT-Creation-Date: 2026-06-11 08:18+0000\n"
 "PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -123,9 +123,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -142,8 +142,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:167
-#: application/controllers/Cron.php:181 application/controllers/Csv.php:8
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198 application/controllers/Csv.php:8
 #: application/controllers/Csv.php:32
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -228,10 +228,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52 application/controllers/Cron.php:184
-#: application/controllers/Cron.php:198 application/controllers/Update.php:320
-#: application/controllers/Api.php:34 application/controllers/Api.php:77
-#: application/controllers/Api.php:117 application/controllers/Api.php:152
+#: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr "To vam ni dovoljeno!"
 
@@ -367,51 +364,49 @@ msgstr "POTA Uvoz"
 msgid "POTA Data Imported"
 msgstr "POTA podatki uvoženi"
 
-#: application/controllers/Api.php:19 application/controllers/Api.php:41
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
-#: application/controllers/Api.php:85
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "Opis API"
 
-#: application/controllers/Api.php:64 application/controllers/Api.php:86
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "Zahtevan API Key. Ne spreminjaj tega polja"
 
-#: application/controllers/Api.php:69 application/controllers/Api.php:91
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "Uredi opis API"
 
-#: application/controllers/Api.php:79 application/controllers/Api.php:101
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "Opis API Key %s je bil spremenjen."
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
-#: application/controllers/Qso.php:580 application/controllers/Api.php:111
-#: application/controllers/Api.php:146
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
+#: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "Nepravilna metoda zahtevka"
 
-#: application/controllers/Api.php:100 application/controllers/Api.php:122
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "Neveljavni API pravice"
 
-#: application/controllers/Api.php:114 application/controllers/Api.php:136
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "API Key je generiran"
 
-#: application/controllers/Api.php:116 application/controllers/Api.php:138
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "Ne morem generirati API Key"
 
-#: application/controllers/Api.php:134 application/controllers/Api.php:156
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "Neveljaven API Key"
 
-#: application/controllers/Api.php:143 application/controllers/Api.php:165
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API Key %s je bil zbrisan"
@@ -995,12 +990,11 @@ msgstr "Kontinenti"
 msgid "Cron Manager"
 msgstr "Cron Manager"
 
-#: application/controllers/Cron.php:173 application/views/cron/edit.php:5
-#: application/controllers/Cron.php:190
+#: application/controllers/Cron.php:190 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Uredi Cronjob"
 
-#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1008,41 +1002,35 @@ msgstr "Uredi Cronjob"
 #: application/views/debug/index.php:714 application/views/debug/index.php:720
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
-#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 msgid "never"
 msgstr "nikoli"
 
-#: application/controllers/Cron.php:248 application/controllers/Cron.php:265
+#: application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "preračunavam..."
 
-#: application/controllers/Cron.php:259 application/views/cron/index.php:84
-#: application/controllers/Cron.php:276
+#: application/controllers/Cron.php:276 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "zdravi"
 
-#: application/controllers/Cron.php:261 application/views/cron/index.php:86
-#: application/controllers/Cron.php:278
+#: application/controllers/Cron.php:278 application/views/cron/index.php:86
 msgid "failed"
 msgstr "neuspelo"
 
-#: application/controllers/Cron.php:263 application/views/cron/index.php:88
-#: application/controllers/Cron.php:280
+#: application/controllers/Cron.php:280 application/views/cron/index.php:88
 msgid "pending"
 msgstr "na čakanju"
 
-#: application/controllers/Cron.php:268 application/views/cron/index.php:93
-#: application/controllers/Cron.php:285
+#: application/controllers/Cron.php:285 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "onemogočeno"
 
-#: application/controllers/Cron.php:307
-#: application/views/interface_assets/footer.php:41
 #: application/controllers/Cron.php:324
+#: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311 application/controllers/Cron.php:328
+#: application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1051,7 +1039,7 @@ msgstr ""
 "Zadnji zagon se je zgodil pred več kot %s sekundami.%sPreverite svoj master "
 "cron! Zagnati bi se moral vsako minuto (* * * * *)."
 
-#: application/controllers/Cron.php:314 application/controllers/Cron.php:331
+#: application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1060,8 +1048,7 @@ msgstr ""
 "Zadnji zagon se je zgodil pred več kot %s minutami.%sZdi se, da vaš "
 "Mastercron ne deluje!%sMoral bi se izvajati vsako minuto (* * * * *)."
 
-#: application/controllers/Cron.php:319 application/views/cron/index.php:43
-#: application/controllers/Cron.php:336
+#: application/controllers/Cron.php:336 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Se ne izvaja"
@@ -3222,122 +3209,98 @@ msgid "DONE"
 msgstr "NAREJENO"
 
 #: application/controllers/Update.php:326
-#: application/controllers/Update.php:329
 msgid "Updating..."
 msgstr "Posodabljanje ..."
 
 #: application/controllers/Update.php:329
-#: application/controllers/Update.php:332
 msgid "Dxcc Entities:"
 msgstr "Dxcc Entitete:"
 
 #: application/controllers/Update.php:330
-#: application/controllers/Update.php:333
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc izjeme:"
 
 #: application/controllers/Update.php:331
-#: application/controllers/Update.php:334
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc Prefiksi:"
 
 #: application/controllers/Update.php:362
-#: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
 msgstr "Posodobitev SCP končana. Rezultat: "
 
 #: application/controllers/Update.php:364
-#: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
 msgstr "Posodobitev SCP ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:401
-#: application/controllers/Update.php:404
 msgid "LoTW Users Update complete. Result: "
 msgstr "Posodobitev uporabnikov LoTW končana. Rezultat: "
 
 #: application/controllers/Update.php:403
-#: application/controllers/Update.php:406
 msgid "LoTW Users Update failed. Result: "
 msgstr "Posodobitev uporabnikov LoTW ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:438
-#: application/controllers/Update.php:441
 msgid "DOK Update complete. Result: "
 msgstr "Posodobitev DOK je končana. Rezultat: "
 
 #: application/controllers/Update.php:440
-#: application/controllers/Update.php:443
 msgid "DOK Update failed. Result: "
 msgstr "Posodobitev DOK ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:473
-#: application/controllers/Update.php:476
 msgid "SOTA Update complete. Result: "
 msgstr "Posodobitev SOTA je končana. Rezultat: "
 
 #: application/controllers/Update.php:475
-#: application/controllers/Update.php:478
 msgid "SOTA Update failed. Result: "
 msgstr "Posodobitev SOTA ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:508
-#: application/controllers/Update.php:511
 msgid "WWFF Update complete. Result: "
 msgstr "Posodobitev WWFF je končana. Rezultat: "
 
 #: application/controllers/Update.php:510
-#: application/controllers/Update.php:513
 msgid "WWFF Update failed. Result: "
 msgstr "Posodobitev WWFF ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:544
-#: application/controllers/Update.php:547
 msgid "HAMqsl Update complete. Result: "
 msgstr "Posodobitev HAMqsl je končana. Rezultat: "
 
 #: application/controllers/Update.php:546
-#: application/controllers/Update.php:549
 msgid "HAMqsl Update failed. Result: "
 msgstr "Posodobitev HAMqsl ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:579
-#: application/controllers/Update.php:582
 msgid "POTA Update complete. Result: "
 msgstr "Posodobitev POTA je končana. Rezultat: "
 
 #: application/controllers/Update.php:581
-#: application/controllers/Update.php:584
 msgid "POTA Update failed. Result: "
 msgstr "Posodobitev POTA ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:610
-#: application/controllers/Update.php:613
 msgid "TLE Update complete. Result: "
 msgstr "Posodobitev TLE je končana. Rezultat: "
 
 #: application/controllers/Update.php:612
-#: application/controllers/Update.php:615
 msgid "TLE Update failed. Result: "
 msgstr "Posodobitev TLE ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:639
-#: application/controllers/Update.php:642
 msgid "LoTW SAT Update"
 msgstr "Posodobitev LoTW SAT"
 
 #: application/controllers/Update.php:667
-#: application/controllers/Update.php:670
 msgid "Update of Hams of Note"
 msgstr "Posodobitev Hams of Note"
 
 #: application/controllers/Update.php:707
-#: application/controllers/Update.php:710
 msgid "VUCC Grid file update complete. Result: "
 msgstr "Posodobitev datoteke VUCC Grid je končana. Rezultat: "
 
 #: application/controllers/Update.php:709
-#: application/controllers/Update.php:712
 msgid "VUCC Grid file update failed. Result: "
 msgstr "Posodobitev datoteke VUCC Grid ni uspela. Rezultat: "
 
@@ -4111,7 +4074,6 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Skupno število opravljenih WAJA"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:244
 #: application/views/dayswithqso/index.php:47
 #: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
@@ -4127,7 +4089,6 @@ msgid "Yearly"
 msgstr "Letno"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:254
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
@@ -5953,7 +5914,6 @@ msgstr "Prednastavitve datuma"
 #: application/views/awards/itu/index.php:59
 #: application/views/awards/wae/index.php:41
 #: application/views/contestcalendar/index.php:44
-#: application/views/dashboard/index.php:264
 #: application/views/dashboard/index.php:511
 #: application/views/dashboard/index.php:545
 #: application/views/dashboard/index.php:574
@@ -7833,9 +7793,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, HongKong/"
-"321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and "
-"valid State (ADIF: DXCC and STATE)"
+"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, "
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough "
+"Reef/506) and valid State (ADIF: DXCC and STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -10755,6 +10715,18 @@ msgstr "Vsaj enemu od vaših potrdil poteče veljavnost"
 msgid "Total QSOs"
 msgstr "Skupaj QSO"
 
+#: application/views/dashboard/index.php:244
+msgid "QSOs this year"
+msgstr ""
+
+#: application/views/dashboard/index.php:254
+msgid "QSOs this month"
+msgstr ""
+
+#: application/views/dashboard/index.php:264
+msgid "QSOs today"
+msgstr ""
+
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
 msgstr "Trenutni niz"
@@ -12271,7 +12243,6 @@ msgstr "Datum QSL"
 #: application/views/interface_assets/footer.php:2705
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:739
-#, fuzzy
 msgid "View"
 msgstr "Ogled"
 
@@ -12304,7 +12275,6 @@ msgid "Empty"
 msgstr "Prazno"
 
 #: application/views/hamsat/index.php:10
-#, fuzzy
 msgid "Satellite Rovers"
 msgstr "Satellite Rovers"
 
@@ -12402,7 +12372,6 @@ msgid "ERROR"
 msgstr "NAPAKA"
 
 #: application/views/interface_assets/footer.php:36
-#, fuzzy
 msgid "Attention"
 msgstr "Pozor"
 
@@ -19969,18 +19938,6 @@ msgstr ""
 
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
-msgstr ""
-
-#: application/views/dashboard/index.php:244
-msgid "QSOs this year"
-msgstr ""
-
-#: application/views/dashboard/index.php:254
-msgid "QSOs this month"
-msgstr ""
-
-#: application/views/dashboard/index.php:264
-msgid "QSOs today"
 msgstr ""
 
 #~ msgid "Progress toward working all Italian provinces:"
