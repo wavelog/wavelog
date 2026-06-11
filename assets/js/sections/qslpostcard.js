@@ -259,26 +259,16 @@
             const x = i * (pxPerInX / 4);
 
             const tick = document.createElement('div');
-            tick.style.position = 'absolute';
+            tick.className = 'ruler-tick-top ' + (i % 4 === 0 ? 'major' : 'minor');
             tick.style.left = x + 'px';
-            tick.style.bottom = '0';
-            tick.style.width = '1px';
-            tick.style.background = '#666';
-            tick.style.height = (i % 4 === 0) ? '18px' : '10px';
 
             top.appendChild(tick);
 
             if (i % 4 === 0) {
 
                 const label = document.createElement('div');
-                label.style.position = 'absolute';
+                label.className = 'ruler-label-top';
                 label.style.left = (x + 3) + 'px';
-                label.style.top = '2px';
-                label.style.fontSize = '11px';
-                label.style.color = '#111111';
-                label.style.fontWeight = '600';
-                label.style.lineHeight = '1';
-                label.style.background = 'transparent';
                 label.textContent = (i / 4) + '"';
                 top.appendChild(label);
             }
@@ -290,26 +280,16 @@
             const y = i * (pxPerInY / 4);
 
             const tick = document.createElement('div');
-            tick.style.position = 'absolute';
+            tick.className = 'ruler-tick-left ' + (i % 4 === 0 ? 'major' : 'minor');
             tick.style.top = y + 'px';
-            tick.style.right = '0';
-            tick.style.height = '1px';
-            tick.style.background = '#666';
-            tick.style.width = (i % 4 === 0) ? '18px' : '10px';
 
             left.appendChild(tick);
 
             if (i % 4 === 0) {
 
                 const label = document.createElement('div');
-                label.style.position = 'absolute';
-                label.style.right = '20px';
+                label.className = 'ruler-label-left';
                 label.style.top = (y - 6) + 'px';
-                label.style.fontSize = '11px';
-                label.style.color = '#111111';
-                label.style.fontWeight = '600';
-                label.style.lineHeight = '1';
-                label.style.background = 'transparent';
                 label.textContent = (i / 4) + '"';
                 left.appendChild(label);
             }
