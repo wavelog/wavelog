@@ -232,7 +232,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Search.php:10
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -2878,14 +2878,15 @@ msgstr "衛星タイマー"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/controllers/Search.php:14
 msgid "Search"
 msgstr "検索"
 
-#: application/controllers/Search.php:24
+#: application/controllers/Search.php:24 application/controllers/Search.php:23
 msgid "Search & Filter Logbook"
 msgstr "ログブックの検索とフィルタリング"
 
-#: application/controllers/Search.php:52
+#: application/controllers/Search.php:52 application/controllers/Search.php:51
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -3473,8 +3474,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1448
 msgid "Station setup failed! Please set up your station manually."
@@ -20584,9 +20585,9 @@ msgstr "CQz geojson"
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -20920,8 +20921,8 @@ msgstr "CQz geojson"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
