@@ -1543,6 +1543,58 @@ svg text.month { fill: #AAA; }
 	color: #111111 !important;
 }
 
+/* Ruler tick marks */
+.ruler-tick-top {
+	position: absolute;
+	bottom: 0;
+	width: 1px;
+	background: #666;
+}
+
+.ruler-tick-top.major {
+	height: 18px;
+}
+
+.ruler-tick-top.minor {
+	height: 10px;
+}
+
+.ruler-tick-left {
+	position: absolute;
+	right: 0;
+	height: 1px;
+	background: #666;
+}
+
+.ruler-tick-left.major {
+	width: 18px;
+}
+
+.ruler-tick-left.minor {
+	width: 10px;
+}
+
+/* Ruler labels */
+.ruler-label-top {
+	position: absolute;
+	top: 2px;
+	font-size: 11px;
+	color: #111111;
+	font-weight: 600;
+	line-height: 1;
+	background: transparent;
+}
+
+.ruler-label-left {
+	position: absolute;
+	right: 20px;
+	font-size: 11px;
+	color: #111111;
+	font-weight: 600;
+	line-height: 1;
+	background: transparent;
+}
+
 .qsl_designer_field {
 	cursor: grab;
 	user-select: none;
