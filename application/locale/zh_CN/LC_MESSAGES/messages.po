@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-09 07:01+0000\n"
+"POT-Creation-Date: 2026-06-11 06:36+0000\n"
 "PO-Revision-Date: 2026-06-02 11:16+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -146,9 +146,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -165,8 +165,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:167
-#: application/controllers/Cron.php:181 application/controllers/Csv.php:8
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198 application/controllers/Csv.php:8
 #: application/controllers/Csv.php:32
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -238,14 +238,14 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
-#: application/controllers/Update.php:22 application/controllers/User.php:16
-#: application/controllers/User.php:63 application/controllers/User.php:111
-#: application/controllers/User.php:129 application/controllers/User.php:153
-#: application/controllers/User.php:412 application/controllers/User.php:413
-#: application/controllers/User.php:1145 application/controllers/User.php:1164
-#: application/controllers/User.php:1416 application/controllers/User.php:1556
-#: application/controllers/User.php:1781 application/controllers/User.php:1797
-#: application/controllers/User.php:1823
+#: application/controllers/Update.php:22 application/controllers/Update.php:320
+#: application/controllers/User.php:16 application/controllers/User.php:63
+#: application/controllers/User.php:111 application/controllers/User.php:129
+#: application/controllers/User.php:153 application/controllers/User.php:412
+#: application/controllers/User.php:413 application/controllers/User.php:1145
+#: application/controllers/User.php:1164 application/controllers/User.php:1416
+#: application/controllers/User.php:1556 application/controllers/User.php:1781
+#: application/controllers/User.php:1797 application/controllers/User.php:1823
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:11
@@ -387,49 +387,49 @@ msgstr "POTA导入"
 msgid "POTA Data Imported"
 msgstr "POTA数据已导入"
 
-#: application/controllers/Api.php:19
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "API 说明"
 
-#: application/controllers/Api.php:64
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "API Key 为必填项，请勿修改此字段"
 
-#: application/controllers/Api.php:69
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "编辑 API 说明"
 
-#: application/controllers/Api.php:79
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API Key %s 的说明信息已更新。"
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "无效的请求方法"
 
-#: application/controllers/Api.php:100
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "无效的 API 权限"
 
-#: application/controllers/Api.php:114
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "已生成 API Key"
 
-#: application/controllers/Api.php:116
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "无法生成 API Key"
 
-#: application/controllers/Api.php:134
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "无效的API密钥"
 
-#: application/controllers/Api.php:143
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "已删除 API Key %s"
@@ -1013,11 +1013,11 @@ msgstr "大洲列表"
 msgid "Cron Manager"
 msgstr "计划任务管理器"
 
-#: application/controllers/Cron.php:173 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:190 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "编辑计划任务"
 
-#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1028,32 +1028,32 @@ msgstr "编辑计划任务"
 msgid "never"
 msgstr "从不"
 
-#: application/controllers/Cron.php:248
+#: application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "计算中…"
 
-#: application/controllers/Cron.php:259 application/views/cron/index.php:84
+#: application/controllers/Cron.php:276 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "成功"
 
-#: application/controllers/Cron.php:261 application/views/cron/index.php:86
+#: application/controllers/Cron.php:278 application/views/cron/index.php:86
 msgid "failed"
 msgstr "失败"
 
-#: application/controllers/Cron.php:263 application/views/cron/index.php:88
+#: application/controllers/Cron.php:280 application/views/cron/index.php:88
 msgid "pending"
 msgstr "待处理"
 
-#: application/controllers/Cron.php:268 application/views/cron/index.php:93
+#: application/controllers/Cron.php:285 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "禁用"
 
-#: application/controllers/Cron.php:307
+#: application/controllers/Cron.php:324
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311
+#: application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1061,7 +1061,7 @@ msgid ""
 msgstr ""
 "上次执行在 %s 秒前。%s请检查你的主计划任务！它应当每分钟运行一次(* * * * *)。"
 
-#: application/controllers/Cron.php:314
+#: application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1070,7 +1070,7 @@ msgstr ""
 "上次执行是 %s 分钟之前。 %s 你的 计划任务似乎没有配置好，%s 它应当设置为每分"
 "钟执行 (* * * * *)。"
 
-#: application/controllers/Cron.php:319 application/views/cron/index.php:43
+#: application/controllers/Cron.php:336 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "未运行"
@@ -3184,99 +3184,99 @@ msgstr "正在准备 DXCC 前缀： "
 msgid "DONE"
 msgstr "完成"
 
-#: application/controllers/Update.php:326
+#: application/controllers/Update.php:329
 msgid "Updating..."
 msgstr "更新中…"
 
-#: application/controllers/Update.php:329
+#: application/controllers/Update.php:332
 msgid "Dxcc Entities:"
 msgstr "DXCC 实体："
 
-#: application/controllers/Update.php:330
+#: application/controllers/Update.php:333
 msgid "Dxcc Exceptions:"
 msgstr "DXCC 例外："
 
-#: application/controllers/Update.php:331
+#: application/controllers/Update.php:334
 msgid "Dxcc Prefixes:"
 msgstr "DXCC 前缀："
 
-#: application/controllers/Update.php:362
+#: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
 msgstr "SCP 更新已完成。结果为： "
 
-#: application/controllers/Update.php:364
+#: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
 msgstr "SCP 更新失败。结果为： "
 
-#: application/controllers/Update.php:401
+#: application/controllers/Update.php:404
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW 用户更新完成。结果为： "
 
-#: application/controllers/Update.php:403
+#: application/controllers/Update.php:406
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW 用户更新失败。结果为： "
 
-#: application/controllers/Update.php:438
+#: application/controllers/Update.php:441
 msgid "DOK Update complete. Result: "
 msgstr "DOK 更新完成。结果为： "
 
-#: application/controllers/Update.php:440
+#: application/controllers/Update.php:443
 msgid "DOK Update failed. Result: "
 msgstr "DOK 更新失败。结果为： "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:476
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA 更新完成。结果为： "
 
-#: application/controllers/Update.php:475
+#: application/controllers/Update.php:478
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA 更新失败。结果为： "
 
-#: application/controllers/Update.php:508
+#: application/controllers/Update.php:511
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF 更新成功。结果为： "
 
-#: application/controllers/Update.php:510
+#: application/controllers/Update.php:513
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF 更新失败。结果为： "
 
-#: application/controllers/Update.php:544
+#: application/controllers/Update.php:547
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl 更新完成。结果： "
 
-#: application/controllers/Update.php:546
+#: application/controllers/Update.php:549
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl 更新失败。结果： "
 
-#: application/controllers/Update.php:579
+#: application/controllers/Update.php:582
 msgid "POTA Update complete. Result: "
 msgstr "POTA 更新完成。结果为： "
 
-#: application/controllers/Update.php:581
+#: application/controllers/Update.php:584
 msgid "POTA Update failed. Result: "
 msgstr "POTA 更新失败。结果为： "
 
-#: application/controllers/Update.php:610
+#: application/controllers/Update.php:613
 msgid "TLE Update complete. Result: "
 msgstr "TLE 更新完成。结果为： "
 
-#: application/controllers/Update.php:612
+#: application/controllers/Update.php:615
 msgid "TLE Update failed. Result: "
 msgstr "TLE 更新失败。结果为： "
 
-#: application/controllers/Update.php:639
+#: application/controllers/Update.php:642
 msgid "LoTW SAT Update"
 msgstr "LoTW 卫星数据更新"
 
-#: application/controllers/Update.php:667
+#: application/controllers/Update.php:670
 msgid "Update of Hams of Note"
 msgstr "Hams of Note 更新"
 
-#: application/controllers/Update.php:707
+#: application/controllers/Update.php:710
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC 网格文件更新完成。结果： "
 
-#: application/controllers/Update.php:709
+#: application/controllers/Update.php:712
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC 网格文件更新失败。结果： "
 

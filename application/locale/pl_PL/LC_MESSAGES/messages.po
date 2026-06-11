@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-09 07:01+0000\n"
+"POT-Creation-Date: 2026-06-11 06:36+0000\n"
 "PO-Revision-Date: 2026-04-01 23:44+0000\n"
 "Last-Translator: Bartek <achtachtel@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -132,9 +132,9 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:23 application/controllers/Api.php:12
-#: application/controllers/Api.php:55 application/controllers/Api.php:95
-#: application/controllers/Api.php:130 application/controllers/Awards.php:20
+#: application/controllers/Adif.php:23 application/controllers/Api.php:34
+#: application/controllers/Api.php:77 application/controllers/Api.php:117
+#: application/controllers/Api.php:152 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
 #: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
@@ -151,8 +151,8 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:167
-#: application/controllers/Cron.php:181 application/controllers/Csv.php:8
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:184
+#: application/controllers/Cron.php:198 application/controllers/Csv.php:8
 #: application/controllers/Csv.php:32
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -224,14 +224,14 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
-#: application/controllers/Update.php:22 application/controllers/User.php:16
-#: application/controllers/User.php:63 application/controllers/User.php:111
-#: application/controllers/User.php:129 application/controllers/User.php:153
-#: application/controllers/User.php:412 application/controllers/User.php:413
-#: application/controllers/User.php:1145 application/controllers/User.php:1164
-#: application/controllers/User.php:1416 application/controllers/User.php:1556
-#: application/controllers/User.php:1781 application/controllers/User.php:1797
-#: application/controllers/User.php:1823
+#: application/controllers/Update.php:22 application/controllers/Update.php:320
+#: application/controllers/User.php:16 application/controllers/User.php:63
+#: application/controllers/User.php:111 application/controllers/User.php:129
+#: application/controllers/User.php:153 application/controllers/User.php:412
+#: application/controllers/User.php:413 application/controllers/User.php:1145
+#: application/controllers/User.php:1164 application/controllers/User.php:1416
+#: application/controllers/User.php:1556 application/controllers/User.php:1781
+#: application/controllers/User.php:1797 application/controllers/User.php:1823
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:11
@@ -373,49 +373,49 @@ msgstr "Importowanie POTA"
 msgid "POTA Data Imported"
 msgstr "Zaimportowano dane POTA"
 
-#: application/controllers/Api.php:19
+#: application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:63 application/views/api/description.php:26
+#: application/controllers/Api.php:85 application/views/api/description.php:26
 msgid "API Description"
 msgstr "Opis API"
 
-#: application/controllers/Api.php:64
+#: application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "Klucz API jest wymagany. Nie należy zmieniać tego pola"
 
-#: application/controllers/Api.php:69
+#: application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "Edytuj opis API"
 
-#: application/controllers/Api.php:79
+#: application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "Opis klucza API %s został zaktualizowany."
 
-#: application/controllers/Api.php:89 application/controllers/Api.php:124
+#: application/controllers/Api.php:111 application/controllers/Api.php:146
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "Nieprawidłowa metoda żądania"
 
-#: application/controllers/Api.php:100
+#: application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "Nieprawidłowe uprawnienia API"
 
-#: application/controllers/Api.php:114
+#: application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "Wygenerowano klucz API"
 
-#: application/controllers/Api.php:116
+#: application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "Nie udało się wygenerować klucza API"
 
-#: application/controllers/Api.php:134
+#: application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "Nieprawidłowy klucz API"
 
-#: application/controllers/Api.php:143
+#: application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "Klucz API %s został usunięty"
@@ -1000,11 +1000,11 @@ msgstr "Kontynenty"
 msgid "Cron Manager"
 msgstr "Menedżer Cron"
 
-#: application/controllers/Cron.php:173 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:190 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Edytuj zadanie cron"
 
-#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
+#: application/controllers/Cron.php:264 application/controllers/Cron.php:265
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1015,32 +1015,32 @@ msgstr "Edytuj zadanie cron"
 msgid "never"
 msgstr "nigdy"
 
-#: application/controllers/Cron.php:248
+#: application/controllers/Cron.php:265
 msgid "calculating..."
 msgstr "obliczanie..."
 
-#: application/controllers/Cron.php:259 application/views/cron/index.php:84
+#: application/controllers/Cron.php:276 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "w porządku"
 
-#: application/controllers/Cron.php:261 application/views/cron/index.php:86
+#: application/controllers/Cron.php:278 application/views/cron/index.php:86
 msgid "failed"
 msgstr "nieudane"
 
-#: application/controllers/Cron.php:263 application/views/cron/index.php:88
+#: application/controllers/Cron.php:280 application/views/cron/index.php:88
 msgid "pending"
 msgstr "oczekujące"
 
-#: application/controllers/Cron.php:268 application/views/cron/index.php:93
+#: application/controllers/Cron.php:285 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "wyłączone"
 
-#: application/controllers/Cron.php:307
+#: application/controllers/Cron.php:324
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:311
+#: application/controllers/Cron.php:328
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1049,7 +1049,7 @@ msgstr ""
 "Ostatnie uruchomienie miało miejsce ponad %s sekund temu.%sNależy sprawdzić "
 "główny cron! Powinien uruchamiać się co minutę (* * * * *)."
 
-#: application/controllers/Cron.php:314
+#: application/controllers/Cron.php:331
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1058,7 +1058,7 @@ msgstr ""
 "Ostatnie uruchomienie miało miejsce ponad %s minut temu.%sWygląda na to, że "
 "główny cron nie pracuje!%sPowinien uruchamiać się co minutę (* * * * *)."
 
-#: application/controllers/Cron.php:319 application/views/cron/index.php:43
+#: application/controllers/Cron.php:336 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Nie działa"
@@ -3214,99 +3214,99 @@ msgstr "Przygotowanie prefiksów DXCC: "
 msgid "DONE"
 msgstr "GOTOWE"
 
-#: application/controllers/Update.php:326
+#: application/controllers/Update.php:329
 msgid "Updating..."
 msgstr "Aktualizowanie..."
 
-#: application/controllers/Update.php:329
+#: application/controllers/Update.php:332
 msgid "Dxcc Entities:"
 msgstr "Podmioty DXCC:"
 
-#: application/controllers/Update.php:330
+#: application/controllers/Update.php:333
 msgid "Dxcc Exceptions:"
 msgstr "Wyjątki DXCC:"
 
-#: application/controllers/Update.php:331
+#: application/controllers/Update.php:334
 msgid "Dxcc Prefixes:"
 msgstr "Prefiksy DXCC:"
 
-#: application/controllers/Update.php:362
+#: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
 msgstr "SCP Ładowanie zakończone sukcesem. Rezultaty: "
 
-#: application/controllers/Update.php:364
+#: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
 msgstr "SCP Ładowanie zakończone błędem. Rezultat: "
 
-#: application/controllers/Update.php:401
+#: application/controllers/Update.php:404
 msgid "LoTW Users Update complete. Result: "
 msgstr "Użytkownicy LoTW aktualizacja zakończona sukcesem. Rezultaty: "
 
-#: application/controllers/Update.php:403
+#: application/controllers/Update.php:406
 msgid "LoTW Users Update failed. Result: "
 msgstr "Użytkownicy LoTW aktualizacja zakończona błędem. Rezultaty: "
 
-#: application/controllers/Update.php:438
+#: application/controllers/Update.php:441
 msgid "DOK Update complete. Result: "
 msgstr "DOK aktualizacja zakończona sukcesem. Rezultat: "
 
-#: application/controllers/Update.php:440
+#: application/controllers/Update.php:443
 msgid "DOK Update failed. Result: "
 msgstr "DOK aktualizacja zakończona niepowodzeniem. Rezultat: "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:476
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA aktualizacja zakończona sukcesem. Rezultat: "
 
-#: application/controllers/Update.php:475
+#: application/controllers/Update.php:478
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA aktualizacja zakończona niepowodzeniem. Rezultat: "
 
-#: application/controllers/Update.php:508
+#: application/controllers/Update.php:511
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF aktualizacja zakończona sukcesem. Rezultat: "
 
-#: application/controllers/Update.php:510
+#: application/controllers/Update.php:513
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF aktualizacja zakończona niepowodzeniem. Rezultat: "
 
-#: application/controllers/Update.php:544
+#: application/controllers/Update.php:547
 msgid "HAMqsl Update complete. Result: "
 msgstr "Aktualizacja HAMqsl zakończona sukcesem. Rezultat: "
 
-#: application/controllers/Update.php:546
+#: application/controllers/Update.php:549
 msgid "HAMqsl Update failed. Result: "
 msgstr "Aktualizacja HAMqsl zakończona niepowodzeniem. Rezultat: "
 
-#: application/controllers/Update.php:579
+#: application/controllers/Update.php:582
 msgid "POTA Update complete. Result: "
 msgstr "POTA aktualizacja zakończona sukcesem. Rezultat: "
 
-#: application/controllers/Update.php:581
+#: application/controllers/Update.php:584
 msgid "POTA Update failed. Result: "
 msgstr "POTA aktualizacja zakończona niepowodzeniem. Rezultat: "
 
-#: application/controllers/Update.php:610
+#: application/controllers/Update.php:613
 msgid "TLE Update complete. Result: "
 msgstr "Aktualizacja TLE została zakończona sukcesem. Rezultat: "
 
-#: application/controllers/Update.php:612
+#: application/controllers/Update.php:615
 msgid "TLE Update failed. Result: "
 msgstr "TLE aktualizacja zakończona niepowodzeniem. Rezultat: "
 
-#: application/controllers/Update.php:639
+#: application/controllers/Update.php:642
 msgid "LoTW SAT Update"
 msgstr "Aktualizacja LoTW SAT"
 
-#: application/controllers/Update.php:667
+#: application/controllers/Update.php:670
 msgid "Update of Hams of Note"
 msgstr "Aktualizacja Hams of Note"
 
-#: application/controllers/Update.php:707
+#: application/controllers/Update.php:710
 msgid "VUCC Grid file update complete. Result: "
 msgstr "Przesyłanie pliku VUCC Grid zostało zakończone. Wynik: "
 
-#: application/controllers/Update.php:709
+#: application/controllers/Update.php:712
 msgid "VUCC Grid file update failed. Result: "
 msgstr "Przesyłanie pliku VUCC Grid nie powiodło się. Wynik: "
 
