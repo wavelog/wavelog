@@ -32,7 +32,7 @@ class Qslpostcard extends CI_Controller {
     public function upload_preview() {
 
         $config['upload_path']   = FCPATH . 'uploads/qsl_postcards/';
-        $config['allowed_types'] = 'jpg|jpeg|png|webp';
+        $config['allowed_types'] = 'jpg|jpeg|png|JPG|JPEG|PNG';
         $config['max_size']      = 4096;
         $config['encrypt_name']  = true;
 
@@ -127,7 +127,7 @@ class Qslpostcard extends CI_Controller {
                 return;
             }
 
-            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos);
+            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $tpl['preview_image']);
 
             if (!$pdfPath || !file_exists($pdfPath)) {
                 show_error(__("PDF file was not created"));
@@ -187,7 +187,7 @@ class Qslpostcard extends CI_Controller {
                 return;
             }
 
-            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos);
+            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $tpl['preview_image']);
 
             header('Content-Type: application/pdf');
             header('Content-Disposition: attachment; filename="qsl_postcards_queue_' . $template_id . '.pdf"');
@@ -251,7 +251,7 @@ class Qslpostcard extends CI_Controller {
                 return;
             }
 
-            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos);
+            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $tpl['preview_image']);
 
             header('Content-Type: application/pdf');
             header('Content-Disposition: attachment; filename="qsl_postcards_selected_' . $template_id . '.pdf"');

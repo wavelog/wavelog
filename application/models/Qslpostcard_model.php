@@ -335,7 +335,7 @@ class Qslpostcard_model extends CI_Model {
 
     // --- PDF render (FPDF) ---
 
-    public function render_pdf_from_layout($layout, $qsos, $mark_sent = false) {
+    public function render_pdf_from_layout($layout, $qsos, $mark_sent = false, $background = null) {
         $candidatePaths = [
             FCPATH . 'src/Label/fpdf.php',
             APPPATH . 'third_party/fpdf/fpdf.php',
@@ -366,6 +366,18 @@ class Qslpostcard_model extends CI_Model {
         $ox = (float)($cal['offset_x_in'] ?? 0);
         $oy = (float)($cal['offset_y_in'] ?? 0);
 
+        // Background image (FPDF supports jpg/png/gif only)
+        $bgPath = null;
+        if (!empty($background)) {
+            $candidate = FCPATH . ltrim($background, '/');
+            $ext = strtolower(pathinfo($candidate, PATHINFO_EXTENSION));
+            if (file_exists($candidate) && in_array($ext, ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG'])) {
+                $bgPath = $candidate;
+            } else {
+                log_message('error', 'QSLPOSTCARD background image not usable: ' . $candidate);
+            }
+        }
+
         foreach ($qsos as $qso) {
 
             $call = strtoupper(trim($qso['COL_CALL'] ?? ''));
@@ -379,6 +391,10 @@ class Qslpostcard_model extends CI_Model {
 
             // Only create a page after address is confirmed
             $pdf->AddPage();
+
+            if ($bgPath !== null) {
+                $pdf->Image($bgPath, 0, 0, $w_mm, $h_mm);
+            }
 
             foreach (($layout['elements'] ?? []) as $el) {
                 $type = $el['type'] ?? 'field';
