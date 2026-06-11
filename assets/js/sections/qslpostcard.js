@@ -68,7 +68,7 @@
 
         const id = existing?.id || ('el_' + Math.random().toString(16).slice(2));
 
-        el.className = 'placed';
+        el.className = 'qsl_designer_placed';
         el.dataset.id = id;
         el.dataset.type = type;
 
@@ -166,8 +166,8 @@
     function selectPlacedElement(id) {
         selectedElementId = id;
 
-        document.querySelectorAll('.placed').forEach(el => {
-            el.classList.toggle('selected', el.dataset.id === id);
+        document.querySelectorAll('.qsl_designer_placed').forEach(el => {
+            el.classList.toggle('qsl_designer_selected', el.dataset.id === id);
         });
 
         refreshSelectionPanel();
@@ -195,11 +195,11 @@
 
     stage.addEventListener('click', () => {
         selectedElementId = null;
-        document.querySelectorAll('.placed').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.qsl_designer_placed').forEach(el => el.classList.remove('qsl_designer_selected'));
         refreshSelectionPanel();
     });
 
-    document.querySelectorAll('.field').forEach(f => {
+    document.querySelectorAll('.qsl_designer_field').forEach(f => {
         f.addEventListener('click', () => {
             makeElem('field', f.dataset.field, 40, 40);
         });
@@ -213,7 +213,7 @@
         item.font_pt = parseInt(document.getElementById('propFontSize').value || '12', 10);
         item.bold = document.getElementById('propBold').checked;
 
-        const dom = [...stage.querySelectorAll('.placed')].find(d => d.dataset.id === selectedElementId);
+        const dom = [...stage.querySelectorAll('.qsl_designer_placed')].find(d => d.dataset.id === selectedElementId);
         if (dom) {
             dom.style.fontFamily = item.font;
             dom.style.fontSize = item.font_pt + 'px';
