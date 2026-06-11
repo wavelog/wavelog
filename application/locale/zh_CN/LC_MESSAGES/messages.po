@@ -261,6 +261,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/User.php:1823 application/controllers/Cron.php:167
 #: application/controllers/Cron.php:181 application/controllers/Cron.php:184
 #: application/controllers/Cron.php:198 application/controllers/Update.php:320
+#: application/controllers/Api.php:34 application/controllers/Api.php:77
+#: application/controllers/Api.php:117 application/controllers/Api.php:152
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -396,49 +398,51 @@ msgstr "POTA导入"
 msgid "POTA Data Imported"
 msgstr "POTA数据已导入"
 
-#: application/controllers/Api.php:19
+#: application/controllers/Api.php:19 application/controllers/Api.php:41
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:63 application/views/api/description.php:26
+#: application/controllers/Api.php:85
 msgid "API Description"
 msgstr "API 说明"
 
-#: application/controllers/Api.php:64
+#: application/controllers/Api.php:64 application/controllers/Api.php:86
 msgid "API Key is required. Do not change this field"
 msgstr "API Key 为必填项，请勿修改此字段"
 
-#: application/controllers/Api.php:69
+#: application/controllers/Api.php:69 application/controllers/Api.php:91
 msgid "Edit API Description"
 msgstr "编辑 API 说明"
 
-#: application/controllers/Api.php:79
+#: application/controllers/Api.php:79 application/controllers/Api.php:101
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API Key %s 的说明信息已更新。"
 
 #: application/controllers/Api.php:89 application/controllers/Api.php:124
-#: application/controllers/Qso.php:580
+#: application/controllers/Qso.php:580 application/controllers/Api.php:111
+#: application/controllers/Api.php:146
 msgid "Invalid request method"
 msgstr "无效的请求方法"
 
-#: application/controllers/Api.php:100
+#: application/controllers/Api.php:100 application/controllers/Api.php:122
 msgid "Invalid API rights"
 msgstr "无效的 API 权限"
 
-#: application/controllers/Api.php:114
+#: application/controllers/Api.php:114 application/controllers/Api.php:136
 msgid "API Key generated"
 msgstr "已生成 API Key"
 
-#: application/controllers/Api.php:116
+#: application/controllers/Api.php:116 application/controllers/Api.php:138
 msgid "API Key could not be generated"
 msgstr "无法生成 API Key"
 
-#: application/controllers/Api.php:134
+#: application/controllers/Api.php:134 application/controllers/Api.php:156
 msgid "Invalid API Key"
 msgstr "无效的API密钥"
 
-#: application/controllers/Api.php:143
+#: application/controllers/Api.php:143 application/controllers/Api.php:165
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "已删除 API Key %s"
