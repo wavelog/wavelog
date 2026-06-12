@@ -292,6 +292,7 @@ class EqslBulkDownloader {
 			);
 
 			if ($content !== false && $httpCode == 200) {
+				$this->ci->load->model('Eqsl_images');
 				// Check if already downloaded
 				if ($this->ci->Eqsl_images->get_image($qsoId) == "No Image") {
 					// Save image
