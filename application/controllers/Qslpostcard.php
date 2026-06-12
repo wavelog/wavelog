@@ -132,7 +132,7 @@ class Qslpostcard extends CI_Controller {
             }
 
             // v1 demo data
-            $qsos = $this->Qslpostcard_model->get_sample_qsos(25);
+            $qsos = $this->Qslpostcard_model->get_sample_qsos(3);
 
             if (empty($qsos)) {
                 show_error(__("No QSOs returned by get_sample_qsos()"));

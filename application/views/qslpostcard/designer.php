@@ -1,3 +1,15 @@
+<?php
+// Palette field groups. The keys (data-field) MUST stay exactly as the PDF
+// renderer expects them (addr.* / qso.*). Only the grouping/labels are cosmetic.
+$qsl_field_groups = [
+	__("Address")             => ['addr.name', 'addr.addr1', 'addr.addr2', 'addr.city_state_zip', 'addr.country'],
+	__("QSO Core")            => ['qso.call', 'qso.band', 'qso.mode', 'qso.freq', 'qso.rst_sent', 'qso.rst_rcvd', 'qso.summary'],
+	__("Date & Time")         => ['qso.qso_date', 'qso.time_on', 'qso.time_utc', 'qso.day', 'qso.month', 'qso.month_name', 'qso.year'],
+	__("Station & Equipment") => ['qso.rig', 'qso.my_rig', 'qso.antenna', 'qso.tx_power', 'qso.rx_power'],
+	__("POTA")                => ['qso.pota_ref', 'qso.my_pota_ref', 'qso.pota_line'],
+	__("Other")               => ['qso.comment', 'qso.qsl_message', 'qso.qsl_via'],
+];
+?>
 <script>
 	// ===== Translatable strings (PHP → JS) =====
 	const LANG = {
@@ -7,173 +19,262 @@
 		unknownError: <?= json_encode(__("unknown error")); ?>,
 		previewUploaded: <?= json_encode(__("Preview image uploaded.")); ?>,
 		customText: <?= json_encode(__("Custom Text")); ?>,
-		enterCustomText: <?= json_encode(__("Enter custom text:")); ?>,
-		comments: <?= json_encode(__("Comments:")); ?>,
 		untitled: <?= json_encode(__("Untitled")); ?>,
 		saveFailed: <?= json_encode(__("Save failed")); ?>,
-		savedReload: <?= json_encode(__("Saved. Reload page to see template in list.")); ?>,
+		saved: <?= json_encode(__("Template saved.")); ?>,
 		deleteTemplate: <?= json_encode(__("Delete Template?")); ?>,
 		deleteTemplateConfirm: <?= json_encode(__("Are you sure you want to delete this template? This action cannot be undone.")); ?>,
 		deleteFailed: <?= json_encode(__("Delete failed")); ?>,
 		deleteSuccess: <?= json_encode(__("Template deleted successfully!")); ?>,
 		selectTemplateToDelete: <?= json_encode(__("Please select a template to delete.")); ?>,
+		success: <?= json_encode(__("Success")); ?>,
+		error: <?= json_encode(__("Error")); ?>,
+		selected: <?= json_encode(__("selected")); ?>,
 	};
 </script>
 
-<div class="container px-3 px-lg-4 mt-3 mb-3">
-	<h2><?= __("QSL Postcard Designer (4x6 Landscape)"); ?></h2>
-		<div class="row">
+<div class="container-fluid px-3 px-lg-4 mt-3 mb-3" id="qslDesigner">
 
-			<!-- ===== LEFT SIDEBAR ===== -->
-			<div class="col-md-3">
+	<!-- ===== TOOLBAR ===== -->
+	<div class="card qsl-toolbar mb-3">
+		<div class="card-body py-2">
+			<div class="d-flex flex-wrap align-items-end gap-3">
 
-				<!-- Card: Template -->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-file-image me-2"></i> <?= __("Template"); ?>
-					</div>
-					<div class="card-body">
-						<select id="tplSelect" class="form-control mb-2">
+				<!-- Template group -->
+				<div class="qsl-tb-group">
+					<label class="qsl-tb-label"><?= __("Template"); ?></label>
+					<div class="d-flex gap-2">
+						<select id="tplSelect" class="form-select form-select-sm" style="min-width:160px;">
 							<option value=""><?= __("(new)"); ?></option>
 							<?php foreach ($templates as $t): ?>
 								<option value="<?= (int)$t['id'] ?>"><?= htmlentities($t['name']) ?></option>
 							<?php endforeach; ?>
 						</select>
-
-						<input id="tplName" class="form-control mb-2" placeholder="<?= __("Template name"); ?>">
-						<label><?= __("Postcard preview image"); ?></label>
-						<input type="file" id="previewImageFile" class="form-control mb-2" accept=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG">
-
-						<button type="button" id="btnUploadPreview" class="btn btn-secondary w-100 mb-2"><?= __("Upload Preview Image"); ?></button>
-
-						<div id="previewImageStatus" class="small mb-2"></div>
-						<button id="btnSave" class="btn btn-primary w-100 mb-2"><?= __("Save Template"); ?></button>
-
-						<button id="btnDelete" class="btn btn-danger w-100 mb-2"><?= __("Delete Template"); ?></button>
-
-						<div class="small text-muted mb-2">
-							<?= __("Tip: After a test print, adjust global offsets rather than moving every field."); ?>
-						</div>
-
-						<label><?= __("Global offset X (inches)"); ?></label>
-						<input id="offX" type="number" step="0.01" class="form-control mb-2" value="0">
-
-						<label><?= __("Global offset Y (inches)"); ?></label>
-						<input id="offY" type="number" step="0.01" class="form-control mb-3" value="0">
-
-						<a id="btnPdf" class="btn btn-success w-100" href="#" target="_blank"><?= __("Generate PDF (demo)"); ?></a>
-					</div>
-				</div>
-
-				<!-- Card: Properties -->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-sliders-h me-2"></i> <?= __("Properties"); ?>
-					</div>
-					<div class="card-body">
-						<div id="noSelection" class="small">
-							<?= __("Click a placed field to edit its properties."); ?>
-						</div>
-
-						<div id="selectionPanel" style="display:none;">
-							<label class="form-label"><?= __("Font"); ?></label>
-							<select id="propFont" class="form-control mb-2">
-								<option value="Helvetica">Helvetica</option>
-								<option value="Times">Times</option>
-								<option value="Courier">Courier</option>
-							</select>
-
-							<label class="form-label"><?= __("Font Size"); ?></label>
-							<input id="propFontSize" type="number" step="1" min="6" max="36" class="form-control mb-2" value="12">
-
-							<div class="form-check mb-2">
-								<input class="form-check-input" type="checkbox" id="propBold">
-								<label class="form-check-label" for="propBold">
-									<?= __("Bold"); ?>
-								</label>
-							</div>
-
-							<button type="button" id="btnApplyProps" class="btn btn-primary w-100 mb-2">
-								<?= __("Apply"); ?>
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<!-- Card: Address Fields -->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-address-card me-2"></i> <?= __("Address"); ?>
-					</div>
-					<div class="card-body">
-						<div class="qsl_designer_field" data-field="addr.name">addr.name</div>
-						<div class="qsl_designer_field" data-field="addr.addr1">addr.addr1</div>
-						<div class="qsl_designer_field" data-field="addr.addr2">addr.addr2</div>
-						<div class="qsl_designer_field" data-field="addr.city_state_zip">addr.city_state_zip</div>
-						<div class="qsl_designer_field" data-field="addr.country">addr.country</div>
-					</div>
-				</div>
-
-				<!-- Card: QSO Fields -->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-broadcast-tower me-2"></i> <?= __("QSO"); ?>
-					</div>
-					<div class="card-body">
-						<button type="button" id="btnAddText" class="btn btn-outline-primary w-100 mb-2">
-							<?= __("Add Custom Text"); ?>
+						<input id="tplName" class="form-control form-control-sm" style="min-width:140px;" placeholder="<?= __("Template name"); ?>">
+						<button id="btnSave" class="btn btn-sm btn-primary" title="<?= __("Save Template"); ?>">
+							<i class="fas fa-save me-1"></i><?= __("Save"); ?>
 						</button>
-						<div class="qsl_designer_field" data-field="qso.call">qso.call</div>
-						<div class="qsl_designer_field" data-field="qso.qso_date">qso.qso_date</div>
-						<div class="qsl_designer_field" data-field="qso.time_on">qso.time_on</div>
-						<div class="qsl_designer_field" data-field="qso.band">qso.band</div>
-						<div class="qsl_designer_field" data-field="qso.mode">qso.mode</div>
-						<div class="qsl_designer_field" data-field="qso.freq">qso.freq</div>
-						<div class="qsl_designer_field" data-field="qso.rst_sent">qso.rst_sent</div>
-						<div class="qsl_designer_field" data-field="qso.rst_rcvd">qso.rst_rcvd</div>
-						<div class="qsl_designer_field" data-field="qso.summary">qso.summary</div>
-						<div class="qsl_designer_field" data-field="qso.rig">qso.rig</div>
-						<div class="qsl_designer_field" data-field="qso.comment">qso.comment</div>
-						<div class="qsl_designer_field" data-field="qso.time_utc">qso.time_utc</div>
-						<div class="qsl_designer_field" data-field="qso.day">qso.day</div>
-						<div class="qsl_designer_field" data-field="qso.month">qso.month</div>
-						<div class="qsl_designer_field" data-field="qso.month_name">qso.month_name</div>
-						<div class="qsl_designer_field" data-field="qso.year">qso.year</div>
-						<div class="qsl_designer_field" data-field="qso.antenna">qso.antenna</div>
-						<div class="qsl_designer_field" data-field="qso.tx_power">qso.tx_power</div>
-						<div class="qsl_designer_field" data-field="qso.rx_power">qso.rx_power</div>
-						<div class="qsl_designer_field" data-field="qso.my_rig">qso.my_rig</div>
-						<div class="qsl_designer_field" data-field="qso.pota_ref">qso.pota_ref</div>
-						<div class="qsl_designer_field" data-field="qso.my_pota_ref">qso.my_pota_ref</div>
-						<div class="qsl_designer_field" data-field="qso.pota_line">qso.pota_line</div>
-						<div class="qsl_designer_field" data-field="qso.qsl_message">qso.qsl_message</div>
+						<button id="btnDelete" class="btn btn-sm btn-outline-danger" title="<?= __("Delete Template"); ?>">
+							<i class="fas fa-trash"></i>
+						</button>
 					</div>
 				</div>
 
-			</div>
-
-			<!-- ===== RIGHT STAGE ===== -->
-			<div class="col-md-9">
-				<div class="card">
-					<div class="card-header">
-						<i class="fas fa-expand me-2"></i> <?= __("Postcard Canvas"); ?>
+				<!-- Background group -->
+				<div class="qsl-tb-group">
+					<label class="qsl-tb-label"><?= __("Background image"); ?></label>
+					<div class="d-flex gap-2 align-items-center">
+						<input type="file" id="previewImageFile" class="form-control form-control-sm" style="max-width:200px;" accept=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG">
+						<button type="button" id="btnUploadPreview" class="btn btn-sm btn-secondary" title="<?= __("Upload Preview Image"); ?>">
+							<i class="fas fa-upload"></i>
+						</button>
+						<a id="btnPdf" class="btn btn-sm btn-success" href="#" target="_blank" title="<?= __("Generate PDF (demo)"); ?>">
+							<i class="fas fa-file-pdf me-1"></i><?= __("PDF"); ?>
+						</a>
 					</div>
-					<div class="card-body p-2">
-						<div id="stageWrap">
-							<div id="rulerWrap">
-								<!-- TOP RULER -->
-								<div id="rulerTop"></div>
-								<!-- LEFT RULER -->
-								<div id="rulerLeft"></div>
-								<!-- POSTCARD STAGE -->
-								<div id="stage"></div>
-							</div>
+				</div>
+
+				<!-- History group -->
+				<div class="qsl-tb-group">
+					<label class="qsl-tb-label"><?= __("History"); ?></label>
+					<div class="btn-group btn-group-sm" role="group">
+						<button id="btnUndo" class="btn btn-outline-secondary" disabled title="<?= __("Undo"); ?> (Ctrl+Z)"><i class="fas fa-undo"></i></button>
+						<button id="btnRedo" class="btn btn-outline-secondary" disabled title="<?= __("Redo"); ?> (Ctrl+Y)"><i class="fas fa-redo"></i></button>
+					</div>
+				</div>
+
+				<!-- Zoom group -->
+				<div class="qsl-tb-group">
+					<label class="qsl-tb-label"><?= __("Zoom"); ?></label>
+					<div class="btn-group btn-group-sm" role="group">
+						<button id="btnZoomOut" class="btn btn-outline-secondary"><i class="fas fa-minus"></i></button>
+						<button id="btnZoomReset" class="btn btn-outline-secondary" style="min-width:56px;"><span id="zoomLabel">100%</span></button>
+						<button id="btnZoomIn" class="btn btn-outline-secondary"><i class="fas fa-plus"></i></button>
+					</div>
+				</div>
+
+				<!-- Calibration offsets -->
+				<div class="qsl-tb-group">
+					<label class="qsl-tb-label" title="<?= __("Tip: After a test print, adjust global offsets rather than moving every field."); ?>">
+						<?= __("Print offset (in)"); ?>
+					</label>
+					<div class="d-flex gap-2 align-items-center">
+						<div class="input-group input-group-sm" style="width:96px;">
+							<span class="input-group-text">X</span>
+							<input id="offX" type="number" step="0.01" class="form-control" value="0">
 						</div>
-						<div class="small text-muted mt-2">
-							<?= __("Stage = 6 × 4 inches (900 × 600 px). Drag fields onto the postcard."); ?>
+						<div class="input-group input-group-sm" style="width:96px;">
+							<span class="input-group-text">Y</span>
+							<input id="offY" type="number" step="0.01" class="form-control" value="0">
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
+
+	<!-- ===== THREE-PANE EDITOR ===== -->
+	<div class="qsl-editor">
+
+		<!-- PALETTE (left) -->
+		<aside class="qsl-pane qsl-palette card">
+			<div class="card-header py-2">
+				<i class="fas fa-th-large me-2"></i><?= __("Fields"); ?>
+			</div>
+			<div class="card-body p-2">
+				<div class="input-group input-group-sm mb-2">
+					<span class="input-group-text"><i class="fas fa-search"></i></span>
+					<input type="search" id="fieldSearch" class="form-control" placeholder="<?= __("Search fields…"); ?>">
+				</div>
+
+				<button type="button" id="btnAddText" class="btn btn-sm btn-outline-primary w-100 mb-2">
+					<i class="fas fa-font me-1"></i><?= __("Add Custom Text"); ?>
+				</button>
+
+				<?php $first = true; foreach ($qsl_field_groups as $group => $fields): ?>
+					<details class="qsl-cat" <?= $first ? 'open' : '' ?>>
+						<summary><?= htmlentities($group) ?></summary>
+						<div class="qsl-cat-body">
+							<?php foreach ($fields as $f): ?>
+								<div class="qsl_designer_field" draggable="true" data-field="<?= htmlentities($f) ?>"><?= htmlentities($f) ?></div>
+							<?php endforeach; ?>
+						</div>
+					</details>
+				<?php $first = false; endforeach; ?>
+
+				<div id="fieldSearchEmpty" class="small text-muted text-center mt-2" style="display:none;">
+					<?= __("No fields match your search."); ?>
+				</div>
+			</div>
+		</aside>
+
+		<!-- CANVAS (center) -->
+		<section class="qsl-pane qsl-canvas card">
+			<div class="card-header py-2 d-flex justify-content-between align-items-center">
+				<span><i class="fas fa-expand me-2"></i><?= __("Postcard Canvas"); ?></span>
+				<span class="small text-muted d-none d-lg-inline"><?= __("6 × 4 inches · drag fields onto the postcard"); ?></span>
+			</div>
+			<div class="card-body p-0">
+				<div id="stageScroll">
+					<div id="stageZoom">
+						<div id="rulerWrap">
+							<div id="rulerTop"></div>
+							<div id="rulerLeft"></div>
+							<div id="stage"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- PROPERTIES (right) -->
+		<aside class="qsl-pane qsl-props card">
+			<div class="card-header py-2">
+				<i class="fas fa-sliders-h me-2"></i><?= __("Properties"); ?>
+			</div>
+			<div class="card-body">
+				<div id="propEmpty" class="text-muted small text-center py-4">
+					<i class="fas fa-mouse-pointer fa-lg mb-2 d-block"></i>
+					<?= __("Select a field on the canvas to edit it."); ?>
+					<div class="mt-2"><?= __("Right-click a field for more actions."); ?></div>
+				</div>
+
+				<div id="propPanel" style="display:none;">
+					<div class="mb-3">
+						<span class="badge bg-secondary" id="propTypeBadge"><?= __("Field"); ?></span>
+						<span class="fw-bold ms-1" id="propTypeLabel"></span>
+					</div>
+
+					<div class="mb-2" id="propTextRow" style="display:none;">
+						<label class="form-label small mb-1"><?= __("Text"); ?></label>
+						<input id="propText" class="form-control form-control-sm">
+					</div>
+
+					<div class="row g-2 mb-2" id="propPosRow">
+						<div class="col-6">
+							<label class="form-label small mb-1"><?= __("X (in)"); ?></label>
+							<input id="propX" type="number" step="0.05" class="form-control form-control-sm">
+						</div>
+						<div class="col-6">
+							<label class="form-label small mb-1"><?= __("Y (in)"); ?></label>
+							<input id="propY" type="number" step="0.05" class="form-control form-control-sm">
+						</div>
+					</div>
+
+					<div class="mb-2">
+						<label class="form-label small mb-1"><?= __("Font"); ?></label>
+						<select id="propFont" class="form-select form-select-sm">
+							<option value="Helvetica">Helvetica</option>
+							<option value="Times">Times</option>
+							<option value="Courier">Courier</option>
+						</select>
+					</div>
+
+					<div class="row g-2 mb-2 align-items-end">
+						<div class="col-6">
+							<label class="form-label small mb-1"><?= __("Font Size"); ?></label>
+							<input id="propFontSize" type="number" step="1" min="6" max="36" class="form-control form-control-sm" value="12">
+						</div>
+						<div class="col-6">
+							<div class="form-check mt-2">
+								<input class="form-check-input" type="checkbox" id="propBold">
+								<label class="form-check-label small" for="propBold"><?= __("Bold"); ?></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label small mb-1"><?= __("Wrap width (in)"); ?></label>
+						<input id="propWrap" type="number" step="0.1" min="0.2" class="form-control form-control-sm">
+					</div>
+
+					<div class="d-flex gap-2">
+						<button type="button" id="btnDuplicate" class="btn btn-sm btn-outline-secondary flex-fill">
+							<i class="fas fa-clone me-1"></i><?= __("Duplicate"); ?>
+						</button>
+						<button type="button" id="btnDeleteElem" class="btn btn-sm btn-outline-danger flex-fill">
+							<i class="fas fa-trash me-1"></i><?= __("Delete"); ?>
+						</button>
+					</div>
+				</div>
+			</div>
+		</aside>
+
+	</div>
+</div>
+
+<!-- ===== CONTEXT MENU ===== -->
+<div id="qslCtxMenu" class="qsl-ctx-menu" style="display:none;">
+	<button type="button" class="qsl-ctx-item" data-action="edit"><i class="fas fa-pen fa-fw me-2"></i><?= __("Edit"); ?></button>
+	<button type="button" class="qsl-ctx-item" data-action="duplicate"><i class="fas fa-clone fa-fw me-2"></i><?= __("Duplicate"); ?></button>
+
+	<div class="qsl-ctx-sep" data-multi-only></div>
+	<div class="qsl-ctx-sub" data-multi-only>
+		<button type="button" class="qsl-ctx-item">
+			<i class="fas fa-object-group fa-fw me-2"></i><?= __("Align & distribute"); ?>
+			<i class="fas fa-chevron-right ms-auto ps-3"></i>
+		</button>
+		<div class="qsl-ctx-submenu">
+			<button type="button" class="qsl-ctx-item" data-action="align:left"><i class="fas fa-align-left fa-fw me-2"></i><?= __("Align left"); ?></button>
+			<button type="button" class="qsl-ctx-item" data-action="align:hcenter"><i class="fas fa-align-center fa-fw me-2"></i><?= __("Align horizontal centers"); ?></button>
+			<button type="button" class="qsl-ctx-item" data-action="align:right"><i class="fas fa-align-right fa-fw me-2"></i><?= __("Align right"); ?></button>
+			<div class="qsl-ctx-sep"></div>
+			<button type="button" class="qsl-ctx-item" data-action="align:top"><i class="fas fa-long-arrow-alt-up fa-fw me-2"></i><?= __("Align top"); ?></button>
+			<button type="button" class="qsl-ctx-item" data-action="align:vcenter"><i class="fas fa-arrows-alt-v fa-fw me-2"></i><?= __("Align vertical centers"); ?></button>
+			<button type="button" class="qsl-ctx-item" data-action="align:bottom"><i class="fas fa-long-arrow-alt-down fa-fw me-2"></i><?= __("Align bottom"); ?></button>
+			<div class="qsl-ctx-sep"></div>
+			<button type="button" class="qsl-ctx-item" data-action="align:dist-h"><i class="fas fa-arrows-alt-h fa-fw me-2"></i><?= __("Distribute horizontally"); ?></button>
+			<button type="button" class="qsl-ctx-item" data-action="align:dist-v"><i class="fas fa-arrows-alt-v fa-fw me-2"></i><?= __("Distribute vertically"); ?></button>
+			<div class="qsl-ctx-sep"></div>
+			<button type="button" class="qsl-ctx-item" data-action="align:page-h"><i class="fas fa-ruler-horizontal fa-fw me-2"></i><?= __("Center on page (horizontal)"); ?></button>
+			<button type="button" class="qsl-ctx-item" data-action="align:page-v"><i class="fas fa-ruler-vertical fa-fw me-2"></i><?= __("Center on page (vertical)"); ?></button>
+		</div>
+	</div>
+
+	<div class="qsl-ctx-sep"></div>
+	<button type="button" class="qsl-ctx-item" data-action="front"><i class="fas fa-arrow-up fa-fw me-2"></i><?= __("Bring to front"); ?></button>
+	<button type="button" class="qsl-ctx-item" data-action="back"><i class="fas fa-arrow-down fa-fw me-2"></i><?= __("Send to back"); ?></button>
+	<div class="qsl-ctx-sep"></div>
+	<button type="button" class="qsl-ctx-item text-danger" data-action="delete"><i class="fas fa-trash fa-fw me-2"></i><?= __("Delete"); ?></button>
+</div>
