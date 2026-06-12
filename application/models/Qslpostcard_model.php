@@ -700,6 +700,8 @@ class Qslpostcard_model extends CI_Model {
             return $ref !== '' ? 'From POTA: ' . $ref : '';
         }
 
+        if ($field === 'qso.qsl_via') return $qso['COL_QSL_VIA'] ?? $qso['qsl_via'] ?? '';
+
         if ($field === 'qso.summary') {
             $c = strtoupper($qso['COL_CALL'] ?? $qso['call'] ?? '');
             $d = $qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '';

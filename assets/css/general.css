@@ -1482,65 +1482,159 @@ svg text.month { fill: #AAA; }
     align-items: center !important;
 }
 
-/* QSL Postcard Designer */
-#stageWrap {
-    display: flex;
-    justify-content: center;
+/* ===================================================================
+   QSL Postcard Designer
+   =================================================================== */
+
+/* --- Toolbar --- */
+.qsl-toolbar .qsl-tb-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.qsl-tb-label {
+	font-size: .68rem;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	opacity: .65;
+	margin-bottom: .25rem;
+}
+
+/* --- Three-pane editor grid --- */
+.qsl-editor {
+	display: grid;
+	grid-template-columns: 240px minmax(0, 1fr) 280px;
+	gap: 1rem;
+	align-items: start;
+}
+
+@media (max-width: 1199.98px) {
+	.qsl-editor {
+		grid-template-columns: 1fr;
+	}
+}
+
+.qsl-pane {
+	margin-bottom: 0;
+}
+
+/* --- Palette (left) --- */
+.qsl-palette .card-body {
+	max-height: 78vh;
+	overflow-y: auto;
+}
+
+.qsl-cat {
+	margin-bottom: .35rem;
+}
+
+.qsl-cat > summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: .85rem;
+	padding: .3rem .4rem;
+	border-radius: 6px;
+	user-select: none;
+}
+
+.qsl-cat > summary:hover {
+	background: var(--bs-tertiary-bg, rgba(127, 127, 127, .12));
+}
+
+.qsl-cat-body {
+	padding: .35rem 0 .15rem .25rem;
+}
+
+.qsl_designer_field {
+	cursor: grab;
+	user-select: none;
+	padding: 5px 8px;
+	margin-bottom: 5px;
+	border: 1px solid var(--bs-border-color);
+	border-radius: 6px;
+	background: var(--bs-body-bg);
+	color: var(--bs-body-color);
+	font-family: monospace;
+	font-size: .8rem;
+	transition: background .12s, border-color .12s;
+}
+
+.qsl_designer_field:hover {
+	border-color: var(--bs-primary);
+	background: var(--bs-primary-bg-subtle, rgba(13, 110, 253, .1));
+}
+
+.qsl_designer_field:active {
+	cursor: grabbing;
+}
+
+/* --- Properties (right) --- */
+.qsl-props .card-body {
+	max-height: 78vh;
+	overflow-y: auto;
+}
+
+/* --- Canvas (center) --- */
+.qsl-canvas .card-body {
+	background: var(--bs-tertiary-bg, #eef0f2);
+}
+
+#stageScroll {
+	overflow: auto;
+	max-height: 80vh;
+	padding: 14px;
+}
+
+#stageZoom {
+	width: 940px;
+	height: 640px;
 }
 
 #rulerWrap {
-    position: relative;
-    width: 940px;
-    height: 640px;
-}
-
-#rulerTop {
-    position: absolute;
-    left: 40px;
-    top: 0;
-    width: 900px;
-    height: 40px;
-    background: #f6f6f6;
-    border: 1px solid #ddd;
-}
-
-#rulerLeft {
-    position: absolute;
-    left: 0;
-    top: 40px;
-    width: 40px;
-    height: 600px;
-    background: #f6f6f6;
-    border: 1px solid #ddd;
-}
-
-#stage {
-    position: absolute;
-    left: 40px;
-    top: 40px;
-    width: 900px;
-    height: 600px;
-    border: 1px solid #ccc;
-    overflow: hidden;
-    background-image: none;
-    background-position: center;
-    background-repeat: no-repeat;
-	background:
-	linear-gradient(to right, rgba(0, 0, 0, .06) 1px, transparent 1px),
-	linear-gradient(to bottom, rgba(0, 0, 0, .06) 1px, transparent 1px);
-	background-size: 37.5px 37.5px;
-	background-color: #ffffff;
+	position: relative;
+	width: 940px;
+	height: 640px;
 }
 
 #rulerTop,
 #rulerLeft {
-	color: #111111 !important;
+	position: absolute;
+	background: var(--bs-secondary-bg, #e9ecef);
+	border: 1px solid var(--bs-border-color);
+	color: var(--bs-body-color);
 	font-weight: 600;
 }
 
-#rulerTop div,
-#rulerLeft div {
-	color: #111111 !important;
+#rulerTop {
+	left: 40px;
+	top: 0;
+	width: 900px;
+	height: 40px;
+}
+
+#rulerLeft {
+	left: 0;
+	top: 40px;
+	width: 40px;
+	height: 600px;
+}
+
+#stage {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+	width: 900px;
+	height: 600px;
+	border: 1px solid var(--bs-border-color);
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		linear-gradient(to right, rgba(0, 0, 0, .06) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(0, 0, 0, .06) 1px, transparent 1px);
+	background-size: 37.5px 37.5px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 14px rgba(0, 0, 0, .2);
 }
 
 /* Ruler tick marks */
@@ -1548,7 +1642,7 @@ svg text.month { fill: #AAA; }
 	position: absolute;
 	bottom: 0;
 	width: 1px;
-	background: #666;
+	background: var(--bs-secondary-color, #666);
 }
 
 .ruler-tick-top.major {
@@ -1556,14 +1650,15 @@ svg text.month { fill: #AAA; }
 }
 
 .ruler-tick-top.minor {
-	height: 10px;
+	height: 9px;
+	opacity: .55;
 }
 
 .ruler-tick-left {
 	position: absolute;
 	right: 0;
 	height: 1px;
-	background: #666;
+	background: var(--bs-secondary-color, #666);
 }
 
 .ruler-tick-left.major {
@@ -1571,61 +1666,140 @@ svg text.month { fill: #AAA; }
 }
 
 .ruler-tick-left.minor {
-	width: 10px;
+	width: 9px;
+	opacity: .55;
 }
 
 /* Ruler labels */
 .ruler-label-top {
 	position: absolute;
-	top: 2px;
-	font-size: 11px;
-	color: #111111;
-	font-weight: 600;
+	top: 3px;
+	font-size: 10px;
 	line-height: 1;
 	background: transparent;
 }
 
 .ruler-label-left {
 	position: absolute;
-	right: 20px;
-	font-size: 11px;
-	color: #111111;
-	font-weight: 600;
+	right: 18px;
+	font-size: 10px;
 	line-height: 1;
 	background: transparent;
 }
 
-.qsl_designer_field {
-	cursor: grab;
-	user-select: none;
-	padding: 6px 8px;
-	border: 1px solid #cfcfcf;
-	margin-bottom: 6px;
-	border-radius: 6px;
-	background: #ffffff;
-	color: #111111 !important;
-	font-weight: 600;
-}
-
-.qsl_designer_field:hover {
-	background: #f3f7ff;
-	border-color: #8fb4ff;
-}
-
+/* --- Placed elements (sit on the white postcard) --- */
 .qsl_designer_placed {
 	position: absolute;
-	padding: 4px 6px;
-	border: 2px solid #1f6feb;
-	border-radius: 6px;
-	background: #ffffff;
-	color: #111111 !important;
+	padding: 2px 5px;
+	border: 1px solid rgba(13, 110, 253, .5);
+	border-radius: 4px;
+	background: rgba(255, 255, 255, .92);
+	color: #111111;
 	font-weight: 600;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+	line-height: 1.25;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
 	cursor: move;
 	white-space: nowrap;
 }
 
+.qsl_designer_placed:hover {
+	border-color: var(--bs-primary);
+}
+
 .qsl_designer_placed.selected {
-	border-color: #ff7a00;
-	box-shadow: 0 0 0 3px rgba(255, 122, 0, .25);
+	border: 1px solid #ff7a00;
+	box-shadow: 0 0 0 2px rgba(255, 122, 0, .35);
+	z-index: 50;
+}
+
+/* --- Snapping guides --- */
+.qsl-guide {
+	position: absolute;
+	pointer-events: none;
+	z-index: 60;
+}
+
+.qsl-guide-v {
+	top: 0;
+	width: 0;
+	height: 600px;
+	border-left: 1px dashed #ff3b8b;
+}
+
+.qsl-guide-h {
+	left: 0;
+	width: 900px;
+	height: 0;
+	border-top: 1px dashed #ff3b8b;
+}
+
+/* --- Marquee (rubber-band) selection --- */
+.qsl-marquee {
+	position: absolute;
+	pointer-events: none;
+	z-index: 70;
+	border: 1px solid var(--bs-primary, #0d6efd);
+	background: rgba(13, 110, 253, .12);
+}
+
+/* --- Context menu --- */
+.qsl-ctx-menu {
+	position: fixed;
+	z-index: 2000;
+	min-width: 184px;
+	padding: 4px;
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+	border-radius: 8px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, .25);
+}
+
+.qsl-ctx-item {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 6px 10px;
+	border: 0;
+	border-radius: 5px;
+	background: transparent;
+	color: var(--bs-body-color);
+	font-size: .85rem;
+	text-align: left;
+}
+
+.qsl-ctx-item:hover {
+	background: var(--bs-tertiary-bg, rgba(127, 127, 127, .15));
+}
+
+.qsl-ctx-item.text-danger:hover {
+	background: var(--bs-danger-bg-subtle, rgba(220, 53, 69, .15));
+}
+
+.qsl-ctx-sep {
+	height: 1px;
+	margin: 4px 6px;
+	background: var(--bs-border-color);
+}
+
+/* Context submenu (align & distribute) */
+.qsl-ctx-sub {
+	position: relative;
+}
+
+.qsl-ctx-submenu {
+	position: absolute;
+	left: 100%;
+	top: -5px;
+	display: none;
+	min-width: 232px;
+	margin-left: 2px;
+	padding: 4px;
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+	border-radius: 8px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, .25);
+}
+
+.qsl-ctx-sub:hover > .qsl-ctx-submenu {
+	display: block;
 }
