@@ -366,6 +366,8 @@
     });
 
 	document.getElementById('btnDelete').addEventListener('click', async () => {
+		const id = document.getElementById('tplSelect').value || 0;
+		if (!id) return showToast('Error', LANG.selectTemplateToDelete, 'bg-danger text-white', 5000);
 		BootstrapDialog.confirm({
 			title: LANG.deleteTemplate,
 			message: LANG.deleteTemplateConfirm,
@@ -375,8 +377,6 @@
 			btnOKClass: 'btn-danger',
 			callback: async function(result) {
 				if(result) {
-					const id = document.getElementById('tplSelect').value || 0;
-					const name = document.getElementById('tplName').value || LANG.untitled;
 					const payload = {
 						id: parseInt(id, 10)
 					};
