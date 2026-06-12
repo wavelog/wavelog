@@ -190,7 +190,9 @@ class Qslpostcard extends CI_Controller {
             // Background only when requested, blank for pre-printed cards
             $background = (string)$this->input->get('print_background', true) === '1' ? $tpl['preview_image'] : null;
 
-            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background);
+            $noaddress = (string)$this->input->get('print_no_address', true) === '1' ? true : false;
+
+            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
             header('Content-Type: application/pdf');
             header('Content-Disposition: attachment; filename="qsl_postcards_queue_' . $template_id . '.pdf"');
@@ -257,7 +259,9 @@ class Qslpostcard extends CI_Controller {
             // Background only when requested, blank for pre-printed cards
             $background = (string)$this->input->post('print_background', true) === '1' ? $tpl['preview_image'] : null;
 
-            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background);
+            $noaddress = (string)$this->input->post('print_no_address', true) === '1' ? true : false;
+
+            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
             header('Content-Type: application/pdf');
             header('Content-Disposition: attachment; filename="qsl_postcards_selected_' . $template_id . '.pdf"');

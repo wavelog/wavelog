@@ -334,8 +334,7 @@ class Qslpostcard_model extends CI_Model {
     }
 
     // --- PDF render (FPDF) ---
-
-    public function render_pdf_from_layout($layout, $qsos, $mark_sent = false, $background = null) {
+    public function render_pdf_from_layout($layout, $qsos, $mark_sent = false, $background = null, $noaddress = false) {
         $candidatePaths = [
             FCPATH . 'src/Label/fpdf.php',
             APPPATH . 'third_party/fpdf/fpdf.php',
@@ -381,15 +380,18 @@ class Qslpostcard_model extends CI_Model {
         foreach ($qsos as $qso) {
 
             $call = strtoupper(trim($qso['COL_CALL'] ?? ''));
-            $addr = $call ? $this->resolve_address($call) : null;
+			if ($noaddress) {
+				$addr = null;
+			} else {
+				$addr = $call ? $this->resolve_address($call) : null;
+				// Skip if no usable mailing address
+				if (!$this->is_mailable_address($addr)) {
+					log_message('error', 'QSLPOSTCARD skipping ' . $call . ' because no usable address was found');
+					continue;
+				}
+			}
 
-            // Skip if no usable mailing address
-            if (!$this->is_mailable_address($addr)) {
-                log_message('error', 'QSLPOSTCARD skipping ' . $call . ' because no usable address was found');
-                continue;
-            }
-
-            // Only create a page after address is confirmed
+			// Only create a page after address is confirmed
             $pdf->AddPage();
 
             if ($bgPath !== null) {
