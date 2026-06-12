@@ -109,7 +109,7 @@
 					$user_id = $this->session->userdata('user_id');
 
 					// Build correct image path: userdata/[user_id]/qsl_card/[filename]
-					$image_path = base_url().$this->paths->getPathQsl() . '/' . $filename;
+					$image_path = base_url().$this->paths->getUserdataPath('qsl_card') . '/' . $filename;
 					?>
 					<div class="waterfall-item">
 						<div class="card h-100">

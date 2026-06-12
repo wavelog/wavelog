@@ -31,10 +31,6 @@ class Update extends CI_Controller {
 	* Load the DXCC entities
 	*/
 	private function dxcc_entities($xml_data = null) {
-		// Ensure the Paths library is loaded
-		if (!$this->load->is_loaded('Paths')) {
-			$this->load->library('Paths');
-		}
 
 		// Load XML data if not provided
 		if ($xml_data === null) {
@@ -96,10 +92,6 @@ class Update extends CI_Controller {
      * Load the dxcc prefixes
      */
 	private function dxcc_exceptions($xml_data = null) {
-		// Ensure the Paths library is loaded
-		if (!$this->load->is_loaded('Paths')) {
-			$this->load->library('Paths');
-		}
 
 		// Load XML data if not provided
 		if ($xml_data === null) {
@@ -147,10 +139,6 @@ class Update extends CI_Controller {
      * Load the dxcc prefixes
      */
 	private function dxcc_prefixes($xml_data = null) {
-		// Load the cty file
-		if (!$this->load->is_loaded('Paths')) {
-			$this->load->library('Paths');
-		}
 
 		// Load XML data if not provided
 		if ($xml_data === null) {
@@ -199,10 +187,6 @@ class Update extends CI_Controller {
 		$lockfilename='/tmp/.update_dxcc_running';
 		if (!file_exists($lockfilename)) {
 			touch($lockfilename);
-
-			if(!$this->load->is_loaded('Paths')) {
-				$this->load->library('Paths');
-			}
 
 			// set the last run in cron table for the correct cron id
 			$this->load->model('cron_model');
@@ -315,10 +299,6 @@ class Update extends CI_Controller {
 	}
 
 	private function update_status($done=""){
-
-        if(!$this->load->is_loaded('Paths')) {
-        	$this->load->library('Paths');
-		}
 
 		if ($done != "Downloading file"){
 			// Check that everything is done?
