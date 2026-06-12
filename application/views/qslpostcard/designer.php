@@ -16,6 +16,7 @@
 		deleteTemplateConfirm: <?= json_encode(__("Are you sure you want to delete this template? This action cannot be undone.")); ?>,
 		deleteFailed: <?= json_encode(__("Delete failed")); ?>,
 		deleteSuccess: <?= json_encode(__("Template deleted successfully!")); ?>,
+		selectTemplateToDelete: <?= json_encode(__("Please select a template to delete.")); ?>,
 	};
 </script>
 
