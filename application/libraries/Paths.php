@@ -19,8 +19,9 @@ class Paths {
 
         // make sure these are the same as in Debug_model.php function migrate_userdata()
         $allowed_types = [
-            'eqsl_card', 
-            'qsl_card'
+            'eqsl_card',
+            'qsl_card',
+            'qslpostcard_images' // has no legacy path
         ];
 
         // validate path type
