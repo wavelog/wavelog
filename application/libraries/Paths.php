@@ -55,7 +55,7 @@ class Paths {
                     return realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type;
                 }
             } else {
-                log_message('error', 'getUserdataPath(); Can not get ' . $type . ' path because no user_id in session data');
+                log_message('info', 'getUserdataPath(); Can not get ' . $type . ' path because no user_id in session data');
             }
         } else {
             // if the config option is not set we just return the old path
