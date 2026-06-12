@@ -26,7 +26,7 @@ class eqsl extends CI_Controller {
 
 		$this->load->model('eqsl_images');
 		$this->load->library('Genfunctions');
-		$folder_name = $this->eqsl_images->get_imagePath('p');
+		$folder_name = $this->paths->getUserdataPath('eqsl_card', 'p');
 		$data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
 		// Pagination
@@ -418,7 +418,7 @@ class eqsl extends CI_Controller {
 				}
 
 				$filename = uniqid() . '.jpg';
-				$image_path = $this->Eqsl_images->get_imagePath('p') . '/' . $filename;
+				$image_path = $this->paths->getUserdataPath('eqsl_card', 'p') . '/' . $filename;
 				$save_result = file_put_contents($image_path, $content);
 
 				if ($save_result !== false) {
@@ -433,7 +433,7 @@ class eqsl extends CI_Controller {
 		} else {
 			// Load server-cached image if etag isn't 0
 			if ($etag != '0') {
-				$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
+				$image_file = $this->paths->getUserdataPath('eqsl_card', 'p') . '/' . $this->Eqsl_images->get_image($id);
 				$content = file_get_contents($image_file);
 				if ($content !== false) {
 					$this->output_image_with_width($content, $width, $etag);
@@ -570,7 +570,7 @@ class eqsl extends CI_Controller {
 			}
 			$filename = uniqid() . '.jpg';
 			if ($this->Eqsl_images->get_image($id) == "No Image") {
-				if (file_put_contents($this->Eqsl_images->get_imagePath('p') . '/' . $filename, $content) !== false) {
+				if (file_put_contents($this->paths->getUserdataPath('eqsl_card', 'p') . '/' . $filename, $content) !== false) {
 					$this->Eqsl_images->save_image($id, $filename);
 				}
 			}

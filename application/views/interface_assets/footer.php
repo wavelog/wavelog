@@ -2375,7 +2375,7 @@ $('#sats').change(function(){
 <script>
 function viewQsl(picture, callsign) {
 
-            var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
+            var webpath_qsl = "<?php echo $this->paths->getUserdataPath('qsl_card'); ?>";
             var textAndPic = $('<div class="text-center"></div>');
                 textAndPic.append('<img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+base_url+webpath_qsl+'/'+picture+'" />');
             var title = '';
@@ -2436,7 +2436,7 @@ function deleteQsl(id) {
 </script>
 <script>
 function viewEqsl(picture, callsign) {
-            var webpath_eqsl = '<?php echo $this->paths->getPathEqsl(); ?>';
+            var webpath_eqsl = '<?php echo $this->paths->getUserdataPath('eqsl_card'); ?>';
             var baseURL= "<?php echo base_url(); ?>";
             var $textAndPic = $('<div></div>');
                 $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+webpath_eqsl+'/'+picture+'" />');
@@ -2630,7 +2630,7 @@ function viewEqsl(picture, callsign) {
     }
 
     function uploadQsl() {
-        var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
+        var webpath_qsl = "<?php echo $this->paths->getUserdataPath('qsl_card'); ?>";
         var formdata = new FormData(document.getElementById("fileinfo"));
 
         $.ajax({

@@ -111,3 +111,20 @@ if ( ! function_exists('encode_php_tags'))
 		return str_replace(array('<?', '?>'), array('&lt;?', '?&gt;'), $str);
 	}
 }
+
+// ------------------------------------------------------------------------
+
+if ( ! function_exists('valid_uid'))
+{
+	/**
+	 * Validate user id
+	 * Returns TRUE if the value is a positive integer, otherwise FALSE.
+	 *
+	 * @param	mixed	$value
+	 * @return	bool
+	 */
+	function valid_uid($value)
+	{
+		return filter_var($value, FILTER_VALIDATE_INT, array('options' => array('min_range' => 1))) !== FALSE;
+	}
+}
