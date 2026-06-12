@@ -18,7 +18,7 @@ class Qsl extends CI_Controller {
 
         $this->load->model('qsl_model');
         $this->load->library('Genfunctions');
-        $folder_name = $this->qsl_model->get_imagePath('p');
+        $folder_name = $this->paths->getUserdataPath('qsl_card', 'p');
         $data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
         // Render Page
@@ -78,7 +78,7 @@ class Qsl extends CI_Controller {
 
     function uploadQslCardFront($qsoid) {
         $this->load->model('Qsl_model');
-        $config['upload_path']          = $this->Qsl_model->get_imagePath('p');
+        $config['upload_path']          = $this->paths->getUserdataPath('qsl_card', 'p');
         $config['allowed_types']        = 'jpg|gif|png|jpeg|JPG|PNG';
         $array = explode(".", $_FILES['qslcardfront']['name']);
         $ext = end($array);
@@ -109,7 +109,7 @@ class Qsl extends CI_Controller {
 
     function uploadQslCardBack($qsoid) {
         $this->load->model('Qsl_model');
-        $config['upload_path']          = $this->Qsl_model->get_imagePath('p');
+        $config['upload_path']          = $this->paths->getUserdataPath('qsl_card', 'p');
         $config['allowed_types']        = 'jpg|gif|png|jpeg|JPG|PNG';
         $array = explode(".", $_FILES['qslcardback']['name']);
         $ext = end($array);
