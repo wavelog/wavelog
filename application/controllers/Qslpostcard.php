@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Qslpostcard extends CI_Controller {
 
+    /**
+     * Name of Path type for userdata location
+     */
+    private const PATH_TYPE = 'qslpostcard_images';
+
     public function __construct() {
         parent::__construct();
 
@@ -16,6 +21,17 @@ class Qslpostcard extends CI_Controller {
     }
 
 	public function index() {
+
+        // a properly set userdata config is a hard depedency for this feature
+        // we don't want to create new legacy paths so we just show that this feature
+        // is unavailable uness the config is updated.
+        $userdata_dir = $this->config->item('userdata');
+        if (!isset($userdata_dir)) {
+            echo __("QSL Postcard Designer is unavailable because the 'userdata' config option is not set. Your config is outdated.") . "<br>";
+            echo __("Please compare your current config.php with the latest config.sample.php and update accordingly.");
+            return;
+        }
+
         $data['page_title'] = __("QSL Postcard Designer");
         $data['templates']  = $this->Qslpostcard_model->list_templates();
 
@@ -31,14 +47,9 @@ class Qslpostcard extends CI_Controller {
 
     public function upload_preview() {
 
-        $config['upload_path']   = FCPATH . 'uploads/qsl_postcards/';
+        $config['upload_path']   = $this->paths->getUserdataPath(self::PATH_TYPE, 'p');
         $config['allowed_types'] = 'jpg|jpeg|png|JPG|JPEG|PNG';
-        $config['max_size']      = 4096;
         $config['encrypt_name']  = true;
-
-        if (!is_dir($config['upload_path'])) {
-            mkdir($config['upload_path'], 0755, true);
-        }
 
         $this->load->library('upload', $config);
 
@@ -54,14 +65,15 @@ class Qslpostcard extends CI_Controller {
 
         $data = $this->upload->data();
 
-        $url = base_url('uploads/qsl_postcards/' . $data['file_name']);
+        $rel_path = $this->paths->getUserdataPath(self::PATH_TYPE) . '/' . $data['file_name'];
+        $url = base_url($rel_path);
 
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode([
                 'ok' => true,
                 'url' => $url,
-                'path' => 'uploads/qsl_postcards/' . $data['file_name']
+                'path' => $rel_path
             ]));
     }
 
