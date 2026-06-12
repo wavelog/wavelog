@@ -37,7 +37,7 @@
 
 						<input id="tplName" class="form-control mb-2" placeholder="<?= __("Template name"); ?>">
 						<label><?= __("Postcard preview image"); ?></label>
-						<input type="file" id="previewImageFile" class="form-control mb-2" accept=".jpg,.jpeg,.png,.webp">
+						<input type="file" id="previewImageFile" class="form-control mb-2" accept=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG">
 
 						<button type="button" id="btnUploadPreview" class="btn btn-secondary w-100 mb-2">
 							<?= __("Upload Preview Image"); ?>

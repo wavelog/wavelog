@@ -5,7 +5,7 @@
         <form id="selectedPrintForm" method="post">
 
             <div class="mb-3">
-                <label class="form-label"></label><?= __("Template") ?></label>
+                <label class="form-label"><?= __("Template") ?></label>
                 <select id="template_id" class="form-control">
                     <?php foreach ($templates as $t): ?>
                         <option value="<?= (int)$t['id'] ?>">
@@ -22,11 +22,19 @@
                 </label>
             </div>
 
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="print_background">
+                <label class="form-check-label" for="print_background">
+                    <?= __("Print background image (uncheck for pre-printed cards)") ?>
+                </label>
+            </div>
+
             <?php foreach ($selected_ids as $id): ?>
                 <input type="hidden" name="selected_ids[]" value="<?= (int)$id ?>">
             <?php endforeach; ?>
 
             <input type="hidden" name="dedupe_by_call" id="dedupe_by_call_hidden" value="1">
+            <input type="hidden" name="print_background" id="print_background_hidden" value="0">
 
             <button type="button" id="btnPrintSelected" class="btn btn-success">
                 <?= __("Generate Postcard PDF") ?>
@@ -39,8 +47,10 @@
     document.getElementById('btnPrintSelected').addEventListener('click', () => {
         const tpl = document.getElementById('template_id').value;
         const dedupe = document.getElementById('dedupe_by_call').checked ? '1' : '0';
+        const printBg = document.getElementById('print_background').checked ? '1' : '0';
 
         document.getElementById('dedupe_by_call_hidden').value = dedupe;
+        document.getElementById('print_background_hidden').value = printBg;
 
         const form = document.getElementById('selectedPrintForm');
         form.action = `<?= site_url('qslpostcard/pdfselected') ?>/${tpl}`;
