@@ -677,6 +677,11 @@ class Qslpostcard_model extends CI_Model {
             return $dt ? $dt->format('H:i') . ' UTC' : '';
         }
 
+		if ($field === 'qso.time') {
+            $dt = $this->normalize_qso_datetime($qso);
+            return $dt ? $dt->format('H:i') : '';
+        }
+
         if ($field === 'qso.day') {
             $dt = $this->normalize_qso_datetime($qso);
             return $dt ? $dt->format('d') : '';

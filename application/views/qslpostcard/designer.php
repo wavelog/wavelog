@@ -3,9 +3,9 @@
 // renderer expects them (addr.* / qso.*). Only the grouping/labels are cosmetic.
 $qsl_field_groups = [
 	__("Address")             => ['addr.name', 'addr.addr1', 'addr.addr2', 'addr.city_state_zip', 'addr.country'],
-	__("QSO Core")            => ['qso.call', 'qso.band', 'qso.mode', 'qso.freq', 'qso.rst_sent', 'qso.rst_rcvd', 'qso.summary'],
-	__("Date & Time")         => ['qso.qso_date', 'qso.time_on', 'qso.time_utc', 'qso.day', 'qso.month', 'qso.month_name', 'qso.year'],
-	__("Station & Equipment") => ['qso.rig', 'qso.my_rig', 'qso.antenna', 'qso.tx_power', 'qso.rx_power'],
+	__("QSO Core")            => ['qso.call', 'qso.band', 'qso.mode', 'qso.freq', 'qso.rst_sent', 'qso.rst_rcvd'],
+	__("Date & Time")         => ['qso.qso_date', 'qso.time_on', 'qso.time', 'qso.time_utc', 'qso.day', 'qso.month', 'qso.month_name', 'qso.year'],
+	__("Station & Equipment") => ['qso.tx_power'],
 	__("POTA")                => ['qso.pota_ref', 'qso.my_pota_ref', 'qso.pota_line'],
 	__("Other")               => ['qso.comment', 'qso.qsl_message', 'qso.qsl_via'],
 ];
@@ -271,7 +271,6 @@ $qsl_field_groups = [
 		</div>
 	</div>
 
-	<div class="qsl-ctx-sep"></div>
 	<div class="qsl-ctx-sep"></div>
 	<button type="button" class="qsl-ctx-item text-danger" data-action="delete"><i class="fas fa-trash fa-fw me-2"></i><?= __("Delete"); ?></button>
 </div>
