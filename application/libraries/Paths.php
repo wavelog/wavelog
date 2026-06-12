@@ -63,6 +63,24 @@ class Paths {
         }
     }
 
+    /**
+     * @deprecated Use getUserdataPath('eqsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathEqsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('eqsl_card', $pathorurl, $user_id);
+    }
+
+    /**
+     * @deprecated Use getUserdataPath('qsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathQsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('qsl_card', $pathorurl, $user_id);
+    }
+
     private function legacyPaths($type, $pathorurl = 'u') {
         switch ($type) {
             case 'eqsl_card':
