@@ -51,10 +51,10 @@ $qsl_field_groups = [
 							<?php endforeach; ?>
 						</select>
 						<input id="tplName" class="form-control form-control-sm" style="min-width:140px;" placeholder="<?= __("Template name"); ?>">
-						<button id="btnSave" class="btn btn-sm btn-primary" title="<?= __("Save Template"); ?>">
+						<button id="btnSave" class="btn btn-sm btn-primary text-nowrap" title="<?= __("Save Template"); ?>">
 							<i class="fas fa-save me-1"></i><?= __("Save"); ?>
 						</button>
-						<button id="btnDelete" class="btn btn-sm btn-outline-danger" title="<?= __("Delete Template"); ?>">
+						<button id="btnDelete" class="btn btn-sm btn-outline-danger text-nowrap" title="<?= __("Delete Template"); ?>">
 							<i class="fas fa-trash"></i>
 						</button>
 					</div>
@@ -134,10 +134,10 @@ $qsl_field_groups = [
 
 				<?php $first = true; foreach ($qsl_field_groups as $group => $fields): ?>
 					<details class="qsl-cat" <?= $first ? 'open' : '' ?>>
-						<summary><?= htmlentities($group) ?></summary>
+						<summary><?= $group ?></summary>
 						<div class="qsl-cat-body">
 							<?php foreach ($fields as $f): ?>
-								<div class="qsl_designer_field" draggable="true" data-field="<?= htmlentities($f) ?>"><?= htmlentities($f) ?></div>
+								<div class="qsl_designer_field" draggable="true" data-field="<?= $f ?>"><?= $f ?></div>
 							<?php endforeach; ?>
 						</div>
 					</details>
