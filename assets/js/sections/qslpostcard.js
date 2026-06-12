@@ -364,3 +364,36 @@
 
         alert(LANG.savedReload);
     });
+
+	document.getElementById('btnDelete').addEventListener('click', async () => {
+		BootstrapDialog.confirm({
+			title: LANG.deleteTemplate,
+			message: LANG.deleteTemplateConfirm,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: async function(result) {
+				if(result) {
+					const id = document.getElementById('tplSelect').value || 0;
+					const name = document.getElementById('tplName').value || LANG.untitled;
+					const payload = {
+						id: parseInt(id, 10)
+					};
+					const r = await fetch(base_url + 'index.php/qslpostcard/delete_template', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(payload)
+					});
+					const out = await r.json();
+					if (!out.ok) return showToast('Error', LANG.deleteFailed, 'bg-danger text-white', 5000);
+					showToast('Success', LANG.deleteSuccess, 'bg-success text-white', 5000);
+					$("#tplSelect option[value='" + id + "']").remove();
+				}
+			}
+		});
+
+
+    });

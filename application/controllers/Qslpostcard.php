@@ -278,4 +278,24 @@ class Qslpostcard extends CI_Controller {
             ->set_content_type('application/json')
             ->set_output(json_encode(['ok' => false, 'error' => $msg]));
     }
+
+	function delete_template() {
+		$raw = $this->input->raw_input_stream;
+		$payload = json_decode($raw, true);
+
+		if (!is_array($payload) || empty($payload['id'])) {
+			return $this->_json_error('Invalid payload');
+		}
+
+		$id = (int)$payload['id'];
+
+		$success = $this->Qslpostcard_model->delete_template($id);
+		if (!$success) {
+			return $this->_json_error('Failed to delete template', 500);
+		}
+
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(['ok' => true]));
+	}
 }

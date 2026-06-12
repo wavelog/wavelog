@@ -7,7 +7,7 @@ class Qslpostcard_model extends CI_Model {
 
     function __construct() {
         $this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
 		]);
@@ -711,4 +711,14 @@ class Qslpostcard_model extends CI_Model {
 
         return '';
     }
+
+	function delete_template($id) {
+		try {
+			$this->db->where('id', $id)->where('user_id', $this->session->userdata('user_id'))->delete('qsl_postcard_templates');
+			return true;
+		} catch (Exception $e) {
+			log_message('error', 'Error deleting QSL postcard template: ' . $e->getMessage());
+			return false;
+		}
+	}
 }

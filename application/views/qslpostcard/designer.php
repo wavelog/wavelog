@@ -11,7 +11,11 @@
 		comments: <?= json_encode(__("Comments:")); ?>,
 		untitled: <?= json_encode(__("Untitled")); ?>,
 		saveFailed: <?= json_encode(__("Save failed")); ?>,
-		savedReload: <?= json_encode(__("Saved. Reload page to see template in list.")); ?>
+		savedReload: <?= json_encode(__("Saved. Reload page to see template in list.")); ?>,
+		deleteTemplate: <?= json_encode(__("Delete Template?")); ?>,
+		deleteTemplateConfirm: <?= json_encode(__("Are you sure you want to delete this template? This action cannot be undone.")); ?>,
+		deleteFailed: <?= json_encode(__("Delete failed")); ?>,
+		deleteSuccess: <?= json_encode(__("Template deleted successfully!")); ?>,
 	};
 </script>
 
@@ -39,12 +43,12 @@
 						<label><?= __("Postcard preview image"); ?></label>
 						<input type="file" id="previewImageFile" class="form-control mb-2" accept=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG">
 
-						<button type="button" id="btnUploadPreview" class="btn btn-secondary w-100 mb-2">
-							<?= __("Upload Preview Image"); ?>
-						</button>
+						<button type="button" id="btnUploadPreview" class="btn btn-secondary w-100 mb-2"><?= __("Upload Preview Image"); ?></button>
 
 						<div id="previewImageStatus" class="small mb-2"></div>
 						<button id="btnSave" class="btn btn-primary w-100 mb-2"><?= __("Save Template"); ?></button>
+
+						<button id="btnDelete" class="btn btn-danger w-100 mb-2"><?= __("Delete Template"); ?></button>
 
 						<div class="small text-muted mb-2">
 							<?= __("Tip: After a test print, adjust global offsets rather than moving every field."); ?>
