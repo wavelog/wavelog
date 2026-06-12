@@ -51,7 +51,7 @@ $qsl_field_groups = [
 							<?php endforeach; ?>
 						</select>
 						<input id="tplName" class="form-control form-control-sm" style="min-width:140px;" placeholder="<?= __("Template name"); ?>">
-						<button id="btnSave" class="btn btn-sm btn-primary text-nowrap" title="<?= __("Save Template"); ?>">
+						<button id="btnSave" class="btn btn-sm btn-success text-nowrap" title="<?= __("Save Template"); ?>">
 							<i class="fas fa-save me-1"></i><?= __("Save"); ?>
 						</button>
 						<button id="btnDelete" class="btn btn-sm btn-outline-danger text-nowrap" title="<?= __("Delete Template"); ?>">
@@ -65,10 +65,10 @@ $qsl_field_groups = [
 					<label class="qsl-tb-label"><?= __("Background image"); ?></label>
 					<div class="d-flex gap-2 align-items-center">
 						<input type="file" id="previewImageFile" class="form-control form-control-sm" style="max-width:200px;" accept=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG">
-						<button type="button" id="btnUploadPreview" class="btn btn-sm btn-secondary" title="<?= __("Upload Preview Image"); ?>">
+						<button type="button" id="btnUploadPreview" class="btn btn-sm btn-primary" title="<?= __("Upload Preview Image"); ?>">
 							<i class="fas fa-upload"></i>
 						</button>
-						<a id="btnPdf" class="btn btn-sm btn-success" href="#" target="_blank" title="<?= __("Generate PDF (demo)"); ?>">
+						<a id="btnPdf" class="btn btn-sm btn-primary" href="#" target="_blank" title="<?= __("Generate PDF (demo)"); ?>">
 							<i class="fas fa-file-pdf me-1"></i><?= __("PDF"); ?>
 						</a>
 					</div>
@@ -78,8 +78,8 @@ $qsl_field_groups = [
 				<div class="qsl-tb-group">
 					<label class="qsl-tb-label"><?= __("History"); ?></label>
 					<div class="btn-group btn-group-sm" role="group">
-						<button id="btnUndo" class="btn btn-outline-secondary" disabled title="<?= __("Undo"); ?> (Ctrl+Z)"><i class="fas fa-undo"></i></button>
-						<button id="btnRedo" class="btn btn-outline-secondary" disabled title="<?= __("Redo"); ?> (Ctrl+Y)"><i class="fas fa-redo"></i></button>
+						<button id="btnUndo" class="btn btn-primary" disabled title="<?= __("Undo"); ?> (Ctrl+Z)"><i class="fas fa-undo"></i></button>
+						<button id="btnRedo" class="btn btn-primary" disabled title="<?= __("Redo"); ?> (Ctrl+Y)"><i class="fas fa-redo"></i></button>
 					</div>
 				</div>
 
@@ -87,9 +87,9 @@ $qsl_field_groups = [
 				<div class="qsl-tb-group">
 					<label class="qsl-tb-label"><?= __("Zoom"); ?></label>
 					<div class="btn-group btn-group-sm" role="group">
-						<button id="btnZoomOut" class="btn btn-outline-secondary"><i class="fas fa-minus"></i></button>
-						<button id="btnZoomReset" class="btn btn-outline-secondary" style="min-width:56px;"><span id="zoomLabel">100%</span></button>
-						<button id="btnZoomIn" class="btn btn-outline-secondary"><i class="fas fa-plus"></i></button>
+						<button id="btnZoomOut" class="btn btn-primary px-2"><i class="fas fa-minus"></i></button>
+						<button id="btnZoomReset" class="btn btn-primary" style="min-width:56px;"><span id="zoomLabel">100%</span></button>
+						<button id="btnZoomIn" class="btn btn-primary px-2"><i class="fas fa-plus"></i></button>
 					</div>
 				</div>
 
