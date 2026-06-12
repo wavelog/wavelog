@@ -246,7 +246,6 @@ $qsl_field_groups = [
 
 <!-- ===== CONTEXT MENU ===== -->
 <div id="qslCtxMenu" class="qsl-ctx-menu" style="display:none;">
-	<button type="button" class="qsl-ctx-item" data-action="edit"><i class="fas fa-pen fa-fw me-2"></i><?= __("Edit"); ?></button>
 	<button type="button" class="qsl-ctx-item" data-action="duplicate"><i class="fas fa-clone fa-fw me-2"></i><?= __("Duplicate"); ?></button>
 
 	<div class="qsl-ctx-sep" data-multi-only></div>
@@ -273,8 +272,6 @@ $qsl_field_groups = [
 	</div>
 
 	<div class="qsl-ctx-sep"></div>
-	<button type="button" class="qsl-ctx-item" data-action="front"><i class="fas fa-arrow-up fa-fw me-2"></i><?= __("Bring to front"); ?></button>
-	<button type="button" class="qsl-ctx-item" data-action="back"><i class="fas fa-arrow-down fa-fw me-2"></i><?= __("Send to back"); ?></button>
 	<div class="qsl-ctx-sep"></div>
 	<button type="button" class="qsl-ctx-item text-danger" data-action="delete"><i class="fas fa-trash fa-fw me-2"></i><?= __("Delete"); ?></button>
 </div>
