@@ -56,12 +56,30 @@ class Paths {
                     return realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type;
                 }
             } else {
-                log_message('error', 'getUserdataPath(); Can not get ' . $type . ' path because no user_id in session data');
+                log_message('info', 'getUserdataPath(); Can not get ' . $type . ' path because no user_id in session data');
             }
         } else {
             // if the config option is not set we just return the old path
             return $this->legacyPaths($type, $pathorurl);
         }
+    }
+
+    /**
+     * @deprecated Use getUserdataPath('eqsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathEqsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('eqsl_card', $pathorurl, $user_id);
+    }
+
+    /**
+     * @deprecated Use getUserdataPath('qsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathQsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('qsl_card', $pathorurl, $user_id);
     }
 
     private function legacyPaths($type, $pathorurl = 'u') {
