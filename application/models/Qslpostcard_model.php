@@ -80,53 +80,57 @@ class Qslpostcard_model extends CI_Model {
         return $rows;
     }
 
-    // --- Callbook cache (HamQTH) ---
-
     public function resolve_address($callsign) {
+		if (!$this->load->is_loaded('callbook')) {
+			$this->load->library('callbook');
+		}
+
         $callsign = strtoupper(trim($callsign));
         if (empty($callsign)) return null;
 
         // cache first
         $cache = $this->cache->get('callbook_cache_' . md5($callsign));
         if ($cache) {
-            return json_decode($cache['address_json'], true);
-        }
+			return json_decode($cache['address_json'], true);
+		}
 
-        // TODO: use Callbook Lib here!
+		$callbookData = $this->callbook->getCallbookData($callsign);
 
-        // 1) HamQTH
-        $addr = $this->hamqth_lookup($callsign);
-        if ($this->is_mailable_address($addr)) {
-            $this->cache_address($callsign, 'hamqth', $addr);
-            return $addr;
-        }
+		$adr = $this->returnAddressFromXml($callbookData);
 
-        // 2) QRZCQ
-        $addr = $this->qrzcq_lookup($callsign);
-        if ($this->is_mailable_address($addr)) {
-            $this->cache_address($callsign, 'qrzcq', $addr);
-            return $addr;
-        }
-
-        // 3) QRZ
-        $addr = $this->qrz_lookup($callsign);
-        if ($this->is_mailable_address($addr)) {
-            $this->cache_address($callsign, 'qrz', $addr);
-            return $addr;
+        if ($this->is_mailable_address($adr)) {
+            $this->cache_address($callsign, 'callbook', $adr);
+            return $adr;
         }
 
         return null;
     }
 
-    private function is_mailable_address($addr) {
-        if (!is_array($addr)) return false;
+	private function returnAddressFromXml($callbookData) {
+		$name = trim($callbookData['name'] ?? '');
+		if ($name === '') $name = trim($callbookData['nickname']);
+		if ($name === '') $name = $callsign;
 
-        $name    = trim($addr['name'] ?? '');
-        $addr1   = trim($addr['addr1'] ?? '');
-        $city    = trim($addr['city'] ?? '');
-        $state   = trim($addr['state'] ?? '');
-        $zip     = trim($addr['zip'] ?? '');
-        $country = trim($addr['country'] ?? '');
+		return [
+			'name'    => $name,
+			'addr1'   => $callbookData['addr1'],
+			'addr2'   => $callbookData['addr2'],
+			'city'    => $callbookData['city'],
+			'state'   => $callbookData['state'],
+			'zip'     => $callbookData['zip'],
+			'country' => $callbookData['country'],
+		];
+	}
+
+    private function is_mailable_address($callbookData) {
+        if (!is_array($callbookData)) return false;
+
+        $name    = trim($callbookData['name'] ?? '');
+        $addr1   = trim($callbookData['addr1'] ?? '');
+        $city    = trim($callbookData['city'] ?? '');
+        $state   = trim($callbookData['state'] ?? '');
+        $zip     = trim($callbookData['zip'] ?? '');
+        $country = trim($callbookData['country'] ?? '');
 
         // Must at least have street line plus either
         // city/state/zip info or country
