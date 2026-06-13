@@ -50,6 +50,7 @@ class Qslpostcard extends CI_Controller {
         $config['upload_path']   = $this->paths->getUserdataPath(self::PATH_TYPE, 'p');
         $config['allowed_types'] = 'jpg|jpeg|png|JPG|JPEG|PNG';
         $config['encrypt_name']  = true;
+        $config['max_size']      = Qslpostcard_model::MAX_BG_IMAGE_BYTES / 1024; // KB; same cap as render-side
 
         $this->load->library('upload', $config);
 

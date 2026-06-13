@@ -5,6 +5,8 @@ use Wavelog\Label\FPDF;
 
 class Qslpostcard_model extends CI_Model {
 
+    const MAX_BG_IMAGE_BYTES = 5 * 1024 * 1024; // 5 MB
+
     function __construct() {
         $this->load->driver('cache', [
 			'adapter' => $this->config->item('cache_adapter') ?? 'file',
@@ -376,9 +378,11 @@ class Qslpostcard_model extends CI_Model {
         // Background image (FPDF supports jpg/png/gif only)
         $bgPath = null;
         if (!empty($background)) {
-            $candidate = FCPATH . ltrim($background, '/');
+            // preview_image is untrusted client input; basename() + the user's own dir make ../ impossible
+            $dir = $this->paths->getUserdataPath('qslpostcard_images', 'p');
+            $candidate = $dir . '/' . basename($background);
             $ext = strtolower(pathinfo($candidate, PATHINFO_EXTENSION));
-            if (file_exists($candidate) && in_array($ext, ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG'])) {
+            if ($dir !== false && file_exists($candidate) && in_array($ext, ['jpg', 'jpeg', 'png']) && filesize($candidate) <= self::MAX_BG_IMAGE_BYTES && @getimagesize($candidate) !== false) {
                 $bgPath = $candidate;
             } else {
                 log_message('error', 'QSLPOSTCARD background image not usable: ' . $candidate);
