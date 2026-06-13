@@ -51,8 +51,16 @@ class Qslpostcard_model extends CI_Model {
     // You will adjust table/column names based on your schema.
     public function get_sample_qsos($limit = 25) {
         $table = $this->config->item('table_name');
-        // Try the table name you used first
-        $q = $this->db->order_by('COL_TIME_ON', 'DESC')->limit((int)$limit)->get($table);
+
+        // Scope to the logged-in user's stations only
+        $sql = "SELECT " . $table . ".*
+            FROM " . $table . "
+            INNER JOIN station_profile ON station_profile.station_id = " . $table . ".station_id
+            WHERE station_profile.user_id = ?
+            ORDER BY " . $table . ".COL_TIME_ON DESC
+            LIMIT " . (int)$limit;
+
+        $q = $this->db->query($sql, [$this->session->userdata('user_id')]);
 
         if (!$q) {
             $db_error = $this->db->error();
@@ -526,37 +534,43 @@ class Qslpostcard_model extends CI_Model {
     }
 
     public function get_qsl_queue_qsos($filters = []) {
-        $this->db->from($this->config->item('table_name'));
+        $table = $this->config->item('table_name');
+
+        // Scope to the logged-in user's stations only
+        $binding = [$this->session->userdata('user_id')];
 
         // Most likely starting point for physical cards:
         // requested cards or unsent cards
         // Adjust after we confirm your queue logic.
-        $this->db->group_start();
-        $this->db->where('COL_QSL_SENT', 'R');
-        $this->db->or_where('COL_QSL_SENT', 'Q');
-        $this->db->or_where('COL_QSL_SENT', '');
-        $this->db->or_where('COL_QSL_SENT IS NULL', null, false);
-        $this->db->group_end();
+        $sql = "SELECT " . $table . ".*
+            FROM " . $table . "
+            INNER JOIN station_profile ON station_profile.station_id = " . $table . ".station_id
+            WHERE station_profile.user_id = ?
+            AND (" . $table . ".COL_QSL_SENT IN ('R', 'Q', '') OR " . $table . ".COL_QSL_SENT IS NULL)";
 
         if (!empty($filters['station_id'])) {
-            $this->db->where('station_id', $filters['station_id']);
+            $sql .= " AND " . $table . ".station_id = ?";
+            $binding[] = $filters['station_id'];
         }
 
         if (!empty($filters['band'])) {
-            $this->db->where('COL_BAND', $filters['band']);
+            $sql .= " AND " . $table . ".COL_BAND = ?";
+            $binding[] = $filters['band'];
         }
 
         if (!empty($filters['mode'])) {
-            $this->db->where('COL_MODE', $filters['mode']);
+            $sql .= " AND " . $table . ".COL_MODE = ?";
+            $binding[] = $filters['mode'];
         }
 
         if (!empty($filters['call'])) {
-            $this->db->like('COL_CALL', $filters['call']);
+            $sql .= " AND " . $table . ".COL_CALL LIKE ?";
+            $binding[] = '%' . $filters['call'] . '%';
         }
 
-        $this->db->order_by('COL_TIME_ON', 'DESC');
+        $sql .= " ORDER BY " . $table . ".COL_TIME_ON DESC";
 
-        $q = $this->db->get();
+        $q = $this->db->query($sql, $binding);
         if (!$q) {
             $db_error = $this->db->error();
             throw new Exception('DB query failed in get_qsl_queue_qsos(): ' . json_encode($db_error));
@@ -572,11 +586,20 @@ class Qslpostcard_model extends CI_Model {
             return [];
         }
 
-        $q = $this->db
-            ->from($this->config->item('table_name'))
-            ->where_in('COL_PRIMARY_KEY', $ids)
-            ->order_by('COL_TIME_ON', 'DESC')
-            ->get();
+        $table = $this->config->item('table_name');
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+
+        // Scope to the logged-in user's stations only
+        $sql = "SELECT " . $table . ".*
+            FROM " . $table . "
+            INNER JOIN station_profile ON station_profile.station_id = " . $table . ".station_id
+            WHERE station_profile.user_id = ?
+            AND " . $table . ".COL_PRIMARY_KEY IN (" . $placeholders . ")
+            ORDER BY " . $table . ".COL_TIME_ON DESC";
+
+        $binding = array_merge([$this->session->userdata('user_id')], $ids);
+
+        $q = $this->db->query($sql, $binding);
 
         if (!$q) {
             $db_error = $this->db->error();
