@@ -111,6 +111,12 @@ class Contesting extends CI_Controller {
 			$this->load->view('contesting/create', $data);
 		} else {
 			$this->Contesting_model->add();
+			$this->load->driver('cache', [
+                'adapter' => $this->config->item('cache_adapter') ?? 'file',
+                'backup' => $this->config->item('cache_backup') ?? 'file',
+                'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+            ]);
+			$this->cache->delete('valid_contests');
 		}
 	}
 
@@ -158,6 +164,12 @@ class Contesting extends CI_Controller {
 		else
 		{
 			$this->Contesting_model->edit($item_id_clean);
+			$this->load->driver('cache', [
+                'adapter' => $this->config->item('cache_adapter') ?? 'file',
+                'backup' => $this->config->item('cache_backup') ?? 'file',
+                'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+            ]);
+			$this->cache->delete('valid_contests');
 
 			$data['notice'] = "Contest ".$this->security->xss_clean($this->input->post('name', true))." Updated";
 
@@ -169,6 +181,12 @@ class Contesting extends CI_Controller {
 		$id = $this->input->post('id', true);
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->delete($id);
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+		$this->cache->delete('valid_contests');
 	}
 
 	public function activate() {
@@ -184,6 +202,12 @@ class Contesting extends CI_Controller {
 		$id = $this->input->post('id', true);
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->deactivate($id);
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+		$this->cache->delete('valid_contests');
 		header('Content-Type: application/json');
 		echo json_encode(array('message' => 'OK'));
 		return;
@@ -192,6 +216,12 @@ class Contesting extends CI_Controller {
 	public function deactivateall() {
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->deactivateall();
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+		$this->cache->delete('valid_contests');
 		header('Content-Type: application/json');
 		echo json_encode(array('message' => 'OK'));
 		return;
@@ -200,6 +230,12 @@ class Contesting extends CI_Controller {
 	public function activateall() {
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->activateall();
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+		$this->cache->delete('valid_contests');
 		header('Content-Type: application/json');
 		echo json_encode(array('message' => 'OK'));
 		return;

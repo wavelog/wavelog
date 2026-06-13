@@ -2675,9 +2675,7 @@ function viewEqsl(picture, callsign) {
                     }
 
                 } else if (data.status.front.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger">'+"<?= __("Front QSL Card:"); ?>  " +
-                    data.status.front.error +
-                        '</div>');
+                    showToast("<?= __("Front QSL Card"); ?>", data.status.front.error, 'bg-danger text-white', 5000);
                 }
                 if (data.status.back.status == 'Success') {
                     var qsoid = $("#qsoid").text();
@@ -2713,10 +2711,11 @@ function viewEqsl(picture, callsign) {
                         $("#qslcardback").val(null);
                     }
                 } else if (data.status.back.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger">\n'+"<?= __("Back QSL Card:"); ?>  " +
-                    data.status.back.error +
-                        '</div>');
+                    showToast("<?= __("Back QSL Card"); ?>", data.status.back.error, 'bg-danger text-white', 5000);
                 }
+            },
+            error: function () {
+                showToast("<?= __("Upload failed"); ?>", "<?= __("The QSL card upload could not be completed."); ?>", 'bg-danger text-white', 5000);
             }
         });
     }

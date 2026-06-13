@@ -418,7 +418,16 @@ class eqsl extends CI_Controller {
 				}
 
 				$filename = uniqid() . '.jpg';
-				$image_path = $this->paths->getUserdataPath('eqsl_card', 'p') . '/' . $filename;
+				$eqsl_path = $this->paths->getUserdataPath('eqsl_card', 'p');
+
+				// Make sure storing the downloaded card won't fill up the disk
+				$this->load->library('upload_guard');
+				if (!$this->upload_guard->has_free_space($eqsl_path, strlen($content))) {
+					show_error(__('Not enough free disk space to store the eQSL card'), 507);
+					return;
+				}
+
+				$image_path = $eqsl_path . '/' . $filename;
 				$save_result = file_put_contents($image_path, $content);
 
 				if ($save_result !== false) {
@@ -570,7 +579,13 @@ class eqsl extends CI_Controller {
 			}
 			$filename = uniqid() . '.jpg';
 			if ($this->Eqsl_images->get_image($id) == "No Image") {
-				if (file_put_contents($this->paths->getUserdataPath('eqsl_card', 'p') . '/' . $filename, $content) !== false) {
+				$eqsl_path = $this->paths->getUserdataPath('eqsl_card', 'p');
+				$this->load->library('upload_guard');
+				if (!$this->upload_guard->has_free_space($eqsl_path, strlen($content))) {
+					$error = __('Not enough free disk space to store the eQSL card');
+					return $error;
+				}
+				if (file_put_contents($eqsl_path . '/' . $filename, $content) !== false) {
 					$this->Eqsl_images->save_image($id, $filename);
 				}
 			}
