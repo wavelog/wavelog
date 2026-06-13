@@ -26,10 +26,10 @@ class Staticmap extends CI_Controller {
         }
 
         // Optional override-parameters
-        $band = $this->input->get('band', TRUE) ?? 'nbf';
-        $this->config->load('bands', true, true);
-        $valid_bands = $this->config->item('bands_available', 'bands') ?? [];
-        if ($band != 'nbf' && $band != 'SAT' && !in_array($band, $valid_bands, true)) {
+        $band = strtolower($this->input->get('band', TRUE) ?? '');
+        if ($band === 'sat') {
+            $band = 'SAT'; // we need to uppercase SAT for the query, but for the cache key we want it lowercase as all other bands are lowercase
+        } elseif ($band !== 'nbf' && !in_array($band, $this->config->item('bands_available') ?? [], true)) {
             $band = 'nbf';
         }
 
