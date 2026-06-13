@@ -72,9 +72,9 @@ class Qslpostcard_model extends CI_Model {
         $rows = $q->result_array();
 
         if (!empty($rows)) {
-            log_message('error', 'QSLPOSTCARD sample row keys: ' . implode(', ', array_keys($rows[0])));
+            log_message('debug', 'QSLPOSTCARD sample row keys: ' . implode(', ', array_keys($rows[0])));
         } else {
-            log_message('error', 'QSLPOSTCARD get_sample_qsos() returned 0 rows');
+            log_message('debug', 'QSLPOSTCARD get_sample_qsos() returned 0 rows');
         }
 
         return $rows;
@@ -398,7 +398,7 @@ class Qslpostcard_model extends CI_Model {
 				$addr = $call ? $this->resolve_address($call) : null;
 				// Skip if no usable mailing address
 				if (!$this->is_mailable_address($addr)) {
-					log_message('error', 'QSLPOSTCARD skipping ' . $call . ' because no usable address was found');
+					log_message('debug', 'QSLPOSTCARD skipping ' . $call . ' because no usable address was found');
 					continue;
 				}
 			}
@@ -789,7 +789,7 @@ class Qslpostcard_model extends CI_Model {
 
 	private function unlink_preview_image($uid, $preview_image) {
 		try {
-			$file = basename($preview_image); 
+			$file = basename($preview_image);
 			$ext  = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 			if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
 				return;
