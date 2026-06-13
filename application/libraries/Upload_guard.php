@@ -9,8 +9,8 @@
  */
 class Upload_guard {
 
-    /** Minimum free space (bytes) that must remain after a write: 4 GB. */
-    const DEFAULT_BUFFER = 4294967296; // 4 * 1024 * 1024 * 1024
+    /** Minimum free space (bytes) that must remain after a write: 1 GB. */
+    const DEFAULT_BUFFER = 1073741824; // 1 * 1024 * 1024 * 1024
 
     /**
      * Returns true only if $path is on a volume that, after writing
