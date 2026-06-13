@@ -24,6 +24,7 @@ class EqslBulkDownloader {
 	public function __construct() {
 		$this->ci =& get_instance();
 		$this->ci->load->library('electronicqsl');
+		$this->ci->load->library('upload_guard');
 		$this->ci->load->model('user_model');
 		$this->ci->load->model('logbook_model');
 
@@ -299,7 +300,10 @@ class EqslBulkDownloader {
 					$filename = uniqid() . '.jpg';
 					$imagePath = $this->imagePath . '/' . $filename;
 
-					if (file_put_contents($imagePath, $content) !== false) {
+					if (!$this->ci->upload_guard->has_free_space($this->imagePath, strlen($content))) {
+						log_message('error', 'Not enough free disk space to store eQSL image for QSO ' . $qsoId);
+						$status[$qsoId]['error'] = 'Not enough free disk space';
+					} else if (file_put_contents($imagePath, $content) !== false) {
 						$this->ci->Eqsl_images->save_image($qsoId, $filename);
 						$status[$qsoId]['success'] = true;
 						log_message('debug', 'Successfully downloaded image for QSO ' . $qsoId);
@@ -410,6 +414,11 @@ class EqslBulkDownloader {
 		// Save image
 		$filename = uniqid() . '.jpg';
 		$imagePath = $this->imagePath . '/' . $filename;
+
+		if (!$this->ci->upload_guard->has_free_space($this->imagePath, strlen($content))) {
+			log_message('error', 'Not enough free disk space to store eQSL image: ' . $imagePath);
+			return false;
+		}
 
 		if (file_put_contents($imagePath, $content) !== false) {
 			$this->ci->Eqsl_images->save_image($qsoId, $filename);
