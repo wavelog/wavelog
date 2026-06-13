@@ -1,39 +1,47 @@
 <div class="container mt-3">
     <h2><?= __("Print QSL Postcards") ?></h2>
 
-    <div class="card p-3">
-        <div class="mb-3">
-            <label class="form-label"><?= __("Template") ?></label>
-            <select id="template_id" class="form-control">
-                <?php foreach ($templates as $t): ?>
-                    <option value="<?= (int)$t['id'] ?>">
-                        <?= htmlentities($t['name']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="dedupe_by_call" checked>
-            <label class="form-check-label" for="dedupe_by_call">
-                <?= __("One postcard per callsign") ?>
-            </label>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="print_background">
-            <label class="form-check-label" for="print_background">
-                <?= __("Print background image (uncheck for pre-printed cards)") ?>
-            </label>
-        </div>
-		<div class="mb-3 form-check">
-			<input type="checkbox" class="form-check-input" id="print_no_address">
-			<label class="form-check-label" for="print_no_address">
-				<?= __("Skip address printing (for printing on regular QSL cards)") ?>
-			</label>
+	<?php if (!empty($templates)) { ?>
+
+		<div class="card p-3">
+			<div class="mb-3">
+				<label class="form-label"><?= __("Template") ?></label>
+				<select id="template_id" class="form-control">
+					<?php foreach ($templates as $t): ?>
+						<option value="<?= (int)$t['id'] ?>">
+							<?= htmlentities($t['name']) ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+			<div class="mb-3 form-check">
+				<input type="checkbox" class="form-check-input" id="dedupe_by_call" checked>
+				<label class="form-check-label" for="dedupe_by_call">
+					<?= __("One postcard per callsign") ?>
+				</label>
+			</div>
+			<div class="mb-3 form-check">
+				<input type="checkbox" class="form-check-input" id="print_background">
+				<label class="form-check-label" for="print_background">
+					<?= __("Print background image (uncheck for pre-printed cards)") ?>
+				</label>
+			</div>
+			<div class="mb-3 form-check">
+				<input type="checkbox" class="form-check-input" id="print_no_address">
+				<label class="form-check-label" for="print_no_address">
+					<?= __("Skip address printing (for printing on regular QSL cards)") ?>
+				</label>
+			</div>
+			<button id="btnPrintQueue" class="btn btn-success w-auto">
+				<?= __("Generate Postcard PDF") ?>
+			</button>
 		</div>
-        <button id="btnPrintQueue" class="btn btn-success w-auto">
-            <?= __("Generate Postcard PDF") ?>
-        </button>
-    </div>
+
+		<?php } else { ?>
+			<div class="alert alert-info">
+				<?= __("No templates available for printing. Go to the QSL Postcard Designer and create a template first.") ?>
+			</div>
+		<?php } ?>
 </div>
 
 <script>
