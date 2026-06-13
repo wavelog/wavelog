@@ -113,7 +113,7 @@ if ($qsos->result() != NULL) { ?>
 	</p>
 	<p>
 
-<a class="btn btn-primary" href="<?php echo site_url('qslpostcard/printqueue') . '?' . $_SERVER['QUERY_STRING']; ?>"> <?= __("Print Postcards for all QSOs"); ?></a>
+<a class="btn btn-primary" href="<?php echo site_url('qslpostcard/printqueue'); ?>"> <?= __("Print Postcards for all QSOs"); ?></a>
 <button type="submit" formaction="<?php echo site_url('qslpostcard/printqueue_selected'); ?>" class="btn btn-primary"><?= __("Print Selected QSO Postcards"); ?></button>
 </p>
 </form>

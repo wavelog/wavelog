@@ -48,7 +48,7 @@
     document.getElementById('btnPrintQueue').addEventListener('click', () => {
         const tpl = document.getElementById('template_id').value;
 
-        const params = new URLSearchParams(<?= json_encode($filters) ?>);
+		const params = new URLSearchParams();
         params.set('dedupe_by_call', document.getElementById('dedupe_by_call').checked ? '1' : '0');
         params.set('print_background', document.getElementById('print_background').checked ? '1' : '0');
         params.set('print_no_address', document.getElementById('print_no_address').checked ? '1' : '0');

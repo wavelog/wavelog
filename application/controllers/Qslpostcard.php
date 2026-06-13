@@ -164,9 +164,6 @@ class Qslpostcard extends CI_Controller {
         $data['page_title'] = __("Print QSL Postcards");
         $data['templates']  = $this->Qslpostcard_model->list_templates();
 
-        // preserve incoming filter params from qsl queue
-        $data['filters'] = $this->input->get(NULL, true);
-
         $this->load->view('interface_assets/header', $data);
         $this->load->view('qslpostcard/printqueue');
         $this->load->view('interface_assets/footer');
