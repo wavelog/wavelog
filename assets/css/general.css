@@ -1601,9 +1601,12 @@ svg text.month { fill: #AAA; }
 #rulerTop,
 #rulerLeft {
 	position: absolute;
-	background: var(--bs-secondary-bg, #e9ecef);
-	border: 1px solid var(--bs-border-color);
-	color: var(--bs-body-color);
+	background: #e9ecef;
+	background: light-dark(#e9ecef, #343a40);
+	border: 1px solid #dee2e6;
+	border-color: light-dark(#dee2e6, #495057);
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
 	font-weight: 600;
 }
 
@@ -1644,7 +1647,8 @@ svg text.month { fill: #AAA; }
 	position: absolute;
 	bottom: 0;
 	width: 1px;
-	background: var(--bs-secondary-color, #666);
+	background: #495057;
+	background: light-dark(#495057, #adb5bd);
 }
 
 .ruler-tick-top.major {
@@ -1660,7 +1664,8 @@ svg text.month { fill: #AAA; }
 	position: absolute;
 	right: 0;
 	height: 1px;
-	background: var(--bs-secondary-color, #666);
+	background: #495057;
+	background: light-dark(#495057, #adb5bd);
 }
 
 .ruler-tick-left.major {
@@ -1678,6 +1683,8 @@ svg text.month { fill: #AAA; }
 	top: 3px;
 	font-size: 10px;
 	line-height: 1;
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
 	background: transparent;
 }
 
@@ -1686,6 +1693,8 @@ svg text.month { fill: #AAA; }
 	right: 18px;
 	font-size: 10px;
 	line-height: 1;
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
 	background: transparent;
 }
 
