@@ -193,24 +193,22 @@ class Qslpostcard extends CI_Controller {
                 return;
             }
 
+            // The GET params are QSO *filters* only (station/band/mode/call). The
+            // print options themselves come from the template's layout.options, not
+            // the form: per_callsign + qsos_per_card are applied in the renderer,
+            // print_background / skip_address are passed through here.
             $filters = $this->input->get(NULL, true);
 
             $qsos = $this->Qslpostcard_model->get_qsl_queue_qsos($filters);
 
-            $dedupe = $this->input->get('dedupe_by_call', true);
-
-            if ((string)$dedupe === '1') {
-                $qsos = $this->Qslpostcard_model->dedupe_qsos_by_call($qsos);
-            }
             if (empty($qsos)) {
                 show_error(__("No QSOs found for postcard printing"));
                 return;
             }
 
-            // Background only when requested, blank for pre-printed cards
-            $background = (string)$this->input->get('print_background', true) === '1' ? $tpl['preview_image'] : null;
-
-            $noaddress = (string)$this->input->get('print_no_address', true) === '1' ? true : false;
+            $opts       = $layout['options'] ?? [];
+            $background = !empty($opts['print_background']) ? $tpl['preview_image'] : null;
+            $noaddress  = !empty($opts['skip_address']);
 
             $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
@@ -266,20 +264,17 @@ class Qslpostcard extends CI_Controller {
 
             $qsos = $this->Qslpostcard_model->get_qsos_by_ids($selected_ids);
 
-            $dedupe = $this->input->post('dedupe_by_call', true);
-            if ((string)$dedupe === '1') {
-                $qsos = $this->Qslpostcard_model->dedupe_qsos_by_call($qsos);
-            }
-
             if (empty($qsos)) {
                 show_error(__("No QSOs found for postcard printing"));
                 return;
             }
 
-            // Background only when requested, blank for pre-printed cards
-            $background = (string)$this->input->post('print_background', true) === '1' ? $tpl['preview_image'] : null;
-
-            $noaddress = (string)$this->input->post('print_no_address', true) === '1' ? true : false;
+            // Print options come from the template's layout.options, not the form:
+            // per_callsign + qsos_per_card are applied in the renderer, print_background
+            // / skip_address are passed through here.
+            $opts       = $layout['options'] ?? [];
+            $background = !empty($opts['print_background']) ? $tpl['preview_image'] : null;
+            $noaddress  = !empty($opts['skip_address']);
 
             $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
