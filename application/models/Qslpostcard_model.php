@@ -108,17 +108,17 @@ class Qslpostcard_model extends CI_Model {
 
 	private function returnAddressFromXml($callbookData) {
 		$name = trim($callbookData['name'] ?? '');
-		if ($name === '') $name = trim($callbookData['nickname']);
+		if ($name === '') $name = trim($callbookData['nickname'] ?? '');
 		if ($name === '') $name = $callsign;
 
 		return [
 			'name'    => $name,
-			'addr1'   => $callbookData['addr1'],
-			'addr2'   => $callbookData['addr2'],
-			'city'    => $callbookData['city'],
-			'state'   => $callbookData['state'],
-			'zip'     => $callbookData['zip'],
-			'country' => $callbookData['country'],
+			'addr1'   => $callbookData['addr1'] ?? '',
+			'addr2'   => $callbookData['addr2'] ?? '',
+			'city'    => $callbookData['city'] ?? '',
+			'state'   => $callbookData['state'] ?? '',
+			'zip'     => $callbookData['zip'] ?? '',
+			'country' => $callbookData['country'] ?? '',
 		];
 	}
 
