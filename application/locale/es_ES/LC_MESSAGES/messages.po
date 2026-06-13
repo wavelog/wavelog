@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-12 06:46+0000\n"
+"POT-Creation-Date: 2026-06-13 10:25+0000\n"
 "PO-Revision-Date: 2026-06-04 08:35+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -169,9 +169,9 @@ msgstr "Ducting troposférico"
 #: application/controllers/Dxcluster.php:13 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:66 application/controllers/Eqsl.php:166
 #: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:279
-#: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:517
-#: application/controllers/Eqsl.php:584 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:659
+#: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:526
+#: application/controllers/Eqsl.php:599 application/controllers/Eqsl.php:615
+#: application/controllers/Eqsl.php:674
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -190,6 +190,7 @@ msgstr "Ducting troposférico"
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
+#: application/controllers/Qsl.php:85 application/controllers/Qsl.php:133
 #: application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:159 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:304
@@ -1276,39 +1277,43 @@ msgstr "Imagen de eQSL no disponible"
 msgid "Failed to download eQSL image"
 msgstr "Falló la descarga de la imagen de eQSL"
 
-#: application/controllers/Eqsl.php:441
+#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
+msgid "Not enough free disk space to store the eQSL card"
+msgstr ""
+
+#: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
 msgstr "Fallo al cargar el cache de imagen de eQSL"
 
-#: application/controllers/Eqsl.php:588
+#: application/controllers/Eqsl.php:603
 msgid "eQSL Tools"
 msgstr "Herramientas de eQSL"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:633
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
 "Limitado a los primeros 150 QSOs para esta solicitud. Por favor ejecute "
 "nuevamente."
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:639
 msgid " / Errors: "
 msgstr " / Errores: "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:639
 msgid "Successfully downloaded: "
 msgstr "Descargado satisfactoriamente: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:646
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 "Alcanzado el limite de solicitudes a eQSL. Por favor espere para ejecutar "
 "nuevamente."
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:658
 msgid "eQSL Card Image Download"
 msgstr "Descargar Imagen de Tarjeta eQSL"
 
-#: application/controllers/Eqsl.php:667
+#: application/controllers/Eqsl.php:682
 msgid "All eQSLs marked as uploaded"
 msgstr "Todas las eQSLs marcadas como cargadas"
 
@@ -2655,6 +2660,14 @@ msgstr "Tarjetas QSL"
 msgid "Upload QSL Cards"
 msgstr "Subir tarjetas QSL"
 
+#: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
+msgid "Not enough free disk space to store the QSL card."
+msgstr ""
+
+#: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
+msgid "The uploaded file is not a valid image."
+msgstr ""
+
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
 msgstr "Imprimir QSLs solicitadas"
@@ -2754,8 +2767,8 @@ msgstr "Editar"
 #: application/views/interface_assets/footer.php:65
 #: application/views/interface_assets/footer.php:2647
 #: application/views/interface_assets/footer.php:2665
-#: application/views/interface_assets/footer.php:2686
-#: application/views/interface_assets/footer.php:2704
+#: application/views/interface_assets/footer.php:2684
+#: application/views/interface_assets/footer.php:2702
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:896
 #: application/views/lotw_views/index.php:143
@@ -12407,8 +12420,8 @@ msgstr "Fecha QSL"
 #: application/views/eqslcard/index.php:68
 #: application/views/interface_assets/footer.php:2648
 #: application/views/interface_assets/footer.php:2666
-#: application/views/interface_assets/footer.php:2687
-#: application/views/interface_assets/footer.php:2705
+#: application/views/interface_assets/footer.php:2685
+#: application/views/interface_assets/footer.php:2703
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:739
 msgid "View"
@@ -13072,25 +13085,33 @@ msgid "eQSL Card for "
 msgstr "Tarjeta eQSL para "
 
 #: application/views/interface_assets/footer.php:2659
-#: application/views/interface_assets/footer.php:2698
+#: application/views/interface_assets/footer.php:2696
 #: application/views/view_log/qso.php:729
 msgid "QSL image file"
 msgstr "Archivo de imagen QSL"
 
 #: application/views/interface_assets/footer.php:2678
-msgid "Front QSL Card:"
-msgstr "Frente de la tarjeta QSL:"
+msgid "Front QSL Card"
+msgstr ""
 
-#: application/views/interface_assets/footer.php:2716
-msgid "Back QSL Card:"
-msgstr "Tarjeta QSL de regreso:"
+#: application/views/interface_assets/footer.php:2714
+msgid "Back QSL Card"
+msgstr ""
 
-#: application/views/interface_assets/footer.php:2727
-#: application/views/interface_assets/footer.php:2752
+#: application/views/interface_assets/footer.php:2718
+msgid "The QSL card upload could not be completed."
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2718
+msgid "Upload failed"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2726
+#: application/views/interface_assets/footer.php:2751
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Agregar QSOs adicionales a una tarjeta QSL"
 
-#: application/views/interface_assets/footer.php:2763
+#: application/views/interface_assets/footer.php:2762
 msgid "Something went wrong. Please try again!"
 msgstr "Algo salió mal. ¡Inténtalo de nuevo!"
 
@@ -20637,6 +20658,12 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Front QSL Card:"
+#~ msgstr "Frente de la tarjeta QSL:"
+
+#~ msgid "Back QSL Card:"
+#~ msgstr "Tarjeta QSL de regreso:"
 
 #, php-format
 #~ msgid "For more information or help, take a look in the %s."
