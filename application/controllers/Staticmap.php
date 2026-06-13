@@ -28,7 +28,7 @@ class Staticmap extends CI_Controller {
         // Optional override-parameters
         $band = $this->input->get('band', TRUE) ?? 'nbf';
         $this->config->load('bands', true, true);
-        $valid_bands = $this->config->item('bands', 'bands_available') ?? [];
+        $valid_bands = $this->config->item('bands_available', 'bands') ?? [];
         if ($band != 'nbf' && $band != 'SAT' && !in_array($band, $valid_bands, true)) {
             $band = 'nbf';
         }
