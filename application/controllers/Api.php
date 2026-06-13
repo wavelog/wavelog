@@ -1295,6 +1295,13 @@ class API extends CI_Controller {
 				$return['cont'] = $callsign_dxcc_lookup['cont'] ?? '';
 			}
 
+			// ITU zone from the DXCC entity (same source/timing as dxcc_cqz). Only add the
+			// key when the entity has a known ITU zone, otherwise omit it entirely.
+			$entity = $this->logbook_model->get_entity($return['dxcc_id']);
+			if (is_array($entity) && (($entity['ituz'] ?? 0) > 0)) {
+				$return['dxcc_ituz'] = (int) $entity['ituz'];
+			}
+
 			// Query stations of KeyOwner for an already worked call
 			$userdata=$this->user_model->get_by_id($user_id);
 			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids,$userdata->row()->user_default_confirmation,$band,$mode);
