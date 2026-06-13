@@ -768,11 +768,49 @@ class Qslpostcard_model extends CI_Model {
 
 	function delete_template($id) {
 		try {
-			$this->db->where('id', $id)->where('user_id', $this->session->userdata('user_id'))->delete('qsl_postcard_templates');
+			$uid = $this->session->userdata('user_id');
+
+			$sql = "SELECT preview_image FROM qsl_postcard_templates WHERE id = ? AND user_id = ?";
+			$tpl = $this->db->query($sql, [$id, $uid])->row_array();
+
+			$sql = "DELETE FROM qsl_postcard_templates WHERE id = ? AND user_id = ?";
+			$this->db->query($sql, [$id, $uid]);
+
+			if (!empty($tpl['preview_image'])) {
+				$this->unlink_preview_image($uid, $tpl['preview_image']);
+			}
+
 			return true;
 		} catch (Exception $e) {
 			log_message('error', 'Error deleting QSL postcard template: ' . $e->getMessage());
 			return false;
+		}
+	}
+
+	private function unlink_preview_image($uid, $preview_image) {
+		try {
+			$file = basename($preview_image); 
+			$ext  = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+			if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
+				return;
+			}
+
+			$sql = "SELECT COUNT(1) AS cnt FROM qsl_postcard_templates WHERE user_id = ? AND preview_image LIKE ?";
+			$row = $this->db->query($sql, [$uid, '%' . $file])->row_array();
+			if (!empty($row['cnt'])) {
+				return;
+			}
+
+			$dir = $this->paths->getUserdataPath('qslpostcard_images', 'p');
+			if ($dir === false) {
+				return;
+			}
+			$candidate = $dir . '/' . $file;
+			if (file_exists($candidate) && !@unlink($candidate)) {
+				log_message('error', 'QSLPOSTCARD could not unlink background image: ' . $candidate);
+			}
+		} catch (Exception $e) {
+			log_message('error', 'QSLPOSTCARD error unlinking background image: ' . $e->getMessage());
 		}
 	}
 }
