@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-11 10:04+0000\n"
+"POT-Creation-Date: 2026-06-12 06:46+0000\n"
 "PO-Revision-Date: 2026-06-11 15:54+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -209,7 +209,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Satellite.php:666
 #: application/controllers/Satellite.php:675
 #: application/controllers/Sattimers.php:9
-#: application/controllers/Search.php:11
+#: application/controllers/Search.php:10
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:16
@@ -230,7 +230,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52 application/controllers/Search.php:10
+#: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -2859,7 +2859,7 @@ msgstr "här"
 msgid "Satellite Timers"
 msgstr "Satellittimers"
 
-#: application/controllers/Search.php:15 application/views/bandmap/list.php:578
+#: application/controllers/Search.php:14 application/views/bandmap/list.php:578
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:399
@@ -2879,15 +2879,14 @@ msgstr "Satellittimers"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
-#: application/controllers/Search.php:14
 msgid "Search"
 msgstr "Sök"
 
-#: application/controllers/Search.php:24 application/controllers/Search.php:23
+#: application/controllers/Search.php:23
 msgid "Search & Filter Logbook"
 msgstr "Sök & filtrera loggbok"
 
-#: application/controllers/Search.php:52 application/controllers/Search.php:51
+#: application/controllers/Search.php:51
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -3185,141 +3184,114 @@ msgstr "Tidplotter"
 msgid "Updates"
 msgstr "Uppdateringar"
 
-#: application/controllers/Update.php:68 application/controllers/Update.php:64
+#: application/controllers/Update.php:64
 msgid "Preparing DXCC-Entries: "
 msgstr "Förbereder DXCC-poster: "
 
-#: application/controllers/Update.php:133
 #: application/controllers/Update.php:125
 msgid "Preparing DXCC Exceptions: "
 msgstr "Förbereder DXCC-undantag: "
 
-#: application/controllers/Update.php:184
 #: application/controllers/Update.php:172
 msgid "Preparing DXCC Prefixes: "
 msgstr "Förbereder DXCC-prefix: "
 
-#: application/controllers/Update.php:277
 #: application/controllers/Update.php:261
 msgid "DONE"
 msgstr "KLAR"
 
-#: application/controllers/Update.php:326
 #: application/controllers/Update.php:306
 msgid "Updating..."
 msgstr "Uppdaterar..."
 
-#: application/controllers/Update.php:329
 #: application/controllers/Update.php:309
 msgid "Dxcc Entities:"
 msgstr "DXCC-entiteter:"
 
-#: application/controllers/Update.php:330
 #: application/controllers/Update.php:310
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc-undantag:"
 
-#: application/controllers/Update.php:331
 #: application/controllers/Update.php:311
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc-prefix:"
 
-#: application/controllers/Update.php:362
 #: application/controllers/Update.php:342
 msgid "SCP Update complete. Result: "
 msgstr "SCP-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:364
 #: application/controllers/Update.php:344
 msgid "SCP Update failed. Result: "
 msgstr "SCP-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:401
 #: application/controllers/Update.php:381
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-användaruppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:403
 #: application/controllers/Update.php:383
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-användaruppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:438
 #: application/controllers/Update.php:418
 msgid "DOK Update complete. Result: "
 msgstr "DOK-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:440
 #: application/controllers/Update.php:420
 msgid "DOK Update failed. Result: "
 msgstr "DOK-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:473
 #: application/controllers/Update.php:453
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:475
 #: application/controllers/Update.php:455
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:508
 #: application/controllers/Update.php:488
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:510
 #: application/controllers/Update.php:490
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:544
 #: application/controllers/Update.php:524
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl-uppdatering klar. Resultat: "
 
-#: application/controllers/Update.php:546
 #: application/controllers/Update.php:526
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:579
 #: application/controllers/Update.php:559
 msgid "POTA Update complete. Result: "
 msgstr "POTA-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:581
 #: application/controllers/Update.php:561
 msgid "POTA Update failed. Result: "
 msgstr "POTA-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:610
 #: application/controllers/Update.php:590
 msgid "TLE Update complete. Result: "
 msgstr "TLE-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:612
 #: application/controllers/Update.php:592
 msgid "TLE Update failed. Result: "
 msgstr "TLE-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:639
 #: application/controllers/Update.php:619
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT-uppdatering"
 
-#: application/controllers/Update.php:667
 #: application/controllers/Update.php:647
 msgid "Update of Hams of Note"
 msgstr "Uppdatering av Hams of Note"
 
-#: application/controllers/Update.php:707
 #: application/controllers/Update.php:687
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC-lokatorfiluppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:709
 #: application/controllers/Update.php:689
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC-lokatorfiluppdatering misslyckades. Resultat: "
@@ -4015,28 +3987,22 @@ msgstr "Antenner"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "I kategorin Kontakter måste titlarna på anteckningarna vara unika."
 
-#: application/models/Update_model.php:348
 #: application/models/Update_model.php:347
 msgid "Newer release available:"
 msgstr "Nyare version tillgänglig:"
 
-#: application/models/Update_model.php:352
 #: application/models/Update_model.php:351
 msgid "You are running the latest version."
 msgstr "Du kör den senaste versionen."
 
-#: application/models/Update_model.php:440
 #: application/models/Update_model.php:439
 msgid "cURL error:"
 msgstr "cURL-fel:"
 
-#: application/models/Update_model.php:474
 #: application/models/Update_model.php:473
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT existerar redan. LoTW-status uppdaterad."
 
-#: application/models/Update_model.php:477
-#: application/models/Update_model.php:506
 #: application/models/Update_model.php:476
 #: application/models/Update_model.php:505
 #, php-format
@@ -4045,32 +4011,26 @@ msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW-status för %d QSO uppdaterad"
 msgstr[1] "LoTW-status för %d QSOs uppdaterad"
 
-#: application/models/Update_model.php:480
 #: application/models/Update_model.php:479
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT existerar redan. Uppdatering av LoTW-status misslyckades."
 
-#: application/models/Update_model.php:483
 #: application/models/Update_model.php:482
 msgid "SAT already existing. Ignored."
 msgstr "SAT existerar redan. Ignorerad."
 
-#: application/models/Update_model.php:490
 #: application/models/Update_model.php:489
 msgid "SAT already existing. Display name updated."
 msgstr "SAT existerar redan. Visningsnamn uppdaterat."
 
-#: application/models/Update_model.php:492
 #: application/models/Update_model.php:491
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT finns redan. Uppdatering av visningsnamn misslyckades."
 
-#: application/models/Update_model.php:502
 #: application/models/Update_model.php:501
 msgid "New SAT. Inserted."
 msgstr "Ny SAT. Tillagd."
 
-#: application/models/Update_model.php:510
 #: application/models/Update_model.php:509
 msgid "New SAT. Insert failed."
 msgstr "Ny SAT. Kunde ej läggas till."
@@ -7829,8 +7789,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
-"506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
+"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -13604,8 +13564,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
-"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
+"ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -18845,8 +18805,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
-"(t.ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
+"ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
