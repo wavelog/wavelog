@@ -1779,11 +1779,13 @@ svg text.month { fill: #AAA; }
 }
 
 .qsl-ctx-item:hover {
-	background: var(--bs-tertiary-bg, rgba(127, 127, 127, .15));
+	background: rgba(127, 127, 127, .15);
+	background: color-mix(in srgb, var(--bs-body-color) 50%, transparent);
 }
 
 .qsl-ctx-item.text-danger:hover {
-	background: var(--bs-danger-bg-subtle, rgba(220, 53, 69, .15));
+	background: rgba(220, 53, 69, .15);
+	background: color-mix(in srgb, var(--bs-danger) 50%, transparent);
 }
 
 .qsl-ctx-sep {
