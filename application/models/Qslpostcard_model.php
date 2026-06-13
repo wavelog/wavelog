@@ -379,6 +379,14 @@ class Qslpostcard_model extends CI_Model {
         $ox = (float)($cal['offset_x_in'] ?? 0);
         $oy = (float)($cal['offset_y_in'] ?? 0);
 
+        // Template options (see layout.options). When qsos_per_card > 1, several
+        // QSOs share one card; "repeats per QSO" elements print once per QSO at a
+        // vertical pitch, the rest print once per card.
+        $opts    = $layout['options'] ?? [];
+        $perCard = max(1, (int)($opts['qsos_per_card'] ?? 1));
+        $perCall = !empty($opts['per_callsign']);
+        $pitch   = (float)($opts['row_pitch_in'] ?? 0.3);
+
         // Background image (FPDF supports jpg/png/gif only)
         $bgPath = null;
         if (!empty($background)) {
@@ -393,8 +401,21 @@ class Qslpostcard_model extends CI_Model {
             }
         }
 
+        // Group QSOs (by callsign when "one postcard per callsign" is set, else one
+        // group), then split each group into cards of $perCard QSOs. The first QSO
+        // of each chunk drives the per-card address resolution below.
+        $groups = [];
         foreach ($qsos as $qso) {
+            $key = $perCall ? strtoupper(trim($qso['COL_CALL'] ?? '')) : '__all__';
+            if ($key === '') {
+                continue;
+            }
+            $groups[$key][] = $qso;
+        }
 
+        foreach ($groups as $groupQsos) {
+        foreach (array_chunk($groupQsos, $perCard) as $chunk) {
+            $qso = $chunk[0];
             $call = strtoupper(trim($qso['COL_CALL'] ?? ''));
 			if ($noaddress) {
 				$addr = null;
@@ -415,40 +436,48 @@ class Qslpostcard_model extends CI_Model {
             }
 
             foreach (($layout['elements'] ?? []) as $el) {
-                $type = $el['type'] ?? 'field';
+                $type  = $el['type'] ?? 'field';
+                $field = $el['field'] ?? '';
+                // addr.* fields are always static (one address per card); other
+                // "repeats per QSO" fields print once per QSO in the chunk.
+                $isAddr  = ($type !== 'text') && str_starts_with($field, 'addr.');
+                $repeat  = !empty($el['repeat_per_qso']) && !$isAddr;
+                $targets = $repeat ? $chunk : [$chunk[0]];
 
-                if ($type === 'text') {
-                    $val = $el['text'] ?? '';
-                } else {
-                    $field = $el['field'] ?? '';
-                    $val = $this->resolve_field($field, $qso, $addr);
-                }
-
-                if ($val === '') {
-                    continue;
-                }
-
-                $x_in = (float)($el['x_in'] ?? 0) + $ox;
-                $y_in = (float)($el['y_in'] ?? 0) + $oy;
-
-                $x_mm = $x_in * 25.4;
-                $y_mm = $y_in * 25.4;
-
-                $font = $el['font'] ?? 'Helvetica';
-                $pt   = (float)($el['font_pt'] ?? 11);
-                $bold = !empty($el['bold']) ? 'B' : '';
-
-                $pdf->SetFont($font, $bold, $pt);
-
+                $font      = $el['font'] ?? 'Helvetica';
+                $pt        = (float)($el['font_pt'] ?? 11);
+                $bold      = !empty($el['bold']) ? 'B' : '';
                 $wrap_w_in = isset($el['wrap_w_in']) ? (float)$el['wrap_w_in'] : 0;
-                if ($wrap_w_in > 0) {
-                    $w = $wrap_w_in * 25.4;
-                    $pdf->SetXY($x_mm, $y_mm);
-                    $pdf->MultiCell($w, 4.5, $val);
-                } else {
-                    $pdf->Text($x_mm, $y_mm + ($pt * 0.30), $val);
+
+                foreach ($targets as $rowIdx => $qso) {
+                    if ($type === 'text') {
+                        $val = $el['text'] ?? '';
+                    } else {
+                        $val = $this->resolve_field($field, $qso, $addr);
+                    }
+
+                    if ($val === '') {
+                        continue;
+                    }
+
+                    $x_in = (float)($el['x_in'] ?? 0) + $ox;
+                    $y_in = (float)($el['y_in'] ?? 0) + $oy + ($repeat ? $pitch * $rowIdx : 0);
+
+                    $x_mm = $x_in * 25.4;
+                    $y_mm = $y_in * 25.4;
+
+                    $pdf->SetFont($font, $bold, $pt);
+
+                    if ($wrap_w_in > 0) {
+                        $w = $wrap_w_in * 25.4;
+                        $pdf->SetXY($x_mm, $y_mm);
+                        $pdf->MultiCell($w, 4.5, $val);
+                    } else {
+                        $pdf->Text($x_mm, $y_mm + ($pt * 0.30), $val);
+                    }
                 }
             }
+        }
         }
 
         $tmp = sys_get_temp_dir() . '/qsl_postcards_' . uniqid() . '.pdf';

@@ -1518,6 +1518,13 @@ svg text.month { fill: #AAA; }
 	margin-bottom: 0;
 }
 
+/* Right column stack (template options + properties) */
+.qsl-right-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
 /* --- Palette (left) --- */
 .qsl-palette .card-body {
 	max-height: 78vh;
@@ -1568,6 +1575,12 @@ svg text.month { fill: #AAA; }
 
 .qsl_designer_field:active {
 	cursor: grabbing;
+}
+
+/* WYSIWYG ghost rows for "repeats per QSO" fields (non-interactive clones) */
+.qsl_designer_ghost {
+	opacity: .35;
+	pointer-events: none;
 }
 
 /* --- Properties (right) --- */

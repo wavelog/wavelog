@@ -132,15 +132,25 @@ class Qslpostcard extends CI_Controller {
                 return;
             }
 
+            // Honour the template's options for the demo PDF. qsos_per_card /
+            // per_callsign are read from layout.options inside the renderer; here
+            // we translate print_background / skip_address into the renderer's
+            // $background / $noaddress overrides.
+            $opts    = $layout['options'] ?? [];
+            $sampleN = max(3, (int)($opts['qsos_per_card'] ?? 1) * 3);
+
             // v1 demo data
-            $qsos = $this->Qslpostcard_model->get_sample_qsos(3);
+            $qsos = $this->Qslpostcard_model->get_sample_qsos($sampleN);
 
             if (empty($qsos)) {
                 show_error(__("No QSOs returned by get_sample_qsos()"));
                 return;
             }
 
-            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $tpl['preview_image']);
+            $background = !empty($opts['print_background']) ? $tpl['preview_image'] : null;
+            $noaddress  = !empty($opts['skip_address']);
+
+            $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
             if (!$pdfPath || !file_exists($pdfPath)) {
                 show_error(__("PDF file was not created"));

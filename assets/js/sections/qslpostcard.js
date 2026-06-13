@@ -33,6 +33,15 @@
 	let zoom = 1;
 	let previewImagePath = null;
 	let previewImageUrl = null;
+
+	// Template-wide options (persisted in layout.options; see buildLayout/loadTemplate).
+	let tplOptions = {
+		qsos_per_card: 1,
+		per_callsign: false,
+		print_background: true,
+		skip_address: false,
+		row_pitch_in: 0.3,
+	};
 	const history = [];
 	const future = [];
 	let drag = null;            // active element drag
@@ -132,6 +141,7 @@
 		el.addEventListener('mousedown', e => onElementMouseDown(e, item.id));
 
 		stage.appendChild(el);
+		renderGhosts(item);
 		return el;
 	}
 
@@ -140,6 +150,7 @@
 		if (!item || !node) return;
 		node.style.left = inToPxX(item.x_in) + 'px';
 		node.style.top = inToPxY(item.y_in) + 'px';
+		repositionGhosts(item);
 	}
 
 	function styleNode(id) {
@@ -149,6 +160,48 @@
 		node.style.fontFamily = item.font || 'Helvetica';
 		node.style.fontSize = (item.font_pt || 12) + 'px';
 		node.style.fontWeight = item.bold ? '700' : '600';
+		// Keep WYSIWYG ghost rows in sync with the primary.
+		stage.querySelectorAll('.qsl_designer_ghost[data-ghost-for="' + item.id + '"]').forEach(g => {
+			g.textContent = node.textContent;
+			g.style.fontFamily = node.style.fontFamily;
+			g.style.fontSize = node.style.fontSize;
+			g.style.fontWeight = node.style.fontWeight;
+		});
+	}
+
+	// WYSIWYG ghost rows: faded extra copies of a "repeats per QSO" field, stacked
+	// below it by the row pitch. Ghosts have no data-id and no event listeners, so
+	// every selection/drag/marquee path (keyed off data-id) ignores them.
+	function renderGhosts(item) {
+		stage.querySelectorAll('.qsl_designer_ghost[data-ghost-for="' + item.id + '"]').forEach(n => n.remove());
+		if (!item.repeat_per_qso || tplOptions.qsos_per_card <= 1) return;
+		const primary = nodeById(item.id);
+		if (!primary) return;
+		const pitchPx = inToPxY(tplOptions.row_pitch_in);
+		const left = inToPxX(item.x_in);
+		const top = inToPxY(item.y_in);
+		for (let i = 1; i < tplOptions.qsos_per_card; i++) {
+			const g = primary.cloneNode(true);   // cloneNode does not copy event listeners
+			g.removeAttribute('data-id');
+			g.removeAttribute('data-type');
+			g.classList.remove('selected');
+			g.classList.add('qsl_designer_ghost');
+			g.dataset.ghostFor = item.id;
+			g.style.left = left + 'px';
+			g.style.top = (top + pitchPx * i) + 'px';
+			stage.appendChild(g);
+		}
+	}
+
+	function repositionGhosts(item) {
+		const ghosts = stage.querySelectorAll('.qsl_designer_ghost[data-ghost-for="' + item.id + '"]');
+		if (!ghosts.length) return;
+		const pitchPx = inToPxY(tplOptions.row_pitch_in);
+		const left = inToPxX(item.x_in), top = inToPxY(item.y_in);
+		ghosts.forEach((g, i) => {
+			g.style.left = left + 'px';
+			g.style.top = (top + pitchPx * (i + 1)) + 'px';
+		});
 	}
 
 	// ===================================================================
@@ -169,6 +222,7 @@
 			font_pt: 12,
 			bold: false,
 			wrap_w_in: 2.6,
+			repeat_per_qso: false,
 		};
 		if (type === 'field') item.field = value;
 		else item.text = value;
@@ -393,6 +447,10 @@
 		document.getElementById('propFontSize').value = item.font_pt || 12;
 		document.getElementById('propBold').checked = !!item.bold;
 		document.getElementById('propWrap').value = round2(item.wrap_w_in ?? 2.6);
+
+		// "Repeats per QSO" is a per-element toggle; only relevant for a single selection.
+		document.getElementById('propRepeatRow').style.display = multi ? 'none' : '';
+		if (!multi) document.getElementById('propRepeat').checked = !!item.repeat_per_qso;
 	}
 
 	// Keep X/Y inputs in sync while dragging a single element.
@@ -427,9 +485,43 @@
 	wireProp('propFontSize', (item, n) => { item.font_pt = clamp(parseInt(n.value || '12', 10), 6, 36); styleNode(item.id); });
 	wireProp('propBold', (item, n) => { item.bold = n.checked; styleNode(item.id); });
 	wireProp('propWrap', (item, n) => { item.wrap_w_in = Math.max(0.2, parseFloat(n.value || '2.6')); });
+	wireProp('propRepeat', (item, n) => { item.repeat_per_qso = n.checked; renderGhosts(item); });
 
 	document.getElementById('btnDuplicate').addEventListener('click', duplicateSelected);
 	document.getElementById('btnDeleteElem').addEventListener('click', deleteSelected);
+
+	// ===== Template options (not undo-tracked, like calibration offsets) =====
+	function applyTplOptionsToControls() {
+		document.getElementById('tplQsosPerCard').value = tplOptions.qsos_per_card;
+		document.getElementById('tplRowPitch').value = tplOptions.row_pitch_in;
+		document.getElementById('tplPerCallsign').checked = tplOptions.per_callsign;
+		document.getElementById('tplPrintBg').checked = tplOptions.print_background;
+		document.getElementById('tplSkipAddr').checked = tplOptions.skip_address;
+	}
+
+	// Show "Row spacing" only for multi-QSO cards.
+	function setPitchWrapVisibility() {
+		document.getElementById('tplPitchWrap').style.display = tplOptions.qsos_per_card > 1 ? '' : 'none';
+	}
+
+	// Called when QSOs/card or row spacing change via the controls: rebuild ghost rows.
+	function updateRepeatVisibility() {
+		setPitchWrapVisibility();
+		renderAll();
+	}
+
+	function wireTpl(elemId, key, cast, onChange) {
+		const node = document.getElementById(elemId);
+		const apply = () => { tplOptions[key] = cast(node); if (onChange) onChange(); };
+		node.addEventListener('input', apply);
+		node.addEventListener('change', apply);
+	}
+
+	wireTpl('tplQsosPerCard', 'qsos_per_card',     n => Math.max(1, parseInt(n.value, 10) || 1), updateRepeatVisibility);
+	wireTpl('tplRowPitch',    'row_pitch_in',      n => Math.max(0.05, parseFloat(n.value) || 0.3), updateRepeatVisibility);
+	wireTpl('tplPerCallsign', 'per_callsign',      n => n.checked);
+	wireTpl('tplPrintBg',     'print_background',  n => n.checked);
+	wireTpl('tplSkipAddr',    'skip_address',      n => n.checked);
 
 	// ===================================================================
 	//  Element actions
@@ -454,7 +546,10 @@
 	function deleteSelected() {
 		if (!selectedIds.length) return;
 		pushHistory();
-		selectedIds.forEach(id => { const n = nodeById(id); if (n) n.remove(); });
+		selectedIds.forEach(id => {
+			stage.querySelectorAll('.qsl_designer_ghost[data-ghost-for="' + id + '"]').forEach(g => g.remove());
+			const n = nodeById(id); if (n) n.remove();
+		});
 		elements = elements.filter(e => !isSelected(e.id));
 		deselect();
 	}
@@ -834,6 +929,7 @@
 				offset_x_in: parseFloat(offXInput.value || '0'),
 				offset_y_in: parseFloat(offYInput.value || '0'),
 			},
+			options: tplOptions,
 			elements: elements,
 		};
 	}
@@ -850,6 +946,17 @@
 		offXInput.value = layout.calibration?.offset_x_in ?? 0;
 		offYInput.value = layout.calibration?.offset_y_in ?? 0;
 
+		const o = layout.options || {};
+		tplOptions = {
+			qsos_per_card: Math.max(1, parseInt(o.qsos_per_card, 10) || 1),
+			per_callsign: !!o.per_callsign,
+			print_background: o.print_background !== false,
+			skip_address: !!o.skip_address,
+			row_pitch_in: parseFloat(o.row_pitch_in) || 0.3,
+		};
+		applyTplOptionsToControls();
+		setPitchWrapVisibility();
+
 		elements = (layout.elements || []).map(el => ({
 			id: el.id || newId(),
 			type: el.type || 'field',
@@ -861,6 +968,7 @@
 			font_pt: el.font_pt || 12,
 			bold: !!el.bold,
 			wrap_w_in: el.wrap_w_in ?? 2.6,
+			repeat_per_qso: !!el.repeat_per_qso,
 		}));
 
 		history.length = 0;
@@ -880,6 +988,9 @@
 			setBackground(null);
 			document.getElementById('tplName').value = '';
 			document.getElementById('btnPdf').href = '#';
+			tplOptions = { qsos_per_card: 1, per_callsign: false, print_background: true, skip_address: false, row_pitch_in: 0.3 };
+			applyTplOptionsToControls();
+			setPitchWrapVisibility();
 			history.length = 0; future.length = 0; updateHistoryButtons();
 			deselect();
 			renderAll();

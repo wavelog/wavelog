@@ -168,6 +168,39 @@ $qsl_field_groups = [
 			</div>
 		</section>
 
+		<!-- RIGHT COLUMN: Template options + Properties -->
+		<div class="qsl-right-stack">
+
+			<!-- TEMPLATE OPTIONS -->
+			<aside class="card qsl-templateopts">
+				<div class="card-header py-2">
+					<i class="fas fa-cog me-2"></i><?= __("Template Options"); ?>
+				</div>
+				<div class="card-body">
+					<div class="mb-2">
+						<label class="form-label small mb-1" for="tplQsosPerCard"><?= __("Number of QSOs per QSL card"); ?></label>
+						<input id="tplQsosPerCard" type="number" min="1" step="1" value="1" class="form-control form-control-sm">
+					</div>
+					<div class="mb-2" id="tplPitchWrap" style="display:none;">
+						<label class="form-label small mb-1" for="tplRowPitch"><?= __("Row spacing (in)"); ?></label>
+						<input id="tplRowPitch" type="number" min="0.05" step="0.05" value="0.3" class="form-control form-control-sm">
+					</div>
+
+					<div class="mb-2 form-check">
+						<input type="checkbox" class="form-check-input" id="tplPerCallsign">
+						<label class="form-check-label small" for="tplPerCallsign"><?= __("One postcard per callsign"); ?></label>
+					</div>
+					<div class="mb-2 form-check">
+						<input type="checkbox" class="form-check-input" id="tplPrintBg" checked>
+						<label class="form-check-label small" for="tplPrintBg"><?= __("Print background image (uncheck for pre-printed cards)"); ?></label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="tplSkipAddr">
+						<label class="form-check-label small" for="tplSkipAddr"><?= __("Skip address printing (for printing on regular QSL cards)"); ?></label>
+					</div>
+				</div>
+			</aside>
+
 		<!-- PROPERTIES (right) -->
 		<aside class="qsl-pane qsl-props card">
 			<div class="card-header py-2">
@@ -229,6 +262,11 @@ $qsl_field_groups = [
 						<input id="propWrap" type="number" step="0.1" min="0.2" class="form-control form-control-sm">
 					</div>
 
+					<div class="mb-3 form-check" id="propRepeatRow" style="display:none;">
+						<input class="form-check-input" type="checkbox" id="propRepeat" title="<?= __("Print this field once per QSO when a card holds multiple QSOs"); ?>">
+						<label class="form-check-label small" for="propRepeat"><?= __("Repeats per QSO"); ?></label>
+					</div>
+
 					<div class="d-flex gap-2">
 						<button type="button" id="btnDuplicate" class="btn btn-sm btn-primary flex-fill">
 							<i class="fas fa-clone me-1"></i><?= __("Duplicate"); ?>
@@ -241,6 +279,7 @@ $qsl_field_groups = [
 			</div>
 		</aside>
 
+		</div>
 	</div>
 </div>
 
