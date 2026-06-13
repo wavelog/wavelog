@@ -24,12 +24,11 @@ class EqslBulkDownloader {
 	public function __construct() {
 		$this->ci =& get_instance();
 		$this->ci->load->library('electronicqsl');
-		$this->ci->load->model('Eqsl_images');
 		$this->ci->load->model('user_model');
 		$this->ci->load->model('logbook_model');
 
 		// Get image path
-		$this->imagePath = $this->ci->Eqsl_images->get_imagePath('p');
+		$this->imagePath = $this->ci->paths->getUserdataPath('eqsl_card', 'p');
 
 		log_message('info', 'EqslBulkDownloader initialized with concurrency=' . self::CONCURRENCY);
 	}
@@ -293,6 +292,7 @@ class EqslBulkDownloader {
 			);
 
 			if ($content !== false && $httpCode == 200) {
+				$this->ci->load->model('Eqsl_images');
 				// Check if already downloaded
 				if ($this->ci->Eqsl_images->get_image($qsoId) == "No Image") {
 					// Save image
