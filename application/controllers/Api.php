@@ -1337,6 +1337,20 @@ class API extends CI_Controller {
 				$return['dxcc_confirmed_on_band']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, null)>0) ? true : false;
 				$return['dxcc_confirmed_on_band_mode']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, $mode)>0) ? true : false;
 			}
+			// ITU zone: only added when a reliable value is known, otherwise no 'ituz' key.
+			// Priority: recorded worked-QSO -> callbook -> single-ITU-zone DXCC entity default.
+			$ituz = null;
+			if (!empty($call_lookup_results) && (($call_lookup_results->COL_ITUZ ?? 0) > 0)) {
+				$ituz = (int) $call_lookup_results->COL_ITUZ;
+			} elseif (is_array($callbook) && (($callbook['ituz'] ?? '') !== '')) {
+				$ituz = $callbook['ituz'];
+			} else {
+				$ituz = $this->unambiguous_ituz($return['dxcc_id']);
+			}
+			if ($ituz !== null && $ituz !== '') {
+				$return['ituz'] = $ituz;
+			}
+
 			if ($callbook) {
 				$return['callbook']=$callbook;
 			}
@@ -1345,6 +1359,22 @@ class API extends CI_Controller {
 			echo '{"error":"callsign to lookup not given"}';
 		}
 		return;
+	}
+
+	// Returns the ITU zone of a DXCC only when it is unambiguous (the entity spans a single
+	// ITU zone according to dxcc_master), otherwise null. Used to expose a reliable ITU zone
+	// in private_lookup without guessing for multi-zone entities (USA, Russia, ...).
+	private function unambiguous_ituz($dxcc_id) {
+		if (($dxcc_id ?? '') === '' || (int) $dxcc_id <= 0) {
+			return null;
+		}
+		$sql = "SELECT GROUP_CONCAT(DISTINCT ituzone) AS zones, COUNT(DISTINCT ituzone) AS cnt
+			FROM dxcc_master WHERE countrycode = ? AND ituzone <> ''";
+		$row = $this->db->query($sql, [(int) $dxcc_id])->row();
+		if ($row !== null && (int) $row->cnt === 1 && (int) $row->zones > 0) {
+			return (int) $row->zones;
+		}
+		return null;
 	}
 
 	function lookup() {
