@@ -1538,8 +1538,10 @@ svg text.month { fill: #AAA; }
 }
 
 .qsl-cat > summary:hover {
-	background: var(--bs-tertiary-bg, rgba(127, 127, 127, .12));
+    color: var(--bs-primary-text-emphasis);
+    background: var(--bs-primary-bg-subtle);
 }
+
 
 .qsl-cat-body {
 	padding: .35rem 0 .15rem .25rem;
@@ -1560,8 +1562,8 @@ svg text.month { fill: #AAA; }
 }
 
 .qsl_designer_field:hover {
-	border-color: var(--bs-primary);
-	background: var(--bs-primary-bg-subtle, rgba(13, 110, 253, .1));
+	color: var(--bs-emphasis-color);
+    background: var(--bs-primary-bg-subtle);
 }
 
 .qsl_designer_field:active {

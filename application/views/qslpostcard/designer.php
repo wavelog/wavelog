@@ -64,7 +64,7 @@ $qsl_field_groups = [
 				<div class="qsl-tb-group">
 					<label class="qsl-tb-label"><?= __("Background image"); ?></label>
 					<div class="d-flex gap-2 align-items-center">
-						<input type="file" id="previewImageFile" class="form-control form-control-sm" style="max-width:200px;" accept=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG">
+						<input type="file" id="previewImageFile" class="form-control form-control-sm" style="max-width:275px;" accept=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG">
 						<button type="button" id="btnUploadPreview" class="btn btn-sm btn-primary" title="<?= __("Upload Preview Image"); ?>">
 							<i class="fas fa-upload"></i>
 						</button>
@@ -128,7 +128,7 @@ $qsl_field_groups = [
 					<input type="search" id="fieldSearch" class="form-control" placeholder="<?= __("Search fields…"); ?>">
 				</div>
 
-				<button type="button" id="btnAddText" class="btn btn-sm btn-outline-primary w-100 mb-2">
+				<button type="button" id="btnAddText" class="btn btn-sm btn-primary w-100 mb-2">
 					<i class="fas fa-font me-1"></i><?= __("Add Custom Text"); ?>
 				</button>
 
@@ -230,7 +230,7 @@ $qsl_field_groups = [
 					</div>
 
 					<div class="d-flex gap-2">
-						<button type="button" id="btnDuplicate" class="btn btn-sm btn-outline-secondary flex-fill">
+						<button type="button" id="btnDuplicate" class="btn btn-sm btn-primary flex-fill">
 							<i class="fas fa-clone me-1"></i><?= __("Duplicate"); ?>
 						</button>
 						<button type="button" id="btnDeleteElem" class="btn btn-sm btn-outline-danger flex-fill">
