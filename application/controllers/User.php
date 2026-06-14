@@ -1194,6 +1194,56 @@ class User extends CI_Controller {
 		}
 	}
 
+	/*
+	 * FUNCTION: theme_switch
+	 *
+	 * Lightweight JSON endpoint used by the header theme switcher. Validates the
+	 * requested theme against the themes table, then updates the current user's
+	 * stylesheet in both the DB and the session. Any logged-in user may change
+	 * their own theme — no need to open the profile/settings page.
+	 */
+	public function theme_switch() {
+		header('Content-Type: application/json');
+
+		$this->load->model('user_model');
+
+		if (!$this->user_model->authorize(2)) {
+			echo json_encode(array('status' => 'error', 'message' => __("You're not allowed to do that!")));
+			return;
+		}
+
+		$foldername = $this->input->post('theme', true);
+
+		if ($foldername === null || $foldername === '') {
+			echo json_encode(array('status' => 'error', 'message' => 'No theme selected.'));
+			return;
+		}
+
+		// Only trust foldernames that actually exist in the themes table
+		$this->load->model('Themes_model');
+		$valid = false;
+		foreach ($this->Themes_model->getThemes() as $t) {
+			if ($t->foldername === $foldername) {
+				$valid = true;
+				break;
+			}
+		}
+
+		if (!$valid) {
+			echo json_encode(array('status' => 'error', 'message' => 'Unknown theme.'));
+			return;
+		}
+
+		$user_id = $this->session->userdata('user_id');
+
+		if ($this->user_model->set_user_stylesheet($user_id, $foldername)) {
+			$this->session->set_userdata('user_stylesheet', $foldername);
+			echo json_encode(array('status' => 'success', 'foldername' => $foldername));
+		} else {
+			echo json_encode(array('status' => 'error', 'message' => 'Could not save theme.'));
+		}
+	}
+
 	function login($firstlogin = false) {
 
 		// Due the fact there was a new session generated, we need to get flash messages from a temporary cookie

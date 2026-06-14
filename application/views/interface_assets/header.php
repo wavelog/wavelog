@@ -425,6 +425,38 @@
 
 					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
 
+						<?php
+						// Quick theme switcher — list every installed theme so the user can
+						// change skin straight from the header without opening their settings.
+						$qts_themes  = $this->optionslib->get_themes();
+						$qts_current = $this->optionslib->get_theme();
+						?>
+						<!-- Quick Theme Switcher -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" title="<?= __("Themes"); ?>"><i class="fas fa-palette"></i></a>
+							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
+								<li><span class="dropdown-item-text fw-bold"><?= __("Themes"); ?></span></li>
+								<div class="dropdown-divider"></div>
+								<?php foreach ($qts_themes as $qts_t) { ?>
+									<li>
+										<button type="button" class="dropdown-item d-flex justify-content-between align-items-center" onclick="quick_switch_theme('<?php echo xss_clean($qts_t->foldername); ?>')">
+											<span>
+												<?php if ($qts_t->foldername == $qts_current) { ?>
+													<i class="fas fa-check text-success me-2"></i>
+												<?php } else { ?>
+													<i class="far fa-circle me-2"></i>
+												<?php } ?>
+												<?php echo htmlspecialchars($qts_t->name, ENT_QUOTES, 'UTF-8'); ?>
+											</span>
+											<?php if (!empty($qts_t->theme_mode)) { ?>
+												<small class="text-muted ms-3 text-capitalize"><?php echo $qts_t->theme_mode; ?></small>
+											<?php } ?>
+										</button>
+									</li>
+								<?php } ?>
+							</ul>
+						</li>
+
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">

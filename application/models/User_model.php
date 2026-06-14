@@ -840,6 +840,15 @@ class User_Model extends CI_Model {
 
 	// FUNCTION: bool authorize($level)
 	// Checks a user's level of access against the given $level
+	// FUNCTION: bool set_user_stylesheet($user_id, $foldername)
+	// Quickly switch the active theme (stylesheet foldername) for a single user.
+	// Used by the header theme switcher so users can change skin without opening
+	// their profile settings. Returns TRUE on success.
+	function set_user_stylesheet($user_id, $foldername) {
+		$this->db->where('user_id', xss_clean($user_id));
+		return $this->db->update('users', array('user_stylesheet' => xss_clean($foldername)));
+	}
+
 	function authorize($level) {
 		$u = $this->get_by_id($this->session->userdata('user_id'));
 		$l = $this->config->item('auth_mode');
