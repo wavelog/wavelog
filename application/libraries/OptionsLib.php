@@ -118,6 +118,7 @@ class OptionsLib {
         }
 
     }
+
         
     function get_logo($logo_location, $theme = null) {
 
