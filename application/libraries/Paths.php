@@ -3,22 +3,103 @@
 /***
  * Paths Library to return specific paths
  */
-class Paths
-{
-    // generic function for return eQsl path //
-    function getPathEqsl()
-    {
+class Paths {
+
+    /**
+     * Returns the userdata path (or legacy path if the userdata option is not set) for the given type and user_id.
+     * 
+     * @param string $type The type of path to return (e.g. 'eqsl_card', 'qsl_card')
+     * @param string $pathorurl 'u' to return the web-relative path, 'p' to return the absolute filesystem path
+     * @param int|null $user_id The user_id to return the path for. If null, will use the user_id from session data
+     */
+    function getUserdataPath($type, $pathorurl = 'u', $user_id = null) {
+        // test if new folder directory option is enabled
         $CI = &get_instance();
-        $CI->load->model('Eqsl_images');
-        return $CI->Eqsl_images->get_imagePath();
+        $userdata_dir = $CI->config->item('userdata');
+
+        // make sure these are the same as in Debug_model.php function migrate_userdata()
+        $allowed_types = [
+            'eqsl_card', 
+            'qsl_card'
+        ];
+
+        // validate path type
+        if (!in_array($pathorurl, ['u', 'p'])) {
+            log_message('error', 'Invalid pathorurl passed to getUserdataPath: ' . $pathorurl);
+            return false; // invalid pathorurl
+        }
+
+        if (!in_array($type, $allowed_types)) {
+            log_message('error', 'Invalid type passed to getUserdataPath: ' . $type);
+            return false; // invalid type
+        }
+
+        if (isset($userdata_dir)) {
+
+            if (!valid_uid($user_id)) {
+                $user_id = $CI->session->userdata('user_id');
+            }
+
+            // check if there is a user_id in the session data and it's not empty
+            if (valid_uid($user_id)) {
+
+                // create the folder
+                if (!file_exists(realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type)) {
+                    mkdir(realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type, 0755, true);
+                }
+
+                // and return it
+                if ($pathorurl == 'u') {
+                    return $userdata_dir . '/' . $user_id . '/' . $type;
+                } else {
+                    return realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type;
+                }
+            } else {
+                log_message('info', 'getUserdataPath(); Can not get ' . $type . ' path because no user_id in session data');
+            }
+        } else {
+            // if the config option is not set we just return the old path
+            return $this->legacyPaths($type, $pathorurl);
+        }
     }
 
-    // generic function for return Qsl path //
-    function getPathQsl()
-    {
-        $CI = &get_instance();
-        $CI->load->model('Qsl_model');
-        return $CI->Qsl_model->get_imagePath();
+    /**
+     * @deprecated Use getUserdataPath('eqsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathEqsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('eqsl_card', $pathorurl, $user_id);
+    }
+
+    /**
+     * @deprecated Use getUserdataPath('qsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathQsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('qsl_card', $pathorurl, $user_id);
+    }
+
+    private function legacyPaths($type, $pathorurl = 'u') {
+        switch ($type) {
+            case 'eqsl_card':
+                $path = 'images/eqsl_card_images';
+                break;
+            case 'qsl_card':
+                $path = 'assets/qslcard';
+                break;
+            default:
+                log_message('error', 'Invalid type passed to legacyPaths(): ' . $type);
+                return false;
+        }
+
+        // 'u' returns the web-relative path, anything else the absolute filesystem path
+        if ($pathorurl == 'u') {
+            return $path;
+        } else {
+            return realpath(APPPATH . '../') . '/' . $path;
+        }
     }
 
     function make_update_path($path) {

@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
-# Michael Skolsky <r1blh@yandex.ru>, 2024, 2025.
+# Michael Skolsky <r1blh@yandex.ru>, 2024, 2025, 2026.
 # Florian Wolters <wavelog@df2et.de>, 2024.
 # Fabian Berg <hb9hil@wavelog.org>, 2024.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-17 12:36+0000\n"
-"PO-Revision-Date: 2025-08-24 12:50+0000\n"
+"PO-Revision-Date: 2026-06-07 15:18+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
 "installer/ru/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -145,7 +145,7 @@ msgstr "Турецкий"
 
 #: install/includes/interface_assets/footer.php:88
 msgid "Ukrainian"
-msgstr ""
+msgstr "Украинский"
 
 #: install/includes/interface_assets/header.php:94
 msgid "Install | Wavelog"
@@ -364,6 +364,13 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"Этот параметр конфигурации необязателен. Поиск позывных будет доступен всем "
+"пользователям этого инстанса. Вы можете выбрать между QRZ.com, HamQTH, "
+"QRZCQ, QRZ.ru и QRZCALL.EU. Хотя HamQTH работает и без имени пользователя и "
+"пароля, для других провайдеров вам понадобятся учетные данные. QRZ.com "
+"требует подписку XML для определения местоположения; QRZCALL.EU требует "
+"подписку Data или Extra на %s. HamQTH не всегда предоставляет информацию о "
+"местоположении."
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -400,15 +407,15 @@ msgstr ""
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "Токен API"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "Создайте персональный токен доступа на"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "Требуется подписка Data или Extra."
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"

@@ -1,22 +1,29 @@
-<h1 align="center">
+<div align="center">
   <a href="https://www.wavelog.org/">
     <picture>
       <source height="400" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_darkly.png">
       <source height="400" media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_cosmo.png">
-      <img alt="Wavelog" src="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_darkly.png">
+      <img height="400" alt="Wavelog" src="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_darkly.png">
     </picture>
   </a>
-  <br>
-  <a href="https://github.com/wavelog/wavelog/blob/master/LICENSE">
-    <img alt="Github License" src="https://img.shields.io/github/license/wavelog/wavelog">
-  </a>
-  <a href="https://translate.wavelog.org/engage/wavelog/">
-    <img alt="Translation Status" src="https://translate.wavelog.org/widget/wavelog/main-translation/svg-badge.svg">
-  </a>
-  <a href="https://github.com/wavelog/wavelog/graphs/contributors" >
-   <img alt="Commit Activity" src="https://img.shields.io/github/commit-activity/m/wavelog/wavelog/dev">
- </a>
-</h1>
+
+  <h3>The self-hosted logbook for radio amateurs — log your QSOs from anywhere.</h3>
+
+  <p>
+    <a href="https://github.com/wavelog/wavelog/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/wavelog/wavelog?style=flat-square"></a>
+    <a href="https://translate.wavelog.org/engage/wavelog/"><img alt="Translation Status" src="https://translate.wavelog.org/widget/wavelog/main-translation/svg-badge.svg"></a>
+    <a href="https://github.com/wavelog/wavelog/graphs/commit-activity"><img alt="Commit Activity" src="https://img.shields.io/github/commit-activity/m/wavelog/wavelog/dev?style=flat-square"></a>
+    <a href="https://github.com/wavelog/wavelog/releases"><img alt="Latest Release" src="https://img.shields.io/github/v/release/wavelog/wavelog?style=flat-square"></a>
+    <a href="https://github.com/wavelog/wavelog/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/wavelog/wavelog?style=flat-square"></a>
+  </p>
+
+  <p>
+    <a href="https://demo.wavelog.org">Live Demo</a> ·
+    <a href="#-installation">Install</a> ·
+    <a href="https://docs.wavelog.org/">Documentation</a> ·
+    <a href="#-contributing">Contribute</a>
+  </p>
+</div>
 
 Wavelog is a self-hosted PHP application that allows you to log your amateur radio contacts anywhere. All you need is a web browser and active internet connection.
 
@@ -36,35 +43,34 @@ https://demo.wavelog.org
   Username: demo  
   Password: demo
 
-## Documentation
-The documentation for Wavelog can be found at https://docs.wavelog.org/.
-
-## Requirements
-### Recommended: Classic-LAMP-Stack:
-* Linux based Operating System (Windows stack may also work)
-* Apache (Nginx should work)
-* PHP Version 8.2 up to 8.4 (8.5 friendly user test)
-* MySQL or MariaDB (MySQL 8 or higher // MariaDB 10.2 or higher)
-
-### Alternative - Easy start with prebuilt Docker-image:
-* [Docker Support](https://docs.wavelog.org/getting-started/installation/docker/)
-
-Notes
-* If you want to log microwave QSOs you will need to use a 64bit operating system.
-
 ## Setup
 
-Installation information can be found in the [documentation](https://docs.wavelog.org/).
+### Docker (easiest)
+
+Get started with the prebuilt image and Docker Compose — see the [Docker guide](https://docs.wavelog.org/getting-started/installation/docker/).
+
+### Classic LAMP stack (recommended)
+
+| Component | Requirement |
+| --------- | ----------- |
+| **OS** | 64-bit Linux (highly recommended)<br>Windows may work<br>**32-bit no longer supported** |
+| **Web server** | Apache2 (recommended) or nginx |
+| **PHP** | 8.2 – 8.5 |
+| **Database** | MySQL 8+ or MariaDB 10.11+ |
+
+For instructions see the [Linux Guide](https://docs.wavelog.org/getting-started/installation/linux/)
 
 ## WavelogGate 
 
 Easy CAT data transfer from your rig to Wavelog.  
 Check out our WavelogGate Repo [here](https://github.com/wavelog/WaveLogGate).
 
+## Documentation
+The documentation for Wavelog can be found at https://docs.wavelog.org/.
+
 ## Support
 
 Wavelog-support can be reached by creating an issue here at github. If you've any issues don't hesitate to create one here. Please provide as much information as possible to reproduce the Problem
-
 
 ## Contributing
 
@@ -78,11 +84,33 @@ Translators:
 
 If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time and help coding new features or writing documentation is always useful.  
 
+> [!IMPORTANT]  
+> Only accepting PRs on the "dev" branch. About our contributing guidelines and some more information you can find [here](https://docs.wavelog.org/project/contributing/).
+
 **For translations and language stuff you can refer to our [Wiki about Translations](https://docs.wavelog.org/developer/translations/).**
 
 Please note that Wavelog was built using [Codeigniter](https://www.codeigniter.com/userguide3/) version 3 and uses Bootstrap 5 for the user CSS framework documentation is available for this when building components.
 
-> [!IMPORTANT]  
-> Only accepting PRs on the "dev" branch.
-
 When submitting PRs please make sure code is commented and includes one feature only, multiple features or bug fixes will not be accepted. Please include a description of what your PR does and why it is needed.
+
+## Star History
+
+Support Wavelog by starring the repository on GitHub!
+
+<a href="https://www.star-history.com/?repos=wavelog%2Fwavelog&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=wavelog/wavelog&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=wavelog/wavelog&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=wavelog/wavelog&type=date&legend=top-left" />
+ </picture>
+</a>
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by radio amateurs, for radio amateurs · <a href="https://github.com/wavelog/wavelog/blob/master/LICENSE">MIT Licensed</a></sub>
+  <br>
+  <sub>This project is free and will always be free. If you like it, tell it to your friends and spread the word!</sub>
+  <br>
+  <sub>73! 📻</sub>
+</div>

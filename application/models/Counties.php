@@ -23,9 +23,8 @@ class Counties extends CI_Model
      * No band split, as it only count the number of counties in the award.
      */
     function get_counties_summary() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if ($logbooks_locations_array[0] === -1) {
             return null;
@@ -83,9 +82,8 @@ class Counties extends CI_Model
     }
 
     function get_counties($state, $confirmationtype) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if ($logbooks_locations_array[0] === -1) {
             return null;
@@ -99,16 +97,19 @@ class Counties extends CI_Model
 
 		$bandslots_list = "'".implode("','",$bandslots)."'";
 
+		$binding = [];
+
         $sql = "select distinct COL_CNTY, COL_STATE
-                from " . $this->config->item('table_name') . " thcv
-                 where station_id in (" . $location_list . ")" .
-                 " and col_band in (" . $bandslots_list . ")" .
-                " and COL_DXCC in ('291', '6', '110')
-                and coalesce(COL_CNTY, '') <> ''
-                and COL_BAND != 'SAT'";
+		from " . $this->config->item('table_name') . " thcv
+		where station_id in (" . $location_list . ")" .
+		" and col_band in (" . $bandslots_list . ")" .
+		" and COL_DXCC in ('291', '6', '110')
+		and coalesce(COL_CNTY, '') <> ''
+		and COL_BAND != 'SAT'";
 
         if ($state != 'All') {
-            $sql .= " and COL_STATE = '" . $state . "'";
+			$sql .= " and COL_STATE = ?";
+			$binding[] = $state;
         }
 
         if ($confirmationtype != 'none') {
@@ -117,7 +118,7 @@ class Counties extends CI_Model
 
         $sql .= " order by thcv.COL_STATE";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
         return $query->result_array();
     }
 

@@ -122,7 +122,7 @@ class WAPC extends CI_Model {
 					// BU-BX/BV9P
 					else if($line->col_dxcc == '386' || $line->col_dxcc == '505'){
 						$bandWapc['TW'][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("TW","' . $band . '","All","All","'. $postdata['mode'] . '","WAPC", "'.$qsl.'")\'>C</a></div>';
-						$provinces['MO']['count']++;
+						$provinces['TW']['count']++;
 					}
 				}
 			}
@@ -299,7 +299,16 @@ class WAPC extends CI_Model {
 
 	function getSummaryByBand($band, $postdata, $location_list) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_state, thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
+		$sql = "SELECT count(
+			DISTINCT CASE
+				WHEN thcv.col_dxcc = '318' THEN thcv.col_state
+				WHEN thcv.col_dxcc = '506' THEN 'HI'
+				WHEN thcv.col_dxcc = '321' THEN 'HK'
+				WHEN thcv.col_dxcc = '152' THEN 'MO'
+				WHEN thcv.col_dxcc = '386' THEN 'TW'
+				WHEN thcv.col_dxcc = '505' THEN 'TW'
+			END
+		) AS count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
@@ -336,7 +345,16 @@ class WAPC extends CI_Model {
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_state, thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
+		$sql = "SELECT count(
+			DISTINCT CASE
+				WHEN thcv.col_dxcc = '318' THEN thcv.col_state
+				WHEN thcv.col_dxcc = '506' THEN 'HI'
+				WHEN thcv.col_dxcc = '321' THEN 'HK'
+				WHEN thcv.col_dxcc = '152' THEN 'MO'
+				WHEN thcv.col_dxcc = '386' THEN 'TW'
+				WHEN thcv.col_dxcc = '505' THEN 'TW'
+			END
+		) AS count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {

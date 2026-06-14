@@ -241,7 +241,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-calendar"></i> <?= __("Year"); ?></h6>
+					<h6 class="mb-0"><i class="fas fa-calendar"></i> <?= __("QSOs this year"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $year_qsos; ?></h4>
@@ -251,7 +251,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-calendar-day"></i> <?= __("Month"); ?></h6>
+					<h6 class="mb-0"><i class="fas fa-calendar-day"></i> <?= __("QSOs this month"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $month_qsos; ?></h4>
@@ -261,7 +261,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-clock"></i> <?= __("Today"); ?></h6>
+					<h6 class="mb-0"><i class="fas fa-clock"></i> <?= __("QSOs today"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $todays_qsos; ?></h4>
@@ -396,6 +396,81 @@ function echo_table_header_col($name) {
 
 		<div id="radio_display" hx-get="<?php echo site_url('dashboard/radio_display_component'); ?>" hx-trigger="load, every 5s"></div>
 
+
+			<?php if (!empty($active_dxpeditions) && $active_dxpeditions !== false) { ?>
+			<div class="card mb-3">
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-broadcast-tower"></i> <?= __("Active Expeditions"); ?> <a href="<?php echo site_url('dxcalendar'); ?>"><i class="fa-solid fa-up-right-from-square"></i></a></h6>
+				</div>
+				<div class="card-body p-0">
+					<table class="table table-striped table-hover mb-0">
+						<thead>
+							<tr>
+								<th><?= __("Call"); ?></th>
+								<th><?= __("DXCC"); ?></th>
+								<th><?= __("Dates"); ?></th>
+								<th><?= __("QSL"); ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($active_dxpeditions as $dxped) { ?>
+							<tr>
+								<td>
+									<?php if ($dxped->link) { ?>
+										<a href="<?= $dxped->link; ?>" target="_blank">
+									<?php } ?>
+									<span class="badge <?= $dxped->call_cnfmd ? 'bg-success' : ($dxped->call_wked ? 'bg-warning' : 'bg-danger'); ?>">
+										<?= $dxped->call; ?>
+									</span>
+									<?php if ($dxped->link) { echo '</a>'; } ?>
+								</td>
+								<td>
+									<?php if ($dxped->dxcc_adif >= 1) { ?>
+										<a href="javascript:spawnLookupModal('<?= $dxped->dxcc_adif; ?>','dxcc')">
+									<?php } ?>
+									<span class="badge <?= $dxped->dxcc_cnfmd ? 'bg-success' : ($dxped->dxcc_wked ? 'bg-warning' : ($dxped->no_dxcc ? '' : 'bg-danger')); ?>">
+										<?= $dxped->dxcc; ?>
+									</span>
+									<?php if ($dxped->dxcc_adif >= 1) { echo '</a>'; } ?>
+								</td>
+								<td><small><?= ($dxped->dates[0] ?? '') . ' - ' . ($dxped->dates[1] ?? ''); ?></small></td>
+								<td><small><?= $dxped->qslinfo; ?></small></td>
+							</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<?php } ?>
+
+			<?php if (!empty($active_contests) && $active_contests !== false) { ?>
+			<div class="card mb-3">
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-trophy"></i> <?= __("Active Contests"); ?> <a href="<?php echo site_url('contestcalendar'); ?>"><i class="fa-solid fa-up-right-from-square"></i></a></h6>
+				</div>
+				<div class="card-body p-0">
+					<table class="table table-striped table-hover mb-0">
+						<tbody>
+							<?php foreach ($active_contests as $contest) { ?>
+							<tr>
+								<td>
+									<b><?= $contest['title']; ?></b>
+									<?php
+									if ($contest['start'] instanceof DateTime && $contest['end'] instanceof DateTime) {
+										echo '<br><small class="text-muted">' . $contest['start']->format('d M H:i') . ' - ' . $contest['end']->format('d M H:i') . '</small>';
+									}
+									?>
+								</td>
+								<td class="text-end align-middle">
+									<a class="btn btn-sm btn-outline-primary" href="<?= $contest['link']; ?>" target="_blank"><?= __("Details"); ?></a>
+								</td>
+							</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<?php } ?>
 		<div class="card mb-3">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?> <a href="<?php echo site_url('awards/dxcc'); ?>"><i class="fa-solid fa-up-right-from-square"></i></a></h6>

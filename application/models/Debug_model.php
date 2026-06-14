@@ -18,10 +18,10 @@ class Debug_model extends CI_Model
         $this->flag_file = '.migrated'; // we use this flag file to determine if the migration already run through
 
         $this->src_eqsl = 'images/eqsl_card_images';
-        $this->eqsl_dir = 'eqsl_card';  // make sure this is the same as in Eqsl_images.php function get_imagePath()
+        $this->eqsl_dir = 'eqsl_card';  // make sure this is the same as in Paths.php function getUserdataPath()
 
         $this->src_qsl = 'assets/qslcard';
-        $this->qsl_dir = 'qsl_card';  // make sure this is the same as in Qsl_model.php function get_imagePath()
+        $this->qsl_dir = 'qsl_card';  // make sure this is the same as in Paths.php function getUserdataPath()
     }
 
     function migrate_userdata()

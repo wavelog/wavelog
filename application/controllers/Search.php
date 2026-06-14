@@ -2,7 +2,6 @@
 
 class Search extends CI_Controller {
 
-
 	function __construct() {
 		parent::__construct();
 
@@ -93,7 +92,7 @@ class Search extends CI_Controller {
 
 		// Security: Block dangerous SQL keywords to prevent SQL injection
 		// Note: 'join' is NOT blocked because legitimate queries use JOINs
-		$blocked = ['insert', 'drop', 'alter', 'create', 'exec', 'script', 'into outfile', 'load_file'];
+		$blocked = ['insert', 'drop', 'alter', 'create', 'exec', 'script', 'into outfile', 'load_file', 'update', 'delete', 'truncate', 'replace', 'rename', 'grant', 'revoke'];
 		foreach ($blocked as $word) {
 			if (stristr($query, $word)) {
 				show_error("Invalid query: contains blocked keyword", 403);
@@ -120,7 +119,7 @@ class Search extends CI_Controller {
 
 			// Security: Block dangerous SQL keywords to prevent SQL injection
 			// Note: 'join' is NOT blocked because legitimate queries use JOINs
-			$blocked = ['insert', 'drop', 'alter', 'create', 'exec', 'script', 'into outfile', 'load_file'];
+			$blocked = ['insert', 'drop', 'alter', 'create', 'exec', 'script', 'into outfile', 'load_file', 'update', 'delete', 'truncate', 'replace', 'rename', 'grant', 'revoke'];
 			foreach ($blocked as $word) {
 				if (stristr($sql, $word)) {
 					show_error("Invalid query: contains blocked keyword", 403);
@@ -171,6 +170,23 @@ class Search extends CI_Controller {
 		$this->db->update('queries', $data);
 	}
 
+	/**
+	 * Returns the list of valid searchable column names from the main logbook table.
+	 * Cached statically so the DESCRIBE query runs only once per request.
+	 *
+	 * @return array<string> Column names (e.g. ['COL_CALL', 'COL_BAND', ...])
+	 */
+	private function _get_valid_search_fields(): array {
+		static $valid_fields = null;
+		if ($valid_fields === null) {
+			$columns = $this->db->query('DESCRIBE ' . $this->config->item('table_name'))->result();
+			$valid_fields = array_map(function($col) {
+				return $col->Field;
+			}, $columns);
+		}
+		return $valid_fields;
+	}
+
 	function buildWhere(array $object, ?string $condition = null): void {
 		/*
 		 * The $object is one of the following:
@@ -192,6 +208,15 @@ class Search extends CI_Controller {
 			}
 			$this->db->group_end();
 		} else {
+			// Validate field name: must be alphanumeric/underscore AND exist in the table schema
+			if (!is_string($object['field'] ?? null) || !preg_match('/^[A-Za-z0-9_]+$/', $object['field'])) {
+				log_message('error', 'Search filter rejected: invalid field identifier');
+				show_error('Invalid search field', 400);
+			}
+			if (!in_array($object['field'], $this->_get_valid_search_fields(), true)) {
+				log_message('error', 'Search filter rejected: unknown field "' . $object['field'] . '"');
+				show_error('Invalid search field', 400);
+			}
 			$object['field'] = $this->config->item('table_name') . '.' . $object['field'];
 
 			if ($object['operator'] == "equal") {

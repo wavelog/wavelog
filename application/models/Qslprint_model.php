@@ -166,14 +166,17 @@ class Qslprint_model extends CI_Model {
 	}
 
 	function show_oqrs($id) {
-		$this->db->select('requesttime as "Request time", requestcallsign as "Requester", email as "Email", note as "Note"');
-		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
-		// always filter user. this ensures that no inaccesible QSOs will be returned
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->where('oqrs.id = ' .$id);
-		$query = $this->db->get('oqrs');
+		$sql = "SELECT requesttime as 'Request time', requestcallsign as 'Requester', email as 'Email', note as 'Note'
+		FROM oqrs
+		JOIN station_profile ON station_profile.station_id = oqrs.station_id
+		WHERE station_profile.user_id = ?
+		AND oqrs.id = ?";
 
-		return $query->result();
+		$binding = [];
+		$binding[] = $this->session->userdata('user_id');
+		$binding[] = $id;
+
+		return $this->db->query($sql, $binding)->result();
 	}
 
 }
