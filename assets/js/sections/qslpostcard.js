@@ -227,6 +227,7 @@
 			color: '#000000',
 			wrap_w_in: 2.6,
 			repeat_per_qso: false,
+			no_snap: false,
 		};
 		if (type === 'field') item.field = value;
 		else item.text = value;
@@ -319,7 +320,8 @@
 		// Snap based on the grabbed (primary) element, then move the whole group by
 		// the same (snap-corrected) delta.
 		const po = drag.orig[drag.primary];
-		const snapped = snapPosition(drag.primary, inToPxX(po.x_in) + dx, inToPxY(po.y_in) + dy, !e.altKey, drag.ids);
+		const snapEnabled = !e.altKey && !byId(drag.primary).no_snap;
+		const snapped = snapPosition(drag.primary, inToPxX(po.x_in) + dx, inToPxY(po.y_in) + dy, snapEnabled, drag.ids);
 		dx += snapped.x - (inToPxX(po.x_in) + dx);
 		dy += snapped.y - (inToPxY(po.y_in) + dy);
 
@@ -369,6 +371,7 @@
 		const xLines = [], yLines = [];
 		elements.forEach(o => {
 			if (ignore.includes(o.id)) return;
+			if (o.no_snap) return; // elements with snapping disabled are not snap targets
 			const on = nodeById(o.id);
 			const ox = inToPxX(o.x_in), oy = inToPxY(o.y_in);
 			const ow = on ? on.offsetWidth : 0, oh = on ? on.offsetHeight : 0;
@@ -457,6 +460,9 @@
 		// the checkbox reflects the primary's value.
 		document.getElementById('propRepeatRow').style.display = '';
 		document.getElementById('propRepeat').checked = !!item.repeat_per_qso;
+
+		// "Disable snapping" applies to every selected element; reflect the primary.
+		document.getElementById('propNoSnap').checked = !!item.no_snap;
 	}
 
 	// Keep X/Y inputs in sync while dragging a single element.
@@ -493,6 +499,7 @@
 	wireProp('propColor', (item, n) => { item.color = n.value; styleNode(item.id); });
 	wireProp('propWrap', (item, n) => { item.wrap_w_in = Math.max(0.2, parseFloat(n.value || '2.6')); });
 	wireProp('propRepeat', (item, n) => { item.repeat_per_qso = n.checked; renderGhosts(item); });
+	wireProp('propNoSnap', (item, n) => { item.no_snap = n.checked; });
 
 	document.getElementById('btnDuplicate').addEventListener('click', duplicateSelected);
 	document.getElementById('btnDeleteElem').addEventListener('click', deleteSelected);
@@ -977,6 +984,7 @@
 			color: el.color || '#000000',
 			wrap_w_in: el.wrap_w_in ?? 2.6,
 			repeat_per_qso: !!el.repeat_per_qso,
+			no_snap: !!el.no_snap,
 		}));
 
 		history.length = 0;

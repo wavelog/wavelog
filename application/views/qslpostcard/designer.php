@@ -272,6 +272,11 @@ $qsl_field_groups = [
 						<label class="form-check-label small" for="propRepeat"><?= __("Repeats per QSO"); ?></label>
 					</div>
 
+					<div class="mb-3 form-check" id="propNoSnapRow">
+						<input class="form-check-input" type="checkbox" id="propNoSnap" title="<?= __("Move this element freely without snapping to the grid or other elements"); ?>">
+						<label class="form-check-label small" for="propNoSnap"><?= __("Disable Auto-Snap"); ?></label>
+					</div>
+
 					<div class="d-flex gap-2">
 						<button type="button" id="btnDuplicate" class="btn btn-sm btn-primary flex-fill">
 							<i class="fas fa-clone me-1"></i><?= __("Duplicate"); ?>
