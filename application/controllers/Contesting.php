@@ -1,266 +1,1567 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if (! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
-	This controller contains features for contesting
+	This controller contains features for contesting.
+	It replaces the old contesting which had no club compatibility.
 */
 
+use Wavelog\Dxcc\Dxcc;
+
+require_once APPPATH . '../src/Dxcc/Dxcc.php';
+
 class Contesting extends CI_Controller {
+	/**
+	 * Holds QSOs created during the current sync cycle
+	 */
+	private $new_qsos = [];
+
+	/**
+	 * Worker availability
+	 */
+	private $worker_available = false;
+
+	/**
+	 * Active Station Location
+	 */
+	private $active_station_location = null;
+
+	/**
+	 * Cache keys
+	 */
+	const CACHE_KEY_SESSION_SETTINGS = 'contest_session_settings_';
 
 	function __construct() {
 		parent::__construct();
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2) || !clubaccess_check(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+
+		if ($this->session->userdata('station_profile_id') ?? 0) {	// Last Station from session accessible? Take it!
+			$this->active_station_location = $this->session->userdata('station_profile_id');
+		} else {
+			$this->active_station_location = $this->stations->find_active();
+		}
+
+		$this->load->is_loaded('Worker') ?: $this->load->library('Worker');
+		$this->worker_available = $this->worker->is_enabled();
+
+		$this->load->driver('cache', [
+			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
+			'backup'     => $this->config->item('cache_backup')     ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
 	}
 
+	/**
+	 * Contest Management Dashboard
+	 */
 	public function index() {
-		$this->load->model('cat');
-		$this->load->model('stations');
-		$this->load->model('modes');
-		$this->load->model('contesting_model');
-		$this->load->model('bands');
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+		$this->load->is_loaded('form_validation') ?: $this->load->library('form_validation');
 
-		// Getting the live/post mode from GET command
-        // 0 = live
-        // 1 = post (manual)
-        $get_manual_mode = $this->input->get('manual', true);
-        if ($get_manual_mode == '0' || $get_manual_mode == '1') {
-            $data['manual_mode'] = $get_manual_mode;
-        } else {
-            show_404();
-        }
+		$data['page_title'] = __("Contest Management");
+		// is a custom name set, we use this one and the ADIF name in brackets, otherwise we just use the ADIF name
+		$data['my_contests'] = array_map(function($row) {
+			$row['display_name'] = !empty($row['custom_name'])
+				? htmlspecialchars($row['custom_name']) . ' <span class="text-muted">(' . htmlspecialchars($row['contestname']) . ')</span>'
+				: htmlspecialchars($row['contestname'] ?? '-');
+			return $row;
+		}, $this->contesting_model->get_user_contests());
+
 		if ($this->session->userdata('user_date_format')) {
-			$data['date_format'] = $this->session->userdata('user_date_format');
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
 		} else {
-			$data['date_format'] = $this->config->item('qso_date_format');
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
 		}
-
-		$data['my_gridsquare'] = $this->stations->find_gridsquare();
-		$data['radios'] = $this->cat->radios();
-		$data['radio_last_updated'] = $this->cat->last_updated()->row();
-		$data['modes'] = $this->modes->active();
-		$data['contestnames'] = $this->contesting_model->getActivecontests();
-		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/contesting.js',
+			'assets/js/sections/contesting/manager.js',
 		];
 
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_rules('start_date', 'Date', 'required');
-		$this->form_validation->set_rules('start_time', 'Time', 'required');
-		$this->form_validation->set_rules('callsign', 'Callsign', 'required');
-
-		$data['page_title'] = __("Contest Logging");
-
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('contesting/index');
+		$this->load->view('contesting/manager/index');
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function getSessionQsos() {
-		session_write_close();
-		$this->load->model('Contesting_model');
+	public function quickstart() {
+		if (!clubaccess_check(9)) {
+			$this->session->set_flashdata('error', __("Officers must set up contests."));
+			redirect('contesting'); 
+		}
 
-		$qso = $this->input->post('qso', true);
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+		$this->load->is_loaded('stations') ?: $this->load->model('stations');
 
-		header('Content-Type: application/json');
-		echo json_encode($this->Contesting_model->getSessionQsos($qso));
+		if ($this->session->userdata('user_date_format')) {
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$contest_adif_id = 1; // Contest "Other"
+		$session_start = date('Y-m-d H:i');
+		$session_end = date('Y-m-d H:i', strtotime('+48 hours')); // 48 hours from now
+		$station_location = $this->active_station_location;
+		$session_notes = sprintf(__("Quickstart Session: %s"), date($custom_date_format . ' H:i'));
+
+		$session_id = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, true);
+
+		$logging_token = $this->paths->create_contesting_logging_token($session_id);
+
+		redirect('contesting/logging_engine/' . $logging_token);
 	}
 
-	public function getSession() {
-		session_write_close();
-		$this->load->model('Contesting_model');
+	/**
+	 * CBR Export Page for contests
+	 */
+	public function export_cbr($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		header('Content-Type: application/json');
-		echo json_encode($this->Contesting_model->getSession());
+		if (!$this->contesting_model->check_user_contest($contest_session_id)) {
+			$this->session->set_flashdata('error', __("Contest session not found."));
+			redirect('contesting');
+		}
+
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$cabrillo     = $this->contesting_model->get_exportformat_settings($contest_session_id, "cabrillo");
+		$userinfo     = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
+
+		$effective_name = !empty($session_info['custom_name']) ? $session_info['custom_name'] : $session_info['contest_name'];
+		$data['page_title']         = sprintf(__("CBR Export: %s"), $effective_name) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
+		$data['session_info']       = $session_info;
+		$data['cabrillo']           = $cabrillo;
+		$data['qso_count']          = $this->contesting_model->get_session_qso_count($contest_session_id);
+		$data['user_name']          = trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$data['user_email']         = $userinfo->user_email;
+		$data['session_operators']  = $session_operators;
+		$data['contest_session_id'] = $contest_session_id;
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('contesting/manager/export_cbr');
+		$this->load->view('interface_assets/footer');
 	}
 
-	public function deleteSession() {
-		$this->load->model('Contesting_model');
+	/**
+	 * EDI Export Page for contests
+	 */
+	public function export_edi($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		$qso = $this->input->post('qso', true);
+		if (!$this->contesting_model->check_user_contest($contest_session_id)) {
+			$this->session->set_flashdata('error', __("Contest session not found."));
+			redirect('contesting');
+		}
 
-		$data = $this->Contesting_model->deleteSession($qso);
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
 
-		return json_encode($data);
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$reg1test     = $this->contesting_model->get_exportformat_settings($contest_session_id, "reg1test");
+		$userinfo     = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
+		$session_bands = $this->contesting_model->get_session_bands($contest_session_id);
+
+		$effective_name = !empty($session_info['custom_name']) ? $session_info['custom_name'] : $session_info['contest_name'];
+		$data['page_title']         = sprintf(__("Export: %s"), $effective_name) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
+		$data['session_info']       = $session_info;
+		$data['reg1test']           = $reg1test;
+		$data['bands']				= $session_bands;
+		$data['qso_count']          = $this->contesting_model->get_session_qso_count($contest_session_id);
+		$data['user_name']          = trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$data['user_email']         = $userinfo->user_email;
+		$data['session_operators']  = $session_operators;
+		$data['contest_session_id'] = $contest_session_id;
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('contesting/manager/export_edi');
+		$this->load->view('interface_assets/footer');
 	}
 
-	public function setSession() {
-		$this->load->model('Contesting_model');
-		$this->Contesting_model->setSession();
+	/**
+	 * ADIF export for a specific contest session.
+	 * POST /contesting/export_adif/<id>
+	 */
+	public function export_adif($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		$this->session->set_userdata('radio', $this->input->post('radio', true));
+		if (!$this->contesting_model->check_user_contest($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$qsos         = $this->contesting_model->get_session_qsos_for_adif($contest_session_id);
+
+		$callsign = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$contest  = strtoupper($session_info['contest_adifname'] ?? 'CONTEST');
+		$filename = $callsign . '-' . $contest . '-' . date('Ymd') . '.adi';
+
+		$this->load->library('AdifHelper');
+
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+		echo $this->adifhelper->getAdifHeader(
+			$this->config->item('app_name'),
+			$this->optionslib->get_option('version'),
+			$this->optionslib->get_option('adif_version')
+		);
+
+		foreach ($qsos->result() as $qso) {
+			echo $this->adifhelper->getAdifLine($qso);
+		}
+	}
+
+	/**
+	 * Cabrillo export for a specific contest session.
+	 * Saves Cabrillo category settings back to the session before streaming the file.
+	 * POST /contesting/export_cabrillo/<id>
+	 */
+	public function export_cabrillo($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		if (!$this->contesting_model->check_user_contest($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		$cabrillo = [
+			'category_operator'    => $this->input->post('categoryoperator', true)    ?? 'SINGLE-OP',
+			'category_assisted'    => $this->input->post('categoryassisted', true)    ?? 'NON-ASSISTED',
+			'category_band'        => $this->input->post('categoryband', true)        ?? 'ALL',
+			'category_mode'        => $this->input->post('categorymode', true)        ?? 'MIXED',
+			'category_power'       => $this->input->post('categorypower', true)       ?? 'LOW',
+			'category_station'     => $this->input->post('categorystation', true)     ?? 'FIXED',
+			'category_transmitter' => $this->input->post('categorytransmitter', true) ?? 'ONE',
+			'category_time'        => $this->input->post('categorytime', true)        ?? '',
+			'category_overlay'     => $this->input->post('categoryoverlay', true)     ?? '',
+			'club'                 => $this->input->post('club', true)                ?? '',
+			'location'             => $this->input->post('location', true)            ?? '',
+			'operators'            => $this->input->post('operators', true)           ?? '',
+			'name'                 => $this->input->post('cbr_name', true)            ?? '',
+			'email'                => $this->input->post('cbr_email', true)           ?? '',
+			'address'              => $this->input->post('address', true)             ?? '',
+			'addresscity'          => $this->input->post('addresscity', true)         ?? '',
+			'addressprovince'      => $this->input->post('addressprovince', true)     ?? '',
+			'addresspostalcode'    => $this->input->post('addresspostalcode', true)   ?? '',
+			'addresscountry'       => $this->input->post('addresscountry', true)      ?? '',
+			'soapbox'              => $this->input->post('soapbox', true)             ?? '',
+			'certificate'          => $this->input->post('certificate', true)         ?? '',
+			'grid_export'          => $this->input->post('grid_export', true)         ?? '0',
+			'grid_precision'       => $this->input->post('grid_precision', true) === '6' ? '6' : '4',
+		];
+
+		$this->contesting_model->save_exportformat_settings($contest_session_id, "cabrillo", $cabrillo);
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$qsos         = $this->contesting_model->get_session_qsos_for_exportformat($contest_session_id);
+
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+		$userinfo = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$contest_id = $session_info['contest_adifname'];
+		$callsign   = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$filename   = $callsign . '-' . $contest_id . '-' . date('Ymd-Hi') . '.cbr';
+
+		$this->load->library('Cabrilloformat');
+
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+		$grid_export = ($cabrillo['grid_export'] === '1');
+		$grid_chars  = (int)($cabrillo['grid_precision'] ?? 4);
+
+		$cbr_name  = $cabrillo['name']  ?: trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$cbr_email = $cabrillo['email'] ?: $userinfo->user_email;
+
+		echo $this->cabrilloformat->header(
+			$contest_id,
+			$callsign,
+			null,
+			$cabrillo['operators'] ?: $callsign,
+			$cabrillo['club']      ?: null,
+			$cabrillo['location']  ?: null,
+			$cbr_name,
+			$cabrillo['address']           ?? '',
+			$cabrillo['addresscity']       ?? '',
+			$cabrillo['addressprovince']   ?? '',
+			$cabrillo['addresspostalcode'] ?? '',
+			$cabrillo['addresscountry']    ?? '',
+			$cabrillo['soapbox']  ?: '',
+			$session_info['station_gridsquare'] ?: null,
+			$cabrillo['category_overlay']     ?: '',
+			$cabrillo['category_transmitter'],
+			$cabrillo['category_time']        ?: '',
+			$cabrillo['category_station'],
+			$cabrillo['category_power'],
+			$cabrillo['category_mode'],
+			$cabrillo['category_band'],
+			$cabrillo['category_assisted'],
+			$cabrillo['category_operator'],
+			$cbr_email,
+			$cabrillo['certificate'] ?: null
+		);
+
+		foreach ($qsos->result() as $qso) {
+			echo $this->cabrilloformat->qso($qso, $grid_export, $grid_chars);
+		}
+
+		echo $this->cabrilloformat->footer();
+	}
+
+	/**
+	 * EDI (Reg1Test) export for a specific contest session.
+	 * Saves Reg1Test settings back to the session before streaming the file.
+	 * POST /contesting/export_reg1test/<id>
+	 */
+	public function export_reg1test($contest_session_id) {
 		
-		header('Content-Type: application/json');
-		echo json_encode($this->Contesting_model->getSession());
+		//load contesting model
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		//security checks
+		if (!$this->contesting_model->check_user_contest($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		//load distance calculator
+		$this->load->library('Qra');
+
+		//load user model
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+
+		//load userinfo
+		$userinfo = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		//get session information
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+
+		//get reg1test settings from user input
+		$reg1test_settings = [
+			'contestband'    		=> $this->input->post('contestband', true),
+			'sentexchange'    		=> $this->input->post('sentexchange', true)    		?? '',
+			'contestaddress1'       => $this->input->post('contestaddress1', true)      ?? '',
+			'contestaddress2'       => $this->input->post('contestaddress2', true)      ?? '',
+			'categoryoperator'      => $this->input->post('categoryoperator', true)     ?? 'SINGLE-OP',
+			'club'     				=> $this->input->post('club', true)     			?? '',
+			'responsible_operator' 	=> $this->input->post('responsible_operator', true) ?? '',
+			'address1'        		=> $this->input->post('address1', true)        		?? '',
+			'address2'     			=> $this->input->post('address2', true)     		?? '',
+			'addresspostalcode'     => $this->input->post('addresspostalcode', true)    ?? '',
+			'addresscity'           => $this->input->post('addresscity', true)          ?? '',
+			'addresscountry'        => $this->input->post('addresscountry', true)       ?? '',
+			'operatorphone'         => $this->input->post('operatorphone', true)        ?? '',
+			'operators'             => $this->input->post('operators', true)            ?? '',
+			'txequipment'           => $this->input->post('txequipment', true)          ?? '',
+			'power'         		=> $this->input->post('power', true)         		?? '',
+			'rxequipment'      		=> $this->input->post('rxequipment', true)     		?? '',
+			'antenna'    			=> $this->input->post('antenna', true)   			?? '',
+			'antennaheight'       	=> $this->input->post('antennaheight', true)        ?? '',
+			'soapbox'              	=> $this->input->post('soapbox', true)              ?? '',
+			'bandmultiplicator'     => $this->input->post('bandmultiplicator', true)    ?? '',
+		];
+
+		//save reg1test settings
+		$this->contesting_model->save_exportformat_settings($contest_session_id, "reg1test", $reg1test_settings);
+
+		//take reg1testsettings and use that as base for export data structure
+		$data = $reg1test_settings;
+
+		//get qsos and set qso data for export
+		$data['qsos'] = $this->contesting_model->get_session_qsos($contest_session_id, $data['contestband']);
+
+		//set contest header data for export
+		$data['band'] = $this->input->post('contestband', true);
+		$data['qso_count'] = count($data['qsos']);
+		$data['contest_id'] = $session_info['contest_adifname'];
+		$data['callsign'] = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$data['gridlocator'] = $session_info['station_gridsquare'];
+		$data['name'] = trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$data['maxdistanceqso'] = $this->qra->getMaxDistanceQSO($session_info['station_gridsquare'], $data['qsos'], "K");
+		$data['from'] = date('Ymd', strtotime($session_info['time_start']));
+		$data['to'] = date('Ymd', strtotime($session_info['time_end']));
+
+		//Load distance calculator
+		$this->load->library('Reg1testformat');
+
+		//Set headers
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' .  $data['callsign'] . '-' . $data['contest_id'] . '-' . date('Ymd-Hi') . '-' . $this->reg1testformat->reg1testbandstring($data['band']) . '.edi"');
+
+		//calculate qso details
+		$qsodetails = $this->reg1testformat->qsos($data['qsos'], $data['gridlocator'], $data['bandmultiplicator']);
+
+		//get header
+		echo $this->reg1testformat->header(
+			$data['contest_id'],
+			$data['from'],
+			$data['to'],
+			$data['callsign'],
+			$data['gridlocator'],
+			$data['contestaddress1'],
+			$data['contestaddress2'],
+			$data['categoryoperator'],
+			$data['band'],
+			$data['club'],
+			$data['name'],
+			$data['responsible_operator'],
+			$data['address1'],
+			$data['address2'],
+			$data['addresspostalcode'],
+			$data['addresscity'],
+			$data['addresscountry'],
+			$data['operatorphone'],
+			$data['operators'],
+			$data['soapbox'],
+			$data['qso_count'],
+			$data['sentexchange'],
+			$data['txequipment'],
+			$data['power'],
+			$data['rxequipment'],
+			$data['antenna'],
+			$data['antennaheight'],
+			$data['maxdistanceqso'],
+			$data['bandmultiplicator'],
+			$qsodetails['claimedpoints']
+		);
+
+		//write QSO details
+		echo $qsodetails['formatted_qso'];
+
+		//get seperate footer if QSO details won't provide one
+		echo $data['qso_count'] < 1 ? $this->reg1testformat->footer() : '';
+
 	}
 
-	public function create() {
-		$this->load->model('Contesting_model');
-		$this->load->library('form_validation');
+	/**
+	 * This starts the main logging engine for contesting
+	 */
+	public function logging_engine($logging_token) {
+		$this->load->model('contesting_model');
+		$this->load->model('user_model');
 
-		$this->form_validation->set_rules('name', 'Contest Name', 'required');
-		$this->form_validation->set_rules('adifname', 'Adif Contest Name', 'required');
+		// Decode logging token
+		$decoded_token = $this->paths->decode_contesting_logging_token($logging_token);
+		if (!$decoded_token || !isset($decoded_token['contest_session_id'])) {
+			$this->session->set_flashdata('error', __("Invalid logging token."));
+			redirect('contesting');
+		}
 
-		if ($this->form_validation->run() == FALSE) {
-			$data['page_title'] = "Create Mode";
-			$this->load->view('contesting/create', $data);
+		// setting up worker if available
+		$worker_topic = 'contest_session.' . $decoded_token['contest_session_id']; // shared topic for all operators in this contest session
+		if ($this->worker_available) {
+			$this->worker->register_topic($worker_topic);
+		}
+
+		if ($this->worker_available && $decoded_token) {
+			$data['worker_client_url'] = $this->worker->client_url();
+			$data['worker_topic']      = $worker_topic;
+			$data['worker_token']      = $this->worker->create_token((int) $decoded_token['contest_session_id']);
+		}
+
+		$contest_session_id = $decoded_token['contest_session_id'];
+
+		// Load session data
+		$data['session_info'] = $this->contesting_model->get_session_info($contest_session_id);
+		if (!$data['session_info']) {
+			$this->session->set_flashdata('error', __("Contest session not found."));
+			redirect('contesting');
+		}
+
+		// Per-user map preferences (night shadow / path line / station marker).
+		// Stored in user_options (bound to user_id), default all on except grid (needs more ressources)
+		$this->load->model('user_options_model');
+		$map_prefs = ['nightshadow' => true, 'pathline' => true, 'station' => true, 'autofit' => true, 'grid' => false];
+		$pref_row = $this->user_options_model->get_options('contest_logger_settings', ['option_name' => 'map_prefs']);
+		if ($pref_row && $pref_row->num_rows() > 0) {
+			$stored = json_decode($pref_row->row()->option_value, true);
+			if (is_array($stored)) {
+				$map_prefs = array_merge($map_prefs, $stored);
+			}
+		}
+		$data['map_prefs'] = $map_prefs;
+
+		// Generate storage key for localStorage. This needs to be collision-free between different Wavelog Instances and different users
+		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
+
+		$data['operator'] = $this->user_model->get_by_id($decoded_token['user_id'])->row()->user_callsign;
+		$data['page_title'] = !empty($data['session_info']['custom_name'])
+			? $data['session_info']['custom_name']
+			: $data['session_info']['contest_name'];
+		$data['is_club_station'] = (bool) ($this->session->userdata('clubstation') ?? false);
+
+		// Load available radios for CAT control
+		$this->load->model('cat');
+		$data['radios'] = $this->cat->radios();
+
+		// Register a worker topic per radio so the browser can subscribe for real-time CAT updates
+		$radio_worker_topics = [];
+		if ($this->worker_available) {
+			foreach ($data['radios']->result() as $radio) {
+				$radio_topic = 'radio.' . $radio->id;
+				$this->worker->register_topic($radio_topic);
+				$radio_worker_topics[$radio->id] = [
+					'topic' => $radio_topic,
+					'token' => $this->worker->create_token((int) $radio->id),
+				];
+			}
+		}
+		$data['radio_worker_topics'] = $radio_worker_topics;
+
+		// Load available modes for manual frequency/mode entry
+		$this->load->model('usermodes');
+		$data['modes'] = $this->usermodes->active();
+
+		// Load Bands
+		$this->load->model('bands');
+		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
+		log_message('debug', 'Loaded bands for contest logger: ' . json_encode($data['bands']));
+
+		// Set custom date format
+		if ($this->session->userdata('user_date_format')) {
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
 		} else {
-			$this->Contesting_model->add();
-			$this->load->driver('cache', [
-                'adapter' => $this->config->item('cache_adapter') ?? 'file',
-                'backup' => $this->config->item('cache_backup') ?? 'file',
-                'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-            ]);
-			$this->cache->delete('valid_contests');
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
 		}
-	}
 
-	public function add() {
-		$this->load->model('Contesting_model');
-
-		$data['contests'] = $this->Contesting_model->getAllContests();
-
-		$footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/sections/contesting.js',
+		// Component and layout configuration (percentage-based: 0-100)
+		// Component names as keys, layout configuration as values
+		// This can later be overridden by user-defined layouts
+		$data['components'] = [
+			'qso-form' => [
+				'x' => 1,      // 1% from left
+				'y' => 1,      // 1% from top
+				'width' => 70, // 70% of workspace width
+				'height' => 60, // 60% of workspace height
+			],
+			'radio' => [
+				'x' => 73,     // 73% from left (right side)
+				'y' => 1,      // 1% from top
+				'width' => 26, // 26% of workspace width
+				'height' => 30, // 30% of workspace height
+			],
+			'clock' => [
+				'x' => 1,      // 1% from left
+				'y' => 63,     // 63% from top (below qso-form)
+				'width' => 20, // 20% of workspace width
+				'height' => 12, // 12% of workspace height
+			],
+			'map' => [
+				'x' => 22,     // 22% from left (next to clock)
+				'y' => 63,     // 63% from top (below qso-form)
+				'width' => 51, // 51% of workspace width
+				'height' => 36, // 36% of workspace height
+			],
+			'scp' => [
+				'x' => 73,     // 73% from left (right side)
+				'y' => 32,     // 32% from top (below radio)
+				'width' => 26, // 26% of workspace width
+				'height' => 67, // 67% of workspace height
+			],
+			'statistics' => [
+				'x'      => 1,      // 1% from left, below clock
+				'y'      => 76,     // clock ends at y=75 (63+12), so 1% gap
+				'width'  => 20,     // same width as clock for visual alignment
+				'height' => 22,     // fills down to ~98%
+			]
 		];
 
-		// Render Page
-		$data['page_title'] = __("Contests");
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('contesting/add');
-		$this->load->view('interface_assets/footer', $footerData);
-	}
-
-	public function edit($id) {
-		$this->load->model('Contesting_model');
-		$this->load->library('form_validation');
-
-		$item_id_clean = $this->security->xss_clean($id);
-
-		$data['contest'] = $this->Contesting_model->contest($item_id_clean);
-
-		$data['page_title'] = __("Update Contest");
-
-		$footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/sections/contesting.js',
-		];
-
-		$this->form_validation->set_rules('name', 'Contest Name', 'required');
-		$this->form_validation->set_rules('adifname', 'Adif Contest Name', 'required');
-
-		if ($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('contesting/edit');
-			$this->load->view('interface_assets/footer', $footerData);
+		if ($this->session->userdata('isWinkeyEnabled')) {
+			$data['components']['winkeyer'] = [
+				'x'      => 73,
+				'y'      => 63,
+				'width'  => 26,
+				'height' => 35,
+			];
 		}
-		else
-		{
-			$this->Contesting_model->edit($item_id_clean);
-			$this->load->driver('cache', [
-                'adapter' => $this->config->item('cache_adapter') ?? 'file',
-                'backup' => $this->config->item('cache_backup') ?? 'file',
-                'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-            ]);
-			$this->cache->delete('valid_contests');
 
-			$data['notice'] = "Contest ".$this->security->xss_clean($this->input->post('name', true))." Updated";
+		$this->load->view('contesting/logger/header', $data);
+		$this->load->view('contesting/logger/index');
+		$this->load->view('contesting/logger/footer');
+	}
 
-			redirect('contesting/add');
+	public function create_session() {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+		switch ($this->input->method()) {
+			case 'get':
+				$this->load->is_loaded('contest_admin_model') ?: $this->load->model('contest_admin_model');
+				$this->load->is_loaded('stations') ?: $this->load->model('stations');
+
+				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
+				$data['stations'] = $this->stations->all_of_user();
+				$data['active_station_location'] = $this->active_station_location;
+
+				$this->load->view('contesting/manager/components/session_modal', $data);
+				break;
+
+			case 'post':
+				if (!clubaccess_check(9)) {
+					$this->session->set_flashdata('error', __("Officers must set up contests."));
+					redirect('contesting'); 
+				}
+				$contest_adif_id = $this->input->post('contest_adif_id', true);
+				$session_start = $this->input->post('session_start', true);
+				$session_end = $this->input->post('session_end', true);
+				$station_location = $this->input->post('station_location', true);
+				$session_notes = $this->input->post('session_notes', true);
+				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
+				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
+				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
+				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
+				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
+
+				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup, $custom_name);
+
+				if ($result) {
+					$this->session->set_flashdata('success', __("Contest session created successfully."));
+				} else {
+					$this->session->set_flashdata('error', __("There was an error creating the contest session. Please try again."));
+				}
+
+				redirect('contesting');
+
+			default:
+				$this->session->set_flashdata('error', __("Invalid request method."));
+				redirect('contesting');
 		}
 	}
 
-	public function delete() {
-		$id = $this->input->post('id', true);
-		$this->load->model('Contesting_model');
-		$this->Contesting_model->delete($id);
-		$this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file',
-			'backup' => $this->config->item('cache_backup') ?? 'file',
-			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-		]);
-		$this->cache->delete('valid_contests');
+	public function edit_session(){
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		switch ($this->input->method()) {
+			case 'get':
+				$contest_session_id = $this->input->get('contest_session_id');
+				
+				$this->load->is_loaded('contest_admin_model') ?: $this->load->model('contest_admin_model');
+				$this->load->is_loaded('stations') ?: $this->load->model('stations');
+
+				$data['session_info'] = $this->contesting_model->get_session_info($contest_session_id);
+				if (!$data['session_info']) {
+					$this->session->set_flashdata('error', __("Contest session not found."));
+					redirect('contesting');
+				}
+
+				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
+				$data['stations'] = $this->stations->all_of_user();
+				$data['active_station_location'] = $this->active_station_location;
+
+				$this->load->view('contesting/manager/components/session_modal', $data);
+				break;
+
+			case 'post':
+				$contest_session_id = $this->input->post('contest_session_id', true);
+				$time_start = $this->input->post('session_start', true);
+				$time_end = $this->input->post('session_end', true);
+				$station_id = $this->input->post('station_location', true);
+				$notes = $this->input->post('session_notes', true);
+				$contest_id = $this->input->post('contest_adif_id', true);
+				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
+				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
+				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
+				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
+				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
+
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup, $custom_name);
+
+				if ($result) {
+					$this->cache->delete(self::CACHE_KEY_SESSION_SETTINGS . $contest_session_id); // Clear session cache to reflect changes immediately
+					if ($this->worker_available) {
+						$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'settings_changed']);
+					}
+					$this->session->set_flashdata('success', __("Contest session updated successfully."));
+				} else {
+					$this->session->set_flashdata('error', __("There was an error updating the contest session. Please try again."));
+				}
+
+				redirect('contesting');
+
+			default:
+				$this->session->set_flashdata('error', __("Invalid request method."));
+				redirect('contesting');
+		}
 	}
 
-	public function activate() {
-		$id = $this->input->post('id', true);
-		$this->load->model('Contesting_model');
-		$this->Contesting_model->activate($id);
-		header('Content-Type: application/json');
-		echo json_encode(array('message' => 'OK'));
-		return;
+	public function delete_session(){
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		switch ($this->input->method()) {
+			case 'get':
+				$contest_session_id = $this->input->get('contest_session_id');
+				
+				$this->load->is_loaded('contest_admin_model') ?: $this->load->model('contest_admin_model');
+				$this->load->is_loaded('stations') ?: $this->load->model('stations');
+
+				$data['session_info'] = $this->contesting_model->get_session_info($contest_session_id);
+				if (!$data['session_info']) {
+					$this->session->set_flashdata('error', __("Contest session not found."));
+					redirect('contesting');
+				}
+
+				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
+				$data['stations'] = $this->stations->all_of_user();
+				$data['active_station_location'] = $this->active_station_location;
+
+				$this->load->view('contesting/manager/components/confirm_delete', $data);
+				break;	
+
+			case 'post':
+				$contest_session_id = $this->input->post('contest_session_id', true);
+				$delete_qsos = (bool) $this->input->post('delete_qsos', true);
+
+				$result = $this->contesting_model->delete_contest_session($contest_session_id, $delete_qsos);
+
+				if ($result) {
+					$this->session->set_flashdata('success', __("Contest session deleted successfully."));
+				} else {
+					$this->session->set_flashdata('error', __("There was an error deleting the contest session. Please try again."));
+				}
+
+				redirect('contesting');
+
+			default:
+				$this->session->set_flashdata('error', __("Invalid request method."));
+				redirect('contesting');
+		}
 	}
 
-	public function deactivate() {
-		$id = $this->input->post('id', true);
-		$this->load->model('Contesting_model');
-		$this->Contesting_model->deactivate($id);
-		$this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file',
-			'backup' => $this->config->item('cache_backup') ?? 'file',
-			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-		]);
-		$this->cache->delete('valid_contests');
+	/**
+	 * Inline QSO edit endpoint.
+	 * Endpoint: POST /contesting/update_qso
+	 *
+	 * Accepts JSON: { contest_session_id, qso_id, callsign?, mode?, frequency?,
+	 *                 rst_sent?, rst_rcvd?, serial_sent?, serial_rcvd?,
+	 *                 exchange_sent?, exchange_rcvd?, gridsquare_rcvd? }
+	 *
+	 * Authorization: PHP session user must own the contest session AND be the
+	 * operator recorded on the QSO (operator check).
+	 */
+	public function update_qso() {
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
 		header('Content-Type: application/json');
-		echo json_encode(array('message' => 'OK'));
-		return;
+
+		try {
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!$payload) {
+				throw new Exception('Invalid JSON payload');
+			}
+
+			$contest_session_id = (int)($payload['contest_session_id'] ?? 0);
+			$qso_id = (int)($payload['qso_id'] ?? 0);
+
+			if (!$contest_session_id || !$qso_id) {
+				throw new Exception('Missing contest_session_id or qso_id');
+			}
+
+			$this->load->model('contesting_model');
+
+			// Session ownership check
+			if (!$this->contesting_model->check_user_contest($contest_session_id)) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'Access denied']);
+				return;
+			}
+
+			// Verify QSO belongs to this session and get its operator
+			$qso = $this->contesting_model->get_contest_qso($qso_id, $contest_session_id);
+			if (!$qso) {
+				http_response_code(404);
+				echo json_encode(['success' => false, 'error' => 'QSO not found in this session']);
+				return;
+			}
+
+			// Operator check: only the user who logged the QSO may edit it.
+			// In club-station mode user_callsign is the club callsign; operator_callsign holds the personal callsign that was written to COL_OPERATOR.
+			$current_callsign = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
+			$qso_operator = strtoupper(trim($qso['operator'] ?? ''));
+			if ($qso_operator !== $current_callsign) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'You can only edit QSOs you logged']);
+				return;
+			}
+
+			// Whitelist of editable columns
+			$allowed = [
+				'callsign'      => 'COL_CALL',
+				'mode'          => 'COL_MODE',
+				'frequency'     => 'COL_FREQ',
+				'band'          => 'COL_BAND',
+				'rst_sent'      => 'COL_RST_SENT',
+				'rst_rcvd'      => 'COL_RST_RCVD',
+				'serial_sent'   => 'COL_STX',
+				'serial_rcvd'   => 'COL_SRX',
+				'exchange_sent' => 'COL_STX_STRING',
+				'exchange_rcvd' => 'COL_SRX_STRING',
+				'gridsquare_rcvd' => 'COL_GRIDSQUARE',
+				'time_on'         => 'COL_TIME_ON',
+			];
+
+			$fields = [];
+			foreach ($allowed as $key => $col) {
+				if (array_key_exists($key, $payload)) {
+					$val = $payload[$key];
+					if (in_array($key, ['callsign', 'mode', 'band', 'rst_sent', 'rst_rcvd',
+					                    'serial_sent', 'serial_rcvd', 'exchange_sent',
+					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
+						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
+						if ($key === 'callsign' && $val !== null) {
+							$val = str_replace('Ø', '0', $val);
+						}
+					}
+					if (in_array($key, ['serial_sent', 'serial_rcvd']) && $val === '') {
+						$val = null;
+					}
+					if ($key === 'time_on' && $val !== null) {
+						$dt = DateTime::createFromFormat('Y-m-d H:i:s', trim((string)$val));
+						// getLastErrors() catches overflow (e.g. 25:00:00 silently wrapping to next day)
+						$dt_errors = DateTime::getLastErrors();
+						if (!$dt || ($dt_errors && array_sum($dt_errors))) throw new Exception('Invalid time_on value');
+						$val = $dt->format('Y-m-d H:i:s');
+					}
+					$fields[$col] = $val;
+					if ($key === 'time_on') $fields['COL_TIME_OFF'] = $val;
+				}
+			}
+
+			if (empty($fields)) {
+				throw new Exception('No editable fields provided');
+			}
+
+			$this->contesting_model->update_contest_qso($qso_id, $fields);
+
+			if ($this->worker_available) {
+				$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+			}
+
+			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+		}
 	}
 
-	public function deactivateall() {
-		$this->load->model('Contesting_model');
-		$this->Contesting_model->deactivateall();
-		$this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file',
-			'backup' => $this->config->item('cache_backup') ?? 'file',
-			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-		]);
-		$this->cache->delete('valid_contests');
+	/**
+	 * Delete a single QSO from a contest session and from the main logbook.
+	 * Endpoint: POST /contesting/delete_qso
+	 *
+	 * Accepts JSON: { contest_session_id, qso_id }
+	 */
+	public function delete_qso() {
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
 		header('Content-Type: application/json');
-		echo json_encode(array('message' => 'OK'));
-		return;
+
+		try {
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!$payload) {
+				throw new Exception('Invalid JSON payload');
+			}
+
+			$contest_session_id = (int)($payload['contest_session_id'] ?? 0);
+			$qso_id             = (int)($payload['qso_id'] ?? 0);
+
+			if (!$contest_session_id || !$qso_id) {
+				throw new Exception('Missing contest_session_id or qso_id');
+			}
+
+			$this->load->model('contesting_model');
+
+			if (!$this->contesting_model->check_user_contest($contest_session_id)) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'Access denied']);
+				return;
+			}
+
+			$qso = $this->contesting_model->get_contest_qso($qso_id, $contest_session_id);
+			if (!$qso) {
+				http_response_code(404);
+				echo json_encode(['success' => false, 'error' => 'QSO not found in this session']);
+				return;
+			}
+
+			$current_callsign = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
+			$qso_operator     = strtoupper(trim($qso['operator'] ?? ''));
+			if ($qso_operator !== $current_callsign) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'You can only delete QSOs you logged']);
+				return;
+			}
+
+			$this->contesting_model->unlink_qso($qso_id, $contest_session_id);
+
+			$this->load->model('logbook_model');
+			$this->logbook_model->delete($qso_id);
+
+			if ($this->worker_available) {
+				$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+			}
+
+			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+		}
 	}
 
-	public function activateall() {
-		$this->load->model('Contesting_model');
-		$this->Contesting_model->activateall();
-		$this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file',
-			'backup' => $this->config->item('cache_backup') ?? 'file',
-			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-		]);
-		$this->cache->delete('valid_contests');
+	/**
+	 * Sync Endpoint for Contest Engine
+	 * Handles bidirectional communication (Commands + Requests)
+	 * Endpoint: POST /contesting/heartbeat
+	 */
+	public function heartbeat() {
+		// Only accept POST requests
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
 		header('Content-Type: application/json');
-		echo json_encode(array('message' => 'OK'));
-		return;
+		session_write_close();
+
+		try {
+			// Get JSON payload
+			$json_input = $this->input->raw_input_stream;
+			$payload = json_decode($json_input, true);
+
+			if (!$payload) {
+				throw new Exception('Invalid JSON payload');
+			}
+
+			$session_info = $payload['session_info'] ?? null;
+			if (!$session_info) {
+				throw new Exception('Missing contest_session_id');
+			}
+				
+			$this->load->model('contesting_model');
+
+			$response = [
+				'success' => true,
+				'commands_processed' => 0,
+				'data' => [
+					'saved_qsos' => [],
+					'needs_resync' => false,
+					'all_qsos' => null,
+					'changed_qsos' => []
+				],
+				'errors' => []
+			];
+
+			// Process Commands (Push Operations from client to server)
+			if (isset($payload['commands']) && is_array($payload['commands'])) {
+				foreach ($payload['commands'] as $command) {
+					try {
+						$response['commands_processed'] += $this->_processCommand($command, $session_info);
+					} catch (Exception $e) {
+						$response['errors'][] = $e->getMessage();
+					}
+				}
+			}
+
+			// Transfer saved QSOs from commands to response
+			$response['data']['saved_qsos'] = $this->new_qsos;
+
+			// Process Requests (Pull Operations from server to client)
+			if (isset($payload['requests']) && is_array($payload['requests'])) {
+				foreach ($payload['requests'] as $request) {
+					try {
+						$this->_processRequest($request, $session_info, $response);
+					} catch (Exception $e) {
+						$response['errors'][] = $e->getMessage();
+					}
+				}
+			}
+
+			echo json_encode($response);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage(),
+				'data' => []
+			]);
+		}
+	}
+
+	/**
+	 * Process a single command (server write operation)
+	 * @private
+	 */
+	private function _processCommand($command, $session_info) {
+		if (!isset($command['type'])) {
+			throw new Exception('Command missing type');
+		}
+
+		switch ($command['type']) {
+			case 'save_qso':
+				if (!isset($command['data'])) {
+					throw new Exception('save_qso command missing data');
+				}
+
+				// Only load models if needed
+				$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+				// Prepare QSO data for saving
+				$qso_data = [
+					'manual' => 0, // work always as non-manual entry; TODO: Implement something like POST CONTEST LOGGING
+					'start_date' => $command['data']['date'],
+					'start_time' => $command['data']['time'],
+					'end_time' => $command['data']['time'],
+					'callsign' => $command['data']['callsign'],
+					'freq_display' => $command['data']['frequency'],
+					'mode' => $command['data']['mode'],
+					'rst_sent' => $command['data']['rst_sent'],
+					'rst_rcvd' => $command['data']['rst_rcvd'],
+					'exch_serial_s' => $command['data']['serial_sent'] ?? NULL,
+					'exch_serial_r' => $command['data']['serial_rcvd'] ?? NULL,
+					'exch_sent' => $command['data']['exchange_sent'] ?? NULL,
+					'exch_rcvd' => $command['data']['exchange_rcvd'] ?? NULL,
+					'locator' => $command['data']['gridsquare_rcvd'] ?? NULL,
+					'name'    => $command['data']['name']          ?? NULL,
+					'qth'     => $command['data']['qth']           ?? NULL,
+					'ituz'    => $command['data']['ituz']          ?? NULL,
+					'country' => $command['data']['country'] ?? NULL,
+					'continent' => $command['data']['continent'] ?? NULL,
+					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,
+					'cqz' => $command['data']['cqz'] ?? NULL,
+					'operator_callsign' => $command['data']['operator'] ?: $this->session->userdata('user_callsign'),
+					'contestname' => $session_info['contest_adifname'],
+					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange',
+					'copyexchangeto' => $session_info['copyexchangeto'] ?? NULL
+				];
+
+				// Save QSO to database
+				$save_result = $this->logbook_model->create_qso($qso_data, false);
+
+				// Link QSO to contest session
+				if ($save_result['qso_id']) {
+					$this->contesting_model->link_qso($save_result['qso_id'], $session_info['contest_session_id']);
+					// Notify worker clients about new QSO if worker is available
+					if ($this->worker_available) {
+						$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'sync_required']);
+						log_message('debug', 'published sync_required for contest session ' . $session_info['contest_session_id']);
+					}
+				} else {
+					throw new Exception('Failed to save QSO');;
+				}
+
+				// Store mapping of tmp_id to real ID for client response
+				// This will be sent back to the client to update local state.
+				// last_modified_ms lets the client advance its since_ts watermark so the
+				// next check_sync does not pull this QSO back as a delta. The row was just
+				// inserted with last_modified = NOW(), so the current server time in ms
+				// matches it at the second precision the delta query compares on.
+				$this->new_qsos[] = [
+					'tmp_id' => $command['data']['tmp_id'],
+					'server_id' => $save_result['qso_id'],
+					'last_modified_ms' => time() * 1000
+				];
+
+				return 1; // 1 command processed
+
+			default:
+				throw new Exception("Unknown command type: {$command['type']}");
+		}
+	}
+
+	/**
+	 * Process a single request (server read operation)
+	 * @private
+	 */
+	private function _processRequest($request, $session_info, &$response) {
+		if (!isset($request['type'])) {
+			throw new Exception('Request missing type');
+		}
+
+		switch ($request['type']) {
+			case 'get_radio_status':
+				// Radio CAT status request
+				if (!isset($request['radio_id']) || $request['radio_id'] === '0') {
+					break; // No radio selected
+				}
+
+				$this->load->model('cat');
+				$radio_query = $this->cat->radio_status($request['radio_id']);
+
+				if ($radio_query->num_rows() > 0) {
+					$row = $radio_query->row();
+					$response['data']['radio_status'] = [
+						'frequency' => $row->frequency,
+						'mode' => $row->mode,
+						'timestamp' => strtotime($row->timestamp) * 1000, // Unix timestamp in ms
+						'updated_minutes_ago' => floor((time() - strtotime($row->timestamp)) / 60)
+					];
+				} else {
+					$response['data']['radio_status'] = null;
+				}
+				break;
+
+			case 'check_sync':
+				// Incremental sync: deliver only QSOs changed since the client's watermark.
+				// Adds and edits (contest editor AND external logbook/ADIF/QSL edits) bump
+				// last_modified, so the delta query catches them all. Deletes do not bump
+				// anything (the row is gone), so they are caught by the QSO count check below,
+				// which falls back to a one-off full resync — rare and acceptable.
+				$client_qso_count = $request['client_qso_count'] ?? 0;
+				$since_ts         = (int)($request['since_ts'] ?? 0);
+				$since_id         = (int)($request['since_id'] ?? 0);
+
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				$server_qso_count = $this->contesting_model->get_session_qso_count($session_info['contest_session_id']);
+
+				// Make server count available to response without an extra query later
+				$response['server_qso_count'] = $server_qso_count;
+
+				// Expected client count after the client applies the QSOs saved this heartbeat
+				$expected_client_count = $client_qso_count + count($response['data']['saved_qsos']);
+
+				if ($expected_client_count !== $server_qso_count) {
+					// Count mismatch → a delete (or a gap we cannot express as a delta) happened.
+					// Send the full set so the client can replace its local state.
+					$response['data']['needs_resync'] = true;
+					$response['data']['all_qsos'] = $this->_map_qso_ids(
+						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], 0, 0)
+					);
+
+					log_message('info', "Resync triggered for session {$session_info['contest_session_id']}: Client={$client_qso_count} + Saved=" . count($response['data']['saved_qsos']) . " = {$expected_client_count}, Server={$server_qso_count}");
+				} else {
+					// Normal case → only the QSOs changed since the client's watermark.
+					$response['data']['needs_resync'] = false;
+					$response['data']['changed_qsos'] = $this->_map_qso_ids(
+						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], $since_ts, $since_id)
+					);
+				}
+				break;
+
+			case 'get_session_settings':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				$cache_key = self::CACHE_KEY_SESSION_SETTINGS . $session_info['contest_session_id'];
+				$cached_settings = $this->cache->get($cache_key);
+				log_message('info', "Cache lookup for session settings with key {$cache_key}: " . ($cached_settings ? 'HIT' : 'MISS'));
+				if ($cached_settings) {
+					$response['data']['session_settings'] = $cached_settings;
+					break;
+				}
+				$fresh = $this->contesting_model->get_session_info($session_info['contest_session_id']);
+				$response['data']['session_settings'] = $fresh;
+				$this->cache->save($cache_key, $response['data']['session_settings'], 3600); // Cache for 1h
+				break;
+
+			default:
+				throw new Exception("Unknown request type: {$request['type']}");
+		}
+	}
+
+	/**
+	 * Maps each QSO's qso_id to an id field for frontend compatibility.
+	 * @param array|mixed $qsos Result of a get_session_qsos* query
+	 * @return array
+	 */
+	private function _map_qso_ids($qsos) {
+		if (!is_array($qsos)) {
+			return [];
+		}
+		return array_map(function ($qso) {
+			$qso['id'] = $qso['qso_id'];
+			return $qso;
+		}, $qsos);
+	}
+
+	/**
+	 * Get all saved layouts for user
+	 * POST: /contesting/get_layouts
+	 */
+	public function get_layouts() {
+		header('Content-Type: application/json');
+
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		try {
+			$this->load->model('user_options_model');
+			$result = $this->user_options_model->get_options('contest_logger_layout');
+
+			// Get default layout name
+			$default_result = $this->user_options_model->get_options('contest_logger_settings', ['option_name' => 'default_layout']);
+			$default_layout = null;
+			if ($default_result && $default_result->num_rows() > 0) {
+				$default_layout = $default_result->row()->option_value;
+			}
+
+			$layouts = [];
+			if ($result && $result->num_rows() > 0) {
+				foreach ($result->result() as $row) {
+					$layouts[] = [
+						'name' => $row->option_name,
+						'data' => json_decode($row->option_value, true),
+						'is_default' => ($row->option_name === $default_layout)
+					];
+				}
+			}
+
+			echo json_encode([
+				'success' => true,
+				'layouts' => $layouts,
+				'default_layout' => $default_layout
+			]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage()
+			]);
+		}
+	}
+
+	/**
+	 * Set default layout for contest logger
+	 * POST: /contesting/set_default_layout
+	 */
+	public function set_default_layout() {
+		header('Content-Type: application/json');
+
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		try {
+			$json_input = $this->input->raw_input_stream;
+			$payload = json_decode($json_input, true);
+
+			if (!$payload || !isset($payload['name'])) {
+				throw new Exception('Missing required field: name');
+			}
+
+			$name = $payload['name'];
+
+			// Save default layout preference
+			$this->load->model('user_options_model');
+			$this->user_options_model->set_option(
+				'contest_logger_settings',
+				'default_layout',
+				['value' => $name]
+			);
+
+			echo json_encode([
+				'success' => true,
+				'message' => 'Default layout set successfully'
+			]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage()
+			]);
+		}
+	}
+
+	/**
+	 * Save per-user contest map preferences (night shadow / path line / station marker).
+	 * POST: /contesting/save_map_prefs
+	 * Stored per-user in user_options (bound to user_id), so other users on the same
+	 * device do not inherit them.
+	 */
+	public function save_map_prefs() {
+		header('Content-Type: application/json');
+
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		try {
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!is_array($payload)) {
+				throw new Exception('Invalid payload');
+			}
+
+			// Whitelist + normalise to booleans
+			$prefs = [
+				'nightshadow' => !empty($payload['nightshadow']),
+				'pathline'    => !empty($payload['pathline']),
+				'station'     => !empty($payload['station']),
+				'autofit'     => !empty($payload['autofit']),
+				'grid'        => !empty($payload['grid']),
+			];
+
+			$this->load->model('user_options_model');
+			$this->user_options_model->set_option(
+				'contest_logger_settings',
+				'map_prefs',
+				['value' => json_encode($prefs)]
+			);
+
+			echo json_encode(['success' => true]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage()
+			]);
+		}
+	}
+
+	/**
+	 * Save user layout for contest logger
+	 * POST: /contesting/save_layout
+	 */
+	public function save_layout() {
+		header('Content-Type: application/json');
+
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		try {
+			$json_input = $this->input->raw_input_stream;
+			$payload = json_decode($json_input, true);
+
+			if (!$payload || !isset($payload['layout']) || !isset($payload['name'])) {
+				throw new Exception('Missing required fields: layout or name');
+			}
+
+			$layout = $payload['layout'];
+			$name = trim($payload['name']);
+
+			if (empty($name)) {
+				throw new Exception('Layout name cannot be empty');
+			}
+
+			// Save layout to user_options
+			$this->load->model('user_options_model');
+			$this->user_options_model->set_option(
+				'contest_logger_layout',
+				$name,
+				['data' => json_encode($layout)]
+			);
+
+			echo json_encode([
+				'success' => true,
+				'message' => 'Layout saved successfully'
+			]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage()
+			]);
+		}
+	}
+
+	/**
+	 * Load user layout for contest logger
+	 * POST: /contesting/load_layout
+	 */
+	public function load_layout() {
+		header('Content-Type: application/json');
+
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		try {
+			$json_input = $this->input->raw_input_stream;
+			$payload = json_decode($json_input, true);
+
+			if (!$payload || !isset($payload['name'])) {
+				throw new Exception('Missing required field: name');
+			}
+
+			$name = $payload['name'];
+
+			// Load layout from user_options
+			$this->load->model('user_options_model');
+			$result = $this->user_options_model->get_options(
+				'contest_logger_layout',
+				['option_name' => $name]
+			);
+
+			if ($result && $result->num_rows() > 0) {
+				$row = $result->row();
+				$layout = json_decode($row->option_value, true);
+
+				echo json_encode([
+					'success' => true,
+					'layout' => $layout
+				]);
+			} else {
+				echo json_encode([
+					'success' => true,
+					'layout' => null
+				]);
+			}
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage()
+			]);
+		}
+	}
+
+	/**
+	 * Delete user layout for contest logger
+	 * POST: /contesting/delete_layout
+	 */
+	public function delete_layout() {
+		header('Content-Type: application/json');
+
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		try {
+			$json_input = $this->input->raw_input_stream;
+			$payload = json_decode($json_input, true);
+
+			if (!$payload || !isset($payload['name'])) {
+				throw new Exception('Missing required field: name');
+			}
+
+			$name = $payload['name'];
+
+			// Delete layout from user_options
+			$this->load->model('user_options_model');
+
+			// Delete specific layout
+			$this->user_options_model->del_option(
+				'contest_logger_layout',
+				$name
+			);
+
+			echo json_encode([
+				'success' => true,
+				'message' => 'Layout deleted successfully'
+			]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage()
+			]);
+		}
 	}
 
 	/*
-	 *  Function is used for dupe-checking in contestinglogging
+	 * Combined DXCC + callbook lookup for the contest engine.
+	 * DXCC comes from the local library (fast, no network). Callbook data (name, QTH,
+	 * grid, etc.) is fetched externally and merged on top, overriding DXCC fields where
+	 * the callbook has more specific data. Result is cached server-side for 4 hours.
 	 */
-	public function checkIfWorkedBefore() {
-		session_write_close();
-		$call = $this->input->post('call', true);
-		$band = $this->input->post('band', true);
-		$mode = $this->input->post('mode', true);
-		$contest = $this->input->post('contest', true);
-
-		$this->load->model('Contesting_model');
-
-		$result = $this->Contesting_model->checkIfWorkedBefore($call, $band, $mode, $contest);
-		header('Content-Type: application/json');
-		if ($result && $result->num_rows()) {
-			$timeb4=substr($result->row()->b4,0,5);
-			$custom_date_format = $this->session->userdata('user_date_format');
-			$abstimeb4=date($custom_date_format, strtotime($result->row()->COL_TIME_OFF)).' '.date('H:i',strtotime($result->row()->COL_TIME_OFF));
-			echo json_encode(array('message' => 'Worked at '.$abstimeb4.' ('.$timeb4.' ago) before'));
+	public function callbook() {
+		$this->load->library('callbook');
+		$call = $this->input->get('call', TRUE);
+		if (!$call || strlen($call) < 3) {
+			http_response_code(400);
+			echo json_encode(['error' => 'invalid call']);
+			return;
 		}
-		return;
+		$call = $this->callbook->get_plaincall($call);
+
+		$offline_lookup = $this->input->get('offline', TRUE) === '1' ? true : false;
+
+		// Local DXCC lookup — always available, no network needed
+		$date    = date("Y-m-d");
+		$dxccobj = new Dxcc($date);
+		$dxcc    = $dxccobj->dxcc_lookup($call, $date);
+
+		$payload = [
+			'name'   => null,
+			'qth'    => null,
+			'grid'   => null,
+			'ituz'   => null,
+			'dxcc'   => $dxcc['adif']   ?? null,
+			'cqz'    => $dxcc['cqz']    ?? null,
+			'cont'   => $dxcc['cont']   ?? null,
+			'entity' => $dxcc['entity'] ?? null,
+			'lat'    => $dxcc['lat']    ?? null,
+			'long'   => $dxcc['long']   ?? null,
+			'source' => null,
+		];
+
+		$this->load->model('logbook_model');
+
+		// DB-first: get all available info from own log
+		$db_info = $this->logbook_model->get_callsign_all_info($call);
+
+		$payload['name'] = $db_info['name'] ?: null;
+		$payload['qth']  = $db_info['qth']  ?: null;
+		$payload['grid'] = $db_info['qra']  ?: null;
+		$payload['ituz'] = $db_info['ituz'] ?: null;
+		if (!empty($db_info['cqz'])) $payload['cqz'] = $db_info['cqz'];
+		if ($payload['grid']) $payload['source'] = 'log';
+
+		if (!$offline_lookup) {
+			// we want to cache callbook lookups :)
+			$cache_key = 'contesting_callbook_' . strtolower($call);
+			$cbdata = $this->cache->get($cache_key);
+
+			if ($cbdata === FALSE) {
+				$cbdata = $this->logbook_model->loadCallBook($call);
+				if (!empty($cbdata) && empty($cbdata['error'])) {
+					$this->cache->save($cache_key, $cbdata, 14400); // 4h cache time for online lookups
+				}
+			}
+
+			if (!empty($cbdata) && empty($cbdata['error'])) {
+				if (empty($payload['name']))   $payload['name']   = $cbdata['name']       ?? null;
+				if (empty($payload['qth']))    $payload['qth']    = $cbdata['city']        ?? null;
+				if (!empty($cbdata['gridsquare'])) $payload['grid']   = $cbdata['gridsquare'];
+				if (empty($payload['ituz']))   $payload['ituz']   = $cbdata['ituz']        ?? null;
+				if (!empty($cbdata['dxcc'])) $payload['dxcc'] = $cbdata['dxcc'];
+				if (!empty($cbdata['cqz']))  $payload['cqz']  = $cbdata['cqz'];
+				$payload['source'] = $cbdata['source'] ?? null;
+			}
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($payload);
+	}
+
+	private function _parseExchangeFields($json) {
+		$allowed = ['serial', 'gridsquare', 'exchange'];
+		$decoded = json_decode($json ?? '', true);
+		if (!is_array($decoded)) {
+			return ['exchange'];
+		}
+		$fields = array_values(array_filter($decoded, fn($f) => in_array($f, $allowed)));
+		return $fields ?: ['exchange'];
+	}
+
+	private function _fieldsToLegacyType($fields) {
+		$s = in_array('serial',    $fields);
+		$g = in_array('gridsquare', $fields);
+		$e = in_array('exchange',  $fields);
+		if ($s && $g && $e) return 'SerialGridExchange';
+		if ($s && $g)       return 'Serialgridsquare';
+		if ($s && $e)       return 'Serialexchange';
+		if ($e && $g)       return 'Exchangegridsquare';
+		if ($s)             return 'Serial';
+		return 'Exchange';
+	}
+
+	private function _teapot() {
+		http_response_code(418);
+		echo json_encode(['success' => false, 'error' => "I'm a teapot. Don't brew coffee with me."]);
 	}
 }

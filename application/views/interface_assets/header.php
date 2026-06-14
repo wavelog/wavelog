@@ -135,12 +135,15 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qso?manual=1'); ?>" title="Log QSO made in the past"><i class="fas fa-list"></i> <?= __("Post QSO"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('simplefle'); ?>" title="Simple Fast Log Entry"><i class="fas fa-list"></i> <?= __("Simple Fast Log Entry"); ?></a></li>
-								<?php if (clubaccess_check(99)) { ?> <!-- Club Access Check -->
+							</ul>
+						</li>
+
+						<li class="nav-item dropdown"> <!-- CONTEST -->
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Contest"); ?></a>
+							<ul class="dropdown-menu header-dropdown">
+								<li><a class="dropdown-item" href="<?php echo site_url('contesting/quickstart'); ?>" target="_blank" title="<?= __("Quick Start"); ?>"><i class="fas fa-list"></i> <?= __("Quick Start"); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=0'); ?>" title="Live contest QSOs"><i class="fas fa-list"></i> <?= __("Live Contest Logging"); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=1'); ?>" title="Post contest QSOs"><i class="fas fa-list"></i> <?= __("Post Contest Logging"); ?></a></li>
-								<?php } ?>
+								<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="<?= __("Manage Contests"); ?>"><i class="fas fa-list"></i> <?= __("Manage Contests"); ?></a></li>
 							</ul>
 						</li>
 
@@ -334,7 +337,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('mode'); ?>" title="Manage QSO modes"><i class="fas fa-broadcast-tower"></i> <?= __("Modes"); ?></a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?= __("Contests"); ?></a>
+								<a class="dropdown-item" href="<?php echo site_url('contest_admin/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?= __("Contests"); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellites"); ?></a>
 								<div class="dropdown-divider"></div>
@@ -491,9 +494,9 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('reg1test'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
 									</ul>
 								</li>
 

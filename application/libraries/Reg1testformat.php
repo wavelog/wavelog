@@ -47,7 +47,7 @@ class Reg1testformat {
 
       //set QSO info for QSO with max distance only if we can determine it
       if(!empty($maxdistanceqso['qso'])){
-         $edi_header .= "CODXC=" . strtoupper($maxdistanceqso['qso']->COL_CALL) . ";" . substr(strtoupper($maxdistanceqso['qso']->COL_GRIDSQUARE), 0, 6) . ";" . intval($maxdistanceqso['distance']) . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
+         $edi_header .= "CODXC=" . strtoupper($maxdistanceqso['qso']['callsign']) . ";" . substr(strtoupper($maxdistanceqso['qso']['gridsquare_recv']), 0, 6) . ";" . intval($maxdistanceqso['distance']) . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
       }else{
          $edi_header .= "CODXC=" . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance. Leave empty.
       }
@@ -85,36 +85,37 @@ class Reg1testformat {
       $result['claimedpoints'] = 0;
 
       //iterate through every QSO and construct detail format
-      foreach ($qsodata->result() as $row) {
+      foreach ($qsodata as $row) {
 
          //result string
          $qsorow = "";
 
-         $qsorow .= date('ymd', strtotime($row->COL_TIME_ON)) . ';';  //Date in YYMMDD format
-         $qsorow .= date('Hi', strtotime($row->COL_TIME_ON)) . ';'; //Time in HHMM format
-         $qsorow .= substr($row->COL_CALL, 0, 14) . ';'; //Callsign, maximum 14 characters
-         $qsorow .= $this->reg1testmodecode($row->COL_MODE) . ';'; //Mode-Code in REG1TEST format
-         $qsorow .= substr($row->COL_RST_SENT, 0, 3) . ';'; //Sent RST, max 3 characters
-         $qsorow .= substr(str_pad($row->COL_STX ?? "", 3, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with 3 digits with leading zeros. If number gets greater than 999, 4 characters are used at maximum
-         $qsorow .= substr($row->COL_RST_RCVD, 0, 3) . ';'; //Received RST, max 3 characters
-         $qsorow .= substr(str_pad($row->COL_SRX ?? "", 3, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with 3 digits with leading zeros. If number gets greater than 999, 4 characters are used at maximum
-         $qsorow .= substr($row->COL_SRX_STRING ?? "", 0, 6) . ';'; //Received Exchange, max 6 characters
-         $qsorow .= strtoupper(substr($row->COL_GRIDSQUARE ?? "" , 0, 6)) . ';'; //Gridsquare max 6 characters
+         $qsorow .= date('ymd', strtotime($row['time_on'])) . ';';  //Date in YYMMDD format
+         $qsorow .= date('Hi', strtotime($row['time_on'])) . ';'; //Time in HHMM format
+         $qsorow .= substr($row['callsign'], 0, 14) . ';'; //Callsign, maximum 14 characters
+         $qsorow .= $this->reg1testmodecode($row['mode']) . ';'; //Mode-Code in REG1TEST format
+         $qsorow .= substr($row['rst_sent'], 0, 3) . ';'; //Sent RST, max 3 characters
+         $qsorow .= substr(str_pad($row['serial_sent'] ?? "", 3, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with 3 digits with leading zeros. If number gets greater than 999, 4 characters are used at maximum
+         $qsorow .= substr($row['rst_recv'], 0, 3) . ';'; //Received RST, max 3 characters
+         $qsorow .= substr(str_pad($row['serial_recv'] ?? "", 3, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with 3 digits with leading zeros. If number gets greater than 999, 4 characters are used at maximum
+         $qsorow .= substr($row['exch_recv'] ?? "", 0, 6) . ';'; //Received Exchange, max 6 characters
+         $qsorow .= strtoupper(substr($row['gridsquare_recv'] ?? "" , 0, 6)) . ';'; //Gridsquare max 6 characters
 
          //calculate or get distance in whole kilometers while determening if this is a new locator or not
-         if (!empty($row->COL_GRIDSQUARE)) {
-            if(!array_key_exists($row->COL_GRIDSQUARE, $locators)){
+         if (!empty($row['gridsquare_recv'])) {
+            if(!array_key_exists($row['gridsquare_recv'], $locators)){
                $newlocator = true;
-               $distance = intval($CI->qra->distance($mylocator, $row->COL_GRIDSQUARE, "K", $row->COL_ANT_PATH));
-               $locators[$row->COL_GRIDSQUARE] = $distance;
+               $distance = intval($CI->qra->distance($mylocator, $row['gridsquare_recv'], "K", $row['antenna_path']));
+               $locators[$row['gridsquare_recv']] = $distance;
             }else{
                $newlocator = false;
-               $distance = $locators[$row->COL_GRIDSQUARE];
+               $distance = $locators[$row['gridsquare_recv']];
             }
          } else {
             $distance = 0;
             $newlocator = false;
          }
+
 
          //determine QSO points and add those to the total
          $qsopoints = intval(round($distance * $bandmultiplicator, 0));
@@ -123,9 +124,9 @@ class Reg1testformat {
          $qsorow .= $qsopoints . ";"; //qso points = distance * bandmultiplicator
 
          //determine if the exchange is new or not
-         if(!in_array($row->COL_SRX_STRING, $exchanges)){
+         if(!in_array($row['exch_recv'], $exchanges)){
             $newexchange = true;
-            array_push($exchanges, $row->COL_SRX_STRING);
+            array_push($exchanges, $row['exch_recv']);
          }else{
             $newexchange = false;
          }
@@ -134,9 +135,9 @@ class Reg1testformat {
          $qsorow .= ($newlocator ? 'N' : '') . ';'; //flag if locator is new
 
          //determine if DXCC is new or not
-         if(!in_array($row->COL_DXCC, $dxccs)){
+         if(!in_array($row['dxcc'], $dxccs)){
             $newdxcc = true;
-            array_push($dxccs, $row->COL_DXCC);
+            array_push($dxccs, $row['dxcc']);
          }else{
             $newdxcc = false;
          }

@@ -13,10 +13,19 @@
 	<div class="card">
 		<div class="card-body">
 			<p class="card-text">
-				<?= __("Using the contest list, you can control which Contests are shown when logging QSOs in a contest."); ?>
+				<?= __("Using the contest list, you can control which Contests are shown in the contest management."); ?>
 			</p>
 			<p class="card-text">
 				<?= __("Active contests will be shown in the Contest Name drop-down, while inactive contests will be hidden and cannot be selected."); ?>
+			</p>
+			<p>
+				<script>
+					var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
+					var lang_contest_provide_name = '<?= __("Please provide contest name and ADIF name.") ?>';
+				</script>
+				<button onclick="createContestDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a Contest"); ?></button>
+				<button onclick="activateAllContests();" class="btn btn-primary btn-sm"><?= __("Activate All"); ?></button>
+				<button onclick="deactivateAllContests();" class="btn btn-primary btn-sm"><?= __("Deactivate All"); ?></button>
 			</p>
 			<div class="table-responsive">
 				<table style="width:100%" class="contesttable table table-sm table-striped">
@@ -56,7 +65,7 @@
 									var lang_admin_contest_active_all_warning = '<?= __("Warning! Are you sure you want to activate all contests?"); ?>';
 									var lang_admin_contest_deactive_all_warning = '<?= __("Warning! Are you sure you want to deactivate all contests?"); ?>';
 								</script>
-								<a href="<?php echo site_url('contesting/edit')."/".$row['id']; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> <?= __("Edit"); ?></a>
+								<a href="<?php echo site_url('contest_admin/edit')."/".$row['id']; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> <?= __("Edit"); ?></a>
 							</td>
 							<td>
 								<a href="javascript:deleteContest('<?php echo $row['id']; ?>', '<?php echo $row['name']; ?>');" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></a>
@@ -68,14 +77,5 @@
 					<table>
 			</div>
 			<br/>
-			<p>
-				<script>
-					var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
-					var lang_admin_close = '<?= __("Close"); ?>'
-				</script>
-				<button onclick="createContestDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a Contest"); ?></button>
-				<button onclick="activateAllContests();" class="btn btn-primary btn-sm"><?= __("Activate All"); ?></button>
-				<button onclick="deactivateAllContests();" class="btn btn-primary btn-sm"><?= __("Deactivate All"); ?></button>
-			</p>
 		</div>
 	</div>
