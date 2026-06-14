@@ -257,6 +257,11 @@ $qsl_field_groups = [
 						</div>
 					</div>
 
+					<div class="mb-2">
+						<label class="form-label small mb-1" for="propColor"><?= __("Color"); ?></label>
+						<input type="color" id="propColor" class="form-control form-control-sm" value="#000000" style="max-width:80px;">
+					</div>
+
 					<div class="mb-3">
 						<label class="form-label small mb-1"><?= __("Wrap width (in)"); ?></label>
 						<input id="propWrap" type="number" step="0.1" min="0.2" class="form-control form-control-sm">

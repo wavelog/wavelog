@@ -448,6 +448,7 @@ class Qslpostcard_model extends CI_Model {
                 $pt        = (float)($el['font_pt'] ?? 11);
                 $bold      = !empty($el['bold']) ? 'B' : '';
                 $wrap_w_in = isset($el['wrap_w_in']) ? (float)$el['wrap_w_in'] : 0;
+                [$cr, $cg, $cb] = $this->hex_to_rgb($el['color'] ?? '#000000');
 
                 foreach ($targets as $rowIdx => $qso) {
                     if ($type === 'text') {
@@ -467,6 +468,7 @@ class Qslpostcard_model extends CI_Model {
                     $y_mm = $y_in * 25.4;
 
                     $pdf->SetFont($font, $bold, $pt);
+                    $pdf->SetTextColor($cr, $cg, $cb);
 
                     if ($wrap_w_in > 0) {
                         $w = $wrap_w_in * 25.4;
@@ -488,6 +490,22 @@ class Qslpostcard_model extends CI_Model {
         }
 
         return $tmp;
+    }
+
+    // "#rrggbb" (or "#rgb") → [r, g, b]; falls back to black on anything malformed.
+    private function hex_to_rgb($hex) {
+        $hex = ltrim((string)$hex, '#');
+        if (strlen($hex) === 3) {
+            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+        }
+        if (!preg_match('/^[0-9a-fA-F]{6}$/', $hex)) {
+            return [0, 0, 0];
+        }
+        return [
+            hexdec($hex[0] . $hex[1]),
+            hexdec($hex[2] . $hex[3]),
+            hexdec($hex[4] . $hex[5]),
+        ];
     }
 
     public function dedupe_qsos_by_call(array $qsos) {

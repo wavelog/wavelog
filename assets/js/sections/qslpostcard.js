@@ -137,6 +137,7 @@
 		el.style.fontFamily = item.font || 'Helvetica';
 		el.style.fontSize = (item.font_pt || 12) + 'px';
 		el.style.fontWeight = item.bold ? '700' : '600';
+		el.style.color = item.color || '#000000';
 
 		el.addEventListener('mousedown', e => onElementMouseDown(e, item.id));
 
@@ -160,12 +161,14 @@
 		node.style.fontFamily = item.font || 'Helvetica';
 		node.style.fontSize = (item.font_pt || 12) + 'px';
 		node.style.fontWeight = item.bold ? '700' : '600';
+		node.style.color = item.color || '#000000';
 		// Keep WYSIWYG ghost rows in sync with the primary.
 		stage.querySelectorAll('.qsl_designer_ghost[data-ghost-for="' + item.id + '"]').forEach(g => {
 			g.textContent = node.textContent;
 			g.style.fontFamily = node.style.fontFamily;
 			g.style.fontSize = node.style.fontSize;
 			g.style.fontWeight = node.style.fontWeight;
+			g.style.color = node.style.color;
 		});
 	}
 
@@ -221,6 +224,7 @@
 			font: 'Helvetica',
 			font_pt: 12,
 			bold: false,
+			color: '#000000',
 			wrap_w_in: 2.6,
 			repeat_per_qso: false,
 		};
@@ -446,6 +450,7 @@
 		document.getElementById('propFont').value = item.font || 'Helvetica';
 		document.getElementById('propFontSize').value = item.font_pt || 12;
 		document.getElementById('propBold').checked = !!item.bold;
+		document.getElementById('propColor').value = item.color || '#000000';
 		document.getElementById('propWrap').value = round2(item.wrap_w_in ?? 2.6);
 
 		// "Repeats per QSO" is a per-element toggle; only relevant for a single selection.
@@ -484,6 +489,7 @@
 	wireProp('propFont', (item, n) => { item.font = n.value; styleNode(item.id); });
 	wireProp('propFontSize', (item, n) => { item.font_pt = clamp(parseInt(n.value || '12', 10), 6, 36); styleNode(item.id); });
 	wireProp('propBold', (item, n) => { item.bold = n.checked; styleNode(item.id); });
+	wireProp('propColor', (item, n) => { item.color = n.value; styleNode(item.id); });
 	wireProp('propWrap', (item, n) => { item.wrap_w_in = Math.max(0.2, parseFloat(n.value || '2.6')); });
 	wireProp('propRepeat', (item, n) => { item.repeat_per_qso = n.checked; renderGhosts(item); });
 
@@ -967,6 +973,7 @@
 			font: el.font || 'Helvetica',
 			font_pt: el.font_pt || 12,
 			bold: !!el.bold,
+			color: el.color || '#000000',
 			wrap_w_in: el.wrap_w_in ?? 2.6,
 			repeat_per_qso: !!el.repeat_per_qso,
 		}));
