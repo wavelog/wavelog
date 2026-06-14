@@ -366,6 +366,7 @@ class QSO extends CI_Controller {
 			$cwmacros['macro5'] = ['name' => 'TEST', 'macro' => 'TEST DE [MYCALL] K'];
 		}
 
+		$cwmacros['contest_context'] = (bool) $this->input->post('contest', true);
 		$this->load->view('qso/components/winkeysettings', $cwmacros);
 	}
 
@@ -427,7 +428,7 @@ class QSO extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('modes');
 		$this->load->model('bands');
-		$this->load->model('contesting_model');
+		$this->load->model('contest_admin_model');
 
 		$this->load->library('form_validation');
 
@@ -443,7 +444,7 @@ class QSO extends CI_Controller {
 		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->modes->all();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry(true);
-		$data['contest'] = $this->contesting_model->getActivecontests();
+		$data['contest'] = $this->contest_admin_model->getActiveContests();
 
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 

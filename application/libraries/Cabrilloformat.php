@@ -44,7 +44,7 @@ class Cabrilloformat {
       $cab_header .= "EMAIL: ".$email."\r\n";
       $cab_header .= "SOAPBOX: ".$soapbox."\r\n";
       
-      if ($certificate != null || $certificate != "") {
+      if (!empty($certificate)) {
          $cab_header .= "CERTIFICATE: ".$certificate."\r\n";
       }
 
@@ -62,7 +62,7 @@ class Cabrilloformat {
       return "END-OF-LOG:";
    }
 
-   public function qso($qso, $grid_export) {
+   public function qso($qso, $grid_export, $grid_chars = 4) {
       $freq =  substr($qso->COL_FREQ, 0, -3);
       if ($freq > 30000) {
          if ($freq > 250000000) {
@@ -147,7 +147,7 @@ class Cabrilloformat {
       }
 
       if ($grid_export == true) {
-         $returnstring .= (substr($qso->station_gridsquare, 0, 4) ?? '') ." ";
+         $returnstring .= (substr($qso->station_gridsquare, 0, $grid_chars) ?? '') ." ";
       }
 
       if ($qso->COL_STX_STRING != "") {
@@ -161,7 +161,7 @@ class Cabrilloformat {
       }  
 
       if ($grid_export == true) {
-         $returnstring .= (substr($qso->COL_GRIDSQUARE, 0, 4) ?? '') ." ";
+         $returnstring .= (substr($qso->COL_GRIDSQUARE, 0, $grid_chars) ?? '') ." ";
       }
       
       if ($qso->COL_SRX_STRING != "") {

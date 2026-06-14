@@ -76,15 +76,69 @@ function getMacros() {
 	});
 }
 
-$(document).ready(function() {
-    // Lets see if CW is selected
+window.initWinkeyer = function() {
+	if (window.winkeyInitialized) return;
+	window.winkeyInitialized = true;
+
     const ModeSelected = document.getElementById('mode');
 
 	$('#winkey_buttons').hide();
 
 	if (location.protocol == 'http:') {
-		// Do something if the page is being served over SSL
 		$('#winkey').hide(); // Hide the CW buttons
+	}
+
+	getMacros();
+
+	$('#winkey_settings').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/qso/winkeysettings',
+			type: 'post',
+			data: { contest: window.winkeySerialField ? 1 : 0 },
+			success: function (html) {
+				BootstrapDialog.show({
+					title: 'Winkey Macros',
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm',
+						id: 'saveButton',
+						action: function (dialogItself) {
+							winkey_macro_save();
+							dialogItself.close();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							$('#optionButton').prop("disabled", false);
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						$('#optionButton').prop("disabled", false);
+					},
+				});
+			}
+		});
+	});
+
+	// WebSerial requires HTTPS + Chrome/Edge
+	if (!navigator.serial) {
+		const statusBar = document.getElementById('statusBar');
+		const connectButton = document.getElementById('connectButton');
+		if (statusBar) statusBar.innerText = location.protocol === 'http:'
+			? 'WebSerial requires HTTPS'
+			: 'WebSerial not supported - use Chrome or Edge';
+		if (connectButton) connectButton.disabled = true;
+		return;
 	}
 
 	// Function to update winkey visibility based on mode
@@ -97,13 +151,16 @@ $(document).ready(function() {
 		}
 	};
 
-	// Initial check
-	updateWinkeyVisibility(ModeSelected.value);
-
-	// Listen for manual changes from dropdown
-	ModeSelected.addEventListener('change', (event) => {
-		updateWinkeyVisibility(event.target.value);
-	});
+	if (window.winkeyAlwaysVisible) {
+		// Contest context: always show, no mode-based hiding
+		$('#winkey').show();
+	} else if (ModeSelected) {
+		// Normal QSO context: show/hide based on mode dropdown
+		updateWinkeyVisibility(ModeSelected.value);
+		ModeSelected.addEventListener('change', (event) => {
+			updateWinkeyVisibility(event.target.value);
+		});
+	}
 
 	$('#winkeycwspeed').change(function (event) {
 		// Get the value from the input
@@ -118,8 +175,6 @@ $(document).ready(function() {
 		// Send the command as hex bytes
 		sendHexToSerial(command);
 	});
-
-	getMacros();
 
 	document.addEventListener('keydown', function(event) {
 
@@ -433,65 +488,62 @@ $(document).ready(function() {
 			}
 
 			//When recieved something add it to the big textarea
-			receiveText.value += value;
-			//Scroll to the bottom of the text field
-			receiveText.scrollTop = receiveText.scrollHeight;
+			if (receiveText) {
+				receiveText.value += value;
+				receiveText.scrollTop = receiveText.scrollHeight;
+			}
 		}
 	}
 
 	function UpdateMacros(macrotext) {
+		let callsignId  = window.winkeyCallsignField  || 'callsign';
+		let rstId       = window.winkeyRstField       || 'rst_sent';
+		let rstRId      = window.winkeyRstRField      || 'rst_rcvd';
+		let serialId    = window.winkeySerialField    || null;
+		let serialRId   = window.winkeySerialRField   || null;
+		let exchangeId  = window.winkeyExchangeField  || null;
+		let exchangeRId = window.winkeyExchangeRField || null;
+		let gridId      = window.winkeyGridField      || null;
+		let gridRId     = window.winkeyGridRField     || null;
 
-		// Get the values from the form set to uppercase
-		let CALL = document.getElementById("callsign").value.toUpperCase();
-		CALL = CALL.replaceAll('Ø', '0');
-		let RSTS = document.getElementById("rst_sent").value;
+		const val = id => id ? (document.getElementById(id)?.value || '') : '';
 
-		let newString;
+		let CALL      = val(callsignId).toUpperCase().replaceAll('Ø', '0');
+		let RSTS      = val(rstId);
+		let RSTR      = val(rstRId);
+		let SERIAL    = val(serialId);
+		let SERIALR   = val(serialRId);
+		let EXCHANGE  = val(exchangeId);
+		let EXCHANGER = val(exchangeRId);
+		let GRID      = val(gridId);
+		let GRIDR     = val(gridRId);
+
 		my_call = my_call.replaceAll('Ø', '0');
-		newString = macrotext.replace(/\[MYCALL\]/g, station_callsign);
-		newString = newString.replace(/\[CALL\]/g, CALL);
-		newString = newString.replace(/\[RSTS\]/g, RSTS);
+		let newString = macrotext.replace(/\[MYCALL\]/g,    station_callsign);
+		newString = newString.replace(/\[CALL\]/g,      CALL);
+		newString = newString.replace(/\[RSTS\]/g,      RSTS);
+		newString = newString.replace(/\[RST_S\]/g,     RSTS);
+		newString = newString.replace(/\[RST_R\]/g,     RSTR);
+		newString = newString.replace(/\[SERIAL\]/g,    SERIAL);
+		newString = newString.replace(/\[SERIAL_S\]/g,  SERIAL);
+		newString = newString.replace(/\[SERIAL_R\]/g,  SERIALR);
+		newString = newString.replace(/\[EXCHANGE\]/g,   EXCHANGE);
+		newString = newString.replace(/\[EXCHANGE_S\]/g, EXCHANGE);
+		newString = newString.replace(/\[EXCHANGE_R\]/g, EXCHANGER);
+		newString = newString.replace(/\[GRID\]/g,      GRID);
+		newString = newString.replace(/\[GRID_S\]/g,    GRID);
+		newString = newString.replace(/\[GRID_R\]/g,    GRIDR);
 		return newString;
 	}
 
-	$('#winkey_settings').click(function (event) {
-		$.ajax({
-			url: base_url + 'index.php/qso/winkeysettings',
-			type: 'post',
-			success: function (html) {
-				BootstrapDialog.show({
-					title: 'Winkey Macros',
-					size: BootstrapDialog.SIZE_NORMAL,
-					cssClass: 'options',
-					nl2br: false,
-					message: html,
-					onshown: function(dialog) {
-					},
-					buttons: [{
-						label: 'Save',
-						cssClass: 'btn-primary btn-sm',
-						id: 'saveButton',
-						action: function (dialogItself) {
-							winkey_macro_save();
-							dialogItself.close();
-						}
-					},
-					{
-						label: lang_admin_close,
-						cssClass: 'btn-sm',
-						id: 'closeButton',
-						action: function (dialogItself) {
-							$('#optionButton').prop("disabled", false);
-							dialogItself.close();
-						}
-					}],
-					onhide: function(dialogRef){
-						$('#optionButton').prop("disabled", false);
-					},
-				});
-			}
-		});
-	});
+};
+
+// Auto-init on normal QSO pages (not on contest logger)
+// Check is deferred to DOM-ready so ContestLoggerConfig is already defined by then
+$(document).ready(function() {
+	if (typeof window.ContestLoggerConfig === 'undefined') {
+		window.initWinkeyer();
+	}
 });
 
 function winkey_macro_save() {

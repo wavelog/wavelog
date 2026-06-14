@@ -640,13 +640,13 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('bands');
 		$this->load->model('modes');
 		$this->load->model('logbookadvanced_model');
-		$this->load->model('contesting_model');
+		$this->load->model('contest_admin_model');
 
 		$data['stateDxcc'] = $this->logbookadvanced_model->getPrimarySubdivisonsDxccs();
 
 		$data['modes'] = $this->modes->all();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
-		$data['contests'] = $this->contesting_model->getActivecontests();
+		$data['contests'] = $this->contest_admin_model->getActiveContests();
 		$this->load->view('logbookadvanced/edit', $data);
 	}
 
@@ -1017,4 +1017,126 @@ class Logbookadvanced extends CI_Controller {
 		}
 	}
 
+
+	public function attachContestDialog() {
+
+		$qsoIds = $this->input->post('qsoIds', true);
+		$data['qsoIds'] = $qsoIds;
+
+		$this->load->model('contesting_model');
+		$data['contests'] = $this->contesting_model->get_user_contests();
+		$data['custom_date_format'] = $this->session->userdata('user_date_format');
+
+		$this->load->view('logbookadvanced/attachContest', $data);
+	}
+
+	public function attachContestQsos() {
+
+		$this->load->model('contesting_model');
+		$this->load->model('logbook_model');  
+
+		$qsoIds = $this->input->post('qsoIds', true);
+		$contestId = $this->input->post('selected_contest', true);
+
+		if (!is_array($qsoIds) || count($qsoIds) < 1) {
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => 'Invalid QSO IDs']);
+			return;
+		}
+
+		// Check if permission on contest
+		if (!$this->contesting_model->check_user_contest($contestId)) {
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => 'Invalid contest']);
+			return;	
+		}
+
+		$error_count = 0;
+		foreach ($qsoIds as $qsoID) {
+
+			// Check if user has permission on QSO
+			if (!clubaccess_check(3, $qsoID)) {
+				$error_count += 1;
+				continue;
+			}
+			
+			// Update Contest
+			$this->contesting_model->link_qso($qsoID, $contestId);
+
+			// Update QSO
+			$contest_adif_id = $this->contesting_model->get_session_info($contestId)['contest_id'];
+			$this->logbook_model->set_contest($qsoID, $contest_adif_id);
+		}
+
+
+		if ($error_count > 0) {
+			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) (count($qsoIds) - $error_count);
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => $error_message]);
+			return;
+		}
+
+		header("Content-Type: application/json");
+		echo json_encode(['success' => true]);
+		return;
+
+	}
+
+	public function detachContestDialog() {
+
+		$qsoIds = $this->input->post('qsoIds', true);
+		$data['qsoIds'] = $qsoIds;
+
+		$this->load->view('logbookadvanced/detachContest', $data);
+	}
+
+	public function detachContestQsos() {
+
+		$this->load->model('contesting_model');
+		$this->load->model('logbook_model');  
+
+		$qsoIds = $this->input->post('qsoIds', true);
+
+		if (!is_array($qsoIds) || count($qsoIds) < 1) {
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => 'Invalid QSO IDs']);
+			return;
+		}
+
+
+		$error_count = 0;
+		foreach ($qsoIds as $qsoID) {
+			// Check if user has permission on QSO
+			if (!clubaccess_check(3, $qsoID)) {
+				$error_count += 1;
+				continue;
+			}
+
+			// Check if permission on contest
+			$contestId = $this->contesting_model->get_linked_contest($qsoID);
+			if ($contestId != 0 && !$this->contesting_model->check_user_contest($contestId)) {
+				$error_count += 1;
+				continue;
+			}
+
+			// Update Contest
+			$this->contesting_model->unlink_qso($qsoID, $contestId);
+
+			// Update QSO
+			$this->logbook_model->set_contest($qsoID, 0);
+			
+		}
+
+		if ($error_count > 0) {
+			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) (count($qsoIds) - $error_count);
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => $error_message]);
+			return;
+		}
+
+		header("Content-Type: application/json");
+		echo json_encode(['success' => true]);
+		return;	
+
+	}
 }

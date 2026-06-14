@@ -5915,6 +5915,37 @@ class Logbook_model extends CI_Model {
 		return;
 	}
 
+	/**
+	 * Sets the display contest name (contest_name) in logbook
+	 *
+	 * @param int $qso_id The ID of the QSO.
+	 * @param int $contest_adif_id The contest adif id, if 0 empty
+	 * @return bool True on success, false on failure.
+	 */
+	function set_contest($qso_id, $contest_adif_id) {
+
+
+		if ($contest_adif_id != 0) {
+
+			$getName = "SELECT id, name FROM contest WHERE active = 1 AND id = ?;";
+			$nameQuery = $this->db->query($getName, $contest_adif_id);
+
+			$nameRow = $nameQuery->row() ? $nameQuery->row()->name : '';
+
+		} else {
+			$nameRow = '';
+		}
+
+		$data = array(
+			'COL_CONTEST_ID ' => xss_clean($nameRow),
+		);
+
+		$this->db->where(array('COL_PRIMARY_KEY' => $qso_id));
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return true;
+	}
+
 	function mark_dcl_rcvd($key) {
 		$data = array(
 			'COL_DCL_QSL_RCVD ' => 'Y',

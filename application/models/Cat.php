@@ -79,11 +79,12 @@
 				$eventdata['user_name']=$h_user->row()->user_name;
 				$eventdata['user_id']=$h_user->row()->user_id ?? '';
 			}
+			$radio_ids = [];
 			if ($query->num_rows() > 0) {
 				// Update the record
 				foreach ($query->result() as $row) {
-					$radio_id = $row->id;
-					$this->db->where('id', $radio_id);
+					$radio_ids[] = $row->id;
+					$this->db->where('id', $row->id);
 					$this->db->where('user_id', $user_id);
 					$this->db->update('cat', $data);
 					if (($this->config->item('mqtt_server') ?? '') != '') {
@@ -96,12 +97,29 @@
 				$data['user_id'] = $user_id;
 				$data['operator'] = $operator;
 				$this->db->insert('cat', $data);
+				$radio_ids[] = $this->db->insert_id();
 				if (($this->config->item('mqtt_server') ?? '') != '') {
                 			$this->mh->wl_event('cat/'.$user_id, json_encode(array_merge($data,$eventdata)));
 				}
 			}
 			unset($eventdata);
 			unset($h_user);
+
+			$this->load->library('worker');
+			if (!empty($radio_ids) && $this->worker->is_enabled()) {
+				$radio_status = [
+					'frequency'           => isset($data['frequency']) && is_numeric($data['frequency']) ? (float) $data['frequency'] : null,
+					'mode'                => $data['mode'] ?? null,
+					'timestamp'           => (int) round(microtime(true) * 1000),
+					'updated_minutes_ago' => 0,
+				];
+				foreach ($radio_ids as $id) {
+					$this->worker->publish('radio.' . $id, [
+						'type'         => 'radio_updated',
+						'radio_status' => $radio_status,
+					]);
+				}
+			}
 		}
 
 		/**

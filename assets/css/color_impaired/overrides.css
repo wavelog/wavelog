@@ -148,3 +148,17 @@ tr[data-gradient-color] th {
 .cat-frequency-gradient > td > a > .text-danger {
 	color: #ffc4c4 !important;
 }
+
+/* Contest Logger */
+:root {
+	--cl-contest-loading-bg: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
+	--cl-contest-workspace-bg: linear-gradient(135deg, #e8e8e8 0%, #f8f9fa 100%);
+	--cl-contest-window-header-bg: #e9ecef;
+	--cl-contest-btn-hover-bg: #dee2e6;
+	--cl-contest-scrollbar: #c0c0c0;
+	--cl-contest-scrollbar-hover: #a0a0a0;
+	--cl-contest-scp-border: rgba(0, 0, 0, 0.08);
+	--cl-contest-scp-hover-bg: rgba(0, 0, 0, 0.05);
+	--cl-contest-scp-active-bg: rgba(0, 0, 0, 0.10);
+	--cl-contest-border: var(--bs-border-color);
+}

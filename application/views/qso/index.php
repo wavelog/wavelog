@@ -817,7 +817,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
     // if isWinkeyEnabled in session data is true
     if ($this->session->userdata('isWinkeyEnabled')) { ?>
 
-    <div id="winkey" class="card winkey-settings" style="margin-bottom: 10px;">
+    <div id="winkey" class="card winkey-settings" style="margin-bottom: 10px; display: none;">
         <div class="card-header">
 			<h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Winkey"); ?>
 

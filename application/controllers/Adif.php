@@ -257,8 +257,8 @@ class adif extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->model('contesting_model');
-		$data['contests']=$this->contesting_model->getActivecontests();
+		$this->load->model('contest_admin_model');
+		$data['contests']=$this->contest_admin_model->getActiveContests();
 
 		$this->load->model('stations');
 
