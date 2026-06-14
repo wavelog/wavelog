@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-13 11:46+0000\n"
+"POT-Creation-Date: 2026-06-14 11:56+0000\n"
 "PO-Revision-Date: 2026-06-11 15:54+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -184,6 +184,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
 #: application/controllers/Qsl.php:85 application/controllers/Qsl.php:133
+#: application/controllers/Qslpostcard.php:16
 #: application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:159 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:304
@@ -278,6 +279,7 @@ msgstr "Totalt aktiverade Lokatorrutor"
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:459
+#: application/views/qslpostcard/designer.php:123
 msgid "Fields"
 msgstr "Fält"
 
@@ -1577,7 +1579,7 @@ msgstr "Loggbok"
 #: application/views/logbookadvanced/index.php:963
 #: application/views/logbookadvanced/useroptions.php:124
 #: application/views/oqrs/qsolist.php:12
-#: application/views/qslprint/qslprint.php:38
+#: application/views/qslprint/qslprint.php:41
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qslprint/qsolist.php:19
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:115
@@ -1750,7 +1752,7 @@ msgstr "Alla callbook-sökningar misslyckades eller gav inga resultat."
 #: application/views/qslcard/searchresult.php:44
 #: application/views/qslcard/searchresult.php:60
 #: application/views/qslcard/searchresult.php:76
-#: application/views/qslprint/qslprint.php:33
+#: application/views/qslprint/qslprint.php:36
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:121 application/views/qso/index.php:229
@@ -1790,7 +1792,7 @@ msgstr "Trafiksätt"
 #: application/views/qslcard/searchresult.php:45
 #: application/views/qslcard/searchresult.php:61
 #: application/views/qslcard/searchresult.php:77
-#: application/views/qslprint/qslprint.php:36
+#: application/views/qslprint/qslprint.php:39
 #: application/views/qslprint/qsolist.php:12
 #: application/views/qso/components/previous_contacts.php:78
 #: application/views/qso/edit_ajax.php:143 application/views/qso/index.php:274
@@ -1819,7 +1821,7 @@ msgstr "RST (S)"
 #: application/views/qslcard/searchresult.php:46
 #: application/views/qslcard/searchresult.php:62
 #: application/views/qslcard/searchresult.php:78
-#: application/views/qslprint/qslprint.php:37
+#: application/views/qslprint/qslprint.php:40
 #: application/views/qslprint/qsolist.php:13
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:148 application/views/qso/index.php:279
@@ -2074,7 +2076,7 @@ msgstr "Avstånd"
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
 #: application/views/qslprint/index.php:38
-#: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/qslprint.php:37
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
 #: application/views/qso/edit_ajax.php:85 application/views/qso/index.php:244
@@ -2113,7 +2115,7 @@ msgstr "Band"
 #: application/views/qslcard/searchresult.php:70
 #: application/views/qslcard/searchresult.php:86
 #: application/views/qslprint/index.php:39
-#: application/views/qslprint/qslprint.php:35
+#: application/views/qslprint/qslprint.php:38
 #: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
 #: application/views/qso/edit_ajax.php:73 application/views/qso/index.php:262
@@ -2201,7 +2203,7 @@ msgstr "Snabb uppslagning"
 #: application/controllers/Lotw.php:64 application/controllers/Lotw.php:96
 #: application/controllers/Lotw.php:136
 #: application/views/dcl_views/upload_cert.php:3
-#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:528
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
@@ -2618,7 +2620,7 @@ msgstr ""
 "Greenwich."
 
 #: application/controllers/Qrz.php:203
-#: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:531
 msgid "QRZ Logbook"
 msgstr "QRZ Loggbok"
 
@@ -2649,6 +2651,78 @@ msgstr ""
 msgid "The uploaded file is not a valid image."
 msgstr ""
 
+#: application/controllers/Qslpostcard.php:30
+msgid ""
+"QSL Postcard Designer is unavailable because the 'userdata' config option is "
+"not set. Your config is outdated."
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:31
+msgid ""
+"Please compare your current config.php with the latest config.sample.php and "
+"update accordingly."
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:35
+#: application/views/interface_assets/header.php:522
+msgid "QSL Postcard Designer"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:161
+#: application/controllers/Qslpostcard.php:222
+#: application/controllers/Qslpostcard.php:285
+msgid "Template not found"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:167
+#: application/controllers/Qslpostcard.php:228
+#: application/controllers/Qslpostcard.php:291
+msgid "Template JSON is invalid"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:182
+msgid "No QSOs returned by get_sample_qsos()"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:192
+msgid "PDF file was not created"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:205
+msgid "QSL Postcard PDF failed: "
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:210
+#: application/views/qslpostcard/printqueue.php:2
+msgid "Print QSL Postcards"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:241
+#: application/controllers/Qslpostcard.php:304
+msgid "No QSOs found for postcard printing"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:260
+msgid "QSL Postcard Queue PDF failed: "
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:268
+msgid "No QSOs were selected"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:272
+#: application/views/qslpostcard/printqueue_selected.php:2
+msgid "Print Selected QSL Postcards"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:297
+msgid "No selected QSO IDs were provided"
+msgstr ""
+
+#: application/controllers/Qslpostcard.php:326
+msgid "Selected QSL Postcard PDF failed: "
+msgstr ""
+
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
 msgstr "Skriv ut begärda QSL"
@@ -2670,7 +2744,7 @@ msgid "No callsign provided."
 msgstr "Ingen anropssignal angiven."
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:540
+#: application/views/interface_assets/header.php:545
 msgid "Hardware Interfaces"
 msgstr "Hårdvarugränssnitt"
 
@@ -2757,6 +2831,8 @@ msgstr "Redigera"
 #: application/views/oqrs/showrequests.php:80
 #: application/views/qslcard/index.php:80
 #: application/views/qslcard/index.php:129
+#: application/views/qslpostcard/designer.php:280
+#: application/views/qslpostcard/designer.php:319
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
@@ -2970,7 +3046,7 @@ msgstr "Kontrollera värdet för Lokatorrutan (%s)"
 #: application/controllers/Stationsetup.php:61
 #: application/views/interface_assets/header.php:448
 #: application/views/interface_assets/header.php:481
-#: application/views/interface_assets/header.php:615
+#: application/views/interface_assets/header.php:620
 msgid "Station Setup"
 msgstr "Stationsinställningar"
 
@@ -2988,6 +3064,7 @@ msgstr "Inte tillåtet"
 #: application/controllers/Stationsetup.php:157
 #: application/controllers/Stationsetup.php:178
 #: application/controllers/Stationsetup.php:479
+#: application/views/qslpostcard/designer.php:31
 #: application/views/qso/index.php:759 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:243
@@ -3040,7 +3117,7 @@ msgid "Set as Active Logbook"
 msgstr "Ange som aktiv loggbok"
 
 #: application/controllers/Stationsetup.php:289
-#: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:618
 #: application/views/stationsetup/stationsetup.php:52
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -3623,7 +3700,7 @@ msgstr "Exportera karta"
 
 #: application/controllers/Webadif.php:105
 #: application/controllers/Webadif.php:152
-#: application/views/interface_assets/header.php:527
+#: application/views/interface_assets/header.php:532
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Ladda upp"
 
@@ -4208,7 +4285,7 @@ msgstr "Skillnad"
 #: application/views/oqrs/showrequests.php:69
 #: application/views/qslprint/index.php:2
 #: application/views/qslprint/index.php:27
-#: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/qslprint.php:89
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/stationsetup/exportmapoptions.php:33
 #: application/views/statistics/antennaanalytics.php:26
@@ -4532,7 +4609,7 @@ msgstr "Inget hittades!"
 #: application/views/qslcard/index.php:43
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:29
-#: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:214
 #: application/views/reg1test/index.php:33
@@ -4645,7 +4722,7 @@ msgstr ""
 #: application/views/public_search/result.php:13
 #: application/views/qslcard/index.php:45
 #: application/views/qslcard/searchresult.php:4
-#: application/views/qslprint/qslprint.php:31
+#: application/views/qslprint/qslprint.php:34
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
 #: application/views/qso/index.php:190 application/views/satellite/pass.php:132
 #: application/views/satellite/skedtable.php:12
@@ -4687,7 +4764,7 @@ msgstr "Datum"
 #: application/views/logbookadvanced/checkresult.php:318
 #: application/views/oqrs/qsolist.php:8 application/views/qslcard/index.php:46
 #: application/views/qslcard/searchresult.php:6
-#: application/views/qslprint/qslprint.php:32
+#: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
 #: application/views/satellite/skedtable.php:13
 #: application/views/satellite/skedtable.php:15
@@ -5281,6 +5358,7 @@ msgstr "Enkelt namn för att beskriva vad du använder detta API till."
 #: application/views/options/maptiles.php:44
 #: application/views/options/radios.php:18
 #: application/views/options/version_dialog.php:42
+#: application/views/qslpostcard/designer.php:55
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
@@ -5288,7 +5366,7 @@ msgid "Save"
 msgstr "Spara"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:539
+#: application/views/interface_assets/header.php:544
 msgid "API Keys"
 msgstr "API-nycklar"
 
@@ -7042,8 +7120,8 @@ msgstr "Stad"
 #: application/views/awards/jcc/index.php:201
 #: application/views/dashboard/index.php:661
 #: application/views/distances/index.php:27
-#: application/views/qslprint/qslprint.php:58
-#: application/views/qslprint/qslprint.php:59
+#: application/views/qslprint/qslprint.php:61
+#: application/views/qslprint/qslprint.php:62
 #: application/views/qslprint/qsolist.php:49
 #: application/views/qslprint/qsolist.php:51
 #: application/views/qslprint/qsolist.php:58
@@ -9222,6 +9300,7 @@ msgid "Soapbox"
 msgstr "Kommentarer"
 
 #: application/views/cabrillo/index.php:173
+#: application/views/qslpostcard/designer.php:5
 msgid "Address"
 msgstr "Adress"
 
@@ -9861,7 +9940,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:1050
 #: application/views/logbookadvanced/useroptions.php:336
 #: application/views/qrz/export.php:39
-#: application/views/qslprint/qslprint.php:40
+#: application/views/qslprint/qslprint.php:43
 #: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
 msgid "Profile name"
@@ -10172,7 +10251,7 @@ msgstr "ADIF-namn"
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
 #: application/views/debug/index.php:473 application/views/debug/index.php:484
-#: application/views/interface_assets/header.php:593
+#: application/views/interface_assets/header.php:598
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -11394,6 +11473,7 @@ msgstr ""
 #: application/views/debug/index.php:171 application/views/debug/index.php:182
 #: application/views/debug/index.php:194
 #: application/views/interface_assets/footer.php:38
+#: application/views/qslpostcard/designer.php:30
 msgid "Success"
 msgstr "Godkänt"
 
@@ -12477,6 +12557,8 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "Duplicering är inaktiverad för kontaktsanteckningar"
 
 #: application/views/interface_assets/footer.php:66
+#: application/views/qslpostcard/designer.php:277
+#: application/views/qslpostcard/designer.php:293
 msgid "Duplicate"
 msgstr "Duplicera"
 
@@ -12789,7 +12871,7 @@ msgstr ""
 "installationsinstruktioner."
 
 #: application/views/interface_assets/footer.php:219
-#: application/views/interface_assets/header.php:554
+#: application/views/interface_assets/header.php:559
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Versionsinformation"
@@ -12948,6 +13030,7 @@ msgid "The QSL card upload could not be completed."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2718
+#: application/views/qslpostcard/designer.php:18
 msgid "Upload failed"
 msgstr ""
 
@@ -13198,76 +13281,76 @@ msgstr "QSL-kö"
 msgid "Labels"
 msgstr "Etiketter"
 
-#: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:526
 msgid "Third-Party Services"
 msgstr "Tredjepartstjänster"
 
-#: application/views/interface_assets/header.php:524
+#: application/views/interface_assets/header.php:529
 msgid "eQSL Import / Export"
 msgstr "eQSL Import / Export"
 
-#: application/views/interface_assets/header.php:525
+#: application/views/interface_assets/header.php:530
 msgid "HRDLog Logbook"
 msgstr "HRDLog Loggbok"
 
-#: application/views/interface_assets/header.php:528
+#: application/views/interface_assets/header.php:533
 msgid "Clublog Import / Export"
 msgstr "Clublog Import / Export"
 
-#: application/views/interface_assets/header.php:531
+#: application/views/interface_assets/header.php:536
 msgid "DCL Export"
 msgstr "DCL-export"
 
-#: application/views/interface_assets/header.php:544
+#: application/views/interface_assets/header.php:549
 msgid "Internal tools"
 msgstr "Interna verktyg"
 
-#: application/views/interface_assets/header.php:546
+#: application/views/interface_assets/header.php:551
 msgid "Callsign DXCC checker"
 msgstr "Anropssignal DXCC-kontrollerare"
 
-#: application/views/interface_assets/header.php:547
+#: application/views/interface_assets/header.php:552
 msgid "GeoJSON QSO Map"
 msgstr "GeoJSON QSO-karta"
 
-#: application/views/interface_assets/header.php:548
+#: application/views/interface_assets/header.php:553
 msgid "Gridsquare Zone checker"
 msgstr "Lokator Zon kontrollerare"
 
-#: application/views/interface_assets/header.php:555
+#: application/views/interface_assets/header.php:560
 #: application/views/logbookadvanced/index.php:903
 msgid "Help"
 msgstr "Hjälp"
 
-#: application/views/interface_assets/header.php:556
+#: application/views/interface_assets/header.php:561
 msgid "Forum"
 msgstr "Forum"
 
-#: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:565
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Sluta imitera och byt tillbaka till %s"
 
-#: application/views/interface_assets/header.php:561
+#: application/views/interface_assets/header.php:566
 #, php-format
 msgid "Switch back to %s"
 msgstr "Byt tillbaka till %s"
 
-#: application/views/interface_assets/header.php:565
+#: application/views/interface_assets/header.php:570
 msgid "Logout"
 msgstr "Logga ut"
 
-#: application/views/interface_assets/header.php:573
+#: application/views/interface_assets/header.php:578
 msgid "Select a Location"
 msgstr "Välj en plats"
 
-#: application/views/interface_assets/header.php:615
+#: application/views/interface_assets/header.php:620
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Saknar du stationens platser här? Gå till stationens config och lägg till "
 "dem som favoriter"
 
-#: application/views/interface_assets/header.php:652
+#: application/views/interface_assets/header.php:657
 msgid "Extras"
 msgstr "Extra"
 
@@ -13371,6 +13454,7 @@ msgstr "Total höjd på en etikett"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
+#: application/views/qslpostcard/designer.php:249
 msgid "Font Size"
 msgstr "Teckenstorlek"
 
@@ -13726,7 +13810,7 @@ msgstr "DXCC CQ-zon"
 #: application/views/logbookadvanced/mergedialog.php:54
 #: application/views/logbookadvanced/showStateQsos.php:28
 #: application/views/oqrs/qsolist.php:11
-#: application/views/qslprint/qslprint.php:39
+#: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:14
 #: application/views/qso/edit_ajax.php:41 application/views/qso/index.php:97
 #: application/views/search/lotw_unconfirmed_result.php:11
@@ -15096,6 +15180,7 @@ msgstr ""
 "olika fält från varje QSO."
 
 #: application/views/logbookadvanced/mergedialog.php:71
+#: application/views/qslpostcard/designer.php:218
 msgid "Field"
 msgstr "Fält"
 
@@ -16081,7 +16166,7 @@ msgid "Send not in log request"
 msgstr "Skicka inte in loggförfrågan"
 
 #: application/views/oqrs/qsolist.php:76
-#: application/views/qslprint/qslprint.php:38
+#: application/views/qslprint/qslprint.php:41
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qslprint/qsolist.php:109
 #: application/views/qso/index.php:729
@@ -16406,6 +16491,303 @@ msgstr "Lägg till QSOs"
 msgid "Add to QSL"
 msgstr "Lägg till i QSL"
 
+#: application/views/qslpostcard/designer.php:6
+msgid "QSO Core"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:7
+msgid "Date & Time"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:8
+msgid "Station & Equipment"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:9
+msgid "My References"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:10
+#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
+msgid "Other"
+msgstr "Annat"
+
+#: application/views/qslpostcard/designer.php:16
+msgid "Please choose an image first."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:17
+msgid "Uploading..."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:19
+msgid "unknown error"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:20
+msgid "Preview image uploaded."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:21
+msgid "Custom Text"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:22
+msgid "Untitled"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:23
+msgid "Save failed"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:24
+msgid "Template saved."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:25
+msgid "Delete Template?"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:26
+msgid ""
+"Are you sure you want to delete this template? This action cannot be undone."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:27
+msgid "Delete failed"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:28
+msgid "Template deleted successfully!"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:29
+msgid "Please select a template to delete."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:32
+msgid "selected"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:45
+#: application/views/qslpostcard/printqueue.php:8
+#: application/views/qslpostcard/printqueue_selected.php:10
+msgid "Template"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:48
+msgid "(new)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:53
+msgid "Template name"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:54
+msgid "Save Template"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:57
+msgid "Delete Template"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:65
+msgid "Background image"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:68
+msgid "Upload Preview Image"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:71
+msgid "Generate PDF (demo)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:72
+msgid "PDF"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:79
+msgid "History"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:81
+msgid "Undo"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:82
+msgid "Redo"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:88
+msgid "Zoom"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:98
+msgid ""
+"Tip: After a test print, adjust global offsets rather than moving every "
+"field."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:99
+msgid "Print offset (in)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:128
+msgid "Search fields…"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:132
+msgid "Add Custom Text"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:147
+msgid "No fields match your search."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:155
+msgid "Postcard Canvas"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:156
+msgid "6 × 4 inches · drag fields onto the postcard"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:177
+msgid "Template Options"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:181
+msgid "Number of QSOs per QSL card"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:185
+msgid "Row spacing (in)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:191
+msgid "One postcard per callsign"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:195
+msgid "Print background image (uncheck for pre-printed cards)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:199
+msgid "Skip address printing (for printing on regular QSL cards)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:207
+msgid "Properties"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:212
+msgid "Select a field on the canvas to edit it."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:213
+msgid "Right-click a field for more actions."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:223
+msgid "Text"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:229
+msgid "X (in)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:233
+msgid "Y (in)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:239
+msgid "Font"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:255
+msgid "Bold"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:261
+msgid "Color"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:266
+msgid "Wrap width (in)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:271
+msgid "Print this field once per QSO when a card holds multiple QSOs"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:272
+msgid "Repeats per QSO"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:298
+msgid "Align & distribute"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:302
+msgid "Align left"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:303
+msgid "Align horizontal centers"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:304
+msgid "Align right"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:306
+msgid "Align top"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:307
+msgid "Align vertical centers"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:308
+msgid "Align bottom"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:310
+msgid "Distribute horizontally"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:311
+msgid "Distribute vertically"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:313
+msgid "Center on page (horizontal)"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:314
+msgid "Center on page (vertical)"
+msgstr ""
+
+#: application/views/qslpostcard/printqueue.php:18
+#: application/views/qslpostcard/printqueue_selected.php:21
+msgid ""
+"Print options (QSOs per card, background image, address printing) are set "
+"per template in the QSL Postcard Designer."
+msgstr ""
+
+#: application/views/qslpostcard/printqueue.php:21
+#: application/views/qslpostcard/printqueue_selected.php:29
+msgid "Generate Postcard PDF"
+msgstr ""
+
+#: application/views/qslpostcard/printqueue.php:27
+#: application/views/qslpostcard/printqueue_selected.php:35
+msgid ""
+"No templates available for printing. Go to the QSL Postcard Designer and "
+"create a template first."
+msgstr ""
+
 #: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr "Exportera begärda QSL-kort för utskrift"
@@ -16435,7 +16817,7 @@ msgstr ""
 "skickat'-fält."
 
 #: application/views/qslprint/index.php:48
-#: application/views/qslprint/qslprint.php:42
+#: application/views/qslprint/qslprint.php:45
 #: application/views/qslprint/qsolist.php:18
 msgid "Previous QSL"
 msgstr "Föregående QSL"
@@ -16449,92 +16831,100 @@ msgstr ""
 "Kolumnen %s visar hur många QSL som har skickats till samma station tidigare "
 "på samma band och läge."
 
-#: application/views/qslprint/qslprint.php:41
+#: application/views/qslprint/qslprint.php:44
 #: application/views/qslprint/qsolist.php:17
 msgid "Send Method"
 msgstr "Skicka Via"
 
-#: application/views/qslprint/qslprint.php:43
+#: application/views/qslprint/qslprint.php:46
 msgid "Mark as sent"
 msgstr "Markera som skickat"
 
-#: application/views/qslprint/qslprint.php:44
+#: application/views/qslprint/qslprint.php:47
 msgid "Remove"
 msgstr "Ta bort"
 
-#: application/views/qslprint/qslprint.php:45
+#: application/views/qslprint/qslprint.php:48
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
 msgstr "QSO-lista"
 
-#: application/views/qslprint/qslprint.php:67
+#: application/views/qslprint/qslprint.php:70
 #: application/views/qslprint/qsolist.php:70
 msgid "Previous QSL sent (same band/mode)"
 msgstr "Tidigare QSL skickat (samma band/trafiksätt)"
 
-#: application/views/qslprint/qslprint.php:68
+#: application/views/qslprint/qslprint.php:71
 #: application/views/qslprint/qsolist.php:71
 msgid "QSL sent to callsign (total)"
 msgstr "QSL skickade till anropssignal (totalt)"
 
-#: application/views/qslprint/qslprint.php:69
+#: application/views/qslprint/qslprint.php:72
 #: application/views/qslprint/qsolist.php:72
 msgid "QSL received from callsign (total)"
 msgstr "QSL mottagna från anropsignal (totalt)"
 
-#: application/views/qslprint/qslprint.php:83
+#: application/views/qslprint/qslprint.php:86
 msgid "Mark QSOs for a certain QSL Method:"
 msgstr "Markera QSOs med en viss QSL-metod:"
 
-#: application/views/qslprint/qslprint.php:91
+#: application/views/qslprint/qslprint.php:94
 msgid "Mark all QSOs for the chosen QSL method"
 msgstr "Markera alla QSOs med den valda QSL-metoden"
 
-#: application/views/qslprint/qslprint.php:92
+#: application/views/qslprint/qslprint.php:95
 msgid "Unmark every QSO"
 msgstr "Avmarkera alla QSO"
 
-#: application/views/qslprint/qslprint.php:97
+#: application/views/qslprint/qslprint.php:100
 msgid "Update QSOs"
 msgstr "Uppdatera QSOs"
 
-#: application/views/qslprint/qslprint.php:100
+#: application/views/qslprint/qslprint.php:103
 msgid "Mark selected QSOs as sent"
 msgstr "Markera valda QSOs som skickade"
 
-#: application/views/qslprint/qslprint.php:101
+#: application/views/qslprint/qslprint.php:104
 msgid "Remove selected QSOs from the queue"
 msgstr "Ta bort valda QSOs från kön"
 
-#: application/views/qslprint/qslprint.php:102
+#: application/views/qslprint/qslprint.php:105
 msgid "Export selected QSOs to ADIF-file"
 msgstr "Exportera valda QSOs till ADIF-fil"
 
-#: application/views/qslprint/qslprint.php:107
+#: application/views/qslprint/qslprint.php:110
 msgid "Export CSV-file"
 msgstr "Exportera CSV-fil"
 
-#: application/views/qslprint/qslprint.php:107
+#: application/views/qslprint/qslprint.php:110
 msgid "Export requested QSLs to CSV-file"
 msgstr "Exportera begärda QSL till CSV-fil"
 
-#: application/views/qslprint/qslprint.php:108
+#: application/views/qslprint/qslprint.php:111
 msgid "Export ADIF"
 msgstr "Exportera ADIF"
 
-#: application/views/qslprint/qslprint.php:108
+#: application/views/qslprint/qslprint.php:111
 msgid "Export requested QSLs to ADIF-file"
 msgstr "Exportera begärda QSL till ADIF-fil"
 
-#: application/views/qslprint/qslprint.php:109
+#: application/views/qslprint/qslprint.php:112
 msgid "Mark QSLs as printed"
 msgstr "Markera QSL som utskrivna"
 
-#: application/views/qslprint/qslprint.php:109
+#: application/views/qslprint/qslprint.php:112
 msgid "Mark requested QSLs as sent"
 msgstr "Markera begärda QSL som skickade"
 
-#: application/views/qslprint/qslprint.php:114
+#: application/views/qslprint/qslprint.php:115
+msgid "Print Postcards for all QSOs"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:116
+msgid "Print Selected QSO Postcards"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:121
 msgid "No QSLs to print were found!"
 msgstr "Inga QSL att skriva ut hittades!"
 
@@ -16698,10 +17088,6 @@ msgstr "Antennväg"
 #: application/views/view_log/qso.php:168
 msgid "Greyline"
 msgstr "Grålinje"
-
-#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
-msgid "Other"
-msgstr "Annat"
 
 #: application/views/qso/edit_ajax.php:211 application/views/qso/index.php:551
 #: application/views/view_log/qso.php:159
