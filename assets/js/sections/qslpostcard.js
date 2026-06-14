@@ -453,9 +453,10 @@
 		document.getElementById('propColor').value = item.color || '#000000';
 		document.getElementById('propWrap').value = round2(item.wrap_w_in ?? 2.6);
 
-		// "Repeats per QSO" is a per-element toggle; only relevant for a single selection.
-		document.getElementById('propRepeatRow').style.display = multi ? 'none' : '';
-		if (!multi) document.getElementById('propRepeat').checked = !!item.repeat_per_qso;
+		// "Repeats per QSO" applies to every selected element (like font/bold);
+		// the checkbox reflects the primary's value.
+		document.getElementById('propRepeatRow').style.display = '';
+		document.getElementById('propRepeat').checked = !!item.repeat_per_qso;
 	}
 
 	// Keep X/Y inputs in sync while dragging a single element.
