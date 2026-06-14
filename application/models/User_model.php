@@ -530,7 +530,8 @@ class User_Model extends CI_Model {
 			$this->db->query("DELETE FROM queries WHERE userid = ?",$user_id);
 			$this->db->query("DELETE FROM station_profile WHERE user_id = ?",$user_id);
 			$this->db->query("DELETE FROM station_logbooks WHERE user_id = ?",$user_id);
-			$this->db->query("DELETE FROM user_options WHERE user_id=?",$user_id);
+			$this->db->query("DELETE FROM user_options WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM qsl_postcard_templates WHERE user_id = ?",$user_id);
 			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
 			return 1;
 		} else {
