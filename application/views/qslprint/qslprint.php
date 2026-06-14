@@ -112,10 +112,9 @@ if ($qsos->result() != NULL) { ?>
 		<a href="<?php echo site_url('qslprint/qsl_printed/' . $station_id); ?>" title="<?= __("Mark QSLs as printed"); ?>" class="btn btn-primary"><?= __("Mark requested QSLs as sent"); ?></a>
 	</p>
 	<p>
-
-<a class="btn btn-primary" href="<?php echo site_url('qslpostcard/printqueue'); ?>"> <?= __("Print Postcards for all QSOs"); ?></a>
-<button type="submit" formaction="<?php echo site_url('qslpostcard/printqueue_selected'); ?>" class="btn btn-primary"><?= __("Print Selected QSO Postcards"); ?></button>
-</p>
+		<a class="btn btn-primary" href="<?php echo site_url('qslpostcard/printqueue'); ?>"> <?= __("Print Postcards for all QSOs"); ?></a>
+		<button type="submit" formaction="<?php echo site_url('qslpostcard/printqueue_selected'); ?>" class="btn btn-primary"><?= __("Print Selected QSO Postcards"); ?></button>
+	</p>
 </form>
 <?php
 } else {
