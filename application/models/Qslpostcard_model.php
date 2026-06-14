@@ -66,11 +66,11 @@ class Qslpostcard_model extends CI_Model {
         $table = $this->config->item('table_name');
 
         // Scope to the logged-in user's stations only
-        $sql = "SELECT " . $table . ".*
-            FROM " . $table . "
-            INNER JOIN station_profile ON station_profile.station_id = " . $table . ".station_id
+        $sql = "SELECT {$table}.*
+            FROM {$table}
+            INNER JOIN station_profile ON station_profile.station_id = {$table}.station_id
             WHERE station_profile.user_id = ?
-            ORDER BY " . $table . ".COL_TIME_ON DESC
+            ORDER BY {$table}.COL_TIME_ON DESC
             LIMIT " . (int)$limit;
 
         $q = $this->db->query($sql, [$this->session->userdata('user_id')]);
@@ -436,33 +436,33 @@ class Qslpostcard_model extends CI_Model {
         // Most likely starting point for physical cards:
         // requested cards or unsent cards
         // Adjust after we confirm your queue logic.
-        $sql = "SELECT " . $table . ".*
-            FROM " . $table . "
-            INNER JOIN station_profile ON station_profile.station_id = " . $table . ".station_id
+        $sql = "SELECT {$table}.*
+            FROM {$table}
+            INNER JOIN station_profile ON station_profile.station_id = {$table}.station_id
             WHERE station_profile.user_id = ?
-            AND (" . $table . ".COL_QSL_SENT IN ('R', 'Q', '') OR " . $table . ".COL_QSL_SENT IS NULL)";
+            AND ({$table}.COL_QSL_SENT IN ('R', 'Q', '') OR {$table}.COL_QSL_SENT IS NULL)";
 
         if (!empty($filters['station_id'])) {
-            $sql .= " AND " . $table . ".station_id = ?";
+            $sql .= " AND {$table}.station_id = ?";
             $binding[] = $filters['station_id'];
         }
 
         if (!empty($filters['band'])) {
-            $sql .= " AND " . $table . ".COL_BAND = ?";
+            $sql .= " AND {$table}.COL_BAND = ?";
             $binding[] = $filters['band'];
         }
 
         if (!empty($filters['mode'])) {
-            $sql .= " AND " . $table . ".COL_MODE = ?";
+            $sql .= " AND {$table}.COL_MODE = ?";
             $binding[] = $filters['mode'];
         }
 
         if (!empty($filters['call'])) {
-            $sql .= " AND " . $table . ".COL_CALL LIKE ?";
+            $sql .= " AND {$table}.COL_CALL LIKE ?";
             $binding[] = '%' . $filters['call'] . '%';
         }
 
-        $sql .= " ORDER BY " . $table . ".COL_TIME_ON DESC";
+        $sql .= " ORDER BY {$table}.COL_TIME_ON DESC";
 
         $q = $this->db->query($sql, $binding);
         if (!$q) {
@@ -484,12 +484,12 @@ class Qslpostcard_model extends CI_Model {
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
 
         // Scope to the logged-in user's stations only
-        $sql = "SELECT " . $table . ".*
-            FROM " . $table . "
-            INNER JOIN station_profile ON station_profile.station_id = " . $table . ".station_id
+        $sql = "SELECT {$table}.*
+            FROM {$table}
+            INNER JOIN station_profile ON station_profile.station_id = {$table}.station_id
             WHERE station_profile.user_id = ?
-            AND " . $table . ".COL_PRIMARY_KEY IN (" . $placeholders . ")
-            ORDER BY " . $table . ".COL_TIME_ON DESC";
+            AND {$table}.COL_PRIMARY_KEY IN (" . $placeholders . ")
+            ORDER BY {$table}.COL_TIME_ON DESC";
 
         $binding = array_merge([$this->session->userdata('user_id')], $ids);
 
