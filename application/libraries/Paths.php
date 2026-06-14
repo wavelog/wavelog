@@ -9,7 +9,7 @@ class Paths {
      * Returns the userdata path (or legacy path if the userdata option is not set) for the given type and user_id.
      * 
      * @param string $type The type of path to return (e.g. 'eqsl_card', 'qsl_card')
-     * @param string $pathorurl 'u' to return the web-relative path, 'p' to return the absolute filesystem path
+     * @param string $pathorurl 'u' to return the web-relative path, 'p' to return the absolute filesystem path, 'b' to return the base user directory path (without the type subdirectory)
      * @param int|null $user_id The user_id to return the path for. If null, will use the user_id from session data
      */
     function getUserdataPath($type, $pathorurl = 'u', $user_id = null) {
@@ -19,13 +19,14 @@ class Paths {
 
         // make sure these are the same as in Debug_model.php function migrate_userdata()
         $allowed_types = [
+            'basedir', // special type to return the base user directory without the type subdirectory
             'eqsl_card',
             'qsl_card',
             'qslpostcard_images' // has no legacy path
         ];
 
         // validate path type
-        if (!in_array($pathorurl, ['u', 'p'])) {
+        if (!in_array($pathorurl, ['u', 'p', 'b'])) {
             log_message('error', 'Invalid pathorurl passed to getUserdataPath: ' . $pathorurl);
             return false; // invalid pathorurl
         }
@@ -44,16 +45,18 @@ class Paths {
             // check if there is a user_id in the session data and it's not empty
             if (valid_uid($user_id)) {
 
-                // create the folder
-                if (!file_exists(realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type)) {
+                // create the folder (not for 'basedir', which is the user's base directory itself)
+                if ($type != 'basedir' && !file_exists(realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type)) {
                     mkdir(realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type, 0755, true);
                 }
 
                 // and return it
                 if ($pathorurl == 'u') {
                     return $userdata_dir . '/' . $user_id . '/' . $type;
-                } else {
+                } else if ($pathorurl == 'p' && $type != 'basedir') {
                     return realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type;
+                } else if ($pathorurl == 'b' && $type == 'basedir') {
+                    return realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id;
                 }
             } else {
                 log_message('info', 'getUserdataPath(); Can not get ' . $type . ' path because no user_id in session data');
@@ -101,6 +104,45 @@ class Paths {
         } else {
             return realpath(APPPATH . '../') . '/' . $path;
         }
+    }
+
+    function delete_user_files($user_id) {
+        $CI = & get_instance();
+        if (!valid_uid($user_id)) {
+            log_message('error', 'delete_user_files() called with invalid user_id: ' . $user_id);
+            return false;
+        }
+        $userdata_dir = $CI->config->item('userdata');
+        if (isset($userdata_dir)) {
+            $base_path = $this->getUserdataPath('basedir', 'b', $user_id); // get the base path for the user
+            if (file_exists($base_path)) {
+                $this->_delete_directory($base_path);
+                log_message('debug', 'delete_user_files(); Deleted user files for user_id: ' . $user_id);
+            } else {
+                log_message('debug', 'delete_user_files(); No user files to delete for user_id: ' . $user_id);
+            }
+        } else {
+            log_message('debug', 'delete_user_files(); No userdata directory configured, so no user files to delete for user_id: ' . $user_id);
+        }
+        return true;
+    }
+
+    private function _delete_directory($dir) {
+        if (!file_exists($dir)) {
+            return true;
+        }
+        if (!is_dir($dir)) {
+            return unlink($dir);
+        }
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+            if (!$this->_delete_directory($dir . DIRECTORY_SEPARATOR . $item)) {
+                return false;
+            }
+        }
+        return rmdir($dir);
     }
 
     function make_update_path($path) {
