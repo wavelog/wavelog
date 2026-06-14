@@ -80,7 +80,7 @@ class Qslpostcard_model extends CI_Model {
         return $rows;
     }
 
-    public function resolve_address($callsign) {
+    private function resolve_address($callsign) {
 		if (!$this->load->is_loaded('callbook')) {
 			$this->load->library('callbook');
 		}
@@ -232,26 +232,6 @@ class Qslpostcard_model extends CI_Model {
         }
 
         return null;
-    }
-
-    private function http_get($url) {
-        $ch = curl_init($url);
-        curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 20,
-            CURLOPT_CONNECTTIMEOUT => 10,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_USERAGENT => 'Wavelog-QSLPostcard/1.0',
-        ]);
-        $out = curl_exec($ch);
-        return $out ?: null;
-    }
-
-    private function xml_tag($xml, $tag) {
-        if (preg_match('/<' . $tag . '>(.*?)<\/' . $tag . '>/is', $xml, $m)) {
-            return trim($m[1]);
-        }
-        return '';
     }
 
     // --- PDF render (FPDF) ---
@@ -436,65 +416,6 @@ class Qslpostcard_model extends CI_Model {
         return $deduped;
     }
 
-    // TODO: Unused, check if needed anymore
-    private function extract_qso_date_parts($qso) {
-        $raw = trim($qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '');
-
-        if ($raw === '') {
-            return ['year' => '', 'month' => '', 'day' => ''];
-        }
-
-        // Already compact ADIF style: YYYYMMDD
-        $digits = preg_replace('/[^0-9]/', '', $raw);
-        if (strlen($digits) === 8) {
-            return [
-                'year' => substr($digits, 0, 4),
-                'month' => substr($digits, 4, 2),
-                'day' => substr($digits, 6, 2),
-            ];
-        }
-
-        // Full datetime like 2026-03-05 19:55:00
-        if (strlen($digits) >= 8) {
-            return [
-                'year' => substr($digits, 0, 4),
-                'month' => substr($digits, 4, 2),
-                'day' => substr($digits, 6, 2),
-            ];
-        }
-
-        return ['year' => '', 'month' => '', 'day' => ''];
-    }
-
-    // TODO: Unused, check if needed anymore
-    private function extract_qso_time_hm($qso) {
-        $raw = trim($qso['COL_TIME_ON'] ?? $qso['time_on'] ?? '');
-
-        if ($raw === '') {
-            return '';
-        }
-
-        $digits = preg_replace('/[^0-9]/', '', $raw);
-
-        // HHMMSS
-        if (strlen($digits) === 6) {
-            return substr($digits, 0, 2) . ':' . substr($digits, 2, 2);
-        }
-
-        // HHMM
-        if (strlen($digits) === 4) {
-            return substr($digits, 0, 2) . ':' . substr($digits, 2, 2);
-        }
-
-        // Full datetime, e.g. 20260305195500 -> use the last 6 digits as HHMMSS
-        if (strlen($digits) >= 12) {
-            $time = substr($digits, -6);
-            return substr($time, 0, 2) . ':' . substr($time, 2, 2);
-        }
-
-        return $raw;
-    }
-
     public function get_qsl_queue_qsos($filters = []) {
         $table = $this->config->item('table_name');
 
@@ -650,12 +571,10 @@ class Qslpostcard_model extends CI_Model {
             return $qso['COL_COMMENT'] ?? $qso['COL_NOTES'] ?? $qso['comment'] ?? '';
         }
 
-
         if ($field === 'qso.month_name') {
             $dt = $this->normalize_qso_datetime($qso);
             return $dt ? strtoupper($dt->format('M')) : '';
         }
-
 
         if ($field === 'qso.time_utc') {
             $dt = $this->normalize_qso_datetime($qso);
@@ -681,6 +600,7 @@ class Qslpostcard_model extends CI_Model {
             $dt = $this->normalize_qso_datetime($qso);
             return $dt ? $dt->format('Y') : '';
         }
+
         if ($field === 'qso.pota_ref') return $qso['COL_POTA_REF'] ?? '';
 
         if ($field === 'qso.my_pota_ref') return $qso['COL_MY_POTA_REF'] ?? '';
