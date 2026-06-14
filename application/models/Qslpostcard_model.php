@@ -37,7 +37,18 @@ class Qslpostcard_model extends CI_Model {
         }
 
         if ($id > 0) {
-            $this->db->where('id', $id)->where('user_id', $this->session->userdata('user_id'))->update('qsl_postcard_templates', $row);
+            $uid = $this->session->userdata('user_id');
+            // Don't report success for a template that doesn't belong to the user.
+            // Check ownership explicitly (a no-op update reports 0 affected rows, so
+            // affected_rows() can't distinguish "not owned" from "unchanged").
+            $owns = $this->db->query(
+                "SELECT 1 FROM qsl_postcard_templates WHERE id = ? AND user_id = ?",
+                [$id, $uid]
+            )->row_array();
+            if (!$owns) {
+                return false;
+            }
+            $this->db->where('id', $id)->where('user_id', $uid)->update('qsl_postcard_templates', $row);
             return $id;
         } else {
             $row['orientation'] = 'landscape';
@@ -96,7 +107,7 @@ class Qslpostcard_model extends CI_Model {
 
 		$callbookData = $this->callbook->getCallbookData($callsign);
 
-		$adr = $this->returnAddressFromXml($callbookData);
+		$adr = $this->returnAddressFromXml($callbookData, $callsign);
 
         if ($this->is_mailable_address($adr)) {
             $this->cache_address($callsign, 'callbook', $adr);
@@ -106,7 +117,7 @@ class Qslpostcard_model extends CI_Model {
         return null;
     }
 
-	private function returnAddressFromXml($callbookData) {
+	private function returnAddressFromXml($callbookData, $callsign = '') {
 		$name = trim($callbookData['name'] ?? '');
 		if ($name === '') $name = trim($callbookData['nickname'] ?? '');
 		if ($name === '') $name = $callsign;

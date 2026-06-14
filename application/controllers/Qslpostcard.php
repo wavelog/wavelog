@@ -96,22 +96,58 @@ class Qslpostcard extends CI_Controller {
     // AJAX: POST template JSON
     public function save_template() {
         $raw = $this->input->raw_input_stream;
+
+        // Cap the raw body; a template layout is small JSON, anything larger is abuse
+        if (strlen($raw) > 256 * 1024) {
+            return $this->_json_error('Payload too large', 413);
+        }
+
         $payload = json_decode($raw, true);
 
         if (!is_array($payload) || empty($payload['name']) || empty($payload['layout'])) {
             return $this->_json_error('Invalid payload');
         }
 
+        // Reject absurdly large layouts (element count) before we store them
+        if (isset($payload['layout']['elements']) && count($payload['layout']['elements']) > 200) {
+            return $this->_json_error('Too many layout elements');
+        }
+
         $id = isset($payload['id']) ? (int)$payload['id'] : 0;
 
+        // Trim + cap to the name column width (VARCHAR(100)) to avoid overflow/bloat
+        $name = mb_substr(trim((string)$payload['name']), 0, 100);
+        if ($name === '') {
+            return $this->_json_error('Invalid payload');
+        }
+
+        // preview_image is untrusted client input. Keep only the basename, validate
+        // it's an image filename, and rebuild the canonical userdata path ourselves so
+        // a forged value can't point outside the user's image dir (traversal/XSS).
         $preview_image = isset($payload['preview_image']) ? $payload['preview_image'] : null;
+        if ($preview_image !== null) {
+            $file = basename((string)$preview_image);
+            if (!preg_match('/^[A-Za-z0-9._-]+\.(jpe?g|png)$/i', $file)) {
+                return $this->_json_error('Invalid preview image');
+            }
+            $dir = $this->paths->getUserdataPath(self::PATH_TYPE, 'u');
+            if ($dir === false) {
+                return $this->_json_error('Invalid preview image');
+            }
+            $preview_image = $dir . '/' . $file;
+        }
 
         $savedId = $this->Qslpostcard_model->save_template(
             $id,
-            $payload['name'],
+            $name,
             json_encode($payload['layout'], JSON_UNESCAPED_SLASHES),
             $preview_image
         );
+
+        if ($savedId === false) {
+            return $this->_json_error('Template not found', 404);
+        }
+
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode(['ok' => true, 'id' => $savedId]));
