@@ -532,6 +532,10 @@ class User_Model extends CI_Model {
 			$this->db->query("DELETE FROM station_logbooks WHERE user_id = ?",$user_id);
 			$this->db->query("DELETE FROM user_options WHERE user_id = ?",$user_id);
 			$this->db->query("DELETE FROM qsl_postcard_templates WHERE user_id = ?",$user_id);
+			if (!$this->paths->delete_user_files($user_id)) {
+				log_message('error', 'Failed to delete files for user ID ' . $user_id . '. Delete them manually to free up disk space.');
+			}
+
 			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
 			return 1;
 		} else {
