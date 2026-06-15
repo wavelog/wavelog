@@ -33,7 +33,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-14 15:42+0000\n"
 "PO-Revision-Date: 2026-06-15 04:50+0000\n"
-"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
+"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -978,7 +978,7 @@ msgstr "Clublog QSL 导入"
 
 #: application/controllers/Contest_admin.php:43
 msgid "Contests Administration"
-msgstr ""
+msgstr "竞赛配置"
 
 #: application/controllers/Contest_admin.php:57
 msgid "Update Contest"
@@ -997,17 +997,17 @@ msgstr "比赛日历服务不可用，请稍后重试"
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "竞赛管理"
 
 #: application/controllers/Contesting.php:93
 #: application/controllers/Contesting.php:606
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "集体台站管理员必须配置好比赛。"
 
 #: application/controllers/Contesting.php:110
 #, php-format
 msgid "Quickstart Session: %s"
-msgstr "快速入门指南:%s"
+msgstr "快速启动竞赛:%s"
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
@@ -1020,7 +1020,7 @@ msgstr "竞赛未找到。"
 #: application/controllers/Contesting.php:139
 #, php-format
 msgid "CBR Export: %s"
-msgstr "CBR导出：%s"
+msgstr "CBR 导出：%s"
 
 #: application/controllers/Contesting.php:174
 #, php-format
@@ -2719,83 +2719,83 @@ msgstr "上传 QSL 卡片"
 
 #: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "没有足够的磁盘空间来保存 QSL 卡片。"
 
 #: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "上传的文件不是有效的图片。"
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
-msgstr ""
+msgstr "由于未设置 “userdata”，QSL 明信片设计器不可用。你的配置已过时。"
 
 #: application/controllers/Qslpostcard.php:31
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
-msgstr ""
+msgstr "请将您当前的 config.php 和最新的 config.sample.php 进行比较，并相应更新。"
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
 msgid "QSL Postcard Designer"
-msgstr ""
+msgstr "QSL 明信片设计器"
 
 #: application/controllers/Qslpostcard.php:161
 #: application/controllers/Qslpostcard.php:222
 #: application/controllers/Qslpostcard.php:285
 msgid "Template not found"
-msgstr ""
+msgstr "模板未找到"
 
 #: application/controllers/Qslpostcard.php:167
 #: application/controllers/Qslpostcard.php:228
 #: application/controllers/Qslpostcard.php:291
 msgid "Template JSON is invalid"
-msgstr ""
+msgstr "模板 JSON 无效"
 
 #: application/controllers/Qslpostcard.php:182
 msgid "No QSOs returned by get_sample_qsos()"
-msgstr ""
+msgstr "get_sample_qsos() 没有返回任何 QSO"
 
 #: application/controllers/Qslpostcard.php:192
 msgid "PDF file was not created"
-msgstr ""
+msgstr "未能生成 PDF 文件"
 
 #: application/controllers/Qslpostcard.php:205
 msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgstr "生成 QSL 明信片 PDF 失败： "
 
 #: application/controllers/Qslpostcard.php:210
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "打印 QSL 明信片"
 
 #: application/controllers/Qslpostcard.php:241
 #: application/controllers/Qslpostcard.php:304
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "没有找到要打印为明信片的 QSO"
 
 #: application/controllers/Qslpostcard.php:260
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
+msgstr "QSL 明信片队列 PDF 失败： "
 
 #: application/controllers/Qslpostcard.php:268
 msgid "No QSOs were selected"
-msgstr ""
+msgstr "没有选择任何 QSO"
 
 #: application/controllers/Qslpostcard.php:272
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "打印已选择的 QSL 明信片"
 
 #: application/controllers/Qslpostcard.php:297
 msgid "No selected QSO IDs were provided"
-msgstr ""
+msgstr "没有提供已选择的 QSO ID"
 
 #: application/controllers/Qslpostcard.php:326
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "已选择的 QSL 明信片生成 PDF 失败： "
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -3915,6 +3915,8 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
+"已从日志簿中导入\n"
+"（ADIF：%s, 年：%d）[原始：%s]"
 
 #: application/models/Contesting_import_model.php:147
 #, php-format
@@ -3922,14 +3924,16 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
+"已从日志簿中导入\n"
+"（ADIF：%s，年：%d）"
 
 #: application/models/Contesting_model.php:154
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "集体台站管理员必须编辑好竞赛。"
 
 #: application/models/Contesting_model.php:188
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "只有集体台站管理员可以删除。"
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -9376,11 +9380,11 @@ msgstr "根据ADIF导出自己的QSO"
 
 #: application/views/club/permissions.php:147
 msgid "Start or Create a Contest"
-msgstr ""
+msgstr "开始或创建竞赛"
 
 #: application/views/club/permissions.php:153
 msgid "Edit a Contest"
-msgstr ""
+msgstr "编辑竞赛"
 
 #: application/views/club/permissions.php:163
 msgid "User Management"
@@ -9790,7 +9794,7 @@ msgstr "电台状态"
 msgid ""
 "Using the contest list, you can control which Contests are shown in the "
 "contest management."
-msgstr ""
+msgstr "通过竞赛列表，你可以控制“竞赛管理”页面中显示哪些竞赛。"
 
 #: application/views/contest_admin/add.php:19
 msgid ""
@@ -9806,7 +9810,7 @@ msgstr "添加竞赛"
 
 #: application/views/contest_admin/add.php:24
 msgid "Please provide contest name and ADIF name."
-msgstr ""
+msgstr "请提供竞赛名称和 ADIF 名称。"
 
 #: application/views/contest_admin/add.php:35
 #: application/views/contest_admin/create.php:30
@@ -9931,94 +9935,94 @@ msgstr "下周"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr ""
+msgstr "QSO 记录器"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
-msgstr ""
+msgstr "DXCC 查询…"
 
 #: application/views/contesting/logger/components/qso-form.php:26
 msgid "DXCC Lookup failed"
-msgstr ""
+msgstr "DXCC 查询失败"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr ""
+msgstr "DXCC：未找到"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
 msgid "Already worked on %s"
-msgstr ""
+msgstr "已经在 %s 波段通联过"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr ""
+msgstr "电台组件不可用。无法保存 QSO。"
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
-msgstr ""
+msgstr "未设置频率或模式。请检查电台设置。"
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #: application/views/contesting/logger/components/qso-form.php:33
 msgid "Synced"
-msgstr ""
+msgstr "已同步"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "Delete this QSO?"
-msgstr ""
+msgstr "删除这个 QSO？"
 
 #: application/views/contesting/logger/components/qso-form.php:41
 msgid "You can only edit your own QSOs"
-msgstr ""
+msgstr "你只能编辑自己的 QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
+msgstr "删除 QSO 失败："
 
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "不合法的呼号"
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
+msgstr "呼号簿查询失败"
 
 #: application/views/contesting/logger/components/qso-form.php:85
 msgid "RST S"
-msgstr ""
+msgstr "RST 发"
 
 #: application/views/contesting/logger/components/qso-form.php:89
 msgid "RST R"
-msgstr ""
+msgstr "RST 收"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:150
 msgid "Nr. S"
-msgstr ""
+msgstr "序号 发"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:151
 msgid "Nr. R"
-msgstr ""
+msgstr "序号 收"
 
 #: application/views/contesting/logger/components/qso-form.php:105
 msgid "Grid S"
-msgstr ""
+msgstr "网格 发"
 
 #: application/views/contesting/logger/components/qso-form.php:109
 msgid "Grid R"
-msgstr ""
+msgstr "网格 收"
 
 #: application/views/contesting/logger/components/qso-form.php:115
 msgid "Exch S"
-msgstr ""
+msgstr "交换 发"
 
 #: application/views/contesting/logger/components/qso-form.php:119
 msgid "Exch R"
-msgstr ""
+msgstr "交换信息 收"
 
 #: application/views/contesting/logger/components/qso-form.php:137
 #: application/views/dashboard/index.php:328
@@ -10028,11 +10032,11 @@ msgstr "最近QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:149
 msgid "RST"
-msgstr ""
+msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Exch"
-msgstr ""
+msgstr "交换"
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
@@ -10041,7 +10045,7 @@ msgstr "无电台数据可用"
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr "电台数据是%s分钟前的"
+msgstr "电台数据是 %s 分钟前的"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
@@ -10053,31 +10057,31 @@ msgstr "手动模式：手动输入频率/模式"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
-msgstr "连接到网络电台中…"
+msgstr "正在连接电台 WebSocket…"
 
 #: application/views/contesting/logger/components/radio.php:31
 msgid "WebSocket radio connected"
-msgstr ""
+msgstr "电台 WebSocket 已连接"
 
 #: application/views/contesting/logger/components/radio.php:32
 msgid "WebSocket connection error"
-msgstr ""
+msgstr "WebSocket 连接失败"
 
 #: application/views/contesting/logger/components/radio.php:33
 msgid "WebSocket disconnected - reconnecting..."
-msgstr ""
+msgstr "WebSocket 已断开 - 正在重连..."
 
 #: application/views/contesting/logger/components/radio.php:34
 msgid "WebSocket radio offline"
-msgstr ""
+msgstr "电台 WebSocket 离线"
 
 #: application/views/contesting/logger/components/radio.php:53
 msgid "Manual - No Radio"
-msgstr ""
+msgstr "手动 - 无电台"
 
 #: application/views/contesting/logger/components/radio.php:54
 msgid "WebSocket (Real-time)"
-msgstr "连接（实时）"
+msgstr "WebSocket（实时）"
 
 #: application/views/contesting/logger/components/scp.php:9
 msgid "Super Check Partial"
