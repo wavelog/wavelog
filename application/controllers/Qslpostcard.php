@@ -52,6 +52,18 @@ class Qslpostcard extends CI_Controller {
         $config['encrypt_name']  = true;
         $config['max_size']      = Qslpostcard_model::MAX_BG_IMAGE_BYTES / 1024; // KB; same cap as render-side
 
+        $this->load->library('upload_guard');
+
+        if (!$this->upload_guard->has_free_space($config['upload_path'], $_FILES['preview_image']['size'])) {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'ok' => false,
+                    'error' => __("Not enough free disk space to store the QSL Background.")
+                ]));
+            return;
+        }
+
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('preview_image')) {
@@ -65,6 +77,17 @@ class Qslpostcard extends CI_Controller {
         }
 
         $data = $this->upload->data();
+
+        if (!$this->upload_guard->is_real_image($data['full_path'])) {
+            @unlink($data['full_path']);
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'ok' => false,
+                    'error' => __("The uploaded file is not a valid image.")
+                ]));
+            return;
+        }
 
         $rel_path = $this->paths->getUserdataPath(self::PATH_TYPE) . '/' . $data['file_name'];
         $url = base_url($rel_path);
