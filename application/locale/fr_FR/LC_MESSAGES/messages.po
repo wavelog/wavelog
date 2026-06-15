@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 12:23+0000\n"
+"POT-Creation-Date: 2026-06-14 15:42+0000\n"
 "PO-Revision-Date: 2026-06-14 15:03+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2950,8 +2950,8 @@ msgstr "Editer"
 #: application/views/oqrs/showrequests.php:80
 #: application/views/qslcard/index.php:80
 #: application/views/qslcard/index.php:129
-#: application/views/qslpostcard/designer.php:280
-#: application/views/qslpostcard/designer.php:319
+#: application/views/qslpostcard/designer.php:285
+#: application/views/qslpostcard/designer.php:324
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
@@ -2960,8 +2960,6 @@ msgstr "Editer"
 #: application/views/stationsetup/stationsetup.php:202
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
-#: application/views/qslpostcard/designer.php:285
-#: application/views/qslpostcard/designer.php:324
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -3760,8 +3758,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
-"config.php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
+"php !"
 
 #: application/controllers/User.php:1737
 msgid "Invalid Hash"
@@ -5990,8 +5988,8 @@ msgid ""
 "the screenshots to your application email."
 msgstr ""
 "Pour ajouter des captures d'écran de confirmation LoTW, cliquez sur "
-"l'indicatif d'appel dans le tableau des activations ci-dessus. Cliquez sur "
-"« Soumettre » sur la page LoTW et effectuez une capture d'écran. Joignez les "
+"l'indicatif d'appel dans le tableau des activations ci-dessus. Cliquez sur « "
+"Soumettre » sur la page LoTW et effectuez une capture d'écran. Joignez les "
 "captures d'écran à votre courriel de candidature."
 
 #: application/views/awards/amsat_rover/index.php:279
@@ -12923,35 +12921,39 @@ msgstr "Polonais"
 msgid "Portuguese"
 msgstr "Portugais"
 
-#: application/views/debug/index.php:933 application/views/debug/index.php:934
+#: application/views/debug/index.php:933
+msgid "Romanian"
+msgstr ""
+
+#: application/views/debug/index.php:934
 msgid "Russian"
 msgstr "Russe"
 
-#: application/views/debug/index.php:934 application/views/debug/index.php:935
+#: application/views/debug/index.php:935
 msgid "Serbian"
 msgstr "Serbe"
 
-#: application/views/debug/index.php:935 application/views/debug/index.php:936
+#: application/views/debug/index.php:936
 msgid "Slovak"
 msgstr "Slovaque"
 
-#: application/views/debug/index.php:936 application/views/debug/index.php:937
+#: application/views/debug/index.php:937
 msgid "Slovenian"
 msgstr "Slovène"
 
-#: application/views/debug/index.php:937 application/views/debug/index.php:938
+#: application/views/debug/index.php:938
 msgid "Spanish"
 msgstr "Espagnol"
 
-#: application/views/debug/index.php:938 application/views/debug/index.php:939
+#: application/views/debug/index.php:939
 msgid "Swedish"
 msgstr "Suédois"
 
-#: application/views/debug/index.php:939 application/views/debug/index.php:940
+#: application/views/debug/index.php:940
 msgid "Turkish"
 msgstr "Turque"
 
-#: application/views/debug/index.php:940 application/views/debug/index.php:941
+#: application/views/debug/index.php:941
 msgid "Ukrainian"
 msgstr "Ukrainien"
 
@@ -13324,8 +13326,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
-"eQSL.cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
+"cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -13617,8 +13619,6 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "La reproduction des notes pour les Contacts est désactivée"
 
 #: application/views/interface_assets/footer.php:66
-#: application/views/qslpostcard/designer.php:277
-#: application/views/qslpostcard/designer.php:293
 #: application/views/qslpostcard/designer.php:282
 #: application/views/qslpostcard/designer.php:298
 msgid "Duplicate"
@@ -16984,8 +16984,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
-"(sans « ssl:// » ou « tls:// »)"
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example."
+"com » (sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:54
 msgid "SMTP Port"
@@ -17863,57 +17863,54 @@ msgstr ""
 msgid "Repeats per QSO"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:276
+msgid "Move this element freely without snapping to the grid or other elements"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:277
+msgid "Disable Auto-Snap"
+msgstr ""
+
 #: application/views/qslpostcard/designer.php:303
 msgid "Align & distribute"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:302
 #: application/views/qslpostcard/designer.php:307
 msgid "Align left"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:303
 #: application/views/qslpostcard/designer.php:308
 msgid "Align horizontal centers"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:304
 #: application/views/qslpostcard/designer.php:309
 msgid "Align right"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:306
 #: application/views/qslpostcard/designer.php:311
 msgid "Align top"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:307
 #: application/views/qslpostcard/designer.php:312
 msgid "Align vertical centers"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:308
 #: application/views/qslpostcard/designer.php:313
 msgid "Align bottom"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:310
 #: application/views/qslpostcard/designer.php:315
 msgid "Distribute horizontally"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:311
 #: application/views/qslpostcard/designer.php:316
 msgid "Distribute vertically"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:313
 #: application/views/qslpostcard/designer.php:318
 msgid "Center on page (horizontal)"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:314
 #: application/views/qslpostcard/designer.php:319
 msgid "Center on page (vertical)"
 msgstr ""
@@ -19282,8 +19279,8 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple "
-"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 "
+"»), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
 "correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
@@ -21835,18 +21832,6 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
-
-#: application/views/debug/index.php:933
-msgid "Romanian"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:276
-msgid "Move this element freely without snapping to the grid or other elements"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:277
-msgid "Disable Auto-Snap"
-msgstr ""
 
 #~ msgid "Export Cabrillo"
 #~ msgstr "Exporter Cabrillo"
