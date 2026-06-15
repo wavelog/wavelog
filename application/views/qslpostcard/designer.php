@@ -3,10 +3,10 @@
 // renderer expects them (addr.* / qso.*). Only the grouping/labels are cosmetic.
 $qsl_field_groups = [
 	__("Address")             => ['addr.name', 'addr.addr1', 'addr.addr2', 'addr.city_state_zip', 'addr.country'],
-	__("QSO Core")            => ['qso.call', 'qso.band', 'qso.mode', 'qso.freq', 'qso.rst_sent', 'qso.rst_rcvd', 'qso.summary'],
+	__("QSO Core")            => ['qso.call', 'qso.band', 'qso.mode', 'qso.sat_name', 'qso.sat_mode', 'qso.freq', 'qso.rst_sent', 'qso.rst_rcvd', 'qso.summary'],
 	__("Date & Time")         => ['qso.qso_date', 'qso.time_on', 'qso.time', 'qso.time_utc', 'qso.day', 'qso.month', 'qso.month_name', 'qso.year'],
 	__("Station & Equipment") => ['qso.tx_power'], //['qso.rig', 'qso.my_rig', 'qso.antenna', 'qso.rx_power'], Implement later if there's demand
-	__("My References")       => ['qso.my_pota_ref', 'qso.pota_line', 'qso.my_sota_ref', 'qso.sota_line', 'qso.my_iota_ref', 'qso.iota_line'],
+	__("My References")       => ['qso.my_pota_ref', 'qso.pota_line', 'qso.my_sota_ref', 'qso.sota_line', 'qso.my_iota_ref', 'qso.iota_line', 'qso.my_grid'],
 	__("Markers")             => ['qso.pse_qsl', 'qso.tnx_qsl', 'qso.portable'],
 	__("Other")               => ['qso.comment', 'qso.qsl_message', 'qso.qsl_via'],
 ];
