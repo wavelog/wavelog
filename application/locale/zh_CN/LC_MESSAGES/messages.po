@@ -1029,60 +1029,60 @@ msgstr "导出：%s"
 
 #: application/controllers/Contesting.php:453
 msgid "Invalid logging token."
-msgstr ""
+msgstr "登录令牌无效。"
 
 #: application/controllers/Contesting.php:623
 msgid "Contest session created successfully."
-msgstr ""
+msgstr "竞赛会话已成功创建。"
 
 #: application/controllers/Contesting.php:625
 msgid "There was an error creating the contest session. Please try again."
-msgstr ""
+msgstr "创建竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting.php:631
 #: application/controllers/Contesting.php:687
 #: application/controllers/Contesting.php:730
 msgid "Invalid request method."
-msgstr ""
+msgstr "请求方法无效。"
 
 #: application/controllers/Contesting.php:679
 msgid "Contest session updated successfully."
-msgstr ""
+msgstr "竞赛会话更新成功。"
 
 #: application/controllers/Contesting.php:681
 msgid "There was an error updating the contest session. Please try again."
-msgstr ""
+msgstr "更新竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting.php:722
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "竞赛会话删除成功。"
 
 #: application/controllers/Contesting.php:724
 msgid "There was an error deleting the contest session. Please try again."
-msgstr ""
+msgstr "删除竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
-msgstr ""
+msgstr "此功能已禁用。"
 
 #: application/controllers/Contesting_import.php:37
 #: application/controllers/Contesting_import.php:105
 msgid "No historical contests found that could be imported."
-msgstr ""
+msgstr "未找到可导入的历史比赛。"
 
 #: application/controllers/Contesting_import.php:41
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "导入历史比赛"
 
 #: application/controllers/Contesting_import.php:84
 #: application/controllers/Contesting_import.php:153
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d个会话被创建，%d个QSO被关联。"
 
 #: application/controllers/Contesting_import.php:109
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "导入历史竞赛（所有用户）"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:139
@@ -1369,7 +1369,7 @@ msgstr "未能下载 eQSL 图片"
 
 #: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "磁盘空间不足，无法存储eQSL卡"
 
 #: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
@@ -10036,20 +10036,20 @@ msgstr ""
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
-msgstr ""
+msgstr "无电台数据可用"
 
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr ""
+msgstr "电台数据是%s分钟前的"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
-msgstr ""
+msgstr "电台已连接"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr ""
+msgstr "手动模式：手动输入频率/模式"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
@@ -10089,7 +10089,7 @@ msgstr ""
 
 #: application/views/contesting/logger/components/scp.php:26
 msgid "Ready"
-msgstr ""
+msgstr "就绪"
 
 #: application/views/contesting/logger/components/scp.php:27
 msgid "Error loading database"
@@ -10138,11 +10138,11 @@ msgstr ""
 
 #: application/views/contesting/logger/components/statistics.php:24
 msgid "Others"
-msgstr ""
+msgstr "其他"
 
 #: application/views/contesting/logger/components/statistics.php:33
 msgid "Refresh"
-msgstr ""
+msgstr "刷新"
 
 #: application/views/contesting/logger/components/statistics.php:66
 msgid "Time window"
@@ -10190,7 +10190,7 @@ msgstr "发射"
 
 #: application/views/contesting/logger/index.php:31
 msgid "Are you sure you want to end the contest?"
-msgstr ""
+msgstr "你确定要结束竞赛吗？"
 
 #: application/views/contesting/logger/index.php:32
 msgid "Layout reset to default!"
