@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
-"PO-Revision-Date: 2026-06-11 15:54+0000\n"
+"POT-Creation-Date: 2026-06-15 18:20+0000\n"
+"PO-Revision-Date: 2026-06-15 11:38+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -280,7 +280,7 @@ msgstr "アクティブなグリッドスクウェア数"
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:459
-#: application/views/qslpostcard/designer.php:123
+#: application/views/qslpostcard/designer.php:136
 msgid "Fields"
 msgstr "フィールド"
 
@@ -959,7 +959,7 @@ msgstr "Clublog QSLインポート"
 
 #: application/controllers/Contest_admin.php:43
 msgid "Contests Administration"
-msgstr ""
+msgstr "コンテスト運営"
 
 #: application/controllers/Contest_admin.php:57
 msgid "Update Contest"
@@ -980,17 +980,17 @@ msgstr ""
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "コンテスト運営"
 
 #: application/controllers/Contesting.php:93
 #: application/controllers/Contesting.php:606
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "役員はコンテストを企画しなければならない。"
 
 #: application/controllers/Contesting.php:110
 #, php-format
 msgid "Quickstart Session: %s"
-msgstr ""
+msgstr "クイックスタートセッション： %s"
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
@@ -998,74 +998,77 @@ msgstr ""
 #: application/controllers/Contesting.php:648
 #: application/controllers/Contesting.php:704
 msgid "Contest session not found."
-msgstr ""
+msgstr "コンテストセッションが見つかりませんでした。"
 
 #: application/controllers/Contesting.php:139
 #, php-format
 msgid "CBR Export: %s"
-msgstr ""
+msgstr "CBRエクスポート: %s"
 
 #: application/controllers/Contesting.php:174
 #, php-format
 msgid "Export: %s"
-msgstr ""
+msgstr "輸出： %s"
 
 #: application/controllers/Contesting.php:453
 msgid "Invalid logging token."
-msgstr ""
+msgstr "ログ認証トークンが無効です。"
 
 #: application/controllers/Contesting.php:623
 msgid "Contest session created successfully."
-msgstr ""
+msgstr "コンテストセッションが正常に作成されました。"
 
 #: application/controllers/Contesting.php:625
 msgid "There was an error creating the contest session. Please try again."
 msgstr ""
+"コンテストセッションの作成中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting.php:631
 #: application/controllers/Contesting.php:687
 #: application/controllers/Contesting.php:730
 msgid "Invalid request method."
-msgstr ""
+msgstr "無効なリクエストメソッドです。"
 
 #: application/controllers/Contesting.php:679
 msgid "Contest session updated successfully."
-msgstr ""
+msgstr "コンテストセッションの更新に成功しました。"
 
 #: application/controllers/Contesting.php:681
 msgid "There was an error updating the contest session. Please try again."
 msgstr ""
+"コンテストセッションの更新中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting.php:722
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "コンテストセッションは正常に削除されました。"
 
 #: application/controllers/Contesting.php:724
 msgid "There was an error deleting the contest session. Please try again."
 msgstr ""
+"コンテストセッションの削除中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
-msgstr ""
+msgstr "この機能は無効になっています。"
 
 #: application/controllers/Contesting_import.php:37
 #: application/controllers/Contesting_import.php:105
 msgid "No historical contests found that could be imported."
-msgstr ""
+msgstr "インポート可能な過去の競技データは見つかりませんでした。"
 
 #: application/controllers/Contesting_import.php:41
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "過去のコンテストをインポートする"
 
 #: application/controllers/Contesting_import.php:84
 #: application/controllers/Contesting_import.php:153
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d セッションが作成され、%d 件のQSOがリンクされました。"
 
 #: application/controllers/Contesting_import.php:109
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "過去のコンテストをインポートする（全ユーザー対象）"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:139
@@ -1354,7 +1357,7 @@ msgstr "eQSLイメージのダウンロードに失敗しました"
 
 #: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "eQSLカードを保存するのに十分な空きディスク容量がありません"
 
 #: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
@@ -2728,83 +2731,92 @@ msgstr "QSLカードをアップロードする"
 
 #: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "QSLカードを保存するのに十分な空きディスク容量がありません。"
 
 #: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
+#: application/controllers/Qslpostcard.php:87
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "アップロードされたファイルは有効な画像ではありません。"
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
 msgstr ""
+"「userdata」設定オプションが設定されていないため、QSLポストカードデザイナーは"
+"利用できません。設定ファイルが古くなっています。"
 
 #: application/controllers/Qslpostcard.php:31
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
+"現在お使いのconfig.phpと最新のconfig.sample.phpを比較し、必要に応じて更新して"
+"ください。"
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
 msgid "QSL Postcard Designer"
+msgstr "QSLポストカードデザイナー"
+
+#: application/controllers/Qslpostcard.php:62
+msgid "Not enough free disk space to store the QSL Background."
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:161
-#: application/controllers/Qslpostcard.php:222
-#: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:184
+#: application/controllers/Qslpostcard.php:245
+#: application/controllers/Qslpostcard.php:308
 msgid "Template not found"
-msgstr ""
+msgstr "テンプレートが見つかりません"
 
-#: application/controllers/Qslpostcard.php:167
-#: application/controllers/Qslpostcard.php:228
-#: application/controllers/Qslpostcard.php:291
+#: application/controllers/Qslpostcard.php:190
+#: application/controllers/Qslpostcard.php:251
+#: application/controllers/Qslpostcard.php:314
 msgid "Template JSON is invalid"
-msgstr ""
-
-#: application/controllers/Qslpostcard.php:182
-msgid "No QSOs returned by get_sample_qsos()"
-msgstr ""
-
-#: application/controllers/Qslpostcard.php:192
-msgid "PDF file was not created"
-msgstr ""
+msgstr "テンプレートJSONが無効です"
 
 #: application/controllers/Qslpostcard.php:205
-msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgid "No QSOs returned by get_sample_qsos()"
+msgstr "get_sample_qsos() によって QSO が返されませんでした"
 
-#: application/controllers/Qslpostcard.php:210
+#: application/controllers/Qslpostcard.php:215
+msgid "PDF file was not created"
+msgstr "PDFファイルは作成されませんでした"
+
+#: application/controllers/Qslpostcard.php:228
+msgid "QSL Postcard PDF failed: "
+msgstr "QSLポストカードのPDFファイルが正常に動作しませんでした。 "
+
+#: application/controllers/Qslpostcard.php:233
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "QSLポストカードを印刷する"
 
-#: application/controllers/Qslpostcard.php:241
-#: application/controllers/Qslpostcard.php:304
+#: application/controllers/Qslpostcard.php:264
+#: application/controllers/Qslpostcard.php:327
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "ポストカード印刷用のQSOは見つかりませんでした"
 
-#: application/controllers/Qslpostcard.php:260
+#: application/controllers/Qslpostcard.php:283
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
+msgstr "QSLポストカードキューのPDF処理に失敗しました。 "
 
-#: application/controllers/Qslpostcard.php:268
+#: application/controllers/Qslpostcard.php:291
 msgid "No QSOs were selected"
-msgstr ""
+msgstr "交信は選択されませんでした"
 
-#: application/controllers/Qslpostcard.php:272
+#: application/controllers/Qslpostcard.php:295
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "選択したQSLポストカードを印刷する"
 
-#: application/controllers/Qslpostcard.php:297
+#: application/controllers/Qslpostcard.php:320
 msgid "No selected QSO IDs were provided"
-msgstr ""
+msgstr "選択されたQSO IDは提供されていません"
 
-#: application/controllers/Qslpostcard.php:326
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "選択したQSLポストカードのPDFファイルが正常に処理されませんでした。 "
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -2922,8 +2934,8 @@ msgstr "編集"
 #: application/views/oqrs/showrequests.php:80
 #: application/views/qslcard/index.php:80
 #: application/views/qslcard/index.php:129
-#: application/views/qslpostcard/designer.php:280
-#: application/views/qslpostcard/designer.php:319
+#: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:337
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
@@ -3154,7 +3166,7 @@ msgstr "許可されていません"
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:119
 #: application/views/debug/index.php:898
-#: application/views/qslpostcard/designer.php:31
+#: application/views/qslpostcard/designer.php:44
 #: application/views/qso/index.php:759 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:243
@@ -3952,6 +3964,8 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
+"ログブックからインポート\n"
+"(ADIF: %s, 年: %d) [元データ: %s]"
 
 #: application/models/Contesting_import_model.php:147
 #, php-format
@@ -3959,14 +3973,16 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
+"ログブックからインポート\n"
+"(ADIF: %s, 年: %d)"
 
 #: application/models/Contesting_model.php:154
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "管理者はコンテストを編集しなければなりません。"
 
 #: application/models/Contesting_model.php:188
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "クラブステーションの役員のみが削除できます。"
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -5478,7 +5494,7 @@ msgstr "この API の用途を説明する簡単な名前。"
 #: application/views/options/maptiles.php:44
 #: application/views/options/radios.php:18
 #: application/views/options/version_dialog.php:42
-#: application/views/qslpostcard/designer.php:55
+#: application/views/qslpostcard/designer.php:68
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
@@ -9566,11 +9582,11 @@ msgstr "ADIFごとに自身のQSOをエクスポート"
 
 #: application/views/club/permissions.php:147
 msgid "Start or Create a Contest"
-msgstr ""
+msgstr "コンテストを開始または作成する"
 
 #: application/views/club/permissions.php:153
 msgid "Edit a Contest"
-msgstr ""
+msgstr "コンテストを編集する"
 
 #: application/views/club/permissions.php:163
 msgid "User Management"
@@ -9995,6 +10011,8 @@ msgid ""
 "Using the contest list, you can control which Contests are shown in the "
 "contest management."
 msgstr ""
+"コンテスト一覧を使用すると、コンテスト管理画面に表示するコンテストを制御でき"
+"ます。"
 
 #: application/views/contest_admin/add.php:19
 msgid ""
@@ -10012,7 +10030,7 @@ msgstr "コンテストを追加する"
 
 #: application/views/contest_admin/add.php:24
 msgid "Please provide contest name and ADIF name."
-msgstr ""
+msgstr "コンテスト名とADIF名をご記入ください。"
 
 #: application/views/contest_admin/add.php:35
 #: application/views/contest_admin/create.php:30
@@ -10137,94 +10155,95 @@ msgstr "来週"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr ""
+msgstr "QSOロガー"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
-msgstr ""
+msgstr "DXCC検索..."
 
 #: application/views/contesting/logger/components/qso-form.php:26
 msgid "DXCC Lookup failed"
-msgstr ""
+msgstr "DXCC検索に失敗しました"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr ""
+msgstr "DXCC: 見つかりません"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
 msgid "Already worked on %s"
-msgstr ""
+msgstr "%sについてはすでに作業済みです"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr ""
+msgstr "無線コンポーネントが利用できません。QSOを保存できません。"
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
 msgstr ""
+"周波数またはモードが設定されていません。無線機の設定を確認してください。"
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
-msgstr ""
+msgstr "新しい"
 
 #: application/views/contesting/logger/components/qso-form.php:33
 msgid "Synced"
-msgstr ""
+msgstr "同期済み"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "Delete this QSO?"
-msgstr ""
+msgstr "このQSOを削除しますか？"
 
 #: application/views/contesting/logger/components/qso-form.php:41
 msgid "You can only edit your own QSOs"
-msgstr ""
+msgstr "自分のQSOのみ編集できます"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
+msgstr "QSOの削除に失敗しました:"
 
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "無効なコールサイン"
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
+msgstr "通話記録の検索に失敗しました"
 
 #: application/views/contesting/logger/components/qso-form.php:85
 msgid "RST S"
-msgstr ""
+msgstr "RST S"
 
 #: application/views/contesting/logger/components/qso-form.php:89
 msgid "RST R"
-msgstr ""
+msgstr "RST R"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:150
 msgid "Nr. S"
-msgstr ""
+msgstr "No. S"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:151
 msgid "Nr. R"
-msgstr ""
+msgstr "No. R"
 
 #: application/views/contesting/logger/components/qso-form.php:105
 msgid "Grid S"
-msgstr ""
+msgstr "Grid S"
 
 #: application/views/contesting/logger/components/qso-form.php:109
 msgid "Grid R"
-msgstr ""
+msgstr "Grid R"
 
 #: application/views/contesting/logger/components/qso-form.php:115
 msgid "Exch S"
-msgstr ""
+msgstr "Exch S"
 
 #: application/views/contesting/logger/components/qso-form.php:119
 msgid "Exch R"
-msgstr ""
+msgstr "Exch R"
 
 #: application/views/contesting/logger/components/qso-form.php:137
 #: application/views/dashboard/index.php:328
@@ -10234,60 +10253,60 @@ msgstr "最近の交信"
 
 #: application/views/contesting/logger/components/qso-form.php:149
 msgid "RST"
-msgstr ""
+msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Exch"
-msgstr ""
+msgstr "Exch"
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
-msgstr ""
+msgstr "無線データは利用できません"
 
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr ""
+msgstr "ラジオのデータは%s分前のものです"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
-msgstr ""
+msgstr "無線接続"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr ""
+msgstr "手動モード：周波数/モードを手動で入力します"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
-msgstr ""
+msgstr "WebSocket無線に接続中..."
 
 #: application/views/contesting/logger/components/radio.php:31
 msgid "WebSocket radio connected"
-msgstr ""
+msgstr "WebSocket無線接続済み"
 
 #: application/views/contesting/logger/components/radio.php:32
 msgid "WebSocket connection error"
-msgstr ""
+msgstr "WebSocket接続エラー"
 
 #: application/views/contesting/logger/components/radio.php:33
 msgid "WebSocket disconnected - reconnecting..."
-msgstr ""
+msgstr "WebSocket接続が切断されました - 再接続しています..."
 
 #: application/views/contesting/logger/components/radio.php:34
 msgid "WebSocket radio offline"
-msgstr ""
+msgstr "WebSocket無線がオフラインになりました"
 
 #: application/views/contesting/logger/components/radio.php:53
 msgid "Manual - No Radio"
-msgstr ""
+msgstr "マニュアル - ラジオなし"
 
 #: application/views/contesting/logger/components/radio.php:54
 msgid "WebSocket (Real-time)"
-msgstr ""
+msgstr "WebSocket（リアルタイム）"
 
 #: application/views/contesting/logger/components/scp.php:9
 msgid "Super Check Partial"
-msgstr ""
+msgstr "スーパーチェック部分"
 
 #: application/views/contesting/logger/components/scp.php:25
 msgid "Loading SCP databases..."
@@ -12281,7 +12300,7 @@ msgstr ""
 #: application/views/debug/index.php:180 application/views/debug/index.php:191
 #: application/views/debug/index.php:203
 #: application/views/interface_assets/footer.php:38
-#: application/views/qslpostcard/designer.php:30
+#: application/views/qslpostcard/designer.php:43
 msgid "Success"
 msgstr "成功"
 
@@ -12729,7 +12748,7 @@ msgstr "ポルトガル語"
 
 #: application/views/debug/index.php:933
 msgid "Romanian"
-msgstr ""
+msgstr "ルーマニア語"
 
 #: application/views/debug/index.php:934
 msgid "Russian"
@@ -13413,8 +13432,8 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "連絡先のメモの複製は無効です"
 
 #: application/views/interface_assets/footer.php:66
-#: application/views/qslpostcard/designer.php:277
-#: application/views/qslpostcard/designer.php:293
+#: application/views/qslpostcard/designer.php:295
+#: application/views/qslpostcard/designer.php:311
 msgid "Duplicate"
 msgstr "重複"
 
@@ -13863,20 +13882,20 @@ msgstr "QSL画像ファイル"
 
 #: application/views/interface_assets/footer.php:2678
 msgid "Front QSL Card"
-msgstr ""
+msgstr "QSLカード（表側）"
 
 #: application/views/interface_assets/footer.php:2714
 msgid "Back QSL Card"
-msgstr ""
+msgstr "裏面QSLカード"
 
 #: application/views/interface_assets/footer.php:2718
 msgid "The QSL card upload could not be completed."
-msgstr ""
+msgstr "QSLカードのアップロードを完了できませんでした。"
 
 #: application/views/interface_assets/footer.php:2718
-#: application/views/qslpostcard/designer.php:18
+#: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
-msgstr ""
+msgstr "アップロードに失敗しました"
 
 #: application/views/interface_assets/footer.php:2726
 #: application/views/interface_assets/footer.php:2751
@@ -14288,7 +14307,7 @@ msgstr "1つのラベルの合計高さ"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
-#: application/views/qslpostcard/designer.php:249
+#: application/views/qslpostcard/designer.php:262
 msgid "Font Size"
 msgstr "フォントサイズ"
 
@@ -16018,7 +16037,7 @@ msgstr ""
 "を選択することも可能です。"
 
 #: application/views/logbookadvanced/mergedialog.php:71
-#: application/views/qslpostcard/designer.php:218
+#: application/views/qslpostcard/designer.php:231
 msgid "Field"
 msgstr "フィールド"
 
@@ -17328,281 +17347,297 @@ msgstr "住所"
 
 #: application/views/qslpostcard/designer.php:6
 msgid "QSO Core"
-msgstr ""
+msgstr "QSOコア"
 
 #: application/views/qslpostcard/designer.php:7
 msgid "Date & Time"
-msgstr ""
+msgstr "日時"
 
 #: application/views/qslpostcard/designer.php:8
 msgid "Station & Equipment"
-msgstr ""
+msgstr "ステーションと設備"
 
 #: application/views/qslpostcard/designer.php:9
 msgid "My References"
-msgstr ""
+msgstr "私の推薦状"
 
 #: application/views/qslpostcard/designer.php:10
+msgid "Markers"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:11
 #: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
 msgid "Other"
 msgstr "他の"
 
-#: application/views/qslpostcard/designer.php:16
-msgid "Please choose an image first."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:17
-msgid "Uploading..."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:19
-msgid "unknown error"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:20
-msgid "Preview image uploaded."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:21
-msgid "Custom Text"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:22
-msgid "Untitled"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:23
-msgid "Save failed"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:24
-msgid "Template saved."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:25
-msgid "Delete Template?"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:26
-msgid ""
-"Are you sure you want to delete this template? This action cannot be undone."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:27
-msgid "Delete failed"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:28
-msgid "Template deleted successfully!"
-msgstr ""
-
 #: application/views/qslpostcard/designer.php:29
-msgid "Please select a template to delete."
-msgstr ""
+msgid "Please choose an image first."
+msgstr "まず画像を選択してください。"
+
+#: application/views/qslpostcard/designer.php:30
+msgid "Uploading..."
+msgstr "アップロード中..."
 
 #: application/views/qslpostcard/designer.php:32
-msgid "selected"
-msgstr ""
+msgid "unknown error"
+msgstr "不明なエラー"
+
+#: application/views/qslpostcard/designer.php:33
+msgid "Preview image uploaded."
+msgstr "プレビュー画像がアップロードされました。"
+
+#: application/views/qslpostcard/designer.php:34
+msgid "Custom Text"
+msgstr "カスタムテキスト"
+
+#: application/views/qslpostcard/designer.php:35
+msgid "Untitled"
+msgstr "無題"
+
+#: application/views/qslpostcard/designer.php:36
+msgid "Save failed"
+msgstr "保存に失敗しました"
+
+#: application/views/qslpostcard/designer.php:37
+msgid "Template saved."
+msgstr "テンプレートが保存されました。"
+
+#: application/views/qslpostcard/designer.php:38
+msgid "Delete Template?"
+msgstr "テンプレートを削除しますか？"
+
+#: application/views/qslpostcard/designer.php:39
+msgid ""
+"Are you sure you want to delete this template? This action cannot be undone."
+msgstr "このテンプレートを削除してもよろしいですか？この操作は元に戻せません。"
+
+#: application/views/qslpostcard/designer.php:40
+msgid "Delete failed"
+msgstr "削除に失敗しました"
+
+#: application/views/qslpostcard/designer.php:41
+msgid "Template deleted successfully!"
+msgstr "テンプレートが正常に削除されました！"
+
+#: application/views/qslpostcard/designer.php:42
+msgid "Please select a template to delete."
+msgstr "削除するテンプレートを選択してください。"
 
 #: application/views/qslpostcard/designer.php:45
+msgid "selected"
+msgstr "選択済み"
+
+#: application/views/qslpostcard/designer.php:58
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 msgid "Template"
-msgstr ""
+msgstr "テンプレート"
 
-#: application/views/qslpostcard/designer.php:48
+#: application/views/qslpostcard/designer.php:61
 msgid "(new)"
-msgstr ""
+msgstr "（新しい）"
 
-#: application/views/qslpostcard/designer.php:53
+#: application/views/qslpostcard/designer.php:66
 msgid "Template name"
-msgstr ""
+msgstr "テンプレート名"
 
-#: application/views/qslpostcard/designer.php:54
+#: application/views/qslpostcard/designer.php:67
 msgid "Save Template"
-msgstr ""
+msgstr "テンプレートを保存"
 
-#: application/views/qslpostcard/designer.php:57
+#: application/views/qslpostcard/designer.php:70
 msgid "Delete Template"
-msgstr ""
+msgstr "テンプレートを削除"
 
-#: application/views/qslpostcard/designer.php:65
+#: application/views/qslpostcard/designer.php:78
 msgid "Background image"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:68
-msgid "Upload Preview Image"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:71
-msgid "Generate PDF (demo)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:72
-msgid "PDF"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:79
-msgid "History"
-msgstr ""
+msgstr "背景画像"
 
 #: application/views/qslpostcard/designer.php:81
+msgid "Upload Preview Image"
+msgstr "プレビュー画像をアップロード"
+
+#: application/views/qslpostcard/designer.php:84
+msgid "Generate PDF (demo)"
+msgstr "PDF生成（デモ）"
+
+#: application/views/qslpostcard/designer.php:85
+msgid "PDF"
+msgstr "PDF"
+
+#: application/views/qslpostcard/designer.php:92
+msgid "History"
+msgstr "歴史"
+
+#: application/views/qslpostcard/designer.php:94
 msgid "Undo"
-msgstr ""
+msgstr "元に戻す"
 
-#: application/views/qslpostcard/designer.php:82
+#: application/views/qslpostcard/designer.php:95
 msgid "Redo"
-msgstr ""
+msgstr "やり直し"
 
-#: application/views/qslpostcard/designer.php:88
+#: application/views/qslpostcard/designer.php:101
 msgid "Zoom"
-msgstr ""
+msgstr "ズーム"
 
-#: application/views/qslpostcard/designer.php:98
+#: application/views/qslpostcard/designer.php:111
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
 msgstr ""
+"ヒント：テスト印刷後、すべてのフィールドを移動するのではなく、グローバルオフ"
+"セットを調整してください。"
 
-#: application/views/qslpostcard/designer.php:99
-msgid "Print offset (in)"
+#: application/views/qslpostcard/designer.php:112
+msgid "Print offset"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:128
+#: application/views/qslpostcard/designer.php:141
 msgid "Search fields…"
-msgstr ""
+msgstr "検索フィールド…"
 
-#: application/views/qslpostcard/designer.php:132
+#: application/views/qslpostcard/designer.php:145
 msgid "Add Custom Text"
-msgstr ""
+msgstr "カスタムテキストを追加"
 
-#: application/views/qslpostcard/designer.php:147
+#: application/views/qslpostcard/designer.php:160
 msgid "No fields match your search."
-msgstr ""
+msgstr "検索条件に一致する項目が見つかりませんでした。"
 
-#: application/views/qslpostcard/designer.php:155
+#: application/views/qslpostcard/designer.php:168
 msgid "Postcard Canvas"
+msgstr "ポストカードキャンバス"
+
+#: application/views/qslpostcard/designer.php:169
+msgid "drag fields onto the postcard"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:156
-msgid "6 × 4 inches · drag fields onto the postcard"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:177
+#: application/views/qslpostcard/designer.php:190
 msgid "Template Options"
-msgstr ""
+msgstr "テンプレートオプション"
 
-#: application/views/qslpostcard/designer.php:181
+#: application/views/qslpostcard/designer.php:194
 msgid "Number of QSOs per QSL card"
+msgstr "QSLカード1枚あたりの交信数"
+
+#: application/views/qslpostcard/designer.php:198
+msgid "Row spacing"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:185
-msgid "Row spacing (in)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:191
+#: application/views/qslpostcard/designer.php:204
 msgid "One postcard per callsign"
-msgstr ""
+msgstr "コールサインごとにポストカード1枚"
 
-#: application/views/qslpostcard/designer.php:195
+#: application/views/qslpostcard/designer.php:208
 msgid "Print background image (uncheck for pre-printed cards)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:199
-msgid "Skip address printing (for printing on regular QSL cards)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:207
-msgid "Properties"
-msgstr ""
+msgstr "背景画像を印刷する（印刷済みのカードの場合はチェックを外してください）"
 
 #: application/views/qslpostcard/designer.php:212
+msgid "Skip address printing (for printing on regular QSL cards)"
+msgstr "宛名印刷をスキップする（通常のQSLカードに印刷する場合）"
+
+#: application/views/qslpostcard/designer.php:220
+msgid "Properties"
+msgstr "プロパティ"
+
+#: application/views/qslpostcard/designer.php:225
 msgid "Select a field on the canvas to edit it."
-msgstr ""
+msgstr "キャンバス上で編集したいフィールドを選択してください。"
 
-#: application/views/qslpostcard/designer.php:213
+#: application/views/qslpostcard/designer.php:226
 msgid "Right-click a field for more actions."
-msgstr ""
+msgstr "フィールドを右クリックすると、その他の操作が表示されます。"
 
-#: application/views/qslpostcard/designer.php:223
+#: application/views/qslpostcard/designer.php:236
 msgid "Text"
+msgstr "文章"
+
+#: application/views/qslpostcard/designer.php:242
+msgid "X"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:229
-msgid "X (in)"
+#: application/views/qslpostcard/designer.php:246
+msgid "Y"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:233
-msgid "Y (in)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:239
+#: application/views/qslpostcard/designer.php:252
 msgid "Font"
-msgstr ""
+msgstr "フォント"
 
-#: application/views/qslpostcard/designer.php:255
+#: application/views/qslpostcard/designer.php:268
 msgid "Bold"
-msgstr ""
+msgstr "太字"
 
-#: application/views/qslpostcard/designer.php:261
+#: application/views/qslpostcard/designer.php:274
 msgid "Color"
+msgstr "色"
+
+#: application/views/qslpostcard/designer.php:279
+msgid "Wrap width"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:266
-msgid "Wrap width (in)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:271
+#: application/views/qslpostcard/designer.php:284
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr ""
+"カードに複数のQSOが保存されている場合、このフィールドはQSOごとに1回印刷されま"
+"す"
 
-#: application/views/qslpostcard/designer.php:272
+#: application/views/qslpostcard/designer.php:285
 msgid "Repeats per QSO"
+msgstr "交信ごとに繰り返します"
+
+#: application/views/qslpostcard/designer.php:289
+msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:290
+msgid "Disable Auto-Snap"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:316
 msgid "Align & distribute"
-msgstr ""
+msgstr "整列と分配"
 
-#: application/views/qslpostcard/designer.php:302
+#: application/views/qslpostcard/designer.php:320
 msgid "Align left"
-msgstr ""
+msgstr "左揃え"
 
-#: application/views/qslpostcard/designer.php:303
+#: application/views/qslpostcard/designer.php:321
 msgid "Align horizontal centers"
-msgstr ""
+msgstr "水平方向の中心を揃える"
 
-#: application/views/qslpostcard/designer.php:304
+#: application/views/qslpostcard/designer.php:322
 msgid "Align right"
-msgstr ""
+msgstr "右揃え"
 
-#: application/views/qslpostcard/designer.php:306
+#: application/views/qslpostcard/designer.php:324
 msgid "Align top"
-msgstr ""
+msgstr "上部を揃える"
 
-#: application/views/qslpostcard/designer.php:307
+#: application/views/qslpostcard/designer.php:325
 msgid "Align vertical centers"
-msgstr ""
+msgstr "垂直方向の中心を揃える"
 
-#: application/views/qslpostcard/designer.php:308
+#: application/views/qslpostcard/designer.php:326
 msgid "Align bottom"
-msgstr ""
+msgstr "下端を揃える"
 
-#: application/views/qslpostcard/designer.php:310
+#: application/views/qslpostcard/designer.php:328
 msgid "Distribute horizontally"
-msgstr ""
+msgstr "水平方向に分配する"
 
-#: application/views/qslpostcard/designer.php:311
+#: application/views/qslpostcard/designer.php:329
 msgid "Distribute vertically"
-msgstr ""
+msgstr "垂直方向に分配する"
 
-#: application/views/qslpostcard/designer.php:313
+#: application/views/qslpostcard/designer.php:331
 msgid "Center on page (horizontal)"
-msgstr ""
+msgstr "ページの中央（水平方向）"
 
-#: application/views/qslpostcard/designer.php:314
+#: application/views/qslpostcard/designer.php:332
 msgid "Center on page (vertical)"
-msgstr ""
+msgstr "ページの中央（縦方向）"
 
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -17610,11 +17645,13 @@ msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
 msgstr ""
+"印刷オプション（1枚あたりの交信回数、背景画像、宛名印刷など）は、QSLポスト"
+"カードデザイナーでテンプレートごとに設定します。"
 
 #: application/views/qslpostcard/printqueue.php:21
 #: application/views/qslpostcard/printqueue_selected.php:29
 msgid "Generate Postcard PDF"
-msgstr ""
+msgstr "ポストカードのPDFを生成する"
 
 #: application/views/qslpostcard/printqueue.php:27
 #: application/views/qslpostcard/printqueue_selected.php:35
@@ -17622,6 +17659,8 @@ msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
 msgstr ""
+"印刷用のテンプレートがありません。QSLポストカードデザイナーにアクセスして、ま"
+"ずテンプレートを作成してください。"
 
 #: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
@@ -17748,11 +17787,11 @@ msgstr "リクエストされたQSLを送信済みとしてマークする"
 
 #: application/views/qslprint/qslprint.php:115
 msgid "Print Postcards for all QSOs"
-msgstr ""
+msgstr "すべての交信記録用のポストカードを印刷する"
 
 #: application/views/qslprint/qslprint.php:116
 msgid "Print Selected QSO Postcards"
-msgstr ""
+msgstr "選択したQSOポストカードを印刷する"
 
 #: application/views/qslprint/qslprint.php:121
 msgid "No QSLs to print were found!"
@@ -21430,6 +21469,24 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Print offset (in)"
+#~ msgstr "印刷オフセット（インチ）"
+
+#~ msgid "6 × 4 inches · drag fields onto the postcard"
+#~ msgstr "102×152mm· フィールドをポストカードにドラッグします"
+
+#~ msgid "Row spacing (in)"
+#~ msgstr "行間隔（インチ）"
+
+#~ msgid "X (in)"
+#~ msgstr "X（インチ）"
+
+#~ msgid "Y (in)"
+#~ msgstr "Y（インチ）"
+
+#~ msgid "Wrap width (in)"
+#~ msgstr "ラップ幅（インチ）"
 
 #~ msgid "Export Cabrillo"
 #~ msgstr "Cabrillo 形式でエクスポート"

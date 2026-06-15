@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
-"PO-Revision-Date: 2026-06-13 09:16+0000\n"
+"POT-Creation-Date: 2026-06-15 18:20+0000\n"
+"PO-Revision-Date: 2026-06-15 11:37+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -86,7 +86,7 @@ msgstr "Field Aligned Irregularities"
 #: application/config/adif_propmodes.php:15
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr "F2 Reflection"
+msgstr "F2 反射"
 
 #: application/config/adif_propmodes.php:16
 msgctxt "Propagation Mode"
@@ -299,7 +299,7 @@ msgstr "总激活网格"
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:459
-#: application/views/qslpostcard/designer.php:123
+#: application/views/qslpostcard/designer.php:136
 msgid "Fields"
 msgstr "区块"
 
@@ -978,7 +978,7 @@ msgstr "Clublog QSL 导入"
 
 #: application/controllers/Contest_admin.php:43
 msgid "Contests Administration"
-msgstr ""
+msgstr "竞赛配置"
 
 #: application/controllers/Contest_admin.php:57
 msgid "Update Contest"
@@ -997,17 +997,17 @@ msgstr "比赛日历服务不可用，请稍后重试"
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "竞赛管理"
 
 #: application/controllers/Contesting.php:93
 #: application/controllers/Contesting.php:606
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "集体台站管理员必须配置好比赛。"
 
 #: application/controllers/Contesting.php:110
 #, php-format
 msgid "Quickstart Session: %s"
-msgstr ""
+msgstr "快速启动竞赛:%s"
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
@@ -1015,74 +1015,74 @@ msgstr ""
 #: application/controllers/Contesting.php:648
 #: application/controllers/Contesting.php:704
 msgid "Contest session not found."
-msgstr ""
+msgstr "竞赛未找到。"
 
 #: application/controllers/Contesting.php:139
 #, php-format
 msgid "CBR Export: %s"
-msgstr ""
+msgstr "CBR 导出：%s"
 
 #: application/controllers/Contesting.php:174
 #, php-format
 msgid "Export: %s"
-msgstr ""
+msgstr "导出：%s"
 
 #: application/controllers/Contesting.php:453
 msgid "Invalid logging token."
-msgstr ""
+msgstr "登录令牌无效。"
 
 #: application/controllers/Contesting.php:623
 msgid "Contest session created successfully."
-msgstr ""
+msgstr "竞赛会话已成功创建。"
 
 #: application/controllers/Contesting.php:625
 msgid "There was an error creating the contest session. Please try again."
-msgstr ""
+msgstr "创建竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting.php:631
 #: application/controllers/Contesting.php:687
 #: application/controllers/Contesting.php:730
 msgid "Invalid request method."
-msgstr ""
+msgstr "请求方法无效。"
 
 #: application/controllers/Contesting.php:679
 msgid "Contest session updated successfully."
-msgstr ""
+msgstr "竞赛会话更新成功。"
 
 #: application/controllers/Contesting.php:681
 msgid "There was an error updating the contest session. Please try again."
-msgstr ""
+msgstr "更新竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting.php:722
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "竞赛会话删除成功。"
 
 #: application/controllers/Contesting.php:724
 msgid "There was an error deleting the contest session. Please try again."
-msgstr ""
+msgstr "删除竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
-msgstr ""
+msgstr "此功能已禁用。"
 
 #: application/controllers/Contesting_import.php:37
 #: application/controllers/Contesting_import.php:105
 msgid "No historical contests found that could be imported."
-msgstr ""
+msgstr "未找到可导入的历史比赛。"
 
 #: application/controllers/Contesting_import.php:41
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "导入历史比赛"
 
 #: application/controllers/Contesting_import.php:84
 #: application/controllers/Contesting_import.php:153
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d个会话被创建，%d个QSO被关联。"
 
 #: application/controllers/Contesting_import.php:109
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "导入历史竞赛（所有用户）"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:139
@@ -1369,7 +1369,7 @@ msgstr "未能下载 eQSL 图片"
 
 #: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "磁盘空间不足，无法存储eQSL卡"
 
 #: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
@@ -2719,83 +2719,89 @@ msgstr "上传 QSL 卡片"
 
 #: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "没有足够的磁盘空间来保存 QSL 卡片。"
 
 #: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
+#: application/controllers/Qslpostcard.php:87
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "上传的文件不是有效的图片。"
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
-msgstr ""
+msgstr "由于未设置 “userdata”，QSL 明信片设计器不可用。你的配置已过时。"
 
 #: application/controllers/Qslpostcard.php:31
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
+"请将您当前的 config.php 和最新的 config.sample.php 进行比较，并相应更新。"
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
 msgid "QSL Postcard Designer"
+msgstr "QSL 明信片设计器"
+
+#: application/controllers/Qslpostcard.php:62
+msgid "Not enough free disk space to store the QSL Background."
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:161
-#: application/controllers/Qslpostcard.php:222
-#: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:184
+#: application/controllers/Qslpostcard.php:245
+#: application/controllers/Qslpostcard.php:308
 msgid "Template not found"
-msgstr ""
+msgstr "模板未找到"
 
-#: application/controllers/Qslpostcard.php:167
-#: application/controllers/Qslpostcard.php:228
-#: application/controllers/Qslpostcard.php:291
+#: application/controllers/Qslpostcard.php:190
+#: application/controllers/Qslpostcard.php:251
+#: application/controllers/Qslpostcard.php:314
 msgid "Template JSON is invalid"
-msgstr ""
-
-#: application/controllers/Qslpostcard.php:182
-msgid "No QSOs returned by get_sample_qsos()"
-msgstr ""
-
-#: application/controllers/Qslpostcard.php:192
-msgid "PDF file was not created"
-msgstr ""
+msgstr "模板 JSON 无效"
 
 #: application/controllers/Qslpostcard.php:205
-msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgid "No QSOs returned by get_sample_qsos()"
+msgstr "get_sample_qsos() 没有返回任何 QSO"
 
-#: application/controllers/Qslpostcard.php:210
+#: application/controllers/Qslpostcard.php:215
+msgid "PDF file was not created"
+msgstr "未能生成 PDF 文件"
+
+#: application/controllers/Qslpostcard.php:228
+msgid "QSL Postcard PDF failed: "
+msgstr "生成 QSL 明信片 PDF 失败： "
+
+#: application/controllers/Qslpostcard.php:233
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "打印 QSL 明信片"
 
-#: application/controllers/Qslpostcard.php:241
-#: application/controllers/Qslpostcard.php:304
+#: application/controllers/Qslpostcard.php:264
+#: application/controllers/Qslpostcard.php:327
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "没有找到要打印为明信片的 QSO"
 
-#: application/controllers/Qslpostcard.php:260
+#: application/controllers/Qslpostcard.php:283
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
+msgstr "QSL 明信片队列 PDF 失败： "
 
-#: application/controllers/Qslpostcard.php:268
+#: application/controllers/Qslpostcard.php:291
 msgid "No QSOs were selected"
-msgstr ""
+msgstr "没有选择任何 QSO"
 
-#: application/controllers/Qslpostcard.php:272
+#: application/controllers/Qslpostcard.php:295
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "打印已选择的 QSL 明信片"
 
-#: application/controllers/Qslpostcard.php:297
+#: application/controllers/Qslpostcard.php:320
 msgid "No selected QSO IDs were provided"
-msgstr ""
+msgstr "没有提供已选择的 QSO ID"
 
-#: application/controllers/Qslpostcard.php:326
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "已选择的 QSL 明信片生成 PDF 失败： "
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -2913,8 +2919,8 @@ msgstr "编辑"
 #: application/views/oqrs/showrequests.php:80
 #: application/views/qslcard/index.php:80
 #: application/views/qslcard/index.php:129
-#: application/views/qslpostcard/designer.php:280
-#: application/views/qslpostcard/designer.php:319
+#: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:337
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
@@ -3144,7 +3150,7 @@ msgstr "不允许"
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:119
 #: application/views/debug/index.php:898
-#: application/views/qslpostcard/designer.php:31
+#: application/views/qslpostcard/designer.php:44
 #: application/views/qso/index.php:759 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:243
@@ -3529,7 +3535,7 @@ msgstr "编辑用户"
 #: application/controllers/User.php:1077 application/controllers/User.php:1080
 #, php-format
 msgid "User %s edited"
-msgstr "用户 %s 已编辑"
+msgstr "用户 %s 已修改"
 
 #: application/controllers/User.php:1148
 msgid "Profile"
@@ -3915,6 +3921,8 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
+"已从日志簿中导入\n"
+"（ADIF：%s, 年：%d）[原始：%s]"
 
 #: application/models/Contesting_import_model.php:147
 #, php-format
@@ -3922,14 +3930,16 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
+"已从日志簿中导入\n"
+"（ADIF：%s，年：%d）"
 
 #: application/models/Contesting_model.php:154
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "集体台站管理员必须编辑好竞赛。"
 
 #: application/models/Contesting_model.php:188
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "只有集体台站管理员可以删除。"
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -5399,7 +5409,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/options/maptiles.php:44
 #: application/views/options/radios.php:18
 #: application/views/options/version_dialog.php:42
-#: application/views/qslpostcard/designer.php:55
+#: application/views/qslpostcard/designer.php:68
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
@@ -9376,11 +9386,11 @@ msgstr "根据ADIF导出自己的QSO"
 
 #: application/views/club/permissions.php:147
 msgid "Start or Create a Contest"
-msgstr ""
+msgstr "开始或创建竞赛"
 
 #: application/views/club/permissions.php:153
 msgid "Edit a Contest"
-msgstr ""
+msgstr "编辑竞赛"
 
 #: application/views/club/permissions.php:163
 msgid "User Management"
@@ -9790,7 +9800,7 @@ msgstr "电台状态"
 msgid ""
 "Using the contest list, you can control which Contests are shown in the "
 "contest management."
-msgstr ""
+msgstr "通过竞赛列表，你可以控制“竞赛管理”页面中显示哪些竞赛。"
 
 #: application/views/contest_admin/add.php:19
 msgid ""
@@ -9806,7 +9816,7 @@ msgstr "添加竞赛"
 
 #: application/views/contest_admin/add.php:24
 msgid "Please provide contest name and ADIF name."
-msgstr ""
+msgstr "请提供竞赛名称和 ADIF 名称。"
 
 #: application/views/contest_admin/add.php:35
 #: application/views/contest_admin/create.php:30
@@ -9931,94 +9941,94 @@ msgstr "下周"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr ""
+msgstr "QSO 记录器"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
-msgstr ""
+msgstr "DXCC 查询…"
 
 #: application/views/contesting/logger/components/qso-form.php:26
 msgid "DXCC Lookup failed"
-msgstr ""
+msgstr "DXCC 查询失败"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr ""
+msgstr "DXCC：未找到"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
 msgid "Already worked on %s"
-msgstr ""
+msgstr "已经在 %s 波段通联过"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr ""
+msgstr "电台组件不可用。无法保存 QSO。"
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
-msgstr ""
+msgstr "未设置频率或模式。请检查电台设置。"
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #: application/views/contesting/logger/components/qso-form.php:33
 msgid "Synced"
-msgstr ""
+msgstr "已同步"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "Delete this QSO?"
-msgstr ""
+msgstr "删除这个 QSO？"
 
 #: application/views/contesting/logger/components/qso-form.php:41
 msgid "You can only edit your own QSOs"
-msgstr ""
+msgstr "你只能编辑自己的 QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
+msgstr "删除 QSO 失败："
 
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "不合法的呼号"
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
+msgstr "呼号簿查询失败"
 
 #: application/views/contesting/logger/components/qso-form.php:85
 msgid "RST S"
-msgstr ""
+msgstr "RST 发"
 
 #: application/views/contesting/logger/components/qso-form.php:89
 msgid "RST R"
-msgstr ""
+msgstr "RST 收"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:150
 msgid "Nr. S"
-msgstr ""
+msgstr "序号 发"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:151
 msgid "Nr. R"
-msgstr ""
+msgstr "序号 收"
 
 #: application/views/contesting/logger/components/qso-form.php:105
 msgid "Grid S"
-msgstr ""
+msgstr "网格 发"
 
 #: application/views/contesting/logger/components/qso-form.php:109
 msgid "Grid R"
-msgstr ""
+msgstr "网格 收"
 
 #: application/views/contesting/logger/components/qso-form.php:115
 msgid "Exch S"
-msgstr ""
+msgstr "交换 发"
 
 #: application/views/contesting/logger/components/qso-form.php:119
 msgid "Exch R"
-msgstr ""
+msgstr "交换信息 收"
 
 #: application/views/contesting/logger/components/qso-form.php:137
 #: application/views/dashboard/index.php:328
@@ -10028,96 +10038,96 @@ msgstr "最近QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:149
 msgid "RST"
-msgstr ""
+msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Exch"
-msgstr ""
+msgstr "交换"
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
-msgstr ""
+msgstr "无电台数据可用"
 
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr ""
+msgstr "电台数据是 %s 分钟前的"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
-msgstr ""
+msgstr "电台已连接"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr ""
+msgstr "手动模式：手动输入频率/模式"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
-msgstr ""
+msgstr "正在连接网络电台…"
 
 #: application/views/contesting/logger/components/radio.php:31
 msgid "WebSocket radio connected"
-msgstr ""
+msgstr "网络电台 已连接"
 
 #: application/views/contesting/logger/components/radio.php:32
 msgid "WebSocket connection error"
-msgstr ""
+msgstr "WebSocket 连接失败"
 
 #: application/views/contesting/logger/components/radio.php:33
 msgid "WebSocket disconnected - reconnecting..."
-msgstr ""
+msgstr "WebSocket 已断开 - 正在重连..."
 
 #: application/views/contesting/logger/components/radio.php:34
 msgid "WebSocket radio offline"
-msgstr ""
+msgstr "电台 WebSocket 离线"
 
 #: application/views/contesting/logger/components/radio.php:53
 msgid "Manual - No Radio"
-msgstr ""
+msgstr "手动 - 无电台"
 
 #: application/views/contesting/logger/components/radio.php:54
 msgid "WebSocket (Real-time)"
-msgstr ""
+msgstr "WebSocket（实时）"
 
 #: application/views/contesting/logger/components/scp.php:9
 msgid "Super Check Partial"
-msgstr ""
+msgstr "Super Check Partial 竞赛呼号库"
 
 #: application/views/contesting/logger/components/scp.php:25
 msgid "Loading SCP databases..."
-msgstr ""
+msgstr "加载 SCP 数据库…"
 
 #: application/views/contesting/logger/components/scp.php:26
 msgid "Ready"
-msgstr ""
+msgstr "就绪"
 
 #: application/views/contesting/logger/components/scp.php:27
 msgid "Error loading database"
-msgstr ""
+msgstr "加载数据库错误"
 
 #: application/views/contesting/logger/components/scp.php:28
 #: application/views/contesting/logger/index.php:47
 #, php-format
 msgid "Loading %s..."
-msgstr ""
+msgstr "加载 %s…"
 
 #: application/views/contesting/logger/components/scp.php:29
 #, php-format
 msgid "No matches found for '%s'"
-msgstr ""
+msgstr "未找到 '%s' 的匹配"
 
 #: application/views/contesting/logger/components/scp.php:30
 #: application/views/contesting/logger/components/scp.php:74
 msgid "Enter a partial callsign to see matches"
-msgstr ""
+msgstr "输入部分呼号以查看匹配结果"
 
 #: application/views/contesting/logger/components/scp.php:57
 msgid "Total:"
-msgstr ""
+msgstr "总计："
 
 #: application/views/contesting/logger/components/scp.php:67
 msgid "Matches"
-msgstr ""
+msgstr "匹配项"
 
 #: application/views/contesting/logger/components/statistics.php:20
 #: application/views/dashboard/index.php:234
@@ -10126,27 +10136,27 @@ msgstr "总计 QSO"
 
 #: application/views/contesting/logger/components/statistics.php:21
 msgid "Rate/h (60 min)"
-msgstr ""
+msgstr "小时速率（60 分）"
 
 #: application/views/contesting/logger/components/statistics.php:22
 msgid "Rate/h (10 min)"
-msgstr ""
+msgstr "小时速率（10 分）"
 
 #: application/views/contesting/logger/components/statistics.php:23
 msgid "Own"
-msgstr ""
+msgstr "我的"
 
 #: application/views/contesting/logger/components/statistics.php:24
 msgid "Others"
-msgstr ""
+msgstr "他人"
 
 #: application/views/contesting/logger/components/statistics.php:33
 msgid "Refresh"
-msgstr ""
+msgstr "刷新"
 
 #: application/views/contesting/logger/components/statistics.php:66
 msgid "Time window"
-msgstr ""
+msgstr "时间窗口"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
 #: application/views/user/edit.php:1166
@@ -10190,88 +10200,88 @@ msgstr "发射"
 
 #: application/views/contesting/logger/index.php:31
 msgid "Are you sure you want to end the contest?"
-msgstr ""
+msgstr "你确定要结束竞赛吗？"
 
 #: application/views/contesting/logger/index.php:32
 msgid "Layout reset to default!"
-msgstr ""
+msgstr "已重置到默认布局！"
 
 #: application/views/contesting/logger/index.php:33
 msgid "Layout saved!"
-msgstr ""
+msgstr "布局已保存！"
 
 #: application/views/contesting/logger/index.php:34
 msgid "Layout deleted!"
-msgstr ""
+msgstr "布局已删除！"
 
 #: application/views/contesting/logger/index.php:35
 #, php-format
 msgid "Are you sure you want to delete the layout '%s'?"
-msgstr ""
+msgstr "你确定要删除布局 '%s' 吗？"
 
 #: application/views/contesting/logger/index.php:36
 msgid "Are you sure you want to reset the layout to default?"
-msgstr ""
+msgstr "你确定要重置布局吗？"
 
 #: application/views/contesting/logger/index.php:37
 msgid "Enter a name for this layout:"
-msgstr ""
+msgstr "输入该布局的名称："
 
 #: application/views/contesting/logger/index.php:38
 msgid "No saved layouts found."
-msgstr ""
+msgstr "没有找到保存的布局。"
 
 #: application/views/contesting/logger/index.php:39
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: application/views/contesting/logger/index.php:40
 msgid "Default layout"
-msgstr ""
+msgstr "默认布局"
 
 #: application/views/contesting/logger/index.php:41
 msgid "Set as default"
-msgstr ""
+msgstr "设为默认"
 
 #: application/views/contesting/logger/index.php:42
 msgid "Error saving layout"
-msgstr ""
+msgstr "保存布局时出错"
 
 #: application/views/contesting/logger/index.php:43
 msgid "Error setting default layout"
-msgstr ""
+msgstr "设为默认布局时出错"
 
 #: application/views/contesting/logger/index.php:44
 msgid "Error deleting layout"
-msgstr ""
+msgstr "删除布局时出错"
 
 #: application/views/contesting/logger/index.php:45
 msgid "Error resetting layout"
-msgstr ""
+msgstr "重置布局时出错"
 
 #: application/views/contesting/logger/index.php:46
 msgid "Error loading application. Please refresh the page."
-msgstr ""
+msgstr "加载应用是出错，请刷新此页面。"
 
 #: application/views/contesting/logger/index.php:48
 msgid "Initializing data store..."
-msgstr ""
+msgstr "初始化数据存储中…"
 
 #: application/views/contesting/logger/index.php:49
 msgid "Initializing core systems..."
-msgstr ""
+msgstr "初始化核心系统…"
 
 #: application/views/contesting/logger/index.php:50
 msgid "Heartbeat Warning"
-msgstr ""
+msgstr "心跳机制告警"
 
 #: application/views/contesting/logger/index.php:51
 msgid "Heartbeat request took %1 ms (threshold: %2 ms)"
-msgstr ""
+msgstr "心跳请求耗时 %1 ms(阈值：%2 ms)"
 
 #: application/views/contesting/logger/index.php:52
 msgid "Window"
-msgstr ""
+msgstr "窗口"
 
 #: application/views/contesting/logger/index.php:53
 #: application/views/dashboard/index.php:722
@@ -10322,140 +10332,140 @@ msgstr "电台站"
 
 #: application/views/contesting/logger/index.php:56
 msgid "Auto-fit"
-msgstr ""
+msgstr "自适应"
 
 #: application/views/contesting/logger/index.php:58
 msgid "Unknown error"
-msgstr ""
+msgstr "未知错误"
 
 #: application/views/contesting/logger/index.php:60
 msgid ""
 "Contest settings have been changed. Please refresh the page to apply the new "
 "settings."
-msgstr ""
+msgstr "竞赛配置已修改，请刷新页面以应用新配置。"
 
 #: application/views/contesting/logger/index.php:61
 msgid "Reload now"
-msgstr ""
+msgstr "重新加载"
 
 #: application/views/contesting/logger/index.php:70
 msgid "Loading Contest Engine"
-msgstr ""
+msgstr "加载竞赛引擎"
 
 #: application/views/contesting/logger/index.php:71
 msgid "Initializing components..."
-msgstr ""
+msgstr "初始化组件…"
 
 #: application/views/contesting/logger/index.php:83
 msgid "Control Panel"
-msgstr ""
+msgstr "控制面板"
 
 #: application/views/contesting/logger/index.php:95
 msgid "End Session"
-msgstr ""
+msgstr "结束会话"
 
 #: application/views/contesting/logger/index.php:99
 msgid "Components"
-msgstr ""
+msgstr "组件"
 
 #: application/views/contesting/logger/index.php:103
 msgid "User Layouts"
-msgstr ""
+msgstr "用户布局"
 
 #: application/views/contesting/logger/index.php:106
 msgid "Save New Layout"
-msgstr ""
+msgstr "保存新布局"
 
 #: application/views/contesting/logger/index.php:109
 msgid "Reset to Default Layout"
-msgstr ""
+msgstr "恢复默认布局"
 
 #: application/views/contesting/logger/index.php:119
 msgid "Panel Position"
-msgstr ""
+msgstr "面板位置"
 
 #: application/views/contesting/logger/index.php:121
 msgid "Left"
-msgstr ""
+msgstr "左侧"
 
 #: application/views/contesting/logger/index.php:122
 msgid "Right"
-msgstr ""
+msgstr "右侧"
 
 #: application/views/contesting/logger/index.php:123
 msgid "Top"
-msgstr ""
+msgstr "顶部"
 
 #: application/views/contesting/logger/index.php:124
 msgid "Bottom"
-msgstr ""
+msgstr "底部"
 
 #: application/views/contesting/manager/components/confirm_delete.php:5
 msgid "Delete Contest Session"
-msgstr ""
+msgstr "删除竞赛会话"
 
 #: application/views/contesting/manager/components/confirm_delete.php:10
 msgid "Do you really want to delete this contest session?"
-msgstr ""
+msgstr "你确定要删除此竞赛会话？"
 
 #: application/views/contesting/manager/components/confirm_delete.php:12
 msgid "Contest: "
-msgstr ""
+msgstr "竞赛： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:13
 msgid "Start Date/Time: "
-msgstr ""
+msgstr "开始日期/时间： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:14
 msgid "End Date/Time: "
-msgstr ""
+msgstr "结束日期/时间： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:15
 msgid "Station: "
-msgstr ""
+msgstr "台站呼号： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
-msgstr ""
+msgstr "同时从日志簿中删除此竞赛会话包含的 QSO"
 
 #: application/views/contesting/manager/components/confirm_delete.php:26
 msgid "Delete Session"
-msgstr ""
+msgstr "删除竞赛会话"
 
 #: application/views/contesting/manager/components/session_modal.php:7
 msgid "Edit Contest Session"
-msgstr ""
+msgstr "编辑竞赛会话"
 
 #: application/views/contesting/manager/components/session_modal.php:9
 msgid "Create Contest Session"
-msgstr ""
+msgstr "创建竞赛会话"
 
 #: application/views/contesting/manager/components/session_modal.php:21
 msgid "Enter all required information to create a new contest session."
-msgstr ""
+msgstr "请输入所有必要信息来创建新竞赛会话。"
 
 #: application/views/contesting/manager/components/session_modal.php:24
 msgid "Enter a name for this contest"
-msgstr ""
+msgstr "为本次竞赛起一个名字"
 
 #: application/views/contesting/manager/components/session_modal.php:25
 msgid "This name will be used only internally."
-msgstr ""
+msgstr "这个名称只在内部使用。"
 
 #: application/views/contesting/manager/components/session_modal.php:29
 msgid "Please select a contest"
-msgstr ""
+msgstr "选择一个竞赛"
 
 #: application/views/contesting/manager/components/session_modal.php:35
 msgid "Please select a contest."
-msgstr ""
+msgstr "请选择一个竞赛。"
 
 #: application/views/contesting/manager/components/session_modal.php:36
 #, php-format
 msgid ""
 "Select the contest for this session. If you can't find the contest, please "
 "choose %s."
-msgstr ""
+msgstr "为本次会话选择一个竞赛。如果你找不到想要的竞赛，请选择 %s。"
 
 #: application/views/contesting/manager/components/session_modal.php:41
 #: application/views/qso/edit_ajax.php:53
@@ -10464,19 +10474,19 @@ msgstr "开始日期/时间"
 
 #: application/views/contesting/manager/components/session_modal.php:43
 msgid "When should the session start?"
-msgstr ""
+msgstr "竞赛会话什么时候开始？"
 
 #: application/views/contesting/manager/components/session_modal.php:45
 msgid "Now"
-msgstr ""
+msgstr "现在"
 
 #: application/views/contesting/manager/components/session_modal.php:46
 msgid "Friday 12:00"
-msgstr ""
+msgstr "星期五 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:47
 msgid "Saturday 12:00"
-msgstr ""
+msgstr "星期六 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:51
 #: application/views/qso/edit_ajax.php:58
@@ -10485,51 +10495,51 @@ msgstr "结束日期/时间"
 
 #: application/views/contesting/manager/components/session_modal.php:53
 msgid "When should the session end?"
-msgstr ""
+msgstr "竞赛会话应该什么时候结束？"
 
 #: application/views/contesting/manager/components/session_modal.php:65
 msgid "Please select a station"
-msgstr ""
+msgstr "请选择一个台站"
 
 #: application/views/contesting/manager/components/session_modal.php:80
 msgid "Choose one of your stations"
-msgstr ""
+msgstr "选择一个你的台站"
 
 #: application/views/contesting/manager/components/session_modal.php:83
 msgid "Exchange Fields"
-msgstr ""
+msgstr "交换信息"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Toggle fields on/off and drag to set the tab order in the logger."
-msgstr ""
+msgstr "切换字段的开启/关闭状态，拖动以设置日志页面中的标签顺序。"
 
 #: application/views/contesting/manager/components/session_modal.php:87
 msgid "Serial Number"
-msgstr ""
+msgstr "序列号"
 
 #: application/views/contesting/manager/components/session_modal.php:88
 msgid "Grid Square"
-msgstr ""
+msgstr "网格位置"
 
 #: application/views/contesting/manager/components/session_modal.php:89
 msgid "Exchange (text)"
-msgstr ""
+msgstr "交换信息（文本）"
 
 #: application/views/contesting/manager/components/session_modal.php:112
 msgid "Please enable at least one exchange field."
-msgstr ""
+msgstr "请启用至少一个交换信息字段。"
 
 #: application/views/contesting/manager/components/session_modal.php:115
 msgid "Copy Exchange to Field"
-msgstr ""
+msgstr "复制交换信息到日志字段"
 
 #: application/views/contesting/manager/components/session_modal.php:117
 msgid "— None —"
-msgstr ""
+msgstr "— 无 —"
 
 #: application/views/contesting/manager/components/session_modal.php:119
 msgid "Gridquare"
-msgstr ""
+msgstr "网格坐标"
 
 #: application/views/contesting/manager/components/session_modal.php:120
 #: application/views/logbookadvanced/index.php:967
@@ -10545,11 +10555,11 @@ msgstr "RX Power(W)"
 #: application/views/contesting/manager/components/session_modal.php:126
 msgid ""
 "The received Exchange (Exch R) value will be copied to this logbook field."
-msgstr ""
+msgstr "接收到的交换信息（交换信息 收）的值将被复制到日志簿的指定字段。"
 
 #: application/views/contesting/manager/components/session_modal.php:132
 msgid "Callbook Lookup (Online)"
-msgstr ""
+msgstr "呼号簿查询（在线）"
 
 #: application/views/contesting/manager/components/session_modal.php:134
 msgid ""
@@ -10557,44 +10567,46 @@ msgid ""
 "only existing log data from previous qsos with this callsign will be used. "
 "Log data is always prioritized."
 msgstr ""
+"在配置的在线呼号簿服务中查询呼号簿数据。如果禁用，仅会使用与此呼号之前的 QSO "
+"的数据。始终优先使用日志中的数据。"
 
 #: application/views/contesting/manager/components/session_modal.php:137
 msgid "Session Notes"
-msgstr ""
+msgstr "竞赛会话备注"
 
 #: application/views/contesting/manager/components/session_modal.php:138
 msgid "Add any additional information about this session..."
-msgstr ""
+msgstr "添加有关此竞赛会话的任何附加信息…"
 
 #: application/views/contesting/manager/components/session_modal.php:139
 msgid "Optional: Any additional details or notes"
-msgstr ""
+msgstr "可选：任何其他信息或备注"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Create Session"
-msgstr ""
+msgstr "创建竞赛会话"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Update Session"
-msgstr ""
+msgstr "更新竞赛会话"
 
 #: application/views/contesting/manager/export_cbr.php:27
 #: application/views/contesting/manager/export_edi.php:27
 #, php-format
 msgid "%d QSOs"
-msgstr ""
+msgstr "%d 个 QSO"
 
 #: application/views/contesting/manager/export_cbr.php:32
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
-msgstr ""
+msgstr "这个竞赛会话尚无 QSO。导出将生成一个空文件。"
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
-msgstr ""
+msgstr "你没有权限导出文件，请联系集体台站管理员。"
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:497
@@ -10606,7 +10618,7 @@ msgstr "Cabrillo 导出"
 msgid ""
 "Settings are saved automatically when you download. Name and e-mail are "
 "taken from your user profile."
-msgstr ""
+msgstr "下载时会自动保存设置。姓名和邮件从您的用户个人资料中获得。"
 
 #: application/views/contesting/manager/export_cbr.php:69
 msgid "Assisted"
@@ -10623,11 +10635,11 @@ msgstr "功率"
 
 #: application/views/contesting/manager/export_cbr.php:129
 msgid "Category (optional)"
-msgstr ""
+msgstr "组别（可选）"
 
 #: application/views/contesting/manager/export_cbr.php:148
 msgid "Transmitter"
-msgstr ""
+msgstr "发射机"
 
 #: application/views/contesting/manager/export_cbr.php:161
 #: application/views/contesting/manager/export_cbr.php:162
@@ -10639,7 +10651,7 @@ msgstr "%d 小时"
 
 #: application/views/contesting/manager/export_cbr.php:168
 msgid "Overlay"
-msgstr ""
+msgstr "叠加组别"
 
 #: application/views/contesting/manager/export_cbr.php:185
 #: application/views/logbookadvanced/useroptions.php:271
@@ -10665,6 +10677,8 @@ msgid ""
 "ARRL section for USA/Canada, 'DX' for foreign stations. Required for IARU-"
 "HF, ARRL and CQ contests."
 msgstr ""
+"对于美国、加拿大电台，使用 ARRL section；对于其他海外电台，使用 DX。适用于 "
+"IARU-HF、ARRL、CQ 竞赛。"
 
 #: application/views/contesting/manager/export_cbr.php:203
 #: application/views/contesting/manager/export_edi.php:95
@@ -10684,7 +10698,7 @@ msgstr "证书"
 
 #: application/views/contesting/manager/export_cbr.php:217
 msgid "Request a paper certificate from the contest sponsor if eligible."
-msgstr ""
+msgstr "如果符合条件，向竞赛组织者申请纸质奖状。"
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
@@ -10829,35 +10843,35 @@ msgstr "否"
 
 #: application/views/contesting/manager/export_cbr.php:227
 msgid "Grid in exchange?"
-msgstr ""
+msgstr "交换网格坐标信息？"
 
 #: application/views/contesting/manager/export_cbr.php:230
 msgid "Select Yes if the grid square was part of the contest exchange."
-msgstr ""
+msgstr "如果网格坐标是竞赛交换信息的一部分，请选择“是”。"
 
 #: application/views/contesting/manager/export_cbr.php:240
 msgid "Use 6-char grid instead of 4-char"
-msgstr ""
+msgstr "使用 6 字符网格坐标，而不是 4 字符"
 
 #: application/views/contesting/manager/export_cbr.php:249
 msgid "Contact & Address"
-msgstr ""
+msgstr "联系方式和地址"
 
 #: application/views/contesting/manager/export_cbr.php:262
 msgid "Street Address"
-msgstr ""
+msgstr "街道地址"
 
 #: application/views/contesting/manager/export_cbr.php:272
 msgid "State / Province"
-msgstr ""
+msgstr "州 / 省"
 
 #: application/views/contesting/manager/export_cbr.php:277
 msgid "Postal Code"
-msgstr ""
+msgstr "邮政编码"
 
 #: application/views/contesting/manager/export_cbr.php:290
 msgid "Download Cabrillo"
-msgstr ""
+msgstr "下载 Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:499
@@ -10866,7 +10880,7 @@ msgstr "EDI 导出"
 
 #: application/views/contesting/manager/export_edi.php:57
 msgid "Header data"
-msgstr ""
+msgstr "头部数据"
 
 #: application/views/contesting/manager/export_edi.php:62
 msgid "Sent Exchange"
@@ -10903,7 +10917,7 @@ msgstr "操作员列表。以 ; 半角分号分割。负责人呼号不需要填
 
 #: application/views/contesting/manager/export_edi.php:109
 msgid "Location and Operator Information"
-msgstr ""
+msgstr "位置和操作员信息"
 
 #: application/views/contesting/manager/export_edi.php:112
 msgid "Contest Address 1"
@@ -10939,7 +10953,7 @@ msgstr "负责人手机号码"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr ""
+msgstr "附加台站描述"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -10965,7 +10979,7 @@ msgstr "天线距地面高度（米）"
 
 #: application/views/contesting/manager/export_edi.php:191
 msgid "Scoring Adjustment and Band Selection"
-msgstr ""
+msgstr "得分调整和频段选择"
 
 #: application/views/contesting/manager/export_edi.php:195
 msgid "Band multiplicator"
@@ -10975,19 +10989,19 @@ msgstr "频段系数"
 msgid ""
 "The Band multiplicator is usually 1. Only change this if necessary according "
 "to the contest scoring rules."
-msgstr ""
+msgstr "频段系数通常为 1。只在根据竞赛积分规则下更改。"
 
 #: application/views/contesting/manager/export_edi.php:208
 msgid "Choose Band for export"
-msgstr ""
+msgstr "选择要导出的频段"
 
 #: application/views/contesting/manager/export_edi.php:220
 msgid "Download EDI"
-msgstr ""
+msgstr "下载 EDI"
 
 #: application/views/contesting/manager/import_legacy.php:9
 msgid "Historical Contest QSOs"
-msgstr ""
+msgstr "历史竞赛 QSO"
 
 #: application/views/contesting/manager/import_legacy.php:13
 msgid ""
@@ -10995,46 +11009,48 @@ msgid ""
 "linked to a contest session. Select the ones you want to import and click "
 "\"Import Selected\"."
 msgstr ""
+"在日志簿中找到了以下尚未连接到竞赛会话的竞赛组。选择你想要导入的组并点击“导入"
+"选中项”。"
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "Admin mode:"
-msgstr ""
+msgstr "管理模式："
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid "This will import contests for all users of this instance."
-msgstr ""
+msgstr "这将为此 Wavelog 实例的所有用户导入竞赛。"
 
 #: application/views/contesting/manager/import_legacy.php:30
 msgid "Select all"
-msgstr ""
+msgstr "选择全部"
 
 #: application/views/contesting/manager/import_legacy.php:32
 msgid "ADIF ID"
-msgstr ""
+msgstr "ADIF ID"
 
 #: application/views/contesting/manager/import_legacy.php:37
 #: application/views/contesting/manager/index.php:35
 #: application/views/logbookadvanced/attachContest.php:17
 msgid "#QSO"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/contesting/manager/import_legacy.php:61
 msgid "Unknown → Other"
-msgstr ""
+msgstr "未知 → 其他"
 
 #: application/views/contesting/manager/import_legacy.php:72
 msgid "Import Selected"
-msgstr ""
+msgstr "导入已选项"
 
 #: application/views/contesting/manager/import_legacy.php:94
 msgid "Please select at least one contest to import."
-msgstr ""
+msgstr "请至少选择一个竞赛导入。"
 
 #: application/views/contesting/manager/import_legacy.php:97
 msgid ""
 "Are you sure you want to import the selected contest sessions? This cannot "
 "be undone."
-msgstr ""
+msgstr "您确定要导入所选择的竞赛会话吗？此操作无法撤销。"
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:340
@@ -11045,35 +11061,35 @@ msgstr "比赛列表"
 msgid ""
 "Here you can manage your contests, create new, edit or export them in "
 "various formats."
-msgstr ""
+msgstr "在这里你可以管理你的竞赛，新建、编辑或以多种格式导出它们。"
 
 #: application/views/contesting/manager/index.php:21
 msgid "Create New Contest"
-msgstr ""
+msgstr "创建新竞赛"
 
 #: application/views/contesting/manager/index.php:22
 #: application/views/interface_assets/header.php:144
 msgid "Quick Start"
-msgstr ""
+msgstr "快速开始"
 
 #: application/views/contesting/manager/index.php:49
 #: application/views/logbookadvanced/attachContest.php:28
 msgid "Coming Up"
-msgstr ""
+msgstr "即将到来"
 
 #: application/views/contesting/manager/index.php:51
 #: application/views/logbookadvanced/attachContest.php:30
 msgid "In Progress"
-msgstr ""
+msgstr "正在进行"
 
 #: application/views/contesting/manager/index.php:53
 #: application/views/logbookadvanced/attachContest.php:32
 msgid "Completed"
-msgstr ""
+msgstr "已经结束"
 
 #: application/views/contesting/manager/index.php:59
 msgid "START"
-msgstr ""
+msgstr "开始"
 
 #: application/views/contesting/manager/index.php:94
 #: application/views/qslprint/qslprint.php:111
@@ -11082,7 +11098,7 @@ msgstr "导出 ADIF"
 
 #: application/views/contesting/manager/index.php:97
 msgid "Export CBR"
-msgstr ""
+msgstr "导出 CBR"
 
 #: application/views/contesting/manager/index.php:100
 msgid "Export EDI"
@@ -11090,13 +11106,13 @@ msgstr "导出 EDI"
 
 #: application/views/contesting/manager/index.php:149
 msgid "Import historical contests from logbook"
-msgstr ""
+msgstr "从日志簿导入历史竞赛"
 
 #: application/views/contesting/manager/index.php:152
 msgid ""
 "Import for all users of this instance. You can do that because you are an "
 "administrator."
-msgstr ""
+msgstr "为此实例的所有用户导入。你可以这样做，因为你是管理员。"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
@@ -12022,7 +12038,7 @@ msgstr "Codeigniter 版本"
 
 #: application/views/debug/index.php:141
 msgid "Wavelog Worker Backend"
-msgstr ""
+msgstr "Wavelog Worker 后端"
 
 #: application/views/debug/index.php:150
 msgid "Folder Permissions"
@@ -12038,7 +12054,7 @@ msgstr "这验证了 Wavelog 使用的文件夹是否具有 PHP 的读写权限�
 #: application/views/debug/index.php:180 application/views/debug/index.php:191
 #: application/views/debug/index.php:203
 #: application/views/interface_assets/footer.php:38
-#: application/views/qslpostcard/designer.php:30
+#: application/views/qslpostcard/designer.php:43
 msgid "Success"
 msgstr "成功"
 
@@ -12347,47 +12363,47 @@ msgstr "一切正常"
 
 #: application/views/debug/index.php:855
 msgid "Worker backend is not configured."
-msgstr ""
+msgstr "尚未配置 Worker 后端。"
 
 #: application/views/debug/index.php:859
 msgid "Unreachable"
-msgstr ""
+msgstr "无法访问"
 
 #: application/views/debug/index.php:859
 msgid "Worker is configured but did not respond."
-msgstr ""
+msgstr "已配置 Woker，但无响应。"
 
 #: application/views/debug/index.php:867
 msgid "Available"
-msgstr ""
+msgstr "可用"
 
 #: application/views/debug/index.php:868 application/views/debug/index.php:877
 msgid "Offline"
-msgstr ""
+msgstr "离线"
 
 #: application/views/debug/index.php:876
 msgid "Online"
-msgstr ""
+msgstr "在线"
 
 #: application/views/debug/index.php:887
 msgid "Worker"
-msgstr ""
+msgstr "Worker"
 
 #: application/views/debug/index.php:888
 msgid "Topics"
-msgstr ""
+msgstr "主题"
 
 #: application/views/debug/index.php:889
 msgid "Clients"
-msgstr ""
+msgstr "客户端"
 
 #: application/views/debug/index.php:891
 msgid "Uptime"
-msgstr ""
+msgstr "正常运行时间"
 
 #: application/views/debug/index.php:898
 msgid "Could not fetch worker status."
-msgstr ""
+msgstr "无法获取 Worker 状态。"
 
 #: application/views/debug/index.php:911
 msgid "Albanian"
@@ -12479,7 +12495,7 @@ msgstr "葡萄牙语"
 
 #: application/views/debug/index.php:933
 msgid "Romanian"
-msgstr ""
+msgstr "罗马尼亚语"
 
 #: application/views/debug/index.php:934
 msgid "Russian"
@@ -13135,8 +13151,8 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "通讯录笔记已禁用复制功能"
 
 #: application/views/interface_assets/footer.php:66
-#: application/views/qslpostcard/designer.php:277
-#: application/views/qslpostcard/designer.php:293
+#: application/views/qslpostcard/designer.php:295
+#: application/views/qslpostcard/designer.php:311
 msgid "Duplicate"
 msgstr "复制"
 
@@ -13579,20 +13595,20 @@ msgstr "QSL 图片文件"
 
 #: application/views/interface_assets/footer.php:2678
 msgid "Front QSL Card"
-msgstr ""
+msgstr "QSL 卡片正面"
 
 #: application/views/interface_assets/footer.php:2714
 msgid "Back QSL Card"
-msgstr ""
+msgstr "QSL 卡片背面"
 
 #: application/views/interface_assets/footer.php:2718
 msgid "The QSL card upload could not be completed."
-msgstr ""
+msgstr "QSL 卡片上传未能完成。"
 
 #: application/views/interface_assets/footer.php:2718
-#: application/views/qslpostcard/designer.php:18
+#: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
-msgstr ""
+msgstr "上传失败"
 
 #: application/views/interface_assets/footer.php:2726
 #: application/views/interface_assets/footer.php:2751
@@ -13639,7 +13655,7 @@ msgstr "添加 QSO（手动）"
 
 #: application/views/interface_assets/header.php:146
 msgid "Manage Contests"
-msgstr ""
+msgstr "管理竞赛"
 
 #: application/views/interface_assets/header.php:155
 msgid "Analytics"
@@ -13998,7 +14014,7 @@ msgstr "单个标签的垂直高度"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
-#: application/views/qslpostcard/designer.php:249
+#: application/views/qslpostcard/designer.php:262
 msgid "Font Size"
 msgstr "字体大小"
 
@@ -14497,7 +14513,7 @@ msgstr "使用 Wavelog 检查 IOTA 是否符合 DXCC"
 #, php-format
 msgid "Detach %s QSO from contest?"
 msgid_plural "Detach %s QSOs from contests?"
-msgstr[0] ""
+msgstr[0] "从竞赛中剥离 %s 个QSO？"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
@@ -15221,39 +15237,39 @@ msgstr "加载合并对话框时出错"
 
 #: application/views/logbookadvanced/index.php:94
 msgid "You need at least 1 QSO!"
-msgstr ""
+msgstr "你需要至少一个 QSO！"
 
 #: application/views/logbookadvanced/index.php:95
 msgid "Attach QSOs to Contest"
-msgstr ""
+msgstr "链接 QSO 到竞赛"
 
 #: application/views/logbookadvanced/index.php:96
 msgid "Error loading attach to contest dialog"
-msgstr ""
+msgstr "加载“链接到竞赛”对话框时出错"
 
 #: application/views/logbookadvanced/index.php:97
 msgid "QSOs attached to contest successfully!"
-msgstr ""
+msgstr "成功将 QSO 链接到竞赛！"
 
 #: application/views/logbookadvanced/index.php:98
 msgid "Error attaching QSOs"
-msgstr ""
+msgstr "链接 QSO 时出错"
 
 #: application/views/logbookadvanced/index.php:100
 msgid "Detach QSOs to Contest"
-msgstr ""
+msgstr "从竞赛中剥离 QSO"
 
 #: application/views/logbookadvanced/index.php:101
 msgid "Error loading detach to contest dialog"
-msgstr ""
+msgstr "加载“从竞赛中剥离”对话框时出错"
 
 #: application/views/logbookadvanced/index.php:102
 msgid "QSOs detached to contest successfully!"
-msgstr ""
+msgstr "成功将 QSO 从竞赛中剥离！"
 
 #: application/views/logbookadvanced/index.php:103
 msgid "Error detaching QSOs"
-msgstr ""
+msgstr "剥离 QSO 时出错"
 
 #: application/views/logbookadvanced/index.php:354
 msgid "From"
@@ -15585,11 +15601,11 @@ msgstr "QSL 展示窗"
 
 #: application/views/logbookadvanced/index.php:855
 msgid "Attach to Contest"
-msgstr ""
+msgstr "链接到竞赛"
 
 #: application/views/logbookadvanced/index.php:856
 msgid "Detach from Contest"
-msgstr ""
+msgstr "从竞赛中剥离"
 
 #: application/views/logbookadvanced/index.php:862
 #: application/views/oqrs/showrequests.php:63
@@ -15698,7 +15714,7 @@ msgid ""
 msgstr "所选字段将合并到主 QSO，你可以在每个 QSO 中选择不同的字段。"
 
 #: application/views/logbookadvanced/mergedialog.php:71
-#: application/views/qslpostcard/designer.php:218
+#: application/views/qslpostcard/designer.php:231
 msgid "Field"
 msgstr "字段"
 
@@ -16946,281 +16962,293 @@ msgstr "地址"
 
 #: application/views/qslpostcard/designer.php:6
 msgid "QSO Core"
-msgstr ""
+msgstr "QSO 核心信息"
 
 #: application/views/qslpostcard/designer.php:7
 msgid "Date & Time"
-msgstr ""
+msgstr "日期和时间"
 
 #: application/views/qslpostcard/designer.php:8
 msgid "Station & Equipment"
-msgstr ""
+msgstr "台站和设备"
 
 #: application/views/qslpostcard/designer.php:9
 msgid "My References"
-msgstr ""
+msgstr "我的参考信息"
 
 #: application/views/qslpostcard/designer.php:10
+msgid "Markers"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:11
 #: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
 msgid "Other"
 msgstr "其它"
 
-#: application/views/qslpostcard/designer.php:16
-msgid "Please choose an image first."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:17
-msgid "Uploading..."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:19
-msgid "unknown error"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:20
-msgid "Preview image uploaded."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:21
-msgid "Custom Text"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:22
-msgid "Untitled"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:23
-msgid "Save failed"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:24
-msgid "Template saved."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:25
-msgid "Delete Template?"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:26
-msgid ""
-"Are you sure you want to delete this template? This action cannot be undone."
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:27
-msgid "Delete failed"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:28
-msgid "Template deleted successfully!"
-msgstr ""
-
 #: application/views/qslpostcard/designer.php:29
-msgid "Please select a template to delete."
-msgstr ""
+msgid "Please choose an image first."
+msgstr "首先请选择一个图片。"
+
+#: application/views/qslpostcard/designer.php:30
+msgid "Uploading..."
+msgstr "上传中…"
 
 #: application/views/qslpostcard/designer.php:32
-msgid "selected"
-msgstr ""
+msgid "unknown error"
+msgstr "未知错误"
+
+#: application/views/qslpostcard/designer.php:33
+msgid "Preview image uploaded."
+msgstr "预览图片已上传。"
+
+#: application/views/qslpostcard/designer.php:34
+msgid "Custom Text"
+msgstr "自定义文本"
+
+#: application/views/qslpostcard/designer.php:35
+msgid "Untitled"
+msgstr "无标题"
+
+#: application/views/qslpostcard/designer.php:36
+msgid "Save failed"
+msgstr "保存失败"
+
+#: application/views/qslpostcard/designer.php:37
+msgid "Template saved."
+msgstr "模板已保存。"
+
+#: application/views/qslpostcard/designer.php:38
+msgid "Delete Template?"
+msgstr "删除此模板？"
+
+#: application/views/qslpostcard/designer.php:39
+msgid ""
+"Are you sure you want to delete this template? This action cannot be undone."
+msgstr "您确定要删除此模板吗？此操作无法撤销。"
+
+#: application/views/qslpostcard/designer.php:40
+msgid "Delete failed"
+msgstr "删除失败"
+
+#: application/views/qslpostcard/designer.php:41
+msgid "Template deleted successfully!"
+msgstr "模板删除成功！"
+
+#: application/views/qslpostcard/designer.php:42
+msgid "Please select a template to delete."
+msgstr "请选择一个模板来删除。"
 
 #: application/views/qslpostcard/designer.php:45
+msgid "selected"
+msgstr "已选择"
+
+#: application/views/qslpostcard/designer.php:58
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 msgid "Template"
-msgstr ""
+msgstr "模板"
 
-#: application/views/qslpostcard/designer.php:48
+#: application/views/qslpostcard/designer.php:61
 msgid "(new)"
-msgstr ""
+msgstr "（新）"
 
-#: application/views/qslpostcard/designer.php:53
+#: application/views/qslpostcard/designer.php:66
 msgid "Template name"
-msgstr ""
+msgstr "模板名"
 
-#: application/views/qslpostcard/designer.php:54
+#: application/views/qslpostcard/designer.php:67
 msgid "Save Template"
-msgstr ""
+msgstr "保存模板"
 
-#: application/views/qslpostcard/designer.php:57
+#: application/views/qslpostcard/designer.php:70
 msgid "Delete Template"
-msgstr ""
+msgstr "删除模板"
 
-#: application/views/qslpostcard/designer.php:65
+#: application/views/qslpostcard/designer.php:78
 msgid "Background image"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:68
-msgid "Upload Preview Image"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:71
-msgid "Generate PDF (demo)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:72
-msgid "PDF"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:79
-msgid "History"
-msgstr ""
+msgstr "背景图片"
 
 #: application/views/qslpostcard/designer.php:81
+msgid "Upload Preview Image"
+msgstr "上传预览图片"
+
+#: application/views/qslpostcard/designer.php:84
+msgid "Generate PDF (demo)"
+msgstr "生成 PDF（演示）"
+
+#: application/views/qslpostcard/designer.php:85
+msgid "PDF"
+msgstr "PDF"
+
+#: application/views/qslpostcard/designer.php:92
+msgid "History"
+msgstr "历史"
+
+#: application/views/qslpostcard/designer.php:94
 msgid "Undo"
-msgstr ""
+msgstr "撤销"
 
-#: application/views/qslpostcard/designer.php:82
+#: application/views/qslpostcard/designer.php:95
 msgid "Redo"
-msgstr ""
+msgstr "重做"
 
-#: application/views/qslpostcard/designer.php:88
+#: application/views/qslpostcard/designer.php:101
 msgid "Zoom"
-msgstr ""
+msgstr "缩放"
 
-#: application/views/qslpostcard/designer.php:98
+#: application/views/qslpostcard/designer.php:111
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
+msgstr "提示：打印测试后，你可以调整全局偏移，而无需分别移动每个字段。"
+
+#: application/views/qslpostcard/designer.php:112
+msgid "Print offset"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:99
-msgid "Print offset (in)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:128
+#: application/views/qslpostcard/designer.php:141
 msgid "Search fields…"
-msgstr ""
+msgstr "搜索字段…"
 
-#: application/views/qslpostcard/designer.php:132
+#: application/views/qslpostcard/designer.php:145
 msgid "Add Custom Text"
-msgstr ""
+msgstr "添加自定义文本"
 
-#: application/views/qslpostcard/designer.php:147
+#: application/views/qslpostcard/designer.php:160
 msgid "No fields match your search."
-msgstr ""
+msgstr "未找到符合的字段。"
 
-#: application/views/qslpostcard/designer.php:155
+#: application/views/qslpostcard/designer.php:168
 msgid "Postcard Canvas"
+msgstr "明信片画布"
+
+#: application/views/qslpostcard/designer.php:169
+msgid "drag fields onto the postcard"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:156
-msgid "6 × 4 inches · drag fields onto the postcard"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:177
+#: application/views/qslpostcard/designer.php:190
 msgid "Template Options"
-msgstr ""
+msgstr "模板选项"
 
-#: application/views/qslpostcard/designer.php:181
+#: application/views/qslpostcard/designer.php:194
 msgid "Number of QSOs per QSL card"
+msgstr "每张 QSL 卡的 QSO 数量"
+
+#: application/views/qslpostcard/designer.php:198
+msgid "Row spacing"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:185
-msgid "Row spacing (in)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:191
+#: application/views/qslpostcard/designer.php:204
 msgid "One postcard per callsign"
-msgstr ""
+msgstr "每个呼号一张卡片"
 
-#: application/views/qslpostcard/designer.php:195
+#: application/views/qslpostcard/designer.php:208
 msgid "Print background image (uncheck for pre-printed cards)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:199
-msgid "Skip address printing (for printing on regular QSL cards)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:207
-msgid "Properties"
-msgstr ""
+msgstr "打印背景图像（预印卡请取消勾选）"
 
 #: application/views/qslpostcard/designer.php:212
+msgid "Skip address printing (for printing on regular QSL cards)"
+msgstr "跳过地址打印（用于普通 QSL 卡）"
+
+#: application/views/qslpostcard/designer.php:220
+msgid "Properties"
+msgstr "属性"
+
+#: application/views/qslpostcard/designer.php:225
 msgid "Select a field on the canvas to edit it."
-msgstr ""
+msgstr "在画布上选择一个字段以编辑。"
 
-#: application/views/qslpostcard/designer.php:213
+#: application/views/qslpostcard/designer.php:226
 msgid "Right-click a field for more actions."
-msgstr ""
+msgstr "右键单击字段以获得更多操作。"
 
-#: application/views/qslpostcard/designer.php:223
+#: application/views/qslpostcard/designer.php:236
 msgid "Text"
+msgstr "文本"
+
+#: application/views/qslpostcard/designer.php:242
+msgid "X"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:229
-msgid "X (in)"
+#: application/views/qslpostcard/designer.php:246
+msgid "Y"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:233
-msgid "Y (in)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:239
+#: application/views/qslpostcard/designer.php:252
 msgid "Font"
-msgstr ""
+msgstr "字体"
 
-#: application/views/qslpostcard/designer.php:255
+#: application/views/qslpostcard/designer.php:268
 msgid "Bold"
-msgstr ""
+msgstr "粗体"
 
-#: application/views/qslpostcard/designer.php:261
+#: application/views/qslpostcard/designer.php:274
 msgid "Color"
+msgstr "颜色"
+
+#: application/views/qslpostcard/designer.php:279
+msgid "Wrap width"
 msgstr ""
 
-#: application/views/qslpostcard/designer.php:266
-msgid "Wrap width (in)"
-msgstr ""
-
-#: application/views/qslpostcard/designer.php:271
+#: application/views/qslpostcard/designer.php:284
 msgid "Print this field once per QSO when a card holds multiple QSOs"
-msgstr ""
+msgstr "当卡片包含多个 QSO 时，每个 QSO 都打印一次此字段"
 
-#: application/views/qslpostcard/designer.php:272
+#: application/views/qslpostcard/designer.php:285
 msgid "Repeats per QSO"
-msgstr ""
+msgstr "每个 QSO 都重复"
 
-#: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:289
+msgid "Move this element freely without snapping to the grid or other elements"
+msgstr "自由移动这个元素，无需贴齐到网格或其他元素"
+
+#: application/views/qslpostcard/designer.php:290
+msgid "Disable Auto-Snap"
+msgstr "禁用自动贴齐"
+
+#: application/views/qslpostcard/designer.php:316
 msgid "Align & distribute"
-msgstr ""
+msgstr "对齐和分布"
 
-#: application/views/qslpostcard/designer.php:302
+#: application/views/qslpostcard/designer.php:320
 msgid "Align left"
-msgstr ""
+msgstr "左对齐"
 
-#: application/views/qslpostcard/designer.php:303
+#: application/views/qslpostcard/designer.php:321
 msgid "Align horizontal centers"
-msgstr ""
+msgstr "水平居中"
 
-#: application/views/qslpostcard/designer.php:304
+#: application/views/qslpostcard/designer.php:322
 msgid "Align right"
-msgstr ""
+msgstr "右对齐"
 
-#: application/views/qslpostcard/designer.php:306
+#: application/views/qslpostcard/designer.php:324
 msgid "Align top"
-msgstr ""
+msgstr "顶端对齐"
 
-#: application/views/qslpostcard/designer.php:307
+#: application/views/qslpostcard/designer.php:325
 msgid "Align vertical centers"
-msgstr ""
+msgstr "垂直居中"
 
-#: application/views/qslpostcard/designer.php:308
+#: application/views/qslpostcard/designer.php:326
 msgid "Align bottom"
-msgstr ""
+msgstr "底端对齐"
 
-#: application/views/qslpostcard/designer.php:310
+#: application/views/qslpostcard/designer.php:328
 msgid "Distribute horizontally"
-msgstr ""
+msgstr "横向分布"
 
-#: application/views/qslpostcard/designer.php:311
+#: application/views/qslpostcard/designer.php:329
 msgid "Distribute vertically"
-msgstr ""
+msgstr "纵向分布"
 
-#: application/views/qslpostcard/designer.php:313
+#: application/views/qslpostcard/designer.php:331
 msgid "Center on page (horizontal)"
-msgstr ""
+msgstr "页面居中（水平）"
 
-#: application/views/qslpostcard/designer.php:314
+#: application/views/qslpostcard/designer.php:332
 msgid "Center on page (vertical)"
-msgstr ""
+msgstr "页面居中（垂直）"
 
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -17228,18 +17256,20 @@ msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
 msgstr ""
+"打印选项（每张卡的 QSO 数量、背景图像、地址打印）在QSL明信片设计器中通过模板"
+"设置。"
 
 #: application/views/qslpostcard/printqueue.php:21
 #: application/views/qslpostcard/printqueue_selected.php:29
 msgid "Generate Postcard PDF"
-msgstr ""
+msgstr "生成明信片 PDF"
 
 #: application/views/qslpostcard/printqueue.php:27
 #: application/views/qslpostcard/printqueue_selected.php:35
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
-msgstr ""
+msgstr "没有可用于打印的模板。请先在 QSL 明信片设计器中创建一个模板。"
 
 #: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
@@ -17365,11 +17395,11 @@ msgstr "标记被请求的 QSL 为'已发送'"
 
 #: application/views/qslprint/qslprint.php:115
 msgid "Print Postcards for all QSOs"
-msgstr ""
+msgstr "为所有 QSO 打印明信片"
 
 #: application/views/qslprint/qslprint.php:116
 msgid "Print Selected QSO Postcards"
-msgstr ""
+msgstr "为选择的 QSO 打印明信片"
 
 #: application/views/qslprint/qslprint.php:121
 msgid "No QSLs to print were found!"
@@ -17484,11 +17514,11 @@ msgstr "Toot on Mastodon"
 #: application/views/qso/components/winkeysettings.php:15
 #: application/views/qso/components/winkeysettings.php:32
 msgid "Macro"
-msgstr ""
+msgstr "宏"
 
 #: application/views/qso/components/winkeysettings.php:39
 msgid "Tokens"
-msgstr ""
+msgstr "令牌"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
@@ -20921,6 +20951,24 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Print offset (in)"
+#~ msgstr "打印偏移量（英寸）"
+
+#~ msgid "6 × 4 inches · drag fields onto the postcard"
+#~ msgstr "6 × 4 英寸（102×152mm）·将字段拖上明信片"
+
+#~ msgid "Row spacing (in)"
+#~ msgstr "行距（英寸）"
+
+#~ msgid "X (in)"
+#~ msgstr "X（英寸）"
+
+#~ msgid "Y (in)"
+#~ msgstr "Y（英寸）"
+
+#~ msgid "Wrap width (in)"
+#~ msgstr "宽度（英寸）"
 
 #~ msgid "Export Cabrillo"
 #~ msgstr "导出 Cabrillo"

@@ -504,6 +504,25 @@ class Qslpostcard_model extends CI_Model {
         return $q->result_array();
     }
 
+    private function pretty_sat_mode($sat_mode) {
+        return (strlen($sat_mode ?? '') == 2) ? (strtoupper($sat_mode[0]) . '/' . strtoupper($sat_mode[1])) : strtoupper($sat_mode ?? '');
+    }
+
+    private function resolve_band($qso) {
+        $prop = strtoupper(trim($qso['COL_PROP_MODE'] ?? ''));
+        $sat  = trim($qso['COL_SAT_NAME'] ?? '');
+        if ($prop === 'SAT' && $sat !== '') {
+            $mode = $this->pretty_sat_mode($qso['COL_SAT_MODE'] ?? '');
+            return $mode !== '' ? $sat . ' ' . $mode : $sat;   // e.g. "AO-7 U/V"
+        }
+        return $qso['COL_BAND'] ?? $qso['band'] ?? '';
+    }
+
+    private function resolve_mode($qso) {
+        $sub = trim($qso['COL_SUBMODE'] ?? '');
+        return $sub !== '' ? $sub : ($qso['COL_MODE'] ?? $qso['mode'] ?? '');
+    }
+
     private function resolve_field($field, $qso, $addr) {
 
         // Address computed fields
@@ -548,8 +567,10 @@ class Qslpostcard_model extends CI_Model {
         if ($field === 'qso.call') return strtoupper($qso['COL_CALL'] ?? $qso['call'] ?? '');
         if ($field === 'qso.qso_date') return $qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '';
         if ($field === 'qso.time_on') return $qso['COL_TIME_ON'] ?? $qso['time_on'] ?? '';
-        if ($field === 'qso.band') return $qso['COL_BAND'] ?? $qso['band'] ?? '';
-        if ($field === 'qso.mode') return $qso['COL_MODE'] ?? $qso['mode'] ?? '';
+        if ($field === 'qso.band') return $this->resolve_band($qso);
+        if ($field === 'qso.mode') return $this->resolve_mode($qso);
+        if ($field === 'qso.sat_name') return trim($qso['COL_SAT_NAME'] ?? '');
+        if ($field === 'qso.sat_mode') return $this->pretty_sat_mode($qso['COL_SAT_MODE'] ?? '');
         if ($field === 'qso.freq') return $qso['COL_FREQ'] ?? $qso['freq'] ?? '';
         if ($field === 'qso.rst_sent') return $qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '';
         if ($field === 'qso.rst_rcvd') return $qso['COL_RST_RCVD'] ?? $qso['rst_rcvd'] ?? '';
@@ -635,6 +656,8 @@ class Qslpostcard_model extends CI_Model {
 
         if ($field === 'qso.my_iota_ref') return $qso['COL_MY_IOTA'] ?? '';
 
+        if ($field === 'qso.my_grid') return trim($qso['COL_MY_GRIDSQUARE'] ?? '');
+
         if ($field === 'qso.iota_line') {
             $ref = trim($qso['COL_MY_IOTA'] ?? '');
             return $ref !== '' ? 'From IOTA: ' . $ref : '';
@@ -646,11 +669,21 @@ class Qslpostcard_model extends CI_Model {
             $c = strtoupper($qso['COL_CALL'] ?? $qso['call'] ?? '');
             $d = $qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '';
             $t = $qso['COL_TIME_ON'] ?? $qso['time_on'] ?? '';
-            $b = $qso['COL_BAND'] ?? $qso['band'] ?? '';
-            $m = $qso['COL_MODE'] ?? $qso['mode'] ?? '';
+            $b = $this->resolve_band($qso);
+            $m = $this->resolve_mode($qso);
             $rs = $qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '';
             $rr = $qso['COL_RST_RCVD'] ?? $qso['rst_rcvd'] ?? '';
             return trim("$c  $d $t  $b $m  $rs/$rr");
+        }
+
+        if ($field === 'qso.pse_qsl' || $field === 'qso.tnx_qsl') {
+            $received = in_array(strtoupper(trim($qso['COL_QSL_RCVD'] ?? '')), ['Y', 'V'], true);
+            return ($field === 'qso.tnx_qsl') === $received ? 'X' : '';
+        }
+
+        if ($field === 'qso.portable') {
+            $mycall = strtoupper(trim($qso['COL_STATION_CALLSIGN'] ?? ''));
+            return ($mycall !== '' && preg_match('#/[PM]$#', $mycall)) ? 'X' : '';
         }
 
         return '';
