@@ -851,6 +851,7 @@ $options = json_decode($options);
                                         <button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
                                         <button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
                                         <button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="printQslCard"><?= __("Print QSL Card"); ?></button>
                                     <?php } ?>
                                     <button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
                                     <button type="button" class="btn btn-sm btn-info dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button>
