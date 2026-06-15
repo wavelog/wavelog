@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-14 15:42+0000\n"
-"PO-Revision-Date: 2026-06-04 08:35+0000\n"
+"PO-Revision-Date: 2026-06-15 18:21+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -960,7 +960,7 @@ msgstr "Importação de QSLs do Clublog"
 
 #: application/controllers/Contest_admin.php:43
 msgid "Contests Administration"
-msgstr ""
+msgstr "Administração de Concursos"
 
 #: application/controllers/Contest_admin.php:57
 msgid "Update Contest"
@@ -980,17 +980,17 @@ msgstr ""
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "Gestão de Concursos"
 
 #: application/controllers/Contesting.php:93
 #: application/controllers/Contesting.php:606
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "Os oficiais devem organizar concursos."
 
 #: application/controllers/Contesting.php:110
 #, php-format
 msgid "Quickstart Session: %s"
-msgstr ""
+msgstr "Sessão de Início Rápido: %s"
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
@@ -998,74 +998,78 @@ msgstr ""
 #: application/controllers/Contesting.php:648
 #: application/controllers/Contesting.php:704
 msgid "Contest session not found."
-msgstr ""
+msgstr "Sessão do concurso não encontrada."
 
 #: application/controllers/Contesting.php:139
 #, php-format
 msgid "CBR Export: %s"
-msgstr ""
+msgstr "Exportação CBR: %s"
 
 #: application/controllers/Contesting.php:174
 #, php-format
 msgid "Export: %s"
-msgstr ""
+msgstr "Exportar: %s"
 
 #: application/controllers/Contesting.php:453
 msgid "Invalid logging token."
-msgstr ""
+msgstr "Token de registo inválido."
 
 #: application/controllers/Contesting.php:623
 msgid "Contest session created successfully."
-msgstr ""
+msgstr "Sessão do concurso criada com sucesso."
 
 #: application/controllers/Contesting.php:625
 msgid "There was an error creating the contest session. Please try again."
 msgstr ""
+"Ocorreu um erro ao criar a sessão do concurso. Por favor, tente novamente."
 
 #: application/controllers/Contesting.php:631
 #: application/controllers/Contesting.php:687
 #: application/controllers/Contesting.php:730
 msgid "Invalid request method."
-msgstr ""
+msgstr "Método de pedido inválido."
 
 #: application/controllers/Contesting.php:679
 msgid "Contest session updated successfully."
-msgstr ""
+msgstr "Sessão do contest atualizada com sucesso."
 
 #: application/controllers/Contesting.php:681
 msgid "There was an error updating the contest session. Please try again."
 msgstr ""
+"Houve um erro ao atualizar a sessão do concurso. Por favor, tenta novamente."
 
 #: application/controllers/Contesting.php:722
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "Sessão de concurso eliminada com sucesso."
 
 #: application/controllers/Contesting.php:724
 msgid "There was an error deleting the contest session. Please try again."
 msgstr ""
+"Ocorreu um erro ao eliminar a sessão do concurso. Por favor tente novamente."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
-msgstr ""
+msgstr "Esta funcionalidade está desativada."
 
 #: application/controllers/Contesting_import.php:37
 #: application/controllers/Contesting_import.php:105
 msgid "No historical contests found that could be imported."
 msgstr ""
+"Não foram encontrados concursos no historial que pudessem ser importados."
 
 #: application/controllers/Contesting_import.php:41
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "Importar Concursos do Historial"
 
 #: application/controllers/Contesting_import.php:84
 #: application/controllers/Contesting_import.php:153
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d sessão(ões) criada(s), %d QSO(s) ligado(s)."
 
 #: application/controllers/Contesting_import.php:109
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "Importar Concursos do Historial (Todos os Utilizadores)"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:139
@@ -1354,7 +1358,7 @@ msgstr "Falha ao transferir imagem eQSL"
 
 #: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "Espaço livre em disco insuficiente para armazenar o cartão eQSL"
 
 #: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
@@ -1393,15 +1397,15 @@ msgstr "Todos os eQSLs marcados como carregados"
 
 #: application/controllers/Errors.php:22
 msgid "Page Not Found"
-msgstr ""
+msgstr "Página Não Encontrada"
 
 #: application/controllers/Errors.php:23
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ? ... sem resposta."
 
 #: application/controllers/Errors.php:24
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Ninguém está a transmitir nesta frequência."
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -2738,83 +2742,87 @@ msgstr "Enviar Cartões QSL"
 
 #: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "Não há espaço livre suficiente no disco para armazenar o cartão QSL."
 
 #: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "O ficheiro carregado não é uma imagem válida."
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
 msgstr ""
+"O QSL Postcard Designer está indisponível porque a opção de configuração "
+"'userdata' não está definida. A sua configuração está desatualizada."
 
 #: application/controllers/Qslpostcard.php:31
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
+"Por favor, compare o seu atual config.php com o mais recente "
+"config.sample.php e atualize em conformidade."
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
 msgid "QSL Postcard Designer"
-msgstr ""
+msgstr "Designer de Postais QSL"
 
 #: application/controllers/Qslpostcard.php:161
 #: application/controllers/Qslpostcard.php:222
 #: application/controllers/Qslpostcard.php:285
 msgid "Template not found"
-msgstr ""
+msgstr "Modelo não encontrado"
 
 #: application/controllers/Qslpostcard.php:167
 #: application/controllers/Qslpostcard.php:228
 #: application/controllers/Qslpostcard.php:291
 msgid "Template JSON is invalid"
-msgstr ""
+msgstr "O template JSON é inválido"
 
 #: application/controllers/Qslpostcard.php:182
 msgid "No QSOs returned by get_sample_qsos()"
-msgstr ""
+msgstr "Nenhum QSO retornado por get_sample_qsos()"
 
 #: application/controllers/Qslpostcard.php:192
 msgid "PDF file was not created"
-msgstr ""
+msgstr "O ficheiro PDF não foi criado"
 
 #: application/controllers/Qslpostcard.php:205
 msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgstr "Falha no PDF do cartão QSL: "
 
 #: application/controllers/Qslpostcard.php:210
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "Imprimir Postais QSL"
 
 #: application/controllers/Qslpostcard.php:241
 #: application/controllers/Qslpostcard.php:304
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "Não foram encontrados QSOs para impressão de postais"
 
 #: application/controllers/Qslpostcard.php:260
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
+msgstr "A fila de PDF de cartões QSL falhou: "
 
 #: application/controllers/Qslpostcard.php:268
 msgid "No QSOs were selected"
-msgstr ""
+msgstr "Não foram selecionados QSOs"
 
 #: application/controllers/Qslpostcard.php:272
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "Imprimir Postais QSL Selecionados"
 
 #: application/controllers/Qslpostcard.php:297
 msgid "No selected QSO IDs were provided"
-msgstr ""
+msgstr "Não foram fornecidos IDs de QSO selecionados"
 
 #: application/controllers/Qslpostcard.php:326
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "Falha no PDF do Cartão QSL Selecionado: "
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -3970,6 +3978,8 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
+"Importado do logbook\n"
+"(ADIF: %s, Ano: %d) [Original: %s]"
 
 #: application/models/Contesting_import_model.php:147
 #, php-format
@@ -3977,14 +3987,16 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
+"Importado do livro de registos\n"
+"(ADIF: %s, Ano: %d)"
 
 #: application/models/Contesting_model.php:154
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "Os oficiais devem editar concursos."
 
 #: application/models/Contesting_model.php:188
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "Só os agentes da estação de clube podem apagar."
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -9671,11 +9683,11 @@ msgstr "Exportar QSO próprio por ADIF"
 
 #: application/views/club/permissions.php:147
 msgid "Start or Create a Contest"
-msgstr ""
+msgstr "Iniciar ou Criar um Concurso"
 
 #: application/views/club/permissions.php:153
 msgid "Edit a Contest"
-msgstr ""
+msgstr "Editar um Concurso"
 
 #: application/views/club/permissions.php:163
 msgid "User Management"
@@ -10103,6 +10115,8 @@ msgid ""
 "Using the contest list, you can control which Contests are shown in the "
 "contest management."
 msgstr ""
+"Usando a lista de concursos, podes controlar quais Concursos são mostrados "
+"na gestão de concursos."
 
 #: application/views/contest_admin/add.php:19
 msgid ""
@@ -10121,7 +10135,7 @@ msgstr "Adicionar um concurso"
 
 #: application/views/contest_admin/add.php:24
 msgid "Please provide contest name and ADIF name."
-msgstr ""
+msgstr "Por favor, forneça o nome do concurso e o nome ADIF."
 
 #: application/views/contest_admin/add.php:35
 #: application/views/contest_admin/create.php:30
@@ -10246,94 +10260,96 @@ msgstr "Próxima semana"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr ""
+msgstr "Registador de QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
-msgstr ""
+msgstr "Pesquisa DXCC..."
 
 #: application/views/contesting/logger/components/qso-form.php:26
 msgid "DXCC Lookup failed"
-msgstr ""
+msgstr "A pesquisa DXCC falhou"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr ""
+msgstr "DXCC: não encontrado"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
 msgid "Already worked on %s"
-msgstr ""
+msgstr "Já trabalhado em %s"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr ""
+msgstr "Componente de rádio não disponível. Não é possível salvar o QSO."
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
 msgstr ""
+"Frequência ou modo não definidos. Por favor, verifique as configurações do "
+"rádio."
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #: application/views/contesting/logger/components/qso-form.php:33
 msgid "Synced"
-msgstr ""
+msgstr "Sincronizado"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "Delete this QSO?"
-msgstr ""
+msgstr "Eliminar este QSO?"
 
 #: application/views/contesting/logger/components/qso-form.php:41
 msgid "You can only edit your own QSOs"
-msgstr ""
+msgstr "Pode apenas editar os seus próprios QSOs"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
+msgstr "Falha ao eliminar o QSO:"
 
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "Indicativo de chamada inválido"
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
+msgstr "Falha na pesquisa do Callbook"
 
 #: application/views/contesting/logger/components/qso-form.php:85
 msgid "RST S"
-msgstr ""
+msgstr "RST S"
 
 #: application/views/contesting/logger/components/qso-form.php:89
 msgid "RST R"
-msgstr ""
+msgstr "RST R"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:150
 msgid "Nr. S"
-msgstr ""
+msgstr "Nr. S"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:151
 msgid "Nr. R"
-msgstr ""
+msgstr "Nr. R"
 
 #: application/views/contesting/logger/components/qso-form.php:105
 msgid "Grid S"
-msgstr ""
+msgstr "Grade S"
 
 #: application/views/contesting/logger/components/qso-form.php:109
 msgid "Grid R"
-msgstr ""
+msgstr "Grid R"
 
 #: application/views/contesting/logger/components/qso-form.php:115
 msgid "Exch S"
-msgstr ""
+msgstr "Exch S"
 
 #: application/views/contesting/logger/components/qso-form.php:119
 msgid "Exch R"
-msgstr ""
+msgstr "Exch R"
 
 #: application/views/contesting/logger/components/qso-form.php:137
 #: application/views/dashboard/index.php:328
@@ -10343,96 +10359,96 @@ msgstr "QSOs recentes"
 
 #: application/views/contesting/logger/components/qso-form.php:149
 msgid "RST"
-msgstr ""
+msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Exch"
-msgstr ""
+msgstr "Exch"
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
-msgstr ""
+msgstr "Sem dados de rádio disponíveis"
 
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr ""
+msgstr "Os dados do rádio têm %s minutos"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
-msgstr ""
+msgstr "Rádio conectado"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr ""
+msgstr "Modo manual: Introduza a frequência/modo manualmente"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
-msgstr ""
+msgstr "A ligar ao rádio WebSocket..."
 
 #: application/views/contesting/logger/components/radio.php:31
 msgid "WebSocket radio connected"
-msgstr ""
+msgstr "Rádio WebSocket conectado"
 
 #: application/views/contesting/logger/components/radio.php:32
 msgid "WebSocket connection error"
-msgstr ""
+msgstr "Erro de ligação WebSocket"
 
 #: application/views/contesting/logger/components/radio.php:33
 msgid "WebSocket disconnected - reconnecting..."
-msgstr ""
+msgstr "WebSocket desconectado - a reconectar..."
 
 #: application/views/contesting/logger/components/radio.php:34
 msgid "WebSocket radio offline"
-msgstr ""
+msgstr "Rádio WebSocket offline"
 
 #: application/views/contesting/logger/components/radio.php:53
 msgid "Manual - No Radio"
-msgstr ""
+msgstr "Manual - Sem Rádio"
 
 #: application/views/contesting/logger/components/radio.php:54
 msgid "WebSocket (Real-time)"
-msgstr ""
+msgstr "WebSocket (em tempo real)"
 
 #: application/views/contesting/logger/components/scp.php:9
 msgid "Super Check Partial"
-msgstr ""
+msgstr "Super Check Parcial"
 
 #: application/views/contesting/logger/components/scp.php:25
 msgid "Loading SCP databases..."
-msgstr ""
+msgstr "A carregar bases de dados SCP..."
 
 #: application/views/contesting/logger/components/scp.php:26
 msgid "Ready"
-msgstr ""
+msgstr "Pronto"
 
 #: application/views/contesting/logger/components/scp.php:27
 msgid "Error loading database"
-msgstr ""
+msgstr "Erro ao carregar a base de dados"
 
 #: application/views/contesting/logger/components/scp.php:28
 #: application/views/contesting/logger/index.php:47
 #, php-format
 msgid "Loading %s..."
-msgstr ""
+msgstr "A carregar %s..."
 
 #: application/views/contesting/logger/components/scp.php:29
 #, php-format
 msgid "No matches found for '%s'"
-msgstr ""
+msgstr "Nenhum resultado encontrado para '%s'"
 
 #: application/views/contesting/logger/components/scp.php:30
 #: application/views/contesting/logger/components/scp.php:74
 msgid "Enter a partial callsign to see matches"
-msgstr ""
+msgstr "Introduza um indicativo parcial para ver correspondências"
 
 #: application/views/contesting/logger/components/scp.php:57
 msgid "Total:"
-msgstr ""
+msgstr "Total:"
 
 #: application/views/contesting/logger/components/scp.php:67
 msgid "Matches"
-msgstr ""
+msgstr "Correspondências"
 
 #: application/views/contesting/logger/components/statistics.php:20
 #: application/views/dashboard/index.php:234
@@ -10441,27 +10457,27 @@ msgstr "Total de QSOs"
 
 #: application/views/contesting/logger/components/statistics.php:21
 msgid "Rate/h (60 min)"
-msgstr ""
+msgstr "Taxa/h (60 min)"
 
 #: application/views/contesting/logger/components/statistics.php:22
 msgid "Rate/h (10 min)"
-msgstr ""
+msgstr "Taxa/h (10 min)"
 
 #: application/views/contesting/logger/components/statistics.php:23
 msgid "Own"
-msgstr ""
+msgstr "Próprio"
 
 #: application/views/contesting/logger/components/statistics.php:24
 msgid "Others"
-msgstr ""
+msgstr "Outros"
 
 #: application/views/contesting/logger/components/statistics.php:33
 msgid "Refresh"
-msgstr ""
+msgstr "Atualizar"
 
 #: application/views/contesting/logger/components/statistics.php:66
 msgid "Time window"
-msgstr ""
+msgstr "Janela de tempo"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
 #: application/views/user/edit.php:1166
@@ -10505,88 +10521,88 @@ msgstr "Enviar"
 
 #: application/views/contesting/logger/index.php:31
 msgid "Are you sure you want to end the contest?"
-msgstr ""
+msgstr "Tem a certeza de que quer terminar o concurso?"
 
 #: application/views/contesting/logger/index.php:32
 msgid "Layout reset to default!"
-msgstr ""
+msgstr "Redefinição do layout para o padrão!"
 
 #: application/views/contesting/logger/index.php:33
 msgid "Layout saved!"
-msgstr ""
+msgstr "Layout guardado!"
 
 #: application/views/contesting/logger/index.php:34
 msgid "Layout deleted!"
-msgstr ""
+msgstr "Layout apagado!"
 
 #: application/views/contesting/logger/index.php:35
 #, php-format
 msgid "Are you sure you want to delete the layout '%s'?"
-msgstr ""
+msgstr "Tem a certeza de que quer eliminar o layout '%s'?"
 
 #: application/views/contesting/logger/index.php:36
 msgid "Are you sure you want to reset the layout to default?"
-msgstr ""
+msgstr "Tem a certeza de que quer repor o layout para o padrão?"
 
 #: application/views/contesting/logger/index.php:37
 msgid "Enter a name for this layout:"
-msgstr ""
+msgstr "Introduza um nome para este layout:"
 
 #: application/views/contesting/logger/index.php:38
 msgid "No saved layouts found."
-msgstr ""
+msgstr "Não foram encontrados layouts guardados."
 
 #: application/views/contesting/logger/index.php:39
 msgid "Default"
-msgstr ""
+msgstr "Padrão"
 
 #: application/views/contesting/logger/index.php:40
 msgid "Default layout"
-msgstr ""
+msgstr "Layout padrão"
 
 #: application/views/contesting/logger/index.php:41
 msgid "Set as default"
-msgstr ""
+msgstr "Definir como padrão"
 
 #: application/views/contesting/logger/index.php:42
 msgid "Error saving layout"
-msgstr ""
+msgstr "Erro ao guardar o layout"
 
 #: application/views/contesting/logger/index.php:43
 msgid "Error setting default layout"
-msgstr ""
+msgstr "Erro ao definir o layout padrão"
 
 #: application/views/contesting/logger/index.php:44
 msgid "Error deleting layout"
-msgstr ""
+msgstr "Erro a eliminar layout"
 
 #: application/views/contesting/logger/index.php:45
 msgid "Error resetting layout"
-msgstr ""
+msgstr "Erro ao repor o layout"
 
 #: application/views/contesting/logger/index.php:46
 msgid "Error loading application. Please refresh the page."
-msgstr ""
+msgstr "Erro ao carregar a aplicação. Por favor, atualize a página."
 
 #: application/views/contesting/logger/index.php:48
 msgid "Initializing data store..."
-msgstr ""
+msgstr "A inicializar a base de dados..."
 
 #: application/views/contesting/logger/index.php:49
 msgid "Initializing core systems..."
-msgstr ""
+msgstr "A inicializar sistemas nucleares..."
 
 #: application/views/contesting/logger/index.php:50
 msgid "Heartbeat Warning"
-msgstr ""
+msgstr "Aviso de Batimento Cardíaco"
 
 #: application/views/contesting/logger/index.php:51
 msgid "Heartbeat request took %1 ms (threshold: %2 ms)"
-msgstr ""
+msgstr "Pedido de heartbeat demorou %1 ms (limite: %2 ms)"
 
 #: application/views/contesting/logger/index.php:52
 msgid "Window"
-msgstr ""
+msgstr "Janela"
 
 #: application/views/contesting/logger/index.php:53
 #: application/views/dashboard/index.php:722
@@ -10637,133 +10653,138 @@ msgstr "Estação"
 
 #: application/views/contesting/logger/index.php:56
 msgid "Auto-fit"
-msgstr ""
+msgstr "Ajuste automático"
 
 #: application/views/contesting/logger/index.php:58
 msgid "Unknown error"
-msgstr ""
+msgstr "Erro desconhecido"
 
 #: application/views/contesting/logger/index.php:60
 msgid ""
 "Contest settings have been changed. Please refresh the page to apply the new "
 "settings."
 msgstr ""
+"As configurações do concurso foram alteradas. Por favor, atualize a página "
+"para aplicar as novas configurações."
 
 #: application/views/contesting/logger/index.php:61
 msgid "Reload now"
-msgstr ""
+msgstr "Recarregar agora"
 
 #: application/views/contesting/logger/index.php:70
 msgid "Loading Contest Engine"
-msgstr ""
+msgstr "A carregar o motor do concurso"
 
 #: application/views/contesting/logger/index.php:71
 msgid "Initializing components..."
-msgstr ""
+msgstr "A iniciar componentes..."
 
 #: application/views/contesting/logger/index.php:83
 msgid "Control Panel"
-msgstr ""
+msgstr "Painel de Controlo"
 
 #: application/views/contesting/logger/index.php:95
 msgid "End Session"
-msgstr ""
+msgstr "Terminar Sessão"
 
 #: application/views/contesting/logger/index.php:99
 msgid "Components"
-msgstr ""
+msgstr "Componentes"
 
 #: application/views/contesting/logger/index.php:103
 msgid "User Layouts"
-msgstr ""
+msgstr "Layouts do Utilizador"
 
 #: application/views/contesting/logger/index.php:106
 msgid "Save New Layout"
-msgstr ""
+msgstr "Guardar Novo Layout"
 
 #: application/views/contesting/logger/index.php:109
 msgid "Reset to Default Layout"
-msgstr ""
+msgstr "Repor para o Layout Padrão"
 
 #: application/views/contesting/logger/index.php:119
 msgid "Panel Position"
-msgstr ""
+msgstr "Posição do Painel"
 
 #: application/views/contesting/logger/index.php:121
 msgid "Left"
-msgstr ""
+msgstr "Esquerda"
 
 #: application/views/contesting/logger/index.php:122
 msgid "Right"
-msgstr ""
+msgstr "Direita"
 
 #: application/views/contesting/logger/index.php:123
 msgid "Top"
-msgstr ""
+msgstr "Top"
 
 #: application/views/contesting/logger/index.php:124
 msgid "Bottom"
-msgstr ""
+msgstr "Fundo"
 
 #: application/views/contesting/manager/components/confirm_delete.php:5
 msgid "Delete Contest Session"
-msgstr ""
+msgstr "Eliminar Sessão do Concurso"
 
 #: application/views/contesting/manager/components/confirm_delete.php:10
 msgid "Do you really want to delete this contest session?"
-msgstr ""
+msgstr "Realmente quer apagar esta sessão do concurso?"
 
 #: application/views/contesting/manager/components/confirm_delete.php:12
 msgid "Contest: "
-msgstr ""
+msgstr "Concurso: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:13
 msgid "Start Date/Time: "
-msgstr ""
+msgstr "Data/Hora de Início: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:14
 msgid "End Date/Time: "
-msgstr ""
+msgstr "Data/Hora de Término: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:15
 msgid "Station: "
-msgstr ""
+msgstr "Estação: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
 msgstr ""
+"Também apague todos os QSOs registados nesta sessão do livro de registos"
 
 #: application/views/contesting/manager/components/confirm_delete.php:26
 msgid "Delete Session"
-msgstr ""
+msgstr "Eliminar Sessão"
 
 #: application/views/contesting/manager/components/session_modal.php:7
 msgid "Edit Contest Session"
-msgstr ""
+msgstr "Editar Sessão do Concurso"
 
 #: application/views/contesting/manager/components/session_modal.php:9
 msgid "Create Contest Session"
-msgstr ""
+msgstr "Criar Sessão de Concurso"
 
 #: application/views/contesting/manager/components/session_modal.php:21
 msgid "Enter all required information to create a new contest session."
 msgstr ""
+"Insira todas as informações necessárias para criar uma nova sessão de "
+"concurso."
 
 #: application/views/contesting/manager/components/session_modal.php:24
 msgid "Enter a name for this contest"
-msgstr ""
+msgstr "Introduza um nome para este concurso"
 
 #: application/views/contesting/manager/components/session_modal.php:25
 msgid "This name will be used only internally."
-msgstr ""
+msgstr "Este nome será utilizado apenas internamente."
 
 #: application/views/contesting/manager/components/session_modal.php:29
 msgid "Please select a contest"
-msgstr ""
+msgstr "Por favor, seleciona um concurso"
 
 #: application/views/contesting/manager/components/session_modal.php:35
 msgid "Please select a contest."
-msgstr ""
+msgstr "Por favor, selecione um concurso."
 
 #: application/views/contesting/manager/components/session_modal.php:36
 #, php-format
@@ -10771,6 +10792,8 @@ msgid ""
 "Select the contest for this session. If you can't find the contest, please "
 "choose %s."
 msgstr ""
+"Selecione o concurso para esta sessão. Se não conseguir encontrar o "
+"concurso, por favor escolha %s."
 
 #: application/views/contesting/manager/components/session_modal.php:41
 #: application/views/qso/edit_ajax.php:53
@@ -10779,19 +10802,19 @@ msgstr "Data/Hora de Início"
 
 #: application/views/contesting/manager/components/session_modal.php:43
 msgid "When should the session start?"
-msgstr ""
+msgstr "Quando deve começar a sessão?"
 
 #: application/views/contesting/manager/components/session_modal.php:45
 msgid "Now"
-msgstr ""
+msgstr "Agora"
 
 #: application/views/contesting/manager/components/session_modal.php:46
 msgid "Friday 12:00"
-msgstr ""
+msgstr "Sexta-feira 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:47
 msgid "Saturday 12:00"
-msgstr ""
+msgstr "Sábado 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:51
 #: application/views/qso/edit_ajax.php:58
@@ -10800,51 +10823,53 @@ msgstr "Data/Hora de Fim"
 
 #: application/views/contesting/manager/components/session_modal.php:53
 msgid "When should the session end?"
-msgstr ""
+msgstr "Quando deve a sessão terminar?"
 
 #: application/views/contesting/manager/components/session_modal.php:65
 msgid "Please select a station"
-msgstr ""
+msgstr "Por favor, selecione uma estação"
 
 #: application/views/contesting/manager/components/session_modal.php:80
 msgid "Choose one of your stations"
-msgstr ""
+msgstr "Escolha uma das suas estações"
 
 #: application/views/contesting/manager/components/session_modal.php:83
 msgid "Exchange Fields"
-msgstr ""
+msgstr "Campos de Exchange"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Toggle fields on/off and drag to set the tab order in the logger."
 msgstr ""
+"Alternar campos ligado/desligado e arrastar para definir a ordem das abas no "
+"registo."
 
 #: application/views/contesting/manager/components/session_modal.php:87
 msgid "Serial Number"
-msgstr ""
+msgstr "Número de série"
 
 #: application/views/contesting/manager/components/session_modal.php:88
 msgid "Grid Square"
-msgstr ""
+msgstr "Quadrícula"
 
 #: application/views/contesting/manager/components/session_modal.php:89
 msgid "Exchange (text)"
-msgstr ""
+msgstr "Exchange (texto)"
 
 #: application/views/contesting/manager/components/session_modal.php:112
 msgid "Please enable at least one exchange field."
-msgstr ""
+msgstr "Por favor, ative pelo menos um campo de exchange."
 
 #: application/views/contesting/manager/components/session_modal.php:115
 msgid "Copy Exchange to Field"
-msgstr ""
+msgstr "Copiar Exchange para o Campo"
 
 #: application/views/contesting/manager/components/session_modal.php:117
 msgid "— None —"
-msgstr ""
+msgstr "— Nenhum —"
 
 #: application/views/contesting/manager/components/session_modal.php:119
 msgid "Gridquare"
-msgstr ""
+msgstr "Quadricúla"
 
 #: application/views/contesting/manager/components/session_modal.php:120
 #: application/views/logbookadvanced/index.php:967
@@ -10861,10 +10886,12 @@ msgstr "Potência RX (W)"
 msgid ""
 "The received Exchange (Exch R) value will be copied to this logbook field."
 msgstr ""
+"O valor do Exchange recebido (Exch R) será copiado para este campo do "
+"logbook."
 
 #: application/views/contesting/manager/components/session_modal.php:132
 msgid "Callbook Lookup (Online)"
-msgstr ""
+msgstr "Pesquisa no Callbook (Online)"
 
 #: application/views/contesting/manager/components/session_modal.php:134
 msgid ""
@@ -10872,44 +10899,51 @@ msgid ""
 "only existing log data from previous qsos with this callsign will be used. "
 "Log data is always prioritized."
 msgstr ""
+"Procure dados do callbook no serviço de callbook online configurado. Se "
+"desativado, serão usados apenas dados de log existentes de qsos anteriores "
+"com este indicativo de chamada. Dados de log são sempre priorizados."
 
 #: application/views/contesting/manager/components/session_modal.php:137
 msgid "Session Notes"
-msgstr ""
+msgstr "Notas da Sessão"
 
 #: application/views/contesting/manager/components/session_modal.php:138
 msgid "Add any additional information about this session..."
-msgstr ""
+msgstr "Adicione qualquer informação adicional sobre esta sessão..."
 
 #: application/views/contesting/manager/components/session_modal.php:139
 msgid "Optional: Any additional details or notes"
-msgstr ""
+msgstr "Opcional: Quaisquer detalhes ou notas adicionais"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Create Session"
-msgstr ""
+msgstr "Criar Sessão"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Update Session"
-msgstr ""
+msgstr "Atualizar Sessão"
 
 #: application/views/contesting/manager/export_cbr.php:27
 #: application/views/contesting/manager/export_edi.php:27
 #, php-format
 msgid "%d QSOs"
-msgstr ""
+msgstr "%d QSOs"
 
 #: application/views/contesting/manager/export_cbr.php:32
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
 msgstr ""
+"Esta sessão de concurso ainda não tem QSOs. A exportação irá produzir um "
+"ficheiro vazio."
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
 msgstr ""
+"Não tens permissão para exportar ficheiros. Contacta o responsável da "
+"estação."
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:497
@@ -10922,10 +10956,12 @@ msgid ""
 "Settings are saved automatically when you download. Name and e-mail are "
 "taken from your user profile."
 msgstr ""
+"As configurações são guardadas automaticamente ao fazer download. O nome e o "
+"e-mail são retirados do seu perfil de utilizador."
 
 #: application/views/contesting/manager/export_cbr.php:69
 msgid "Assisted"
-msgstr ""
+msgstr "Assistido"
 
 #: application/views/contesting/manager/export_cbr.php:102
 msgid "Light/Laser"
@@ -10938,11 +10974,11 @@ msgstr "Potência"
 
 #: application/views/contesting/manager/export_cbr.php:129
 msgid "Category (optional)"
-msgstr ""
+msgstr "Categoria (opcional)"
 
 #: application/views/contesting/manager/export_cbr.php:148
 msgid "Transmitter"
-msgstr ""
+msgstr "Transmissor"
 
 #: application/views/contesting/manager/export_cbr.php:161
 #: application/views/contesting/manager/export_cbr.php:162
@@ -10954,7 +10990,7 @@ msgstr "%d Horas"
 
 #: application/views/contesting/manager/export_cbr.php:168
 msgid "Overlay"
-msgstr ""
+msgstr "Sobreposição"
 
 #: application/views/contesting/manager/export_cbr.php:185
 #: application/views/logbookadvanced/useroptions.php:271
@@ -10980,6 +11016,8 @@ msgid ""
 "ARRL section for USA/Canada, 'DX' for foreign stations. Required for IARU-"
 "HF, ARRL and CQ contests."
 msgstr ""
+"Secção ARRL para EUA/Canada, 'DX' para estações estrangeiras. Necessário "
+"para concursos IARU-HF, ARRL e CQ."
 
 #: application/views/contesting/manager/export_cbr.php:203
 #: application/views/contesting/manager/export_edi.php:95
@@ -11000,6 +11038,8 @@ msgstr "Certificado"
 #: application/views/contesting/manager/export_cbr.php:217
 msgid "Request a paper certificate from the contest sponsor if eligible."
 msgstr ""
+"Solicite um certificado em papel ao patrocinador do concurso, se tiver "
+"direito."
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
@@ -11144,35 +11184,35 @@ msgstr "Não"
 
 #: application/views/contesting/manager/export_cbr.php:227
 msgid "Grid in exchange?"
-msgstr ""
+msgstr "Quadricula no exchange?"
 
 #: application/views/contesting/manager/export_cbr.php:230
 msgid "Select Yes if the grid square was part of the contest exchange."
-msgstr ""
+msgstr "Selecione Sim se a quadricula fez parte da troca do concurso."
 
 #: application/views/contesting/manager/export_cbr.php:240
 msgid "Use 6-char grid instead of 4-char"
-msgstr ""
+msgstr "Use quadricula de 6 caracteres em vez de 4 caracteres"
 
 #: application/views/contesting/manager/export_cbr.php:249
 msgid "Contact & Address"
-msgstr ""
+msgstr "Contacto e Endereço"
 
 #: application/views/contesting/manager/export_cbr.php:262
 msgid "Street Address"
-msgstr ""
+msgstr "Morada"
 
 #: application/views/contesting/manager/export_cbr.php:272
 msgid "State / Province"
-msgstr ""
+msgstr "Estado / Província"
 
 #: application/views/contesting/manager/export_cbr.php:277
 msgid "Postal Code"
-msgstr ""
+msgstr "Código Postal"
 
 #: application/views/contesting/manager/export_cbr.php:290
 msgid "Download Cabrillo"
-msgstr ""
+msgstr "Transferir Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:499
@@ -11181,7 +11221,7 @@ msgstr "Exportação EDI"
 
 #: application/views/contesting/manager/export_edi.php:57
 msgid "Header data"
-msgstr ""
+msgstr "Dados do cabeçalho"
 
 #: application/views/contesting/manager/export_edi.php:62
 msgid "Sent Exchange"
@@ -11224,7 +11264,7 @@ msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:109
 msgid "Location and Operator Information"
-msgstr ""
+msgstr "Informação sobre a Localização e o Operador"
 
 #: application/views/contesting/manager/export_edi.php:112
 msgid "Contest Address 1"
@@ -11260,7 +11300,7 @@ msgstr "Número de Telefone do Operador"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr ""
+msgstr "Descrição Adicional da Estação"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -11286,7 +11326,7 @@ msgstr "Altura da Antena Acima do Solo (m)"
 
 #: application/views/contesting/manager/export_edi.php:191
 msgid "Scoring Adjustment and Band Selection"
-msgstr ""
+msgstr "Ajuste de Pontuação e Seleção de Banda"
 
 #: application/views/contesting/manager/export_edi.php:195
 msgid "Band multiplicator"
@@ -11297,18 +11337,20 @@ msgid ""
 "The Band multiplicator is usually 1. Only change this if necessary according "
 "to the contest scoring rules."
 msgstr ""
+"O multiplicador de banda é geralmente 1. Só altere isto se necessário de "
+"acordo com as regras de pontuação do concurso."
 
 #: application/views/contesting/manager/export_edi.php:208
 msgid "Choose Band for export"
-msgstr ""
+msgstr "Escolher Banda para exportação"
 
 #: application/views/contesting/manager/export_edi.php:220
 msgid "Download EDI"
-msgstr ""
+msgstr "Transferir EDI"
 
 #: application/views/contesting/manager/import_legacy.php:9
 msgid "Historical Contest QSOs"
-msgstr ""
+msgstr "QSOs de Contestes no Histórico"
 
 #: application/views/contesting/manager/import_legacy.php:13
 msgid ""
@@ -11316,46 +11358,51 @@ msgid ""
 "linked to a contest session. Select the ones you want to import and click "
 "\"Import Selected\"."
 msgstr ""
+"Os seguintes grupos de concursos foram encontrados no seu diário de bordo, "
+"mas ainda não estão ligados a uma sessão de concurso. Selecione os que "
+"deseja importar e clique em \"Importar Selecionados\"."
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "Admin mode:"
-msgstr ""
+msgstr "Modo de admin:"
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid "This will import contests for all users of this instance."
-msgstr ""
+msgstr "Isto importará concursos para todos os utilizadores desta instância."
 
 #: application/views/contesting/manager/import_legacy.php:30
 msgid "Select all"
-msgstr ""
+msgstr "Selecionar tudo"
 
 #: application/views/contesting/manager/import_legacy.php:32
 msgid "ADIF ID"
-msgstr ""
+msgstr "ID ADIF"
 
 #: application/views/contesting/manager/import_legacy.php:37
 #: application/views/contesting/manager/index.php:35
 #: application/views/logbookadvanced/attachContest.php:17
 msgid "#QSO"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/contesting/manager/import_legacy.php:61
 msgid "Unknown → Other"
-msgstr ""
+msgstr "Desconhecido → Outro"
 
 #: application/views/contesting/manager/import_legacy.php:72
 msgid "Import Selected"
-msgstr ""
+msgstr "Importar Selecionado"
 
 #: application/views/contesting/manager/import_legacy.php:94
 msgid "Please select at least one contest to import."
-msgstr ""
+msgstr "Por favor, selecione pelo menos um concurso para importar."
 
 #: application/views/contesting/manager/import_legacy.php:97
 msgid ""
 "Are you sure you want to import the selected contest sessions? This cannot "
 "be undone."
 msgstr ""
+"Tem a certeza de que quer importar as sessões de concurso selecionadas? Isto "
+"não pode ser desfeito."
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:340
@@ -11367,34 +11414,36 @@ msgid ""
 "Here you can manage your contests, create new, edit or export them in "
 "various formats."
 msgstr ""
+"Aqui pode gerir os seus concursos, criar novos, editar ou exportá-los em "
+"vários formatos."
 
 #: application/views/contesting/manager/index.php:21
 msgid "Create New Contest"
-msgstr ""
+msgstr "Criar Novo Concurso"
 
 #: application/views/contesting/manager/index.php:22
 #: application/views/interface_assets/header.php:144
 msgid "Quick Start"
-msgstr ""
+msgstr "Início Rápido"
 
 #: application/views/contesting/manager/index.php:49
 #: application/views/logbookadvanced/attachContest.php:28
 msgid "Coming Up"
-msgstr ""
+msgstr "Próximos"
 
 #: application/views/contesting/manager/index.php:51
 #: application/views/logbookadvanced/attachContest.php:30
 msgid "In Progress"
-msgstr ""
+msgstr "Em progresso"
 
 #: application/views/contesting/manager/index.php:53
 #: application/views/logbookadvanced/attachContest.php:32
 msgid "Completed"
-msgstr ""
+msgstr "Concluído"
 
 #: application/views/contesting/manager/index.php:59
 msgid "START"
-msgstr ""
+msgstr "INICIAR"
 
 #: application/views/contesting/manager/index.php:94
 #: application/views/qslprint/qslprint.php:111
@@ -11403,7 +11452,7 @@ msgstr "Exportar ADIF"
 
 #: application/views/contesting/manager/index.php:97
 msgid "Export CBR"
-msgstr ""
+msgstr "Exportar CBR"
 
 #: application/views/contesting/manager/index.php:100
 msgid "Export EDI"
@@ -11411,13 +11460,15 @@ msgstr "Exportar EDI"
 
 #: application/views/contesting/manager/index.php:149
 msgid "Import historical contests from logbook"
-msgstr ""
+msgstr "Importar concursos do histórico do livro de registos"
 
 #: application/views/contesting/manager/index.php:152
 msgid ""
 "Import for all users of this instance. You can do that because you are an "
 "administrator."
 msgstr ""
+"Importação para todos os utilizadores desta instância. Pode fazer isso "
+"porque é administrador."
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
@@ -11503,7 +11554,7 @@ msgstr "Como funciona"
 #: application/views/cron/index.php:21
 #, php-format
 msgid "For more information or help, take a look in the %sWiki%s."
-msgstr ""
+msgstr "Para mais informações ou ajuda, consulte a %sWiki%s."
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -11720,15 +11771,15 @@ msgstr "Pelo menos um dos seus certificados está a expirar"
 
 #: application/views/dashboard/index.php:244
 msgid "QSOs this year"
-msgstr ""
+msgstr "QSOs este ano"
 
 #: application/views/dashboard/index.php:254
 msgid "QSOs this month"
-msgstr ""
+msgstr "QSOs deste mês"
 
 #: application/views/dashboard/index.php:264
 msgid "QSOs today"
-msgstr ""
+msgstr "QSOs hoje"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
@@ -11758,16 +11809,16 @@ msgstr[1] "Máximo. %d contactos anteriores são mostrados"
 #: application/views/dashboard/index.php:403
 #: application/views/user/edit.php:734
 msgid "Active Expeditions"
-msgstr ""
+msgstr "Expedições Ativas"
 
 #: application/views/dashboard/index.php:411
 msgid "Dates"
-msgstr ""
+msgstr "Datas"
 
 #: application/views/dashboard/index.php:449
 #: application/views/user/edit.php:741
 msgid "Active Contests"
-msgstr ""
+msgstr "Concursos Ativos"
 
 #: application/views/dashboard/index.php:465
 #: application/views/view_log/qso.php:621
@@ -12376,7 +12427,7 @@ msgstr "Versão do Codeigniter"
 
 #: application/views/debug/index.php:141
 msgid "Wavelog Worker Backend"
-msgstr ""
+msgstr "Backend de trabalho Wavelog"
 
 #: application/views/debug/index.php:150
 msgid "Folder Permissions"
@@ -12718,47 +12769,47 @@ msgstr "Tudo ok"
 
 #: application/views/debug/index.php:855
 msgid "Worker backend is not configured."
-msgstr ""
+msgstr "O back-end de trabalho não está configurado."
 
 #: application/views/debug/index.php:859
 msgid "Unreachable"
-msgstr ""
+msgstr "Inalcançável"
 
 #: application/views/debug/index.php:859
 msgid "Worker is configured but did not respond."
-msgstr ""
+msgstr "O trabalho está configurado mas não respondeu."
 
 #: application/views/debug/index.php:867
 msgid "Available"
-msgstr ""
+msgstr "Disponível"
 
 #: application/views/debug/index.php:868 application/views/debug/index.php:877
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: application/views/debug/index.php:876
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: application/views/debug/index.php:887
 msgid "Worker"
-msgstr ""
+msgstr "Trabalho"
 
 #: application/views/debug/index.php:888
 msgid "Topics"
-msgstr ""
+msgstr "Tópicos"
 
 #: application/views/debug/index.php:889
 msgid "Clients"
-msgstr ""
+msgstr "Clientes"
 
 #: application/views/debug/index.php:891
 msgid "Uptime"
-msgstr ""
+msgstr "Tempo de atividade"
 
 #: application/views/debug/index.php:898
 msgid "Could not fetch worker status."
-msgstr ""
+msgstr "Não foi possível obter o estado do trabalho."
 
 #: application/views/debug/index.php:911
 msgid "Albanian"
@@ -12850,7 +12901,7 @@ msgstr "Português"
 
 #: application/views/debug/index.php:933
 msgid "Romanian"
-msgstr ""
+msgstr "Romeno"
 
 #: application/views/debug/index.php:934
 msgid "Russian"
@@ -13344,7 +13395,7 @@ msgstr "Vista"
 
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
-msgstr ""
+msgstr "Voltar ao Painel de Controle"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -14002,20 +14053,20 @@ msgstr "Ficheiro de imagem QSL"
 
 #: application/views/interface_assets/footer.php:2678
 msgid "Front QSL Card"
-msgstr ""
+msgstr "Frente do Cartão QSL"
 
 #: application/views/interface_assets/footer.php:2714
 msgid "Back QSL Card"
-msgstr ""
+msgstr "Parte traseira do Cartão QSL"
 
 #: application/views/interface_assets/footer.php:2718
 msgid "The QSL card upload could not be completed."
-msgstr ""
+msgstr "O carregamento do cartão QSL não pôde ser concluído."
 
 #: application/views/interface_assets/footer.php:2718
 #: application/views/qslpostcard/designer.php:18
 msgid "Upload failed"
-msgstr ""
+msgstr "Carregamento falhou"
 
 #: application/views/interface_assets/footer.php:2726
 #: application/views/interface_assets/footer.php:2751
@@ -14062,7 +14113,7 @@ msgstr "Enviar contacto"
 
 #: application/views/interface_assets/header.php:146
 msgid "Manage Contests"
-msgstr ""
+msgstr "Gerir Concursos"
 
 #: application/views/interface_assets/header.php:155
 msgid "Analytics"
@@ -14947,8 +14998,8 @@ msgstr "Use o Wavelog para verificar o IOTA em relação ao DXCC"
 #, php-format
 msgid "Detach %s QSO from contest?"
 msgid_plural "Detach %s QSOs from contests?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Separar %s QSO do concurso?"
+msgstr[1] "Separar %s QSOs dos concursos?"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
@@ -15687,39 +15738,39 @@ msgstr "Erro ao carregar o diálogo da operação de juntar"
 
 #: application/views/logbookadvanced/index.php:94
 msgid "You need at least 1 QSO!"
-msgstr ""
+msgstr "Precisa de pelo menos 1 QSO!"
 
 #: application/views/logbookadvanced/index.php:95
 msgid "Attach QSOs to Contest"
-msgstr ""
+msgstr "Anexar QSOs ao Concurso"
 
 #: application/views/logbookadvanced/index.php:96
 msgid "Error loading attach to contest dialog"
-msgstr ""
+msgstr "Erro ao carregar anexar ao diálogo do concurso"
 
 #: application/views/logbookadvanced/index.php:97
 msgid "QSOs attached to contest successfully!"
-msgstr ""
+msgstr "QSOs anexados ao concurso com sucesso!"
 
 #: application/views/logbookadvanced/index.php:98
 msgid "Error attaching QSOs"
-msgstr ""
+msgstr "Erro ao anexar QSOs"
 
 #: application/views/logbookadvanced/index.php:100
 msgid "Detach QSOs to Contest"
-msgstr ""
+msgstr "Destacar QSOs para o Concurso"
 
 #: application/views/logbookadvanced/index.php:101
 msgid "Error loading detach to contest dialog"
-msgstr ""
+msgstr "Erro ao carregar a janela de diálogo de desconexão para o concurso"
 
 #: application/views/logbookadvanced/index.php:102
 msgid "QSOs detached to contest successfully!"
-msgstr ""
+msgstr "QSOs destacados para o concurso com sucesso!"
 
 #: application/views/logbookadvanced/index.php:103
 msgid "Error detaching QSOs"
-msgstr ""
+msgstr "Erro ao desanexar QSOs"
 
 #: application/views/logbookadvanced/index.php:354
 msgid "From"
@@ -16056,11 +16107,11 @@ msgstr "Apresentação de slides QSL"
 
 #: application/views/logbookadvanced/index.php:855
 msgid "Attach to Contest"
-msgstr ""
+msgstr "Anexar ao Concurso"
 
 #: application/views/logbookadvanced/index.php:856
 msgid "Detach from Contest"
-msgstr ""
+msgstr "Desapegar do Concurso"
 
 #: application/views/logbookadvanced/index.php:862
 #: application/views/oqrs/showrequests.php:63
@@ -17515,19 +17566,19 @@ msgstr "Endereço"
 
 #: application/views/qslpostcard/designer.php:6
 msgid "QSO Core"
-msgstr ""
+msgstr "Núcleo QSO"
 
 #: application/views/qslpostcard/designer.php:7
 msgid "Date & Time"
-msgstr ""
+msgstr "Data e Hora"
 
 #: application/views/qslpostcard/designer.php:8
 msgid "Station & Equipment"
-msgstr ""
+msgstr "Estação & Equipamento"
 
 #: application/views/qslpostcard/designer.php:9
 msgid "My References"
-msgstr ""
+msgstr "As Minhas Referências"
 
 #: application/views/qslpostcard/designer.php:10
 #: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
@@ -17536,268 +17587,274 @@ msgstr "Outro"
 
 #: application/views/qslpostcard/designer.php:16
 msgid "Please choose an image first."
-msgstr ""
+msgstr "Por favor, escolha uma imagem primeiro."
 
 #: application/views/qslpostcard/designer.php:17
 msgid "Uploading..."
-msgstr ""
+msgstr "A carregar..."
 
 #: application/views/qslpostcard/designer.php:19
 msgid "unknown error"
-msgstr ""
+msgstr "erro desconhecido"
 
 #: application/views/qslpostcard/designer.php:20
 msgid "Preview image uploaded."
-msgstr ""
+msgstr "Imagem de pré-visualização carregada."
 
 #: application/views/qslpostcard/designer.php:21
 msgid "Custom Text"
-msgstr ""
+msgstr "Texto Personalizado"
 
 #: application/views/qslpostcard/designer.php:22
 msgid "Untitled"
-msgstr ""
+msgstr "Sem título"
 
 #: application/views/qslpostcard/designer.php:23
 msgid "Save failed"
-msgstr ""
+msgstr "Falha ao guardar"
 
 #: application/views/qslpostcard/designer.php:24
 msgid "Template saved."
-msgstr ""
+msgstr "Modelo guardado."
 
 #: application/views/qslpostcard/designer.php:25
 msgid "Delete Template?"
-msgstr ""
+msgstr "Eliminar Modelo?"
 
 #: application/views/qslpostcard/designer.php:26
 msgid ""
 "Are you sure you want to delete this template? This action cannot be undone."
 msgstr ""
+"Tem a certeza de que quer eliminar este modelo? Esta ação não pode ser "
+"desfeita."
 
 #: application/views/qslpostcard/designer.php:27
 msgid "Delete failed"
-msgstr ""
+msgstr "Eliminar falhou"
 
 #: application/views/qslpostcard/designer.php:28
 msgid "Template deleted successfully!"
-msgstr ""
+msgstr "Modelo apagado com sucesso!"
 
 #: application/views/qslpostcard/designer.php:29
 msgid "Please select a template to delete."
-msgstr ""
+msgstr "Por favor seleciona um modelo para eliminar."
 
 #: application/views/qslpostcard/designer.php:32
 msgid "selected"
-msgstr ""
+msgstr "selecionado"
 
 #: application/views/qslpostcard/designer.php:45
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 msgid "Template"
-msgstr ""
+msgstr "Modelo"
 
 #: application/views/qslpostcard/designer.php:48
 msgid "(new)"
-msgstr ""
+msgstr "(novo)"
 
 #: application/views/qslpostcard/designer.php:53
 msgid "Template name"
-msgstr ""
+msgstr "Nome do modelo"
 
 #: application/views/qslpostcard/designer.php:54
 msgid "Save Template"
-msgstr ""
+msgstr "Guardar Modelo"
 
 #: application/views/qslpostcard/designer.php:57
 msgid "Delete Template"
-msgstr ""
+msgstr "Eliminar Modelo"
 
 #: application/views/qslpostcard/designer.php:65
 msgid "Background image"
-msgstr ""
+msgstr "Imagem de fundo"
 
 #: application/views/qslpostcard/designer.php:68
 msgid "Upload Preview Image"
-msgstr ""
+msgstr "Carregar imagem de pré-visualização"
 
 #: application/views/qslpostcard/designer.php:71
 msgid "Generate PDF (demo)"
-msgstr ""
+msgstr "Gerar PDF (demo)"
 
 #: application/views/qslpostcard/designer.php:72
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: application/views/qslpostcard/designer.php:79
 msgid "History"
-msgstr ""
+msgstr "História"
 
 #: application/views/qslpostcard/designer.php:81
 msgid "Undo"
-msgstr ""
+msgstr "Anular"
 
 #: application/views/qslpostcard/designer.php:82
 msgid "Redo"
-msgstr ""
+msgstr "Refazer"
 
 #: application/views/qslpostcard/designer.php:88
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: application/views/qslpostcard/designer.php:98
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
 msgstr ""
+"Dica: Após uma impressão de teste, ajuste os offsets globais em vez de mover "
+"cada campo."
 
 #: application/views/qslpostcard/designer.php:99
 msgid "Print offset (in)"
-msgstr ""
+msgstr "Desvio de impressão (pol)"
 
 #: application/views/qslpostcard/designer.php:128
 msgid "Search fields…"
-msgstr ""
+msgstr "Campos de pesquisa…"
 
 #: application/views/qslpostcard/designer.php:132
 msgid "Add Custom Text"
-msgstr ""
+msgstr "Adicionar Texto Personalizado"
 
 #: application/views/qslpostcard/designer.php:147
 msgid "No fields match your search."
-msgstr ""
+msgstr "Nenhum campo corresponde à sua pesquisa."
 
 #: application/views/qslpostcard/designer.php:155
 msgid "Postcard Canvas"
-msgstr ""
+msgstr "Tela Cartão-Postal"
 
 #: application/views/qslpostcard/designer.php:156
 msgid "6 × 4 inches · drag fields onto the postcard"
-msgstr ""
+msgstr "6 × 4 polegadas · arrastar campos para o postal"
 
 #: application/views/qslpostcard/designer.php:177
 msgid "Template Options"
-msgstr ""
+msgstr "Opções de Modelo"
 
 #: application/views/qslpostcard/designer.php:181
 msgid "Number of QSOs per QSL card"
-msgstr ""
+msgstr "Número de QSOs por cartão QSL"
 
 #: application/views/qslpostcard/designer.php:185
 msgid "Row spacing (in)"
-msgstr ""
+msgstr "Espaçamento entre filas (pol)"
 
 #: application/views/qslpostcard/designer.php:191
 msgid "One postcard per callsign"
-msgstr ""
+msgstr "Um postal por indicativo de chamada"
 
 #: application/views/qslpostcard/designer.php:195
 msgid "Print background image (uncheck for pre-printed cards)"
-msgstr ""
+msgstr "Imprimir imagem de fundo (desmarque para cartões pré-impressos)"
 
 #: application/views/qslpostcard/designer.php:199
 msgid "Skip address printing (for printing on regular QSL cards)"
-msgstr ""
+msgstr "Ignorar impressão de endereço (para impressão em cartões QSL normais)"
 
 #: application/views/qslpostcard/designer.php:207
 msgid "Properties"
-msgstr ""
+msgstr "Propriedades"
 
 #: application/views/qslpostcard/designer.php:212
 msgid "Select a field on the canvas to edit it."
-msgstr ""
+msgstr "Seleccione um campo no quadro para o editar."
 
 #: application/views/qslpostcard/designer.php:213
 msgid "Right-click a field for more actions."
-msgstr ""
+msgstr "Clique com o botão direito num campo para mais ações."
 
 #: application/views/qslpostcard/designer.php:223
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: application/views/qslpostcard/designer.php:229
 msgid "X (in)"
-msgstr ""
+msgstr "X (pol)"
 
 #: application/views/qslpostcard/designer.php:233
 msgid "Y (in)"
-msgstr ""
+msgstr "Y (pol)"
 
 #: application/views/qslpostcard/designer.php:239
 msgid "Font"
-msgstr ""
+msgstr "Frente"
 
 #: application/views/qslpostcard/designer.php:255
 msgid "Bold"
-msgstr ""
+msgstr "Negrito"
 
 #: application/views/qslpostcard/designer.php:261
 msgid "Color"
-msgstr ""
+msgstr "Cor"
 
 #: application/views/qslpostcard/designer.php:266
 msgid "Wrap width (in)"
-msgstr ""
+msgstr "Largura de envolvimento (em pol)"
 
 #: application/views/qslpostcard/designer.php:271
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr ""
+"Imprime este campo uma vez por QSO quando um cartão contém múltiplos QSOs"
 
 #: application/views/qslpostcard/designer.php:272
 msgid "Repeats per QSO"
-msgstr ""
+msgstr "Repetições por QSO"
 
 #: application/views/qslpostcard/designer.php:276
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
+"Mova este elemento livremente sem encaixar na grelha ou em outros elementos"
 
 #: application/views/qslpostcard/designer.php:277
 msgid "Disable Auto-Snap"
-msgstr ""
+msgstr "Desativar Alinhamento Automático"
 
 #: application/views/qslpostcard/designer.php:303
 msgid "Align & distribute"
-msgstr ""
+msgstr "Alinhar e distribuir"
 
 #: application/views/qslpostcard/designer.php:307
 msgid "Align left"
-msgstr ""
+msgstr "Alinhar à esquerda"
 
 #: application/views/qslpostcard/designer.php:308
 msgid "Align horizontal centers"
-msgstr ""
+msgstr "Alinhar centros horizontais"
 
 #: application/views/qslpostcard/designer.php:309
 msgid "Align right"
-msgstr ""
+msgstr "Alinhar à direita"
 
 #: application/views/qslpostcard/designer.php:311
 msgid "Align top"
-msgstr ""
+msgstr "Alinhar em cima"
 
 #: application/views/qslpostcard/designer.php:312
 msgid "Align vertical centers"
-msgstr ""
+msgstr "Alinhar centros verticais"
 
 #: application/views/qslpostcard/designer.php:313
 msgid "Align bottom"
-msgstr ""
+msgstr "Alinhar em baixo"
 
 #: application/views/qslpostcard/designer.php:315
 msgid "Distribute horizontally"
-msgstr ""
+msgstr "Distribuir horizontalmente"
 
 #: application/views/qslpostcard/designer.php:316
 msgid "Distribute vertically"
-msgstr ""
+msgstr "Distribuir verticalmente"
 
 #: application/views/qslpostcard/designer.php:318
 msgid "Center on page (horizontal)"
-msgstr ""
+msgstr "Centro na página (horizontal)"
 
 #: application/views/qslpostcard/designer.php:319
 msgid "Center on page (vertical)"
-msgstr ""
+msgstr "Centrar na página (vertical)"
 
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -17805,11 +17862,13 @@ msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
 msgstr ""
+"As opções de impressão (QSOs por cartão, imagem de fundo, impressão de "
+"endereço) são definidas por modelo no QSL Postcard Designer."
 
 #: application/views/qslpostcard/printqueue.php:21
 #: application/views/qslpostcard/printqueue_selected.php:29
 msgid "Generate Postcard PDF"
-msgstr ""
+msgstr "Gerar PDF de Postal"
 
 #: application/views/qslpostcard/printqueue.php:27
 #: application/views/qslpostcard/printqueue_selected.php:35
@@ -17817,6 +17876,8 @@ msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
 msgstr ""
+"Não há modelos disponíveis para impressão. Vá ao Designer de Cartões QSL e "
+"crie um modelo primeiro."
 
 #: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
@@ -17944,11 +18005,11 @@ msgstr "Marcar as QSLs pedidas como enviadas"
 
 #: application/views/qslprint/qslprint.php:115
 msgid "Print Postcards for all QSOs"
-msgstr ""
+msgstr "Imprimir Cartões Postais para todos os QSOs"
 
 #: application/views/qslprint/qslprint.php:116
 msgid "Print Selected QSO Postcards"
-msgstr ""
+msgstr "Imprimir Postais de QSO Selecionados"
 
 #: application/views/qslprint/qslprint.php:121
 msgid "No QSLs to print were found!"
@@ -18065,11 +18126,11 @@ msgstr "Toot no Mastodon"
 #: application/views/qso/components/winkeysettings.php:15
 #: application/views/qso/components/winkeysettings.php:32
 msgid "Macro"
-msgstr ""
+msgstr "Macro"
 
 #: application/views/qso/components/winkeysettings.php:39
 msgid "Tokens"
-msgstr ""
+msgstr "Fichas"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
@@ -18650,7 +18711,7 @@ msgstr "Parceiro de sked"
 
 #: application/views/satellite/pass.php:123
 msgid "Only satellites with TLE data are shown here!"
-msgstr ""
+msgstr "Apenas satélites com dados TLE são mostrados aqui!"
 
 #: application/views/satellite/pass.php:136
 msgid "Min. time"
@@ -18670,7 +18731,7 @@ msgstr "Guardar as definições atuais"
 
 #: application/views/satellite/pass.php:165
 msgid "Pass Predictions"
-msgstr ""
+msgstr "Previsões de Passe"
 
 #: application/views/satellite/pass.php:175
 msgid "Save Settings"
