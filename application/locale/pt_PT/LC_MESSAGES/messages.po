@@ -280,6 +280,7 @@ msgstr "Total de gridsquares activadas"
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:459
 #: application/views/qslpostcard/designer.php:123
+#: application/views/qslpostcard/designer.php:136
 msgid "Fields"
 msgstr "Campos"
 
@@ -2950,6 +2951,8 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:202
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:337
 msgid "Delete"
 msgstr "Apagar"
 
@@ -3177,6 +3180,7 @@ msgstr "Não autorizado"
 #: application/views/qso/index.php:759 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:243
+#: application/views/qslpostcard/designer.php:44
 msgid "Error"
 msgstr "Erro"
 
@@ -5529,6 +5533,7 @@ msgstr "Nome simples para descrever a utilização desta API."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/qslpostcard/designer.php:68
 msgid "Save"
 msgstr "Guardar"
 
@@ -8152,8 +8157,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos considerados para este diploma: DXCC (Deve ser um dos E.U.A., Alasca "
-"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos E.U."
-"A.!)"
+"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos "
+"E.U.A.!)"
 
 #: application/views/awards/was/index.php:120
 msgid "Show WAS Map"
@@ -12446,6 +12451,7 @@ msgstr ""
 #: application/views/debug/index.php:203
 #: application/views/interface_assets/footer.php:38
 #: application/views/qslpostcard/designer.php:30
+#: application/views/qslpostcard/designer.php:43
 msgid "Success"
 msgstr "Sucesso"
 
@@ -13595,6 +13601,8 @@ msgstr "A duplicação está desativada para as notas dos contactos"
 #: application/views/interface_assets/footer.php:66
 #: application/views/qslpostcard/designer.php:282
 #: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:295
+#: application/views/qslpostcard/designer.php:311
 msgid "Duplicate"
 msgstr "Duplicado"
 
@@ -13792,8 +13800,8 @@ msgstr "Formatação de quadrícula"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: IO77,"
-"IO78"
+"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:115
 msgid "live"
@@ -14477,6 +14485,7 @@ msgstr "Altura total de uma etiqueta"
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
 #: application/views/qslpostcard/designer.php:249
+#: application/views/qslpostcard/designer.php:262
 msgid "Font Size"
 msgstr "Tamanho da letra"
 
@@ -16223,6 +16232,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:218
+#: application/views/qslpostcard/designer.php:231
 msgid "Field"
 msgstr "Campo"
 
@@ -16924,8 +16934,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” "
+"(sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:54
 msgid "SMTP Port"
@@ -17582,6 +17592,7 @@ msgstr "As Minhas Referências"
 
 #: application/views/qslpostcard/designer.php:10
 #: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
+#: application/views/qslpostcard/designer.php:11
 msgid "Other"
 msgstr "Outro"
 
@@ -20117,8 +20128,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -20455,8 +20467,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:441
 msgid ""
@@ -21744,6 +21756,38 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/controllers/Qslpostcard.php:62
+msgid "Not enough free disk space to store the QSL Background."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:10
+msgid "Markers"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:112
+msgid "Print offset"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:169
+msgid "drag fields onto the postcard"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:198
+msgid "Row spacing"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:242
+msgid "X"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:246
+msgid "Y"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:279
+msgid "Wrap width"
+msgstr ""
 
 #~ msgid "Export Cabrillo"
 #~ msgstr "Exportar Cabrillo"

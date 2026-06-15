@@ -286,6 +286,7 @@ msgstr "Total de cuadrículas activadas"
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:459
 #: application/views/qslpostcard/designer.php:123
+#: application/views/qslpostcard/designer.php:136
 msgid "Fields"
 msgstr "Campos"
 
@@ -2961,6 +2962,8 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:202
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:337
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -3189,6 +3192,7 @@ msgstr "No permitido"
 #: application/views/qso/index.php:759 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:243
+#: application/views/qslpostcard/designer.php:44
 msgid "Error"
 msgstr "Error"
 
@@ -5548,6 +5552,7 @@ msgstr "Nombre simple para describir para qué usas esta API."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/qslpostcard/designer.php:68
 msgid "Save"
 msgstr "Guardar"
 
@@ -8114,9 +8119,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Campos tomados para este Premio: DXCC (Debe ser uno de China/318, "
-"HongKong/321, Macao/152, Taiwán/386, Islas Pratas/505 o Arrecife "
-"Scarborough/506) y Estado válido (ADIF: DXCC y STATE)"
+"Campos tomados para este Premio: DXCC (Debe ser uno de China/318, HongKong/"
+"321, Macao/152, Taiwán/386, Islas Pratas/505 o Arrecife Scarborough/506) y "
+"Estado válido (ADIF: DXCC y STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -8181,8 +8186,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos tomados para este premio: DXCC (Debe ser uno de EE.UU., Alaska o "
-"Hawái) y ESTADO (¡Debe contener una abreviatura válida de un estado de EE."
-"UU.!)"
+"Hawái) y ESTADO (¡Debe contener una abreviatura válida de un estado de "
+"EE.UU.!)"
 
 #: application/views/awards/was/index.php:120
 msgid "Show WAS Map"
@@ -12488,6 +12493,7 @@ msgstr ""
 #: application/views/debug/index.php:203
 #: application/views/interface_assets/footer.php:38
 #: application/views/qslpostcard/designer.php:30
+#: application/views/qslpostcard/designer.php:43
 msgid "Success"
 msgstr "Éxito"
 
@@ -12517,8 +12523,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Ve a tu carpeta application/config y compara config.sample.php con tu config."
-"php"
+"Ve a tu carpeta application/config y compara config.sample.php con tu "
+"config.php"
 
 #: application/views/debug/index.php:225
 #, php-format
@@ -13640,6 +13646,8 @@ msgstr "La duplicación está desactivada para las notas de Contactos"
 #: application/views/interface_assets/footer.php:66
 #: application/views/qslpostcard/designer.php:282
 #: application/views/qslpostcard/designer.php:298
+#: application/views/qslpostcard/designer.php:295
+#: application/views/qslpostcard/designer.php:311
 msgid "Duplicate"
 msgstr "Duplicar"
 
@@ -14525,6 +14533,7 @@ msgstr "Altura total de una etiqueta"
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
 #: application/views/qslpostcard/designer.php:249
+#: application/views/qslpostcard/designer.php:262
 msgid "Font Size"
 msgstr "Tamaño de fuente"
 
@@ -15821,7 +15830,8 @@ msgstr "Separar QSOs para Concurso"
 
 #: application/views/logbookadvanced/index.php:101
 msgid "Error loading detach to contest dialog"
-msgstr "Error al cargar el cuadro de diálogo de desvinculación para el concurso"
+msgstr ""
+"Error al cargar el cuadro de diálogo de desvinculación para el concurso"
 
 #: application/views/logbookadvanced/index.php:102
 msgid "QSOs detached to contest successfully!"
@@ -16282,6 +16292,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:218
+#: application/views/qslpostcard/designer.php:231
 msgid "Field"
 msgstr "Campo"
 
@@ -17640,6 +17651,7 @@ msgstr "Mis referencias"
 
 #: application/views/qslpostcard/designer.php:10
 #: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
+#: application/views/qslpostcard/designer.php:11
 msgid "Other"
 msgstr "Otro"
 
@@ -20183,8 +20195,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nueva carpeta en 'assets/css/' y sube un archivo 'bootstrap.min."
-"css' que contenga reglas de estilo básicas. Usamos los temas de %s"
+"Crea una nueva carpeta en 'assets/css/' y sube un archivo "
+"'bootstrap.min.css' que contenga reglas de estilo básicas. Usamos los temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -20233,8 +20246,8 @@ msgid ""
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 "Haz clic aquí en 'Agregar un tema' y escribe los datos necesarios. Escribe "
-"los nombres de archivo para los logotipos %ssin%s la extensión de archivo '."
-"png'"
+"los nombres de archivo para los logotipos %ssin%s la extensión de archivo "
+"'.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -21824,6 +21837,38 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/controllers/Qslpostcard.php:62
+msgid "Not enough free disk space to store the QSL Background."
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:10
+msgid "Markers"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:112
+msgid "Print offset"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:169
+msgid "drag fields onto the postcard"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:198
+msgid "Row spacing"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:242
+msgid "X"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:246
+msgid "Y"
+msgstr ""
+
+#: application/views/qslpostcard/designer.php:279
+msgid "Wrap width"
+msgstr ""
 
 #~ msgid "Export Cabrillo"
 #~ msgstr "Exportar Cabrillo"
