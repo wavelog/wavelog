@@ -3,12 +3,25 @@
 // renderer expects them (addr.* / qso.*). Only the grouping/labels are cosmetic.
 $qsl_field_groups = [
 	__("Address")             => ['addr.name', 'addr.addr1', 'addr.addr2', 'addr.city_state_zip', 'addr.country'],
-	__("QSO Core")            => ['qso.call', 'qso.band', 'qso.mode', 'qso.freq', 'qso.rst_sent', 'qso.rst_rcvd', 'qso.summary'],
+	__("QSO Core")            => ['qso.call', 'qso.band', 'qso.mode', 'qso.sat_name', 'qso.sat_mode', 'qso.freq', 'qso.rst_sent', 'qso.rst_rcvd', 'qso.summary'],
 	__("Date & Time")         => ['qso.qso_date', 'qso.time_on', 'qso.time', 'qso.time_utc', 'qso.day', 'qso.month', 'qso.month_name', 'qso.year'],
 	__("Station & Equipment") => ['qso.tx_power'], //['qso.rig', 'qso.my_rig', 'qso.antenna', 'qso.rx_power'], Implement later if there's demand
-	__("My References")       => ['qso.my_pota_ref', 'qso.pota_line', 'qso.my_sota_ref', 'qso.sota_line', 'qso.my_iota_ref', 'qso.iota_line'],
+	__("My References")       => ['qso.my_pota_ref', 'qso.pota_line', 'qso.my_sota_ref', 'qso.sota_line', 'qso.my_iota_ref', 'qso.iota_line', 'qso.my_grid'],
+	__("Markers")             => ['qso.pse_qsl', 'qso.tnx_qsl', 'qso.portable'],
 	__("Other")               => ['qso.comment', 'qso.qsl_message', 'qso.qsl_via'],
 ];
+
+// User measurement preference drives the designer's display unit:
+// kilometers → centimeters, everything else → inches. Internal layout
+// values stay in inches; only labels/inputs/ruler switch units.
+$_umb        = $this->session->userdata('user_measurement_base') ?? $this->config->item('measurement_base');
+$_metric     = ($_umb === 'K');
+$_disp_u     = $_metric ? 'cm' : 'in';
+$_card_dims  = $_metric ? '15.24 × 10.16 cm' : '6 × 4 inches';
+$_step_fine  = $_metric ? '0.1'  : '0.01';   // print offsets
+$_step_pos   = $_metric ? '0.1'  : '0.05';   // X / Y position
+$_step_wrap  = $_metric ? '0.25' : '0.1';    // wrap width
+$_step_pitch = $_metric ? '0.1'  : '0.05';   // row pitch
 ?>
 <script>
 	// ===== Translatable strings (PHP → JS) =====
@@ -96,16 +109,16 @@ $qsl_field_groups = [
 				<!-- Calibration offsets -->
 				<div class="qsl-tb-group">
 					<label class="qsl-tb-label" title="<?= __("Tip: After a test print, adjust global offsets rather than moving every field."); ?>">
-						<?= __("Print offset (in)"); ?>
+						<?= __("Print offset"); ?> (<?= $_disp_u ?>)
 					</label>
 					<div class="d-flex gap-2 align-items-center">
 						<div class="input-group input-group-sm" style="width:96px;">
 							<span class="input-group-text">X</span>
-							<input id="offX" type="number" step="0.01" class="form-control" value="0">
+							<input id="offX" type="number" step="<?= $_step_fine ?>" class="form-control" value="0">
 						</div>
 						<div class="input-group input-group-sm" style="width:96px;">
 							<span class="input-group-text">Y</span>
-							<input id="offY" type="number" step="0.01" class="form-control" value="0">
+							<input id="offY" type="number" step="<?= $_step_fine ?>" class="form-control" value="0">
 						</div>
 					</div>
 				</div>
@@ -153,7 +166,7 @@ $qsl_field_groups = [
 		<section class="qsl-pane qsl-canvas card">
 			<div class="card-header py-2 d-flex justify-content-between align-items-center">
 				<span><i class="fas fa-expand me-2"></i><?= __("Postcard Canvas"); ?></span>
-				<span class="small text-muted d-none d-lg-inline"><?= __("6 × 4 inches · drag fields onto the postcard"); ?></span>
+				<span class="small text-muted d-none d-lg-inline"><?= $_card_dims ?> · <?= __("drag fields onto the postcard"); ?></span>
 			</div>
 			<div class="card-body p-0">
 				<div id="stageScroll">
@@ -182,8 +195,8 @@ $qsl_field_groups = [
 						<input id="tplQsosPerCard" type="number" min="1" step="1" value="1" class="form-control form-control-sm">
 					</div>
 					<div class="mb-2" id="tplPitchWrap" style="display:none;">
-						<label class="form-label small mb-1" for="tplRowPitch"><?= __("Row spacing (in)"); ?></label>
-						<input id="tplRowPitch" type="number" min="0.05" step="0.05" value="0.3" class="form-control form-control-sm">
+						<label class="form-label small mb-1" for="tplRowPitch"><?= __("Row spacing"); ?> (<?= $_disp_u ?>)</label>
+						<input id="tplRowPitch" type="number" min="0.05" step="<?= $_step_pitch ?>" value="0.3" class="form-control form-control-sm">
 					</div>
 
 					<div class="mb-2 form-check">
@@ -226,12 +239,12 @@ $qsl_field_groups = [
 
 					<div class="row g-2 mb-2" id="propPosRow">
 						<div class="col-6">
-							<label class="form-label small mb-1"><?= __("X (in)"); ?></label>
-							<input id="propX" type="number" step="0.05" class="form-control form-control-sm">
+							<label class="form-label small mb-1"><?= __("X"); ?> (<?= $_disp_u ?>)</label>
+							<input id="propX" type="number" step="<?= $_step_pos ?>" class="form-control form-control-sm">
 						</div>
 						<div class="col-6">
-							<label class="form-label small mb-1"><?= __("Y (in)"); ?></label>
-							<input id="propY" type="number" step="0.05" class="form-control form-control-sm">
+							<label class="form-label small mb-1"><?= __("Y"); ?> (<?= $_disp_u ?>)</label>
+							<input id="propY" type="number" step="<?= $_step_pos ?>" class="form-control form-control-sm">
 						</div>
 					</div>
 
@@ -263,8 +276,8 @@ $qsl_field_groups = [
 					</div>
 
 					<div class="mb-3">
-						<label class="form-label small mb-1"><?= __("Wrap width (in)"); ?></label>
-						<input id="propWrap" type="number" step="0.1" min="0.2" class="form-control form-control-sm">
+						<label class="form-label small mb-1"><?= __("Wrap width"); ?> (<?= $_disp_u ?>)</label>
+						<input id="propWrap" type="number" step="<?= $_step_wrap ?>" min="0.2" class="form-control form-control-sm">
 					</div>
 
 					<div class="mb-3 form-check" id="propRepeatRow" style="display:none;">
