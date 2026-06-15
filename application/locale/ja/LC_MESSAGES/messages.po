@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-13 11:46+0000\n"
-"PO-Revision-Date: 2026-06-15 04:50+0000\n"
+"PO-Revision-Date: 2026-06-15 11:38+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -21520,60 +21520,60 @@ msgstr "輸出： %s"
 
 #: application/controllers/Contesting.php:453
 msgid "Invalid logging token."
-msgstr ""
+msgstr "ログ認証トークンが無効です。"
 
 #: application/controllers/Contesting.php:623
 msgid "Contest session created successfully."
-msgstr ""
+msgstr "コンテストセッションが正常に作成されました。"
 
 #: application/controllers/Contesting.php:625
 msgid "There was an error creating the contest session. Please try again."
-msgstr ""
+msgstr "コンテストセッションの作成中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting.php:631
 #: application/controllers/Contesting.php:687
 #: application/controllers/Contesting.php:730
 msgid "Invalid request method."
-msgstr ""
+msgstr "無効なリクエストメソッドです。"
 
 #: application/controllers/Contesting.php:679
 msgid "Contest session updated successfully."
-msgstr ""
+msgstr "コンテストセッションの更新に成功しました。"
 
 #: application/controllers/Contesting.php:681
 msgid "There was an error updating the contest session. Please try again."
-msgstr ""
+msgstr "コンテストセッションの更新中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting.php:722
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "コンテストセッションは正常に削除されました。"
 
 #: application/controllers/Contesting.php:724
 msgid "There was an error deleting the contest session. Please try again."
-msgstr ""
+msgstr "コンテストセッションの削除中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
-msgstr ""
+msgstr "この機能は無効になっています。"
 
 #: application/controllers/Contesting_import.php:37
 #: application/controllers/Contesting_import.php:105
 msgid "No historical contests found that could be imported."
-msgstr ""
+msgstr "インポート可能な過去の競技データは見つかりませんでした。"
 
 #: application/controllers/Contesting_import.php:41
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "過去のコンテストをインポートする"
 
 #: application/controllers/Contesting_import.php:84
 #: application/controllers/Contesting_import.php:153
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d セッションが作成され、%d 件のQSOがリンクされました。"
 
 #: application/controllers/Contesting_import.php:109
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "過去のコンテストをインポートする（全ユーザー対象）"
 
 #: application/models/Contesting_import_model.php:145
 #, php-format
@@ -21581,6 +21581,8 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
+"ログブックからインポート\n"
+"(ADIF: %s, 年: %d) [元データ: %s]"
 
 #: application/models/Contesting_import_model.php:147
 #, php-format
@@ -21588,180 +21590,184 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
+"ログブックからインポート\n"
+"(ADIF: %s, 年: %d)"
 
 #: application/models/Contesting_model.php:154
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "管理者はコンテストを編集しなければなりません。"
 
 #: application/models/Contesting_model.php:188
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "クラブステーションの役員のみが削除できます。"
 
 #: application/views/club/permissions.php:147
 msgid "Start or Create a Contest"
-msgstr ""
+msgstr "コンテストを開始または作成する"
 
 #: application/views/club/permissions.php:153
 msgid "Edit a Contest"
-msgstr ""
+msgstr "コンテストを編集する"
 
 #: application/views/contest_admin/add.php:16
 msgid ""
 "Using the contest list, you can control which Contests are shown in the "
 "contest management."
 msgstr ""
+"コンテスト一覧を使用すると、コンテスト管理画面に表示するコンテストを制御でき"
+"ます。"
 
 #: application/views/contest_admin/add.php:24
 msgid "Please provide contest name and ADIF name."
-msgstr ""
+msgstr "コンテスト名とADIF名をご記入ください。"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr ""
+msgstr "QSOロガー"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
-msgstr ""
+msgstr "DXCC検索..."
 
 #: application/views/contesting/logger/components/qso-form.php:26
 msgid "DXCC Lookup failed"
-msgstr ""
+msgstr "DXCC検索に失敗しました"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr ""
+msgstr "DXCC: 見つかりません"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
 msgid "Already worked on %s"
-msgstr ""
+msgstr "%sについてはすでに作業済みです"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr ""
+msgstr "無線コンポーネントが利用できません。QSOを保存できません。"
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
-msgstr ""
+msgstr "周波数またはモードが設定されていません。無線機の設定を確認してください。"
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
-msgstr ""
+msgstr "新しい"
 
 #: application/views/contesting/logger/components/qso-form.php:33
 msgid "Synced"
-msgstr ""
+msgstr "同期済み"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "Delete this QSO?"
-msgstr ""
+msgstr "このQSOを削除しますか？"
 
 #: application/views/contesting/logger/components/qso-form.php:41
 msgid "You can only edit your own QSOs"
-msgstr ""
+msgstr "自分のQSOのみ編集できます"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
+msgstr "QSOの削除に失敗しました:"
 
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "無効なコールサイン"
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
+msgstr "通話記録の検索に失敗しました"
 
 #: application/views/contesting/logger/components/qso-form.php:85
 msgid "RST S"
-msgstr ""
+msgstr "RST S"
 
 #: application/views/contesting/logger/components/qso-form.php:89
 msgid "RST R"
-msgstr ""
+msgstr "RST R"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:150
 msgid "Nr. S"
-msgstr ""
+msgstr "No. S"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:151
 msgid "Nr. R"
-msgstr ""
+msgstr "No. R"
 
 #: application/views/contesting/logger/components/qso-form.php:105
 msgid "Grid S"
-msgstr ""
+msgstr "Grid S"
 
 #: application/views/contesting/logger/components/qso-form.php:109
 msgid "Grid R"
-msgstr ""
+msgstr "Grid R"
 
 #: application/views/contesting/logger/components/qso-form.php:115
 msgid "Exch S"
-msgstr ""
+msgstr "Exch S"
 
 #: application/views/contesting/logger/components/qso-form.php:119
 msgid "Exch R"
-msgstr ""
+msgstr "Exch R"
 
 #: application/views/contesting/logger/components/qso-form.php:149
 msgid "RST"
-msgstr ""
+msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Exch"
-msgstr ""
+msgstr "Exch"
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
-msgstr ""
+msgstr "無線データは利用できません"
 
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr ""
+msgstr "ラジオのデータは%s分前のものです"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
-msgstr ""
+msgstr "無線接続"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr ""
+msgstr "手動モード：周波数/モードを手動で入力します"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
-msgstr ""
+msgstr "WebSocket無線に接続中..."
 
 #: application/views/contesting/logger/components/radio.php:31
 msgid "WebSocket radio connected"
-msgstr ""
+msgstr "WebSocket無線接続済み"
 
 #: application/views/contesting/logger/components/radio.php:32
 msgid "WebSocket connection error"
-msgstr ""
+msgstr "WebSocket接続エラー"
 
 #: application/views/contesting/logger/components/radio.php:33
 msgid "WebSocket disconnected - reconnecting..."
-msgstr ""
+msgstr "WebSocket接続が切断されました - 再接続しています..."
 
 #: application/views/contesting/logger/components/radio.php:34
 msgid "WebSocket radio offline"
-msgstr ""
+msgstr "WebSocket無線がオフラインになりました"
 
 #: application/views/contesting/logger/components/radio.php:53
 msgid "Manual - No Radio"
-msgstr ""
+msgstr "マニュアル - ラジオなし"
 
 #: application/views/contesting/logger/components/radio.php:54
 msgid "WebSocket (Real-time)"
-msgstr ""
+msgstr "WebSocket（リアルタイム）"
 
 #: application/views/contesting/logger/components/scp.php:9
 msgid "Super Check Partial"
-msgstr ""
+msgstr "スーパーチェック部分"
 
 #: application/views/contesting/logger/components/scp.php:25
 msgid "Loading SCP databases..."
