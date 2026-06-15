@@ -105,7 +105,7 @@ class Oqrs_model extends CI_Model {
 	{
 		// get all worked modes from database
 		$data = $this->db->query(
-			"SELECT distinct LOWER(log.`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1')  WHERE log.station_id = ? order by log.COL_MODE ASC", $station_id
+			"SELECT distinct LOWER(log.`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1')  WHERE log.station_id = ? order by COL_MODE ASC", $station_id
 		);
 		$results = array();
 		foreach ($data->result() as $row) {
@@ -113,7 +113,7 @@ class Oqrs_model extends CI_Model {
 		}
 
 		$data = $this->db->query(
-			"SELECT distinct LOWER(log.`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1') WHERE log.station_id = ? and coalesce(log.COL_SUBMODE, '') <> '' order by log.COL_SUBMODE ASC", $station_id
+			"SELECT distinct LOWER(log.`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1') WHERE log.station_id = ? and coalesce(COL_SUBMODE, '') <> '' order by COL_SUBMODE ASC", $station_id
 		);
 		foreach ($data->result() as $row) {
 			if (!in_array($row, $results)) {
