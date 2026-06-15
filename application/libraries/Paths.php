@@ -116,7 +116,10 @@ class Paths {
         if (isset($userdata_dir)) {
             $base_path = $this->getUserdataPath('basedir', 'b', $user_id); // get the base path for the user
             if (file_exists($base_path)) {
-                $this->_delete_directory($base_path);
+                if (!$this->_delete_directory($base_path)) {
+                    log_message('error', 'delete_user_files(); Failed to fully delete user files for user_id: ' . $user_id);
+                    return false;
+                }
                 log_message('debug', 'delete_user_files(); Deleted user files for user_id: ' . $user_id);
             } else {
                 log_message('debug', 'delete_user_files(); No user files to delete for user_id: ' . $user_id);
