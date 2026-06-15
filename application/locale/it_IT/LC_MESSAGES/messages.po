@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-14 15:42+0000\n"
-"PO-Revision-Date: 2026-06-15 04:49+0000\n"
+"PO-Revision-Date: 2026-06-15 11:37+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -847,7 +847,7 @@ msgstr "Tester del nominativo"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr "Coordinatore di stazione"
+msgstr "Responsabile di stazione"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
@@ -10847,7 +10847,7 @@ msgstr "Scegli una delle tue stazioni"
 
 #: application/views/contesting/manager/components/session_modal.php:83
 msgid "Exchange Fields"
-msgstr ""
+msgstr "Campi Exchange"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Toggle fields on/off and drag to set the tab order in the logger."
@@ -10864,16 +10864,17 @@ msgid "Grid Square"
 msgstr "Locatore"
 
 #: application/views/contesting/manager/components/session_modal.php:89
+#, fuzzy
 msgid "Exchange (text)"
-msgstr ""
+msgstr "Exchange (text)"
 
 #: application/views/contesting/manager/components/session_modal.php:112
 msgid "Please enable at least one exchange field."
-msgstr ""
+msgstr "Per favore, abilita almeno un campo exchange."
 
 #: application/views/contesting/manager/components/session_modal.php:115
 msgid "Copy Exchange to Field"
-msgstr ""
+msgstr "Copia Exchange nel campo"
 
 #: application/views/contesting/manager/components/session_modal.php:117
 msgid "— None —"
@@ -10898,6 +10899,8 @@ msgstr "Potenza ricevuta (W)"
 msgid ""
 "The received Exchange (Exch R) value will be copied to this logbook field."
 msgstr ""
+"Il valore di Exchange ricevuto (Exch R) verrà copiato in questo campo del "
+"logbook."
 
 #: application/views/contesting/manager/components/session_modal.php:132
 msgid "Callbook Lookup (Online)"
@@ -10909,44 +10912,51 @@ msgid ""
 "only existing log data from previous qsos with this callsign will be used. "
 "Log data is always prioritized."
 msgstr ""
+"Cerca i dati del callbook nel servizio callbook online configurato. Se "
+"disabilitato, verranno utilizzati solo i dati del log esistenti da qsos "
+"precedenti con questo nominativo. I dati del log sono sempre prioritari."
 
 #: application/views/contesting/manager/components/session_modal.php:137
 msgid "Session Notes"
-msgstr ""
+msgstr "Note della sessione"
 
 #: application/views/contesting/manager/components/session_modal.php:138
 msgid "Add any additional information about this session..."
-msgstr ""
+msgstr "Aggiungi ulteriori informazioni su questa sessione..."
 
 #: application/views/contesting/manager/components/session_modal.php:139
 msgid "Optional: Any additional details or notes"
-msgstr ""
+msgstr "Opzionale: eventuali dettagli o note aggiuntive"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Create Session"
-msgstr ""
+msgstr "Crea sessione"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Update Session"
-msgstr ""
+msgstr "Aggiorna sessione"
 
 #: application/views/contesting/manager/export_cbr.php:27
 #: application/views/contesting/manager/export_edi.php:27
 #, php-format
 msgid "%d QSOs"
-msgstr ""
+msgstr "%d QSO"
 
 #: application/views/contesting/manager/export_cbr.php:32
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
 msgstr ""
+"Questa sessione del contest non ha ancora QSOs. L'esportazione produrrà un "
+"file vuoto."
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
 msgstr ""
+"Non hai il permesso di esportare i file. Contatta il responsabile della "
+"stazione."
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:497
@@ -10959,10 +10969,12 @@ msgid ""
 "Settings are saved automatically when you download. Name and e-mail are "
 "taken from your user profile."
 msgstr ""
+"Le impostazioni vengono salvate automaticamente quando scarichi. Nome ed e-"
+"mail vengono presi dal tuo profilo utente."
 
 #: application/views/contesting/manager/export_cbr.php:69
 msgid "Assisted"
-msgstr ""
+msgstr "Assistito"
 
 #: application/views/contesting/manager/export_cbr.php:102
 msgid "Light/Laser"
@@ -10975,11 +10987,11 @@ msgstr "Potenza"
 
 #: application/views/contesting/manager/export_cbr.php:129
 msgid "Category (optional)"
-msgstr ""
+msgstr "Categoria (opzionale)"
 
 #: application/views/contesting/manager/export_cbr.php:148
 msgid "Transmitter"
-msgstr ""
+msgstr "Trasmettitore"
 
 #: application/views/contesting/manager/export_cbr.php:161
 #: application/views/contesting/manager/export_cbr.php:162
@@ -10991,7 +11003,7 @@ msgstr "%d Ore"
 
 #: application/views/contesting/manager/export_cbr.php:168
 msgid "Overlay"
-msgstr ""
+msgstr "Sovrapposizione"
 
 #: application/views/contesting/manager/export_cbr.php:185
 #: application/views/logbookadvanced/useroptions.php:271
@@ -11017,6 +11029,8 @@ msgid ""
 "ARRL section for USA/Canada, 'DX' for foreign stations. Required for IARU-"
 "HF, ARRL and CQ contests."
 msgstr ""
+"Sezione ARRL per USA/Canada, 'DX' per stazioni estere. Necessario per "
+"contest IARU-HF, ARRL e CQ."
 
 #: application/views/contesting/manager/export_cbr.php:203
 #: application/views/contesting/manager/export_edi.php:95
@@ -11036,7 +11050,7 @@ msgstr "Certificato"
 
 #: application/views/contesting/manager/export_cbr.php:217
 msgid "Request a paper certificate from the contest sponsor if eligible."
-msgstr ""
+msgstr "Richiedi un certificato cartaceo allo sponsor del contest, se idoneo."
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
@@ -11181,35 +11195,35 @@ msgstr "No"
 
 #: application/views/contesting/manager/export_cbr.php:227
 msgid "Grid in exchange?"
-msgstr ""
+msgstr "Locatore in exchange?"
 
 #: application/views/contesting/manager/export_cbr.php:230
 msgid "Select Yes if the grid square was part of the contest exchange."
-msgstr ""
+msgstr "Seleziona sì se il locatore faceva parte dell'exchange del contest."
 
 #: application/views/contesting/manager/export_cbr.php:240
 msgid "Use 6-char grid instead of 4-char"
-msgstr ""
+msgstr "Usa locatore di 6 caratteri invece che di 4 caratteri"
 
 #: application/views/contesting/manager/export_cbr.php:249
 msgid "Contact & Address"
-msgstr ""
+msgstr "Contatti & Indirizzo"
 
 #: application/views/contesting/manager/export_cbr.php:262
 msgid "Street Address"
-msgstr ""
+msgstr "Indirizzo"
 
 #: application/views/contesting/manager/export_cbr.php:272
 msgid "State / Province"
-msgstr ""
+msgstr "Stato / Provincia"
 
 #: application/views/contesting/manager/export_cbr.php:277
 msgid "Postal Code"
-msgstr ""
+msgstr "Codice Postale"
 
 #: application/views/contesting/manager/export_cbr.php:290
 msgid "Download Cabrillo"
-msgstr ""
+msgstr "Scarica Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:499
@@ -11218,7 +11232,7 @@ msgstr "Esportazione EDI"
 
 #: application/views/contesting/manager/export_edi.php:57
 msgid "Header data"
-msgstr ""
+msgstr "Dati dell'intestazione"
 
 #: application/views/contesting/manager/export_edi.php:62
 msgid "Sent Exchange"
@@ -11260,7 +11274,7 @@ msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:109
 msgid "Location and Operator Information"
-msgstr ""
+msgstr "Informazioni sulla posizione e sull'operatore"
 
 #: application/views/contesting/manager/export_edi.php:112
 msgid "Contest Address 1"
@@ -11296,7 +11310,7 @@ msgstr "Numero di telefono dell'operatore"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr ""
+msgstr "Descrizione aggiuntiva della stazione"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -11322,7 +11336,7 @@ msgstr "Altezza dell'antenna sopra il suolo (m)"
 
 #: application/views/contesting/manager/export_edi.php:191
 msgid "Scoring Adjustment and Band Selection"
-msgstr ""
+msgstr "Regolazione del punteggio e selezione della banda"
 
 #: application/views/contesting/manager/export_edi.php:195
 msgid "Band multiplicator"
@@ -11333,18 +11347,20 @@ msgid ""
 "The Band multiplicator is usually 1. Only change this if necessary according "
 "to the contest scoring rules."
 msgstr ""
+"Il moltiplicatore di banda è solitamente 1. Cambia questo parametro solo se "
+"necessario in base alle regole di punteggio del contest."
 
 #: application/views/contesting/manager/export_edi.php:208
 msgid "Choose Band for export"
-msgstr ""
+msgstr "Scegli banda per l'esportazione"
 
 #: application/views/contesting/manager/export_edi.php:220
 msgid "Download EDI"
-msgstr ""
+msgstr "Scarica EDI"
 
 #: application/views/contesting/manager/import_legacy.php:9
 msgid "Historical Contest QSOs"
-msgstr ""
+msgstr "QSO storici del contest"
 
 #: application/views/contesting/manager/import_legacy.php:13
 msgid ""
@@ -11352,28 +11368,31 @@ msgid ""
 "linked to a contest session. Select the ones you want to import and click "
 "\"Import Selected\"."
 msgstr ""
+"I seguenti gruppi di contest sono stati trovati nel tuo logbook ma non sono "
+"ancora collegati a una sessione di contest. Seleziona quelli che vuoi "
+"importare e clicca \"Importa selezionati\"."
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "Admin mode:"
-msgstr ""
+msgstr "Modalità amministratore:"
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid "This will import contests for all users of this instance."
-msgstr ""
+msgstr "Questo importerà i contest per tutti gli utenti di questa istanza."
 
 #: application/views/contesting/manager/import_legacy.php:30
 msgid "Select all"
-msgstr ""
+msgstr "Seleziona tutto"
 
 #: application/views/contesting/manager/import_legacy.php:32
 msgid "ADIF ID"
-msgstr ""
+msgstr "ID ADIF"
 
 #: application/views/contesting/manager/import_legacy.php:37
 #: application/views/contesting/manager/index.php:35
 #: application/views/logbookadvanced/attachContest.php:17
 msgid "#QSO"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/contesting/manager/import_legacy.php:61
 msgid "Unknown → Other"
@@ -11381,17 +11400,19 @@ msgstr ""
 
 #: application/views/contesting/manager/import_legacy.php:72
 msgid "Import Selected"
-msgstr ""
+msgstr "Importa selezionati"
 
 #: application/views/contesting/manager/import_legacy.php:94
 msgid "Please select at least one contest to import."
-msgstr ""
+msgstr "Seleziona almeno un contest da importare."
 
 #: application/views/contesting/manager/import_legacy.php:97
 msgid ""
 "Are you sure you want to import the selected contest sessions? This cannot "
 "be undone."
 msgstr ""
+"Sei sicuro di voler importare le sessioni di contest selezionate? Questa "
+"azione non può essere annullata."
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:340
@@ -11403,34 +11424,36 @@ msgid ""
 "Here you can manage your contests, create new, edit or export them in "
 "various formats."
 msgstr ""
+"Qui puoi gestire i tuoi contest, crearne di nuovi, modificarli o esportarli "
+"in vari formati."
 
 #: application/views/contesting/manager/index.php:21
 msgid "Create New Contest"
-msgstr ""
+msgstr "Crea nuovo contest"
 
 #: application/views/contesting/manager/index.php:22
 #: application/views/interface_assets/header.php:144
 msgid "Quick Start"
-msgstr ""
+msgstr "Avvio rapido"
 
 #: application/views/contesting/manager/index.php:49
 #: application/views/logbookadvanced/attachContest.php:28
 msgid "Coming Up"
-msgstr ""
+msgstr "In arrivo"
 
 #: application/views/contesting/manager/index.php:51
 #: application/views/logbookadvanced/attachContest.php:30
 msgid "In Progress"
-msgstr ""
+msgstr "In corso"
 
 #: application/views/contesting/manager/index.php:53
 #: application/views/logbookadvanced/attachContest.php:32
 msgid "Completed"
-msgstr ""
+msgstr "Completato"
 
 #: application/views/contesting/manager/index.php:59
 msgid "START"
-msgstr ""
+msgstr "INIZIO"
 
 #: application/views/contesting/manager/index.php:94
 #: application/views/qslprint/qslprint.php:111
@@ -11439,7 +11462,7 @@ msgstr "Esporta ADIF"
 
 #: application/views/contesting/manager/index.php:97
 msgid "Export CBR"
-msgstr ""
+msgstr "Esporta CBR"
 
 #: application/views/contesting/manager/index.php:100
 msgid "Export EDI"
@@ -11447,13 +11470,15 @@ msgstr "Esporta EDI"
 
 #: application/views/contesting/manager/index.php:149
 msgid "Import historical contests from logbook"
-msgstr ""
+msgstr "Importa contest storici dal logbook"
 
 #: application/views/contesting/manager/index.php:152
 msgid ""
 "Import for all users of this instance. You can do that because you are an "
 "administrator."
 msgstr ""
+"Importa per tutti gli utenti di questa istanza. Puoi farlo perché sei un "
+"amministratore."
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
@@ -11537,9 +11562,9 @@ msgid "How it works"
 msgstr "Come funziona"
 
 #: application/views/cron/index.php:21
-#, php-format
+#, fuzzy, php-format
 msgid "For more information or help, take a look in the %sWiki%s."
-msgstr ""
+msgstr "Per maggiori informazioni o assistenza, dai un'occhiata nel %sWiki%s."
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -11755,15 +11780,15 @@ msgstr "Almeno uno dei tuoi certificati sta per scadere"
 
 #: application/views/dashboard/index.php:244
 msgid "QSOs this year"
-msgstr ""
+msgstr "QSO quest'anno"
 
 #: application/views/dashboard/index.php:254
 msgid "QSOs this month"
-msgstr ""
+msgstr "QSO questo mese"
 
 #: application/views/dashboard/index.php:264
 msgid "QSOs today"
-msgstr ""
+msgstr "QSO oggi"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
@@ -12409,8 +12434,9 @@ msgid "Codeigniter Version"
 msgstr "Versione Codeigniter"
 
 #: application/views/debug/index.php:141
+#, fuzzy
 msgid "Wavelog Worker Backend"
-msgstr ""
+msgstr "Wavelog Worker Backend"
 
 #: application/views/debug/index.php:150
 msgid "Folder Permissions"
@@ -12751,47 +12777,49 @@ msgstr "Tutto ok"
 
 #: application/views/debug/index.php:855
 msgid "Worker backend is not configured."
-msgstr ""
+msgstr "Worker backend non è configurato."
 
 #: application/views/debug/index.php:859
 msgid "Unreachable"
-msgstr ""
+msgstr "Non raggiungibile"
 
 #: application/views/debug/index.php:859
 msgid "Worker is configured but did not respond."
-msgstr ""
+msgstr "Il worker è configurato ma non ha risposto."
 
 #: application/views/debug/index.php:867
 msgid "Available"
-msgstr ""
+msgstr "Disponibile"
 
 #: application/views/debug/index.php:868 application/views/debug/index.php:877
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: application/views/debug/index.php:876
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: application/views/debug/index.php:887
+#, fuzzy
 msgid "Worker"
-msgstr ""
+msgstr "Worker"
 
 #: application/views/debug/index.php:888
 msgid "Topics"
-msgstr ""
+msgstr "Argomenti"
 
 #: application/views/debug/index.php:889
+#, fuzzy
 msgid "Clients"
-msgstr ""
+msgstr "Clients"
 
 #: application/views/debug/index.php:891
 msgid "Uptime"
-msgstr ""
+msgstr "Uptime"
 
 #: application/views/debug/index.php:898
 msgid "Could not fetch worker status."
-msgstr ""
+msgstr "Impossibile recuperare lo stato del worker."
 
 #: application/views/debug/index.php:911
 msgid "Albanian"
@@ -14039,20 +14067,20 @@ msgstr "Immagine della QSL"
 
 #: application/views/interface_assets/footer.php:2678
 msgid "Front QSL Card"
-msgstr ""
+msgstr "Fronte QSL"
 
 #: application/views/interface_assets/footer.php:2714
 msgid "Back QSL Card"
-msgstr ""
+msgstr "Retro QSL"
 
 #: application/views/interface_assets/footer.php:2718
 msgid "The QSL card upload could not be completed."
-msgstr ""
+msgstr "Non è stato possibile completare il caricamento della cartolina QSL."
 
 #: application/views/interface_assets/footer.php:2718
 #: application/views/qslpostcard/designer.php:18
 msgid "Upload failed"
-msgstr ""
+msgstr "Caricamento fallito"
 
 #: application/views/interface_assets/footer.php:2726
 #: application/views/interface_assets/footer.php:2751
@@ -14099,7 +14127,7 @@ msgstr "Inserisci QSO passati"
 
 #: application/views/interface_assets/header.php:146
 msgid "Manage Contests"
-msgstr ""
+msgstr "Gestisci contest"
 
 #: application/views/interface_assets/header.php:155
 msgid "Analytics"
@@ -14988,8 +15016,8 @@ msgstr "Usa Wavelog per controllare IOTA contro DXCC"
 #, php-format
 msgid "Detach %s QSO from contest?"
 msgid_plural "Detach %s QSOs from contests?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Scollegare %s QSO dal contest?"
+msgstr[1] "Scollegare %s QSO dai contest?"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
@@ -15728,11 +15756,11 @@ msgstr "Errore nel caricamento della finestra di unione dei collegamenti"
 
 #: application/views/logbookadvanced/index.php:94
 msgid "You need at least 1 QSO!"
-msgstr ""
+msgstr "Hai bisogno di almeno 1 QSO!"
 
 #: application/views/logbookadvanced/index.php:95
 msgid "Attach QSOs to Contest"
-msgstr ""
+msgstr "Collegara QSO al Contest"
 
 #: application/views/logbookadvanced/index.php:96
 msgid "Error loading attach to contest dialog"
