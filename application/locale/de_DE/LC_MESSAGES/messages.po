@@ -28,7 +28,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-13 11:46+0000\n"
 "PO-Revision-Date: 2026-06-15 11:37+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -21504,7 +21504,7 @@ msgstr "Freitext"
 
 #: application/views/qslpostcard/designer.php:22
 msgid "Untitled"
-msgstr ""
+msgstr "Ohne Titel"
 
 #: application/views/qslpostcard/designer.php:23
 msgid "Save failed"
@@ -21577,23 +21577,23 @@ msgstr "Generiere Demo-PDF"
 
 #: application/views/qslpostcard/designer.php:72
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: application/views/qslpostcard/designer.php:79
 msgid "History"
-msgstr ""
+msgstr "Verlauf"
 
 #: application/views/qslpostcard/designer.php:81
 msgid "Undo"
-msgstr ""
+msgstr "Rückgängig"
 
 #: application/views/qslpostcard/designer.php:82
 msgid "Redo"
-msgstr ""
+msgstr "Wiederholen"
 
 #: application/views/qslpostcard/designer.php:88
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: application/views/qslpostcard/designer.php:98
 msgid ""
@@ -21666,15 +21666,15 @@ msgstr "Rechtsclick für mehr Aktionen."
 
 #: application/views/qslpostcard/designer.php:223
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: application/views/qslpostcard/designer.php:229
 msgid "X (in)"
-msgstr ""
+msgstr "X (in)"
 
 #: application/views/qslpostcard/designer.php:233
 msgid "Y (in)"
-msgstr ""
+msgstr "Y (in)"
 
 #: application/views/qslpostcard/designer.php:239
 msgid "Font"
@@ -21690,70 +21690,70 @@ msgstr "Farbe"
 
 #: application/views/qslpostcard/designer.php:266
 msgid "Wrap width (in)"
-msgstr ""
+msgstr "Umbruch Breite (in)"
 
 #: application/views/qslpostcard/designer.php:271
 msgid "Print this field once per QSO when a card holds multiple QSOs"
-msgstr ""
+msgstr "Drucke dieses Feld einmal pro QSO, wenn eine Karte mehrere QSOs enthält"
 
 #: application/views/qslpostcard/designer.php:272
 msgid "Repeats per QSO"
-msgstr ""
+msgstr "Wiederholt sich pro QSO"
 
 #: application/views/qslpostcard/designer.php:298
 #: application/views/qslpostcard/designer.php:303
 msgid "Align & distribute"
-msgstr ""
+msgstr "Ausrichten & verteilen"
 
 #: application/views/qslpostcard/designer.php:302
 #: application/views/qslpostcard/designer.php:307
 msgid "Align left"
-msgstr ""
+msgstr "Links ausrichten"
 
 #: application/views/qslpostcard/designer.php:303
 #: application/views/qslpostcard/designer.php:308
 msgid "Align horizontal centers"
-msgstr ""
+msgstr "Horizontale Zentren ausrichten"
 
 #: application/views/qslpostcard/designer.php:304
 #: application/views/qslpostcard/designer.php:309
 msgid "Align right"
-msgstr ""
+msgstr "Rechts ausrichten"
 
 #: application/views/qslpostcard/designer.php:306
 #: application/views/qslpostcard/designer.php:311
 msgid "Align top"
-msgstr ""
+msgstr "Oben ausrichten"
 
 #: application/views/qslpostcard/designer.php:307
 #: application/views/qslpostcard/designer.php:312
 msgid "Align vertical centers"
-msgstr ""
+msgstr "Vertikale Mittelpunkte ausrichten"
 
 #: application/views/qslpostcard/designer.php:308
 #: application/views/qslpostcard/designer.php:313
 msgid "Align bottom"
-msgstr ""
+msgstr "Unten ausrichten"
 
 #: application/views/qslpostcard/designer.php:310
 #: application/views/qslpostcard/designer.php:315
 msgid "Distribute horizontally"
-msgstr ""
+msgstr "Horizontal verteilen"
 
 #: application/views/qslpostcard/designer.php:311
 #: application/views/qslpostcard/designer.php:316
 msgid "Distribute vertically"
-msgstr ""
+msgstr "Vertikal verteilen"
 
 #: application/views/qslpostcard/designer.php:313
 #: application/views/qslpostcard/designer.php:318
 msgid "Center on page (horizontal)"
-msgstr ""
+msgstr "Zentrieren auf Seite (horizontal)"
 
 #: application/views/qslpostcard/designer.php:314
 #: application/views/qslpostcard/designer.php:319
 msgid "Center on page (vertical)"
-msgstr ""
+msgstr "In der Mitte der Seite (vertikal)"
 
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -21761,11 +21761,13 @@ msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
 msgstr ""
+"Druckoptionen (QSOs pro Karte, Hintergrundbild, Adressdruck) werden im QSL "
+"Postkarten-Designer pro Vorlage festgelegt."
 
 #: application/views/qslpostcard/printqueue.php:21
 #: application/views/qslpostcard/printqueue_selected.php:29
 msgid "Generate Postcard PDF"
-msgstr ""
+msgstr "PDF der Postkarte erstellen"
 
 #: application/views/qslpostcard/printqueue.php:27
 #: application/views/qslpostcard/printqueue_selected.php:35
@@ -21773,14 +21775,16 @@ msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
 msgstr ""
+"Keine Vorlagen zum Drucken verfügbar. Gehe zuerst zum QSL-Postkartendesigner "
+"und erstelle eine Vorlage."
 
 #: application/views/qslprint/qslprint.php:115
 msgid "Print Postcards for all QSOs"
-msgstr ""
+msgstr "Drucke Postkarten für alle QSOs"
 
 #: application/views/qslprint/qslprint.php:116
 msgid "Print Selected QSO Postcards"
-msgstr ""
+msgstr "Drucke ausgewählte QSO Karten"
 
 #: application/views/contesting/manager/export_cbr.php:69
 msgid "Assisted"
@@ -21788,23 +21792,23 @@ msgstr "'Assisted'"
 
 #: application/controllers/Contest_admin.php:43
 msgid "Contests Administration"
-msgstr ""
+msgstr "Contest Verwaltung"
 
 #: application/controllers/Contesting.php:66
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "Contest Management"
 
 #: application/controllers/Contesting.php:93
 #: application/controllers/Contesting.php:606
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "Officers müssen Contests erstellen."
 
 #: application/controllers/Contesting.php:110
 #, php-format
 msgid "Quickstart Session: %s"
-msgstr ""
+msgstr "Schnellstart-Session: %s"
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
@@ -22829,10 +22833,12 @@ msgstr "Rumänisch"
 #: application/views/qslpostcard/designer.php:276
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
+"Bewege dieses Element frei, ohne es am Raster oder an anderen Elementen "
+"auszurichten"
 
 #: application/views/qslpostcard/designer.php:277
 msgid "Disable Auto-Snap"
-msgstr ""
+msgstr "Auto-Snap deaktivieren"
 
 #~ msgid "Front QSL Card:"
 #~ msgstr "Vorderseite QSL-Karte:"
