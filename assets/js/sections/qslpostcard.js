@@ -11,8 +11,8 @@
 	// ===== Constants =====
 	const STAGE_W_PX = 900;
 	const STAGE_H_PX = 600;
-	const W_IN = 6.0;
-	const H_IN = 4.0;
+	const W_IN = 5.5;
+	const H_IN = 3.5;
 	const GRID_IN = 0.25;                       // snap grid (quarter inch)
 	const GRID_PX = (GRID_IN / W_IN) * STAGE_W_PX; // 37.5px
 	const SNAP_PX = 8;                          // snap threshold (internal px)
@@ -45,12 +45,15 @@
 	let previewImageUrl = null;
 
 	// Template-wide options (persisted in layout.options; see buildLayout/loadTemplate).
-	let tplOptions = {
+	// Single source of truth for a fresh/blank template; loadTemplate overlays saved
+	// values on top of this (with its own coercion for legacy/malformed JSON).
+	const DEFAULT_TPL_OPTIONS = Object.freeze({
 		qsos_per_card: 1,
-		print_background: true,
-		skip_address: false,
+		print_background: false,
+		skip_address: true,
 		row_pitch_in: 0.3,
-	};
+	});
+	let tplOptions = { ...DEFAULT_TPL_OPTIONS };
 	const history = [];
 	const future = [];
 	let drag = null;            // active element drag
@@ -1050,7 +1053,7 @@
 			setBackground(null);
 			document.getElementById('tplName').value = '';
 			document.getElementById('btnPdf').href = '#';
-			tplOptions = { qsos_per_card: 1, print_background: true, skip_address: false, row_pitch_in: 0.3 };
+			tplOptions = { ...DEFAULT_TPL_OPTIONS };
 			applyTplOptionsToControls();
 			setPitchWrapVisibility();
 			history.length = 0; future.length = 0; updateHistoryButtons();
