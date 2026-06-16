@@ -2063,7 +2063,7 @@ $(document).ready(function () {
 		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: lang_gen_advanced_logbook_info,
-				message: lang_gen_advanced_logbook_select_at_least_one_row_label,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_qslcard_print,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -2079,7 +2079,7 @@ $(document).ready(function () {
 			type: 'post',
 			success: function (html) {
 				BootstrapDialog.show({
-					title: '<i class="fas fa-print me-2"></i>'+lang_label_print_options,
+					title: '<i class="fas fa-print me-2"></i>'+lang_gen_advanced_logbook_qslcard_print_option,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'qso-dialog',
 					nl2br: false,

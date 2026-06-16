@@ -102,6 +102,9 @@
 	let lang_gen_advanced_logbook_qsos_detached = '<?= __("QSOs detached to contest successfully!"); ?>';
 	let lang_gen_advanced_logbook_error_detaching = '<?= __("Error detaching QSOs"); ?>';
 
+	let lang_gen_advanced_logbook_select_at_least_one_row_qslcard_print = '<?= __("You need to select at least 1 row to print a QSL card!"); ?>';
+	let lang_gen_advanced_logbook_qslcard_print_option = '<?= __("QSL Card print options"); ?>';
+
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
     if (!isset($options)) {
