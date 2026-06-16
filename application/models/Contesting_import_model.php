@@ -4,7 +4,7 @@ class Contesting_import_model extends CI_Model {
 	/**
 	 * Returns historical contest QSO groups not yet linked to any contest session,
 	 * scoped to the current user's stations. Groups by (COL_CONTEST_ID, station_id, year).
-	 * QSOs without a valid COL_QSO_DATE are excluded.
+	 * QSOs without a valid COL_TIME_ON are excluded.
 	 *
 	 * @return array
 	 */
@@ -81,7 +81,7 @@ class Contesting_import_model extends CI_Model {
 		$sql = "SELECT
 					t.COL_CONTEST_ID AS adif_name,
 					t.station_id,
-					YEAR(t.COL_QSO_DATE) AS contest_year,
+					YEAR(t.COL_TIME_ON) AS contest_year,
 					MIN(t.COL_TIME_ON) AS time_start,
 					MAX(t.COL_TIME_ON) AS time_end,
 					COUNT(*) AS qso_count,
@@ -95,10 +95,10 @@ class Contesting_import_model extends CI_Model {
 				LEFT JOIN contest_qsos cq ON cq.qso_id = t.COL_PRIMARY_KEY
 				WHERE t.COL_CONTEST_ID IS NOT NULL
 					AND t.COL_CONTEST_ID != ''
-					AND t.COL_QSO_DATE IS NOT NULL
+					AND t.COL_TIME_ON IS NOT NULL
 					AND cq.id IS NULL
 					{$user_filter}
-				GROUP BY t.COL_CONTEST_ID, t.station_id, YEAR(t.COL_QSO_DATE)
+				GROUP BY t.COL_CONTEST_ID, t.station_id, YEAR(t.COL_TIME_ON)
 				ORDER BY time_start DESC";
 
 		$bindings = empty($user_ids) ? [] : $user_ids;
@@ -128,7 +128,7 @@ class Contesting_import_model extends CI_Model {
 			LEFT JOIN contest_qsos cq ON cq.qso_id = t.COL_PRIMARY_KEY
 			WHERE t.COL_CONTEST_ID = ?
 				AND t.station_id = ?
-				AND YEAR(t.COL_QSO_DATE) = ?
+				AND YEAR(t.COL_TIME_ON) = ?
 				AND cq.id IS NULL
 			ORDER BY t.COL_TIME_ON ASC",
 			[$adif_name, $station_id, $year]
