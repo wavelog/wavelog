@@ -816,7 +816,7 @@ class Contesting extends CI_Controller {
 					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
 						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
 						if ($key === 'callsign' && $val !== null) {
-							$val = str_replace('Ø', '0', $val);
+							$val = $this->_validateCallsign($val);
 						}
 					}
 					if (in_array($key, ['serial_sent', 'serial_rcvd']) && $val === '') {
@@ -1010,6 +1010,8 @@ class Contesting extends CI_Controller {
 				if (!isset($command['data'])) {
 					throw new Exception('save_qso command missing data');
 				}
+
+				$command['data']['callsign'] = $this->_validateCallsign($command['data']['callsign'] ?? '');
 
 				// Only load models if needed
 				$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
@@ -1558,6 +1560,26 @@ class Contesting extends CI_Controller {
 		if ($e && $g)       return 'Exchangegridsquare';
 		if ($s)             return 'Serial';
 		return 'Exchange';
+	}
+
+	/**
+	 * Validate and normalise a contest callsign.
+	 *
+	 * Mirrors the client-side validation in qso-form.js: only A-Z, 0-9 and the
+	 * special characters "-" and "/" are permitted. The "?" wildcard is allowed
+	 * while searching in the UI but must be resolved before a QSO is saved, so a
+	 * callsign still containing it is rejected here.
+	 *
+	 * @param string $callsign
+	 * @return string normalised callsign (uppercase, Ø→0)
+	 * @throws Exception if the callsign is empty or contains illegal characters
+	 */
+	private function _validateCallsign($callsign) {
+		$call = str_replace('Ø', '0', strtoupper(trim((string)$callsign)));
+		if ($call === '' || !preg_match('/^[A-Z0-9\/-]+$/', $call)) {
+			throw new Exception('Invalid callsign');
+		}
+		return $call;
 	}
 
 	private function _teapot() {
