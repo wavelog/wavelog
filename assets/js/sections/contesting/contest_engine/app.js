@@ -24,6 +24,16 @@ import { WindowManager } from './core/window-manager.js';
 import { ComponentManager } from './core/component-loader.js';
 import { SettingsSyncHandler } from './core/settings-sync.js';
 
+// Global helpers shared across components (each component is its own ES module,
+// so plain top-level functions are not visible to siblings — expose on window).
+
+/** Decode HTML entities (e.g. &#039; → ') from PHP-emitted lang strings */
+window.htmlDecode = function (str) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = str ?? '';
+    return txt.value;
+};
+
 // Application Initialization as IIFE (async for dynamic component loading)
 (async function () {
     // Update loading status
@@ -185,7 +195,7 @@ function initControlPanel(windowManager) {
     const btnEndContest = document.getElementById('btnEndContest');
     if (btnEndContest) {
         btnEndContest.addEventListener('click', function () {
-            if (confirm(lang_really_end_contest)) {
+            if (confirm(window.htmlDecode(lang_really_end_contest))) {
                 window.close();
                 // Fallback if window.close() doesn't work (e.g., not opened by script)
                 setTimeout(() => {
@@ -472,7 +482,7 @@ async function deleteUserLayout(windowManager, layoutName) {
         return;
     }
 
-    if (!confirm(lang_layout_delete_confirm.replace('%s', layoutName))) {  // TODO: Replace with a nice modal
+    if (!confirm(window.htmlDecode(lang_layout_delete_confirm.replace('%s', layoutName)))) {  // TODO: Replace with a nice modal
         return;
     }
 
@@ -508,7 +518,7 @@ async function resetUserLayout(windowManager) {
         return;
     }
 
-    if (!confirm(lang_layout_reset_prompt)) { // TODO: Replace with a nice modal
+    if (!confirm(window.htmlDecode(lang_layout_reset_prompt))) { // TODO: Replace with a nice modal
         return;
     }
 

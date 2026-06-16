@@ -363,7 +363,7 @@ class QsoFormComponent {
 		const serverId = row.dataset.serverId ? parseInt(row.dataset.serverId) : null;
 		const sessionId = window.ContestLoggerConfig?.sessionInfo?.contest_session_id;
 
-		if (!confirm(lang_delete_qso_confirm)) return;
+		if (!confirm(window.htmlDecode(lang_delete_qso_confirm))) return;
 
 		if (!serverId) {
 			// Pending QSO not yet synced to server — remove locally only
