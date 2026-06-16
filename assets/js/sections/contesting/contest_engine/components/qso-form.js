@@ -292,9 +292,9 @@ class QsoFormComponent {
 		const callsignInput = this.container.querySelector('#qso-callsign');
 		if (callsignInput) {
 			callsignInput.addEventListener('input', (e) => {
-				// Only A-Z/0-9 and the special chars "-", "/", "?" are allowed.
+				// Only A-Z/0-9 and the special chars "/", "?" are allowed.
 				// Strip anything else as the user types (Ø is the display form of 0).
-				const filtered = e.target.value.toUpperCase().trim().replace(/[^A-Z0-9Ø/?-]/g, '');
+				const filtered = e.target.value.toUpperCase().trim().replace(/[^A-Z0-9Ø/?]/g, '');
 				e.target.value = callsignToDisplay(filtered);
 				const callsign = e.target.value;
 

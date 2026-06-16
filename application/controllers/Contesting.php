@@ -1566,7 +1566,7 @@ class Contesting extends CI_Controller {
 	 * Validate and normalise a contest callsign.
 	 *
 	 * Mirrors the client-side validation in qso-form.js: only A-Z, 0-9 and the
-	 * special characters "-" and "/" are permitted. The "?" wildcard is allowed
+	 * special character "/" are permitted. The "?" wildcard is allowed
 	 * while searching in the UI but must be resolved before a QSO is saved, so a
 	 * callsign still containing it is rejected here.
 	 *
@@ -1576,7 +1576,7 @@ class Contesting extends CI_Controller {
 	 */
 	private function _validateCallsign($callsign) {
 		$call = str_replace('Ø', '0', strtoupper(trim((string)$callsign)));
-		if ($call === '' || !preg_match('/^[A-Z0-9\/-]+$/', $call)) {
+		if ($call === '' || !preg_match('/^[A-Z0-9\/]+$/', $call)) {
 			throw new Exception('Invalid callsign');
 		}
 		return $call;
