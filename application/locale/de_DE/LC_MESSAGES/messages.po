@@ -2785,8 +2785,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
@@ -2980,6 +2980,8 @@ msgstr "Bearbeiten"
 #: application/views/stationsetup/stationsetup.php:202
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/qslpostcard/designer.php:293
+#: application/views/qslpostcard/designer.php:332
 msgid "Delete"
 msgstr "Löschen"
 
@@ -13340,8 +13342,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -13629,6 +13631,8 @@ msgstr "Duplizierung ist für Kontaktnotizen deaktiviert"
 #: application/views/interface_assets/footer.php:66
 #: application/views/qslpostcard/designer.php:295
 #: application/views/qslpostcard/designer.php:311
+#: application/views/qslpostcard/designer.php:290
+#: application/views/qslpostcard/designer.php:306
 msgid "Duplicate"
 msgstr "Duplikat"
 
@@ -14523,6 +14527,7 @@ msgstr "Gesamthöhe eines Etiketts"
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
 #: application/views/qslpostcard/designer.php:262
+#: application/views/qslpostcard/designer.php:257
 msgid "Font Size"
 msgstr "Schriftgröße"
 
@@ -16277,6 +16282,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:231
+#: application/views/qslpostcard/designer.php:226
 msgid "Field"
 msgstr "Feld"
 
@@ -16966,8 +16972,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -17799,27 +17805,33 @@ msgid "One postcard per callsign"
 msgstr "Eine Karte je Call"
 
 #: application/views/qslpostcard/designer.php:208
+#: application/views/qslpostcard/designer.php:203
 msgid "Print background image (uncheck for pre-printed cards)"
 msgstr ""
 "Drucke Hintergrundbild mit aus (deaktiviere dies für vorgedruckte Karten)"
 
 #: application/views/qslpostcard/designer.php:212
+#: application/views/qslpostcard/designer.php:207
 msgid "Skip address printing (for printing on regular QSL cards)"
 msgstr "Keine Adressen mitdrucken (bspw. für Karten via Büro)"
 
 #: application/views/qslpostcard/designer.php:220
+#: application/views/qslpostcard/designer.php:215
 msgid "Properties"
 msgstr "Eigenschaften"
 
 #: application/views/qslpostcard/designer.php:225
+#: application/views/qslpostcard/designer.php:220
 msgid "Select a field on the canvas to edit it."
 msgstr "Clicke ein Feld auf der Karte an um es zu bearbeiten."
 
 #: application/views/qslpostcard/designer.php:226
+#: application/views/qslpostcard/designer.php:221
 msgid "Right-click a field for more actions."
 msgstr "Rechtsclick für mehr Aktionen."
 
 #: application/views/qslpostcard/designer.php:236
+#: application/views/qslpostcard/designer.php:231
 msgid "Text"
 msgstr "Text"
 
@@ -17832,14 +17844,17 @@ msgid "Y"
 msgstr "Y"
 
 #: application/views/qslpostcard/designer.php:252
+#: application/views/qslpostcard/designer.php:247
 msgid "Font"
 msgstr "Schriftart"
 
 #: application/views/qslpostcard/designer.php:268
+#: application/views/qslpostcard/designer.php:263
 msgid "Bold"
 msgstr "Fett"
 
 #: application/views/qslpostcard/designer.php:274
+#: application/views/qslpostcard/designer.php:269
 msgid "Color"
 msgstr "Farbe"
 
@@ -17848,65 +17863,80 @@ msgid "Wrap width"
 msgstr "Umbruch"
 
 #: application/views/qslpostcard/designer.php:284
+#: application/views/qslpostcard/designer.php:279
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr ""
 "Drucke dieses Feld einmal pro QSO, wenn eine Karte mehrere QSOs enthält"
 
 #: application/views/qslpostcard/designer.php:285
+#: application/views/qslpostcard/designer.php:280
 msgid "Repeats per QSO"
 msgstr "Wiederholt sich pro QSO"
 
 #: application/views/qslpostcard/designer.php:289
+#: application/views/qslpostcard/designer.php:284
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
 "Bewege dieses Element frei, ohne es am Raster oder an anderen Elementen "
 "auszurichten"
 
 #: application/views/qslpostcard/designer.php:290
+#: application/views/qslpostcard/designer.php:285
 msgid "Disable Auto-Snap"
 msgstr "Auto-Snap deaktivieren"
 
 #: application/views/qslpostcard/designer.php:316
+#: application/views/qslpostcard/designer.php:311
 msgid "Align & distribute"
 msgstr "Ausrichten & verteilen"
 
 #: application/views/qslpostcard/designer.php:320
+#: application/views/qslpostcard/designer.php:315
 msgid "Align left"
 msgstr "Links ausrichten"
 
 #: application/views/qslpostcard/designer.php:321
+#: application/views/qslpostcard/designer.php:316
 msgid "Align horizontal centers"
 msgstr "Horizontale Zentren ausrichten"
 
 #: application/views/qslpostcard/designer.php:322
+#: application/views/qslpostcard/designer.php:317
 msgid "Align right"
 msgstr "Rechts ausrichten"
 
 #: application/views/qslpostcard/designer.php:324
+#: application/views/qslpostcard/designer.php:319
 msgid "Align top"
 msgstr "Oben ausrichten"
 
 #: application/views/qslpostcard/designer.php:325
+#: application/views/qslpostcard/designer.php:320
 msgid "Align vertical centers"
 msgstr "Vertikale Mittelpunkte ausrichten"
 
 #: application/views/qslpostcard/designer.php:326
+#: application/views/qslpostcard/designer.php:321
 msgid "Align bottom"
 msgstr "Unten ausrichten"
 
 #: application/views/qslpostcard/designer.php:328
+#: application/views/qslpostcard/designer.php:323
 msgid "Distribute horizontally"
 msgstr "Horizontal verteilen"
 
 #: application/views/qslpostcard/designer.php:329
+#: application/views/qslpostcard/designer.php:324
 msgid "Distribute vertically"
 msgstr "Vertikal verteilen"
 
 #: application/views/qslpostcard/designer.php:331
+#: application/views/qslpostcard/designer.php:326
 msgid "Center on page (horizontal)"
 msgstr "Zentrieren auf Seite (horizontal)"
 
 #: application/views/qslpostcard/designer.php:332
+#: application/views/qslpostcard/designer.php:327
 msgid "Center on page (vertical)"
 msgstr "In der Mitte der Seite (vertikal)"
 
@@ -19278,9 +19308,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -20179,9 +20209,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"

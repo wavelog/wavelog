@@ -47,7 +47,6 @@
 	// Template-wide options (persisted in layout.options; see buildLayout/loadTemplate).
 	let tplOptions = {
 		qsos_per_card: 1,
-		per_callsign: false,
 		print_background: true,
 		skip_address: false,
 		row_pitch_in: 0.3,
@@ -518,7 +517,6 @@
 	function applyTplOptionsToControls() {
 		document.getElementById('tplQsosPerCard').value = tplOptions.qsos_per_card;
 		document.getElementById('tplRowPitch').value = inToDisp(tplOptions.row_pitch_in);
-		document.getElementById('tplPerCallsign').checked = tplOptions.per_callsign;
 		document.getElementById('tplPrintBg').checked = tplOptions.print_background;
 		document.getElementById('tplSkipAddr').checked = tplOptions.skip_address;
 	}
@@ -543,7 +541,6 @@
 
 	wireTpl('tplQsosPerCard', 'qsos_per_card',     n => Math.max(1, parseInt(n.value, 10) || 1), updateRepeatVisibility);
 	wireTpl('tplRowPitch',    'row_pitch_in',      n => Math.max(0.05, dispToIn(parseFloat(n.value) || 0.3)), updateRepeatVisibility);
-	wireTpl('tplPerCallsign', 'per_callsign',      n => n.checked);
 	wireTpl('tplPrintBg',     'print_background',  n => n.checked);
 	wireTpl('tplSkipAddr',    'skip_address',      n => n.checked);
 
@@ -1013,7 +1010,6 @@
 		const o = layout.options || {};
 		tplOptions = {
 			qsos_per_card: Math.max(1, parseInt(o.qsos_per_card, 10) || 1),
-			per_callsign: !!o.per_callsign,
 			print_background: o.print_background !== false,
 			skip_address: !!o.skip_address,
 			row_pitch_in: parseFloat(o.row_pitch_in) || 0.3,
@@ -1054,7 +1050,7 @@
 			setBackground(null);
 			document.getElementById('tplName').value = '';
 			document.getElementById('btnPdf').href = '#';
-			tplOptions = { qsos_per_card: 1, per_callsign: false, print_background: true, skip_address: false, row_pitch_in: 0.3 };
+			tplOptions = { qsos_per_card: 1, print_background: true, skip_address: false, row_pitch_in: 0.3 };
 			applyTplOptionsToControls();
 			setPitchWrapVisibility();
 			history.length = 0; future.length = 0; updateHistoryButtons();
