@@ -463,7 +463,7 @@ class Contesting extends CI_Controller {
 		if ($this->worker_available && $decoded_token) {
 			$data['worker_client_url'] = $this->worker->client_url();
 			$data['worker_topic']      = $worker_topic;
-			$data['worker_token']      = $this->worker->create_token((int) $decoded_token['contest_session_id']);
+			$data['worker_token']      = $this->worker->create_token($worker_topic);
 		}
 
 		$contest_session_id = $decoded_token['contest_session_id'];
@@ -509,7 +509,7 @@ class Contesting extends CI_Controller {
 				$this->worker->register_topic($radio_topic);
 				$radio_worker_topics[$radio->id] = [
 					'topic' => $radio_topic,
-					'token' => $this->worker->create_token((int) $radio->id),
+					'token' => $this->worker->create_token($radio_topic),
 				];
 			}
 		}
