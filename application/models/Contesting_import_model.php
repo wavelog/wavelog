@@ -85,10 +85,10 @@ class Contesting_import_model extends CI_Model {
 					MIN(t.COL_TIME_ON) AS time_start,
 					MAX(t.COL_TIME_ON) AS time_end,
 					COUNT(*) AS qso_count,
-					c.id AS contest_table_id,
-					COALESCE(c.name, t.COL_CONTEST_ID) AS contest_name,
-					sp.station_callsign,
-					sp.user_id AS owner_user_id
+					MAX(c.id) AS contest_table_id,
+					COALESCE(MAX(c.name), t.COL_CONTEST_ID) AS contest_name,
+					MAX(sp.station_callsign) AS station_callsign,
+					MAX(sp.user_id) AS owner_user_id
 				FROM {$table} t
 				LEFT JOIN contest c ON c.adifname = t.COL_CONTEST_ID
 				LEFT JOIN station_profile sp ON sp.station_id = t.station_id
