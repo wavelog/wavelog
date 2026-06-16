@@ -278,11 +278,10 @@ class Qslpostcard_model extends CI_Model {
         $oy = (float)($cal['offset_y_in'] ?? 0);
 
         // Template options (see layout.options). When qsos_per_card > 1, several
-        // QSOs share one card; "repeats per QSO" elements print once per QSO at a
-        // vertical pitch, the rest print once per card.
+        // QSOs of the SAME callsign share one card; "repeats per QSO" elements
+        // print once per QSO at a vertical pitch, the rest print once per card.
         $opts    = $layout['options'] ?? [];
         $perCard = max(1, (int)($opts['qsos_per_card'] ?? 1));
-        $perCall = !empty($opts['per_callsign']);
         $pitch   = (float)($opts['row_pitch_in'] ?? 0.3);
 
         // Background image (FPDF supports jpg/png/gif only)
@@ -299,12 +298,14 @@ class Qslpostcard_model extends CI_Model {
             }
         }
 
-        // Group QSOs (by callsign when "one postcard per callsign" is set, else one
-        // group), then split each group into cards of $perCard QSOs. The first QSO
-        // of each chunk drives the per-card address resolution below.
+        // A QSL card is addressed to a single station, so QSOs are ALWAYS grouped
+        // by callsign — a card never mixes contacts with different callsigns. Each
+        // group is then split into cards of $perCard QSOs, spilling onto further
+        // cards when a callsign has more QSOs than fit. The first QSO of each chunk
+        // drives the per-card address resolution below.
         $groups = [];
         foreach ($qsos as $qso) {
-            $key = $perCall ? strtoupper(trim($qso['COL_CALL'] ?? '')) : '__all__';
+            $key = strtoupper(trim($qso['COL_CALL'] ?? ''));
             if ($key === '') {
                 continue;
             }

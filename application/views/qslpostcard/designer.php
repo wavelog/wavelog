@@ -198,11 +198,6 @@ $_step_pitch = $_metric ? '0.1'  : '0.05';   // row pitch
 						<label class="form-label small mb-1" for="tplRowPitch"><?= __("Row spacing"); ?> (<?= $_disp_u ?>)</label>
 						<input id="tplRowPitch" type="number" min="0.05" step="<?= $_step_pitch ?>" value="0.3" class="form-control form-control-sm">
 					</div>
-
-					<div class="mb-2 form-check">
-						<input type="checkbox" class="form-check-input" id="tplPerCallsign">
-						<label class="form-check-label small" for="tplPerCallsign"><?= __("One postcard per callsign"); ?></label>
-					</div>
 					<div class="mb-2 form-check">
 						<input type="checkbox" class="form-check-input" id="tplPrintBg" checked>
 						<label class="form-check-label small" for="tplPrintBg"><?= __("Print background image (uncheck for pre-printed cards)"); ?></label>
