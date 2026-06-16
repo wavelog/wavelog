@@ -1990,15 +1990,17 @@ class Awards extends CI_Controller {
 		if ($logbooks_locations_array) {
 			$location_list = "'".implode("','",$logbooks_locations_array)."'";
 			$dxcclist = $this->dxcc->fetchdxcc($postdata, $location_list);
-			if ($dxcclist[0]->adif == "0") {
+			if (!empty($dxcclist) && $dxcclist[0]->adif == "0") {
 				unset($dxcclist[0]);
 			}
 			$dxcc_array = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata, $location_list, true);
 		} else {
 			$location_list = null;
 			$dxcc_array = array();
+			$dxcclist = [];
 		}
 
+		$newdxcc = [];
 		$i = 0;
 
 		foreach ($dxcclist as $dxcc) {
