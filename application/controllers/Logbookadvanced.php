@@ -323,6 +323,12 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/startatform');
 	}
 
+	public function printQslForm() {
+		$this->load->model('Qslpostcard_model');
+		$data['templates'] = $this->Qslpostcard_model->list_templates();
+		$this->load->view('logbookadvanced/printQsl', $data);
+	}
+
 	public function qslSlideshow() {
 		$cleanids = json_decode($this->security->xss_clean($this->input->post('ids')));
 		$this->load->model('logbookadvanced_model');
@@ -1033,7 +1039,7 @@ class Logbookadvanced extends CI_Controller {
 	public function attachContestQsos() {
 
 		$this->load->model('contesting_model');
-		$this->load->model('logbook_model');  
+		$this->load->model('logbook_model');
 
 		$qsoIds = $this->input->post('qsoIds', true);
 		$contestId = $this->input->post('selected_contest', true);
@@ -1048,7 +1054,7 @@ class Logbookadvanced extends CI_Controller {
 		if (!$this->contesting_model->check_user_contest($contestId)) {
 			header("Content-Type: application/json");
 			echo json_encode(['success' => false, 'message' => 'Invalid contest']);
-			return;	
+			return;
 		}
 
 		$error_count = 0;
@@ -1059,7 +1065,7 @@ class Logbookadvanced extends CI_Controller {
 				$error_count += 1;
 				continue;
 			}
-			
+
 			// Update Contest
 			$this->contesting_model->link_qso($qsoID, $contestId);
 
@@ -1093,7 +1099,7 @@ class Logbookadvanced extends CI_Controller {
 	public function detachContestQsos() {
 
 		$this->load->model('contesting_model');
-		$this->load->model('logbook_model');  
+		$this->load->model('logbook_model');
 
 		$qsoIds = $this->input->post('qsoIds', true);
 
@@ -1124,7 +1130,7 @@ class Logbookadvanced extends CI_Controller {
 
 			// Update QSO
 			$this->logbook_model->set_contest($qsoID, 0);
-			
+
 		}
 
 		if ($error_count > 0) {
@@ -1136,7 +1142,7 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		echo json_encode(['success' => true]);
-		return;	
+		return;
 
 	}
 }

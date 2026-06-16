@@ -1657,7 +1657,7 @@ $(document).ready(function () {
 									});
 								}
 							});
-							
+
 						}
 					},
 					{
@@ -1770,7 +1770,7 @@ $(document).ready(function () {
 									});
 								}
 							});
-							
+
 						}
 					},
 					{
@@ -2051,6 +2051,72 @@ $(document).ready(function () {
 					}],
 					onhide: function(dialogRef){
 						$('#printLabel').prop("disabled", false);
+					},
+				});
+			}
+		});
+	});
+
+	$('#printQslCard').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_qslcard_print,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+		$('#printQslCard').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/printQslForm',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: '<i class="fas fa-print me-2"></i>'+lang_gen_advanced_logbook_qslcard_print_option,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'qso-dialog',
+					nl2br: false,
+					message: html,
+					onshown: function(dialog) {
+						// Inject the selected QSO ids into the form so the postcard
+						// PDF endpoint (qslpostcard/pdfselected) receives them. The
+						// form owns the action button: it picks the chosen template
+						// and POSTs the ids to render the PDF download.
+						var $ids = $('#qslcard_selected_ids');
+						if ($ids.length) {
+							$ids.empty();
+							$.each(id_list, function (i, id) {
+								$('<input>').attr({ type: 'hidden', name: 'selected_ids[]' }).val(id).appendTo($ids);
+							});
+						}
+						$('#btnPrintQslCard').off('click').on('click', function () {
+							var tplId = $('#qslcard_template_id').val();
+							if (!tplId) {
+								return;
+							}
+							var $form = $('#printQslCardForm');
+							$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
+							$form[0].submit();
+							dialog.close();
+						});
+					},
+					buttons: [{
+						label: lang_admin_close,
+						cssClass: 'btn btn-secondary btn-sm',
+						action: function (dialogItself) {
+							$('#printQslCard').prop("disabled", false);
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						$('#printQslCard').prop("disabled", false);
 					},
 				});
 			}
