@@ -139,10 +139,14 @@ class Worker {
 	 * The Go worker verifies this locally — no PHP callback needed.
 	 * Returns empty string if the worker secret is not configured.
 	 *
-	 * @param int $contest_session_id
-	 * @param int $ttl_seconds  Default 24h
+	 * The token is bound to a single topic. The worker compares the topic claim
+	 * against the topic the browser tries to subscribe to, so a token for one
+	 * topic cannot be used to join another.
+	 *
+	 * @param string $topic        e.g. "contest_session.42" or "radio.5"
+	 * @param int    $ttl_seconds  Default 24h
 	 */
-	public function create_token(int $contest_session_id, int $ttl_seconds = 86400): string {
+	public function create_token(string $topic, int $ttl_seconds = 86400): string {
 		if ($this->secret === '') {
 			return '';
 		}
@@ -151,40 +155,14 @@ class Worker {
 		$user_id = intval($CI->session->userdata('source_uid') ?: $CI->session->userdata('user_id'));
 
 		$claims  = [
-			'user_id'    => $user_id,
-			'session_id' => $contest_session_id,
-			'expires'    => time() + $ttl_seconds,
+			'user_id' => $user_id,
+			'topic'   => $topic,
+			'expires' => time() + $ttl_seconds,
 		];
 
 		$encoded = bin2hex(json_encode($claims));
 		$sig     = hash_hmac('sha256', $encoded, $this->secret);
 		return $encoded . '.' . $sig;
-	}
-
-	/**
-	 * Verifies a signed HMAC token. Returns the claims array or null on failure.
-	 */
-	public function verify_token(string $token): ?array {
-		if ($this->secret === '' || $token === '') {
-			return null;
-		}
-
-		$parts = explode('.', $token, 2);
-		if (count($parts) !== 2) {
-			return null;
-		}
-		[$encoded, $sig] = $parts;
-
-		if (!hash_equals(hash_hmac('sha256', $encoded, $this->secret), $sig)) {
-			return null;
-		}
-
-		$claims = json_decode(hex2bin($encoded), true);
-		if (!$claims || ($claims['expires'] ?? 0) < time()) {
-			return null;
-		}
-
-		return $claims;
 	}
 
 	/**
