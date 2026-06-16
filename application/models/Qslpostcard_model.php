@@ -267,8 +267,8 @@ class Qslpostcard_model extends CI_Model {
 
         require_once($fpdfPath);
 
-        $w_mm = 152.4; // 6 in
-        $h_mm = 101.6; // 4 in
+        $w_mm = 139.7; // 5.5 in (standard QSL card size, landscape)
+        $h_mm = 88.9;  // 3.5 in
 
         $pdf = new FPDF('L', 'mm', [$w_mm, $h_mm]);
         $pdf->SetAutoPageBreak(false);

@@ -17,7 +17,7 @@ $qsl_field_groups = [
 $_umb        = $this->session->userdata('user_measurement_base') ?? $this->config->item('measurement_base');
 $_metric     = ($_umb === 'K');
 $_disp_u     = $_metric ? 'cm' : 'in';
-$_card_dims  = $_metric ? '15.24 × 10.16 cm' : '6 × 4 inches';
+$_card_dims  = $_metric ? '13.97 × 8.89 cm' : '5.5 × 3.5 inches';
 $_step_fine  = $_metric ? '0.1'  : '0.01';   // print offsets
 $_step_pos   = $_metric ? '0.1'  : '0.05';   // X / Y position
 $_step_wrap  = $_metric ? '0.25' : '0.1';    // wrap width
@@ -199,11 +199,11 @@ $_step_pitch = $_metric ? '0.1'  : '0.05';   // row pitch
 						<input id="tplRowPitch" type="number" min="0.05" step="<?= $_step_pitch ?>" value="0.3" class="form-control form-control-sm">
 					</div>
 					<div class="mb-2 form-check">
-						<input type="checkbox" class="form-check-input" id="tplPrintBg" checked>
+						<input type="checkbox" class="form-check-input" id="tplPrintBg">
 						<label class="form-check-label small" for="tplPrintBg"><?= __("Print background image (uncheck for pre-printed cards)"); ?></label>
 					</div>
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="tplSkipAddr">
+						<input type="checkbox" class="form-check-input" id="tplSkipAddr" checked>
 						<label class="form-check-label small" for="tplSkipAddr"><?= __("Skip address printing (for printing on regular QSL cards)"); ?></label>
 					</div>
 				</div>
