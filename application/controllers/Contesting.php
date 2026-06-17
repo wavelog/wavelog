@@ -461,6 +461,11 @@ class Contesting extends CI_Controller {
 			redirect('contesting');
 		}
 
+		if (!$this->contesting_model->check_user_contest($decoded_token['contest_session_id'])) {
+			$this->session->set_flashdata('error', __("You are not authorized to access this contest session."));
+			redirect('contesting');
+		}
+
 		// setting up worker if available
 		$worker_topic = 'contest_session.' . $decoded_token['contest_session_id']; // shared topic for all operators in this contest session
 		if ($this->worker_available) {
