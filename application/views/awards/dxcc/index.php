@@ -3,9 +3,9 @@
 </script>
 <style>
     #dxccmap {
-	height: calc(100vh - 300px) !important;
-	max-height: 900px !important;
-}
+		height: calc(100vh - 300px) !important;
+		max-height: 900px !important;
+	}
 
     .dropdown-filters-responsive {
         width: 800px;
@@ -18,9 +18,8 @@
         }
     }
 </style>
-<div class="container">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 	<!-- Award Info Box -->
-	<br>
 	<div id="awardInfoButton">
 		<script>
 		var lang_awards_info_button = "<?= __("Award Info"); ?>";
@@ -35,7 +34,11 @@
 		<button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
 	</div>
 	<!-- End of Award Info Box -->
-
+<div class="card">
+		<div class="card-header">
+			<?= __("View progress of worked / confirmed DXCCs"); ?>
+		</div>
+		<div class="card-body">
     <form class="form" action="<?php echo site_url('awards/dxcc'); ?>" method="post" enctype="multipart/form-data">
 		<div class="mb-4 text-center">
 				<div class="dropdown" data-bs-auto-close="outside">
@@ -196,7 +199,7 @@
 					</select>
 					</div>
 				<?php } else { ?>
-					<input id="sats" type="hidden" value="All"></input>
+					<input id="sats" type="hidden" value="All">
 				<?php } ?>
 				</div>
 			<div id="orbitrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
@@ -237,6 +240,8 @@
 				</div>
 			</div>
 		</div>
+		</div>
+		</div>
     </form>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -259,18 +264,13 @@
 
     </div>
 
-	<div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
     <?php
     $i = 1;
     if ($dxcc_array) {
-    	// Progress summary
+		echo '<div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">';
+		// Progress summary
     	// Calculate total DXCC entities from the actual array (respects include deleted filter)
 		$total_dxcc_entities = count($dxcc_array); ?>
-
-		<div class="card mb-3">
-		<div class="card-header" data-bs-toggle="collapse" data-bs-target="#awardProgressCollapse" style="cursor: pointer;"><h5 class="mb-0"><i class="fas fa-trophy"></i> <?= __("Award Progress") ?> </h5></div>
-		<div id="awardProgressCollapse" class="collapse show"><div class="card-body">
-		<p class="mb-2"><?= __("Progress towards working all DXCC entities:") ?> </p>
 
 		<ul class="nav nav-tabs" id="progressTabs" role="tablist">
 			<li class="nav-item">
@@ -429,16 +429,13 @@
 		</div>
 
 		</div>
-		</div>
-		</div>
-		</div>
-        </div>
 
         <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
 
     <?php }
     $i = 1;
     if ($dxcc_array) {
+		echo '<div class="text-center">';
 		echo __('Legend:');
 		echo '<pre>'.__("(Q)SL-Paper-Card").", ";
 		echo __("(L)oTW").", ";
@@ -446,7 +443,7 @@
 		echo __('QR(Z)-"confirmation"').", ";
 		echo __("(C)lublog").", ";
 		echo __("(W)orked").'</pre>';
-		echo '
+		echo '</div>
 		<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
 			<tr>
@@ -476,7 +473,7 @@
 			}
 			echo '</tr>';
 		}
-		echo '</table>
+		echo '</tbody></table>
 			<h2>' . __("Summary") . '</h2>
 
 			<table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
@@ -551,6 +548,7 @@
 	}
 
 	echo '</tr>
+	</tbody>
 	</table>
 	</div>';
 
@@ -560,4 +558,5 @@
     ?>
                 </div>
         </div>
+</div>
 </div>
