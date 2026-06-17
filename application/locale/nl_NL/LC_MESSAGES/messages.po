@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-16 11:01+0000\n"
-"PO-Revision-Date: 2026-06-05 20:28+0000\n"
+"PO-Revision-Date: 2026-06-18 04:37+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -959,7 +959,7 @@ msgstr "Clublog QSL Import"
 
 #: application/controllers/Contest_admin.php:43
 msgid "Contests Administration"
-msgstr ""
+msgstr "Contest administratie"
 
 #: application/controllers/Contest_admin.php:57
 msgid "Update Contest"
@@ -978,17 +978,17 @@ msgstr "Wedstrijd kalender niet bereikbaar. Probeer het later opnieuw"
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "Contest beheer"
 
 #: application/controllers/Contesting.php:93
 #: application/controllers/Contesting.php:606
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "Officials moeten contesten opzetten."
 
 #: application/controllers/Contesting.php:110
 #, php-format
 msgid "Quickstart Session: %s"
-msgstr ""
+msgstr "Snelstartsessie: %s"
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
@@ -996,74 +996,80 @@ msgstr ""
 #: application/controllers/Contesting.php:648
 #: application/controllers/Contesting.php:704
 msgid "Contest session not found."
-msgstr ""
+msgstr "Contest-sessie niet gevonden."
 
 #: application/controllers/Contesting.php:139
 #, php-format
 msgid "CBR Export: %s"
-msgstr ""
+msgstr "CBR Export: %s"
 
 #: application/controllers/Contesting.php:174
 #, php-format
 msgid "Export: %s"
-msgstr ""
+msgstr "Exporteren: %s"
 
 #: application/controllers/Contesting.php:453
 msgid "Invalid logging token."
-msgstr ""
+msgstr "Ongeldig inlogtoken."
 
 #: application/controllers/Contesting.php:623
 msgid "Contest session created successfully."
-msgstr ""
+msgstr "Contest-sessie succesvol aangemaakt."
 
 #: application/controllers/Contesting.php:625
 msgid "There was an error creating the contest session. Please try again."
 msgstr ""
+"Er is een fout opgetreden bij het maken van de contest-sessie. Probeer het "
+"opnieuw."
 
 #: application/controllers/Contesting.php:631
 #: application/controllers/Contesting.php:687
 #: application/controllers/Contesting.php:730
 msgid "Invalid request method."
-msgstr ""
+msgstr "Ongeldige verzoekmethode."
 
 #: application/controllers/Contesting.php:679
 msgid "Contest session updated successfully."
-msgstr ""
+msgstr "Contest-sessie succesvol bijgewerkt."
 
 #: application/controllers/Contesting.php:681
 msgid "There was an error updating the contest session. Please try again."
 msgstr ""
+"Er is een fout opgetreden bij het bijwerken van de contest-sessie. Probeer "
+"het opnieuw."
 
 #: application/controllers/Contesting.php:722
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "Contest-sessie succesvol verwijderd."
 
 #: application/controllers/Contesting.php:724
 msgid "There was an error deleting the contest session. Please try again."
 msgstr ""
+"Er is een fout opgetreden bij het verwijderen van de contest-sessie. Probeer "
+"het opnieuw."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
-msgstr ""
+msgstr "Deze functie is uitgeschakeld."
 
 #: application/controllers/Contesting_import.php:37
 #: application/controllers/Contesting_import.php:105
 msgid "No historical contests found that could be imported."
-msgstr ""
+msgstr "Geen historische contesten gevonden die geïmporteerd kunnen worden."
 
 #: application/controllers/Contesting_import.php:41
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "Importeer historische contesten"
 
 #: application/controllers/Contesting_import.php:84
 #: application/controllers/Contesting_import.php:153
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d sessie(s) gemaakt, %d QSO('s) gekoppeld."
 
 #: application/controllers/Contesting_import.php:109
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "Importeer historische contesten (Alle gebruikers)"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:139
@@ -1353,7 +1359,7 @@ msgstr "Kon niet eQSL-afbeelding downloaden"
 
 #: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "Niet genoeg vrije schijfruimte om de eQSL-kaart op te slaan"
 
 #: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
@@ -2734,88 +2740,92 @@ msgstr "QSL-kaarten uploaden"
 
 #: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "Niet genoeg vrije schijfruimte om de QSL-kaart op te slaan."
 
 #: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
 #: application/controllers/Qslpostcard.php:87
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "Het geüploade bestand is geen geldige afbeelding."
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
 msgstr ""
+"QSL Postcard Designer is niet beschikbaar omdat de configuratieoptie "
+"'userdata' niet is ingesteld. Je configuratie is verouderd."
 
 #: application/controllers/Qslpostcard.php:31
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
+"Vergelijk je huidige config.php met de nieuwste config.sample.php en werk "
+"deze dienovereenkomstig bij."
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
 msgid "QSL Postcard Designer"
-msgstr ""
+msgstr "QSL Ansichtkaart Ontwerper"
 
 #: application/controllers/Qslpostcard.php:62
 msgid "Not enough free disk space to store the QSL Background."
-msgstr ""
+msgstr "Niet genoeg vrije schijfruimte om de QSL-achtergrond op te slaan."
 
 #: application/controllers/Qslpostcard.php:184
 #: application/controllers/Qslpostcard.php:245
 #: application/controllers/Qslpostcard.php:308
 msgid "Template not found"
-msgstr ""
+msgstr "Sjabloon niet gevonden"
 
 #: application/controllers/Qslpostcard.php:190
 #: application/controllers/Qslpostcard.php:251
 #: application/controllers/Qslpostcard.php:314
 msgid "Template JSON is invalid"
-msgstr ""
+msgstr "Sjabloon JSON is ongeldig"
 
 #: application/controllers/Qslpostcard.php:205
 msgid "No QSOs returned by get_sample_qsos()"
-msgstr ""
+msgstr "Geen QSOs geretourneerd door get_sample_qsos()"
 
 #: application/controllers/Qslpostcard.php:215
 msgid "PDF file was not created"
-msgstr ""
+msgstr "PDF-bestand werd niet aangemaakt"
 
 #: application/controllers/Qslpostcard.php:228
 msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgstr "QSL-ansichtkaart PDF mislukt: "
 
 #: application/controllers/Qslpostcard.php:233
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "QSL-kaarten afdrukken"
 
 #: application/controllers/Qslpostcard.php:264
 #: application/controllers/Qslpostcard.php:327
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "Geen QSOs gevonden voor het afdrukken van ansichtkaarten"
 
 #: application/controllers/Qslpostcard.php:283
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
+msgstr "QSL-ansichtkaartwachtrij PDF mislukt: "
 
 #: application/controllers/Qslpostcard.php:291
 msgid "No QSOs were selected"
-msgstr ""
+msgstr "Er zijn geen QSOs geselecteerd"
 
 #: application/controllers/Qslpostcard.php:295
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "Geselecteerde QSL-kaarten afdrukken"
 
 #: application/controllers/Qslpostcard.php:320
 msgid "No selected QSO IDs were provided"
-msgstr ""
+msgstr "Er zijn geen geselecteerde QSO-ID's opgegeven"
 
 #: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "Geselecteerde QSL-ansichtkaart PDF mislukt: "
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -3964,6 +3974,8 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
+"Geïmporteerd uit logboek\n"
+"(ADIF: %s, Jaar: %d) [Origineel: %s]"
 
 #: application/models/Contesting_import_model.php:147
 #, php-format
@@ -3971,14 +3983,17 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
+"Geïmporteerd uit logboek\n"
+"(ADIF: %s, Jaar: %d)"
 
 #: application/models/Contesting_model.php:154
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "Officials moeten contesten bewerken."
 
 #: application/models/Contesting_model.php:188
+#, fuzzy
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "Alleen clubstationfunctionarissen kunnen verwijderen."
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -9642,11 +9657,11 @@ msgstr "Exporteer eigen QSO per ADIF"
 
 #: application/views/club/permissions.php:147
 msgid "Start or Create a Contest"
-msgstr ""
+msgstr "Start of maak een contest"
 
 #: application/views/club/permissions.php:153
 msgid "Edit a Contest"
-msgstr ""
+msgstr "Een contest bewerken"
 
 #: application/views/club/permissions.php:163
 msgid "User Management"
@@ -10074,6 +10089,8 @@ msgid ""
 "Using the contest list, you can control which Contests are shown in the "
 "contest management."
 msgstr ""
+"Met de contestlijst kun je bepalen welke Contests worden getoond in het "
+"contest beheer."
 
 #: application/views/contest_admin/add.php:19
 msgid ""
@@ -10091,7 +10108,7 @@ msgstr "Voeg een contest toe"
 
 #: application/views/contest_admin/add.php:24
 msgid "Please provide contest name and ADIF name."
-msgstr ""
+msgstr "Geef a.u.b. de naam van de contest en de ADIF-naam op."
 
 #: application/views/contest_admin/add.php:35
 #: application/views/contest_admin/create.php:30
@@ -10217,94 +10234,94 @@ msgstr "Volgende week"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr ""
+msgstr "QSO Logger"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
-msgstr ""
+msgstr "DXCC zoeken..."
 
 #: application/views/contesting/logger/components/qso-form.php:26
 msgid "DXCC Lookup failed"
-msgstr ""
+msgstr "DXCC-opzoeken mislukt"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr ""
+msgstr "DXCC: niet gevonden"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
 msgid "Already worked on %s"
-msgstr ""
+msgstr "Al gewerkt op %s"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr ""
+msgstr "Radiocomponent niet beschikbaar. Kan QSO niet opslaan."
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
-msgstr ""
+msgstr "Frequentie of modus niet ingesteld. Controleer de radio-instellingen."
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
-msgstr ""
+msgstr "Nieuw"
 
 #: application/views/contesting/logger/components/qso-form.php:33
 msgid "Synced"
-msgstr ""
+msgstr "Gesynchroniseerd"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "Delete this QSO?"
-msgstr ""
+msgstr "Deze QSO verwijderen?"
 
 #: application/views/contesting/logger/components/qso-form.php:41
 msgid "You can only edit your own QSOs"
-msgstr ""
+msgstr "Je kunt alleen je eigen QSO's bewerken"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
+msgstr "Verwijderen van QSO mislukt:"
 
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "Ongeldig roepnaam"
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
+msgstr "Opzoeken in callbook mislukt"
 
 #: application/views/contesting/logger/components/qso-form.php:85
 msgid "RST S"
-msgstr ""
+msgstr "RST S"
 
 #: application/views/contesting/logger/components/qso-form.php:89
 msgid "RST R"
-msgstr ""
+msgstr "RST R"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:150
 msgid "Nr. S"
-msgstr ""
+msgstr "Nr. S"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:151
 msgid "Nr. R"
-msgstr ""
+msgstr "Nr. R"
 
 #: application/views/contesting/logger/components/qso-form.php:105
 msgid "Grid S"
-msgstr ""
+msgstr "Locatorvak S"
 
 #: application/views/contesting/logger/components/qso-form.php:109
 msgid "Grid R"
-msgstr ""
+msgstr "Locatorvak R"
 
 #: application/views/contesting/logger/components/qso-form.php:115
 msgid "Exch S"
-msgstr ""
+msgstr "Uitwiss S"
 
 #: application/views/contesting/logger/components/qso-form.php:119
 msgid "Exch R"
-msgstr ""
+msgstr "Exch R"
 
 #: application/views/contesting/logger/components/qso-form.php:137
 #: application/views/dashboard/index.php:328
@@ -10314,24 +10331,24 @@ msgstr "Recente QSO's"
 
 #: application/views/contesting/logger/components/qso-form.php:149
 msgid "RST"
-msgstr ""
+msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Exch"
-msgstr ""
+msgstr "Exch"
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
-msgstr ""
+msgstr "Geen radiogegevens beschikbaar"
 
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr ""
+msgstr "Radiogegevens zijn %s minuten oud"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
-msgstr ""
+msgstr "Radio verbonden"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
@@ -12811,7 +12828,7 @@ msgstr "Portugees"
 
 #: application/views/debug/index.php:933
 msgid "Romanian"
-msgstr ""
+msgstr "Roemeens"
 
 #: application/views/debug/index.php:934
 msgid "Russian"
