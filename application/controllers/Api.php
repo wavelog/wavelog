@@ -511,6 +511,9 @@ class API extends CI_Controller {
 			return;
 		}
 
+		$identifier = isset($obj['key']) ? $obj['key'] : null;
+		$this->check_rate_limit('get_contacts_adif', $identifier);
+
 		//do authorization
 		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
 		   http_response_code(401);
