@@ -454,6 +454,18 @@ class Contesting extends CI_Controller {
 			redirect('contesting');
 		}
 
+		// Security Check: Ensure the user is authorized for this contest session
+		$source_uid = $this->session->userdata('source_uid') ?: $this->session->userdata('user_id');
+		if ($decoded_token['user_id'] != $source_uid) {
+			$this->session->set_flashdata('error', __("You are not authorized to access this contest session."));
+			redirect('contesting');
+		}
+
+		if (!$this->contesting_model->check_user_contest($decoded_token['contest_session_id'])) {
+			$this->session->set_flashdata('error', __("You are not authorized to access this contest session."));
+			redirect('contesting');
+		}
+
 		// setting up worker if available
 		$worker_topic = 'contest_session.' . $decoded_token['contest_session_id']; // shared topic for all operators in this contest session
 		if ($this->worker_available) {
@@ -941,12 +953,23 @@ class Contesting extends CI_Controller {
 				throw new Exception('Invalid JSON payload');
 			}
 
-			$session_info = $payload['session_info'] ?? null;
-			if (!$session_info) {
+			$session_id = (int)($payload['session_info']['contest_session_id'] ?? 0);
+			if (!$session_id) {
 				throw new Exception('Missing contest_session_id');
 			}
-				
+
 			$this->load->model('contesting_model');
+
+			if (!$this->contesting_model->check_user_contest($session_id)) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'Access denied']);
+				return;
+			}
+
+			$session_info = $this->contesting_model->get_session_info($session_id);
+			if (!$session_info) {
+				throw new Exception('Contest session not found');
+			}
 
 			$response = [
 				'success' => true,
@@ -1040,7 +1063,7 @@ class Contesting extends CI_Controller {
 					'continent' => $command['data']['continent'] ?? NULL,
 					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,
 					'cqz' => $command['data']['cqz'] ?? NULL,
-					'operator_callsign' => $command['data']['operator'] ?: $this->session->userdata('user_callsign'),
+					'operator_callsign' => strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign'))),
 					'contestname' => $session_info['contest_adifname'],
 					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange',
 					'copyexchangeto' => $session_info['copyexchangeto'] ?? NULL
