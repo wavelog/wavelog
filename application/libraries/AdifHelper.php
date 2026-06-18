@@ -242,6 +242,8 @@ class AdifHelper {
 
 		$line .= $this->getAdifFieldLine("MY_SIG", $qso->station_sig);
 		$line .= $this->getAdifFieldLine("MY_SIG_INFO", $qso->station_sig_info);
+		$line .= $this->getAdifFieldLine("MY_RIG", $qso->{'COL_MY_RIG'} ?? '');
+		$line .= $this->getAdifFieldLine("MY_RIG_INTL", $qso->{'COL_MY_RIG_INTL'} ?? '');
 
 		$line .= $this->getAdifFieldLine("SIG", $qso->{'COL_SIG'});
 		$line .= $this->getAdifFieldLine("SIG_INFO", $qso->{'COL_SIG_INFO'});
@@ -255,7 +257,6 @@ class AdifHelper {
 	    MY_LON
 	    MY_NAME
 	    MY_POSTAL_CODE
-	    MY_RIG
 	    MY_STREET
 	    MY_USACA_COUNTIES
 	 */
