@@ -19,7 +19,8 @@ class Activators extends CI_Controller
     {
         $data['page_title'] = __("Gridsquare Activators");
         $map_custom_colors = json_decode($this->optionslib->get_map_custom());
-        $data['grid_color'] = $map_custom_colors->qsoconfirm->color;
+        list($r, $g, $b) = sscanf($map_custom_colors->qsoconfirm->color, "#%02x%02x%02x");
+        $data['grid_color'] = "rgba(".$r.", ".$g.", ".$b.", 0.6)";
 
         $this->load->model('Activators_model');
 
