@@ -345,37 +345,39 @@ msgstr "Importer / Exporter ADIF"
 msgid "ADIF Import"
 msgstr "Importer ADIF"
 
-#: application/controllers/Adif.php:347
+#: application/controllers/Adif.php:347 application/controllers/Adif.php:359
 msgid "Unsupported Filetype"
 msgstr "Type de fichier non pris en charge"
 
 #: application/controllers/Adif.php:428
 #: application/views/adif/import_failed.php:12
+#: application/controllers/Adif.php:440
 msgid "ADIF Import failed!"
 msgstr "Échec de l'import ADIF !"
 
-#: application/controllers/Adif.php:442
+#: application/controllers/Adif.php:442 application/controllers/Adif.php:454
 msgid "Station Profile not valid for User"
 msgstr "Profil de station non valide pour l'utilisateur"
 
 #: application/controllers/Adif.php:452
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:464
 msgid "ADIF Imported"
 msgstr "ADIF importé"
 
-#: application/controllers/Adif.php:466
+#: application/controllers/Adif.php:466 application/controllers/Adif.php:478
 msgid "DCL Import"
 msgstr "Import DCL"
 
-#: application/controllers/Adif.php:527
+#: application/controllers/Adif.php:527 application/controllers/Adif.php:539
 msgid "DCL Data Imported"
 msgstr "Données DCL importées"
 
-#: application/controllers/Adif.php:541
+#: application/controllers/Adif.php:541 application/controllers/Adif.php:553
 msgid "POTA Import"
 msgstr "Importation des POTA"
 
-#: application/controllers/Adif.php:601
+#: application/controllers/Adif.php:601 application/controllers/Adif.php:613
 msgid "POTA Data Imported"
 msgstr "Données des POTA importées"
 
@@ -3767,8 +3769,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
-"php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
+"config.php !"
 
 #: application/controllers/User.php:1737
 msgid "Invalid Hash"
@@ -5997,8 +5999,8 @@ msgid ""
 "the screenshots to your application email."
 msgstr ""
 "Pour ajouter des captures d'écran de confirmation LoTW, cliquez sur "
-"l'indicatif d'appel dans le tableau des activations ci-dessus. Cliquez sur « "
-"Soumettre » sur la page LoTW et effectuez une capture d'écran. Joignez les "
+"l'indicatif d'appel dans le tableau des activations ci-dessus. Cliquez sur "
+"« Soumettre » sur la page LoTW et effectuez une capture d'écran. Joignez les "
 "captures d'écran à votre courriel de candidature."
 
 #: application/views/awards/amsat_rover/index.php:279
@@ -13335,8 +13337,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
-"cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -17034,8 +17036,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Le nom d'hôte du serveur de messagerie, par exemple « mail.example."
-"com » (sans « ssl:// » ou « tls:// »)"
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
+"(sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:54
 msgid "SMTP Port"
@@ -19304,8 +19306,8 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 "
-"»), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"données principales incluent la bande (ou QRG en MHz, par exemple "
+"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
 "correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
