@@ -18,8 +18,12 @@ class Activators extends CI_Controller
     public function index()
     {
         $data['page_title'] = __("Gridsquare Activators");
+        $validHex = function($color, $default) {
+            return preg_match('/^#[0-9a-fA-F]{6}$/', $color ?? '') ? $color : $default;
+        };
         $map_custom_colors = json_decode($this->optionslib->get_map_custom());
-        list($r, $g, $b) = sscanf($map_custom_colors->qsoconfirm->color, "#%02x%02x%02x");
+        $color_confirmed = $map_custom_colors->qsoconfirm->color;
+        list($r, $g, $b) = sscanf($validHex($color_confirmed ?? '', '#90EE90'), "#%02x%02x%02x");
         $data['grid_color'] = "rgba(".$r.", ".$g.", ".$b.", 0.6)";
 
         $this->load->model('Activators_model');
