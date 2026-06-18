@@ -1,5 +1,6 @@
 <script>
 	let lang_activators_map = "<?= __("Activators Map"); ?>";
+	let grid_color = "<?= $grid_color; ?>";
 </script>
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 	<h2><?= __("Gridsquare Activators"); ?></h2>
