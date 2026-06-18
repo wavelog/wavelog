@@ -559,6 +559,13 @@ msgstr "et"
 #: application/views/awards/wac/index.php:51
 #: application/views/awards/wae/index.php:119
 #: application/views/awards/wpx/index.php:81
+#: application/views/awards/cq/index.php:140
+#: application/views/awards/dxcc/index.php:25
+#: application/views/awards/dxcc/index.php:183
+#: application/views/awards/itu/index.php:142
+#: application/views/awards/wac/index.php:56
+#: application/views/awards/wae/index.php:130
+#: application/views/awards/wpx/index.php:85
 msgid "Every band (w/o SAT)"
 msgstr "Toutes les bandes (sans SAT)"
 
@@ -751,12 +758,14 @@ msgstr "WAIP"
 
 #: application/controllers/Awards.php:2299
 #: application/views/awards/itu/index.php:34
+#: application/views/awards/itu/index.php:27
 msgid "ITU Zones"
 msgstr "Zones ITU"
 
 #: application/controllers/Awards.php:2429
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:205
+#: application/views/awards/wac/index.php:7
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
@@ -968,6 +977,12 @@ msgstr "Aucun utilisateur n'a configuré Clublog."
 #: application/views/view_log/partial/log_ajax.php:165
 #: application/views/view_log/qso.php:524
 #: application/views/view_log/qso.php:529
+#: application/views/awards/cq/index.php:131
+#: application/views/awards/dxcc/index.php:140
+#: application/views/awards/itu/index.php:133
+#: application/views/awards/wac/index.php:47
+#: application/views/awards/wae/index.php:121
+#: application/views/awards/wpx/index.php:48
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1104,6 +1119,8 @@ msgstr "Importer les concours historiques (Tous les utilisateurs)"
 #: application/views/awards/iota/index.php:86
 #: application/views/awards/wpx/index.php:51
 #: application/views/interface_assets/header.php:181
+#: application/views/awards/dxcc/index.php:146
+#: application/views/awards/wpx/index.php:55
 msgid "Continents"
 msgstr "Continents"
 
@@ -1708,6 +1725,10 @@ msgstr "Journal de trafic"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:115
 #: application/views/timeline/index.php:62 application/views/user/edit.php:674
 #: application/views/user/edit.php:904 application/views/visitor/mini.php:187
+#: application/views/awards/dxcc/index.php:124
+#: application/views/awards/vucc/band.php:20
+#: application/views/awards/wae/index.php:105
+#: application/views/awards/wpx/index.php:32
 msgid "QSL"
 msgstr "QSL"
 
@@ -1752,6 +1773,13 @@ msgstr "QSL"
 #: application/views/user/edit.php:914 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/awards/cq/index.php:119
+#: application/views/awards/dxcc/index.php:128
+#: application/views/awards/itu/index.php:121
+#: application/views/awards/vucc/band.php:21
+#: application/views/awards/wac/index.php:35
+#: application/views/awards/wae/index.php:109
+#: application/views/awards/wpx/index.php:36
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1789,6 +1817,12 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:70 application/views/user/edit.php:676
 #: application/views/user/edit.php:922 application/views/user/edit.php:996
+#: application/views/awards/cq/index.php:123
+#: application/views/awards/dxcc/index.php:132
+#: application/views/awards/itu/index.php:125
+#: application/views/awards/wac/index.php:39
+#: application/views/awards/wae/index.php:113
+#: application/views/awards/wpx/index.php:40
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1901,6 +1935,14 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/awards/cq/index.php:150
+#: application/views/awards/dxcc/index.php:225
+#: application/views/awards/itu/index.php:152
+#: application/views/awards/sig/qso_list.php:16
+#: application/views/awards/wac/index.php:100
+#: application/views/awards/wae/index.php:172
+#: application/views/awards/wpx/index.php:126
+#: application/views/awards/wpx/index.php:128
 msgid "Mode"
 msgstr "Mode"
 
@@ -1928,6 +1970,7 @@ msgstr "Mode"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/views/awards/wwff/index.php:42
 msgid "RST (S)"
 msgstr "RST (E)"
 
@@ -1956,6 +1999,7 @@ msgstr "RST (E)"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/views/awards/wwff/index.php:43
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -2089,6 +2133,7 @@ msgstr "Etat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
+#: application/views/awards/vucc/band.php:17
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -2222,6 +2267,16 @@ msgstr "Distance"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/activators/index.php:17
+#: application/views/awards/cq/index.php:137
+#: application/views/awards/dxcc/index.php:180
+#: application/views/awards/dxcc/index.php:284
+#: application/views/awards/itu/index.php:139
+#: application/views/awards/sig/qso_list.php:17
+#: application/views/awards/vucc/index.php:26
+#: application/views/awards/wac/index.php:53
+#: application/views/awards/wae/index.php:127
+#: application/views/awards/wpx/index.php:83
+#: application/views/awards/wwff/index.php:41
 msgid "Band"
 msgstr "Bande"
 
@@ -2306,6 +2361,9 @@ msgstr "Opérateur"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
+#: application/views/awards/dxcc/index.php:91
+#: application/views/awards/dxcc/index.php:458
+#: application/views/awards/wae/index.php:231
 msgid "Deleted DXCC"
 msgstr "DXCC Supprimé"
 
@@ -4502,6 +4560,20 @@ msgstr "Différence"
 #: application/views/user/edit.php:888
 #: application/views/visitor/layout/footer.php:168
 #: application/views/activators/index.php:20
+#: application/views/awards/cq/index.php:153
+#: application/views/awards/dxcc/index.php:197
+#: application/views/awards/dxcc/index.php:213
+#: application/views/awards/dxcc/index.php:228
+#: application/views/awards/itu/index.php:155
+#: application/views/awards/wac/index.php:71
+#: application/views/awards/wac/index.php:87
+#: application/views/awards/wac/index.php:103
+#: application/views/awards/wae/index.php:144
+#: application/views/awards/wae/index.php:160
+#: application/views/awards/wae/index.php:175
+#: application/views/awards/wpx/index.php:97
+#: application/views/awards/wpx/index.php:111
+#: application/views/awards/wpx/index.php:130
 msgid "All"
 msgstr "Tout"
 
@@ -4605,6 +4677,12 @@ msgstr "Rien/Vide"
 #: application/views/timeline/index.php:399
 #: application/views/timeplotter/index.php:75
 #: application/views/activators/index.php:59
+#: application/views/awards/cq/index.php:51
+#: application/views/awards/dxcc/index.php:50
+#: application/views/awards/itu/index.php:53
+#: application/views/awards/wac/index.php:124
+#: application/views/awards/wae/index.php:44
+#: application/views/awards/wpx/index.php:18
 msgid "Show"
 msgstr "Afficher"
 
@@ -4645,6 +4723,10 @@ msgstr "Locators activés"
 #: application/views/timeline/index.php:310
 #: application/views/timeline/index.php:346
 #: application/views/timeline/index.php:381
+#: application/views/awards/dxcc/index.php:194
+#: application/views/awards/wac/index.php:68
+#: application/views/awards/wae/index.php:141
+#: application/views/awards/wpx/index.php:95
 msgid "Satellite"
 msgstr "Satellite"
 
@@ -4664,6 +4746,10 @@ msgstr "Satellite"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:64
 #: application/views/statistics/antennaanalytics.php:102
+#: application/views/awards/dxcc/index.php:210
+#: application/views/awards/wac/index.php:84
+#: application/views/awards/wae/index.php:157
+#: application/views/awards/wpx/index.php:109
 msgid "Orbit"
 msgstr "Orbite"
 
@@ -4694,6 +4780,12 @@ msgstr "Confirmation"
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:930
+#: application/views/awards/cq/index.php:127
+#: application/views/awards/dxcc/index.php:136
+#: application/views/awards/itu/index.php:129
+#: application/views/awards/wac/index.php:43
+#: application/views/awards/wae/index.php:117
+#: application/views/awards/wpx/index.php:44
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4768,6 +4860,15 @@ msgstr "Nbre d'activation minimum"
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:149
 #: application/views/activators/index.php:82
+#: application/views/awards/cq/index.php:273
+#: application/views/awards/itu/index.php:275
+#: application/views/awards/sig/index.php:42
+#: application/views/awards/sig/qso_list.php:38
+#: application/views/awards/vucc/band.php:45
+#: application/views/awards/vucc/index.php:43
+#: application/views/awards/wae/index.php:311
+#: application/views/awards/wpx/index.php:233
+#: application/views/awards/wwff/index.php:70
 msgid "Nothing found!"
 msgstr "Rien trouvé !"
 
@@ -4831,6 +4932,8 @@ msgstr "Rien trouvé !"
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
 #: application/views/activators/index.php:105
+#: application/views/awards/sig/qso_list.php:15
+#: application/views/awards/wwff/index.php:40
 msgid "Callsign"
 msgstr "Indicatif"
 
@@ -4947,6 +5050,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:139
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/awards/wwff/index.php:38
 msgid "Date"
 msgstr "Date"
 
@@ -4983,6 +5087,7 @@ msgstr "Date"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:141
 #: application/views/visitor/index.php:154
+#: application/views/awards/wwff/index.php:39
 msgid "Time"
 msgstr "Heure"
 
@@ -5007,6 +5112,7 @@ msgstr "Heure"
 #: application/views/view_log/partial/log_ajax.php:143
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/awards/vucc/band.php:23
 msgid "Call"
 msgstr "Appel"
 
@@ -5785,6 +5891,22 @@ msgstr "Créer une clé de lecture seulement"
 #: application/views/awards/was/index.php:32
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:14
+#: application/views/awards/cq/index.php:24
+#: application/views/awards/cq/index.php:32
+#: application/views/awards/dxcc/index.php:19
+#: application/views/awards/dxcc/index.php:28
+#: application/views/awards/itu/index.php:26
+#: application/views/awards/itu/index.php:34
+#: application/views/awards/sig/index.php:5
+#: application/views/awards/sig/index.php:12
+#: application/views/awards/vucc/index.php:5
+#: application/views/awards/vucc/index.php:13
+#: application/views/awards/wac/index.php:6
+#: application/views/awards/wac/index.php:14
+#: application/views/awards/wae/index.php:23
+#: application/views/awards/wae/index.php:31
+#: application/views/awards/wwff/index.php:5
+#: application/views/awards/wwff/index.php:13
 msgid "Award Info"
 msgstr "Informations complémentaires"
 
@@ -5807,6 +5929,7 @@ msgstr ""
 #: application/views/awards/wab/index.php:16
 #: application/views/awards/waja/index.php:25
 #: application/views/awards/wwff/index.php:10
+#: application/views/awards/wwff/index.php:9
 #, php-format
 msgid "For more information, please visit: %s."
 msgstr "Pour plus d'informations, consultez le site : %s."
@@ -5873,6 +5996,11 @@ msgstr "Accéder au profil de la station"
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:335
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
+#: application/views/awards/cq/index.php:50
+#: application/views/awards/dxcc/index.php:49
+#: application/views/awards/itu/index.php:52
+#: application/views/awards/wae/index.php:43
+#: application/views/awards/wpx/index.php:17
 msgid "Filters"
 msgstr "Filtres"
 
@@ -6054,6 +6182,7 @@ msgstr "Télécharger le fichier CSV"
 #: application/views/distancerecords/details.php:1
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
+#: application/views/awards/vucc/band.php:3
 msgid "Filtering on"
 msgstr "Filtré sur"
 
@@ -6145,6 +6274,7 @@ msgstr "Comtés Confirmés"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/wpx/index.php:176
 msgid "Total"
 msgstr "Total"
 
@@ -6169,6 +6299,7 @@ msgstr "Total"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
+#: application/views/awards/cq/index.php:205
 msgid "CQ Zone"
 msgstr "Zone CQ"
 
@@ -6178,10 +6309,12 @@ msgid "Hover over a zone"
 msgstr "Survoler une zone"
 
 #: application/views/awards/cq/index.php:32
+#: application/views/awards/cq/index.php:25
 msgid "CQ WAZ (Worked All Zones) Award"
 msgstr "Trophée CQ WAZ (Toutes zones contactées)"
 
 #: application/views/awards/cq/index.php:33
+#: application/views/awards/cq/index.php:26
 msgid ""
 "The CQ Magazine was located in the US and one of the most popular amateur "
 "radio magazines in the world. They stopped service by the end of 2023. The "
@@ -6194,6 +6327,7 @@ msgstr ""
 "récompenses et les aspects pratiques du radioamateurisme."
 
 #: application/views/awards/cq/index.php:34
+#: application/views/awards/cq/index.php:27
 msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
 "all 40 CQ Zones along with the corresponding confirmation. Since the CQ "
@@ -6205,6 +6339,7 @@ msgstr ""
 "plus, les prix CQ WAZ sont désormais gérés directement par N4BAA."
 
 #: application/views/awards/cq/index.php:35
+#: application/views/awards/cq/index.php:28
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
 msgstr ""
@@ -6212,14 +6347,17 @@ msgstr ""
 "N4BAA : %s"
 
 #: application/views/awards/cq/index.php:36
+#: application/views/awards/cq/index.php:29
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
 msgstr "Champs pris en compte pour ce trophée : CQ-Zone (ADIF : CQZ)"
 
 #: application/views/awards/cq/index.php:38
+#: application/views/awards/cq/index.php:31
 msgid "Awards - CQ WAZ"
 msgstr "Trophée - CQ WAZ"
 
 #: application/views/awards/cq/index.php:48
+#: application/views/awards/cq/index.php:53
 msgid "Show CQ Zone Map"
 msgstr "Voir la carte"
 
@@ -6230,6 +6368,10 @@ msgstr "Voir la carte"
 #: application/views/gridmap/index.php:44
 #: application/views/logbookadvanced/index.php:341
 #: application/views/statistics/index.php:59
+#: application/views/awards/cq/index.php:60
+#: application/views/awards/dxcc/index.php:59
+#: application/views/awards/itu/index.php:62
+#: application/views/awards/wae/index.php:50
 msgid "Date Presets"
 msgstr "Préréglages de date"
 
@@ -6246,6 +6388,10 @@ msgstr "Préréglages de date"
 #: application/views/gridmap/index.php:47
 #: application/views/logbookadvanced/index.php:343
 #: application/views/statistics/index.php:61
+#: application/views/awards/cq/index.php:62
+#: application/views/awards/dxcc/index.php:61
+#: application/views/awards/itu/index.php:64
+#: application/views/awards/wae/index.php:52
 msgid "Today"
 msgstr "Aujourd'hui"
 
@@ -6256,6 +6402,10 @@ msgstr "Aujourd'hui"
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:344
 #: application/views/statistics/index.php:62
+#: application/views/awards/cq/index.php:63
+#: application/views/awards/dxcc/index.php:62
+#: application/views/awards/itu/index.php:65
+#: application/views/awards/wae/index.php:53
 msgid "Yesterday"
 msgstr "Hier"
 
@@ -6266,6 +6416,10 @@ msgstr "Hier"
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:345
 #: application/views/statistics/index.php:63
+#: application/views/awards/cq/index.php:64
+#: application/views/awards/dxcc/index.php:63
+#: application/views/awards/itu/index.php:66
+#: application/views/awards/wae/index.php:54
 msgid "Last 7 Days"
 msgstr "7 derniers jours"
 
@@ -6276,6 +6430,10 @@ msgstr "7 derniers jours"
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:346
 #: application/views/statistics/index.php:64
+#: application/views/awards/cq/index.php:65
+#: application/views/awards/dxcc/index.php:64
+#: application/views/awards/itu/index.php:67
+#: application/views/awards/wae/index.php:55
 msgid "Last 30 Days"
 msgstr "30 derniers jours"
 
@@ -6286,6 +6444,10 @@ msgstr "30 derniers jours"
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:347
 #: application/views/statistics/index.php:65
+#: application/views/awards/cq/index.php:66
+#: application/views/awards/dxcc/index.php:65
+#: application/views/awards/itu/index.php:68
+#: application/views/awards/wae/index.php:56
 msgid "This Month"
 msgstr "Ce mois-ci"
 
@@ -6296,6 +6458,10 @@ msgstr "Ce mois-ci"
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:348
 #: application/views/statistics/index.php:66
+#: application/views/awards/cq/index.php:67
+#: application/views/awards/dxcc/index.php:66
+#: application/views/awards/itu/index.php:69
+#: application/views/awards/wae/index.php:57
 msgid "Last Month"
 msgstr "Mois dernier"
 
@@ -6306,6 +6472,10 @@ msgstr "Mois dernier"
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:349
 #: application/views/statistics/index.php:67
+#: application/views/awards/cq/index.php:68
+#: application/views/awards/dxcc/index.php:67
+#: application/views/awards/itu/index.php:70
+#: application/views/awards/wae/index.php:58
 msgid "This Year"
 msgstr "Cette année"
 
@@ -6315,6 +6485,10 @@ msgstr "Cette année"
 #: application/views/awards/wae/index.php:48
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:68
+#: application/views/awards/cq/index.php:69
+#: application/views/awards/dxcc/index.php:68
+#: application/views/awards/itu/index.php:71
+#: application/views/awards/wae/index.php:59
 msgid "Last Year"
 msgstr "L'année dernière"
 
@@ -6325,7 +6499,10 @@ msgstr "L'année dernière"
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:52
 #: application/views/logbookadvanced/index.php:351
-#: application/views/qso/index.php:752
+#: application/views/qso/index.php:752 application/views/awards/cq/index.php:70
+#: application/views/awards/dxcc/index.php:69
+#: application/views/awards/itu/index.php:72
+#: application/views/awards/wae/index.php:60
 msgid "Clear"
 msgstr "Effacer"
 
@@ -6336,6 +6513,10 @@ msgstr "Effacer"
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
+#: application/views/awards/cq/index.php:75
+#: application/views/awards/dxcc/index.php:74
+#: application/views/awards/itu/index.php:77
+#: application/views/awards/wae/index.php:65
 msgid "Date from"
 msgstr "Dater de"
 
@@ -6346,6 +6527,10 @@ msgstr "Dater de"
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
+#: application/views/awards/cq/index.php:83
+#: application/views/awards/dxcc/index.php:82
+#: application/views/awards/itu/index.php:85
+#: application/views/awards/wae/index.php:73
 msgid "Date to"
 msgstr "Date à"
 
@@ -6364,6 +6549,10 @@ msgstr "Date à"
 #: application/views/interface_assets/footer.php:45
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/awards/cq/index.php:93
+#: application/views/awards/dxcc/index.php:286
+#: application/views/awards/dxcc/index.php:359
+#: application/views/awards/itu/index.php:95
 msgid "Confirmed"
 msgstr "Confirmés"
 
@@ -6377,6 +6566,10 @@ msgstr "Confirmés"
 #: application/views/dashboard/index.php:665
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/awards/cq/index.php:93
+#: application/views/awards/dxcc/index.php:285
+#: application/views/awards/dxcc/index.php:358
+#: application/views/awards/itu/index.php:95
 msgid "Worked"
 msgstr "Réalisés"
 
@@ -6393,6 +6586,10 @@ msgstr "Réalisés"
 #: application/views/awards/wap/index.php:39
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:43
+#: application/views/awards/cq/index.php:97
+#: application/views/awards/dxcc/index.php:106
+#: application/views/awards/itu/index.php:99
+#: application/views/awards/wae/index.php:87
 msgid "Show worked"
 msgstr "Voir les 'réalisés'"
 
@@ -6409,6 +6606,10 @@ msgstr "Voir les 'réalisés'"
 #: application/views/awards/wap/index.php:43
 #: application/views/awards/wapc/index.php:45
 #: application/views/awards/was/index.php:47
+#: application/views/awards/cq/index.php:101
+#: application/views/awards/dxcc/index.php:110
+#: application/views/awards/itu/index.php:103
+#: application/views/awards/wae/index.php:91
 msgid "Show confirmed"
 msgstr "Voir les 'confirmés'"
 
@@ -6424,6 +6625,10 @@ msgstr "Voir les 'confirmés'"
 #: application/views/awards/wap/index.php:47
 #: application/views/awards/wapc/index.php:49
 #: application/views/awards/was/index.php:51
+#: application/views/awards/cq/index.php:105
+#: application/views/awards/dxcc/index.php:114
+#: application/views/awards/itu/index.php:107
+#: application/views/awards/wae/index.php:95
 msgid "Show not worked"
 msgstr "Voir les 'non réalisés'"
 
@@ -6442,6 +6647,12 @@ msgstr "Voir les 'non réalisés'"
 #: application/views/awards/wapc/index.php:55
 #: application/views/awards/was/index.php:57
 #: application/views/awards/wpx/index.php:24
+#: application/views/awards/cq/index.php:111
+#: application/views/awards/dxcc/index.php:120
+#: application/views/awards/itu/index.php:113
+#: application/views/awards/wac/index.php:27
+#: application/views/awards/wae/index.php:101
+#: application/views/awards/wpx/index.php:28
 msgid "Show QSO with QSL Type"
 msgstr "Afficher QSO avec type QSL"
 
@@ -6453,6 +6664,9 @@ msgstr "Afficher QSO avec type QSL"
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
+#: application/views/awards/cq/index.php:115
+#: application/views/awards/itu/index.php:117
+#: application/views/awards/wac/index.php:31
 msgid "QSL Card"
 msgstr "Carte QSL"
 
@@ -6466,6 +6680,9 @@ msgstr "Carte QSL"
 #: application/views/awards/wap/index.php:126
 #: application/views/awards/wapc/index.php:132
 #: application/views/awards/was/index.php:130
+#: application/views/awards/cq/index.php:39
+#: application/views/awards/dxcc/index.php:35
+#: application/views/awards/itu/index.php:41
 msgid "Table"
 msgstr "Table"
 
@@ -6490,6 +6707,9 @@ msgstr "Table"
 #: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:899
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/cq/index.php:42
+#: application/views/awards/dxcc/index.php:38
+#: application/views/awards/itu/index.php:44
 msgid "Map"
 msgstr "Carte"
 
@@ -6498,6 +6718,11 @@ msgstr "Carte"
 #: application/views/awards/itu/index.php:194
 #: application/views/awards/wac/index.php:130
 #: application/views/awards/wae/index.php:189
+#: application/views/awards/cq/index.php:193
+#: application/views/awards/dxcc/index.php:430
+#: application/views/awards/itu/index.php:195
+#: application/views/awards/wac/index.php:134
+#: application/views/awards/wae/index.php:202
 msgid "Legend:"
 msgstr "Légende :"
 
@@ -6506,6 +6731,11 @@ msgstr "Légende :"
 #: application/views/awards/itu/index.php:195
 #: application/views/awards/wac/index.php:131
 #: application/views/awards/wae/index.php:190
+#: application/views/awards/cq/index.php:194
+#: application/views/awards/dxcc/index.php:431
+#: application/views/awards/itu/index.php:196
+#: application/views/awards/wac/index.php:135
+#: application/views/awards/wae/index.php:203
 msgid "(Q)SL-Paper-Card"
 msgstr "(Q)SL - Carte Papier"
 
@@ -6514,6 +6744,11 @@ msgstr "(Q)SL - Carte Papier"
 #: application/views/awards/itu/index.php:196
 #: application/views/awards/wac/index.php:132
 #: application/views/awards/wae/index.php:191
+#: application/views/awards/cq/index.php:195
+#: application/views/awards/dxcc/index.php:432
+#: application/views/awards/itu/index.php:197
+#: application/views/awards/wac/index.php:136
+#: application/views/awards/wae/index.php:204
 msgid "(L)oTW"
 msgstr "(L)oTW"
 
@@ -6522,6 +6757,11 @@ msgstr "(L)oTW"
 #: application/views/awards/itu/index.php:197
 #: application/views/awards/wac/index.php:133
 #: application/views/awards/wae/index.php:192
+#: application/views/awards/cq/index.php:196
+#: application/views/awards/dxcc/index.php:433
+#: application/views/awards/itu/index.php:198
+#: application/views/awards/wac/index.php:137
+#: application/views/awards/wae/index.php:205
 msgid "(e)QSL"
 msgstr "(e)QSL"
 
@@ -6530,6 +6770,11 @@ msgstr "(e)QSL"
 #: application/views/awards/itu/index.php:198
 #: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:193
+#: application/views/awards/cq/index.php:197
+#: application/views/awards/dxcc/index.php:434
+#: application/views/awards/itu/index.php:199
+#: application/views/awards/wac/index.php:138
+#: application/views/awards/wae/index.php:206
 msgid "QR(Z)-\"confirmation\""
 msgstr "QR(Z) - \"confirmation\""
 
@@ -6538,6 +6783,11 @@ msgstr "QR(Z) - \"confirmation\""
 #: application/views/awards/itu/index.php:199
 #: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:194
+#: application/views/awards/cq/index.php:198
+#: application/views/awards/dxcc/index.php:435
+#: application/views/awards/itu/index.php:200
+#: application/views/awards/wac/index.php:139
+#: application/views/awards/wae/index.php:207
 msgid "(C)lublog"
 msgstr "(C)lublog"
 
@@ -6546,6 +6796,11 @@ msgstr "(C)lublog"
 #: application/views/awards/itu/index.php:200
 #: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:195
+#: application/views/awards/cq/index.php:199
+#: application/views/awards/dxcc/index.php:436
+#: application/views/awards/itu/index.php:201
+#: application/views/awards/wac/index.php:140
+#: application/views/awards/wae/index.php:208
 msgid "(W)orked"
 msgstr "(W) Contacté"
 
@@ -6564,6 +6819,12 @@ msgstr "(W) Contacté"
 #: application/views/awards/wapc/index.php:174
 #: application/views/awards/was/index.php:177
 #: application/views/awards/wpx/index.php:158
+#: application/views/awards/cq/index.php:225
+#: application/views/awards/dxcc/index.php:468
+#: application/views/awards/itu/index.php:227
+#: application/views/awards/wac/index.php:168
+#: application/views/awards/wae/index.php:242
+#: application/views/awards/wpx/index.php:162
 msgid "Summary"
 msgstr "Résumé"
 
@@ -6573,6 +6834,12 @@ msgstr "Résumé"
 #: application/views/awards/itu/index.php:239
 #: application/views/awards/wac/index.php:175
 #: application/views/awards/wae/index.php:240
+#: application/views/awards/cq/index.php:238
+#: application/views/awards/dxcc/index.php:336
+#: application/views/awards/dxcc/index.php:481
+#: application/views/awards/itu/index.php:240
+#: application/views/awards/wac/index.php:181
+#: application/views/awards/wae/index.php:255
 msgid "Total (ex SAT)"
 msgstr "Total (hors SAT)"
 
@@ -6591,6 +6858,12 @@ msgstr "Total (hors SAT)"
 #: application/views/awards/wapc/index.php:188
 #: application/views/awards/was/index.php:190
 #: application/views/awards/wpx/index.php:183
+#: application/views/awards/cq/index.php:244
+#: application/views/awards/dxcc/index.php:491
+#: application/views/awards/itu/index.php:246
+#: application/views/awards/wac/index.php:188
+#: application/views/awards/wae/index.php:262
+#: application/views/awards/wpx/index.php:187
 msgid "Total worked"
 msgstr "Total 'réalisés'"
 
@@ -6611,6 +6884,12 @@ msgstr "Total 'réalisés'"
 #: application/views/awards/wapc/index.php:195
 #: application/views/awards/was/index.php:197
 #: application/views/awards/wpx/index.php:204
+#: application/views/awards/cq/index.php:257
+#: application/views/awards/dxcc/index.php:516
+#: application/views/awards/itu/index.php:259
+#: application/views/awards/wac/index.php:208
+#: application/views/awards/wae/index.php:284
+#: application/views/awards/wpx/index.php:208
 msgid "Total confirmed"
 msgstr "Total 'confirmés'"
 
@@ -6683,6 +6962,8 @@ msgstr "DOK + SDOK"
 #: application/views/awards/wap/index.php:35
 #: application/views/awards/wapc/index.php:37
 #: application/views/awards/was/index.php:39
+#: application/views/awards/dxcc/index.php:102
+#: application/views/awards/wae/index.php:83
 msgid "Worked / Confirmed"
 msgstr "Travaillé / Confirmé"
 
@@ -6714,18 +6995,22 @@ msgstr "Chaque bande"
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:796
+#: application/views/awards/wpx/index.php:152
 msgid "Reset"
 msgstr "Réinitialiser"
 
 #: application/views/awards/dxcc/index.php:27
+#: application/views/awards/dxcc/index.php:20
 msgid "DXCC Award"
 msgstr "Récompense DXCC"
 
 #: application/views/awards/dxcc/index.php:28
+#: application/views/awards/dxcc/index.php:21
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
 msgstr "'Comment compter les pays contactés, un nouveau système de score DX'"
 
 #: application/views/awards/dxcc/index.php:28
+#: application/views/awards/dxcc/index.php:21
 #, php-format
 msgid ""
 "DXCC stands for 'DX Century Club,' an award based on worked countries. The "
@@ -6738,17 +7023,22 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:29
 #: application/views/awards/wac/index.php:11
+#: application/views/awards/dxcc/index.php:22
+#: application/views/awards/wac/index.php:10
 msgid "ARRL website"
 msgstr "Site web de l'ARRL"
 
 #: application/views/awards/dxcc/index.php:29
 #: application/views/awards/wac/index.php:11
+#: application/views/awards/dxcc/index.php:22
+#: application/views/awards/wac/index.php:10
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
 msgstr ""
 "Vous pouvez trouver toutes les informations sur le DXCC Award sur le %s."
 
 #: application/views/awards/dxcc/index.php:30
+#: application/views/awards/dxcc/index.php:23
 msgid ""
 "Important Note: Over time, the criteria for the DXCC List have changed. The "
 "List remains unchanged until an entity no longer satisfies the criteria "
@@ -6764,6 +7054,7 @@ msgstr ""
 "DXCC sont obsolètes et ne sont plus valides."
 
 #: application/views/awards/dxcc/index.php:31
+#: application/views/awards/dxcc/index.php:24
 msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
@@ -6772,12 +7063,14 @@ msgstr ""
 "dans la liste DXCC-ADIF-Spec"
 
 #: application/views/awards/dxcc/index.php:45
+#: application/views/awards/dxcc/index.php:52
 msgid "Show DXCC Map"
 msgstr "Afficher la carte DXCC"
 
 #: application/views/awards/dxcc/index.php:88
 #: application/views/awards/iota/index.php:36
 #: application/views/awards/jcc/index.php:80
+#: application/views/awards/dxcc/index.php:95
 msgid "Include deleted"
 msgstr "Inclure supprimé"
 
@@ -6792,6 +7085,8 @@ msgstr "Inclure supprimé"
 #: application/views/options/dxcluster.php:29
 #: application/views/qso/edit_ajax.php:251 application/views/qso/index.php:488
 #: application/views/view_log/qso.php:309
+#: application/views/awards/dxcc/index.php:150
+#: application/views/awards/wpx/index.php:59
 msgid "Antarctica"
 msgstr "Antarctique"
 
@@ -6806,6 +7101,8 @@ msgstr "Antarctique"
 #: application/views/options/dxcluster.php:28
 #: application/views/qso/edit_ajax.php:250 application/views/qso/index.php:487
 #: application/views/view_log/qso.php:306
+#: application/views/awards/dxcc/index.php:154
+#: application/views/awards/wpx/index.php:60
 msgid "Africa"
 msgstr "Afrique"
 
@@ -6820,6 +7117,8 @@ msgstr "Afrique"
 #: application/views/options/dxcluster.php:30
 #: application/views/qso/edit_ajax.php:252 application/views/qso/index.php:489
 #: application/views/view_log/qso.php:312
+#: application/views/awards/dxcc/index.php:158
+#: application/views/awards/wpx/index.php:61
 msgid "Asia"
 msgstr "Asie"
 
@@ -6834,6 +7133,8 @@ msgstr "Asie"
 #: application/views/options/dxcluster.php:31
 #: application/views/qso/edit_ajax.php:253 application/views/qso/index.php:490
 #: application/views/view_log/qso.php:315
+#: application/views/awards/dxcc/index.php:162
+#: application/views/awards/wpx/index.php:62
 msgid "Europe"
 msgstr "Europe"
 
@@ -6848,6 +7149,8 @@ msgstr "Europe"
 #: application/views/options/dxcluster.php:32
 #: application/views/qso/edit_ajax.php:254 application/views/qso/index.php:491
 #: application/views/view_log/qso.php:318
+#: application/views/awards/dxcc/index.php:166
+#: application/views/awards/wpx/index.php:63
 msgid "North America"
 msgstr "Amérique du Nord"
 
@@ -6862,6 +7165,8 @@ msgstr "Amérique du Nord"
 #: application/views/options/dxcluster.php:34
 #: application/views/qso/edit_ajax.php:256 application/views/qso/index.php:493
 #: application/views/view_log/qso.php:324
+#: application/views/awards/dxcc/index.php:170
+#: application/views/awards/wpx/index.php:64
 msgid "South America"
 msgstr "Amérique du Sud"
 
@@ -6876,12 +7181,15 @@ msgstr "Amérique du Sud"
 #: application/views/options/dxcluster.php:33
 #: application/views/qso/edit_ajax.php:255 application/views/qso/index.php:492
 #: application/views/view_log/qso.php:321
+#: application/views/awards/dxcc/index.php:174
+#: application/views/awards/wpx/index.php:65
 msgid "Oceania"
 msgstr "Océanie"
 
 #: application/views/awards/dxcc/index.php:250
 #: application/views/awards/waip/index.php:42
 #: application/views/awards/waip/index.php:64
+#: application/views/awards/dxcc/index.php:41
 msgid "Progress"
 msgstr "progresser"
 
@@ -6899,26 +7207,33 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:277
 #: application/views/awards/waip/index.php:62
 #: application/views/awards/waip/index.php:97
+#: application/views/awards/dxcc/index.php:268
 msgid "By Band"
 msgstr "Par Groupe"
 
 #: application/views/awards/dxcc/index.php:280
+#: application/views/awards/dxcc/index.php:271
 msgid "By Continent"
 msgstr "Par continent"
 
 #: application/views/awards/dxcc/index.php:283
+#: application/views/awards/dxcc/index.php:274
 msgid "By Mode"
 msgstr "Par mode"
 
 #: application/views/awards/dxcc/index.php:296
 #: application/views/awards/dxcc/index.php:369
 #: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/dxcc/index.php:287
+#: application/views/awards/dxcc/index.php:360
 msgid "Worked Progress"
 msgstr "Avancement des travaux"
 
 #: application/views/awards/dxcc/index.php:297
 #: application/views/awards/dxcc/index.php:370
 #: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/dxcc/index.php:288
+#: application/views/awards/dxcc/index.php:361
 msgid "Confirmed Progress"
 msgstr "Progrès confirmés"
 
@@ -6935,24 +7250,30 @@ msgstr "Progrès confirmés"
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:484
 #: application/views/view_log/qso.php:301
+#: application/views/awards/dxcc/index.php:357
+#: application/views/awards/wac/index.php:147
 msgid "Continent"
 msgstr "Continent"
 
 #: application/views/awards/dxcc/index.php:413
+#: application/views/awards/dxcc/index.php:404
 msgid "No continent data available."
 msgstr "Données continentales indisponibles."
 
 #: application/views/awards/dxcc/index.php:422
 #: application/views/contesting/logger/components/scp.php:52
 #: application/views/debug/index.php:144
+#: application/views/awards/dxcc/index.php:413
 msgid "Loading..."
 msgstr "Chargement..."
 
 #: application/views/awards/dxcc/index.php:424
+#: application/views/awards/dxcc/index.php:415
 msgid "Loading progress data..."
 msgstr "Chargement des données de progression..."
 
 #: application/views/awards/dxcc/index.php:454
+#: application/views/awards/dxcc/index.php:442
 msgid "DXCC Name"
 msgstr "Nom DXCC"
 
@@ -6962,14 +7283,18 @@ msgstr "Nom DXCC"
 #: application/views/logbookadvanced/statecheckresult.php:10
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
+#: application/views/awards/dxcc/index.php:443
+#: application/views/awards/wae/index.php:216
 msgid "Prefix"
 msgstr "Préfix"
 
 #: application/views/awards/dxcc/index.php:496
+#: application/views/awards/dxcc/index.php:484
 msgid "Slots"
 msgstr "créneau"
 
 #: application/views/awards/dxcc/index.php:558
+#: application/views/awards/dxcc/index.php:547
 msgid "No results found for your search criteria. Please try again."
 msgstr ""
 "Aucun résultat ne correspond à vos critères de recherche. Veuillez réessayer."
@@ -7288,10 +7613,12 @@ msgstr "Supprimé"
 #: application/views/station_profile/edit.php:169
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:18
+#: application/views/awards/itu/index.php:207
 msgid "ITU Zone"
 msgstr "Zone ITU"
 
 #: application/views/awards/itu/index.php:35
+#: application/views/awards/itu/index.php:28
 msgid ""
 "The Classic Worked ITU Zones award may be claimed by producing evidence of "
 "having contacted land based amateur radio stations in at least 70 of the 75 "
@@ -7304,20 +7631,24 @@ msgstr ""
 "Télécommunications (UIT)."
 
 #: application/views/awards/itu/index.php:36
+#: application/views/awards/itu/index.php:29
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
 msgstr "Vous pouvez trouver plus d'informations sur le site web de %s."
 
 #: application/views/awards/itu/index.php:38
+#: application/views/awards/itu/index.php:31
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
 msgstr "Champs requis pour ce trophée : ITU-Zone (ADIF : ITUZ)"
 
 #: application/views/awards/itu/index.php:40
+#: application/views/awards/itu/index.php:33
 msgid "Awards - ITU Zones"
 msgstr "Récompenses - ITU Zones"
 
 #: application/views/awards/itu/index.php:50
+#: application/views/awards/itu/index.php:55
 msgid "Show ITU Zone Map"
 msgstr "Afficher la carte ITU"
 
@@ -7681,10 +8012,12 @@ msgid "Show RAC Map"
 msgstr "Afficher la carte RAC"
 
 #: application/views/awards/sig/index.php:7
+#: application/views/awards/sig/index.php:6
 msgid "SIG Information"
 msgstr "Informations signal"
 
 #: application/views/awards/sig/index.php:8
+#: application/views/awards/sig/index.php:7
 msgid ""
 "The SIG or Special Interest Group Category provides the possibility to use "
 "any kind of 'Special Interest Group Award' for awards that are not "
@@ -7695,6 +8028,7 @@ msgstr ""
 "pour les trophées qui ne sont pas présents dans Wavelog."
 
 #: application/views/awards/sig/index.php:9
+#: application/views/awards/sig/index.php:8
 msgid ""
 "The reason for this is that the common ADIF format provides only a few "
 "dedicated fields for certain awards. SIG still makes it possible to use and "
@@ -7706,6 +8040,7 @@ msgstr ""
 "spécifiques."
 
 #: application/views/awards/sig/index.php:10
+#: application/views/awards/sig/index.php:9
 msgid ""
 "In the QSO processing, you will find two fields: 'SIG' contains the "
 "abbreviation of the name of the special interest group which is also visible "
@@ -7720,6 +8055,7 @@ msgstr ""
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/create.php:255
 #: application/views/station_profile/edit.php:280
+#: application/views/awards/sig/index.php:25
 msgid "Special Interest Group"
 msgstr "Groupe d'intérêt spécial"
 
@@ -7727,15 +8063,18 @@ msgstr "Groupe d'intérêt spécial"
 #: application/views/continents/index.php:23
 #: application/views/distances/index.php:10
 #: application/views/timeplotter/index.php:4
+#: application/views/awards/sig/index.php:26
 msgid "Number of QSOs"
 msgstr "Nombre de QSOs"
 
 #: application/views/awards/sig/index.php:23
+#: application/views/awards/sig/index.php:27
 msgid "Number of Refs"
 msgstr "Nombre de références"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:30
+#: application/views/awards/sig/qso_list.php:13
 msgid "Reference"
 msgstr "Référence"
 
@@ -7750,20 +8089,24 @@ msgstr "Référence"
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
+#: application/views/awards/sig/qso_list.php:14
 msgid "Date/Time"
 msgstr "Date/Heure"
 
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:35
+#: application/views/awards/sig/qso_list.php:18
 msgid "RST Sent"
 msgstr "RST envoyé"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:36
+#: application/views/awards/sig/qso_list.php:19
 msgid "RST Received"
 msgstr "RST reçu"
 
 #: application/views/awards/sig/qso_list.php:34
+#: application/views/awards/sig/qso_list.php:41
 msgid "Export QSOs to ADIF"
 msgstr "Exporter les QSOs en ADIF"
 
@@ -7798,10 +8141,12 @@ msgstr ""
 "Activateurs et Chasseurs est maintenu dans la base de données en ligne SOTA."
 
 #: application/views/awards/vucc/index.php:7
+#: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
 msgstr "VUCC - Récompense du VHF/UHF Century Club"
 
 #: application/views/awards/vucc/index.php:8
+#: application/views/awards/vucc/index.php:7
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
@@ -7811,6 +8156,8 @@ msgstr ""
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:21
+#: application/views/awards/vucc/index.php:8
+#: application/views/awards/wae/index.php:27
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
 msgstr ""
@@ -7818,10 +8165,12 @@ msgstr ""
 "document : %s."
 
 #: application/views/awards/vucc/index.php:10
+#: application/views/awards/vucc/index.php:9
 msgid "Only VHF/UHF bands are relevant."
 msgstr "Seules les bandes VHF/UHF sont pertinentes."
 
 #: application/views/awards/vucc/index.php:11
+#: application/views/awards/vucc/index.php:10
 msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
@@ -7830,10 +8179,12 @@ msgstr ""
 "VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
+#: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
 msgstr "Grilles travaillées"
 
 #: application/views/awards/vucc/index.php:24
+#: application/views/awards/vucc/index.php:28
 msgid "Grids Confirmed"
 msgstr "Grilles confirmées"
 
@@ -7874,6 +8225,7 @@ msgid "WAB Square"
 msgstr "Carré WAB"
 
 #: application/views/awards/wac/index.php:9
+#: application/views/awards/wac/index.php:8
 msgid ""
 "Sponsored by the International Amateur Radio Union (IARU), the Worked All "
 "Continents award is issued for working and confirming all six continents. "
@@ -7885,6 +8237,7 @@ msgstr ""
 "l'Asie, l'Europe et l'Afrique."
 
 #: application/views/awards/wac/index.php:12
+#: application/views/awards/wac/index.php:11
 msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
@@ -7893,18 +8246,22 @@ msgstr ""
 "contenir une abréviation de continent valide !"
 
 #: application/views/awards/wac/index.php:14
+#: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
 msgstr "Diplome - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:227
+#: application/views/awards/wac/index.php:232
 msgid "No QSOS found matching the criteria for this award!"
 msgstr "Aucun QSOS correspondant aux critères de ce prix n'a été trouvé !"
 
 #: application/views/awards/wae/index.php:18
+#: application/views/awards/wae/index.php:24
 msgid "WAE Award"
 msgstr "Trophée WAE"
 
 #: application/views/awards/wae/index.php:19
+#: application/views/awards/wae/index.php:25
 msgid ""
 "The oldest and most renowned of all DARC certificates is awarded for "
 "contacts with amateur radio stations in European countries and on islands "
@@ -7916,6 +8273,7 @@ msgstr ""
 "bandes."
 
 #: application/views/awards/wae/index.php:20
+#: application/views/awards/wae/index.php:26
 msgid ""
 "The WAE will be issued in the following modes: CW, SSB, Phone, RTTY, FT8, "
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
@@ -7926,10 +8284,12 @@ msgstr ""
 "I, WAE TOP et WAE Trophy."
 
 #: application/views/awards/wae/index.php:22
+#: application/views/awards/wae/index.php:28
 msgid "Fields taken for this Award: Region, DXCC"
 msgstr "Champs requis pour ce trophée : Région, DXCC"
 
 #: application/views/awards/wae/index.php:201
+#: application/views/awards/wae/index.php:215
 msgid "WAE Name"
 msgstr "Nom WAE"
 
@@ -8235,6 +8595,7 @@ msgid "Show WAS Map"
 msgstr "Afficher la carte WAS"
 
 #: application/views/awards/wpx/index.php:76
+#: application/views/awards/wpx/index.php:80
 msgid "Band / Satellite / Orbit"
 msgstr "Bande / Satellite / Orbite"
 
@@ -8253,10 +8614,12 @@ msgid "QSO Date"
 msgstr "Date du QSO"
 
 #: application/views/awards/wwff/index.php:7
+#: application/views/awards/wwff/index.php:6
 msgid "WWFF - World Wide Flora and Fauna Award"
 msgstr "WWFF - Diplome Mondial de la Flore et de la Faune"
 
 #: application/views/awards/wwff/index.php:8
+#: application/views/awards/wwff/index.php:7
 msgid ""
 "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham "
 "radio operators to leave their shacks and operate portable in Protected "
@@ -8267,6 +8630,7 @@ msgstr ""
 "les zones de flore et faune protégées (PFF) dans le monde entier."
 
 #: application/views/awards/wwff/index.php:9
+#: application/views/awards/wwff/index.php:8
 msgid ""
 "More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already "
 "registered in the WWFF Directory. Hunters and Activators can apply for "
@@ -8278,6 +8642,7 @@ msgstr ""
 "national."
 
 #: application/views/awards/wwff/index.php:11
+#: application/views/awards/wwff/index.php:10
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
 msgstr "Champs requis pour ce trophée : WWFF (ADIF : WWFF_REF)"
 
@@ -8287,6 +8652,7 @@ msgstr "Champs requis pour ce trophée : WWFF (ADIF : WWFF_REF)"
 #: application/views/station_profile/edit.php:253
 #: application/views/user/edit.php:776 application/views/view_log/qso.php:355
 #: application/views/view_log/qso.php:688
+#: application/views/awards/wwff/index.php:37
 msgid "WWFF Reference"
 msgstr "Référence WWFF"
 
@@ -18042,6 +18408,7 @@ msgstr "Enlever"
 
 #: application/views/qslprint/qslprint.php:48
 #: application/views/simplefle/index.php:147
+#: application/views/awards/sig/qso_list.php:6
 msgid "QSO List"
 msgstr "Liste QSO"
 
@@ -21886,6 +22253,34 @@ msgstr "CQz geojson"
 #: application/controllers/Contesting.php:460
 #: application/controllers/Contesting.php:465
 msgid "You are not authorized to access this contest session."
+msgstr ""
+
+#: application/views/awards/sig/index.php:18
+msgid "View progress of SIG awards"
+msgstr ""
+
+#: application/views/awards/vucc/band.php:7
+msgid "Gridsquare list"
+msgstr ""
+
+#: application/views/awards/vucc/index.php:19
+msgid "VUCC Gridsquares by Band"
+msgstr ""
+
+#: application/views/awards/wac/index.php:20
+msgid "View progress of WAC awards"
+msgstr ""
+
+#: application/views/awards/wae/index.php:37
+msgid "View progress of WAE awards"
+msgstr ""
+
+#: application/views/awards/wpx/index.php:10
+msgid "View progress of WPX awards"
+msgstr ""
+
+#: application/views/awards/wwff/index.php:19
+msgid "WWFF QSO List"
 msgstr ""
 
 #~ msgid "Export Cabrillo"
