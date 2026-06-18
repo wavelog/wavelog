@@ -6,41 +6,46 @@
 </script>
 <style>
     #cqmap {
-	height: calc(100vh - 480px) !important;
-	max-height: 900px !important;
-}
+		height: calc(100vh - 480px) !important;
+		max-height: 900px !important;
+	}
 
-    .dropdown-filters-responsive {
-        width: 800px;
-    }
-
-    @media (max-width: 900px) {
-        .dropdown-filters-responsive {
-            width: 90vw;
-            max-width: none;
-        }
+	.dropdown-filters-responsive {
+		width: min(850px, 90vw);
+		min-width: 600px;
     }
 </style>
 
-<div class="container">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
     <!-- Award Info Box -->
-	<br>
-  <div id="awardInfoButton">
-    <script>
-		let lang_awards_info_button = "<?= __("Award Info"); ?>";
-		let lang_award_info_ln1 = "<?= __("CQ WAZ (Worked All Zones) Award"); ?>";
-		let lang_award_info_ln2 = "<?= __("The CQ Magazine was located in the US and one of the most popular amateur radio magazines in the world. They stopped service by the end of 2023. The magazine first appeared in January 1945 and focuses on awards and the practical aspects of amateur radio."); ?>";
-		let lang_award_info_ln3 = "<?= __("The WAZ Award stands for 'Worked All Zones' and requires radio contacts to all 40 CQ Zones along with the corresponding confirmation. Since the CQ Magazine does no longer exists the CQ WAZ Awards is now managed directly by N4BAA."); ?>";
-		let lang_award_info_ln4 = "<?= sprintf(__("You can find all the information and rules on the Website of N4BAA: %s"), "<a href='https://n4baa.com/cqwaz.html' target='_blank'>N4BAA.com</a>"); ?>";
-		let lang_award_info_ln5 = "<?= __("Fields taken for this Award: CQ-Zone (ADIF: CQZ)"); ?>";
-    </script>
-    <h2><?= __("Awards - CQ WAZ"); ?></h2>
-    <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
-  </div>
-  <!-- End of Award Info Box -->
+	<div id="awardInfoButton">
+		<script>
+			let lang_awards_info_button = "<?= __("Award Info"); ?>";
+			let lang_award_info_ln1 = "<?= __("CQ WAZ (Worked All Zones) Award"); ?>";
+			let lang_award_info_ln2 = "<?= __("The CQ Magazine was located in the US and one of the most popular amateur radio magazines in the world. They stopped service by the end of 2023. The magazine first appeared in January 1945 and focuses on awards and the practical aspects of amateur radio."); ?>";
+			let lang_award_info_ln3 = "<?= __("The WAZ Award stands for 'Worked All Zones' and requires radio contacts to all 40 CQ Zones along with the corresponding confirmation. Since the CQ Magazine does no longer exists the CQ WAZ Awards is now managed directly by N4BAA."); ?>";
+			let lang_award_info_ln4 = "<?= sprintf(__("You can find all the information and rules on the Website of N4BAA: %s"), "<a href='https://n4baa.com/cqwaz.html' target='_blank'>N4BAA.com</a>"); ?>";
+			let lang_award_info_ln5 = "<?= __("Fields taken for this Award: CQ-Zone (ADIF: CQZ)"); ?>";
+		</script>
+		<h2><?= __("Awards - CQ WAZ"); ?></h2>
+		<button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
+	</div>
+	<!-- End of Award Info Box -->
+	<div class="card">
+		<div class="card-header">
+			<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" onclick="load_cq_map();" id="map-tab" data-bs-toggle="tab" href="#cqmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
+				</li>
+			</ul>
+			</div>
+			<div class="card-body">
             <form class="form" action="<?php echo site_url('awards/cq'); ?>" method="post" enctype="multipart/form-data">
-		<div class="mb-4 text-center">
+			<div class="mb-4 text-center">
 				<div class="dropdown" data-bs-auto-close="outside">
 					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
 					<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
@@ -49,7 +54,7 @@
 				<?php }?>
 
 		<!-- Dropdown Menu with Filter Content -->
-		<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown" style="max-width: 800px;">
+		<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
 			<div class="card-body filterbody">
 				<div class="row mb-3">
 					<label class="form-label" for="checkboxes"><?= __("Date Presets") . ": " ?></label>
@@ -164,16 +169,11 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
     </form>
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" onclick="load_cq_map();" id="map-tab" data-bs-toggle="tab" href="#cqmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
-        </li>
-    </ul>
+
     <br />
 
     <div class="tab-content" id="myTabContent">
@@ -189,24 +189,25 @@
 <?php
     $i = 1;
     if ($cq_array) {
-	echo __('Legend:');
-	echo '<pre>'.__("(Q)SL-Paper-Card").", ";
-	echo __("(L)oTW").", ";
-	echo __("(e)QSL").", ";
-	echo __('QR(Z)-"confirmation"').", ";
-	echo __("(C)lublog").", ";
-	echo __("(W)orked").'</pre>';
-    echo "
+		echo '<div class="text-center">';
+		echo __('Legend:');
+		echo '<pre>'.__("(Q)SL-Paper-Card").", ";
+		echo __("(L)oTW").", ";
+		echo __("(e)QSL").", ";
+		echo __('QR(Z)-"confirmation"').", ";
+		echo __("(C)lublog").", ";
+		echo __("(W)orked").'</pre>';
+		echo "</div>
     <table style='width:100%' class='table tablecq table-sm table-bordered table-hover table-striped table-condensed text-center'>
         <thead>
         <tr>
-            <td>#</td>
-            <td>" . __("CQ Zone") . "</td>";
+            <th>#</th>
+            <th>" . __("CQ Zone") . "</th>";
         foreach($bands as $band) {
 			if (($posted_band != 'SAT') && ($band == 'SAT')) {
 				continue;
 			}
-			echo '<td>' . $band . '</td>';
+			echo '<th>' . $band . '</th>';
 		}
             echo '</tr>
         </thead>
@@ -236,7 +237,8 @@
 			if ($posted_band != 'SAT') {
 				echo '<td><b>' . __("Total (ex SAT)") . '</b></td>';
 			}
-        echo "</thead>
+        echo "</tr>
+        </thead>
         <tbody>
 
         <tr><td>" . __("Total worked") . "</td>";
@@ -264,8 +266,7 @@
 			}
         }
         echo '</tr>
-        </table>
-        </div>';
+        </table>';
 
     }
     else {
@@ -275,4 +276,6 @@
 
             </div>
         </div>
+		</div>
+	</div>
 </div>
