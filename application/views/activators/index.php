@@ -1,10 +1,10 @@
 <?php
-   list($r, $g, $b) = sscanf($grid_color, "#%02x%02x%02x");
-   $grid_col = "rgba(".$r.", ".$g.", ".$b.", 0.6)";
+	list($r, $g, $b) = sscanf($grid_color, "#%02x%02x%02x");
+	$grid_col = "rgba(".$r.", ".$g.", ".$b.", 0.6)";
 ?>
 <script>
 	let lang_activators_map = "<?= __("Activators Map"); ?>";
-   let grid_color = "<?= $grid_col; ?>";
+	let grid_color = "<?= $grid_col; ?>";
 </script>
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 	<h2><?= __("Gridsquare Activators"); ?></h2>
