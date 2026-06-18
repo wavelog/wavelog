@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-16 11:01+0000\n"
+"POT-Creation-Date: 2026-06-18 09:50+0000\n"
 "PO-Revision-Date: 2026-04-01 23:44+0000\n"
 "Last-Translator: Bartek <achtachtel@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -258,7 +258,7 @@ msgstr "Mapa aktywowanych lokatorów"
 #: application/controllers/Awards.php:1197
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:454
-#: application/views/activators/index.php:106
+#: application/views/activators/index.php:107
 #: application/views/contesting/logger/index.php:57
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
@@ -308,8 +308,8 @@ msgid "Total fields worked"
 msgstr "Suma zaliczonych pól"
 
 #: application/controllers/Activators.php:20
-#: application/views/activators/index.php:5
-#: application/views/activators/index.php:9
+#: application/views/activators/index.php:6
+#: application/views/activators/index.php:10
 #: application/views/interface_assets/header.php:167
 msgid "Gridsquare Activators"
 msgstr "Aktywatorzy lokatorów"
@@ -341,37 +341,37 @@ msgstr "Import / Eksport ADIF"
 msgid "ADIF Import"
 msgstr "Import ADIF"
 
-#: application/controllers/Adif.php:347
+#: application/controllers/Adif.php:359
 msgid "Unsupported Filetype"
 msgstr "Niewspierany typ pliku"
 
-#: application/controllers/Adif.php:428
+#: application/controllers/Adif.php:440
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "Błąd importu ADIF!"
 
-#: application/controllers/Adif.php:442
+#: application/controllers/Adif.php:454
 msgid "Station Profile not valid for User"
 msgstr "Profil stacji nie jest poprawny dla użytkownika"
 
-#: application/controllers/Adif.php:452
+#: application/controllers/Adif.php:464
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "Zaimportowano ADIF"
 
-#: application/controllers/Adif.php:466
+#: application/controllers/Adif.php:478
 msgid "DCL Import"
 msgstr "Import DCL"
 
-#: application/controllers/Adif.php:527
+#: application/controllers/Adif.php:539
 msgid "DCL Data Imported"
 msgstr "Zaimportowano dane DCL"
 
-#: application/controllers/Adif.php:541
+#: application/controllers/Adif.php:553
 msgid "POTA Import"
 msgstr "Importowanie POTA"
 
-#: application/controllers/Adif.php:601
+#: application/controllers/Adif.php:613
 msgid "POTA Data Imported"
 msgstr "Zaimportowano dane POTA"
 
@@ -987,7 +987,7 @@ msgid "Contest Management"
 msgstr ""
 
 #: application/controllers/Contesting.php:93
-#: application/controllers/Contesting.php:606
+#: application/controllers/Contesting.php:618
 msgid "Officers must set up contests."
 msgstr ""
 
@@ -998,9 +998,9 @@ msgstr ""
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
-#: application/controllers/Contesting.php:474
-#: application/controllers/Contesting.php:648
-#: application/controllers/Contesting.php:704
+#: application/controllers/Contesting.php:486
+#: application/controllers/Contesting.php:660
+#: application/controllers/Contesting.php:716
 msgid "Contest session not found."
 msgstr ""
 
@@ -1018,33 +1018,38 @@ msgstr ""
 msgid "Invalid logging token."
 msgstr ""
 
-#: application/controllers/Contesting.php:623
+#: application/controllers/Contesting.php:460
+#: application/controllers/Contesting.php:465
+msgid "You are not authorized to access this contest session."
+msgstr ""
+
+#: application/controllers/Contesting.php:635
 msgid "Contest session created successfully."
 msgstr ""
 
-#: application/controllers/Contesting.php:625
+#: application/controllers/Contesting.php:637
 msgid "There was an error creating the contest session. Please try again."
 msgstr ""
 
-#: application/controllers/Contesting.php:631
-#: application/controllers/Contesting.php:687
-#: application/controllers/Contesting.php:730
+#: application/controllers/Contesting.php:643
+#: application/controllers/Contesting.php:699
+#: application/controllers/Contesting.php:742
 msgid "Invalid request method."
 msgstr ""
 
-#: application/controllers/Contesting.php:679
+#: application/controllers/Contesting.php:691
 msgid "Contest session updated successfully."
 msgstr ""
 
-#: application/controllers/Contesting.php:681
+#: application/controllers/Contesting.php:693
 msgid "There was an error updating the contest session. Please try again."
 msgstr ""
 
-#: application/controllers/Contesting.php:722
+#: application/controllers/Contesting.php:734
 msgid "Contest session deleted successfully."
 msgstr ""
 
-#: application/controllers/Contesting.php:724
+#: application/controllers/Contesting.php:736
 msgid "There was an error deleting the contest session. Please try again."
 msgstr ""
 
@@ -2094,7 +2099,7 @@ msgstr "Odległość"
 #: application/controllers/Logbook.php:1475
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
-#: application/views/activators/index.php:16
+#: application/views/activators/index.php:17
 #: application/views/adif/dcl_success.php:32
 #: application/views/adif/pota_success.php:32
 #: application/views/awards/cq/index.php:132
@@ -4327,7 +4332,7 @@ msgstr "Różnica"
 #: application/views/activated_gridmap/index.php:29
 #: application/views/activated_gridmap/index.php:39
 #: application/views/activated_gridmap/index.php:46
-#: application/views/activators/index.php:19
+#: application/views/activators/index.php:20
 #: application/views/adif/import.php:272
 #: application/views/awards/cq/index.php:148
 #: application/views/awards/dok/index.php:95
@@ -4514,7 +4519,7 @@ msgid "None/Empty"
 msgstr "Brak/Pusty"
 
 #: application/views/accumulate/index.php:103
-#: application/views/activators/index.php:58
+#: application/views/activators/index.php:59
 #: application/views/awards/cq/index.php:46
 #: application/views/awards/dok/index.php:128
 #: application/views/awards/dxcc/index.php:43
@@ -4669,17 +4674,17 @@ msgstr "Szerokość geograficzna"
 msgid "Longitude"
 msgstr "Długość geograficzna"
 
-#: application/views/activators/index.php:32
+#: application/views/activators/index.php:33
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
 msgstr "Oba"
 
-#: application/views/activators/index.php:39
+#: application/views/activators/index.php:40
 #: application/views/callstats/index.php:82
 msgid "Minimum Count"
 msgstr "Minimalna liczba"
 
-#: application/views/activators/index.php:81
+#: application/views/activators/index.php:82
 #: application/views/awards/73on73/index.php:66
 #: application/views/awards/counties/details.php:27
 #: application/views/awards/counties/index.php:47
@@ -4710,7 +4715,7 @@ msgstr "Minimalna liczba"
 msgid "Nothing found!"
 msgstr "Nie znaleziono!"
 
-#: application/views/activators/index.php:104
+#: application/views/activators/index.php:105
 #: application/views/adif/import.php:107 application/views/adif/import.php:278
 #: application/views/awards/73on73/index.php:35
 #: application/views/awards/amsat_rover/index.php:228
@@ -4772,11 +4777,11 @@ msgstr "Nie znaleziono!"
 msgid "Callsign"
 msgstr "Znak"
 
-#: application/views/activators/index.php:105
+#: application/views/activators/index.php:106
 msgid "Count"
 msgstr "Liczba"
 
-#: application/views/activators/index.php:107
+#: application/views/activators/index.php:108
 #: application/views/callstats/index.php:143
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:240
@@ -4787,7 +4792,7 @@ msgstr "Liczba"
 msgid "Show QSOs"
 msgstr "Pokaż QSO"
 
-#: application/views/activators/index.php:108
+#: application/views/activators/index.php:109
 msgid "Show Map"
 msgstr "Wyświetl mapę"
 

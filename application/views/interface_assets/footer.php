@@ -874,7 +874,7 @@ document.onkeyup = function(e) {
 
 
 
-function showActivatorsMap(call, count, grids) {
+function showActivatorsMap(call, count, grids, grid_color) {
 
     let re = /,/g;
     grids = grids.replace(re, ', ');
@@ -896,7 +896,7 @@ function showActivatorsMap(call, count, grids) {
 
     var grid_four = grids.split(', ');
 
-    var maidenhead = new L.maidenheadactivators(grid_four).addTo(map);
+    var maidenhead = new L.maidenheadactivators(grid_four, grid_color).addTo(map);
 
     var osmUrl = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var osmAttrib = option_map_tile_server_copyright;

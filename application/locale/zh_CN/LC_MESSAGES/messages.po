@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-16 11:01+0000\n"
+"POT-Creation-Date: 2026-06-18 09:50+0000\n"
 "PO-Revision-Date: 2026-06-16 14:03+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -272,7 +272,7 @@ msgstr "已激活网格地图"
 #: application/controllers/Awards.php:1197
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:454
-#: application/views/activators/index.php:106
+#: application/views/activators/index.php:107
 #: application/views/contesting/logger/index.php:57
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
@@ -322,8 +322,8 @@ msgid "Total fields worked"
 msgstr "全部的区块"
 
 #: application/controllers/Activators.php:20
-#: application/views/activators/index.php:5
-#: application/views/activators/index.php:9
+#: application/views/activators/index.php:6
+#: application/views/activators/index.php:10
 #: application/views/interface_assets/header.php:167
 msgid "Gridsquare Activators"
 msgstr "网格激活者"
@@ -355,37 +355,37 @@ msgstr "ADIF 导入/导出"
 msgid "ADIF Import"
 msgstr "ADIF 导入"
 
-#: application/controllers/Adif.php:347
+#: application/controllers/Adif.php:359
 msgid "Unsupported Filetype"
 msgstr "不支持的文件类型"
 
-#: application/controllers/Adif.php:428
+#: application/controllers/Adif.php:440
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "ADIF 导入失败！"
 
-#: application/controllers/Adif.php:442
+#: application/controllers/Adif.php:454
 msgid "Station Profile not valid for User"
 msgstr "用户台站信息无效"
 
-#: application/controllers/Adif.php:452
+#: application/controllers/Adif.php:464
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF 导入完成"
 
-#: application/controllers/Adif.php:466
+#: application/controllers/Adif.php:478
 msgid "DCL Import"
 msgstr "导入 DCL"
 
-#: application/controllers/Adif.php:527
+#: application/controllers/Adif.php:539
 msgid "DCL Data Imported"
 msgstr "DCL 数据导入完成"
 
-#: application/controllers/Adif.php:541
+#: application/controllers/Adif.php:553
 msgid "POTA Import"
 msgstr "POTA导入"
 
-#: application/controllers/Adif.php:601
+#: application/controllers/Adif.php:613
 msgid "POTA Data Imported"
 msgstr "POTA数据已导入"
 
@@ -1000,7 +1000,7 @@ msgid "Contest Management"
 msgstr "竞赛管理"
 
 #: application/controllers/Contesting.php:93
-#: application/controllers/Contesting.php:606
+#: application/controllers/Contesting.php:618
 msgid "Officers must set up contests."
 msgstr "集体台站管理员必须配置好比赛。"
 
@@ -1011,9 +1011,9 @@ msgstr "快速启动竞赛:%s"
 
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
-#: application/controllers/Contesting.php:474
-#: application/controllers/Contesting.php:648
-#: application/controllers/Contesting.php:704
+#: application/controllers/Contesting.php:486
+#: application/controllers/Contesting.php:660
+#: application/controllers/Contesting.php:716
 msgid "Contest session not found."
 msgstr "竞赛未找到。"
 
@@ -1031,33 +1031,38 @@ msgstr "导出：%s"
 msgid "Invalid logging token."
 msgstr "登录令牌无效。"
 
-#: application/controllers/Contesting.php:623
+#: application/controllers/Contesting.php:460
+#: application/controllers/Contesting.php:465
+msgid "You are not authorized to access this contest session."
+msgstr ""
+
+#: application/controllers/Contesting.php:635
 msgid "Contest session created successfully."
 msgstr "竞赛会话已成功创建。"
 
-#: application/controllers/Contesting.php:625
+#: application/controllers/Contesting.php:637
 msgid "There was an error creating the contest session. Please try again."
 msgstr "创建竞赛会话出现错误，请重试。"
 
-#: application/controllers/Contesting.php:631
-#: application/controllers/Contesting.php:687
-#: application/controllers/Contesting.php:730
+#: application/controllers/Contesting.php:643
+#: application/controllers/Contesting.php:699
+#: application/controllers/Contesting.php:742
 msgid "Invalid request method."
 msgstr "请求方法无效。"
 
-#: application/controllers/Contesting.php:679
+#: application/controllers/Contesting.php:691
 msgid "Contest session updated successfully."
 msgstr "竞赛会话更新成功。"
 
-#: application/controllers/Contesting.php:681
+#: application/controllers/Contesting.php:693
 msgid "There was an error updating the contest session. Please try again."
 msgstr "更新竞赛会话出现错误，请重试。"
 
-#: application/controllers/Contesting.php:722
+#: application/controllers/Contesting.php:734
 msgid "Contest session deleted successfully."
 msgstr "竞赛会话删除成功。"
 
-#: application/controllers/Contesting.php:724
+#: application/controllers/Contesting.php:736
 msgid "There was an error deleting the contest session. Please try again."
 msgstr "删除竞赛会话出现错误，请重试。"
 
@@ -2090,7 +2095,7 @@ msgstr "距离"
 #: application/controllers/Logbook.php:1475
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
-#: application/views/activators/index.php:16
+#: application/views/activators/index.php:17
 #: application/views/adif/dcl_success.php:32
 #: application/views/adif/pota_success.php:32
 #: application/views/awards/cq/index.php:132
@@ -4267,7 +4272,7 @@ msgstr "差异"
 #: application/views/activated_gridmap/index.php:29
 #: application/views/activated_gridmap/index.php:39
 #: application/views/activated_gridmap/index.php:46
-#: application/views/activators/index.php:19
+#: application/views/activators/index.php:20
 #: application/views/adif/import.php:272
 #: application/views/awards/cq/index.php:148
 #: application/views/awards/dok/index.php:95
@@ -4454,7 +4459,7 @@ msgid "None/Empty"
 msgstr "无/空"
 
 #: application/views/accumulate/index.php:103
-#: application/views/activators/index.php:58
+#: application/views/activators/index.php:59
 #: application/views/awards/cq/index.php:46
 #: application/views/awards/dok/index.php:128
 #: application/views/awards/dxcc/index.php:43
@@ -4609,17 +4614,17 @@ msgstr "纬度"
 msgid "Longitude"
 msgstr "经度"
 
-#: application/views/activators/index.php:32
+#: application/views/activators/index.php:33
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
 msgstr "全部"
 
-#: application/views/activators/index.php:39
+#: application/views/activators/index.php:40
 #: application/views/callstats/index.php:82
 msgid "Minimum Count"
 msgstr "最低数量"
 
-#: application/views/activators/index.php:81
+#: application/views/activators/index.php:82
 #: application/views/awards/73on73/index.php:66
 #: application/views/awards/counties/details.php:27
 #: application/views/awards/counties/index.php:47
@@ -4650,7 +4655,7 @@ msgstr "最低数量"
 msgid "Nothing found!"
 msgstr "未找到！"
 
-#: application/views/activators/index.php:104
+#: application/views/activators/index.php:105
 #: application/views/adif/import.php:107 application/views/adif/import.php:278
 #: application/views/awards/73on73/index.php:35
 #: application/views/awards/amsat_rover/index.php:228
@@ -4712,11 +4717,11 @@ msgstr "未找到！"
 msgid "Callsign"
 msgstr "呼号"
 
-#: application/views/activators/index.php:105
+#: application/views/activators/index.php:106
 msgid "Count"
 msgstr "数量"
 
-#: application/views/activators/index.php:107
+#: application/views/activators/index.php:108
 #: application/views/callstats/index.php:143
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:240
@@ -4727,7 +4732,7 @@ msgstr "数量"
 msgid "Show QSOs"
 msgstr "显示 QSO"
 
-#: application/views/activators/index.php:108
+#: application/views/activators/index.php:109
 msgid "Show Map"
 msgstr "显示地图"
 
