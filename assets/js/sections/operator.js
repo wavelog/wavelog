@@ -12,6 +12,7 @@ function displayOperatorDialog() {
 		type: "GET",
 		dataType: "html",
 		success: function (data) {
+			$("#operatorModal").remove();
 			$("body").append(data);
 
 			var operatorModal = new bootstrap.Modal($("#operatorModal"));
