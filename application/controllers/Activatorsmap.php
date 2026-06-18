@@ -15,6 +15,8 @@ class Activatorsmap extends CI_Controller {
 
 	public function index() {
 		$data['page_title'] = __("Activators Map");
+		$user_colors = json_decode($this->optionslib->get_map_custom());
+		$data['grid_color'] = $user_colors->qsoconfirm->color;
 
 		$this->load->model('stations');
         $data['station_locator'] = $this->stations->find_gridsquare();
