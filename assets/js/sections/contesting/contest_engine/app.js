@@ -195,6 +195,120 @@ function initControlPanel(windowManager) {
         });
     }
 
+    // Switch Operator (club stations only). One modal/form (#switchOperatorForm)
+    // serves both modes; data-mode selects the flow ('login' = re-authenticate a
+    // personal account; 'callsign' = club_direct free-text callsign).
+    // We never switch while QSOs are still pending (would mis-attribute them to the
+    // new operator). Instead of flushing/waiting, we simply block the switch and let
+    // the user retry once the sync engine has drained them.
+
+    const hasPendingQsos = () => {
+        const app = window.contestApp;
+        if (!app || !app.ds) return false;
+        return Array.from(app.ds.getPattern('qso.*').values()).some(q => q.state === 'pending');
+    };
+
+    // Gate the Switch Operator button: if anything is unsynced, block the modal and
+    // nudge the sync engine. data-bs-toggle was removed from the button so we open
+    // the target modal manually after the pending check passes.
+    const switchOperatorBtn = document.getElementById('btnSwitchOperator');
+    if (switchOperatorBtn) {
+        switchOperatorBtn.addEventListener('click', function () {
+            if (hasPendingQsos()) {
+                window.contestApp?.syncEngine?.triggerNow();
+                window.contestApp?.wm?.showToast(lang_warning, lang_switch_op_pending, 'bg-warning text-dark', 5000);
+                return;
+            }
+            const modalEl = document.querySelector(this.dataset.bsTarget);
+            if (modalEl) bootstrap.Modal.getOrCreateInstance(modalEl).show();
+        });
+    }
+
+    const switchOperatorForm = document.getElementById('switchOperatorForm');
+    if (switchOperatorForm) {
+        const mode = switchOperatorForm.dataset.mode; // 'login' | 'callsign'
+        const errorBox = document.getElementById('switchOperatorError');
+        const submitBtn = document.getElementById('switchOperatorSubmit');
+
+        const showError = (msg) => {
+            if (!errorBox) return;
+            errorBox.textContent = msg;
+            errorBox.classList.remove('d-none');
+        };
+
+        switchOperatorForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            errorBox?.classList.add('d-none');
+
+            try {
+                if (mode === 'callsign') {
+                    // club_direct: operator is a free-text callsign (no account). Set it via
+                    // the existing operator/saveOperator endpoint and reload the engine.
+                    const input = document.getElementById('switchOperatorCall');
+                    const clubCall = (switchOperatorForm.dataset.clubCallsign || '').toUpperCase();
+                    const call = (input?.value || '').trim().toUpperCase();
+                    // Reject empty or the club's own callsign (operator must be a personal call).
+                    if (call === '' || call === clubCall) {
+                        input?.classList.add('is-invalid');
+                        showError(lang_switch_op_failed);
+                        return;
+                    }
+                    submitBtn.disabled = true;
+                    const resp = await fetch(base_url + 'index.php/operator/saveOperator', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ operator_callsign: call })
+                    });
+                    if (resp.ok) {
+                        window.location.reload(); // re-bootstraps the engine with the new operator
+                        return;
+                    }
+                    showError(lang_switch_op_failed);
+                } else {
+                    // login: re-authenticate another operator's account, then redirect into
+                    // the same session under the new identity.
+                    submitBtn.disabled = true;
+                    const resp = await fetch(base_url + 'index.php/contesting/switch_operator', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contest_session_id: window.ContestLoggerConfig?.sessionInfo?.contest_session_id,
+                            user_name: document.getElementById('switchOperatorUser')?.value.trim(),
+                            user_password: document.getElementById('switchOperatorPass')?.value ?? ''
+                        })
+                    });
+                    const data = await resp.json().catch(() => ({}));
+                    if (resp.ok && data.success && data.redirect) {
+                        window.location.href = data.redirect;
+                        return;
+                    }
+                    showError(data.error || lang_switch_op_failed);
+                }
+            } catch (err) {
+                console.error('Switch operator failed', err);
+                showError(lang_switch_op_failed);
+            }
+            // Reset on failure (success navigates away).
+            const passField = document.getElementById('switchOperatorPass');
+            if (passField) passField.value = '';
+            submitBtn.disabled = false;
+        });
+    }
+
+    // Operator badge in the QSO form (club stations): opens the control panel (via the
+    // button's own data-bs-toggle) and briefly highlights the Switch Operator button.
+    // Delegated on document because the badge is rendered later, during qso-form init.
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('#qso-operator-display')) return;
+        const switchBtn = document.getElementById('btnSwitchOperator');
+        if (!switchBtn) return;
+        switchBtn.scrollIntoView({ block: 'nearest' });
+        switchBtn.classList.remove('switch-operator-highlight');
+        void switchBtn.offsetWidth; // reflow so the animation restarts on repeated clicks
+        switchBtn.classList.add('switch-operator-highlight');
+        setTimeout(() => switchBtn.classList.remove('switch-operator-highlight'), 2200);
+    });
+
     // Component visibility management
     function updateComponentList() {
         const listEl = document.getElementById('componentVisibilityList');

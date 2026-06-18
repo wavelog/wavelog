@@ -43,10 +43,16 @@ function saveOperator() {
 			data: {
 				operator_callsign: operatorCallsign,
 			},
+			// Reload only after the session write succeeded — reloading earlier races
+			// the POST and can render the previous operator.
+			success: function () {
+				closeOperatorDialog();
+				window.location.reload();
+			},
+			error: function () {
+				showToast("error", __("Error saving operator callsign. Please try again."));
+			}
 		});
-		closeOperatorDialog();
-		// console.log("saveOperator executed");
-		// console.log("operator:" + operatorCallsign);
 	} else {
 		operatorInput.addClass("is-invalid");
 	}
