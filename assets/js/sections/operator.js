@@ -51,7 +51,7 @@ function saveOperator() {
 				window.location.reload();
 			},
 			error: function () {
-				showToast("error", __("Error saving operator callsign. Please try again."));
+				showToast("error", lang_operator_modal_save_error, 'bg-danger text-white', 5000);
 			}
 		});
 	} else {
