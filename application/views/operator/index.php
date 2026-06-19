@@ -19,6 +19,7 @@ $dismissible = ($op_call !== $account_call);
                             <input type="text" class="form-control w-auto uppercase" id="operator_callsign" name="operator_callsign">
                             <div class="invalid-feedback">
                                 <?= __("You have to provide your personal callsign."); ?>
+                                <?= __("No pre-/suffix allowed."); ?>
                             </div>
                         </div>
                     </div>
