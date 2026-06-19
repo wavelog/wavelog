@@ -1193,6 +1193,7 @@ class API extends CI_Controller {
 		if ((array_key_exists('station_ids',$raw_input)) && (is_array($raw_input['station_ids']))) {		// Special station_ids needed and it is an array?
 			$a_station_ids=[];
 			foreach ($raw_input['station_ids'] as $stationid) {	// Check for grants to given station_id
+				$stationid = intval($stationid);
 				if ($this->stations->check_station_against_user($stationid, $user_id)) {
 					$a_station_ids[]=$stationid;
 				}
