@@ -410,76 +410,90 @@
 							<div class="card">
 								<div class="card-header"><?= __("QSO Logging Options"); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label for="logendtimes"><?= __("Log End Times for QSOs Separately"); ?></label>
-										<?php if(!isset($user_qso_end_times)) { $user_qso_end_times='0'; }?>
+									<?php if(!isset($user_qso_end_times)) { $user_qso_end_times='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_qso_end_times" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="logendtimes" name="user_qso_end_times" value="1" <?php if ($user_qso_end_times == 1) { echo 'checked'; } ?>>
 										</div>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Choose yes here if you want to log QSO start and end times separately. If set to 'No' the end time will be the same as start time."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="logendtimes"><?= __("Log End Times for QSOs Separately"); ?></label>
+											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Choose yes here if you want to log QSO start and end times separately. If set to 'No' the end time will be the same as start time."); ?></small>
+										</div>
 									</div>
 
 									<hr />
-									<div class="mb-3">
-										<label for="db_search_priority"><?= __("Prioritize database search over external lookup"); ?></label>
-										<?php if(!isset($user_qso_db_search_priority)) { $user_qso_db_search_priority='Y'; }?>
+									<?php if(!isset($user_qso_db_search_priority)) { $user_qso_db_search_priority='Y'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_qso_db_search_priority" value="N">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="db_search_priority" name="user_qso_db_search_priority" value="Y" <?php if ($user_qso_db_search_priority == 'Y') { echo 'checked'; } ?>>
 										</div>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("When set to \"Yes\", callsign lookup will first use data from your previous QSOs before querying external services. Set to \"No\" to always use external lookup services instead."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="db_search_priority"><?= __("Prioritize database search over external lookup"); ?></label>
+											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("When set to \"Yes\", callsign lookup will first use data from your previous QSOs before querying external services. Set to \"No\" to always use external lookup services instead."); ?></small>
+										</div>
 									</div>
 									<hr />
-									<div class="mb-3">
-										<label for="profileimages"><?= __("Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."); ?></label>
-										<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
+									<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_show_profile_image" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="profileimages" name="user_show_profile_image" value="1" <?php if ($user_show_profile_image == 1) { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("Please set your qrz.com/hamqth.com credentials in the general config file."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="profileimages"><?= __("Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."); ?></label>
+											<small class="form-text text-muted"><?= __("Please set your qrz.com/hamqth.com credentials in the general config file."); ?></small>
+										</div>
 									</div>
 
 									<hr />
-									<div class="mb-3">
-										<label for="qthlookup"><?= __("Location auto lookup."); ?></label>
-										<?php if(!isset($user_qth_lookup)) { $user_qth_lookup='0'; }?>
+									<?php if(!isset($user_qth_lookup)) { $user_qth_lookup='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_qth_lookup" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="qthlookup" name="user_qth_lookup" value="1" <?php if ($user_qth_lookup == 1) { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("If set, gridsquare is fetched based on location name."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="qthlookup"><?= __("Location auto lookup."); ?></label>
+											<small class="form-text text-muted"><?= __("If set, gridsquare is fetched based on location name."); ?></small>
+										</div>
 									</div>
 
-									<div class="mb-3">
-										<label for="sotalookup"><?= __("SOTA auto lookup gridsquare and name for summit."); ?></label>
-										<?php if(!isset($user_sota_lookup)) { $user_sota_lookup='0'; }?>
+									<?php if(!isset($user_sota_lookup)) { $user_sota_lookup='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_sota_lookup" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="sotalookup" name="user_sota_lookup" value="1" <?php if ($user_sota_lookup == 1) { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="sotalookup"><?= __("SOTA auto lookup gridsquare and name for summit."); ?></label>
+											<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										</div>
 									</div>
 
-									<div class="mb-3">
-										<label for="wwfflookup"><?= __("WWFF auto lookup gridsquare and name for reference."); ?></label>
-										<?php if(!isset($user_wwff_lookup)) { $user_wwff_lookup='0'; }?>
+									<?php if(!isset($user_wwff_lookup)) { $user_wwff_lookup='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_wwff_lookup" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="wwfflookup" name="user_wwff_lookup" value="1" <?php if ($user_wwff_lookup == 1) { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="wwfflookup"><?= __("WWFF auto lookup gridsquare and name for reference."); ?></label>
+											<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										</div>
 									</div>
 
-									<div class="mb-3">
-										<label for="potalookup"><?= __("POTA auto lookup gridsquare and name for park."); ?></label>
-										<?php if(!isset($user_pota_lookup)) { $user_pota_lookup='0'; }?>
+									<?php if(!isset($user_pota_lookup)) { $user_pota_lookup='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_pota_lookup" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="potalookup" name="user_pota_lookup" value="1" <?php if ($user_pota_lookup == 1) { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="potalookup"><?= __("POTA auto lookup gridsquare and name for park."); ?></label>
+											<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										</div>
 									</div>
 									<div class="mb-3">
 										<label for="qso-page-last-qso-count"><?= __("Number of previous contacts displayed on QSO page."); ?></label>
@@ -513,25 +527,29 @@
 							<div class="card">
 								<div class="card-header"><?= __("Menu Options"); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label for="shownotes"><?= __("Show notes in the main menu."); ?></label>
-										<?php if(!isset($user_show_notes)) { $user_show_notes='0'; }?>
+									<?php if(!isset($user_show_notes)) { $user_show_notes='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_show_notes" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="shownotes" name="user_show_notes" value="1" <?php if ($user_show_notes == 1) { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0" for="shownotes"><?= __("Show notes in the main menu."); ?></label>
 										</div>
 									</div>
 
 									<hr/>
 
-									<div class="mb-3">
-										<label for="quicklog"><?= __("Quicklog Field"); ?></label>
-										<?php if(!isset($user_quicklog)) { $user_quicklog='0'; }?>
+									<?php if(!isset($user_quicklog)) { $user_quicklog='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_quicklog" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="quicklog" name="user_quicklog" value="1" <?php if ($user_quicklog == 1) { echo 'checked'; } ?>>
 										</div>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("With this feature, you can log callsigns using the search field in the header."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="quicklog"><?= __("Quicklog Field"); ?></label>
+											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("With this feature, you can log callsigns using the search field in the header."); ?></small>
+										</div>
 									</div>
 
 									<div class="mb-3">
@@ -546,22 +564,26 @@
 									<?php if ($this->session->userdata('user_id') == $this->uri->segment(3)) { ?>
 									<hr/>
 
-									<div class="mb-3">
-										<label for="locations_quickswitch"><?= __("Station Locations Quickswitch"); ?></label>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_locations_quickswitch" value="false">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="locations_quickswitch" name="user_locations_quickswitch" value="true" <?php if ($user_locations_quickswitch == 'true') { echo 'checked'; } ?>>
 										</div>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the Station Locations Quickswitch in the main menu. You can add locations by adding them to favourites at the station setup page."); ?></small>
+										<div>
+											<label class="d-block mb-0" for="locations_quickswitch"><?= __("Station Locations Quickswitch"); ?></label>
+											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the Station Locations Quickswitch in the main menu. You can add locations by adding them to favourites at the station setup page."); ?></small>
+										</div>
 									</div>
 
-									<div class="mb-3">
-										<label for="utc_headermenu"><?= __("UTC Time in Menu"); ?></label>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_utc_headermenu" value="false">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="utc_headermenu" name="user_utc_headermenu" value="true" <?php if ($user_utc_headermenu == 'true') { echo 'checked'; } ?>>
 										</div>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the current UTC Time in the menu"); ?></small>
+										<div>
+											<label class="d-block mb-0" for="utc_headermenu"><?= __("UTC Time in Menu"); ?></label>
+											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the current UTC Time in the menu"); ?></small>
+										</div>
 									</div>
 									<?php } ?>
 								</div>
@@ -643,16 +665,12 @@
 											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? "#CC372D"; ?>" style="padding:initial;" data-icon="unworked" />
 										</div>
 									</div>
-									<div class="row">
-										<div class="md-3 col-md-4">
-											<label><?= __("Show Locator"); ?></label>
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="user_map_gridsquare_show" value="0">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="user_map_gridsquare_show" name="user_map_gridsquare_show" value="1" <?php if ($user_map_gridsquare_show == 1) { echo 'checked'; } ?>>
 										</div>
-										<div class="md-3 col-md-3">
-											<input type="hidden" name="user_map_gridsquare_show" value="0">
-											<div class="form-check form-switch">
-												<input class="form-check-input" type="checkbox" role="switch" id="user_map_gridsquare_show" name="user_map_gridsquare_show" value="1" <?php if ($user_map_gridsquare_show == 1) { echo 'checked'; } ?>>
-											</div>
-										</div>
+										<label class="d-block mb-0" for="user_map_gridsquare_show"><?= __("Show Locator"); ?></label>
 									</div>
 								</div>
 							</div>
@@ -711,37 +729,45 @@
 											<small id="user_dashboard_map_Help" class="form-text text-muted"><?= __("Choose whether to show map on dashboard or not"); ?></small>
 										</div>
 
-										<div class="mb-3">
-											<label for="user_dashboard_banner"><?= __("Dashboard Notification Banner"); ?></label>
-											<?php if(!isset($user_dashboard_banner)) { $user_dashboard_banner='Y'; }?>
+										<?php if(!isset($user_dashboard_banner)) { $user_dashboard_banner='Y'; }?>
+										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_banner" value="false">
-											<div class="form-check form-switch">
+											<div class="form-check form-switch mt-1">
 												<input class="form-check-input" type="checkbox" role="switch" id="user_dashboard_banner" name="user_dashboard_banner" value="true" <?php if ($user_dashboard_banner == 'true') { echo 'checked'; } ?>>
 											</div>
-											<small id="user_dashboard_banner_Help" class="form-text text-muted"><?= __("This allows to disable the global notification banner on the dashboard."); ?></small>
+											<div>
+												<label class="d-block mb-0" for="user_dashboard_banner"><?= __("Dashboard Notification Banner"); ?></label>
+												<small id="user_dashboard_banner_Help" class="form-text text-muted"><?= __("This allows to disable the global notification banner on the dashboard."); ?></small>
+											</div>
 										</div>
 
-										<div class="mb-3">
-											<label for="user_dashboard_solar"><?= __("Dashboard solar and propagation data"); ?></label>
-											<?php if(!isset($user_dashboard_solar)) { $user_dashboard_solar='N'; }?>
+										<?php if(!isset($user_dashboard_solar)) { $user_dashboard_solar='N'; }?>
+										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_solar" value="N">
-											<div class="form-check form-switch">
+											<div class="form-check form-switch mt-1">
 												<input class="form-check-input" type="checkbox" role="switch" id="user_dashboard_solar" name="user_dashboard_solar" value="Y" <?php if ($user_dashboard_solar == 'Y') { echo 'checked'; } ?>>
 											</div>
-											<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("This switches the display of the solar and propagation data on the dashboard."); ?></small>
-										</div>
-										<div class="mb-3">
-											<label class="form-label" for="dashboardShowDxpeditions"><?= __("Active Expeditions"); ?></label>
-											<input type="hidden" name="user_dashboard_show_dxpeditions" value="0">
-											<div class="form-check form-switch">
-												<input class="form-check-input" type="checkbox" role="switch" id="dashboardShowDxpeditions" name="user_dashboard_show_dxpeditions" value="1" <?php if ($user_dashboard_show_dxpeditions == 1) { echo 'checked'; } ?>>
+											<div>
+												<label class="d-block mb-0" for="user_dashboard_solar"><?= __("Dashboard solar and propagation data"); ?></label>
+												<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("This switches the display of the solar and propagation data on the dashboard."); ?></small>
 											</div>
 										</div>
-										<div class="mb-3">
-											<label class="form-label" for="dashboardShowContests"><?= __("Active Contests"); ?></label>
+										<div class="d-flex align-items-start gap-2 mb-3">
+											<input type="hidden" name="user_dashboard_show_dxpeditions" value="0">
+											<div class="form-check form-switch mt-1">
+												<input class="form-check-input" type="checkbox" role="switch" id="dashboardShowDxpeditions" name="user_dashboard_show_dxpeditions" value="1" <?php if ($user_dashboard_show_dxpeditions == 1) { echo 'checked'; } ?>>
+											</div>
+											<div>
+												<label class="d-block mb-0" for="dashboardShowDxpeditions"><?= __("Active Expeditions"); ?></label>
+											</div>
+										</div>
+										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_show_contests" value="0">
-											<div class="form-check form-switch">
+											<div class="form-check form-switch mt-1">
 												<input class="form-check-input" type="checkbox" role="switch" id="dashboardShowContests" name="user_dashboard_show_contests" value="1" <?php if ($user_dashboard_show_contests == 1) { echo 'checked'; } ?>>
+											</div>
+											<div>
+												<label class="d-block mb-0" for="dashboardShowContests"><?= __("Active Contests"); ?></label>
 											</div>
 										</div>
 									</div>
@@ -752,12 +778,14 @@
 							<div class="card">
 								<div class="card-header"><?= __("Show Fields on QSO Tab"); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label for="qsoShowMap"><?= __("Show map at QSO-Window"); ?></label>
-										<?php if(!isset($user_qso_show_map)) { $user_qso_show_map = 1; } ?>
+									<?php if(!isset($user_qso_show_map)) { $user_qso_show_map = 1; } ?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_qso_show_map" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="qsoShowMap" name="user_qso_show_map" value="1" <?php if ($user_qso_show_map == 1) { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0" for="qsoShowMap"><?= __("Show map at QSO-Window"); ?></label>
 										</div>
 									</div>
 									<div class="row">
@@ -812,44 +840,52 @@
 												<input type="text" name="global_oqrs_text" class="form-control" id="global_oqrs_text" aria-describedby="global_oqrs_text" value="<?php echo ($global_oqrs_text ?? ''); ?>">
 												<small id="global_oqrs_text_help" class="form-text text-muted"><?= __("This text is an optional text that can be displayed on top of the OQRS page."); ?></small>
 											</div>
-											<div class="mb-3">
-												<label for="oqrs_grouped_search"><?= __("Grouped search"); ?></label>
-												<?php if(!isset($oqrs_grouped_search)) { $oqrs_grouped_search='off'; }?>
+											<?php if(!isset($oqrs_grouped_search)) { $oqrs_grouped_search='off'; }?>
+											<div class="d-flex align-items-start gap-2 mb-3">
 												<input type="hidden" name="oqrs_grouped_search" value="off">
-												<div class="form-check form-switch">
+												<div class="form-check form-switch mt-1">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_grouped_search" name="oqrs_grouped_search" value="on" <?php if ($oqrs_grouped_search == 'on') { echo 'checked'; } ?>>
 												</div>
-												<small id="oqrs_grouped_search_help" class="form-text text-muted"><?= __("When this is on, all station locations with OQRS active, will be searched at once."); ?></small>
+												<div>
+													<label class="d-block mb-0" for="oqrs_grouped_search"><?= __("Grouped search"); ?></label>
+													<small id="oqrs_grouped_search_help" class="form-text text-muted"><?= __("When this is on, all station locations with OQRS active, will be searched at once."); ?></small>
+												</div>
 											</div>
 
-											<div class="mb-3">
-												<label for="oqrs_grouped_search_show_station_name"><?= __("Show station location name in grouped search results"); ?></label>
-												<?php if(!isset($oqrs_grouped_search_show_station_name)) { $oqrs_grouped_search_show_station_name='off'; }?>
+											<?php if(!isset($oqrs_grouped_search_show_station_name)) { $oqrs_grouped_search_show_station_name='off'; }?>
+											<div class="d-flex align-items-start gap-2 mb-3">
 												<input type="hidden" name="oqrs_grouped_search_show_station_name" value="off">
-												<div class="form-check form-switch">
+												<div class="form-check form-switch mt-1">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_grouped_search_show_station_name" name="oqrs_grouped_search_show_station_name" value="on" <?php if ($oqrs_grouped_search_show_station_name == 'on') { echo 'checked'; } ?>>
 												</div>
-												<small id="oqrs_grouped_search_show_station_name_help" class="form-text text-muted"><?= __("If grouped search is ON, you can decide if the name of the station location shall be shown in the results table."); ?></small>
+												<div>
+													<label class="d-block mb-0" for="oqrs_grouped_search_show_station_name"><?= __("Show station location name in grouped search results"); ?></label>
+													<small id="oqrs_grouped_search_show_station_name_help" class="form-text text-muted"><?= __("If grouped search is ON, you can decide if the name of the station location shall be shown in the results table."); ?></small>
+												</div>
 											</div>
 
-											<div class="mb-3">
-												<label for="oqrs_auto_matching"><?= __("Automatic OQRS matching"); ?></label>
-												<?php if(!isset($oqrs_auto_matching)) { $oqrs_auto_matching='on'; }?>
+											<?php if(!isset($oqrs_auto_matching)) { $oqrs_auto_matching='on'; }?>
+											<div class="d-flex align-items-start gap-2 mb-3">
 												<input type="hidden" name="oqrs_auto_matching" value="off">
-												<div class="form-check form-switch">
+												<div class="form-check form-switch mt-1">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_auto_matching" name="oqrs_auto_matching" value="on" <?php if ($oqrs_auto_matching == 'on') { echo 'checked'; } ?>>
 												</div>
-												<small id="oqrs_auto_matching_help" class="form-text text-muted"><?= __("If this is on, automatic OQRS matching will happen, and the system will try to match incoming requests with existing logs automatically."); ?></small>
+												<div>
+													<label class="d-block mb-0" for="oqrs_auto_matching"><?= __("Automatic OQRS matching"); ?></label>
+													<small id="oqrs_auto_matching_help" class="form-text text-muted"><?= __("If this is on, automatic OQRS matching will happen, and the system will try to match incoming requests with existing logs automatically."); ?></small>
+												</div>
 											</div>
 
-											<div class="mb-3">
-												<label for="oqrs_direct_auto_matching"><?= __("Automatic OQRS matching for direct requests"); ?></label>
-												<?php if(!isset($oqrs_direct_auto_matching)) { $oqrs_direct_auto_matching='on'; }?>
+											<?php if(!isset($oqrs_direct_auto_matching)) { $oqrs_direct_auto_matching='on'; }?>
+											<div class="d-flex align-items-start gap-2 mb-3">
 												<input type="hidden" name="oqrs_direct_auto_matching" value="off">
-												<div class="form-check form-switch">
+												<div class="form-check form-switch mt-1">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_direct_auto_matching" name="oqrs_direct_auto_matching" value="on" <?php if ($oqrs_direct_auto_matching == 'on') { echo 'checked'; } ?>>
 												</div>
-												<small id="oqrs_direct_auto_matching_help" class="form-text text-muted"><?= __("If this is on, automatic OQRS matching for direct request will happen."); ?></small>
+												<div>
+													<label class="d-block mb-0" for="oqrs_direct_auto_matching"><?= __("Automatic OQRS matching for direct requests"); ?></label>
+													<small id="oqrs_direct_auto_matching_help" class="form-text text-muted"><?= __("If this is on, automatic OQRS matching for direct request will happen."); ?></small>
+												</div>
 											</div>
 
 											<div class="mb-3">
@@ -1064,30 +1100,34 @@
 							<div class="card">
 								<div class="card-header"><?= __("On-Air widget"); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label><?= __("Enabled"); ?></label>
-										<?php if(!isset($on_air_widget_enabled)) { $on_air_widget_enabled='false'; }?>
+									<?php if(!isset($on_air_widget_enabled)) { $on_air_widget_enabled='false'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="on_air_widget_enabled" value="false">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="on_air_widget_enabled" name="on_air_widget_enabled" value="true" <?php if ($on_air_widget_enabled == 'true') { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted">
-											<?= sprintf(__("Note: In order to use this widget, you need to have at least one CAT radio configured and working.")); ?>
-											<?php if (isset($on_air_widget_url)) {
-												// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here
-												print("<br>");
-												printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
-											} ?>
-										</small>
+										<div>
+											<label class="d-block mb-0"><?= __("Enabled"); ?></label>
+											<small class="form-text text-muted">
+												<?= sprintf(__("Note: In order to use this widget, you need to have at least one CAT radio configured and working.")); ?>
+												<?php if (isset($on_air_widget_url)) {
+													// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here
+													print("<br>");
+													printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
+												} ?>
+											</small>
+										</div>
 									</div>
-									<div class="mb-3">
-										<label><?= __('Display "Last seen" time'); ?></label>
-										<?php if(!isset($on_air_widget_display_last_seen)) { $on_air_widget_display_last_seen='false'; }?>
+									<?php if(!isset($on_air_widget_display_last_seen)) { $on_air_widget_display_last_seen='false'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="on_air_widget_display_last_seen" value="false">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="on_air_widget_display_last_seen" name="on_air_widget_display_last_seen" value="true" <?php if ($on_air_widget_display_last_seen == 'true') { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("This setting control whether the 'Last seen' time is displayed in widget or not."); ?></small>
+										<div>
+											<label class="d-block mb-0"><?= __('Display "Last seen" time'); ?></label>
+											<small class="form-text text-muted"><?= __("This setting control whether the 'Last seen' time is displayed in widget or not."); ?></small>
+										</div>
 									</div>
 									<div class="mb-3">
 										<label><?= __("Display only most recently updated radio"); ?></label>
@@ -1108,14 +1148,16 @@
 							<div class="card">
 								<div class="card-header"><?= __("QSOs widget"); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label><?= __('Display exact QSO time'); ?></label>
-										<?php if(!isset($qso_widget_display_qso_time)) { $qso_widget_display_qso_time='false'; }?>
+									<?php if(!isset($qso_widget_display_qso_time)) { $qso_widget_display_qso_time='false'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="qso_widget_display_qso_time" value="false">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="qso_widget_display_qso_time" name="qso_widget_display_qso_time" value="true" <?php if ($qso_widget_display_qso_time == 'true') { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("This setting control whether exact QSO time should displayed in the QSO widget or not."); ?></small>
+										<div>
+											<label class="d-block mb-0"><?= __('Display exact QSO time'); ?></label>
+											<small class="form-text text-muted"><?= __("This setting control whether exact QSO time should displayed in the QSO widget or not."); ?></small>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1138,12 +1180,14 @@
 							<div class="card">
 								<div class="card-header"><?= __("AMSAT Status Upload"); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label for="amsatsatatusupload"><?= __("Upload status of SAT QSOs to"); ?> <a href="https://www.amsat.org/status/" target="_blank">https://www.amsat.org/status/</a>.</label>
-										<?php if(!isset($user_amsat_status_upload)) { $user_amsat_status_upload='0'; }?>
+									<?php if(!isset($user_amsat_status_upload)) { $user_amsat_status_upload='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_amsat_status_upload" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="amsatstatusupload" name="user_amsat_status_upload" value="1" <?php if ($user_amsat_status_upload == 1) { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0" for="amsatsatatusupload"><?= __("Upload status of SAT QSOs to"); ?> <a href="https://www.amsat.org/status/" target="_blank">https://www.amsat.org/status/</a>.</label>
 										</div>
 									</div>
 								</div>
@@ -1169,14 +1213,16 @@
 							<div class="card">
 								<div class="card-header"><?= __("Winkeyer"); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label><?= __("Winkeyer Features Enabled"); ?></label>
-										<?php if(!isset($user_winkey)) { $user_winkey='0'; }?>
+									<?php if(!isset($user_winkey)) { $user_winkey='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_winkey" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="user_winkeyer" name="user_winkey" value="1" <?php if ($user_winkey == 1) { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://docs.wavelog.org/user-guide/integrations/winkey/' target='_blank'>https://docs.wavelog.org/user-guide/integrations/winkey/</a>"); ?></small>
+										<div>
+											<label class="d-block mb-0"><?= __("Winkeyer Features Enabled"); ?></label>
+											<small class="form-text text-muted"><?= sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://docs.wavelog.org/user-guide/integrations/winkey/' target='_blank'>https://docs.wavelog.org/user-guide/integrations/winkey/</a>"); ?></small>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1194,14 +1240,16 @@
 										<input class="form-control" type="text" name="user_hamsat_key" value="<?php if(isset($user_hamsat_key)) { echo $user_hamsat_key; } ?>" />
 										<small class="form-text text-muted"><?= sprintf(_pgettext("Hint for Hamsat API Key; uses Link", "See your profile at %s."), "<a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>"); ?></small>
 									</div>
-									<div class="mb-3">
-										<label><?= __("Show Workable Passes Only"); ?></label>
-										<?php if(!isset($user_hamsat_workable_only)) { $user_hamsat_workable_only='0'; }?>
+									<?php if(!isset($user_hamsat_workable_only)) { $user_hamsat_workable_only='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_hamsat_workable_only" value="0">
-										<div class="form-check form-switch">
+										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="user_hamsat_workable_only" name="user_hamsat_workable_only" value="1" <?php if ($user_hamsat_workable_only == 1) { echo 'checked'; } ?>>
 										</div>
-										<small class="form-text text-muted"><?= __("If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set."); ?></small>
+										<div>
+											<label class="d-block mb-0"><?= __("Show Workable Passes Only"); ?></label>
+											<small class="form-text text-muted"><?= __("If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set."); ?></small>
+										</div>
 									</div>
 								</div>
 							</div>
