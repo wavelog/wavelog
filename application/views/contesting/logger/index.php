@@ -160,6 +160,7 @@
             <form id="switchOperatorForm" autocomplete="off" data-mode="<?= $switch_operator_mode; ?>" data-club-callsign="<?= htmlspecialchars(strtoupper((string)($club_callsign ?? '')), ENT_QUOTES); ?>">
                 <div class="modal-body">
                     <div id="switchOperatorError" class="alert alert-danger d-none" role="alert"></div>
+                    <p class="mb-3"><?= __("Current Operator:"); ?> <strong><?= htmlspecialchars(strtoupper((string)($operator ?? '')), ENT_QUOTES); ?></strong></p>
                     <?php if ($switch_operator_mode === 'login'): ?>
                     <p class="text-muted"><?= __("Log in with another operator's account to continue this contest session under their callsign."); ?></p>
                     <div class="mb-3">
