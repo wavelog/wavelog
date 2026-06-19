@@ -814,6 +814,7 @@
 											</div>
 											<div class="mb-3">
 												<label for="oqrs_grouped_search"><?= __("Grouped search"); ?></label>
+												<?php if(!isset($oqrs_grouped_search)) { $oqrs_grouped_search='off'; }?>
 												<input type="hidden" name="oqrs_grouped_search" value="off">
 												<div class="form-check form-switch">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_grouped_search" name="oqrs_grouped_search" value="on" <?php if ($oqrs_grouped_search == 'on') { echo 'checked'; } ?>>
@@ -823,6 +824,7 @@
 
 											<div class="mb-3">
 												<label for="oqrs_grouped_search_show_station_name"><?= __("Show station location name in grouped search results"); ?></label>
+												<?php if(!isset($oqrs_grouped_search_show_station_name)) { $oqrs_grouped_search_show_station_name='off'; }?>
 												<input type="hidden" name="oqrs_grouped_search_show_station_name" value="off">
 												<div class="form-check form-switch">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_grouped_search_show_station_name" name="oqrs_grouped_search_show_station_name" value="on" <?php if ($oqrs_grouped_search_show_station_name == 'on') { echo 'checked'; } ?>>
@@ -832,6 +834,7 @@
 
 											<div class="mb-3">
 												<label for="oqrs_auto_matching"><?= __("Automatic OQRS matching"); ?></label>
+												<?php if(!isset($oqrs_auto_matching)) { $oqrs_auto_matching='on'; }?>
 												<input type="hidden" name="oqrs_auto_matching" value="off">
 												<div class="form-check form-switch">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_auto_matching" name="oqrs_auto_matching" value="on" <?php if ($oqrs_auto_matching == 'on') { echo 'checked'; } ?>>
@@ -841,6 +844,7 @@
 
 											<div class="mb-3">
 												<label for="oqrs_direct_auto_matching"><?= __("Automatic OQRS matching for direct requests"); ?></label>
+												<?php if(!isset($oqrs_direct_auto_matching)) { $oqrs_direct_auto_matching='on'; }?>
 												<input type="hidden" name="oqrs_direct_auto_matching" value="off">
 												<div class="form-check form-switch">
 													<input class="form-check-input" type="checkbox" role="switch" id="oqrs_direct_auto_matching" name="oqrs_direct_auto_matching" value="on" <?php if ($oqrs_direct_auto_matching == 'on') { echo 'checked'; } ?>>
