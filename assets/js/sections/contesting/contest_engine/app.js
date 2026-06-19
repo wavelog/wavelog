@@ -126,6 +126,20 @@ import { SettingsSyncHandler } from './core/settings-sync.js';
                         syncEngine.triggerNow();
                     }
                 };
+                // Surface connection health as toasts.
+                wsTransport.onConnectTimeout = () => {
+                    wm.showToast(lang_error, lang_ws_unreachable, 'bg-danger text-white', 0, false);
+                };
+                wsTransport.onReconnecting = (attempt, max) => {
+                    wm.showToast(lang_warning, `${lang_ws_reconnecting} (${attempt}/${max})`, 'bg-warning text-dark', 4000);
+                };
+                wsTransport.onReconnected = () => {
+                    wm.showToast(lang_success, lang_ws_reconnected, 'bg-success text-white', 4000);
+                };
+                wsTransport.onReconnectFailed = () => {
+                    // Terminal state — keep the toast until the user dismisses it.
+                    wm.showToast(lang_error, lang_ws_reconnect_failed, 'bg-danger text-white', 0, false);
+                };
                 wsTransport.connect();
                 window.contestApp.wsTransport = wsTransport;
                 syncEngine.setWorkerDriven(true);

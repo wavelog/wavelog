@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-18 13:13+0000\n"
+"POT-Creation-Date: 2026-06-19 10:05+0000\n"
 "PO-Revision-Date: 2026-06-15 18:21+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2868,7 +2868,7 @@ msgstr "Alternativ"
 
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/winkeyer.php:50
-#: application/views/contesting/logger/index.php:115
+#: application/views/contesting/logger/index.php:120
 #: application/views/debug/index.php:379 application/views/qso/index.php:826
 #: application/views/satellite/pass.php:116
 msgid "Settings"
@@ -8558,7 +8558,7 @@ msgstr "Färsk spot (< 5 minuter gammal)"
 #: application/views/bandmap/list.php:328
 #: application/views/bandmap/list.php:522
 #: application/views/contestcalendar/index.php:20
-#: application/views/contesting/logger/index.php:93
+#: application/views/contesting/logger/index.php:98
 #: application/views/contesting/manager/components/session_modal.php:28
 #: application/views/contesting/manager/import_legacy.php:31
 #: application/views/contesting/manager/index.php:32
@@ -9292,8 +9292,8 @@ msgstr "Skapa ett band"
 #: application/views/bands/index.php:160
 #: application/views/club/permissions.php:191
 #: application/views/contesting/logger/components/winkeyer.php:22
-#: application/views/contesting/logger/index.php:62
-#: application/views/contesting/logger/index.php:85
+#: application/views/contesting/logger/index.php:67
+#: application/views/contesting/logger/index.php:90
 #: application/views/contesting/manager/components/confirm_delete.php:6
 #: application/views/contesting/manager/components/session_modal.php:12
 #: application/views/interface_assets/footer.php:50
@@ -10614,6 +10614,34 @@ msgid "Unknown error"
 msgstr "Okänt fel"
 
 #: application/views/contesting/logger/index.php:60
+#: application/views/debug/index.php:158 application/views/debug/index.php:169
+#: application/views/debug/index.php:180 application/views/debug/index.php:191
+#: application/views/debug/index.php:203
+#: application/views/interface_assets/footer.php:38
+#: application/views/qslpostcard/designer.php:43
+msgid "Success"
+msgstr "Godkänt"
+
+#: application/views/contesting/logger/index.php:61
+msgid ""
+"The worker backend is not reachable. Please check your network connection."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:62
+msgid "Connection lost. Trying to reconnect…"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:63
+msgid "Reconnected to the worker backend."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:64
+msgid ""
+"Could not reconnect to the worker backend. Please check your network "
+"connection."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:65
 msgid ""
 "Contest settings have been changed. Please refresh the page to apply the new "
 "settings."
@@ -10621,59 +10649,59 @@ msgstr ""
 "Tävlingens inställningar har ändrats. Vänligen uppdatera sidan för att "
 "tillämpa de nya inställningarna."
 
-#: application/views/contesting/logger/index.php:61
+#: application/views/contesting/logger/index.php:66
 msgid "Reload now"
 msgstr "Ladda om nu"
 
-#: application/views/contesting/logger/index.php:70
+#: application/views/contesting/logger/index.php:75
 msgid "Loading Contest Engine"
 msgstr "Laddar tävlingsmotor"
 
-#: application/views/contesting/logger/index.php:71
+#: application/views/contesting/logger/index.php:76
 msgid "Initializing components..."
 msgstr "Initierar komponenter..."
 
-#: application/views/contesting/logger/index.php:83
+#: application/views/contesting/logger/index.php:88
 msgid "Control Panel"
 msgstr "Kontrollpanel"
 
-#: application/views/contesting/logger/index.php:95
+#: application/views/contesting/logger/index.php:100
 msgid "End Session"
 msgstr "Avsluta session"
 
-#: application/views/contesting/logger/index.php:99
+#: application/views/contesting/logger/index.php:104
 msgid "Components"
 msgstr "Komponenter"
 
-#: application/views/contesting/logger/index.php:103
+#: application/views/contesting/logger/index.php:108
 msgid "User Layouts"
 msgstr "Användarlayouter"
 
-#: application/views/contesting/logger/index.php:106
+#: application/views/contesting/logger/index.php:111
 msgid "Save New Layout"
 msgstr "Spara ny layout"
 
-#: application/views/contesting/logger/index.php:109
+#: application/views/contesting/logger/index.php:114
 msgid "Reset to Default Layout"
 msgstr "Återställ till standardlayout"
 
-#: application/views/contesting/logger/index.php:119
+#: application/views/contesting/logger/index.php:124
 msgid "Panel Position"
 msgstr "Panelens position"
 
-#: application/views/contesting/logger/index.php:121
+#: application/views/contesting/logger/index.php:126
 msgid "Left"
 msgstr "Vänster"
 
-#: application/views/contesting/logger/index.php:122
+#: application/views/contesting/logger/index.php:127
 msgid "Right"
 msgstr "Höger"
 
-#: application/views/contesting/logger/index.php:123
+#: application/views/contesting/logger/index.php:128
 msgid "Top"
 msgstr "Topp"
 
-#: application/views/contesting/logger/index.php:124
+#: application/views/contesting/logger/index.php:129
 msgid "Bottom"
 msgstr "Botten"
 
@@ -12366,14 +12394,6 @@ msgid ""
 msgstr ""
 "Detta verifierar att mapparna som används av Wavelog har läs- och "
 "skrivbehörigheter av PHP."
-
-#: application/views/debug/index.php:158 application/views/debug/index.php:169
-#: application/views/debug/index.php:180 application/views/debug/index.php:191
-#: application/views/debug/index.php:203
-#: application/views/interface_assets/footer.php:38
-#: application/views/qslpostcard/designer.php:43
-msgid "Success"
-msgstr "Godkänt"
 
 #: application/views/debug/index.php:160 application/views/debug/index.php:171
 #: application/views/debug/index.php:182 application/views/debug/index.php:193

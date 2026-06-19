@@ -2768,8 +2768,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Per favore, confronta il tuo attuale config.php con l'ultimo config.sample."
-"php e aggiornalo di conseguenza."
+"Per favore, confronta il tuo attuale config.php con l'ultimo "
+"config.sample.php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
@@ -2885,6 +2885,7 @@ msgstr "Opzioni"
 #: application/views/contesting/logger/index.php:115
 #: application/views/debug/index.php:379 application/views/qso/index.php:826
 #: application/views/satellite/pass.php:116
+#: application/views/contesting/logger/index.php:120
 msgid "Settings"
 msgstr "Impostazioni"
 
@@ -8183,8 +8184,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra U."
-"S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
+"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra "
+"U.S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
 "uno stato U.S.A.!)"
 
 #: application/views/awards/was/index.php:120
@@ -8647,6 +8648,7 @@ msgstr "Spot recenti (<5 minuti)"
 #: application/views/logbookadvanced/useroptions.php:296
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
+#: application/views/contesting/logger/index.php:98
 msgid "Contest"
 msgstr "Contest"
 
@@ -9384,6 +9386,8 @@ msgstr "Crea una banda"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/contesting/logger/index.php:67
+#: application/views/contesting/logger/index.php:90
 msgid "Close"
 msgstr "Chiudi"
 
@@ -10706,6 +10710,7 @@ msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
 #: application/views/contesting/logger/index.php:60
+#: application/views/contesting/logger/index.php:65
 msgid ""
 "Contest settings have been changed. Please refresh the page to apply the new "
 "settings."
@@ -10714,58 +10719,72 @@ msgstr ""
 "applicare le nuove impostazioni."
 
 #: application/views/contesting/logger/index.php:61
+#: application/views/contesting/logger/index.php:66
 msgid "Reload now"
 msgstr "Ricarica ora"
 
 #: application/views/contesting/logger/index.php:70
+#: application/views/contesting/logger/index.php:75
 msgid "Loading Contest Engine"
 msgstr "Caricamento del motore del contest"
 
 #: application/views/contesting/logger/index.php:71
+#: application/views/contesting/logger/index.php:76
 msgid "Initializing components..."
 msgstr "Inizializzazione dei componenti..."
 
 #: application/views/contesting/logger/index.php:83
+#: application/views/contesting/logger/index.php:88
 msgid "Control Panel"
 msgstr "Pannello di controllo"
 
 #: application/views/contesting/logger/index.php:95
+#: application/views/contesting/logger/index.php:100
 msgid "End Session"
 msgstr "Termina sessione"
 
 #: application/views/contesting/logger/index.php:99
+#: application/views/contesting/logger/index.php:104
 msgid "Components"
 msgstr "Componenti"
 
 #: application/views/contesting/logger/index.php:103
+#: application/views/contesting/logger/index.php:108
 msgid "User Layouts"
 msgstr "Layout utente"
 
 #: application/views/contesting/logger/index.php:106
+#: application/views/contesting/logger/index.php:111
 msgid "Save New Layout"
 msgstr "Salva nuovo layout"
 
 #: application/views/contesting/logger/index.php:109
+#: application/views/contesting/logger/index.php:114
 msgid "Reset to Default Layout"
 msgstr "Reimposta al layout predefinito"
 
 #: application/views/contesting/logger/index.php:119
+#: application/views/contesting/logger/index.php:124
 msgid "Panel Position"
 msgstr "Posizione del pannello"
 
 #: application/views/contesting/logger/index.php:121
+#: application/views/contesting/logger/index.php:126
 msgid "Left"
 msgstr "Sinistra"
 
 #: application/views/contesting/logger/index.php:122
+#: application/views/contesting/logger/index.php:127
 msgid "Right"
 msgstr "Destra"
 
 #: application/views/contesting/logger/index.php:123
+#: application/views/contesting/logger/index.php:128
 msgid "Top"
 msgstr "Alto"
 
 #: application/views/contesting/logger/index.php:124
+#: application/views/contesting/logger/index.php:129
 msgid "Bottom"
 msgstr "Basso"
 
@@ -12486,6 +12505,7 @@ msgstr ""
 #: application/views/debug/index.php:203
 #: application/views/interface_assets/footer.php:38
 #: application/views/qslpostcard/designer.php:43
+#: application/views/contesting/logger/index.php:60
 msgid "Success"
 msgstr "Successo"
 
@@ -20173,8 +20193,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -21808,6 +21829,25 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/views/contesting/logger/index.php:61
+msgid ""
+"The worker backend is not reachable. Please check your network connection."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:62
+msgid "Connection lost. Trying to reconnect…"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:63
+msgid "Reconnected to the worker backend."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:64
+msgid ""
+"Could not reconnect to the worker backend. Please check your network "
+"connection."
+msgstr ""
 
 #~ msgid "Progress towards working all DXCC entities:"
 #~ msgstr "Progresso nella lavorazione di tutte le entità DXCC:"
