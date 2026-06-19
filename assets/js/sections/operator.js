@@ -12,6 +12,7 @@ function displayOperatorDialog() {
 		type: "GET",
 		dataType: "html",
 		success: function (data) {
+			$("#operatorModal").remove();
 			$("body").append(data);
 
 			var operatorModal = new bootstrap.Modal($("#operatorModal"));
@@ -31,11 +32,22 @@ function closeOperatorDialog() {
 	}
 }
 
+// Kept in sync with the server-side check in Operator::isValidCallsign().
+function isValidOperatorCallsign(callsign) {
+	if (!callsign || callsign.length < 3) return false;
+	if (!/^[A-Z0-9]+$/.test(callsign)) return false;	// letters and digits only
+	if (!/[A-Z]/.test(callsign)) return false;		// at least one letter
+	if (!/[0-9]/.test(callsign)) return false;		// at least one digit
+	// A bare 3-char string ending in a digit is a prefix, not a call (e.g. "ZL3")
+	if (callsign.length === 3 && !/[A-Z]$/.test(callsign)) return false;
+	return true;
+}
+
 function saveOperator() {
 	var operatorInput = $("#operator_callsign");
-	var operatorCallsign = operatorInput.val();
+	var operatorCallsign = operatorInput.val().trim().toUpperCase();
 
-	if (operatorCallsign != "" && operatorCallsign != sc_account_call) {
+	if (operatorCallsign != sc_account_call && isValidOperatorCallsign(operatorCallsign)) {
 		$.ajax({
 			url: base_url + "index.php/operator/saveOperator",
 			method: "POST",
@@ -43,10 +55,16 @@ function saveOperator() {
 			data: {
 				operator_callsign: operatorCallsign,
 			},
+			// Reload only after the session write succeeded — reloading earlier races
+			// the POST and can render the previous operator.
+			success: function () {
+				closeOperatorDialog();
+				window.location.reload();
+			},
+			error: function () {
+				showToast("error", lang_operator_modal_save_error, 'bg-danger text-white', 5000);
+			}
 		});
-		closeOperatorDialog();
-		// console.log("saveOperator executed");
-		// console.log("operator:" + operatorCallsign);
 	} else {
 		operatorInput.addClass("is-invalid");
 	}

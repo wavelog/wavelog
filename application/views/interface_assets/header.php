@@ -570,6 +570,9 @@
 										</button>
 									</li>
 								<?php } ?>
+								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 1 && empty($this->session->userdata('source_uid'))) { ?>
+									<li><a class="dropdown-item" href="javascript:displayOperatorDialog();" title="<?= __("Switch Operator"); ?>"><i class="fas fa-user-friends"></i> <?= __("Switch Operator"); ?></a></li>
+								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?= __("Logout"); ?></a></li>
 							</ul>
 						</li>

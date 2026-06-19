@@ -133,6 +133,7 @@
     var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
     var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
     var lang_qso_dxcc_none_location = "<?= __("Location could not be determined as gridsquare is empty and DXCC is -NONE-"); ?>";
+    var lang_operator_modal_save_error = "<?= __("Error saving operator callsign. Please try again."); ?>";
 
     // CAT Offline Status Messages
     var lang_cat_working_offline = "<?= __("Working without CAT connection"); ?>";
@@ -234,7 +235,7 @@ if($this->session->userdata('user_id') != null) {
 <!-- Version Dialog END -->
 
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
-<?php if ($this->config->item('special_callsign') && $this->uri->segment(1) == "dashboard" && $this->session->userdata('clubstation') == 1) { ?>
+<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 1) { ?>
 <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/operator.js'); ?>"></script>
 <script>
 	<?php
@@ -247,8 +248,7 @@ if($this->session->userdata('user_id') != null) {
     let sc_account_call = '<?php echo $account_call; ?>'
 
 	<?php
-    # if the operator call and the account call is the same we show the dialog (except for admins!)
-    if ($op_call == $account_call && $user_type != '99') { ?>
+    if ($this->uri->segment(1) == "dashboard" && $op_call == $account_call && $user_type != '99') { ?>
 
         // load the dialog with javascript
         displayOperatorDialog();

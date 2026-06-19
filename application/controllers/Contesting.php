@@ -503,11 +503,20 @@ class Contesting extends CI_Controller {
 		// Generate storage key for localStorage. This needs to be collision-free between different Wavelog Instances and different users
 		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
 
-		$data['operator'] = $this->user_model->get_by_id($decoded_token['user_id'])->row()->user_callsign;
+		$data['operator'] = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
 		$data['page_title'] = !empty($data['session_info']['custom_name'])
 			? $data['session_info']['custom_name']
 			: $data['session_info']['contest_name'];
 		$data['is_club_station'] = (bool) ($this->session->userdata('clubstation') ?? false);
+		$data['switch_operator_mode'] = null;
+		if ($data['is_club_station']) {
+			if (empty($this->session->userdata('source_uid'))) {
+				$data['switch_operator_mode'] = 'callsign';
+			} elseif (!$this->config->item('disable_impersonate')) {
+				$data['switch_operator_mode'] = 'login';
+			}
+		}
+		$data['club_callsign'] = $this->session->userdata('user_callsign');
 
 		// Load available radios for CAT control
 		$this->load->model('cat');
@@ -923,6 +932,115 @@ class Contesting extends CI_Controller {
 			}
 
 			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+		}
+	}
+
+	/**
+	 * Switch the operating user mid-session in a club station.
+	 */
+	public function switch_operator() {
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		header('Content-Type: application/json');
+
+		try {
+			if (!$this->config->item('special_callsign') || $this->config->item('disable_impersonate')) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => __("Operator switching is disabled.")]);
+				return;
+			}
+
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!$payload) {
+				throw new Exception('Invalid JSON payload');
+			}
+
+			$contest_session_id = (int)($payload['contest_session_id'] ?? 0);
+			$user_name          = trim((string)($payload['user_name'] ?? ''));
+			$user_password      = (string)($payload['user_password'] ?? '');
+
+			if (!$contest_session_id || $user_name === '' || $user_password === '') {
+				throw new Exception('Missing required fields');
+			}
+
+			// Only valid inside a club station.
+			if ((int)$this->session->userdata('clubstation') !== 1) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => __("Operator switching is only available in club stations.")]);
+				return;
+			}
+
+			$club_id = (int)$this->session->userdata('user_id');
+
+			// The club must own this contest session.
+			$this->load->model('contesting_model');
+			if (!$this->contesting_model->check_user_contest($contest_session_id)) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => __("Access denied")]);
+				return;
+			}
+
+			// Re-authenticate the new operator. Reuses bcrypt verification and the
+			// login_attempts lockout. Returns 1 on success; 0/2/3 are all failures here.
+			if ($this->user_model->authenticate($user_name, $user_password) !== 1) {
+				http_response_code(401);
+				echo json_encode(['success' => false, 'error' => __("Incorrect username or password!")]);
+				return;
+			}
+			$op = $this->user_model->get($user_name)->row();
+
+			// A club account must never act as an operator. authenticate() lets club
+			// accounts through when club_direct is enabled, so reject them explicitly.
+			if ((int)$op->clubstation !== 0) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => __("A club account cannot be used as an operator.")]);
+				return;
+			}
+
+			// The operator must be an authorised member (p_level >= 3) of THIS club.
+			// get_permission_noui() is the redirect-free getter (club_authorize() would
+			// redirect on failure, which breaks a JSON endpoint).
+			$this->load->model('club_model');
+			$p_level = (int)$this->club_model->get_permission_noui($club_id, $op->user_id);
+			if ($p_level < 3) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => __("You're not allowed to do that!")]);
+				return;
+			}
+
+			// Establish the impersonation session for the new operator (same primitives
+			// as User::impersonate()). user_id stays the club.
+			// Create a fresh impersonation hash so the operator can still use "Switch back"
+			// to return to their own account. Format must match stop_impersonate()'s
+			// validation (User.php): source_uid/target_uid/timestamp — source is this
+			// operator, target is the club (which stays as user_id).
+			if (!$this->load->is_loaded('encryption')) {
+				$this->load->library('encryption');
+			}
+			$custom = [
+				'p_level'       => $p_level,
+				'src_call'      => $op->user_callsign,
+				'src_user_type' => $op->user_type,
+				'src_hash'      => $this->encryption->encrypt($op->user_id . '/' . $club_id . '/' . time()),
+			];
+			$this->session->set_userdata('source_uid', $op->user_id);
+			$this->user_model->update_session($club_id, null, true, $custom);
+			// update_session keeps an existing operator_callsign, so override it explicitly.
+			$this->session->set_userdata('operator_callsign', strtoupper(trim($op->user_callsign)));
+
+			// Fresh token now carries the new operator as token user_id (reads source_uid).
+			$token = $this->paths->create_contesting_logging_token($contest_session_id);
+
+			echo json_encode([
+				'success'  => true,
+				'redirect' => site_url('contesting/logging_engine') . '/' . $token,
+			]);
 		} catch (Exception $e) {
 			http_response_code(400);
 			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
