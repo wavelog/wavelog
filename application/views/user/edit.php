@@ -665,6 +665,7 @@
 											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? "#CC372D"; ?>" style="padding:initial;" data-icon="unworked" />
 										</div>
 									</div>
+									<?php if(!isset($user_map_gridsquare_show)) { $user_map_gridsquare_show='1'; }?>
 									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_map_gridsquare_show" value="0">
 										<div class="form-check form-switch mt-1">
@@ -733,7 +734,7 @@
 										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_banner" value="false">
 											<div class="form-check form-switch mt-1">
-												<input class="form-check-input" type="checkbox" role="switch" id="user_dashboard_banner" name="user_dashboard_banner" value="true" <?php if ($user_dashboard_banner == 'true') { echo 'checked'; } ?>>
+												<input class="form-check-input" type="checkbox" role="switch" id="user_dashboard_banner" name="user_dashboard_banner" value="true" <?php if ($user_dashboard_banner == 'true' || $user_dashboard_banner == 'Y') { echo 'checked'; } ?>>
 											</div>
 											<div>
 												<label class="d-block mb-0" for="user_dashboard_banner"><?= __("Dashboard Notification Banner"); ?></label>
@@ -752,6 +753,7 @@
 												<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("This switches the display of the solar and propagation data on the dashboard."); ?></small>
 											</div>
 										</div>
+										<?php if(!isset($user_dashboard_show_dxpeditions)) { $user_dashboard_show_dxpeditions='1'; }?>
 										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_show_dxpeditions" value="0">
 											<div class="form-check form-switch mt-1">
@@ -761,6 +763,7 @@
 												<label class="d-block mb-0" for="dashboardShowDxpeditions"><?= __("Active Expeditions"); ?></label>
 											</div>
 										</div>
+										<?php if(!isset($user_dashboard_show_contests)) { $user_dashboard_show_contests='1'; }?>
 										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_show_contests" value="0">
 											<div class="form-check form-switch mt-1">
