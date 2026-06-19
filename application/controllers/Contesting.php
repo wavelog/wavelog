@@ -950,7 +950,7 @@ class Contesting extends CI_Controller {
 		header('Content-Type: application/json');
 
 		try {
-			if (!$this->config->item('special_callsign')) {
+			if (!$this->config->item('special_callsign') || $this->config->item('disable_impersonate')) {
 				http_response_code(403);
 				echo json_encode(['success' => false, 'error' => __("Operator switching is disabled.")]);
 				return;
@@ -1016,11 +1016,18 @@ class Contesting extends CI_Controller {
 
 			// Establish the impersonation session for the new operator (same primitives
 			// as User::impersonate()). user_id stays the club.
+			// Create a fresh impersonation hash so the operator can still use "Switch back"
+			// to return to their own account. Format must match stop_impersonate()'s
+			// validation (User.php): source_uid/target_uid/timestamp — source is this
+			// operator, target is the club (which stays as user_id).
+			if (!$this->load->is_loaded('encryption')) {
+				$this->load->library('encryption');
+			}
 			$custom = [
 				'p_level'       => $p_level,
 				'src_call'      => $op->user_callsign,
 				'src_user_type' => $op->user_type,
-				'src_hash'      => '', // wipe any inherited hash from the previous operator
+				'src_hash'      => $this->encryption->encrypt($op->user_id . '/' . $club_id . '/' . time()),
 			];
 			$this->session->set_userdata('source_uid', $op->user_id);
 			$this->user_model->update_session($club_id, null, true, $custom);
