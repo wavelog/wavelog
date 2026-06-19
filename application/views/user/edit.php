@@ -411,7 +411,7 @@
 								<div class="card-header"><?= __("QSO Logging Options"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="logendtime"><?= __("Log End Times for QSOs Separately"); ?></label>
+										<label for="logendtimes"><?= __("Log End Times for QSOs Separately"); ?></label>
 										<?php if(!isset($user_qso_end_times)) { $user_qso_end_times='0'; }?>
 										<input type="hidden" name="user_qso_end_times" value="0">
 										<div class="form-check form-switch">
@@ -422,11 +422,11 @@
 
 									<hr />
 									<div class="mb-3">
-										<label for="logendtime"><?= __("Prioritize database search over external lookup"); ?></label>
+										<label for="db_search_priority"><?= __("Prioritize database search over external lookup"); ?></label>
 										<?php if(!isset($user_qso_db_search_priority)) { $user_qso_db_search_priority='Y'; }?>
 										<input type="hidden" name="user_qso_db_search_priority" value="N">
 										<div class="form-check form-switch">
-											<input class="form-check-input" type="checkbox" role="switch" id="logendtimes" name="user_qso_db_search_priority" value="Y" <?php if ($user_qso_db_search_priority == 'Y') { echo 'checked'; } ?>>
+											<input class="form-check-input" type="checkbox" role="switch" id="db_search_priority" name="user_qso_db_search_priority" value="Y" <?php if ($user_qso_db_search_priority == 'Y') { echo 'checked'; } ?>>
 										</div>
 										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("When set to \"Yes\", callsign lookup will first use data from your previous QSOs before querying external services. Set to \"No\" to always use external lookup services instead."); ?></small>
 									</div>
