@@ -103,6 +103,8 @@ class AdifHelper {
 			'CNTY_ALT',
 			'MY_CNTY_ALT',
 			'MY_DARC_DOK',
+			'MY_ANTENNA',
+			'MY_ANTENNA_INTL',
 			'MORSE_KEY_INFO',
 			'MORSE_KEY_TYPE',
 			'QSLMSG_RCVD',
@@ -250,7 +252,6 @@ class AdifHelper {
 
 	/*
 	    Missing:
-	    MY_ANTENNA
 	    MY_FISTS
 	    MY_IOTA_ISLAND_ID
 	    MY_LAT
