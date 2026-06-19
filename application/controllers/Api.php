@@ -185,6 +185,7 @@ class API extends CI_Controller {
 	}
 
 	function create_station($key = '') {
+		header('Content-type: application/json');
 		$this->load->model('api_model');
 
 		$apiKeyResponse = $this->api_model->authorize($key ?? '');
@@ -1148,6 +1149,7 @@ class API extends CI_Controller {
 	}
 
 	function private_lookup() {
+		header('Content-type: application/json');
 		// Lookup Callsign and dxcc for further informations. UseCase: e.g. external Application which checks calls like FlexRadio-Overlay
 		$raw_input = json_decode(file_get_contents("php://input"), true);
 
@@ -1358,6 +1360,7 @@ class API extends CI_Controller {
 	}
 
 	function lookup() {
+		header('Content-type: application/json');
 		// This API provides NO information about previous QSOs. It just derivates DXCC, Lat, Long. It is used by the DXClusterAPI
 		$raw_input = json_decode(file_get_contents("php://input"), true);
 
