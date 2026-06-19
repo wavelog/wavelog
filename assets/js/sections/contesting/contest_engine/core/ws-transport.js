@@ -121,8 +121,8 @@ export class WsTransport extends TransportAdapter {
 					this._clearConnectTimer();
 					console.info('[WsTransport] authenticated on topic:', this._topic);
 					// Surface success only when recovering from a previous failure.
-					if (this._reconnectAttempt > 0 && typeof this.onReconnected === 'function') {
-						this.onReconnected();
+					if (this._reconnectAttempt > 0) {
+						this._invokeHook(this.onReconnected);
 					}
 					this._reconnectAttempt  = 0;
 					this._warnedUnreachable = false;
@@ -179,9 +179,7 @@ export class WsTransport extends TransportAdapter {
 		// Initial unreachable: warn once, then start the reconnect attempts.
 		if (!this._everConnected && !this._warnedUnreachable) {
 			this._warnedUnreachable = true;
-			if (typeof this.onConnectTimeout === 'function') {
-				this.onConnectTimeout();
-			}
+			this._invokeHook(this.onConnectTimeout);
 		}
 
 		this._scheduleReconnect();
@@ -194,18 +192,14 @@ export class WsTransport extends TransportAdapter {
 		if (this._reconnectAttempt >= this._maxReconnects) {
 			console.warn('[WsTransport] giving up after', this._maxReconnects, 'reconnect attempts');
 			this._wantConnected = false;
-			if (typeof this.onReconnectFailed === 'function') {
-				this.onReconnectFailed();
-			}
+			this._invokeHook(this.onReconnectFailed);
 			return;
 		}
 
 		this._reconnectAttempt++;
 		const attempt = this._reconnectAttempt;
 		console.info('[WsTransport] reconnect attempt', attempt, '/', this._maxReconnects);
-		if (typeof this.onReconnecting === 'function') {
-			this.onReconnecting(attempt, this._maxReconnects);
-		}
+		this._invokeHook(this.onReconnecting, attempt, this._maxReconnects);
 
 		clearTimeout(this._reconnectTimer);
 		this._reconnectTimer = setTimeout(() => {
@@ -213,6 +207,19 @@ export class WsTransport extends TransportAdapter {
 				this._openSocket();
 			}
 		}, this._reconnectDelayMs);
+	}
+
+	/**
+	 * Invoke a host notification hook, never letting it disrupt the transport
+	 * state machine. UI code (toasts) must not be load-bearing on reconnection.
+	 */
+	_invokeHook(fn, ...args) {
+		if (typeof fn !== 'function') return;
+		try {
+			fn(...args);
+		} catch (e) {
+			console.warn('[WsTransport] hook threw and was ignored:', e);
+		}
 	}
 
 	/** Cancel the pending connection timeout, if any. */
