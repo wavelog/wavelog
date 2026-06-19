@@ -431,7 +431,7 @@
 										</div>
 										<div>
 											<label class="d-block mb-0" for="db_search_priority"><?= __("Prioritize database search over external lookup"); ?></label>
-											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("When set to \"Yes\", callsign lookup will first use data from your previous QSOs before querying external services. Set to \"No\" to always use external lookup services instead."); ?></small>
+											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __('When set to "Yes", callsign lookup will first use data from your previous QSOs before querying external services. Set to "No" to always use external lookup services instead.'); ?></small>
 										</div>
 									</div>
 									<hr />
