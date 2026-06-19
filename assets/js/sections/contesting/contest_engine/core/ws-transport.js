@@ -32,8 +32,33 @@ export class WsTransport extends TransportAdapter {
 		this._ws     = null;
 		this._ready  = false;
 
+		// A connection attempt that neither opens nor closes within this window
+		// (e.g. a silently dropped connection) is treated as a failure.
+		this._connectTimeoutMs = 3000;
+		this._connectTimer     = null;
+		this._settled          = false;  // current attempt already resolved/failed?
+
+		// Automatic reconnect after a failed or dropped connection.
+		this._maxReconnects    = 3;
+		this._reconnectDelayMs = 1000;
+		this._reconnectAttempt = 0;
+		this._reconnectTimer   = null;
+		this._everConnected    = false;  // auth_ok seen during this connect() cycle?
+		this._warnedUnreachable = false; // initial "not reachable" warning shown?
+		this._wantConnected    = false;  // true between connect() and disconnect()
+
 		/** Called with the raw payload object on every incoming push frame. */
 		this.onPush  = null;
+
+		// Optional notification hooks — wired by the host to surface toasts.
+		/** () => {}            initial connection not reachable within timeout */
+		this.onConnectTimeout  = null;
+		/** (attempt, max) => {} a reconnect attempt is starting */
+		this.onReconnecting    = null;
+		/** () => {}            connection re-established after a drop */
+		this.onReconnected     = null;
+		/** () => {}            all reconnect attempts exhausted */
+		this.onReconnectFailed = null;
 	}
 
 	/**
@@ -45,15 +70,40 @@ export class WsTransport extends TransportAdapter {
 			return;
 		}
 
-		const wsUrl = this._url + '/ws?topic=' + encodeURIComponent(this._topic);
-		this._ws    = new WebSocket(wsUrl);
-		this._ready = false;
+		this._wantConnected     = true;
+		this._everConnected     = false;
+		this._warnedUnreachable = false;
+		this._reconnectAttempt  = 0;
+		this._openSocket();
+	}
 
-		this._ws.addEventListener('open', () => {
-			this._ws.send(JSON.stringify({ type: 'auth', token: this._token }));
+	/** Open a fresh WebSocket and attach all event handlers. */
+	_openSocket() {
+		const wsUrl = this._url + '/ws?topic=' + encodeURIComponent(this._topic);
+		const sock  = new WebSocket(wsUrl);
+		this._ws       = sock;
+		this._ready    = false;
+		this._settled  = false;
+
+		// Guard so events from a superseded socket can never affect current state.
+		const isCurrent = () => sock === this._ws;
+
+		// A hung connection (no open/close) is forced to fail after the timeout.
+		this._clearConnectTimer();
+		this._connectTimer = setTimeout(() => {
+			if (isCurrent() && !this._ready) {
+				console.warn('[WsTransport] not reachable within', this._connectTimeoutMs, 'ms');
+				this._handleFailure();
+			}
+		}, this._connectTimeoutMs);
+
+		sock.addEventListener('open', () => {
+			if (!isCurrent()) return;
+			sock.send(JSON.stringify({ type: 'auth', token: this._token }));
 		});
 
-		this._ws.addEventListener('message', (event) => {
+		sock.addEventListener('message', (event) => {
+			if (!isCurrent()) return;
 			let msg;
 			try {
 				msg = JSON.parse(event.data);
@@ -65,7 +115,18 @@ export class WsTransport extends TransportAdapter {
 			switch (msg.type) {
 				case 'auth_ok':
 					this._ready = true;
+					// Resolve the connecting phase, but stay open to a later drop
+					// (the close handler must still be able to trigger reconnect).
+					this._settled = false;
+					this._clearConnectTimer();
 					console.info('[WsTransport] authenticated on topic:', this._topic);
+					// Surface success only when recovering from a previous failure.
+					if (this._reconnectAttempt > 0 && typeof this.onReconnected === 'function') {
+						this.onReconnected();
+					}
+					this._reconnectAttempt  = 0;
+					this._warnedUnreachable = false;
+					this._everConnected     = true;
 					break;
 				case 'push':
 					if (typeof this.onPush === 'function') {
@@ -80,19 +141,95 @@ export class WsTransport extends TransportAdapter {
 			}
 		});
 
-		this._ws.addEventListener('close', (event) => {
+		sock.addEventListener('close', (event) => {
+			if (!isCurrent()) return;
 			this._ready = false;
 			console.info('[WsTransport] closed:', event.code, event.reason);
+			this._handleFailure();
 		});
 
-		this._ws.addEventListener('error', () => {
-			this._ready = false;
+		sock.addEventListener('error', () => {
+			if (!isCurrent()) return;
 			console.warn('[WsTransport] connection error');
 		});
 	}
 
-	/** Close the WebSocket connection. */
+	/**
+	 * Handle a failed/closed connection attempt. Deduplicated per attempt via
+	 * _settled so the timeout and the close event cannot both count.
+	 *
+	 * The very first failure of a never-established connection raises the
+	 * "not reachable" warning; afterwards we run up to _maxReconnects retries
+	 * and finally raise onReconnectFailed.
+	 */
+	_handleFailure() {
+		if (this._settled) return;
+		this._settled = true;
+		this._clearConnectTimer();
+		this._ready = false;
+
+		// Drop the (possibly still-connecting) socket; its events are now ignored.
+		if (this._ws) {
+			try { this._ws.close(); } catch { /* already closing */ }
+			this._ws = null;
+		}
+
+		if (!this._wantConnected) return;
+
+		// Initial unreachable: warn once, then start the reconnect attempts.
+		if (!this._everConnected && !this._warnedUnreachable) {
+			this._warnedUnreachable = true;
+			if (typeof this.onConnectTimeout === 'function') {
+				this.onConnectTimeout();
+			}
+		}
+
+		this._scheduleReconnect();
+	}
+
+	/**
+	 * Queue the next reconnect attempt, or give up after _maxReconnects.
+	 */
+	_scheduleReconnect() {
+		if (this._reconnectAttempt >= this._maxReconnects) {
+			console.warn('[WsTransport] giving up after', this._maxReconnects, 'reconnect attempts');
+			this._wantConnected = false;
+			if (typeof this.onReconnectFailed === 'function') {
+				this.onReconnectFailed();
+			}
+			return;
+		}
+
+		this._reconnectAttempt++;
+		const attempt = this._reconnectAttempt;
+		console.info('[WsTransport] reconnect attempt', attempt, '/', this._maxReconnects);
+		if (typeof this.onReconnecting === 'function') {
+			this.onReconnecting(attempt, this._maxReconnects);
+		}
+
+		clearTimeout(this._reconnectTimer);
+		this._reconnectTimer = setTimeout(() => {
+			if (this._wantConnected) {
+				this._openSocket();
+			}
+		}, this._reconnectDelayMs);
+	}
+
+	/** Cancel the pending connection timeout, if any. */
+	_clearConnectTimer() {
+		if (this._connectTimer) {
+			clearTimeout(this._connectTimer);
+			this._connectTimer = null;
+		}
+	}
+
+	/** Close the WebSocket connection and stop any reconnect attempts. */
 	disconnect() {
+		this._wantConnected = false;
+		this._settled       = true;
+		this._clearConnectTimer();
+		clearTimeout(this._reconnectTimer);
+		this._reconnectTimer = null;
 		if (this._ws) {
 			this._ws.close();
 			this._ws    = null;

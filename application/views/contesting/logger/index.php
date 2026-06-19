@@ -57,6 +57,11 @@
     let lang_map_grid = decodeHtml("<?= __("Gridsquares") ?>");
     let lang_unknown_error = decodeHtml("<?= __("Unknown error") ?>");
     let lang_warning = decodeHtml("<?= __("Warning") ?>");
+    let lang_success = decodeHtml("<?= __("Success") ?>");
+    let lang_ws_unreachable = decodeHtml("<?= __("The worker backend is not reachable. Please check your network connection.") ?>");
+    let lang_ws_reconnecting = decodeHtml("<?= __("Connection lost. Trying to reconnect…") ?>");
+    let lang_ws_reconnected = decodeHtml("<?= __("Reconnected to the worker backend.") ?>");
+    let lang_ws_reconnect_failed = decodeHtml("<?= __("Could not reconnect to the worker backend. Please check your network connection.") ?>");
     let lang_settings_changed = decodeHtml("<?= __("Contest settings have been changed. Please refresh the page to apply the new settings.") ?>");
     let lang_reload_now = decodeHtml("<?= __("Reload now") ?>");
     let lang_close = decodeHtml("<?= __("Close") ?>");
