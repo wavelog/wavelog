@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-19 10:05+0000\n"
+"POT-Creation-Date: 2026-06-19 11:00+0000\n"
 "PO-Revision-Date: 2024-11-01 08:53+0000\n"
 "Last-Translator: Plamen Panteleev <lz1ppl@abv.bg>\n"
 "Language-Team: Bulgarian <https://translate.wavelog.org/projects/wavelog/"
@@ -138,6 +138,7 @@ msgstr ""
 #: application/controllers/Contest_admin.php:14
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:39
+#: application/controllers/Contesting.php:1013
 #: application/controllers/Contesting_import.php:11
 #: application/controllers/Contesting_import.php:27
 #: application/controllers/Contesting_import.php:57
@@ -973,7 +974,7 @@ msgid "Contest Management"
 msgstr ""
 
 #: application/controllers/Contesting.php:93
-#: application/controllers/Contesting.php:618
+#: application/controllers/Contesting.php:627
 msgid "Officers must set up contests."
 msgstr ""
 
@@ -985,8 +986,8 @@ msgstr ""
 #: application/controllers/Contesting.php:126
 #: application/controllers/Contesting.php:160
 #: application/controllers/Contesting.php:486
-#: application/controllers/Contesting.php:660
-#: application/controllers/Contesting.php:716
+#: application/controllers/Contesting.php:669
+#: application/controllers/Contesting.php:725
 msgid "Contest session not found."
 msgstr ""
 
@@ -1009,34 +1010,55 @@ msgstr ""
 msgid "You are not authorized to access this contest session."
 msgstr ""
 
-#: application/controllers/Contesting.php:635
+#: application/controllers/Contesting.php:644
 msgid "Contest session created successfully."
 msgstr ""
 
-#: application/controllers/Contesting.php:637
+#: application/controllers/Contesting.php:646
 msgid "There was an error creating the contest session. Please try again."
 msgstr ""
 
-#: application/controllers/Contesting.php:643
-#: application/controllers/Contesting.php:699
-#: application/controllers/Contesting.php:742
+#: application/controllers/Contesting.php:652
+#: application/controllers/Contesting.php:708
+#: application/controllers/Contesting.php:751
 msgid "Invalid request method."
 msgstr ""
 
-#: application/controllers/Contesting.php:691
+#: application/controllers/Contesting.php:700
 msgid "Contest session updated successfully."
 msgstr ""
 
-#: application/controllers/Contesting.php:693
+#: application/controllers/Contesting.php:702
 msgid "There was an error updating the contest session. Please try again."
 msgstr ""
 
-#: application/controllers/Contesting.php:734
+#: application/controllers/Contesting.php:743
 msgid "Contest session deleted successfully."
 msgstr ""
 
-#: application/controllers/Contesting.php:736
+#: application/controllers/Contesting.php:745
 msgid "There was an error deleting the contest session. Please try again."
+msgstr ""
+
+#: application/controllers/Contesting.php:955
+msgid "Operator switching is disabled."
+msgstr ""
+
+#: application/controllers/Contesting.php:975
+msgid "Operator switching is only available in club stations."
+msgstr ""
+
+#: application/controllers/Contesting.php:985
+msgid "Access denied"
+msgstr ""
+
+#: application/controllers/Contesting.php:993
+#: application/controllers/User.php:1370
+msgid "Incorrect username or password!"
+msgstr ""
+
+#: application/controllers/Contesting.php:1002
+msgid "A club account cannot be used as an operator."
 msgstr ""
 
 #: application/controllers/Contesting_import.php:15
@@ -2446,6 +2468,11 @@ msgid ""
 "unique callsign."
 msgstr ""
 
+#: application/controllers/Operator.php:31
+#: application/views/contesting/logger/components/qso-form.php:43
+msgid "Invalid callsign"
+msgstr ""
+
 #: application/controllers/Options.php:26
 #: application/controllers/Options.php:42
 #: application/controllers/Options.php:104
@@ -2822,7 +2849,7 @@ msgstr ""
 
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/winkeyer.php:50
-#: application/views/contesting/logger/index.php:120
+#: application/views/contesting/logger/index.php:128
 #: application/views/debug/index.php:379 application/views/qso/index.php:826
 #: application/views/satellite/pass.php:116
 msgid "Settings"
@@ -3100,7 +3127,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:61
 #: application/views/interface_assets/header.php:451
 #: application/views/interface_assets/header.php:484
-#: application/views/interface_assets/header.php:623
+#: application/views/interface_assets/header.php:626
 msgid "Station Setup"
 msgstr ""
 
@@ -3176,7 +3203,7 @@ msgid "Set as Active Logbook"
 msgstr ""
 
 #: application/controllers/Stationsetup.php:289
-#: application/views/interface_assets/header.php:621
+#: application/views/interface_assets/header.php:624
 #: application/views/stationsetup/stationsetup.php:52
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -3560,10 +3587,6 @@ msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
-msgstr ""
-
-#: application/controllers/User.php:1370
-msgid "Incorrect username or password!"
 msgstr ""
 
 #: application/controllers/User.php:1395
@@ -5338,7 +5361,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:51
 #: application/views/interface_assets/footer.php:681
 #: application/views/logbookadvanced/index.php:56
-#: application/views/operator/index.php:23
+#: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
 #: application/views/options/dxcluster.php:40
 #: application/views/options/email.php:78 application/views/options/hon.php:17
@@ -8129,7 +8152,7 @@ msgstr ""
 #: application/views/bandmap/list.php:328
 #: application/views/bandmap/list.php:522
 #: application/views/contestcalendar/index.php:20
-#: application/views/contesting/logger/index.php:98
+#: application/views/contesting/logger/index.php:101
 #: application/views/contesting/manager/components/session_modal.php:28
 #: application/views/contesting/manager/import_legacy.php:31
 #: application/views/contesting/manager/index.php:32
@@ -8852,7 +8875,7 @@ msgstr ""
 #: application/views/club/permissions.php:191
 #: application/views/contesting/logger/components/winkeyer.php:22
 #: application/views/contesting/logger/index.php:67
-#: application/views/contesting/logger/index.php:90
+#: application/views/contesting/logger/index.php:93
 #: application/views/contesting/manager/components/confirm_delete.php:6
 #: application/views/contesting/manager/components/session_modal.php:12
 #: application/views/interface_assets/footer.php:50
@@ -9082,12 +9105,14 @@ msgstr ""
 #: application/views/club/permissions.php:354
 #: application/views/club/permissions.php:383
 #: application/views/contesting/logger/components/qso-form.php:40
+#: application/views/contesting/logger/index.php:188
 #: application/views/contesting/manager/components/confirm_delete.php:24
 #: application/views/contesting/manager/components/session_modal.php:143
 #: application/views/contesting/manager/import_legacy.php:75
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
+#: application/views/operator/index.php:30
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
@@ -9269,6 +9294,7 @@ msgid "Lastname"
 msgstr ""
 
 #: application/views/club/permissions.php:276
+#: application/views/contesting/logger/index.php:172
 #: application/views/user/edit.php:66 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
@@ -9630,7 +9656,7 @@ msgstr ""
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:482 application/views/debug/index.php:493
-#: application/views/interface_assets/header.php:601
+#: application/views/interface_assets/header.php:604
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -9787,10 +9813,6 @@ msgstr ""
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
-
-#: application/views/contesting/logger/components/qso-form.php:43
-msgid "Invalid callsign"
 msgstr ""
 
 #: application/views/contesting/logger/components/qso-form.php:44
@@ -10177,56 +10199,105 @@ msgstr ""
 msgid "Reload now"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:75
+#: application/views/contesting/logger/index.php:68
+#: application/views/contesting/logger/index.php:104
+#: application/views/contesting/logger/index.php:163
+#: application/views/contesting/logger/index.php:190
+#: application/views/interface_assets/header.php:574
+msgid "Switch Operator"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:69
+msgid ""
+"There are still unsynced QSOs. Please wait until they are saved before "
+"switching operator."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:70
+msgid "Operator switch failed. Please try again."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:78
 msgid "Loading Contest Engine"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:76
+#: application/views/contesting/logger/index.php:79
 msgid "Initializing components..."
 msgstr ""
 
-#: application/views/contesting/logger/index.php:88
+#: application/views/contesting/logger/index.php:91
 msgid "Control Panel"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:100
+#: application/views/contesting/logger/index.php:108
 msgid "End Session"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:104
+#: application/views/contesting/logger/index.php:112
 msgid "Components"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:108
+#: application/views/contesting/logger/index.php:116
 msgid "User Layouts"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:111
+#: application/views/contesting/logger/index.php:119
 msgid "Save New Layout"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:114
+#: application/views/contesting/logger/index.php:122
 msgid "Reset to Default Layout"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:124
+#: application/views/contesting/logger/index.php:132
 msgid "Panel Position"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:126
+#: application/views/contesting/logger/index.php:134
 msgid "Left"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:127
+#: application/views/contesting/logger/index.php:135
 msgid "Right"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:128
+#: application/views/contesting/logger/index.php:136
 msgid "Top"
 msgstr ""
 
-#: application/views/contesting/logger/index.php:129
+#: application/views/contesting/logger/index.php:137
 msgid "Bottom"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:168
+msgid "Current Operator:"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:170
+msgid ""
+"Log in with another operator's account to continue this contest session "
+"under their callsign."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:176
+#: application/views/user/edit.php:92 application/views/user/login.php:59
+#: application/views/user/login.php:74 application/views/user/login.php:75
+#: application/views/user/reset_password.php:21
+#: application/views/user/reset_password.php:23
+#: application/views/user/reset_password.php:30
+msgid "Password"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:180
+#: application/views/operator/index.php:14
+msgid ""
+"Please provide your personal call sign. This makes sure that QSOs are logged "
+"and exported with correct operator information."
+msgstr ""
+
+#: application/views/contesting/logger/index.php:182
+#: application/views/operator/index.php:18
+msgid "Your personal Callsign:"
 msgstr ""
 
 #: application/views/contesting/manager/components/confirm_delete.php:5
@@ -13179,23 +13250,27 @@ msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:138
-msgid "Working without CAT connection"
+#: application/views/interface_assets/footer.php:136
+msgid "Error saving operator callsign. Please try again."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:139
+msgid "Working without CAT connection"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:140
 msgid ""
 "CAT connection is currently disabled. Enable CAT connection to work in "
 "online mode with your radio."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:140
+#: application/views/interface_assets/footer.php:141
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:219
+#: application/views/interface_assets/footer.php:220
 #: application/views/interface_assets/header.php:562
 #: application/views/options/tabs.php:37
 msgid "Version Info"
@@ -13646,19 +13721,19 @@ msgstr ""
 msgid "Switch back to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:573
+#: application/views/interface_assets/header.php:576
 msgid "Logout"
 msgstr ""
 
-#: application/views/interface_assets/header.php:581
+#: application/views/interface_assets/header.php:584
 msgid "Select a Location"
 msgstr ""
 
-#: application/views/interface_assets/header.php:623
+#: application/views/interface_assets/header.php:626
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 
-#: application/views/interface_assets/header.php:660
+#: application/views/interface_assets/header.php:663
 msgid "Extras"
 msgstr ""
 
@@ -15979,23 +16054,17 @@ msgstr ""
 msgid "View Note"
 msgstr ""
 
-#: application/views/operator/index.php:5
+#: application/views/operator/index.php:10
 #: application/views/qso/edit_ajax.php:663 application/views/qso/index.php:454
 msgid "Operator Callsign"
 msgstr ""
 
-#: application/views/operator/index.php:9
-msgid ""
-"Please provide your personal call sign. This makes sure that QSOs are logged "
-"and exported with correct operator information."
-msgstr ""
-
-#: application/views/operator/index.php:13
-msgid "Your personal Callsign:"
-msgstr ""
-
-#: application/views/operator/index.php:16
+#: application/views/operator/index.php:21
 msgid "You have to provide your personal callsign."
+msgstr ""
+
+#: application/views/operator/index.php:22
+msgid "No pre-/suffix allowed."
 msgstr ""
 
 #: application/views/options/appearance.php:12
@@ -19249,14 +19318,6 @@ msgstr ""
 
 #: application/views/user/edit.php:46
 msgid "General Information"
-msgstr ""
-
-#: application/views/user/edit.php:92 application/views/user/login.php:59
-#: application/views/user/login.php:74 application/views/user/login.php:75
-#: application/views/user/reset_password.php:21
-#: application/views/user/reset_password.php:23
-#: application/views/user/reset_password.php:30
-msgid "Password"
 msgstr ""
 
 #: application/views/user/edit.php:98

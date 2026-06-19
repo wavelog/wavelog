@@ -52,6 +52,7 @@ class QsoFormComponent {
 		this.lastSeenId = 0;
 		this.currentOperator = (window.ContestLoggerConfig?.operator ?? '').toUpperCase();
 
+		this.renderOperatorBadge();
 		this.registerSyncHandler();
 		this.setupEventListeners();
 		this.setupEditListeners();
@@ -59,6 +60,29 @@ class QsoFormComponent {
 		this.loadExistingQSOs();
 		this.applyRstDefaults();
 		this._setupBandmapListener();
+	}
+
+	// Show the current operator as a badge in this window's header (club stations only).
+	// Built in JS from ContestLoggerConfig because the window manager generates the
+	// header from scratch — server-rendered header markup wouldn't survive. Clicking it
+	// opens the control panel; app.js highlights the Switch Operator button (delegated).
+	renderOperatorBadge() {
+		if (!window.ContestLoggerConfig?.isClubStation) return;
+		const controls = this.container.querySelector('.window-controls');
+		if (!controls || controls.querySelector('#qso-operator-display')) return;
+
+		const btn = document.createElement('button');
+		btn.type = 'button';
+		btn.id = 'qso-operator-display';
+		btn.className = 'window-operator';
+		btn.setAttribute('data-bs-toggle', 'offcanvas');
+		btn.setAttribute('data-bs-target', '#controlPanel');
+		btn.title = lang_switch_operator;
+		btn.innerHTML = 'Op: <span id="qso-operator-call" class="window-operator-call"></span>';
+		btn.querySelector('#qso-operator-call').textContent = this.currentOperator;
+
+		// Keep the close button rightmost.
+		controls.insertBefore(btn, controls.querySelector('.close'));
 	}
 
 	_setupBandmapListener() {

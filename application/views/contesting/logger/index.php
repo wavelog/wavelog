@@ -65,6 +65,9 @@
     let lang_settings_changed = decodeHtml("<?= __("Contest settings have been changed. Please refresh the page to apply the new settings.") ?>");
     let lang_reload_now = decodeHtml("<?= __("Reload now") ?>");
     let lang_close = decodeHtml("<?= __("Close") ?>");
+    let lang_switch_operator = decodeHtml("<?= __("Switch Operator") ?>");
+    let lang_switch_op_pending = decodeHtml("<?= __("There are still unsynced QSOs. Please wait until they are saved before switching operator.") ?>");
+    let lang_switch_op_failed = decodeHtml("<?= __("Operator switch failed. Please try again.") ?>");
 </script>
 
 <div>
@@ -96,6 +99,11 @@
         </div>
         <div class="mb-4">
             <h6 class="text-muted mb-3"><i class="fas fa-trophy"></i> <?= __("Contest"); ?></h6>
+            <?php if (!empty($switch_operator_mode)): ?>
+            <button class="btn btn-secondary w-100 mb-2" id="btnSwitchOperator" data-bs-target="#switchOperatorModal">
+                <i class="fas fa-user-friends"></i> <?= __("Switch Operator"); ?>
+            </button>
+            <?php endif; ?>
             <button class="btn btn-danger w-100" id="btnEndContest">
                 <i class="fas fa-times-circle"></i> <?= __("End Session"); ?>
             </button>
@@ -143,3 +151,47 @@
     <?php endif; ?>
 </div>
 </div>
+
+<?php if (!empty($switch_operator_mode)): ?>
+<!-- Switch Operator modal. Both modes share one shell; only the body fields differ:
+     - 'login'    (impersonation): re-authenticate another club operator's account.
+     - 'callsign' (club_direct):   set the free-text operator callsign. -->
+<div class="modal fade bg-black bg-opacity-50" id="switchOperatorModal" tabindex="-1" aria-labelledby="switchOperatorLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="switchOperatorLabel"><i class="fas fa-user-friends me-2"></i><?= __("Switch Operator"); ?></h5>
+            </div>
+            <form id="switchOperatorForm" autocomplete="off" data-mode="<?= $switch_operator_mode; ?>" data-club-callsign="<?= htmlspecialchars(strtoupper((string)($club_callsign ?? '')), ENT_QUOTES); ?>">
+                <div class="modal-body">
+                    <div id="switchOperatorError" class="alert alert-danger d-none" role="alert"></div>
+                    <p class="mb-3"><?= __("Current Operator:"); ?> <strong><?= htmlspecialchars(strtoupper((string)($operator ?? '')), ENT_QUOTES); ?></strong></p>
+                    <?php if ($switch_operator_mode === 'login'): ?>
+                    <p class="text-muted"><?= __("Log in with another operator's account to continue this contest session under their callsign."); ?></p>
+                    <div class="mb-3">
+                        <label for="switchOperatorUser" class="form-label"><?= __("Username"); ?></label>
+                        <input type="text" class="form-control" id="switchOperatorUser" name="user_name" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="switchOperatorPass" class="form-label"><?= __("Password"); ?></label>
+                        <input type="password" class="form-control" id="switchOperatorPass" name="user_password" autocomplete="new-password" required>
+                    </div>
+                    <?php else: ?>
+                    <p class="text-muted"><?= __("Please provide your personal call sign. This makes sure that QSOs are logged and exported with correct operator information."); ?></p>
+                    <div class="mb-3">
+                        <label for="switchOperatorCall" class="form-label"><?= __("Your personal Callsign:"); ?></label>
+                        <input type="text" class="form-control uppercase" id="switchOperatorCall" name="operator_callsign" autocomplete="off" required>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                    <button type="submit" class="btn btn-success" id="switchOperatorSubmit">
+                        <i class="fas fa-sign-in-alt me-2"></i><?= __("Switch Operator"); ?>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
