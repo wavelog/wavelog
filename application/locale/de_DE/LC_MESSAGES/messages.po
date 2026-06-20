@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-18 13:38+0000\n"
+"PO-Revision-Date: 2026-06-20 11:19+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -1075,15 +1075,15 @@ msgstr ""
 
 #: application/controllers/Contesting.php:955
 msgid "Operator switching is disabled."
-msgstr ""
+msgstr "Das Wechseln des Operators ist deaktiviert."
 
 #: application/controllers/Contesting.php:975
 msgid "Operator switching is only available in club stations."
-msgstr ""
+msgstr "Das Umschalten des Operators ist nur in Clubstationen verfügbar."
 
 #: application/controllers/Contesting.php:985
 msgid "Access denied"
-msgstr ""
+msgstr "Zugriff verweigert"
 
 #: application/controllers/Contesting.php:993
 #: application/controllers/User.php:1370
@@ -1092,7 +1092,7 @@ msgstr "Falscher Benutzername oder Passwort!"
 
 #: application/controllers/Contesting.php:1002
 msgid "A club account cannot be used as an operator."
-msgstr ""
+msgstr "Ein Clubkonto kann nicht als Operator verwendet werden."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
@@ -5824,7 +5824,7 @@ msgstr ""
 
 #: application/views/awards/73on73/index.php:19
 msgid "73 on 73 QSO List"
-msgstr ""
+msgstr "73 on 73 QSO Liste"
 
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/jcc/index.php:163
@@ -6677,7 +6677,7 @@ msgstr "Für diesen Award berücksichtigte Felder: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:26
 msgid "View progress of DOK awards"
-msgstr ""
+msgstr "Fortschritt der DOK-Diplome anzeigen"
 
 #: application/views/awards/dok/index.php:51
 msgid "DOK / SDOK"
@@ -7654,7 +7654,7 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:19
 msgid "POTA QSO List"
-msgstr ""
+msgstr "POTA QSO-Liste"
 
 #: application/views/awards/pota/index.php:37
 #: application/views/qso/index.php:333 application/views/qso/index.php:615
@@ -7810,10 +7810,12 @@ msgstr ""
 #: application/views/awards/sota/index.php:10
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
 msgstr ""
+"Felder, die für diese Auszeichnung herangezogen wurden: SOTA-Referenz (ADIF: "
+"SOTA_REF)"
 
 #: application/views/awards/sota/index.php:19
 msgid "SOTA QSO List"
-msgstr ""
+msgstr "SOTA QSO-Liste"
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
@@ -10790,20 +10792,24 @@ msgstr "Erfolgreich"
 msgid ""
 "The worker backend is not reachable. Please check your network connection."
 msgstr ""
+"Das Worker-Backend ist nicht erreichbar. Bitte überprüfe deine "
+"Netzwerkverbindung."
 
 #: application/views/contesting/logger/index.php:62
 msgid "Connection lost. Trying to reconnect…"
-msgstr ""
+msgstr "Verbindung verloren. Versuche, erneut zu verbinden…"
 
 #: application/views/contesting/logger/index.php:63
 msgid "Reconnected to the worker backend."
-msgstr ""
+msgstr "Wieder mit dem Worker-Backend verbunden."
 
 #: application/views/contesting/logger/index.php:64
 msgid ""
 "Could not reconnect to the worker backend. Please check your network "
 "connection."
 msgstr ""
+"Es konnte keine erneute Verbindung zum Worker-Backend hergestellt werden. "
+"Bitte überprüfe deine Netzwerkverbindung."
 
 #: application/views/contesting/logger/index.php:65
 msgid ""
@@ -10823,17 +10829,19 @@ msgstr "Jetzt neu laden"
 #: application/views/contesting/logger/index.php:190
 #: application/views/interface_assets/header.php:574
 msgid "Switch Operator"
-msgstr ""
+msgstr "Operator wechseln"
 
 #: application/views/contesting/logger/index.php:69
 msgid ""
 "There are still unsynced QSOs. Please wait until they are saved before "
 "switching operator."
 msgstr ""
+"Es gibt immer noch nicht synchronisierte QSOs. Bitte warten, bis sie "
+"gespeichert sind, bevor du den Operator wechselst."
 
 #: application/views/contesting/logger/index.php:70
 msgid "Operator switch failed. Please try again."
-msgstr ""
+msgstr "Wechseln des Operator fehlgeschlagen. Bitte versuche es erneut."
 
 #: application/views/contesting/logger/index.php:78
 msgid "Loading Contest Engine"
@@ -10889,13 +10897,15 @@ msgstr "Unten"
 
 #: application/views/contesting/logger/index.php:168
 msgid "Current Operator:"
-msgstr ""
+msgstr "Aktueller Operator:"
 
 #: application/views/contesting/logger/index.php:170
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
 msgstr ""
+"Mit dem Account eines anderen Operator einloggen um diese Contest Session "
+"unter dessen Rufzeichen weiterzuführen."
 
 #: application/views/contesting/logger/index.php:176
 #: application/views/user/edit.php:92 application/views/user/login.php:59
@@ -14051,6 +14061,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:136
 msgid "Error saving operator callsign. Please try again."
 msgstr ""
+"Fehler beim Speichern des Operator-Rufzeichens. Bitte versuch es nochmal."
 
 #: application/views/interface_assets/footer.php:139
 msgid "Working without CAT connection"
@@ -16994,7 +17005,7 @@ msgstr "Du musst dein persönliches Rufzeichen angeben."
 
 #: application/views/operator/index.php:22
 msgid "No pre-/suffix allowed."
-msgstr ""
+msgstr "Es sind keine Pre- / Suffix erlaubt."
 
 #: application/views/options/appearance.php:12
 #: application/views/user/edit.php:220
