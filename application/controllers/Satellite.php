@@ -221,6 +221,20 @@ class Satellite extends CI_Controller {
 		$this->load->model('satellite_model');
 		$satellite_data = $this->satellite_model->get_sat_info($sat);
 
+		// Synthesize TLE text at render time for the legacy JS propagator (OMM-stored sats).
+		if ($satellite_data && !empty($satellite_data->tle)) {
+			$raw = trim($satellite_data->tle);
+			if ($raw !== '' && ($raw[0] === '{' || $raw[0] === '[')) {
+				require_once './src/predict/Predict/TLE.php';
+				try {
+					$t = Predict_TLE::fromOmmJson($raw);
+					$satellite_data->tle = $t->toTwolineTle();
+				} catch (\Throwable $e) {
+					log_message('error', 'OMM->TLE synthesis failed for "'.$sat.'": '.$e->getMessage());
+				}
+			}
+		}
+
 		header('Content-Type: application/json');
 		echo json_encode($satellite_data, JSON_FORCE_OBJECT);
 	}
@@ -372,6 +386,24 @@ class Satellite extends CI_Controller {
 		echo $r;
 	}
 
+	/**
+	 * Build a Predict_TLE from stored elements, handling both legacy TLE text
+	 * and CCSDS OMM JSON.
+	 */
+	private function build_predict_tle($sat_tle) {
+		$raw = isset($sat_tle->tle) ? trim($sat_tle->tle) : '';
+
+		if ($raw !== '' && ($raw[0] === '{' || $raw[0] === '[')) {
+			return Predict_TLE::fromOmmJson($raw);
+		}
+
+		$name = (isset($sat_tle->satellite) && $sat_tle->satellite)
+			? $sat_tle->satellite
+			: (isset($sat_tle->displayname) ? $sat_tle->displayname : '');
+		$temp = preg_split('/\n/', $sat_tle->tle);
+		return new Predict_TLE($name, $temp[0], $temp[1]);
+	}
+
 	public function get_tle_for_predict() {
 
 		$input_sat = (array) ($this->security->xss_clean($this->input->post('sat')) ?? []);
@@ -432,9 +464,7 @@ class Satellite extends CI_Controller {
 				continue;
 			}
 			try {
-				$temp = preg_split('/\n/', $sat_tle->tle);
-
-				$tle     = new Predict_TLE(($sat_tle->satellite ? $sat_tle->satellite : $sat_tle->displayname), $temp[0], $temp[1]); // Instantiate it
+				$tle     = $this->build_predict_tle($sat_tle);
 				$sat     = new Predict_Sat($tle); // Load up the satellite data
 
 				$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)
@@ -508,9 +538,7 @@ class Satellite extends CI_Controller {
 		$qth->lat = $homecoordinates[0];
 		$qth->lon = $homecoordinates[1];
 
-		$temp = preg_split('/\n/', $sat_tle->tle);
-
-		$tle     = new Predict_TLE($sat_tle->satellite, $temp[0], $temp[1]); // Instantiate it
+		$tle     = $this->build_predict_tle($sat_tle);
 		$sat     = new Predict_Sat($tle); // Load up the satellite data
 
 		$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)

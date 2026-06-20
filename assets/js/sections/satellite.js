@@ -102,7 +102,25 @@ function tleChecksum(line) {
 }
 
 function validateTLE(tle) {
-    const lines = tle.trim().split("\n");
+    const trimmed = tle.trim();
+
+    if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+        try {
+            let obj = JSON.parse(trimmed);
+            if (Array.isArray(obj)) { obj = obj[0]; }
+            const required = ['EPOCH','MEAN_MOTION','ECCENTRICITY','INCLINATION','RA_OF_ASC_NODE','ARG_OF_PERICENTER','MEAN_ANOMALY'];
+            for (const k of required) {
+                if (!(k in obj)) {
+                    return 'Invalid OMM: missing key ' + k;
+                }
+            }
+            return true;
+        } catch (e) {
+            return 'Invalid OMM JSON: ' + e.message;
+        }
+    }
+
+    const lines = trimmed.split("\n");
 
     // Must have either 2 or 3 lines
     if (lines.length < 2 || lines.length > 3) {

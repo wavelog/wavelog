@@ -47,8 +47,14 @@ class Predict_TLE
     /* to their intended numerical values. No processing   */
     /* of these values is done, e.g. from deg to rads etc. */
     /* This is done in the select_ephemeris() function.    */
-    public function __construct($header, $line1, $line2)
+    public function __construct($header = null, $line1 = null, $line2 = null)
     {
+        // Empty shell for factory (fromOmmJson); keeps existing call sites working.
+        if ($line1 === null && $line2 === null) {
+            $this->header = $header ?? '';
+            return;
+        }
+
         if (!$this->Good_Elements($line1, $line2)) {
             throw new Predict_Exception('Invalid TLE contents');
         }
@@ -124,6 +130,86 @@ class Predict_TLE
 
         /* Satellite's Revolution number at epoch */
         $this->revnum = (float) substr($line2, 63, 5);
+    }
+
+    /**
+     * Build from CCSDS OMM JSON (CelesTrak gp.php?FORMAT=JSON).
+     * Accepts single object, list, or JSON string.
+     * @throws Predict_Exception on invalid JSON or missing mean elements
+     */
+    public static function fromOmmJson($omm)
+    {
+        if (is_string($omm)) {
+            $decoded = json_decode(trim($omm), true);
+            if (!is_array($decoded)) {
+                throw new Predict_Exception('Invalid OMM JSON');
+            }
+            $omm = $decoded;
+        }
+
+        if (isset($omm[0]) && is_array($omm[0])) {
+            $omm = $omm[0];
+        }
+
+        $required = array(
+            'EPOCH', 'MEAN_MOTION', 'ECCENTRICITY', 'INCLINATION',
+            'RA_OF_ASC_NODE', 'ARG_OF_PERICENTER', 'MEAN_ANOMALY',
+        );
+        foreach ($required as $key) {
+            if (!array_key_exists($key, $omm)) {
+                throw new Predict_Exception('OMM missing key: ' . $key);
+            }
+        }
+
+        $t = new Predict_TLE();
+
+        $name          = isset($omm['OBJECT_NAME']) ? $omm['OBJECT_NAME'] : '';
+        $t->header     = $name;
+        $t->sat_name   = $name;
+        $t->catnr      = isset($omm['NORAD_CAT_ID']) ? (int) $omm['NORAD_CAT_ID'] : 0;
+        $t->idesg      = isset($omm['OBJECT_ID']) ? $omm['OBJECT_ID'] : '';
+
+        // ISO-8601 UTC -> NORAD epoch fields (epoch_day is 1-based).
+        try {
+            $dt = new DateTime($omm['EPOCH'], new DateTimeZone('UTC'));
+        } catch (Exception $e) {
+            throw new Predict_Exception('Invalid OMM EPOCH: ' . $omm['EPOCH']);
+        }
+
+        $t->epoch_year = (int) $dt->format('Y');
+        $t->epoch_day  = (int) $dt->format('z') + 1;
+
+        $hours   = (int) $dt->format('H');
+        $minutes = (int) $dt->format('i');
+        $secs    = (int) $dt->format('s');
+        $micros  = (int) $dt->format('u');
+        $tod     = $hours * 3600 + $minutes * 60 + $secs + ($micros / 1000000.0);
+        $t->epoch_fod = $tod / 86400.0;
+
+        // Reconstruct YYDDD.FFFFFFFF for parity with TLE parser (propagator doesn't use it).
+        $yy       = $dt->format('y');
+        $t->epoch = (float) ($yy . sprintf('%03d', $t->epoch_day)) + $t->epoch_fod;
+
+        // Mean elements: same units as TLE parser output.
+        $t->xno    = (float) $omm['MEAN_MOTION'];
+        $t->xndt2o = isset($omm['MEAN_MOTION_DOT'])  ? (float) $omm['MEAN_MOTION_DOT']  : 0.0;
+        $t->xndd6o = isset($omm['MEAN_MOTION_DDOT']) ? (float) $omm['MEAN_MOTION_DDOT'] : 0.0;
+        $t->bstar  = isset($omm['BSTAR'])            ? (float) $omm['BSTAR']            : 0.0;
+        $t->eo     = (float) $omm['ECCENTRICITY'];
+        $t->xincl  = (float) $omm['INCLINATION'];
+        $t->xnodeo = (float) $omm['RA_OF_ASC_NODE'];
+        $t->omegao = (float) $omm['ARG_OF_PERICENTER'];
+        $t->xmo    = (float) $omm['MEAN_ANOMALY'];
+
+        $t->elset  = isset($omm['ELEMENT_SET_NO']) ? (int) $omm['ELEMENT_SET_NO'] : 0;
+        $t->revnum = isset($omm['REV_AT_EPOCH'])   ? (int) $omm['REV_AT_EPOCH']   : 0;
+        $t->status = isset($omm['EPHEMERIS_TYPE']) ? (int) $omm['EPHEMERIS_TYPE'] : 0;
+
+        $t->xincl1  = null;
+        $t->xnodeo1 = null;
+        $t->omegao1 = null;
+
+        return $t;
     }
 
     /* Calculates the checksum mod 10 of a line from a TLE set and */
@@ -228,5 +314,73 @@ class Predict_TLE
         $checksum %= 10;
 
         return $checksum;
+    }
+
+    /**
+     * Serialize to two-line TLE (inverse of parser). Render-time shim for TLE-only consumers.
+     * Catalog numbers >99999 wrap modulo (cosmetic only). Orbit stays correct because OMM
+     * supplies the mean elements plus B* (drag) that SGP4 consumes.
+     */
+    public function toTwolineTle()
+    {
+        $cat5  = sprintf('%05d', ((int) $this->catnr) % 100000);
+        $class = 'U';
+        $idesg = substr(str_pad((string) ($this->idesg ?? ''), 8, ' '), 0, 8);
+        $yy    = sprintf('%02d', ((int) $this->epoch_year) % 100);
+        $ddd   = sprintf('%03d', (int) $this->epoch_day);
+        $frac  = sprintf('%08d', (int) round((float) ($this->epoch_fod ?? 0.0) * 100000000.0));
+        $ndot  = $this->formatDotField((float) $this->xndt2o);
+        $nddot = $this->formatExpField((float) $this->xndd6o);
+        $bstar = $this->formatExpField((float) $this->bstar);
+        $eph   = (string) ((int) ($this->status ?? 0));
+        $elset = sprintf('%4d', ((int) ($this->elset ?? 0)) % 10000);
+
+        $line1 = '1 ' . $cat5 . $class . ' ' . $idesg . ' ' . $yy . $ddd . '.' . $frac
+               . ' ' . $ndot . ' ' . $nddot . ' ' . $bstar . ' ' . $eph . ' ' . $elset;
+
+        $ecc = sprintf('%07d', (int) round((float) $this->eo * 10000000.0));
+        $no  = sprintf('%11.8f', (float) $this->xno);
+        $rev = sprintf('%5d', ((int) ($this->revnum ?? 0)) % 100000);
+
+        $line2 = '2 ' . $cat5 . ' ' . sprintf('%8.4f', (float) $this->xincl) . ' '
+               . sprintf('%8.4f', (float) $this->xnodeo) . ' ' . $ecc . ' '
+               . sprintf('%8.4f', (float) $this->omegao) . ' '
+               . sprintf('%8.4f', (float) $this->xmo) . ' ' . $no . $rev;
+
+        return $this->finalizeLine($line1) . "\n" . $this->finalizeLine($line2);
+    }
+
+    /** Pad/trim to 68 chars and append mod-10 checksum. */
+    private function finalizeLine($line)
+    {
+        if (strlen($line) < 68) {
+            $line = str_pad($line, 68, ' ');
+        } elseif (strlen($line) > 68) {
+            $line = substr($line, 0, 68);
+        }
+        return $line . self::createChecksum($line);
+    }
+
+    /** TLE fixed-point derivative field: sign + . + 8 digits. */
+    private function formatDotField($value)
+    {
+        $sign   = ($value < 0) ? '-' : ' ';
+        $digits = (int) round(abs($value) * 100000000.0);
+        return $sign . '.' . sprintf('%08d', $digits % 100000000);
+    }
+
+    /** TLE mantissa-exponential field (nddot, BSTAR): sign + 5 mantissa + exp. */
+    private function formatExpField($value)
+    {
+        if ($value == 0.0) {
+            return ' 00000-0';
+        }
+        $sign = ($value < 0) ? '-' : ' ';
+        $abs  = abs($value);
+        $e    = (int) floor(log10($abs)) + 1;
+        $mant = (int) round($abs * pow(10.0, 5 - $e));
+        if ($mant >= 100000) { $mant -= 90000; $e += 1; }
+        $expSign = ($e >= 0) ? '+' : '-';
+        return $sign . sprintf('%05d', $mant) . $expSign . (string) min(abs($e), 9);
     }
 }
