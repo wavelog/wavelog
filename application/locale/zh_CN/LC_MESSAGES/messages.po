@@ -32,10 +32,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-18 04:37+0000\n"
-"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2026-06-20 17:33+0000\n"
+"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgstr ""
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr "飞机雷达"
+msgstr "飞机散射"
 
 #: application/config/adif_propmodes.php:8
 msgctxt "Propagation Mode"
@@ -1035,7 +1035,7 @@ msgstr "登录令牌无效。"
 #: application/controllers/Contesting.php:460
 #: application/controllers/Contesting.php:465
 msgid "You are not authorized to access this contest session."
-msgstr ""
+msgstr "您无权访问此比赛会话。"
 
 #: application/controllers/Contesting.php:644
 msgid "Contest session created successfully."
@@ -1069,15 +1069,15 @@ msgstr "删除竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting.php:955
 msgid "Operator switching is disabled."
-msgstr ""
+msgstr "已禁用操作员切换。"
 
 #: application/controllers/Contesting.php:975
 msgid "Operator switching is only available in club stations."
-msgstr ""
+msgstr "操作员切换仅对俱乐部台站可用。"
 
 #: application/controllers/Contesting.php:985
 msgid "Access denied"
-msgstr ""
+msgstr "拒绝访问"
 
 #: application/controllers/Contesting.php:993
 #: application/controllers/User.php:1370
@@ -1086,7 +1086,7 @@ msgstr "用户名或密码错误！"
 
 #: application/controllers/Contesting.php:1002
 msgid "A club account cannot be used as an operator."
-msgstr ""
+msgstr "俱乐部账户不能作为操作员。"
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
@@ -5665,7 +5665,7 @@ msgstr ""
 
 #: application/views/awards/73on73/index.php:19
 msgid "73 on 73 QSO List"
-msgstr ""
+msgstr "“73 on 73” QSO 列表"
 
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/jcc/index.php:163
@@ -6491,7 +6491,7 @@ msgstr "本奖项所需要的字段：DOK（ADIF: DARC_DOK）"
 
 #: application/views/awards/dok/index.php:26
 msgid "View progress of DOK awards"
-msgstr ""
+msgstr "查看 DOK 奖状的进度"
 
 #: application/views/awards/dok/index.php:51
 msgid "DOK / SDOK"
@@ -7407,7 +7407,7 @@ msgstr "本奖项所需要的字段：POTA_REF（必须包含公园编号）"
 
 #: application/views/awards/pota/index.php:19
 msgid "POTA QSO List"
-msgstr ""
+msgstr "POTA QSO 列表"
 
 #: application/views/awards/pota/index.php:37
 #: application/views/qso/index.php:333 application/views/qso/index.php:615
@@ -7468,7 +7468,7 @@ msgstr ""
 
 #: application/views/awards/sig/index.php:18
 msgid "View progress of SIG awards"
-msgstr ""
+msgstr "查看 SIG 奖状的进度"
 
 #: application/views/awards/sig/index.php:25
 #: application/views/station_profile/create.php:255
@@ -7555,15 +7555,15 @@ msgstr ""
 
 #: application/views/awards/sota/index.php:10
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
-msgstr ""
+msgstr "此奖项采用的字段：SOTA 参考（ADIF：SOTA_REF）"
 
 #: application/views/awards/sota/index.php:19
 msgid "SOTA QSO List"
-msgstr ""
+msgstr "SOTA QSO 列表"
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
-msgstr ""
+msgstr "网格列表"
 
 #: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -7593,7 +7593,7 @@ msgstr "本奖项所需要的字段：网格和 VUCC 格子 （ADIF: GRIDSQUARE,
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
-msgstr ""
+msgstr "VUCC 网格（按频段）"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
@@ -7657,7 +7657,7 @@ msgstr "奖项 - 通联世界大洲奖（WAC）"
 
 #: application/views/awards/wac/index.php:20
 msgid "View progress of WAC awards"
-msgstr ""
+msgstr "查看 WAC 奖的进展"
 
 #: application/views/awards/wac/index.php:232
 msgid "No QSOS found matching the criteria for this award!"
@@ -7691,7 +7691,7 @@ msgstr "本奖项所需要的字段：地区，DXCC"
 
 #: application/views/awards/wae/index.php:37
 msgid "View progress of WAE awards"
-msgstr ""
+msgstr "查看 WAE 奖的进展"
 
 #: application/views/awards/wae/index.php:215
 msgid "WAE Name"
@@ -7970,7 +7970,7 @@ msgstr "显示WAS地图"
 
 #: application/views/awards/wpx/index.php:10
 msgid "View progress of WPX awards"
-msgstr ""
+msgstr "查看 WPX 奖的进展"
 
 #: application/views/awards/wpx/index.php:80
 msgid "Band / Satellite / Orbit"
@@ -8018,7 +8018,7 @@ msgstr "本奖项所需要的字段：WWFF（ADIF: WWFF_REF）"
 
 #: application/views/awards/wwff/index.php:19
 msgid "WWFF QSO List"
-msgstr ""
+msgstr "WWFF QSO 列表"
 
 #: application/views/awards/wwff/index.php:37
 #: application/views/qso/index.php:321 application/views/qso/index.php:602
@@ -10424,21 +10424,21 @@ msgstr "成功"
 #: application/views/contesting/logger/index.php:61
 msgid ""
 "The worker backend is not reachable. Please check your network connection."
-msgstr ""
+msgstr "无法访问 Worker 后端。请检查您的网络连接。"
 
 #: application/views/contesting/logger/index.php:62
 msgid "Connection lost. Trying to reconnect…"
-msgstr ""
+msgstr "连接断开。正在尝试重连…"
 
 #: application/views/contesting/logger/index.php:63
 msgid "Reconnected to the worker backend."
-msgstr ""
+msgstr "已重新连接到 Worker 后端。"
 
 #: application/views/contesting/logger/index.php:64
 msgid ""
 "Could not reconnect to the worker backend. Please check your network "
 "connection."
-msgstr ""
+msgstr "无法重新连接到 Worker 后端。请检查您的网络连接。"
 
 #: application/views/contesting/logger/index.php:65
 msgid ""
@@ -10456,17 +10456,17 @@ msgstr "重新加载"
 #: application/views/contesting/logger/index.php:190
 #: application/views/interface_assets/header.php:574
 msgid "Switch Operator"
-msgstr ""
+msgstr "切换操作员"
 
 #: application/views/contesting/logger/index.php:69
 msgid ""
 "There are still unsynced QSOs. Please wait until they are saved before "
 "switching operator."
-msgstr ""
+msgstr "仍有未同步的 QSO。请等待 QSO 保存完成后再切换操作员。"
 
 #: application/views/contesting/logger/index.php:70
 msgid "Operator switch failed. Please try again."
-msgstr ""
+msgstr "切换操作员失败。请重试。"
 
 #: application/views/contesting/logger/index.php:78
 msgid "Loading Contest Engine"
@@ -10522,13 +10522,13 @@ msgstr "底部"
 
 #: application/views/contesting/logger/index.php:168
 msgid "Current Operator:"
-msgstr ""
+msgstr "当前操作员："
 
 #: application/views/contesting/logger/index.php:170
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
-msgstr ""
+msgstr "使用另一个操作员的账户登录，以其呼号继续此竞赛会话。"
 
 #: application/views/contesting/logger/index.php:176
 #: application/views/user/edit.php:92 application/views/user/login.php:59
@@ -13557,7 +13557,7 @@ msgstr "由于网格为空且 DXCC 为 -NONE-，因此无法确定位置"
 
 #: application/views/interface_assets/footer.php:136
 msgid "Error saving operator callsign. Please try again."
-msgstr ""
+msgstr "保存操作员呼号时出错。请重试。"
 
 #: application/views/interface_assets/footer.php:139
 msgid "Working without CAT connection"
@@ -16400,7 +16400,7 @@ msgstr "请你提供呼号。"
 
 #: application/views/operator/index.php:22
 msgid "No pre-/suffix allowed."
-msgstr ""
+msgstr "不允许有前缀或后缀。"
 
 #: application/views/options/appearance.php:12
 #: application/views/user/edit.php:220
