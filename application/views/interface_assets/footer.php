@@ -935,7 +935,9 @@ function showActivatorsMap(call, count, grids, grid_color) {
             <?php } ?>
 
             <?php printf("var dashboard_qso_count = '%d';", $this->session->userdata('dashboard_last_qso_count')) ?>
-            initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+            <?php if (($this->session->userdata('user_dashboard_map') ?? 'Y') != 'N') { ?>
+                initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+            <?php } ?>
 
             <?php if ($is_first_login ?? false) : ?>
                 $('#firstLoginWizardModal').modal('show');
@@ -1034,7 +1036,7 @@ $($('#callsign')).on('keypress',function(e) {
 </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view") { ?>
+<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view" && $this->optionslib->get_option('logbook_map') != "false") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
     <script type="text/javascript">
