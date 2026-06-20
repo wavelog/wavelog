@@ -12,7 +12,7 @@
 # André Aubin <andre@andral.xyz>, 2025.
 # KARIM MALFI <karim.malfi@sfr.fr>, 2025.
 # Stephane Tauziede <contact@f4izc.com>, 2025.
-# F5MQU <f5mqu.p@gmail.com>, 2025.
+# F5MQU <f5mqu.p@gmail.com>, 2025, 2026.
 # JONCOUX Philippe <joncoux@free.fr>, 2025, 2026.
 # Telectroboy <telectroboy@hotmail.com>, 2026.
 # Florian Wolters <wavelog@df2et.de>, 2026.
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-18 04:37+0000\n"
-"Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
+"PO-Revision-Date: 2026-06-21 06:14+0000\n"
+"Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
 "Language: fr_FR\n"
@@ -1029,7 +1029,7 @@ msgstr "Jeton de journalisation invalide."
 #: application/controllers/Contesting.php:460
 #: application/controllers/Contesting.php:465
 msgid "You are not authorized to access this contest session."
-msgstr ""
+msgstr "Vous n'êtes pas autorisé à accéder à cette session de contest."
 
 #: application/controllers/Contesting.php:644
 msgid "Contest session created successfully."
@@ -1069,15 +1069,17 @@ msgstr ""
 
 #: application/controllers/Contesting.php:955
 msgid "Operator switching is disabled."
-msgstr ""
+msgstr "Le changement d'opérateur est désactivé."
 
 #: application/controllers/Contesting.php:975
 msgid "Operator switching is only available in club stations."
 msgstr ""
+"Le changement d'opérateur n'est disponible que pour les stations de "
+"radioclub."
 
 #: application/controllers/Contesting.php:985
 msgid "Access denied"
-msgstr ""
+msgstr "Accès refusé"
 
 #: application/controllers/Contesting.php:993
 #: application/controllers/User.php:1370
@@ -1086,7 +1088,7 @@ msgstr "Identifiant ou mot de passe incorrect!"
 
 #: application/controllers/Contesting.php:1002
 msgid "A club account cannot be used as an operator."
-msgstr ""
+msgstr "Un compte de radioclub ne peut pas être utilisé en tant qu'opérateur."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
@@ -1400,7 +1402,7 @@ msgstr "Échec du téléchargement de l'image eQSL"
 
 #: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "Espace disque insuffisant pour stocker la carte eQSL"
 
 #: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
@@ -2538,7 +2540,7 @@ msgstr ""
 #: application/controllers/Operator.php:31
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "Indicatif invalide"
 
 #: application/controllers/Options.php:26
 #: application/controllers/Options.php:42
@@ -2792,80 +2794,85 @@ msgstr "Télécharger cartes QSL"
 
 #: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "Espace disque insuffisant pour stocker la carte QSL."
 
 #: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
 #: application/controllers/Qslpostcard.php:87
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "Le fichier téléchargé n'est pas une image valide."
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
 msgstr ""
+"L'outil de création de cartes QSL est indisponible car l'option de "
+"configuration « userdata » n'est pas définie. Votre configuration est "
+"obsolète."
 
 #: application/controllers/Qslpostcard.php:31
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
+"Veuillez comparer votre fichier config.php actuel avec le fichier "
+"config.sample.php le plus récent et le mettre à jour en conséquence."
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:525
 msgid "QSL Postcard Designer"
-msgstr ""
+msgstr "Concepteur de cartes QSL"
 
 #: application/controllers/Qslpostcard.php:62
 msgid "Not enough free disk space to store the QSL Background."
-msgstr ""
+msgstr "Espace disque insuffisant pour stocker l'arrière plan de la QSL."
 
 #: application/controllers/Qslpostcard.php:184
 #: application/controllers/Qslpostcard.php:245
 #: application/controllers/Qslpostcard.php:308
 msgid "Template not found"
-msgstr ""
+msgstr "Modèle introuvable"
 
 #: application/controllers/Qslpostcard.php:190
 #: application/controllers/Qslpostcard.php:251
 #: application/controllers/Qslpostcard.php:314
 msgid "Template JSON is invalid"
-msgstr ""
+msgstr "Le modèle JSON n'est pas valide"
 
 #: application/controllers/Qslpostcard.php:205
 msgid "No QSOs returned by get_sample_qsos()"
-msgstr ""
+msgstr "Aucun QSO n'a été renvoyé par get_sample_qsos()"
 
 #: application/controllers/Qslpostcard.php:215
 msgid "PDF file was not created"
-msgstr ""
+msgstr "Le fichier PDF n'a pas été créé"
 
 #: application/controllers/Qslpostcard.php:228
 msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgstr "Échec du PDF de la carte QSL: "
 
 #: application/controllers/Qslpostcard.php:233
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "Imprimer les cartes QSL"
 
 #: application/controllers/Qslpostcard.php:264
 #: application/controllers/Qslpostcard.php:327
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "Aucun QSO trouvé pour l'impression de cartes postales"
 
 #: application/controllers/Qslpostcard.php:283
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
+msgstr "Échec de la mise en file d'attente des cartes QSL au format PDF: "
 
 #: application/controllers/Qslpostcard.php:291
 msgid "No QSOs were selected"
-msgstr ""
+msgstr "Aucun QSO n'a été sélectionné"
 
 #: application/controllers/Qslpostcard.php:295
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "Imprimer les QSL sélectionnées"
 
 #: application/controllers/Qslpostcard.php:320
 msgid "No selected QSO IDs were provided"
@@ -2873,7 +2880,7 @@ msgstr ""
 
 #: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "Échec de la sélection du PDF de la carte QSL: "
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -4028,6 +4035,8 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
+"Importé du carnet de trafic  \n"
+"(ADIF: %s, Année: %d) [Original: %s]"
 
 #: application/models/Contesting_import_model.php:147
 #, php-format
@@ -4035,14 +4044,16 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
+"Importé du carnet de trafic \n"
+"(ADIF: %s, Année: %d)"
 
 #: application/models/Contesting_model.php:154
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "Les responsables doivent modifier les concours."
 
 #: application/models/Contesting_model.php:188
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "Seuls les responsables du club peuvent supprimer."
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -5822,7 +5833,7 @@ msgstr ""
 
 #: application/views/awards/73on73/index.php:19
 msgid "73 on 73 QSO List"
-msgstr ""
+msgstr "Liste des QSO pour le diplôme \"73 on 73\""
 
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/jcc/index.php:163
@@ -6675,7 +6686,7 @@ msgstr "Champs pris en compte pour ce trophée : DOK (ADIF : DARC_DOK)"
 
 #: application/views/awards/dok/index.php:26
 msgid "View progress of DOK awards"
-msgstr ""
+msgstr "Suivre l'avancement des diplômes DOK"
 
 #: application/views/awards/dok/index.php:51
 msgid "DOK / SDOK"
@@ -7656,7 +7667,7 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:19
 msgid "POTA QSO List"
-msgstr ""
+msgstr "Liste des QSO POTA"
 
 #: application/views/awards/pota/index.php:37
 #: application/views/qso/index.php:333 application/views/qso/index.php:615
@@ -7721,7 +7732,7 @@ msgstr ""
 
 #: application/views/awards/sig/index.php:18
 msgid "View progress of SIG awards"
-msgstr ""
+msgstr "Suivre l'avancement des diplômes SIG"
 
 #: application/views/awards/sig/index.php:25
 #: application/views/station_profile/create.php:255
@@ -7812,14 +7823,15 @@ msgstr ""
 #: application/views/awards/sota/index.php:10
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
 msgstr ""
+"Domaines pris en compte pour ce diplôme: Référence SOTA (ADIF: SOTA_REF)"
 
 #: application/views/awards/sota/index.php:19
 msgid "SOTA QSO List"
-msgstr ""
+msgstr "Liste des QSO SOTA"
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
-msgstr ""
+msgstr "Liste des Locators"
 
 #: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -7855,7 +7867,7 @@ msgstr ""
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
-msgstr ""
+msgstr "Locator VUCC par bandes"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
@@ -7926,7 +7938,7 @@ msgstr "Diplome - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:20
 msgid "View progress of WAC awards"
-msgstr ""
+msgstr "Suivre l'avancement des diplômes WAC"
 
 #: application/views/awards/wac/index.php:232
 msgid "No QSOS found matching the criteria for this award!"
@@ -7963,7 +7975,7 @@ msgstr "Champs requis pour ce trophée : Région, DXCC"
 
 #: application/views/awards/wae/index.php:37
 msgid "View progress of WAE awards"
-msgstr ""
+msgstr "Suivre l'avancement des diplômes WAE"
 
 #: application/views/awards/wae/index.php:215
 msgid "WAE Name"
@@ -8276,7 +8288,7 @@ msgstr "Afficher la carte WAS"
 
 #: application/views/awards/wpx/index.php:10
 msgid "View progress of WPX awards"
-msgstr ""
+msgstr "Suivre l'avancement des diplômes WPX"
 
 #: application/views/awards/wpx/index.php:80
 msgid "Band / Satellite / Orbit"
@@ -8327,7 +8339,7 @@ msgstr "Champs requis pour ce trophée : WWFF (ADIF : WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:19
 msgid "WWFF QSO List"
-msgstr ""
+msgstr "Liste des QSO WWFF"
 
 #: application/views/awards/wwff/index.php:37
 #: application/views/qso/index.php:321 application/views/qso/index.php:602
@@ -9822,11 +9834,11 @@ msgstr "Exporter son propre QSO par ADIF"
 
 #: application/views/club/permissions.php:147
 msgid "Start or Create a Contest"
-msgstr ""
+msgstr "Commencer ou créer un concours"
 
 #: application/views/club/permissions.php:153
 msgid "Edit a Contest"
-msgstr ""
+msgstr "Editer un concours"
 
 #: application/views/club/permissions.php:163
 msgid "User Management"
@@ -10255,6 +10267,8 @@ msgid ""
 "Using the contest list, you can control which Contests are shown in the "
 "contest management."
 msgstr ""
+"La liste des concours vous permet de contrôler quels concours sont affichés "
+"dans la gestion des concours."
 
 #: application/views/contest_admin/add.php:19
 msgid ""
@@ -10273,7 +10287,7 @@ msgstr "Ajouter un concours"
 
 #: application/views/contest_admin/add.php:24
 msgid "Please provide contest name and ADIF name."
-msgstr ""
+msgstr "Veuillez indiquer le nom du concours et le nom de l'ADIF."
 
 #: application/views/contest_admin/add.php:35
 #: application/views/contest_admin/create.php:30
@@ -10399,90 +10413,91 @@ msgstr "Semaine prochaine"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr ""
+msgstr "Enregistreur de QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
-msgstr ""
+msgstr "Recherche des DXCC..."
 
 #: application/views/contesting/logger/components/qso-form.php:26
 msgid "DXCC Lookup failed"
-msgstr ""
+msgstr "Échec de la recherche DXCC"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr ""
+msgstr "DXCC: pas trouvé"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
 msgid "Already worked on %s"
-msgstr ""
+msgstr "Déjà contacté sur %s"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr ""
+msgstr "Composant radio indisponible. Impossible d'enregistrer le QSO."
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
 msgstr ""
+"Fréquence ou Mode non défini. Veuillez vérifier les paramètres de la radio."
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 #: application/views/contesting/logger/components/qso-form.php:33
 msgid "Synced"
-msgstr ""
+msgstr "Synchronisé"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "Delete this QSO?"
-msgstr ""
+msgstr "Supprimer ce QSO ?"
 
 #: application/views/contesting/logger/components/qso-form.php:41
 msgid "You can only edit your own QSOs"
-msgstr ""
+msgstr "Vous ne pouvez modifier que vos propres QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "Failed to delete QSO:"
-msgstr ""
+msgstr "Echec de la suppression du QSO :"
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
+msgstr "La recherche dans l'annuaire a échoué"
 
 #: application/views/contesting/logger/components/qso-form.php:85
 msgid "RST S"
-msgstr ""
+msgstr "RST S"
 
 #: application/views/contesting/logger/components/qso-form.php:89
 msgid "RST R"
-msgstr ""
+msgstr "RST R"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:150
 msgid "Nr. S"
-msgstr ""
+msgstr "Numéro S"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:151
 msgid "Nr. R"
-msgstr ""
+msgstr "Numéro R"
 
 #: application/views/contesting/logger/components/qso-form.php:105
 msgid "Grid S"
-msgstr ""
+msgstr "Locator S"
 
 #: application/views/contesting/logger/components/qso-form.php:109
 msgid "Grid R"
-msgstr ""
+msgstr "Locator R"
 
 #: application/views/contesting/logger/components/qso-form.php:115
 msgid "Exch S"
-msgstr ""
+msgstr "Exch S"
 
 #: application/views/contesting/logger/components/qso-form.php:119
 msgid "Exch R"
-msgstr ""
+msgstr "Exch R"
 
 #: application/views/contesting/logger/components/qso-form.php:137
 #: application/views/dashboard/index.php:328
@@ -10492,96 +10507,96 @@ msgstr "QSO récents"
 
 #: application/views/contesting/logger/components/qso-form.php:149
 msgid "RST"
-msgstr ""
+msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Exch"
-msgstr ""
+msgstr "Exch"
 
 #: application/views/contesting/logger/components/radio.php:25
 msgid "No radio data available"
-msgstr ""
+msgstr "Aucune donnée radio disponible"
 
 #: application/views/contesting/logger/components/radio.php:26
 #, php-format
 msgid "Radio data is %s minutes old"
-msgstr ""
+msgstr "Les données Radio ont %s minutes"
 
 #: application/views/contesting/logger/components/radio.php:27
 msgid "Radio connected"
-msgstr ""
+msgstr "Radio connectée"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr ""
+msgstr "Mode manuel : entrer les fréquence/mode manuellement"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
-msgstr ""
+msgstr "Connexion à la radio WebSocket..."
 
 #: application/views/contesting/logger/components/radio.php:31
 msgid "WebSocket radio connected"
-msgstr ""
+msgstr "Radio WebSocket connectée"
 
 #: application/views/contesting/logger/components/radio.php:32
 msgid "WebSocket connection error"
-msgstr ""
+msgstr "Erreur de connexion WebSocket"
 
 #: application/views/contesting/logger/components/radio.php:33
 msgid "WebSocket disconnected - reconnecting..."
-msgstr ""
+msgstr "WebSocket déconnecté - reconnecté..."
 
 #: application/views/contesting/logger/components/radio.php:34
 msgid "WebSocket radio offline"
-msgstr ""
+msgstr "Radio WebSocket hors ligne"
 
 #: application/views/contesting/logger/components/radio.php:53
 msgid "Manual - No Radio"
-msgstr ""
+msgstr "Manuel - Aucune radio"
 
 #: application/views/contesting/logger/components/radio.php:54
 msgid "WebSocket (Real-time)"
-msgstr ""
+msgstr "WebSocket (temps réel)"
 
 #: application/views/contesting/logger/components/scp.php:9
 msgid "Super Check Partial"
-msgstr ""
+msgstr "Super Check partiel"
 
 #: application/views/contesting/logger/components/scp.php:25
 msgid "Loading SCP databases..."
-msgstr ""
+msgstr "Chargement des bases de données SCP..."
 
 #: application/views/contesting/logger/components/scp.php:26
 msgid "Ready"
-msgstr ""
+msgstr "Prêt"
 
 #: application/views/contesting/logger/components/scp.php:27
 msgid "Error loading database"
-msgstr ""
+msgstr "Erreur lors du chargement de la base de données"
 
 #: application/views/contesting/logger/components/scp.php:28
 #: application/views/contesting/logger/index.php:47
 #, php-format
 msgid "Loading %s..."
-msgstr ""
+msgstr "Chargement %s..."
 
 #: application/views/contesting/logger/components/scp.php:29
 #, php-format
 msgid "No matches found for '%s'"
-msgstr ""
+msgstr "Aucun résultat trouvé pour '%s'"
 
 #: application/views/contesting/logger/components/scp.php:30
 #: application/views/contesting/logger/components/scp.php:74
 msgid "Enter a partial callsign to see matches"
-msgstr ""
+msgstr "Saisissez un indicatif partiel pour afficher les correspondances"
 
 #: application/views/contesting/logger/components/scp.php:57
 msgid "Total:"
-msgstr ""
+msgstr "Total :"
 
 #: application/views/contesting/logger/components/scp.php:67
 msgid "Matches"
-msgstr ""
+msgstr "Correspondances"
 
 #: application/views/contesting/logger/components/statistics.php:20
 #: application/views/dashboard/index.php:234
@@ -10590,23 +10605,23 @@ msgstr "QSOs totaux"
 
 #: application/views/contesting/logger/components/statistics.php:21
 msgid "Rate/h (60 min)"
-msgstr ""
+msgstr "Taux/h (60 mn)"
 
 #: application/views/contesting/logger/components/statistics.php:22
 msgid "Rate/h (10 min)"
-msgstr ""
+msgstr "Taux/h (10 mn)"
 
 #: application/views/contesting/logger/components/statistics.php:23
 msgid "Own"
-msgstr ""
+msgstr "Propre"
 
 #: application/views/contesting/logger/components/statistics.php:24
 msgid "Others"
-msgstr ""
+msgstr "Autres"
 
 #: application/views/contesting/logger/components/statistics.php:33
 msgid "Refresh"
-msgstr ""
+msgstr "Rafraichir"
 
 #: application/views/contesting/logger/components/statistics.php:66
 msgid "Time window"
@@ -10654,36 +10669,36 @@ msgstr "Envoyer"
 
 #: application/views/contesting/logger/index.php:31
 msgid "Are you sure you want to end the contest?"
-msgstr ""
+msgstr "Êtes-vous certain de vouloir mettre fin au concours ?"
 
 #: application/views/contesting/logger/index.php:32
 msgid "Layout reset to default!"
-msgstr ""
+msgstr "La mise en page a été réinitialisée aux paramètres par défaut !"
 
 #: application/views/contesting/logger/index.php:33
 msgid "Layout saved!"
-msgstr ""
+msgstr "Mise en page enregistrée !"
 
 #: application/views/contesting/logger/index.php:34
 msgid "Layout deleted!"
-msgstr ""
+msgstr "Mise en page supprimée!"
 
 #: application/views/contesting/logger/index.php:35
 #, php-format
 msgid "Are you sure you want to delete the layout '%s'?"
-msgstr ""
+msgstr "Êtes-vous certain de vouloir supprimer la mise en page '%s' ?"
 
 #: application/views/contesting/logger/index.php:36
 msgid "Are you sure you want to reset the layout to default?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir rétablir la disposition par défaut ?"
 
 #: application/views/contesting/logger/index.php:37
 msgid "Enter a name for this layout:"
-msgstr ""
+msgstr "Entrer le nom pour cette disposition :"
 
 #: application/views/contesting/logger/index.php:38
 msgid "No saved layouts found."
-msgstr ""
+msgstr "Aucune disposition sauvegardée n'a été trouvée."
 
 #: application/views/contesting/logger/index.php:39
 msgid "Default"
