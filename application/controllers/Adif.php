@@ -273,7 +273,12 @@ class adif extends CI_Controller {
 			$data['club_operators'] = false;
 		}
 
-		$data['station_profile'] = $this->stations->all_of_user();
+		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+			$this->load->model('logbooks_model');
+			$data['station_profile'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+		} else {
+			$data['station_profile'] = $this->stations->all_of_user();
+		}
 		$active_station_id = $this->stations->find_active();
 		$station_profile = $this->stations->profile($active_station_id);
 

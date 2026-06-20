@@ -2,18 +2,18 @@
 
 class adif_data extends CI_Model {
 
-	function export_all_chunked($api_key = null, $from = null, $to = null, $exportLotw = false, $onlyop = null, $offset = 0, $limit = 5000) {
+	function export_all_chunked($api_key = null, $from = null, $to = null, $exportLotw = false, $onlyop = null, $offset = 0, $limit = 5000, $backup = false) {
 		$this->load->model('logbooks_model');
 		if ($api_key != null) {
 			$this->load->model('api_model');
 			if (strpos($this->api_model->access($api_key), 'r') !== false) {
 				$this->api_model->update_last_used($api_key);
 				$user_id = $this->api_model->key_userid($api_key);
-				$logbooks_locations_array = $this->list_station_locations($user_id);
+				$logbooks_locations_array = $this->list_station_locations($user_id, $backup);
 			}
 		} else {
 			$this->load->model('stations');
-			$logbooks_locations_array = $this->list_station_locations($this->session->userdata('user_id'));
+			$logbooks_locations_array = $this->list_station_locations($this->session->userdata('user_id'), $backup);
 		}
 
 		$this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
@@ -42,7 +42,7 @@ class adif_data extends CI_Model {
 
 		$query = $this->db->get($this->config->item('table_name'));
 		return $query;
-	}	
+	}
 
 	function export_all($api_key = null,$from = null, $to = null, $exportLotw = false, $onlyop = null) {
 		$this->load->model('logbooks_model');
@@ -82,17 +82,23 @@ class adif_data extends CI_Model {
 		return $query;
 	}
 
-	function list_station_locations($user_id) {
-		$this->db->where('user_id', $user_id);
-		$query = $this->db->get('station_profile');
+	function list_station_locations($user_id, $backup = false) {
+		$dkey_opt=$this->user_options_model->get_options('stations',array('option_name'=>'active_log_only','option_key'=>'boolean'), $user_id)->result();
+		$user_stations_active_log_only = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
+		if (!empty($user_stations_active_log_only) && !$backup) {
+			$locations_array = $this->logbooks_model->list_logbook_relationships($this->logbooks_model->find_active_station_logbook_from_userid($user_id));
+		} else {
+			$this->db->where('user_id', $user_id);
+			$query = $this->db->get('station_profile');
 
-		if ($query->num_rows() == 0) {
-			return array();
-		}
+			if ($query->num_rows() == 0) {
+				return array();
+			}
 
-		$locations_array = array();
-		foreach ($query->result() as $row) {
-			array_push($locations_array, $row->station_id);
+			$locations_array = array();
+			foreach ($query->result() as $row) {
+				array_push($locations_array, $row->station_id);
+			}
 		}
 
 		return $locations_array;
