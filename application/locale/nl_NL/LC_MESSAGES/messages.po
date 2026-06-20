@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-18 04:37+0000\n"
+"PO-Revision-Date: 2026-06-20 17:33+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -1016,7 +1016,7 @@ msgstr "Ongeldig inlogtoken."
 #: application/controllers/Contesting.php:460
 #: application/controllers/Contesting.php:465
 msgid "You are not authorized to access this contest session."
-msgstr ""
+msgstr "Je bent niet gemachtigd om toegang te krijgen tot deze contest-sessie."
 
 #: application/controllers/Contesting.php:644
 msgid "Contest session created successfully."
@@ -1056,15 +1056,15 @@ msgstr ""
 
 #: application/controllers/Contesting.php:955
 msgid "Operator switching is disabled."
-msgstr ""
+msgstr "Wisselen van de operator is uitgeschakeld."
 
 #: application/controllers/Contesting.php:975
 msgid "Operator switching is only available in club stations."
-msgstr ""
+msgstr "Wisselen van operator is alleen beschikbaar in clubstations."
 
 #: application/controllers/Contesting.php:985
 msgid "Access denied"
-msgstr ""
+msgstr "Toegang geweigerd"
 
 #: application/controllers/Contesting.php:993
 #: application/controllers/User.php:1370
@@ -1073,7 +1073,7 @@ msgstr "Onjuiste gebruikersnaam of wachtwoord!"
 
 #: application/controllers/Contesting.php:1002
 msgid "A club account cannot be used as an operator."
-msgstr ""
+msgstr "Een clubaccount kan niet als operator worden gebruikt."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
@@ -5777,7 +5777,7 @@ msgstr ""
 
 #: application/views/awards/73on73/index.php:19
 msgid "73 on 73 QSO List"
-msgstr ""
+msgstr "73 op 73 QSO-lijst"
 
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/jcc/index.php:163
@@ -6624,7 +6624,7 @@ msgstr "Velden genomen voor deze Award: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:26
 msgid "View progress of DOK awards"
-msgstr ""
+msgstr "Bekijk de voortgang van DOK-awards"
 
 #: application/views/awards/dok/index.php:51
 msgid "DOK / SDOK"
@@ -7598,7 +7598,7 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:19
 msgid "POTA QSO List"
-msgstr ""
+msgstr "POTA QSO-lijst"
 
 #: application/views/awards/pota/index.php:37
 #: application/views/qso/index.php:333 application/views/qso/index.php:615
@@ -7663,7 +7663,7 @@ msgstr ""
 
 #: application/views/awards/sig/index.php:18
 msgid "View progress of SIG awards"
-msgstr ""
+msgstr "Bekijk de voortgang van SIG-awards"
 
 #: application/views/awards/sig/index.php:25
 #: application/views/station_profile/create.php:255
@@ -7753,15 +7753,15 @@ msgstr ""
 
 #: application/views/awards/sota/index.php:10
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
-msgstr ""
+msgstr "Velden genomen voor deze Award: SOTA Referentie (ADIF: SOTA_REF)"
 
 #: application/views/awards/sota/index.php:19
 msgid "SOTA QSO List"
-msgstr ""
+msgstr "SOTA QSO-lijst"
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
-msgstr ""
+msgstr "Locatorvak lijst"
 
 #: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -7795,7 +7795,7 @@ msgstr ""
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
-msgstr ""
+msgstr "VUCC-Locatorvakken per Band"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
@@ -7867,7 +7867,7 @@ msgstr "Awards - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:20
 msgid "View progress of WAC awards"
-msgstr ""
+msgstr "Bekijk voortgang van WAC-awards"
 
 #: application/views/awards/wac/index.php:232
 msgid "No QSOS found matching the criteria for this award!"
@@ -7903,7 +7903,7 @@ msgstr "Velden voor deze Award: Regio, DXCC"
 
 #: application/views/awards/wae/index.php:37
 msgid "View progress of WAE awards"
-msgstr ""
+msgstr "Bekijk de voortgang van WAE-awards"
 
 #: application/views/awards/wae/index.php:215
 msgid "WAE Name"
@@ -8208,7 +8208,7 @@ msgstr "Toon WAS-kaart"
 
 #: application/views/awards/wpx/index.php:10
 msgid "View progress of WPX awards"
-msgstr ""
+msgstr "Bekijk de voortgang van WPX-awards"
 
 #: application/views/awards/wpx/index.php:80
 msgid "Band / Satellite / Orbit"
@@ -8258,7 +8258,7 @@ msgstr "Velden genomen voor deze Award: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:19
 msgid "WWFF QSO List"
-msgstr ""
+msgstr "WWFF QSO-lijst"
 
 #: application/views/awards/wwff/index.php:37
 #: application/views/qso/index.php:321 application/views/qso/index.php:602
@@ -10425,31 +10425,31 @@ msgstr "Radio verbonden"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr ""
+msgstr "Handmatige modus: Voer frequentie/modus handmatig in"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
-msgstr ""
+msgstr "Verbinden met WebSocket-radio..."
 
 #: application/views/contesting/logger/components/radio.php:31
 msgid "WebSocket radio connected"
-msgstr ""
+msgstr "WebSocket-radio verbonden"
 
 #: application/views/contesting/logger/components/radio.php:32
 msgid "WebSocket connection error"
-msgstr ""
+msgstr "WebSocket-verbinding fout"
 
 #: application/views/contesting/logger/components/radio.php:33
 msgid "WebSocket disconnected - reconnecting..."
-msgstr ""
+msgstr "WebSocket verbroken - opnieuw verbinden..."
 
 #: application/views/contesting/logger/components/radio.php:34
 msgid "WebSocket radio offline"
-msgstr ""
+msgstr "WebSocket-radio offline"
 
 #: application/views/contesting/logger/components/radio.php:53
 msgid "Manual - No Radio"
-msgstr ""
+msgstr "Handmatig - Geen radio"
 
 #: application/views/contesting/logger/components/radio.php:54
 msgid "WebSocket (Real-time)"
@@ -10489,11 +10489,11 @@ msgstr ""
 
 #: application/views/contesting/logger/components/scp.php:57
 msgid "Total:"
-msgstr ""
+msgstr "Totaal:"
 
 #: application/views/contesting/logger/components/scp.php:67
 msgid "Matches"
-msgstr ""
+msgstr "Overeenkomsten"
 
 #: application/views/contesting/logger/components/statistics.php:20
 #: application/views/dashboard/index.php:234
@@ -10502,27 +10502,27 @@ msgstr "Totaal aantal QSOs"
 
 #: application/views/contesting/logger/components/statistics.php:21
 msgid "Rate/h (60 min)"
-msgstr ""
+msgstr "Aantal/h (60 min)"
 
 #: application/views/contesting/logger/components/statistics.php:22
 msgid "Rate/h (10 min)"
-msgstr ""
+msgstr "Aantal/h (10 min)"
 
 #: application/views/contesting/logger/components/statistics.php:23
 msgid "Own"
-msgstr ""
+msgstr "Zelf"
 
 #: application/views/contesting/logger/components/statistics.php:24
 msgid "Others"
-msgstr ""
+msgstr "Anderen"
 
 #: application/views/contesting/logger/components/statistics.php:33
 msgid "Refresh"
-msgstr ""
+msgstr "Verversen"
 
 #: application/views/contesting/logger/components/statistics.php:66
 msgid "Time window"
-msgstr ""
+msgstr "Tijdvenster"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
 #: application/views/user/edit.php:1217
@@ -10566,88 +10566,90 @@ msgstr "Zend"
 
 #: application/views/contesting/logger/index.php:31
 msgid "Are you sure you want to end the contest?"
-msgstr ""
+msgstr "Weet je zeker dat je de contest wilt beëindigen?"
 
 #: application/views/contesting/logger/index.php:32
 msgid "Layout reset to default!"
-msgstr ""
+msgstr "Indeling teruggezet naar standaard!"
 
 #: application/views/contesting/logger/index.php:33
 msgid "Layout saved!"
-msgstr ""
+msgstr "Indeling opgeslagen!"
 
 #: application/views/contesting/logger/index.php:34
 msgid "Layout deleted!"
-msgstr ""
+msgstr "Indeling verwijderd!"
 
 #: application/views/contesting/logger/index.php:35
 #, php-format
 msgid "Are you sure you want to delete the layout '%s'?"
-msgstr ""
+msgstr "Weet je zeker dat je de indeling '%s' wilt verwijderen?"
 
 #: application/views/contesting/logger/index.php:36
 msgid "Are you sure you want to reset the layout to default?"
 msgstr ""
+"Weet je zeker dat je de indeling naar de standaardinstellingen wilt "
+"herstellen?"
 
 #: application/views/contesting/logger/index.php:37
 msgid "Enter a name for this layout:"
-msgstr ""
+msgstr "Voer een naam in voor deze indeling:"
 
 #: application/views/contesting/logger/index.php:38
 msgid "No saved layouts found."
-msgstr ""
+msgstr "Geen opgeslagen indelingen gevonden."
 
 #: application/views/contesting/logger/index.php:39
 msgid "Default"
-msgstr ""
+msgstr "Standaard"
 
 #: application/views/contesting/logger/index.php:40
 msgid "Default layout"
-msgstr ""
+msgstr "Standaardindeling"
 
 #: application/views/contesting/logger/index.php:41
 msgid "Set as default"
-msgstr ""
+msgstr "Instellen als standaard"
 
 #: application/views/contesting/logger/index.php:42
 msgid "Error saving layout"
-msgstr ""
+msgstr "Fout bij het opslaan van de indeling"
 
 #: application/views/contesting/logger/index.php:43
 msgid "Error setting default layout"
-msgstr ""
+msgstr "Fout bij het instellen van de standaardindeling"
 
 #: application/views/contesting/logger/index.php:44
 msgid "Error deleting layout"
-msgstr ""
+msgstr "Fout bij het verwijderen van de indeling"
 
 #: application/views/contesting/logger/index.php:45
 msgid "Error resetting layout"
-msgstr ""
+msgstr "Fout bij het resetten van de indeling"
 
 #: application/views/contesting/logger/index.php:46
 msgid "Error loading application. Please refresh the page."
-msgstr ""
+msgstr "Fout bij het laden van de applicatie. Ververs de pagina."
 
 #: application/views/contesting/logger/index.php:48
 msgid "Initializing data store..."
-msgstr ""
+msgstr "Gegevensopslag initialiseren..."
 
 #: application/views/contesting/logger/index.php:49
 msgid "Initializing core systems..."
-msgstr ""
+msgstr "Kern systemen initialiseren..."
 
 #: application/views/contesting/logger/index.php:50
 msgid "Heartbeat Warning"
-msgstr ""
+msgstr "Hartslagwaarschuwing"
 
 #: application/views/contesting/logger/index.php:51
 msgid "Heartbeat request took %1 ms (threshold: %2 ms)"
-msgstr ""
+msgstr "Hartslag-verzoek duurde %1 ms (drempel: %2 ms)"
 
 #: application/views/contesting/logger/index.php:52
 msgid "Window"
-msgstr ""
+msgstr "Venster"
 
 #: application/views/contesting/logger/index.php:53
 #: application/views/dashboard/index.php:722
@@ -10698,11 +10700,11 @@ msgstr "Station"
 
 #: application/views/contesting/logger/index.php:56
 msgid "Auto-fit"
-msgstr ""
+msgstr "Automatisch aanpassen"
 
 #: application/views/contesting/logger/index.php:58
 msgid "Unknown error"
-msgstr ""
+msgstr "Onbekende fout"
 
 #: application/views/contesting/logger/index.php:60
 #: application/views/debug/index.php:158 application/views/debug/index.php:169
@@ -10716,31 +10718,35 @@ msgstr "Succes"
 #: application/views/contesting/logger/index.php:61
 msgid ""
 "The worker backend is not reachable. Please check your network connection."
-msgstr ""
+msgstr "De worker-backend is niet bereikbaar. Controleer je netwerkverbinding."
 
 #: application/views/contesting/logger/index.php:62
 msgid "Connection lost. Trying to reconnect…"
-msgstr ""
+msgstr "Verbinding verbroken. Proberen opnieuw te verbinden…"
 
 #: application/views/contesting/logger/index.php:63
 msgid "Reconnected to the worker backend."
-msgstr ""
+msgstr "Opnieuw verbonden met de worker backend."
 
 #: application/views/contesting/logger/index.php:64
 msgid ""
 "Could not reconnect to the worker backend. Please check your network "
 "connection."
 msgstr ""
+"Kon niet opnieuw verbinden met de worker-backend. Controleer uw "
+"netwerkverbinding."
 
 #: application/views/contesting/logger/index.php:65
 msgid ""
 "Contest settings have been changed. Please refresh the page to apply the new "
 "settings."
 msgstr ""
+"Contestinstellingen zijn gewijzigd. Ververs de pagina om de nieuwe "
+"instellingen toe te passen."
 
 #: application/views/contesting/logger/index.php:66
 msgid "Reload now"
-msgstr ""
+msgstr "Nu herladen"
 
 #: application/views/contesting/logger/index.php:68
 #: application/views/contesting/logger/index.php:104
@@ -10748,79 +10754,83 @@ msgstr ""
 #: application/views/contesting/logger/index.php:190
 #: application/views/interface_assets/header.php:574
 msgid "Switch Operator"
-msgstr ""
+msgstr "Wissel operator"
 
 #: application/views/contesting/logger/index.php:69
 msgid ""
 "There are still unsynced QSOs. Please wait until they are saved before "
 "switching operator."
 msgstr ""
+"Er zijn nog steeds niet-gesynchroniseerde QSOs. Wacht totdat ze zijn "
+"opgeslagen voordat je van operator wisselt."
 
 #: application/views/contesting/logger/index.php:70
 msgid "Operator switch failed. Please try again."
-msgstr ""
+msgstr "Wisselen van operator mislukt. Probeer het opnieuw."
 
 #: application/views/contesting/logger/index.php:78
 msgid "Loading Contest Engine"
-msgstr ""
+msgstr "Contest Engine laden"
 
 #: application/views/contesting/logger/index.php:79
 msgid "Initializing components..."
-msgstr ""
+msgstr "Componenten initialiseren..."
 
 #: application/views/contesting/logger/index.php:91
 msgid "Control Panel"
-msgstr ""
+msgstr "Configuratiescherm"
 
 #: application/views/contesting/logger/index.php:108
 msgid "End Session"
-msgstr ""
+msgstr "Sessie beëindigen"
 
 #: application/views/contesting/logger/index.php:112
 msgid "Components"
-msgstr ""
+msgstr "Componenten"
 
 #: application/views/contesting/logger/index.php:116
 msgid "User Layouts"
-msgstr ""
+msgstr "Gebruikersindelingen"
 
 #: application/views/contesting/logger/index.php:119
 msgid "Save New Layout"
-msgstr ""
+msgstr "Nieuwe indeling opslaan"
 
 #: application/views/contesting/logger/index.php:122
 msgid "Reset to Default Layout"
-msgstr ""
+msgstr "Opnieuw instellen naar standaard indeling"
 
 #: application/views/contesting/logger/index.php:132
 msgid "Panel Position"
-msgstr ""
+msgstr "Paneelpositie"
 
 #: application/views/contesting/logger/index.php:134
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 #: application/views/contesting/logger/index.php:135
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 #: application/views/contesting/logger/index.php:136
 msgid "Top"
-msgstr ""
+msgstr "Bovenkant"
 
 #: application/views/contesting/logger/index.php:137
 msgid "Bottom"
-msgstr ""
+msgstr "Onderkant"
 
 #: application/views/contesting/logger/index.php:168
 msgid "Current Operator:"
-msgstr ""
+msgstr "Huidige Operator:"
 
 #: application/views/contesting/logger/index.php:170
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
 msgstr ""
+"Log in met het account van een andere operator om deze contest-sessie onder "
+"hun roepnaam voort te zetten."
 
 #: application/views/contesting/logger/index.php:176
 #: application/views/user/edit.php:92 application/views/user/login.php:59
@@ -10847,63 +10857,64 @@ msgstr "Je persoonlijke roepnaam:"
 
 #: application/views/contesting/manager/components/confirm_delete.php:5
 msgid "Delete Contest Session"
-msgstr ""
+msgstr "Contest-sessie verwijderen"
 
 #: application/views/contesting/manager/components/confirm_delete.php:10
 msgid "Do you really want to delete this contest session?"
-msgstr ""
+msgstr "Wil je deze contest-sessie echt verwijderen?"
 
 #: application/views/contesting/manager/components/confirm_delete.php:12
 msgid "Contest: "
-msgstr ""
+msgstr "Contest: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:13
 msgid "Start Date/Time: "
-msgstr ""
+msgstr "Startdatum/-tijd "
 
 #: application/views/contesting/manager/components/confirm_delete.php:14
 msgid "End Date/Time: "
-msgstr ""
+msgstr "Einddatum/-tijd: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:15
 msgid "Station: "
-msgstr ""
+msgstr "Station: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
-msgstr ""
+msgstr "Verwijder ook alle QSO's die in deze sessie zijn gelogd uit het logboek"
 
 #: application/views/contesting/manager/components/confirm_delete.php:26
 msgid "Delete Session"
-msgstr ""
+msgstr "Sessie verwijderen"
 
 #: application/views/contesting/manager/components/session_modal.php:7
 msgid "Edit Contest Session"
-msgstr ""
+msgstr "Bewerk contest-sessie"
 
 #: application/views/contesting/manager/components/session_modal.php:9
 msgid "Create Contest Session"
-msgstr ""
+msgstr "Contest-sessie maken"
 
 #: application/views/contesting/manager/components/session_modal.php:21
 msgid "Enter all required information to create a new contest session."
 msgstr ""
+"Voer alle vereiste informatie in om een nieuwe contest-sessie aan te maken."
 
 #: application/views/contesting/manager/components/session_modal.php:24
 msgid "Enter a name for this contest"
-msgstr ""
+msgstr "Voer een naam in voor deze contest"
 
 #: application/views/contesting/manager/components/session_modal.php:25
 msgid "This name will be used only internally."
-msgstr ""
+msgstr "Deze naam zal alleen intern worden gebruikt."
 
 #: application/views/contesting/manager/components/session_modal.php:29
 msgid "Please select a contest"
-msgstr ""
+msgstr "Selecteer alstublieft een contest"
 
 #: application/views/contesting/manager/components/session_modal.php:35
 msgid "Please select a contest."
-msgstr ""
+msgstr "Selecteer alstublieft een contest."
 
 #: application/views/contesting/manager/components/session_modal.php:36
 #, php-format
@@ -10911,6 +10922,8 @@ msgid ""
 "Select the contest for this session. If you can't find the contest, please "
 "choose %s."
 msgstr ""
+"Selecteer de contest voor deze sessie. Als je de contest niet kunt vinden, "
+"kies dan %s."
 
 #: application/views/contesting/manager/components/session_modal.php:41
 #: application/views/qso/edit_ajax.php:53
@@ -10919,19 +10932,19 @@ msgstr "Startdatum/-tijd"
 
 #: application/views/contesting/manager/components/session_modal.php:43
 msgid "When should the session start?"
-msgstr ""
+msgstr "Wanneer moet de sessie beginnen?"
 
 #: application/views/contesting/manager/components/session_modal.php:45
 msgid "Now"
-msgstr ""
+msgstr "Nu"
 
 #: application/views/contesting/manager/components/session_modal.php:46
 msgid "Friday 12:00"
-msgstr ""
+msgstr "Vrijdag 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:47
 msgid "Saturday 12:00"
-msgstr ""
+msgstr "Zaterdag 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:51
 #: application/views/qso/edit_ajax.php:58
@@ -10940,51 +10953,52 @@ msgstr "Einddatum/-tijd"
 
 #: application/views/contesting/manager/components/session_modal.php:53
 msgid "When should the session end?"
-msgstr ""
+msgstr "Wanneer moet de sessie eindigen?"
 
 #: application/views/contesting/manager/components/session_modal.php:65
 msgid "Please select a station"
-msgstr ""
+msgstr "Selecteer alstublieft een station"
 
 #: application/views/contesting/manager/components/session_modal.php:80
 msgid "Choose one of your stations"
-msgstr ""
+msgstr "Kies een van je stations"
 
 #: application/views/contesting/manager/components/session_modal.php:83
 msgid "Exchange Fields"
-msgstr ""
+msgstr "Uitwisselingsvelden"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Toggle fields on/off and drag to set the tab order in the logger."
 msgstr ""
+"Velden aan/uitzetten en slepen om de tabvolgorde in de logger in te stellen."
 
 #: application/views/contesting/manager/components/session_modal.php:87
 msgid "Serial Number"
-msgstr ""
+msgstr "Serienummer"
 
 #: application/views/contesting/manager/components/session_modal.php:88
 msgid "Grid Square"
-msgstr ""
+msgstr "Locator vak"
 
 #: application/views/contesting/manager/components/session_modal.php:89
 msgid "Exchange (text)"
-msgstr ""
+msgstr "Uitwisseling (tekst)"
 
 #: application/views/contesting/manager/components/session_modal.php:112
 msgid "Please enable at least one exchange field."
-msgstr ""
+msgstr "Schakel ten minste één uitwisselingsveld in."
 
 #: application/views/contesting/manager/components/session_modal.php:115
 msgid "Copy Exchange to Field"
-msgstr ""
+msgstr "Kopieer Exchange naar Veld"
 
 #: application/views/contesting/manager/components/session_modal.php:117
 msgid "— None —"
-msgstr ""
+msgstr "— Geen —"
 
 #: application/views/contesting/manager/components/session_modal.php:119
 msgid "Gridquare"
-msgstr ""
+msgstr "Locatorvak"
 
 #: application/views/contesting/manager/components/session_modal.php:120
 #: application/views/logbookadvanced/index.php:971
@@ -11001,10 +11015,11 @@ msgstr "RX Vermogen (W)"
 msgid ""
 "The received Exchange (Exch R) value will be copied to this logbook field."
 msgstr ""
+"De ontvangen Exchange (Exch R) waarde wordt naar dit logboekveld gekopieerd."
 
 #: application/views/contesting/manager/components/session_modal.php:132
 msgid "Callbook Lookup (Online)"
-msgstr ""
+msgstr "Opzoeken in Callbook (Online)"
 
 #: application/views/contesting/manager/components/session_modal.php:134
 msgid ""
@@ -11012,44 +11027,51 @@ msgid ""
 "only existing log data from previous qsos with this callsign will be used. "
 "Log data is always prioritized."
 msgstr ""
+"Zoek callbookgegevens op in de geconfigureerde online callbook-service. Als "
+"uitgeschakeld, wordt alleen bestaande logboekdata van eerdere QSO's met deze "
+"roepnaam gebruikt. Logboekdata heeft altijd prioriteit."
 
 #: application/views/contesting/manager/components/session_modal.php:137
 msgid "Session Notes"
-msgstr ""
+msgstr "Sessienotities"
 
 #: application/views/contesting/manager/components/session_modal.php:138
 msgid "Add any additional information about this session..."
-msgstr ""
+msgstr "Voeg eventuele aanvullende informatie over deze sessie toe..."
 
 #: application/views/contesting/manager/components/session_modal.php:139
 msgid "Optional: Any additional details or notes"
-msgstr ""
+msgstr "Optioneel: Eventuele extra details of notities"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Create Session"
-msgstr ""
+msgstr "Sessie aanmaken"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Update Session"
-msgstr ""
+msgstr "Sessie bijwerken"
 
 #: application/views/contesting/manager/export_cbr.php:27
 #: application/views/contesting/manager/export_edi.php:27
 #, php-format
 msgid "%d QSOs"
-msgstr ""
+msgstr "%d QSOs"
 
 #: application/views/contesting/manager/export_cbr.php:32
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
 msgstr ""
+"Deze contest-sessie heeft nog geen QSOs. Exporteren zal een leeg bestand "
+"opleveren."
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
 msgstr ""
+"Je hebt geen toestemming om bestanden te exporteren. Neem contact op met de "
+"stations official."
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:497
@@ -11062,10 +11084,12 @@ msgid ""
 "Settings are saved automatically when you download. Name and e-mail are "
 "taken from your user profile."
 msgstr ""
+"Instellingen worden automatisch opgeslagen wanneer je downloadt. Naam en e-"
+"mail worden uit je gebruikersprofiel opgehaald."
 
 #: application/views/contesting/manager/export_cbr.php:69
 msgid "Assisted"
-msgstr ""
+msgstr "Geassisteerd"
 
 #: application/views/contesting/manager/export_cbr.php:102
 msgid "Light/Laser"
@@ -11078,11 +11102,11 @@ msgstr "Vermogen"
 
 #: application/views/contesting/manager/export_cbr.php:129
 msgid "Category (optional)"
-msgstr ""
+msgstr "Categorie (optioneel)"
 
 #: application/views/contesting/manager/export_cbr.php:148
 msgid "Transmitter"
-msgstr ""
+msgstr "Zender"
 
 #: application/views/contesting/manager/export_cbr.php:161
 #: application/views/contesting/manager/export_cbr.php:162
@@ -11094,7 +11118,7 @@ msgstr "%d Uren"
 
 #: application/views/contesting/manager/export_cbr.php:168
 msgid "Overlay"
-msgstr ""
+msgstr "Overlay"
 
 #: application/views/contesting/manager/export_cbr.php:185
 #: application/views/logbookadvanced/useroptions.php:271
@@ -11120,6 +11144,8 @@ msgid ""
 "ARRL section for USA/Canada, 'DX' for foreign stations. Required for IARU-"
 "HF, ARRL and CQ contests."
 msgstr ""
+"ARRL-sectie voor USA/Canada, 'DX' voor buitenlandse stations. Vereist voor "
+"IARU-HF, ARRL en CQ contests."
 
 #: application/views/contesting/manager/export_cbr.php:203
 #: application/views/contesting/manager/export_edi.php:95
@@ -11140,6 +11166,8 @@ msgstr "Certificaat"
 #: application/views/contesting/manager/export_cbr.php:217
 msgid "Request a paper certificate from the contest sponsor if eligible."
 msgstr ""
+"Vraag een papieren certificaat aan bij de contest-sponsor indien in "
+"aanmerking komend."
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
@@ -11268,35 +11296,36 @@ msgstr "Nee"
 
 #: application/views/contesting/manager/export_cbr.php:227
 msgid "Grid in exchange?"
-msgstr ""
+msgstr "Locatorvak in uitwisseling?"
 
 #: application/views/contesting/manager/export_cbr.php:230
 msgid "Select Yes if the grid square was part of the contest exchange."
 msgstr ""
+"Selecteer Ja als het locatorvak onderdeel was van de contest-uitwisseling."
 
 #: application/views/contesting/manager/export_cbr.php:240
 msgid "Use 6-char grid instead of 4-char"
-msgstr ""
+msgstr "Gebruik een locatorvak van 6 karakters in plaats van 4 karakters"
 
 #: application/views/contesting/manager/export_cbr.php:249
 msgid "Contact & Address"
-msgstr ""
+msgstr "Contactgegevens & adres"
 
 #: application/views/contesting/manager/export_cbr.php:262
 msgid "Street Address"
-msgstr ""
+msgstr "Straatadres"
 
 #: application/views/contesting/manager/export_cbr.php:272
 msgid "State / Province"
-msgstr ""
+msgstr "Staat / Provincie"
 
 #: application/views/contesting/manager/export_cbr.php:277
 msgid "Postal Code"
-msgstr ""
+msgstr "Postcode"
 
 #: application/views/contesting/manager/export_cbr.php:290
 msgid "Download Cabrillo"
-msgstr ""
+msgstr "Download Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:499
@@ -11305,7 +11334,7 @@ msgstr "EDI-export"
 
 #: application/views/contesting/manager/export_edi.php:57
 msgid "Header data"
-msgstr ""
+msgstr "Kopgegevens"
 
 #: application/views/contesting/manager/export_edi.php:62
 msgid "Sent Exchange"
@@ -11347,7 +11376,7 @@ msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:109
 msgid "Location and Operator Information"
-msgstr ""
+msgstr "Locatie- en Operator-informatie"
 
 #: application/views/contesting/manager/export_edi.php:112
 msgid "Contest Address 1"
@@ -11383,7 +11412,7 @@ msgstr "Operator telefoonnummer"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr ""
+msgstr "Aanvullende station beschrijving"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -11409,7 +11438,7 @@ msgstr "Antennehoogte boven de grond (m)"
 
 #: application/views/contesting/manager/export_edi.php:191
 msgid "Scoring Adjustment and Band Selection"
-msgstr ""
+msgstr "Scoreaanpassing en bandselectie"
 
 #: application/views/contesting/manager/export_edi.php:195
 msgid "Band multiplicator"
@@ -11420,18 +11449,20 @@ msgid ""
 "The Band multiplicator is usually 1. Only change this if necessary according "
 "to the contest scoring rules."
 msgstr ""
+"De bandvermenigvuldiger is meestal 1. Verander dit alleen indien nodig "
+"volgens de puntentellingregels van de contest."
 
 #: application/views/contesting/manager/export_edi.php:208
 msgid "Choose Band for export"
-msgstr ""
+msgstr "Kies band voor export"
 
 #: application/views/contesting/manager/export_edi.php:220
 msgid "Download EDI"
-msgstr ""
+msgstr "Download EDI"
 
 #: application/views/contesting/manager/import_legacy.php:9
 msgid "Historical Contest QSOs"
-msgstr ""
+msgstr "Historische Contest-QSOs"
 
 #: application/views/contesting/manager/import_legacy.php:13
 msgid ""
@@ -11439,46 +11470,51 @@ msgid ""
 "linked to a contest session. Select the ones you want to import and click "
 "\"Import Selected\"."
 msgstr ""
+"De volgende contest-groepen zijn gevonden in je logboek maar zijn nog niet "
+"gekoppeld aan een contest-sessie. Selecteer de groepen die je wilt "
+"importeren en klik op \"Geselecteerde importeren\"."
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "Admin mode:"
-msgstr ""
+msgstr "Beheerdermodus:"
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid "This will import contests for all users of this instance."
-msgstr ""
+msgstr "Dit zal contesten importeren voor alle gebruikers van deze server."
 
 #: application/views/contesting/manager/import_legacy.php:30
 msgid "Select all"
-msgstr ""
+msgstr "Alles selecteren"
 
 #: application/views/contesting/manager/import_legacy.php:32
 msgid "ADIF ID"
-msgstr ""
+msgstr "ADIF ID"
 
 #: application/views/contesting/manager/import_legacy.php:37
 #: application/views/contesting/manager/index.php:35
 #: application/views/logbookadvanced/attachContest.php:17
 msgid "#QSO"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/contesting/manager/import_legacy.php:61
 msgid "Unknown → Other"
-msgstr ""
+msgstr "Onbekend → Overige"
 
 #: application/views/contesting/manager/import_legacy.php:72
 msgid "Import Selected"
-msgstr ""
+msgstr "Geselecteerde importeren"
 
 #: application/views/contesting/manager/import_legacy.php:94
 msgid "Please select at least one contest to import."
-msgstr ""
+msgstr "Selecteer alstublieft ten minste één contest om te importeren."
 
 #: application/views/contesting/manager/import_legacy.php:97
 msgid ""
 "Are you sure you want to import the selected contest sessions? This cannot "
 "be undone."
 msgstr ""
+"Weet je zeker dat je de geselecteerde contest-sessies wilt importeren? Dit "
+"kan niet ongedaan worden gemaakt."
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:340
@@ -11490,34 +11526,36 @@ msgid ""
 "Here you can manage your contests, create new, edit or export them in "
 "various formats."
 msgstr ""
+"Hier kun je je contesten beheren, nieuwe maken, wijzigen of exporteren in "
+"verschillende formaten."
 
 #: application/views/contesting/manager/index.php:21
 msgid "Create New Contest"
-msgstr ""
+msgstr "Nieuwe contest maken"
 
 #: application/views/contesting/manager/index.php:22
 #: application/views/interface_assets/header.php:144
 msgid "Quick Start"
-msgstr ""
+msgstr "Snelle start"
 
 #: application/views/contesting/manager/index.php:49
 #: application/views/logbookadvanced/attachContest.php:28
 msgid "Coming Up"
-msgstr ""
+msgstr "Binnenkort"
 
 #: application/views/contesting/manager/index.php:51
 #: application/views/logbookadvanced/attachContest.php:30
 msgid "In Progress"
-msgstr ""
+msgstr "Nu bezig"
 
 #: application/views/contesting/manager/index.php:53
 #: application/views/logbookadvanced/attachContest.php:32
 msgid "Completed"
-msgstr ""
+msgstr "Voltooid"
 
 #: application/views/contesting/manager/index.php:59
 msgid "START"
-msgstr ""
+msgstr "START"
 
 #: application/views/contesting/manager/index.php:94
 #: application/views/qslprint/qslprint.php:111
@@ -11526,7 +11564,7 @@ msgstr "Exporteer ADIF"
 
 #: application/views/contesting/manager/index.php:97
 msgid "Export CBR"
-msgstr ""
+msgstr "Exporteren CBR"
 
 #: application/views/contesting/manager/index.php:100
 msgid "Export EDI"
@@ -11534,13 +11572,15 @@ msgstr "EDI exporteren"
 
 #: application/views/contesting/manager/index.php:149
 msgid "Import historical contests from logbook"
-msgstr ""
+msgstr "Importeer historische wedstrijden uit het logboek"
 
 #: application/views/contesting/manager/index.php:152
 msgid ""
 "Import for all users of this instance. You can do that because you are an "
 "administrator."
 msgstr ""
+"Importeer voor alle gebruikers van deze server. Je kunt dat doen omdat je "
+"een beheerder bent."
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
@@ -11623,7 +11663,7 @@ msgstr "Hoe het werkt"
 #: application/views/cron/index.php:21
 #, php-format
 msgid "For more information or help, take a look in the %sWiki%s."
-msgstr ""
+msgstr "Voor meer informatie of hulp, kijk in de %sWiki%s."
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -11838,15 +11878,15 @@ msgstr "Ten minste een van je certificaten verloopt"
 
 #: application/views/dashboard/index.php:244
 msgid "QSOs this year"
-msgstr ""
+msgstr "QSOs dit jaar"
 
 #: application/views/dashboard/index.php:254
 msgid "QSOs this month"
-msgstr ""
+msgstr "QSOs deze maand"
 
 #: application/views/dashboard/index.php:264
 msgid "QSOs today"
-msgstr ""
+msgstr "QSOs vandaag"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
@@ -11876,16 +11916,16 @@ msgstr[1] "Max. %d vorige contacten worden getoond"
 #: application/views/dashboard/index.php:403
 #: application/views/user/edit.php:763
 msgid "Active Expeditions"
-msgstr ""
+msgstr "Actieve expedities"
 
 #: application/views/dashboard/index.php:411
 msgid "Dates"
-msgstr ""
+msgstr "Data"
 
 #: application/views/dashboard/index.php:449
 #: application/views/user/edit.php:773
 msgid "Active Contests"
-msgstr ""
+msgstr "Actieve contesten"
 
 #: application/views/dashboard/index.php:465
 #: application/views/view_log/qso.php:621
@@ -12494,7 +12534,7 @@ msgstr "Codeigniter-versie"
 
 #: application/views/debug/index.php:141
 msgid "Wavelog Worker Backend"
-msgstr ""
+msgstr "Wavelog Worker Backend"
 
 #: application/views/debug/index.php:150
 msgid "Folder Permissions"
@@ -12821,31 +12861,31 @@ msgstr "Alles oké"
 
 #: application/views/debug/index.php:855
 msgid "Worker backend is not configured."
-msgstr ""
+msgstr "Worker-backend is niet geconfigureerd."
 
 #: application/views/debug/index.php:859
 msgid "Unreachable"
-msgstr ""
+msgstr "Onbereikbaar"
 
 #: application/views/debug/index.php:859
 msgid "Worker is configured but did not respond."
-msgstr ""
+msgstr "Worker is geconfigureerd maar reageerde niet."
 
 #: application/views/debug/index.php:867
 msgid "Available"
-msgstr ""
+msgstr "Beschikbaar"
 
 #: application/views/debug/index.php:868 application/views/debug/index.php:877
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: application/views/debug/index.php:876
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: application/views/debug/index.php:887
 msgid "Worker"
-msgstr ""
+msgstr "Worker"
 
 #: application/views/debug/index.php:888
 msgid "Topics"
@@ -12853,15 +12893,15 @@ msgstr ""
 
 #: application/views/debug/index.php:889
 msgid "Clients"
-msgstr ""
+msgstr "Cliënten"
 
 #: application/views/debug/index.php:891
 msgid "Uptime"
-msgstr ""
+msgstr "Uptime"
 
 #: application/views/debug/index.php:898
 msgid "Could not fetch worker status."
-msgstr ""
+msgstr "Kon Worker status niet ophalen."
 
 #: application/views/debug/index.php:911
 msgid "Albanian"
@@ -13927,7 +13967,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:136
 msgid "Error saving operator callsign. Please try again."
-msgstr ""
+msgstr "Fout bij het opslaan van de operatorroepnaam. Probeer het opnieuw."
 
 #: application/views/interface_assets/footer.php:139
 msgid "Working without CAT connection"
@@ -14100,20 +14140,20 @@ msgstr "QSL-afbeeldingsbestand"
 
 #: application/views/interface_assets/footer.php:2680
 msgid "Front QSL Card"
-msgstr ""
+msgstr "Voorzijde QSL-kaart"
 
 #: application/views/interface_assets/footer.php:2716
 msgid "Back QSL Card"
-msgstr ""
+msgstr "Achterzijde QSL-kaart"
 
 #: application/views/interface_assets/footer.php:2720
 msgid "The QSL card upload could not be completed."
-msgstr ""
+msgstr "Het uploaden van de QSL-kaart kon niet worden voltooid."
 
 #: application/views/interface_assets/footer.php:2720
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
-msgstr ""
+msgstr "Upload mislukt"
 
 #: application/views/interface_assets/footer.php:2728
 #: application/views/interface_assets/footer.php:2753
@@ -14160,7 +14200,7 @@ msgstr "Na QSO"
 
 #: application/views/interface_assets/header.php:146
 msgid "Manage Contests"
-msgstr ""
+msgstr "Contesten beheren"
 
 #: application/views/interface_assets/header.php:155
 msgid "Analytics"
@@ -15047,8 +15087,8 @@ msgstr "Gebruik Wavelog om IOTA tegen DXCC te controleren"
 #, php-format
 msgid "Detach %s QSO from contest?"
 msgid_plural "Detach %s QSOs from contests?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Koppel %s QSO los van contest?"
+msgstr[1] "Koppel %s QSOs los van contests?"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
@@ -15787,47 +15827,47 @@ msgstr "Fout bij het laden van het samenvoegvenster"
 
 #: application/views/logbookadvanced/index.php:94
 msgid "You need at least 1 QSO!"
-msgstr ""
+msgstr "Je hebt minstens 1 QSO nodig!"
 
 #: application/views/logbookadvanced/index.php:95
 msgid "Attach QSOs to Contest"
-msgstr ""
+msgstr "QSOs aan contest koppelen"
 
 #: application/views/logbookadvanced/index.php:96
 msgid "Error loading attach to contest dialog"
-msgstr ""
+msgstr "Fout bij het laden van het bijvoegen aan contest-venster"
 
 #: application/views/logbookadvanced/index.php:97
 msgid "QSOs attached to contest successfully!"
-msgstr ""
+msgstr "QSOs succesvol aan contest gekoppeld!"
 
 #: application/views/logbookadvanced/index.php:98
 msgid "Error attaching QSOs"
-msgstr ""
+msgstr "Fout bij het koppelen van QSOs"
 
 #: application/views/logbookadvanced/index.php:100
 msgid "Detach QSOs to Contest"
-msgstr ""
+msgstr "QSOs loskoppelen voor contest"
 
 #: application/views/logbookadvanced/index.php:101
 msgid "Error loading detach to contest dialog"
-msgstr ""
+msgstr "Fout bij het laden van het 'loskoppelen van contest' venster"
 
 #: application/views/logbookadvanced/index.php:102
 msgid "QSOs detached to contest successfully!"
-msgstr ""
+msgstr "QSOs succesvol van contest ontkoppeld!"
 
 #: application/views/logbookadvanced/index.php:103
 msgid "Error detaching QSOs"
-msgstr ""
+msgstr "Fout bij het loskoppelen van QSOs"
 
 #: application/views/logbookadvanced/index.php:105
 msgid "You need to select at least 1 row to print a QSL card!"
-msgstr ""
+msgstr "Je moet minimaal 1 rij selecteren om een QSL-kaart te printen!"
 
 #: application/views/logbookadvanced/index.php:106
 msgid "QSL Card print options"
-msgstr ""
+msgstr "QSL-kaart printopties"
 
 #: application/views/logbookadvanced/index.php:357
 msgid "From"
@@ -16164,15 +16204,15 @@ msgstr "QSL Diavoorstelling"
 
 #: application/views/logbookadvanced/index.php:857
 msgid "Print QSL Card"
-msgstr ""
+msgstr "Print QSL-kaart"
 
 #: application/views/logbookadvanced/index.php:859
 msgid "Attach to Contest"
-msgstr ""
+msgstr "Aan contest koppelen"
 
 #: application/views/logbookadvanced/index.php:860
 msgid "Detach from Contest"
-msgstr ""
+msgstr "Losmaken van contest"
 
 #: application/views/logbookadvanced/index.php:866
 #: application/views/oqrs/showrequests.php:63
@@ -16293,7 +16333,7 @@ msgstr "Veld"
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 msgid "Template"
-msgstr ""
+msgstr "Sjabloon"
 
 #: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
@@ -16302,12 +16342,14 @@ msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
 msgstr ""
+"Printopties (QSOs per kaart, achtergrondafbeelding, adresafdrukken) worden "
+"per sjabloon ingesteld in de QSL Ansichtkaartontwerper."
 
 #: application/views/logbookadvanced/printQsl.php:29
 #: application/views/qslpostcard/printqueue.php:21
 #: application/views/qslpostcard/printqueue_selected.php:29
 msgid "Generate Postcard PDF"
-msgstr ""
+msgstr "Genereer ansichtkaart PDF"
 
 #: application/views/logbookadvanced/printQsl.php:35
 #: application/views/qslpostcard/printqueue.php:27
@@ -16316,6 +16358,8 @@ msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
 msgstr ""
+"Geen sjablonen beschikbaar voor afdrukken. Ga naar de QSL "
+"Ansichtkaartontwerper en maak eerst een sjabloon."
 
 #: application/views/logbookadvanced/qslcarousel.php:59
 #: application/views/qslcard/qslcarousel.php:25
@@ -16853,7 +16897,7 @@ msgstr "Je moet je persoonlijke roepnaam opgeven."
 
 #: application/views/operator/index.php:22
 msgid "No pre-/suffix allowed."
-msgstr ""
+msgstr "Geen voor-/achtervoegsel toegestaan."
 
 #: application/views/options/appearance.php:12
 #: application/views/user/edit.php:220
@@ -17647,23 +17691,23 @@ msgstr "Adres"
 
 #: application/views/qslpostcard/designer.php:6
 msgid "QSO Core"
-msgstr ""
+msgstr "QSO Kern"
 
 #: application/views/qslpostcard/designer.php:7
 msgid "Date & Time"
-msgstr ""
+msgstr "Datum & Tijd"
 
 #: application/views/qslpostcard/designer.php:8
 msgid "Station & Equipment"
-msgstr ""
+msgstr "Station & Apparatuur"
 
 #: application/views/qslpostcard/designer.php:9
 msgid "My References"
-msgstr ""
+msgstr "Mijn referenties"
 
 #: application/views/qslpostcard/designer.php:10
 msgid "Markers"
-msgstr ""
+msgstr "Markers"
 
 #: application/views/qslpostcard/designer.php:11
 #: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
@@ -17672,258 +17716,265 @@ msgstr "Andere"
 
 #: application/views/qslpostcard/designer.php:29
 msgid "Please choose an image first."
-msgstr ""
+msgstr "Kies eerst een afbeelding."
 
 #: application/views/qslpostcard/designer.php:30
 msgid "Uploading..."
-msgstr ""
+msgstr "Bezig met uploaden..."
 
 #: application/views/qslpostcard/designer.php:32
 msgid "unknown error"
-msgstr ""
+msgstr "Onbekende fout"
 
 #: application/views/qslpostcard/designer.php:33
 msgid "Preview image uploaded."
-msgstr ""
+msgstr "Voorbeeldafbeelding geüpload."
 
 #: application/views/qslpostcard/designer.php:34
 msgid "Custom Text"
-msgstr ""
+msgstr "Eigen tekst"
 
 #: application/views/qslpostcard/designer.php:35
 msgid "Untitled"
-msgstr ""
+msgstr "Naamloos"
 
 #: application/views/qslpostcard/designer.php:36
 msgid "Save failed"
-msgstr ""
+msgstr "Opslaan mislukt"
 
 #: application/views/qslpostcard/designer.php:37
 msgid "Template saved."
-msgstr ""
+msgstr "Sjabloon opgeslagen."
 
 #: application/views/qslpostcard/designer.php:38
 msgid "Delete Template?"
-msgstr ""
+msgstr "Sjabloon verwijderen?"
 
 #: application/views/qslpostcard/designer.php:39
 msgid ""
 "Are you sure you want to delete this template? This action cannot be undone."
 msgstr ""
+"Weet je zeker dat je deze sjabloon wilt verwijderen? Deze actie kan niet "
+"ongedaan worden gemaakt."
 
 #: application/views/qslpostcard/designer.php:40
 msgid "Delete failed"
-msgstr ""
+msgstr "Verwijderen mislukt"
 
 #: application/views/qslpostcard/designer.php:41
 msgid "Template deleted successfully!"
-msgstr ""
+msgstr "Sjabloon succesvol verwijderd!"
 
 #: application/views/qslpostcard/designer.php:42
 msgid "Please select a template to delete."
-msgstr ""
+msgstr "Selecteer een sjabloon om te verwijderen."
 
 #: application/views/qslpostcard/designer.php:45
 msgid "selected"
-msgstr ""
+msgstr "geselecteerd"
 
 #: application/views/qslpostcard/designer.php:61
 msgid "(new)"
-msgstr ""
+msgstr "(nieuw)"
 
 #: application/views/qslpostcard/designer.php:66
 msgid "Template name"
-msgstr ""
+msgstr "Sjabloonnaam"
 
 #: application/views/qslpostcard/designer.php:67
 msgid "Save Template"
-msgstr ""
+msgstr "Sjabloon opslaan"
 
 #: application/views/qslpostcard/designer.php:70
 msgid "Delete Template"
-msgstr ""
+msgstr "Sjabloon verwijderen"
 
 #: application/views/qslpostcard/designer.php:78
 msgid "Background image"
-msgstr ""
+msgstr "Achtergrondafbeelding"
 
 #: application/views/qslpostcard/designer.php:81
 msgid "Upload Preview Image"
-msgstr ""
+msgstr "Voorbeeldafbeelding uploaden"
 
 #: application/views/qslpostcard/designer.php:84
 msgid "Generate PDF (demo)"
-msgstr ""
+msgstr "PDF genereren (demo)"
 
 #: application/views/qslpostcard/designer.php:85
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: application/views/qslpostcard/designer.php:92
 msgid "History"
-msgstr ""
+msgstr "Geschiedenis"
 
 #: application/views/qslpostcard/designer.php:94
 msgid "Undo"
-msgstr ""
+msgstr "Ongedaan maken"
 
 #: application/views/qslpostcard/designer.php:95
 msgid "Redo"
-msgstr ""
+msgstr "Opnieuw doen"
 
 #: application/views/qslpostcard/designer.php:101
 msgid "Zoom"
-msgstr ""
+msgstr "In- of uitzoomen"
 
 #: application/views/qslpostcard/designer.php:111
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
 msgstr ""
+"Tip: Na een proefdruk kun je beter de globale offsets aanpassen dan elk veld "
+"afzonderlijk te verplaatsen."
 
 #: application/views/qslpostcard/designer.php:112
 msgid "Print offset"
-msgstr ""
+msgstr "Printoffset"
 
 #: application/views/qslpostcard/designer.php:141
 msgid "Search fields…"
-msgstr ""
+msgstr "Zoek velden…"
 
 #: application/views/qslpostcard/designer.php:145
 msgid "Add Custom Text"
-msgstr ""
+msgstr "Eigen tekst toevoegen"
 
 #: application/views/qslpostcard/designer.php:160
 msgid "No fields match your search."
-msgstr ""
+msgstr "Geen van de velden komen overeen met je zoekopdracht."
 
 #: application/views/qslpostcard/designer.php:168
 msgid "Postcard Canvas"
-msgstr ""
+msgstr "Ansichtkaart Canvas"
 
 #: application/views/qslpostcard/designer.php:169
 msgid "drag fields onto the postcard"
-msgstr ""
+msgstr "sleep velden op de ansichtkaart"
 
 #: application/views/qslpostcard/designer.php:190
 msgid "Template Options"
-msgstr ""
+msgstr "Sjabloonopties"
 
 #: application/views/qslpostcard/designer.php:194
 msgid "Number of QSOs per QSL card"
-msgstr ""
+msgstr "Aantal QSOs per QSL-kaart"
 
 #: application/views/qslpostcard/designer.php:198
 msgid "Row spacing"
-msgstr ""
+msgstr "Rijafstand"
 
 #: application/views/qslpostcard/designer.php:203
 msgid "Print background image (uncheck for pre-printed cards)"
 msgstr ""
+"Achtergrondafbeelding afdrukken (uitschakelen voor vooraf bedrukte kaarten)"
 
 #: application/views/qslpostcard/designer.php:207
 msgid "Skip address printing (for printing on regular QSL cards)"
-msgstr ""
+msgstr "Adresafdrukken overslaan (voor afdrukken op gewone QSL-kaarten)"
 
 #: application/views/qslpostcard/designer.php:215
 msgid "Properties"
-msgstr ""
+msgstr "Eigenschappen"
 
 #: application/views/qslpostcard/designer.php:220
 msgid "Select a field on the canvas to edit it."
-msgstr ""
+msgstr "Selecteer een veld op het canvas om het te bewerken."
 
 #: application/views/qslpostcard/designer.php:221
 msgid "Right-click a field for more actions."
-msgstr ""
+msgstr "Klik met de rechtermuisknop op een veld voor meer acties."
 
 #: application/views/qslpostcard/designer.php:231
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: application/views/qslpostcard/designer.php:237
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: application/views/qslpostcard/designer.php:241
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #: application/views/qslpostcard/designer.php:247
 msgid "Font"
-msgstr ""
+msgstr "Lettertype"
 
 #: application/views/qslpostcard/designer.php:263
 msgid "Bold"
-msgstr ""
+msgstr "Vetgedrukt"
 
 #: application/views/qslpostcard/designer.php:269
 msgid "Color"
-msgstr ""
+msgstr "Kleur"
 
 #: application/views/qslpostcard/designer.php:274
 msgid "Wrap width"
-msgstr ""
+msgstr "Breedte omhullen"
 
 #: application/views/qslpostcard/designer.php:279
 msgid "Print this field once per QSO when a card holds multiple QSOs"
-msgstr ""
+msgstr "Print dit veld één keer per QSO wanneer een kaart meerdere QSOs bevat"
 
 #: application/views/qslpostcard/designer.php:280
 msgid "Repeats per QSO"
-msgstr ""
+msgstr "Herhaald per QSO"
 
 #: application/views/qslpostcard/designer.php:284
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
+"Verplaats dit element vrij zonder vast te klikken aan het raster of andere "
+"elementen"
 
 #: application/views/qslpostcard/designer.php:285
 msgid "Disable Auto-Snap"
-msgstr ""
+msgstr "Automatisch vastklikken uitschakelen"
 
 #: application/views/qslpostcard/designer.php:311
 msgid "Align & distribute"
-msgstr ""
+msgstr "Uitlijnen & verdelen"
 
 #: application/views/qslpostcard/designer.php:315
 msgid "Align left"
-msgstr ""
+msgstr "Links uitlijnen"
 
 #: application/views/qslpostcard/designer.php:316
 msgid "Align horizontal centers"
-msgstr ""
+msgstr "Horizontale middens uitlijnen"
 
 #: application/views/qslpostcard/designer.php:317
 msgid "Align right"
-msgstr ""
+msgstr "Rechts uitlijnen"
 
 #: application/views/qslpostcard/designer.php:319
 msgid "Align top"
-msgstr ""
+msgstr "Naar boven uitlijnen"
 
 #: application/views/qslpostcard/designer.php:320
 msgid "Align vertical centers"
-msgstr ""
+msgstr "Verticale middens uitlijnen"
 
 #: application/views/qslpostcard/designer.php:321
 msgid "Align bottom"
-msgstr ""
+msgstr "Naar onder uitlijnen"
 
 #: application/views/qslpostcard/designer.php:323
 msgid "Distribute horizontally"
-msgstr ""
+msgstr "Horizontaal verdelen"
 
 #: application/views/qslpostcard/designer.php:324
 msgid "Distribute vertically"
-msgstr ""
+msgstr "Verticaal verdelen"
 
 #: application/views/qslpostcard/designer.php:326
 msgid "Center on page (horizontal)"
-msgstr ""
+msgstr "Centreren op pagina (horizontaal)"
 
 #: application/views/qslpostcard/designer.php:327
 msgid "Center on page (vertical)"
-msgstr ""
+msgstr "Centreren op pagina (verticaal)"
 
 #: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
@@ -18046,11 +18097,11 @@ msgstr "Markeer aangevraagde QSL's als verzonden"
 
 #: application/views/qslprint/qslprint.php:115
 msgid "Print Postcards for all QSOs"
-msgstr ""
+msgstr "Print ansichtkaarten voor alle QSOs"
 
 #: application/views/qslprint/qslprint.php:116
 msgid "Print Selected QSO Postcards"
-msgstr ""
+msgstr "Print geselecteerde QSO-ansichtkaarten"
 
 #: application/views/qslprint/qslprint.php:121
 msgid "No QSLs to print were found!"
@@ -18169,11 +18220,11 @@ msgstr "Toet op Mastodon"
 #: application/views/qso/components/winkeysettings.php:15
 #: application/views/qso/components/winkeysettings.php:32
 msgid "Macro"
-msgstr ""
+msgstr "Macro"
 
 #: application/views/qso/components/winkeysettings.php:39
 msgid "Tokens"
-msgstr ""
+msgstr "Tokens"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
@@ -18754,7 +18805,7 @@ msgstr "Sked-partner"
 
 #: application/views/satellite/pass.php:123
 msgid "Only satellites with TLE data are shown here!"
-msgstr ""
+msgstr "Alleen satellieten met TLE-gegevens worden hier getoond!"
 
 #: application/views/satellite/pass.php:136
 msgid "Min. time"
@@ -18774,7 +18825,7 @@ msgstr "Huidige instellingen opslaan"
 
 #: application/views/satellite/pass.php:165
 msgid "Pass Predictions"
-msgstr ""
+msgstr "Satellietovergang voorspellingen"
 
 #: application/views/satellite/pass.php:175
 msgid "Save Settings"
