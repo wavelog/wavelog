@@ -683,7 +683,12 @@ class Qslpostcard_model extends CI_Model {
 
         if ($field === 'qso.portable') {
             $mycall = strtoupper(trim($qso['COL_STATION_CALLSIGN'] ?? ''));
-            return ($mycall !== '' && preg_match('#/[PM]$#', $mycall)) ? 'X' : '';
+            return ($mycall !== '' && preg_match('#/P$#', $mycall)) ? 'X' : '';
+        }
+
+        if ($field === 'qso.mobile') {
+            $mycall = strtoupper(trim($qso['COL_STATION_CALLSIGN'] ?? ''));
+            return ($mycall !== '' && preg_match('#/M$#', $mycall)) ? 'X' : '';
         }
 
         return '';
