@@ -532,8 +532,24 @@ class API extends CI_Controller {
 
 		//extract relevant data to variables
 		$key = $obj['key'];
-		$station_id = $obj['station_id'];
 		$fetchfromid = $obj['fetchfromid'];
+
+		$req_station_ids = is_array($obj['station_id']) ? $obj['station_id'] : [$obj['station_id']];
+		if (empty($req_station_ids)) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => '"station_id" must not be empty']);
+			return;
+		}
+		$normalized_station_ids = [];
+		foreach ($req_station_ids as $sid) {
+			if (!is_numeric($sid)) {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => '"station_id" values must be numeric']);
+				return;
+			}
+			$normalized_station_ids[] = (int)$sid;
+		}
+		$req_station_ids = array_values(array_unique($normalized_station_ids));
 		$limit = 20000;
 		if ( (array_key_exists('limit',$obj)) && (is_numeric($obj['limit']*1)) ) {
 			$limit = $obj['limit'];
@@ -629,11 +645,12 @@ class API extends CI_Controller {
 			array_push($station_ids, $row->station_id);
 		}
 
-		//return error if station not accessible for the API key
-		if(!in_array($station_id, $station_ids)) {
-			http_response_code(401);
-	 	   	echo json_encode(['status' => 'failed', 'reason' => "Station ID not accessible for this API key"]);
-			return;
+		foreach ($req_station_ids as $station_id) {
+			if (!in_array($station_id, $station_ids)) {
+				http_response_code(401);
+				echo json_encode(['status' => 'failed', 'reason' => "Station ID not accessible for this API key"]);
+				return;
+			}
 		}
 
 		//load adif data module
@@ -660,7 +677,7 @@ class API extends CI_Controller {
 			$current_chunk_size = min($chunk_size, $remaining_limit);
 
 			// Fetch chunk
-			$qsos = $this->adif_data->export_past_id_chunked($station_id, $fetchfromid, $current_chunk_size, null, $offset, $current_chunk_size, $qsl_filter, $band);
+			$qsos = $this->adif_data->export_past_id_chunked($req_station_ids, $fetchfromid, $current_chunk_size, null, $offset, $current_chunk_size, $qsl_filter, $band);
 
 			if ($qsos && $qsos->num_rows() > 0) {
 				// Process chunk
