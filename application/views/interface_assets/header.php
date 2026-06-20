@@ -584,7 +584,11 @@
 									<li><a class="dropdown-item disabled"><?= __("Select a Location"); ?>:</a></li>
 									<?php
 									// let's get all stations for the logged in user
-									$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
+									if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+										$all_user_locations = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+									} else {
+										$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
+									}
 
 									// and the set favourites as array
 									$location_favorites_result = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));

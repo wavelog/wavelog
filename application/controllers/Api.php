@@ -261,12 +261,21 @@ class API extends CI_Controller {
 	function station_info($key = '') {
 		$this->load->model('api_model');
 		$this->load->model('stations');
+		$this->load->model('user_options_model');
 		header("Content-type: application/json");
 		if($this->api_model->authorize($key) > 0) { /* Check permission for reading */
 			$this->api_model->update_last_used($key);
 			$userid = $this->api_model->key_userid($key);
 			$station_ids = array();
-			$stations=$this->stations->all_of_user($userid);
+
+			$dkey_opt=$this->user_options_model->get_options('stations',array('option_name'=>'active_log_only','option_key'=>'boolean'), $userid)->result();
+			$user_stations_active_log_only = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
+			if($user_stations_active_log_only) {
+				$this->load->model('logbooks_model');
+				$stations = $this->logbooks_model->list_logbooks_linked($this->logbooks_model->find_active_station_logbook_from_userid($userid));
+			} else {
+				$stations=$this->stations->all_of_user($userid);
+			}
 			foreach ($stations->result() as $row) {
 				$result['station_id']=$row->station_id;
 				$result['station_profile_name']=$row->station_profile_name;
