@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-20 17:33+0000\n"
+"PO-Revision-Date: 2026-06-21 06:15+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -10514,63 +10514,65 @@ msgstr "レイアウトをデフォルト設定に戻してもよろしいです
 
 #: application/views/contesting/logger/index.php:37
 msgid "Enter a name for this layout:"
-msgstr ""
+msgstr "このレイアウトの名前を入力してください。"
 
 #: application/views/contesting/logger/index.php:38
 msgid "No saved layouts found."
-msgstr ""
+msgstr "保存済みのレイアウトは見つかりませんでした。"
 
 #: application/views/contesting/logger/index.php:39
 msgid "Default"
-msgstr ""
+msgstr "デフォルト"
 
 #: application/views/contesting/logger/index.php:40
 msgid "Default layout"
-msgstr ""
+msgstr "デフォルトレイアウト"
 
 #: application/views/contesting/logger/index.php:41
 msgid "Set as default"
-msgstr ""
+msgstr "デフォルトとして設定"
 
 #: application/views/contesting/logger/index.php:42
 msgid "Error saving layout"
-msgstr ""
+msgstr "レイアウトの保存エラー"
 
 #: application/views/contesting/logger/index.php:43
 msgid "Error setting default layout"
-msgstr ""
+msgstr "デフォルトレイアウトの設定エラー"
 
 #: application/views/contesting/logger/index.php:44
 msgid "Error deleting layout"
-msgstr ""
+msgstr "レイアウトの削除エラー"
 
 #: application/views/contesting/logger/index.php:45
 msgid "Error resetting layout"
-msgstr ""
+msgstr "レイアウトのリセットエラー"
 
 #: application/views/contesting/logger/index.php:46
 msgid "Error loading application. Please refresh the page."
 msgstr ""
+"アプリケーションの読み込み中にエラーが発生しました。ページを更新してください"
+"。"
 
 #: application/views/contesting/logger/index.php:48
 msgid "Initializing data store..."
-msgstr ""
+msgstr "データストアを初期化しています..."
 
 #: application/views/contesting/logger/index.php:49
 msgid "Initializing core systems..."
-msgstr ""
+msgstr "コアシステムを初期化しています..."
 
 #: application/views/contesting/logger/index.php:50
 msgid "Heartbeat Warning"
-msgstr ""
+msgstr "死活監視信号"
 
 #: application/views/contesting/logger/index.php:51
 msgid "Heartbeat request took %1 ms (threshold: %2 ms)"
-msgstr ""
+msgstr "心拍リクエストが % 1 ms (しきい値:% 2 ms)"
 
 #: application/views/contesting/logger/index.php:52
 msgid "Window"
-msgstr ""
+msgstr "ウィンドウ"
 
 #: application/views/contesting/logger/index.php:53
 #: application/views/dashboard/index.php:722
@@ -10621,11 +10623,11 @@ msgstr "無線局"
 
 #: application/views/contesting/logger/index.php:56
 msgid "Auto-fit"
-msgstr ""
+msgstr "自動適合"
 
 #: application/views/contesting/logger/index.php:58
 msgid "Unknown error"
-msgstr ""
+msgstr "不明なエラー"
 
 #: application/views/contesting/logger/index.php:60
 #: application/views/debug/index.php:158 application/views/debug/index.php:169
@@ -10639,31 +10641,35 @@ msgstr "成功"
 #: application/views/contesting/logger/index.php:61
 msgid ""
 "The worker backend is not reachable. Please check your network connection."
-msgstr ""
+msgstr "ワーカーバックエンドに接続できません。ネットワーク接続を確認してください。"
 
 #: application/views/contesting/logger/index.php:62
 msgid "Connection lost. Trying to reconnect…"
-msgstr ""
+msgstr "接続が切断されました。再接続を試みます…"
 
 #: application/views/contesting/logger/index.php:63
 msgid "Reconnected to the worker backend."
-msgstr ""
+msgstr "ワーカーバックエンドに再接続しました。"
 
 #: application/views/contesting/logger/index.php:64
 msgid ""
 "Could not reconnect to the worker backend. Please check your network "
 "connection."
 msgstr ""
+"ワーカーバックエンドへの再接続に失敗しました。ネットワーク接続を確認してくだ"
+"さい。"
 
 #: application/views/contesting/logger/index.php:65
 msgid ""
 "Contest settings have been changed. Please refresh the page to apply the new "
 "settings."
 msgstr ""
+"コンテストの設定が変更されました。新しい設定を適用するには、ページを更新して"
+"ください。"
 
 #: application/views/contesting/logger/index.php:66
 msgid "Reload now"
-msgstr ""
+msgstr "今すぐ再読み込み"
 
 #: application/views/contesting/logger/index.php:68
 #: application/views/contesting/logger/index.php:104
@@ -10671,79 +10677,83 @@ msgstr ""
 #: application/views/contesting/logger/index.php:190
 #: application/views/interface_assets/header.php:574
 msgid "Switch Operator"
-msgstr ""
+msgstr "スイッチオペレーター"
 
 #: application/views/contesting/logger/index.php:69
 msgid ""
 "There are still unsynced QSOs. Please wait until they are saved before "
 "switching operator."
 msgstr ""
+"同期されていない交信記録がまだ残っています。オペレーターを変更する前に、同期"
+"が完了するまでお待ちください。"
 
 #: application/views/contesting/logger/index.php:70
 msgid "Operator switch failed. Please try again."
-msgstr ""
+msgstr "オペレーター切り替えに失敗しました。もう一度お試しください。"
 
 #: application/views/contesting/logger/index.php:78
 msgid "Loading Contest Engine"
-msgstr ""
+msgstr "コンテストエンジンの読み込み"
 
 #: application/views/contesting/logger/index.php:79
 msgid "Initializing components..."
-msgstr ""
+msgstr "コンポーネントを初期化しています..."
 
 #: application/views/contesting/logger/index.php:91
 msgid "Control Panel"
-msgstr ""
+msgstr "コントロールパネル"
 
 #: application/views/contesting/logger/index.php:108
 msgid "End Session"
-msgstr ""
+msgstr "セッション終了"
 
 #: application/views/contesting/logger/index.php:112
 msgid "Components"
-msgstr ""
+msgstr "コンポーネント"
 
 #: application/views/contesting/logger/index.php:116
 msgid "User Layouts"
-msgstr ""
+msgstr "ユーザーレイアウト"
 
 #: application/views/contesting/logger/index.php:119
 msgid "Save New Layout"
-msgstr ""
+msgstr "新しいレイアウトを保存"
 
 #: application/views/contesting/logger/index.php:122
 msgid "Reset to Default Layout"
-msgstr ""
+msgstr "デフォルトレイアウトにリセット"
 
 #: application/views/contesting/logger/index.php:132
 msgid "Panel Position"
-msgstr ""
+msgstr "パネル位置"
 
 #: application/views/contesting/logger/index.php:134
 msgid "Left"
-msgstr ""
+msgstr "左"
 
 #: application/views/contesting/logger/index.php:135
 msgid "Right"
-msgstr ""
+msgstr "右"
 
 #: application/views/contesting/logger/index.php:136
 msgid "Top"
-msgstr ""
+msgstr "トップ"
 
 #: application/views/contesting/logger/index.php:137
 msgid "Bottom"
-msgstr ""
+msgstr "底"
 
 #: application/views/contesting/logger/index.php:168
 msgid "Current Operator:"
-msgstr ""
+msgstr "現在のオペレーター:"
 
 #: application/views/contesting/logger/index.php:170
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
 msgstr ""
+"他のオペレーターのアカウントでログインして、そのオペレーターのコールサインで"
+"このコンテストセッションを継続してください。"
 
 #: application/views/contesting/logger/index.php:176
 #: application/views/user/edit.php:92 application/views/user/login.php:59
@@ -10770,63 +10780,65 @@ msgstr "あなたの個人コールサイン:"
 
 #: application/views/contesting/manager/components/confirm_delete.php:5
 msgid "Delete Contest Session"
-msgstr ""
+msgstr "コンテストセッションを削除"
 
 #: application/views/contesting/manager/components/confirm_delete.php:10
 msgid "Do you really want to delete this contest session?"
-msgstr ""
+msgstr "このコンテストセッションを本当に削除しますか？"
 
 #: application/views/contesting/manager/components/confirm_delete.php:12
 msgid "Contest: "
-msgstr ""
+msgstr "コンテスト： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:13
 msgid "Start Date/Time: "
-msgstr ""
+msgstr "開始日時: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:14
 msgid "End Date/Time: "
-msgstr ""
+msgstr "終了日時: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:15
 msgid "Station: "
-msgstr ""
+msgstr "駅： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
-msgstr ""
+msgstr "また、このセッションで記録されたすべての交信記録をログブックから削除します"
 
 #: application/views/contesting/manager/components/confirm_delete.php:26
 msgid "Delete Session"
-msgstr ""
+msgstr "セッションを削除"
 
 #: application/views/contesting/manager/components/session_modal.php:7
 msgid "Edit Contest Session"
-msgstr ""
+msgstr "コンテストセッションを編集する"
 
 #: application/views/contesting/manager/components/session_modal.php:9
 msgid "Create Contest Session"
-msgstr ""
+msgstr "コンテストセッションを作成する"
 
 #: application/views/contesting/manager/components/session_modal.php:21
 msgid "Enter all required information to create a new contest session."
 msgstr ""
+"新しいコンテストセッションを作成するには、必要な情報をすべて入力してください"
+"。"
 
 #: application/views/contesting/manager/components/session_modal.php:24
 msgid "Enter a name for this contest"
-msgstr ""
+msgstr "このコンテストの名前を入力してください"
 
 #: application/views/contesting/manager/components/session_modal.php:25
 msgid "This name will be used only internally."
-msgstr ""
+msgstr "この名称は社内でのみ使用されます。"
 
 #: application/views/contesting/manager/components/session_modal.php:29
 msgid "Please select a contest"
-msgstr ""
+msgstr "コンテストを選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:35
 msgid "Please select a contest."
-msgstr ""
+msgstr "コンテストを選択してください。"
 
 #: application/views/contesting/manager/components/session_modal.php:36
 #, php-format
@@ -10834,6 +10846,8 @@ msgid ""
 "Select the contest for this session. If you can't find the contest, please "
 "choose %s."
 msgstr ""
+"このセッションのコンテストを選択してください。コンテストが見つからない場合は"
+"、 %s 。"
 
 #: application/views/contesting/manager/components/session_modal.php:41
 #: application/views/qso/edit_ajax.php:53
@@ -10842,19 +10856,19 @@ msgstr "開始日時"
 
 #: application/views/contesting/manager/components/session_modal.php:43
 msgid "When should the session start?"
-msgstr ""
+msgstr "セッションはいつ開始すべきですか？"
 
 #: application/views/contesting/manager/components/session_modal.php:45
 msgid "Now"
-msgstr ""
+msgstr "今"
 
 #: application/views/contesting/manager/components/session_modal.php:46
 msgid "Friday 12:00"
-msgstr ""
+msgstr "金曜日 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:47
 msgid "Saturday 12:00"
-msgstr ""
+msgstr "土曜日 12:00"
 
 #: application/views/contesting/manager/components/session_modal.php:51
 #: application/views/qso/edit_ajax.php:58
@@ -10863,51 +10877,51 @@ msgstr "終了日時"
 
 #: application/views/contesting/manager/components/session_modal.php:53
 msgid "When should the session end?"
-msgstr ""
+msgstr "セッションはいつ終了すべきですか？"
 
 #: application/views/contesting/manager/components/session_modal.php:65
 msgid "Please select a station"
-msgstr ""
+msgstr "駅を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:80
 msgid "Choose one of your stations"
-msgstr ""
+msgstr "いずれかの駅を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:83
 msgid "Exchange Fields"
-msgstr ""
+msgstr "交換フィールド"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Toggle fields on/off and drag to set the tab order in the logger."
-msgstr ""
+msgstr "フィールドの表示/非表示を切り替え、ドラッグしてロガーのタブ順序を設定します。"
 
 #: application/views/contesting/manager/components/session_modal.php:87
 msgid "Serial Number"
-msgstr ""
+msgstr "シリアルナンバー"
 
 #: application/views/contesting/manager/components/session_modal.php:88
 msgid "Grid Square"
-msgstr ""
+msgstr "グリッドスクエア"
 
 #: application/views/contesting/manager/components/session_modal.php:89
 msgid "Exchange (text)"
-msgstr ""
+msgstr "交換（テキスト）"
 
 #: application/views/contesting/manager/components/session_modal.php:112
 msgid "Please enable at least one exchange field."
-msgstr ""
+msgstr "少なくとも1つの交換フィールドを有効にしてください。"
 
 #: application/views/contesting/manager/components/session_modal.php:115
 msgid "Copy Exchange to Field"
-msgstr ""
+msgstr "交換をフィールドにコピー"
 
 #: application/views/contesting/manager/components/session_modal.php:117
 msgid "— None —"
-msgstr ""
+msgstr "- なし -"
 
 #: application/views/contesting/manager/components/session_modal.php:119
 msgid "Gridquare"
-msgstr ""
+msgstr "グリッドスクエア"
 
 #: application/views/contesting/manager/components/session_modal.php:120
 #: application/views/logbookadvanced/index.php:971
@@ -10924,10 +10938,12 @@ msgstr "受信電力（W）"
 msgid ""
 "The received Exchange (Exch R) value will be copied to this logbook field."
 msgstr ""
+"受信した交換レート（交換レートR）の値は、このログブックのフィールドにコピーさ"
+"れます。"
 
 #: application/views/contesting/manager/components/session_modal.php:132
 msgid "Callbook Lookup (Online)"
-msgstr ""
+msgstr "通話記録検索（オンライン）"
 
 #: application/views/contesting/manager/components/session_modal.php:134
 msgid ""
@@ -10935,44 +10951,49 @@ msgid ""
 "only existing log data from previous qsos with this callsign will be used. "
 "Log data is always prioritized."
 msgstr ""
+"設定済みのオンラインコールブックサービスでコールブックデータを検索します。無"
+"効にした場合、このコールサインとの過去のQoSの既存のログデータのみが使用されま"
+"す。ログデータは常に優先されます。"
 
 #: application/views/contesting/manager/components/session_modal.php:137
 msgid "Session Notes"
-msgstr ""
+msgstr "セッションノート"
 
 #: application/views/contesting/manager/components/session_modal.php:138
 msgid "Add any additional information about this session..."
-msgstr ""
+msgstr "このセッションに関する追加情報があれば追加してください。"
 
 #: application/views/contesting/manager/components/session_modal.php:139
 msgid "Optional: Any additional details or notes"
-msgstr ""
+msgstr "オプション：その他の詳細情報やメモ"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Create Session"
-msgstr ""
+msgstr "セッションを作成する"
 
 #: application/views/contesting/manager/components/session_modal.php:145
 msgid "Update Session"
-msgstr ""
+msgstr "セッションの更新"
 
 #: application/views/contesting/manager/export_cbr.php:27
 #: application/views/contesting/manager/export_edi.php:27
 #, php-format
 msgid "%d QSOs"
-msgstr ""
+msgstr "%d 回の交信"
 
 #: application/views/contesting/manager/export_cbr.php:32
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
 msgstr ""
+"このコンテストセッションではまだ交信がありません。エクスポートすると空の"
+"ファイルが生成されます。"
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
-msgstr ""
+msgstr "ファイルのエクスポート権限がありません。駅員に連絡してください。"
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:497
@@ -10985,10 +11006,12 @@ msgid ""
 "Settings are saved automatically when you download. Name and e-mail are "
 "taken from your user profile."
 msgstr ""
+"設定はダウンロード時に自動的に保存されます。名前とメールアドレスは"
+"ユーザープロフィールから取得されます。"
 
 #: application/views/contesting/manager/export_cbr.php:69
 msgid "Assisted"
-msgstr ""
+msgstr "支援"
 
 #: application/views/contesting/manager/export_cbr.php:102
 msgid "Light/Laser"
@@ -11001,11 +11024,11 @@ msgstr "出力"
 
 #: application/views/contesting/manager/export_cbr.php:129
 msgid "Category (optional)"
-msgstr ""
+msgstr "カテゴリー（任意）"
 
 #: application/views/contesting/manager/export_cbr.php:148
 msgid "Transmitter"
-msgstr ""
+msgstr "送信機"
 
 #: application/views/contesting/manager/export_cbr.php:161
 #: application/views/contesting/manager/export_cbr.php:162
@@ -11017,7 +11040,7 @@ msgstr "%d 時間"
 
 #: application/views/contesting/manager/export_cbr.php:168
 msgid "Overlay"
-msgstr ""
+msgstr "かぶせる"
 
 #: application/views/contesting/manager/export_cbr.php:185
 #: application/views/logbookadvanced/useroptions.php:271
@@ -11043,6 +11066,8 @@ msgid ""
 "ARRL section for USA/Canada, 'DX' for foreign stations. Required for IARU-"
 "HF, ARRL and CQ contests."
 msgstr ""
+"ARRL（アメリカ・カナダ地域）セクション、海外局向け「DX」セクション。IARU-HF、"
+"ARRL、CQコンテストへの参加に必須。"
 
 #: application/views/contesting/manager/export_cbr.php:203
 #: application/views/contesting/manager/export_edi.php:95
@@ -11062,7 +11087,7 @@ msgstr "証明書"
 
 #: application/views/contesting/manager/export_cbr.php:217
 msgid "Request a paper certificate from the contest sponsor if eligible."
-msgstr ""
+msgstr "資格を満たしている場合は、コンテスト主催者に紙の証明書を請求してください。"
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
@@ -11191,35 +11216,37 @@ msgstr "いいえ"
 
 #: application/views/contesting/manager/export_cbr.php:227
 msgid "Grid in exchange?"
-msgstr ""
+msgstr "交換用のグリッド？"
 
 #: application/views/contesting/manager/export_cbr.php:230
 msgid "Select Yes if the grid square was part of the contest exchange."
 msgstr ""
+"グリッドのマス目がコンテストの交換対象だった場合は、「はい」を選択してくださ"
+"い。"
 
 #: application/views/contesting/manager/export_cbr.php:240
 msgid "Use 6-char grid instead of 4-char"
-msgstr ""
+msgstr "4文字グリッドの代わりに6文字グリッドを使用する"
 
 #: application/views/contesting/manager/export_cbr.php:249
 msgid "Contact & Address"
-msgstr ""
+msgstr "連絡先と住所"
 
 #: application/views/contesting/manager/export_cbr.php:262
 msgid "Street Address"
-msgstr ""
+msgstr "住所"
 
 #: application/views/contesting/manager/export_cbr.php:272
 msgid "State / Province"
-msgstr ""
+msgstr "州／県"
 
 #: application/views/contesting/manager/export_cbr.php:277
 msgid "Postal Code"
-msgstr ""
+msgstr "郵便番号"
 
 #: application/views/contesting/manager/export_cbr.php:290
 msgid "Download Cabrillo"
-msgstr ""
+msgstr "Cabrilloをダウンロード"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:499
@@ -11228,7 +11255,7 @@ msgstr "EDIエクスポート"
 
 #: application/views/contesting/manager/export_edi.php:57
 msgid "Header data"
-msgstr ""
+msgstr "ヘッダーデータ"
 
 #: application/views/contesting/manager/export_edi.php:62
 msgid "Sent Exchange"
@@ -11269,7 +11296,7 @@ msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:109
 msgid "Location and Operator Information"
-msgstr ""
+msgstr "所在地および運営者情報"
 
 #: application/views/contesting/manager/export_edi.php:112
 msgid "Contest Address 1"
@@ -11305,7 +11332,7 @@ msgstr "オペレーターの電話番号"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr ""
+msgstr "追加の駅説明"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -11331,7 +11358,7 @@ msgstr "地上からのアンテナ高（m）"
 
 #: application/views/contesting/manager/export_edi.php:191
 msgid "Scoring Adjustment and Band Selection"
-msgstr ""
+msgstr "スコア調整とバンド選択"
 
 #: application/views/contesting/manager/export_edi.php:195
 msgid "Band multiplicator"
@@ -11342,18 +11369,20 @@ msgid ""
 "The Band multiplicator is usually 1. Only change this if necessary according "
 "to the contest scoring rules."
 msgstr ""
+"バンド乗数は通常1です。コンテストの採点ルールに従って必要な場合にのみ変更して"
+"ください。"
 
 #: application/views/contesting/manager/export_edi.php:208
 msgid "Choose Band for export"
-msgstr ""
+msgstr "エクスポートするバンドを選択してください"
 
 #: application/views/contesting/manager/export_edi.php:220
 msgid "Download EDI"
-msgstr ""
+msgstr "EDIをダウンロード"
 
 #: application/views/contesting/manager/import_legacy.php:9
 msgid "Historical Contest QSOs"
-msgstr ""
+msgstr "歴史的なコンテスト交信記録"
 
 #: application/views/contesting/manager/import_legacy.php:13
 msgid ""
@@ -11361,46 +11390,55 @@ msgid ""
 "linked to a contest session. Select the ones you want to import and click "
 "\"Import Selected\"."
 msgstr ""
+"ログブックには以下のコンテストグループが見つかりましたが、まだ"
+"コンテストセッションにリンクされていません。インポートしたいグループを選択し"
+"、「選択したものをインポート」をクリックしてください。"
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "Admin mode:"
-msgstr ""
+msgstr "管理者モード:"
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid "This will import contests for all users of this instance."
 msgstr ""
+"これにより、このインスタンスのすべてのユーザーのコンテストがインポートされま"
+"す。"
 
 #: application/views/contesting/manager/import_legacy.php:30
 msgid "Select all"
-msgstr ""
+msgstr "すべて選択"
 
 #: application/views/contesting/manager/import_legacy.php:32
 msgid "ADIF ID"
-msgstr ""
+msgstr "ADIF ID"
 
 #: application/views/contesting/manager/import_legacy.php:37
 #: application/views/contesting/manager/index.php:35
 #: application/views/logbookadvanced/attachContest.php:17
 msgid "#QSO"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/contesting/manager/import_legacy.php:61
 msgid "Unknown → Other"
 msgstr ""
+"この場合、「Other」は名前です。「Other」の翻訳または英語の単語を使用してくだ"
+"さい"
 
 #: application/views/contesting/manager/import_legacy.php:72
 msgid "Import Selected"
-msgstr ""
+msgstr "選択した項目をインポート"
 
 #: application/views/contesting/manager/import_legacy.php:94
 msgid "Please select at least one contest to import."
-msgstr ""
+msgstr "インポートするコンテストを少なくとも1つ選択してください。"
 
 #: application/views/contesting/manager/import_legacy.php:97
 msgid ""
 "Are you sure you want to import the selected contest sessions? This cannot "
 "be undone."
 msgstr ""
+"選択したコンテストセッションをインポートしてもよろしいですか？この操作は元に"
+"戻せません。"
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:340
