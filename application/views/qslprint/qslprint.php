@@ -71,9 +71,9 @@ if ($qsos->result() != NULL) { ?>
 		echo '<span class="badge bg-info" data-bs-toggle="tooltip" data-bs-title="' . __("QSL sent to callsign (total)") . '">' . $qsl->qsl_sent_to_call . '</span> / ';
 		echo '<span class="badge bg-info" data-bs-toggle="tooltip" data-bs-title="' . __("QSL received from callsign (total)") . '">' . $qsl->qsl_rcvd_from_call . '</span>';
 		echo '</td>';
-		echo '<td style=\'text-align: center\'><button onclick="mark_qsl_sent(\''.$qsl->COL_PRIMARY_KEY.'\', \''. $qsl->COL_QSL_SENT_VIA. '\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
-		echo '<td style=\'text-align: center\'><button onclick="deleteFromQslQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>';
-		echo '<td style=\'text-align: center\'><button onclick="openQsoList(\''.$qsl->COL_CALL.'\')" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button></td>';
+		echo '<td style=\'text-align: center\'><button type="button" onclick="mark_qsl_sent(\''.$qsl->COL_PRIMARY_KEY.'\', \''. $qsl->COL_QSL_SENT_VIA. '\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
+		echo '<td style=\'text-align: center\'><button type="button" onclick="deleteFromQslQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>';
+		echo '<td style=\'text-align: center\'><button type="button" onclick="openQsoList(\''.$qsl->COL_CALL.'\')" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button></td>';
 		echo '</tr>';
 	}
 	echo '</tbody></table>';
@@ -91,8 +91,8 @@ if ($qsos->result() != NULL) { ?>
 				<option value="D"><?= echo_qsl_sent_via("D") ?></option>
 				<option value="E"><?= echo_qsl_sent_via("E") ?></option>
 				</select>
-				<button onclick="markMethod()" title="<?= __("Mark all QSOs for the chosen QSL method"); ?>" class="btn btn-success markmethod"><?= __("Mark all QSOs for the chosen QSL method"); ?></button>
-				<button onclick="unmarkallQSOs()" style="margin-left: 5px;" title="<?= __("Unmark every QSO"); ?>" class="btn btn-danger unmarkall"><?= __("Unmark every QSO"); ?></button>
+				<button type="button" onclick="markMethod()" title="<?= __("Mark all QSOs for the chosen QSL method"); ?>" class="btn btn-success markmethod"><?= __("Mark all QSOs for the chosen QSL method"); ?></button>
+				<button type="button" onclick="unmarkallQSOs()" style="margin-left: 5px;" title="<?= __("Unmark every QSO"); ?>" class="btn btn-danger unmarkall"><?= __("Unmark every QSO"); ?></button>
 			</div>
 		</div>
 	</p>
@@ -100,9 +100,9 @@ if ($qsos->result() != NULL) { ?>
 	<label class="me-2"><?= __("Update QSOs"); ?>:</label>
 	<p>
 
-		<button onclick="markSelectedQsos();" title="<?= __("Mark selected QSOs as sent"); ?>" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as sent"); ?></button>
-		<button onclick="removeSelectedQsos();" title="<?= __("Remove selected QSOs from the queue"); ?>" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button>
-		<button onclick="exportSelectedQsos();" title="<?= __("Export selected QSOs to ADIF-file"); ?>" class="btn btn-primary exportselected"><?= __("Export selected QSOs to ADIF-file"); ?></button>
+		<button type="button" onclick="markSelectedQsos();" title="<?= __("Mark selected QSOs as sent"); ?>" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as sent"); ?></button>
+		<button type="button" onclick="removeSelectedQsos();" title="<?= __("Remove selected QSOs from the queue"); ?>" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button>
+		<button type="button" onclick="exportSelectedQsos();" title="<?= __("Export selected QSOs to ADIF-file"); ?>" class="btn btn-primary exportselected"><?= __("Export selected QSOs to ADIF-file"); ?></button>
 	</p>
 
 
