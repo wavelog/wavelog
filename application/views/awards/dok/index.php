@@ -1,21 +1,51 @@
-<div class="container">
+<style>
+	.dropdown-filters-responsive {
+		width: min(850px, 90vw);
+		min-width: 600px;
+    }
+</style>
+
+<div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?= __("Award Info"); ?>";
-            var lang_award_info_ln1 = "<?= __("DOK Award"); ?>";
-            var lang_award_info_ln2 = "<?= __("Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."); ?>";
-            var lang_award_info_ln3 = "<?= __("The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."); ?>";
-            var lang_award_info_ln4 = "<?= sprintf(_pgettext("uses 'DARC Website' and 'here'", "This information is provided by the %s. Information about the DOK Awards and its rules can be found %s."), "<a href='https://www.darc.de/der-club/referate/conteste/wag-contest/en/service/districtsdoks/' target='_blank'>" . __("DARC website") . "</a>", "<a href='https://www.darc.de/der-club/referate/conteste/wag-contest/en/service/award-check/' target='_blank'>" . __("here") . "</a>"); ?>";
-            var lang_award_info_ln5 = "<?= __("Fields taken for this Award: DOK (ADIF: DARC_DOK)"); ?>";
+            let lang_awards_info_button = "<?= __("Award Info"); ?>";
+            let lang_award_info_ln1 = "<?= __("DOK Award"); ?>";
+            let lang_award_info_ln2 = "<?= __("Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."); ?>";
+            let lang_award_info_ln3 = "<?= __("The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."); ?>";
+            let lang_award_info_ln4 = "<?= sprintf(_pgettext("uses 'DARC Website' and 'here'", "This information is provided by the %s. Information about the DOK Awards and its rules can be found %s."), "<a href='https://www.darc.de/der-club/referate/conteste/wag-contest/en/service/districtsdoks/' target='_blank'>" . __("DARC website") . "</a>", "<a href='https://www.darc.de/der-club/referate/conteste/wag-contest/en/service/award-check/' target='_blank'>" . __("here") . "</a>"); ?>";
+            let lang_award_info_ln5 = "<?= __("Fields taken for this Award: DOK (ADIF: DARC_DOK)"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
-            <form class="form" action="<?php echo site_url('awards/dok'); ?>" method="post" enctype="multipart/form-data">
-            <fieldset>
+
+    <div class="card">
+		<div class="card-header">
+            <?= __("View progress of DOK awards"); ?>
+        </div>
+        <div class="card-body">
+    <?php
+       $doks = array();
+       if ($dok_array) {
+          foreach ($dok_array as $dok => $value) {
+             if (preg_match('/^[A-Z][0-9]{2}$/', $dok)) {
+                $doks[] = $dok;
+             }
+          }
+       }
+    ?>
+    <form class="form" action="<?php echo site_url('awards/dok'); ?>" method="post" enctype="multipart/form-data">
+        <div class="mb-4 text-center">
+            <div class="dropdown" data-bs-auto-close="outside">
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+                <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                <button id="button3id" type="button" name="button3id" class="btn btn-sm btn-info" onclick=" window.open('https://dd3ah.de/dokmap/?lat=51.3035&lng=11.1475&zoom=7<?php print implode(',', $doks); ?>','_blank')"><i class="fas fa-globe-americas"></i> <?= __("Map"); ?></button>
+
+            <!-- Dropdown Menu with Filter Content -->
+            <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
+                <div class="card-body filterbody">
 
             <div class="mb-3 row">
                 <label class="col-md-2 control-label" for="doks"><?= __("DOK / SDOK"); ?></label>
@@ -110,38 +140,15 @@
                </div>
             </div>
 
-<?php
-   $doks = array();
-   if ($dok_array) {
-      foreach ($dok_array as $dok => $value) {
-         if (preg_match('/^[A-Z][0-9]{2}$/', $dok)) {
-            $doks[] = $dok;
-         }
-      }
-   }
-?>
-
-            <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="button1id"></label>
-                <div class="col-md-10">
-                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
-                    <button id="button3id" type="button" name="button3id" class="btn btn-sm btn-info" onclick=" window.open('https://dd3ah.de/dokmap/?lat=51.3035&lng=11.1475&zoom=7<?php print implode(',', $doks); ?>','_blank')"><i class="fas fa-globe-americas"></i> <?= __("Map"); ?></button>
                 </div>
             </div>
-        </fieldset>
+            </div>
+        </div>
     </form>
+
     <br />
 
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="dokmaptab" role="tabpanel" aria-labelledby="home-tab">
-    <br />
-
-    </div>
-
-        <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
-
-<?php
+    <?php
     if ($dok_array) {
     echo '
     <table style="width:100%" id="doktable" class="table table-sm table-bordered table-hover table-striped table-condensed text-center">
@@ -189,15 +196,12 @@
         }
 
         echo '</tr>
-        </table>
-        </div>';
-
+        </table>';
     }
     else {
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
-
-            </div>
         </div>
+    </div>
 </div>

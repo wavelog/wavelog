@@ -12,17 +12,44 @@
 	height: calc(100vh - 500px) !important;
 	max-height: 900px !important;
 }
+	.dropdown-filters-responsive {
+		width: min(850px, 90vw);
+		min-width: 600px;
+    }
 </style>
 
-<div class="container">
+
+<div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <h2><?php echo $page_title; ?></h2>
         </div>
         <!-- End of Award Info Box -->
+
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="map-tab" onclick="load_rac_map();" data-bs-toggle="tab" href="#racmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
     <form class="form" action="<?php echo site_url('awards/rac'); ?>" method="post" enctype="multipart/form-data">
-        <fieldset>
+        <div class="mb-4 text-center">
+            <div class="dropdown" data-bs-auto-close="outside">
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+                <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                <?php if ($rac_array) {
+                    ?><button type="button" onclick="load_rac_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show RAC Map"); ?></button>
+                <?php }?>
+
+            <!-- Dropdown Menu with Filter Content -->
+            <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
+                <div class="card-body filterbody">
 
             <div class="mb-3 row">
                 <div class="col-md-2" for="checkboxes"><?= __("Worked / Confirmed"); ?></div>
@@ -100,28 +127,12 @@
 				</div>
 			</div>
 
-            <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="button1id"></label>
-                <div class="col-md-10">
-                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
-					<?php if ($rac_array) {
-                        ?><button type="button" onclick="load_rac_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show RAC Map"); ?></button>
-                    <?php }?>
                 </div>
             </div>
-
-        </fieldset>
+            </div>
+        </div>
     </form>
 
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="map-tab" onclick="load_rac_map();" data-bs-toggle="tab" href="#racmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
-        </li>
-    </ul>
     <br />
 
     <div class="tab-content" id="myTabContent">
@@ -134,8 +145,7 @@
 
         <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
 
-
-<?php
+    <?php
     if ($rac_array) {
         $i = 1;
     echo '
@@ -188,13 +198,14 @@
         }
 
         echo '</tr>
-        </table>
-        </div>';
+        </table>';
     }
     else {
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
-	?>
-	</div>
-	</div>
+?>
+                    </div>
+        </div>
+        </div>
+    </div>
 </div>
