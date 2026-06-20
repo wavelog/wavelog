@@ -466,6 +466,7 @@ msgstr "Diplomi - %s"
 #: application/views/qso/edit_ajax.php:387 application/views/qso/index.php:361
 #: application/views/qso/index.php:641 application/views/user/edit.php:788
 #: application/views/view_log/qso.php:419
+#: application/views/awards/dok/index.php:157
 msgid "DOK"
 msgstr "DOK"
 
@@ -546,6 +547,7 @@ msgstr "e"
 #: application/views/awards/wac/index.php:56
 #: application/views/awards/wae/index.php:130
 #: application/views/awards/wpx/index.php:85
+#: application/views/awards/iota/index.php:149
 msgid "Every band (w/o SAT)"
 msgstr "Ogni banda (senza SAT)"
 
@@ -953,6 +955,9 @@ msgstr "Nessun utente ha configurato Clublog."
 #: application/views/view_log/partial/log_ajax.php:165
 #: application/views/view_log/qso.php:524
 #: application/views/view_log/qso.php:529
+#: application/views/awards/dok/index.php:102
+#: application/views/awards/iota/index.php:106
+#: application/views/awards/wapc/index.php:101
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1096,6 +1101,7 @@ msgstr "Importa contest storici (tutti gli utenti)"
 #: application/views/awards/iota/index.php:86
 #: application/views/awards/wpx/index.php:55
 #: application/views/interface_assets/header.php:181
+#: application/views/awards/iota/index.php:112
 msgid "Continents"
 msgstr "Continenti"
 
@@ -1697,6 +1703,9 @@ msgstr "Registro"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:115
 #: application/views/timeline/index.php:62 application/views/user/edit.php:674
 #: application/views/user/edit.php:904 application/views/visitor/mini.php:187
+#: application/views/awards/dok/index.php:86
+#: application/views/awards/rac/index.php:77
+#: application/views/awards/wapc/index.php:85
 msgid "QSL"
 msgstr "QSL"
 
@@ -1741,6 +1750,10 @@ msgstr "QSL"
 #: application/views/user/edit.php:914 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/awards/dok/index.php:90
+#: application/views/awards/iota/index.php:94
+#: application/views/awards/rac/index.php:81
+#: application/views/awards/wapc/index.php:89
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1778,6 +1791,10 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:70 application/views/user/edit.php:676
 #: application/views/user/edit.php:922 application/views/user/edit.php:996
+#: application/views/awards/dok/index.php:94
+#: application/views/awards/iota/index.php:98
+#: application/views/awards/rac/index.php:85
+#: application/views/awards/wapc/index.php:93
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1888,6 +1905,11 @@ msgstr "Tutte le ricerche del nominativo non hanno prodotto alcun risultato."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/awards/73on73/index.php:41
+#: application/views/awards/dok/index.php:122
+#: application/views/awards/iota/index.php:160
+#: application/views/awards/rac/index.php:109
+#: application/views/awards/wapc/index.php:121
 msgid "Mode"
 msgstr "Modo"
 
@@ -1915,6 +1937,8 @@ msgstr "Modo"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/views/awards/73on73/index.php:43
+#: application/views/awards/pota/index.php:42
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -1943,6 +1967,8 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/views/awards/73on73/index.php:42
+#: application/views/awards/pota/index.php:43
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1996,6 +2022,7 @@ msgstr "Country"
 #: application/views/user/edit.php:366 application/views/user/edit.php:390
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/awards/iota/index.php:208
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2027,6 +2054,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/views/awards/rac/index.php:156
 msgid "State"
 msgstr "Stato"
 
@@ -2208,6 +2236,12 @@ msgstr "Distanza"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/awards/dok/index.php:108
+#: application/views/awards/iota/index.php:146
+#: application/views/awards/pota/index.php:41
+#: application/views/awards/rac/index.php:95
+#: application/views/awards/sota/index.php:40
+#: application/views/awards/wapc/index.php:107
 msgid "Band"
 msgstr "Banda"
 
@@ -3070,6 +3104,9 @@ msgstr "Non hai stazioni impostate. Vai %s per crearle!"
 #: application/views/awards/wapc/index.php:25
 #: application/views/awards/was/index.php:28
 #: application/views/simplefle/index.php:16
+#: application/views/awards/dok/index.php:16
+#: application/views/awards/iota/index.php:24
+#: application/views/awards/wapc/index.php:29
 msgid "here"
 msgstr "qui"
 
@@ -4490,6 +4527,10 @@ msgstr "Differenza"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:888
 #: application/views/visitor/layout/footer.php:168
+#: application/views/awards/dok/index.php:125
+#: application/views/awards/iota/index.php:163
+#: application/views/awards/rac/index.php:112
+#: application/views/awards/wapc/index.php:124
 msgid "All"
 msgstr "Tutti"
 
@@ -4592,6 +4633,10 @@ msgstr "Nessuno/Vuoto"
 #: application/views/timeline/index.php:363
 #: application/views/timeline/index.php:399
 #: application/views/timeplotter/index.php:75
+#: application/views/awards/dok/index.php:43
+#: application/views/awards/iota/index.php:48
+#: application/views/awards/rac/index.php:45
+#: application/views/awards/wapc/index.php:53
 msgid "Show"
 msgstr "Mostra"
 
@@ -4681,6 +4726,10 @@ msgstr "Conferma"
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wpx/index.php:44
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:930
+#: application/views/awards/dok/index.php:98
+#: application/views/awards/iota/index.php:102
+#: application/views/awards/rac/index.php:89
+#: application/views/awards/wapc/index.php:97
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4753,6 +4802,13 @@ msgstr "Conteggio minimo"
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:149
+#: application/views/awards/73on73/index.php:71
+#: application/views/awards/dok/index.php:202
+#: application/views/awards/iota/index.php:311
+#: application/views/awards/pota/index.php:73
+#: application/views/awards/rac/index.php:204
+#: application/views/awards/sota/index.php:66
+#: application/views/awards/wapc/index.php:214
 msgid "Nothing found!"
 msgstr "Non ho trovato nulla!"
 
@@ -4815,6 +4871,9 @@ msgstr "Non ho trovato nulla!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/awards/73on73/index.php:40
+#: application/views/awards/pota/index.php:40
+#: application/views/awards/sota/index.php:39
 msgid "Callsign"
 msgstr "Nominativo"
 
@@ -4927,6 +4986,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:139
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/awards/73on73/index.php:38
+#: application/views/awards/pota/index.php:38
+#: application/views/awards/sota/index.php:37
 msgid "Date"
 msgstr "Data"
 
@@ -4963,6 +5025,9 @@ msgstr "Data"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:141
 #: application/views/visitor/index.php:154
+#: application/views/awards/73on73/index.php:39
+#: application/views/awards/pota/index.php:39
+#: application/views/awards/sota/index.php:38
 msgid "Time"
 msgstr "Orario"
 
@@ -5753,14 +5818,27 @@ msgstr "Crea una chiave di sola lettura"
 #: application/views/awards/was/index.php:32
 #: application/views/awards/wwff/index.php:5
 #: application/views/awards/wwff/index.php:13
+#: application/views/awards/73on73/index.php:5
+#: application/views/awards/73on73/index.php:13
+#: application/views/awards/dok/index.php:12
+#: application/views/awards/dok/index.php:20
+#: application/views/awards/iota/index.php:20
+#: application/views/awards/iota/index.php:28
+#: application/views/awards/pota/index.php:5
+#: application/views/awards/pota/index.php:13
+#: application/views/awards/sota/index.php:5
+#: application/views/awards/wapc/index.php:25
+#: application/views/awards/wapc/index.php:33
 msgid "Award Info"
 msgstr "Informazioni sul premio"
 
 #: application/views/awards/73on73/index.php:7
+#: application/views/awards/73on73/index.php:6
 msgid "73 on 73 Award"
 msgstr "Premio 73 su 73"
 
 #: application/views/awards/73on73/index.php:8
+#: application/views/awards/73on73/index.php:7
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
@@ -5775,11 +5853,14 @@ msgstr ""
 #: application/views/awards/wab/index.php:16
 #: application/views/awards/waja/index.php:25
 #: application/views/awards/wwff/index.php:9
+#: application/views/awards/73on73/index.php:8
+#: application/views/awards/sota/index.php:9
 #, php-format
 msgid "For more information, please visit: %s."
 msgstr "Per maggiori informazioni visita %s."
 
 #: application/views/awards/73on73/index.php:11
+#: application/views/awards/73on73/index.php:10
 msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
@@ -5791,6 +5872,7 @@ msgstr ""
 #: application/views/awards/jcc/index.php:163
 #: application/views/awards/waja/index.php:157
 #: application/views/distancerecords/index.php:17
+#: application/views/awards/73on73/index.php:37
 msgid "Number"
 msgstr "Numero"
 
@@ -5841,6 +5923,10 @@ msgstr "Vai al Profilo della Stazione"
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:335
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
+#: application/views/awards/dok/index.php:42
+#: application/views/awards/iota/index.php:47
+#: application/views/awards/rac/index.php:44
+#: application/views/awards/wapc/index.php:52
 msgid "Filters"
 msgstr "Filtri"
 
@@ -6109,6 +6195,10 @@ msgstr "Contee confermate"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/dok/index.php:182
+#: application/views/awards/iota/index.php:247
+#: application/views/awards/rac/index.php:184
+#: application/views/awards/wapc/index.php:193
 msgid "Total"
 msgstr "Totale"
 
@@ -6193,6 +6283,9 @@ msgstr "Diplomi - CQ WAZ"
 #: application/views/awards/wap/index.php:126
 #: application/views/awards/wapc/index.php:132
 #: application/views/awards/was/index.php:130
+#: application/views/awards/iota/index.php:36
+#: application/views/awards/rac/index.php:33
+#: application/views/awards/wapc/index.php:41
 msgid "Table"
 msgstr "Tabella"
 
@@ -6217,6 +6310,10 @@ msgstr "Tabella"
 #: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:899
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/dok/index.php:44
+#: application/views/awards/iota/index.php:39
+#: application/views/awards/rac/index.php:36
+#: application/views/awards/wapc/index.php:44
 msgid "Map"
 msgstr "Mappa"
 
@@ -6394,6 +6491,10 @@ msgstr "Collegato"
 #: application/views/awards/wap/index.php:39
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:43
+#: application/views/awards/dok/index.php:72
+#: application/views/awards/iota/index.php:72
+#: application/views/awards/rac/index.php:59
+#: application/views/awards/wapc/index.php:67
 msgid "Show worked"
 msgstr "Mostra collegati"
 
@@ -6410,6 +6511,10 @@ msgstr "Mostra collegati"
 #: application/views/awards/wap/index.php:43
 #: application/views/awards/wapc/index.php:45
 #: application/views/awards/was/index.php:47
+#: application/views/awards/dok/index.php:76
+#: application/views/awards/iota/index.php:76
+#: application/views/awards/rac/index.php:63
+#: application/views/awards/wapc/index.php:71
 msgid "Show confirmed"
 msgstr "Mostra confermati"
 
@@ -6425,6 +6530,9 @@ msgstr "Mostra confermati"
 #: application/views/awards/wap/index.php:47
 #: application/views/awards/wapc/index.php:49
 #: application/views/awards/was/index.php:51
+#: application/views/awards/iota/index.php:80
+#: application/views/awards/rac/index.php:67
+#: application/views/awards/wapc/index.php:75
 msgid "Show not worked"
 msgstr "Mostra non collegati"
 
@@ -6443,6 +6551,10 @@ msgstr "Mostra non collegati"
 #: application/views/awards/wapc/index.php:55
 #: application/views/awards/was/index.php:57
 #: application/views/awards/wpx/index.php:28
+#: application/views/awards/dok/index.php:82
+#: application/views/awards/iota/index.php:86
+#: application/views/awards/rac/index.php:73
+#: application/views/awards/wapc/index.php:81
 msgid "Show QSO with QSL Type"
 msgstr "Mostra QSO con tipo QSL"
 
@@ -6454,6 +6566,7 @@ msgstr "Mostra QSO con tipo QSL"
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
+#: application/views/awards/iota/index.php:90
 msgid "QSL Card"
 msgstr "Cartolina QSL"
 
@@ -6528,6 +6641,10 @@ msgstr "(W) Lavorato"
 #: application/views/awards/wapc/index.php:174
 #: application/views/awards/was/index.php:177
 #: application/views/awards/wpx/index.php:162
+#: application/views/awards/dok/index.php:173
+#: application/views/awards/iota/index.php:234
+#: application/views/awards/rac/index.php:175
+#: application/views/awards/wapc/index.php:184
 msgid "Summary"
 msgstr "Riepilogo"
 
@@ -6555,6 +6672,10 @@ msgstr "Totale (escluso satelliti)"
 #: application/views/awards/wapc/index.php:188
 #: application/views/awards/was/index.php:190
 #: application/views/awards/wpx/index.php:187
+#: application/views/awards/dok/index.php:186
+#: application/views/awards/iota/index.php:255
+#: application/views/awards/rac/index.php:188
+#: application/views/awards/wapc/index.php:198
 msgid "Total worked"
 msgstr "Totale collegati"
 
@@ -6575,14 +6696,20 @@ msgstr "Totale collegati"
 #: application/views/awards/wapc/index.php:195
 #: application/views/awards/was/index.php:197
 #: application/views/awards/wpx/index.php:208
+#: application/views/awards/dok/index.php:193
+#: application/views/awards/iota/index.php:281
+#: application/views/awards/rac/index.php:195
+#: application/views/awards/wapc/index.php:205
 msgid "Total confirmed"
 msgstr "Totale confermati"
 
 #: application/views/awards/dok/index.php:7
+#: application/views/awards/dok/index.php:13
 msgid "DOK Award"
 msgstr "Premio DOK"
 
 #: application/views/awards/dok/index.php:8
+#: application/views/awards/dok/index.php:14
 msgid ""
 "Germany extends over 630 km from East to West and nearly 900 km from North "
 "to South. Around 70,000 of Germany's 82 million inhabitants are licensed "
@@ -6599,6 +6726,7 @@ msgstr ""
 "Association Identifier\")."
 
 #: application/views/awards/dok/index.php:9
+#: application/views/awards/dok/index.php:15
 msgid ""
 "The DOK consists of a letter for the district and a two-digit number for the "
 "local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') "
@@ -6611,10 +6739,12 @@ msgstr ""
 "in un DOK è un errore comune, spesso registrato come lettera O."
 
 #: application/views/awards/dok/index.php:10
+#: application/views/awards/dok/index.php:16
 msgid "DARC website"
 msgstr "Sito web DARC"
 
 #: application/views/awards/dok/index.php:10
+#: application/views/awards/dok/index.php:16
 #, php-format
 msgctxt "uses 'DARC Website' and 'here'"
 msgid ""
@@ -6625,14 +6755,17 @@ msgstr ""
 "sue regole sono disponibili %s."
 
 #: application/views/awards/dok/index.php:11
+#: application/views/awards/dok/index.php:17
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
 msgstr "Campi presi in considerazione per questo premio: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
+#: application/views/awards/dok/index.php:51
 msgid "DOK / SDOK"
 msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:24
+#: application/views/awards/dok/index.php:54
 msgid "DOK + SDOK"
 msgstr "DOK + SDOK"
 
@@ -6647,6 +6780,10 @@ msgstr "DOK + SDOK"
 #: application/views/awards/wap/index.php:35
 #: application/views/awards/wapc/index.php:37
 #: application/views/awards/was/index.php:39
+#: application/views/awards/dok/index.php:68
+#: application/views/awards/iota/index.php:68
+#: application/views/awards/rac/index.php:55
+#: application/views/awards/wapc/index.php:63
 msgid "Worked / Confirmed"
 msgstr "Collegato / Confermato"
 
@@ -6658,6 +6795,9 @@ msgstr "Collegato / Confermato"
 #: application/views/awards/wap/index.php:78
 #: application/views/awards/wapc/index.php:84
 #: application/views/awards/was/index.php:82
+#: application/views/awards/dok/index.php:111
+#: application/views/awards/rac/index.php:98
+#: application/views/awards/wapc/index.php:110
 msgid "Every band"
 msgstr "Ogni banda"
 
@@ -6747,6 +6887,7 @@ msgstr "Mostra mappa DXCC"
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:36
 #: application/views/awards/jcc/index.php:80
+#: application/views/awards/iota/index.php:62
 msgid "Include deleted"
 msgstr "Includi eliminati"
 
@@ -6761,6 +6902,7 @@ msgstr "Includi eliminati"
 #: application/views/options/dxcluster.php:29
 #: application/views/qso/edit_ajax.php:251 application/views/qso/index.php:488
 #: application/views/view_log/qso.php:309
+#: application/views/awards/iota/index.php:116
 msgid "Antarctica"
 msgstr "Antartide"
 
@@ -6775,6 +6917,7 @@ msgstr "Antartide"
 #: application/views/options/dxcluster.php:28
 #: application/views/qso/edit_ajax.php:250 application/views/qso/index.php:487
 #: application/views/view_log/qso.php:306
+#: application/views/awards/iota/index.php:120
 msgid "Africa"
 msgstr "Africa"
 
@@ -6789,6 +6932,7 @@ msgstr "Africa"
 #: application/views/options/dxcluster.php:30
 #: application/views/qso/edit_ajax.php:252 application/views/qso/index.php:489
 #: application/views/view_log/qso.php:312
+#: application/views/awards/iota/index.php:124
 msgid "Asia"
 msgstr "Asia"
 
@@ -6803,6 +6947,7 @@ msgstr "Asia"
 #: application/views/options/dxcluster.php:31
 #: application/views/qso/edit_ajax.php:253 application/views/qso/index.php:490
 #: application/views/view_log/qso.php:315
+#: application/views/awards/iota/index.php:128
 msgid "Europe"
 msgstr "Europa"
 
@@ -6817,6 +6962,7 @@ msgstr "Europa"
 #: application/views/options/dxcluster.php:32
 #: application/views/qso/edit_ajax.php:254 application/views/qso/index.php:491
 #: application/views/view_log/qso.php:318
+#: application/views/awards/iota/index.php:132
 msgid "North America"
 msgstr "America del Nord"
 
@@ -6831,6 +6977,7 @@ msgstr "America del Nord"
 #: application/views/options/dxcluster.php:34
 #: application/views/qso/edit_ajax.php:256 application/views/qso/index.php:493
 #: application/views/view_log/qso.php:324
+#: application/views/awards/iota/index.php:136
 msgid "South America"
 msgstr "America del Sud"
 
@@ -6845,6 +6992,7 @@ msgstr "America del Sud"
 #: application/views/options/dxcluster.php:33
 #: application/views/qso/edit_ajax.php:255 application/views/qso/index.php:492
 #: application/views/view_log/qso.php:321
+#: application/views/awards/iota/index.php:140
 msgid "Oceania"
 msgstr "Oceania"
 
@@ -6914,6 +7062,7 @@ msgstr "Nome DXCC"
 #: application/views/logbookadvanced/statecheckresult.php:10
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
+#: application/views/awards/iota/index.php:209
 msgid "Prefix"
 msgstr "Prefisso"
 
@@ -7127,10 +7276,12 @@ msgid "CQ"
 msgstr "CQ"
 
 #: application/views/awards/iota/index.php:18
+#: application/views/awards/iota/index.php:21
 msgid "IOTA Awards"
 msgstr "Diplomi IOTA"
 
 #: application/views/awards/iota/index.php:19
+#: application/views/awards/iota/index.php:22
 msgid ""
 "IOTA is an exciting and innovative activity program that has captured the "
 "interest of thousands of radio amateurs worldwide. Established in 1964, it "
@@ -7146,6 +7297,7 @@ msgstr ""
 "delle isole in giro per il mondo."
 
 #: application/views/awards/iota/index.php:20
+#: application/views/awards/iota/index.php:23
 msgid ""
 "It is administered by Islands On The Air (IOTA) Ltd (referred to as IOTA "
 "Management) in partnership with the Radio Society of Great Britain (RSGB). "
@@ -7172,11 +7324,13 @@ msgstr ""
 "con certificati e diplomi prestigiosi."
 
 #: application/views/awards/iota/index.php:21
+#: application/views/awards/iota/index.php:24
 #, php-format
 msgid "You can also find this information on %s."
 msgstr "Puoi trovare queste informazioni anche su %s."
 
 #: application/views/awards/iota/index.php:22
+#: application/views/awards/iota/index.php:25
 msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
@@ -7185,10 +7339,12 @@ msgstr ""
 "contenere un riferimento IOTA valido"
 
 #: application/views/awards/iota/index.php:32
+#: application/views/awards/iota/index.php:58
 msgid "Deleted IOTA"
 msgstr "IOTA eliminato"
 
 #: application/views/awards/iota/index.php:161
+#: application/views/awards/iota/index.php:50
 msgid "Show IOTA Map"
 msgstr "Mostra mappa IOTA"
 
@@ -7217,10 +7373,12 @@ msgstr "Mostra mappa IOTA"
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:232
 #: application/views/view_log/qso.php:629
+#: application/views/awards/iota/index.php:210
 msgid "Name"
 msgstr "Nome"
 
 #: application/views/awards/iota/index.php:202
+#: application/views/awards/iota/index.php:212
 msgid "Deleted"
 msgstr "Eliminato"
 
@@ -7477,6 +7635,7 @@ msgstr "Voivodato"
 #: application/views/awards/waip/index.php:112
 #: application/views/awards/waip/index.php:170
 #: application/views/awards/wapc/index.php:157
+#: application/views/awards/wapc/index.php:167
 msgid "Code"
 msgstr "Codice"
 
@@ -7564,10 +7723,12 @@ msgid "to auto-populate states from Maidenhead locators."
 msgstr "auto-compilare gli stati dai localizzatori Maidenhead."
 
 #: application/views/awards/pota/index.php:7
+#: application/views/awards/pota/index.php:6
 msgid "POTA Awards"
 msgstr "Diplomi POTA"
 
 #: application/views/awards/pota/index.php:8
+#: application/views/awards/pota/index.php:7
 msgid ""
 "Parks on the Air® (POTA) started in early 2017 when the ARRL's National "
 "Parks on the Air special event ended. A group of volunteers wanted to "
@@ -7579,6 +7740,7 @@ msgstr ""
 "l'attività POTA."
 
 #: application/views/awards/pota/index.php:9
+#: application/views/awards/pota/index.php:8
 msgid ""
 "POTA works similarly to SOTA, with Activators and Hunters. For the awards, "
 "there are several categories based on the number of parks, geographic areas, "
@@ -7589,6 +7751,7 @@ msgstr ""
 "geografiche e altro ancora."
 
 #: application/views/awards/pota/index.php:10
+#: application/views/awards/pota/index.php:9
 #, php-format
 msgctxt "uses 'the website'"
 msgid ""
@@ -7598,6 +7761,7 @@ msgstr ""
 "Per ulteriori informazioni sui diplomi e le categorie disponibili, visita %s."
 
 #: application/views/awards/pota/index.php:11
+#: application/views/awards/pota/index.php:10
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
 "Campi presi in considerazione per questo premio: POTA_REF (deve contenere il "
@@ -7609,6 +7773,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:267
 #: application/views/user/edit.php:780 application/views/view_log/qso.php:362
 #: application/views/view_log/qso.php:695
+#: application/views/awards/pota/index.php:37
 msgid "POTA Reference(s)"
 msgstr "Referenza POTA"
 
@@ -7624,6 +7789,7 @@ msgid "Hover over a province"
 msgstr "Muovi il cursore su una provincia"
 
 #: application/views/awards/rac/index.php:109
+#: application/views/awards/rac/index.php:47
 msgid "Show RAC Map"
 msgstr "Mostra mappa RAC"
 
@@ -7693,6 +7859,7 @@ msgstr "Elenco QSO"
 
 #: application/views/awards/sig/qso_list.php:13
 #: application/views/awards/sota/index.php:30
+#: application/views/awards/sota/index.php:36
 msgid "Reference"
 msgstr "Riferenza"
 
@@ -7712,11 +7879,13 @@ msgstr "Data/Orario"
 
 #: application/views/awards/sig/qso_list.php:18
 #: application/views/awards/sota/index.php:35
+#: application/views/awards/sota/index.php:41
 msgid "RST Sent"
 msgstr "RST inviato"
 
 #: application/views/awards/sig/qso_list.php:19
 #: application/views/awards/sota/index.php:36
+#: application/views/awards/sota/index.php:42
 msgid "RST Received"
 msgstr "RST ricevuto"
 
@@ -7725,10 +7894,12 @@ msgid "Export QSOs to ADIF"
 msgstr "Esporta QSO in ADIF"
 
 #: application/views/awards/sota/index.php:7
+#: application/views/awards/sota/index.php:6
 msgid "SOTA Awards"
 msgstr "Diplomi SOTA"
 
 #: application/views/awards/sota/index.php:8
+#: application/views/awards/sota/index.php:7
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
@@ -7737,6 +7908,7 @@ msgstr ""
 "incoraggia le operazioni in portatile su aree montane."
 
 #: application/views/awards/sota/index.php:9
+#: application/views/awards/sota/index.php:8
 msgid ""
 "It is fully operational in nearly a hundred countries worldwide. Each "
 "country has its own Association that defines the recognized SOTA summits "
@@ -7979,6 +8151,7 @@ msgstr "Categoria per modo"
 #: application/views/awards/waip/index.php:169
 #: application/views/awards/wap/index.php:153
 #: application/views/awards/wapc/index.php:158
+#: application/views/awards/wapc/index.php:168
 msgid "Province"
 msgstr "Provincia"
 
@@ -8106,10 +8279,12 @@ msgid "Province"
 msgstr "Provincia"
 
 #: application/views/awards/wapc/index.php:22
+#: application/views/awards/wapc/index.php:26
 msgid "WAPC - Worked All Provinces of China"
 msgstr "WAPC - Collegate tutte le province della Cina"
 
 #: application/views/awards/wapc/index.php:23
+#: application/views/awards/wapc/index.php:27
 msgid ""
 "The WAPC Award, issued by the Mulan DX Club, aims to promote communication "
 "between amateur radio operators worldwide and operators in all provinces, "
@@ -8123,6 +8298,7 @@ msgstr ""
 "comprensione della Cina."
 
 #: application/views/awards/wapc/index.php:24
+#: application/views/awards/wapc/index.php:28
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
@@ -8131,6 +8307,7 @@ msgstr ""
 "contatti o raggiunto in un unico sforzo durante il contest annuale WAPC."
 
 #: application/views/awards/wapc/index.php:26
+#: application/views/awards/wapc/index.php:30
 msgid ""
 "Fields taken for this Award: DXCC (Must be one of China/318, HongKong/321, "
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
@@ -8141,6 +8318,7 @@ msgstr ""
 "di Scarborough/506) e Stato valido (ADIF: DXCC e STATE)"
 
 #: application/views/awards/wapc/index.php:122
+#: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
 msgstr "Mostra mappa WAPC"
 
@@ -21952,6 +22130,26 @@ msgstr ""
 
 #: application/views/operator/index.php:22
 msgid "No pre-/suffix allowed."
+msgstr ""
+
+#: application/views/awards/73on73/index.php:19
+msgid "73 on 73 QSO List"
+msgstr ""
+
+#: application/views/awards/dok/index.php:26
+msgid "View progress of DOK awards"
+msgstr ""
+
+#: application/views/awards/pota/index.php:19
+msgid "POTA QSO List"
+msgstr ""
+
+#: application/views/awards/sota/index.php:10
+msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
+msgstr ""
+
+#: application/views/awards/sota/index.php:19
+msgid "SOTA QSO List"
 msgstr ""
 
 #~ msgid "Progress towards working all DXCC entities:"

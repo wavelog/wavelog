@@ -6,27 +6,53 @@
 	height: calc(100vh - 500px) !important;
 	max-height: 900px !important;
 }
+	.dropdown-filters-responsive {
+		width: min(850px, 90vw);
+		min-width: 600px;
+    }
 </style>
 
 
-<div class="container">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?= __("Award Info"); ?>";
-            var lang_award_info_ln1 = "<?= __("IOTA Awards"); ?>";
-            var lang_award_info_ln2 = "<?= __("IOTA is an exciting and innovative activity program that has captured the interest of thousands of radio amateurs worldwide. Established in 1964, it promotes radio contacts with stations located on islands around the world to enhance the experience of all those active on the amateur bands. To achieve this, it draws on the widespread mystique surrounding islands."); ?>";
-            var lang_award_info_ln3 = "<?= __("It is administered by Islands On The Air (IOTA) Ltd (referred to as IOTA Management) in partnership with the Radio Society of Great Britain (RSGB). IOTA Management has grouped the world's islands into approximately 1200 'IOTA groups,' each having varying numbers of 'counters,' which are qualifying islands. These listings are published in the IOTA Directory and on the IOTA website. The objective for the IOTA Island Chaser is to make radio contact with at least one counter in as many of these groups as possible. The program has a well-defined set of rules and encourages friendly competition among chasers by publishing participant performance in an Honor Roll and annual listings, as well as recognizing it with certificates and prestigious awards."); ?>";
-            var lang_award_info_ln4 = "<?= sprintf(__("You can also find this information on %s."), "<a href='https://www.iota-world.org/' target='_blank'>" . __("here") . "</a>"); ?>";
-            var lang_award_info_ln5 = "<?= __("Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-Reference"); ?>";
+            let lang_awards_info_button = "<?= __("Award Info"); ?>";
+            let lang_award_info_ln1 = "<?= __("IOTA Awards"); ?>";
+            let lang_award_info_ln2 = "<?= __("IOTA is an exciting and innovative activity program that has captured the interest of thousands of radio amateurs worldwide. Established in 1964, it promotes radio contacts with stations located on islands around the world to enhance the experience of all those active on the amateur bands. To achieve this, it draws on the widespread mystique surrounding islands."); ?>";
+            let lang_award_info_ln3 = "<?= __("It is administered by Islands On The Air (IOTA) Ltd (referred to as IOTA Management) in partnership with the Radio Society of Great Britain (RSGB). IOTA Management has grouped the world's islands into approximately 1200 'IOTA groups,' each having varying numbers of 'counters,' which are qualifying islands. These listings are published in the IOTA Directory and on the IOTA website. The objective for the IOTA Island Chaser is to make radio contact with at least one counter in as many of these groups as possible. The program has a well-defined set of rules and encourages friendly competition among chasers by publishing participant performance in an Honor Roll and annual listings, as well as recognizing it with certificates and prestigious awards."); ?>";
+            let lang_award_info_ln4 = "<?= sprintf(__("You can also find this information on %s."), "<a href='https://www.iota-world.org/' target='_blank'>" . __("here") . "</a>"); ?>";
+            let lang_award_info_ln5 = "<?= __("Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-Reference"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
+
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="map-tab" onclick="load_iota_map();" data-bs-toggle="tab" href="#iotamaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
     <form class="form" action="<?php echo site_url('awards/iota'); ?>" method="post" enctype="multipart/form-data">
-        <fieldset>
+        <div class="mb-4 text-center">
+            <div class="dropdown" data-bs-auto-close="outside">
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+                <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                <?php if ($iota_array) {
+                    ?><button type="button" onclick="load_iota_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show IOTA Map"); ?></button>
+                <?php }?>
+
+            <!-- Dropdown Menu with Filter Content -->
+            <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
+                <div class="card-body filterbody">
 
             <div class="mb-3 row">
                 <div class="col-md-2 control-label" for="checkboxes"><?= __("Deleted IOTA"); ?></div>
@@ -152,28 +178,12 @@
 				</div>
 			</div>
 
-            <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="button1id"></label>
-                <div class="col-md-10">
-                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
-                    <?php if ($iota_array) {
-                        ?><button type="button" onclick="load_iota_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show IOTA Map"); ?></button>
-                    <?php }?>
                 </div>
             </div>
-
-        </fieldset>
+            </div>
+        </div>
     </form>
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="map-tab" onclick="load_iota_map();" data-bs-toggle="tab" href="#iotamaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
-        </li>
-    </ul>
     <br />
 
     <div class="tab-content" id="myTabContent">
@@ -294,8 +304,7 @@
 	}
 
         echo '</tr>
-        </table>
-        </div>';
+        </table>';
 
     }
     else {
@@ -304,4 +313,6 @@
     ?>
                     </div>
         </div>
+        </div>
+    </div>
 </div>
