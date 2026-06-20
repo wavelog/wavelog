@@ -598,31 +598,33 @@
 									$current_active_location = $this->stations->find_active();
 
 									// iterate through all available stations
-									foreach ($all_user_locations->result() as $row) {
-										// get information about this station like the name and the station id
-										$profile_info = $this->stations->profile($row->station_id)->row();
-										$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
-										$station_id = $row->station_id;
+									if($all_user_locations !== FALSE) {
+										foreach ($all_user_locations->result() as $row) {
+											// get information about this station like the name and the station id
+											$profile_info = $this->stations->profile($row->station_id)->row();
+											$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
+											$station_id = $row->station_id;
 
-										// the active badge, not shown by default
-										$active_badge = '<span id="quickswitcher_active_badge_' . $station_id . '" class="badge bg-success ms-2 d-none">' . __("Active") . '</span>';
+											// the active badge, not shown by default
+											$active_badge = '<span id="quickswitcher_active_badge_' . $station_id . '" class="badge bg-success ms-2 d-none">' . __("Active") . '</span>';
 
-										// only continue if the station id is a favourite and show the station in the list
-										$is_favorite = false;
-										foreach ($location_favorites as $favorite) {
-											if ($favorite['option_value'] == true && $favorite['option_key'] == $station_id) {
-												$is_favorite = true;
-												break;
+											// only continue if the station id is a favourite and show the station in the list
+											$is_favorite = false;
+											foreach ($location_favorites as $favorite) {
+												if ($favorite['option_value'] == true && $favorite['option_key'] == $station_id) {
+													$is_favorite = true;
+													break;
+												}
 											}
-										}
 
-										if ($is_favorite) { ?>
-											<li id="quickswitcher_list_item_<?php echo $station_id; ?>">
-												<a id="quickswitcher_list_button_<?php echo $station_id; ?>" type="button" onclick="set_active_loc_quickswitcher('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
-													<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
-												</a>
-											</li>
-										<?php }
+											if ($is_favorite) { ?>
+												<li id="quickswitcher_list_item_<?php echo $station_id; ?>">
+													<a id="quickswitcher_list_button_<?php echo $station_id; ?>" type="button" onclick="set_active_loc_quickswitcher('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
+														<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
+													</a>
+												</li>
+											<?php }
+										}
 									} ?>
 									<div class="dropdown-divider"></div>
 									<li><a class="dropdown-item quickswitcher disabled"><?= __("Active Logbook"); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
