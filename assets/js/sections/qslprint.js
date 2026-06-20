@@ -128,15 +128,19 @@ $(".station_id").change(function(){
 });
 
 $('#qslprint_table').DataTable({
-	"stateSave": true,
+	stateSave: true,
 	ordering: true,
+	order: [],
+	columnDefs: [
+		{ orderable: false, targets: 0 }
+	],
 	pageLength: 25,
 	lengthMenu: [
 		[10, 25, 50, 100, -1],
 		[10, 25, 50, 100, lang_export_qslprint_pagination_all]
 	],
 	paging: 'pagination',
-	"language": {
+	language: {
 		url: getDataTablesLanguageUrl(),
 	}
 });
