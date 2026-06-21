@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-19 10:05+0000\n"
+"PO-Revision-Date: 2026-06-21 16:11+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -1058,15 +1058,15 @@ msgstr ""
 
 #: application/controllers/Contesting.php:955
 msgid "Operator switching is disabled."
-msgstr ""
+msgstr "Il cambio operatore è disabilitato."
 
 #: application/controllers/Contesting.php:975
 msgid "Operator switching is only available in club stations."
-msgstr ""
+msgstr "Il cambio operatore è disponibile solo nelle stazioni di club."
 
 #: application/controllers/Contesting.php:985
 msgid "Access denied"
-msgstr ""
+msgstr "Accesso negato"
 
 #: application/controllers/Contesting.php:993
 #: application/controllers/User.php:1370
@@ -1075,7 +1075,7 @@ msgstr "Username o password non validi!"
 
 #: application/controllers/Contesting.php:1002
 msgid "A club account cannot be used as an operator."
-msgstr ""
+msgstr "Un account di club non può essere utilizzato come operatore."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
@@ -6639,7 +6639,7 @@ msgstr "Campi presi in considerazione per questo premio: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:26
 msgid "View progress of DOK awards"
-msgstr ""
+msgstr "Visualizza il progresso dei diplomi DOK"
 
 #: application/views/awards/dok/index.php:51
 msgid "DOK / SDOK"
@@ -7614,7 +7614,7 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:19
 msgid "POTA QSO List"
-msgstr ""
+msgstr "Elenco QSO POTA"
 
 #: application/views/awards/pota/index.php:37
 #: application/views/qso/index.php:333 application/views/qso/index.php:615
@@ -7769,11 +7769,11 @@ msgstr ""
 
 #: application/views/awards/sota/index.php:10
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
-msgstr ""
+msgstr "Campi considerati per questo diploma: referenza SOTA (ADIF: SOTA_REF)"
 
 #: application/views/awards/sota/index.php:19
 msgid "SOTA QSO List"
-msgstr ""
+msgstr "Elenco QSO SOTA"
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
@@ -10757,14 +10757,16 @@ msgstr "Successo"
 msgid ""
 "The worker backend is not reachable. Please check your network connection."
 msgstr ""
+"Il backend del worker non è raggiungibile. Controlla la tua connessione di "
+"rete."
 
 #: application/views/contesting/logger/index.php:62
 msgid "Connection lost. Trying to reconnect…"
-msgstr ""
+msgstr "Connessione persa. Tentativo di riconnessione…"
 
 #: application/views/contesting/logger/index.php:63
 msgid "Reconnected to the worker backend."
-msgstr ""
+msgstr "Riconnesso al worker backend."
 
 #: application/views/contesting/logger/index.php:64
 msgid ""
@@ -10793,10 +10795,13 @@ msgid "Switch Operator"
 msgstr ""
 
 #: application/views/contesting/logger/index.php:69
+#, fuzzy
 msgid ""
 "There are still unsynced QSOs. Please wait until they are saved before "
 "switching operator."
 msgstr ""
+"Ci sono ancora QSO non sincronizzati. Attendere che vengano salvati prima di "
+"cambiare operatore."
 
 #: application/views/contesting/logger/index.php:70
 msgid "Operator switch failed. Please try again."
