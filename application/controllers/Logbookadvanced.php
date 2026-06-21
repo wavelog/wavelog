@@ -61,9 +61,9 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['sats'] = $this->logbookadvanced_model->get_worked_sats();
 		$pageData['orbits'] = $this->bands->get_worked_orbits();
 		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
-			$data['station_profile'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+			$pageData['station_profile'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
 		} else {
-			$data['station_profile'] = $this->stations->all_of_user();
+			$pageData['station_profile'] = $this->stations->all_of_user();
 		}
 		$pageData['active_station_info'] = $station_profile->row();
 		$pageData['homegrid'] = explode(',', $this->stations->find_gridsquare());
