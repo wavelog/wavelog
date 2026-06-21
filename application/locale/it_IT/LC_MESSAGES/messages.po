@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-21 16:11+0000\n"
+"PO-Revision-Date: 2026-06-22 08:05+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -5790,7 +5790,7 @@ msgstr ""
 
 #: application/views/awards/73on73/index.php:19
 msgid "73 on 73 QSO List"
-msgstr ""
+msgstr "Elenco QSO \"73 on 73\""
 
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/jcc/index.php:163
@@ -10773,6 +10773,8 @@ msgid ""
 "Could not reconnect to the worker backend. Please check your network "
 "connection."
 msgstr ""
+"Impossibile riconnettersi al worker backend. Si prega di controllare la "
+"propria connessione di rete."
 
 #: application/views/contesting/logger/index.php:65
 msgid ""
@@ -10792,10 +10794,9 @@ msgstr "Ricarica ora"
 #: application/views/contesting/logger/index.php:190
 #: application/views/interface_assets/header.php:574
 msgid "Switch Operator"
-msgstr ""
+msgstr "Cambia operatore"
 
 #: application/views/contesting/logger/index.php:69
-#, fuzzy
 msgid ""
 "There are still unsynced QSOs. Please wait until they are saved before "
 "switching operator."
@@ -10805,7 +10806,7 @@ msgstr ""
 
 #: application/views/contesting/logger/index.php:70
 msgid "Operator switch failed. Please try again."
-msgstr ""
+msgstr "Cambio operatore non riuscito. Per favore riprova."
 
 #: application/views/contesting/logger/index.php:78
 msgid "Loading Contest Engine"
@@ -10861,13 +10862,15 @@ msgstr "Basso"
 
 #: application/views/contesting/logger/index.php:168
 msgid "Current Operator:"
-msgstr ""
+msgstr "Operatore attuale:"
 
 #: application/views/contesting/logger/index.php:170
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
 msgstr ""
+"Accedi con l'account di un altro operatore per continuare questa sessione "
+"del contest con il suo nominativo."
 
 #: application/views/contesting/logger/index.php:176
 #: application/views/user/edit.php:92 application/views/user/login.php:59
@@ -10955,7 +10958,7 @@ msgid "Please select a contest."
 msgstr "Si prega di selezionare un contest."
 
 #: application/views/contesting/manager/components/session_modal.php:36
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Select the contest for this session. If you can't find the contest, please "
 "choose %s."
@@ -11698,9 +11701,9 @@ msgid "How it works"
 msgstr "Come funziona"
 
 #: application/views/cron/index.php:21
-#, fuzzy, php-format
+#, php-format
 msgid "For more information or help, take a look in the %sWiki%s."
-msgstr "Per maggiori informazioni o assistenza, dai un'occhiata nel %sWiki%s."
+msgstr "Per maggiori informazioni o assistenza, dai un'occhiata nella %sWiki%s."
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -13499,8 +13502,8 @@ msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
 msgstr ""
-"Scegli questa opzione se hai caricato manualmente tutti i tuoi QSO su eQSL o "
-"se l'ultima richiesta è andata in timeout."
+"Usa questa opzione se devi caricare molti QSO su eQSL, eviterai che il "
+"server vada in timeout."
 
 #: application/views/eqslcard/index.php:8
 #, php-format
@@ -14022,7 +14025,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:136
 msgid "Error saving operator callsign. Please try again."
-msgstr ""
+msgstr "Errore nel salvataggio del nominativo operatore. Per favore riprova."
 
 #: application/views/interface_assets/footer.php:139
 msgid "Working without CAT connection"
@@ -14377,7 +14380,7 @@ msgstr "Opzioni globali"
 
 #: application/views/interface_assets/header.php:348
 msgid "Update Country Files"
-msgstr "Aggiorna i file dei country DXCC"
+msgstr "Aggiorna i file dei country"
 
 #: application/views/interface_assets/header.php:352
 msgid "Debug Information"
@@ -15894,6 +15897,7 @@ msgstr "Collegara QSO al Contest"
 #: application/views/logbookadvanced/index.php:96
 msgid "Error loading attach to contest dialog"
 msgstr ""
+"Errore nel caricamento della finestra di dialogo per allegare al contest"
 
 #: application/views/logbookadvanced/index.php:97
 msgid "QSOs attached to contest successfully!"
@@ -15910,6 +15914,7 @@ msgstr "Scollega i QSO dal Contest"
 #: application/views/logbookadvanced/index.php:101
 msgid "Error loading detach to contest dialog"
 msgstr ""
+"Errore nel caricamento della finestra di dialogo del distacco per il contest"
 
 #: application/views/logbookadvanced/index.php:102
 msgid "QSOs detached to contest successfully!"
@@ -16952,7 +16957,7 @@ msgstr "Devi fornire il tuo nominativo personale."
 
 #: application/views/operator/index.php:22
 msgid "No pre-/suffix allowed."
-msgstr ""
+msgstr "Nessun prefisso/suffisso consentito."
 
 #: application/views/options/appearance.php:12
 #: application/views/user/edit.php:220
@@ -17908,27 +17913,27 @@ msgstr "Canvas Cartolina"
 
 #: application/views/qslpostcard/designer.php:169
 msgid "drag fields onto the postcard"
-msgstr ""
+msgstr "trascina i campi sulla cartolina"
 
 #: application/views/qslpostcard/designer.php:190
 msgid "Template Options"
-msgstr ""
+msgstr "Opzioni del modello"
 
 #: application/views/qslpostcard/designer.php:194
 msgid "Number of QSOs per QSL card"
-msgstr ""
+msgstr "Numero di QSO per cartolina QSL"
 
 #: application/views/qslpostcard/designer.php:198
 msgid "Row spacing"
-msgstr ""
+msgstr "Spaziatura tra le righe"
 
 #: application/views/qslpostcard/designer.php:203
 msgid "Print background image (uncheck for pre-printed cards)"
-msgstr ""
+msgstr "Stampa immagine di sfondo (deselezionare per cartoline prestampate)"
 
 #: application/views/qslpostcard/designer.php:207
 msgid "Skip address printing (for printing on regular QSL cards)"
-msgstr ""
+msgstr "Salta la stampa dell'indirizzo (per la stampa su normali cartoline QSL)"
 
 #: application/views/qslpostcard/designer.php:215
 msgid "Properties"
@@ -17936,11 +17941,11 @@ msgstr "Proprietà"
 
 #: application/views/qslpostcard/designer.php:220
 msgid "Select a field on the canvas to edit it."
-msgstr ""
+msgstr "Seleziona un campo sul canvas per modificarlo."
 
 #: application/views/qslpostcard/designer.php:221
 msgid "Right-click a field for more actions."
-msgstr ""
+msgstr "Fai clic con il tasto destro su un campo per ulteriori azioni."
 
 #: application/views/qslpostcard/designer.php:231
 msgid "Text"
@@ -17968,23 +17973,26 @@ msgstr "Colore"
 
 #: application/views/qslpostcard/designer.php:274
 msgid "Wrap width"
-msgstr ""
+msgstr "Larghezza di regolazione"
 
 #: application/views/qslpostcard/designer.php:279
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr ""
+"Stampa questo campo una volta per QSO quando una cartolina contiene più QSO"
 
 #: application/views/qslpostcard/designer.php:280
 msgid "Repeats per QSO"
-msgstr ""
+msgstr "Ripetizioni per QSO"
 
 #: application/views/qslpostcard/designer.php:284
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
+"Sposta questo elemento liberamente senza agganciarsi alla griglia o ad altri "
+"elementi"
 
 #: application/views/qslpostcard/designer.php:285
 msgid "Disable Auto-Snap"
-msgstr ""
+msgstr "Disabilita Auto-Snap"
 
 #: application/views/qslpostcard/designer.php:311
 msgid "Align & distribute"
@@ -17996,7 +18004,7 @@ msgstr "Allinea a sinistra"
 
 #: application/views/qslpostcard/designer.php:316
 msgid "Align horizontal centers"
-msgstr ""
+msgstr "Allinea orizzontale al centro"
 
 #: application/views/qslpostcard/designer.php:317
 msgid "Align right"
@@ -18008,7 +18016,7 @@ msgstr "Allinea in alto"
 
 #: application/views/qslpostcard/designer.php:320
 msgid "Align vertical centers"
-msgstr ""
+msgstr "Allinea verticale al centro"
 
 #: application/views/qslpostcard/designer.php:321
 msgid "Align bottom"
