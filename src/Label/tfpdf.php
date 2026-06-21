@@ -276,7 +276,7 @@ function AliasNbPages($alias='{nb}')
 function Error($msg)
 {
 	// Fatal error
-	throw new Exception('tFPDF error: '.$msg);
+	throw new \Exception('tFPDF error: '.$msg);
 }
 
 function Close()
@@ -492,9 +492,17 @@ function AddFont($family, $style='', $file='', $uni=false)
 		if (file_exists($unifilename.'.mtx.php')) {
 			include($unifilename.'.mtx.php');
 		}
+		// The same TTF is shared under different family names (e.g. Labels uses
+		// "DejaVuSans" with DejaVuSansMono.ttf, the QSL postcard uses
+		// "DejaVuSansMono"), so they share one .mtx.php cache. That cache bakes in
+		// the $fontkey and $ttffile of whichever family generated it first. Force
+		// both back to the values computed for THIS call, otherwise the font
+		// registers under the wrong key (SetFont -> "Undefined font") or points at
+		// a stale/relative path (makeSubset fails -> blank glyph boxes).
+		$fontkey = $family.$style;
+		$ttffile = $ttffilename;
 		if (!isset($type) ||  !isset($name) || $originalsize != $ttfstat['size']) {
-			$ttffile = $ttffilename;
-			//require_once($this->fontpath.'unifont/ttfonts.php');
+			require_once($this->fontpath.'unifont/ttfonts.php');
 			$ttf = new TTFontFile();
 			$ttf->getMetrics($ttffile);
 			$cw = $ttf->charWidths;

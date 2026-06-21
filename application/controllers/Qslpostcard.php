@@ -217,7 +217,7 @@ class Qslpostcard extends CI_Controller {
             }
 
             header('Content-Type: application/pdf');
-            header('Content-Disposition: attachment; filename="qsl_postcards_' . $template_id . '.pdf"');
+            header('Content-Disposition: inline; filename="qsl_postcards_' . $template_id . '.pdf"');
             header('Content-Length: ' . filesize($pdfPath));
             readfile($pdfPath);
             @unlink($pdfPath);
@@ -272,7 +272,7 @@ class Qslpostcard extends CI_Controller {
             $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
             header('Content-Type: application/pdf');
-            header('Content-Disposition: attachment; filename="qsl_postcards_queue_' . $template_id . '.pdf"');
+            header('Content-Disposition: inline; filename="qsl_postcards_queue_' . $template_id . '.pdf"');
             header('Content-Length: ' . filesize($pdfPath));
             readfile($pdfPath);
             @unlink($pdfPath);
@@ -338,7 +338,7 @@ class Qslpostcard extends CI_Controller {
             $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
             header('Content-Type: application/pdf');
-            header('Content-Disposition: attachment; filename="qsl_postcards_selected_' . $template_id . '.pdf"');
+            header('Content-Disposition: inline; filename="qsl_postcards_selected_' . $template_id . '.pdf"');
             header('Content-Length: ' . filesize($pdfPath));
             readfile($pdfPath);
             @unlink($pdfPath);

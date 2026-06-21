@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-use Wavelog\Label\FPDF;
+use Wavelog\Label\tFPDF;
 
 class Qslpostcard_model extends CI_Model {
 
@@ -245,33 +245,38 @@ class Qslpostcard_model extends CI_Model {
         return null;
     }
 
-    // --- PDF render (FPDF) ---
+    private const FONT_MAP = [
+        'Helvetica' => 'DejaVuSans',
+        'Times'     => 'DejaVuSerif',
+        'Courier'   => 'DejaVuSansMono',
+    ];
+
+    // --- PDF render (tFPDF, UTF-8 via embedded TrueType fonts) ---
     public function render_pdf_from_layout($layout, $qsos, $mark_sent = false, $background = null, $noaddress = false) {
-        $candidatePaths = [
-            FCPATH . 'src/Label/fpdf.php',
-            APPPATH . 'third_party/fpdf/fpdf.php',
-            FCPATH . 'application/third_party/fpdf/fpdf.php',
-        ];
-
-        $fpdfPath = null;
-        foreach ($candidatePaths as $path) {
-            if (file_exists($path)) {
-                $fpdfPath = $path;
-                break;
-            }
+        $tfpdfPath = FCPATH . 'src/Label/tfpdf.php';
+        if (!file_exists($tfpdfPath)) {
+            throw new Exception('tFPDF not found at ' . $tfpdfPath);
         }
+        require_once($tfpdfPath);
 
-        if (!$fpdfPath) {
-            throw new Exception('FPDF not found. Checked: ' . implode(' | ', $candidatePaths));
+        // tFPDF reads FPDF_FONTPATH in its constructor; TTFs live in font/unifont/.
+        if (!defined('FPDF_FONTPATH')) {
+            define('FPDF_FONTPATH', FCPATH . 'src/Label/font/');
         }
-
-        require_once($fpdfPath);
 
         $w_mm = 139.7; // 5.5 in (standard QSL card size, landscape)
         $h_mm = 88.9;  // 3.5 in
 
-        $pdf = new FPDF('L', 'mm', [$w_mm, $h_mm]);
+        $pdf = new tFPDF('L', 'mm', [$w_mm, $h_mm]);
         $pdf->SetAutoPageBreak(false);
+
+        // Register each DejaVu family once, regular + bold (uni=true embeds a subset).
+        $pdf->AddFont('DejaVuSans', '', 'DejaVuSans.ttf', true);
+        $pdf->AddFont('DejaVuSans', 'B', 'DejaVuSans-Bold.ttf', true);
+        $pdf->AddFont('DejaVuSerif', '', 'DejaVuSerif.ttf', true);
+        $pdf->AddFont('DejaVuSerif', 'B', 'DejaVuSerif-Bold.ttf', true);
+        $pdf->AddFont('DejaVuSansMono', '', 'DejaVuSansMono.ttf', true);
+        $pdf->AddFont('DejaVuSansMono', 'B', 'DejaVuSansMono-Bold.ttf', true);
 
         $cal = $layout['calibration'] ?? ['offset_x_in' => 0, 'offset_y_in' => 0];
         $ox = (float)($cal['offset_x_in'] ?? 0);
@@ -343,7 +348,7 @@ class Qslpostcard_model extends CI_Model {
                 $repeat  = !empty($el['repeat_per_qso']) && !$isAddr;
                 $targets = $repeat ? $chunk : [$chunk[0]];
 
-                $font      = $el['font'] ?? 'Helvetica';
+                $font      = self::FONT_MAP[$el['font'] ?? 'Helvetica'] ?? 'DejaVuSans';
                 $pt        = (float)($el['font_pt'] ?? 11);
                 $bold      = !empty($el['bold']) ? 'B' : '';
                 $wrap_w_in = isset($el['wrap_w_in']) ? (float)$el['wrap_w_in'] : 0;
