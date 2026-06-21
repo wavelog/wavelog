@@ -270,7 +270,6 @@ class API extends CI_Controller {
 			$dkey_opt=$this->user_options_model->get_options('stations',array('option_name'=>'active_log_only','option_key'=>'boolean'), $userid)->result();
 			$user_stations_active_log_only = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
 			if($user_stations_active_log_only) {
-				$this->load->model('logbooks_model');
 				$stations = $this->logbooks_model->list_logbooks_linked($this->logbooks_model->find_active_station_logbook_from_userid($userid));
 			} else {
 				$stations=$this->stations->all_of_user($userid);
