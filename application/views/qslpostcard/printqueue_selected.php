@@ -43,6 +43,7 @@
         // Print options come from the template's layout.options, not this form.
         const form = document.getElementById('selectedPrintForm');
         form.action = `<?= site_url('qslpostcard/pdfselected') ?>/${tpl}`;
+        form.target = '_blank';
         form.submit();
     });
 </script>
