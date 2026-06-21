@@ -8,7 +8,7 @@ class Logbookadvanced_model extends CI_Model {
 		$order_by = ' ORDER BY col_call';
 
 		// Build dynamic PARTITION BY
-		$partition_by = "COL_CALL, q.station_id";
+		$partition_by = "COL_CALL";
 		$conditions = [];
 
 		if (isset($searchCriteria['dupemode']) && $searchCriteria['dupemode'] === 'Y') {
