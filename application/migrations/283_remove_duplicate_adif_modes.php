@@ -8,7 +8,7 @@ class Migration_remove_duplicate_adif_modes extends CI_Migration
 		$db_result = $this->dbtry("SELECT * FROM (SELECT *, ROW_NUMBER() over (PARTITION by mode, submode, qrgmode ORDER BY active DESC) AS row_num FROM adif_modes) AS temp_table WHERE row_num > 1;");
 		if($db_result->num_rows() > 0) {
 			foreach($db_result->result() as $row) {
-				if(($row->row_num == 2) && $row->active == 0) {
+				if($row->active == 0) {
 					// found one active and one inactive entry of a mode,submode,qrgmode combination
 					// DB table rules currently allow for exactly one 'mode','submode','qrgmode','active' combination
 					// remove the inactive entry, allowing for active entry to be inactivated if desired
@@ -22,7 +22,7 @@ class Migration_remove_duplicate_adif_modes extends CI_Migration
 
 		// drop index that allows for duplicate mode entries as long as one is active and one is not active
 		$ix_exist = $this->db->query("SHOW INDEX FROM adif_modes WHERE Key_name = 'IDX_UNIQ_ADIF_MODES#mode#submode#qrgmode#active'")->num_rows();
-		if($ix_exist == 1) {
+		if($ix_exist >= 1) {
 			$this->dbtry("ALTER TABLE adif_modes DROP INDEX `IDX_UNIQ_ADIF_MODES#mode#submode#qrgmode#active`;");
 		}
 
