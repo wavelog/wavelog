@@ -675,11 +675,7 @@ class Contesting extends CI_Controller {
 				}
 
 				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
-				if (!empty($this->session->userdata('user_stations_active_log_only'))) {
-					$data['stations'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
-				} else {
-					$data['stations'] = $this->stations->all_of_user();
-				}
+				$data['stations'] = $this->stations->all_of_user();
 				$data['active_station_location'] = $this->active_station_location;
 
 				$this->load->view('contesting/manager/components/session_modal', $data);
