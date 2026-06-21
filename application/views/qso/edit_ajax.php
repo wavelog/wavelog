@@ -646,15 +646,19 @@
                                     <?php
                                     $CI = &get_instance();
                                     $CI->load->model('stations');
-                                    $my_stations = $CI->stations->all_of_user();
+									if (!empty($CI->session->userdata('user_stations_active_log_only'))) {
+										$my_stations = $CI->logbooks_model->list_logbooks_linked($CI->session->userdata('active_station_logbook'));
+									} else {
+                                    	$my_stations = $CI->stations->all_of_user();
+									}
                                     ?>
 
                                     <div class="mb-3">
                                         <label for="inputStationProfile"><?= __("Change Station Profile"); ?></label>
                                         <select id="stationProfile" class="form-select" name="station_profile">
-                                            <?php foreach ($my_stations->result() as $stationrow) { ?>
+                                            <?php if ($my_stations !== FALSE) { foreach ($my_stations->result() as $stationrow) { ?>
                                                 <option value="<?= $stationrow->station_id; ?>" <?php if ($qso->station_id == $stationrow->station_id) echo "selected=\"selected\""; ?>><?= $stationrow->station_profile_name; ?></option>
-                                            <?php } ?>
+                                            <?php } } ?>
                                         </select>
                                     </div>
 
