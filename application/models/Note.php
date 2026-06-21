@@ -19,6 +19,7 @@ class Note extends CI_Model {
 	// Return note ID for given category and title (callsign for Contacts), else false
 	public function get_note_id_by_category($user_id, $category, $title) {
 		$check_title = $title;
+		$check_title_slashed = $title;
 		if ($category === 'Contacts') {
 			$this->load->library('callbook'); // Used for callsign parsing
 			$check_title = strtoupper($this->callbook->get_plaincall($title));

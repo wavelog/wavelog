@@ -3,22 +3,149 @@
 /***
  * Paths Library to return specific paths
  */
-class Paths
-{
-    // generic function for return eQsl path //
-    function getPathEqsl()
-    {
+class Paths {
+
+    /**
+     * Returns the userdata path (or legacy path if the userdata option is not set) for the given type and user_id.
+     * 
+     * @param string $type The type of path to return (e.g. 'eqsl_card', 'qsl_card')
+     * @param string $pathorurl 'u' to return the web-relative path, 'p' to return the absolute filesystem path, 'b' to return the base user directory path (without the type subdirectory)
+     * @param int|null $user_id The user_id to return the path for. If null, will use the user_id from session data
+     */
+    function getUserdataPath($type, $pathorurl = 'u', $user_id = null) {
+        // test if new folder directory option is enabled
         $CI = &get_instance();
-        $CI->load->model('Eqsl_images');
-        return $CI->Eqsl_images->get_imagePath();
+        $userdata_dir = $CI->config->item('userdata');
+
+        // make sure these are the same as in Debug_model.php function migrate_userdata()
+        $allowed_types = [
+            'basedir', // special type to return the base user directory without the type subdirectory
+            'eqsl_card',
+            'qsl_card',
+            'qslpostcard_images' // has no legacy path
+        ];
+
+        // validate path type
+        if (!in_array($pathorurl, ['u', 'p', 'b'])) {
+            log_message('error', 'Invalid pathorurl passed to getUserdataPath: ' . $pathorurl);
+            return false; // invalid pathorurl
+        }
+
+        if (!in_array($type, $allowed_types)) {
+            log_message('error', 'Invalid type passed to getUserdataPath: ' . $type);
+            return false; // invalid type
+        }
+
+        if (isset($userdata_dir)) {
+
+            if (!valid_uid($user_id)) {
+                $user_id = $CI->session->userdata('user_id');
+            }
+
+            // check if there is a user_id in the session data and it's not empty
+            if (valid_uid($user_id)) {
+
+                // create the folder (not for 'basedir', which is the user's base directory itself)
+                if ($type != 'basedir' && !file_exists(realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type)) {
+                    mkdir(realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type, 0755, true);
+                }
+
+                // and return it
+                if ($pathorurl == 'u') {
+                    return $userdata_dir . '/' . $user_id . '/' . $type;
+                } else if ($pathorurl == 'p' && $type != 'basedir') {
+                    return realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id . '/' . $type;
+                } else if ($pathorurl == 'b' && $type == 'basedir') {
+                    return realpath(APPPATH . '../') . '/' . $userdata_dir . '/' . $user_id;
+                }
+            } else {
+                log_message('info', 'getUserdataPath(); Can not get ' . $type . ' path because no user_id in session data');
+            }
+        } else {
+            // if the config option is not set we just return the old path
+            return $this->legacyPaths($type, $pathorurl);
+        }
     }
 
-    // generic function for return Qsl path //
-    function getPathQsl()
-    {
-        $CI = &get_instance();
-        $CI->load->model('Qsl_model');
-        return $CI->Qsl_model->get_imagePath();
+    /**
+     * @deprecated Use getUserdataPath('eqsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathEqsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('eqsl_card', $pathorurl, $user_id);
+    }
+
+    /**
+     * @deprecated Use getUserdataPath('qsl_card') instead.
+     * Kept as a fallback for the brief window during a git update where an
+     * older view might still call this method before it gets removed.
+     */
+    function getPathQsl($pathorurl = 'u', $user_id = null) {
+        return $this->getUserdataPath('qsl_card', $pathorurl, $user_id);
+    }
+
+    private function legacyPaths($type, $pathorurl = 'u') {
+        switch ($type) {
+            case 'eqsl_card':
+                $path = 'images/eqsl_card_images';
+                break;
+            case 'qsl_card':
+                $path = 'assets/qslcard';
+                break;
+            default:
+                log_message('error', 'Invalid type passed to legacyPaths(): ' . $type);
+                return false;
+        }
+
+        // 'u' returns the web-relative path, anything else the absolute filesystem path
+        if ($pathorurl == 'u') {
+            return $path;
+        } else {
+            return realpath(APPPATH . '../') . '/' . $path;
+        }
+    }
+
+    function delete_user_files($user_id) {
+        $CI = & get_instance();
+        if (!valid_uid($user_id)) {
+            log_message('error', 'delete_user_files() called with invalid user_id: ' . $user_id);
+            return false;
+        }
+        $userdata_dir = $CI->config->item('userdata');
+        if (isset($userdata_dir)) {
+            $base_path = $this->getUserdataPath('basedir', 'b', $user_id); // get the base path for the user
+            if (file_exists($base_path)) {
+                if (!$this->_delete_directory($base_path)) {
+                    log_message('error', 'delete_user_files(); Failed to fully delete user files for user_id: ' . $user_id);
+                    return false;
+                }
+                log_message('debug', 'delete_user_files(); Deleted user files for user_id: ' . $user_id);
+            } else {
+                log_message('debug', 'delete_user_files(); No user files to delete for user_id: ' . $user_id);
+            }
+        } else {
+            log_message('debug', 'delete_user_files(); No userdata directory configured, so no user files to delete for user_id: ' . $user_id);
+        }
+        return true;
+    }
+
+    private function _delete_directory($dir) {
+        if (!file_exists($dir)) {
+            return true;
+        }
+        if (!is_dir($dir)) {
+            return unlink($dir);
+        }
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+            if (!$this->_delete_directory($dir . DIRECTORY_SEPARATOR . $item)) {
+                return false;
+            }
+        }
+        return rmdir($dir);
     }
 
     function make_update_path($path) {
@@ -76,5 +203,28 @@ class Paths
             log_message('error', 'CACHE BUSTER: File does not exist: ' . $fullpath);
         }
         return base_url($filepath);
+    }
+
+    // Creates contesting logging token
+    function create_contesting_logging_token($contest_session_id) {
+        $CI = &get_instance();
+        
+        // In case of clubstation, we need the source_uid so we can determine the actual operator
+        // Is there no source_uid, we either clubstation support is disabled or the user is not operating in it's own account and we can use the user_id
+        $user_id = $CI->session->userdata('source_uid') ?: $CI->session->userdata('user_id');
+
+        $logging_token_payload = [
+            'user_id' => intval($user_id),
+            'timestamp' => time(),
+            'contest_session_id' => intval($contest_session_id)
+        ];
+
+        return urlencode(base64_encode(json_encode($logging_token_payload)));
+    }
+
+    function decode_contesting_logging_token($logging_token) {
+        $CI = &get_instance();
+        $decoded_token = $CI->security->xss_clean(json_decode(base64_decode(urldecode($logging_token)), true));
+        return $decoded_token;
     }
 }

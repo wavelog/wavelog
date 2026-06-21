@@ -1,6 +1,6 @@
 <?php
 if (isset($filtered)) {
-	echo '<table style="width:100%" class="satpasstable table-sm table table-bordered table-hover table-striped table-condensed text-center">
+	echo '<div class="table-responsive"><table style="width:100%" class="satpasstable table-sm table table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
 				<tr id="toptable">
 					<th>' . __("Satellite") . ' <i class="fa-solid fa-satellite"></i></th>
@@ -49,7 +49,7 @@ if (isset($filtered)) {
 				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '</tr>';
 			}
-			echo '</tbody></table>';
+			echo '</tbody></table></div>';
 } else {
 	echo '<div style="text-align: center !important">';
 	echo '<h2>'.__('Search failed!').'</h2>';

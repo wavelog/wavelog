@@ -133,6 +133,7 @@
     var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
     var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
     var lang_qso_dxcc_none_location = "<?= __("Location could not be determined as gridsquare is empty and DXCC is -NONE-"); ?>";
+    var lang_operator_modal_save_error = "<?= __("Error saving operator callsign. Please try again."); ?>";
 
     // CAT Offline Status Messages
     var lang_cat_working_offline = "<?= __("Working without CAT connection"); ?>";
@@ -234,7 +235,7 @@ if($this->session->userdata('user_id') != null) {
 <!-- Version Dialog END -->
 
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
-<?php if ($this->config->item('special_callsign') && $this->uri->segment(1) == "dashboard" && $this->session->userdata('clubstation') == 1) { ?>
+<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 1) { ?>
 <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/operator.js'); ?>"></script>
 <script>
 	<?php
@@ -247,8 +248,7 @@ if($this->session->userdata('user_id') != null) {
     let sc_account_call = '<?php echo $account_call; ?>'
 
 	<?php
-    # if the operator call and the account call is the same we show the dialog (except for admins!)
-    if ($op_call == $account_call && $user_type != '99') { ?>
+    if ($this->uri->segment(1) == "dashboard" && $op_call == $account_call && $user_type != '99') { ?>
 
         // load the dialog with javascript
         displayOperatorDialog();
@@ -338,6 +338,10 @@ function stopImpersonate_modal() {
 
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "wae") ) { ?>
     <script id="waejs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/wae.js'); ?>"></script>
+<?php } ?>
+
+<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "amsat_rover") ) { ?>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/amsat_award.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "statistics" && $this->uri->segment(2) == "") { ?>
@@ -870,7 +874,7 @@ document.onkeyup = function(e) {
 
 
 
-function showActivatorsMap(call, count, grids) {
+function showActivatorsMap(call, count, grids, grid_color) {
 
     let re = /,/g;
     grids = grids.replace(re, ', ');
@@ -892,7 +896,7 @@ function showActivatorsMap(call, count, grids) {
 
     var grid_four = grids.split(', ');
 
-    var maidenhead = new L.maidenheadactivators(grid_four).addTo(map);
+    var maidenhead = new L.maidenheadactivators(grid_four, grid_color).addTo(map);
 
     var osmUrl = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var osmAttrib = option_map_tile_server_copyright;
@@ -931,7 +935,9 @@ function showActivatorsMap(call, count, grids) {
             <?php } ?>
 
             <?php printf("var dashboard_qso_count = '%d';", $this->session->userdata('dashboard_last_qso_count')) ?>
-            initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+            <?php if (($this->session->userdata('user_dashboard_map') ?? 'Y') != 'N') { ?>
+                initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+            <?php } ?>
 
             <?php if ($is_first_login ?? false) : ?>
                 $('#firstLoginWizardModal').modal('show');
@@ -1030,7 +1036,7 @@ $($('#callsign')).on('keypress',function(e) {
 </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view") { ?>
+<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view" && $this->optionslib->get_option('logbook_map') != "false") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
     <script type="text/javascript">
@@ -1305,7 +1311,7 @@ mymap.on('mousemove', onQsoMapMove);
   </script>
 
 <?php } ?>
-<?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
+<?php if ( $this->uri->segment(1) == "qso") { ?>
 	<!--- Frequency input functionality --->
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/qrg_handler.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
@@ -1716,7 +1722,7 @@ $(document).ready(function(){
     $('.tabledxcc').DataTable({
         "pageLength": 25,
         responsive: false,
-        ordering: false,
+        ordering: true,
         "scrollY":        "400px",
         "scrollCollapse": true,
         "paging":         false,
@@ -2371,7 +2377,7 @@ $('#sats').change(function(){
 <script>
 function viewQsl(picture, callsign) {
 
-            var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
+            var webpath_qsl = "<?php echo method_exists($this->paths, 'getUserdataPath') ? $this->paths->getUserdataPath('qsl_card') : $this->paths->getPathQsl(); ?>";
             var textAndPic = $('<div class="text-center"></div>');
                 textAndPic.append('<img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+base_url+webpath_qsl+'/'+picture+'" />');
             var title = '';
@@ -2432,7 +2438,7 @@ function deleteQsl(id) {
 </script>
 <script>
 function viewEqsl(picture, callsign) {
-            var webpath_eqsl = '<?php echo $this->paths->getPathEqsl(); ?>';
+            var webpath_eqsl = '<?php echo method_exists($this->paths, 'getUserdataPath') ? $this->paths->getUserdataPath('eqsl_card') : $this->paths->getPathEqsl(); ?>';
             var baseURL= "<?php echo base_url(); ?>";
             var $textAndPic = $('<div></div>');
                 $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+webpath_eqsl+'/'+picture+'" />');
@@ -2626,7 +2632,7 @@ function viewEqsl(picture, callsign) {
     }
 
     function uploadQsl() {
-        var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
+        var webpath_qsl = "<?php echo method_exists($this->paths, 'getUserdataPath') ? $this->paths->getUserdataPath('qsl_card') : $this->paths->getPathQsl(); ?>";
         var formdata = new FormData(document.getElementById("fileinfo"));
 
         $.ajax({
@@ -2671,9 +2677,7 @@ function viewEqsl(picture, callsign) {
                     }
 
                 } else if (data.status.front.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger">'+"<?= __("Front QSL Card:"); ?>  " +
-                    data.status.front.error +
-                        '</div>');
+                    showToast("<?= __("Front QSL Card"); ?>", data.status.front.error, 'bg-danger text-white', 5000);
                 }
                 if (data.status.back.status == 'Success') {
                     var qsoid = $("#qsoid").text();
@@ -2709,10 +2713,11 @@ function viewEqsl(picture, callsign) {
                         $("#qslcardback").val(null);
                     }
                 } else if (data.status.back.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger">\n'+"<?= __("Back QSL Card:"); ?>  " +
-                    data.status.back.error +
-                        '</div>');
+                    showToast("<?= __("Back QSL Card"); ?>", data.status.back.error, 'bg-danger text-white', 5000);
                 }
+            },
+            error: function () {
+                showToast("<?= __("Upload failed"); ?>", "<?= __("The QSL card upload could not be completed."); ?>", 'bg-danger text-white', 5000);
             }
         });
     }
@@ -2763,11 +2768,6 @@ function viewEqsl(picture, callsign) {
 	}
 
 </script>
-<?php if ($this->uri->segment(1) == "contesting" && ($this->uri->segment(2) != "add" && $this->uri->segment(2) != "edit")) { ?>
-    <script>
-        var manual = <?php echo $manual_mode; ?>;
-    </script>
-<?php } ?>
 
 <?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>
 <script>
@@ -2858,10 +2858,6 @@ function viewEqsl(picture, callsign) {
 			$(".buttons-csv").css("color", "white");
 		}
 	</script>
-<?php } ?>
-
-<?php if ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) == "add") { ?>
-	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/contestingnames.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "themes") { ?>

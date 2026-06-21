@@ -1,0 +1,423 @@
+/* ===== Contest Logger Styles ===== */
+
+/* Monospace font for all form inputs — ensures consistent letter/number rendering */
+.logger-workspace .form-control,
+.logger-workspace .form-select {
+	font-family: 'Courier New', Courier, monospace;
+	font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 1px;
+}
+
+/* Loading Screen */
+.contest-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--cl-contest-loading-bg, linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out;
+}
+
+.contest-loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contest-loading-content {
+  text-align: center;
+  color: var(--bs-body-color);
+}
+
+.contest-loading-spinner {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  border: 4px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  border-top-color: var(--bs-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.contest-loading-content h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.contest-loading-content p {
+  opacity: 0.7;
+}
+
+.logger-workspace {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: var(--cl-contest-workspace-bg, linear-gradient(135deg, #101010 0%, #1d1d1d 100%));
+}
+
+/* ===== Control Panel Styles ===== */
+
+.control-panel-toggle {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1050;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.control-panel-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.control-panel-logo {
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.control-panel-time {
+  text-shadow: 0 0 10px rgba(var(--bs-primary-rgb), 0.5);
+}
+
+#controlPanel h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  padding-bottom: 8px;
+}
+
+
+#controlPanel .form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* ===== Window Styles ===== */
+
+.window {
+  position: absolute;
+  background: var(--cl-contest-window-bg, var(--bs-body-bg));
+  border: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.window-header {
+  padding: 0px 16px;
+  background: var(--cl-contest-window-header-bg, #1f1f1f);
+  border-bottom: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  border-radius: 6px 6px 0 0;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.window-header:active {
+  cursor: grabbing;
+}
+
+.window-title {
+  flex: 1;
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.window-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.window-btn:hover {
+  background: var(--cl-contest-btn-hover-bg, #3a3a3a);
+  color: var(--bs-body-color);
+}
+
+.window-btn.close:hover {
+  background: var(--bs-danger);
+}
+
+/* Operator chip in the window header. Styled to match the header chrome (muted,
+   subtle border) instead of a stock Bootstrap button so it reads as part of the
+   header. Click opens the control panel. */
+.window-operator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #9a9a9a;
+  background: transparent;
+  border: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.window-operator:hover {
+  color: var(--bs-body-color);
+  background: var(--cl-contest-btn-hover-bg, #3a3a3a);
+  border-color: var(--cl-contest-btn-hover-bg, #3a3a3a);
+}
+
+.window-operator i {
+  font-size: 0.9em;
+  color: var(--bs-primary);
+}
+
+.window-operator-call {
+  letter-spacing: 0.5px;
+}
+
+/* Brief attention pulse on the Switch Operator button when invoked from the operator badge */
+@keyframes switchOperatorPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--bs-warning-rgb), 0.7); }
+  50% { box-shadow: 0 0 0 6px rgba(var(--bs-warning-rgb), 0); }
+}
+
+.switch-operator-highlight {
+  animation: switchOperatorPulse 0.7s ease-out 2;
+  border-color: var(--bs-warning) !important;
+}
+
+.window-body {
+  flex: 1;
+  padding: 16px;
+  overflow: auto;
+}
+
+.window .card {
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12)) !important;
+}
+
+.window-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.window-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.window-body::-webkit-scrollbar-thumb {
+  background: var(--cl-contest-scrollbar, #555);
+  border-radius: 4px;
+}
+
+.window-body::-webkit-scrollbar-thumb:hover {
+  background: var(--cl-contest-scrollbar-hover, #777);
+}
+
+/* Resize Handles */
+.window-resize-br,
+.window-resize-bl,
+.window-resize-tr,
+.window-resize-tl {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.window-resize-br {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+  border-radius: 0 0 6px 0;
+}
+
+.window-resize-bl {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+  border-radius: 0 0 0 6px;
+}
+
+.window-resize-tr {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+  border-radius: 0 6px 0 0;
+}
+
+.window-resize-tl {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+  border-radius: 6px 0 0 0;
+}
+
+.window:hover .window-resize-br,
+.window:hover .window-resize-bl,
+.window:hover .window-resize-tr,
+.window:hover .window-resize-tl {
+  opacity: 1;
+}
+
+.window-resize-br:active,
+.window-resize-bl:active,
+.window-resize-tr:active,
+.window-resize-tl:active {
+  opacity: 1;
+}
+
+/* Edge resize handles */
+.window-resize-t,
+.window-resize-b,
+.window-resize-l,
+.window-resize-r {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 1;
+}
+
+.window-resize-t {
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.window-resize-b {
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.window-resize-l {
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+  width: 6px;
+  cursor: ew-resize;
+}
+
+.window-resize-r {
+  right: 0;
+  top: 20px;
+  bottom: 20px;
+  width: 6px;
+  cursor: ew-resize;
+}
+
+.window:hover .window-resize-t,
+.window:hover .window-resize-b,
+.window:hover .window-resize-l,
+.window:hover .window-resize-r {
+  opacity: 1;
+}
+
+.window-resize-t:active,
+.window-resize-b:active,
+.window-resize-l:active,
+.window-resize-r:active {
+  opacity: 1;
+}
+/* Bootstrap min-h-0 utility missing in some builds */
+.min-h-0 {
+  min-height: 0 !important;
+}
+
+/* ===== Band Selection Tabs Styles ===== */
+
+.nav-tabs-sm {
+  border-bottom: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+}
+
+.nav-tabs-sm .nav-link {
+  color: #888;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  margin-right: 2px;
+  transition: all 0.2s;
+}
+
+.nav-tabs-sm .nav-link:hover {
+  color: var(--bs-body-color);
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12)) var(--cl-contest-border, rgba(255, 255, 255, 0.12)) transparent;
+  background-color: var(--bs-body-bg);
+}
+
+.nav-tabs-sm .nav-link.active {
+  color: var(--bs-body-color);
+  background-color: var(--cl-contest-btn-hover-bg, #333);
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12)) var(--cl-contest-border, rgba(255, 255, 255, 0.12)) transparent;
+  font-weight: 600;
+}
+
+.band-buttons-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 3px;
+  padding: 6px 0;
+}
+
+.band-btn-compact {
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  color: var(--bs-body-color);
+  background-color: transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.band-btn-compact:hover {
+  background-color: var(--cl-contest-btn-hover-bg, #3a3a3a);
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  color: var(--bs-body-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.band-btn-compact[data-selected="true"],
+.band-btn-compact.active {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.band-btn-compact[data-selected="true"]:hover,
+.band-btn-compact.active:hover {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  filter: brightness(0.9);
+}

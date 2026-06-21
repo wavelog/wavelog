@@ -257,8 +257,8 @@ class adif extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->model('contesting_model');
-		$data['contests']=$this->contesting_model->getActivecontests();
+		$this->load->model('contest_admin_model');
+		$data['contests']=$this->contest_admin_model->getActiveContests();
 
 		$this->load->model('stations');
 
@@ -305,6 +305,18 @@ class adif extends CI_Controller {
 
 		// Pass allowed tabs to view
 		$data['allowed_tabs'] = $this->get_allowed_tabs();
+
+		$this->load->model('contest_admin_model');
+		$data['contests'] = $this->contest_admin_model->getActiveContests();
+		$data['active_station_id'] = $active_station_id; // local var, set above
+		$data['cd_p_level'] = ($this->session->userdata('cd_p_level') ?? 0);
+
+		if ($this->config->item('special_callsign') && clubaccess_check(9) && $this->session->userdata('clubstation') == 1) {
+			$this->load->model('club_model');
+			$data['club_operators'] = $this->club_model->get_club_members($this->session->userdata('user_id'));
+		} else {
+			$data['club_operators'] = false;
+		}
 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF|zip';

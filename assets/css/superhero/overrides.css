@@ -345,3 +345,15 @@ svg text.month {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
+
+/* Contest Logger */
+:root {
+	--cl-contest-loading-bg: linear-gradient(135deg, #1a2836 0%, #2b3e50 100%);
+	--cl-contest-workspace-bg: linear-gradient(135deg, #1e2f3c 0%, #253544 100%);
+	--cl-contest-window-bg: var(--cl-bg);
+	--cl-contest-window-header-bg: #253544;
+	--cl-contest-btn-hover-bg: #3d4e5e;
+	--cl-contest-scrollbar: #3d4e5e;
+	--cl-contest-scrollbar-hover: #4e5d6c;
+	--cl-contest-border: rgba(255, 255, 255, 0.12);
+}

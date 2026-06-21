@@ -255,9 +255,8 @@ if ( ! function_exists('get_config'))
 			}
 			elseif ( ! $found)
 			{
-				// set_status_header(301);
-				header('Location: install/');
-				// echo 'The configuration file does not exist.';
+				// redirect to the install page instead of showing an error
+				header('Location: '.rtrim(dirname($_SERVER['SCRIPT_NAME']), '/').'/install/');
 				exit(3); // EXIT_CONFIG
 			}
 

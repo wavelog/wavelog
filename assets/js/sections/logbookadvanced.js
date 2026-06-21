@@ -225,6 +225,7 @@ function loadQSOTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+			order: [],
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
 			paging: false,
@@ -920,7 +921,7 @@ $(document).ready(function () {
 			success: function (html) {
 				BootstrapDialog.show({
 					title: lang_gen_advanced_logbook_help,
-					size: BootstrapDialog.SIZE_NORMAL,
+					size: BootstrapDialog.SIZE_WIDE,
 					cssClass: 'options',
 					nl2br: false,
 					message: html,
@@ -1570,6 +1571,232 @@ $(document).ready(function () {
 		});
 	});
 
+	// Attach QSOs to Contest button handler
+	$('#attachContest').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_least_one,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		// Load attach dialog
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/attachContestDialog',
+			type: 'post',
+			data: {
+				qsoIds: id_list
+			},
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_attach_qsos,
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'attach-dialog',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: 'Attach QSOs <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-info ld-ext-right',
+						id: 'attachButton',
+						action: function (dialogItself) {
+							// User submitted, proceed with attachment
+							const formData = $('#attachForm').serialize();
+
+							$('#attachButton').prop("disabled", true).addClass("running");
+							$('#closeAttachButton').prop("disabled", true);
+
+							$.ajax({
+								url: base_url + 'index.php/logbookadvanced/attachContestQsos',
+								type: 'post',
+								data: formData,
+								dataType: 'json',
+								success: function (response) {
+									dialogItself.close();
+									if (response.success) {
+										BootstrapDialog.alert({
+											title: lang_gen_advanced_logbook_success,
+											message: lang_gen_advanced_logbook_qsos_attached,
+											type: BootstrapDialog.TYPE_SUCCESS,
+											closable: false,
+											draggable: false,
+											callback: function (result) {
+												$('#searchButton').click();
+											}
+										});
+									} else {
+										BootstrapDialog.alert({
+											title: lang_gen_advanced_logbook_error,
+											message: response.message || lang_gen_advanced_logbook_error_attaching,
+											type: BootstrapDialog.TYPE_DANGER,
+											closable: false,
+											draggable: false,
+											callback: function (result) {
+											}
+										});
+									}
+								},
+								error: function () {
+									dialogItself.close();
+									BootstrapDialog.alert({
+										title: lang_gen_advanced_logbook_error,
+										message: lang_gen_advanced_logbook_error_attaching,
+										type: BootstrapDialog.TYPE_DANGER,
+										closable: false,
+										draggable: false,
+										callback: function (result) {
+										}
+									});
+								}
+							});
+
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeAttachButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_error_loading_attach_dialog,
+					type: BootstrapDialog.TYPE_DANGER,
+					closable: false,
+					draggable: false,
+					callback: function (result) {
+					}
+				});
+			}
+		});
+	});
+
+	// Detach QSOs to Contest button handler
+	$('#detachContest').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_least_one,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		// Load detach dialog
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/detachContestDialog',
+			type: 'post',
+			data: {
+				qsoIds: id_list
+			},
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_detach_qsos,
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'detach-dialog',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: 'Detach QSOs <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-info ld-ext-right',
+						id: 'detachButton',
+						action: function (dialogItself) {
+							// User submitted, proceed with detachment
+							const formData = $('#detachForm').serialize();
+
+							$('#detachButton').prop("disabled", true).addClass("running");
+							$('#closeDetachButton').prop("disabled", true);
+
+							$.ajax({
+								url: base_url + 'index.php/logbookadvanced/detachContestQsos',
+								type: 'post',
+								data: formData,
+								dataType: 'json',
+								success: function (response) {
+									dialogItself.close();
+									if (response.success) {
+										BootstrapDialog.alert({
+											title: lang_gen_advanced_logbook_success,
+											message: lang_gen_advanced_logbook_qsos_detached,
+											type: BootstrapDialog.TYPE_SUCCESS,
+											closable: false,
+											draggable: false,
+											callback: function (result) {
+												$('#searchButton').click();
+											}
+										});
+									} else {
+										BootstrapDialog.alert({
+											title: lang_gen_advanced_logbook_error,
+											message: response.message || lang_gen_advanced_logbook_error_detaching,
+											type: BootstrapDialog.TYPE_DANGER,
+											closable: false,
+											draggable: false,
+											callback: function (result) {
+											}
+										});
+									}
+								},
+								error: function () {
+									dialogItself.close();
+									BootstrapDialog.alert({
+										title: lang_gen_advanced_logbook_error,
+										message: lang_gen_advanced_logbook_error_detaching,
+										type: BootstrapDialog.TYPE_DANGER,
+										closable: false,
+										draggable: false,
+										callback: function (result) {
+										}
+									});
+								}
+							});
+
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeAttachButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_error_loading_detach_dialog,
+					type: BootstrapDialog.TYPE_DANGER,
+					closable: false,
+					draggable: false,
+					callback: function (result) {
+					}
+				});
+			}
+		});
+	});
+
 	function dupeSearchDialog() {
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/dupeSearchDialog',
@@ -1824,6 +2051,73 @@ $(document).ready(function () {
 					}],
 					onhide: function(dialogRef){
 						$('#printLabel').prop("disabled", false);
+					},
+				});
+			}
+		});
+	});
+
+	$('#printQslCard').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_qslcard_print,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+		$('#printQslCard').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/printQslForm',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: '<i class="fas fa-print me-2"></i>'+lang_gen_advanced_logbook_qslcard_print_option,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'qso-dialog',
+					nl2br: false,
+					message: html,
+					onshown: function(dialog) {
+						// Inject the selected QSO ids into the form so the postcard
+						// PDF endpoint (qslpostcard/pdfselected) receives them. The
+						// form owns the action button: it picks the chosen template
+						// and POSTs the ids to render the PDF download.
+						var $ids = $('#qslcard_selected_ids');
+						if ($ids.length) {
+							$ids.empty();
+							$.each(id_list, function (i, id) {
+								$('<input>').attr({ type: 'hidden', name: 'selected_ids[]' }).val(id).appendTo($ids);
+							});
+						}
+						$('#btnPrintQslCard').off('click').on('click', function () {
+							var tplId = $('#qslcard_template_id').val();
+							if (!tplId) {
+								return;
+							}
+							var $form = $('#printQslCardForm');
+							$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
+							$form.attr('target', '_blank');
+							$form[0].submit();
+							dialog.close();
+						});
+					},
+					buttons: [{
+						label: lang_admin_close,
+						cssClass: 'btn btn-secondary btn-sm',
+						action: function (dialogItself) {
+							$('#printQslCard').prop("disabled", false);
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						$('#printQslCard').prop("disabled", false);
 					},
 				});
 			}

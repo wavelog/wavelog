@@ -24,6 +24,10 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	private function sanitize_utf8(array $data): array {
+		return array_map(fn($v) => is_string($v) ? mb_convert_encoding($v, 'UTF-8', 'UTF-8') : $v, $data);
+	}
+
 	/* Add QSO to Logbook */
 	function create_qso($qso_data, $use_custom_date_format = true) {
 		// Get user-preferred date format
@@ -906,8 +910,9 @@ class Logbook_model extends CI_Model {
 
 		// Add QSO to database
 		if ($batchmode) {
-			return $data;
+			return $this->sanitize_utf8($data);
 		} else {
+			$data = $this->sanitize_utf8($data);
 			$this->db->insert($this->config->item('table_name'), $data);
 
 			$last_id = $this->db->insert_id();
@@ -1791,6 +1796,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
+		$data = $this->sanitize_utf8($data);
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
@@ -4353,6 +4359,8 @@ class Logbook_model extends CI_Model {
 
 			$sql = "SELECT
 				-- Country stats (COUNT DISTINCT - filtered to valid DXCC only)
+				-- Callsign stats
+				COUNT(DISTINCT t.COL_CALL) as Unique_Callsigns,
 				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked,
 				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_QSL,
 				COUNT(DISTINCT CASE WHEN t.COL_EQSL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_EQSL,
@@ -4392,6 +4400,7 @@ class Logbook_model extends CI_Model {
 				$row = $query->row();
 				return [
 					// Country stats
+				'Unique_Callsigns' => $row->Unique_Callsigns,
 					'Countries_Worked' => $row->Countries_Worked,
 					'Countries_Worked_QSL' => $row->Countries_Worked_QSL,
 					'Countries_Worked_EQSL' => $row->Countries_Worked_EQSL,
@@ -5538,7 +5547,7 @@ class Logbook_model extends CI_Model {
 				'COL_HRDLOG_QSO_UPLOAD_STATUS' => (!empty($record['hrdlog_qso_upload_status'])) ? $record['hrdlog_qso_upload_status'] : '',
 				'COL_IOTA' => (!empty($record['iota'])) ? $record['iota'] : '',
 				'COL_ITUZ' => (!empty($record['ituz'])) ? $record['ituz'] : null,
-				'COL_K_INDEX' => (!empty($record['k_index'])) ? $record['k_index'] : null,
+				'COL_K_INDEX' => (isset($record['k_index']) && is_numeric($record['k_index'])) ? $record['k_index'] : null,
 				'COL_LAT' => $input_lat,
 				'COL_LON' => $input_lon,
 				'COL_LOTW_QSL_RCVD' => $input_lotw_qsl_rcvd,
@@ -5627,7 +5636,7 @@ class Logbook_model extends CI_Model {
 				'COL_RX_PWR' => (is_numeric($rx_pwr) ? $rx_pwr : null),
 				'COL_SAT_MODE' => (!empty($record['sat_mode'])) ? $record['sat_mode'] : '',
 				'COL_SAT_NAME' => (!empty($record['sat_name'])) ? $record['sat_name'] : '',
-				'COL_SFI' => (!empty($record['sfi'])) ? $record['sfi'] : null,
+				'COL_SFI' => (isset($record['sfi']) && is_numeric($record['sfi'])) ? $record['sfi'] : null,
 				'COL_SIG' => (!empty($record['sig'])) ? $record['sig'] : '',
 				'COL_SIG_INFO' => $sig_info,
 				'COL_SIG_INFO_INTL' => $sig_info_intl,
@@ -5687,12 +5696,12 @@ class Logbook_model extends CI_Model {
 					$data['COL_MY_SIG'] = strtoupper(trim($row['station_sig'] ?? ''));
 					$data['COL_MY_SIG_INFO'] = strtoupper(trim($row['station_sig_info'] ?? ''));
 
-					$data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign']));
-					$data['COL_MY_DXCC'] = strtoupper(trim($row['station_dxcc']));
-					$data['COL_MY_COUNTRY'] = strtoupper(trim($row['station_country']));
+					$data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign'] ?? ''));
+					$data['COL_MY_DXCC'] = strtoupper(trim($row['station_dxcc'] ?? ''));
+					$data['COL_MY_COUNTRY'] = strtoupper(trim($row['station_country'] ?? ''));
 					$data['COL_MY_CNTY'] = strtoupper(trim($row['station_cnty'] ?? ''));
-					$data['COL_MY_CQ_ZONE'] = strtoupper(trim($row['station_cq']));
-					$data['COL_MY_ITU_ZONE'] = strtoupper(trim($row['station_itu']));
+					$data['COL_MY_CQ_ZONE'] = strtoupper(trim($row['station_cq'] ?? ''));
+					$data['COL_MY_ITU_ZONE'] = strtoupper(trim($row['station_itu'] ?? ''));
 				}
 			}
 
@@ -5904,6 +5913,37 @@ class Logbook_model extends CI_Model {
 		$this->db->where(array('COL_PRIMARY_KEY' => $key));
 		$this->db->update($this->config->item('table_name'), $data);
 		return;
+	}
+
+	/**
+	 * Sets the display contest name (contest_name) in logbook
+	 *
+	 * @param int $qso_id The ID of the QSO.
+	 * @param int $contest_adif_id The contest adif id, if 0 empty
+	 * @return bool True on success, false on failure.
+	 */
+	function set_contest($qso_id, $contest_adif_id) {
+
+
+		if ($contest_adif_id != 0) {
+
+			$getName = "SELECT id, name FROM contest WHERE active = 1 AND id = ?;";
+			$nameQuery = $this->db->query($getName, $contest_adif_id);
+
+			$nameRow = $nameQuery->row() ? $nameQuery->row()->name : '';
+
+		} else {
+			$nameRow = '';
+		}
+
+		$data = array(
+			'COL_CONTEST_ID ' => xss_clean($nameRow),
+		);
+
+		$this->db->where(array('COL_PRIMARY_KEY' => $qso_id));
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return true;
 	}
 
 	function mark_dcl_rcvd($key) {

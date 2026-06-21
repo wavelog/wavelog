@@ -1,5 +1,14 @@
 let qsoDialogInstance = null;
 
+function removeQslRow(id) {
+	var $row = $("#qslprint_" + id);
+	if ($.fn.dataTable.isDataTable('#qslprint_table')) {
+		$('#qslprint_table').DataTable().row($row).remove().draw(false);
+	} else {
+		$row.remove();
+	}
+}
+
 function deleteFromQslQueue(id) {
 	BootstrapDialog.confirm({
 		title: 'DANGER',
@@ -9,14 +18,16 @@ function deleteFromQslQueue(id) {
 		draggable: true,
 		btnOKClass: 'btn-danger',
 		callback: function(result) {
-			$.ajax({
-				url: base_url + 'index.php/qslprint/delete_from_qsl_queue',
-				type: 'post',
-				data: {'id': id	},
-				success: function(html) {
-					$("#qslprint_"+id).remove();
-				}
-			});
+			if(result) {
+				$.ajax({
+					url: base_url + 'index.php/qslprint/delete_from_qsl_queue',
+					type: 'post',
+					data: {'id': id	},
+					success: function(html) {
+						removeQslRow(id);
+					}
+				});
+			}
 		}
 	});
 }
@@ -48,35 +59,23 @@ function openQsoList(callsign) {
 }
 
 function addQsoToPrintQueue(id) {
-    $.ajax({
-        url: base_url + 'index.php/qslprint/get_previous_qsl',
+	$.ajax({
+        url: base_url + 'index.php/qslprint/add_qso_to_print_queue',
         type: 'post',
-        data: { 'id': id },
-        success: function(result) {
-            let prev_qsl = result;
-            let prev_qsl_html;
-
-            if (prev_qsl > 0) {
-                prev_qsl_html = '<span class="badge bg-warning">' + prev_qsl + '</span>';
-            } else {
-                prev_qsl_html = '<span class="badge bg-success">0</span>';
-            }
-
-            $.ajax({
-                url: base_url + 'index.php/qslprint/add_qso_to_print_queue',
-                type: 'post',
-				data: {'id': id},
-                success: function(html) {
+		data: {'id': id},
+        success: function(html) {
 					if (qsoDialogInstance) {
                         qsoDialogInstance.close();
                     }
                     let callSign = $("#qsolist_"+id).find("td:eq(0)").text();
                     let formattedCallSign = callSign.replace(/0/g, "Ø").toUpperCase();
+                    // Plain callsign (with 0, not Ø) for the DataTables search source
+                    let searchCallSign = formattedCallSign.replace(/Ø/g, "0");
                     let line = '<tr id="qslprint_'+id+'">';
 					let freq_or_band = $('#frequency_or_band').val();
 
 					line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
-                    line += '<td style="text-align: center">';
+                    line += '<td style="text-align: center" data-search="' + searchCallSign + '">';
                     line += '<span class="qso_call">';
                     line += '<a id="edit_qso" href="javascript:displayQso(' + id + ');">';
                     line += formattedCallSign;
@@ -92,14 +91,12 @@ function addQsoToPrintQueue(id) {
                     line += '</a>';
                     line += '</span>';
                     line += '</td>';
-
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(3)").text()+'</td>';
 					if (freq_or_band === 'band') {
 						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
 						line += '<td class=\'col-freq\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
-
 					} else if (freq_or_band === 'frequency') {
 						line += '<td class=\'col-band\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
 						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
@@ -113,23 +110,23 @@ function addQsoToPrintQueue(id) {
 					line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(8)").text()+'</span></td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(9)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(11)").text()+'</td>';
-					line += '<td style="text-align: center">'+prev_qsl_html+'</td>';
+					let prev_qsl_html = $("#qsolist_"+id).find("td:eq(12)").html();
+					line += '<td style=\'text-align: center; white-space: nowrap;\'>'+prev_qsl_html+'</td>';
 					line += '<td style=\'text-align: center\'><button onclick="mark_qsl_sent('+id+', \'B\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
 					line += '<td style=\'text-align: center\'><button onclick="deleteFromQslQueue('+id+')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td></td>';
 					line += '<td style=\'text-align: center\'><button onclick="openQsoList(\''+$("#qsolist_"+id).find("td:eq(0)").text()+'\')" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button></td>';
                     line += '</tr>';
-                    $('#qslprint_table tr:last').after(line);
+                    if ($.fn.dataTable.isDataTable('#qslprint_table')) {
+                        $('#qslprint_table').DataTable().row.add($(line)).draw(false);
+                    } else {
+                        $('#qslprint_table tr:last').after(line);
+                    }
                     $("#qsolist_"+id).remove();
                 },
                 error: function() {
-                    console.error('Error adding QSO to print queue.');
-                }
+					console.error('Error adding QSO to print queue.');
+				}
             });
-        },
-        error: function() {
-            console.error('Error fetching previous QSL.');
-        }
-    });
 }
 
 $(".station_id").change(function(){
@@ -146,9 +143,19 @@ $(".station_id").change(function(){
 });
 
 $('#qslprint_table').DataTable({
-	"stateSave": true,
-	paging: false,
-	"language": {
+	stateSave: true,
+	ordering: true,
+	order: [],
+	columnDefs: [
+		{ orderable: false, targets: 0 }
+	],
+	pageLength: 25,
+	lengthMenu: [
+		[10, 25, 50, 100, -1],
+		[10, 25, 50, 100, lang_export_qslprint_pagination_all]
+	],
+	paging: 'pagination',
+	language: {
 		url: getDataTablesLanguageUrl(),
 	}
 });
@@ -188,7 +195,7 @@ function mark_qsl_sent(id, method) {
         },
         success: function(data) {
             if (data.message == 'OK') {
-                $("#qslprint_" + id).remove(); // removes choice from menu
+                removeQslRow(id); // removes choice from menu
             }
             else {
                 $(".container").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
@@ -250,7 +257,7 @@ function markSelectedQsos() {
 		success: function(data) {
 			if (data !== []) {
 				$.each(data, function(k, v) {
-					$("#qslprint_"+this.qsoID).remove();
+					removeQslRow(this.qsoID);
 				});
 			}
 			$('.markallprinted').prop("disabled", false);
@@ -284,7 +291,7 @@ function removeSelectedQsos() {
 		success: function(data) {
 			if (data !== []) {
 				$.each(data, function(k, v) {
-					$("#qslprint_"+this.qsoID).remove();
+					removeQslRow(this.qsoID);
 				});
 			}
 			$('.removeall').prop("disabled", false);

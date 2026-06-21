@@ -253,17 +253,28 @@ class adif_data extends CI_Model {
 		}
 	}
 
-	function export_past_id_chunked($station_id, $fetchfromid, $limit, $onlyop = null, $offset = 0, $chunk_size = 5000, $qsl_filter = null, $band = null) {
+	function export_past_id_chunked($station_ids, $fetchfromid, $limit, $onlyop = null, $offset = 0, $chunk_size = 5000, $qsl_filter = null, $band = null) {
 		$tbl = $this->config->item('table_name');
+
+		//normalize to array of ints (accepts legacy scalar as well)
+		if (!is_array($station_ids)) {
+			$station_ids = [$station_ids];
+		}
+		$station_ids = array_map('intval', $station_ids);
+		if (empty($station_ids)) {
+			return $this->db->query("SELECT * FROM {$tbl} WHERE 1=0");
+		}
+
+		$placeholders = implode(', ', array_fill(0, count($station_ids), '?'));
 
 		$sql = "SELECT {$tbl}.*, station_profile.*, dxcc_entities.name AS station_country
 		        FROM {$tbl}
 		        JOIN station_profile ON station_profile.station_id = {$tbl}.station_id
 		        LEFT OUTER JOIN dxcc_entities ON station_profile.station_dxcc = dxcc_entities.adif
-		        WHERE {$tbl}.station_id = ?
+		        WHERE {$tbl}.station_id IN ({$placeholders})
 		        AND {$tbl}.COL_PRIMARY_KEY > ?";
 
-		$bindings = [$station_id, $fetchfromid];
+		$bindings = array_merge($station_ids, [$fetchfromid]);
 
 		if ($onlyop) {
 			$sql .= " AND UPPER({$tbl}.col_operator) = ?";

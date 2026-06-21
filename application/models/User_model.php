@@ -213,7 +213,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: bool add($username, $password, $email, $type)
 	// Add a user
 	// !!!!!!!!!!!!!!!!
-	// !! IMPORTANT NOTICE: Please inform DJ7NT and/or DF2ET when adding/removing/changing parameters here. 
+	// !! IMPORTANT NOTICE: Please inform DJ7NT and/or DF2ET when adding/removing/changing parameters here.
 	// !! Also make sure you modify Header_auth::_create_user accordingly, otherwise SSO user creation will break.
 	// !! Also modify User_model::update_sso_claims with attributes that can be modified by IdP
 	// !!!!!!!!!!!!!!!!
@@ -424,6 +424,8 @@ class User_Model extends CI_Model {
 				$this->session->set_userdata('user_dashboard_map',xss_clean($fields['user_dashboard_map'] ?? 'Y'));
 				$this->session->set_userdata('user_dashboard_banner',xss_clean($fields['user_dashboard_banner'] ?? 'Y'));
 				$this->session->set_userdata('user_dashboard_solar',xss_clean($fields['user_dashboard_solar'] ?? 'N'));
+				$this->session->set_userdata('user_dashboard_show_dxpeditions',xss_clean($fields['user_dashboard_show_dxpeditions'] ?? '1'));
+				$this->session->set_userdata('user_dashboard_show_contests',xss_clean($fields['user_dashboard_show_contests'] ?? '1'));
 				$this->session->set_userdata('user_dxwaterfall_enable',xss_clean($fields['user_dxwaterfall_enable'] ?? 'N'));
 
 				// Check to see if the user is allowed to change user levels
@@ -528,7 +530,12 @@ class User_Model extends CI_Model {
 			$this->db->query("DELETE FROM queries WHERE userid = ?",$user_id);
 			$this->db->query("DELETE FROM station_profile WHERE user_id = ?",$user_id);
 			$this->db->query("DELETE FROM station_logbooks WHERE user_id = ?",$user_id);
-			$this->db->query("DELETE FROM user_options WHERE user_id=?",$user_id);
+			$this->db->query("DELETE FROM user_options WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM qsl_postcard_templates WHERE user_id = ?",$user_id);
+			if (!$this->paths->delete_user_files($user_id)) {
+				log_message('error', 'Failed to delete files for user ID ' . $user_id . '. Delete them manually to free up disk space.');
+			}
+
 			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
 			return 1;
 		} else {
@@ -569,73 +576,82 @@ class User_Model extends CI_Model {
 		if (!$u) {
 			return false;
 		}
+		$u = $u->row();
 
-		$token = $this->session->userdata('session_token') ?: NULL;
+		// Load all user options once instead of querying per setting below
+		$user_options = $this->user_options_model->get_all_options_for_user($u->user_id);
+
+		// Read sessiondata once
+		$sess = $this->session->userdata();
+
+		$token = $sess['session_token'] ?? NULL;
 		if (!$token) {
 			$token = bin2hex(random_bytes(32));
 		}
 
 		$userdata = array(
-			'user_id'		 => $u->row()->user_id,
-			'user_name'		 => $u->row()->user_name,
-			'user_email'		 => $u->row()->user_email,
-			'user_type'		 => $u->row()->user_type,
-			'user_callsign'		 => $u->row()->user_callsign,
-			'operator_callsign'	 => ((($this->session->userdata('operator_callsign') ?? '') == '') ? $u->row()->user_callsign : $this->session->userdata('operator_callsign')),
-			'user_locator'		 => $u->row()->user_locator,
-			'user_lotw_name'	 => $u->row()->user_lotw_name,
-			'user_clublog_name'	 => $u->row()->user_clublog_name ?? '',
-			'user_eqsl_name'	 => $u->row()->user_eqsl_name,
-			'user_eqsl_qth_nickname' => $u->row()->user_eqsl_qth_nickname,
-			'user_hash'		     => $this->_session_hash($u->row()->user_id . $u->row()->user_type . $token),
-			'session_token'		 => $token,
-			'radio' => ((($this->session->userdata('radio') ?? '') == '') ? $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '' : $this->session->userdata('radio')),
-			'station_profile_id' => $this->session->userdata('station_profile_id') ?? '',
-			'user_measurement_base' => $u->row()->user_measurement_base,
-			'user_dashboard_map' => ((($this->session->userdata('user_dashboard_map') ?? 'Y') == 'Y') ? $this->user_options_model->get_options('dashboard', array('option_name' => 'show_map', 'option_key' => 'boolean'))->row()->option_value ?? 'Y' : $this->session->userdata('user_dashboard_map')),
-			'user_dashboard_banner' => ((($this->session->userdata('user_dashboard_banner') ?? 'Y') == 'Y') ? $this->user_options_model->get_options('dashboard', array('option_name' => 'show_dashboard_banner', 'option_key' => 'boolean'))->row()->option_value ?? 'Y' : $this->session->userdata('user_dashboard_banner')),
-			'user_dashboard_solar' => ((($this->session->userdata('user_dashboard_solar') ?? 'N') == 'Y') ? $this->session->userdata('user_dashboard_solar') : $this->user_options_model->get_options('dashboard', array('option_name' => 'show_dashboard_solar', 'option_key' => 'boolean'))->row()->option_value ?? 'N'),
-			'user_qso_db_search_priority' => ((($this->session->userdata('user_qso_db_search_priority') ?? 'Y') == 'Y') ? $this->session->userdata('user_qso_db_search_priority') : $this->user_options_model->get_options('qso_db_search_priority', array('option_name' => 'enable', 'option_key' => 'boolean'))->row()->option_value ?? 'Y'),
-			'user_dxwaterfall_enable' => ((($this->session->userdata('user_dxwaterfall_enable') ?? 'N') == 'Y') ? $this->session->userdata('user_dxwaterfall_enable') : $this->user_options_model->get_options('dxwaterfall', array('option_name' => 'enable', 'option_key' => 'boolean'))->row()->option_value ?? 'N'),
-			'user_date_format' => $u->row()->user_date_format,
-			'user_stylesheet' => $u->row()->user_stylesheet,
-			'user_qth_lookup' => isset($u->row()->user_qth_lookup) ? $u->row()->user_qth_lookup : 0,
-			'user_sota_lookup' => isset($u->row()->user_sota_lookup) ? $u->row()->user_sota_lookup : 0,
-			'user_wwff_lookup' => isset($u->row()->user_wwff_lookup) ? $u->row()->user_wwff_lookup : 0,
-			'user_pota_lookup' => isset($u->row()->user_pota_lookup) ? $u->row()->user_pota_lookup : 0,
-			'user_show_notes' => isset($u->row()->user_show_notes) ? $u->row()->user_show_notes : 1,
-			'user_show_profile_image' => isset($u->row()->user_show_profile_image) ? $u->row()->user_show_profile_image : 0,
-			'user_column1' => isset($u->row()->user_column1) ? $u->row()->user_column1: 'Mode',
-			'user_column2' => isset($u->row()->user_column2) ? $u->row()->user_column2: 'RSTS',
-			'user_column3' => isset($u->row()->user_column3) ? $u->row()->user_column3: 'RSTR',
-			'user_column4' => isset($u->row()->user_column4) ? $u->row()->user_column4: 'Band',
-			'user_column5' => isset($u->row()->user_column5) ? $u->row()->user_column5: 'Country',
-			'user_previous_qsl_type' => isset($u->row()->user_previous_qsl_type) ? $u->row()->user_previous_qsl_type: 0,
-			'user_amsat_status_upload' => isset($u->row()->user_amsat_status_upload) ? $u->row()->user_amsat_status_upload: 0,
-			'user_mastodon_url'	 => $u->row()->user_mastodon_url,
-			'user_default_band'	 => $u->row()->user_default_band,
-			'user_default_confirmation'	 => $u->row()->user_default_confirmation,
-			'user_qso_end_times' => isset($u->row()->user_qso_end_times) ? $u->row()->user_qso_end_times : 1,
-			'user_quicklog' => isset($u->row()->user_quicklog) ? $u->row()->user_quicklog : 1,
-			'user_quicklog_enter' => isset($u->row()->user_quicklog_enter) ? $u->row()->user_quicklog_enter : 1,
-			'active_station_logbook' => $u->row()->active_station_logbook,
-			'user_language' => isset($u->row()->user_language) ? $u->row()->user_language: 'english',
-			'isWinkeyEnabled' => $u->row()->winkey,
-			'FirstLoginWizard' => ((($this->session->userdata('FirstLoginWizard') ?? '') == '') ? ($this->user_options_model->get_options('FirstLoginWizard', 'shown')->row()->option_value ?? null) : $this->session->userdata('FirstLoginWizard')),
-			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
-			'impersonate' => $this->session->userdata('impersonate') ?? false,
-			'clubstation' => $u->row()->clubstation,
-			'dashboard_last_qso_count' => ($this->session->userdata('dashboard_last_qso_count') ?? '') == '' ? ($this->user_options_model->get_options('dashboard', array('option_name' => 'last_qso_count', 'option_key' => 'count'))->row()->option_value ?? '') : $this->session->userdata('dashboard_last_qso_count'),
-			'qso_page_last_qso_count' => ($this->session->userdata('qso_page_last_qso_count') ?? '') == '' ? ($this->user_options_model->get_options('qso_tab', array('option_name' => 'last_qso_count', 'option_key' => 'count'))->row()->option_value ?? '') : $this->session->userdata('qso_page_last_qso_count'),
-			'source_uid' => $this->session->userdata('source_uid') ?? ''
+			'user_id'		 				=> $u->user_id,
+			'user_name'		 				=> $u->user_name,
+			'user_email'		 			=> $u->user_email,
+			'user_type'		 				=> $u->user_type,
+			'user_callsign'		 			=> $u->user_callsign,
+			'operator_callsign'	 			=> ((($sess['operator_callsign'] ?? '') == '') ? $u->user_callsign : $sess['operator_callsign']),
+			'user_locator'		 			=> $u->user_locator,
+			'user_lotw_name'	 			=> $u->user_lotw_name,
+			'user_clublog_name'	 			=> $u->user_clublog_name ?? '',
+			'user_eqsl_name'	 			=> $u->user_eqsl_name,
+			'user_eqsl_qth_nickname' 		=> $u->user_eqsl_qth_nickname,
+			'user_hash'		     			=> $this->_session_hash($u->user_id . $u->user_type . $token),
+			'session_token'		 			=> $token,
+			'radio' 						=> ((($sess['radio'] ?? '') == '') ? ($user_options['cat']['default_radio']['radio_id'] ?? '') : $sess['radio']),
+			'station_profile_id' 			=> $sess['station_profile_id'] ?? '',
+			'user_measurement_base' 		=> $u->user_measurement_base,
+			'user_dashboard_map' 			=> ((($sess['user_dashboard_map'] ?? 'Y') == 'Y') ? ($user_options['dashboard']['show_map']['boolean'] ?? 'Y') : ($sess['user_dashboard_map'] ?? 'Y')),
+			'user_dashboard_banner' 		=> ((($sess['user_dashboard_banner'] ?? 'Y') == 'Y') ? ($user_options['dashboard']['show_dashboard_banner']['boolean'] ?? 'Y') : ($sess['user_dashboard_banner'] ?? 'Y')),
+			'user_dashboard_solar' 			=> ((($sess['user_dashboard_solar'] ?? 'N') == 'Y') ? ($sess['user_dashboard_solar'] ?? 'N') : ($user_options['dashboard']['show_dashboard_solar']['boolean'] ?? 'N')),
+			'user_dashboard_show_dxpeditions' => ((($sess['user_dashboard_show_dxpeditions'] ?? '0') == '1') ? ($sess['user_dashboard_show_dxpeditions'] ?? '0') : ($user_options['dashboard']['show_dxpeditions']['boolean'] ?? '0')),
+			'user_dashboard_show_contests' 	=> ((($sess['user_dashboard_show_contests'] ?? '0') == '1') ? ($sess['user_dashboard_show_contests'] ?? '0') : ($user_options['dashboard']['show_contests']['boolean'] ?? '0')),
+			'user_qso_db_search_priority' 	=> ((($sess['user_qso_db_search_priority'] ?? 'Y') == 'Y') ? ($sess['user_qso_db_search_priority'] ?? 'Y') : ($user_options['qso_db_search_priority']['enable']['boolean'] ?? 'Y')),
+			'user_dxwaterfall_enable' 		=> ((($sess['user_dxwaterfall_enable'] ?? 'N') == 'Y') ? ($sess['user_dxwaterfall_enable'] ?? 'N') : ($user_options['dxwaterfall']['enable']['boolean'] ?? 'N')),
+			'user_date_format' 				=> $u->user_date_format,
+			'user_stylesheet' 				=> $u->user_stylesheet,
+			'user_qth_lookup' 				=> isset($u->user_qth_lookup) ? $u->user_qth_lookup : 0,
+			'user_sota_lookup' 				=> isset($u->user_sota_lookup) ? $u->user_sota_lookup : 0,
+			'user_wwff_lookup' 				=> isset($u->user_wwff_lookup) ? $u->user_wwff_lookup : 0,
+			'user_pota_lookup' 				=> isset($u->user_pota_lookup) ? $u->user_pota_lookup : 0,
+			'user_show_notes' 				=> isset($u->user_show_notes) ? $u->user_show_notes : 1,
+			'user_show_profile_image' 		=> isset($u->user_show_profile_image) ? $u->user_show_profile_image : 0,
+			'user_column1' 					=> isset($u->user_column1) ? $u->user_column1: 'Mode',
+			'user_column2' 					=> isset($u->user_column2) ? $u->user_column2: 'RSTS',
+			'user_column3' 					=> isset($u->user_column3) ? $u->user_column3: 'RSTR',
+			'user_column4' 					=> isset($u->user_column4) ? $u->user_column4: 'Band',
+			'user_column5' 					=> isset($u->user_column5) ? $u->user_column5: 'Country',
+			'user_previous_qsl_type' 		=> isset($u->user_previous_qsl_type) ? $u->user_previous_qsl_type: 0,
+			'user_amsat_status_upload' 		=> isset($u->user_amsat_status_upload) ? $u->user_amsat_status_upload: 0,
+			'user_mastodon_url'				=> $u->user_mastodon_url,
+			'user_default_band'	 			=> $u->user_default_band,
+			'user_default_confirmation'	 	=> $u->user_default_confirmation,
+			'user_qso_end_times' 			=> isset($u->user_qso_end_times) ? $u->user_qso_end_times : 1,
+			'user_quicklog' 				=> isset($u->user_quicklog) ? $u->user_quicklog : 1,
+			'user_quicklog_enter' 			=> isset($u->user_quicklog_enter) ? $u->user_quicklog_enter : 1,
+			'active_station_logbook' 		=> $u->active_station_logbook,
+			'user_language' 				=> isset($u->user_language) ? $u->user_language: 'english',
+			'isWinkeyEnabled' 				=> $u->winkey,
+			'FirstLoginWizard' 				=> ((($sess['FirstLoginWizard'] ?? '') == '') ? ($user_options['FirstLoginWizard']['showed']['boolean'] ?? null) : $sess['FirstLoginWizard']),
+			'hasQrzKey' 					=> $this->hasQrzKey($u->user_id),
+			'impersonate' 					=> $sess['impersonate'] ?? false,
+			'clubstation' 					=> $u->clubstation,
+			'dashboard_last_qso_count' 		=> ($sess['dashboard_last_qso_count'] ?? '') == '' ? ($user_options['dashboard']['last_qso_count']['count'] ?? '') : $sess['dashboard_last_qso_count'],
+			'qso_page_last_qso_count' 		=> ($sess['qso_page_last_qso_count'] ?? '') == '' ? ($user_options['qso_tab']['last_qso_count']['count'] ?? '') : $sess['qso_page_last_qso_count'],
+			'source_uid' 					=> $sess['source_uid'] ?? ''
 		);
 
 		if ($this->config->item('special_callsign')) {
-			$userdata['available_clubstations'] = $this->get_clubstations($u->row()->user_id) ?? 'none';
+			$userdata['available_clubstations'] = $this->get_clubstations($u->user_id) ?? 'none';
 		}
 
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
-			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band), $u->row()->user_id)->row()->option_value ?? '');
+			$qrg_unit = $sess["qrgunit_$band"] ?? ($user_options['frequency']['unit'][$band] ?? '');
 			if ($qrg_unit !== '') {
 				$userdata['qrgunit_'.$band] = $qrg_unit;
 			} else {
@@ -644,7 +660,7 @@ class User_Model extends CI_Model {
 		}
 
 		// Restore custom data in impersonation mode
-		foreach ($this->session->userdata() as $key => $value) {
+		foreach ($sess as $key => $value) {
 			if (substr($key, 0, 3) == 'cd_') {
 				$userdata[$key] = $value;
 			}
@@ -653,7 +669,7 @@ class User_Model extends CI_Model {
 		// Overrides
 		if ($impersonate) {
 			$userdata['impersonate'] = true;
-			$userdata['available_clubstations'] = $this->get_clubstations($u->row()->user_id);
+			$userdata['available_clubstations'] = $this->get_clubstations($u->user_id);
 		}
 		if ($userdata['clubstation'] == 1) {
 			$userdata['available_clubstations'] = 'none';

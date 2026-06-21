@@ -135,12 +135,15 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qso?manual=1'); ?>" title="Log QSO made in the past"><i class="fas fa-list"></i> <?= __("Post QSO"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('simplefle'); ?>" title="Simple Fast Log Entry"><i class="fas fa-list"></i> <?= __("Simple Fast Log Entry"); ?></a></li>
-								<?php if (clubaccess_check(99)) { ?> <!-- Club Access Check -->
+							</ul>
+						</li>
+
+						<li class="nav-item dropdown"> <!-- CONTEST -->
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Contest"); ?></a>
+							<ul class="dropdown-menu header-dropdown">
+								<li><a class="dropdown-item" href="<?php echo site_url('contesting/quickstart'); ?>" target="_blank" title="<?= __("Quick Start"); ?>"><i class="fas fa-list"></i> <?= __("Quick Start"); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=0'); ?>" title="Live contest QSOs"><i class="fas fa-list"></i> <?= __("Live Contest Logging"); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=1'); ?>" title="Post contest QSOs"><i class="fas fa-list"></i> <?= __("Post Contest Logging"); ?></a></li>
-								<?php } ?>
+								<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="<?= __("Manage Contests"); ?>"><i class="fas fa-list"></i> <?= __("Manage Contests"); ?></a></li>
 							</ul>
 						</li>
 
@@ -183,7 +186,7 @@
 							</ul>
 						</li>
 						<li class="nav-item dropdown"> <!-- AWARDS -->
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Awards"); ?></a>
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Awards"); ?></a>
 							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> <?= __("International"); ?></a>
 									<ul class="submenu dropdown-menu">
@@ -210,6 +213,7 @@
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#"><i class="fas fa-satellite"></i> <?= __("Satellite"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/seven3on73'); ?>"><i class="fas fa-trophy"></i> <?= __("73 on 73"); ?></a></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('awards/amsat_rover'); ?>"><i class="fas fa-trophy"></i> <?= __("AMSAT Rover"); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
@@ -333,7 +337,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('mode'); ?>" title="Manage QSO modes"><i class="fas fa-broadcast-tower"></i> <?= __("Modes"); ?></a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?= __("Contests"); ?></a>
+								<a class="dropdown-item" href="<?php echo site_url('contest_admin/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?= __("Contests"); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellites"); ?></a>
 								<div class="dropdown-divider"></div>
@@ -490,9 +494,9 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('reg1test'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
 									</ul>
 								</li>
 
@@ -516,6 +520,11 @@
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="<?= __("QSL Queue"); ?>"><i class="fas fa-print"></i> <?= __("QSL Queue"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?= __("Labels"); ?></a></li>
+								<li>
+									<a class="dropdown-item" href="<?php echo site_url('qslpostcard'); ?>">
+										<i class="fas fa-id-card"></i> <?= __("QSL Postcard Designer"); ?>
+									</a>
+								</li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Third-Party Services"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
@@ -560,6 +569,9 @@
 											<i class="fas fa-exchange-alt"></i> <?= sprintf(__("Switch back to %s"), $this->session->userdata('cd_src_call') ?? ''); ?>
 										</button>
 									</li>
+								<?php } ?>
+								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 1 && empty($this->session->userdata('source_uid'))) { ?>
+									<li><a class="dropdown-item" href="javascript:displayOperatorDialog();" title="<?= __("Switch Operator"); ?>"><i class="fas fa-user-friends"></i> <?= __("Switch Operator"); ?></a></li>
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?= __("Logout"); ?></a></li>
 							</ul>

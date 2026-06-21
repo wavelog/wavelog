@@ -1,4 +1,9 @@
-<div class="modal fade bg-black bg-opacity-50" id="operatorModal" tabindex="-1" aria-labelledby="operatorLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<?php
+$op_call = $this->session->userdata('operator_callsign');
+$account_call = $this->session->userdata('user_callsign');
+$dismissible = ($op_call !== $account_call);
+?>
+<div class="modal fade bg-black bg-opacity-50" id="operatorModal" tabindex="-1" aria-labelledby="operatorLabel" aria-hidden="true"<?php if (!$dismissible): ?> data-bs-backdrop="static" data-bs-keyboard="false"<?php endif; ?>>
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,12 +19,16 @@
                             <input type="text" class="form-control w-auto uppercase" id="operator_callsign" name="operator_callsign">
                             <div class="invalid-feedback">
                                 <?= __("You have to provide your personal callsign."); ?>
+                                <?= __("No pre-/suffix allowed."); ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
+                <?php if ($dismissible): ?>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                <?php endif; ?>
                 <button class="btn btn-primary" onclick="saveOperator()"><?= __("Save"); ?></button>
             </div>
         </div>

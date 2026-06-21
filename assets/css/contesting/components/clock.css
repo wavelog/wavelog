@@ -1,0 +1,24 @@
+.clock-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  container-type: size;
+}
+
+.clock-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock-display .time {
+  font-size: min(100cqh, 18cqw);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.window-body.clock-containers {
+    padding: 2px;
+}

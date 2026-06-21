@@ -53,6 +53,23 @@ class cron extends CI_Controller {
 
 		// This is the main function, which handles all crons, runs them if enabled and writes the 'next run' timestamp to the database
 
+		// Rate limit: this function may only be triggered once every minute. To prevent attack vectors we lock the cron runner for 30 seconds after it's last run.
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
+		$rate_limit_key = 'cron_run_rate_limit';
+		if ($this->cache->get($rate_limit_key) !== false) {
+			http_response_code(429); // Too Many Requests
+			log_message('debug', 'CRON: run() called within the 30s rate limit window, skipping.');
+			echo "CRON: rate limit active, skipping. Try again in a few seconds.\n";
+			return;
+		}
+		// Set the lock for 30 seconds
+		$this->cache->save($rate_limit_key, time(), 30);
+
 		// check for min. PHP version
 		if (version_compare(PHP_VERSION, $this->min_php_version) >= 0) {
 
@@ -162,8 +179,12 @@ class cron extends CI_Controller {
 	}
 
 	public function editDialog() {
-
-		$cron_query = $this->cron_model->cron(xss_clean($this->input->post('id', true)));
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		$cron_query = $this->cron_model->cron($this->input->post('id', true));
 
 		$data['cron'] = $cron_query->row();
 		$data['page_title'] = __("Edit Cronjob");
@@ -178,10 +199,10 @@ class cron extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		$id = xss_clean($this->input->post('cron_id', true));
-		$description = xss_clean($this->input->post('cron_description', true));
-		$expression = xss_clean($this->input->post('cron_expression', true));
-		$enabled = xss_clean($this->input->post('cron_enabled', true));
+		$id = $this->input->post('cron_id', true);
+		$description = $this->input->post('cron_description', true);
+		$expression = $this->input->post('cron_expression', true);
+		$enabled = $this->input->post('cron_enabled', true);
 
 		$data = array(
 			'expression' => $expression,
@@ -206,9 +227,14 @@ class cron extends CI_Controller {
 	}
 
 	public function toogleEnableCronSwitch() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'Not allowed']);
+			return;
+		}
 
-		$id = xss_clean($this->input->post('id', true));
-		$cron_enabled = xss_clean($this->input->post('checked', true));
+		$id = $this->input->post('id', true);
+		$cron_enabled = $this->input->post('checked', true);
 
 		if ($id ?? '' != '') {
 			$this->cron_model->set_cron_enabled($id, $cron_enabled);
@@ -221,6 +247,11 @@ class cron extends CI_Controller {
 	}
 
 	public function fetchCrons() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'Not allowed']);
+			return;
+		}
 		$hres = [];
 		$result = $this->cron_model->get_crons();
 
@@ -279,15 +310,15 @@ class cron extends CI_Controller {
 	private function get_mastercron_status() {
 		$warning_timelimit_seconds = 120; 	// yellow - warning please check
 		$error_timelimit_seconds = 600; 	// red - "not running"
-	
+
 		$result = array();
-	
+
 		$last_run = $this->optionslib->get_option('mastercron_last_run') ?? null;
-	
+
 		if ($last_run != null) {
 			$timestamp_last_run = DateTime::createFromFormat('Y-m-d H:i:s', $last_run, new DateTimeZone('UTC'));
-			$now = new DateTime(); 
-			$diff = $now->getTimestamp() - $timestamp_last_run->getTimestamp(); 
+			$now = new DateTime();
+			$diff = $now->getTimestamp() - $timestamp_last_run->getTimestamp();
 
 			if ($diff >= 0 && $diff <= $warning_timelimit_seconds) {
 				$result['status'] = __("OK");
@@ -305,8 +336,8 @@ class cron extends CI_Controller {
 			$result['status'] = _pgettext("Master Cron", "Not running");
 			$result['status_class'] = 'danger';
 		}
-	
+
 		return $result;
 	}
-		
+
 }
