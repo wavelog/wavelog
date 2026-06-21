@@ -261,7 +261,6 @@ class API extends CI_Controller {
 	function station_info($key = '') {
 		$this->load->model('api_model');
 		$this->load->model('stations');
-		$this->load->model('user_options_model');
 		header("Content-type: application/json");
 		if($this->api_model->authorize($key) > 0) { /* Check permission for reading */
 			$this->api_model->update_last_used($key);
