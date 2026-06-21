@@ -69,11 +69,13 @@ function addQsoToPrintQueue(id) {
                     }
                     let callSign = $("#qsolist_"+id).find("td:eq(0)").text();
                     let formattedCallSign = callSign.replace(/0/g, "Ø").toUpperCase();
+                    // Plain callsign (with 0, not Ø) for the DataTables search source
+                    let searchCallSign = formattedCallSign.replace(/Ø/g, "0");
                     let line = '<tr id="qslprint_'+id+'">';
 					let freq_or_band = $('#frequency_or_band').val();
 
 					line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
-                    line += '<td style="text-align: center">';
+                    line += '<td style="text-align: center" data-search="' + searchCallSign + '">';
                     line += '<span class="qso_call">';
                     line += '<a id="edit_qso" href="javascript:displayQso(' + id + ');">';
                     line += formattedCallSign;
