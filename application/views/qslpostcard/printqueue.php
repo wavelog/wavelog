@@ -33,6 +33,6 @@
     document.getElementById('btnPrintQueue').addEventListener('click', () => {
         const tpl = document.getElementById('template_id').value;
         // Print options come from the template's layout.options, not this form.
-        window.location.href = `<?= site_url('qslpostcard/pdfqueue') ?>/${tpl}`;
+        window.open(`<?= site_url('qslpostcard/pdfqueue') ?>/${tpl}`, '_blank');
     });
 </script>

@@ -2103,6 +2103,7 @@ $(document).ready(function () {
 							}
 							var $form = $('#printQslCardForm');
 							$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
+							$form.attr('target', '_blank');
 							$form[0].submit();
 							dialog.close();
 						});
