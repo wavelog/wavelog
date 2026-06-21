@@ -186,7 +186,7 @@ class Predict_TLE
         $tod     = $hours * 3600 + $minutes * 60 + $secs + ($micros / 1000000.0);
         $t->epoch_fod = $tod / 86400.0;
 
-        // Reconstruct YYDDD.FFFFFFFF for parity with TLE parser (propagator doesn't use it).
+        // Reconstruct YYDDD.FFFFFFFF — consumed by Predict_Sat via Julian_Date_of_Epoch($tle->epoch).
         $yy       = $dt->format('y');
         $t->epoch = (float) ($yy . sprintf('%03d', $t->epoch_day)) + $t->epoch_fod;
 
@@ -205,11 +205,21 @@ class Predict_TLE
         $t->revnum = isset($omm['REV_AT_EPOCH'])   ? (int) $omm['REV_AT_EPOCH']   : 0;
         $t->status = isset($omm['EPHEMERIS_TYPE']) ? (int) $omm['EPHEMERIS_TYPE'] : 0;
 
-        $t->xincl1  = null;
-        $t->xnodeo1 = null;
-        $t->omegao1 = null;
+        // xincl1/xnodeo1/omegao1 left unset; constructor doesn't init them either,
+        // SGPSDP writes them before any read. PHP defaults to null on access.
 
         return $t;
+    }
+
+    /**
+     * Sniff whether a stored `tle` column value is OMM JSON rather than two-line text.
+     * Single source of truth for the OMM/TLE branch across the codebase.
+     */
+    public static function isOmmJson($raw)
+    {
+        if (!is_string($raw)) { return false; }
+        $raw = ltrim($raw);
+        return $raw !== '' && ($raw[0] === '{' || $raw[0] === '[');
     }
 
     /* Calculates the checksum mod 10 of a line from a TLE set and */

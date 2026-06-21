@@ -98,12 +98,11 @@
 					?>
 					<?php echo '<td style="text-align: center; vertical-align: middle;">';
 				if ($sat->tle != null) {
-					$_tle_raw = trim($sat->tle);
-					$_tle_fmt = ($_tle_raw !== '' && ($_tle_raw[0] === '{' || $_tle_raw[0] === '[')) ? __("OMM") : __("TLE");
+					$_tle_fmt = preg_match('/^\s*[{[]/', $sat->tle) ? __("OMM") : __("TLE");
 					echo '<button class="btn btn-sm btn-success" onclick="editTle(' . $sat->id . ');" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.$_tle_fmt.'</i></button>';
 				} else {
-						echo '<button class="btn btn-sm btn-danger" onclick="editTle(' . $sat->id . ');">'.__("No").'</button>';
-					}
+					echo '<button class="btn btn-sm btn-danger" onclick="editTle(' . $sat->id . ');">'.__("No").'</button>';
+				}
 
 					echo '</td>';
 					?>

@@ -74,31 +74,18 @@ class Satellite_model extends CI_Model {
 	}
 
 	function saveTle($id, $tle) {
-		$trimmed = trim($tle);
-		$text = null;
+		$tlelines = explode("\n", trim($tle)); // Trim to remove extra spaces or newlines
+		$lineCount = count($tlelines);
 
-		// OMM JSON: store compact; validated at consume time like legacy TLE.
-		if ($trimmed !== '' && ($trimmed[0] === '{' || $trimmed[0] === '[')) {
-			$decoded = json_decode($trimmed, true);
-			if (isset($decoded[0]) && is_array($decoded[0])) { $decoded = $decoded[0]; }
-			if (is_array($decoded)) {
-				$text = json_encode($decoded);
-			}
+		if ($lineCount === 3) {
+			$tleline1 = trim($tlelines[1]); // First data line
+			$tleline2 = trim($tlelines[2]); // Second data line
+		} else {
+			$tleline1 = trim($tlelines[0]);
+			$tleline2 = trim($tlelines[1]);
 		}
 
-		if ($text === null) {
-			$tlelines = explode("\n", $trimmed); // Trim to remove extra spaces or newlines
-			$lineCount = count($tlelines);
-
-			if ($lineCount === 3) {
-				$tleline1 = trim($tlelines[1]); // First data line
-				$tleline2 = trim($tlelines[2]); // Second data line
-			} else {
-				$tleline1 = trim($tlelines[0]);
-				$tleline2 = trim($tlelines[1]);
-			}
-			$text = $tleline1 . "\n" . $tleline2;
-		}
+		$text = $tleline1 . "\n" . $tleline2;
 
 		$this->db->where('satelliteid', $id);
 		if ($this->db->get('tle')->num_rows() > 0) {

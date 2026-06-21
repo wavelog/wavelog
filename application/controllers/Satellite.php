@@ -223,11 +223,10 @@ class Satellite extends CI_Controller {
 
 		// Synthesize TLE text at render time for the legacy JS propagator (OMM-stored sats).
 		if ($satellite_data && !empty($satellite_data->tle)) {
-			$raw = trim($satellite_data->tle);
-			if ($raw !== '' && ($raw[0] === '{' || $raw[0] === '[')) {
-				require_once './src/predict/Predict/TLE.php';
+			require_once './src/predict/Predict/TLE.php';
+			if (Predict_TLE::isOmmJson($satellite_data->tle)) {
 				try {
-					$t = Predict_TLE::fromOmmJson($raw);
+					$t = Predict_TLE::fromOmmJson($satellite_data->tle);
 					$satellite_data->tle = $t->toTwolineTle();
 				} catch (\Throwable $e) {
 					log_message('error', 'OMM->TLE synthesis failed for "'.$sat.'": '.$e->getMessage());
@@ -393,7 +392,7 @@ class Satellite extends CI_Controller {
 	private function build_predict_tle($sat_tle) {
 		$raw = isset($sat_tle->tle) ? trim($sat_tle->tle) : '';
 
-		if ($raw !== '' && ($raw[0] === '{' || $raw[0] === '[')) {
+		if (Predict_TLE::isOmmJson($raw)) {
 			return Predict_TLE::fromOmmJson($raw);
 		}
 
