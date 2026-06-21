@@ -247,7 +247,9 @@
 						<div class="row mb-4">
 							<div class="col-md-12">
 								<div class="col-md-6">
-									<div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
+									<div class="small form-text text-muted"><?= __("Select Station Location") ?>
+										<?php if ($stations_active_log_only) { ?><br><span class="badge text-bg-info"><i class="fa-solid fa-info"></i></span> <?= __("All is limited to station locations linked to active logbook") ?><?php } ?>
+									</div>
 									<select name="station_profile" class="form-select mb-2 me-sm-2">
 										<option value="0"><?= __("All") ?></option>
 										<?php if ($station_profile !== FALSE) {
