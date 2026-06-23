@@ -379,7 +379,7 @@ class Update_model extends CI_Model {
 			$sql = "UPDATE `tle` LEFT JOIN `satellite` ON `tle`.`satelliteid` = `satellite`.`id` SET `tle` = NULL WHERE `satellite`.`name` != '' AND `satellite`.`name` IS NOT NULL;";
 			$this->db->query($sql);
 
-			$count = 0;
+			$amsat_count = 0;
 
 			if ($response === false) {
 				return 'Error: ' . curl_error($curl);
@@ -392,7 +392,6 @@ class Update_model extends CI_Model {
 				$tleline2 = '';
 				// Process each line
 				for ($i = 0; $i < count($lines); $i += 3) {
-					$count++;
 					// Check if there are at least three lines remaining
 					if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
 						// Get the three lines
@@ -408,9 +407,15 @@ class Update_model extends CI_Model {
 						tle = VALUES(tle), updated = now()
 					";
 					$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname));
+					if ($this->db->affected_rows() > 0) {
+						$amsat_count++;
+					}
 					}
 				}
 			}
+
+			// Gap-fill NULL rows from CelesTrak OMM (covers 6+ digit NORAD IDs AMSAT can't encode).
+			$omm_count = $this->update_tle_from_celestrak_omm();
 
 
 			$mtime = microtime();
@@ -418,11 +423,59 @@ class Update_model extends CI_Model {
 			$mtime = $mtime[1] + $mtime[0];
 			$endtime = $mtime;
 			$totaltime = ($endtime - $starttime);
-			return "This page was created in ".$totaltime." seconds <br />Records inserted: " . $count;
+			return "This page was created in ".$totaltime." seconds <br />AMSAT TLE: ".$amsat_count." updated, OMM: ".$omm_count." updated";
 
 		} else {
 			return "Error: Received file was empty";
 		}
+	}
+
+	/**
+	 * Gap-fill from CelesTrak OMM JSON. Only fills NULL rows so AMSAT stays primary.
+	 * @return int records applied
+	 */
+	private function update_tle_from_celestrak_omm() {
+		$url = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=amateur&FORMAT=JSON';
+		$curl = curl_init($url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($curl, CURLOPT_USERAGENT, 'Wavelog TLE Updater');
+		curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+		$response = curl_exec($curl);
+		$err  = curl_error($curl);
+		$http = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		curl_close($curl);
+
+		if ($response === false || $http !== 200) {
+			log_message('error', 'CelesTrak OMM fetch failed (HTTP ' . $http . '): ' . $err);
+			return 0;
+		}
+
+		$omm = json_decode($response, true);
+		if (!is_array($omm)) {
+			return 0;
+		}
+
+		$count = 0;
+		// Only fill still-NULL rows; AMSAT stays authoritative.
+		$sql = "INSERT INTO tle (satelliteid, tle)
+			SELECT s.id, ?
+			FROM satellite s
+			WHERE s.norad_id = ?
+			ON DUPLICATE KEY UPDATE
+			tle = IF(tle IS NULL, VALUES(tle), tle),
+			updated = IF(tle IS NULL, now(), updated)";
+		foreach ($omm as $obj) {
+			if (!isset($obj['NORAD_CAT_ID'])) { continue; }
+			$cat = (int) $obj['NORAD_CAT_ID'];
+			if ($cat <= 0) { continue; }
+			$this->db->query($sql, array(json_encode($obj), $cat));
+			// Counts only newly filled rows.
+			if ($this->db->affected_rows() > 0) {
+				$count++;
+			}
+		}
+		return $count;
 	}
 
 	 function lotw_sats() {

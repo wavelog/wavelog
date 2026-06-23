@@ -85,17 +85,19 @@ class Satellite_model extends CI_Model {
 			$tleline2 = trim($tlelines[1]);
 		}
 
+		$text = $tleline1 . "\n" . $tleline2;
+
 		$this->db->where('satelliteid', $id);
 		if ($this->db->get('tle')->num_rows() > 0) {
 			$data = array(
-				'tle'			=> $tleline1 . "\n" . $tleline2,
+				'tle'			=> $text,
 			);
 			$this->db->where('satelliteid', $id);
 			$this->db->update('tle', $data);
 		} else {
 			$data = array(
 				'satelliteid' 	=> $id,
-				'tle'			=> $tleline1 . "\n" . $tleline2,
+				'tle'			=> $text,
 			);
 			$this->db->insert('tle', $data);
 			$insert_id = $this->db->insert_id();
