@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-23 12:28+0000\n"
+"PO-Revision-Date: 2026-06-23 13:31+0000\n"
 "Last-Translator: rmdlv <ksdgdfjhgaskfgdjsgf@mail.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -1077,7 +1077,7 @@ msgstr "Переключение оператора отключено."
 
 #: application/controllers/Contesting.php:975
 msgid "Operator switching is only available in club stations."
-msgstr "Переключение оператора доступно только клубным станциям."
+msgstr "Переключение оператора доступно только коллективным станциям."
 
 #: application/controllers/Contesting.php:985
 msgid "Access denied"
@@ -1092,7 +1092,7 @@ msgstr "Неверные логин или пароль!"
 
 #: application/controllers/Contesting.php:1002
 msgid "A club account cannot be used as an operator."
-msgstr "Клубный аккаунт не может использоваться как оператор."
+msgstr "Коллективный аккаунт не может использоваться как оператор."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
@@ -2720,7 +2720,7 @@ msgstr "Недействительный ID станции"
 
 #: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
-msgstr "Недействительный идентификатор станции"
+msgstr "Недействительный ID станции"
 
 #: application/controllers/Oqrs.php:174
 #: application/views/interface_assets/header.php:516
@@ -2918,7 +2918,7 @@ msgstr "Позывной не указан."
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:548
 msgid "Hardware Interfaces"
-msgstr "Интерфейсы радиостанций"
+msgstr "Аппаратные интерфейсы"
 
 #: application/controllers/Radio.php:44 application/views/bandmap/list.php:24
 #: application/views/contesting/logger/components/radio.php:9
@@ -3761,7 +3761,7 @@ msgid ""
 "setup, click %shere%s."
 msgstr ""
 "Профиль QTH успешно создан! Добро пожаловать в Wavelog! Чтобы завершить "
-"настройку станции, кликните %sздесь%s."
+"настройку вашей станции, кликните %sздесь%s."
 
 #: application/controllers/User.php:1448 application/controllers/User.php:1457
 msgid "Station setup failed! Please set up your station manually."
@@ -3858,7 +3858,7 @@ msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
-"Не удалось определить правильный уровень доступа для оператора коллективной "
+"Не удалось определить правильные права доступа для оператора коллективной "
 "станции. Попробуйте снова после повторного входа."
 
 #: application/controllers/User.php:1836 application/controllers/User.php:1848
@@ -3928,7 +3928,7 @@ msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr ""
-"Не найдено CAT-интерфейсных радиостанций. Вам нужно настроить хотя-бы одну "
+"Не найдено CAT-интерфейсных радиостанций. Вам нужно настроить хотя бы одну "
 "радиостанцию."
 
 #: application/controllers/Widgets.php:423
@@ -5185,7 +5185,7 @@ msgid ""
 "regardless if they match to the chosen station-location."
 msgstr ""
 "Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
-"независимо от того, соответствуют ли они выбранной станции (профилю QTH)."
+"независимо от того, соответствуют ли они выбранному местоположению станции."
 
 #: application/views/adif/import.php:169 application/views/adif/import.php:149
 msgid "Ignore grid check on import"
@@ -5892,7 +5892,7 @@ msgid ""
 "points using satellite grid activations."
 msgstr ""
 "Диплом AMSAT Rover присуждается станциям, набравшим, в общей сложности, 25 "
-"очков, используя активизацию квадратов QTH локатора через спутники."
+"очков, используя активизацию квадратов через спутники."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
@@ -7364,9 +7364,9 @@ msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
-"Может быть заявлен за проведение QSO (SWL), подтверждённых QSL-карточками от "
-"любительских станций, расположенной в каждом из не менее чем 100 различных "
-"городов Японии."
+"Может быть заявлен за проведение радиосвязи (SWL) и получением QSL-карточки "
+"от любительской станции, расположенной в каждом из не менее чем 100 "
+"различных городов Японии."
 
 #: application/views/awards/jcc/index.php:19
 msgid ""
@@ -7440,9 +7440,9 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
-"Диплом \"Polska Award\" выдается Польским союзом радиолюбителей (PZK) за QSO "
-"со станциями, работающими из всех 16 польских воеводств (провинций). "
-"Действует с 1 января 1999 года."
+"Диплом \"Polska Award\" выдается Польским союзом радиолюбителей (PZK) за "
+"радиосвязи со станциями, работающими из всех 16 польских воеводств "
+"(провинций). Действует с 1 января 1999 года."
 
 #: application/views/awards/pl_polska/index.php:39
 msgid ""
@@ -22002,14 +22002,15 @@ msgstr "CQ geojson"
 #: application/views/adif/import.php:251
 msgid "All is limited to station locations linked to active logbook"
 msgstr ""
+"Всё это ограничено местоположениями станций, привязанных к активному журналу"
 
 #: application/views/user/edit.php:408
 msgid "Station Location Options"
-msgstr ""
+msgstr "Параметры местоположения станции"
 
 #: application/views/user/edit.php:417
 msgid "Only show station locations linked to active logbook"
-msgstr ""
+msgstr "Показывать только местоположения, привязанные к активному журналу"
 
 #~ msgid "Off"
 #~ msgstr "Выкл"
