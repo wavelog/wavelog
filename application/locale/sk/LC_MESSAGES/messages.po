@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-23 14:26+0000\n"
+"POT-Creation-Date: 2026-06-23 15:39+0000\n"
 "PO-Revision-Date: 2026-03-20 07:25+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -206,8 +206,8 @@ msgstr "Tropo ducting"
 #: application/controllers/Satellite.php:118
 #: application/controllers/Satellite.php:132
 #: application/controllers/Satellite.php:150
-#: application/controllers/Satellite.php:666
-#: application/controllers/Satellite.php:675
+#: application/controllers/Satellite.php:693
+#: application/controllers/Satellite.php:702
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:10
 #: application/controllers/Simplefle.php:7
@@ -3083,35 +3083,35 @@ msgstr "Upraviť satelit"
 msgid "Satellite Flightpath"
 msgstr "Dráha preletu satelitu"
 
-#: application/controllers/Satellite.php:253
+#: application/controllers/Satellite.php:266
 msgid "Satellite pass"
 msgstr "Satelitný prelet"
 
-#: application/controllers/Satellite.php:310
+#: application/controllers/Satellite.php:323
 msgid "Failed to save pass settings!"
 msgstr "Nepodarilo sa uložiť nastavenia preletu!"
 
-#: application/controllers/Satellite.php:313
+#: application/controllers/Satellite.php:326
 msgid "Pass settings saved!"
 msgstr "Nastavenia preletu uložené!"
 
-#: application/controllers/Satellite.php:326
+#: application/controllers/Satellite.php:339
 msgid "No settings found!"
 msgstr "Nenašli sa žiadne nastavenia!"
 
-#: application/controllers/Satellite.php:340
+#: application/controllers/Satellite.php:353
 msgid "Failed to delete pass settings!"
 msgstr "Nepodarilo sa vymazať nastavenia preletu!"
 
-#: application/controllers/Satellite.php:342
+#: application/controllers/Satellite.php:355
 msgid "Pass settings deleted!"
 msgstr "Nastavenia preletu vymazané!"
 
-#: application/controllers/Satellite.php:352
+#: application/controllers/Satellite.php:365
 msgid "Saved Pass Settings"
 msgstr "Uložené nastavenia preletu"
 
-#: application/controllers/Satellite.php:369
+#: application/controllers/Satellite.php:382
 msgid "No presets available"
 msgstr "Nie sú k dispozícii žiadne predvoľby"
 
@@ -4306,16 +4306,16 @@ msgstr "K dispozícii je novšia verzia:"
 msgid "You are running the latest version."
 msgstr "Používaš najnovšiu verziu."
 
-#: application/models/Update_model.php:439
+#: application/models/Update_model.php:492
 msgid "cURL error:"
 msgstr "cURL chyba:"
 
-#: application/models/Update_model.php:473
+#: application/models/Update_model.php:526
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT už existuje. Stav LoTW aktualizovaný."
 
-#: application/models/Update_model.php:476
-#: application/models/Update_model.php:505
+#: application/models/Update_model.php:529
+#: application/models/Update_model.php:558
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -4323,27 +4323,27 @@ msgstr[0] "Stav LoTW pre %d spojenie aktualizovaný"
 msgstr[1] "Stav LoTW pre %d spojenia aktualizovaný"
 msgstr[2] "Stav LoTW pre %d spojení aktualizovaný"
 
-#: application/models/Update_model.php:479
+#: application/models/Update_model.php:532
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT už existuje. Aktualizácia stavu LoTW zlyhala."
 
-#: application/models/Update_model.php:482
+#: application/models/Update_model.php:535
 msgid "SAT already existing. Ignored."
 msgstr "SAT už existuje. Ignorované."
 
-#: application/models/Update_model.php:489
+#: application/models/Update_model.php:542
 msgid "SAT already existing. Display name updated."
 msgstr "SAT už existuje. Názov bol aktualizovaný."
 
-#: application/models/Update_model.php:491
+#: application/models/Update_model.php:544
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT už existuje. Aktualizácia zobrazovaného mena zlyhala."
 
-#: application/models/Update_model.php:501
+#: application/models/Update_model.php:554
 msgid "New SAT. Inserted."
 msgstr "Nový SAT. Vložené."
 
-#: application/models/Update_model.php:509
+#: application/models/Update_model.php:562
 msgid "New SAT. Insert failed."
 msgstr "Nový SAT. Vloženie zlyhalo."
 
@@ -11555,7 +11555,6 @@ msgstr ""
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
 #: application/views/satellite/index.php:88
-#: application/views/satellite/index.php:101
 #: application/views/satellite/satinfo.php:45
 #: application/views/search/result.php:82
 #: application/views/station_profile/create.php:329
@@ -11617,7 +11616,7 @@ msgstr "Áno"
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
 #: application/views/satellite/index.php:91
-#: application/views/satellite/index.php:103
+#: application/views/satellite/index.php:104
 #: application/views/satellite/satinfo.php:48
 #: application/views/search/result.php:84
 #: application/views/station_profile/create.php:330
@@ -19283,8 +19282,13 @@ msgid "Update Satellite TLE"
 msgstr "Aktualizuj TLE satelitu"
 
 #: application/views/satellite/index.php:57
+#: application/views/satellite/index.php:101
 msgid "TLE"
 msgstr "TLE"
+
+#: application/views/satellite/index.php:101
+msgid "OMM"
+msgstr ""
 
 #: application/views/satellite/pass.php:21
 msgid "Satellite passes"
@@ -19420,16 +19424,16 @@ msgstr ""
 msgid "TLE information for %s (last updated: %s)"
 msgstr "Informácie o TLE pre %s (naposledy aktualizované: %s)"
 
-#: application/views/satellite/tleinfo.php:8
+#: application/views/satellite/tleinfo.php:16
 msgid "Delete TLE"
 msgstr "Vymazať TLE"
 
-#: application/views/satellite/tleinfo.php:10
+#: application/views/satellite/tleinfo.php:18
 #, php-format
 msgid "No TLE information found for %s"
 msgstr "Neboli nájdené žiadne TLE informácie pre %s"
 
-#: application/views/satellite/tleinfo.php:11
+#: application/views/satellite/tleinfo.php:19
 msgid "Add TLE"
 msgstr "Pridať TLE"
 

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-23 14:26+0000\n"
+"POT-Creation-Date: 2026-06-23 15:39+0000\n"
 "PO-Revision-Date: 2026-06-18 04:37+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -207,8 +207,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Satellite.php:118
 #: application/controllers/Satellite.php:132
 #: application/controllers/Satellite.php:150
-#: application/controllers/Satellite.php:666
-#: application/controllers/Satellite.php:675
+#: application/controllers/Satellite.php:693
+#: application/controllers/Satellite.php:702
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:10
 #: application/controllers/Simplefle.php:7
@@ -3033,35 +3033,35 @@ msgstr "Bewerk satelliet"
 msgid "Satellite Flightpath"
 msgstr "Satellietbaan"
 
-#: application/controllers/Satellite.php:253
+#: application/controllers/Satellite.php:266
 msgid "Satellite pass"
 msgstr "Satellietovergang"
 
-#: application/controllers/Satellite.php:310
+#: application/controllers/Satellite.php:323
 msgid "Failed to save pass settings!"
 msgstr "Opslaan van overgang instellingen mislukt!"
 
-#: application/controllers/Satellite.php:313
+#: application/controllers/Satellite.php:326
 msgid "Pass settings saved!"
 msgstr "Overgang instellingen opgeslagen!"
 
-#: application/controllers/Satellite.php:326
+#: application/controllers/Satellite.php:339
 msgid "No settings found!"
 msgstr "Geen instellingen gevonden!"
 
-#: application/controllers/Satellite.php:340
+#: application/controllers/Satellite.php:353
 msgid "Failed to delete pass settings!"
 msgstr "Verwijderen van overgang instellingen mislukt!"
 
-#: application/controllers/Satellite.php:342
+#: application/controllers/Satellite.php:355
 msgid "Pass settings deleted!"
 msgstr "Instellingen voor overgang verwijderd!"
 
-#: application/controllers/Satellite.php:352
+#: application/controllers/Satellite.php:365
 msgid "Saved Pass Settings"
 msgstr "Overgang instellingen opgeslagen"
 
-#: application/controllers/Satellite.php:369
+#: application/controllers/Satellite.php:382
 msgid "No presets available"
 msgstr "Geen voorkeuze beschikbaar"
 
@@ -4257,43 +4257,43 @@ msgstr "Nieuwere release beschikbaar:"
 msgid "You are running the latest version."
 msgstr "Je draait de nieuwste versie."
 
-#: application/models/Update_model.php:439
+#: application/models/Update_model.php:492
 msgid "cURL error:"
 msgstr "cURL-fout:"
 
-#: application/models/Update_model.php:473
+#: application/models/Update_model.php:526
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT bestaat al. LoTW-status bijgewerkt."
 
-#: application/models/Update_model.php:476
-#: application/models/Update_model.php:505
+#: application/models/Update_model.php:529
+#: application/models/Update_model.php:558
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW-status voor %d QSO bijgewerkt"
 msgstr[1] "LoTW-status voor %d QSO's bijgewerkt"
 
-#: application/models/Update_model.php:479
+#: application/models/Update_model.php:532
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT bestaat al. Bijwerken van LoTW-status mislukt."
 
-#: application/models/Update_model.php:482
+#: application/models/Update_model.php:535
 msgid "SAT already existing. Ignored."
 msgstr "SAT bestaat al. Genegeerd."
 
-#: application/models/Update_model.php:489
+#: application/models/Update_model.php:542
 msgid "SAT already existing. Display name updated."
 msgstr "SAT bestaat al. Weergavenaam bijgewerkt."
 
-#: application/models/Update_model.php:491
+#: application/models/Update_model.php:544
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT bestaat al. Bijwerken van de weergavenaam is mislukt."
 
-#: application/models/Update_model.php:501
+#: application/models/Update_model.php:554
 msgid "New SAT. Inserted."
 msgstr "Nieuwe SAT. ingevoegd."
 
-#: application/models/Update_model.php:509
+#: application/models/Update_model.php:562
 msgid "New SAT. Insert failed."
 msgstr "Nieuwe SAT. invoegen mislukt."
 
@@ -11186,7 +11186,6 @@ msgstr ""
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
 #: application/views/satellite/index.php:88
-#: application/views/satellite/index.php:101
 #: application/views/satellite/satinfo.php:45
 #: application/views/search/result.php:82
 #: application/views/station_profile/create.php:329
@@ -11248,7 +11247,7 @@ msgstr "Ja"
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
 #: application/views/satellite/index.php:91
-#: application/views/satellite/index.php:103
+#: application/views/satellite/index.php:104
 #: application/views/satellite/satinfo.php:48
 #: application/views/search/result.php:84
 #: application/views/station_profile/create.php:330
@@ -18739,8 +18738,13 @@ msgid "Update Satellite TLE"
 msgstr "Satelliet TLE bijwerken"
 
 #: application/views/satellite/index.php:57
+#: application/views/satellite/index.php:101
 msgid "TLE"
 msgstr "TLE"
+
+#: application/views/satellite/index.php:101
+msgid "OMM"
+msgstr ""
 
 #: application/views/satellite/pass.php:21
 msgid "Satellite passes"
@@ -18873,16 +18877,16 @@ msgstr "Geen overlappende passages gevonden. Controleer de invoerparameters."
 msgid "TLE information for %s (last updated: %s)"
 msgstr "TLE-informatie voor %s (laatst bijgewerkt: %s)"
 
-#: application/views/satellite/tleinfo.php:8
+#: application/views/satellite/tleinfo.php:16
 msgid "Delete TLE"
 msgstr "Verwijder TLE"
 
-#: application/views/satellite/tleinfo.php:10
+#: application/views/satellite/tleinfo.php:18
 #, php-format
 msgid "No TLE information found for %s"
 msgstr "Geen TLE-informatie gevonden voor %s"
 
-#: application/views/satellite/tleinfo.php:11
+#: application/views/satellite/tleinfo.php:19
 msgid "Add TLE"
 msgstr "TLE toevoegen"
 
