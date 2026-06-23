@@ -102,6 +102,9 @@
 	let lang_gen_advanced_logbook_qsos_detached = '<?= __("QSOs detached to contest successfully!"); ?>';
 	let lang_gen_advanced_logbook_error_detaching = '<?= __("Error detaching QSOs"); ?>';
 
+	let lang_lba_edit_skipped   = '<?= __("%d of %d selected QSOs were skipped because you can only edit your own QSOs."); ?>';
+	let lang_lba_delete_skipped = '<?= __("%d of %d selected QSOs were skipped because you can only delete your own QSOs."); ?>';
+
 	let lang_gen_advanced_logbook_select_at_least_one_row_qslcard_print = '<?= __("You need to select at least 1 row to print a QSL card!"); ?>';
 	let lang_gen_advanced_logbook_qslcard_print_option = '<?= __("QSL Card print options"); ?>';
 
@@ -889,7 +892,7 @@ $options = json_decode($options);
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="invalidButton" style="white-space: nowrap;">
 					<i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
-				<?php if(clubaccess_check(9)) { ?>
+				<?php if(clubaccess_check(3)) { ?>
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="editButton" style="white-space: nowrap;">
 					<i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
@@ -910,6 +913,8 @@ $options = json_decode($options);
 					<button type="button" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="dbtools" style="white-space: nowrap;" aria-label="<?= __("Database Tools"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Database Tools"); ?>">
 						<i class="fas fa-wrench"></i>
 					</button>
+				<?php } ?>
+				<?php if(clubaccess_check(3)) { ?>
 					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
 						<i class="fas fa-trash-alt"></i>
 					</button>

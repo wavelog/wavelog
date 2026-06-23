@@ -641,7 +641,7 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function editDialog() {
-		if(!clubaccess_check(9)) return;
+		if(!clubaccess_check(3)) return;
 
 		$this->load->model('bands');
 		$this->load->model('modes');
@@ -657,7 +657,7 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function saveBatchEditQsos() {
-		if(!clubaccess_check(9)) return;
+		if(!clubaccess_check(3)) return;
 
 		$ids = xss_clean($this->input->post('ids'));
 		$column = xss_clean($this->input->post('column'));
@@ -665,6 +665,15 @@ class Logbookadvanced extends CI_Controller {
 		$value2 = xss_clean($this->input->post('value2'));
 		$value3 = xss_clean($this->input->post('value3'));
 		$value4 = xss_clean($this->input->post('value4'));
+
+		// Club Member may only edit QSOs he made himself; officers and normal users are unaffected 
+		$ids_array = clubaccess_filter_qso_ids(json_decode($ids, true) ?? []);
+		if (empty($ids_array)) {
+			header("Content-Type: application/json");
+			print json_encode([]);
+			return;
+		}
+		$ids = json_encode($ids_array);
 
 		$this->load->model('logbookadvanced_model');
 		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value, $value2, $value3, $value4);
@@ -704,12 +713,23 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function batchDeleteQsos() {
-		if(!clubaccess_check(9)) return;
+		if(!clubaccess_check(3)) return;
 
 		$ids = xss_clean($this->input->post('ids'));
 
-		$this->load->model('logbookadvanced_model');
-		$this->logbookadvanced_model->deleteQsos($ids);
+		$requested_ids = json_decode($ids, true) ?? [];
+		// Club Member (3/6) may only delete QSOs he made himself; officers and normal users are unaffected 
+		$ids_array = clubaccess_filter_qso_ids($requested_ids);
+		if (!empty($ids_array)) {
+			$this->load->model('logbookadvanced_model');
+			$this->logbookadvanced_model->deleteQsos(json_encode($ids_array));
+		}
+
+		header("Content-Type: application/json");
+		print json_encode([
+			'deleted'   => array_values($ids_array),
+			'requested' => count($requested_ids),
+		]);
 	}
 
 	public function getSubdivisionsForDxcc() {
