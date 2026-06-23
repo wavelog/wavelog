@@ -980,13 +980,24 @@ $(document).ready(function () {
 							'ids': JSON.stringify(id_list, null, 2)
 						},
 						success: function(data) {
-							id_list.forEach(function(id) {
+							var deleted = (data && data.deleted) ? data.deleted : id_list;
+							deleted.forEach(function(id) {
 								let row = $("#qsoID-" + id);
 								table.row(row).remove();
 							});
 							$('#deleteQsos').prop("disabled", false);
 							table.draw(false);
 							$('#checkBoxAll').prop("checked", false);
+
+							var requested = (data && data.requested) ? data.requested : id_list.length;
+							var skipped = requested - deleted.length;
+							if (skipped > 0) {
+								BootstrapDialog.alert({
+									title: lang_gen_advanced_logbook_warning,
+									message: lang_lba_delete_skipped.replace('%d', skipped).replace('%d', requested),
+									type: BootstrapDialog.TYPE_WARNING,
+								});
+							}
 						}
 					})
 				}
