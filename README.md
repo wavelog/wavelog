@@ -19,9 +19,9 @@
 
   <p>
     <a href="https://demo.wavelog.org">Live Demo</a> ·
-    <a href="#-installation">Install</a> ·
+    <a href="#setup">Setup</a> ·
     <a href="https://docs.wavelog.org/">Documentation</a> ·
-    <a href="#-contributing">Contribute</a>
+    <a href="#contributing">Contribute</a>
   </p>
 </div>
 
