@@ -250,6 +250,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/User.php:1173 application/controllers/User.php:1425
 #: application/controllers/User.php:1565 application/controllers/User.php:1790
 #: application/controllers/User.php:1806 application/controllers/User.php:1832
+#: application/controllers/Satellite.php:693
+#: application/controllers/Satellite.php:702
 msgid "You're not allowed to do that!"
 msgstr "Vous n'êtes pas autorisé à faire cela !"
 
@@ -3141,34 +3143,42 @@ msgid "Satellite Flightpath"
 msgstr "Trajectoire du satellite"
 
 #: application/controllers/Satellite.php:253
+#: application/controllers/Satellite.php:266
 msgid "Satellite pass"
 msgstr "Survol du satellite"
 
 #: application/controllers/Satellite.php:310
+#: application/controllers/Satellite.php:323
 msgid "Failed to save pass settings!"
 msgstr "Echec de la sauvegarde des paramètres de survol !"
 
 #: application/controllers/Satellite.php:313
+#: application/controllers/Satellite.php:326
 msgid "Pass settings saved!"
 msgstr "Paramètres de survol sauvegardés !"
 
 #: application/controllers/Satellite.php:326
+#: application/controllers/Satellite.php:339
 msgid "No settings found!"
 msgstr "Aucuns réglages trouvés !"
 
 #: application/controllers/Satellite.php:340
+#: application/controllers/Satellite.php:353
 msgid "Failed to delete pass settings!"
 msgstr "Echec de suppression des paramètres du passage !"
 
 #: application/controllers/Satellite.php:342
+#: application/controllers/Satellite.php:355
 msgid "Pass settings deleted!"
 msgstr "Paramètres du passage supprimés !"
 
 #: application/controllers/Satellite.php:352
+#: application/controllers/Satellite.php:365
 msgid "Saved Pass Settings"
 msgstr "Réglages du passage enregistrés"
 
 #: application/controllers/Satellite.php:369
+#: application/controllers/Satellite.php:382
 msgid "No presets available"
 msgstr "Aucun préréglage disponible"
 
@@ -4404,15 +4414,19 @@ msgid "You are running the latest version."
 msgstr "Vous utilisez la dernière version."
 
 #: application/models/Update_model.php:439
+#: application/models/Update_model.php:492
 msgid "cURL error:"
 msgstr "Erreur cURL :"
 
 #: application/models/Update_model.php:473
+#: application/models/Update_model.php:526
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT déjà existant. Statut LoTW mis à jour."
 
 #: application/models/Update_model.php:476
 #: application/models/Update_model.php:505
+#: application/models/Update_model.php:529
+#: application/models/Update_model.php:558
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -4420,26 +4434,32 @@ msgstr[0] "Statut LoTW mis à jour pour %d QSO"
 msgstr[1] "Statut LoTW mis à jour pour %d QSOs"
 
 #: application/models/Update_model.php:479
+#: application/models/Update_model.php:532
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT déjà existant. Mise à jour du statut LoTW échouée."
 
 #: application/models/Update_model.php:482
+#: application/models/Update_model.php:535
 msgid "SAT already existing. Ignored."
 msgstr "SAT déjà existant. Ignoré."
 
 #: application/models/Update_model.php:489
+#: application/models/Update_model.php:542
 msgid "SAT already existing. Display name updated."
 msgstr "SAT déjà existant. Nom d'affichage mis à jour."
 
 #: application/models/Update_model.php:491
+#: application/models/Update_model.php:544
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT déjà existant. Échec de la mise à jour du nom d'affichage."
 
 #: application/models/Update_model.php:501
+#: application/models/Update_model.php:554
 msgid "New SAT. Inserted."
 msgstr "Nouveau SAT. Inséré."
 
 #: application/models/Update_model.php:509
+#: application/models/Update_model.php:562
 msgid "New SAT. Insert failed."
 msgstr "Nouveau SAT. Insertion échouée."
 
@@ -11625,6 +11645,7 @@ msgstr "Oui"
 #: application/views/logbookadvanced/index.php:729
 #: application/views/logbookadvanced/index.php:737
 #: application/views/logbookadvanced/index.php:746
+#: application/views/satellite/index.php:104
 msgid "No"
 msgstr "Non"
 
@@ -19349,6 +19370,7 @@ msgid "Update Satellite TLE"
 msgstr "Mise à jour du satellite TLE"
 
 #: application/views/satellite/index.php:57
+#: application/views/satellite/index.php:101
 msgid "TLE"
 msgstr "TLE"
 
@@ -19486,15 +19508,18 @@ msgid "TLE information for %s (last updated: %s)"
 msgstr "Informations TLE pour %s (dernière mise à jour : %s)"
 
 #: application/views/satellite/tleinfo.php:8
+#: application/views/satellite/tleinfo.php:16
 msgid "Delete TLE"
 msgstr "TLE effacé"
 
 #: application/views/satellite/tleinfo.php:10
+#: application/views/satellite/tleinfo.php:18
 #, php-format
 msgid "No TLE information found for %s"
 msgstr "Aucune information TLE trouvée pour %s"
 
 #: application/views/satellite/tleinfo.php:11
+#: application/views/satellite/tleinfo.php:19
 msgid "Add TLE"
 msgstr "Ajouter TLE"
 
@@ -22449,6 +22474,10 @@ msgstr ""
 msgid ""
 "%d of %d selected QSOs were skipped because you can only delete your own "
 "QSOs."
+msgstr ""
+
+#: application/views/satellite/index.php:101
+msgid "OMM"
 msgstr ""
 
 #~ msgid "Off"

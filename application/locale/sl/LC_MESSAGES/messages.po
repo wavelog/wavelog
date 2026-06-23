@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-23 14:26+0000\n"
+"POT-Creation-Date: 2026-06-23 15:39+0000\n"
 "PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -205,8 +205,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Satellite.php:118
 #: application/controllers/Satellite.php:132
 #: application/controllers/Satellite.php:150
-#: application/controllers/Satellite.php:666
-#: application/controllers/Satellite.php:675
+#: application/controllers/Satellite.php:693
+#: application/controllers/Satellite.php:702
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:10
 #: application/controllers/Simplefle.php:7
@@ -3025,35 +3025,35 @@ msgstr "Uredi satelit"
 msgid "Satellite Flightpath"
 msgstr "Pot satelita"
 
-#: application/controllers/Satellite.php:253
+#: application/controllers/Satellite.php:266
 msgid "Satellite pass"
 msgstr "Prehod satelita"
 
-#: application/controllers/Satellite.php:310
+#: application/controllers/Satellite.php:323
 msgid "Failed to save pass settings!"
 msgstr "Shranjevanje nastavitev prehoda ni uspelo!"
 
-#: application/controllers/Satellite.php:313
+#: application/controllers/Satellite.php:326
 msgid "Pass settings saved!"
 msgstr "Nastavitve prehoda so shranjene!"
 
-#: application/controllers/Satellite.php:326
+#: application/controllers/Satellite.php:339
 msgid "No settings found!"
 msgstr "Ne najdem nastavitev!"
 
-#: application/controllers/Satellite.php:340
+#: application/controllers/Satellite.php:353
 msgid "Failed to delete pass settings!"
 msgstr "Nastavitev prehoda ni bilo mogoče izbrisati!"
 
-#: application/controllers/Satellite.php:342
+#: application/controllers/Satellite.php:355
 msgid "Pass settings deleted!"
 msgstr "Nastavitve prehoda so izbrisane!"
 
-#: application/controllers/Satellite.php:352
+#: application/controllers/Satellite.php:365
 msgid "Saved Pass Settings"
 msgstr "Shranjene nastavitve prehoda"
 
-#: application/controllers/Satellite.php:369
+#: application/controllers/Satellite.php:382
 msgid "No presets available"
 msgstr "Ni prednastavitev"
 
@@ -4244,16 +4244,16 @@ msgstr "Na voljo je novejša izdaja:"
 msgid "You are running the latest version."
 msgstr "Uporabljate najnovejšo različico."
 
-#: application/models/Update_model.php:439
+#: application/models/Update_model.php:492
 msgid "cURL error:"
 msgstr "napaka cURL:"
 
-#: application/models/Update_model.php:473
+#: application/models/Update_model.php:526
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT že obstaja. Status LoTW posodobljen."
 
-#: application/models/Update_model.php:476
-#: application/models/Update_model.php:505
+#: application/models/Update_model.php:529
+#: application/models/Update_model.php:558
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -4262,27 +4262,27 @@ msgstr[1] "Status LoTW za %d QSO-ja je bil posodobljen"
 msgstr[2] "Status LoTW za %d QSO-je je bil posodobljen"
 msgstr[3] "Status LoTW za %d QSO-je je bil posodobljen"
 
-#: application/models/Update_model.php:479
+#: application/models/Update_model.php:532
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT že obstaja. Posodabljanje statusa LoTW ni uspelo."
 
-#: application/models/Update_model.php:482
+#: application/models/Update_model.php:535
 msgid "SAT already existing. Ignored."
 msgstr "SAT že obstaja. Prezrto."
 
-#: application/models/Update_model.php:489
+#: application/models/Update_model.php:542
 msgid "SAT already existing. Display name updated."
 msgstr "SAT že obstaja. Prikazno ime je posodobljeno."
 
-#: application/models/Update_model.php:491
+#: application/models/Update_model.php:544
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT že obstaja. Posodabljanje prikaznega imena ni uspelo."
 
-#: application/models/Update_model.php:501
+#: application/models/Update_model.php:554
 msgid "New SAT. Inserted."
 msgstr "Nov SAT. Vstavljanje uspelo."
 
-#: application/models/Update_model.php:509
+#: application/models/Update_model.php:562
 msgid "New SAT. Insert failed."
 msgstr "Nov SAT. Vstavljanje ni uspelo."
 
@@ -11132,7 +11132,6 @@ msgstr ""
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
 #: application/views/satellite/index.php:88
-#: application/views/satellite/index.php:101
 #: application/views/satellite/satinfo.php:45
 #: application/views/search/result.php:82
 #: application/views/station_profile/create.php:329
@@ -11194,7 +11193,7 @@ msgstr "Da"
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
 #: application/views/satellite/index.php:91
-#: application/views/satellite/index.php:103
+#: application/views/satellite/index.php:104
 #: application/views/satellite/satinfo.php:48
 #: application/views/search/result.php:84
 #: application/views/station_profile/create.php:330
@@ -18417,7 +18416,12 @@ msgid "Update Satellite TLE"
 msgstr ""
 
 #: application/views/satellite/index.php:57
+#: application/views/satellite/index.php:101
 msgid "TLE"
+msgstr ""
+
+#: application/views/satellite/index.php:101
+msgid "OMM"
 msgstr ""
 
 #: application/views/satellite/pass.php:21
@@ -18551,16 +18555,16 @@ msgstr ""
 msgid "TLE information for %s (last updated: %s)"
 msgstr ""
 
-#: application/views/satellite/tleinfo.php:8
+#: application/views/satellite/tleinfo.php:16
 msgid "Delete TLE"
 msgstr ""
 
-#: application/views/satellite/tleinfo.php:10
+#: application/views/satellite/tleinfo.php:18
 #, php-format
 msgid "No TLE information found for %s"
 msgstr ""
 
-#: application/views/satellite/tleinfo.php:11
+#: application/views/satellite/tleinfo.php:19
 msgid "Add TLE"
 msgstr ""
 

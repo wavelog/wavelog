@@ -241,6 +241,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/User.php:1173 application/controllers/User.php:1425
 #: application/controllers/User.php:1565 application/controllers/User.php:1790
 #: application/controllers/User.php:1806 application/controllers/User.php:1832
+#: application/controllers/Satellite.php:693
+#: application/controllers/Satellite.php:702
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -3106,34 +3108,42 @@ msgid "Satellite Flightpath"
 msgstr "衛星フライトパス"
 
 #: application/controllers/Satellite.php:253
+#: application/controllers/Satellite.php:266
 msgid "Satellite pass"
 msgstr "衛星パス"
 
 #: application/controllers/Satellite.php:310
+#: application/controllers/Satellite.php:323
 msgid "Failed to save pass settings!"
 msgstr "パス設定の保存に失敗しました！"
 
 #: application/controllers/Satellite.php:313
+#: application/controllers/Satellite.php:326
 msgid "Pass settings saved!"
 msgstr "パス設定が保存されました!"
 
 #: application/controllers/Satellite.php:326
+#: application/controllers/Satellite.php:339
 msgid "No settings found!"
 msgstr "設定が見つかりません!"
 
 #: application/controllers/Satellite.php:340
+#: application/controllers/Satellite.php:353
 msgid "Failed to delete pass settings!"
 msgstr "パス設定の削除に失敗しました！"
 
 #: application/controllers/Satellite.php:342
+#: application/controllers/Satellite.php:355
 msgid "Pass settings deleted!"
 msgstr "パス設定が削除されました!"
 
 #: application/controllers/Satellite.php:352
+#: application/controllers/Satellite.php:365
 msgid "Saved Pass Settings"
 msgstr "保存されたパス設定"
 
 #: application/controllers/Satellite.php:369
+#: application/controllers/Satellite.php:382
 msgid "No presets available"
 msgstr "プリセットはありません"
 
@@ -4347,41 +4357,51 @@ msgid "You are running the latest version."
 msgstr "最新バージョンを実行しています。"
 
 #: application/models/Update_model.php:439
+#: application/models/Update_model.php:492
 msgid "cURL error:"
 msgstr "cURL エラー:"
 
 #: application/models/Update_model.php:473
+#: application/models/Update_model.php:526
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT は既に存在します。LoTW ステータスが更新されました。"
 
 #: application/models/Update_model.php:476
 #: application/models/Update_model.php:505
+#: application/models/Update_model.php:529
+#: application/models/Update_model.php:558
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTWステータス %d 件の QSO が更新されました"
 
 #: application/models/Update_model.php:479
+#: application/models/Update_model.php:532
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT は既に存在します。LoTW ステータスの更新に失敗しました。"
 
 #: application/models/Update_model.php:482
+#: application/models/Update_model.php:535
 msgid "SAT already existing. Ignored."
 msgstr "SAT はすでに存在します。無視されます。"
 
 #: application/models/Update_model.php:489
+#: application/models/Update_model.php:542
 msgid "SAT already existing. Display name updated."
 msgstr "SAT は既に存在します。表示名を更新しました。"
 
 #: application/models/Update_model.php:491
+#: application/models/Update_model.php:544
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT は既に存在します。表示名の更新に失敗しました。"
 
 #: application/models/Update_model.php:501
+#: application/models/Update_model.php:554
 msgid "New SAT. Inserted."
 msgstr "新しいSATを挿入しました。"
 
 #: application/models/Update_model.php:509
+#: application/models/Update_model.php:562
 msgid "New SAT. Insert failed."
 msgstr "新しい SAT。挿入に失敗しました。"
 
@@ -11453,6 +11473,7 @@ msgstr "はい"
 #: application/views/logbookadvanced/index.php:729
 #: application/views/logbookadvanced/index.php:737
 #: application/views/logbookadvanced/index.php:746
+#: application/views/satellite/index.php:104
 msgid "No"
 msgstr "いいえ"
 
@@ -19061,6 +19082,7 @@ msgid "Update Satellite TLE"
 msgstr "衛星TLEの更新"
 
 #: application/views/satellite/index.php:57
+#: application/views/satellite/index.php:101
 msgid "TLE"
 msgstr "TLE"
 
@@ -19196,15 +19218,18 @@ msgid "TLE information for %s (last updated: %s)"
 msgstr "TLE 情報: %s (最終更新日時: %s)"
 
 #: application/views/satellite/tleinfo.php:8
+#: application/views/satellite/tleinfo.php:16
 msgid "Delete TLE"
 msgstr "TLEを削除"
 
 #: application/views/satellite/tleinfo.php:10
+#: application/views/satellite/tleinfo.php:18
 #, php-format
 msgid "No TLE information found for %s"
 msgstr "%s に関する TLE 情報は見つかりませんでした"
 
 #: application/views/satellite/tleinfo.php:11
+#: application/views/satellite/tleinfo.php:19
 msgid "Add TLE"
 msgstr "TLEを追加"
 
@@ -22078,6 +22103,10 @@ msgstr ""
 msgid ""
 "%d of %d selected QSOs were skipped because you can only delete your own "
 "QSOs."
+msgstr ""
+
+#: application/views/satellite/index.php:101
+msgid "OMM"
 msgstr ""
 
 #~ msgid "Off"

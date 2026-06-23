@@ -102,7 +102,8 @@ function tleChecksum(line) {
 }
 
 function validateTLE(tle) {
-    const lines = tle.trim().split("\n");
+    const trimmed = tle.trim();
+    const lines = trimmed.split("\n");
 
     // Must have either 2 or 3 lines
     if (lines.length < 2 || lines.length > 3) {
