@@ -266,6 +266,16 @@ function saveBatchEditQsos(id_list) {
 					unselectQsoID(this.qsoID);
 				});
 			}
+
+			var applied = Array.isArray(data) ? data.length : 0;
+			var skipped = id_list.length - applied;
+			if (skipped > 0) {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_warning,
+					message: lang_lba_edit_skipped.replace('%d', skipped).replace('%d', id_list.length),
+					type: BootstrapDialog.TYPE_WARNING,
+				});
+			}
 		}
 	});
 }
