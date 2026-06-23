@@ -279,8 +279,8 @@
 							</div>
 						</div>
 
-						<!-- Logbook fields Setting -->
 						<div class="col-md">
+							<!-- Logbook fields Setting -->
 							<div class="card">
 								<div class="card-header"><?= __("Logbook fields"); ?></div>
 								<div class="card-body">
@@ -400,6 +400,22 @@
 											<option value="Bearing" <?php if ($user_column5 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 											<option value="Propagation" <?php if ($user_column5 == "Propagation") { echo " selected =\"selected\""; } ?>><?= __("Propagation"); ?></option>
 										</select>
+									</div>
+								</div>
+							</div>
+							<!-- Active Logbook locations -->
+							<div class="card">
+								<div class="card-header"><?= __("Station Location Options"); ?></div>
+								<div class="card-body">
+									<?php if(!isset($user_stations_active_log_only)) { $user_stations_active_log_only='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="user_stations_active_log_only" value="0">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="stationsActiveLogOnly" name="user_stations_active_log_only" value="1" <?php if ($user_stations_active_log_only == 1) { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0" for="stationsActiveLogOnly"><?= __("Only show station locations linked to active logbook"); ?></label>
+										</div>
 									</div>
 								</div>
 							</div>

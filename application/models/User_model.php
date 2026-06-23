@@ -427,6 +427,7 @@ class User_Model extends CI_Model {
 				$this->session->set_userdata('user_dashboard_show_dxpeditions',xss_clean($fields['user_dashboard_show_dxpeditions'] ?? '1'));
 				$this->session->set_userdata('user_dashboard_show_contests',xss_clean($fields['user_dashboard_show_contests'] ?? '1'));
 				$this->session->set_userdata('user_dxwaterfall_enable',xss_clean($fields['user_dxwaterfall_enable'] ?? 'N'));
+				$this->session->set_userdata('user_stations_active_log_only',xss_clean($fields['user_stations_active_log_only'] ?? '0'));
 
 				// Check to see if the user is allowed to change user levels
 				if($this->session->userdata('user_type') == 99) {
@@ -635,6 +636,7 @@ class User_Model extends CI_Model {
 			'user_quicklog' 				=> isset($u->user_quicklog) ? $u->user_quicklog : 1,
 			'user_quicklog_enter' 			=> isset($u->user_quicklog_enter) ? $u->user_quicklog_enter : 1,
 			'active_station_logbook' 		=> $u->active_station_logbook,
+			'user_stations_active_log_only' => ((($sess['user_stations_active_log_only'] ?? '0') == '1') ? ($sess['user_stations_active_log_only'] ?? '0') : ($user_options['stations']['active_log_only']['boolean'] ?? '0')),
 			'user_language' 				=> isset($u->user_language) ? $u->user_language: 'english',
 			'isWinkeyEnabled' 				=> $u->winkey,
 			'FirstLoginWizard' 				=> ((($sess['FirstLoginWizard'] ?? '') == '') ? ($user_options['FirstLoginWizard']['showed']['boolean'] ?? null) : $sess['FirstLoginWizard']),
