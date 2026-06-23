@@ -872,13 +872,13 @@ $options = json_decode($options);
 				</select>
 				<label class="me-2" for="de"><?= __("Location"); ?></label>
 				<select class="form-select form-select-sm w-auto me-2" id="de" name="de" multiple="multiple">
-					<?php foreach ($station_profile->result() as $station) { ?>
+					<?php if($station_profile !== FALSE) { foreach ($station_profile->result() as $station) { ?>
 						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
 							echo " selected =\"selected\""; } ?>>
 							<?= __("Callsign: ") . " " ?>
 							<?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
 						</option>
-					<?php } ?>
+					<?php } } ?>
 				</select>
 				<button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right flex-grow-0 mb-2" aria-label="<?= __("Search"); ?>" id="searchButton" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Search"); ?>">
 					<i class="fas fa-search"></i><div class="ld ld-ring ld-spin"></div>

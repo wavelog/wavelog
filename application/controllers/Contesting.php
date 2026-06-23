@@ -91,7 +91,7 @@ class Contesting extends CI_Controller {
 	public function quickstart() {
 		if (!clubaccess_check(9)) {
 			$this->session->set_flashdata('error', __("Officers must set up contests."));
-			redirect('contesting'); 
+			redirect('contesting');
 		}
 
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
@@ -322,7 +322,7 @@ class Contesting extends CI_Controller {
 	 * POST /contesting/export_reg1test/<id>
 	 */
 	public function export_reg1test($contest_session_id) {
-		
+
 		//load contesting model
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
@@ -616,7 +616,11 @@ class Contesting extends CI_Controller {
 				$this->load->is_loaded('stations') ?: $this->load->model('stations');
 
 				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
-				$data['stations'] = $this->stations->all_of_user();
+				if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+					$data['stations'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+				} else {
+					$data['stations'] = $this->stations->all_of_user();
+				}
 				$data['active_station_location'] = $this->active_station_location;
 
 				$this->load->view('contesting/manager/components/session_modal', $data);
@@ -625,7 +629,7 @@ class Contesting extends CI_Controller {
 			case 'post':
 				if (!clubaccess_check(9)) {
 					$this->session->set_flashdata('error', __("Officers must set up contests."));
-					redirect('contesting'); 
+					redirect('contesting');
 				}
 				$contest_adif_id = $this->input->post('contest_adif_id', true);
 				$session_start = $this->input->post('session_start', true);
@@ -660,7 +664,7 @@ class Contesting extends CI_Controller {
 		switch ($this->input->method()) {
 			case 'get':
 				$contest_session_id = $this->input->get('contest_session_id');
-				
+
 				$this->load->is_loaded('contest_admin_model') ?: $this->load->model('contest_admin_model');
 				$this->load->is_loaded('stations') ?: $this->load->model('stations');
 
@@ -716,7 +720,7 @@ class Contesting extends CI_Controller {
 		switch ($this->input->method()) {
 			case 'get':
 				$contest_session_id = $this->input->get('contest_session_id');
-				
+
 				$this->load->is_loaded('contest_admin_model') ?: $this->load->model('contest_admin_model');
 				$this->load->is_loaded('stations') ?: $this->load->model('stations');
 
@@ -727,11 +731,15 @@ class Contesting extends CI_Controller {
 				}
 
 				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
-				$data['stations'] = $this->stations->all_of_user();
+				if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+					$data['stations'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+				} else {
+					$data['stations'] = $this->stations->all_of_user();
+				}
 				$data['active_station_location'] = $this->active_station_location;
 
 				$this->load->view('contesting/manager/components/confirm_delete', $data);
-				break;	
+				break;
 
 			case 'post':
 				$contest_session_id = $this->input->post('contest_session_id', true);

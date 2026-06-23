@@ -63,7 +63,7 @@
                         <label for="station_location" class="form-label"><?= __("Station Location") ?> <span class="text-danger">*</span></label>
                         <select class="form-select form-control form-control-sm" id="station_location" name="station_location" required>
                             <option value="" disabled selected><?= __("Please select a station"); ?></option>
-                            <?php 
+                            <?php
                             function is_current($value, $session_info = null, $active_station_location = null) {
                                 if (isset($session_info) && $session_info['station_id'] == $value) {
                                     return 'selected';
@@ -72,10 +72,11 @@
                                 }
                                 return '';
                             }
-                            
-                            foreach ($stations->result() as $stationrow) { ?>
-                                <option value="<?= $stationrow->station_id; ?>" <?= is_current($stationrow->station_id, $session_info, $active_station_location); ?>><?= htmlspecialchars($stationrow->station_profile_name) . " (" . htmlspecialchars($stationrow->station_callsign) . ")"; ?></option>
-                            <?php } ?>
+
+							if($stations !== FALSE) {
+								foreach ($stations->result() as $stationrow) { ?>
+	                                <option value="<?= $stationrow->station_id; ?>" <?= is_current($stationrow->station_id, $session_info ?? null, $active_station_location); ?>><?= htmlspecialchars($stationrow->station_profile_name) . " (" . htmlspecialchars($stationrow->station_callsign) . ")"; ?></option>
+                            <?php } } ?>
                         </select>
                         <small class="text-muted d-block mt-2"><?= __("Choose one of your stations"); ?></small>
                     </div>

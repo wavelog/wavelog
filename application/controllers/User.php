@@ -80,7 +80,7 @@ class User extends CI_Controller {
 		if ($this->user_model->exists_by_id($data['user_id']) && $modal != '') {
 			$user = $this->user_model->get_by_id($data['user_id'])->row();
 			$gettext = new Gettext;
-			
+
 			$data['auth_header_enable'] = $this->config->item('auth_header_enable') ?? false;
 			if ($data['auth_header_enable']) {
 				$this->config->load('sso', true, true);
@@ -952,6 +952,14 @@ class User extends CI_Controller {
 				}
 			}
 
+			// Station locations linked to active logbook
+			if($this->input->post('user_stations_active_log_only') !== null) {
+				$data['user_stations_active_log_only'] = $this->input->post('user_stations_active_log_only', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('stations',array('option_name'=>'active_log_only','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				$data['user_stations_active_log_only'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
@@ -1072,6 +1080,7 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') == '1' ? '1' : '0')), $user_id);
+					$this->user_options_model->set_option('stations', 'active_log_only', array('boolean'=>($this->input->post('user_stations_active_log_only') == '1' ? '1' : '0')), $user_id);
 
 					if($this->session->userdata('user_id') == $user_id) {
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));

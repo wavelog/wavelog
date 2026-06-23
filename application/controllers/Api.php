@@ -266,28 +266,37 @@ class API extends CI_Controller {
 			$this->api_model->update_last_used($key);
 			$userid = $this->api_model->key_userid($key);
 			$station_ids = array();
-			$stations=$this->stations->all_of_user($userid);
-			foreach ($stations->result() as $row) {
-				$result['station_id']=$row->station_id;
-				$result['station_profile_name']=$row->station_profile_name;
-				$result['station_gridsquare']=$row->station_gridsquare;
-				$result['station_callsign']=$row->station_callsign;;
-				$result['station_active']=$row->station_active;
-				$result['station_uuid']=$row->station_uuid;
-				$result['station_city']=$row->station_city;
-				$result['station_iota']=$row->station_iota;
-				$result['station_sota']=$row->station_sota;
-				$result['station_wwff']=$row->station_wwff;
-				$result['station_pota']=$row->station_pota;
-				$result['station_sig']=$row->station_sig;
-				$result['station_sig_info']=$row->station_sig_info;
-				$result['station_dxcc']=$row->station_dxcc;
-				$result['station_cnty']=$row->station_cnty;
-				$result['station_cq']=$row->station_cq;
-				$result['station_itu']=$row->station_itu;
-				$result['station_state']=$row->state;
-				$result['station_country']=$row->station_country;
-				array_push($station_ids, $result);
+
+			$dkey_opt=$this->user_options_model->get_options('stations',array('option_name'=>'active_log_only','option_key'=>'boolean'), $userid)->result();
+			$user_stations_active_log_only = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
+			if($user_stations_active_log_only) {
+				$stations = $this->logbooks_model->list_logbooks_linked($this->logbooks_model->find_active_station_logbook_from_userid($userid));
+			} else {
+				$stations=$this->stations->all_of_user($userid);
+			}
+			if($stations !== FALSE) {
+				foreach ($stations->result() as $row) {
+					$result['station_id']=$row->station_id;
+					$result['station_profile_name']=$row->station_profile_name;
+					$result['station_gridsquare']=$row->station_gridsquare;
+					$result['station_callsign']=$row->station_callsign;;
+					$result['station_active']=$row->station_active;
+					$result['station_uuid']=$row->station_uuid;
+					$result['station_city']=$row->station_city;
+					$result['station_iota']=$row->station_iota;
+					$result['station_sota']=$row->station_sota;
+					$result['station_wwff']=$row->station_wwff;
+					$result['station_pota']=$row->station_pota;
+					$result['station_sig']=$row->station_sig;
+					$result['station_sig_info']=$row->station_sig_info;
+					$result['station_dxcc']=$row->station_dxcc;
+					$result['station_cnty']=$row->station_cnty;
+					$result['station_cq']=$row->station_cq;
+					$result['station_itu']=$row->station_itu;
+					$result['station_state']=$row->state;
+					$result['station_country']=$row->station_country;
+					array_push($station_ids, $result);
+				}
 			}
 			echo json_encode($station_ids);
 		} else {
