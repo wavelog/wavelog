@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-20 11:13+0000\n"
-"PO-Revision-Date: 2026-06-20 17:33+0000\n"
+"PO-Revision-Date: 2026-06-23 10:16+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -16128,7 +16128,7 @@ msgstr "为我拉取 LoTW 数据"
 
 #: application/views/lotw/import.php:48
 msgid "Select callsign to pull LoTW confirmations for."
-msgstr "选择要同步 LoTW 确认信息的呼号。"
+msgstr "选择需要拉取 LoTW 通联确认记录的呼号。"
 
 #: application/views/lotw/import.php:62
 msgid ""
@@ -16137,13 +16137,13 @@ msgid ""
 "have all confirmations since chosen date, or since your last LoTW "
 "confirmation (fetched from your log), up until now."
 msgstr ""
-"Wavelog 将使用你用户配置文件中的 LoTW 用户名和密码，为你从 LoTW 下载报告。"
-"Wavelog 下载的报告将包含自所选日期或你上次 LoTW 确认（从你的日志中获取）以来"
-"的所有确认信息。注：LoTW 的下载功能仅能导出 QSL 记录。"
+"Wavelog 将使用你用户资料中保存的 LoTW 账号与密码，从 LoTW 服务器为你下载报告"
+"。Wavelog 下载的这份报告包含从你选定日期（或从日志里上次同步 LoTW 的时间）起"
+"，截止到当前的全部通联确认记录。"
 
 #: application/views/lotw/import.php:66
 msgid "Import LoTW Matches"
-msgstr "导入 LoTW 匹配"
+msgstr "导入LoTW并匹配"
 
 #: application/views/lotw/satupdate.php:7
 #: application/views/satellite/index.php:53
