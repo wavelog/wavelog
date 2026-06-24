@@ -47,7 +47,13 @@ class Search extends CI_Controller {
 	public function lotw_unconfirmed() {
 		$this->load->model('stations');
 
-		$data['station_profile'] = $this->stations->all_of_user();
+		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+			$data['station_profile'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+			$data['stations_active_log_only'] = true;
+		} else {
+			$data['station_profile'] = $this->stations->all_of_user();
+			$data['stations_active_log_only'] = false;
+		}
 		$data['page_title'] = __("QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO date");
 
 		$this->load->view('interface_assets/header', $data);
