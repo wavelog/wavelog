@@ -128,7 +128,7 @@
 					},
 				},
 				{
-					text: <?= _pgettext("Station Locations", "Export All Locations") ?>,
+					text: '<?= _pgettext("Station Locations", "Export All Locations") ?>',
 					className: 'mb-1 btn btn-sm btn-primary', // same Bootstrap style
 					action: function(e, dt, node, config) {
 						exportAllLocations();
@@ -139,7 +139,7 @@
 				},
 				<?php if (!($cd_p_level == 3) && !($cd_p_level == 6)) { // ClubOfficer (9) and normal User can import, while ClubOfficer (ADIF) (3,6) can only see. ?>
 				{
-				text: <?= _pgettext("Station Locations", "Import Locations") ?>,
+				text: '<?= _pgettext("Station Locations", "Import Locations") ?>',
 				className: 'mb-1 btn btn-sm btn-primary',
 				action: function(e, dt, node, config) {
 					// Create a hidden file input (accept JSON)
