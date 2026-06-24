@@ -198,7 +198,7 @@ function reloadCrons() {
 		error: function (data) {
 			BootstrapDialog.alert({
 				title: 'ERROR',
-				message: 'An error ocurred while making the request',
+				message: 'An error occurred while making the request',
 				type: BootstrapDialog.TYPE_DANGER,
 				closable: false,
 				draggable: false,

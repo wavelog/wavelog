@@ -63,7 +63,7 @@
     let lang_gen_advanced_logbook_error_saving_options = '<?= __("An error occurred while saving options: "); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_row_delete = '<?= __("You need to select a least 1 row to delete!"); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_row_callbook = '<?= __("You need to select a least 1 row to update from callbook!"); ?>';
-    let lang_gen_advanced_logbook_an_error_ocurred_while_making_request = '<?= __("An error ocurred while making the request"); ?>';
+    let lang_gen_advanced_logbook_an_error_occurred_while_making_request = '<?= __("An error occurred while making the request"); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_location = '<?= __("You need to select at least 1 location to do a search!"); ?>';
     let lang_gen_advanced_logbook_update_distances = '<?= __("Update Distances"); ?>';
     let lang_gen_advanced_logbook_records_updated = '<?= __("QSO records updated."); ?>';

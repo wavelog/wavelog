@@ -819,7 +819,7 @@ $(document).ready(function () {
 				$('#searchButton').prop("disabled", false).removeClass("running");
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_an_error_ocurred_while_making_request,
+					message: lang_gen_advanced_logbook_an_error_occurred_while_making_request,
 					type: BootstrapDialog.TYPE_DANGER,
 					closable: false,
 					draggable: false,
