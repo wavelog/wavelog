@@ -301,11 +301,11 @@ class Stationsetup extends CI_Controller {
 	}
 
 	private function lblnk2html($public_slug, $logbook_name, $id) {
-		$htmret = '<button class="btn btn-outline-primary btn-sm editVisitorLink" id="' . $id . '"><i class="fas fa-edit"></i></button> ';
+		$htmret = '<button class="btn btn-outline-primary btn-sm editVisitorLink" id="' . $id . '" title="' . __("Edit Visitor Link") . '"><i class="fas fa-edit"></i></button> ';
 		if($public_slug != '') {
-			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.__("View Public Page for Logbook: ") . $logbook_name.'"></i></a>';
-			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="' . __("Are you sure you want to delete the public slug?") . '"><i class="fas fa-trash-alt"></i></button>';
-			$htmret .= ' <button id="' . $id . '" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>';
+			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm" title="'.__("View Public Page for Logbook: ") . $logbook_name.'"><i class="fas fa-globe"></i></a>';
+			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" title="' . __("Delete Public Slug") . '" cnftext="' . __("Are you sure you want to delete the public slug?") . '"><i class="fas fa-trash-alt"></i></button>';
+			$htmret .= ' <button id="' . $id . '" class="editExportmapOptions btn btn-outline-primary btn-sm" title="' . __("Edit Export Map Options") . '"><i class="fas fa-globe-europe"></i></button>';
 		}
 		return $htmret;
 	}
