@@ -7,7 +7,7 @@
 	let lang_oqrs_qsl_method_bureau = "<?= __("Bureau"); ?>";
 	let lang_oqrs_qsl_method_direct = "<?= __("Direct"); ?>";
 	let lang_oqrs_qsl_method_electronic = "<?= __("Electronic"); ?>";
-	let lang_oqrs_error_request = "<?= __("An error ocurred while making the request"); ?>";
+	let lang_oqrs_error_request = "<?= __("An error occurred while making the request"); ?>";
 	let lang_oqrs_warning_delete = "<?= __("Warning! Are you sure you want to delete the marked OQRS request(s)?"); ?>";
 	let lang_oqrs_warning_reject = "<?= __("Warning! Are you sure you want to reject the marked OQRS request(s)?"); ?>";
 	let lang_oqrs_warning_mark = "<?= __("Warning! Are you sure you want to mark the marked OQRS request(s)?"); ?>";

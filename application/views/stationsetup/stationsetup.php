@@ -8,7 +8,7 @@
 	let lang_stationsetup_edit_visitor_link = "<?= __("Edit Visitor Link") ?>";
 	let lang_stationsetup_create_new_station_logbook = "<?= __("Create a New Station Logbook") ?>";
 	let lang_stationsetup_create_new_station_location = "<?= __("Create a New Station Location") ?>";
-	let lang_stationsetup_reload_error = "<?= __("An error ocurred while making the request") ?>";
+	let lang_stationsetup_reload_error = "<?= __("An error occurred while making the request") ?>";
 </script>
 <div class="container">
 
