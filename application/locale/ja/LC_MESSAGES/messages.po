@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-24 12:03+0000\n"
-"PO-Revision-Date: 2026-06-24 10:48+0000\n"
+"PO-Revision-Date: 2026-06-25 13:16+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -1064,7 +1064,7 @@ msgstr "オペレーターの切り替えは無効になっています。"
 
 #: application/controllers/Contesting.php:983
 msgid "Operator switching is only available in club stations."
-msgstr "オペレーターの切り替えは、クラブステーションでのみ利用可能です。"
+msgstr "オペレーターの切り替えは、クラブシャック でのみ利用可能です。"
 
 #: application/controllers/Contesting.php:993
 msgid "Access denied"
@@ -2690,7 +2690,7 @@ msgstr "無効な無線局ID"
 
 #: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
-msgstr "ステーション名に無効な文字が有る"
+msgstr "シャック 名に無効な文字が有る"
 
 #: application/controllers/Oqrs.php:174
 #: application/views/interface_assets/header.php:516
@@ -3276,7 +3276,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:8
 #: application/views/stationsetup/stationsetup.php:77
 msgid "Edit Visitor Link"
-msgstr ""
+msgstr "訪問者リンクを編集"
 
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:84
@@ -3291,21 +3291,20 @@ msgstr "パブリックスラッグを削除してもよろしいですか?"
 #: application/controllers/Stationsetup.php:307
 #: application/views/stationsetup/stationsetup.php:90
 msgid "Delete Public Slug"
-msgstr ""
+msgstr "公開スラッグを削除"
 
 #: application/controllers/Stationsetup.php:308
 #: application/views/stationsetup/stationsetup.php:5
 #: application/views/stationsetup/stationsetup.php:97
 msgid "Edit Export Map Options"
-msgstr ""
+msgstr "エクスポートマップオプションを編集"
 
 #: application/controllers/Stationsetup.php:392
 #: application/views/stationsetup/stationsetup.php:189
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
-msgstr ""
-"無線局プロファイル %s をアクティブなステーションに設定してもよろしいですか？"
+msgstr "無線局プロファイル %s をアクティブなシャック に設定してもよろしいですか？"
 
 #: application/controllers/Stationsetup.php:392
 #: application/views/stationsetup/stationsetup.php:189
@@ -4032,7 +4031,7 @@ msgstr "管理者はコンテストを編集しなければなりません。"
 
 #: application/models/Contesting_model.php:188
 msgid "Only clubstation officers can delete."
-msgstr "クラブステーションの役員のみが削除できます。"
+msgstr "クラブシャック の役員のみが削除できます。"
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -5213,7 +5212,7 @@ msgstr ""
 
 #: application/views/adif/import.php:251
 msgid "All is limited to station locations linked to active logbook"
-msgstr "すべてはアクティブなログブックにリンクされた駅の場所に限定されます"
+msgstr "すべてはアクティブなログブックにリンクされたシャック の場所に限定されます"
 
 #: application/views/adif/import.php:272
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
@@ -5824,12 +5823,12 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
-"グリッドアクティベーションを正しく計算するために、ステーションプロファイルで"
+"グリッドアクティベーションを正しく計算するために、シャック プロファイルで"
 "ホームグリッドスクエアを設定してください。"
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
-msgstr "ステーションプロフィールへ"
+msgstr "シャック プロフィールへ"
 
 #: application/views/awards/amsat_rover/index.php:39
 #: application/views/awards/cq/index.php:50
@@ -10838,7 +10837,7 @@ msgstr "終了日時: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:15
 msgid "Station: "
-msgstr "駅： "
+msgstr "シャック ： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
@@ -10920,11 +10919,11 @@ msgstr "セッションはいつ終了すべきですか？"
 
 #: application/views/contesting/manager/components/session_modal.php:65
 msgid "Please select a station"
-msgstr "駅を選択してください"
+msgstr "シャック を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:81
 msgid "Choose one of your stations"
-msgstr "いずれかの駅を選択してください"
+msgstr "いずれかのシャック を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Exchange Fields"
@@ -11033,7 +11032,7 @@ msgstr ""
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
-msgstr "ファイルのエクスポート権限がありません。駅員に連絡してください。"
+msgstr "ファイルのエクスポート権限がありません。シャック 員に連絡してください。"
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:497
@@ -11373,7 +11372,7 @@ msgstr "オペレーターの電話番号"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr "追加の駅説明"
+msgstr "追加のシャック 説明"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -17623,7 +17622,7 @@ msgstr "日時"
 
 #: application/views/qslpostcard/designer.php:8
 msgid "Station & Equipment"
-msgstr "ステーションと設備"
+msgstr "シャック と設備"
 
 #: application/views/qslpostcard/designer.php:9
 msgid "My References"
@@ -19744,61 +19743,61 @@ msgstr "局の所在地のリンクを解除"
 
 #: application/views/stationsetup/locationlist.php:10
 msgid "QSO Count"
-msgstr ""
+msgstr "交信数"
 
 #: application/views/stationsetup/locationlist.php:27
 msgid "eQSL Nickname"
-msgstr ""
+msgstr "eQSLニックネーム"
 
 #: application/views/stationsetup/locationlist.php:28
 msgid "eQSL default QSLmsg"
-msgstr ""
+msgstr "eQSLのデフォルトQSLメッセージ"
 
 #: application/views/stationsetup/locationlist.php:29
 msgid "QRZ upload"
-msgstr ""
+msgstr "QRZアップロード"
 
 #: application/views/stationsetup/locationlist.php:30
 msgid "OQRS enabled"
-msgstr ""
+msgstr "OQRS対応"
 
 #: application/views/stationsetup/locationlist.php:33
 msgid "QO-100 DX Club realtime upload"
-msgstr ""
+msgstr "QO-100 DXクラブ リアルタイムアップロード"
 
 #: application/views/stationsetup/locationlist.php:34
 msgid "ClubLog realtime upload"
-msgstr ""
+msgstr "ClubLogリアルタイムアップロード"
 
 #: application/views/stationsetup/locationlist.php:35
 msgid "ClubLog Ignore"
-msgstr ""
+msgstr "クラブログ無視"
 
 #: application/views/stationsetup/locationlist.php:36
 msgid "HRDLog realtime upload"
-msgstr ""
+msgstr "HRDLogリアルタイムアップロード"
 
 #: application/views/stationsetup/locationlist.php:37
 msgid "HRDLog username"
-msgstr ""
+msgstr "HRDLogユーザー名"
 
 #: application/views/stationsetup/locationlist.php:38
 msgid "Created"
-msgstr ""
+msgstr "作成済み"
 
 #: application/views/stationsetup/locationlist.php:39
 msgid "Last Modified"
-msgstr ""
+msgstr "最終更新日"
 
 #: application/views/stationsetup/locationlist.php:131
 msgctxt "Station Locations"
 msgid "Export All Locations"
-msgstr ""
+msgstr "すべての場所をエクスポート"
 
 #: application/views/stationsetup/locationlist.php:142
 msgctxt "Station Locations"
 msgid "Import Locations"
-msgstr ""
+msgstr "インポート先"
 
 #: application/views/stationsetup/stationsetup.php:4
 msgid "Invalid characters entered in link! Enter only the slug."
@@ -19806,7 +19805,7 @@ msgstr "リンクに無効な文字が入力されました！スラッグのみ
 
 #: application/views/stationsetup/stationsetup.php:6
 msgid "Edit Container Name"
-msgstr ""
+msgstr "コンテナ名を編集"
 
 #: application/views/stationsetup/stationsetup.php:7
 #: application/views/stationsetup/stationsetup.php:45
@@ -19815,11 +19814,11 @@ msgstr "リンクされた所在地を編集"
 
 #: application/views/stationsetup/stationsetup.php:9
 msgid "Create a New Station Logbook"
-msgstr ""
+msgstr "新しいシャック ログブックを作成する"
 
 #: application/views/stationsetup/stationsetup.php:10
 msgid "Create a New Station Location"
-msgstr ""
+msgstr "新しいシャック の場所を作成する"
 
 #: application/views/stationsetup/stationsetup.php:33
 msgid ""
@@ -20464,12 +20463,11 @@ msgstr "列5を選択（ログブックのみ）"
 
 #: application/views/user/edit.php:408
 msgid "Station Location Options"
-msgstr "駅の設置場所オプション"
+msgstr "シャック の設置場所オプション"
 
 #: application/views/user/edit.php:417
 msgid "Only show station locations linked to active logbook"
-msgstr ""
-"アクティブなログブックにリンクされているステーションの場所のみを表示します"
+msgstr "アクティブなログブックにリンクされているシャック の場所のみを表示します"
 
 #: application/views/user/edit.php:427
 msgid "QSO Logging Options"
@@ -21246,7 +21244,7 @@ msgstr "%s検索%s"
 #: application/views/user/modals/first_login_wizard.php:112
 #: application/views/user/modals/first_login_wizard.php:134
 msgid "Skip and Open Clubstation"
-msgstr "スキップしてクラブステーションを開く"
+msgstr "スキップしてクラブシャック を開く"
 
 #: application/views/user/modals/first_login_wizard.php:141
 msgid "Save and Start Logging"
