@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-23 15:39+0000\n"
+"POT-Creation-Date: 2026-06-24 12:03+0000\n"
 "PO-Revision-Date: 2026-06-20 17:33+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -492,6 +492,7 @@ msgstr "DOK"
 #: application/views/search/result.php:27
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
+#: application/views/stationsetup/locationlist.php:15
 #: application/views/timeplotter/index.php:21
 msgid "DXCC"
 msgstr "DXCC"
@@ -596,6 +597,7 @@ msgstr " och "
 #: application/views/search/search_result_ajax.php:9
 #: application/views/station_profile/create.php:211
 #: application/views/station_profile/edit.php:236
+#: application/views/stationsetup/locationlist.php:17
 #: application/views/user/edit.php:298 application/views/user/edit.php:321
 #: application/views/user/edit.php:344 application/views/user/edit.php:367
 #: application/views/user/edit.php:391
@@ -619,6 +621,7 @@ msgstr "SOTA"
 #: application/views/search/search_result_ajax.php:10
 #: application/views/station_profile/create.php:225
 #: application/views/station_profile/edit.php:250
+#: application/views/stationsetup/locationlist.php:23
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/user/edit.php:345 application/views/user/edit.php:368
 #: application/views/user/edit.php:392
@@ -642,6 +645,7 @@ msgstr "WWFF"
 #: application/views/search/search_result_ajax.php:11
 #: application/views/station_profile/create.php:239
 #: application/views/station_profile/edit.php:264
+#: application/views/stationsetup/locationlist.php:24
 #: application/views/user/edit.php:300 application/views/user/edit.php:323
 #: application/views/user/edit.php:346 application/views/user/edit.php:369
 #: application/views/user/edit.php:393
@@ -715,8 +719,9 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
 #: application/views/qso/edit_ajax.php:378 application/views/qso/index.php:347
-#: application/views/qso/index.php:631 application/views/user/edit.php:831
-#: application/views/view_log/qso.php:384
+#: application/views/qso/index.php:631
+#: application/views/stationsetup/locationlist.php:25
+#: application/views/user/edit.php:831 application/views/view_log/qso.php:384
 #: application/views/view_log/qso.php:702
 msgid "SIG"
 msgstr "SIG"
@@ -1653,7 +1658,7 @@ msgstr ""
 "Stationsloggböcker. Gör det här:"
 
 #: application/controllers/Logbook.php:39
-#: application/views/stationsetup/stationsetup.php:22
+#: application/views/stationsetup/stationsetup.php:30
 msgid "Station Logbooks"
 msgstr "Stationsloggböcker"
 
@@ -1953,7 +1958,7 @@ msgstr "RST (R)"
 #: application/views/qslcard/searchresult.php:79
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/search/search_result_ajax.php:7
-#: application/views/stationsetup/stationsetup.php:132
+#: application/views/stationsetup/stationsetup.php:157
 #: application/views/timeline/index.php:193 application/views/user/edit.php:296
 #: application/views/user/edit.php:319 application/views/user/edit.php:342
 #: application/views/user/edit.php:365 application/views/user/edit.php:389
@@ -1988,6 +1993,7 @@ msgstr "Land"
 #: application/views/search/search_result_ajax.php:8
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:210
+#: application/views/stationsetup/locationlist.php:16
 #: application/views/timeline/index.php:306 application/views/user/edit.php:297
 #: application/views/user/edit.php:320 application/views/user/edit.php:343
 #: application/views/user/edit.php:366 application/views/user/edit.php:390
@@ -2018,6 +2024,7 @@ msgstr "IOTA"
 #: application/views/qslcard/searchresult.php:82
 #: application/views/qso/components/previous_contacts.php:85
 #: application/views/search/search_result_ajax.php:12
+#: application/views/stationsetup/locationlist.php:22
 #: application/views/statistics/initialresult.php:21
 #: application/views/timeline/index.php:270 application/views/user/edit.php:301
 #: application/views/user/edit.php:324 application/views/user/edit.php:347
@@ -2063,7 +2070,7 @@ msgstr "Delstat"
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
-#: application/views/stationsetup/stationsetup.php:133
+#: application/views/stationsetup/stationsetup.php:158
 #: application/views/statistics/initialresult.php:20
 #: application/views/timeline/index.php:379 application/views/user/edit.php:188
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
@@ -2282,7 +2289,7 @@ msgstr "Operatör"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/locationlist.php:75
-#: application/views/stationsetup/stationsetup.php:159
+#: application/views/stationsetup/stationsetup.php:184
 #: application/views/timeline/index.php:215
 #: application/views/timeplotter/index.php:29
 #: application/views/user/modals/first_login_wizard.php:52
@@ -2937,8 +2944,8 @@ msgstr "senast uppdaterad"
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:58
 #: application/views/search/stored_queries.php:21
-#: application/views/stationsetup/stationsetup.php:137
-#: application/views/stationsetup/stationsetup.php:175
+#: application/views/stationsetup/stationsetup.php:162
+#: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
 msgid "Edit"
@@ -2969,9 +2976,9 @@ msgstr "Redigera"
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
-#: application/views/stationsetup/stationsetup.php:38
-#: application/views/stationsetup/stationsetup.php:146
-#: application/views/stationsetup/stationsetup.php:202
+#: application/views/stationsetup/stationsetup.php:46
+#: application/views/stationsetup/stationsetup.php:171
+#: application/views/stationsetup/stationsetup.php:227
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
 msgid "Delete"
@@ -3206,7 +3213,7 @@ msgid "Error"
 msgstr "Fel"
 
 #: application/controllers/Stationsetup.php:185
-#: application/views/stationsetup/stationsetup.php:26
+#: application/views/stationsetup/stationsetup.php:34
 msgid "Create Station Logbook"
 msgstr "Skapa stationsloggbok"
 
@@ -3238,25 +3245,25 @@ msgstr "Fel. Länken används redan!"
 #: application/views/station_profile/edit.php:336
 #: application/views/station_profile/edit.php:395
 #: application/views/stationsetup/locationlist.php:54
-#: application/views/stationsetup/stationsetup.php:82
+#: application/views/stationsetup/stationsetup.php:107
 #: application/views/user/edit.php:531
 msgid "Disabled"
 msgstr "Inaktiverad"
 
 #: application/controllers/Stationsetup.php:287
-#: application/views/stationsetup/stationsetup.php:50
+#: application/views/stationsetup/stationsetup.php:58
 msgid "Set as Active Logbook"
 msgstr "Ange som aktiv loggbok"
 
 #: application/controllers/Stationsetup.php:289
 #: application/views/interface_assets/header.php:630
-#: application/views/stationsetup/stationsetup.php:52
+#: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
 msgstr "Aktiv loggbok"
 
 #: application/controllers/Stationsetup.php:296
-#: application/views/stationsetup/stationsetup.php:61
+#: application/views/stationsetup/stationsetup.php:69
 #, php-format
 msgid ""
 "Are you sure you want to delete the station logbook %s? You must re-link any "
@@ -3265,17 +3272,35 @@ msgstr ""
 "Är du säker på att du vill ta bort loggboken för stationen %s? Du måste "
 "länka om alla platser som är länkade här till en annan loggbok."
 
+#: application/controllers/Stationsetup.php:304
+#: application/views/stationsetup/stationsetup.php:8
+#: application/views/stationsetup/stationsetup.php:77
+msgid "Edit Visitor Link"
+msgstr ""
+
 #: application/controllers/Stationsetup.php:306
-#: application/views/stationsetup/stationsetup.php:71
+#: application/views/stationsetup/stationsetup.php:84
 msgid "View Public Page for Logbook: "
 msgstr "Visa offentlig sida för loggbok: "
 
 #: application/controllers/Stationsetup.php:307
+#: application/views/stationsetup/stationsetup.php:91
 msgid "Are you sure you want to delete the public slug?"
 msgstr "Är du säker på att du vill ta bort den offentliga sluggen?"
 
+#: application/controllers/Stationsetup.php:307
+#: application/views/stationsetup/stationsetup.php:90
+msgid "Delete Public Slug"
+msgstr ""
+
+#: application/controllers/Stationsetup.php:308
+#: application/views/stationsetup/stationsetup.php:5
+#: application/views/stationsetup/stationsetup.php:97
+msgid "Edit Export Map Options"
+msgstr ""
+
 #: application/controllers/Stationsetup.php:392
-#: application/views/stationsetup/stationsetup.php:164
+#: application/views/stationsetup/stationsetup.php:189
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
@@ -3284,12 +3309,12 @@ msgstr ""
 "stationen?"
 
 #: application/controllers/Stationsetup.php:392
-#: application/views/stationsetup/stationsetup.php:164
+#: application/views/stationsetup/stationsetup.php:189
 msgid "Set Active"
 msgstr "Aktivera"
 
 #: application/controllers/Stationsetup.php:394
-#: application/views/stationsetup/stationsetup.php:166
+#: application/views/stationsetup/stationsetup.php:191
 msgid "Active Station"
 msgstr "Aktiv station"
 
@@ -3301,31 +3326,31 @@ msgstr "Aktiv station"
 #: application/views/logbookadvanced/mergedialog.php:73
 #: application/views/qso/edit_ajax.php:34 application/views/qso/index.php:93
 #: application/views/simplefle/index.php:28
-#: application/views/stationsetup/stationsetup.php:171
+#: application/views/stationsetup/stationsetup.php:196
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
 msgid "QSO"
 msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:406
-#: application/views/stationsetup/stationsetup.php:195
+#: application/views/stationsetup/stationsetup.php:220
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr "Är du säker på att du vill radera alla QSOs inom denna stationsprofil?"
 
 #: application/controllers/Stationsetup.php:406
-#: application/views/stationsetup/stationsetup.php:145
-#: application/views/stationsetup/stationsetup.php:197
+#: application/views/stationsetup/stationsetup.php:170
+#: application/views/stationsetup/stationsetup.php:222
 msgid "Empty Log"
 msgstr "Tom logg"
 
 #: application/controllers/Stationsetup.php:410
-#: application/views/stationsetup/stationsetup.php:138
-#: application/views/stationsetup/stationsetup.php:178
+#: application/views/stationsetup/stationsetup.php:163
+#: application/views/stationsetup/stationsetup.php:203
 msgid "Copy"
 msgstr "Kopiera"
 
 #: application/controllers/Stationsetup.php:415
-#: application/views/stationsetup/stationsetup.php:201
+#: application/views/stationsetup/stationsetup.php:226
 #, php-format
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
@@ -3338,7 +3363,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:221
 #: application/views/station_profile/create.php:85
 #: application/views/station_profile/edit.php:102
-#: application/views/stationsetup/stationsetup.php:159
+#: application/views/stationsetup/stationsetup.php:184
 #: application/views/user/modals/first_login_wizard.php:46
 msgid "Please select one"
 msgstr "Välj ett alternativ"
@@ -3664,7 +3689,7 @@ msgstr "Stationsnamn"
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
 #: application/views/stationsetup/linkedlocations.php:32
-#: application/views/stationsetup/stationsetup.php:131
+#: application/views/stationsetup/stationsetup.php:156
 #: application/views/user/modals/first_login_wizard.php:34
 msgid "Station Callsign"
 msgstr "Stationsanropssignal"
@@ -3819,7 +3844,7 @@ msgid "Satellite Gridsquare Map"
 msgstr "Satellit lokator-karta"
 
 #: application/controllers/Visitor.php:481
-#: application/views/stationsetup/stationsetup.php:40
+#: application/views/stationsetup/stationsetup.php:48
 msgid "Public Search"
 msgstr "Offentlig sökning"
 
@@ -4779,6 +4804,7 @@ msgstr "Inget hittades!"
 #: application/views/simplefle/index.php:156
 #: application/views/station_profile/edit.php:69
 #: application/views/stationsetup/linkedlocations.php:17
+#: application/views/stationsetup/locationlist.php:12
 #: application/views/statistics/initialresult.php:17
 #: application/views/update/hamsofnote.php:7
 #: application/views/user/edit.php:175 application/views/user/index.php:28
@@ -5014,7 +5040,7 @@ msgstr "Maximal filuppladdningsstorlek är "
 #: application/views/interface_assets/footer.php:37
 #: application/views/notes/add.php:23 application/views/notes/edit.php:29
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
-#: application/views/stationsetup/stationsetup.php:119
+#: application/views/stationsetup/stationsetup.php:144
 #: application/views/view_log/qso.php:747
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
@@ -5493,7 +5519,7 @@ msgstr "POTA REF i ADIF"
 #: application/views/oqrs/showrequests.php:102
 #: application/views/oqrs/status_info.php:4
 #: application/views/sattimers/index.php:44
-#: application/views/stationsetup/stationsetup.php:36
+#: application/views/stationsetup/stationsetup.php:44
 #: application/views/timeline/index.php:197
 #: application/views/usermode/index.php:41
 msgid "Status"
@@ -5922,6 +5948,7 @@ msgstr "Locator aktiveringar"
 #: application/views/awards/amsat_rover/index.php:221
 #: application/views/contesting/logger/components/qso-form.php:152
 #: application/views/satellite/skedtable.php:40
+#: application/views/stationsetup/locationlist.php:13
 msgid "Grid"
 msgstr "Lokatorrutor"
 
@@ -6000,6 +6027,7 @@ msgstr "Filtrering på"
 #: application/views/logbookadvanced/index.php:479
 #: application/views/logbookadvanced/index.php:1012
 #: application/views/logbookadvanced/useroptions.php:187
+#: application/views/stationsetup/locationlist.php:19
 msgid "County"
 msgstr "Län"
 
@@ -6101,6 +6129,7 @@ msgstr "Totalt"
 #: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:517
 #: application/views/station_profile/create.php:129
 #: application/views/station_profile/edit.php:154
+#: application/views/stationsetup/locationlist.php:20
 #: application/views/timeline/index.php:344
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
@@ -7170,7 +7199,8 @@ msgstr "Struken IOTA"
 #: application/views/satellite/satinfo.php:6
 #: application/views/search/result.php:16
 #: application/views/search/search_result_ajax.php:19
-#: application/views/stationsetup/stationsetup.php:35
+#: application/views/stationsetup/locationlist.php:11
+#: application/views/stationsetup/stationsetup.php:43
 #: application/views/themes/index.php:82
 #: application/views/timeline/index.php:307 application/views/user/edit.php:305
 #: application/views/user/edit.php:328 application/views/user/edit.php:351
@@ -7198,6 +7228,7 @@ msgstr "Raderad"
 #: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:527
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:169
+#: application/views/stationsetup/locationlist.php:21
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:18
 msgid "ITU Zone"
@@ -7287,6 +7318,7 @@ msgstr "Resultat"
 #: application/views/awards/jcc/index.php:164
 #: application/views/contesting/manager/export_cbr.php:267
 #: application/views/search/result.php:21
+#: application/views/stationsetup/locationlist.php:14
 #: application/views/view_log/qso.php:639
 msgid "City"
 msgstr "Stad"
@@ -9412,7 +9444,7 @@ msgstr "Första QSO"
 
 #: application/views/callstats/index.php:142
 #: application/views/contesting/manager/import_legacy.php:36
-#: application/views/stationsetup/stationsetup.php:134
+#: application/views/stationsetup/stationsetup.php:159
 msgid "Last QSO"
 msgstr "Senaste QSO"
 
@@ -10153,6 +10185,7 @@ msgstr "ADIF-namn"
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
+#: application/views/stationsetup/locationlist.php:9
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
 msgid "Active"
@@ -11045,6 +11078,7 @@ msgstr "Ljus/Laser"
 
 #: application/views/contesting/manager/export_cbr.php:117
 #: application/views/interface_assets/footer.php:122
+#: application/views/stationsetup/locationlist.php:18
 msgid "Power"
 msgstr "Effekt"
 
@@ -11546,7 +11580,7 @@ msgstr "Identifierare"
 #: application/views/options/appearance.php:57
 #: application/views/station_profile/create.php:312
 #: application/views/station_profile/edit.php:338
-#: application/views/stationsetup/stationsetup.php:79
+#: application/views/stationsetup/stationsetup.php:104
 #: application/views/user/edit.php:529 application/views/user/edit.php:530
 #: application/views/user/edit.php:1129
 msgid "Enabled"
@@ -11647,8 +11681,9 @@ msgid "Cron List"
 msgstr "Cronlista"
 
 #: application/views/cron/index.php:66
-#: application/views/stationsetup/stationsetup.php:34
-#: application/views/stationsetup/stationsetup.php:129
+#: application/views/stationsetup/locationlist.php:8
+#: application/views/stationsetup/stationsetup.php:42
+#: application/views/stationsetup/stationsetup.php:154
 msgid "ID"
 msgstr "ID"
 
@@ -14253,7 +14288,7 @@ msgid "Satellite Pass"
 msgstr "Satellitpassage"
 
 #: application/views/interface_assets/header.php:331
-#: application/views/stationsetup/stationsetup.php:121
+#: application/views/stationsetup/stationsetup.php:146
 msgid "Admin"
 msgstr "Administratör"
 
@@ -15687,6 +15722,7 @@ msgstr "Du måste välja minst 1 rad att uppdatera från anropssignalboken!"
 
 #: application/views/logbookadvanced/index.php:66
 #: application/views/oqrs/showrequests.php:10
+#: application/views/stationsetup/stationsetup.php:11
 msgid "An error occurred while making the request"
 msgstr "Ett fel inträffade när förfrågan gjordes"
 
@@ -16213,8 +16249,9 @@ msgstr "QSL Meddelande (R)"
 
 #: application/views/logbookadvanced/index.php:1039
 #: application/views/qso/edit_ajax.php:382 application/views/qso/index.php:354
-#: application/views/qso/index.php:637 application/views/user/edit.php:831
-#: application/views/view_log/qso.php:400
+#: application/views/qso/index.php:637
+#: application/views/stationsetup/locationlist.php:26
+#: application/views/user/edit.php:831 application/views/view_log/qso.php:400
 #: application/views/view_log/qso.php:707
 msgid "SIG Info"
 msgstr "SIG Info"
@@ -19688,6 +19725,7 @@ msgstr "OQRS aktiverad"
 
 #: application/views/station_profile/create.php:413
 #: application/views/station_profile/edit.php:444
+#: application/views/stationsetup/locationlist.php:32
 msgid "OQRS Email alert"
 msgstr "OQRS e-postvarning"
 
@@ -19699,6 +19737,7 @@ msgstr ""
 
 #: application/views/station_profile/create.php:421
 #: application/views/station_profile/edit.php:452
+#: application/views/stationsetup/locationlist.php:31
 msgid "OQRS Text"
 msgstr "OQRS-text"
 
@@ -19755,7 +19794,7 @@ msgid "Link Location"
 msgstr "Länka stationsplats"
 
 #: application/views/stationsetup/linkedlocations.php:31
-#: application/views/stationsetup/stationsetup.php:130
+#: application/views/stationsetup/stationsetup.php:155
 msgid "Profile Name"
 msgstr "Profilnamn"
 
@@ -19763,11 +19802,86 @@ msgstr "Profilnamn"
 msgid "Unlink Station Location"
 msgstr "Avlänka stationsplats"
 
-#: application/views/stationsetup/stationsetup.php:3
+#: application/views/stationsetup/locationlist.php:10
+msgid "QSO Count"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:27
+msgid "eQSL Nickname"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:28
+msgid "eQSL default QSLmsg"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:29
+msgid "QRZ upload"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:30
+msgid "OQRS enabled"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:33
+msgid "QO-100 DX Club realtime upload"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:34
+msgid "ClubLog realtime upload"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:35
+msgid "ClubLog Ignore"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:36
+msgid "HRDLog realtime upload"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:37
+msgid "HRDLog username"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:38
+msgid "Created"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:39
+msgid "Last Modified"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:131
+msgctxt "Station Locations"
+msgid "Export All Locations"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:142
+msgctxt "Station Locations"
+msgid "Import Locations"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:4
 msgid "Invalid characters entered in link! Enter only the slug."
 msgstr "Ogiltiga tecken angivna i länken! Ange endast sluggen."
 
-#: application/views/stationsetup/stationsetup.php:25
+#: application/views/stationsetup/stationsetup.php:6
+msgid "Edit Container Name"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:7
+#: application/views/stationsetup/stationsetup.php:45
+msgid "Edit Linked Locations"
+msgstr "Redigera länkade platser"
+
+#: application/views/stationsetup/stationsetup.php:9
+msgid "Create a New Station Logbook"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:10
+msgid "Create a New Station Location"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:33
 msgid ""
 "Station Logbooks allow you to group Station Locations, this allows you to "
 "see all the locations across one session from the logbook areas to the "
@@ -19778,19 +19892,15 @@ msgstr ""
 "alla platser under en session när stations loggen analyseras. Perfekt när du "
 "opererar på flera platser som är en del av samma DXCC- eller VUCC-cirkel."
 
-#: application/views/stationsetup/stationsetup.php:37
-msgid "Edit Linked Locations"
-msgstr "Redigera länkade platser"
-
-#: application/views/stationsetup/stationsetup.php:39
+#: application/views/stationsetup/stationsetup.php:47
 msgid "Visitor Site"
 msgstr "Besökarwebbplats"
 
-#: application/views/stationsetup/stationsetup.php:97
+#: application/views/stationsetup/stationsetup.php:122
 msgid "Station Locations"
 msgstr "Stationsplatser"
 
-#: application/views/stationsetup/stationsetup.php:101
+#: application/views/stationsetup/stationsetup.php:126
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
@@ -19798,13 +19908,13 @@ msgstr ""
 "Stationsplatser definierar operativa platser, som ditt QTH, en väns QTH "
 "eller en portabel station."
 
-#: application/views/stationsetup/stationsetup.php:102
+#: application/views/stationsetup/stationsetup.php:127
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
 "Precis som loggböcker håller en stationsprofil en uppsättning QSOs "
 "tillsammans."
 
-#: application/views/stationsetup/stationsetup.php:103
+#: application/views/stationsetup/stationsetup.php:128
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
@@ -19812,7 +19922,7 @@ msgstr ""
 "Endast en station kan vara aktiv åt gången. I tabellen nedan visas detta med "
 "-Aktiv Station- märket."
 
-#: application/views/stationsetup/stationsetup.php:104
+#: application/views/stationsetup/stationsetup.php:129
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
@@ -19820,23 +19930,23 @@ msgstr ""
 "Kolumnen 'Länkad' visar om stationens plats är länkad med den aktiva "
 "loggboken som valts ovan."
 
-#: application/views/stationsetup/stationsetup.php:107
+#: application/views/stationsetup/stationsetup.php:132
 msgid "Create a Station Location"
 msgstr "Skapa en stationsplats"
 
-#: application/views/stationsetup/stationsetup.php:107
+#: application/views/stationsetup/stationsetup.php:132
 msgid "Show only locations from the active logbook"
 msgstr "Visa endast platser från den aktiva loggboken"
 
-#: application/views/stationsetup/stationsetup.php:108
+#: application/views/stationsetup/stationsetup.php:133
 msgid "Show all locations"
 msgstr "Visa alla platser"
 
-#: application/views/stationsetup/stationsetup.php:109
+#: application/views/stationsetup/stationsetup.php:134
 msgid "Show a location list"
 msgstr "Visa en platslista"
 
-#: application/views/stationsetup/stationsetup.php:113
+#: application/views/stationsetup/stationsetup.php:138
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
@@ -19844,7 +19954,7 @@ msgstr ""
 "OBS: Du behöver ställa in en aktiv stationsplats. Gå till Anropssignal-"
 ">Stationsplats för att välja en."
 
-#: application/views/stationsetup/stationsetup.php:119
+#: application/views/stationsetup/stationsetup.php:144
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
@@ -19852,23 +19962,23 @@ msgstr ""
 "På grund av ändringar i Wavelog så behöver du tilldela alla QSO en stations "
 "profil."
 
-#: application/views/stationsetup/stationsetup.php:121
+#: application/views/stationsetup/stationsetup.php:146
 msgid "Maintenance"
 msgstr "Underhåll"
 
-#: application/views/stationsetup/stationsetup.php:121
+#: application/views/stationsetup/stationsetup.php:146
 msgid "Please reassign them at "
 msgstr "Var snäll och tilldela dem vid "
 
-#: application/views/stationsetup/stationsetup.php:136
+#: application/views/stationsetup/stationsetup.php:161
 msgid "Linked"
 msgstr "Länkad"
 
-#: application/views/stationsetup/stationsetup.php:143
+#: application/views/stationsetup/stationsetup.php:168
 msgid "Favorite"
 msgstr "Favorit"
 
-#: application/views/stationsetup/stationsetup.php:190
+#: application/views/stationsetup/stationsetup.php:215
 msgid "mark/unmark as favorite"
 msgstr "markera/avmarkera som favorit"
 
