@@ -387,7 +387,7 @@ function reloadLogbooks() {
 		error: function (data) {
 			BootstrapDialog.alert({
 				title: lang_general_word_error,
-				message: 'An error ocurred while making the request',
+				message: lang_stationsetup_reload_error,
 				type: BootstrapDialog.TYPE_DANGER,
 				closable: false,
 				draggable: false,
@@ -410,7 +410,7 @@ function reloadStations() {
 		error: function (data) {
 			BootstrapDialog.alert({
 				title: lang_general_word_error,
-				message: 'An error ocurred while making the request',
+				message: lang_stationsetup_reload_error,
 				type: BootstrapDialog.TYPE_DANGER,
 				closable: false,
 				draggable: false,
