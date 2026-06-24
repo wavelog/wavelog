@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-23 15:39+0000\n"
-"PO-Revision-Date: 2026-06-21 16:11+0000\n"
+"PO-Revision-Date: 2026-06-24 10:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -5187,7 +5187,7 @@ msgstr ""
 
 #: application/views/adif/import.php:251
 msgid "All is limited to station locations linked to active logbook"
-msgstr ""
+msgstr "すべてはアクティブなログブックにリンクされた駅の場所に限定されます"
 
 #: application/views/adif/import.php:272
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
@@ -15774,6 +15774,8 @@ msgstr "QSO分離エラー"
 msgid ""
 "%d of %d selected QSOs were skipped because you can only edit your own QSOs."
 msgstr ""
+"%d の %d 個の選択された交信はスキップされました。これは、自分の交信のみを編集"
+"できるためです。"
 
 #: application/views/logbookadvanced/index.php:106
 #, php-format
@@ -15781,6 +15783,8 @@ msgid ""
 "%d of %d selected QSOs were skipped because you can only delete your own "
 "QSOs."
 msgstr ""
+"%d の %d 個の選択されたQSOはスキップされました。これは、自分のQSOしか削除でき"
+"ないためです。"
 
 #: application/views/logbookadvanced/index.php:108
 msgid "You need to select at least 1 row to print a QSL card!"
@@ -18654,7 +18658,7 @@ msgstr "TLE"
 
 #: application/views/satellite/index.php:101
 msgid "OMM"
-msgstr ""
+msgstr "OMM"
 
 #: application/views/satellite/pass.php:21
 msgid "Satellite passes"
@@ -20350,11 +20354,11 @@ msgstr "列5を選択（ログブックのみ）"
 
 #: application/views/user/edit.php:408
 msgid "Station Location Options"
-msgstr ""
+msgstr "駅の設置場所オプション"
 
 #: application/views/user/edit.php:417
 msgid "Only show station locations linked to active logbook"
-msgstr ""
+msgstr "アクティブなログブックにリンクされているステーションの場所のみを表示します"
 
 #: application/views/user/edit.php:427
 msgid "QSO Logging Options"
