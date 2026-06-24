@@ -1,6 +1,14 @@
 <script type="text/javascript">
-    var custom_date_format = "<?php echo $custom_date_format ?>";
-	var lang_invalid_characters = "<?= __("Invalid characters entered in link! Enter only the slug.") ?>";
+    let custom_date_format = "<?php echo $custom_date_format ?>";
+
+	let lang_invalid_characters = "<?= __("Invalid characters entered in link! Enter only the slug.") ?>";
+	let lang_stationsetup_edit_export_map = "<?= __("Edit Export Map Options") ?>";
+	let lang_stationsetup_edit_container_name = "<?= __("Edit Container Name") ?>";
+	let lang_stationsetup_edit_linked_locations = "<?= __("Edit Linked Locations") ?>";
+	let lang_stationsetup_edit_visitor_link = "<?= __("Edit Visitor Link") ?>";
+	let lang_stationsetup_create_new_station_logbook = "<?= __("Create a New Station Logbook") ?>";
+	let lang_stationsetup_create_new_station_location = "<?= __("Create a New Station Location") ?>";
+	let lang_stationsetup_reload_error = "<?= __("An error occurred while making the request") ?>";
 </script>
 <div class="container">
 
@@ -34,9 +42,9 @@
                                     <th scope="col"><?= __("ID")?></th>
                                     <th scope="col"><?= __("Name")?></th>
                                     <th scope="col"><?= __("Status")?></th>
-                                    <th scope="col"><?= __("Edit Linked locations"); ?></th>
+                                    <th scope="col"><?= __("Edit Linked Locations"); ?></th>
                                     <th scope="col"><?= __("Delete")?></th>
-                                    <th scope="col"><?= __("Visitor site"); ?></th>
+                                    <th scope="col"><?= __("Visitor Site"); ?></th>
                                     <th scope="col"><?= __("Public Search")?></th>
                                 </tr>
                             </thead>
@@ -63,15 +71,32 @@
                                         <?php } ?>
                                     </td>
                                     <td>
-										<button class="btn btn-outline-primary btn-sm editVisitorLink" id="<?php echo $row->logbook_id; ?>"><i class="fas fa-edit"></i></button>
+										<button
+											class="btn btn-outline-primary btn-sm editVisitorLink"
+											id="<?php echo $row->logbook_id; ?>"
+											title="<?= __("Edit Visitor Link") ?>">
+											<i class="fas fa-edit"></i>
+										</button>
                                         <?php if($row->public_slug != '') { ?>
                                         <a target="_blank"
                                             href="<?php echo site_url('visitor')."/".$row->public_slug; ?>"
-                                            class="btn btn-outline-primary btn-sm"><i class="fas fa-globe"
-                                                title="<?= __("View Public Page for Logbook: ") . $row->logbook_name;?>"></i>
+                                            class="btn btn-outline-primary btn-sm"
+											title="<?= __("View Public Page for Logbook: ") . $row->logbook_name;?>">
+											<i class="fas fa-globe"></i>
                                         </a>
-										<button id="<?php echo $row->logbook_id; ?>" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>
-										<button id="<?php echo $row->logbook_id; ?>" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>
+										<button
+											id="<?php echo $row->logbook_id; ?>"
+											class="deletePublicSlug btn btn-outline-danger btn-sm"
+											title="<?= __("Delete Public Slug") ?>"
+											cnftext="<?= __("Are you sure you want to delete the public slug?") ?>">
+											<i class="fas fa-trash-alt"></i>
+										</button>
+										<button
+											id="<?php echo $row->logbook_id; ?>"
+											class="editExportmapOptions btn btn-outline-primary btn-sm"
+											title="<?= __("Edit Export Map Options") ?>">
+											<i class="fas fa-globe-europe"></i>
+										</button>
                                         <?php } ?>
                                     </td>
                                     <td>
