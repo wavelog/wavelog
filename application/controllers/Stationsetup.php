@@ -12,7 +12,7 @@ class Stationsetup extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->model('user_model');
-		if (($this->router->method == 'list_locations') && $this->user_model->authorize(2) && ((clubaccess_check(3) || clubaccess_check(6)))) { return; }	// Allow Clubmembers and Clubmembers ADIF to access list_locations
+		if ((($this->router->method == 'list_locations') || ($this->router->method == 'export_locations'))  && $this->user_model->authorize(2) && ((clubaccess_check(3) || clubaccess_check(6)))) { return; }	// Allow Clubmembers and Clubmembers ADIF to access list_locations and export_locations
 		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
