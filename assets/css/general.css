@@ -1044,7 +1044,7 @@ label {
     --bs-dropdown-link-disabled-color: initial !important;
 }
 
-#station_logbooks_table tbody td, #station_locations_table tbody td {
+#station_logbooks_table tbody td, #station_locations_table tbody td, #user_contests_table tbody td {
 	text-align: center; 
 	vertical-align: middle;
 }
@@ -1345,6 +1345,7 @@ svg text.month { fill: #AAA; }
 
 .spacingcell {
    background-color: transparent !important;
+   --bs-table-accent-bg: transparent !important;
    border-top-style: none !important;
    border-bottom-style: none !important;
    border-right-style: none !important;
@@ -1480,4 +1481,352 @@ svg text.month { fill: #AAA; }
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+}
+
+/* ===================================================================
+   QSL Postcard Designer
+   =================================================================== */
+
+/* --- Toolbar --- */
+.qsl-toolbar .qsl-tb-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.qsl-tb-label {
+	font-size: .68rem;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	opacity: .65;
+	margin-bottom: .25rem;
+}
+
+/* --- Three-pane editor grid --- */
+.qsl-editor {
+	display: grid;
+	grid-template-columns: 240px minmax(0, 1fr) 280px;
+	gap: 1rem;
+	align-items: start;
+}
+
+@media (max-width: 1199.98px) {
+	.qsl-editor {
+		grid-template-columns: 1fr;
+	}
+}
+
+.qsl-pane {
+	margin-bottom: 0;
+}
+
+/* Right column stack (template options + properties) */
+.qsl-right-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* --- Palette (left) --- */
+.qsl-palette .card-body {
+	max-height: 78vh;
+	overflow-y: auto;
+}
+
+.qsl-cat {
+	margin-bottom: .35rem;
+}
+
+.qsl-cat > summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: .85rem;
+	padding: .3rem .4rem;
+	border-radius: 6px;
+	user-select: none;
+}
+
+.qsl-cat > summary:hover {
+    color: var(--bs-primary-text-emphasis);
+    background: var(--bs-primary-bg-subtle);
+}
+
+
+.qsl-cat-body {
+	padding: .35rem 0 .15rem .25rem;
+}
+
+.qsl_designer_field {
+	cursor: grab;
+	user-select: none;
+	padding: 5px 8px;
+	margin-bottom: 5px;
+	border: 1px solid var(--bs-border-color);
+	border-radius: 6px;
+	background: var(--bs-body-bg);
+	color: var(--bs-body-color);
+	font-family: monospace;
+	font-size: .8rem;
+	transition: background .12s, border-color .12s;
+}
+
+.qsl_designer_field:hover {
+	color: var(--bs-emphasis-color);
+    background: var(--bs-primary-bg-subtle);
+}
+
+.qsl_designer_field:active {
+	cursor: grabbing;
+}
+
+/* WYSIWYG ghost rows for "repeats per QSO" fields (non-interactive clones) */
+.qsl_designer_ghost {
+	opacity: .35;
+	pointer-events: none;
+}
+
+/* --- Properties (right) --- */
+.qsl-props .card-body {
+	max-height: 78vh;
+	overflow-y: auto;
+}
+
+/* --- Canvas (center) --- */
+.qsl-canvas .card-body {
+	background: var(--bs-tertiary-bg, #eef0f2);
+}
+
+#stageScroll {
+	overflow: auto;
+	max-height: 80vh;
+	padding: 14px;
+}
+
+#stageZoom {
+	width: 940px;
+	height: 640px;
+}
+
+#rulerWrap {
+	position: relative;
+	width: 940px;
+	height: 640px;
+}
+
+#rulerTop,
+#rulerLeft {
+	position: absolute;
+	background: #e9ecef;
+	background: light-dark(#e9ecef, #343a40);
+	border: 1px solid #dee2e6;
+	border-color: light-dark(#dee2e6, #495057);
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
+	font-weight: 600;
+}
+
+#rulerTop {
+	left: 40px;
+	top: 0;
+	width: 900px;
+	height: 40px;
+}
+
+#rulerLeft {
+	left: 0;
+	top: 40px;
+	width: 40px;
+	height: 600px;
+}
+
+#stage {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+	width: 900px;
+	height: 600px;
+	border: 1px solid var(--bs-border-color);
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		linear-gradient(to right, rgba(0, 0, 0, .06) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(0, 0, 0, .06) 1px, transparent 1px);
+	background-size: 37.5px 37.5px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 14px rgba(0, 0, 0, .2);
+}
+
+/* Ruler tick marks */
+.ruler-tick-top {
+	position: absolute;
+	bottom: 0;
+	width: 1px;
+	background: #495057;
+	background: light-dark(#495057, #adb5bd);
+}
+
+.ruler-tick-top.major {
+	height: 18px;
+}
+
+.ruler-tick-top.minor {
+	height: 9px;
+	opacity: .55;
+}
+
+.ruler-tick-left {
+	position: absolute;
+	right: 0;
+	height: 1px;
+	background: #495057;
+	background: light-dark(#495057, #adb5bd);
+}
+
+.ruler-tick-left.major {
+	width: 18px;
+}
+
+.ruler-tick-left.minor {
+	width: 9px;
+	opacity: .55;
+}
+
+/* Ruler labels */
+.ruler-label-top {
+	position: absolute;
+	top: 3px;
+	font-size: 10px;
+	line-height: 1;
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
+	background: transparent;
+}
+
+.ruler-label-left {
+	position: absolute;
+	right: 18px;
+	font-size: 10px;
+	line-height: 1;
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
+	background: transparent;
+}
+
+/* --- Placed elements (sit on the white postcard) --- */
+.qsl_designer_placed {
+	position: absolute;
+	padding: 2px 5px;
+	border: 1px solid rgba(13, 110, 253, .5);
+	border-radius: 4px;
+	background: rgba(255, 255, 255, .92);
+	color: #111111;
+	font-weight: 600;
+	line-height: 1.25;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
+	cursor: move;
+	white-space: nowrap;
+}
+
+.qsl_designer_placed:hover {
+	border-color: var(--bs-primary);
+}
+
+.qsl_designer_placed.selected {
+	border: 1px solid #ff7a00;
+	box-shadow: 0 0 0 2px rgba(255, 122, 0, .35);
+	z-index: 50;
+}
+
+/* --- Snapping guides --- */
+.qsl-guide {
+	position: absolute;
+	pointer-events: none;
+	z-index: 60;
+}
+
+.qsl-guide-v {
+	top: 0;
+	width: 0;
+	height: 600px;
+	border-left: 1px dashed #ff3b8b;
+}
+
+.qsl-guide-h {
+	left: 0;
+	width: 900px;
+	height: 0;
+	border-top: 1px dashed #ff3b8b;
+}
+
+/* --- Marquee (rubber-band) selection --- */
+.qsl-marquee {
+	position: absolute;
+	pointer-events: none;
+	z-index: 70;
+	border: 1px solid var(--bs-primary, #0d6efd);
+	background: rgba(13, 110, 253, .12);
+}
+
+/* --- Context menu --- */
+.qsl-ctx-menu {
+	position: fixed;
+	z-index: 2000;
+	min-width: 184px;
+	padding: 4px;
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+	border-radius: 8px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, .25);
+}
+
+.qsl-ctx-item {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 6px 10px;
+	border: 0;
+	border-radius: 5px;
+	background: transparent;
+	color: var(--bs-body-color);
+	font-size: .85rem;
+	text-align: left;
+}
+
+.qsl-ctx-item:hover {
+	background: rgba(127, 127, 127, .15);
+	background: color-mix(in srgb, var(--bs-body-color) 50%, transparent);
+}
+
+.qsl-ctx-item.text-danger:hover {
+	background: rgba(220, 53, 69, .15);
+	background: color-mix(in srgb, var(--bs-danger) 50%, transparent);
+}
+
+.qsl-ctx-sep {
+	height: 1px;
+	margin: 4px 6px;
+	background: var(--bs-border-color);
+}
+
+/* Context submenu (align & distribute) */
+.qsl-ctx-sub {
+	position: relative;
+}
+
+.qsl-ctx-submenu {
+	position: absolute;
+	left: 100%;
+	top: -5px;
+	display: none;
+	min-width: 232px;
+	margin-left: 2px;
+	padding: 4px;
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+	border-radius: 8px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, .25);
+}
+
+.qsl-ctx-sub:hover > .qsl-ctx-submenu {
+	display: block;
 }

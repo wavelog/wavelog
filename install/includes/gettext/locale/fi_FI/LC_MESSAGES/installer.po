@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-17 12:36+0000\n"
-"PO-Revision-Date: 2026-03-26 03:04+0000\n"
+"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"PO-Revision-Date: 2026-06-23 19:06+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/"
 "installer/fi/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -113,34 +113,38 @@ msgid "Portuguese"
 msgstr "portugalilainen"
 
 #: install/includes/interface_assets/footer.php:81
+msgid "Romanian"
+msgstr "romanialainen"
+
+#: install/includes/interface_assets/footer.php:82
 msgid "Russian"
 msgstr "venäläinen"
 
-#: install/includes/interface_assets/footer.php:82
+#: install/includes/interface_assets/footer.php:83
 msgid "Serbian"
 msgstr "serbialainen"
 
-#: install/includes/interface_assets/footer.php:83
+#: install/includes/interface_assets/footer.php:84
 msgid "Slovak"
 msgstr "slovakialainen"
 
-#: install/includes/interface_assets/footer.php:84
+#: install/includes/interface_assets/footer.php:85
 msgid "Slovenian"
 msgstr "slovenialainen"
 
-#: install/includes/interface_assets/footer.php:85
+#: install/includes/interface_assets/footer.php:86
 msgid "Spanish"
 msgstr "espanjalainen"
 
-#: install/includes/interface_assets/footer.php:86
+#: install/includes/interface_assets/footer.php:87
 msgid "Swedish"
 msgstr "ruotsalainen"
 
-#: install/includes/interface_assets/footer.php:87
+#: install/includes/interface_assets/footer.php:88
 msgid "Turkish"
 msgstr "turkkilainen"
 
-#: install/includes/interface_assets/footer.php:88
+#: install/includes/interface_assets/footer.php:89
 msgid "Ukrainian"
 msgstr "ukrainalainen"
 
@@ -361,6 +365,12 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"Tämä asetus on valinnainen. Kutsumerkkihakutoiminto on käytettävissä "
+"kaikille tämän asennuksen käyttäjille. Voit valita QRZ.com, HamQTH, QRZCQ, "
+"QRZ.ru ja QRZCALL.EU väliltä. Ainoastaan HamQTH toimii myös ilman "
+"käyttäjänimeä ja salasanaa, muihin palveluntarjoajiin tarvitset tunnukset. "
+"QRZ.com vaatii XML-tilauksen; QRZCALL.EU vaatii Data- tai Extra-tilauksen "
+"palvelussa %s. HamQTH ei aina tarjoa sijaintitietoja."
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -397,15 +407,15 @@ msgstr ""
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "API-token"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "Luo henkilökohtainen käyttöoikeustunnus (token) osoitteessa"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "Vaatii Data- tai Extra-tilauksen."
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"

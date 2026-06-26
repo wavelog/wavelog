@@ -73,6 +73,7 @@ class DXCC extends CI_Model {
 		}
 
 		// Initialize matrix with all DXCC entities
+		$dxccMatrix = [];
 		foreach ($dxccArray as $dxcc) {
 			$adif = $dxcc->adif ?? '0';
 			$name = $dxcc->name ?? '';

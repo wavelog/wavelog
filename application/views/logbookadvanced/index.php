@@ -63,7 +63,7 @@
     let lang_gen_advanced_logbook_error_saving_options = '<?= __("An error occurred while saving options: "); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_row_delete = '<?= __("You need to select a least 1 row to delete!"); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_row_callbook = '<?= __("You need to select a least 1 row to update from callbook!"); ?>';
-    let lang_gen_advanced_logbook_an_error_ocurred_while_making_request = '<?= __("An error ocurred while making the request"); ?>';
+    let lang_gen_advanced_logbook_an_error_occurred_while_making_request = '<?= __("An error occurred while making the request"); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_location = '<?= __("You need to select at least 1 location to do a search!"); ?>';
     let lang_gen_advanced_logbook_update_distances = '<?= __("Update Distances"); ?>';
     let lang_gen_advanced_logbook_records_updated = '<?= __("QSO records updated."); ?>';
@@ -90,6 +90,23 @@
 	let lang_gen_advanced_logbook_qsos_merged = '<?= __("QSOs merged successfully!"); ?>';
 	let lang_gen_advanced_logbook_error_merging_qsos = '<?= __("Error merging QSOs"); ?>';
 	let lang_gen_advanced_logbook_error_loading_merge_dialog = '<?= __("Error loading merge dialog"); ?>';
+
+    let lang_gen_advanced_logbook_least_one = '<?= __("You need at least 1 QSO!"); ?>';
+	let lang_gen_advanced_logbook_attach_qsos = '<?= __("Attach QSOs to Contest"); ?>';
+    let lang_gen_advanced_logbook_error_loading_attach_dialog = '<?= __("Error loading attach to contest dialog"); ?>';
+	let lang_gen_advanced_logbook_qsos_attached = '<?= __("QSOs attached to contest successfully!"); ?>';
+	let lang_gen_advanced_logbook_error_attaching = '<?= __("Error attaching QSOs"); ?>';
+
+	let lang_gen_advanced_logbook_detach_qsos = '<?= __("Detach QSOs to Contest"); ?>';
+    let lang_gen_advanced_logbook_error_loading_detach_dialog = '<?= __("Error loading detach to contest dialog"); ?>';
+	let lang_gen_advanced_logbook_qsos_detached = '<?= __("QSOs detached to contest successfully!"); ?>';
+	let lang_gen_advanced_logbook_error_detaching = '<?= __("Error detaching QSOs"); ?>';
+
+	let lang_lba_edit_skipped   = '<?= __("%d of %d selected QSOs were skipped because you can only edit your own QSOs."); ?>';
+	let lang_lba_delete_skipped = '<?= __("%d of %d selected QSOs were skipped because you can only delete your own QSOs."); ?>';
+
+	let lang_gen_advanced_logbook_select_at_least_one_row_qslcard_print = '<?= __("You need to select at least 1 row to print a QSL card!"); ?>';
+	let lang_gen_advanced_logbook_qslcard_print_option = '<?= __("QSL Card print options"); ?>';
 
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
@@ -805,47 +822,50 @@ $options = json_decode($options);
 
 				<!-- End of Main Filters Dropdown -->
 
-				<?php if(clubaccess_check(9)) { ?>
-                    <!-- Actions Dropdown -->
-                    <div class="dropdown d-inline-block" data-bs-auto-close="outside">
-                        <button class="btn btn-sm btn-success dropdown-toggle me-1" type="button" id="actionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-tasks"></i> <?= __("Actions"); ?>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-start" aria-labelledby="actionsDropdown" style="min-width: 300px;">
-                            <script>
-                                var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
-                                var lang_filter_actions_delete_warning_details = '<?= __(" QSO(s) will be deleted"); ?>';
-                            </script>
-                            <div class="card">
-								<div class="card-header p-2">
-									<span class="h6 w-100 mt-0 mb-0"><?= __("With selected: "); ?></span>
-								</div>
-								<div class="card-body p-2">
-									<div class="d-grid gap-2">
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button>
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button>
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notReceived"><?= __("Not Received"); ?></button>
-										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
-										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
-										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
-									</div>
-								</div>
-							</div>
+                <!-- Actions Dropdown -->
+                <div class="dropdown d-inline-block" data-bs-auto-close="outside">
+                    <button class="btn btn-sm btn-success dropdown-toggle me-1" type="button" id="actionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-tasks"></i> <?= __("Actions"); ?>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-start" aria-labelledby="actionsDropdown" style="min-width: 300px;">
+                        <script>
+                            var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
+                            var lang_filter_actions_delete_warning_details = '<?= __(" QSO(s) will be deleted"); ?>';
+                        </script>
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <span class="h6 w-100 mt-0 mb-0"><?= __("With selected: "); ?></span>
+                            </div>
+                            <div class="card-body p-2">
+                                <div class="d-grid gap-2">
+                                    <?php if(clubaccess_check(9)) { ?>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="notReceived"><?= __("Not Received"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-info dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="printQslCard"><?= __("Print QSL Card"); ?></button>
+                                    <?php } ?>
+                                    <button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
+                                    <button type="button" class="btn btn-sm btn-info dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-				<?php } ?>
+                </div>
 				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
 				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm w-auto me-2" style="height: calc(1.5em + .5rem + 2px) !important;">
 					<option value="250">250</option>
@@ -855,13 +875,13 @@ $options = json_decode($options);
 				</select>
 				<label class="me-2" for="de"><?= __("Location"); ?></label>
 				<select class="form-select form-select-sm w-auto me-2" id="de" name="de" multiple="multiple">
-					<?php foreach ($station_profile->result() as $station) { ?>
+					<?php if($station_profile !== FALSE) { foreach ($station_profile->result() as $station) { ?>
 						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
 							echo " selected =\"selected\""; } ?>>
 							<?= __("Callsign: ") . " " ?>
 							<?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
 						</option>
-					<?php } ?>
+					<?php } } ?>
 				</select>
 				<button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right flex-grow-0 mb-2" aria-label="<?= __("Search"); ?>" id="searchButton" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Search"); ?>">
 					<i class="fas fa-search"></i><div class="ld ld-ring ld-spin"></div>
@@ -872,7 +892,7 @@ $options = json_decode($options);
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="invalidButton" style="white-space: nowrap;">
 					<i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
-				<?php if(clubaccess_check(9)) { ?>
+				<?php if(clubaccess_check(3)) { ?>
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="editButton" style="white-space: nowrap;">
 					<i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
@@ -893,6 +913,8 @@ $options = json_decode($options);
 					<button type="button" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="dbtools" style="white-space: nowrap;" aria-label="<?= __("Database Tools"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Database Tools"); ?>">
 						<i class="fas fa-wrench"></i>
 					</button>
+				<?php } ?>
+				<?php if(clubaccess_check(3)) { ?>
 					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
 						<i class="fas fa-trash-alt"></i>
 					</button>

@@ -15,5 +15,5 @@ $up=-63;
 $ut=44;
 $ttffile='./src/Label/font/unifont/DejaVuSansMono.ttf';
 $originalsize=340712;
-$fontkey='dejavusans';
+$fontkey='dejavusansmono';
 ?>

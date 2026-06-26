@@ -135,12 +135,15 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qso?manual=1'); ?>" title="Log QSO made in the past"><i class="fas fa-list"></i> <?= __("Post QSO"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('simplefle'); ?>" title="Simple Fast Log Entry"><i class="fas fa-list"></i> <?= __("Simple Fast Log Entry"); ?></a></li>
-								<?php if (clubaccess_check(99)) { ?> <!-- Club Access Check -->
+							</ul>
+						</li>
+
+						<li class="nav-item dropdown"> <!-- CONTEST -->
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Contest"); ?></a>
+							<ul class="dropdown-menu header-dropdown">
+								<li><a class="dropdown-item" href="<?php echo site_url('contesting/quickstart'); ?>" target="_blank" title="<?= __("Quick Start"); ?>"><i class="fas fa-list"></i> <?= __("Quick Start"); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=0'); ?>" title="Live contest QSOs"><i class="fas fa-list"></i> <?= __("Live Contest Logging"); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=1'); ?>" title="Post contest QSOs"><i class="fas fa-list"></i> <?= __("Post Contest Logging"); ?></a></li>
-								<?php } ?>
+								<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="<?= __("Manage Contests"); ?>"><i class="fas fa-list"></i> <?= __("Manage Contests"); ?></a></li>
 							</ul>
 						</li>
 
@@ -183,7 +186,7 @@
 							</ul>
 						</li>
 						<li class="nav-item dropdown"> <!-- AWARDS -->
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Awards"); ?></a>
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Awards"); ?></a>
 							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> <?= __("International"); ?></a>
 									<ul class="submenu dropdown-menu">
@@ -334,7 +337,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('mode'); ?>" title="Manage QSO modes"><i class="fas fa-broadcast-tower"></i> <?= __("Modes"); ?></a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?= __("Contests"); ?></a>
+								<a class="dropdown-item" href="<?php echo site_url('contest_admin/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?= __("Contests"); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellites"); ?></a>
 								<div class="dropdown-divider"></div>
@@ -491,9 +494,9 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('reg1test'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
 									</ul>
 								</li>
 
@@ -517,6 +520,11 @@
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="<?= __("QSL Queue"); ?>"><i class="fas fa-print"></i> <?= __("QSL Queue"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?= __("Labels"); ?></a></li>
+								<li>
+									<a class="dropdown-item" href="<?php echo site_url('qslpostcard'); ?>">
+										<i class="fas fa-id-card"></i> <?= __("QSL Postcard Designer"); ?>
+									</a>
+								</li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Third-Party Services"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
@@ -562,6 +570,9 @@
 										</button>
 									</li>
 								<?php } ?>
+								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 1 && empty($this->session->userdata('source_uid'))) { ?>
+									<li><a class="dropdown-item" href="javascript:displayOperatorDialog();" title="<?= __("Switch Operator"); ?>"><i class="fas fa-user-friends"></i> <?= __("Switch Operator"); ?></a></li>
+								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?= __("Logout"); ?></a></li>
 							</ul>
 						</li>
@@ -573,7 +584,11 @@
 									<li><a class="dropdown-item disabled"><?= __("Select a Location"); ?>:</a></li>
 									<?php
 									// let's get all stations for the logged in user
-									$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
+									if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+										$all_user_locations = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+									} else {
+										$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
+									}
 
 									// and the set favourites as array
 									$location_favorites_result = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
@@ -583,31 +598,33 @@
 									$current_active_location = $this->stations->find_active();
 
 									// iterate through all available stations
-									foreach ($all_user_locations->result() as $row) {
-										// get information about this station like the name and the station id
-										$profile_info = $this->stations->profile($row->station_id)->row();
-										$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
-										$station_id = $row->station_id;
+									if($all_user_locations !== FALSE) {
+										foreach ($all_user_locations->result() as $row) {
+											// get information about this station like the name and the station id
+											$profile_info = $this->stations->profile($row->station_id)->row();
+											$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
+											$station_id = $row->station_id;
 
-										// the active badge, not shown by default
-										$active_badge = '<span id="quickswitcher_active_badge_' . $station_id . '" class="badge bg-success ms-2 d-none">' . __("Active") . '</span>';
+											// the active badge, not shown by default
+											$active_badge = '<span id="quickswitcher_active_badge_' . $station_id . '" class="badge bg-success ms-2 d-none">' . __("Active") . '</span>';
 
-										// only continue if the station id is a favourite and show the station in the list
-										$is_favorite = false;
-										foreach ($location_favorites as $favorite) {
-											if ($favorite['option_value'] == true && $favorite['option_key'] == $station_id) {
-												$is_favorite = true;
-												break;
+											// only continue if the station id is a favourite and show the station in the list
+											$is_favorite = false;
+											foreach ($location_favorites as $favorite) {
+												if ($favorite['option_value'] == true && $favorite['option_key'] == $station_id) {
+													$is_favorite = true;
+													break;
+												}
 											}
-										}
 
-										if ($is_favorite) { ?>
-											<li id="quickswitcher_list_item_<?php echo $station_id; ?>">
-												<a id="quickswitcher_list_button_<?php echo $station_id; ?>" type="button" onclick="set_active_loc_quickswitcher('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
-													<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
-												</a>
-											</li>
-										<?php }
+											if ($is_favorite) { ?>
+												<li id="quickswitcher_list_item_<?php echo $station_id; ?>">
+													<a id="quickswitcher_list_button_<?php echo $station_id; ?>" type="button" onclick="set_active_loc_quickswitcher('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
+														<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
+													</a>
+												</li>
+											<?php }
+										}
 									} ?>
 									<div class="dropdown-divider"></div>
 									<li><a class="dropdown-item quickswitcher disabled"><?= __("Active Logbook"); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>

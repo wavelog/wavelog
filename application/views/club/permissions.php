@@ -144,6 +144,22 @@
                                             <td colspan="4"></td>
                                         </tr>
                                         <tr>
+                                            <td><?= __("Start or Create a Contest"); ?></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td><?= __("Edit a Contest"); ?></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
+                                        </tr>
+
+                                        <tr class="empty-row">
+                                            <td colspan="4"></td>
+                                        </tr>
+                                        <tr>
                                             <td><?= __("User Management"); ?></td>
                                             <td></td>
                                             <td></td>

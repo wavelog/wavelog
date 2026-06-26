@@ -99,13 +99,13 @@
 								<?= __("Station Call/Location"); ?>
 							</label>
 							<select name="station_profile" class="station_id form-select" id="stationProfile">
-								<?php foreach ($station_profile->result() as $station) { ?>
+								<?php if($station_profile !== FALSE) { foreach ($station_profile->result() as $station) { ?>
 									<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
 																							echo 'selected';
 																						} ?>>
 										<?php echo $station->station_callsign . " (" . $station->station_profile_name . ")"; ?>
 									</option>
-								<?php } ?>
+								<?php } } ?>
 							</select>
 							<div class="alert alert-danger" role="alert" id="warningStationCall" style="display: none"> </div>
 							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new %sStation Location%s"), '<a href="'.site_url('stationsetup').'" target="_self">', '</a>'); ?></small>

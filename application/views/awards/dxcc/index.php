@@ -3,24 +3,17 @@
 </script>
 <style>
     #dxccmap {
-	height: calc(100vh - 300px) !important;
-	max-height: 900px !important;
-}
+		height: calc(100vh - 300px) !important;
+		max-height: 900px !important;
+	}
 
-    .dropdown-filters-responsive {
-        width: 800px;
-    }
-
-    @media (max-width: 900px) {
-        .dropdown-filters-responsive {
-            width: 90vw;
-            max-width: none;
-        }
+	.dropdown-filters-responsive {
+		width: min(850px, 90vw);
+		min-width: 600px;
     }
 </style>
-<div class="container">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 	<!-- Award Info Box -->
-	<br>
 	<div id="awardInfoButton">
 		<script>
 		var lang_awards_info_button = "<?= __("Award Info"); ?>";
@@ -35,7 +28,21 @@
 		<button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
 	</div>
 	<!-- End of Award Info Box -->
-
+<div class="card">
+		<div class="card-header">
+			<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><i class="fas fa-table"></i> <?= __("Table"); ?></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="map-tab" onclick="load_dxcc_map();" data-bs-toggle="tab" href="#dxccmaptab" role="tab" aria-controls="home" aria-selected="false"><i class="fas fa-map"></i> <?= __("Map"); ?></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="progress-tab" data-bs-toggle="tab" href="#progress" role="tab" aria-controls="progress" aria-selected="false" data-load-on-show="true"><i class="fas fa-chart-bar"></i> <?= __("Progress"); ?></a>
+				</li>
+			</ul>
+		</div>
+		<div class="card-body">
     <form class="form" action="<?php echo site_url('awards/dxcc'); ?>" method="post" enctype="multipart/form-data">
 		<div class="mb-4 text-center">
 				<div class="dropdown" data-bs-auto-close="outside">
@@ -46,7 +53,7 @@
 				<?php }?>
 
 		<!-- Dropdown Menu with Filter Content -->
-		<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown" style="max-width: 800px;">
+		<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
 			<div class="card-body filterbody">
 				<div class="row mb-3">
 					<label class="form-label" for="checkboxes"><?= __("Date Presets") . ": " ?></label>
@@ -171,7 +178,7 @@
 
 				<div class="mb-3 row">
 					<label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<select id="band2" name="band" class="form-select form-select-sm">
 							<option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band (w/o SAT)"); ?></option>
 							<?php foreach($worked_bands as $band) {
@@ -185,7 +192,7 @@
 				<div id="satrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
 				<?php if (count($sats_available) != 0) { ?>
 					<label class="col-md-2 control-label" id="satslabel" for="sats"><?= __("Satellite"); ?></label>
-					<div class="col-md-3">
+					<div class="col-md-4">
 					<select class="form-select form-select-sm"  id="sats" name="sats">
 						<option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?= __("All")?></option>
 						<?php foreach($sats_available as $sat) {
@@ -196,12 +203,12 @@
 					</select>
 					</div>
 				<?php } else { ?>
-					<input id="sats" type="hidden" value="All"></input>
+					<input id="sats" type="hidden" value="All">
 				<?php } ?>
 				</div>
 			<div id="orbitrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
 				<label class="col-md-2 control-label" id="orbitslabel" for="orbits"><?= __("Orbit"); ?></label>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<select class="form-select form-select-sm"  id="orbits" name="orbits">
 							<option value="All" <?php if ($this->input->post('orbits') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?= __("All")?></option>
 							<?php
@@ -214,10 +221,9 @@
 						</select>
 					</div>
 			</div>
-		</div>
 			<div class="mb-3 row">
 				<label class="col-md-2 control-label" for="mode"><?= __("Mode"); ?></label>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<select id="mode" name="mode" class="form-select form-select-sm">
 						<option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>><?= __("All"); ?></option>
 						<?php
@@ -226,31 +232,21 @@
 								echo '<option value="' . $mode->mode . '"';
 								if ($this->input->post('mode') == $mode->mode) echo ' selected';
 								echo '>'. $mode->mode . '</option>'."\n";
-							} else {
-								echo '<option value="' . $mode->submode . '"';
-								if ($this->input->post('mode') == $mode->submode) echo ' selected';
-								echo '>' . $mode->submode . '</option>'."\n";
-							}
-						}
-						?>
+								} else {
+									echo '<option value="' . $mode->submode . '"';
+									if ($this->input->post('mode') == $mode->submode) echo ' selected';
+									echo '>' . $mode->submode . '</option>'."\n";
+									}
+									}
+									?>
 					</select>
 				</div>
 			</div>
 		</div>
+		</div>
+		</div>
+		</div>
     </form>
-
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="map-tab" onclick="load_dxcc_map();" data-bs-toggle="tab" href="#dxccmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="progress-tab" data-bs-toggle="tab" href="#progress" role="tab" aria-controls="progress" aria-selected="false" data-load-on-show="true"><?= __("Progress"); ?></a>
-        </li>
-    </ul>
-    <br />
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade" id="dxccmaptab" role="tabpanel" aria-labelledby="home-tab">
@@ -259,28 +255,23 @@
 
     </div>
 
-	<div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
     <?php
     $i = 1;
     if ($dxcc_array) {
-    	// Progress summary
+		echo '<div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">';
+		// Progress summary
     	// Calculate total DXCC entities from the actual array (respects include deleted filter)
 		$total_dxcc_entities = count($dxcc_array); ?>
 
-		<div class="card mb-3">
-		<div class="card-header" data-bs-toggle="collapse" data-bs-target="#awardProgressCollapse" style="cursor: pointer;"><h5 class="mb-0"><i class="fas fa-trophy"></i> <?= __("Award Progress") ?> </h5></div>
-		<div id="awardProgressCollapse" class="collapse show"><div class="card-body">
-		<p class="mb-2"><?= __("Progress towards working all DXCC entities:") ?> </p>
-
-		<ul class="nav nav-tabs" id="progressTabs" role="tablist">
+		<ul class="nav nav-pills nav-pills-sm mb-3" id="progressTabs" role="tablist">
 			<li class="nav-item">
-				<button class="nav-link active" id="band-progress-tab" data-bs-toggle="tab" data-bs-target="#band-progress" type="button" role="tab" aria-controls="band-progress" aria-selected="true"><?= __("By Band") ?></button>
+				<button class="nav-link active" id="band-progress-tab" data-bs-toggle="tab" data-bs-target="#band-progress" type="button" role="tab" aria-controls="band-progress" aria-selected="true"><i class="fas fa-tower-broadcast"></i> <?= __("By Band") ?></button>
 			</li>
 			<li class="nav-item">
-				<button class="nav-link" id="continent-progress-tab" data-bs-toggle="tab" data-bs-target="#continent-progress" type="button" role="tab" aria-controls="continent-progress" aria-selected="false"><?= __("By Continent") ?></button>
+				<button class="nav-link" id="continent-progress-tab" data-bs-toggle="tab" data-bs-target="#continent-progress" type="button" role="tab" aria-controls="continent-progress" aria-selected="false"><i class="fas fa-globe-americas"></i> <?= __("By Continent") ?></button>
 			</li>
 			<li class="nav-item">
-				<button class="nav-link" id="mode-progress-tab" data-bs-toggle="tab" data-bs-target="#mode-progress" type="button" role="tab" aria-controls="mode-progress" aria-selected="false"><?= __("By Mode") ?></button>
+				<button class="nav-link" id="mode-progress-tab" data-bs-toggle="tab" data-bs-target="#mode-progress" type="button" role="tab" aria-controls="mode-progress" aria-selected="false"><i class="fas fa-wave-square"></i> <?= __("By Mode") ?></button>
 			</li>
 		</ul>
 
@@ -429,16 +420,13 @@
 		</div>
 
 		</div>
-		</div>
-		</div>
-		</div>
-        </div>
 
         <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
 
     <?php }
     $i = 1;
     if ($dxcc_array) {
+		echo '<div class="text-center">';
 		echo __('Legend:');
 		echo '<pre>'.__("(Q)SL-Paper-Card").", ";
 		echo __("(L)oTW").", ";
@@ -446,7 +434,7 @@
 		echo __('QR(Z)-"confirmation"').", ";
 		echo __("(C)lublog").", ";
 		echo __("(W)orked").'</pre>';
-		echo '
+		echo '</div>
 		<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
 			<tr>
@@ -476,7 +464,7 @@
 			}
 			echo '</tr>';
 		}
-		echo '</table>
+		echo '</tbody></table>
 			<h2>' . __("Summary") . '</h2>
 
 			<table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
@@ -551,6 +539,7 @@
 	}
 
 	echo '</tr>
+	</tbody>
 	</table>
 	</div>';
 
@@ -560,4 +549,5 @@
     ?>
                 </div>
         </div>
+</div>
 </div>

@@ -1,12 +1,16 @@
-<div class="container">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <h2><?php echo $page_title; ?></h2>
         </div>
         <!-- End of Award Info Box -->
 
-	<form method="post" enctype="multipart/form-data">
+	<div class="card">
+		<div class="card-header">
+			<?= __("View progress of WPX awards"); ?>
+		</div>
+		<div class="card-body">
+	<form class="form" action="<?php echo site_url('awards/wpx'); ?>" method="post" enctype="multipart/form-data">
 		<div class="mb-4 text-center">
 			<div class="dropdown" data-bs-auto-close="outside">
 
@@ -98,7 +102,7 @@
 												} ?>
 											</select>
 										<?php } else { ?>
-											<input id="sats" type="hidden" value="All"></input>
+											<input id="sats" type="hidden" value="All">
 										<?php } ?>
 									</div>
 									<div id="orbitrow" class="mb-3" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
@@ -150,10 +154,10 @@
 			</div>
 		</div>
 		</div>
-</form>
+	</form>
 <!-- End Filtering Parent Card -->
 
-<?php
+	<?php
 if ($wpx_array) {
     echo '<h2>' . __("Summary") . '</h2>
 
@@ -164,9 +168,9 @@ if ($wpx_array) {
     $addsat = '';
     foreach ($bands as $band) {
         if ($band != 'SAT') {
-            echo '<td>' . $band . '</td>';
+            echo '<th>' . $band . '</th>';
         } else {
-            $addsat = '<td>' . $band . '</td>';
+            $addsat = '<th>' . $band . '</th>';
         }
     }
     echo '<td><b>' . __("Total") . '</b></td>';
@@ -184,16 +188,16 @@ if ($wpx_array) {
     $addsat = '';
     foreach ($wpx_array['worked'] as $band => $value) {
 		if ($band != 'SAT') {
-            echo '<td style="text-align: center">';
+            echo '<th style="text-align: center">';
             echo '<a href=\'javascript:wpxLoadDetails("worked", "' . $band . '")\'>' . $value . '</a>';
-            echo '</td>';
+            echo '</th>';
         } else {
-            $addsat = '<td style="text-align: center"><a href=\'javascript:wpxLoadDetails("worked", "' . $band . '")\'>' . $value . '</a></td>';
+            $addsat = '<th style="text-align: center"><a href=\'javascript:wpxLoadDetails("worked", "' . $band . '")\'>' . $value . '</a></th>';
         }
     }
 
     if (count($bands) > 1) {
-        echo '<td class="spacingcell"></td>';
+        echo '<th class="spacingcell"></th>';
     }
     if ($addsat != '' && count($wpx_array['worked']) > 1) {
         echo $addsat;
@@ -221,13 +225,14 @@ if ($wpx_array) {
     }
     echo '</tr>';
 
-    echo '</table>';
+    echo '</tbody>
+    </table>';
     echo '<div class="showWpxResults mt-3"></div>';
 
 } else {
     echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
 }
 ?>
-
-
+		</div>
+	</div>
 </div>

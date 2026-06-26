@@ -1,19 +1,24 @@
-<div class="container">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?= __("Award Info"); ?>";
-            var lang_award_info_ln1 = "<?= __("POTA Awards"); ?>";
-            var lang_award_info_ln2 = "<?= __("Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."); ?>";
-            var lang_award_info_ln3 = "<?= __("POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."); ?>";
-            var lang_award_info_ln4 = "<?= sprintf(_pgettext("uses 'the website'", "For more information about the available awards and categories, please visit the %s."), "<a href='https://docs.pota.app/docs/awards.html' target='_blank'>Parks on the Air® website</a>"); ?>";
-            var lang_award_info_ln5 = "<?= __("Fields taken for this Award: POTA_REF (must contain Park-Reference)"); ?>";
+            let lang_awards_info_button = "<?= __("Award Info"); ?>";
+            let lang_award_info_ln1 = "<?= __("POTA Awards"); ?>";
+            let lang_award_info_ln2 = "<?= __("Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."); ?>";
+            let lang_award_info_ln3 = "<?= __("POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."); ?>";
+            let lang_award_info_ln4 = "<?= sprintf(_pgettext("uses 'the website'", "For more information about the available awards and categories, please visit the %s."), "<a href='https://docs.pota.app/docs/awards.html' target='_blank'>Parks on the Air® website</a>"); ?>";
+            let lang_award_info_ln5 = "<?= __("Fields taken for this Award: POTA_REF (must contain Park-Reference)"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
+
+    <div class="card">
+        <div class="card-header">
+            <?= __("POTA QSO List"); ?>
+        </div>
+        <div class="card-body">
 	<?php
 		if ($pota_all) {
    if($this->session->userdata('user_date_format')) {
@@ -67,4 +72,6 @@
 	<?php } else {
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }?>
+        </div>
+    </div>
 </div>

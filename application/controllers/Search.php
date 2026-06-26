@@ -80,6 +80,7 @@ class Search extends CI_Controller {
 
 	function export_stored_query_to_adif() {
 		$this->db->where('id', xss_clean($this->input->post('id')));
+		$this->db->where('userid', $this->session->userdata['user_id']);
 		$sql = $this->db->get('queries')->result();
 
 		$query = $sql[0]->query;
@@ -106,6 +107,7 @@ class Search extends CI_Controller {
 
 	function run_query() {
 		$this->db->where('id', xss_clean($this->input->post('id')));
+		$this->db->where('userid', $this->session->userdata['user_id']);
 		$sql = $this->db->get('queries')->result();
 		$sql = $sql[0]->query;
 

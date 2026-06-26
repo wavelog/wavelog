@@ -5547,7 +5547,7 @@ class Logbook_model extends CI_Model {
 				'COL_HRDLOG_QSO_UPLOAD_STATUS' => (!empty($record['hrdlog_qso_upload_status'])) ? $record['hrdlog_qso_upload_status'] : '',
 				'COL_IOTA' => (!empty($record['iota'])) ? $record['iota'] : '',
 				'COL_ITUZ' => (!empty($record['ituz'])) ? $record['ituz'] : null,
-				'COL_K_INDEX' => (!empty($record['k_index'])) ? $record['k_index'] : null,
+				'COL_K_INDEX' => (isset($record['k_index']) && is_numeric($record['k_index'])) ? $record['k_index'] : null,
 				'COL_LAT' => $input_lat,
 				'COL_LON' => $input_lon,
 				'COL_LOTW_QSL_RCVD' => $input_lotw_qsl_rcvd,
@@ -5636,7 +5636,7 @@ class Logbook_model extends CI_Model {
 				'COL_RX_PWR' => (is_numeric($rx_pwr) ? $rx_pwr : null),
 				'COL_SAT_MODE' => (!empty($record['sat_mode'])) ? $record['sat_mode'] : '',
 				'COL_SAT_NAME' => (!empty($record['sat_name'])) ? $record['sat_name'] : '',
-				'COL_SFI' => (!empty($record['sfi'])) ? $record['sfi'] : null,
+				'COL_SFI' => (isset($record['sfi']) && is_numeric($record['sfi'])) ? $record['sfi'] : null,
 				'COL_SIG' => (!empty($record['sig'])) ? $record['sig'] : '',
 				'COL_SIG_INFO' => $sig_info,
 				'COL_SIG_INFO_INTL' => $sig_info_intl,
@@ -5913,6 +5913,37 @@ class Logbook_model extends CI_Model {
 		$this->db->where(array('COL_PRIMARY_KEY' => $key));
 		$this->db->update($this->config->item('table_name'), $data);
 		return;
+	}
+
+	/**
+	 * Sets the display contest name (contest_name) in logbook
+	 *
+	 * @param int $qso_id The ID of the QSO.
+	 * @param int $contest_adif_id The contest adif id, if 0 empty
+	 * @return bool True on success, false on failure.
+	 */
+	function set_contest($qso_id, $contest_adif_id) {
+
+
+		if ($contest_adif_id != 0) {
+
+			$getName = "SELECT id, name FROM contest WHERE active = 1 AND id = ?;";
+			$nameQuery = $this->db->query($getName, $contest_adif_id);
+
+			$nameRow = $nameQuery->row() ? $nameQuery->row()->name : '';
+
+		} else {
+			$nameRow = '';
+		}
+
+		$data = array(
+			'COL_CONTEST_ID ' => xss_clean($nameRow),
+		);
+
+		$this->db->where(array('COL_PRIMARY_KEY' => $qso_id));
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return true;
 	}
 
 	function mark_dcl_rcvd($key) {
