@@ -509,7 +509,7 @@ class Contesting extends CI_Controller {
 			: $data['session_info']['contest_name'];
 		$data['is_club_station'] = (bool) ($this->session->userdata('clubstation') ?? false);
 		$data['switch_operator_mode'] = null;
-		if ($data['is_club_station']) {
+		if ($data['is_club_station'] && !($this->config->item('disable_switch_operator') ?? false)) {
 			if (empty($this->session->userdata('source_uid'))) {
 				$data['switch_operator_mode'] = 'callsign';
 			} elseif (!$this->config->item('disable_impersonate')) {
