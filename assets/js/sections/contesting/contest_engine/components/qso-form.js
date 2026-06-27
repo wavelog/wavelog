@@ -879,7 +879,7 @@ class QsoFormComponent {
 			return false;
 		}
 
-		const currentMode = this.radioComponent.getMode();
+		const currentMode = this.radioComponent.getMode()?.toUpperCase();
 		if (!currentMode) {
 			return false;
 		}
@@ -889,7 +889,7 @@ class QsoFormComponent {
 				continue;
 			}
 			const qsoBand = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
-			const qsoMode = qso.mode || null;
+			const qsoMode = qso.submode?.toUpperCase() || qso.mode?.toUpperCase() || null;
 			if (qsoBand === currentBand && qsoMode === currentMode) {
 				return true;
 			}
