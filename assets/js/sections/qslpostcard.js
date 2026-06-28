@@ -971,7 +971,7 @@
 		fd.append('preview_image', fileInput.files[0]);
 		showToast('', LANG.uploading, 'bg-info text-white', 2000);
 
-		const r = await fetch(base_url + 'qslpostcard/upload_preview', { method: 'POST', body: fd });
+		const r = await fetch(base_url + 'index.php/qslpostcard/upload_preview', { method: 'POST', body: fd });
 		const out = await r.json();
 		if (!out.ok) {
 			showToast(LANG.error, LANG.uploadFailed + ': ' + (out.error || LANG.unknownError), 'bg-danger text-white', 5000);
