@@ -250,9 +250,9 @@ class Stationsetup_model extends CI_Model {
 		$result = $query->result();
 		$this->load->model('user_options_model');
 
-		// restrict station locations listing to those linked to active logbook for clubmember/clubmember adif, if user option enabled
+		// restrict station locations listing to those linked to active logbook for users with permission lower than club officer (if clubstation), if user option enabled
 		$stations_linked = '';
-		if (in_array(($this->session->userdata('cd_p_level') ?? 0), [3,6]) && !empty($this->session->userdata('user_stations_active_log_only'))) {
+		if ((($this->session->userdata('cd_p_level') ?? 0) < 9) && !empty($this->session->userdata('user_stations_active_log_only'))) {
 			$stations_linked = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		}
 
