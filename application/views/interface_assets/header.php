@@ -442,14 +442,11 @@
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
 
 								<?php if (clubaccess_check(9)) { ?> <!-- Club Access Check -->
-
 									<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?= __("Account"); ?></a></li>
 								<?php
 								$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name' => 'locations_quickswitch'))->row()->option_value ?? 'false');
-								if ($quickswitch_enabled != 'true') {
 								?>
-									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?= __("Station Setup"); ?></a></li>
-								<?php } ?>
+								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?= __("Station Setup"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?= __("Bands"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('band/edges'); ?>" title="Manage Band Edgeds"><i class="fas fa-cog"></i> <?= __("Band Edges"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('usermode'); ?>" title="Manage Modes"><i class="fas fa-cog"></i> <?= __("Modes"); ?></a></li>
