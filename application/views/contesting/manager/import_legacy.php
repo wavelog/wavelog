@@ -91,10 +91,10 @@ document.getElementById('import-legacy-form').addEventListener('submit', functio
 	var checked = document.querySelectorAll('#import-legacy-form input[name="groups[]"]:checked').length;
 	if (checked === 0) {
 		e.preventDefault();
-		alert('<?= __("Please select at least one contest to import.") ?>');
+		alert(decodeHtml("<?= __("Please select at least one contest to import.") ?>"));
 		return;
 	}
-	if (!confirm('<?= __("Are you sure you want to import the selected contest sessions? This cannot be undone.") ?>')) {
+	if (!confirm(decodeHtml("<?= __("Are you sure you want to import the selected contest sessions? This cannot be undone.") ?>"))) {
 		e.preventDefault();
 	}
 });
