@@ -461,13 +461,37 @@ class QsoFormComponent {
 	}
 
 	/**
+	 * Format a YYYY-MM-DD date string with the user's PHP date() format
+	 * (custom_date_format, e.g. "d.m.Y"). Returns the raw string if it can't
+	 * be parsed. Supports the tokens used by the offered formats: Y y m n d j M.
+	 */
+	_formatDate(dateStr) {
+		const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(dateStr || '');
+		if (!m) return dateStr || '';
+		const [, Y, mo, d] = m;
+		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+		const map = {
+			Y: Y,
+			y: Y.slice(-2),
+			m: mo,
+			n: String(parseInt(mo, 10)),
+			M: months[parseInt(mo, 10) - 1] ?? mo,
+			d: d,
+			j: String(parseInt(d, 10)),
+		};
+		const fmt = window.ContestLoggerConfig?.custom_date_format || 'Y-m-d';
+		// PHP date(): a backslash escapes the next char as a literal.
+		return fmt.replace(/\\?./g, (tok) => tok.length === 2 ? tok[1] : (map[tok] ?? tok));
+	}
+
+	/**
 	 * Builds a signature of the fields shown in a QSO row. Used to skip re-rendering
 	 * rows whose displayed data has not changed (deltas re-send unchanged rows due to
 	 * the >= watermark overlap), which avoids destroying an open dropdown mid-click.
 	 */
 	_qsoRowSignature(qso) {
 		return [
-			qso.time, qso.callsign, qso.band, qso.frequency, qso.mode, qso.rst_rcvd,
+			qso.date, qso.time, qso.callsign, qso.band, qso.frequency, qso.mode, qso.rst_rcvd,
 			qso.serial_sent, qso.serial_rcvd ?? qso.serial_recv,
 			qso.gridsquare_rcvd, qso.exchange_rcvd, qso.state, qso.serverId
 		].join('|');
@@ -502,6 +526,8 @@ class QsoFormComponent {
 
 		const band    = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
 		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
+		const isoDate = qso.date || (qso.time_on ? qso.time_on.split(' ')[0] : '');
+		const dateStr = this._formatDate(isoDate);
 		const timeStr = (qso.time || '').substring(0, 8);
 		const op      = (qso.operator ?? '').toUpperCase();
 
@@ -509,6 +535,10 @@ class QsoFormComponent {
 			`<input type="text" class="form-control form-control-sm p-0 px-1 ${cls}" style="min-width:3rem;" name="${name}" value="${this._esc(val ?? '')}">`;
 
 		const cols = [
+			// Date edits via a native date picker (ISO value); saveEdit merges it into time_on.
+			{ cls: 'text-nowrap', style: editMode ? 'font-size:0.75rem;' : '',
+			  display: dateStr,
+			  edit: `<input type="date" class="form-control form-control-sm p-0 px-1" style="min-width:8rem;" name="date_on" value="${this._esc(isoDate)}">` },
 			{ cls: 'text-nowrap', style: editMode ? 'font-size:0.75rem;' : '',
 			  display: timeStr,
 			  edit: `<input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:5rem;" name="time_on" placeholder="HH:MM:SS" maxlength="8" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 8)}">` },
@@ -590,9 +620,17 @@ class QsoFormComponent {
 				if (input) { input.classList.add('is-invalid'); input.focus(); }
 				return;
 			}
-			const datePart = (qso.time_on || '').split(' ')[0] || qso.date || '';
+			// Date comes from the native date picker (ISO YYYY-MM-DD); fall back to the stored date.
+			const datePart = data.date_on || (qso.time_on || '').split(' ')[0] || qso.date || '';
+			if (!/^\d{4}-\d{2}-\d{2}$/.test(datePart)) {
+				const input = row.querySelector('[name="date_on"]');
+				if (input) { input.classList.add('is-invalid'); input.focus(); }
+				return;
+			}
 			data.time_on = `${datePart} ${m[1]}:${m[2]}:${m[3] ?? '00'}`;
 		}
+		// date_on is folded into time_on above; it is not a server column.
+		delete data.date_on;
 
 		// Update frequency when band changed, using the configured default for the current mode
 		if (data.band !== undefined && data.band !== (qso.band || '')) {
@@ -623,7 +661,10 @@ class QsoFormComponent {
 			// Normalize field names to match DataStore conventions
 			if (data.serial_rcvd !== undefined) updated.serial_rcvd = data.serial_rcvd;
 			if (data.exchange_rcvd !== undefined) updated.exchange_rcvd = data.exchange_rcvd;
-			if (data.time_on !== undefined) updated.time = data.time_on.split(' ')[1];
+			if (data.time_on !== undefined) {
+				updated.time = data.time_on.split(' ')[1];
+				updated.date = data.time_on.split(' ')[0];
+			}
 			this.dataStore.set(`qso.${qso.tmpId}`, updated);
 
 			// No need to guard against a self-resync: the next check_sync may return this

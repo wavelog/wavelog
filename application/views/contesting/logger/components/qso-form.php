@@ -142,6 +142,7 @@ $config = [
 						<table class="table table-hover table-sm mb-0 qso-table" id="qso-table">
 							<thead class="table-secondary sticky-top">
 								<tr>
+									<th class="fw-bold"><?= __("Date"); ?></th>
 									<th class="fw-bold"><?= __("Time"); ?></th>
 									<th class="fw-bold"><?= __("Callsign"); ?></th>
 									<th class="fw-bold"><?= __("Band"); ?></th>
