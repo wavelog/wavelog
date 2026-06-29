@@ -65,3 +65,17 @@ function toggleAll(btn) {
     const allChecked = Array.from(boxes).every(cb => cb.checked);
     boxes.forEach(cb => cb.checked = !allChecked);
 }
+
+$('#adif_import select[name=station_profile]').multiselect({
+	templates: {
+		button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+	},
+	enableFiltering: true,
+	enableFullValueFiltering: false,
+	enableCaseInsensitiveFiltering: true,
+	filterPlaceholder: lang_general_word_search,
+	numberDisplayed: 1,
+	inheritClass: true,
+	buttonWidth: '100%',
+	maxHeight: 600
+});

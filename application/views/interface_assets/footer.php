@@ -362,6 +362,7 @@ function stopImpersonate_modal() {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "adif" ) { ?>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap-multiselect.js'); ?>"></script>
     <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/adif.js'); ?>"></script>
     <script src="<?php echo $this->paths->cache_buster('/assets/js/jszip.min.js'); ?>"></script>
 <?php } ?>
