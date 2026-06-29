@@ -2795,6 +2795,30 @@ function viewEqsl(picture, callsign) {
         ]
     });
 
+	$('.counties_states_table').DataTable({
+        "pageLength": 25,
+        responsive: true,
+        ordering: false,
+        // "scrollY":        "390px",
+        "scrollCollapse": true,
+		"scrollY": false,
+        "paging":  false,
+        "scrollX": false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        buttons: [
+			{
+				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+				},
+			}
+        ]
+    });
+
     $('.countiesprogresstable').DataTable({
         "pageLength": 25,
         responsive: false,

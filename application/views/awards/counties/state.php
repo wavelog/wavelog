@@ -8,13 +8,13 @@
         <div class="card-body">
     <?php
     if ($counties_array) {
-        echo '<table style="width:100%" class="countiestable table table-sm table-bordered table-hover table-striped table-condensed text-center">
+        echo '<table style="width:100%" class="counties_states_table table table-sm table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <td>#</td>
             <td>' . __("County") . '</td>
-            <td>' . __("Worked") . '</td>
-            <td>' . __("Confirmed") . '</td>
+            <td>' . __("QSOs Worked") . '</td>
+            <td>' . __("QSOsConfirmed") . '</td>
         </tr>
         </thead>
         <tbody>';
