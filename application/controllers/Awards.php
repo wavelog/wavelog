@@ -1126,12 +1126,13 @@ class Awards extends CI_Controller {
         $this->load->view('interface_assets/footer');
     }
 
-    public function counties_details_ajax(){
+    public function counties_details_ajax() {
         $this->load->model('logbook_model');
 
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
         $data['results'] = $this->logbook_model->county_qso_details($state, $county);
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         // Render Page
         $data['page_title'] = __("Log View - Counties");
