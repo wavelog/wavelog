@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-28 16:40+0000\n"
-"PO-Revision-Date: 2026-06-23 19:06+0000\n"
+"PO-Revision-Date: 2026-06-29 12:11+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
@@ -1046,23 +1046,23 @@ msgstr "Kilpailusession päivittämisessä tapahtui virhe. Yritä uudelleen."
 
 #: application/controllers/Contesting.php:751
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "Kilpailusessio poistettu onnistuneesti."
 
 #: application/controllers/Contesting.php:753
 msgid "There was an error deleting the contest session. Please try again."
-msgstr ""
+msgstr "Tapahtui virhe kilpailusession poistamisessa. Yritä uudelleen."
 
 #: application/controllers/Contesting.php:963
 msgid "Operator switching is disabled."
-msgstr ""
+msgstr "Operaattorin vaihto on poistettu käytöstä."
 
 #: application/controllers/Contesting.php:983
 msgid "Operator switching is only available in club stations."
-msgstr ""
+msgstr "Operaattorin vaihto on saatavilla vain kerhoasemilla."
 
 #: application/controllers/Contesting.php:993
 msgid "Access denied"
-msgstr ""
+msgstr "Pääsy evätty"
 
 #: application/controllers/Contesting.php:1001
 #: application/controllers/User.php:1379
@@ -1071,30 +1071,30 @@ msgstr "Virheellinen käyttäjänimi tai salasana!"
 
 #: application/controllers/Contesting.php:1010
 msgid "A club account cannot be used as an operator."
-msgstr ""
+msgstr "Kerhotiliä ei voida käyttää operaattorina."
 
 #: application/controllers/Contesting_import.php:15
 msgid "This feature is disabled."
-msgstr ""
+msgstr "Tämä ominaisuus on poistettu käytöstä."
 
 #: application/controllers/Contesting_import.php:37
 #: application/controllers/Contesting_import.php:105
 msgid "No historical contests found that could be imported."
-msgstr ""
+msgstr "Ei löytynyt historiallisia kilpailuja, jotka voitaisiin tuoda."
 
 #: application/controllers/Contesting_import.php:41
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "Tuo historialliset kilpailut"
 
 #: application/controllers/Contesting_import.php:84
 #: application/controllers/Contesting_import.php:153
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d istunto(a) luotu, %d QSO(a) yhdistetty."
 
 #: application/controllers/Contesting_import.php:109
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "Tuo historialliset kilpailut (kaikki käyttäjät)"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:146
@@ -1383,7 +1383,7 @@ msgstr "eQSL-kuvan lataus epäonnistui"
 
 #: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:585
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "Ei tarpeeksi vapaata levytilaa eQSL-kortin tallentamiseen"
 
 #: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
@@ -2520,7 +2520,7 @@ msgstr ""
 #: application/controllers/Operator.php:31
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Invalid callsign"
-msgstr ""
+msgstr "Virheellinen kutsumerkki"
 
 #: application/controllers/Options.php:26
 #: application/controllers/Options.php:42
@@ -2772,84 +2772,88 @@ msgstr "Lataa QSL-kortit"
 
 #: application/controllers/Qsl.php:96 application/controllers/Qsl.php:143
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "Ei tarpeeksi vapaata levytilaa QSL-kortin tallentamiseen."
 
 #: application/controllers/Qsl.php:113 application/controllers/Qsl.php:160
 #: application/controllers/Qslpostcard.php:87
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "Ladattu tiedosto ei ole kelvollinen kuva."
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
 msgstr ""
+"QSL Postikorttisuunnittelija ei ole käytettävissä, koska 'userdata'-asetusta "
+"ei ole määritetty. Konfiguraatiosi on vanhentunut."
 
 #: application/controllers/Qslpostcard.php:31
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
+"Vertaa nykyistä config.php-tiedostoasi uusimpaan config.sample.php-"
+"tiedostoon ja päivitä tarvittaessa."
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:522
 msgid "QSL Postcard Designer"
-msgstr ""
+msgstr "QSL-postikortin suunnittelija"
 
 #: application/controllers/Qslpostcard.php:62
 msgid "Not enough free disk space to store the QSL Background."
-msgstr ""
+msgstr "Ei tarpeeksi vapaata levykapasiteettia QSL-taustan tallentamiseen."
 
 #: application/controllers/Qslpostcard.php:184
 #: application/controllers/Qslpostcard.php:245
 #: application/controllers/Qslpostcard.php:308
 msgid "Template not found"
-msgstr ""
+msgstr "Mallipohjaa ei löydy"
 
 #: application/controllers/Qslpostcard.php:190
 #: application/controllers/Qslpostcard.php:251
 #: application/controllers/Qslpostcard.php:314
 msgid "Template JSON is invalid"
-msgstr ""
+msgstr "Mallipohjan JSON on virheellinen"
 
 #: application/controllers/Qslpostcard.php:205
 msgid "No QSOs returned by get_sample_qsos()"
-msgstr ""
+msgstr "get_sample_qsos() ei palauttanut QSOja"
 
 #: application/controllers/Qslpostcard.php:215
 msgid "PDF file was not created"
-msgstr ""
+msgstr "PDF-tiedostoa ei luotu"
 
 #: application/controllers/Qslpostcard.php:228
 msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgstr "QSL postikortin PDF epäonnistui: "
 
 #: application/controllers/Qslpostcard.php:233
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "Tulosta QSL-postikortit"
 
 #: application/controllers/Qslpostcard.php:264
 #: application/controllers/Qslpostcard.php:327
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "Ei QSO:ita löydetty postikorttitulostukseen"
 
 #: application/controllers/Qslpostcard.php:283
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
+msgstr "QSL-postikorttijonon PDF-virhe: "
 
 #: application/controllers/Qslpostcard.php:291
 msgid "No QSOs were selected"
-msgstr ""
+msgstr "Yhtään QSO:ta ei valittu"
 
 #: application/controllers/Qslpostcard.php:295
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "Tulosta valitut QSL-postikortit"
 
 #: application/controllers/Qslpostcard.php:320
 msgid "No selected QSO IDs were provided"
-msgstr ""
+msgstr "Valittuja QSO-tunnuksia (QSO-ID) ei annettu"
 
 #: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
