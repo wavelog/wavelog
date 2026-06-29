@@ -36,9 +36,10 @@
         echo '</tbody>
         <tfoot>
         <tr>
-            <td colspan="2">' . __("Total") . '</td>
-            <td>'. $total_worked .'</td>
-            <td>'. $total_confirmed .'</td>
+			<th>#</th>
+            <th>' . __("Total") . '</th>
+            <th>'. $total_worked .'</th>
+            <th>'. $total_confirmed .'</th>
         </tr>
         </tfoot>
         </table>';

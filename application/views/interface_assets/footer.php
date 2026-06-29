@@ -2799,9 +2799,8 @@ function viewEqsl(picture, callsign) {
         "pageLength": 25,
         responsive: true,
         ordering: false,
-        // "scrollY":        "390px",
         "scrollCollapse": true,
-		"scrollY": false,
+		"scrollY":        "390px",
         "paging":  false,
         "scrollX": false,
         "language": {
