@@ -579,7 +579,6 @@ class Qslpostcard_model extends CI_Model {
         if ($field === 'qso.freq') return $qso['COL_FREQ'] ?? $qso['freq'] ?? '';
         if ($field === 'qso.rst_sent') return $qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '';
         if ($field === 'qso.rst_rcvd') return $qso['COL_RST_RCVD'] ?? $qso['rst_rcvd'] ?? '';
-        // ponytail: substr on short RST (RS vs RST) returns '' not false — safe.
         if ($field === 'qso.r_sent') return substr($qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '', 0, 1);
         if ($field === 'qso.s_sent') return substr($qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '', 1, 1);
         if ($field === 'qso.t_sent') return substr($qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '', 2, 1);
