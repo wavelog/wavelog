@@ -1,4 +1,21 @@
-<div class="container adif" id="adif_import">
+<style>
+	/* Ensure label sits above multiselect, not beside it (overrides span.multiselect-native-select) */
+	span.multiselect-native-select {
+		display: block !important;
+		width: 100% !important;
+	}
+	/* Ensure label sits above multiselect, not beside it */
+	span.multiselect-native-select .btn-group {
+		width: 100% !important;
+	}
+	/* Force the multiselect button to fill its column and drop the inherited .me-sm-2 right margin */
+	span.multiselect-native-select .multiselect {
+		width: 100% !important;
+		margin-right: 0 !important;
+		text-align: left !important;
+	}
+</style>
+<div class="container adif px-3 px-lg-4 mt-3 mb-3" id="adif_import">
 
     <h2><?php echo $page_title; ?></h2>
     <?php
