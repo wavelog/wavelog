@@ -14,7 +14,7 @@
             <td>#</td>
             <td>' . __("County") . '</td>
             <td>' . __("QSOs Worked") . '</td>
-            <td>' . __("QSOsConfirmed") . '</td>
+            <td>' . __("QSOs Confirmed") . '</td>
         </tr>
         </thead>
         <tbody>';
