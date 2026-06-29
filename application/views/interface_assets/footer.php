@@ -2770,7 +2770,7 @@ function viewEqsl(picture, callsign) {
 
 </script>
 
-<?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details" || $this->uri->segment(2) == "counties_state") { ?>
+<?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>
 <script>
     $('.countiestable').DataTable({
         "pageLength": 25,
