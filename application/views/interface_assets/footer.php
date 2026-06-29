@@ -2769,7 +2769,7 @@ function viewEqsl(picture, callsign) {
 
 </script>
 
-<?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>
+<?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details" || $this->uri->segment(2) == "counties_state") { ?>
 <script>
     $('.countiestable').DataTable({
         "pageLength": 25,
@@ -2778,6 +2778,28 @@ function viewEqsl(picture, callsign) {
         "scrollY":        "390px",
         "scrollCollapse": true,
         "paging":         false,
+        "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        buttons: [
+			{
+				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+				},
+			}
+        ]
+    });
+
+    $('.countiesprogresstable').DataTable({
+        "pageLength": 25,
+        responsive: false,
+        ordering: false,
+		"scrollY":        "390px",
+        "paging":  false,
         "scrollX": true,
         "language": {
             url: getDataTablesLanguageUrl(),

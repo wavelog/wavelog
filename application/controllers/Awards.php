@@ -1100,6 +1100,7 @@ class Awards extends CI_Controller {
     public function counties()	{
         $this->load->model('counties');
         $data['counties_array'] = $this->counties->get_counties_array();
+        $data['counties_progress'] = $this->counties->get_counties_progress();
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
@@ -1136,6 +1137,21 @@ class Awards extends CI_Controller {
         $data['page_title'] = __("Log View - Counties");
         $data['filter'] = "county " . $state;
         $this->load->view('awards/details', $data);
+    }
+
+    public function counties_state() {
+        $this->load->model('counties');
+        $state = str_replace('"', "", $this->security->xss_clean($this->input->get("State")));
+        $data['counties_array'] = $this->counties->get_county_counts($state);
+        $data['state'] = $state;
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+
+        // Render Page
+        $data['page_title'] = __("US Counties");
+        $data['filter'] = "all counties in state ".$state;
+        $this->load->view('interface_assets/header', $data);
+        $this->load->view('awards/counties/state');
+        $this->load->view('interface_assets/footer');
     }
 
     public function gridmaster($dxcc) {

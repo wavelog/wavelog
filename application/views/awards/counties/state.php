@@ -7,25 +7,41 @@
         </div>
         <div class="card-body">
     <?php
-    $i = 1;
     if ($counties_array) {
         echo '<table style="width:100%" class="countiestable table table-sm table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <td>#</td>
-            <td>' . __("State") . '</td>
             <td>' . __("County") . '</td>
+            <td>' . __("Worked") . '</td>
+            <td>' . __("Confirmed") . '</td>
         </tr>
         </thead>
         <tbody>';
+        $i = 1;
+        $total_worked = 0;
+        $total_confirmed = 0;
         foreach ($counties_array as $county) {
+            $worked = (int) $county['worked'];
+            $confirmed = (int) $county['confirmed'];
+            $total_worked += $worked;
+            $total_confirmed += $confirmed;
             echo '<tr>
             <td>'. $i++ .'</td>
-            <td>'. $county['COL_STATE'] .'</td>
-            <td><a href=\'javascript:displayCountyContacts("'. $county['COL_STATE'] .'","'. $county['COL_CNTY'] .'")\'>'. $county['COL_CNTY'] .'</a></td>';
+            <td><a href=\'javascript:displayCountyContacts("'. $state .'","'. $county['COL_CNTY'] .'")\'>'. $county['COL_CNTY'] .'</a></td>
+            <td>'. $worked .'</td>
+            <td>'. $confirmed .'</td>';
             echo '</tr>';
         }
-        echo '</tbody></table>';
+        echo '</tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">' . __("Total") . '</td>
+            <td>'. $total_worked .'</td>
+            <td>'. $total_confirmed .'</td>
+        </tr>
+        </tfoot>
+        </table>';
     }
     else {
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
