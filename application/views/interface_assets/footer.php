@@ -362,6 +362,7 @@ function stopImpersonate_modal() {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "adif" ) { ?>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap-multiselect.js'); ?>"></script>
     <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/adif.js'); ?>"></script>
     <script src="<?php echo $this->paths->cache_buster('/assets/js/jszip.min.js'); ?>"></script>
 <?php } ?>
@@ -2769,7 +2770,7 @@ function viewEqsl(picture, callsign) {
 
 </script>
 
-<?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>
+<?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details" || $this->uri->segment(2) == "counties_state") { ?>
 <script>
     $('.countiestable').DataTable({
         "pageLength": 25,
