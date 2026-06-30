@@ -797,6 +797,14 @@ class User extends CI_Controller {
 				$data['user_dashboard_show_contests'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
 			}
 
+			// Dashboard show KPI statistics
+			if($this->input->post('user_dashboard_show_kpi_stats') !== null) {
+				$data['user_dashboard_show_kpi_stats'] = $this->input->post('user_dashboard_show_kpi_stats', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_kpi_stats','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				$data['user_dashboard_show_kpi_stats'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : '1';
+			}
+
 			// DX Waterfall enable option
 			if($this->input->post('user_dxwaterfall_enable')) {
 				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable', false);
@@ -1080,6 +1088,7 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') == '1' ? '1' : '0')), $user_id);
+					$this->user_options_model->set_option('dashboard', 'show_kpi_stats', array('boolean'=>($this->input->post('user_dashboard_show_kpi_stats') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('stations', 'active_log_only', array('boolean'=>($this->input->post('user_stations_active_log_only') == '1' ? '1' : '0')), $user_id);
 
 					if($this->session->userdata('user_id') == $user_id) {

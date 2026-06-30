@@ -426,6 +426,7 @@ class User_Model extends CI_Model {
 				$this->session->set_userdata('user_dashboard_solar',xss_clean($fields['user_dashboard_solar'] ?? 'N'));
 				$this->session->set_userdata('user_dashboard_show_dxpeditions',xss_clean($fields['user_dashboard_show_dxpeditions'] ?? '1'));
 				$this->session->set_userdata('user_dashboard_show_contests',xss_clean($fields['user_dashboard_show_contests'] ?? '1'));
+				$this->session->set_userdata('user_dashboard_show_kpi_stats',xss_clean($fields['user_dashboard_show_kpi_stats'] ?? '1'));
 				$this->session->set_userdata('user_dxwaterfall_enable',xss_clean($fields['user_dxwaterfall_enable'] ?? 'N'));
 				$this->session->set_userdata('user_stations_active_log_only',xss_clean($fields['user_stations_active_log_only'] ?? '0'));
 
@@ -612,6 +613,7 @@ class User_Model extends CI_Model {
 			'user_dashboard_solar' 			=> ((($sess['user_dashboard_solar'] ?? 'N') == 'Y') ? ($sess['user_dashboard_solar'] ?? 'N') : ($user_options['dashboard']['show_dashboard_solar']['boolean'] ?? 'N')),
 			'user_dashboard_show_dxpeditions' => ((($sess['user_dashboard_show_dxpeditions'] ?? '0') == '1') ? ($sess['user_dashboard_show_dxpeditions'] ?? '0') : ($user_options['dashboard']['show_dxpeditions']['boolean'] ?? '0')),
 			'user_dashboard_show_contests' 	=> ((($sess['user_dashboard_show_contests'] ?? '0') == '1') ? ($sess['user_dashboard_show_contests'] ?? '0') : ($user_options['dashboard']['show_contests']['boolean'] ?? '0')),
+			'user_dashboard_show_kpi_stats'	=> ((($sess['user_dashboard_show_kpi_stats'] ?? '1') == '1') ? ($sess['user_dashboard_show_kpi_stats'] ?? '1') : ($user_options['dashboard']['show_kpi_stats']['boolean'] ?? '1')),
 			'user_qso_db_search_priority' 	=> ((($sess['user_qso_db_search_priority'] ?? 'Y') == 'Y') ? ($sess['user_qso_db_search_priority'] ?? 'Y') : ($user_options['qso_db_search_priority']['enable']['boolean'] ?? 'Y')),
 			'user_dxwaterfall_enable' 		=> ((($sess['user_dxwaterfall_enable'] ?? 'N') == 'Y') ? ($sess['user_dxwaterfall_enable'] ?? 'N') : ($user_options['dxwaterfall']['enable']['boolean'] ?? 'N')),
 			'user_date_format' 				=> $u->user_date_format,
