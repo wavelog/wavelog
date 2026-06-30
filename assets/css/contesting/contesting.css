@@ -225,6 +225,17 @@
   border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12)) !important;
 }
 
+/* Winkeyer TX status: characters are highlighted as they are keyed */
+.winkey-tx-char {
+  color: var(--bs-secondary-color, #888);
+  white-space: pre;
+}
+
+.winkey-tx-sent {
+  color: var(--bs-warning, #ffc107);
+  font-weight: 600;
+}
+
 .window-body::-webkit-scrollbar {
   width: 8px;
 }

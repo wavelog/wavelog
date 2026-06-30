@@ -1,6 +1,61 @@
 // Global variables for macros
 let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
 
+// Morse element patterns, used to time the TX status highlight
+const WINKEY_MORSE = {
+	'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..',
+	'0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',
+	'.':'.-.-.-',',':'--..--','?':'..--..','/':'-..-.','=':'-...-','+':'.-.-.','-':'-....-','(':'-.--.',')':'-.--.-',':':'---...',"'":'.----.','"':'.-..-.','@':'.--.-.'
+};
+
+let winkeyTxTimers = [];
+
+// Render the TX text and progressively highlight each character at the given WPM.
+// Dot duration follows the PARIS standard: 1200 / WPM milliseconds.
+function winkeyShowTx(text, wpm) {
+	const container = document.getElementById('winkeySendStatus');
+	if (!container) return;
+
+	winkeyTxTimers.forEach(clearTimeout);
+	winkeyTxTimers = [];
+
+	const dotMs = 1200 / (wpm || 20);
+	container.innerHTML = '';
+
+	const spans = [...text].map(ch => {
+		const span = document.createElement('span');
+		span.textContent = ch === ' ' ? ' ' : ch;
+		span.className = 'winkey-tx-char';
+		container.appendChild(span);
+		return span;
+	});
+
+	let t = 0;
+	[...text].forEach((ch, i) => {
+		if (ch === ' ') {
+			t += 7 * dotMs; // word gap
+			return;
+		}
+		const code = WINKEY_MORSE[ch.toUpperCase()];
+		let units = 0;
+		if (code) {
+			for (let k = 0; k < code.length; k++) {
+				units += code[k] === '-' ? 3 : 1;
+				if (k < code.length - 1) units += 1; // intra-character gap
+			}
+		} else {
+			units = 4; // unknown character fallback
+		}
+		t += units * dotMs;
+		const at = t;
+		winkeyTxTimers.push(setTimeout(() => spans[i].classList.add('winkey-tx-sent'), at));
+		t += 3 * dotMs; // inter-character gap
+	});
+
+	// Clear the bar shortly after the transmission finishes
+	winkeyTxTimers.push(setTimeout(() => { container.innerHTML = ''; }, t + 1500));
+}
+
 // Call url and store the returned json data as variables
 function getMacros() {
 	fetch(base_url + 'index.php/qso/cwmacros_json')
@@ -437,13 +492,9 @@ window.initWinkeyer = function() {
 		const text = line.toUpperCase();
 		const buffer = encoder.encode(text);
 
-		// Show what is being sent in the TX status bar, then clear it shortly after
-		const sendStatus = document.getElementById('winkeySendStatus');
-		if (sendStatus) {
-			sendStatus.textContent = text;
-			clearTimeout(window.winkeySendStatusTimer);
-			window.winkeySendStatusTimer = setTimeout(() => { sendStatus.textContent = ''; }, 2000);
-		}
+		// Show what is being sent in the TX status bar, highlighting each character
+		// in sync with the configured CW speed
+		winkeyShowTx(text, parseInt($('#winkeycwspeed').val(), 10) || 20);
 
 		// Write the Uint8Array to the serial port
 		await outputStream.write(buffer);
