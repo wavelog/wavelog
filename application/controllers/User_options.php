@@ -14,7 +14,9 @@ class User_Options extends CI_Controller {
 		foreach($obj as $option_key => $option_value) {
 			$obj[$option_key]=$this->security->xss_clean($option_value);
 		}
-		if ($obj['sat_name'] ?? '' != '') {
+		if (($obj['fav_name'] ?? '') !== '') {
+			$option_name = $obj['fav_name'];
+		} elseif ($obj['sat_name'] ?? '' != '') {
 			$option_name=$obj['sat_name'].'/'.$obj['mode'];
 		} else {
 			$option_name=$obj['band'].'/'.$obj['mode'];
