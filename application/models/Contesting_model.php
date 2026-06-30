@@ -12,12 +12,12 @@ class Contesting_model extends CI_Model {
 		$binding = [];
 		$sql = "SELECT
 					cs.id AS contest_session_id,
-					cs.time_start,
-					cs.time_end,
-					cs.comment,
-					sp.station_callsign AS station,
-					c.name AS contestname,
-					JSON_UNQUOTE(JSON_EXTRACT(cs.settings, '$.custom_name')) AS custom_name,
+					MAX(cs.time_start) AS time_start,
+					MAX(cs.time_end) AS time_end,
+					MAX(cs.comment) AS comment,
+					MAX(sp.station_callsign) AS station,
+					MAX(c.name) AS contestname,
+					JSON_UNQUOTE(JSON_EXTRACT(MAX(cs.settings), '$.custom_name')) AS custom_name,
 					COUNT(cq.id) AS qso_count
 				FROM contest_session cs
 				JOIN contest c ON c.id = cs.contest_adif_id

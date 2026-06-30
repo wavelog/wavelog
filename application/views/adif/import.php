@@ -1,4 +1,21 @@
-<div class="container adif" id="adif_import">
+<style>
+	/* Ensure label sits above multiselect, not beside it (overrides span.multiselect-native-select) */
+	span.multiselect-native-select {
+		display: block !important;
+		width: 100% !important;
+	}
+	/* Ensure label sits above multiselect, not beside it */
+	span.multiselect-native-select .btn-group {
+		width: 100% !important;
+	}
+	/* Force the multiselect button to fill its column and drop the inherited .me-sm-2 right margin */
+	span.multiselect-native-select .multiselect {
+		width: 100% !important;
+		margin-right: 0 !important;
+		text-align: left !important;
+	}
+</style>
+<div class="container adif px-3 px-lg-4 mt-3 mb-3" id="adif_import">
 
     <h2><?php echo $page_title; ?></h2>
     <?php
@@ -21,13 +38,9 @@
 
                 <?php if (in_array('import', $tabs_to_show)): ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($showtab == '' || $showtab == 'adif') {
-                                                    echo 'active';
-                                                } ?>" id="import-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="<?php if ($showtab == '' || $showtab == 'adif') {
-                                                                                                echo 'true';
-                                                                                            } else {
-                                                                                                echo 'false';
-                                                                                            } ?>"><?= __("ADIF Import") ?></a>
+                    <a class="nav-link <?php if ($showtab == '' || $showtab == 'adif') { echo 'active';	} ?>"
+						id="import-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import"
+						aria-selected="<?php if ($showtab == '' || $showtab == 'adif') { echo 'true'; } else { echo 'false'; } ?>"><?= __("ADIF Import") ?></a>
                 </li>
                 <?php endif; ?>
 
@@ -39,37 +52,25 @@
 
                 <?php if (in_array('dcl', $tabs_to_show)): ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($showtab == 'dcl') {
-                                                    echo 'active';
-                                                } ?>" id="dcl-tab" data-bs-toggle="tab" href="#dcl" role="tab" aria-controls="dcl" aria-selected="<?php if ($showtab == 'dcl') {
-                                                                                                        echo 'true';
-                                                                                                    } else {
-                                                                                                        echo 'false';
-                                                                                                    } ?>"><?= __("DARC DCL") ?></a>
+                    <a class="nav-link <?php if ($showtab == 'dcl') { echo 'active'; } ?>"
+						id="dcl-tab" data-bs-toggle="tab" href="#dcl" role="tab" aria-controls="dcl"
+						aria-selected="<?php if ($showtab == 'dcl') { echo 'true'; } else { echo 'false'; } ?>"><?= __("DARC DCL") ?></a>
                 </li>
                 <?php endif; ?>
 
                 <?php if (in_array('pota', $tabs_to_show)): ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($showtab == 'potab') {
-                                                    echo 'active';
-                                                } ?>" id="potab-tab" data-bs-toggle="tab" href="#potab" role="tab" aria-controls="potab" aria-selected="<?php if ($showtab == 'potab') {
-                                                                                                        echo 'true';
-                                                                                                    } else {
-                                                                                                        echo 'false';
-                                                                                                    } ?>"><?= __("POTA") ?></a>
+                    <a class="nav-link <?php if ($showtab == 'potab') { echo 'active'; } ?>"
+						id="potab-tab" data-bs-toggle="tab" href="#potab" role="tab" aria-controls="potab"
+						aria-selected="<?php if ($showtab == 'potab') { echo 'true'; } else { echo 'false'; } ?>"><?= __("POTA") ?></a>
                 </li>
                 <?php endif; ?>
 
                 <?php if (in_array('cbr', $tabs_to_show)): ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($showtab == 'cbr') {
-                                                    echo 'active';
-                                                } ?>" id="cbr-tab" data-bs-toggle="tab" href="#cbr" role="tab" aria-controls="cbr" aria-selected="<?php if ($showtab == 'cbr') {
-                                                                                                        echo 'true';
-                                                                                                    } else {
-                                                                                                        echo 'false';
-                                                                                                    } ?>"><?= __("CBR Import") ?></a>
+                    <a class="nav-link <?php if ($showtab == 'cbr') { echo 'active'; } ?>"
+						id="cbr-tab" data-bs-toggle="tab" href="#cbr" role="tab" aria-controls="cbr"
+						aria-selected="<?php if ($showtab == 'cbr') { echo 'true'; } else { echo 'false'; } ?>"><?= __("CBR Import") ?></a>
                 </li>
                 <?php endif; ?>
             </ul>
@@ -78,11 +79,7 @@
         <div class="card-body">
             <div class="tab-content">
                 <?php if (in_array('import', $tabs_to_show)): ?>
-                <div class="tab-pane <?php if ($showtab == '' || $showtab == 'adif') {
-                                                    echo 'active';
-                                                } else {
-                                                    echo 'fade';
-                                                } ?>" id="import" role="tabpanel" aria-labelledby="import-tab">
+                <div class="tab-pane <?php if ($showtab == '' || $showtab == 'adif') { echo 'active'; } else { echo 'fade'; } ?>" id="import" role="tabpanel" aria-labelledby="import-tab">
 
                     <?php if (isset($error) && ($showtab == '' || $showtab == 'adif')) { ?>
                         <div class="alert alert-danger" role="alert">
@@ -101,11 +98,11 @@
 								<div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
 								<select name="station_profile" class="form-select mb-2 me-sm-2">
 									<option value="0"><?= __("Select Station Location") ?></option>
-									<?php foreach ($station_profile->result() as $station) { ?>
-										<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
-																								echo " selected =\"selected\"";
-																							} ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
-									<?php } ?>
+									<?php if ($station_profile !== FALSE) {
+									foreach ($station_profile->result() as $station) { ?>
+										<option value="<?php echo $station->station_id; ?>"<?php if ($station->station_id == $active_station_id) { echo " selected =\"selected\""; } ?>>
+										<?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
+									<?php } } ?>
 								</select>
 
 								<div class="small form-text text-muted"><?= __("Choose ADIF File") ?></div>
@@ -267,17 +264,20 @@
 						<div class="row mb-4">
 							<div class="col-md-12">
 								<div class="col-md-6">
-									<div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
+									<div class="small form-text text-muted"><?= __("Select Station Location") ?>
+										<?php if ($stations_active_log_only) { ?><br><span class="badge text-bg-info"><i class="fa-solid fa-info"></i></span> <?= __("All is limited to station locations linked to active logbook") ?><?php } ?>
+									</div>
 									<select name="station_profile" class="form-select mb-2 me-sm-2">
 										<option value="0"><?= __("All") ?></option>
-										<?php foreach ($station_profile->result() as $station) { ?>
+										<?php if ($station_profile !== FALSE) {
+										foreach ($station_profile->result() as $station) { ?>
 											<option value="<?php echo $station->station_id; ?>"
 												<?php if ($station->station_id == $this->stations->find_active()) {
 													echo " selected =\"selected\"";
 												} ?>>
 												<?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
 											</option>
-										<?php } ?>
+										<?php } } ?>
 									</select>
 								</div>
 							</div>

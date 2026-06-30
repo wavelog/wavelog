@@ -98,6 +98,7 @@ class Qrzru {
 				$data['dxcc'] 	= '';
 				$data['state'] = !empty((string)$xml->Callsign->state) ? substr((string)$xml->Callsign->state, 0, 2) : '';
 				$data['iota'] 	= '';
+				$data['image'] 	= (string)$xml->Files->file;
 				$data['county'] = (string)$xml->Callsign->state;
 				$data['ituz'] 	= (string)$xml->Callsign->itu_zone;
 				$data['cqz'] 	= (string)$xml->Callsign->cq_zone;
@@ -109,6 +110,7 @@ class Qrzru {
 				$data['dxcc'] 	= '';
 				$data['state'] 	= '';
 				$data['iota'] 	= '';
+				$data['image'] 	= (string)$xml->Files->file;
 				$data['county'] = '';
 				$data['ituz'] = '';
 				$data['cqz'] = '';

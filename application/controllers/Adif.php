@@ -273,7 +273,14 @@ class adif extends CI_Controller {
 			$data['club_operators'] = false;
 		}
 
-		$data['station_profile'] = $this->stations->all_of_user();
+		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+			$this->load->model('logbooks_model');
+			$data['station_profile'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+			$data['stations_active_log_only'] = true;
+		} else {
+			$data['station_profile'] = $this->stations->all_of_user();
+			$data['stations_active_log_only'] = false;
+		}
 		$active_station_id = $this->stations->find_active();
 		$station_profile = $this->stations->profile($active_station_id);
 
@@ -305,6 +312,18 @@ class adif extends CI_Controller {
 
 		// Pass allowed tabs to view
 		$data['allowed_tabs'] = $this->get_allowed_tabs();
+
+		$this->load->model('contest_admin_model');
+		$data['contests'] = $this->contest_admin_model->getActiveContests();
+		$data['active_station_id'] = $active_station_id; // local var, set above
+		$data['cd_p_level'] = ($this->session->userdata('cd_p_level') ?? 0);
+
+		if ($this->config->item('special_callsign') && clubaccess_check(9) && $this->session->userdata('clubstation') == 1) {
+			$this->load->model('club_model');
+			$data['club_operators'] = $this->club_model->get_club_members($this->session->userdata('user_id'));
+		} else {
+			$data['club_operators'] = false;
+		}
 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF|zip';

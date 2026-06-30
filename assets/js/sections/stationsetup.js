@@ -144,7 +144,7 @@ $(document).ready(function () {
 			},
 			success: function (data) {
 				BootstrapDialog.show({
-					title: 'Edit Export Map options',
+					title: lang_stationsetup_edit_export_map,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'options',
 					id: "NewStationLogbookModal",
@@ -153,7 +153,7 @@ $(document).ready(function () {
 					onshown: function(dialog) {
 					},
 					buttons: [{
-						label: 'Save',
+						label: lang_admin_save,
 						cssClass: 'btn-primary btn-sm saveExportmapOptions',
 						action: function (dialogItself) {
 							saveExportmapOptions();
@@ -212,7 +212,7 @@ $(document).ready(function () {
 			},
 			success: function (data) {
 				BootstrapDialog.show({
-					title: 'Edit container name',
+					title: lang_stationsetup_edit_container_name,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'options',
 					id: "NewStationLogbookModal",
@@ -221,7 +221,7 @@ $(document).ready(function () {
 					onshown: function(dialog) {
 					},
 					buttons: [{
-						label: 'Save',
+						label: lang_admin_save,
 						cssClass: 'btn-primary btn-sm saveContainerName',
 						action: function (dialogItself) {
 							saveContainerName();
@@ -271,7 +271,7 @@ $(document).ready(function () {
 			},
 			success: function (data) {
 				BootstrapDialog.show({
-					title: 'Edit linked locations',
+					title: lang_stationsetup_edit_linked_locations,
 					size: BootstrapDialog.SIZE_WIDE,
 					cssClass: 'options',
 					id: "NewStationLogbookModal",
@@ -309,7 +309,7 @@ $(document).ready(function () {
 			},
 			success: function (data) {
 				BootstrapDialog.show({
-					title: 'Edit visitor link',
+					title: lang_stationsetup_edit_visitor_link,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'options',
 					id: "NewStationLogbookModal",
@@ -318,7 +318,7 @@ $(document).ready(function () {
 					onshown: function(dialog) {
 					},
 					buttons: [{
-						label: 'Save',
+						label: lang_admin_save,
 						cssClass: 'btn-primary btn-sm visitorSaveButton',
 						action: function (dialogItself) {
 							saveVisitorLink(dialogItself);
@@ -386,8 +386,8 @@ function reloadLogbooks() {
 		},
 		error: function (data) {
 			BootstrapDialog.alert({
-				title: 'ERROR',
-				message: 'An error ocurred while making the request',
+				title: lang_general_word_error,
+				message: lang_stationsetup_reload_error,
 				type: BootstrapDialog.TYPE_DANGER,
 				closable: false,
 				draggable: false,
@@ -409,8 +409,8 @@ function reloadStations() {
 		},
 		error: function (data) {
 			BootstrapDialog.alert({
-				title: 'ERROR',
-				message: 'An error ocurred while making the request',
+				title: lang_general_word_error,
+				message: lang_stationsetup_reload_error,
 				type: BootstrapDialog.TYPE_DANGER,
 				closable: false,
 				draggable: false,
@@ -428,7 +428,7 @@ function createStationLogbook() {
 		type: 'post',
 		success: function (html) {
 			BootstrapDialog.show({
-				title: 'Create a new station logbook',
+				title: lang_stationsetup_create_new_station_logbook,
 				size: BootstrapDialog.SIZE_NORMAL,
 				cssClass: 'options',
 				id: "NewStationLogbookModal",
@@ -437,7 +437,7 @@ function createStationLogbook() {
 				onshown: function(dialog) {
 				},
 				buttons: [{
-					label: 'Save',
+					label: lang_admin_save,
 					cssClass: 'btn-primary btn-sm newLogbook',
 					id: 'saveButtonNewLogbook',
 				},
@@ -463,7 +463,7 @@ function createStationLocation() {
 		type: 'post',
 		success: function (html) {
 			BootstrapDialog.show({
-				title: 'Create a new station location',
+				title: lang_stationsetup_create_new_station_location,
 				size: BootstrapDialog.SIZE_EXTRAWIDE,
 				cssClass: 'options',
 				nl2br: false,
@@ -471,7 +471,7 @@ function createStationLocation() {
 				onshown: function(dialog) {
 				},
 				buttons: [{
-					label: 'Save',
+					label: lang_admin_save,
 					cssClass: 'btn-primary btn-sm',
 					id: 'saveButton',
 					action: function (dialogItself) {

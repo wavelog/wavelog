@@ -363,7 +363,13 @@ $(document).ready(function(){
 		},
 		dom: 'Bfrtip',
 		buttons: [
-			'csv'
+			{
+				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+					},
+			}
 		]
 	});
 
@@ -380,7 +386,13 @@ $(document).ready(function(){
 			url: getDataTablesLanguageUrl(),
 		},
 		buttons: [
-			'csv'
+			{
+				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+					},
+			}
 		]
 	});
 

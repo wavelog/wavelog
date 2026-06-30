@@ -281,6 +281,16 @@ $config['languages'] = array(
 		'code'      => 'pt',
 		'flag'      => 'pt',
 	),
+	'romanian' => array(
+		'name'      => 'Română',
+		'name_en'   => 'Romanian',
+		'folder'    => 'romanian',
+		'locale'    => 'ro',
+		'gettext'   => 'ro',
+		'direction' => 'ltr',
+		'code'      => 'ro',
+		'flag'      => 'ro',
+	),
 	'russian' => array(
 		'name'      => 'Русский',
 		'name_en'   => 'Russian',

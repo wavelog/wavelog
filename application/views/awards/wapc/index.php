@@ -12,26 +12,52 @@
 	height: calc(100vh - 500px) !important;
 	max-height: 900px !important;
 }
+	.dropdown-filters-responsive {
+		width: min(850px, 90vw);
+		min-width: 600px;
+    }
 </style>
-<div class="container">
+
+<div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?= __("Award Info"); ?>";
-            var lang_award_info_ln1 = "<?= __("WAPC - Worked All Provinces of China"); ?>";
-            var lang_award_info_ln2 = "<?= __("The WAPC Award, issued by the Mulan DX Club, aims to promote communication between amateur radio operators worldwide and operators in all provinces, municipalities, autonomous regions, and special administrative regions of China, fostering a deeper understanding of China."); ?>";
-            var lang_award_info_ln3 = "<?= __("The award can be earned through long-term accumulation of contacts or achieved in a single effort during the annual WAPC Contest."); ?>";
-            var lang_award_info_ln4 = "<?= sprintf("Information about the WAPC Awards and its rules can be found %s.", "<a href='https://www.mulandxc.com/index/wapc_medal_app' target='_blank'>" . __("here") . "</a>"); ?>";
-            var lang_award_info_ln5 = "<?= __("Fields taken for this Award: DXCC (Must be one of China/318, HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid State (ADIF: DXCC and STATE)"); ?>";
+            let lang_awards_info_button = "<?= __("Award Info"); ?>";
+            let lang_award_info_ln1 = "<?= __("WAPC - Worked All Provinces of China"); ?>";
+            let lang_award_info_ln2 = "<?= __("The WAPC Award, issued by the Mulan DX Club, aims to promote communication between amateur radio operators worldwide and operators in all provinces, municipalities, autonomous regions, and special administrative regions of China, fostering a deeper understanding of China."); ?>";
+            let lang_award_info_ln3 = "<?= __("The award can be earned through long-term accumulation of contacts or achieved in a single effort during the annual WAPC Contest."); ?>";
+            let lang_award_info_ln4 = "<?= sprintf("Information about the WAPC Awards and its rules can be found %s.", "<a href='https://www.mulandxc.com/index/wapc_medal_app' target='_blank'>" . __("here") . "</a>"); ?>";
+            let lang_award_info_ln5 = "<?= __("Fields taken for this Award: DXCC (Must be one of China/318, HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid State (ADIF: DXCC and STATE)"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
 
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="map-tab" onclick="load_wapc_map();" data-bs-toggle="tab" href="#wapcmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
     <form class="form" action="<?php echo site_url('awards/wapc'); ?>" method="post" enctype="multipart/form-data">
-        <fieldset>
+        <div class="mb-4 text-center">
+            <div class="dropdown" data-bs-auto-close="outside">
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+                <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                <?php if ($wapc_array) {
+                    ?><button type="button" onclick="load_wapc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show WAPC Map"); ?></button>
+                <?php }?>
+
+            <!-- Dropdown Menu with Filter Content -->
+            <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
+                <div class="card-body filterbody">
 
             <div class="mb-3 row">
                 <div class="col-md-2" for="checkboxes"><?= __("Worked / Confirmed"); ?></div>
@@ -113,28 +139,12 @@
                 </div>
             </div>
 
-            <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="button1id"></label>
-                <div class="col-md-10">
-                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
-                    <?php if ($wapc_array) {
-                        ?><button type="button" onclick="load_wapc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i><?= __("Show WAPC Map"); ?></button>
-                    <?php }?>
                 </div>
             </div>
-
-        </fieldset>
+            </div>
+        </div>
     </form>
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="map-tab" onclick="load_wapc_map();" data-bs-toggle="tab" href="#wapcmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
-        </li>
-    </ul>
     <br />
 
     <div class="tab-content" id="myTabContent">
@@ -198,14 +208,14 @@
         }
 
         echo '</tr>
-        </table>
-        </div>';
-
+        </table>';
     }
     else {
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
-    ?>
+?>
+                    </div>
+        </div>
         </div>
     </div>
 </div>

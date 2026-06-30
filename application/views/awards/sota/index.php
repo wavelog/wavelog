@@ -1,18 +1,24 @@
-<div class="container">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?= __("Award Info"); ?>";
-            var lang_award_info_ln1 = "<?= __("SOTA Awards"); ?>";
-            var lang_award_info_ln2 = "<?= __("SOTA (Summits On The Air) is an award scheme for radio amateurs that encourages portable operation in mountainous areas."); ?>";
-            var lang_award_info_ln3 = "<?= __("It is fully operational in nearly a hundred countries worldwide. Each country has its own Association that defines the recognized SOTA summits within that Association. Each summit earns the activators and chasers a score related to the height of the summit. Certificates are available for various scores, leading to the prestigious 'Mountain Goat' and 'Shack Sloth' trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA online database."); ?>";
-            var lang_award_info_ln4 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://www.sota.org.uk/' target='_blank'>https://www.sota.org.uk/</a>"); ?>";
+            let lang_awards_info_button = "<?= __("Award Info"); ?>";
+            let lang_award_info_ln1 = "<?= __("SOTA Awards"); ?>";
+            let lang_award_info_ln2 = "<?= __("SOTA (Summits On The Air) is an award scheme for radio amateurs that encourages portable operation in mountainous areas."); ?>";
+            let lang_award_info_ln3 = "<?= __("It is fully operational in nearly a hundred countries worldwide. Each country has its own Association that defines the recognized SOTA summits within that Association. Each summit earns the activators and chasers a score related to the height of the summit. Certificates are available for various scores, leading to the prestigious 'Mountain Goat' and 'Shack Sloth' trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA online database."); ?>";
+            let lang_award_info_ln4 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://www.sota.org.uk/' target='_blank'>https://www.sota.org.uk/</a>"); ?>";
+            let lang_award_info_ln5 = "<?= __("Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
+
+    <div class="card">
+        <div class="card-header">
+            <?= __("SOTA QSO List"); ?>
+        </div>
+        <div class="card-body">
 	<?php
 		if ($sota_all) {
 			if($this->session->userdata('user_date_format')) {
@@ -59,4 +65,6 @@
 	<?php } else {
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }?>
+        </div>
+    </div>
 </div>

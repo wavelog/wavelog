@@ -827,7 +827,7 @@ function spawnActivatorsMap(call, count, grids) {
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
-					showActivatorsMap(call, count, grids);
+					showActivatorsMap(call, count, grids, grid_color);
 				},
 				buttons: [{
 					label: lang_admin_close,

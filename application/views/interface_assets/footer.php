@@ -133,6 +133,7 @@
     var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
     var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
     var lang_qso_dxcc_none_location = "<?= __("Location could not be determined as gridsquare is empty and DXCC is -NONE-"); ?>";
+    var lang_operator_modal_save_error = "<?= __("Error saving operator callsign. Please try again."); ?>";
 
     // CAT Offline Status Messages
     var lang_cat_working_offline = "<?= __("Working without CAT connection"); ?>";
@@ -234,7 +235,7 @@ if($this->session->userdata('user_id') != null) {
 <!-- Version Dialog END -->
 
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
-<?php if ($this->config->item('special_callsign') && $this->uri->segment(1) == "dashboard" && $this->session->userdata('clubstation') == 1) { ?>
+<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 1) { ?>
 <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/operator.js'); ?>"></script>
 <script>
 	<?php
@@ -247,8 +248,7 @@ if($this->session->userdata('user_id') != null) {
     let sc_account_call = '<?php echo $account_call; ?>'
 
 	<?php
-    # if the operator call and the account call is the same we show the dialog (except for admins!)
-    if ($op_call == $account_call && $user_type != '99') { ?>
+    if ($this->uri->segment(1) == "dashboard" && $op_call == $account_call && $user_type != '99') { ?>
 
         // load the dialog with javascript
         displayOperatorDialog();
@@ -362,6 +362,7 @@ function stopImpersonate_modal() {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "adif" ) { ?>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap-multiselect.js'); ?>"></script>
     <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/adif.js'); ?>"></script>
     <script src="<?php echo $this->paths->cache_buster('/assets/js/jszip.min.js'); ?>"></script>
 <?php } ?>
@@ -874,7 +875,7 @@ document.onkeyup = function(e) {
 
 
 
-function showActivatorsMap(call, count, grids) {
+function showActivatorsMap(call, count, grids, grid_color) {
 
     let re = /,/g;
     grids = grids.replace(re, ', ');
@@ -896,7 +897,7 @@ function showActivatorsMap(call, count, grids) {
 
     var grid_four = grids.split(', ');
 
-    var maidenhead = new L.maidenheadactivators(grid_four).addTo(map);
+    var maidenhead = new L.maidenheadactivators(grid_four, grid_color).addTo(map);
 
     var osmUrl = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var osmAttrib = option_map_tile_server_copyright;
@@ -935,7 +936,9 @@ function showActivatorsMap(call, count, grids) {
             <?php } ?>
 
             <?php printf("var dashboard_qso_count = '%d';", $this->session->userdata('dashboard_last_qso_count')) ?>
-            initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+            <?php if (($this->session->userdata('user_dashboard_map') ?? 'Y') != 'N') { ?>
+                initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+            <?php } ?>
 
             <?php if ($is_first_login ?? false) : ?>
                 $('#firstLoginWizardModal').modal('show');
@@ -1034,7 +1037,7 @@ $($('#callsign')).on('keypress',function(e) {
 </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view") { ?>
+<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view" && $this->optionslib->get_option('logbook_map') != "false") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
     <script type="text/javascript">

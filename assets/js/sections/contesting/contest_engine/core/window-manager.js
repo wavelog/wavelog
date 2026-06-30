@@ -502,13 +502,15 @@ export class WindowManager {
 	}
 
 	// Show Bootstrap Toast
-	showToast(title, text, type = 'bg-success text-white', delay = 3000) {
+	showToast(title, text, type = 'bg-success text-white', delay = 3000, autohide = true) {
 		/*
 		Examples:
 		showToast('Saved', 'Your data was saved!', 'bg-success text-white', 3000);
 		showToast('Error', 'Failed to connect to server.', 'bg-danger text-white', 5000);
 		showToast('Warning', 'Please check your input.', 'bg-warning text-dark', 4000);
 		showToast('Info', 'System will restart soon.', 'bg-info text-dark', 4000);
+		// Persistent toast (stays until manually dismissed):
+		showToast('Error', 'Connection lost.', 'bg-danger text-white', 0, false);
 		*/
 
 		const container = document.getElementById('toast-container');
@@ -519,6 +521,7 @@ export class WindowManager {
 		toastEl.setAttribute('role', 'alert');
 		toastEl.setAttribute('aria-live', 'assertive');
 		toastEl.setAttribute('aria-atomic', 'true');
+		toastEl.setAttribute('data-bs-autohide', autohide ? 'true' : 'false');
 		toastEl.setAttribute('data-bs-delay', delay);
 
 		// Toast inner HTML

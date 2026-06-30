@@ -63,7 +63,7 @@
     let lang_gen_advanced_logbook_error_saving_options = '<?= __("An error occurred while saving options: "); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_row_delete = '<?= __("You need to select a least 1 row to delete!"); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_row_callbook = '<?= __("You need to select a least 1 row to update from callbook!"); ?>';
-    let lang_gen_advanced_logbook_an_error_ocurred_while_making_request = '<?= __("An error ocurred while making the request"); ?>';
+    let lang_gen_advanced_logbook_an_error_occurred_while_making_request = '<?= __("An error occurred while making the request"); ?>';
     let lang_gen_advanced_logbook_select_at_least_one_location = '<?= __("You need to select at least 1 location to do a search!"); ?>';
     let lang_gen_advanced_logbook_update_distances = '<?= __("Update Distances"); ?>';
     let lang_gen_advanced_logbook_records_updated = '<?= __("QSO records updated."); ?>';
@@ -101,6 +101,12 @@
     let lang_gen_advanced_logbook_error_loading_detach_dialog = '<?= __("Error loading detach to contest dialog"); ?>';
 	let lang_gen_advanced_logbook_qsos_detached = '<?= __("QSOs detached to contest successfully!"); ?>';
 	let lang_gen_advanced_logbook_error_detaching = '<?= __("Error detaching QSOs"); ?>';
+
+	let lang_lba_edit_skipped   = '<?= __("%d of %d selected QSOs were skipped because you can only edit your own QSOs."); ?>';
+	let lang_lba_delete_skipped = '<?= __("%d of %d selected QSOs were skipped because you can only delete your own QSOs."); ?>';
+
+	let lang_gen_advanced_logbook_select_at_least_one_row_qslcard_print = '<?= __("You need to select at least 1 row to print a QSL card!"); ?>';
+	let lang_gen_advanced_logbook_qslcard_print_option = '<?= __("QSL Card print options"); ?>';
 
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
@@ -851,6 +857,7 @@ $options = json_decode($options);
                                         <button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
                                         <button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
                                         <button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="printQslCard"><?= __("Print QSL Card"); ?></button>
                                     <?php } ?>
                                     <button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
                                     <button type="button" class="btn btn-sm btn-info dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button>
@@ -868,13 +875,13 @@ $options = json_decode($options);
 				</select>
 				<label class="me-2" for="de"><?= __("Location"); ?></label>
 				<select class="form-select form-select-sm w-auto me-2" id="de" name="de" multiple="multiple">
-					<?php foreach ($station_profile->result() as $station) { ?>
+					<?php if($station_profile !== FALSE) { foreach ($station_profile->result() as $station) { ?>
 						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
 							echo " selected =\"selected\""; } ?>>
 							<?= __("Callsign: ") . " " ?>
 							<?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
 						</option>
-					<?php } ?>
+					<?php } } ?>
 				</select>
 				<button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right flex-grow-0 mb-2" aria-label="<?= __("Search"); ?>" id="searchButton" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Search"); ?>">
 					<i class="fas fa-search"></i><div class="ld ld-ring ld-spin"></div>
@@ -885,7 +892,7 @@ $options = json_decode($options);
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="invalidButton" style="white-space: nowrap;">
 					<i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
-				<?php if(clubaccess_check(9)) { ?>
+				<?php if(clubaccess_check(3)) { ?>
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="editButton" style="white-space: nowrap;">
 					<i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
@@ -906,6 +913,8 @@ $options = json_decode($options);
 					<button type="button" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="dbtools" style="white-space: nowrap;" aria-label="<?= __("Database Tools"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Database Tools"); ?>">
 						<i class="fas fa-wrench"></i>
 					</button>
+				<?php } ?>
+				<?php if(clubaccess_check(3)) { ?>
 					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
 						<i class="fas fa-trash-alt"></i>
 					</button>

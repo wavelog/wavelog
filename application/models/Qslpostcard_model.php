@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-use Wavelog\Label\FPDF;
+use Wavelog\Label\tFPDF;
 
 class Qslpostcard_model extends CI_Model {
 
@@ -245,44 +245,48 @@ class Qslpostcard_model extends CI_Model {
         return null;
     }
 
-    // --- PDF render (FPDF) ---
+    private const FONT_MAP = [
+        'Helvetica' => 'DejaVuSans',
+        'Times'     => 'DejaVuSerif',
+        'Courier'   => 'DejaVuSansMono',
+    ];
+
+    // --- PDF render (tFPDF, UTF-8 via embedded TrueType fonts) ---
     public function render_pdf_from_layout($layout, $qsos, $mark_sent = false, $background = null, $noaddress = false) {
-        $candidatePaths = [
-            FCPATH . 'src/Label/fpdf.php',
-            APPPATH . 'third_party/fpdf/fpdf.php',
-            FCPATH . 'application/third_party/fpdf/fpdf.php',
-        ];
+        $tfpdfPath = FCPATH . 'src/Label/tfpdf.php';
+        if (!file_exists($tfpdfPath)) {
+            throw new Exception('tFPDF not found at ' . $tfpdfPath);
+        }
+        require_once($tfpdfPath);
 
-        $fpdfPath = null;
-        foreach ($candidatePaths as $path) {
-            if (file_exists($path)) {
-                $fpdfPath = $path;
-                break;
-            }
+        // tFPDF reads FPDF_FONTPATH in its constructor; TTFs live in font/unifont/.
+        if (!defined('FPDF_FONTPATH')) {
+            define('FPDF_FONTPATH', FCPATH . 'src/Label/font/');
         }
 
-        if (!$fpdfPath) {
-            throw new Exception('FPDF not found. Checked: ' . implode(' | ', $candidatePaths));
-        }
+        $w_mm = 139.7; // 5.5 in (standard QSL card size, landscape)
+        $h_mm = 88.9;  // 3.5 in
 
-        require_once($fpdfPath);
-
-        $w_mm = 152.4; // 6 in
-        $h_mm = 101.6; // 4 in
-
-        $pdf = new FPDF('L', 'mm', [$w_mm, $h_mm]);
+        $pdf = new tFPDF('L', 'mm', [$w_mm, $h_mm]);
         $pdf->SetAutoPageBreak(false);
+
+        // Register each DejaVu family once, regular + bold (uni=true embeds a subset).
+        $pdf->AddFont('DejaVuSans', '', 'DejaVuSans.ttf', true);
+        $pdf->AddFont('DejaVuSans', 'B', 'DejaVuSans-Bold.ttf', true);
+        $pdf->AddFont('DejaVuSerif', '', 'DejaVuSerif.ttf', true);
+        $pdf->AddFont('DejaVuSerif', 'B', 'DejaVuSerif-Bold.ttf', true);
+        $pdf->AddFont('DejaVuSansMono', '', 'DejaVuSansMono.ttf', true);
+        $pdf->AddFont('DejaVuSansMono', 'B', 'DejaVuSansMono-Bold.ttf', true);
 
         $cal = $layout['calibration'] ?? ['offset_x_in' => 0, 'offset_y_in' => 0];
         $ox = (float)($cal['offset_x_in'] ?? 0);
         $oy = (float)($cal['offset_y_in'] ?? 0);
 
         // Template options (see layout.options). When qsos_per_card > 1, several
-        // QSOs share one card; "repeats per QSO" elements print once per QSO at a
-        // vertical pitch, the rest print once per card.
+        // QSOs of the SAME callsign share one card; "repeats per QSO" elements
+        // print once per QSO at a vertical pitch, the rest print once per card.
         $opts    = $layout['options'] ?? [];
         $perCard = max(1, (int)($opts['qsos_per_card'] ?? 1));
-        $perCall = !empty($opts['per_callsign']);
         $pitch   = (float)($opts['row_pitch_in'] ?? 0.3);
 
         // Background image (FPDF supports jpg/png/gif only)
@@ -299,12 +303,14 @@ class Qslpostcard_model extends CI_Model {
             }
         }
 
-        // Group QSOs (by callsign when "one postcard per callsign" is set, else one
-        // group), then split each group into cards of $perCard QSOs. The first QSO
-        // of each chunk drives the per-card address resolution below.
+        // A QSL card is addressed to a single station, so QSOs are ALWAYS grouped
+        // by callsign — a card never mixes contacts with different callsigns. Each
+        // group is then split into cards of $perCard QSOs, spilling onto further
+        // cards when a callsign has more QSOs than fit. The first QSO of each chunk
+        // drives the per-card address resolution below.
         $groups = [];
         foreach ($qsos as $qso) {
-            $key = $perCall ? strtoupper(trim($qso['COL_CALL'] ?? '')) : '__all__';
+            $key = strtoupper(trim($qso['COL_CALL'] ?? ''));
             if ($key === '') {
                 continue;
             }
@@ -342,7 +348,7 @@ class Qslpostcard_model extends CI_Model {
                 $repeat  = !empty($el['repeat_per_qso']) && !$isAddr;
                 $targets = $repeat ? $chunk : [$chunk[0]];
 
-                $font      = $el['font'] ?? 'Helvetica';
+                $font      = self::FONT_MAP[$el['font'] ?? 'Helvetica'] ?? 'DejaVuSans';
                 $pt        = (float)($el['font_pt'] ?? 11);
                 $bold      = !empty($el['bold']) ? 'B' : '';
                 $wrap_w_in = isset($el['wrap_w_in']) ? (float)$el['wrap_w_in'] : 0;
@@ -503,6 +509,25 @@ class Qslpostcard_model extends CI_Model {
         return $q->result_array();
     }
 
+    private function pretty_sat_mode($sat_mode) {
+        return (strlen($sat_mode ?? '') == 2) ? (strtoupper($sat_mode[0]) . '/' . strtoupper($sat_mode[1])) : strtoupper($sat_mode ?? '');
+    }
+
+    private function resolve_band($qso) {
+        $prop = strtoupper(trim($qso['COL_PROP_MODE'] ?? ''));
+        $sat  = trim($qso['COL_SAT_NAME'] ?? '');
+        if ($prop === 'SAT' && $sat !== '') {
+            $mode = $this->pretty_sat_mode($qso['COL_SAT_MODE'] ?? '');
+            return $mode !== '' ? $sat . ' ' . $mode : $sat;   // e.g. "AO-7 U/V"
+        }
+        return $qso['COL_BAND'] ?? $qso['band'] ?? '';
+    }
+
+    private function resolve_mode($qso) {
+        $sub = trim($qso['COL_SUBMODE'] ?? '');
+        return $sub !== '' ? $sub : ($qso['COL_MODE'] ?? $qso['mode'] ?? '');
+    }
+
     private function resolve_field($field, $qso, $addr) {
 
         // Address computed fields
@@ -547,11 +572,16 @@ class Qslpostcard_model extends CI_Model {
         if ($field === 'qso.call') return strtoupper($qso['COL_CALL'] ?? $qso['call'] ?? '');
         if ($field === 'qso.qso_date') return $qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '';
         if ($field === 'qso.time_on') return $qso['COL_TIME_ON'] ?? $qso['time_on'] ?? '';
-        if ($field === 'qso.band') return $qso['COL_BAND'] ?? $qso['band'] ?? '';
-        if ($field === 'qso.mode') return $qso['COL_MODE'] ?? $qso['mode'] ?? '';
+        if ($field === 'qso.band') return $this->resolve_band($qso);
+        if ($field === 'qso.mode') return $this->resolve_mode($qso);
+        if ($field === 'qso.sat_name') return trim($qso['COL_SAT_NAME'] ?? '');
+        if ($field === 'qso.sat_mode') return $this->pretty_sat_mode($qso['COL_SAT_MODE'] ?? '');
         if ($field === 'qso.freq') return $qso['COL_FREQ'] ?? $qso['freq'] ?? '';
         if ($field === 'qso.rst_sent') return $qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '';
         if ($field === 'qso.rst_rcvd') return $qso['COL_RST_RCVD'] ?? $qso['rst_rcvd'] ?? '';
+        if ($field === 'qso.r_sent') return substr($qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '', 0, 1);
+        if ($field === 'qso.s_sent') return substr($qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '', 1, 1);
+        if ($field === 'qso.t_sent') return substr($qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '', 2, 1);
         if ($field === 'qso.qsl_message') {
             return $qso['COL_QSLMSG'] ?? '';
         }
@@ -634,6 +664,8 @@ class Qslpostcard_model extends CI_Model {
 
         if ($field === 'qso.my_iota_ref') return $qso['COL_MY_IOTA'] ?? '';
 
+        if ($field === 'qso.my_grid') return trim($qso['COL_MY_GRIDSQUARE'] ?? '');
+
         if ($field === 'qso.iota_line') {
             $ref = trim($qso['COL_MY_IOTA'] ?? '');
             return $ref !== '' ? 'From IOTA: ' . $ref : '';
@@ -645,11 +677,26 @@ class Qslpostcard_model extends CI_Model {
             $c = strtoupper($qso['COL_CALL'] ?? $qso['call'] ?? '');
             $d = $qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '';
             $t = $qso['COL_TIME_ON'] ?? $qso['time_on'] ?? '';
-            $b = $qso['COL_BAND'] ?? $qso['band'] ?? '';
-            $m = $qso['COL_MODE'] ?? $qso['mode'] ?? '';
+            $b = $this->resolve_band($qso);
+            $m = $this->resolve_mode($qso);
             $rs = $qso['COL_RST_SENT'] ?? $qso['rst_sent'] ?? '';
             $rr = $qso['COL_RST_RCVD'] ?? $qso['rst_rcvd'] ?? '';
             return trim("$c  $d $t  $b $m  $rs/$rr");
+        }
+
+        if ($field === 'qso.pse_qsl' || $field === 'qso.tnx_qsl') {
+            $received = in_array(strtoupper(trim($qso['COL_QSL_RCVD'] ?? '')), ['Y', 'V'], true);
+            return ($field === 'qso.tnx_qsl') === $received ? 'X' : '';
+        }
+
+        if ($field === 'qso.portable') {
+            $mycall = strtoupper(trim($qso['COL_STATION_CALLSIGN'] ?? ''));
+            return ($mycall !== '' && preg_match('#/P$#', $mycall)) ? 'X' : '';
+        }
+
+        if ($field === 'qso.mobile') {
+            $mycall = strtoupper(trim($qso['COL_STATION_CALLSIGN'] ?? ''));
+            return ($mycall !== '' && preg_match('#/M$#', $mycall)) ? 'X' : '';
         }
 
         return '';

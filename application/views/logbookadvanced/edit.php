@@ -15,7 +15,7 @@
 				<option value="date"><?= __("Date"); ?></option>
 				<option value="distance"><?= __("Distance"); ?></option>
 				<option value="mode"><?= __("Mode"); ?></option>
-				<option value="operator"><?= __("Operator"); ?></option>
+				<?php if (clubaccess_check(9)) { ?><option value="operator"><?= __("Operator"); ?></option><?php } ?>
 				<option value="propagation"><?= __("Propagation"); ?></option>
 				<option value="rstr"><?= __("RST (R)"); ?></option>
 				<option value="rsts"><?= __("RST (S)"); ?></option>

@@ -1413,7 +1413,7 @@ $("#callsign").on("focusout", function () {
 		var currentCallsign = $(this).val().toUpperCase().replaceAll('Ø', '0');
 
 		// Prevent duplicate lookups for the same callsign if already in progress
-		if (lookupInProgress && lastLookupCallsign === currentCallsign) {
+		if (lookupInProgress || lastLookupCallsign === currentCallsign) {
 			return;
 		}
 

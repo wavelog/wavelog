@@ -474,14 +474,11 @@
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
 
 								<?php if (clubaccess_check(9)) { ?> <!-- Club Access Check -->
-
 									<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?= __("Account"); ?></a></li>
 								<?php
 								$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name' => 'locations_quickswitch'))->row()->option_value ?? 'false');
-								if ($quickswitch_enabled != 'true') {
 								?>
-									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?= __("Station Setup"); ?></a></li>
-								<?php } ?>
+								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?= __("Station Setup"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?= __("Bands"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('band/edges'); ?>" title="Manage Band Edgeds"><i class="fas fa-cog"></i> <?= __("Band Edges"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('usermode'); ?>" title="Manage Modes"><i class="fas fa-cog"></i> <?= __("Modes"); ?></a></li>
@@ -602,6 +599,9 @@
 										</button>
 									</li>
 								<?php } ?>
+								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 1 && empty($this->session->userdata('source_uid'))) { ?>
+									<li><a class="dropdown-item" href="javascript:displayOperatorDialog();" title="<?= __("Switch Operator"); ?>"><i class="fas fa-user-friends"></i> <?= __("Switch Operator"); ?></a></li>
+								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?= __("Logout"); ?></a></li>
 							</ul>
 						</li>
@@ -613,7 +613,11 @@
 									<li><a class="dropdown-item disabled"><?= __("Select a Location"); ?>:</a></li>
 									<?php
 									// let's get all stations for the logged in user
-									$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
+									if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+										$all_user_locations = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+									} else {
+										$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
+									}
 
 									// and the set favourites as array
 									$location_favorites_result = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
@@ -623,31 +627,33 @@
 									$current_active_location = $this->stations->find_active();
 
 									// iterate through all available stations
-									foreach ($all_user_locations->result() as $row) {
-										// get information about this station like the name and the station id
-										$profile_info = $this->stations->profile($row->station_id)->row();
-										$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
-										$station_id = $row->station_id;
+									if($all_user_locations !== FALSE) {
+										foreach ($all_user_locations->result() as $row) {
+											// get information about this station like the name and the station id
+											$profile_info = $this->stations->profile($row->station_id)->row();
+											$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
+											$station_id = $row->station_id;
 
-										// the active badge, not shown by default
-										$active_badge = '<span id="quickswitcher_active_badge_' . $station_id . '" class="badge bg-success ms-2 d-none">' . __("Active") . '</span>';
+											// the active badge, not shown by default
+											$active_badge = '<span id="quickswitcher_active_badge_' . $station_id . '" class="badge bg-success ms-2 d-none">' . __("Active") . '</span>';
 
-										// only continue if the station id is a favourite and show the station in the list
-										$is_favorite = false;
-										foreach ($location_favorites as $favorite) {
-											if ($favorite['option_value'] == true && $favorite['option_key'] == $station_id) {
-												$is_favorite = true;
-												break;
+											// only continue if the station id is a favourite and show the station in the list
+											$is_favorite = false;
+											foreach ($location_favorites as $favorite) {
+												if ($favorite['option_value'] == true && $favorite['option_key'] == $station_id) {
+													$is_favorite = true;
+													break;
+												}
 											}
-										}
 
-										if ($is_favorite) { ?>
-											<li id="quickswitcher_list_item_<?php echo $station_id; ?>">
-												<a id="quickswitcher_list_button_<?php echo $station_id; ?>" type="button" onclick="set_active_loc_quickswitcher('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
-													<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
-												</a>
-											</li>
-										<?php }
+											if ($is_favorite) { ?>
+												<li id="quickswitcher_list_item_<?php echo $station_id; ?>">
+													<a id="quickswitcher_list_button_<?php echo $station_id; ?>" type="button" onclick="set_active_loc_quickswitcher('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
+														<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
+													</a>
+												</li>
+											<?php }
+										}
 									} ?>
 									<div class="dropdown-divider"></div>
 									<li><a class="dropdown-item quickswitcher disabled"><?= __("Active Logbook"); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>

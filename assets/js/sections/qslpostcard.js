@@ -11,8 +11,8 @@
 	// ===== Constants =====
 	const STAGE_W_PX = 900;
 	const STAGE_H_PX = 600;
-	const W_IN = 6.0;
-	const H_IN = 4.0;
+	const W_IN = 5.5;
+	const H_IN = 3.5;
 	const GRID_IN = 0.25;                       // snap grid (quarter inch)
 	const GRID_PX = (GRID_IN / W_IN) * STAGE_W_PX; // 37.5px
 	const SNAP_PX = 8;                          // snap threshold (internal px)
@@ -27,6 +27,16 @@
 	const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 	const round2 = v => Math.round(v * 100) / 100;
 
+	// ===== Display-unit helpers =====
+	// Internal layout values are always inches (PDF converts in→mm). When the
+	// user's measurement preference is kilometers we show centimeters instead;
+	// otherwise inches. Only values crossing into/out of an <input> or the
+	// ruler are converted — the stored geometry stays in inches.
+	const METRIC      = (typeof measurement_base !== 'undefined' && measurement_base === 'K');
+	const DISP_PER_IN = METRIC ? 2.54 : 1;          // display units per inch
+	const inToDisp = v => round2(v * DISP_PER_IN);  // inch  → number shown to the user
+	const dispToIn = v => v / DISP_PER_IN;          // typed number → inch (stored)
+
 	// ===== State =====
 	let elements = [];          // {id,type,field|text,x_in,y_in,font,font_pt,bold,wrap_w_in}
 	let selectedIds = [];       // ids of currently selected elements
@@ -35,13 +45,15 @@
 	let previewImageUrl = null;
 
 	// Template-wide options (persisted in layout.options; see buildLayout/loadTemplate).
-	let tplOptions = {
+	// Single source of truth for a fresh/blank template; loadTemplate overlays saved
+	// values on top of this (with its own coercion for legacy/malformed JSON).
+	const DEFAULT_TPL_OPTIONS = Object.freeze({
 		qsos_per_card: 1,
-		per_callsign: false,
-		print_background: true,
-		skip_address: false,
+		print_background: false,
+		skip_address: true,
 		row_pitch_in: 0.3,
-	};
+	});
+	let tplOptions = { ...DEFAULT_TPL_OPTIONS };
 	const history = [];
 	const future = [];
 	let drag = null;            // active element drag
@@ -76,8 +88,8 @@
 	function serialize() {
 		return JSON.stringify({
 			elements: elements,
-			offX: parseFloat(offXInput.value || '0'),
-			offY: parseFloat(offYInput.value || '0'),
+			offX: dispToIn(parseFloat(offXInput.value || '0')),
+			offY: dispToIn(parseFloat(offYInput.value || '0')),
 		});
 	}
 
@@ -91,8 +103,8 @@
 	function restore(json) {
 		const s = JSON.parse(json);
 		elements = s.elements || [];
-		offXInput.value = s.offX ?? 0;
-		offYInput.value = s.offY ?? 0;
+		offXInput.value = inToDisp(s.offX ?? 0);
+		offYInput.value = inToDisp(s.offY ?? 0);
 		selectedIds = [];
 		renderAll();
 		refreshProperties();
@@ -227,6 +239,7 @@
 			color: '#000000',
 			wrap_w_in: 2.6,
 			repeat_per_qso: false,
+			no_snap: false,
 		};
 		if (type === 'field') item.field = value;
 		else item.text = value;
@@ -319,7 +332,8 @@
 		// Snap based on the grabbed (primary) element, then move the whole group by
 		// the same (snap-corrected) delta.
 		const po = drag.orig[drag.primary];
-		const snapped = snapPosition(drag.primary, inToPxX(po.x_in) + dx, inToPxY(po.y_in) + dy, !e.altKey, drag.ids);
+		const snapEnabled = !e.altKey && !byId(drag.primary).no_snap;
+		const snapped = snapPosition(drag.primary, inToPxX(po.x_in) + dx, inToPxY(po.y_in) + dy, snapEnabled, drag.ids);
 		dx += snapped.x - (inToPxX(po.x_in) + dx);
 		dy += snapped.y - (inToPxY(po.y_in) + dy);
 
@@ -369,6 +383,7 @@
 		const xLines = [], yLines = [];
 		elements.forEach(o => {
 			if (ignore.includes(o.id)) return;
+			if (o.no_snap) return; // elements with snapping disabled are not snap targets
 			const on = nodeById(o.id);
 			const ox = inToPxX(o.x_in), oy = inToPxY(o.y_in);
 			const ow = on ? on.offsetWidth : 0, oh = on ? on.offsetHeight : 0;
@@ -442,8 +457,8 @@
 			document.getElementById('propTypeBadge').textContent = isText ? LANG.customText : 'Field';
 			document.getElementById('propTypeLabel').textContent = isText ? '' : item.field;
 			if (isText) document.getElementById('propText').value = item.text || '';
-			document.getElementById('propX').value = round2(item.x_in);
-			document.getElementById('propY').value = round2(item.y_in);
+			document.getElementById('propX').value = inToDisp(item.x_in);
+			document.getElementById('propY').value = inToDisp(item.y_in);
 		}
 
 		// Font / size / bold / wrap apply to all selected; show the primary's values.
@@ -451,12 +466,15 @@
 		document.getElementById('propFontSize').value = item.font_pt || 12;
 		document.getElementById('propBold').checked = !!item.bold;
 		document.getElementById('propColor').value = item.color || '#000000';
-		document.getElementById('propWrap').value = round2(item.wrap_w_in ?? 2.6);
+		document.getElementById('propWrap').value = inToDisp(item.wrap_w_in ?? 2.6);
 
 		// "Repeats per QSO" applies to every selected element (like font/bold);
 		// the checkbox reflects the primary's value.
 		document.getElementById('propRepeatRow').style.display = '';
 		document.getElementById('propRepeat').checked = !!item.repeat_per_qso;
+
+		// "Disable snapping" applies to every selected element; reflect the primary.
+		document.getElementById('propNoSnap').checked = !!item.no_snap;
 	}
 
 	// Keep X/Y inputs in sync while dragging a single element.
@@ -464,8 +482,8 @@
 		if (selectedIds.length !== 1) return;
 		const item = byId(selectedIds[0]);
 		if (!item) return;
-		document.getElementById('propX').value = round2(item.x_in);
-		document.getElementById('propY').value = round2(item.y_in);
+		document.getElementById('propX').value = inToDisp(item.x_in);
+		document.getElementById('propY').value = inToDisp(item.y_in);
 	}
 
 	// Wire a property input: `live` updates the element on each keystroke,
@@ -485,14 +503,15 @@
 	}
 
 	wireProp('propText', (item, n) => { item.text = n.value; styleNode(item.id); });
-	wireProp('propX', (item, n) => { item.x_in = clamp(parseFloat(n.value || '0'), 0, W_IN); positionNode(item.id); });
-	wireProp('propY', (item, n) => { item.y_in = clamp(parseFloat(n.value || '0'), 0, H_IN); positionNode(item.id); });
+	wireProp('propX', (item, n) => { item.x_in = clamp(dispToIn(parseFloat(n.value || '0')), 0, W_IN); positionNode(item.id); });
+	wireProp('propY', (item, n) => { item.y_in = clamp(dispToIn(parseFloat(n.value || '0')), 0, H_IN); positionNode(item.id); });
 	wireProp('propFont', (item, n) => { item.font = n.value; styleNode(item.id); });
 	wireProp('propFontSize', (item, n) => { item.font_pt = clamp(parseInt(n.value || '12', 10), 6, 36); styleNode(item.id); });
 	wireProp('propBold', (item, n) => { item.bold = n.checked; styleNode(item.id); });
 	wireProp('propColor', (item, n) => { item.color = n.value; styleNode(item.id); });
-	wireProp('propWrap', (item, n) => { item.wrap_w_in = Math.max(0.2, parseFloat(n.value || '2.6')); });
+	wireProp('propWrap', (item, n) => { item.wrap_w_in = Math.max(0.2, dispToIn(parseFloat(n.value || '2.6'))); });
 	wireProp('propRepeat', (item, n) => { item.repeat_per_qso = n.checked; renderGhosts(item); });
+	wireProp('propNoSnap', (item, n) => { item.no_snap = n.checked; });
 
 	document.getElementById('btnDuplicate').addEventListener('click', duplicateSelected);
 	document.getElementById('btnDeleteElem').addEventListener('click', deleteSelected);
@@ -500,8 +519,7 @@
 	// ===== Template options (not undo-tracked, like calibration offsets) =====
 	function applyTplOptionsToControls() {
 		document.getElementById('tplQsosPerCard').value = tplOptions.qsos_per_card;
-		document.getElementById('tplRowPitch').value = tplOptions.row_pitch_in;
-		document.getElementById('tplPerCallsign').checked = tplOptions.per_callsign;
+		document.getElementById('tplRowPitch').value = inToDisp(tplOptions.row_pitch_in);
 		document.getElementById('tplPrintBg').checked = tplOptions.print_background;
 		document.getElementById('tplSkipAddr').checked = tplOptions.skip_address;
 	}
@@ -525,8 +543,7 @@
 	}
 
 	wireTpl('tplQsosPerCard', 'qsos_per_card',     n => Math.max(1, parseInt(n.value, 10) || 1), updateRepeatVisibility);
-	wireTpl('tplRowPitch',    'row_pitch_in',      n => Math.max(0.05, parseFloat(n.value) || 0.3), updateRepeatVisibility);
-	wireTpl('tplPerCallsign', 'per_callsign',      n => n.checked);
+	wireTpl('tplRowPitch',    'row_pitch_in',      n => Math.max(0.05, dispToIn(parseFloat(n.value) || 0.3)), updateRepeatVisibility);
 	wireTpl('tplPrintBg',     'print_background',  n => n.checked);
 	wireTpl('tplSkipAddr',    'skip_address',      n => n.checked);
 
@@ -859,6 +876,46 @@
 		const pxPerInX = STAGE_W_PX / W_IN;
 		const pxPerInY = STAGE_H_PX / H_IN;
 
+		if (METRIC) {
+			// Centimeter ruler: major tick + number every 1 cm, minor every 0.5 cm.
+			const pxPerCmX = pxPerInX / 2.54;
+			const pxPerCmY = pxPerInY / 2.54;
+			const wCm = W_IN * 2.54, hCm = H_IN * 2.54;
+
+			for (let i = 0, n = Math.ceil(wCm * 2); i <= n; i++) {
+				const cm = i * 0.5;
+				const x = cm * pxPerCmX;
+				const tick = document.createElement('div');
+				tick.className = 'ruler-tick-top ' + (i % 2 === 0 ? 'major' : 'minor');
+				tick.style.left = x + 'px';
+				top.appendChild(tick);
+				if (i % 2 === 0) {
+					const label = document.createElement('div');
+					label.className = 'ruler-label-top';
+					label.style.left = (x + 3) + 'px';
+					label.textContent = cm;
+					top.appendChild(label);
+				}
+			}
+			for (let i = 0, n = Math.ceil(hCm * 2); i <= n; i++) {
+				const cm = i * 0.5;
+				const y = cm * pxPerCmY;
+				const tick = document.createElement('div');
+				tick.className = 'ruler-tick-left ' + (i % 2 === 0 ? 'major' : 'minor');
+				tick.style.top = y + 'px';
+				left.appendChild(tick);
+				if (i % 2 === 0) {
+					const label = document.createElement('div');
+					label.className = 'ruler-label-left';
+					label.style.top = (y - 6) + 'px';
+					label.textContent = cm;
+					left.appendChild(label);
+				}
+			}
+			return;
+		}
+
+		// Inch ruler: major tick + label every 1 in, minor every 0.25 in.
 		for (let i = 0; i <= W_IN * 4; i++) {
 			const x = i * (pxPerInX / 4);
 			const tick = document.createElement('div');
@@ -914,7 +971,7 @@
 		fd.append('preview_image', fileInput.files[0]);
 		showToast('', LANG.uploading, 'bg-info text-white', 2000);
 
-		const r = await fetch(base_url + 'qslpostcard/upload_preview', { method: 'POST', body: fd });
+		const r = await fetch(base_url + 'index.php/qslpostcard/upload_preview', { method: 'POST', body: fd });
 		const out = await r.json();
 		if (!out.ok) {
 			showToast(LANG.error, LANG.uploadFailed + ': ' + (out.error || LANG.unknownError), 'bg-danger text-white', 5000);
@@ -933,8 +990,8 @@
 		return {
 			page: { w_in: W_IN, h_in: H_IN, orientation: 'landscape' },
 			calibration: {
-				offset_x_in: parseFloat(offXInput.value || '0'),
-				offset_y_in: parseFloat(offYInput.value || '0'),
+				offset_x_in: dispToIn(parseFloat(offXInput.value || '0')),
+				offset_y_in: dispToIn(parseFloat(offYInput.value || '0')),
 			},
 			options: tplOptions,
 			elements: elements,
@@ -950,13 +1007,12 @@
 		previewImageUrl = previewImagePath ? base_url + previewImagePath : null;
 		setBackground(previewImageUrl);
 
-		offXInput.value = layout.calibration?.offset_x_in ?? 0;
-		offYInput.value = layout.calibration?.offset_y_in ?? 0;
+		offXInput.value = inToDisp(layout.calibration?.offset_x_in ?? 0);
+		offYInput.value = inToDisp(layout.calibration?.offset_y_in ?? 0);
 
 		const o = layout.options || {};
 		tplOptions = {
 			qsos_per_card: Math.max(1, parseInt(o.qsos_per_card, 10) || 1),
-			per_callsign: !!o.per_callsign,
 			print_background: o.print_background !== false,
 			skip_address: !!o.skip_address,
 			row_pitch_in: parseFloat(o.row_pitch_in) || 0.3,
@@ -977,6 +1033,7 @@
 			color: el.color || '#000000',
 			wrap_w_in: el.wrap_w_in ?? 2.6,
 			repeat_per_qso: !!el.repeat_per_qso,
+			no_snap: !!el.no_snap,
 		}));
 
 		history.length = 0;
@@ -996,7 +1053,7 @@
 			setBackground(null);
 			document.getElementById('tplName').value = '';
 			document.getElementById('btnPdf').href = '#';
-			tplOptions = { qsos_per_card: 1, per_callsign: false, print_background: true, skip_address: false, row_pitch_in: 0.3 };
+			tplOptions = { ...DEFAULT_TPL_OPTIONS };
 			applyTplOptionsToControls();
 			setPitchWrapVisibility();
 			history.length = 0; future.length = 0; updateHistoryButtons();

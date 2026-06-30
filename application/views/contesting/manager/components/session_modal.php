@@ -21,12 +21,12 @@
                     <p class="text-muted mb-4"><?= __("Enter all required information to create a new contest session."); ?></p>
                     <div class="mb-4" id="custom_name_wrapper">
                         <label for="custom_name" class="form-label"><?= __("Contest Name") ?></label>
-                        <input type="text" class="form-control" id="custom_name" name="custom_name" maxlength="100" placeholder="<?= htmlspecialchars(__("Enter a name for this contest")); ?>" value="<?php if (isset($session_info) && !empty($session_info['custom_name'])) echo htmlspecialchars($session_info['custom_name']); ?>">
+                        <input type="text" class="form-control" id="custom_name" name="custom_name" maxlength="100" placeholder="<?= __("Enter a name for this contest"); ?>" value="<?php if (isset($session_info) && !empty($session_info['custom_name'])) echo htmlspecialchars($session_info['custom_name']); ?>">
                         <small class="text-muted d-block mt-2"><?= __("This name will be used only internally.") ?></small>
                     </div>
                     <div class="mb-4">
                         <label for="contest_adif_id" class="form-label"><?= __("Contest") ?> <span class="text-danger">*</span></label>
-                        <select class="form-select p-0" id="contest_adif_id" name="contest_adif_id" required placeholder="<?= htmlspecialchars(__("Please select a contest")); ?>">
+                        <select class="form-select p-0" id="contest_adif_id" name="contest_adif_id" required placeholder="<?= __("Please select a contest"); ?>">
                             <option value=""></option>
                             <?php foreach ($available_contests as $contest) { ?>
                                 <option value="<?= $contest['id']; ?>" <?php if (isset($session_info) && $session_info['contest_id'] == $contest['id']) echo 'selected'; ?>><?= htmlspecialchars($contest['name']); ?></option>
@@ -63,7 +63,7 @@
                         <label for="station_location" class="form-label"><?= __("Station Location") ?> <span class="text-danger">*</span></label>
                         <select class="form-select form-control form-control-sm" id="station_location" name="station_location" required>
                             <option value="" disabled selected><?= __("Please select a station"); ?></option>
-                            <?php 
+                            <?php
                             function is_current($value, $session_info = null, $active_station_location = null) {
                                 if (isset($session_info) && $session_info['station_id'] == $value) {
                                     return 'selected';
@@ -72,10 +72,11 @@
                                 }
                                 return '';
                             }
-                            
-                            foreach ($stations->result() as $stationrow) { ?>
-                                <option value="<?= $stationrow->station_id; ?>" <?= is_current($stationrow->station_id, $session_info, $active_station_location); ?>><?= htmlspecialchars($stationrow->station_profile_name) . " (" . htmlspecialchars($stationrow->station_callsign) . ")"; ?></option>
-                            <?php } ?>
+
+							if($stations !== FALSE) {
+								foreach ($stations->result() as $stationrow) { ?>
+	                                <option value="<?= $stationrow->station_id; ?>" <?= is_current($stationrow->station_id, $session_info ?? null, $active_station_location); ?>><?= htmlspecialchars($stationrow->station_profile_name) . " (" . htmlspecialchars($stationrow->station_callsign) . ")"; ?></option>
+                            <?php } } ?>
                         </select>
                         <small class="text-muted d-block mt-2"><?= __("Choose one of your stations"); ?></small>
                     </div>
