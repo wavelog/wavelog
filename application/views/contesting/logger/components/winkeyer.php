@@ -20,6 +20,8 @@ $config = [
 	var station_callsign = "<?= htmlspecialchars($session_info['station_callsign'] ?? ''); ?>";
 	var my_call = station_callsign;
 	var lang_admin_close = "<?= __('Close'); ?>";
+	var lang_esm_run = "<?= html_entity_decode(_pgettext("ESM mode", "Run")); ?>";
+	var lang_esm_sp  = "<?= html_entity_decode(_pgettext("ESM mode", "S&P")); ?>";
 
 	// Map contest form field IDs so winkey.js reads the right inputs
 	window.winkeyCallsignField = 'qso-callsign';
@@ -48,6 +50,7 @@ $config = [
 				<div class="d-flex align-items-center gap-2 mb-2">
 					<button id="connectButton" class="btn btn-sm btn-primary"><?= __("Connect"); ?></button>
 					<button id="winkey_settings" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
+					<button id="esm_mode_toggle" type="button" class="btn btn-sm btn-secondary" style="display:none" title="<?= __("Toggle Run / Search & Pounce for ESM"); ?>"><?= _pgettext("ESM mode", "Run"); ?></button>
 				</div>
 
 				<div id="winkey_buttons">

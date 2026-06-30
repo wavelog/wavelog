@@ -370,6 +370,19 @@ class QSO extends CI_Controller {
 			$cwmacros['macro5'] = ['name' => 'TEST', 'macro' => 'TEST DE [MYCALL] K'];
 		}
 
+		// Load ESM (Enter Sends Message) config, fall back to sensible defaults
+		$esmRow = $this->user_options_model->get_options('cwmacros', ['option_name' => 'esm'])->row();
+		$esmDecoded = json_decode($esmRow->option_value ?? '');
+		$cwmacros['esm'] = [
+			'enabled'  => isset($esmDecoded->enabled) ? (int) $esmDecoded->enabled : 0,
+			'cq'       => isset($esmDecoded->cq) ? (int) $esmDecoded->cq : 1,
+			'qrz'      => isset($esmDecoded->qrz) ? (int) $esmDecoded->qrz : 4,
+			'exchange' => isset($esmDecoded->exchange) ? (int) $esmDecoded->exchange : 2,
+			'tu'       => isset($esmDecoded->tu) ? (int) $esmDecoded->tu : 3,
+			'sp'       => isset($esmDecoded->sp) ? (int) $esmDecoded->sp : 4,
+			'sp_exch'  => isset($esmDecoded->sp_exch) ? (int) $esmDecoded->sp_exch : 2,
+		];
+
 		$cwmacros['contest_context'] = (bool) $this->input->post('contest', true);
 		$this->load->view('qso/components/winkeysettings', $cwmacros);
 	}
@@ -385,6 +398,17 @@ class QSO extends CI_Controller {
 
 			$this->user_options_model->set_option('cwmacros', "macro{$i}", array("macro{$i}" => json_encode($data)));
 		}
+
+		$esm = [
+			'enabled'  => (int) $this->input->post('esm_enabled', TRUE),
+			'cq'       => (int) $this->input->post('esm_cq', TRUE),
+			'qrz'      => (int) $this->input->post('esm_qrz', TRUE),
+			'exchange' => (int) $this->input->post('esm_exchange', TRUE),
+			'tu'       => (int) $this->input->post('esm_tu', TRUE),
+			'sp'       => (int) $this->input->post('esm_sp', TRUE),
+			'sp_exch'  => (int) $this->input->post('esm_sp_exch', TRUE),
+		];
+		$this->user_options_model->set_option('cwmacros', 'esm', array('esm' => json_encode($esm)));
 
 		echo "Macros Saved, Press Close and lets get sending!";
 	}
@@ -419,6 +443,17 @@ class QSO extends CI_Controller {
 			$result["function{$i}_macro"] = $macro['macro'];
 			$i++;
 		}
+
+		// ESM (Enter Sends Message) config with defaults
+		$esmRow = $this->user_options_model->get_options('cwmacros', ['option_name' => 'esm'])->row();
+		$esmDecoded = json_decode($esmRow->option_value ?? '');
+		$result['esm_enabled']  = isset($esmDecoded->enabled) ? (int) $esmDecoded->enabled : 0;
+		$result['esm_cq']       = isset($esmDecoded->cq) ? (int) $esmDecoded->cq : 1;
+		$result['esm_qrz']      = isset($esmDecoded->qrz) ? (int) $esmDecoded->qrz : 4;
+		$result['esm_exchange'] = isset($esmDecoded->exchange) ? (int) $esmDecoded->exchange : 2;
+		$result['esm_tu']       = isset($esmDecoded->tu) ? (int) $esmDecoded->tu : 3;
+		$result['esm_sp']       = isset($esmDecoded->sp) ? (int) $esmDecoded->sp : 4;
+		$result['esm_sp_exch']  = isset($esmDecoded->sp_exch) ? (int) $esmDecoded->sp_exch : 2;
 
 		// Output as JSON
 		header('Content-Type: application/json; charset=utf-8');
