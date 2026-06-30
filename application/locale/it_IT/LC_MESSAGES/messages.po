@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-29 12:11+0000\n"
+"POT-Creation-Date: 2026-06-30 14:58+0000\n"
 "PO-Revision-Date: 2026-06-25 13:16+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -5588,6 +5588,7 @@ msgstr "Nome semplice per descrivere per cosa usi questa API."
 #: application/views/options/radios.php:18
 #: application/views/options/version_dialog.php:42
 #: application/views/qslpostcard/designer.php:68
+#: application/views/qso/components/fav_modal.php:14
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
@@ -7247,6 +7248,7 @@ msgstr "IOTA eliminato"
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:91
 #: application/views/lotw/satupdate.php:7
+#: application/views/qso/components/fav_modal.php:8
 #: application/views/qso/components/winkeysettings.php:11
 #: application/views/qso/components/winkeysettings.php:28
 #: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:287
@@ -9696,6 +9698,7 @@ msgstr "Sì, passa!"
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
 #: application/views/operator/index.php:30
+#: application/views/qso/components/fav_modal.php:13
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
@@ -18328,6 +18331,18 @@ msgstr "Il riepilogo viene mostrato solo per il primo locatore inserito."
 msgid "Summary only shows for US states."
 msgstr "Il riepilogo mostra solo per gli stati USA."
 
+#: application/views/qso/components/fav_modal.php:5
+msgid "Save Favourite"
+msgstr ""
+
+#: application/views/qso/components/fav_modal.php:9
+msgid "e.g. 20m SSB, SO-50, portable setup"
+msgstr ""
+
+#: application/views/qso/components/fav_modal.php:10
+msgid "Please enter a name."
+msgstr ""
+
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
 msgstr "Pubblica su X"
@@ -18581,8 +18596,8 @@ msgid "Sat"
 msgstr "Satellite"
 
 #: application/views/qso/index.php:121
-msgid "Add Band/Mode to Favs"
-msgstr "Aggiungi Banda/Modo ai Preferiti"
+msgid "Add to Favs"
+msgstr ""
 
 #: application/views/qso/index.php:161
 msgid "Time on"
@@ -22037,6 +22052,9 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Add Band/Mode to Favs"
+#~ msgstr "Aggiungi Banda/Modo ai Preferiti"
 
 #~ msgid "Off"
 #~ msgstr "Disattivo"
