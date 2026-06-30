@@ -94,8 +94,8 @@
 
             echo '<tr>';
             echo '<td><a href="javascript:displayStateCounties(\'' . $state . '\')">' . $state . '</a></td>';
-            echo '<td><a href=\'counties_details?State="' . $state . '"&Type="worked"\'>' . $worked . '</a></td>';
-            echo '<td><a href=\'counties_details?State="' . $state . '"&Type="confirmed"\'>' . $confirmed . '</a></td>';
+            echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'worked\')">' . $worked . '</a></td>';
+            echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'confirmed\')">' . $confirmed . '</a></td>';
             echo '<td>' . $target . '</td>';
             echo '<td>' . $remaining . '</td>';
             echo '<td>' . $progress_bar($worked_pct, '#fd7e14') . '</td>';
