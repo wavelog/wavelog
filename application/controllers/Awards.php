@@ -1099,7 +1099,6 @@ class Awards extends CI_Controller {
 
     public function counties()	{
         $this->load->model('counties');
-        $data['counties_array'] = $this->counties->get_counties_array();
         $data['counties_progress'] = $this->counties->get_counties_progress();
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
