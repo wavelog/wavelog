@@ -45,8 +45,8 @@ $config = [
 	</div>
 
 	<div class="window-body p-2">
-		<div id="winkeyer-component">
-			<div id="winkey">
+		<div id="winkeyer-component" class="h-100 d-flex flex-column">
+			<div id="winkey" class="d-flex flex-column flex-grow-1">
 				<div class="d-flex align-items-center gap-2 mb-2">
 					<button id="connectButton" class="btn btn-sm btn-primary"><?= __("Connect"); ?></button>
 					<button id="winkey_settings" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
@@ -84,8 +84,16 @@ $config = [
 					</div>
 				</div>
 
-				<!-- Status bar -->
-				<span id="statusBar" class="small text-muted"></span>
+				<div class="mt-auto">
+					<!-- Status bar -->
+					<span id="statusBar" class="small text-muted"></span>
+
+					<!-- TX status: shows the text currently being sent -->
+					<div class="d-flex align-items-center gap-2 mt-2">
+						<span class="badge bg-secondary">TX</span>
+						<span id="winkeySendStatus" class="small font-monospace text-truncate flex-grow-1"></span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

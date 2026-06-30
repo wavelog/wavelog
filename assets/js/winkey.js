@@ -434,7 +434,16 @@ window.initWinkeyer = function() {
 
 		// Convert the text to a Uint8Array
 		const encoder = new TextEncoder();
-		const buffer = encoder.encode(line.toUpperCase());
+		const text = line.toUpperCase();
+		const buffer = encoder.encode(text);
+
+		// Show what is being sent in the TX status bar, then clear it shortly after
+		const sendStatus = document.getElementById('winkeySendStatus');
+		if (sendStatus) {
+			sendStatus.textContent = text;
+			clearTimeout(window.winkeySendStatusTimer);
+			window.winkeySendStatusTimer = setTimeout(() => { sendStatus.textContent = ''; }, 2000);
+		}
 
 		// Write the Uint8Array to the serial port
 		await outputStream.write(buffer);
