@@ -721,7 +721,7 @@ function get_fav() {
 		success: function (result) {
 			$("#fav_menu").empty();
 			for (const key in result) {
-				$("#fav_menu").append('<label class="dropdown-item" style="display: flex; justify-content: space-between;"><span id="fav_recall">' + key + '</span><span class="badge bg-danger" id="fav_del" name="' + key + '"><i class="fas fa-trash-alt"></i></span></label>');
+				$("#fav_menu").append('<label class="dropdown-item" style="display: flex; justify-content: space-between;"><span class="me-2" id="fav_recall">' + key + '</span><span class="badge bg-danger" id="fav_del" name="' + key + '"><i class="fas fa-trash-alt"></i></span></label>');
 			}
 			favs = result;
 		}
