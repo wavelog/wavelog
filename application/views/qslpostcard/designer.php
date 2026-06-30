@@ -7,7 +7,7 @@ $qsl_field_groups = [
 	__("Date & Time")         => ['qso.qso_date', 'qso.time_on', 'qso.time', 'qso.time_utc', 'qso.day', 'qso.month', 'qso.month_name', 'qso.year'],
 	__("Station & Equipment") => ['qso.tx_power'], //['qso.rig', 'qso.my_rig', 'qso.antenna', 'qso.rx_power'], Implement later if there's demand
 	__("My References")       => ['qso.my_pota_ref', 'qso.pota_line', 'qso.my_sota_ref', 'qso.sota_line', 'qso.my_iota_ref', 'qso.iota_line', 'qso.my_grid'],
-	__("Markers")             => ['qso.pse_qsl', 'qso.tnx_qsl', 'qso.portable', 'qso.mobile'],
+	__("Markers")             => ['qso.pse_qsl', 'qso.tnx_qsl', 'qso.pse_qsl_tnx_text','qso.portable', 'qso.mobile'],
 	__("Other")               => ['qso.comment', 'qso.qsl_message', 'qso.qsl_via'],
 ];
 
