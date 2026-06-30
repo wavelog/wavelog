@@ -595,6 +595,9 @@ class Contesting extends CI_Controller {
 		];
 
 		if ($this->session->userdata('isWinkeyEnabled')) {
+			// Winkeyer sits at the bottom right (y=63). Shrink the SCP component
+			// above it so both fit stacked without the winkeyer overlapping the SCP.
+			$data['components']['scp']['height'] = 30; // 32% + 30% = 62%, leaving a 1% gap before the winkeyer at y=63
 			$data['components']['winkeyer'] = [
 				'x'      => 73,
 				'y'      => 63,
