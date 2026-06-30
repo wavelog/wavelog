@@ -2,7 +2,7 @@
 $config = [
 	"component_name" => "winkeyer",
 	"title" => __("Winkeyer"),
-	"version" => "1.0",
+	"version" => "1.1",
 	"author" => "WaveLog Development Team",
 	"default_size" => [
 		"width" => 380,
