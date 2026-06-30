@@ -428,8 +428,9 @@
 						<?php
 						// Quick theme switcher — list every installed theme so the user can
 						// change skin straight from the header without opening their settings.
-						$qts_themes  = $this->optionslib->get_themes();
-						$qts_current = $this->optionslib->get_theme();
+						$qts         = $this->user_model->getUserThemes();
+						$qts_current = $qts['current'];
+						$qts_themes  = $qts['themes'];
 						?>
 						<!-- Quick Theme Switcher -->
 						<li class="nav-item dropdown">
