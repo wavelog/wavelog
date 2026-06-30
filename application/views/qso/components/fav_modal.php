@@ -3,7 +3,6 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="fav_modal_label"><i class="fas fa-star me-2"></i><?= __("Save Favourite"); ?></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= __("Close"); ?>"></button>
 			</div>
 			<div class="modal-body">
 				<label for="fav_name_input" class="form-label"><?= __("Name"); ?></label>

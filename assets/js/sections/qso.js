@@ -736,7 +736,6 @@ function save_fav() {
 	$('#fav_name_input').val(suggested);
 	$('#fav_name_error').hide();
 	bootstrap.Modal.getOrCreateInstance(document.getElementById('fav_modal')).show();
-	setTimeout(function () { $('#fav_name_input').trigger('focus').select(); }, 200);
 }
 
 function submit_fav() {
@@ -777,6 +776,10 @@ $('#fav_name_input').on("keydown", function (e) {
 		e.preventDefault();
 		submit_fav();
 	}
+});
+
+$('#fav_modal').on('shown.bs.modal', function () {
+	$('#fav_name_input').trigger('focus').select();
 });
 
 $('#fav_modal').on('hidden.bs.modal', function () {
