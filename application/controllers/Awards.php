@@ -1139,19 +1139,12 @@ class Awards extends CI_Controller {
         $this->load->view('awards/details', $data);
     }
 
-    public function counties_state() {
+    public function counties_state_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->get("State")));
+        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $data['counties_array'] = $this->counties->get_county_counts($state);
         $data['state'] = $state;
-		$data['user_map_custom'] = $this->optionslib->get_map_custom();
-
-        // Render Page
-        $data['page_title'] = __("US Counties");
-        $data['filter'] = "all counties in state ".$state;
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/counties/state');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('awards/counties/state_ajax', $data);
     }
 
     public function gridmaster($dxcc) {

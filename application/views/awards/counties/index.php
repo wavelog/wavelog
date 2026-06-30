@@ -93,7 +93,7 @@
             $confirmed_pct = $target > 0 ? ($confirmed / $target) * 100 : 0;
 
             echo '<tr>';
-            echo '<td><a href=\'counties_state?State="' . $state . '"\'>' . $state . '</a></td>';
+            echo '<td><a href="javascript:displayStateCounties(\'' . $state . '\')">' . $state . '</a></td>';
             echo '<td><a href=\'counties_details?State="' . $state . '"&Type="worked"\'>' . $worked . '</a></td>';
             echo '<td><a href=\'counties_details?State="' . $state . '"&Type="confirmed"\'>' . $confirmed . '</a></td>';
             echo '<td>' . $target . '</td>';
