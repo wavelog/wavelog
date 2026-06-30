@@ -21,6 +21,7 @@ class User_Options extends CI_Controller {
 		} else {
 			$option_name=$obj['band'].'/'.$obj['mode'];
 		}
+		$option_name = mb_substr($option_name, 0, 45);
 		$this->user_options_model->set_option('Favourite',$option_name, $obj);
 		$jsonout['success']=1;
 		header('Content-Type: application/json');

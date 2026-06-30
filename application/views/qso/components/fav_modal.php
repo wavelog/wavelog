@@ -6,7 +6,7 @@
 			</div>
 			<div class="modal-body">
 				<label for="fav_name_input" class="form-label"><?= __("Name"); ?></label>
-				<input type="text" class="form-control" id="fav_name_input" maxlength="100" autocomplete="off" placeholder="<?= __("e.g. 20m SSB, SO-50, portable setup"); ?>">
+				<input type="text" class="form-control" id="fav_name_input" maxlength="45" autocomplete="off" placeholder="<?= __("e.g. 20m SSB, SO-50, portable setup"); ?>">
 				<div id="fav_name_error" class="text-danger small mt-2" style="display:none;"><?= __("Please enter a name."); ?></div>
 			</div>
 			<div class="modal-footer">
