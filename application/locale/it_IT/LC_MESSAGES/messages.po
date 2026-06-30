@@ -2802,8 +2802,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Per favore, confronta il tuo attuale config.php con l'ultimo config.sample."
-"php e aggiornalo di conseguenza."
+"Per favore, confronta il tuo attuale config.php con l'ultimo "
+"config.sample.php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:35
 #: application/views/interface_assets/header.php:522
@@ -5591,6 +5591,7 @@ msgstr "Nome semplice per descrivere per cosa usi questa API."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/qso/components/fav_modal.php:14
 msgid "Save"
 msgstr "Salva"
 
@@ -7262,6 +7263,7 @@ msgstr "IOTA eliminato"
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:232
 #: application/views/view_log/qso.php:629
+#: application/views/qso/components/fav_modal.php:8
 msgid "Name"
 msgstr "Nome"
 
@@ -9699,6 +9701,7 @@ msgstr "Sì, passa!"
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/qso/components/fav_modal.php:13
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -20412,8 +20415,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -22037,6 +22041,22 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/views/qso/components/fav_modal.php:5
+msgid "Save Favourite"
+msgstr ""
+
+#: application/views/qso/components/fav_modal.php:9
+msgid "e.g. 20m SSB, SO-50, portable setup"
+msgstr ""
+
+#: application/views/qso/components/fav_modal.php:10
+msgid "Please enter a name."
+msgstr ""
+
+#: application/views/qso/index.php:121
+msgid "Add to Favs"
+msgstr ""
 
 #~ msgid "Off"
 #~ msgstr "Disattivo"
