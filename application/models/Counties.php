@@ -3,6 +3,14 @@
 class Counties extends CI_Model
 {
 
+    function __construct() {
+        $this->load->driver('cache', [
+            'adapter' => $this->config->item('cache_adapter') ?? 'file',
+            'backup'  => $this->config->item('cache_backup')  ?? 'file',
+            'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+        ]);
+    }
+
     /*
      *  Fetches worked and confirmed counties
      */
@@ -191,28 +199,34 @@ class Counties extends CI_Model
      * assets/json/US_counties.csv, keyed by the 2-letter state code.
      */
     function get_counties_targets() {
-        $targets = array();
-        $file = 'assets/json/US_counties.csv';
+	    $cache_key = 'UsCountiesTargets';
 
-        if (is_readable($file) && ($handle = fopen($file, 'r')) !== false) {
-            while (($row = fgetcsv($handle, 1000, ",", '"', '\\')) !== false) {
-                if (count($row) < 1) {
-                    continue;
-                }
-                $name = $row[0];
-                $code = isset($this->us_state_codes[$name]) ? $this->us_state_codes[$name] : null;
-                if ($code !== null) {
-                    if (!isset($targets[$code])) {
-                        $targets[$code] = 0;
-                    }
-                    $targets[$code]++;
-                }
-            }
-            fclose($handle);
-        }
+	    if (!$targets = $this->cache->get($cache_key)) {
+		    $targets = array();
+		    $file = 'assets/json/US_counties.csv';
 
-        ksort($targets);
-        return $targets;
+		    if (is_readable($file) && ($handle = fopen($file, 'r')) !== false) {
+			    while (($row = fgetcsv($handle, 1000, ",", '"', '\\')) !== false) {
+				    if (count($row) < 1) {
+					    continue;
+				    }
+				    $name = $row[0];
+				    $code = isset($this->us_state_codes[$name]) ? $this->us_state_codes[$name] : null;
+				    if ($code !== null) {
+					    if (!isset($targets[$code])) {
+						    $targets[$code] = 0;
+					    }
+					    $targets[$code]++;
+				    }
+			    }
+			    fclose($handle);
+		    }
+
+		    ksort($targets);
+		    $this->cache->save($cache_key, $targets, (60 * 60 * 24));
+	    }
+
+	    return $targets;
     }
 
     /*
