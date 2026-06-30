@@ -689,6 +689,11 @@ class Qslpostcard_model extends CI_Model {
             return ($field === 'qso.tnx_qsl') === $received ? 'X' : '';
         }
 
+		if ($field === 'qso.pse_qsl_tnx_text') {
+            $received = in_array(strtoupper(trim($qso['COL_QSL_RCVD'] ?? '')), ['Y', 'V'], true);
+            return ($received ? 'TNX QSL' : 'PSE QSL');
+        }
+
         if ($field === 'qso.portable') {
             $mycall = strtoupper(trim($qso['COL_STATION_CALLSIGN'] ?? ''));
             return ($mycall !== '' && preg_match('#/P$#', $mycall)) ? 'X' : '';
