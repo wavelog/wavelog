@@ -15,6 +15,8 @@ class Themes_model extends CI_Model {
 
 		// Delete Theme
 		$this->db->delete('themes', array('id' => $clean_id));
+		//invalidate the cache for themes
+		$this->cache->delete('user_themes');
 	}
 
 	function add() {
@@ -27,6 +29,8 @@ class Themes_model extends CI_Model {
 		);
 
 		$this->db->insert('themes', $data);
+		//invalidate the cache for themes
+		$this->cache->delete('user_themes');
 	}
 
 
@@ -52,6 +56,8 @@ class Themes_model extends CI_Model {
 
 		$this->db->where('id', $id);
 		$this->db->update('themes', $data);
+		//invalidate the cache for themes
+		$this->cache->delete('user_themes');
 	}
 
 	function get_logo_from_theme($theme, $logo_location) {
@@ -65,7 +71,7 @@ class Themes_model extends CI_Model {
 		if ($query) {
 			$result = $query->row();
 			$value = isset($result->$clean_location) ? $result->$clean_location : null;
-	
+
 			return ($value !== null) ? (string) $value : null;
 		} else {
 			log_message('error', 'get_logo_from_theme failed');
@@ -83,7 +89,7 @@ class Themes_model extends CI_Model {
 		if ($query) {
 			$result = $query->row();
 			$value = isset($result->theme_mode) ? $result->theme_mode : null;
-	
+
 			return ($value !== null) ? (string) $value : null;
 		} else {
 			log_message('error', 'get_theme_mode failed');
