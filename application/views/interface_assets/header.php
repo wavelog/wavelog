@@ -70,12 +70,12 @@
 		var userName = '<?php echo $this->session->userdata('user_name'); ?>';
 		<?php
 		if ($this->uri->segment(1) == "qso") {
-                	$actstation=$this->stations->find_active() ?? '';
-                	echo "var activeStationId = '".$actstation."';\n";
-                	$profile_info = $this->stations->profile($actstation)->row();
-                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power ?? 0)."';\n";
-                	echo "var activeStationOP = '".xss_clean($this->session->userdata('operator_callsign'))."';\n";
-                	echo "var last_qsos_count = ".$this->session->userdata('qso_page_last_qso_count')."\n";
+			$actstation=$this->stations->find_active() ?? '';
+			echo "var activeStationId = '".$actstation."';\n";
+			$profile_info = $this->stations->profile($actstation)->row();
+			echo "var activeStationTXPower = '".xss_clean($profile_info->station_power ?? 0)."';\n";
+			echo "var activeStationOP = '".xss_clean($this->session->userdata('operator_callsign'))."';\n";
+			echo "var last_qsos_count = ".$this->session->userdata('qso_page_last_qso_count')."\n";
 		}
                 ?>
 	</script>
@@ -423,7 +423,44 @@
 						</form>
 					<?php } ?>
 
-					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
+					<?php $quick_theme_switcher = ($this->user_options_model->get_options('header_menu', array('option_name' => 'quick_theme_switcher'))->row()->option_value ?? 'true') === 'true' ? 'true' : 'false';
+
+					if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) {
+
+						if ($quick_theme_switcher === 'true') {
+
+							// Quick theme switcher — list every installed theme so the user can
+							// change skin straight from the header without opening their settings.
+							$qts         = $this->user_model->getUserThemes();
+							$qts_current = $qts['current'];
+							$qts_themes  = $qts['themes'];
+							?>
+							<!-- Quick Theme Switcher -->
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" title="<?= __("Themes"); ?>"><i class="fas fa-palette"></i></a>
+								<ul class="dropdown-menu dropdown-menu-right header-dropdown">
+									<li><span class="dropdown-item-text fw-bold"><?= __("Themes"); ?></span></li>
+									<div class="dropdown-divider"></div>
+									<?php foreach ($qts_themes as $qts_t) { ?>
+										<li>
+											<button type="button" class="dropdown-item d-flex justify-content-between align-items-center" onclick="quick_switch_theme('<?php echo xss_clean($qts_t->foldername); ?>')">
+												<span>
+													<?php if ($qts_t->foldername == $qts_current) { ?>
+														<i class="fas fa-check text-success me-2"></i>
+													<?php } else { ?>
+														<i class="far fa-circle me-2"></i>
+													<?php } ?>
+													<?php echo htmlspecialchars($qts_t->name, ENT_QUOTES, 'UTF-8'); ?>
+												</span>
+												<?php if (!empty($qts_t->theme_mode)) { ?>
+													<small class="text-muted ms-3 text-capitalize"><?php echo $qts_t->theme_mode; ?></small>
+												<?php } ?>
+											</button>
+										</li>
+									<?php } ?>
+								</ul>
+							</li>
+						<?php } ?>
 
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">

@@ -24,6 +24,37 @@ class User_Model extends CI_Model {
 		return $r;
 	}
 
+	// GET — returns the installed themes plus the one currently active for the user
+	public function getUserThemes() {
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
+		$cache_key = 'user_themes';
+
+		// Cache check - early return
+		if ($cached = $this->cache->get($cache_key)) {
+			$themes = $cached;
+		} else {
+			// Load the Themes_model if not already loaded
+			if (!isset($this->Themes_model)) {
+				$this->load->model('Themes_model');
+			}
+
+			$themes = $this->Themes_model->getThemes();
+
+			// Cache the themes for 1 year
+			$this->cache->save($cache_key, $themes, 60 * 60 * 24 * 7 * 52);
+		}
+
+		return array(
+			'current' => $this->optionslib->get_theme(),
+			'themes'  => $themes
+		);
+	}
+
 	// FUNCTION: object get_by_id($id)
 	// Retrieve a user by user ID
 	function get_by_id($id) {
@@ -846,6 +877,15 @@ class User_Model extends CI_Model {
 
 	// FUNCTION: bool authorize($level)
 	// Checks a user's level of access against the given $level
+	// FUNCTION: bool set_user_stylesheet($user_id, $foldername)
+	// Quickly switch the active theme (stylesheet foldername) for a single user.
+	// Used by the header theme switcher so users can change skin without opening
+	// their profile settings. Returns TRUE on success.
+	function set_user_stylesheet($user_id, $foldername) {
+		$this->db->where('user_id', xss_clean($user_id));
+		return $this->db->update('users', array('user_stylesheet' => xss_clean($foldername)));
+	}
+
 	function authorize($level) {
 		$u = $this->get_by_id($this->session->userdata('user_id'));
 		$l = $this->config->item('auth_mode');

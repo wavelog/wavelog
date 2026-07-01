@@ -63,7 +63,7 @@ $_step_pitch = $_metric ? '0.1'  : '0.05';   // row pitch
 								<option value="<?= (int)$t['id'] ?>"><?= htmlentities($t['name']) ?></option>
 							<?php endforeach; ?>
 						</select>
-						<input id="tplName" class="form-control form-control-sm" style="min-width:140px;" placeholder="<?= __("Template name"); ?>">
+						<input id="tplName" class="form-control form-control-sm" maxlength="100" style="min-width:140px;" placeholder="<?= __("Template name"); ?>">
 						<button id="btnSave" class="btn btn-sm btn-success text-nowrap" title="<?= __("Save Template"); ?>">
 							<i class="fas fa-save me-1"></i><?= __("Save"); ?>
 						</button>
@@ -81,9 +81,15 @@ $_step_pitch = $_metric ? '0.1'  : '0.05';   // row pitch
 						<button type="button" id="btnUploadPreview" class="btn btn-sm btn-primary" title="<?= __("Upload Preview Image"); ?>">
 							<i class="fas fa-upload"></i>
 						</button>
-						<a id="btnPdf" class="btn btn-sm btn-primary" href="#" target="_blank" title="<?= __("Generate PDF (demo)"); ?>">
+					<div class="btn-group btn-group-sm" role="group">
+						<a id="btnPdf" class="btn btn-primary" href="#" target="_blank" title="<?= __("Generate PDF (demo)"); ?>">
 							<i class="fas fa-file-pdf me-1"></i><?= __("PDF"); ?>
 						</a>
+						<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#" id="btnPdfSave" target="_blank"><i class="fas fa-download me-1"></i><?= __("Save PDF"); ?></a></li>
+						</ul>
+					</div>
 					</div>
 				</div>
 
