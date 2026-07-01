@@ -51,7 +51,7 @@ class User_Model extends CI_Model {
 
 		return array(
 			'current' => $this->optionslib->get_theme(),
-			'themes'  => $this->Themes_model->getThemes(),
+			'themes'  => $themes
 		);
 	}
 
