@@ -2813,7 +2813,7 @@ function viewEqsl(picture, callsign) {
                     nl2br: false,
                     message: html,
                     onshown: function(dialog) {
-                       $('[data-bs-toggle="tooltip"]').tooltip();
+						$('[data-bs-toggle="tooltip"]').tooltip();
                     },
                     buttons: [{
                         label: lang_admin_close,
@@ -2834,7 +2834,7 @@ function viewEqsl(picture, callsign) {
             data: {'State': state },
             success: function(html) {
                 BootstrapDialog.show({
-                    title: "<?php echo __("US Counties"); ?>" + ': ' + state,
+                    title: "<?php echo __("US Counties for state"); ?>" + ': ' + state,
                     size: BootstrapDialog.SIZE_WIDE,
                     cssClass: 'counties-state-dialog',
                     nl2br: false,
@@ -2887,7 +2887,7 @@ function viewEqsl(picture, callsign) {
             data: {'State': state, 'Type': type },
             success: function(html) {
                 BootstrapDialog.show({
-                    title: (type === 'confirmed' ? "<?php echo __("Confirmed"); ?>" : "<?php echo __("Worked"); ?>") + ": " + state,
+                    title: (type === 'confirmed' ? "<?php echo __("Confirmed counties for state:"); ?>" : "<?php echo __("Worked counties for state:"); ?>") + " " +state,
                     size: BootstrapDialog.SIZE_WIDE,
                     cssClass: 'counties-list-dialog',
                     nl2br: false,
