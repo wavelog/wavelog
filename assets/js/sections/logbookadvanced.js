@@ -2113,11 +2113,22 @@ $(document).ready(function () {
 								return;
 							}
 							var $form = $('#printQslCardForm');
-							$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
-							$form.attr('target', '_blank');
-							$form[0].submit();
-							dialog.close();
-						});
+						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
+						$form.attr('target', '_blank');
+						$form[0].submit();
+						dialog.close();
+					});
+					$('#btnPrintQslCardSave').off('click').on('click', function () {
+						var tplId = $('#qslcard_template_id').val();
+						if (!tplId) {
+							return;
+						}
+						var $form = $('#printQslCardForm');
+						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId + '?download=1');
+						$form.attr('target', '_blank');
+						$form[0].submit();
+						dialog.close();
+					});
 					},
 					buttons: [{
 						label: lang_admin_close,
