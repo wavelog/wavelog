@@ -601,6 +601,17 @@
 											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the current UTC Time in the menu"); ?></small>
 										</div>
 									</div>
+
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="user_quick_theme_switcher" value="false">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="quick_theme_switcher" name="user_quick_theme_switcher" value="true" <?php if ($user_quick_theme_switcher == 'true') { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0" for="quick_theme_switcher"><?= __("Quick Theme Switcher"); ?></label>
+											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the quick theme switcher in the header menu."); ?></small>
+										</div>
+									</div>
 									<?php } ?>
 								</div>
 							</div>
