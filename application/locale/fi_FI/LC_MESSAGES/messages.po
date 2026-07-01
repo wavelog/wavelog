@@ -236,6 +236,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/User.php:1478 application/controllers/User.php:1618
 #: application/controllers/User.php:1843 application/controllers/User.php:1859
 #: application/controllers/User.php:1885
+#: application/controllers/Activated_gridmap.php:9
+#: application/controllers/Gridmap.php:9
 msgid "You're not allowed to do that!"
 msgstr "Tämä ei ole sallittu!"
 
@@ -248,6 +250,7 @@ msgstr "Kertyneet tilastot"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
+#: application/controllers/Activated_gridmap.php:13
 msgid "Activated Gridsquare Map"
 msgstr "Lokaattorikartan aktivointi"
 
@@ -263,22 +266,29 @@ msgstr "Lokaattorikartan aktivointi"
 #: application/views/visitor/layout/header.php:68
 #: application/controllers/Awards.php:1163
 #: application/controllers/Awards.php:1199
+#: application/controllers/Activated_gridmap.php:34
+#: application/controllers/Gridmap.php:35
 msgid "Gridsquares"
 msgstr "Lokaattoriruudut"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:455
+#: application/controllers/Activated_gridmap.php:35
+#: application/controllers/Gridmap.php:36
 msgid "Gridsquares confirmed"
 msgstr "Vahvistetut lokaattoriruudut"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:456
+#: application/controllers/Activated_gridmap.php:36
+#: application/controllers/Gridmap.php:37
 msgid "Gridsquares not confirmed"
 msgstr "Vahvistamattomat lokaattoriruudut"
 
 #: application/controllers/Activated_gridmap.php:34
+#: application/controllers/Activated_gridmap.php:37
 msgid "Total gridsquares activated"
 msgstr "Kaikki aktivoidut lokaattoriruudut"
 
@@ -287,24 +297,32 @@ msgstr "Kaikki aktivoidut lokaattoriruudut"
 #: application/controllers/Visitor.php:459
 #: application/views/qslpostcard/designer.php:136
 #: application/views/qslpostcard/designer.php:142
+#: application/controllers/Activated_gridmap.php:39
+#: application/controllers/Gridmap.php:40
 msgid "Fields"
 msgstr "Päälokaattoriruudut"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:460
+#: application/controllers/Activated_gridmap.php:40
+#: application/controllers/Gridmap.php:41
 msgid "Fields confirmed"
 msgstr "Vahvistetut lokaattoriruudut"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:461
+#: application/controllers/Activated_gridmap.php:41
+#: application/controllers/Gridmap.php:42
 msgid "Fields not confirmed"
 msgstr "Vahvistamattomat lokaattoriruudut"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:462
+#: application/controllers/Activated_gridmap.php:42
+#: application/controllers/Gridmap.php:43
 msgid "Total fields worked"
 msgstr "Kaikki workitut lokaattoriruudut"
 
@@ -1485,11 +1503,13 @@ msgstr "Vahvistukset"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:163
+#: application/controllers/Gridmap.php:13
 msgid "Gridsquare Map"
 msgstr "Gridsquare-kartta"
 
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:457
+#: application/controllers/Gridmap.php:38
 msgid "Total gridsquares worked"
 msgstr "Kaikki workitut lokaattorit"
 
