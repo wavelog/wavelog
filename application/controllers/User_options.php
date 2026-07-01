@@ -14,11 +14,14 @@ class User_Options extends CI_Controller {
 		foreach($obj as $option_key => $option_value) {
 			$obj[$option_key]=$this->security->xss_clean($option_value);
 		}
-		if ($obj['sat_name'] ?? '' != '') {
+		if (($obj['fav_name'] ?? '') !== '') {
+			$option_name = $obj['fav_name'];
+		} elseif ($obj['sat_name'] ?? '' != '') {
 			$option_name=$obj['sat_name'].'/'.$obj['mode'];
 		} else {
 			$option_name=$obj['band'].'/'.$obj['mode'];
 		}
+		$option_name = mb_substr($option_name, 0, 45);
 		$this->user_options_model->set_option('Favourite',$option_name, $obj);
 		$jsonout['success']=1;
 		header('Content-Type: application/json');

@@ -25,9 +25,15 @@
 					<input type="hidden" name="selected_ids[]" value="<?= (int)$id ?>">
 				<?php endforeach; ?>
 
+			<div class="btn-group" role="group">
 				<button type="button" id="btnPrintSelected" class="btn btn-success">
 					<?= __("Generate Postcard PDF") ?>
 				</button>
+				<button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="#" id="btnPrintSelectedSave"><i class="fas fa-download me-1"></i><?= __("Save PDF"); ?></a></li>
+				</ul>
+			</div>
 			</form>
 		</div>
 		<?php } else { ?>
@@ -43,6 +49,13 @@
         // Print options come from the template's layout.options, not this form.
         const form = document.getElementById('selectedPrintForm');
         form.action = `<?= site_url('qslpostcard/pdfselected') ?>/${tpl}`;
+        form.target = '_blank';
+        form.submit();
+    });
+    document.getElementById('btnPrintSelectedSave').addEventListener('click', () => {
+        const tpl = document.getElementById('template_id').value;
+        const form = document.getElementById('selectedPrintForm');
+        form.action = `<?= site_url('qslpostcard/pdfselected') ?>/${tpl}?download=1`;
         form.target = '_blank';
         form.submit();
     });

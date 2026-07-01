@@ -721,7 +721,7 @@ function get_fav() {
 		success: function (result) {
 			$("#fav_menu").empty();
 			for (const key in result) {
-				$("#fav_menu").append('<label class="dropdown-item" style="display: flex; justify-content: space-between;"><span id="fav_recall">' + key + '</span><span class="badge bg-danger" id="fav_del" name="' + key + '"><i class="fas fa-trash-alt"></i></span></label>');
+				$("#fav_menu").append('<label class="dropdown-item" style="display: flex; justify-content: space-between;"><span class="me-2" id="fav_recall">' + key + '</span><span class="badge bg-danger" id="fav_del" name="' + key + '"><i class="fas fa-trash-alt"></i></span></label>');
 			}
 			favs = result;
 		}
@@ -729,7 +729,23 @@ function get_fav() {
 }
 
 function save_fav() {
+	var sat = $('#sat_name').val();
+	var mode = $('#mode').val();
+	var band = $('#band').val();
+	var suggested = sat ? sat + '/' + mode : band + '/' + mode;
+	$('#fav_name_input').val(suggested);
+	$('#fav_name_error').hide();
+	bootstrap.Modal.getOrCreateInstance(document.getElementById('fav_modal')).show();
+}
+
+function submit_fav() {
+	var name = $('#fav_name_input').val().trim();
+	if (name === '') {
+		$('#fav_name_error').show();
+		return;
+	}
 	var payload = {};
+	payload.fav_name = name;
 	payload.sat_name = $('#sat_name').val();
 	payload.sat_mode = $('#sat_mode').val();
 	payload.band_rx = $('#band_rx').val();
@@ -745,10 +761,31 @@ function save_fav() {
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(payload),
 		success: function (result) {
+			bootstrap.Modal.getOrCreateInstance(document.getElementById('fav_modal')).hide();
 			get_fav();
 		}
 	});
 }
+
+$('#fav_modal_save').on("click", function () {
+	submit_fav();
+});
+
+$('#fav_name_input').on("keydown", function (e) {
+	if (e.key === 'Enter') {
+		e.preventDefault();
+		submit_fav();
+	}
+});
+
+$('#fav_modal').on('shown.bs.modal', function () {
+	$('#fav_name_input').trigger('focus').select();
+});
+
+$('#fav_modal').on('hidden.bs.modal', function () {
+	$('#fav_name_input').val('');
+	$('#fav_name_error').hide();
+});
 
 
 if (qso_manual == 0) {

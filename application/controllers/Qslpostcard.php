@@ -216,12 +216,8 @@ class Qslpostcard extends CI_Controller {
                 return;
             }
 
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: inline; filename="qsl_postcards_' . $template_id . '.pdf"');
-            header('Content-Length: ' . filesize($pdfPath));
-            readfile($pdfPath);
-            @unlink($pdfPath);
-            exit;
+            $download = (bool)$this->input->get('download');
+            $this->stream_pdf($pdfPath, '', $tpl, $download);
         } catch (Throwable $e) {
             log_message('error', 'QSLPOSTCARD pdf() failed: ' . $e->getMessage());
             log_message('error', $e->getTraceAsString());
@@ -271,12 +267,8 @@ class Qslpostcard extends CI_Controller {
 
             $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: inline; filename="qsl_postcards_queue_' . $template_id . '.pdf"');
-            header('Content-Length: ' . filesize($pdfPath));
-            readfile($pdfPath);
-            @unlink($pdfPath);
-            exit;
+            $download = (bool)$this->input->get('download');
+            $this->stream_pdf($pdfPath, 'queue', $tpl, $download);
         } catch (Throwable $e) {
             log_message('error', 'QSLPOSTCARD pdfqueue() failed: ' . $e->getMessage());
             log_message('error', $e->getTraceAsString());
@@ -337,12 +329,8 @@ class Qslpostcard extends CI_Controller {
 
             $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout($layout, $qsos, false, $background, $noaddress);
 
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: inline; filename="qsl_postcards_selected_' . $template_id . '.pdf"');
-            header('Content-Length: ' . filesize($pdfPath));
-            readfile($pdfPath);
-            @unlink($pdfPath);
-            exit;
+            $download = (bool)$this->input->get('download');
+            $this->stream_pdf($pdfPath, 'selected', $tpl, $download);
         } catch (Throwable $e) {
             log_message('error', 'QSLPOSTCARD pdfselected() failed: ' . $e->getMessage());
             log_message('error', $e->getTraceAsString());
@@ -375,5 +363,29 @@ class Qslpostcard extends CI_Controller {
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(['ok' => true]));
+	}
+
+	private function stream_pdf(string $pdfPath, string $variant, array $tpl, bool $download = false): void
+	{
+		session_write_close();
+
+		$name = preg_replace('/[^A-Za-z0-9_-]/', '_', $tpl['name'] ?? '');
+		if ($name === '') {
+			$name = 'tpl_' . ($tpl['id'] ?? 'x');
+		}
+		$suffix = $variant !== '' ? '_' . $variant : '';
+		$filename = 'qsl_postcards' . $suffix . '_' . $name . '_' . date('Ymd-Hi') . '.pdf';
+		$disp = $download ? 'attachment' : 'inline';
+
+		header('Content-Type: application/pdf');
+		header('Content-Disposition: ' . $disp . '; filename="' . $filename . '"');
+		if (!ini_get('zlib.output_compression')) {
+			header('Content-Length: ' . filesize($pdfPath));
+		}
+		readfile($pdfPath);
+		if (!@unlink($pdfPath)) {
+			log_message('error', 'QSLPOSTCARD: temp PDF unlink failed: ' . $pdfPath);
+		}
+		exit;
 	}
 }
