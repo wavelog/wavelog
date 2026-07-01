@@ -118,7 +118,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="fav_item" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-star"></i></a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#" id="fav_add"><?= __("Add Band/Mode to Favs"); ?></a>
+      <a class="dropdown-item" href="#" id="fav_add"><?= __("Add to Favs"); ?></a>
       <div class="dropdown-divider"></div>
       <div id="fav_menu"></div>
     </div>
@@ -922,6 +922,8 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 </div>
 
 </div>
+
+<?php $this->load->view('qso/components/fav_modal'); ?>
 
 <script>
 	var station_callsign = "<?php echo $station_callsign; ?>";

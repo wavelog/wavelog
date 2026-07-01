@@ -2770,15 +2770,14 @@ function viewEqsl(picture, callsign) {
 
 </script>
 
-<?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>
+<?php if ($this->uri->segment(2) == "counties") { ?>
 <script>
-    $('.countiestable').DataTable({
+    $('.countiesprogresstable').DataTable({
         "pageLength": 25,
         responsive: false,
         ordering: false,
-        "scrollY":        "390px",
-        "scrollCollapse": true,
-        "paging":         false,
+		"scrollY":        "390px",
+        "paging":  false,
         "scrollX": true,
         "language": {
             url: getDataTablesLanguageUrl(),
@@ -2814,7 +2813,113 @@ function viewEqsl(picture, callsign) {
                     nl2br: false,
                     message: html,
                     onshown: function(dialog) {
-                       $('[data-bs-toggle="tooltip"]').tooltip();
+						$('[data-bs-toggle="tooltip"]').tooltip();
+                    },
+                    buttons: [{
+                        label: lang_admin_close,
+                        action: function (dialogItself) {
+                            dialogItself.close();
+                        }
+                    }]
+                });
+            }
+        });
+    }
+
+    function displayStateCounties(state) {
+        var baseURL= "<?php echo base_url(); ?>";
+        $.ajax({
+            url: baseURL + 'index.php/awards/counties_state_ajax',
+            type: 'post',
+            data: {'State': state },
+            success: function(html) {
+                BootstrapDialog.show({
+                    title: "<?php echo __("US Counties for state"); ?>" + ': ' + state,
+                    size: BootstrapDialog.SIZE_WIDE,
+                    cssClass: 'counties-state-dialog',
+                    nl2br: false,
+                    message: html,
+                    onshown: function(dialog) {
+                        $('[data-bs-toggle="tooltip"]').tooltip();
+                        $('.counties_states_table').DataTable({
+                            "pageLength": 25,
+                            responsive: true,
+                            ordering: false,
+                            "scrollCollapse": true,
+                            "scrollY":        "390px",
+                            "paging":  false,
+                            "scrollX": false,
+                            "language": {
+                                url: getDataTablesLanguageUrl(),
+                            },
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'csv',
+                                    className: 'mb-1 btn btn-primary', // Bootstrap classes
+                                    init: function(api, node, config) {
+                                        $(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+                                    },
+                                }
+                            ]
+                        });
+                        // change color of csv-button if dark mode is chosen
+                        if (isDarkModeTheme()) {
+                            $(".buttons-csv").css("color", "white");
+                        }
+                    },
+                    buttons: [{
+                        label: lang_admin_close,
+                        action: function (dialogItself) {
+                            dialogItself.close();
+                        }
+                    }]
+                });
+            }
+        });
+    }
+
+    function displayStateCountiesList(state, type) {
+        var baseURL= "<?php echo base_url(); ?>";
+        $.ajax({
+            url: baseURL + 'index.php/awards/counties_list_ajax',
+            type: 'post',
+            data: {'State': state, 'Type': type },
+            success: function(html) {
+                BootstrapDialog.show({
+                    title: (type === 'confirmed' ? "<?php echo __("Confirmed counties for state:"); ?>" : "<?php echo __("Worked counties for state:"); ?>") + " " +state,
+                    size: BootstrapDialog.SIZE_WIDE,
+                    cssClass: 'counties-list-dialog',
+                    nl2br: false,
+                    message: html,
+                    onshown: function(dialog) {
+                        $('[data-bs-toggle="tooltip"]').tooltip();
+                        $('.countiestable').DataTable({
+                            "pageLength": 25,
+                            responsive: false,
+                            ordering: false,
+                            "scrollY":        "390px",
+                            "scrollCollapse": true,
+                            "paging":         false,
+                            "scrollX": true,
+                            "language": {
+                                url: getDataTablesLanguageUrl(),
+                            },
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'csv',
+                                    className: 'mb-1 btn btn-primary', // Bootstrap classes
+                                    init: function(api, node, config) {
+                                        $(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+                                    },
+                                }
+                            ]
+                        });
+                        // change color of csv-button if dark mode is chosen
+                        if (isDarkModeTheme()) {
+                            $(".buttons-csv").css("color", "white");
+                        }
                     },
                     buttons: [{
                         label: lang_admin_close,

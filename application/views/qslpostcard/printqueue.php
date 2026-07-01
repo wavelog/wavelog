@@ -17,9 +17,15 @@
 			<div class="mb-3 small text-muted">
 				<?= __("Print options (QSOs per card, background image, address printing) are set per template in the QSL Postcard Designer."); ?>
 			</div>
+		<div class="btn-group" role="group">
 			<button id="btnPrintQueue" class="btn btn-success w-auto">
 				<?= __("Generate Postcard PDF") ?>
 			</button>
+			<button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="#" id="btnPrintQueueSave"><i class="fas fa-download me-1"></i><?= __("Save PDF"); ?></a></li>
+			</ul>
+		</div>
 		</div>
 
 		<?php } else { ?>
@@ -34,5 +40,9 @@
         const tpl = document.getElementById('template_id').value;
         // Print options come from the template's layout.options, not this form.
         window.open(`<?= site_url('qslpostcard/pdfqueue') ?>/${tpl}`, '_blank');
+    });
+    document.getElementById('btnPrintQueueSave').addEventListener('click', () => {
+        const tpl = document.getElementById('template_id').value;
+        window.open(`<?= site_url('qslpostcard/pdfqueue') ?>/${tpl}?download=1`, '_blank');
     });
 </script>

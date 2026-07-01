@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-29 12:11+0000\n"
+"POT-Creation-Date: 2026-07-01 10:45+0000\n"
 "PO-Revision-Date: 2026-06-25 13:16+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -248,8 +248,8 @@ msgid "Activated Gridsquare Map"
 msgstr "Karta Aktiverade Lokatorrutor"
 
 #: application/controllers/Activated_gridmap.php:31
-#: application/controllers/Awards.php:1161
-#: application/controllers/Awards.php:1197
+#: application/controllers/Awards.php:1163
+#: application/controllers/Awards.php:1199
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:454
 #: application/views/activators/index.php:107
@@ -279,7 +279,7 @@ msgstr "Totalt aktiverade Lokatorrutor"
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:459
-#: application/views/qslpostcard/designer.php:136
+#: application/views/qslpostcard/designer.php:142
 msgid "Fields"
 msgstr "Fält"
 
@@ -436,17 +436,17 @@ msgstr "Diplom"
 #: application/controllers/Awards.php:1009
 #: application/controllers/Awards.php:1094
 #: application/controllers/Awards.php:1106
-#: application/controllers/Awards.php:1182
-#: application/controllers/Awards.php:1388
-#: application/controllers/Awards.php:1539
-#: application/controllers/Awards.php:1590
-#: application/controllers/Awards.php:2150
-#: application/controllers/Awards.php:2299
-#: application/controllers/Awards.php:2429
-#: application/controllers/Awards.php:2503
-#: application/controllers/Awards.php:2516
-#: application/controllers/Awards.php:2591
-#: application/controllers/Awards.php:2733
+#: application/controllers/Awards.php:1184
+#: application/controllers/Awards.php:1390
+#: application/controllers/Awards.php:1541
+#: application/controllers/Awards.php:1592
+#: application/controllers/Awards.php:2152
+#: application/controllers/Awards.php:2301
+#: application/controllers/Awards.php:2431
+#: application/controllers/Awards.php:2505
+#: application/controllers/Awards.php:2518
+#: application/controllers/Awards.php:2593
+#: application/controllers/Awards.php:2735
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplom - %s"
@@ -677,44 +677,43 @@ msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:1106
-#: application/controllers/Awards.php:1121
 #: application/views/interface_assets/header.php:298
 msgid "US Counties"
 msgstr "USA:s län"
 
-#: application/controllers/Awards.php:1136
+#: application/controllers/Awards.php:1130
 msgid "Log View - Counties"
 msgstr "Loggvy - Län"
 
-#: application/controllers/Awards.php:1143
+#: application/controllers/Awards.php:1145
 msgid "Awards - "
 msgstr "Diplom - "
 
-#: application/controllers/Awards.php:1162
-#: application/controllers/Awards.php:1198
+#: application/controllers/Awards.php:1164
+#: application/controllers/Awards.php:1200
 msgid "Gridsquares worked"
 msgstr "Lokatorrutor kontaktade"
 
-#: application/controllers/Awards.php:1163
-#: application/controllers/Awards.php:1199
+#: application/controllers/Awards.php:1165
+#: application/controllers/Awards.php:1201
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Lokatorrutor bekräftade på LoTW"
 
-#: application/controllers/Awards.php:1164
-#: application/controllers/Awards.php:1200
+#: application/controllers/Awards.php:1166
+#: application/controllers/Awards.php:1202
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Lokatorrutor bekräftade av pappers-QSL"
 
-#: application/controllers/Awards.php:1165
-#: application/controllers/Awards.php:1201
+#: application/controllers/Awards.php:1167
+#: application/controllers/Awards.php:1203
 msgid "Total Gridsquares worked"
 msgstr "Totalt antal Lokatorrutor kontaktade"
 
-#: application/controllers/Awards.php:1182
+#: application/controllers/Awards.php:1184
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
-#: application/controllers/Awards.php:1388
+#: application/controllers/Awards.php:1390
 #: application/views/interface_assets/header.php:199
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
@@ -726,51 +725,51 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 msgid "SIG"
 msgstr "SIG"
 
-#: application/controllers/Awards.php:1407
+#: application/controllers/Awards.php:1409
 msgid "Awards - SIG - "
 msgstr "Diplom - SIG - "
 
-#: application/controllers/Awards.php:1539 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1541 application/views/bands/index.php:60
 msgid "WAP"
 msgstr "WAP"
 
-#: application/controllers/Awards.php:1590
+#: application/controllers/Awards.php:1592
 #: application/views/interface_assets/header.php:258
 msgid "WAIP"
 msgstr "WAIP"
 
-#: application/controllers/Awards.php:2299
+#: application/controllers/Awards.php:2301
 #: application/views/awards/itu/index.php:27
 msgid "ITU Zones"
 msgstr "ITU-zoner"
 
-#: application/controllers/Awards.php:2429
+#: application/controllers/Awards.php:2431
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:205
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
-#: application/controllers/Awards.php:2503
+#: application/controllers/Awards.php:2505
 msgid "WAE"
 msgstr "WAE"
 
-#: application/controllers/Awards.php:2516
+#: application/controllers/Awards.php:2518
 #: application/views/interface_assets/header.php:215
 msgid "73 on 73"
 msgstr "73 on 73"
 
-#: application/controllers/Awards.php:2591
+#: application/controllers/Awards.php:2593
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:2733
+#: application/controllers/Awards.php:2735
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:280
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Diplom"
 
-#: application/controllers/Awards.php:2777
+#: application/controllers/Awards.php:2779
 msgid "Awards - AMSAT Rover"
 msgstr "Diplom - AMSAT Rover"
 
@@ -2003,8 +2002,8 @@ msgid "IOTA"
 msgstr "IOTA"
 
 #: application/controllers/Logbook.php:1472
-#: application/views/awards/counties/details.php:12
-#: application/views/awards/counties/index.php:21
+#: application/views/awards/counties/details_ajax.php:8
+#: application/views/awards/counties/index.php:76
 #: application/views/awards/rac/index.php:156
 #: application/views/awards/was/index.php:157
 #: application/views/contesting/manager/components/session_modal.php:124
@@ -2801,14 +2800,14 @@ msgid "Not enough free disk space to store the QSL Background."
 msgstr "Inte tillräckligt med ledigt diskutrymme för att lagra QSL-bakgrunden."
 
 #: application/controllers/Qslpostcard.php:184
-#: application/controllers/Qslpostcard.php:245
-#: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:241
+#: application/controllers/Qslpostcard.php:300
 msgid "Template not found"
 msgstr "Mall hittades inte"
 
 #: application/controllers/Qslpostcard.php:190
-#: application/controllers/Qslpostcard.php:251
-#: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:247
+#: application/controllers/Qslpostcard.php:306
 msgid "Template JSON is invalid"
 msgstr "Mall-JSON är ogiltig"
 
@@ -2820,38 +2819,38 @@ msgstr "get_sample_qsos() returnerade inga QSOs"
 msgid "PDF file was not created"
 msgstr "PDF-filen skapades inte"
 
-#: application/controllers/Qslpostcard.php:228
+#: application/controllers/Qslpostcard.php:224
 msgid "QSL Postcard PDF failed: "
 msgstr "QSL-vykort PDF misslyckades: "
 
-#: application/controllers/Qslpostcard.php:233
+#: application/controllers/Qslpostcard.php:229
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
 msgstr "Skriv ut QSL-vykort"
 
-#: application/controllers/Qslpostcard.php:264
-#: application/controllers/Qslpostcard.php:327
+#: application/controllers/Qslpostcard.php:260
+#: application/controllers/Qslpostcard.php:319
 msgid "No QSOs found for postcard printing"
 msgstr "Inga QSOs hittades för vykortsutskrift"
 
-#: application/controllers/Qslpostcard.php:283
+#: application/controllers/Qslpostcard.php:275
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSL-vykortskö PDF misslyckades: "
 
-#: application/controllers/Qslpostcard.php:291
+#: application/controllers/Qslpostcard.php:283
 msgid "No QSOs were selected"
 msgstr "Inga QSOs valda"
 
-#: application/controllers/Qslpostcard.php:295
+#: application/controllers/Qslpostcard.php:287
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
 msgstr "Skriv ut valda QSL-vykort"
 
-#: application/controllers/Qslpostcard.php:320
+#: application/controllers/Qslpostcard.php:312
 msgid "No selected QSO IDs were provided"
 msgstr "Inga angivna QSO-ID:n"
 
-#: application/controllers/Qslpostcard.php:349
+#: application/controllers/Qslpostcard.php:337
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Valt QSL-vykort PDF misslyckades: "
 
@@ -2971,8 +2970,8 @@ msgstr "Redigera"
 #: application/views/oqrs/showrequests.php:80
 #: application/views/qslcard/index.php:80
 #: application/views/qslcard/index.php:129
-#: application/views/qslpostcard/designer.php:293
-#: application/views/qslpostcard/designer.php:332
+#: application/views/qslpostcard/designer.php:299
+#: application/views/qslpostcard/designer.php:338
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
@@ -3068,7 +3067,7 @@ msgid "You have no station locations. Go %s to create it!"
 msgstr "Du har inga stationplatser. Gå %s för att skapa en stationsplats!"
 
 #: application/controllers/Sattimers.php:45
-#: application/views/awards/counties/index.php:8
+#: application/views/awards/counties/index.php:7
 #: application/views/awards/dok/index.php:16
 #: application/views/awards/iota/index.php:24
 #: application/views/awards/wap/index.php:24
@@ -4722,8 +4721,9 @@ msgstr "Minsta antal"
 
 #: application/views/activators/index.php:82
 #: application/views/awards/73on73/index.php:71
-#: application/views/awards/counties/details.php:27
-#: application/views/awards/counties/index.php:47
+#: application/views/awards/counties/details_ajax.php:23
+#: application/views/awards/counties/index.php:122
+#: application/views/awards/counties/state_ajax.php:40
 #: application/views/awards/cq/index.php:273
 #: application/views/awards/dok/index.php:202
 #: application/views/awards/helvetia/index.php:204
@@ -5552,6 +5552,7 @@ msgstr "Enkelt namn för att beskriva vad du använder detta API till."
 #: application/views/options/radios.php:18
 #: application/views/options/version_dialog.php:42
 #: application/views/qslpostcard/designer.php:68
+#: application/views/qso/components/fav_modal.php:14
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
@@ -5702,8 +5703,8 @@ msgstr "Skapa en skrivskyddad nyckel"
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
-#: application/views/awards/counties/index.php:6
-#: application/views/awards/counties/index.php:14
+#: application/views/awards/counties/index.php:5
+#: application/views/awards/counties/index.php:13
 #: application/views/awards/cq/index.php:24
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/dok/index.php:12
@@ -5913,6 +5914,7 @@ msgid "Total Points"
 msgstr "Poäng Totalt"
 
 #: application/views/awards/amsat_rover/index.php:152
+#: application/views/awards/counties/index.php:79
 msgid "Target"
 msgstr "Mål"
 
@@ -6015,16 +6017,8 @@ msgstr "Kopiera till Urklipp"
 msgid "Download CSV"
 msgstr "Ladda ner CSV"
 
-#: application/views/awards/counties/details.php:4
-#: application/views/awards/details.php:1
-#: application/views/awards/vucc/band.php:3
-#: application/views/distancerecords/details.php:1
-#: application/views/statistics/details.php:1
-#: application/views/timeline/details.php:2
-msgid "Filtering on"
-msgstr "Filtrering på"
-
-#: application/views/awards/counties/details.php:13
+#: application/views/awards/counties/details_ajax.php:9
+#: application/views/awards/counties/state_ajax.php:7
 #: application/views/logbookadvanced/index.php:479
 #: application/views/logbookadvanced/index.php:1012
 #: application/views/logbookadvanced/useroptions.php:187
@@ -6032,11 +6026,11 @@ msgstr "Filtrering på"
 msgid "County"
 msgstr "Län"
 
-#: application/views/awards/counties/index.php:7
+#: application/views/awards/counties/index.php:6
 msgid "US County Award"
 msgstr "US County Award"
 
-#: application/views/awards/counties/index.php:8
+#: application/views/awards/counties/index.php:7
 #, php-format
 msgid ""
 "The United States of America Counties Award (USA-CA), sponsored by MARAC "
@@ -6049,7 +6043,7 @@ msgstr ""
 "med specificerade antal amerikanska län enligt regler och villkor som du kan "
 "hitta %s."
 
-#: application/views/awards/counties/index.php:9
+#: application/views/awards/counties/index.php:8
 msgid ""
 "USA-CA is available to all licensed amateurs worldwide and is issued to "
 "individuals for all county contacts made, regardless of callsigns used, "
@@ -6059,11 +6053,11 @@ msgstr ""
 "utfärdas till individer för alla kontakter med län, oavsett vilka "
 "anropssignaler som används, var de befinner sig eller datum."
 
-#: application/views/awards/counties/index.php:10
+#: application/views/awards/counties/index.php:9
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
 msgstr "Särskilda USA-CA-diplom är också tillgängliga för kortvågslyssnare."
 
-#: application/views/awards/counties/index.php:11
+#: application/views/awards/counties/index.php:10
 msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
@@ -6071,15 +6065,101 @@ msgstr ""
 "Fält som använts för detta diplom: Stat (ADIF: STATE), Stations län (ADIF: "
 "CNTY), DXCC (Måste vara en av 291 (U.S.A.), 6 (ALASKA) eller 110 (HAWAII))"
 
-#: application/views/awards/counties/index.php:22
-msgid "Counties Worked"
-msgstr "Kontaktade län"
+#: application/views/awards/counties/index.php:18
+msgid "Counties Progress"
+msgstr ""
 
-#: application/views/awards/counties/index.php:23
-msgid "Counties Confirmed"
-msgstr "Län bekräftade"
+#: application/views/awards/counties/index.php:45
+msgid "Worked Counties"
+msgstr ""
 
-#: application/views/awards/counties/index.php:40
+#: application/views/awards/counties/index.php:47
+#, php-format
+msgid "of %s known counties"
+msgstr ""
+
+#: application/views/awards/counties/index.php:52
+msgid "Confirmed Counties"
+msgstr ""
+
+#: application/views/awards/counties/index.php:54
+#, php-format
+msgid "%s%% of worked"
+msgstr ""
+
+#: application/views/awards/counties/index.php:59
+msgid "Remaining Counties"
+msgstr ""
+
+#: application/views/awards/counties/index.php:61
+msgid "Based on current worked count"
+msgstr ""
+
+#: application/views/awards/counties/index.php:66
+#: application/views/awards/dxcc/index.php:41
+#: application/views/awards/waip/index.php:42
+#: application/views/awards/waip/index.php:64
+msgid "Progress"
+msgstr "Framsteg"
+
+#: application/views/awards/counties/index.php:68
+#, php-format
+msgid "%s%% confirmed overall"
+msgstr ""
+
+#: application/views/awards/counties/index.php:77
+#: application/views/awards/cq/index.php:93
+#: application/views/awards/dxcc/index.php:285
+#: application/views/awards/dxcc/index.php:358
+#: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/itu/index.php:95
+#: application/views/bandmap/list.php:90 application/views/bandmap/list.php:305
+#: application/views/dashboard/index.php:481
+#: application/views/dashboard/index.php:665
+#: application/views/search/result.php:35
+#: application/views/visitor/index.php:266
+msgid "Worked"
+msgstr "Kontaktade"
+
+#: application/views/awards/counties/index.php:78
+#: application/views/awards/cq/index.php:93
+#: application/views/awards/dxcc/index.php:286
+#: application/views/awards/dxcc/index.php:359
+#: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/itu/index.php:95
+#: application/views/awards/wab/list.php:6
+#: application/views/awards/waip/index.php:42
+#: application/views/awards/waip/index.php:64
+#: application/views/awards/wpx/wpx_details.php:24
+#: application/views/bandmap/list.php:91 application/views/bandmap/list.php:306
+#: application/views/dashboard/index.php:485
+#: application/views/dashboard/index.php:670
+#: application/views/interface_assets/footer.php:45
+#: application/views/search/result.php:32
+#: application/views/visitor/index.php:270
+msgid "Confirmed"
+msgstr "Bekräftade"
+
+#: application/views/awards/counties/index.php:80
+msgid "Remaining"
+msgstr ""
+
+#: application/views/awards/counties/index.php:81
+#: application/views/awards/dxcc/index.php:287
+#: application/views/awards/dxcc/index.php:360
+#: application/views/awards/dxcc/progress.php:5
+msgid "Worked Progress"
+msgstr "Kontaktade Framsteg"
+
+#: application/views/awards/counties/index.php:82
+#: application/views/awards/dxcc/index.php:288
+#: application/views/awards/dxcc/index.php:361
+#: application/views/awards/dxcc/progress.php:5
+msgid "Confirmed Progress"
+msgstr "Bekräftade Framsteg"
+
+#: application/views/awards/counties/index.php:110
+#: application/views/awards/counties/state_ajax.php:32
 #: application/views/awards/dok/index.php:182
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:247
@@ -6112,6 +6192,14 @@ msgstr "Län bekräftade"
 #: application/views/visitor/index.php:245
 msgid "Total"
 msgstr "Totalt"
+
+#: application/views/awards/counties/state_ajax.php:8
+msgid "QSOs Worked"
+msgstr ""
+
+#: application/views/awards/counties/state_ajax.php:9
+msgid "QSOs Confirmed"
+msgstr ""
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
@@ -6350,37 +6438,6 @@ msgstr "Datum från"
 msgid "Date to"
 msgstr "Datum till"
 
-#: application/views/awards/cq/index.php:93
-#: application/views/awards/dxcc/index.php:286
-#: application/views/awards/dxcc/index.php:359
-#: application/views/awards/dxcc/progress.php:5
-#: application/views/awards/itu/index.php:95
-#: application/views/awards/wab/list.php:6
-#: application/views/awards/waip/index.php:42
-#: application/views/awards/waip/index.php:64
-#: application/views/awards/wpx/wpx_details.php:24
-#: application/views/bandmap/list.php:91 application/views/bandmap/list.php:306
-#: application/views/dashboard/index.php:485
-#: application/views/dashboard/index.php:670
-#: application/views/interface_assets/footer.php:45
-#: application/views/search/result.php:32
-#: application/views/visitor/index.php:270
-msgid "Confirmed"
-msgstr "Bekräftade"
-
-#: application/views/awards/cq/index.php:93
-#: application/views/awards/dxcc/index.php:285
-#: application/views/awards/dxcc/index.php:358
-#: application/views/awards/dxcc/progress.php:5
-#: application/views/awards/itu/index.php:95
-#: application/views/bandmap/list.php:90 application/views/bandmap/list.php:305
-#: application/views/dashboard/index.php:481
-#: application/views/dashboard/index.php:665
-#: application/views/search/result.php:35
-#: application/views/visitor/index.php:266
-msgid "Worked"
-msgstr "Kontaktade"
-
 #: application/views/awards/cq/index.php:97
 #: application/views/awards/dok/index.php:72
 #: application/views/awards/dxcc/index.php:106
@@ -6578,6 +6635,14 @@ msgstr "Totalt kontaktade"
 msgid "Total confirmed"
 msgstr "Totalt bekräftade"
 
+#: application/views/awards/details.php:1
+#: application/views/awards/vucc/band.php:3
+#: application/views/distancerecords/details.php:1
+#: application/views/statistics/details.php:1
+#: application/views/timeline/details.php:2
+msgid "Filtering on"
+msgstr "Filtrering på"
+
 #: application/views/awards/dok/index.php:13
 msgid "DOK Award"
 msgstr "DOK Award"
@@ -6717,12 +6782,6 @@ msgstr ""
 "Fält som använts för detta diplom: DXCC (Måste vara ett giltigt från DXCC-"
 "ADIF-Spec-List"
 
-#: application/views/awards/dxcc/index.php:41
-#: application/views/awards/waip/index.php:42
-#: application/views/awards/waip/index.php:64
-msgid "Progress"
-msgstr "Framsteg"
-
 #: application/views/awards/dxcc/index.php:52
 msgid "Show DXCC Map"
 msgstr "Visa DXCC-karta"
@@ -6844,18 +6903,6 @@ msgstr "Per kontinent"
 #: application/views/awards/dxcc/index.php:274
 msgid "By Mode"
 msgstr "Per Trafiksätt"
-
-#: application/views/awards/dxcc/index.php:287
-#: application/views/awards/dxcc/index.php:360
-#: application/views/awards/dxcc/progress.php:5
-msgid "Worked Progress"
-msgstr "Kontaktade Framsteg"
-
-#: application/views/awards/dxcc/index.php:288
-#: application/views/awards/dxcc/index.php:361
-#: application/views/awards/dxcc/progress.php:5
-msgid "Confirmed Progress"
-msgstr "Bekräftade Framsteg"
 
 #: application/views/awards/dxcc/index.php:357
 #: application/views/awards/wac/index.php:147
@@ -7194,6 +7241,7 @@ msgstr "Struken IOTA"
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:91
 #: application/views/lotw/satupdate.php:7
+#: application/views/qso/components/fav_modal.php:8
 #: application/views/qso/components/winkeysettings.php:11
 #: application/views/qso/components/winkeysettings.php:28
 #: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:287
@@ -9610,6 +9658,7 @@ msgstr "Ja, byt över!"
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
 #: application/views/operator/index.php:30
+#: application/views/qso/components/fav_modal.php:13
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
@@ -13656,8 +13705,8 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "Duplicering är inaktiverad för kontaktsanteckningar"
 
 #: application/views/interface_assets/footer.php:66
-#: application/views/qslpostcard/designer.php:290
-#: application/views/qslpostcard/designer.php:306
+#: application/views/qslpostcard/designer.php:296
+#: application/views/qslpostcard/designer.php:312
 msgid "Duplicate"
 msgstr "Duplicera"
 
@@ -14142,6 +14191,18 @@ msgstr "Lägg till ytterligare QSOs på ett QSL-kort"
 msgid "Something went wrong. Please try again!"
 msgstr "Något gick fel. Försök igen!"
 
+#: application/views/interface_assets/footer.php:2837
+msgid "US Counties for state"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2890
+msgid "Confirmed counties for state:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2890
+msgid "Worked counties for state:"
+msgstr ""
+
 #: application/views/interface_assets/header.php:99
 msgid "Developer Mode"
 msgstr "Utvecklarläge"
@@ -14541,7 +14602,7 @@ msgstr "Total höjd på en etikett"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
-#: application/views/qslpostcard/designer.php:257
+#: application/views/qslpostcard/designer.php:263
 msgid "Font Size"
 msgstr "Teckenstorlek"
 
@@ -16318,7 +16379,7 @@ msgstr ""
 "olika fält från varje QSO."
 
 #: application/views/logbookadvanced/mergedialog.php:71
-#: application/views/qslpostcard/designer.php:226
+#: application/views/qslpostcard/designer.php:232
 msgid "Field"
 msgstr "Fält"
 
@@ -16339,15 +16400,22 @@ msgstr ""
 "Utskriftsalternativ (QSOs per kort, bakgrundsbild, adressutskrift) ställs in "
 "per mall i QSL-vykortdesignern."
 
-#: application/views/logbookadvanced/printQsl.php:29
-#: application/views/qslpostcard/printqueue.php:21
-#: application/views/qslpostcard/printqueue_selected.php:29
+#: application/views/logbookadvanced/printQsl.php:30
+#: application/views/qslpostcard/printqueue.php:22
+#: application/views/qslpostcard/printqueue_selected.php:30
 msgid "Generate Postcard PDF"
 msgstr "Generera vykort PDF"
 
-#: application/views/logbookadvanced/printQsl.php:35
-#: application/views/qslpostcard/printqueue.php:27
-#: application/views/qslpostcard/printqueue_selected.php:35
+#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/qslpostcard/designer.php:90
+#: application/views/qslpostcard/printqueue.php:26
+#: application/views/qslpostcard/printqueue_selected.php:34
+msgid "Save PDF"
+msgstr ""
+
+#: application/views/logbookadvanced/printQsl.php:41
+#: application/views/qslpostcard/printqueue.php:33
+#: application/views/qslpostcard/printqueue_selected.php:41
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -17770,31 +17838,31 @@ msgstr "Bakgrundsbild"
 msgid "Upload Preview Image"
 msgstr "Ladda upp förhandsgranskningsbild"
 
-#: application/views/qslpostcard/designer.php:84
+#: application/views/qslpostcard/designer.php:85
 msgid "Generate PDF (demo)"
 msgstr "Generera PDF (demo)"
 
-#: application/views/qslpostcard/designer.php:85
+#: application/views/qslpostcard/designer.php:86
 msgid "PDF"
 msgstr "PDF"
 
-#: application/views/qslpostcard/designer.php:92
+#: application/views/qslpostcard/designer.php:98
 msgid "History"
 msgstr "Historia"
 
-#: application/views/qslpostcard/designer.php:94
+#: application/views/qslpostcard/designer.php:100
 msgid "Undo"
 msgstr "Ångra"
 
-#: application/views/qslpostcard/designer.php:95
+#: application/views/qslpostcard/designer.php:101
 msgid "Redo"
 msgstr "Gör om"
 
-#: application/views/qslpostcard/designer.php:101
+#: application/views/qslpostcard/designer.php:107
 msgid "Zoom"
 msgstr "Zoom"
 
-#: application/views/qslpostcard/designer.php:111
+#: application/views/qslpostcard/designer.php:117
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
@@ -17802,150 +17870,150 @@ msgstr ""
 "Tips: Efter en testutskrift, justera globala marginaler snarare än att "
 "flytta varje fält."
 
-#: application/views/qslpostcard/designer.php:112
+#: application/views/qslpostcard/designer.php:118
 msgid "Print offset"
 msgstr "Utskrift marginal"
 
-#: application/views/qslpostcard/designer.php:141
+#: application/views/qslpostcard/designer.php:147
 msgid "Search fields…"
 msgstr "Sök fält…"
 
-#: application/views/qslpostcard/designer.php:145
+#: application/views/qslpostcard/designer.php:151
 msgid "Add Custom Text"
 msgstr "Lägg till egen text"
 
-#: application/views/qslpostcard/designer.php:160
+#: application/views/qslpostcard/designer.php:166
 msgid "No fields match your search."
 msgstr "Inga fält matchar din sökning."
 
-#: application/views/qslpostcard/designer.php:168
+#: application/views/qslpostcard/designer.php:174
 msgid "Postcard Canvas"
 msgstr "Vykortsduk"
 
-#: application/views/qslpostcard/designer.php:169
+#: application/views/qslpostcard/designer.php:175
 msgid "drag fields onto the postcard"
 msgstr "dra fält upp på vykortet"
 
-#: application/views/qslpostcard/designer.php:190
+#: application/views/qslpostcard/designer.php:196
 msgid "Template Options"
 msgstr "Mallalternativ"
 
-#: application/views/qslpostcard/designer.php:194
+#: application/views/qslpostcard/designer.php:200
 msgid "Number of QSOs per QSL card"
 msgstr "Antal QSOs per QSL-kort"
 
-#: application/views/qslpostcard/designer.php:198
+#: application/views/qslpostcard/designer.php:204
 msgid "Row spacing"
 msgstr "Radavstånd"
 
-#: application/views/qslpostcard/designer.php:203
+#: application/views/qslpostcard/designer.php:209
 msgid "Print background image (uncheck for pre-printed cards)"
 msgstr "Skriv ut bakgrundsbild (avmarkera för förtryckta kort)"
 
-#: application/views/qslpostcard/designer.php:207
+#: application/views/qslpostcard/designer.php:213
 msgid "Skip address printing (for printing on regular QSL cards)"
 msgstr "Hoppa över adressutskrift (för utskrift på vanliga QSL-kort)"
 
-#: application/views/qslpostcard/designer.php:215
+#: application/views/qslpostcard/designer.php:221
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: application/views/qslpostcard/designer.php:220
+#: application/views/qslpostcard/designer.php:226
 msgid "Select a field on the canvas to edit it."
 msgstr "Välj ett fält på duken för att redigera det."
 
-#: application/views/qslpostcard/designer.php:221
+#: application/views/qslpostcard/designer.php:227
 msgid "Right-click a field for more actions."
 msgstr "Högerklicka på ett fält för fler åtgärder."
 
-#: application/views/qslpostcard/designer.php:231
+#: application/views/qslpostcard/designer.php:237
 msgid "Text"
 msgstr "Text"
 
-#: application/views/qslpostcard/designer.php:237
+#: application/views/qslpostcard/designer.php:243
 msgid "X"
 msgstr "X"
 
-#: application/views/qslpostcard/designer.php:241
+#: application/views/qslpostcard/designer.php:247
 msgid "Y"
 msgstr "Y"
 
-#: application/views/qslpostcard/designer.php:247
+#: application/views/qslpostcard/designer.php:253
 msgid "Font"
 msgstr "Typsnitt"
 
-#: application/views/qslpostcard/designer.php:263
+#: application/views/qslpostcard/designer.php:269
 msgid "Bold"
 msgstr "Fetstil"
 
-#: application/views/qslpostcard/designer.php:269
+#: application/views/qslpostcard/designer.php:275
 msgid "Color"
 msgstr "Färg"
 
-#: application/views/qslpostcard/designer.php:274
+#: application/views/qslpostcard/designer.php:280
 msgid "Wrap width"
 msgstr "Omslagsbredd"
 
-#: application/views/qslpostcard/designer.php:279
+#: application/views/qslpostcard/designer.php:285
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr ""
 "Skriv ut det här fältet en gång per QSO när ett kort innehåller flera QSOs"
 
-#: application/views/qslpostcard/designer.php:280
+#: application/views/qslpostcard/designer.php:286
 msgid "Repeats per QSO"
 msgstr "Upprepas per QSO"
 
-#: application/views/qslpostcard/designer.php:284
+#: application/views/qslpostcard/designer.php:290
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
 "Flytta det här elementet fritt utan att fästa det på rutnätet eller andra "
 "element"
 
-#: application/views/qslpostcard/designer.php:285
+#: application/views/qslpostcard/designer.php:291
 msgid "Disable Auto-Snap"
 msgstr "Inaktivera automatisk snapp"
 
-#: application/views/qslpostcard/designer.php:311
+#: application/views/qslpostcard/designer.php:317
 msgid "Align & distribute"
 msgstr "Justera och fördela"
 
-#: application/views/qslpostcard/designer.php:315
+#: application/views/qslpostcard/designer.php:321
 msgid "Align left"
 msgstr "Justera vänster"
 
-#: application/views/qslpostcard/designer.php:316
+#: application/views/qslpostcard/designer.php:322
 msgid "Align horizontal centers"
 msgstr "Justera horisontella centra"
 
-#: application/views/qslpostcard/designer.php:317
+#: application/views/qslpostcard/designer.php:323
 msgid "Align right"
 msgstr "Justera höger"
 
-#: application/views/qslpostcard/designer.php:319
+#: application/views/qslpostcard/designer.php:325
 msgid "Align top"
 msgstr "Justera överst"
 
-#: application/views/qslpostcard/designer.php:320
+#: application/views/qslpostcard/designer.php:326
 msgid "Align vertical centers"
 msgstr "Justera vertikala centra"
 
-#: application/views/qslpostcard/designer.php:321
+#: application/views/qslpostcard/designer.php:327
 msgid "Align bottom"
 msgstr "Justera längst ner"
 
-#: application/views/qslpostcard/designer.php:323
+#: application/views/qslpostcard/designer.php:329
 msgid "Distribute horizontally"
 msgstr "Fördela horisontellt"
 
-#: application/views/qslpostcard/designer.php:324
+#: application/views/qslpostcard/designer.php:330
 msgid "Distribute vertically"
 msgstr "Distribuera vertikalt"
 
-#: application/views/qslpostcard/designer.php:326
+#: application/views/qslpostcard/designer.php:332
 msgid "Center on page (horizontal)"
 msgstr "Centrera på sidan (horisontellt)"
 
-#: application/views/qslpostcard/designer.php:327
+#: application/views/qslpostcard/designer.php:333
 msgid "Center on page (vertical)"
 msgstr "Centrera på sidan (vertikalt)"
 
@@ -18175,6 +18243,18 @@ msgstr "Sammanfattningen visas endast för den första lokatorrutan som anges."
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
 msgstr "Sammanfattning visas endast för amerikanska delstater."
+
+#: application/views/qso/components/fav_modal.php:5
+msgid "Save Favourite"
+msgstr ""
+
+#: application/views/qso/components/fav_modal.php:9
+msgid "e.g. 20m SSB, SO-50, portable setup"
+msgstr ""
+
+#: application/views/qso/components/fav_modal.php:10
+msgid "Please enter a name."
+msgstr ""
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -18429,8 +18509,8 @@ msgid "Sat"
 msgstr "Satelit"
 
 #: application/views/qso/index.php:121
-msgid "Add Band/Mode to Favs"
-msgstr "Lägg till Band/Trafiksätt till favoriterna"
+msgid "Add to Favs"
+msgstr ""
 
 #: application/views/qso/index.php:161
 msgid "Time on"
@@ -21841,6 +21921,15 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Counties Worked"
+#~ msgstr "Kontaktade län"
+
+#~ msgid "Counties Confirmed"
+#~ msgstr "Län bekräftade"
+
+#~ msgid "Add Band/Mode to Favs"
+#~ msgstr "Lägg till Band/Trafiksätt till favoriterna"
 
 #~ msgid "An error ocurred while making the request"
 #~ msgstr "Ett fel inträffade när förfrågan gjordes"
