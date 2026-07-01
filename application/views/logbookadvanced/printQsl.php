@@ -25,9 +25,15 @@
                 <!-- selected_ids are injected by JS from the selected logbook rows -->
                 <div id="qslcard_selected_ids" class="d-none"></div>
 
-                <button type="button" id="btnPrintQslCard" class="btn btn-primary">
-                    <i class="fas fa-print me-1"></i> <?= __("Generate Postcard PDF"); ?>
-                </button>
+                <div class="btn-group" role="group">
+                    <button type="button" id="btnPrintQslCard" class="btn btn-primary">
+                        <i class="fas fa-print me-1"></i> <?= __("Generate Postcard PDF"); ?>
+                    </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" id="btnPrintQslCardSave"><i class="fas fa-download me-1"></i> <?= __("Save PDF"); ?></a></li>
+                    </ul>
+                </div>
             </form>
         <?php } else { ?>
             <div class="alert alert-info mb-0 d-flex align-items-start">
