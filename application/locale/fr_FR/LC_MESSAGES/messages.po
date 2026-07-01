@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-01 15:27+0000\n"
+"POT-Creation-Date: 2026-07-01 19:57+0000\n"
 "PO-Revision-Date: 2026-06-22 08:05+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -134,6 +134,7 @@ msgid "Tropospheric ducting"
 msgstr "Tropospheric ducting"
 
 #: application/controllers/Accumulated.php:12
+#: application/controllers/Activated_gridmap.php:9
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
 #: application/controllers/Adif.php:23 application/controllers/Api.php:34
@@ -181,7 +182,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Eqsl.php:599 application/controllers/Eqsl.php:615
 #: application/controllers/Eqsl.php:674
 #: application/controllers/Generic_qsl.php:12
-#: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
+#: application/controllers/Gridmap.php:9 application/controllers/Hamsat.php:13
+#: application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
 #: application/controllers/Kmlexport.php:34
 #: application/controllers/Labels.php:26
@@ -252,16 +254,16 @@ msgstr "Vous n'êtes pas autorisé à faire cela !"
 msgid "Accumulated Statistics"
 msgstr "Statistiques cumulées"
 
-#: application/controllers/Activated_gridmap.php:10
+#: application/controllers/Activated_gridmap.php:13
 #: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
 msgid "Activated Gridsquare Map"
 msgstr "Carte des Locator activés"
 
-#: application/controllers/Activated_gridmap.php:31
+#: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Awards.php:1163
 #: application/controllers/Awards.php:1199
-#: application/controllers/Gridmap.php:32
+#: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:454
 #: application/views/activators/index.php:107
 #: application/views/contesting/logger/index.php:57
@@ -271,43 +273,43 @@ msgstr "Carte des Locator activés"
 msgid "Gridsquares"
 msgstr "Locators"
 
-#: application/controllers/Activated_gridmap.php:32
-#: application/controllers/Gridmap.php:33
+#: application/controllers/Activated_gridmap.php:35
+#: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:455
 msgid "Gridsquares confirmed"
 msgstr "Locators confirmés"
 
-#: application/controllers/Activated_gridmap.php:33
-#: application/controllers/Gridmap.php:34
+#: application/controllers/Activated_gridmap.php:36
+#: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:456
 msgid "Gridsquares not confirmed"
 msgstr "Locators non confirmés"
 
-#: application/controllers/Activated_gridmap.php:34
+#: application/controllers/Activated_gridmap.php:37
 msgid "Total gridsquares activated"
 msgstr "Total des Locators activés"
 
-#: application/controllers/Activated_gridmap.php:36
-#: application/controllers/Gridmap.php:37
+#: application/controllers/Activated_gridmap.php:39
+#: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:459
 #: application/views/qslpostcard/designer.php:142
 msgid "Fields"
 msgstr "Carré"
 
-#: application/controllers/Activated_gridmap.php:37
-#: application/controllers/Gridmap.php:38
+#: application/controllers/Activated_gridmap.php:40
+#: application/controllers/Gridmap.php:41
 #: application/controllers/Visitor.php:460
 msgid "Fields confirmed"
 msgstr "Carrés Locator confirmés"
 
-#: application/controllers/Activated_gridmap.php:38
-#: application/controllers/Gridmap.php:39
+#: application/controllers/Activated_gridmap.php:41
+#: application/controllers/Gridmap.php:42
 #: application/controllers/Visitor.php:461
 msgid "Fields not confirmed"
 msgstr "Carrés Locator non confirmés"
 
-#: application/controllers/Activated_gridmap.php:39
-#: application/controllers/Gridmap.php:40
+#: application/controllers/Activated_gridmap.php:42
+#: application/controllers/Gridmap.php:43
 #: application/controllers/Visitor.php:462
 msgid "Total fields worked"
 msgstr "Nombre total de carrés locator travaillés"
@@ -1458,12 +1460,12 @@ msgstr "Personne n'émet sur cette fréquence."
 msgid "Confirmations"
 msgstr "Confirmations"
 
-#: application/controllers/Gridmap.php:10
+#: application/controllers/Gridmap.php:13
 #: application/views/interface_assets/header.php:163
 msgid "Gridsquare Map"
 msgstr "Carte des Locator"
 
-#: application/controllers/Gridmap.php:35
+#: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:457
 msgid "Total gridsquares worked"
 msgstr "Total des Locator réalisés"
