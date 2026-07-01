@@ -15,7 +15,13 @@ class Themes_model extends CI_Model {
 
 		// Delete Theme
 		$this->db->delete('themes', array('id' => $clean_id));
+
 		//invalidate the cache for themes
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
 		$this->cache->delete('user_themes');
 	}
 
@@ -29,7 +35,14 @@ class Themes_model extends CI_Model {
 		);
 
 		$this->db->insert('themes', $data);
+
 		//invalidate the cache for themes
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
 		$this->cache->delete('user_themes');
 	}
 
@@ -57,6 +70,12 @@ class Themes_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('themes', $data);
 		//invalidate the cache for themes
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
 		$this->cache->delete('user_themes');
 	}
 
