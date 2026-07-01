@@ -1099,7 +1099,7 @@ class Awards extends CI_Controller {
 
     public function counties()	{
         $this->load->model('counties');
-        $data['counties_array'] = $this->counties->get_counties_array();
+        $data['counties_progress'] = $this->counties->get_counties_progress();
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
@@ -1109,33 +1109,35 @@ class Awards extends CI_Controller {
         $this->load->view('interface_assets/footer');
     }
 
-    public function counties_details() {
+    public function counties_list_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->get("State")));
-        $type = str_replace('"', "", $this->security->xss_clean($this->input->get("Type")));
+        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
+        $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
         $data['counties_array'] = $this->counties->counties_details($state, $type);
         $data['type'] = $type;
-		$data['user_map_custom'] = $this->optionslib->get_map_custom();
-
-        // Render Page
-        $data['page_title'] = __("US Counties");
-        $data['filter'] = $type . " counties in state ".$state;
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/counties/details');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('awards/counties/details_ajax', $data);
     }
 
-    public function counties_details_ajax(){
+    public function counties_details_ajax() {
         $this->load->model('logbook_model');
 
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
         $data['results'] = $this->logbook_model->county_qso_details($state, $county);
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         // Render Page
         $data['page_title'] = __("Log View - Counties");
         $data['filter'] = "county " . $state;
         $this->load->view('awards/details', $data);
+    }
+
+    public function counties_state_ajax() {
+        $this->load->model('counties');
+        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
+        $data['counties_array'] = $this->counties->get_county_counts($state);
+        $data['state'] = $state;
+        $this->load->view('awards/counties/state_ajax', $data);
     }
 
     public function gridmaster($dxcc) {

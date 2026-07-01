@@ -994,6 +994,7 @@ class User extends CI_Controller {
 
 			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'), $this->uri->segment(3))->row()->option_value ?? 'false');
 			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'), $this->uri->segment(3))->row()->option_value ?? 'false');
+			$data['user_quick_theme_switcher'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'quick_theme_switcher'), $this->uri->segment(3))->row()->option_value ?? 'true');
 			$data['user_dashboard_last_qso_count'] = ($this->user_options_model->get_options('dashboard', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? DASHBOARD_DEFAULT_QSOS_COUNT);
 			$data['user_qso_page_last_qso_count'] = ($this->user_options_model->get_options('qso_tab', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? QSO_PAGE_DEFAULT_QSOS_COUNT);
 
@@ -1071,6 +1072,7 @@ class User extends CI_Controller {
 					}
 					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
 					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
+					$this->user_options_model->set_option('header_menu', 'quick_theme_switcher', array('boolean'=>xss_clean($this->input->post('user_quick_theme_switcher', true))), $user_id);
 
 					$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)), $user_id);
@@ -1126,6 +1128,7 @@ class User extends CI_Controller {
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_locations_quickswitch'] = $this->input->post('user_locations_quickswitch', true);
 			$data['user_utc_headermenu'] = $this->input->post('user_utc_headermenu', true);
+			$data['user_quick_theme_switcher'] = $this->input->post('user_quick_theme_switcher', true);
 			$data['user_language'] = $this->input->post('user_language');
 			$data['user_winkey'] = $this->input->post('user_winkey');
 			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
@@ -1200,6 +1203,56 @@ class User extends CI_Controller {
 				$this->session->set_flashdata('notice', '<b>' . __("Database error:") . '</b> ' . __("Could not delete user!"));
 				redirect('user');
 			}
+		}
+	}
+
+	/*
+	 * FUNCTION: theme_switch
+	 *
+	 * Lightweight JSON endpoint used by the header theme switcher. Validates the
+	 * requested theme against the themes table, then updates the current user's
+	 * stylesheet in both the DB and the session. Any logged-in user may change
+	 * their own theme — no need to open the profile/settings page.
+	 */
+	public function theme_switch() {
+		header('Content-Type: application/json');
+
+		$this->load->model('user_model');
+
+		if (!$this->user_model->authorize(2)) {
+			echo json_encode(array('status' => 'error', 'message' => __("You're not allowed to do that!")));
+			return;
+		}
+
+		$foldername = $this->input->post('theme', true);
+
+		if ($foldername === null || $foldername === '') {
+			echo json_encode(array('status' => 'error', 'message' => 'No theme selected.'));
+			return;
+		}
+
+		// Only trust foldernames that actually exist in the themes table
+		$this->load->model('Themes_model');
+		$valid = false;
+		foreach ($this->Themes_model->getThemes() as $t) {
+			if ($t->foldername === $foldername) {
+				$valid = true;
+				break;
+			}
+		}
+
+		if (!$valid) {
+			echo json_encode(array('status' => 'error', 'message' => 'Unknown theme.'));
+			return;
+		}
+
+		$user_id = $this->session->userdata('user_id');
+
+		if ($this->user_model->set_user_stylesheet($user_id, $foldername)) {
+			$this->session->set_userdata('user_stylesheet', $foldername);
+			echo json_encode(array('status' => 'success', 'foldername' => $foldername));
+		} else {
+			echo json_encode(array('status' => 'error', 'message' => 'Could not save theme.'));
 		}
 	}
 

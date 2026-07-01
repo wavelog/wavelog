@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
 	Controls the interaction with the QRZ.com Subscription based XML API.
@@ -45,14 +45,14 @@ class OptionsLib {
     function get_option($option_name) {
         // Make Codeigniter functions available to library
         $CI =& get_instance();
-        if (strpos($option_name, 'option_') !== false) { 
+        if (strpos($option_name, 'option_') !== false) {
             if(!$CI->config->item($option_name)) {
                  //Load the options model
                 $CI->load->model('options_model');
                 $removed_options_tag = trim($option_name, 'option_');
                 // call library function to get options value
                 $options_result = $CI->options_model->item($removed_options_tag);
-                    
+
                 // return option_value as a string
                 return $options_result;
             } else {
@@ -64,7 +64,7 @@ class OptionsLib {
                $CI->load->model('options_model');
                // call library function to get options value
                $options_result = $CI->options_model->item($option_name);
-                   
+
                // return option_value as a string
                return $options_result;
            } else {
@@ -80,7 +80,7 @@ class OptionsLib {
 
         //Load the options model
         $CI->load->model('options_model');
-        
+
         // call library function to save update
         $result = $CI->options_model->save($option_name, $option_value, $autoload);
 
@@ -95,7 +95,7 @@ class OptionsLib {
 
         //Load the options model
         $CI->load->model('options_model');
-        
+
         // call library function to save update
         $result = $CI->options_model->update($option_name, $option_value, $auto_load);
 
@@ -118,7 +118,7 @@ class OptionsLib {
         }
 
     }
-        
+
     function get_logo($logo_location, $theme = null) {
 
         $CI =& get_instance();
@@ -127,7 +127,7 @@ class OptionsLib {
         if ($theme == null) {
             $theme = $this->get_theme();
         }
-        
+
         // load the themes model and fetch the logo name from it
         $CI->load->model('Themes_model');
 
@@ -145,7 +145,7 @@ class OptionsLib {
         $CI =& get_instance();
 
         $jsonout = [];
-        
+
         if ($visitor == false) {
 
             $result = $CI->user_options_model->get_options('map_custom');
@@ -197,7 +197,7 @@ class OptionsLib {
             $jsonout['nightshadow_layer']   = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'nightshadow_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
             $jsonout['band']                = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'band','option_key'=>$slug), $userid)->row()->option_value ?? '';
         }
-        
+
         return json_encode($jsonout);
     }
 
