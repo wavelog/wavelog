@@ -50,8 +50,8 @@ class Migration_Hrd_contacts_widen_varchars extends CI_Migration {
 			MODIFY `COL_MY_CITY` varchar(64) DEFAULT NULL,
 			MODIFY `COL_MY_CNTY` varchar(64) DEFAULT NULL,
 			MODIFY `COL_MY_POSTAL_CODE` varchar(64) DEFAULT NULL,
-			MODIFY `COL_MY_POTA_REF` varchar(64) DEFAULT NULL,
-			MODIFY `COL_MY_SIG` varchar(64) DEFAULT NULL,
+			-- MODIFY `COL_MY_POTA_REF` varchar(128) DEFAULT NULL, // already widened by 212_tag_1_8_1.php
+			-- MODIFY `COL_MY_SIG` varchar(64) DEFAULT NULL, // already widened by 227_extend_sig_info.php
 			MODIFY `COL_MY_SOTA_REF` varchar(64) DEFAULT NULL,
 			MODIFY `COL_MY_STATE` varchar(64) DEFAULT NULL,
 			MODIFY `COL_MY_VUCC_GRIDS` varchar(64) DEFAULT NULL,
@@ -59,7 +59,7 @@ class Migration_Hrd_contacts_widen_varchars extends CI_Migration {
 			MODIFY `COL_OPERATOR` varchar(64) DEFAULT NULL,
 			MODIFY `COL_OWNER_CALLSIGN` varchar(64) DEFAULT NULL,
 			MODIFY `COL_PFX` varchar(64) DEFAULT NULL,
-			MODIFY `COL_POTA_REF` varchar(64) DEFAULT NULL,
+			-- MODIFY `COL_POTA_REF` varchar(128) DEFAULT NULL, // already widened by 212_tag_1_8_1.php
 			MODIFY `COL_PRECEDENCE` varchar(64) DEFAULT NULL,
 			MODIFY `COL_REGION` varchar(64) DEFAULT NULL,
 			MODIFY `COL_RST_RCVD` varchar(64) DEFAULT NULL,
