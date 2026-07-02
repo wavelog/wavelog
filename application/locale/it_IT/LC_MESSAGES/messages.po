@@ -551,6 +551,7 @@ msgstr "DOK"
 #: application/views/timeplotter/index.php:21
 #: application/views/dashboard/index.php:414
 #: application/views/interface_assets/header.php:196
+#: application/views/stationsetup/locationlist.php:16
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -663,6 +664,8 @@ msgstr " e "
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
 #: application/views/interface_assets/header.php:223
+#: application/controllers/Logbook.php:1484
+#: application/views/stationsetup/locationlist.php:18
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -687,6 +690,8 @@ msgstr "SOTA"
 #: application/views/user/edit.php:392
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/views/interface_assets/header.php:210
+#: application/controllers/Logbook.php:1485
+#: application/views/stationsetup/locationlist.php:24
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -712,6 +717,8 @@ msgstr "WWFF"
 #: application/views/user/edit.php:393
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/interface_assets/header.php:227
+#: application/controllers/Logbook.php:1486
+#: application/views/stationsetup/locationlist.php:25
 msgid "POTA"
 msgstr "POTA"
 
@@ -802,6 +809,7 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/user/edit.php:856
 #: application/views/interface_assets/header.php:200
 #: application/views/user/edit.php:867
+#: application/views/stationsetup/locationlist.php:26
 msgid "SIG"
 msgstr "SIG"
 
@@ -2062,6 +2070,7 @@ msgstr "Tutte le ricerche del nominativo non hanno prodotto alcun risultato."
 #: application/views/awards/waja/index.php:120
 #: application/views/awards/wap/index.php:114
 #: application/views/awards/was/index.php:117
+#: application/controllers/Logbook.php:1479
 msgid "Mode"
 msgstr "Modo"
 
@@ -2089,6 +2098,7 @@ msgstr "Modo"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1480
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -2117,6 +2127,7 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1481
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -2139,6 +2150,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:290
 #: application/views/view_log/qso.php:646
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1482
 msgid "Country"
 msgstr "Country"
 
@@ -2172,6 +2184,8 @@ msgstr "Country"
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
 #: application/views/interface_assets/header.php:225
+#: application/controllers/Logbook.php:1483
+#: application/views/stationsetup/locationlist.php:17
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2207,6 +2221,8 @@ msgstr "IOTA"
 #: application/views/awards/counties/details_ajax.php:8
 #: application/views/awards/counties/index.php:76
 #: application/views/awards/was/index.php:156
+#: application/controllers/Logbook.php:1487
+#: application/views/stationsetup/locationlist.php:23
 msgid "State"
 msgstr "Stato"
 
@@ -2257,6 +2273,7 @@ msgstr "Stato"
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
 #: application/views/awards/gridmaster/index.php:53
+#: application/controllers/Logbook.php:1488
 msgid "Gridsquare"
 msgstr "Locatore"
 
@@ -2289,6 +2306,7 @@ msgstr "Locatore"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
 #: application/views/awards/gridmaster/index.php:55
+#: application/controllers/Logbook.php:1489
 msgid "Distance"
 msgstr "Distanza"
 
@@ -2396,6 +2414,7 @@ msgstr "Distanza"
 #: application/views/awards/waja/index.php:106
 #: application/views/awards/wap/index.php:100
 #: application/views/awards/was/index.php:103
+#: application/controllers/Logbook.php:1490
 msgid "Band"
 msgstr "Banda"
 
@@ -2425,6 +2444,7 @@ msgstr "Banda"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1491
 msgid "Frequency"
 msgstr "Frequenza"
 
@@ -2451,6 +2471,7 @@ msgstr "Frequenza"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:653
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1492
 msgid "Operator"
 msgstr "Operatore"
 
@@ -2480,6 +2501,8 @@ msgstr "Operatore"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
+#: application/controllers/Logbook.php:1513
+#: application/views/stationsetup/locationlist.php:76
 msgid "Deleted DXCC"
 msgstr "DXCC eliminati"
 
@@ -3331,14 +3354,16 @@ msgstr "Orari satelliti"
 #: application/views/interface_assets/header.php:403
 #: application/views/interface_assets/header.php:410
 #: application/views/visitor/layout/header.php:99
+#: application/views/search/lotw_unconfirmed.php:36
+#: application/views/search/main.php:31
 msgid "Search"
 msgstr "Cerca"
 
-#: application/controllers/Search.php:23
+#: application/controllers/Search.php:23 application/controllers/Search.php:25
 msgid "Search & Filter Logbook"
 msgstr "Cerca e filtra registro"
 
-#: application/controllers/Search.php:51
+#: application/controllers/Search.php:51 application/controllers/Search.php:61
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -3489,6 +3514,7 @@ msgstr "Errore. Collegamento già in uso!"
 #: application/views/stationsetup/locationlist.php:54
 #: application/views/stationsetup/stationsetup.php:107
 #: application/views/user/edit.php:531
+#: application/views/stationsetup/locationlist.php:55
 msgid "Disabled"
 msgstr "Disabilitato"
 
@@ -4832,6 +4858,7 @@ msgstr "Differenza"
 #: application/views/awards/was/index.php:120
 #: application/views/dashboard/index.php:664
 #: application/views/user/edit.php:972 application/views/user/edit.php:983
+#: application/views/search/lotw_unconfirmed.php:30
 msgid "All"
 msgstr "Tutti"
 
@@ -5184,6 +5211,8 @@ msgstr "Non ho trovato nulla!"
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
 #: application/views/dashboard/index.php:342
+#: application/views/search/lotw_unconfirmed.php:32
+#: application/views/stationsetup/locationlist.php:13
 msgid "Callsign"
 msgstr "Nominativo"
 
@@ -5585,6 +5614,7 @@ msgstr ""
 "filtrare ed esportare il registro di stazione!"
 
 #: application/views/adif/import.php:268
+#: application/views/search/lotw_unconfirmed.php:24
 msgid "All is limited to station locations linked to active logbook"
 msgstr ""
 "Tutto è limitato alle posizioni delle stazioni collegate al logbook attivo"
@@ -6365,6 +6395,7 @@ msgstr "Locatori attivati"
 #: application/views/contesting/logger/components/qso-form.php:153
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:13
+#: application/views/stationsetup/locationlist.php:14
 msgid "Grid"
 msgstr "Locatore"
 
@@ -6450,6 +6481,7 @@ msgstr "Filtraggio per"
 #: application/views/stationsetup/locationlist.php:19
 #: application/views/awards/counties/details_ajax.php:9
 #: application/views/awards/counties/state_ajax.php:7
+#: application/views/stationsetup/locationlist.php:20
 msgid "County"
 msgstr "Contea"
 
@@ -6572,6 +6604,7 @@ msgstr "Totale"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
+#: application/views/stationsetup/locationlist.php:21
 msgid "CQ Zone"
 msgstr "Zona CQ"
 
@@ -7750,6 +7783,7 @@ msgstr "IOTA eliminato"
 #: application/views/view_log/qso.php:232
 #: application/views/view_log/qso.php:629
 #: application/views/qso/components/fav_modal.php:8
+#: application/views/stationsetup/locationlist.php:12
 msgid "Name"
 msgstr "Nome"
 
@@ -7773,6 +7807,7 @@ msgstr "Eliminato"
 #: application/views/stationsetup/locationlist.php:21
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:18
+#: application/views/stationsetup/locationlist.php:22
 msgid "ITU Zone"
 msgstr "Zona ITU"
 
@@ -7874,6 +7909,7 @@ msgstr "Risultati"
 #: application/views/stationsetup/locationlist.php:14
 #: application/views/view_log/qso.php:639
 #: application/views/awards/jcc/index.php:165
+#: application/views/stationsetup/locationlist.php:15
 msgid "City"
 msgstr "Città"
 
@@ -10879,6 +10915,7 @@ msgstr "Nome ADIF"
 #: application/views/usermode/index.php:51
 #: application/views/interface_assets/header.php:643
 #: application/views/interface_assets/header.php:644
+#: application/views/stationsetup/locationlist.php:10
 msgid "Active"
 msgstr "Attivo"
 
@@ -11791,6 +11828,7 @@ msgstr "Luce/Laser"
 #: application/views/contesting/manager/export_cbr.php:117
 #: application/views/interface_assets/footer.php:122
 #: application/views/stationsetup/locationlist.php:18
+#: application/views/stationsetup/locationlist.php:19
 msgid "Power"
 msgstr "Potenza"
 
@@ -11920,6 +11958,8 @@ msgstr "Richiedi un certificato cartaceo allo sponsor del contest, se idoneo."
 #: application/views/stationsetup/locationlist.php:58
 #: application/views/user/edit.php:1155 application/views/user/edit.php:1166
 #: application/views/user/edit.php:1180 application/views/user/edit.php:1191
+#: application/views/stationsetup/locationlist.php:49
+#: application/views/stationsetup/locationlist.php:59
 msgid "Yes"
 msgstr "Si"
 
@@ -11985,6 +12025,8 @@ msgstr "Si"
 #: application/views/user/edit.php:744 application/views/user/edit.php:672
 #: application/views/user/edit.php:676 application/views/user/edit.php:755
 #: application/views/user/edit.php:766
+#: application/views/stationsetup/locationlist.php:47
+#: application/views/stationsetup/locationlist.php:57
 msgid "No"
 msgstr "No"
 
@@ -12405,6 +12447,7 @@ msgstr "Lista Cron"
 #: application/views/stationsetup/locationlist.php:8
 #: application/views/stationsetup/stationsetup.php:42
 #: application/views/stationsetup/stationsetup.php:154
+#: application/views/stationsetup/locationlist.php:9
 msgid "ID"
 msgstr "ID"
 
@@ -14807,7 +14850,7 @@ msgstr "Esporta in ADIF"
 
 #: application/views/interface_assets/footer.php:604
 #: application/views/interface_assets/footer.php:741
-#: application/views/search/main.php:31
+#: application/views/search/main.php:31 application/views/search/main.php:32
 msgid "Open in the Advanced Logbook"
 msgstr "Apri il registro avanzato"
 
@@ -17151,6 +17194,7 @@ msgstr "Messaggio QSL ricevuto"
 #: application/views/user/edit.php:831 application/views/view_log/qso.php:400
 #: application/views/view_log/qso.php:707 application/views/user/edit.php:842
 #: application/views/user/edit.php:856 application/views/user/edit.php:867
+#: application/views/stationsetup/locationlist.php:27
 msgid "SIG Info"
 msgstr "Informazioni SIG"
 
@@ -17298,6 +17342,7 @@ msgstr "Questi QSO non possono essere aggiornati:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:45
 #: application/views/search/lotw_unconfirmed.php:26
+#: application/views/search/lotw_unconfirmed.php:28
 msgid "Station location"
 msgstr "Posizione della stazione"
 
@@ -19939,7 +19984,7 @@ msgstr "Ultimo upload su LoTW"
 msgid "No QSOs with outstanding LoTW upload were found."
 msgstr "Nessun QSO con caricamento LoTW eccezionale è stato trovato."
 
-#: application/views/search/main.php:25
+#: application/views/search/main.php:25 application/views/search/main.php:26
 msgid "Callsign / Gridsquare"
 msgstr "Nominativo / Locatore"
 
@@ -20624,6 +20669,7 @@ msgstr "Caricamento del registro su QRZ.com"
 #: application/views/station_profile/create.php:311
 #: application/views/station_profile/edit.php:337
 #: application/views/stationsetup/locationlist.php:50
+#: application/views/stationsetup/locationlist.php:51
 msgid "Realtime"
 msgstr "Tempo reale"
 
@@ -20714,6 +20760,7 @@ msgstr "OQRS abilitato"
 #: application/views/station_profile/create.php:413
 #: application/views/station_profile/edit.php:444
 #: application/views/stationsetup/locationlist.php:32
+#: application/views/stationsetup/locationlist.php:33
 msgid "OQRS Email alert"
 msgstr "Avviso email OQRS"
 
@@ -20727,6 +20774,7 @@ msgstr ""
 #: application/views/station_profile/create.php:421
 #: application/views/station_profile/edit.php:452
 #: application/views/stationsetup/locationlist.php:31
+#: application/views/stationsetup/locationlist.php:32
 msgid "OQRS Text"
 msgstr "Testo OQRS"
 
@@ -20792,59 +20840,73 @@ msgid "Unlink Station Location"
 msgstr "Scollega posizione della stazione"
 
 #: application/views/stationsetup/locationlist.php:10
+#: application/views/stationsetup/locationlist.php:11
 msgid "QSO Count"
 msgstr "Conteggio QSO"
 
 #: application/views/stationsetup/locationlist.php:27
+#: application/views/stationsetup/locationlist.php:28
 msgid "eQSL Nickname"
 msgstr "Nickname eQSL"
 
 #: application/views/stationsetup/locationlist.php:28
+#: application/views/stationsetup/locationlist.php:29
 msgid "eQSL default QSLmsg"
 msgstr "default QSLmsg di eQSL"
 
 #: application/views/stationsetup/locationlist.php:29
+#: application/views/stationsetup/locationlist.php:30
 msgid "QRZ upload"
 msgstr "Caricamento QRZ"
 
 #: application/views/stationsetup/locationlist.php:30
+#: application/views/stationsetup/locationlist.php:31
 msgid "OQRS enabled"
 msgstr "OQRS abilitato"
 
 #: application/views/stationsetup/locationlist.php:33
+#: application/views/stationsetup/locationlist.php:34
 msgid "QO-100 DX Club realtime upload"
 msgstr "Caricamento in tempo reale del QO-100 DX Club"
 
 #: application/views/stationsetup/locationlist.php:34
+#: application/views/stationsetup/locationlist.php:35
 msgid "ClubLog realtime upload"
 msgstr "Caricamento in tempo reale di ClubLog"
 
 #: application/views/stationsetup/locationlist.php:35
+#: application/views/stationsetup/locationlist.php:36
 msgid "ClubLog Ignore"
 msgstr "Ignora ClubLog"
 
 #: application/views/stationsetup/locationlist.php:36
+#: application/views/stationsetup/locationlist.php:37
 msgid "HRDLog realtime upload"
 msgstr "Caricamento in tempo reale HRDLog"
 
 #: application/views/stationsetup/locationlist.php:37
+#: application/views/stationsetup/locationlist.php:38
 msgid "HRDLog username"
 msgstr "Nome utente HRDLog"
 
 #: application/views/stationsetup/locationlist.php:38
+#: application/views/stationsetup/locationlist.php:39
 msgid "Created"
 msgstr "Creato"
 
 #: application/views/stationsetup/locationlist.php:39
+#: application/views/stationsetup/locationlist.php:40
 msgid "Last Modified"
 msgstr "Ultima modifica"
 
 #: application/views/stationsetup/locationlist.php:131
+#: application/views/stationsetup/locationlist.php:132
 msgctxt "Station Locations"
 msgid "Export All Locations"
 msgstr "Esporta tutte le posizioni"
 
 #: application/views/stationsetup/locationlist.php:142
+#: application/views/stationsetup/locationlist.php:143
 msgctxt "Station Locations"
 msgid "Import Locations"
 msgstr "Importa posizioni"
@@ -23069,6 +23131,14 @@ msgstr ""
 #: application/views/user/edit.php:712
 msgid ""
 "Choose the map tile rendering method; this will override the theme settings."
+msgstr ""
+
+#: application/views/search/filter.php:31 application/views/search/main.php:23
+msgid "Search is limited to station locations linked to active logbook"
+msgstr ""
+
+#: application/views/stationsetup/locationlist.php:3
+msgid "Limited to station locations linked to active logbook"
 msgstr ""
 
 #~ msgid "On"
