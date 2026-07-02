@@ -797,6 +797,14 @@ class User extends CI_Controller {
 				$data['user_dashboard_show_contests'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
 			}
 
+			// Dashboard show KPI statistics
+			if($this->input->post('user_dashboard_show_kpi_stats') !== null) {
+				$data['user_dashboard_show_kpi_stats'] = $this->input->post('user_dashboard_show_kpi_stats', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_kpi_stats','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				$data['user_dashboard_show_kpi_stats'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : '1';
+			}
+
 			// DX Waterfall enable option
 			if($this->input->post('user_dxwaterfall_enable')) {
 				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable', false);
@@ -986,6 +994,7 @@ class User extends CI_Controller {
 				$data['user_map_qsoconfirm_color'] = "#00AA00";
 				$data['user_map_unworked_color'] = "#FF0000";
 				$data['user_map_gridsquare_show'] = "0";
+				$data['user_map_tile_style'] = "0";
 			}
 			$data['map_icon_select'] = array(
 				'station'=>array('0', 'fas fa-home', 'fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle' ),
@@ -1066,9 +1075,11 @@ class User extends CI_Controller {
 							$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
 						}
 						$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))), $user_id);
+						$this->user_options_model->set_option('map_custom','tile',array('style' => xss_clean($this->input->post('user_map_tile_style', true))),$user_id);
 					} else {
 						$this->user_options_model->del_option('map_custom','icon', null, $user_id);
 						$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
+						$this->user_options_model->del_option('map_custom','tile', null, $user_id);
 					}
 					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
 					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
@@ -1082,6 +1093,7 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') == '1' ? '1' : '0')), $user_id);
+					$this->user_options_model->set_option('dashboard', 'show_kpi_stats', array('boolean'=>($this->input->post('user_dashboard_show_kpi_stats') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('stations', 'active_log_only', array('boolean'=>($this->input->post('user_stations_active_log_only') == '1' ? '1' : '0')), $user_id);
 
 					if($this->session->userdata('user_id') == $user_id) {

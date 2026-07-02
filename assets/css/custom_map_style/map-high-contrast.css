@@ -1,0 +1,26 @@
+/*
+ High Contrast optimized map tiles
+
+*/
+.leaflet-tile {
+    filter: saturate(2.2) grayscale(0.8) contrast(1.2) !important;
+}
+
+path.grid-rectangle {
+	stroke: rgba(0, 0, 0, 0.2 );
+}
+
+span.grid-text > font {
+	color: rgba(0, 0, 0, 0.4 ) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-unworked > font {
+	color: rgba(0, 0, 0, 0.2 ) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-worked > font {
+	color: rgba(0, 0, 0, 0.4 ) !important;
+	font-weight: 400 !important;
+}

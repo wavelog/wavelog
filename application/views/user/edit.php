@@ -700,6 +700,17 @@
 										</div>
 										<label class="d-block mb-0" for="user_map_gridsquare_show"><?= __("Show Locator"); ?></label>
 									</div>
+									<?php if(!isset($user_map_tile_style)) { $user_map_tile_style = '0'; } ?>
+									<div class="mb-3">	<!-- Custom Map Tile Style -->
+										<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
+										<?php $styles = map_style_options(); $current = $user_map_tile_style ?? '0'; ?>
+											<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" > 
+												<?php foreach ($styles as $id => $style): ?>
+													<option value="<?= $id; ?>" <?= $current == $id ? 'selected' : ''; ?> ><?= __($style['title'] ?? 'Null'); ?></option>
+												<?php endforeach; ?>
+											</select>
+									    <small class="form-text text-muted"><?= __("Choose the map tile rendering method; this will override the theme settings."); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -757,6 +768,20 @@
 											<small id="user_dashboard_map_Help" class="form-text text-muted"><?= __("Choose whether to show map on dashboard or not"); ?></small>
 										</div>
 
+										<?php
+										if(!isset($user_dashboard_solar)) { $user_dashboard_solar='N'; }
+										if ($user_dashboard_solar === 'Y') { $user_dashboard_solar = 'bottom'; } // legacy "on" maps to bottom
+										?>
+										<div class="mb-3">
+											<label for="user_dashboard_solar"><?= __("Dashboard solar and propagation data"); ?></label>
+											<select class="form-select" id="user_dashboard_solar" name="user_dashboard_solar" aria-describedby="user_dashboard_solar_Help" required>
+												<option value='top' <?php if($user_dashboard_solar == 'top') { echo "selected=\"selected\""; } ?>><?= __("Top"); ?></option>
+												<option value='bottom' <?php if($user_dashboard_solar == 'bottom') { echo "selected=\"selected\""; } ?>><?= __("Bottom"); ?></option>
+												<option value='N' <?php if($user_dashboard_solar == 'N') { echo "selected=\"selected\""; } ?>><?= __("Off"); ?></option>
+											</select>
+											<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("Show solar and propagation data on the dashboard above the active expeditions cards (Top), at the bottom of the dashboard (Bottom), or hide it (Off)."); ?></small>
+										</div>
+
 										<?php if(!isset($user_dashboard_banner)) { $user_dashboard_banner='Y'; }?>
 										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_banner" value="false">
@@ -769,17 +794,6 @@
 											</div>
 										</div>
 
-										<?php if(!isset($user_dashboard_solar)) { $user_dashboard_solar='N'; }?>
-										<div class="d-flex align-items-start gap-2 mb-3">
-											<input type="hidden" name="user_dashboard_solar" value="N">
-											<div class="form-check form-switch mt-1">
-												<input class="form-check-input" type="checkbox" role="switch" id="user_dashboard_solar" name="user_dashboard_solar" value="Y" <?php if ($user_dashboard_solar == 'Y') { echo 'checked'; } ?>>
-											</div>
-											<div>
-												<label class="d-block mb-0" for="user_dashboard_solar"><?= __("Dashboard solar and propagation data"); ?></label>
-												<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("This switches the display of the solar and propagation data on the dashboard."); ?></small>
-											</div>
-										</div>
 										<?php if(!isset($user_dashboard_show_dxpeditions)) { $user_dashboard_show_dxpeditions='1'; }?>
 										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_show_dxpeditions" value="0">
@@ -798,6 +812,17 @@
 											</div>
 											<div>
 												<label class="d-block mb-0" for="dashboardShowContests"><?= __("Active Contests"); ?></label>
+											</div>
+										</div>
+										<?php if(!isset($user_dashboard_show_kpi_stats)) { $user_dashboard_show_kpi_stats='1'; }?>
+										<div class="d-flex align-items-start gap-2 mb-3">
+											<input type="hidden" name="user_dashboard_show_kpi_stats" value="0">
+											<div class="form-check form-switch mt-1">
+												<input class="form-check-input" type="checkbox" role="switch" id="dashboardShowKpiStats" name="user_dashboard_show_kpi_stats" value="1" <?php if ($user_dashboard_show_kpi_stats == 1) { echo 'checked'; } ?>>
+											</div>
+											<div>
+												<label class="d-block mb-0" for="dashboardShowKpiStats"><?= __("Dashboard KPI statistics"); ?></label>
+												<small id="dashboardShowKpiStats_Help" class="form-text text-muted"><?= __("This switches the display of the KPI statistics (Total QSOs, QSOs this year/month/today, Current Streak, Unique callsigns) on the dashboard."); ?></small>
 											</div>
 										</div>
 									</div>

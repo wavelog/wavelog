@@ -250,7 +250,17 @@ class Stationsetup_model extends CI_Model {
 		$result = $query->result();
 		$this->load->model('user_options_model');
 
-		foreach($result as $location) {
+		// restrict station locations listing to those linked to active logbook for users with permission lower than club officer (if clubstation), if user option enabled
+		$stations_linked = '';
+		if ((($this->session->userdata('cd_p_level') ?? 0) < 9) && !empty($this->session->userdata('user_stations_active_log_only'))) {
+			$stations_linked = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
+
+		foreach($result as $key => $location) {
+			if (!empty($stations_linked) && !in_array($location->station_id, $stations_linked)) {
+				unset($result[$key]);
+				continue;
+			}
 			$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $location->station_id))->result();
 			if (isset($options_object[0])) {
 				$location->eqsl_default_qslmsg = $options_object[0]->option_value;
