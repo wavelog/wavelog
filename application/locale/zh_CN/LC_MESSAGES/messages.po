@@ -32,10 +32,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-07-02 13:31+0000\n"
-"PO-Revision-Date: 2026-06-25 13:16+0000\n"
-"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2026-07-02 21:25+0000\n"
+"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6107,11 +6107,11 @@ msgstr "总计"
 
 #: application/views/awards/counties/state_ajax.php:8
 msgid "QSOs Worked"
-msgstr ""
+msgstr "已完成的QSO"
 
 #: application/views/awards/counties/state_ajax.php:9
 msgid "QSOs Confirmed"
-msgstr ""
+msgstr "已确认的QSO"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
@@ -11532,7 +11532,7 @@ msgstr "关闭"
 
 #: application/views/dashboard/_options_menu.php:10
 msgid "Dashboard options"
-msgstr ""
+msgstr "仪表盘选项"
 
 #: application/views/dashboard/_options_menu.php:12
 msgid "KPI statistics"
@@ -11540,7 +11540,7 @@ msgstr ""
 
 #: application/views/dashboard/_options_menu.php:15
 msgid "Solar data"
-msgstr ""
+msgstr "太阳活动数据"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTS"
@@ -16032,7 +16032,7 @@ msgstr "生成明信片 PDF"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:34
 msgid "Save PDF"
-msgstr ""
+msgstr "保存 PDF"
 
 #: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
@@ -17046,7 +17046,7 @@ msgstr "不在日志中？"
 #: application/views/oqrs/showrequests.php:55
 #: application/views/oqrs/status_info.php:10
 msgid "Open request"
-msgstr "提交请求"
+msgstr "打开的请求"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:56
@@ -17787,11 +17787,11 @@ msgstr ""
 
 #: application/views/qso/components/fav_modal.php:9
 msgid "e.g. 20m SSB, SO-50, portable setup"
-msgstr ""
+msgstr "例如：20米SSB,SO-50,便携式设备"
 
 #: application/views/qso/components/fav_modal.php:10
 msgid "Please enter a name."
-msgstr ""
+msgstr "请输入一个名字。"
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -18036,7 +18036,7 @@ msgstr "LIVE"
 
 #: application/views/qso/index.php:93
 msgid "POST"
-msgstr "提交"
+msgstr "POST"
 
 #: application/views/qso/index.php:106
 #: application/views/statistics/antennaanalytics.php:49
@@ -18046,7 +18046,7 @@ msgstr "卫星"
 
 #: application/views/qso/index.php:121
 msgid "Add to Favs"
-msgstr ""
+msgstr "添加到收藏"
 
 #: application/views/qso/index.php:161
 msgid "Time on"
@@ -18533,7 +18533,7 @@ msgstr "QSO 未在 LoTW 确认"
 
 #: application/views/search/filter.php:31 application/views/search/main.php:23
 msgid "Search is limited to station locations linked to active logbook"
-msgstr ""
+msgstr "搜索范围仅限于与有效日志簿关联的站点位置"
 
 #: application/views/search/filter.php:40
 msgid "Save query"
@@ -19382,7 +19382,7 @@ msgstr "取消链接的台站位置"
 
 #: application/views/stationsetup/locationlist.php:3
 msgid "Limited to station locations linked to active logbook"
-msgstr ""
+msgstr "仅限与有效日志簿关联的站点位置"
 
 #: application/views/stationsetup/locationlist.php:11
 msgid "QSO Count"
@@ -20222,11 +20222,11 @@ msgstr "在菜单显示当前 UTC 时间"
 
 #: application/views/user/edit.php:611
 msgid "Quick Theme Switcher"
-msgstr ""
+msgstr "快捷主题切换"
 
 #: application/views/user/edit.php:612
 msgid "Show the quick theme switcher in the header menu."
-msgstr ""
+msgstr "在顶部菜单中显示快捷主题切换。"
 
 #: application/views/user/edit.php:624
 msgid "Map Settings"
@@ -20270,16 +20270,16 @@ msgstr "显示地图网格"
 
 #: application/views/user/edit.php:705
 msgid "Map Tile Style"
-msgstr ""
+msgstr "地图瓦片样式"
 
 #: application/views/user/edit.php:709
 msgid "Null"
-msgstr ""
+msgstr "Null"
 
 #: application/views/user/edit.php:712
 msgid ""
 "Choose the map tile rendering method; this will override the theme settings."
-msgstr ""
+msgstr "选择地图瓦片的渲染方式；这将覆盖主题设置。"
 
 #: application/views/user/edit.php:724
 msgid "Previous QSL Type"
@@ -20331,6 +20331,8 @@ msgid ""
 "expeditions cards (Top), at the bottom of the dashboard (Bottom), or hide it "
 "(Off)."
 msgstr ""
+"在活动卡片上方的仪表盘（顶部）、仪表盘底部（底部）显示太阳传播数据，或将其隐"
+"藏（关闭）。"
 
 #: application/views/user/edit.php:792
 msgid "Dashboard Notification Banner"
