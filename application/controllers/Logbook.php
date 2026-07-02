@@ -1089,6 +1089,13 @@ class Logbook extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
+		$stationsactivelogonly_sql = '';
+		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+			$stationid_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+			$station_id_list = "'" . implode("','", $stationid_array) . "'";
+			$stationsactivelogonly_sql = " AND `station_profile`.`station_id` IN (" . $station_id_list .") ";
+		}
+
 		$binding = array();
 		$sql = "SELECT dxcc_entities.adif, lotw_users.callsign, COL_BAND, COL_CALL, COL_CLUBLOG_QSO_DOWNLOAD_DATE, COL_DCL_QSLRDATE, COL_DCL_QSLSDATE, COL_DCL_QSL_SENT, COL_DCL_QSL_RCVD,
 			COL_PROP_MODE,
@@ -1110,6 +1117,7 @@ class Logbook extends CI_Controller {
 			LEFT OUTER JOIN satellite ON qsos.col_prop_mode='SAT' and qsos.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
 			WHERE ( qsos.COL_CALL LIKE ? ESCAPE '!' OR qsos.COL_GRIDSQUARE LIKE ? ESCAPE '!' OR qsos.COL_VUCC_GRIDS LIKE ? ESCAPE '!')
 			AND station_profile.user_id = ".$this->session->userdata('user_id')."
+			" . $stationsactivelogonly_sql . "
 			ORDER BY COL_TIME_ON DESC;";
 		$binding[] = '%'.$id.'%';
 		$binding[] = '%'.$id.'%';
@@ -1129,16 +1137,23 @@ class Logbook extends CI_Controller {
 		}
 
 		$this->load->model('stations');
-		$logbooks_locations_array = $this->stations->all_of_user();
-
-		$station_ids = array();
-
-		if ($logbooks_locations_array->num_rows() > 0){
-			foreach ($logbooks_locations_array->result() as $row) {
-				array_push($station_ids, $row->station_id);
+		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+			$station_ids = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+			if ($station_ids == array(-1)) {
+				return null;
 			}
 		} else {
-			return null;
+			$logbooks_locations_array = $this->stations->all_of_user();
+
+			$station_ids = array();
+
+			if ($logbooks_locations_array->num_rows() > 0){
+				foreach ($logbooks_locations_array->result() as $row) {
+					array_push($station_ids, $row->station_id);
+				}
+			} else {
+				return null;
+			}
 		}
 
 		$location_list = "'".implode("','",$station_ids)."'";

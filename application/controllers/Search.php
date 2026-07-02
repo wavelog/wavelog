@@ -13,6 +13,8 @@ class Search extends CI_Controller {
 	public function index() {
 		$data['page_title'] = __("Search");
 
+		$data['stations_active_log_only'] = !empty($this->session->userdata('user_stations_active_log_only'));
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('search/main');
 		$this->load->view('interface_assets/footer');
@@ -28,6 +30,8 @@ class Search extends CI_Controller {
 
 		$data['get_table_names'] = $this->Search_filter->get_table_columns();
 		$data['stored_queries'] = $this->Search_filter->get_stored_queries();
+
+		$data['stations_active_log_only'] = !empty($this->session->userdata('user_stations_active_log_only'));
 
 		//print_r($this->Search_filter->get_table_columns());
 
@@ -47,7 +51,13 @@ class Search extends CI_Controller {
 	public function lotw_unconfirmed() {
 		$this->load->model('stations');
 
-		$data['station_profile'] = $this->stations->all_of_user();
+		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+			$data['station_profile'] = $this->logbooks_model->list_logbooks_linked($this->session->userdata('active_station_logbook'));
+			$data['stations_active_log_only'] = true;
+		} else {
+			$data['station_profile'] = $this->stations->all_of_user();
+			$data['stations_active_log_only'] = false;
+		}
 		$data['page_title'] = __("QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO date");
 
 		$this->load->view('interface_assets/header', $data);
@@ -330,6 +340,11 @@ class Search extends CI_Controller {
 
 	function fetchQueryResult($json, $returnquery) {
 		$search_items = json_decode($json, true);
+
+		if (!empty($this->session->userdata('user_stations_active_log_only'))) {
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+			$this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
+		}
 
 		$this->db->select($this->config->item('table_name').'.*, station_profile.station_profile_name, station_profile.station_gridsquare, station_profile.station_city, station_profile.station_iota, station_profile.station_callsign, station_profile.station_sota, station_profile.station_wwff, station_profile.station_dxcc, station_profile.station_pota, station_profile.station_cq, station_profile.station_itu, station_profile.station_sig, station_profile.station_sig_info, station_profile.station_cnty, station_profile.county, station_profile.state, dxcc_entities.name as station_country');
 
