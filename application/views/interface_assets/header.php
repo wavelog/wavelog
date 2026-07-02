@@ -45,6 +45,7 @@
 	<!-- Maps -->
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.css'); ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/Control.FullScreen.css'); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= $this->paths->cache_buster('/assets/css/custom_map_style/' . map_css_file() . '.css'); ?>" />
 
 	<?php if ($this->uri->segment(1) == "search" && $this->uri->segment(2) == "filter") { ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/query-builder.default.min.css'); ?>" />
