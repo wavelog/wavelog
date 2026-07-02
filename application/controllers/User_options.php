@@ -55,6 +55,31 @@ class User_Options extends CI_Controller {
 	}
 
 	/**
+	 * Save a dashboard layout preference from the dashboard context menu.
+	 * Body: {"pref":"kpi|solar","value":...}
+	 */
+	public function save_dashboard_pref() {
+		$obj = json_decode(file_get_contents("php://input"), true);
+		$pref = $this->security->xss_clean($obj['pref'] ?? '');
+		$value = $this->security->xss_clean($obj['value'] ?? '');
+
+		if ($pref === 'kpi' && in_array($value, ['1', '0'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_kpi_stats', array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_show_kpi_stats', $value);
+		} elseif ($pref === 'solar' && in_array($value, ['top', 'bottom', 'N'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_dashboard_solar', array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_solar', $value);
+		} else {
+			header('Content-Type: application/json');
+			echo json_encode(['success' => 0, 'error' => 'Invalid data']);
+			return;
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode(['success' => 1]);
+	}
+
+	/**
 	 * DX Cluster Filter Favorites
 	 */
 	public function add_edit_dxcluster_fav() {

@@ -227,7 +227,7 @@ function echo_table_header_col($name) {
 
 <?php if (!empty($dashboard_show_kpi_stats)) : ?>
 <!-- KPI Stat Cards -->
-<div class="container dashboard px-3 px-lg-4 mt-3 mb-3">
+<div class="container dashboard px-3 px-lg-4 mt-3 mb-3" id="kpi-cards" title="<?= __("Right-click for options"); ?>">
 	<div class="row g-3">
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
@@ -291,6 +291,7 @@ function echo_table_header_col($name) {
 		</div>
 	</div>
 	</div>
+<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'kpiOptsMenu','target_id'=>'kpi-cards']); ?>
 <?php endif; ?>
 
 <div class="container dashboard px-3 px-lg-4 mt-3 mb-3">
