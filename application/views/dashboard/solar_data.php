@@ -1,5 +1,5 @@
 <?php if ((($solar_bandconditions ?? '') != '') && (($solar_solardata ?? '') != '')){ ?>
-		<div class="card mb-3">
+		<div class="card mb-3" id="solar-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
@@ -86,4 +86,5 @@
 				</div>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'solarOptsMenu','target_id'=>'solar-card']); ?>
 		<?php } ?>
