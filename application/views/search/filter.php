@@ -28,7 +28,7 @@
 	    </ul>
 	  </div>
 	  <div class="card-body main">
-
+		<?php if ($stations_active_log_only) { ?><p class="card-text"><span class="badge text-bg-info"><i class="fa-solid fa-info"></i></span> <?= __("Search is limited to station locations linked to active logbook") ?></p><?php } ?>
 		<div class="card-text col-md-4" id="builder"></div>
 
 		<p class="card-text">
