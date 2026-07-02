@@ -363,20 +363,18 @@ $(document).ready(function(){
             var style = document.createElement('style');
             style.id = 'wl-settings-search-style';
             style.textContent = [
-                '.wl-settings-search{position:sticky;top:0;z-index:1030;background-color:var(--bs-body-bg,#fff);',
-                'padding:.5rem .25rem .45rem;margin:0 0 .75rem;border-bottom:1px solid var(--bs-border-color,rgba(0,0,0,.12));}',
-                '.wl-search-row{display:flex;align-items:center;gap:.5rem;}',
-                '.wl-search-field{position:relative;flex:1 1 auto;}',
-                '.wl-search-field>i{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none;}',
-                '.wl-settings-search input[type=text]{padding-left:2.1rem;padding-right:2rem;border-radius:.375rem;}',
-                '.wl-search-clear{position:absolute;right:.2rem;top:50%;transform:translateY(-50%);border:0;background:transparent;',
-                'color:inherit;opacity:.55;cursor:pointer;font-size:1.15rem;line-height:1;padding:.25rem .45rem;}',
-                '.wl-search-clear:hover{opacity:1;}',
+                '.wl-settings-search{margin:0 0 .75rem;}',
+                '.wl-search-row{display:flex;align-items:center;gap:.5rem;max-width:24rem;}',
+                /* input-group mirroring the top navbar search (form-control border +
+                   btn-outline-success border). Bootstrap + the active theme style both
+                   elements, so no radius/colour/height overrides are needed here. */
+                '.wl-search-field.input-group{flex:1 1 auto;}',
+                '.wl-search-field.input-group>.form-control{min-width:0;}',
                 '.wl-search-count{min-width:1.7em;}',
                 '.wl-search-jump{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem;margin-top:.45rem;}',
                 '.wl-search-jump .wl-jump-label{color:var(--bs-body-color,inherit);font-weight:500;}',
                 '.wl-search-none{margin-top:.4rem;color:var(--bs-body-color,inherit);}',
-                '.accordion.user_edit .accordion-item{scroll-margin-top:7rem;}',
+                '.accordion.user_edit .accordion-item{scroll-margin-top:1rem;}',
                 '.accordion.user_edit .accordion-item.wl-hit>.accordion-header .accordion-button{box-shadow:inset 3px 0 0 var(--bs-primary,#0d6efd);}',
                 '.wl-settings-search [hidden]{display:none!important;}'
             ].join('');
@@ -389,11 +387,10 @@ $(document).ready(function(){
         bar.className = 'wl-settings-search';
         bar.innerHTML =
             '<div class="wl-search-row">' +
-                '<span class="wl-search-field">' +
-                    '<i class="fas fa-search"></i>' +
-                    '<input type="text" class="form-control" autocomplete="off" placeholder="' + T.ph + '" aria-label="' + T.ph + '">' +
-                    '<button type="button" class="wl-search-clear" aria-label="' + T.clear + '" title="' + T.clear + '" hidden>&times;</button>' +
-                '</span>' +
+                '<div class="input-group wl-search-field">' +
+                    '<input type="text" class="form-control border" autocomplete="off" placeholder="' + T.ph + '" aria-label="' + T.ph + '">' +
+                    '<button type="button" class="btn btn-outline-success border wl-search-btn" aria-label="' + T.ph + '" title="' + T.ph + '"><i class="fas fa-search"></i></button>' +
+                '</div>' +
                 '<span class="badge bg-secondary wl-search-count" hidden></span>' +
             '</div>' +
             '<div class="wl-search-jump">' +
@@ -402,7 +399,8 @@ $(document).ready(function(){
             '<div class="wl-search-none small" hidden>' + T.none + '</div>';
 
         var input = bar.querySelector('input[type=text]');
-        var clearBtn = bar.querySelector('.wl-search-clear');
+        var btn = bar.querySelector('.wl-search-btn');
+        var btnIcon = btn.querySelector('i');
         var countEl = bar.querySelector('.wl-search-count');
         var jumpRow = bar.querySelector('.wl-search-jump');
         var noneEl = bar.querySelector('.wl-search-none');
@@ -431,7 +429,12 @@ $(document).ready(function(){
 
         function filter() {
             var q = norm(input.value).trim().replace(/\s+/g, ' ');
-            clearBtn.hidden = !input.value;
+            // Trailing button mirrors the navbar: magnifier at rest, becomes a
+            // clear control once there's text to remove.
+            var filled = !!input.value;
+            btnIcon.className = filled ? 'fas fa-times' : 'fas fa-search';
+            btn.setAttribute('aria-label', filled ? T.clear : T.ph);
+            btn.title = filled ? T.clear : T.ph;
 
             if (!q) { restore(); return; }
 
@@ -476,7 +479,9 @@ $(document).ready(function(){
                 s.cards.forEach(function (card) { card.el.style.display = ''; });
                 if (s.initiallyOpen) { expand(s); } else { collapse(s); }
             });
-            clearBtn.hidden = true;
+            btnIcon.className = 'fas fa-search';
+            btn.setAttribute('aria-label', T.ph);
+            btn.title = T.ph;
             countEl.hidden = true;
             noneEl.hidden = true;
             jumpRow.hidden = false;
@@ -497,7 +502,10 @@ $(document).ready(function(){
         input.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') { input.value = ''; restore(); }
         });
-        clearBtn.addEventListener('click', function () { input.value = ''; restore(); input.focus(); });
+        btn.addEventListener('click', function () {
+            if (input.value) { input.value = ''; restore(); }
+            input.focus();
+        });
     }
 
     ready(init);
