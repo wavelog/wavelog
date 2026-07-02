@@ -289,3 +289,247 @@ $(document).ready(function(){
 	// pass in the target node, as well as the observer options
 	observer.observe(target, config);
 });
+
+/*
+ * Account-page Settings Search  (custom, gitignored, auto-loaded by Wavelog)
+ * -------------------------------------------------------------------
+ * On the user account edit page (application/views/user/edit.php) injects a
+ * sticky search box above the form. It matches the text already rendered on
+ * the page — which is in the user's active language — so searching works in
+ * whatever locale the user has chosen, with no language-specific code.
+ * Hides non-matching cards, auto-expands any section that still has a hit,
+ * shows a result count, and restores the exact section open/close state when
+ * cleared. Runs only when `.accordion.user_edit` is present;
+ */
+(function () {
+    'use strict';
+
+    // Chrome strings per locale (base code from <html lang="...">). The matched
+    // setting text itself is always the user's own language because it comes
+    // straight from the rendered page — these are only for the search box UI.
+    var I18N = {
+        en: { ph: 'Search settings…', clear: 'Clear', jump: 'Jump to:', none: 'No settings match your search.' },
+        bg: { ph: 'Търсене в настройките…', clear: 'Изчисти', jump: 'Отиди на:', none: 'Няма намерени настройки.' },
+        cs: { ph: 'Hledat v nastavení…', clear: 'Vymazat', jump: 'Přejít na:', none: 'Žádná nastavení nenalezena.' },
+        de: { ph: 'Einstellungen durchsuchen…', clear: 'Leeren', jump: 'Springen zu:', none: 'Keine passenden Einstellungen gefunden.' },
+        el: { ph: 'Αναζήτηση ρυθμίσεων…', clear: 'Καθαρισμός', jump: 'Μετάβαση σε:', none: 'Δεν βρέθηκαν ρυθμίσεις.' },
+        es: { ph: 'Buscar en ajustes…', clear: 'Limpiar', jump: 'Ir a:', none: 'No se encontraron ajustes.' },
+        fi: { ph: 'Etsi asetuksista…', clear: 'Tyhjennä', jump: 'Siirry:', none: 'Asetuksia ei löytynyt.' },
+        fr: { ph: 'Rechercher un réglage…', clear: 'Effacer', jump: 'Aller à :', none: 'Aucun réglage trouvé.' },
+        hr: { ph: 'Pretraži postavke…', clear: 'Očisti', jump: 'Skoči na:', none: 'Nema pronađenih postavki.' },
+        hu: { ph: 'Beállítások keresése…', clear: 'Törlés', jump: 'Ugrás:', none: 'Nem található beállítás.' },
+        it: { ph: 'Cerca impostazioni…', clear: 'Cancella', jump: 'Vai a:', none: 'Nessuna impostazione trovata.' },
+        ja: { ph: '設定を検索…', clear: 'クリア', jump: 'ジャンプ:', none: '一致する設定が見つかりません。' },
+        nl: { ph: 'Instellingen doorzoeken…', clear: 'Wissen', jump: 'Ga naar:', none: 'Geen instellingen gevonden.' },
+        pl: { ph: 'Szukaj w ustawieniach…', clear: 'Wyczyść', jump: 'Przejdź do:', none: 'Nie znaleziono ustawień.' },
+        pt: { ph: 'Pesquisar definições…', clear: 'Limpar', jump: 'Ir para:', none: 'Nenhuma definição encontrada.' },
+        ro: { ph: 'Caută setări…', clear: 'Șterge', jump: 'Sari la:', none: 'Nicio setare găsită.' },
+        ru: { ph: 'Поиск по настройкам…', clear: 'Очистить', jump: 'Перейти к:', none: 'Настройки не найдены.' },
+        sk: { ph: 'Hľadať v nastaveniach…', clear: 'Vymazať', jump: 'Prejsť na:', none: 'Nenašli sa žiadne nastavenia.' },
+        sv: { ph: 'Sök inställningar…', clear: 'Rensa', jump: 'Gå till:', none: 'Inga inställningar hittades.' },
+        tr: { ph: 'Ayarları ara…', clear: 'Temizle', jump: 'Git:', none: 'Ayar bulunamadı.' },
+        uk: { ph: 'Пошук у налаштуваннях…', clear: 'Очистити', jump: 'Перейти до:', none: 'Налаштування не знайдено.' },
+        zh: { ph: '搜索设置…', clear: '清除', jump: '跳转到：', none: '未找到匹配的设置。' }
+    };
+
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
+    }
+
+    function tr() {
+        var raw = (document.documentElement.lang || 'en').toLowerCase();
+        var base = raw.split('_')[0].split('-')[0];
+        return I18N[base] || I18N.en;
+    }
+
+    // Case- and accent-insensitive comparison base.
+    function norm(s) {
+        return String(s == null ? '' : s)
+            .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    }
+
+    function init() {
+        var accordion = document.querySelector('.accordion.user_edit');
+        if (!accordion) return;            // only the account edit page
+        var form = document.querySelector('form[name="users"]');
+        if (!form) return;
+        if (document.getElementById('wl-settings-search')) return; // idempotent
+
+        var T = tr();
+
+        // --- Gather sections + cards, snapshot each section's open state ---
+        var sections = [];
+        for (var i = 0; i < accordion.children.length; i++) {
+            var item = accordion.children[i];
+            if (!item.classList || !item.classList.contains('accordion-item')) continue;
+            var buttonEl = item.querySelector('.accordion-button');
+            var collapseEl = item.querySelector('.accordion-collapse');
+            var cardEls = item.querySelectorAll('.card');
+            var cards = [];
+            for (var c = 0; c < cardEls.length; c++) {
+                cards.push({ el: cardEls[c], text: norm(cardEls[c].textContent) });
+            }
+            sections.push({
+                item: item,
+                button: buttonEl,
+                collapse: collapseEl,
+                header: buttonEl ? norm(buttonEl.textContent) : '',
+                initiallyOpen: collapseEl ? collapseEl.classList.contains('show') : true,
+                cards: cards
+            });
+        }
+
+        // --- Inject minimal styling once ---
+        if (!document.getElementById('wl-settings-search-style')) {
+            var style = document.createElement('style');
+            style.id = 'wl-settings-search-style';
+            style.textContent = [
+                '.wl-settings-search{position:sticky;top:0;z-index:1030;background-color:var(--bs-body-bg,#fff);',
+                'padding:.5rem .25rem .45rem;margin:0 0 .75rem;border-bottom:1px solid var(--bs-border-color,rgba(0,0,0,.12));}',
+                '.wl-search-row{display:flex;align-items:center;gap:.5rem;}',
+                '.wl-search-field{position:relative;flex:1 1 auto;}',
+                '.wl-search-field>i{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none;}',
+                '.wl-settings-search input[type=text]{padding-left:2.1rem;padding-right:2rem;border-radius:.375rem;}',
+                '.wl-search-clear{position:absolute;right:.2rem;top:50%;transform:translateY(-50%);border:0;background:transparent;',
+                'color:inherit;opacity:.55;cursor:pointer;font-size:1.15rem;line-height:1;padding:.25rem .45rem;}',
+                '.wl-search-clear:hover{opacity:1;}',
+                '.wl-search-count{min-width:1.7em;}',
+                '.wl-search-jump{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem;margin-top:.45rem;}',
+                '.wl-search-jump .wl-jump-label{color:var(--bs-body-color,inherit);font-weight:500;}',
+                '.wl-search-none{margin-top:.4rem;color:var(--bs-body-color,inherit);}',
+                '.accordion.user_edit .accordion-item{scroll-margin-top:7rem;}',
+                '.accordion.user_edit .accordion-item.wl-hit>.accordion-header .accordion-button{box-shadow:inset 3px 0 0 var(--bs-primary,#0d6efd);}',
+                '.wl-settings-search [hidden]{display:none!important;}'
+            ].join('');
+            document.head.appendChild(style);
+        }
+
+        // --- Build the search bar (outside the form so it never submits) ---
+        var bar = document.createElement('div');
+        bar.id = 'wl-settings-search';
+        bar.className = 'wl-settings-search';
+        bar.innerHTML =
+            '<div class="wl-search-row">' +
+                '<span class="wl-search-field">' +
+                    '<i class="fas fa-search"></i>' +
+                    '<input type="text" class="form-control" autocomplete="off" placeholder="' + esc(T.ph) + '" aria-label="' + esc(T.ph) + '">' +
+                    '<button type="button" class="wl-search-clear" aria-label="' + esc(T.clear) + '" title="' + esc(T.clear) + '" hidden>&times;</button>' +
+                '</span>' +
+                '<span class="badge bg-secondary wl-search-count" hidden></span>' +
+            '</div>' +
+            '<div class="wl-search-jump">' +
+                '<span class="small wl-jump-label me-1">' + esc(T.jump) + '</span>' +
+            '</div>' +
+            '<div class="wl-search-none small" hidden>' + esc(T.none) + '</div>';
+
+        var input = bar.querySelector('input[type=text]');
+        var clearBtn = bar.querySelector('.wl-search-clear');
+        var countEl = bar.querySelector('.wl-search-count');
+        var jumpRow = bar.querySelector('.wl-search-jump');
+        var noneEl = bar.querySelector('.wl-search-none');
+
+        // Jump-to chips (one per section, labelled in the user's language)
+        sections.forEach(function (s) {
+            var label = s.button ? s.button.textContent.trim() : '';
+            if (!label) return;
+            var chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'btn btn-sm btn-outline-primary py-0';
+            chip.textContent = label;
+            chip.addEventListener('click', function () {
+                input.value = '';
+                restore();
+                expand(s);
+                s.item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                input.focus();
+            });
+            jumpRow.appendChild(chip);
+        });
+
+        form.parentNode.insertBefore(bar, form);
+
+        var lastFirst = null;
+
+        function filter() {
+            var q = norm(input.value).trim().replace(/\s+/g, ' ');
+            clearBtn.hidden = !input.value;
+
+            if (!q) { restore(); return; }
+
+            var firstMatch = null;
+            var visible = 0;
+
+            sections.forEach(function (s) {
+                var headerHit = s.header.indexOf(q) !== -1;
+                var sectionHit = false;
+                s.cards.forEach(function (card) {
+                    var hit = headerHit || card.text.indexOf(q) !== -1;
+                    card.el.style.display = hit ? '' : 'none';
+                    if (hit) { sectionHit = true; visible++; }
+                });
+                if (sectionHit) {
+                    s.item.style.display = '';
+                    s.item.classList.add('wl-hit');
+                    expand(s);
+                    if (!firstMatch) firstMatch = s.item;
+                } else {
+                    s.item.style.display = 'none';
+                    s.item.classList.remove('wl-hit');
+                }
+            });
+
+            countEl.textContent = String(visible);
+            countEl.hidden = false;
+            noneEl.hidden = visible !== 0;
+            jumpRow.hidden = true;
+
+            if (firstMatch && firstMatch !== lastFirst) {
+                lastFirst = firstMatch;
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function restore() {
+            lastFirst = null;
+            sections.forEach(function (s) {
+                s.item.style.display = '';
+                s.item.classList.remove('wl-hit');
+                s.cards.forEach(function (card) { card.el.style.display = ''; });
+                if (s.initiallyOpen) { expand(s); } else { collapse(s); }
+            });
+            clearBtn.hidden = true;
+            countEl.hidden = true;
+            noneEl.hidden = true;
+            jumpRow.hidden = false;
+        }
+
+        function expand(s) {
+            if (!s.collapse) return;
+            s.collapse.classList.add('show');
+            if (s.button) { s.button.classList.remove('collapsed'); s.button.setAttribute('aria-expanded', 'true'); }
+        }
+        function collapse(s) {
+            if (!s.collapse) return;
+            s.collapse.classList.remove('show');
+            if (s.button) { s.button.classList.add('collapsed'); s.button.setAttribute('aria-expanded', 'false'); }
+        }
+
+        function esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function (ch) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+            });
+        }
+
+        input.addEventListener('input', filter);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { input.value = ''; restore(); }
+        });
+        clearBtn.addEventListener('click', function () { input.value = ''; restore(); input.focus(); });
+    }
+
+    ready(init);
+})();
