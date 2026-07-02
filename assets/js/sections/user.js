@@ -289,3 +289,224 @@ $(document).ready(function(){
 	// pass in the target node, as well as the observer options
 	observer.observe(target, config);
 });
+
+/*
+ * Account-page Settings Search
+ * -------------------------------------------------------------------
+ * On the user account edit page (application/views/user/edit.php) injects a
+ * sticky search box above the form. It matches the text already rendered on
+ * the page — which is in the user's active language — so searching works in
+ * whatever locale the user has chosen, with no language-specific matching.
+ * Hides non-matching cards, auto-expands any section that still has a hit,
+ * shows a result count, and restores the exact section open/close state when
+ * cleared. Runs only when `.accordion.user_edit` is present.
+ * The search-box UI strings (placeholder, clear, jump, no-results) are the
+ * lang_account_search_* globals defined in edit.php via __()/gettext.
+ */
+(function () {
+    'use strict';
+
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
+    }
+
+    // Case- and accent-insensitive comparison base.
+    function norm(s) {
+        return String(s == null ? '' : s)
+            .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    }
+
+    function init() {
+        var accordion = document.querySelector('.accordion.user_edit');
+        if (!accordion) return;            // only the account edit page
+        var form = document.querySelector('form[name="users"]');
+        if (!form) return;
+        if (document.getElementById('wl-settings-search')) return; // idempotent
+
+        // Search-box UI strings, provided as lang_account_search_* globals by
+        // application/views/user/edit.php via __()/gettext.
+        var T = {
+            ph:    lang_account_search_placeholder,
+            clear: lang_account_search_clear,
+            jump:  lang_account_search_jump,
+            none:  lang_account_search_none
+        };
+
+        // --- Gather sections + cards, snapshot each section's open state ---
+        var sections = [];
+        for (var i = 0; i < accordion.children.length; i++) {
+            var item = accordion.children[i];
+            if (!item.classList || !item.classList.contains('accordion-item')) continue;
+            var buttonEl = item.querySelector('.accordion-button');
+            var collapseEl = item.querySelector('.accordion-collapse');
+            var cardEls = item.querySelectorAll('.card');
+            var cards = [];
+            for (var c = 0; c < cardEls.length; c++) {
+                cards.push({ el: cardEls[c], text: norm(cardEls[c].textContent) });
+            }
+            sections.push({
+                item: item,
+                button: buttonEl,
+                collapse: collapseEl,
+                header: buttonEl ? norm(buttonEl.textContent) : '',
+                initiallyOpen: collapseEl ? collapseEl.classList.contains('show') : true,
+                cards: cards
+            });
+        }
+
+        // --- Inject minimal styling once ---
+        if (!document.getElementById('wl-settings-search-style')) {
+            var style = document.createElement('style');
+            style.id = 'wl-settings-search-style';
+            style.textContent = [
+                '.wl-settings-search{margin:0 0 .75rem;}',
+                '.wl-search-row{display:flex;align-items:center;gap:.5rem;max-width:24rem;}',
+                /* input-group mirroring the top navbar search (form-control border +
+                   btn-outline-success border). Bootstrap + the active theme style both
+                   elements, so no radius/colour/height overrides are needed here. */
+                '.wl-search-field.input-group{flex:1 1 auto;}',
+                '.wl-search-field.input-group>.form-control{min-width:0;}',
+                '.wl-search-count{min-width:1.7em;}',
+                '.wl-search-jump{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem;margin-top:.45rem;}',
+                '.wl-search-jump .wl-jump-label{color:var(--bs-body-color,inherit);font-weight:500;}',
+                '.wl-search-none{margin-top:.4rem;color:var(--bs-body-color,inherit);}',
+                '.accordion.user_edit .accordion-item{scroll-margin-top:1rem;}',
+                '.accordion.user_edit .accordion-item.wl-hit>.accordion-header .accordion-button{box-shadow:inset 3px 0 0 var(--bs-primary,#0d6efd);}',
+                '.wl-settings-search [hidden]{display:none!important;}'
+            ].join('');
+            document.head.appendChild(style);
+        }
+
+        // --- Build the search bar (outside the form so it never submits) ---
+        var bar = document.createElement('div');
+        bar.id = 'wl-settings-search';
+        bar.className = 'wl-settings-search';
+        bar.innerHTML =
+            '<div class="wl-search-row">' +
+                '<div class="input-group wl-search-field">' +
+                    '<input type="text" class="form-control border" autocomplete="off" placeholder="' + T.ph + '" aria-label="' + T.ph + '">' +
+                    '<button type="button" class="btn btn-outline-success border wl-search-btn" aria-label="' + T.ph + '" title="' + T.ph + '"><i class="fas fa-search"></i></button>' +
+                '</div>' +
+                '<span class="badge bg-secondary wl-search-count" hidden></span>' +
+            '</div>' +
+            '<div class="wl-search-jump">' +
+                '<span class="small wl-jump-label me-1">' + T.jump + '</span>' +
+            '</div>' +
+            '<div class="wl-search-none small" hidden>' + T.none + '</div>';
+
+        var input = bar.querySelector('input[type=text]');
+        var btn = bar.querySelector('.wl-search-btn');
+        var btnIcon = btn.querySelector('i');
+        var countEl = bar.querySelector('.wl-search-count');
+        var jumpRow = bar.querySelector('.wl-search-jump');
+        var noneEl = bar.querySelector('.wl-search-none');
+
+        // Jump-to chips (one per section, labelled in the user's language)
+        sections.forEach(function (s) {
+            var label = s.button ? s.button.textContent.trim() : '';
+            if (!label) return;
+            var chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'btn btn-sm btn-outline-primary py-0';
+            chip.textContent = label;
+            chip.addEventListener('click', function () {
+                input.value = '';
+                restore();
+                expand(s);
+                s.item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                input.focus();
+            });
+            jumpRow.appendChild(chip);
+        });
+
+        form.parentNode.insertBefore(bar, form);
+
+        var lastFirst = null;
+
+        function filter() {
+            var q = norm(input.value).trim().replace(/\s+/g, ' ');
+            // Trailing button mirrors the navbar: magnifier at rest, becomes a
+            // clear control once there's text to remove.
+            var filled = !!input.value;
+            btnIcon.className = filled ? 'fas fa-times' : 'fas fa-search';
+            btn.setAttribute('aria-label', filled ? T.clear : T.ph);
+            btn.title = filled ? T.clear : T.ph;
+
+            if (!q) { restore(); return; }
+
+            var firstMatch = null;
+            var visible = 0;
+
+            sections.forEach(function (s) {
+                var headerHit = s.header.indexOf(q) !== -1;
+                var sectionHit = false;
+                s.cards.forEach(function (card) {
+                    var hit = headerHit || card.text.indexOf(q) !== -1;
+                    card.el.style.display = hit ? '' : 'none';
+                    if (hit) { sectionHit = true; visible++; }
+                });
+                if (sectionHit) {
+                    s.item.style.display = '';
+                    s.item.classList.add('wl-hit');
+                    expand(s);
+                    if (!firstMatch) firstMatch = s.item;
+                } else {
+                    s.item.style.display = 'none';
+                    s.item.classList.remove('wl-hit');
+                }
+            });
+
+            countEl.textContent = String(visible);
+            countEl.hidden = false;
+            noneEl.hidden = visible !== 0;
+            jumpRow.hidden = true;
+
+            if (firstMatch && firstMatch !== lastFirst) {
+                lastFirst = firstMatch;
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function restore() {
+            lastFirst = null;
+            sections.forEach(function (s) {
+                s.item.style.display = '';
+                s.item.classList.remove('wl-hit');
+                s.cards.forEach(function (card) { card.el.style.display = ''; });
+                if (s.initiallyOpen) { expand(s); } else { collapse(s); }
+            });
+            btnIcon.className = 'fas fa-search';
+            btn.setAttribute('aria-label', T.ph);
+            btn.title = T.ph;
+            countEl.hidden = true;
+            noneEl.hidden = true;
+            jumpRow.hidden = false;
+        }
+
+        function expand(s) {
+            if (!s.collapse) return;
+            s.collapse.classList.add('show');
+            if (s.button) { s.button.classList.remove('collapsed'); s.button.setAttribute('aria-expanded', 'true'); }
+        }
+        function collapse(s) {
+            if (!s.collapse) return;
+            s.collapse.classList.remove('show');
+            if (s.button) { s.button.classList.add('collapsed'); s.button.setAttribute('aria-expanded', 'false'); }
+        }
+
+        input.addEventListener('input', filter);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { input.value = ''; restore(); }
+        });
+        btn.addEventListener('click', function () {
+            if (input.value) { input.value = ''; restore(); }
+            input.focus();
+        });
+    }
+
+    ready(init);
+})();
