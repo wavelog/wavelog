@@ -291,46 +291,20 @@ $(document).ready(function(){
 });
 
 /*
- * Account-page Settings Search  (custom, gitignored, auto-loaded by Wavelog)
+ * Account-page Settings Search
  * -------------------------------------------------------------------
  * On the user account edit page (application/views/user/edit.php) injects a
  * sticky search box above the form. It matches the text already rendered on
  * the page — which is in the user's active language — so searching works in
- * whatever locale the user has chosen, with no language-specific code.
+ * whatever locale the user has chosen, with no language-specific matching.
  * Hides non-matching cards, auto-expands any section that still has a hit,
  * shows a result count, and restores the exact section open/close state when
- * cleared. Runs only when `.accordion.user_edit` is present;
+ * cleared. Runs only when `.accordion.user_edit` is present.
+ * The search-box UI strings (placeholder, clear, jump, no-results) are the
+ * lang_account_search_* globals defined in edit.php via __()/gettext.
  */
 (function () {
     'use strict';
-
-    // Chrome strings per locale (base code from <html lang="...">). The matched
-    // setting text itself is always the user's own language because it comes
-    // straight from the rendered page — these are only for the search box UI.
-    var I18N = {
-        en: { ph: 'Search settings…', clear: 'Clear', jump: 'Jump to:', none: 'No settings match your search.' },
-        bg: { ph: 'Търсене в настройките…', clear: 'Изчисти', jump: 'Отиди на:', none: 'Няма намерени настройки.' },
-        cs: { ph: 'Hledat v nastavení…', clear: 'Vymazat', jump: 'Přejít na:', none: 'Žádná nastavení nenalezena.' },
-        de: { ph: 'Einstellungen durchsuchen…', clear: 'Leeren', jump: 'Springen zu:', none: 'Keine passenden Einstellungen gefunden.' },
-        el: { ph: 'Αναζήτηση ρυθμίσεων…', clear: 'Καθαρισμός', jump: 'Μετάβαση σε:', none: 'Δεν βρέθηκαν ρυθμίσεις.' },
-        es: { ph: 'Buscar en ajustes…', clear: 'Limpiar', jump: 'Ir a:', none: 'No se encontraron ajustes.' },
-        fi: { ph: 'Etsi asetuksista…', clear: 'Tyhjennä', jump: 'Siirry:', none: 'Asetuksia ei löytynyt.' },
-        fr: { ph: 'Rechercher un réglage…', clear: 'Effacer', jump: 'Aller à :', none: 'Aucun réglage trouvé.' },
-        hr: { ph: 'Pretraži postavke…', clear: 'Očisti', jump: 'Skoči na:', none: 'Nema pronađenih postavki.' },
-        hu: { ph: 'Beállítások keresése…', clear: 'Törlés', jump: 'Ugrás:', none: 'Nem található beállítás.' },
-        it: { ph: 'Cerca impostazioni…', clear: 'Cancella', jump: 'Vai a:', none: 'Nessuna impostazione trovata.' },
-        ja: { ph: '設定を検索…', clear: 'クリア', jump: 'ジャンプ:', none: '一致する設定が見つかりません。' },
-        nl: { ph: 'Instellingen doorzoeken…', clear: 'Wissen', jump: 'Ga naar:', none: 'Geen instellingen gevonden.' },
-        pl: { ph: 'Szukaj w ustawieniach…', clear: 'Wyczyść', jump: 'Przejdź do:', none: 'Nie znaleziono ustawień.' },
-        pt: { ph: 'Pesquisar definições…', clear: 'Limpar', jump: 'Ir para:', none: 'Nenhuma definição encontrada.' },
-        ro: { ph: 'Caută setări…', clear: 'Șterge', jump: 'Sari la:', none: 'Nicio setare găsită.' },
-        ru: { ph: 'Поиск по настройкам…', clear: 'Очистить', jump: 'Перейти к:', none: 'Настройки не найдены.' },
-        sk: { ph: 'Hľadať v nastaveniach…', clear: 'Vymazať', jump: 'Prejsť na:', none: 'Nenašli sa žiadne nastavenia.' },
-        sv: { ph: 'Sök inställningar…', clear: 'Rensa', jump: 'Gå till:', none: 'Inga inställningar hittades.' },
-        tr: { ph: 'Ayarları ara…', clear: 'Temizle', jump: 'Git:', none: 'Ayar bulunamadı.' },
-        uk: { ph: 'Пошук у налаштуваннях…', clear: 'Очистити', jump: 'Перейти до:', none: 'Налаштування не знайдено.' },
-        zh: { ph: '搜索设置…', clear: '清除', jump: '跳转到：', none: '未找到匹配的设置。' }
-    };
 
     function ready(fn) {
         if (document.readyState === 'loading') {
@@ -338,12 +312,6 @@ $(document).ready(function(){
         } else {
             fn();
         }
-    }
-
-    function tr() {
-        var raw = (document.documentElement.lang || 'en').toLowerCase();
-        var base = raw.split('_')[0].split('-')[0];
-        return I18N[base] || I18N.en;
     }
 
     // Case- and accent-insensitive comparison base.
@@ -359,7 +327,14 @@ $(document).ready(function(){
         if (!form) return;
         if (document.getElementById('wl-settings-search')) return; // idempotent
 
-        var T = tr();
+        // Search-box UI strings, provided as lang_account_search_* globals by
+        // application/views/user/edit.php via __()/gettext.
+        var T = {
+            ph:    lang_account_search_placeholder,
+            clear: lang_account_search_clear,
+            jump:  lang_account_search_jump,
+            none:  lang_account_search_none
+        };
 
         // --- Gather sections + cards, snapshot each section's open state ---
         var sections = [];
@@ -416,15 +391,15 @@ $(document).ready(function(){
             '<div class="wl-search-row">' +
                 '<span class="wl-search-field">' +
                     '<i class="fas fa-search"></i>' +
-                    '<input type="text" class="form-control" autocomplete="off" placeholder="' + esc(T.ph) + '" aria-label="' + esc(T.ph) + '">' +
-                    '<button type="button" class="wl-search-clear" aria-label="' + esc(T.clear) + '" title="' + esc(T.clear) + '" hidden>&times;</button>' +
+                    '<input type="text" class="form-control" autocomplete="off" placeholder="' + T.ph + '" aria-label="' + T.ph + '">' +
+                    '<button type="button" class="wl-search-clear" aria-label="' + T.clear + '" title="' + T.clear + '" hidden>&times;</button>' +
                 '</span>' +
                 '<span class="badge bg-secondary wl-search-count" hidden></span>' +
             '</div>' +
             '<div class="wl-search-jump">' +
-                '<span class="small wl-jump-label me-1">' + esc(T.jump) + '</span>' +
+                '<span class="small wl-jump-label me-1">' + T.jump + '</span>' +
             '</div>' +
-            '<div class="wl-search-none small" hidden>' + esc(T.none) + '</div>';
+            '<div class="wl-search-none small" hidden>' + T.none + '</div>';
 
         var input = bar.querySelector('input[type=text]');
         var clearBtn = bar.querySelector('.wl-search-clear');
@@ -516,12 +491,6 @@ $(document).ready(function(){
             if (!s.collapse) return;
             s.collapse.classList.remove('show');
             if (s.button) { s.button.classList.add('collapsed'); s.button.setAttribute('aria-expanded', 'false'); }
-        }
-
-        function esc(s) {
-            return String(s == null ? '' : s).replace(/[&<>"']/g, function (ch) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
-            });
         }
 
         input.addEventListener('input', filter);
