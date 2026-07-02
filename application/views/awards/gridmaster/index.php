@@ -2,9 +2,8 @@
 	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 </script>
 
-<div class="container gridsquare_map_form">
+<div class="container gridsquare_map_form px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
-        <br>
         <div id="awardInfoButton">
             <script>
             var lang_awards_info_button = "<?= __("Award Info"); ?>";
