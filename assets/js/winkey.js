@@ -1,13 +1,68 @@
 // Global variables for macros
 let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
 
+// Morse element patterns, used to time the TX status highlight
+const WINKEY_MORSE = {
+	'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..',
+	'0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',
+	'.':'.-.-.-',',':'--..--','?':'..--..','/':'-..-.','=':'-...-','+':'.-.-.','-':'-....-','(':'-.--.',')':'-.--.-',':':'---...',"'":'.----.','"':'.-..-.','@':'.--.-.'
+};
+
+let winkeyTxTimers = [];
+
+// Render the TX text and progressively highlight each character at the given WPM.
+// Dot duration follows the PARIS standard: 1200 / WPM milliseconds.
+function winkeyShowTx(text, wpm) {
+	const container = document.getElementById('winkeySendStatus');
+	if (!container) return;
+
+	winkeyTxTimers.forEach(clearTimeout);
+	winkeyTxTimers = [];
+
+	const dotMs = 1200 / (wpm || 20);
+	container.innerHTML = '';
+
+	const spans = [...text].map(ch => {
+		const span = document.createElement('span');
+		span.textContent = ch === ' ' ? ' ' : ch;
+		span.className = 'winkey-tx-char';
+		container.appendChild(span);
+		return span;
+	});
+
+	let t = 0;
+	[...text].forEach((ch, i) => {
+		if (ch === ' ') {
+			t += 7 * dotMs; // word gap
+			return;
+		}
+		const code = WINKEY_MORSE[ch.toUpperCase()];
+		let units = 0;
+		if (code) {
+			for (let k = 0; k < code.length; k++) {
+				units += code[k] === '-' ? 3 : 1;
+				if (k < code.length - 1) units += 1; // intra-character gap
+			}
+		} else {
+			units = 4; // unknown character fallback
+		}
+		t += units * dotMs;
+		const at = t;
+		winkeyTxTimers.push(setTimeout(() => spans[i].classList.add('winkey-tx-sent'), at));
+		t += 3 * dotMs; // inter-character gap
+	});
+
+	// Clear the bar shortly after the transmission finishes
+	winkeyTxTimers.push(setTimeout(() => { container.innerHTML = ''; }, t + 1500));
+}
+
 // Call url and store the returned json data as variables
 function getMacros() {
 	fetch(base_url + 'index.php/qso/cwmacros_json')
 	.then(response => response.json())
 	.then(data => {
-		// Check if all fields are empty
-		const allEmpty = Object.values(data).every(value => value === "");
+		// Check if all macro fields are empty (ignore esm_* config keys)
+		const allEmpty = Object.keys(data).filter(key => key.startsWith('function')).every(key => data[key] === "");
 
 		if (allEmpty) {
 			// Set default values
@@ -43,6 +98,19 @@ function getMacros() {
 			function10Name = data.function10_name;
 			function10Macro = data.function10_macro;
 		}
+
+		// ESM (Enter Sends Message) config
+		window.winkeyEsmEnabled = data.esm_enabled == 1;
+		window.winkeyEsmMap = {
+			cq:       parseInt(data.esm_cq, 10)       || 1,
+			qrz:      parseInt(data.esm_qrz, 10)      || 4,
+			exchange: parseInt(data.esm_exchange, 10) || 2,
+			tu:       parseInt(data.esm_tu, 10)       || 3,
+			sp:       parseInt(data.esm_sp, 10)       || 4,
+			spExch:   parseInt(data.esm_sp_exch, 10)  || 2,
+		};
+		const esmModeToggle = document.getElementById('esm_mode_toggle');
+		if (esmModeToggle) esmModeToggle.style.display = window.winkeyEsmEnabled ? '' : 'none';
 
 		const morsekey_func1_Button = document.getElementById('morsekey_func1');
 		morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
@@ -162,9 +230,16 @@ window.initWinkeyer = function() {
 		});
 	}
 
+	// Restore the last used CW speed so the user doesn't have to re-set it each session
+	const savedCwSpeed = localStorage.getItem('winkey_cw_speed');
+	if (savedCwSpeed && document.getElementById('winkeycwspeed')) {
+		$('#winkeycwspeed').val(savedCwSpeed);
+	}
+
 	$('#winkeycwspeed').change(function (event) {
-		// Get the value from the input
+		// Get the value from the input and store it in localStorage for persistence
 		let speed = parseInt($('#winkeycwspeed').val(), 10);
+		localStorage.setItem('winkey_cw_speed', speed);
 
 		// Convert to hexadecimal and pad if necessary
 		let hexspeed = speed.toString(16).padStart(2, '0');
@@ -175,6 +250,21 @@ window.initWinkeyer = function() {
 		// Send the command as hex bytes
 		sendHexToSerial(command);
 	});
+
+	// ESM Run / Search & Pounce toggle (operational, per-device preference)
+	window.winkeyEsmSP = localStorage.getItem('winkey_esm_sp') === '1';
+	const esmModeToggleBtn = document.getElementById('esm_mode_toggle');
+	if (esmModeToggleBtn) {
+		const updateEsmModeLabel = () => {
+			esmModeToggleBtn.textContent = window.winkeyEsmSP ? (window.lang_esm_sp || 'S&P') : (window.lang_esm_run || 'Run');
+		};
+		updateEsmModeLabel();
+		esmModeToggleBtn.addEventListener('click', () => {
+			window.winkeyEsmSP = !window.winkeyEsmSP;
+			localStorage.setItem('winkey_esm_sp', window.winkeyEsmSP ? '1' : '0');
+			updateEsmModeLabel();
+		});
+	}
 
 	document.addEventListener('keydown', function(event) {
 
@@ -239,6 +329,19 @@ window.initWinkeyer = function() {
 	connectButton.addEventListener("click", clickConnect);
 	sendButton.addEventListener("click", clickSend);
 
+	// Manual send field: force uppercase and send on Enter
+	if (sendText) {
+		sendText.addEventListener("input", () => {
+			sendText.value = sendText.value.toUpperCase();
+		});
+		sendText.addEventListener("keydown", (event) => {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				clickSend();
+			}
+		});
+	}
+
 	//When the connectButton is pressed
 	async function clickConnect() {
 		if (port) {
@@ -298,7 +401,9 @@ window.initWinkeyer = function() {
 			await delay(300); // Wait for 300ms
 			sendHexToSerial("02 00");
 			await delay(300); // Wait for 300ms
-			sendHexToSerial("02 14"); // init 20 wpm
+			// Init keyer with the speed currently shown (restored from localStorage)
+			let initSpeed = parseInt($('#winkeycwspeed').val(), 10) || 20;
+			sendHexToSerial(`02 ${initSpeed.toString(16).padStart(2, '0')}`);
 
 			$('#winkey_buttons').show();
 
@@ -384,7 +489,12 @@ window.initWinkeyer = function() {
 
 		// Convert the text to a Uint8Array
 		const encoder = new TextEncoder();
-		const buffer = encoder.encode(line.toUpperCase());
+		const text = line.toUpperCase();
+		const buffer = encoder.encode(text);
+
+		// Show what is being sent in the TX status bar, highlighting each character
+		// in sync with the configured CW speed
+		winkeyShowTx(text, parseInt($('#winkeycwspeed').val(), 10) || 20);
 
 		// Write the Uint8Array to the serial port
 		await outputStream.write(buffer);
@@ -476,6 +586,63 @@ window.initWinkeyer = function() {
 		writeToStream(UpdateMacros(function10Macro));
 		sendText.value = "";
 	}
+
+	// --- ESM (Enter Sends Message) ---
+
+	function macroBySlot(slot) {
+		const macros = [null, function1Macro, function2Macro, function3Macro, function4Macro,
+			function5Macro, function6Macro, function7Macro, function8Macro, function9Macro, function10Macro];
+		return macros[slot] || '';
+	}
+
+	function esmSend(slot) {
+		writeToStream(UpdateMacros(macroBySlot(slot)));
+		sendText.value = "";
+	}
+
+	// Exchange is complete when every visible received exchange field holds a value
+	function esmExchangeComplete() {
+		const fields = [window.winkeyExchangeRField, window.winkeySerialRField, window.winkeyGridRField];
+		return fields.every(id => {
+			const el = id ? document.getElementById(id) : null;
+			if (!el || el.offsetParent === null) return true; // hidden/absent → not required
+			return el.value.trim() !== '';
+		});
+	}
+
+	function esmLog() {
+		if (typeof window.logQso === 'function') window.logQso();
+	}
+
+	// Drives the QSO via the Enter key. Returns true when ESM handled the keypress
+	// (so the caller skips its default logging), false when ESM is inactive.
+	window.winkeyEsmEnter = function(event) {
+		if (!window.winkeyEsmEnabled || !port) return false;
+
+		// Escape hatch: Alt+Enter (and Ctrl+Alt+Enter) log without sending anything
+		if (event && event.altKey) {
+			esmLog();
+			return true;
+		}
+
+		const map = window.winkeyEsmMap || { cq: 1, qrz: 4, exchange: 2, tu: 3, sp: 4, spExch: 2 };
+		const sp = !!window.winkeyEsmSP; // Search & Pounce mode
+		const callsignEl = document.getElementById(window.winkeyCallsignField || 'callsign');
+		const callsign = (callsignEl?.value || '').trim();
+
+		if (callsign === '') {
+			if (!sp) esmSend(map.cq); // Run: call CQ; S&P: nothing to do
+		} else if (callsign.includes('?')) {
+			esmSend(map.qrz);
+		} else if (!esmExchangeComplete()) {
+			esmSend(sp ? map.sp : map.exchange); // S&P: send own call; Run: send report
+		} else {
+			// Send first: logQso() clears the form, which would blank [CALL] etc.
+			esmSend(sp ? map.spExch : map.tu); // Run: send TU; S&P: send your closing exchange
+			esmLog();
+		}
+		return true;
+	};
 
 
 
@@ -571,18 +738,27 @@ function winkey_macro_save() {
 			function9_macro: $('#function9_macro').val(),
 			function10_name: $('#function10_name').val(),
 			function10_macro: $('#function10_macro').val(),
+			esm_enabled: $('#esm_enabled').is(':checked') ? 1 : 0,
+			esm_cq: $('#esm_cq').val(),
+			esm_qrz: $('#esm_qrz').val(),
+			esm_exchange: $('#esm_exchange').val(),
+			esm_tu: $('#esm_tu').val(),
+			esm_sp: $('#esm_sp').val(),
+			esm_sp_exch: $('#esm_sp_exch').val(),
 		},
 		success: function (html) {
-			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'Macros were saved.',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-					getMacros();
-				}
-			});
+			winkeyToast('Macros saved');
+			getMacros();
 		}
 	});
+}
+
+// Toast that reuses whichever mechanism the page provides: the contest logger's
+// WindowManager toast, or the global showToast() from common.js on the normal QSO page.
+function winkeyToast(message) {
+	if (window.contestApp?.wm?.showToast) {
+		window.contestApp.wm.showToast('Winkeyer', message, 'bg-success text-white', 3000);
+	} else if (typeof showToast === 'function') {
+		showToast('Winkeyer', message, 'bg-success text-white', 3000);
+	}
 }

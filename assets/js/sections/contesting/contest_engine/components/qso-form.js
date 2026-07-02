@@ -268,9 +268,10 @@ class QsoFormComponent {
 		const inputs = this.container.querySelectorAll('input[type="text"], input[type="number"]');
 		inputs.forEach(input => {
 			input.addEventListener('keydown', (e) => {
-				if (e.key === 'Enter') {
-					this.logQso();
-				}
+				if (e.key !== 'Enter') return;
+				// ESM (Enter Sends Message): let the winkeyer drive the QSO when active
+				if (window.winkeyEsmEnter && window.winkeyEsmEnter(e)) return;
+				this.logQso();
 			});
 		});
 

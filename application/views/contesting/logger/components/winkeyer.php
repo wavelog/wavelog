@@ -2,7 +2,7 @@
 $config = [
 	"component_name" => "winkeyer",
 	"title" => __("Winkeyer"),
-	"version" => "1.0",
+	"version" => "1.1",
 	"author" => "WaveLog Development Team",
 	"default_size" => [
 		"width" => 380,
@@ -20,6 +20,8 @@ $config = [
 	var station_callsign = "<?= htmlspecialchars($session_info['station_callsign'] ?? ''); ?>";
 	var my_call = station_callsign;
 	var lang_admin_close = "<?= __('Close'); ?>";
+	var lang_esm_run = "<?= html_entity_decode(_pgettext("ESM mode", "Run")); ?>";
+	var lang_esm_sp  = "<?= html_entity_decode(_pgettext("ESM mode", "S&P")); ?>";
 
 	// Map contest form field IDs so winkey.js reads the right inputs
 	window.winkeyCallsignField = 'qso-callsign';
@@ -43,11 +45,12 @@ $config = [
 	</div>
 
 	<div class="window-body p-2">
-		<div id="winkeyer-component">
-			<div id="winkey">
+		<div id="winkeyer-component" class="h-100 d-flex flex-column">
+			<div id="winkey" class="d-flex flex-column flex-grow-1">
 				<div class="d-flex align-items-center gap-2 mb-2">
 					<button id="connectButton" class="btn btn-sm btn-primary"><?= __("Connect"); ?></button>
 					<button id="winkey_settings" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
+					<button id="esm_mode_toggle" type="button" class="btn btn-sm btn-secondary" style="display:none" title="<?= __("Toggle Run / Search & Pounce for ESM"); ?>"><?= _pgettext("ESM mode", "Run"); ?></button>
 				</div>
 
 				<div id="winkey_buttons">
@@ -81,8 +84,16 @@ $config = [
 					</div>
 				</div>
 
-				<!-- Status bar -->
-				<span id="statusBar" class="small text-muted"></span>
+				<div class="mt-auto">
+					<!-- Status bar -->
+					<span id="statusBar" class="small text-muted"></span>
+
+					<!-- TX status: shows the text currently being sent -->
+					<div class="d-flex align-items-center gap-2 mt-2">
+						<span class="badge bg-secondary">TX</span>
+						<span id="winkeySendStatus" class="small font-monospace text-truncate flex-grow-1"></span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
