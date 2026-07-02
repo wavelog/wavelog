@@ -700,6 +700,17 @@
 										</div>
 										<label class="d-block mb-0" for="user_map_gridsquare_show"><?= __("Show Locator"); ?></label>
 									</div>
+									<?php if(!isset($user_map_tile_style)) { $user_map_tile_style = '0'; } ?>
+									<div class="mb-3">	<!-- Custom Map Tile Style -->
+										<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
+										<?php $styles = map_style_options(); $current = $user_map_tile_style ?? '0'; ?>
+											<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" > 
+												<?php foreach ($styles as $id => $style): ?>
+													<option value="<?= $id; ?>" <?= $current == $id ? 'selected' : ''; ?> ><?= __($style['title'] ?? 'Null'); ?></option>
+												<?php endforeach; ?>
+											</select>
+									    <small class="form-text text-muted"><?= __("Choose the map tile rendering method; this will override the theme settings."); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>

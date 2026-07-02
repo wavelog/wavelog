@@ -21,6 +21,7 @@
 
     <!-- Maps -->
     <link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.css'); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= $this->paths->cache_buster('/assets/css/custom_map_style/' . map_css_file() . '.css'); ?>" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/loading.min.css'); ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/ldbtn.min.css'); ?>" />

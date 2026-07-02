@@ -3795,6 +3795,7 @@ INSERT INTO `user_options` VALUES
 (1,'map_custom','icon','qso','{\"icon\":\"fas fa-dot-circle\",\"color\":\"#ff0000\"}'),
 (1,'map_custom','icon','qsoconfirm','{\"icon\":\"fas fa-check-circle\",\"color\":\"#00aa00\"}'),
 (1,'map_custom','gridsquare','show','0'),
+(1,'map_custom','tile','style','0'),
 (1,'map_custom','icon','station','{\"icon\":\"fas fa-home\",\"color\":\"#0000ff\"}'),
 (1,'map_custom','icon','unworked','{\"icon\":\"\",\"color\":\"#ff0000\"}');
 UNLOCK TABLES;
