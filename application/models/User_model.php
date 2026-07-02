@@ -305,6 +305,7 @@ class User_Model extends CI_Model {
 				['map_custom', 'icon',                    'qsoconfirm',                    '{"icon":"fas fa-dot-circle","color":"#00ff00"}'],
 				['map_custom', 'icon',                    'station',                       '{"icon":"fas fa-broadcast-tower","color":"#0000ff"}'],
 				['map_custom', 'gridsquare',              'show',                          '0'],
+				['map_custom', 'tile',           	      'style',                         '0'],
 				['hamsat',     'hamsat_key',              'api',                           $user_hamsat_key],
 				['hamsat',     'hamsat_key',              'workable',                      $user_hamsat_workable_only],
 				['qso_tab',    'iota',                    'show',                          (($user_iota_to_qso_tab    ?? 'off') == "on" ? 1 : 0)],

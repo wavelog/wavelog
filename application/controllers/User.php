@@ -986,6 +986,7 @@ class User extends CI_Controller {
 				$data['user_map_qsoconfirm_color'] = "#00AA00";
 				$data['user_map_unworked_color'] = "#FF0000";
 				$data['user_map_gridsquare_show'] = "0";
+				$data['user_map_tile_style'] = "0";
 			}
 			$data['map_icon_select'] = array(
 				'station'=>array('0', 'fas fa-home', 'fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle' ),
@@ -1065,9 +1066,11 @@ class User extends CI_Controller {
 							$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
 						}
 						$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))), $user_id);
+						$this->user_options_model->set_option('map_custom','tile',array('style' => xss_clean($this->input->post('user_map_tile_style', true))),$user_id);
 					} else {
 						$this->user_options_model->del_option('map_custom','icon', null, $user_id);
 						$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
+						$this->user_options_model->del_option('map_custom','tile', null, $user_id);
 					}
 					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
 					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
