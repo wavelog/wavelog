@@ -693,7 +693,7 @@
 									<div class="mb-3">	<!-- Custom Map Tile Style -->
 										<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
 										<?php $styles = map_style_options(); $current = $user_map_tile_style ?? '0'; ?>
-											<select class="form-select"	id="tile_style" name="tile_style" > 
+											<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" > 
 												<?php foreach ($styles as $id => $style): ?>
 													<option value="<?= $id; ?>" <?= $current == $id ? 'selected' : ''; ?> ><?= __($style['title'] ?? 'Null'); ?></option>
 												<?php endforeach; ?>
