@@ -212,7 +212,7 @@ class Dashboard extends CI_Controller {
 
 		// Check user preferrence to show Solar Data on Dashboard and load data if yes
 		// Default to not show
-		if($data['dashboard_solar'] == 'Y') {
+		if (in_array($data['dashboard_solar'], ['top', 'bottom', 'Y'], true)) {
 			$this->load->model('Hamqsl_model');	// Load HAMQSL model
 
 			if (!$this->Hamqsl_model->set_solardata()) {
@@ -229,6 +229,7 @@ class Dashboard extends CI_Controller {
 		// Active Expeditions and Contests for Dashboard cards
 		$data['dashboard_show_dxpeditions'] = ($this->session->userdata('user_dashboard_show_dxpeditions') ?? '0') == '1' ? true : false;
 		$data['dashboard_show_contests'] = ($this->session->userdata('user_dashboard_show_contests') ?? '0') == '1' ? true : false;
+		$data['dashboard_show_kpi_stats'] = ($this->session->userdata('user_dashboard_show_kpi_stats') ?? '1') == '1' ? true : false;
 		$data['active_dxpeditions'] = false;
 		$data['active_contests'] = false;
 
