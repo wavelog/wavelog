@@ -1,0 +1,28 @@
+/*
+ Light optimized map tiles
+
+ CSS no filter, style from your map server.
+
+*/
+.leaflet-tile {
+    filter: none !important;
+}
+
+path.grid-rectangle {
+	stroke: rgba(97, 97, 97, 0.2);
+}
+
+span.grid-text > font {
+	color: rgb(97, 97, 97, 0.8) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-unworked > font {
+	color: rgb(97, 97, 97, 0.8) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-worked > font {
+	color: rgb(255, 255, 255) !important;
+	font-weight: 400 !important;
+}
