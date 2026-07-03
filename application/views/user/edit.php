@@ -706,7 +706,7 @@
 										<?php $styles = map_style_options(); $current = $user_map_tile_style ?? '0'; ?>
 											<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" > 
 												<?php foreach ($styles as $id => $style): ?>
-													<option value="<?= $id; ?>" <?= $current == $id ? 'selected' : ''; ?> ><?= __($style['title'] ?? 'Null'); ?></option>
+													<option value="<?= $id; ?>" <?= $current == $id ? 'selected' : ''; ?> ><?= map_style_label($style['label']); ?></option>
 												<?php endforeach; ?>
 											</select>
 									    <small class="form-text text-muted"><?= __("Choose the map tile rendering method; this will override the theme settings."); ?></small>
