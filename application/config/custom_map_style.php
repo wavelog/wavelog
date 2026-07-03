@@ -13,39 +13,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Note: After adding the entry here using the template below, 
 |       please go to `assets/css/custom_map_style`, create a CSS file 
 |       with the name you just specified, and define your custom styles within it.
+| Note: The `map_style_label` function in the `custom_map_style_helper.php` file is responsible for translating the title of the map style.
 */
 
 $config['tile_styles'] = [
 
     '0' => [
         'css' => 'map-follow',
-        'title' => 'Follow Theme',
+        'label' => 'map_follow_theme',
     ],
 
     '1' => [
         'css' => 'map-light',
-        'title' => 'Light',
+        'label' => 'map_light',
     ],
 
     '2' => [
         'css' => 'map-gray',
-        'title' => 'Gray',
+        'label' => 'map_gray',
     ],
 
     '3' => [
         'css' => 'map-night',
-        'title' => 'Night',
+        'label' => 'map_night',
 
     ],
 
     '4' => [
         'css' => 'map-high-contrast',
-        'title' => 'High Contrast',
+        'label' => 'map_high_contrast',
     ],
 
     '5' => [
         'css' => 'map-superhero',
-        'title' => 'Superhero',
+        'label' => 'map_superhero',
     ],
 
 ];
