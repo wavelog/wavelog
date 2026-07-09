@@ -191,8 +191,7 @@ class VUCC extends CI_Model
         // Process col_gridsquare data
         foreach ($bandData['gridsquare'] as $row) {
             $grid = $row['gridsquare'];
-            $lotw = $row['lotw_confirmed'] ? 'Y' : '';
-            $confirmed = $row['confirmed'];
+            $confirmed = $row['confirmed'] ? 'Y' : '';
 
             // Filter based on type
             if ($type == 'worked' && $confirmed) {
@@ -203,18 +202,14 @@ class VUCC extends CI_Model
             }
 
             if (!isset($vuccBand[$grid])) {
-                $vuccBand[$grid]['lotw'] = $lotw;
-            } else {
-                // Update confirmation status if already exists
-                if ($lotw) $vuccBand[$grid]['lotw'] = $lotw;
+                $vuccBand[$grid]['lotw'] = $confirmed;
             }
         }
 
         // Process col_vucc_grids data
         foreach ($bandData['vucc_grids'] as $row) {
             $grids = explode(",", $row['col_vucc_grids']);
-            $lotw = $row['lotw_confirmed'] ? 'Y' : '';
-            $confirmed = $row['confirmed'];
+            $confirmed = $row['confirmed'] ? 'Y' : '';
 
             foreach ($grids as $key) {
                 $grid_four = strtoupper(substr(trim($key), 0, 4));
@@ -228,10 +223,7 @@ class VUCC extends CI_Model
                 }
 
                 if (!isset($vuccBand[$grid_four])) {
-                    $vuccBand[$grid_four]['lotw'] = $lotw;
-                } else {
-                    // Update confirmation status if already exists
-                    if ($lotw) $vuccBand[$grid_four]['lotw'] = $lotw;
+                    $vuccBand[$grid_four]['lotw'] = $confirmed;
                 }
             }
         }
@@ -353,7 +345,7 @@ class VUCC extends CI_Model
 
         $sql1 = "SELECT
             DISTINCT UPPER(SUBSTRING(col_gridsquare, 1, 4)) as gridsquare,
-            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as lotw_confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . " log
             WHERE log.station_id IN (" . $location_list . ")
                 AND log.col_gridsquare <> ''"
@@ -376,7 +368,7 @@ class VUCC extends CI_Model
 
         $sql2 = "SELECT
             DISTINCT col_vucc_grids,
-            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as lotw_confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . "
             WHERE station_id IN (" . $location_list . ")
                 AND col_vucc_grids <> ''"

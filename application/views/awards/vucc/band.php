@@ -17,8 +17,7 @@
                 <th>' . __("Gridsquare") . '</th>';
 
             if ($type != 'worked') {
-                echo '<th>' . __("QSL") . '</th>
-                    <th>' . __("LoTW") . '</th>';
+                echo '<th>' . __("LoTW") . '</th>';
             } else {
                 echo '<th>' . __("Call") . '</th>';
             }
@@ -31,8 +30,7 @@
                     <td><a href=\'javascript:displayContacts("'. $vucc .'","'. $band . '","All","All","All","VUCC")\'>'. $vucc .'</a></td>';
 
                 if ($type != 'worked') {
-                    echo '<td>'. $value['qsl'] . '</td>
-                        <td>'. $value['lotw'] .'</td>';
+                    echo '<td>'. $value['lotw'] . '</td>';
                 } else {
                     echo '<td>'. $value['call'] .'</td>';
                 }
