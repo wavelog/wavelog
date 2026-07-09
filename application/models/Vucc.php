@@ -3,12 +3,12 @@
 class VUCC extends CI_Model
 {
 
-	private $logbooks_locations_array;
-	public function __construct()
-	{
-		$this->load->model('logbooks_model');
-		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-	}
+    private $logbooks_locations_array;
+    public function __construct()
+    {
+        $this->load->model('logbooks_model');
+        $this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+    }
 
     /*
      *  Fetches worked and confirmed gridsquare on each band and total
@@ -38,7 +38,7 @@ class VUCC extends CI_Model
 
         // Get combined data (2 queries instead of 4 per band)
         $combinedData = $this->get_vucc_combined_data_all_bands();
-		$combinedData2 = $this->get_vucc_combined_data_sat();
+        $combinedData2 = $this->get_vucc_combined_data_sat();
 
         // Process col_gridsquare data
         if (!empty($combinedData['gridsquare'])) {
@@ -98,7 +98,7 @@ class VUCC extends CI_Model
             }
         }
 
-		 // Process col_gridsquare data
+        // Process col_gridsquare data
         if (!empty($combinedData2['gridsquare'])) {
             foreach ($combinedData2['gridsquare'] as $row) {
                 $grid = $row['gridsquare'];
@@ -174,7 +174,7 @@ class VUCC extends CI_Model
         return $vuccArray;
     }
 
-	/*
+    /*
      * Makes a list of all gridsquares on chosen band with info about lotw and qsl
      * Optimized to fetch all callsigns in a single query instead of one per grid
      */
@@ -273,8 +273,8 @@ class VUCC extends CI_Model
             return [];
         }
 
-		$location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
-		$bindings = array();
+        $location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
+        $bindings = array();
 
         // Build band condition
         if ($band == 'SAT') {
@@ -346,9 +346,9 @@ class VUCC extends CI_Model
 
         $results = ['gridsquare' => [], 'vucc_grids' => []];
 
-		$location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
+        $location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
 
-		$bindings1 = array();
+        $bindings1 = array();
 
         if ($band == 'SAT') {
             $bandCondition1 = " and log.col_prop_mode = 'SAT'";
@@ -401,8 +401,8 @@ class VUCC extends CI_Model
         return $results;
     }
 
-	function grid_detail($gridsquare, $band) {
-		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
+    function grid_detail($gridsquare, $band) {
+        $location_list = "'".implode("','",$this->logbooks_locations_array)."'";
         $sql = "select COL_CALL from " . $this->config->item('table_name') .
                 " where station_id in (" . $location_list . ")" .
                 " and (col_gridsquare like '" . $gridsquare. "%'
@@ -434,7 +434,7 @@ class VUCC extends CI_Model
 
         // Query 1: Get col_gridsquare data for ALL bands with worked/confirmed status
         // GROUP BY both gridsquare and band to get per-band statistics
-		$location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
+        $location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
 
         $sql1 = "SELECT
             DISTINCT UPPER(SUBSTRING(col_gridsquare, 1, 4)) as gridsquare,
@@ -471,7 +471,7 @@ class VUCC extends CI_Model
         return $results;
     }
 
-	/*
+    /*
      * Fetches VUCC data for ALL bands in 2 queries (optimized)
      * Similar approach to CQ model's getCqZoneData()
      * Returns data with band information included for processing
@@ -485,7 +485,7 @@ class VUCC extends CI_Model
 
         // Query 1: Get col_gridsquare data for ALL bands with worked/confirmed status
         // GROUP BY both gridsquare and band to get per-band statistics
-		$location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
+        $location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";
 
         $sql1 = "SELECT
             DISTINCT UPPER(SUBSTRING(col_gridsquare, 1, 4)) as gridsquare,
@@ -522,9 +522,9 @@ class VUCC extends CI_Model
         return $results;
     }
 
-	/*
-    * Builds the array to display worked/confirmed vucc on dashboard page
-    */
+    /*
+     * Builds the array to display worked/confirmed vucc on dashboard page
+     */
     function fetchVuccSummary($band = 'All') {
         // Use associative arrays for O(1) lookups instead of O(n) in_array()
         $totalGridWorked = [];
@@ -568,7 +568,7 @@ class VUCC extends CI_Model
         return $vuccArray;
     }
 
-	private function get_vucc_combined_data($band = 'All') {
+    private function get_vucc_combined_data($band = 'All') {
         if (!$this->logbooks_locations_array) {
             return ['gridsquare' => [], 'vucc_grids' => []];
         }
@@ -579,7 +579,7 @@ class VUCC extends CI_Model
 
         // Query 1: Get col_gridsquare data with worked/confirmed status
         $bandCondition1 = '';
-		$bindings1 = array();
+        $bindings1 = array();
 
         if ($band != 'All') {
             if ($band == 'SAT') {
@@ -612,7 +612,7 @@ class VUCC extends CI_Model
         // Note: col_vucc_grids has NO band filter when band='All' (includes SAT)
         $bandCondition2 = '';
 
-		$bindings2 = array();
+        $bindings2 = array();
 
         if ($band != 'All') {
             if ($band == 'SAT') {
