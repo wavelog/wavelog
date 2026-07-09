@@ -175,7 +175,7 @@ class VUCC extends CI_Model
     }
 
     /*
-     * Makes a list of all gridsquares on chosen band with info about lotw and qsl
+     * Makes a list of all gridsquares on chosen band with info about lotw
      * Optimized to fetch all callsigns in a single query instead of one per grid
      */
     function vucc_details($band, $type) {
@@ -191,7 +191,6 @@ class VUCC extends CI_Model
         // Process col_gridsquare data
         foreach ($bandData['gridsquare'] as $row) {
             $grid = $row['gridsquare'];
-            $qsl = $row['qsl_confirmed'] ? 'Y' : '';
             $lotw = $row['lotw_confirmed'] ? 'Y' : '';
             $confirmed = $row['confirmed'];
 
@@ -204,11 +203,9 @@ class VUCC extends CI_Model
             }
 
             if (!isset($vuccBand[$grid])) {
-                $vuccBand[$grid]['qsl'] = $qsl;
                 $vuccBand[$grid]['lotw'] = $lotw;
             } else {
                 // Update confirmation status if already exists
-                if ($qsl) $vuccBand[$grid]['qsl'] = $qsl;
                 if ($lotw) $vuccBand[$grid]['lotw'] = $lotw;
             }
         }
@@ -216,7 +213,6 @@ class VUCC extends CI_Model
         // Process col_vucc_grids data
         foreach ($bandData['vucc_grids'] as $row) {
             $grids = explode(",", $row['col_vucc_grids']);
-            $qsl = $row['qsl_confirmed'] ? 'Y' : '';
             $lotw = $row['lotw_confirmed'] ? 'Y' : '';
             $confirmed = $row['confirmed'];
 
@@ -232,11 +228,9 @@ class VUCC extends CI_Model
                 }
 
                 if (!isset($vuccBand[$grid_four])) {
-                    $vuccBand[$grid_four]['qsl'] = $qsl;
                     $vuccBand[$grid_four]['lotw'] = $lotw;
                 } else {
                     // Update confirmation status if already exists
-                    if ($qsl) $vuccBand[$grid_four]['qsl'] = $qsl;
                     if ($lotw) $vuccBand[$grid_four]['lotw'] = $lotw;
                 }
             }
@@ -336,7 +330,7 @@ class VUCC extends CI_Model
     }
 
     /*
-     * Fetches VUCC data for a specific band with QSL/LoTW confirmation details
+     * Fetches VUCC data for a specific band with LoTW confirmation details
      * Returns data in a single query per band
      */
     private function get_vucc_band_data($band) {
@@ -359,9 +353,7 @@ class VUCC extends CI_Model
 
         $sql1 = "SELECT
             DISTINCT UPPER(SUBSTRING(col_gridsquare, 1, 4)) as gridsquare,
-            MAX(CASE WHEN col_qsl_rcvd='Y' THEN 1 ELSE 0 END) as qsl_confirmed,
-            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as lotw_confirmed,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as lotw_confirmed
             FROM " . $this->config->item('table_name') . " log
             WHERE log.station_id IN (" . $location_list . ")
                 AND log.col_gridsquare <> ''"
@@ -384,9 +376,7 @@ class VUCC extends CI_Model
 
         $sql2 = "SELECT
             DISTINCT col_vucc_grids,
-            MAX(CASE WHEN col_qsl_rcvd='Y' THEN 1 ELSE 0 END) as qsl_confirmed,
-            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as lotw_confirmed,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as lotw_confirmed
             FROM " . $this->config->item('table_name') . "
             WHERE station_id IN (" . $location_list . ")
                 AND col_vucc_grids <> ''"
@@ -439,7 +429,7 @@ class VUCC extends CI_Model
         $sql1 = "SELECT
             DISTINCT UPPER(SUBSTRING(col_gridsquare, 1, 4)) as gridsquare,
             col_band,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . " log
             WHERE log.station_id IN (" . $location_list . ")
                 AND log.col_gridsquare <> ''
@@ -456,7 +446,7 @@ class VUCC extends CI_Model
         $sql2 = "SELECT
             DISTINCT col_vucc_grids,
             col_band,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . "
             WHERE station_id IN (" . $location_list . ")
                 AND col_vucc_grids <> ''
@@ -490,7 +480,7 @@ class VUCC extends CI_Model
         $sql1 = "SELECT
             DISTINCT UPPER(SUBSTRING(col_gridsquare, 1, 4)) as gridsquare,
             col_prop_mode as col_band,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . " log
             WHERE log.station_id IN (" . $location_list . ")
                 AND log.col_gridsquare <> ''
@@ -507,7 +497,7 @@ class VUCC extends CI_Model
         $sql2 = "SELECT
             DISTINCT col_vucc_grids,
             col_prop_mode as col_band,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . "
             WHERE station_id IN (" . $location_list . ")
                 AND col_vucc_grids <> ''
@@ -594,7 +584,7 @@ class VUCC extends CI_Model
 
         $sql1 = "SELECT
             DISTINCT UPPER(SUBSTRING(col_gridsquare, 1, 4)) as gridsquare,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . " log
             INNER JOIN bands b ON (b.band = log.col_band)
             WHERE log.station_id IN (" . $location_list . ")
@@ -626,7 +616,7 @@ class VUCC extends CI_Model
 
         $sql2 = "SELECT
             DISTINCT col_vucc_grids,
-            MAX(CASE WHEN (col_qsl_rcvd='Y' OR col_lotw_qsl_rcvd='Y') THEN 1 ELSE 0 END) as confirmed
+            MAX(CASE WHEN col_lotw_qsl_rcvd='Y' THEN 1 ELSE 0 END) as confirmed
             FROM " . $this->config->item('table_name') . "
             WHERE station_id IN (" . $location_list . ")
                 AND col_vucc_grids <> ''"
