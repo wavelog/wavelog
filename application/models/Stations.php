@@ -55,9 +55,9 @@ class Stations extends CI_Model {
 
 	function profile($id) {
 		// Clean ID
-		$clean_id = $this->security->xss_clean($id);
-		$this->db->where('station_id', $clean_id);
-		return $this->db->get('station_profile');
+		$sql = 'SELECT `station_profile`.*, `dxcc_entities`.`lat` AS dxcc_lat, `dxcc_entities`.`long` AS dxcc_lon FROM `station_profile` LEFT JOIN `dxcc_entities` ON `station_profile`.`station_dxcc` = `dxcc_entities`.`adif` WHERE `station_id` = ?';
+		$query = $this->db->query($sql, $this->security->xss_clean($id));
+		return $query;
 	}
 
 	function profile_full($id) {

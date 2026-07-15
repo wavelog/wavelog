@@ -1111,39 +1111,51 @@ $($('#callsign')).on('keypress',function(e) {
   var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
   var maidenhead;
   var markers = L.layerGroup();
-  var pos = [51.505, -0.09];
+  var default_pos = [51.505, -0.09];
   var mymap = L.map('qsomap', {
     fullscreenControl: true,
     fullscreenControlOptions: {
-			position: 'topleft'
-		},
-}).setView(pos, 12);
+      position: 'topleft'
+    },
+  }).setView(default_pos, 12);
 
 maidenhead = L.maidenheadqrb().addTo(mymap);
 mymap.on('mousemove', onQsoMapMove);
+<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
      data: {
-<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
-        qra: '<?php echo $user_gridsquare; ?>',
-<?php } else if (($this->config->item('locator') ?? '') != '') { ?>
-        qra: '<?php echo $this->config->item('locator'); ?>',
-<?php } else { ?>
-        // Fallback to London in case all else fails
-        qra: 'IO91WM',
-<?php } ?>
+        qra: grid,
      },
      success: function(data) {
         result = JSON.parse(data);
         if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
            mymap.panTo([result[0], result[1]]);
-           pos = result;
         }
      },
      error: function() {
      },
   });
+<?php } else if (($active_station_info->dxcc_lat ?? '') != '' && ($active_station_info->dxcc_lon ?? '') != '') { ?>
+     mymap.panTo([<?= $active_station_info->dxcc_lat;?> , <?= $active_station_info->dxcc_lon; ?>]);
+<?php } else if (($this->config->item('locator') ?? '') != '') { ?>
+  $.ajax({
+     url: base_url + 'index.php/logbook/qralatlngjson',
+     type: 'post',
+     data: {
+     qra: "<?= $this->config->item('locator'); ?>",
+     },
+     success: function(data) {
+        result = JSON.parse(data);
+        if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+           mymap.panTo([result[0], result[1]]);
+        }
+     },
+     error: function() {
+     },
+  });
+<?php } ?>
 
   L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
