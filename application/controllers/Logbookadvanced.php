@@ -440,7 +440,7 @@ class Logbookadvanced extends CI_Controller {
 
 		$mappedcoordinates = array();
 		foreach ($qsos as $qso) {
-			if (!empty($qso['station_gridsquare']) && $this->isValidMaidenheadGrid($qso['station_gridsquare'])) {
+			if ($this->isValidMaidenheadGrid($qso['station_gridsquare']) || empty($qso['station_gridsquare'])) {
 				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
 					$mappedcoordinates[] = $this->calculate($qso, ($qso['station_gridsquare'] ?? ''), ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
 				} else {
@@ -490,24 +490,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-
-		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
-		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
-		$latlng1 = $this->qra->qra2latlong($locator1);
-		$latlng2 = $this->qra->qra2latlong($locator2);
-		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
-		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
-		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
-		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
-
-		$data['latlng1'] = $latlng1;
-		$data['latlng2'] = $latlng2;
-
 		$data['callsign'] = $qso['COL_CALL'];
 		$data['band'] = $qso['COL_BAND'];
 		$data['mode'] = $qso['COL_MODE'];
 		$data['gridsquare'] = $locator2;
-		$data['mygridsquare'] = $locator1;
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
@@ -515,6 +501,23 @@ class Logbookadvanced extends CI_Controller {
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
 		$data['id'] = $qso['COL_PRIMARY_KEY'];
+
+		$latlng2 = $this->qra->qra2latlong($locator2);
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+		$data['latlng2'] = $latlng2;
+
+		if (!empty($locator1)) {
+			$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
+			$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
+			$latlng1 = $this->qra->qra2latlong($locator1);
+			$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+			$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+
+			$data['latlng1'] = $latlng1;
+
+			$data['mygridsquare'] = $locator1;
+		}
 
 		return $data;
 	}
