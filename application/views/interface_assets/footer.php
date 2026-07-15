@@ -1127,7 +1127,7 @@ mymap.on('mousemove', onQsoMapMove);
      data: {
 <?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
         qra: '<?php echo $user_gridsquare; ?>',
-<?php } else if (null !== $this->config->item('locator')) { ?>
+<?php } else if (($this->config->item('locator') ?? '') != '') { ?>
         qra: '<?php echo $this->config->item('locator'); ?>',
 <?php } else { ?>
         // Fallback to London in case all else fails
