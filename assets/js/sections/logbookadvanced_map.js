@@ -340,6 +340,7 @@ function loadMap(data, iconsList) {
 	});
 
 	var counter = 0;
+	var stationMarkerExists = false;
 
 	clicklines = [];
 	$.each(data, function(k, v) {
@@ -365,6 +366,7 @@ function loadMap(data, iconsList) {
 
 		if (typeof(this.latlng1) !== 'undefined') {
 			var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage);
+			stationMarkerExists = true;
 
 			marker.on('mouseover',function(ev) {
 				ev.target.openPopup();
@@ -417,7 +419,9 @@ function loadMap(data, iconsList) {
 	legend.onAdd = function(map) {
 		var div = L.DomUtil.create("div", "legend");
 		div.innerHTML += '<div>' + counter + " QSO" +(counter > 1 ? 's' : '') +" plotted</div>";
-		div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_pathlines + '</span><br>';
+		if (stationMarkerExists == true) {
+			div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_pathlines + '</span><br>';
+		}
 		div.innerHTML += '<input type="checkbox" onclick="toggleCallsigns(this.checked)" ' + (typeof callsign_layer !== 'undefined' && callsign_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_callsigns + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_cq_zones + '</span><br>';
