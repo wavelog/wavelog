@@ -119,10 +119,14 @@ class Qra {
 		$echo = "";
 		if (!empty($grid)) {
 			$echo = $grid;
-			$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>') : '';
+			if (!empty($mygrid)) {
+				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>') : '';
+			}
 		} else if (!empty($vucc)) {
 			$echo = $vucc;
-			$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>') : '';
+			if (!empty($mygrid)) {
+				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>') : '';
+			}
 		}
 		return $echo;
 	}
