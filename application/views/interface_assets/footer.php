@@ -1127,7 +1127,7 @@ mymap.on('mousemove', onQsoMapMove);
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
      data: {
-        qra: grid,
+        qra: "<?=$active_station_info->station_gridsquare; ?>",
      },
      success: function(data) {
         result = JSON.parse(data);
