@@ -686,21 +686,25 @@ function globemap(x) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
 	globePayArc=[];
 	globePayLab=[];
+	startPos=[];
 	x.forEach((element) => {
-		let OneQsoArc={};
-		OneQsoArc.startLat=element.latlng1[0];
-		OneQsoArc.startLng=element.latlng1[1];
-		OneQsoArc.endLat=element.latlng2[0];
-		OneQsoArc.endLng=element.latlng2[1];
-		OneQsoArc.name=element.callsign;
-		if (element.confirmed) {
-			OneQsoArc.color = 'green';
-		} else {
-			OneQsoArc.color = 'red';
+		if (typeof(element.latlng1) !== 'undefined') {
+			let OneQsoArc={};
+			startPos = [element.latlng1[0], element.latlng1[1]];
+			OneQsoArc.startLat=element.latlng1[0];
+			OneQsoArc.startLng=element.latlng1[1];
+			OneQsoArc.endLat=element.latlng2[0];
+			OneQsoArc.endLng=element.latlng2[1];
+			OneQsoArc.name=element.callsign;
+			if (element.confirmed) {
+				OneQsoArc.color = 'green';
+			} else {
+				OneQsoArc.color = 'red';
+			}
+			// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
+			OneQsoArc.altitude=0.15;
+			globePayArc.push(OneQsoArc);
 		}
-		// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
-		OneQsoArc.altitude=0.15;
-		globePayArc.push(OneQsoArc);
 		let OneQsoLab={};
 		OneQsoLab.lat=element.latlng2[0];
 		OneQsoLab.lng=element.latlng2[1];
@@ -713,7 +717,7 @@ function globemap(x) {
 function renderGlobe(arcsData,labelData) {
 	Globe()
 	.globeImageUrl(base_url + '/assets/images/earth-blue-marble.jpg')
-	.pointOfView({ lat: arcsData[0].startLat, lng: arcsData[0].startLng, altitude:1}, 100)
+	.pointOfView({ lat: startPos[0], lng: startPos[1], altitude:1}, 100)
 	.labelsData(labelData)
 	.arcsData(arcsData)
 	.arcColor('color')
