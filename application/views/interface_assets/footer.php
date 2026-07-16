@@ -1112,13 +1112,13 @@ $($('#callsign')).on('keypress',function(e) {
   var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
   var maidenhead;
   var markers = L.layerGroup();
-  var default_pos = [51.505, -0.09];
+  var pos = [51.505, -0.09];
   var mymap = L.map('qsomap', {
     fullscreenControl: true,
     fullscreenControlOptions: {
       position: 'topleft'
     },
-  }).setView(default_pos, 12);
+  }).setView(pos, 12);
 
 maidenhead = L.maidenheadqrb().addTo(mymap);
 mymap.on('mousemove', onQsoMapMove);
@@ -1151,6 +1151,7 @@ mymap.on('mousemove', onQsoMapMove);
         result = JSON.parse(data);
         if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
            mymap.panTo([result[0], result[1]]);
+           pos = result;
         }
      },
      error: function() {
