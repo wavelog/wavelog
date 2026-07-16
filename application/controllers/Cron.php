@@ -37,6 +37,7 @@ class cron extends CI_Controller {
 		$data['page_title'] = __("Cron Manager");
 		$data['crons'] = $this->cron_model->get_crons();
 		$data['cron_allow_insecure'] = $this->config->item('cron_allow_insecure') ?? false;
+		$data['cron_disable_run_now'] = ($this->config->item('cron_disable_run_now') ?? false) == true;
 
 		$mastercron = array();
 		$mastercron = $this->get_mastercron_status();
@@ -109,36 +110,19 @@ class cron extends CI_Controller {
 							echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
 							echo "CRON: " . $cron->id . " -> RUNNING...\n";
 
-							if (ENVIRONMENT == "docker") {
-								// In Docker, we use the localhost[:80] to call the cron directly inside the container
-								$url = 'http://localhost/' . $cron->function;
-								log_message('debug', 'Docker Environment detected. Using URL: ' . $url);
-							} else {
-								// In other environments, we use the local_url() function to get the default url
-								// Even this local_url() helper created in https://github.com/wavelog/wavelog/pull/795 is not really necessary anymore
-								// we keep it in case of users do fancy things with it. It doesn't hurt to have it here as it usually returns the base_url
-								// from the config.php file.
-								$url = local_url() . $cron->function;
-							}
+							$cron_result = $this->triggerCron($cron);
 							if (ENVIRONMENT == "development") {
-								echo "CRON: " . $cron->id . " -> URL: " . $url . "\n";
+								echo "CRON: " . $cron->id . " -> URL: " . $cron_result['url'] . "\n";
 							}
 
-							$ch = curl_init();
-							curl_setopt($ch, CURLOPT_URL, $url);
-							curl_setopt($ch, CURLOPT_HEADER, false);
-							curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-							if ($this->config->item('cron_allow_insecure') ?? false == true) {
-								curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-							}
-							$crun = curl_exec($ch);
-
-							if ($crun !== false) {
-								echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
+							if ($cron_result['locked']) {
+								echo "CRON: " . $cron->id . " -> already running. skipped.\n";
+								$set_status = false;
+							} else if ($cron_result['success']) {
+								echo "CRON: " . $cron->id . " -> CURL Result: " . $cron_result['response'] . "\n";
 								$status = 'healthy';
 							} else {
-								echo "ERROR: Something went wrong with " . $cron->id . "; Message: " . $crun . "\n";
+								echo "ERROR: Something went wrong with " . $cron->id . "; Message: " . $cron_result['error'] . "\n";
 								$status = 'failed';
 							}
 						} else {
@@ -174,6 +158,53 @@ class cron extends CI_Controller {
 		} else {
 			log_message('error', 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version);
 			echo 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version . "\n";
+		}
+	}
+
+	public function runNow() {
+		if (!$this->user_model->authorize(99)) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => __("You're not allowed to do that!")]);
+			return;
+		}
+
+		if (($this->config->item('cron_disable_run_now') ?? false) == true) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'warning', 'message' => __('Manual execution of cronjobs is disabled.')]);
+			return;
+		}
+		// Release the session lock: the job runs synchronously and would otherwise
+		// block every other request of this user (with the file session driver) until it finishes.
+		session_write_close();
+
+		$cron = $this->cron_model->cron($this->input->post('id', true))->row();
+		if ($cron === null) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => __('Cronjob not found.')]);
+			return;
+		}
+
+		if ($cron->enabled != 1) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'warning', 'message' => __('Disabled cronjobs cannot be run.')]);
+			return;
+		}
+
+		$cron_result = $this->triggerCron($cron);
+		header("Content-type: application/json");
+
+		if ($cron_result['locked']) {
+			echo json_encode(['success' => false, 'messagecategory' => 'warning', 'message' => __('Cronjob is already running.')]);
+			return;
+		}
+
+		if ($cron_result['success']) {
+			$this->cron_model->set_status($cron->id, 'healthy');
+			echo json_encode(['success' => true, 'messagecategory' => 'success', 'message' => __('Cronjob executed successfully.')]);
+		} else {
+			$this->cron_model->set_status($cron->id, 'failed');
+			log_message('error', 'CRON: Manual execution of ' . $cron->id . ' failed: ' . $cron_result['error']);
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => __('Cronjob execution failed.')]);
 		}
 	}
 
@@ -259,6 +290,7 @@ class cron extends CI_Controller {
 			$single->cron_last_run = $cron->last_run ?? __("never");
 			$single->cron_next_run = ($cron->enabled == '1') ? ($cron->next_run ?? __("calculating...")) : __("never");
 			$single->cron_edit = $this->cronEdit2html($cron->id);
+			$single->cron_run = $this->cronRun2html($cron->id, $cron->enabled);
 			$single->cron_enabled = $this->cronEnabled2html($cron->id, $cron->enabled);
 			array_push($hres, $single);
 		}
@@ -292,6 +324,12 @@ class cron extends CI_Controller {
 		return $htmlret;
 	}
 
+	private function cronRun2html($id, $enabled) {
+		$disabled = ($enabled == '1') ? '' : ' disabled';
+		$htmlret = '<button id="' . $id . '" class="runCron btn btn-outline-success btn-sm"' . $disabled . '>' . __("Run Now") . '</button>';
+		return $htmlret;
+	}
+
 	private function cronEnabled2html($id, $enabled) {
 		if ($enabled == '1') {
 			$checked = 'checked';
@@ -300,6 +338,65 @@ class cron extends CI_Controller {
 		}
 		$htmlret = '<div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="' . $id . '" ' . $checked . '></div>';
 		return $htmlret;
+	}
+
+	private function triggerCron($cron) {
+		if (ENVIRONMENT == "docker") {
+			$url = 'http://localhost/' . $cron->function;
+			log_message('debug', 'Docker Environment detected. Using URL: ' . $url);
+		} else {
+			$url = local_url() . $cron->function;
+		}
+
+		// Prevent manual and scheduled executions of the same cronjob from overlapping.
+		// Load cache driver for locking mechanism.
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+		$lock_key = 'cron_lock_' . md5($cron->id);
+		if ($this->cache->get($lock_key)) {
+			return ['success' => false, 'locked' => true, 'response' => '', 'error' => '', 'url' => $url];
+		}
+
+		// we lock only for 3 minutes since the curl progressfunction renews the lock by itself every 30s
+		$lock_ttl = 180;
+		$this->cache->save($lock_key, time(), $lock_ttl);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+
+		$last_renew = time();
+		curl_setopt($ch, CURLOPT_NOPROGRESS, false);
+		curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, function ($ch, $dltotal, $dlnow, $ultotal, $ulnow) use ($lock_key, $lock_ttl, &$last_renew) {
+			// make sure the progressfunction is called not more than once every 30s
+			if (time() - $last_renew >= 30) {
+				$this->cache->save($lock_key, time(), $lock_ttl);
+				$last_renew = time();
+			}
+			return 0;
+		});
+
+		if ($this->config->item('cron_allow_insecure') ?? false == true) {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		}
+		$response = curl_exec($ch);
+		$error = $response === false ? curl_error($ch) : '';
+
+		// invalidate the cache so the job can run next time
+		$this->cache->delete($lock_key);
+		return [
+			'success' => $response !== false,
+			'locked' => false,
+			'response' => $response,
+			'error' => $error,
+			'url' => $url
+		];
 	}
 
 	private function get_mastercron_status() {

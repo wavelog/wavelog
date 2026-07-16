@@ -43,7 +43,7 @@ class Wwff
 
 	// fetches the summit information from WWFF
 	public function info($ref) {
-		$url = 'https://www.cqgma.org/wwff_ref.php?ref='.$ref;
+		$url = 'https://www.gma.rocks/wwff_ref.php?ref='.$ref;
 
 		// Let's use cURL instead of file_get_contents
 		// begin script

@@ -31,40 +31,6 @@ class Hamqsl_model extends CI_Model {
 		}
 	}
 
-	function get_bandconditions(string $name, string $time) {
-		// Returns the band condition for a given band name and time of day from the provided XML root
-		// If the data is not available, returns null
-		// Example: get_band_condition('80m-40m', 'day')
-		// Returns: 'Good', 'Fair', 'Poor', or null if not found
-
-		if (!$this->solarData) {
-			if (!$this->set_solardata()) {
-				return null; // Unable to load data
-			}
-		}
-
-		// Properly escape values for XPath
-		$escapeForXPath = function($value) {
-			if (strpos($value, "'") === false) {
-				return "'$value'";
-			} elseif (strpos($value, '"') === false) {
-				return "\"$value\"";
-			} else {
-				return "concat('" . str_replace("'", "',\"'\",'", $value) . "')";
-			}
-		};
-		$nameEscaped = $escapeForXPath($name);
-		$timeEscaped = $escapeForXPath($time);
-		$xpathQuery = "/solardata/calculatedconditions/band[@name=$nameEscaped and @time=$timeEscaped]";
-		$result = $this->solarData->xpath($xpathQuery);
-
-		if ($result && count($result) > 0) {
-			return trim((string)$result[0]);
-		} else {
-			return null; // Not found
-		}
-	}
-
 	function get_bandconditions_array() {
 		// Returns an associative array of all band conditions from the XML data
 		// The array structure is: [band_name][time_of_day] = condition

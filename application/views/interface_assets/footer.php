@@ -33,6 +33,7 @@
     var lang_general_share_qso = "<?= __("Share QSO"); ?>";
     var lang_general_word_danger = "<?= __("DANGER"); ?>";
     var lang_general_word_error = "<?= __("ERROR"); ?>";
+    var lang_general_word_query_failed_unkown = "<?= __("The query failed for a unknown reason"); ?>";
     var lang_general_word_attention = "<?= __("Attention"); ?>";
     var lang_general_word_warning = "<?= __("Warning"); ?>";
     var lang_general_word_success = "<?= __("Success"); ?>";

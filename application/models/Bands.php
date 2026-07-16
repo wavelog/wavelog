@@ -260,34 +260,6 @@ class Bands extends CI_Model {
 		return $worked_orbits;
 	}
 
-	function get_worked_bands_dok() {
-		if (!$this->logbooks_locations_array) {
-			return array();
-		}
-
-		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
-
-		// get all worked slots from database
-		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id in (" . $location_list . ") AND COL_DARC_DOK IS NOT NULL AND COL_DARC_DOK != ''  AND COL_DXCC = 230 "
-		);
-		$worked_slots = array();
-		foreach($data->result() as $row){
-			array_push($worked_slots, $row->COL_BAND);
-		}
-
-		// bring worked-slots in order of defined $bandslots
-		$bandslots = $this->get_user_bands('dok');
-
-		$results = array();
-		foreach($bandslots as $slot) {
-			if(in_array($slot, $worked_slots)) {
-				array_push($results, $slot);
-			}
-		}
-		return $results;
-	}
-
 	function activateall() {
         $data = array(
             'active' => '1',

@@ -401,25 +401,6 @@ class VUCC extends CI_Model
         return $results;
     }
 
-	function grid_detail($gridsquare, $band) {
-		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
-        $sql = "select COL_CALL from " . $this->config->item('table_name') .
-                " where station_id in (" . $location_list . ")" .
-                " and (col_gridsquare like '" . $gridsquare. "%'
-                    or col_vucc_grids like '%" . $gridsquare. "%')";
-
-        if ($band != 'All') {
-            if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
-            } else {
-                $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
-            }
-        }
-
-        return $this->db->query($sql);
-    }
-
     /*
      * Fetches VUCC data for ALL bands in 2 queries (optimized)
      * Similar approach to CQ model's getCqZoneData()

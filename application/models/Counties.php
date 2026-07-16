@@ -12,20 +12,6 @@ class Counties extends CI_Model
     }
 
     /*
-     *  Fetches worked and confirmed counties
-     */
-    function get_counties_array() {
-        $countiesArray = $this->get_counties_summary();
-
-        if (isset($countiesArray)) {
-            return $countiesArray;
-        } else {
-            return 0;
-        }
-        return 0;
-    }
-
-    /*
      * Returns a result of worked/confirmed US Counties, grouped by STATE
      * QSL card and EQSL is valid for award. Satellite does not count.
      * No band split, as it only count the number of counties in the award.

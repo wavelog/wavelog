@@ -176,18 +176,6 @@ class Note extends CI_Model {
 		return $query->row()->count;
 	}
 
-	// Get categories with their respective note counts for the logged-in user
-	public function get_categories_with_counts() {
-		$user_id = $this->session->userdata('user_id');
-		$sql = "SELECT cat, COUNT(*) as count FROM notes WHERE user_id = ? GROUP BY cat";
-		$query = $this->db->query($sql, array($user_id));
-		$result = [];
-		foreach ($query->result() as $row) {
-			$result[$row->cat] = (int)$row->count;
-		}
-		return $result;
-	}
-
 	// Search notes with pagination and sorting for the logged-in user
 	public function search_paginated($criteria = [], $page = 1, $per_page = 25, $sort_col = null, $sort_dir = null) {
 		$page = max(1, intval($page));

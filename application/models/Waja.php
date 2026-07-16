@@ -125,64 +125,6 @@ class WAJA extends CI_Model {
 		}
 	}
 
-	function getWajaBandConfirmed($location_list, $band, $postdata) {
-		$bindings=[];
-		$sql = "select adif as waja, name from dxcc_entities
-			join (
-				select col_dxcc from ".$this->config->item('table_name')." thcv
-				where station_id in (" . $location_list .
-				") and col_dxcc > 0";
-
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
-		$sql .= " group by col_dxcc
-				) x on dxcc_entities.adif = x.col_dxcc";
-
-		if ($postdata['includedeleted'] == NULL) {
-			$sql .= " and dxcc_entities.end is null";
-		}
-
-		$query = $this->db->query($sql,$bindings);
-
-		return $query->result();
-	}
-
-	function getWajaBandWorked($location_list, $band, $postdata) {
-		$bindings=[];
-		$sql = "select adif as waja, name from dxcc_entities
-			join (
-				select col_dxcc from ".$this->config->item('table_name')." thcv
-				where station_id in (" . $location_list .
-				") and col_dxcc > 0";
-
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= " group by col_dxcc
-				) x on dxcc_entities.adif = x.col_dxcc";;
-
-		if ($postdata['includedeleted'] == NULL) {
-			$sql .= " and dxcc_entities.end is null";
-		}
-
-		$query = $this->db->query($sql,$bindings);
-
-		return $query->result();
-	}
-
 	/*
 	 * Function returns all worked, but not confirmed states
 	 * $postdata contains data from the form, in this case Lotw or QSL are used

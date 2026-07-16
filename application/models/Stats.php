@@ -1129,38 +1129,6 @@
 		return $result->result();
 	}
 
-		public function getInitialsFromDb2($band, $mode) {
-		$binding = [];
-
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if ($logbooks_locations_array[0] === -1) {
-			return null;
-		}
-
-		$sql = "SELECT col_call, min(col_time_on) firstworked, col_band, min(col_primary_key) qsoid FROM ".$this->config->item('table_name');
-
-		$sql .= " where station_id in (" . implode(',',$logbooks_locations_array) . ") and col_prop_mode ='EME'";
-
-		if ($mode != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$binding[] = $mode;
-			$binding[] = $mode;
-		}
-
-		if ($band != 'All') {
-			$sql .= " and col_band = ?";
-			$binding[] = $band;
-		}
-
-		$sql .= " group by col_call, col_band order by firstworked";
-
-		$result = $this->db->query($sql, $binding);
-
-		return $result->result();
-	}
-
 	function get_eme_modes() {
 
 		$modes = array();

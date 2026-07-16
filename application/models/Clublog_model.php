@@ -216,7 +216,7 @@ class Clublog_model extends CI_Model
 					$log = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
 					log_message('debug', $log);
 					$return .= $log."<br>";
-				} elseif ($httpcode == 403) { 
+				} elseif ($httpcode == 403) {
 					$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (possibly access denied)";
 					log_message('debug', $log);
 					$return .= $log."<br>";
@@ -258,40 +258,6 @@ class Clublog_model extends CI_Model
 		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "N");
 		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "M");
 		$this->db->group_end();
-		$this->db->update($this->config->item('table_name'), $data);
-	}
-
-	function mark_qso_sent($qso_id) {
-		$data = array(
-			'COL_CLUBLOG_QSO_UPLOAD_DATE' => date('Y-m-d'),
-			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "Y",
-		);
-
-		$this->db->where("COL_PRIMARY_KEY", $qso_id);
-		$this->db->update($this->config->item('table_name'), $data);
-	}
-
-	function get_last_five($station_id) {
-		$this->db->where('station_id', $station_id);
-		$this->db->group_start();
-		$this->db->where("COL_CLUBLOG_QSO_UPLOAD_STATUS", null);
-		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "");
-		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "N");
-		$this->db->group_end();
-		$this->db->limit(5);
-		$query = $this->db->get($this->config->item('table_name'));
-
-		return $query;
-	}
-
-	function mark_all_qsos_notsent($station_id) {
-		$data = array(
-			'COL_CLUBLOG_QSO_UPLOAD_DATE' => null,
-			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "N",
-		);
-
-		$this->db->where("station_id", $station_id);
-		$this->db->where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "Y");
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
@@ -340,7 +306,7 @@ class Clublog_model extends CI_Model
 
 	function disable_sync4call($call, $stations) {
 		if (empty($stations) || trim($stations) === '') {
-			return; 
+			return;
 		}
 
 		$station_ids = array_filter(explode(",", $stations), function($id) {
@@ -348,7 +314,7 @@ class Clublog_model extends CI_Model
 		});
 
 		if (empty($station_ids)) {
-			return; 
+			return;
 		}
 
 		$placeholders = implode(',', array_fill(0, count($station_ids), '?'));

@@ -305,32 +305,6 @@ class WPX extends CI_Model {
 		return $sql;
 	}
 
-	public function get_band_details($band, $status)
-	{
-		$this->db->select('col_call, col_time_on, col_mode, col_qsl_rcvd, col_lotw_qsl_rcvd, col_eqsl_qsl_rcvd');
-
-		$this->db->from($this->config->item('table_name') . ' thcv');
-
-		$station_id = $this->session->userdata('active_station_logbook');
-		if (is_array($station_id)) {
-			$this->db->where_in('station_id', $station_id);
-		} else {
-			$this->db->where('station_id', $station_id);
-		}
-
-		$this->db->where('col_band', $band);
-
-		// filter by status
-		if ($status === 'confirmed') {
-			$this->db->where("(col_qsl_rcvd = 'Y' OR col_lotw_qsl_rcvd = 'Y' OR col_eqsl_qsl_rcvd = 'Y')", null, false);
-		}
-
-		$this->db->order_by('col_time_on', 'DESC');
-
-		$query = $this->db->get();
-		return $query->result();
-	}
-
 	function getWpxBandDetails($postdata) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));

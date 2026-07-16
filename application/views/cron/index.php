@@ -58,9 +58,17 @@
         </div>
         <div class="card-body">
             <?php if (version_compare(PHP_VERSION, $min_php_version) >= 0) { ?>
-                <?php if ($mastercron['status_class'] != 'danger') { ?>
+                <?php if ($mastercron['status_class'] == 'danger') { ?>
+                    <div class="text-center">
+                        <h4><?= __("Your Mastercron isn't running."); ?><br>
+                        <?= __("Copy the cron above to a external cron service or into your server's cron to use this cron manager."); ?></h4>
+                        <p><?= __("On a basic linux server with shell access use this command to edit your crons:"); ?>
+                        <pre><code>crontab -e</code></pre>
+                        </p>
+                    </div>
+                <?php } ?>
                     <div class="table-responsive">
-                        <table id="cron_table" style="width:100%" class="crontable table table-sm table-striped">
+                        <table id="cron_table" style="width:100%" class="crontable table table-sm table-striped" data-disable-run-now="<?php echo !empty($cron_disable_run_now) ? '1' : '0'; ?>">
                             <thead>
                                 <tr>
                                     <th><?= __("ID"); ?></th>
@@ -70,6 +78,7 @@
                                     <th><?= __("Last Run"); ?></th>
                                     <th><?= __("Next Run"); ?></th>
                                     <th><?= __("Edit"); ?></th>
+                                    <th<?php if (!empty($cron_disable_run_now)) { echo ' style="display:none;"'; } ?>><?= __("Run Now"); ?></th>
                                     <th>I/O</th>
                                 </tr>
                             </thead>
@@ -101,6 +110,7 @@
                                                                                 echo __("never");
                                                                             } ?></td>
                                         <td style="vertical-align: middle;"><button id="<?php echo $cron->id; ?>" class="editCron btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button></td>
+                                        <td style="vertical-align: middle;<?php if (!empty($cron_disable_run_now)) { echo 'display:none;'; } ?>"><button id="<?php echo $cron->id; ?>" class="runCron btn btn-outline-success btn-sm" <?php if ($cron->enabled != '1') { echo 'disabled'; } ?>><?= __("Run Now"); ?></button></td>
                                         <td style="vertical-align: middle;">
                                             <div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') {
                                                                                                                                                                                                                             echo 'checked';
@@ -111,15 +121,6 @@
                             </tbody>
                         </table>
                     </div>
-                <?php } else { ?>
-                    <div class="text-center">
-                        <h4><?= __("Your Mastercron isn't running."); ?><br>
-                        <?= __("Copy the cron above to a external cron service or into your server's cron to use this cron manager."); ?></h4>
-                        <p><?= __("On a basic linux server with shell access use this command to edit your crons:"); ?>
-                        <pre><code>crontab -e</code></pre>
-                        </p>
-                    </div>
-                <?php } ?>
             <?php } else { ?>
                 <div class="alert alert-danger" role="alert">
                     <?= sprintf(__("You need to upgrade your PHP version. Minimum version is %s. Your Version is %s"), $min_php_version, PHP_VERSION);?>

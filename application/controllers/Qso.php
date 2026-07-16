@@ -318,37 +318,6 @@ class QSO extends CI_Controller {
 		return json_encode($result, JSON_PRETTY_PRINT);
 	}
 
-	function edit() {
-
-		$this->load->model('logbook_model');
-		$this->load->model('modes');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-		$query = $this->logbook_model->qso_info($this->uri->segment(3));
-
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_rules('time_on', 'Start Date', 'required');
-		$this->form_validation->set_rules('time_off', 'End Date', 'required');
-		$this->form_validation->set_rules('callsign', 'Callsign', 'required');
-
-		$data['qso'] = $query->row();
-		$data['dxcc'] = $this->logbook_model->fetchDxcc();
-		$data['iota'] = $this->logbook_model->fetchIota();
-		$data['modes'] = $this->modes->all();
-
-		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('qso/edit', $data);
-		} else {
-			$edit_result=$this->logbook_model->edit();
-			if ($edit_result['success']) {
-				$this->session->set_flashdata('notice', 'Record Updated');
-			} else {
-				$this->session->set_flashdata('notice', 'Record not Updated');
-			}
-			$this->load->view('qso/edit_done');
-		}
-	}
-
 	function winkeysettings() {
 		$this->load->model('user_options_model');
 

@@ -193,20 +193,6 @@ class Satellite_model extends CI_Model {
 		return $query->result();
 	}
 
-    function array_group_by($flds, $arr) {
-		$groups = array();
-		foreach ($arr as $rec) {
-			$keys = array_map(function($f) use($rec) { return $rec[$f]; }, $flds);
-			$k = implode('@', $keys);
-			if (isset($groups[$k])) {
-				$groups[$k][] = $rec;
-			} else {
-				$groups[$k] = array($rec);
-			}
-		}
-		return $groups;
-	}
-
 	function get_sat_info($sat) {
 		$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated, satellite.lotw AS lotw_support');
 		$this->db->join('tle', 'satellite.id = tle.satelliteid', 'left');

@@ -7,13 +7,6 @@ class Logbooks_model extends CI_Model {
 		return $this->db->get('station_logbooks');
 	}
 
-	function CountAllStationLogbooks() {
-		// count all logbooks
-		$this->db->where('user_id =', NULL);
-		$query = $this->db->get('station_logbooks');
-		return $query->num_rows();
-	}
-
 	function add($logbook_name = '') {
 		// Create data array with field values
 		if ($logbook_name ?? '' != '') {
@@ -38,21 +31,6 @@ class Logbooks_model extends CI_Model {
 		} else {
 			return -1;
 		}
-	}
-
-	function CreateDefaultLogbook() {
-		// Get the first USER ID from user table in the database
-		$id = $this->db->get("users")->row()->user_id;
-
-		$data = array(
-			'user_id' => $id,
-			'logbook_name' => "Default Logbook",
-		);
-
-		$this->db->insert('station_logbooks', $data);
-		$logbook_id = $this->db->insert_id();
-
-		$this->set_logbook_active($logbook_id, $id);
 	}
 
 	function delete($clean_id) {
@@ -197,13 +175,6 @@ class Logbooks_model extends CI_Model {
 		}
 	}
 
-	function public_slug_belongs_to_user($slug, $user_id) {
-		$this->db->where('public_slug', $this->security->xss_clean($slug));
-		$this->db->where('user_id', $user_id);
-		$query = $this->db->get('station_logbooks');
-		return $query->num_rows() > 0;
-	}
-
 	function logbook_id_belongs_to_user($logbook_id, $user_id) {
 		$this->db->where('logbook_id', $this->security->xss_clean($logbook_id));
 		$this->db->where('user_id', $user_id);
@@ -222,26 +193,6 @@ class Logbooks_model extends CI_Model {
 		} else {
 			return true;
 		}
-	}
-
-	function save_public_search($public_search, $logbook_id) {
-		$data = array(
-			'public_search' => xss_clean($public_search),
-		);
-
-		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', xss_clean($logbook_id));
-		$this->db->update('station_logbooks', $data);
-	}
-
-	function save_public_slug($public_slug, $logbook_id) {
-		$data = array(
-			'public_slug' => xss_clean($public_slug),
-		);
-
-		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', xss_clean($logbook_id));
-		$this->db->update('station_logbooks', $data);
 	}
 
 	function remove_public_slug($logbook_id) {
@@ -293,28 +244,6 @@ class Logbooks_model extends CI_Model {
 		} else {
 			return false;
 		}
-	}
-
-	function delete_relationship($logbook_id, $station_id) {
-		// Clean ID
-		$clean_logbook_id = $this->security->xss_clean($logbook_id);
-		$clean_station_id = $this->security->xss_clean($station_id);
-
-		// be sure that logbook belongs to user
-		if (!$this->check_logbook_is_accessible($clean_logbook_id)) {
-			return;
-		}
-
-		// be sure that station belongs to user
-		$this->load->model('Stations');
-		if (!$this->Stations->check_station_is_accessible($clean_station_id)) {
-			return;
-		}
-
-		// Delete relationship
-		$this->db->where('station_logbook_id', $clean_logbook_id);
-		$this->db->where('station_location_id', $clean_station_id);
-		$this->db->delete('station_logbooks_relationship');
 	}
 
 	public function check_logbook_is_accessible($id) {

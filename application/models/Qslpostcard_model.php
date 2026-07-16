@@ -522,27 +522,6 @@ class Qslpostcard_model extends CI_Model {
         ];
     }
 
-    public function dedupe_qsos_by_call(array $qsos) {
-        $seen = [];
-        $deduped = [];
-
-        foreach ($qsos as $qso) {
-            $call = strtoupper(trim($qso['COL_CALL'] ?? ''));
-            if ($call === '') {
-                continue;
-            }
-
-            // Keep the first one we see.
-            // Since your query is already ordered DESC by time, this will keep the most recent QSO.
-            if (!isset($seen[$call])) {
-                $seen[$call] = true;
-                $deduped[] = $qso;
-            }
-        }
-
-        return $deduped;
-    }
-
     public function get_qsl_queue_qsos($filters = []) {
         $table = $this->config->item('table_name');
 

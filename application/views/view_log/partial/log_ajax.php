@@ -108,19 +108,6 @@ function getDistance($distance) {
 	return $distance . ' ' . $unit;
 }
 
-
-function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
-	$echo = "";
-	if (!empty($grid)) {
-		$echo = $grid;
-		$echo .= (!$isVisitor) ? (' <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')" aria-label="' . __("Calculate distance/bearing") . '"><i class="fas fa-globe" aria-hidden="true"></i></button>') : '';
-	} else if (!empty($vucc)) {
-		$echo = $vucc;
-		$echo .= (!$isVisitor) ? (' <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')" aria-label="' . __("Calculate distance/bearing") . '"><i class="fas fa-globe" aria-hidden="true"></i></button>') : '';
-	}
-	return $echo;
-}
-
 ?>
 
 <?php

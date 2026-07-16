@@ -282,7 +282,7 @@ class Logbookadvanced_model extends CI_Model {
 				$conditions[] = "COL_CALL <> ''";
 			} else {
 				$conditions[] = "COL_CALL like ?";
-				$binding[] = $this->wildcardPattern(trim($searchCriteria['dx']), 'both');
+				$binding[] = $this->wildcardPattern(trim($searchCriteria['dx']), 'none');
 			}
 		}
 		if ($searchCriteria['dx'] == '') {
