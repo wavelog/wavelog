@@ -40,6 +40,9 @@ class Qra {
 	*
 	*/
 	function distance($tx, $rx, $unit = 'M', $ant_path = null) {
+		if (empty($tx) || empty($rx)) {
+			return null;
+		}
 		// Calc LatLongs
 		$my = qra2latlong($tx);
 		$stn = qra2latlong($rx);
