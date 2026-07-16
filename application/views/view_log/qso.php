@@ -132,7 +132,7 @@
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) { ?>
+                    <?php if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4 && !empty($row->station_gridsquare)) { ?>
                     <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
                     <tr>
                         <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
@@ -629,10 +629,12 @@
                         <th scope="row"><?= __("Station") . ' ' . __("Name"); ?></th>
                         <td><?php echo $row->station_profile_name; ?></td>
                     </tr>
+                    <?php if (!empty($row->station_gridsquare)) { ?>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Gridsquare"); ?></th>
                         <td><?php echo $row->station_gridsquare; ?></td>
                     </tr>
+                    <?php } ?>
 
                     <?php if($row->station_city) { ?>
                     <tr>
