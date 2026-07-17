@@ -1105,30 +1105,6 @@ class API extends CI_Controller {
 			$operator = $user_id;
 		}
 
-		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. Flex 3000 uses CWU and CWL. Icom uses CW-R. We override this here to CW
-		switch (strtoupper($obj['mode'] ?? '')) {
-			case 'CW-U':
-			case 'CW-L':
-			case 'CW-R':
-			case 'CWU':
-			case 'CWL':
-				$obj['mode'] = 'CW';
-				break;
-			case 'RTTY-L':
-			case 'RTTY-U':
-			case 'RTTY-R':
-				$obj['mode'] = 'RTTY';
-				break;
-			case 'USB-D':
-			case 'USB-D1':
-				$obj['mode'] = 'USB';
-				break;
-			case 'LSB-D':
-			case 'LSB-D1':
-				$obj['mode'] = 'LSB';
-				break;
-		}
-
 		// Handle optional cat_url
 		if (isset($obj['cat_url']) && !empty($obj['cat_url'])) {
 			$cat_url = $this->sanitize_cat_url($obj['cat_url']);
