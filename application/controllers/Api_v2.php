@@ -11,7 +11,7 @@ require_once APPPATH . 'libraries/api_v2/Api_v2_exception.php';
  * API (RPC-style, method name in the URL, key in the JSON body), v2 is a real
  * REST API:
  *
- *   - Routing:   /api/v2/<resource>[/<id>]   (resource names are plural, lowercase)
+ *   - Routing:   /api/v2/<resource>[/<id>]   (resource names are singular, lowercase)
  *   - Verbs:     GET (read), POST (create), PUT/PATCH (update), DELETE (delete)
  *   - Auth:      Authorization: Bearer <token>   (X-API-Key accepted as fallback)
  *                Only the new "wl2_" tokens (table `api_token`, Api_v2_model)
@@ -41,7 +41,7 @@ class Api_v2 extends CI_Controller {
 	 *
 	 * The catch-all route forwards the path after /api/v2/ as individual URI
 	 * segments, so CodeIgniter passes them as separate arguments here. We
-	 * collect them all via a variadic parameter (e.g. route('qsos', '42')).
+	 * collect them all via a variadic parameter (e.g. route('qso', '42')).
 	 *
 	 * @param string ...$segments The path segments after /api/v2/.
 	 */
@@ -173,7 +173,7 @@ class Api_v2 extends CI_Controller {
 	 * @throws Api_v2_exception 404 when no handler exists for the resource.
 	 */
 	protected function load_resource($resource, $auth, $method) {
-		// Resource names are plural lowercase; the class is "<Resource>_resource".
+		// Resource names are singular lowercase; the class is "<Resource>_resource".
 		if (!preg_match('/^[a-z][a-z0-9_]*$/', $resource)) {
 			throw new Api_v2_exception('not_found', 'Unknown resource', 404);
 		}

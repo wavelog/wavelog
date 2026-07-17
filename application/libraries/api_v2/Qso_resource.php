@@ -28,10 +28,10 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * Ownership in v2 is enforced against the token's user_id (not the web
  * session): we resolve the token owner's station ids and reject anything else.
  *
- * Route:  /api/v2/qsos
+ * Route:  /api/v2/qso
  * Scope:  qso:read / qso:write / qso:delete
  */
-class Qsos_resource extends Api_v2_resource {
+class Qso_resource extends Api_v2_resource {
 
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'qso';
@@ -46,7 +46,7 @@ class Qsos_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/qsos
+	 * GET /api/v2/qso
 	 * Paginated list of the key owner's QSOs. Optional ?band= filter.
 	 */
 	public function index() {
@@ -81,7 +81,7 @@ class Qsos_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/qsos/{id}
+	 * GET /api/v2/qso/{id}
 	 * A single QSO owned by the key holder.
 	 */
 	public function show($id) {
@@ -103,7 +103,7 @@ class Qsos_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * POST /api/v2/qsos
+	 * POST /api/v2/qso
 	 * Create a single QSO from JSON fields (not ADIF). Required body fields:
 	 *   station_profile_id, call, band, mode, qso_date (YYYY-MM-DD), time_on (HHMM[SS])
 	 */
@@ -173,12 +173,12 @@ class Qsos_resource extends Api_v2_resource {
 			}
 		}
 
-		$headers = $new_id ? ['Location' => base_url('index.php/api/v2/qsos/' . $new_id)] : [];
+		$headers = $new_id ? ['Location' => base_url('index.php/api/v2/qso/' . $new_id)] : [];
 		$this->CI->api_v2_response->respond($created ?? ['id' => $new_id], 201, null, $headers);
 	}
 
 	/**
-	 * PATCH /api/v2/qsos/{id}
+	 * PATCH /api/v2/qso/{id}
 	 * Partial update: only the fields present in the body are changed.
 	 */
 	public function update($id) {
@@ -186,7 +186,7 @@ class Qsos_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * PUT /api/v2/qsos/{id}
+	 * PUT /api/v2/qso/{id}
 	 * Full replace of the editable fields: required fields must be present,
 	 * every omitted optional field is reset to its default.
 	 */
@@ -195,7 +195,7 @@ class Qsos_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * DELETE /api/v2/qsos/{id}
+	 * DELETE /api/v2/qso/{id}
 	 */
 	public function delete($id) {
 		$this->require_delete();

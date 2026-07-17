@@ -11,14 +11,14 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * Stations / Stationsetup_model data access; ownership is always enforced
  * against the token's user_id, never the session.
  *
- * Route:  /api/v2/stations
+ * Route:  /api/v2/station
  * Scope:  station:read / station:write / station:delete
  *
  * Only the core location fields are writable via the API; external-service
  * credentials (QRZ/HRDLog/ClubLog/OQRS/webADIF/eQSL) are intentionally not
  * exposed here and keep their defaults on create.
  */
-class Stations_resource extends Api_v2_resource {
+class Station_resource extends Api_v2_resource {
 
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'station';
@@ -40,7 +40,7 @@ class Stations_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/stations
+	 * GET /api/v2/station
 	 * All station locations of the token owner. No pagination: users only
 	 * have a handful of station profiles.
 	 */
@@ -56,7 +56,7 @@ class Stations_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/stations/{id}
+	 * GET /api/v2/station/{id}
 	 * A single station location owned by the token holder.
 	 */
 	public function show($id) {
@@ -71,7 +71,7 @@ class Stations_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * POST /api/v2/stations
+	 * POST /api/v2/station
 	 * Create a station location. Required body fields: name, callsign.
 	 */
 	public function create() {
@@ -105,12 +105,12 @@ class Stations_resource extends Api_v2_resource {
 		}
 
 		$row = $this->CI->stations->profile_by_uuid($dbdata['station_uuid'], $this->user_id());
-		$headers = $row ? ['Location' => base_url('index.php/api/v2/stations/' . (int) $row->station_id)] : [];
+		$headers = $row ? ['Location' => base_url('index.php/api/v2/station/' . (int) $row->station_id)] : [];
 		$this->CI->api_v2_response->respond($row ? $this->format_station($row) : null, 201, null, $headers);
 	}
 
 	/**
-	 * PATCH /api/v2/stations/{id}
+	 * PATCH /api/v2/station/{id}
 	 * Partial update: only the fields present in the body are changed.
 	 */
 	public function update($id) {
@@ -118,7 +118,7 @@ class Stations_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * PUT /api/v2/stations/{id}
+	 * PUT /api/v2/station/{id}
 	 * Full replace of the editable fields: required fields must be present,
 	 * every omitted optional field is reset to its default.
 	 */
@@ -127,7 +127,7 @@ class Stations_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * DELETE /api/v2/stations/{id}
+	 * DELETE /api/v2/station/{id}
 	 *
 	 * Mirrors the web UI: the active station cannot be deleted (409); any other
 	 * station is removed together with all of its QSOs, QSL/eQSL images and

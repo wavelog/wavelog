@@ -16,10 +16,10 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * (create or update), mirroring the legacy v1 Api::radio() write path. There is
  * no PATCH/PUT: a new snapshot is a POST.
  *
- * Route:  /api/v2/radios
+ * Route:  /api/v2/radio
  * Scope:  radio:read / radio:write / radio:delete
  */
-class Radios_resource extends Api_v2_resource {
+class Radio_resource extends Api_v2_resource {
 
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'radio';
@@ -34,7 +34,7 @@ class Radios_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/radios
+	 * GET /api/v2/radio
 	 * All CAT radios of the token owner. No pagination: users have a handful.
 	 */
 	public function index() {
@@ -49,7 +49,7 @@ class Radios_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/radios/{id}
+	 * GET /api/v2/radio/{id}
 	 * A single radio owned by the token holder.
 	 */
 	public function show($id) {
@@ -57,7 +57,7 @@ class Radios_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * POST /api/v2/radios
+	 * POST /api/v2/radio
 	 * Upsert a radio state by name: creates the radio when its name is new for
 	 * this owner/operator, otherwise updates the existing one. Required body
 	 * field: radio. 201 when created, 200 when updated.
@@ -93,12 +93,12 @@ class Radios_resource extends Api_v2_resource {
 
 		$row = $this->CI->cat->radio_by_name($body['radio'], $operator, $this->user_id());
 		$status  = $existing ? 200 : 201;
-		$headers = ($status === 201 && $row) ? ['Location' => base_url('index.php/api/v2/radios/' . (int) $row->id)] : [];
+		$headers = ($status === 201 && $row) ? ['Location' => base_url('index.php/api/v2/radio/' . (int) $row->id)] : [];
 		$this->CI->api_v2_response->respond($row ? $this->format_radio($row) : null, $status, null, $headers);
 	}
 
 	/**
-	 * DELETE /api/v2/radios/{id}
+	 * DELETE /api/v2/radio/{id}
 	 * Remove a radio from the CAT list.
 	 */
 	public function delete($id) {

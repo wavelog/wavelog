@@ -14,7 +14,7 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * The ?profile= query parameter selects which topic(s) to return. Every topic
  * is nested under its own key, so a value's JSONPath is identical whether it is
  * requested on its own or as part of full (e.g. $.data.worker.connected_clients):
- *   - qsos:     QSO analytics — total, rolling activity windows, band/mode
+ *   - qso:      QSO analytics — total, rolling activity windows, band/mode
  *               breakdown, confirmation totals (default).
  *   - system:   version/build info.                     (admin only)
  *   - full:     all permitted topics.
@@ -26,20 +26,20 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * their very existence is not disclosed. Single-topic profiles let a monitoring
  * poller fetch just the cheap slice it needs; full is the complete picture.
  *
- * Route:  /api/v2/statistics[?profile=qsos|system|full]
- * Scope:  statistics:read
+ * Route:  /api/v2/statistic[?profile=qso|system|full]
+ * Scope:  statistic:read
  */
-class Statistics_resource extends Api_v2_resource {
+class Statistic_resource extends Api_v2_resource {
 
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
-	protected $scope = 'statistics';
+	protected $scope = 'statistic';
 
 	/** Topics exposing instance/admin data — only for administrator tokens. */
 	protected const ADMIN_TOPICS = ['system'];
 
 	/**
-	 * GET /api/v2/statistics
-	 * Optional query: ?profile=<topic>|full (default qsos).
+	 * GET /api/v2/statistic
+	 * Optional query: ?profile=<topic>|full (default qso).
 	 */
 	public function index() {
 		// Note: CI registers models under their lowercased name.
@@ -49,8 +49,8 @@ class Statistics_resource extends Api_v2_resource {
 		// also a single-topic profile. Adding a topic here exposes it both ways;
 		// list it in ADMIN_TOPICS to restrict it to administrators.
 		$topics = [
-			'qsos'     => function () {
-				return $this->qsos_topic();
+			'qso'      => function () {
+				return $this->qso_topic();
 			},
 			'system'   => function () {
 				return $this->system_topic();
@@ -66,7 +66,7 @@ class Statistics_resource extends Api_v2_resource {
 		}));
 		$allowed = array_merge($permitted, ['full']);
 
-		$profile = strtolower(trim((string) $this->param('profile', 'qsos')));
+		$profile = strtolower(trim((string) $this->param('profile', 'qso')));
 		if (!in_array($profile, $allowed, true)) {
 			throw new Api_v2_exception(
 				'validation_error',
@@ -102,7 +102,7 @@ class Statistics_resource extends Api_v2_resource {
 	 * band/mode breakdown, confirmation and DXCC totals. Scoped to the owner's
 	 * station locations, so the numbers are the user's own, not the instance.
 	 */
-	protected function qsos_topic() {
+	protected function qso_topic() {
 		$this->CI->load->model('logbook_model');
 		$station_ids = $this->owner_station_ids();
 
