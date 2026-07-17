@@ -69,7 +69,7 @@
 				</table>
 
 			<?php } else { ?>
-				<p><?= __("You have no API Tokens."); ?></p>
+				<p class="alert alert-secondary"><?= __("You have no API Tokens yet. Click on the button below to create one."); ?></p>
 			<?php } ?>
 
 			<hr>
