@@ -447,6 +447,15 @@ class Qsos_resource extends Api_v2_resource {
 				continue;
 			}
 			$key = strtolower($key);
+			if ($key === 'freq' || $key === 'freq_rx') {
+				// The API freq contract is Hz (matching GET and PATCH/PUT, which
+				// use parse_frequency). The ADIF import pipeline expects MHz, so
+				// normalise to Hz here and hand it the MHz equivalent, keeping
+				// create round-trip-consistent with read and update.
+				$hz = $this->CI->logbook_model->parse_frequency(is_string($value) ? $value : (string) $value);
+				$record[$key] = $hz > 0 ? $this->hz_to_mhz($hz) : $value;
+				continue;
+			}
 			if (is_string($value)) {
 				if ($key === 'qso_date' || $key === 'qso_date_off') {
 					$value = str_replace('-', '', $value);
@@ -457,6 +466,14 @@ class Qsos_resource extends Api_v2_resource {
 			$record[$key] = $value;
 		}
 		return $record;
+	}
+
+	/**
+	 * Convert a frequency in Hz to the MHz string the ADIF import expects, with
+	 * up to 1 Hz resolution and no trailing zeros (e.g. 14200000 -> "14.2").
+	 */
+	protected function hz_to_mhz($hz) {
+		return rtrim(rtrim(number_format($hz / 1000000, 6, '.', ''), '0'), '.');
 	}
 
 	/**
