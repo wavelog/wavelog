@@ -203,7 +203,7 @@ class Statistics_resource extends Api_v2_resource {
 			],
 			'cache' => $this->CI->debug_model->get_cache_info(),
 		];
-		$result['worker'] = $worker;
+		$result['worker'] = $worker ?? ['enabled' => false];
 
 		return $result;
 	}
