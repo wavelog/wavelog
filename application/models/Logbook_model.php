@@ -2270,6 +2270,109 @@ class Logbook_model extends CI_Model {
 		};
 	}
 
+	// Shared WHERE builder for the REST API v2 QSO endpoint. Produces one filter
+	// clause used by BOTH get_qsos_filtered() (the paginated fetch) and
+	// count_qsos_filtered() (the total), so the list and its `total` can never
+	// diverge. Every column is referenced through the `qsos` alias. Bindings are
+	// appended in placeholder order.
+	//
+	// $station_ids  int[]   station-location ids (already ownership-checked)
+	// $band         string  '' for none, 'SAT', or a COL_BAND value
+	// $mode         string  '' for none, else a COL_MODE or COL_SUBMODE value
+	// $qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
+	// $since_id     int     0 for none, else COL_PRIMARY_KEY > $since_id
+	private function _qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, &$bindings) {
+		$where = " WHERE qsos.`station_id` IN ?";
+		$bindings[] = $station_ids;
+
+		if ((int) $since_id > 0) {
+			$where .= " AND qsos.`COL_PRIMARY_KEY` > ?";
+			$bindings[] = (int) $since_id;
+		}
+
+		if ($band !== null && $band !== '') {
+			if ($band === 'SAT') {
+				$where .= " AND qsos.`col_prop_mode` = 'SAT'";
+			} else {
+				$where .= " AND qsos.`col_prop_mode` != 'SAT' AND qsos.`col_band` = ?";
+				$bindings[] = $band;
+			}
+		}
+
+		// Match either the main mode or the submode, so e.g. mode=FT8 finds both
+		// QSOs stored as COL_MODE=FT8 and as COL_MODE=MFSK/COL_SUBMODE=FT8.
+		if ($mode !== null && $mode !== '') {
+			$where .= " AND (qsos.`col_mode` = ? OR qsos.`col_submode` = ?)";
+			$bindings[] = $mode;
+			$bindings[] = $mode;
+		}
+
+		if (!empty($qsl_filter)) {
+			$col_map = [
+				'lotw'    => 'COL_LOTW_QSL_RCVD',
+				'qsl'     => 'COL_QSL_RCVD',
+				'eqsl'    => 'COL_EQSL_QSL_RCVD',
+				'clublog' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',
+			];
+			$clauses = [];
+			foreach ($qsl_filter as $method) {
+				if (isset($col_map[$method])) {
+					$clauses[] = "qsos.`{$col_map[$method]}` = 'Y'";
+				}
+			}
+			if (!empty($clauses)) {
+				$where .= " AND (" . implode(" OR ", $clauses) . ")";
+			}
+		}
+
+		return $where;
+	}
+
+	// Fetch a page of QSOs for the REST API v2 QSO endpoint. Returns rows with
+	// the full COL_* plus station_profile columns, so the same result set can be
+	// rendered as JSON or as ADIF (via AdifHelper). $order is 'id_asc' (ascending
+	// primary key, for incremental ADIF sync) or 'time_desc' (newest first, for
+	// browsing). Filtering is shared with count_qsos_filtered().
+	function get_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $order = 'time_desc', $limit = 50, $offset = 0) {
+		if (empty($station_ids)) {
+			return $this->db->query("SELECT * FROM " . $this->config->item('table_name') . " WHERE 1=0");
+		}
+
+		$tbl = $this->config->item('table_name');
+		$bindings = [];
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $bindings);
+
+		$sql = "SELECT qsos.*, station_profile.*, dxcc_entities.name AS station_country
+			FROM {$tbl} qsos
+			JOIN station_profile ON station_profile.station_id = qsos.station_id
+			LEFT OUTER JOIN dxcc_entities ON station_profile.station_dxcc = dxcc_entities.adif"
+			. $where;
+
+		$sql .= ($order === 'id_asc')
+			? " ORDER BY qsos.`COL_PRIMARY_KEY` ASC"
+			: " ORDER BY qsos.`COL_TIME_ON` DESC, qsos.`COL_PRIMARY_KEY` DESC";
+
+		$sql .= " LIMIT ? OFFSET ?";
+		$bindings[] = (int) $limit;
+		$bindings[] = (int) $offset;
+
+		return $this->db->query($sql, $bindings);
+	}
+
+	// Count QSOs for the REST API v2 QSO endpoint, using the exact same filter as
+	// get_qsos_filtered() so `total` matches the paginated result set.
+	function count_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0) {
+		if (empty($station_ids)) {
+			return 0;
+		}
+
+		$bindings = [];
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $bindings);
+		$sql = "SELECT COUNT(*) AS cnt FROM " . $this->config->item('table_name') . " qsos" . $where;
+
+		return (int) $this->db->query($sql, $bindings)->row()->cnt;
+	}
+
 	function get_qso($id, $trusted = false) {
 		if ($trusted || ($this->check_qso_is_accessible($id))) {
 			$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision, satellite.displayname AS sat_displayname, coalesce(contest.name, COL_CONTEST_ID) AS contestname');

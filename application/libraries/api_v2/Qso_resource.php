@@ -47,37 +47,201 @@ class Qso_resource extends Api_v2_resource {
 
 	/**
 	 * GET /api/v2/qso
-	 * Paginated list of the key owner's QSOs. Optional ?band= filter.
+	 * Filtered list of the token owner's QSOs. The same filtered result set is
+	 * rendered as JSON (default) or as ADIF via ?format=adif — the data is fetched
+	 * once and only the rendering differs.
+	 *
+	 * Filters (all optional):
+	 *   ?station_id= comma-separated, ownership-checked; default: all owned
+	 *   ?band=       single band filter (e.g. 20m or SAT)
+	 *   ?mode=       single mode/submode filter (e.g. SSB or FT8)
+	 *   ?qsl_filter= comma list of lotw|qsl|eqsl|clublog (OR-combined)
+	 *   ?since_id=   only QSOs with a primary key greater than this (default 0)
+	 * Pagination: ?page= / ?per_page= (max 5000; default 50 for JSON, 1000 for
+	 *             ADIF), or ?limit= as a shortcut for the newest N QSOs (overrides
+	 *             page/per_page).
+	 * Rendering:  ?format=json (default) | adif.
 	 */
 	public function index() {
+		$format = strtolower(trim((string) $this->param('format', 'json')));
+		if ($format !== 'json' && $format !== 'adif') {
+			throw new Api_v2_exception(
+				'validation_error',
+				'Unknown format "' . $format . '". Allowed: json, adif',
+				400,
+				['allowed' => ['json', 'adif']]
+			);
+		}
+
 		$this->CI->load->model('logbook_model');
 
-		$page = $this->pagination();
-		$band = $this->param('band', '');
+		// One upper bound for both formats: a JSON row (format_qso) is a trimmed
+		// subset of fields and thus no heavier than an ADIF line, so there is no
+		// reason to cap JSON lower. Only the default page size differs — small for
+		// JSON browsing, larger for ADIF bulk sync.
+		$is_adif = ($format === 'adif');
+		$max_per_page = 5000;
+		$page        = $this->pagination($is_adif ? 1000 : 50, $max_per_page);
+		$station_ids = $this->resolve_station_ids();
+		$band        = $this->normalize_band($this->param('band'));
+		$mode        = $this->normalize_mode($this->param('mode'));
+		$qsl_filter  = $this->parse_qsl_filter();
+		$since_id    = $this->parse_since_id();
 
-		$location_ids = $this->owner_station_ids();
-		if (empty($location_ids)) {
-			$this->CI->api_v2_response->respond([], 200, $this->list_meta($page, 0));
+		// ADIF sync needs ascending-by-id order (so lastfetchedid advances); the
+		// JSON browse list is newest-first.
+		$order = $is_adif ? 'id_asc' : 'time_desc';
+
+		// `limit` is a shortcut for "the newest N QSOs" (e.g. limit=1 => the last
+		// QSO). It overrides page/per_page: page 1, newest-first, capped like
+		// per_page. Handy for a quick "what did I work last?" query.
+		$limit = $this->param('limit');
+		if ($limit !== null && $limit !== '') {
+			if (!is_numeric($limit) || (int) $limit < 1) {
+				throw new Api_v2_exception('validation_error', 'limit must be a positive integer', 400);
+			}
+			$page['page']     = 1;
+			$page['offset']   = 0;
+			$page['per_page'] = min((int) $limit, $max_per_page);
+			$order = 'time_desc';
+		}
+
+		if (empty($station_ids)) {
+			$this->respond_qsos($format, [], $page, 0, $since_id);
 			return;
 		}
 
-		$query = $this->CI->logbook_model->get_qsos(
-			$page['per_page'],
-			$page['offset'],
-			$location_ids,
-			$band
+		// Total across all pages for the same filter, so a client can find the
+		// last page without probing for an empty response.
+		$total = $this->CI->logbook_model->count_qsos_filtered($station_ids, $band, $mode, $qsl_filter, $since_id);
+
+		$query = $this->CI->logbook_model->get_qsos_filtered(
+			$station_ids, $band, $mode, $qsl_filter, $since_id, $order, $page['per_page'], $page['offset']
 		);
 
-		// get_qsos() returns a CI result object, or a plain array() when there
-		// are no matching logbook locations.
-		$qsos = [];
-		if (is_object($query)) {
-			foreach ($query->result() as $row) {
-				$qsos[] = $this->format_qso($row);
+		$rows = is_object($query) ? $query->result() : [];
+		$this->respond_qsos($format, $rows, $page, $total, $since_id);
+	}
+
+	/**
+	 * Render the fetched QSO rows in the requested format, with pagination meta.
+	 * JSON returns the QSO objects; ADIF returns { exported, lastfetchedid, adif }
+	 * built from the same rows via AdifHelper.
+	 */
+	protected function respond_qsos($format, $rows, $page, $total, $since_id) {
+		$meta = $this->list_meta($page, count($rows), $total);
+
+		if ($format === 'adif') {
+			$this->CI->load->library('AdifHelper');
+			$adif = $this->CI->adifhelper->getAdifHeader(
+				$this->CI->config->item('app_name'),
+				$this->CI->optionslib->get_option('version'),
+				$this->CI->optionslib->get_option('adif_version')
+			);
+			$lastfetchedid = (int) $since_id;
+			foreach ($rows as $row) {
+				$adif .= $this->CI->adifhelper->getAdifLine($row);
+				$lastfetchedid = max($lastfetchedid, (int) $row->COL_PRIMARY_KEY);
 			}
+			$this->CI->api_v2_response->respond([
+				'exported'      => count($rows),
+				'lastfetchedid' => $lastfetchedid,
+				'adif'          => count($rows) > 0 ? $adif : null,
+			], 200, $meta);
+			return;
 		}
 
-		$this->CI->api_v2_response->respond($qsos, 200, $this->list_meta($page, count($qsos)));
+		$qsos = [];
+		foreach ($rows as $row) {
+			$qsos[] = $this->format_qso($row);
+		}
+		$this->CI->api_v2_response->respond($qsos, 200, $meta);
+	}
+
+	/**
+	 * The station ids the list runs against: all of the owner's stations, or the
+	 * ownership-checked subset from ?station_id= (comma-separated).
+	 *
+	 * @return int[]
+	 */
+	protected function resolve_station_ids() {
+		$owned = $this->owner_station_ids();
+		$requested = $this->param('station_id');
+		if ($requested === null || $requested === '') {
+			return $owned;
+		}
+
+		$ids = [];
+		foreach (explode(',', $requested) as $sid) {
+			$sid = trim($sid);
+			if (!is_numeric($sid)) {
+				throw new Api_v2_exception('validation_error', 'station_id values must be numeric', 400);
+			}
+			$sid = (int) $sid;
+			if (!in_array($sid, $owned, true)) {
+				throw new Api_v2_exception('forbidden', 'station_id not accessible for this token', 403);
+			}
+			$ids[] = $sid;
+		}
+		return array_values(array_unique($ids));
+	}
+
+	/**
+	 * Parse and validate the ?since_id= floor, or 0 when absent.
+	 */
+	protected function parse_since_id() {
+		$raw = $this->param('since_id', 0);
+		if (!is_numeric($raw)) {
+			throw new Api_v2_exception('validation_error', 'since_id must be numeric', 400);
+		}
+		return (int) $raw;
+	}
+
+	/**
+	 * Normalise the ?band= filter: '' when absent, 'SAT' uppercased (matches
+	 * COL_PROP_MODE), any other band lowercased (matches COL_BAND). Unknown
+	 * values pass through and simply match no rows rather than erroring.
+	 */
+	protected function normalize_band($raw) {
+		if ($raw === null || $raw === '') {
+			return '';
+		}
+		$band = strtolower(trim($raw));
+		return ($band === 'sat') ? 'SAT' : $band;
+	}
+
+	/**
+	 * Normalise the ?mode= filter: '' when absent, else uppercased (COL_MODE /
+	 * COL_SUBMODE are stored uppercase). Matched against either column, so a
+	 * submode like FT8 is found regardless of how it was stored.
+	 */
+	protected function normalize_mode($raw) {
+		if ($raw === null || $raw === '') {
+			return '';
+		}
+		return strtoupper(trim($raw));
+	}
+
+	/**
+	 * Parse and validate the ?qsl_filter= query (comma list), or null when absent.
+	 */
+	protected function parse_qsl_filter() {
+		$raw = $this->param('qsl_filter');
+		if ($raw === null || $raw === '') {
+			return null;
+		}
+		$allowed = ['lotw', 'qsl', 'eqsl', 'clublog'];
+		$filter = array_map('strtolower', array_map('trim', explode(',', $raw)));
+		$invalid = array_diff($filter, $allowed);
+		if (!empty($invalid)) {
+			throw new Api_v2_exception(
+				'validation_error',
+				'Invalid qsl_filter values: ' . implode(', ', $invalid),
+				400,
+				['allowed' => $allowed]
+			);
+		}
+		return array_values($filter);
 	}
 
 	/**
@@ -104,8 +268,14 @@ class Qso_resource extends Api_v2_resource {
 
 	/**
 	 * POST /api/v2/qso
-	 * Create a single QSO from JSON fields (not ADIF). Required body fields:
-	 *   station_profile_id, call, band, mode, qso_date (YYYY-MM-DD), time_on (HHMM[SS])
+	 * Create QSO(s). The body field `import_type` selects the payload format:
+	 *   - "json" (default): a single QSO from the top-level fields, OR a bulk
+	 *     import when a `qsos` array is present (each element a QSO object).
+	 *     Required per QSO: call, band, mode, qso_date (YYYY-MM-DD), time_on.
+	 *     `station_profile_id` (shared) is required at the top level; bulk accepts
+	 *     an optional `dryrun`.
+	 *   - "adif": a bulk ADIF import; the ADIF payload travels in the `adif` field,
+	 *     with `station_profile_id` and an optional `dryrun` flag.
 	 */
 	public function create() {
 		$this->require_write();
@@ -113,13 +283,44 @@ class Qso_resource extends Api_v2_resource {
 		$this->CI->load->model('stations');
 
 		$body = $this->body();
-		$this->require_scalar_fields($body);
 
+		// Ownership-checked station profile is required for both import types.
 		$station_profile_id = $body['station_profile_id'] ?? null;
 		if ($station_profile_id === null
 			|| !$this->CI->stations->check_station_against_user($station_profile_id, $this->user_id())) {
 			throw new Api_v2_exception('forbidden', 'station_profile_id does not belong to the API key owner', 403);
 		}
+
+		$import_type = strtolower(trim((string) ($body['import_type'] ?? 'json')));
+		switch ($import_type) {
+			case 'json':
+				$this->create_from_json($body, $station_profile_id);
+				return;
+			case 'adif':
+				$this->create_from_adif($body, $station_profile_id, !empty($body['dryrun']));
+				return;
+			default:
+				throw new Api_v2_exception(
+					'validation_error',
+					'Unknown import_type "' . $import_type . '". Allowed: json, adif',
+					400,
+					['allowed' => ['json', 'adif']]
+				);
+		}
+	}
+
+	/**
+	 * Create QSO(s) from JSON (import_type=json, the default). A "qsos" array in
+	 * the body triggers a bulk import; otherwise a single QSO is created from the
+	 * top-level fields.
+	 */
+	protected function create_from_json($body, $station_profile_id) {
+		if (array_key_exists('qsos', $body)) {
+			$this->create_bulk_json($body, $station_profile_id);
+			return;
+		}
+
+		$this->require_scalar_fields($body);
 
 		// Minimal required-field validation; the model handles the rest.
 		$required = ['call', 'band', 'mode', 'qso_date', 'time_on'];
@@ -175,6 +376,205 @@ class Qso_resource extends Api_v2_resource {
 
 		$headers = $new_id ? ['Location' => base_url('index.php/api/v2/qso/' . $new_id)] : [];
 		$this->CI->api_v2_response->respond($created ?? ['id' => $new_id], 201, null, $headers);
+	}
+
+	/**
+	 * Bulk-create QSOs from a JSON array (import_type=json with a "qsos" array).
+	 * Each element is a QSO object with the same fields as a single create; they
+	 * are all imported into the given, ownership-checked station_profile_id. An
+	 * optional top-level "dryrun" validates without importing.
+	 *
+	 * @param array $body               Decoded request body (must contain "qsos").
+	 * @param int   $station_profile_id Ownership-checked target station.
+	 */
+	protected function create_bulk_json($body, $station_profile_id) {
+		$qsos = $body['qsos'];
+		// Must be a non-empty JSON array (a list, not an object).
+		if (!is_array($qsos) || empty($qsos) || array_keys($qsos) !== range(0, count($qsos) - 1)) {
+			throw new Api_v2_exception('validation_error', '"qsos" must be a non-empty array of QSO objects', 400);
+		}
+
+		$required = ['call', 'band', 'mode', 'qso_date', 'time_on'];
+		$records = [];
+		foreach ($qsos as $i => $qso) {
+			if (!is_array($qso)) {
+				throw new Api_v2_exception('validation_error', 'qsos[' . $i . '] must be an object', 400);
+			}
+			$this->require_scalar_fields($qso);
+
+			$missing = [];
+			foreach ($required as $field) {
+				if (empty($qso[$field])) {
+					$missing[] = $field;
+				}
+			}
+			if (!empty($missing)) {
+				throw new Api_v2_exception(
+					'validation_error',
+					'qsos[' . $i . '] missing required field(s): ' . implode(', ', $missing),
+					400,
+					['index' => $i, 'missing' => $missing]
+				);
+			}
+
+			$records[] = $this->body_to_record($qso);
+		}
+
+		if (!empty($body['dryrun'])) {
+			$this->CI->api_v2_response->respond(['dryrun' => true, 'parsed' => count($records)], 200);
+			return;
+		}
+
+		$result = $this->CI->logbook_model->import_bulk(
+			$records,
+			$station_profile_id,
+			true,   // skipDuplicate
+			false, false, false, false, false, false, false,
+			false,  // skipexport
+			false,  // operatorName
+			true,   // apicall
+			true    // skipStationCheck (ownership already verified)
+		);
+
+		$this->respond_bulk_import($result, count($records));
+	}
+
+	/**
+	 * Emit the response for a bulk import (ADIF or JSON multi-QSO): a summary of
+	 * parsed / imported / skipped counts plus any messages. Throws 400 when
+	 * nothing was imported and only hard errors occurred.
+	 *
+	 * @param array $result Return value of Logbook_model::import_bulk().
+	 * @param int   $parsed Number of records handed to the import.
+	 */
+	protected function respond_bulk_import($result, $parsed) {
+		$imported = (int) ($result['qsocount'] ?? 0);
+		$structured = $result['structured_errors'] ?? ['critical' => [], 'validation' => [], 'duplicate' => []];
+		$skipped = count($structured['duplicate'] ?? []);
+		$hard_errors = array_merge($structured['critical'] ?? [], $structured['validation'] ?? []);
+
+		// Nothing imported and only hard errors -> the whole batch failed.
+		if ($imported === 0 && !empty($hard_errors)) {
+			throw new Api_v2_exception(
+				'validation_error',
+				trim(strip_tags($result['errormessage'] ?? 'Import failed')),
+				400,
+				$structured
+			);
+		}
+
+		$this->CI->api_v2_response->respond([
+			'parsed'   => $parsed,
+			'imported' => $imported,
+			'skipped'  => $skipped,
+			'messages' => array_values(array_map(function ($m) { return trim(strip_tags($m)); }, $hard_errors)),
+		], 201);
+	}
+
+	/**
+	 * Bulk-import QSOs from an ADIF string (import_type=adif).
+	 *
+	 * Reuses the same parse/import pipeline as the v1 API: adif_parser feeds
+	 * records into Logbook_model::import_bulk(). Clubstation operator resolution
+	 * mirrors v1 — when a club member's token is used, the operator is forced to
+	 * the token creator rather than the club callsign.
+	 *
+	 * @param array $body               Decoded request body.
+	 * @param int   $station_profile_id Ownership-checked target station.
+	 * @param bool  $dryrun             Parse only, import nothing.
+	 */
+	protected function create_from_adif($body, $station_profile_id, $dryrun) {
+		$adif = $body['adif'] ?? '';
+		if (!is_string($adif) || trim($adif) === '') {
+			throw new Api_v2_exception('validation_error', 'import_type=adif requires a non-empty "adif" string', 400);
+		}
+
+		$this->CI->load->model('club_model');
+		if (!$this->CI->load->is_loaded('adif_parser')) {
+			$this->CI->load->library('adif_parser');
+		}
+		if (!$this->CI->load->is_loaded('Qra')) {
+			$this->CI->load->library('Qra');
+		}
+
+		// Clubstation operator resolution: a club member's token must log under
+		// the member's own callsign, not the shared club call.
+		$user_id = $this->user_id();
+		$created_by = $this->auth['created_by'];
+		$club_perm = $this->CI->club_model->get_permission_noui($user_id, $created_by);
+		$real_operator = null;
+		if ($this->CI->config->item('special_callsign') && $user_id != $created_by) {
+			$real_operator = $this->CI->user_model->get_by_id($created_by)->row()->user_callsign;
+		}
+
+		$profile = $this->CI->stations->profile_clean($station_profile_id);
+		$mygrid = $profile->station_gridsquare ?? '';
+
+		// Collapse whitespace right after <eor> so the parser is not tripped up
+		// by pretty-printed ADIF, matching the v1 endpoint.
+		$adif = preg_replace('#<([eE][oO][rR])>[\r\n\t]+#', '<$1>', $adif);
+		$this->CI->adif_parser->feed($adif);
+
+		$records = [];
+		$parsed = 0;
+		while ($record = $this->CI->adif_parser->get_record()) {
+			if (!isset($record['call']) || trim($record['call']) === '') {
+				continue;
+			}
+			if (count($record) === 0) {
+				break;
+			}
+
+			// Normalise slashed zeros in the callsign fields.
+			$record['call'] = str_replace('Ø', '0', $record['call']);
+			foreach (['operator', 'station_callsign', 'owner_callsign'] as $f) {
+				if (($record[$f] ?? '') !== '') {
+					$record[$f] = str_replace('Ø', '0', $record[$f]);
+				}
+			}
+
+			// Force the operator to the token creator for clubstation tokens.
+			if ($real_operator !== null) {
+				$recorded_operator = $record['operator'] ?? '';
+				if ((array_key_exists('operator', $record) && $record['operator'] == ($record['station_callsign'] ?? '')) || $recorded_operator === '') {
+					$record['operator'] = $real_operator;
+				}
+				if (($club_perm ?? 0) == 3 || ($club_perm ?? 0) == 6) {
+					$record['operator'] = $real_operator;
+				}
+			}
+
+			// Fill the distance from the station's own grid when possible.
+			if (array_key_exists('gridsquare', $record) && $mygrid !== ''
+				&& ($record['gridsquare'] ?? '') !== '' && !array_key_exists('distance', $record)) {
+				$record['distance'] = $this->CI->qra->distance($mygrid, $record['gridsquare'], 'K');
+			}
+
+			$records[] = $record;
+			$parsed++;
+		}
+
+		if ($dryrun) {
+			$this->CI->api_v2_response->respond(['dryrun' => true, 'parsed' => $parsed], 200);
+			return;
+		}
+
+		if (empty($records)) {
+			throw new Api_v2_exception('validation_error', 'No valid QSO records found in ADIF', 400);
+		}
+
+		$result = $this->CI->logbook_model->import_bulk(
+			$records,
+			$station_profile_id,
+			true,   // skipDuplicate
+			false, false, false, false, false, false, false,
+			true,   // skipexport
+			false,  // operatorName
+			true,   // apicall
+			true    // skipStationCheck (ownership already verified above)
+		);
+
+		$this->respond_bulk_import($result, $parsed);
 	}
 
 	/**
@@ -505,12 +905,28 @@ class Qso_resource extends Api_v2_resource {
 
 	/**
 	 * Build the pagination meta block for list responses.
+	 *
+	 * `count` is the number of items on this page; `total` is the number across
+	 * all pages. `total_pages` and `has_more` are derived so a client knows
+	 * definitively when it has reached the last page (no need to probe for an
+	 * empty response).
+	 *
+	 * @param array $page  { page, per_page, offset }
+	 * @param int   $count Items returned on this page.
+	 * @param int   $total Items across all pages for the current filter.
 	 */
-	protected function list_meta($page, $count) {
+	protected function list_meta($page, $count, $total = 0) {
+		$total = (int) $total;
+		$per_page = $page['per_page'];
+		$total_pages = $per_page > 0 ? (int) ceil($total / $per_page) : 0;
+
 		return [
-			'page'     => $page['page'],
-			'per_page' => $page['per_page'],
-			'count'    => $count,
+			'page'        => $page['page'],
+			'per_page'    => $per_page,
+			'count'       => $count,
+			'total'       => $total,
+			'total_pages' => $total_pages,
+			'has_more'    => $page['page'] < $total_pages,
 		];
 	}
 }
