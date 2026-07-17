@@ -17,6 +17,13 @@ class Statistics_resource extends Api_v2_resource {
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'statistics';
 
+	/** Registry labels for this resource's scopes (see scope_definitions()). */
+	protected static function scope_labels() {
+		return [
+			'read' => __('Read Wavelog statistics'),
+		];
+	}
+
 	/**
 	 * GET /api/v2/statistics
 	 */

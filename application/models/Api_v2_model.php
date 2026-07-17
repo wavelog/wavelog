@@ -20,19 +20,35 @@ class Api_v2_model extends CI_Model {
 	/**
 	 * Central scope registry: scope id => human-readable label.
 	 *
-	 * Single source of truth for the UI checkboxes and the dispatcher's
-	 * enforcement. Scope ids follow the "<resource>:<read|write>" convention;
-	 * the dispatcher derives the required scope from the resource name and
-	 * the HTTP verb. Only list scopes that are actually enforceable.
+	 * Derived automatically from the resource classes in
+	 * application/libraries/api_v2/ rather than hand-maintained: each resource
+	 * declares its base scope ($scope) plus per-suffix labels (scope_labels()),
+	 * and Api_v2_resource::scope_definitions() expands those into concrete
+	 * "<resource>:<read|write|delete>" ids based on the verbs the resource
+	 * actually implements. This keeps the UI checkboxes and token validation in
+	 * lock-step with what the dispatcher enforces — adding a resource (or a verb)
+	 * needs no change here. Result is memoized for the request.
 	 */
 	public static function scope_registry() {
-		return [
-			'qso:read'     		=> __('Read QSOs'),
-			'qso:write'    		=> __('Create and update QSOs'),
-			'qso:delete'   		=> __('Delete QSOs'),
-			'station:read' 		=> __('Read station locations'),
-			'statistics:read' 	=> __('Read Wavelog statistics'),
-		];
+		static $registry = null;
+		if ($registry !== null) {
+			return $registry;
+		}
+
+		$registry = [];
+		foreach (glob(APPPATH . 'libraries/api_v2/*_resource.php') as $file) {
+			require_once $file;
+			// Convention: file "<Resource>_resource.php" holds class
+			// "<Resource>_resource" (see Api_v2::load_resource()).
+			$class = basename($file, '.php');
+			// Skip the abstract base and anything that is not a real resource.
+			if (!class_exists($class) || !is_subclass_of($class, 'Api_v2_resource')) {
+				continue;
+			}
+			$registry += $class::scope_definitions();
+		}
+
+		return $registry;
 	}
 
 	/**

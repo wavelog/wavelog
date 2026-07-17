@@ -48,6 +48,24 @@ abstract class Api_v2_resource {
 	protected $scope = null;
 
 	/**
+	 * Verb handler method => scope suffix it requires. Single source of truth
+	 * for the read/write/delete split, used by the registry derivation in
+	 * scope_definitions(). A resource "supports" a suffix when it overrides at
+	 * least one of the methods mapped to it (un-overridden verbs 405 in the base
+	 * class and therefore contribute no scope).
+	 *
+	 * @var array<string,string>
+	 */
+	protected const VERB_SCOPE = [
+		'index'   => 'read',
+		'show'    => 'read',
+		'create'  => 'write',
+		'replace' => 'write',
+		'update'  => 'write',
+		'delete'  => 'delete',
+	];
+
+	/**
 	 * @param array      $auth { id, user_id, created_by, scopes (string[]) }
 	 * @param array|null $body Parsed JSON body, or null for verbs without one.
 	 */
@@ -77,6 +95,57 @@ abstract class Api_v2_resource {
 			default:
 				return $this->scope . ':write';
 		}
+	}
+
+	/**
+	 * The scope ids this resource contributes to the central registry, as
+	 * "scope-id => human-readable label". Derived purely from $scope and the
+	 * verb methods this concrete class actually overrides, so the registry can
+	 * never drift from what the dispatcher enforces. Public resources
+	 * ($scope === null) contribute nothing.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function scope_definitions() {
+		$scope = (new ReflectionClass(static::class))->getDefaultProperties()['scope'] ?? null;
+		if ($scope === null) {
+			return [];
+		}
+
+		$labels = static::scope_labels();
+		$out = [];
+		foreach (self::VERB_SCOPE as $method => $suffix) {
+			// A verb counts only when the concrete class overrides it; methods
+			// still declared on the abstract base are 405 stubs (unsupported).
+			if ((new ReflectionMethod(static::class, $method))->getDeclaringClass()->getName() === self::class) {
+				continue;
+			}
+			$id = $scope . ':' . $suffix;
+			// Several methods can map to the same suffix (index + show => read);
+			// keying by id de-dupes automatically.
+			$out[$id] = $labels[$suffix] ?? self::default_label($suffix, $scope);
+		}
+		return $out;
+	}
+
+	/**
+	 * Translated labels for this resource's scopes, keyed by suffix
+	 * ("read" | "write" | "delete"). Override in each resource; the strings
+	 * must be static __() literals so po_gen.sh can extract them. The base
+	 * returns none, falling back to default_label().
+	 *
+	 * @return array<string,string>
+	 */
+	protected static function scope_labels() {
+		return [];
+	}
+
+	/**
+	 * Generic, untranslated fallback label for a suffix a resource did not
+	 * describe. Resources should always provide their own labels.
+	 */
+	protected static function default_label($suffix, $scope) {
+		return ucfirst($suffix) . ' ' . $scope;
 	}
 
 	// --- Default verb handlers: 405 until a subclass overrides them --------

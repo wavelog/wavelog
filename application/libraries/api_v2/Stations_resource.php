@@ -19,6 +19,13 @@ class Stations_resource extends Api_v2_resource {
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'station';
 
+	/** Registry labels for this resource's scopes (see scope_definitions()). */
+	protected static function scope_labels() {
+		return [
+			'read' => __('Read station locations'),
+		];
+	}
+
 	/**
 	 * GET /api/v2/stations
 	 * All station locations of the token owner. No pagination: users only

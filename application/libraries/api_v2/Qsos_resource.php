@@ -36,6 +36,15 @@ class Qsos_resource extends Api_v2_resource {
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'qso';
 
+	/** Registry labels for this resource's scopes (see scope_definitions()). */
+	protected static function scope_labels() {
+		return [
+			'read'   => __('Read QSOs'),
+			'write'  => __('Create and update QSOs'),
+			'delete' => __('Delete QSOs'),
+		];
+	}
+
 	/**
 	 * GET /api/v2/qsos
 	 * Paginated list of the key owner's QSOs. Optional ?band= filter.
