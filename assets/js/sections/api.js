@@ -76,6 +76,11 @@ $(function () {
       }
    });
 
+   // Warn when the token is set to never expire: allowed, but discouraged.
+   $('#tokenExpiry').on('change', function () {
+      $('#expiry-never-warning').toggle(this.value === 'never');
+   }).trigger('change');
+
    // Require at least one scope before the create-token form submits.
    $('#createTokenForm').on('submit', function (e) {
       if ($('.scope-checkbox:checked').length === 0) {

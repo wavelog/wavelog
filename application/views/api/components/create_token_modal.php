@@ -23,6 +23,9 @@
 								<option value="never"><?= __("Never"); ?></option>
 							</select>
 							<small class="text-muted d-block mt-2"><?= __("When the token should stop working."); ?></small>
+							<div id="expiry-never-warning" class="text-warning small mt-2" style="display:none;">
+								<i class="fas fa-exclamation-triangle me-1"></i><?= __("A token that never expires stays valid until you delete it manually. This is possible, but not recommended for security reasons."); ?>
+							</div>
 						</div>
 					</div>
 					<hr class="my-4">
