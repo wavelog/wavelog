@@ -73,81 +73,17 @@
 			<?php } ?>
 
 			<hr>
-			<h5><?= __("Create a new API Token"); ?></h5>
-			<form method="post" action="<?php echo site_url('api_token/generate'); ?>">
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="tokenName" class="form-label"><?= __("Token Name"); ?></label>
-						<input type="text" class="form-control" id="tokenName" name="token_name" maxlength="100" placeholder="<?= __("e.g. My logging tool"); ?>" required>
-					</div>
-					<div class="col-md-3">
-						<label for="tokenExpiry" class="form-label"><?= __("Expiration"); ?></label>
-						<select class="form-select" id="tokenExpiry" name="expiry">
-							<option value="30"><?= __("30 days"); ?></option>
-							<option value="90"><?= __("90 days"); ?></option>
-							<option value="365"><?= __("1 year"); ?></option>
-							<option value="never"><?= __("Never"); ?></option>
-						</select>
-					</div>
-				</div>
-				<div class="mb-3">
-					<label class="form-label"><?= __("Scopes"); ?></label>
-					<?php
-						// Group scopes by their resource prefix ("qso:read" -> "qso")
-						// so read/write pairs render indented under one heading.
-						$scope_groups = [];
-						foreach ($token_scopes as $scope => $label) {
-							$scope_groups[strtok($scope, ':')][$scope] = $label;
-						}
-					?>
-					<?php foreach ($scope_groups as $group => $scopes) { ?>
-						<div class="mb-2">
-							<!-- Group toggle: pure JS convenience, has no name and never submits -->
-							<div class="form-check">
-								<input class="form-check-input scope-group-toggle" type="checkbox" data-group="<?php echo $group; ?>" id="scopegroup_<?php echo $group; ?>">
-								<label class="form-check-label" for="scopegroup_<?php echo $group; ?>">
-									<strong><?php echo htmlspecialchars($group, ENT_QUOTES, 'UTF-8'); ?></strong>
-								</label>
-							</div>
-							<?php foreach ($scopes as $scope => $label) { ?>
-								<div class="form-check ms-4">
-									<input class="form-check-input scope-checkbox" type="checkbox" name="scopes[]" value="<?php echo $scope; ?>" id="scope_<?php echo str_replace(':', '_', $scope); ?>">
-									<label class="form-check-label" for="scope_<?php echo str_replace(':', '_', $scope); ?>">
-										<code><?php echo $scope; ?></code> &mdash; <?php echo $label; ?>
-									</label>
-								</div>
-							<?php } ?>
-						</div>
-					<?php } ?>
-				</div>
-				<button type="submit" class="btn btn-primary">
-					<i class="fas fa-plus"></i> <?= __("Create Token"); ?>
-				</button>
-			</form>
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTokenModal">
+				<i class="fas fa-plus"></i> <?= __("Create a new API Token"); ?>
+			</button>
 
 		</div>
 	</div>
 
+	<?php $this->load->view('api/components/create_token_modal'); ?>
+
 	<?php if (!empty($new_api_token)) { ?>
-		<!-- One-time reveal of a freshly created token; auto-opened by api.js -->
-		<div class="modal fade" id="newTokenModal" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title"><?= __("New API Token"); ?></h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<p><span class="badge text-bg-danger"><?= __("Important"); ?></span> <?= __("Copy this token now. For security reasons it will not be shown again."); ?></p>
-						<p><code id="newTokenValue"><?php echo htmlspecialchars($new_api_token, ENT_QUOTES, 'UTF-8'); ?></code>
-						<span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onclick='copyNewToken("<?php echo htmlspecialchars($new_api_token, ENT_QUOTES, 'UTF-8'); ?>")'><i class="copy-icon fas fa-copy"></i></span></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<?php $this->load->view('api/components/new_token_modal'); ?>
 	<?php } ?>
 
 	<div class="card">

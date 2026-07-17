@@ -71,5 +71,16 @@ $(function () {
       $('#scopegroup_' + group)
          .prop('checked', checked === boxes.length)
          .prop('indeterminate', checked > 0 && checked < boxes.length);
+      if (boxes.filter(':checked').length) {
+         $('#scopes-error').hide();
+      }
+   });
+
+   // Require at least one scope before the create-token form submits.
+   $('#createTokenForm').on('submit', function (e) {
+      if ($('.scope-checkbox:checked').length === 0) {
+         e.preventDefault();
+         $('#scopes-error').show();
+      }
    });
 });
