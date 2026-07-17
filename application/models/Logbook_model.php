@@ -3537,6 +3537,17 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	/**
+	 * Number of DXCC entities that exist (i.e. are theoretically workable),
+	 * excluding the "None" (deleted/invalid) placeholder entry. Used by the
+	 * statistics API as the denominator for "DXCC worked".
+	 *
+	 * @return int
+	 */
+	function count_dxcc_entities() {
+		return (int) $this->db->query('SELECT COUNT(*) AS count FROM dxcc_entities')->row()->count - 1; // Subtract 1 for the "None" entry
+	}
+
 	private function where_date_range($dateFrom, $dateTo) {
 		if (!empty($dateFrom)) {
 			$this->db->where('COL_TIME_ON >=', $dateFrom . ' 00:00:00');
@@ -3730,10 +3741,16 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Return total number of QSOs per band */
-	function total_bands($dateFrom = null, $dateTo = null) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	/* Return total number of QSOs per band.
+	 * $StationLocationsArray/$limit default to null so existing callers are
+	 * unaffected; they let the session-less REST API scope + cap the result.
+	 */
+	function total_bands($dateFrom = null, $dateTo = null, $StationLocationsArray = null, $limit = null) {
+		if ($StationLocationsArray === null) {
+			$this->load->model('logbooks_model');
+			$StationLocationsArray = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
+		$logbooks_locations_array = $StationLocationsArray;
 
 		if ($logbooks_locations_array[0] === -1) {
 			return null;
@@ -3744,6 +3761,35 @@ class Logbook_model extends CI_Model {
 		$this->where_date_range($dateFrom, $dateTo);
 		$this->db->group_by('band');
 		$this->db->order_by('count', 'DESC');
+		if ($limit !== null) {
+			$this->db->limit((int) $limit);
+		}
+
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query;
+	}
+
+	/* Return total number of QSOs per mode (mirror of total_bands()). */
+	function total_modes($dateFrom = null, $dateTo = null, $StationLocationsArray = null, $limit = null) {
+		if ($StationLocationsArray === null) {
+			$this->load->model('logbooks_model');
+			$StationLocationsArray = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
+		$logbooks_locations_array = $StationLocationsArray;
+
+		if ($logbooks_locations_array[0] === -1) {
+			return null;
+		}
+
+		$this->db->select('COL_MODE AS mode, count( * ) AS count', FALSE);
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->where_date_range($dateFrom, $dateTo);
+		$this->db->group_by('mode');
+		$this->db->order_by('count', 'DESC');
+		if ($limit !== null) {
+			$this->db->limit((int) $limit);
+		}
 
 		$query = $this->db->get($this->config->item('table_name'));
 
@@ -3799,6 +3845,7 @@ class Logbook_model extends CI_Model {
 				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_QSL,
 				COUNT(DISTINCT CASE WHEN t.COL_EQSL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_EQSL,
 				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_LOTW,
+				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_EQSL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_Confirmed,
 				COUNT(DISTINCT CASE WHEN d.end IS NULL AND d.adif != 0 AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Current,
 				-- QSL stats (SUM - no filtering, all QSOs)
 				SUM(CASE WHEN t.COL_QSL_SENT = 'Y' THEN 1 ELSE 0 END) as QSL_Sent,
@@ -3839,6 +3886,7 @@ class Logbook_model extends CI_Model {
 					'Countries_Worked_QSL' => $row->Countries_Worked_QSL,
 					'Countries_Worked_EQSL' => $row->Countries_Worked_EQSL,
 					'Countries_Worked_LOTW' => $row->Countries_Worked_LOTW,
+					'Countries_Worked_Confirmed' => $row->Countries_Worked_Confirmed,
 					'Countries_Current' => $row->Countries_Current,
 					// QSL stats
 					'QSL_Sent' => $row->QSL_Sent,
@@ -3874,6 +3922,7 @@ class Logbook_model extends CI_Model {
 			'Countries_Worked_QSL' => 0,
 			'Countries_Worked_EQSL' => 0,
 			'Countries_Worked_LOTW' => 0,
+			'Countries_Worked_Confirmed' => 0,
 			'Countries_Current' => 0,
 			'QSL_Sent' => 0,
 			'QSL_Received' => 0,
