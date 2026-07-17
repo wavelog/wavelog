@@ -179,6 +179,29 @@ class Api_v2_model extends CI_Model {
 	}
 
 	/**
+	 * Metadata of a single token, for the whoami endpoint (Token_resource).
+	 * Never exposes the hash; the plaintext token is not stored at all.
+	 *
+	 * @param int $id Token primary key.
+	 * @return array|null { token_name, expires_at, created_at, last_used, status }
+	 */
+	function get_token_meta($id) {
+		$this->db->where('id', (int) $id);
+		$query = $this->db->get('api_token');
+		if ($query->num_rows() !== 1) {
+			return null;
+		}
+		$row = $query->row();
+		return [
+			'token_name' => $row->token_name,
+			'expires_at' => $row->expires_at,
+			'created_at' => $row->created_at,
+			'last_used'  => $row->last_used,
+			'status'     => $row->status,
+		];
+	}
+
+	/**
 	 * Track token usage: token last_used plus the owner's last_seen.
 	 *
 	 * @param int $token_id Token primary key.
