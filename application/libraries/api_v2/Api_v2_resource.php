@@ -257,6 +257,40 @@ abstract class Api_v2_resource {
 	}
 
 	/**
+	 * The station ids a request runs against: all of the owner's stations, or
+	 * the ownership-checked subset named in the query parameter.
+	 *
+	 * Ids the token does not own are rejected with a 403 rather than silently
+	 * dropped, so a caller never receives data for a station set other than the
+	 * one it asked for.
+	 *
+	 * @param string $param Query parameter holding the comma-separated ids.
+	 * @return int[]
+	 * @throws Api_v2_exception 400 on a non-numeric id, 403 on a foreign one.
+	 */
+	protected function resolve_station_ids($param = 'station_id') {
+		$owned = $this->owner_station_ids();
+		$requested = $this->param($param);
+		if ($requested === null || $requested === '') {
+			return $owned;
+		}
+
+		$ids = [];
+		foreach (explode(',', $requested) as $sid) {
+			$sid = trim($sid);
+			if (!is_numeric($sid)) {
+				throw new Api_v2_exception('validation_error', $param . ' values must be numeric', 400);
+			}
+			$sid = (int) $sid;
+			if (!in_array($sid, $owned, true)) {
+				throw new Api_v2_exception('forbidden', $param . ' not accessible for this token', 403);
+			}
+			$ids[] = $sid;
+		}
+		return array_values(array_unique($ids));
+	}
+
+	/**
 	 * Normalise a ?band= filter: '' when absent, 'SAT' uppercased (matches
 	 * COL_PROP_MODE), any other band lowercased (matches COL_BAND). Unknown
 	 * values pass through and simply match no rows rather than erroring.

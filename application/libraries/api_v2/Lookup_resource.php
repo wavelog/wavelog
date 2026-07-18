@@ -91,7 +91,7 @@ class Lookup_resource extends Api_v2_resource {
 
 		$this->CI->load->model('logbook_model');
 
-		$station_ids = $this->resolve_station_ids();
+		$station_ids = implode(', ', $this->resolve_station_ids('station_ids'));
 
 		$data = ($detail === 'basic')
 			? $this->lookup_basic($callsign, $station_ids)
@@ -432,35 +432,6 @@ class Lookup_resource extends Api_v2_resource {
 	}
 
 	// --- Helpers -----------------------------------------------------------
-
-	/**
-	 * The station-location id set (comma-joined string, as call_lookup_result()
-	 * expects) the lookup runs against. Defaults to all of the token owner's
-	 * stations; ?station_ids=1,2 narrows it to the given, ownership-checked ids.
-	 */
-	protected function resolve_station_ids() {
-		$this->CI->load->model('stations');
-		$user_id = $this->user_id();
-
-		$requested = $this->param('station_ids');
-		if ($requested === null || $requested === '') {
-			return $this->CI->stations->all_station_ids_of_user($user_id);
-		}
-
-		$granted = [];
-		foreach (explode(',', $requested) as $sid) {
-			$sid = (int) trim($sid);
-			if ($sid > 0 && $this->CI->stations->check_station_against_user($sid, $user_id)) {
-				$granted[] = $sid;
-			}
-		}
-
-		// Fall back to all of the owner's stations if none of the requested ids
-		// were granted, so the lookup still returns DXCC data.
-		return empty($granted)
-			? $this->CI->stations->all_station_ids_of_user($user_id)
-			: implode(', ', $granted);
-	}
 
 	/**
 	 * Convert a Maidenhead locator to [lat, long] via the Qra library.

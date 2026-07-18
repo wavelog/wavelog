@@ -159,34 +159,6 @@ class Qso_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * The station ids the list runs against: all of the owner's stations, or the
-	 * ownership-checked subset from ?station_id= (comma-separated).
-	 *
-	 * @return int[]
-	 */
-	protected function resolve_station_ids() {
-		$owned = $this->owner_station_ids();
-		$requested = $this->param('station_id');
-		if ($requested === null || $requested === '') {
-			return $owned;
-		}
-
-		$ids = [];
-		foreach (explode(',', $requested) as $sid) {
-			$sid = trim($sid);
-			if (!is_numeric($sid)) {
-				throw new Api_v2_exception('validation_error', 'station_id values must be numeric', 400);
-			}
-			$sid = (int) $sid;
-			if (!in_array($sid, $owned, true)) {
-				throw new Api_v2_exception('forbidden', 'station_id not accessible for this token', 403);
-			}
-			$ids[] = $sid;
-		}
-		return array_values(array_unique($ids));
-	}
-
-	/**
 	 * Parse and validate the ?since_id= floor, or 0 when absent.
 	 */
 	protected function parse_since_id() {
