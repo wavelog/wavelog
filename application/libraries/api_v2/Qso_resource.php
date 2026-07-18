@@ -285,9 +285,12 @@ class Qso_resource extends Api_v2_resource {
 		$body = $this->body();
 
 		// Ownership-checked station profile is required for both import types.
+		// The body-wide scalar check runs later (and not at all for the bulk
+		// variant, whose "qsos" key is an array), so guard the type here before
+		// the value reaches the data layer.
 		$station_profile_id = $body['station_profile_id'] ?? null;
-		if ($station_profile_id === null
-			|| !$this->CI->stations->check_station_against_user($station_profile_id, $this->user_id())) {
+		if (!is_numeric($station_profile_id)
+			|| !$this->CI->stations->check_station_against_user((int) $station_profile_id, $this->user_id())) {
 			throw new Api_v2_exception('forbidden', 'station_profile_id does not belong to the API key owner', 403);
 		}
 
