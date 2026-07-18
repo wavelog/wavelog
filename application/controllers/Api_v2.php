@@ -272,6 +272,7 @@ class Api_v2 extends CI_Controller {
 		}
 		$result = $this->rate_limit->check($endpoint, $identifier);
 		if (!$result['allowed']) {
+			$this->output->set_header('Retry-After: ' . $result['retry_after']);
 			throw new Api_v2_exception(
 				'rate_limited',
 				'Rate limit exceeded. Try again in ' . $result['retry_after'] . ' seconds.',
