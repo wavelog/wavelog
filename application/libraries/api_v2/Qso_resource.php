@@ -664,7 +664,7 @@ class Qso_resource extends Api_v2_resource {
 	 * Editable simple fields: json key => [column, uppercase].
 	 * Date/time, mode and frequencies are handled separately above.
 	 */
-	protected function editable_fields() {
+	protected static function editable_fields() {
 		return [
 			'call'       => ['COL_CALL', true],
 			'band'       => ['COL_BAND', false],
@@ -774,34 +774,50 @@ class Qso_resource extends Api_v2_resource {
 	 * small for the reference implementation; extend as needed.
 	 */
 	protected function format_qso($row) {
-		// Read-only fields: the identifiers plus the date/mode/frequency group,
-		// which POST derives from the ADIF payload and apply_update() handles
-		// separately. Everything else comes from editable_fields() below.
-		$qso = [
-			'id'         => (int) $row->COL_PRIMARY_KEY,
-			'station_id' => isset($row->station_id) ? (int) $row->station_id : null,
-			'qso_date'   => $row->COL_TIME_ON ?? null,
-			'mode'       => $row->COL_MODE ?? null,
-			'submode'    => $row->COL_SUBMODE ?? null,
-			'freq'       => $row->COL_FREQ ?? null,
-			'freq_rx'    => $row->COL_FREQ_RX ?? null,
-		];
+		$qso = [];
 
-		// Columns that hold numbers; the driver hands them back as strings.
-		$numeric = ['cqz', 'ituz', 'srx', 'stx'];
+		foreach (self::read_only_fields() as $key => $spec) {
+			$value = $row->{$spec[0]} ?? null;
+			$qso[$key] = ($spec[1] === 'integer' && $value !== null) ? (int) $value : $value;
+		}
 
 		// Driven by editable_fields() on purpose: a client must be able to read
 		// back every field it may write, or a read-modify-write cycle would
 		// silently drop whatever GET never showed it.
-		foreach ($this->editable_fields() as $key => $spec) {
+		foreach (self::editable_fields() as $key => $spec) {
 			$value = $row->{$spec[0]} ?? null;
-			if (in_array($key, $numeric, true)) {
+			if (in_array($key, self::numeric_fields(), true)) {
 				$value = ($value === null || $value === '') ? null : (int) $value;
 			}
 			$qso[$key] = $value;
 		}
 
 		return $qso;
+	}
+
+	/**
+	 * Fields GET returns but PATCH cannot write: json key => [column, type].
+	 * The identifiers plus the date/mode/frequency group, which POST derives
+	 * from the ADIF payload and apply_update() handles separately.
+	 */
+	protected static function read_only_fields() {
+		return [
+			'id'         => ['COL_PRIMARY_KEY', 'integer'],
+			'station_id' => ['station_id', 'integer'],
+			'qso_date'   => ['COL_TIME_ON', 'string'],
+			'mode'       => ['COL_MODE', 'string'],
+			'submode'    => ['COL_SUBMODE', 'string'],
+			'freq'       => ['COL_FREQ', 'string'],
+			'freq_rx'    => ['COL_FREQ_RX', 'string'],
+		];
+	}
+
+	/**
+	 * Editable fields whose column holds a number; the driver hands everything
+	 * back as strings, so these get cast on output.
+	 */
+	protected static function numeric_fields() {
+		return ['cqz', 'ituz', 'srx', 'stx'];
 	}
 
 	/**
