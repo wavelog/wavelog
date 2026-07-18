@@ -4076,7 +4076,7 @@ class Logbook_model extends CI_Model {
 			$this->db->delete("oqrs");
 
 			// qso was accessible so notify qso_changed for the current user_id (can also be a clubstation)
-			$this->notify_qso_change($this->session->userdata('user_id'));
+			$this->notify_qso_change($user_id ?? $this->session->userdata('user_id'));
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($callsign);
