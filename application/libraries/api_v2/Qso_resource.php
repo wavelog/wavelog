@@ -13,16 +13,19 @@ require_once __DIR__ . '/Api_v2_resource.php';
  *   - reads via Logbook_model::get_qso() (trusted, after our own ownership check)
  *   - lists via Logbook_model::get_qsos()
  *   - creates via Logbook_model::import_bulk() (the same path the v1 API uses)
- *   - updates via Logbook_model::update_qso_columns() (PATCH/PUT)
+ *   - updates via Logbook_model::update_qso_columns() (PATCH)
  *   - deletes via Logbook_model::delete() (handles OQRS/QSL/eQSL + cache)
  *
- * PATCH updates only the fields present in the body; PUT additionally resets
- * every other editable field to its default. Both verbs touch only the field
- * whitelist in editable_fields(): QSL/LoTW/eQSL bookkeeping, DXCC/country
- * recalculation and the MY_* station refs are deliberately out of scope here.
+ * PATCH updates only the fields present in the body; anything omitted keeps its
+ * stored value. There is deliberately no PUT: Wavelog is the source of truth, so
+ * an API client should never be able to blank fields it simply did not know
+ * about - a client wanting a full overwrite can send every field explicitly.
+ * PATCH touches only the field whitelist in editable_fields(): QSL/LoTW/eQSL
+ * bookkeeping, DXCC/country recalculation and the MY_* station refs are
+ * deliberately out of scope here.
  *
- * Unit note: POST follows ADIF field semantics (freq in MHz), while PATCH/PUT
- * take freq/freq_rx in Hz - matching the representation returned by GET.
+ * Unit note: POST follows ADIF field semantics (freq in MHz), while PATCH
+ * takes freq/freq_rx in Hz - matching the representation returned by GET.
  * Unit suffixes work too (e.g. "7.0475M" = 7047500 Hz, see parse_frequency()).
  *
  * Ownership in v2 is enforced against the token's user_id (not the web
@@ -520,16 +523,7 @@ class Qso_resource extends Api_v2_resource {
 	 * Partial update: only the fields present in the body are changed.
 	 */
 	public function update($id) {
-		$this->apply_update($id, false);
-	}
-
-	/**
-	 * PUT /api/v2/qso/{id}
-	 * Full replace of the editable fields: required fields must be present,
-	 * every omitted optional field is reset to its default.
-	 */
-	public function replace($id) {
-		$this->apply_update($id, true);
+		$this->apply_update($id);
 	}
 
 	/**
@@ -555,12 +549,11 @@ class Qso_resource extends Api_v2_resource {
 	// --- Internal helpers --------------------------------------------------
 
 	/**
-	 * Shared PATCH/PUT implementation.
+	 * PATCH implementation.
 	 *
-	 * @param int  $id      QSO primary key from the path.
-	 * @param bool $replace true for PUT (reset omitted fields), false for PATCH.
+	 * @param int $id QSO primary key from the path.
 	 */
-	protected function apply_update($id, $replace) {
+	protected function apply_update($id) {
 		$this->require_write();
 		$this->require_numeric_id($id);
 		$this->CI->load->model('logbook_model');
@@ -573,26 +566,7 @@ class Qso_resource extends Api_v2_resource {
 		$body = $this->body();
 		$this->require_scalar_fields($body);
 
-		// PUT must carry the same required fields as create.
-		if ($replace) {
-			$required = ['call', 'band', 'mode', 'qso_date', 'time_on'];
-			$missing = [];
-			foreach ($required as $field) {
-				if (empty($body[$field])) {
-					$missing[] = $field;
-				}
-			}
-			if (!empty($missing)) {
-				throw new Api_v2_exception(
-					'validation_error',
-					'Missing required field(s): ' . implode(', ', $missing),
-					400,
-					['missing' => $missing]
-				);
-			}
-		}
-
-		$data = $this->build_update_data($body, $replace);
+		$data = $this->build_update_data($body);
 
 		// Optional move to another station location, ownership-checked.
 		if (array_key_exists('station_profile_id', $body)) {
@@ -618,13 +592,10 @@ class Qso_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * Build the COL_* update array from the JSON body.
-	 *
-	 * PATCH ($replace = false): only fields present in the body.
-	 * PUT   ($replace = true):  every editable field; omitted ones get their
-	 * reset default so the QSO matches the supplied representation.
+	 * Build the COL_* update array from the JSON body. Only fields present in
+	 * the body are touched; anything omitted keeps its stored value.
 	 */
-	protected function build_update_data($body, $replace) {
+	protected function build_update_data($body) {
 		$data = [];
 
 		// Date/time: qso_date and time_on always travel together.
@@ -660,12 +631,10 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
-		// Frequencies are normalised to Hz; PUT resets omitted ones.
+		// Frequencies are normalised to Hz.
 		foreach (['freq' => 'COL_FREQ', 'freq_rx' => 'COL_FREQ_RX'] as $key => $col) {
 			if (array_key_exists($key, $body)) {
 				$data[$col] = $this->CI->logbook_model->parse_frequency($body[$key]);
-			} elseif ($replace) {
-				$data[$col] = null;
 			}
 		}
 
@@ -673,18 +642,15 @@ class Qso_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'Invalid callsign', 400, ['field' => 'call']);
 		}
 
-		// Simple whitelisted fields: present in body, or reset default on PUT.
+		// Simple whitelisted fields, only those present in the body.
 		foreach ($this->editable_fields() as $key => $def) {
-			list($col, $default, $upper) = $def;
+			list($col, $upper) = $def;
 			if (array_key_exists($key, $body)) {
 				$value = $body[$key];
 				if ($upper && is_string($value)) {
 					$value = strtoupper(trim($value));
 				}
 				$data[$col] = $value;
-			} elseif ($replace && $key !== 'call' && $key !== 'band') {
-				// call/band are required on PUT and therefore always present.
-				$data[$col] = $default;
 			}
 		}
 
@@ -692,41 +658,41 @@ class Qso_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * Editable simple fields: json key => [column, reset default, uppercase].
+	 * Editable simple fields: json key => [column, uppercase].
 	 * Date/time, mode and frequencies are handled separately above.
 	 */
 	protected function editable_fields() {
 		return [
-			'call'       => ['COL_CALL', null, true],
-			'band'       => ['COL_BAND', null, false],
-			'band_rx'    => ['COL_BAND_RX', null, false],
-			'rst_sent'   => ['COL_RST_SENT', null, false],
-			'rst_rcvd'   => ['COL_RST_RCVD', null, false],
-			'gridsquare' => ['COL_GRIDSQUARE', '', true],
-			'name'       => ['COL_NAME', '', false],
-			'comment'    => ['COL_COMMENT', '', false],
-			'notes'      => ['COL_NOTES', '', false],
-			'qth'        => ['COL_QTH', '', false],
-			'tx_pwr'     => ['COL_TX_PWR', null, false],
-			'prop_mode'  => ['COL_PROP_MODE', '', false],
-			'sat_name'   => ['COL_SAT_NAME', '', true],
-			'sat_mode'   => ['COL_SAT_MODE', '', true],
-			'sota_ref'   => ['COL_SOTA_REF', '', true],
-			'pota_ref'   => ['COL_POTA_REF', '', true],
-			'wwff_ref'   => ['COL_WWFF_REF', '', true],
-			'iota'       => ['COL_IOTA', '', true],
-			'sig'        => ['COL_SIG', '', true],
-			'sig_info'   => ['COL_SIG_INFO', '', true],
-			'darc_dok'   => ['COL_DARC_DOK', '', true],
-			'state'      => ['COL_STATE', '', false],
-			'cnty'       => ['COL_CNTY', '', false],
-			'cqz'        => ['COL_CQZ', null, false],
-			'ituz'       => ['COL_ITUZ', null, false],
-			'qsl_via'    => ['COL_QSL_VIA', '', false],
-			'srx'        => ['COL_SRX', null, false],
-			'stx'        => ['COL_STX', null, false],
-			'srx_string' => ['COL_SRX_STRING', '', true],
-			'stx_string' => ['COL_STX_STRING', '', true],
+			'call'       => ['COL_CALL', true],
+			'band'       => ['COL_BAND', false],
+			'band_rx'    => ['COL_BAND_RX', false],
+			'rst_sent'   => ['COL_RST_SENT', false],
+			'rst_rcvd'   => ['COL_RST_RCVD', false],
+			'gridsquare' => ['COL_GRIDSQUARE', true],
+			'name'       => ['COL_NAME', false],
+			'comment'    => ['COL_COMMENT', false],
+			'notes'      => ['COL_NOTES', false],
+			'qth'        => ['COL_QTH', false],
+			'tx_pwr'     => ['COL_TX_PWR', false],
+			'prop_mode'  => ['COL_PROP_MODE', false],
+			'sat_name'   => ['COL_SAT_NAME', true],
+			'sat_mode'   => ['COL_SAT_MODE', true],
+			'sota_ref'   => ['COL_SOTA_REF', true],
+			'pota_ref'   => ['COL_POTA_REF', true],
+			'wwff_ref'   => ['COL_WWFF_REF', true],
+			'iota'       => ['COL_IOTA', true],
+			'sig'        => ['COL_SIG', true],
+			'sig_info'   => ['COL_SIG_INFO', true],
+			'darc_dok'   => ['COL_DARC_DOK', true],
+			'state'      => ['COL_STATE', false],
+			'cnty'       => ['COL_CNTY', false],
+			'cqz'        => ['COL_CQZ', false],
+			'ituz'       => ['COL_ITUZ', false],
+			'qsl_via'    => ['COL_QSL_VIA', false],
+			'srx'        => ['COL_SRX', false],
+			'stx'        => ['COL_STX', false],
+			'srx_string' => ['COL_SRX_STRING', true],
+			'stx_string' => ['COL_STX_STRING', true],
 		];
 	}
 
@@ -773,7 +739,7 @@ class Qso_resource extends Api_v2_resource {
 			}
 			$key = strtolower($key);
 			if ($key === 'freq' || $key === 'freq_rx') {
-				// The API freq contract is Hz (matching GET and PATCH/PUT, which
+				// The API freq contract is Hz (matching GET and PATCH, which
 				// use parse_frequency). The ADIF import pipeline expects MHz, so
 				// normalise to Hz here and hand it the MHz equivalent, keeping
 				// create round-trip-consistent with read and update.
@@ -806,26 +772,34 @@ class Qso_resource extends Api_v2_resource {
 	 * small for the reference implementation; extend as needed.
 	 */
 	protected function format_qso($row) {
-		return [
+		// Read-only fields: the identifiers plus the date/mode/frequency group,
+		// which POST derives from the ADIF payload and apply_update() handles
+		// separately. Everything else comes from editable_fields() below.
+		$qso = [
 			'id'         => (int) $row->COL_PRIMARY_KEY,
 			'station_id' => isset($row->station_id) ? (int) $row->station_id : null,
-			'call'       => $row->COL_CALL ?? null,
-			'band'       => $row->COL_BAND ?? null,
+			'qso_date'   => $row->COL_TIME_ON ?? null,
 			'mode'       => $row->COL_MODE ?? null,
 			'submode'    => $row->COL_SUBMODE ?? null,
 			'freq'       => $row->COL_FREQ ?? null,
 			'freq_rx'    => $row->COL_FREQ_RX ?? null,
-			'qso_date'   => $row->COL_TIME_ON ?? null,
-			'rst_sent'   => $row->COL_RST_SENT ?? null,
-			'rst_rcvd'   => $row->COL_RST_RCVD ?? null,
-			'gridsquare' => $row->COL_GRIDSQUARE ?? null,
-			'name'       => $row->COL_NAME ?? null,
-			'comment'    => $row->COL_COMMENT ?? null,
-			'notes'      => $row->COL_NOTES ?? null,
-			'qth'        => $row->COL_QTH ?? null,
-			'prop_mode'  => $row->COL_PROP_MODE ?? null,
-			'sat_name'   => $row->COL_SAT_NAME ?? null,
 		];
+
+		// Columns that hold numbers; the driver hands them back as strings.
+		$numeric = ['cqz', 'ituz', 'srx', 'stx'];
+
+		// Driven by editable_fields() on purpose: a client must be able to read
+		// back every field it may write, or a read-modify-write cycle would
+		// silently drop whatever GET never showed it.
+		foreach ($this->editable_fields() as $key => $spec) {
+			$value = $row->{$spec[0]} ?? null;
+			if (in_array($key, $numeric, true)) {
+				$value = ($value === null || $value === '') ? null : (int) $value;
+			}
+			$qso[$key] = $value;
+		}
+
+		return $qso;
 	}
 
 	/**
