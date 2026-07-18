@@ -31,11 +31,25 @@ class Api_v2_response {
 	 * @param array $headers Optional extra response headers, name => value.
 	 */
 	public function respond($data, $status = 200, $meta = null, $headers = []) {
+		$default_meta = $this->build_meta();
+		$meta = is_array($meta) ? array_merge($default_meta, $meta) : $default_meta;
+
 		$payload = ['data' => $data];
-		if ($meta !== null) {
-			$payload['meta'] = $meta;
-		}
+		$payload['meta'] = $meta;
 		$this->emit($payload, $status, $headers);
+	}
+
+	/**
+	 * Build default top-level metadata for API v2 responses.
+	 */
+	protected function build_meta() {
+		$resource = trim((string) $this->CI->uri->segment(3));
+
+		return [
+			'timestamp' => gmdate('c'),
+			'resource'  => $resource !== '' ? $resource : 'meta',
+			'method'    => strtoupper((string) $this->CI->input->method(true)),
+		];
 	}
 
 	/**
