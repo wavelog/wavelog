@@ -13,7 +13,9 @@ require_once __DIR__ . '/Api_v2_exception.php';
  * the verb methods below.
  *
  * Subclasses override only the verbs they support. Any verb left unimplemented
- * falls through to the default here, which throws a 405 method_not_allowed.
+ * falls through to the default here, which throws a 405 method_not_allowed -
+ * except show(), which throws a 404 because a resource that has no per-item GET
+ * has no addressable items in the first place.
  *
  * Verb -> method mapping (performed by the dispatcher):
  *   GET    /res        -> index()
@@ -151,7 +153,9 @@ abstract class Api_v2_resource {
 	// --- Default verb handlers: 405 until a subclass overrides them --------
 
 	public function index()        { $this->method_not_allowed(); }
-	public function show($id)      { $this->method_not_allowed(); }
+	// A resource without show() has no addressable items, so /res/{id} is not a
+	// URL that exists - 404 rather than "wrong verb on an existing URL".
+	public function show($id)      { throw new Api_v2_exception('not_found', 'Unknown resource item', 404); }
 	public function create()       { $this->method_not_allowed(); }
 	public function replace($id)   { $this->method_not_allowed(); } // PUT: full replace
 	public function update($id)    { $this->method_not_allowed(); } // PATCH: partial update
