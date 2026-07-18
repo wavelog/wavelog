@@ -734,6 +734,10 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
+		if (array_key_exists('call', $body) && !$this->CI->logbook_model->is_valid_callsign($body['call'])) {
+			throw new Api_v2_exception('validation_error', 'Invalid callsign', 400, ['field' => 'call']);
+		}
+
 		// Simple whitelisted fields: present in body, or reset default on PUT.
 		foreach ($this->editable_fields() as $key => $def) {
 			list($col, $default, $upper) = $def;
