@@ -114,16 +114,7 @@ class Station_resource extends Api_v2_resource {
 	 * Partial update: only the fields present in the body are changed.
 	 */
 	public function update($id) {
-		$this->apply_update($id, false);
-	}
-
-	/**
-	 * PUT /api/v2/station/{id}
-	 * Full replace of the editable fields: required fields must be present,
-	 * every omitted optional field is reset to its default.
-	 */
-	public function replace($id) {
-		$this->apply_update($id, true);
+		$this->apply_update($id);
 	}
 
 	/**
@@ -154,12 +145,11 @@ class Station_resource extends Api_v2_resource {
 	// --- Internal helpers --------------------------------------------------
 
 	/**
-	 * Shared PATCH/PUT implementation.
+	 * PATCH implementation.
 	 *
-	 * @param int  $id      station_id from the path.
-	 * @param bool $replace true for PUT (reset omitted fields), false for PATCH.
+	 * @param int $id station_id from the path.
 	 */
-	protected function apply_update($id, $replace) {
+	protected function apply_update($id) {
 		$this->require_write();
 		$this->CI->load->model('stations');
 		$this->CI->load->model('stationsetup_model');
@@ -168,12 +158,9 @@ class Station_resource extends Api_v2_resource {
 
 		$body = $this->body();
 		$this->require_scalar_fields($body);
-		if ($replace) {
-			$this->require_present($body, ['name', 'callsign']);
-		}
 		$this->validate_grid($body);
 
-		$data = $this->build_columns($body, $replace, (int) $current->station_dxcc);
+		$data = $this->build_columns($body, false, (int) $current->station_dxcc);
 		if (empty($data)) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
@@ -185,21 +172,21 @@ class Station_resource extends Api_v2_resource {
 
 	/**
 	 * Map the JSON body to station_profile columns with the same normalisation
-	 * the web UI applies. On $replace (PUT/create) omitted optional fields get
-	 * their reset default; on PATCH only supplied fields are touched.
+	 * the web UI applies. A new row needs every column, so create() fills the
+	 * omitted ones with their defaults; PATCH touches only what was supplied.
 	 *
-	 * @param array    $body         Decoded request body (API field names).
-	 * @param bool     $replace      Reset omitted fields to their default.
-	 * @param int|null $current_dxcc Existing DXCC (for county gating on PATCH).
+	 * @param array    $body           Decoded request body (API field names).
+	 * @param bool     $fill_defaults  true on create, false on PATCH.
+	 * @param int|null $current_dxcc   Existing DXCC (for county gating on PATCH).
 	 * @return array column => value
 	 */
-	protected function build_columns($body, $replace, $current_dxcc) {
+	protected function build_columns($body, $fill_defaults, $current_dxcc) {
 		$data = [];
 		foreach ($this->writable_fields() as $key => $def) {
 			list($col, $normalizer, $default) = $def;
 			if (array_key_exists($key, $body)) {
 				$data[$col] = $this->normalize($normalizer, $body[$key]);
-			} elseif ($replace) {
+			} elseif ($fill_defaults) {
 				$data[$col] = $default;
 			}
 		}
@@ -212,7 +199,7 @@ class Station_resource extends Api_v2_resource {
 			$data['station_cnty'] = in_array($effective_dxcc, self::COUNTY_DXCC, true)
 				? xss_clean((string) $body['cnty'])
 				: '';
-		} elseif ($replace) {
+		} elseif ($fill_defaults) {
 			$data['station_cnty'] = null;
 		}
 
@@ -337,8 +324,8 @@ class Station_resource extends Api_v2_resource {
 
 	/**
 	 * Shape a station_profile DB row into the public API representation. The
-	 * shape is symmetric with the writable fields so a GET result round-trips
-	 * through PUT.
+	 * shape is symmetric with the writable fields, so a GET result can be sent
+	 * straight back through PATCH.
 	 */
 	protected function format_station($row) {
 		return [
