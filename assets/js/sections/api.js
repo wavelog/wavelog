@@ -47,6 +47,13 @@ function copyNewToken(token) {
    copyToClipboard(token, $('#newTokenValue'));
 }
 
+document.addEventListener('submit', function (e) {
+   var btn = e.submitter;
+   if (btn && btn.dataset.confirm && !confirm(btn.dataset.confirm)) {
+      e.preventDefault();
+   }
+});
+
 $(function () {
    $('[data-bs-toggle="tooltip"]').tooltip({'delay': { show: 500, hide: 0 }, 'placement': 'right'});
 
