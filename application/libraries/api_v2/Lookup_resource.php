@@ -18,17 +18,15 @@ require_once APPPATH . '../src/Dxcc/Dxcc.php';
  * equivalent of the v1 lookup / private_lookup endpoints; used by FlexRadio
  * overlay, DXClusterAPI, ...). The ?detail= parameter selects the depth:
  *   - basic: DXCC + Lat/Long/continent plus the owner's grid/name if the call
- *            was worked before. No per-band/mode history. (v1 `lookup`.)
+ *            was worked before. No per-band/mode history. (v1 `lookup`, default.)
  *   - full:  additionally per-band/mode worked & confirmed flags, DXCC
- *            confirmation state and (opt-in) callbook data. (v1 `private_lookup`,
- *            default.)
+ *            confirmation state and (opt-in) callbook data. (v1 `private_lookup`.)
  *
  * Grid lookup (?grid=) — whether a gridsquare is worked/confirmed in the owner's
  * logbook (v2 equivalent of v1 logbook_check_grid).
  *
  * Routes:
- *   GET /api/v2/lookup/{callsign}   path form (callsigns without a "/")
- *   GET /api/v2/lookup?callsign=..  query form (required for calls with a "/")
+ *   GET /api/v2/lookup?callsign=..  callsign lookup
  *   GET /api/v2/lookup?grid=..      grid worked/confirmed check
  *
  * Scope:  lookup:read
@@ -47,10 +45,8 @@ class Lookup_resource extends Api_v2_resource {
 
 	/**
 	 * GET /api/v2/lookup?callsign=...  or  ?grid=...
-	 * Query form of the lookup. `?callsign=` is required for callsigns containing
-	 * a "/" (portable or DXCC-prefix calls like DL1ABC/P or W/DL1ABC), which
-	 * cannot be a path segment because the webserver rejects encoded slashes.
-	 * `?grid=` looks up a gridsquare's worked/confirmed status instead.
+	 * `?callsign=` looks up a single callsign, `?grid=` a gridsquare's
+	 * worked/confirmed status instead.
 	 */
 	public function index() {
 		$grid = $this->param('grid');
@@ -71,16 +67,8 @@ class Lookup_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/lookup/{callsign}
-	 * Path form. For callsigns with a "/" use the ?callsign= query form instead.
-	 */
-	public function show($callsign) {
-		$this->do_lookup($callsign);
-	}
-
-	/**
-	 * Shared lookup for both the path and query forms.
-	 * Optional query: ?detail=full|basic (default full), ?band=, ?mode=,
+	 * Callsign lookup itself.
+	 * Optional query: ?detail=full|basic (default basic), ?band=, ?mode=,
 	 * ?callbook=true, ?station_ids=1,2 (default: all of the owner's stations).
 	 */
 	protected function do_lookup($callsign) {
