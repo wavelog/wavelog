@@ -24,9 +24,12 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * bookkeeping, DXCC/country recalculation and the MY_* station refs are
  * deliberately out of scope here.
  *
- * Unit note: POST follows ADIF field semantics (freq in MHz), while PATCH
- * takes freq/freq_rx in Hz - matching the representation returned by GET.
- * Unit suffixes work too (e.g. "7.0475M" = 7047500 Hz, see parse_frequency()).
+ * Unit note: the JSON API speaks Hz throughout - POST (single and bulk), PATCH
+ * and GET all take and return freq/freq_rx in Hz. Unit suffixes are accepted on
+ * input (e.g. "7.0475M" = 7047500 Hz, see parse_frequency()). Only an ADIF
+ * payload (import_type=adif) is read as MHz, because that is what the ADIF
+ * standard prescribes; body_to_record() converts JSON Hz to MHz internally
+ * because the shared import pipeline is ADIF-based.
  *
  * Ownership in v2 is enforced against the token's user_id (not the web
  * session): we resolve the token owner's station ids and reject anything else.
@@ -739,10 +742,9 @@ class Qso_resource extends Api_v2_resource {
 			}
 			$key = strtolower($key);
 			if ($key === 'freq' || $key === 'freq_rx') {
-				// The API freq contract is Hz (matching GET and PATCH, which
-				// use parse_frequency). The ADIF import pipeline expects MHz, so
-				// normalise to Hz here and hand it the MHz equivalent, keeping
-				// create round-trip-consistent with read and update.
+				// JSON input is Hz (same as GET and PATCH). The import pipeline
+				// is ADIF-based and therefore expects MHz, so convert here -
+				// this is the only place the two unit worlds meet.
 				$hz = $this->CI->logbook_model->parse_frequency(is_string($value) ? $value : (string) $value);
 				$record[$key] = $hz > 0 ? $this->hz_to_mhz($hz) : $value;
 				continue;
