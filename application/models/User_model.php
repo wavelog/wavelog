@@ -541,6 +541,7 @@ class User_Model extends CI_Model {
 			// Delete QSOs from $this->config->item('table_name')
 			$this->db->query("DELETE FROM bandxuser WHERE userid = ?",$user_id);
 			$this->db->query("DELETE FROM api WHERE user_id = ? OR created_by = ?", [$user_id, $user_id]);
+			$this->db->query("DELETE FROM api_token WHERE user_id = ? OR created_by = ?", [$user_id, $user_id]);
 			$this->db->query("DELETE FROM club_permissions WHERE user_id = ? OR club_id = ?", [$user_id, $user_id]);
 			$this->db->query("DELETE FROM cat WHERE user_id = ?",$user_id);
 			$this->db->query("DELETE FROM lotw_certs WHERE user_id = ?",$user_id);
