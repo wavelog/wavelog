@@ -216,6 +216,9 @@ class Api_v2 extends CI_Controller {
 				($id === null) ? $handler->index() : $handler->show($id);
 				break;
 			case 'POST':
+				if ($id !== null) {
+					$this->reject_method(['GET', 'PUT', 'PATCH', 'DELETE']);
+				}
 				$handler->create();
 				break;
 			case 'PUT':
