@@ -32,33 +32,32 @@
 					<tbody>
 						<?php foreach ($api_tokens->result() as $row) { ?>
 							<tr>
-								<td><i class="fas fa-key"></i> <?php echo htmlspecialchars($row->token_name, ENT_QUOTES, 'UTF-8'); ?></td>
+								<td><i class="fas fa-key"></i> <?php echo html_escape($row->token_name); ?></td>
 								<td>
 									<?php foreach (explode(',', $row->scopes) as $scope) { ?>
-										<span class="badge bg-secondary"><?php echo htmlspecialchars($scope, ENT_QUOTES, 'UTF-8'); ?></span>
+										<span class="badge bg-secondary"><?php echo html_escape($scope); ?></span>
 									<?php } ?>
 								</td>
-								<td><?php echo $row->last_used ?? __("Never"); ?></td>
+								<td><?php echo html_escape($row->last_used ?? __("Never")); ?></td>
 								<td>
 									<?php if ($row->expires_at === null) {
 										echo '<span class="badge bg-success">' . __("Never") . '</span>';
 									} elseif (strtotime($row->expires_at) < time()) {
-										echo '<span class="badge bg-danger">' . __("Expired") . '</span> ' . $row->expires_at;
+										echo '<span class="badge bg-danger">' . __("Expired") . '</span> ' . html_escape($row->expires_at);
 									} else {
-										echo $row->expires_at;
+										echo html_escape($row->expires_at);
 									} ?>
 								</td>
 								<?php if ($clubmode) { ?>
-									<td><?php echo $row->user_callsign ?? ''; ?></td>
+									<td><?php echo html_escape($row->user_callsign ?? ''); ?></td>
 								<?php } ?>
 								<td>
 									<?php
-										$cfnm_delete_token = sprintf(__("Are you sure you want delete the API Token %s?"), '&quot;' . htmlspecialchars($row->token_name, ENT_QUOTES, 'UTF-8') . '&quot;');
+										$cfnm_delete_token = sprintf(__("Are you sure you want delete the API Token %s?"), '"' . $row->token_name . '"');
 									?>
 									<form method="post" action="<?php echo site_url('api_token/delete'); ?>" style="display:inline;">
 										<input type="hidden" name="id" value="<?php echo (int) $row->id; ?>">
-										<button type="submit" class="btn btn-danger btn-sm"
-											onclick="return confirm('<?php echo $cfnm_delete_token; ?>');">
+										<button type="submit" class="btn btn-danger btn-sm" data-confirm="<?php echo html_escape($cfnm_delete_token); ?>">
 											<?= __("Delete"); ?>
 										</button>
 									</form>
@@ -132,15 +131,15 @@
 									$masked = false;
 								} ?>
 								<td>
-									<i class="fas fa-key"></i> <span class="api-key" id="<?php echo $api_key; ?>"><?php echo $api_key; ?></span>
+									<i class="fas fa-key"></i> <span class="api-key" id="<?php echo html_escape($api_key); ?>"><?php echo html_escape($api_key); ?></span>
 									<?php if (!$masked) { ?>
-									<span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onclick='copyApiKey("<?php echo $api_key; ?>")'><i class="copy-icon fas fa-copy"></i></span>
+									<span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" data-apikey="<?php echo html_escape($api_key); ?>" onclick="copyApiKey(this.dataset.apikey)"><i class="copy-icon fas fa-copy"></i></span>
 									<?php } ?>
 								</td>
-								<td><?php echo $row->description; ?></td>
-								<td><?php echo $row->last_used; ?></td>
+								<td><?php echo html_escape($row->description ?? ''); ?></td>
+								<td><?php echo html_escape($row->last_used ?? ''); ?></td>
 								<?php if ($clubmode) { ?>
-									<td><?php echo $row->user_callsign; ?></td>
+									<td><?php echo html_escape($row->user_callsign ?? ''); ?></td>
 								<?php } ?>
 								<td>
 									<?php if ($row->rights == "rw") {
@@ -151,20 +150,19 @@
 										echo "<span class=\"badge bg-dark\">" . __("Unknown") . "</span>";
 									} ?>
 								</td>
-								<td><span class="badge rounded-pill text-bg-success"><?php echo ucfirst($row->status); ?></span></td>
+								<td><span class="badge rounded-pill text-bg-success"><?php echo html_escape(ucfirst($row->status ?? '')); ?></span></td>
 								<td>
 									<?php if (!$masked) { ?>
-										<a href="<?php echo site_url('api/edit'); ?>/<?php echo $api_key; ?>" class="btn btn-outline-primary btn-sm"><?= __("Edit"); ?></a>
+										<a href="<?php echo site_url('api/edit'); ?>/<?php echo html_escape(rawurlencode($api_key)); ?>" class="btn btn-outline-primary btn-sm"><?= __("Edit"); ?></a>
 
-										<a href="<?php echo site_url('api/auth/' . $api_key); ?>" target="_blank" class="btn btn-primary btn-sm"><?= __("Test"); ?></a>
+										<a href="<?php echo html_escape(site_url('api/auth/' . rawurlencode($api_key))); ?>" target="_blank" class="btn btn-primary btn-sm"><?= __("Test"); ?></a>
 
 										<?php
-											$cfnm_delete = sprintf(__("Are you sure you want delete the API Key %s?"), '&quot;'.($row->description ?? '<noname>').'&quot;');
+											$cfnm_delete = sprintf(__("Are you sure you want delete the API Key %s?"), '"' . ($row->description ?: __("<noname>")) . '"');
 										?>
 										<form method="post" action="<?php echo site_url('api/delete'); ?>" style="display:inline;">
-											<input type="hidden" name="key" value="<?php echo $api_key; ?>">
-											<button type="submit" class="btn btn-danger btn-sm"
-												onclick="return confirm('<?php echo $cfnm_delete; ?>');">
+											<input type="hidden" name="key" value="<?php echo html_escape($api_key); ?>">
+											<button type="submit" class="btn btn-danger btn-sm" data-confirm="<?php echo html_escape($cfnm_delete); ?>">
 												<?= __("Delete"); ?>
 											</button>
 										</form>
