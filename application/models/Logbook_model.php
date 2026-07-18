@@ -10,6 +10,19 @@ class Logbook_model extends CI_Model {
 	private $spot_status_cache = []; // In-memory cache for DX cluster spot statuses
 	private $dxcc_object;
 
+	// QSL confirmation sources, mapping the public API type name to its received
+	// flag and the date that confirmation arrived. Single source of truth for the
+	// API v2 QSO filter and the confirmation statistics.
+	//
+	// HRDLog is deliberately absent: it is upload-only and has no received column.
+	const CONFIRMATION_COLUMNS = [
+		'lotw'    => ['rcvd' => 'COL_LOTW_QSL_RCVD',                 'date' => 'COL_LOTW_QSLRDATE'],
+		'eqsl'    => ['rcvd' => 'COL_EQSL_QSL_RCVD',                 'date' => 'COL_EQSL_QSLRDATE'],
+		'qsl'     => ['rcvd' => 'COL_QSL_RCVD',                      'date' => 'COL_QSLRDATE'],
+		'qrz'     => ['rcvd' => 'COL_QRZCOM_QSO_DOWNLOAD_STATUS',    'date' => 'COL_QRZCOM_QSO_DOWNLOAD_DATE'],
+		'clublog' => ['rcvd' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',   'date' => 'COL_CLUBLOG_QSO_DOWNLOAD_DATE'],
+	];
+
 	public function __construct() {
 		$this->oop_populate_modes();
 		$this->load->Model('Modes');
@@ -2281,13 +2294,20 @@ class Logbook_model extends CI_Model {
 	// $mode         string  '' for none, else a COL_MODE or COL_SUBMODE value
 	// $qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
 	// $since_id     int     0 for none, else COL_PRIMARY_KEY > $since_id
-	private function _qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, &$bindings) {
+	// $qso_since    string  '' for none, else 'Y-m-d' floor on COL_TIME_ON
+	private function _qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $qso_since, &$bindings) {
 		$where = " WHERE qsos.`station_id` IN ?";
 		$bindings[] = $station_ids;
 
 		if ((int) $since_id > 0) {
 			$where .= " AND qsos.`COL_PRIMARY_KEY` > ?";
 			$bindings[] = (int) $since_id;
+		}
+
+		// Date-only floor on the QSO time, inclusive of the whole given day.
+		if ($qso_since !== null && $qso_since !== '') {
+			$where .= " AND qsos.`COL_TIME_ON` >= ?";
+			$bindings[] = $qso_since . ' 00:00:00';
 		}
 
 		if ($band !== null && $band !== '') {
@@ -2308,16 +2328,10 @@ class Logbook_model extends CI_Model {
 		}
 
 		if (!empty($qsl_filter)) {
-			$col_map = [
-				'lotw'    => 'COL_LOTW_QSL_RCVD',
-				'qsl'     => 'COL_QSL_RCVD',
-				'eqsl'    => 'COL_EQSL_QSL_RCVD',
-				'clublog' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',
-			];
 			$clauses = [];
 			foreach ($qsl_filter as $method) {
-				if (isset($col_map[$method])) {
-					$clauses[] = "qsos.`{$col_map[$method]}` = 'Y'";
+				if (isset(self::CONFIRMATION_COLUMNS[$method])) {
+					$clauses[] = "qsos.`" . self::CONFIRMATION_COLUMNS[$method]['rcvd'] . "` = 'Y'";
 				}
 			}
 			if (!empty($clauses)) {
@@ -2340,7 +2354,7 @@ class Logbook_model extends CI_Model {
 
 		$tbl = $this->config->item('table_name');
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $bindings);
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings);
 
 		$sql = "SELECT qsos.*, station_profile.*, dxcc_entities.name AS station_country
 			FROM {$tbl} qsos
@@ -2367,10 +2381,116 @@ class Logbook_model extends CI_Model {
 		}
 
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $bindings);
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings);
 		$sql = "SELECT COUNT(*) AS cnt FROM " . $this->config->item('table_name') . " qsos" . $where;
 
 		return (int) $this->db->query($sql, $bindings)->row()->cnt;
+	}
+
+	// Build the conditional-count SELECT list for the confirmation statistics,
+	// one column per requested type plus a combined "total". Same idiom as
+	// Stats::modeBandQsl(), but with an optional received-date floor.
+	//
+	// $since belongs inside the CASE, not in the WHERE: a WHERE clause on one
+	// type's date column would also suppress the rows counted for every other
+	// type, which is not what "confirmations received since X" means.
+	private function _confirmation_count_columns($types, $since, &$bindings) {
+		// Base the counters on the number of QSOs they were drawn from, otherwise
+		// a bare "36 LoTW" says nothing about how much is still unconfirmed.
+		$columns = ["count(*) as `qsos`"];
+		$any = [];
+
+		foreach ($types as $type) {
+			$cols = self::CONFIRMATION_COLUMNS[$type] ?? null;
+			if ($cols === null) {
+				continue;
+			}
+
+			$clause = "qsos.`{$cols['rcvd']}` = 'Y'";
+			if ($since !== '') {
+				$clause .= " AND qsos.`{$cols['date']}` >= ?";
+			}
+
+			$columns[] = "count(case when {$clause} then 1 end) as `{$type}`";
+			if ($since !== '') {
+				$bindings[] = $since;
+			}
+			$any[] = $clause;
+		}
+
+		// QSOs confirmed by at least one requested type. Deliberately not the sum
+		// of the per-type counts: a QSO confirmed via both LoTW and eQSL is one
+		// confirmed QSO, not two.
+		if (!empty($any)) {
+			$columns[] = "count(case when (" . implode(" OR ", $any) . ") then 1 end) as `confirmed`";
+			if ($since !== '') {
+				foreach ($any as $unused) {
+					$bindings[] = $since;
+				}
+			}
+		}
+
+		return $columns;
+	}
+
+	// Confirmation counts per QSL type for the REST API v2 statistic endpoint.
+	// Reuses the QSO v2 filter (station scope, band incl. the SAT special case,
+	// mode incl. submode, qso_since) and adds per-type received-date filtering.
+	//
+	// $types     string[]  subset of the CONFIRMATION_COLUMNS keys
+	// $since     string    '' or 'Y-m-d', matched against each type's date column
+	// $qso_since string    '' or 'Y-m-d', matched against COL_TIME_ON
+	// $group_by  string    '' for grand totals, else 'band' or 'mode'
+	//
+	// Returns an assoc array of counts when ungrouped, else a list of rows each
+	// carrying the group key plus the same counts.
+	function count_confirmations_filtered($station_ids, $types, $band = '', $mode = '', $since = '', $qso_since = '', $group_by = '') {
+		$types = array_values(array_intersect($types, array_keys(self::CONFIRMATION_COLUMNS)));
+
+		if (empty($station_ids) || empty($types)) {
+			if ($group_by !== '') {
+				return [];
+			}
+			return array_fill_keys(array_merge(['qsos'], $types, ['confirmed']), 0);
+		}
+
+		// Select bindings are consumed before the WHERE bindings, so the count
+		// columns must be built first.
+		$bindings = [];
+		$columns = $this->_confirmation_count_columns($types, $since, $bindings);
+
+		// Whitelisted grouping expressions — never interpolate caller input here.
+		// The mode key prefers the submode so e.g. FT8 does not vanish into MFSK,
+		// mirroring the double match in _qso_v2_filter_where().
+		$group_exprs = [
+			'band' => "lower(qsos.`col_band`)",
+			'mode' => "coalesce(nullif(qsos.`col_submode`, ''), qsos.`col_mode`)",
+		];
+		$group_expr = $group_exprs[$group_by] ?? null;
+		if ($group_expr !== null) {
+			array_unshift($columns, "{$group_expr} as `{$group_by}`");
+		}
+
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, null, 0, $qso_since, $bindings);
+
+		$sql = "SELECT " . implode(", ", $columns)
+			. " FROM " . $this->config->item('table_name') . " qsos"
+			. $where;
+
+		if ($group_expr !== null) {
+			// No HAVING: a group with QSOs but no confirmations is exactly the gap
+			// worth seeing, and dropping it would break the invariant that the
+			// breakdown columns sum back to the grand totals.
+			$sql .= " GROUP BY {$group_expr} ORDER BY `confirmed` DESC, `qsos` DESC";
+		}
+
+		$query = $this->db->query($sql, $bindings);
+
+		if ($group_expr !== null) {
+			return $query->result_array();
+		}
+
+		return $query->row_array() ?: array_fill_keys(array_merge(['qsos'], $types, ['confirmed']), 0);
 	}
 
 	function get_qso($id, $trusted = false) {

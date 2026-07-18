@@ -198,50 +198,13 @@ class Qso_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * Normalise the ?band= filter: '' when absent, 'SAT' uppercased (matches
-	 * COL_PROP_MODE), any other band lowercased (matches COL_BAND). Unknown
-	 * values pass through and simply match no rows rather than erroring.
-	 */
-	protected function normalize_band($raw) {
-		if ($raw === null || $raw === '') {
-			return '';
-		}
-		$band = strtolower(trim($raw));
-		return ($band === 'sat') ? 'SAT' : $band;
-	}
-
-	/**
-	 * Normalise the ?mode= filter: '' when absent, else uppercased (COL_MODE /
-	 * COL_SUBMODE are stored uppercase). Matched against either column, so a
-	 * submode like FT8 is found regardless of how it was stored.
-	 */
-	protected function normalize_mode($raw) {
-		if ($raw === null || $raw === '') {
-			return '';
-		}
-		return strtoupper(trim($raw));
-	}
-
-	/**
 	 * Parse and validate the ?qsl_filter= query (comma list), or null when absent.
+	 * Mirrors the confirmation types the QSO filter can match on (see
+	 * Logbook_model::_qso_v2_filter_where()); HRDLog is upload-only and has no
+	 * received column, so it is not among them.
 	 */
 	protected function parse_qsl_filter() {
-		$raw = $this->param('qsl_filter');
-		if ($raw === null || $raw === '') {
-			return null;
-		}
-		$allowed = ['lotw', 'qsl', 'eqsl', 'clublog'];
-		$filter = array_map('strtolower', array_map('trim', explode(',', $raw)));
-		$invalid = array_diff($filter, $allowed);
-		if (!empty($invalid)) {
-			throw new Api_v2_exception(
-				'validation_error',
-				'Invalid qsl_filter values: ' . implode(', ', $invalid),
-				400,
-				['allowed' => $allowed]
-			);
-		}
-		return array_values($filter);
+		return $this->parse_type_list('qsl_filter', ['lotw', 'qsl', 'eqsl', 'qrz', 'clublog']);
 	}
 
 	/**
@@ -812,23 +775,6 @@ class Qso_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'Invalid qso_date/time value', 400);
 		}
 		return date('Y-m-d H:i:s', $timestamp);
-	}
-
-	/**
-	 * All station ids that belong to the API key owner.
-	 *
-	 * @return int[]
-	 */
-	protected function owner_station_ids() {
-		$this->CI->load->model('stations');
-		$query = $this->CI->stations->all_of_user($this->user_id());
-		$ids = [];
-		if ($query !== null) {
-			foreach ($query->result() as $row) {
-				$ids[] = (int) $row->station_id;
-			}
-		}
-		return $ids;
 	}
 
 	/**

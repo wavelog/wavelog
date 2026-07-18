@@ -16,6 +16,9 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * requested on its own or as part of full (e.g. $.data.worker.connected_clients):
  *   - qso:      QSO analytics — total, rolling activity windows, band/mode
  *               breakdown, confirmation totals (default).
+ *   - confirmations: QSL confirmation counts per type (LoTW/eQSL/paper/QRZ/
+ *               Clublog), broken down by band and by mode, filterable by
+ *               ?type=, ?since=, ?qso_since=, ?band= and ?mode=.
  *   - system:   version/build info.                     (admin only)
  *   - full:     all permitted topics.
  *
@@ -26,7 +29,9 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * their very existence is not disclosed. Single-topic profiles let a monitoring
  * poller fetch just the cheap slice it needs; full is the complete picture.
  *
- * Route:  /api/v2/statistic[?profile=qso|system|full]
+ * Route:  /api/v2/statistic[?profile=qso|confirmations|system|full]
+ *         confirmations additionally accepts
+ *         [&type=][&since=][&qso_since=][&band=][&mode=]
  * Scope:  statistic:read
  */
 class Statistic_resource extends Api_v2_resource {
@@ -36,6 +41,16 @@ class Statistic_resource extends Api_v2_resource {
 
 	/** Topics exposing instance/admin data — only for administrator tokens. */
 	protected const ADMIN_TOPICS = ['system'];
+
+	/** Confirmation types the ?type= filter accepts (see Logbook_model). */
+	protected const CONFIRMATION_TYPES = ['lotw', 'eqsl', 'qsl', 'qrz', 'clublog'];
+
+	/**
+	 * Translated label for the registry entry of this resource's read scope.
+	 */
+	protected static function scope_labels() {
+		return ['read' => __("Read statistics")];
+	}
 
 	/**
 	 * GET /api/v2/statistic
@@ -51,6 +66,9 @@ class Statistic_resource extends Api_v2_resource {
 		$topics = [
 			'qso'      => function () {
 				return $this->qso_topic();
+			},
+			'confirmations' => function () {
+				return $this->confirmations_topic();
 			},
 			'system'   => function () {
 				return $this->system_topic();
@@ -128,11 +146,6 @@ class Statistic_resource extends Api_v2_resource {
 				'by_band' => $this->shape_counts($this->CI->logbook_model->total_bands(null, null, $scope, 12), 'band'),
 				'by_mode' => $this->shape_counts($this->CI->logbook_model->total_modes(null, null, $scope, 12), 'mode'),
 			],
-			'confirmations' => [
-				'lotw' => (int) $batch['LoTW_Received'],
-				'eqsl' => (int) $batch['eQSL_Received'],
-				'qsl'  => (int) $batch['QSL_Received'],
-			],
 			'dxcc' => [
 				'worked'    => (int) $batch['Countries_Worked'],
 				'confirmed' => (int) $batch['Countries_Worked_Confirmed'],
@@ -142,19 +155,63 @@ class Statistic_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * Station location ids owned by the token user; the QSO stats are scoped to
-	 * these so they reflect the token owner's logbook, not the whole instance.
+	 * QSL confirmation counts for the token owner, per confirmation type, with
+	 * a band and a mode breakdown alongside the grand totals.
+	 *
+	 * Filters (all optional, all combinable):
+	 *   type      comma list of lotw|eqsl|qsl|qrz|clublog (default: all)
+	 *   since     YYYY-MM-DD floor on the date a confirmation was *received*
+	 *   qso_since YYYY-MM-DD floor on the date the *QSO* was made
+	 *   band      COL_BAND value, or SAT for satellite QSOs
+	 *   mode      matched against the mode or the submode
+	 *
+	 * The resolved filters are echoed back so a poller can interpret the numbers
+	 * without having to remember the query it sent.
 	 */
-	protected function owner_station_ids() {
-		$this->CI->load->model('stations');
-		$ids = [];
-		$query = $this->CI->stations->all_of_user($this->user_id());
-		if ($query !== null) {
-			foreach ($query->result() as $row) {
-				$ids[] = (int) $row->station_id;
-			}
+	protected function confirmations_topic() {
+		$this->CI->load->model('logbook_model');
+
+		$types = $this->parse_type_list('type', self::CONFIRMATION_TYPES) ?: self::CONFIRMATION_TYPES;
+		$since = $this->parse_date('since');
+		$qso_since = $this->parse_date('qso_since');
+		$band = $this->normalize_band($this->param('band'));
+		$mode = $this->normalize_mode($this->param('mode'));
+
+		$station_ids = $this->owner_station_ids();
+
+		$args = [$station_ids, $types, $band, $mode, $since, $qso_since];
+
+		return [
+			'counts'  => $this->shape_confirmations(
+				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['']))
+			),
+			'by_band' => array_map([$this, 'shape_confirmations'],
+				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['band']))
+			),
+			'by_mode' => array_map([$this, 'shape_confirmations'],
+				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['mode']))
+			),
+			'filters' => [
+				'type'      => $types,
+				'since'     => $since ?: null,
+				'qso_since' => $qso_since ?: null,
+				'band'      => $band ?: null,
+				'mode'      => $mode ?: null,
+			],
+		];
+	}
+
+	/**
+	 * Cast a confirmation count row to ints, so monitoring gets numbers rather
+	 * than the strings the database driver hands back. The group key ("band" /
+	 * "mode") is the only non-numeric column and stays a string.
+	 */
+	protected function shape_confirmations($row) {
+		$out = [];
+		foreach ($row as $key => $value) {
+			$out[$key] = in_array($key, ['band', 'mode'], true) ? $value : (int) $value;
 		}
-		return $ids;
+		return $out;
 	}
 
 	/**

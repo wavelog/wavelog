@@ -239,6 +239,101 @@ abstract class Api_v2_resource {
 	}
 
 	/**
+	 * Station location ids owned by the token user. Every resource scopes its
+	 * queries to these, so a token can only ever reach its owner's data.
+	 *
+	 * @return int[]
+	 */
+	protected function owner_station_ids() {
+		$this->CI->load->model('stations');
+		$ids = [];
+		$query = $this->CI->stations->all_of_user($this->user_id());
+		if ($query !== null) {
+			foreach ($query->result() as $row) {
+				$ids[] = (int) $row->station_id;
+			}
+		}
+		return $ids;
+	}
+
+	/**
+	 * Normalise a ?band= filter: '' when absent, 'SAT' uppercased (matches
+	 * COL_PROP_MODE), any other band lowercased (matches COL_BAND). Unknown
+	 * values pass through and simply match no rows rather than erroring.
+	 */
+	protected function normalize_band($raw) {
+		if ($raw === null || $raw === '') {
+			return '';
+		}
+		$band = strtolower(trim($raw));
+		return ($band === 'sat') ? 'SAT' : $band;
+	}
+
+	/**
+	 * Normalise a ?mode= filter: '' when absent, else uppercased (COL_MODE /
+	 * COL_SUBMODE are stored uppercase). Matched against either column, so a
+	 * submode like FT8 is found regardless of how it was stored.
+	 */
+	protected function normalize_mode($raw) {
+		if ($raw === null || $raw === '') {
+			return '';
+		}
+		return strtoupper(trim($raw));
+	}
+
+	/**
+	 * Parse a comma-separated query parameter into a validated lowercase list,
+	 * or null when the parameter is absent. Values outside $allowed produce a
+	 * 400 carrying the allowed list, so a client can correct itself.
+	 *
+	 * @param string   $key     Query parameter name (e.g. "qsl_filter", "type").
+	 * @param string[] $allowed Whitelist of accepted values.
+	 * @return string[]|null
+	 */
+	protected function parse_type_list($key, $allowed) {
+		$raw = $this->param($key);
+		if ($raw === null || $raw === '') {
+			return null;
+		}
+		$values = array_map('strtolower', array_map('trim', explode(',', $raw)));
+		$invalid = array_diff($values, $allowed);
+		if (!empty($invalid)) {
+			throw new Api_v2_exception(
+				'validation_error',
+				'Invalid ' . $key . ' values: ' . implode(', ', $invalid),
+				400,
+				['allowed' => $allowed]
+			);
+		}
+		return array_values(array_unique($values));
+	}
+
+	/**
+	 * Parse a date query parameter in YYYY-MM-DD form, or '' when absent. The
+	 * round-trip comparison rejects calendar-invalid dates like 2026-02-31,
+	 * which DateTime would otherwise silently roll over into March.
+	 *
+	 * @return string '' or a valid Y-m-d date.
+	 */
+	protected function parse_date($key) {
+		$raw = $this->param($key);
+		if ($raw === null || $raw === '') {
+			return '';
+		}
+		$raw = trim($raw);
+		$date = DateTime::createFromFormat('Y-m-d', $raw);
+		if ($date === false || $date->format('Y-m-d') !== $raw) {
+			throw new Api_v2_exception(
+				'validation_error',
+				$key . ' must be a valid date',
+				400,
+				['format' => 'YYYY-MM-DD']
+			);
+		}
+		return $raw;
+	}
+
+	/**
 	 * Guard against nested JSON: every body value must be a scalar or null.
 	 * Arrays/objects would otherwise blow up deep in the data layer (500);
 	 * fail early with a clear 400 instead.
