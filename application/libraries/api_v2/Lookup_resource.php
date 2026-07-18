@@ -23,11 +23,13 @@ require_once APPPATH . '../src/Dxcc/Dxcc.php';
  *            confirmation state and (opt-in) callbook data. (v1 `private_lookup`.)
  *
  * Grid lookup (?grid=) — whether a gridsquare is worked/confirmed in the owner's
- * logbook (v2 equivalent of v1 logbook_check_grid).
+ * logbook (v2 equivalent of v1 logbook_check_grid). The special value
+ * ?grid=all returns every worked gridsquare instead (v1 logbook_get_worked_grids).
  *
  * Routes:
  *   GET /api/v2/lookup?callsign=..  callsign lookup
  *   GET /api/v2/lookup?grid=..      grid worked/confirmed check
+ *   GET /api/v2/lookup?grid=all     list of all worked gridsquares
  *
  * Scope:  lookup:read
  */
@@ -110,6 +112,13 @@ class Lookup_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'Missing gridsquare', 400);
 		}
 
+		// "ALL" is not a valid gridsquare (2 letters + 2 digits), so it can
+		// safely double as the "give me every worked grid" selector.
+		if ($grid === 'ALL') {
+			$this->do_worked_grids();
+			return;
+		}
+
 		$band = $this->param('band');
 		$cnfm = $this->param('cnfm');
 
@@ -132,6 +141,40 @@ class Lookup_resource extends Api_v2_resource {
 		}
 
 		$this->CI->api_v2_response->respond(['gridsquare' => $grid, 'result' => $result], 200, ['type' => 'grid']);
+	}
+
+	/**
+	 * Grid list (?grid=all): every 4-character gridsquare worked in the owner's
+	 * logbook, VUCC grids included. Optional ?band=, ?cnfm= (qsl|lotw|eqsl) and
+	 * ?logbook_id= filters. Replaces the v1 logbook_get_worked_grids.
+	 */
+	protected function do_worked_grids() {
+		$band = $this->param('band');
+		$cnfm = $this->param('cnfm');
+
+		if ($cnfm !== null && $cnfm !== '' && !in_array($cnfm, ['qsl', 'lotw', 'eqsl'], true)) {
+			throw new Api_v2_exception(
+				'validation_error',
+				'Unknown cnfm "' . $cnfm . '". Allowed: qsl, lotw, eqsl',
+				400,
+				['allowed' => ['qsl', 'lotw', 'eqsl']]
+			);
+		}
+
+		$meta = ['type' => 'worked_grids', 'band' => $band, 'cnfm' => $cnfm];
+
+		// No station locations means no QSOs to look at — and an empty id list
+		// would produce an "IN ()" SQL syntax error further down.
+		$locations = $this->grid_station_location_ids();
+		if (empty($locations)) {
+			$this->CI->api_v2_response->respond(['grids' => [], 'count' => 0], 200, $meta);
+			return;
+		}
+
+		$this->CI->load->model('api_model');
+		$grids = $this->CI->api_model->get_grids_worked_in_logbook($locations, $band, $cnfm);
+
+		$this->CI->api_v2_response->respond(['grids' => $grids, 'count' => count($grids)], 200, $meta);
 	}
 
 	/**
