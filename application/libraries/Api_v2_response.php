@@ -75,7 +75,9 @@ class Api_v2_response {
 	 * @param array $headers Optional extra response headers.
 	 */
 	public function no_content($headers = []) {
-		$this->CI->output->set_status_header(204);
+		$this->CI->output
+			->set_status_header(204)
+			->set_header('Access-Control-Allow-Origin: *');
 		foreach ($headers as $name => $value) {
 			$this->CI->output->set_header($name . ': ' . $value);
 		}
@@ -87,7 +89,8 @@ class Api_v2_response {
 	protected function emit($payload, $status, $headers) {
 		$this->CI->output
 			->set_status_header($status)
-			->set_content_type('application/json', 'utf-8');
+			->set_content_type('application/json', 'utf-8')
+			->set_header('Access-Control-Allow-Origin: *');
 
 		foreach ($headers as $name => $value) {
 			$this->CI->output->set_header($name . ': ' . $value);
