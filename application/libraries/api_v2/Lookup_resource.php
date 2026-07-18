@@ -208,8 +208,12 @@ class Lookup_resource extends Api_v2_resource {
 		$return['dxcc_cqz']  = $dxcc['cqz']    ?? '';
 		$return['cont']      = $dxcc['cont']   ?? '';
 
-		// Owner's own record for this call (no band/mode scoping).
-		$hit = $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, '', 'NO BAND', 'NO MODE');
+		// Owner's own record for this call (no band/mode scoping). Skipped when
+		// the owner has no station locations: the empty id list would produce an
+		// "IN ()" syntax error, and there is nothing to look up anyway.
+		$hit = ($station_ids === '')
+			? null
+			: $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, '', 'NO BAND', 'NO MODE');
 		if ($hit != null) {
 			$return['name']         = $hit->COL_NAME;
 			$return['gridsquare']   = $hit->COL_GRIDSQUARE;
@@ -328,8 +332,11 @@ class Lookup_resource extends Api_v2_resource {
 			$return['dxcc_ituz'] = (int) $entity['ituz'];
 		}
 
-		// Owner's own worked/confirmed status for this call.
-		$hit = $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, $default_confirmation, $band, $mode);
+		// Owner's own worked/confirmed status for this call. Skipped without any
+		// station locations (see lookup_basic()).
+		$hit = ($station_ids === '')
+			? null
+			: $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, $default_confirmation, $band, $mode);
 		if ($hit != null) {
 			$return['name']                  = $hit->COL_NAME;
 			$return['gridsquare']            = $hit->COL_GRIDSQUARE;
@@ -362,9 +369,11 @@ class Lookup_resource extends Api_v2_resource {
 		}
 
 		if (($return['dxcc_id'] ?? '') != '') {
-			$return['dxcc_confirmed']              = ($this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, null, null) > 0);
-			$return['dxcc_confirmed_on_band']      = ($this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, null) > 0);
-			$return['dxcc_confirmed_on_band_mode'] = ($this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, $mode) > 0);
+			// The model returns [] for an empty station list; cast before the
+			// comparison, since in PHP an array is always "greater than" 0.
+			$return['dxcc_confirmed']              = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, null, null) > 0);
+			$return['dxcc_confirmed_on_band']      = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, null) > 0);
+			$return['dxcc_confirmed_on_band_mode'] = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, $mode) > 0);
 		}
 
 		// Callbook data is opt-in (external HTTP lookup).
