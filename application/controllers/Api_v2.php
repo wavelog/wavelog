@@ -76,11 +76,19 @@ class Api_v2 extends CI_Controller {
 			}
 
 			// Everything past here requires a valid API token.
-			$auth = $this->authenticate();
+			try {
+				$auth = $this->authenticate();
+			} catch (Api_v2_exception $e) {
+				// Throttle failed attempts by IP; a rejected token never reaches
+				// the per-token limit below. Only failures count, so valid
+				// clients sharing a NAT address are spared.
+				$this->enforce_rate_limit('api_v2_auth', $this->input->ip_address());
+				throw $e;
+			}
 
 			// Per-resource rate limiting keyed by the token id (the plaintext
 			// token is never kept around after authentication).
-			$this->enforce_rate_limit('api_v2_' . $resource, 'api_token_' . $auth['id']);
+			$this->enforce_rate_limit('api_v2_' . $resource, $auth['id']);
 
 			$handler = $this->load_resource($resource, $auth, $method);
 
