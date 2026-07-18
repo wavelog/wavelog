@@ -47,7 +47,7 @@ class Api_v2_response {
 
 		return [
 			'timestamp' => gmdate('c'),
-			'resource'  => $resource !== '' ? $resource : 'meta',
+			'resource'  => $resource !== '' ? $resource : 'status', // if no resource is in the URL, the response is the same as the /api/v2/status endpoint
 			'method'    => strtoupper((string) $this->CI->input->method(true)),
 		];
 	}
