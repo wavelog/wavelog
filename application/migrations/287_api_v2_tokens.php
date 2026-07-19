@@ -20,7 +20,7 @@ class Migration_api_v2_tokens extends CI_Migration {
 				`created_by` int(11) NOT NULL,
 				`token_name` varchar(100) NOT NULL,
 				`token_hash` char(64) NOT NULL,
-				`scopes` varchar(255) NOT NULL,
+				`scopes` text NOT NULL,
 				`status` varchar(10) NOT NULL DEFAULT 'active',
 				`expires_at` datetime DEFAULT NULL,
 				`last_used` datetime DEFAULT NULL,
