@@ -295,6 +295,9 @@
         padding-right: 5px;
         padding-left: 5px;
     }
+    #csv-button-container .dt-buttons {
+        display: contents;
+    }
     .btn-filter-active {
         background-color: #ffc107 !important;
         border-color: #ffc107 !important;
@@ -861,6 +864,7 @@ $options = json_decode($options);
                                     <?php } ?>
                                     <button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
                                     <button type="button" class="btn btn-sm btn-info dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button>
+                                    <div id="csv-button-container"></div>
                                 </div>
                             </div>
                         </div>
@@ -929,7 +933,6 @@ $options = json_decode($options);
 		</div>
 
         </form>
-        <div id="csv-button-container" class="mb-2"></div>
         <table style="width:100%" class="table-sm lbatable table table-hover table-striped table-bordered table-condensed text-center" id="qsoList">
             <thead>
                 <tr>

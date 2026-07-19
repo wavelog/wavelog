@@ -245,7 +245,7 @@ function loadQSOTable(rows) {
 						{
 							extend: 'csv',
 							text: 'CSV',
-							className: 'mb-1 btn btn-sm btn-primary',
+							className: 'btn btn-sm btn-info dropdown-action w-100',
 							filename: function() {
 								return 'qso_export_' + new Date().toISOString().slice(0,10);
 							},
@@ -297,6 +297,14 @@ function loadQSOTable(rows) {
 
 		// Place buttons in custom container
 		table.buttons().container().appendTo('#csv-button-container');
+		// Match .dropdown-action behaviour: close the Actions dropdown after export
+		$('#csv-button-container button').on('click', function () {
+			var toggle = document.getElementById('actionsDropdown');
+			if (toggle) {
+				var dropdown = bootstrap.Dropdown.getInstance(toggle);
+				if (dropdown) dropdown.hide();
+			}
+		});
 
 	for (i = 0; i < rows.length; i++) {
 		let qso = rows[i];
