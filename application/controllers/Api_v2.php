@@ -92,6 +92,16 @@ class Api_v2 extends CI_Controller {
 
 			$handler = $this->load_resource($resource, $auth, $method);
 
+			// Verb support first: a verb the resource does not implement is a
+			// 405, not a permission problem. Checking it after the scope check
+			// would answer "insufficient_scope" for a scope that cannot exist
+			// (e.g. POST on a read-only resource needs "<res>:write", which is
+			// never in the registry) and hide the real reason from the client.
+			$allowed = $handler->supported_methods();
+			if (!in_array($method, $allowed, true)) {
+				$this->reject_method($allowed);
+			}
+
 			// Scope enforcement: the resource declares its scope name, the
 			// verb decides between :read and :write. null = public resource.
 			$required = $handler->required_scope($method);
@@ -211,13 +221,19 @@ class Api_v2 extends CI_Controller {
 	 * @throws Api_v2_exception 405 for unsupported verbs.
 	 */
 	protected function dispatch($handler, $method, $id) {
+		// route() has already rejected any verb this resource does not implement;
+		// the base class' 405 stubs stay in place as a safety net.
+		$allowed = $handler->supported_methods();
+
 		switch ($method) {
 			case 'GET':
 				($id === null) ? $handler->index() : $handler->show($id);
 				break;
 			case 'POST':
 				if ($id !== null) {
-					$this->reject_method(['GET', 'PUT', 'PATCH', 'DELETE']);
+					// POST creates, it never addresses an existing item: the
+					// remaining verbs are exactly the id-addressable ones.
+					$this->reject_method(array_values(array_diff($allowed, ['POST'])));
 				}
 				$handler->create();
 				break;

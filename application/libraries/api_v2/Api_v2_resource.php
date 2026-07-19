@@ -68,6 +68,21 @@ abstract class Api_v2_resource {
 	];
 
 	/**
+	 * HTTP verb => the handler methods it maps to. A resource supports a verb
+	 * when it overrides at least one of them; the counterpart to VERB_SCOPE,
+	 * which answers what scope a verb needs rather than whether it exists.
+	 *
+	 * @var array<string,string[]>
+	 */
+	protected const VERB_HANDLERS = [
+		'GET'    => ['index', 'show'],
+		'POST'   => ['create'],
+		'PUT'    => ['replace'],
+		'PATCH'  => ['update'],
+		'DELETE' => ['delete'],
+	];
+
+	/**
 	 * @param array      $auth { id, user_id, created_by, scopes (string[]) }
 	 * @param array|null $body Parsed JSON body, or null for verbs without one.
 	 */
@@ -97,6 +112,27 @@ abstract class Api_v2_resource {
 			default:
 				return $this->scope . ':write';
 		}
+	}
+
+	/**
+	 * The HTTP verbs this resource actually implements, for the Allow header of
+	 * a 405. Derived from the verb methods the concrete class overrides, the same
+	 * way scope_definitions() derives the scopes — so the header can never
+	 * advertise a verb that only ends up in the base class' 405 stub.
+	 *
+	 * @return string[] e.g. ['GET', 'POST', 'PATCH', 'DELETE']
+	 */
+	public function supported_methods() {
+		$verbs = [];
+		foreach (self::VERB_HANDLERS as $verb => $handlers) {
+			foreach ($handlers as $handler) {
+				if ((new ReflectionMethod(static::class, $handler))->getDeclaringClass()->getName() !== self::class) {
+					$verbs[] = $verb;
+					break;
+				}
+			}
+		}
+		return $verbs;
 	}
 
 	/**
