@@ -906,6 +906,8 @@ $config['internal_tools'] = false;
 |
 | Format: Array of endpoint-specific limits
 |   - Endpoint name: the API function name (e.g., 'private_lookup', 'lookup')
+|     API v2 looks its endpoints up as 'api_v2_<resource>' (e.g. 'api_v2_qso',
+|     'api_v2_lookup'), plus 'api_v2_auth' for failed authentication attempts.
 |   - requests: maximum number of requests allowed
 |   - window: time window in seconds
 |
@@ -939,5 +941,7 @@ $config['internal_tools'] = false;
 //     'qso'            => ['requests' => 10, 'window' => 60],
 //     'radio'          => ['requests' => 60, 'window' => 60],
 //     'statistics'     => ['requests' => 30, 'window' => 60],
+//     'api_v2_auth'    => ['requests' => 10, 'window' => 60],
+//     'api_v2_qso'     => ['requests' => 10, 'window' => 60],
 //     'default'        => ['requests' => 30, 'window' => 60],
 // ];
