@@ -168,9 +168,45 @@ class Api_v2 extends CI_Controller {
 			throw new Api_v2_exception('token_expired', 'API token has expired', 401);
 		}
 
+		$this->require_club_membership($auth);
+
 		$this->api_v2_model->update_last_used($auth['id'], $auth['user_id']);
 
 		return $auth;
+	}
+
+	/**
+	 * Re-check the clubstation membership behind a club token on every request.
+	 *
+	 * A club token belongs to the clubstation (user_id) but was issued by a
+	 * member acting on its behalf (created_by). That membership can be withdrawn
+	 * at any time, and the token itself carries no record of it - so without this
+	 * check a removed member would keep full access to the club logbook until the
+	 * token happens to expire. Club_resource already re-checks the permission for
+	 * its own listing; doing it centrally covers every other resource too, and a
+	 * resource added later cannot forget it.
+	 *
+	 * Personal tokens (owner == creator) skip the lookup entirely.
+	 *
+	 * @param array $auth Authentication context from authenticate_token().
+	 * @throws Api_v2_exception 403 once the membership is gone.
+	 */
+	protected function require_club_membership($auth) {
+		if ($auth['created_by'] === $auth['user_id']) {
+			return;
+		}
+
+		$this->load->model('club_model');
+		// Returns 0 for a user that is no longer a member of the clubstation.
+		$permission = (int) $this->club_model->get_permission_noui($auth['user_id'], $auth['created_by']);
+		if ($permission < 1) {
+			// The token is valid, the permission behind it is not: 403, not 401.
+			throw new Api_v2_exception(
+				'club_access_revoked',
+				'The clubstation membership behind this token has been revoked',
+				403
+			);
+		}
 	}
 
 	/**
