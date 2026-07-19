@@ -30,6 +30,15 @@ class Station_resource extends Api_v2_resource {
 	 */
 	protected const COUNTY_DXCC = [6, 110, 291, 15, 54, 61, 126, 151, 288, 339, 170, 21, 29, 32, 281];
 
+	/**
+	 * Fields a station location cannot exist without. Name and callsign identify
+	 * it; DXCC, CQ and ITU are copied into every QSO logged from the location and
+	 * land in integer columns there, so a location lacking them produces QSOs
+	 * that cannot be written. The web UI marks the same fields as required
+	 * (views/station_profile/create.php) and derives CQ/ITU from the DXCC choice.
+	 */
+	protected const REQUIRED_FIELDS = ['name', 'callsign', 'dxcc', 'cq', 'itu'];
+
 	/** Registry labels for this resource's scopes (see scope_definitions()). */
 	protected static function scope_labels() {
 		return [
@@ -72,7 +81,7 @@ class Station_resource extends Api_v2_resource {
 
 	/**
 	 * POST /api/v2/station
-	 * Create a station location. Required body fields: name, callsign.
+	 * Create a station location. Required body fields: see REQUIRED_FIELDS.
 	 */
 	public function create() {
 		$this->require_write();
@@ -82,7 +91,7 @@ class Station_resource extends Api_v2_resource {
 
 		$body = $this->body();
 		$this->require_scalar_fields($body);
-		$this->require_present($body, ['name', 'callsign']);
+		$this->require_present($body, self::REQUIRED_FIELDS);
 		$this->validate_grid($body);
 
 		// The first station of a user becomes the active/default one, mirroring
@@ -163,6 +172,7 @@ class Station_resource extends Api_v2_resource {
 
 		$body = $this->body();
 		$this->require_scalar_fields($body);
+		$this->require_not_cleared($body, self::REQUIRED_FIELDS);
 		$this->validate_grid($body);
 
 		$data = $this->build_columns($body, false, (int) $current->station_dxcc);
@@ -291,6 +301,28 @@ class Station_resource extends Api_v2_resource {
 				'Missing required field(s): ' . implode(', ', $missing),
 				400,
 				['missing' => $missing]
+			);
+		}
+	}
+
+	/**
+	 * Throw 400 if a PATCH tries to blank out a field the location must keep.
+	 * Fields absent from the body are untouched and therefore fine; only an
+	 * explicit empty value is refused.
+	 */
+	protected function require_not_cleared($body, $fields) {
+		$cleared = [];
+		foreach ($fields as $field) {
+			if (array_key_exists($field, $body) && empty($body[$field])) {
+				$cleared[] = $field;
+			}
+		}
+		if (!empty($cleared)) {
+			throw new Api_v2_exception(
+				'validation_error',
+				'Field(s) cannot be cleared: ' . implode(', ', $cleared),
+				400,
+				['fields' => $cleared]
 			);
 		}
 	}
