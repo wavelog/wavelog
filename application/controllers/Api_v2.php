@@ -63,8 +63,16 @@ class Api_v2 extends CI_Controller {
 		$id       = $segments[1] ?? null;
 
 		try {
+			if (count($segments) > 2) {
+				throw new Api_v2_exception('not_found', 'Unknown resource path', 404);
+			}
+
 			// Public meta endpoints: GET /api/v2 and GET /api/v2/status.
+			// Neither has addressable items, so a trailing id is not a URL either.
 			if ($resource === '' || $resource === 'status') {
+				if ($id !== null) {
+					throw new Api_v2_exception('not_found', 'Unknown resource path', 404);
+				}
 				if ($method !== 'GET') {
 					$this->reject_method(['GET']);
 				}
