@@ -120,7 +120,7 @@ class Lookup_resource extends Api_v2_resource {
 		}
 
 		$band = $this->param('band');
-		$cnfm = $this->param('cnfm');
+		$cnfm = $this->parse_cnfm();
 
 		$result = 'Not Found';
 		$locations = $this->grid_station_location_ids();
@@ -150,16 +150,7 @@ class Lookup_resource extends Api_v2_resource {
 	 */
 	protected function do_worked_grids() {
 		$band = $this->param('band');
-		$cnfm = $this->param('cnfm');
-
-		if ($cnfm !== null && $cnfm !== '' && !in_array($cnfm, ['qsl', 'lotw', 'eqsl'], true)) {
-			throw new Api_v2_exception(
-				'validation_error',
-				'Unknown cnfm "' . $cnfm . '". Allowed: qsl, lotw, eqsl',
-				400,
-				['allowed' => ['qsl', 'lotw', 'eqsl']]
-			);
-		}
+		$cnfm = $this->parse_cnfm();
 
 		$meta = ['type' => 'worked_grids', 'band' => $band, 'cnfm' => $cnfm];
 
@@ -432,6 +423,39 @@ class Lookup_resource extends Api_v2_resource {
 	}
 
 	// --- Helpers -----------------------------------------------------------
+
+	/**
+	 * Parse and validate the ?cnfm= confirmation type, or null when absent.
+	 *
+	 * Both grid paths must validate this: check_if_grid_worked_in_logbook()
+	 * switches on the value and falls back to selecting the gridsquare itself
+	 * for anything it does not know. An unvalidated value would therefore be
+	 * compared against gridsquare substrings instead of a confirmation flag and
+	 * silently report "Worked" rather than failing.
+	 *
+	 * @return string|null 'qsl', 'lotw' or 'eqsl'.
+	 * @throws Api_v2_exception 400 on an unknown value.
+	 */
+	protected function parse_cnfm() {
+		$allowed = ['qsl', 'lotw', 'eqsl'];
+
+		$cnfm = $this->param('cnfm');
+		if ($cnfm === null || $cnfm === '') {
+			return null;
+		}
+
+		$cnfm = strtolower(trim((string) $cnfm));
+		if (!in_array($cnfm, $allowed, true)) {
+			throw new Api_v2_exception(
+				'validation_error',
+				'Unknown cnfm "' . $cnfm . '". Allowed: ' . implode(', ', $allowed),
+				400,
+				['allowed' => $allowed]
+			);
+		}
+
+		return $cnfm;
+	}
 
 	/**
 	 * Convert a Maidenhead locator to [lat, long] via the Qra library.
