@@ -126,7 +126,7 @@ class Lookup_resource extends Api_v2_resource {
 		$locations = $this->grid_station_location_ids();
 		if (!empty($locations)) {
 			$this->CI->load->model('logbook_model');
-			$query = $this->CI->logbook_model->check_if_grid_worked_in_logbook($grid, $locations, $band, $cnfm);
+			$query = $this->CI->logbook_model->check_if_grid_worked_in_logbook($grid, $locations, $band, $cnfm, $this->lookup_operator());
 			if ($query->num_rows() === 0) {
 				$result = 'Not Found';
 			} elseif ($cnfm === null) {
@@ -163,7 +163,7 @@ class Lookup_resource extends Api_v2_resource {
 		}
 
 		$this->CI->load->model('api_model');
-		$grids = $this->CI->api_model->get_grids_worked_in_logbook($locations, $band, $cnfm);
+		$grids = $this->CI->api_model->get_grids_worked_in_logbook($locations, $band, $cnfm, $this->lookup_operator());
 
 		$this->CI->api_v2_response->respond(['grids' => $grids, 'count' => count($grids)], 200, $meta);
 	}
@@ -247,7 +247,7 @@ class Lookup_resource extends Api_v2_resource {
 		// "IN ()" syntax error, and there is nothing to look up anyway.
 		$hit = ($station_ids === '')
 			? null
-			: $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, '', 'NO BAND', 'NO MODE');
+			: $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, '', 'NO BAND', 'NO MODE', $this->lookup_operator());
 		if ($hit != null) {
 			$return['name']         = $hit->COL_NAME;
 			$return['gridsquare']   = $hit->COL_GRIDSQUARE;
@@ -370,7 +370,7 @@ class Lookup_resource extends Api_v2_resource {
 		// station locations (see lookup_basic()).
 		$hit = ($station_ids === '')
 			? null
-			: $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, $default_confirmation, $band, $mode);
+			: $this->CI->logbook_model->call_lookup_result($callsign, $station_ids, $default_confirmation, $band, $mode, $this->lookup_operator());
 		if ($hit != null) {
 			$return['name']                  = $hit->COL_NAME;
 			$return['gridsquare']            = $hit->COL_GRIDSQUARE;
@@ -405,9 +405,9 @@ class Lookup_resource extends Api_v2_resource {
 		if (($return['dxcc_id'] ?? '') != '') {
 			// The model returns [] for an empty station list; cast before the
 			// comparison, since in PHP an array is always "greater than" 0.
-			$return['dxcc_confirmed']              = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, null, null) > 0);
-			$return['dxcc_confirmed_on_band']      = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, null) > 0);
-			$return['dxcc_confirmed_on_band_mode'] = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, $mode) > 0);
+			$return['dxcc_confirmed']              = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, null, null, $this->lookup_operator()) > 0);
+			$return['dxcc_confirmed_on_band']      = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, null, $this->lookup_operator()) > 0);
+			$return['dxcc_confirmed_on_band_mode'] = ((int) $this->CI->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($default_confirmation, $return['dxcc_id'], $station_ids, $band, $mode, $this->lookup_operator()) > 0);
 		}
 
 		// Callbook data is opt-in (external HTTP lookup).
@@ -423,6 +423,20 @@ class Lookup_resource extends Api_v2_resource {
 	}
 
 	// --- Helpers -----------------------------------------------------------
+
+	/**
+	 * COL_OPERATOR this lookup is restricted to, or '' for no restriction.
+	 *
+	 * A lookup answers "have I worked this before" out of the logbook, and for a
+	 * club token that logbook is the whole clubstation's. Without this the
+	 * endpoint would hand a member the name, QTH and locator recorded in another
+	 * operator's QSO - exactly the rows the QSO resource hides from it.
+	 *
+	 * @return string
+	 */
+	protected function lookup_operator() {
+		return $this->is_restricted_club_member() ? (string) $this->operator_callsign() : '';
+	}
 
 	/**
 	 * Parse and validate the ?cnfm= confirmation type, or null when absent.

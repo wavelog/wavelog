@@ -41,7 +41,8 @@ class Radio_resource extends Api_v2_resource {
 		$this->CI->load->model('cat');
 
 		$radios = [];
-		foreach ($this->CI->cat->status_for_user_id($this->user_id())->result() as $row) {
+		$query = $this->CI->cat->status_for_user_id($this->user_id(), $this->visible_operator());
+		foreach ($query->result() as $row) {
 			$radios[] = $this->format_radio($row);
 		}
 
@@ -105,7 +106,7 @@ class Radio_resource extends Api_v2_resource {
 		$this->require_delete();
 		$this->require_owned_radio($id);
 
-		$this->CI->cat->delete_for_user((int) $id, $this->user_id());
+		$this->CI->cat->delete_for_user((int) $id, $this->user_id(), $this->visible_operator());
 
 		$this->CI->api_v2_response->no_content();
 	}
@@ -113,7 +114,24 @@ class Radio_resource extends Api_v2_resource {
 	// --- Internal helpers --------------------------------------------------
 
 	/**
+	 * The operator whose radios this token may see, or null for "all of the
+	 * owner's".
+	 *
+	 * Radios carry an operator of their own, so on a clubstation each member
+	 * registers its own rigs into the shared account. A member below officer
+	 * level must therefore only ever see and delete its own - the session-free
+	 * equivalent of the clubaccess_check(9) branch in Cat::status().
+	 *
+	 * @return int|null
+	 */
+	protected function visible_operator() {
+		return $this->is_restricted_club_member() ? $this->auth['created_by'] : null;
+	}
+
+	/**
 	 * Verify a radio exists and belongs to the token owner, returning its row.
+	 * Scoped to the acting operator for restricted club members, so another
+	 * member's rig is reported as not found rather than exposed.
 	 *
 	 * @throws Api_v2_exception 404 when missing or not owned.
 	 * @return object cat row.
@@ -123,7 +141,7 @@ class Radio_resource extends Api_v2_resource {
 			throw new Api_v2_exception('not_found', 'Radio not found', 404);
 		}
 		$this->CI->load->model('cat');
-		$row = $this->CI->cat->radio_for_user($id, $this->user_id());
+		$row = $this->CI->cat->radio_for_user($id, $this->user_id(), $this->visible_operator());
 		if ($row === null) {
 			throw new Api_v2_exception('not_found', 'Radio not found', 404);
 		}

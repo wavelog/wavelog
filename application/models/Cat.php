@@ -282,10 +282,21 @@
 		 * Get CAT radios statuses for given user ID
 		 *
 		 * @param int|string $user_id
+		 * @param int|null   $operator Optional operator (clubmode) scope.
 		 * @return object
 		 */
-		function status_for_user_id($user_id) {
+		/**
+		 * Radios of an owner, optionally narrowed to a single operator.
+		 *
+		 * $operator is the session-free counterpart to the clubaccess_check(9)
+		 * branch in status(): a clubstation member below officer level only ever
+		 * sees the radios it registered itself.
+		 */
+		function status_for_user_id($user_id, $operator = null) {
 			$this->db->where('user_id', $user_id);
+			if ($operator !== null) {
+				$this->db->where('operator', $operator);
+			}
 			$query = $this->db->get('cat');
 
 			return $query;
@@ -371,11 +382,15 @@
 		 *
 		 * @param int|string $id      cat row id.
 		 * @param int        $user_id Owner.
+		 * @param int|null   $operator Optional operator (clubmode) scope.
 		 * @return object|null The cat row, or null when not found/owned.
 		 */
-		function radio_for_user($id, $user_id) {
+		function radio_for_user($id, $user_id, $operator = null) {
 			$this->db->where('id', $this->security->xss_clean($id));
 			$this->db->where('user_id', $user_id);
+			if ($operator !== null) {
+				$this->db->where('operator', $operator);
+			}
 			return $this->db->get('cat')->row();
 		}
 
@@ -401,11 +416,15 @@
 		 *
 		 * @param int|string $id      cat row id.
 		 * @param int        $user_id Owner.
+		 * @param int|null   $operator Optional operator (clubmode) scope.
 		 * @return int Number of affected rows.
 		 */
-		function delete_for_user($id, $user_id) {
+		function delete_for_user($id, $user_id, $operator = null) {
 			$this->db->where('id', $this->security->xss_clean($id));
 			$this->db->where('user_id', $user_id);
+			if ($operator !== null) {
+				$this->db->where('operator', $operator);
+			}
 			$this->db->delete('cat');
 			return $this->db->affected_rows();
 		}

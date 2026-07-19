@@ -1872,7 +1872,10 @@ class Logbook_model extends CI_Model {
   * Usage: Callsign lookup data for API/callsign_lookup
   *
   */
-	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode) {
+	// $operator: optional COL_OPERATOR restriction. Used by the REST API v2 so a
+	// clubstation member below officer level cannot read back data from a QSO
+	// another operator made. Defaults to '' = no restriction (v1 behaviour).
+	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode, $operator = '') {
 		$binding=[];
 		$qsl_where = $this->qsl_default_where($user_default_confirmation);
 		$band_addon='COL_BAND=?';
@@ -1887,7 +1890,7 @@ class Logbook_model extends CI_Model {
 			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
 			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
 		FROM ".$this->config->item('table_name')." WHERE ";
-		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ? ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?";
 		$binding[]=$band;
 		$binding[]=$band;
 		$binding[]=$mode;
@@ -1895,6 +1898,13 @@ class Logbook_model extends CI_Model {
 		$binding[]=$band;
 		$binding[]=$mode;
 		$binding[]=$callsign;
+
+		if ($operator !== null && $operator !== '') {
+			$sql.=" AND upper(COL_OPERATOR) = ?";
+			$binding[]=strtoupper($operator);
+		}
+
+		$sql.=" ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
 
 		$query = $this->db->query($sql, $binding);
 		$data = [];
@@ -2295,9 +2305,17 @@ class Logbook_model extends CI_Model {
 	// $qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
 	// $since_id     int     0 for none, else COL_PRIMARY_KEY > $since_id
 	// $qso_since    string  '' for none, else 'Y-m-d' floor on COL_TIME_ON
-	private function _qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $qso_since, &$bindings) {
+	// $operator     string  '' for none, else restrict to that COL_OPERATOR
+	private function _qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $qso_since, &$bindings, $operator = '') {
 		$where = " WHERE qsos.`station_id` IN ?";
 		$bindings[] = $station_ids;
+
+		// Clubstation members below officer level only ever see their own QSOs.
+		// Compared uppercased, the same way the ADIF export filters it.
+		if ($operator !== null && $operator !== '') {
+			$where .= " AND upper(qsos.`COL_OPERATOR`) = ?";
+			$bindings[] = strtoupper($operator);
+		}
 
 		if ((int) $since_id > 0) {
 			$where .= " AND qsos.`COL_PRIMARY_KEY` > ?";
@@ -2347,14 +2365,14 @@ class Logbook_model extends CI_Model {
 	// rendered as JSON or as ADIF (via AdifHelper). $order is 'id_asc' (ascending
 	// primary key, for incremental ADIF sync) or 'time_desc' (newest first, for
 	// browsing). Filtering is shared with count_qsos_filtered().
-	function get_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $order = 'time_desc', $limit = 50, $offset = 0) {
+	function get_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $order = 'time_desc', $limit = 50, $offset = 0, $operator = '') {
 		if (empty($station_ids)) {
 			return $this->db->query("SELECT * FROM " . $this->config->item('table_name') . " WHERE 1=0");
 		}
 
 		$tbl = $this->config->item('table_name');
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings);
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
 
 		$sql = "SELECT qsos.*, station_profile.*, dxcc_entities.name AS station_country
 			FROM {$tbl} qsos
@@ -2375,13 +2393,13 @@ class Logbook_model extends CI_Model {
 
 	// Count QSOs for the REST API v2 QSO endpoint, using the exact same filter as
 	// get_qsos_filtered() so `total` matches the paginated result set.
-	function count_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0) {
+	function count_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $operator = '') {
 		if (empty($station_ids)) {
 			return 0;
 		}
 
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings);
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
 		$sql = "SELECT COUNT(*) AS cnt FROM " . $this->config->item('table_name') . " qsos" . $where;
 
 		return (int) $this->db->query($sql, $bindings)->row()->cnt;
@@ -2871,7 +2889,9 @@ class Logbook_model extends CI_Model {
 		return $extrawhere;
 	}
 
-	function check_if_dxcc_cnfmd_in_logbook_api($user_default_confirmation,$dxcc, $station_ids = null, $band = null, $mode = null) {
+	// $operator: see call_lookup_result() - optional COL_OPERATOR restriction for
+	// the REST API v2, no restriction by default.
+	function check_if_dxcc_cnfmd_in_logbook_api($user_default_confirmation,$dxcc, $station_ids = null, $band = null, $mode = null, $operator = '') {
 		$binding=[];
 		if ($station_ids == null) {
 			return [];
@@ -2894,6 +2914,11 @@ class Logbook_model extends CI_Model {
 		if ($mode != null) {
 			$sql.=" AND COL_MODE = ?";
 			$binding[]=$mode;
+		}
+
+		if ($operator !== null && $operator !== '') {
+			$sql.=" AND upper(COL_OPERATOR) = ?";
+			$binding[]=strtoupper($operator);
 		}
 
 		$query = $this->db->query($sql, $binding);
@@ -3484,7 +3509,9 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null, $cnfm = null) {
+	// $operator: see call_lookup_result() - optional COL_OPERATOR restriction for
+	// the REST API v2, no restriction by default.
+	function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null, $cnfm = null, $operator = '') {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -3524,6 +3551,10 @@ class Logbook_model extends CI_Model {
 		} else if ($band == 'SAT') {
 			// Where col_sat_name is not empty
 			$this->db->where('COL_SAT_NAME !=', '');
+		}
+
+		if ($operator !== null && $operator !== '') {
+			$this->db->where('upper(COL_OPERATOR)', strtoupper($operator));
 		}
 
 		$query = $this->db->get($this->config->item('table_name'));

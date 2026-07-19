@@ -117,12 +117,16 @@ class Qso_resource extends Api_v2_resource {
 			return;
 		}
 
+		// A club member below officer level only ever sees its own QSOs - in the
+		// JSON list and the ADIF export alike, since both run the same query.
+		$operator = $this->is_restricted_club_member() ? (string) $this->operator_callsign() : '';
+
 		// Total across all pages for the same filter, so a client can find the
 		// last page without probing for an empty response.
-		$total = $this->CI->logbook_model->count_qsos_filtered($station_ids, $band, $mode, $qsl_filter, $since_id);
+		$total = $this->CI->logbook_model->count_qsos_filtered($station_ids, $band, $mode, $qsl_filter, $since_id, $operator);
 
 		$query = $this->CI->logbook_model->get_qsos_filtered(
-			$station_ids, $band, $mode, $qsl_filter, $since_id, $order, $page['per_page'], $page['offset']
+			$station_ids, $band, $mode, $qsl_filter, $since_id, $order, $page['per_page'], $page['offset'], $operator
 		);
 
 		$rows = is_object($query) ? $query->result() : [];
@@ -197,6 +201,7 @@ class Qso_resource extends Api_v2_resource {
 		if (!$this->CI->logbook_model->check_qso_is_accessible($id, $this->user_id())) {
 			throw new Api_v2_exception('not_found', 'QSO not found', 404);
 		}
+		$this->require_own_qso($id);
 
 		// Trusted read: ownership already verified against the key's user_id.
 		$query = $this->CI->logbook_model->get_qso($id, true);
@@ -284,7 +289,7 @@ class Qso_resource extends Api_v2_resource {
 		}
 
 		// Build an ADIF-style record (lowercase keys) for the import pipeline.
-		$record = $this->body_to_record($body);
+		$record = $this->force_club_operator($this->body_to_record($body));
 
 		// apicall = true and skipStationCheck = true: we already verified the
 		// station belongs to the key owner above, so skip the session-based check.
@@ -361,7 +366,7 @@ class Qso_resource extends Api_v2_resource {
 				);
 			}
 
-			$records[] = $this->body_to_record($qso);
+			$records[] = $this->force_club_operator($this->body_to_record($qso));
 		}
 
 		if (!empty($body['dryrun'])) {
@@ -433,22 +438,11 @@ class Qso_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'import_type=adif requires a non-empty "adif" string', 400);
 		}
 
-		$this->CI->load->model('club_model');
 		if (!$this->CI->load->is_loaded('adif_parser')) {
 			$this->CI->load->library('adif_parser');
 		}
 		if (!$this->CI->load->is_loaded('Qra')) {
 			$this->CI->load->library('Qra');
-		}
-
-		// Clubstation operator resolution: a club member's token must log under
-		// the member's own callsign, not the shared club call.
-		$user_id = $this->user_id();
-		$created_by = $this->auth['created_by'];
-		$club_perm = $this->CI->club_model->get_permission_noui($user_id, $created_by);
-		$real_operator = null;
-		if ($this->CI->config->item('special_callsign') && $user_id != $created_by) {
-			$real_operator = $this->CI->user_model->get_by_id($created_by)->row()->user_callsign;
 		}
 
 		$profile = $this->CI->stations->profile_clean($station_profile_id);
@@ -477,16 +471,7 @@ class Qso_resource extends Api_v2_resource {
 				}
 			}
 
-			// Force the operator to the token creator for clubstation tokens.
-			if ($real_operator !== null) {
-				$recorded_operator = $record['operator'] ?? '';
-				if ((array_key_exists('operator', $record) && $record['operator'] == ($record['station_callsign'] ?? '')) || $recorded_operator === '') {
-					$record['operator'] = $real_operator;
-				}
-				if (($club_perm ?? 0) == 3 || ($club_perm ?? 0) == 6) {
-					$record['operator'] = $real_operator;
-				}
-			}
+			$record = $this->force_club_operator($record);
 
 			// Fill the distance from the station's own grid when possible.
 			if (array_key_exists('gridsquare', $record) && $mygrid !== ''
@@ -541,6 +526,7 @@ class Qso_resource extends Api_v2_resource {
 		if (!$this->CI->logbook_model->check_qso_is_accessible($id, $this->user_id())) {
 			throw new Api_v2_exception('not_found', 'QSO not found', 404);
 		}
+		$this->require_own_qso($id);
 
 		// The model handles the full teardown (OQRS, QSL/eQSL images, cache)
 		// and re-checks ownership against the same user_id.
@@ -550,6 +536,76 @@ class Qso_resource extends Api_v2_resource {
 	}
 
 	// --- Internal helpers --------------------------------------------------
+
+	/**
+	 * Resolve the operator of an inbound QSO record for clubstation tokens.
+	 *
+	 * A club token logs into the clubstation's logbook, but the QSO belongs to
+	 * the member who made it - COL_OPERATOR must therefore carry the member's
+	 * own callsign, not the shared club call. Two rules, mirroring the v1 API:
+	 *
+	 *  - Any club token: an absent operator, or one that merely repeats the club
+	 *    callsign, is filled in with the member's callsign.
+	 *  - Below officer level (3 and 6): the operator is overwritten
+	 *    unconditionally. A member must not be able to log under someone else's
+	 *    callsign by simply naming them in the payload.
+	 *
+	 * Applied to every create path (single JSON, bulk JSON and ADIF) so the
+	 * payload format cannot decide whether the rule holds.
+	 *
+	 * @param array $record ADIF-style record (lowercase keys).
+	 * @return array The record with the operator resolved.
+	 */
+	protected function force_club_operator($record) {
+		// null for a personal token, and for every token when the clubstation
+		// feature is off (resolve_club_context() gates on it).
+		$operator = $this->operator_callsign();
+		if ($operator === null) {
+			return $record;
+		}
+
+		$recorded = $record['operator'] ?? '';
+		if ($recorded === '' || $recorded == ($record['station_callsign'] ?? '')) {
+			$record['operator'] = $operator;
+		}
+
+		if ($this->is_restricted_club_member()) {
+			$record['operator'] = $operator;
+		}
+
+		return $record;
+	}
+
+	/**
+	 * Guard a per-QSO write for club members below officer level: they may only
+	 * touch QSOs they made themselves.
+	 *
+	 * check_qso_is_accessible() only proves the QSO sits in a station location
+	 * of the token owner - and for a club token the owner *is* the clubstation,
+	 * so every QSO in the club log passes it. The operator is what separates one
+	 * member's QSOs from another's, which is exactly what
+	 * clubaccess_filter_qso_ids() checks for the batch flows in the web UI.
+	 *
+	 * A foreign QSO is reported as 404 rather than 403, matching how the rest of
+	 * this resource treats a QSO the token may not see: not confirming that it
+	 * exists at all.
+	 *
+	 * @param int $id QSO primary key, already known to be accessible.
+	 * @throws Api_v2_exception 404 when the QSO belongs to another operator.
+	 */
+	protected function require_own_qso($id) {
+		if (!$this->is_restricted_club_member()) {
+			return;
+		}
+
+		$query = $this->CI->logbook_model->get_qso($id, true);
+		$row = ($query !== null && $query->num_rows() > 0) ? $query->row() : null;
+		// Compared case-insensitively: the import pipeline uppercases the
+		// operator, but older rows may hold it as typed.
+		if ($row === null || strcasecmp((string) $row->COL_OPERATOR, (string) $this->operator_callsign()) !== 0) {
+			throw new Api_v2_exception('not_found', 'QSO not found', 404);
+		}
+	}
 
 	/**
 	 * PATCH implementation.
@@ -565,6 +621,7 @@ class Qso_resource extends Api_v2_resource {
 		if (!$this->CI->logbook_model->check_qso_is_accessible($id, $this->user_id())) {
 			throw new Api_v2_exception('not_found', 'QSO not found', 404);
 		}
+		$this->require_own_qso($id);
 
 		$body = $this->body();
 		$this->require_scalar_fields($body);

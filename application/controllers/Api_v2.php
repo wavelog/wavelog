@@ -168,7 +168,7 @@ class Api_v2 extends CI_Controller {
 			throw new Api_v2_exception('token_expired', 'API token has expired', 401);
 		}
 
-		$this->require_club_membership($auth);
+		$auth = $this->resolve_club_context($auth);
 
 		$this->api_v2_model->update_last_used($auth['id'], $auth['user_id']);
 
@@ -176,24 +176,40 @@ class Api_v2 extends CI_Controller {
 	}
 
 	/**
-	 * Re-check the clubstation membership behind a club token on every request.
+	 * Re-check the clubstation membership behind a club token and add the club
+	 * context the resources need to enforce the permission levels.
 	 *
 	 * A club token belongs to the clubstation (user_id) but was issued by a
-	 * member acting on its behalf (created_by). That membership can be withdrawn
-	 * at any time, and the token itself carries no record of it - so without this
-	 * check a removed member would keep full access to the club logbook until the
-	 * token happens to expire. Club_resource already re-checks the permission for
-	 * its own listing; doing it centrally covers every other resource too, and a
-	 * resource added later cannot forget it.
+	 * member acting on its behalf (created_by). Two things follow from that:
 	 *
-	 * Personal tokens (owner == creator) skip the lookup entirely.
+	 *  - The membership can be withdrawn at any time and the token carries no
+	 *    record of it, so without this check a removed member would keep full
+	 *    access to the club logbook until the token happens to expire.
+	 *  - What the member may do depends on the permission level behind that
+	 *    membership (3 = member, 6 = member ADIF, 9 = officer). The web UI reads
+	 *    it from the session via clubaccess_check(), which is useless here, so
+	 *    the level travels in the auth context instead.
+	 *
+	 * Personal tokens (owner == creator) skip both lookups entirely and keep
+	 * null for the club fields - they are never restricted by club rules.
 	 *
 	 * @param array $auth Authentication context from authenticate_token().
+	 * @return array The same context plus club_permission and operator_callsign.
 	 * @throws Api_v2_exception 403 once the membership is gone.
 	 */
-	protected function require_club_membership($auth) {
+	protected function resolve_club_context($auth) {
+		$auth['club_permission']   = null;
+		$auth['operator_callsign'] = null;
+
+		// Same master switch clubaccess_check() uses: with the clubstation
+		// feature off there are no club rules to apply, for the API no more than
+		// for the web UI.
+		if (!$this->config->item('special_callsign')) {
+			return $auth;
+		}
+
 		if ($auth['created_by'] === $auth['user_id']) {
-			return;
+			return $auth;
 		}
 
 		$this->load->model('club_model');
@@ -207,6 +223,17 @@ class Api_v2 extends CI_Controller {
 				403
 			);
 		}
+
+		$auth['club_permission'] = $permission;
+
+		// The acting member's own callsign: what their QSOs are logged under and
+		// what the per-operator restrictions are matched against.
+		$creator = $this->user_model->get_by_id($auth['created_by']);
+		if ($creator !== null && $creator->num_rows() > 0) {
+			$auth['operator_callsign'] = $creator->row()->user_callsign;
+		}
+
+		return $auth;
 	}
 
 	/**

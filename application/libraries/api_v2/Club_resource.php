@@ -36,6 +36,8 @@ class Club_resource extends Api_v2_resource {
 		$club_id    = $this->user_id();
 		$created_by = $this->auth['created_by'];
 
+		$this->require_club_level(9);
+
 		$this->CI->load->model('club_model');
 		$club_perm = $this->CI->club_model->get_permission_noui($club_id, $created_by);
 

@@ -224,6 +224,63 @@ abstract class Api_v2_resource {
 		return $this->auth['user_id'];
 	}
 
+	// --- Clubstation permission levels -------------------------------------
+	//
+	// The API counterpart to clubaccess_check() (helpers/club_helper.php), which
+	// reads cd_p_level and operator_callsign from the session and returns true
+	// unconditionally without one - useless for a sessionless request. Here the
+	// level travels in the auth context instead (see Api_v2::resolve_club_context).
+	//
+	// Levels, as defined in controllers/Club.php:
+	//   3 = Club Member, 6 = Club Member ADIF, 9 = Club Officer.
+	// A personal token is not a club token at all and is never restricted.
+
+	/**
+	 * Clubstation permission level behind this token, or null for a personal one.
+	 */
+	protected function club_permission() {
+		return $this->auth['club_permission'] ?? null;
+	}
+
+	/**
+	 * Callsign of the member acting behind a club token (null for personal
+	 * tokens). This is what their QSOs are logged under, and what the
+	 * per-operator restrictions are matched against.
+	 */
+	protected function operator_callsign() {
+		return $this->auth['operator_callsign'] ?? null;
+	}
+
+	/**
+	 * Whether this request comes from a club member below officer level, i.e.
+	 * one that may only ever touch its own QSOs. The single condition every
+	 * per-operator restriction hangs off.
+	 */
+	protected function is_restricted_club_member() {
+		$permission = $this->club_permission();
+		return $permission !== null && $permission < 9;
+	}
+
+	/**
+	 * Guard an operation that requires a minimum clubstation permission level.
+	 * A no-op for personal tokens.
+	 *
+	 * @param int $level Minimum p_level (typically 9 for officer-only actions).
+	 * @throws Api_v2_exception 403 when the member's level is too low.
+	 */
+	protected function require_club_level($level) {
+		$permission = $this->club_permission();
+		if ($permission === null || $permission >= $level) {
+			return;
+		}
+		throw new Api_v2_exception(
+			'insufficient_club_permission',
+			'This operation requires clubstation permission level ' . $level,
+			403,
+			['required_level' => $level, 'granted_level' => $permission]
+		);
+	}
+
 	/**
 	 * Guard a write operation: throw 403 unless the token carries this
 	 * resource's write scope. The dispatcher already enforces scopes per verb;

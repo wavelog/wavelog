@@ -76,6 +76,7 @@ class Station_resource extends Api_v2_resource {
 	 */
 	public function create() {
 		$this->require_write();
+		$this->require_club_level(9);
 		$this->CI->load->model('stations');
 		$this->CI->load->model('stationsetup_model');
 
@@ -127,6 +128,9 @@ class Station_resource extends Api_v2_resource {
 	 */
 	public function delete($id) {
 		$this->require_delete();
+		// Deleting a location takes all of its QSOs with it (Stations::delete()
+		// -> deletelog()), so this is the most destructive call in the API.
+		$this->require_club_level(9);
 		$row = $this->require_owned_station($id);
 
 		// The internal Stations::delete() active guard uses the session and is
@@ -151,6 +155,7 @@ class Station_resource extends Api_v2_resource {
 	 */
 	protected function apply_update($id) {
 		$this->require_write();
+		$this->require_club_level(9);
 		$this->CI->load->model('stations');
 		$this->CI->load->model('stationsetup_model');
 
