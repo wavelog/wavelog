@@ -39,9 +39,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($my_contests as $row) {
-                                    $logging_token = $this->paths->create_contesting_logging_token($row['contest_session_id']);
-                                ?>
+                                <?php foreach ($my_contests as $row) { ?>
                                     <?php
                                     $now = time();
                                     $start = !empty($row['time_start']) ? strtotime($row['time_start']) : null;
@@ -59,7 +57,7 @@
                                     ?>
                                     <tr>
                                         <td><div class="form-check"><input class="row-check form-check-input" type="checkbox" value="<?php echo $row['contest_session_id']; ?>"></div></td>
-                                        <td><a target="_blank" href="<?php echo site_url('contesting/logging_engine') . "/" . $logging_token; ?>" class="btn btn-success btn-sm"><i class="fas fa-play"></i> <?= __("START") ?></a></td>
+                                        <td><a target="_blank" href="<?php echo site_url('contesting/logging_engine') . "/" . $row['contest_session_id']; ?>" class="btn btn-success btn-sm"><i class="fas fa-play"></i> <?= __("START") ?></a></td>
                                         <td><?php echo $status; ?></td>
                                         <td><?php echo !empty($row['time_start']) ? date($custom_date_format . ' H:i', strtotime($row['time_start'])) : '-'; ?></td>
                                         <td><?php echo !empty($row['time_end']) ? date($custom_date_format . ' H:i', strtotime($row['time_end'])) : '-'; ?></td>
