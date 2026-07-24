@@ -234,6 +234,69 @@ class Widgets extends CI_Controller {
 		}
 	}
 
+	/**
+	 * LoTW upload widget handler
+	 *
+	 * @param string $user_slug
+	 * @return void
+	 */
+	public function lotw_upload($user_slug = "") {
+
+		$this->load->model('themes_model');
+		$theme = $this->input->get('theme', TRUE);
+		if ($theme != null) {
+			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
+				$data['theme'] = $theme;
+			} else {
+				$data['theme'] = $this->config->item('option_theme');
+			}
+		} else {
+			$data['theme'] = $this->config->item('option_theme');
+		}
+
+		$text_size = $this->input->get('text_size', true) ?? 1;
+
+		if (empty($user_slug)) {
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User slug not specified");
+			$data['user_slug'] = '';
+			$data['nojs'] = $nojs;
+			$this->load->view('widgets/lotw_upload', $data);
+			return;
+		}
+
+		try {
+			$user = $this->get_user_by_slug($user_slug);
+		} catch (\Exception $e) {
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User slug not specified");
+			$data['error'] = $e->getMessage();
+			$data['user_slug'] = $user_slug;
+			$data['nojs'] = $nojs;
+			$this->load->view('widgets/lotw_upload', $data);
+			return;
+		}
+
+		$user_id = $user->user_id;
+		$widget_options = $this->get_on_air_widget_options($user_id);
+
+		if ($widget_options->is_enabled === false) {
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User has on-air widget disabled");
+			$data['user_slug'] = $user_slug;
+			$data['nojs'] = $nojs;
+			$this->load->view('widgets/lotw_upload', $data);
+			return;
+		}
+
+		$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+		$data['user_slug'] = $user_slug;
+
+		$data['user_callsign'] = strtoupper($user->user_callsign);
+
+		$this->load->view('widgets/lotw_upload', $data);
+	}
+
 	public function on_air_ajax($user_slug = "") {
 		header('Content-Type: application/json');
 
