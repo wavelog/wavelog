@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-20 12:32+0000\n"
+"POT-Creation-Date: 2026-07-23 19:51+0000\n"
 "PO-Revision-Date: 2026-06-27 14:16+0000\n"
 "Last-Translator: PE1PQX <Andre@pe1pqx.eu>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1905,7 +1905,7 @@ msgstr "Alle callbook opzoekingen zijn mislukt of leverden geen resultaten op."
 #: application/views/logbookadvanced/qslcarousel.php:32
 #: application/views/logbookadvanced/showStateQsos.php:23
 #: application/views/logbookadvanced/useroptions.php:46
-#: application/views/mode/index.php:40
+#: application/views/map/qso_map.php:33 application/views/mode/index.php:40
 #: application/views/oqrs/notinlogform.php:12
 #: application/views/oqrs/qsolist.php:9 application/views/oqrs/request.php:19
 #: application/views/oqrs/request_grouped.php:13
@@ -2100,7 +2100,8 @@ msgstr "Staat/Provincie"
 #: application/views/logbookadvanced/showStateQsos.php:26
 #: application/views/logbookadvanced/showUpdateResult.php:44
 #: application/views/logbookadvanced/useroptions.php:85
-#: application/views/lookup/index.php:6 application/views/map/qso_map.php:63
+#: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
+#: application/views/map/qso_map.php:111
 #: application/views/qslcard/confirmationresult.php:19
 #: application/views/qslcard/searchresult.php:19
 #: application/views/qslcard/searchresult.php:35
@@ -2144,7 +2145,7 @@ msgstr "Locatorvak"
 #: application/views/logbookadvanced/index.php:542
 #: application/views/logbookadvanced/index.php:1063
 #: application/views/logbookadvanced/useroptions.php:318
-#: application/views/map/qso_map.php:65
+#: application/views/map/qso_map.php:112
 #: application/views/qslcard/searchresult.php:20
 #: application/views/qslcard/searchresult.php:36
 #: application/views/qslcard/searchresult.php:52
@@ -2223,6 +2224,7 @@ msgstr "Afstand"
 #: application/views/logbookadvanced/qslcarousel.php:33
 #: application/views/logbookadvanced/showStateQsos.php:24
 #: application/views/logbookadvanced/useroptions.php:64
+#: application/views/map/qso_map.php:32
 #: application/views/oqrs/notinlogform.php:11
 #: application/views/oqrs/qsolist.php:10 application/views/oqrs/request.php:18
 #: application/views/oqrs/request_grouped.php:12
@@ -2458,7 +2460,7 @@ msgstr "LoTW ADIF importeren"
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Je hebt je ARRL LoTW-gegevens niet gedefinieerd!"
 
-#: application/controllers/Map.php:46
+#: application/controllers/Map.php:56
 msgid "QSO Map"
 msgstr "QSO-kaart"
 
@@ -4289,7 +4291,7 @@ msgstr "QSO bijgewerkt"
 #: application/views/dashboard/index.php:20
 #: application/views/gridmap/index.php:228
 #: application/views/logbookadvanced/index.php:15
-#: application/views/map/qso_map.php:67 application/views/user/edit.php:310
+#: application/views/map/qso_map.php:113 application/views/user/edit.php:310
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
@@ -4550,7 +4552,7 @@ msgstr "Verschil"
 #: application/views/logbookadvanced/index.php:712
 #: application/views/logbookadvanced/index.php:735
 #: application/views/logbookadvanced/index.php:744
-#: application/views/lotw/import.php:55
+#: application/views/lotw/import.php:55 application/views/map/qso_map.php:74
 #: application/views/oqrs/showrequests.php:38
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/showrequests.php:69
@@ -4782,7 +4784,7 @@ msgstr "Markeringen wissen"
 #: application/views/contesting/logger/components/map.php:76
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
-#: application/views/map/qso_map.php:59
+#: application/views/map/qso_map.php:109
 msgid "Latitude"
 msgstr "Breedtegraad"
 
@@ -4792,7 +4794,7 @@ msgstr "Breedtegraad"
 #: application/views/contesting/logger/components/map.php:78
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
-#: application/views/map/qso_map.php:61
+#: application/views/map/qso_map.php:110
 msgid "Longitude"
 msgstr "Lengtegraad"
 
@@ -4875,7 +4877,7 @@ msgstr "Niets gevonden!"
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
 #: application/views/lotw_views/index.php:42
-#: application/views/oqrs/qsolist.php:6
+#: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:14
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:43
@@ -6224,7 +6226,7 @@ msgstr ""
 #: application/views/dashboard/index.php:438
 #: application/views/dashboard/index.php:487
 #: application/views/dashboard/index.php:671
-#: application/views/search/result.php:35
+#: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
 msgstr "Gewerkt"
@@ -6245,7 +6247,7 @@ msgstr "Gewerkt"
 #: application/views/dashboard/index.php:491
 #: application/views/dashboard/index.php:676
 #: application/views/interface_assets/footer.php:49
-#: application/views/search/result.php:32
+#: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 msgid "Confirmed"
 msgstr "Bevestigd"
@@ -6324,7 +6326,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:1015
 #: application/views/logbookadvanced/qslcarousel.php:37
 #: application/views/logbookadvanced/useroptions.php:193
-#: application/views/lookup/index.php:3 application/views/map/qso_map.php:69
+#: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
 #: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:129
 #: application/views/station_profile/edit.php:154
@@ -7377,7 +7379,7 @@ msgstr "Verwijderd"
 #: application/views/logbookadvanced/index.php:467
 #: application/views/logbookadvanced/index.php:1018
 #: application/views/logbookadvanced/useroptions.php:199
-#: application/views/lookup/index.php:8 application/views/map/qso_map.php:71
+#: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
 #: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:528
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:169
@@ -7854,6 +7856,7 @@ msgstr "Referentie"
 #: application/views/logbookadvanced/qslcarousel.php:31
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
+#: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -8745,6 +8748,7 @@ msgstr "Ophalen..."
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
 #: application/views/interface_assets/footer.php:51
+#: application/views/map/qso_map.php:27
 msgid "Not worked"
 msgstr "Niet gewerkt"
 
@@ -14931,7 +14935,6 @@ msgstr "Labeltypen"
 
 #: application/views/labels/index.php:82
 #: application/views/logbookadvanced/statecheckresult.php:12
-#: application/views/map/qso_map.php:21
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -15383,8 +15386,8 @@ msgstr "DARC DOK"
 #: application/views/logbookadvanced/edit.php:36
 #: application/views/logbookadvanced/index.php:1042
 #: application/views/logbookadvanced/useroptions.php:263
-#: application/views/qso/edit_ajax.php:313 application/views/qso/index.php:502
-#: application/views/view_log/qso.php:434
+#: application/views/map/qso_map.php:22 application/views/qso/edit_ajax.php:313
+#: application/views/qso/index.php:502 application/views/view_log/qso.php:434
 msgid "Region"
 msgstr "Regio"
 
@@ -17069,13 +17072,99 @@ msgstr "Voor meer informatie, bezoek de %sLoTW FAQ-pagina%s in de Wavelog Wiki"
 msgid "Upload File"
 msgstr "Bestand uploaden"
 
+#: application/views/map/qso_map.php:8
+msgid "Loading QSO data..."
+msgstr ""
+
+#: application/views/map/qso_map.php:9
+msgid "Loading QSOs for all countries (this may take a moment)..."
+msgstr ""
+
+#: application/views/map/qso_map.php:10
+msgid "Still loading... Processing large dataset, please wait..."
+msgstr ""
+
+#: application/views/map/qso_map.php:11
+msgid "Failed to load QSO data. Please try again."
+msgstr ""
+
+#: application/views/map/qso_map.php:12
+msgid "Error:"
+msgstr ""
+
+#: application/views/map/qso_map.php:13
+msgid "Error parsing response:"
+msgstr ""
+
+#: application/views/map/qso_map.php:14
+msgid "Outside country boundaries"
+msgstr ""
+
 #: application/views/map/qso_map.php:15
+msgid "Inside country boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:16
+msgid "Legend"
+msgstr ""
+
+#: application/views/map/qso_map.php:17
+msgid "Inside boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:18
+msgid "Outside boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:19
+msgid "Country/State boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:20
+#, php-format
+msgid "Showing %s of %s total QSOs"
+msgstr ""
+
+#: application/views/map/qso_map.php:21
+#, php-format
+msgid "Total: %s QSOs with 6+ char grids"
+msgstr ""
+
+#: application/views/map/qso_map.php:23
+msgid "Hover over a region"
+msgstr ""
+
+#: application/views/map/qso_map.php:24
+msgid "Toggle layers"
+msgstr ""
+
+#: application/views/map/qso_map.php:28
+msgid "Regions worked:"
+msgstr ""
+
+#: application/views/map/qso_map.php:29
+msgid "Show QSO list"
+msgstr ""
+
+#: application/views/map/qso_map.php:48
 msgid "Select Country:"
 msgstr "Selecteer land:"
 
-#: application/views/map/qso_map.php:17
+#: application/views/map/qso_map.php:50
 msgid "Choose a country..."
 msgstr "Kies een land..."
+
+#: application/views/map/qso_map.php:60
+msgid "Location:"
+msgstr ""
+
+#: application/views/map/qso_map.php:72
+msgid "Band:"
+msgstr ""
+
+#: application/views/map/qso_map.php:81
+msgid "Load Map"
+msgstr ""
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
