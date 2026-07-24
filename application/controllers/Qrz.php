@@ -266,14 +266,18 @@ class Qrz extends CI_Controller {
 		$station_id = $this->security->xss_clean($this->input->post('station_profile'));
 
 		$this->load->model('adif_data');
-
-		$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id);
-
 		$this->load->model('logbook_model');
 
-		if (isset($data['qsos'])) {
-			foreach ($data['qsos']->result() as $qso) {
-				$this->logbook_model->mark_qrz_qsos_sent($qso->COL_PRIMARY_KEY);
+		$data['qsos'] = [];
+
+		// Only export and mark QSOs if the requested station profile belongs to the logged-in user
+		if ($this->stations->check_station_is_accessible($station_id)) {
+			$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id);
+
+			if (isset($data['qsos'])) {
+				foreach ($data['qsos']->result() as $qso) {
+					$this->logbook_model->mark_qrz_qsos_sent($qso->COL_PRIMARY_KEY);
+				}
 			}
 		}
 
