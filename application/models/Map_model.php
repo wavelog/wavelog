@@ -3,27 +3,23 @@
 class Map_model extends CI_Model {
 
     /**
-     * Get available countries from the logbook with QSOs
+     * Get all DXCC countries that have GeoJSON boundary data,
+     * independent of whether they appear in the logbook.
      */
     public function get_available_countries($supported_country_codes) {
-		$sql = "select DISTINCT dxcc_entities.name AS dxcc_name, dxcc_entities.prefix, COL_DXCC, COUNT(*) as qso_count
-		from " . $this->config->item('table_name') . " thcv
-		join station_profile ON station_profile.station_id = thcv.station_id
-		join dxcc_entities ON dxcc_entities.adif = thcv.COL_DXCC
-		where station_profile.user_id = ?
-		and thcv.COL_DXCC IN (" . implode(',', array_fill(0, count($supported_country_codes), '?')) . ")
-		and LENGTH(thcv.COL_GRIDSQUARE) >= 6
-		group by dxcc_name, thcv.COL_DXCC, dxcc_entities.prefix
+		$sql = "select DISTINCT dxcc_entities.name AS dxcc_name, dxcc_entities.prefix, dxcc_entities.adif AS COL_DXCC
+		from dxcc_entities
+		where dxcc_entities.adif IN (" . implode(',', array_fill(0, count($supported_country_codes), '?')) . ")
 		order by prefix ASC";
 
-        $query = $this->db->query($sql, array_merge([$this->session->userdata('user_id')], $supported_country_codes));
+        $query = $this->db->query($sql, $supported_country_codes);
         return $query->result_array();
     }
 
     /**
      * Get QSOs for a specific country with 6+ character grids
      */
-    public function get_qsos_by_country($country, $station_id = null) {
+    public function get_qsos_by_country($country, $station_id = null, $band = null) {
 		if (!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
@@ -31,7 +27,7 @@ class Map_model extends CI_Model {
 			$this->load->library('DxccFlag');
 		}
 
-		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_COUNTRY, COL_DXCC, COL_MODE, COL_BAND, COL_TIME_ON, COL_RST_SENT, COL_RST_RCVD, station_profile.station_profile_name
+		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_COUNTRY, COL_DXCC, COL_MODE, COL_BAND, COL_PROP_MODE, COL_SAT_NAME, COL_SAT_MODE, COL_TIME_ON, COL_RST_SENT, COL_RST_RCVD, COL_QSL_RCVD, COL_LOTW_QSL_RCVD, COL_EQSL_QSL_RCVD, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_DOWNLOAD_STATUS, station_profile.station_profile_name
 		from " . $this->config->item('table_name') . "
 		join station_profile ON station_profile.station_id = " . $this->config->item('table_name') . ".station_id
 		where station_profile.user_id = ?
@@ -46,6 +42,15 @@ class Map_model extends CI_Model {
 			$bindings[] = $station_id;
 		}
 
+		// Add band filter if specified
+		if ($band == 'SAT') {
+			$sql .= " and COL_PROP_MODE = ?";
+			$bindings[] = $band;
+		} elseif ($band !== null && $band !== '' && $band !== 'all') {
+			$sql .= " and COL_BAND = ?";
+			$bindings[] = $band;
+		}
+
 		$sql .= "and LENGTH(COL_GRIDSQUARE) >= 6
 		order by COL_TIME_ON DESC";
 
@@ -54,6 +59,7 @@ class Map_model extends CI_Model {
 
         // Process QSOs and convert gridsquares to coordinates
         $result = [];
+        $custom_date_format = $this->session->userdata('user_date_format') ?: $this->config->item('qso_date_format');
         foreach ($qsos as $qso) {
             $gridsquare = strtoupper(trim($qso['COL_GRIDSQUARE']));
 
@@ -63,6 +69,7 @@ class Map_model extends CI_Model {
 
                 if ($coords !== false && is_array($coords) && count($coords) >= 2) {
                     $result[] = [
+                        'id' => $qso['COL_PRIMARY_KEY'],
                         'call' => $qso['COL_CALL'],
                         'gridsquare' => $gridsquare,
                         'country' => $qso['COL_COUNTRY'],
@@ -70,8 +77,17 @@ class Map_model extends CI_Model {
                         'mode' => $qso['COL_MODE'],
                         'band' => $qso['COL_BAND'],
                         'time_on' => $qso['COL_TIME_ON'],
+                        'time_formatted' => date($custom_date_format . ' H:i', strtotime($qso['COL_TIME_ON'])),
+                        'prop_mode' => $qso['COL_PROP_MODE'] ?? '',
+                        'sat_name' => $qso['COL_SAT_NAME'] ?? '',
+                        'sat_mode' => $qso['COL_SAT_MODE'] ?? '',
                         'rst_sent' => $qso['COL_RST_SENT'],
                         'rst_rcvd' => $qso['COL_RST_RCVD'],
+                        'confirmed' => ($qso['COL_QSL_RCVD'] ?? '') === 'Y'
+                            || ($qso['COL_LOTW_QSL_RCVD'] ?? '') === 'Y'
+                            || ($qso['COL_EQSL_QSL_RCVD'] ?? '') === 'Y'
+                            || ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] ?? '') === 'Y'
+                            || ($qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] ?? '') === 'Y',
                         'lat' => $coords[0],
                         'lng' => $coords[1],
 						'profile' => $qso['station_profile_name'],
@@ -105,16 +121,17 @@ class Map_model extends CI_Model {
 		$table .= '</td>';
 		$table .= '</tr>';
 
-		// Date/Time
+		// Date/Time (user's custom date format, falling back to the configured QSO date format)
 		$table .= '<tr>';
 		$table .= '<td>Date/Time</td>';
-		$datetime = date('Y-m-d H:i', strtotime($qso['COL_TIME_ON']));
+		$custom_date_format = $this->session->userdata('user_date_format') ?: $this->config->item('qso_date_format');
+		$datetime = date($custom_date_format . ' H:i', strtotime($qso['COL_TIME_ON']));
 		$table .= '<td>' . htmlspecialchars($datetime) . '</td>';
 		$table .= '</tr>';
 
 		// Band/Satellite
 		$table .= '<tr>';
-		if (!empty($qso['COL_SAT_NAME'])) {
+		if (($qso['COL_PROP_MODE'] ?? '') === 'SAT') {
 			$table .= '<td>Band</td>';
 			$table .= '<td>SAT ' . htmlspecialchars($qso['COL_SAT_NAME']);
 			if (!empty($qso['COL_SAT_MODE'])) {

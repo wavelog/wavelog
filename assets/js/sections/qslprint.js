@@ -572,6 +572,12 @@ function printDialog(printType, printAll = false) {
 }
 
 function requestedQslAction(action) {
+	var url = base_url + 'index.php/qslprint/' + action + '/' + $('.station_id').val();
+	// if someone wants to export we don't need to confirm, just do it
+	if (action !== 'qsl_printed') {
+		window.location.href = url;
+		return;
+	}
 	BootstrapDialog.confirm({
 			title: lang_qslprint_warning,
 			message: lang_qslprint_are_you_sure,
@@ -581,7 +587,7 @@ function requestedQslAction(action) {
 			btnOKClass: 'btn-danger',
 			callback: function(result) {
 				if(result) {
-					window.location.href = base_url + 'index.php/qslprint/' + action + '/' + $('.station_id').val();
+					window.location.href = url;
 				}
 			},
 		});
