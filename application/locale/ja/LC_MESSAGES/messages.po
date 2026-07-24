@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-23 19:51+0000\n"
+"POT-Creation-Date: 2026-07-24 21:02+0000\n"
 "PO-Revision-Date: 2026-07-24 13:03+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -144,7 +144,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
-#: application/controllers/Contesting.php:1079
+#: application/controllers/Contesting.php:1062
 #: application/controllers/Contesting_import.php:10
 #: application/controllers/Contesting_import.php:26
 #: application/controllers/Contesting_import.php:56
@@ -984,7 +984,7 @@ msgid "Contest Management"
 msgstr "コンテスト運営"
 
 #: application/controllers/Contesting.php:92
-#: application/controllers/Contesting.php:624
+#: application/controllers/Contesting.php:607
 msgid "Officers must set up contests."
 msgstr "役員はコンテストを企画しなければならない。"
 
@@ -993,105 +993,100 @@ msgstr "役員はコンテストを企画しなければならない。"
 msgid "Quickstart Session: %s"
 msgstr "クイックスタートセッション： %s"
 
-#: application/controllers/Contesting.php:125
-#: application/controllers/Contesting.php:157
-#: application/controllers/Contesting.php:476
-#: application/controllers/Contesting.php:676
-#: application/controllers/Contesting.php:742
+#: application/controllers/Contesting.php:123
+#: application/controllers/Contesting.php:155
+#: application/controllers/Contesting.php:459
+#: application/controllers/Contesting.php:659
+#: application/controllers/Contesting.php:725
 msgid "Contest session not found."
 msgstr "コンテストセッションが見つかりませんでした。"
 
-#: application/controllers/Contesting.php:136
+#: application/controllers/Contesting.php:134
 #, php-format
 msgid "CBR Export: %s"
 msgstr "CBRエクスポート: %s"
 
-#: application/controllers/Contesting.php:169
+#: application/controllers/Contesting.php:167
 #, php-format
 msgid "Export: %s"
 msgstr "輸出： %s"
 
-#: application/controllers/Contesting.php:443
-msgid "Invalid logging token."
-msgstr "ログ認証トークンが無効です。"
-
-#: application/controllers/Contesting.php:450
-#: application/controllers/Contesting.php:455
+#: application/controllers/Contesting.php:442
 msgid "You are not authorized to access this contest session."
 msgstr "このコンテストセッションにアクセスする権限がありません。"
 
-#: application/controllers/Contesting.php:651
+#: application/controllers/Contesting.php:634
 msgid "Contest session created successfully."
 msgstr "コンテストセッションが正常に作成されました。"
 
-#: application/controllers/Contesting.php:653
+#: application/controllers/Contesting.php:636
 msgid "There was an error creating the contest session. Please try again."
 msgstr ""
 "コンテストセッションの作成中にエラーが発生しました。もう一度お試しください。"
 
-#: application/controllers/Contesting.php:659
-#: application/controllers/Contesting.php:725
-#: application/controllers/Contesting.php:772
-#: application/controllers/Contesting.php:784
+#: application/controllers/Contesting.php:642
+#: application/controllers/Contesting.php:708
+#: application/controllers/Contesting.php:755
+#: application/controllers/Contesting.php:767
 msgid "Invalid request method."
 msgstr "無効なリクエストメソッドです。"
 
-#: application/controllers/Contesting.php:717
+#: application/controllers/Contesting.php:700
 msgid "Contest session updated successfully."
 msgstr "コンテストセッションの更新に成功しました。"
 
-#: application/controllers/Contesting.php:719
+#: application/controllers/Contesting.php:702
 msgid "There was an error updating the contest session. Please try again."
 msgstr ""
 "コンテストセッションの更新中にエラーが発生しました。もう一度お試しください。"
 
-#: application/controllers/Contesting.php:764
+#: application/controllers/Contesting.php:747
 msgid "Contest session deleted successfully."
 msgstr "コンテストセッションは正常に削除されました。"
 
-#: application/controllers/Contesting.php:766
+#: application/controllers/Contesting.php:749
 msgid "There was an error deleting the contest session. Please try again."
 msgstr ""
 "コンテストセッションの削除中にエラーが発生しました。もう一度お試しください。"
 
-#: application/controllers/Contesting.php:789
+#: application/controllers/Contesting.php:772
 #: application/models/Contesting_model.php:213
 msgid "Only clubstation officers can delete."
 msgstr "クラブシャック の役員のみが削除できます。"
 
-#: application/controllers/Contesting.php:797
+#: application/controllers/Contesting.php:780
 msgid "No contest sessions selected."
 msgstr "選択された競技セッションはありません。"
 
-#: application/controllers/Contesting.php:805
+#: application/controllers/Contesting.php:788
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
 msgstr[0] "%d件の コンテストセッションが削除されました。"
 
-#: application/controllers/Contesting.php:807
+#: application/controllers/Contesting.php:790
 msgid "There was an error deleting the contest sessions. Please try again."
 msgstr ""
 "コンテストセッションの削除中にエラーが発生しました。もう一度お試しください。"
 
-#: application/controllers/Contesting.php:1021
+#: application/controllers/Contesting.php:1004
 msgid "Operator switching is disabled."
 msgstr "オペレーターの切り替えは無効になっています。"
 
-#: application/controllers/Contesting.php:1041
+#: application/controllers/Contesting.php:1024
 msgid "Operator switching is only available in club stations."
 msgstr "オペレーターの切り替えは、クラブシャック でのみ利用可能です。"
 
-#: application/controllers/Contesting.php:1051
+#: application/controllers/Contesting.php:1034
 msgid "Access denied"
 msgstr "アクセスが拒否されました"
 
-#: application/controllers/Contesting.php:1059
+#: application/controllers/Contesting.php:1042
 #: application/controllers/User.php:1432
 msgid "Incorrect username or password!"
 msgstr "ユーザー名またはパスワードが間違っています!"
 
-#: application/controllers/Contesting.php:1068
+#: application/controllers/Contesting.php:1051
 msgid "A club account cannot be used as an operator."
 msgstr "クラブアカウントはオペレーターとして使用できません。"
 
@@ -2991,7 +2986,7 @@ msgstr "最終更新日"
 #: application/views/club/permissions.php:303
 #: application/views/contest_admin/add.php:68
 #: application/views/contesting/logger/components/qso-form.php:38
-#: application/views/contesting/manager/index.php:74
+#: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
 #: application/views/interface_assets/footer.php:689
 #: application/views/interface_assets/footer.php:698
@@ -3014,7 +3009,7 @@ msgstr "編集"
 #: application/views/club/permissions.php:382
 #: application/views/contest_admin/add.php:71
 #: application/views/contesting/logger/components/qso-form.php:39
-#: application/views/contesting/manager/index.php:81
+#: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:69
 #: application/views/interface_assets/footer.php:2653
 #: application/views/interface_assets/footer.php:2671
@@ -3258,7 +3253,7 @@ msgstr "許可されていません"
 #: application/controllers/Stationsetup.php:478
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
-#: application/views/contesting/manager/index.php:154
+#: application/views/contesting/manager/index.php:152
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
@@ -9477,7 +9472,7 @@ msgstr "バンドを作る"
 #: application/views/contesting/logger/index.php:93
 #: application/views/contesting/manager/components/confirm_delete.php:6
 #: application/views/contesting/manager/components/session_modal.php:12
-#: application/views/contesting/manager/index.php:126
+#: application/views/contesting/manager/index.php:124
 #: application/views/interface_assets/footer.php:54
 #: application/views/logbookadvanced/index.php:55
 #: application/views/simplefle/index.php:21
@@ -9711,7 +9706,7 @@ msgstr "はい、切り替えます！"
 #: application/views/contesting/manager/components/confirm_delete.php:24
 #: application/views/contesting/manager/components/session_modal.php:152
 #: application/views/contesting/manager/import_legacy.php:80
-#: application/views/contesting/manager/index.php:140
+#: application/views/contesting/manager/index.php:138
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:44
 #: application/views/logbookadvanced/index.php:88
@@ -10225,7 +10220,7 @@ msgstr ""
 
 #: application/views/contest_admin/add.php:23
 #: application/views/contest_admin/add.php:26
-#: application/views/contesting/manager/index.php:153
+#: application/views/contesting/manager/index.php:151
 msgid "Add a Contest"
 msgstr "コンテストを追加する"
 
@@ -11665,67 +11660,67 @@ msgstr "選択した項目を削除"
 msgid "Delete selected contest sessions"
 msgstr "選択したコンテストセッションを削除する"
 
-#: application/views/contesting/manager/index.php:51
+#: application/views/contesting/manager/index.php:49
 #: application/views/logbookadvanced/attachContest.php:28
 msgid "Coming Up"
 msgstr "予定"
 
-#: application/views/contesting/manager/index.php:53
+#: application/views/contesting/manager/index.php:51
 #: application/views/logbookadvanced/attachContest.php:30
 msgid "In Progress"
 msgstr "進行中"
 
-#: application/views/contesting/manager/index.php:55
+#: application/views/contesting/manager/index.php:53
 #: application/views/logbookadvanced/attachContest.php:32
 msgid "Completed"
 msgstr "完了"
 
-#: application/views/contesting/manager/index.php:62
+#: application/views/contesting/manager/index.php:60
 msgid "START"
 msgstr "スタート"
 
-#: application/views/contesting/manager/index.php:97
+#: application/views/contesting/manager/index.php:95
 msgid "Export ADIF"
 msgstr "ADIFをエクスポート"
 
-#: application/views/contesting/manager/index.php:100
+#: application/views/contesting/manager/index.php:98
 msgid "Export CBR"
 msgstr "CBRのエキスポート"
 
-#: application/views/contesting/manager/index.php:103
+#: application/views/contesting/manager/index.php:101
 msgid "Export EDI"
 msgstr "EDIエクスポート"
 
-#: application/views/contesting/manager/index.php:125
+#: application/views/contesting/manager/index.php:123
 msgid "Delete Contest Sessions"
 msgstr "コンテストセッションを削除する"
 
-#: application/views/contesting/manager/index.php:130
+#: application/views/contesting/manager/index.php:128
 msgid "Do you really want to delete the selected contest sessions?"
 msgstr "選択したコンテストセッションを本当に削除しますか？"
 
-#: application/views/contesting/manager/index.php:131
+#: application/views/contesting/manager/index.php:129
 msgid "Selected sessions: "
 msgstr "厳選されたセッション： "
 
-#: application/views/contesting/manager/index.php:135
+#: application/views/contesting/manager/index.php:133
 msgid "Also delete all QSOs logged in these sessions from the logbook"
 msgstr ""
 "また、これらのセッションで記録されたすべてのQSOをログブックから削除します"
 
-#: application/views/contesting/manager/index.php:142
+#: application/views/contesting/manager/index.php:140
 msgid "Delete Sessions"
 msgstr "セッションを削除する"
 
-#: application/views/contesting/manager/index.php:155
+#: application/views/contesting/manager/index.php:153
 msgid "Please select at least one contest session."
 msgstr "少なくとも1つの競技セッションを選択してください。"
 
-#: application/views/contesting/manager/index.php:185
+#: application/views/contesting/manager/index.php:183
 msgid "Import historical contests from logbook"
 msgstr "過去のコンテストログのインポート"
 
-#: application/views/contesting/manager/index.php:188
+#: application/views/contesting/manager/index.php:186
 msgid ""
 "Import for all users of this instance. You can do that because you are an "
 "administrator."
@@ -22405,6 +22400,9 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Invalid logging token."
+#~ msgstr "ログ認証トークンが無効です。"
 
 #~ msgid ""
 #~ "To begin, ensure you have already filled in the form on the left with the "
