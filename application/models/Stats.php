@@ -90,6 +90,10 @@
 		$satunique = $this->getUniqueSatGridsSat($dateFrom, $dateTo);
 		$modeunique = $this->getUniqueSatGridModes($dateFrom, $dateTo);
 
+		if ($sats === null) {
+			return ['qsoView' => [], 'satunique' => '', 'modeunique' => '', 'total' => null];
+		}
+
 		// Generating the band/mode table
 		foreach ($sats as $sat) {
 			$sattotal[$sat] = 0;
@@ -140,6 +144,10 @@
 		$satunique = $this->getUniqueSatCallsignsSat($dateFrom, $dateTo);
 		$modeunique = $this->getUniqueSatCallsignsModes($dateFrom, $dateTo);
 
+		if ($sats === null) {
+			return ['qsoView' => [], 'satunique' => [], 'modeunique' => [], 'total' => null];
+		}
+
 		// Generating the band/mode table
 		foreach ($sats as $sat) {
 			$sattotal[$sat] = 0;
@@ -189,6 +197,10 @@
 
 		$bandunique = $this->getUniqueCallsignsBands($dateFrom, $dateTo);
 		$modeunique = $this->getUniqueCallsignsModes($dateFrom, $dateTo);
+
+		if ($bands === null) {
+			return ['qsoView' => [], 'bandunique' => [], 'modeunique' => [], 'total' => null];
+		}
 
 		$modecalls=[];
 		$bandcalls=[];
@@ -591,6 +603,10 @@
 		$sats = $this->get_sats($dateFrom, $dateTo);
 		$modes = $this->get_sat_modes($dateFrom, $dateTo);
 
+		if ($sats === null) {
+			return ['qsoView' => [], 'sattotal' => [], 'modetotal' => [], 'modes' => []];
+		}
+
 		$sattotal = array();
 		$modetotal = array();
 		// Generating the band/mode table
@@ -628,6 +644,10 @@
 
 		$bands = $this->get_bands($dateFrom, $dateTo);
 		$modes = $this->get_modes($dateFrom, $dateTo);
+
+		if ($bands === null) {
+			return ['qsoView' => [], 'bandtotal' => [], 'modetotal' => []];
+		}
 
 		$bandtotal = array();
 		$modetotal = array();
@@ -669,6 +689,10 @@
 
 		$sats = $this->get_sats($dateFrom, $dateTo);
 		$satmodes = $this->get_sat_modes($dateFrom, $dateTo);
+
+		if ($bands === null) {
+			return ['qsoView' => [], 'qsoSatView' => []];
+		}
 
 		// Generating the band/mode table
 		foreach ($bands as $band) {

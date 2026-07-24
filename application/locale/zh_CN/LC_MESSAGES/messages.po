@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-19 08:05+0000\n"
-"PO-Revision-Date: 2026-07-17 05:34+0000\n"
-"Last-Translator: \"Luoyu (BG7QBL)\" <i@luotianyi.eu>\n"
+"POT-Creation-Date: 2026-07-23 19:51+0000\n"
+"PO-Revision-Date: 2026-07-20 06:03+0000\n"
+"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1079,17 +1079,17 @@ msgstr "只有集体台站管理员可以删除。"
 
 #: application/controllers/Contesting.php:797
 msgid "No contest sessions selected."
-msgstr ""
+msgstr "未选择竞赛会话。"
 
 #: application/controllers/Contesting.php:805
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
-msgstr[0] ""
+msgstr[0] "%d竞赛会话已删除。"
 
 #: application/controllers/Contesting.php:807
 msgid "There was an error deleting the contest sessions. Please try again."
-msgstr ""
+msgstr "删除竞赛会话时出现错误，请重试。"
 
 #: application/controllers/Contesting.php:1021
 msgid "Operator switching is disabled."
@@ -1150,7 +1150,7 @@ msgstr "计划任务管理器"
 
 #: application/controllers/Cron.php:173
 msgid "Manual execution of cronjobs is disabled."
-msgstr ""
+msgstr "已禁用手动执行计划任务。"
 
 #: application/controllers/Cron.php:183
 msgid "Cronjob not found."
@@ -1158,7 +1158,7 @@ msgstr "未找到计划任务。"
 
 #: application/controllers/Cron.php:189
 msgid "Disabled cronjobs cannot be run."
-msgstr ""
+msgstr "无法运行已禁用的cron任务。"
 
 #: application/controllers/Cron.php:197
 msgid "Cronjob is already running."
@@ -1210,7 +1210,7 @@ msgstr "禁用"
 #: application/controllers/Cron.php:329 application/views/cron/index.php:81
 #: application/views/cron/index.php:113
 msgid "Run Now"
-msgstr ""
+msgstr "立即运行"
 
 #: application/controllers/Cron.php:416
 #: application/views/interface_assets/footer.php:45
@@ -1907,7 +1907,7 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/logbookadvanced/qslcarousel.php:32
 #: application/views/logbookadvanced/showStateQsos.php:23
 #: application/views/logbookadvanced/useroptions.php:46
-#: application/views/mode/index.php:40
+#: application/views/map/qso_map.php:33 application/views/mode/index.php:40
 #: application/views/oqrs/notinlogform.php:12
 #: application/views/oqrs/qsolist.php:9 application/views/oqrs/request.php:19
 #: application/views/oqrs/request_grouped.php:13
@@ -2102,7 +2102,8 @@ msgstr "州"
 #: application/views/logbookadvanced/showStateQsos.php:26
 #: application/views/logbookadvanced/showUpdateResult.php:44
 #: application/views/logbookadvanced/useroptions.php:85
-#: application/views/lookup/index.php:6 application/views/map/qso_map.php:63
+#: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
+#: application/views/map/qso_map.php:111
 #: application/views/qslcard/confirmationresult.php:19
 #: application/views/qslcard/searchresult.php:19
 #: application/views/qslcard/searchresult.php:35
@@ -2146,7 +2147,7 @@ msgstr "网格坐标"
 #: application/views/logbookadvanced/index.php:542
 #: application/views/logbookadvanced/index.php:1063
 #: application/views/logbookadvanced/useroptions.php:318
-#: application/views/map/qso_map.php:65
+#: application/views/map/qso_map.php:112
 #: application/views/qslcard/searchresult.php:20
 #: application/views/qslcard/searchresult.php:36
 #: application/views/qslcard/searchresult.php:52
@@ -2225,6 +2226,7 @@ msgstr "距离"
 #: application/views/logbookadvanced/qslcarousel.php:33
 #: application/views/logbookadvanced/showStateQsos.php:24
 #: application/views/logbookadvanced/useroptions.php:64
+#: application/views/map/qso_map.php:32
 #: application/views/oqrs/notinlogform.php:11
 #: application/views/oqrs/qsolist.php:10 application/views/oqrs/request.php:18
 #: application/views/oqrs/request_grouped.php:12
@@ -2455,7 +2457,7 @@ msgstr "LoTW ADIF 导入"
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Map.php:46
+#: application/controllers/Map.php:56
 msgid "QSO Map"
 msgstr "QSO 地图"
 
@@ -2903,7 +2905,7 @@ msgstr "添加 QSO"
 
 #: application/controllers/Qso.php:224
 msgid "QSO could not be saved"
-msgstr ""
+msgstr "QSO无法保存"
 
 #: application/controllers/Qso.php:878
 msgid "You have to be logged in to access this URL."
@@ -4142,21 +4144,21 @@ msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
-msgstr ""
+msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
 #: application/models/Logbook_model.php:4313
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
-msgstr ""
+msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
 #: application/models/Logbook_model.php:4383
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
-msgstr ""
+msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
 #: application/models/Logbook_model.php:4390
 #, php-format
@@ -4230,7 +4232,7 @@ msgstr "QSO已上传"
 #: application/views/dashboard/index.php:20
 #: application/views/gridmap/index.php:228
 #: application/views/logbookadvanced/index.php:15
-#: application/views/map/qso_map.php:67 application/views/user/edit.php:310
+#: application/views/map/qso_map.php:113 application/views/user/edit.php:310
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
@@ -4487,7 +4489,7 @@ msgstr "差异"
 #: application/views/logbookadvanced/index.php:712
 #: application/views/logbookadvanced/index.php:735
 #: application/views/logbookadvanced/index.php:744
-#: application/views/lotw/import.php:55
+#: application/views/lotw/import.php:55 application/views/map/qso_map.php:74
 #: application/views/oqrs/showrequests.php:38
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/showrequests.php:69
@@ -4719,7 +4721,7 @@ msgstr "清除标记"
 #: application/views/contesting/logger/components/map.php:76
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
-#: application/views/map/qso_map.php:59
+#: application/views/map/qso_map.php:109
 msgid "Latitude"
 msgstr "纬度"
 
@@ -4729,7 +4731,7 @@ msgstr "纬度"
 #: application/views/contesting/logger/components/map.php:78
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
-#: application/views/map/qso_map.php:61
+#: application/views/map/qso_map.php:110
 msgid "Longitude"
 msgstr "经度"
 
@@ -4812,7 +4814,7 @@ msgstr "未找到！"
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
 #: application/views/lotw_views/index.php:42
-#: application/views/oqrs/qsolist.php:6
+#: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:14
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:43
@@ -6103,7 +6105,7 @@ msgstr "已确认 %s%%"
 #: application/views/dashboard/index.php:438
 #: application/views/dashboard/index.php:487
 #: application/views/dashboard/index.php:671
-#: application/views/search/result.php:35
+#: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
 msgstr "已通联"
@@ -6124,7 +6126,7 @@ msgstr "已通联"
 #: application/views/dashboard/index.php:491
 #: application/views/dashboard/index.php:676
 #: application/views/interface_assets/footer.php:49
-#: application/views/search/result.php:32
+#: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 msgid "Confirmed"
 msgstr "已确认"
@@ -6203,7 +6205,7 @@ msgstr "已确认的QSO"
 #: application/views/logbookadvanced/index.php:1015
 #: application/views/logbookadvanced/qslcarousel.php:37
 #: application/views/logbookadvanced/useroptions.php:193
-#: application/views/lookup/index.php:3 application/views/map/qso_map.php:69
+#: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
 #: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:129
 #: application/views/station_profile/edit.php:154
@@ -7206,7 +7208,7 @@ msgstr "已删除"
 #: application/views/logbookadvanced/index.php:467
 #: application/views/logbookadvanced/index.php:1018
 #: application/views/logbookadvanced/useroptions.php:199
-#: application/views/lookup/index.php:8 application/views/map/qso_map.php:71
+#: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
 #: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:528
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:169
@@ -7663,6 +7665,7 @@ msgstr "编号"
 #: application/views/logbookadvanced/qslcarousel.php:31
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
+#: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -8496,6 +8499,7 @@ msgstr "正在获取..."
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
 #: application/views/interface_assets/footer.php:51
+#: application/views/map/qso_map.php:27
 msgid "Not worked"
 msgstr "未通联"
 
@@ -11321,7 +11325,7 @@ msgstr ""
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "How grouping works:"
-msgstr ""
+msgstr "分组机制如下："
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid ""
@@ -11331,6 +11335,9 @@ msgid ""
 "as one session, while weekly or monthly contest series are imported as "
 "separate sessions."
 msgstr ""
+"QSO 会按竞赛和电台进行分组。如果连续的 QSO 间隔小于 72 小时，或者属于同一个 "
+"ISO 日历周（周一至周日），它们将被归入同一个会话中。这样可以将为期一周的活动"
+"事件保持为一个会话，而每周或每月的系列竞赛则会作为独立的会话导入。"
 
 #: application/views/contesting/manager/import_legacy.php:22
 msgid "Admin mode:"
@@ -11369,7 +11376,7 @@ msgstr "请至少选择一个竞赛导入。"
 
 #: application/views/contesting/manager/import_legacy.php:102
 msgid "Are you sure you want to import the selected contest sessions?"
-msgstr ""
+msgstr "你确定要导入所选的竞赛会话吗？"
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:341
@@ -11440,15 +11447,15 @@ msgstr "你确定要删除所选的竞赛会话吗?"
 
 #: application/views/contesting/manager/index.php:131
 msgid "Selected sessions: "
-msgstr ""
+msgstr "所选的会话: "
 
 #: application/views/contesting/manager/index.php:135
 msgid "Also delete all QSOs logged in these sessions from the logbook"
-msgstr ""
+msgstr "同时从日志簿中删除记录在这些会话中的所有 QSO"
 
 #: application/views/contesting/manager/index.php:142
 msgid "Delete Sessions"
-msgstr ""
+msgstr "删除会话"
 
 #: application/views/contesting/manager/index.php:155
 msgid "Please select at least one contest session."
@@ -13414,7 +13421,7 @@ msgstr "错误"
 
 #: application/views/interface_assets/footer.php:36
 msgid "The query failed for a unknown reason"
-msgstr ""
+msgstr "未知原因查询失败"
 
 #: application/views/interface_assets/footer.php:37
 msgid "Attention"
@@ -14516,7 +14523,6 @@ msgstr "标签类型"
 
 #: application/views/labels/index.php:82
 #: application/views/logbookadvanced/statecheckresult.php:12
-#: application/views/map/qso_map.php:21
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -14944,8 +14950,8 @@ msgstr "DARC DOK"
 #: application/views/logbookadvanced/edit.php:36
 #: application/views/logbookadvanced/index.php:1042
 #: application/views/logbookadvanced/useroptions.php:263
-#: application/views/qso/edit_ajax.php:313 application/views/qso/index.php:502
-#: application/views/view_log/qso.php:434
+#: application/views/map/qso_map.php:22 application/views/qso/edit_ajax.php:313
+#: application/views/qso/index.php:502 application/views/view_log/qso.php:434
 msgid "Region"
 msgstr "区"
 
@@ -16587,13 +16593,99 @@ msgstr "如需了解更多信息，请访问 Wavelog Wiki 中的 %sLoTW FAQ 页�
 msgid "Upload File"
 msgstr "上传文件"
 
+#: application/views/map/qso_map.php:8
+msgid "Loading QSO data..."
+msgstr ""
+
+#: application/views/map/qso_map.php:9
+msgid "Loading QSOs for all countries (this may take a moment)..."
+msgstr ""
+
+#: application/views/map/qso_map.php:10
+msgid "Still loading... Processing large dataset, please wait..."
+msgstr ""
+
+#: application/views/map/qso_map.php:11
+msgid "Failed to load QSO data. Please try again."
+msgstr ""
+
+#: application/views/map/qso_map.php:12
+msgid "Error:"
+msgstr ""
+
+#: application/views/map/qso_map.php:13
+msgid "Error parsing response:"
+msgstr ""
+
+#: application/views/map/qso_map.php:14
+msgid "Outside country boundaries"
+msgstr ""
+
 #: application/views/map/qso_map.php:15
+msgid "Inside country boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:16
+msgid "Legend"
+msgstr ""
+
+#: application/views/map/qso_map.php:17
+msgid "Inside boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:18
+msgid "Outside boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:19
+msgid "Country/State boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:20
+#, php-format
+msgid "Showing %s of %s total QSOs"
+msgstr ""
+
+#: application/views/map/qso_map.php:21
+#, php-format
+msgid "Total: %s QSOs with 6+ char grids"
+msgstr ""
+
+#: application/views/map/qso_map.php:23
+msgid "Hover over a region"
+msgstr ""
+
+#: application/views/map/qso_map.php:24
+msgid "Toggle layers"
+msgstr ""
+
+#: application/views/map/qso_map.php:28
+msgid "Regions worked:"
+msgstr ""
+
+#: application/views/map/qso_map.php:29
+msgid "Show QSO list"
+msgstr ""
+
+#: application/views/map/qso_map.php:48
 msgid "Select Country:"
 msgstr "选择 DXCC 实体："
 
-#: application/views/map/qso_map.php:17
+#: application/views/map/qso_map.php:50
 msgid "Choose a country..."
 msgstr "选择一个 DXCC 实体…"
+
+#: application/views/map/qso_map.php:60
+msgid "Location:"
+msgstr ""
+
+#: application/views/map/qso_map.php:72
+msgid "Band:"
+msgstr ""
+
+#: application/views/map/qso_map.php:81
+msgid "Load Map"
+msgstr ""
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
@@ -17576,7 +17668,7 @@ msgstr "您当前的设计有未保存的更改。加载不同的模板将会替
 msgid ""
 "Your current design has unsaved changes. If you leave the page, those "
 "changes will be lost. Leave anyway?"
-msgstr ""
+msgstr "您当前的设计未保存。如果离开此页面，这些更改将会丢失，确定要离开吗？"
 
 #: application/views/qslpostcard/designer.php:52
 msgid "Discard changes"
@@ -17588,7 +17680,7 @@ msgstr "继续编辑"
 
 #: application/views/qslpostcard/designer.php:54
 msgid "Leave page"
-msgstr ""
+msgstr "离开页面"
 
 #: application/views/qslpostcard/designer.php:70
 msgid "(new)"
@@ -19162,45 +19254,53 @@ msgstr "清除记录会话"
 msgid "No Options yet"
 msgstr "尚无选项"
 
-#: application/views/simplefle/syntax_help.php:1
+#: application/views/simplefle/syntax_help.php:10
+msgid "Getting started"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:11
 msgid "Before starting to log a QSO, please note the basic rules."
 msgstr "在开始记录 QSO 之前，请注意如下基本规则。"
 
-#: application/views/simplefle/syntax_help.php:2
+#: application/views/simplefle/syntax_help.php:13
 msgid "- Each new QSO should be on a new line."
 msgstr "每个新的 QSO 需新起一行。"
 
-#: application/views/simplefle/syntax_help.php:3
+#: application/views/simplefle/syntax_help.php:14
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr "在每一行上，只写与上一个 QSO 不同的数据。"
 
-#: application/views/simplefle/syntax_help.php:4
+#: application/views/simplefle/syntax_help.php:17
+msgid "The first QSO"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:18
+#, php-format
 msgid ""
 "To begin, ensure you have already filled in the form on the left with the "
 "date, station call, and operator's call. The main data includes the band (or "
-"QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
-"first QSO, which is essentially the callsign."
+"QRG in MHz, e.g., %s), mode, and time. After the time, you provide the first "
+"QSO, which is essentially the callsign."
 msgstr ""
-"首先，确保你已经在左侧表格填写了日期、电台呼号和操作员呼号。主要数据包括频段"
-"（或以 MHz 为单位的 QRG ，例如 '7.145'）、模式和时间。在时间后，你填写第一个 "
-"QSO，基本上就是呼号。"
 
-#: application/views/simplefle/syntax_help.php:9
+#: application/views/simplefle/syntax_help.php:23
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr "以第一个 QSO 为例，它始于 UTC 时间 21:34，于 20m SSB 与 4W7EST 通讯。"
 
-#: application/views/simplefle/syntax_help.php:10
-msgid ""
-"If you don't provide any RST information, the syntax will use 59 (599 for "
-"data). Our next QSO wasn't 59 on both sides, so we provide the information "
-"with the sent RST first. It was 2 minutes later than the first QSO."
+#: application/views/simplefle/syntax_help.php:25
+msgid "Signal reports (RST)"
 msgstr ""
-"如果你不提供任何 RST 信息，语法默认值为 59 （数据模式为 599）。因为我们的下一"
-"个 QSO 不是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 QSO 晚了 "
-"2 分钟。"
 
-#: application/views/simplefle/syntax_help.php:16
+#: application/views/simplefle/syntax_help.php:26
+msgid ""
+"If you don't provide any RST information, the syntax will use 59 for phone, "
+"599 for CW and +0 dB for digital data modes. Our next QSO wasn't 59 on both "
+"sides, so we provide the information with the sent RST first. It was 2 "
+"minutes later than the first QSO."
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:32
 msgid ""
 "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
 "write down 6 because this is the only data that changed here. The "
@@ -19209,7 +19309,11 @@ msgstr ""
 "第一个 QSO 时间为 21:34，第二个 QSO 时间为 2 分钟后的 21:36。我们只输入 6，因"
 "为只有这一个字符有变化。频段与模式信息并未改变，因此无需填写该部分。"
 
-#: application/views/simplefle/syntax_help.php:17
+#: application/views/simplefle/syntax_help.php:34
+msgid "Date and time"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:35
 msgid ""
 "For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but "
 "still on SSB. If no RST information is given, the syntax will use 59 for "
@@ -19220,64 +19324,85 @@ msgstr ""
 "40m。如果未提供 RST，程序仍将使用 59 来记录每个新的 QSO。因此，我们可以添加另"
 "一个在两天后于同一时间进行的 QSO。日期必须采用 YYYY-MM-DD 格式。"
 
-#: application/views/simplefle/syntax_help.php:28
+#: application/views/simplefle/syntax_help.php:47
+msgid "Additional information"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:48
 msgid "Additional informations can be submitted in the following way:"
 msgstr "其他信息可以通过以下方式提交："
 
-#: application/views/simplefle/syntax_help.php:29
+#: application/views/simplefle/syntax_help.php:49
 msgid "Notes:"
 msgstr "注意："
 
-#: application/views/simplefle/syntax_help.php:33
+#: application/views/simplefle/syntax_help.php:53
 msgid "Operator Name:"
 msgstr "操作员姓名："
 
-#: application/views/simplefle/syntax_help.php:37
+#: application/views/simplefle/syntax_help.php:57
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
 msgstr "QSL-信息（注意！目前在 wavelog 中不可见！）："
 
-#: application/views/simplefle/syntax_help.php:41
-msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr "竞赛交换码；序号或其他交换信息——或两者："
-
-#: application/views/simplefle/syntax_help.php:48
-msgid ""
-"Received exchange has to be prefixed with a dot '.', sent exchange with a "
-"comma ','. The last two lines are equivalent - i.e. spaces don't matter as "
-"the order doesn't as well. Exchange you have sent will automatically be "
-"included in the next QSO, if it contains received exchange, or if you use a "
-"single comma ','. To automatically increment the sent serial, use ',++' and "
-"give an initial sent exchange. To deactivate, use ',+0':"
-msgstr ""
-"接收到的交换码必须以句号“.”开头，发送的交换码以逗号“,”开头。最后两行是等效的"
-"——也就是说，空格无关紧要，顺序也无关紧要。如果你发送的交换码包含接收到的交换"
-"码，或者你使用单个逗号“,”，则你发送的交换码将自动包含在下一个QSO中。要自动递"
-"增发送的序列号，请使用“,++”并提供初始发送的交换码。要停用自动递增，请使用“,"
-"+0”："
-
-#: application/views/simplefle/syntax_help.php:54
-msgid ""
-"Here, the first qso uses the set serial 1, and the second will use 2 as the "
-"serial. If you want to wipe your sent exchange, use ',-':"
-msgstr ""
-"在这里，第一个 QSO 使用设置的 1 作为序列号，第二个 QSO 将使用 2 作为序列号。"
-"如果你想清除你发送的交换码，使用“,-”："
-
-#: application/views/simplefle/syntax_help.php:59
-msgid ""
-"First, all previous exchange is wiped, then only a serial is set. Otherwise "
-"the previous exchange 'D23' would have been set also."
-msgstr ""
-"系统会先重置（清空）前一次的交换字段，然后仅写入序列号；否则原有的 ‘D23’ 也会"
-"被保留并一同写入。"
-
-#: application/views/simplefle/syntax_help.php:60
+#: application/views/simplefle/syntax_help.php:61
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr "你可以使用注释语法来填充 Wavelog-导入支持的 ADIF 字段："
 
-#: application/views/simplefle/syntax_help.php:64
+#: application/views/simplefle/syntax_help.php:66
+msgid "Contest exchange"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:67
+msgid "Contest exchange; serials or other exchange - or even both:"
+msgstr "竞赛交换码；序号或其他交换信息——或两者："
+
+#: application/views/simplefle/syntax_help.php:74
+#, php-format
+msgid ""
+"Received exchange has to be prefixed with a dot %s, sent exchange with a "
+"comma %s. The last two lines are equivalent - i.e. spaces don't matter as "
+"the order doesn't as well. Each of the four lines above simply illustrates "
+"one type of exchange (serial only, text only, or both); note that the sent "
+"exchange is 'sticky': once set, it is automatically carried into the "
+"following QSOs (whenever the next line contains a received exchange or a "
+"single comma %s) until you change or wipe it. To automatically increment the "
+"sent serial, add %s to a QSO line together with an initial sent exchange (it "
+"does not work on its own line). To deactivate, use %s:"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:79
+#, php-format
+msgid ""
+"Here, the first qso uses the set serial 1, and the second will use 2 as the "
+"serial. If you want to wipe your sent exchange, use %s:"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:84
+#, php-format
+msgid ""
+"First, all previous exchange is wiped, then only a serial is set. Otherwise "
+"the previous exchange %s would have been set also."
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:86
+msgid "Time zone"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:87
+#, php-format
+msgid ""
+"If you log in local time instead of UTC, declare your offset once with %s "
+"(or the short form %s) followed by the signed hour offset. All following QSO "
+"times are then converted to UTC until you change the offset again:"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:92
+msgid "Here, the QSO logged at 14:00 local time is stored as 12:00 UTC."
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:95
 #, php-format
 msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
@@ -21679,6 +21804,54 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid ""
+#~ "To begin, ensure you have already filled in the form on the left with the "
+#~ "date, station call, and operator's call. The main data includes the band "
+#~ "(or QRG in MHz, e.g., '7.145'), mode, and time. After the time, you "
+#~ "provide the first QSO, which is essentially the callsign."
+#~ msgstr ""
+#~ "首先，确保你已经在左侧表格填写了日期、电台呼号和操作员呼号。主要数据包括频"
+#~ "段（或以 MHz 为单位的 QRG ，例如 '7.145'）、模式和时间。在时间后，你填写第"
+#~ "一个 QSO，基本上就是呼号。"
+
+#~ msgid ""
+#~ "If you don't provide any RST information, the syntax will use 59 (599 for "
+#~ "data). Our next QSO wasn't 59 on both sides, so we provide the "
+#~ "information with the sent RST first. It was 2 minutes later than the "
+#~ "first QSO."
+#~ msgstr ""
+#~ "如果你不提供任何 RST 信息，语法默认值为 59 （数据模式为 599）。因为我们的"
+#~ "下一个 QSO 不是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 "
+#~ "QSO 晚了 2 分钟。"
+
+#~ msgid ""
+#~ "Received exchange has to be prefixed with a dot '.', sent exchange with a "
+#~ "comma ','. The last two lines are equivalent - i.e. spaces don't matter "
+#~ "as the order doesn't as well. Exchange you have sent will automatically "
+#~ "be included in the next QSO, if it contains received exchange, or if you "
+#~ "use a single comma ','. To automatically increment the sent serial, use ',"
+#~ "++' and give an initial sent exchange. To deactivate, use ',+0':"
+#~ msgstr ""
+#~ "接收到的交换码必须以句号“.”开头，发送的交换码以逗号“,”开头。最后两行是等效"
+#~ "的——也就是说，空格无关紧要，顺序也无关紧要。如果你发送的交换码包含接收到的"
+#~ "交换码，或者你使用单个逗号“,”，则你发送的交换码将自动包含在下一个QSO中。要"
+#~ "自动递增发送的序列号，请使用“,++”并提供初始发送的交换码。要停用自动递增，"
+#~ "请使用“,+0”："
+
+#~ msgid ""
+#~ "Here, the first qso uses the set serial 1, and the second will use 2 as "
+#~ "the serial. If you want to wipe your sent exchange, use ',-':"
+#~ msgstr ""
+#~ "在这里，第一个 QSO 使用设置的 1 作为序列号，第二个 QSO 将使用 2 作为序列"
+#~ "号。如果你想清除你发送的交换码，使用“,-”："
+
+#~ msgid ""
+#~ "First, all previous exchange is wiped, then only a serial is set. "
+#~ "Otherwise the previous exchange 'D23' would have been set also."
+#~ msgstr ""
+#~ "系统会先重置（清空）前一次的交换字段，然后仅写入序列号；否则原有的 ‘D23’ "
+#~ "也会被保留并一同写入。"
 
 #~ msgid "QSO on"
 #~ msgstr "QSO 时间"

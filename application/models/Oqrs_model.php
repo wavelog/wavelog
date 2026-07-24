@@ -469,13 +469,15 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function mark_oqrs_line_as_done($id) {
-		$data = array(
-			'status' => '2',
-	   );
+		// Scope the update to the session user's stations to prevent cross-user IDOR
+		$sql = 'UPDATE oqrs
+			JOIN station_profile ON station_profile.station_id = oqrs.station_id
+			SET oqrs.status = 2
+			WHERE oqrs.id = ?
+			AND station_profile.user_id = ?';
+		$binding = [$id, $this->session->userdata('user_id')];
 
-	   $this->db->where('id', $id);
-
-	   $this->db->update('oqrs', $data);
+		$this->db->query($sql, $binding);
 	}
 
 	function getQslInfo($station_id) {

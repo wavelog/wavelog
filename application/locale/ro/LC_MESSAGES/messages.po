@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-19 08:05+0000\n"
+"POT-Creation-Date: 2026-07-23 19:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1873,7 +1873,7 @@ msgstr ""
 #: application/views/logbookadvanced/qslcarousel.php:32
 #: application/views/logbookadvanced/showStateQsos.php:23
 #: application/views/logbookadvanced/useroptions.php:46
-#: application/views/mode/index.php:40
+#: application/views/map/qso_map.php:33 application/views/mode/index.php:40
 #: application/views/oqrs/notinlogform.php:12
 #: application/views/oqrs/qsolist.php:9 application/views/oqrs/request.php:19
 #: application/views/oqrs/request_grouped.php:13
@@ -2068,7 +2068,8 @@ msgstr ""
 #: application/views/logbookadvanced/showStateQsos.php:26
 #: application/views/logbookadvanced/showUpdateResult.php:44
 #: application/views/logbookadvanced/useroptions.php:85
-#: application/views/lookup/index.php:6 application/views/map/qso_map.php:63
+#: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
+#: application/views/map/qso_map.php:111
 #: application/views/qslcard/confirmationresult.php:19
 #: application/views/qslcard/searchresult.php:19
 #: application/views/qslcard/searchresult.php:35
@@ -2112,7 +2113,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:542
 #: application/views/logbookadvanced/index.php:1063
 #: application/views/logbookadvanced/useroptions.php:318
-#: application/views/map/qso_map.php:65
+#: application/views/map/qso_map.php:112
 #: application/views/qslcard/searchresult.php:20
 #: application/views/qslcard/searchresult.php:36
 #: application/views/qslcard/searchresult.php:52
@@ -2191,6 +2192,7 @@ msgstr ""
 #: application/views/logbookadvanced/qslcarousel.php:33
 #: application/views/logbookadvanced/showStateQsos.php:24
 #: application/views/logbookadvanced/useroptions.php:64
+#: application/views/map/qso_map.php:32
 #: application/views/oqrs/notinlogform.php:11
 #: application/views/oqrs/qsolist.php:10 application/views/oqrs/request.php:18
 #: application/views/oqrs/request_grouped.php:12
@@ -2417,7 +2419,7 @@ msgstr ""
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr ""
 
-#: application/controllers/Map.php:46
+#: application/controllers/Map.php:56
 msgid "QSO Map"
 msgstr ""
 
@@ -4181,7 +4183,7 @@ msgstr ""
 #: application/views/dashboard/index.php:20
 #: application/views/gridmap/index.php:228
 #: application/views/logbookadvanced/index.php:15
-#: application/views/map/qso_map.php:67 application/views/user/edit.php:310
+#: application/views/map/qso_map.php:113 application/views/user/edit.php:310
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
@@ -4439,7 +4441,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:712
 #: application/views/logbookadvanced/index.php:735
 #: application/views/logbookadvanced/index.php:744
-#: application/views/lotw/import.php:55
+#: application/views/lotw/import.php:55 application/views/map/qso_map.php:74
 #: application/views/oqrs/showrequests.php:38
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/showrequests.php:69
@@ -4671,7 +4673,7 @@ msgstr ""
 #: application/views/contesting/logger/components/map.php:76
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
-#: application/views/map/qso_map.php:59
+#: application/views/map/qso_map.php:109
 msgid "Latitude"
 msgstr ""
 
@@ -4681,7 +4683,7 @@ msgstr ""
 #: application/views/contesting/logger/components/map.php:78
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
-#: application/views/map/qso_map.php:61
+#: application/views/map/qso_map.php:110
 msgid "Longitude"
 msgstr ""
 
@@ -4764,7 +4766,7 @@ msgstr ""
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
 #: application/views/lotw_views/index.php:42
-#: application/views/oqrs/qsolist.php:6
+#: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:14
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:43
@@ -6011,7 +6013,7 @@ msgstr ""
 #: application/views/dashboard/index.php:438
 #: application/views/dashboard/index.php:487
 #: application/views/dashboard/index.php:671
-#: application/views/search/result.php:35
+#: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
 msgstr ""
@@ -6032,7 +6034,7 @@ msgstr ""
 #: application/views/dashboard/index.php:491
 #: application/views/dashboard/index.php:676
 #: application/views/interface_assets/footer.php:49
-#: application/views/search/result.php:32
+#: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 msgid "Confirmed"
 msgstr ""
@@ -6111,7 +6113,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:1015
 #: application/views/logbookadvanced/qslcarousel.php:37
 #: application/views/logbookadvanced/useroptions.php:193
-#: application/views/lookup/index.php:3 application/views/map/qso_map.php:69
+#: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
 #: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:129
 #: application/views/station_profile/edit.php:154
@@ -7069,7 +7071,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:467
 #: application/views/logbookadvanced/index.php:1018
 #: application/views/logbookadvanced/useroptions.php:199
-#: application/views/lookup/index.php:8 application/views/map/qso_map.php:71
+#: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
 #: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:528
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:169
@@ -7496,6 +7498,7 @@ msgstr ""
 #: application/views/logbookadvanced/qslcarousel.php:31
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
+#: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -8274,6 +8277,7 @@ msgstr ""
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
 #: application/views/interface_assets/footer.php:51
+#: application/views/map/qso_map.php:27
 msgid "Not worked"
 msgstr ""
 
@@ -14207,7 +14211,6 @@ msgstr ""
 
 #: application/views/labels/index.php:82
 #: application/views/logbookadvanced/statecheckresult.php:12
-#: application/views/map/qso_map.php:21
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -14620,8 +14623,8 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:36
 #: application/views/logbookadvanced/index.php:1042
 #: application/views/logbookadvanced/useroptions.php:263
-#: application/views/qso/edit_ajax.php:313 application/views/qso/index.php:502
-#: application/views/view_log/qso.php:434
+#: application/views/map/qso_map.php:22 application/views/qso/edit_ajax.php:313
+#: application/views/qso/index.php:502 application/views/view_log/qso.php:434
 msgid "Region"
 msgstr ""
 
@@ -16250,12 +16253,98 @@ msgstr ""
 msgid "Upload File"
 msgstr ""
 
+#: application/views/map/qso_map.php:8
+msgid "Loading QSO data..."
+msgstr ""
+
+#: application/views/map/qso_map.php:9
+msgid "Loading QSOs for all countries (this may take a moment)..."
+msgstr ""
+
+#: application/views/map/qso_map.php:10
+msgid "Still loading... Processing large dataset, please wait..."
+msgstr ""
+
+#: application/views/map/qso_map.php:11
+msgid "Failed to load QSO data. Please try again."
+msgstr ""
+
+#: application/views/map/qso_map.php:12
+msgid "Error:"
+msgstr ""
+
+#: application/views/map/qso_map.php:13
+msgid "Error parsing response:"
+msgstr ""
+
+#: application/views/map/qso_map.php:14
+msgid "Outside country boundaries"
+msgstr ""
+
 #: application/views/map/qso_map.php:15
-msgid "Select Country:"
+msgid "Inside country boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:16
+msgid "Legend"
 msgstr ""
 
 #: application/views/map/qso_map.php:17
+msgid "Inside boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:18
+msgid "Outside boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:19
+msgid "Country/State boundaries"
+msgstr ""
+
+#: application/views/map/qso_map.php:20
+#, php-format
+msgid "Showing %s of %s total QSOs"
+msgstr ""
+
+#: application/views/map/qso_map.php:21
+#, php-format
+msgid "Total: %s QSOs with 6+ char grids"
+msgstr ""
+
+#: application/views/map/qso_map.php:23
+msgid "Hover over a region"
+msgstr ""
+
+#: application/views/map/qso_map.php:24
+msgid "Toggle layers"
+msgstr ""
+
+#: application/views/map/qso_map.php:28
+msgid "Regions worked:"
+msgstr ""
+
+#: application/views/map/qso_map.php:29
+msgid "Show QSO list"
+msgstr ""
+
+#: application/views/map/qso_map.php:48
+msgid "Select Country:"
+msgstr ""
+
+#: application/views/map/qso_map.php:50
 msgid "Choose a country..."
+msgstr ""
+
+#: application/views/map/qso_map.php:60
+msgid "Location:"
+msgstr ""
+
+#: application/views/map/qso_map.php:72
+msgid "Band:"
+msgstr ""
+
+#: application/views/map/qso_map.php:81
+msgid "Load Map"
 msgstr ""
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
@@ -18787,46 +18876,64 @@ msgstr ""
 msgid "No Options yet"
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:1
+#: application/views/simplefle/syntax_help.php:10
+msgid "Getting started"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:11
 msgid "Before starting to log a QSO, please note the basic rules."
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:2
+#: application/views/simplefle/syntax_help.php:13
 msgid "- Each new QSO should be on a new line."
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:3
+#: application/views/simplefle/syntax_help.php:14
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:4
+#: application/views/simplefle/syntax_help.php:17
+msgid "The first QSO"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:18
+#, php-format
 msgid ""
 "To begin, ensure you have already filled in the form on the left with the "
 "date, station call, and operator's call. The main data includes the band (or "
-"QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
-"first QSO, which is essentially the callsign."
+"QRG in MHz, e.g., %s), mode, and time. After the time, you provide the first "
+"QSO, which is essentially the callsign."
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:9
+#: application/views/simplefle/syntax_help.php:23
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:10
-msgid ""
-"If you don't provide any RST information, the syntax will use 59 (599 for "
-"data). Our next QSO wasn't 59 on both sides, so we provide the information "
-"with the sent RST first. It was 2 minutes later than the first QSO."
+#: application/views/simplefle/syntax_help.php:25
+msgid "Signal reports (RST)"
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:16
+#: application/views/simplefle/syntax_help.php:26
+msgid ""
+"If you don't provide any RST information, the syntax will use 59 for phone, "
+"599 for CW and +0 dB for digital data modes. Our next QSO wasn't 59 on both "
+"sides, so we provide the information with the sent RST first. It was 2 "
+"minutes later than the first QSO."
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:32
 msgid ""
 "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:17
+#: application/views/simplefle/syntax_help.php:34
+msgid "Date and time"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:35
 msgid ""
 "For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but "
 "still on SSB. If no RST information is given, the syntax will use 59 for "
@@ -18834,55 +18941,85 @@ msgid ""
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:28
-msgid "Additional informations can be submitted in the following way:"
-msgstr ""
-
-#: application/views/simplefle/syntax_help.php:29
-msgid "Notes:"
-msgstr ""
-
-#: application/views/simplefle/syntax_help.php:33
-msgid "Operator Name:"
-msgstr ""
-
-#: application/views/simplefle/syntax_help.php:37
-msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
-
-#: application/views/simplefle/syntax_help.php:41
-msgid "Contest exchange; serials or other exchange - or even both:"
+#: application/views/simplefle/syntax_help.php:47
+msgid "Additional information"
 msgstr ""
 
 #: application/views/simplefle/syntax_help.php:48
-msgid ""
-"Received exchange has to be prefixed with a dot '.', sent exchange with a "
-"comma ','. The last two lines are equivalent - i.e. spaces don't matter as "
-"the order doesn't as well. Exchange you have sent will automatically be "
-"included in the next QSO, if it contains received exchange, or if you use a "
-"single comma ','. To automatically increment the sent serial, use ',++' and "
-"give an initial sent exchange. To deactivate, use ',+0':"
+msgid "Additional informations can be submitted in the following way:"
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:54
-msgid ""
-"Here, the first qso uses the set serial 1, and the second will use 2 as the "
-"serial. If you want to wipe your sent exchange, use ',-':"
+#: application/views/simplefle/syntax_help.php:49
+msgid "Notes:"
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:59
-msgid ""
-"First, all previous exchange is wiped, then only a serial is set. Otherwise "
-"the previous exchange 'D23' would have been set also."
+#: application/views/simplefle/syntax_help.php:53
+msgid "Operator Name:"
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:60
+#: application/views/simplefle/syntax_help.php:57
+msgid "QSL-message (Caution! Not visible in wavelog currently!):"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:61
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
 
-#: application/views/simplefle/syntax_help.php:64
+#: application/views/simplefle/syntax_help.php:66
+msgid "Contest exchange"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:67
+msgid "Contest exchange; serials or other exchange - or even both:"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:74
+#, php-format
+msgid ""
+"Received exchange has to be prefixed with a dot %s, sent exchange with a "
+"comma %s. The last two lines are equivalent - i.e. spaces don't matter as "
+"the order doesn't as well. Each of the four lines above simply illustrates "
+"one type of exchange (serial only, text only, or both); note that the sent "
+"exchange is 'sticky': once set, it is automatically carried into the "
+"following QSOs (whenever the next line contains a received exchange or a "
+"single comma %s) until you change or wipe it. To automatically increment the "
+"sent serial, add %s to a QSO line together with an initial sent exchange (it "
+"does not work on its own line). To deactivate, use %s:"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:79
+#, php-format
+msgid ""
+"Here, the first qso uses the set serial 1, and the second will use 2 as the "
+"serial. If you want to wipe your sent exchange, use %s:"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:84
+#, php-format
+msgid ""
+"First, all previous exchange is wiped, then only a serial is set. Otherwise "
+"the previous exchange %s would have been set also."
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:86
+msgid "Time zone"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:87
+#, php-format
+msgid ""
+"If you log in local time instead of UTC, declare your offset once with %s "
+"(or the short form %s) followed by the signed hour offset. All following QSO "
+"times are then converted to UTC until you change the offset again:"
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:92
+msgid "Here, the QSO logged at 14:00 local time is stored as 12:00 UTC."
+msgstr ""
+
+#: application/views/simplefle/syntax_help.php:95
 #, php-format
 msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
