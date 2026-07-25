@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
+
+  // The visible "CSV" menu item triggers the (hidden) DataTables CSV export button
+  $('#lbaExportCsv').on('click', function () {
+    $('#csv-button-container button').trigger('click');
+  });
 });
 
 
@@ -245,7 +250,7 @@ function loadQSOTable(rows) {
 						{
 							extend: 'csv',
 							text: 'CSV',
-							className: 'btn btn-sm btn-info dropdown-action w-100',
+							className: 'dropdown-item',
 							filename: function() {
 								return 'qso_export_' + new Date().toISOString().slice(0,10);
 							},
