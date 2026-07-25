@@ -836,36 +836,36 @@ $options = json_decode($options);
                     </button>
                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="actionsDropdown">
                         <?php if(clubaccess_check(9)) { ?>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="btnUpdateFromCallbook"><i class="fas fa-sync-alt me-1"></i><?= __("Update from Callbook"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="queueBureau"><i class="fas fa-inbox me-1"></i><?= __("Queue Bureau"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="queueDirect"><i class="fas fa-inbox me-1"></i><?= __("Queue Direct"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="queueElectronic"><i class="fas fa-inbox me-1"></i><?= __("Queue Electronic"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="sentBureau"><i class="fas fa-paper-plane me-1"></i><?= __("Sent (Bureau)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="sentDirect"><i class="fas fa-paper-plane me-1"></i><?= __("Sent (Direct)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="sentElectronic"><i class="fas fa-paper-plane me-1"></i><?= __("Sent (Electronic)"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="notReceived"><?= __("Not Received"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="dontSend"><i class="fas fa-times me-1"></i><?= __("Not Sent"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="notRequired"><i class="fas fa-ban me-1"></i><?= __("QSL Not Required"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="notReceived"><i class="fas fa-times-circle me-1"></i><?= __("Not Received"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedBureau"><i class="fas fa-check-circle me-1"></i><?= __("Received (Bureau)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedDirect"><i class="fas fa-check-circle me-1"></i><?= __("Received (Direct)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedElectronic"><i class="fas fa-check-circle me-1"></i><?= __("Received (Electronic)"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="printLabel"><?= __("Print Label"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="printQslCard"><?= __("Print QSL Card"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="exportAdif"><i class="fas fa-file-export me-1"></i><?= __("Create ADIF"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="printLabel"><i class="fas fa-tag me-1"></i><?= __("Print Label"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="qslSlideshow"><i class="fas fa-images me-1"></i><?= __("QSL Slideshow"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="printQslCard"><i class="fas fa-id-card me-1"></i><?= __("Print QSL Card"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="fixState"><?= __("Fix State"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="fixState"><i class="fas fa-map-marker-alt me-1"></i><?= __("Fix State"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="mergeQsos"><i class="fas fa-code-branch me-1"></i><?= __("Merge QSOs"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
                         <?php } ?>
-                        <li><button type="button" class="dropdown-item dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button></li>
-                        <li><button type="button" class="dropdown-item dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button></li>
-                        <li><button type="button" class="dropdown-item dropdown-action" id="lbaExportCsv"><?= __("Export to CSV"); ?></button></li>
+                        <li><button type="button" class="dropdown-item dropdown-action" id="attachContest"><i class="fas fa-link me-1"></i><?= __("Attach to Contest"); ?></button></li>
+                        <li><button type="button" class="dropdown-item dropdown-action" id="detachContest"><i class="fas fa-unlink me-1"></i><?= __("Detach from Contest"); ?></button></li>
+                        <li><button type="button" class="dropdown-item dropdown-action" id="lbaExportCsv"><i class="fas fa-file-csv me-1"></i><?= __("Export to CSV"); ?></button></li>
                     </ul>
                 </div>
                 <div id="csv-button-container" style="display:none"></div>
