@@ -765,63 +765,54 @@ $options = json_decode($options);
                     <!-- Quickfilters Dropdown -->
                     <div class="dropdown d-inline-block" data-bs-auto-close="outside">
                         <button class="btn btn-sm btn-primary dropdown-toggle me-1" type="button" id="quickfilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-filter"></i> <?= __("Quickfilters"); ?>
+                            <i class="fas fa-filter me-1"></i> <?= __("Quickfilters"); ?>
                         </button>
-						<div class="dropdown-menu dropdown-menu-start" aria-labelledby="quickfilterDropdown" style="min-width: 300px;">
-							<div class="card">
-								<div class="card-header p-2">
-									<span class="h6 w-100 mt-0 mb-0"><?= __("Quicksearch with selected: "); ?></span>
-								</div>
-								<div class="card-body p-2">
-									<div class="d-grid gap-2">
-										<?php if (($options->datetime->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchDate"><?= __("Search Date"); ?></button>
-										<?php } ?>
-										<?php if (($options->dx->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchCallsign"><?= __("Search Callsign"); ?></button>
-										<?php } ?>
-										<?php if (($options->dxcc->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchDxcc"><?= __("Search DXCC"); ?></button>
-										<?php } ?>
-										<?php if (($options->state->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchState"><?= __("Search State"); ?></button>
-										<?php } ?>
-										<?php if (($options->gridsquare->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchGridsquare"><?= __("Search Gridsquare"); ?></button>
-										<?php } ?>
-										<?php if (($options->cqzone->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchCqZone"><?= __("Search CQ Zone"); ?></button>
-										<?php } ?>
-										<?php if (($options->ituzone->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchItuZone"><?= __("Search ITU Zone"); ?></button>
-										<?php } ?>
-										<?php if (($options->mode->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchMode"><?= __("Search Mode"); ?></button>
-										<?php } ?>
-										<?php if (($options->band->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchBand"><?= __("Search Band"); ?></button>
-										<?php } ?>
-										<?php if (($options->iota->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchIota"><?= __("Search IOTA"); ?></button>
-										<?php } ?>
-										<?php if (($options->sota->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchSota"><?= __("Search SOTA"); ?></button>
-										<?php } ?>
-										<?php if (($options->pota->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchPota"><?= __("Search POTA"); ?></button>
-										<?php } ?>
-										<?php if (($options->wwff->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchWwff"><?= __("Search WWFF"); ?></button>
-										<?php } ?>
-										<?php if (($options->operator->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchOperator"><?= __("Search Operator"); ?></button>
-										<?php } ?>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
+                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="quickfilterDropdown">
+                            <li><h6 class="dropdown-header text-body"><?= __("Quicksearch with selected: "); ?></h6></li>
+                            <?php if (($options->datetime->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchDate"><i class="fas fa-fw fa-calendar-days me-1"></i><?= __("Search Date"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->dx->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchCallsign"><i class="fas fa-fw fa-tower-broadcast me-1"></i><?= __("Search Callsign"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->dxcc->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchDxcc"><i class="fas fa-fw fa-globe me-1"></i><?= __("Search DXCC"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->state->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchState"><i class="fas fa-fw fa-map-location-dot me-1"></i><?= __("Search State"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->gridsquare->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchGridsquare"><i class="fas fa-fw fa-table-cells me-1"></i><?= __("Search Gridsquare"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->cqzone->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchCqZone"><i class="fas fa-fw fa-layer-group me-1"></i><?= __("Search CQ Zone"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->ituzone->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchItuZone"><i class="fas fa-fw fa-border-all me-1"></i><?= __("Search ITU Zone"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->mode->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchMode"><i class="fas fa-fw fa-wave-square me-1"></i><?= __("Search Mode"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->band->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchBand"><i class="fas fa-fw fa-signal me-1"></i><?= __("Search Band"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->iota->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchIota"><i class="fas fa-fw fa-umbrella-beach me-1"></i><?= __("Search IOTA"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->sota->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchSota"><i class="fas fa-fw fa-mountain me-1"></i><?= __("Search SOTA"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->pota->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchPota"><i class="fas fa-fw fa-tree me-1"></i><?= __("Search POTA"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->wwff->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchWwff"><i class="fas fa-fw fa-leaf me-1"></i><?= __("Search WWFF"); ?></button></li>
+                            <?php } ?>
+                            <?php if (($options->operator->show ?? "true") == "true") { ?>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="searchOperator"><i class="fas fa-fw fa-user me-1"></i><?= __("Search Operator"); ?></button></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
 
 				<!-- End of Main Filters Dropdown -->
 
@@ -836,36 +827,36 @@ $options = json_decode($options);
                     </button>
                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="actionsDropdown">
                         <?php if(clubaccess_check(9)) { ?>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="btnUpdateFromCallbook"><i class="fas fa-sync-alt me-1"></i><?= __("Update from Callbook"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="btnUpdateFromCallbook"><i class="fas fa-fw fa-sync-alt me-1"></i><?= __("Update from Callbook"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="queueBureau"><i class="fas fa-inbox me-1"></i><?= __("Queue Bureau"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="queueDirect"><i class="fas fa-inbox me-1"></i><?= __("Queue Direct"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="queueElectronic"><i class="fas fa-inbox me-1"></i><?= __("Queue Electronic"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="queueBureau"><i class="fas fa-fw fa-inbox me-1"></i><?= __("Queue Bureau"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="queueDirect"><i class="fas fa-fw fa-inbox me-1"></i><?= __("Queue Direct"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="queueElectronic"><i class="fas fa-fw fa-inbox me-1"></i><?= __("Queue Electronic"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="sentBureau"><i class="fas fa-paper-plane me-1"></i><?= __("Sent (Bureau)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="sentDirect"><i class="fas fa-paper-plane me-1"></i><?= __("Sent (Direct)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="sentElectronic"><i class="fas fa-paper-plane me-1"></i><?= __("Sent (Electronic)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="sentBureau"><i class="fas fa-fw fa-paper-plane me-1"></i><?= __("Sent (Bureau)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="sentDirect"><i class="fas fa-fw fa-paper-plane me-1"></i><?= __("Sent (Direct)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="sentElectronic"><i class="fas fa-fw fa-paper-plane me-1"></i><?= __("Sent (Electronic)"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="dontSend"><i class="fas fa-times me-1"></i><?= __("Not Sent"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="notRequired"><i class="fas fa-ban me-1"></i><?= __("QSL Not Required"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="notReceived"><i class="fas fa-times-circle me-1"></i><?= __("Not Received"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="dontSend"><i class="fas fa-fw fa-times me-1"></i><?= __("Not Sent"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="notRequired"><i class="fas fa-fw fa-ban me-1"></i><?= __("QSL Not Required"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="notReceived"><i class="fas fa-fw fa-times-circle me-1"></i><?= __("Not Received"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedBureau"><i class="fas fa-check-circle me-1"></i><?= __("Received (Bureau)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedDirect"><i class="fas fa-check-circle me-1"></i><?= __("Received (Direct)"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedElectronic"><i class="fas fa-check-circle me-1"></i><?= __("Received (Electronic)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedBureau"><i class="fas fa-fw fa-check-circle me-1"></i><?= __("Received (Bureau)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedDirect"><i class="fas fa-fw fa-check-circle me-1"></i><?= __("Received (Direct)"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="receivedElectronic"><i class="fas fa-fw fa-check-circle me-1"></i><?= __("Received (Electronic)"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="exportAdif"><i class="fas fa-file-export me-1"></i><?= __("Create ADIF"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="printLabel"><i class="fas fa-tag me-1"></i><?= __("Print Label"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="qslSlideshow"><i class="fas fa-images me-1"></i><?= __("QSL Slideshow"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="printQslCard"><i class="fas fa-id-card me-1"></i><?= __("Print QSL Card"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="exportAdif"><i class="fas fa-fw fa-file-export me-1"></i><?= __("Create ADIF"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="printLabel"><i class="fas fa-fw fa-tag me-1"></i><?= __("Print Label"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="qslSlideshow"><i class="fas fa-fw fa-images me-1"></i><?= __("QSL Slideshow"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="printQslCard"><i class="fas fa-fw fa-id-card me-1"></i><?= __("Print QSL Card"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="fixState"><i class="fas fa-map-marker-alt me-1"></i><?= __("Fix State"); ?></button></li>
-                            <li><button type="button" class="dropdown-item dropdown-action" id="mergeQsos"><i class="fas fa-code-branch me-1"></i><?= __("Merge QSOs"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="fixState"><i class="fas fa-fw fa-map-marker-alt me-1"></i><?= __("Fix State"); ?></button></li>
+                            <li><button type="button" class="dropdown-item dropdown-action" id="mergeQsos"><i class="fas fa-fw fa-code-branch me-1"></i><?= __("Merge QSOs"); ?></button></li>
                             <li><hr class="dropdown-divider"></li>
                         <?php } ?>
-                        <li><button type="button" class="dropdown-item dropdown-action" id="attachContest"><i class="fas fa-link me-1"></i><?= __("Attach to Contest"); ?></button></li>
-                        <li><button type="button" class="dropdown-item dropdown-action" id="detachContest"><i class="fas fa-unlink me-1"></i><?= __("Detach from Contest"); ?></button></li>
-                        <li><button type="button" class="dropdown-item dropdown-action" id="lbaExportCsv"><i class="fas fa-file-csv me-1"></i><?= __("Export to CSV"); ?></button></li>
+                        <li><button type="button" class="dropdown-item dropdown-action" id="attachContest"><i class="fas fa-fw fa-link me-1"></i><?= __("Attach to Contest"); ?></button></li>
+                        <li><button type="button" class="dropdown-item dropdown-action" id="detachContest"><i class="fas fa-fw fa-unlink me-1"></i><?= __("Detach from Contest"); ?></button></li>
+                        <li><button type="button" class="dropdown-item dropdown-action" id="lbaExportCsv"><i class="fas fa-fw fa-file-csv me-1"></i><?= __("Export to CSV"); ?></button></li>
                     </ul>
                 </div>
                 <div id="csv-button-container" style="display:none"></div>

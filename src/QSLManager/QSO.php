@@ -869,7 +869,7 @@ class QSO
 	 */
 	public function getQsoDateTime(): string
 	{
-		return $this->qsoDateTime;
+		return '<span id="qsoDateTime">' . $this->qsoDateTime . '</span>';
 	}
 
 	/**
@@ -1272,7 +1272,7 @@ class QSO
 	{
 		return [
 			'qsoID' => $this->qsoID,
-			'qsoDateTime' => $this->qsoDateTime,
+			'qsoDateTime' => $this->getQsoDateTime(),
 			'de' => $this->de,
 			'dx' => $this->getDx(),
 			'mode' => $this->getFormattedMode(),
@@ -1393,11 +1393,14 @@ class QSO
 
 	private function getFormattedMode(): string
 	{
+		$mode = '<span id="mode">';
 		if ($this->submode !== '') {
-			return $this->submode;
+			$mode .= $this->submode;
 		} else {
-			return $this->mode;
+			$mode .= $this->mode;
 		}
+		$mode .= '</span>';
+		return $mode;
 	}
 
 	private function getFormattedBand(): string
@@ -1416,7 +1419,7 @@ class QSO
 		if ($this->bandRX !== '' && $this->band !== '') {
 			$label .= "/" . $this->bandRX;
 		}
-		return trim($label);
+		return '<span id="band">' . $label . '</span>';
 	}
 
 	private function getFormattedFrequency(): string

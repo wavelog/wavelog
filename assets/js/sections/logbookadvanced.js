@@ -67,7 +67,7 @@ function updateRow(qso) {
 	let cells = row.find('td');
 	let c = 1;
 	if ((user_options.datetime.show ?? 'true') == "true"){
-		cells.eq(c++).text(qso.qsoDateTime);
+		cells.eq(c++).html(qso.qsoDateTime);
 	}
 	if ((user_options.duration.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.duration);
@@ -82,7 +82,7 @@ function updateRow(qso) {
 		cells.eq(c++).html('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + '">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
 	}
 	if ((user_options.mode.show ?? 'true') == "true"){
-		cells.eq(c++).text(qso.mode);
+		cells.eq(c++).html(qso.mode);
 	}
 	if ((user_options.rsts.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.rstS);
@@ -91,7 +91,7 @@ function updateRow(qso) {
 		cells.eq(c++).html(qso.rstR);
 	}
 	if ((user_options.band.show ?? 'true') == "true"){
-		cells.eq(c++).text(qso.band);
+		cells.eq(c++).html(qso.band);
 	}
 	if ((user_options.frequency.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.frequency);
@@ -226,7 +226,33 @@ function loadQSOTable(rows) {
 	const initTable = function(language) {
 		$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 
+		// Reset ColReorder and savestate when showing/hiding columns to avoid errors when the number
+		// of columns changes. This is a workaround for a known DataTables issue.
+		const colCount = $table.find('thead th').length;
+		const statePrefix = 'DataTables_' + $table.attr('id') + '_';
+		for (let i = localStorage.length - 1; i >= 0; i--) {
+			const key = localStorage.key(i);
+			if (!(key && key.indexOf(statePrefix) === 0)) continue;
+			let state;
+			try {
+				state = JSON.parse(localStorage.getItem(key));
+			} catch (e) { continue; /* ignore malformed state */ }
+			if (!state) continue;
+			// Detect a column-set change via the saved column count (fall back to
+			// the colReorder array length if columns wasn't saved).
+			const savedColCount = Array.isArray(state.columns) ? state.columns.length
+				: Array.isArray(state.colReorder) ? state.colReorder.length
+				: colCount;
+			if (savedColCount === colCount) continue;
+			let dirty = false;
+			if (Array.isArray(state.colReorder)) { delete state.colReorder; dirty = true; }
+			if (Array.isArray(state.order))      { delete state.order;      dirty = true; }
+			if (dirty) localStorage.setItem(key, JSON.stringify(state));
+		}
+
 		const table = $table.DataTable({
+			colReorder: true,
+			stateSave: true,
 			searching: false,
 			responsive: false,
 			ordering: true,
@@ -1931,9 +1957,9 @@ $(document).ready(function () {
 				case 'wwff': 		col1 = $(currentRow).find('#dxwwff').text(); break;
 				case 'pota': 		col1 = $(currentRow).find('#dxpota').text(); break;
 				case 'operator': 	col1 = $(currentRow).find('#operator').text(); break;
-				case 'mode': 		col1 = currentRow.find("td:eq(4)").text(); break;
-				case 'band': 		col1 = currentRow.find("td:eq(7)").text(); col1 = col1.match(/\S\w*/); break;
-				case 'date': 		col1 = currentRow.find("td:eq(1)").text(); break;
+				case 'mode': 		col1 = currentRow.find("#mode").text(); break;
+				case 'band': 		col1 = currentRow.find("#band").text(); col1 = col1.match(/\S\w*/); break;
+				case 'date': 		col1 = currentRow.find("#qsoDateTime").text(); break;
 			}
 			if (col1.length == 0) return;
 
