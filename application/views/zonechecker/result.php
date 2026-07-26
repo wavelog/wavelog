@@ -1,6 +1,20 @@
 <?php
 $i = 0;
 
+if (!function_exists('calltester_base_call')) {
+	// Resolve the home callsign from a (possibly portable) callsign: the longest
+	// "/"-separated segment is the base call. e.g. TF/DL2NWK/P -> DL2NWK.
+	function calltester_base_call($call) {
+		$base = '';
+		foreach (explode('/', $call) as $seg) {
+			if (strlen($seg) > strlen($base)) {
+				$base = $seg;
+			}
+		}
+		return strtoupper(trim($base));
+	}
+}
+
 // Determine zone type from data (default to CQ)
 $zone_type = isset($zone_type) ? $zone_type : 'cq';
 $is_itu = ($zone_type === 'itu');
@@ -49,8 +63,10 @@ if ($result) { ?>
 				<th>#</th>
 				<th><?= __("Callsign"); ?></th>
 				<th><?= __("QSO Date"); ?></th>
+				<th><?= __("Time"); ?></th>
 				<th><?= __("Station Profile"); ?></th>
 				<th><?= __("Gridsquare"); ?></th>
+				<th><?= __("Band"); ?></th>
 				<?php if ($is_itu): ?>
 					<th><?= __("ITUz"); ?></th>
 					<th><?= __("ITUz geojson"); ?></th>
@@ -62,12 +78,28 @@ if ($result) { ?>
 		</thead>
 		<tbody>
 			<?php foreach ($result as $qso): ?>
+				<?php $base_call = calltester_base_call($qso['callsign']); ?>
 				<tr>
 					<td><?php echo ++$i; ?></td>
-					<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso['id'] . ')">' . htmlspecialchars($qso['callsign']) . '</a>'; ?></td>
+					<td>
+						<div class="d-flex align-items-center justify-content-between">
+							<a id="edit_qso" href="javascript:displayQso(<?php echo $qso['id']; ?>)"><?php echo htmlspecialchars($qso['callsign']); ?></a>
+							<span class="d-flex align-items-center gap-2">
+								<a href="https://www.qrz.com/db/<?php echo htmlspecialchars($base_call, ENT_QUOTES); ?>" target="_blank" rel="noopener" data-bs-toggle="tooltip" title="<?= __("Lookup on QRZ.com"); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="<?= __("Lookup on QRZ.com"); ?>"></a>
+								<a href="#" class="callsign-search" data-call="<?php echo htmlspecialchars($base_call, ENT_QUOTES); ?>" data-bs-toggle="tooltip" title="<?= __("Show all QSOs with this callsign"); ?>"><i class="fas fa-search"></i></a>
+							</span>
+						</div>
+					</td>
 					<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
+					<td><?php echo date('H:i', strtotime($qso['qso_date'])); ?></td>
 					<td><?php echo $qso['station_profile']; ?></td>
-					<td><?php echo $qso['gridsquare']; ?></td>
+					<td>
+						<div class="d-flex align-items-center justify-content-between">
+							<span><?php echo $qso['gridsquare']; ?></span>
+							<a href="#" class="zone-map" data-grid="<?php echo htmlspecialchars($qso['gridsquare'], ENT_QUOTES); ?>" data-zonetype="<?php echo $is_itu ? 'itu' : 'cq'; ?>" data-zone="<?php echo $is_itu ? (int)$qso['itugeo'] : (int)$qso['cqgeo']; ?>" data-bs-toggle="tooltip" title="<?= __("Show on map"); ?>"><i class="fas fa-map-marked-alt"></i></a>
+						</div>
+					</td>
+					<td><?php echo $qso['band'] ?? ''; ?></td>
 					<?php if ($is_itu): ?>
 						<td><?php echo $qso['ituzone']; ?></td>
 						<td><?php echo $qso['itugeo']; ?></td>
@@ -81,4 +113,8 @@ if ($result) { ?>
 	</table>
 </div>
 
+<?php } else { ?>
+<div class="alert alert-success mb-0">
+	<?= __("No zone issues found. All QSOs have correct zone information."); ?>
+</div>
 <?php } ?>

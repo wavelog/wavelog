@@ -22,14 +22,19 @@ class Zonechecker extends CI_Controller {
 
 		$data['station_profile'] = $this->stations->all_of_user();
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/zonechecker.js',
+		];
+
 		$data['page_title'] = __("Gridsquare Zone finder");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('zonechecker/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	function getQsos($station_id) {
-		$sql = 'select distinct col_country, col_call, col_dxcc, col_time_on, station_profile.station_profile_name, col_primary_key, col_cqz, col_ituz, col_gridsquare
+		$sql = 'select distinct col_country, col_call, col_dxcc, col_time_on, station_profile.station_profile_name, col_primary_key, col_cqz, col_ituz, col_gridsquare, col_band
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?
@@ -108,6 +113,7 @@ class Zonechecker extends CI_Controller {
 						'station_profile' => $qso->station_profile_name,
 						'ituzone' => $qso->col_ituz,
 						'gridsquare' => $qso->col_gridsquare,
+						'band' => $qso->col_band,
 						'itugeo' => $zone['itu_zone_number'],
 						'zone_type' => 'ITU',
 					];
@@ -126,6 +132,7 @@ class Zonechecker extends CI_Controller {
 						'station_profile' => $qso->station_profile_name,
 						'cqzone' => $qso->col_cqz,
 						'gridsquare' => $qso->col_gridsquare,
+						'band' => $qso->col_band,
 						'cqgeo' => $zone['cq_zone_number'],
 						'zone_type' => 'CQ',
 					];
@@ -449,6 +456,54 @@ class Zonechecker extends CI_Controller {
 
 	function loadView($data) {
 		$this->load->view('zonechecker/result', $data);
+	}
+
+	/* Returns lat/lng of a gridsquare plus the geojson zone feature that
+	   contains it, for plotting on a map dialog. */
+	function mapData() {
+		$gridsquare = $this->input->post('gridsquare', true);
+		$zoneType = ($this->input->post('zoneType', true) === 'itu') ? 'itu' : 'cq';
+
+		header('Content-Type: application/json');
+
+		if ($this->geojsonFile === null) {
+			$this->geojsonFile = ($zoneType === 'itu')
+				? "assets/json/geojson/ituzones.geojson"
+				: "assets/json/geojson/cqzones.geojson";
+			$this->geojsonData = $this->loadGeoJsonFile($this->geojsonFile);
+		}
+
+		if ($this->geojsonData === null) {
+			echo json_encode(['error' => __("GeoJSON data unavailable")]);
+			return;
+		}
+
+		$coords = $this->gridsquareToLatLng($gridsquare);
+		if ($coords === null) {
+			echo json_encode(['error' => __("Invalid gridsquare")]);
+			return;
+		}
+
+		$props = $this->findFeatureContainingPoint($coords['lat'], $coords['lng'], $this->geojsonData);
+
+		$zoneField = ($zoneType === 'itu') ? 'itu_zone_number' : 'cq_zone_number';
+		$feature = null;
+		if ($props !== null && isset($props[$zoneField])) {
+			$target = $props[$zoneField];
+			foreach ($this->geojsonData['features'] as $f) {
+				if (isset($f['properties'][$zoneField]) && $f['properties'][$zoneField] == $target) {
+					$feature = $f;
+					break;
+				}
+			}
+		}
+
+		echo json_encode([
+			'lat' => $coords['lat'],
+			'lng' => $coords['lng'],
+			'zone_type' => $zoneType,
+			'feature' => $feature,
+		]);
 	}
 
 
