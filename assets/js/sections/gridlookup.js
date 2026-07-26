@@ -1,0 +1,338 @@
+(function () {
+	'use strict';
+
+	let cfg           = window.gridlookupConfig || {};
+	let tileUrl       = cfg.tileUrl    || 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	let tileAttr      = cfg.tileAttr   || '&copy; OpenStreetMap contributors';
+	let glOverlays    = cfg.overlays    || [];
+	let glGeojsonBase = cfg.geojsonBase || '';
+	let invalidMsg    = cfg.invalidMsg  || 'Invalid gridsquare';
+
+	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
+	let overlayCfg = {};     // id -> overlay config
+	let overlayLayers = {};  // id -> cached L.geoJSON layer
+
+	let map, highlight, marker, gridOverlay, clickMarker, clickSquare;
+
+	/*
+	 * Convert a Maidenhead locator to the exact centre + corner bounds of its
+	 * grid cell. Mirrors application/libraries/Qra.php::qra2latlong() so the
+	 * drawn box lines up perfectly with Wavelog's own grid convention.
+	 * Accepts 2/4/6/8/10-character locators; returns null on bad input.
+	 */
+	function locatorToCell(loc) {
+		loc = String(loc || '').toUpperCase().replace(/\s+/g, '');
+		if (loc.length % 2 !== 0 || loc.length < 2 || loc.length > 10) return null;
+
+		// Pad to 10 chars at the centre of the cell, exactly like Qra.php.
+		let full = loc;
+		if (full.length === 2)       full += '55AA00AA';
+		else if (full.length === 4)  full += 'MM00AA';
+		else if (full.length === 6)  full += '55AA';
+		else if (full.length === 8)  full += 'MM';
+
+		if (!/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/.test(full)) return null;
+
+		let c = full.split('');
+		let A = 'A'.charCodeAt(0), Z = '0'.charCodeAt(0);
+		let a = c[0].charCodeAt(0) - A, b = c[1].charCodeAt(0) - A;
+		let d = c[2].charCodeAt(0) - Z, e = c[3].charCodeAt(0) - Z;
+		let f = c[4].charCodeAt(0) - A, g = c[5].charCodeAt(0) - A;
+		let h = c[6].charCodeAt(0) - Z, i = c[7].charCodeAt(0) - Z;
+		let j = c[8].charCodeAt(0) - A, k = c[9].charCodeAt(0) - A;
+
+		let lngCenter = (a * 20) + (d * 2) + (f / 12) + (h / 120) + (j / 2880) - 180;
+		let latCenter = (b * 10) + e + (g / 24) + (i / 240) + (k / 5760) - 90;
+
+		// Cell size for this precision.
+		let spanLng, spanLat, label;
+		switch (loc.length) {
+			case 2:  spanLng = 20;       spanLat = 10;       label = 'Field';             break;
+			case 4:  spanLng = 2;        spanLat = 1;        label = 'Grid square';       break;
+			case 6:  spanLng = 1 / 12;   spanLat = 1 / 24;   label = 'Subsquare';         break;
+			case 8:  spanLng = 1 / 120;  spanLat = 1 / 240;  label = 'Extended square';   break;
+			case 10: spanLng = 1 / 2880; spanLat = 1 / 5760; label = 'Locus';             break;
+			default: return null;
+		}
+
+		return {
+			loc: loc,
+			label: label,
+			center: [latCenter, lngCenter],
+			sw: [latCenter - spanLat / 2, lngCenter - spanLng / 2],
+			ne: [latCenter + spanLat / 2, lngCenter + spanLng / 2]
+		};
+	}
+
+	function fmtLat(lat) { return Math.abs(lat).toFixed(5) + '°' + (lat >= 0 ? 'N' : 'S'); }
+	function fmtLng(lng) { return Math.abs(lng).toFixed(5) + '°' + (lng >= 0 ? 'E' : 'W'); }
+
+	/*
+	 * Reverse of locatorToCell: lat/lng -> Maidenhead locator. The cell step
+	 * sizes (20/10, 2/1, 1/12, 1/24, ...) mirror application/libraries/Qra.php
+	 * so a locator round-trips exactly. `pairs` sets the length (3 => 6-char).
+	 */
+	function latLngToLocator(lat, lng, pairs) {
+		pairs = pairs || 3;
+		lng = ((lng + 180) % 360 + 360) % 360 - 180;   // wrap to [-180, 180)
+		lat = Math.max(-90, Math.min(90, lat));
+		let x = lng + 180, y = lat + 90;
+		let A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		let out = '';
+		out += A[Math.floor(x / 20)] + A[Math.floor(y / 10)];            // field (A-R)
+		x = x % 20; y = y % 10;
+		out += Math.floor(x / 2) + '' + Math.floor(y);                   // square (0-9)
+		x = x % 2; y = y % 1;
+		out += A[Math.floor(x / (1 / 12))] + A[Math.floor(y / (1 / 24))]; // subsquare (A-X)
+		x = x % (1 / 12); y = y % (1 / 24);
+		out += Math.floor(x / (1 / 120)) + '' + Math.floor(y / (1 / 240)); // extended (0-9)
+		return out.substring(0, pairs * 2);
+	}
+
+	/* Format decimal degrees as DMS (N/S, E/W) — same format as geocoding.js. */
+	function pad2(n, width) {
+		n = n + '';
+		return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
+	function toDMS(lat, lng) {
+		if (lng < -180) { lng += 360; }
+		if (lng > 180)  { lng -= 360; }
+		let la = lat < 0 ? -lat : lat;
+		let lo = lng < 0 ? -lng : lng;
+		let latDeg = (lat < 0 ? 'S' : 'N') + ' ' + pad2(0 | la, 2) + '° ' +
+			pad2(0 | (((la + 1e-9) % 1) * 60), 2) + "' " +
+			((0 | (((la * 60) % 1) * 6000)) / 100) + '"';
+		let lngDeg = (lng < 0 ? 'W' : 'E') + ' ' + pad2(0 | lo, 3) + '° ' +
+			pad2(0 | (((lo + 1e-9) % 1) * 60), 2) + "' " +
+			((0 | (((lo * 60) % 1) * 6000)) / 100) + '"';
+		return { latDeg: latDeg, lngDeg: lngDeg };
+	}
+
+	/* ---- GeoJSON overlays: zones + per-country states/provinces ---- */
+	function esc(s) {
+		return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+			return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+		});
+	}
+	function styleFor(color) {
+		return { color: color, weight: 1, opacity: 0.85, fillColor: color, fillOpacity: 0.12 };
+	}
+	function overlayPopup(props, cfg) {
+		props = props || {};
+		if (cfg.type === 'state') {
+			return '<strong>' + esc(props[cfg.nameKey]) + '</strong>' +
+				(props[cfg.codeKey] ? ' <span class="text-muted">(' + esc(props[cfg.codeKey]) + ')</span>' : '');
+		}
+		let prefix = cfg.type === 'cq' ? 'CQ Zone' : 'ITU Zone';
+		return '<strong>' + prefix + ' ' + esc(props[cfg.numKey]) + '</strong><br>' + esc(props[cfg.nameKey]);
+	}
+	// Build the Overlays dropdown from the server-provided config (glOverlays).
+	function buildOverlays(host) {
+		if (!host || !glOverlays.length) return;
+		let stateIdx = 0;
+		glOverlays.forEach(function (cfg) {
+			overlayCfg[cfg.id] = cfg;
+			if (cfg.type === 'cq')       cfg.color = '#9b59b6';
+			else if (cfg.type === 'itu') cfg.color = '#e67e22';
+			else                         cfg.color = PALETTE[stateIdx++ % PALETTE.length];
+		});
+
+		let drop = document.createElement('div');
+		drop.className = 'dropdown';
+
+		let btn = document.createElement('button');
+		btn.type = 'button';
+		btn.className = 'btn btn-outline-primary btn-sm dropdown-toggle';
+		btn.setAttribute('data-bs-toggle', 'dropdown');
+		btn.setAttribute('data-bs-auto-close', 'outside');
+		btn.setAttribute('aria-expanded', 'false');
+		btn.textContent = 'Overlays';
+
+		let menu = document.createElement('ul');
+		menu.className = 'dropdown-menu p-2';
+		menu.style.maxHeight = '60vh';
+		menu.style.overflowY = 'auto';
+
+		let lastGroup = null;
+		glOverlays.forEach(function (cfg) {
+			if (cfg.group !== lastGroup) {
+				if (lastGroup !== null) {
+					menu.appendChild(Object.assign(document.createElement('li'), { innerHTML: '<hr class="dropdown-divider">' }));
+				}
+				menu.appendChild(Object.assign(document.createElement('li'), { innerHTML: '<h6 class="dropdown-header">' + esc(cfg.group) + '</h6>' }));
+				lastGroup = cfg.group;
+			}
+			let li = document.createElement('li');
+			let label = document.createElement('label');
+			label.className = 'dropdown-item d-flex align-items-center';
+			label.innerHTML = '<input type="checkbox" class="form-check-input me-2" data-oid="' + esc(cfg.id) + '"> ' + esc(cfg.label);
+			li.appendChild(label);
+			menu.appendChild(li);
+		});
+
+		menu.addEventListener('change', function (e) {
+			let id = e.target.getAttribute('data-oid');
+			if (!id) return;
+			if (e.target.checked) { addOverlay(id, e.target); } else { removeOverlay(id); }
+		});
+
+		drop.appendChild(btn);
+		drop.appendChild(menu);
+		host.appendChild(drop);
+	}
+	// Fetch (once, cached) and add a GeoJSON overlay layer to the map.
+	function addOverlay(id, cb) {
+		let cfg = overlayCfg[id];
+		if (!cfg) return;
+		if (overlayLayers[id]) { map.addLayer(overlayLayers[id]); return; }
+		if (cb) { cb.disabled = true; }
+		fetch(glGeojsonBase + cfg.file)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				let layer = L.geoJSON(data, {
+					style: function () { return styleFor(cfg.color); },
+					onEachFeature: function (feature, lyr) {
+						lyr.bindPopup(overlayPopup(feature.properties, cfg));
+						lyr.on('mouseover', function (ev) { ev.target.setStyle({ weight: 3, fillOpacity: 0.32 }); });
+						lyr.on('mouseout',  function (ev) { ev.target.setStyle(styleFor(cfg.color)); });
+					}
+				});
+				overlayLayers[id] = layer;            // cache so re-toggle is instant
+				if (!cb || cb.checked) { layer.addTo(map); }
+			})
+			.catch(function (err) { console.error('Overlay load failed:', cfg.file, err); })
+			.finally(function () { if (cb) { cb.disabled = false; } });
+	}
+	function removeOverlay(id) {
+		if (overlayLayers[id]) { map.removeLayer(overlayLayers[id]); }
+	}
+
+	function init() {
+		map = L.map('glMap', { worldCopyJump: true }).setView([20, 0], 3);
+
+		L.tileLayer(tileUrl, {
+			minZoom: 3,
+			maxZoom: 19,
+			attribution: tileAttr
+		}).addTo(map);
+
+		L.control.scale({ imperial: false, metric: true }).addTo(map);
+
+		if (typeof L.maidenheadqrb === 'function') {
+			gridOverlay = L.maidenheadqrb().addTo(map);
+		}
+
+		L.control.fullscreen && L.control.fullscreen().addTo(map);
+
+		document.getElementById('glGo').addEventListener('click', go);
+		document.getElementById('glClear').addEventListener('click', clearAll);
+		document.getElementById('glGridOverlay').addEventListener('change', function () {
+			if (!gridOverlay) return;
+			if (this.checked) { gridOverlay.addTo(map); } else { map.removeLayer(gridOverlay); }
+		});
+
+		// Build the Overlays (GeoJSON) dropdown — zones + per-country states.
+		buildOverlays(document.getElementById('glOverlaysHost'));
+
+		let input = document.getElementById('glGrid');
+		input.addEventListener('keydown', function (e) {
+			if (e.key === 'Enter') { e.preventDefault(); go(); }
+		});
+
+		// Click the map to drop a marker showing the gridsquare + coordinates.
+		map.on('click', onMapClick);
+
+		// Live coordinate readout at the bottom of the map (like the gridmap).
+		map.on('mousemove', function (e) {
+			let lat = e.latlng.lat, lng = e.latlng.lng;
+			let dms = toDMS(lat, lng);
+			document.getElementById('latDeg').textContent = dms.latDeg;
+			document.getElementById('lngDeg').textContent = dms.lngDeg;
+			document.getElementById('locator').textContent = latLngToLocator(lat, lng, 3);
+		});
+
+		// Reveal the coordinate bar (elements start hidden via .cohidden).
+		document.querySelectorAll('#glCoords .cohidden').forEach(function (el) {
+			el.classList.remove('cohidden');
+		});
+
+		// Leaflet needs a nudge when its container was sized after init.
+		setTimeout(function () { map.invalidateSize(); }, 200);
+	}
+
+	function clearAll() {
+		if (highlight)   { map.removeLayer(highlight);   highlight = null; }
+		if (marker)      { map.removeLayer(marker);      marker = null; }
+		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
+		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
+		document.getElementById('glGrid').value = '';
+		document.getElementById('glInfo').textContent = '';
+		document.getElementById('glError').textContent = '';
+	}
+
+	function onMapClick(e) {
+		let lat = e.latlng.lat, lng = e.latlng.lng;
+		let loc = latLngToLocator(lat, lng, 3);   // 6-character gridsquare under the cursor
+		let cell = locatorToCell(loc);            // exact bounds of that grid cell
+
+		// Only one click marker + square at a time: drop the previous ones.
+		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
+		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
+
+		clickSquare = L.rectangle([cell.sw, cell.ne], {
+			color: '#198754', weight: 3, fillColor: '#198754', fillOpacity: 0.18
+		}).addTo(map);
+
+		clickMarker = L.marker(e.latlng).addTo(map)
+			.bindPopup('<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng))
+			.openPopup();
+
+		document.getElementById('glError').textContent = '';
+		document.getElementById('glInfo').innerHTML =
+			'<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
+	}
+
+	function go() {
+		let err = document.getElementById('glError');
+		let info = document.getElementById('glInfo');
+		err.textContent = '';
+
+		let cell = locatorToCell(document.getElementById('glGrid').value);
+		if (!cell) {
+			info.textContent = '';
+			err.textContent = invalidMsg;
+			return;
+		}
+
+		let bounds = [cell.sw, cell.ne];
+
+		if (highlight) { map.removeLayer(highlight); }
+		highlight = L.rectangle(bounds, {
+			color: '#0d6efd',
+			weight: 3,
+			fillColor: '#0d6efd',
+			fillOpacity: 0.18
+		}).addTo(map);
+
+		if (marker) { map.removeLayer(marker); }
+		marker = L.marker(cell.center).addTo(map)
+			.bindPopup(
+				'<strong>' + cell.loc + '</strong><br>' +
+				cell.label + '<br>' +
+				fmtLat(cell.center[0]) + ', ' + fmtLng(cell.center[1])
+			)
+			.openPopup();
+
+		map.fitBounds(bounds, { padding: [60, 60], maxZoom: 17 });
+
+		info.innerHTML =
+			'<strong>' + cell.loc + '</strong> &middot; ' + cell.label + ' &middot; ' +
+			fmtLat(cell.center[0]) + ', ' + fmtLng(cell.center[1]);
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+})();
