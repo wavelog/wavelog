@@ -491,6 +491,8 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/views/calltester/call_info.php:29
+#: application/views/calltester/call_info.php:61
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -837,10 +839,13 @@ msgstr "Anropssignals testare"
 
 #: application/controllers/Calltester.php:239
 #: application/controllers/Calltester.php:299
+#: application/controllers/Calltester.php:286
+#: application/controllers/Calltester.php:346
 msgid "CSV Call Tester"
 msgstr "CSV-anropssignalstestare"
 
 #: application/controllers/Calltester.php:916
+#: application/controllers/Calltester.php:963
 msgid "Callsign Tester"
 msgstr "Anropssignals Testare"
 
@@ -1739,6 +1744,7 @@ msgstr "Loggbok"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:116
 #: application/views/timeline/index.php:62 application/views/user/edit.php:735
 #: application/views/user/edit.php:1003 application/views/visitor/mini.php:187
+#: application/views/calltester/call_info.php:66
 msgid "QSL"
 msgstr "QSL"
 
@@ -1783,6 +1789,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:1013 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/calltester/call_info.php:80
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1820,6 +1827,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:70 application/views/user/edit.php:737
 #: application/views/user/edit.php:1021 application/views/user/edit.php:1095
+#: application/views/calltester/call_info.php:81
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1927,6 +1935,7 @@ msgstr "Alla callbook-sökningar misslyckades eller gav inga resultat."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/calltester/call_info.php:59
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -2115,6 +2124,11 @@ msgstr "Delstat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
+#: application/views/calltester/comparison_result.php:80
+#: application/views/calltester/comparison_result.php:129
+#: application/views/calltester/comparison_result.php:178
+#: application/views/calltester/result.php:54
+#: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -2246,6 +2260,12 @@ msgstr "Avstånd"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/calltester/call_info.php:58
+#: application/views/calltester/comparison_result.php:81
+#: application/views/calltester/comparison_result.php:130
+#: application/views/calltester/comparison_result.php:179
+#: application/views/calltester/result.php:55
+#: application/views/zonechecker/result.php:69
 msgid "Band"
 msgstr "Band"
 
@@ -2921,6 +2941,7 @@ msgid "Call Transfer"
 msgstr "Överför Anropssignal"
 
 #: application/controllers/Qso.php:891
+#: application/controllers/Calltester.php:164
 msgid "No callsign provided."
 msgstr "Ingen anropssignal angiven."
 
@@ -3217,6 +3238,8 @@ msgstr "Redigera stationsplats: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
+#: application/views/calltester/index.php:11
+#: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "Stationsplats"
 
@@ -3953,6 +3976,7 @@ msgid "Multiple users found by slug"
 msgstr "Flera användare hittades med slug"
 
 #: application/controllers/Zonechecker.php:25
+#: application/controllers/Zonechecker.php:30
 msgid "Gridsquare Zone finder"
 msgstr "Lokator Zon sökare"
 
@@ -4885,6 +4909,13 @@ msgstr "Inget hittades!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/calltester/call_info.php:28
+#: application/views/calltester/call_info.php:57
+#: application/views/calltester/comparison_result.php:77
+#: application/views/calltester/comparison_result.php:126
+#: application/views/calltester/comparison_result.php:175
+#: application/views/calltester/result.php:51
+#: application/views/zonechecker/result.php:64
 msgid "Callsign"
 msgstr "Anropssignal"
 
@@ -4996,6 +5027,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:130
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/calltester/call_info.php:55
 msgid "Date"
 msgstr "Datum"
 
@@ -5030,6 +5062,8 @@ msgstr "Datum"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:132
 #: application/views/visitor/index.php:154
+#: application/views/calltester/call_info.php:56
+#: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "Tid"
 
@@ -6035,6 +6069,7 @@ msgstr "Locator aktiveringar"
 #: application/views/contesting/logger/components/qso-form.php:154
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
+#: application/views/calltester/call_info.php:60
 msgid "Grid"
 msgstr "Lokatorrutor"
 
@@ -6310,6 +6345,7 @@ msgstr "QSOs Bekräftade"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
+#: application/views/zonechecker/index.php:23
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
@@ -7351,6 +7387,7 @@ msgstr "Raderad"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:18
+#: application/views/zonechecker/index.php:24
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -8249,8 +8286,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -8347,6 +8384,11 @@ msgstr "Återställ"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:51
+#: application/views/calltester/comparison_result.php:78
+#: application/views/calltester/comparison_result.php:127
+#: application/views/calltester/comparison_result.php:176
+#: application/views/calltester/result.php:52
+#: application/views/zonechecker/result.php:65
 msgid "QSO Date"
 msgstr "QSO-datum"
 
@@ -9575,6 +9617,7 @@ msgid "Last QSO"
 msgstr "Senaste QSO"
 
 #: application/views/calltester/comparison_result.php:18
+#: application/views/calltester/comparison_result.php:44
 msgid "DXCC Class Results"
 msgstr "DXCC Klassresultat"
 
@@ -9594,26 +9637,32 @@ msgid "Issues found:"
 msgstr "Problem påträffade:"
 
 #: application/views/calltester/comparison_result.php:30
+#: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
 msgstr "Resultat för loggbokmodell"
 
 #: application/views/calltester/comparison_result.php:44
+#: application/views/calltester/comparison_result.php:61
 msgid "Comparison Summary"
 msgstr "Jämförelsesammanfattning"
 
 #: application/views/calltester/comparison_result.php:45
+#: application/views/calltester/comparison_result.php:62
 msgid "Only found in DXCC Class:"
 msgstr "Endast i DXCC-klass:"
 
 #: application/views/calltester/comparison_result.php:46
+#: application/views/calltester/comparison_result.php:63
 msgid "Only found in Logbook Model:"
 msgstr "Endast i Loggboksmodell:"
 
 #: application/views/calltester/comparison_result.php:47
+#: application/views/calltester/comparison_result.php:64
 msgid "Found in both methods:"
 msgstr "Finns i båda metoderna:"
 
 #: application/views/calltester/comparison_result.php:54
+#: application/views/calltester/comparison_result.php:71
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
 msgstr "Problem hittade endast i DXCC-klass (inte i loggboksmodell):"
 
@@ -9625,6 +9674,11 @@ msgstr "Problem hittade endast i DXCC-klass (inte i loggboksmodell):"
 #: application/views/logbookadvanced/checkresult.php:164
 #: application/views/logbookadvanced/checkresult.php:392
 #: application/views/zonechecker/result.php:52
+#: application/views/calltester/comparison_result.php:79
+#: application/views/calltester/comparison_result.php:128
+#: application/views/calltester/comparison_result.php:177
+#: application/views/calltester/result.php:53
+#: application/views/zonechecker/result.php:67
 msgid "Station Profile"
 msgstr "Stationprofil"
 
@@ -9633,6 +9687,10 @@ msgstr "Stationprofil"
 #: application/views/calltester/comparison_result.php:135
 #: application/views/calltester/result.php:25
 #: application/views/logbookadvanced/checkresult.php:107
+#: application/views/calltester/comparison_result.php:82
+#: application/views/calltester/comparison_result.php:131
+#: application/views/calltester/comparison_result.php:180
+#: application/views/calltester/result.php:56
 msgid "Existing DXCC"
 msgstr "Befintlig DXCC"
 
@@ -9640,6 +9698,10 @@ msgstr "Befintlig DXCC"
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
+#: application/views/calltester/comparison_result.php:83
+#: application/views/calltester/comparison_result.php:132
+#: application/views/calltester/comparison_result.php:181
+#: application/views/calltester/result.php:57
 msgid "Existing ADIF"
 msgstr "Befintlig ADIF"
 
@@ -9648,6 +9710,10 @@ msgstr "Befintlig ADIF"
 #: application/views/calltester/comparison_result.php:137
 #: application/views/calltester/result.php:27
 #: application/views/logbookadvanced/checkresult.php:108
+#: application/views/calltester/comparison_result.php:84
+#: application/views/calltester/comparison_result.php:133
+#: application/views/calltester/comparison_result.php:182
+#: application/views/calltester/result.php:58
 msgid "Result DXCC"
 msgstr "Resultat DXCC"
 
@@ -9655,18 +9721,25 @@ msgstr "Resultat DXCC"
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
+#: application/views/calltester/comparison_result.php:85
+#: application/views/calltester/comparison_result.php:134
+#: application/views/calltester/comparison_result.php:183
+#: application/views/calltester/result.php:59
 msgid "Result ADIF"
 msgstr "Resultat ADIF"
 
 #: application/views/calltester/comparison_result.php:90
+#: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
 msgstr "Problem hittade endast i Loggboksmodellen (inte i DXCC-klassen):"
 
 #: application/views/calltester/comparison_result.php:126
+#: application/views/calltester/comparison_result.php:169
 msgid "Issues found in both methods:"
 msgstr "Problem som finns i båda metoderna:"
 
 #: application/views/calltester/comparison_result.php:162
+#: application/views/calltester/comparison_result.php:218
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
@@ -9675,6 +9748,7 @@ msgstr ""
 "korrekt DXCC-information."
 
 #: application/views/calltester/index.php:3
+#: application/views/calltester/index.php:7
 msgid "Callsign DXCC identification"
 msgstr "Anropssignal DXCC-identifiering"
 
@@ -9682,14 +9756,18 @@ msgstr "Anropssignal DXCC-identifiering"
 #: application/views/interface_assets/footer.php:885
 #: application/views/logbookadvanced/index.php:881
 #: application/views/zonechecker/index.php:10
+#: application/views/calltester/index.php:16
+#: application/views/zonechecker/index.php:16
 msgid "Callsign: "
 msgstr "Anropssignal: "
 
 #: application/views/calltester/index.php:15
+#: application/views/calltester/index.php:21
 msgid "Start DXCC Check"
 msgstr "Starta DXCC-kontroll"
 
 #: application/views/calltester/index.php:18
+#: application/views/calltester/index.php:24
 msgid "Compare DXCC class and logbook model"
 msgstr "Jämför DXCC-klass och loggboksmodell"
 
@@ -10438,10 +10516,12 @@ msgid "Callbook lookup failed"
 msgstr "Uppslagning i callbook misslyckades"
 
 #: application/views/contesting/logger/components/qso-form.php:85
+#: application/views/calltester/call_info.php:64
 msgid "RST S"
 msgstr "RST S"
 
 #: application/views/contesting/logger/components/qso-form.php:89
+#: application/views/calltester/call_info.php:65
 msgid "RST R"
 msgstr "RST R"
 
@@ -11254,6 +11334,7 @@ msgstr "Klubb"
 #: application/views/qso/index.php:372
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:95
+#: application/views/calltester/call_info.php:67
 msgid "Location"
 msgstr "QTH"
 
@@ -14887,6 +14968,7 @@ msgstr "Etikettyper"
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
+#: application/views/calltester/call_info.php:30
 msgid "QSOs"
 msgstr "QSOs"
 
@@ -14974,8 +15056,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -19575,6 +19657,12 @@ msgstr "Markera QSL kort Ej Nödvändigt"
 
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:630
+#: application/views/calltester/call_info.php:91
+#: application/views/calltester/comparison_result.php:97
+#: application/views/calltester/comparison_result.php:146
+#: application/views/calltester/comparison_result.php:195
+#: application/views/calltester/result.php:71
+#: application/views/zonechecker/result.php:88
 msgid "Lookup on QRZ.com"
 msgstr "Sök på QRZ.com"
 
@@ -20855,8 +20943,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -22414,14 +22502,17 @@ msgid "Rcvd"
 msgstr "Mottagen"
 
 #: application/views/zonechecker/index.php:3
+#: application/views/zonechecker/index.php:7
 msgid "Gridsquare Zone identification"
 msgstr "Lokator Zon identifiering"
 
 #: application/views/zonechecker/index.php:15
+#: application/views/zonechecker/index.php:21
 msgid "Zone Type"
 msgstr "Zontyp"
 
 #: application/views/zonechecker/index.php:20
+#: application/views/zonechecker/index.php:26
 msgid "Start Zone Check"
 msgstr "Starta Zon kontroll"
 
@@ -22436,44 +22527,117 @@ msgid "An error occurred while processing the request."
 msgstr "Ett fel inträffade vid bearbetningen av begäran."
 
 #: application/views/zonechecker/result.php:16
+#: application/views/zonechecker/result.php:30
 msgid "Callsigns Tested"
 msgstr "Anropssignaler testade"
 
 #: application/views/zonechecker/result.php:17
+#: application/views/zonechecker/result.php:31
 msgid "Execution Time"
 msgstr "Körningstid"
 
 #: application/views/zonechecker/result.php:18
+#: application/views/zonechecker/result.php:32
 msgid "Potential Wrong Zones"
 msgstr "Potentiellt felaktiga zoner"
 
 #: application/views/zonechecker/result.php:19
+#: application/views/zonechecker/result.php:33
 msgid "Cache Hits"
 msgstr "Cache-träffar"
 
 #: application/views/zonechecker/result.php:20
+#: application/views/zonechecker/result.php:34
 msgid "Cache Misses"
 msgstr "Cache-missar"
 
 #: application/views/zonechecker/result.php:21
+#: application/views/zonechecker/result.php:35
 msgid "Hit Rate"
 msgstr "Träffsäkerhet"
 
 #: application/views/zonechecker/result.php:55
+#: application/views/calltester/call_info.php:63
+#: application/views/zonechecker/result.php:71
 msgid "ITUz"
 msgstr "ITUz"
 
 #: application/views/zonechecker/result.php:56
+#: application/views/zonechecker/result.php:72
 msgid "ITUz geojson"
 msgstr "ITUz geojson"
 
 #: application/views/zonechecker/result.php:58
+#: application/views/calltester/call_info.php:62
+#: application/views/zonechecker/result.php:74
 msgid "CQz"
 msgstr "CQz"
 
 #: application/views/zonechecker/result.php:59
+#: application/views/zonechecker/result.php:75
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/controllers/Zonechecker.php:477
+msgid "GeoJSON data unavailable"
+msgstr ""
+
+#: application/controllers/Zonechecker.php:483
+msgid "Invalid gridsquare"
+msgstr ""
+
+#: application/views/calltester/call_info.php:47
+#, php-format
+msgid "No QSOs with %s found in your logbook."
+msgstr ""
+
+#: application/views/calltester/call_info.php:79
+msgid "QSL card"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:46
+#: application/views/calltester/comparison_result.php:53
+msgid "Calls tested"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:47
+#: application/views/calltester/comparison_result.php:54
+#: application/views/calltester/result.php:6
+msgid "Execution time"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:48
+#: application/views/calltester/comparison_result.php:55
+msgid "Issues found"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:98
+#: application/views/calltester/comparison_result.php:147
+#: application/views/calltester/comparison_result.php:196
+#: application/views/calltester/result.php:72
+#: application/views/zonechecker/result.php:89
+msgid "Show all QSOs with this callsign"
+msgstr ""
+
+#: application/views/calltester/result.php:5
+msgid "Callsigns tested"
+msgstr ""
+
+#: application/views/calltester/result.php:7
+msgid "Potential wrong DXCC"
+msgstr ""
+
+#: application/views/calltester/result.php:92
+msgid "No DXCC issues found. All calls have correct DXCC information."
+msgstr ""
+
+#: application/views/zonechecker/result.php:99
+msgid "Show on map"
+msgstr ""
+
+#: application/views/zonechecker/result.php:118
+msgid "No zone issues found. All QSOs have correct zone information."
+msgstr ""
 
 #~ msgid "Invalid logging token."
 #~ msgstr "Ogiltig inloggningsnyckel."

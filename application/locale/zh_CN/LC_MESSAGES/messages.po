@@ -516,6 +516,8 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/views/calltester/call_info.php:29
+#: application/views/calltester/call_info.php:61
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -862,10 +864,13 @@ msgstr "通联记录检测器"
 
 #: application/controllers/Calltester.php:239
 #: application/controllers/Calltester.php:299
+#: application/controllers/Calltester.php:286
+#: application/controllers/Calltester.php:346
 msgid "CSV Call Tester"
 msgstr "CSV呼叫测试器"
 
 #: application/controllers/Calltester.php:916
+#: application/controllers/Calltester.php:963
 msgid "Callsign Tester"
 msgstr "呼号检测器"
 
@@ -1749,6 +1754,7 @@ msgstr "日志簿"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:116
 #: application/views/timeline/index.php:62 application/views/user/edit.php:735
 #: application/views/user/edit.php:1003 application/views/visitor/mini.php:187
+#: application/views/calltester/call_info.php:66
 msgid "QSL"
 msgstr "QSL"
 
@@ -1793,6 +1799,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:1013 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/calltester/call_info.php:80
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1830,6 +1837,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:70 application/views/user/edit.php:737
 #: application/views/user/edit.php:1021 application/views/user/edit.php:1095
+#: application/views/calltester/call_info.php:81
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1937,6 +1945,7 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/calltester/call_info.php:59
 msgid "Mode"
 msgstr "模式"
 
@@ -2125,6 +2134,11 @@ msgstr "州"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
+#: application/views/calltester/comparison_result.php:80
+#: application/views/calltester/comparison_result.php:129
+#: application/views/calltester/comparison_result.php:178
+#: application/views/calltester/result.php:54
+#: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -2256,6 +2270,12 @@ msgstr "距离"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/calltester/call_info.php:58
+#: application/views/calltester/comparison_result.php:81
+#: application/views/calltester/comparison_result.php:130
+#: application/views/calltester/comparison_result.php:179
+#: application/views/calltester/result.php:55
+#: application/views/zonechecker/result.php:69
 msgid "Band"
 msgstr "频段"
 
@@ -2911,6 +2931,7 @@ msgid "Call Transfer"
 msgstr "通联转接"
 
 #: application/controllers/Qso.php:891
+#: application/controllers/Calltester.php:164
 msgid "No callsign provided."
 msgstr "未提供呼号。"
 
@@ -3204,6 +3225,8 @@ msgstr "修改台站地址： "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
+#: application/views/calltester/index.php:11
+#: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "电台站地址"
 
@@ -3912,6 +3935,7 @@ msgid "Multiple users found by slug"
 msgstr "通过标识找到多个用户"
 
 #: application/controllers/Zonechecker.php:25
+#: application/controllers/Zonechecker.php:30
 msgid "Gridsquare Zone finder"
 msgstr "网格区域查找器"
 
@@ -4832,6 +4856,13 @@ msgstr "未找到！"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/calltester/call_info.php:28
+#: application/views/calltester/call_info.php:57
+#: application/views/calltester/comparison_result.php:77
+#: application/views/calltester/comparison_result.php:126
+#: application/views/calltester/comparison_result.php:175
+#: application/views/calltester/result.php:51
+#: application/views/zonechecker/result.php:64
 msgid "Callsign"
 msgstr "呼号"
 
@@ -4943,6 +4974,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:130
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/calltester/call_info.php:55
 msgid "Date"
 msgstr "日期"
 
@@ -4977,6 +5009,8 @@ msgstr "日期"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:132
 #: application/views/visitor/index.php:154
+#: application/views/calltester/call_info.php:56
+#: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "时间"
 
@@ -5937,6 +5971,7 @@ msgstr "网格激活"
 #: application/views/contesting/logger/components/qso-form.php:154
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
+#: application/views/calltester/call_info.php:60
 msgid "Grid"
 msgstr "网格"
 
@@ -6209,6 +6244,7 @@ msgstr "已确认的QSO"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
+#: application/views/zonechecker/index.php:23
 msgid "CQ Zone"
 msgstr "CQ 分区"
 
@@ -7210,6 +7246,7 @@ msgstr "已删除"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:18
+#: application/views/zonechecker/index.php:24
 msgid "ITU Zone"
 msgstr "ITU 分区"
 
@@ -7597,8 +7634,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -8152,6 +8189,11 @@ msgstr "重置筛选条件"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:51
+#: application/views/calltester/comparison_result.php:78
+#: application/views/calltester/comparison_result.php:127
+#: application/views/calltester/comparison_result.php:176
+#: application/views/calltester/result.php:52
+#: application/views/zonechecker/result.php:65
 msgid "QSO Date"
 msgstr "QSO 日期"
 
@@ -9357,6 +9399,7 @@ msgid "Last QSO"
 msgstr "最近通联"
 
 #: application/views/calltester/comparison_result.php:18
+#: application/views/calltester/comparison_result.php:44
 msgid "DXCC Class Results"
 msgstr "DXCC 类别结果"
 
@@ -9376,26 +9419,32 @@ msgid "Issues found:"
 msgstr "已找到的问题："
 
 #: application/views/calltester/comparison_result.php:30
+#: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
 msgstr "日志簿模型结果"
 
 #: application/views/calltester/comparison_result.php:44
+#: application/views/calltester/comparison_result.php:61
 msgid "Comparison Summary"
 msgstr "比较总结"
 
 #: application/views/calltester/comparison_result.php:45
+#: application/views/calltester/comparison_result.php:62
 msgid "Only found in DXCC Class:"
 msgstr "只在 DXCC 类别中找到："
 
 #: application/views/calltester/comparison_result.php:46
+#: application/views/calltester/comparison_result.php:63
 msgid "Only found in Logbook Model:"
 msgstr "只在日志簿模型中找到："
 
 #: application/views/calltester/comparison_result.php:47
+#: application/views/calltester/comparison_result.php:64
 msgid "Found in both methods:"
 msgstr "在两种方式中都找到："
 
 #: application/views/calltester/comparison_result.php:54
+#: application/views/calltester/comparison_result.php:71
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
 msgstr "只在 DXCC 类别中找到的问题（不在日志簿模型中）："
 
@@ -9407,6 +9456,11 @@ msgstr "只在 DXCC 类别中找到的问题（不在日志簿模型中）："
 #: application/views/logbookadvanced/checkresult.php:164
 #: application/views/logbookadvanced/checkresult.php:392
 #: application/views/zonechecker/result.php:52
+#: application/views/calltester/comparison_result.php:79
+#: application/views/calltester/comparison_result.php:128
+#: application/views/calltester/comparison_result.php:177
+#: application/views/calltester/result.php:53
+#: application/views/zonechecker/result.php:67
 msgid "Station Profile"
 msgstr "台站信息"
 
@@ -9415,6 +9469,10 @@ msgstr "台站信息"
 #: application/views/calltester/comparison_result.php:135
 #: application/views/calltester/result.php:25
 #: application/views/logbookadvanced/checkresult.php:107
+#: application/views/calltester/comparison_result.php:82
+#: application/views/calltester/comparison_result.php:131
+#: application/views/calltester/comparison_result.php:180
+#: application/views/calltester/result.php:56
 msgid "Existing DXCC"
 msgstr "现有 DXCC"
 
@@ -9422,6 +9480,10 @@ msgstr "现有 DXCC"
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
+#: application/views/calltester/comparison_result.php:83
+#: application/views/calltester/comparison_result.php:132
+#: application/views/calltester/comparison_result.php:181
+#: application/views/calltester/result.php:57
 msgid "Existing ADIF"
 msgstr "现有 ADIF"
 
@@ -9430,6 +9492,10 @@ msgstr "现有 ADIF"
 #: application/views/calltester/comparison_result.php:137
 #: application/views/calltester/result.php:27
 #: application/views/logbookadvanced/checkresult.php:108
+#: application/views/calltester/comparison_result.php:84
+#: application/views/calltester/comparison_result.php:133
+#: application/views/calltester/comparison_result.php:182
+#: application/views/calltester/result.php:58
 msgid "Result DXCC"
 msgstr "结果 DXCC"
 
@@ -9437,24 +9503,32 @@ msgstr "结果 DXCC"
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
+#: application/views/calltester/comparison_result.php:85
+#: application/views/calltester/comparison_result.php:134
+#: application/views/calltester/comparison_result.php:183
+#: application/views/calltester/result.php:59
 msgid "Result ADIF"
 msgstr "结果 ADIF"
 
 #: application/views/calltester/comparison_result.php:90
+#: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
 msgstr "只在日志簿模型中找到的问题（不在 DXCC 类别中）："
 
 #: application/views/calltester/comparison_result.php:126
+#: application/views/calltester/comparison_result.php:169
 msgid "Issues found in both methods:"
 msgstr "在两种方式中都找到的问题："
 
 #: application/views/calltester/comparison_result.php:162
+#: application/views/calltester/comparison_result.php:218
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
 msgstr "通过两种方式均未发现 DXCC 问题。所有通联纪录都有正确的 DXCC 信息。"
 
 #: application/views/calltester/index.php:3
+#: application/views/calltester/index.php:7
 msgid "Callsign DXCC identification"
 msgstr "呼号 DXCC 识别"
 
@@ -9462,14 +9536,18 @@ msgstr "呼号 DXCC 识别"
 #: application/views/interface_assets/footer.php:885
 #: application/views/logbookadvanced/index.php:881
 #: application/views/zonechecker/index.php:10
+#: application/views/calltester/index.php:16
+#: application/views/zonechecker/index.php:16
 msgid "Callsign: "
 msgstr "呼号： "
 
 #: application/views/calltester/index.php:15
+#: application/views/calltester/index.php:21
 msgid "Start DXCC Check"
 msgstr "开始 DXCC 检查"
 
 #: application/views/calltester/index.php:18
+#: application/views/calltester/index.php:24
 msgid "Compare DXCC class and logbook model"
 msgstr "比较 DXCC 类别和日志簿模型"
 
@@ -10198,10 +10276,12 @@ msgid "Callbook lookup failed"
 msgstr "呼号簿查询失败"
 
 #: application/views/contesting/logger/components/qso-form.php:85
+#: application/views/calltester/call_info.php:64
 msgid "RST S"
 msgstr "RST 发"
 
 #: application/views/contesting/logger/components/qso-form.php:89
+#: application/views/calltester/call_info.php:65
 msgid "RST R"
 msgstr "RST 收"
 
@@ -10992,6 +11072,7 @@ msgstr "俱乐部"
 #: application/views/qso/index.php:372
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:95
+#: application/views/calltester/call_info.php:67
 msgid "Location"
 msgstr "位置"
 
@@ -14520,6 +14601,7 @@ msgstr "标签类型"
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
+#: application/views/calltester/call_info.php:30
 msgid "QSOs"
 msgstr "QSO"
 
@@ -19056,6 +19138,12 @@ msgstr "标记 不被请求发送卡片"
 
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:630
+#: application/views/calltester/call_info.php:91
+#: application/views/calltester/comparison_result.php:97
+#: application/views/calltester/comparison_result.php:146
+#: application/views/calltester/comparison_result.php:195
+#: application/views/calltester/result.php:71
+#: application/views/zonechecker/result.php:88
 msgid "Lookup on QRZ.com"
 msgstr "在 QRZ.com 上查询"
 
@@ -20268,8 +20356,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -21739,14 +21827,17 @@ msgid "Rcvd"
 msgstr "收"
 
 #: application/views/zonechecker/index.php:3
+#: application/views/zonechecker/index.php:7
 msgid "Gridsquare Zone identification"
 msgstr "网格分区识别"
 
 #: application/views/zonechecker/index.php:15
+#: application/views/zonechecker/index.php:21
 msgid "Zone Type"
 msgstr "分区类型"
 
 #: application/views/zonechecker/index.php:20
+#: application/views/zonechecker/index.php:26
 msgid "Start Zone Check"
 msgstr "开始分区检查"
 
@@ -21761,44 +21852,117 @@ msgid "An error occurred while processing the request."
 msgstr "在处理此请求中遇到了一个问题。"
 
 #: application/views/zonechecker/result.php:16
+#: application/views/zonechecker/result.php:30
 msgid "Callsigns Tested"
 msgstr "已测试的呼号"
 
 #: application/views/zonechecker/result.php:17
+#: application/views/zonechecker/result.php:31
 msgid "Execution Time"
 msgstr "执行耗时"
 
 #: application/views/zonechecker/result.php:18
+#: application/views/zonechecker/result.php:32
 msgid "Potential Wrong Zones"
 msgstr "可能错误的分区"
 
 #: application/views/zonechecker/result.php:19
+#: application/views/zonechecker/result.php:33
 msgid "Cache Hits"
 msgstr "缓存命中"
 
 #: application/views/zonechecker/result.php:20
+#: application/views/zonechecker/result.php:34
 msgid "Cache Misses"
 msgstr "缓存失效"
 
 #: application/views/zonechecker/result.php:21
+#: application/views/zonechecker/result.php:35
 msgid "Hit Rate"
 msgstr "命中率"
 
 #: application/views/zonechecker/result.php:55
+#: application/views/calltester/call_info.php:63
+#: application/views/zonechecker/result.php:71
 msgid "ITUz"
 msgstr "ITUz"
 
 #: application/views/zonechecker/result.php:56
+#: application/views/zonechecker/result.php:72
 msgid "ITUz geojson"
 msgstr "ITUz geojson"
 
 #: application/views/zonechecker/result.php:58
+#: application/views/calltester/call_info.php:62
+#: application/views/zonechecker/result.php:74
 msgid "CQz"
 msgstr "CQz"
 
 #: application/views/zonechecker/result.php:59
+#: application/views/zonechecker/result.php:75
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/controllers/Zonechecker.php:477
+msgid "GeoJSON data unavailable"
+msgstr ""
+
+#: application/controllers/Zonechecker.php:483
+msgid "Invalid gridsquare"
+msgstr ""
+
+#: application/views/calltester/call_info.php:47
+#, php-format
+msgid "No QSOs with %s found in your logbook."
+msgstr ""
+
+#: application/views/calltester/call_info.php:79
+msgid "QSL card"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:46
+#: application/views/calltester/comparison_result.php:53
+msgid "Calls tested"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:47
+#: application/views/calltester/comparison_result.php:54
+#: application/views/calltester/result.php:6
+msgid "Execution time"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:48
+#: application/views/calltester/comparison_result.php:55
+msgid "Issues found"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:98
+#: application/views/calltester/comparison_result.php:147
+#: application/views/calltester/comparison_result.php:196
+#: application/views/calltester/result.php:72
+#: application/views/zonechecker/result.php:89
+msgid "Show all QSOs with this callsign"
+msgstr ""
+
+#: application/views/calltester/result.php:5
+msgid "Callsigns tested"
+msgstr ""
+
+#: application/views/calltester/result.php:7
+msgid "Potential wrong DXCC"
+msgstr ""
+
+#: application/views/calltester/result.php:92
+msgid "No DXCC issues found. All calls have correct DXCC information."
+msgstr ""
+
+#: application/views/zonechecker/result.php:99
+msgid "Show on map"
+msgstr ""
+
+#: application/views/zonechecker/result.php:118
+msgid "No zone issues found. All QSOs have correct zone information."
+msgstr ""
 
 #~ msgid "Invalid logging token."
 #~ msgstr "登录令牌无效。"
@@ -23241,8 +23405,8 @@ msgstr "CQz geojson"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-24 21:02+0000\n"
+"POT-Creation-Date: 2026-07-27 14:26+0000\n"
 "PO-Revision-Date: 2026-06-29 12:11+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -467,6 +467,8 @@ msgstr "DOK"
 
 #: application/controllers/Awards.php:206 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:102 application/views/bands/index.php:50
+#: application/views/calltester/call_info.php:29
+#: application/views/calltester/call_info.php:61
 #: application/views/csv/index.php:58 application/views/dashboard/index.php:416
 #: application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:16
@@ -835,12 +837,17 @@ msgstr " ja sat "
 msgid "Call Tester"
 msgstr "Kutsumerkkitestaaja"
 
-#: application/controllers/Calltester.php:239
-#: application/controllers/Calltester.php:299
+#: application/controllers/Calltester.php:164
+#: application/controllers/Qso.php:891
+msgid "No callsign provided."
+msgstr "Kutsutunnusta ei ole annettu."
+
+#: application/controllers/Calltester.php:286
+#: application/controllers/Calltester.php:346
 msgid "CSV Call Tester"
 msgstr "CSV Call testeri"
 
-#: application/controllers/Calltester.php:916
+#: application/controllers/Calltester.php:963
 msgid "Callsign Tester"
 msgstr "Kutsumerkin testaus"
 
@@ -1728,6 +1735,7 @@ msgstr "Lokikirja"
 #: application/views/awards/wapc/index.php:85
 #: application/views/awards/was/index.php:85
 #: application/views/awards/wpx/index.php:32
+#: application/views/calltester/call_info.php:66
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:110
@@ -1764,6 +1772,7 @@ msgstr "QSL"
 #: application/views/awards/wapc/index.php:89
 #: application/views/awards/was/index.php:89
 #: application/views/awards/wpx/index.php:36
+#: application/views/calltester/call_info.php:80
 #: application/views/dashboard/index.php:494
 #: application/views/gridmap/index.php:182
 #: application/views/logbookadvanced/checkresult.php:105
@@ -1806,6 +1815,7 @@ msgstr "LoTW"
 #: application/views/awards/wapc/index.php:93
 #: application/views/awards/was/index.php:93
 #: application/views/awards/wpx/index.php:40
+#: application/views/calltester/call_info.php:81
 #: application/views/dashboard/index.php:495
 #: application/views/gridmap/index.php:190
 #: application/views/logbookadvanced/useroptions.php:130
@@ -1865,6 +1875,7 @@ msgstr ""
 #: application/views/bandmap/list.php:603
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:54
+#: application/views/calltester/call_info.php:59
 #: application/views/contesting/logger/components/qso-form.php:150
 #: application/views/contesting/logger/components/radio.php:73
 #: application/views/contesting/manager/export_cbr.php:106
@@ -2075,6 +2086,10 @@ msgstr "osavaltio"
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
+#: application/views/calltester/comparison_result.php:80
+#: application/views/calltester/comparison_result.php:129
+#: application/views/calltester/comparison_result.php:178
+#: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
 #: application/views/gridmap/index.php:226
@@ -2117,7 +2132,7 @@ msgstr "osavaltio"
 #: application/views/view_log/qso.php:182
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
-#: application/views/zonechecker/result.php:53
+#: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
 msgstr "Lokaattoriruutu"
 
@@ -2189,6 +2204,11 @@ msgstr "Etäisyys"
 #: application/views/bandmap/list.php:601 application/views/bands/create.php:24
 #: application/views/bands/edit.php:7 application/views/bands/index.php:47
 #: application/views/callstats/index.php:12
+#: application/views/calltester/call_info.php:58
+#: application/views/calltester/comparison_result.php:81
+#: application/views/calltester/comparison_result.php:130
+#: application/views/calltester/comparison_result.php:179
+#: application/views/calltester/result.php:55
 #: application/views/contesting/logger/components/qso-form.php:149
 #: application/views/contesting/logger/components/radio.php:90
 #: application/views/contesting/manager/export_cbr.php:76
@@ -2249,6 +2269,7 @@ msgstr "Etäisyys"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/zonechecker/result.php:69
 msgid "Band"
 msgstr "Bandi"
 
@@ -2925,10 +2946,6 @@ msgstr ""
 msgid "Call Transfer"
 msgstr "Call Transfer"
 
-#: application/controllers/Qso.php:891
-msgid "No callsign provided."
-msgstr "Kutsutunnusta ei ole annettu."
-
 #: application/controllers/Radio.php:16
 #: application/views/interface_assets/header.php:583
 msgid "Hardware Interfaces"
@@ -3205,7 +3222,7 @@ msgid "Edit Station Location: "
 msgstr "Muokkaa aseman sijaintia: "
 
 #: application/controllers/Station.php:105
-#: application/views/calltester/index.php:5
+#: application/views/calltester/index.php:11
 #: application/views/contesting/manager/components/session_modal.php:63
 #: application/views/csv/index.php:19 application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:125
@@ -3220,7 +3237,7 @@ msgstr "Muokkaa aseman sijaintia: "
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
-#: application/views/zonechecker/index.php:5
+#: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "Asemaprofiili"
 
@@ -3954,9 +3971,17 @@ msgstr "Käyttäjää ei löydy lyhyttunnisteella"
 msgid "Multiple users found by slug"
 msgstr "Useita käyttäjiä löydetty tunnisteella"
 
-#: application/controllers/Zonechecker.php:25
+#: application/controllers/Zonechecker.php:30
 msgid "Gridsquare Zone finder"
 msgstr "Gridsquare Zone finder"
+
+#: application/controllers/Zonechecker.php:477
+msgid "GeoJSON data unavailable"
+msgstr ""
+
+#: application/controllers/Zonechecker.php:483
+msgid "Invalid gridsquare"
+msgstr ""
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4835,10 +4860,12 @@ msgstr "Mitään ei löytynyt!"
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:171
 #: application/views/bandmap/list.php:567
 #: application/views/callstats/index.php:139
-#: application/views/calltester/comparison_result.php:60
-#: application/views/calltester/comparison_result.php:96
-#: application/views/calltester/comparison_result.php:132
-#: application/views/calltester/result.php:22
+#: application/views/calltester/call_info.php:28
+#: application/views/calltester/call_info.php:57
+#: application/views/calltester/comparison_result.php:77
+#: application/views/calltester/comparison_result.php:126
+#: application/views/calltester/comparison_result.php:175
+#: application/views/calltester/result.php:51
 #: application/views/club/permissions.php:275
 #: application/views/contesting/logger/components/qso-form.php:66
 #: application/views/contesting/logger/components/qso-form.php:147
@@ -4881,7 +4908,7 @@ msgstr "Mitään ei löytynyt!"
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
-#: application/views/zonechecker/result.php:50
+#: application/views/zonechecker/result.php:64
 msgid "Callsign"
 msgstr "Radioamatöörikutsu"
 
@@ -4958,6 +4985,7 @@ msgstr ""
 #: application/views/awards/pota/index.php:38
 #: application/views/awards/sota/index.php:37
 #: application/views/awards/wwff/index.php:38
+#: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
 #: application/views/debug/index.php:799
@@ -5003,6 +5031,7 @@ msgstr "Päivä"
 #: application/views/awards/sota/index.php:38
 #: application/views/awards/wwff/index.php:39
 #: application/views/bandmap/list.php:142
+#: application/views/calltester/call_info.php:56
 #: application/views/contesting/logger/components/qso-form.php:146
 #: application/views/contesting/manager/export_cbr.php:158
 #: application/views/dashboard/index.php:341
@@ -5027,6 +5056,7 @@ msgstr "Päivä"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:132
 #: application/views/visitor/index.php:154
+#: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "Aika"
 
@@ -6027,6 +6057,7 @@ msgid "Grid Activations"
 msgstr "Ruutuaktivoinnit"
 
 #: application/views/awards/amsat_rover/index.php:221
+#: application/views/calltester/call_info.php:60
 #: application/views/contesting/logger/components/qso-form.php:154
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
@@ -6311,7 +6342,7 @@ msgstr ""
 #: application/views/timeline/index.php:344
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
-#: application/views/zonechecker/index.php:17
+#: application/views/zonechecker/index.php:23
 msgid "CQ Zone"
 msgstr "CQ-alue"
 
@@ -7355,7 +7386,7 @@ msgstr "Poistettu"
 #: application/views/station_profile/edit.php:169
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
-#: application/views/zonechecker/index.php:18
+#: application/views/zonechecker/index.php:24
 msgid "ITU Zone"
 msgstr "ITU-alue"
 
@@ -8348,16 +8379,16 @@ msgid "Reset"
 msgstr "Palauta"
 
 #: application/views/awards/wpx/wpx_details.php:21
-#: application/views/calltester/comparison_result.php:61
-#: application/views/calltester/comparison_result.php:97
-#: application/views/calltester/comparison_result.php:133
-#: application/views/calltester/result.php:23
+#: application/views/calltester/comparison_result.php:78
+#: application/views/calltester/comparison_result.php:127
+#: application/views/calltester/comparison_result.php:176
+#: application/views/calltester/result.php:52
 #: application/views/logbookadvanced/checkresult.php:102
 #: application/views/logbookadvanced/checkresult.php:160
 #: application/views/logbookadvanced/checkresult.php:388
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
-#: application/views/zonechecker/result.php:51
+#: application/views/zonechecker/result.php:65
 msgid "QSO Date"
 msgstr "QSO-päivämäärä"
 
@@ -9586,99 +9617,166 @@ msgstr "Ensimmäinen QSO"
 msgid "Last QSO"
 msgstr "Viimeinen QSO"
 
-#: application/views/calltester/comparison_result.php:18
+#: application/views/calltester/call_info.php:30
+#: application/views/labels/index.php:82
+#: application/views/logbookadvanced/statecheckresult.php:12
+#: application/views/statistics/index.php:113
+#: application/views/statistics/index.php:161
+msgid "QSOs"
+msgstr "QSO:t"
+
+#: application/views/calltester/call_info.php:47
+#, php-format
+msgid "No QSOs with %s found in your logbook."
+msgstr ""
+
+#: application/views/calltester/call_info.php:62
+#: application/views/zonechecker/result.php:74
+msgid "CQz"
+msgstr "CQz"
+
+#: application/views/calltester/call_info.php:63
+#: application/views/zonechecker/result.php:71
+msgid "ITUz"
+msgstr "ITUz"
+
+#: application/views/calltester/call_info.php:64
+#: application/views/contesting/logger/components/qso-form.php:85
+msgid "RST S"
+msgstr ""
+
+#: application/views/calltester/call_info.php:65
+#: application/views/contesting/logger/components/qso-form.php:89
+msgid "RST R"
+msgstr ""
+
+#: application/views/calltester/call_info.php:67
+#: application/views/contesting/manager/export_cbr.php:194
+#: application/views/logbookadvanced/index.php:876
+#: application/views/oqrs/showrequests.php:36
+#: application/views/qso/index.php:372
+#: application/views/station_profile/create.php:78
+#: application/views/station_profile/edit.php:95
+msgid "Location"
+msgstr "Sijainti"
+
+#: application/views/calltester/call_info.php:79
+msgid "QSL card"
+msgstr ""
+
+#: application/views/calltester/call_info.php:91
+#: application/views/calltester/comparison_result.php:97
+#: application/views/calltester/comparison_result.php:146
+#: application/views/calltester/comparison_result.php:195
+#: application/views/calltester/result.php:71
+#: application/views/search/search_result_ajax.php:482
+#: application/views/view_log/partial/log_ajax.php:630
+#: application/views/zonechecker/result.php:88
+msgid "Lookup on QRZ.com"
+msgstr "Hae QRZ.comista"
+
+#: application/views/calltester/comparison_result.php:44
 msgid "DXCC Class Results"
 msgstr "DXCC-luokkien tulokset"
 
-#: application/views/calltester/comparison_result.php:21
-#: application/views/calltester/comparison_result.php:33
-msgid "Calls tested:"
-msgstr "Testatut kutsut:"
+#: application/views/calltester/comparison_result.php:46
+#: application/views/calltester/comparison_result.php:53
+msgid "Calls tested"
+msgstr ""
 
-#: application/views/calltester/comparison_result.php:22
-#: application/views/calltester/comparison_result.php:34
-msgid "Execution time:"
-msgstr "Suoritusaika:"
+#: application/views/calltester/comparison_result.php:47
+#: application/views/calltester/comparison_result.php:54
+#: application/views/calltester/result.php:6
+msgid "Execution time"
+msgstr ""
 
-#: application/views/calltester/comparison_result.php:23
-#: application/views/calltester/comparison_result.php:35
-msgid "Issues found:"
-msgstr "Löytyneet ongelmat:"
+#: application/views/calltester/comparison_result.php:48
+#: application/views/calltester/comparison_result.php:55
+msgid "Issues found"
+msgstr ""
 
-#: application/views/calltester/comparison_result.php:30
+#: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
 msgstr "Lokikirjamallin tulokset"
 
-#: application/views/calltester/comparison_result.php:44
+#: application/views/calltester/comparison_result.php:61
 msgid "Comparison Summary"
 msgstr "Vertailuyhteenveto"
 
-#: application/views/calltester/comparison_result.php:45
+#: application/views/calltester/comparison_result.php:62
 msgid "Only found in DXCC Class:"
 msgstr "Löytyy vain DXCC-luokasta:"
 
-#: application/views/calltester/comparison_result.php:46
+#: application/views/calltester/comparison_result.php:63
 msgid "Only found in Logbook Model:"
 msgstr "Löytyy vain Lokikirja-mallista:"
 
-#: application/views/calltester/comparison_result.php:47
+#: application/views/calltester/comparison_result.php:64
 msgid "Found in both methods:"
 msgstr "Löytyi molemmilla menetelmillä:"
 
-#: application/views/calltester/comparison_result.php:54
+#: application/views/calltester/comparison_result.php:71
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
 msgstr "Ongelmia löytyi vain DXCC-luokassa (ei Lokikirjamallissa):"
 
-#: application/views/calltester/comparison_result.php:62
-#: application/views/calltester/comparison_result.php:98
-#: application/views/calltester/comparison_result.php:134
-#: application/views/calltester/result.php:24
+#: application/views/calltester/comparison_result.php:79
+#: application/views/calltester/comparison_result.php:128
+#: application/views/calltester/comparison_result.php:177
+#: application/views/calltester/result.php:53
 #: application/views/logbookadvanced/checkresult.php:106
 #: application/views/logbookadvanced/checkresult.php:164
 #: application/views/logbookadvanced/checkresult.php:392
-#: application/views/zonechecker/result.php:52
+#: application/views/zonechecker/result.php:67
 msgid "Station Profile"
 msgstr "Asemaprofiili"
 
-#: application/views/calltester/comparison_result.php:63
-#: application/views/calltester/comparison_result.php:99
-#: application/views/calltester/comparison_result.php:135
-#: application/views/calltester/result.php:25
+#: application/views/calltester/comparison_result.php:82
+#: application/views/calltester/comparison_result.php:131
+#: application/views/calltester/comparison_result.php:180
+#: application/views/calltester/result.php:56
 #: application/views/logbookadvanced/checkresult.php:107
 msgid "Existing DXCC"
 msgstr "Olemassa oleva DXCC"
 
-#: application/views/calltester/comparison_result.php:64
-#: application/views/calltester/comparison_result.php:100
-#: application/views/calltester/comparison_result.php:136
-#: application/views/calltester/result.php:26
+#: application/views/calltester/comparison_result.php:83
+#: application/views/calltester/comparison_result.php:132
+#: application/views/calltester/comparison_result.php:181
+#: application/views/calltester/result.php:57
 msgid "Existing ADIF"
 msgstr "Olemassa oleva ADIF"
 
-#: application/views/calltester/comparison_result.php:65
-#: application/views/calltester/comparison_result.php:101
-#: application/views/calltester/comparison_result.php:137
-#: application/views/calltester/result.php:27
+#: application/views/calltester/comparison_result.php:84
+#: application/views/calltester/comparison_result.php:133
+#: application/views/calltester/comparison_result.php:182
+#: application/views/calltester/result.php:58
 #: application/views/logbookadvanced/checkresult.php:108
 msgid "Result DXCC"
 msgstr "Tulos DXCC"
 
-#: application/views/calltester/comparison_result.php:66
-#: application/views/calltester/comparison_result.php:102
-#: application/views/calltester/comparison_result.php:138
-#: application/views/calltester/result.php:28
+#: application/views/calltester/comparison_result.php:85
+#: application/views/calltester/comparison_result.php:134
+#: application/views/calltester/comparison_result.php:183
+#: application/views/calltester/result.php:59
 msgid "Result ADIF"
 msgstr "Tulos ADIF"
 
-#: application/views/calltester/comparison_result.php:90
+#: application/views/calltester/comparison_result.php:98
+#: application/views/calltester/comparison_result.php:147
+#: application/views/calltester/comparison_result.php:196
+#: application/views/calltester/result.php:72
+#: application/views/zonechecker/result.php:89
+msgid "Show all QSOs with this callsign"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
 msgstr "Ongelmat löytyivät vain lokikirjamallista (ei DXCC-luokasta):"
 
-#: application/views/calltester/comparison_result.php:126
+#: application/views/calltester/comparison_result.php:169
 msgid "Issues found in both methods:"
 msgstr "Molempien menetelmien ongelmat:"
 
-#: application/views/calltester/comparison_result.php:162
+#: application/views/calltester/comparison_result.php:218
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
@@ -9686,39 +9784,36 @@ msgstr ""
 "DXCC-ongelmia ei löydetty kummallakaan menetelmällä. Kaikilla kutsuilla on "
 "oikea DXCC-tieto."
 
-#: application/views/calltester/index.php:3
+#: application/views/calltester/index.php:7
 msgid "Callsign DXCC identification"
 msgstr "Kutsumerkkien DXCC-tunniste"
 
-#: application/views/calltester/index.php:10
+#: application/views/calltester/index.php:16
 #: application/views/interface_assets/footer.php:885
 #: application/views/logbookadvanced/index.php:881
-#: application/views/zonechecker/index.php:10
+#: application/views/zonechecker/index.php:16
 msgid "Callsign: "
 msgstr "Kutsumerkki: "
 
-#: application/views/calltester/index.php:15
+#: application/views/calltester/index.php:21
 msgid "Start DXCC Check"
 msgstr "Aloita DXCC-tarkistus"
 
-#: application/views/calltester/index.php:18
+#: application/views/calltester/index.php:24
 msgid "Compare DXCC class and logbook model"
 msgstr "Vertaa DXCC-luokkaa ja lokikirjamallia"
 
-#: application/views/calltester/result.php:4
-#: application/views/logbookadvanced/checkresult.php:85
-msgid "Callsigns tested: "
-msgstr "Testatut kutsumerkit: "
-
 #: application/views/calltester/result.php:5
-#: application/views/logbookadvanced/checkresult.php:86
-msgid "Execution time: "
-msgstr "Suoritusaika: "
+msgid "Callsigns tested"
+msgstr ""
 
-#: application/views/calltester/result.php:6
-#: application/views/logbookadvanced/checkresult.php:87
-msgid "Number of potential QSOs with wrong DXCC: "
-msgstr "Mahdollisesti väärän DXCC:n sisältävien QSOjen määrä: "
+#: application/views/calltester/result.php:7
+msgid "Potential wrong DXCC"
+msgstr ""
+
+#: application/views/calltester/result.php:92
+msgid "No DXCC issues found. All calls have correct DXCC information."
+msgstr ""
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -10447,14 +10542,6 @@ msgstr ""
 
 #: application/views/contesting/logger/components/qso-form.php:44
 msgid "Callbook lookup failed"
-msgstr ""
-
-#: application/views/contesting/logger/components/qso-form.php:85
-msgid "RST S"
-msgstr ""
-
-#: application/views/contesting/logger/components/qso-form.php:89
-msgid "RST R"
 msgstr ""
 
 #: application/views/contesting/logger/components/qso-form.php:95
@@ -11235,15 +11322,6 @@ msgstr "Lisätiedot"
 #: application/views/contesting/manager/export_edi.php:72
 msgid "Club"
 msgstr "Klubi"
-
-#: application/views/contesting/manager/export_cbr.php:194
-#: application/views/logbookadvanced/index.php:876
-#: application/views/oqrs/showrequests.php:36
-#: application/views/qso/index.php:372
-#: application/views/station_profile/create.php:78
-#: application/views/station_profile/edit.php:95
-msgid "Location"
-msgstr "Sijainti"
 
 #: application/views/contesting/manager/export_cbr.php:197
 msgid ""
@@ -14851,13 +14929,6 @@ msgstr "Suunta"
 msgid "Label types"
 msgstr "Tarratyypit"
 
-#: application/views/labels/index.php:82
-#: application/views/logbookadvanced/statecheckresult.php:12
-#: application/views/statistics/index.php:113
-#: application/views/statistics/index.php:161
-msgid "QSOs"
-msgstr "QSO:t"
-
 #: application/views/labels/index.php:83
 msgid "Use For Print"
 msgstr "Käytä tulostusta varten"
@@ -15004,6 +15075,18 @@ msgstr "Lokaattoritarkistuksen tulokset"
 #: application/views/logbookadvanced/checkresult.php:83
 msgid "DXCC Check Results"
 msgstr "DXCC-tarkistuksen tulokset"
+
+#: application/views/logbookadvanced/checkresult.php:85
+msgid "Callsigns tested: "
+msgstr "Testatut kutsumerkit: "
+
+#: application/views/logbookadvanced/checkresult.php:86
+msgid "Execution time: "
+msgstr "Suoritusaika: "
+
+#: application/views/logbookadvanced/checkresult.php:87
+msgid "Number of potential QSOs with wrong DXCC: "
+msgstr "Mahdollisesti väärän DXCC:n sisältävien QSOjen määrä: "
 
 #: application/views/logbookadvanced/checkresult.php:92
 #: application/views/logbookadvanced/checkresult.php:234
@@ -19502,11 +19585,6 @@ msgstr "Merkitse QSL-kortti pyydetyksi (Direct)"
 msgid "Mark QSL Card Not Required"
 msgstr "Merkitse QSL-kortti tarpeettomaksi"
 
-#: application/views/search/search_result_ajax.php:482
-#: application/views/view_log/partial/log_ajax.php:630
-msgid "Lookup on QRZ.com"
-msgstr "Hae QRZ.comista"
-
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:632
 msgid "Lookup on HamQTH"
@@ -22303,67 +22381,72 @@ msgstr "Lähetä pyyntö"
 msgid "Rcvd"
 msgstr "Vastaanotettu"
 
-#: application/views/zonechecker/index.php:3
+#: application/views/zonechecker/index.php:7
 msgid "Gridsquare Zone identification"
 msgstr "Lokaattorin vyöhyketunnistus"
 
-#: application/views/zonechecker/index.php:15
+#: application/views/zonechecker/index.php:21
 msgid "Zone Type"
 msgstr "Vyöhyketyyppi"
 
-#: application/views/zonechecker/index.php:20
+#: application/views/zonechecker/index.php:26
 msgid "Start Zone Check"
 msgstr "Aloita vyöhyketarkistus"
 
-#: application/views/zonechecker/index.php:39
-#: application/views/zonechecker/index.php:62
-msgid "Processing..."
-msgstr "Käsitellään..."
-
-#: application/views/zonechecker/index.php:50
-#: application/views/zonechecker/index.php:73
-msgid "An error occurred while processing the request."
-msgstr "Pyyntöä käsiteltäessä tapahtui virhe."
-
-#: application/views/zonechecker/result.php:16
+#: application/views/zonechecker/result.php:30
 msgid "Callsigns Tested"
 msgstr "Kutsumerkit testattu"
 
-#: application/views/zonechecker/result.php:17
+#: application/views/zonechecker/result.php:31
 msgid "Execution Time"
 msgstr "Suorituksen kesto"
 
-#: application/views/zonechecker/result.php:18
+#: application/views/zonechecker/result.php:32
 msgid "Potential Wrong Zones"
 msgstr "Mahdollisesti väärät vyöhykkeet"
 
-#: application/views/zonechecker/result.php:19
+#: application/views/zonechecker/result.php:33
 msgid "Cache Hits"
 msgstr "Välimuistiosuma"
 
-#: application/views/zonechecker/result.php:20
+#: application/views/zonechecker/result.php:34
 msgid "Cache Misses"
 msgstr "Välimuistivirheet"
 
-#: application/views/zonechecker/result.php:21
+#: application/views/zonechecker/result.php:35
 msgid "Hit Rate"
 msgstr "Osumaprosentti"
 
-#: application/views/zonechecker/result.php:55
-msgid "ITUz"
-msgstr "ITUz"
-
-#: application/views/zonechecker/result.php:56
+#: application/views/zonechecker/result.php:72
 msgid "ITUz geojson"
 msgstr "ITUz geojson"
 
-#: application/views/zonechecker/result.php:58
-msgid "CQz"
-msgstr "CQz"
-
-#: application/views/zonechecker/result.php:59
+#: application/views/zonechecker/result.php:75
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/views/zonechecker/result.php:99
+msgid "Show on map"
+msgstr ""
+
+#: application/views/zonechecker/result.php:118
+msgid "No zone issues found. All QSOs have correct zone information."
+msgstr ""
+
+#~ msgid "Calls tested:"
+#~ msgstr "Testatut kutsut:"
+
+#~ msgid "Execution time:"
+#~ msgstr "Suoritusaika:"
+
+#~ msgid "Issues found:"
+#~ msgstr "Löytyneet ongelmat:"
+
+#~ msgid "Processing..."
+#~ msgstr "Käsitellään..."
+
+#~ msgid "An error occurred while processing the request."
+#~ msgstr "Pyyntöä käsiteltäessä tapahtui virhe."
 
 #~ msgid "Invalid logging token."
 #~ msgstr "Virheellinen kirjautumistunnus."
