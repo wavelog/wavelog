@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-07-27 14:26+0000\n"
-"PO-Revision-Date: 2026-07-24 13:03+0000\n"
+"PO-Revision-Date: 2026-07-28 05:36+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -3973,11 +3973,11 @@ msgstr "グリッドスクエアゾーンファインダー"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "GeoJSONデータが利用できません"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "無効なグリッドマス"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -9591,7 +9591,7 @@ msgstr "QSO"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr ""
+msgstr "ログブックには、%s とのQSOは見つかりませんでした。"
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -9625,7 +9625,7 @@ msgstr "位置"
 
 #: application/views/calltester/call_info.php:79
 msgid "QSL card"
-msgstr ""
+msgstr "QSLカード"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -9645,18 +9645,18 @@ msgstr "DXCCクラスの結果"
 #: application/views/calltester/comparison_result.php:46
 #: application/views/calltester/comparison_result.php:53
 msgid "Calls tested"
-msgstr ""
+msgstr "通話テスト済み"
 
 #: application/views/calltester/comparison_result.php:47
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "翻訳"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "発見された問題点"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -9729,7 +9729,7 @@ msgstr "結果 ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "このコールサインとのすべての交信を表示する"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -9768,15 +9768,17 @@ msgstr "DXCCクラスとログブックモデルの比較"
 
 #: application/views/calltester/result.php:5
 msgid "Callsigns tested"
-msgstr ""
+msgstr "テスト済みのコールサイン"
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "DXCC登録の誤りの可能性"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
 msgstr ""
+"DXCCに関する問題は見つかりませんでした。すべての通話番号に正しいDXCC情報が含"
+"まれています。"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -22463,11 +22465,13 @@ msgstr "CQz geojson"
 
 #: application/views/zonechecker/result.php:99
 msgid "Show on map"
-msgstr ""
+msgstr "地図で表示"
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
+"ゾーンに関する問題は見つかりませんでした。すべての交信記録に正しいゾーン情報"
+"が記録されています。"
 
 #~ msgid "Calls tested:"
 #~ msgstr "テスト済み通話："
