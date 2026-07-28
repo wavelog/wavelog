@@ -2956,14 +2956,12 @@ $("#callsign").on("input focus", function () {
 					callsign: $callsign.toUpperCase()
 				},
 				success: function (result) {
-					renderScpSuggestions(result);
+					renderScpSuggestions(result, ccall.toUpperCase());
 					scps = result.split(" ");
-					highlightSCP(ccall.toUpperCase());
 				}
 			});
 		} else {
-			renderScpSuggestions(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
-			highlightSCP(ccall.toUpperCase());
+			renderScpSuggestions(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '), ccall.toUpperCase());
 		}
 	} else {
 		$('.callsign-suggest').hide();
@@ -2983,27 +2981,13 @@ RegExp.escape = function (text) {
 }
 
 
-function renderScpSuggestions(rawString) {
+function renderScpSuggestions(rawString, term) {
 	var $box = $('.callsign-suggestions').empty();
+	var re = term ? new RegExp("(" + RegExp.escape(term) + ")", "i") : null;
 	$.each(rawString.trim().split(/\s+/), function(_, call) {
 		if (!call) return;
-		$('<span>').addClass('scp-call').attr('data-call', call).text(call).appendTo($box);
-	});
-}
-
-function highlightSCP(term, base) {
-	if (!term) return;
-	base = base || document.body;
-	var re = new RegExp("(" + RegExp.escape(term) + ")", "gi");
-	var replacement = "<span class=\"text-primary\">" + term + "</span>";
-	$(".callsign-suggestions", base).contents().each(function (i, el) {
-		if (el.nodeType === 3) {
-			var data = el.data;
-			if (data = data.replace(re, replacement)) {
-				var wrapper = $("<span>").html(data);
-				$(el).before(wrapper.contents()).remove();
-			}
-		}
+		var html = re ? call.replace(re, '<span class="text-primary">$1</span>') : call;
+		$('<span>').addClass('scp-call').attr('data-call', call).html(html).appendTo($box);
 	});
 }
 
