@@ -13,9 +13,6 @@ class Gridlookup extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
-		// user_model is not in Wavelog's autoload list, so load it for authorize()
-		$this->load->model('user_model');
-
 		// authorize(2) => any logged-in user. The site owner (admin) passes.
 		if ( ! $this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
