@@ -2956,13 +2956,13 @@ $("#callsign").on("input focus", function () {
 					callsign: $callsign.toUpperCase()
 				},
 				success: function (result) {
-					$('.callsign-suggestions').text(result);
+					renderScpSuggestions(result);
 					scps = result.split(" ");
 					highlightSCP(ccall.toUpperCase());
 				}
 			});
 		} else {
-			$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
+			renderScpSuggestions(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
 			highlightSCP(ccall.toUpperCase());
 		}
 	} else {
@@ -2971,10 +2971,25 @@ $("#callsign").on("input focus", function () {
 	}
 });
 
+$('.callsign-suggestions').on('mousedown', '.scp-call', function(e) {
+	e.preventDefault();
+	$('#callsign').val($(this).data('call'));
+	$('#callsign').trigger('input');
+	$('#callsign').trigger('blur');
+});
+
 RegExp.escape = function (text) {
 	return String(text).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
+
+function renderScpSuggestions(rawString) {
+	var $box = $('.callsign-suggestions').empty();
+	$.each(rawString.trim().split(/\s+/), function(_, call) {
+		if (!call) return;
+		$('<span>').addClass('scp-call').attr('data-call', call).text(call).appendTo($box);
+	});
+}
 
 function highlightSCP(term, base) {
 	if (!term) return;
