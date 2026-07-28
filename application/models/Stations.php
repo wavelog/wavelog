@@ -323,6 +323,8 @@ class Stations extends CI_Model {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('station_id', $clean_new);
 		$this->db->update('station_profile', $newdefault);
+
+		$this->session->set_userdata('station_profile_id', $clean_new);
 	}
 
 	function edit_favourite($id) {
