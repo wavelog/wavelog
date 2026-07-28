@@ -345,90 +345,119 @@ $("#qso_input").off('submit').on('submit', function (e) {
 		if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
 	}
 	if (_submit) {
-		// Set debounce timer (1 second)
-		submitTimeout = setTimeout(function() {
-			submitTimeout = null;
-		}, 3000);
-
+		var $form = $(this);
 		var saveQsoButtonText = $("#saveQso").html();
-		$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
-		manual_addon = '?manual=' + qso_manual;
 
-		// Capture form data before AJAX call for WebSocket transmission
-		var formDataObj = {};
-		$("#qso_input").serializeArray().map(function(x) {
-			formDataObj[x.name] = x.value;
-		});
+		var doQsoAjaxSubmit = function () {
+			// Set debounce timer (1 second)
+			submitTimeout = setTimeout(function() {
+				submitTimeout = null;
+			}, 3000);
 
-		$.ajax({
-			url: base_url + 'index.php/qso' + manual_addon,
-			method: 'POST',
-			type: 'post',
-			timeout: 10000,
-			data: $(this).serialize(),
-			dataType: 'json',
-			success: function (result) {
-				if (result.message == 'success') {
-					activeStationId = result.activeStationId;
-					activeStationOP = result.activeStationOP;
-					activeStationTXPower = result.activeStationTXPower;
+			$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
+			manual_addon = '?manual=' + qso_manual;
 
-					// Build dynamic success message
-					var contactCallsign = $("#callsign").val().toUpperCase();
-					var operatorCallsign = activeStationOP || station_callsign;
-					var successMessage = lang_qso_added
-						.replace('%s', contactCallsign)
-						.replace('%s', operatorCallsign);
+			// Capture form data before AJAX call for WebSocket transmission
+			var formDataObj = {};
+			$form.serializeArray().map(function(x) {
+				formDataObj[x.name] = x.value;
+			});
 
-					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
+			$.ajax({
+				url: base_url + 'index.php/qso' + manual_addon,
+				method: 'POST',
+				type: 'post',
+				timeout: 10000,
+				data: $form.serialize(),
+				dataType: 'json',
+				success: function (result) {
+					if (result.message == 'success') {
+						activeStationId = result.activeStationId;
+						activeStationOP = result.activeStationOP;
+						activeStationTXPower = result.activeStationTXPower;
 
-					// Send QSO data via WebSocket if CAT is enabled via WebSocket
-					if (typeof sendQSOViaWebSocket === 'function') {
-						// Add additional context to captured form data
-						formDataObj.station_id = activeStationId;
-						formDataObj.operator_callsign = operatorCallsign;
-						formDataObj.timestamp = new Date().toISOString();
+						// Build dynamic success message
+						var contactCallsign = $("#callsign").val().toUpperCase();
+						var operatorCallsign = activeStationOP || station_callsign;
+						var successMessage = lang_qso_added
+							.replace('%s', contactCallsign)
+							.replace('%s', operatorCallsign);
 
-						// Include ADIF if available
-						if (result.adif) {
-							formDataObj.adif = result.adif;
+						showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
+
+						// Send QSO data via WebSocket if CAT is enabled via WebSocket
+						if (typeof sendQSOViaWebSocket === 'function') {
+							// Add additional context to captured form data
+							formDataObj.station_id = activeStationId;
+							formDataObj.operator_callsign = operatorCallsign;
+							formDataObj.timestamp = new Date().toISOString();
+
+							// Include ADIF if available
+							if (result.adif) {
+								formDataObj.adif = result.adif;
+							}
+
+							// Send via WebSocket (function checks if WS is connected)
+							var wsSent = sendQSOViaWebSocket(formDataObj);
+							if (wsSent) {
+								console.log('QSO sent via WebSocket with ADIF');
+							}
 						}
 
-						// Send via WebSocket (function checks if WS is connected)
-						var wsSent = sendQSOViaWebSocket(formDataObj);
-						if (wsSent) {
-							console.log('QSO sent via WebSocket with ADIF');
+						prepare_next_qso(saveQsoButtonText);
+						processBacklog();	// If we have success with the live-QSO, we could also process the backlog
+						// Clear debounce timer on success to allow immediate next submission
+						if (submitTimeout) {
+							clearTimeout(submitTimeout);
+							submitTimeout = null;
+						}
+					} else {
+						showToast(lang_general_word_error, result.errors, 'bg-danger text-white', 5000);
+						$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+						// Clear debounce timer on error to allow retry
+						if (submitTimeout) {
+							clearTimeout(submitTimeout);
+							submitTimeout = null;
 						}
 					}
-
+				},
+				error: function () {
+					saveToBacklog(JSON.stringify(this.data),manual_addon);
 					prepare_next_qso(saveQsoButtonText);
-					processBacklog();	// If we have success with the live-QSO, we could also process the backlog
-					// Clear debounce timer on success to allow immediate next submission
-					if (submitTimeout) {
-						clearTimeout(submitTimeout);
-						submitTimeout = null;
-					}
-				} else {
-					showToast(lang_general_word_error, result.errors, 'bg-danger text-white', 5000);
-					$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+					showToast(lang_general_word_info, lang_qso_added_to_backlog, 'bg-info text-dark', 5000);
 					// Clear debounce timer on error to allow retry
 					if (submitTimeout) {
 						clearTimeout(submitTimeout);
 						submitTimeout = null;
 					}
 				}
-			},
-			error: function () {
-				saveToBacklog(JSON.stringify(this.data),manual_addon);
-				prepare_next_qso(saveQsoButtonText);
-				showToast(lang_general_word_info, lang_qso_added_to_backlog, 'bg-info text-dark', 5000);
-				// Clear debounce timer on error to allow retry
-				if (submitTimeout) {
-					clearTimeout(submitTimeout);
-					submitTimeout = null;
+			});
+		};
+
+		// SAT visibility soft-confirm: warn when computed elevation is below the horizon.
+		// Stored TLE may be outdated (esp. for post-logged QSOs), so warn — never hard-block.
+		var _satName = $("#sat_name").val();
+		var _antElRaw = $("#ant_el").val();
+		var _antEl = parseFloat(_antElRaw);
+		if (_satName && _satName !== '' && _antElRaw !== '' && !isNaN(_antEl) && _antEl < -5) {
+			BootstrapDialog.confirm({
+				title: lang_general_word_warning,
+				message: lang_qso_sat_below_horizon_confirm.replace('%s', _antEl.toFixed(1)),
+				type: BootstrapDialog.TYPE_WARNING,
+				btnCancelLabel: lang_general_word_cancel,
+				btnOKLabel: lang_general_word_ok,
+				btnOKClass: 'btn-warning',
+				callback: function (result) {
+					if (result) {
+						doQsoAjaxSubmit();
+					} else {
+						$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+					}
 				}
-			}
-		});
+			});
+		} else {
+			doQsoAjaxSubmit();
+		}
 	}
 	return false;
 });
