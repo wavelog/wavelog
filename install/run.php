@@ -1,5 +1,13 @@
 <?php
+require_once('includes/install_config/install_lib.php');
+require_once('includes/install_config/install_config.php');
+
 session_start();
+
+if (file_exists('.lock') || file_exists($db_config_path . 'config.php') || file_exists($db_config_path . 'database.php')) {
+	http_response_code(403);
+	exit('forbidden');
+}
 
 $form_token = $_POST['form_token'] ?? '';
 if (empty($form_token) || !isset($_SESSION['form_token']) || !hash_equals($_SESSION['form_token'], $form_token)) {
