@@ -74,6 +74,9 @@
 											<small class="d-block mt-1"><?php echo html_escape($preset['description']); ?></small>
 										</button>
 									<?php } ?>
+									<button type="button" class="btn btn-secondary text-start" id="resetScopes">
+										<i class="fas fa-eraser me-2"></i><strong><?= __("Reset"); ?></strong>
+									</button>
 								</div>
 								<small class="text-muted d-block mt-2"><?= __("A preset replaces your current selection. You can still adjust the scopes afterwards."); ?></small>
 							</div>

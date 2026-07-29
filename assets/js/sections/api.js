@@ -108,10 +108,26 @@ $(function () {
       syncScopeSelection();
    });
 
+   $('#resetScopes').on('click', function () {
+      $('.scope-checkbox').prop('checked', false);
+      syncScopeSelection();
+   });
+
    // Warn when the token is set to never expire: allowed, but discouraged.
    $('#tokenExpiry').on('change', function () {
       $('#expiry-never-warning').toggle(this.value === 'never');
    }).trigger('change');
+
+   // reset everything
+   var createTokenModal = document.getElementById('createTokenModal');
+   if (createTokenModal) {
+      createTokenModal.addEventListener('show.bs.modal', function () {
+         document.getElementById('createTokenForm').reset();
+         $('#scopes-error').hide();
+         $('#tokenExpiry').trigger('change');
+         syncScopeSelection();
+      });
+   }
 
    // Require at least one scope before the create-token form submits.
    $('#createTokenForm').on('submit', function (e) {
