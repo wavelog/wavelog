@@ -289,6 +289,7 @@ class Core
 			if (fwrite($handle, $new)) {
 				if(file_exists($output_path)) {
 					log_message('info', 'config.php file written successfully.');
+					$_SESSION['cron_auth_token'] = hash_hmac('sha256', 'wavelog-cron-v1', $encryptionkey);
 					return true;
 				} else {
 					log_message('error', 'config.php file not found after writing.');

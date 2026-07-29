@@ -72,6 +72,7 @@ $_SESSION['installer_token'] = bin2hex(random_bytes(32));
 <script>
     let _POST = <?php echo json_encode($_POST, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
     let _installer_token = '<?= $_SESSION['installer_token'] ?>';
+    let _cron_token = '';
 
     $.ajaxSetup({
         headers: { 'X-Installer-Token': _installer_token }
@@ -282,14 +283,39 @@ $_SESSION['installer_token'] = bin2hex(random_bytes(32));
         });
     }
 
+    async function fetch_cron_token() {
+        return new Promise((resolve) => {
+            $.ajax({
+                type: 'POST',
+                url: 'ajax.php',
+                data: {
+                    run_cron_token: 1
+                },
+                success: function(response) {
+                    _cron_token = response;
+                    resolve();
+                },
+                error: async function(error) {
+                    await log_message('error', 'Could not fetch the cron auth token. Ajax crashed. Status: ' + error.status + ' Status Text: ' + error.statusText);
+                    resolve();
+                }
+            });
+        });
+    }
+
     async function update_dxcc() {
         var field = '#update_dxcc';
         await log_message('debug', 'Start updating DXCC database. This can take a moment or two... Please wait');
         running(field, true);
 
+        await fetch_cron_token();
+
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: <?= json_encode(($_POST['websiteurl'] ?? '') . 'index.php/update/dxcc', JSON_HEX_TAG | JSON_HEX_AMP) ?>,
+                headers: {
+                    'X-Wavelog-Auth': _cron_token
+                },
                 success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
