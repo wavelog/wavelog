@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-28 05:36+0000\n"
+"POT-Creation-Date: 2026-07-29 08:13+0000\n"
 "PO-Revision-Date: 2026-05-12 22:16+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -129,11 +129,12 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Activators.php:12
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22 application/controllers/Api.php:33
-#: application/controllers/Api.php:75 application/controllers/Api.php:114
-#: application/controllers/Api.php:148 application/controllers/Awards.php:19
-#: application/controllers/Backup.php:12 application/controllers/Backup.php:24
-#: application/controllers/Backup.php:68 application/controllers/Band.php:14
-#: application/controllers/Bandmap.php:8
+#: application/controllers/Api.php:80 application/controllers/Api.php:119
+#: application/controllers/Api.php:153 application/controllers/Api_token.php:33
+#: application/controllers/Api_token.php:86
+#: application/controllers/Awards.php:19 application/controllers/Backup.php:12
+#: application/controllers/Backup.php:24 application/controllers/Backup.php:68
+#: application/controllers/Band.php:14 application/controllers/Bandmap.php:8
 #: application/controllers/Cabrillo.php:10
 #: application/controllers/Callstats.php:12
 #: application/controllers/Calltester.php:12
@@ -371,52 +372,78 @@ msgstr "POTA İçe Aktarımı"
 msgid "POTA Data Imported"
 msgstr "POTA Verileri İçe Aktarıldı"
 
-#: application/controllers/Api.php:40
+#: application/controllers/Api.php:45
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:83 application/views/api/description.php:26
+#: application/controllers/Api.php:88
+#: application/views/api/components/edit_legacy.php:26
 msgid "API Description"
 msgstr "API Açıklaması"
 
-#: application/controllers/Api.php:84
+#: application/controllers/Api.php:89
 msgid "API Key is required. Do not change this field"
 msgstr "API Anahtarı gereklidir. Bu alanı değiştirmeyin"
 
-#: application/controllers/Api.php:89
+#: application/controllers/Api.php:94
 msgid "Edit API Description"
 msgstr "API Açıklamasını Düzenle"
 
-#: application/controllers/Api.php:99
+#: application/controllers/Api.php:104
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API Anahtarı %s açıklaması güncellendi."
 
-#: application/controllers/Api.php:109 application/controllers/Api.php:143
-#: application/controllers/Qso.php:609
+#: application/controllers/Api.php:114 application/controllers/Api.php:148
+#: application/controllers/Api_token.php:28
+#: application/controllers/Api_token.php:81 application/controllers/Qso.php:609
 msgid "Invalid request method"
 msgstr "Geçersiz istek metodu"
 
-#: application/controllers/Api.php:119
+#: application/controllers/Api.php:124
 msgid "Invalid API rights"
 msgstr "Geçersiz API hakları"
 
-#: application/controllers/Api.php:133
+#: application/controllers/Api.php:138
 msgid "API Key generated"
 msgstr "API anahtarı oluşturuldu"
 
-#: application/controllers/Api.php:135
+#: application/controllers/Api.php:140
 msgid "API Key could not be generated"
 msgstr "API anahtarı oluşturulamadı"
 
-#: application/controllers/Api.php:152
+#: application/controllers/Api.php:157
 msgid "Invalid API Key"
 msgstr "Geçersiz API Anahtarı"
 
-#: application/controllers/Api.php:161
+#: application/controllers/Api.php:166
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API Anahtarı %s silindi"
+
+#: application/controllers/Api_token.php:37
+msgid "Please provide a token name"
+msgstr ""
+
+#: application/controllers/Api_token.php:46
+msgid "Please select at least one scope"
+msgstr ""
+
+#: application/controllers/Api_token.php:68
+msgid "API Token generated"
+msgstr ""
+
+#: application/controllers/Api_token.php:70
+msgid "API Token could not be generated"
+msgstr ""
+
+#: application/controllers/Api_token.php:90
+msgid "Invalid API Token"
+msgstr ""
+
+#: application/controllers/Api_token.php:97
+msgid "API Token has been deleted"
+msgstr ""
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:190
@@ -2571,8 +2598,8 @@ msgstr ""
 "çağrı işareti girin."
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:72
-#: application/models/Logbook_model.php:1399
+#: application/models/Logbook_model.php:85
+#: application/models/Logbook_model.php:1412
 #: application/views/contesting/logger/components/qso-form.php:43
 #: application/views/qso/index.php:39
 msgid "Invalid callsign"
@@ -3015,7 +3042,8 @@ msgstr "Düzenle"
 
 #: application/controllers/Radio.php:139
 #: application/controllers/Stationsetup.php:414
-#: application/views/api/index.php:85 application/views/bands/bandedges.php:33
+#: application/views/api/index.php:84 application/views/api/index.php:174
+#: application/views/bands/bandedges.php:33
 #: application/views/club/permissions.php:360
 #: application/views/club/permissions.php:382
 #: application/views/contest_admin/add.php:71
@@ -4081,6 +4109,54 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Şehir / İl / İlçe (Japonya'da)"
 
+#: application/libraries/api_v2/Club_resource.php:27
+msgid "Read club members"
+msgstr ""
+
+#: application/libraries/api_v2/Lookup_resource.php:44
+msgid "Look up callsigns and grids"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:48
+msgid "Read QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:49
+msgid "Create and update QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:50
+msgid "Delete QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:30
+msgid "Read radios"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:31
+msgid "Create and update radios"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:32
+msgid "Delete radios"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:45
+msgid "Read station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:46
+msgid "Create and update station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:47
+msgid "Delete station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Statistic_resource.php:52
+msgid "Read statistics"
+msgstr ""
+
 #: application/models/Club_model.php:185
 msgid "Invalid Permission Level!"
 msgstr "Geçersiz İzin Seviyesi!"
@@ -4157,37 +4233,37 @@ msgstr "HRDlog: Bu çağrı işareti için yüklenecek QSO bulunamadı: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: HRDlog Kimlik Bilgileriyle istasyon profili bulunamadı."
 
-#: application/models/Logbook_model.php:332
+#: application/models/Logbook_model.php:345
 msgid "Station not accessible"
 msgstr ""
 
-#: application/models/Logbook_model.php:1389
+#: application/models/Logbook_model.php:1402
 msgid "Station ID not allowed"
 msgstr "İstasyon ID’sine izin verilmiyor"
 
-#: application/models/Logbook_model.php:1394
+#: application/models/Logbook_model.php:1407
 msgid "No Call given"
 msgstr "Çağrı işareti girilmedi"
 
-#: application/models/Logbook_model.php:1469
-#: application/models/Logbook_model.php:1673
+#: application/models/Logbook_model.php:1482
+#: application/models/Logbook_model.php:1686
 msgid "DXCC has to be Numeric"
 msgstr "DXCC sayısal olmalıdır"
 
-#: application/models/Logbook_model.php:4272
+#: application/models/Logbook_model.php:4622
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4280
+#: application/models/Logbook_model.php:4630
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4646
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4195,28 +4271,28 @@ msgstr ""
 "Geçerli tarih bilgisi içermeyen bir QSO'lar bulundu. Bu QSO'lar içe "
 "aktarılmadı."
 
-#: application/models/Logbook_model.php:4306
+#: application/models/Logbook_model.php:4656
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:4313
+#: application/models/Logbook_model.php:4663
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:4383
+#: application/models/Logbook_model.php:4733
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:4390
+#: application/models/Logbook_model.php:4740
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4225,63 +4301,63 @@ msgstr ""
 "%s üzerindeki QSO: Band bilgisi olmadan bir QSO içe aktarmayı denediniz. Bu "
 "QSO içe aktarılmadı, geçersiz."
 
-#: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:5014
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4675
+#: application/models/Logbook_model.php:5025
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4736
+#: application/models/Logbook_model.php:5086
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:5112
+#: application/models/Logbook_model.php:5462
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
-#: application/models/Logbook_model.php:5179
-#: application/models/Logbook_model.php:5279
+#: application/models/Logbook_model.php:5529
+#: application/models/Logbook_model.php:5629
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
-#: application/models/Logbook_model.php:5187
+#: application/models/Logbook_model.php:5537
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5193
+#: application/models/Logbook_model.php:5543
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5197
+#: application/models/Logbook_model.php:5547
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
-#: application/models/Logbook_model.php:5201
+#: application/models/Logbook_model.php:5551
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
-#: application/models/Logbook_model.php:5204
+#: application/models/Logbook_model.php:5554
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
-#: application/models/Logbook_model.php:5207
+#: application/models/Logbook_model.php:5557
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "Bilinmiyor"
 
-#: application/models/Logbook_model.php:5282
+#: application/models/Logbook_model.php:5632
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
-#: application/models/Logbook_model.php:5285
+#: application/models/Logbook_model.php:5635
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
-#: application/models/Logbook_model.php:5690
+#: application/models/Logbook_model.php:6041
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
@@ -5095,7 +5171,7 @@ msgstr "CBR İçe Aktar"
 
 #: application/views/adif/import.php:90 application/views/adif/import.php:400
 #: application/views/adif/import.php:423 application/views/api/index.php:22
-#: application/views/cron/index.php:18
+#: application/views/api/index.php:127 application/views/cron/index.php:18
 #: application/views/dashboard/index.php:182
 #: application/views/dashboard/index.php:215
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -5615,15 +5691,132 @@ msgstr "ADIF dosyanızdaki POTA Referansı"
 msgid "Status"
 msgstr "Durum"
 
-#: application/views/api/description.php:15
+#: application/views/api/components/create_token_modal.php:5
+#: application/views/api/index.php:189
+msgid "Create a new API Token"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:6
+#: application/views/api/components/new_token_modal.php:7
+#: application/views/api/components/new_token_modal.php:23
+#: application/views/bands/index.php:160
+#: application/views/club/permissions.php:191
+#: application/views/contesting/logger/components/winkeyer.php:22
+#: application/views/contesting/logger/index.php:67
+#: application/views/contesting/logger/index.php:93
+#: application/views/contesting/manager/components/confirm_delete.php:6
+#: application/views/contesting/manager/components/session_modal.php:12
+#: application/views/contesting/manager/index.php:124
+#: application/views/interface_assets/footer.php:54
+#: application/views/logbookadvanced/index.php:55
+#: application/views/simplefle/index.php:21
+#: application/views/user/modals/more_actions_modal.php:51
+#: application/views/user/modals/more_actions_modal.php:80
+#: application/views/user/modals/more_actions_modal.php:117
+#: application/views/user/modals/more_actions_modal.php:166
+#: application/views/version_dialog/index.php:79
+msgid "Close"
+msgstr "Kapat"
+
+#: application/views/api/components/create_token_modal.php:10
+msgid ""
+"Create a token with granular permissions (scopes). The token is shown only "
+"once when it is created, so copy it right away."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:13
+msgid "Token Name"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:14
+msgid "e.g. My logging tool"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:15
+msgid "A name to help you recognise this token later."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:18
+msgid "Expiration"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:20
+msgid "30 days"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:21
+msgid "90 days"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:22
+msgid "1 year"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:23
+#: application/views/api/index.php:154 application/views/api/index.php:157
+#: application/views/user/index.php:69 application/views/user/index.php:184
+#: application/views/user/modals/admin_impersonate_modal.php:31
+msgid "Never"
+msgstr "Asla"
+
+#: application/views/api/components/create_token_modal.php:25
+msgid "When the token should stop working."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:27
+msgid ""
+"A token that never expires stays valid until you delete it manually. This is "
+"possible, but not recommended for security reasons."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:33
+#: application/views/api/index.php:136
+msgid "Scopes"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:34
+msgid "Select which parts of the API v2 this token may access."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:62
+msgid "Please select at least one scope."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:66
+#: application/views/club/clubswitch_modal.php:15
+#: application/views/club/permissions.php:258
+#: application/views/club/permissions.php:354
+#: application/views/club/permissions.php:383
+#: application/views/contesting/logger/components/qso-form.php:40
+#: application/views/contesting/logger/index.php:188
+#: application/views/contesting/manager/components/confirm_delete.php:24
+#: application/views/contesting/manager/components/session_modal.php:152
+#: application/views/contesting/manager/import_legacy.php:80
+#: application/views/contesting/manager/index.php:138
+#: application/views/cron/edit.php:74
+#: application/views/interface_assets/footer.php:44
+#: application/views/logbookadvanced/index.php:88
+#: application/views/operator/index.php:30
+#: application/views/qso/components/fav_modal.php:13
+#: application/views/satellite/pass.php:184
+#: application/views/user/modals/admin_impersonate_modal.php:45
+#: application/views/user/modals/stop_impersonate_modal.php:14
+msgid "Cancel"
+msgstr "Vazgeç"
+
+#: application/views/api/components/create_token_modal.php:68
+msgid "Create Token"
+msgstr ""
+
+#: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
 msgstr "API Anahtarının Açıklamasını Düzenle"
 
-#: application/views/api/description.php:28
+#: application/views/api/components/edit_legacy.php:28
 msgid "Simple name to describe what you use this API for."
 msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama."
 
-#: application/views/api/description.php:33
+#: application/views/api/components/edit_legacy.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
 #: application/views/club/permissions.php:257
 #: application/views/club/permissions.php:353
@@ -5648,10 +5841,34 @@ msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama.
 msgid "Save"
 msgstr "Kaydet"
 
+#: application/views/api/components/new_token_modal.php:6
+msgid "New API Token"
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:12
+msgid "Copy this token now. For security reasons it will not be shown again."
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:14
+msgid "Your API Token"
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:17
+#: application/views/api/index.php:19 application/views/api/index.php:54
+#: application/views/api/index.php:125 application/views/cron/index.php:36
+#: application/views/debug/index.php:60
+msgid "Copy to clipboard"
+msgstr "Panoya kopyala"
+
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:582
-msgid "API Keys"
-msgstr "API Anahtarları"
+msgid "Legacy API Keys (API v1)"
+msgstr ""
+
+#: application/views/api/index.php:11
+msgid ""
+"New integrations should use the API v2 tokens below, if the third party "
+"system supports it."
+msgstr ""
 
 #: application/views/api/index.php:11
 msgid ""
@@ -5676,21 +5893,16 @@ msgstr ""
 "veri alacaksa, salt okunur anahtar oluşturun."
 
 #: application/views/api/index.php:13
-msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr "Wavelog ile çalışan 3. Taraf Yazılımlar:"
+msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
+msgstr ""
 
 #: application/views/api/index.php:16
 msgid "More Tools"
 msgstr "Daha Fazla Araç"
 
-#: application/views/api/index.php:19
+#: application/views/api/index.php:19 application/views/api/index.php:125
 msgid "API URL"
 msgstr "API URL"
-
-#: application/views/api/index.php:19 application/views/api/index.php:54
-#: application/views/cron/index.php:36 application/views/debug/index.php:60
-msgid "Copy to clipboard"
-msgstr "Panoya kopyala"
 
 #: application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
@@ -5736,11 +5948,11 @@ msgstr "API Anahtarı"
 msgid "Description"
 msgstr "Açıklama"
 
-#: application/views/api/index.php:32
+#: application/views/api/index.php:32 application/views/api/index.php:137
 msgid "Last Used"
 msgstr "Son bağlantı"
 
-#: application/views/api/index.php:34
+#: application/views/api/index.php:34 application/views/api/index.php:140
 msgid "Created By"
 msgstr "Oluşturan"
 
@@ -5748,7 +5960,7 @@ msgstr "Oluşturan"
 msgid "Permissions"
 msgstr "Yetkiler"
 
-#: application/views/api/index.php:38
+#: application/views/api/index.php:38 application/views/api/index.php:142
 #: application/views/awards/pl_polska/index.php:375
 #: application/views/club/permissions.php:279
 #: application/views/clublog/export.php:39
@@ -5777,21 +5989,99 @@ msgid "Test"
 msgstr "Test"
 
 #: application/views/api/index.php:79
+msgid "<noname>"
+msgstr ""
+
+#: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
 msgstr "%s API Anahtarını silmek istediğinizden emin misiniz?"
 
-#: application/views/api/index.php:98
+#: application/views/api/index.php:97
 msgid "You have no API Keys."
 msgstr "API Anahtarınız yok."
 
-#: application/views/api/index.php:105
+#: application/views/api/index.php:104
 msgid "Create a read & write key"
 msgstr "Okuma ve yazma anahtarı oluştur"
 
-#: application/views/api/index.php:111
+#: application/views/api/index.php:110
 msgid "Create a read-only key"
 msgstr "Salt okunur anahtar oluştur"
+
+#: application/views/api/index.php:120
+msgid "API Tokens (API v2)"
+msgstr ""
+
+#: application/views/api/index.php:123
+msgid ""
+"API Tokens grant access to the REST API v2 with granular permissions "
+"(scopes). The token is shown only once when it is created, so copy it right "
+"away."
+msgstr ""
+
+#: application/views/api/index.php:124
+#, php-format
+msgid "The API v2 documentation can be found %shere%s."
+msgstr ""
+
+#: application/views/api/index.php:125
+msgid "The API v2 base URL for this Wavelog instance is"
+msgstr ""
+
+#: application/views/api/index.php:127
+msgid ""
+"On Clubstations the API Tokens are personal and not shared. Clubstation "
+"users can only see their own tokens."
+msgstr ""
+
+#: application/views/api/index.php:135
+#: application/views/awards/iota/index.php:210
+#: application/views/contest_admin/add.php:34
+#: application/views/contest_admin/create.php:24
+#: application/views/contesting/manager/components/session_modal.php:122
+#: application/views/contesting/manager/export_cbr.php:252
+#: application/views/dashboard/index.php:19
+#: application/views/labels/index.php:42 application/views/labels/index.php:76
+#: application/views/logbookadvanced/index.php:973
+#: application/views/logbookadvanced/qslcarousel.php:34
+#: application/views/logbookadvanced/useroptions.php:91
+#: application/views/lotw/satupdate.php:7
+#: application/views/qso/components/fav_modal.php:8
+#: application/views/qso/components/winkeysettings.php:11
+#: application/views/qso/components/winkeysettings.php:28
+#: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:288
+#: application/views/satellite/satinfo.php:6
+#: application/views/search/result.php:16
+#: application/views/search/search_result_ajax.php:19
+#: application/views/stationsetup/locationlist.php:12
+#: application/views/stationsetup/stationsetup.php:43
+#: application/views/themes/index.php:82
+#: application/views/timeline/index.php:307 application/views/user/edit.php:309
+#: application/views/user/edit.php:332 application/views/user/edit.php:355
+#: application/views/user/edit.php:378 application/views/user/edit.php:402
+#: application/views/view_log/partial/log_ajax.php:20
+#: application/views/view_log/qso.php:232
+#: application/views/view_log/qso.php:629
+msgid "Name"
+msgstr "Ad"
+
+#: application/views/api/index.php:138
+msgid "Expires"
+msgstr ""
+
+#: application/views/api/index.php:159
+msgid "Expired"
+msgstr "Süresi doldu"
+
+#: application/views/api/index.php:169
+#, php-format
+msgid "Are you sure you want delete the API Token %s?"
+msgstr ""
+
+#: application/views/api/index.php:184
+msgid "You have no API Tokens yet. Click on the button below to create one."
+msgstr ""
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
@@ -7310,36 +7600,6 @@ msgstr "IOTA Haritasını Göster"
 #: application/views/awards/iota/index.php:58
 msgid "Deleted IOTA"
 msgstr "Silinen IOTA"
-
-#: application/views/awards/iota/index.php:210
-#: application/views/contest_admin/add.php:34
-#: application/views/contest_admin/create.php:24
-#: application/views/contesting/manager/components/session_modal.php:122
-#: application/views/contesting/manager/export_cbr.php:252
-#: application/views/dashboard/index.php:19
-#: application/views/labels/index.php:42 application/views/labels/index.php:76
-#: application/views/logbookadvanced/index.php:973
-#: application/views/logbookadvanced/qslcarousel.php:34
-#: application/views/logbookadvanced/useroptions.php:91
-#: application/views/lotw/satupdate.php:7
-#: application/views/qso/components/fav_modal.php:8
-#: application/views/qso/components/winkeysettings.php:11
-#: application/views/qso/components/winkeysettings.php:28
-#: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:288
-#: application/views/satellite/satinfo.php:6
-#: application/views/search/result.php:16
-#: application/views/search/search_result_ajax.php:19
-#: application/views/stationsetup/locationlist.php:12
-#: application/views/stationsetup/stationsetup.php:43
-#: application/views/themes/index.php:82
-#: application/views/timeline/index.php:307 application/views/user/edit.php:309
-#: application/views/user/edit.php:332 application/views/user/edit.php:355
-#: application/views/user/edit.php:378 application/views/user/edit.php:402
-#: application/views/view_log/partial/log_ajax.php:20
-#: application/views/view_log/qso.php:232
-#: application/views/view_log/qso.php:629
-msgid "Name"
-msgstr "Ad"
 
 #: application/views/awards/iota/index.php:212
 msgid "Deleted"
@@ -9494,25 +9754,6 @@ msgstr "GHz"
 msgid "Create a band"
 msgstr "band Oluştur"
 
-#: application/views/bands/index.php:160
-#: application/views/club/permissions.php:191
-#: application/views/contesting/logger/components/winkeyer.php:22
-#: application/views/contesting/logger/index.php:67
-#: application/views/contesting/logger/index.php:93
-#: application/views/contesting/manager/components/confirm_delete.php:6
-#: application/views/contesting/manager/components/session_modal.php:12
-#: application/views/contesting/manager/index.php:124
-#: application/views/interface_assets/footer.php:54
-#: application/views/logbookadvanced/index.php:55
-#: application/views/simplefle/index.php:21
-#: application/views/user/modals/more_actions_modal.php:51
-#: application/views/user/modals/more_actions_modal.php:80
-#: application/views/user/modals/more_actions_modal.php:117
-#: application/views/user/modals/more_actions_modal.php:166
-#: application/views/version_dialog/index.php:79
-msgid "Close"
-msgstr "Kapat"
-
 #: application/views/bands/index.php:161
 msgid "Warning! Are you sure you want to delete the following band: "
 msgstr "Uyarı! Aşağıdaki bandı silmek istediğinizden emin misiniz: "
@@ -9791,27 +10032,6 @@ msgstr "%s istasyonuna geçmek istediğinizden emin misiniz?"
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
 msgstr "Evet, geçiş yap!"
-
-#: application/views/club/clubswitch_modal.php:15
-#: application/views/club/permissions.php:258
-#: application/views/club/permissions.php:354
-#: application/views/club/permissions.php:383
-#: application/views/contesting/logger/components/qso-form.php:40
-#: application/views/contesting/logger/index.php:188
-#: application/views/contesting/manager/components/confirm_delete.php:24
-#: application/views/contesting/manager/components/session_modal.php:152
-#: application/views/contesting/manager/import_legacy.php:80
-#: application/views/contesting/manager/index.php:138
-#: application/views/cron/edit.php:74
-#: application/views/interface_assets/footer.php:44
-#: application/views/logbookadvanced/index.php:88
-#: application/views/operator/index.php:30
-#: application/views/qso/components/fav_modal.php:13
-#: application/views/satellite/pass.php:184
-#: application/views/user/modals/admin_impersonate_modal.php:45
-#: application/views/user/modals/stop_impersonate_modal.php:14
-msgid "Cancel"
-msgstr "Vazgeç"
 
 #: application/views/club/permissions.php:3
 #, php-format
@@ -14582,6 +14802,10 @@ msgstr "Clublog İçe Aktarma / Dışa Aktarma"
 #: application/views/interface_assets/header.php:574
 msgid "DCL Export"
 msgstr "DCL Dışa Aktar"
+
+#: application/views/interface_assets/header.php:582
+msgid "API Keys"
+msgstr "API Anahtarları"
 
 #: application/views/interface_assets/header.php:587
 msgid "Internal tools"
@@ -21624,11 +21848,6 @@ msgstr "Kullanıcı oluştur"
 msgid "Last seen"
 msgstr "Son görülme"
 
-#: application/views/user/index.php:69 application/views/user/index.php:184
-#: application/views/user/modals/admin_impersonate_modal.php:31
-msgid "Never"
-msgstr "Asla"
-
 #: application/views/user/index.php:74
 msgid "Account locked"
 msgstr "Hesap kilitli"
@@ -22334,6 +22553,9 @@ msgstr ""
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
+
+#~ msgid "Links to 3rd-Party-Software which works with Wavelog:"
+#~ msgstr "Wavelog ile çalışan 3. Taraf Yazılımlar:"
 
 #~ msgid "Calls tested:"
 #~ msgstr "Test edilen aramalar:"
@@ -23238,9 +23460,6 @@ msgstr ""
 #~ msgctxt "LoTW Warning"
 #~ msgid "At least one of your %sLoTW certificates%s is about to expire!"
 #~ msgstr "%sLoTW sertifikanızın%s süresi dolmak üzere!"
-
-#~ msgid "Expired"
-#~ msgstr "Süresi doldu"
 
 #~ msgid "Expiring"
 #~ msgstr "Sona Erme Tarihi"
