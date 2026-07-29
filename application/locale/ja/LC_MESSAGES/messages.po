@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-07-29 14:47+0000\n"
-"PO-Revision-Date: 2026-07-28 05:36+0000\n"
+"PO-Revision-Date: 2026-07-30 09:11+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -423,27 +423,27 @@ msgstr "APIキー %s は削除されました"
 
 #: application/controllers/Api_token.php:37
 msgid "Please provide a token name"
-msgstr ""
+msgstr "トークン名を入力してください"
 
 #: application/controllers/Api_token.php:46
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "少なくとも1つの範囲を選択してください"
 
 #: application/controllers/Api_token.php:68
 msgid "API Token generated"
-msgstr ""
+msgstr "APIトークンが生成されました"
 
 #: application/controllers/Api_token.php:70
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "APIトークンを生成できませんでした"
 
 #: application/controllers/Api_token.php:90
 msgid "Invalid API Token"
-msgstr ""
+msgstr "無効なAPIトークン"
 
 #: application/controllers/Api_token.php:97
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "APIトークンが削除されました"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:190
@@ -4117,77 +4117,79 @@ msgstr "市 / 区 / 郡"
 
 #: application/libraries/api_v2/Club_resource.php:27
 msgid "Read club members"
-msgstr ""
+msgstr "クラブメンバーを読む"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "コールサインとグリッドを調べる"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "QSOを読む"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "QSOの作成と更新"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "交信を削除する"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "ラジオを読む"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "ラジオの作成と更新"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "ラジオボタンを削除する"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "シャックの位置を確認する"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "シャックの場所を作成および更新する"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "シャックの場所を削除する"
 
 #: application/libraries/api_v2/Statistic_resource.php:52
 msgid "Read statistics"
-msgstr ""
+msgstr "統計情報を読む"
 
 #: application/models/Api_v2_model.php:77
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " （最低2.1.0"
 
 #: application/models/Api_v2_model.php:78
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"WSJT-X、JTDXなどの無線機からの無線制御および交信データのアップロードに対応。"
+"WaveLogGateのバージョン2.1.0以上が必要です。"
 
 #: application/models/Api_v2_model.php:84
 msgid "Read-only"
-msgstr ""
+msgstr "読み取り専用"
 
 #: application/models/Api_v2_model.php:85
 msgid "Read access to everything, no changes to your data."
-msgstr ""
+msgstr "すべてのデータへの読み取りアクセスのみ可能で、データの変更は一切できません。"
 
 #: application/models/Api_v2_model.php:91
 msgid "Statistics only"
-msgstr ""
+msgstr "統計情報のみ"
 
 #: application/models/Api_v2_model.php:92
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "統計情報のみであり、お客様のデータに変更を加えることはありません。"
 
 #: application/models/Club_model.php:185
 msgid "Invalid Permission Level!"
@@ -5738,7 +5740,7 @@ msgstr "状態"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "新しいAPIトークンを作成する"
 
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5767,34 +5769,36 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"きめ細かな権限（スコープ）を持つトークンを作成します。トークンは作成時に一度"
+"だけ表示されるため、すぐにコピーしてください。"
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "トークン名"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "例：私のログツール"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "後でこのトークンを識別するのに役立つ名前。"
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "有効期限"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30日間"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90日間"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1年"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -5805,26 +5809,28 @@ msgstr "一度もない"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "トークンが機能しなくなるべき時。"
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"有効期限のないトークンは、手動で削除するまで有効なままです。これは可能ですが"
+"、セキュリティ上の理由から推奨されません。"
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "スコープ"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "このトークンがアクセスできるAPI v2のどの部分を選択してください。"
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "少なくとも1つの範囲を選択してください。"
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:149
@@ -5836,6 +5842,8 @@ msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
+"どのスコープが必要かわからない？使用したいツールを選択すれば、弊社が最適な"
+"スコープを選定します。"
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
@@ -5852,7 +5860,7 @@ msgstr "リセット"
 msgid ""
 "A preset replaces your current selection. You can still adjust the scopes "
 "afterwards."
-msgstr ""
+msgstr "プリセットは現在の選択を上書きします。その後もスコープの調整は可能です。"
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -5878,7 +5886,7 @@ msgstr "キャンセル"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "トークンを作成する"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -5915,15 +5923,17 @@ msgstr "保存"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "新しいAPIトークン"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
 msgstr ""
+"このトークンを今すぐコピーしてください。セキュリティ上の理由から、この"
+"トークンは二度と表示されません。"
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "APIトークン"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -5934,13 +5944,15 @@ msgstr "クリップボードにコピー"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "旧APIキー（API v1）"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"新規連携を行う際は、サードパーティシステムが対応している場合、下記のAPI v2"
+"トークンを使用してください。"
 
 #: application/views/api/index.php:11
 msgid ""
@@ -5965,7 +5977,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "Wavelog API v1と連携するサードパーティ製ソフトウェアへのリンク："
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6061,7 +6073,7 @@ msgstr "テスト"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<名前なし>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6082,7 +6094,7 @@ msgstr "読み取り専用キーを作成する"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "APIトークン（API v2）"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6090,21 +6102,26 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"APIトークンは、REST API v2へのアクセス権を、きめ細かな権限（スコープ）ととも"
+"に付与します。トークンは作成時に一度だけ表示されるため、すぐにコピーしてくだ"
+"さい。"
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "API v2のドキュメントは以下にあります。 %s ここに%s 。"
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "この Wavelog インスタンスの API v2 ベース URL は次のとおりです"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"Clubstationでは、APIトークンは個人専用であり、共有されません。Clubstation"
+"ユーザーは自分のトークンのみを表示できます。"
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6139,7 +6156,7 @@ msgstr "名前"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "有効期限切れ"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6148,11 +6165,13 @@ msgstr "期限切れ"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "APIトークンを削除してもよろしいですか？ %s ?"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr ""
+"まだAPIトークンをお持ちではありません。下のボタンをクリックして作成してくださ"
+"い。"
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
