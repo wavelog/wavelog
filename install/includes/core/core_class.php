@@ -139,17 +139,17 @@ class Core
 		$template_path 	= 'config/database.php';
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/database.php';
 
-		// if config file already exists, we stop early and fail
-		if (file_exists($output_path)) {
-			log_message('error', 'database.php config file already exists');
-			return false;
-		}
-
 		if (isset($_ENV['CI_ENV'])) {
 			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/database.php';
 			log_message('info', 'CI_ENV is set to ' . $_ENV['CI_ENV'] . '. Using ' . $_ENV['CI_ENV'] . ' database.php config path.');
 		} else {
 			log_message('info', 'CI_ENV is not set. Using default database.php config path.');
+		}
+
+		// if config file already exists, we stop early and fail
+		if (file_exists($output_path)) {
+			log_message('error', 'database.php config file already exists');
+			return false;
 		}
 
 		if (!file_exists($template_path)) {
@@ -204,12 +204,6 @@ class Core
 		$template_path 	= 'config/config.php';
 		$output_path 	= '../application/config/config.php';
 
-		// if config file already exists, we stop early and fail
-		if (file_exists($output_path)) {
-			log_message('error', 'config.php config file already exists');
-			return false;
-		}
-
 		if (isset($_ENV['CI_ENV'])) {
 			$output_path = '../application/config/'.$_ENV['CI_ENV'].'/config.php';
 			$output_dir = dirname($output_path);
@@ -223,6 +217,12 @@ class Core
 			log_message('info', 'CI_ENV is set to ' . $_ENV['CI_ENV'] . '. Using ' . $_ENV['CI_ENV'] . ' config.php config path.');
 		} else {
 			log_message('info', 'CI_ENV is not set. Using default config.php config path.');
+		}
+
+		// if config file already exists, we stop early and fail
+		if (file_exists($output_path)) {
+			log_message('error', 'config.php config file already exists');
+			return false;
 		}
 
 		// Open the file
