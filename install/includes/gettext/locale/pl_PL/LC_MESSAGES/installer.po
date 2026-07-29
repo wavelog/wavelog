@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 10:54+0000\n"
 "PO-Revision-Date: 2026-07-28 20:32+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
@@ -344,8 +344,8 @@ msgstr ""
 msgid ""
 "This is the URL where you can access this Wavelog instance after the "
 "installer has run. If this does not display what you expect, you may need to "
-"check your web server configuration. This is the base_url in your "
-"config.php, which can be edited after the installation."
+"check your web server configuration. This is the base_url in your config."
+"php, which can be edited after the installation."
 msgstr ""
 "Jest to adres URL, w którym można uzyskać dostęp do tej instancji Wavelog po "
 "uruchomieniu instalatora. Jeśli nie wyświetla tego, czego oczekujesz, może "
@@ -765,79 +765,78 @@ msgstr "Bez tego modułu instalator Wavelog nie działa!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Należy zainstalować wymagane moduły oraz zresetować serwer www."
 
-#: install/run.php:22 install/run.php:30
+#: install/run.php:30
 msgid "Installation"
 msgstr "Instalacja"
 
-#: install/run.php:24 install/run.php:32
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Proszę czekać..."
 
-#: install/run.php:27 install/run.php:35
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Kopiowanie config.php do application/config/"
 
-#: install/run.php:30 install/run.php:38
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Kopiowanie database.php do application/config/"
 
-#: install/run.php:33 install/run.php:41
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Tworzenie tabel w bazie danych"
 
-#: install/run.php:36 install/run.php:44
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Uruchamianie migracji bazy danych"
 
-#: install/run.php:39 install/run.php:47
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "Aktualizacja danych DXCC"
 
-#: install/run.php:47 install/run.php:55
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Zablokuj instalator"
 
-#: install/run.php:51 install/run.php:59
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Wszystkie kroki instalacji zostały zakończone. Przekierowanie do logowania "
 "użytkownika za %s sekund..."
 
-#: install/run.php:54 install/run.php:62
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Gotowe. Przejdź do logowania użytkownika ->"
 
-#: install/run.php:58 install/run.php:144 install/run.php:66
-#: install/run.php:153
+#: install/run.php:66 install/run.php:153
 msgid "Show detailled debug log"
 msgstr "Pokaż szczegółowy dziennik debugowania"
 
-#: install/run.php:146 install/run.php:155
+#: install/run.php:155
 msgid "Hide detailled debug log"
 msgstr "Ukryj szczegółowy dziennik debugowania"
 
-#: install/run.php:174 install/run.php:183
+#: install/run.php:183
 msgid "Could not create application/config/config.php"
 msgstr "Nie można utworzyć application/config/config.php"
 
-#: install/run.php:209 install/run.php:218
+#: install/run.php:218
 msgid "Could not create application/config/database.php"
 msgstr "Nie można utworzyć application/config/database.php"
 
-#: install/run.php:243 install/run.php:252
+#: install/run.php:252
 msgid "Could not create database tables"
 msgstr "Nie można utworzyć tabel bazy danych"
 
-#: install/run.php:273 install/run.php:282
+#: install/run.php:282
 msgid "Could not run database migrations"
 msgstr "Nie można uruchomić migracji bazy danych"
 
-#: install/run.php:301 install/run.php:335
+#: install/run.php:335
 msgid "Could not update DXCC data"
 msgstr "Nie można zaktualizować danych DXCC"
 
-#: install/run.php:333 install/run.php:367
+#: install/run.php:367
 msgid "Could not create install/.lock file"
 msgstr "Nie można utworzyć pliku install/.lock"
 
