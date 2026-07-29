@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 10:54+0000\n"
 "PO-Revision-Date: 2026-06-23 19:06+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/"
@@ -756,78 +756,78 @@ msgstr "Ilman tätä moduulia Wavelogin asennusohjelma ei toimi!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Asenna vaaditut moduulit ja käynnistä verkkopalvelin uudelleen."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Asennus"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Ole hyvä ja odota..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Kopioi config.php hakemistoon application/config/"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Kopioi database.php hakemistoon application/config/"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Tietokantataulujen luominen"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Tietokantamigraatioiden suorittaminen"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "DXCC-tietojen päivittäminen"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Lukitse asennusohjelma"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Kaikki asennusvaiheet suoritettiin onnistuneesti. Uudelleenohjataan "
 "käyttäjien kirjautumissivulle %s sekunnin kuluttua…"
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Valmis. Siirry käyttäjien kirjautumissivulle →"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:153
 msgid "Show detailled debug log"
 msgstr "Näytä yksityiskohtainen virheenkorjausloki"
 
-#: install/run.php:146
+#: install/run.php:155
 msgid "Hide detailled debug log"
 msgstr "Piilota yksityiskohtainen virheenkorjausloki"
 
-#: install/run.php:174
+#: install/run.php:183
 msgid "Could not create application/config/config.php"
 msgstr "Tiedostoa application/config/config.php ei voitu luoda"
 
-#: install/run.php:209
+#: install/run.php:218
 msgid "Could not create application/config/database.php"
 msgstr "Tiedostoa application/config/database.php ei voitu luoda"
 
-#: install/run.php:243
+#: install/run.php:252
 msgid "Could not create database tables"
 msgstr "Tietokantatauluja ei voitu luoda"
 
-#: install/run.php:273
+#: install/run.php:282
 msgid "Could not run database migrations"
 msgstr "Tietokantamigraatioita ei voitu suorittaa"
 
-#: install/run.php:301
+#: install/run.php:335
 msgid "Could not update DXCC data"
 msgstr "DXCC-tietoja ei voitu päivittää"
 
-#: install/run.php:333
+#: install/run.php:367
 msgid "Could not create install/.lock file"
 msgstr "Tiedostoa install/.lock ei voitu luoda"
 

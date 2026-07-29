@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 10:54+0000\n"
 "PO-Revision-Date: 2025-08-05 07:10+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.wavelog.org/projects/wavelog/"
@@ -756,78 +756,78 @@ msgstr "E nélkül a modul nélkül a Wavelog telepítő nem működik!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Kérjük, telepítsd a szükséges modulokat és indítsd újra a webszervert."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Telepítés"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Kérem várjon..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Másolja a config.php fájlt az application/config/ könyvtárba"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Másolja a database.php fájlt az application/config/ könyvtárba"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Adatbázis táblák létrehozása"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Adatbázis-migrációk futtatása"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "DXCC adatok frissítése"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "A telepítő zárolása"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Az összes telepítési lépés el va végezve. Átirányítás a felhasználó "
 "bejelentkezési oldalára %s másodperc múlva..."
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Kész. Menjen a felhasználói bejelentkezéshez ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:153
 msgid "Show detailled debug log"
 msgstr "Részletes hibakeresési napló megjelenítése"
 
-#: install/run.php:146
+#: install/run.php:155
 msgid "Hide detailled debug log"
 msgstr "Részletes hibakeresési napló elrejtése"
 
-#: install/run.php:174
+#: install/run.php:183
 msgid "Could not create application/config/config.php"
 msgstr "Nem sikerült létrehozni az application/config/config.php fájlt"
 
-#: install/run.php:209
+#: install/run.php:218
 msgid "Could not create application/config/database.php"
 msgstr "Nem sikerült létrehozni az application/config/database.php fájlt"
 
-#: install/run.php:243
+#: install/run.php:252
 msgid "Could not create database tables"
 msgstr "Nem sikerült létrehozni az adatbázis táblákat"
 
-#: install/run.php:273
+#: install/run.php:282
 msgid "Could not run database migrations"
 msgstr "Nem tudta futtatni az adatbázis-migrációkat"
 
-#: install/run.php:301
+#: install/run.php:335
 msgid "Could not update DXCC data"
 msgstr "Nem tudta frissíteni a DXCC adatokat"
 
-#: install/run.php:333
+#: install/run.php:367
 msgid "Could not create install/.lock file"
 msgstr "Nem sikerült létrehozni a install/.lock fájlt"
 

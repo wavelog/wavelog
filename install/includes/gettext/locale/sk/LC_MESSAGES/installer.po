@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 10:54+0000\n"
 "PO-Revision-Date: 2026-03-17 23:36+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
@@ -752,78 +752,78 @@ msgstr "Bez tohto modulu inštalátor Wavelog nefunguje!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Nainštaluj potrebné moduly a reštartuj webový server."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Inštalácia"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Prosím, počkajte..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Skopíruj config.php do application/config/"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Skopíruj database.php do application/config/"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Vytváranie databázových tabuliek"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Spúšťanie databázových migrácií"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "Aktualizácia údajov DXCC"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Zamkni inštalátor"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Všetky kroky inštalácie prebehli. Presmerovanie na prihlásenie používateľa "
 "za %s sekúnd..."
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Hotovo. Choď na prihlásenie používateľa ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:153
 msgid "Show detailled debug log"
 msgstr "Zobraziť podrobný debug log"
 
-#: install/run.php:146
+#: install/run.php:155
 msgid "Hide detailled debug log"
 msgstr "Skryť podrobný debug log"
 
-#: install/run.php:174
+#: install/run.php:183
 msgid "Could not create application/config/config.php"
 msgstr "Nepodarilo sa vytvoriť application/config/config.php"
 
-#: install/run.php:209
+#: install/run.php:218
 msgid "Could not create application/config/database.php"
 msgstr "Nepodarilo sa vytvoriť application/config/database.php"
 
-#: install/run.php:243
+#: install/run.php:252
 msgid "Could not create database tables"
 msgstr "Tabuľky databázy sa nepodarilo vytvoriť"
 
-#: install/run.php:273
+#: install/run.php:282
 msgid "Could not run database migrations"
 msgstr "Nepodarilo sa spustiť migrácie databázy"
 
-#: install/run.php:301
+#: install/run.php:335
 msgid "Could not update DXCC data"
 msgstr "Nepodarilo sa aktualizovať údaje o DXCC"
 
-#: install/run.php:333
+#: install/run.php:367
 msgid "Could not create install/.lock file"
 msgstr "Nie je možné vytvoriť install/.lock"
 
