@@ -70,8 +70,8 @@
 									<?php foreach ($token_presets as $key => $preset) { ?>
 										<!-- Preset: only ticks checkboxes, the form still submits the individual scopes -->
 										<button type="button" class="btn <?php echo html_escape($preset['class']); ?> text-start scope-preset" id="preset_<?php echo html_escape($key); ?>" data-scopes="<?php echo html_escape(implode(',', $preset['scopes'])); ?>">
-											<i class="<?php echo html_escape($preset['icon']); ?> me-2"></i><strong><?php echo html_escape($preset['name']); ?></strong>
-											<small class="d-block mt-1"><?php echo html_escape($preset['description']); ?></small>
+											<i class="<?php echo html_escape($preset['icon']); ?> me-2"></i><strong><?php echo $preset['name']; ?></strong>
+											<small class="d-block mt-1"><?php echo $preset['description']; ?></small>
 										</button>
 									<?php } ?>
 									<button type="button" class="btn btn-secondary text-start" id="resetScopes">
