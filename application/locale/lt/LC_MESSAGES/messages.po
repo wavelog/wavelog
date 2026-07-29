@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-29 11:53+0000\n"
+"POT-Creation-Date: 2026-07-29 14:47+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Lithuanian <https://translate.wavelog.org/projects/wavelog/"
@@ -1579,59 +1579,59 @@ msgstr ""
 msgid "Create Label Type"
 msgstr ""
 
-#: application/controllers/Labels.php:77 application/controllers/Labels.php:430
+#: application/controllers/Labels.php:77 application/controllers/Labels.php:435
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr ""
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:431
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:436
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:77
 msgid "Paper Type"
 msgstr ""
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:432
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:437
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Measurement"
 msgstr ""
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:433
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:438
 msgid "Top Margin"
 msgstr ""
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:434
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:439
 msgid "Left Margin"
 msgstr ""
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:435
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:440
 msgid "QSLs Horizontally"
 msgstr ""
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:436
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:441
 msgid "QSLs Vertically"
 msgstr ""
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:437
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:442
 msgid "Horizontal Space"
 msgstr ""
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:438
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:443
 msgid "Vertical Space"
 msgstr ""
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:439
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:444
 msgid "Label width"
 msgstr ""
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:440
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:445
 msgid "Label height"
 msgstr ""
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:441
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:446
 msgid "Size of Font"
 msgstr ""
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:442
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:447
 msgid "Number of QSOs on label"
 msgstr ""
 
@@ -1640,69 +1640,74 @@ msgid "Create Paper Type"
 msgstr ""
 
 #: application/controllers/Labels.php:118
-#: application/controllers/Labels.php:489
+#: application/controllers/Labels.php:494
 msgid "Paper Name"
 msgstr ""
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:490
+#: application/controllers/Labels.php:495
 msgid "Paper Width"
 msgstr ""
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:491
+#: application/controllers/Labels.php:496
 msgid "Paper Height"
 msgstr ""
 
 #: application/controllers/Labels.php:131
-#: application/controllers/Labels.php:499
+#: application/controllers/Labels.php:504
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr ""
 
-#: application/controllers/Labels.php:211
-#: application/controllers/Labels.php:214
+#: application/controllers/Labels.php:144
+#: application/controllers/Qslpostcard.php:282
+msgid "No QSOs were selected"
+msgstr ""
+
+#: application/controllers/Labels.php:216
+#: application/controllers/Labels.php:219
 msgid "You need to assign a paperType to the label before printing"
 msgstr ""
 
-#: application/controllers/Labels.php:221
-#: application/controllers/Labels.php:224
+#: application/controllers/Labels.php:226
+#: application/controllers/Labels.php:229
 msgid "You need to create a label and set it to be used for print."
 msgstr ""
 
-#: application/controllers/Labels.php:231
-#: application/controllers/Labels.php:234
+#: application/controllers/Labels.php:236
+#: application/controllers/Labels.php:239
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
 msgstr ""
 
-#: application/controllers/Labels.php:262
+#: application/controllers/Labels.php:267
 msgid "0 QSOs found for print!"
 msgstr ""
 
-#: application/controllers/Labels.php:419
+#: application/controllers/Labels.php:424
 msgid "Edit Label"
 msgstr ""
 
-#: application/controllers/Labels.php:448
+#: application/controllers/Labels.php:453
 msgid "Label was saved."
 msgstr ""
 
-#: application/controllers/Labels.php:456
+#: application/controllers/Labels.php:461
 msgid "Label was deleted."
 msgstr ""
 
-#: application/controllers/Labels.php:478
+#: application/controllers/Labels.php:483
 msgid "Edit Paper"
 msgstr ""
 
-#: application/controllers/Labels.php:503
+#: application/controllers/Labels.php:508
 msgid "Paper was saved."
 msgstr ""
 
-#: application/controllers/Labels.php:516
+#: application/controllers/Labels.php:521
 msgid "Paper was deleted."
 msgstr ""
 
@@ -2888,10 +2893,6 @@ msgstr ""
 
 #: application/controllers/Qslpostcard.php:274
 msgid "QSL Postcard Queue PDF failed: "
-msgstr ""
-
-#: application/controllers/Qslpostcard.php:282
-msgid "No QSOs were selected"
 msgstr ""
 
 #: application/controllers/Qslpostcard.php:286

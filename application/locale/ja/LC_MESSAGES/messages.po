@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-29 11:53+0000\n"
+"POT-Creation-Date: 2026-07-29 14:47+0000\n"
 "PO-Revision-Date: 2026-07-28 05:36+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1601,59 +1601,59 @@ msgstr "QSLカードラベル"
 msgid "Create Label Type"
 msgstr "ラベルタイプを作成"
 
-#: application/controllers/Labels.php:77 application/controllers/Labels.php:430
+#: application/controllers/Labels.php:77 application/controllers/Labels.php:435
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "ラベル名"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:431
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:436
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:77
 msgid "Paper Type"
 msgstr "用紙の種類"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:432
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:437
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Measurement"
 msgstr "測定"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:433
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:438
 msgid "Top Margin"
 msgstr "上余白"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:434
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:439
 msgid "Left Margin"
 msgstr "左余白"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:435
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:440
 msgid "QSLs Horizontally"
 msgstr "QSLを横向きに"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:436
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:441
 msgid "QSLs Vertically"
 msgstr "QSLを縦に"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:437
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:442
 msgid "Horizontal Space"
 msgstr "水平方向のスペース"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:438
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:443
 msgid "Vertical Space"
 msgstr "垂直空間"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:439
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:444
 msgid "Label width"
 msgstr "ラベル幅"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:440
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:445
 msgid "Label height"
 msgstr "ラベルの高さ"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:441
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:446
 msgid "Size of Font"
 msgstr "フォントサイズ"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:442
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:447
 msgid "Number of QSOs on label"
 msgstr "ラベル上のQSO数"
 
@@ -1662,22 +1662,22 @@ msgid "Create Paper Type"
 msgstr "用紙タイプを作成"
 
 #: application/controllers/Labels.php:118
-#: application/controllers/Labels.php:489
+#: application/controllers/Labels.php:494
 msgid "Paper Name"
 msgstr "論文名"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:490
+#: application/controllers/Labels.php:495
 msgid "Paper Width"
 msgstr "紙幅"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:491
+#: application/controllers/Labels.php:496
 msgid "Paper Height"
 msgstr "紙の高さ"
 
 #: application/controllers/Labels.php:131
-#: application/controllers/Labels.php:499
+#: application/controllers/Labels.php:504
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -1685,18 +1685,23 @@ msgstr ""
 "ファイルを保存できませんでした。既存ファイルと同一の名称を使用することはでき"
 "ません。"
 
-#: application/controllers/Labels.php:211
-#: application/controllers/Labels.php:214
+#: application/controllers/Labels.php:144
+#: application/controllers/Qslpostcard.php:282
+msgid "No QSOs were selected"
+msgstr "交信は選択されませんでした"
+
+#: application/controllers/Labels.php:216
+#: application/controllers/Labels.php:219
 msgid "You need to assign a paperType to the label before printing"
 msgstr "印刷する前にラベルに用紙タイプを割り当てる必要があります"
 
-#: application/controllers/Labels.php:221
-#: application/controllers/Labels.php:224
+#: application/controllers/Labels.php:226
+#: application/controllers/Labels.php:229
 msgid "You need to create a label and set it to be used for print."
 msgstr "ラベルを作成し、印刷に使用するように設定する必要があります。"
 
-#: application/controllers/Labels.php:231
-#: application/controllers/Labels.php:234
+#: application/controllers/Labels.php:236
+#: application/controllers/Labels.php:239
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -1704,31 +1709,31 @@ msgstr ""
 "問題が発生しました。ラベルを生成できませんでした。ラベルのサイズとフォントサ"
 "イズを確認してください。"
 
-#: application/controllers/Labels.php:262
+#: application/controllers/Labels.php:267
 msgid "0 QSOs found for print!"
 msgstr "印刷用に0件のQSOが見つかりました！"
 
-#: application/controllers/Labels.php:419
+#: application/controllers/Labels.php:424
 msgid "Edit Label"
 msgstr "ラベルを編集"
 
-#: application/controllers/Labels.php:448
+#: application/controllers/Labels.php:453
 msgid "Label was saved."
 msgstr "ラベルが保存されました。"
 
-#: application/controllers/Labels.php:456
+#: application/controllers/Labels.php:461
 msgid "Label was deleted."
 msgstr "ラベルが削除されました。"
 
-#: application/controllers/Labels.php:478
+#: application/controllers/Labels.php:483
 msgid "Edit Paper"
 msgstr "論文の編集"
 
-#: application/controllers/Labels.php:503
+#: application/controllers/Labels.php:508
 msgid "Paper was saved."
 msgstr "紙が保存されました。"
 
-#: application/controllers/Labels.php:516
+#: application/controllers/Labels.php:521
 msgid "Paper was deleted."
 msgstr "書類が削除されました。"
 
@@ -2934,10 +2939,6 @@ msgstr "ポストカード印刷用のQSOは見つかりませんでした"
 #: application/controllers/Qslpostcard.php:274
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSLポストカードキューのPDF処理に失敗しました。 "
-
-#: application/controllers/Qslpostcard.php:282
-msgid "No QSOs were selected"
-msgstr "交信は選択されませんでした"
 
 #: application/controllers/Qslpostcard.php:286
 #: application/views/qslpostcard/printqueue_selected.php:2
