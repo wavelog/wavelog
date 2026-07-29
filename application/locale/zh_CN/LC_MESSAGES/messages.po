@@ -264,7 +264,10 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:208
 #: application/controllers/Qrz.php:231 application/controllers/Qrz.php:295
 #: application/controllers/Simplefle.php:7
-#: application/controllers/Update.php:28
+#: application/controllers/Update.php:28 application/controllers/Api.php:80
+#: application/controllers/Api.php:119 application/controllers/Api.php:153
+#: application/controllers/Api_token.php:33
+#: application/controllers/Api_token.php:86
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -402,49 +405,53 @@ msgstr "POTA导入"
 msgid "POTA Data Imported"
 msgstr "POTA数据已导入"
 
-#: application/controllers/Api.php:40
+#: application/controllers/Api.php:40 application/controllers/Api.php:45
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:83 application/views/api/description.php:26
+#: application/controllers/Api.php:88
+#: application/views/api/components/edit_legacy.php:26
 msgid "API Description"
 msgstr "API 说明"
 
-#: application/controllers/Api.php:84
+#: application/controllers/Api.php:84 application/controllers/Api.php:89
 msgid "API Key is required. Do not change this field"
 msgstr "API Key 为必填项，请勿修改此字段"
 
-#: application/controllers/Api.php:89
+#: application/controllers/Api.php:89 application/controllers/Api.php:94
 msgid "Edit API Description"
 msgstr "编辑 API 说明"
 
-#: application/controllers/Api.php:99
+#: application/controllers/Api.php:99 application/controllers/Api.php:104
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API Key %s 的说明信息已更新。"
 
 #: application/controllers/Api.php:109 application/controllers/Api.php:143
-#: application/controllers/Qso.php:609
+#: application/controllers/Qso.php:609 application/controllers/Api.php:114
+#: application/controllers/Api.php:148 application/controllers/Api_token.php:28
+#: application/controllers/Api_token.php:81
 msgid "Invalid request method"
 msgstr "无效的请求方法"
 
-#: application/controllers/Api.php:119
+#: application/controllers/Api.php:119 application/controllers/Api.php:124
 msgid "Invalid API rights"
 msgstr "无效的 API 权限"
 
-#: application/controllers/Api.php:133
+#: application/controllers/Api.php:133 application/controllers/Api.php:138
 msgid "API Key generated"
 msgstr "已生成 API Key"
 
-#: application/controllers/Api.php:135
+#: application/controllers/Api.php:135 application/controllers/Api.php:140
 msgid "API Key could not be generated"
 msgstr "无法生成 API Key"
 
-#: application/controllers/Api.php:152
+#: application/controllers/Api.php:152 application/controllers/Api.php:157
 msgid "Invalid API Key"
 msgstr "无效的API密钥"
 
-#: application/controllers/Api.php:161
+#: application/controllers/Api.php:161 application/controllers/Api.php:166
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "已删除 API Key %s"
@@ -2597,7 +2604,8 @@ msgstr "通讯录中已存在带有此呼号的笔记。请输入一个唯一的
 #: application/models/Logbook_model.php:72
 #: application/models/Logbook_model.php:1399
 #: application/views/contesting/logger/components/qso-form.php:43
-#: application/views/qso/index.php:39
+#: application/views/qso/index.php:39 application/models/Logbook_model.php:85
+#: application/models/Logbook_model.php:1412
 msgid "Invalid callsign"
 msgstr "不合法的呼号"
 
@@ -3068,7 +3076,8 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:227
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:730
-#: application/views/view_log/qso.php:738
+#: application/views/view_log/qso.php:738 application/views/api/index.php:84
+#: application/views/api/index.php:174
 msgid "Delete"
 msgstr "删除"
 
@@ -4174,23 +4183,29 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
 #: application/models/Logbook_model.php:332
+#: application/models/Logbook_model.php:345
 msgid "Station not accessible"
 msgstr "台站不可用"
 
 #: application/models/Logbook_model.php:1389
+#: application/models/Logbook_model.php:1402
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
 #: application/models/Logbook_model.php:1394
+#: application/models/Logbook_model.php:1407
 msgid "No Call given"
 msgstr "未提供呼号"
 
 #: application/models/Logbook_model.php:1469
 #: application/models/Logbook_model.php:1673
+#: application/models/Logbook_model.php:1482
+#: application/models/Logbook_model.php:1686
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
 #: application/models/Logbook_model.php:4272
+#: application/models/Logbook_model.php:4622
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4199,6 +4214,7 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:4280
+#: application/models/Logbook_model.php:4630
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4208,12 +4224,14 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4646
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
 #: application/models/Logbook_model.php:4306
+#: application/models/Logbook_model.php:4656
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4221,6 +4239,7 @@ msgid ""
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
 #: application/models/Logbook_model.php:4313
+#: application/models/Logbook_model.php:4663
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4228,6 +4247,7 @@ msgid ""
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
 #: application/models/Logbook_model.php:4383
+#: application/models/Logbook_model.php:4733
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4235,6 +4255,7 @@ msgid ""
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
 #: application/models/Logbook_model.php:4390
+#: application/models/Logbook_model.php:4740
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4243,58 +4264,72 @@ msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
 #: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:5014
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4675
+#: application/models/Logbook_model.php:5025
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4736
+#: application/models/Logbook_model.php:5086
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5112
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5462
 msgid "Duplicate for"
 msgstr "内容重复"
 
 #: application/models/Logbook_model.php:5179
 #: application/models/Logbook_model.php:5279
+#: application/models/Logbook_model.php:5529
+#: application/models/Logbook_model.php:5629
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:5187
+#: application/models/Logbook_model.php:5537
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:5193
+#: application/models/Logbook_model.php:5543
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:5197
+#: application/models/Logbook_model.php:5547
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:5201
+#: application/models/Logbook_model.php:5551
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:5204
+#: application/models/Logbook_model.php:5554
 msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:5207
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5557
 msgid "unknown"
 msgstr "未知"
 
 #: application/models/Logbook_model.php:5282
+#: application/models/Logbook_model.php:5632
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
 #: application/models/Logbook_model.php:5285
+#: application/models/Logbook_model.php:5635
 msgid "QSO updated"
 msgstr "QSO已上传"
 
@@ -4310,6 +4345,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6041
 msgid "Bearing"
 msgstr "方位角"
 
@@ -5124,6 +5160,7 @@ msgstr "CBR 导入"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:12
+#: application/views/api/index.php:127
 msgid "Important"
 msgstr "重要"
 
@@ -5603,10 +5640,12 @@ msgid "Status"
 msgstr "状态"
 
 #: application/views/api/description.php:15
+#: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
 msgstr "编辑 API Key 说明信息"
 
 #: application/views/api/description.php:28
+#: application/views/api/components/edit_legacy.php:28
 msgid "Simple name to describe what you use this API for."
 msgstr "如用于描述用途的名字。"
 
@@ -5632,6 +5671,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/api/components/edit_legacy.php:33
 msgid "Save"
 msgstr "保存"
 
@@ -5667,12 +5707,14 @@ msgstr "与 Wavelog 配合使用的第三方软件的链接："
 msgid "More Tools"
 msgstr "更多工具"
 
-#: application/views/api/index.php:19
+#: application/views/api/index.php:19 application/views/api/index.php:125
 msgid "API URL"
 msgstr "API URL"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:36 application/views/debug/index.php:60
+#: application/views/api/components/new_token_modal.php:17
+#: application/views/api/index.php:125
 msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
 
@@ -5718,11 +5760,11 @@ msgstr "API Key"
 msgid "Description"
 msgstr "说明"
 
-#: application/views/api/index.php:32
+#: application/views/api/index.php:32 application/views/api/index.php:137
 msgid "Last Used"
 msgstr "上次使用"
 
-#: application/views/api/index.php:34
+#: application/views/api/index.php:34 application/views/api/index.php:140
 msgid "Created By"
 msgstr "创建者"
 
@@ -5742,7 +5784,7 @@ msgstr "权限"
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:598
-#: application/views/webadif/export.php:45
+#: application/views/webadif/export.php:45 application/views/api/index.php:142
 msgid "Actions"
 msgstr "操作"
 
@@ -5763,15 +5805,15 @@ msgstr "测试"
 msgid "Are you sure you want delete the API Key %s?"
 msgstr "你确定想要删除 API Key %s ？"
 
-#: application/views/api/index.php:98
+#: application/views/api/index.php:98 application/views/api/index.php:97
 msgid "You have no API Keys."
 msgstr "无 API Key。"
 
-#: application/views/api/index.php:105
+#: application/views/api/index.php:105 application/views/api/index.php:104
 msgid "Create a read & write key"
 msgstr "创建 读&写 权限的 API Key"
 
-#: application/views/api/index.php:111
+#: application/views/api/index.php:111 application/views/api/index.php:110
 msgid "Create a read-only key"
 msgstr "创建 只读 权限的 API Key"
 
@@ -7277,7 +7319,7 @@ msgstr "已删除的IOTA"
 #: application/views/user/edit.php:378 application/views/user/edit.php:402
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:232
-#: application/views/view_log/qso.php:629
+#: application/views/view_log/qso.php:629 application/views/api/index.php:135
 msgid "Name"
 msgstr "名称"
 
@@ -9385,6 +9427,9 @@ msgstr "创建频段"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/api/components/create_token_modal.php:6
+#: application/views/api/components/new_token_modal.php:7
+#: application/views/api/components/new_token_modal.php:23
 msgid "Close"
 msgstr "关闭"
 
@@ -9653,6 +9698,7 @@ msgstr "是的，切换！"
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/api/components/create_token_modal.php:66
 msgid "Cancel"
 msgstr "取消"
 
@@ -21254,6 +21300,8 @@ msgstr "上次出现"
 
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
+#: application/views/api/components/create_token_modal.php:23
+#: application/views/api/index.php:154 application/views/api/index.php:157
 msgid "Never"
 msgstr "从不"
 
@@ -22017,6 +22065,217 @@ msgstr ""
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
+msgstr ""
+
+#: application/views/api/index.php:159
+msgid "Expired"
+msgstr "过期"
+
+#: application/controllers/Api_token.php:37
+msgid "Please provide a token name"
+msgstr ""
+
+#: application/controllers/Api_token.php:46
+msgid "Please select at least one scope"
+msgstr ""
+
+#: application/controllers/Api_token.php:68
+msgid "API Token generated"
+msgstr ""
+
+#: application/controllers/Api_token.php:70
+msgid "API Token could not be generated"
+msgstr ""
+
+#: application/controllers/Api_token.php:90
+msgid "Invalid API Token"
+msgstr ""
+
+#: application/controllers/Api_token.php:97
+msgid "API Token has been deleted"
+msgstr ""
+
+#: application/libraries/api_v2/Club_resource.php:27
+msgid "Read club members"
+msgstr ""
+
+#: application/libraries/api_v2/Lookup_resource.php:44
+msgid "Look up callsigns and grids"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:48
+msgid "Read QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:49
+msgid "Create and update QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:50
+msgid "Delete QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:30
+msgid "Read radios"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:31
+msgid "Create and update radios"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:32
+msgid "Delete radios"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:45
+msgid "Read station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:46
+msgid "Create and update station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:47
+msgid "Delete station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Statistic_resource.php:52
+msgid "Read statistics"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:5
+#: application/views/api/index.php:189
+msgid "Create a new API Token"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:10
+msgid ""
+"Create a token with granular permissions (scopes). The token is shown only "
+"once when it is created, so copy it right away."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:13
+msgid "Token Name"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:14
+msgid "e.g. My logging tool"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:15
+msgid "A name to help you recognise this token later."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:18
+msgid "Expiration"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:20
+msgid "30 days"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:21
+msgid "90 days"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:22
+msgid "1 year"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:25
+msgid "When the token should stop working."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:27
+msgid ""
+"A token that never expires stays valid until you delete it manually. This is "
+"possible, but not recommended for security reasons."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:33
+#: application/views/api/index.php:136
+msgid "Scopes"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:34
+msgid "Select which parts of the API v2 this token may access."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:62
+msgid "Please select at least one scope."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:68
+msgid "Create Token"
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:6
+msgid "New API Token"
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:12
+msgid "Copy this token now. For security reasons it will not be shown again."
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:14
+msgid "Your API Token"
+msgstr ""
+
+#: application/views/api/index.php:8
+msgid "Legacy API Keys (API v1)"
+msgstr ""
+
+#: application/views/api/index.php:11
+msgid ""
+"New integrations should use the API v2 tokens below, if the third party "
+"system supports it."
+msgstr ""
+
+#: application/views/api/index.php:13
+msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
+msgstr ""
+
+#: application/views/api/index.php:79
+msgid "<noname>"
+msgstr ""
+
+#: application/views/api/index.php:120
+msgid "API Tokens (API v2)"
+msgstr ""
+
+#: application/views/api/index.php:123
+msgid ""
+"API Tokens grant access to the REST API v2 with granular permissions "
+"(scopes). The token is shown only once when it is created, so copy it right "
+"away."
+msgstr ""
+
+#: application/views/api/index.php:124
+#, php-format
+msgid "The API v2 documentation can be found %shere%s."
+msgstr ""
+
+#: application/views/api/index.php:125
+msgid "The API v2 base URL for this Wavelog instance is"
+msgstr ""
+
+#: application/views/api/index.php:127
+msgid ""
+"On Clubstations the API Tokens are personal and not shared. Clubstation "
+"users can only see their own tokens."
+msgstr ""
+
+#: application/views/api/index.php:138
+msgid "Expires"
+msgstr ""
+
+#: application/views/api/index.php:169
+#, php-format
+msgid "Are you sure you want delete the API Token %s?"
+msgstr ""
+
+#: application/views/api/index.php:184
+msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr ""
 
 #~ msgid "Invalid logging token."
@@ -22956,9 +23215,6 @@ msgstr ""
 #~ msgctxt "LoTW Warning"
 #~ msgid "At least one of your %sLoTW certificates%s is about to expire!"
 #~ msgstr "你的 %s LoTW 证书 %s 至少有一个快过期了！"
-
-#~ msgid "Expired"
-#~ msgstr "过期"
 
 #~ msgid "Expiring"
 #~ msgstr "即将到期"

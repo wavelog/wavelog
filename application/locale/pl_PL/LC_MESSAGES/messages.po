@@ -239,7 +239,10 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:51
+#: application/models/Club_model.php:51 application/controllers/Api.php:80
+#: application/controllers/Api.php:119 application/controllers/Api.php:153
+#: application/controllers/Api_token.php:33
+#: application/controllers/Api_token.php:86
 msgid "You're not allowed to do that!"
 msgstr "Nie wolno tego robić!"
 
@@ -377,49 +380,53 @@ msgstr "Importowanie POTA"
 msgid "POTA Data Imported"
 msgstr "Zaimportowano dane POTA"
 
-#: application/controllers/Api.php:40
+#: application/controllers/Api.php:40 application/controllers/Api.php:45
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:83 application/views/api/description.php:26
+#: application/controllers/Api.php:88
+#: application/views/api/components/edit_legacy.php:26
 msgid "API Description"
 msgstr "Opis API"
 
-#: application/controllers/Api.php:84
+#: application/controllers/Api.php:84 application/controllers/Api.php:89
 msgid "API Key is required. Do not change this field"
 msgstr "Klucz API jest wymagany. Nie należy zmieniać tego pola"
 
-#: application/controllers/Api.php:89
+#: application/controllers/Api.php:89 application/controllers/Api.php:94
 msgid "Edit API Description"
 msgstr "Edytuj opis API"
 
-#: application/controllers/Api.php:99
+#: application/controllers/Api.php:99 application/controllers/Api.php:104
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "Opis klucza API %s został zaktualizowany."
 
 #: application/controllers/Api.php:109 application/controllers/Api.php:143
-#: application/controllers/Qso.php:609
+#: application/controllers/Qso.php:609 application/controllers/Api.php:114
+#: application/controllers/Api.php:148 application/controllers/Api_token.php:28
+#: application/controllers/Api_token.php:81
 msgid "Invalid request method"
 msgstr "Nieprawidłowa metoda żądania"
 
-#: application/controllers/Api.php:119
+#: application/controllers/Api.php:119 application/controllers/Api.php:124
 msgid "Invalid API rights"
 msgstr "Nieprawidłowe uprawnienia API"
 
-#: application/controllers/Api.php:133
+#: application/controllers/Api.php:133 application/controllers/Api.php:138
 msgid "API Key generated"
 msgstr "Wygenerowano klucz API"
 
-#: application/controllers/Api.php:135
+#: application/controllers/Api.php:135 application/controllers/Api.php:140
 msgid "API Key could not be generated"
 msgstr "Nie udało się wygenerować klucza API"
 
-#: application/controllers/Api.php:152
+#: application/controllers/Api.php:152 application/controllers/Api.php:157
 msgid "Invalid API Key"
 msgstr "Nieprawidłowy klucz API"
 
-#: application/controllers/Api.php:161
+#: application/controllers/Api.php:161 application/controllers/Api.php:166
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "Klucz API %s został usunięty"
@@ -2588,7 +2595,8 @@ msgstr ""
 #: application/models/Logbook_model.php:72
 #: application/models/Logbook_model.php:1399
 #: application/views/contesting/logger/components/qso-form.php:43
-#: application/views/qso/index.php:39
+#: application/views/qso/index.php:39 application/models/Logbook_model.php:85
+#: application/models/Logbook_model.php:1412
 msgid "Invalid callsign"
 msgstr "Nieprawidłowy znak"
 
@@ -3069,7 +3077,8 @@ msgstr "Edytuj"
 #: application/views/stationsetup/stationsetup.php:227
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:730
-#: application/views/view_log/qso.php:738
+#: application/views/view_log/qso.php:738 application/views/api/index.php:84
+#: application/views/api/index.php:174
 msgid "Delete"
 msgstr "Usuń"
 
@@ -4190,19 +4199,24 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Nie znaleziono profili stacji z danymi logowania HRDlog."
 
 #: application/models/Logbook_model.php:332
+#: application/models/Logbook_model.php:345
 msgid "Station not accessible"
 msgstr "Stacja niedostępna"
 
 #: application/models/Logbook_model.php:1389
+#: application/models/Logbook_model.php:1402
 msgid "Station ID not allowed"
 msgstr "Numer identyfikacyjny stacji nie jest dozwolony"
 
 #: application/models/Logbook_model.php:1394
+#: application/models/Logbook_model.php:1407
 msgid "No Call given"
 msgstr "Nie przyznano znaku"
 
 #: application/models/Logbook_model.php:1469
 #: application/models/Logbook_model.php:1673
+#: application/models/Logbook_model.php:1482
+#: application/models/Logbook_model.php:1686
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musi być numeryczne"
 
@@ -4222,6 +4236,7 @@ msgstr ""
 "POMINIĘTO"
 
 #: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4646
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4257,6 +4272,7 @@ msgstr ""
 "zaimportowane."
 
 #: application/models/Logbook_model.php:4390
+#: application/models/Logbook_model.php:4740
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4266,58 +4282,72 @@ msgstr ""
 "zaimportowane, ponieważ jest ono nieprawidłowe"
 
 #: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:5014
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate jest nieprawidłowa (RRRRMMDD)"
 
 #: application/models/Logbook_model.php:4675
+#: application/models/Logbook_model.php:5025
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate jest nieprawidłowa (RRRRMMDD)"
 
 #: application/models/Logbook_model.php:4736
+#: application/models/Logbook_model.php:5086
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date jest nieprawidłowy (RRRRMMDD)"
 
 #: application/models/Logbook_model.php:5112
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5462
 msgid "Duplicate for"
 msgstr "Duplikat dla"
 
 #: application/models/Logbook_model.php:5179
 #: application/models/Logbook_model.php:5279
+#: application/models/Logbook_model.php:5529
+#: application/models/Logbook_model.php:5629
 msgid "QSO could not be matched"
 msgstr "QSO nie mogło zostać dopasowane"
 
 #: application/models/Logbook_model.php:5187
+#: application/models/Logbook_model.php:5537
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potwierdzone przez LoTW/ClubLog/eQSL/zawody"
 
 #: application/models/Logbook_model.php:5193
+#: application/models/Logbook_model.php:5543
 msgid "confirmed by award manager"
 msgstr "potwierdzone przez award managera"
 
 #: application/models/Logbook_model.php:5197
+#: application/models/Logbook_model.php:5547
 msgid "confirmed by cross-check of DCL data"
 msgstr "potwierdzone przez weryfikację danych DCL"
 
 #: application/models/Logbook_model.php:5201
+#: application/models/Logbook_model.php:5551
 msgid "confirmation pending"
 msgstr "oczekiwanie na potwierdzenie"
 
 #: application/models/Logbook_model.php:5204
+#: application/models/Logbook_model.php:5554
 msgid "unconfirmed"
 msgstr "niepotwierdzone"
 
 #: application/models/Logbook_model.php:5207
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5557
 msgid "unknown"
 msgstr "nieznany"
 
 #: application/models/Logbook_model.php:5282
+#: application/models/Logbook_model.php:5632
 msgid "POTA reference already in log"
 msgstr "Referencja POTA już znajduje się w dzienniku"
 
 #: application/models/Logbook_model.php:5285
+#: application/models/Logbook_model.php:5635
 msgid "QSO updated"
 msgstr "QSO zaktualizowane"
 
@@ -4333,6 +4363,7 @@ msgstr "QSO zaktualizowane"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6041
 msgid "Bearing"
 msgstr "Kierunek"
 
@@ -5147,6 +5178,7 @@ msgstr "Import CBR"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:12
+#: application/views/api/index.php:127
 msgid "Important"
 msgstr "Ważne"
 
@@ -5667,10 +5699,12 @@ msgid "Status"
 msgstr "Status"
 
 #: application/views/api/description.php:15
+#: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
 msgstr "Edycja opisu klucza API"
 
 #: application/views/api/description.php:28
+#: application/views/api/components/edit_legacy.php:28
 msgid "Simple name to describe what you use this API for."
 msgstr "Prosta nazwa opisująca do czego używany jest ten klucz API."
 
@@ -5696,6 +5730,7 @@ msgstr "Prosta nazwa opisująca do czego używany jest ten klucz API."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/api/components/edit_legacy.php:33
 msgid "Save"
 msgstr "Zapisz"
 
@@ -5733,12 +5768,14 @@ msgstr "Odnośniki do oprogramowania firm trzecich współpracującego z Wavelog
 msgid "More Tools"
 msgstr "Więcej narzędzi"
 
-#: application/views/api/index.php:19
+#: application/views/api/index.php:19 application/views/api/index.php:125
 msgid "API URL"
 msgstr "URL API"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:36 application/views/debug/index.php:60
+#: application/views/api/components/new_token_modal.php:17
+#: application/views/api/index.php:125
 msgid "Copy to clipboard"
 msgstr "Kopiuj do schowka"
 
@@ -5784,11 +5821,11 @@ msgstr "Klucz API"
 msgid "Description"
 msgstr "Opis"
 
-#: application/views/api/index.php:32
+#: application/views/api/index.php:32 application/views/api/index.php:137
 msgid "Last Used"
 msgstr "Ostatnio użyte"
 
-#: application/views/api/index.php:34
+#: application/views/api/index.php:34 application/views/api/index.php:140
 msgid "Created By"
 msgstr "Utworzone przez"
 
@@ -5808,7 +5845,7 @@ msgstr "Uprawnienia"
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:598
-#: application/views/webadif/export.php:45
+#: application/views/webadif/export.php:45 application/views/api/index.php:142
 msgid "Actions"
 msgstr "Akcje"
 
@@ -5829,15 +5866,15 @@ msgstr "Test"
 msgid "Are you sure you want delete the API Key %s?"
 msgstr "Czy na pewno usunąć klucz API %s?"
 
-#: application/views/api/index.php:98
+#: application/views/api/index.php:98 application/views/api/index.php:97
 msgid "You have no API Keys."
 msgstr "Nie ma kluczy API."
 
-#: application/views/api/index.php:105
+#: application/views/api/index.php:105 application/views/api/index.php:104
 msgid "Create a read & write key"
 msgstr "Utwórz klucz do odczytu i zapisu"
 
-#: application/views/api/index.php:111
+#: application/views/api/index.php:111 application/views/api/index.php:110
 msgid "Create a read-only key"
 msgstr "Utwórz klucz tylko do odczytu"
 
@@ -7406,7 +7443,7 @@ msgstr "Usunięte IOTA"
 #: application/views/user/edit.php:378 application/views/user/edit.php:402
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:232
-#: application/views/view_log/qso.php:629
+#: application/views/view_log/qso.php:629 application/views/api/index.php:135
 msgid "Name"
 msgstr "Nazwa"
 
@@ -8337,8 +8374,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pola brane pod uwagę przy tej nagrodzie: DXCC (musi być jednym z: Chiny/318, "
-"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa "
-"Scarborough/506) oraz ważny stan (ADIF: DXCC i STATE)"
+"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa Scarborough/"
+"506) oraz ważny stan (ADIF: DXCC i STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -9601,6 +9638,9 @@ msgstr "Dodaj pasmo"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/api/components/create_token_modal.php:6
+#: application/views/api/components/new_token_modal.php:7
+#: application/views/api/components/new_token_modal.php:23
 msgid "Close"
 msgstr "Zamknij"
 
@@ -9905,6 +9945,7 @@ msgstr "Tak, przełącz!"
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/api/components/create_token_modal.php:66
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -11737,8 +11778,8 @@ msgid ""
 "\"Import Selected\"."
 msgstr ""
 "W dzienniku znaleziono poniższe grupy zawodów, które nie są jeszcze "
-"powiązane z sesją zawodów. Zaznacz te, które chcesz zaimportować, i kliknij „"
-"Importuj zaznaczone”."
+"powiązane z sesją zawodów. Zaznacz te, które chcesz zaimportować, i kliknij "
+"„Importuj zaznaczone”."
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "How grouping works:"
@@ -12884,8 +12925,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Należy przejść do folderu application/config i porównać plik config.sample."
-"php z plikiem config.php"
+"Należy przejść do folderu application/config i porównać plik "
+"config.sample.php z plikiem config.php"
 
 #: application/views/debug/index.php:250
 #, php-format
@@ -21958,6 +21999,8 @@ msgstr "Ostatnio widziany"
 
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
+#: application/views/api/components/create_token_modal.php:23
+#: application/views/api/index.php:154 application/views/api/index.php:157
 msgid "Never"
 msgstr "Nigdy"
 
@@ -22670,6 +22713,217 @@ msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
 "Nie znaleziono problemów ze strefami. Wszystkie QSO mają poprawne informacje "
 "o strefach."
+
+#: application/views/api/index.php:159
+msgid "Expired"
+msgstr "wygaśnięty"
+
+#: application/controllers/Api_token.php:37
+msgid "Please provide a token name"
+msgstr ""
+
+#: application/controllers/Api_token.php:46
+msgid "Please select at least one scope"
+msgstr ""
+
+#: application/controllers/Api_token.php:68
+msgid "API Token generated"
+msgstr ""
+
+#: application/controllers/Api_token.php:70
+msgid "API Token could not be generated"
+msgstr ""
+
+#: application/controllers/Api_token.php:90
+msgid "Invalid API Token"
+msgstr ""
+
+#: application/controllers/Api_token.php:97
+msgid "API Token has been deleted"
+msgstr ""
+
+#: application/libraries/api_v2/Club_resource.php:27
+msgid "Read club members"
+msgstr ""
+
+#: application/libraries/api_v2/Lookup_resource.php:44
+msgid "Look up callsigns and grids"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:48
+msgid "Read QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:49
+msgid "Create and update QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Qso_resource.php:50
+msgid "Delete QSOs"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:30
+msgid "Read radios"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:31
+msgid "Create and update radios"
+msgstr ""
+
+#: application/libraries/api_v2/Radio_resource.php:32
+msgid "Delete radios"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:45
+msgid "Read station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:46
+msgid "Create and update station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Station_resource.php:47
+msgid "Delete station locations"
+msgstr ""
+
+#: application/libraries/api_v2/Statistic_resource.php:52
+msgid "Read statistics"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:5
+#: application/views/api/index.php:189
+msgid "Create a new API Token"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:10
+msgid ""
+"Create a token with granular permissions (scopes). The token is shown only "
+"once when it is created, so copy it right away."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:13
+msgid "Token Name"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:14
+msgid "e.g. My logging tool"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:15
+msgid "A name to help you recognise this token later."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:18
+msgid "Expiration"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:20
+msgid "30 days"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:21
+msgid "90 days"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:22
+msgid "1 year"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:25
+msgid "When the token should stop working."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:27
+msgid ""
+"A token that never expires stays valid until you delete it manually. This is "
+"possible, but not recommended for security reasons."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:33
+#: application/views/api/index.php:136
+msgid "Scopes"
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:34
+msgid "Select which parts of the API v2 this token may access."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:62
+msgid "Please select at least one scope."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:68
+msgid "Create Token"
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:6
+msgid "New API Token"
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:12
+msgid "Copy this token now. For security reasons it will not be shown again."
+msgstr ""
+
+#: application/views/api/components/new_token_modal.php:14
+msgid "Your API Token"
+msgstr ""
+
+#: application/views/api/index.php:8
+msgid "Legacy API Keys (API v1)"
+msgstr ""
+
+#: application/views/api/index.php:11
+msgid ""
+"New integrations should use the API v2 tokens below, if the third party "
+"system supports it."
+msgstr ""
+
+#: application/views/api/index.php:13
+msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
+msgstr ""
+
+#: application/views/api/index.php:79
+msgid "<noname>"
+msgstr ""
+
+#: application/views/api/index.php:120
+msgid "API Tokens (API v2)"
+msgstr ""
+
+#: application/views/api/index.php:123
+msgid ""
+"API Tokens grant access to the REST API v2 with granular permissions "
+"(scopes). The token is shown only once when it is created, so copy it right "
+"away."
+msgstr ""
+
+#: application/views/api/index.php:124
+#, php-format
+msgid "The API v2 documentation can be found %shere%s."
+msgstr ""
+
+#: application/views/api/index.php:125
+msgid "The API v2 base URL for this Wavelog instance is"
+msgstr ""
+
+#: application/views/api/index.php:127
+msgid ""
+"On Clubstations the API Tokens are personal and not shared. Clubstation "
+"users can only see their own tokens."
+msgstr ""
+
+#: application/views/api/index.php:138
+msgid "Expires"
+msgstr ""
+
+#: application/views/api/index.php:169
+#, php-format
+msgid "Are you sure you want delete the API Token %s?"
+msgstr ""
+
+#: application/views/api/index.php:184
+msgid "You have no API Tokens yet. Click on the button below to create one."
+msgstr ""
 
 #~ msgid "Calls tested:"
 #~ msgstr "Testowane znaki wywoławcze:"
@@ -23607,9 +23861,6 @@ msgstr ""
 #~ msgid "At least one of your %sLoTW certificates%s is about to expire!"
 #~ msgstr ""
 #~ "Przynajmniej jeden z twoich %scertyfikatów LoTW%s niedługo straci ważność!"
-
-#~ msgid "Expired"
-#~ msgstr "wygaśnięty"
 
 #~ msgid "Expiring"
 #~ msgstr "Wygasa"
