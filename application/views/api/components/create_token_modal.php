@@ -29,37 +29,55 @@
 						</div>
 					</div>
 					<hr class="my-4">
-					<div class="mb-2">
-						<label class="form-label"><?= __("Scopes"); ?> <span class="text-danger">*</span></label>
-						<small class="text-muted d-block mb-2"><?= __("Select which parts of the API v2 this token may access."); ?></small>
-						<?php
-							// Group scopes by their resource prefix ("qso:read" -> "qso")
-							// so read/write pairs render indented under one heading.
-							$scope_groups = [];
-							foreach ($token_scopes as $scope => $label) {
-								$scope_groups[strtok($scope, ':')][$scope] = $label;
-							}
-						?>
-						<?php foreach ($scope_groups as $group => $scopes) { ?>
-							<div class="mb-2">
-								<!-- Group toggle: pure JS convenience, has no name and never submits -->
-								<div class="form-check">
-									<input class="form-check-input scope-group-toggle" type="checkbox" data-group="<?php echo $group; ?>" id="scopegroup_<?php echo $group; ?>">
-									<label class="form-check-label" for="scopegroup_<?php echo $group; ?>">
-										<strong><?php echo htmlspecialchars($group, ENT_QUOTES, 'UTF-8'); ?></strong>
-									</label>
-								</div>
-								<?php foreach ($scopes as $scope => $label) { ?>
-									<div class="form-check ms-4">
-										<input class="form-check-input scope-checkbox" type="checkbox" name="scopes[]" value="<?php echo $scope; ?>" id="scope_<?php echo str_replace(':', '_', $scope); ?>">
-										<label class="form-check-label" for="scope_<?php echo str_replace(':', '_', $scope); ?>">
-											<code><?php echo $scope; ?></code> &mdash; <?php echo $label; ?>
+					<div class="row g-4 mb-2">
+						<div class="col-md-7">
+							<label class="form-label"><?= __("Scopes"); ?> <span class="text-danger">*</span></label>
+							<small class="text-muted d-block mb-2"><?= __("Select which parts of the API v2 this token may access."); ?></small>
+							<?php
+								// Group scopes by their resource prefix ("qso:read" -> "qso")
+								// so read/write pairs render indented under one heading.
+								$scope_groups = [];
+								foreach ($token_scopes as $scope => $label) {
+									$scope_groups[strtok($scope, ':')][$scope] = $label;
+								}
+							?>
+							<?php foreach ($scope_groups as $group => $scopes) { ?>
+								<div class="mb-2">
+									<!-- Group toggle: pure JS convenience, has no name and never submits -->
+									<div class="form-check">
+										<input class="form-check-input scope-group-toggle" type="checkbox" data-group="<?php echo $group; ?>" id="scopegroup_<?php echo $group; ?>">
+										<label class="form-check-label" for="scopegroup_<?php echo $group; ?>">
+											<strong><?php echo htmlspecialchars($group, ENT_QUOTES, 'UTF-8'); ?></strong>
 										</label>
 									</div>
-								<?php } ?>
+									<?php foreach ($scopes as $scope => $label) { ?>
+										<div class="form-check ms-4">
+											<input class="form-check-input scope-checkbox" type="checkbox" name="scopes[]" value="<?php echo $scope; ?>" id="scope_<?php echo str_replace(':', '_', $scope); ?>">
+											<label class="form-check-label" for="scope_<?php echo str_replace(':', '_', $scope); ?>">
+												<code><?php echo $scope; ?></code> &mdash; <?php echo $label; ?>
+											</label>
+										</div>
+									<?php } ?>
+								</div>
+							<?php } ?>
+							<div id="scopes-error" class="text-danger small mt-1" style="display:none;"><?= __("Please select at least one scope."); ?></div>
+						</div>
+						<?php if (!empty($token_presets)) { ?>
+							<div class="col-md-5">
+								<label class="form-label"><?= __("Presets"); ?></label>
+								<small class="text-muted d-block mb-2"><?= __("Don't know which scopes you need? Pick the tool you want to use and we select the scopes for you."); ?></small>
+								<div class="d-grid gap-2">
+									<?php foreach ($token_presets as $key => $preset) { ?>
+										<!-- Preset: only ticks checkboxes, the form still submits the individual scopes -->
+										<button type="button" class="btn <?php echo html_escape($preset['class']); ?> text-start scope-preset" id="preset_<?php echo html_escape($key); ?>" data-scopes="<?php echo html_escape(implode(',', $preset['scopes'])); ?>">
+											<i class="<?php echo html_escape($preset['icon']); ?> me-2"></i><strong><?php echo html_escape($preset['name']); ?></strong>
+											<small class="d-block mt-1"><?php echo html_escape($preset['description']); ?></small>
+										</button>
+									<?php } ?>
+								</div>
+								<small class="text-muted d-block mt-2"><?= __("A preset replaces your current selection. You can still adjust the scopes afterwards."); ?></small>
 							</div>
 						<?php } ?>
-						<div id="scopes-error" class="text-danger small mt-1" style="display:none;"><?= __("Please select at least one scope."); ?></div>
 					</div>
 				</div>
 				<div class="modal-footer border-top">
