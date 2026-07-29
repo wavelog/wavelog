@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-07-29 08:13+0000\n"
-"PO-Revision-Date: 2026-07-29 08:28+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"PO-Revision-Date: 2026-07-29 09:23+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -4169,7 +4169,7 @@ msgstr "Lese Clubmitglieder"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "Rufzeichen und Locator suchen"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
@@ -4177,39 +4177,39 @@ msgstr "Lese QSOs"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "QSOs erstellen und aktualisieren"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "QSOs löschen"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "Funkgeräte abfragen"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "Erstellen und aktualisieren von Funkgeräten"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "Funkgeräte löschen"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "Stationsstandorte abfragen"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "Stationsstandorte erstellen und aktualisieren"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "Stationsstandorte löschen"
 
 #: application/libraries/api_v2/Statistic_resource.php:52
 msgid "Read statistics"
-msgstr ""
+msgstr "Statistiken abfragen"
 
 #: application/models/Club_model.php:185
 msgid "Invalid Permission Level!"
@@ -5784,7 +5784,7 @@ msgstr "Status"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "Einen neuen API-Token erstellen"
 
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5813,34 +5813,36 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"Erstelle einen Token mit granulären Berechtigungen (Scopes). Der Token wird "
+"nur einmal angezeigt, wenn er erstellt wird, also kopiere ihn sofort."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "Token Name"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "z.B. Mein Logging-Tool"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "Ein Name, der dir hilft, diesen Token später wiederzuerkennen."
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "Ablaufdatum"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30 Tage"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90 Tage"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1 Jahr"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -5851,26 +5853,28 @@ msgstr "Nie"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "Wann das Token aufhören sollte zu funktionieren."
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"Ein Token, das nie abläuft, bleibt gültig, bis du ihn manuell löschst. Das "
+"ist möglich, aber aus Sicherheitsgründen nicht empfohlen."
 
 #: application/views/api/components/create_token_modal.php:33
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "Scopes"
 
 #: application/views/api/components/create_token_modal.php:34
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "Wähle aus, auf welche Teile der API v2 dieser Token zugreifen darf."
 
 #: application/views/api/components/create_token_modal.php:62
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "Bitte wähle mindestens einen Scope aus."
 
 #: application/views/api/components/create_token_modal.php:66
 #: application/views/club/clubswitch_modal.php:15
@@ -5896,7 +5900,7 @@ msgstr "Abbrechen"
 
 #: application/views/api/components/create_token_modal.php:68
 msgid "Create Token"
-msgstr ""
+msgstr "Token erstellen"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -5933,15 +5937,17 @@ msgstr "Speichern"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "Neuen API-Token"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
 msgstr ""
+"Kopiere diesen Token jetzt. Aus Sicherheitsgründen wird er nicht erneut "
+"angezeigt."
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "Dein API-Token"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -5952,13 +5958,15 @@ msgstr "In die Zwischenablage kopieren"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "Legacy API Schlüssel (API v1)"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"Neue Integrationen sollten die unten stehenden API v2 Tokens verwenden, "
+"sofern das Drittsystem dies unterstützt."
 
 #: application/views/api/index.php:11
 msgid ""
@@ -5985,6 +5993,8 @@ msgstr ""
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
 msgstr ""
+"Links zu Software von Drittanbietern, die mit der Wavelog API v1 "
+"funktioniert:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6080,7 +6090,7 @@ msgstr "Test"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6101,7 +6111,7 @@ msgstr "Erstelle einen Nur-Lesen-Schlüssel"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "API-Tokens (API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6109,21 +6119,26 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"API-Tokens gewähren Zugriff auf die REST-API v2 mit detaillierten "
+"Berechtigungen (Scopes). Der Token wird nur einmal angezeigt, wenn er "
+"erstellt wird, also sofort kopieren."
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "Die API v2-Dokumentation ist %shier%s zu finden."
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "Die Basis-URL der API v2 für diese Wavelog-Instanz ist"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"Bei Clubstationen sind die API-Tokens persönlich und werden nicht geteilt. "
+"Benutzer von Clubstationen können nur ihre eigenen Tokens sehen."
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6158,7 +6173,7 @@ msgstr "Name"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "Läuft ab"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6167,11 +6182,13 @@ msgstr "Abgelaufen"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "Bist du sicher, dass du den API-Token %s löschen möchtest?"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr ""
+"Du hast noch keine API-Tokens. Klick auf den untenstehenden Button, um einen "
+"zu erstellen."
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
