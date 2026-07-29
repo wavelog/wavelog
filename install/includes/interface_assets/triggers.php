@@ -88,6 +88,7 @@ if ($_POST['run_database_tables'] ?? false == true) {
 
 if ($_POST['run_cron_token'] ?? false == true) {
 	echo $_SESSION['cron_auth_token'] ?? '';
+	unset($_SESSION['cron_auth_token']);
 	exit;
 }
 
