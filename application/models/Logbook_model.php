@@ -10,6 +10,19 @@ class Logbook_model extends CI_Model {
 	private $spot_status_cache = []; // In-memory cache for DX cluster spot statuses
 	private $dxcc_object;
 
+	// QSL confirmation sources, mapping the public API type name to its received
+	// flag and the date that confirmation arrived. Single source of truth for the
+	// API v2 QSO filter and the confirmation statistics.
+	//
+	// HRDLog is deliberately absent: it is upload-only and has no received column.
+	const CONFIRMATION_COLUMNS = [
+		'lotw'    => ['rcvd' => 'COL_LOTW_QSL_RCVD',                 'date' => 'COL_LOTW_QSLRDATE'],
+		'eqsl'    => ['rcvd' => 'COL_EQSL_QSL_RCVD',                 'date' => 'COL_EQSL_QSLRDATE'],
+		'qsl'     => ['rcvd' => 'COL_QSL_RCVD',                      'date' => 'COL_QSLRDATE'],
+		'qrz'     => ['rcvd' => 'COL_QRZCOM_QSO_DOWNLOAD_STATUS',    'date' => 'COL_QRZCOM_QSO_DOWNLOAD_DATE'],
+		'clublog' => ['rcvd' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',   'date' => 'COL_CLUBLOG_QSO_DOWNLOAD_DATE'],
+	];
+
 	public function __construct() {
 		$this->oop_populate_modes();
 		$this->load->Model('Modes');
@@ -1787,6 +1800,41 @@ class Logbook_model extends CI_Model {
 	}
 
 	/*
+	 * Update a QSO with a prebuilt COL_* data array (REST API edit path).
+	 *
+	 * Unlike edit() above this reads nothing from POST or the session, so it
+	 * works for sessionless contexts. Ownership must be verified by the caller
+	 * via check_qso_is_accessible() beforehand.
+	 */
+	function update_qso_columns($id, $data) {
+		$data = $this->sanitize_utf8($data);
+
+		// Flag the QSO as modified for HRDLog re-upload, same as edit() does.
+		// Fall back to the QSO's current station when the update doesn't move it.
+		if (!isset($data['station_id'])) {
+			$this->db->select('station_id');
+			$this->db->where('COL_PRIMARY_KEY', $id);
+			$row = $this->db->get($this->config->item('table_name'))->row();
+			$station_id = $row->station_id ?? null;
+		} else {
+			$station_id = $data['station_id'];
+		}
+		if ($station_id !== null && $this->exists_hrdlog_credentials($station_id)) {
+			$data['COL_HRDLOG_QSO_UPLOAD_STATUS'] = 'M';
+		}
+
+		$this->db->where('COL_PRIMARY_KEY', $id);
+		$this->db->update($this->config->item('table_name'), $data);
+
+		// Invalidate DXCluster cache for this callsign
+		if (isset($data['COL_CALL'])) {
+			$this->dxclustercache->invalidate_for_callsign($data['COL_CALL']);
+		}
+
+		return true;
+	}
+
+	/*
 	 * Whether $call is a syntactically valid amateur radio callsign.
 	 * This is rather a soft check to catch malicious input, not a full validation of the callsign. 
 	 * (e.g. dashes are allowed, even though they are not valid, but they are used by the people and
@@ -1824,7 +1872,10 @@ class Logbook_model extends CI_Model {
   * Usage: Callsign lookup data for API/callsign_lookup
   *
   */
-	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode) {
+	// $operator: optional COL_OPERATOR restriction. Used by the REST API v2 so a
+	// clubstation member below officer level cannot read back data from a QSO
+	// another operator made. Defaults to '' = no restriction (v1 behaviour).
+	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode, $operator = '') {
 		$binding=[];
 		$qsl_where = $this->qsl_default_where($user_default_confirmation);
 		$band_addon='COL_BAND=?';
@@ -1839,7 +1890,7 @@ class Logbook_model extends CI_Model {
 			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
 			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
 		FROM ".$this->config->item('table_name')." WHERE ";
-		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ? ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?";
 		$binding[]=$band;
 		$binding[]=$band;
 		$binding[]=$mode;
@@ -1847,6 +1898,13 @@ class Logbook_model extends CI_Model {
 		$binding[]=$band;
 		$binding[]=$mode;
 		$binding[]=$callsign;
+
+		if ($operator !== null && $operator !== '') {
+			$sql.=" AND upper(COL_OPERATOR) = ?";
+			$binding[]=strtoupper($operator);
+		}
+
+		$sql.=" ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
 
 		$query = $this->db->query($sql, $binding);
 		$data = [];
@@ -2235,6 +2293,224 @@ class Logbook_model extends CI_Model {
 		};
 	}
 
+	// Shared WHERE builder for the REST API v2 QSO endpoint. Produces one filter
+	// clause used by BOTH get_qsos_filtered() (the paginated fetch) and
+	// count_qsos_filtered() (the total), so the list and its `total` can never
+	// diverge. Every column is referenced through the `qsos` alias. Bindings are
+	// appended in placeholder order.
+	//
+	// $station_ids  int[]   station-location ids (already ownership-checked)
+	// $band         string  '' for none, 'SAT', or a COL_BAND value
+	// $mode         string  '' for none, else a COL_MODE or COL_SUBMODE value
+	// $qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
+	// $since_id     int     0 for none, else COL_PRIMARY_KEY > $since_id
+	// $qso_since    string  '' for none, else 'Y-m-d' floor on COL_TIME_ON
+	// $operator     string  '' for none, else restrict to that COL_OPERATOR
+	private function _qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $qso_since, &$bindings, $operator = '') {
+		$where = " WHERE qsos.`station_id` IN ?";
+		$bindings[] = $station_ids;
+
+		// Clubstation members below officer level only ever see their own QSOs.
+		// Compared uppercased, the same way the ADIF export filters it.
+		if ($operator !== null && $operator !== '') {
+			$where .= " AND upper(qsos.`COL_OPERATOR`) = ?";
+			$bindings[] = strtoupper($operator);
+		}
+
+		if ((int) $since_id > 0) {
+			$where .= " AND qsos.`COL_PRIMARY_KEY` > ?";
+			$bindings[] = (int) $since_id;
+		}
+
+		// Date-only floor on the QSO time, inclusive of the whole given day.
+		if ($qso_since !== null && $qso_since !== '') {
+			$where .= " AND qsos.`COL_TIME_ON` >= ?";
+			$bindings[] = $qso_since . ' 00:00:00';
+		}
+
+		if ($band !== null && $band !== '') {
+			if ($band === 'SAT') {
+				$where .= " AND qsos.`col_prop_mode` = 'SAT'";
+			} else {
+				$where .= " AND qsos.`col_prop_mode` != 'SAT' AND qsos.`col_band` = ?";
+				$bindings[] = $band;
+			}
+		}
+
+		// Match either the main mode or the submode, so e.g. mode=FT8 finds both
+		// QSOs stored as COL_MODE=FT8 and as COL_MODE=MFSK/COL_SUBMODE=FT8.
+		if ($mode !== null && $mode !== '') {
+			$where .= " AND (qsos.`col_mode` = ? OR qsos.`col_submode` = ?)";
+			$bindings[] = $mode;
+			$bindings[] = $mode;
+		}
+
+		if (!empty($qsl_filter)) {
+			$clauses = [];
+			foreach ($qsl_filter as $method) {
+				if (isset(self::CONFIRMATION_COLUMNS[$method])) {
+					$clauses[] = "qsos.`" . self::CONFIRMATION_COLUMNS[$method]['rcvd'] . "` = 'Y'";
+				}
+			}
+			if (!empty($clauses)) {
+				$where .= " AND (" . implode(" OR ", $clauses) . ")";
+			}
+		}
+
+		return $where;
+	}
+
+	// Fetch a page of QSOs for the REST API v2 QSO endpoint. Returns rows with
+	// the full COL_* plus station_profile columns, so the same result set can be
+	// rendered as JSON or as ADIF (via AdifHelper). $order is 'id_asc' (ascending
+	// primary key, for incremental ADIF sync) or 'time_desc' (newest first, for
+	// browsing). Filtering is shared with count_qsos_filtered().
+	function get_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $order = 'time_desc', $limit = 50, $offset = 0, $operator = '') {
+		if (empty($station_ids)) {
+			return $this->db->query("SELECT * FROM " . $this->config->item('table_name') . " WHERE 1=0");
+		}
+
+		$tbl = $this->config->item('table_name');
+		$bindings = [];
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
+
+		$sql = "SELECT qsos.*, station_profile.*, dxcc_entities.name AS station_country
+			FROM {$tbl} qsos
+			JOIN station_profile ON station_profile.station_id = qsos.station_id
+			LEFT OUTER JOIN dxcc_entities ON station_profile.station_dxcc = dxcc_entities.adif"
+			. $where;
+
+		$sql .= ($order === 'id_asc')
+			? " ORDER BY qsos.`COL_PRIMARY_KEY` ASC"
+			: " ORDER BY qsos.`COL_TIME_ON` DESC, qsos.`COL_PRIMARY_KEY` DESC";
+
+		$sql .= " LIMIT ? OFFSET ?";
+		$bindings[] = (int) $limit;
+		$bindings[] = (int) $offset;
+
+		return $this->db->query($sql, $bindings);
+	}
+
+	// Count QSOs for the REST API v2 QSO endpoint, using the exact same filter as
+	// get_qsos_filtered() so `total` matches the paginated result set.
+	function count_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $operator = '') {
+		if (empty($station_ids)) {
+			return 0;
+		}
+
+		$bindings = [];
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
+		$sql = "SELECT COUNT(*) AS cnt FROM " . $this->config->item('table_name') . " qsos" . $where;
+
+		return (int) $this->db->query($sql, $bindings)->row()->cnt;
+	}
+
+	// Build the conditional-count SELECT list for the confirmation statistics,
+	// one column per requested type plus a combined "total". Same idiom as
+	// Stats::modeBandQsl(), but with an optional received-date floor.
+	//
+	// $since belongs inside the CASE, not in the WHERE: a WHERE clause on one
+	// type's date column would also suppress the rows counted for every other
+	// type, which is not what "confirmations received since X" means.
+	private function _confirmation_count_columns($types, $since, &$bindings) {
+		// Base the counters on the number of QSOs they were drawn from, otherwise
+		// a bare "36 LoTW" says nothing about how much is still unconfirmed.
+		$columns = ["count(*) as `qsos`"];
+		$any = [];
+
+		foreach ($types as $type) {
+			$cols = self::CONFIRMATION_COLUMNS[$type] ?? null;
+			if ($cols === null) {
+				continue;
+			}
+
+			$clause = "qsos.`{$cols['rcvd']}` = 'Y'";
+			if ($since !== '') {
+				$clause .= " AND qsos.`{$cols['date']}` >= ?";
+			}
+
+			$columns[] = "count(case when {$clause} then 1 end) as `{$type}`";
+			if ($since !== '') {
+				$bindings[] = $since;
+			}
+			$any[] = $clause;
+		}
+
+		// QSOs confirmed by at least one requested type. Deliberately not the sum
+		// of the per-type counts: a QSO confirmed via both LoTW and eQSL is one
+		// confirmed QSO, not two.
+		if (!empty($any)) {
+			$columns[] = "count(case when (" . implode(" OR ", $any) . ") then 1 end) as `confirmed`";
+			if ($since !== '') {
+				foreach ($any as $unused) {
+					$bindings[] = $since;
+				}
+			}
+		}
+
+		return $columns;
+	}
+
+	// Confirmation counts per QSL type for the REST API v2 statistic endpoint.
+	// Reuses the QSO v2 filter (station scope, band incl. the SAT special case,
+	// mode incl. submode, qso_since) and adds per-type received-date filtering.
+	//
+	// $types     string[]  subset of the CONFIRMATION_COLUMNS keys
+	// $since     string    '' or 'Y-m-d', matched against each type's date column
+	// $qso_since string    '' or 'Y-m-d', matched against COL_TIME_ON
+	// $group_by  string    '' for grand totals, else 'band' or 'mode'
+	//
+	// Returns an assoc array of counts when ungrouped, else a list of rows each
+	// carrying the group key plus the same counts.
+	function count_confirmations_filtered($station_ids, $types, $band = '', $mode = '', $since = '', $qso_since = '', $group_by = '') {
+		$types = array_values(array_intersect($types, array_keys(self::CONFIRMATION_COLUMNS)));
+
+		if (empty($station_ids) || empty($types)) {
+			if ($group_by !== '') {
+				return [];
+			}
+			return array_fill_keys(array_merge(['qsos'], $types, ['confirmed']), 0);
+		}
+
+		// Select bindings are consumed before the WHERE bindings, so the count
+		// columns must be built first.
+		$bindings = [];
+		$columns = $this->_confirmation_count_columns($types, $since, $bindings);
+
+		// Whitelisted grouping expressions — never interpolate caller input here.
+		// The mode key prefers the submode so e.g. FT8 does not vanish into MFSK,
+		// mirroring the double match in _qso_v2_filter_where().
+		$group_exprs = [
+			'band' => "lower(qsos.`col_band`)",
+			'mode' => "coalesce(nullif(qsos.`col_submode`, ''), qsos.`col_mode`)",
+		];
+		$group_expr = $group_exprs[$group_by] ?? null;
+		if ($group_expr !== null) {
+			array_unshift($columns, "{$group_expr} as `{$group_by}`");
+		}
+
+		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, null, 0, $qso_since, $bindings);
+
+		$sql = "SELECT " . implode(", ", $columns)
+			. " FROM " . $this->config->item('table_name') . " qsos"
+			. $where;
+
+		if ($group_expr !== null) {
+			// No HAVING: a group with QSOs but no confirmations is exactly the gap
+			// worth seeing, and dropping it would break the invariant that the
+			// breakdown columns sum back to the grand totals.
+			$sql .= " GROUP BY {$group_expr} ORDER BY `confirmed` DESC, `qsos` DESC";
+		}
+
+		$query = $this->db->query($sql, $bindings);
+
+		if ($group_expr !== null) {
+			return $query->result_array();
+		}
+
+		return $query->row_array() ?: array_fill_keys(array_merge(['qsos'], $types, ['confirmed']), 0);
+	}
+
 	function get_qso($id, $trusted = false) {
 		if ($trusted || ($this->check_qso_is_accessible($id))) {
 			$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision, satellite.displayname AS sat_displayname, coalesce(contest.name, COL_CONTEST_ID) AS contestname');
@@ -2613,7 +2889,9 @@ class Logbook_model extends CI_Model {
 		return $extrawhere;
 	}
 
-	function check_if_dxcc_cnfmd_in_logbook_api($user_default_confirmation,$dxcc, $station_ids = null, $band = null, $mode = null) {
+	// $operator: see call_lookup_result() - optional COL_OPERATOR restriction for
+	// the REST API v2, no restriction by default.
+	function check_if_dxcc_cnfmd_in_logbook_api($user_default_confirmation,$dxcc, $station_ids = null, $band = null, $mode = null, $operator = '') {
 		$binding=[];
 		if ($station_ids == null) {
 			return [];
@@ -2636,6 +2914,11 @@ class Logbook_model extends CI_Model {
 		if ($mode != null) {
 			$sql.=" AND COL_MODE = ?";
 			$binding[]=$mode;
+		}
+
+		if ($operator !== null && $operator !== '') {
+			$sql.=" AND upper(COL_OPERATOR) = ?";
+			$binding[]=strtoupper($operator);
 		}
 
 		$query = $this->db->query($sql, $binding);
@@ -3226,7 +3509,9 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null, $cnfm = null) {
+	// $operator: see call_lookup_result() - optional COL_OPERATOR restriction for
+	// the REST API v2, no restriction by default.
+	function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null, $cnfm = null, $operator = '') {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -3266,6 +3551,10 @@ class Logbook_model extends CI_Model {
 		} else if ($band == 'SAT') {
 			// Where col_sat_name is not empty
 			$this->db->where('COL_SAT_NAME !=', '');
+		}
+
+		if ($operator !== null && $operator !== '') {
+			$this->db->where('upper(COL_OPERATOR)', strtoupper($operator));
 		}
 
 		$query = $this->db->get($this->config->item('table_name'));
@@ -3502,6 +3791,17 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	/**
+	 * Number of DXCC entities that exist (i.e. are theoretically workable),
+	 * excluding the "None" (deleted/invalid) placeholder entry. Used by the
+	 * statistics API as the denominator for "DXCC worked".
+	 *
+	 * @return int
+	 */
+	function count_dxcc_entities() {
+		return (int) $this->db->query('SELECT COUNT(*) AS count FROM dxcc_entities')->row()->count - 1; // Subtract 1 for the "None" entry
+	}
+
 	private function where_date_range($dateFrom, $dateTo) {
 		if (!empty($dateFrom)) {
 			$this->db->where('COL_TIME_ON >=', $dateFrom . ' 00:00:00');
@@ -3695,10 +3995,16 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Return total number of QSOs per band */
-	function total_bands($dateFrom = null, $dateTo = null) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	/* Return total number of QSOs per band.
+	 * $StationLocationsArray/$limit default to null so existing callers are
+	 * unaffected; they let the session-less REST API scope + cap the result.
+	 */
+	function total_bands($dateFrom = null, $dateTo = null, $StationLocationsArray = null, $limit = null) {
+		if ($StationLocationsArray === null) {
+			$this->load->model('logbooks_model');
+			$StationLocationsArray = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
+		$logbooks_locations_array = $StationLocationsArray;
 
 		if ($logbooks_locations_array[0] === -1) {
 			return null;
@@ -3709,6 +4015,35 @@ class Logbook_model extends CI_Model {
 		$this->where_date_range($dateFrom, $dateTo);
 		$this->db->group_by('band');
 		$this->db->order_by('count', 'DESC');
+		if ($limit !== null) {
+			$this->db->limit((int) $limit);
+		}
+
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query;
+	}
+
+	/* Return total number of QSOs per mode (mirror of total_bands()). */
+	function total_modes($dateFrom = null, $dateTo = null, $StationLocationsArray = null, $limit = null) {
+		if ($StationLocationsArray === null) {
+			$this->load->model('logbooks_model');
+			$StationLocationsArray = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
+		$logbooks_locations_array = $StationLocationsArray;
+
+		if ($logbooks_locations_array[0] === -1) {
+			return null;
+		}
+
+		$this->db->select('COL_MODE AS mode, count( * ) AS count', FALSE);
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->where_date_range($dateFrom, $dateTo);
+		$this->db->group_by('mode');
+		$this->db->order_by('count', 'DESC');
+		if ($limit !== null) {
+			$this->db->limit((int) $limit);
+		}
 
 		$query = $this->db->get($this->config->item('table_name'));
 
@@ -3764,6 +4099,7 @@ class Logbook_model extends CI_Model {
 				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_QSL,
 				COUNT(DISTINCT CASE WHEN t.COL_EQSL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_EQSL,
 				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_LOTW,
+				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_EQSL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_Confirmed,
 				COUNT(DISTINCT CASE WHEN d.end IS NULL AND d.adif != 0 AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Current,
 				-- QSL stats (SUM - no filtering, all QSOs)
 				SUM(CASE WHEN t.COL_QSL_SENT = 'Y' THEN 1 ELSE 0 END) as QSL_Sent,
@@ -3804,6 +4140,7 @@ class Logbook_model extends CI_Model {
 					'Countries_Worked_QSL' => $row->Countries_Worked_QSL,
 					'Countries_Worked_EQSL' => $row->Countries_Worked_EQSL,
 					'Countries_Worked_LOTW' => $row->Countries_Worked_LOTW,
+					'Countries_Worked_Confirmed' => $row->Countries_Worked_Confirmed,
 					'Countries_Current' => $row->Countries_Current,
 					// QSL stats
 					'QSL_Sent' => $row->QSL_Sent,
@@ -3839,6 +4176,7 @@ class Logbook_model extends CI_Model {
 			'Countries_Worked_QSL' => 0,
 			'Countries_Worked_EQSL' => 0,
 			'Countries_Worked_LOTW' => 0,
+			'Countries_Worked_Confirmed' => 0,
 			'Countries_Current' => 0,
 			'QSL_Sent' => 0,
 			'QSL_Received' => 0,
@@ -3862,11 +4200,19 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Delete QSO based on the QSO ID */
-	function delete($id) {
-		if ($this->check_qso_is_accessible($id)) {
-			// Get callsign before deleting for cache invalidation
-			$qso = $this->get_qso($id);
-			$callsign = ($qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+	/**
+	 * Delete a QSO (and its OQRS/QSL/eQSL artefacts) after an ownership check.
+	 *
+	 * @param int      $id      QSO primary key (COL_PRIMARY_KEY).
+	 * @param int|null $user_id User to authorise against. Defaults to the
+	 *                          session user; pass an explicit id for the REST API.
+	 */
+	function delete($id, $user_id = null) {
+		if ($this->check_qso_is_accessible($id, $user_id)) {
+			// Get callsign before deleting for cache invalidation. Accessibility
+			// was just verified, so read it trusted (works without a session too).
+			$qso = $this->get_qso($id, true);
+			$callsign = ($qso !== null && $qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
 
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
@@ -3881,7 +4227,7 @@ class Logbook_model extends CI_Model {
 			$this->db->delete("oqrs");
 
 			// qso was accessible so notify qso_changed for the current user_id (can also be a clubstation)
-			$this->notify_qso_change($this->session->userdata('user_id'));
+			$this->notify_qso_change($user_id ?? $this->session->userdata('user_id'));
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($callsign);
@@ -4232,6 +4578,10 @@ class Logbook_model extends CI_Model {
 		$custom_errors['qsocount'] = count($a_qsos);
 		if ($custom_errors['qsocount'] > 0) {
 			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+			// Expose the primary key of the first inserted QSO. For a single
+			// QSO import (e.g. the REST API) this is the new record's id; read
+			// it here before any later inserts (AMSAT) can overwrite it.
+			$custom_errors['inserted_id'] = $this->db->insert_id();
 			$this->notify_qso_change($station_profile->user_id);
 		}
 		foreach ($amsat_qsos as $amsat_qso) {
@@ -5607,11 +5957,12 @@ class Logbook_model extends CI_Model {
 		return $this->db->get($this->config->item('table_name'));
 	}
 
-	public function check_qso_is_accessible($id) {
+	public function check_qso_is_accessible($id, $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');
 		// check if qso belongs to user
 		$this->db->select($this->config->item('table_name') . '.COL_PRIMARY_KEY');
 		$this->db->join('station_profile', $this->config->item('table_name') . '.station_id = station_profile.station_id');
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->where('station_profile.user_id', $user_id);
 		$this->db->where($this->config->item('table_name') . '.COL_PRIMARY_KEY', $id);
 		$query = $this->db->get($this->config->item('table_name'));
 		if ($query->num_rows() == 1) {

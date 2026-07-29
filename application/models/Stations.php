@@ -84,6 +84,21 @@ class Stations extends CI_Model {
 		return $row;
 	}
 
+	/**
+	 * Fetch a station profile by its UUID, scoped to the owner. Used by the
+	 * REST API after an insert to resolve the freshly created row (save_location
+	 * only reports success, not the new id), since the UUID is unique per row.
+	 *
+	 * @param string $uuid    station_uuid to look up.
+	 * @param int    $user_id Owner.
+	 * @return object|null The station_profile row, or null when not found.
+	 */
+	function profile_by_uuid($uuid, $user_id) {
+		$this->db->where('station_uuid', $this->security->xss_clean($uuid));
+		$this->db->where('user_id', $user_id);
+		return $this->db->get('station_profile')->row();
+	}
+
 	/*
 	*	Function: add
 	*	Adds post material into the station profile table.

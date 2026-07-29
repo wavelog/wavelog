@@ -167,6 +167,21 @@ class Debug_model extends CI_Model
         return $query->row()->total;
     }
 
+	// Number of station locations on this instance
+	function count_stations() {
+		return (int) $this->db->count_all('station_profile');
+	}
+
+	// Number of logbooks (station_logbooks) on this instance
+	function count_logbooks() {
+		return (int) $this->db->count_all('station_logbooks');
+	}
+
+	// Number of CAT radios on this instance
+	function count_radios() {
+		return (int) $this->db->count_all('cat');
+	}
+
 	function getMigrationVersion() {
         $this->db->select_max('version');
         $query = $this->db->get('migrations');
