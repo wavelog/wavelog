@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-29 08:13+0000\n"
+"POT-Creation-Date: 2026-07-29 11:53+0000\n"
 "PO-Revision-Date: 2026-07-14 09:52+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -128,8 +128,8 @@ msgstr "Ducting troposférico"
 #: application/controllers/Activators.php:12
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22 application/controllers/Api.php:33
-#: application/controllers/Api.php:80 application/controllers/Api.php:119
-#: application/controllers/Api.php:153 application/controllers/Api_token.php:33
+#: application/controllers/Api.php:81 application/controllers/Api.php:120
+#: application/controllers/Api.php:154 application/controllers/Api_token.php:33
 #: application/controllers/Api_token.php:86
 #: application/controllers/Awards.php:19 application/controllers/Backup.php:12
 #: application/controllers/Backup.php:24 application/controllers/Backup.php:68
@@ -371,51 +371,51 @@ msgstr "Importação POTA"
 msgid "POTA Data Imported"
 msgstr "Dados POTA importados"
 
-#: application/controllers/Api.php:45
+#: application/controllers/Api.php:46
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:88
+#: application/controllers/Api.php:89
 #: application/views/api/components/edit_legacy.php:26
 msgid "API Description"
 msgstr "Descrição da API"
 
-#: application/controllers/Api.php:89
+#: application/controllers/Api.php:90
 msgid "API Key is required. Do not change this field"
 msgstr "A chave da API é obrigatória. Não altere este campo"
 
-#: application/controllers/Api.php:94
+#: application/controllers/Api.php:95
 msgid "Edit API Description"
 msgstr "Editar a descrição da API"
 
-#: application/controllers/Api.php:104
+#: application/controllers/Api.php:105
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "A descrição da chave API %s foi actualizada."
 
-#: application/controllers/Api.php:114 application/controllers/Api.php:148
+#: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:28
 #: application/controllers/Api_token.php:81 application/controllers/Qso.php:609
 msgid "Invalid request method"
 msgstr "Método de pedido inválido"
 
-#: application/controllers/Api.php:124
+#: application/controllers/Api.php:125
 msgid "Invalid API rights"
 msgstr "Direitos de API inválidos"
 
-#: application/controllers/Api.php:138
+#: application/controllers/Api.php:139
 msgid "API Key generated"
 msgstr "Chave API gerada"
 
-#: application/controllers/Api.php:140
+#: application/controllers/Api.php:141
 msgid "API Key could not be generated"
 msgstr "A chave da API não pôde ser gerada"
 
-#: application/controllers/Api.php:157
+#: application/controllers/Api.php:158
 msgid "Invalid API Key"
 msgstr "Chave de API inválida"
 
-#: application/controllers/Api.php:166
+#: application/controllers/Api.php:167
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "A chave API %s foi eliminada"
@@ -4184,6 +4184,32 @@ msgstr ""
 msgid "Read statistics"
 msgstr ""
 
+#: application/models/Api_v2_model.php:77
+msgid " (min. 2.1.0)"
+msgstr ""
+
+#: application/models/Api_v2_model.php:78
+msgid ""
+"Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
+"least version 2.1.0 of WaveLogGate."
+msgstr ""
+
+#: application/models/Api_v2_model.php:84
+msgid "Read-only"
+msgstr ""
+
+#: application/models/Api_v2_model.php:85
+msgid "Read access to everything, no changes to your data."
+msgstr ""
+
+#: application/models/Api_v2_model.php:91
+msgid "Statistics only"
+msgstr ""
+
+#: application/models/Api_v2_model.php:92
+msgid "Statistics only, no changes to your data."
+msgstr ""
+
 #: application/models/Club_model.php:185
 msgid "Invalid Permission Level!"
 msgstr "Nível de Permissão Inválido!"
@@ -5819,20 +5845,48 @@ msgid ""
 "possible, but not recommended for security reasons."
 msgstr ""
 
-#: application/views/api/components/create_token_modal.php:33
+#: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
 msgstr ""
 
-#: application/views/api/components/create_token_modal.php:34
+#: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
 msgstr ""
 
-#: application/views/api/components/create_token_modal.php:62
+#: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
 msgstr ""
 
-#: application/views/api/components/create_token_modal.php:66
+#: application/views/api/components/create_token_modal.php:67
+#: application/views/satellite/pass.php:149
+msgid "Presets"
+msgstr "Predefinições"
+
+#: application/views/api/components/create_token_modal.php:68
+msgid ""
+"Don't know which scopes you need? Pick the tool you want to use and we "
+"select the scopes for you."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:78
+#: application/views/awards/wpx/index.php:152
+#: application/views/continents/index.php:55
+#: application/views/logbookadvanced/index.php:922
+#: application/views/logbookadvanced/index.php:923
+#: application/views/oqrs/showrequests.php:75
+#: application/views/qrbcalc/index.php:19
+#: application/views/search/filter.php:37 application/views/user/edit.php:883
+msgid "Reset"
+msgstr "Reiniciar"
+
+#: application/views/api/components/create_token_modal.php:81
+msgid ""
+"A preset replaces your current selection. You can still adjust the scopes "
+"afterwards."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:258
 #: application/views/club/permissions.php:354
@@ -5854,7 +5908,7 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: application/views/api/components/create_token_modal.php:68
+#: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
 msgstr ""
 
@@ -8685,16 +8739,6 @@ msgstr "Ver progresso dos prémios WPX"
 #: application/views/awards/wpx/index.php:80
 msgid "Band / Satellite / Orbit"
 msgstr "Banda / Satélite / Órbita"
-
-#: application/views/awards/wpx/index.php:152
-#: application/views/continents/index.php:55
-#: application/views/logbookadvanced/index.php:922
-#: application/views/logbookadvanced/index.php:923
-#: application/views/oqrs/showrequests.php:75
-#: application/views/qrbcalc/index.php:19
-#: application/views/search/filter.php:37 application/views/user/edit.php:883
-msgid "Reset"
-msgstr "Reiniciar"
 
 #: application/views/awards/wpx/wpx_details.php:21
 #: application/views/calltester/comparison_result.php:78
@@ -19757,10 +19801,6 @@ msgstr "Tempo mínimo"
 #: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr "Carregar previsões"
-
-#: application/views/satellite/pass.php:149
-msgid "Presets"
-msgstr "Predefinições"
 
 #: application/views/satellite/pass.php:151
 msgid "Save current settings"

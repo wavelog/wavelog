@@ -242,7 +242,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Update.php:28 application/controllers/Api.php:80
 #: application/controllers/Api.php:119 application/controllers/Api.php:153
 #: application/controllers/Api_token.php:33
-#: application/controllers/Api_token.php:86
+#: application/controllers/Api_token.php:86 application/controllers/Api.php:81
+#: application/controllers/Api.php:120 application/controllers/Api.php:154
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -381,24 +382,29 @@ msgid "POTA Data Imported"
 msgstr "POTA-data importerad"
 
 #: application/controllers/Api.php:40 application/controllers/Api.php:45
+#: application/controllers/Api.php:46
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:83 application/views/api/description.php:26
 #: application/controllers/Api.php:88
 #: application/views/api/components/edit_legacy.php:26
+#: application/controllers/Api.php:89
 msgid "API Description"
 msgstr "API-beskrivning"
 
 #: application/controllers/Api.php:84 application/controllers/Api.php:89
+#: application/controllers/Api.php:90
 msgid "API Key is required. Do not change this field"
 msgstr "API-nyckel krävs. Ändra inte detta fält"
 
 #: application/controllers/Api.php:89 application/controllers/Api.php:94
+#: application/controllers/Api.php:95
 msgid "Edit API Description"
 msgstr "Redigera API-beskrivning"
 
 #: application/controllers/Api.php:99 application/controllers/Api.php:104
+#: application/controllers/Api.php:105
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API-nyckel %s beskrivning har uppdaterats."
@@ -406,27 +412,33 @@ msgstr "API-nyckel %s beskrivning har uppdaterats."
 #: application/controllers/Api.php:109 application/controllers/Api.php:143
 #: application/controllers/Qso.php:609 application/controllers/Api.php:114
 #: application/controllers/Api.php:148 application/controllers/Api_token.php:28
-#: application/controllers/Api_token.php:81
+#: application/controllers/Api_token.php:81 application/controllers/Api.php:115
+#: application/controllers/Api.php:149
 msgid "Invalid request method"
 msgstr "Ogiltig begäranmetod"
 
 #: application/controllers/Api.php:119 application/controllers/Api.php:124
+#: application/controllers/Api.php:125
 msgid "Invalid API rights"
 msgstr "Ogiltiga API-rättigheter"
 
 #: application/controllers/Api.php:133 application/controllers/Api.php:138
+#: application/controllers/Api.php:139
 msgid "API Key generated"
 msgstr "API-nyckel genererad"
 
 #: application/controllers/Api.php:135 application/controllers/Api.php:140
+#: application/controllers/Api.php:141
 msgid "API Key could not be generated"
 msgstr "API-nyckel kunde inte genereras"
 
 #: application/controllers/Api.php:152 application/controllers/Api.php:157
+#: application/controllers/Api.php:158
 msgid "Invalid API Key"
 msgstr "Ogiltig API-nyckel"
 
 #: application/controllers/Api.php:161 application/controllers/Api.php:166
+#: application/controllers/Api.php:167
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API-nyckel %s har tagits bort"
@@ -8467,6 +8479,7 @@ msgstr "Band / Satellit / Bana"
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:883
+#: application/views/api/components/create_token_modal.php:78
 msgid "Reset"
 msgstr "Återställ"
 
@@ -9919,6 +9932,7 @@ msgstr "Ja, byt över!"
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 #: application/views/api/components/create_token_modal.php:66
+#: application/views/api/components/create_token_modal.php:87
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -19502,6 +19516,7 @@ msgid "Load predictions"
 msgstr "Lastprognoser"
 
 #: application/views/satellite/pass.php:149
+#: application/views/api/components/create_token_modal.php:67
 msgid "Presets"
 msgstr "Förinställningar"
 
@@ -22965,6 +22980,44 @@ msgstr "Är du säker på att du vill ta bort API-token %s?"
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr "Du har inga API-tokens än. Klicka på knappen nedan för att skapa en."
+
+#: application/models/Api_v2_model.php:77
+msgid " (min. 2.1.0)"
+msgstr ""
+
+#: application/models/Api_v2_model.php:78
+msgid ""
+"Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
+"least version 2.1.0 of WaveLogGate."
+msgstr ""
+
+#: application/models/Api_v2_model.php:84
+msgid "Read-only"
+msgstr ""
+
+#: application/models/Api_v2_model.php:85
+msgid "Read access to everything, no changes to your data."
+msgstr ""
+
+#: application/models/Api_v2_model.php:91
+msgid "Statistics only"
+msgstr ""
+
+#: application/models/Api_v2_model.php:92
+msgid "Statistics only, no changes to your data."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:68
+msgid ""
+"Don't know which scopes you need? Pick the tool you want to use and we "
+"select the scopes for you."
+msgstr ""
+
+#: application/views/api/components/create_token_modal.php:81
+msgid ""
+"A preset replaces your current selection. You can still adjust the scopes "
+"afterwards."
+msgstr ""
 
 #~ msgid "Invalid logging token."
 #~ msgstr "Ogiltig inloggningsnyckel."

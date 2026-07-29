@@ -52,6 +52,62 @@ class Api_v2_model extends CI_Model {
 	}
 
 	/**
+	 * Scope presets offered as one-click buttons in the create-token dialog.
+	 *
+	 * A preset is nothing but a named selection of scopes: picking one only
+	 * ticks the matching checkboxes, the form still submits the individual
+	 * scopes and the controller still validates them. Presets exist so users do
+	 * not have to know which scopes a well-known third party tool needs.
+	 *
+	 * Two of them are derived from the registry ("read everything" / "full
+	 * access") so they keep covering new resources automatically; the tool
+	 * specific ones are hand-maintained and silently drop scopes that do not
+	 * exist (yet), which keeps this list safe across versions.
+	 *
+	 * @return array<string,array{name:string,description:string,icon:string,class:string,scopes:string[]}>
+	 */
+	public static function preset_registry() {
+		$all = array_keys(self::scope_registry());
+		$read_only = array_values(array_filter($all, function ($scope) {
+			return substr($scope, -5) === ':read';
+		}));
+
+		$presets = [
+			'waveloggate' => [
+				'name'        => 'WaveLogGate' . __(' (min. 2.1.0)'),
+				'description' => __("Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at least version 2.1.0 of WaveLogGate."),
+				'icon'        => 'fas fa-satellite-dish',
+				'class'       => 'btn-primary',
+				'scopes'      => ['station:read', 'qso:write', 'radio:write'],
+			],
+			'readonly' => [
+				'name'        => __("Read-only"),
+				'description' => __("Read access to everything, no changes to your data."),
+				'icon'        => 'fas fa-book-open',
+				'class'       => 'btn-primary',
+				'scopes'      => $read_only,
+			],
+			'statistics' => [
+				'name'        => __("Statistics only"),
+				'description' => __("Statistics only, no changes to your data."),
+				'icon'        => 'fas fa-chart-bar',
+				'class'       => 'btn-primary',
+				'scopes'      => ['statistic:read'],
+			],
+		];
+
+		// Drop scopes (and then empty presets) that this instance does not know.
+		foreach ($presets as $key => $preset) {
+			$presets[$key]['scopes'] = array_values(array_intersect($preset['scopes'], $all));
+			if (empty($presets[$key]['scopes'])) {
+				unset($presets[$key]);
+			}
+		}
+
+		return $presets;
+	}
+
+	/**
 	 * Create a new token and return the plaintext token string (shown once),
 	 * or false when the input is invalid.
 	 *
