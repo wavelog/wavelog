@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-07-29 08:13+0000\n"
-"PO-Revision-Date: 2026-07-24 18:04+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2026-07-29 08:28+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -439,27 +439,27 @@ msgstr "API-Schlüssel %s wurde gelöscht"
 
 #: application/controllers/Api_token.php:37
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Bitte gib einen Namen für das Token ein"
 
 #: application/controllers/Api_token.php:46
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Bitte wähle mindestens eine Berechtigung aus"
 
 #: application/controllers/Api_token.php:68
 msgid "API Token generated"
-msgstr ""
+msgstr "API Token wurde generiert"
 
 #: application/controllers/Api_token.php:70
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "API Token kann nicht generiert werden"
 
 #: application/controllers/Api_token.php:90
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Ungültiges API Token"
 
 #: application/controllers/Api_token.php:97
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "API Token wurde gelöscht"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:190
@@ -4052,11 +4052,11 @@ msgstr "Planquadrat-Zonen-Finder"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "GeoJSON Daten nicht verfügbar"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "Ungültiges Planquadrat"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4165,7 +4165,7 @@ msgstr "Stadt / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:27
 msgid "Read club members"
-msgstr ""
+msgstr "Lese Clubmitglieder"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -4173,7 +4173,7 @@ msgstr ""
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "Lese QSOs"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
@@ -9973,7 +9973,7 @@ msgstr "QSOs"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr ""
+msgstr "Keine QSOs mit %s in Deinem Log gefunden."
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -10007,7 +10007,7 @@ msgstr "Standort"
 
 #: application/views/calltester/call_info.php:79
 msgid "QSL card"
-msgstr ""
+msgstr "QSL Karte"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -10027,18 +10027,18 @@ msgstr "Ergebnisse der DXCC-Klasse"
 #: application/views/calltester/comparison_result.php:46
 #: application/views/calltester/comparison_result.php:53
 msgid "Calls tested"
-msgstr ""
+msgstr "Rufzeichen geprüft"
 
 #: application/views/calltester/comparison_result.php:47
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "Dauer der Ausführung"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "Probleme gefunden"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -10111,7 +10111,7 @@ msgstr "Ergebnis ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "Zeige alle QSOs mit diesem Call"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -10150,15 +10150,16 @@ msgstr "Vergleiche DXCC-Klasse und Logbuchmodell"
 
 #: application/views/calltester/result.php:5
 msgid "Callsigns tested"
-msgstr ""
+msgstr "Rufzeichen geprüft"
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "Potentiell falsches DXCC"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
 msgstr ""
+"Keine DXCC Probleme gefunden. Jedes QSO hat die korrekten DXCC-Informationen."
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -23005,11 +23006,12 @@ msgstr "CQz geojson"
 
 #: application/views/zonechecker/result.php:99
 msgid "Show on map"
-msgstr ""
+msgstr "Zeige auf Karte"
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
+"Keine Probleme mit CQ-Zonen gefunden. Alle QSOs haben die korrekte CQ-Zone."
 
 #~ msgid "Links to 3rd-Party-Software which works with Wavelog:"
 #~ msgstr ""
