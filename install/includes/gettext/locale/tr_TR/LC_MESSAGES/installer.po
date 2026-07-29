@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 10:54+0000\n"
 "PO-Revision-Date: 2026-04-24 05:57+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
@@ -753,78 +753,78 @@ msgstr "Bu modül olmadan Wavelog Yükleyici çalışmaz!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Gerekli modülleri yükleyin ve web sunucusunu yeniden başlatın."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Kurulum"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Lütfen bekleyin..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Config.php dosyasını application/config/ dizinine kopyalayın"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "database.php dosyasını application/config/ dizinine kopyalayın"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Veritabanı tabloları oluşturuluyor"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Veritabanı güncellemeleri uygulanıyor"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "DXCC bilgileri güncelleniyor"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Yükleyiciyi kilitle"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Tüm kurulum adımları tamamlandı. %s saniye içinde kullanıcı girişine "
 "yönlendiriliyor..."
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Tamamlandı. Kullanıcı girişine gidin ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:153
 msgid "Show detailled debug log"
 msgstr "Ayrıntılı hata ayıklama günlüğünü göster"
 
-#: install/run.php:146
+#: install/run.php:155
 msgid "Hide detailled debug log"
 msgstr "Ayrıntılı hata ayıklama günlüğünü gizle"
 
-#: install/run.php:174
+#: install/run.php:183
 msgid "Could not create application/config/config.php"
 msgstr "application/config/config.php oluşturulamadı"
 
-#: install/run.php:209
+#: install/run.php:218
 msgid "Could not create application/config/database.php"
 msgstr "application/config/database.php dosyası oluşturulamadı"
 
-#: install/run.php:243
+#: install/run.php:252
 msgid "Could not create database tables"
 msgstr "Veritabanı tabloları oluşturulamadı"
 
-#: install/run.php:273
+#: install/run.php:282
 msgid "Could not run database migrations"
 msgstr "Veritabanı geçişleri çalıştırılamadı"
 
-#: install/run.php:301
+#: install/run.php:335
 msgid "Could not update DXCC data"
 msgstr "DXCC verileri güncellenemedi"
 
-#: install/run.php:333
+#: install/run.php:367
 msgid "Could not create install/.lock file"
 msgstr "Install/.lock dosyası oluşturulamadı"
 

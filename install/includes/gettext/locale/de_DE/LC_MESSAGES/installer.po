@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 10:54+0000\n"
 "PO-Revision-Date: 2026-06-14 15:17+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
@@ -772,78 +772,78 @@ msgstr "Ohne dieses Modul funktioniert der Wavelog-Installer nicht!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Bitte installiere die benötigten Module und starte den Webserver neu."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Installation"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Kopiere config.php nach application/config/"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Kopiere database.php nach application/config/"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Erstellen von Datenbanktabellen"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Datenbankmigrationen ausführen"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "Aktualisierung der DXCC-Daten"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Sperre den Installer"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Alle Installationsschritte wurden abgeschlossen. Weiterleitung zum Benutzer-"
 "Login in %s Sekunden..."
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Fertig. Gehe zum Benutzer-Login ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:153
 msgid "Show detailled debug log"
 msgstr "Detailliertes Debug-Log anzeigen"
 
-#: install/run.php:146
+#: install/run.php:155
 msgid "Hide detailled debug log"
 msgstr "Detailliertes Debug-Log ausblenden"
 
-#: install/run.php:174
+#: install/run.php:183
 msgid "Could not create application/config/config.php"
 msgstr "Konnte application/config/config.php nicht erstellen"
 
-#: install/run.php:209
+#: install/run.php:218
 msgid "Could not create application/config/database.php"
 msgstr "Konnte application/config/database.php nicht erstellen"
 
-#: install/run.php:243
+#: install/run.php:252
 msgid "Could not create database tables"
 msgstr "Konnte Datenbanktabellen nicht erstellen"
 
-#: install/run.php:273
+#: install/run.php:282
 msgid "Could not run database migrations"
 msgstr "Konnte Datenbankmigrationen nicht ausführen"
 
-#: install/run.php:301
+#: install/run.php:335
 msgid "Could not update DXCC data"
 msgstr "Konnte DXCC-Daten nicht aktualisieren"
 
-#: install/run.php:333
+#: install/run.php:367
 msgid "Could not create install/.lock file"
 msgstr "Konnte die install/.lock Datei nicht anlegen"
 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 10:54+0000\n"
 "PO-Revision-Date: 2026-05-18 19:18+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -756,78 +756,78 @@ msgstr "Brez tega modula namestitveni program Wavelog ne deluje!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Namestite potrebne module in ponovno zaženite spletni strežnik."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Namestitev"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Prosim, počakajte..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Skopirajte config.php v application/config/"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Skopirajte database.php v application/config/"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Ustvarjanje tabel baze podatkov"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Izvajanje selitev baze podatkov"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "Posodabljam podatke DXCC"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Zaklenite namestitveni program"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Vsi koraki namestitve so bili uspešno izvedeni. Preusmeritev na prijavo "
 "uporabnika čez %s sekund..."
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Končano. Pojdite na prijavo uporabnika ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:153
 msgid "Show detailled debug log"
 msgstr "Prikaži podroben dnevnik odpravljanja napak"
 
-#: install/run.php:146
+#: install/run.php:155
 msgid "Hide detailled debug log"
 msgstr "Skrij podroben dnevnik odpravljanja napak"
 
-#: install/run.php:174
+#: install/run.php:183
 msgid "Could not create application/config/config.php"
 msgstr "Datoteke application/config/config.php ni bilo mogoče ustvariti"
 
-#: install/run.php:209
+#: install/run.php:218
 msgid "Could not create application/config/database.php"
 msgstr "Datoteke application/config/database.php ni bilo mogoče ustvariti"
 
-#: install/run.php:243
+#: install/run.php:252
 msgid "Could not create database tables"
 msgstr "Ni bilo mogoče ustvariti tabel baze podatkov"
 
-#: install/run.php:273
+#: install/run.php:282
 msgid "Could not run database migrations"
 msgstr "Selitve baze podatkov ni bilo mogoče izvesti"
 
-#: install/run.php:301
+#: install/run.php:335
 msgid "Could not update DXCC data"
 msgstr "Podatkov DXCC ni bilo mogoče posodobiti"
 
-#: install/run.php:333
+#: install/run.php:367
 msgid "Could not create install/.lock file"
 msgstr "Datoteke install/.lock ni bilo mogoče ustvariti"
 
