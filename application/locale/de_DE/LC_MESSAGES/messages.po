@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-29 11:53+0000\n"
-"PO-Revision-Date: 2026-07-24 18:04+0000\n"
+"POT-Creation-Date: 2026-07-29 08:13+0000\n"
+"PO-Revision-Date: 2026-07-29 12:05+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -145,8 +145,8 @@ msgstr "troposphärisches Ducting"
 #: application/controllers/Activators.php:12
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22 application/controllers/Api.php:33
-#: application/controllers/Api.php:81 application/controllers/Api.php:120
-#: application/controllers/Api.php:154 application/controllers/Api_token.php:33
+#: application/controllers/Api.php:80 application/controllers/Api.php:119
+#: application/controllers/Api.php:153 application/controllers/Api_token.php:33
 #: application/controllers/Api_token.php:86
 #: application/controllers/Awards.php:19 application/controllers/Backup.php:12
 #: application/controllers/Backup.php:24 application/controllers/Backup.php:68
@@ -250,7 +250,8 @@ msgstr "troposphärisches Ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:51
+#: application/models/Club_model.php:51 application/controllers/Api.php:81
+#: application/controllers/Api.php:120 application/controllers/Api.php:154
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -388,78 +389,80 @@ msgstr "POTA Import"
 msgid "POTA Data Imported"
 msgstr "POTA Daten importiert"
 
-#: application/controllers/Api.php:46
+#: application/controllers/Api.php:45 application/controllers/Api.php:46
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:89
+#: application/controllers/Api.php:88
 #: application/views/api/components/edit_legacy.php:26
+#: application/controllers/Api.php:89
 msgid "API Description"
 msgstr "API-Beschreibung"
 
-#: application/controllers/Api.php:90
+#: application/controllers/Api.php:89 application/controllers/Api.php:90
 msgid "API Key is required. Do not change this field"
 msgstr "API-Schlüssel ist notwendig. Verändere dieses Feld nicht"
 
-#: application/controllers/Api.php:95
+#: application/controllers/Api.php:94 application/controllers/Api.php:95
 msgid "Edit API Description"
 msgstr "Bearbeite API-Beschreibung"
 
-#: application/controllers/Api.php:105
+#: application/controllers/Api.php:104 application/controllers/Api.php:105
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API-Schlüssel %s Beschreibung wurde aktualisiert."
 
-#: application/controllers/Api.php:115 application/controllers/Api.php:149
+#: application/controllers/Api.php:114 application/controllers/Api.php:148
 #: application/controllers/Api_token.php:28
 #: application/controllers/Api_token.php:81 application/controllers/Qso.php:609
+#: application/controllers/Api.php:115 application/controllers/Api.php:149
 msgid "Invalid request method"
 msgstr "Fehlerhafte Abfragemethode"
 
-#: application/controllers/Api.php:125
+#: application/controllers/Api.php:124 application/controllers/Api.php:125
 msgid "Invalid API rights"
 msgstr "Ungültige API-Rechte"
 
-#: application/controllers/Api.php:139
+#: application/controllers/Api.php:138 application/controllers/Api.php:139
 msgid "API Key generated"
 msgstr "API-Schlüssel generiert"
 
-#: application/controllers/Api.php:141
+#: application/controllers/Api.php:140 application/controllers/Api.php:141
 msgid "API Key could not be generated"
 msgstr "API-Schlüssel konnte nicht generiert werden"
 
-#: application/controllers/Api.php:158
+#: application/controllers/Api.php:157 application/controllers/Api.php:158
 msgid "Invalid API Key"
 msgstr "Falscher API Schlüssel"
 
-#: application/controllers/Api.php:167
+#: application/controllers/Api.php:166 application/controllers/Api.php:167
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API-Schlüssel %s wurde gelöscht"
 
 #: application/controllers/Api_token.php:37
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Bitte gib einen Namen für das Token ein"
 
 #: application/controllers/Api_token.php:46
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Bitte wähle mindestens eine Berechtigung aus"
 
 #: application/controllers/Api_token.php:68
 msgid "API Token generated"
-msgstr ""
+msgstr "API Token wurde generiert"
 
 #: application/controllers/Api_token.php:70
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "API Token kann nicht generiert werden"
 
 #: application/controllers/Api_token.php:90
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Ungültiges API Token"
 
 #: application/controllers/Api_token.php:97
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "API Token wurde gelöscht"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:190
@@ -2921,8 +2924,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:560
@@ -4052,11 +4055,11 @@ msgstr "Planquadrat-Zonen-Finder"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "GeoJSON Daten nicht verfügbar"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "Ungültiges Planquadrat"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4165,77 +4168,51 @@ msgstr "Stadt / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:27
 msgid "Read club members"
-msgstr ""
+msgstr "Lese Clubmitglieder"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "Rufzeichen und Locator suchen"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "Lese QSOs"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "QSOs erstellen und aktualisieren"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "QSOs löschen"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "Funkgeräte abfragen"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "Erstellen und aktualisieren von Funkgeräten"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "Funkgeräte löschen"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "Stationsstandorte abfragen"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "Stationsstandorte erstellen und aktualisieren"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "Stationsstandorte löschen"
 
 #: application/libraries/api_v2/Statistic_resource.php:52
 msgid "Read statistics"
-msgstr ""
-
-#: application/models/Api_v2_model.php:77
-msgid " (min. 2.1.0)"
-msgstr ""
-
-#: application/models/Api_v2_model.php:78
-msgid ""
-"Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
-"least version 2.1.0 of WaveLogGate."
-msgstr ""
-
-#: application/models/Api_v2_model.php:84
-msgid "Read-only"
-msgstr ""
-
-#: application/models/Api_v2_model.php:85
-msgid "Read access to everything, no changes to your data."
-msgstr ""
-
-#: application/models/Api_v2_model.php:91
-msgid "Statistics only"
-msgstr ""
-
-#: application/models/Api_v2_model.php:92
-msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "Statistiken abfragen"
 
 #: application/models/Club_model.php:185
 msgid "Invalid Permission Level!"
@@ -5810,7 +5787,7 @@ msgstr "Status"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "Einen neuen API-Token erstellen"
 
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5839,34 +5816,36 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"Erstelle einen Token mit granulären Berechtigungen (Scopes). Der Token wird "
+"nur einmal angezeigt, wenn er erstellt wird, also kopiere ihn sofort."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "Token Name"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "z.B. Mein Logging-Tool"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "Ein Name, der dir hilft, diesen Token später wiederzuerkennen."
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "Ablaufdatum"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30 Tage"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90 Tage"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1 Jahr"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -5877,56 +5856,30 @@ msgstr "Nie"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "Wann das Token aufhören sollte zu funktionieren."
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"Ein Token, das nie abläuft, bleibt gültig, bis du ihn manuell löschst. Das "
+"ist möglich, aber aus Sicherheitsgründen nicht empfohlen."
 
-#: application/views/api/components/create_token_modal.php:34
+#: application/views/api/components/create_token_modal.php:33
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "Scopes"
 
-#: application/views/api/components/create_token_modal.php:35
+#: application/views/api/components/create_token_modal.php:34
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "Wähle aus, auf welche Teile der API v2 dieser Token zugreifen darf."
 
-#: application/views/api/components/create_token_modal.php:63
+#: application/views/api/components/create_token_modal.php:62
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "Bitte wähle mindestens einen Scope aus."
 
-#: application/views/api/components/create_token_modal.php:67
-#: application/views/satellite/pass.php:149
-msgid "Presets"
-msgstr "Voreinstellungen"
-
-#: application/views/api/components/create_token_modal.php:68
-msgid ""
-"Don't know which scopes you need? Pick the tool you want to use and we "
-"select the scopes for you."
-msgstr ""
-
-#: application/views/api/components/create_token_modal.php:78
-#: application/views/awards/wpx/index.php:152
-#: application/views/continents/index.php:55
-#: application/views/logbookadvanced/index.php:922
-#: application/views/logbookadvanced/index.php:923
-#: application/views/oqrs/showrequests.php:75
-#: application/views/qrbcalc/index.php:19
-#: application/views/search/filter.php:37 application/views/user/edit.php:883
-msgid "Reset"
-msgstr "Zurücksetzen"
-
-#: application/views/api/components/create_token_modal.php:81
-msgid ""
-"A preset replaces your current selection. You can still adjust the scopes "
-"afterwards."
-msgstr ""
-
-#: application/views/api/components/create_token_modal.php:87
+#: application/views/api/components/create_token_modal.php:66
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:258
 #: application/views/club/permissions.php:354
@@ -5945,12 +5898,13 @@ msgstr ""
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/api/components/create_token_modal.php:87
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: application/views/api/components/create_token_modal.php:89
+#: application/views/api/components/create_token_modal.php:68
 msgid "Create Token"
-msgstr ""
+msgstr "Token erstellen"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -5987,15 +5941,17 @@ msgstr "Speichern"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "Neuen API-Token"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
 msgstr ""
+"Kopiere diesen Token jetzt. Aus Sicherheitsgründen wird er nicht erneut "
+"angezeigt."
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "Dein API-Token"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -6006,13 +5962,15 @@ msgstr "In die Zwischenablage kopieren"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "Legacy API Schlüssel (API v1)"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"Neue Integrationen sollten die unten stehenden API v2 Tokens verwenden, "
+"sofern das Drittsystem dies unterstützt."
 
 #: application/views/api/index.php:11
 msgid ""
@@ -6039,6 +5997,8 @@ msgstr ""
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
 msgstr ""
+"Links zu Software von Drittanbietern, die mit der Wavelog API v1 "
+"funktioniert:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6134,7 +6094,7 @@ msgstr "Test"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6155,7 +6115,7 @@ msgstr "Erstelle einen Nur-Lesen-Schlüssel"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "API-Tokens (API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6163,21 +6123,26 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"API-Tokens gewähren Zugriff auf die REST-API v2 mit detaillierten "
+"Berechtigungen (Scopes). Der Token wird nur einmal angezeigt, wenn er "
+"erstellt wird, also sofort kopieren."
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "Die API v2-Dokumentation ist %shier%s zu finden."
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "Die Basis-URL der API v2 für diese Wavelog-Instanz ist"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"Bei Clubstationen sind die API-Tokens persönlich und werden nicht geteilt. "
+"Benutzer von Clubstationen können nur ihre eigenen Tokens sehen."
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6212,7 +6177,7 @@ msgstr "Name"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "Läuft ab"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6221,11 +6186,13 @@ msgstr "Abgelaufen"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "Bist du sicher, dass du den API-Token %s löschen möchtest?"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr ""
+"Du hast noch keine API-Tokens. Klick auf den untenstehenden Button, um einen "
+"zu erstellen."
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
@@ -8784,6 +8751,17 @@ msgstr "Fortschritt der WPX-Diplome anzeigen"
 msgid "Band / Satellite / Orbit"
 msgstr "Band / Satellit / Orbit"
 
+#: application/views/awards/wpx/index.php:152
+#: application/views/continents/index.php:55
+#: application/views/logbookadvanced/index.php:922
+#: application/views/logbookadvanced/index.php:923
+#: application/views/oqrs/showrequests.php:75
+#: application/views/qrbcalc/index.php:19
+#: application/views/search/filter.php:37 application/views/user/edit.php:883
+#: application/views/api/components/create_token_modal.php:78
+msgid "Reset"
+msgstr "Zurücksetzen"
+
 #: application/views/awards/wpx/wpx_details.php:21
 #: application/views/calltester/comparison_result.php:78
 #: application/views/calltester/comparison_result.php:127
@@ -10017,7 +9995,7 @@ msgstr "QSOs"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr ""
+msgstr "Keine QSOs mit %s in Deinem Log gefunden."
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -10051,7 +10029,7 @@ msgstr "Standort"
 
 #: application/views/calltester/call_info.php:79
 msgid "QSL card"
-msgstr ""
+msgstr "QSL Karte"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -10071,18 +10049,18 @@ msgstr "Ergebnisse der DXCC-Klasse"
 #: application/views/calltester/comparison_result.php:46
 #: application/views/calltester/comparison_result.php:53
 msgid "Calls tested"
-msgstr ""
+msgstr "Rufzeichen geprüft"
 
 #: application/views/calltester/comparison_result.php:47
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "Dauer der Ausführung"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "Probleme gefunden"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -10155,7 +10133,7 @@ msgstr "Ergebnis ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "Zeige alle QSOs mit diesem Call"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -10194,15 +10172,16 @@ msgstr "Vergleiche DXCC-Klasse und Logbuchmodell"
 
 #: application/views/calltester/result.php:5
 msgid "Callsigns tested"
-msgstr ""
+msgstr "Rufzeichen geprüft"
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "Potentiell falsches DXCC"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
 msgstr ""
+"Keine DXCC Probleme gefunden. Jedes QSO hat die korrekten DXCC-Informationen."
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -14018,8 +13997,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -17941,8 +17920,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -19869,6 +19848,11 @@ msgstr "Min. Zeit"
 msgid "Load predictions"
 msgstr "Lade Vorhersagen"
 
+#: application/views/satellite/pass.php:149
+#: application/views/api/components/create_token_modal.php:67
+msgid "Presets"
+msgstr "Voreinstellungen"
+
 #: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr "Aktuelle Einstellungen speichern"
@@ -20362,8 +20346,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -21390,9 +21374,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23045,11 +23029,56 @@ msgstr "CQz geojson"
 
 #: application/views/zonechecker/result.php:99
 msgid "Show on map"
-msgstr ""
+msgstr "Zeige auf Karte"
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
+"Keine Probleme mit CQ-Zonen gefunden. Alle QSOs haben die korrekte CQ-Zone."
+
+#: application/models/Api_v2_model.php:77
+msgid " (min. 2.1.0)"
+msgstr " (min. 2.1.0)"
+
+#: application/models/Api_v2_model.php:78
+msgid ""
+"Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
+"least version 2.1.0 of WaveLogGate."
+msgstr ""
+"Funkgeräte-Steuerung und QSO-Upload von WSJT-X, JTDX und Konsorten. "
+"Erfordert mindestens Version 2.1.0 von WaveLogGate."
+
+#: application/models/Api_v2_model.php:84
+msgid "Read-only"
+msgstr "Nur-Lesen"
+
+#: application/models/Api_v2_model.php:85
+msgid "Read access to everything, no changes to your data."
+msgstr "Lesezugriff auf alles, keine Änderungen an deinen Daten."
+
+#: application/models/Api_v2_model.php:91
+msgid "Statistics only"
+msgstr "Nur Statistiken"
+
+#: application/models/Api_v2_model.php:92
+msgid "Statistics only, no changes to your data."
+msgstr "Nur Statistiken, keine Änderungen an deinen Daten."
+
+#: application/views/api/components/create_token_modal.php:68
+msgid ""
+"Don't know which scopes you need? Pick the tool you want to use and we "
+"select the scopes for you."
+msgstr ""
+"Weißt du nicht, welche Scopes du brauchst? Wähle das Tool, das du verwenden "
+"möchtest, und wir wählen die Scopes für dich aus."
+
+#: application/views/api/components/create_token_modal.php:81
+msgid ""
+"A preset replaces your current selection. You can still adjust the scopes "
+"afterwards."
+msgstr ""
+"Ein Preset ersetzt deine aktuelle Auswahl. Du kannst die Bereiche danach "
+"trotzdem noch anpassen."
 
 #~ msgid "Links to 3rd-Party-Software which works with Wavelog:"
 #~ msgstr ""
