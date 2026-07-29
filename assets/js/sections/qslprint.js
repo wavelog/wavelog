@@ -653,6 +653,17 @@ function saveAndPrintSelectedQsos(printAll) {
 
 function printLabel(printAll) {
 	const id_list = getSelectedIds();
+	if (printAll != true && id_list.length === 0) {
+		BootstrapDialog.alert({
+			title: lang_qslprint_warning,
+			message: lang_qslprint_select_at_least_one_row,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: false,
+			draggable: false,
+			callback: function () {}
+		});
+		return;
+	}
 	const options = {
 			'startat': $('#startat').val(),
 			'grid': $('#gridlabel')[0].checked,
