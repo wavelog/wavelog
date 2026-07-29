@@ -1108,7 +1108,7 @@ class DXCC extends CI_Model {
 
 	function getQsos($station_id) {
 		ini_set('memory_limit', '-1');
-		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key
+		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key, col_gridsquare, col_band
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
@@ -1124,6 +1124,32 @@ class DXCC extends CI_Model {
         $query = $this->db->query($sql, $params);
 
 		return $query;
+	}
+
+	/*
+	 * Returns all of the current user's QSOs whose COL_CALL contains the given
+	 * callsign, most recent first. Used by the calltester and zonechecker "call info" view
+	 */
+	function getQsosForCall($callsign) {
+		$sql = 'SELECT qsos.COL_PRIMARY_KEY, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND,
+				qsos.COL_MODE, qsos.COL_SUBMODE, qsos.COL_FREQ, qsos.COL_GRIDSQUARE,
+				qsos.COL_VUCC_GRIDS, qsos.COL_COUNTRY, qsos.COL_DXCC, qsos.COL_CQZ, qsos.COL_ITUZ,
+				qsos.COL_RST_SENT, qsos.COL_RST_RCVD, qsos.COL_QSL_RCVD,
+				qsos.COL_LOTW_QSL_RCVD, qsos.COL_EQSL_QSL_RCVD, qsos.COL_PROP_MODE,
+				qsos.COL_SAT_NAME, qsos.COL_NAME,
+				station_profile.station_callsign, station_profile.station_profile_name
+			FROM ' . $this->config->item('table_name') . ' qsos
+			JOIN station_profile ON station_profile.station_id = qsos.station_id
+			WHERE qsos.COL_CALL LIKE ?
+			  AND station_profile.user_id = ?
+			ORDER BY qsos.COL_TIME_ON DESC';
+
+		$params = [
+			$callsign,
+			$this->session->userdata('user_id'),
+		];
+
+		return $this->db->query($sql, $params);
 	}
 
 	function mode_progress($total_dxcc_entities, $postdata, $location_list) {

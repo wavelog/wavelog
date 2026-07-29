@@ -110,9 +110,7 @@ class Contesting extends CI_Controller {
 
 		$session_id = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, true);
 
-		$logging_token = $this->paths->create_contesting_logging_token($session_id);
-
-		redirect('contesting/logging_engine/' . $logging_token);
+		redirect('contesting/logging_engine/' . $session_id);
 	}
 
 	/**
@@ -434,41 +432,26 @@ class Contesting extends CI_Controller {
 	/**
 	 * This starts the main logging engine for contesting
 	 */
-	public function logging_engine($logging_token) {
+	public function logging_engine($contest_session_id = 0) {
 		$this->load->model('contesting_model');
 
-		// Decode logging token
-		$decoded_token = $this->paths->decode_contesting_logging_token($logging_token);
-		if (!$decoded_token || !isset($decoded_token['contest_session_id'])) {
-			$this->session->set_flashdata('error', __("Invalid logging token."));
-			redirect('contesting');
-		}
+		$contest_session_id = intval($contest_session_id);
 
 		// Security Check: Ensure the user is authorized for this contest session
-		$source_uid = $this->session->userdata('source_uid') ?: $this->session->userdata('user_id');
-		if ($decoded_token['user_id'] != $source_uid) {
-			$this->session->set_flashdata('error', __("You are not authorized to access this contest session."));
-			redirect('contesting');
-		}
-
-		if (!$this->contesting_model->check_user_contest($decoded_token['contest_session_id'])) {
+		if (!$contest_session_id || !$this->contesting_model->check_user_contest($contest_session_id)) {
 			$this->session->set_flashdata('error', __("You are not authorized to access this contest session."));
 			redirect('contesting');
 		}
 
 		// setting up worker if available
-		$worker_topic = 'contest_session.' . $decoded_token['contest_session_id']; // shared topic for all operators in this contest session
+		$worker_topic = 'contest_session.' . $contest_session_id; // shared topic for all operators in this contest session
 		if ($this->worker_available) {
 			$this->worker->register_topic($worker_topic);
-		}
 
-		if ($this->worker_available && $decoded_token) {
 			$data['worker_client_url'] = $this->worker->client_url();
 			$data['worker_topic']      = $worker_topic;
 			$data['worker_token']      = $this->worker->create_token($worker_topic);
 		}
-
-		$contest_session_id = $decoded_token['contest_session_id'];
 
 		// Load session data
 		$data['session_info'] = $this->contesting_model->get_session_info($contest_session_id);
@@ -1100,12 +1083,10 @@ class Contesting extends CI_Controller {
 			// update_session keeps an existing operator_callsign, so override it explicitly.
 			$this->session->set_userdata('operator_callsign', strtoupper(trim($op->user_callsign)));
 
-			// Fresh token now carries the new operator as token user_id (reads source_uid).
-			$token = $this->paths->create_contesting_logging_token($contest_session_id);
-
+			// Reload the engine; it picks up the new operator from the session.
 			echo json_encode([
 				'success'  => true,
-				'redirect' => site_url('contesting/logging_engine') . '/' . $token,
+				'redirect' => site_url('contesting/logging_engine') . '/' . intval($contest_session_id),
 			]);
 		} catch (Exception $e) {
 			http_response_code(400);

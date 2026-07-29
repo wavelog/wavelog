@@ -76,6 +76,13 @@ class Hamqsl_model extends CI_Model {
 		// Convert the entire <solardata> node to an associative array
 		$solarinformation = json_decode(json_encode($solardata), true);
 
+		// Empty XML elements (e.g. <aurora></aurora> when HAMqsl has no report)
+		foreach ($solarinformation as $key => $value) {
+			if (is_array($value) && empty($value)) {
+				$solarinformation[$key] = '';
+			}
+		}
+
 		// Format the 'updated' field if it exists
 		if (isset($solarinformation['updated'])) {
 			$timestamp = strtotime($solarinformation['updated']);
