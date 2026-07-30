@@ -2307,6 +2307,17 @@ function handleQslReceived(sent, method, tag) {
 }
 
 function printlabel(id_list) {
+	if (!Array.isArray(id_list) || id_list.length === 0) {
+		BootstrapDialog.alert({
+			title: lang_gen_advanced_logbook_error,
+			message: lang_gen_advanced_logbook_select_at_least_one_row_label,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: false,
+			draggable: false,
+			callback: function () {}
+		});
+		return;
+	}
 	let markchecked = $('#markprinted')[0].checked;
 
 	$.ajax({

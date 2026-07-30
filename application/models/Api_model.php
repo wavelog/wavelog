@@ -180,7 +180,10 @@ class API_Model extends CI_Model {
 
 	}
 
-	function get_grids_worked_in_logbook($StationLocationsArray = null, $band = null, $cnfm = null) {
+	// $operator: optional COL_OPERATOR restriction. Used by the REST API v2 so a
+	// clubstation member below officer level only sees grids it worked itself.
+	// Defaults to '' = no restriction (v1 behaviour).
+	function get_grids_worked_in_logbook($StationLocationsArray = null, $band = null, $cnfm = null, $operator = '') {
 		$grid_array = [];
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -208,6 +211,11 @@ class API_Model extends CI_Model {
 			case 'eqsl':
 				$subsql .= ' AND COL_EQSL_QSL_RCVD = "Y"';
 				break;
+		}
+
+		if ($operator !== null && $operator !== '') {
+			$subsql .= ' AND upper(COL_OPERATOR) = ?';
+			$bindings[] = strtoupper($operator);
 		}
 
 		$ids = array_map('intval', $logbooks_locations_array);
