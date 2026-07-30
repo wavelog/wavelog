@@ -2,6 +2,11 @@
 
 class Continents extends CI_Controller {
 
+	function __construct() {
+		parent::__construct();
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+	}
+
 	public function index()
 	{
         $this->load->model('bands');
@@ -10,15 +15,7 @@ class Continents extends CI_Controller {
 
         $data['bands'] = $this->bands->get_worked_bands();
 		$data['modes'] = $this->gridmap_model->get_worked_modes();
-
-        if(!$this->user_model->authorize($this->config->item('auth_mode'))) {
-            if($this->user_model->validate_session()) {
-                $this->user_model->clear_session();
-                show_error('Access denied<p>Click <a href="'.site_url('user/login').'">here</a> to log in as another user', 403);
-            } else {
-                redirect('user/login');
-            }
-        }
+		
 		// Render User Interface
 
 		// Set Page Title

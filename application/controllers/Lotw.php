@@ -183,7 +183,12 @@ class Lotw extends CI_Controller {
 	*/
 	public function lotw_upload() {
 
-		$this->user_model->authorize(2);
+		$this->load->helper('cronauth');
+		if (!cronauth_allowed(3)) {
+			// return a 403
+			$this->output->set_status_header(403);
+			exit();
+		}
 
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
@@ -192,7 +197,7 @@ class Lotw extends CI_Controller {
 		// Get Station Profile Data
 		$this->load->model('Stations');
 
-		if ($this->user_model->authorize(2)) {
+		if ($this->user_model->authorize(3)) {
 			if (!($this->config->item('disable_manual_lotw'))) {
 				$station_profiles = $this->Stations->all_of_user($this->session->userdata('user_id'));
 				$sync_user_id=$this->session->userdata('user_id');

@@ -464,6 +464,23 @@ TD.lotw {
 	margin-bottom: 0px;
 }
 
+.callsign-suggestions .scp-call {
+	display: inline-block;
+	margin: 0 4px 4px 0;
+	padding: 1px 5px;
+	cursor: pointer;
+	border-radius: 3px;
+	font-family: monospace;
+}
+
+.callsign-suggestions .scp-call:hover {
+	background: color-mix(in srgb, var(--bs-body-color) 12%, transparent);
+}
+
+.callsign-suggestions .scp-call .text-primary {
+	font-weight: bold;
+}
+
 #search_box #callsign {
 	text-transform: uppercase;
 }

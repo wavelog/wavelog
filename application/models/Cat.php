@@ -2,6 +2,29 @@
 
 	class Cat extends CI_Model {
 
+		/**
+		 * Non-standard rig mode strings mapped to their ADIF mode: Yaesu use
+		 * CW-U/CW-L, Icom CW-R, Flex CWU/CWL, and various data submodes
+		 * (USB-D/LSB-D...). Applied to every radio update via normalize_mode().
+		 */
+		const MODE_OVERRIDES = [
+			'CW-U'   => 'CW',   'CW-L'   => 'CW',   'CW-R'   => 'CW', 'CWU' => 'CW', 'CWL' => 'CW',
+			'RTTY-L' => 'RTTY', 'RTTY-U' => 'RTTY', 'RTTY-R' => 'RTTY',
+			'USB-D'  => 'USB',  'USB-D1' => 'USB',
+			'LSB-D'  => 'LSB',  'LSB-D1' => 'LSB',
+		];
+
+		/**
+		 * Map a rig mode string to its ADIF equivalent (see MODE_OVERRIDES);
+		 * unknown and empty/null values pass through unchanged.
+		 */
+		private function normalize_mode($mode) {
+			if ($mode === null || $mode === '') {
+				return $mode;
+			}
+			return self::MODE_OVERRIDES[strtoupper($mode)] ?? $mode;
+		}
+
 		function update($result, $user_id, $operator) {
 			$timestamp = gmdate("Y-m-d H:i:s");
 
@@ -66,6 +89,11 @@
 			} else {
 				$data['mode_rx'] = NULL;
 			}
+
+			// Normalise non-standard rig mode strings to their ADIF mode. Single
+			// source of truth for every caller (v1 Api::radio() and API v2).
+			$data['mode'] = $this->normalize_mode($data['mode']);
+			$data['mode_rx'] = $this->normalize_mode($data['mode_rx']);
 
 			if (($this->config->item('mqtt_server') ?? '') != '') {
 				$h_user=$this->user_model->get_by_id($user_id);
@@ -254,10 +282,21 @@
 		 * Get CAT radios statuses for given user ID
 		 *
 		 * @param int|string $user_id
+		 * @param int|null   $operator Optional operator (clubmode) scope.
 		 * @return object
 		 */
-		function status_for_user_id($user_id) {
+		/**
+		 * Radios of an owner, optionally narrowed to a single operator.
+		 *
+		 * $operator is the session-free counterpart to the clubaccess_check(9)
+		 * branch in status(): a clubstation member below officer level only ever
+		 * sees the radios it registered itself.
+		 */
+		function status_for_user_id($user_id, $operator = null) {
 			$this->db->where('user_id', $user_id);
+			if ($operator !== null) {
+				$this->db->where('operator', $operator);
+			}
 			$query = $this->db->get('cat');
 
 			return $query;
@@ -335,6 +374,59 @@
 			$this->db->update('cat',array('cat_url' => $caturl));
 
 			return true;
+		}
+
+		/**
+		 * Fetch a single radio by id, scoped to an explicit owner. Session-free
+		 * counterpart to radio_status() for the REST API.
+		 *
+		 * @param int|string $id      cat row id.
+		 * @param int        $user_id Owner.
+		 * @param int|null   $operator Optional operator (clubmode) scope.
+		 * @return object|null The cat row, or null when not found/owned.
+		 */
+		function radio_for_user($id, $user_id, $operator = null) {
+			$this->db->where('id', $this->security->xss_clean($id));
+			$this->db->where('user_id', $user_id);
+			if ($operator !== null) {
+				$this->db->where('operator', $operator);
+			}
+			return $this->db->get('cat')->row();
+		}
+
+		/**
+		 * Look up a radio by its name within an operator/owner scope. Used by the
+		 * REST API to resolve the row after the name-keyed upsert in update().
+		 *
+		 * @param string $radio    Radio name.
+		 * @param int    $operator Operator id (clubmode) or owner.
+		 * @param int    $user_id  Owner.
+		 * @return object|null
+		 */
+		function radio_by_name($radio, $operator, $user_id) {
+			$this->db->where('radio', $radio);
+			$this->db->where('operator', $operator);
+			$this->db->where('user_id', $user_id);
+			return $this->db->get('cat')->row();
+		}
+
+		/**
+		 * Delete a radio by id, scoped to an explicit owner. Session-free
+		 * counterpart to delete() for the REST API.
+		 *
+		 * @param int|string $id      cat row id.
+		 * @param int        $user_id Owner.
+		 * @param int|null   $operator Optional operator (clubmode) scope.
+		 * @return int Number of affected rows.
+		 */
+		function delete_for_user($id, $user_id, $operator = null) {
+			$this->db->where('id', $this->security->xss_clean($id));
+			$this->db->where('user_id', $user_id);
+			if ($operator !== null) {
+				$this->db->where('operator', $operator);
+			}
+			$this->db->delete('cat');
+			return $this->db->affected_rows();
 		}
 	}
 ?>
