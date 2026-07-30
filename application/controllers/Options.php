@@ -285,6 +285,16 @@ class Options extends CI_Controller {
 			// Update smtpPort choice within the options system
 			$smtpPortupdate = $this->optionslib->update('smtpPort', $this->input->post('smtpPort', true));
 
+			// Update smtpTimeout choice within the options system
+			$smtpTimeout_value = (int) $this->input->post('smtpTimeout');
+			if ($smtpTimeout_value < 5 || $smtpTimeout_value > 120) {
+				$smtpTimeout_value = 30;
+			}
+			// Options_model::update() reports FALSE when it has to create the row instead
+			// of updating it. Create it up front so the return value stays meaningful.
+			$this->optionslib->save('smtpTimeout', $smtpTimeout_value, 'yes');
+			$smtpTimeoutupdate = $this->optionslib->update('smtpTimeout', $smtpTimeout_value, 'yes');
+
 			// Update smtpUsername choice within the options system
 			$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername', false));
 
@@ -298,6 +308,7 @@ class Options extends CI_Controller {
 				$emailAddressupdate &&
 				$smtpHostupdate &&
 				$smtpPortupdate &&
+				$smtpTimeoutupdate &&
 				$smtpUsernameupdate &&
 				$smtpPasswordupdate;
 
@@ -320,31 +331,11 @@ class Options extends CI_Controller {
 
 		if($email != "") {
 
-			$this->load->library('email');
+			$this->load->helper('mailer');
 
-			if($this->optionslib->get_option('emailProtocol') == "smtp") {
-				$config = Array(
-					'protocol' => $this->optionslib->get_option('emailProtocol'),
-					'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-					'smtp_host' => $this->optionslib->get_option('smtpHost'),
-					'smtp_port' => $this->optionslib->get_option('smtpPort'),
-					'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-					'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-					'crlf' => "\r\n",
-					'newline' => "\r\n"
-				);
+			$result = mailer_send('email/testmail', $email);
 
-				$this->email->initialize($config);
-			}
-
-			$message = $this->email->load('email/testmail', NULL);
-
-			$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-			$this->email->to($email);
-			$this->email->subject($message['subject']);
-			$this->email->message($message['body']);
-
-			if (! $this->email->send()){
+			if (! $result['success']){
 				$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));
 			} else {
 				$this->session->set_flashdata('testmailSuccess', __("Testmail sent. Email settings seem to be correct."));
