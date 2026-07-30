@@ -10,10 +10,10 @@
 				<div class="mb-3">
 					<label for="emailProtocol"><?= __("Outgoing Protocol"); ?></label>
 					<select name="emailProtocol" class="form-select" id="emailProtocol">
-						<option value="sendmail" <?php if($this->optionslib->get_option('emailProtocol')== "sendmail") { echo "selected=\"selected\""; } ?>>Sendmail</option>
+						<option value="sendmail" <?php if($this->optionslib->get_option('emailProtocol')== "sendmail") { echo "selected=\"selected\""; } ?>><?= __("Local mailer (PHP mail)"); ?></option>
 						<option value="smtp" <?php if($this->optionslib->get_option('emailProtocol')== "smtp") { echo "selected=\"selected\""; } ?>>SMTP</option>
 					</select>
-					<small class="form-text text-muted"><?= __("The protocol that will be used to send out emails."); ?></small>
+					<small class="form-text text-muted"><?= __("The protocol that will be used to send out emails. The local mailer hands the message to PHP's mail() function and therefore needs a mail transfer agent installed on the host - the official Docker image does not ship one, so use SMTP there."); ?></small>
 				</div>
 
 				<div class="mb-3">
@@ -55,6 +55,14 @@
 					<div class="col-sm-10">
 						<input type="number" name="smtpPort" class="form-control" id="smtpPort" value="<?php if($this->optionslib->get_option('smtpPort') != "") { echo $this->optionslib->get_option('smtpPort'); } ?>">
 						<small class="form-text text-muted"><?= __("The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is used -> '465'"); ?></small>
+					</div>
+				</div>
+
+				<div class="mb-3 row">
+					<label for="smtpTimeout" class="col-sm-2 col-form-label"><?= __("SMTP Timeout"); ?></label>
+					<div class="col-sm-10">
+						<input type="number" name="smtpTimeout" class="form-control" id="smtpTimeout" min="5" max="120" value="<?php echo $this->optionslib->get_option('smtpTimeout') ?: 30; ?>">
+						<small class="form-text text-muted"><?= __("How many seconds to wait for a reply from the mail server, between 5 and 120. Raise this if mails are delivered but reported as failed: some servers scan or greylist a message before they acknowledge it."); ?></small>
 					</div>
 				</div>
 
