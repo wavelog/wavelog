@@ -65,6 +65,25 @@ function getSelectedIds() {
 function updateRow(qso) {
 	let row = $('#qsoID-' + qso.qsoID);
 	let cells = row.find('td');
+
+	// ColReorder lets the user drag columns into a different VISUAL order, but the
+	// fields below are written in SOURCE (original) column order. When columns have
+	// been reordered, row.find('td') returns cells in visual order, so writing by
+	// position would put each value in the wrong cell. Remap the DOM cells back into
+	// source order via ColReorder's mapping (order[visualPos] == sourceIndex) so
+	// cells.eq(c) always refers to source column c, wherever it currently sits.
+	if ($.fn.DataTable.isDataTable('#qsoList')) {
+		const dt = $('#qsoList').DataTable();
+		if (dt.colReorder && $.isFunction(dt.colReorder.order)) {
+			const order = dt.colReorder.order();
+			if (Array.isArray(order) && order.length === cells.length) {
+				const reordered = new Array(cells.length);
+				cells.each(function (v) { reordered[order[v]] = this; });
+				cells = $(reordered);
+			}
+		}
+	}
+
 	let c = 1;
 	if ((user_options.datetime.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.qsoDateTime);
