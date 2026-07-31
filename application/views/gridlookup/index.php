@@ -43,6 +43,8 @@
 				<div class="cohidden coord-pair"><span><?= __("Latitude"); ?>:&nbsp;</span><span class="text-success fw-bold" id="latDeg"></span></div>
 				<div class="cohidden coord-pair"><span><?= __("Longitude"); ?>:&nbsp;</span><span class="text-success fw-bold" id="lngDeg"></span></div>
 				<div class="cohidden coord-pair"><span><?= __("Gridsquare"); ?>:&nbsp;</span><span class="text-success fw-bold" id="locator"></span></div>
+				<div class="cohidden coord-pair"><span><?= __("CQ Zone"); ?>:&nbsp;</span><span class="text-success fw-bold" id="cqzonedisplay"></span></div>
+				<div class="cohidden coord-pair"><span><?= __("ITU Zone"); ?>:&nbsp;</span><span class="text-success fw-bold" id="ituzonedisplay"></span></div>
 			</div>
 		</div>
 	</div>

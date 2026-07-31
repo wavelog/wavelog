@@ -346,6 +346,22 @@
 		});
 	}
 
+	/* Sync sibling of zoneFor for the live mousemove readout: uses only the
+	 * already-cached boundary data (no fetch), so it never blocks. Returns
+	 * {num} or null when the zone file isn't loaded yet. */
+	function zoneForSync(lat, lng, zoneId) {
+		let data = zoneData[zoneId];
+		if (!data || !data.features) { return null; }
+		let cfg = overlayCfg[zoneId] || {};
+		let numKey = cfg.numKey || (zoneId === 'cq' ? 'cq_zone_number' : 'itu_zone_number');
+		for (let i = 0; i < data.features.length; i++) {
+			if (featureContains(lat, lng, data.features[i])) {
+				return { num: (data.features[i].properties || {})[numKey] };
+			}
+		}
+		return null;
+	}
+
 	/* Compact "CQ 5 / ITU 8" label for a coordinate ("" if unresolved). */
 	function zonesLabel(lat, lng) {
 		return Promise.all([zoneFor(lat, lng, 'cq'), zoneFor(lat, lng, 'itu')]).then(function (res) {
@@ -401,12 +417,29 @@
 		map.on('click', onMapClick);
 
 		// Live coordinate readout at the bottom of the map (like the gridmap).
+		// Lat/lng/locator update every move; the CQ/ITU lookup is heavier
+		// (point-in-polygon over ~130 features), so coalesce it to one per frame.
+		let cqEl = document.getElementById('cqzonedisplay');
+		let ituEl = document.getElementById('ituzonedisplay');
+		let lastMouse = null, mouseFrame = null;
 		map.on('mousemove', function (e) {
 			let lat = e.latlng.lat, lng = e.latlng.lng;
 			let dms = toDMS(lat, lng);
 			document.getElementById('latDeg').textContent = dms.latDeg;
 			document.getElementById('lngDeg').textContent = dms.lngDeg;
 			document.getElementById('locator').textContent = latLngToLocator(lat, lng, 3);
+
+			lastMouse = { lat: lat, lng: lng };
+			if (mouseFrame === null) {
+				mouseFrame = requestAnimationFrame(function () {
+					mouseFrame = null;
+					if (!lastMouse) { return; }
+					let cq = zoneForSync(lastMouse.lat, lastMouse.lng, 'cq');
+					let itu = zoneForSync(lastMouse.lat, lastMouse.lng, 'itu');
+					if (cqEl)  { cqEl.textContent  = (cq  && cq.num  != null) ? cq.num  : ''; }
+					if (ituEl) { ituEl.textContent = (itu && itu.num != null) ? itu.num : ''; }
+				});
+			}
 		});
 
 		// Reveal the coordinate bar (elements start hidden via .cohidden).
