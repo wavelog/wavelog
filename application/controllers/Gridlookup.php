@@ -37,6 +37,14 @@ class Gridlookup extends CI_Controller {
 
 		$data['attribution'] = $this->optionslib->get_option('option_map_tile_server_copyright');
 
+		// Distance unit follows the user's preference, same as Qrbcalc / the logbook.
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->config->item('measurement_base');
+		} else {
+			$measurement_base = $this->session->userdata('user_measurement_base');
+		}
+		$data['measurement_base'] = $measurement_base;
+
 		$states = array();
 		foreach ($supported as $dxcc => $info) {
 			if (empty($info['enabled'])) {

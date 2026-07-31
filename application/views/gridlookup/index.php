@@ -6,7 +6,8 @@
 		overlays:    <?php echo json_encode(isset($overlays) ? $overlays : array()); ?>,
 		geojsonBase: <?php echo json_encode(base_url('assets/json/geojson/')); ?>,
 		invalidMsg:  <?php echo json_encode(__("Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr).")); ?>,
-		bearingLbl:  <?php echo json_encode(__("Bearing")); ?>
+		bearingLbl:  <?php echo json_encode(__("Bearing")); ?>,
+		measurementBase: <?php echo json_encode($measurement_base); ?>
 	};
 </script>
 

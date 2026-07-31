@@ -8,6 +8,7 @@
 	let glGeojsonBase = cfg.geojsonBase || '';
 	let invalidMsg    = cfg.invalidMsg  || 'Invalid gridsquare';
 	let bearingLbl    = cfg.bearingLbl  || 'Bearing';
+	let measurementBase = cfg.measurementBase || 'M';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -139,6 +140,9 @@
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		return parts.join('.');
 	}
+
+	/* Short unit label for the user's measurement base: km / mi / nm. */
+	function unitLabel(u) { return u === 'K' ? 'km' : u === 'N' ? 'nm' : 'mi'; }
 
 	/*
 	 * Reverse of locatorToCell: lat/lng -> Maidenhead locator. The cell step
@@ -510,13 +514,12 @@
 			}).addTo(map);
 
 			// QRB: distance + bearing grid1 -> grid2 (port of application/libraries/Qra.php).
-			let km  = calcDistance(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1], 'K');
-			let mi  = calcDistance(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1], 'M');
+			let dist = calcDistance(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1], measurementBase);
 			let brg = getBearing(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1]);
 
 			let baseInfo =
 				'<strong>' + cell1.loc + '</strong> &rarr; <strong>' + cell2.loc + '</strong>' +
-				' &middot; ' + groupThousands(km) + ' km (' + groupThousands(mi) + ' mi)' +
+				' &middot; ' + groupThousands(dist) + ' ' + unitLabel(measurementBase) +
 				' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
 			info.innerHTML = baseInfo;
 
@@ -535,7 +538,7 @@
 				let z2 = z[1] ? ' (' + z[1] + ')' : '';
 				info.innerHTML =
 					'<strong>' + cell1.loc + '</strong>' + z1 + ' &rarr; <strong>' + cell2.loc + '</strong>' + z2 +
-					' &middot; ' + groupThousands(km) + ' km (' + groupThousands(mi) + ' mi)' +
+					' &middot; ' + groupThousands(dist) + ' ' + unitLabel(measurementBase) +
 					' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
 			});
 		} else {
