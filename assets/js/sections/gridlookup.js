@@ -14,6 +14,9 @@
 
 	let map, highlight, marker, gridOverlay, clickMarker, clickSquare;
 
+	// The world view the map opens at — and that Clear zooms back out to.
+	let initialView = [20, 0], initialZoom = 3;
+
 	/*
 	 * Convert a Maidenhead locator to the exact centre + corner bounds of its
 	 * grid cell. Mirrors application/libraries/Qra.php::qra2latlong() so the
@@ -208,7 +211,7 @@
 	}
 
 	function init() {
-		map = L.map('glMap', { worldCopyJump: true }).setView([20, 0], 3);
+		map = L.map('glMap', { worldCopyJump: true }).setView(initialView, initialZoom);
 
 		L.tileLayer(tileUrl, {
 			minZoom: 3,
@@ -265,6 +268,10 @@
 		if (marker)      { map.removeLayer(marker);      marker = null; }
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
+
+		// Zoom back out to the default world view.
+		map.setView(initialView, initialZoom);
+
 		document.getElementById('glGrid').value = '';
 		document.getElementById('glInfo').textContent = '';
 		document.getElementById('glError').textContent = '';
@@ -286,6 +293,10 @@
 		clickMarker = L.marker(e.latlng).addTo(map)
 			.bindPopup('<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng))
 			.openPopup();
+
+		// Zoom in to the clicked grid cell — same fitBounds call as typing a
+		// gridsquare above, so the square becomes visible instead of a sub-pixel box.
+		map.fitBounds([cell.sw, cell.ne], { padding: [60, 60], maxZoom: 17 });
 
 		document.getElementById('glError').textContent = '';
 		document.getElementById('glInfo').innerHTML =
