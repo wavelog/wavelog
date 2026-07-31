@@ -12,6 +12,9 @@
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
 	let overlayLayers = {};  // id -> cached L.geoJSON layer
+	let zoneData = {};       // zoneId -> decoded GeoJSON FeatureCollection (cached)
+	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
+	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
 	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare;
 
@@ -277,6 +280,78 @@
 		if (overlayLayers[id]) { map.removeLayer(overlayLayers[id]); }
 	}
 
+	/* ---- CQ / ITU zone resolution (coordinate -> zone, client-side) ---- */
+
+	/* Lazily fetch + cache the CQ / ITU boundary GeoJSON. Returns a Promise of
+	 * the FeatureCollection (or null). Concurrent callers share one fetch; a
+	 * failure clears the slot so the next lookup retries. */
+	function ensureZoneData(zoneId) {
+		if (zoneData[zoneId]) { return Promise.resolve(zoneData[zoneId]); }
+		if (zoneFetching[zoneId]) { return zoneFetching[zoneId]; }
+		let cfg = overlayCfg[zoneId];
+		let file = cfg ? cfg.file : (zoneId === 'cq' ? 'cqzones.geojson' : 'ituzones.geojson');
+		zoneFetching[zoneId] = fetch(glGeojsonBase + file)
+			.then(function (r) { return r.json(); })
+			.then(function (data) { zoneData[zoneId] = data; delete zoneFetching[zoneId]; return data; })
+			.catch(function (err) { console.error('Zone load failed:', zoneId, err); delete zoneFetching[zoneId]; return null; });
+		return zoneFetching[zoneId];
+	}
+
+	/* Ray-casting point-in-polygon for one GeoJSON linear ring of [lng, lat] points. */
+	function pointInRing(lat, lng, ring) {
+		let inside = false;
+		for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+			let yi = ring[i][1], yj = ring[j][1];
+			if (((yi > lat) !== (yj > lat)) &&
+				(lng < (ring[j][0] - ring[i][0]) * (lat - yi) / (yj - yi) + ring[i][0])) {
+				inside = !inside;
+			}
+		}
+		return inside;
+	}
+
+	/* True if [lat, lng] falls inside a GeoJSON feature (Polygon or MultiPolygon, holes honoured). */
+	function featureContains(lat, lng, feature) {
+		let geom = feature.geometry;
+		if (!geom) { return false; }
+		let polys = geom.type === 'MultiPolygon' ? geom.coordinates : [geom.coordinates];
+		for (let p = 0; p < polys.length; p++) {
+			let rings = polys[p];
+			if (!rings || !rings.length || !pointInRing(lat, lng, rings[0])) { continue; }
+			let inHole = false;
+			for (let h = 1; h < rings.length; h++) {
+				if (pointInRing(lat, lng, rings[h])) { inHole = true; break; }
+			}
+			if (!inHole) { return true; }
+		}
+		return false;
+	}
+
+	/* Resolve {num} for the zone containing [lat, lng], or null. */
+	function zoneFor(lat, lng, zoneId) {
+		return ensureZoneData(zoneId).then(function (data) {
+			if (!data || !data.features) { return null; }
+			let cfg = overlayCfg[zoneId] || {};
+			let numKey = cfg.numKey || (zoneId === 'cq' ? 'cq_zone_number' : 'itu_zone_number');
+			for (let i = 0; i < data.features.length; i++) {
+				if (featureContains(lat, lng, data.features[i])) {
+					return { num: (data.features[i].properties || {})[numKey] };
+				}
+			}
+			return null;
+		});
+	}
+
+	/* Compact "CQ 5 / ITU 8" label for a coordinate ("" if unresolved). */
+	function zonesLabel(lat, lng) {
+		return Promise.all([zoneFor(lat, lng, 'cq'), zoneFor(lat, lng, 'itu')]).then(function (res) {
+			let parts = [];
+			if (res[0] && res[0].num != null) { parts.push('CQ ' + res[0].num); }
+			if (res[1] && res[1].num != null) { parts.push('ITU ' + res[1].num); }
+			return parts.join(' / ');
+		});
+	}
+
 	function init() {
 		map = L.map('glMap', { worldCopyJump: true }).setView(initialView, initialZoom);
 
@@ -303,6 +378,10 @@
 
 		// Build the Overlays (GeoJSON) dropdown — zones + per-country states.
 		buildOverlays(document.getElementById('glOverlaysHost'));
+
+		// Warm the CQ/ITU zone caches in the background so the first lookup is instant.
+		ensureZoneData('cq');
+		ensureZoneData('itu');
 
 		let input = document.getElementById('glGrid');
 		input.addEventListener('keydown', function (e) {
@@ -364,8 +443,9 @@
 			color: '#198754', weight: 3, fillColor: '#198754', fillOpacity: 0.18
 		}).addTo(map);
 
+		let popupBase = '<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng);
 		clickMarker = L.marker(e.latlng).addTo(map)
-			.bindPopup('<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng))
+			.bindPopup(popupBase)
 			.openPopup();
 
 		// Zoom in to the clicked grid cell — same fitBounds call as typing a
@@ -373,8 +453,16 @@
 		map.fitBounds([cell.sw, cell.ne], { padding: [60, 60], maxZoom: 17 });
 
 		document.getElementById('glError').textContent = '';
-		document.getElementById('glInfo').innerHTML =
-			'<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
+		let info = document.getElementById('glInfo');
+		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
+		info.innerHTML = baseInfo;
+
+		let myReq = ++zoneReq;
+		zonesLabel(lat, lng).then(function (z) {
+			if (myReq !== zoneReq || !z) { return; }
+			info.innerHTML = baseInfo + ' &middot; ' + z;
+			if (clickMarker) { clickMarker.setPopupContent(popupBase + '<br>' + z); }
+		});
 	}
 
 	function go() {
@@ -426,20 +514,44 @@
 			let mi  = calcDistance(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1], 'M');
 			let brg = getBearing(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1]);
 
-			info.innerHTML =
+			let baseInfo =
 				'<strong>' + cell1.loc + '</strong> &rarr; <strong>' + cell2.loc + '</strong>' +
 				' &middot; ' + groupThousands(km) + ' km (' + groupThousands(mi) + ' mi)' +
 				' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
+			info.innerHTML = baseInfo;
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
 				{ padding: [60, 60], maxZoom: 17 });
+
+			// Enrich with each end's CQ/ITU zone once the (cached) boundaries resolve.
+			// zoneReq guards against a newer lookup overwriting this one.
+			let myReq = ++zoneReq;
+			Promise.all([
+				zonesLabel(cell1.center[0], cell1.center[1]),
+				zonesLabel(cell2.center[0], cell2.center[1])
+			]).then(function (z) {
+				if (myReq !== zoneReq) { return; }
+				let z1 = z[0] ? ' (' + z[0] + ')' : '';
+				let z2 = z[1] ? ' (' + z[1] + ')' : '';
+				info.innerHTML =
+					'<strong>' + cell1.loc + '</strong>' + z1 + ' &rarr; <strong>' + cell2.loc + '</strong>' + z2 +
+					' &middot; ' + groupThousands(km) + ' km (' + groupThousands(mi) + ' mi)' +
+					' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
+			});
 		} else {
 			marker.openPopup();
 			map.fitBounds([cell1.sw, cell1.ne], { padding: [60, 60], maxZoom: 17 });
 
-			info.innerHTML =
+			let baseInfo =
 				'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
 				fmtLat(cell1.center[0]) + ', ' + fmtLng(cell1.center[1]);
+			info.innerHTML = baseInfo;
+
+			let myReq = ++zoneReq;
+			zonesLabel(cell1.center[0], cell1.center[1]).then(function (z) {
+				if (myReq !== zoneReq || !z) { return; }
+				info.innerHTML = baseInfo + ' &middot; ' + z;
+			});
 		}
 	}
 
