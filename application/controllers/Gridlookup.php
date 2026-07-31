@@ -45,6 +45,15 @@ class Gridlookup extends CI_Controller {
 		}
 		$data['measurement_base'] = $measurement_base;
 
+		// DXCC entity prefixes so the overlay labels read "Norway (LA)" etc.
+		$prefixes = array();
+		if (!empty($supported)) {
+			$this->db->select('adif, prefix')->where_in('adif', array_keys($supported));
+			foreach ($this->db->get('dxcc_entities')->result() as $row) {
+				$prefixes[$row->adif] = $row->prefix;
+			}
+		}
+
 		$states = array();
 		foreach ($supported as $dxcc => $info) {
 			if (empty($info['enabled'])) {
@@ -53,7 +62,7 @@ class Gridlookup extends CI_Controller {
 			$states[] = array(
 				'id'      => 'states_' . $dxcc,
 				'file'    => 'states_' . $dxcc . '.geojson',
-				'label'   => $info['name'],
+				'label'   => $info['name'] . (!empty($prefixes[$dxcc]) ? ' (' . $prefixes[$dxcc] . ')' : ''),
 				'group'   => __("States / Provinces"),
 				'type'    => 'state',
 				'nameKey' => 'name',
