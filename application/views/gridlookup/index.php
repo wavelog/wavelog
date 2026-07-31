@@ -7,7 +7,8 @@
 		geojsonBase: <?php echo json_encode(base_url('assets/json/geojson/')); ?>,
 		invalidMsg:  <?php echo json_encode(__("Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr).")); ?>,
 		bearingLbl:  <?php echo json_encode(__("Bearing")); ?>,
-		measurementBase: <?php echo json_encode($measurement_base); ?>
+		measurementBase: <?php echo json_encode($measurement_base); ?>,
+		stateUrl:   <?php echo json_encode(site_url('gridlookup/state_for_point')); ?>
 	};
 </script>
 

@@ -71,4 +71,44 @@ class Gridlookup extends CI_Controller {
 		$this->load->view('gridlookup/index');
 		$this->load->view('interface_assets/footer', $footerData);
 	}
+
+	/*
+	 * AJAX: given lat&lng, return the state/province (and its country) whose
+	 * subdivision GeoJSON contains the point — the same per-country files the
+	 * page offers as overlays. Outputs JSON {country, state, code} or null.
+	 * Scanned server-side so the (multi-MB) files never go to the browser.
+	 */
+	public function state_for_point() {
+		$lat = $this->input->get('lat', TRUE);
+		$lng = $this->input->get('lng', TRUE);
+
+		header('Content-Type: application/json');
+
+		if ($lat === null || $lng === null || !is_numeric($lat) || !is_numeric($lng)) {
+			echo json_encode(null);
+			return;
+		}
+
+		$this->load->library('Geojson');
+		foreach ($this->geojson->getSupportedDxccs() as $dxcc => $info) {
+			if (empty($info['enabled'])) {
+				continue;
+			}
+			$data = $this->geojson->loadGeoJsonFile('assets/json/geojson/states_' . $dxcc . '.geojson');
+			if ($data === null) {
+				continue;
+			}
+			$props = $this->geojson->findFeatureContainingPoint((float) $lat, (float) $lng, $data);
+			if ($props !== null) {
+				echo json_encode(array(
+					'country' => $info['name'],
+					'state'   => array_key_exists('name', $props) ? $props['name'] : null,
+					'code'    => array_key_exists('code', $props) ? $props['code'] : null,
+				));
+				return;
+			}
+		}
+
+		echo json_encode(null);
+	}
 }

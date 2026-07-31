@@ -9,6 +9,7 @@
 	let invalidMsg    = cfg.invalidMsg  || 'Invalid gridsquare';
 	let bearingLbl    = cfg.bearingLbl  || 'Bearing';
 	let measurementBase = cfg.measurementBase || 'M';
+	let stateUrl        = cfg.stateUrl || '';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -143,6 +144,26 @@
 
 	/* Short unit label for the user's measurement base: km / mi / nm. */
 	function unitLabel(u) { return u === 'K' ? 'km' : u === 'N' ? 'nm' : 'mi'; }
+
+	/* Format a state_for_point() response as "State (CODE), Country" (or "" if none). */
+	function stateStr(s) {
+		if (!s || !s.state) { return ''; }
+		return s.state + (s.code ? ' (' + s.code + ')' : '') + (s.country ? ', ' + s.country : '');
+	}
+
+	/* Join a marker popup's base line with any resolved zones/state (one per line). */
+	function popupContent(base, z, s) {
+		let parts = [base];
+		if (z) { parts.push(z); }
+		if (s) { parts.push(s); }
+		return parts.join('<br>');
+	}
+
+	/* Base popup line for a resolved grid cell (used by Go's blue/orange markers). */
+	function cellPopupBase(cell) {
+		return '<strong>' + cell.loc + '</strong><br>' + cell.label + '<br>' +
+			fmtLat(cell.center[0]) + ', ' + fmtLng(cell.center[1]);
+	}
 
 	/*
 	 * Reverse of locatorToCell: lat/lng -> Maidenhead locator. The cell step
@@ -492,14 +513,42 @@
 		document.getElementById('glError').textContent = '';
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
-		info.innerHTML = baseInfo;
+		let zones = '', stateLabel = '';
+
+		// Re-render from whatever has resolved so far, so the independently
+		// async zones and state enrichments compose instead of clobbering each
+		// other. zoneReq guards against a newer click overwriting this one.
+		function renderInfo() {
+			let parts = [baseInfo];
+			if (zones) { parts.push(zones); }
+			if (stateLabel) { parts.push(stateLabel); }
+			info.innerHTML = parts.join(' &middot; ');
+		}
+		function renderPopup() {
+			if (clickMarker) { clickMarker.setPopupContent(popupContent(popupBase, zones, stateLabel)); }
+		}
+		renderInfo();
 
 		let myReq = ++zoneReq;
+		// CQ/ITU zones — client-side against the cached boundaries.
 		zonesLabel(lat, lng).then(function (z) {
-			if (myReq !== zoneReq || !z) { return; }
-			info.innerHTML = baseInfo + ' &middot; ' + z;
-			if (clickMarker) { clickMarker.setPopupContent(popupBase + '<br>' + z); }
+			if (myReq !== zoneReq) { return; }
+			zones = z || '';
+			renderInfo();
+			renderPopup();
 		});
+		// State/province subdivision — server-side across the supported GeoJSON.
+		if (stateUrl) {
+			fetch(stateUrl + '?lat=' + lat + '&lng=' + lng)
+				.then(function (r) { return r.json(); })
+				.then(function (s) {
+					if (myReq !== zoneReq || !s || !s.state) { return; }
+					stateLabel = stateStr(s);
+					renderInfo();
+					renderPopup();
+				})
+				.catch(function () { /* unsupported point or transient — ignore */ });
+		}
 	}
 
 	function go() {
@@ -527,9 +576,7 @@
 		}).addTo(map);
 
 		if (marker) { map.removeLayer(marker); }
-		marker = L.marker(cell1.center).addTo(map)
-			.bindPopup('<strong>' + cell1.loc + '</strong><br>' + cell1.label + '<br>' +
-				fmtLat(cell1.center[0]) + ', ' + fmtLng(cell1.center[1]));
+		marker = L.marker(cell1.center).addTo(map).bindPopup(cellPopupBase(cell1));
 
 		if (cell2) {
 			// Grid 2 square + marker (orange).
@@ -537,9 +584,7 @@
 				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
 			}).addTo(map);
 
-			marker2 = L.marker(cell2.center).addTo(map)
-				.bindPopup('<strong>' + cell2.loc + '</strong><br>' + cell2.label + '<br>' +
-					fmtLat(cell2.center[0]) + ', ' + fmtLng(cell2.center[1]));
+			marker2 = L.marker(cell2.center).addTo(map).bindPopup(cellPopupBase(cell2));
 
 			// Great-circle path between the two cell centres.
 			pathLine = L.polyline(greatCircle(cell1.center, cell2.center, 64), {
@@ -550,44 +595,92 @@
 			let dist = calcDistance(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1], measurementBase);
 			let brg = getBearing(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1]);
 
-			let baseInfo =
-				'<strong>' + cell1.loc + '</strong> &rarr; <strong>' + cell2.loc + '</strong>' +
-				' &middot; ' + groupThousands(dist) + ' ' + unitLabel(measurementBase) +
-				' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
-			info.innerHTML = baseInfo;
+			// Composed readout: each grid's "(zones, state)" tag fills in
+			// asynchronously and re-renders. zoneReq guards against stale updates.
+			let z1 = '', z2 = '', s1 = '', s2 = '';
+			function tag(z, s) {
+				let inner = [];
+				if (z) { inner.push(z); }
+				if (s) { inner.push(s); }
+				return inner.length ? ' (' + inner.join(', ') + ')' : '';
+			}
+			function render() {
+				info.innerHTML =
+					'<strong>' + cell1.loc + '</strong>' + tag(z1, s1) + ' &rarr; <strong>' + cell2.loc + '</strong>' + tag(z2, s2) +
+					' &middot; ' + groupThousands(dist) + ' ' + unitLabel(measurementBase) +
+					' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
+			}
+			render();
+			function renderPopups() {
+				if (marker)  { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
+				if (marker2) { marker2.setPopupContent(popupContent(cellPopupBase(cell2), z2, s2)); }
+			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
 				{ padding: [60, 60], maxZoom: 17 });
 
-			// Enrich with each end's CQ/ITU zone once the (cached) boundaries resolve.
-			// zoneReq guards against a newer lookup overwriting this one.
 			let myReq = ++zoneReq;
+			// CQ/ITU zones (client-side, cached boundaries).
 			Promise.all([
 				zonesLabel(cell1.center[0], cell1.center[1]),
 				zonesLabel(cell2.center[0], cell2.center[1])
 			]).then(function (z) {
 				if (myReq !== zoneReq) { return; }
-				let z1 = z[0] ? ' (' + z[0] + ')' : '';
-				let z2 = z[1] ? ' (' + z[1] + ')' : '';
-				info.innerHTML =
-					'<strong>' + cell1.loc + '</strong>' + z1 + ' &rarr; <strong>' + cell2.loc + '</strong>' + z2 +
-					' &middot; ' + groupThousands(dist) + ' ' + unitLabel(measurementBase) +
-					' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
+				z1 = z[0] || ''; z2 = z[1] || '';
+				render();
+				renderPopups();
 			});
+			// State/province subdivision (server-side, one call per grid).
+			if (stateUrl) {
+				Promise.all([
+					fetch(stateUrl + '?lat=' + cell1.center[0] + '&lng=' + cell1.center[1]).then(function (r) { return r.json(); }).catch(function () { return null; }),
+					fetch(stateUrl + '?lat=' + cell2.center[0] + '&lng=' + cell2.center[1]).then(function (r) { return r.json(); }).catch(function () { return null; })
+				]).then(function (s) {
+					if (myReq !== zoneReq) { return; }
+					s1 = stateStr(s[0]); s2 = stateStr(s[1]);
+					render();
+					renderPopups();
+				});
+			}
 		} else {
 			marker.openPopup();
 			map.fitBounds([cell1.sw, cell1.ne], { padding: [60, 60], maxZoom: 17 });
 
-			let baseInfo =
-				'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
-				fmtLat(cell1.center[0]) + ', ' + fmtLng(cell1.center[1]);
-			info.innerHTML = baseInfo;
+			let z1 = '', s1 = '';
+			function render() {
+				let parts = [
+					'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
+					fmtLat(cell1.center[0]) + ', ' + fmtLng(cell1.center[1])
+				];
+				if (z1) { parts.push(z1); }
+				if (s1) { parts.push(s1); }
+				info.innerHTML = parts.join(' &middot; ');
+			}
+			render();
+			function renderPopup() {
+				if (marker) { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
+			}
 
 			let myReq = ++zoneReq;
+			// CQ/ITU zones (client-side, cached boundaries).
 			zonesLabel(cell1.center[0], cell1.center[1]).then(function (z) {
-				if (myReq !== zoneReq || !z) { return; }
-				info.innerHTML = baseInfo + ' &middot; ' + z;
+				if (myReq !== zoneReq) { return; }
+				z1 = z || '';
+				render();
+				renderPopup();
 			});
+			// State/province subdivision (server-side, across the supported GeoJSON).
+			if (stateUrl) {
+				fetch(stateUrl + '?lat=' + cell1.center[0] + '&lng=' + cell1.center[1])
+					.then(function (r) { return r.json(); })
+					.then(function (s) {
+						if (myReq !== zoneReq) { return; }
+						s1 = stateStr(s);
+						render();
+						renderPopup();
+					})
+					.catch(function () { /* unsupported point or transient — ignore */ });
+			}
 		}
 	}
 
