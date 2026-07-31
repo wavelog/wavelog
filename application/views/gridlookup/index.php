@@ -5,7 +5,8 @@
 		tileAttr:    <?php echo json_encode($attribution); ?>,
 		overlays:    <?php echo json_encode(isset($overlays) ? $overlays : array()); ?>,
 		geojsonBase: <?php echo json_encode(base_url('assets/json/geojson/')); ?>,
-		invalidMsg:  <?php echo json_encode(__("Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr).")); ?>
+		invalidMsg:  <?php echo json_encode(__("Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr).")); ?>,
+		bearingLbl:  <?php echo json_encode(__("Bearing")); ?>
 	};
 </script>
 
@@ -20,8 +21,12 @@
 				<input type="text" id="glGrid" class="form-control form-control-sm" style="max-width:200px;"
 					autocomplete="off" autocapitalize="characters" spellcheck="false"
 					placeholder="<?= __("e.g. FN31pr"); ?>" title="<?= __("2, 4, 6, 8 or 10 character Maidenhead locator"); ?>">
+				<span class="text-muted small fw-bold"><?= __("to"); ?></span>
+				<input type="text" id="glGrid2" class="form-control form-control-sm" style="max-width:200px;"
+					autocomplete="off" autocapitalize="characters" spellcheck="false"
+					placeholder="<?= __("e.g. JN58qm"); ?>" title="<?= __("Optional second gridsquare for distance and bearing"); ?>">
 				<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
-				<button id="glClear" class="btn btn-outline-secondary btn-sm"><?= __("Clear"); ?></button>
+				<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 				<div class="form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glGridOverlay" checked>
 					<label class="form-check-label" for="glGridOverlay"><?= __("Maidenhead grid"); ?></label>

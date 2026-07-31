@@ -7,12 +7,13 @@
 	let glOverlays    = cfg.overlays    || [];
 	let glGeojsonBase = cfg.geojsonBase || '';
 	let invalidMsg    = cfg.invalidMsg  || 'Invalid gridsquare';
+	let bearingLbl    = cfg.bearingLbl  || 'Bearing';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
 	let overlayLayers = {};  // id -> cached L.geoJSON layer
 
-	let map, highlight, marker, gridOverlay, clickMarker, clickSquare;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -69,6 +70,72 @@
 
 	function fmtLat(lat) { return Math.abs(lat).toFixed(5) + '°' + (lat >= 0 ? 'N' : 'S'); }
 	function fmtLng(lng) { return Math.abs(lng).toFixed(5) + '°' + (lng >= 0 ? 'E' : 'W'); }
+
+	function deg2rad(d) { return d * Math.PI / 180; }
+	function rad2deg(r) { return r * 180 / Math.PI; }
+
+	/*
+	 * Great-circle distance between two points. unit is 'K' (km), 'M' (miles)
+	 * or 'N' (nautical). Faithful port of application/libraries/Qra.php::calc_distance().
+	 */
+	function calcDistance(lat1, lon1, lat2, lon2, unit) {
+		let theta = lon1 - lon2;
+		let dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) +
+			Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+		dist = Math.acos(Math.max(-1, Math.min(1, dist)));   // clamp against float drift
+		dist = rad2deg(dist) * 60 * 1.1515;
+		if (unit === 'K')      { dist *= 1.609344; }
+		else if (unit === 'N') { dist *= 0.8684; }
+		if (isNaN(dist) || !isFinite(dist)) { dist = 0; }    // same-grid / error guard
+		return Math.round(dist * 10) / 10;
+	}
+
+	/* Initial great-circle bearing from point1 -> point2, whole degrees. Port of Qra.php::get_bearing(). */
+	function getBearing(lat1, lon1, lat2, lon2) {
+		let b = (Math.trunc(rad2deg(Math.atan2(
+			Math.sin(deg2rad(lon2) - deg2rad(lon1)) * Math.cos(deg2rad(lat2)),
+			Math.cos(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) -
+			Math.sin(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(lon2) - deg2rad(lon1))
+		))) + 360) % 360;
+		return b;
+	}
+
+	/* 16-sector -> 8-point compass label, exactly like Qra.php::bearing(). */
+	function cardinal(bearing) {
+		let dirs = ['N', 'E', 'S', 'W'];
+		let r = Math.round(bearing / 22.5) % 16;
+		if (r % 4 === 0) { return dirs[r / 4]; }
+		return dirs[2 * Math.floor(((Math.floor(r / 4) + 1) % 4) / 2)] +
+			dirs[1 + 2 * Math.floor(r / 8)];
+	}
+
+	/* Sample n+1 points along the great-circle arc from p1 to p2 ([lat, lng] pairs). */
+	function greatCircle(p1, p2, n) {
+		let lat1 = deg2rad(p1[0]), lon1 = deg2rad(p1[1]);
+		let lat2 = deg2rad(p2[0]), lon2 = deg2rad(p2[1]);
+		let d = Math.acos(Math.max(-1, Math.min(1,
+			Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1))));
+		if (d < 1e-9) { return [p1, p2]; }
+		let pts = [];
+		let sinD = Math.sin(d);
+		for (let i = 0; i <= n; i++) {
+			let f = i / n;
+			let a = Math.sin((1 - f) * d) / sinD;
+			let b = Math.sin(f * d) / sinD;
+			let x = a * Math.cos(lat1) * Math.cos(lon1) + b * Math.cos(lat2) * Math.cos(lon2);
+			let y = a * Math.cos(lat1) * Math.sin(lon1) + b * Math.cos(lat2) * Math.sin(lon2);
+			let z = a * Math.sin(lat1) + b * Math.sin(lat2);
+			pts.push([rad2deg(Math.atan2(z, Math.sqrt(x * x + y * y))), rad2deg(Math.atan2(y, x))]);
+		}
+		return pts;
+	}
+
+	/* "6,234.5" style grouping for the distance readout. */
+	function groupThousands(n) {
+		let parts = String(n).split('.');
+		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		return parts.join('.');
+	}
 
 	/*
 	 * Reverse of locatorToCell: lat/lng -> Maidenhead locator. The cell step
@@ -242,6 +309,11 @@
 			if (e.key === 'Enter') { e.preventDefault(); go(); }
 		});
 
+		let input2 = document.getElementById('glGrid2');
+		input2.addEventListener('keydown', function (e) {
+			if (e.key === 'Enter') { e.preventDefault(); go(); }
+		});
+
 		// Click the map to drop a marker showing the gridsquare + coordinates.
 		map.on('click', onMapClick);
 
@@ -268,11 +340,13 @@
 		if (marker)      { map.removeLayer(marker);      marker = null; }
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
+		clearSecond();   // grid-2 square, marker and path line
 
 		// Zoom back out to the default world view.
 		map.setView(initialView, initialZoom);
 
 		document.getElementById('glGrid').value = '';
+		document.getElementById('glGrid2').value = '';
 		document.getElementById('glInfo').textContent = '';
 		document.getElementById('glError').textContent = '';
 	}
@@ -308,37 +382,72 @@
 		let info = document.getElementById('glInfo');
 		err.textContent = '';
 
-		let cell = locatorToCell(document.getElementById('glGrid').value);
-		if (!cell) {
+		// Grid 1 is required; grid 2 is optional and enables distance/bearing.
+		let cell1 = locatorToCell(document.getElementById('glGrid').value);
+		let raw2  = (document.getElementById('glGrid2').value || '').trim();
+		let cell2 = raw2 ? locatorToCell(raw2) : null;
+		if (!cell1 || (raw2 && !cell2)) {
 			info.textContent = '';
 			err.textContent = invalidMsg;
 			return;
 		}
 
-		let bounds = [cell.sw, cell.ne];
+		// Drop any second-grid artefacts; rebuilt below only when grid 2 is set.
+		clearSecond();
 
+		// Grid 1 square + marker (blue).
 		if (highlight) { map.removeLayer(highlight); }
-		highlight = L.rectangle(bounds, {
-			color: '#0d6efd',
-			weight: 3,
-			fillColor: '#0d6efd',
-			fillOpacity: 0.18
+		highlight = L.rectangle([cell1.sw, cell1.ne], {
+			color: '#0d6efd', weight: 3, fillColor: '#0d6efd', fillOpacity: 0.18
 		}).addTo(map);
 
 		if (marker) { map.removeLayer(marker); }
-		marker = L.marker(cell.center).addTo(map)
-			.bindPopup(
-				'<strong>' + cell.loc + '</strong><br>' +
-				cell.label + '<br>' +
-				fmtLat(cell.center[0]) + ', ' + fmtLng(cell.center[1])
-			)
-			.openPopup();
+		marker = L.marker(cell1.center).addTo(map)
+			.bindPopup('<strong>' + cell1.loc + '</strong><br>' + cell1.label + '<br>' +
+				fmtLat(cell1.center[0]) + ', ' + fmtLng(cell1.center[1]));
 
-		map.fitBounds(bounds, { padding: [60, 60], maxZoom: 17 });
+		if (cell2) {
+			// Grid 2 square + marker (orange).
+			highlight2 = L.rectangle([cell2.sw, cell2.ne], {
+				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
+			}).addTo(map);
 
-		info.innerHTML =
-			'<strong>' + cell.loc + '</strong> &middot; ' + cell.label + ' &middot; ' +
-			fmtLat(cell.center[0]) + ', ' + fmtLng(cell.center[1]);
+			marker2 = L.marker(cell2.center).addTo(map)
+				.bindPopup('<strong>' + cell2.loc + '</strong><br>' + cell2.label + '<br>' +
+					fmtLat(cell2.center[0]) + ', ' + fmtLng(cell2.center[1]));
+
+			// Great-circle path between the two cell centres.
+			pathLine = L.polyline(greatCircle(cell1.center, cell2.center, 64), {
+				color: '#ff2d92', weight: 3, dashArray: '6,6', opacity: 1
+			}).addTo(map);
+
+			// QRB: distance + bearing grid1 -> grid2 (port of application/libraries/Qra.php).
+			let km  = calcDistance(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1], 'K');
+			let mi  = calcDistance(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1], 'M');
+			let brg = getBearing(cell1.center[0], cell1.center[1], cell2.center[0], cell2.center[1]);
+
+			info.innerHTML =
+				'<strong>' + cell1.loc + '</strong> &rarr; <strong>' + cell2.loc + '</strong>' +
+				' &middot; ' + groupThousands(km) + ' km (' + groupThousands(mi) + ' mi)' +
+				' &middot; ' + bearingLbl + ' ' + brg + '&deg; (' + cardinal(brg) + ')';
+
+			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
+				{ padding: [60, 60], maxZoom: 17 });
+		} else {
+			marker.openPopup();
+			map.fitBounds([cell1.sw, cell1.ne], { padding: [60, 60], maxZoom: 17 });
+
+			info.innerHTML =
+				'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
+				fmtLat(cell1.center[0]) + ', ' + fmtLng(cell1.center[1]);
+		}
+	}
+
+	/* Remove the grid-2 square, marker and path line (shared by Go and Clear). */
+	function clearSecond() {
+		if (highlight2) { map.removeLayer(highlight2); highlight2 = null; }
+		if (marker2)    { map.removeLayer(marker2);    marker2 = null; }
+		if (pathLine)   { map.removeLayer(pathLine);   pathLine = null; }
 	}
 
 	if (document.readyState === 'loading') {
