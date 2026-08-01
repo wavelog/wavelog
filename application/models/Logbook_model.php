@@ -2300,13 +2300,14 @@ class Logbook_model extends CI_Model {
 	// appended in placeholder order.
 	//
 	// $station_ids  int[]   station-location ids (already ownership-checked)
+	// $callsign     string  '' for none, else an exact match on COL_CALL
 	// $band         string  '' for none, 'SAT', or a COL_BAND value
 	// $mode         string  '' for none, else a COL_MODE or COL_SUBMODE value
 	// $qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
 	// $since_id     int     0 for none, else COL_PRIMARY_KEY > $since_id
 	// $qso_since    string  '' for none, else 'Y-m-d' floor on COL_TIME_ON
 	// $operator     string  '' for none, else restrict to that COL_OPERATOR
-	private function _qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, $qso_since, &$bindings, $operator = '') {
+	private function _qso_v2_filter_where($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, &$bindings, $operator = '') {
 		$where = " WHERE qsos.`station_id` IN ?";
 		$bindings[] = $station_ids;
 
@@ -2315,6 +2316,11 @@ class Logbook_model extends CI_Model {
 		if ($operator !== null && $operator !== '') {
 			$where .= " AND upper(qsos.`COL_OPERATOR`) = ?";
 			$bindings[] = strtoupper($operator);
+		}
+
+		if ($callsign !== null && $callsign !== '') {
+			$where .= " AND upper(qsos.`COL_CALL`) = ?";
+			$bindings[] = strtoupper($callsign);
 		}
 
 		if ((int) $since_id > 0) {
@@ -2365,14 +2371,14 @@ class Logbook_model extends CI_Model {
 	// rendered as JSON or as ADIF (via AdifHelper). $order is 'id_asc' (ascending
 	// primary key, for incremental ADIF sync) or 'time_desc' (newest first, for
 	// browsing). Filtering is shared with count_qsos_filtered().
-	function get_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $order = 'time_desc', $limit = 50, $offset = 0, $operator = '') {
+	function get_qsos_filtered($station_ids, $callsign = '', $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $order = 'time_desc', $limit = 50, $offset = 0, $operator = '') {
 		if (empty($station_ids)) {
 			return $this->db->query("SELECT * FROM " . $this->config->item('table_name') . " WHERE 1=0");
 		}
 
 		$tbl = $this->config->item('table_name');
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
+		$where = $this->_qso_v2_filter_where($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
 
 		$sql = "SELECT qsos.*, station_profile.*, dxcc_entities.name AS station_country
 			FROM {$tbl} qsos
@@ -2393,13 +2399,13 @@ class Logbook_model extends CI_Model {
 
 	// Count QSOs for the REST API v2 QSO endpoint, using the exact same filter as
 	// get_qsos_filtered() so `total` matches the paginated result set.
-	function count_qsos_filtered($station_ids, $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $operator = '') {
+	function count_qsos_filtered($station_ids, $callsign = '', $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $operator = '') {
 		if (empty($station_ids)) {
 			return 0;
 		}
 
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
+		$where = $this->_qso_v2_filter_where($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, '', $bindings, $operator);
 		$sql = "SELECT COUNT(*) AS cnt FROM " . $this->config->item('table_name') . " qsos" . $where;
 
 		return (int) $this->db->query($sql, $bindings)->row()->cnt;
@@ -2489,7 +2495,7 @@ class Logbook_model extends CI_Model {
 			array_unshift($columns, "{$group_expr} as `{$group_by}`");
 		}
 
-		$where = $this->_qso_v2_filter_where($station_ids, $band, $mode, null, 0, $qso_since, $bindings);
+		$where = $this->_qso_v2_filter_where($station_ids, '', $band, $mode, null, 0, $qso_since, $bindings);
 
 		$sql = "SELECT " . implode(", ", $columns)
 			. " FROM " . $this->config->item('table_name') . " qsos"

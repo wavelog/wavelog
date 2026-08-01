@@ -59,6 +59,7 @@ class Qso_resource extends Api_v2_resource {
 	 *
 	 * Filters (all optional):
 	 *   ?station_id= comma-separated, ownership-checked; default: all owned
+	 *   ?callsign=   exact match on the worked callsign (e.g. HB9HIL)
 	 *   ?band=       single band filter (e.g. 20m or SAT)
 	 *   ?mode=       single mode/submode filter (e.g. SSB or FT8)
 	 *   ?qsl_filter= comma list of lotw|qsl|eqsl|clublog (OR-combined)
@@ -91,6 +92,7 @@ class Qso_resource extends Api_v2_resource {
 		$station_ids = $this->resolve_station_ids();
 		$band        = $this->normalize_band($this->param('band'));
 		$mode        = $this->normalize_mode($this->param('mode'));
+		$callsign    = $this->normalize_callsign($this->param('callsign'));
 		$qsl_filter  = $this->parse_qsl_filter();
 		$since_id    = $this->parse_since_id();
 
@@ -123,10 +125,10 @@ class Qso_resource extends Api_v2_resource {
 
 		// Total across all pages for the same filter, so a client can find the
 		// last page without probing for an empty response.
-		$total = $this->CI->logbook_model->count_qsos_filtered($station_ids, $band, $mode, $qsl_filter, $since_id, $operator);
+		$total = $this->CI->logbook_model->count_qsos_filtered($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $operator);
 
 		$query = $this->CI->logbook_model->get_qsos_filtered(
-			$station_ids, $band, $mode, $qsl_filter, $since_id, $order, $page['per_page'], $page['offset'], $operator
+			$station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $order, $page['per_page'], $page['offset'], $operator
 		);
 
 		$rows = is_object($query) ? $query->result() : [];
