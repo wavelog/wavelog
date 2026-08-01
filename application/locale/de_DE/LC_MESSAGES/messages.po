@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-01 06:03+0000\n"
+"POT-Creation-Date: 2026-08-01 08:24+0000\n"
 "PO-Revision-Date: 2026-08-01 06:16+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4364,7 +4364,7 @@ msgstr "Kein Rufzeichen angegeben"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
-#: application/models/Logbook_model.php:4622
+#: application/models/Logbook_model.php:4644
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4372,7 +4372,7 @@ msgstr ""
 "Abweichendes Stationsrufzeichen %s beim Import des QSO mit %s für %s: "
 "ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:4630
+#: application/models/Logbook_model.php:4652
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4381,7 +4381,7 @@ msgstr ""
 "Abweichendes Planquadrat %s beim Import des QSO mit %s für "
 "Stationsplanquadrat %s: ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:4646
+#: application/models/Logbook_model.php:4668
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4389,7 +4389,7 @@ msgstr ""
 "Du hast versucht, ein QSO mit ungültigem Datum zu importieren. Dieses QSO "
 "wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4656
+#: application/models/Logbook_model.php:4678
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4398,7 +4398,7 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO ohne jedes Rufzeichen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig."
 
-#: application/models/Logbook_model.php:4663
+#: application/models/Logbook_model.php:4685
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4407,7 +4407,7 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO mit einem ungültigen Rufzeichen zu "
 "importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist '%s'."
 
-#: application/models/Logbook_model.php:4733
+#: application/models/Logbook_model.php:4755
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4416,7 +4416,7 @@ msgstr ""
 "QSO bei %s: Band '%s' ist nicht in der Bandkonfiguration. Dieses QSO wurde "
 "nicht importiert."
 
-#: application/models/Logbook_model.php:4740
+#: application/models/Logbook_model.php:4762
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4425,63 +4425,63 @@ msgstr ""
 "QSO um %s: Du hast versucht, ein QSO ohne Bandinformationen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:5014
+#: application/models/Logbook_model.php:5036
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5025
+#: application/models/Logbook_model.php:5047
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5108
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5462
+#: application/models/Logbook_model.php:5484
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:5529
-#: application/models/Logbook_model.php:5629
+#: application/models/Logbook_model.php:5551
+#: application/models/Logbook_model.php:5651
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:5537
+#: application/models/Logbook_model.php:5559
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5543
+#: application/models/Logbook_model.php:5565
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:5547
+#: application/models/Logbook_model.php:5569
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:5551
+#: application/models/Logbook_model.php:5573
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:5554
+#: application/models/Logbook_model.php:5576
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:5557
+#: application/models/Logbook_model.php:5579
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5632
+#: application/models/Logbook_model.php:5654
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
-#: application/models/Logbook_model.php:5635
+#: application/models/Logbook_model.php:5657
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
-#: application/models/Logbook_model.php:6041
+#: application/models/Logbook_model.php:6063
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
