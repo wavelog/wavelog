@@ -240,7 +240,10 @@ msgstr "対流圏ダクト"
 #: application/controllers/Api_token.php:85 application/controllers/Club.php:47
 #: application/controllers/Club.php:74 application/controllers/Club.php:116
 #: application/controllers/Club.php:142 application/controllers/Club.php:167
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Club.php:42
+#: application/controllers/Club.php:80 application/controllers/Club.php:118
+#: application/controllers/Club.php:144 application/controllers/Club.php:177
+#: application/controllers/Club.php:246 application/controllers/Club.php:298
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -913,16 +916,19 @@ msgstr "クラブ会員"
 #: application/models/Club_model.php:180 application/models/Club_model.php:222
 #: application/controllers/Club.php:43 application/models/Club_model.php:139
 #: application/models/Club_model.php:230 application/models/Club_model.php:272
+#: application/controllers/Club.php:46
 msgid "Invalid User ID!"
 msgstr "無効なユーザーIDです！"
 
 #: application/controllers/Club.php:64 application/controllers/Club.php:51
+#: application/controllers/Club.php:50
 msgid "This user is not a club station."
 msgstr "このユーザーはクラブ局ではありません。"
 
 #: application/controllers/Club.php:68
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215 application/controllers/Club.php:55
+#: application/controllers/Club.php:54
 msgid "Club Permissions"
 msgstr "クラブ権限"
 
@@ -933,22 +939,28 @@ msgstr "クラブ権限"
 #: application/controllers/Club.php:138 application/controllers/Club.php:163
 #: application/models/Club_model.php:55 application/models/Club_model.php:134
 #: application/models/Club_model.php:225 application/models/Club_model.php:267
+#: application/controllers/Club.php:122 application/controllers/Club.php:148
+#: application/controllers/Club.php:250 application/controllers/Club.php:302
 msgid "Invalid Club ID!"
 msgstr "無効なクラブIDです！"
 
 #: application/controllers/Club.php:139 application/controllers/Club.php:124
+#: application/controllers/Club.php:130 application/controllers/Club.php:221
 msgid "User could not be notified. Please check your email settings."
 msgstr "ユーザーに通知できませんでした。メール設定を確認してください。"
 
 #: application/controllers/Club.php:143 application/controllers/Club.php:128
+#: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
 msgstr "クラブ メンバーの権限が更新されました。"
 
 #: application/controllers/Club.php:164 application/controllers/Club.php:147
+#: application/controllers/Club.php:153
 msgid "User removed from club."
 msgstr "ユーザーはクラブから削除されました。"
 
 #: application/controllers/Club.php:166 application/controllers/Club.php:149
+#: application/controllers/Club.php:155
 msgid "User could not be removed from club."
 msgstr "ユーザーをクラブから削除できませんでした。"
 
@@ -1085,6 +1097,8 @@ msgstr ""
 #: application/controllers/Contesting.php:718
 #: application/controllers/Contesting.php:765
 #: application/controllers/Contesting.php:777
+#: application/controllers/Club.php:73 application/controllers/Club.php:168
+#: application/controllers/Club.php:238
 msgid "Invalid request method."
 msgstr "無効なリクエストメソッドです。"
 
@@ -3089,6 +3103,7 @@ msgstr "最終更新日"
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/club/permissions.php:313
 msgid "Edit"
 msgstr "編集"
 
@@ -3124,6 +3139,9 @@ msgstr "編集"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:730
 #: application/views/view_log/qso.php:738
+#: application/views/club/permissions.php:370
+#: application/views/club/permissions.php:392
+#: application/views/club/permissions.php:453
 msgid "Delete"
 msgstr "削除"
 
@@ -3748,6 +3766,7 @@ msgstr "変更できません。IDプロバイダーを通じて管理してく�
 
 #: application/controllers/User.php:467
 #: application/views/club/permissions.php:308
+#: application/views/club/permissions.php:318
 msgid "Edit User"
 msgstr "ユーザーを編集"
 
@@ -3762,6 +3781,7 @@ msgstr "プロフィール"
 
 #: application/controllers/User.php:1186
 #: application/views/club/permissions.php:365
+#: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "ユーザーを削除"
 
@@ -5096,6 +5116,7 @@ msgstr "何も見つかりません!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:64
+#: application/views/club/permissions.php:284
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -5958,6 +5979,10 @@ msgstr ""
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/club/permissions.php:364
+#: application/views/club/permissions.php:393
+#: application/views/club/permissions.php:432
+#: application/views/club/permissions.php:454
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -5995,6 +6020,8 @@ msgstr "この API の用途を説明する簡単な名前。"
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/club/permissions.php:363
+#: application/views/club/permissions.php:431
 msgid "Save"
 msgstr "保存"
 
@@ -6133,6 +6160,7 @@ msgstr "権限"
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:598
 #: application/views/webadif/export.php:45
+#: application/views/club/permissions.php:288
 msgid "Actions"
 msgstr "アクション"
 
@@ -10345,6 +10373,8 @@ msgstr "ユーザー（コールサインまたは名前）"
 #: application/views/club/permissions.php:228
 #: application/views/club/permissions.php:278
 #: application/views/club/permissions.php:324
+#: application/views/club/permissions.php:287
+#: application/views/club/permissions.php:334
 msgid "Permission"
 msgstr "許可"
 
@@ -10361,10 +10391,12 @@ msgid "No users currently have access to this club station."
 msgstr "現在、このクラブ局にアクセスできるユーザーはいません。"
 
 #: application/views/club/permissions.php:273
+#: application/views/club/permissions.php:282
 msgid "Firstname"
 msgstr "氏名"
 
 #: application/views/club/permissions.php:274
+#: application/views/club/permissions.php:283
 msgid "Lastname"
 msgstr "姓"
 
@@ -10373,40 +10405,49 @@ msgstr "姓"
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
+#: application/views/club/permissions.php:285
 msgid "Username"
 msgstr "ユーザー名"
 
 #: application/views/club/permissions.php:277
 #: application/views/contesting/manager/export_cbr.php:257
+#: application/views/club/permissions.php:286
 msgid "E-Mail"
 msgstr "Eメール"
 
 #: application/views/club/permissions.php:299
+#: application/views/club/permissions.php:309
 msgid "Wavelog Administrator"
 msgstr "Wavelog管理者"
 
 #: application/views/club/permissions.php:316
+#: application/views/club/permissions.php:326
 msgid "You can modify the users permission level for this Clubstation."
 msgstr "この Clubstation のユーザーの権限レベルを変更できます。"
 
 #: application/views/club/permissions.php:323
+#: application/views/club/permissions.php:333
 msgid "User Callsign"
 msgstr "ユーザーのコールサイン"
 
 #: application/views/club/permissions.php:342
+#: application/views/club/permissions.php:352
 msgid "Notify the user via email about the change"
 msgstr "変更についてユーザーにメールで通知する"
 
 #: application/views/club/permissions.php:372
+#: application/views/club/permissions.php:382
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "このユーザーをクラブから削除してもよろしいですか?"
 
 #: application/views/club/permissions.php:376
+#: application/views/club/permissions.php:386
 #, php-format
 msgid "Callsign: %s"
 msgstr "コールサイン: %s"
 
 #: application/views/club/permissions.php:377
+#: application/views/club/permissions.php:387
 #, php-format
 msgid "Role: %s"
 msgstr "役割： %s"
@@ -12132,6 +12173,7 @@ msgid "Quick Start"
 msgstr "クイックスタート"
 
 #: application/views/contesting/manager/index.php:23
+#: application/views/club/permissions.php:274
 msgid "Delete Selected"
 msgstr "選択した項目を削除"
 
@@ -22904,6 +22946,76 @@ msgstr "クラブ会員の権限を管理する"
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
 msgstr "クラブメンバーを削除する"
+
+#: application/controllers/Club.php:187 application/controllers/Club.php:256
+msgid "No members selected."
+msgstr ""
+
+#: application/controllers/Club.php:194 application/controllers/Club.php:263
+msgid "None of the selected users are members of this club."
+msgstr ""
+
+#: application/controllers/Club.php:203 application/controllers/Club.php:271
+msgid ""
+"Cannot proceed: this would remove the last Club Officer. An instance "
+"administrator must perform this action."
+msgstr ""
+
+#: application/controllers/Club.php:209
+msgid "Club member permissions could not be updated."
+msgstr ""
+
+#: application/controllers/Club.php:213
+msgid "No members were updated."
+msgstr ""
+
+#: application/controllers/Club.php:226
+#, php-format
+msgid "%d member updated."
+msgid_plural "%d members updated."
+msgstr[0] ""
+
+#: application/controllers/Club.php:277
+msgid "Users could not be removed from club."
+msgstr ""
+
+#: application/controllers/Club.php:281
+msgid "No members were removed."
+msgstr ""
+
+#: application/controllers/Club.php:285
+#, php-format
+msgid "%d member removed."
+msgid_plural "%d members removed."
+msgstr[0] ""
+
+#: application/views/club/permissions.php:271
+msgid "Edit Selected"
+msgstr ""
+
+#: application/views/club/permissions.php:409
+msgid "Edit Selected Members"
+msgstr ""
+
+#: application/views/club/permissions.php:415
+msgid "Set the permission level for all selected members:"
+msgstr ""
+
+#: application/views/club/permissions.php:426
+msgid "Notify the users via email about the change"
+msgstr ""
+
+#: application/views/club/permissions.php:443
+msgid "Delete Selected Members"
+msgstr ""
+
+#: application/views/club/permissions.php:449
+msgid "Are you sure you want to delete the selected users from the club?"
+msgstr ""
+
+#: application/views/club/permissions.php:450
+msgid "user(s) will be removed."
+msgstr ""
 
 #~ msgid "Links to 3rd-Party-Software which works with Wavelog:"
 #~ msgstr "Wavelog で動作するサードパーティ製ソフトウェアへのリンク:"

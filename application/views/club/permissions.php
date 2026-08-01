@@ -214,7 +214,7 @@
                         </div>
                         <form action="<?= site_url('club/alter_member'); ?>" method="post">
                             <div class="modal-body">
-                                <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                                <input type="hidden" id="club_id" name="club_id" value="<?php echo $club->user_id; ?>">
                                 <p>
                                     <?= sprintf(__("You can only add users to the %s Clubstation if they already exist on this Wavelog Server."), str_replace('0', 'Ø', $club->user_callsign)); ?>
                                     <?= __("If they don't exist, please ask your Wavelog Administrator to create an account for them."); ?><br><br>
@@ -266,10 +266,19 @@
                     <h5><?= __("No users currently have access to this club station."); ?></h5>
                 </div>
             <?php } else { ?>
+                <div class="mt-3">
+                    <button type="button" class="btn btn-warning btn-sm me-2" id="batchEditBtn" disabled>
+                        <i class="fas fa-edit"></i> <?= __("Edit Selected"); ?> <span class="badge bg-secondary ms-1" id="batchEditCount">0</span>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" id="batchDeleteBtn" disabled>
+                        <i class="fas fa-trash"></i> <?= __("Delete Selected"); ?> <span class="badge bg-secondary ms-1" id="batchDeleteCount">0</span>
+                    </button>
+                </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-striped table-hover" id="clubuserstable">
                         <thead>
                             <tr>
+                                <th><input type="checkbox" id="checkBoxAll"></th>
                                 <th><?= __("Firstname"); ?></th>
                                 <th><?= __("Lastname"); ?></th>
                                 <th><?= __("Callsign"); ?></th>
@@ -282,6 +291,7 @@
                         <tbody>
                             <?php foreach ($club_members as $member) { ?>
                                 <tr>
+                                    <td style="text-align: center; vertical-align: middle;"><input type="checkbox" class="row-check" value="<?php echo $member->user_id; ?>"></td>
                                     <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_firstname; ?></td>
                                     <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_lastname; ?></td>
                                     <td style="text-align: center; vertical-align: middle;"><?php echo str_replace('0', 'Ø' ,$member->user_callsign); ?></td>
@@ -391,6 +401,62 @@
                             <?php } ?>
                         </tbody>
                     </table>
+
+                    <div class="modal fade" id="batchEditModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                        <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"><?= __("Edit Selected Members"); ?></h5>
+                                </div>
+                                <form action="<?= site_url('club/batch_alter_members'); ?>" method="post">
+                                    <div class="modal-body">
+                                        <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                                        <input type="hidden" name="ids" id="batchEditIds" value="">
+                                        <p><?= __("Set the permission level for all selected members:"); ?></p>
+                                        <div class="mb-3">
+                                            <select class="form-select" name="permission" required>
+                                                <option value="3"><?php echo $permissions[3]; ?></option>
+                                                <option value="6"><?php echo $permissions[6]; ?></option>
+                                                <option value="9"><?php echo $permissions[9]; ?></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="batch_notify_user" name="notify_user">
+                                            <label class="form-check-label" for="batch_notify_user">
+                                                <?= __("Notify the users via email about the change"); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success ld-ext-right"><?= __("Save"); ?><div class="ld ld-ring ld-spin"></div></button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade bg-black bg-opacity-50" id="batchDeleteModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"><?= __("Delete Selected Members"); ?></h5>
+                                </div>
+                                <form action="<?= site_url('club/batch_delete_members'); ?>" method="post">
+                                    <div class="modal-body" style="text-align: center !important;">
+                                        <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                                        <input type="hidden" name="ids" id="batchDeleteIds" value="">
+                                        <p><?= __("Are you sure you want to delete the selected users from the club?"); ?></p>
+                                        <p><b><span id="batchDeleteConfirmCount">0</span></b> <?= __("user(s) will be removed."); ?></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-danger"><?= __("Delete"); ?></button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 <?php } ?>
                 </div>
         </div>
