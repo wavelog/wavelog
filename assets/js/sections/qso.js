@@ -1059,16 +1059,8 @@ function start_az_ele_ticker(tle) {
 	};
 
 	function updateAzEl() {
-		let dateParts=parseUserDate($('#start_date').val());
-		let timeParts=$("#start_time").val().split(":");
 		try {
-			var time = new Date(Date.UTC(
-				dateParts.getFullYear(),dateParts.getMonth(),dateParts.getDate(),
-				parseInt(timeParts[0]),parseInt(timeParts[1]),(parseInt(timeParts[2] ?? 0))
-			));
-			if (isNaN(time.getTime())) {
-				throw new Error("Invalid date");
-			}
+			var time = new Date();
 			var positionAndVelocity = satellite.propagate(satrec, time);
 			var gmst = satellite.gstime(time);
 			var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
