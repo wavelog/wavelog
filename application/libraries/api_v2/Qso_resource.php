@@ -59,10 +59,13 @@ class Qso_resource extends Api_v2_resource {
 	 *
 	 * Filters (all optional):
 	 *   ?station_id= comma-separated, ownership-checked; default: all owned
+	 *   ?callsign=   exact match on the worked callsign (e.g. HB9HIL)
 	 *   ?band=       single band filter (e.g. 20m or SAT)
 	 *   ?mode=       single mode/submode filter (e.g. SSB or FT8)
 	 *   ?qsl_filter= comma list of lotw|qsl|eqsl|clublog (OR-combined)
 	 *   ?since_id=   only QSOs with a primary key greater than this (default 0)
+	 *   ?qso_since=  YYYY-MM-DD, oldest QSO date to include (whole day)
+	 *   ?qso_until=  YYYY-MM-DD, newest QSO date to include (whole day)
 	 * Pagination: ?page= / ?per_page= (max 5000; default 50 for JSON, 1000 for
 	 *             ADIF), or ?limit= as a shortcut for the newest N QSOs (overrides
 	 *             page/per_page).
@@ -91,8 +94,11 @@ class Qso_resource extends Api_v2_resource {
 		$station_ids = $this->resolve_station_ids();
 		$band        = $this->normalize_band($this->param('band'));
 		$mode        = $this->normalize_mode($this->param('mode'));
+		$callsign    = $this->normalize_callsign($this->param('callsign'));
 		$qsl_filter  = $this->parse_qsl_filter();
 		$since_id    = $this->parse_since_id();
+		$qso_since   = $this->parse_date('qso_since');
+		$qso_until   = $this->parse_date('qso_until');
 
 		// ADIF sync needs ascending-by-id order (so lastfetchedid advances); the
 		// JSON browse list is newest-first.
@@ -121,12 +127,24 @@ class Qso_resource extends Api_v2_resource {
 		// JSON list and the ADIF export alike, since both run the same query.
 		$operator = $this->is_restricted_club_member() ? (string) $this->operator_callsign() : '';
 
+		$filters = [
+			'station_ids' => $station_ids,
+			'callsign'    => $callsign,
+			'band'        => $band,
+			'mode'        => $mode,
+			'qsl_filter'  => $qsl_filter,
+			'since_id'    => $since_id,
+			'qso_since'   => $qso_since,
+			'qso_until'   => $qso_until,
+			'operator'    => $operator,
+		];
+
 		// Total across all pages for the same filter, so a client can find the
 		// last page without probing for an empty response.
-		$total = $this->CI->logbook_model->count_qsos_filtered($station_ids, $band, $mode, $qsl_filter, $since_id, $operator);
+		$total = $this->CI->logbook_model->count_qsos_filtered($filters);
 
 		$query = $this->CI->logbook_model->get_qsos_filtered(
-			$station_ids, $band, $mode, $qsl_filter, $since_id, $order, $page['per_page'], $page['offset'], $operator
+			$filters, $order, $page['per_page'], $page['offset']
 		);
 
 		$rows = is_object($query) ? $query->result() : [];

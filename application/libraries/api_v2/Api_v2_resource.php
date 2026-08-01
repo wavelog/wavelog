@@ -413,6 +413,23 @@ abstract class Api_v2_resource {
 	}
 
 	/**
+	 * Normalise a ?callsign= filter: '' when absent, else uppercased (COL_CALL is
+	 * stored uppercase). Validated with the same loose rule as the QSO import
+	 * (letters, digits, / and -), so junk like spaces or commas is rejected with
+	 * a 400 instead of silently matching nothing.
+	 */
+	protected function normalize_callsign($raw) {
+		if ($raw === null || $raw === '') {
+			return '';
+		}
+		$this->CI->load->model('logbook_model');
+		if (!$this->CI->logbook_model->is_valid_callsign($raw)) {
+			throw new Api_v2_exception('validation_error', 'Invalid callsign', 400);
+		}
+		return strtoupper(trim($raw));
+	}
+
+	/**
 	 * Parse a comma-separated query parameter into a validated lowercase list,
 	 * or null when the parameter is absent. Values outside $allowed produce a
 	 * 400 carrying the allowed list, so a client can correct itself.
