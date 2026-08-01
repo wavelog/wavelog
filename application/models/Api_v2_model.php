@@ -31,11 +31,33 @@ class Api_v2_model extends CI_Model {
 	 */
 	public static function scope_registry() {
 		static $registry = null;
-		if ($registry !== null) {
-			return $registry;
+		if ($registry === null) {
+			$registry = self::collect_scopes();
 		}
 
+		return $registry;
+	}
+
+	/**
+	 * The subset of scope_registry() the current session may actually hand out.
+	 *
+	 * Not memoized: the session can change within a request (impersonation).
+	 */
+	public static function grantable_scope_registry() {
+		return self::collect_scopes(true);
+	}
+
+	/**
+	 * Walk the resource classes and collect their scope definitions.
+	 *
+	 * @param bool $grantable Also require is_grantable(), i.e. filter down to
+	 *                        what the current session may hand out. Availability
+	 *                        is checked either way, which is what keeps the
+	 *                        grantable set a subset of the full registry.
+	 */
+	private static function collect_scopes($grantable = false) {
 		$registry = [];
+
 		foreach (glob(APPPATH . 'libraries/api_v2/*_resource.php') as $file) {
 			require_once $file;
 			// Convention: file "<Resource>_resource.php" holds class
@@ -46,6 +68,9 @@ class Api_v2_model extends CI_Model {
 				continue;
 			}
 			if (!$class::is_available()) {
+				continue;
+			}
+			if ($grantable && !$class::is_grantable()) {
 				continue;
 			}
 			$registry += $class::scope_definitions();
@@ -70,7 +95,7 @@ class Api_v2_model extends CI_Model {
 	 * @return array<string,array{name:string,description:string,icon:string,class:string,scopes:string[]}>
 	 */
 	public static function preset_registry() {
-		$all = array_keys(self::scope_registry());
+		$all = array_keys(self::grantable_scope_registry());
 		$read_only = array_values(array_filter($all, function ($scope) {
 			return substr($scope, -5) === ':read';
 		}));
@@ -293,7 +318,6 @@ class Api_v2_model extends CI_Model {
 		$this->db->where('id', (int) $token_id);
 		$this->db->update('api_token');
 
-		$this->load->model('user_model');
 		$this->user_model->set_last_seen($user_id);
 	}
 }

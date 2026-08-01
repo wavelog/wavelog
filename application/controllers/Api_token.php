@@ -13,7 +13,6 @@ class Api_token extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('user_model');
 		$this->load->model('api_v2_model');
 	}
 
@@ -40,7 +39,7 @@ class Api_token extends CI_Controller {
 		}
 
 		$scopes = $this->input->post('scopes', TRUE);
-		$valid_scopes = array_keys(Api_v2_model::scope_registry());
+		$valid_scopes = array_keys(Api_v2_model::grantable_scope_registry());
 		$scopes = is_array($scopes) ? array_intersect($scopes, $valid_scopes) : [];
 		if (empty($scopes)) {
 			$this->session->set_flashdata('error', __("Please select at least one scope"));

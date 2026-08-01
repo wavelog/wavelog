@@ -179,6 +179,23 @@ abstract class Api_v2_resource {
 	}
 
 	/**
+	 * Whether the *current session* may hand out this resource's scopes when
+	 * creating a token. The counterpart to is_available(): that one answers
+	 * whether the resource exists on this instance at all, this one whether the
+	 * user in front of the token dialog has any use for it.
+	 *
+	 * Only the token UI asks (Api_v2_model::grantable_scope_registry()), and
+	 * only for resources that are available already. The dispatcher must never
+	 * call it - a token outlives the session that created it, and a request
+	 * carries no session at all.
+	 *
+	 * @return bool
+	 */
+	public static function is_grantable() {
+		return true;
+	}
+
+	/**
 	 * Translated labels for this resource's scopes, keyed by suffix
 	 * ("read" | "write" | "delete"). Override in each resource; the strings
 	 * must be static __() literals so po_gen.sh can extract them. The base

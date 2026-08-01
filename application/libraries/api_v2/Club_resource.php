@@ -9,21 +9,32 @@ require_once __DIR__ . '/Api_v2_resource.php';
  *
  * Lists and manages the members of a clubstation, the v2 equivalent of the v1
  * list_clubmembers endpoint plus the permission handling of the web UI
- * (controllers/Club.php). Only a club officer (permission level 9) using a
- * member-issued token may use it: the token owner is the clubstation and the
- * token creator is the member acting on its behalf, so a token where owner ==
- * creator (a personal token) is never a club officer.
+ * (controllers/Club.php). The path id addresses the *member*:
+ * /api/v2/club/{user_id}.
  *
- * The clubstation is implicit - it is the token owner - so the path id
- * addresses the member: /api/v2/club/{user_id}.
+ * Two kinds of token reach this resource, mirroring who may open
+ * club/permissions/<id> in the web UI:
  *
- * Route:  /api/v2/club
+ *  - A club token whose creator is an officer (permission level 9). The
+ *    clubstation is implicit - it is the token owner - so ?club_id= is optional
+ *    and may only name that same club.
+ *  - A personal token of a Wavelog administrator. Administrators manage every
+ *    clubstation (Club_model::club_authorize()), so there is nothing implicit
+ *    about which one they mean: ?club_id= is mandatory.
+ *
+ * Anything else - a personal token of a regular user, a club token below
+ * officer level - is refused with 403.
+ *
+ * Route:  /api/v2/club[/{user_id}][?club_id=]
  * Scope:  club:read / club:write / club:delete
  */
 class Club_resource extends Api_v2_resource {
 
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'club';
+
+	/** @var int|null Memoized result of resolve_club(). */
+	protected $club_id = null;
 
 	/**
 	 * The whole resource only exists while the clubstation feature is on.
@@ -33,6 +44,25 @@ class Club_resource extends Api_v2_resource {
 	public static function is_available() {
 		$CI =& get_instance();
 		return (bool) $CI->config->item('special_callsign');
+	}
+
+	/**
+	 * Only sessions that could actually use these scopes are offered them: an
+	 * officer inside a clubstation, or an administrator outside one. A regular
+	 * user has no club to address and would end up with a token that can only
+	 * ever answer 403.
+	 */
+	public static function is_grantable() {
+		$CI =& get_instance();
+
+		// Inside a clubstation the permission level decides. The two cases have
+		// to stay separate because clubaccess_check() returns true outside one.
+		if ($CI->session->userdata('clubstation') == 1) {
+			return clubaccess_check(9);
+		}
+
+		// Outside: administrators only, who name the club with ?club_id=.
+		return (bool) $CI->user_model->authorize(99);
 	}
 
 	/** Registry labels for this resource's scopes (see scope_definitions()). */
@@ -46,13 +76,27 @@ class Club_resource extends Api_v2_resource {
 
 	/**
 	 * GET /api/v2/club
-	 * The clubstation's members (callsign, user_name, p_level).
+	 *
+	 * The clubstation's members (callsign, user_name, p_level) - or, for an
+	 * administrator who named no club, the list of clubstations to choose from.
+	 * That is where the club_id every other call needs comes from, so refusing
+	 * it with a 400 would leave them nowhere to look it up.
 	 */
 	public function index() {
-		$this->require_permission_level(9);
+		$club_id = $this->resolve_club(false);
+
+		if ($club_id === null) {
+			$clubs = [];
+			foreach ($this->CI->club_model->get_all_clubstations() as $club) {
+				$clubs[] = $this->format_clubstation($club);
+			}
+
+			$this->CI->api_v2_response->respond($clubs, 200, ['count' => count($clubs)]);
+			return;
+		}
 
 		$members = [];
-		foreach ($this->CI->club_model->get_club_members($this->user_id()) as $member) {
+		foreach ($this->CI->club_model->get_club_members($club_id) as $member) {
 			$members[] = $this->format_member($member);
 		}
 
@@ -64,7 +108,7 @@ class Club_resource extends Api_v2_resource {
 	 * A single member of the clubstation.
 	 */
 	public function show($user_id) {
-		$this->require_permission_level(9);
+		$this->resolve_club();
 
 		$member = $this->find_member($user_id);
 		if ($member === null) {
@@ -81,7 +125,7 @@ class Club_resource extends Api_v2_resource {
 	 */
 	public function create() {
 		$this->require_write();
-		$this->require_permission_level(9);
+		$club_id = $this->resolve_club();
 		$this->require_not_sso_managed();
 
 		$body = $this->body();
@@ -99,11 +143,11 @@ class Club_resource extends Api_v2_resource {
 
 		// Changing an existing membership is what PATCH is for; creating one
 		// twice must not silently overwrite the level already granted.
-		if ((int) $this->CI->club_model->get_permission_noui($this->user_id(), $user_id) > 0) {
+		if ((int) $this->CI->club_model->get_permission_noui($club_id, $user_id) > 0) {
 			throw new Api_v2_exception('conflict', 'User is already a member of this clubstation', 409);
 		}
 
-		$this->CI->club_model->alter_member($this->user_id(), $user_id, $level);
+		$this->CI->club_model->alter_member($club_id, $user_id, $level);
 
 		$this->respond_member($user_id, $body, 'new_member', 201);
 	}
@@ -115,7 +159,7 @@ class Club_resource extends Api_v2_resource {
 	 */
 	public function update($user_id) {
 		$this->require_write();
-		$this->require_permission_level(9);
+		$club_id = $this->resolve_club();
 		$this->require_not_sso_managed();
 
 		$body = $this->body();
@@ -125,11 +169,11 @@ class Club_resource extends Api_v2_resource {
 		$level = $this->parse_permission_level($body);
 
 		// No upsert: adding a member is POST.
-		if ((int) $this->CI->club_model->get_permission_noui($this->user_id(), $user_id) === 0) {
+		if ((int) $this->CI->club_model->get_permission_noui($club_id, $user_id) === 0) {
 			throw new Api_v2_exception('not_found', 'User is not a member of this clubstation', 404);
 		}
 
-		$this->CI->club_model->alter_member($this->user_id(), $user_id, $level);
+		$this->CI->club_model->alter_member($club_id, $user_id, $level);
 
 		$this->respond_member($user_id, $body, 'modified_member', 200);
 	}
@@ -141,17 +185,17 @@ class Club_resource extends Api_v2_resource {
 	 */
 	public function delete($user_id) {
 		$this->require_delete();
-		$this->require_permission_level(9);
+		$club_id = $this->resolve_club();
 		$this->require_not_sso_managed();
 
 		$user_id = $this->require_manageable_member($user_id);
 
 		// Without this a DELETE on a non-member would report success.
-		if ((int) $this->CI->club_model->get_permission_noui($this->user_id(), $user_id) === 0) {
+		if ((int) $this->CI->club_model->get_permission_noui($club_id, $user_id) === 0) {
 			throw new Api_v2_exception('not_found', 'User is not a member of this clubstation', 404);
 		}
 
-		if (!$this->CI->club_model->delete_member($this->user_id(), $user_id)) {
+		if (!$this->CI->club_model->delete_member($club_id, $user_id)) {
 			throw new Api_v2_exception('internal_error', 'User could not be removed from the clubstation', 500);
 		}
 
@@ -161,10 +205,83 @@ class Club_resource extends Api_v2_resource {
 	// --- Internal helpers --------------------------------------------------
 
 	/**
-	 * Every operation here is officer-only. Api_v2::resolve_club_context()
-	 * fills club_permission for club tokens only, and only while the
-	 * clubstation feature is on, so this one check covers a personal token, a
-	 * member below officer level and a disabled feature alike.
+	 * The clubstation this request acts on, after checking that the token may
+	 * act on it at all. Every handler starts here; the result is memoized, so
+	 * the internal helpers can simply ask again instead of passing it around.
+	 *
+	 * The access check runs either way - $required only decides what happens
+	 * when an administrator names no club: a 400, or a null the caller answers
+	 * differently (index() lists the clubstations instead).
+	 *
+	 * @param bool $required Whether an administrator must supply club_id.
+	 * @return int|null club_id, or null for an administrator who named none.
+	 * @throws Api_v2_exception 400 when an administrator omits club_id,
+	 *                          403 when the token may not manage this club,
+	 *                          404 when club_id is not a clubstation.
+	 */
+	protected function resolve_club($required = true) {
+		if ($this->club_id !== null) {
+			return $this->club_id;
+		}
+
+		$this->CI->load->model('club_model');
+		$requested = $this->param('club_id');
+
+		// Club token: the clubstation is the token owner, and officer level is
+		// what separates managing members from merely logging QSOs.
+		if ($this->club_permission() !== null) {
+			$this->require_permission_level(9);
+
+			if ($requested !== null && (int) $requested !== (int) $this->user_id()) {
+				throw new Api_v2_exception('forbidden', 'club_id does not match the clubstation behind this token', 403);
+			}
+
+			return $this->club_id = (int) $this->user_id();
+		}
+
+		// Personal token: only an administrator gets this far, and only by
+		// naming the club - they have no implicit one. Judged on the creator,
+		// which for a personal token is the owner itself.
+		if (!$this->CI->user_model->is_admin($this->auth['created_by'])) {
+			throw new Api_v2_exception('forbidden', 'Token is neither a club officer nor an admin', 403);
+		}
+
+		if ($requested === null) {
+			// Left unmemoized: null is the "not resolved yet" marker.
+			if (!$required) {
+				return null;
+			}
+			throw new Api_v2_exception(
+				'validation_error',
+				'club_id is required for an administrator token',
+				400,
+				['field' => 'club_id']
+			);
+		}
+
+		// A club_id that was supplied but is unusable is an error either way -
+		// answering with the clubstation list would hide the typo.
+		if (!is_numeric($requested) || (int) $requested < 1) {
+			throw new Api_v2_exception(
+				'validation_error',
+				'club_id must be a numeric user id',
+				400,
+				['field' => 'club_id']
+			);
+		}
+
+		$club = $this->CI->user_model->get_by_id((int) $requested);
+		if ($club === null || $club->num_rows() === 0 || (int) $club->row()->clubstation !== 1) {
+			throw new Api_v2_exception('not_found', 'Unknown clubstation', 404);
+		}
+
+		return $this->club_id = (int) $requested;
+	}
+
+	/**
+	 * Guard an operation behind a clubstation permission level. Only reached
+	 * for club tokens; resolve_club() handles the administrator path, where
+	 * there is no membership to grade.
 	 *
 	 * @throws Api_v2_exception 403
 	 */
@@ -172,8 +289,6 @@ class Club_resource extends Api_v2_resource {
 		if (!is_numeric($level) || (int) $level < 1) {
 			throw new Api_v2_exception('internal_error', 'Invalid permission level', 500);
 		}
-
-		$this->CI->load->model('club_model');
 
 		if ((int) $this->club_permission() !== (int) $level) {
 			throw new Api_v2_exception('forbidden', 'Token is not a club officer', 403);
@@ -188,7 +303,7 @@ class Club_resource extends Api_v2_resource {
 	 * @throws Api_v2_exception 409
 	 */
 	protected function require_not_sso_managed() {
-		if ($this->CI->club_model->is_sso_managed($this->user_id())) {
+		if ($this->CI->club_model->is_sso_managed($this->resolve_club())) {
 			throw new Api_v2_exception('conflict', 'Club membership is managed by the identity provider', 409);
 		}
 	}
@@ -206,13 +321,16 @@ class Club_resource extends Api_v2_resource {
 		}
 		$user_id = (int) $user_id;
 
-		if ($user_id === (int) $this->user_id()) {
+		if ($user_id === $this->resolve_club()) {
 			throw new Api_v2_exception('validation_error', 'A clubstation cannot be a member of itself', 400);
 		}
 
 		// An officer must not be able to lock themselves out of their own club
-		// through the API; changing your own level stays a web UI operation.
-		if ($user_id === (int) $this->auth['created_by']) {
+		// through the API; changing your own level stays a web UI operation. An
+		// administrator reaches every club through the UI regardless, so the
+		// rule would only get in their way.
+		if ($user_id === (int) $this->auth['created_by']
+			&& !$this->CI->user_model->is_admin($this->auth['created_by'])) {
 			throw new Api_v2_exception('forbidden', 'Cannot modify your own club membership', 403);
 		}
 
@@ -266,7 +384,7 @@ class Club_resource extends Api_v2_resource {
 		$meta = null;
 		// no notification by default
 		if (filter_var($body['notify'] ?? false, FILTER_VALIDATE_BOOLEAN)) {
-			$meta = ['notified' => (bool) $this->CI->club_model->notify_member($user_id, $this->user_id(), $template)];
+			$meta = ['notified' => (bool) $this->CI->club_model->notify_member($user_id, $this->resolve_club(), $template)];
 		}
 
 		$headers = ($status === 201)
@@ -287,12 +405,25 @@ class Club_resource extends Api_v2_resource {
 		if (!is_numeric($user_id)) {
 			return null;
 		}
-		foreach ($this->CI->club_model->get_club_members($this->user_id()) as $member) {
+		foreach ($this->CI->club_model->get_club_members($this->resolve_club()) as $member) {
 			if ((int) $member->user_id === (int) $user_id) {
 				return $member;
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Shape a clubstation row into the public API representation. Deliberately
+	 * thin: this is a directory an administrator picks a club_id from, not the
+	 * clubstation's account data.
+	 */
+	protected function format_clubstation($club) {
+		return [
+			'club_id'      => (int) $club->user_id,
+			'callsign'     => $club->user_callsign,
+			'member_count' => (int) $club->member_count,
+		];
 	}
 
 	/**

@@ -216,12 +216,18 @@ class Api_v2 extends CI_Controller {
 		// Returns 0 for a user that is no longer a member of the clubstation.
 		$permission = (int) $this->club_model->get_permission_noui($auth['user_id'], $auth['created_by']);
 		if ($permission < 1) {
-			// The token is valid, the permission behind it is not: 403, not 401.
-			throw new Api_v2_exception(
-				'club_access_revoked',
-				'The clubstation membership behind this token has been revoked',
-				403
-			);
+			// An administrator manages every clubstation in the web UI
+			// so he should be able to manage any club also via the API
+			if ($this->user_model->is_admin($auth['created_by'])) {
+				$permission = 9;
+			} else {
+				// The token is valid, the permission behind it is not: 403, not 401.
+				throw new Api_v2_exception(
+					'club_access_revoked',
+					'The clubstation membership behind this token has been revoked',
+					403
+				);
+			}
 		}
 
 		$auth['club_permission'] = $permission;

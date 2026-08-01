@@ -193,7 +193,24 @@ class Club_model extends CI_Model {
     }
 
     /**
-     * 
+     * Get every Clubstation on this instance with its number of members.
+     *
+     * @return array
+     */
+    function get_all_clubstations() {
+
+        $sql = 'SELECT users.user_id, users.user_callsign, COUNT(club_permissions.id) AS member_count
+                FROM users
+                LEFT JOIN club_permissions ON club_permissions.club_id = users.user_id
+                WHERE users.clubstation = 1
+                GROUP BY users.user_id, users.user_callsign
+                ORDER BY users.user_callsign;';
+
+        return $this->db->query($sql)->result();
+    }
+
+    /**
+     *
      * Add Club Member
      * 
      * @param int $club_id
