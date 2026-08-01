@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-01 06:03+0000\n"
-"PO-Revision-Date: 2026-07-29 12:05+0000\n"
+"PO-Revision-Date: 2026-08-01 06:16+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -1547,7 +1547,7 @@ msgstr "Bestätigungen"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ Zonen"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1558,12 +1558,12 @@ msgstr "Zonen"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Staaten / Provinzen"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:328
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "Locator Suche"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:164
@@ -10995,11 +10995,11 @@ msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "pro OP"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
-msgstr ""
+msgstr "Rot: nur Vorschau. Grün: Diese Nummer ist für dich reserviert."
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -11700,15 +11700,15 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "Seriennummernreihe"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "Von allen Operatoren geteilt"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "Eine Serie pro Operator"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -11716,6 +11716,10 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"Seriennummern werden vom Server vergeben, sodass dieselbe Nummer nie zweimal "
+"verwendet wird, selbst wenn mehrere Operatoren gleichzeitig loggen. Die "
+"meisten Contests erwarten eine einzige gemeinsame Seriennummer pro "
+"Rufzeichen (nicht Operator!)."
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -14207,34 +14211,36 @@ msgstr "Zurück zum Dashboard"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"Ungültiges Locatorfeld — Verwenden Sie 2, 4, 6, 8 oder 10 Zeichen (z.B. FN, "
+"FN31, FN31pr)."
 
 #: application/views/gridlookup/index.php:25
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "2, 4, 6, 8 oder 10-stelliger Maidenhead-Locator"
 
 #: application/views/gridlookup/index.php:25
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "z.B. FN31pr"
 
 #: application/views/gridlookup/index.php:26
 msgid "to"
-msgstr ""
+msgstr "zu"
 
 #: application/views/gridlookup/index.php:29
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "Optionales zweiter Locator für Entfernung und Peilung"
 
 #: application/views/gridlookup/index.php:29
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "z.B. JN58qm"
 
 #: application/views/gridlookup/index.php:30
 msgid "Go"
-msgstr ""
+msgstr "Los"
 
 #: application/views/gridlookup/index.php:34
 msgid "Maidenhead grid"
-msgstr ""
+msgstr "Maidenhead-Locator"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
