@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-01 05:45+0000\n"
+"POT-Creation-Date: 2026-08-01 06:03+0000\n"
 "PO-Revision-Date: 2026-07-28 05:36+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -173,6 +173,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
 #: application/controllers/Eqsl.php:662
 #: application/controllers/Generic_qsl.php:11
+#: application/controllers/Gridlookup.php:18
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
 #: application/controllers/Kmlexport.php:17
@@ -329,7 +330,7 @@ msgid "date incorrect"
 msgstr "日付が間違っています"
 
 #: application/controllers/Adif.php:264
-#: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:523
 msgid "ADIF Import / Export"
 msgstr "ADIF インポート/エクスポート"
 
@@ -768,6 +769,7 @@ msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2301
+#: application/controllers/Gridlookup.php:33
 #: application/views/awards/itu/index.php:27
 msgid "ITU Zones"
 msgstr "ITUゾーン"
@@ -803,7 +805,7 @@ msgid "Awards - AMSAT Rover"
 msgstr "アワード - AMSAT Rover"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
-#: application/views/interface_assets/header.php:347
+#: application/views/interface_assets/header.php:349
 msgid "Backup"
 msgstr "バックアップ"
 
@@ -813,7 +815,7 @@ msgstr "メモ - バックアップ"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
-#: application/views/interface_assets/header.php:488
+#: application/views/interface_assets/header.php:490
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 msgid "Bands"
@@ -1158,7 +1160,7 @@ msgid "Continents"
 msgstr "大陸"
 
 #: application/controllers/Cron.php:37
-#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:353
 msgid "Cron Manager"
 msgstr "Cronマネージャー"
 
@@ -1255,7 +1257,7 @@ msgid "Not running"
 msgstr "実行されていません"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:530
+#: application/views/interface_assets/header.php:532
 msgid "SOTA CSV Export"
 msgstr "SOTA CSVエクスポート"
 
@@ -1386,7 +1388,7 @@ msgid "and propagation"
 msgstr "および伝播"
 
 #: application/controllers/Dxatlas.php:18
-#: application/views/interface_assets/header.php:528
+#: application/views/interface_assets/header.php:530
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX アトラス グリッドスクエア エクスポート"
 
@@ -1518,6 +1520,26 @@ msgstr "この周波数帯で送信している人はいません。"
 msgid "Confirmations"
 msgstr "確認"
 
+#: application/controllers/Gridlookup.php:32
+msgid "CQ Zones"
+msgstr ""
+
+#: application/controllers/Gridlookup.php:32
+#: application/controllers/Gridlookup.php:33
+#: application/views/station_profile/create.php:125
+#: application/views/station_profile/edit.php:150
+msgid "Zones"
+msgstr "ゾーン"
+
+#: application/controllers/Gridlookup.php:66
+msgid "States / Provinces"
+msgstr ""
+
+#: application/controllers/Gridlookup.php:75
+#: application/views/interface_assets/header.php:328
+msgid "Gridsquare Lookup"
+msgstr ""
+
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:164
 msgid "Gridsquare Map"
@@ -1588,7 +1610,7 @@ msgid "No QSOs found to upload."
 msgstr "アップロードする QSO が見つかりません。"
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:528
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "KMLエクスポート"
@@ -2130,6 +2152,8 @@ msgstr "州"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
+#: application/views/gridlookup/index.php:22
+#: application/views/gridlookup/index.php:46
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -2416,7 +2440,7 @@ msgstr "クイック検索"
 
 #: application/controllers/Lotw.php:63 application/controllers/Lotw.php:94
 #: application/controllers/Lotw.php:133
-#: application/views/interface_assets/header.php:566
+#: application/views/interface_assets/header.php:568
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
@@ -2513,8 +2537,8 @@ msgid "QSO Map"
 msgstr "QSOマップ"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/views/interface_assets/header.php:339
-#: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:341
+#: application/views/interface_assets/header.php:492
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
 msgid "Modes"
 msgstr "モード"
@@ -2787,7 +2811,7 @@ msgid "Invalid station slug"
 msgstr "シャック 名に無効な文字が有る"
 
 #: application/controllers/Oqrs.php:180
-#: application/views/interface_assets/header.php:551
+#: application/views/interface_assets/header.php:553
 msgid "OQRS Requests"
 msgstr "OQRSリクエスト"
 
@@ -2844,7 +2868,7 @@ msgid ""
 msgstr "負の緯度は赤道の南側、負の経度はグリニッジの西側です。"
 
 #: application/controllers/Qrz.php:212
-#: application/views/interface_assets/header.php:569
+#: application/views/interface_assets/header.php:571
 msgid "QRZ Logbook"
 msgstr "QRZログブック"
 
@@ -2894,7 +2918,7 @@ msgstr ""
 "ください。"
 
 #: application/controllers/Qslpostcard.php:34
-#: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:562
 msgid "QSL Postcard Designer"
 msgstr "QSLポストカードデザイナー"
 
@@ -2974,7 +2998,7 @@ msgid "Call Transfer"
 msgstr "通話転送"
 
 #: application/controllers/Radio.php:16
-#: application/views/interface_assets/header.php:583
+#: application/views/interface_assets/header.php:585
 msgid "Hardware Interfaces"
 msgstr "ハードウェアインターフェース"
 
@@ -3109,7 +3133,7 @@ msgid "Radio removed successfully"
 msgstr "ラジオが正常に削除されました"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
-#: application/views/interface_assets/header.php:343
+#: application/views/interface_assets/header.php:345
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
@@ -3186,8 +3210,8 @@ msgstr "衛星タイマー"
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:46
-#: application/views/interface_assets/header.php:403
-#: application/views/interface_assets/header.php:410
+#: application/views/interface_assets/header.php:405
+#: application/views/interface_assets/header.php:412
 #: application/views/logbookadvanced/index.php:75
 #: application/views/logbookadvanced/index.php:886
 #: application/views/oqrs/index.php:30
@@ -3279,9 +3303,9 @@ msgid "Please check value for grid locator (%s)"
 msgstr "グリッドロケータの値を確認してください（ %s )"
 
 #: application/controllers/Stationsetup.php:60
-#: application/views/interface_assets/header.php:487
-#: application/views/interface_assets/header.php:519
-#: application/views/interface_assets/header.php:667
+#: application/views/interface_assets/header.php:489
+#: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:669
 msgid "Station Setup"
 msgstr "無線局のセットアップ"
 
@@ -3353,7 +3377,7 @@ msgid "Set as Active Logbook"
 msgstr "アクティブなログブックとして設定"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:665
+#: application/views/interface_assets/header.php:667
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -3504,9 +3528,9 @@ msgid "EME Initials"
 msgstr "EMEイニシャル"
 
 #: application/controllers/Themes.php:26
-#: application/views/interface_assets/header.php:345
-#: application/views/interface_assets/header.php:441
+#: application/views/interface_assets/header.php:347
 #: application/views/interface_assets/header.php:443
+#: application/views/interface_assets/header.php:445
 msgid "Themes"
 msgstr "テーマ"
 
@@ -3647,7 +3671,7 @@ msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC グリッドファイルの更新に失敗しました。結果: "
 
 #: application/controllers/User.php:51
-#: application/views/interface_assets/header.php:335
+#: application/views/interface_assets/header.php:337
 msgid "User Accounts"
 msgstr "ユーザーアカウント"
 
@@ -3751,7 +3775,7 @@ msgid "Login failed. Try again."
 msgstr "ログインに失敗しました。もう一度お試しください。"
 
 #: application/controllers/User.php:1375
-#: application/views/interface_assets/header.php:423
+#: application/views/interface_assets/header.php:425
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
@@ -3961,7 +3985,7 @@ msgstr "マップをエクスポート"
 
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
-#: application/views/interface_assets/header.php:570
+#: application/views/interface_assets/header.php:572
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dxクラブアップロード"
 
@@ -4408,6 +4432,7 @@ msgstr "QSOが更新されました"
 #: application/views/awards/gridmaster/index.php:57
 #: application/views/contesting/logger/components/map.php:84
 #: application/views/dashboard/index.php:20
+#: application/views/gridlookup/index.php:9
 #: application/views/gridmap/index.php:228
 #: application/views/logbookadvanced/index.php:15
 #: application/views/map/qso_map.php:113 application/views/user/edit.php:310
@@ -4898,6 +4923,7 @@ msgstr "クリアマーカー"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
+#: application/views/gridlookup/index.php:44
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
@@ -4908,6 +4934,7 @@ msgstr "緯度"
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
+#: application/views/gridlookup/index.php:45
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
@@ -6671,6 +6698,7 @@ msgstr "交信確認済み"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
+#: application/views/gridlookup/index.php:47
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -6875,6 +6903,7 @@ msgstr "去年"
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
+#: application/views/gridlookup/index.php:31
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
@@ -7679,6 +7708,7 @@ msgstr "削除済み"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
+#: application/views/gridlookup/index.php:48
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -10603,7 +10633,7 @@ msgstr "ADIF名"
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:507 application/views/debug/index.php:518
-#: application/views/interface_assets/header.php:644
+#: application/views/interface_assets/header.php:646
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -11195,7 +11225,7 @@ msgstr "今すぐ再読み込み"
 #: application/views/contesting/logger/index.php:104
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
-#: application/views/interface_assets/header.php:609
+#: application/views/interface_assets/header.php:611
 msgid "Switch Operator"
 msgstr "スイッチオペレーター"
 
@@ -11556,7 +11586,7 @@ msgstr ""
 "ファイルのエクスポート権限がありません。シャック 員に連絡してください。"
 
 #: application/views/contesting/manager/export_cbr.php:46
-#: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:534
 msgid "Cabrillo Export"
 msgstr "Cabrillo・エクスポート"
 
@@ -11801,7 +11831,7 @@ msgid "Download Cabrillo"
 msgstr "Cabrilloをダウンロード"
 
 #: application/views/contesting/manager/export_edi.php:46
-#: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:536
 msgid "EDI Export"
 msgstr "EDIエクスポート"
 
@@ -12008,7 +12038,7 @@ msgid "Are you sure you want to import the selected contest sessions?"
 msgstr "選択したコンテストセッションをインポートしてもよろしいですか？"
 
 #: application/views/contesting/manager/index.php:17
-#: application/views/interface_assets/header.php:341
+#: application/views/interface_assets/header.php:343
 msgid "Contests"
 msgstr "コンテスト名"
 
@@ -13983,6 +14013,39 @@ msgstr "ビュー"
 msgid "Go Back to Dashboard"
 msgstr "ダッシュボードに戻る"
 
+#: application/views/gridlookup/index.php:8
+msgid ""
+"Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
+msgstr ""
+
+#: application/views/gridlookup/index.php:25
+msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
+msgstr ""
+
+#: application/views/gridlookup/index.php:25
+msgid "e.g. FN31pr"
+msgstr ""
+
+#: application/views/gridlookup/index.php:26
+msgid "to"
+msgstr ""
+
+#: application/views/gridlookup/index.php:29
+msgid "Optional second gridsquare for distance and bearing"
+msgstr ""
+
+#: application/views/gridlookup/index.php:29
+msgid "e.g. JN58qm"
+msgstr ""
+
+#: application/views/gridlookup/index.php:30
+msgid "Go"
+msgstr ""
+
+#: application/views/gridlookup/index.php:34
+msgid "Maidenhead grid"
+msgstr ""
+
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
 msgstr "作業済み／確認済みのグリッドマス目の地図を表示する"
@@ -14507,7 +14570,7 @@ msgstr ""
 "ださい。"
 
 #: application/views/interface_assets/footer.php:222
-#: application/views/interface_assets/header.php:597
+#: application/views/interface_assets/header.php:599
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "バージョン情報"
@@ -14845,164 +14908,164 @@ msgstr "衛星タイマー"
 msgid "Satellite Pass"
 msgstr "衛星軌道予測"
 
-#: application/views/interface_assets/header.php:332
+#: application/views/interface_assets/header.php:334
 #: application/views/stationsetup/stationsetup.php:146
 msgid "Admin"
 msgstr "管理者"
 
-#: application/views/interface_assets/header.php:337
+#: application/views/interface_assets/header.php:339
 msgid "Global Options"
 msgstr "グローバルオプション"
 
-#: application/views/interface_assets/header.php:349
+#: application/views/interface_assets/header.php:351
 msgid "Update Country Files"
 msgstr "国別ファイルの更新"
 
-#: application/views/interface_assets/header.php:353
+#: application/views/interface_assets/header.php:355
 msgid "Debug Information"
 msgstr "デバッグ情報"
 
-#: application/views/interface_assets/header.php:400
+#: application/views/interface_assets/header.php:402
 msgid "Add/Search Callsign"
 msgstr "コールサインの追加/検索"
 
-#: application/views/interface_assets/header.php:402
+#: application/views/interface_assets/header.php:404
 msgid "Log"
 msgstr "ログ"
 
-#: application/views/interface_assets/header.php:409
+#: application/views/interface_assets/header.php:411
 #: application/views/logbookadvanced/index.php:778
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:579
 #: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "コールサインを検索"
 
-#: application/views/interface_assets/header.php:473
+#: application/views/interface_assets/header.php:475
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
 msgstr "オペレーター: %s"
 
-#: application/views/interface_assets/header.php:483
+#: application/views/interface_assets/header.php:485
 #: application/views/user/edit.php:58
 msgid "Account"
 msgstr "アカウント"
 
-#: application/views/interface_assets/header.php:489
+#: application/views/interface_assets/header.php:491
 msgid "Band Edges"
 msgstr "バンドエッジ"
 
-#: application/views/interface_assets/header.php:495
+#: application/views/interface_assets/header.php:497
 msgid "Switch to Clubstation:"
 msgstr "Clubstationに切り替える:"
 
-#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:501
 #: application/views/user/modals/first_login_wizard.php:119
 #: application/views/user/modals/first_login_wizard.php:133
 #, php-format
 msgid "Switch to %s"
 msgstr "%s に切り替える"
 
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:505
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "%s を管理する"
 
-#: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:514
 msgid "No Clubstations available"
 msgstr "利用できるクラブ局はありません"
 
-#: application/views/interface_assets/header.php:524
+#: application/views/interface_assets/header.php:526
 msgid "Other Export Options"
 msgstr "その他のエクスポートオプション"
 
-#: application/views/interface_assets/header.php:556
+#: application/views/interface_assets/header.php:558
 msgid "QSL Queue"
 msgstr "QSLキュー"
 
-#: application/views/interface_assets/header.php:557
+#: application/views/interface_assets/header.php:559
 msgid "Labels"
 msgstr "ラベル"
 
-#: application/views/interface_assets/header.php:564
+#: application/views/interface_assets/header.php:566
 msgid "Third-Party Services"
 msgstr "サードパーティのサービス"
 
-#: application/views/interface_assets/header.php:567
+#: application/views/interface_assets/header.php:569
 msgid "eQSL Import / Export"
 msgstr "eQSLインポート/エクスポート"
 
-#: application/views/interface_assets/header.php:568
+#: application/views/interface_assets/header.php:570
 msgid "HRDLog Logbook"
 msgstr "HRDLog ログブック"
 
-#: application/views/interface_assets/header.php:571
+#: application/views/interface_assets/header.php:573
 msgid "Clublog Import / Export"
 msgstr "Clublogのインポート/エクスポート"
 
-#: application/views/interface_assets/header.php:574
+#: application/views/interface_assets/header.php:576
 msgid "DCL Export"
 msgstr "DCLエクスポート"
 
-#: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:584
 msgid "API Keys"
 msgstr "APIキー"
 
-#: application/views/interface_assets/header.php:587
+#: application/views/interface_assets/header.php:589
 msgid "Internal tools"
 msgstr "内部ツール"
 
-#: application/views/interface_assets/header.php:589
+#: application/views/interface_assets/header.php:591
 msgid "Callsign DXCC checker"
 msgstr "コールサインDXCCチェッカー"
 
-#: application/views/interface_assets/header.php:590
+#: application/views/interface_assets/header.php:592
 msgid "GeoJSON QSO Map"
 msgstr "GeoJSON QSO マップ"
 
-#: application/views/interface_assets/header.php:591
+#: application/views/interface_assets/header.php:593
 msgid "Gridsquare Zone checker"
 msgstr "グリッドスクエアゾーンチェッカー"
 
-#: application/views/interface_assets/header.php:598
+#: application/views/interface_assets/header.php:600
 #: application/views/logbookadvanced/index.php:925
 msgid "Help"
 msgstr "ヘルプ"
 
-#: application/views/interface_assets/header.php:599
+#: application/views/interface_assets/header.php:601
 msgid "Forum"
 msgstr "フォーラム"
 
-#: application/views/interface_assets/header.php:603
+#: application/views/interface_assets/header.php:605
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "%s へのなりすましを停止し、元に戻る"
 
-#: application/views/interface_assets/header.php:604
+#: application/views/interface_assets/header.php:606
 #, php-format
 msgid "Switch back to %s"
 msgstr "%sに戻る"
 
-#: application/views/interface_assets/header.php:611
+#: application/views/interface_assets/header.php:613
 msgid "Logout"
 msgstr "ログアウト"
 
-#: application/views/interface_assets/header.php:617
+#: application/views/interface_assets/header.php:619
 msgid "Station locations and logbooks"
 msgstr "シャックの位置と記録簿"
 
-#: application/views/interface_assets/header.php:619
+#: application/views/interface_assets/header.php:621
 msgid "Select a Location"
 msgstr "所在地を選択"
 
-#: application/views/interface_assets/header.php:667
+#: application/views/interface_assets/header.php:669
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "無線局の位置が表示されていない場合は、無線局設定画面に移動して、お気に入り登"
 "録してください"
 
-#: application/views/interface_assets/header.php:704
+#: application/views/interface_assets/header.php:706
 msgid "Extras"
 msgstr "特典"
 
@@ -20343,11 +20406,6 @@ msgstr "局の状態。一部の国にのみ適用されます。"
 #: application/views/station_profile/edit.php:141
 msgid "Station County (Only used for specific DXCCs)."
 msgstr "郡 (特定の DXCC にのみ使用されます)。"
-
-#: application/views/station_profile/create.php:125
-#: application/views/station_profile/edit.php:150
-msgid "Zones"
-msgstr "ゾーン"
 
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:164
