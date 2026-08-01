@@ -339,6 +339,7 @@ function stopImpersonate_modal() {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "wwff") ) { ?>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.markercluster.js'); ?>"></script>
     <script id="wwffmapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/wwffmap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 

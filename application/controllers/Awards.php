@@ -758,6 +758,53 @@ class Awards extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function wwff_table() {
+		$this->load->model('wwff');
+		$this->load->model('logbooks_model');
+
+		$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
+		$postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
+		$postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
+		$postdata['worked'] = ($this->input->post('worked', true) ?? 0) == 0 ? null : 1;
+		$postdata['confirmed'] = ($this->input->post('confirmed', true) ?? 0) == 0 ? null : 1;
+
+		$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+		$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+		$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
+
+		if ($this->session->userdata('user_date_format')) {
+			$date_format = $this->session->userdata('user_date_format');
+		} else {
+			$date_format = $this->config->item('qso_date_format');
+		}
+
+		$out = [];
+
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		if ($logbooks_locations_array && $logbooks_locations_array[0] !== -1) {
+			$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
+			$rows = $this->wwff->get_qso_list($postdata, $location_list);
+			foreach ($rows as $row) {
+				$ts = strtotime($row->COL_TIME_ON);
+				$out[] = [
+					'<a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=' . htmlspecialchars((string)$row->COL_WWFF_REF) . '">' . htmlspecialchars((string)$row->COL_WWFF_REF) . '</a>',
+					date($date_format, $ts),
+					date('H:i', $ts),
+					'<a href="javascript:displayQso(' . (int)$row->COL_PRIMARY_KEY . ')">' . htmlspecialchars((string)$row->COL_CALL) . '</a>',
+					($row->COL_SAT_NAME != null) ? $row->COL_SAT_NAME : $row->COL_BAND,
+					$row->COL_RST_SENT,
+					$row->COL_RST_RCVD,
+				];
+			}
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode(['data' => $out]);
+	}
+
 	/*
 		Handles showing worked POTAs
 		Comment field - POTA:#

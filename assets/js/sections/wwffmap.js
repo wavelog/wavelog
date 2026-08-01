@@ -27,6 +27,10 @@ function getWwffFilterData() {
 
 function load_wwff_map() {
 	$('.nav-tabs a[href="#wwffmaptab"]').tab('show');
+	refresh_wwff_map();
+}
+
+function refresh_wwff_map() {
 	$.ajax({
 		url: base_url + 'index.php/awards/wwff_map',
 		type: 'post',
@@ -42,6 +46,34 @@ function load_wwff_map() {
 			});
 		},
 	});
+}
+
+function refresh_wwff_table() {
+	$.ajax({
+		url: base_url + 'index.php/awards/wwff_table',
+		type: 'post',
+		data: getWwffFilterData(),
+		success: function(resp) {
+			var dt = $('#wwfftable').DataTable();
+			dt.clear();
+			dt.rows.add(resp.data || []);
+			dt.draw();
+		},
+		error: function() {
+			BootstrapDialog.alert({
+				title: lang_general_word_error,
+				message: lang_wwff_map_error,
+				type: BootstrapDialog.TYPE_DANGER,
+			});
+		},
+	});
+}
+
+function applyWwffFilters() {
+	refresh_wwff_table();
+	if ($('#wwffmaptab').hasClass('active')) {
+		refresh_wwff_map();
+	}
 }
 
 function load_wwff_map2(data) {
@@ -76,6 +108,12 @@ function load_wwff_map2(data) {
 	var workedNotConfirmedCount = 0;
 	var withoutCoords = 0;
 
+	var markers = L.markerClusterGroup({
+		chunkedLoading: true,
+		maxClusterRadius: 50,
+		showCoverageOnHover: false
+	});
+
 	for (var i = 0; i < data.length; i++) {
 		var D = data[i];
 		if (D.status == 'C') {
@@ -85,11 +123,13 @@ function load_wwff_map2(data) {
 		}
 		if (D.lat && D.lon) {
 			var mapColor = (D.status == 'C') ? confirmedColor : workedColor;
-			addMarker(L, D, mapColor, map);
+			addMarker(L, D, mapColor, markers);
 		} else {
 			withoutCoords++;
 		}
 	}
+
+	markers.addTo(map);
 
 	if (data.length === 0) {
 		$("#wwffmap_status").html('<div class="alert alert-info">' + lang_wwff_no_refs + '</div>');
@@ -119,45 +159,18 @@ function load_wwff_map2(data) {
 	map.setView([20, 0], 2);
 }
 
-function addMarker(L, D, mapColor, map) {
-	var title = '<span><font style="color: ' + mapColor + '; text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;font-size: 14px; font-weight: 900;">' + D.reference + '</font></span>';
-	var myIcon = L.divIcon({className: 'my-div-icon', html: title});
-
-	const markerHtmlStyles = `
-	background-color: ${mapColor};
-	width: 1rem;
-	height: 1rem;
-	display: block;
-	position: relative;
-	border-radius: 3rem 3rem 0;
-	transform: rotate(45deg);
-	border: 1px solid #FFFFFF`
-
-	const icon = L.divIcon({
-		className: "my-custom-pin",
-		iconAnchor: [0, 24],
-		labelAnchor: [-6, 0],
-		popupAnchor: [0, -36],
-		html: `<span style="${markerHtmlStyles}" />`
-	})
-
-	var markerTitle = D.reference + ' - ' + (D.name || '');
-
-	L.marker(
-		[D.lat, D.lon], {
-			icon: myIcon,
-			wwff: D.reference,
-			title: markerTitle,
-		}
-	).addTo(map).on('click', onClick);
-
-	L.marker(
-		[D.lat, D.lon], {
-			icon: icon,
-			wwff: D.reference,
-			title: markerTitle,
-		}
-	).addTo(map).on('click', onClick);
+function addMarker(L, D, mapColor, markers) {
+	var dot = L.circleMarker([D.lat, D.lon], {
+		radius: 6,
+		weight: 1,
+		color: '#fff',
+		fillColor: mapColor,
+		fillOpacity: 0.9,
+		wwff: D.reference
+	});
+	dot.bindTooltip(D.reference + ' - ' + (D.name || ''));
+	dot.on('click', onClick);
+	markers.addLayer(dot);
 }
 
 function onClick(e) {
