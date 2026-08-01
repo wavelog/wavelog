@@ -23,8 +23,7 @@ class Club extends CI_Controller
 		$this->permissions = $this->club_model->permission_levels();
 	}
 
-    public function index()
-    {
+    public function index() {
         // nothing to display
         redirect('dashboard');
     }
@@ -39,13 +38,13 @@ class Club extends CI_Controller
 		// Check if club managed by SSO
 		$ssoManaged = $this->club_model->is_sso_managed($club_id);
 
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $cid))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 		if (!is_numeric($cid)) {
 			$this->session->set_flashdata('error', __("Invalid User ID!"));
 			redirect('user');
-		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $cid)) { 
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
-			redirect('dashboard'); 
 		}
 		if ($club->clubstation != 1) {
 			$this->session->set_flashdata('error', __("This user is not a club station."));
@@ -69,10 +68,17 @@ class Club extends CI_Controller
 	}
 
 	public function get_users() {
-		
-		if(!clubaccess_check(9)) { 
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
-			redirect('dashboard'); 
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$cid = $this->input->post('club_id', true);
+
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $cid))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
 		}
 
 		$query = (string) $this->input->post('query', true) ?? '';
@@ -108,13 +114,13 @@ class Club extends CI_Controller
 		$user_id = $this->input->post('user_id', true);
 		$p_level = $this->input->post('permission', true);
 
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 		if (!is_numeric($club_id)) {
 			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
-		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id) && !$this->club_model->club_authorize(6, $club_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
 		}
 
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
@@ -134,13 +140,13 @@ class Club extends CI_Controller
 		$club_id = $this->input->post('club_id', true);
 		$user_id = $this->input->post('user_id', true);
 
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 		if (!is_numeric($club_id)) {
 			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
-		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id) && !$this->club_model->club_authorize(6, $club_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
 		}
 
 		if ($this->club_model->delete_member($club_id, $user_id)) {
@@ -166,14 +172,13 @@ class Club extends CI_Controller
 		$club_id = $this->input->post('club_id', true);
 		$p_level = $this->input->post('permission', true);
 
-		if (!is_numeric($club_id)) {
-			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+		// Batch ops require officer or instance admin - no level 6
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
-
-		// Batch ops require officer or instance admin - no level 6
-		if (!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard');
 		}
 
@@ -235,15 +240,14 @@ class Club extends CI_Controller
 		}
 
 		$club_id = $this->input->post('club_id', true);
-
-		if (!is_numeric($club_id)) {
-			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+		
+		// Batch ops require officer or instance admin - no level 6
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
-
-		// Batch ops require officer or instance admin - no level 6
-		if (!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard');
 		}
 
@@ -290,12 +294,12 @@ class Club extends CI_Controller
 		$data['club_callsign'] = $this->input->post('club_callsign', true);
 		$user_id = $this->session->userdata('user_id');
 
-		if (!is_numeric($cid)) {
-			$this->session->set_flashdata('error', __("Invalid Club ID!"));
-			redirect('dashboard'); 
-		}
 		if(!$this->club_model->club_authorize(3, $cid)) { 
 			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			redirect('dashboard'); 
+		}
+		if (!is_numeric($cid)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
 		}
 

@@ -214,7 +214,7 @@
                         </div>
                         <form action="<?= site_url('club/alter_member'); ?>" method="post">
                             <div class="modal-body">
-                                <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                                <input type="hidden" id="club_id" name="club_id" value="<?php echo $club->user_id; ?>">
                                 <p>
                                     <?= sprintf(__("You can only add users to the %s Clubstation if they already exist on this Wavelog Server."), str_replace('0', 'Ø', $club->user_callsign)); ?>
                                     <?= __("If they don't exist, please ask your Wavelog Administrator to create an account for them."); ?><br><br>

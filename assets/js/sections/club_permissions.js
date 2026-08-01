@@ -106,7 +106,10 @@ $(document).ready(function(){
                 url: base_url + 'index.php/club/get_users',
                 type: 'POST',
                 dataType: 'json',
-                data: { query: query },
+                data: { 
+                    club_id: $('#club_id').val(),
+                    query: query 
+                },
                 error: function() {
                     callback();
                 },
