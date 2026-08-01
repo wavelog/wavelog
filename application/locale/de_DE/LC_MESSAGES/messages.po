@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-01 14:30+0000\n"
-"PO-Revision-Date: 2026-08-01 20:31+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"PO-Revision-Date: 2026-08-01 21:44+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -4181,11 +4181,11 @@ msgstr "Lese Clubmitglieder"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Clubmitglieder-Berechtigungen verwalten"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Clubmitglieder entfernen"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -23209,75 +23209,79 @@ msgstr ""
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Keine Mitglieder ausgewählt."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Keiner der ausgewählten Benutzer ist Mitglied dieses Clubs."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Kann nicht fortfahren: Dies würde den letzten Club Officer entfernen. Ein "
+"Instanzadministrator muss diese Aktion durchführen."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Clubmitglied-Berechtigungen konnten nicht aktualisiert werden."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Keine Mitglieder wurden aktualisiert."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Mitglied aktualisiert."
+msgstr[1] "%d Mitglieder aktualisiert."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Benutzer konnten nicht aus dem Club entfernt werden."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Keine Mitglieder wurden entfernt."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Mitglied entfernt."
+msgstr[1] "%d Mitglieder entfernt."
 
 #: application/views/club/permissions.php:271
 msgid "Edit Selected"
-msgstr ""
+msgstr "Ausgewählte bearbeiten"
 
 #: application/views/club/permissions.php:409
 msgid "Edit Selected Members"
-msgstr ""
+msgstr "Ausgewählte Mitglieder bearbeiten"
 
 #: application/views/club/permissions.php:415
 msgid "Set the permission level for all selected members:"
-msgstr ""
+msgstr "Legen Sie die Berechtigungsstufe für alle ausgewählten Mitglieder fest:"
 
 #: application/views/club/permissions.php:426
 msgid "Notify the users via email about the change"
-msgstr ""
+msgstr "Benachrichtige die Benutzer per E-Mail über die Änderung"
 
 #: application/views/club/permissions.php:443
 msgid "Delete Selected Members"
-msgstr ""
+msgstr "Ausgewählte Mitglieder löschen"
 
 #: application/views/club/permissions.php:449
 msgid "Are you sure you want to delete the selected users from the club?"
 msgstr ""
+"Bist du sicher, dass du die ausgewählten Benutzer aus dem Club löschen "
+"möchtest?"
 
 #: application/views/club/permissions.php:450
 msgid "user(s) will be removed."
-msgstr ""
+msgstr "Benutzer werden entfernt."
 
 #~ msgid "Invalid message type."
 #~ msgstr "Ungültiger Nachrichtentyp."
