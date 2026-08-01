@@ -142,6 +142,8 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 120);
         $csv = curl_exec($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the WWFF file";
