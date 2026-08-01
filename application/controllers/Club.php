@@ -151,6 +151,137 @@ class Club extends CI_Controller
 		redirect('club/permissions/'.$club_id);
 	}
 
+	/**
+	 * Set one permission level for several members at once.
+	 * Officer(9) or instance admin(99) only.
+	 * Endpoint: POST /club/batch_alter_members
+	 */
+	public function batch_alter_members() {
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$club_id = $this->input->post('club_id', true);
+		$p_level = $this->input->post('permission', true);
+
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard');
+		}
+
+		// Batch ops require officer or instance admin - no level 6
+		if (!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+
+		$ids = array_filter(array_map('intval', explode(',', (string) $this->input->post('ids', true))));
+		if (empty($ids)) {
+			$this->session->set_flashdata('error', __("No members selected."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Validate target ids against real membership before any write
+		$valid = $this->club_model->filter_valid_member_ids($club_id, $ids);
+		if (empty($valid)) {
+			$this->session->set_flashdata('error', __("None of the selected users are members of this club."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Last-officer orphan protection: demoting to <9 may leave zero officers.
+		// Only an instance admin may create that state.
+		if ((int) $p_level < 9
+			&& !$this->user_model->authorize(99)
+			&& $this->club_model->remaining_officers($club_id, $valid) < 1) {
+			$this->session->set_flashdata('error', __("Cannot proceed: this would remove the last Club Officer. An instance administrator must perform this action."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		$result = $this->club_model->batch_alter_members($club_id, $valid, $p_level);
+		if ($result === false) {
+			$this->session->set_flashdata('error', __("Club member permissions could not be updated."));
+			redirect('club/permissions/' . $club_id);
+		}
+		if ($result === 0) {
+			$this->session->set_flashdata('error', __("No members were updated."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Notify after a successful commit - email failure must not roll back DB
+		if ($this->input->post('notify_user', true) == 'on') {
+			foreach ($valid as $uid) {
+				if (!$this->club_model->notify_member($uid, $club_id, 'modified_member')) {
+					$this->session->set_flashdata('error', __("User could not be notified. Please check your email settings."));
+				}
+			}
+		}
+
+		$this->session->set_flashdata('success', sprintf(_ngettext("%d member updated.", "%d members updated.", $result), $result));
+		redirect('club/permissions/' . $club_id);
+	}
+
+	/**
+	 * Remove several members from a club at once.
+	 * Officer(9) or instance admin(99) only.
+	 * Endpoint: POST /club/batch_delete_members
+	 */
+	public function batch_delete_members() {
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$club_id = $this->input->post('club_id', true);
+
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard');
+		}
+
+		// Batch ops require officer or instance admin - no level 6
+		if (!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+
+		$ids = array_filter(array_map('intval', explode(',', (string) $this->input->post('ids', true))));
+		if (empty($ids)) {
+			$this->session->set_flashdata('error', __("No members selected."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Validate target ids against real membership before any write
+		$valid = $this->club_model->filter_valid_member_ids($club_id, $ids);
+		if (empty($valid)) {
+			$this->session->set_flashdata('error', __("None of the selected users are members of this club."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Last-officer orphan protection: deleting may leave zero officers.
+		// Only an instance admin may create that state.
+		if (!$this->user_model->authorize(99)
+			&& $this->club_model->remaining_officers($club_id, $valid) < 1) {
+			$this->session->set_flashdata('error', __("Cannot proceed: this would remove the last Club Officer. An instance administrator must perform this action."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		$result = $this->club_model->batch_delete_members($club_id, $valid);
+		if ($result === false) {
+			$this->session->set_flashdata('error', __("Users could not be removed from club."));
+			redirect('club/permissions/' . $club_id);
+		}
+		if ($result === 0) {
+			$this->session->set_flashdata('error', __("No members were removed."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		$this->session->set_flashdata('success', sprintf(_ngettext("%d member removed.", "%d members removed.", $result), $result));
+		redirect('club/permissions/' . $club_id);
+	}
+
 	public function switch_modal() {
 
 		$this->load->library('encryption');

@@ -345,4 +345,186 @@ class Club_model extends CI_Model {
 
         return $this->email->send();
     }
+
+    /**
+     * Build dynamic IN(?) placeholders for a prepared statement.
+     *
+     * @param array $values
+     *
+     * @return string
+     */
+    private function _in_placeholders($values) {
+        return implode(',', array_fill(0, count($values), '?'));
+    }
+
+    /**
+     * Return only the user_ids that are actual members of $club_id.
+     * Drops tampered / stale / non-member ids before any write.
+     *
+     * @param int   $club_id
+     * @param array $ids  already-intval'd user ids
+     *
+     * @return array int[]
+     */
+    function filter_valid_member_ids($club_id, $ids) {
+
+        if (!is_numeric($club_id) || empty($ids)) {
+            return [];
+        }
+
+        $ph = $this->_in_placeholders($ids);
+        $query = $this->db->query(
+            "SELECT user_id FROM club_permissions WHERE club_id = ? AND user_id IN ($ph)",
+            array_merge([$club_id], $ids)
+        );
+
+        return array_map('intval', array_column($query->result_array(), 'user_id'));
+    }
+
+    /**
+     * How many Club Officers (p_level = 9) would remain in $club_id after the
+     * given user_ids are removed or demoted. Used to block orphaning a club
+     * (no officer left to manage members).
+     *
+     * @param int   $club_id
+     * @param array $exclude_ids
+     *
+     * @return int
+     */
+    function remaining_officers($club_id, $exclude_ids = []) {
+
+        if (!is_numeric($club_id)) {
+            return 0;
+        }
+
+        if (empty($exclude_ids)) {
+            $query = $this->db->query(
+                "SELECT COUNT(*) AS c FROM club_permissions WHERE club_id = ? AND p_level = 9",
+                [$club_id]
+            );
+        } else {
+            $ph = $this->_in_placeholders($exclude_ids);
+            $query = $this->db->query(
+                "SELECT COUNT(*) AS c FROM club_permissions WHERE club_id = ? AND p_level = 9 AND user_id NOT IN ($ph)",
+                array_merge([$club_id], $exclude_ids)
+            );
+        }
+
+        return (int) $query->row()->c;
+    }
+
+    /**
+     * Set a new permission level for several members at once.
+     * Only touches users that are validated members of the club.
+     *
+     * @param int   $club_id
+     * @param array $ids     raw user ids (string/int mix)
+     * @param int   $p_level 3|6|9
+     *
+     * @return int|false number of members updated, or false on error/invalid input
+     */
+    function batch_alter_members($club_id, $ids, $p_level) {
+
+        if ($club_id == 0 || !is_numeric($club_id)) {
+            return false;
+        }
+        if (!in_array((int) $p_level, [3, 6, 9], true)) {
+            return false;
+        }
+
+        $ids = array_unique(array_filter(array_map('intval', (array) $ids)));
+        if (empty($ids)) {
+            return 0;
+        }
+
+        $valid = $this->filter_valid_member_ids($club_id, $ids);
+        if (empty($valid)) {
+            return 0;
+        }
+
+        $ph = $this->_in_placeholders($valid);
+
+        $this->db->trans_begin();
+        $this->db->query(
+            "UPDATE club_permissions SET p_level = ? WHERE club_id = ? AND user_id IN ($ph)",
+            array_merge([$p_level, $club_id], $valid)
+        );
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            log_message('error', 'batch_alter_members failed for club ' . $club_id);
+            return false;
+        }
+
+        $this->db->trans_commit();
+        return count($valid);
+    }
+
+    /**
+     * Remove several members from a club at once, cascading their credentials.
+     *
+     * Delete order is preserved exactly (matches delete_member()):
+     *   1. club_permissions  -> cut access first
+     *   2. api               -> v1 keys
+     *   3. api_token         -> v2 tokens (batched inline from
+     *                           Api_v2_model::revoke_club_tokens)
+     *   4. cat               -> rig control
+     *
+     * All four statements run inside one transaction (all-or-nothing).
+     *
+     * @param int   $club_id
+     * @param array $ids     raw user ids (string/int mix)
+     *
+     * @return int|false number of members removed, or false on error/invalid input
+     */
+    function batch_delete_members($club_id, $ids) {
+
+        if ($club_id == 0 || !is_numeric($club_id)) {
+            return false;
+        }
+
+        $ids = array_unique(array_filter(array_map('intval', (array) $ids)));
+        if (empty($ids)) {
+            return 0;
+        }
+
+        $valid = $this->filter_valid_member_ids($club_id, $ids);
+        if (empty($valid)) {
+            return 0;
+        }
+
+        $ph = $this->_in_placeholders($valid);
+
+        $this->db->trans_begin();
+
+        // 1. membership - cut access first
+        $this->db->query(
+            "DELETE FROM club_permissions WHERE club_id = ? AND user_id IN ($ph)",
+            array_merge([$club_id], $valid)
+        );
+        // 2. v1 api keys
+        $this->db->query(
+            "DELETE FROM api WHERE user_id = ? AND created_by IN ($ph)",
+            array_merge([$club_id], $valid)
+        );
+        // 3. v2 tokens (batched equivalent of Api_v2_model::revoke_club_tokens)
+        $this->db->query(
+            "DELETE FROM api_token WHERE user_id = ? AND created_by IN ($ph)",
+            array_merge([$club_id], $valid)
+        );
+        // 4. rig control
+        $this->db->query(
+            "DELETE FROM cat WHERE user_id = ? AND operator IN ($ph)",
+            array_merge([$club_id], $valid)
+        );
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            log_message('error', 'batch_delete_members failed for club ' . $club_id);
+            return false;
+        }
+
+        $this->db->trans_commit();
+        return count($valid);
+    }
 }
