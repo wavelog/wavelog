@@ -1060,7 +1060,22 @@ function start_az_ele_ticker(tle) {
 
 	function updateAzEl() {
 		try {
-			var time = new Date();
+			var time;
+			if (typeof qso_manual !== 'undefined' && qso_manual == 1) {
+				// Manual / past entry: use the user-provided date + time
+				let dateParts = parseUserDate($('#start_date').val());
+				let timeParts = $("#start_time").val().split(":");
+				time = new Date(Date.UTC(
+					dateParts.getFullYear(), dateParts.getMonth(), dateParts.getDate(),
+					parseInt(timeParts[0]), parseInt(timeParts[1]), (parseInt(timeParts[2] ?? 0))
+				));
+				if (isNaN(time.getTime())) {
+					throw new Error("Invalid date");
+				}
+			} else {
+				// Real-time satellite tracking: live UTC now (independent of #start_time, which freezes on call entry)
+				time = new Date();
+			}
 			var positionAndVelocity = satellite.propagate(satrec, time);
 			var gmst = satellite.gstime(time);
 			var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
