@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-01 06:03+0000\n"
-"PO-Revision-Date: 2026-07-30 09:11+0000\n"
+"PO-Revision-Date: 2026-08-01 08:25+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -1522,7 +1522,7 @@ msgstr "確認"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQゾーン"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1533,12 +1533,12 @@ msgstr "ゾーン"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "州／県"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:328
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "グリッドスクエア検索"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:164
@@ -10842,11 +10842,11 @@ msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "1日あたり"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
-msgstr ""
+msgstr "赤：プレビュー専用。緑：この番号はあなた専用です。"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -11548,15 +11548,15 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "シリアル番号シリーズ"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "すべての事業者が共有"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "オペレーター1人につき1シリーズ"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -11564,6 +11564,9 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"シリアル番号はサーバーによって割り当てられるため、複数のオペレーターが同時に"
+"ログインした場合でも、同じ番号が二度使用されることはありません。ほとんどの"
+"コンテストでは、ステーションごとに1つの共有シリーズが想定されています。"
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -14038,34 +14041,36 @@ msgstr "ダッシュボードに戻る"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"無効なグリッドマスです。2、4、6、8、または10文字を使用してください（例：PM、"
+"PM74、PM74kk）。"
 
 #: application/views/gridlookup/index.php:25
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "2、4、6、8、または10文字のメイデンヘッドロケーター"
 
 #: application/views/gridlookup/index.php:25
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "例：PM74kk"
 
 #: application/views/gridlookup/index.php:26
 msgid "to"
-msgstr ""
+msgstr "to"
 
 #: application/views/gridlookup/index.php:29
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "距離と方位を示すオプションの2つ目のグリッドスクエア"
 
 #: application/views/gridlookup/index.php:29
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "例：JN58qm"
 
 #: application/views/gridlookup/index.php:30
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: application/views/gridlookup/index.php:34
 msgid "Maidenhead grid"
-msgstr ""
+msgstr "メイデンヘッドグリッド"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
