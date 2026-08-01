@@ -236,6 +236,11 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:51
+#: application/controllers/Api_token.php:32
+#: application/controllers/Api_token.php:85 application/controllers/Club.php:47
+#: application/controllers/Club.php:74 application/controllers/Club.php:116
+#: application/controllers/Club.php:142 application/controllers/Club.php:167
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -398,6 +403,8 @@ msgstr "APIキー %s の 説明が更新されました。"
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:28
 #: application/controllers/Api_token.php:81 application/controllers/Qso.php:609
+#: application/controllers/Api_token.php:27
+#: application/controllers/Api_token.php:80
 msgid "Invalid request method"
 msgstr "無効なリクエストメソッド"
 
@@ -423,26 +430,32 @@ msgid "API Key %s has been deleted"
 msgstr "APIキー %s は削除されました"
 
 #: application/controllers/Api_token.php:37
+#: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
 msgstr "トークン名を入力してください"
 
 #: application/controllers/Api_token.php:46
+#: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
 msgstr "少なくとも1つの範囲を選択してください"
 
 #: application/controllers/Api_token.php:68
+#: application/controllers/Api_token.php:67
 msgid "API Token generated"
 msgstr "APIトークンが生成されました"
 
 #: application/controllers/Api_token.php:70
+#: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
 msgstr "APIトークンを生成できませんでした"
 
 #: application/controllers/Api_token.php:90
+#: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
 msgstr "無効なAPIトークン"
 
 #: application/controllers/Api_token.php:97
+#: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
 msgstr "APIトークンが削除されました"
 
@@ -884,53 +897,58 @@ msgstr "CSV コールテスター"
 msgid "Callsign Tester"
 msgstr "コールサインテスター"
 
-#: application/controllers/Club.php:23
+#: application/controllers/Club.php:23 application/models/Club_model.php:12
 msgid "Club Officer"
 msgstr "クラブ役員"
 
-#: application/controllers/Club.php:24
+#: application/controllers/Club.php:24 application/models/Club_model.php:13
 msgid "Club Member ADIF"
 msgstr "クラブ会員 ADIF"
 
-#: application/controllers/Club.php:25
+#: application/controllers/Club.php:25 application/models/Club_model.php:14
 msgid "Club Member"
 msgstr "クラブ会員"
 
 #: application/controllers/Club.php:56 application/models/Club_model.php:106
 #: application/models/Club_model.php:180 application/models/Club_model.php:222
+#: application/controllers/Club.php:43 application/models/Club_model.php:139
+#: application/models/Club_model.php:230 application/models/Club_model.php:272
 msgid "Invalid User ID!"
 msgstr "無効なユーザーIDです！"
 
-#: application/controllers/Club.php:64
+#: application/controllers/Club.php:64 application/controllers/Club.php:51
 msgid "This user is not a club station."
 msgstr "このユーザーはクラブ局ではありません。"
 
 #: application/controllers/Club.php:68
 #: application/views/club/permissions.php:10
-#: application/views/user/index.php:215
+#: application/views/user/index.php:215 application/controllers/Club.php:55
 msgid "Club Permissions"
 msgstr "クラブ権限"
 
 #: application/controllers/Club.php:127 application/controllers/Club.php:155
 #: application/controllers/Club.php:181 application/models/Club_model.php:22
 #: application/models/Club_model.php:101 application/models/Club_model.php:175
-#: application/models/Club_model.php:217
+#: application/models/Club_model.php:217 application/controllers/Club.php:112
+#: application/controllers/Club.php:138 application/controllers/Club.php:163
+#: application/models/Club_model.php:55 application/models/Club_model.php:134
+#: application/models/Club_model.php:225 application/models/Club_model.php:267
 msgid "Invalid Club ID!"
 msgstr "無効なクラブIDです！"
 
-#: application/controllers/Club.php:139
+#: application/controllers/Club.php:139 application/controllers/Club.php:124
 msgid "User could not be notified. Please check your email settings."
 msgstr "ユーザーに通知できませんでした。メール設定を確認してください。"
 
-#: application/controllers/Club.php:143
+#: application/controllers/Club.php:143 application/controllers/Club.php:128
 msgid "Club member permissions have been updated."
 msgstr "クラブ メンバーの権限が更新されました。"
 
-#: application/controllers/Club.php:164
+#: application/controllers/Club.php:164 application/controllers/Club.php:147
 msgid "User removed from club."
 msgstr "ユーザーはクラブから削除されました。"
 
-#: application/controllers/Club.php:166
+#: application/controllers/Club.php:166 application/controllers/Club.php:149
 msgid "User could not be removed from club."
 msgstr "ユーザーをクラブから削除できませんでした。"
 
@@ -946,6 +964,7 @@ msgstr "メールを初期化できません。メール設定を確認してく
 #: application/views/contesting/logger/components/qso-form.php:35
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
+#: application/models/Club_model.php:333
 msgid "Unknown"
 msgstr "不明"
 
@@ -4140,6 +4159,7 @@ msgid "City / Ku / Gun"
 msgstr "市 / 区 / 郡"
 
 #: application/libraries/api_v2/Club_resource.php:27
+#: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
 msgstr "クラブメンバーを読む"
 
@@ -4188,10 +4208,12 @@ msgid "Read statistics"
 msgstr "統計情報を読む"
 
 #: application/models/Api_v2_model.php:77
+#: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
 msgstr " （最低2.1.0"
 
 #: application/models/Api_v2_model.php:78
+#: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
@@ -4200,27 +4222,31 @@ msgstr ""
 "WaveLogGateのバージョン2.1.0以上が必要です。"
 
 #: application/models/Api_v2_model.php:84
+#: application/models/Api_v2_model.php:112
 msgid "Read-only"
 msgstr "読み取り専用"
 
 #: application/models/Api_v2_model.php:85
+#: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
 msgstr ""
 "すべてのデータへの読み取りアクセスのみ可能で、データの変更は一切できません。"
 
 #: application/models/Api_v2_model.php:91
+#: application/models/Api_v2_model.php:119
 msgid "Statistics only"
 msgstr "統計情報のみ"
 
 #: application/models/Api_v2_model.php:92
+#: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
 msgstr "統計情報のみであり、お客様のデータに変更を加えることはありません。"
 
-#: application/models/Club_model.php:185
+#: application/models/Club_model.php:185 application/models/Club_model.php:235
 msgid "Invalid Permission Level!"
 msgstr "権限レベルが無効です!"
 
-#: application/models/Club_model.php:200
+#: application/models/Club_model.php:200 application/models/Club_model.php:250
 msgid "Error adding Club Member!"
 msgstr "クラブメンバーの追加中にエラーが発生しました!"
 
@@ -22870,6 +22896,14 @@ msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
 "ゾーンに関する問題は見つかりませんでした。すべての交信記録に正しいゾーン情報"
 "が記録されています。"
+
+#: application/libraries/api_v2/Club_resource.php:72
+msgid "Manage club member permissions"
+msgstr ""
+
+#: application/libraries/api_v2/Club_resource.php:73
+msgid "Remove club members"
+msgstr ""
 
 #~ msgid "Links to 3rd-Party-Software which works with Wavelog:"
 #~ msgstr "Wavelog で動作するサードパーティ製ソフトウェアへのリンク:"
