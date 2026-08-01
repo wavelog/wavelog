@@ -2325,7 +2325,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if (($filters['callsign'] ?? '') !== '') {
-			$where .= " AND upper(qsos.`COL_CALL`) = ?";
+			$where .= " AND qsos.`COL_CALL` = ?";
 			$bindings[] = strtoupper($filters['callsign']);
 		}
 
