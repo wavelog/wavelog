@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-01 14:30+0000\n"
+"POT-Creation-Date: 2026-08-01 20:30+0000\n"
 "PO-Revision-Date: 2026-08-01 21:44+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -154,9 +154,10 @@ msgstr "troposphärisches Ducting"
 #: application/controllers/Cabrillo.php:10
 #: application/controllers/Callstats.php:12
 #: application/controllers/Calltester.php:12
-#: application/controllers/Club.php:47 application/controllers/Club.php:74
-#: application/controllers/Club.php:116 application/controllers/Club.php:142
-#: application/controllers/Club.php:167 application/controllers/Clublog.php:88
+#: application/controllers/Club.php:42 application/controllers/Club.php:80
+#: application/controllers/Club.php:118 application/controllers/Club.php:144
+#: application/controllers/Club.php:177 application/controllers/Club.php:246
+#: application/controllers/Club.php:298 application/controllers/Clublog.php:88
 #: application/controllers/Clublog.php:146
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
@@ -251,10 +252,7 @@ msgstr "troposphärisches Ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Club.php:42
-#: application/controllers/Club.php:80 application/controllers/Club.php:118
-#: application/controllers/Club.php:144 application/controllers/Club.php:177
-#: application/controllers/Club.php:246 application/controllers/Club.php:298
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -903,49 +901,101 @@ msgstr "CSV-Rufzeichentester"
 msgid "Callsign Tester"
 msgstr "Rufzeichen Tester"
 
-#: application/controllers/Club.php:43 application/models/Club_model.php:139
+#: application/controllers/Club.php:46 application/models/Club_model.php:139
 #: application/models/Club_model.php:230 application/models/Club_model.php:272
-#: application/controllers/Club.php:46
 msgid "Invalid User ID!"
 msgstr "Ungültige Benutzer-ID!"
 
-#: application/controllers/Club.php:51 application/controllers/Club.php:50
+#: application/controllers/Club.php:50
 msgid "This user is not a club station."
 msgstr "Dieser Benutzer ist keine Clubstation."
 
-#: application/controllers/Club.php:55
+#: application/controllers/Club.php:54
 #: application/views/club/permissions.php:10
-#: application/views/user/index.php:215 application/controllers/Club.php:54
+#: application/views/user/index.php:215
 msgid "Club Permissions"
 msgstr "Club-Berechtigungen"
 
-#: application/controllers/Club.php:112 application/controllers/Club.php:138
-#: application/controllers/Club.php:163 application/models/Club_model.php:55
+#: application/controllers/Club.php:73 application/controllers/Club.php:168
+#: application/controllers/Club.php:238
+#: application/controllers/Contesting.php:650
+#: application/controllers/Contesting.php:718
+#: application/controllers/Contesting.php:765
+#: application/controllers/Contesting.php:777
+msgid "Invalid request method."
+msgstr "Ungültige Anfragemethode."
+
+#: application/controllers/Club.php:122 application/controllers/Club.php:148
+#: application/controllers/Club.php:181 application/controllers/Club.php:250
+#: application/controllers/Club.php:302 application/models/Club_model.php:55
 #: application/models/Club_model.php:134 application/models/Club_model.php:225
-#: application/models/Club_model.php:267 application/controllers/Club.php:122
-#: application/controllers/Club.php:148 application/controllers/Club.php:181
-#: application/controllers/Club.php:250 application/controllers/Club.php:302
+#: application/models/Club_model.php:267
 msgid "Invalid Club ID!"
 msgstr "Ungültige Club-ID!"
 
-#: application/controllers/Club.php:124 application/controllers/Club.php:130
-#: application/controllers/Club.php:221
+#: application/controllers/Club.php:130 application/controllers/Club.php:221
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
 "Benutzer konnte nicht benachrichtigt werden. Bitte überprüfe deine E-Mail-"
 "Einstellungen."
 
-#: application/controllers/Club.php:128 application/controllers/Club.php:134
+#: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
 msgstr "Die Berechtigungen des Clubmitglieds wurden aktualisiert."
 
-#: application/controllers/Club.php:147 application/controllers/Club.php:153
+#: application/controllers/Club.php:153
 msgid "User removed from club."
 msgstr "Benutzer aus dem Club entfernt."
 
-#: application/controllers/Club.php:149 application/controllers/Club.php:155
+#: application/controllers/Club.php:155
 msgid "User could not be removed from club."
 msgstr "Benutzer konnte nicht aus dem Club entfernt werden."
+
+#: application/controllers/Club.php:187 application/controllers/Club.php:256
+msgid "No members selected."
+msgstr "Keine Mitglieder ausgewählt."
+
+#: application/controllers/Club.php:194 application/controllers/Club.php:263
+msgid "None of the selected users are members of this club."
+msgstr "Keiner der ausgewählten Benutzer ist Mitglied dieses Clubs."
+
+#: application/controllers/Club.php:203 application/controllers/Club.php:271
+msgid ""
+"Cannot proceed: this would remove the last Club Officer. An instance "
+"administrator must perform this action."
+msgstr ""
+"Kann nicht fortfahren: Dies würde den letzten Club Officer entfernen. Ein "
+"Instanzadministrator muss diese Aktion durchführen."
+
+#: application/controllers/Club.php:209
+msgid "Club member permissions could not be updated."
+msgstr "Clubmitglied-Berechtigungen konnten nicht aktualisiert werden."
+
+#: application/controllers/Club.php:213
+msgid "No members were updated."
+msgstr "Keine Mitglieder wurden aktualisiert."
+
+#: application/controllers/Club.php:226
+#, php-format
+msgid "%d member updated."
+msgid_plural "%d members updated."
+msgstr[0] "%d Mitglied aktualisiert."
+msgstr[1] "%d Mitglieder aktualisiert."
+
+#: application/controllers/Club.php:277
+msgid "Users could not be removed from club."
+msgstr "Benutzer konnten nicht aus dem Club entfernt werden."
+
+#: application/controllers/Club.php:281
+msgid "No members were removed."
+msgstr "Keine Mitglieder wurden entfernt."
+
+#: application/controllers/Club.php:285
+#, php-format
+msgid "%d member removed."
+msgid_plural "%d members removed."
+msgstr[0] "%d Mitglied entfernt."
+msgstr[1] "%d Mitglieder entfernt."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1058,15 +1108,6 @@ msgid "There was an error creating the contest session. Please try again."
 msgstr ""
 "Es gab einen Fehler beim Erstellen der Contest-Session. Bitte versuche es "
 "erneut."
-
-#: application/controllers/Contesting.php:650
-#: application/controllers/Contesting.php:718
-#: application/controllers/Contesting.php:765
-#: application/controllers/Contesting.php:777
-#: application/controllers/Club.php:73 application/controllers/Club.php:168
-#: application/controllers/Club.php:238
-msgid "Invalid request method."
-msgstr "Ungültige Anfragemethode."
 
 #: application/controllers/Contesting.php:710
 msgid "Contest session updated successfully."
@@ -2931,8 +2972,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten "
-"config.sample.php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
+"php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:562
@@ -3073,7 +3114,7 @@ msgstr "zuletzt aktualisiert"
 #: application/controllers/Radio.php:138
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
-#: application/views/club/permissions.php:303
+#: application/views/club/permissions.php:313
 #: application/views/contest_admin/add.php:68
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/contesting/manager/index.php:72
@@ -3089,7 +3130,6 @@ msgstr "zuletzt aktualisiert"
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
-#: application/views/club/permissions.php:313
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -3097,8 +3137,9 @@ msgstr "Bearbeiten"
 #: application/controllers/Stationsetup.php:414
 #: application/views/api/index.php:84 application/views/api/index.php:174
 #: application/views/bands/bandedges.php:33
-#: application/views/club/permissions.php:360
-#: application/views/club/permissions.php:382
+#: application/views/club/permissions.php:370
+#: application/views/club/permissions.php:392
+#: application/views/club/permissions.php:453
 #: application/views/contest_admin/add.php:71
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
@@ -3125,9 +3166,6 @@ msgstr "Bearbeiten"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:730
 #: application/views/view_log/qso.php:738
-#: application/views/club/permissions.php:370
-#: application/views/club/permissions.php:392
-#: application/views/club/permissions.php:453
 msgid "Delete"
 msgstr "Löschen"
 
@@ -3759,7 +3797,6 @@ msgstr ""
 "Kann nicht geändert werden. Verwalte dies über deinen Identitätsanbieter."
 
 #: application/controllers/User.php:467
-#: application/views/club/permissions.php:308
 #: application/views/club/permissions.php:318
 msgid "Edit User"
 msgstr "Bearbeite Benutzer"
@@ -3774,7 +3811,6 @@ msgid "Profile"
 msgstr "Profil"
 
 #: application/controllers/User.php:1186
-#: application/views/club/permissions.php:365
 #: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "Benutzer löschen"
@@ -5076,7 +5112,7 @@ msgstr "Nichts gefunden!"
 #: application/views/calltester/comparison_result.php:126
 #: application/views/calltester/comparison_result.php:175
 #: application/views/calltester/result.php:51
-#: application/views/club/permissions.php:275
+#: application/views/club/permissions.php:284
 #: application/views/contesting/logger/components/qso-form.php:66
 #: application/views/contesting/logger/components/qso-form.php:147
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:343
@@ -5119,7 +5155,6 @@ msgstr "Nichts gefunden!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:64
-#: application/views/club/permissions.php:284
 msgid "Callsign"
 msgstr "Rufzeichen"
 
@@ -5982,8 +6017,10 @@ msgstr ""
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:258
-#: application/views/club/permissions.php:354
-#: application/views/club/permissions.php:383
+#: application/views/club/permissions.php:364
+#: application/views/club/permissions.php:393
+#: application/views/club/permissions.php:432
+#: application/views/club/permissions.php:454
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/logger/index.php:188
 #: application/views/contesting/manager/components/confirm_delete.php:24
@@ -5998,10 +6035,6 @@ msgstr ""
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
-#: application/views/club/permissions.php:364
-#: application/views/club/permissions.php:393
-#: application/views/club/permissions.php:432
-#: application/views/club/permissions.php:454
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -6020,7 +6053,8 @@ msgstr "Einfacher Name, um zu beschreiben, wofür du diese API verwendest."
 #: application/views/api/components/edit_legacy.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
 #: application/views/club/permissions.php:257
-#: application/views/club/permissions.php:353
+#: application/views/club/permissions.php:363
+#: application/views/club/permissions.php:431
 #: application/views/contest_admin/edit.php:55
 #: application/views/contesting/logger/components/qso-form.php:37
 #: application/views/cron/edit.php:73
@@ -6039,8 +6073,6 @@ msgstr "Einfacher Name, um zu beschreiben, wofür du diese API verwendest."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
-#: application/views/club/permissions.php:363
-#: application/views/club/permissions.php:431
 msgid "Save"
 msgstr "Speichern"
 
@@ -6171,7 +6203,7 @@ msgstr "Berechtigungen"
 
 #: application/views/api/index.php:38 application/views/api/index.php:142
 #: application/views/awards/pl_polska/index.php:375
-#: application/views/club/permissions.php:279
+#: application/views/club/permissions.php:288
 #: application/views/clublog/export.php:39
 #: application/views/contesting/manager/index.php:38
 #: application/views/hrdlog/export.php:39
@@ -6182,7 +6214,6 @@ msgstr "Berechtigungen"
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:598
 #: application/views/webadif/export.php:45
-#: application/views/club/permissions.php:288
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -10463,8 +10494,6 @@ msgid "User (Callsign or Name)"
 msgstr "Benutzer (Rufzeichen oder Name)"
 
 #: application/views/club/permissions.php:228
-#: application/views/club/permissions.php:278
-#: application/views/club/permissions.php:324
 #: application/views/club/permissions.php:287
 #: application/views/club/permissions.php:334
 msgid "Permission"
@@ -10482,68 +10511,93 @@ msgstr "Benachrichtige den Benutzer per E-Mail"
 msgid "No users currently have access to this club station."
 msgstr "Derzeit hat kein Benutzer Zugriff auf diese Clubstation."
 
-#: application/views/club/permissions.php:273
+#: application/views/club/permissions.php:271
+msgid "Edit Selected"
+msgstr "Ausgewählte bearbeiten"
+
+#: application/views/club/permissions.php:274
+#: application/views/contesting/manager/index.php:23
+msgid "Delete Selected"
+msgstr "Ausgewählte löschen"
+
 #: application/views/club/permissions.php:282
 msgid "Firstname"
 msgstr "Vorname"
 
-#: application/views/club/permissions.php:274
 #: application/views/club/permissions.php:283
 msgid "Lastname"
 msgstr "Nachname"
 
-#: application/views/club/permissions.php:276
+#: application/views/club/permissions.php:285
 #: application/views/contesting/logger/index.php:172
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
-#: application/views/club/permissions.php:285
 msgid "Username"
 msgstr "Benutzername"
 
-#: application/views/club/permissions.php:277
-#: application/views/contesting/manager/export_cbr.php:257
 #: application/views/club/permissions.php:286
+#: application/views/contesting/manager/export_cbr.php:257
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: application/views/club/permissions.php:299
 #: application/views/club/permissions.php:309
 msgid "Wavelog Administrator"
 msgstr "Wavelog Administrator"
 
-#: application/views/club/permissions.php:316
 #: application/views/club/permissions.php:326
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
 "Du kannst die Berechtigungsstufe der Benutzer für diese Clubstation ändern."
 
-#: application/views/club/permissions.php:323
 #: application/views/club/permissions.php:333
 msgid "User Callsign"
 msgstr "Benutzer-Rufzeichen"
 
-#: application/views/club/permissions.php:342
 #: application/views/club/permissions.php:352
 msgid "Notify the user via email about the change"
 msgstr "Benachrichtige den Benutzer per E-Mail über die Änderung"
 
-#: application/views/club/permissions.php:372
 #: application/views/club/permissions.php:382
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "Bist du sicher, dass du diesen Benutzer aus dem Club entfernen willst?"
 
-#: application/views/club/permissions.php:376
 #: application/views/club/permissions.php:386
 #, php-format
 msgid "Callsign: %s"
 msgstr "Rufzeichen: %s"
 
-#: application/views/club/permissions.php:377
 #: application/views/club/permissions.php:387
 #, php-format
 msgid "Role: %s"
 msgstr "Rolle: %s"
+
+#: application/views/club/permissions.php:409
+msgid "Edit Selected Members"
+msgstr "Ausgewählte Mitglieder bearbeiten"
+
+#: application/views/club/permissions.php:415
+msgid "Set the permission level for all selected members:"
+msgstr ""
+"Legen Sie die Berechtigungsstufe für alle ausgewählten Mitglieder fest:"
+
+#: application/views/club/permissions.php:426
+msgid "Notify the users via email about the change"
+msgstr "Benachrichtige die Benutzer per E-Mail über die Änderung"
+
+#: application/views/club/permissions.php:443
+msgid "Delete Selected Members"
+msgstr "Ausgewählte Mitglieder löschen"
+
+#: application/views/club/permissions.php:449
+msgid "Are you sure you want to delete the selected users from the club?"
+msgstr ""
+"Bist du sicher, dass du die ausgewählten Benutzer aus dem Club löschen "
+"möchtest?"
+
+#: application/views/club/permissions.php:450
+msgid "user(s) will be removed."
+msgstr "Benutzer werden entfernt."
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
@@ -12269,11 +12323,6 @@ msgstr "Neuen Contest erstellen"
 #: application/views/interface_assets/header.php:145
 msgid "Quick Start"
 msgstr "Schnellstart"
-
-#: application/views/contesting/manager/index.php:23
-#: application/views/club/permissions.php:274
-msgid "Delete Selected"
-msgstr "Ausgewählte löschen"
 
 #: application/views/contesting/manager/index.php:23
 msgid "Delete selected contest sessions"
@@ -14143,8 +14192,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
-"eQSL.cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
+"cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -18101,8 +18150,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
-"'wavelog@example.com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
+"com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -20522,8 +20571,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
-"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
+"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -21545,9 +21594,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
-"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
-"enthält. Wir verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
+"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
+"verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23206,82 +23255,6 @@ msgstr "Zeige auf Karte"
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
 "Keine Probleme mit CQ-Zonen gefunden. Alle QSOs haben die korrekte CQ-Zone."
-
-#: application/controllers/Club.php:187 application/controllers/Club.php:256
-msgid "No members selected."
-msgstr "Keine Mitglieder ausgewählt."
-
-#: application/controllers/Club.php:194 application/controllers/Club.php:263
-msgid "None of the selected users are members of this club."
-msgstr "Keiner der ausgewählten Benutzer ist Mitglied dieses Clubs."
-
-#: application/controllers/Club.php:203 application/controllers/Club.php:271
-msgid ""
-"Cannot proceed: this would remove the last Club Officer. An instance "
-"administrator must perform this action."
-msgstr ""
-"Kann nicht fortfahren: Dies würde den letzten Club Officer entfernen. Ein "
-"Instanzadministrator muss diese Aktion durchführen."
-
-#: application/controllers/Club.php:209
-msgid "Club member permissions could not be updated."
-msgstr "Clubmitglied-Berechtigungen konnten nicht aktualisiert werden."
-
-#: application/controllers/Club.php:213
-msgid "No members were updated."
-msgstr "Keine Mitglieder wurden aktualisiert."
-
-#: application/controllers/Club.php:226
-#, php-format
-msgid "%d member updated."
-msgid_plural "%d members updated."
-msgstr[0] "%d Mitglied aktualisiert."
-msgstr[1] "%d Mitglieder aktualisiert."
-
-#: application/controllers/Club.php:277
-msgid "Users could not be removed from club."
-msgstr "Benutzer konnten nicht aus dem Club entfernt werden."
-
-#: application/controllers/Club.php:281
-msgid "No members were removed."
-msgstr "Keine Mitglieder wurden entfernt."
-
-#: application/controllers/Club.php:285
-#, php-format
-msgid "%d member removed."
-msgid_plural "%d members removed."
-msgstr[0] "%d Mitglied entfernt."
-msgstr[1] "%d Mitglieder entfernt."
-
-#: application/views/club/permissions.php:271
-msgid "Edit Selected"
-msgstr "Ausgewählte bearbeiten"
-
-#: application/views/club/permissions.php:409
-msgid "Edit Selected Members"
-msgstr "Ausgewählte Mitglieder bearbeiten"
-
-#: application/views/club/permissions.php:415
-msgid "Set the permission level for all selected members:"
-msgstr "Legen Sie die Berechtigungsstufe für alle ausgewählten Mitglieder fest:"
-
-#: application/views/club/permissions.php:426
-msgid "Notify the users via email about the change"
-msgstr "Benachrichtige die Benutzer per E-Mail über die Änderung"
-
-#: application/views/club/permissions.php:443
-msgid "Delete Selected Members"
-msgstr "Ausgewählte Mitglieder löschen"
-
-#: application/views/club/permissions.php:449
-msgid "Are you sure you want to delete the selected users from the club?"
-msgstr ""
-"Bist du sicher, dass du die ausgewählten Benutzer aus dem Club löschen "
-"möchtest?"
-
-#: application/views/club/permissions.php:450
-msgid "user(s) will be removed."
-msgstr "Benutzer werden entfernt."
 
 #~ msgid "Invalid message type."
 #~ msgstr "Ungültiger Nachrichtentyp."
