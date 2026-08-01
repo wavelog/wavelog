@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-01 08:24+0000\n"
+"POT-Creation-Date: 2026-08-01 14:30+0000\n"
 "PO-Revision-Date: 2026-07-14 09:47+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -135,17 +135,17 @@ msgstr "Ducting troposférico"
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22 application/controllers/Api.php:33
 #: application/controllers/Api.php:81 application/controllers/Api.php:120
-#: application/controllers/Api.php:154 application/controllers/Api_token.php:33
-#: application/controllers/Api_token.php:86
+#: application/controllers/Api.php:154 application/controllers/Api_token.php:32
+#: application/controllers/Api_token.php:85
 #: application/controllers/Awards.php:19 application/controllers/Backup.php:12
 #: application/controllers/Backup.php:24 application/controllers/Backup.php:68
 #: application/controllers/Band.php:14 application/controllers/Bandmap.php:8
 #: application/controllers/Cabrillo.php:10
 #: application/controllers/Callstats.php:12
 #: application/controllers/Calltester.php:12
-#: application/controllers/Club.php:60 application/controllers/Club.php:87
-#: application/controllers/Club.php:131 application/controllers/Club.php:159
-#: application/controllers/Club.php:185 application/controllers/Clublog.php:88
+#: application/controllers/Club.php:47 application/controllers/Club.php:74
+#: application/controllers/Club.php:116 application/controllers/Club.php:142
+#: application/controllers/Club.php:167 application/controllers/Clublog.php:88
 #: application/controllers/Clublog.php:146
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
@@ -240,7 +240,7 @@ msgstr "Ducting troposférico"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:51
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "¡No está permitido hacer eso!"
 
@@ -401,8 +401,8 @@ msgid "API Key %s description has been updated."
 msgstr "La descripción de la API Key %s se ha actualizado."
 
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
-#: application/controllers/Api_token.php:28
-#: application/controllers/Api_token.php:81 application/controllers/Qso.php:609
+#: application/controllers/Api_token.php:27
+#: application/controllers/Api_token.php:80 application/controllers/Qso.php:609
 msgid "Invalid request method"
 msgstr "Método de solicitud no válido"
 
@@ -427,27 +427,27 @@ msgstr "Clave API no válida"
 msgid "API Key %s has been deleted"
 msgstr "La API Key %s ha sido borrada"
 
-#: application/controllers/Api_token.php:37
+#: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
 msgstr ""
 
-#: application/controllers/Api_token.php:46
+#: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
 msgstr ""
 
-#: application/controllers/Api_token.php:68
+#: application/controllers/Api_token.php:67
 msgid "API Token generated"
 msgstr ""
 
-#: application/controllers/Api_token.php:70
+#: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
 msgstr ""
 
-#: application/controllers/Api_token.php:90
+#: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
 msgstr ""
 
-#: application/controllers/Api_token.php:97
+#: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
 msgstr ""
 
@@ -889,74 +889,45 @@ msgstr "Verificador de Llamada"
 msgid "Callsign Tester"
 msgstr "Verificador de Indicativo"
 
-#: application/controllers/Club.php:23
-msgid "Club Officer"
-msgstr "Oficial del club"
-
-#: application/controllers/Club.php:24
-msgid "Club Member ADIF"
-msgstr "Miembro del club ADIF"
-
-#: application/controllers/Club.php:25
-msgid "Club Member"
-msgstr "Miembro del club"
-
-#: application/controllers/Club.php:56 application/models/Club_model.php:106
-#: application/models/Club_model.php:180 application/models/Club_model.php:222
+#: application/controllers/Club.php:43 application/models/Club_model.php:139
+#: application/models/Club_model.php:230 application/models/Club_model.php:272
 msgid "Invalid User ID!"
 msgstr "¡ID de usuario no válido!"
 
-#: application/controllers/Club.php:64
+#: application/controllers/Club.php:51
 msgid "This user is not a club station."
 msgstr "Este usuario no es una estación de club."
 
-#: application/controllers/Club.php:68
+#: application/controllers/Club.php:55
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
 msgstr "Permisos del club"
 
-#: application/controllers/Club.php:127 application/controllers/Club.php:155
-#: application/controllers/Club.php:181 application/models/Club_model.php:22
-#: application/models/Club_model.php:101 application/models/Club_model.php:175
-#: application/models/Club_model.php:217
+#: application/controllers/Club.php:112 application/controllers/Club.php:138
+#: application/controllers/Club.php:163 application/models/Club_model.php:55
+#: application/models/Club_model.php:134 application/models/Club_model.php:225
+#: application/models/Club_model.php:267
 msgid "Invalid Club ID!"
 msgstr "¡ID de club no válido!"
 
-#: application/controllers/Club.php:139
+#: application/controllers/Club.php:124
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
 "No se pudo notificar al usuario. Por favor, revisa la configuración de tu "
 "correo electrónico."
 
-#: application/controllers/Club.php:143
+#: application/controllers/Club.php:128
 msgid "Club member permissions have been updated."
 msgstr "Se han actualizado los permisos de los miembros del club."
 
-#: application/controllers/Club.php:164
+#: application/controllers/Club.php:147
 msgid "User removed from club."
 msgstr "Usuario eliminado del club."
 
-#: application/controllers/Club.php:166
+#: application/controllers/Club.php:149
 msgid "User could not be removed from club."
 msgstr "No se pudo eliminar al usuario del club."
-
-#: application/controllers/Club.php:208
-msgid "Invalid message type."
-msgstr "Tipo de mensaje no válido."
-
-#: application/controllers/Club.php:225
-msgid "Email can't be initialized. Check the email settings."
-msgstr ""
-"No se puede inicializar el correo electrónico. Verifica la configuración del "
-"correo electrónico."
-
-#: application/controllers/Club.php:232 application/views/api/index.php:68
-#: application/views/contesting/logger/components/qso-form.php:35
-#: application/views/satellite/index.php:94
-#: application/views/satellite/satinfo.php:51
-msgid "Unknown"
-msgstr "Desconocido"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -4177,8 +4148,16 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Ciudad / Distrito / Municipio"
 
-#: application/libraries/api_v2/Club_resource.php:27
+#: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
+msgstr ""
+
+#: application/libraries/api_v2/Club_resource.php:72
+msgid "Manage club member permissions"
+msgstr ""
+
+#: application/libraries/api_v2/Club_resource.php:73
+msgid "Remove club members"
 msgstr ""
 
 #: application/libraries/api_v2/Lookup_resource.php:44
@@ -4225,39 +4204,58 @@ msgstr ""
 msgid "Read statistics"
 msgstr ""
 
-#: application/models/Api_v2_model.php:77
+#: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
 msgstr ""
 
-#: application/models/Api_v2_model.php:78
+#: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
 
-#: application/models/Api_v2_model.php:84
+#: application/models/Api_v2_model.php:112
 msgid "Read-only"
 msgstr ""
 
-#: application/models/Api_v2_model.php:85
+#: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
 msgstr ""
 
-#: application/models/Api_v2_model.php:91
+#: application/models/Api_v2_model.php:119
 msgid "Statistics only"
 msgstr ""
 
-#: application/models/Api_v2_model.php:92
+#: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
 msgstr ""
 
-#: application/models/Club_model.php:185
+#: application/models/Club_model.php:12
+msgid "Club Officer"
+msgstr "Oficial del club"
+
+#: application/models/Club_model.php:13
+msgid "Club Member ADIF"
+msgstr "Miembro del club ADIF"
+
+#: application/models/Club_model.php:14
+msgid "Club Member"
+msgstr "Miembro del club"
+
+#: application/models/Club_model.php:235
 msgid "Invalid Permission Level!"
 msgstr "¡Nivel de permiso no válido!"
 
-#: application/models/Club_model.php:200
+#: application/models/Club_model.php:250
 msgid "Error adding Club Member!"
 msgstr "¡Error al agregar miembro del club!"
+
+#: application/models/Club_model.php:333 application/views/api/index.php:68
+#: application/views/contesting/logger/components/qso-form.php:35
+#: application/views/satellite/index.php:94
+#: application/views/satellite/satinfo.php:51
+msgid "Unknown"
+msgstr "Desconocido"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -23114,6 +23112,14 @@ msgstr ""
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
+
+#~ msgid "Invalid message type."
+#~ msgstr "Tipo de mensaje no válido."
+
+#~ msgid "Email can't be initialized. Check the email settings."
+#~ msgstr ""
+#~ "No se puede inicializar el correo electrónico. Verifica la configuración "
+#~ "del correo electrónico."
 
 #~ msgid "Links to 3rd-Party-Software which works with Wavelog:"
 #~ msgstr "Enlaces a software de terceros que funciona con Wavelog:"
