@@ -2466,16 +2466,18 @@ class Logbook_model extends CI_Model {
 
 	// Confirmation counts per QSL type for the REST API v2 statistic endpoint.
 	// Reuses the QSO v2 filter (station scope, band incl. the SAT special case,
-	// mode incl. submode, qso_since) and adds per-type received-date filtering.
+	// mode incl. submode, qso_since/qso_until) and adds per-type received-date
+	// filtering.
 	//
 	// $types     string[]  subset of the CONFIRMATION_COLUMNS keys
 	// $since     string    '' or 'Y-m-d', matched against each type's date column
-	// $qso_since string    '' or 'Y-m-d', matched against COL_TIME_ON
+	// $qso_since string    '' or 'Y-m-d', floor on COL_TIME_ON
+	// $qso_until string    '' or 'Y-m-d', ceiling on COL_TIME_ON
 	// $group_by  string    '' for grand totals, else 'band' or 'mode'
 	//
 	// Returns an assoc array of counts when ungrouped, else a list of rows each
 	// carrying the group key plus the same counts.
-	function count_confirmations_filtered($station_ids, $types, $band = '', $mode = '', $since = '', $qso_since = '', $group_by = '') {
+	function count_confirmations_filtered($station_ids, $types, $band = '', $mode = '', $since = '', $qso_since = '', $qso_until = '', $group_by = '') {
 		$types = array_values(array_intersect($types, array_keys(self::CONFIRMATION_COLUMNS)));
 
 		if (empty($station_ids) || empty($types)) {
@@ -2502,7 +2504,7 @@ class Logbook_model extends CI_Model {
 			array_unshift($columns, "{$group_expr} as `{$group_by}`");
 		}
 
-		$where = $this->_qso_v2_filter_where($station_ids, '', $band, $mode, null, 0, $qso_since, '', $bindings);
+		$where = $this->_qso_v2_filter_where($station_ids, '', $band, $mode, null, 0, $qso_since, $qso_until, $bindings);
 
 		$sql = "SELECT " . implode(", ", $columns)
 			. " FROM " . $this->config->item('table_name') . " qsos"
