@@ -23,6 +23,26 @@ class Wwff extends CI_Model {
 
 		return $this->db->get($this->config->item('table_name'));
 	}
+
+	function search_refs($term) {
+		$json = [];
+		$ref = strtoupper(trim((string) $term));
+		if ($ref === '') {
+			return $json;
+		}
+
+		$this->db->select('reference');
+		$this->db->like('reference', $ref, 'after');
+		$this->db->order_by('reference', 'asc');
+		$this->db->limit(100);
+		$q = $this->db->get('wwff_directory');
+
+		foreach ($q->result() as $row) {
+			$json[] = ['name' => $row->reference];
+		}
+
+		return $json;
+	}
 }
 
 ?>

@@ -132,13 +132,10 @@ class Update_model extends CI_Model {
     }
 
     function wwff() {
-        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
-
-        $wwfffile = './updates/wwff.txt';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
@@ -150,29 +147,86 @@ class Update_model extends CI_Model {
             return "Something went wrong with fetching the WWFF file";
         }
 
-        $wwfffilehandle = fopen($wwfffile, 'w');
-        if ($wwfffilehandle === FALSE) {
-            return "FAILED: Could not write to wwff.txt file";
+        $stream = fopen('php://temp', 'r+');
+        if ($stream === FALSE) {
+            return "FAILED: Could not open temp stream";
         }
+        fwrite($stream, $csv);
+        rewind($stream);
 
-        $data = str_getcsv($csv, "\n", '"', '\\');
         $nCount = 0;
-        foreach ($data as $idx => $row) {
-            if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',', '"', '\\');
-            if ($row[0]) {
-                fwrite($wwfffilehandle, $row[0] . PHP_EOL);
-                $nCount++;
+        $batch = [];
+        $first = true;
+
+        $this->db->trans_start();
+        $this->db->empty_table('wwff_directory');
+
+        while (($cols = fgetcsv($stream, 0, ",", '"', '\\')) !== FALSE) {
+            if ($first) {
+                $first = false;
+                continue;
+            }
+            $ref = strtoupper(trim($cols[0] ?? ''));
+            if ($ref === '') {
+                continue;
+            }
+
+            $batch[] = [
+                'reference' => $ref,
+                'name'      => isset($cols[2]) ? trim($cols[2]) : null,
+                'lat'       => $this->_wwff_coord($cols[10] ?? null),
+                'lon'       => $this->_wwff_coord($cols[11] ?? null),
+            ];
+            $nCount++;
+
+            if (count($batch) >= 1000) {
+                $this->_wwff_upsert_batch($batch);
+                $batch = [];
             }
         }
 
-        fclose($wwfffilehandle);
+        fclose($stream);
+
+        if (!empty($batch)) {
+            $this->_wwff_upsert_batch($batch);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            return "FAILED: import rolled back";
+        }
 
         if ($nCount > 0) {
             return "DONE: " . number_format($nCount) . " WWFF's saved";
         } else {
             return "FAILED: Empty file";
         }
+    }
+
+    private function _wwff_coord($val) {
+        if ($val === null) {
+            return null;
+        }
+        $val = trim($val);
+        if ($val === '' || !is_numeric($val)) {
+            return null;
+        }
+        $f = (float) $val;
+        return $f == 0 ? null : $f;
+    }
+
+    private function _wwff_upsert_batch($batch) {
+        $placeholders = [];
+        $bindings = [];
+        foreach ($batch as $b) {
+            $placeholders[] = '(?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon']);
+        }
+
+        $sql = 'INSERT INTO wwff_directory (reference, name, lat, lon) VALUES '
+            . implode(', ', $placeholders);
+
+        $this->db->query($sql, $bindings);
     }
 
     function hamqsl(){

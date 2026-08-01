@@ -8,34 +8,21 @@ class Wwff
 	// return summit references matching the provided query
 	public function get($query): array
 	{
-		if (empty($query)) {
-			return [];
+		$json = [];
+		$ref = strtoupper(trim((string) $query));
+		if ($ref === '') {
+			return $json;
 		}
 
-		$json = [];
-		$ref = strtoupper($query);
+		$CI =& get_instance();
+		$CI->db->select('reference');
+		$CI->db->like('reference', $ref, 'after');
+		$CI->db->order_by('reference', 'asc');
+		$CI->db->limit(100);
+		$q = $CI->db->get('wwff_directory');
 
-		$file = 'updates/wwff.txt';
-
-		if (is_readable($file)) {
-			$lines = file($file, FILE_IGNORE_NEW_LINES);
-			$input = preg_quote($ref, '~');
-			$reg = '~^' . $input . '(.*)$~';
-			$result = preg_grep($reg, $lines);
-
-			foreach ($result as &$value) {
-				// Limit to 100 as to not slowdown browser too much
-				if (count($json) <= 100) {
-					$json[] = ["name" => $value];
-				}
-			}
-		} else {
-			$src = 'assets/resources/wwff.txt';
-			if (copy($src, $file)) {
-				$this->get($query);
-			} else {
-				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-			}
+		foreach ($q->result() as $row) {
+			$json[] = ['name' => $row->reference];
 		}
 
 		return $json;
