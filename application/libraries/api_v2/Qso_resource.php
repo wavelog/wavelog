@@ -64,6 +64,8 @@ class Qso_resource extends Api_v2_resource {
 	 *   ?mode=       single mode/submode filter (e.g. SSB or FT8)
 	 *   ?qsl_filter= comma list of lotw|qsl|eqsl|clublog (OR-combined)
 	 *   ?since_id=   only QSOs with a primary key greater than this (default 0)
+	 *   ?qso_since=  YYYY-MM-DD, oldest QSO date to include (whole day)
+	 *   ?qso_until=  YYYY-MM-DD, newest QSO date to include (whole day)
 	 * Pagination: ?page= / ?per_page= (max 5000; default 50 for JSON, 1000 for
 	 *             ADIF), or ?limit= as a shortcut for the newest N QSOs (overrides
 	 *             page/per_page).
@@ -95,6 +97,8 @@ class Qso_resource extends Api_v2_resource {
 		$callsign    = $this->normalize_callsign($this->param('callsign'));
 		$qsl_filter  = $this->parse_qsl_filter();
 		$since_id    = $this->parse_since_id();
+		$qso_since   = $this->parse_date('qso_since');
+		$qso_until   = $this->parse_date('qso_until');
 
 		// ADIF sync needs ascending-by-id order (so lastfetchedid advances); the
 		// JSON browse list is newest-first.
@@ -125,10 +129,13 @@ class Qso_resource extends Api_v2_resource {
 
 		// Total across all pages for the same filter, so a client can find the
 		// last page without probing for an empty response.
-		$total = $this->CI->logbook_model->count_qsos_filtered($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $operator);
+		$total = $this->CI->logbook_model->count_qsos_filtered(
+			$station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, $qso_until, $operator
+		);
 
 		$query = $this->CI->logbook_model->get_qsos_filtered(
-			$station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $order, $page['per_page'], $page['offset'], $operator
+			$station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, $qso_until,
+			$order, $page['per_page'], $page['offset'], $operator
 		);
 
 		$rows = is_object($query) ? $query->result() : [];
