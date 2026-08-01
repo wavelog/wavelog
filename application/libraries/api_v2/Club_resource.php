@@ -430,7 +430,7 @@ class Club_resource extends Api_v2_resource {
 	 * Shape a club member row into the public API representation.
 	 */
 	protected function format_member($member) {
-		return [
+		$data = [
 			'user_id'          => (int) $member->user_id,
 			'user_firstname'   => $member->user_firstname,
 			'user_lastname'    => $member->user_lastname,
@@ -441,5 +441,12 @@ class Club_resource extends Api_v2_resource {
 			'permission_level' => (int) $member->p_level,
 			'user_language'    => $member->user_language,
 		];
+
+		$removable = ['user_firstname', 'user_lastname', 'user_locator', 'user_name', 'user_email', 'user_language'];
+		foreach (array_intersect((array) $this->CI->config->item('apiv2_hide_userdata'), $removable) as $field) {
+			unset($data[$field]);
+		}
+
+		return $data;
 	}
 }
