@@ -91,3 +91,10 @@
 	flex: 2 1 0;
 	min-width: 100px;
 }
+
+#qso-serial-sent.serial-unclaimed {
+	color: var(--bs-danger, #dc3545);
+}
+#qso-serial-sent.serial-claimed {
+	color: var(--bs-success, #198754);
+}
