@@ -109,8 +109,7 @@ class Statistic_resource extends Api_v2_resource {
 	 * token's user_id (there is no session in the API), gating the admin topics.
 	 */
 	protected function is_admin() {
-		$user = $this->CI->user_model->get_by_id($this->user_id())->row();
-		return $user !== null && (int) $user->user_type === 99;
+		return $this->CI->user_model->is_admin($this->user_id());
 	}
 
 	// --- Topics ------------------------------------------------------------

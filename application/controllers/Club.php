@@ -19,11 +19,8 @@ class Club extends CI_Controller
 	function __construct() {
 		parent::__construct();
 
-		$this->permissions = [
-			9 => __("Club Officer"),
-			6 => __("Club Member ADIF"),
-			3 => __("Club Member"),
-		];
+		$this->load->model('club_model');
+		$this->permissions = $this->club_model->permission_levels();
 	}
 
     public function index()
@@ -34,23 +31,13 @@ class Club extends CI_Controller
 
     public function permissions($club_id) {
 
-		$this->load->model('club_model');
 		$this->load->library('form_validation');
 
 		$cid = $this->security->xss_clean($club_id);
 		$club = $this->user_model->get_by_id($cid)->row();
 
 		// Check if club managed by SSO
-		$ssoManaged = false;
-		if ($this->config->item('auth_header_enable') ?? false) {
-
-			$this->config->load('sso', true, true);
-			$directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
-
-			if (!empty($directs)) {
-				$ssoManaged = key_exists($club_id, $directs);
-			}
-		}
+		$ssoManaged = $this->club_model->is_sso_managed($club_id);
 
 		if (!is_numeric($cid)) {
 			$this->session->set_flashdata('error', __("Invalid User ID!"));
@@ -116,8 +103,6 @@ class Club extends CI_Controller
 	}
 
 	public function alter_member() {
-		
-		$this->load->model('club_model');
 
 		$club_id = $this->input->post('club_id', true);
 		$user_id = $this->input->post('user_id', true);
@@ -135,7 +120,7 @@ class Club extends CI_Controller
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
 
 		if ($this->input->post('notify_user', true) == 'on') {
-			if (!$this->notification($user_id, $club_id, $this->input->post('notify_message', true))) {
+			if (!$this->club_model->notify_member($user_id, $club_id, $this->input->post('notify_message', true))) {
 				$this->session->set_flashdata('error', __("User could not be notified. Please check your email settings."));
 			}
 		}
@@ -145,8 +130,6 @@ class Club extends CI_Controller
 	}
 
 	public function delete_member() {
-		
-		$this->load->model('club_model');
 
 		$club_id = $this->input->post('club_id', true);
 		$user_id = $this->input->post('user_id', true);
@@ -169,8 +152,7 @@ class Club extends CI_Controller
 	}
 
 	public function switch_modal() {
-		
-		$this->load->model('club_model');
+
 		$this->load->library('encryption');
 
 		$cid = $this->input->post('club_id', true);
@@ -191,58 +173,4 @@ class Club extends CI_Controller
 		$this->load->view('club/clubswitch_modal', $data);
 	}
 
-	private function notification($user_id, $club_id, $message) {
-
-		$this->load->library('email');
-		$this->load->model('club_model');
-
-		switch ($message) {
-			case 'new_member':
-				$view = 'email/club/new_member';
-				break;
-			case 'modified_member':
-				$view = 'email/club/modified_member';
-				break;
-			default:
-				log_message('error', "Club Notification; Can't notify user - Invalid message type.");
-				$this->session->set_flashdata('error', __("Invalid message type."));
-				redirect('club/permissions/'.$club_id);
-				die;
-		}
-		
-		$config = [
-			'protocol' => $this->optionslib->get_option('emailProtocol'),
-			'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-			'smtp_host' => $this->optionslib->get_option('smtpHost'),
-			'smtp_port' => $this->optionslib->get_option('smtpPort'),
-			'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-			'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-			'crlf' => "\r\n",
-			'newline' => "\r\n"
-		];
-		if(!$this->email->initialize($config)) {
-			log_message('error', "Club Notification; Can't notify user - Email can't be initialized.");
-			$this->session->set_flashdata('error', __("Email can't be initialized. Check the email settings."));
-			redirect('club/permissions/'.$club_id);
-		}
-
-		$user = $this->user_model->get_by_id($user_id)->row();
-		$club = $this->user_model->get_by_id($club_id)->row();
-		$permission = $this->club_model->get_permission($club_id, $user_id);
-		$permission_level = $this->permissions[$permission] ?? __("Unknown");
-
-		$mail_data['user_callsign'] = $user->user_callsign;
-		$mail_data['club_callsign'] = $club->user_callsign;
-		$mail_data['permission_level'] = $permission_level;
-
-		$message = $this->email->load($view, $mail_data, $user->user_language);
-
-		$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-		$this->email->to($user->user_email);
-		$this->email->subject($message['subject']);
-		$this->email->message($message['body']);
-
-		return $this->email->send();
-	}
-	
 }
