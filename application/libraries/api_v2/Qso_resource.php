@@ -127,15 +127,24 @@ class Qso_resource extends Api_v2_resource {
 		// JSON list and the ADIF export alike, since both run the same query.
 		$operator = $this->is_restricted_club_member() ? (string) $this->operator_callsign() : '';
 
+		$filters = [
+			'station_ids' => $station_ids,
+			'callsign'    => $callsign,
+			'band'        => $band,
+			'mode'        => $mode,
+			'qsl_filter'  => $qsl_filter,
+			'since_id'    => $since_id,
+			'qso_since'   => $qso_since,
+			'qso_until'   => $qso_until,
+			'operator'    => $operator,
+		];
+
 		// Total across all pages for the same filter, so a client can find the
 		// last page without probing for an empty response.
-		$total = $this->CI->logbook_model->count_qsos_filtered(
-			$station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, $qso_until, $operator
-		);
+		$total = $this->CI->logbook_model->count_qsos_filtered($filters);
 
 		$query = $this->CI->logbook_model->get_qsos_filtered(
-			$station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, $qso_until,
-			$order, $page['per_page'], $page['offset'], $operator
+			$filters, $order, $page['per_page'], $page['offset']
 		);
 
 		$rows = is_object($query) ? $query->result() : [];

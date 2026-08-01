@@ -181,19 +181,25 @@ class Statistic_resource extends Api_v2_resource {
 
 		$station_ids = $this->owner_station_ids();
 
-		// Positional, in the order count_confirmations_filtered() declares them;
-		// only $group_by is appended per call below.
-		$args = [$station_ids, $types, $band, $mode, $since, $qso_since, $qso_until];
+		$filters = [
+			'station_ids' => $station_ids,
+			'types'       => $types,
+			'since'       => $since,
+			'qso_since'   => $qso_since,
+			'qso_until'   => $qso_until,
+			'band'        => $band,
+			'mode'        => $mode,
+		];
 
 		return [
 			'counts'  => $this->shape_confirmations(
-				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['']))
+				$this->CI->logbook_model->count_confirmations_filtered($filters)
 			),
 			'by_band' => array_map([$this, 'shape_confirmations'],
-				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['band']))
+				$this->CI->logbook_model->count_confirmations_filtered($filters, 'band')
 			),
 			'by_mode' => array_map([$this, 'shape_confirmations'],
-				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['mode']))
+				$this->CI->logbook_model->count_confirmations_filtered($filters, 'mode')
 			),
 			'filters' => [
 				'type'      => $types,

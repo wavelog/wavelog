@@ -2299,68 +2299,73 @@ class Logbook_model extends CI_Model {
 	// diverge. Every column is referenced through the `qsos` alias. Bindings are
 	// appended in placeholder order.
 	//
-	// $station_ids  int[]   station-location ids (already ownership-checked)
-	// $callsign     string  '' for none, else an exact match on COL_CALL
-	// $band         string  '' for none, 'SAT', or a COL_BAND value
-	// $mode         string  '' for none, else a COL_MODE or COL_SUBMODE value
-	// $qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
-	// $since_id     int     0 for none, else COL_PRIMARY_KEY > $since_id
-	// $qso_since    string  '' for none, else 'Y-m-d' floor on COL_TIME_ON
-	// $qso_until    string  '' for none, else 'Y-m-d' ceiling on COL_TIME_ON
-	// $operator     string  '' for none, else restrict to that COL_OPERATOR
-	private function _qso_v2_filter_where($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, $qso_until, &$bindings, $operator = '') {
+	// $filters keys, all optional but for station_ids; an absent or empty value
+	// means "do not filter on this":
+	//   station_ids  int[]   station-location ids (already ownership-checked)
+	//   callsign     string  exact match on COL_CALL
+	//   band         string  'SAT' or a COL_BAND value
+	//   mode         string  a COL_MODE or COL_SUBMODE value
+	//   qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
+	//   since_id     int     COL_PRIMARY_KEY > since_id
+	//   qso_since    string  'Y-m-d' floor on COL_TIME_ON
+	//   qso_until    string  'Y-m-d' ceiling on COL_TIME_ON
+	//   operator     string  restrict to that COL_OPERATOR
+	//
+	// Unknown keys are ignored, so a caller can hand in its whole filter set even
+	// when part of it is consumed elsewhere (see count_confirmations_filtered()).
+	private function _qso_v2_filter_where($filters, &$bindings) {
 		$where = " WHERE qsos.`station_id` IN ?";
-		$bindings[] = $station_ids;
+		$bindings[] = $filters['station_ids'];
 
 		// Clubstation members below officer level only ever see their own QSOs.
 		// Compared uppercased, the same way the ADIF export filters it.
-		if ($operator !== null && $operator !== '') {
+		if (($filters['operator'] ?? '') !== '') {
 			$where .= " AND upper(qsos.`COL_OPERATOR`) = ?";
-			$bindings[] = strtoupper($operator);
+			$bindings[] = strtoupper($filters['operator']);
 		}
 
-		if ($callsign !== null && $callsign !== '') {
+		if (($filters['callsign'] ?? '') !== '') {
 			$where .= " AND upper(qsos.`COL_CALL`) = ?";
-			$bindings[] = strtoupper($callsign);
+			$bindings[] = strtoupper($filters['callsign']);
 		}
 
-		if ((int) $since_id > 0) {
+		if ((int) ($filters['since_id'] ?? 0) > 0) {
 			$where .= " AND qsos.`COL_PRIMARY_KEY` > ?";
-			$bindings[] = (int) $since_id;
+			$bindings[] = (int) $filters['since_id'];
 		}
 
 		// Date-only floor on the QSO time, inclusive of the whole given day.
-		if ($qso_since !== null && $qso_since !== '') {
+		if (($filters['qso_since'] ?? '') !== '') {
 			$where .= " AND qsos.`COL_TIME_ON` >= ?";
-			$bindings[] = $qso_since . ' 00:00:00';
+			$bindings[] = $filters['qso_since'] . ' 00:00:00';
 		}
 
 		// Same for the upper bound: the given day still counts in full.
-		if ($qso_until !== null && $qso_until !== '') {
+		if (($filters['qso_until'] ?? '') !== '') {
 			$where .= " AND qsos.`COL_TIME_ON` <= ?";
-			$bindings[] = $qso_until . ' 23:59:59';
+			$bindings[] = $filters['qso_until'] . ' 23:59:59';
 		}
 
-		if ($band !== null && $band !== '') {
-			if ($band === 'SAT') {
+		if (($filters['band'] ?? '') !== '') {
+			if ($filters['band'] === 'SAT') {
 				$where .= " AND qsos.`col_prop_mode` = 'SAT'";
 			} else {
 				$where .= " AND qsos.`col_prop_mode` != 'SAT' AND qsos.`col_band` = ?";
-				$bindings[] = $band;
+				$bindings[] = $filters['band'];
 			}
 		}
 
 		// Match either the main mode or the submode, so e.g. mode=FT8 finds both
 		// QSOs stored as COL_MODE=FT8 and as COL_MODE=MFSK/COL_SUBMODE=FT8.
-		if ($mode !== null && $mode !== '') {
+		if (($filters['mode'] ?? '') !== '') {
 			$where .= " AND (qsos.`col_mode` = ? OR qsos.`col_submode` = ?)";
-			$bindings[] = $mode;
-			$bindings[] = $mode;
+			$bindings[] = $filters['mode'];
+			$bindings[] = $filters['mode'];
 		}
 
-		if (!empty($qsl_filter)) {
+		if (!empty($filters['qsl_filter'])) {
 			$clauses = [];
-			foreach ($qsl_filter as $method) {
+			foreach ($filters['qsl_filter'] as $method) {
 				if (isset(self::CONFIRMATION_COLUMNS[$method])) {
 					$clauses[] = "qsos.`" . self::CONFIRMATION_COLUMNS[$method]['rcvd'] . "` = 'Y'";
 				}
@@ -2377,15 +2382,16 @@ class Logbook_model extends CI_Model {
 	// the full COL_* plus station_profile columns, so the same result set can be
 	// rendered as JSON or as ADIF (via AdifHelper). $order is 'id_asc' (ascending
 	// primary key, for incremental ADIF sync) or 'time_desc' (newest first, for
-	// browsing). Filtering is shared with count_qsos_filtered().
-	function get_qsos_filtered($station_ids, $callsign = '', $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $qso_since = '', $qso_until = '', $order = 'time_desc', $limit = 50, $offset = 0, $operator = '') {
-		if (empty($station_ids)) {
+	// browsing). $filters is the set documented at _qso_v2_filter_where() and is
+	// shared verbatim with count_qsos_filtered().
+	function get_qsos_filtered($filters, $order = 'time_desc', $limit = 50, $offset = 0) {
+		if (empty($filters['station_ids'])) {
 			return $this->db->query("SELECT * FROM " . $this->config->item('table_name') . " WHERE 1=0");
 		}
 
 		$tbl = $this->config->item('table_name');
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, $qso_until, $bindings, $operator);
+		$where = $this->_qso_v2_filter_where($filters, $bindings);
 
 		$sql = "SELECT qsos.*, station_profile.*, dxcc_entities.name AS station_country
 			FROM {$tbl} qsos
@@ -2406,13 +2412,13 @@ class Logbook_model extends CI_Model {
 
 	// Count QSOs for the REST API v2 QSO endpoint, using the exact same filter as
 	// get_qsos_filtered() so `total` matches the paginated result set.
-	function count_qsos_filtered($station_ids, $callsign = '', $band = '', $mode = '', $qsl_filter = null, $since_id = 0, $qso_since = '', $qso_until = '', $operator = '') {
-		if (empty($station_ids)) {
+	function count_qsos_filtered($filters) {
+		if (empty($filters['station_ids'])) {
 			return 0;
 		}
 
 		$bindings = [];
-		$where = $this->_qso_v2_filter_where($station_ids, $callsign, $band, $mode, $qsl_filter, $since_id, $qso_since, $qso_until, $bindings, $operator);
+		$where = $this->_qso_v2_filter_where($filters, $bindings);
 		$sql = "SELECT COUNT(*) AS cnt FROM " . $this->config->item('table_name') . " qsos" . $where;
 
 		return (int) $this->db->query($sql, $bindings)->row()->cnt;
@@ -2469,18 +2475,19 @@ class Logbook_model extends CI_Model {
 	// mode incl. submode, qso_since/qso_until) and adds per-type received-date
 	// filtering.
 	//
-	// $types     string[]  subset of the CONFIRMATION_COLUMNS keys
-	// $since     string    '' or 'Y-m-d', matched against each type's date column
-	// $qso_since string    '' or 'Y-m-d', floor on COL_TIME_ON
-	// $qso_until string    '' or 'Y-m-d', ceiling on COL_TIME_ON
-	// $group_by  string    '' for grand totals, else 'band' or 'mode'
+	// $filters carries the QSO filters from _qso_v2_filter_where() plus two keys
+	// only this counter knows:
+	//   types  string[]  subset of the CONFIRMATION_COLUMNS keys
+	//   since  string    'Y-m-d', matched against each type's own date column
+	//
+	// $group_by is '' for grand totals, else 'band' or 'mode'.
 	//
 	// Returns an assoc array of counts when ungrouped, else a list of rows each
 	// carrying the group key plus the same counts.
-	function count_confirmations_filtered($station_ids, $types, $band = '', $mode = '', $since = '', $qso_since = '', $qso_until = '', $group_by = '') {
-		$types = array_values(array_intersect($types, array_keys(self::CONFIRMATION_COLUMNS)));
+	function count_confirmations_filtered($filters, $group_by = '') {
+		$types = array_values(array_intersect($filters['types'] ?? [], array_keys(self::CONFIRMATION_COLUMNS)));
 
-		if (empty($station_ids) || empty($types)) {
+		if (empty($filters['station_ids']) || empty($types)) {
 			if ($group_by !== '') {
 				return [];
 			}
@@ -2490,7 +2497,7 @@ class Logbook_model extends CI_Model {
 		// Select bindings are consumed before the WHERE bindings, so the count
 		// columns must be built first.
 		$bindings = [];
-		$columns = $this->_confirmation_count_columns($types, $since, $bindings);
+		$columns = $this->_confirmation_count_columns($types, $filters['since'] ?? '', $bindings);
 
 		// Whitelisted grouping expressions — never interpolate caller input here.
 		// The mode key prefers the submode so e.g. FT8 does not vanish into MFSK,
@@ -2504,7 +2511,7 @@ class Logbook_model extends CI_Model {
 			array_unshift($columns, "{$group_expr} as `{$group_by}`");
 		}
 
-		$where = $this->_qso_v2_filter_where($station_ids, '', $band, $mode, null, 0, $qso_since, $qso_until, $bindings);
+		$where = $this->_qso_v2_filter_where($filters, $bindings);
 
 		$sql = "SELECT " . implode(", ", $columns)
 			. " FROM " . $this->config->item('table_name') . " qsos"
