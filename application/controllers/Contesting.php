@@ -460,6 +460,12 @@ class Contesting extends CI_Controller {
 			redirect('contesting');
 		}
 
+		// if cache driver is dummy and serial numbers are required, log an error message
+		if (in_array('serial', $data['session_info']['exchangefields'] ?? [], true)
+			&& $this->cache->get_loaded_driver() === 'dummy') {
+			log_message('error', 'Contest logger: no cache is available (dummy adapter), so serial numbers cannot be handed out per operator. Configure Redis/Valkey, Memcached, APCu or the file cache.');
+		}
+
 		// Per-user map preferences (night shadow / path line / station marker).
 		// Stored in user_options (bound to user_id), default all on except grid (needs more ressources)
 		$this->load->model('user_options_model');
@@ -618,6 +624,7 @@ class Contesting extends CI_Controller {
 				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
 				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
 				$serial_per_band = (bool) $this->input->post('serial_per_band', true);
+				$serial_scope    = $this->_parseSerialScope($this->input->post('serial_scope', true));
 
 				$parameter_array = [
 					'exchangetype'    => $exchangetype,
@@ -626,6 +633,7 @@ class Contesting extends CI_Controller {
 					'callbook_lookup' => $callbook_lookup,
 					'custom_name'     => $custom_name,
 					'serial_per_band' => $serial_per_band,
+					'serial_scope'    => $serial_scope,
 				];
 
 				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $parameter_array);
@@ -680,6 +688,7 @@ class Contesting extends CI_Controller {
 				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
 				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
 				$serial_per_band = (bool) $this->input->post('serial_per_band', true);
+				$serial_scope    = $this->_parseSerialScope($this->input->post('serial_scope', true));
 
 				$parameter_array = [
 					'exchangetype'    => $exchangetype,
@@ -688,6 +697,7 @@ class Contesting extends CI_Controller {
 					'callbook_lookup' => $callbook_lookup,
 					'custom_name'     => $custom_name,
 					'serial_per_band' => $serial_per_band,
+					'serial_scope'    => $serial_scope,
 				];
 
 				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $parameter_array);
@@ -1095,6 +1105,30 @@ class Contesting extends CI_Controller {
 	}
 
 	/**
+	 * Resolves which serial pool a request belongs to.
+	 *
+	 * @param array $session_info Result of Contesting_model::get_session_info()
+	 * @param string|null $band Band reported by the client.
+	 * @return array [band, operator], each null when the pool is not scoped by it.
+	 */
+	private function _serialPool($session_info, $band = null) {
+		$pool_band = null;
+		$pool_operator = null;
+
+		if (!empty($session_info['serial_per_band'])) {
+			// Format check only, no db required here
+			$band = strtolower(trim($band ?? ''));
+			$pool_band = preg_match('/^\d{1,4}(\.\d{1,2})?(mm|cm|m)$/', $band) ? $band : '';
+		}
+
+		if (($session_info['serial_scope'] ?? 'station') === 'operator') {
+			$pool_operator = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
+		}
+
+		return [$pool_band, $pool_operator];
+	}
+
+	/**
 	 * Sync Endpoint for Contest Engine
 	 * Handles bidirectional communication (Commands + Requests)
 	 * Endpoint: POST /contesting/heartbeat
@@ -1241,6 +1275,20 @@ class Contesting extends CI_Controller {
 				// Link QSO to contest session
 				if (is_array($save_result) && !empty($save_result['qso_id'])) {
 					$this->contesting_model->link_qso($save_result['qso_id'], $session_info['contest_session_id']);
+
+					// Keep the counter ahead of the log: if the operator overrode the
+					// serial in the form by hand, the counter would otherwise hand the
+					// same number out again.
+					if (!empty($command['data']['serial_sent'])) {
+						list($pool_band, $pool_operator) = $this->_serialPool($session_info, $command['data']['band'] ?? null);
+						$this->contesting_model->serial_bump(
+							$session_info['contest_session_id'],
+							$pool_band,
+							$pool_operator,
+							$command['data']['serial_sent']
+						);
+					}
+
 					// Notify worker clients about new QSO if worker is available
 					if ($this->worker_available) {
 						$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'sync_required']);
@@ -1350,6 +1398,54 @@ class Contesting extends CI_Controller {
 				$fresh = $this->contesting_model->get_session_info($session_info['contest_session_id']);
 				$response['data']['session_settings'] = $fresh;
 				$this->cache->save($cache_key, $response['data']['session_settings'], 3600); // Cache for 1h
+				break;
+
+			case 'serial_state':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				list($pool_band, $pool_operator) = $this->_serialPool($session_info, $request['band'] ?? null);
+				$response['data']['next_serial'] = $this->contesting_model->serial_peek(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator
+				);
+				break;
+
+			case 'claim_serial':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				list($pool_band, $pool_operator) = $this->_serialPool($session_info, $request['band'] ?? null);
+				$claimed = $this->contesting_model->serial_claim(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator
+				);
+
+				$response['data']['claimed_serial'] = ($claimed === false) ? null : $claimed;
+
+				// Let the other operators refresh their preview right away.
+				if ($claimed !== false && $this->worker_available) {
+					$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'serial_changed']);
+				}
+				break;
+
+			case 'release_serial':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				list($pool_band, $pool_operator) = $this->_serialPool($session_info, $request['band'] ?? null);
+				$released = $this->contesting_model->serial_release(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator,
+					$request['serial'] ?? 0
+				);
+				$response['data']['next_serial'] = $this->contesting_model->serial_peek(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator
+				);
+
+				// Only a successful rollback changes anything for the others.
+				if ($released && $this->worker_available) {
+					$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'serial_changed']);
+				}
 				break;
 
 			default:
@@ -1737,6 +1833,16 @@ class Contesting extends CI_Controller {
 		}
 		$fields = array_values(array_filter($decoded, fn($f) => in_array($f, $allowed)));
 		return $fields ?: ['exchange'];
+	}
+
+	/**
+	 * Normalise the serial number scope of a contest session.
+	 *
+	 * @param string|null $scope Raw POST value.
+	 * @return string Either 'station' or 'operator'.
+	 */
+	private function _parseSerialScope($scope) {
+		return in_array($scope, ['station', 'operator'], true) ? $scope : 'station';
 	}
 
 	private function _fieldsToLegacyType($fields) {

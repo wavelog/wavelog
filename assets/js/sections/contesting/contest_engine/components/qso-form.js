@@ -20,6 +20,10 @@ class QsoFormComponent {
 		this._bearingInfo = null;
 		this.callbookLookupToken = 0;
 		this.nextSerialSent = 1;
+		this.serialClaimed = false;
+		this.serialClaimState = null;
+		this.serialServerKnown = false;
+		this.serialReleaseSerial = null;
 		this.exchangeType = null;
 
 		if (!this.container) {
@@ -137,6 +141,23 @@ class QsoFormComponent {
 		const perBandBadge = this.container.querySelector('#qso-serial-perband-badge');
 		if (perBandBadge) perBandBadge.style.display = this.serialPerBand ? '' : 'none';
 
+		this.serialScope = sessionInfo.serial_scope ?? 'station';
+		const perOpBadge = this.container.querySelector('#qso-serial-perop-badge');
+		if (perOpBadge) perOpBadge.style.display = this.serialScope === 'operator' ? '' : 'none';
+
+		// Only club stations can have several operators sharing a session, so only
+		// there does it help to see whether a number is still a preview.
+		this.serialColourEnabled = !!window.ContestLoggerConfig?.isClubStation;
+		const serialSentInput = this.container.querySelector('#qso-serial-sent');
+		if (serialSentInput) {
+			if (this.serialColourEnabled) {
+				serialSentInput.classList.add('serial-unclaimed');
+			} else {
+				serialSentInput.classList.remove('serial-unclaimed', 'serial-claimed');
+				serialSentInput.removeAttribute('title');
+			}
+		}
+
 		let fields = Array.isArray(sessionInfo.exchangefields) && sessionInfo.exchangefields.length > 0
 			? sessionInfo.exchangefields
 			: ['exchange'];
@@ -166,6 +187,10 @@ class QsoFormComponent {
 		}
 
 		this._applyFieldOrder(fields);
+
+		if (hasSerial) {
+			this.syncEngine?.triggerNow();
+		}
 	}
 
 	_applyFieldOrder(fields) {
@@ -207,12 +232,14 @@ class QsoFormComponent {
 	computeNextSerial() {
 		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
 		const currentBand = this.serialPerBand ? this.radioComponent?.getBand() : null;
+		const currentOp = this.serialScope === 'operator' ? this.currentOperator : null;
 		let maxSerial = 0;
 		allQsos.forEach(qso => {
 			if (currentBand) {
 				const qsoBand = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
 				if (qsoBand !== currentBand) return;
 			}
+			if (currentOp && (qso.operator ?? '').toUpperCase() !== currentOp) return;
 			const s = parseInt(qso.serial_sent, 10);
 			if (Number.isFinite(s) && s > maxSerial) maxSerial = s;
 		});
@@ -224,20 +251,88 @@ class QsoFormComponent {
 		if (input) input.value = this.nextSerialSent;
 	}
 
+	/**
+	 * Refreshes the preview from the local log.
+	 */
+	refreshSerialPreview() {
+		if (this.serialClaimed || this.serialServerKnown) return;
+		this.nextSerialSent = this.computeNextSerial();
+		this.updateSerialSentDisplay();
+	}
+
+	/**
+	 * Applies the red (preview) / green (claimed) state to the sent serial field.
+	 *
+	 * @param {boolean} claimed
+	 */
+	setSerialClaimedState(claimed) {
+		this.serialClaimed = claimed;
+		if (!this.serialColourEnabled) return;
+		const input = this.container.querySelector('#qso-serial-sent');
+		if (!input) return;
+		input.classList.toggle('serial-claimed', claimed);
+		input.classList.toggle('serial-unclaimed', !claimed);
+	}
+
+	/**
+	 * Asks the server for a binding serial number.
+	 */
+	claimSerial() {
+		if (this.serialClaimed || this.serialClaimState) return;
+		if (!this.exchangeFields?.includes('serial')) return;
+
+		this.serialClaimState = 'wanted';
+		this.syncEngine?.triggerNow();
+	}
+
 	registerSyncHandler() {
 		if (!this.syncEngine) return;
 
 		this.syncEngine.registerSyncHandler('qso.*', {
 			buildRequest: () => null,
-			buildRequests: (dataStore) => [{
-				type: 'check_sync',
-				client_qso_count: dataStore.getSyncedQSOCount(),
-				since_ts: this.lastSeenTs ?? 0,
-				since_id: this.lastSeenId ?? 0
-			}],
+			buildRequests: (dataStore) => {
+				const requests = [{
+					type: 'check_sync',
+					client_qso_count: dataStore.getSyncedQSOCount(),
+					since_ts: this.lastSeenTs ?? 0,
+					since_id: this.lastSeenId ?? 0
+				}];
+				if (this.exchangeFields?.includes('serial')) {
+					if (this.serialClaimState === 'sent') {
+						console.warn('QSO Form: serial claim went unanswered, keeping local number');
+						this.serialClaimState = null;
+					}
+
+					let releasing = false;
+					if (this.serialReleaseSerial !== null) {
+						requests.push({
+							type: 'release_serial',
+							serial: this.serialReleaseSerial,
+							band: this.radioComponent?.getBand() ?? null
+						});
+						this.serialReleaseSerial = null;
+						releasing = true;
+					}
+
+					if (this.serialClaimState === 'wanted') {
+						this.serialClaimState = 'sent';
+						requests.push({
+							type: 'claim_serial',
+							band: this.radioComponent?.getBand() ?? null
+						});
+					} else if (!releasing && !this.serialClaimState && !this.serialClaimed) {
+						requests.push({
+							type: 'serial_state',
+							band: this.radioComponent?.getBand() ?? null
+						});
+					}
+				}
+				return requests;
+			},
 			buildCommands: (dataStore) => this.buildQsoCommands(dataStore),
 			canHandle: (responseData) => {
-				return responseData.saved_qsos !== undefined || responseData.needs_resync !== undefined;
+				return responseData.saved_qsos !== undefined || responseData.needs_resync !== undefined
+					|| responseData.next_serial !== undefined || responseData.claimed_serial !== undefined;
 			},
 			processResponse: (responseData, dataStore) => {
 				this.processQsoSyncResponse(responseData, dataStore);
@@ -264,6 +359,7 @@ class QsoFormComponent {
 				if (e.key !== ' ') return;
 				e.preventDefault();
 				if (!callsignInputEl.value.trim()) return;
+				this.claimSerial();
 				const visibleInputs = Array.from(
 					this.container.querySelectorAll('input[type="text"], input[type="number"]')
 				).filter(el => el.offsetParent !== null);
@@ -272,6 +368,11 @@ class QsoFormComponent {
 				if (next) next.focus();
 			});
 		}
+
+		['#qso-serial-received', '#qso-exchange-received', '#qso-gridsquare-received'].forEach(sel => {
+			const el = this.container.querySelector(sel);
+			if (el) el.addEventListener('focusin', () => this.claimSerial());
+		});
 
 		// Enter key in input fields logs QSO
 		const inputs = this.container.querySelectorAll('input[type="text"], input[type="number"]');
@@ -303,10 +404,12 @@ class QsoFormComponent {
 		this.dataStore.subscribe('config.selected_band', () => {
 			const callsign = this.container.querySelector('#qso-callsign')?.value.trim().toUpperCase() || '';
 			this.updateWorkedBeforeWarning(callsign);
-			// Per-band serial: recompute the next number for the newly selected band
+			// Per-band serial: the band switch moves us to a different counter, so
+			// what the server told us about the old one no longer applies. Show a
+			// local estimate until the next heartbeat reports the new band's series.
 			if (this.serialPerBand) {
-				this.nextSerialSent = this.computeNextSerial();
-				this.updateSerialSentDisplay();
+				this.serialServerKnown = false;
+				this.refreshSerialPreview();
 			}
 		});
 
@@ -1105,8 +1208,7 @@ class QsoFormComponent {
 		sorted.forEach(qso => this.addQSOToTable(qso));
 		this.updateQSOCount();
 
-		this.nextSerialSent = this.computeNextSerial();
-		this.updateSerialSentDisplay();
+		this.refreshSerialPreview();
 
 		const exchangeSentInput = this.container.querySelector('#qso-exchange-sent');
 		if (exchangeSentInput) exchangeSentInput.value = this.getLastExchangeSent();
@@ -1162,8 +1264,7 @@ class QsoFormComponent {
 		this.updateQSOCount();
 		this.applyCallsignFilter();
 
-		this.nextSerialSent = this.computeNextSerial();
-		this.updateSerialSentDisplay();
+		this.refreshSerialPreview();
 
 		console.debug(`QSO Form: Resynced table (server=${eventData?.server ?? '?'}, protected=${eventData?.protected ?? '?'})`);
 	}
@@ -1303,7 +1404,7 @@ class QsoFormComponent {
 		return sorted[0]?.exchange_sent ?? '';
 	}
 
-	clearForm() {
+	clearForm(serialUsed = false) {
 		if (!this.container) return;
 
 		const callsignInput = this.container.querySelector('#qso-callsign');
@@ -1340,6 +1441,16 @@ class QsoFormComponent {
 		this.callbookLookupToken++;
 		this.dataStore?.emit('qso_location_updated', null);
 		this.scpComponent?.clearResults();
+
+		const heldSerial = this.serialClaimed ? parseInt(this.nextSerialSent, 10) : null;
+		this.setSerialClaimedState(false);
+
+		if (heldSerial && this.exchangeFields?.includes('serial')) {
+			if (!serialUsed && Number.isFinite(heldSerial)) {
+				this.serialReleaseSerial = heldSerial;
+			}
+			this.syncEngine?.triggerNow();
+		}
 	}
 
 	buildQsoCommands(dataStore) {
@@ -1351,6 +1462,7 @@ class QsoFormComponent {
 				tmp_id: qso.tmpId,
 				callsign: qso.callsign,
 				frequency: qso.frequency,
+				band: qso.band ?? null,
 				mode: qso.mode,
 				rst_sent: qso.rst_sent,
 				rst_rcvd: qso.rst_rcvd,
@@ -1378,6 +1490,28 @@ class QsoFormComponent {
 	}
 
 	processQsoSyncResponse(responseData, dataStore) {
+		if (this.serialClaimState === 'sent') {
+			this.serialClaimState = null;
+			const claimed = parseInt(responseData.claimed_serial, 10);
+			if (Number.isFinite(claimed) && claimed > 0) {
+				this.serialServerKnown = true;
+				this.nextSerialSent = claimed;
+				this.updateSerialSentDisplay();
+				this.setSerialClaimedState(true);
+			} else {
+				console.warn('QSO Form: serial not claimed, keeping local number');
+			}
+		}
+
+		if (responseData.next_serial !== undefined && !this.serialClaimed) {
+			const hint = parseInt(responseData.next_serial, 10);
+			if (Number.isFinite(hint) && hint > 0) {
+				this.serialServerKnown = true;
+				this.nextSerialSent = hint;
+				this.updateSerialSentDisplay();
+			}
+		}
+
 		if (responseData.saved_qsos && responseData.saved_qsos.length > 0) {
 			this.processSavedQsos(responseData.saved_qsos, dataStore);
 			console.debug(`QSO Form: ${responseData.saved_qsos.length} QSO(s) saved to server`);
@@ -1554,8 +1688,7 @@ class QsoFormComponent {
 		});
 
 		this.updateQSOCount();
-		this.nextSerialSent = this.computeNextSerial();
-		this.updateSerialSentDisplay();
+		this.refreshSerialPreview();
 	}
 
 	/**
@@ -1678,6 +1811,7 @@ class QsoFormComponent {
 			gridsquare_sent: gridsquareSent,
 			gridsquare_rcvd: gridsquareRcvd,
 			frequency: frequency,
+			band: this.radioComponent.getBand() ?? null,
 			mode: mode,
 			date: new Date().toISOString().split('T')[0],
 			time: new Date().toISOString().split('T')[1].substring(0, 8),
@@ -1738,7 +1872,8 @@ class QsoFormComponent {
 		if (this.scpComponent) {
 			this.scpComponent.clearResults();
 		}
-		this.clearForm();
+		// The serial went into the QSO, so it must not be offered back to the series.
+		this.clearForm(true);
 	}
 }
 

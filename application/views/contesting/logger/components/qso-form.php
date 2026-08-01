@@ -92,8 +92,8 @@ $config = [
 
 							<!-- Serial Sent / Received (shown only when exchangetype has serial) -->
 							<div class="serial-field col-field" style="display:none;">
-								<label for="qso-serial-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Nr. S"); ?><span id="qso-serial-perband-badge" class="badge bg-secondary ms-1 text-lowercase" style="display:none;"><?= _pgettext("Count serial number in contesting per Band; is an option in contesting manager.","per band"); ?></span></label>
-								<input type="number" id="qso-serial-sent" name="serial_sent" class="form-control text-center fw-bold no-spinner" min="1" tabindex="-1">
+								<label for="qso-serial-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Nr. S"); ?><span id="qso-serial-perband-badge" class="badge bg-secondary ms-1 text-lowercase" style="display:none;"><?= _pgettext("Count serial number in contesting per Band; is an option in contesting manager.","per band"); ?></span><span id="qso-serial-perop-badge" class="badge bg-secondary ms-1 text-lowercase" style="display:none;"><?= _pgettext("Count serial number in contesting per Operator; is an option in contesting manager.","per op"); ?></span></label>
+								<input type="number" id="qso-serial-sent" name="serial_sent" class="form-control text-center fw-bold no-spinner" min="1" tabindex="-1" title="<?= __("Red: preview only. Green: this number is reserved for you."); ?>">
 							</div>
 							<div class="serial-field col-field" style="display:none;">
 								<label for="qso-serial-received" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Nr. R"); ?></label>
