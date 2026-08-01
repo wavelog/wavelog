@@ -5,29 +5,6 @@
  */
 class Wwff
 {
-	// return summit references matching the provided query
-	public function get($query): array
-	{
-		$json = [];
-		$ref = strtoupper(trim((string) $query));
-		if ($ref === '') {
-			return $json;
-		}
-
-		$CI =& get_instance();
-		$CI->db->select('reference');
-		$CI->db->like('reference', $ref, 'after');
-		$CI->db->order_by('reference', 'asc');
-		$CI->db->limit(100);
-		$q = $CI->db->get('wwff_directory');
-
-		foreach ($q->result() as $row) {
-			$json[] = ['name' => $row->reference];
-		}
-
-		return $json;
-	}
-
 	// fetches the summit information from WWFF
 	public function info($ref) {
 		$url = 'https://www.gma.rocks/wwff_ref.php?ref='.$ref;

@@ -143,7 +143,7 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 120);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
         $csv = curl_exec($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the WWFF file";
@@ -225,7 +225,7 @@ class Update_model extends CI_Model {
             array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon']);
         }
 
-        $sql = 'INSERT INTO wwff_directory (reference, name, lat, lon) VALUES '
+        $sql = 'INSERT IGNORE INTO wwff_directory (reference, name, lat, lon) VALUES '
             . implode(', ', $placeholders);
 
         $this->db->query($sql, $bindings);

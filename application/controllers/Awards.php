@@ -715,14 +715,47 @@ class Awards extends CI_Controller {
 
 		// Grab all worked wwff stations
 		$this->load->model('wwff');
+		$this->load->model('bands');
+		$this->load->model('modes');
 		$data['wwff_all'] = $this->wwff->get_all();
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+		$data['worked_bands'] = $this->bands->get_worked_bands('wwff');
+		$data['modes'] = $this->modes->active();
 
 		// Render page
 		$data['page_title'] = sprintf(__("Awards - %s"), __("WWFF"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/wwff/index');
 		$this->load->view('interface_assets/footer');
+	}
+
+	public function wwff_map() {
+		$this->load->model('wwff');
+		$this->load->model('logbooks_model');
+
+		$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
+		$postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
+		$postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
+		$postdata['worked'] = ($this->input->post('worked', true) ?? 0) == 0 ? null : 1;
+		$postdata['confirmed'] = ($this->input->post('confirmed', true) ?? 0) == 0 ? null : 1;
+
+		$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+		$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+		$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
+
+		$data = [];
+
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		if ($logbooks_locations_array && $logbooks_locations_array[0] !== -1) {
+			$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
+			$data = $this->wwff->get_map_data($postdata, $location_list);
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($data);
 	}
 
 	/*
