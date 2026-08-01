@@ -45,6 +45,9 @@ class Api_v2_model extends CI_Model {
 			if (!class_exists($class) || !is_subclass_of($class, 'Api_v2_resource')) {
 				continue;
 			}
+			if (!$class::is_available()) {
+				continue;
+			}
 			$registry += $class::scope_definitions();
 		}
 

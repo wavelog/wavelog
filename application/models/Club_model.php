@@ -3,6 +3,39 @@
 class Club_model extends CI_Model {
 
     /**
+     * Permission levels a club member can hold, level => label.
+     *
+     * @return array
+     */
+    function permission_levels() {
+        return [
+            9 => __("Club Officer"),
+            6 => __("Club Member ADIF"),
+            3 => __("Club Member"),
+        ];
+    }
+
+    /**
+     * Whether this clubstation's memberships are managed by an identity
+     * provider. 
+     *
+     * @param int $club_id
+     *
+     * @return boolean
+     */
+    function is_sso_managed($club_id) {
+
+        if (!($this->config->item('auth_header_enable') ?? false)) {
+            return false;
+        }
+
+        $this->config->load('sso', true, true);
+        $directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
+
+        return key_exists($club_id, $directs);
+    }
+
+    /**
      * Authorization for Club Features
      * 
      * @param int $level
@@ -226,11 +259,74 @@ class Club_model extends CI_Model {
         try {
             $this->db->query('DELETE FROM club_permissions WHERE club_id = ? AND user_id = ?', [$club_id, $user_id]);
             $this->db->query('DELETE FROM api WHERE user_id = ? AND created_by = ?', [$club_id, $user_id]);
+            // The v2 tokens in `api_token` deliberately survive: the dispatcher
+            // re-checks the membership on every request and answers 403
+            // club_access_revoked, so re-adding the member restores access
+            // without them having to create a new token.
             $this->db->query('DELETE FROM cat WHERE user_id = ? AND operator = ?', [$club_id, $user_id]);
             return true;
         } catch (Exception $e) {
             log_message('error', 'Error deleting Club Member: ' . $e->getMessage());
             return false;
         }
+    }
+
+    /**
+     * Notify a club member about their new or changed permission level.
+     *
+     * @param int    $user_id
+     * @param int    $club_id
+     * @param string $message 'new_member' or 'modified_member'
+     *
+     * @return boolean
+     */
+    function notify_member($user_id, $club_id, $message) {
+
+        $this->load->library('email');
+
+        switch ($message) {
+            case 'new_member':
+                $view = 'email/club/new_member';
+                break;
+            case 'modified_member':
+                $view = 'email/club/modified_member';
+                break;
+            default:
+                log_message('error', "Club Notification; Can't notify user - Invalid message type.");
+                return false;
+        }
+
+        $config = [
+            'protocol' => $this->optionslib->get_option('emailProtocol'),
+            'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
+            'smtp_host' => $this->optionslib->get_option('smtpHost'),
+            'smtp_port' => $this->optionslib->get_option('smtpPort'),
+            'smtp_user' => $this->optionslib->get_option('smtpUsername'),
+            'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        ];
+        if (!$this->email->initialize($config)) {
+            log_message('error', "Club Notification; Can't notify user - Email can't be initialized.");
+            return false;
+        }
+
+        $user = $this->user_model->get_by_id($user_id)->row();
+        $club = $this->user_model->get_by_id($club_id)->row();
+        $permission = $this->get_permission_noui($club_id, $user_id);
+        $permission_level = $this->permission_levels()[$permission] ?? __("Unknown");
+
+        $mail_data['user_callsign'] = $user->user_callsign;
+        $mail_data['club_callsign'] = $club->user_callsign;
+        $mail_data['permission_level'] = $permission_level;
+
+        $message = $this->email->load($view, $mail_data, $user->user_language);
+
+        $this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
+        $this->email->to($user->user_email);
+        $this->email->subject($message['subject']);
+        $this->email->message($message['body']);
+
+        return $this->email->send();
     }
 }

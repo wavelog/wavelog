@@ -281,6 +281,10 @@ class Api_v2 extends CI_Controller {
 			throw new Api_v2_exception('not_found', 'Unknown resource: ' . $resource, 404);
 		}
 
+		if (!$class::is_available()) {
+			throw new Api_v2_exception('not_found', 'Unknown resource: ' . $resource, 404);
+		}
+
 		$body = in_array($method, ['POST', 'PUT', 'PATCH'], true) ? $this->read_json_body() : null;
 
 		return new $class($auth, $body);

@@ -167,6 +167,18 @@ abstract class Api_v2_resource {
 	}
 
 	/**
+	 * Whether this resource exists on this instance. If the same function 
+	 * exists in the ressource itself, it will be called instead of this one.
+	 * This allows to disable a resources based on other parameters. This 
+	 * function is the default for any ressource which does not redefine it.
+	 *
+	 * @return bool
+	 */
+	public static function is_available() {
+		return true;
+	}
+
+	/**
 	 * Translated labels for this resource's scopes, keyed by suffix
 	 * ("read" | "write" | "delete"). Override in each resource; the strings
 	 * must be static __() literals so po_gen.sh can extract them. The base
