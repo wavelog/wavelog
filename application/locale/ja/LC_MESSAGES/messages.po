@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-01 20:30+0000\n"
-"PO-Revision-Date: 2026-07-30 09:11+0000\n"
+"POT-Creation-Date: 2026-08-01 06:03+0000\n"
+"PO-Revision-Date: 2026-08-01 20:31+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -130,18 +130,17 @@ msgstr "対流圏ダクト"
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22 application/controllers/Api.php:33
 #: application/controllers/Api.php:81 application/controllers/Api.php:120
-#: application/controllers/Api.php:154 application/controllers/Api_token.php:32
-#: application/controllers/Api_token.php:85
+#: application/controllers/Api.php:154 application/controllers/Api_token.php:33
+#: application/controllers/Api_token.php:86
 #: application/controllers/Awards.php:19 application/controllers/Backup.php:12
 #: application/controllers/Backup.php:24 application/controllers/Backup.php:68
 #: application/controllers/Band.php:14 application/controllers/Bandmap.php:8
 #: application/controllers/Cabrillo.php:10
 #: application/controllers/Callstats.php:12
 #: application/controllers/Calltester.php:12
-#: application/controllers/Club.php:42 application/controllers/Club.php:80
-#: application/controllers/Club.php:118 application/controllers/Club.php:144
-#: application/controllers/Club.php:177 application/controllers/Club.php:246
-#: application/controllers/Club.php:298 application/controllers/Clublog.php:88
+#: application/controllers/Club.php:60 application/controllers/Club.php:87
+#: application/controllers/Club.php:131 application/controllers/Club.php:159
+#: application/controllers/Club.php:185 application/controllers/Clublog.php:88
 #: application/controllers/Clublog.php:146
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
@@ -236,7 +235,15 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:51
+#: application/controllers/Api_token.php:32
+#: application/controllers/Api_token.php:85 application/controllers/Club.php:47
+#: application/controllers/Club.php:74 application/controllers/Club.php:116
+#: application/controllers/Club.php:142 application/controllers/Club.php:167
+#: application/models/Club_model.php:84 application/controllers/Club.php:42
+#: application/controllers/Club.php:80 application/controllers/Club.php:118
+#: application/controllers/Club.php:144 application/controllers/Club.php:177
+#: application/controllers/Club.php:246 application/controllers/Club.php:298
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -397,8 +404,10 @@ msgid "API Key %s description has been updated."
 msgstr "APIキー %s の 説明が更新されました。"
 
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
+#: application/controllers/Api_token.php:28
+#: application/controllers/Api_token.php:81 application/controllers/Qso.php:609
 #: application/controllers/Api_token.php:27
-#: application/controllers/Api_token.php:80 application/controllers/Qso.php:609
+#: application/controllers/Api_token.php:80
 msgid "Invalid request method"
 msgstr "無効なリクエストメソッド"
 
@@ -423,26 +432,32 @@ msgstr "無効なAPIキー"
 msgid "API Key %s has been deleted"
 msgstr "APIキー %s は削除されました"
 
+#: application/controllers/Api_token.php:37
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
 msgstr "トークン名を入力してください"
 
+#: application/controllers/Api_token.php:46
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
 msgstr "少なくとも1つの範囲を選択してください"
 
+#: application/controllers/Api_token.php:68
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
 msgstr "APIトークンが生成されました"
 
+#: application/controllers/Api_token.php:70
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
 msgstr "APIトークンを生成できませんでした"
 
+#: application/controllers/Api_token.php:90
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
 msgstr "無効なAPIトークン"
 
+#: application/controllers/Api_token.php:97
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
 msgstr "APIトークンが削除されました"
@@ -885,95 +900,85 @@ msgstr "CSV コールテスター"
 msgid "Callsign Tester"
 msgstr "コールサインテスター"
 
-#: application/controllers/Club.php:46 application/models/Club_model.php:139
+#: application/controllers/Club.php:23 application/models/Club_model.php:12
+msgid "Club Officer"
+msgstr "クラブ役員"
+
+#: application/controllers/Club.php:24 application/models/Club_model.php:13
+msgid "Club Member ADIF"
+msgstr "クラブ会員 ADIF"
+
+#: application/controllers/Club.php:25 application/models/Club_model.php:14
+msgid "Club Member"
+msgstr "クラブ会員"
+
+#: application/controllers/Club.php:56 application/models/Club_model.php:106
+#: application/models/Club_model.php:180 application/models/Club_model.php:222
+#: application/controllers/Club.php:43 application/models/Club_model.php:139
 #: application/models/Club_model.php:230 application/models/Club_model.php:272
+#: application/controllers/Club.php:46
 msgid "Invalid User ID!"
 msgstr "無効なユーザーIDです！"
 
+#: application/controllers/Club.php:64 application/controllers/Club.php:51
 #: application/controllers/Club.php:50
 msgid "This user is not a club station."
 msgstr "このユーザーはクラブ局ではありません。"
 
-#: application/controllers/Club.php:54
+#: application/controllers/Club.php:68
 #: application/views/club/permissions.php:10
-#: application/views/user/index.php:215
+#: application/views/user/index.php:215 application/controllers/Club.php:55
+#: application/controllers/Club.php:54
 msgid "Club Permissions"
 msgstr "クラブ権限"
 
-#: application/controllers/Club.php:73 application/controllers/Club.php:168
-#: application/controllers/Club.php:238
-#: application/controllers/Contesting.php:650
-#: application/controllers/Contesting.php:718
-#: application/controllers/Contesting.php:765
-#: application/controllers/Contesting.php:777
-msgid "Invalid request method."
-msgstr "無効なリクエストメソッドです。"
-
+#: application/controllers/Club.php:127 application/controllers/Club.php:155
+#: application/controllers/Club.php:181 application/models/Club_model.php:22
+#: application/models/Club_model.php:101 application/models/Club_model.php:175
+#: application/models/Club_model.php:217 application/controllers/Club.php:112
+#: application/controllers/Club.php:138 application/controllers/Club.php:163
+#: application/models/Club_model.php:55 application/models/Club_model.php:134
+#: application/models/Club_model.php:225 application/models/Club_model.php:267
 #: application/controllers/Club.php:122 application/controllers/Club.php:148
-#: application/controllers/Club.php:181 application/controllers/Club.php:250
-#: application/controllers/Club.php:302 application/models/Club_model.php:55
-#: application/models/Club_model.php:134 application/models/Club_model.php:225
-#: application/models/Club_model.php:267
+#: application/controllers/Club.php:250 application/controllers/Club.php:302
 msgid "Invalid Club ID!"
 msgstr "無効なクラブIDです！"
 
+#: application/controllers/Club.php:139 application/controllers/Club.php:124
 #: application/controllers/Club.php:130 application/controllers/Club.php:221
 msgid "User could not be notified. Please check your email settings."
 msgstr "ユーザーに通知できませんでした。メール設定を確認してください。"
 
+#: application/controllers/Club.php:143 application/controllers/Club.php:128
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
 msgstr "クラブ メンバーの権限が更新されました。"
 
+#: application/controllers/Club.php:164 application/controllers/Club.php:147
 #: application/controllers/Club.php:153
 msgid "User removed from club."
 msgstr "ユーザーはクラブから削除されました。"
 
+#: application/controllers/Club.php:166 application/controllers/Club.php:149
 #: application/controllers/Club.php:155
 msgid "User could not be removed from club."
 msgstr "ユーザーをクラブから削除できませんでした。"
 
-#: application/controllers/Club.php:187 application/controllers/Club.php:256
-msgid "No members selected."
-msgstr ""
+#: application/controllers/Club.php:208
+msgid "Invalid message type."
+msgstr "メッセージ タイプが無効です。"
 
-#: application/controllers/Club.php:194 application/controllers/Club.php:263
-msgid "None of the selected users are members of this club."
-msgstr ""
+#: application/controllers/Club.php:225
+msgid "Email can't be initialized. Check the email settings."
+msgstr "メールを初期化できません。メール設定を確認してください。"
 
-#: application/controllers/Club.php:203 application/controllers/Club.php:271
-msgid ""
-"Cannot proceed: this would remove the last Club Officer. An instance "
-"administrator must perform this action."
-msgstr ""
-
-#: application/controllers/Club.php:209
-msgid "Club member permissions could not be updated."
-msgstr ""
-
-#: application/controllers/Club.php:213
-msgid "No members were updated."
-msgstr ""
-
-#: application/controllers/Club.php:226
-#, php-format
-msgid "%d member updated."
-msgid_plural "%d members updated."
-msgstr[0] ""
-
-#: application/controllers/Club.php:277
-msgid "Users could not be removed from club."
-msgstr ""
-
-#: application/controllers/Club.php:281
-msgid "No members were removed."
-msgstr ""
-
-#: application/controllers/Club.php:285
-#, php-format
-msgid "%d member removed."
-msgid_plural "%d members removed."
-msgstr[0] ""
+#: application/controllers/Club.php:232 application/views/api/index.php:68
+#: application/views/contesting/logger/components/qso-form.php:35
+#: application/views/satellite/index.php:94
+#: application/views/satellite/satinfo.php:51
+#: application/models/Club_model.php:333
+msgid "Unknown"
+msgstr "不明"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1087,6 +1092,15 @@ msgstr "コンテストセッションが正常に作成されました。"
 msgid "There was an error creating the contest session. Please try again."
 msgstr ""
 "コンテストセッションの作成中にエラーが発生しました。もう一度お試しください。"
+
+#: application/controllers/Contesting.php:650
+#: application/controllers/Contesting.php:718
+#: application/controllers/Contesting.php:765
+#: application/controllers/Contesting.php:777
+#: application/controllers/Club.php:73 application/controllers/Club.php:168
+#: application/controllers/Club.php:238
+msgid "Invalid request method."
+msgstr "無効なリクエストメソッドです。"
 
 #: application/controllers/Contesting.php:710
 msgid "Contest session updated successfully."
@@ -1541,7 +1555,7 @@ msgstr "確認"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQゾーン"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1552,12 +1566,12 @@ msgstr "ゾーン"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "州／県"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:328
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "グリッドスクエア検索"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:164
@@ -3073,7 +3087,7 @@ msgstr "最終更新日"
 #: application/controllers/Radio.php:138
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
-#: application/views/club/permissions.php:313
+#: application/views/club/permissions.php:303
 #: application/views/contest_admin/add.php:68
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/contesting/manager/index.php:72
@@ -3089,6 +3103,7 @@ msgstr "最終更新日"
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/club/permissions.php:313
 msgid "Edit"
 msgstr "編集"
 
@@ -3096,9 +3111,8 @@ msgstr "編集"
 #: application/controllers/Stationsetup.php:414
 #: application/views/api/index.php:84 application/views/api/index.php:174
 #: application/views/bands/bandedges.php:33
-#: application/views/club/permissions.php:370
-#: application/views/club/permissions.php:392
-#: application/views/club/permissions.php:453
+#: application/views/club/permissions.php:360
+#: application/views/club/permissions.php:382
 #: application/views/contest_admin/add.php:71
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
@@ -3125,6 +3139,9 @@ msgstr "編集"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:730
 #: application/views/view_log/qso.php:738
+#: application/views/club/permissions.php:370
+#: application/views/club/permissions.php:392
+#: application/views/club/permissions.php:453
 msgid "Delete"
 msgstr "削除"
 
@@ -3748,6 +3765,7 @@ msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr "変更できません。IDプロバイダーを通じて管理してください。"
 
 #: application/controllers/User.php:467
+#: application/views/club/permissions.php:308
 #: application/views/club/permissions.php:318
 msgid "Edit User"
 msgstr "ユーザーを編集"
@@ -3762,6 +3780,7 @@ msgid "Profile"
 msgstr "プロフィール"
 
 #: application/controllers/User.php:1186
+#: application/views/club/permissions.php:365
 #: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "ユーザーを削除"
@@ -3866,8 +3885,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1508
 msgid "Station setup failed! Please set up your station manually."
@@ -4159,17 +4178,10 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "市 / 区 / 郡"
 
+#: application/libraries/api_v2/Club_resource.php:27
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
 msgstr "クラブメンバーを読む"
-
-#: application/libraries/api_v2/Club_resource.php:72
-msgid "Manage club member permissions"
-msgstr ""
-
-#: application/libraries/api_v2/Club_resource.php:73
-msgid "Remove club members"
-msgstr ""
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -4215,10 +4227,12 @@ msgstr "シャックの場所を削除する"
 msgid "Read statistics"
 msgstr "統計情報を読む"
 
+#: application/models/Api_v2_model.php:77
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
 msgstr " （最低2.1.0"
 
+#: application/models/Api_v2_model.php:78
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
@@ -4227,49 +4241,34 @@ msgstr ""
 "WSJT-X、JTDXなどの無線機からの無線制御および交信データのアップロードに対応。"
 "WaveLogGateのバージョン2.1.0以上が必要です。"
 
+#: application/models/Api_v2_model.php:84
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
 msgstr "読み取り専用"
 
+#: application/models/Api_v2_model.php:85
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
 msgstr ""
 "すべてのデータへの読み取りアクセスのみ可能で、データの変更は一切できません。"
 
+#: application/models/Api_v2_model.php:91
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
 msgstr "統計情報のみ"
 
+#: application/models/Api_v2_model.php:92
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
 msgstr "統計情報のみであり、お客様のデータに変更を加えることはありません。"
 
-#: application/models/Club_model.php:12
-msgid "Club Officer"
-msgstr "クラブ役員"
-
-#: application/models/Club_model.php:13
-msgid "Club Member ADIF"
-msgstr "クラブ会員 ADIF"
-
-#: application/models/Club_model.php:14
-msgid "Club Member"
-msgstr "クラブ会員"
-
-#: application/models/Club_model.php:235
+#: application/models/Club_model.php:185 application/models/Club_model.php:235
 msgid "Invalid Permission Level!"
 msgstr "権限レベルが無効です!"
 
-#: application/models/Club_model.php:250
+#: application/models/Club_model.php:200 application/models/Club_model.php:250
 msgid "Error adding Club Member!"
 msgstr "クラブメンバーの追加中にエラーが発生しました!"
-
-#: application/models/Club_model.php:333 application/views/api/index.php:68
-#: application/views/contesting/logger/components/qso-form.php:35
-#: application/views/satellite/index.php:94
-#: application/views/satellite/satinfo.php:51
-msgid "Unknown"
-msgstr "不明"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -4359,6 +4358,7 @@ msgstr "コールなし"
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
+#: application/models/Logbook_model.php:4622
 #: application/models/Logbook_model.php:4644
 #, php-format
 msgid ""
@@ -4367,6 +4367,7 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
+#: application/models/Logbook_model.php:4630
 #: application/models/Logbook_model.php:4652
 #, php-format
 msgid ""
@@ -4376,6 +4377,7 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
+#: application/models/Logbook_model.php:4646
 #: application/models/Logbook_model.php:4668
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -4384,6 +4386,7 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
+#: application/models/Logbook_model.php:4656
 #: application/models/Logbook_model.php:4678
 #, php-format
 msgid ""
@@ -4393,6 +4396,7 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
+#: application/models/Logbook_model.php:4663
 #: application/models/Logbook_model.php:4685
 #, php-format
 msgid ""
@@ -4402,6 +4406,7 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
+#: application/models/Logbook_model.php:4733
 #: application/models/Logbook_model.php:4755
 #, php-format
 msgid ""
@@ -4411,6 +4416,7 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
+#: application/models/Logbook_model.php:4740
 #: application/models/Logbook_model.php:4762
 #, php-format
 msgid ""
@@ -4420,63 +4426,77 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
+#: application/models/Logbook_model.php:5014
 #: application/models/Logbook_model.php:5036
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:5025
 #: application/models/Logbook_model.php:5047
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:5086
 #: application/models/Logbook_model.php:5108
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5484
+#: application/models/Logbook_model.php:5462
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5484
 msgid "Duplicate for"
 msgstr "複製用"
 
+#: application/models/Logbook_model.php:5529
+#: application/models/Logbook_model.php:5629
 #: application/models/Logbook_model.php:5551
 #: application/models/Logbook_model.php:5651
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
+#: application/models/Logbook_model.php:5537
 #: application/models/Logbook_model.php:5559
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
+#: application/models/Logbook_model.php:5543
 #: application/models/Logbook_model.php:5565
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
+#: application/models/Logbook_model.php:5547
 #: application/models/Logbook_model.php:5569
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
+#: application/models/Logbook_model.php:5551
 #: application/models/Logbook_model.php:5573
 msgid "confirmation pending"
 msgstr "確認中"
 
+#: application/models/Logbook_model.php:5554
 #: application/models/Logbook_model.php:5576
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5579
+#: application/models/Logbook_model.php:5557
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5579
 msgid "unknown"
 msgstr "不明"
 
+#: application/models/Logbook_model.php:5632
 #: application/models/Logbook_model.php:5654
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
+#: application/models/Logbook_model.php:5635
 #: application/models/Logbook_model.php:5657
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6041
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
@@ -4489,6 +4509,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6063
 msgid "Bearing"
 msgstr "方位"
 
@@ -5052,7 +5073,7 @@ msgstr "何も見つかりません!"
 #: application/views/calltester/comparison_result.php:126
 #: application/views/calltester/comparison_result.php:175
 #: application/views/calltester/result.php:51
-#: application/views/club/permissions.php:284
+#: application/views/club/permissions.php:275
 #: application/views/contesting/logger/components/qso-form.php:66
 #: application/views/contesting/logger/components/qso-form.php:147
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:343
@@ -5095,6 +5116,7 @@ msgstr "何も見つかりません!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:64
+#: application/views/club/permissions.php:284
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -5941,10 +5963,8 @@ msgstr ""
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:258
-#: application/views/club/permissions.php:364
-#: application/views/club/permissions.php:393
-#: application/views/club/permissions.php:432
-#: application/views/club/permissions.php:454
+#: application/views/club/permissions.php:354
+#: application/views/club/permissions.php:383
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/logger/index.php:188
 #: application/views/contesting/manager/components/confirm_delete.php:24
@@ -5959,6 +5979,10 @@ msgstr ""
 #: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/club/permissions.php:364
+#: application/views/club/permissions.php:393
+#: application/views/club/permissions.php:432
+#: application/views/club/permissions.php:454
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -5977,8 +6001,7 @@ msgstr "この API の用途を説明する簡単な名前。"
 #: application/views/api/components/edit_legacy.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
 #: application/views/club/permissions.php:257
-#: application/views/club/permissions.php:363
-#: application/views/club/permissions.php:431
+#: application/views/club/permissions.php:353
 #: application/views/contest_admin/edit.php:55
 #: application/views/contesting/logger/components/qso-form.php:37
 #: application/views/cron/edit.php:73
@@ -5997,6 +6020,8 @@ msgstr "この API の用途を説明する簡単な名前。"
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
+#: application/views/club/permissions.php:363
+#: application/views/club/permissions.php:431
 msgid "Save"
 msgstr "保存"
 
@@ -6124,7 +6149,7 @@ msgstr "権限"
 
 #: application/views/api/index.php:38 application/views/api/index.php:142
 #: application/views/awards/pl_polska/index.php:375
-#: application/views/club/permissions.php:288
+#: application/views/club/permissions.php:279
 #: application/views/clublog/export.php:39
 #: application/views/contesting/manager/index.php:38
 #: application/views/hrdlog/export.php:39
@@ -6135,6 +6160,7 @@ msgstr "権限"
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:598
 #: application/views/webadif/export.php:45
+#: application/views/club/permissions.php:288
 msgid "Actions"
 msgstr "アクション"
 
@@ -10345,6 +10371,8 @@ msgid "User (Callsign or Name)"
 msgstr "ユーザー（コールサインまたは名前）"
 
 #: application/views/club/permissions.php:228
+#: application/views/club/permissions.php:278
+#: application/views/club/permissions.php:324
 #: application/views/club/permissions.php:287
 #: application/views/club/permissions.php:334
 msgid "Permission"
@@ -10362,89 +10390,67 @@ msgstr "ユーザーにメールで通知する"
 msgid "No users currently have access to this club station."
 msgstr "現在、このクラブ局にアクセスできるユーザーはいません。"
 
-#: application/views/club/permissions.php:271
-msgid "Edit Selected"
-msgstr ""
-
-#: application/views/club/permissions.php:274
-#: application/views/contesting/manager/index.php:23
-msgid "Delete Selected"
-msgstr "選択した項目を削除"
-
+#: application/views/club/permissions.php:273
 #: application/views/club/permissions.php:282
 msgid "Firstname"
 msgstr "氏名"
 
+#: application/views/club/permissions.php:274
 #: application/views/club/permissions.php:283
 msgid "Lastname"
 msgstr "姓"
 
-#: application/views/club/permissions.php:285
+#: application/views/club/permissions.php:276
 #: application/views/contesting/logger/index.php:172
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
+#: application/views/club/permissions.php:285
 msgid "Username"
 msgstr "ユーザー名"
 
-#: application/views/club/permissions.php:286
+#: application/views/club/permissions.php:277
 #: application/views/contesting/manager/export_cbr.php:257
+#: application/views/club/permissions.php:286
 msgid "E-Mail"
 msgstr "Eメール"
 
+#: application/views/club/permissions.php:299
 #: application/views/club/permissions.php:309
 msgid "Wavelog Administrator"
 msgstr "Wavelog管理者"
 
+#: application/views/club/permissions.php:316
 #: application/views/club/permissions.php:326
 msgid "You can modify the users permission level for this Clubstation."
 msgstr "この Clubstation のユーザーの権限レベルを変更できます。"
 
+#: application/views/club/permissions.php:323
 #: application/views/club/permissions.php:333
 msgid "User Callsign"
 msgstr "ユーザーのコールサイン"
 
+#: application/views/club/permissions.php:342
 #: application/views/club/permissions.php:352
 msgid "Notify the user via email about the change"
 msgstr "変更についてユーザーにメールで通知する"
 
+#: application/views/club/permissions.php:372
 #: application/views/club/permissions.php:382
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "このユーザーをクラブから削除してもよろしいですか?"
 
+#: application/views/club/permissions.php:376
 #: application/views/club/permissions.php:386
 #, php-format
 msgid "Callsign: %s"
 msgstr "コールサイン: %s"
 
+#: application/views/club/permissions.php:377
 #: application/views/club/permissions.php:387
 #, php-format
 msgid "Role: %s"
 msgstr "役割： %s"
-
-#: application/views/club/permissions.php:409
-msgid "Edit Selected Members"
-msgstr ""
-
-#: application/views/club/permissions.php:415
-msgid "Set the permission level for all selected members:"
-msgstr ""
-
-#: application/views/club/permissions.php:426
-msgid "Notify the users via email about the change"
-msgstr ""
-
-#: application/views/club/permissions.php:443
-msgid "Delete Selected Members"
-msgstr ""
-
-#: application/views/club/permissions.php:449
-msgid "Are you sure you want to delete the selected users from the club?"
-msgstr ""
-
-#: application/views/club/permissions.php:450
-msgid "user(s) will be removed."
-msgstr ""
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
@@ -10925,11 +10931,11 @@ msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "1日あたり"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
-msgstr ""
+msgstr "赤：プレビュー専用。緑：この番号はあなた専用です。"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -11631,15 +11637,15 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "シリアル番号シリーズ"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "すべての事業者が共有"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "オペレーター1人につき1シリーズ"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -11647,6 +11653,9 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"シリアル番号はサーバーによって割り当てられるため、複数のオペレーターが同時に"
+"ログインした場合でも、同じ番号が二度使用されることはありません。ほとんどのコ"
+"ンテストでは、ステーションごとに1つの共有シリーズが想定されています。"
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -12162,6 +12171,11 @@ msgstr "新規コンテストログの作成"
 #: application/views/interface_assets/header.php:145
 msgid "Quick Start"
 msgstr "クイックスタート"
+
+#: application/views/contesting/manager/index.php:23
+#: application/views/club/permissions.php:274
+msgid "Delete Selected"
+msgstr "選択した項目を削除"
 
 #: application/views/contesting/manager/index.php:23
 msgid "Delete selected contest sessions"
@@ -14117,34 +14131,36 @@ msgstr "ダッシュボードに戻る"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"無効なグリッドマスです。2、4、6、8、または10文字を使用してください（例：PM、"
+"PM74、PM74kk）。"
 
 #: application/views/gridlookup/index.php:25
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "2、4、6、8、または10文字のメイデンヘッドロケーター"
 
 #: application/views/gridlookup/index.php:25
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "例：PM74kk"
 
 #: application/views/gridlookup/index.php:26
 msgid "to"
-msgstr ""
+msgstr "to"
 
 #: application/views/gridlookup/index.php:29
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "距離と方位を示すオプションの2つ目のグリッドスクエア"
 
 #: application/views/gridlookup/index.php:29
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "例：JN58qm"
 
 #: application/views/gridlookup/index.php:30
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: application/views/gridlookup/index.php:34
 msgid "Maidenhead grid"
-msgstr ""
+msgstr "メイデンヘッドグリッド"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -22923,11 +22939,83 @@ msgstr ""
 "ゾーンに関する問題は見つかりませんでした。すべての交信記録に正しいゾーン情報"
 "が記録されています。"
 
-#~ msgid "Invalid message type."
-#~ msgstr "メッセージ タイプが無効です。"
+#: application/libraries/api_v2/Club_resource.php:72
+msgid "Manage club member permissions"
+msgstr "クラブ会員の権限を管理する"
 
-#~ msgid "Email can't be initialized. Check the email settings."
-#~ msgstr "メールを初期化できません。メール設定を確認してください。"
+#: application/libraries/api_v2/Club_resource.php:73
+msgid "Remove club members"
+msgstr "クラブメンバーを削除する"
+
+#: application/controllers/Club.php:187 application/controllers/Club.php:256
+msgid "No members selected."
+msgstr ""
+
+#: application/controllers/Club.php:194 application/controllers/Club.php:263
+msgid "None of the selected users are members of this club."
+msgstr ""
+
+#: application/controllers/Club.php:203 application/controllers/Club.php:271
+msgid ""
+"Cannot proceed: this would remove the last Club Officer. An instance "
+"administrator must perform this action."
+msgstr ""
+
+#: application/controllers/Club.php:209
+msgid "Club member permissions could not be updated."
+msgstr ""
+
+#: application/controllers/Club.php:213
+msgid "No members were updated."
+msgstr ""
+
+#: application/controllers/Club.php:226
+#, php-format
+msgid "%d member updated."
+msgid_plural "%d members updated."
+msgstr[0] ""
+
+#: application/controllers/Club.php:277
+msgid "Users could not be removed from club."
+msgstr ""
+
+#: application/controllers/Club.php:281
+msgid "No members were removed."
+msgstr ""
+
+#: application/controllers/Club.php:285
+#, php-format
+msgid "%d member removed."
+msgid_plural "%d members removed."
+msgstr[0] ""
+
+#: application/views/club/permissions.php:271
+msgid "Edit Selected"
+msgstr ""
+
+#: application/views/club/permissions.php:409
+msgid "Edit Selected Members"
+msgstr ""
+
+#: application/views/club/permissions.php:415
+msgid "Set the permission level for all selected members:"
+msgstr ""
+
+#: application/views/club/permissions.php:426
+msgid "Notify the users via email about the change"
+msgstr ""
+
+#: application/views/club/permissions.php:443
+msgid "Delete Selected Members"
+msgstr ""
+
+#: application/views/club/permissions.php:449
+msgid "Are you sure you want to delete the selected users from the club?"
+msgstr ""
+
+#: application/views/club/permissions.php:450
+msgid "user(s) will be removed."
+msgstr ""
 
 #~ msgid "Links to 3rd-Party-Software which works with Wavelog:"
 #~ msgstr "Wavelog で動作するサードパーティ製ソフトウェアへのリンク:"
@@ -23685,9 +23773,9 @@ msgstr ""
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -24018,8 +24106,8 @@ msgstr ""
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
