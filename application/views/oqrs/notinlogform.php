@@ -1,4 +1,5 @@
-<script> var lang_oqrs_request_failed = "<?= __("Request failed. Please try again."); ?>"; </script>
+<script> var lang_oqrs_request_failed = "<?= __("Request failed. Please try again."); ?>";
+var lang_oqrs_invalid_date = "<?= __("Please enter a valid date."); ?>"; </script>
 <br />
 <?= __("If you can't find your QSO in the log, please fill out the form below. You will be contacted after the log has been checked."); ?><br />
 <table style="width:100%"
@@ -15,7 +16,7 @@
     <tbody>
         <tr>
             <td>1</td>
-            <td><input class="form-control" type="date" name="date" value="" id="date"></td>
+            <td><input class="form-control" type="date" name="date" value="" id="date" max="<?=date('Y-m-d')?>" required></td>
             <td><input class="form-control qsotime" type="text" name="time" value="" id="time" maxlength="5" placeholder="hh:mm"></td>
 			<td><input class="form-control" type="text" name="band" value="" id="band"></td>
             <td><input class="form-control" type="text" name="mode" value="" id="mode"></td>
