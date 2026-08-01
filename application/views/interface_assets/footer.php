@@ -3125,6 +3125,7 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                columnDefs: [ { className: 'text-center', targets: '_all' } ],
                 "language": {
                     url: getDataTablesLanguageUrl(),
                 },
