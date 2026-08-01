@@ -257,12 +257,11 @@ class Club_model extends CI_Model {
         }
 
         try {
+            $this->load->model('api_v2_model');
+
             $this->db->query('DELETE FROM club_permissions WHERE club_id = ? AND user_id = ?', [$club_id, $user_id]);
             $this->db->query('DELETE FROM api WHERE user_id = ? AND created_by = ?', [$club_id, $user_id]);
-            // The v2 tokens in `api_token` deliberately survive: the dispatcher
-            // re-checks the membership on every request and answers 403
-            // club_access_revoked, so re-adding the member restores access
-            // without them having to create a new token.
+            $this->api_v2_model->revoke_club_tokens($club_id, $user_id);
             $this->db->query('DELETE FROM cat WHERE user_id = ? AND operator = ?', [$club_id, $user_id]);
             return true;
         } catch (Exception $e) {

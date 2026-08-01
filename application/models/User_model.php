@@ -1161,6 +1161,12 @@ class User_Model extends CI_Model {
 			return false;
 		}
 
+		$this->load->model('api_v2_model');
+		$this->api_v2_model->revoke_club_tokens($user_id);
+
+		$this->db->query("DELETE FROM api WHERE user_id = ? AND created_by != ?", [$user_id, $user_id]);
+		$this->db->query("DELETE FROM cat WHERE user_id = ? AND operator != ?", [$user_id, $user_id]);
+
 		$this->db->trans_complete();
 
 		return $this->db->trans_status();

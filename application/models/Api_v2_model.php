@@ -238,6 +238,28 @@ class Api_v2_model extends CI_Model {
 	}
 
 	/**
+	 * Delete the tokens a member issued for a clubstation.
+	 *
+	 * @param int      $club_id The clubstation.
+	 * @param int|null $user_id One member, or null for every member of the club.
+	 */
+	function revoke_club_tokens($club_id, $user_id = null) {
+		if (!is_numeric($club_id) || (int) $club_id < 1) {
+			return;
+		}
+
+		$this->db->where('user_id', (int) $club_id);
+		if ($user_id !== null) {
+			$this->db->where('created_by', (int) $user_id);
+		} else {
+			// A clubstation can hold tokens of its own (club_direct login);
+			// those belong to the account, not to a membership.
+			$this->db->where('created_by !=', (int) $club_id);
+		}
+		$this->db->delete('api_token');
+	}
+
+	/**
 	 * Metadata of a single token, for the whoami endpoint (Token_resource).
 	 * Never exposes the hash; the plaintext token is not stored at all.
 	 *

@@ -136,9 +136,8 @@ class Club_resource extends Api_v2_resource {
 
 	/**
 	 * DELETE /api/v2/club/{user_id}
-	 * Remove a member from the clubstation, together with the v1 API keys and rig
-	 * control sessions it created for the club (Club_model::delete_member()). Its
-	 * v2 tokens survive and are refused with club_access_revoked instead.
+	 * Remove a member from the clubstation, together with the API keys and rig
+	 * control sessions it created for the club (Club_model::delete_member()).
 	 */
 	public function delete($user_id) {
 		$this->require_delete();
