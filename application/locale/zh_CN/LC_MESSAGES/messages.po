@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-07-29 14:47+0000\n"
+"POT-Creation-Date: 2026-08-01 05:45+0000\n"
 "PO-Revision-Date: 2026-07-27 14:26+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -168,7 +168,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
-#: application/controllers/Contesting.php:1062
+#: application/controllers/Contesting.php:1072
 #: application/controllers/Contesting_import.php:10
 #: application/controllers/Contesting_import.php:26
 #: application/controllers/Contesting_import.php:56
@@ -1041,7 +1041,7 @@ msgid "Contest Management"
 msgstr "竞赛管理"
 
 #: application/controllers/Contesting.php:92
-#: application/controllers/Contesting.php:607
+#: application/controllers/Contesting.php:613
 msgid "Officers must set up contests."
 msgstr "集体台站管理员必须配置好比赛。"
 
@@ -1053,8 +1053,8 @@ msgstr "快速启动竞赛:%s"
 #: application/controllers/Contesting.php:123
 #: application/controllers/Contesting.php:155
 #: application/controllers/Contesting.php:459
-#: application/controllers/Contesting.php:659
-#: application/controllers/Contesting.php:725
+#: application/controllers/Contesting.php:667
+#: application/controllers/Contesting.php:735
 msgid "Contest session not found."
 msgstr "竞赛未找到。"
 
@@ -1072,74 +1072,74 @@ msgstr "导出：%s"
 msgid "You are not authorized to access this contest session."
 msgstr "您无权访问此比赛会话。"
 
-#: application/controllers/Contesting.php:634
+#: application/controllers/Contesting.php:642
 msgid "Contest session created successfully."
 msgstr "竞赛会话已成功创建。"
 
-#: application/controllers/Contesting.php:636
+#: application/controllers/Contesting.php:644
 msgid "There was an error creating the contest session. Please try again."
 msgstr "创建竞赛会话出现错误，请重试。"
 
-#: application/controllers/Contesting.php:642
-#: application/controllers/Contesting.php:708
-#: application/controllers/Contesting.php:755
-#: application/controllers/Contesting.php:767
+#: application/controllers/Contesting.php:650
+#: application/controllers/Contesting.php:718
+#: application/controllers/Contesting.php:765
+#: application/controllers/Contesting.php:777
 msgid "Invalid request method."
 msgstr "请求方法无效。"
 
-#: application/controllers/Contesting.php:700
+#: application/controllers/Contesting.php:710
 msgid "Contest session updated successfully."
 msgstr "竞赛会话更新成功。"
 
-#: application/controllers/Contesting.php:702
+#: application/controllers/Contesting.php:712
 msgid "There was an error updating the contest session. Please try again."
 msgstr "更新竞赛会话出现错误，请重试。"
 
-#: application/controllers/Contesting.php:747
+#: application/controllers/Contesting.php:757
 msgid "Contest session deleted successfully."
 msgstr "竞赛会话删除成功。"
 
-#: application/controllers/Contesting.php:749
+#: application/controllers/Contesting.php:759
 msgid "There was an error deleting the contest session. Please try again."
 msgstr "删除竞赛会话出现错误，请重试。"
 
-#: application/controllers/Contesting.php:772
-#: application/models/Contesting_model.php:213
+#: application/controllers/Contesting.php:782
+#: application/models/Contesting_model.php:216
 msgid "Only clubstation officers can delete."
 msgstr "只有集体台站管理员可以删除。"
 
-#: application/controllers/Contesting.php:780
+#: application/controllers/Contesting.php:790
 msgid "No contest sessions selected."
 msgstr "未选择竞赛会话。"
 
-#: application/controllers/Contesting.php:788
+#: application/controllers/Contesting.php:798
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
 msgstr[0] "%d竞赛会话已删除。"
 
-#: application/controllers/Contesting.php:790
+#: application/controllers/Contesting.php:800
 msgid "There was an error deleting the contest sessions. Please try again."
 msgstr "删除竞赛会话时出现错误，请重试。"
 
-#: application/controllers/Contesting.php:1004
+#: application/controllers/Contesting.php:1014
 msgid "Operator switching is disabled."
 msgstr "已禁用操作员切换。"
 
-#: application/controllers/Contesting.php:1024
+#: application/controllers/Contesting.php:1034
 msgid "Operator switching is only available in club stations."
 msgstr "操作员切换仅对俱乐部台站可用。"
 
-#: application/controllers/Contesting.php:1034
+#: application/controllers/Contesting.php:1044
 msgid "Access denied"
 msgstr "拒绝访问"
 
-#: application/controllers/Contesting.php:1042
+#: application/controllers/Contesting.php:1052
 #: application/controllers/User.php:1432
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
-#: application/controllers/Contesting.php:1051
+#: application/controllers/Contesting.php:1061
 msgid "A club account cannot be used as an operator."
 msgstr "俱乐部账户不能作为操作员。"
 
@@ -4175,7 +4175,7 @@ msgstr ""
 "已从日志簿中导入\n"
 "（ADIF：%s，年：%d）"
 
-#: application/models/Contesting_model.php:179
+#: application/models/Contesting_model.php:182
 msgid "Officers must edit contests."
 msgstr "集体台站管理员必须编辑好竞赛。"
 
@@ -5775,7 +5775,7 @@ msgstr ""
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/logger/index.php:188
 #: application/views/contesting/manager/components/confirm_delete.php:24
-#: application/views/contesting/manager/components/session_modal.php:152
+#: application/views/contesting/manager/components/session_modal.php:160
 #: application/views/contesting/manager/import_legacy.php:80
 #: application/views/contesting/manager/index.php:138
 #: application/views/cron/edit.php:74
@@ -10571,6 +10571,17 @@ msgctxt ""
 msgid "per band"
 msgstr "每频段"
 
+#: application/views/contesting/logger/components/qso-form.php:95
+msgctxt ""
+"Count serial number in contesting per Operator; is an option in contesting "
+"manager."
+msgid "per op"
+msgstr ""
+
+#: application/views/contesting/logger/components/qso-form.php:96
+msgid "Red: preview only. Green: this number is reserved for you."
+msgstr ""
+
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Nr. R"
@@ -11247,22 +11258,41 @@ msgstr ""
 "类别要求如此）。"
 
 #: application/views/contesting/manager/components/session_modal.php:146
+msgid "Serial Number Series"
+msgstr ""
+
+#: application/views/contesting/manager/components/session_modal.php:148
+msgid "Shared by all operators"
+msgstr ""
+
+#: application/views/contesting/manager/components/session_modal.php:149
+msgid "One series per operator"
+msgstr ""
+
+#: application/views/contesting/manager/components/session_modal.php:151
+msgid ""
+"Serial numbers are handed out by the server so the same number is never used "
+"twice, even when several operators log at the same time. Most contests "
+"expect a single shared series per station."
+msgstr ""
+
+#: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
 msgstr "竞赛会话备注"
 
-#: application/views/contesting/manager/components/session_modal.php:147
+#: application/views/contesting/manager/components/session_modal.php:155
 msgid "Add any additional information about this session..."
 msgstr "添加有关此竞赛会话的任何附加信息…"
 
-#: application/views/contesting/manager/components/session_modal.php:148
+#: application/views/contesting/manager/components/session_modal.php:156
 msgid "Optional: Any additional details or notes"
 msgstr "可选：任何其他信息或备注"
 
-#: application/views/contesting/manager/components/session_modal.php:154
+#: application/views/contesting/manager/components/session_modal.php:162
 msgid "Create Session"
 msgstr "创建竞赛会话"
 
-#: application/views/contesting/manager/components/session_modal.php:154
+#: application/views/contesting/manager/components/session_modal.php:162
 msgid "Update Session"
 msgstr "更新竞赛会话"
 
