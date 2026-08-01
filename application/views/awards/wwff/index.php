@@ -4,7 +4,7 @@
 	let lang_wwff_map_error = "<?= __("Error loading WWFF map data"); ?>";
 	let lang_wwff_no_refs = "<?= __("No WWFF references worked for these filters."); ?>";
 	let lang_wwff_dir_empty = "<?= __("WWFF directory not loaded - coordinates missing. Run the update_wwff cron job."); ?>";
-	let lang_wwff_without_coordinates = "<?= __("Without coordinates"); ?>";
+	let lang_wwff_without_coordinates = "<?= __("Not shown (No coordinates)"); ?>";
 </script>
 <style>
 	#wwffmap {
