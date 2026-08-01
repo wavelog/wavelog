@@ -266,12 +266,12 @@
                     <h5><?= __("No users currently have access to this club station."); ?></h5>
                 </div>
             <?php } else { ?>
-                <div class="mb-3">
+                <div class="mt-3">
                     <button type="button" class="btn btn-warning btn-sm me-2" id="batchEditBtn" disabled>
-                        <i class="fas fa-edit"></i> <?= __("Edit Selected"); ?> <span class="badge bg-light text-dark ms-1" id="batchEditCount">0</span>
+                        <i class="fas fa-edit"></i> <?= __("Edit Selected"); ?> <span class="badge bg-secondary ms-1" id="batchEditCount">0</span>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm" id="batchDeleteBtn" disabled>
-                        <i class="fas fa-trash"></i> <?= __("Delete Selected"); ?> <span class="badge bg-light text-dark ms-1" id="batchDeleteCount">0</span>
+                        <i class="fas fa-trash"></i> <?= __("Delete Selected"); ?> <span class="badge bg-secondary ms-1" id="batchDeleteCount">0</span>
                     </button>
                 </div>
                 <div class="table-responsive mt-3">
