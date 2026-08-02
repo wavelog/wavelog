@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-02 05:24+0000\n"
-"PO-Revision-Date: 2026-08-01 21:44+0000\n"
+"PO-Revision-Date: 2026-08-02 07:17+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -2879,11 +2879,11 @@ msgstr "OQRS-Anforderungen"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Bitte ein gültiges Datum eingeben."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Bitte eine gültige Zeit eingeben."
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -8942,21 +8942,21 @@ msgstr "QSO-Datum"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "Fehler beim laden der WWFF-Karte"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "Keine WWFF-QSOs mit dieser Filtereinstellung gefunden."
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
-msgstr ""
+msgstr "WWFF Basisdaten nicht geladen - Lasse den Updatejob laufen."
 
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "Nicht angezeigt (keine Koordinaten)"
 
 #: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -15180,7 +15180,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:212
 msgid "World Wide Flora Fauna (WWFF)"
-msgstr ""
+msgstr "World Wide Flora Fauna (WWFF)"
 
 #: application/views/interface_assets/header.php:219
 msgid "AMSAT Rover"
@@ -19711,6 +19711,9 @@ msgid ""
 "Satellite appears below the horizon (elevation %s°). The stored TLE may be "
 "outdated for this QSO time. Do you really want to log this QSO?"
 msgstr ""
+"Satellit erscheint unterhalb des Horizonts (Elevation %s°). Die gespeicherte "
+"TLE könnte für diese QSO-Zeit veraltet sein. Möchtest du dieses QSO wirklich "
+"loggen?"
 
 #: application/views/qso/index.php:41
 msgid "Please wait before saving another QSO"
