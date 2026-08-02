@@ -209,7 +209,7 @@
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/wpx'); ?>"><i class="fas fa-trophy"></i> <?= __("Worked All Prefixes (WPX)"); ?></a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="<?php echo site_url('awards/wwff'); ?>"><i class="fas fa-trophy"></i> <?= __("World Wide Flora Fauna"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/wwff'); ?>"><i class="fas fa-trophy"></i> <?= __("World Wide Flora Fauna (WWFF)"); ?></a></li>
 									</ul>
 								</li>
 								<li><hr class="dropdown-divider"></li>
