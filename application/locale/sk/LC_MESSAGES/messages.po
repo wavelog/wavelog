@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-01 20:30+0000\n"
+"POT-Creation-Date: 2026-08-02 05:21+0000\n"
 "PO-Revision-Date: 2026-03-20 07:25+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -197,7 +197,7 @@ msgstr "Tropo ducting"
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
 #: application/controllers/Qso.php:20 application/controllers/Qso.php:470
 #: application/controllers/Qso.php:492 application/controllers/Qso.php:514
-#: application/controllers/Qso.php:818 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:794 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -239,7 +239,7 @@ msgstr "To nesmieš robiť!"
 
 #: application/controllers/Accumulated.php:18
 #: application/views/accumulate/index.php:19
-#: application/views/interface_assets/header.php:178
+#: application/views/interface_assets/header.php:180
 msgid "Accumulated Statistics"
 msgstr "Kumulatívne štatistiky"
 
@@ -250,8 +250,8 @@ msgid "Activated Gridsquare Map"
 msgstr "Mapa aktivovaných lokátorov"
 
 #: application/controllers/Activated_gridmap.php:33
-#: application/controllers/Awards.php:1162
-#: application/controllers/Awards.php:1198
+#: application/controllers/Awards.php:1242
+#: application/controllers/Awards.php:1278
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
@@ -306,7 +306,7 @@ msgstr "Celkový počet veľkých lokátorov"
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
 #: application/views/activators/index.php:10
-#: application/views/interface_assets/header.php:168
+#: application/views/interface_assets/header.php:170
 msgid "Gridsquare Activators"
 msgstr "Aktivátori lokátorov"
 
@@ -328,7 +328,7 @@ msgid "date incorrect"
 msgstr "nesprávny dátum"
 
 #: application/controllers/Adif.php:264
-#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:525
 msgid "ADIF Import / Export"
 msgstr "ADIF import / export"
 
@@ -445,7 +445,7 @@ msgid "API Token has been deleted"
 msgstr ""
 
 #: application/controllers/Awards.php:30
-#: application/views/interface_assets/header.php:190
+#: application/views/interface_assets/header.php:192
 #: application/views/logbookadvanced/edit.php:27
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
@@ -456,25 +456,25 @@ msgstr "Diplomy"
 #: application/controllers/Awards.php:536
 #: application/controllers/Awards.php:586
 #: application/controllers/Awards.php:704
-#: application/controllers/Awards.php:722
-#: application/controllers/Awards.php:740
-#: application/controllers/Awards.php:822
-#: application/controllers/Awards.php:884
-#: application/controllers/Awards.php:946
-#: application/controllers/Awards.php:1008
-#: application/controllers/Awards.php:1093
-#: application/controllers/Awards.php:1105
-#: application/controllers/Awards.php:1183
-#: application/controllers/Awards.php:1389
-#: application/controllers/Awards.php:1540
-#: application/controllers/Awards.php:1591
-#: application/controllers/Awards.php:2152
-#: application/controllers/Awards.php:2301
-#: application/controllers/Awards.php:2431
-#: application/controllers/Awards.php:2505
-#: application/controllers/Awards.php:2518
-#: application/controllers/Awards.php:2593
-#: application/controllers/Awards.php:2735
+#: application/controllers/Awards.php:726
+#: application/controllers/Awards.php:820
+#: application/controllers/Awards.php:902
+#: application/controllers/Awards.php:964
+#: application/controllers/Awards.php:1026
+#: application/controllers/Awards.php:1088
+#: application/controllers/Awards.php:1173
+#: application/controllers/Awards.php:1185
+#: application/controllers/Awards.php:1263
+#: application/controllers/Awards.php:1469
+#: application/controllers/Awards.php:1620
+#: application/controllers/Awards.php:1671
+#: application/controllers/Awards.php:2232
+#: application/controllers/Awards.php:2381
+#: application/controllers/Awards.php:2511
+#: application/controllers/Awards.php:2585
+#: application/controllers/Awards.php:2598
+#: application/controllers/Awards.php:2673
+#: application/controllers/Awards.php:2815
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplomy - %s"
@@ -483,7 +483,7 @@ msgstr "Diplomy - %s"
 #: application/views/awards/dok/index.php:157
 #: application/views/bands/index.php:49
 #: application/views/contesting/manager/components/session_modal.php:119
-#: application/views/interface_assets/header.php:245
+#: application/views/interface_assets/header.php:247
 #: application/views/logbookadvanced/index.php:483
 #: application/views/logbookadvanced/index.php:1030
 #: application/views/logbookadvanced/useroptions.php:238
@@ -502,7 +502,7 @@ msgstr "DOK"
 #: application/views/csv/index.php:58 application/views/dashboard/index.php:416
 #: application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:16
-#: application/views/interface_assets/header.php:196
+#: application/views/interface_assets/header.php:198
 #: application/views/kml/index.php:47
 #: application/views/logbookadvanced/checkresult.php:165
 #: application/views/logbookadvanced/checkresult.php:248
@@ -535,12 +535,12 @@ msgid "Awards - WAJA"
 msgstr "Diplomy - WAJA"
 
 #: application/controllers/Awards.php:536 application/views/bands/index.php:53
-#: application/views/interface_assets/header.php:267
+#: application/views/interface_assets/header.php:269
 msgid "JCC"
 msgstr "JCC"
 
 #: application/controllers/Awards.php:586 application/views/bands/index.php:59
-#: application/views/interface_assets/header.php:202
+#: application/views/interface_assets/header.php:204
 msgid "VUCC"
 msgstr "VUCC"
 
@@ -574,6 +574,8 @@ msgstr "a"
 #: application/views/awards/wac/index.php:56
 #: application/views/awards/wae/index.php:130
 #: application/views/awards/wpx/index.php:85
+#: application/views/awards/wwff/index.php:3
+#: application/views/awards/wwff/index.php:122
 msgid "Every band (w/o SAT)"
 msgstr "Každé pásmo (bez SAT)"
 
@@ -609,7 +611,7 @@ msgstr " a "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
-#: application/views/interface_assets/header.php:223
+#: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
 #: application/views/logbookadvanced/useroptions.php:232
@@ -634,11 +636,10 @@ msgstr " a "
 msgid "SOTA"
 msgstr "SOTA"
 
-#: application/controllers/Awards.php:722
+#: application/controllers/Awards.php:726
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
-#: application/views/interface_assets/header.php:210
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -657,12 +658,12 @@ msgstr "SOTA"
 msgid "WWFF"
 msgstr "WWFF"
 
-#: application/controllers/Awards.php:740
+#: application/controllers/Awards.php:820
 #: application/controllers/Logbook.php:1464
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
-#: application/views/interface_assets/header.php:227
+#: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
 #: application/views/logbookadvanced/index.php:1024
@@ -681,68 +682,68 @@ msgstr "WWFF"
 msgid "POTA"
 msgstr "POTA"
 
-#: application/controllers/Awards.php:822
+#: application/controllers/Awards.php:902
 msgid "CQ WAZ (Worked All Zones)"
 msgstr "CQ WAZ (Worked All Zones)"
 
-#: application/controllers/Awards.php:884
+#: application/controllers/Awards.php:964
 #: application/views/accumulate/index.php:60
 #: application/views/timeline/index.php:51
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
-#: application/controllers/Awards.php:946 application/views/bands/index.php:55
-#: application/views/interface_assets/header.php:233
+#: application/controllers/Awards.php:1026 application/views/bands/index.php:55
+#: application/views/interface_assets/header.php:235
 msgid "RAC"
 msgstr "RAC"
 
-#: application/controllers/Awards.php:1008 application/views/bands/index.php:51
+#: application/controllers/Awards.php:1088 application/views/bands/index.php:51
 msgid "H26"
 msgstr "H26"
 
-#: application/controllers/Awards.php:1093
+#: application/controllers/Awards.php:1173
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
-#: application/controllers/Awards.php:1105
-#: application/views/interface_assets/header.php:299
+#: application/controllers/Awards.php:1185
+#: application/views/interface_assets/header.php:301
 msgid "US Counties"
 msgstr "Okresy USA"
 
-#: application/controllers/Awards.php:1129
+#: application/controllers/Awards.php:1209
 msgid "Log View - Counties"
 msgstr "Zobrazenie denníka - okresy"
 
-#: application/controllers/Awards.php:1144
+#: application/controllers/Awards.php:1224
 msgid "Awards - "
 msgstr "Diplomy "
 
-#: application/controllers/Awards.php:1163
-#: application/controllers/Awards.php:1199
+#: application/controllers/Awards.php:1243
+#: application/controllers/Awards.php:1279
 msgid "Gridsquares worked"
 msgstr "Lokátory urobené"
 
-#: application/controllers/Awards.php:1164
-#: application/controllers/Awards.php:1200
+#: application/controllers/Awards.php:1244
+#: application/controllers/Awards.php:1280
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Lokátory potvrdené cez LoTW"
 
-#: application/controllers/Awards.php:1165
-#: application/controllers/Awards.php:1201
+#: application/controllers/Awards.php:1245
+#: application/controllers/Awards.php:1281
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Lokátory potvrdené papierovými QSL"
 
-#: application/controllers/Awards.php:1166
-#: application/controllers/Awards.php:1202
+#: application/controllers/Awards.php:1246
+#: application/controllers/Awards.php:1282
 msgid "Total Gridsquares worked"
 msgstr "Celkový počet urobených lokátorov"
 
-#: application/controllers/Awards.php:1183
+#: application/controllers/Awards.php:1263
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
-#: application/controllers/Awards.php:1389
-#: application/views/interface_assets/header.php:200
+#: application/controllers/Awards.php:1469
+#: application/views/interface_assets/header.php:202
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
 #: application/views/qso/edit_ajax.php:378 application/views/qso/index.php:348
@@ -753,57 +754,57 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 msgid "SIG"
 msgstr "SIG"
 
-#: application/controllers/Awards.php:1408
+#: application/controllers/Awards.php:1488
 msgid "Awards - SIG - "
 msgstr "Diplomy - SIG - "
 
-#: application/controllers/Awards.php:1540 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1620 application/views/bands/index.php:60
 msgid "WAP"
 msgstr "WAP"
 
-#: application/controllers/Awards.php:1591
-#: application/views/interface_assets/header.php:259
+#: application/controllers/Awards.php:1671
+#: application/views/interface_assets/header.php:261
 msgid "WAIP"
 msgstr ""
 
-#: application/controllers/Awards.php:2301
+#: application/controllers/Awards.php:2381
 #: application/controllers/Gridlookup.php:33
 #: application/views/awards/itu/index.php:27
 msgid "ITU Zones"
 msgstr "ITU zóny"
 
-#: application/controllers/Awards.php:2431
+#: application/controllers/Awards.php:2511
 #: application/views/awards/wac/index.php:7
-#: application/views/interface_assets/header.php:206
+#: application/views/interface_assets/header.php:208
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
-#: application/controllers/Awards.php:2505
+#: application/controllers/Awards.php:2585
 msgid "WAE"
 msgstr "WAE"
 
-#: application/controllers/Awards.php:2518
-#: application/views/interface_assets/header.php:216
+#: application/controllers/Awards.php:2598
+#: application/views/interface_assets/header.php:218
 msgid "73 on 73"
 msgstr "73 on 73"
 
-#: application/controllers/Awards.php:2593
+#: application/controllers/Awards.php:2673
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:2735
+#: application/controllers/Awards.php:2815
 #: application/views/awards/pl_polska/index.php:41
-#: application/views/interface_assets/header.php:281
+#: application/views/interface_assets/header.php:283
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Award"
 
-#: application/controllers/Awards.php:2779
+#: application/controllers/Awards.php:2859
 msgid "Awards - AMSAT Rover"
 msgstr ""
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
-#: application/views/interface_assets/header.php:349
+#: application/views/interface_assets/header.php:351
 msgid "Backup"
 msgstr "Záloha"
 
@@ -813,7 +814,7 @@ msgstr "Poznámky - záloha"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
-#: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:492
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 msgid "Bands"
@@ -875,7 +876,7 @@ msgid "Call Tester"
 msgstr "Overovanie značky"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:891
+#: application/controllers/Qso.php:867
 msgid "No callsign provided."
 msgstr "Nebola uvedená žiadna volacia značka."
 
@@ -1011,6 +1012,7 @@ msgstr "Žiadny používateľ nekonfiguroval Clublog."
 #: application/views/awards/waja/index.php:100
 #: application/views/awards/wapc/index.php:101
 #: application/views/awards/wpx/index.php:48
+#: application/views/awards/wwff/index.php:113
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:417
 #: application/views/search/search_result_ajax.php:124
@@ -1038,7 +1040,7 @@ msgid "Update Contest"
 msgstr "Aktualizovať contest"
 
 #: application/controllers/Contestcalendar.php:11
-#: application/views/interface_assets/header.php:318
+#: application/views/interface_assets/header.php:320
 msgid "Contest Calendar"
 msgstr "Kalendár contestov"
 
@@ -1177,12 +1179,12 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:146
 #: application/views/awards/iota/index.php:112
 #: application/views/awards/wpx/index.php:55
-#: application/views/interface_assets/header.php:182
+#: application/views/interface_assets/header.php:184
 msgid "Continents"
 msgstr "Kontinenty"
 
 #: application/controllers/Cron.php:37
-#: application/views/interface_assets/header.php:353
+#: application/views/interface_assets/header.php:355
 msgid "Cron Manager"
 msgstr "Cron Manager"
 
@@ -1289,7 +1291,7 @@ msgid "Not running"
 msgstr "Nespustené"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:534
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV export"
 
@@ -1301,7 +1303,7 @@ msgstr "Dashboard"
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
 #: application/views/dayswithqso/index.php:12
-#: application/views/interface_assets/header.php:174
+#: application/views/interface_assets/header.php:176
 msgid "Days with QSOs"
 msgstr "Dni s QSO"
 
@@ -1392,7 +1394,7 @@ msgstr "Migrácia súborov zlyhala. Skontroluj error log."
 #: application/controllers/Distancerecords.php:68
 #: application/controllers/Distancerecords.php:87
 #: application/views/distancerecords/index.php:6
-#: application/views/interface_assets/header.php:172
+#: application/views/interface_assets/header.php:174
 msgid "Satellite Distance Records"
 msgstr "Rekordy vzdialeností cez satelity"
 
@@ -1400,7 +1402,7 @@ msgstr "Rekordy vzdialeností cez satelity"
 #: application/views/distances/index.php:3
 #: application/views/distances/index.php:6
 #: application/views/distances/index.php:18
-#: application/views/interface_assets/header.php:170
+#: application/views/interface_assets/header.php:172
 msgid "Distances Worked"
 msgstr "Vzdialenosti"
 
@@ -1418,13 +1420,13 @@ msgid "and propagation"
 msgstr "a šírenie"
 
 #: application/controllers/Dxatlas.php:18
-#: application/views/interface_assets/header.php:530
+#: application/views/interface_assets/header.php:532
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas export lokátorov"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
-#: application/views/interface_assets/header.php:316
+#: application/views/interface_assets/header.php:318
 msgid "DX Calendar"
 msgstr "DX kalendár"
 
@@ -1563,12 +1565,12 @@ msgid "States / Provinces"
 msgstr ""
 
 #: application/controllers/Gridlookup.php:75
-#: application/views/interface_assets/header.php:328
+#: application/views/interface_assets/header.php:330
 msgid "Gridsquare Lookup"
 msgstr ""
 
 #: application/controllers/Gridmap.php:12
-#: application/views/interface_assets/header.php:164
+#: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
 msgstr "Mapa lokátorov"
 
@@ -1637,7 +1639,7 @@ msgid "No QSOs found to upload."
 msgstr "Žiadne QSOs na nahratie."
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:528
+#: application/views/interface_assets/header.php:530
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "KML export"
@@ -1815,7 +1817,7 @@ msgid "Station Logbooks"
 msgstr "Staničné denníky"
 
 #: application/controllers/Logbook.php:59
-#: application/views/interface_assets/header.php:114
+#: application/views/interface_assets/header.php:116
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:2
 msgid "Logbook"
@@ -1839,6 +1841,7 @@ msgstr "Logbook"
 #: application/views/awards/wapc/index.php:85
 #: application/views/awards/was/index.php:85
 #: application/views/awards/wpx/index.php:32
+#: application/views/awards/wwff/index.php:97
 #: application/views/calltester/call_info.php:66
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
@@ -1876,6 +1879,7 @@ msgstr "QSL"
 #: application/views/awards/wapc/index.php:89
 #: application/views/awards/was/index.php:89
 #: application/views/awards/wpx/index.php:36
+#: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
 #: application/views/dashboard/index.php:494
 #: application/views/gridmap/index.php:182
@@ -1919,6 +1923,7 @@ msgstr "LoTW"
 #: application/views/awards/wapc/index.php:93
 #: application/views/awards/was/index.php:93
 #: application/views/awards/wpx/index.php:40
+#: application/views/awards/wwff/index.php:105
 #: application/views/calltester/call_info.php:81
 #: application/views/dashboard/index.php:495
 #: application/views/gridmap/index.php:190
@@ -1972,6 +1977,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:126
 #: application/views/awards/wpx/index.php:128
 #: application/views/awards/wpx/wpx_details.php:23
+#: application/views/awards/wwff/index.php:131
 #: application/views/bandmap/list.php:104
 #: application/views/bandmap/list.php:173
 #: application/views/bandmap/list.php:310
@@ -2051,7 +2057,7 @@ msgstr "Mód"
 #: application/controllers/Logbook.php:1458
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:42
-#: application/views/awards/wwff/index.php:42
+#: application/views/awards/wwff/index.php:168
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:958
 #: application/views/logbookadvanced/useroptions.php:52
@@ -2077,7 +2083,7 @@ msgstr "RST (S)"
 #: application/controllers/Logbook.php:1459
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:43
-#: application/views/awards/wwff/index.php:43
+#: application/views/awards/wwff/index.php:169
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/index.php:961
 #: application/views/logbookadvanced/useroptions.php:58
@@ -2126,7 +2132,7 @@ msgstr "Krajina"
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
-#: application/views/interface_assets/header.php:225
+#: application/views/interface_assets/header.php:227
 #: application/views/logbookadvanced/checkresult.php:394
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:497
@@ -2302,7 +2308,8 @@ msgstr "Vzdialenosť"
 #: application/views/awards/was/index.php:103
 #: application/views/awards/wpx/index.php:83
 #: application/views/awards/wpx/wpx_details.php:22
-#: application/views/awards/wwff/index.php:41
+#: application/views/awards/wwff/index.php:119
+#: application/views/awards/wwff/index.php:167
 #: application/views/bandmap/list.php:103
 #: application/views/bandmap/list.php:174
 #: application/views/bandmap/list.php:372
@@ -2442,7 +2449,7 @@ msgstr "Operátor"
 #: application/views/awards/wae/index.php:231
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:829
+#: application/views/interface_assets/footer.php:834
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:385
 #: application/views/lookup/index.php:47
@@ -2484,7 +2491,7 @@ msgstr "Rýchly náhľad"
 
 #: application/controllers/Lotw.php:63 application/controllers/Lotw.php:94
 #: application/controllers/Lotw.php:133
-#: application/views/interface_assets/header.php:568
+#: application/views/interface_assets/header.php:570
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
@@ -2595,8 +2602,8 @@ msgid "QSO Map"
 msgstr "QSO mapa"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/views/interface_assets/header.php:341
-#: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:343
+#: application/views/interface_assets/header.php:494
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
 msgid "Modes"
 msgstr "Módy"
@@ -2606,7 +2613,7 @@ msgid "Edit Mode"
 msgstr "Režim úprav"
 
 #: application/controllers/Notes.php:31
-#: application/views/interface_assets/header.php:152
+#: application/views/interface_assets/header.php:154
 #: application/views/notes/add.php:5 application/views/notes/edit.php:6
 #: application/views/notes/main.php:5 application/views/notes/view.php:6
 #: application/views/qso/edit_ajax.php:37
@@ -2887,7 +2894,7 @@ msgid "Invalid station slug"
 msgstr ""
 
 #: application/controllers/Oqrs.php:180
-#: application/views/interface_assets/header.php:553
+#: application/views/interface_assets/header.php:555
 msgid "OQRS Requests"
 msgstr "Žiadosti OQRS"
 
@@ -2955,7 +2962,7 @@ msgstr ""
 "dĺžky sú západne od Greenwichu."
 
 #: application/controllers/Qrz.php:212
-#: application/views/interface_assets/header.php:571
+#: application/views/interface_assets/header.php:573
 msgid "QRZ Logbook"
 msgstr "QRZ Logbook"
 
@@ -3001,7 +3008,7 @@ msgid ""
 msgstr ""
 
 #: application/controllers/Qslpostcard.php:34
-#: application/views/interface_assets/header.php:562
+#: application/views/interface_assets/header.php:564
 msgid "QSL Postcard Designer"
 msgstr ""
 
@@ -3072,16 +3079,16 @@ msgstr "Pridať QSO"
 msgid "QSO could not be saved"
 msgstr ""
 
-#: application/controllers/Qso.php:878
+#: application/controllers/Qso.php:854
 msgid "You have to be logged in to access this URL."
 msgstr "Na prístup k tejto URL adrese sa musíte prihlásiť."
 
-#: application/controllers/Qso.php:884
+#: application/controllers/Qso.php:860
 msgid "Call Transfer"
 msgstr "Prenos volacej značky"
 
 #: application/controllers/Radio.php:16
-#: application/views/interface_assets/header.php:585
+#: application/views/interface_assets/header.php:587
 msgid "Hardware Interfaces"
 msgstr "Hardvérové rozhrania"
 
@@ -3142,8 +3149,8 @@ msgstr "naposledy aktualizované"
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
-#: application/views/interface_assets/footer.php:689
-#: application/views/interface_assets/footer.php:698
+#: application/views/interface_assets/footer.php:694
+#: application/views/interface_assets/footer.php:703
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:897
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -3167,10 +3174,10 @@ msgstr "Upraviť"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:69
-#: application/views/interface_assets/footer.php:2653
-#: application/views/interface_assets/footer.php:2671
-#: application/views/interface_assets/footer.php:2690
-#: application/views/interface_assets/footer.php:2708
+#: application/views/interface_assets/footer.php:2658
+#: application/views/interface_assets/footer.php:2676
+#: application/views/interface_assets/footer.php:2695
+#: application/views/interface_assets/footer.php:2713
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:918
 #: application/views/lotw_views/index.php:143
@@ -3217,7 +3224,7 @@ msgid "Radio removed successfully"
 msgstr "Rádio bolo úspešne odstránené"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
-#: application/views/interface_assets/header.php:345
+#: application/views/interface_assets/header.php:347
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
@@ -3233,7 +3240,7 @@ msgid "Edit Satellite"
 msgstr "Upraviť satelit"
 
 #: application/controllers/Satellite.php:200
-#: application/views/interface_assets/header.php:324
+#: application/views/interface_assets/header.php:326
 msgid "Satellite Flightpath"
 msgstr "Dráha preletu satelitu"
 
@@ -3294,8 +3301,8 @@ msgstr "Satelitné časovače"
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:46
-#: application/views/interface_assets/header.php:405
-#: application/views/interface_assets/header.php:412
+#: application/views/interface_assets/header.php:407
+#: application/views/interface_assets/header.php:414
 #: application/views/logbookadvanced/index.php:75
 #: application/views/logbookadvanced/index.php:886
 #: application/views/oqrs/index.php:30
@@ -3327,7 +3334,7 @@ msgstr ""
 "dátume QSO"
 
 #: application/controllers/Simplefle.php:29
-#: application/views/interface_assets/header.php:138
+#: application/views/interface_assets/header.php:140
 msgid "Simple Fast Log Entry"
 msgstr "Jednoduchý rýchly záznam do denníka"
 
@@ -3388,9 +3395,9 @@ msgid "Please check value for grid locator (%s)"
 msgstr "Skontroluj hodnotu pre lokátor (%s)"
 
 #: application/controllers/Stationsetup.php:60
-#: application/views/interface_assets/header.php:489
-#: application/views/interface_assets/header.php:521
-#: application/views/interface_assets/header.php:669
+#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:671
 msgid "Station Setup"
 msgstr "Nastavenie stanice"
 
@@ -3462,7 +3469,7 @@ msgid "Set as Active Logbook"
 msgstr "Nastaviť ako aktívny denník"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:667
+#: application/views/interface_assets/header.php:669
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -3524,7 +3531,7 @@ msgid "Active Station"
 msgstr "Aktívna stanica"
 
 #: application/controllers/Stationsetup.php:396
-#: application/views/interface_assets/header.php:132
+#: application/views/interface_assets/header.php:134
 #: application/views/logbookadvanced/mergedialog.php:16
 #: application/views/logbookadvanced/mergedialog.php:39
 #: application/views/logbookadvanced/mergedialog.php:72
@@ -3592,18 +3599,18 @@ msgstr "Zoznam polôh staníc"
 
 #: application/controllers/Statistics.php:21
 #: application/views/contesting/logger/components/statistics.php:4
-#: application/views/interface_assets/header.php:158
+#: application/views/interface_assets/header.php:160
 msgid "Statistics"
 msgstr "Štatistika"
 
 #: application/controllers/Statistics.php:297
-#: application/views/interface_assets/header.php:162
+#: application/views/interface_assets/header.php:164
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "QSL štatistiky"
 
 #: application/controllers/Statistics.php:312
-#: application/views/interface_assets/header.php:160
+#: application/views/interface_assets/header.php:162
 #: application/views/statistics/antennaanalytics.php:2
 msgid "Antenna Analytics"
 msgstr "Analýza antén"
@@ -3613,14 +3620,14 @@ msgid "Satellite QSOs"
 msgstr "Satelitné QSOs"
 
 #: application/controllers/Statistics.php:387
-#: application/views/interface_assets/header.php:186
+#: application/views/interface_assets/header.php:188
 msgid "EME Initials"
 msgstr "EME iniciály"
 
 #: application/controllers/Themes.php:26
-#: application/views/interface_assets/header.php:347
-#: application/views/interface_assets/header.php:443
+#: application/views/interface_assets/header.php:349
 #: application/views/interface_assets/header.php:445
+#: application/views/interface_assets/header.php:447
 msgid "Themes"
 msgstr "Motívy"
 
@@ -3633,13 +3640,13 @@ msgid "Edit Theme"
 msgstr "Uprav tému"
 
 #: application/controllers/Timeline.php:14
-#: application/views/interface_assets/header.php:176
+#: application/views/interface_assets/header.php:178
 #: application/views/timeline/index.php:2
 msgid "Timeline"
 msgstr "Časová os"
 
 #: application/controllers/Timeplotter.php:16
-#: application/views/interface_assets/header.php:180
+#: application/views/interface_assets/header.php:182
 #: application/views/timeplotter/index.php:10
 msgid "Timeplotter"
 msgstr "Časový graf"
@@ -3761,7 +3768,7 @@ msgid "VUCC Grid file update failed. Result: "
 msgstr "Aktualizácia súboru VUCC lokátorov zlyhala. Výsledok: "
 
 #: application/controllers/User.php:51
-#: application/views/interface_assets/header.php:337
+#: application/views/interface_assets/header.php:339
 msgid "User Accounts"
 msgstr "Používateľské účty"
 
@@ -3866,7 +3873,7 @@ msgid "Login failed. Try again."
 msgstr "Prihlásenie zlyhalo. Skúste to znova."
 
 #: application/controllers/User.php:1375
-#: application/views/interface_assets/header.php:425
+#: application/views/interface_assets/header.php:427
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
@@ -4080,7 +4087,7 @@ msgstr "Exportovať mapu"
 
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
-#: application/views/interface_assets/header.php:572
+#: application/views/interface_assets/header.php:574
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club nahrávanie"
 
@@ -4600,24 +4607,24 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr ""
 
-#: application/models/Update_model.php:349
+#: application/models/Update_model.php:405
 msgid "Newer release available:"
 msgstr "K dispozícii je novšia verzia:"
 
-#: application/models/Update_model.php:353
+#: application/models/Update_model.php:409
 msgid "You are running the latest version."
 msgstr "Používaš najnovšiu verziu."
 
-#: application/models/Update_model.php:494
+#: application/models/Update_model.php:550
 msgid "cURL error:"
 msgstr "cURL chyba:"
 
-#: application/models/Update_model.php:528
+#: application/models/Update_model.php:584
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT už existuje. Stav LoTW aktualizovaný."
 
-#: application/models/Update_model.php:531
-#: application/models/Update_model.php:560
+#: application/models/Update_model.php:587
+#: application/models/Update_model.php:616
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -4625,27 +4632,27 @@ msgstr[0] "Stav LoTW pre %d spojenie aktualizovaný"
 msgstr[1] "Stav LoTW pre %d spojenia aktualizovaný"
 msgstr[2] "Stav LoTW pre %d spojení aktualizovaný"
 
-#: application/models/Update_model.php:534
+#: application/models/Update_model.php:590
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT už existuje. Aktualizácia stavu LoTW zlyhala."
 
-#: application/models/Update_model.php:537
+#: application/models/Update_model.php:593
 msgid "SAT already existing. Ignored."
 msgstr "SAT už existuje. Ignorované."
 
-#: application/models/Update_model.php:544
+#: application/models/Update_model.php:600
 msgid "SAT already existing. Display name updated."
 msgstr "SAT už existuje. Názov bol aktualizovaný."
 
-#: application/models/Update_model.php:546
+#: application/models/Update_model.php:602
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT už existuje. Aktualizácia zobrazovaného mena zlyhala."
 
-#: application/models/Update_model.php:556
+#: application/models/Update_model.php:612
 msgid "New SAT. Inserted."
 msgstr "Nový SAT. Vložené."
 
-#: application/models/Update_model.php:564
+#: application/models/Update_model.php:620
 msgid "New SAT. Insert failed."
 msgstr "Nový SAT. Vloženie zlyhalo."
 
@@ -4740,6 +4747,7 @@ msgstr "Rozdiel"
 #: application/views/awards/wpx/index.php:97
 #: application/views/awards/wpx/index.php:111
 #: application/views/awards/wpx/index.php:130
+#: application/views/awards/wwff/index.php:134
 #: application/views/bandmap/list.php:106
 #: application/views/bandmap/list.php:304
 #: application/views/bandmap/list.php:312
@@ -4777,8 +4785,8 @@ msgstr "Rozdiel"
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1531
-#: application/views/interface_assets/footer.php:1670
+#: application/views/interface_assets/footer.php:1536
+#: application/views/interface_assets/footer.php:1675
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -4933,7 +4941,7 @@ msgid "Show"
 msgstr "Ukáž"
 
 #: application/views/activated_gridmap/index.php:10
-#: application/views/interface_assets/header.php:166
+#: application/views/interface_assets/header.php:168
 msgid "Activated Gridsquares"
 msgstr "Aktivované lokátorové štvorce"
 
@@ -4949,7 +4957,7 @@ msgstr "Aktivované lokátorové štvorce"
 #: application/views/distances/index.php:38
 #: application/views/gridmap/index.php:107
 #: application/views/hamsat/index.php:37
-#: application/views/interface_assets/header.php:214
+#: application/views/interface_assets/header.php:216
 #: application/views/logbookadvanced/dupesearchdialog.php:41
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/logbookadvanced/help.php:59
@@ -5016,6 +5024,7 @@ msgstr "Potvrdenie"
 #: application/views/awards/wapc/index.php:97
 #: application/views/awards/was/index.php:97
 #: application/views/awards/wpx/index.php:44
+#: application/views/awards/wwff/index.php:109
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1029
 msgid "QRZ.com"
 msgstr "QRZ.com"
@@ -5087,7 +5096,7 @@ msgstr "Minimálny počet"
 #: application/views/awards/wapc/index.php:214
 #: application/views/awards/was/index.php:206
 #: application/views/awards/wpx/index.php:233
-#: application/views/awards/wwff/index.php:70
+#: application/views/awards/wwff/index.php:193
 #: application/views/callstats/index.php:118
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
@@ -5103,7 +5112,7 @@ msgstr "Nič sa nenašlo!"
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:39
 #: application/views/awards/wpx/wpx_details.php:20
-#: application/views/awards/wwff/index.php:40
+#: application/views/awards/wwff/index.php:166
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:171
 #: application/views/bandmap/list.php:567
 #: application/views/callstats/index.php:139
@@ -5232,7 +5241,7 @@ msgstr ""
 #: application/views/awards/73on73/index.php:38
 #: application/views/awards/pota/index.php:38
 #: application/views/awards/sota/index.php:37
-#: application/views/awards/wwff/index.php:38
+#: application/views/awards/wwff/index.php:164
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
@@ -5277,7 +5286,7 @@ msgstr "Dátum"
 #: application/views/awards/73on73/index.php:39
 #: application/views/awards/pota/index.php:39
 #: application/views/awards/sota/index.php:38
-#: application/views/awards/wwff/index.php:39
+#: application/views/awards/wwff/index.php:165
 #: application/views/bandmap/list.php:142
 #: application/views/calltester/call_info.php:56
 #: application/views/contesting/logger/components/qso-form.php:146
@@ -5447,8 +5456,8 @@ msgstr ""
 
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:649
-#: application/views/interface_assets/footer.php:2410
+#: application/views/interface_assets/footer.php:654
+#: application/views/interface_assets/footer.php:2415
 msgid "DANGER"
 msgstr "NEBEZPEČENSTVO"
 
@@ -6073,7 +6082,7 @@ msgstr "Jednoduché pomenovanie významu tohto API."
 #: application/views/contesting/logger/components/qso-form.php:37
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
-#: application/views/interface_assets/footer.php:684
+#: application/views/interface_assets/footer.php:689
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
@@ -6387,8 +6396,8 @@ msgstr ""
 #: application/views/awards/wapc/index.php:33
 #: application/views/awards/was/index.php:26
 #: application/views/awards/was/index.php:34
-#: application/views/awards/wwff/index.php:5
-#: application/views/awards/wwff/index.php:13
+#: application/views/awards/wwff/index.php:23
+#: application/views/awards/wwff/index.php:31
 msgid "Award Info"
 msgstr "Diplomové informácie"
 
@@ -6412,7 +6421,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:9
 #: application/views/awards/wab/index.php:16
 #: application/views/awards/waja/index.php:29
-#: application/views/awards/wwff/index.php:9
+#: application/views/awards/wwff/index.php:27
 #, php-format
 msgid "For more information, please visit: %s."
 msgstr "Pre viac informácií navštív: %s."
@@ -6488,6 +6497,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:52
 #: application/views/awards/wpx/index.php:17
+#: application/views/awards/wwff/index.php:49
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:338
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
@@ -6941,6 +6951,7 @@ msgstr "Diplomy - CQ WAZ"
 #: application/views/awards/wap/index.php:38
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:41
+#: application/views/awards/wwff/index.php:39
 msgid "Table"
 msgstr "Tabuľka"
 
@@ -6958,6 +6969,7 @@ msgstr "Tabuľka"
 #: application/views/awards/wap/index.php:41
 #: application/views/awards/wapc/index.php:44
 #: application/views/awards/was/index.php:44
+#: application/views/awards/wwff/index.php:42
 #: application/views/contesting/logger/components/map.php:8
 #: application/views/dashboard/index.php:308
 #: application/views/dashboard/index.php:323
@@ -6976,6 +6988,7 @@ msgstr "Zobraziť mapu CQ zón"
 #: application/views/awards/dxcc/index.php:59
 #: application/views/awards/itu/index.php:62
 #: application/views/awards/wae/index.php:50
+#: application/views/awards/wwff/index.php:55
 #: application/views/gridmap/index.php:44
 #: application/views/logbookadvanced/index.php:344
 #: application/views/statistics/index.php:59
@@ -6986,6 +6999,7 @@ msgstr "Predvolené dátumy"
 #: application/views/awards/dxcc/index.php:61
 #: application/views/awards/itu/index.php:64
 #: application/views/awards/wae/index.php:52
+#: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
 #: application/views/dashboard/index.php:517
 #: application/views/dashboard/index.php:551
@@ -7002,6 +7016,7 @@ msgstr "Dnes"
 #: application/views/awards/dxcc/index.php:62
 #: application/views/awards/itu/index.php:65
 #: application/views/awards/wae/index.php:53
+#: application/views/awards/wwff/index.php:58
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:347
 #: application/views/statistics/index.php:62
@@ -7012,6 +7027,7 @@ msgstr "Včera"
 #: application/views/awards/dxcc/index.php:63
 #: application/views/awards/itu/index.php:66
 #: application/views/awards/wae/index.php:54
+#: application/views/awards/wwff/index.php:59
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:348
 #: application/views/statistics/index.php:63
@@ -7022,6 +7038,7 @@ msgstr "Posledných 7 dní"
 #: application/views/awards/dxcc/index.php:64
 #: application/views/awards/itu/index.php:67
 #: application/views/awards/wae/index.php:55
+#: application/views/awards/wwff/index.php:60
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:349
 #: application/views/statistics/index.php:64
@@ -7032,6 +7049,7 @@ msgstr "Posledných 30 dní"
 #: application/views/awards/dxcc/index.php:65
 #: application/views/awards/itu/index.php:68
 #: application/views/awards/wae/index.php:56
+#: application/views/awards/wwff/index.php:61
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:65
@@ -7042,6 +7060,7 @@ msgstr "Tento mesiac"
 #: application/views/awards/dxcc/index.php:66
 #: application/views/awards/itu/index.php:69
 #: application/views/awards/wae/index.php:57
+#: application/views/awards/wwff/index.php:62
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:351
 #: application/views/statistics/index.php:66
@@ -7052,6 +7071,7 @@ msgstr "Minulý mesiac"
 #: application/views/awards/dxcc/index.php:67
 #: application/views/awards/itu/index.php:70
 #: application/views/awards/wae/index.php:58
+#: application/views/awards/wwff/index.php:63
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:352
 #: application/views/statistics/index.php:67
@@ -7062,6 +7082,7 @@ msgstr "Tento rok"
 #: application/views/awards/dxcc/index.php:68
 #: application/views/awards/itu/index.php:71
 #: application/views/awards/wae/index.php:59
+#: application/views/awards/wwff/index.php:64
 #: application/views/logbookadvanced/index.php:353
 #: application/views/statistics/index.php:68
 msgid "Last Year"
@@ -7071,6 +7092,7 @@ msgstr "Minulý rok"
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
+#: application/views/awards/wwff/index.php:65
 #: application/views/gridlookup/index.php:31
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
@@ -7083,6 +7105,7 @@ msgstr "Vyčistiť"
 #: application/views/awards/dxcc/index.php:74
 #: application/views/awards/itu/index.php:77
 #: application/views/awards/wae/index.php:65
+#: application/views/awards/wwff/index.php:70
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
@@ -7093,6 +7116,7 @@ msgstr "Dátum od"
 #: application/views/awards/dxcc/index.php:82
 #: application/views/awards/itu/index.php:85
 #: application/views/awards/wae/index.php:73
+#: application/views/awards/wwff/index.php:74
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
@@ -7112,6 +7136,7 @@ msgstr "Dátum do"
 #: application/views/awards/wap/index.php:64
 #: application/views/awards/wapc/index.php:67
 #: application/views/awards/was/index.php:67
+#: application/views/awards/wwff/index.php:83
 msgid "Show worked"
 msgstr "Ukáž urobené"
 
@@ -7128,6 +7153,7 @@ msgstr "Ukáž urobené"
 #: application/views/awards/wap/index.php:68
 #: application/views/awards/wapc/index.php:71
 #: application/views/awards/was/index.php:71
+#: application/views/awards/wwff/index.php:87
 msgid "Show confirmed"
 msgstr "Zobraziť potvrdené"
 
@@ -7161,6 +7187,7 @@ msgstr "Zobraziť neurobené"
 #: application/views/awards/wapc/index.php:81
 #: application/views/awards/was/index.php:81
 #: application/views/awards/wpx/index.php:28
+#: application/views/awards/wwff/index.php:93
 msgid "Show QSO with QSL Type"
 msgstr "Zobraziť spojenie s typom QSL"
 
@@ -7168,7 +7195,7 @@ msgstr "Zobraziť spojenie s typom QSL"
 #: application/views/awards/iota/index.php:90
 #: application/views/awards/itu/index.php:117
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2389
+#: application/views/interface_assets/footer.php:2394
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
@@ -7426,6 +7453,7 @@ msgstr "DOK + SDOK"
 #: application/views/awards/wap/index.php:60
 #: application/views/awards/wapc/index.php:63
 #: application/views/awards/was/index.php:63
+#: application/views/awards/wwff/index.php:79
 msgid "Worked / Confirmed"
 msgstr "Urobené / Potvrdené"
 
@@ -7695,7 +7723,7 @@ msgid "No mode data available."
 msgstr ""
 
 #: application/views/awards/ffma/index.php:11
-#: application/views/interface_assets/header.php:305
+#: application/views/interface_assets/header.php:307
 msgid "Fred Fish Memorial Award"
 msgstr "Fred Fish Memorial Award"
 
@@ -9149,11 +9177,29 @@ msgstr "Pásmo / Satelit / Obežná dráha"
 msgid "QSO Date"
 msgstr "Dátum QSO"
 
+#: application/views/awards/wwff/index.php:4
+msgid "Error loading WWFF map data"
+msgstr ""
+
+#: application/views/awards/wwff/index.php:5
+msgid "No WWFF references worked for these filters."
+msgstr ""
+
 #: application/views/awards/wwff/index.php:6
+msgid ""
+"WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
+"job."
+msgstr ""
+
+#: application/views/awards/wwff/index.php:7
+msgid "Not shown (No coordinates)"
+msgstr ""
+
+#: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
 msgstr "WWFF - World Wide Flora and Fauna Award"
 
-#: application/views/awards/wwff/index.php:7
+#: application/views/awards/wwff/index.php:25
 msgid ""
 "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham "
 "radio operators to leave their shacks and operate portable in Protected "
@@ -9167,7 +9213,7 @@ msgstr ""
 "vysielali portablovo v chránených oblastiach flóry a fauny (PFF) na celom "
 "svete."
 
-#: application/views/awards/wwff/index.php:8
+#: application/views/awards/wwff/index.php:26
 msgid ""
 "More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already "
 "registered in the WWFF Directory. Hunters and Activators can apply for "
@@ -9180,15 +9226,16 @@ msgstr ""
 "zozname WWFF. Lovci a aktivátori môžu žiadať o farebné ocenenia, a to "
 "globálne aj národné."
 
-#: application/views/awards/wwff/index.php:10
+#: application/views/awards/wwff/index.php:28
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
 msgstr "Pre tento diplom sa používajú oblasti: WWFF (ADIF: WWFF_REF)"
 
-#: application/views/awards/wwff/index.php:19
-msgid "WWFF QSO List"
-msgstr ""
+#: application/views/awards/wwff/index.php:50
+#: application/views/bandmap/list.php:422
+msgid "Apply Filters"
+msgstr "Použiť filtre"
 
-#: application/views/awards/wwff/index.php:37
+#: application/views/awards/wwff/index.php:163
 #: application/views/qso/index.php:324 application/views/qso/index.php:607
 #: application/views/station_profile/create.php:228
 #: application/views/station_profile/edit.php:253
@@ -9579,7 +9626,7 @@ msgstr "Čerstvý spot (< 5 minút staré)"
 #: application/views/contesting/manager/components/session_modal.php:28
 #: application/views/contesting/manager/import_legacy.php:36
 #: application/views/contesting/manager/index.php:34
-#: application/views/interface_assets/header.php:143
+#: application/views/interface_assets/header.php:145
 #: application/views/logbookadvanced/attachContest.php:14
 #: application/views/logbookadvanced/edit.php:13
 #: application/views/logbookadvanced/index.php:517
@@ -9792,7 +9839,7 @@ msgid "Return to Home"
 msgstr "Návrat domov"
 
 #: application/views/bandmap/list.php:212
-#: application/views/interface_assets/header.php:314
+#: application/views/interface_assets/header.php:316
 msgid "DX Cluster"
 msgstr "DX Cluster"
 
@@ -9914,10 +9961,6 @@ msgstr "Spoty z kontinentu"
 #: application/views/bandmap/list.php:358
 msgid "Spotted Station Continent"
 msgstr "Kontinent zaspotovanej stanice"
-
-#: application/views/bandmap/list.php:422
-msgid "Apply Filters"
-msgstr "Použiť filtre"
 
 #: application/views/bandmap/list.php:433
 msgid "Filter Favorites"
@@ -10279,17 +10322,17 @@ msgid "USA County"
 msgstr "Okres v USA"
 
 #: application/views/bands/index.php:61
-#: application/views/interface_assets/header.php:239
+#: application/views/interface_assets/header.php:241
 msgid "WAPC"
 msgstr "WAPC"
 
 #: application/views/bands/index.php:62
-#: application/views/interface_assets/header.php:265
+#: application/views/interface_assets/header.php:267
 msgid "WAJA"
 msgstr "WAJA"
 
 #: application/views/bands/index.php:63
-#: application/views/interface_assets/header.php:301
+#: application/views/interface_assets/header.php:303
 msgid "WAS"
 msgstr "WAS"
 
@@ -10558,7 +10601,7 @@ msgid "Callsign DXCC identification"
 msgstr "Identifikácia DXCC volacieho znaku"
 
 #: application/views/calltester/index.php:16
-#: application/views/interface_assets/footer.php:885
+#: application/views/interface_assets/footer.php:890
 #: application/views/logbookadvanced/index.php:881
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
@@ -11158,7 +11201,7 @@ msgstr "ADIF názov"
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:507 application/views/debug/index.php:518
-#: application/views/interface_assets/header.php:646
+#: application/views/interface_assets/header.php:648
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -11742,7 +11785,7 @@ msgstr ""
 #: application/views/contesting/logger/index.php:104
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
-#: application/views/interface_assets/header.php:611
+#: application/views/interface_assets/header.php:613
 msgid "Switch Operator"
 msgstr ""
 
@@ -12084,7 +12127,7 @@ msgid ""
 msgstr ""
 
 #: application/views/contesting/manager/export_cbr.php:46
-#: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:536
 msgid "Cabrillo Export"
 msgstr "Export Cabrillo"
 
@@ -12322,7 +12365,7 @@ msgid "Download Cabrillo"
 msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:46
-#: application/views/interface_assets/header.php:536
+#: application/views/interface_assets/header.php:538
 msgid "EDI Export"
 msgstr "EDI export"
 
@@ -12520,7 +12563,7 @@ msgid "Are you sure you want to import the selected contest sessions?"
 msgstr ""
 
 #: application/views/contesting/manager/index.php:17
-#: application/views/interface_assets/header.php:343
+#: application/views/interface_assets/header.php:345
 msgid "Contests"
 msgstr "Contesty"
 
@@ -12535,7 +12578,7 @@ msgid "Create New Contest"
 msgstr ""
 
 #: application/views/contesting/manager/index.php:22
-#: application/views/interface_assets/header.php:145
+#: application/views/interface_assets/header.php:147
 msgid "Quick Start"
 msgstr ""
 
@@ -14360,7 +14403,7 @@ msgstr "Nahraj spojenia"
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
 #: application/views/eqsl/import.php:15 application/views/eqsl/result.php:17
 #: application/views/eqsl/tools.php:15
-#: application/views/interface_assets/header.php:312
+#: application/views/interface_assets/header.php:314
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -14551,7 +14594,7 @@ msgid "You are using %s of disk space to store eQSL Card assets"
 msgstr "Používaš %s úložného priestoru na disku na uloženie eQSL kariet"
 
 #: application/views/eqslcard/index.php:14
-#: application/views/interface_assets/header.php:124
+#: application/views/interface_assets/header.php:126
 msgid "View eQSL Cards"
 msgstr "Zobraziť eQSL karty"
 
@@ -14562,10 +14605,10 @@ msgid "QSL Date"
 msgstr "Dátum QSL"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2654
-#: application/views/interface_assets/footer.php:2672
-#: application/views/interface_assets/footer.php:2691
-#: application/views/interface_assets/footer.php:2709
+#: application/views/interface_assets/footer.php:2659
+#: application/views/interface_assets/footer.php:2677
+#: application/views/interface_assets/footer.php:2696
+#: application/views/interface_assets/footer.php:2714
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:731
 #: application/views/view_log/qso.php:739
@@ -15015,7 +15058,7 @@ msgid "Technician"
 msgstr "Technik"
 
 #: application/views/interface_assets/footer.php:115
-#: application/views/interface_assets/header.php:118
+#: application/views/interface_assets/header.php:120
 msgid "Advanced"
 msgstr "Pokročilý"
 
@@ -15143,7 +15186,7 @@ msgstr ""
 "pre inštrukcie na nastavenie."
 
 #: application/views/interface_assets/footer.php:222
-#: application/views/interface_assets/header.php:599
+#: application/views/interface_assets/header.php:601
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Informácie o verzii"
@@ -15153,76 +15196,76 @@ msgstr "Informácie o verzii"
 msgid "Failed to load the modal. Please try again."
 msgstr "Nepodarilo sa načítať modálne okno. Skúste to znova."
 
-#: application/views/interface_assets/footer.php:539
+#: application/views/interface_assets/footer.php:544
 msgid "Description:"
 msgstr "Popis:"
 
-#: application/views/interface_assets/footer.php:542
+#: application/views/interface_assets/footer.php:547
 msgid "Query description"
 msgstr "Opis dopytu"
 
-#: application/views/interface_assets/footer.php:558
+#: application/views/interface_assets/footer.php:563
 msgid "Your query has been saved!"
 msgstr "Váš dopyt bol uložený!"
 
-#: application/views/interface_assets/footer.php:560
+#: application/views/interface_assets/footer.php:565
 #: application/views/search/filter.php:43
 msgid "Edit queries"
 msgstr "Upraviť dotazy"
 
-#: application/views/interface_assets/footer.php:562
+#: application/views/interface_assets/footer.php:567
 msgid "Stored queries:"
 msgstr "Uložené dotazy:"
 
-#: application/views/interface_assets/footer.php:567
+#: application/views/interface_assets/footer.php:572
 #: application/views/search/filter.php:57
 msgid "Run Query"
 msgstr "Spustiť dotaz"
 
-#: application/views/interface_assets/footer.php:579
-#: application/views/interface_assets/footer.php:715
-#: application/views/interface_assets/footer.php:785
+#: application/views/interface_assets/footer.php:584
+#: application/views/interface_assets/footer.php:720
+#: application/views/interface_assets/footer.php:790
 msgid "Stored Queries"
 msgstr "Uložené dotazy"
 
-#: application/views/interface_assets/footer.php:584
-#: application/views/interface_assets/footer.php:790
+#: application/views/interface_assets/footer.php:589
+#: application/views/interface_assets/footer.php:795
 msgid "You need to make a query before you search!"
 msgstr "Je potrebné vytvoriť dotaz, skôr než začneš hľadať!"
 
-#: application/views/interface_assets/footer.php:605
-#: application/views/interface_assets/footer.php:742
+#: application/views/interface_assets/footer.php:610
+#: application/views/interface_assets/footer.php:747
 #: application/views/search/filter.php:76
 msgid "Export to ADIF"
 msgstr "Exportovať do ADIF"
 
-#: application/views/interface_assets/footer.php:606
-#: application/views/interface_assets/footer.php:743
+#: application/views/interface_assets/footer.php:611
+#: application/views/interface_assets/footer.php:748
 #: application/views/search/main.php:32
 msgid "Open in the Advanced Logbook"
 msgstr "Otvoriť v rozšírenom denníku"
 
-#: application/views/interface_assets/footer.php:650
+#: application/views/interface_assets/footer.php:655
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Varovanie! Ste si istí, že chcete vymazať tento uložený dopyt?"
 
-#: application/views/interface_assets/footer.php:664
+#: application/views/interface_assets/footer.php:669
 msgid "The stored query has been deleted!"
 msgstr "Uložený dotaz bol vymazaný!"
 
-#: application/views/interface_assets/footer.php:673
+#: application/views/interface_assets/footer.php:678
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Uložený dotaz sa nepodarilo odstrániť. Skúste to znova!"
 
-#: application/views/interface_assets/footer.php:699
+#: application/views/interface_assets/footer.php:704
 msgid "The query description has been updated!"
 msgstr "Popis dotazu byl aktualizovaný!"
 
-#: application/views/interface_assets/footer.php:703
+#: application/views/interface_assets/footer.php:708
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Pri ukladaní sa niečo pokazilo. Skúste to znova!"
 
-#: application/views/interface_assets/footer.php:832
+#: application/views/interface_assets/footer.php:837
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -15234,15 +15277,15 @@ msgstr ""
 "zastaraný a už nie je platný. Skontroluj, ktorý DXCC je pre toto konkrétne "
 "miesto správny. Ak si si istý, ignoruj toto varovanie."
 
-#: application/views/interface_assets/footer.php:886
+#: application/views/interface_assets/footer.php:891
 msgid "Count: "
 msgstr "Počet: "
 
-#: application/views/interface_assets/footer.php:887
+#: application/views/interface_assets/footer.php:892
 msgid "Grids: "
 msgstr "Lokátory: "
 
-#: application/views/interface_assets/footer.php:1113
+#: application/views/interface_assets/footer.php:1118
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
@@ -15250,398 +15293,402 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokátorové štvorce"
 
-#: application/views/interface_assets/footer.php:1307
+#: application/views/interface_assets/footer.php:1312
 msgid "Location Lookup failed. Please check browser console."
 msgstr "Vyhľadávanie polohy zlyhalo. Skontrolujte konzolu prehliadača."
 
-#: application/views/interface_assets/footer.php:1458
-#: application/views/interface_assets/footer.php:1462
-#: application/views/interface_assets/footer.php:1465
-#: application/views/interface_assets/footer.php:1602
-#: application/views/interface_assets/footer.php:1606
-#: application/views/interface_assets/footer.php:1609
+#: application/views/interface_assets/footer.php:1463
+#: application/views/interface_assets/footer.php:1467
+#: application/views/interface_assets/footer.php:1470
+#: application/views/interface_assets/footer.php:1607
+#: application/views/interface_assets/footer.php:1611
+#: application/views/interface_assets/footer.php:1614
 msgid "grid square"
 msgstr "lokátorový štvorec"
 
-#: application/views/interface_assets/footer.php:1465
-#: application/views/interface_assets/footer.php:1609
+#: application/views/interface_assets/footer.php:1470
+#: application/views/interface_assets/footer.php:1614
 msgid "Total count"
 msgstr "Celkový počet"
 
-#: application/views/interface_assets/footer.php:2391
+#: application/views/interface_assets/footer.php:2396
 msgid "QSL Card for "
 msgstr "QSL karta pre "
 
-#: application/views/interface_assets/footer.php:2411
+#: application/views/interface_assets/footer.php:2416
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varovanie! Ste si istí, že chcete túto QSL kartu vymazať?"
 
-#: application/views/interface_assets/footer.php:2451
+#: application/views/interface_assets/footer.php:2456
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL karta"
 
-#: application/views/interface_assets/footer.php:2453
+#: application/views/interface_assets/footer.php:2458
 msgid "eQSL Card for "
 msgstr "eQSL karta pre "
 
-#: application/views/interface_assets/footer.php:2665
-#: application/views/interface_assets/footer.php:2702
+#: application/views/interface_assets/footer.php:2670
+#: application/views/interface_assets/footer.php:2707
 #: application/views/view_log/qso.php:729
 msgid "QSL image file"
 msgstr "QSL obrazový súbor"
 
-#: application/views/interface_assets/footer.php:2684
+#: application/views/interface_assets/footer.php:2689
 msgid "Front QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2720
+#: application/views/interface_assets/footer.php:2725
 msgid "Back QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2724
+#: application/views/interface_assets/footer.php:2729
 msgid "The QSL card upload could not be completed."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2724
+#: application/views/interface_assets/footer.php:2729
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2732
-#: application/views/interface_assets/footer.php:2757
+#: application/views/interface_assets/footer.php:2737
+#: application/views/interface_assets/footer.php:2762
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Pridať ďalšie spojenie na QSL kartu"
 
-#: application/views/interface_assets/footer.php:2768
+#: application/views/interface_assets/footer.php:2773
 msgid "Something went wrong. Please try again!"
 msgstr "Niečo sa pokazilo. Skúste to znova!"
 
-#: application/views/interface_assets/footer.php:2840
+#: application/views/interface_assets/footer.php:2845
 msgid "US Counties for state"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2893
+#: application/views/interface_assets/footer.php:2898
 msgid "Confirmed counties for state:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2893
+#: application/views/interface_assets/footer.php:2898
 msgid "Worked counties for state:"
 msgstr ""
 
-#: application/views/interface_assets/header.php:95
+#: application/views/interface_assets/header.php:97
 msgid "Skip to content"
 msgstr ""
 
-#: application/views/interface_assets/header.php:98
+#: application/views/interface_assets/header.php:100
 msgid "Wavelog home"
 msgstr ""
 
-#: application/views/interface_assets/header.php:100
+#: application/views/interface_assets/header.php:102
 msgid "Developer Mode"
 msgstr "Režim vývojára"
 
-#: application/views/interface_assets/header.php:103
+#: application/views/interface_assets/header.php:105
 msgid "Maintenance Mode"
 msgstr "Režim údržby"
 
-#: application/views/interface_assets/header.php:106
+#: application/views/interface_assets/header.php:108
 #: application/views/user/edit.php:118
 msgid "Clubstation"
 msgstr "Klubová stanica"
 
-#: application/views/interface_assets/header.php:116
+#: application/views/interface_assets/header.php:118
 msgid "Overview"
 msgstr "Prehľad"
 
-#: application/views/interface_assets/header.php:121
+#: application/views/interface_assets/header.php:123
 #: application/views/qslcard/index.php:14
 msgid "View QSL Cards"
 msgstr "Zobraziť QSL karty"
 
-#: application/views/interface_assets/header.php:126
+#: application/views/interface_assets/header.php:128
 msgid "View last confirmations"
 msgstr "Zobraziť posledné potvrdenia"
 
-#: application/views/interface_assets/header.php:134
+#: application/views/interface_assets/header.php:136
 msgid "Live QSO"
 msgstr "QSO naživo"
 
-#: application/views/interface_assets/header.php:136
+#: application/views/interface_assets/header.php:138
 msgid "Post QSO"
 msgstr "QSO dodatočne"
 
-#: application/views/interface_assets/header.php:147
+#: application/views/interface_assets/header.php:149
 msgid "Manage Contests"
 msgstr ""
 
-#: application/views/interface_assets/header.php:156
+#: application/views/interface_assets/header.php:158
 msgid "Analytics"
 msgstr "Analytika"
 
-#: application/views/interface_assets/header.php:184
+#: application/views/interface_assets/header.php:186
 msgid "Callsign Statistics"
 msgstr "Štatistiky volacích znakov"
 
-#: application/views/interface_assets/header.php:192
+#: application/views/interface_assets/header.php:194
 msgid "International"
 msgstr "Medzinárodný"
 
-#: application/views/interface_assets/header.php:194
+#: application/views/interface_assets/header.php:196
 msgid "CQ WAZ"
 msgstr "CQ WAZ"
 
-#: application/views/interface_assets/header.php:198
+#: application/views/interface_assets/header.php:200
 msgid "ITU"
 msgstr "ITU"
 
-#: application/views/interface_assets/header.php:204
+#: application/views/interface_assets/header.php:206
 msgid "Worked All Europe (WAE)"
 msgstr "Worked All Europe (WAE)"
 
-#: application/views/interface_assets/header.php:208
+#: application/views/interface_assets/header.php:210
 msgid "Worked All Prefixes (WPX)"
 msgstr "Worked All Prefixes (WPX)"
 
-#: application/views/interface_assets/header.php:217
+#: application/views/interface_assets/header.php:212
+msgid "World Wide Flora Fauna (WWFF)"
+msgstr ""
+
+#: application/views/interface_assets/header.php:219
 msgid "AMSAT Rover"
 msgstr ""
 
-#: application/views/interface_assets/header.php:231
+#: application/views/interface_assets/header.php:233
 msgid "Canada"
 msgstr "Kanada"
 
-#: application/views/interface_assets/header.php:237
+#: application/views/interface_assets/header.php:239
 msgid "China"
 msgstr "Čína"
 
-#: application/views/interface_assets/header.php:243
+#: application/views/interface_assets/header.php:245
 msgid "Germany"
 msgstr "Nemecko"
 
-#: application/views/interface_assets/header.php:247
+#: application/views/interface_assets/header.php:249
 msgid "DL Gridmaster"
 msgstr "DL Gridmaster"
 
-#: application/views/interface_assets/header.php:251
+#: application/views/interface_assets/header.php:253
 msgid "Great Britain"
 msgstr "Veľká Británia"
 
-#: application/views/interface_assets/header.php:253
+#: application/views/interface_assets/header.php:255
 msgid "WAB"
 msgstr "WAB"
 
-#: application/views/interface_assets/header.php:257
+#: application/views/interface_assets/header.php:259
 msgid "Italy"
 msgstr ""
 
-#: application/views/interface_assets/header.php:263
+#: application/views/interface_assets/header.php:265
 msgid "Japan"
 msgstr "Japonsko"
 
-#: application/views/interface_assets/header.php:269
+#: application/views/interface_assets/header.php:271
 msgid "JA Gridmaster"
 msgstr "JA Gridmaster"
 
-#: application/views/interface_assets/header.php:273
+#: application/views/interface_assets/header.php:275
 msgid "Luxemburg"
 msgstr "Luxembursko"
 
-#: application/views/interface_assets/header.php:275
+#: application/views/interface_assets/header.php:277
 msgid "LX Gridmaster"
 msgstr "LX Gridmaster"
 
-#: application/views/interface_assets/header.php:279
+#: application/views/interface_assets/header.php:281
 msgid "Poland"
 msgstr "Poľsko"
 
-#: application/views/interface_assets/header.php:285
+#: application/views/interface_assets/header.php:287
 msgid "Switzerland"
 msgstr "Švajčiarsko"
 
-#: application/views/interface_assets/header.php:291
+#: application/views/interface_assets/header.php:293
 msgid "The Netherlands"
 msgstr "Holandsko"
 
-#: application/views/interface_assets/header.php:293
+#: application/views/interface_assets/header.php:295
 msgid "WAP Worked All Provinces"
 msgstr "WAP Worked All Provinces"
 
-#: application/views/interface_assets/header.php:297
+#: application/views/interface_assets/header.php:299
 msgid "USA"
 msgstr "USA"
 
-#: application/views/interface_assets/header.php:303
+#: application/views/interface_assets/header.php:305
 msgid "US Gridmaster"
 msgstr "US Gridmaster"
 
-#: application/views/interface_assets/header.php:322
+#: application/views/interface_assets/header.php:324
 msgid "SAT Timers"
 msgstr "SAT časovače"
 
-#: application/views/interface_assets/header.php:326
+#: application/views/interface_assets/header.php:328
 msgid "Satellite Pass"
 msgstr "Satelitný prelet"
 
-#: application/views/interface_assets/header.php:334
+#: application/views/interface_assets/header.php:336
 #: application/views/stationsetup/stationsetup.php:146
 msgid "Admin"
 msgstr "Admin"
 
-#: application/views/interface_assets/header.php:339
+#: application/views/interface_assets/header.php:341
 msgid "Global Options"
 msgstr "Globálne možnosti"
 
-#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:353
 msgid "Update Country Files"
 msgstr "Aktualizovať súbory krajín"
 
-#: application/views/interface_assets/header.php:355
+#: application/views/interface_assets/header.php:357
 msgid "Debug Information"
 msgstr "Informácie o ladení"
 
-#: application/views/interface_assets/header.php:402
+#: application/views/interface_assets/header.php:404
 msgid "Add/Search Callsign"
 msgstr "Pridať/Vyhľadať volaciu značku"
 
-#: application/views/interface_assets/header.php:404
+#: application/views/interface_assets/header.php:406
 msgid "Log"
 msgstr "Denník"
 
-#: application/views/interface_assets/header.php:411
+#: application/views/interface_assets/header.php:413
 #: application/views/logbookadvanced/index.php:778
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:579
 #: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "Vyhľadať volaciu značku"
 
-#: application/views/interface_assets/header.php:475
+#: application/views/interface_assets/header.php:477
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
 msgstr "Op: %s"
 
-#: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:487
 #: application/views/user/edit.php:58
 msgid "Account"
 msgstr "Účet"
 
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:493
 msgid "Band Edges"
 msgstr "Okraje pásiem"
 
-#: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:499
 msgid "Switch to Clubstation:"
 msgstr "Prepni na klubovú stanicu:"
 
-#: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:503
 #: application/views/user/modals/first_login_wizard.php:119
 #: application/views/user/modals/first_login_wizard.php:133
 #, php-format
 msgid "Switch to %s"
 msgstr "Prepnúť na %s"
 
-#: application/views/interface_assets/header.php:505
+#: application/views/interface_assets/header.php:507
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "Spravovať %s"
 
-#: application/views/interface_assets/header.php:514
+#: application/views/interface_assets/header.php:516
 msgid "No Clubstations available"
 msgstr "Žiadne klubové stanice nie sú k dispozícii"
 
-#: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:528
 msgid "Other Export Options"
 msgstr "Ďalšie možnosti exportu"
 
-#: application/views/interface_assets/header.php:558
+#: application/views/interface_assets/header.php:560
 msgid "QSL Queue"
 msgstr "QSL fronta"
 
-#: application/views/interface_assets/header.php:559
+#: application/views/interface_assets/header.php:561
 msgid "Labels"
 msgstr "Štítky"
 
-#: application/views/interface_assets/header.php:566
+#: application/views/interface_assets/header.php:568
 msgid "Third-Party Services"
 msgstr "Služby tretích strán"
 
-#: application/views/interface_assets/header.php:569
+#: application/views/interface_assets/header.php:571
 msgid "eQSL Import / Export"
 msgstr "Import / Export eQSL"
 
-#: application/views/interface_assets/header.php:570
+#: application/views/interface_assets/header.php:572
 msgid "HRDLog Logbook"
 msgstr "HRDLog denník"
 
-#: application/views/interface_assets/header.php:573
+#: application/views/interface_assets/header.php:575
 msgid "Clublog Import / Export"
 msgstr "Import / Export Clublog"
 
-#: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:578
 msgid "DCL Export"
 msgstr "DCL export"
 
-#: application/views/interface_assets/header.php:584
+#: application/views/interface_assets/header.php:586
 msgid "API Keys"
 msgstr "API kľúče"
 
-#: application/views/interface_assets/header.php:589
+#: application/views/interface_assets/header.php:591
 msgid "Internal tools"
 msgstr "Interné nástroje"
 
-#: application/views/interface_assets/header.php:591
+#: application/views/interface_assets/header.php:593
 msgid "Callsign DXCC checker"
 msgstr "Overenie DXCC podľa značiek"
 
-#: application/views/interface_assets/header.php:592
+#: application/views/interface_assets/header.php:594
 msgid "GeoJSON QSO Map"
 msgstr "QSO mapa GeoJSON"
 
-#: application/views/interface_assets/header.php:593
+#: application/views/interface_assets/header.php:595
 msgid "Gridsquare Zone checker"
 msgstr "Overovač lokátorových zón"
 
-#: application/views/interface_assets/header.php:600
+#: application/views/interface_assets/header.php:602
 #: application/views/logbookadvanced/index.php:925
 msgid "Help"
 msgstr "Pomoc"
 
-#: application/views/interface_assets/header.php:601
+#: application/views/interface_assets/header.php:603
 msgid "Forum"
 msgstr "Fórum"
 
-#: application/views/interface_assets/header.php:605
+#: application/views/interface_assets/header.php:607
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Zruš impersonáciu a prepnite sa späť na %s"
 
-#: application/views/interface_assets/header.php:606
+#: application/views/interface_assets/header.php:608
 #, php-format
 msgid "Switch back to %s"
 msgstr "Prepnúť späť na %s"
 
-#: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:615
 msgid "Logout"
 msgstr "Odhlásiť sa"
 
-#: application/views/interface_assets/header.php:619
+#: application/views/interface_assets/header.php:621
 msgid "Station locations and logbooks"
 msgstr ""
 
-#: application/views/interface_assets/header.php:621
+#: application/views/interface_assets/header.php:623
 msgid "Select a Location"
 msgstr "Vyber lokalitu"
 
-#: application/views/interface_assets/header.php:669
+#: application/views/interface_assets/header.php:671
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Chýbajú vám tu stanice? Choďte na nastavenie staníc a označte ich "
 "hviezdičkouChýbajú ti tu umiestnenia staníc? Prejdi na nastavenie stanice a "
 "ulož ich medzi obľúbené"
 
-#: application/views/interface_assets/header.php:706
+#: application/views/interface_assets/header.php:708
 msgid "Extras"
 msgstr "Doplnky"
 
