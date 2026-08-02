@@ -36,6 +36,7 @@ switch ($date_format) {
   var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
   var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
   var lang_invalid_ant_el = "<?= __("Invalid value for antenna elevation:"); ?>";
+  var lang_qso_sat_below_horizon_confirm = "<?= __("Satellite appears below the horizon (elevation %s°). The stored TLE may be outdated for this QSO time. Do you really want to log this QSO?"); ?>";
   var lang_invalid_callsign = "<?= __("Invalid callsign"); ?>";
   var lang_qso_wait_before_saving = "<?= __("Please wait before saving another QSO"); ?>";
   var latlng=[<?php echo $lat.','.$lng;?>];
@@ -687,7 +688,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 
             <div class="mb-3">
               <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
-              <input type="number" inputmode="decimal" step="0.1" min="-5" max="90" class="form-control" id="ant_el" name="ant_el" onInvalid="invalidAntEl()" />
+              <input type="number" inputmode="decimal" step="0.1" max="90" class="form-control" id="ant_el" name="ant_el" onInvalid="invalidAntEl()" />
               <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
             </div>
           </div>

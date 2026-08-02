@@ -281,9 +281,14 @@ class Oqrs extends CI_Controller {
 
 	private function _validate_oqrs_times(&$postdata) {
 		foreach ($postdata['qsos'] ?? [] as $i => $qso) {
+			$d = $this->oqrs_model->normalize_date($qso[0] ?? '');
+			if ($d === null) {
+				return __("Please enter a valid date.");
+			}
+			$postdata['qsos'][$i][0] = $d;
 			$t = $this->oqrs_model->normalize_time($qso[1] ?? '');
 			if ($t === null) {
-				return __("Invalid time format. Please use HH:MM (e.g. 08:31).");
+				return __("Please enter a valid time.");
 			}
 			$postdata['qsos'][$i][1] = $t;
 		}
