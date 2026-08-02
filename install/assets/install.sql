@@ -3274,19 +3274,6 @@ UNLOCK TABLES;
 commit;
 
 --
--- Table structure for table `wwff_directory`
---
-
-DROP TABLE IF EXISTS `wwff_directory`;
-CREATE TABLE `wwff_directory` (
-  `reference` varchar(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `lat` decimal(10,7) DEFAULT NULL,
-  `lon` decimal(10,7) DEFAULT NULL,
-  PRIMARY KEY (`reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
 -- Table structure for table `label_types`
 --
 
