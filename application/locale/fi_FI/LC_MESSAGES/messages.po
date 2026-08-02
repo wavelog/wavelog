@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-01 20:30+0000\n"
+"POT-Creation-Date: 2026-08-02 05:21+0000\n"
 "PO-Revision-Date: 2026-06-29 12:11+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -198,7 +198,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
 #: application/controllers/Qso.php:20 application/controllers/Qso.php:470
 #: application/controllers/Qso.php:492 application/controllers/Qso.php:514
-#: application/controllers/Qso.php:818 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:794 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -240,7 +240,7 @@ msgstr "Tämä ei ole sallittu!"
 
 #: application/controllers/Accumulated.php:18
 #: application/views/accumulate/index.php:19
-#: application/views/interface_assets/header.php:178
+#: application/views/interface_assets/header.php:180
 msgid "Accumulated Statistics"
 msgstr "Kertyneet tilastot"
 
@@ -251,8 +251,8 @@ msgid "Activated Gridsquare Map"
 msgstr "Lokaattorikartan aktivointi"
 
 #: application/controllers/Activated_gridmap.php:33
-#: application/controllers/Awards.php:1162
-#: application/controllers/Awards.php:1198
+#: application/controllers/Awards.php:1242
+#: application/controllers/Awards.php:1278
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
@@ -307,7 +307,7 @@ msgstr "Kaikki workitut lokaattoriruudut"
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
 #: application/views/activators/index.php:10
-#: application/views/interface_assets/header.php:168
+#: application/views/interface_assets/header.php:170
 msgid "Gridsquare Activators"
 msgstr "Lokaattoriruutujen aktivoijat"
 
@@ -329,7 +329,7 @@ msgid "date incorrect"
 msgstr "virheellinen päivämäärä"
 
 #: application/controllers/Adif.php:264
-#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:525
 msgid "ADIF Import / Export"
 msgstr "ADIF Tuonti / Vienti"
 
@@ -446,7 +446,7 @@ msgid "API Token has been deleted"
 msgstr ""
 
 #: application/controllers/Awards.php:30
-#: application/views/interface_assets/header.php:190
+#: application/views/interface_assets/header.php:192
 #: application/views/logbookadvanced/edit.php:27
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
@@ -457,25 +457,25 @@ msgstr "Awardit"
 #: application/controllers/Awards.php:536
 #: application/controllers/Awards.php:586
 #: application/controllers/Awards.php:704
-#: application/controllers/Awards.php:722
-#: application/controllers/Awards.php:740
-#: application/controllers/Awards.php:822
-#: application/controllers/Awards.php:884
-#: application/controllers/Awards.php:946
-#: application/controllers/Awards.php:1008
-#: application/controllers/Awards.php:1093
-#: application/controllers/Awards.php:1105
-#: application/controllers/Awards.php:1183
-#: application/controllers/Awards.php:1389
-#: application/controllers/Awards.php:1540
-#: application/controllers/Awards.php:1591
-#: application/controllers/Awards.php:2152
-#: application/controllers/Awards.php:2301
-#: application/controllers/Awards.php:2431
-#: application/controllers/Awards.php:2505
-#: application/controllers/Awards.php:2518
-#: application/controllers/Awards.php:2593
-#: application/controllers/Awards.php:2735
+#: application/controllers/Awards.php:726
+#: application/controllers/Awards.php:820
+#: application/controllers/Awards.php:902
+#: application/controllers/Awards.php:964
+#: application/controllers/Awards.php:1026
+#: application/controllers/Awards.php:1088
+#: application/controllers/Awards.php:1173
+#: application/controllers/Awards.php:1185
+#: application/controllers/Awards.php:1263
+#: application/controllers/Awards.php:1469
+#: application/controllers/Awards.php:1620
+#: application/controllers/Awards.php:1671
+#: application/controllers/Awards.php:2232
+#: application/controllers/Awards.php:2381
+#: application/controllers/Awards.php:2511
+#: application/controllers/Awards.php:2585
+#: application/controllers/Awards.php:2598
+#: application/controllers/Awards.php:2673
+#: application/controllers/Awards.php:2815
 #, php-format
 msgid "Awards - %s"
 msgstr "Awardit - %s"
@@ -484,7 +484,7 @@ msgstr "Awardit - %s"
 #: application/views/awards/dok/index.php:157
 #: application/views/bands/index.php:49
 #: application/views/contesting/manager/components/session_modal.php:119
-#: application/views/interface_assets/header.php:245
+#: application/views/interface_assets/header.php:247
 #: application/views/logbookadvanced/index.php:483
 #: application/views/logbookadvanced/index.php:1030
 #: application/views/logbookadvanced/useroptions.php:238
@@ -503,7 +503,7 @@ msgstr "DOK"
 #: application/views/csv/index.php:58 application/views/dashboard/index.php:416
 #: application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:16
-#: application/views/interface_assets/header.php:196
+#: application/views/interface_assets/header.php:198
 #: application/views/kml/index.php:47
 #: application/views/logbookadvanced/checkresult.php:165
 #: application/views/logbookadvanced/checkresult.php:248
@@ -536,12 +536,12 @@ msgid "Awards - WAJA"
 msgstr "Awardit - WAJA"
 
 #: application/controllers/Awards.php:536 application/views/bands/index.php:53
-#: application/views/interface_assets/header.php:267
+#: application/views/interface_assets/header.php:269
 msgid "JCC"
 msgstr "JCC"
 
 #: application/controllers/Awards.php:586 application/views/bands/index.php:59
-#: application/views/interface_assets/header.php:202
+#: application/views/interface_assets/header.php:204
 msgid "VUCC"
 msgstr "VUCC"
 
@@ -575,6 +575,8 @@ msgstr "ja"
 #: application/views/awards/wac/index.php:56
 #: application/views/awards/wae/index.php:130
 #: application/views/awards/wpx/index.php:85
+#: application/views/awards/wwff/index.php:3
+#: application/views/awards/wwff/index.php:122
 msgid "Every band (w/o SAT)"
 msgstr "Jokainen bandi (ilman SAT)"
 
@@ -610,7 +612,7 @@ msgstr " ja "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
-#: application/views/interface_assets/header.php:223
+#: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
 #: application/views/logbookadvanced/useroptions.php:232
@@ -635,11 +637,10 @@ msgstr " ja "
 msgid "SOTA"
 msgstr "SOTA"
 
-#: application/controllers/Awards.php:722
+#: application/controllers/Awards.php:726
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
-#: application/views/interface_assets/header.php:210
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -658,12 +659,12 @@ msgstr "SOTA"
 msgid "WWFF"
 msgstr "WWFF"
 
-#: application/controllers/Awards.php:740
+#: application/controllers/Awards.php:820
 #: application/controllers/Logbook.php:1464
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
-#: application/views/interface_assets/header.php:227
+#: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
 #: application/views/logbookadvanced/index.php:1024
@@ -682,68 +683,68 @@ msgstr "WWFF"
 msgid "POTA"
 msgstr "POTA"
 
-#: application/controllers/Awards.php:822
+#: application/controllers/Awards.php:902
 msgid "CQ WAZ (Worked All Zones)"
 msgstr "CQ WAZ (Worked All Zones)"
 
-#: application/controllers/Awards.php:884
+#: application/controllers/Awards.php:964
 #: application/views/accumulate/index.php:60
 #: application/views/timeline/index.php:51
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
-#: application/controllers/Awards.php:946 application/views/bands/index.php:55
-#: application/views/interface_assets/header.php:233
+#: application/controllers/Awards.php:1026 application/views/bands/index.php:55
+#: application/views/interface_assets/header.php:235
 msgid "RAC"
 msgstr "RAC"
 
-#: application/controllers/Awards.php:1008 application/views/bands/index.php:51
+#: application/controllers/Awards.php:1088 application/views/bands/index.php:51
 msgid "H26"
 msgstr "H26"
 
-#: application/controllers/Awards.php:1093
+#: application/controllers/Awards.php:1173
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
-#: application/controllers/Awards.php:1105
-#: application/views/interface_assets/header.php:299
+#: application/controllers/Awards.php:1185
+#: application/views/interface_assets/header.php:301
 msgid "US Counties"
 msgstr "Yhdysvaltojen piirikunnat"
 
-#: application/controllers/Awards.php:1129
+#: application/controllers/Awards.php:1209
 msgid "Log View - Counties"
 msgstr "Lokinäkymä - Yhdysvaltojen piirikunnat"
 
-#: application/controllers/Awards.php:1144
+#: application/controllers/Awards.php:1224
 msgid "Awards - "
 msgstr "Awardit - "
 
-#: application/controllers/Awards.php:1163
-#: application/controllers/Awards.php:1199
+#: application/controllers/Awards.php:1243
+#: application/controllers/Awards.php:1279
 msgid "Gridsquares worked"
 msgstr "Workitut lokaattorit"
 
-#: application/controllers/Awards.php:1164
-#: application/controllers/Awards.php:1200
+#: application/controllers/Awards.php:1244
+#: application/controllers/Awards.php:1280
 msgid "Gridsquares confirmed on LoTW"
 msgstr "LOTW:ssa vahvistetut lokaattorit"
 
-#: application/controllers/Awards.php:1165
-#: application/controllers/Awards.php:1201
+#: application/controllers/Awards.php:1245
+#: application/controllers/Awards.php:1281
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Paperi-QSL:llä vahvistetut lokaattorit"
 
-#: application/controllers/Awards.php:1166
-#: application/controllers/Awards.php:1202
+#: application/controllers/Awards.php:1246
+#: application/controllers/Awards.php:1282
 msgid "Total Gridsquares worked"
 msgstr "Kaikki workitut lokaattorit"
 
-#: application/controllers/Awards.php:1183
+#: application/controllers/Awards.php:1263
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
-#: application/controllers/Awards.php:1389
-#: application/views/interface_assets/header.php:200
+#: application/controllers/Awards.php:1469
+#: application/views/interface_assets/header.php:202
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
 #: application/views/qso/edit_ajax.php:378 application/views/qso/index.php:348
@@ -754,57 +755,57 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 msgid "SIG"
 msgstr "SIG"
 
-#: application/controllers/Awards.php:1408
+#: application/controllers/Awards.php:1488
 msgid "Awards - SIG - "
 msgstr "Awardit - SIG - "
 
-#: application/controllers/Awards.php:1540 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1620 application/views/bands/index.php:60
 msgid "WAP"
 msgstr "WAP"
 
-#: application/controllers/Awards.php:1591
-#: application/views/interface_assets/header.php:259
+#: application/controllers/Awards.php:1671
+#: application/views/interface_assets/header.php:261
 msgid "WAIP"
 msgstr "WAIP"
 
-#: application/controllers/Awards.php:2301
+#: application/controllers/Awards.php:2381
 #: application/controllers/Gridlookup.php:33
 #: application/views/awards/itu/index.php:27
 msgid "ITU Zones"
 msgstr "ITU-vyöhykkeet"
 
-#: application/controllers/Awards.php:2431
+#: application/controllers/Awards.php:2511
 #: application/views/awards/wac/index.php:7
-#: application/views/interface_assets/header.php:206
+#: application/views/interface_assets/header.php:208
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
-#: application/controllers/Awards.php:2505
+#: application/controllers/Awards.php:2585
 msgid "WAE"
 msgstr "WAE"
 
-#: application/controllers/Awards.php:2518
-#: application/views/interface_assets/header.php:216
+#: application/controllers/Awards.php:2598
+#: application/views/interface_assets/header.php:218
 msgid "73 on 73"
 msgstr "73 on 73"
 
-#: application/controllers/Awards.php:2593
+#: application/controllers/Awards.php:2673
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:2735
+#: application/controllers/Awards.php:2815
 #: application/views/awards/pl_polska/index.php:41
-#: application/views/interface_assets/header.php:281
+#: application/views/interface_assets/header.php:283
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Awardi"
 
-#: application/controllers/Awards.php:2779
+#: application/controllers/Awards.php:2859
 msgid "Awards - AMSAT Rover"
 msgstr "Awardi - AMSAT Rover"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
-#: application/views/interface_assets/header.php:349
+#: application/views/interface_assets/header.php:351
 msgid "Backup"
 msgstr "Varmuuskopiot"
 
@@ -814,7 +815,7 @@ msgstr "Muistiinpanot – varmuuskopio"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
-#: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:492
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 msgid "Bands"
@@ -870,7 +871,7 @@ msgid "Call Tester"
 msgstr "Kutsumerkkitestaaja"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:891
+#: application/controllers/Qso.php:867
 msgid "No callsign provided."
 msgstr "Kutsutunnusta ei ole annettu."
 
@@ -1005,6 +1006,7 @@ msgstr "Yksikään käyttäjä ei ole määrittänyt Clublogia."
 #: application/views/awards/waja/index.php:100
 #: application/views/awards/wapc/index.php:101
 #: application/views/awards/wpx/index.php:48
+#: application/views/awards/wwff/index.php:113
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:417
 #: application/views/search/search_result_ajax.php:124
@@ -1032,7 +1034,7 @@ msgid "Update Contest"
 msgstr "Päivitä kilpailu"
 
 #: application/controllers/Contestcalendar.php:11
-#: application/views/interface_assets/header.php:318
+#: application/views/interface_assets/header.php:320
 msgid "Contest Calendar"
 msgstr "Kilpailukalenteri"
 
@@ -1170,12 +1172,12 @@ msgstr "Tuo historialliset kilpailut (kaikki käyttäjät)"
 #: application/views/awards/dxcc/index.php:146
 #: application/views/awards/iota/index.php:112
 #: application/views/awards/wpx/index.php:55
-#: application/views/interface_assets/header.php:182
+#: application/views/interface_assets/header.php:184
 msgid "Continents"
 msgstr "Mantereet"
 
 #: application/controllers/Cron.php:37
-#: application/views/interface_assets/header.php:353
+#: application/views/interface_assets/header.php:355
 msgid "Cron Manager"
 msgstr "Cron manageri"
 
@@ -1272,7 +1274,7 @@ msgid "Not running"
 msgstr "Ei käynnissä"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:534
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV vienti"
 
@@ -1284,7 +1286,7 @@ msgstr "Hallintapaneeli"
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
 #: application/views/dayswithqso/index.php:12
-#: application/views/interface_assets/header.php:174
+#: application/views/interface_assets/header.php:176
 msgid "Days with QSOs"
 msgstr "QSO:llsia päiviä"
 
@@ -1378,7 +1380,7 @@ msgstr "Tiedostojen siirto epäonnistui. Tarkista virheloki."
 #: application/controllers/Distancerecords.php:68
 #: application/controllers/Distancerecords.php:87
 #: application/views/distancerecords/index.php:6
-#: application/views/interface_assets/header.php:172
+#: application/views/interface_assets/header.php:174
 msgid "Satellite Distance Records"
 msgstr "Satelliittietäisyysennätykset"
 
@@ -1386,7 +1388,7 @@ msgstr "Satelliittietäisyysennätykset"
 #: application/views/distances/index.php:3
 #: application/views/distances/index.php:6
 #: application/views/distances/index.php:18
-#: application/views/interface_assets/header.php:170
+#: application/views/interface_assets/header.php:172
 msgid "Distances Worked"
 msgstr "Workitut etäisyydet"
 
@@ -1404,13 +1406,13 @@ msgid "and propagation"
 msgstr "ja propagaatio"
 
 #: application/controllers/Dxatlas.php:18
-#: application/views/interface_assets/header.php:530
+#: application/views/interface_assets/header.php:532
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas Gridsquare Vienti"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
-#: application/views/interface_assets/header.php:316
+#: application/views/interface_assets/header.php:318
 msgid "DX Calendar"
 msgstr "DX-kalenteri"
 
@@ -1550,12 +1552,12 @@ msgid "States / Provinces"
 msgstr ""
 
 #: application/controllers/Gridlookup.php:75
-#: application/views/interface_assets/header.php:328
+#: application/views/interface_assets/header.php:330
 msgid "Gridsquare Lookup"
 msgstr ""
 
 #: application/controllers/Gridmap.php:12
-#: application/views/interface_assets/header.php:164
+#: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
 msgstr "Gridsquare-kartta"
 
@@ -1625,7 +1627,7 @@ msgid "No QSOs found to upload."
 msgstr "Ladattavia QSOja ei löytynyt."
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:528
+#: application/views/interface_assets/header.php:530
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "KML-vienti"
@@ -1788,7 +1790,7 @@ msgid "Station Logbooks"
 msgstr "Asemalokikirjat"
 
 #: application/controllers/Logbook.php:59
-#: application/views/interface_assets/header.php:114
+#: application/views/interface_assets/header.php:116
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:2
 msgid "Logbook"
@@ -1812,6 +1814,7 @@ msgstr "Lokikirja"
 #: application/views/awards/wapc/index.php:85
 #: application/views/awards/was/index.php:85
 #: application/views/awards/wpx/index.php:32
+#: application/views/awards/wwff/index.php:97
 #: application/views/calltester/call_info.php:66
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
@@ -1849,6 +1852,7 @@ msgstr "QSL"
 #: application/views/awards/wapc/index.php:89
 #: application/views/awards/was/index.php:89
 #: application/views/awards/wpx/index.php:36
+#: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
 #: application/views/dashboard/index.php:494
 #: application/views/gridmap/index.php:182
@@ -1892,6 +1896,7 @@ msgstr "LoTW"
 #: application/views/awards/wapc/index.php:93
 #: application/views/awards/was/index.php:93
 #: application/views/awards/wpx/index.php:40
+#: application/views/awards/wwff/index.php:105
 #: application/views/calltester/call_info.php:81
 #: application/views/dashboard/index.php:495
 #: application/views/gridmap/index.php:190
@@ -1945,6 +1950,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:126
 #: application/views/awards/wpx/index.php:128
 #: application/views/awards/wpx/wpx_details.php:23
+#: application/views/awards/wwff/index.php:131
 #: application/views/bandmap/list.php:104
 #: application/views/bandmap/list.php:173
 #: application/views/bandmap/list.php:310
@@ -2024,7 +2030,7 @@ msgstr "Lähetelaji"
 #: application/controllers/Logbook.php:1458
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:42
-#: application/views/awards/wwff/index.php:42
+#: application/views/awards/wwff/index.php:168
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:958
 #: application/views/logbookadvanced/useroptions.php:52
@@ -2050,7 +2056,7 @@ msgstr "RST (L)"
 #: application/controllers/Logbook.php:1459
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:43
-#: application/views/awards/wwff/index.php:43
+#: application/views/awards/wwff/index.php:169
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/index.php:961
 #: application/views/logbookadvanced/useroptions.php:58
@@ -2099,7 +2105,7 @@ msgstr "Maa"
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
-#: application/views/interface_assets/header.php:225
+#: application/views/interface_assets/header.php:227
 #: application/views/logbookadvanced/checkresult.php:394
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:497
@@ -2275,7 +2281,8 @@ msgstr "Etäisyys"
 #: application/views/awards/was/index.php:103
 #: application/views/awards/wpx/index.php:83
 #: application/views/awards/wpx/wpx_details.php:22
-#: application/views/awards/wwff/index.php:41
+#: application/views/awards/wwff/index.php:119
+#: application/views/awards/wwff/index.php:167
 #: application/views/bandmap/list.php:103
 #: application/views/bandmap/list.php:174
 #: application/views/bandmap/list.php:372
@@ -2415,7 +2422,7 @@ msgstr "Operaattori"
 #: application/views/awards/wae/index.php:231
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:829
+#: application/views/interface_assets/footer.php:834
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:385
 #: application/views/lookup/index.php:47
@@ -2457,7 +2464,7 @@ msgstr "Nopea haku"
 
 #: application/controllers/Lotw.php:63 application/controllers/Lotw.php:94
 #: application/controllers/Lotw.php:133
-#: application/views/interface_assets/header.php:568
+#: application/views/interface_assets/header.php:570
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
@@ -2555,8 +2562,8 @@ msgid "QSO Map"
 msgstr "QSO-kartta"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/views/interface_assets/header.php:341
-#: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:343
+#: application/views/interface_assets/header.php:494
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
 msgid "Modes"
 msgstr "Modet"
@@ -2566,7 +2573,7 @@ msgid "Edit Mode"
 msgstr "Muokkaustila"
 
 #: application/controllers/Notes.php:31
-#: application/views/interface_assets/header.php:152
+#: application/views/interface_assets/header.php:154
 #: application/views/notes/add.php:5 application/views/notes/edit.php:6
 #: application/views/notes/main.php:5 application/views/notes/view.php:6
 #: application/views/qso/edit_ajax.php:37
@@ -2829,7 +2836,7 @@ msgid "Invalid station slug"
 msgstr "Virheellinen asematunniste"
 
 #: application/controllers/Oqrs.php:180
-#: application/views/interface_assets/header.php:553
+#: application/views/interface_assets/header.php:555
 msgid "OQRS Requests"
 msgstr "OQRS Pyynnöt"
 
@@ -2891,7 +2898,7 @@ msgstr ""
 "pituusasteet ovat länsipuolella Greenwichistä."
 
 #: application/controllers/Qrz.php:212
-#: application/views/interface_assets/header.php:571
+#: application/views/interface_assets/header.php:573
 msgid "QRZ Logbook"
 msgstr "QRZ Logi"
 
@@ -2941,7 +2948,7 @@ msgstr ""
 "tiedostoon ja päivitä tarvittaessa."
 
 #: application/controllers/Qslpostcard.php:34
-#: application/views/interface_assets/header.php:562
+#: application/views/interface_assets/header.php:564
 msgid "QSL Postcard Designer"
 msgstr "QSL-postikortin suunnittelija"
 
@@ -3012,17 +3019,17 @@ msgstr "Lisää QSO"
 msgid "QSO could not be saved"
 msgstr ""
 
-#: application/controllers/Qso.php:878
+#: application/controllers/Qso.php:854
 msgid "You have to be logged in to access this URL."
 msgstr ""
 "Sinun täytyy olla kirjautuneena sisään päästäksesi tälle URL-osoitteelle."
 
-#: application/controllers/Qso.php:884
+#: application/controllers/Qso.php:860
 msgid "Call Transfer"
 msgstr "Call Transfer"
 
 #: application/controllers/Radio.php:16
-#: application/views/interface_assets/header.php:585
+#: application/views/interface_assets/header.php:587
 msgid "Hardware Interfaces"
 msgstr "Laitteiston rajapinnat"
 
@@ -3083,8 +3090,8 @@ msgstr "viimeksi päivitetty"
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
-#: application/views/interface_assets/footer.php:689
-#: application/views/interface_assets/footer.php:698
+#: application/views/interface_assets/footer.php:694
+#: application/views/interface_assets/footer.php:703
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:897
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -3108,10 +3115,10 @@ msgstr "Muokkaa"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:69
-#: application/views/interface_assets/footer.php:2653
-#: application/views/interface_assets/footer.php:2671
-#: application/views/interface_assets/footer.php:2690
-#: application/views/interface_assets/footer.php:2708
+#: application/views/interface_assets/footer.php:2658
+#: application/views/interface_assets/footer.php:2676
+#: application/views/interface_assets/footer.php:2695
+#: application/views/interface_assets/footer.php:2713
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:918
 #: application/views/lotw_views/index.php:143
@@ -3158,7 +3165,7 @@ msgid "Radio removed successfully"
 msgstr "Radio poistettu onnistuneesti"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
-#: application/views/interface_assets/header.php:345
+#: application/views/interface_assets/header.php:347
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
@@ -3174,7 +3181,7 @@ msgid "Edit Satellite"
 msgstr "Muokkaa satelliittia"
 
 #: application/controllers/Satellite.php:200
-#: application/views/interface_assets/header.php:324
+#: application/views/interface_assets/header.php:326
 msgid "Satellite Flightpath"
 msgstr "Satelliitin lentorata"
 
@@ -3235,8 +3242,8 @@ msgstr "Satelliittiajastimet"
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:46
-#: application/views/interface_assets/header.php:405
-#: application/views/interface_assets/header.php:412
+#: application/views/interface_assets/header.php:407
+#: application/views/interface_assets/header.php:414
 #: application/views/logbookadvanced/index.php:75
 #: application/views/logbookadvanced/index.php:886
 #: application/views/oqrs/index.php:30
@@ -3268,7 +3275,7 @@ msgstr ""
 "päivämäärän jälkeen"
 
 #: application/controllers/Simplefle.php:29
-#: application/views/interface_assets/header.php:138
+#: application/views/interface_assets/header.php:140
 msgid "Simple Fast Log Entry"
 msgstr "Simple Fast Log Entry"
 
@@ -3329,9 +3336,9 @@ msgid "Please check value for grid locator (%s)"
 msgstr "Tarkista lokaattori (%s)"
 
 #: application/controllers/Stationsetup.php:60
-#: application/views/interface_assets/header.php:489
-#: application/views/interface_assets/header.php:521
-#: application/views/interface_assets/header.php:669
+#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:671
 msgid "Station Setup"
 msgstr "Asemakokoonpano"
 
@@ -3403,7 +3410,7 @@ msgid "Set as Active Logbook"
 msgstr "Aseta aktiiviseksi lokikirjaksi"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:667
+#: application/views/interface_assets/header.php:669
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -3464,7 +3471,7 @@ msgid "Active Station"
 msgstr "Aktiivinen asema"
 
 #: application/controllers/Stationsetup.php:396
-#: application/views/interface_assets/header.php:132
+#: application/views/interface_assets/header.php:134
 #: application/views/logbookadvanced/mergedialog.php:16
 #: application/views/logbookadvanced/mergedialog.php:39
 #: application/views/logbookadvanced/mergedialog.php:72
@@ -3528,18 +3535,18 @@ msgstr "Asemasijaintien lista"
 
 #: application/controllers/Statistics.php:21
 #: application/views/contesting/logger/components/statistics.php:4
-#: application/views/interface_assets/header.php:158
+#: application/views/interface_assets/header.php:160
 msgid "Statistics"
 msgstr "Statistiikkaa"
 
 #: application/controllers/Statistics.php:297
-#: application/views/interface_assets/header.php:162
+#: application/views/interface_assets/header.php:164
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "QSL-tilastot"
 
 #: application/controllers/Statistics.php:312
-#: application/views/interface_assets/header.php:160
+#: application/views/interface_assets/header.php:162
 #: application/views/statistics/antennaanalytics.php:2
 msgid "Antenna Analytics"
 msgstr "Antennianalytiikka"
@@ -3549,14 +3556,14 @@ msgid "Satellite QSOs"
 msgstr "Satelliitti-QSOt"
 
 #: application/controllers/Statistics.php:387
-#: application/views/interface_assets/header.php:186
+#: application/views/interface_assets/header.php:188
 msgid "EME Initials"
 msgstr "EME Initials"
 
 #: application/controllers/Themes.php:26
-#: application/views/interface_assets/header.php:347
-#: application/views/interface_assets/header.php:443
+#: application/views/interface_assets/header.php:349
 #: application/views/interface_assets/header.php:445
+#: application/views/interface_assets/header.php:447
 msgid "Themes"
 msgstr "Teemat"
 
@@ -3569,13 +3576,13 @@ msgid "Edit Theme"
 msgstr "Muokkaa teemaa"
 
 #: application/controllers/Timeline.php:14
-#: application/views/interface_assets/header.php:176
+#: application/views/interface_assets/header.php:178
 #: application/views/timeline/index.php:2
 msgid "Timeline"
 msgstr "Aikajana"
 
 #: application/controllers/Timeplotter.php:16
-#: application/views/interface_assets/header.php:180
+#: application/views/interface_assets/header.php:182
 #: application/views/timeplotter/index.php:10
 msgid "Timeplotter"
 msgstr "Aikajana"
@@ -3697,7 +3704,7 @@ msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC-ruututiedoston päivitys epäonnistui. Tulos: "
 
 #: application/controllers/User.php:51
-#: application/views/interface_assets/header.php:337
+#: application/views/interface_assets/header.php:339
 msgid "User Accounts"
 msgstr "Käyttäjätilit"
 
@@ -3801,7 +3808,7 @@ msgid "Login failed. Try again."
 msgstr "Kirjautuminen epäonnistui. Yritä uudelleen."
 
 #: application/controllers/User.php:1375
-#: application/views/interface_assets/header.php:425
+#: application/views/interface_assets/header.php:427
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
@@ -4011,7 +4018,7 @@ msgstr "Vie kartta"
 
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
-#: application/views/interface_assets/header.php:572
+#: application/views/interface_assets/header.php:574
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Lähetys"
 
@@ -4535,51 +4542,51 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr ""
 
-#: application/models/Update_model.php:349
+#: application/models/Update_model.php:405
 msgid "Newer release available:"
 msgstr "Uudempi julkaisu saatavilla:"
 
-#: application/models/Update_model.php:353
+#: application/models/Update_model.php:409
 msgid "You are running the latest version."
 msgstr "Käytössäsi on uusin versio."
 
-#: application/models/Update_model.php:494
+#: application/models/Update_model.php:550
 msgid "cURL error:"
 msgstr "cURL-virhe:"
 
-#: application/models/Update_model.php:528
+#: application/models/Update_model.php:584
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT jo olemassa. LoTW-tila päivitetty."
 
-#: application/models/Update_model.php:531
-#: application/models/Update_model.php:560
+#: application/models/Update_model.php:587
+#: application/models/Update_model.php:616
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW-tila %d QSO:lle päivitetty"
 msgstr[1] "LoTW-tila %d QSOille päivitetty"
 
-#: application/models/Update_model.php:534
+#: application/models/Update_model.php:590
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT on jo olemassa. LoTW-tilan päivittäminen epäonnistui."
 
-#: application/models/Update_model.php:537
+#: application/models/Update_model.php:593
 msgid "SAT already existing. Ignored."
 msgstr "SAT on jo olemassa. Ohitettu."
 
-#: application/models/Update_model.php:544
+#: application/models/Update_model.php:600
 msgid "SAT already existing. Display name updated."
 msgstr "SAT on jo olemassa. Näyttönimi päivitetty."
 
-#: application/models/Update_model.php:546
+#: application/models/Update_model.php:602
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT on jo olemassa. Näytönimen päivittäminen epäonnistui."
 
-#: application/models/Update_model.php:556
+#: application/models/Update_model.php:612
 msgid "New SAT. Inserted."
 msgstr "Uusi SAT. Lisätty."
 
-#: application/models/Update_model.php:564
+#: application/models/Update_model.php:620
 msgid "New SAT. Insert failed."
 msgstr "Uusi SAT. Lisäys epäonnistui."
 
@@ -4674,6 +4681,7 @@ msgstr "Ero"
 #: application/views/awards/wpx/index.php:97
 #: application/views/awards/wpx/index.php:111
 #: application/views/awards/wpx/index.php:130
+#: application/views/awards/wwff/index.php:134
 #: application/views/bandmap/list.php:106
 #: application/views/bandmap/list.php:304
 #: application/views/bandmap/list.php:312
@@ -4711,8 +4719,8 @@ msgstr "Ero"
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1531
-#: application/views/interface_assets/footer.php:1670
+#: application/views/interface_assets/footer.php:1536
+#: application/views/interface_assets/footer.php:1675
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -4867,7 +4875,7 @@ msgid "Show"
 msgstr "Näytä"
 
 #: application/views/activated_gridmap/index.php:10
-#: application/views/interface_assets/header.php:166
+#: application/views/interface_assets/header.php:168
 msgid "Activated Gridsquares"
 msgstr "Aktivoidut ruudut"
 
@@ -4883,7 +4891,7 @@ msgstr "Aktivoidut ruudut"
 #: application/views/distances/index.php:38
 #: application/views/gridmap/index.php:107
 #: application/views/hamsat/index.php:37
-#: application/views/interface_assets/header.php:214
+#: application/views/interface_assets/header.php:216
 #: application/views/logbookadvanced/dupesearchdialog.php:41
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/logbookadvanced/help.php:59
@@ -4950,6 +4958,7 @@ msgstr "Vahvistus"
 #: application/views/awards/wapc/index.php:97
 #: application/views/awards/was/index.php:97
 #: application/views/awards/wpx/index.php:44
+#: application/views/awards/wwff/index.php:109
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1029
 msgid "QRZ.com"
 msgstr "QRZ.com"
@@ -5021,7 +5030,7 @@ msgstr "Minimimäärä"
 #: application/views/awards/wapc/index.php:214
 #: application/views/awards/was/index.php:206
 #: application/views/awards/wpx/index.php:233
-#: application/views/awards/wwff/index.php:70
+#: application/views/awards/wwff/index.php:193
 #: application/views/callstats/index.php:118
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
@@ -5037,7 +5046,7 @@ msgstr "Mitään ei löytynyt!"
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:39
 #: application/views/awards/wpx/wpx_details.php:20
-#: application/views/awards/wwff/index.php:40
+#: application/views/awards/wwff/index.php:166
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:171
 #: application/views/bandmap/list.php:567
 #: application/views/callstats/index.php:139
@@ -5165,7 +5174,7 @@ msgstr ""
 #: application/views/awards/73on73/index.php:38
 #: application/views/awards/pota/index.php:38
 #: application/views/awards/sota/index.php:37
-#: application/views/awards/wwff/index.php:38
+#: application/views/awards/wwff/index.php:164
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
@@ -5210,7 +5219,7 @@ msgstr "Päivä"
 #: application/views/awards/73on73/index.php:39
 #: application/views/awards/pota/index.php:39
 #: application/views/awards/sota/index.php:38
-#: application/views/awards/wwff/index.php:39
+#: application/views/awards/wwff/index.php:165
 #: application/views/bandmap/list.php:142
 #: application/views/calltester/call_info.php:56
 #: application/views/contesting/logger/components/qso-form.php:146
@@ -5378,8 +5387,8 @@ msgstr ""
 
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:649
-#: application/views/interface_assets/footer.php:2410
+#: application/views/interface_assets/footer.php:654
+#: application/views/interface_assets/footer.php:2415
 msgid "DANGER"
 msgstr "VAARA"
 
@@ -5970,7 +5979,7 @@ msgstr "Yksinkertainen nimi, joka kuvaa, mihin tätä API:a käytetään."
 #: application/views/contesting/logger/components/qso-form.php:37
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
-#: application/views/interface_assets/footer.php:684
+#: application/views/interface_assets/footer.php:689
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
@@ -6277,8 +6286,8 @@ msgstr ""
 #: application/views/awards/wapc/index.php:33
 #: application/views/awards/was/index.php:26
 #: application/views/awards/was/index.php:34
-#: application/views/awards/wwff/index.php:5
-#: application/views/awards/wwff/index.php:13
+#: application/views/awards/wwff/index.php:23
+#: application/views/awards/wwff/index.php:31
 msgid "Award Info"
 msgstr "Awardi info"
 
@@ -6300,7 +6309,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:9
 #: application/views/awards/wab/index.php:16
 #: application/views/awards/waja/index.php:29
-#: application/views/awards/wwff/index.php:9
+#: application/views/awards/wwff/index.php:27
 #, php-format
 msgid "For more information, please visit: %s."
 msgstr "Lisätietoja saat käymällä: %s."
@@ -6378,6 +6387,7 @@ msgstr "Siirry asemaprofiiliin"
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:52
 #: application/views/awards/wpx/index.php:17
+#: application/views/awards/wwff/index.php:49
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:338
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
@@ -6827,6 +6837,7 @@ msgstr "Awardit - CQ WAZ"
 #: application/views/awards/wap/index.php:38
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:41
+#: application/views/awards/wwff/index.php:39
 msgid "Table"
 msgstr "Taulukko"
 
@@ -6844,6 +6855,7 @@ msgstr "Taulukko"
 #: application/views/awards/wap/index.php:41
 #: application/views/awards/wapc/index.php:44
 #: application/views/awards/was/index.php:44
+#: application/views/awards/wwff/index.php:42
 #: application/views/contesting/logger/components/map.php:8
 #: application/views/dashboard/index.php:308
 #: application/views/dashboard/index.php:323
@@ -6862,6 +6874,7 @@ msgstr "Näytä CQ-aluekartta"
 #: application/views/awards/dxcc/index.php:59
 #: application/views/awards/itu/index.php:62
 #: application/views/awards/wae/index.php:50
+#: application/views/awards/wwff/index.php:55
 #: application/views/gridmap/index.php:44
 #: application/views/logbookadvanced/index.php:344
 #: application/views/statistics/index.php:59
@@ -6872,6 +6885,7 @@ msgstr "Päivämäärien esiasetukset"
 #: application/views/awards/dxcc/index.php:61
 #: application/views/awards/itu/index.php:64
 #: application/views/awards/wae/index.php:52
+#: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
 #: application/views/dashboard/index.php:517
 #: application/views/dashboard/index.php:551
@@ -6888,6 +6902,7 @@ msgstr "Tänään"
 #: application/views/awards/dxcc/index.php:62
 #: application/views/awards/itu/index.php:65
 #: application/views/awards/wae/index.php:53
+#: application/views/awards/wwff/index.php:58
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:347
 #: application/views/statistics/index.php:62
@@ -6898,6 +6913,7 @@ msgstr "Eilen"
 #: application/views/awards/dxcc/index.php:63
 #: application/views/awards/itu/index.php:66
 #: application/views/awards/wae/index.php:54
+#: application/views/awards/wwff/index.php:59
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:348
 #: application/views/statistics/index.php:63
@@ -6908,6 +6924,7 @@ msgstr "Viimeiset 7 päivää"
 #: application/views/awards/dxcc/index.php:64
 #: application/views/awards/itu/index.php:67
 #: application/views/awards/wae/index.php:55
+#: application/views/awards/wwff/index.php:60
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:349
 #: application/views/statistics/index.php:64
@@ -6918,6 +6935,7 @@ msgstr "Viimeiset 30 päivää"
 #: application/views/awards/dxcc/index.php:65
 #: application/views/awards/itu/index.php:68
 #: application/views/awards/wae/index.php:56
+#: application/views/awards/wwff/index.php:61
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:65
@@ -6928,6 +6946,7 @@ msgstr "Tässä kuussa"
 #: application/views/awards/dxcc/index.php:66
 #: application/views/awards/itu/index.php:69
 #: application/views/awards/wae/index.php:57
+#: application/views/awards/wwff/index.php:62
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:351
 #: application/views/statistics/index.php:66
@@ -6938,6 +6957,7 @@ msgstr "Viime kuussa"
 #: application/views/awards/dxcc/index.php:67
 #: application/views/awards/itu/index.php:70
 #: application/views/awards/wae/index.php:58
+#: application/views/awards/wwff/index.php:63
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:352
 #: application/views/statistics/index.php:67
@@ -6948,6 +6968,7 @@ msgstr "Tänä vuonna"
 #: application/views/awards/dxcc/index.php:68
 #: application/views/awards/itu/index.php:71
 #: application/views/awards/wae/index.php:59
+#: application/views/awards/wwff/index.php:64
 #: application/views/logbookadvanced/index.php:353
 #: application/views/statistics/index.php:68
 msgid "Last Year"
@@ -6957,6 +6978,7 @@ msgstr "Viime vuosi"
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
+#: application/views/awards/wwff/index.php:65
 #: application/views/gridlookup/index.php:31
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
@@ -6969,6 +6991,7 @@ msgstr "Tyhjennä"
 #: application/views/awards/dxcc/index.php:74
 #: application/views/awards/itu/index.php:77
 #: application/views/awards/wae/index.php:65
+#: application/views/awards/wwff/index.php:70
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
@@ -6979,6 +7002,7 @@ msgstr "Alkupäivämäärä"
 #: application/views/awards/dxcc/index.php:82
 #: application/views/awards/itu/index.php:85
 #: application/views/awards/wae/index.php:73
+#: application/views/awards/wwff/index.php:74
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
@@ -6998,6 +7022,7 @@ msgstr "Loppupäivämäärä"
 #: application/views/awards/wap/index.php:64
 #: application/views/awards/wapc/index.php:67
 #: application/views/awards/was/index.php:67
+#: application/views/awards/wwff/index.php:83
 msgid "Show worked"
 msgstr "Näytä workitut"
 
@@ -7014,6 +7039,7 @@ msgstr "Näytä workitut"
 #: application/views/awards/wap/index.php:68
 #: application/views/awards/wapc/index.php:71
 #: application/views/awards/was/index.php:71
+#: application/views/awards/wwff/index.php:87
 msgid "Show confirmed"
 msgstr "Näytä vahvistetut"
 
@@ -7047,6 +7073,7 @@ msgstr "Näytä workkimattomat"
 #: application/views/awards/wapc/index.php:81
 #: application/views/awards/was/index.php:81
 #: application/views/awards/wpx/index.php:28
+#: application/views/awards/wwff/index.php:93
 msgid "Show QSO with QSL Type"
 msgstr "Näytä QSOt QSL-tyypillä"
 
@@ -7054,7 +7081,7 @@ msgstr "Näytä QSOt QSL-tyypillä"
 #: application/views/awards/iota/index.php:90
 #: application/views/awards/itu/index.php:117
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2389
+#: application/views/interface_assets/footer.php:2394
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
@@ -7261,6 +7288,7 @@ msgstr "DOK + SDOK"
 #: application/views/awards/wap/index.php:60
 #: application/views/awards/wapc/index.php:63
 #: application/views/awards/was/index.php:63
+#: application/views/awards/wwff/index.php:79
 msgid "Worked / Confirmed"
 msgstr "Työskennelty / Vahvistettu"
 
@@ -7505,7 +7533,7 @@ msgid "No mode data available."
 msgstr "Mode-tietoa ei saatavilla."
 
 #: application/views/awards/ffma/index.php:11
-#: application/views/interface_assets/header.php:305
+#: application/views/interface_assets/header.php:307
 msgid "Fred Fish Memorial Award"
 msgstr "Fred Fish Memorial awardi"
 
@@ -8780,11 +8808,29 @@ msgstr "Bandi / Satelliitti / Kiertorata"
 msgid "QSO Date"
 msgstr "QSO-päivämäärä"
 
+#: application/views/awards/wwff/index.php:4
+msgid "Error loading WWFF map data"
+msgstr ""
+
+#: application/views/awards/wwff/index.php:5
+msgid "No WWFF references worked for these filters."
+msgstr ""
+
 #: application/views/awards/wwff/index.php:6
+msgid ""
+"WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
+"job."
+msgstr ""
+
+#: application/views/awards/wwff/index.php:7
+msgid "Not shown (No coordinates)"
+msgstr ""
+
+#: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
 msgstr "WWFF - World Wide Flora and Fauna awardi"
 
-#: application/views/awards/wwff/index.php:7
+#: application/views/awards/wwff/index.php:25
 msgid ""
 "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham "
 "radio operators to leave their shacks and operate portable in Protected "
@@ -8794,7 +8840,7 @@ msgstr ""
 "lähtemään ulos kotiasemiltaan ja toimimaan portableasemina suojelluilla "
 "Flora & Fauna -alueilla (PFF) maailmanlaajuisesti."
 
-#: application/views/awards/wwff/index.php:8
+#: application/views/awards/wwff/index.php:26
 msgid ""
 "More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already "
 "registered in the WWFF Directory. Hunters and Activators can apply for "
@@ -8804,15 +8850,16 @@ msgstr ""
 "rekisteröity WWFF-hakemistoon. Metsästäjät ja aktivoijat voivat hakea "
 "värikkäitä awardeja sekä maailmanlaajuisesti että kansallisesti."
 
-#: application/views/awards/wwff/index.php:10
+#: application/views/awards/wwff/index.php:28
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
 msgstr "Tämä awardi käyttää seuraavia kenttiä: WWFF (ADIF: WWFF_REF)"
 
-#: application/views/awards/wwff/index.php:19
-msgid "WWFF QSO List"
-msgstr ""
+#: application/views/awards/wwff/index.php:50
+#: application/views/bandmap/list.php:422
+msgid "Apply Filters"
+msgstr "Käytä suodatinta"
 
-#: application/views/awards/wwff/index.php:37
+#: application/views/awards/wwff/index.php:163
 #: application/views/qso/index.php:324 application/views/qso/index.php:607
 #: application/views/station_profile/create.php:228
 #: application/views/station_profile/edit.php:253
@@ -9197,7 +9244,7 @@ msgstr "Tuore spottaus (< 5 minuuttia vanha)"
 #: application/views/contesting/manager/components/session_modal.php:28
 #: application/views/contesting/manager/import_legacy.php:36
 #: application/views/contesting/manager/index.php:34
-#: application/views/interface_assets/header.php:143
+#: application/views/interface_assets/header.php:145
 #: application/views/logbookadvanced/attachContest.php:14
 #: application/views/logbookadvanced/edit.php:13
 #: application/views/logbookadvanced/index.php:517
@@ -9409,7 +9456,7 @@ msgid "Return to Home"
 msgstr "Palaa kotiin"
 
 #: application/views/bandmap/list.php:212
-#: application/views/interface_assets/header.php:314
+#: application/views/interface_assets/header.php:316
 msgid "DX Cluster"
 msgstr "DX-klusteri"
 
@@ -9531,10 +9578,6 @@ msgstr "Mantere-spotit"
 #: application/views/bandmap/list.php:358
 msgid "Spotted Station Continent"
 msgstr "Havaitun aseman maanosa"
-
-#: application/views/bandmap/list.php:422
-msgid "Apply Filters"
-msgstr "Käytä suodatinta"
 
 #: application/views/bandmap/list.php:433
 msgid "Filter Favorites"
@@ -9883,17 +9926,17 @@ msgid "USA County"
 msgstr "USA lääni"
 
 #: application/views/bands/index.php:61
-#: application/views/interface_assets/header.php:239
+#: application/views/interface_assets/header.php:241
 msgid "WAPC"
 msgstr "WAPC"
 
 #: application/views/bands/index.php:62
-#: application/views/interface_assets/header.php:265
+#: application/views/interface_assets/header.php:267
 msgid "WAJA"
 msgstr "WAJA"
 
 #: application/views/bands/index.php:63
-#: application/views/interface_assets/header.php:301
+#: application/views/interface_assets/header.php:303
 msgid "WAS"
 msgstr "WAS"
 
@@ -10158,7 +10201,7 @@ msgid "Callsign DXCC identification"
 msgstr "Kutsumerkkien DXCC-tunniste"
 
 #: application/views/calltester/index.php:16
-#: application/views/interface_assets/footer.php:885
+#: application/views/interface_assets/footer.php:890
 #: application/views/logbookadvanced/index.php:881
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
@@ -10755,7 +10798,7 @@ msgstr "ADIF-nimi"
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:507 application/views/debug/index.php:518
-#: application/views/interface_assets/header.php:646
+#: application/views/interface_assets/header.php:648
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -11339,7 +11382,7 @@ msgstr ""
 #: application/views/contesting/logger/index.php:104
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
-#: application/views/interface_assets/header.php:611
+#: application/views/interface_assets/header.php:613
 msgid "Switch Operator"
 msgstr ""
 
@@ -11679,7 +11722,7 @@ msgid ""
 msgstr ""
 
 #: application/views/contesting/manager/export_cbr.php:46
-#: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:536
 msgid "Cabrillo Export"
 msgstr "Cabrillo-vienti"
 
@@ -11917,7 +11960,7 @@ msgid "Download Cabrillo"
 msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:46
-#: application/views/interface_assets/header.php:536
+#: application/views/interface_assets/header.php:538
 msgid "EDI Export"
 msgstr "EDI-vienti"
 
@@ -12111,7 +12154,7 @@ msgid "Are you sure you want to import the selected contest sessions?"
 msgstr ""
 
 #: application/views/contesting/manager/index.php:17
-#: application/views/interface_assets/header.php:343
+#: application/views/interface_assets/header.php:345
 msgid "Contests"
 msgstr "Kontestit"
 
@@ -12126,7 +12169,7 @@ msgid "Create New Contest"
 msgstr ""
 
 #: application/views/contesting/manager/index.php:22
-#: application/views/interface_assets/header.php:145
+#: application/views/interface_assets/header.php:147
 msgid "Quick Start"
 msgstr ""
 
@@ -13888,7 +13931,7 @@ msgstr "Lataa QSO:t"
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
 #: application/views/eqsl/import.php:15 application/views/eqsl/result.php:17
 #: application/views/eqsl/tools.php:15
-#: application/views/interface_assets/header.php:312
+#: application/views/interface_assets/header.php:314
 msgid "Tools"
 msgstr "Työkalut"
 
@@ -14052,7 +14095,7 @@ msgid "You are using %s of disk space to store eQSL Card assets"
 msgstr "Käytät %s levytilaa eQSL-korttien tallentamiseen"
 
 #: application/views/eqslcard/index.php:14
-#: application/views/interface_assets/header.php:124
+#: application/views/interface_assets/header.php:126
 msgid "View eQSL Cards"
 msgstr "Näytä eQSL"
 
@@ -14063,10 +14106,10 @@ msgid "QSL Date"
 msgstr "QSL-päivämäärä"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2654
-#: application/views/interface_assets/footer.php:2672
-#: application/views/interface_assets/footer.php:2691
-#: application/views/interface_assets/footer.php:2709
+#: application/views/interface_assets/footer.php:2659
+#: application/views/interface_assets/footer.php:2677
+#: application/views/interface_assets/footer.php:2696
+#: application/views/interface_assets/footer.php:2714
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:731
 #: application/views/view_log/qso.php:739
@@ -14516,7 +14559,7 @@ msgid "Technician"
 msgstr "Tekninen"
 
 #: application/views/interface_assets/footer.php:115
-#: application/views/interface_assets/header.php:118
+#: application/views/interface_assets/header.php:120
 msgid "Advanced"
 msgstr "Edistynyt"
 
@@ -14642,7 +14685,7 @@ msgstr ""
 "Yhdistääksesi radiosi Wavelogiin, käy Wavelog-wikissä asennusohjeita varten."
 
 #: application/views/interface_assets/footer.php:222
-#: application/views/interface_assets/header.php:599
+#: application/views/interface_assets/header.php:601
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Versioinfo"
@@ -14652,76 +14695,76 @@ msgstr "Versioinfo"
 msgid "Failed to load the modal. Please try again."
 msgstr "Virhe modaalin lataamisessa. Yritä uudelleen."
 
-#: application/views/interface_assets/footer.php:539
+#: application/views/interface_assets/footer.php:544
 msgid "Description:"
 msgstr "Kuvaus:"
 
-#: application/views/interface_assets/footer.php:542
+#: application/views/interface_assets/footer.php:547
 msgid "Query description"
 msgstr "Kyselyn kuvaus"
 
-#: application/views/interface_assets/footer.php:558
+#: application/views/interface_assets/footer.php:563
 msgid "Your query has been saved!"
 msgstr "Kyselysi on tallennettu!"
 
-#: application/views/interface_assets/footer.php:560
+#: application/views/interface_assets/footer.php:565
 #: application/views/search/filter.php:43
 msgid "Edit queries"
 msgstr "Muokkaa kyselyjä"
 
-#: application/views/interface_assets/footer.php:562
+#: application/views/interface_assets/footer.php:567
 msgid "Stored queries:"
 msgstr "Tallennetut kyselyt:"
 
-#: application/views/interface_assets/footer.php:567
+#: application/views/interface_assets/footer.php:572
 #: application/views/search/filter.php:57
 msgid "Run Query"
 msgstr "Suorita kysely"
 
-#: application/views/interface_assets/footer.php:579
-#: application/views/interface_assets/footer.php:715
-#: application/views/interface_assets/footer.php:785
+#: application/views/interface_assets/footer.php:584
+#: application/views/interface_assets/footer.php:720
+#: application/views/interface_assets/footer.php:790
 msgid "Stored Queries"
 msgstr "Tallennetut kyselyt"
 
-#: application/views/interface_assets/footer.php:584
-#: application/views/interface_assets/footer.php:790
+#: application/views/interface_assets/footer.php:589
+#: application/views/interface_assets/footer.php:795
 msgid "You need to make a query before you search!"
 msgstr "Sinun täytyy tehdä kysely ennen kuin voit suorittaa hakua!"
 
-#: application/views/interface_assets/footer.php:605
-#: application/views/interface_assets/footer.php:742
+#: application/views/interface_assets/footer.php:610
+#: application/views/interface_assets/footer.php:747
 #: application/views/search/filter.php:76
 msgid "Export to ADIF"
 msgstr "Vie ADIF-muotoon"
 
-#: application/views/interface_assets/footer.php:606
-#: application/views/interface_assets/footer.php:743
+#: application/views/interface_assets/footer.php:611
+#: application/views/interface_assets/footer.php:748
 #: application/views/search/main.php:32
 msgid "Open in the Advanced Logbook"
 msgstr "Avaa laajennettu lokikirja"
 
-#: application/views/interface_assets/footer.php:650
+#: application/views/interface_assets/footer.php:655
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Varoitus! Oletko varma, että haluat poistaa tämän tallennetun kyselyn?"
 
-#: application/views/interface_assets/footer.php:664
+#: application/views/interface_assets/footer.php:669
 msgid "The stored query has been deleted!"
 msgstr "Tallennettu kysely on poistettu!"
 
-#: application/views/interface_assets/footer.php:673
+#: application/views/interface_assets/footer.php:678
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Tallennettua kyselyä ei voitu poistaa. Yritä uudelleen!"
 
-#: application/views/interface_assets/footer.php:699
+#: application/views/interface_assets/footer.php:704
 msgid "The query description has been updated!"
 msgstr "Kyselyn kuvausta on päivitetty!"
 
-#: application/views/interface_assets/footer.php:703
+#: application/views/interface_assets/footer.php:708
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Tallennuksessa tapahtui virhe. Yritä uudelleen!"
 
-#: application/views/interface_assets/footer.php:832
+#: application/views/interface_assets/footer.php:837
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -14731,15 +14774,15 @@ msgstr ""
 "voimassa. Tarkista, mikä DXCC on oikea tälle sijainnille. Jos olet varma "
 "valinnastasi, voit sivuuttaa tämän varoituksen."
 
-#: application/views/interface_assets/footer.php:886
+#: application/views/interface_assets/footer.php:891
 msgid "Count: "
 msgstr "Lukumäärä: "
 
-#: application/views/interface_assets/footer.php:887
+#: application/views/interface_assets/footer.php:892
 msgid "Grids: "
 msgstr "Lokaattoriruudut: "
 
-#: application/views/interface_assets/footer.php:1113
+#: application/views/interface_assets/footer.php:1118
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
@@ -14747,397 +14790,401 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokaattoriruudut"
 
-#: application/views/interface_assets/footer.php:1307
+#: application/views/interface_assets/footer.php:1312
 msgid "Location Lookup failed. Please check browser console."
 msgstr "Sijainnin haku epäonnistui. Tarkista selainkonsoli."
 
-#: application/views/interface_assets/footer.php:1458
-#: application/views/interface_assets/footer.php:1462
-#: application/views/interface_assets/footer.php:1465
-#: application/views/interface_assets/footer.php:1602
-#: application/views/interface_assets/footer.php:1606
-#: application/views/interface_assets/footer.php:1609
+#: application/views/interface_assets/footer.php:1463
+#: application/views/interface_assets/footer.php:1467
+#: application/views/interface_assets/footer.php:1470
+#: application/views/interface_assets/footer.php:1607
+#: application/views/interface_assets/footer.php:1611
+#: application/views/interface_assets/footer.php:1614
 msgid "grid square"
 msgstr "Lokaattori"
 
-#: application/views/interface_assets/footer.php:1465
-#: application/views/interface_assets/footer.php:1609
+#: application/views/interface_assets/footer.php:1470
+#: application/views/interface_assets/footer.php:1614
 msgid "Total count"
 msgstr "Yhteensä"
 
-#: application/views/interface_assets/footer.php:2391
+#: application/views/interface_assets/footer.php:2396
 msgid "QSL Card for "
 msgstr "QSL-kortti "
 
-#: application/views/interface_assets/footer.php:2411
+#: application/views/interface_assets/footer.php:2416
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varoitus! Haluatko varmasti poistaa tämän QSL-kortin?"
 
-#: application/views/interface_assets/footer.php:2451
+#: application/views/interface_assets/footer.php:2456
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL-kortti"
 
-#: application/views/interface_assets/footer.php:2453
+#: application/views/interface_assets/footer.php:2458
 msgid "eQSL Card for "
 msgstr "eQSL-kortti "
 
-#: application/views/interface_assets/footer.php:2665
-#: application/views/interface_assets/footer.php:2702
+#: application/views/interface_assets/footer.php:2670
+#: application/views/interface_assets/footer.php:2707
 #: application/views/view_log/qso.php:729
 msgid "QSL image file"
 msgstr "QSL-kuvatiedosto"
 
-#: application/views/interface_assets/footer.php:2684
+#: application/views/interface_assets/footer.php:2689
 msgid "Front QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2720
+#: application/views/interface_assets/footer.php:2725
 msgid "Back QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2724
+#: application/views/interface_assets/footer.php:2729
 msgid "The QSL card upload could not be completed."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2724
+#: application/views/interface_assets/footer.php:2729
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2732
-#: application/views/interface_assets/footer.php:2757
+#: application/views/interface_assets/footer.php:2737
+#: application/views/interface_assets/footer.php:2762
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Liitä muita QSOja QSL-korttiin"
 
-#: application/views/interface_assets/footer.php:2768
+#: application/views/interface_assets/footer.php:2773
 msgid "Something went wrong. Please try again!"
 msgstr "Jokin meni pieleen. Yritä uudelleen!"
 
-#: application/views/interface_assets/footer.php:2840
+#: application/views/interface_assets/footer.php:2845
 msgid "US Counties for state"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2893
+#: application/views/interface_assets/footer.php:2898
 msgid "Confirmed counties for state:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2893
+#: application/views/interface_assets/footer.php:2898
 msgid "Worked counties for state:"
 msgstr ""
 
-#: application/views/interface_assets/header.php:95
+#: application/views/interface_assets/header.php:97
 msgid "Skip to content"
 msgstr ""
 
-#: application/views/interface_assets/header.php:98
+#: application/views/interface_assets/header.php:100
 msgid "Wavelog home"
 msgstr ""
 
-#: application/views/interface_assets/header.php:100
+#: application/views/interface_assets/header.php:102
 msgid "Developer Mode"
 msgstr "Kehittäjätila"
 
-#: application/views/interface_assets/header.php:103
+#: application/views/interface_assets/header.php:105
 msgid "Maintenance Mode"
 msgstr "Huoltotila"
 
-#: application/views/interface_assets/header.php:106
+#: application/views/interface_assets/header.php:108
 #: application/views/user/edit.php:118
 msgid "Clubstation"
 msgstr "Kerhoasema"
 
-#: application/views/interface_assets/header.php:116
+#: application/views/interface_assets/header.php:118
 msgid "Overview"
 msgstr "Yleiskatsaus"
 
-#: application/views/interface_assets/header.php:121
+#: application/views/interface_assets/header.php:123
 #: application/views/qslcard/index.php:14
 msgid "View QSL Cards"
 msgstr "Näytä QSL"
 
-#: application/views/interface_assets/header.php:126
+#: application/views/interface_assets/header.php:128
 msgid "View last confirmations"
 msgstr "Näytä viimeiset vahvistukset"
 
-#: application/views/interface_assets/header.php:134
+#: application/views/interface_assets/header.php:136
 msgid "Live QSO"
 msgstr "Live QSO"
 
-#: application/views/interface_assets/header.php:136
+#: application/views/interface_assets/header.php:138
 msgid "Post QSO"
 msgstr "Mennyt QSO"
 
-#: application/views/interface_assets/header.php:147
+#: application/views/interface_assets/header.php:149
 msgid "Manage Contests"
 msgstr ""
 
-#: application/views/interface_assets/header.php:156
+#: application/views/interface_assets/header.php:158
 msgid "Analytics"
 msgstr "Analyysit"
 
-#: application/views/interface_assets/header.php:184
+#: application/views/interface_assets/header.php:186
 msgid "Callsign Statistics"
 msgstr "Kutsumerkkitilastot"
 
-#: application/views/interface_assets/header.php:192
+#: application/views/interface_assets/header.php:194
 msgid "International"
 msgstr "Kansainvälinen"
 
-#: application/views/interface_assets/header.php:194
+#: application/views/interface_assets/header.php:196
 msgid "CQ WAZ"
 msgstr "CQ WAZ"
 
-#: application/views/interface_assets/header.php:198
+#: application/views/interface_assets/header.php:200
 msgid "ITU"
 msgstr "ITU"
 
-#: application/views/interface_assets/header.php:204
+#: application/views/interface_assets/header.php:206
 msgid "Worked All Europe (WAE)"
 msgstr "Worked All Europe (WAE)"
 
-#: application/views/interface_assets/header.php:208
+#: application/views/interface_assets/header.php:210
 msgid "Worked All Prefixes (WPX)"
 msgstr "Worked All Prefixes (WPX)"
 
-#: application/views/interface_assets/header.php:217
+#: application/views/interface_assets/header.php:212
+msgid "World Wide Flora Fauna (WWFF)"
+msgstr ""
+
+#: application/views/interface_assets/header.php:219
 msgid "AMSAT Rover"
 msgstr "AMSAT Rover"
 
-#: application/views/interface_assets/header.php:231
+#: application/views/interface_assets/header.php:233
 msgid "Canada"
 msgstr "Kanada"
 
-#: application/views/interface_assets/header.php:237
+#: application/views/interface_assets/header.php:239
 msgid "China"
 msgstr "Kiina"
 
-#: application/views/interface_assets/header.php:243
+#: application/views/interface_assets/header.php:245
 msgid "Germany"
 msgstr "Saksa"
 
-#: application/views/interface_assets/header.php:247
+#: application/views/interface_assets/header.php:249
 msgid "DL Gridmaster"
 msgstr "DL Gridmaster"
 
-#: application/views/interface_assets/header.php:251
+#: application/views/interface_assets/header.php:253
 msgid "Great Britain"
 msgstr "Iso-Britannia"
 
-#: application/views/interface_assets/header.php:253
+#: application/views/interface_assets/header.php:255
 msgid "WAB"
 msgstr "WAB"
 
-#: application/views/interface_assets/header.php:257
+#: application/views/interface_assets/header.php:259
 msgid "Italy"
 msgstr "Italia"
 
-#: application/views/interface_assets/header.php:263
+#: application/views/interface_assets/header.php:265
 msgid "Japan"
 msgstr "Japani"
 
-#: application/views/interface_assets/header.php:269
+#: application/views/interface_assets/header.php:271
 msgid "JA Gridmaster"
 msgstr "JA Gridmaster"
 
-#: application/views/interface_assets/header.php:273
+#: application/views/interface_assets/header.php:275
 msgid "Luxemburg"
 msgstr "Luxemburg"
 
-#: application/views/interface_assets/header.php:275
+#: application/views/interface_assets/header.php:277
 msgid "LX Gridmaster"
 msgstr "LX Gridmaster"
 
-#: application/views/interface_assets/header.php:279
+#: application/views/interface_assets/header.php:281
 msgid "Poland"
 msgstr "Puola"
 
-#: application/views/interface_assets/header.php:285
+#: application/views/interface_assets/header.php:287
 msgid "Switzerland"
 msgstr "Sveitsi"
 
-#: application/views/interface_assets/header.php:291
+#: application/views/interface_assets/header.php:293
 msgid "The Netherlands"
 msgstr "Alankomaat"
 
-#: application/views/interface_assets/header.php:293
+#: application/views/interface_assets/header.php:295
 msgid "WAP Worked All Provinces"
 msgstr "WAP Worked All Provinces"
 
-#: application/views/interface_assets/header.php:297
+#: application/views/interface_assets/header.php:299
 msgid "USA"
 msgstr "USA"
 
-#: application/views/interface_assets/header.php:303
+#: application/views/interface_assets/header.php:305
 msgid "US Gridmaster"
 msgstr "US Gridmaster"
 
-#: application/views/interface_assets/header.php:322
+#: application/views/interface_assets/header.php:324
 msgid "SAT Timers"
 msgstr "SAT-timers"
 
-#: application/views/interface_assets/header.php:326
+#: application/views/interface_assets/header.php:328
 msgid "Satellite Pass"
 msgstr "Satelliitin ylilento"
 
-#: application/views/interface_assets/header.php:334
+#: application/views/interface_assets/header.php:336
 #: application/views/stationsetup/stationsetup.php:146
 msgid "Admin"
 msgstr "Ylläpitäjä"
 
-#: application/views/interface_assets/header.php:339
+#: application/views/interface_assets/header.php:341
 msgid "Global Options"
 msgstr "Yleiset asetukset"
 
-#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:353
 msgid "Update Country Files"
 msgstr "Päivitä Country Files"
 
-#: application/views/interface_assets/header.php:355
+#: application/views/interface_assets/header.php:357
 msgid "Debug Information"
 msgstr "Virheenkorjaustiedot"
 
-#: application/views/interface_assets/header.php:402
+#: application/views/interface_assets/header.php:404
 msgid "Add/Search Callsign"
 msgstr "Lisää/etsi kutsumerkki"
 
-#: application/views/interface_assets/header.php:404
+#: application/views/interface_assets/header.php:406
 msgid "Log"
 msgstr "Kirjaa"
 
-#: application/views/interface_assets/header.php:411
+#: application/views/interface_assets/header.php:413
 #: application/views/logbookadvanced/index.php:778
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:579
 #: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "Etsi kutsumerkkiä"
 
-#: application/views/interface_assets/header.php:475
+#: application/views/interface_assets/header.php:477
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
 msgstr "Op: %s"
 
-#: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:487
 #: application/views/user/edit.php:58
 msgid "Account"
 msgstr "Käyttäjätili"
 
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:493
 msgid "Band Edges"
 msgstr "Bandin rajat"
 
-#: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:499
 msgid "Switch to Clubstation:"
 msgstr "Vaihda kerhoasemaan:"
 
-#: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:503
 #: application/views/user/modals/first_login_wizard.php:119
 #: application/views/user/modals/first_login_wizard.php:133
 #, php-format
 msgid "Switch to %s"
 msgstr "Vaihda %s"
 
-#: application/views/interface_assets/header.php:505
+#: application/views/interface_assets/header.php:507
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "Hallinnoi %s"
 
-#: application/views/interface_assets/header.php:514
+#: application/views/interface_assets/header.php:516
 msgid "No Clubstations available"
 msgstr "Ei kerhoasemia saatavilla"
 
-#: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:528
 msgid "Other Export Options"
 msgstr "Muut vientivaihtoehdot"
 
-#: application/views/interface_assets/header.php:558
+#: application/views/interface_assets/header.php:560
 msgid "QSL Queue"
 msgstr "QSL-jono"
 
-#: application/views/interface_assets/header.php:559
+#: application/views/interface_assets/header.php:561
 msgid "Labels"
 msgstr "Tarrat"
 
-#: application/views/interface_assets/header.php:566
+#: application/views/interface_assets/header.php:568
 msgid "Third-Party Services"
 msgstr "Kolmannen osapuolen palvelut"
 
-#: application/views/interface_assets/header.php:569
+#: application/views/interface_assets/header.php:571
 msgid "eQSL Import / Export"
 msgstr "eQSL Tuonti / Vienti"
 
-#: application/views/interface_assets/header.php:570
+#: application/views/interface_assets/header.php:572
 msgid "HRDLog Logbook"
 msgstr "HRDLog Logi"
 
-#: application/views/interface_assets/header.php:573
+#: application/views/interface_assets/header.php:575
 msgid "Clublog Import / Export"
 msgstr "Clublogin tuonti / vienti"
 
-#: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:578
 msgid "DCL Export"
 msgstr "DCL-vienti"
 
-#: application/views/interface_assets/header.php:584
+#: application/views/interface_assets/header.php:586
 msgid "API Keys"
 msgstr "API-avaimet"
 
-#: application/views/interface_assets/header.php:589
+#: application/views/interface_assets/header.php:591
 msgid "Internal tools"
 msgstr "Sisäiset työkalut"
 
-#: application/views/interface_assets/header.php:591
+#: application/views/interface_assets/header.php:593
 msgid "Callsign DXCC checker"
 msgstr "Kutsumerkkien DXCC-tarkistin"
 
-#: application/views/interface_assets/header.php:592
+#: application/views/interface_assets/header.php:594
 msgid "GeoJSON QSO Map"
 msgstr "GeoJSON-muotoinen QSO-kartta"
 
-#: application/views/interface_assets/header.php:593
+#: application/views/interface_assets/header.php:595
 msgid "Gridsquare Zone checker"
 msgstr "Locator-ruutujen vyöhykkeiden tarkistus"
 
-#: application/views/interface_assets/header.php:600
+#: application/views/interface_assets/header.php:602
 #: application/views/logbookadvanced/index.php:925
 msgid "Help"
 msgstr "Apua"
 
-#: application/views/interface_assets/header.php:601
+#: application/views/interface_assets/header.php:603
 msgid "Forum"
 msgstr "Foorumi"
 
-#: application/views/interface_assets/header.php:605
+#: application/views/interface_assets/header.php:607
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Lopeta toisena käyttäjänä toimiminen ja palaa käyttäjään %s"
 
-#: application/views/interface_assets/header.php:606
+#: application/views/interface_assets/header.php:608
 #, php-format
 msgid "Switch back to %s"
 msgstr "Vaihda takaisin käyttäjään %s"
 
-#: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:615
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
-#: application/views/interface_assets/header.php:619
+#: application/views/interface_assets/header.php:621
 msgid "Station locations and logbooks"
 msgstr ""
 
-#: application/views/interface_assets/header.php:621
+#: application/views/interface_assets/header.php:623
 msgid "Select a Location"
 msgstr "Valitse asemasijainti"
 
-#: application/views/interface_assets/header.php:669
+#: application/views/interface_assets/header.php:671
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Puuttuuko sinulta asemasijainteja täältä? Mene asemien asetuksiin ja "
 "merkitse ne suosikeiksi"
 
-#: application/views/interface_assets/header.php:706
+#: application/views/interface_assets/header.php:708
 msgid "Extras"
 msgstr "Extrat"
 
