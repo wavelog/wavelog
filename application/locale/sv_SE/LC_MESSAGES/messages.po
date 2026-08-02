@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-02 05:24+0000\n"
-"PO-Revision-Date: 2026-07-30 09:11+0000\n"
+"PO-Revision-Date: 2026-08-03 12:17+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -934,47 +934,49 @@ msgstr "Användaren kunde inte tas bort från klubben."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Inga medlemmar valda."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Ingen av de valda användarna är medlemmar i denna klubb."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Kan inte fortsätta: detta skulle ta bort den sista klubbtjänstemannen. En "
+"instansadministratör måste utföra denna åtgärd."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Klubbmedlemsbehörigheter kunde inte uppdateras."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Inga medlemmar uppdaterades."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d medlem uppdaterad."
+msgstr[1] "%d medlemmar uppdaterade."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Användare kunde inte tas bort från klubben."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Inga medlemmar togs bort."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d medlem borttagen."
+msgstr[1] "%d medlemmar borttagna."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1537,7 +1539,7 @@ msgstr "Bekräftelser"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ-zoner"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1548,12 +1550,12 @@ msgstr "Zoner"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Stater / provinser"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:330
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "Lokator uppslagning"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
@@ -2841,11 +2843,11 @@ msgstr "OQRS Förfrågningar"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Ange ett giltigt datum."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Vänligen ange en giltig tid."
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -4182,11 +4184,11 @@ msgstr "Läs klubbmedlemmar"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Hantera klubbmedlemsbehörigheter"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Ta bort klubbmedlemmar"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -8825,21 +8827,23 @@ msgstr "QSO-datum"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "Fel vid inläsning av WWFF-kartdata"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "Inga WWFF-referenser fungerade för dessa filter."
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
 msgstr ""
+"WWFF-katalogen är inte laddad - koordinater saknas. Kör update_wwff cron-"
+"jobbet."
 
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "Ej visad (Inga koordinater)"
 
 #: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -10441,7 +10445,7 @@ msgstr "Inga användare har för närvarande tillgång till denna klubbstation."
 
 #: application/views/club/permissions.php:271
 msgid "Edit Selected"
-msgstr ""
+msgstr "Redigera markerade"
 
 #: application/views/club/permissions.php:274
 #: application/views/contesting/manager/index.php:23
@@ -10501,27 +10505,27 @@ msgstr "Roll: %s"
 
 #: application/views/club/permissions.php:409
 msgid "Edit Selected Members"
-msgstr ""
+msgstr "Redigera valda medlemmar"
 
 #: application/views/club/permissions.php:415
 msgid "Set the permission level for all selected members:"
-msgstr ""
+msgstr "Ställ in behörighetsnivån för alla valda medlemmar:"
 
 #: application/views/club/permissions.php:426
 msgid "Notify the users via email about the change"
-msgstr ""
+msgstr "Meddela användarna via e-post om ändringen"
 
 #: application/views/club/permissions.php:443
 msgid "Delete Selected Members"
-msgstr ""
+msgstr "Ta bort valda medlemmar"
 
 #: application/views/club/permissions.php:449
 msgid "Are you sure you want to delete the selected users from the club?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort de valda användarna från klubben?"
 
 #: application/views/club/permissions.php:450
 msgid "user(s) will be removed."
-msgstr ""
+msgstr "användarna kommer att tas bort."
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
@@ -11000,11 +11004,11 @@ msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "per operatör"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
-msgstr ""
+msgstr "Röd: endast förhandsvisning. Grön: detta nummer är reserverat för dig."
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -11702,15 +11706,15 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "Serienummerserie"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "Delad av alla operatörer"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "En serie per operatör"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -11718,6 +11722,9 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"Serienummer tilldelas av servern så att samma nummer aldrig används två "
+"gånger, även när flera operatörer loggar samtidigt. De flesta tävlingar "
+"förväntar sig en enda gemensam serie per station."
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -14184,34 +14191,35 @@ msgstr "Gå tillbaka till instrumentpanelen"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"Ogiltig lokator — använd 2, 4, 6, 8 eller 10 tecken (t.ex. FN, FN31, FN31pr)."
 
 #: application/views/gridlookup/index.php:25
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "2, 4, 6, 8 eller 10 tecken Maidenhead-lokator"
 
 #: application/views/gridlookup/index.php:25
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "t.ex. FN31pr"
 
 #: application/views/gridlookup/index.php:26
 msgid "to"
-msgstr ""
+msgstr "till"
 
 #: application/views/gridlookup/index.php:29
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "Valfri andra lokator för avstånd och bäring"
 
 #: application/views/gridlookup/index.php:29
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "t.ex. JN58qm"
 
 #: application/views/gridlookup/index.php:30
 msgid "Go"
-msgstr ""
+msgstr "Gå"
 
 #: application/views/gridlookup/index.php:34
 msgid "Maidenhead grid"
-msgstr ""
+msgstr "Maidenhead-grid"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -15004,7 +15012,7 @@ msgstr "Kört alla prefix (WPX)"
 
 #: application/views/interface_assets/header.php:212
 msgid "World Wide Flora Fauna (WWFF)"
-msgstr ""
+msgstr "World Wide Flora Fauna (WWFF)"
 
 #: application/views/interface_assets/header.php:219
 msgid "AMSAT Rover"
@@ -19503,6 +19511,8 @@ msgid ""
 "Satellite appears below the horizon (elevation %s°). The stored TLE may be "
 "outdated for this QSO time. Do you really want to log this QSO?"
 msgstr ""
+"Satelliten är under horisonten (höjd %s°). Den sparade TLE kan vara "
+"inaktuell för denna QSO-tid. Vill du verkligen logga denna QSO?"
 
 #: application/views/qso/index.php:41
 msgid "Please wait before saving another QSO"
