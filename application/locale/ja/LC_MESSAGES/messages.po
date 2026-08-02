@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-01 20:30+0000\n"
-"PO-Revision-Date: 2026-08-02 03:58+0000\n"
+"PO-Revision-Date: 2026-08-02 07:17+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -23368,36 +23368,38 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "WWFFマップデータの読み込みエラー"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "これらのフィルターには、WWFFの参照がどれも機能しませんでした。"
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
 msgstr ""
+"WWFFディレクトリが読み込まれませんでした - 座標が不足しています。update_wwff "
+"cronジョブを実行してください。"
 
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "表示されていません（座標情報なし）"
 
 #: application/views/interface_assets/header.php:212
 msgid "World Wide Flora Fauna (WWFF)"
-msgstr ""
+msgstr "世界的な動植物保護地域プログラム (WWFF)"
 
 #: application/controllers/Oqrs.php:286
 #: application/views/oqrs/notinlogform.php:2
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "有効な日付を入力してください。"
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "有効な時刻を入力してください。"
 
 #: application/views/qso/index.php:39
 #, php-format
@@ -23405,6 +23407,8 @@ msgid ""
 "Satellite appears below the horizon (elevation %s°). The stored TLE may be "
 "outdated for this QSO time. Do you really want to log this QSO?"
 msgstr ""
+"衛星は地平線の下（高度）に現れる %s °)。保存されている TLE は、この QSO 時刻"
+"には古くなっている可能性があります。この QSO をログに記録しますか?"
 
 #~ msgid "Invalid message type."
 #~ msgstr "メッセージ タイプが無効です。"
