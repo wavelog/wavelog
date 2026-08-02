@@ -8,7 +8,8 @@
 		invalidMsg:  <?php echo json_encode(__("Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr).")); ?>,
 		bearingLbl:  <?php echo json_encode(__("Bearing")); ?>,
 		measurementBase: <?php echo json_encode($measurement_base); ?>,
-		stateUrl:   <?php echo json_encode(site_url('gridlookup/state_for_point')); ?>
+		stateUrl:   <?php echo json_encode(site_url('gridlookup/state_for_point')); ?>,
+		wwffUrl:    <?php echo json_encode(site_url('gridlookup/wwff_directory')); ?>
 	};
 </script>
 
@@ -32,6 +33,10 @@
 				<div class="form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glGridOverlay" checked>
 					<label class="form-check-label" for="glGridOverlay"><?= __("Maidenhead grid"); ?></label>
+				</div>
+				<div class="form-check ms-2">
+					<input type="checkbox" class="form-check-input" id="glWwffDir">
+					<label class="form-check-label" for="glWwffDir"><?= __("WWFF References"); ?></label>
 				</div>
 				<div id="glOverlaysHost" class="ms-2"></div>
 				<span id="glError" class="text-danger small ms-2" role="alert"></span>

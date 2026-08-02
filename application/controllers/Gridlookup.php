@@ -74,7 +74,12 @@ class Gridlookup extends CI_Controller {
 		$data['overlays']   = array_merge($overlays, $states);
 		$data['page_title'] = __("Gridsquare Lookup");
 
-		$footerData['scripts'] = array('assets/js/sections/gridlookup.js');
+		$footerData['scripts'] = array(
+			'assets/js/sections/gridlookup.js',
+			'assets/js/leaflet/leaflet.markercluster.js',
+		);
+
+
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('gridlookup/index');
@@ -119,5 +124,15 @@ class Gridlookup extends CI_Controller {
 		}
 
 		echo json_encode(null);
+	}
+
+	/*
+	 * AJAX: the full WWFF reference directory (reference, name, lat, lon) for the
+	 * optional clustered overlay on this map. Toggled from the page itself (default off).
+	 */
+	public function wwff_directory() {
+		$this->load->model('wwff');
+		header('Content-Type: application/json');
+		echo json_encode($this->wwff->get_directory());
 	}
 }
