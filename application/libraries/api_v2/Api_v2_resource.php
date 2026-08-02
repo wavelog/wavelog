@@ -167,6 +167,35 @@ abstract class Api_v2_resource {
 	}
 
 	/**
+	 * Whether this resource exists on this instance. If the same function 
+	 * exists in the ressource itself, it will be called instead of this one.
+	 * This allows to disable a resources based on other parameters. This 
+	 * function is the default for any ressource which does not redefine it.
+	 *
+	 * @return bool
+	 */
+	public static function is_available() {
+		return true;
+	}
+
+	/**
+	 * Whether the *current session* may hand out this resource's scopes when
+	 * creating a token. The counterpart to is_available(): that one answers
+	 * whether the resource exists on this instance at all, this one whether the
+	 * user in front of the token dialog has any use for it.
+	 *
+	 * Only the token UI asks (Api_v2_model::grantable_scope_registry()), and
+	 * only for resources that are available already. The dispatcher must never
+	 * call it - a token outlives the session that created it, and a request
+	 * carries no session at all.
+	 *
+	 * @return bool
+	 */
+	public static function is_grantable() {
+		return true;
+	}
+
+	/**
 	 * Translated labels for this resource's scopes, keyed by suffix
 	 * ("read" | "write" | "delete"). Override in each resource; the strings
 	 * must be static __() literals so po_gen.sh can extract them. The base
@@ -408,6 +437,23 @@ abstract class Api_v2_resource {
 	protected function normalize_mode($raw) {
 		if ($raw === null || $raw === '') {
 			return '';
+		}
+		return strtoupper(trim($raw));
+	}
+
+	/**
+	 * Normalise a ?callsign= filter: '' when absent, else uppercased (COL_CALL is
+	 * stored uppercase). Validated with the same loose rule as the QSO import
+	 * (letters, digits, / and -), so junk like spaces or commas is rejected with
+	 * a 400 instead of silently matching nothing.
+	 */
+	protected function normalize_callsign($raw) {
+		if ($raw === null || $raw === '') {
+			return '';
+		}
+		$this->CI->load->model('logbook_model');
+		if (!$this->CI->logbook_model->is_valid_callsign($raw)) {
+			throw new Api_v2_exception('validation_error', 'Invalid callsign', 400);
 		}
 		return strtoupper(trim($raw));
 	}

@@ -31,11 +31,33 @@ class Api_v2_model extends CI_Model {
 	 */
 	public static function scope_registry() {
 		static $registry = null;
-		if ($registry !== null) {
-			return $registry;
+		if ($registry === null) {
+			$registry = self::collect_scopes();
 		}
 
+		return $registry;
+	}
+
+	/**
+	 * The subset of scope_registry() the current session may actually hand out.
+	 *
+	 * Not memoized: the session can change within a request (impersonation).
+	 */
+	public static function grantable_scope_registry() {
+		return self::collect_scopes(true);
+	}
+
+	/**
+	 * Walk the resource classes and collect their scope definitions.
+	 *
+	 * @param bool $grantable Also require is_grantable(), i.e. filter down to
+	 *                        what the current session may hand out. Availability
+	 *                        is checked either way, which is what keeps the
+	 *                        grantable set a subset of the full registry.
+	 */
+	private static function collect_scopes($grantable = false) {
 		$registry = [];
+
 		foreach (glob(APPPATH . 'libraries/api_v2/*_resource.php') as $file) {
 			require_once $file;
 			// Convention: file "<Resource>_resource.php" holds class
@@ -43,6 +65,12 @@ class Api_v2_model extends CI_Model {
 			$class = basename($file, '.php');
 			// Skip the abstract base and anything that is not a real resource.
 			if (!class_exists($class) || !is_subclass_of($class, 'Api_v2_resource')) {
+				continue;
+			}
+			if (!$class::is_available()) {
+				continue;
+			}
+			if ($grantable && !$class::is_grantable()) {
 				continue;
 			}
 			$registry += $class::scope_definitions();
@@ -67,7 +95,7 @@ class Api_v2_model extends CI_Model {
 	 * @return array<string,array{name:string,description:string,icon:string,class:string,scopes:string[]}>
 	 */
 	public static function preset_registry() {
-		$all = array_keys(self::scope_registry());
+		$all = array_keys(self::grantable_scope_registry());
 		$read_only = array_values(array_filter($all, function ($scope) {
 			return substr($scope, -5) === ':read';
 		}));
@@ -235,6 +263,28 @@ class Api_v2_model extends CI_Model {
 	}
 
 	/**
+	 * Delete the tokens a member issued for a clubstation.
+	 *
+	 * @param int      $club_id The clubstation.
+	 * @param int|null $user_id One member, or null for every member of the club.
+	 */
+	function revoke_club_tokens($club_id, $user_id = null) {
+		if (!is_numeric($club_id) || (int) $club_id < 1) {
+			return;
+		}
+
+		$this->db->where('user_id', (int) $club_id);
+		if ($user_id !== null) {
+			$this->db->where('created_by', (int) $user_id);
+		} else {
+			// A clubstation can hold tokens of its own (club_direct login);
+			// those belong to the account, not to a membership.
+			$this->db->where('created_by !=', (int) $club_id);
+		}
+		$this->db->delete('api_token');
+	}
+
+	/**
 	 * Metadata of a single token, for the whoami endpoint (Token_resource).
 	 * Never exposes the hash; the plaintext token is not stored at all.
 	 *
@@ -268,7 +318,6 @@ class Api_v2_model extends CI_Model {
 		$this->db->where('id', (int) $token_id);
 		$this->db->update('api_token');
 
-		$this->load->model('user_model');
 		$this->user_model->set_last_seen($user_id);
 	}
 }
