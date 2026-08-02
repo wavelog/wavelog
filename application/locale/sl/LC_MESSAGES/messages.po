@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-02 05:22+0000\n"
+"POT-Creation-Date: 2026-08-02 05:24+0000\n"
 "PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -185,7 +185,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
-#: application/controllers/Oqrs.php:424 application/controllers/Qrbcalc.php:12
+#: application/controllers/Oqrs.php:429 application/controllers/Qrbcalc.php:12
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:208
 #: application/controllers/Qrz.php:231 application/controllers/Qrz.php:295
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
@@ -1993,9 +1993,9 @@ msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 #: application/views/logbookadvanced/showStateQsos.php:23
 #: application/views/logbookadvanced/useroptions.php:46
 #: application/views/map/qso_map.php:33 application/views/mode/index.php:40
-#: application/views/oqrs/notinlogform.php:12
-#: application/views/oqrs/qsolist.php:9 application/views/oqrs/request.php:19
-#: application/views/oqrs/request_grouped.php:13
+#: application/views/oqrs/notinlogform.php:13
+#: application/views/oqrs/qsolist.php:9 application/views/oqrs/request.php:20
+#: application/views/oqrs/request_grouped.php:14
 #: application/views/oqrs/showrequests.php:94
 #: application/views/public_search/result.php:15
 #: application/views/qslcard/confirmationresult.php:17
@@ -2324,9 +2324,9 @@ msgstr "Razdalja"
 #: application/views/logbookadvanced/showStateQsos.php:24
 #: application/views/logbookadvanced/useroptions.php:64
 #: application/views/map/qso_map.php:32
-#: application/views/oqrs/notinlogform.php:11
-#: application/views/oqrs/qsolist.php:10 application/views/oqrs/request.php:18
-#: application/views/oqrs/request_grouped.php:12
+#: application/views/oqrs/notinlogform.php:12
+#: application/views/oqrs/qsolist.php:10 application/views/oqrs/request.php:19
+#: application/views/oqrs/request_grouped.php:13
 #: application/views/oqrs/showrequests.php:93
 #: application/views/public_search/result.php:16
 #: application/views/qslcard/confirmationresult.php:18
@@ -2843,14 +2843,21 @@ msgid "OQRS Requests"
 msgstr "OQRS zahtevki"
 
 #: application/controllers/Oqrs.php:286
-msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
+#: application/views/oqrs/notinlogform.php:2
+#: application/views/oqrs/request.php:2
+#: application/views/oqrs/request_grouped.php:2
+msgid "Please enter a valid date."
 msgstr ""
 
-#: application/controllers/Oqrs.php:409
+#: application/controllers/Oqrs.php:291
+msgid "Please enter a valid time."
+msgstr ""
+
+#: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
 msgstr "QSO je bila uspešno izbrisana."
 
-#: application/controllers/Oqrs.php:419
+#: application/controllers/Oqrs.php:424
 msgid "QSO match added successfully."
 msgstr "QSO je bila uspešno dodana."
 
@@ -3846,7 +3853,7 @@ msgid "User %s logged out."
 msgstr "Uporabnik %s se je odjavil."
 
 #: application/controllers/User.php:1479
-#: application/views/oqrs/request_grouped.php:18
+#: application/views/oqrs/request_grouped.php:19
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Ime postaje"
@@ -5087,7 +5094,7 @@ msgstr "Ničesar nisem našel!"
 #: application/views/logbookadvanced/showUpdateResult.php:43
 #: application/views/lotw_views/index.php:42
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
-#: application/views/oqrs/request_grouped.php:14
+#: application/views/oqrs/request_grouped.php:15
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:43
 #: application/views/qslcard/searchform.php:3
@@ -5198,9 +5205,9 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:317
 #: application/views/logbookadvanced/dupesearchdialog.php:14
 #: application/views/logbookadvanced/edit.php:15
-#: application/views/oqrs/notinlogform.php:9
-#: application/views/oqrs/qsolist.php:7 application/views/oqrs/request.php:16
-#: application/views/oqrs/request_grouped.php:10
+#: application/views/oqrs/notinlogform.php:10
+#: application/views/oqrs/qsolist.php:7 application/views/oqrs/request.php:17
+#: application/views/oqrs/request_grouped.php:11
 #: application/views/public_search/result.php:13
 #: application/views/qslcard/index.php:45
 #: application/views/qslcard/searchresult.php:4
@@ -9736,9 +9743,9 @@ msgstr "Entiteta"
 
 #: application/views/bandmap/list.php:571
 #: application/views/bandmap/list.php:615
-#: application/views/oqrs/notinlogform.php:29
-#: application/views/oqrs/request.php:59
-#: application/views/oqrs/request_grouped.php:63
+#: application/views/oqrs/notinlogform.php:30
+#: application/views/oqrs/request.php:60
+#: application/views/oqrs/request_grouped.php:64
 #: application/views/oqrs/status_info.php:5
 msgid "Message"
 msgstr "Sporočilo"
@@ -15940,8 +15947,8 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:613
 #: application/views/logbookadvanced/index.php:623
 #: application/views/oqrs/qsolist.php:70 application/views/oqrs/qsolist.php:112
-#: application/views/oqrs/request.php:47
-#: application/views/oqrs/request_grouped.php:51
+#: application/views/oqrs/request.php:48
+#: application/views/oqrs/request_grouped.php:52
 #: application/views/oqrs/showrequests.php:7
 #: application/views/qslprint/qslprint.php:6
 #: application/views/qslprint/qsolist.php:103
@@ -18000,31 +18007,31 @@ msgstr "Nadaljuj"
 msgid "Request failed. Please try again."
 msgstr ""
 
-#: application/views/oqrs/notinlogform.php:3
+#: application/views/oqrs/notinlogform.php:4
 msgid ""
 "If you can't find your QSO in the log, please fill out the form below. You "
 "will be contacted after the log has been checked."
 msgstr ""
 
-#: application/views/oqrs/notinlogform.php:10
-#: application/views/oqrs/request.php:17
-#: application/views/oqrs/request_grouped.php:11
+#: application/views/oqrs/notinlogform.php:11
+#: application/views/oqrs/request.php:18
+#: application/views/oqrs/request_grouped.php:12
 msgid "Time (UTC)"
 msgstr ""
 
-#: application/views/oqrs/notinlogform.php:25
+#: application/views/oqrs/notinlogform.php:26
 msgid "Add line"
 msgstr ""
 
-#: application/views/oqrs/notinlogform.php:31
-#: application/views/oqrs/request.php:61
-#: application/views/oqrs/request_grouped.php:65
+#: application/views/oqrs/notinlogform.php:32
+#: application/views/oqrs/request.php:62
+#: application/views/oqrs/request_grouped.php:66
 msgid "Any extra information we need to know about?"
 msgstr ""
 
-#: application/views/oqrs/notinlogform.php:35
-#: application/views/oqrs/request.php:65
-#: application/views/oqrs/request_grouped.php:69
+#: application/views/oqrs/notinlogform.php:36
+#: application/views/oqrs/request.php:66
+#: application/views/oqrs/request_grouped.php:70
 #: application/views/oqrs/showrequests.php:97
 #: application/views/qso/edit_ajax.php:260 application/views/qso/index.php:654
 #: application/views/user/index.php:29 application/views/user/index.php:154
@@ -18032,13 +18039,13 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: application/views/oqrs/notinlogform.php:37
-#: application/views/oqrs/request.php:67
-#: application/views/oqrs/request_grouped.php:71
+#: application/views/oqrs/notinlogform.php:38
+#: application/views/oqrs/request.php:68
+#: application/views/oqrs/request_grouped.php:72
 msgid "Your e-mail address where we can contact you"
 msgstr ""
 
-#: application/views/oqrs/notinlogform.php:41
+#: application/views/oqrs/notinlogform.php:42
 msgid "Send not in log request"
 msgstr ""
 
@@ -18067,29 +18074,29 @@ msgstr ""
 msgid "Match QSO"
 msgstr ""
 
-#: application/views/oqrs/request.php:10
-#: application/views/oqrs/request_grouped.php:5
+#: application/views/oqrs/request.php:11
+#: application/views/oqrs/request_grouped.php:6
 msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
 msgstr ""
 
-#: application/views/oqrs/request.php:41
-#: application/views/oqrs/request_grouped.php:45
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
 msgid "QSL Route"
 msgstr ""
 
-#: application/views/oqrs/request.php:54
-#: application/views/oqrs/request_grouped.php:58
+#: application/views/oqrs/request.php:55
+#: application/views/oqrs/request_grouped.php:59
 msgid "Direct (write address in message below)"
 msgstr ""
 
-#: application/views/oqrs/request.php:71
-#: application/views/oqrs/request_grouped.php:75
+#: application/views/oqrs/request.php:72
+#: application/views/oqrs/request_grouped.php:76
 msgid "Submit request"
 msgstr ""
 
-#: application/views/oqrs/request_grouped.php:78
+#: application/views/oqrs/request_grouped.php:79
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
 msgstr ""
