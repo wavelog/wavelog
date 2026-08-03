@@ -132,8 +132,20 @@ class Gridlookup extends CI_Controller {
 	 */
 	public function wwff_directory() {
 		$this->load->model('wwff');
+		$json = json_encode($this->wwff->get_directory());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
 		header('Content-Type: application/json');
-		echo json_encode($this->wwff->get_directory());
+		echo $json;
 	}
 
 	public function pota_directory() {
