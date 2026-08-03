@@ -241,7 +241,7 @@ msgstr "Ducting troposférico"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qso.php:769
 msgid "You're not allowed to do that!"
 msgstr "¡No está permitido hacer eso!"
 
@@ -878,7 +878,7 @@ msgid "Call Tester"
 msgstr "Verificador de Llamada"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:867
+#: application/controllers/Qso.php:867 application/controllers/Qso.php:842
 msgid "No callsign provided."
 msgstr "No se proporcionó indicativo."
 
@@ -2236,6 +2236,8 @@ msgstr "Estado"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/gridlookup/index.php:25
+#: application/views/gridlookup/index.php:61
 msgid "Gridsquare"
 msgstr "Cuadrícula"
 
@@ -3049,11 +3051,11 @@ msgstr "Agregar QSO"
 msgid "QSO could not be saved"
 msgstr "No se pudo guardar el QSO"
 
-#: application/controllers/Qso.php:854
+#: application/controllers/Qso.php:854 application/controllers/Qso.php:829
 msgid "You have to be logged in to access this URL."
 msgstr "Debes tener sesión iniciada para acceder a esta URL."
 
-#: application/controllers/Qso.php:860
+#: application/controllers/Qso.php:860 application/controllers/Qso.php:835
 msgid "Call Transfer"
 msgstr "Transferencia de llamada"
 
@@ -4605,23 +4607,29 @@ msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! NO SE ENCONTRÓ DIRECCIÓN ENVIABLE !!!"
 
 #: application/models/Update_model.php:405
+#: application/models/Update_model.php:502
 msgid "Newer release available:"
 msgstr "Nueva versión disponible:"
 
 #: application/models/Update_model.php:409
+#: application/models/Update_model.php:506
 msgid "You are running the latest version."
 msgstr "Estás ejecutando la última versión."
 
 #: application/models/Update_model.php:550
+#: application/models/Update_model.php:647
 msgid "cURL error:"
 msgstr "Error de cURL:"
 
 #: application/models/Update_model.php:584
+#: application/models/Update_model.php:681
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT ya existente. Estado de LoTW actualizado."
 
 #: application/models/Update_model.php:587
 #: application/models/Update_model.php:616
+#: application/models/Update_model.php:684
+#: application/models/Update_model.php:713
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -4629,26 +4637,32 @@ msgstr[0] "Estado de LoTW para QSO %d actualizado"
 msgstr[1] "Estado de LoTW para QSOs %d actualizado"
 
 #: application/models/Update_model.php:590
+#: application/models/Update_model.php:687
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT ya existe. La actualización del estado de LoTW falló."
 
 #: application/models/Update_model.php:593
+#: application/models/Update_model.php:690
 msgid "SAT already existing. Ignored."
 msgstr "SAT ya existente. Ignorado."
 
 #: application/models/Update_model.php:600
+#: application/models/Update_model.php:697
 msgid "SAT already existing. Display name updated."
 msgstr "SAT ya existente. Nombre de usuario actualizado."
 
 #: application/models/Update_model.php:602
+#: application/models/Update_model.php:699
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT ya existe. La actualización del nombre para mostrar falló."
 
 #: application/models/Update_model.php:612
+#: application/models/Update_model.php:709
 msgid "New SAT. Inserted."
 msgstr "Nuevo SAT. Insertado."
 
 #: application/models/Update_model.php:620
+#: application/models/Update_model.php:717
 msgid "New SAT. Insert failed."
 msgstr "Nuevo SAT. Inserción fallida."
 
@@ -5043,6 +5057,7 @@ msgstr "Borrar marcadores"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/gridlookup/index.php:59
 msgid "Latitude"
 msgstr "Latitud"
 
@@ -5054,6 +5069,7 @@ msgstr "Latitud"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/gridlookup/index.php:60
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -6873,6 +6889,7 @@ msgstr "QSOs confirmados"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/gridlookup/index.php:62
 msgid "CQ Zone"
 msgstr "Zona CQ"
 
@@ -7081,6 +7098,7 @@ msgstr "El año pasado"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
+#: application/views/gridlookup/index.php:34
 msgid "Clear"
 msgstr "Claro"
 
@@ -7919,6 +7937,7 @@ msgstr "Eliminado"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/gridlookup/index.php:63
 msgid "ITU Zone"
 msgstr "Zona ITU"
 
@@ -23345,6 +23364,18 @@ msgstr ""
 
 #: application/views/cron/index.php:77
 msgid "Interval"
+msgstr ""
+
+#: application/views/gridlookup/index.php:41
+msgid "WWFF References"
+msgstr ""
+
+#: application/views/gridlookup/index.php:45
+msgid "POTA References"
+msgstr ""
+
+#: application/views/gridlookup/index.php:49
+msgid "SOTA References"
 msgstr ""
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
