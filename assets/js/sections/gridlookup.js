@@ -10,6 +10,7 @@
 	let bearingLbl    = cfg.bearingLbl  || 'Bearing';
 	let measurementBase = cfg.measurementBase || 'M';
 	let stateUrl        = cfg.stateUrl || '';
+	let wwffUrl         = cfg.wwffUrl || '';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -18,7 +19,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -305,6 +306,50 @@
 		if (overlayLayers[id]) { map.removeLayer(overlayLayers[id]); }
 	}
 
+	/* ---- WWFF reference directory overlay ---- */
+	/* Loads the full wwff_directory once, plots every reference as a circleMarker
+	 * inside a markerClusterGroup — the same recipe as the WWFF award map. This
+	 * is a pure directory lookup (where does a reference sit?), so every point is
+	 * one colour. Fetched lazily on first toggle and cached, so the (potentially large) payload is never loaded for
+	 * users who leave the toggle off.
+	 */
+	function enableWwff() {
+		if (!wwffUrl) { return; }
+		if (wwffCluster) { map.addLayer(wwffCluster); return; }      // cached after first load
+		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
+
+		fetch(wwffUrl)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				wwffCluster = L.markerClusterGroup({
+					chunkedLoading: true,
+					maxClusterRadius: 50,
+					showCoverageOnHover: false
+				});
+				for (var i = 0; i < data.length; i++) {
+					var D = data[i];
+					if (D.lat == null || D.lon == null) { continue; }
+					var dot = L.circleMarker([D.lat, D.lon], {
+						radius: 6,
+						weight: 1,
+						color: '#fff',
+						fillColor: '#2b8cbe',
+						fillOpacity: 0.9
+					});
+					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
+					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
+						(D.name ? '<br>' + esc(D.name) : '') +
+						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					wwffCluster.addLayer(dot);
+				}
+				map.addLayer(wwffCluster);
+			})
+			.catch(function (err) { console.error('WWFF directory load failed:', err); });
+	}
+	function disableWwff() {
+		if (wwffCluster) { map.removeLayer(wwffCluster); }
+	}
+
 	/* ---- CQ / ITU zone resolution (coordinate -> zone, client-side) ---- */
 
 	/* Lazily fetch + cache the CQ / ITU boundary GeoJSON. Returns a Promise of
@@ -416,6 +461,15 @@
 			if (!gridOverlay) return;
 			if (this.checked) { gridOverlay.addTo(map); } else { map.removeLayer(gridOverlay); }
 		});
+
+		// Optional WWFF reference directory overlay. Built lazily on first toggle
+		// (the directory can be large), then cached for instant re-toggle.
+		var wwffCb = document.getElementById('glWwffDir');
+		if (wwffCb) {
+			wwffCb.addEventListener('change', function () {
+				if (this.checked) { enableWwff(); } else { disableWwff(); }
+			});
+		}
 
 		// Build the Overlays (GeoJSON) dropdown — zones + per-country states.
 		buildOverlays(document.getElementById('glOverlaysHost'));
