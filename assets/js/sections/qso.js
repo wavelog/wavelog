@@ -1,6 +1,7 @@
 var favs = {};
 var selected_sat;
 var selected_sat_mode;
+let sat_opts = [];
 var scps = [];
 let lookupCall = null;
 let preventLookup = false;
@@ -3343,19 +3344,31 @@ $(document).ready(function () {
 	/*
 	Populate the Satellite Names Field on the QSO Panel
 	*/
+	const sat_name = document.getElementById("sat_name");
+  	const sat_names_list = document.getElementById("satellite_names_list");
+	// Fetch the option list from the server
 	$.getJSON(site_url + "/satellite/satellite_data", function (data) {
-
-		// Build the options array
-		var items = [];
 		$.each(data, function (key, val) {
-			items.push(
-				'<option value="' + key + '">' + key + '</option>'
-			);
+			sat_opts.push(key);
 		});
-
-		// Add to the datalist
-		$('.satellite_names_list').append(items.join(""));
 	});
+	// Filter and render the dropdown as the user types
+	sat_name.addEventListener("input", function () {
+		sat_names_list.innerHTML = this.value
+		? sat_opts
+			.filter(o => o.toLowerCase().includes(this.value.toLowerCase()))
+			.map(o => `<li class="list-group-item list-group-item-action" style="cursor: pointer;">${o}</li>`)
+			.join("")
+		: "";
+	});
+	// Handle clicking an option
+	sat_names_list.addEventListener("click", function (e) {
+		const li = e.target.closest("li");
+		if (!li) return;
+		sat_name.value = li.textContent;
+		sat_names_list.innerHTML = "";
+	});
+
 
 	// Only set the frequency when not set by userdata/PHP.
 	if ($('#frequency').val() == "") {
