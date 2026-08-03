@@ -404,49 +404,6 @@ class Update_model extends CI_Model {
         }
     }
 
-    function pota2() {
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-        $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
-
-        $csvfile = 'https://pota.app/all_parks.csv';
-
-        $potafile = './updates/pota.txt';
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $csvfile);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $csv = curl_exec($ch);
-        if ($csv === FALSE) {
-            return "Something went wrong with fetching the POTA file";
-        }
-
-        $potafilehandle = fopen($potafile, 'w');
-        if ($potafilehandle === FALSE) {
-            return "FAILED: Could not write to pota.txt file";
-        }
-        $data = str_getcsv($csv, "\n", '"', '\\');
-        $nCount = 0;
-        foreach ($data as $idx => $row) {
-            if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',', '"', '\\');
-            if ($row[0]) {
-                fwrite($potafilehandle, $row[0] . PHP_EOL);
-                $nCount++;
-            }
-        }
-
-        fclose($potafilehandle);
-
-        if ($nCount > 0) {
-            return "DONE: " . number_format($nCount) . " POTA's saved";
-        } else {
-            return "FAILED: Empty file";
-        }
-    }
-
     function lotw_users() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
