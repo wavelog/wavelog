@@ -23,6 +23,34 @@ class Sota extends CI_Model {
 
 		return $this->db->get($this->config->item('table_name'));
 	}
+
+	/*
+	 * The full SOTA reference directory with coordinates only — no QSO or
+	 * worked/confirmed status. Powers the optional clustered overlay on the
+	 * Gridsquare Lookup map, where it's used to look up where a reference sits.
+	 * Rows without coordinates are skipped because they can't be plotted.
+	 */
+	function get_directory() {
+		$sql = "SELECT reference, name, lat, lon, altitude FROM sota_directory
+		WHERE lat IS NOT null
+		AND lon IS NOT NULL
+		ORDER by reference";
+		
+		$query = $this->db->get('sota_directory');
+
+		$result = [];
+		foreach ($query->result() as $row) {
+			$result[] = [
+				'reference' => $row->reference,
+				'name'      => $row->name,
+				'lat'       => (float) $row->lat,
+				'lon'       => (float) $row->lon,
+				'altitude'  => $row->altitude
+			];
+		}
+
+		return $result;
+	}
 }
 
 ?>

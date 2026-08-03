@@ -135,4 +135,16 @@ class Gridlookup extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($this->wwff->get_directory());
 	}
+
+	public function pota_directory() {
+		$this->load->model('pota');
+		header('Content-Type: application/json');
+		echo json_encode($this->pota->get_directory());
+	}
+
+	public function sota_directory() {
+		$this->load->model('sota');
+		header('Content-Type: application/json');
+		echo json_encode($this->sota->get_directory());
+	}
 }

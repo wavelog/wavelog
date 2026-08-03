@@ -31,6 +31,34 @@ class Pota extends CI_Model {
 		return $this->db->get('hams_of_note');
 	}
 
+	/*
+	 * The full POTA reference directory with coordinates only — no QSO or
+	 * worked/confirmed status. Powers the optional clustered overlay on the
+	 * Gridsquare Lookup map, where it's used to look up where a reference sits.
+	 * Rows without coordinates are skipped because they can't be plotted.
+	 */
+	function get_directory() {
+		$sql = "SELECT reference, name, lat, lon
+				FROM pota_directory
+				WHERE lat IS NOT NULL
+				AND lon IS NOT NULL
+				AND active = 1
+				ORDER BY reference ASC";
+		$query = $this->db->query($sql);
+
+		$result = [];
+		foreach ($query->result() as $row) {
+			$result[] = [
+				'reference' => $row->reference,
+				'name'      => $row->name,
+				'lat'       => (float) $row->lat,
+				'lon'       => (float) $row->lon,
+			];
+		}
+
+		return $result;
+	}
+
 }
 
 ?>

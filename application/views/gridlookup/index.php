@@ -9,7 +9,9 @@
 		bearingLbl:  <?php echo json_encode(__("Bearing")); ?>,
 		measurementBase: <?php echo json_encode($measurement_base); ?>,
 		stateUrl:   <?php echo json_encode(site_url('gridlookup/state_for_point')); ?>,
-		wwffUrl:    <?php echo json_encode(site_url('gridlookup/wwff_directory')); ?>
+		wwffUrl:    <?php echo json_encode(site_url('gridlookup/wwff_directory')); ?>,
+		potaUrl:    <?php echo json_encode(site_url('gridlookup/pota_directory')); ?>,
+		sotaUrl:    <?php echo json_encode(site_url('gridlookup/sota_directory')); ?>
 	};
 </script>
 
@@ -37,6 +39,14 @@
 				<div class="form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glWwffDir">
 					<label class="form-check-label" for="glWwffDir"><?= __("WWFF References"); ?></label>
+				</div>
+				<div class="form-check ms-2">
+					<input type="checkbox" class="form-check-input" id="glPotaDir">
+					<label class="form-check-label" for="glPotaDir"><?= __("POTA References"); ?></label>
+				</div>
+				<div class="form-check ms-2">
+					<input type="checkbox" class="form-check-input" id="glSotaDir">
+					<label class="form-check-label" for="glSotaDir"><?= __("SOTA References"); ?></label>
 				</div>
 				<div id="glOverlaysHost" class="ms-2"></div>
 				<span id="glError" class="text-danger small ms-2" role="alert"></span>
