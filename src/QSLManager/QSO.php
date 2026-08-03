@@ -186,7 +186,7 @@ class QSO
 		$this->qsoDateTime = date($custom_date_format . " H:i", strtotime($data['COL_TIME_ON'] ?? '1970-01-01 00:00:00'));
 
 		$this->de = $data['station_callsign'];
-		$this->dx = $data['COL_CALL'];
+		$this->dx = xss_clean($data['COL_CALL']);
 		$this->continent = $data['COL_CONT'] ?? '';
 		$this->region = $this->getRegionString(strtoupper($data['COL_REGION'] ?? ''));
 
