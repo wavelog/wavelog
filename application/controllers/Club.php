@@ -19,46 +19,32 @@ class Club extends CI_Controller
 	function __construct() {
 		parent::__construct();
 
-		$this->permissions = [
-			9 => __("Club Officer"),
-			6 => __("Club Member ADIF"),
-			3 => __("Club Member"),
-		];
+		$this->load->model('club_model');
+		$this->permissions = $this->club_model->permission_levels();
 	}
 
-    public function index()
-    {
+    public function index() {
         // nothing to display
         redirect('dashboard');
     }
 
     public function permissions($club_id) {
 
-		$this->load->model('club_model');
 		$this->load->library('form_validation');
 
 		$cid = $this->security->xss_clean($club_id);
 		$club = $this->user_model->get_by_id($cid)->row();
 
 		// Check if club managed by SSO
-		$ssoManaged = false;
-		if ($this->config->item('auth_header_enable') ?? false) {
+		$ssoManaged = $this->club_model->is_sso_managed($club_id);
 
-			$this->config->load('sso', true, true);
-			$directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
-
-			if (!empty($directs)) {
-				$ssoManaged = key_exists($club_id, $directs);
-			}
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $cid))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
 		}
-
 		if (!is_numeric($cid)) {
 			$this->session->set_flashdata('error', __("Invalid User ID!"));
 			redirect('user');
-		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $cid)) { 
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
-			redirect('dashboard'); 
 		}
 		if ($club->clubstation != 1) {
 			$this->session->set_flashdata('error', __("This user is not a club station."));
@@ -82,10 +68,17 @@ class Club extends CI_Controller
 	}
 
 	public function get_users() {
-		
-		if(!clubaccess_check(9)) { 
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
-			redirect('dashboard'); 
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$cid = $this->input->post('club_id', true);
+
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $cid))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
 		}
 
 		$query = (string) $this->input->post('query', true) ?? '';
@@ -116,26 +109,24 @@ class Club extends CI_Controller
 	}
 
 	public function alter_member() {
-		
-		$this->load->model('club_model');
 
 		$club_id = $this->input->post('club_id', true);
 		$user_id = $this->input->post('user_id', true);
 		$p_level = $this->input->post('permission', true);
 
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 		if (!is_numeric($club_id)) {
 			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
-		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id) && !$this->club_model->club_authorize(6, $club_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
 		}
 
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
 
 		if ($this->input->post('notify_user', true) == 'on') {
-			if (!$this->notification($user_id, $club_id, $this->input->post('notify_message', true))) {
+			if (!$this->club_model->notify_member($user_id, $club_id, $this->input->post('notify_message', true))) {
 				$this->session->set_flashdata('error', __("User could not be notified. Please check your email settings."));
 			}
 		}
@@ -145,19 +136,17 @@ class Club extends CI_Controller
 	}
 
 	public function delete_member() {
-		
-		$this->load->model('club_model');
 
 		$club_id = $this->input->post('club_id', true);
 		$user_id = $this->input->post('user_id', true);
 
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 		if (!is_numeric($club_id)) {
 			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
-		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id) && !$this->club_model->club_authorize(6, $club_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
 		}
 
 		if ($this->club_model->delete_member($club_id, $user_id)) {
@@ -168,21 +157,149 @@ class Club extends CI_Controller
 		redirect('club/permissions/'.$club_id);
 	}
 
-	public function switch_modal() {
+	/**
+	 * Set one permission level for several members at once.
+	 * Officer(9) or instance admin(99) only.
+	 * Endpoint: POST /club/batch_alter_members
+	 */
+	public function batch_alter_members() {
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$club_id = $this->input->post('club_id', true);
+		$p_level = $this->input->post('permission', true);
+
+		// Batch ops require officer or instance admin - no level 6
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard');
+		}
+
+		$ids = array_filter(array_map('intval', explode(',', (string) $this->input->post('ids', true))));
+		if (empty($ids)) {
+			$this->session->set_flashdata('error', __("No members selected."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Validate target ids against real membership before any write
+		$valid = $this->club_model->filter_valid_member_ids($club_id, $ids);
+		if (empty($valid)) {
+			$this->session->set_flashdata('error', __("None of the selected users are members of this club."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Last-officer orphan protection: demoting to <9 may leave zero officers.
+		// Only an instance admin may create that state.
+		if ((int) $p_level < 9
+			&& !$this->user_model->authorize(99)
+			&& $this->club_model->remaining_officers($club_id, $valid) < 1) {
+			$this->session->set_flashdata('error', __("Cannot proceed: this would remove the last Club Officer. An instance administrator must perform this action."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		$result = $this->club_model->batch_alter_members($club_id, $valid, $p_level);
+		if ($result === false) {
+			$this->session->set_flashdata('error', __("Club member permissions could not be updated."));
+			redirect('club/permissions/' . $club_id);
+		}
+		if ($result === 0) {
+			$this->session->set_flashdata('error', __("No members were updated."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Notify after a successful commit - email failure must not roll back DB
+		if ($this->input->post('notify_user', true) == 'on') {
+			foreach ($valid as $uid) {
+				if (!$this->club_model->notify_member($uid, $club_id, 'modified_member')) {
+					$this->session->set_flashdata('error', __("User could not be notified. Please check your email settings."));
+				}
+			}
+		}
+
+		$this->session->set_flashdata('success', sprintf(_ngettext("%d member updated.", "%d members updated.", $result), $result));
+		redirect('club/permissions/' . $club_id);
+	}
+
+	/**
+	 * Remove several members from a club at once.
+	 * Officer(9) or instance admin(99) only.
+	 * Endpoint: POST /club/batch_delete_members
+	 */
+	public function batch_delete_members() {
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$club_id = $this->input->post('club_id', true);
 		
-		$this->load->model('club_model');
+		// Batch ops require officer or instance admin - no level 6
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard');
+		}
+
+		$ids = array_filter(array_map('intval', explode(',', (string) $this->input->post('ids', true))));
+		if (empty($ids)) {
+			$this->session->set_flashdata('error', __("No members selected."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Validate target ids against real membership before any write
+		$valid = $this->club_model->filter_valid_member_ids($club_id, $ids);
+		if (empty($valid)) {
+			$this->session->set_flashdata('error', __("None of the selected users are members of this club."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		// Last-officer orphan protection: deleting may leave zero officers.
+		// Only an instance admin may create that state.
+		if (!$this->user_model->authorize(99)
+			&& $this->club_model->remaining_officers($club_id, $valid) < 1) {
+			$this->session->set_flashdata('error', __("Cannot proceed: this would remove the last Club Officer. An instance administrator must perform this action."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		$result = $this->club_model->batch_delete_members($club_id, $valid);
+		if ($result === false) {
+			$this->session->set_flashdata('error', __("Users could not be removed from club."));
+			redirect('club/permissions/' . $club_id);
+		}
+		if ($result === 0) {
+			$this->session->set_flashdata('error', __("No members were removed."));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		$this->session->set_flashdata('success', sprintf(_ngettext("%d member removed.", "%d members removed.", $result), $result));
+		redirect('club/permissions/' . $club_id);
+	}
+
+	public function switch_modal() {
+
 		$this->load->library('encryption');
 
 		$cid = $this->input->post('club_id', true);
 		$data['club_callsign'] = $this->input->post('club_callsign', true);
 		$user_id = $this->session->userdata('user_id');
 
-		if (!is_numeric($cid)) {
-			$this->session->set_flashdata('error', __("Invalid Club ID!"));
-			redirect('dashboard'); 
-		}
 		if(!$this->club_model->club_authorize(3, $cid)) { 
 			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			redirect('dashboard'); 
+		}
+		if (!is_numeric($cid)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
 		}
 
@@ -191,58 +308,4 @@ class Club extends CI_Controller
 		$this->load->view('club/clubswitch_modal', $data);
 	}
 
-	private function notification($user_id, $club_id, $message) {
-
-		$this->load->library('email');
-		$this->load->model('club_model');
-
-		switch ($message) {
-			case 'new_member':
-				$view = 'email/club/new_member';
-				break;
-			case 'modified_member':
-				$view = 'email/club/modified_member';
-				break;
-			default:
-				log_message('error', "Club Notification; Can't notify user - Invalid message type.");
-				$this->session->set_flashdata('error', __("Invalid message type."));
-				redirect('club/permissions/'.$club_id);
-				die;
-		}
-		
-		$config = [
-			'protocol' => $this->optionslib->get_option('emailProtocol'),
-			'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-			'smtp_host' => $this->optionslib->get_option('smtpHost'),
-			'smtp_port' => $this->optionslib->get_option('smtpPort'),
-			'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-			'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-			'crlf' => "\r\n",
-			'newline' => "\r\n"
-		];
-		if(!$this->email->initialize($config)) {
-			log_message('error', "Club Notification; Can't notify user - Email can't be initialized.");
-			$this->session->set_flashdata('error', __("Email can't be initialized. Check the email settings."));
-			redirect('club/permissions/'.$club_id);
-		}
-
-		$user = $this->user_model->get_by_id($user_id)->row();
-		$club = $this->user_model->get_by_id($club_id)->row();
-		$permission = $this->club_model->get_permission($club_id, $user_id);
-		$permission_level = $this->permissions[$permission] ?? __("Unknown");
-
-		$mail_data['user_callsign'] = $user->user_callsign;
-		$mail_data['club_callsign'] = $club->user_callsign;
-		$mail_data['permission_level'] = $permission_level;
-
-		$message = $this->email->load($view, $mail_data, $user->user_language);
-
-		$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-		$this->email->to($user->user_email);
-		$this->email->subject($message['subject']);
-		$this->email->message($message['body']);
-
-		return $this->email->send();
-	}
-	
 }

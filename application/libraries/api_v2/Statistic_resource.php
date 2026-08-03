@@ -109,8 +109,7 @@ class Statistic_resource extends Api_v2_resource {
 	 * token's user_id (there is no session in the API), gating the admin topics.
 	 */
 	protected function is_admin() {
-		$user = $this->CI->user_model->get_by_id($this->user_id())->row();
-		return $user !== null && (int) $user->user_type === 99;
+		return $this->CI->user_model->is_admin($this->user_id());
 	}
 
 	// --- Topics ------------------------------------------------------------
@@ -162,6 +161,7 @@ class Statistic_resource extends Api_v2_resource {
 	 *   type      comma list of lotw|eqsl|qsl|qrz|clublog (default: all)
 	 *   since     YYYY-MM-DD floor on the date a confirmation was *received*
 	 *   qso_since YYYY-MM-DD floor on the date the *QSO* was made
+	 *   qso_until YYYY-MM-DD ceiling on the date the *QSO* was made
 	 *   band      COL_BAND value, or SAT for satellite QSOs
 	 *   mode      matched against the mode or the submode
 	 *
@@ -174,27 +174,37 @@ class Statistic_resource extends Api_v2_resource {
 		$types = $this->parse_type_list('type', self::CONFIRMATION_TYPES) ?: self::CONFIRMATION_TYPES;
 		$since = $this->parse_date('since');
 		$qso_since = $this->parse_date('qso_since');
+		$qso_until = $this->parse_date('qso_until');
 		$band = $this->normalize_band($this->param('band'));
 		$mode = $this->normalize_mode($this->param('mode'));
 
 		$station_ids = $this->owner_station_ids();
 
-		$args = [$station_ids, $types, $band, $mode, $since, $qso_since];
+		$filters = [
+			'station_ids' => $station_ids,
+			'types'       => $types,
+			'since'       => $since,
+			'qso_since'   => $qso_since,
+			'qso_until'   => $qso_until,
+			'band'        => $band,
+			'mode'        => $mode,
+		];
 
 		return [
 			'counts'  => $this->shape_confirmations(
-				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['']))
+				$this->CI->logbook_model->count_confirmations_filtered($filters)
 			),
 			'by_band' => array_map([$this, 'shape_confirmations'],
-				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['band']))
+				$this->CI->logbook_model->count_confirmations_filtered($filters, 'band')
 			),
 			'by_mode' => array_map([$this, 'shape_confirmations'],
-				$this->CI->logbook_model->count_confirmations_filtered(...array_merge($args, ['mode']))
+				$this->CI->logbook_model->count_confirmations_filtered($filters, 'mode')
 			),
 			'filters' => [
 				'type'      => $types,
 				'since'     => $since ?: null,
 				'qso_since' => $qso_since ?: null,
+				'qso_until' => $qso_until ?: null,
 				'band'      => $band ?: null,
 				'mode'      => $mode ?: null,
 			],
