@@ -51,12 +51,13 @@ class Sota extends CI_Model {
 	 * Rows without coordinates are skipped because they can't be plotted.
 	 */
 	function get_directory() {
-		$sql = "SELECT reference, name, lat, lon, altitude FROM sota_directory
+		$sql = "SELECT reference, name, lat, lon, altitude
+		FROM sota_directory
 		WHERE lat IS NOT null
 		AND lon IS NOT NULL
 		ORDER by reference";
 
-		$query = $this->db->get('sota_directory');
+		$query = $this->db->query($sql);
 
 		$result = [];
 		foreach ($query->result() as $row) {
