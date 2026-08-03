@@ -5844,7 +5844,8 @@ msgstr "预设"
 msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
-msgstr "不知道需要哪些作用域？选择您想使用的工具，我们将为您自动选择相应的范围。"
+msgstr ""
+"不知道需要哪些作用域？选择您想使用的工具，我们将为您自动选择相应的范围。"
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
@@ -8070,8 +8071,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -19967,9 +19968,9 @@ msgstr ""
 "收到的交换信息以点 %s 开始，发送的交换以逗号 %s 开始。最后两行是等效的：即空"
 "格和顺序都不重要。上面每四行简单地说明了一种交换类型（仅序列号，仅文本，或两"
 "者都有）；注意发送的交换是持续性的：一旦设置，它会自动带入后续的 QSOs（每当下"
-"一行包含接收到的交换或单个逗号 %s）直到您更改或清除它。要自动递增发送的序列号"
-"，将 %s 添加到 QSO 行中以及初始发送的交换（它在自己的行上不起作用）。要停用，"
-"请使用 %s:"
+"一行包含接收到的交换或单个逗号 %s）直到您更改或清除它。要自动递增发送的序列"
+"号，将 %s 添加到 QSO 行中以及初始发送的交换（它在自己的行上不起作用）。要停"
+"用，请使用 %s:"
 
 #: application/views/simplefle/syntax_help.php:79
 #, php-format
@@ -20874,8 +20875,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -22391,6 +22392,10 @@ msgstr "在地图上显示"
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr "未发现分区问题。所有 QSO 都具有正确的分区信息。"
 
+#: application/views/cron/index.php:77
+msgid "Interval"
+msgstr ""
+
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
 #~ msgstr "错误的时间格式，请输入HH:MM格式的时间，例如：13:31。"
 
@@ -23859,8 +23864,8 @@ msgstr "未发现分区问题。所有 QSO 都具有正确的分区信息。"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
