@@ -657,11 +657,10 @@ class QSO extends CI_Controller {
 	 * Function is used for autocompletion of SOTA in the QSO entry form
 	 */
 	public function get_sota() {
-		$this->load->library('sota');
-		$json = [];
-
 		$query = $this->input->get('query', TRUE) ?? FALSE;
-		$json = $this->sota->get($query);
+
+		$this->load->model('sota');
+		$json = $this->sota->search_refs($query);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
