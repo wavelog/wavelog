@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-02 05:24+0000\n"
-"PO-Revision-Date: 2026-08-03 12:17+0000\n"
+"PO-Revision-Date: 2026-08-03 13:15+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -4083,7 +4083,7 @@ msgstr "GeoJSON-gegevens niet beschikbaar"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "Ongeldige locatorvak"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4191,85 +4191,87 @@ msgstr "Stad / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "Lees clubleden"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Beheer rechten van clubleden"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Clubleden verwijderen"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "Zoek roepnamen en locatorvakken op"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "Lees QSOs"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "Maken en bijwerken van QSO's"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "QSOs verwijderen"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "Lees radio's"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "Maken en bijwerken van radio's"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "Verwijder radio's"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "Lees stationlocaties"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "Maken en bijwerken van stationlocaties"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "Stationlocaties verwijderen"
 
 #: application/libraries/api_v2/Statistic_resource.php:52
 msgid "Read statistics"
-msgstr ""
+msgstr "Lees statistieken"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " (min. 2.1.0)"
 
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"Radiobesturing en QSO-upload van WSJT-X, JTDX en soortgenoten. Vereist ten "
+"minste versie 2.1.0 van WaveLogGate."
 
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
-msgstr ""
+msgstr "Alleen lezen"
 
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
-msgstr ""
+msgstr "Lees toegang tot alles, geen wijzigingen aan je gegevens."
 
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
-msgstr ""
+msgstr "Alleen statistieken"
 
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "Alleen statistieken, geen wijzigingen aan je gegevens."
 
 #: application/models/Club_model.php:12
 msgid "Club Officer"
@@ -4418,6 +4420,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
+"QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
+"CALL. Dit QSO is niet geïmporteerd. Het is ongeldig,"
 
 #: application/models/Logbook_model.php:4685
 #, php-format
@@ -4425,6 +4429,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
+"QSO op %s: Je probeerde een QSO te importeren met een ongeldig CALL. Dit QSO "
+"is niet geïmporteerd. De ongeldige invoer is '%s'."
 
 #: application/models/Logbook_model.php:4755
 #, php-format
@@ -4432,6 +4438,8 @@ msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
+"QSO op %s: Band '%s' staat niet in de bandconfiguratie. Deze QSO is niet "
+"geïmporteerd."
 
 #: application/models/Logbook_model.php:4762
 #, php-format
@@ -4563,7 +4571,7 @@ msgstr "In de categorie Contacten moeten de titels van de notities uniek zijn."
 #: application/models/Qslpostcard_model.php:440
 msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
-msgstr ""
+msgstr "!!! GEEN VERZENDBAAR ADRES GEVONDEN !!!"
 
 #: application/models/Update_model.php:405
 msgid "Newer release available:"
@@ -5849,7 +5857,7 @@ msgstr "Status"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "Maak een nieuw API-token"
 
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5878,34 +5886,37 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"Maak een token aan met gedetailleerde permissies (scopes). Het token wordt "
+"slechts één keer getoond wanneer het wordt aangemaakt, dus kopieer het "
+"meteen."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "Tokennaam"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "bijv. Mijn logboekhulpmiddel"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "Een naam om je te helpen deze token later te herkennen."
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "Vervalt"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30 dagen"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90 dagen"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1 jaar"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -5916,26 +5927,28 @@ msgstr "Nooit"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "Wanneer het token zou moeten stoppen met werken."
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"Een token dat nooit verloopt, blijft geldig totdat je het handmatig "
+"verwijdert. Dit is mogelijk, maar niet aanbevolen om veiligheidsredenen."
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "Scopes"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "Selecteer welke delen van de API v2 deze token mag benaderen."
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "Selecteer alstublieft ten minste één scope."
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:149
@@ -5947,6 +5960,8 @@ msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
+"Weet je niet welke scopes je nodig hebt? Kies het gereedschap dat je wilt "
+"gebruiken en wij selecteren de scopes voor jou."
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
@@ -5964,6 +5979,8 @@ msgid ""
 "A preset replaces your current selection. You can still adjust the scopes "
 "afterwards."
 msgstr ""
+"Een voorinstelling vervangt je huidige selectie. Je kunt de scopes daarna "
+"nog steeds aanpassen."
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -5991,7 +6008,7 @@ msgstr "Annuleren"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "Token maken"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -6029,15 +6046,16 @@ msgstr "Opslaan"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "Nieuw API-token"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
 msgstr ""
+"Kopieer dit token nu. Om veiligheidsredenen wordt het niet opnieuw getoond."
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "Je API-token"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -6048,13 +6066,16 @@ msgstr "Kopiëren naar klembord"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "Verouderde API-sleutels (API v1)"
 
 #: application/views/api/index.php:11
+#, fuzzy
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"Nieuwe integraties zouden de API v2-tokens hieronder moeten gebruiken, als "
+"het systeem van de derde partij dit ondersteunt."
 
 #: application/views/api/index.php:11
 msgid ""
@@ -6080,7 +6101,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "Links naar software van derden dat werkt met Wavelog API v1:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6176,7 +6197,7 @@ msgstr "Test"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6197,7 +6218,7 @@ msgstr "Maak een alleen-lezen sleutel aan"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "API Tokens (API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6205,21 +6226,26 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"API-tokens verlenen toegang tot de REST API v2 met gedetailleerde "
+"toestemmingen (scopes). De token wordt slechts één keer getoond wanneer deze "
+"wordt aangemaakt, dus kopieer het direct."
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "De API v2 documentatie is te vinden %shier%s."
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "De basis-URL van de API v2 voor dit Wavelog-exemplaar is"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"Op clubstations zijn de API-sleutels persoonlijk en worden niet gedeeld. "
+"Gebruikers van clubstations kunnen alleen hun eigen sleutels zien."
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6254,7 +6280,7 @@ msgstr "Naam"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "Verloopt"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6263,11 +6289,12 @@ msgstr "Verlopen"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "Weet je zeker dat je de API-sleutel %s wilt verwijderen?"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr ""
+"Je hebt nog geen API Tokens. Klik op de knop hieronder om er een te maken."
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
