@@ -44,6 +44,32 @@ class Wwff extends CI_Model {
 		return $json;
 	}
 
+	/*
+	 * The full WWFF reference directory with coordinates.
+	 * Powers the optional clustered overlay on the Gridsquare Lookup map. Rows without coordinates are
+	 * skipped because they can't be plotted.
+	 */
+	function get_directory() {
+		$sql = "SELECT reference, name, lat, lon
+			FROM wwff_directory
+			WHERE lat IS NOT NULL AND lon IS NOT NULL
+			ORDER BY reference ASC";
+
+		$query = $this->db->query($sql);
+
+		$result = [];
+		foreach ($query->result() as $row) {
+			$result[] = [
+				'reference' => $row->reference,
+				'name'      => $row->name,
+				'lat'       => (float) $row->lat,
+				'lon'       => (float) $row->lon,
+			];
+		}
+
+		return $result;
+	}
+
 	function get_map_data($postdata, $location_list) {
 		$bindings = [];
 

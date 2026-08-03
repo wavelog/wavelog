@@ -74,7 +74,12 @@ class Gridlookup extends CI_Controller {
 		$data['overlays']   = array_merge($overlays, $states);
 		$data['page_title'] = __("Gridsquare Lookup");
 
-		$footerData['scripts'] = array('assets/js/sections/gridlookup.js');
+		$footerData['scripts'] = array(
+			'assets/js/sections/gridlookup.js',
+			'assets/js/leaflet/leaflet.markercluster.js',
+		);
+
+
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('gridlookup/index');
@@ -119,5 +124,63 @@ class Gridlookup extends CI_Controller {
 		}
 
 		echo json_encode(null);
+	}
+
+	/*
+	 * AJAX: the full WWFF reference directory (reference, name, lat, lon) for the
+	 * optional clustered overlay on this map. Toggled from the page itself (default off).
+	 */
+	public function wwff_directory() {
+		$this->load->model('wwff');
+		$json = json_encode($this->wwff->get_directory());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
+	public function pota_directory() {
+		$this->load->model('pota');
+		$json = json_encode($this->pota->get_directory());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
+	public function sota_directory() {
+		$this->load->model('sota');
+		$json = json_encode($this->sota->get_directory());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
 	}
 }
