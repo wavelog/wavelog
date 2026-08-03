@@ -36,10 +36,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-02 05:24+0000\n"
-"PO-Revision-Date: 2026-07-27 14:26+0000\n"
+"PO-Revision-Date: 2026-08-03 12:16+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -448,27 +448,27 @@ msgstr "已删除 API Key %s"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "请提供令牌名称"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "请至少选择一个范围"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "已生成API令牌"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "无法生成API令牌"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "无效的API令牌"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "API令牌已删除"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:192
@@ -959,45 +959,45 @@ msgstr "无法将成员移出集体台站。"
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "未选择成员。"
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "所选用户中没有一个是该俱乐部的成员。"
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
-msgstr ""
+msgstr "无法继续：这将移除最后一名俱乐部管理员。必须由实例管理员执行此操作。"
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "无法更新俱乐部成员权限。"
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "没有成员被更新。"
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
+msgstr[0] "已更新%d个成员。"
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "用户无法从俱乐部中移除。"
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "没有成员被移除。"
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
+msgstr[0] "已移除%d个成员。"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1556,7 +1556,7 @@ msgstr "已确认的"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ 分区"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1567,12 +1567,12 @@ msgstr "分区"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "州/省"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:330
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "网格查询"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
@@ -2837,11 +2837,11 @@ msgstr "OQRS"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "请输入一个有效的日期。"
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "请输入一个有效的时间。"
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -4023,11 +4023,11 @@ msgstr "网格区域查找器"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "GeoJSON 数据不可用"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "无效的网格"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4135,85 +4135,87 @@ msgstr "市 / 区 / 郡"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "读取俱乐部成员"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "管理俱乐部成员权限"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "移除俱乐部成员"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "查询呼号和网格"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "读取QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "创建并更新QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "删除QSO"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "读取电台"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "创建并更新电台"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "删除电台"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "读取台站位置"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "创建并更新台站位置"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "删除台站位置"
 
 #: application/libraries/api_v2/Statistic_resource.php:52
 msgid "Read statistics"
-msgstr ""
+msgstr "读取统计数据"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " (min. 2.1.0)"
 
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"通过WSJT-X、JTDX及其它工具进行电台控制和QSO上传。需要WaveLogGate至少版本"
+"2.1.0。"
 
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
-msgstr ""
+msgstr "只读"
 
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
-msgstr ""
+msgstr "可读取所有内容，不可修改您的数据。"
 
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
-msgstr ""
+msgstr "仅统计"
 
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "仅统计，不可修改您的数据。"
 
 #: application/models/Club_model.php:12
 msgid "Club Officer"
@@ -5741,7 +5743,7 @@ msgstr "状态"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "创建新的API令牌"
 
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5770,34 +5772,36 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"创建一个具有细分权限（作用域）的令牌。该令牌在创建时仅显示一次，因此请立即复"
+"制。"
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "令牌名称"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "例如：我的日志工具"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "起一个名字帮你日后识别这个令牌。"
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "过期"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30天"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90天"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1年"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -5808,26 +5812,28 @@ msgstr "从不"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "令牌应该在什么时候停止工作。"
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"一个永不过期的令牌在你手动删除之前一直有效。虽然这是可行的，但出于安全考虑不"
+"建议这样做。"
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "作用域"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "选择此令牌可访问 API v2 的哪些部分。"
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "请至少选择一个作用域。"
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:149
@@ -5838,7 +5844,7 @@ msgstr "预设"
 msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
-msgstr ""
+msgstr "不知道需要哪些作用域？选择您想使用的工具，我们将为您自动选择相应的范围。"
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
@@ -5855,7 +5861,7 @@ msgstr "重置筛选条件"
 msgid ""
 "A preset replaces your current selection. You can still adjust the scopes "
 "afterwards."
-msgstr ""
+msgstr "预设将替换当前的选中内容。之后仍可调整范围。"
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -5883,7 +5889,7 @@ msgstr "取消"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "创建令牌"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -5921,15 +5927,15 @@ msgstr "保存"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "新API令牌"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
-msgstr ""
+msgstr "立即复制此令牌。出于安全考虑，该令牌将不再显示。"
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "你的API令牌"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -5940,13 +5946,13 @@ msgstr "复制到剪贴板"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "传统API令牌（API v1）"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
-msgstr ""
+msgstr "如果第三方系统支持，新的集成应使用下方的API v2令牌。"
 
 #: application/views/api/index.php:11
 msgid ""
@@ -5969,7 +5975,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "与 Wavelog API v1 兼容的第三方软件链接："
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6063,7 +6069,7 @@ msgstr "测试"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6084,7 +6090,7 @@ msgstr "创建 只读 权限的 API Key"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "API 令牌(API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6092,21 +6098,25 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"API令牌可授予对REST API v2的访问权限，并具有细分的权限（作用域）。令牌在创建"
+"时仅显示一次，因此请立即复制。"
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "API v2 文档可在%s此处%s找到。"
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "此 Wavelog 实例的 API v2 默认URL 是"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"在俱乐部台站中，API令牌是个人专属的，不会共享。俱乐部台站用户只能查看自己的令"
+"牌。"
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6141,7 +6151,7 @@ msgstr "名称"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "有效期"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6150,11 +6160,11 @@ msgstr "过期"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "您确定要删除 API 令牌 %s 吗？"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
-msgstr ""
+msgstr "您目前还没有 API 令牌。请点击下方按钮创建一个。"
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
@@ -8610,11 +8620,11 @@ msgstr "QSO 日期"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "加载WWFF地图数据失败"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "WWFF 参考信息不适用于这些过滤器。"
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
@@ -8624,7 +8634,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "未展示（无坐标）"
 
 #: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -9816,7 +9826,7 @@ msgstr "QSO"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr ""
+msgstr "在您的日志簿中未找到包含 %s 的 QSO。"
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -9850,7 +9860,7 @@ msgstr "位置"
 
 #: application/views/calltester/call_info.php:79
 msgid "QSL card"
-msgstr ""
+msgstr "QSL卡片"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -9876,12 +9886,12 @@ msgstr ""
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "执行时间"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "发现问题"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -9954,7 +9964,7 @@ msgstr "结果 ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "显示此呼号的所有QSO"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -9995,11 +10005,11 @@ msgstr ""
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "潜在的错误DXCC"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
-msgstr ""
+msgstr "未发现DXCC问题。所有呼号均具有正确的DXCC信息。"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -10191,7 +10201,7 @@ msgstr "当前没有用户可以访问这个集体台站。"
 
 #: application/views/club/permissions.php:271
 msgid "Edit Selected"
-msgstr ""
+msgstr "编辑已选内容"
 
 #: application/views/club/permissions.php:274
 #: application/views/contesting/manager/index.php:23
@@ -10251,11 +10261,11 @@ msgstr "角色：%s"
 
 #: application/views/club/permissions.php:409
 msgid "Edit Selected Members"
-msgstr ""
+msgstr "编辑已选成员"
 
 #: application/views/club/permissions.php:415
 msgid "Set the permission level for all selected members:"
-msgstr ""
+msgstr "为所有选定的成员设置权限级别："
 
 #: application/views/club/permissions.php:426
 msgid "Notify the users via email about the change"
