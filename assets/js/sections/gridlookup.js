@@ -11,6 +11,8 @@
 	let measurementBase = cfg.measurementBase || 'M';
 	let stateUrl        = cfg.stateUrl || '';
 	let wwffUrl         = cfg.wwffUrl || '';
+	let potaUrl         = cfg.potaUrl || '';
+	let sotaUrl         = cfg.sotaUrl || '';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -19,7 +21,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -349,6 +351,78 @@
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
 	}
+	function enablePota() {
+		if (!potaUrl) { return; }
+		if (potaCluster) { map.addLayer(potaCluster); return; }      // cached after first load
+		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
+
+		fetch(potaUrl)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				potaCluster = L.markerClusterGroup({
+					chunkedLoading: true,
+					maxClusterRadius: 50,
+					showCoverageOnHover: false
+				});
+				for (var i = 0; i < data.length; i++) {
+					var D = data[i];
+					if (D.lat == null || D.lon == null) { continue; }
+					var dot = L.circleMarker([D.lat, D.lon], {
+						radius: 6,
+						weight: 1,
+						color: '#fff',
+						fillColor: '#238b45',
+						fillOpacity: 0.9
+					});
+					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
+					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
+						(D.name ? '<br>' + esc(D.name) : '') +
+						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					potaCluster.addLayer(dot);
+				}
+				map.addLayer(potaCluster);
+			})
+			.catch(function (err) { console.error('POTA directory load failed:', err); });
+	}
+	function disablePota() {
+		if (potaCluster) { map.removeLayer(potaCluster); }
+	}
+	function enableSota() {
+		if (!sotaUrl) { return; }
+		if (sotaCluster) { map.addLayer(sotaCluster); return; }      // cached after first load
+		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
+
+		fetch(sotaUrl)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				sotaCluster = L.markerClusterGroup({
+					chunkedLoading: true,
+					maxClusterRadius: 50,
+					showCoverageOnHover: false
+				});
+				for (var i = 0; i < data.length; i++) {
+					var D = data[i];
+					if (D.lat == null || D.lon == null) { continue; }
+					var dot = L.circleMarker([D.lat, D.lon], {
+						radius: 6,
+						weight: 1,
+						color: '#fff',
+						fillColor: '#d95f0e',
+						fillOpacity: 0.9
+					});
+					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
+					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
+						(D.name ? '<br>' + esc(D.name) : '') +
+						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					sotaCluster.addLayer(dot);
+				}
+				map.addLayer(sotaCluster);
+			})
+			.catch(function (err) { console.error('SOTA directory load failed:', err); });
+	}
+	function disableSota() {
+		if (sotaCluster) { map.removeLayer(sotaCluster); }
+	}
 
 	/* ---- CQ / ITU zone resolution (coordinate -> zone, client-side) ---- */
 
@@ -468,6 +542,18 @@
 		if (wwffCb) {
 			wwffCb.addEventListener('change', function () {
 				if (this.checked) { enableWwff(); } else { disableWwff(); }
+			});
+		}
+		var potaCb = document.getElementById('glPotaDir');
+		if (potaCb) {
+			potaCb.addEventListener('change', function () {
+				if (this.checked) { enablePota(); } else { disablePota(); }
+			});
+		}
+		var sotaCb = document.getElementById('glSotaDir');
+		if (sotaCb) {
+			sotaCb.addEventListener('change', function () {
+				if (this.checked) { enableSota(); } else { disableSota(); }
 			});
 		}
 

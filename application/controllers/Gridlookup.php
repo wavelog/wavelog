@@ -147,4 +147,40 @@ class Gridlookup extends CI_Controller {
 		header('Content-Type: application/json');
 		echo $json;
 	}
+
+	public function pota_directory() {
+		$this->load->model('pota');
+		$json = json_encode($this->pota->get_directory());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
+	public function sota_directory() {
+		$this->load->model('sota');
+		$json = json_encode($this->sota->get_directory());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
 }
