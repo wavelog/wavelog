@@ -2,6 +2,26 @@
 
 class Pota extends CI_Model {
 
+	function search_refs($term) {
+		$json = [];
+		$ref = strtoupper(trim((string) $term));
+		if ($ref === '') {
+			return $json;
+		}
+
+		$this->db->select('reference');
+		$this->db->like('reference', $ref, 'after');
+		$this->db->order_by('reference', 'asc');
+		$this->db->limit(100);
+		$q = $this->db->get('pota_directory');
+
+		foreach ($q->result() as $row) {
+			$json[] = ['name' => $row->reference];
+		}
+
+		return $json;
+	}
+
 	function get_all() {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
