@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-02 05:24+0000\n"
-"PO-Revision-Date: 2026-07-29 08:13+0000\n"
+"PO-Revision-Date: 2026-08-03 12:16+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -425,27 +425,27 @@ msgstr "La chiave %s è stata cancellata"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Per favore fornisci un nome per il token"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Seleziona almeno un scope"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "Token API generato"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "Impossibile generare il Token API"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Token API non valido"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "Il token API è stato eliminato"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:192
@@ -938,47 +938,49 @@ msgstr "L'utente non può essere rimosso dal club."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Nessun membro selezionato."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Nessuno degli utenti selezionati è membro di questo club."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Impossibile procedere: ciò rimuoverebbe l'ultimo Club Officier. Questa "
+"azione deve essere eseguita da un amministratore dell'istanza."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Non è stato possibile aggiornare i permessi del membro del club."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Nessun membro è stato aggiornato."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d membro aggiornato."
+msgstr[1] "%d membri aggiornati."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Gli utenti non possono essere rimossi dal club."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Nessun membro è stato rimosso."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d membro rimosso."
+msgstr[1] "%d membri rimossi."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1550,7 +1552,7 @@ msgstr "Conferme"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "Zone CQ"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1561,12 +1563,12 @@ msgstr "Zone"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Stati / Province"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:330
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "Gridsquare lookup"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
@@ -2857,11 +2859,11 @@ msgstr "Richieste OQRS"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Per favore inserisci una data valida."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Per favore inserisci un orario valido."
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -4093,7 +4095,7 @@ msgstr "Dati GeoJSON non disponibili"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "Griglia non valida"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4203,85 +4205,87 @@ msgstr "Città / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "Leggi i membri del club"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Gestisci i permessi dei membri del club"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Rimuovi i membri del club"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "Ricerca nominativi e griglie"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "Leggi i QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "Crea e aggiorna i QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "Elimina i QSO"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "Leggi le radio"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "Crea e aggiorna le radio"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "Elimina radio"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "Leggi le posizioni delle stazioni"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "Crea e aggiorna le posizioni delle stazioni"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "Elimina le posizioni delle stazioni"
 
 #: application/libraries/api_v2/Statistic_resource.php:52
 msgid "Read statistics"
-msgstr ""
+msgstr "Leggi le statistiche"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " (min. 2.1.0)"
 
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"Controllo radio e caricamento QSO da WSJT-X, JTDX e affini. Richiede almeno "
+"la versione 2.1.0 di WaveLogGate."
 
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
-msgstr ""
+msgstr "Sola lettura"
 
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
-msgstr ""
+msgstr "Accesso in lettura a tutto, nessuna modifica ai tuoi dati."
 
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
-msgstr ""
+msgstr "Solo statistiche"
 
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "Solo statistiche, nessuna modifica ai tuoi dati."
 
 #: application/models/Club_model.php:12
 msgid "Club Officer"
@@ -5868,7 +5872,7 @@ msgstr "Stato"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "Crea un nuovo token API"
 
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5897,34 +5901,36 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"Crea un token con permessi granulari (scopes). Il token viene mostrato solo "
+"una volta quando viene creato, quindi copialo subito."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "Nome del Token"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "ad es. il mio tool di logging"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "Un nome per aiutarti a riconoscere questo token in seguito."
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "Scadenza"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30 giorni"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90 giorni"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1 anno"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -5935,26 +5941,28 @@ msgstr "Mai"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "Quando il token dovrebbe smettere di funzionare."
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"Un token che non scade mai rimane valido finché non lo elimini manualmente. "
+"Questo è possibile, ma non raccomandato per motivi di sicurezza."
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "Scopes"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "Seleziona quali parti dell'API v2 questo token può accedere."
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "Seleziona almeno un scope."
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:149
@@ -5966,6 +5974,8 @@ msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
+"Non sai quali scope ti servono? Scegli lo strumento che vuoi usare e "
+"selezioneremo gli scope per te."
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
@@ -5983,6 +5993,8 @@ msgid ""
 "A preset replaces your current selection. You can still adjust the scopes "
 "afterwards."
 msgstr ""
+"Un preset sostituisce la selezione corrente. Puoi ancora regolare i scope "
+"successivamente."
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -6010,7 +6022,7 @@ msgstr "Annulla"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "Crea token"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -6048,15 +6060,17 @@ msgstr "Salva"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "Nuovo Token API"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
 msgstr ""
+"Copia questo token ora. Per motivi di sicurezza non verrà mostrato "
+"nuovamente."
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "Il tuo token API"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -6067,13 +6081,15 @@ msgstr "Copia"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "Chiavi API legacy (API v1)"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"Le nuove integrazioni dovrebbero utilizzare i token API v2 qui sotto, se il "
+"sistema di terze parti li supporta."
 
 #: application/views/api/index.php:11
 msgid ""
@@ -6099,7 +6115,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "Link a software di terze parti che funziona con l'API v1 di Wavelog:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6195,7 +6211,7 @@ msgstr "Test"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6216,7 +6232,7 @@ msgstr "Crea una chiave di sola lettura"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "Token API (API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6224,21 +6240,26 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"I Token API concedono l'accesso alla REST API v2 con permessi granulari "
+"(scopes). Il token viene mostrato solo una volta quando viene creato, "
+"pertanto copialo immediatamente."
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "La documentazione dell'API v2 si trova %squi%s."
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "L'URL di base dell'API v2 per questa istanza di Wavelog è"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"Sulle Clubstation i Token API sono personali e non condivisi. Gli utenti "
+"delle Clubstation possono vedere solo i propri token."
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6273,7 +6294,7 @@ msgstr "Nome"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "Scade"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6282,11 +6303,12 @@ msgstr "Scaduto"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "Sei sicuro di voler eliminare il token API %s?"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr ""
+"Non hai ancora token API. Fai clic sul pulsante qui sotto per crearne uno."
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
@@ -8881,21 +8903,23 @@ msgstr "Data QSO"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "Errore nel caricamento dei dati della mappa WWFF"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "Nessuna referenza WWFF lavorata con questi filtri."
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
 msgstr ""
+"Directory WWFF non caricata - coordinate mancanti. Esegui il cron job "
+"update_wwff."
 
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "Non mostrato (Nessuna coordinata)"
 
 #: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -10176,18 +10200,18 @@ msgstr "Risultati della classe DXCC"
 #: application/views/calltester/comparison_result.php:46
 #: application/views/calltester/comparison_result.php:53
 msgid "Calls tested"
-msgstr ""
+msgstr "Nominativi testati"
 
 #: application/views/calltester/comparison_result.php:47
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "Tempo di esecuzione"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "Problemi riscontrati"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -10261,7 +10285,7 @@ msgstr "Risultato ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "Mostra tutti i QSO con questo nominativo"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -10300,15 +10324,17 @@ msgstr "Confronta la classe DXCC e il registro"
 
 #: application/views/calltester/result.php:5
 msgid "Callsigns tested"
-msgstr ""
+msgstr "Nominativi testati"
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "Possibile DXCC errato"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
 msgstr ""
+"Nessun problema DXCC trovato. Tutti i nominativi hanno informazioni DXCC "
+"corrette."
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -10513,7 +10539,7 @@ msgstr "Nessun utente ha attualmente accesso a questo club/sezione."
 
 #: application/views/club/permissions.php:271
 msgid "Edit Selected"
-msgstr ""
+msgstr "Modifica selezionato"
 
 #: application/views/club/permissions.php:274
 #: application/views/contesting/manager/index.php:23
@@ -10575,27 +10601,27 @@ msgstr "Ruolo: %s"
 
 #: application/views/club/permissions.php:409
 msgid "Edit Selected Members"
-msgstr ""
+msgstr "Modifica i membri selezionati"
 
 #: application/views/club/permissions.php:415
 msgid "Set the permission level for all selected members:"
-msgstr ""
+msgstr "Imposta il livello di autorizzazione per tutti i membri selezionati:"
 
 #: application/views/club/permissions.php:426
 msgid "Notify the users via email about the change"
-msgstr ""
+msgstr "Notifica agli utenti tramite email del cambiamento"
 
 #: application/views/club/permissions.php:443
 msgid "Delete Selected Members"
-msgstr ""
+msgstr "Elimina i membri selezionati"
 
 #: application/views/club/permissions.php:449
 msgid "Are you sure you want to delete the selected users from the club?"
-msgstr ""
+msgstr "Sei sicuro di voler eliminare gli utenti selezionati dal club?"
 
 #: application/views/club/permissions.php:450
 msgid "user(s) will be removed."
-msgstr ""
+msgstr "l'utente/gli utenti verranno rimossi."
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
@@ -11076,11 +11102,11 @@ msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "per operatore"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
-msgstr ""
+msgstr "Rosso: solo anteprima. Verde: questo numero è riservato per te."
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -11783,15 +11809,15 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "Serie di Numero Seriale"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "Condiviso da tutti gli operatori"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "Una serie per operatore"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -11799,6 +11825,10 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"I numeri di serie vengono assegnati dal server in modo che lo stesso numero "
+"non venga mai utilizzato due volte, anche quando diversi operatori "
+"registrano contemporaneamente. La maggior parte dei contest si aspetta una "
+"singola serie condivisa per stazione."
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -14280,34 +14310,35 @@ msgstr "Torna al cruscotto"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"Gridsquare non valido — usa 2, 4, 6, 8 o 10 caratteri (es. FN, FN31, FN31pr)."
 
 #: application/views/gridlookup/index.php:25
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "Localizzatore Maidenhead di 2, 4, 6, 8 o 10 caratteri"
 
 #: application/views/gridlookup/index.php:25
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "ad es. FN31pr"
 
 #: application/views/gridlookup/index.php:26
 msgid "to"
-msgstr ""
+msgstr "a"
 
 #: application/views/gridlookup/index.php:29
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "Secondo locatore opzionale per distanza e direttrice (bearing)"
 
 #: application/views/gridlookup/index.php:29
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "ad es. JN58qm"
 
 #: application/views/gridlookup/index.php:30
 msgid "Go"
-msgstr ""
+msgstr "Vai"
 
 #: application/views/gridlookup/index.php:34
 msgid "Maidenhead grid"
-msgstr ""
+msgstr "Griglia Maidenhead"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -15111,7 +15142,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:212
 msgid "World Wide Flora Fauna (WWFF)"
-msgstr ""
+msgstr "World Wide Flora Fauna (WWFF)"
 
 #: application/views/interface_assets/header.php:219
 msgid "AMSAT Rover"
@@ -19645,6 +19676,9 @@ msgid ""
 "Satellite appears below the horizon (elevation %s°). The stored TLE may be "
 "outdated for this QSO time. Do you really want to log this QSO?"
 msgstr ""
+"Il satellite appare sotto l'orizzonte (elevazione %s°). Il TLE memorizzato "
+"potrebbe essere obsoleto per questo orario di QSO. Vuoi davvero registrare "
+"questo QSO?"
 
 #: application/views/qso/index.php:41
 msgid "Please wait before saving another QSO"
@@ -20556,7 +20590,7 @@ msgid "The first QSO"
 msgstr "Il primo QSO"
 
 #: application/views/simplefle/syntax_help.php:18
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "To begin, ensure you have already filled in the form on the left with the "
 "date, station call, and operator's call. The main data includes the band (or "
@@ -20666,6 +20700,16 @@ msgid ""
 "sent serial, add %s to a QSO line together with an initial sent exchange (it "
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
+"L'exchange ricevuto deve essere preceduto da un punto %s, l'exchange inviato "
+"da una virgola %s. Le ultime due righe sono equivalenti - cioè, gli spazi "
+"non contano e nemmeno l'ordine conta. Ciascuna delle quattro righe sopra "
+"illustra semplicemente un tipo di exchange (solo seriale, solo testo, o "
+"entrambi); nota che l'exchange inviato è \"sticky\": una volta impostato, "
+"viene portato automaticamente nei QSO successivi (ogni volta che la riga "
+"successiva contiene un exchange ricevuto o una singola virgola %s) finché "
+"non lo cambi o lo cancelli. Per incrementare automaticamente il seriale "
+"inviato, aggiungi %s a una riga di QSO insieme a un exchange inviato "
+"iniziale (non funziona su una riga a sé stante). Per disattivarlo, usa %s:"
 
 #: application/views/simplefle/syntax_help.php:79
 #, php-format
@@ -20673,6 +20717,8 @@ msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use %s:"
 msgstr ""
+"Qui, il primo qso utilizza il seriale impostato 1, e il secondo userà 2 come "
+"seriale. Se vuoi cancellare il tuo exchange inviato, usa %s:"
 
 #: application/views/simplefle/syntax_help.php:84
 #, php-format
@@ -20680,6 +20726,9 @@ msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange %s would have been set also."
 msgstr ""
+"Prima, tutto il precedente exchange viene cancellato, poi viene impostato "
+"solo un numero seriale. Altrimenti sarebbe stato impostato anche il "
+"precedente exchange %s."
 
 #: application/views/simplefle/syntax_help.php:86
 msgid "Time zone"
@@ -20692,10 +20741,15 @@ msgid ""
 "(or the short form %s) followed by the signed hour offset. All following QSO "
 "times are then converted to UTC until you change the offset again:"
 msgstr ""
+"Se effettui il log in orario locale invece di UTC, dichiara il tuo offset "
+"una volta con %s (o la forma abbreviata %s) seguito dall'offset orario "
+"segnato. Tutti gli orari dei QSO successivi vengono quindi convertiti in UTC "
+"fino a quando non cambi nuovamente l'offset:"
 
 #: application/views/simplefle/syntax_help.php:92
 msgid "Here, the QSO logged at 14:00 local time is stored as 12:00 UTC."
 msgstr ""
+"Qui, il QSO registrato alle 14:00 ora locale è archiviato come 12:00 UTC."
 
 #: application/views/simplefle/syntax_help.php:95
 #, php-format
@@ -23215,11 +23269,13 @@ msgstr "CQz geojson"
 
 #: application/views/zonechecker/result.php:99
 msgid "Show on map"
-msgstr ""
+msgstr "Mostra sulla mappa"
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
+"Nessun problema di zona trovato. Tutti i QSO hanno informazioni di zona "
+"corrette."
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
 #~ msgstr ""
