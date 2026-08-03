@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-02 05:24+0000\n"
-"PO-Revision-Date: 2026-06-27 14:16+0000\n"
-"Last-Translator: PE1PQX <Andre@pe1pqx.eu>\n"
+"PO-Revision-Date: 2026-08-03 12:17+0000\n"
+"Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
 "Language: nl_NL\n"
@@ -423,27 +423,27 @@ msgstr "API sleutel %s is verwijderd"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Geef een tokennaam op"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Selecteer alstublieft ten minste één scope"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "API-token gegenereerd"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "Kon API-token niet genereren"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Ongeldige API-token"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "API-token is verwijderd"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:192
@@ -935,47 +935,49 @@ msgstr "Gebruiker kon niet uit de club worden verwijderd."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Geen leden geselecteerd."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Geen van de geselecteerde gebruikers zijn lid van deze club."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Kan niet doorgaan: dit zou de laatste Club official verwijderen. Een "
+"instantiebeheerder moet deze actie uitvoeren."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Machtigingen van clubleden konden niet worden bijgewerkt."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Er zijn geen leden bijgewerkt."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d lid bijgewerkt."
+msgstr[1] "%d leden bijgewerkt."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Gebruikers konden niet uit de club worden verwijderd."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Er zijn geen leden verwijderd."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d lid verwijderd."
+msgstr[1] "%d leden verwijderd."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1117,18 +1119,20 @@ msgstr "Alleen clubstationfunctionarissen kunnen verwijderen."
 
 #: application/controllers/Contesting.php:790
 msgid "No contest sessions selected."
-msgstr ""
+msgstr "Geen contestsessies geselecteerd."
 
 #: application/controllers/Contesting.php:798
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d contestsessie verwijderd."
+msgstr[1] "%d contestsessies verwijderd."
 
 #: application/controllers/Contesting.php:800
 msgid "There was an error deleting the contest sessions. Please try again."
 msgstr ""
+"Er is een fout opgetreden bij het verwijderen van de contest-sessie. Probeer "
+"het opnieuw."
 
 #: application/controllers/Contesting.php:1014
 msgid "Operator switching is disabled."
@@ -1189,27 +1193,27 @@ msgstr "Cron Manager"
 
 #: application/controllers/Cron.php:176
 msgid "Manual execution of cronjobs is disabled."
-msgstr ""
+msgstr "Handmatige uitvoering van cronjobs is uitgeschakeld."
 
 #: application/controllers/Cron.php:186
 msgid "Cronjob not found."
-msgstr ""
+msgstr "Cronjob niet gevonden."
 
 #: application/controllers/Cron.php:192
 msgid "Disabled cronjobs cannot be run."
-msgstr ""
+msgstr "Uitgeschakelde cronjobs kunnen niet worden uitgevoerd."
 
 #: application/controllers/Cron.php:200
 msgid "Cronjob is already running."
-msgstr ""
+msgstr "Cronjob draait al."
 
 #: application/controllers/Cron.php:206
 msgid "Cronjob executed successfully."
-msgstr ""
+msgstr "Cronjob succesvol uitgevoerd."
 
 #: application/controllers/Cron.php:210
 msgid "Cronjob execution failed."
-msgstr ""
+msgstr "Cronjob uitvoering mislukt."
 
 #: application/controllers/Cron.php:222 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
@@ -1249,7 +1253,7 @@ msgstr "uitgeschakeld"
 #: application/controllers/Cron.php:332 application/views/cron/index.php:81
 #: application/views/cron/index.php:113
 msgid "Run Now"
-msgstr ""
+msgstr "Nu uitvoeren"
 
 #: application/controllers/Cron.php:425
 #: application/views/interface_assets/footer.php:45
@@ -1544,7 +1548,7 @@ msgstr "Bevestigingen"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ Zones"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1555,12 +1559,12 @@ msgstr "Zones"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Staten / Provincies"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:330
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "Locatorkvak zoeken"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
@@ -2851,11 +2855,11 @@ msgstr "OQRS-verzoeken"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Voer alstublieft een geldige datum in."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Voer alstublieft een geldige tijd in."
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -3030,7 +3034,7 @@ msgstr "QSO toevoegen"
 
 #: application/controllers/Qso.php:224
 msgid "QSO could not be saved"
-msgstr ""
+msgstr "QSO kon niet worden opgeslagen"
 
 #: application/controllers/Qso.php:854
 msgid "You have to be logged in to access this URL."
@@ -4015,7 +4019,7 @@ msgstr ""
 
 #: application/controllers/Visitor.php:383
 msgid "No public slug found."
-msgstr ""
+msgstr "Geen openbare slug gevonden."
 
 #: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
@@ -4075,7 +4079,7 @@ msgstr "Locatorvak Zone zoeker"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "GeoJSON-gegevens niet beschikbaar"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
