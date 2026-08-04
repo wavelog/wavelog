@@ -42,9 +42,6 @@ class Statistic_resource extends Api_v2_resource {
 	/** Topics exposing instance/admin data — only for administrator tokens. */
 	protected const ADMIN_TOPICS = ['system'];
 
-	/** Confirmation types the ?type= filter accepts (see Logbook_model). */
-	protected const CONFIRMATION_TYPES = ['lotw', 'eqsl', 'qsl', 'qrz', 'clublog'];
-
 	/**
 	 * Translated label for the registry entry of this resource's read scope.
 	 */

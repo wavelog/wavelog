@@ -43,9 +43,6 @@ class Confirmation_resource extends Api_v2_resource {
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'confirmation';
 
-	/** Confirmation types accepted by the ?type= filter, same set as Statistic_resource. */
-	protected const CONFIRMATION_TYPES = ['lotw', 'eqsl', 'qsl', 'qrz', 'clublog'];
-
 	/** Default and hard-max page sizes for the list. */
 	protected const DEFAULT_PER_PAGE = 100;
 	protected const MAX_PER_PAGE     = 1000;

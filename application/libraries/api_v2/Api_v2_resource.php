@@ -83,6 +83,15 @@ abstract class Api_v2_resource {
 	];
 
 	/**
+	 * QSL confirmation type names accepted by every resource that filters on
+	 * them (Statistic ?profile=confirmations, Confirmation list). The canonical
+	 * source of truth is Logbook_model::CONFIRMATION_COLUMNS; the list is copied
+	 * here as a plain literal so it is available without the model loaded
+	 * (scope_registry() reflects over every resource at startup).
+	 */
+	protected const CONFIRMATION_TYPES = ['lotw', 'eqsl', 'qsl', 'qrz', 'clublog'];
+
+	/**
 	 * @param array      $auth { id, user_id, created_by, scopes (string[]) }
 	 * @param array|null $body Parsed JSON body, or null for verbs without one.
 	 */
