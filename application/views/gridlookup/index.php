@@ -27,21 +27,30 @@
 	 * there, and the .gl-secondary hiding rule only applies below sm.
 	 */
 	#glControls .gl-input { max-width: 150px; }
-	.gl-chevron { transition: transform .15s ease; }
-	#glControls.gl-expanded .gl-chevron { transform: rotate(90deg); }
+	.gl-chevron {
+		display: inline-block;
+		width: .45em;
+		height: .45em;
+		margin-right: .4em;
+		vertical-align: middle;
+		border-right: 2px solid currentColor;
+		border-top: 2px solid currentColor;
+		transform: rotate(45deg);          /* › points right when collapsed */
+		transition: transform .15s ease;
+	}
+	#glControls.gl-expanded .gl-chevron { transform: rotate(135deg); }  /* ∨ points down when open */
 	#glControls:not(.gl-expanded) .gl-more-open,
 	#glControls.gl-expanded .gl-more-closed { display: none; }
+	#glControls .gl-refsrow { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
 	@media (max-width: 575.98px) {
 		#glControls:not(.gl-expanded) .gl-secondary { display: none !important; }
 		#glControls .gl-input { flex: 0 0 100%; max-width: 100%; }
-		#glControls .gl-refs { flex: 0 0 100%; margin-left: 0; }
+		#glControls .gl-refsrow { flex: 0 0 100%; }
 		.gl-more {
 			flex: 0 0 100%;
-			margin-top: .25rem;
-			padding-top: .5rem;
-			border-top: 1px solid var(--bs-border-color, rgba(150,150,150,.45));
 			border-radius: 0;
 			text-align: left;
+			padding-left: 0;
 		}
 	}
 </style>
@@ -64,27 +73,21 @@
 				<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
 				<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 				<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
-				<label class="gl-refs gl-secondary form-label mb-0"><?= __("Refs"); ?></label>
-				<div class="gl-secondary form-check ms-2">
-					<input type="checkbox" class="form-check-input" id="glGridOverlay" checked>
-					<label class="form-check-label" for="glGridOverlay"><?= __("Gridsquare"); ?></label>
+				<div class="gl-refsrow gl-secondary">
+					<div class="gl-refs gl-secondary dropdown">
+						<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Refs"); ?></button>
+						<ul class="dropdown-menu p-2" style="max-height:60vh; overflow-y:auto;">
+							<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glGridOverlay" checked> <?= __("Gridsquare"); ?></label></li>
+							<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWwffDir"> <?= __("WWFF"); ?></label></li>
+							<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glPotaDir"> <?= __("POTA"); ?></label></li>
+							<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glSotaDir"> <?= __("SOTA"); ?></label></li>
+						</ul>
+					</div>
+					<div id="glOverlaysHost" class="gl-secondary"></div>
 				</div>
-				<div class="gl-secondary form-check ms-2">
-					<input type="checkbox" class="form-check-input" id="glWwffDir">
-					<label class="form-check-label" for="glWwffDir"><?= __("WWFF"); ?></label>
-				</div>
-				<div class="gl-secondary form-check ms-2">
-					<input type="checkbox" class="form-check-input" id="glPotaDir">
-					<label class="form-check-label" for="glPotaDir"><?= __("POTA"); ?></label>
-				</div>
-				<div class="gl-secondary form-check ms-2">
-					<input type="checkbox" class="form-check-input" id="glSotaDir">
-					<label class="form-check-label" for="glSotaDir"><?= __("SOTA"); ?></label>
-				</div>
-				<div id="glOverlaysHost" class="gl-secondary ms-2"></div>
 				<span id="glError" class="text-danger small ms-2" role="alert"></span>
 				<button id="glMore" type="button" class="gl-more btn btn-link btn-sm d-sm-none w-100" aria-expanded="false">
-					<i class="fa fa-chevron-right gl-chevron"></i>
+					<span class="gl-chevron" aria-hidden="true"></span>
 					<span class="gl-more-closed"><?= __("More options"); ?></span>
 					<span class="gl-more-open"><?= __("Hide options"); ?></span>
 				</button>
