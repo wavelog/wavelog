@@ -543,6 +543,17 @@
 			// HTTP on a LAN IP) so users never see a dead control.
 			if (!('geolocation' in navigator)) { locateBtn.style.display = 'none'; }
 		}
+
+		// Mobile "More options" disclosure: toggles a class on the toolbar that
+		// CSS uses to show/hide the secondary controls (grid 2 + overlays).
+		var moreBtn = document.getElementById('glMore');
+		if (moreBtn) {
+			moreBtn.addEventListener('click', function () {
+				var controls = document.getElementById('glControls');
+				var expanded = controls.classList.toggle('gl-expanded');
+				moreBtn.setAttribute('aria-expanded', String(expanded));
+			});
+		}
 		document.getElementById('glGridOverlay').addEventListener('change', function () {
 			if (!gridOverlay) return;
 			if (this.checked) { gridOverlay.addTo(map); } else { map.removeLayer(gridOverlay); }
