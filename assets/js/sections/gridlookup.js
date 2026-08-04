@@ -14,7 +14,6 @@
 	let potaUrl         = cfg.potaUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
 	let locatingMsg     = cfg.locatingMsg    || 'Locating…';
-	let geoUnsupported  = cfg.geoUnsupported || 'Location is not supported by this browser (requires HTTPS).';
 	let geoDenied       = cfg.geoDenied      || 'Location access denied.';
 	let geoUnavailable  = cfg.geoUnavailable || 'Location unavailable.';
 	let geoTimeout      = cfg.geoTimeout     || 'Location request timed out.';

@@ -13,7 +13,6 @@
 		potaUrl:    <?php echo json_encode(site_url('gridlookup/pota_directory')); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('gridlookup/sota_directory')); ?>,
 		locatingMsg:    <?php echo json_encode(__("Locating…")); ?>,
-		geoUnsupported: <?php echo json_encode(__("Location is not supported by this browser (requires HTTPS).")); ?>,
 		geoDenied:      <?php echo json_encode(__("Location access denied.")); ?>,
 		geoUnavailable: <?php echo json_encode(__("Location unavailable.")); ?>,
 		geoTimeout:     <?php echo json_encode(__("Location request timed out.")); ?>
@@ -35,6 +34,7 @@
 	@media (max-width: 575.98px) {
 		#glControls:not(.gl-expanded) .gl-secondary { display: none !important; }
 		#glControls .gl-input { flex: 0 0 100%; max-width: 100%; }
+		#glControls .gl-refs { flex: 0 0 100%; margin-left: 0; }
 		.gl-more {
 			flex: 0 0 100%;
 			margin-top: .25rem;
@@ -64,7 +64,7 @@
 				<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
 				<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 				<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
-				<label class="gl-secondary form-label mb-0"><?= __("Refs"); ?></label>
+				<label class="gl-refs gl-secondary form-label mb-0"><?= __("Refs"); ?></label>
 				<div class="gl-secondary form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glGridOverlay" checked>
 					<label class="form-check-label" for="glGridOverlay"><?= __("Gridsquare"); ?></label>
