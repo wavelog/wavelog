@@ -53,32 +53,33 @@
 	<div class="card">
 		<div class="card-body">
 			<div id="glControls" class="d-flex align-items-center flex-wrap gap-2">
-				<label class="form-label mb-0 fw-bold" for="glGrid"><?= __("Gridsquare"); ?></label>
+				<label class="form-label mb-0" for="glGrid"><?= __("Gridsquare"); ?></label>
 				<input type="text" id="glGrid" class="gl-input form-control form-control-sm"
 					autocomplete="off" autocapitalize="characters" spellcheck="false"
 					placeholder="<?= __("e.g. FN31pr"); ?>" title="<?= __("2, 4, 6, 8 or 10 character Maidenhead locator"); ?>">
-				<span class="gl-secondary text-muted small fw-bold"><?= __("to"); ?></span>
+				<span class="gl-secondary"><?= __("to"); ?></span>
 				<input type="text" id="glGrid2" class="gl-secondary gl-input form-control form-control-sm"
 					autocomplete="off" autocapitalize="characters" spellcheck="false"
 					placeholder="<?= __("e.g. JN58qm"); ?>" title="<?= __("Optional second gridsquare for distance and bearing"); ?>">
 				<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
 				<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 				<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
+				<label class="gl-secondary form-label mb-0"><?= __("Refs"); ?></label>
 				<div class="gl-secondary form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glGridOverlay" checked>
-					<label class="form-check-label" for="glGridOverlay"><?= __("Maidenhead grid"); ?></label>
+					<label class="form-check-label" for="glGridOverlay"><?= __("Gridsquare"); ?></label>
 				</div>
 				<div class="gl-secondary form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glWwffDir">
-					<label class="form-check-label" for="glWwffDir"><?= __("WWFF References"); ?></label>
+					<label class="form-check-label" for="glWwffDir"><?= __("WWFF"); ?></label>
 				</div>
 				<div class="gl-secondary form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glPotaDir">
-					<label class="form-check-label" for="glPotaDir"><?= __("POTA References"); ?></label>
+					<label class="form-check-label" for="glPotaDir"><?= __("POTA"); ?></label>
 				</div>
 				<div class="gl-secondary form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glSotaDir">
-					<label class="form-check-label" for="glSotaDir"><?= __("SOTA References"); ?></label>
+					<label class="form-check-label" for="glSotaDir"><?= __("SOTA"); ?></label>
 				</div>
 				<div id="glOverlaysHost" class="gl-secondary ms-2"></div>
 				<span id="glError" class="text-danger small ms-2" role="alert"></span>
