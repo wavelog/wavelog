@@ -636,6 +636,7 @@ msgstr " e "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/gridlookup/index.php:82
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -658,6 +659,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/gridlookup/index.php:74
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -682,6 +684,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/gridlookup/index.php:78
 msgid "POTA"
 msgstr "POTA"
 
@@ -2233,6 +2236,9 @@ msgstr "Stato"
 #: application/views/zonechecker/result.php:68
 #: application/views/gridlookup/index.php:25
 #: application/views/gridlookup/index.php:61
+#: application/views/gridlookup/index.php:56
+#: application/views/gridlookup/index.php:70
+#: application/views/gridlookup/index.php:99
 msgid "Gridsquare"
 msgstr "Locatore"
 
@@ -5047,6 +5053,7 @@ msgstr "Cancella indicatori"
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
 #: application/views/gridlookup/index.php:59
+#: application/views/gridlookup/index.php:97
 msgid "Latitude"
 msgstr "Latitudine"
 
@@ -5059,6 +5066,7 @@ msgstr "Latitudine"
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
 #: application/views/gridlookup/index.php:60
+#: application/views/gridlookup/index.php:98
 msgid "Longitude"
 msgstr "Longitudine"
 
@@ -6872,6 +6880,7 @@ msgstr "QSO confermati"
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
 #: application/views/gridlookup/index.php:62
+#: application/views/gridlookup/index.php:100
 msgid "CQ Zone"
 msgstr "Zona CQ"
 
@@ -7080,6 +7089,7 @@ msgstr "L'anno scorso"
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
 #: application/views/gridlookup/index.php:34
+#: application/views/gridlookup/index.php:65
 msgid "Clear"
 msgstr "Pulisci"
 
@@ -7916,6 +7926,7 @@ msgstr "Eliminato"
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
 #: application/views/gridlookup/index.php:63
+#: application/views/gridlookup/index.php:101
 msgid "ITU Zone"
 msgstr "Zona ITU"
 
@@ -19843,6 +19854,7 @@ msgid "QSL MSG"
 msgstr "Messaggio QSL"
 
 #: application/views/qso/index.php:759
+#: application/views/gridlookup/index.php:88
 msgid "More options"
 msgstr "Più opzioni"
 
@@ -20564,6 +20576,7 @@ msgid "Enter the Data"
 msgstr "Inserisci i dati"
 
 #: application/views/simplefle/index.php:162
+#: application/views/gridlookup/index.php:67
 msgid "Refs"
 msgstr "Riferimenti"
 
@@ -23315,6 +23328,34 @@ msgstr ""
 
 #: application/views/gridlookup/index.php:49
 msgid "SOTA References"
+msgstr ""
+
+#: application/views/gridlookup/index.php:15
+msgid "Locating…"
+msgstr ""
+
+#: application/views/gridlookup/index.php:16
+msgid "Location access denied."
+msgstr ""
+
+#: application/views/gridlookup/index.php:17
+msgid "Location unavailable."
+msgstr ""
+
+#: application/views/gridlookup/index.php:18
+msgid "Location request timed out."
+msgstr ""
+
+#: application/views/gridlookup/index.php:66
+msgid "Find my location and gridsquare"
+msgstr ""
+
+#: application/views/gridlookup/index.php:66
+msgid "Locate me"
+msgstr ""
+
+#: application/views/gridlookup/index.php:89
+msgid "Hide options"
 msgstr ""
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."

@@ -636,6 +636,7 @@ msgstr " 及び "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/gridlookup/index.php:82
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -658,6 +659,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/gridlookup/index.php:74
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -682,6 +684,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/gridlookup/index.php:78
 msgid "POTA"
 msgstr "POTA"
 
@@ -2224,6 +2227,9 @@ msgstr "州"
 #: application/views/zonechecker/result.php:68
 #: application/views/gridlookup/index.php:25
 #: application/views/gridlookup/index.php:61
+#: application/views/gridlookup/index.php:56
+#: application/views/gridlookup/index.php:70
+#: application/views/gridlookup/index.php:99
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -5014,6 +5020,7 @@ msgstr "クリアマーカー"
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
 #: application/views/gridlookup/index.php:59
+#: application/views/gridlookup/index.php:97
 msgid "Latitude"
 msgstr "緯度"
 
@@ -5026,6 +5033,7 @@ msgstr "緯度"
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
 #: application/views/gridlookup/index.php:60
+#: application/views/gridlookup/index.php:98
 msgid "Longitude"
 msgstr "経度"
 
@@ -6827,6 +6835,7 @@ msgstr "交信確認済み"
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
 #: application/views/gridlookup/index.php:62
+#: application/views/gridlookup/index.php:100
 msgid "CQ Zone"
 msgstr "CQゾーン"
 
@@ -7032,6 +7041,7 @@ msgstr "去年"
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
 #: application/views/gridlookup/index.php:34
+#: application/views/gridlookup/index.php:65
 msgid "Clear"
 msgstr "クリア"
 
@@ -7854,6 +7864,7 @@ msgstr "削除済み"
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
 #: application/views/gridlookup/index.php:63
+#: application/views/gridlookup/index.php:101
 msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
@@ -14202,31 +14213,37 @@ msgstr ""
 
 #: application/views/gridlookup/index.php:25
 #: application/views/gridlookup/index.php:28
+#: application/views/gridlookup/index.php:59
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2、4、6、8、または10文字のメイデンヘッドロケーター"
 
 #: application/views/gridlookup/index.php:25
 #: application/views/gridlookup/index.php:28
+#: application/views/gridlookup/index.php:59
 msgid "e.g. FN31pr"
 msgstr "例：PM74kk"
 
 #: application/views/gridlookup/index.php:26
 #: application/views/gridlookup/index.php:29
+#: application/views/gridlookup/index.php:60
 msgid "to"
 msgstr "to"
 
 #: application/views/gridlookup/index.php:29
 #: application/views/gridlookup/index.php:32
+#: application/views/gridlookup/index.php:63
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "距離と方位を示すオプションの2つ目のグリッドスクエア"
 
 #: application/views/gridlookup/index.php:29
 #: application/views/gridlookup/index.php:32
+#: application/views/gridlookup/index.php:63
 msgid "e.g. JN58qm"
 msgstr "例：JN58qm"
 
 #: application/views/gridlookup/index.php:30
 #: application/views/gridlookup/index.php:33
+#: application/views/gridlookup/index.php:64
 msgid "Go"
 msgstr "Go"
 
@@ -19635,6 +19652,7 @@ msgid "QSL MSG"
 msgstr "QSLメッセージ"
 
 #: application/views/qso/index.php:759
+#: application/views/gridlookup/index.php:88
 msgid "More options"
 msgstr "その他のオプション"
 
@@ -20340,6 +20358,7 @@ msgid "Enter the Data"
 msgstr "データを入力"
 
 #: application/views/simplefle/index.php:162
+#: application/views/gridlookup/index.php:67
 msgid "Refs"
 msgstr "参照"
 
@@ -23040,6 +23059,34 @@ msgstr "POTAに関する参考文献"
 #: application/views/gridlookup/index.php:49
 msgid "SOTA References"
 msgstr "SOTAの参考文献"
+
+#: application/views/gridlookup/index.php:15
+msgid "Locating…"
+msgstr ""
+
+#: application/views/gridlookup/index.php:16
+msgid "Location access denied."
+msgstr ""
+
+#: application/views/gridlookup/index.php:17
+msgid "Location unavailable."
+msgstr ""
+
+#: application/views/gridlookup/index.php:18
+msgid "Location request timed out."
+msgstr ""
+
+#: application/views/gridlookup/index.php:66
+msgid "Find my location and gridsquare"
+msgstr ""
+
+#: application/views/gridlookup/index.php:66
+msgid "Locate me"
+msgstr ""
+
+#: application/views/gridlookup/index.php:89
+msgid "Hide options"
+msgstr ""
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
 #~ msgstr "時刻の形式が無効です。HH:MM形式（例：08:31）を使用してください。"
