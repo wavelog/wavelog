@@ -23,6 +23,18 @@ class Logbook_model extends CI_Model {
 		'clublog' => ['rcvd' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',   'date' => 'COL_CLUBLOG_QSO_DOWNLOAD_DATE'],
 	];
 
+	// Human-readable label for each confirmation source, surfaced verbatim in
+	// the API v2 confirmation list ("type" field). Mirrors the labels the web
+	// UI's Confirmations page uses, so an API client and the UI describe the
+	// same row with the same word.
+	const CONFIRMATION_TYPE_LABELS = [
+		'lotw'    => 'LoTW',
+		'eqsl'    => 'eQSL',
+		'qsl'     => 'QSL Card',
+		'qrz'     => 'QRZ.com',
+		'clublog' => 'Clublog',
+	];
+
 	public function __construct() {
 		$this->oop_populate_modes();
 		$this->load->Model('Modes');
@@ -2531,6 +2543,107 @@ class Logbook_model extends CI_Model {
 		}
 
 		return $query->row_array() ?: array_fill_keys(array_merge(['qsos'], $types, ['confirmed']), 0);
+	}
+
+	// Per-(QSO, confirmation-type) row list for the REST API v2 confirmation
+	// endpoint. The API counterpart to the web UI's Confirmations page
+	// (Qsl_model::getConfirmations): a UNION ALL across the requested types, so
+	// a QSO confirmed via both LoTW and eQSL appears as two rows. Each part
+	// reuses the shared QSO v2 filter (_qso_v2_filter_where: station scope,
+	// band incl. SAT, mode/submode, callsign, qso dates, operator) and adds
+	// the type's own rcvd='Y' flag plus an optional received-date floor.
+	//
+	// Unlike count_confirmations_filtered(), which counts QSOs, this counts
+	// pairs: a multi-confirmed QSO contributes one row per type, not one.
+	//
+	// $filters is the set documented at _qso_v2_filter_where() plus:
+	//   types  string[]  subset of CONFIRMATION_COLUMNS keys
+	//   since  string    'Y-m-d', matched against each type's own date column
+	function get_confirmations_list($filters, $limit, $offset) {
+		$types = array_values(array_intersect($filters['types'] ?? [], array_keys(self::CONFIRMATION_COLUMNS)));
+		if (empty($filters['station_ids']) || empty($types)) {
+			return $this->db->query("SELECT * FROM " . $this->config->item('table_name') . " WHERE 1=0");
+		}
+
+		$tbl   = $this->config->item('table_name');
+		$since = $filters['since'] ?? '';
+		$parts   = [];
+		$bindings = [];
+
+		foreach ($types as $type) {
+			$cols  = self::CONFIRMATION_COLUMNS[$type];
+			$label = self::CONFIRMATION_TYPE_LABELS[$type];
+
+			// Each UNION arm needs its own bindings (incl. the IN ? array), so
+			// _qso_v2_filter_where writes into a per-arm buffer we then append
+			// in order to the query-wide bindings - placeholder order must
+			// follow SQL order, and the arms are concatenated in $types order.
+			$part_bindings = [];
+			$where = $this->_qso_v2_filter_where($filters, $part_bindings);
+			$where .= " AND qsos.`" . $cols['rcvd'] . "` = 'Y'";
+			if ($since !== '') {
+				$where .= " AND qsos.`" . $cols['date'] . "` >= ?";
+				$part_bindings[] = $since;
+			}
+
+			$parts[] = "SELECT qsos.`COL_PRIMARY_KEY` AS qso_id, qsos.`COL_CALL` AS callsign,"
+				. " qsos.`COL_TIME_ON` AS qso_date, qsos.`COL_MODE` AS mode,"
+				. " qsos.`COL_SUBMODE` AS submode, qsos.`COL_BAND` AS band,"
+				. " qsos.`COL_GRIDSQUARE` AS gridsquare, qsos.`COL_VUCC_GRIDS` AS vucc_grids,"
+				. " qsos.`COL_SAT_NAME` AS sat_name, qsos.`COL_SAT_MODE` AS sat_mode,"
+				. " qsos.`" . $cols['date'] . "` AS confirmation_date,"
+				. " '" . $label . "' AS type"
+				. " FROM " . $tbl . " qsos"
+				. $where;
+
+			foreach ($part_bindings as $b) {
+				$bindings[] = $b;
+			}
+		}
+
+		$sql = "SELECT * FROM (" . implode(" UNION ALL ", $parts) . ") AS unioned_results"
+			. " ORDER BY confirmation_date DESC, qso_id DESC"
+			. " LIMIT ? OFFSET ?";
+		$bindings[] = (int) $limit;
+		$bindings[] = (int) $offset;
+
+		return $this->db->query($sql, $bindings);
+	}
+
+	// Count of (QSO, confirmation-type) pairs across all pages for the same
+	// filter used by get_confirmations_list(), so the pagination `total`
+	// matches the listed rows. Same UNION ALL shape, reduced to a count.
+	function count_confirmations_list($filters) {
+		$types = array_values(array_intersect($filters['types'] ?? [], array_keys(self::CONFIRMATION_COLUMNS)));
+		if (empty($filters['station_ids']) || empty($types)) {
+			return 0;
+		}
+
+		$tbl   = $this->config->item('table_name');
+		$since = $filters['since'] ?? '';
+		$parts   = [];
+		$bindings = [];
+
+		foreach ($types as $type) {
+			$cols = self::CONFIRMATION_COLUMNS[$type];
+
+			$part_bindings = [];
+			$where = $this->_qso_v2_filter_where($filters, $part_bindings);
+			$where .= " AND qsos.`" . $cols['rcvd'] . "` = 'Y'";
+			if ($since !== '') {
+				$where .= " AND qsos.`" . $cols['date'] . "` >= ?";
+				$part_bindings[] = $since;
+			}
+
+			$parts[] = "SELECT 1 FROM " . $tbl . " qsos" . $where;
+
+			foreach ($part_bindings as $b) {
+				$bindings[] = $b;
+			}
+		}
+
+		$sql = "SELECT COUNT(*) AS cnt FROM (" . implode(" UNION ALL ", $parts) . ") AS unioned_results";
+		return (int) $this->db->query($sql, $bindings)->row()->cnt;
 	}
 
 	function get_qso($id, $trusted = false) {
