@@ -2,6 +2,7 @@ var favs = {};
 var selected_sat;
 var selected_sat_mode;
 let sat_opts = [];
+let sat_mode_opts = [];
 var scps = [];
 let lookupCall = null;
 let preventLookup = false;
@@ -1203,73 +1204,63 @@ $('#stateDropdown').on('change', function () {
 	}
 });
 
-$(document).on('change', 'input', function () {
-	var optionslist = $('.satellite_modes_list')[0].options;
-	var value = $(this).val();
-	for (var x = 0; x < optionslist.length; x++) {
-		if (optionslist[x].value === value) {
+$(document).on('change', '#sat_name', function () {
+	var value = $(this).val().trim();
+	$("#sat_mode").val("");
+	$('#satellite_modes_list').empty().hide();
+	selected_sat = value;
+	selected_sat_mode = '';
+	sat_mode_opts = [];
 
-			// Store selected sat mode
-			selected_sat_mode = value;
-
-			// get Json file
-			$.getJSON(site_url + "/satellite/satellite_data", function (data) {
-
-				// Build the options array
-				var sat_modes = [];
-				$.each(data, function (key, val) {
-					if (key == selected_sat) {
-						$.each(val.Modes, function (key1, val2) {
-							if (key1 == selected_sat_mode) {
-
-								if ((val2[0].Downlink_Mode == "LSB" && val2[0].Uplink_Mode == "USB") || (val2[0].Downlink_Mode == "USB" && val2[0].Uplink_Mode == "LSB")) { // inverting Transponder? set to SSB
-									$("#mode").val("SSB");
-								} else {
-									$("#mode").val(val2[0].Uplink_Mode);
-								}
-								$("#band").val(frequencyToBand(val2[0].Uplink_Freq));
-								$("#band_rx").val(frequencyToBand(val2[0].Downlink_Freq));
-								$("#frequency").val(val2[0].Uplink_Freq).trigger("change");
-								$("#frequency_rx").val(val2[0].Downlink_Freq);
-								$("#selectPropagation").val('SAT');
-							}
-						});
-					}
-				});
-
-			});
-		}
+	if (value === '') {
+		$("#satellite_names_list").empty().hide();
+		return;
 	}
+
+	// get Json file
+	$.getJSON(site_url + "/satellite/satellite_data", function (data) {
+		var sat_modes = [];
+		$.each(data, function (key, val) {
+			if (key == value) {
+				$.each(val.Modes, function (key1) {
+					sat_mode_opts.push(key1);
+					sat_modes.push('<option value="' + key1 + '">' + key1 + '</option>');
+				});
+			}
+		});
+		$("#satellite_modes_list").empty().hide();
+	});
 });
 
-$(document).on('change', 'input', function () {
-	var optionslist = $('.satellite_names_list')[0].options;
-	var value = $(this).val();
-	for (var x = 0; x < optionslist.length; x++) {
-		if (optionslist[x].value === value) {
-			$("#sat_mode").val("");
-			$('.satellite_modes_list').find('option').remove().end();
-			selected_sat = value;
-			// get Json file
-			$.getJSON(site_url + "/satellite/satellite_data", function (data) {
+$(document).on('change', '#sat_mode', function () {
+	var value = $(this).val().trim();
+	if (value === '' || selected_sat === undefined || selected_sat === '') {
+		return;
+	}
 
-				// Build the options array
-				var sat_modes = [];
-				$.each(data, function (key, val) {
-					if (key == value) {
-						$.each(val.Modes, function (key1, val2) {
-							//console.log (key1);
-							sat_modes.push('<option value="' + key1 + '">' + key1 + '</option>');
-						});
+	selected_sat_mode = value;
+
+	// get Json file
+	$.getJSON(site_url + "/satellite/satellite_data", function (data) {
+		$.each(data, function (key, val) {
+			if (key == selected_sat) {
+				$.each(val.Modes, function (key1, val2) {
+					if (key1 == selected_sat_mode) {
+						if ((val2[0].Downlink_Mode == "LSB" && val2[0].Uplink_Mode == "USB") || (val2[0].Downlink_Mode == "USB" && val2[0].Uplink_Mode == "LSB")) { // inverting Transponder? set to SSB
+							$("#mode").val("SSB");
+						} else {
+							$("#mode").val(val2[0].Uplink_Mode);
+						}
+						$("#band").val(frequencyToBand(val2[0].Uplink_Freq));
+						$("#band_rx").val(frequencyToBand(val2[0].Downlink_Freq));
+						$("#frequency").val(val2[0].Uplink_Freq).trigger("change");
+						$("#frequency_rx").val(val2[0].Downlink_Freq);
+						$("#selectPropagation").val('SAT');
 					}
 				});
-
-				// Add to the datalist
-				$('.satellite_modes_list').append(sat_modes.join(""));
-
-			});
-		}
-	}
+			}
+		});
+	});
 });
 
 function changebadge(entityval) {
@@ -3344,29 +3335,79 @@ $(document).ready(function () {
 	/*
 	Populate the Satellite Names Field on the QSO Panel
 	*/
-	const sat_name = document.getElementById("sat_name");
-  	const sat_names_list = document.getElementById("satellite_names_list");
 	// Fetch the option list from the server
 	$.getJSON(site_url + "/satellite/satellite_data", function (data) {
 		$.each(data, function (key, val) {
 			sat_opts.push(key);
 		});
 	});
-	// Filter and render the dropdown as the user types
-	sat_name.addEventListener("input", function () {
-		sat_names_list.innerHTML = this.value
-		? sat_opts
-			.filter(o => o.toLowerCase().includes(this.value.toLowerCase()))
-			.map(o => `<li class="list-group-item list-group-item-action" style="cursor: pointer;">${o}</li>`)
-			.join("")
-		: "";
+
+	// Helper to render sat names dropdown based on input
+	function renderSatelliteNameDropdown() {
+		var $list = $("#satellite_names_list").empty();
+		var query = $("#sat_name").val().trim().toLowerCase();
+		if (!query) {
+			$list.hide();
+			return;
+		}
+		sat_opts
+			.filter(o => o.toLowerCase().includes(query))
+			.forEach(function (satelliteName) {
+				$("<li>", {
+					class: "list-group-item list-group-item-action",
+					text: satelliteName,
+					css: { cursor: "pointer" }
+				}).appendTo($list);
+			});
+
+		$list.toggle($list.children().length > 0);
+	}
+
+	// Render sat names dropdown
+	$("#sat_name").on("input", renderSatelliteNameDropdown);
+
+	// Close dropdown and write name to input
+	$("#satellite_names_list").on("mousedown click", "li", function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$("#sat_name").val($(this).text().trim()).trigger("change");
+		$("#satellite_names_list").empty().hide();
 	});
-	// Handle clicking an option
-	sat_names_list.addEventListener("click", function (e) {
-		const li = e.target.closest("li");
-		if (!li) return;
-		sat_name.value = li.textContent;
-		sat_names_list.innerHTML = "";
+
+	// Helper to render sat modes dropdown based on selected satellite / input
+	function renderSatelliteModeDropdown(showAll = false) {
+		var $list = $("#satellite_modes_list").empty();
+		var query = showAll ? "" : $("#sat_mode").val().trim().toLowerCase();
+
+		if (!selected_sat || sat_mode_opts.length === 0) {
+			$list.hide();
+			return;
+		}
+
+		sat_mode_opts
+			.filter(o => showAll || o.toLowerCase().includes(query))
+			.forEach(function (satelliteMode) {
+				$("<li>", {
+					class: "list-group-item list-group-item-action",
+					text: satelliteMode,
+					css: { cursor: "pointer" }
+				}).appendTo($list);
+			});
+
+		$list.toggle($list.children().length > 0);
+	}
+
+	// Render sat modes dropdown
+	$("#sat_mode").on("input focus click", function (e) {
+		renderSatelliteModeDropdown(e.type !== "input");
+	});
+
+	// Close dropdown and write mode to input
+	$("#satellite_modes_list").on("mousedown click", "li", function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$("#sat_mode").val($(this).text().trim()).trigger("change");
+		$("#satellite_modes_list").empty().hide();
 	});
 
 
