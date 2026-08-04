@@ -887,6 +887,10 @@ class QSO
 	{
 		$dx = str_replace('0', 'Ø', $this->dx);
 
+		if ($dx === '') {
+			return '<span class="bg-danger">Missing callsign</span>';
+		}
+
 		return '<span class="qso_call d-flex align-items-center justify-content-between">'
 			. '<a id="edit_qso" href="javascript:displayQso(' . $this->qsoID . ')"><span id="lbadx">' . $dx . '</span></a>'
 			. '<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">'
@@ -1437,6 +1441,9 @@ class QSO
 
 	private function getFormattedMode(): string
 	{
+		if ($this->mode === '' && $this->submode === '') {
+			return '<span class="bg-danger">Missing mode</span>';
+		}
 		$mode = '<span id="lbamode">';
 		if ($this->submode !== '') {
 			$mode .= $this->submode;
@@ -1462,6 +1469,10 @@ class QSO
 		$label .= " " . $this->band;
 		if ($this->bandRX !== '' && $this->band !== '') {
 			$label .= "/" . $this->bandRX;
+		}
+
+		if (trim($label) === '') {
+			return '<span class="bg-danger">Missing band</span>';
 		}
 		return '<span id="lbaband">' . $label . '</span>';
 	}

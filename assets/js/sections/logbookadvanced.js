@@ -378,18 +378,11 @@ function loadQSOTable(rows) {
 			data.push(qso.de.replaceAll('0', 'Ø'));
 		}
 		if ((user_options.dx.show ?? 'true') == "true"){
-			if (qso.dx === '') {
-				data.push('<span class="bg-danger">Missing callsign</span>');
-			} else {
-				data.push(qso.dx);
-			}
+
+			data.push(qso.dx);
 		}
 		if ((user_options.mode.show ?? 'true') == "true"){
-			if (qso.mode === '') {
-				data.push('<span class="bg-danger">Missing mode</span>');
-			} else {
-				data.push(qso.mode);
-			}
+			data.push(qso.mode);
 		}
 		if ((user_options.rsts.show ?? 'true') == "true"){
 			data.push(qso.rstS);
@@ -398,11 +391,7 @@ function loadQSOTable(rows) {
 			data.push(qso.rstR);
 		}
 		if ((user_options.band.show ?? 'true') == "true"){
-			if (qso.band === '') {
-				data.push('<span class="bg-danger">Missing band</span>');
-			} else {
-				data.push(qso.band);
-			}
+			data.push(qso.band);
 		}
 		if ((user_options.frequency.show ?? 'true') == "true"){
 			data.push(qso.frequency);
