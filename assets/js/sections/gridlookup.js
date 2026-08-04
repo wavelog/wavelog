@@ -13,6 +13,10 @@
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
+	let locatingMsg     = cfg.locatingMsg    || 'Locating…';
+	let geoDenied       = cfg.geoDenied      || 'Location access denied.';
+	let geoUnavailable  = cfg.geoUnavailable || 'Location unavailable.';
+	let geoTimeout      = cfg.geoTimeout     || 'Location request timed out.';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -531,6 +535,24 @@
 
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
+		var locateBtn = document.getElementById('glLocate');
+		if (locateBtn) {
+			locateBtn.addEventListener('click', locate);
+			// Hide the button entirely when geolocation is unavailable (e.g. plain
+			// HTTP on a LAN IP) so users never see a dead control.
+			if (!('geolocation' in navigator)) { locateBtn.style.display = 'none'; }
+		}
+
+		// Mobile "More options" disclosure: toggles a class on the toolbar that
+		// CSS uses to show/hide the secondary controls (grid 2 + overlays).
+		var moreBtn = document.getElementById('glMore');
+		if (moreBtn) {
+			moreBtn.addEventListener('click', function () {
+				var controls = document.getElementById('glControls');
+				var expanded = controls.classList.toggle('gl-expanded');
+				moreBtn.setAttribute('aria-expanded', String(expanded));
+			});
+		}
 		document.getElementById('glGridOverlay').addEventListener('change', function () {
 			if (!gridOverlay) return;
 			if (this.checked) { gridOverlay.addTo(map); } else { map.removeLayer(gridOverlay); }
@@ -629,9 +651,18 @@
 	}
 
 	function onMapClick(e) {
-		let lat = e.latlng.lat, lng = e.latlng.lng;
-		let loc = latLngToLocator(lat, lng, 3);   // 6-character gridsquare under the cursor
-		let cell = locatorToCell(loc);            // exact bounds of that grid cell
+		selectPoint(e.latlng.lat, e.latlng.lng);
+	}
+
+	/*
+	 * Drop the green click marker + grid cell at [lat, lng], zoom in, and fill
+	 * the info bar (CQ/ITU zones + state enrich asynchronously). Shared by the
+	 * map click handler and the "Locate me" geolocation flow so both behave the
+	 * same way. `loc` may be supplied to skip recomputation.
+	 */
+	function selectPoint(lat, lng, loc) {
+		loc = loc || latLngToLocator(lat, lng, 3);   // 6-character gridsquare
+		let cell = locatorToCell(loc);              // exact bounds of that grid cell
 
 		// Only one click marker + square at a time: drop the previous ones.
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
@@ -642,12 +673,12 @@
 		}).addTo(map);
 
 		let popupBase = '<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng);
-		clickMarker = L.marker(e.latlng).addTo(map)
+		clickMarker = L.marker([lat, lng]).addTo(map)
 			.bindPopup(popupBase)
 			.openPopup();
 
-		// Zoom in to the clicked grid cell — same fitBounds call as typing a
-		// gridsquare above, so the square becomes visible instead of a sub-pixel box.
+		// Zoom in to the grid cell — same fitBounds call as typing a gridsquare
+		// above, so the square becomes visible instead of a sub-pixel box.
 		map.fitBounds([cell.sw, cell.ne], { padding: [60, 60], maxZoom: 17 });
 
 		document.getElementById('glError').textContent = '';
@@ -689,6 +720,43 @@
 				})
 				.catch(function () { /* unsupported point or transient — ignore */ });
 		}
+	}
+
+	/*
+	 * "Locate me": ask the browser for the current GPS position (mobile or
+	 * desktop), convert it to a gridsquare, and zoom in — exactly like clicking
+	 * the map there. Requires a secure context (HTTPS or localhost); the button
+	 * is hidden up front in init() when geolocation is unavailable.
+	 */
+	function locate() {
+		if (!('geolocation' in navigator)) { return; }
+
+		let err = document.getElementById('glError');
+		let info = document.getElementById('glInfo');
+		let btn = document.getElementById('glLocate');
+
+		err.textContent = '';
+		info.textContent = locatingMsg;
+		if (btn) { btn.disabled = true; }
+
+		navigator.geolocation.getCurrentPosition(function (pos) {
+			if (btn) { btn.disabled = false; }
+			let lat = pos.coords.latitude, lng = pos.coords.longitude;
+			let loc = latLngToLocator(lat, lng, 3);
+			// Fill grid 1 so the user can immediately type a second grid and hit Go
+			// for a QRB (distance/bearing) from their current location.
+			document.getElementById('glGrid').value = loc;
+			selectPoint(lat, lng, loc);
+		}, function (geoErr) {
+			if (btn) { btn.disabled = false; }
+			info.textContent = '';
+			switch (geoErr.code) {
+				case 1:  err.textContent = geoDenied; break;        // permission denied
+				case 2:  err.textContent = geoUnavailable; break;   // position unavailable
+				case 3:  err.textContent = geoTimeout; break;       // timed out
+				default: err.textContent = geoErr.message || geoUnavailable;
+			}
+		}, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
 	}
 
 	function go() {

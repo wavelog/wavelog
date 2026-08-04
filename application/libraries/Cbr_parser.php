@@ -57,7 +57,9 @@ class CBR_Parser
                 $parts = explode(': ', $line, 2);
 
                 //collect header information
-                $header[$parts[0]] = trim($parts[1]);
+                if (count($parts) === 2) {
+                    $header[$parts[0]] = trim($parts[1]);
+                }
 
                 //skip to next line
                 continue;

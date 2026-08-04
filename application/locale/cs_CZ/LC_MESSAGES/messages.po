@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-03 13:14+0000\n"
+"POT-Creation-Date: 2026-08-04 09:04+0000\n"
 "PO-Revision-Date: 2026-07-29 08:13+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -199,7 +199,7 @@ msgstr "Troposférické vedení"
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
 #: application/controllers/Qso.php:20 application/controllers/Qso.php:470
 #: application/controllers/Qso.php:492 application/controllers/Qso.php:514
-#: application/controllers/Qso.php:794 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:769 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -613,6 +613,7 @@ msgstr " a "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
+#: application/views/gridlookup/index.php:83
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
@@ -642,6 +643,7 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
+#: application/views/gridlookup/index.php:81
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -665,6 +667,7 @@ msgstr "WWFF"
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
+#: application/views/gridlookup/index.php:82
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
@@ -872,7 +875,7 @@ msgid "Call Tester"
 msgstr "Test značek"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:867
+#: application/controllers/Qso.php:842
 msgid "No callsign provided."
 msgstr "Nebyla zadána značka stanice."
 
@@ -2178,8 +2181,9 @@ msgstr "Stát"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:22
-#: application/views/gridlookup/index.php:46
+#: application/views/gridlookup/index.php:65
+#: application/views/gridlookup/index.php:80
+#: application/views/gridlookup/index.php:102
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -3028,11 +3032,11 @@ msgstr "Přidat QSO"
 msgid "QSO could not be saved"
 msgstr "QSO se nepodařilo uložit"
 
-#: application/controllers/Qso.php:854
+#: application/controllers/Qso.php:829
 msgid "You have to be logged in to access this URL."
 msgstr "Pro přístup k této URL musíte být přihlášeni."
 
-#: application/controllers/Qso.php:860
+#: application/controllers/Qso.php:835
 msgid "Call Transfer"
 msgstr "Přenos značky"
 
@@ -4086,16 +4090,16 @@ msgstr "Chyba při získávání klíče relace pro zápisník. Chyba: %s"
 msgid "QRZCQ Error"
 msgstr "Chyba QRZCQ"
 
-#: application/libraries/Cbr_parser.php:116
-#: application/libraries/Cbr_parser.php:165
+#: application/libraries/Cbr_parser.php:118
+#: application/libraries/Cbr_parser.php:167
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr "Poškozený soubor CBR - nenalezena platná výměna nebo značky"
 
-#: application/libraries/Cbr_parser.php:142
+#: application/libraries/Cbr_parser.php:144
 msgid "Broken CBR file - no QSO data found."
 msgstr "Poškozený soubor CBR - nenalezena data QSO."
 
-#: application/libraries/Cbr_parser.php:152
+#: application/libraries/Cbr_parser.php:154
 msgid "Broken CBR file - incomplete header found."
 msgstr "Poškozený soubor CBR - nalezen neúplný hlavičkový řádek."
 
@@ -4549,24 +4553,24 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! NENALEZENA ŽÁDNÁ POŠTOVNÍ ADRESA !!!"
 
-#: application/models/Update_model.php:405
+#: application/models/Update_model.php:502
 msgid "Newer release available:"
 msgstr "Dostupná novější verze:"
 
-#: application/models/Update_model.php:409
+#: application/models/Update_model.php:506
 msgid "You are running the latest version."
 msgstr "Používáte nejnovější verzi."
 
-#: application/models/Update_model.php:550
+#: application/models/Update_model.php:647
 msgid "cURL error:"
 msgstr "Chyba cURL:"
 
-#: application/models/Update_model.php:584
+#: application/models/Update_model.php:681
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT již existuje. LoTW stav aktualizován."
 
-#: application/models/Update_model.php:587
-#: application/models/Update_model.php:616
+#: application/models/Update_model.php:684
+#: application/models/Update_model.php:713
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -4574,27 +4578,27 @@ msgstr[0] "LoTW stav pro %d QSO aktualizován"
 msgstr[1] "LoTW stav pro %d QSO aktualizován"
 msgstr[2] "LoTW stav pro %d QSO aktualizován"
 
-#: application/models/Update_model.php:590
+#: application/models/Update_model.php:687
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT již existuje. Aktualizace LoTW stavu selhala."
 
-#: application/models/Update_model.php:593
+#: application/models/Update_model.php:690
 msgid "SAT already existing. Ignored."
 msgstr "SAT již existuje. Ignorováno."
 
-#: application/models/Update_model.php:600
+#: application/models/Update_model.php:697
 msgid "SAT already existing. Display name updated."
 msgstr "SAT již existuje. Zobrazované jméno aktualizováno."
 
-#: application/models/Update_model.php:602
+#: application/models/Update_model.php:699
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT již existuje. Aktualizace zobrazovaného jména selhala."
 
-#: application/models/Update_model.php:612
+#: application/models/Update_model.php:709
 msgid "New SAT. Inserted."
 msgstr "Nový SAT. Vloženo."
 
-#: application/models/Update_model.php:620
+#: application/models/Update_model.php:717
 msgid "New SAT. Insert failed."
 msgstr "Nový SAT. Vložení selhalo."
 
@@ -4985,7 +4989,7 @@ msgstr "Vymazat značky"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:44
+#: application/views/gridlookup/index.php:100
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
@@ -4996,7 +5000,7 @@ msgstr "Zeměpisná šířka"
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:45
+#: application/views/gridlookup/index.php:101
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
@@ -6763,7 +6767,7 @@ msgstr "Potvrzená QSO"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:47
+#: application/views/gridlookup/index.php:103
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -6980,7 +6984,7 @@ msgstr "Minulý rok"
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:31
+#: application/views/gridlookup/index.php:74
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
@@ -7796,7 +7800,7 @@ msgstr "Smazané"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:48
+#: application/views/gridlookup/index.php:104
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -14150,32 +14154,66 @@ msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
 
-#: application/views/gridlookup/index.php:25
+#: application/views/gridlookup/index.php:15
+msgid "Locating…"
+msgstr ""
+
+#: application/views/gridlookup/index.php:16
+msgid "Location access denied."
+msgstr ""
+
+#: application/views/gridlookup/index.php:17
+msgid "Location unavailable."
+msgstr ""
+
+#: application/views/gridlookup/index.php:18
+msgid "Location request timed out."
+msgstr ""
+
+#: application/views/gridlookup/index.php:68
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr ""
 
-#: application/views/gridlookup/index.php:25
+#: application/views/gridlookup/index.php:68
 msgid "e.g. FN31pr"
 msgstr ""
 
-#: application/views/gridlookup/index.php:26
+#: application/views/gridlookup/index.php:69
 msgid "to"
 msgstr ""
 
-#: application/views/gridlookup/index.php:29
+#: application/views/gridlookup/index.php:72
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
 
-#: application/views/gridlookup/index.php:29
+#: application/views/gridlookup/index.php:72
 msgid "e.g. JN58qm"
 msgstr ""
 
-#: application/views/gridlookup/index.php:30
+#: application/views/gridlookup/index.php:73
 msgid "Go"
 msgstr ""
 
-#: application/views/gridlookup/index.php:34
-msgid "Maidenhead grid"
+#: application/views/gridlookup/index.php:75
+msgid "Find my location and gridsquare"
+msgstr ""
+
+#: application/views/gridlookup/index.php:75
+msgid "Locate me"
+msgstr ""
+
+#: application/views/gridlookup/index.php:78
+#: application/views/simplefle/index.php:162
+msgid "Refs"
+msgstr "Odkazy"
+
+#: application/views/gridlookup/index.php:91
+#: application/views/qso/index.php:759
+msgid "More options"
+msgstr "Další možnosti"
+
+#: application/views/gridlookup/index.php:92
+msgid "Hide options"
 msgstr ""
 
 #: application/views/gridmap/index.php:27
@@ -19586,10 +19624,6 @@ msgstr "Poznámka k QSO"
 msgid "QSL MSG"
 msgstr "QSL zpráva"
 
-#: application/views/qso/index.php:759
-msgid "More options"
-msgstr "Další možnosti"
-
 #: application/views/qso/index.php:761
 msgid "Reset to Default"
 msgstr "Obnovit výchozí nastavení"
@@ -20293,10 +20327,6 @@ msgstr "Toto je značka operátora. Bez jakýchkoli předpon nebo přípon."
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
 msgstr "Zadejte data"
-
-#: application/views/simplefle/index.php:162
-msgid "Refs"
-msgstr "Odkazy"
 
 #: application/views/simplefle/index.php:174
 #, php-format
