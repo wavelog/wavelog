@@ -26,7 +26,7 @@
 	 * sm+ keeps the full inline toolbar exactly as-is — the toggle is hidden
 	 * there, and the .gl-secondary hiding rule only applies below sm.
 	 */
-	#glControls .gl-input { max-width: 200px; }
+	#glControls .gl-input { max-width: 150px; }
 	.gl-chevron { transition: transform .15s ease; }
 	#glControls.gl-expanded .gl-chevron { transform: rotate(90deg); }
 	#glControls:not(.gl-expanded) .gl-more-open,
