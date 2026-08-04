@@ -116,19 +116,19 @@
                                             $more = count($reporters) - count($shown);
 
                                             $tip  = '<strong>' . $display_esc . '</strong><br>';
-                                            $tip .= '<small class="text-muted">' . $window_lbl . '</small><br>';
+                                            $tip .= '<small>' . $window_lbl . '</small><br>';
                                             $tip .= '<hr class="my-1">';
-                                            $tip .= '<span class="text-muted">' . htmlspecialchars(sprintf(_ngettext('%d report', '%d reports', $cell['total']), $cell['total'])) . ':</span> ' . $breakdown . '<br>';
+                                            $tip .= '<span>' . htmlspecialchars(sprintf(_ngettext('%d report', '%d reports', $cell['total']), $cell['total'])) . ':</span> ' . $breakdown . '<br>';
                                             if (!empty($shown)) {
                                                 $tip .= '<hr class="my-1">';
                                                 foreach ($shown as $rep) {
-                                                    $tip .= '<span class="text-muted">' . gmdate('H:i', $rep['epoch']) . '</span> '
+                                                    $tip .= '<span>' . gmdate('H:i', $rep['epoch']) . '</span> '
                                                           . '<strong>' . htmlspecialchars($rep['callsign']) . '</strong> '
                                                           . htmlspecialchars($rep['grid'])
                                                           . ' &mdash; ' . htmlspecialchars($rep['status']) . '<br>';
                                                 }
                                                 if ($more > 0) {
-                                                    $tip .= '<span class="text-muted">+' . (int)$more . ' ' . htmlspecialchars(__('more')) . '</span><br>';
+                                                    $tip .= '<span>+' . (int)$more . ' ' . htmlspecialchars(__('more')) . '</span><br>';
                                                 }
                                             }
                                         ?>
