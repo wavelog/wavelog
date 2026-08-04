@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-02 05:24+0000\n"
-"PO-Revision-Date: 2026-08-03 13:15+0000\n"
+"PO-Revision-Date: 2026-08-05 06:25+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -3517,7 +3517,7 @@ msgstr "Actief station"
 msgid "QSO"
 msgid_plural "QSOs"
 msgstr[0] "QSO"
-msgstr[1] "QSO"
+msgstr[1] "QSOs"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:220
@@ -6105,7 +6105,6 @@ msgid "Legacy API Keys (API v1)"
 msgstr "Verouderde API-sleutels (API v1)"
 
 #: application/views/api/index.php:11
-#, fuzzy
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
@@ -6710,33 +6709,33 @@ msgstr ""
 
 #: application/views/awards/counties/index.php:18
 msgid "Counties Progress"
-msgstr ""
+msgstr "Voortgang van de counties"
 
 #: application/views/awards/counties/index.php:45
 msgid "Worked Counties"
-msgstr ""
+msgstr "Gewerkte counties"
 
 #: application/views/awards/counties/index.php:47
 #, php-format
 msgid "of %s known counties"
-msgstr ""
+msgstr "van %s bekende counties"
 
 #: application/views/awards/counties/index.php:52
 msgid "Confirmed Counties"
-msgstr ""
+msgstr "Bevestigde counties"
 
 #: application/views/awards/counties/index.php:54
 #, php-format
 msgid "%s%% of worked"
-msgstr ""
+msgstr "%s%% gewerkt"
 
 #: application/views/awards/counties/index.php:59
 msgid "Remaining Counties"
-msgstr ""
+msgstr "Resterende counties"
 
 #: application/views/awards/counties/index.php:61
 msgid "Based on current worked count"
-msgstr ""
+msgstr "Gebaseerd op het huidige aantal gewerkte"
 
 #: application/views/awards/counties/index.php:66
 #: application/views/awards/dxcc/index.php:41
@@ -6748,7 +6747,7 @@ msgstr "Voortgang"
 #: application/views/awards/counties/index.php:68
 #, php-format
 msgid "%s%% confirmed overall"
-msgstr ""
+msgstr "%s%% totaal bevestigd"
 
 #: application/views/awards/counties/index.php:77
 #: application/views/awards/cq/index.php:93
@@ -6789,7 +6788,7 @@ msgstr "Bevestigd"
 
 #: application/views/awards/counties/index.php:80
 msgid "Remaining"
-msgstr ""
+msgstr "Resterend"
 
 #: application/views/awards/counties/index.php:81
 #: application/views/awards/dxcc/index.php:287
@@ -6842,11 +6841,11 @@ msgstr "Totaal"
 
 #: application/views/awards/counties/state_ajax.php:8
 msgid "QSOs Worked"
-msgstr ""
+msgstr "QSOs gemaakt"
 
 #: application/views/awards/counties/state_ajax.php:9
 msgid "QSOs Confirmed"
-msgstr ""
+msgstr "QSOs bevestigd"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
@@ -8921,21 +8920,23 @@ msgstr "QSO-datum"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "Fout bij het laden van WWFF-kaartgegevens"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "Geen WWFF-referenties gewerkt voor deze filters."
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
 msgstr ""
+"WWFF-directory niet geladen - coördinaten ontbreken. Voer de update_wwff "
+"cronjob uit."
 
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "Niet weergegeven (Geen coördinaten)"
 
 #: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -10151,7 +10152,7 @@ msgstr "QSOs"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr ""
+msgstr "Geen QSO's met %s gevonden in je logboek."
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -10185,7 +10186,7 @@ msgstr "Locatie"
 
 #: application/views/calltester/call_info.php:79
 msgid "QSL card"
-msgstr ""
+msgstr "QSL-kaart"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -10205,18 +10206,18 @@ msgstr "DXCC Klasse Resultaten"
 #: application/views/calltester/comparison_result.php:46
 #: application/views/calltester/comparison_result.php:53
 msgid "Calls tested"
-msgstr ""
+msgstr "Roepnamen getest"
 
 #: application/views/calltester/comparison_result.php:47
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "Uitvoeringstijd"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "Problemen gevonden"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -10289,7 +10290,7 @@ msgstr "Resultaat ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "Toon alle QSOs met deze roepnaam"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -10328,15 +10329,16 @@ msgstr "Vergelijk DXCC klasse en logboek model"
 
 #: application/views/calltester/result.php:5
 msgid "Callsigns tested"
-msgstr ""
+msgstr "Roepnamen getest"
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "Potentieel verkeerde DXCC"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
 msgstr ""
+"Geen DXCC-problemen gevonden. Alle oproepen hebben correcte DXCC-informatie."
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -10539,12 +10541,12 @@ msgstr "Momenteel heeft geen enkele gebruiker toegang tot dit clubstation."
 
 #: application/views/club/permissions.php:271
 msgid "Edit Selected"
-msgstr ""
+msgstr "Geselecteerde bewerken"
 
 #: application/views/club/permissions.php:274
 #: application/views/contesting/manager/index.php:23
 msgid "Delete Selected"
-msgstr ""
+msgstr "Geselecteerde verwijderen"
 
 #: application/views/club/permissions.php:282
 msgid "Firstname"
@@ -10601,27 +10603,27 @@ msgstr "Rol: %s"
 
 #: application/views/club/permissions.php:409
 msgid "Edit Selected Members"
-msgstr ""
+msgstr "Geselecteerde leden bewerken"
 
 #: application/views/club/permissions.php:415
 msgid "Set the permission level for all selected members:"
-msgstr ""
+msgstr "Stel het toestemmingsniveau in voor alle geselecteerde leden:"
 
 #: application/views/club/permissions.php:426
 msgid "Notify the users via email about the change"
-msgstr ""
+msgstr "Stuur de gebruiker een e-mail over de wijziging"
 
 #: application/views/club/permissions.php:443
 msgid "Delete Selected Members"
-msgstr ""
+msgstr "Geselecteerde leden verwijderen"
 
 #: application/views/club/permissions.php:449
 msgid "Are you sure you want to delete the selected users from the club?"
-msgstr ""
+msgstr "Weet je zeker dat je deze gebruiker uit de club wilt verwijderen?"
 
 #: application/views/club/permissions.php:450
 msgid "user(s) will be removed."
-msgstr ""
+msgstr "gebruiker(s) zullen worden verwijderd."
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
@@ -11096,18 +11098,18 @@ msgctxt ""
 "Count serial number in contesting per Band; is an option in contesting "
 "manager."
 msgid "per band"
-msgstr ""
+msgstr "per band"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "per operator"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
-msgstr ""
+msgstr "Rood: alleen voorbeeld. Groen: dit nummer is voor jou gereserveerd."
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -11269,14 +11271,14 @@ msgstr "Winkeyer"
 #: application/views/qso/components/winkeysettings.php:54
 msgctxt "ESM mode"
 msgid "Run"
-msgstr ""
+msgstr "Run"
 
 #: application/views/contesting/logger/components/winkeyer.php:24
 #: application/views/qso/components/winkeysettings.php:58
 #: application/views/qso/components/winkeysettings.php:59
 msgctxt "ESM mode"
 msgid "S&P"
-msgstr ""
+msgstr "S&P"
 
 #: application/views/contesting/logger/components/winkeyer.php:51
 #: application/views/qso/index.php:830
@@ -11285,7 +11287,7 @@ msgstr "Verbinden"
 
 #: application/views/contesting/logger/components/winkeyer.php:53
 msgid "Toggle Run / Search & Pounce for ESM"
-msgstr ""
+msgstr "Schakel Run / 'Search and Pounce' voor ESM in"
 
 #: application/views/contesting/logger/components/winkeyer.php:73
 #: application/views/qso/index.php:858
@@ -11792,7 +11794,7 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:141
 msgid "Count serial number per band"
-msgstr ""
+msgstr "Tel serienummer per band"
 
 #: application/views/contesting/manager/components/session_modal.php:143
 msgid ""
@@ -11800,18 +11802,21 @@ msgid ""
 "running continuously across the whole contest (required by some multi-op "
 "categories)."
 msgstr ""
+"Wanneer ingeschakeld, begint het verzonden serienummer bij 1 op elke band in "
+"plaats van doorlopend over de hele contest te tellen (vereist door sommige "
+"multi-op categorieën)."
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "Serienummerreeks"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "Gedeeld door alle operators"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "Eén serie per operator"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -11819,6 +11824,10 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"Serienummers worden uitgedeeld door de server, zodat hetzelfde nummer nooit "
+"twee keer wordt gebruikt, zelfs niet wanneer meerdere operatoren "
+"tegelijkertijd loggen. De meeste wedstrijden verwachten een enkele gedeelde "
+"reeks per station."
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -12256,7 +12265,7 @@ msgstr ""
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "How grouping works:"
-msgstr ""
+msgstr "Hoe groeperen werkt:"
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid ""
@@ -12266,6 +12275,11 @@ msgid ""
 "as one session, while weekly or monthly contest series are imported as "
 "separate sessions."
 msgstr ""
+"QSO's worden gegroepeerd per contest en station. Opeenvolgende QSO's komen "
+"in dezelfde sessie terecht als ze minder dan 72 uur uit elkaar liggen of in "
+"dezelfde ISO-kalenderweek (maandag-zondag) vallen. Dit houdt weeklange "
+"activiteitsevenementen samen als één sessie, terwijl wekelijkse of "
+"maandelijkse contestreeksen als afzonderlijke sessies worden geïmporteerd."
 
 #: application/views/contesting/manager/import_legacy.php:22
 msgid "Admin mode:"
@@ -12304,7 +12318,7 @@ msgstr "Selecteer alstublieft ten minste één contest om te importeren."
 
 #: application/views/contesting/manager/import_legacy.php:102
 msgid "Are you sure you want to import the selected contest sessions?"
-msgstr ""
+msgstr "Weet je zeker dat je de geselecteerde contestsessies wilt importeren?"
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:345
@@ -12330,7 +12344,7 @@ msgstr "Snelle start"
 
 #: application/views/contesting/manager/index.php:23
 msgid "Delete selected contest sessions"
-msgstr ""
+msgstr "Geselecteerde contest-sessies verwijderen"
 
 #: application/views/contesting/manager/index.php:49
 #: application/views/logbookadvanced/attachContest.php:28
@@ -12365,27 +12379,27 @@ msgstr "EDI exporteren"
 
 #: application/views/contesting/manager/index.php:123
 msgid "Delete Contest Sessions"
-msgstr ""
+msgstr "Contest-sessie verwijderen"
 
 #: application/views/contesting/manager/index.php:128
 msgid "Do you really want to delete the selected contest sessions?"
-msgstr ""
+msgstr "Wil je echt de geselecteerde contest-sessies verwijderen?"
 
 #: application/views/contesting/manager/index.php:129
 msgid "Selected sessions: "
-msgstr ""
+msgstr "Geselecteerde sessies: "
 
 #: application/views/contesting/manager/index.php:133
 msgid "Also delete all QSOs logged in these sessions from the logbook"
-msgstr ""
+msgstr "Verwijder ook alle QSO's die in deze sessie zijn gelogd uit het logboek"
 
 #: application/views/contesting/manager/index.php:140
 msgid "Delete Sessions"
-msgstr ""
+msgstr "Sessies verwijderen"
 
 #: application/views/contesting/manager/index.php:153
 msgid "Please select at least one contest session."
-msgstr ""
+msgstr "Selecteer alstublieft ten minste één contestsessie."
 
 #: application/views/contesting/manager/index.php:183
 msgid "Import historical contests from logbook"
@@ -12594,11 +12608,11 @@ msgstr "Uit"
 
 #: application/views/dashboard/_options_menu.php:10
 msgid "Dashboard options"
-msgstr ""
+msgstr "Dashboardopties"
 
 #: application/views/dashboard/_options_menu.php:12
 msgid "KPI statistics"
-msgstr ""
+msgstr "KPI-statistieken"
 
 #: application/views/dashboard/_options_menu.php:15
 msgid "Solar data"
