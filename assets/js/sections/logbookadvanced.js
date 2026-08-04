@@ -1970,14 +1970,14 @@ $(document).ready(function () {
 				case 'ituzone': 	col1 = currentRow.find('#ituzone').text(); break;
 				case 'iota': 		col1 = currentRow.find('#iota').text(); col1 = col1.trim(); break;
 				case 'state': 		col1 = currentRow.find('#state').text(); break;
-				case 'dx': 			col1 = currentRow.find('#dx').text().replaceAll('Ø', '0'); col1 = col1.match(/^([^\s]+)/gm); break;
+				case 'dx': 			col1 = currentRow.find('#lbadx').text().replaceAll('Ø', '0'); col1 = col1.match(/^([^\s]+)/gm); break;
 				case 'gridsquare': 	col1 = $(currentRow).find('#dxgrid').text(); col1 = col1.substring(0, 4); break;
 				case 'sota': 		col1 = $(currentRow).find('#dxsota').text(); break;
 				case 'wwff': 		col1 = $(currentRow).find('#dxwwff').text(); break;
 				case 'pota': 		col1 = $(currentRow).find('#dxpota').text(); break;
 				case 'operator': 	col1 = $(currentRow).find('#operator').text(); break;
-				case 'mode': 		col1 = currentRow.find("#mode").text(); break;
-				case 'band': 		col1 = currentRow.find("#band").text(); col1 = col1.match(/\S\w*/); break;
+				case 'mode': 		col1 = currentRow.find("#lbamode").text(); break;
+				case 'band': 		col1 = currentRow.find("#lbaband").text(); col1 = col1.match(/\S\w*/); break;
 				case 'date': 		col1 = currentRow.find("#qsoDateTime").text(); break;
 			}
 			if (col1.length == 0) return;
