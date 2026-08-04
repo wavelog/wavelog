@@ -11,7 +11,12 @@
 		stateUrl:   <?php echo json_encode(site_url('gridlookup/state_for_point')); ?>,
 		wwffUrl:    <?php echo json_encode(site_url('gridlookup/wwff_directory')); ?>,
 		potaUrl:    <?php echo json_encode(site_url('gridlookup/pota_directory')); ?>,
-		sotaUrl:    <?php echo json_encode(site_url('gridlookup/sota_directory')); ?>
+		sotaUrl:    <?php echo json_encode(site_url('gridlookup/sota_directory')); ?>,
+		locatingMsg:    <?php echo json_encode(__("Locating…")); ?>,
+		geoUnsupported: <?php echo json_encode(__("Location is not supported by this browser (requires HTTPS).")); ?>,
+		geoDenied:      <?php echo json_encode(__("Location access denied.")); ?>,
+		geoUnavailable: <?php echo json_encode(__("Location unavailable.")); ?>,
+		geoTimeout:     <?php echo json_encode(__("Location request timed out.")); ?>
 	};
 </script>
 
@@ -32,6 +37,7 @@
 					placeholder="<?= __("e.g. JN58qm"); ?>" title="<?= __("Optional second gridsquare for distance and bearing"); ?>">
 				<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
 				<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
+				<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
 				<div class="form-check ms-2">
 					<input type="checkbox" class="form-check-input" id="glGridOverlay" checked>
 					<label class="form-check-label" for="glGridOverlay"><?= __("Maidenhead grid"); ?></label>
