@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-05 18:11+0000\n"
-"PO-Revision-Date: 2026-08-05 17:24+0000\n"
-"Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
+"PO-Revision-Date: 2026-08-06 08:26+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -395,13 +395,15 @@ msgstr "POTA Daten importiert"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"Der AMSAT-Status-Dienst ist leider aktuell nicht erreichbar. Bitte versuche "
+"es später nochmals."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:194
 #: application/views/amsatstatus/index.php:8
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "AMSAT Satelliten Status"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -5931,39 +5933,41 @@ msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
+"Zuletzt gehört Status der letzten 24 Stunden. Datenquelle: %s (vorgehalten "
+"für 15min.)."
 
 #: application/views/amsatstatus/index.php:16
 msgid "AMSAT Satellite Status (Last 24h)"
-msgstr ""
+msgstr "AMSAT Satelliten Status (Letzte 24 Std.)"
 
 #: application/views/amsatstatus/index.php:20
 msgid "No status reports available."
-msgstr ""
+msgstr "Keine Statusinformationen verfügbar."
 
 #: application/views/amsatstatus/index.php:23
 msgid "Heard"
-msgstr ""
+msgstr "Gehört"
 
 #: application/views/amsatstatus/index.php:24
 msgid "Crew Active"
-msgstr ""
+msgstr "Crew aktiv"
 
 #: application/views/amsatstatus/index.php:25
 msgid "Telemetry Only"
-msgstr ""
+msgstr "Nur Telemetrie"
 
 #: application/views/amsatstatus/index.php:26
 msgid "Not Heard"
-msgstr ""
+msgstr "Nicht gehört"
 
 #: application/views/amsatstatus/index.php:27
 #: application/views/amsatstatus/index.php:137
 msgid "No report"
-msgstr ""
+msgstr "Kein Bericht"
 
 #: application/views/amsatstatus/index.php:88
 msgid "Next AOS"
-msgstr ""
+msgstr "Nächster AOS"
 
 #: application/views/amsatstatus/index.php:93
 #, php-format
@@ -5974,19 +5978,19 @@ msgstr[1] ""
 
 #: application/views/amsatstatus/index.php:93
 msgid "now"
-msgstr ""
+msgstr "jetzt"
 
 #: application/views/amsatstatus/index.php:98
 #, php-format
 msgid "%d hours ago"
-msgstr ""
+msgstr "%d Stunden her"
 
 #: application/views/amsatstatus/index.php:158
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Bericht"
+msgstr[1] "%d Berichte"
 
 #: application/views/amsatstatus/index.php:168
 #: application/views/qso/index.php:34
