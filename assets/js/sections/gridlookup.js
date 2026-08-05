@@ -27,7 +27,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -178,6 +178,7 @@
 			acrossLng = ((acrossLng + 180) % 360 + 360) % 360 - 180;        // wrap at the date line
 			return {
 				dir: name,
+				target: [tLat, tLng],
 				across: latLngToLocator(acrossLat, acrossLng, 2),
 				dist: calcDistance(lat, lng, tLat, tLng, u),
 				brg: getBearing(lat, lng, tLat, tLng)
@@ -237,9 +238,53 @@
 
 	function showBorders(lat, lng) {
 		if (bordersControl) { bordersControl.setContent(bordersHTML(lat, lng)); }
+		drawArrows(lat, lng);
 	}
 	function clearBorders() {
 		if (bordersControl) { bordersControl.clear(); }
+		clearArrows();
+	}
+
+	/*
+	 * On-map direction arrows: a spoke from the selected point to each side of
+	 * its square (the four edges + four corners), tipped with a label naming the
+	 * neighbouring grid and the distance/bearing. Spatial, so it scales to any
+	 * screen — the corner compass panel is hidden on phones, where it's too big.
+	 */
+	function drawArrows(lat, lng) {
+		if (!bordersOverlay) { return; }
+		bordersOverlay.clearLayers();
+		let b = squareBorders(lat, lng);
+		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+		let minDist = Infinity;
+		order.forEach(function (d) { if (b[d].dist < minDist) { minDist = b[d].dist; } });
+		let from = [lat, lng];
+		order.forEach(function (d) {
+			let r = b[d];
+			let near = r.dist === minDist;
+			bordersOverlay.addLayer(L.polyline([from, r.target], {
+				color: near ? '#198754' : '#ffffff',
+				weight: near ? 3 : 1.5,
+				opacity: near ? 0.95 : 0.55,
+				dashArray: near ? null : '5,5',
+				lineCap: 'round',
+				interactive: false
+			}));
+			bordersOverlay.addLayer(L.marker(r.target, {
+				interactive: false,
+				keyboard: false,
+				icon: L.divIcon({
+					className: 'gl-arrow-anchor',
+					html: '<div class="gl-arrow-tip' + (near ? ' gl-arrow-near' : '') + '">' +
+						'<span class="gl-arrow-head" style="transform:rotate(' + r.brg + 'deg)"></span>' +
+						'<b>' + esc(r.across) + '</b> &middot; ' + groupThousands(r.dist) + ' ' + unitLabel(measurementBase) +
+						'</div>'
+				})
+			}));
+		});
+	}
+	function clearArrows() {
+		if (bordersOverlay) { bordersOverlay.clearLayers(); }
 	}
 
 	/* Format a state_for_point() response as "State (CODE), Country" (or "" if none). */
@@ -654,6 +699,9 @@
 		bordersControl = new BordersControl();
 		bordersControl.addTo(map);
 
+		// Layer group holding the on-map direction arrows (see drawArrows).
+		bordersOverlay = L.layerGroup().addTo(map);
+
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
 		var locateBtn = document.getElementById('glLocate');
@@ -802,12 +850,11 @@
 
 		let popupBase = '<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng);
 		clickMarker = L.marker([lat, lng]).addTo(map)
-			.bindPopup(popupBase)
-			.openPopup();
+			.bindPopup(popupBase);
 
 		// Zoom in to the grid cell — same fitBounds call as typing a gridsquare
 		// above, so the square becomes visible instead of a sub-pixel box.
-		map.fitBounds([cell.sw, cell.ne], { padding: [60, 60], maxZoom: 17 });
+		map.fitBounds([cell.sw, cell.ne], { padding: [60, 60], maxZoom: 7 });
 
 		document.getElementById('glError').textContent = '';
 		let info = document.getElementById('glInfo');
@@ -981,8 +1028,7 @@
 				});
 			}
 		} else {
-			marker.openPopup();
-			map.fitBounds([cell1.sw, cell1.ne], { padding: [60, 60], maxZoom: 17 });
+			map.fitBounds([cell1.sw, cell1.ne], { padding: [60, 60], maxZoom: 7 });
 
 			let z1 = '', s1 = '';
 			function render() {

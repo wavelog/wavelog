@@ -2026,3 +2026,26 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	.gl-comp-meta { font-size: .62rem; }
 	.gl-comp-edge, .gl-comp-center { padding: .35rem .1rem; }
 }
+
+/* On-map direction arrows (spokes + labeled tips) — the spatial alternative to
+   the corner compass; drawn at all sizes. Each tip centres on its border point. */
+.gl-arrow-anchor { background: transparent; border: 0; }
+.gl-arrow-tip {
+	transform: translate(-50%, -50%);
+	display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap;
+	padding: 1px 6px; border-radius: 9px;
+	background: rgba(0, 0, 0, .72); color: #fff;
+	font-size: .70rem; font-weight: 600; line-height: 1.5;
+	border: 1px solid rgba(255, 255, 255, .45);
+}
+.gl-arrow-tip .gl-arrow-head {                       /* CSS triangle pointing north, rotated to the bearing */
+	display: inline-block; width: 0; height: 0;
+	border-left: 4px solid transparent; border-right: 4px solid transparent;
+	border-bottom: 6px solid currentColor;
+}
+.gl-arrow-tip.gl-arrow-near { background: #198754; border-color: #34c759; }
+
+/* Phones: the corner compass panel is too big, so rely on the on-map arrows. */
+@media (max-width: 575.98px) {
+	.gl-borders-control.leaflet-control { display: none !important; }
+}
