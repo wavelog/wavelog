@@ -294,6 +294,29 @@
 		if (bordersOverlay) { bordersOverlay.clearLayers(); }
 	}
 
+	/* Phones are where the corner compass panel is hidden, so the border arrows
+	 * carry the info — match the same breakpoint the CSS uses to hide the panel. */
+	function isMobile() {
+		return window.matchMedia && window.matchMedia('(max-width: 575.98px)').matches;
+	}
+
+	/*
+	 * Zoom to a selected grid. Desktop fits the exact cell the user picked
+	 * (subsquare for a click, square/field for a typed locator). Mobile instead
+	 * frames the 4-character grid square centred on its middle, so the border
+	 * arrows and their labels are fully in view on the small screen.
+	 */
+	function zoomToGrid(lat, lng, tightCell) {
+		let sq = locatorToCell(latLngToLocator(lat, lng, 2));   // 4-char square
+		if (isMobile()) {
+			if (sq) {
+				map.fitBounds([sq.sw, sq.ne], { padding: [40, 40], maxZoom: 10 });
+				return;
+			}
+		}
+		map.fitBounds([sq.sw, sq.ne], { padding: [40, 40], maxZoom: 8 });
+	}
+
 	/* Format a state_for_point() response as "State (CODE), Country" (or "" if none). */
 	function stateStr(s) {
 		if (!s || !s.state) { return ''; }
@@ -859,9 +882,9 @@
 		clickMarker = L.marker([lat, lng]).addTo(map)
 			.bindPopup(popupBase);
 
-		// Zoom in to the grid cell — same fitBounds call as typing a gridsquare
-		// above, so the square becomes visible instead of a sub-pixel box.
-		map.fitBounds([cell.sw, cell.ne], { padding: [60, 60], maxZoom: 7 });
+		// Frame the selection — on phones this centres on the 4-char square so
+		// the border arrows are in view; desktop fits the exact clicked cell.
+		zoomToGrid(lat, lng, cell);
 
 		document.getElementById('glError').textContent = '';
 		let info = document.getElementById('glInfo');
@@ -1035,7 +1058,7 @@
 				});
 			}
 		} else {
-			map.fitBounds([cell1.sw, cell1.ne], { padding: [60, 60], maxZoom: 7 });
+			zoomToGrid(cell1.center[0], cell1.center[1], cell1);
 
 			let z1 = '', s1 = '';
 			function render() {
