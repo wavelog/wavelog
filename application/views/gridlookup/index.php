@@ -61,7 +61,7 @@
 			<div id="glInfo" class="small text-muted mt-2" style="min-height:1.4rem;"></div>
 		</div>
 		<div id="glMap" style="width:100%; height:calc(100vh - 320px); min-height:400px;"></div>
-		<div class="card-body">
+		<div class="card-body gl-coords-body">
 			<div class="coordinates" id="glCoords" style="position: static;">
 				<div class="cohidden coord-pair"><span><?= __("Latitude"); ?>:&nbsp;</span><span class="text-success fw-bold" id="latDeg"></span></div>
 				<div class="cohidden coord-pair"><span><?= __("Longitude"); ?>:&nbsp;</span><span class="text-success fw-bold" id="lngDeg"></span></div>

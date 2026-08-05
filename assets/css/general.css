@@ -2048,4 +2048,5 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 /* Phones: the corner compass panel is too big, so rely on the on-map arrows. */
 @media (max-width: 575.98px) {
 	.gl-borders-control.leaflet-control { display: none !important; }
+	.gl-coords-body { display: none !important; }
 }
