@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-05 18:11+0000\n"
-"PO-Revision-Date: 2026-08-05 17:24+0000\n"
+"PO-Revision-Date: 2026-08-06 08:26+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -377,13 +377,14 @@ msgstr "POTA-data importerad"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"AMSAT-statusstjänsten är för närvarande otillgänglig. Försök igen senare."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:194
 #: application/views/amsatstatus/index.php:8
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "AMSAT-satellitstatus"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -5859,62 +5860,64 @@ msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
+"Senast-hörda status för de senaste 24 timmarna. Datakälla: %s (cachelagras i "
+"15 minuter)."
 
 #: application/views/amsatstatus/index.php:16
 msgid "AMSAT Satellite Status (Last 24h)"
-msgstr ""
+msgstr "AMSAT satellitstatus (senaste 24 timmarna)"
 
 #: application/views/amsatstatus/index.php:20
 msgid "No status reports available."
-msgstr ""
+msgstr "Inga statusrapporter tillgängliga."
 
 #: application/views/amsatstatus/index.php:23
 msgid "Heard"
-msgstr ""
+msgstr "Hörd"
 
 #: application/views/amsatstatus/index.php:24
 msgid "Crew Active"
-msgstr ""
+msgstr "Besättning aktiv"
 
 #: application/views/amsatstatus/index.php:25
 msgid "Telemetry Only"
-msgstr ""
+msgstr "Endast telemetri"
 
 #: application/views/amsatstatus/index.php:26
 msgid "Not Heard"
-msgstr ""
+msgstr "Inte hörd"
 
 #: application/views/amsatstatus/index.php:27
 #: application/views/amsatstatus/index.php:137
 msgid "No report"
-msgstr ""
+msgstr "Ingen rapport"
 
 #: application/views/amsatstatus/index.php:88
 msgid "Next AOS"
-msgstr ""
+msgstr "Nästa AOS"
 
 #: application/views/amsatstatus/index.php:93
 #, php-format
 msgid "%dh"
 msgid_plural "%dh"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%dh"
+msgstr[1] "%dh"
 
 #: application/views/amsatstatus/index.php:93
 msgid "now"
-msgstr ""
+msgstr "nu"
 
 #: application/views/amsatstatus/index.php:98
 #, php-format
 msgid "%d hours ago"
-msgstr ""
+msgstr "%d timmar sedan"
 
 #: application/views/amsatstatus/index.php:158
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d rapport"
+msgstr[1] "%d rapporter"
 
 #: application/views/amsatstatus/index.php:168
 #: application/views/qso/index.php:34
@@ -14290,11 +14293,11 @@ msgstr ""
 
 #: application/views/gridlookup/index.php:15
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "Lokatorruta-gränser"
 
 #: application/views/gridlookup/index.php:18
 msgid "Tracking"
-msgstr ""
+msgstr "Spårning"
 
 #: application/views/gridlookup/index.php:19
 msgid "Locating…"
@@ -14314,7 +14317,7 @@ msgstr "Platsbegäran tog för lång tid och avslutades."
 
 #: application/views/gridlookup/index.php:32
 msgid "Plan your activity here"
-msgstr ""
+msgstr "Planera din aktivitet här"
 
 #: application/views/gridlookup/index.php:40
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
