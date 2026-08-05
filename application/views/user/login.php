@@ -17,17 +17,6 @@
         padding: 15px;
         margin: auto;
     }
-
-    .form-signin input[type="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .form-signin input[type="password"] {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
 </style>
 <main class="form-signin">
     <a href="<?php echo base_url() ?>"><img src="<?php echo $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('main_logo') . '.png'); ?>" class="mx-auto d-block mainLogo" alt=""></a>
