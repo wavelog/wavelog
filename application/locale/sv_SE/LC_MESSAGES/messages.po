@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-02 05:24+0000\n"
+"POT-Creation-Date: 2026-08-05 06:36+0000\n"
 "PO-Revision-Date: 2026-08-05 17:24+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -198,7 +198,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
 #: application/controllers/Qso.php:20 application/controllers/Qso.php:470
 #: application/controllers/Qso.php:492 application/controllers/Qso.php:514
-#: application/controllers/Qso.php:794 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:769 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -234,7 +234,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Qso.php:769
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -612,6 +612,7 @@ msgstr " och "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
+#: application/views/gridlookup/index.php:83
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
@@ -634,8 +635,6 @@ msgstr " och "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
-#: application/views/gridlookup/index.php:82
-#: application/views/gridlookup/index.php:83
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -643,6 +642,7 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
+#: application/views/gridlookup/index.php:81
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -658,8 +658,6 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
-#: application/views/gridlookup/index.php:74
-#: application/views/gridlookup/index.php:81
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -668,6 +666,7 @@ msgstr "WWFF"
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
+#: application/views/gridlookup/index.php:82
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
@@ -684,8 +683,6 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
-#: application/views/gridlookup/index.php:78
-#: application/views/gridlookup/index.php:82
 msgid "POTA"
 msgstr "POTA"
 
@@ -877,7 +874,7 @@ msgid "Call Tester"
 msgstr "Anropssignals testare"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:867 application/controllers/Qso.php:842
+#: application/controllers/Qso.php:842
 msgid "No callsign provided."
 msgstr "Ingen anropssignal angiven."
 
@@ -2180,8 +2177,9 @@ msgstr "Delstat"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:22
-#: application/views/gridlookup/index.php:46
+#: application/views/gridlookup/index.php:65
+#: application/views/gridlookup/index.php:80
+#: application/views/gridlookup/index.php:102
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -2223,14 +2221,6 @@ msgstr "Delstat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
-#: application/views/gridlookup/index.php:25
-#: application/views/gridlookup/index.php:61
-#: application/views/gridlookup/index.php:56
-#: application/views/gridlookup/index.php:70
-#: application/views/gridlookup/index.php:99
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:80
-#: application/views/gridlookup/index.php:102
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -2672,11 +2662,10 @@ msgstr ""
 "unik anropssignal."
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:85
-#: application/models/Logbook_model.php:1412
-#: application/views/contesting/logger/components/qso-form.php:43
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:97
+#: application/models/Logbook_model.php:97
 #: application/models/Logbook_model.php:1424
+#: application/views/contesting/logger/components/qso-form.php:43
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr "Ogiltigt anropssignal"
 
@@ -3039,11 +3028,11 @@ msgstr "Lägg till QSO"
 msgid "QSO could not be saved"
 msgstr "QSO kunde inte sparas"
 
-#: application/controllers/Qso.php:854 application/controllers/Qso.php:829
+#: application/controllers/Qso.php:829
 msgid "You have to be logged in to access this URL."
 msgstr "Du måste vara inloggad för att komma åt den här URL:en."
 
-#: application/controllers/Qso.php:860 application/controllers/Qso.php:835
+#: application/controllers/Qso.php:835
 msgid "Call Transfer"
 msgstr "Överför Anropssignal"
 
@@ -3831,9 +3820,8 @@ msgstr "Inloggning misslyckades. Försök igen."
 
 #: application/controllers/User.php:1375
 #: application/views/interface_assets/header.php:427
-#: application/views/user/login.php:91
-#: application/views/visitor/layout/header.php:87
 #: application/views/user/login.php:80
+#: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Logga in"
 
@@ -4103,19 +4091,15 @@ msgstr "Fel vid erhållande av sessionsnyckel för callbook. Fel: %s"
 msgid "QRZCQ Error"
 msgstr "QRZCQ-fel"
 
-#: application/libraries/Cbr_parser.php:116
-#: application/libraries/Cbr_parser.php:165
 #: application/libraries/Cbr_parser.php:118
 #: application/libraries/Cbr_parser.php:167
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr "Trasig CBR-fil - inga giltiga utbyten eller anropssignaler hittades"
 
-#: application/libraries/Cbr_parser.php:142
 #: application/libraries/Cbr_parser.php:144
 msgid "Broken CBR file - no QSO data found."
 msgstr "Trasig CBR-fil - inga QSO-data hittades."
 
-#: application/libraries/Cbr_parser.php:152
 #: application/libraries/Cbr_parser.php:154
 msgid "Broken CBR file - incomplete header found."
 msgstr "Brutet CBR-fil - ofullständig header hittad."
@@ -4210,6 +4194,10 @@ msgstr "Hantera klubbmedlemsbehörigheter"
 msgid "Remove club members"
 msgstr "Ta bort klubbmedlemmar"
 
+#: application/libraries/api_v2/Confirmation_resource.php:54
+msgid "Read QSL confirmations"
+msgstr "Läs QSL-bekräftelser"
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr "Slå upp anropssignaler och lokatorrutor"
@@ -4250,7 +4238,6 @@ msgstr "Skapa och uppdatera stationsplatser"
 msgid "Delete station locations"
 msgstr "Radera stationsplatser"
 
-#: application/libraries/api_v2/Statistic_resource.php:52
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
 msgstr "Läs statistik"
@@ -4380,36 +4367,29 @@ msgstr "HRDlog: Inga QSOs hittades att ladda upp för stationsanropssignalen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Inga stationsprofiler med HRDlog-uppgifter hittades."
 
-#: application/models/Logbook_model.php:345
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "Stationen är inte tillgänglig"
 
-#: application/models/Logbook_model.php:1402
 #: application/models/Logbook_model.php:1414
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
-#: application/models/Logbook_model.php:1407
 #: application/models/Logbook_model.php:1419
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
-#: application/models/Logbook_model.php:1482
-#: application/models/Logbook_model.php:1686
 #: application/models/Logbook_model.php:1494
 #: application/models/Logbook_model.php:1698
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
-#: application/models/Logbook_model.php:4644
 #: application/models/Logbook_model.php:4757
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
@@ -4418,7 +4398,6 @@ msgid ""
 msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:4668
 #: application/models/Logbook_model.php:4781
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -4427,7 +4406,6 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4678
 #: application/models/Logbook_model.php:4791
 #, php-format
 msgid ""
@@ -4437,7 +4415,6 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan en angiven anropssignal. Detta "
 "QSO importerades inte. Det är ogiltigt."
 
-#: application/models/Logbook_model.php:4685
 #: application/models/Logbook_model.php:4798
 #, php-format
 msgid ""
@@ -4447,7 +4424,6 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO med en ogiltig anropssignal. Detta "
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
-#: application/models/Logbook_model.php:4755
 #: application/models/Logbook_model.php:4868
 #, php-format
 msgid ""
@@ -4457,7 +4433,6 @@ msgstr ""
 "QSO på %s: Bandet '%s' är inte i bandkonfigurationen. Detta QSO importerades "
 "inte."
 
-#: application/models/Logbook_model.php:4762
 #: application/models/Logbook_model.php:4875
 #, php-format
 msgid ""
@@ -4467,77 +4442,63 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:5036
 #: application/models/Logbook_model.php:5149
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5047
 #: application/models/Logbook_model.php:5160
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5108
 #: application/models/Logbook_model.php:5221
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5484
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5597
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
-#: application/models/Logbook_model.php:5551
-#: application/models/Logbook_model.php:5651
 #: application/models/Logbook_model.php:5664
 #: application/models/Logbook_model.php:5764
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
-#: application/models/Logbook_model.php:5559
 #: application/models/Logbook_model.php:5672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
-#: application/models/Logbook_model.php:5565
 #: application/models/Logbook_model.php:5678
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
-#: application/models/Logbook_model.php:5569
 #: application/models/Logbook_model.php:5682
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
-#: application/models/Logbook_model.php:5573
 #: application/models/Logbook_model.php:5686
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
-#: application/models/Logbook_model.php:5576
 #: application/models/Logbook_model.php:5689
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:5579
+#: application/models/Logbook_model.php:5692
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:5692
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:5654
 #: application/models/Logbook_model.php:5767
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
-#: application/models/Logbook_model.php:5657
 #: application/models/Logbook_model.php:5770
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6176
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
@@ -4550,7 +4511,6 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6176
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -4604,28 +4564,22 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! INGEN GILTLIG ADRESS HITTAD !!!"
 
-#: application/models/Update_model.php:405
 #: application/models/Update_model.php:502
 msgid "Newer release available:"
 msgstr "Nyare version tillgänglig:"
 
-#: application/models/Update_model.php:409
 #: application/models/Update_model.php:506
 msgid "You are running the latest version."
 msgstr "Du kör den senaste versionen."
 
-#: application/models/Update_model.php:550
 #: application/models/Update_model.php:647
 msgid "cURL error:"
 msgstr "cURL-fel:"
 
-#: application/models/Update_model.php:584
 #: application/models/Update_model.php:681
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT existerar redan. LoTW-status uppdaterad."
 
-#: application/models/Update_model.php:587
-#: application/models/Update_model.php:616
 #: application/models/Update_model.php:684
 #: application/models/Update_model.php:713
 #, php-format
@@ -4634,32 +4588,26 @@ msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW-status för %d QSO uppdaterad"
 msgstr[1] "LoTW-status för %d QSOs uppdaterad"
 
-#: application/models/Update_model.php:590
 #: application/models/Update_model.php:687
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT existerar redan. Uppdatering av LoTW-status misslyckades."
 
-#: application/models/Update_model.php:593
 #: application/models/Update_model.php:690
 msgid "SAT already existing. Ignored."
 msgstr "SAT existerar redan. Ignorerad."
 
-#: application/models/Update_model.php:600
 #: application/models/Update_model.php:697
 msgid "SAT already existing. Display name updated."
 msgstr "SAT existerar redan. Visningsnamn uppdaterat."
 
-#: application/models/Update_model.php:602
 #: application/models/Update_model.php:699
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT finns redan. Uppdatering av visningsnamn misslyckades."
 
-#: application/models/Update_model.php:612
 #: application/models/Update_model.php:709
 msgid "New SAT. Inserted."
 msgstr "Ny SAT. Tillagd."
 
-#: application/models/Update_model.php:620
 #: application/models/Update_model.php:717
 msgid "New SAT. Insert failed."
 msgstr "Ny SAT. Kunde ej läggas till."
@@ -5051,13 +4999,10 @@ msgstr "Rensa markörer"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:44
+#: application/views/gridlookup/index.php:100
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
-#: application/views/gridlookup/index.php:59
-#: application/views/gridlookup/index.php:97
-#: application/views/gridlookup/index.php:100
 msgid "Latitude"
 msgstr "Latitud"
 
@@ -5065,13 +5010,10 @@ msgstr "Latitud"
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:45
+#: application/views/gridlookup/index.php:101
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
-#: application/views/gridlookup/index.php:60
-#: application/views/gridlookup/index.php:98
-#: application/views/gridlookup/index.php:101
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -6853,7 +6795,7 @@ msgstr "QSOs Bekräftade"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:47
+#: application/views/gridlookup/index.php:103
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -6871,9 +6813,6 @@ msgstr "QSOs Bekräftade"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
-#: application/views/gridlookup/index.php:62
-#: application/views/gridlookup/index.php:100
-#: application/views/gridlookup/index.php:103
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
@@ -7074,14 +7013,11 @@ msgstr "Förra året"
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:31
+#: application/views/gridlookup/index.php:74
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
-#: application/views/gridlookup/index.php:34
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:74
 msgid "Clear"
 msgstr "Rensa"
 
@@ -7893,7 +7829,7 @@ msgstr "Raderad"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:48
+#: application/views/gridlookup/index.php:104
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -7908,9 +7844,6 @@ msgstr "Raderad"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
-#: application/views/gridlookup/index.php:63
-#: application/views/gridlookup/index.php:101
-#: application/views/gridlookup/index.php:104
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -8809,8 +8742,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
-"506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
+"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -10538,10 +10471,8 @@ msgstr "Efternamn"
 #: application/views/club/permissions.php:285
 #: application/views/contesting/logger/index.php:172
 #: application/views/user/edit.php:70 application/views/user/index.php:152
-#: application/views/user/login.php:58 application/views/user/login.php:70
-#: application/views/user/login.php:71 application/views/user/profile.php:14
 #: application/views/user/login.php:47 application/views/user/login.php:59
-#: application/views/user/login.php:60
+#: application/views/user/login.php:60 application/views/user/profile.php:14
 msgid "Username"
 msgstr "Användarnamn"
 
@@ -11568,13 +11499,11 @@ msgstr ""
 "deras anropssignal."
 
 #: application/views/contesting/logger/index.php:176
-#: application/views/user/edit.php:96 application/views/user/login.php:59
-#: application/views/user/login.php:74 application/views/user/login.php:75
+#: application/views/user/edit.php:96 application/views/user/login.php:48
+#: application/views/user/login.php:63 application/views/user/login.php:64
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
-#: application/views/user/login.php:48 application/views/user/login.php:63
-#: application/views/user/login.php:64
 msgid "Password"
 msgstr "Lösenord"
 
@@ -12409,7 +12338,7 @@ msgstr "Identifierare"
 msgid "Enabled"
 msgstr "Aktiverad"
 
-#: application/views/cron/edit.php:36 application/views/cron/index.php:77
+#: application/views/cron/edit.php:36
 msgid "Intervall"
 msgstr "Intervall"
 
@@ -12529,6 +12458,10 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:154
 msgid "ID"
 msgstr "ID"
+
+#: application/views/cron/index.php:77
+msgid "Interval"
+msgstr "Intervall"
 
 #: application/views/cron/index.php:78
 msgid "Last Run"
@@ -14272,33 +14205,67 @@ msgid ""
 msgstr ""
 "Ogiltig lokator — använd 2, 4, 6, 8 eller 10 tecken (t.ex. FN, FN31, FN31pr)."
 
-#: application/views/gridlookup/index.php:25
+#: application/views/gridlookup/index.php:15
+msgid "Locating…"
+msgstr "Hämtar plats…"
+
+#: application/views/gridlookup/index.php:16
+msgid "Location access denied."
+msgstr "Platsåtkomst nekad."
+
+#: application/views/gridlookup/index.php:17
+msgid "Location unavailable."
+msgstr "Plats inte tillgänglig."
+
+#: application/views/gridlookup/index.php:18
+msgid "Location request timed out."
+msgstr "Platsbegäran tog för lång tid och avslutades."
+
+#: application/views/gridlookup/index.php:68
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 eller 10 tecken Maidenhead-lokator"
 
-#: application/views/gridlookup/index.php:25
+#: application/views/gridlookup/index.php:68
 msgid "e.g. FN31pr"
 msgstr "t.ex. FN31pr"
 
-#: application/views/gridlookup/index.php:26
+#: application/views/gridlookup/index.php:69
 msgid "to"
 msgstr "till"
 
-#: application/views/gridlookup/index.php:29
+#: application/views/gridlookup/index.php:72
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Valfri andra lokator för avstånd och bäring"
 
-#: application/views/gridlookup/index.php:29
+#: application/views/gridlookup/index.php:72
 msgid "e.g. JN58qm"
 msgstr "t.ex. JN58qm"
 
-#: application/views/gridlookup/index.php:30
+#: application/views/gridlookup/index.php:73
 msgid "Go"
 msgstr "Gå"
 
-#: application/views/gridlookup/index.php:34
-msgid "Maidenhead grid"
-msgstr "Maidenhead-grid"
+#: application/views/gridlookup/index.php:75
+msgid "Find my location and gridsquare"
+msgstr "Hitta min plats och lokator"
+
+#: application/views/gridlookup/index.php:75
+msgid "Locate me"
+msgstr "Hitta mig"
+
+#: application/views/gridlookup/index.php:78
+#: application/views/simplefle/index.php:162
+msgid "Refs"
+msgstr "Referenser"
+
+#: application/views/gridlookup/index.php:91
+#: application/views/qso/index.php:759
+msgid "More options"
+msgstr "Fler alternativ"
+
+#: application/views/gridlookup/index.php:92
+msgid "Hide options"
+msgstr "Dölj alternativ"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -15650,8 +15617,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
-"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
+"ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -19732,12 +19699,6 @@ msgstr "QSO-anteckning"
 msgid "QSL MSG"
 msgstr "QSL MSG"
 
-#: application/views/qso/index.php:759
-#: application/views/gridlookup/index.php:88
-#: application/views/gridlookup/index.php:91
-msgid "More options"
-msgstr "Fler alternativ"
-
 #: application/views/qso/index.php:761
 msgid "Reset to Default"
 msgstr "Återställ till standardinställningar"
@@ -20442,12 +20403,6 @@ msgstr "Detta är operatörens anropssignal. Utan några pre- eller suffix."
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
 msgstr "Ange datan"
-
-#: application/views/simplefle/index.php:162
-#: application/views/gridlookup/index.php:67
-#: application/views/gridlookup/index.php:78
-msgid "Refs"
-msgstr "Referenser"
 
 #: application/views/simplefle/index.php:174
 #, php-format
@@ -21542,8 +21497,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
-"(t.ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
+"ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -22500,28 +22455,28 @@ msgstr "Senaste operatör"
 msgid "No Clubstations configures yet."
 msgstr "Inga klubbstationer konfigurerade ännu."
 
-#: application/views/user/login.php:36 application/views/user/login.php:25
+#: application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
 msgstr "UNDERHÅLLSLÄGE"
 
-#: application/views/user/login.php:56 application/views/user/login.php:45
+#: application/views/user/login.php:45
 msgid "Welcome to the Demo of Wavelog"
 msgstr "Välkommen till demon av Wavelog"
 
-#: application/views/user/login.php:57 application/views/user/login.php:46
+#: application/views/user/login.php:46
 msgid "This demo will be reset every night at 0200z."
 msgstr "Denna demo återställs varje natt klockan 0200z."
 
-#: application/views/user/login.php:60 application/views/user/login.php:49
+#: application/views/user/login.php:49
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr "Mer information om Wavelog på %sGithub%s."
 
-#: application/views/user/login.php:80 application/views/user/login.php:69
+#: application/views/user/login.php:69
 msgid "Forgot your password?"
 msgstr "Glömt lösenord?"
 
-#: application/views/user/login.php:86 application/views/user/login.php:75
+#: application/views/user/login.php:75
 msgid "Keep me logged in"
 msgstr "Håll mig inloggad"
 
@@ -23147,56 +23102,17 @@ msgstr "Visa på kartan"
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr "Inga zonproblem hittades. Alla QSOs har korrekt zoninformation."
 
-#: application/views/cron/index.php:77
-msgid "Interval"
-msgstr "Intervall"
+#~ msgid "Maidenhead grid"
+#~ msgstr "Maidenhead-grid"
 
-#: application/views/gridlookup/index.php:41
-msgid "WWFF References"
-msgstr "WWFF-referenser"
+#~ msgid "WWFF References"
+#~ msgstr "WWFF-referenser"
 
-#: application/views/gridlookup/index.php:45
-msgid "POTA References"
-msgstr "POTA-referenser"
+#~ msgid "POTA References"
+#~ msgstr "POTA-referenser"
 
-#: application/views/gridlookup/index.php:49
-msgid "SOTA References"
-msgstr "SOTA-referenser"
-
-#: application/views/gridlookup/index.php:15
-msgid "Locating…"
-msgstr "Hämtar plats…"
-
-#: application/views/gridlookup/index.php:16
-msgid "Location access denied."
-msgstr "Platsåtkomst nekad."
-
-#: application/views/gridlookup/index.php:17
-msgid "Location unavailable."
-msgstr "Plats inte tillgänglig."
-
-#: application/views/gridlookup/index.php:18
-msgid "Location request timed out."
-msgstr "Platsbegäran tog för lång tid och avslutades."
-
-#: application/views/gridlookup/index.php:66
-#: application/views/gridlookup/index.php:75
-msgid "Find my location and gridsquare"
-msgstr "Hitta min plats och lokator"
-
-#: application/views/gridlookup/index.php:66
-#: application/views/gridlookup/index.php:75
-msgid "Locate me"
-msgstr "Hitta mig"
-
-#: application/views/gridlookup/index.php:89
-#: application/views/gridlookup/index.php:92
-msgid "Hide options"
-msgstr "Dölj alternativ"
-
-#: application/libraries/api_v2/Confirmation_resource.php:54
-msgid "Read QSL confirmations"
-msgstr "Läs QSL-bekräftelser"
+#~ msgid "SOTA References"
+#~ msgstr "SOTA-referenser"
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
 #~ msgstr "Ogiltigt tidsformat. Vänligen använd HH:MM (t.ex. 08:31)."

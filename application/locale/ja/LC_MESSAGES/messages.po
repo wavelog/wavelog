@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-02 05:24+0000\n"
+"POT-Creation-Date: 2026-08-05 06:36+0000\n"
 "PO-Revision-Date: 2026-08-05 17:24+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -200,7 +200,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
 #: application/controllers/Qso.php:20 application/controllers/Qso.php:470
 #: application/controllers/Qso.php:492 application/controllers/Qso.php:514
-#: application/controllers/Qso.php:794 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:769 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -236,7 +236,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Qso.php:769
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -614,6 +614,7 @@ msgstr " 及び "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
+#: application/views/gridlookup/index.php:83
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
@@ -636,8 +637,6 @@ msgstr " 及び "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
-#: application/views/gridlookup/index.php:82
-#: application/views/gridlookup/index.php:83
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -645,6 +644,7 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
+#: application/views/gridlookup/index.php:81
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -660,8 +660,6 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
-#: application/views/gridlookup/index.php:74
-#: application/views/gridlookup/index.php:81
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -670,6 +668,7 @@ msgstr "WWFF"
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
+#: application/views/gridlookup/index.php:82
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
@@ -686,8 +685,6 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
-#: application/views/gridlookup/index.php:78
-#: application/views/gridlookup/index.php:82
 msgid "POTA"
 msgstr "POTA"
 
@@ -879,7 +876,7 @@ msgid "Call Tester"
 msgstr "コールテスター"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:867 application/controllers/Qso.php:842
+#: application/controllers/Qso.php:842
 msgid "No callsign provided."
 msgstr "コールサインが提供されていません。"
 
@@ -2185,8 +2182,9 @@ msgstr "州"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:22
-#: application/views/gridlookup/index.php:46
+#: application/views/gridlookup/index.php:65
+#: application/views/gridlookup/index.php:80
+#: application/views/gridlookup/index.php:102
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -2228,14 +2226,6 @@ msgstr "州"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
-#: application/views/gridlookup/index.php:25
-#: application/views/gridlookup/index.php:61
-#: application/views/gridlookup/index.php:56
-#: application/views/gridlookup/index.php:70
-#: application/views/gridlookup/index.php:99
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:80
-#: application/views/gridlookup/index.php:102
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -2676,11 +2666,10 @@ msgstr ""
 "力してください。"
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:85
-#: application/models/Logbook_model.php:1412
-#: application/views/contesting/logger/components/qso-form.php:43
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:97
+#: application/models/Logbook_model.php:97
 #: application/models/Logbook_model.php:1424
+#: application/views/contesting/logger/components/qso-form.php:43
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr "無効なコールサイン"
 
@@ -3039,11 +3028,11 @@ msgstr "QSOを追加"
 msgid "QSO could not be saved"
 msgstr "交信を保存できませんでした"
 
-#: application/controllers/Qso.php:854 application/controllers/Qso.php:829
+#: application/controllers/Qso.php:829
 msgid "You have to be logged in to access this URL."
 msgstr "この URL にアクセスするにはログインする必要があります。"
 
-#: application/controllers/Qso.php:860 application/controllers/Qso.php:835
+#: application/controllers/Qso.php:835
 msgid "Call Transfer"
 msgstr "通話転送"
 
@@ -3827,9 +3816,8 @@ msgstr "ログインに失敗しました。もう一度お試しください。
 
 #: application/controllers/User.php:1375
 #: application/views/interface_assets/header.php:427
-#: application/views/user/login.php:91
-#: application/views/visitor/layout/header.php:87
 #: application/views/user/login.php:80
+#: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "ログイン"
 
@@ -3898,8 +3886,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
-"%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
+"は、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1508
 msgid "Station setup failed! Please set up your station manually."
@@ -4099,20 +4087,16 @@ msgstr "コールブックのセッションキーの取得中にエラーが発
 msgid "QRZCQ Error"
 msgstr "QRZCQ エラー"
 
-#: application/libraries/Cbr_parser.php:116
-#: application/libraries/Cbr_parser.php:165
 #: application/libraries/Cbr_parser.php:118
 #: application/libraries/Cbr_parser.php:167
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
 "CBRファイルが壊れています - 有効な交換またはコールサインが見つかりません"
 
-#: application/libraries/Cbr_parser.php:142
 #: application/libraries/Cbr_parser.php:144
 msgid "Broken CBR file - no QSO data found."
 msgstr "CBR ファイルが壊れています - QSO データが見つかりません。"
 
-#: application/libraries/Cbr_parser.php:152
 #: application/libraries/Cbr_parser.php:154
 msgid "Broken CBR file - incomplete header found."
 msgstr "壊れた CBR ファイル - 不完全なヘッダーが見つかりました。"
@@ -4207,6 +4191,10 @@ msgstr "クラブ会員の権限を管理する"
 msgid "Remove club members"
 msgstr "クラブメンバーを削除する"
 
+#: application/libraries/api_v2/Confirmation_resource.php:54
+msgid "Read QSL confirmations"
+msgstr "QSLカードの確認書を読む"
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr "コールサインとグリッドを調べる"
@@ -4247,7 +4235,6 @@ msgstr "シャックの場所を作成および更新する"
 msgid "Delete station locations"
 msgstr "シャックの場所を削除する"
 
-#: application/libraries/api_v2/Statistic_resource.php:52
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
 msgstr "統計情報を読む"
@@ -4379,29 +4366,23 @@ msgstr "HRDlog: 局のコールサインにアップロードする QSO が見�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: HRDlog 資格情報を持つ無線局プロファイルが見つかりません。"
 
-#: application/models/Logbook_model.php:345
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "利用できない無線局"
 
-#: application/models/Logbook_model.php:1402
 #: application/models/Logbook_model.php:1414
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
-#: application/models/Logbook_model.php:1407
 #: application/models/Logbook_model.php:1419
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1482
-#: application/models/Logbook_model.php:1686
 #: application/models/Logbook_model.php:1494
 #: application/models/Logbook_model.php:1698
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4644
 #: application/models/Logbook_model.php:4757
 #, php-format
 msgid ""
@@ -4410,7 +4391,6 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
@@ -4420,7 +4400,6 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:4668
 #: application/models/Logbook_model.php:4781
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -4429,7 +4408,6 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4678
 #: application/models/Logbook_model.php:4791
 #, php-format
 msgid ""
@@ -4439,7 +4417,6 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:4685
 #: application/models/Logbook_model.php:4798
 #, php-format
 msgid ""
@@ -4449,7 +4426,6 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:4755
 #: application/models/Logbook_model.php:4868
 #, php-format
 msgid ""
@@ -4459,7 +4435,6 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:4762
 #: application/models/Logbook_model.php:4875
 #, php-format
 msgid ""
@@ -4469,77 +4444,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5036
 #: application/models/Logbook_model.php:5149
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5047
 #: application/models/Logbook_model.php:5160
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5108
 #: application/models/Logbook_model.php:5221
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5484
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5597
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5551
-#: application/models/Logbook_model.php:5651
 #: application/models/Logbook_model.php:5664
 #: application/models/Logbook_model.php:5764
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5559
 #: application/models/Logbook_model.php:5672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5565
 #: application/models/Logbook_model.php:5678
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5569
 #: application/models/Logbook_model.php:5682
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5573
 #: application/models/Logbook_model.php:5686
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5576
 #: application/models/Logbook_model.php:5689
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5579
+#: application/models/Logbook_model.php:5692
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:5692
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5654
 #: application/models/Logbook_model.php:5767
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5657
 #: application/models/Logbook_model.php:5770
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6176
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
@@ -4552,7 +4513,6 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6176
 msgid "Bearing"
 msgstr "方位"
 
@@ -4605,28 +4565,22 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!!郵送先住所が見つかりませんでした!!!"
 
-#: application/models/Update_model.php:405
 #: application/models/Update_model.php:502
 msgid "Newer release available:"
 msgstr "新しいリリースが利用可能です:"
 
-#: application/models/Update_model.php:409
 #: application/models/Update_model.php:506
 msgid "You are running the latest version."
 msgstr "最新バージョンを実行しています。"
 
-#: application/models/Update_model.php:550
 #: application/models/Update_model.php:647
 msgid "cURL error:"
 msgstr "cURL エラー:"
 
-#: application/models/Update_model.php:584
 #: application/models/Update_model.php:681
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT は既に存在します。LoTW ステータスが更新されました。"
 
-#: application/models/Update_model.php:587
-#: application/models/Update_model.php:616
 #: application/models/Update_model.php:684
 #: application/models/Update_model.php:713
 #, php-format
@@ -4634,32 +4588,26 @@ msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTWステータス %d 件の QSO が更新されました"
 
-#: application/models/Update_model.php:590
 #: application/models/Update_model.php:687
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT は既に存在します。LoTW ステータスの更新に失敗しました。"
 
-#: application/models/Update_model.php:593
 #: application/models/Update_model.php:690
 msgid "SAT already existing. Ignored."
 msgstr "SAT はすでに存在します。無視されます。"
 
-#: application/models/Update_model.php:600
 #: application/models/Update_model.php:697
 msgid "SAT already existing. Display name updated."
 msgstr "SAT は既に存在します。表示名を更新しました。"
 
-#: application/models/Update_model.php:602
 #: application/models/Update_model.php:699
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT は既に存在します。表示名の更新に失敗しました。"
 
-#: application/models/Update_model.php:612
 #: application/models/Update_model.php:709
 msgid "New SAT. Inserted."
 msgstr "新しいSATを挿入しました。"
 
-#: application/models/Update_model.php:620
 #: application/models/Update_model.php:717
 msgid "New SAT. Insert failed."
 msgstr "新しい SAT。挿入に失敗しました。"
@@ -5051,13 +4999,10 @@ msgstr "クリアマーカー"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:44
+#: application/views/gridlookup/index.php:100
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
-#: application/views/gridlookup/index.php:59
-#: application/views/gridlookup/index.php:97
-#: application/views/gridlookup/index.php:100
 msgid "Latitude"
 msgstr "緯度"
 
@@ -5065,13 +5010,10 @@ msgstr "緯度"
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:45
+#: application/views/gridlookup/index.php:101
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
-#: application/views/gridlookup/index.php:60
-#: application/views/gridlookup/index.php:98
-#: application/views/gridlookup/index.php:101
 msgid "Longitude"
 msgstr "経度"
 
@@ -6854,7 +6796,7 @@ msgstr "交信確認済み"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:47
+#: application/views/gridlookup/index.php:103
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -6872,9 +6814,6 @@ msgstr "交信確認済み"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
-#: application/views/gridlookup/index.php:62
-#: application/views/gridlookup/index.php:100
-#: application/views/gridlookup/index.php:103
 msgid "CQ Zone"
 msgstr "CQゾーン"
 
@@ -7074,14 +7013,11 @@ msgstr "去年"
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:31
+#: application/views/gridlookup/index.php:74
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
-#: application/views/gridlookup/index.php:34
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:74
 msgid "Clear"
 msgstr "クリア"
 
@@ -7888,7 +7824,7 @@ msgstr "削除済み"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:48
+#: application/views/gridlookup/index.php:104
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -7903,9 +7839,6 @@ msgstr "削除済み"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
-#: application/views/gridlookup/index.php:63
-#: application/views/gridlookup/index.php:101
-#: application/views/gridlookup/index.php:104
 msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
@@ -10511,10 +10444,8 @@ msgstr "姓"
 #: application/views/club/permissions.php:285
 #: application/views/contesting/logger/index.php:172
 #: application/views/user/edit.php:70 application/views/user/index.php:152
-#: application/views/user/login.php:58 application/views/user/login.php:70
-#: application/views/user/login.php:71 application/views/user/profile.php:14
 #: application/views/user/login.php:47 application/views/user/login.php:59
-#: application/views/user/login.php:60
+#: application/views/user/login.php:60 application/views/user/profile.php:14
 msgid "Username"
 msgstr "ユーザー名"
 
@@ -11545,13 +11476,11 @@ msgstr ""
 "このコンテストセッションを継続してください。"
 
 #: application/views/contesting/logger/index.php:176
-#: application/views/user/edit.php:96 application/views/user/login.php:59
-#: application/views/user/login.php:74 application/views/user/login.php:75
+#: application/views/user/edit.php:96 application/views/user/login.php:48
+#: application/views/user/login.php:63 application/views/user/login.php:64
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
-#: application/views/user/login.php:48 application/views/user/login.php:63
-#: application/views/user/login.php:64
 msgid "Password"
 msgstr "パスワード"
 
@@ -12395,7 +12324,7 @@ msgstr "識別子"
 msgid "Enabled"
 msgstr "有効"
 
-#: application/views/cron/edit.php:36 application/views/cron/index.php:77
+#: application/views/cron/edit.php:36
 msgid "Intervall"
 msgstr "間隔"
 
@@ -12515,6 +12444,10 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:154
 msgid "ID"
 msgstr "ID"
+
+#: application/views/cron/index.php:77
+msgid "Interval"
+msgstr "間隔"
 
 #: application/views/cron/index.php:78
 msgid "Last Run"
@@ -14256,52 +14189,67 @@ msgstr ""
 "無効なグリッドマスです。2、4、6、8、または10文字を使用してください（例：PM、"
 "PM74、PM74kk）。"
 
-#: application/views/gridlookup/index.php:25
-#: application/views/gridlookup/index.php:28
-#: application/views/gridlookup/index.php:59
+#: application/views/gridlookup/index.php:15
+msgid "Locating…"
+msgstr "検索中…"
+
+#: application/views/gridlookup/index.php:16
+msgid "Location access denied."
+msgstr "位置情報へのアクセスが拒否されました。"
+
+#: application/views/gridlookup/index.php:17
+msgid "Location unavailable."
+msgstr "場所が不明です。"
+
+#: application/views/gridlookup/index.php:18
+msgid "Location request timed out."
+msgstr "位置情報のリクエストがタイムアウトしました。"
+
 #: application/views/gridlookup/index.php:68
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2、4、6、8、または10文字のメイデンヘッドロケーター"
 
-#: application/views/gridlookup/index.php:25
-#: application/views/gridlookup/index.php:28
-#: application/views/gridlookup/index.php:59
 #: application/views/gridlookup/index.php:68
 msgid "e.g. FN31pr"
 msgstr "例：PM74kk"
 
-#: application/views/gridlookup/index.php:26
-#: application/views/gridlookup/index.php:29
-#: application/views/gridlookup/index.php:60
 #: application/views/gridlookup/index.php:69
 msgid "to"
 msgstr "to"
 
-#: application/views/gridlookup/index.php:29
-#: application/views/gridlookup/index.php:32
-#: application/views/gridlookup/index.php:63
 #: application/views/gridlookup/index.php:72
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "距離と方位を示すオプションの2つ目のグリッドスクエア"
 
-#: application/views/gridlookup/index.php:29
-#: application/views/gridlookup/index.php:32
-#: application/views/gridlookup/index.php:63
 #: application/views/gridlookup/index.php:72
 msgid "e.g. JN58qm"
 msgstr "例：JN58qm"
 
-#: application/views/gridlookup/index.php:30
-#: application/views/gridlookup/index.php:33
-#: application/views/gridlookup/index.php:64
 #: application/views/gridlookup/index.php:73
 msgid "Go"
 msgstr "Go"
 
-#: application/views/gridlookup/index.php:34
-#: application/views/gridlookup/index.php:37
-msgid "Maidenhead grid"
-msgstr "メイデンヘッドグリッド"
+#: application/views/gridlookup/index.php:75
+msgid "Find my location and gridsquare"
+msgstr "現在地とグリッドスクエアを検索"
+
+#: application/views/gridlookup/index.php:75
+msgid "Locate me"
+msgstr "私を見つけてください"
+
+#: application/views/gridlookup/index.php:78
+#: application/views/simplefle/index.php:162
+msgid "Refs"
+msgstr "参照"
+
+#: application/views/gridlookup/index.php:91
+#: application/views/qso/index.php:759
+msgid "More options"
+msgstr "その他のオプション"
+
+#: application/views/gridlookup/index.php:92
+msgid "Hide options"
+msgstr "オプションを非表示にする"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -19702,12 +19650,6 @@ msgstr "QSOノート"
 msgid "QSL MSG"
 msgstr "QSLメッセージ"
 
-#: application/views/qso/index.php:759
-#: application/views/gridlookup/index.php:88
-#: application/views/gridlookup/index.php:91
-msgid "More options"
-msgstr "その他のオプション"
-
 #: application/views/qso/index.php:761
 msgid "Reset to Default"
 msgstr "デフォルトにリセット"
@@ -20408,12 +20350,6 @@ msgstr "これはオペレーターのコールサインです。前後に文字
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
 msgstr "データを入力"
-
-#: application/views/simplefle/index.php:162
-#: application/views/gridlookup/index.php:67
-#: application/views/gridlookup/index.php:78
-msgid "Refs"
-msgstr "参照"
 
 #: application/views/simplefle/index.php:174
 #, php-format
@@ -22452,28 +22388,28 @@ msgstr "最後のオペレーター"
 msgid "No Clubstations configures yet."
 msgstr "Clubstationsの設定はまだ行われていません。"
 
-#: application/views/user/login.php:36 application/views/user/login.php:25
+#: application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
 msgstr "メンテナンスモード"
 
-#: application/views/user/login.php:56 application/views/user/login.php:45
+#: application/views/user/login.php:45
 msgid "Welcome to the Demo of Wavelog"
 msgstr "Wavelogのデモへようこそ"
 
-#: application/views/user/login.php:57 application/views/user/login.php:46
+#: application/views/user/login.php:46
 msgid "This demo will be reset every night at 0200z."
 msgstr "このデモは毎晩 0200z にリセットされます。"
 
-#: application/views/user/login.php:60 application/views/user/login.php:49
+#: application/views/user/login.php:49
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr "Wavelogに関する詳細情報は、%sGithub%s をご覧ください。"
 
-#: application/views/user/login.php:80 application/views/user/login.php:69
+#: application/views/user/login.php:69
 msgid "Forgot your password?"
 msgstr "パスワードをお忘れですか？"
 
-#: application/views/user/login.php:86 application/views/user/login.php:75
+#: application/views/user/login.php:75
 msgid "Keep me logged in"
 msgstr "ログイン状態を保つ"
 
@@ -23097,53 +23033,17 @@ msgstr ""
 "ゾーンに関する問題は見つかりませんでした。すべての交信記録に正しいゾーン情報"
 "が記録されています。"
 
-#: application/views/cron/index.php:77
-msgid "Interval"
-msgstr "間隔"
+#~ msgid "Maidenhead grid"
+#~ msgstr "メイデンヘッドグリッド"
 
-#: application/views/gridlookup/index.php:41
-msgid "WWFF References"
-msgstr "WWFF参考文献"
+#~ msgid "WWFF References"
+#~ msgstr "WWFF参考文献"
 
-#: application/views/gridlookup/index.php:45
-msgid "POTA References"
-msgstr "POTAに関する参考文献"
+#~ msgid "POTA References"
+#~ msgstr "POTAに関する参考文献"
 
-#: application/views/gridlookup/index.php:49
-msgid "SOTA References"
-msgstr "SOTAの参考文献"
-
-#: application/views/gridlookup/index.php:15
-msgid "Locating…"
-msgstr "検索中…"
-
-#: application/views/gridlookup/index.php:16
-msgid "Location access denied."
-msgstr "位置情報へのアクセスが拒否されました。"
-
-#: application/views/gridlookup/index.php:17
-msgid "Location unavailable."
-msgstr "場所が不明です。"
-
-#: application/views/gridlookup/index.php:18
-msgid "Location request timed out."
-msgstr "位置情報のリクエストがタイムアウトしました。"
-
-#: application/views/gridlookup/index.php:66
-msgid "Find my location and gridsquare"
-msgstr "現在地とグリッドスクエアを検索"
-
-#: application/views/gridlookup/index.php:66
-msgid "Locate me"
-msgstr "私を見つけてください"
-
-#: application/views/gridlookup/index.php:89
-msgid "Hide options"
-msgstr "オプションを非表示にする"
-
-#: application/libraries/api_v2/Confirmation_resource.php:54
-msgid "Read QSL confirmations"
-msgstr "QSLカードの確認書を読む"
+#~ msgid "SOTA References"
+#~ msgstr "SOTAの参考文献"
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
 #~ msgstr "時刻の形式が無効です。HH:MM形式（例：08:31）を使用してください。"
@@ -23913,9 +23813,9 @@ msgstr "QSLカードの確認書を読む"
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
-#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
-#~ "なしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
+#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
+#~ "ワードなしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -24246,8 +24146,8 @@ msgstr "QSLカードの確認書を読む"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
-#~ "%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
+#~ "は、%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

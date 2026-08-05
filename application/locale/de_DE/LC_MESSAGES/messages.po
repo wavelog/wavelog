@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-03 13:49+0000\n"
+"POT-Creation-Date: 2026-08-05 06:36+0000\n"
 "PO-Revision-Date: 2026-08-05 17:24+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -630,6 +630,7 @@ msgstr " und "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
+#: application/views/gridlookup/index.php:83
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
@@ -652,8 +653,6 @@ msgstr " und "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
-#: application/views/gridlookup/index.php:82
-#: application/views/gridlookup/index.php:83
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -661,6 +660,7 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
+#: application/views/gridlookup/index.php:81
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -676,8 +676,6 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
-#: application/views/gridlookup/index.php:74
-#: application/views/gridlookup/index.php:81
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -686,6 +684,7 @@ msgstr "WWFF"
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
+#: application/views/gridlookup/index.php:82
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
@@ -702,8 +701,6 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
-#: application/views/gridlookup/index.php:78
-#: application/views/gridlookup/index.php:82
 msgid "POTA"
 msgstr "POTA"
 
@@ -2214,8 +2211,9 @@ msgstr "Staat"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:25
-#: application/views/gridlookup/index.php:61
+#: application/views/gridlookup/index.php:65
+#: application/views/gridlookup/index.php:80
+#: application/views/gridlookup/index.php:102
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -2257,12 +2255,6 @@ msgstr "Staat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
-#: application/views/gridlookup/index.php:56
-#: application/views/gridlookup/index.php:70
-#: application/views/gridlookup/index.php:99
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:80
-#: application/views/gridlookup/index.php:102
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -2705,11 +2697,10 @@ msgstr ""
 "Bitte gib ein einzigartiges Rufzeichen ein."
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:85
-#: application/models/Logbook_model.php:1412
-#: application/views/contesting/logger/components/qso-form.php:43
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:97
+#: application/models/Logbook_model.php:97
 #: application/models/Logbook_model.php:1424
+#: application/views/contesting/logger/components/qso-form.php:43
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr "Ungültiges Rufzeichen"
 
@@ -2999,8 +2990,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten "
-"config.sample.php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
+"php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:564
@@ -3872,9 +3863,8 @@ msgstr "Login fehlgeschlagen. Bitte erneut versuchen."
 
 #: application/controllers/User.php:1375
 #: application/views/interface_assets/header.php:427
-#: application/views/user/login.php:91
-#: application/views/visitor/layout/header.php:87
 #: application/views/user/login.php:80
+#: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Anmeldung"
 
@@ -4147,20 +4137,16 @@ msgstr "Fehler beim Abrufen eines Sessionkeys für das Callbook. Fehler: %s"
 msgid "QRZCQ Error"
 msgstr "QRZCQ Fehler"
 
-#: application/libraries/Cbr_parser.php:116
-#: application/libraries/Cbr_parser.php:165
 #: application/libraries/Cbr_parser.php:118
 #: application/libraries/Cbr_parser.php:167
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
 "Defekte CBR-Datei - kein gültiger Austausch oder keine Rufzeichen gefunden"
 
-#: application/libraries/Cbr_parser.php:142
 #: application/libraries/Cbr_parser.php:144
 msgid "Broken CBR file - no QSO data found."
 msgstr "Defekte CBR-Datei - keine QSO-Daten gefunden."
 
-#: application/libraries/Cbr_parser.php:152
 #: application/libraries/Cbr_parser.php:154
 msgid "Broken CBR file - incomplete header found."
 msgstr "Defekte CBR-Datei - unvollständiger Header gefunden."
@@ -4255,6 +4241,10 @@ msgstr "Clubmitglieder-Berechtigungen verwalten"
 msgid "Remove club members"
 msgstr "Clubmitglieder entfernen"
 
+#: application/libraries/api_v2/Confirmation_resource.php:54
+msgid "Read QSL confirmations"
+msgstr "QSL Bestätigungen lesen"
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr "Rufzeichen und Locator suchen"
@@ -4295,7 +4285,6 @@ msgstr "Stationsstandorte erstellen und aktualisieren"
 msgid "Delete station locations"
 msgstr "Stationsstandorte löschen"
 
-#: application/libraries/api_v2/Statistic_resource.php:52
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
 msgstr "Statistiken abfragen"
@@ -4430,29 +4419,23 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
-#: application/models/Logbook_model.php:345
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "Station nicht verfügbar"
 
-#: application/models/Logbook_model.php:1402
 #: application/models/Logbook_model.php:1414
 msgid "Station ID not allowed"
 msgstr "Stations ID nicht erlaubt"
 
-#: application/models/Logbook_model.php:1407
 #: application/models/Logbook_model.php:1419
 msgid "No Call given"
 msgstr "Kein Rufzeichen angegeben"
 
-#: application/models/Logbook_model.php:1482
-#: application/models/Logbook_model.php:1686
 #: application/models/Logbook_model.php:1494
 #: application/models/Logbook_model.php:1698
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
-#: application/models/Logbook_model.php:4644
 #: application/models/Logbook_model.php:4757
 #, php-format
 msgid ""
@@ -4461,7 +4444,6 @@ msgstr ""
 "Abweichendes Stationsrufzeichen %s beim Import des QSO mit %s für %s: "
 "ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
@@ -4471,7 +4453,6 @@ msgstr ""
 "Abweichendes Planquadrat %s beim Import des QSO mit %s für "
 "Stationsplanquadrat %s: ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:4668
 #: application/models/Logbook_model.php:4781
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -4480,7 +4461,6 @@ msgstr ""
 "Du hast versucht, ein QSO mit ungültigem Datum zu importieren. Dieses QSO "
 "wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4678
 #: application/models/Logbook_model.php:4791
 #, php-format
 msgid ""
@@ -4490,7 +4470,6 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO ohne jedes Rufzeichen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig."
 
-#: application/models/Logbook_model.php:4685
 #: application/models/Logbook_model.php:4798
 #, php-format
 msgid ""
@@ -4500,7 +4479,6 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO mit einem ungültigen Rufzeichen zu "
 "importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist '%s'."
 
-#: application/models/Logbook_model.php:4755
 #: application/models/Logbook_model.php:4868
 #, php-format
 msgid ""
@@ -4510,7 +4488,6 @@ msgstr ""
 "QSO bei %s: Band '%s' ist nicht in der Bandkonfiguration. Dieses QSO wurde "
 "nicht importiert."
 
-#: application/models/Logbook_model.php:4762
 #: application/models/Logbook_model.php:4875
 #, php-format
 msgid ""
@@ -4520,77 +4497,63 @@ msgstr ""
 "QSO um %s: Du hast versucht, ein QSO ohne Bandinformationen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:5036
 #: application/models/Logbook_model.php:5149
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5047
 #: application/models/Logbook_model.php:5160
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5108
 #: application/models/Logbook_model.php:5221
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5484
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5597
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:5551
-#: application/models/Logbook_model.php:5651
 #: application/models/Logbook_model.php:5664
 #: application/models/Logbook_model.php:5764
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:5559
 #: application/models/Logbook_model.php:5672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5565
 #: application/models/Logbook_model.php:5678
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:5569
 #: application/models/Logbook_model.php:5682
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:5573
 #: application/models/Logbook_model.php:5686
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:5576
 #: application/models/Logbook_model.php:5689
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:5579
+#: application/models/Logbook_model.php:5692
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:5692
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5654
 #: application/models/Logbook_model.php:5767
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
-#: application/models/Logbook_model.php:5657
 #: application/models/Logbook_model.php:5770
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
-#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6176
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
@@ -4603,7 +4566,6 @@ msgstr "QSO aktualisiert"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6176
 msgid "Bearing"
 msgstr "Peilung"
 
@@ -5095,12 +5057,10 @@ msgstr "Lösche Markierungen"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:59
+#: application/views/gridlookup/index.php:100
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
-#: application/views/gridlookup/index.php:97
-#: application/views/gridlookup/index.php:100
 msgid "Latitude"
 msgstr "Breitengrad"
 
@@ -5108,12 +5068,10 @@ msgstr "Breitengrad"
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:60
+#: application/views/gridlookup/index.php:101
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
-#: application/views/gridlookup/index.php:98
-#: application/views/gridlookup/index.php:101
 msgid "Longitude"
 msgstr "Längengrad"
 
@@ -6926,7 +6884,7 @@ msgstr "Bestätigte QSOs"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:62
+#: application/views/gridlookup/index.php:103
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -6944,8 +6902,6 @@ msgstr "Bestätigte QSOs"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
-#: application/views/gridlookup/index.php:100
-#: application/views/gridlookup/index.php:103
 msgid "CQ Zone"
 msgstr "CQ-Zone"
 
@@ -7147,13 +7103,11 @@ msgstr "Letztes Jahr"
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:34
+#: application/views/gridlookup/index.php:74
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:74
 msgid "Clear"
 msgstr "Zurücksetzen"
 
@@ -7973,7 +7927,7 @@ msgstr "Gelöscht"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:63
+#: application/views/gridlookup/index.php:104
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -7988,8 +7942,6 @@ msgstr "Gelöscht"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
-#: application/views/gridlookup/index.php:101
-#: application/views/gridlookup/index.php:104
 msgid "ITU Zone"
 msgstr "ITU Zone"
 
@@ -10637,10 +10589,8 @@ msgstr "Nachname"
 #: application/views/club/permissions.php:285
 #: application/views/contesting/logger/index.php:172
 #: application/views/user/edit.php:70 application/views/user/index.php:152
-#: application/views/user/login.php:58 application/views/user/login.php:70
-#: application/views/user/login.php:71 application/views/user/profile.php:14
 #: application/views/user/login.php:47 application/views/user/login.php:59
-#: application/views/user/login.php:60
+#: application/views/user/login.php:60 application/views/user/profile.php:14
 msgid "Username"
 msgstr "Benutzername"
 
@@ -11682,13 +11632,11 @@ msgstr ""
 "unter dessen Rufzeichen weiterzuführen."
 
 #: application/views/contesting/logger/index.php:176
-#: application/views/user/edit.php:96 application/views/user/login.php:59
-#: application/views/user/login.php:74 application/views/user/login.php:75
+#: application/views/user/edit.php:96 application/views/user/login.php:48
+#: application/views/user/login.php:63 application/views/user/login.php:64
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
-#: application/views/user/login.php:48 application/views/user/login.php:63
-#: application/views/user/login.php:64
 msgid "Password"
 msgstr "Passwort"
 
@@ -14306,8 +14254,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
-"eQSL.cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
+"cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -14413,57 +14361,67 @@ msgstr ""
 "Ungültiges Locatorfeld — Verwenden Sie 2, 4, 6, 8 oder 10 Zeichen (z.B. FN, "
 "FN31, FN31pr)."
 
-#: application/views/gridlookup/index.php:28
-#: application/views/gridlookup/index.php:59
+#: application/views/gridlookup/index.php:15
+msgid "Locating…"
+msgstr "Standortbestimmung…"
+
+#: application/views/gridlookup/index.php:16
+msgid "Location access denied."
+msgstr "Standortzugriff verweigert."
+
+#: application/views/gridlookup/index.php:17
+msgid "Location unavailable."
+msgstr "Standort nicht verfügbar."
+
+#: application/views/gridlookup/index.php:18
+msgid "Location request timed out."
+msgstr "Standortanfrage dauerte zu lange."
+
 #: application/views/gridlookup/index.php:68
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 oder 10-stelliger Maidenhead-Locator"
 
-#: application/views/gridlookup/index.php:28
-#: application/views/gridlookup/index.php:59
 #: application/views/gridlookup/index.php:68
 msgid "e.g. FN31pr"
 msgstr "z.B. FN31pr"
 
-#: application/views/gridlookup/index.php:29
-#: application/views/gridlookup/index.php:60
 #: application/views/gridlookup/index.php:69
 msgid "to"
 msgstr "zu"
 
-#: application/views/gridlookup/index.php:32
-#: application/views/gridlookup/index.php:63
 #: application/views/gridlookup/index.php:72
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Optionales zweiter Locator für Entfernung und Peilung"
 
-#: application/views/gridlookup/index.php:32
-#: application/views/gridlookup/index.php:63
 #: application/views/gridlookup/index.php:72
 msgid "e.g. JN58qm"
 msgstr "z.B. JN58qm"
 
-#: application/views/gridlookup/index.php:33
-#: application/views/gridlookup/index.php:64
 #: application/views/gridlookup/index.php:73
 msgid "Go"
 msgstr "Los"
 
-#: application/views/gridlookup/index.php:37
-msgid "Maidenhead grid"
-msgstr "Maidenhead-Locator"
+#: application/views/gridlookup/index.php:75
+msgid "Find my location and gridsquare"
+msgstr "Finde meinen Standort und das Gridquare"
 
-#: application/views/gridlookup/index.php:41
-msgid "WWFF References"
-msgstr "WWFF Referenzen"
+#: application/views/gridlookup/index.php:75
+msgid "Locate me"
+msgstr "Orte mich"
 
-#: application/views/gridlookup/index.php:45
-msgid "POTA References"
-msgstr "POTA Referenzen"
+#: application/views/gridlookup/index.php:78
+#: application/views/simplefle/index.php:162
+msgid "Refs"
+msgstr "Refs"
 
-#: application/views/gridlookup/index.php:49
-msgid "SOTA References"
-msgstr "SOTA Referenzen"
+#: application/views/gridlookup/index.php:91
+#: application/views/qso/index.php:759
+msgid "More options"
+msgstr "Weitere Optionen"
+
+#: application/views/gridlookup/index.php:92
+msgid "Hide options"
+msgstr "Optionen ausblenden"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -18292,8 +18250,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
-"'wavelog@example.com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
+"com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -19942,12 +19900,6 @@ msgstr "QSO Notiz"
 msgid "QSL MSG"
 msgstr "QSL Nachricht"
 
-#: application/views/qso/index.php:759
-#: application/views/gridlookup/index.php:88
-#: application/views/gridlookup/index.php:91
-msgid "More options"
-msgstr "Weitere Optionen"
-
 #: application/views/qso/index.php:761
 msgid "Reset to Default"
 msgstr "Auf Standardwerte zurücksetzen"
@@ -20666,12 +20618,6 @@ msgstr ""
 msgid "Enter the Data"
 msgstr "Gibt hier die Daten ein"
 
-#: application/views/simplefle/index.php:162
-#: application/views/gridlookup/index.php:67
-#: application/views/gridlookup/index.php:78
-msgid "Refs"
-msgstr "Refs"
-
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
@@ -20727,8 +20673,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
-"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
+"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -21750,9 +21696,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
-"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
-"enthält. Wir verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
+"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
+"verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -22754,28 +22700,28 @@ msgstr "Letzter Operator"
 msgid "No Clubstations configures yet."
 msgstr "Noch keine Clubstationen konfiguriert."
 
-#: application/views/user/login.php:36 application/views/user/login.php:25
+#: application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
 msgstr "WARTUNGSMODUS"
 
-#: application/views/user/login.php:56 application/views/user/login.php:45
+#: application/views/user/login.php:45
 msgid "Welcome to the Demo of Wavelog"
 msgstr "Willkommen zur Demo von Wavelog"
 
-#: application/views/user/login.php:57 application/views/user/login.php:46
+#: application/views/user/login.php:46
 msgid "This demo will be reset every night at 0200z."
 msgstr "Diese Demo wird jede Nacht um 0200z zurückgesetzt."
 
-#: application/views/user/login.php:60 application/views/user/login.php:49
+#: application/views/user/login.php:49
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr "Mehr Informationen über Wavelog auf %sGithub%s."
 
-#: application/views/user/login.php:80 application/views/user/login.php:69
+#: application/views/user/login.php:69
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: application/views/user/login.php:86 application/views/user/login.php:75
+#: application/views/user/login.php:75
 msgid "Keep me logged in"
 msgstr "Angemeldet bleiben"
 
@@ -23412,40 +23358,17 @@ msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
 "Keine Probleme mit CQ-Zonen gefunden. Alle QSOs haben die korrekte CQ-Zone."
 
-#: application/views/gridlookup/index.php:15
-msgid "Locating…"
-msgstr "Standortbestimmung…"
+#~ msgid "Maidenhead grid"
+#~ msgstr "Maidenhead-Locator"
 
-#: application/views/gridlookup/index.php:16
-msgid "Location access denied."
-msgstr "Standortzugriff verweigert."
+#~ msgid "WWFF References"
+#~ msgstr "WWFF Referenzen"
 
-#: application/views/gridlookup/index.php:17
-msgid "Location unavailable."
-msgstr "Standort nicht verfügbar."
+#~ msgid "POTA References"
+#~ msgstr "POTA Referenzen"
 
-#: application/views/gridlookup/index.php:18
-msgid "Location request timed out."
-msgstr "Standortanfrage dauerte zu lange."
-
-#: application/views/gridlookup/index.php:66
-#: application/views/gridlookup/index.php:75
-msgid "Find my location and gridsquare"
-msgstr "Finde meinen Standort und das Gridquare"
-
-#: application/views/gridlookup/index.php:66
-#: application/views/gridlookup/index.php:75
-msgid "Locate me"
-msgstr "Orte mich"
-
-#: application/views/gridlookup/index.php:89
-#: application/views/gridlookup/index.php:92
-msgid "Hide options"
-msgstr "Optionen ausblenden"
-
-#: application/libraries/api_v2/Confirmation_resource.php:54
-msgid "Read QSL confirmations"
-msgstr "QSL Bestätigungen lesen"
+#~ msgid "SOTA References"
+#~ msgstr "SOTA Referenzen"
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
 #~ msgstr "Ungültiges Zeitformat. Bitte verwende HH:MM (z.B. 08:31)."
