@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-05 06:25+0000\n"
+"POT-Creation-Date: 2026-08-05 06:36+0000\n"
 "PO-Revision-Date: 2026-07-29 08:13+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2664,8 +2664,8 @@ msgstr ""
 "unikátní značku stanice."
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:85
-#: application/models/Logbook_model.php:1412
+#: application/models/Logbook_model.php:97
+#: application/models/Logbook_model.php:1424
 #: application/views/contesting/logger/components/qso-form.php:43
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4193,6 +4193,10 @@ msgstr ""
 msgid "Remove club members"
 msgstr ""
 
+#: application/libraries/api_v2/Confirmation_resource.php:54
+msgid "Read QSL confirmations"
+msgstr ""
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr ""
@@ -4233,7 +4237,7 @@ msgstr ""
 msgid "Delete station locations"
 msgstr ""
 
-#: application/libraries/api_v2/Statistic_resource.php:52
+#: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
 msgstr ""
 
@@ -4357,30 +4361,30 @@ msgstr "HRDlog: Nenalezena žádná QSO k nahrání pro značku stanice: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Nenalezeny žádné profily stanic s přihlašovacími údaji HRDlog."
 
-#: application/models/Logbook_model.php:345
+#: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "Stanice je nedostupná"
 
-#: application/models/Logbook_model.php:1402
+#: application/models/Logbook_model.php:1414
 msgid "Station ID not allowed"
 msgstr "Identifikace stanice je nedostupná"
 
-#: application/models/Logbook_model.php:1407
+#: application/models/Logbook_model.php:1419
 msgid "No Call given"
 msgstr "Značka není zadána"
 
-#: application/models/Logbook_model.php:1482
-#: application/models/Logbook_model.php:1686
+#: application/models/Logbook_model.php:1494
+#: application/models/Logbook_model.php:1698
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musí být číselné"
 
-#: application/models/Logbook_model.php:4644
+#: application/models/Logbook_model.php:4757
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Odlišná značka stanice %s při importu QSO s %s pro %s: PŘESKOČENO"
 
-#: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4388,7 +4392,7 @@ msgid ""
 msgstr ""
 "Odlišný lokátor %s při importu QSO s %s pro lokátor stanice %s: PŘESKOČENO"
 
-#: application/models/Logbook_model.php:4668
+#: application/models/Logbook_model.php:4781
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4396,7 +4400,7 @@ msgstr ""
 "Pokusili jste se importovat QSO bez platného data. Toto QSO nebylo "
 "importováno. Je neplatné"
 
-#: application/models/Logbook_model.php:4678
+#: application/models/Logbook_model.php:4791
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4405,7 +4409,7 @@ msgstr ""
 "QSO dne %s: Pokusili jste se importovat QSO bez uvedeného pole CALL. Toto "
 "QSO nebylo importováno. Je neplatné."
 
-#: application/models/Logbook_model.php:4685
+#: application/models/Logbook_model.php:4798
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4414,7 +4418,7 @@ msgstr ""
 "QSO dne %s: Pokusili jste se importovat QSO s neplatným polem CALL. Toto QSO "
 "nebylo importováno. Neplatný vstup je '%s'."
 
-#: application/models/Logbook_model.php:4755
+#: application/models/Logbook_model.php:4868
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4422,7 +4426,7 @@ msgid ""
 msgstr ""
 "QSO dne %s: Pásmo '%s' není v konfiguraci pásem. Toto QSO nebylo importováno."
 
-#: application/models/Logbook_model.php:4762
+#: application/models/Logbook_model.php:4875
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4431,63 +4435,63 @@ msgstr ""
 "QSO na %s: Pokusili jste se importovat QSO bez zadaného pásma. Toto QSO "
 "nebylo importováno. Je neplatné"
 
-#: application/models/Logbook_model.php:5036
+#: application/models/Logbook_model.php:5149
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "datum qslrdate je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5047
+#: application/models/Logbook_model.php:5160
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "datum qslsdate je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5108
+#: application/models/Logbook_model.php:5221
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5484
+#: application/models/Logbook_model.php:5597
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikát pro"
 
-#: application/models/Logbook_model.php:5551
-#: application/models/Logbook_model.php:5651
+#: application/models/Logbook_model.php:5664
+#: application/models/Logbook_model.php:5764
 msgid "QSO could not be matched"
 msgstr "QSO nelze spárovat"
 
-#: application/models/Logbook_model.php:5559
+#: application/models/Logbook_model.php:5672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrzeno přes LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5565
+#: application/models/Logbook_model.php:5678
 msgid "confirmed by award manager"
 msgstr "potvrzeno manažerem diplomů"
 
-#: application/models/Logbook_model.php:5569
+#: application/models/Logbook_model.php:5682
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrzeno kontrolou DCL dat"
 
-#: application/models/Logbook_model.php:5573
+#: application/models/Logbook_model.php:5686
 msgid "confirmation pending"
 msgstr "čeká na potvrzení"
 
-#: application/models/Logbook_model.php:5576
+#: application/models/Logbook_model.php:5689
 msgid "unconfirmed"
 msgstr "nepotvrzeno"
 
-#: application/models/Logbook_model.php:5579
+#: application/models/Logbook_model.php:5692
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "neznámé"
 
-#: application/models/Logbook_model.php:5654
+#: application/models/Logbook_model.php:5767
 msgid "POTA reference already in log"
 msgstr "POTA reference již v logu"
 
-#: application/models/Logbook_model.php:5657
+#: application/models/Logbook_model.php:5770
 msgid "QSO updated"
 msgstr "QSO aktualizováno"
 
-#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6176
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57

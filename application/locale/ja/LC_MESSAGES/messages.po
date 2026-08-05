@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-05 06:25+0000\n"
+"POT-Creation-Date: 2026-08-05 06:36+0000\n"
 "PO-Revision-Date: 2026-08-02 07:17+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2666,8 +2666,8 @@ msgstr ""
 "力してください。"
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:85
-#: application/models/Logbook_model.php:1412
+#: application/models/Logbook_model.php:97
+#: application/models/Logbook_model.php:1424
 #: application/views/contesting/logger/components/qso-form.php:43
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4191,6 +4191,10 @@ msgstr "クラブ会員の権限を管理する"
 msgid "Remove club members"
 msgstr "クラブメンバーを削除する"
 
+#: application/libraries/api_v2/Confirmation_resource.php:54
+msgid "Read QSL confirmations"
+msgstr ""
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr "コールサインとグリッドを調べる"
@@ -4231,7 +4235,7 @@ msgstr "シャックの場所を作成および更新する"
 msgid "Delete station locations"
 msgstr "シャックの場所を削除する"
 
-#: application/libraries/api_v2/Statistic_resource.php:52
+#: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
 msgstr "統計情報を読む"
 
@@ -4362,24 +4366,24 @@ msgstr "HRDlog: 局のコールサインにアップロードする QSO が見�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: HRDlog 資格情報を持つ無線局プロファイルが見つかりません。"
 
-#: application/models/Logbook_model.php:345
+#: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "利用できない無線局"
 
-#: application/models/Logbook_model.php:1402
+#: application/models/Logbook_model.php:1414
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
-#: application/models/Logbook_model.php:1407
+#: application/models/Logbook_model.php:1419
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1482
-#: application/models/Logbook_model.php:1686
+#: application/models/Logbook_model.php:1494
+#: application/models/Logbook_model.php:1698
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4644
+#: application/models/Logbook_model.php:4757
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4387,7 +4391,7 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4396,7 +4400,7 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:4668
+#: application/models/Logbook_model.php:4781
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4404,7 +4408,7 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4678
+#: application/models/Logbook_model.php:4791
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4413,7 +4417,7 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:4685
+#: application/models/Logbook_model.php:4798
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4422,7 +4426,7 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:4755
+#: application/models/Logbook_model.php:4868
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4431,7 +4435,7 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:4762
+#: application/models/Logbook_model.php:4875
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4440,63 +4444,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5036
+#: application/models/Logbook_model.php:5149
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5047
+#: application/models/Logbook_model.php:5160
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5108
+#: application/models/Logbook_model.php:5221
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5484
+#: application/models/Logbook_model.php:5597
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5551
-#: application/models/Logbook_model.php:5651
+#: application/models/Logbook_model.php:5664
+#: application/models/Logbook_model.php:5764
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5559
+#: application/models/Logbook_model.php:5672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5565
+#: application/models/Logbook_model.php:5678
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5569
+#: application/models/Logbook_model.php:5682
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5573
+#: application/models/Logbook_model.php:5686
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5576
+#: application/models/Logbook_model.php:5689
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5579
+#: application/models/Logbook_model.php:5692
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5654
+#: application/models/Logbook_model.php:5767
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5657
+#: application/models/Logbook_model.php:5770
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6176
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
