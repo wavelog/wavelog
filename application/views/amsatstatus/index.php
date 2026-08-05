@@ -115,9 +115,9 @@
                             <div class="amsat-cell amsat-cell-aos small" role="cell" aria-rowindex="<?= $row_i; ?>" aria-colindex="2"><?php
                                 if (isset($next_pass[$name])) {
                                     $np = $next_pass[$name];
-                                    echo htmlspecialchars($np['time']) . ' <span class="text-muted">UTC</span>';
+                                    echo htmlspecialchars($np['time']) . '&nbsp;<span class="text-muted">UTC</span>&nbsp;';
                                     if ($np['maxel'] !== null) {
-                                        echo ' &middot; ' . (int)$np['maxel'] . '&deg;';
+                                        echo '&middot; ' . (int)$np['maxel'] . '&deg;';
                                     }
                                 } else {
                                     echo '<span class="text-muted">&mdash;</span>';
