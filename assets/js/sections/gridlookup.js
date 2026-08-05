@@ -834,6 +834,14 @@
 			el.classList.remove('cohidden');
 		});
 
+		// Grow/shrink the map when the Search panel collapses/expands, and let
+		// Leaflet pick up the new size once the transition has finished.
+		var topBody = document.getElementById('glTopBody');
+		if (topBody) {
+			topBody.addEventListener('hidden.bs.collapse', function () { map.invalidateSize(); });
+			topBody.addEventListener('shown.bs.collapse', function () { map.invalidateSize(); });
+		}
+
 		// Leaflet needs a nudge when its container was sized after init.
 		setTimeout(function () { map.invalidateSize(); }, 200);
 	}

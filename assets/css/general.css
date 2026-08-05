@@ -2047,7 +2047,7 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 
 /* Selection info box above the map (grid, coordinates, zones, QRB). */
 #glInfo {
-	margin: .5rem 0 0;
+	margin: 0 0 0;
 	padding: .5rem .75rem;
 	background: rgba(127, 127, 127, .10);
 	border: 1px solid rgba(127, 127, 127, .25);
@@ -2081,8 +2081,18 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	vertical-align: baseline;
 }
 
+/* Collapsible top card-body — rotate the header chevron when collapsed. */
+.gl-top-chevron { transition: transform .2s ease; }
+[data-bs-target="#glTopBody"].collapsed .gl-top-chevron { transform: rotate(-180deg); }
+
+/* Map height: grows when the Search panel (#glTopBody) is collapsed. */
+#glMap { height: calc(100vh - 350px); min-height: 400px; }
+#glTopBody:not(.show) ~ #glMap { height: calc(100vh - 240px); }
+
 /* Phones: the corner compass panel is too big, so rely on the on-map arrows. */
 @media (max-width: 575.98px) {
 	.gl-borders-control.leaflet-control { display: none !important; }
 	.gl-coords-body { display: none !important; }
+	#glMap { height: calc(100vh - 390px); min-height: 300px; }
+	#glTopBody:not(.show) ~ #glMap { height: calc(100vh - 200px); }
 }
