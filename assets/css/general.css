@@ -2085,6 +2085,15 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .gl-top-chevron { transition: transform .2s ease; }
 [data-bs-target="#glTopBody"].collapsed .gl-top-chevron { transform: rotate(-180deg); }
 
+/* "Locate me" active autotracking state: green button + pulsing icon. */
+#glLocate.gl-tracking {
+	color: #fff;
+	background-color: #198754;
+	border-color: #198754;
+}
+#glLocate.gl-tracking .fa { animation: gl-pulse 1.5s ease-in-out infinite; }
+@keyframes gl-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
 /* Map height: grows when the Search panel (#glTopBody) is collapsed. */
 #glMap { height: calc(100vh - 350px); min-height: 400px; }
 #glTopBody:not(.show) ~ #glMap { height: calc(100vh - 240px); }

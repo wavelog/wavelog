@@ -15,6 +15,7 @@
 		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
 		closeLbl:      <?php echo json_encode(__("Close")); ?>,
 		errorLbl:      <?php echo json_encode(__("Error")); ?>,
+		trackingLbl:   <?php echo json_encode(__("Tracking")); ?>,
 		locatingMsg:    <?php echo json_encode(__("Locating…")); ?>,
 		geoDenied:      <?php echo json_encode(__("Location access denied.")); ?>,
 		geoUnavailable: <?php echo json_encode(__("Location unavailable.")); ?>,

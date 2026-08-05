@@ -20,6 +20,7 @@
 	let bordersLbl      = cfg.bordersLbl     || 'Grid square borders';
 	let closeLbl        = cfg.closeLbl       || 'Close';
 	let errorLbl        = cfg.errorLbl       || 'Error';
+	let trackingLbl     = cfg.trackingLbl    || 'Tracking';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -28,7 +29,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, trackTimer;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -853,6 +854,7 @@
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
+		stopTracking();  // stop autotracking, restore the Locate button
 
 		// Zoom back out to the default world view.
 		map.setView(initialView, initialZoom);
@@ -942,20 +944,58 @@
 	/*
 	 * "Locate me": ask the browser for the current GPS position (mobile or
 	 * desktop), convert it to a gridsquare, and zoom in — exactly like clicking
-	 * the map there. Requires a secure context (HTTPS or localhost); the button
-	 * is hidden up front in init() when geolocation is unavailable.
+	 * the map there. The click also starts autotracking: the position is polled
+	 * every 60 s so the marker/square follow the device. Click again (or Clear)
+	 * to stop. Requires a secure context (HTTPS or localhost); the button is
+	 * hidden up front in init() when geolocation is unavailable.
 	 */
 	function locate() {
 		if (!('geolocation' in navigator)) { return; }
+		if (trackTimer !== null) { stopTracking(); return; }   // toggle tracking off
+		locateOnce(true);                                     // immediate fix (shows "Locating…")
+		startTracking();
+	}
 
+	/* Poll the position every 60 s and re-select on each update. */
+	function startTracking() {
+		if (trackTimer !== null) { return; }
+		trackTimer = setInterval(function () { locateOnce(false); }, 60000);
+		let btn = document.getElementById('glLocate');
+		if (btn) {
+			if (!btn.dataset.origHtml) { btn.dataset.origHtml = btn.innerHTML; }
+			btn.classList.add('gl-tracking');
+			btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> ' + esc(trackingLbl);
+		}
+	}
+
+	/* Stop autotracking and restore the Locate button. */
+	function stopTracking() {
+		if (trackTimer !== null) { clearInterval(trackTimer); trackTimer = null; }
+		let btn = document.getElementById('glLocate');
+		if (btn) {
+			btn.classList.remove('gl-tracking');
+			btn.disabled = false;
+			if (btn.dataset.origHtml) { btn.innerHTML = btn.dataset.origHtml; }
+		}
+	}
+
+	/*
+	 * One position fix. `isInitial` shows the "Locating…" indicator (and a toast
+	 * on error) for the first call; periodic polls update silently and only bail
+	 * out on a hard permission denial.
+	 */
+	function locateOnce(isInitial) {
+		if (!('geolocation' in navigator)) { return; }
 		let info = document.getElementById('glInfo');
 		let btn = document.getElementById('glLocate');
 
-		info.textContent = locatingMsg;
-		if (btn) { btn.disabled = true; }
+		if (isInitial) {
+			info.textContent = locatingMsg;
+			if (btn) { btn.disabled = true; }
+		}
 
 		navigator.geolocation.getCurrentPosition(function (pos) {
-			if (btn) { btn.disabled = false; }
+			if (btn && isInitial) { btn.disabled = false; }
 			let lat = pos.coords.latitude, lng = pos.coords.longitude;
 			let loc = latLngToLocator(lat, lng, 3);
 			// Fill grid 1 so the user can immediately type a second grid and hit Go
@@ -964,15 +1004,21 @@
 			selectPoint(lat, lng, loc);
 		}, function (geoErr) {
 			if (btn) { btn.disabled = false; }
-			info.textContent = '';
-			let msg;
-			switch (geoErr.code) {
-				case 1:  msg = geoDenied; break;        // permission denied
-				case 2:  msg = geoUnavailable; break;   // position unavailable
-				case 3:  msg = geoTimeout; break;       // timed out
-				default: msg = geoErr.message || geoUnavailable;
+			if (isInitial) { info.textContent = ''; }
+			if (geoErr.code === 1) {                            // permission denied → won't recover
+				stopTracking();
+				showToast(errorLbl, esc(geoDenied), 'bg-danger text-white', 4000);
+				return;
 			}
-			showToast(errorLbl, esc(msg), 'bg-danger text-white', 4000);
+			if (isInitial) {                                    // transient: only toast on first attempt
+				let msg;
+				switch (geoErr.code) {
+					case 2:  msg = geoUnavailable; break;       // position unavailable
+					case 3:  msg = geoTimeout; break;           // timed out
+					default: msg = geoErr.message || geoUnavailable;
+				}
+				showToast(errorLbl, esc(msg), 'bg-warning text-dark', 4000);
+			}
 		}, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
 	}
 
