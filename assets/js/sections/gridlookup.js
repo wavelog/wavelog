@@ -170,15 +170,22 @@
 		let southLat = Math.max(-90, Math.floor(lat + 90) - 90);
 		let eps = 1e-4;                                              // nudge just across the line
 		let u = measurementBase;
+		let centerLng = (eastLng + westLng) / 2;
+		let centerLat = (northLat + southLat) / 2;
 
 		// Distance + bearing to a point on the square's outline (edge midpoint
-		// or corner vertex), plus the 4-char square just beyond it.
-		function leg(name, tLat, tLng, acrossLat, acrossLng) {
+		// or corner vertex), plus the 4-char square just beyond it. `target` is
+		// the true nearest point on the line (used for the arrow + distance/
+		// bearing calc); `labelPos` is where the distance label is drawn - for
+		// N/S/E/W it's pinned to the border's midpoint so it doesn't drift
+		// sideways with the click point, while corners just reuse `target`.
+		function leg(name, tLat, tLng, acrossLat, acrossLng, labelLat, labelLng) {
 			acrossLat = Math.max(-89.9999, Math.min(89.9999, acrossLat));   // keep off the poles
 			acrossLng = ((acrossLng + 180) % 360 + 360) % 360 - 180;        // wrap at the date line
 			return {
 				dir: name,
 				target: [tLat, tLng],
+				labelPos: [labelLat === undefined ? tLat : labelLat, labelLng === undefined ? tLng : labelLng],
 				across: latLngToLocator(acrossLat, acrossLng, 2),
 				dist: calcDistance(lat, lng, tLat, tLng, u),
 				brg: getBearing(lat, lng, tLat, tLng)
@@ -186,13 +193,13 @@
 		}
 
 		return {
-			N:  leg('N',  northLat, lng,     northLat + eps, lng),
+			N:  leg('N',  northLat, lng,     northLat + eps, lng,               northLat, centerLng),
 			NE: leg('NE', northLat, eastLng, northLat + eps, eastLng + eps),
-			E:  leg('E',  lat,      eastLng, lat,           eastLng + eps),
+			E:  leg('E',  lat,      eastLng, lat,           eastLng + eps,      centerLat, eastLng),
 			SE: leg('SE', southLat, eastLng, southLat - eps, eastLng + eps),
-			S:  leg('S',  southLat, lng,     southLat - eps, lng),
+			S:  leg('S',  southLat, lng,     southLat - eps, lng,               southLat, centerLng),
 			SW: leg('SW', southLat, westLng, southLat - eps, westLng - eps),
-			W:  leg('W',  lat,      westLng, lat,           westLng - eps),
+			W:  leg('W',  lat,      westLng, lat,           westLng - eps,      centerLat, westLng),
 			NW: leg('NW', northLat, westLng, northLat + eps, westLng - eps)
 		};
 	}
@@ -270,7 +277,7 @@
 				lineCap: 'round',
 				interactive: false
 			}));
-			bordersOverlay.addLayer(L.marker(r.target, {
+			bordersOverlay.addLayer(L.marker(r.labelPos, {
 				interactive: false,
 				keyboard: false,
 				icon: L.divIcon({
