@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-05 18:08+0000\n"
+"POT-Creation-Date: 2026-08-05 18:11+0000\n"
 "PO-Revision-Date: 2026-08-05 17:24+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -625,7 +625,7 @@ msgstr " och "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
-#: application/views/gridlookup/index.php:83
+#: application/views/gridlookup/index.php:55
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
@@ -655,7 +655,7 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
-#: application/views/gridlookup/index.php:81
+#: application/views/gridlookup/index.php:53
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -679,7 +679,7 @@ msgstr "WWFF"
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
-#: application/views/gridlookup/index.php:82
+#: application/views/gridlookup/index.php:54
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
@@ -2190,9 +2190,9 @@ msgstr "Delstat"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:80
-#: application/views/gridlookup/index.php:102
+#: application/views/gridlookup/index.php:37
+#: application/views/gridlookup/index.php:52
+#: application/views/gridlookup/index.php:76
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -3381,6 +3381,7 @@ msgstr "Inte tillåtet"
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
+#: application/views/gridlookup/index.php:17
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:765 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
@@ -5012,7 +5013,7 @@ msgstr "Rensa markörer"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:100
+#: application/views/gridlookup/index.php:74
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
@@ -5023,7 +5024,7 @@ msgstr "Latitud"
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:101
+#: application/views/gridlookup/index.php:75
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
@@ -5936,6 +5937,7 @@ msgstr "Skapa en ny API-token"
 #: application/views/contesting/manager/components/confirm_delete.php:6
 #: application/views/contesting/manager/components/session_modal.php:12
 #: application/views/contesting/manager/index.php:124
+#: application/views/gridlookup/index.php:16
 #: application/views/interface_assets/footer.php:54
 #: application/views/logbookadvanced/index.php:55
 #: application/views/simplefle/index.php:21
@@ -6876,7 +6878,7 @@ msgstr "QSOs Bekräftade"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:103
+#: application/views/gridlookup/index.php:77
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -7094,7 +7096,7 @@ msgstr "Förra året"
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:74
+#: application/views/gridlookup/index.php:46
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
@@ -7910,7 +7912,7 @@ msgstr "Raderad"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:104
+#: application/views/gridlookup/index.php:78
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -14287,64 +14289,76 @@ msgstr ""
 "Ogiltig lokator — använd 2, 4, 6, 8 eller 10 tecken (t.ex. FN, FN31, FN31pr)."
 
 #: application/views/gridlookup/index.php:15
+msgid "Gridsquare borders"
+msgstr ""
+
+#: application/views/gridlookup/index.php:18
+msgid "Tracking"
+msgstr ""
+
+#: application/views/gridlookup/index.php:19
 msgid "Locating…"
 msgstr "Hämtar plats…"
 
-#: application/views/gridlookup/index.php:16
+#: application/views/gridlookup/index.php:20
 msgid "Location access denied."
 msgstr "Platsåtkomst nekad."
 
-#: application/views/gridlookup/index.php:17
+#: application/views/gridlookup/index.php:21
 msgid "Location unavailable."
 msgstr "Plats inte tillgänglig."
 
-#: application/views/gridlookup/index.php:18
+#: application/views/gridlookup/index.php:22
 msgid "Location request timed out."
 msgstr "Platsbegäran tog för lång tid och avslutades."
 
-#: application/views/gridlookup/index.php:68
+#: application/views/gridlookup/index.php:32
+msgid "Plan your activity here"
+msgstr ""
+
+#: application/views/gridlookup/index.php:40
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 eller 10 tecken Maidenhead-lokator"
 
-#: application/views/gridlookup/index.php:68
+#: application/views/gridlookup/index.php:40
 msgid "e.g. FN31pr"
 msgstr "t.ex. FN31pr"
 
-#: application/views/gridlookup/index.php:69
+#: application/views/gridlookup/index.php:41
 msgid "to"
 msgstr "till"
 
-#: application/views/gridlookup/index.php:72
+#: application/views/gridlookup/index.php:44
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Valfri andra lokator för avstånd och bäring"
 
-#: application/views/gridlookup/index.php:72
+#: application/views/gridlookup/index.php:44
 msgid "e.g. JN58qm"
 msgstr "t.ex. JN58qm"
 
-#: application/views/gridlookup/index.php:73
+#: application/views/gridlookup/index.php:45
 msgid "Go"
 msgstr "Gå"
 
-#: application/views/gridlookup/index.php:75
+#: application/views/gridlookup/index.php:47
 msgid "Find my location and gridsquare"
 msgstr "Hitta min plats och lokator"
 
-#: application/views/gridlookup/index.php:75
+#: application/views/gridlookup/index.php:47
 msgid "Locate me"
 msgstr "Hitta mig"
 
-#: application/views/gridlookup/index.php:78
+#: application/views/gridlookup/index.php:50
 #: application/views/simplefle/index.php:162
 msgid "Refs"
 msgstr "Referenser"
 
-#: application/views/gridlookup/index.php:91
+#: application/views/gridlookup/index.php:62
 #: application/views/qso/index.php:759
 msgid "More options"
 msgstr "Fler alternativ"
 
-#: application/views/gridlookup/index.php:92
+#: application/views/gridlookup/index.php:63
 msgid "Hide options"
 msgstr "Dölj alternativ"
 
