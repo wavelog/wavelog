@@ -248,8 +248,12 @@
 		if (bordersControl) { bordersControl.setContent(bordersHTML(lat, lng)); }
 		drawArrows(lat, lng);
 	}
-	function clearBorders() {
+	/* Hide the legend panel only — the on-map arrows stay until a real Clear. */
+	function hideBordersPanel() {
 		if (bordersControl) { bordersControl.clear(); }
+	}
+	function clearBorders() {
+		hideBordersPanel();
 		clearArrows();
 	}
 
@@ -721,7 +725,7 @@
 				if (btn) {
 					L.DomEvent.on(btn, 'click', function (ev) {
 						L.DomEvent.stop(ev);
-						clearBorders();
+						hideBordersPanel();   // dismiss the legend only; keep the map arrows
 					});
 				}
 			},
