@@ -236,29 +236,31 @@ class Options extends CI_Controller {
 		$data['sub_heading'] = __("Email");
 		$data['active_tab'] = 'email';
 
+		$footerData['scripts'] = [
+			'assets/js/sections/options_email.js'
+		];
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('options/email');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	// Handles saving the radio options to the options system.
+	// Handles saving the email options to the options system. Answers the AJAX call
+	// from assets/js/sections/options_email.js, the result is shown as a toast.
 	function email_save() {
-
-		$data['page_title'] = __("Wavelog Options");
-		$data['sub_heading'] = __("Email");
-		$data['active_tab'] = 'email';
-
-		$this->load->helper(array('form', 'url'));
 
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('emailProtocol', 'Email Protocol', 'required');
 
+		header('Content-Type: application/json');
+
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('options/email');
-			$this->load->view('interface_assets/footer');
+			echo json_encode([
+				'success' => false,
+				'message' => trim(strip_tags(validation_errors())) ?: __("Something went wrong with saving the settings. Try again.")
+			]);
 		}
 		else
 		{
@@ -312,39 +314,56 @@ class Options extends CI_Controller {
 				$smtpUsernameupdate &&
 				$smtpPasswordupdate;
 
-			// Set flash session based on update success
 			if ($updateSuccessful) {
-				$this->session->set_flashdata('success', __("The settings were saved successfully."));
+				echo json_encode([
+					'success' => true,
+					'message' => __("The settings were saved successfully.")
+				]);
 			} else {
-				$this->session->set_flashdata('saveFailed', __("Something went wrong with saving the settings. Try again."));
+				echo json_encode([
+					'success' => false,
+					'message' => __("Something went wrong with saving the settings. Try again.")
+				]);
 			}
-
-			// Redirect back to /email
-			redirect('/options/email');
 		}
 	}
 
+	// Sends a test mail to the address of the logged in user. Answers the AJAX call
+	// from assets/js/sections/options_email.js, the result is shown as a toast.
 	function sendTestMail() {
 		$id = $this->session->userdata('user_id');
 
 		$email = $this->user_model->get_user_email_by_id($id);
 
-		if($email != "") {
+		header('Content-Type: application/json');
 
-			$this->load->helper('mailer');
-
-			$result = mailer_send('email/testmail', $email);
-
-			if (! $result['success']){
-				$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));
-			} else {
-				$this->session->set_flashdata('testmailSuccess', __("Testmail sent. Email settings seem to be correct."));
-			}
-		} else {
-			$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));
+		if ($email == "") {
+			echo json_encode([
+				'success' => false,
+				'message' => __("Testmail failed. Something went wrong."),
+				'detail' => __("There is no email address set in your account settings.")
+			]);
+			return;
 		}
 
-		redirect('/options/email');
+		$this->load->helper('mailer');
+
+		$result = mailer_send('email/testmail', $email);
+
+		if ($result['success']) {
+			echo json_encode([
+				'success' => true,
+				'message' => __("Testmail sent. Email settings seem to be correct.")
+			]);
+		} else {
+			// The mailer debug output is handed over separately: it can be several lines
+			// of SMTP dialogue, which is too much for a toast.
+			echo json_encode([
+				'success' => false,
+				'message' => __("Testmail failed. Something went wrong."),
+				'detail' => $result['error']
+			]);
+		}
 	}
 
 	// function used to display the /maptiles url in global options
