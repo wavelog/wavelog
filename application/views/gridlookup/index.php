@@ -58,7 +58,7 @@
 					<span class="gl-more-open"><?= __("Hide options"); ?></span>
 				</button>
 			</div>
-			<div id="glInfo" class="small text-muted mt-2" style="min-height:1.4rem;"></div>
+			<div id="glInfo"></div>
 		</div>
 		<div id="glMap" style="width:100%; height:calc(100vh - 320px); min-height:400px;"></div>
 		<div class="card-body gl-coords-body">
