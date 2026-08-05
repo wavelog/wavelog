@@ -277,7 +277,7 @@
 					className: 'gl-arrow-anchor',
 					html: '<div class="gl-arrow-tip' + (near ? ' gl-arrow-near' : '') + '">' +
 						'<span class="gl-arrow-head" style="transform:rotate(' + r.brg + 'deg)"></span>' +
-						'<b>' + esc(r.across) + '</b> &middot; ' + groupThousands(r.dist) + ' ' + unitLabel(measurementBase) +
+						groupThousands(r.dist) + ' ' + unitLabel(measurementBase) +
 						'</div>'
 				})
 			}));
