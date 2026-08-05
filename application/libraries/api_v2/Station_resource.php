@@ -367,6 +367,7 @@ class Station_resource extends Api_v2_resource {
 	protected function format_station($row) {
 		return [
 			'id'         => (int) $row->station_id,
+			'uuid'       => $row->station_uuid ?? null,
 			'name'       => $row->station_profile_name ?? null,
 			'callsign'   => $row->station_callsign ?? null,
 			'gridsquare' => $row->station_gridsquare ?? null,
