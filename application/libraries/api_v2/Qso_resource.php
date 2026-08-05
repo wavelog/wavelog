@@ -894,31 +894,4 @@ class Qso_resource extends Api_v2_resource {
 	protected static function numeric_fields() {
 		return ['cqz', 'ituz', 'srx', 'stx'];
 	}
-
-	/**
-	 * Build the pagination meta block for list responses.
-	 *
-	 * `count` is the number of items on this page; `total` is the number across
-	 * all pages. `total_pages` and `has_more` are derived so a client knows
-	 * definitively when it has reached the last page (no need to probe for an
-	 * empty response).
-	 *
-	 * @param array $page  { page, per_page, offset }
-	 * @param int   $count Items returned on this page.
-	 * @param int   $total Items across all pages for the current filter.
-	 */
-	protected function list_meta($page, $count, $total = 0) {
-		$total = (int) $total;
-		$per_page = $page['per_page'];
-		$total_pages = $per_page > 0 ? (int) ceil($total / $per_page) : 0;
-
-		return [
-			'page'        => $page['page'],
-			'per_page'    => $per_page,
-			'count'       => $count,
-			'total'       => $total,
-			'total_pages' => $total_pages,
-			'has_more'    => $page['page'] < $total_pages,
-		];
-	}
 }
