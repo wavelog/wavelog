@@ -14,6 +14,7 @@
 		sotaUrl:    <?php echo json_encode(site_url('gridlookup/sota_directory')); ?>,
 		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
 		closeLbl:      <?php echo json_encode(__("Close")); ?>,
+		errorLbl:      <?php echo json_encode(__("Error")); ?>,
 		locatingMsg:    <?php echo json_encode(__("Locating…")); ?>,
 		geoDenied:      <?php echo json_encode(__("Location access denied.")); ?>,
 		geoUnavailable: <?php echo json_encode(__("Location unavailable.")); ?>,
@@ -51,7 +52,6 @@
 					</div>
 					<div id="glOverlaysHost" class="gl-secondary"></div>
 				</div>
-				<span id="glError" class="text-danger small ms-2" role="alert"></span>
 				<button id="glMore" type="button" class="gl-more btn btn-link btn-sm d-sm-none w-100" aria-expanded="false">
 					<span class="gl-chevron" aria-hidden="true"></span>
 					<span class="gl-more-closed"><?= __("More options"); ?></span>

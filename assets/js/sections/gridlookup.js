@@ -19,6 +19,7 @@
 	let geoTimeout      = cfg.geoTimeout     || 'Location request timed out.';
 	let bordersLbl      = cfg.bordersLbl     || 'Grid square borders';
 	let closeLbl        = cfg.closeLbl       || 'Close';
+	let errorLbl        = cfg.errorLbl       || 'Error';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -847,7 +848,6 @@
 		document.getElementById('glGrid').value = '';
 		document.getElementById('glGrid2').value = '';
 		document.getElementById('glInfo').textContent = '';
-		document.getElementById('glError').textContent = '';
 	}
 
 	function onMapClick(e) {
@@ -886,7 +886,6 @@
 		// the border arrows are in view; desktop fits the exact clicked cell.
 		zoomToGrid(lat, lng, cell);
 
-		document.getElementById('glError').textContent = '';
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
 		let zones = '', stateLabel = '';
@@ -937,11 +936,9 @@
 	function locate() {
 		if (!('geolocation' in navigator)) { return; }
 
-		let err = document.getElementById('glError');
 		let info = document.getElementById('glInfo');
 		let btn = document.getElementById('glLocate');
 
-		err.textContent = '';
 		info.textContent = locatingMsg;
 		if (btn) { btn.disabled = true; }
 
@@ -956,19 +953,19 @@
 		}, function (geoErr) {
 			if (btn) { btn.disabled = false; }
 			info.textContent = '';
+			let msg;
 			switch (geoErr.code) {
-				case 1:  err.textContent = geoDenied; break;        // permission denied
-				case 2:  err.textContent = geoUnavailable; break;   // position unavailable
-				case 3:  err.textContent = geoTimeout; break;       // timed out
-				default: err.textContent = geoErr.message || geoUnavailable;
+				case 1:  msg = geoDenied; break;        // permission denied
+				case 2:  msg = geoUnavailable; break;   // position unavailable
+				case 3:  msg = geoTimeout; break;       // timed out
+				default: msg = geoErr.message || geoUnavailable;
 			}
+			showToast(errorLbl, esc(msg), 'bg-danger text-white', 4000);
 		}, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
 	}
 
 	function go() {
-		let err = document.getElementById('glError');
 		let info = document.getElementById('glInfo');
-		err.textContent = '';
 
 		// Grid 1 is required; grid 2 is optional and enables distance/bearing.
 		let cell1 = locatorToCell(document.getElementById('glGrid').value);
@@ -976,7 +973,7 @@
 		let cell2 = raw2 ? locatorToCell(raw2) : null;
 		if (!cell1 || (raw2 && !cell2)) {
 			info.textContent = '';
-			err.textContent = invalidMsg;
+			showToast(errorLbl, invalidMsg, 'bg-danger text-white', 4000);
 			return;
 		}
 
