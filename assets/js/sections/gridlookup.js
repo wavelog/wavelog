@@ -21,6 +21,9 @@
 	let closeLbl        = cfg.closeLbl       || 'Close';
 	let errorLbl        = cfg.errorLbl       || 'Error';
 	let trackingLbl     = cfg.trackingLbl    || 'Tracking';
+	let fieldLbl        = cfg.fieldLbl       || 'Field';
+	let squareLbl       = cfg.squareLbl      || 'Square';
+	let subsquareLbl    = cfg.subsquareLbl   || 'Subsquare';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -267,6 +270,19 @@
 	function drawArrows(lat, lng) {
 		if (!bordersOverlay) { return; }
 		bordersOverlay.clearLayers();
+
+		// Outline the 4-character grid square the arrows point to. Yellow on
+		// dark themes; a dark line on light themes where yellow is hard to see.
+		let sq = locatorToCell(latLngToLocator(lat, lng, 2));
+		if (sq) {
+			let sqColor = (typeof isDarkModeTheme === 'function' && isDarkModeTheme()) ? '#ffd60a' : '#ff1900';
+			bordersOverlay.addLayer(L.rectangle([sq.sw, sq.ne], {
+				color: sqColor, weight: 2, dashArray: '8,5',
+				fillColor: sqColor, fillOpacity: 0.1,
+				interactive: false
+			}));
+		}
+
 		let b = squareBorders(lat, lng);
 		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 		let minDist = Infinity;
@@ -329,18 +345,41 @@
 		return s.state + (s.code ? ' (' + s.code + ')' : '') + (s.country ? ', ' + s.country : '');
 	}
 
-	/* Join a marker popup's base line with any resolved zones/state (one per line). */
-	function popupContent(base, z, s) {
-		let parts = [base];
-		if (z) { parts.push(z); }
-		if (s) { parts.push(s); }
-		return parts.join('<br>');
-	}
+	/*
+	 * Rich gridsquare popup (click marker + Go markers): a title, the 4-char
+	 * grid large with any subsquare muted, coordinates, a Field/Square/Subsquare
+	 * hierarchy, and the nearest grid border (direction + adjacent grid +
+	 * distance + arrow). Echoes the corner info box. zones/state are appended
+	 * when resolved. Built on squareBorders() for the nearest-border figure.
+	 */
+	function gridPopupHTML(lat, lng, loc, zones, state) {
+		var arrows = { N: '↑', NE: '↗', E: '→', SE: '↘', S: '↓', SW: '↙', W: '←', NW: '↖' };
+		var b = squareBorders(lat, lng);
+		var order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+		var near = 'N';
+		order.forEach(function (d) { if (b[d].dist < b[near].dist) { near = d; } });
+		var nb = b[near];
 
-	/* Base popup line for a resolved grid cell (used by Go's blue/orange markers). */
-	function cellPopupBase(cell) {
-		return '<strong>' + cell.loc + '</strong><br>' + cell.label + '<br>' +
-			fmtLat(cell.center[0]) + ', ' + fmtLng(cell.center[1]);
+		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
+		// Subsquare is the refinement (muted dot). Only tiers the locator has.
+		var tiers = [];
+		if (loc.length >= 2) { tiers.push({ lbl: fieldLbl, val: loc.substring(0, 2), strong: true }); }
+		if (loc.length >= 4) { tiers.push({ lbl: squareLbl, val: loc.substring(2, 4), strong: true }); }
+		if (loc.length >= 6) { tiers.push({ lbl: subsquareLbl, val: loc.substring(4, 6), strong: false }); }
+		var hier = tiers.map(function (t) {
+			return '<span class="gl-pop-tier' + (t.strong ? ' is-strong' : '') + '">' +
+				'<i class="gl-dot"></i>' + esc(t.lbl) + ' (' + esc(t.val) + ')</span>';
+		}).join(' ');
+
+		var meta = [zones, state].filter(Boolean).join(' &middot; ');
+		var sub = loc.length > 4 ? '<span class="gl-pop-sub">' + esc(loc.substring(4)) + '</span>' : '';
+
+		return '<div class="gl-popup">' +
+			'<div class="gl-pop-grid">' + loc + '</div>' +
+			'<div class="gl-pop-coords"><i class="fas fa-map-pin"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
+			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
+			(meta ? '<div class="gl-pop-meta">' + meta + '</div>' : '') +
+			'</div>';
 	}
 
 	/*
@@ -892,9 +931,8 @@
 			color: '#198754', weight: 3, fillColor: '#198754', fillOpacity: 0.18
 		}).addTo(map);
 
-		let popupBase = '<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng);
 		clickMarker = L.marker([lat, lng]).addTo(map)
-			.bindPopup(popupBase);
+			.bindPopup(gridPopupHTML(lat, lng, loc, '', ''));
 
 		// Frame the selection — on phones this centres on the 4-char square so
 		// the border arrows are in view; desktop fits the exact clicked cell.
@@ -914,7 +952,7 @@
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
-			if (clickMarker) { clickMarker.setPopupContent(popupContent(popupBase, zones, stateLabel)); }
+			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel)); }
 		}
 		renderInfo();
 		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
@@ -945,36 +983,42 @@
 	 * "Locate me": ask the browser for the current GPS position (mobile or
 	 * desktop), convert it to a gridsquare, and zoom in — exactly like clicking
 	 * the map there. The click also starts autotracking: the position is polled
-	 * every 60 s so the marker/square follow the device. Click again (or Clear)
-	 * to stop. Requires a secure context (HTTPS or localhost); the button is
+	 * every 60 s so the marker/square follow the device. Clear stops it.
+	 * Requires a secure context (HTTPS or localhost); the button is
 	 * hidden up front in init() when geolocation is unavailable.
 	 */
 	function locate() {
 		if (!('geolocation' in navigator)) { return; }
-		if (trackTimer !== null) { stopTracking(); return; }   // toggle tracking off
-		locateOnce(true);                                     // immediate fix (shows "Locating…")
-		startTracking();
+		startTracking();    // show tracking state + ensure the 60 s poll is running
+		locateOnce(true);   // immediate fix (shows "Locating…")
 	}
 
-	/* Poll the position every 60 s and re-select on each update. */
+	/* Poll the position every 60 s and re-select on each update. The button is
+	 * (re)set on every call so the green "Tracking" state can never get stuck
+	 * off while the timer is quietly running. */
 	function startTracking() {
-		if (trackTimer !== null) { return; }
-		trackTimer = setInterval(function () { locateOnce(false); }, 60000);
-		let btn = document.getElementById('glLocate');
-		if (btn) {
-			if (!btn.dataset.origHtml) { btn.dataset.origHtml = btn.innerHTML; }
-			btn.classList.add('gl-tracking');
-			btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> ' + esc(trackingLbl);
+		if (trackTimer === null) {
+			trackTimer = setInterval(function () { locateOnce(false); }, 60000);
 		}
+		setTrackingButton(true);
 	}
 
 	/* Stop autotracking and restore the Locate button. */
 	function stopTracking() {
 		if (trackTimer !== null) { clearInterval(trackTimer); trackTimer = null; }
+		setTrackingButton(false);
+	}
+
+	/* Toggle the Locate button between its normal and active "Tracking" look. */
+	function setTrackingButton(on) {
 		let btn = document.getElementById('glLocate');
-		if (btn) {
+		if (!btn) { return; }
+		if (on) {
+			if (!btn.dataset.origHtml) { btn.dataset.origHtml = btn.innerHTML; }
+			btn.classList.add('gl-tracking');
+			btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> ' + esc(trackingLbl);
+		} else {
 			btn.classList.remove('gl-tracking');
-			btn.disabled = false;
 			if (btn.dataset.origHtml) { btn.innerHTML = btn.dataset.origHtml; }
 		}
 	}
@@ -987,15 +1031,10 @@
 	function locateOnce(isInitial) {
 		if (!('geolocation' in navigator)) { return; }
 		let info = document.getElementById('glInfo');
-		let btn = document.getElementById('glLocate');
 
-		if (isInitial) {
-			info.textContent = locatingMsg;
-			if (btn) { btn.disabled = true; }
-		}
+		if (isInitial) { info.textContent = locatingMsg; }   // "Locating…" cue (button stays active)
 
 		navigator.geolocation.getCurrentPosition(function (pos) {
-			if (btn && isInitial) { btn.disabled = false; }
 			let lat = pos.coords.latitude, lng = pos.coords.longitude;
 			let loc = latLngToLocator(lat, lng, 3);
 			// Fill grid 1 so the user can immediately type a second grid and hit Go
@@ -1003,7 +1042,6 @@
 			document.getElementById('glGrid').value = loc;
 			selectPoint(lat, lng, loc);
 		}, function (geoErr) {
-			if (btn) { btn.disabled = false; }
 			if (isInitial) { info.textContent = ''; }
 			if (geoErr.code === 1) {                            // permission denied → won't recover
 				stopTracking();
@@ -1046,7 +1084,7 @@
 		}).addTo(map);
 
 		if (marker) { map.removeLayer(marker); }
-		marker = L.marker(cell1.center).addTo(map).bindPopup(cellPopupBase(cell1));
+		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', ''));
 
 		if (cell2) {
 			// Grid 2 square + marker (orange).
@@ -1054,7 +1092,7 @@
 				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
 			}).addTo(map);
 
-			marker2 = L.marker(cell2.center).addTo(map).bindPopup(cellPopupBase(cell2));
+			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', ''));
 
 			// Great-circle path between the two cell centres.
 			pathLine = L.polyline(greatCircle(cell1.center, cell2.center, 64), {
@@ -1082,8 +1120,8 @@
 			}
 			render();
 			function renderPopups() {
-				if (marker)  { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
-				if (marker2) { marker2.setPopupContent(popupContent(cellPopupBase(cell2), z2, s2)); }
+				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1)); }
+				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2)); }
 			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
@@ -1127,7 +1165,7 @@
 			}
 			render();
 			function renderPopup() {
-				if (marker) { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
+				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1)); }
 			}
 			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
