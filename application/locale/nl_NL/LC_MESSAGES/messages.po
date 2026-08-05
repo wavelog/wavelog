@@ -3843,6 +3843,7 @@ msgstr "Inloggen mislukt. Probeer het opnieuw."
 #: application/views/interface_assets/header.php:427
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/views/user/login.php:80
 msgid "Login"
 msgstr "Inloggen"
 
@@ -10561,6 +10562,8 @@ msgstr "Achternaam"
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
+#: application/views/user/login.php:47 application/views/user/login.php:59
+#: application/views/user/login.php:60
 msgid "Username"
 msgstr "Gebruikersnaam"
 
@@ -11598,6 +11601,8 @@ msgstr ""
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
+#: application/views/user/login.php:48 application/views/user/login.php:63
+#: application/views/user/login.php:64
 msgid "Password"
 msgstr "Wachtwoord"
 
@@ -12391,7 +12396,8 @@ msgstr "Geselecteerde sessies: "
 
 #: application/views/contesting/manager/index.php:133
 msgid "Also delete all QSOs logged in these sessions from the logbook"
-msgstr "Verwijder ook alle QSO's die in deze sessie zijn gelogd uit het logboek"
+msgstr ""
+"Verwijder ook alle QSO's die in deze sessie zijn gelogd uit het logboek"
 
 #: application/views/contesting/manager/index.php:140
 msgid "Delete Sessions"
@@ -22544,28 +22550,28 @@ msgstr "Laatste operator"
 msgid "No Clubstations configures yet."
 msgstr "Nog geen clubstations geconfigureerd."
 
-#: application/views/user/login.php:36
+#: application/views/user/login.php:36 application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
 msgstr "ONDERHOUDSMODUS"
 
-#: application/views/user/login.php:56
+#: application/views/user/login.php:56 application/views/user/login.php:45
 msgid "Welcome to the Demo of Wavelog"
 msgstr "Welkom bij de demo van Wavelog"
 
-#: application/views/user/login.php:57
+#: application/views/user/login.php:57 application/views/user/login.php:46
 msgid "This demo will be reset every night at 0200z."
 msgstr "Deze demo wordt elke nacht om 0200z gereset."
 
-#: application/views/user/login.php:60
+#: application/views/user/login.php:60 application/views/user/login.php:49
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr "Meer informatie over Wavelog op %sGithub%s."
 
-#: application/views/user/login.php:80
+#: application/views/user/login.php:80 application/views/user/login.php:69
 msgid "Forgot your password?"
 msgstr "Wachtwoord vergeten?"
 
-#: application/views/user/login.php:86
+#: application/views/user/login.php:86 application/views/user/login.php:75
 msgid "Keep me logged in"
 msgstr "Houd me ingelogd"
 

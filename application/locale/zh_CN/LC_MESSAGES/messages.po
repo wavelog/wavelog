@@ -3808,6 +3808,7 @@ msgstr "登录失败，请重试。"
 #: application/views/interface_assets/header.php:427
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/views/user/login.php:80
 msgid "Login"
 msgstr "登录"
 
@@ -10267,6 +10268,8 @@ msgstr "名 (Lastname)"
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
+#: application/views/user/login.php:47 application/views/user/login.php:59
+#: application/views/user/login.php:60
 msgid "Username"
 msgstr "用户名"
 
@@ -11278,6 +11281,8 @@ msgstr "使用另一个操作员的账户登录，以其呼号继续此竞赛会
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
+#: application/views/user/login.php:48 application/views/user/login.php:63
+#: application/views/user/login.php:64
 msgid "Password"
 msgstr "密码"
 
@@ -21824,28 +21829,28 @@ msgstr "上一位操作员"
 msgid "No Clubstations configures yet."
 msgstr "目前没有集体台站。"
 
-#: application/views/user/login.php:36
+#: application/views/user/login.php:36 application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
 msgstr "维护模式"
 
-#: application/views/user/login.php:56
+#: application/views/user/login.php:56 application/views/user/login.php:45
 msgid "Welcome to the Demo of Wavelog"
 msgstr "欢迎来到 Wavelog Demo（演示站）"
 
-#: application/views/user/login.php:57
+#: application/views/user/login.php:57 application/views/user/login.php:46
 msgid "This demo will be reset every night at 0200z."
 msgstr "本 Demo 每日 UTC 02:00 重置。"
 
-#: application/views/user/login.php:60
+#: application/views/user/login.php:60 application/views/user/login.php:49
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr "更多信息请访问 Wavelog 官方 %sGithub%s 地址。"
 
-#: application/views/user/login.php:80
+#: application/views/user/login.php:80 application/views/user/login.php:69
 msgid "Forgot your password?"
 msgstr "忘记密码？"
 
-#: application/views/user/login.php:86
+#: application/views/user/login.php:86 application/views/user/login.php:75
 msgid "Keep me logged in"
 msgstr "保持登录"
 

@@ -3828,6 +3828,7 @@ msgstr "ログインに失敗しました。もう一度お試しください。
 #: application/views/interface_assets/header.php:427
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/views/user/login.php:80
 msgid "Login"
 msgstr "ログイン"
 
@@ -10483,6 +10484,8 @@ msgstr "姓"
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
+#: application/views/user/login.php:47 application/views/user/login.php:59
+#: application/views/user/login.php:60
 msgid "Username"
 msgstr "ユーザー名"
 
@@ -11518,6 +11521,8 @@ msgstr ""
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
+#: application/views/user/login.php:48 application/views/user/login.php:63
+#: application/views/user/login.php:64
 msgid "Password"
 msgstr "パスワード"
 
@@ -22418,28 +22423,28 @@ msgstr "最後のオペレーター"
 msgid "No Clubstations configures yet."
 msgstr "Clubstationsの設定はまだ行われていません。"
 
-#: application/views/user/login.php:36
+#: application/views/user/login.php:36 application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
 msgstr "メンテナンスモード"
 
-#: application/views/user/login.php:56
+#: application/views/user/login.php:56 application/views/user/login.php:45
 msgid "Welcome to the Demo of Wavelog"
 msgstr "Wavelogのデモへようこそ"
 
-#: application/views/user/login.php:57
+#: application/views/user/login.php:57 application/views/user/login.php:46
 msgid "This demo will be reset every night at 0200z."
 msgstr "このデモは毎晩 0200z にリセットされます。"
 
-#: application/views/user/login.php:60
+#: application/views/user/login.php:60 application/views/user/login.php:49
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr "Wavelogに関する詳細情報は、%sGithub%s をご覧ください。"
 
-#: application/views/user/login.php:80
+#: application/views/user/login.php:80 application/views/user/login.php:69
 msgid "Forgot your password?"
 msgstr "パスワードをお忘れですか？"
 
-#: application/views/user/login.php:86
+#: application/views/user/login.php:86 application/views/user/login.php:75
 msgid "Keep me logged in"
 msgstr "ログイン状態を保つ"
 
