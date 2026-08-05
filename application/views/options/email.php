@@ -5,7 +5,7 @@
 		<div class="card-body">
 			<?php $this->load->view('layout/messages'); ?>
 
-			<?php echo form_open('options/email_save'); ?>
+			<?php echo form_open('options/email_save', 'id="emailSettingsForm"'); ?>
 
 				<div class="mb-3">
 					<label for="emailProtocol"><?= __("Outgoing Protocol"); ?></label>
@@ -83,13 +83,12 @@
 				</div>
 
 				<!-- Save the Form -->
-				<input class="btn btn-primary" type="submit" value="<?= __("Save"); ?>" />
+				<button class="btn btn-primary" type="submit" id="emailSettingsSave"><?= __("Save"); ?></button>
 			</form>
 			<br>
-			<?php echo form_open('options/sendTestMail'); ?>
-				<input class="btn btn-primary" type="submit" value="<?= __("Send Test-Mail"); ?>" />
-				<small class="form-text text-muted"><?= __("The email will be sent to the address defined in your account settings."); ?></small>
-			</form>
+			<button class="btn btn-primary" type="button" id="sendTestMail"><?= __("Send Test-Mail"); ?></button>
+			<small class="form-text text-muted"><?= __("The email will be sent to the address defined in your account settings."); ?></small>
+			<pre id="testmailDetail" class="mt-3 p-2 border rounded d-none" style="white-space: pre-wrap;"></pre>
 		</div>
 	</div>
 </div>
