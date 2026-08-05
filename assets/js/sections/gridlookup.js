@@ -17,6 +17,10 @@
 	let geoDenied       = cfg.geoDenied      || 'Location access denied.';
 	let geoUnavailable  = cfg.geoUnavailable || 'Location unavailable.';
 	let geoTimeout      = cfg.geoTimeout     || 'Location request timed out.';
+	let bordersLbl      = cfg.bordersLbl     || 'Grid square borders';
+	let closeLbl        = cfg.closeLbl       || 'Close';
+	let errorLbl        = cfg.errorLbl       || 'Error';
+	let trackingLbl     = cfg.trackingLbl    || 'Tracking';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -25,7 +29,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, trackTimer;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -151,6 +155,173 @@
 
 	/* Short unit label for the user's measurement base: km / mi / nm. */
 	function unitLabel(u) { return u === 'K' ? 'km' : u === 'N' ? 'nm' : 'mi'; }
+
+	/*
+	 * Distance + bearing from [lat,lng] to each side of its 4-character
+	 * Maidenhead square (2°×1°): the four edges (N/S/E/W) and the four corner
+	 * intersections (NE/NW/SE/SW), plus the square you'd step into beyond each.
+	 * Square grid lines fall on whole degrees of latitude (1°) and every 2° of
+	 * longitude, so the outline points are simple ceil/floor steps. Reuses
+	 * calcDistance/getBearing (ports of Qra.php) for consistency with the QRB readout.
+	 */
+	function squareBorders(lat, lng) {
+		lng = ((lng + 180) % 360 + 360) % 360 - 180;                 // wrap to [-180,180)
+		let eastLng  = Math.ceil((lng + 180) / 2) * 2 - 180;
+		let westLng  = Math.floor((lng + 180) / 2) * 2 - 180;
+		let northLat = Math.min(90, Math.ceil(lat + 90) - 90);
+		let southLat = Math.max(-90, Math.floor(lat + 90) - 90);
+		let eps = 1e-4;                                              // nudge just across the line
+		let u = measurementBase;
+		let centerLng = (eastLng + westLng) / 2;
+		let centerLat = (northLat + southLat) / 2;
+
+		// Distance + bearing to a point on the square's outline (edge midpoint
+		// or corner vertex), plus the 4-char square just beyond it. `target` is
+		// the true nearest point on the line (used for the arrow + distance/
+		// bearing calc); `labelPos` is where the distance label is drawn - for
+		// N/S/E/W it's pinned to the border's midpoint so it doesn't drift
+		// sideways with the click point, while corners just reuse `target`.
+		function leg(name, tLat, tLng, acrossLat, acrossLng, labelLat, labelLng) {
+			acrossLat = Math.max(-89.9999, Math.min(89.9999, acrossLat));   // keep off the poles
+			acrossLng = ((acrossLng + 180) % 360 + 360) % 360 - 180;        // wrap at the date line
+			return {
+				dir: name,
+				target: [tLat, tLng],
+				labelPos: [labelLat === undefined ? tLat : labelLat, labelLng === undefined ? tLng : labelLng],
+				across: latLngToLocator(acrossLat, acrossLng, 2),
+				dist: calcDistance(lat, lng, tLat, tLng, u),
+				brg: getBearing(lat, lng, tLat, tLng)
+			};
+		}
+
+		return {
+			N:  leg('N',  northLat, lng,     northLat + eps, lng,               northLat, centerLng),
+			NE: leg('NE', northLat, eastLng, northLat + eps, eastLng + eps),
+			E:  leg('E',  lat,      eastLng, lat,           eastLng + eps,      centerLat, eastLng),
+			SE: leg('SE', southLat, eastLng, southLat - eps, eastLng + eps),
+			S:  leg('S',  southLat, lng,     southLat - eps, lng,               southLat, centerLng),
+			SW: leg('SW', southLat, westLng, southLat - eps, westLng - eps),
+			W:  leg('W',  lat,      westLng, lat,           westLng - eps,      centerLat, westLng),
+			NW: leg('NW', northLat, westLng, northLat + eps, westLng - eps)
+		};
+	}
+
+	/*
+	 * Compass-style readout of the surrounding squares: a 3×3 grid with the
+	 * current square centred and its eight neighbours (N/NE/E/SE/S/SW/W/NW)
+	 * around it. Each cell shows the grid you'd step into, the distance to that
+	 * side of the square and the bearing; the nearest is highlighted.
+	 * Built on squareBorders().
+	 */
+	function bordersHTML(lat, lng) {
+		let b = squareBorders(lat, lng);
+		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+		let minDist = Infinity;
+		order.forEach(function (d) { if (b[d].dist < minDist) { minDist = b[d].dist; } });
+
+		function cell(r) {
+			let nearest = r.dist === minDist;
+			return '<div class="gl-comp-edge' + (nearest ? ' gl-comp-nearest' : '') + '" ' +
+				'title="' + r.dir + ' &middot; ' + groupThousands(r.dist) + ' ' +
+				unitLabel(measurementBase) + ' &middot; ' + r.brg + '&deg;">' +
+				'<span class="gl-badge">' + r.dir + '</span>' +
+				'<span class="gl-comp-grid">' + esc(r.across) + '</span>' +
+				'<span class="gl-comp-meta">' + groupThousands(r.dist) + ' ' + unitLabel(measurementBase) +
+				' &middot; ' + r.brg + '&deg;</span>' +
+				'</div>';
+		}
+		let here = latLngToLocator(lat, lng, 2);
+		let centre = '<div class="gl-comp-center">' +
+			'<span class="gl-badge"><i class="fa fa-location-crosshairs gl-comp-pin"></i></span>' +
+			'<span class="gl-comp-grid">' + esc(here) + '</span>' +
+			'</div>';
+
+		return '<button type="button" class="gl-comp-close" aria-label="' + esc(closeLbl) + '">&times;</button>' +
+			'<h4 class="gl-comp-title text-center">' + bordersLbl + '</h4>' +
+			'<div class="gl-compass">' +
+				cell(b.NW) + cell(b.N) + cell(b.NE) +
+				cell(b.W)  + centre   + cell(b.E) +
+				cell(b.SW) + cell(b.S) + cell(b.SE) +
+			'</div>';
+	}
+
+	function showBorders(lat, lng) {
+		if (bordersControl) { bordersControl.setContent(bordersHTML(lat, lng)); }
+		drawArrows(lat, lng);
+	}
+	/* Hide the legend panel only — the on-map arrows stay until a real Clear. */
+	function hideBordersPanel() {
+		if (bordersControl) { bordersControl.clear(); }
+	}
+	function clearBorders() {
+		hideBordersPanel();
+		clearArrows();
+	}
+
+	/*
+	 * On-map direction arrows: a spoke from the selected point to each side of
+	 * its square (the four edges + four corners), tipped with a label naming the
+	 * neighbouring grid and the distance/bearing. Spatial, so it scales to any
+	 * screen — the corner compass panel is hidden on phones, where it's too big.
+	 */
+	function drawArrows(lat, lng) {
+		if (!bordersOverlay) { return; }
+		bordersOverlay.clearLayers();
+		let b = squareBorders(lat, lng);
+		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+		let minDist = Infinity;
+		order.forEach(function (d) { if (b[d].dist < minDist) { minDist = b[d].dist; } });
+		let from = [lat, lng];
+		order.forEach(function (d) {
+			let r = b[d];
+			let near = r.dist === minDist;
+			bordersOverlay.addLayer(L.polyline([from, r.target], {
+				color: near ? '#198754' : '#ffffff',
+				weight: near ? 3 : 1.5,
+				opacity: near ? 0.95 : 0.55,
+				dashArray: near ? null : '5,5',
+				lineCap: 'round',
+				interactive: false
+			}));
+			bordersOverlay.addLayer(L.marker(r.labelPos, {
+				interactive: false,
+				keyboard: false,
+				icon: L.divIcon({
+					className: 'gl-arrow-anchor',
+					html: '<div class="gl-arrow-tip' + (near ? ' gl-arrow-near' : '') + '">' +
+						'<span class="gl-arrow-head" style="transform:rotate(' + r.brg + 'deg)"></span>' +
+						groupThousands(r.dist) + ' ' + unitLabel(measurementBase) +
+						'</div>'
+				})
+			}));
+		});
+	}
+	function clearArrows() {
+		if (bordersOverlay) { bordersOverlay.clearLayers(); }
+	}
+
+	/* Phones are where the corner compass panel is hidden, so the border arrows
+	 * carry the info — match the same breakpoint the CSS uses to hide the panel. */
+	function isMobile() {
+		return window.matchMedia && window.matchMedia('(max-width: 575.98px)').matches;
+	}
+
+	/*
+	 * Zoom to a selected grid. Desktop fits the exact cell the user picked
+	 * (subsquare for a click, square/field for a typed locator). Mobile instead
+	 * frames the 4-character grid square centred on its middle, so the border
+	 * arrows and their labels are fully in view on the small screen.
+	 */
+	function zoomToGrid(lat, lng, tightCell) {
+		let sq = locatorToCell(latLngToLocator(lat, lng, 2));   // 4-char square
+		if (isMobile()) {
+			if (sq) {
+				map.fitBounds([sq.sw, sq.ne], { padding: [40, 40], maxZoom: 10 });
+				return;
+			}
+		}
+		map.fitBounds([sq.sw, sq.ne], { padding: [40, 40], maxZoom: 8 });
+	}
 
 	/* Format a state_for_point() response as "State (CODE), Country" (or "" if none). */
 	function stateStr(s) {
@@ -533,6 +704,40 @@
 
 		L.control.fullscreen && L.control.fullscreen().addTo(map);
 
+		// Floating compass readout of the surrounding square borders. A custom
+		// Leaflet control so it stays parked in the corner while the map pans,
+		// and is hidden until a point is selected (see showBorders/clearBorders).
+		var BordersControl = L.Control.extend({
+			options: { position: 'topright' },
+			onAdd: function () {
+				this._c = L.DomUtil.create('div', 'gl-borders-control');
+				L.DomEvent.disableClickPropagation(this._c);   // let the map keep catching drags
+				L.DomEvent.disableScrollPropagation(this._c);
+				this._c.style.display = 'none';                // empty until a grid is selected
+				return this._c;
+			},
+			setContent: function (html) {
+				if (!this._c) { return; }
+				this._c.innerHTML = html;
+				this._c.style.display = html ? '' : 'none';
+				// Bind the dismiss button directly and stop the event so the click
+				// can't bubble on to the map (where it would re-select a grid).
+				var btn = html && this._c.querySelector('.gl-comp-close');
+				if (btn) {
+					L.DomEvent.on(btn, 'click', function (ev) {
+						L.DomEvent.stop(ev);
+						hideBordersPanel();   // dismiss the legend only; keep the map arrows
+					});
+				}
+			},
+			clear: function () { this.setContent(''); }
+		});
+		bordersControl = new BordersControl();
+		bordersControl.addTo(map);
+
+		// Layer group holding the on-map direction arrows (see drawArrows).
+		bordersOverlay = L.layerGroup().addTo(map);
+
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
 		var locateBtn = document.getElementById('glLocate');
@@ -630,6 +835,14 @@
 			el.classList.remove('cohidden');
 		});
 
+		// Grow/shrink the map when the Search panel collapses/expands, and let
+		// Leaflet pick up the new size once the transition has finished.
+		var topBody = document.getElementById('glTopBody');
+		if (topBody) {
+			topBody.addEventListener('hidden.bs.collapse', function () { map.invalidateSize(); });
+			topBody.addEventListener('shown.bs.collapse', function () { map.invalidateSize(); });
+		}
+
 		// Leaflet needs a nudge when its container was sized after init.
 		setTimeout(function () { map.invalidateSize(); }, 200);
 	}
@@ -640,6 +853,8 @@
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		clearSecond();   // grid-2 square, marker and path line
+		clearBorders();  // square-border readout
+		stopTracking();  // stop autotracking, restore the Locate button
 
 		// Zoom back out to the default world view.
 		map.setView(initialView, initialZoom);
@@ -647,10 +862,15 @@
 		document.getElementById('glGrid').value = '';
 		document.getElementById('glGrid2').value = '';
 		document.getElementById('glInfo').textContent = '';
-		document.getElementById('glError').textContent = '';
 	}
 
 	function onMapClick(e) {
+		// Ignore clicks that began on a floating control (the borders panel and
+		// its dismiss button). Modern Leaflet routes map clicks through pointer
+		// events that disableClickPropagation doesn't stop, so without this the
+		// dismiss click would land here and immediately re-select a grid.
+		var t = e.originalEvent && e.originalEvent.target;
+		if (t && t.closest && t.closest('.gl-borders-control')) { return; }
 		selectPoint(e.latlng.lat, e.latlng.lng);
 	}
 
@@ -674,14 +894,12 @@
 
 		let popupBase = '<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng);
 		clickMarker = L.marker([lat, lng]).addTo(map)
-			.bindPopup(popupBase)
-			.openPopup();
+			.bindPopup(popupBase);
 
-		// Zoom in to the grid cell — same fitBounds call as typing a gridsquare
-		// above, so the square becomes visible instead of a sub-pixel box.
-		map.fitBounds([cell.sw, cell.ne], { padding: [60, 60], maxZoom: 17 });
+		// Frame the selection — on phones this centres on the 4-char square so
+		// the border arrows are in view; desktop fits the exact clicked cell.
+		zoomToGrid(lat, lng, cell);
 
-		document.getElementById('glError').textContent = '';
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
 		let zones = '', stateLabel = '';
@@ -699,6 +917,7 @@
 			if (clickMarker) { clickMarker.setPopupContent(popupContent(popupBase, zones, stateLabel)); }
 		}
 		renderInfo();
+		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
 
 		let myReq = ++zoneReq;
 		// CQ/ITU zones — client-side against the cached boundaries.
@@ -725,22 +944,58 @@
 	/*
 	 * "Locate me": ask the browser for the current GPS position (mobile or
 	 * desktop), convert it to a gridsquare, and zoom in — exactly like clicking
-	 * the map there. Requires a secure context (HTTPS or localhost); the button
-	 * is hidden up front in init() when geolocation is unavailable.
+	 * the map there. The click also starts autotracking: the position is polled
+	 * every 60 s so the marker/square follow the device. Click again (or Clear)
+	 * to stop. Requires a secure context (HTTPS or localhost); the button is
+	 * hidden up front in init() when geolocation is unavailable.
 	 */
 	function locate() {
 		if (!('geolocation' in navigator)) { return; }
+		if (trackTimer !== null) { stopTracking(); return; }   // toggle tracking off
+		locateOnce(true);                                     // immediate fix (shows "Locating…")
+		startTracking();
+	}
 
-		let err = document.getElementById('glError');
+	/* Poll the position every 60 s and re-select on each update. */
+	function startTracking() {
+		if (trackTimer !== null) { return; }
+		trackTimer = setInterval(function () { locateOnce(false); }, 60000);
+		let btn = document.getElementById('glLocate');
+		if (btn) {
+			if (!btn.dataset.origHtml) { btn.dataset.origHtml = btn.innerHTML; }
+			btn.classList.add('gl-tracking');
+			btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> ' + esc(trackingLbl);
+		}
+	}
+
+	/* Stop autotracking and restore the Locate button. */
+	function stopTracking() {
+		if (trackTimer !== null) { clearInterval(trackTimer); trackTimer = null; }
+		let btn = document.getElementById('glLocate');
+		if (btn) {
+			btn.classList.remove('gl-tracking');
+			btn.disabled = false;
+			if (btn.dataset.origHtml) { btn.innerHTML = btn.dataset.origHtml; }
+		}
+	}
+
+	/*
+	 * One position fix. `isInitial` shows the "Locating…" indicator (and a toast
+	 * on error) for the first call; periodic polls update silently and only bail
+	 * out on a hard permission denial.
+	 */
+	function locateOnce(isInitial) {
+		if (!('geolocation' in navigator)) { return; }
 		let info = document.getElementById('glInfo');
 		let btn = document.getElementById('glLocate');
 
-		err.textContent = '';
-		info.textContent = locatingMsg;
-		if (btn) { btn.disabled = true; }
+		if (isInitial) {
+			info.textContent = locatingMsg;
+			if (btn) { btn.disabled = true; }
+		}
 
 		navigator.geolocation.getCurrentPosition(function (pos) {
-			if (btn) { btn.disabled = false; }
+			if (btn && isInitial) { btn.disabled = false; }
 			let lat = pos.coords.latitude, lng = pos.coords.longitude;
 			let loc = latLngToLocator(lat, lng, 3);
 			// Fill grid 1 so the user can immediately type a second grid and hit Go
@@ -749,20 +1004,26 @@
 			selectPoint(lat, lng, loc);
 		}, function (geoErr) {
 			if (btn) { btn.disabled = false; }
-			info.textContent = '';
-			switch (geoErr.code) {
-				case 1:  err.textContent = geoDenied; break;        // permission denied
-				case 2:  err.textContent = geoUnavailable; break;   // position unavailable
-				case 3:  err.textContent = geoTimeout; break;       // timed out
-				default: err.textContent = geoErr.message || geoUnavailable;
+			if (isInitial) { info.textContent = ''; }
+			if (geoErr.code === 1) {                            // permission denied → won't recover
+				stopTracking();
+				showToast(errorLbl, esc(geoDenied), 'bg-danger text-white', 4000);
+				return;
+			}
+			if (isInitial) {                                    // transient: only toast on first attempt
+				let msg;
+				switch (geoErr.code) {
+					case 2:  msg = geoUnavailable; break;       // position unavailable
+					case 3:  msg = geoTimeout; break;           // timed out
+					default: msg = geoErr.message || geoUnavailable;
+				}
+				showToast(errorLbl, esc(msg), 'bg-warning text-dark', 4000);
 			}
 		}, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
 	}
 
 	function go() {
-		let err = document.getElementById('glError');
 		let info = document.getElementById('glInfo');
-		err.textContent = '';
 
 		// Grid 1 is required; grid 2 is optional and enables distance/bearing.
 		let cell1 = locatorToCell(document.getElementById('glGrid').value);
@@ -770,12 +1031,13 @@
 		let cell2 = raw2 ? locatorToCell(raw2) : null;
 		if (!cell1 || (raw2 && !cell2)) {
 			info.textContent = '';
-			err.textContent = invalidMsg;
+			showToast(errorLbl, invalidMsg, 'bg-danger text-white', 4000);
 			return;
 		}
 
 		// Drop any second-grid artefacts; rebuilt below only when grid 2 is set.
 		clearSecond();
+		clearBorders();   // only the single-grid case shows square borders below
 
 		// Grid 1 square + marker (blue).
 		if (highlight) { map.removeLayer(highlight); }
@@ -851,8 +1113,7 @@
 				});
 			}
 		} else {
-			marker.openPopup();
-			map.fitBounds([cell1.sw, cell1.ne], { padding: [60, 60], maxZoom: 17 });
+			zoomToGrid(cell1.center[0], cell1.center[1], cell1);
 
 			let z1 = '', s1 = '';
 			function render() {
@@ -868,6 +1129,7 @@
 			function renderPopup() {
 				if (marker) { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
 			}
+			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
 			let myReq = ++zoneReq;
 			// CQ/ITU zones (client-side, cached boundaries).
