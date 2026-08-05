@@ -1937,3 +1937,92 @@ body.map-high-contrast path.grid-rectangle { stroke: rgba(0, 0, 0, 0.2); }
 body.map-high-contrast span.grid-text > font { color: rgba(0, 0, 0, 0.4) !important; font-weight: 400 !important; }
 body.map-high-contrast span.grid-text-unworked > font { color: rgba(0, 0, 0, 0.2) !important; font-weight: 400 !important; }
 body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) !important; font-weight: 400 !important; }
+
+/* ============================================================
+   Gridsquare Lookup (gridlookup view)
+   - Mobile toolbar: secondary controls collapse behind
+     "More options" on phones (xs); full inline toolbar on sm+.
+   - Compass-style grid-border readout: a Leaflet control
+     (top-right of the map) with the current square centred
+     and N/S/E/W neighbours around it.
+   ============================================================ */
+
+/* Mobile toolbar */
+#glControls .gl-input { max-width: 150px; }
+.gl-chevron {
+	display: inline-block;
+	width: .45em;
+	height: .45em;
+	margin-right: .4em;
+	vertical-align: middle;
+	border-right: 2px solid currentColor;
+	border-top: 2px solid currentColor;
+	transform: rotate(45deg);          /* › points right when collapsed */
+	transition: transform .15s ease;
+}
+#glControls.gl-expanded .gl-chevron { transform: rotate(135deg); }  /* ∨ points down when open */
+#glControls:not(.gl-expanded) .gl-more-open,
+#glControls.gl-expanded .gl-more-closed { display: none; }
+#glControls .gl-refsrow { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+@media (max-width: 575.98px) {
+	#glControls:not(.gl-expanded) .gl-secondary { display: none !important; }
+	#glControls .gl-input { flex: 0 0 100%; max-width: 100%; }
+	#glControls .gl-refsrow { flex: 0 0 100%; }
+	.gl-more {
+		flex: 0 0 100%;
+		border-radius: 0;
+		text-align: left;
+		padding-left: 0;
+	}
+}
+
+/* Compass grid-border readout panel (Leaflet control). Neutral rgba tints
+   read on both light and dark themes; the nearest edge uses Bootstrap green. */
+.gl-borders-control.leaflet-control {
+	position: relative;
+	padding: .5rem .6rem .6rem;
+	background: #000;
+	color: var(--bs-body-color, #212529);
+	border: 1px solid #fff;
+	border-radius: .55rem;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, .22);
+	max-width: 21rem;
+}
+/* Dismiss button: top-right of the panel. White to match the title on the black panel. */
+.gl-comp-close {
+	position: absolute; top: .2rem; right: .35rem;
+	background: transparent; border: 0; padding: .1rem .4rem;
+	color: #fff; font-size: 1.2rem; line-height: 1; cursor: pointer; opacity: .65;
+}
+.gl-comp-close:hover, .gl-comp-close:focus { opacity: 1; }
+.gl-comp-title {
+	font-size: 16px;
+	margin: 2px 12px 8px;
+	color: rgb(255, 255, 255) !important;
+}
+.gl-compass {
+	display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: .4rem; max-width: 30rem;
+}
+.gl-comp-edge, .gl-comp-center {
+	display: flex; flex-direction: column; align-items: center; justify-content: center;
+	gap: .12rem; padding: .45rem .2rem; border-radius: .45rem;
+	text-align: center; min-height: 3.8rem;
+}
+.gl-comp-edge { background: rgba(127, 127, 127, .16); border: 1px solid rgba(127, 127, 127, .30); }
+.gl-comp-center { border: 1px dashed rgba(127, 127, 127, .55); }
+.gl-comp-edge.gl-comp-nearest { background: rgba(25, 135, 84, .16); border-color: #198754; }
+.gl-comp-pin { font-size: .85rem; opacity: .85; }   /* crosshairs icon inside the centre badge */
+.gl-badge {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 1.5rem; height: 1.5rem; border-radius: 50%;
+	border: 1px solid currentColor; font-weight: 700; font-size: .62rem; line-height: 1; opacity: .85;
+}
+.gl-comp-edge.gl-comp-nearest .gl-badge { background: #198754; color: #fff; border-color: #198754; opacity: 1; }
+.gl-comp-grid { font-weight: 700; font-size: .92rem; }
+.gl-comp-center .gl-comp-grid { font-weight: 700;}
+.gl-comp-meta { font-size: .68rem; opacity: .7; }
+@media (max-width: 359.98px) {                              /* let the meta line breathe on small phones */
+	.gl-comp-meta { font-size: .62rem; }
+	.gl-comp-edge, .gl-comp-center { padding: .35rem .1rem; }
+}

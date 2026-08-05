@@ -12,48 +12,14 @@
 		wwffUrl:    <?php echo json_encode(site_url('gridlookup/wwff_directory')); ?>,
 		potaUrl:    <?php echo json_encode(site_url('gridlookup/pota_directory')); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('gridlookup/sota_directory')); ?>,
+		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
+		closeLbl:      <?php echo json_encode(__("Close")); ?>,
 		locatingMsg:    <?php echo json_encode(__("Locating…")); ?>,
 		geoDenied:      <?php echo json_encode(__("Location access denied.")); ?>,
 		geoUnavailable: <?php echo json_encode(__("Location unavailable.")); ?>,
 		geoTimeout:     <?php echo json_encode(__("Location request timed out.")); ?>
 	};
 </script>
-
-<style>
-	/*
-	 * Mobile toolbar: on phones the secondary controls (second gridsquare +
-	 * every map overlay) hide behind a "More options" toggle until tapped.
-	 * sm+ keeps the full inline toolbar exactly as-is — the toggle is hidden
-	 * there, and the .gl-secondary hiding rule only applies below sm.
-	 */
-	#glControls .gl-input { max-width: 150px; }
-	.gl-chevron {
-		display: inline-block;
-		width: .45em;
-		height: .45em;
-		margin-right: .4em;
-		vertical-align: middle;
-		border-right: 2px solid currentColor;
-		border-top: 2px solid currentColor;
-		transform: rotate(45deg);          /* › points right when collapsed */
-		transition: transform .15s ease;
-	}
-	#glControls.gl-expanded .gl-chevron { transform: rotate(135deg); }  /* ∨ points down when open */
-	#glControls:not(.gl-expanded) .gl-more-open,
-	#glControls.gl-expanded .gl-more-closed { display: none; }
-	#glControls .gl-refsrow { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
-	@media (max-width: 575.98px) {
-		#glControls:not(.gl-expanded) .gl-secondary { display: none !important; }
-		#glControls .gl-input { flex: 0 0 100%; max-width: 100%; }
-		#glControls .gl-refsrow { flex: 0 0 100%; }
-		.gl-more {
-			flex: 0 0 100%;
-			border-radius: 0;
-			text-align: left;
-			padding-left: 0;
-		}
-	}
-</style>
 
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 

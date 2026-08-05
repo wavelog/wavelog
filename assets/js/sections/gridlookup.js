@@ -17,6 +17,8 @@
 	let geoDenied       = cfg.geoDenied      || 'Location access denied.';
 	let geoUnavailable  = cfg.geoUnavailable || 'Location unavailable.';
 	let geoTimeout      = cfg.geoTimeout     || 'Location request timed out.';
+	let bordersLbl      = cfg.bordersLbl     || 'Grid square borders';
+	let closeLbl        = cfg.closeLbl       || 'Close';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -25,7 +27,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -151,6 +153,94 @@
 
 	/* Short unit label for the user's measurement base: km / mi / nm. */
 	function unitLabel(u) { return u === 'K' ? 'km' : u === 'N' ? 'nm' : 'mi'; }
+
+	/*
+	 * Distance + bearing from [lat,lng] to each side of its 4-character
+	 * Maidenhead square (2°×1°): the four edges (N/S/E/W) and the four corner
+	 * intersections (NE/NW/SE/SW), plus the square you'd step into beyond each.
+	 * Square grid lines fall on whole degrees of latitude (1°) and every 2° of
+	 * longitude, so the outline points are simple ceil/floor steps. Reuses
+	 * calcDistance/getBearing (ports of Qra.php) for consistency with the QRB readout.
+	 */
+	function squareBorders(lat, lng) {
+		lng = ((lng + 180) % 360 + 360) % 360 - 180;                 // wrap to [-180,180)
+		let eastLng  = Math.ceil((lng + 180) / 2) * 2 - 180;
+		let westLng  = Math.floor((lng + 180) / 2) * 2 - 180;
+		let northLat = Math.min(90, Math.ceil(lat + 90) - 90);
+		let southLat = Math.max(-90, Math.floor(lat + 90) - 90);
+		let eps = 1e-4;                                              // nudge just across the line
+		let u = measurementBase;
+
+		// Distance + bearing to a point on the square's outline (edge midpoint
+		// or corner vertex), plus the 4-char square just beyond it.
+		function leg(name, tLat, tLng, acrossLat, acrossLng) {
+			acrossLat = Math.max(-89.9999, Math.min(89.9999, acrossLat));   // keep off the poles
+			acrossLng = ((acrossLng + 180) % 360 + 360) % 360 - 180;        // wrap at the date line
+			return {
+				dir: name,
+				across: latLngToLocator(acrossLat, acrossLng, 2),
+				dist: calcDistance(lat, lng, tLat, tLng, u),
+				brg: getBearing(lat, lng, tLat, tLng)
+			};
+		}
+
+		return {
+			N:  leg('N',  northLat, lng,     northLat + eps, lng),
+			NE: leg('NE', northLat, eastLng, northLat + eps, eastLng + eps),
+			E:  leg('E',  lat,      eastLng, lat,           eastLng + eps),
+			SE: leg('SE', southLat, eastLng, southLat - eps, eastLng + eps),
+			S:  leg('S',  southLat, lng,     southLat - eps, lng),
+			SW: leg('SW', southLat, westLng, southLat - eps, westLng - eps),
+			W:  leg('W',  lat,      westLng, lat,           westLng - eps),
+			NW: leg('NW', northLat, westLng, northLat + eps, westLng - eps)
+		};
+	}
+
+	/*
+	 * Compass-style readout of the surrounding squares: a 3×3 grid with the
+	 * current square centred and its eight neighbours (N/NE/E/SE/S/SW/W/NW)
+	 * around it. Each cell shows the grid you'd step into, the distance to that
+	 * side of the square and the bearing; the nearest is highlighted.
+	 * Built on squareBorders().
+	 */
+	function bordersHTML(lat, lng) {
+		let b = squareBorders(lat, lng);
+		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+		let minDist = Infinity;
+		order.forEach(function (d) { if (b[d].dist < minDist) { minDist = b[d].dist; } });
+
+		function cell(r) {
+			let nearest = r.dist === minDist;
+			return '<div class="gl-comp-edge' + (nearest ? ' gl-comp-nearest' : '') + '" ' +
+				'title="' + r.dir + ' &middot; ' + groupThousands(r.dist) + ' ' +
+				unitLabel(measurementBase) + ' &middot; ' + r.brg + '&deg;">' +
+				'<span class="gl-badge">' + r.dir + '</span>' +
+				'<span class="gl-comp-grid">' + esc(r.across) + '</span>' +
+				'<span class="gl-comp-meta">' + groupThousands(r.dist) + ' ' + unitLabel(measurementBase) +
+				' &middot; ' + r.brg + '&deg;</span>' +
+				'</div>';
+		}
+		let here = latLngToLocator(lat, lng, 2);
+		let centre = '<div class="gl-comp-center">' +
+			'<span class="gl-badge"><i class="fa fa-location-crosshairs gl-comp-pin"></i></span>' +
+			'<span class="gl-comp-grid">' + esc(here) + '</span>' +
+			'</div>';
+
+		return '<button type="button" class="gl-comp-close" aria-label="' + esc(closeLbl) + '">&times;</button>' +
+			'<h4 class="gl-comp-title text-center">' + bordersLbl + '</h4>' +
+			'<div class="gl-compass">' +
+				cell(b.NW) + cell(b.N) + cell(b.NE) +
+				cell(b.W)  + centre   + cell(b.E) +
+				cell(b.SW) + cell(b.S) + cell(b.SE) +
+			'</div>';
+	}
+
+	function showBorders(lat, lng) {
+		if (bordersControl) { bordersControl.setContent(bordersHTML(lat, lng)); }
+	}
+	function clearBorders() {
+		if (bordersControl) { bordersControl.clear(); }
+	}
 
 	/* Format a state_for_point() response as "State (CODE), Country" (or "" if none). */
 	function stateStr(s) {
@@ -533,6 +623,37 @@
 
 		L.control.fullscreen && L.control.fullscreen().addTo(map);
 
+		// Floating compass readout of the surrounding square borders. A custom
+		// Leaflet control so it stays parked in the corner while the map pans,
+		// and is hidden until a point is selected (see showBorders/clearBorders).
+		var BordersControl = L.Control.extend({
+			options: { position: 'topright' },
+			onAdd: function () {
+				this._c = L.DomUtil.create('div', 'gl-borders-control');
+				L.DomEvent.disableClickPropagation(this._c);   // let the map keep catching drags
+				L.DomEvent.disableScrollPropagation(this._c);
+				this._c.style.display = 'none';                // empty until a grid is selected
+				return this._c;
+			},
+			setContent: function (html) {
+				if (!this._c) { return; }
+				this._c.innerHTML = html;
+				this._c.style.display = html ? '' : 'none';
+				// Bind the dismiss button directly and stop the event so the click
+				// can't bubble on to the map (where it would re-select a grid).
+				var btn = html && this._c.querySelector('.gl-comp-close');
+				if (btn) {
+					L.DomEvent.on(btn, 'click', function (ev) {
+						L.DomEvent.stop(ev);
+						clearBorders();
+					});
+				}
+			},
+			clear: function () { this.setContent(''); }
+		});
+		bordersControl = new BordersControl();
+		bordersControl.addTo(map);
+
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
 		var locateBtn = document.getElementById('glLocate');
@@ -640,6 +761,7 @@
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		clearSecond();   // grid-2 square, marker and path line
+		clearBorders();  // square-border readout
 
 		// Zoom back out to the default world view.
 		map.setView(initialView, initialZoom);
@@ -651,6 +773,12 @@
 	}
 
 	function onMapClick(e) {
+		// Ignore clicks that began on a floating control (the borders panel and
+		// its dismiss button). Modern Leaflet routes map clicks through pointer
+		// events that disableClickPropagation doesn't stop, so without this the
+		// dismiss click would land here and immediately re-select a grid.
+		var t = e.originalEvent && e.originalEvent.target;
+		if (t && t.closest && t.closest('.gl-borders-control')) { return; }
 		selectPoint(e.latlng.lat, e.latlng.lng);
 	}
 
@@ -699,6 +827,7 @@
 			if (clickMarker) { clickMarker.setPopupContent(popupContent(popupBase, zones, stateLabel)); }
 		}
 		renderInfo();
+		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
 
 		let myReq = ++zoneReq;
 		// CQ/ITU zones — client-side against the cached boundaries.
@@ -776,6 +905,7 @@
 
 		// Drop any second-grid artefacts; rebuilt below only when grid 2 is set.
 		clearSecond();
+		clearBorders();   // only the single-grid case shows square borders below
 
 		// Grid 1 square + marker (blue).
 		if (highlight) { map.removeLayer(highlight); }
@@ -868,6 +998,7 @@
 			function renderPopup() {
 				if (marker) { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
 			}
+			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
 			let myReq = ++zoneReq;
 			// CQ/ITU zones (client-side, cached boundaries).
