@@ -35,11 +35,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-05 06:36+0000\n"
-"PO-Revision-Date: 2026-07-27 14:26+0000\n"
+"POT-Creation-Date: 2026-08-02 05:24+0000\n"
+"PO-Revision-Date: 2026-08-04 09:05+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -223,7 +223,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
 #: application/controllers/Qso.php:20 application/controllers/Qso.php:470
 #: application/controllers/Qso.php:492 application/controllers/Qso.php:514
-#: application/controllers/Qso.php:769 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:794 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -259,7 +259,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qso.php:769
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -448,27 +448,27 @@ msgstr "已删除 API Key %s"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "请提供令牌名称"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "请至少选择一个范围"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "已生成API令牌"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "无法生成API令牌"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "无效的API令牌"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "API令牌已删除"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:192
@@ -637,7 +637,6 @@ msgstr " 和 "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
-#: application/views/gridlookup/index.php:83
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
@@ -660,6 +659,8 @@ msgstr " 和 "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/gridlookup/index.php:82
+#: application/views/gridlookup/index.php:83
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -667,7 +668,6 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
-#: application/views/gridlookup/index.php:81
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -683,6 +683,8 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/gridlookup/index.php:74
+#: application/views/gridlookup/index.php:81
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -691,7 +693,6 @@ msgstr "WWFF"
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
-#: application/views/gridlookup/index.php:82
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
@@ -708,6 +709,8 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/gridlookup/index.php:78
+#: application/views/gridlookup/index.php:82
 msgid "POTA"
 msgstr "POTA"
 
@@ -899,7 +902,7 @@ msgid "Call Tester"
 msgstr "通联记录检测器"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:842
+#: application/controllers/Qso.php:867 application/controllers/Qso.php:842
 msgid "No callsign provided."
 msgstr "未提供呼号。"
 
@@ -962,45 +965,45 @@ msgstr "无法将成员移出集体台站。"
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "未选择成员。"
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "所选用户中没有一个是该俱乐部的成员。"
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
-msgstr ""
+msgstr "无法继续：这将移除最后一名俱乐部管理员。必须由实例管理员执行此操作。"
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "无法更新俱乐部成员权限。"
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "没有成员被更新。"
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
+msgstr[0] "已更新%d个成员。"
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "用户无法从俱乐部中移除。"
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "没有成员被移除。"
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
+msgstr[0] "已移除%d个成员。"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1559,7 +1562,7 @@ msgstr "已确认的"
 
 #: application/controllers/Gridlookup.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ 分区"
 
 #: application/controllers/Gridlookup.php:32
 #: application/controllers/Gridlookup.php:33
@@ -1570,12 +1573,12 @@ msgstr "分区"
 
 #: application/controllers/Gridlookup.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "州/省"
 
 #: application/controllers/Gridlookup.php:75
 #: application/views/interface_assets/header.php:330
 msgid "Gridsquare Lookup"
-msgstr ""
+msgstr "网格查询"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
@@ -2183,9 +2186,8 @@ msgstr "州"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:65
-#: application/views/gridlookup/index.php:80
-#: application/views/gridlookup/index.php:102
+#: application/views/gridlookup/index.php:22
+#: application/views/gridlookup/index.php:46
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -2227,6 +2229,14 @@ msgstr "州"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/gridlookup/index.php:25
+#: application/views/gridlookup/index.php:61
+#: application/views/gridlookup/index.php:56
+#: application/views/gridlookup/index.php:70
+#: application/views/gridlookup/index.php:99
+#: application/views/gridlookup/index.php:65
+#: application/views/gridlookup/index.php:80
+#: application/views/gridlookup/index.php:102
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -2657,10 +2667,11 @@ msgid ""
 msgstr "通讯录中已存在带有此呼号的笔记。请输入一个唯一的呼号。"
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:97
-#: application/models/Logbook_model.php:1424
+#: application/models/Logbook_model.php:85
+#: application/models/Logbook_model.php:1412
 #: application/views/contesting/logger/components/qso-form.php:43
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:97
+#: application/models/Logbook_model.php:1424
 msgid "Invalid callsign"
 msgstr "不合法的呼号"
 
@@ -2841,11 +2852,11 @@ msgstr "OQRS"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "请输入一个有效的日期。"
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "请输入一个有效的时间。"
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -3014,11 +3025,11 @@ msgstr "添加 QSO"
 msgid "QSO could not be saved"
 msgstr "QSO无法保存"
 
-#: application/controllers/Qso.php:829
+#: application/controllers/Qso.php:854 application/controllers/Qso.php:829
 msgid "You have to be logged in to access this URL."
 msgstr "需要登录方可浏览此页面。"
 
-#: application/controllers/Qso.php:835
+#: application/controllers/Qso.php:860 application/controllers/Qso.php:835
 msgid "Call Transfer"
 msgstr "通联转接"
 
@@ -3796,8 +3807,9 @@ msgstr "登录失败，请重试。"
 
 #: application/controllers/User.php:1375
 #: application/views/interface_assets/header.php:427
-#: application/views/user/login.php:80
+#: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/views/user/login.php:80
 msgid "Login"
 msgstr "登录"
 
@@ -4027,11 +4039,11 @@ msgstr "网格区域查找器"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "GeoJSON 数据不可用"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "无效的网格"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4046,15 +4058,19 @@ msgstr "获取呼号簿会话密钥时出错：%s"
 msgid "QRZCQ Error"
 msgstr "QRZCQ 错误"
 
+#: application/libraries/Cbr_parser.php:116
+#: application/libraries/Cbr_parser.php:165
 #: application/libraries/Cbr_parser.php:118
 #: application/libraries/Cbr_parser.php:167
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr "损坏的 CBR 文件 - 未找到有效的交换信息或呼号"
 
+#: application/libraries/Cbr_parser.php:142
 #: application/libraries/Cbr_parser.php:144
 msgid "Broken CBR file - no QSO data found."
 msgstr "损坏的 CBR 文件 - 未发现QSO数据。"
 
+#: application/libraries/Cbr_parser.php:152
 #: application/libraries/Cbr_parser.php:154
 msgid "Broken CBR file - incomplete header found."
 msgstr "损坏的 CBR 文件 - 文件头不完整。"
@@ -4139,89 +4155,87 @@ msgstr "市 / 区 / 郡"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "读取俱乐部成员"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "管理俱乐部成员权限"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
-
-#: application/libraries/api_v2/Confirmation_resource.php:54
-msgid "Read QSL confirmations"
-msgstr ""
+msgstr "移除俱乐部成员"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "查询呼号和网格"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "读取QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "创建并更新QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "删除QSO"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "读取电台"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "创建并更新电台"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "删除电台"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "读取台站位置"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "创建并更新台站位置"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "删除台站位置"
 
-#: application/libraries/api_v2/Statistic_resource.php:49
+#: application/libraries/api_v2/Statistic_resource.php:52
 msgid "Read statistics"
-msgstr ""
+msgstr "读取统计数据"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " (min. 2.1.0)"
 
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"通过WSJT-X、JTDX及其它工具进行电台控制和QSO上传。需要WaveLogGate至少版本"
+"2.1.0。"
 
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
-msgstr ""
+msgstr "只读"
 
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
-msgstr ""
+msgstr "可读取所有内容，不可修改您的数据。"
 
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
-msgstr ""
+msgstr "仅统计"
 
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "仅统计，不可修改您的数据。"
 
 #: application/models/Club_model.php:12
 msgid "Club Officer"
@@ -4317,23 +4331,29 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
+#: application/models/Logbook_model.php:345
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "台站不可用"
 
+#: application/models/Logbook_model.php:1402
 #: application/models/Logbook_model.php:1414
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
+#: application/models/Logbook_model.php:1407
 #: application/models/Logbook_model.php:1419
 msgid "No Call given"
 msgstr "未提供呼号"
 
+#: application/models/Logbook_model.php:1482
+#: application/models/Logbook_model.php:1686
 #: application/models/Logbook_model.php:1494
 #: application/models/Logbook_model.php:1698
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
+#: application/models/Logbook_model.php:4644
 #: application/models/Logbook_model.php:4757
 #, php-format
 msgid ""
@@ -4342,6 +4362,7 @@ msgstr ""
 "导入的本台呼号 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的呼号"
 "为 %s：已跳过"
 
+#: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
@@ -4351,12 +4372,14 @@ msgstr ""
 "导入的本台网格 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的网格"
 "为 %s：已跳过"
 
+#: application/models/Logbook_model.php:4668
 #: application/models/Logbook_model.php:4781
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
+#: application/models/Logbook_model.php:4678
 #: application/models/Logbook_model.php:4791
 #, php-format
 msgid ""
@@ -4364,6 +4387,7 @@ msgid ""
 "imported. It's invalid."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
+#: application/models/Logbook_model.php:4685
 #: application/models/Logbook_model.php:4798
 #, php-format
 msgid ""
@@ -4371,6 +4395,7 @@ msgid ""
 "imported. The invalid input is '%s'."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
+#: application/models/Logbook_model.php:4755
 #: application/models/Logbook_model.php:4868
 #, php-format
 msgid ""
@@ -4378,6 +4403,7 @@ msgid ""
 "imported."
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
+#: application/models/Logbook_model.php:4762
 #: application/models/Logbook_model.php:4875
 #, php-format
 msgid ""
@@ -4386,63 +4412,77 @@ msgid ""
 msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
+#: application/models/Logbook_model.php:5036
 #: application/models/Logbook_model.php:5149
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:5047
 #: application/models/Logbook_model.php:5160
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:5108
 #: application/models/Logbook_model.php:5221
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5597
+#: application/models/Logbook_model.php:5484
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5597
 msgid "Duplicate for"
 msgstr "内容重复"
 
+#: application/models/Logbook_model.php:5551
+#: application/models/Logbook_model.php:5651
 #: application/models/Logbook_model.php:5664
 #: application/models/Logbook_model.php:5764
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
+#: application/models/Logbook_model.php:5559
 #: application/models/Logbook_model.php:5672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
+#: application/models/Logbook_model.php:5565
 #: application/models/Logbook_model.php:5678
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
+#: application/models/Logbook_model.php:5569
 #: application/models/Logbook_model.php:5682
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
+#: application/models/Logbook_model.php:5573
 #: application/models/Logbook_model.php:5686
 msgid "confirmation pending"
 msgstr "等待确认"
 
+#: application/models/Logbook_model.php:5576
 #: application/models/Logbook_model.php:5689
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:5692
+#: application/models/Logbook_model.php:5579
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5692
 msgid "unknown"
 msgstr "未知"
 
+#: application/models/Logbook_model.php:5654
 #: application/models/Logbook_model.php:5767
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
+#: application/models/Logbook_model.php:5657
 #: application/models/Logbook_model.php:5770
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:6176
+#: application/models/Logbook_model.php:6063
 #: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
@@ -4455,6 +4495,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6176
 msgid "Bearing"
 msgstr "方位角"
 
@@ -4506,22 +4547,28 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! 未找到可邮寄地址 !!!"
 
+#: application/models/Update_model.php:405
 #: application/models/Update_model.php:502
 msgid "Newer release available:"
 msgstr "有新版本可用："
 
+#: application/models/Update_model.php:409
 #: application/models/Update_model.php:506
 msgid "You are running the latest version."
 msgstr "你运行的已经是最新版本。"
 
+#: application/models/Update_model.php:550
 #: application/models/Update_model.php:647
 msgid "cURL error:"
 msgstr "cURL 错误："
 
+#: application/models/Update_model.php:584
 #: application/models/Update_model.php:681
 msgid "SAT already existing. LoTW status updated."
 msgstr "卫星已存在，LoTW 状态已更新。"
 
+#: application/models/Update_model.php:587
+#: application/models/Update_model.php:616
 #: application/models/Update_model.php:684
 #: application/models/Update_model.php:713
 #, php-format
@@ -4529,26 +4576,32 @@ msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "%d 个 QSO 的 LoTW 状态已更新"
 
+#: application/models/Update_model.php:590
 #: application/models/Update_model.php:687
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "卫星已存在，LoTW 状态更新失败。"
 
+#: application/models/Update_model.php:593
 #: application/models/Update_model.php:690
 msgid "SAT already existing. Ignored."
 msgstr "卫星已存在，忽略。"
 
+#: application/models/Update_model.php:600
 #: application/models/Update_model.php:697
 msgid "SAT already existing. Display name updated."
 msgstr "卫星已存在，已更新名称。"
 
+#: application/models/Update_model.php:602
 #: application/models/Update_model.php:699
 msgid "SAT already existing. Updating display name failed."
 msgstr "卫星已存在，更新名称失败。"
 
+#: application/models/Update_model.php:612
 #: application/models/Update_model.php:709
 msgid "New SAT. Inserted."
 msgstr "新卫星已添加。"
 
+#: application/models/Update_model.php:620
 #: application/models/Update_model.php:717
 msgid "New SAT. Insert failed."
 msgstr "新卫星添加失败。"
@@ -4940,10 +4993,13 @@ msgstr "清除标记"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:100
+#: application/views/gridlookup/index.php:44
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/gridlookup/index.php:59
+#: application/views/gridlookup/index.php:97
+#: application/views/gridlookup/index.php:100
 msgid "Latitude"
 msgstr "纬度"
 
@@ -4951,10 +5007,13 @@ msgstr "纬度"
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:101
+#: application/views/gridlookup/index.php:45
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/gridlookup/index.php:60
+#: application/views/gridlookup/index.php:98
+#: application/views/gridlookup/index.php:101
 msgid "Longitude"
 msgstr "经度"
 
@@ -5749,7 +5808,7 @@ msgstr "状态"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "创建新的API令牌"
 
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5778,34 +5837,36 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"创建一个具有细分权限（作用域）的令牌。该令牌在创建时仅显示一次，因此请立即复"
+"制。"
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "令牌名称"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "例如：我的日志工具"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "起一个名字帮你日后识别这个令牌。"
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "过期"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30天"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90天"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1年"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -5816,26 +5877,28 @@ msgstr "从不"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "令牌应该在什么时候停止工作。"
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"一个永不过期的令牌在你手动删除之前一直有效。虽然这是可行的，但出于安全考虑不"
+"建议这样做。"
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "作用域"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "选择此令牌可访问 API v2 的哪些部分。"
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "请至少选择一个作用域。"
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:149
@@ -5847,6 +5910,7 @@ msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
+"不知道需要哪些作用域？选择您想使用的工具，我们将为您自动选择相应的范围。"
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
@@ -5863,7 +5927,7 @@ msgstr "重置筛选条件"
 msgid ""
 "A preset replaces your current selection. You can still adjust the scopes "
 "afterwards."
-msgstr ""
+msgstr "预设将替换当前的选中内容。之后仍可调整范围。"
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -5891,7 +5955,7 @@ msgstr "取消"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "创建令牌"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -5929,15 +5993,15 @@ msgstr "保存"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "新API令牌"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
-msgstr ""
+msgstr "立即复制此令牌。出于安全考虑，该令牌将不再显示。"
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "你的API令牌"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -5948,13 +6012,13 @@ msgstr "复制到剪贴板"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "传统API令牌（API v1）"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
-msgstr ""
+msgstr "如果第三方系统支持，新的集成应使用下方的API v2令牌。"
 
 #: application/views/api/index.php:11
 msgid ""
@@ -5977,7 +6041,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "与 Wavelog API v1 兼容的第三方软件链接："
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6071,7 +6135,7 @@ msgstr "测试"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6092,7 +6156,7 @@ msgstr "创建 只读 权限的 API Key"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "API 令牌(API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6100,21 +6164,25 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"API令牌可授予对REST API v2的访问权限，并具有细分的权限（作用域）。令牌在创建"
+"时仅显示一次，因此请立即复制。"
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "API v2 文档可在%s此处%s找到。"
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "此 Wavelog 实例的 API v2 默认URL 是"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"在俱乐部台站中，API令牌是个人专属的，不会共享。俱乐部台站用户只能查看自己的令"
+"牌。"
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6149,7 +6217,7 @@ msgstr "名称"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "有效期"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6158,11 +6226,11 @@ msgstr "过期"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "您确定要删除 API 令牌 %s 吗？"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
-msgstr ""
+msgstr "您目前还没有 API 令牌。请点击下方按钮创建一个。"
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
@@ -6672,7 +6740,7 @@ msgstr "已确认的QSO"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:103
+#: application/views/gridlookup/index.php:47
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -6690,6 +6758,9 @@ msgstr "已确认的QSO"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/gridlookup/index.php:62
+#: application/views/gridlookup/index.php:100
+#: application/views/gridlookup/index.php:103
 msgid "CQ Zone"
 msgstr "CQ 分区"
 
@@ -6889,11 +6960,14 @@ msgstr "去年"
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:74
+#: application/views/gridlookup/index.php:31
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
+#: application/views/gridlookup/index.php:34
+#: application/views/gridlookup/index.php:65
+#: application/views/gridlookup/index.php:74
 msgid "Clear"
 msgstr "清除"
 
@@ -7666,7 +7740,7 @@ msgstr "已删除"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:104
+#: application/views/gridlookup/index.php:48
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -7681,6 +7755,9 @@ msgstr "已删除"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/gridlookup/index.php:63
+#: application/views/gridlookup/index.php:101
+#: application/views/gridlookup/index.php:104
 msgid "ITU Zone"
 msgstr "ITU 分区"
 
@@ -8068,8 +8145,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -8618,21 +8695,21 @@ msgstr "QSO 日期"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "加载WWFF地图数据失败"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "WWFF 参考信息不适用于这些过滤器。"
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
-msgstr ""
+msgstr "WWFF 目录未加载 - 缺少坐标。请运行 update_wwff cron 作业。"
 
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "未展示（无坐标）"
 
 #: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -9824,7 +9901,7 @@ msgstr "QSO"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr ""
+msgstr "在您的日志簿中未找到包含 %s 的 QSO。"
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -9858,7 +9935,7 @@ msgstr "位置"
 
 #: application/views/calltester/call_info.php:79
 msgid "QSL card"
-msgstr ""
+msgstr "QSL卡片"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -9878,18 +9955,18 @@ msgstr "DXCC 类别结果"
 #: application/views/calltester/comparison_result.php:46
 #: application/views/calltester/comparison_result.php:53
 msgid "Calls tested"
-msgstr ""
+msgstr "已检测的通联记录"
 
 #: application/views/calltester/comparison_result.php:47
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "执行时间"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "发现问题"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -9962,7 +10039,7 @@ msgstr "结果 ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "显示此呼号的所有QSO"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -9999,15 +10076,15 @@ msgstr "比较 DXCC 类别和日志簿模型"
 
 #: application/views/calltester/result.php:5
 msgid "Callsigns tested"
-msgstr ""
+msgstr "已测试的呼号"
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "潜在的错误DXCC"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
-msgstr ""
+msgstr "未发现DXCC问题。所有呼号均具有正确的DXCC信息。"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -10199,7 +10276,7 @@ msgstr "当前没有用户可以访问这个集体台站。"
 
 #: application/views/club/permissions.php:271
 msgid "Edit Selected"
-msgstr ""
+msgstr "编辑已选内容"
 
 #: application/views/club/permissions.php:274
 #: application/views/contesting/manager/index.php:23
@@ -10217,8 +10294,10 @@ msgstr "名 (Lastname)"
 #: application/views/club/permissions.php:285
 #: application/views/contesting/logger/index.php:172
 #: application/views/user/edit.php:70 application/views/user/index.php:152
+#: application/views/user/login.php:58 application/views/user/login.php:70
+#: application/views/user/login.php:71 application/views/user/profile.php:14
 #: application/views/user/login.php:47 application/views/user/login.php:59
-#: application/views/user/login.php:60 application/views/user/profile.php:14
+#: application/views/user/login.php:60
 msgid "Username"
 msgstr "用户名"
 
@@ -10259,27 +10338,27 @@ msgstr "角色：%s"
 
 #: application/views/club/permissions.php:409
 msgid "Edit Selected Members"
-msgstr ""
+msgstr "编辑已选成员"
 
 #: application/views/club/permissions.php:415
 msgid "Set the permission level for all selected members:"
-msgstr ""
+msgstr "为所有选定的成员设置权限级别："
 
 #: application/views/club/permissions.php:426
 msgid "Notify the users via email about the change"
-msgstr ""
+msgstr "通过电子邮件通知用户此变更"
 
 #: application/views/club/permissions.php:443
 msgid "Delete Selected Members"
-msgstr ""
+msgstr "删除选中的成员"
 
 #: application/views/club/permissions.php:449
 msgid "Are you sure you want to delete the selected users from the club?"
-msgstr ""
+msgstr "您确定要将选中的用户从集体台站中删除吗？"
 
 #: application/views/club/permissions.php:450
 msgid "user(s) will be removed."
-msgstr ""
+msgstr "这些用户将被移除。"
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
@@ -10747,11 +10826,11 @@ msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "每操作员"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
-msgstr ""
+msgstr "红色：仅限预览。绿色：此号码为您保留。"
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -11225,11 +11304,13 @@ msgid ""
 msgstr "使用另一个操作员的账户登录，以其呼号继续此竞赛会话。"
 
 #: application/views/contesting/logger/index.php:176
-#: application/views/user/edit.php:96 application/views/user/login.php:48
-#: application/views/user/login.php:63 application/views/user/login.php:64
+#: application/views/user/edit.php:96 application/views/user/login.php:59
+#: application/views/user/login.php:74 application/views/user/login.php:75
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
+#: application/views/user/login.php:48 application/views/user/login.php:63
+#: application/views/user/login.php:64
 msgid "Password"
 msgstr "密码"
 
@@ -11430,15 +11511,15 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "序列号系列"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "所有操作员共享"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "每个操作员一个系列"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -11446,6 +11527,8 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"序列号由服务器分发，即使多个操作员同时记录，也不会重复使用相同的号码。大多数"
+"比赛期望每个台站使用单一的共享序列号。"
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -12034,7 +12117,7 @@ msgstr "标识符"
 msgid "Enabled"
 msgstr "已启用"
 
-#: application/views/cron/edit.php:36
+#: application/views/cron/edit.php:36 application/views/cron/index.php:77
 msgid "Intervall"
 msgstr "间隔"
 
@@ -12147,10 +12230,6 @@ msgstr "在具有 shell 访问权限的基本 Linux 服务器上，使用以下�
 #: application/views/stationsetup/stationsetup.php:154
 msgid "ID"
 msgstr "ID"
-
-#: application/views/cron/index.php:77
-msgid "Interval"
-msgstr ""
 
 #: application/views/cron/index.php:78
 msgid "Last Run"
@@ -13836,69 +13915,35 @@ msgstr "返回仪表盘"
 #: application/views/gridlookup/index.php:8
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
-msgstr ""
+msgstr "无效网格—使用 2、4、6、8 或 10 个字符（例如：FN，FN31，FN31pr）。"
 
-#: application/views/gridlookup/index.php:15
-msgid "Locating…"
-msgstr ""
-
-#: application/views/gridlookup/index.php:16
-msgid "Location access denied."
-msgstr ""
-
-#: application/views/gridlookup/index.php:17
-msgid "Location unavailable."
-msgstr ""
-
-#: application/views/gridlookup/index.php:18
-msgid "Location request timed out."
-msgstr ""
-
-#: application/views/gridlookup/index.php:68
+#: application/views/gridlookup/index.php:25
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "2、 4、 6、 8 或 10 个字符的梅登黑德网格定位编码"
 
-#: application/views/gridlookup/index.php:68
+#: application/views/gridlookup/index.php:25
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "例：OM89ev"
 
-#: application/views/gridlookup/index.php:69
+#: application/views/gridlookup/index.php:26
 msgid "to"
-msgstr ""
+msgstr "至"
 
-#: application/views/gridlookup/index.php:72
+#: application/views/gridlookup/index.php:29
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "可选的第二网格，用于计算距离和方位"
 
-#: application/views/gridlookup/index.php:72
+#: application/views/gridlookup/index.php:29
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "例：JN58qm"
 
-#: application/views/gridlookup/index.php:73
+#: application/views/gridlookup/index.php:30
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
-#: application/views/gridlookup/index.php:75
-msgid "Find my location and gridsquare"
-msgstr ""
-
-#: application/views/gridlookup/index.php:75
-msgid "Locate me"
-msgstr ""
-
-#: application/views/gridlookup/index.php:78
-#: application/views/simplefle/index.php:162
-msgid "Refs"
-msgstr "对方网格"
-
-#: application/views/gridlookup/index.php:91
-#: application/views/qso/index.php:759
-msgid "More options"
-msgstr "更多选项"
-
-#: application/views/gridlookup/index.php:92
-msgid "Hide options"
-msgstr ""
+#: application/views/gridlookup/index.php:34
+msgid "Maidenhead grid"
+msgstr "梅登黑德网格"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -14668,7 +14713,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:212
 msgid "World Wide Flora Fauna (WWFF)"
-msgstr ""
+msgstr "业余无线电中的世界动植物（WWFF）"
 
 #: application/views/interface_assets/header.php:219
 msgid "AMSAT Rover"
@@ -17220,7 +17265,7 @@ msgstr "加载QSO数据中…"
 
 #: application/views/map/qso_map.php:9
 msgid "Loading QSOs for all countries (this may take a moment)..."
-msgstr ""
+msgstr "正在加载所有国家和地区的 QSO（请稍等片刻）..."
 
 #: application/views/map/qso_map.php:10
 msgid "Still loading... Processing large dataset, please wait..."
@@ -17240,49 +17285,49 @@ msgstr "解析响应时出错:"
 
 #: application/views/map/qso_map.php:14
 msgid "Outside country boundaries"
-msgstr ""
+msgstr "在 DXCC 实体边界之外"
 
 #: application/views/map/qso_map.php:15
 msgid "Inside country boundaries"
-msgstr ""
+msgstr "在 DXCC 实体边界内"
 
 #: application/views/map/qso_map.php:16
 msgid "Legend"
-msgstr ""
+msgstr "图例"
 
 #: application/views/map/qso_map.php:17
 msgid "Inside boundaries"
-msgstr ""
+msgstr "内部边界"
 
 #: application/views/map/qso_map.php:18
 msgid "Outside boundaries"
-msgstr ""
+msgstr "外部边界"
 
 #: application/views/map/qso_map.php:19
 msgid "Country/State boundaries"
-msgstr ""
+msgstr "DXCC 实体/州边界"
 
 #: application/views/map/qso_map.php:20
 #, php-format
 msgid "Showing %s of %s total QSOs"
-msgstr ""
+msgstr "显示 %s 个 QSO，共 %s 个QSO"
 
 #: application/views/map/qso_map.php:21
 #, php-format
 msgid "Total: %s QSOs with 6+ char grids"
-msgstr ""
+msgstr "总计：%s 次通联包含 6 个或更多字符的网格"
 
 #: application/views/map/qso_map.php:23
 msgid "Hover over a region"
-msgstr ""
+msgstr "将鼠标悬停在一个区域上"
 
 #: application/views/map/qso_map.php:24
 msgid "Toggle layers"
-msgstr ""
+msgstr "切换图层"
 
 #: application/views/map/qso_map.php:28
 msgid "Regions worked:"
-msgstr ""
+msgstr "通联的区域："
 
 #: application/views/map/qso_map.php:29
 msgid "Show QSO list"
@@ -19024,6 +19069,8 @@ msgid ""
 "Satellite appears below the horizon (elevation %s°). The stored TLE may be "
 "outdated for this QSO time. Do you really want to log this QSO?"
 msgstr ""
+"卫星出现于地平线以下（仰角 %s°）。系统中的 TLE 在此 QSO 时间可能已过时。你确"
+"定要记录此 QSO 吗？"
 
 #: application/views/qso/index.php:41
 msgid "Please wait before saving another QSO"
@@ -19162,6 +19209,12 @@ msgstr "QSO 笔记"
 #: application/views/qso/index.php:742
 msgid "QSL MSG"
 msgstr "QSL 确认信息"
+
+#: application/views/qso/index.php:759
+#: application/views/gridlookup/index.php:88
+#: application/views/gridlookup/index.php:91
+msgid "More options"
+msgstr "更多选项"
 
 #: application/views/qso/index.php:761
 msgid "Reset to Default"
@@ -19844,6 +19897,12 @@ msgstr "操作员的呼号，不带有前缀及后缀。"
 msgid "Enter the Data"
 msgstr "输入信息"
 
+#: application/views/simplefle/index.php:162
+#: application/views/gridlookup/index.php:67
+#: application/views/gridlookup/index.php:78
+msgid "Refs"
+msgstr "对方网格"
+
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
@@ -19867,7 +19926,7 @@ msgstr "尚无选项"
 
 #: application/views/simplefle/syntax_help.php:10
 msgid "Getting started"
-msgstr ""
+msgstr "入门"
 
 #: application/views/simplefle/syntax_help.php:11
 msgid "Before starting to log a QSO, please note the basic rules."
@@ -19894,6 +19953,9 @@ msgid ""
 "QRG in MHz, e.g., %s), mode, and time. After the time, you provide the first "
 "QSO, which is essentially the callsign."
 msgstr ""
+"首先，确保你已经在左侧表格填写了日期、电台呼号和操作员呼号。主要数据包括频段"
+"（或以 MHz 为单位的 QRG ，如 %s）、模式和时间。在时间后，你填写第一个 QSO，即"
+"呼号。"
 
 #: application/views/simplefle/syntax_help.php:23
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -19910,6 +19972,9 @@ msgid ""
 "sides, so we provide the information with the sent RST first. It was 2 "
 "minutes later than the first QSO."
 msgstr ""
+"如果你不提供任何 RST 信息，则使用默认值（语音为 59，CW 为 599，数据模式为 +0 "
+"dB）。因为下一个 QSO 并非双方都是 59，所以我们首先提供发送的 RST 信息。它比第"
+"一个 QSO 晚了 2 分钟。"
 
 #: application/views/simplefle/syntax_help.php:32
 msgid ""
@@ -19963,7 +20028,7 @@ msgstr "你可以使用注释语法来填充 Wavelog-导入支持的 ADIF 字段
 
 #: application/views/simplefle/syntax_help.php:66
 msgid "Contest exchange"
-msgstr ""
+msgstr "竞赛交换信息"
 
 #: application/views/simplefle/syntax_help.php:67
 msgid "Contest exchange; serials or other exchange - or even both:"
@@ -19982,6 +20047,12 @@ msgid ""
 "sent serial, add %s to a QSO line together with an initial sent exchange (it "
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
+"收到的交换信息以点 %s 开始，发送的交换以逗号 %s 开始。最后两行是等效的：即空"
+"格和顺序都不重要。上面每四行简单地说明了一种交换类型（仅序列号，仅文本，或两"
+"者都有）；注意发送的交换是持续性的：一旦设置，它会自动带入后续的 QSOs（每当下"
+"一行包含接收到的交换或单个逗号 %s）直到您更改或清除它。要自动递增发送的序列"
+"号，将 %s 添加到 QSO 行中以及初始发送的交换（它在自己的行上不起作用）。要停"
+"用，请使用 %s:"
 
 #: application/views/simplefle/syntax_help.php:79
 #, php-format
@@ -19989,6 +20060,8 @@ msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use %s:"
 msgstr ""
+"在这里，第一个 QSO 使用设置的 1 作为序列号，第二个 QSO 将使用 2 作为序列号。"
+"如果你想清除你发送的交换码，使用 %s："
 
 #: application/views/simplefle/syntax_help.php:84
 #, php-format
@@ -19996,6 +20069,8 @@ msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange %s would have been set also."
 msgstr ""
+"系统会先重置（清空）前一次的交换字段，然后仅写入序列号；否则原有的 %s 也会被"
+"保留并一同写入。"
 
 #: application/views/simplefle/syntax_help.php:86
 msgid "Time zone"
@@ -20008,10 +20083,13 @@ msgid ""
 "(or the short form %s) followed by the signed hour offset. All following QSO "
 "times are then converted to UTC until you change the offset again:"
 msgstr ""
+"如果您使用本地时间而不是 UTC 录入，请使用 %s（或缩写形式 %s）加带符号的小时偏"
+"移量来声明您的偏移量。所有后续的 QSO 时间将自动转换为 UTC，直到您再次更改偏移"
+"量："
 
 #: application/views/simplefle/syntax_help.php:92
 msgid "Here, the QSO logged at 14:00 local time is stored as 12:00 UTC."
-msgstr ""
+msgstr "这里，记录于本地时间 14:00 的 QSO 被存储为12:00 UTC。"
 
 #: application/views/simplefle/syntax_help.php:95
 #, php-format
@@ -20879,8 +20957,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -21779,28 +21857,28 @@ msgstr "上一位操作员"
 msgid "No Clubstations configures yet."
 msgstr "目前没有集体台站。"
 
-#: application/views/user/login.php:25
+#: application/views/user/login.php:36 application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
 msgstr "维护模式"
 
-#: application/views/user/login.php:45
+#: application/views/user/login.php:56 application/views/user/login.php:45
 msgid "Welcome to the Demo of Wavelog"
 msgstr "欢迎来到 Wavelog Demo（演示站）"
 
-#: application/views/user/login.php:46
+#: application/views/user/login.php:57 application/views/user/login.php:46
 msgid "This demo will be reset every night at 0200z."
 msgstr "本 Demo 每日 UTC 02:00 重置。"
 
-#: application/views/user/login.php:49
+#: application/views/user/login.php:60 application/views/user/login.php:49
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr "更多信息请访问 Wavelog 官方 %sGithub%s 地址。"
 
-#: application/views/user/login.php:69
+#: application/views/user/login.php:80 application/views/user/login.php:69
 msgid "Forgot your password?"
 msgstr "忘记密码？"
 
-#: application/views/user/login.php:75
+#: application/views/user/login.php:86 application/views/user/login.php:75
 msgid "Keep me logged in"
 msgstr "保持登录"
 
@@ -22390,10 +22468,58 @@ msgstr "CQz geojson"
 
 #: application/views/zonechecker/result.php:99
 msgid "Show on map"
-msgstr ""
+msgstr "在地图上显示"
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
+msgstr "未发现分区问题。所有 QSO 都具有正确的分区信息。"
+
+#: application/views/cron/index.php:77
+msgid "Interval"
+msgstr "间隔"
+
+#: application/views/gridlookup/index.php:41
+msgid "WWFF References"
+msgstr "WWFF 参考资料"
+
+#: application/views/gridlookup/index.php:45
+msgid "POTA References"
+msgstr "POTA 参考资料"
+
+#: application/views/gridlookup/index.php:49
+msgid "SOTA References"
+msgstr "SOTA 参考资料"
+
+#: application/views/gridlookup/index.php:15
+msgid "Locating…"
+msgstr "定位中…"
+
+#: application/views/gridlookup/index.php:16
+msgid "Location access denied."
+msgstr "位置访问被拒绝。"
+
+#: application/views/gridlookup/index.php:17
+msgid "Location unavailable."
+msgstr "位置不可用。"
+
+#: application/views/gridlookup/index.php:18
+msgid "Location request timed out."
+msgstr "定位请求超时。"
+
+#: application/views/gridlookup/index.php:66
+msgid "Find my location and gridsquare"
+msgstr "查找我的位置和网格"
+
+#: application/views/gridlookup/index.php:66
+msgid "Locate me"
+msgstr "我的位置"
+
+#: application/views/gridlookup/index.php:89
+msgid "Hide options"
+msgstr "隐藏选项"
+
+#: application/libraries/api_v2/Confirmation_resource.php:54
+msgid "Read QSL confirmations"
 msgstr ""
 
 #~ msgid "Invalid time format. Please use HH:MM (e.g. 08:31)."
@@ -23864,8 +23990,8 @@ msgstr ""
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

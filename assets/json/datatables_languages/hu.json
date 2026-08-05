@@ -1,85 +1,85 @@
 {
-    "search": "Search:",
+    "search": "Keresés:",
     "paginate": {
-        "first": "First",
-        "previous": "Previous",
-        "next": "Next",
-        "last": "Last"
+        "first": "Első",
+        "previous": "Előző",
+        "next": "Következő",
+        "last": "Utolsó"
     },
     "autoFill": {
-        "cancel": "Cancel",
-        "fill": "Fill all cells with <i>%d</i>",
-        "fillHorizontal": "Fill cells horizontally",
-        "fillVertical": "Fill cells vertically",
-        "info": "AutoFill info example"
+        "cancel": "Mégse",
+        "fill": "Töltse ki az összes cellát a következővel: <i>%d</i>",
+        "fillHorizontal": "Cellák vízszintes kitöltése",
+        "fillVertical": "Cellák függőleges kitöltése",
+        "info": "Példa az automatikus kitöltésre"
     },
     "buttons": {
-        "colvis": "Column visibility",
-        "copy": "Copy",
-        "copyTitle": "Copy to clipboard",
+        "colvis": "Oszlop láthatósága",
+        "copy": "Másolás",
+        "copyTitle": "Másolás a vágólapra",
         "csv": "CSV",
         "excel": "Excel",
         "pdf": "PDF",
         "pageLength": {
-            "-1": "Show all rows",
-            "_": "Show %d rows",
-            "1": "Show 1 row"
+            "-1": "Összes sor megjelenítése",
+            "_": "%d sor megjelenítése",
+            "1": "1 sor megjelenítése"
         },
-        "print": "Print",
-        "copyKeys": "Press Ctrl or u2318 + C to copy the table data to your system clipboard.<br /><br />To cancel, click this message or press Escape.",
+        "print": "Nyomtatás",
+        "copyKeys": "Nyomja meg a Ctrl billentyűt vagy az u2318 + C billentyűkombinációt a táblázat adatainak a vágólapra másolásához.<br /><br />A művelet megszakításához kattintson erre az üzenetre, vagy nyomja meg az Escape billentyűt.",
         "copySuccess": {
-            "1": "Copied 1 row to clipboard",
-            "_": "Copied %d rows to clipboard"
+            "1": "1 sor másolva a vágólapra",
+            "_": "%d sor másolva a vágólapra"
         },
-        "createState": "Create state",
-        "removeAllStates": "Remove all states",
-        "removeState": "Remove",
-        "renameState": "Rename",
-        "stateRestore": "State %d",
-        "updateState": "Update",
-        "collection": "Collection<span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
-        "colvisRestore": "Restore visibility",
-        "savedStates": "Saved states"
+        "createState": "Állapot létrehozása",
+        "removeAllStates": "Minden állapot törlése",
+        "removeState": "Törlés",
+        "renameState": "Átnevezés",
+        "stateRestore": "Állapot %d",
+        "updateState": "Frissítés",
+        "collection": "Gyűjtemény<span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
+        "colvisRestore": "Láthatóság visszaállítása",
+        "savedStates": "Mentett állapotok"
     },
     "searchBuilder": {
         "button": {
-            "0": "Search builder",
-            "_": "Search builder (%d)"
+            "0": "Keresés-építő",
+            "_": "Keresés-építő (%d)"
         },
-        "clearAll": "Clear all",
-        "condition": "Condition",
-        "data": "Data",
+        "clearAll": "Összes törlése",
+        "condition": "Feltétel",
+        "data": "Adat",
         "title": {
-            "0": "Search builder",
-            "_": "Search builder (%d)"
+            "0": "Keresés-építő",
+            "_": "Keresés-építő (%d)"
         },
-        "value": "Value",
+        "value": "Érték",
         "conditions": {
             "date": {
-                "equals": "Equals",
-                "after": "After",
-                "before": "Before",
-                "between": "Between",
-                "empty": "Empty",
-                "not": "Not",
-                "notBetween": "Not between",
-                "notEmpty": "Not empty"
+                "equals": "egyenlő",
+                "after": "után",
+                "before": "előtt",
+                "between": "között",
+                "empty": "üres",
+                "not": "nem",
+                "notBetween": "nem között",
+                "notEmpty": "nem üres"
             },
             "number": {
-                "between": "Between",
-                "empty": "Empty",
-                "equals": "Equals",
-                "gt": "Greater than",
-                "gte": "Greater than or equal to",
-                "lt": "Less than",
-                "lte": "Less than or equal to",
-                "not": "Not",
-                "notBetween": "Not between",
-                "notEmpty": "Not empty"
+                "between": "között",
+                "empty": "üres",
+                "equals": "egyenlő",
+                "gt": "nagyobb, mint",
+                "gte": "nagyobb vagy egyenlő, mint",
+                "lt": "kevesebb, mint",
+                "lte": "kisebb vagy egyenlő, mint",
+                "not": "nem",
+                "notBetween": "nem között",
+                "notEmpty": "nem üres"
             },
             "string": {
-                "contains": "Contains",
-                "empty": "Empty",
+                "contains": "tartalmaz",
+                "empty": "üres",
                 "endsWith": "Ends with",
                 "equals": "Equals",
                 "not": "Not",
