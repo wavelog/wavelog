@@ -1982,7 +1982,7 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	position: relative;
 	padding: .5rem .6rem .6rem;
 	background: #000;
-	color: var(--bs-body-color, #212529);
+	color: #fff;
 	border: 1px solid #fff;
 	border-radius: .55rem;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, .22);
@@ -2021,7 +2021,7 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .gl-comp-edge.gl-comp-nearest .gl-badge { background: #198754; color: #fff; border-color: #198754; opacity: 1; }
 .gl-comp-grid { font-weight: 700; font-size: .92rem; }
 .gl-comp-center .gl-comp-grid { font-weight: 700;}
-.gl-comp-meta { font-size: .68rem; opacity: .7; }
+.gl-comp-meta { font-size: .70rem; }
 @media (max-width: 359.98px) {                              /* let the meta line breathe on small phones */
 	.gl-comp-meta { font-size: .62rem; }
 	.gl-comp-edge, .gl-comp-center { padding: .35rem .1rem; }
