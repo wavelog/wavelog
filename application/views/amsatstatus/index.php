@@ -39,15 +39,17 @@
                 ?>
 
                 <style>
-                    /* The grid carries .border-top, which draws its top edge and also supplies the
-                       theme-aware --bs-border-color (general.css + each theme's overrides.css).
-                       .border-start reuses that value, and the cells inherit it. */
+                    /* Only the grid paints the top + left edges; each cell paints only its own
+                       right + bottom edge. That way every gridline is a single 1px line and
+                       adjacent cells never double up into 2px. */
                     .amsat-grid {
                         display: grid;
                         grid-template-columns: 160px 140px repeat(24, 32px);
                         grid-auto-rows: minmax(32px, auto);
                         width: max-content;
                         margin: 0 auto;
+                        border-top: 1px solid var(--bs-tertiary-color);
+                        border-left: 1px solid var(--bs-tertiary-color);
                     }
                     .amsat-row {
                         display: contents;
@@ -58,8 +60,8 @@
                         justify-content: center;
                         min-width: 0;
                         box-sizing: border-box;
-                        border-right: 1px solid var(--bs-border-color);
-                        border-bottom: 1px solid var(--bs-border-color);
+                        border-right: 1px solid var(--bs-tertiary-color);
+                        border-bottom: 1px solid var(--bs-tertiary-color);
                         padding: .25rem .5rem;
                         text-align: center;
                         font-size: .875rem;
@@ -80,7 +82,7 @@
                 </style>
 
                 <div class="table-responsive">
-                    <div class="amsat-grid border-top border-start" role="table" aria-labelledby="amsatStatusCardHeader">
+                    <div class="amsat-grid" role="table" aria-labelledby="amsatStatusCardHeader">
                         <div class="amsat-row" role="row">
                         <div class="amsat-cell amsat-cell-name" role="columnheader" aria-rowindex="1" aria-colindex="1"></div>
                         <div class="amsat-cell amsat-cell-aos small" role="columnheader" aria-rowindex="1" aria-colindex="2"><?= __("Next AOS"); ?></div>
