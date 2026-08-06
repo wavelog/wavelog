@@ -28,7 +28,7 @@ class Distances_model extends CI_Model
 
 				$table = $this->config->item('table_name');
 				$sql = "
-					SELECT COL_PRIMARY_KEY, COL_DISTANCE, COL_ANT_PATH, col_call callsign, col_gridsquare grid
+					SELECT COL_PRIMARY_KEY, COL_DISTANCE, COL_ANT_PATH, COL_ANT_AZ, COL_PROP_MODE, col_call callsign, col_gridsquare grid
 					FROM $table
 					LEFT OUTER JOIN satellite
 						ON $table.COL_PROP_MODE = 'SAT'
@@ -209,10 +209,18 @@ class Distances_model extends CI_Model
 				$qrb['Qsos']++;                                                        // Counts up number of qsos
 				$bearingdistance = $this->qra->distance($stationgrid, $qso['grid'], $measurement_base, $qso['COL_ANT_PATH']);
 				$bearingdistance_km = $this->qra->distance($stationgrid, $qso['grid'], 'K', $qso['COL_ANT_PATH']);
+
+				$updatedata = array();
 				if ($bearingdistance_km != $qso['COL_DISTANCE']) {
-					$data = array('COL_DISTANCE' => $bearingdistance_km);
+					$updatedata['COL_DISTANCE'] = $bearingdistance_km;
+				}
+				$is_shortwave = trim((string)$qso['COL_PROP_MODE']) === '';   // only plain HF/VHF+ terrestrial QSOs -- SAT, EME, MS, etc. don't follow the great-circle bearing
+				if ($is_shortwave && ($qso['COL_ANT_AZ'] === null || $qso['COL_ANT_AZ'] === '')) {   // only fill if empty -- never overwrite a user/ADIF-supplied value
+					$updatedata['COL_ANT_AZ'] = $this->qra->get_bearing($stationgrid, $qso['grid'], $qso['COL_ANT_PATH']);
+				}
+				if (!empty($updatedata)) {
 					$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
-					$this->db->update($this->config->item('table_name'), $data);
+					$this->db->update($this->config->item('table_name'), $updatedata);
 				}
 				$arrayplacement = (int)($bearingdistance / 50);                                // Resolution is 50, calculates where to put result in array
 				if ($bearingdistance > $qrb['Distance']) {                              // Saves the longest QSO
