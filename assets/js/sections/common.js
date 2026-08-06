@@ -456,30 +456,18 @@ function qso_edit(id) {
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchbearing',
                                type: 'post',
+                               dataType: 'json',
                                data: {
                                   grid: $('#locator_edit').val(),
                                   ant_path: $('#ant_path_edit').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info_edit').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data.text).fadeIn("slow");
+                                  $("#distance").val(data.distance_km ?? '');
                                },
                                error: function() {
                                   $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
-                               },
-                            });
-                            $.ajax({
-                               url: base_url + 'index.php/logbook/searchdistance',
-                               type: 'post',
-                               data: {
-                                  grid: $('#locator_edit').val(),
-                                  ant_path: $('#ant_path_edit').val(),
-                                  stationProfile: $('#stationProfile').val()
-                               },
-                               success: function(data) {
-                                  $("#distance").val(parseFloat(data));
-                               },
-                               error: function() {
                                   $('#distance').val('');
                                },
                             });
@@ -494,28 +482,17 @@ function qso_edit(id) {
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchbearing',
                                type: 'post',
+                               dataType: 'json',
                                data: {
                                   grid: $(this).val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info_edit').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data.text).fadeIn("slow");
+                                  $("#distance").val(data.distance_km ?? '');
                                },
                                error: function() {
                                   $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
-                               },
-                            });
-                            $.ajax({
-                               url: base_url + 'index.php/logbook/searchdistance',
-                               type: 'post',
-                               data: {
-                                  grid: $(this).val(),
-                                  stationProfile: $('#stationProfile').val()
-                               },
-                               success: function(data) {
-                                  $("#distance").val(parseFloat(data));
-                               },
-                               error: function() {
                                   $("#distance").val('');
                                },
                             });

@@ -1053,6 +1053,7 @@ $("#sat_name").on('change', function () {
 	} else {
 		$('#lotw_support').text("");
 		$('#lotw_support').removeClass();
+		clear_auto_ant_az();		// the az/el ticker takes over the field now
 		get_sat_info();
 	}
 });
@@ -1064,6 +1065,44 @@ $("#sat_name").on('focusout', function () {
 	}
 });
 
+/*
+ * #ant_az can hold three kinds of value: typed by the operator, written by the satellite
+ * az/el ticker, or prefilled by us from the calculated bearing. Only the last one may be
+ * overwritten or cleared, so remember where the current value came from.
+ */
+let ant_az_autofilled = false;
+
+$("#ant_az").on("input", function () {
+	ant_az_autofilled = false;		// operator took over, hands off from now on
+});
+
+function set_ant_az_from_bearing(deg) {
+	// Satellite QSO: az/el belong to the TLE ticker. Any other prop mode (EME/MS/AUR/...):
+	// the antenna doesn't point along the great-circle bearing either. Both cases: hands off.
+	if ($("#sat_name").val() != "" || $('#selectPropagation').val() != '') return;
+	if ($("#ant_az").val() != '' && !ant_az_autofilled) return;
+
+	if (deg === null || deg === undefined) {
+		clear_auto_ant_az();
+		return;
+	}
+	$("#ant_az").val(deg);
+	ant_az_autofilled = true;
+}
+
+function clear_auto_ant_az() {
+	if (ant_az_autofilled) {
+		$("#ant_az").val('');
+		ant_az_autofilled = false;
+	}
+}
+
+$('#selectPropagation').on('change', function () {
+	if ($(this).val() != '') {		// great-circle bearing no longer applies
+		clear_auto_ant_az();
+	}
+});
+
 var satupdater;
 
 function stop_az_ele_ticker() {
@@ -1072,6 +1111,7 @@ function stop_az_ele_ticker() {
 	}
 	$("#ant_az").val('');
 	$("#ant_el").val('');
+	ant_az_autofilled = false;
 }
 
 function start_az_ele_ticker(tle) {
@@ -1349,7 +1389,7 @@ function reset_to_default() {
 	$("#ant_az").val("");
 	$("#ant_el").val("");
 	$("#distance").val("");
-	stop_az_ele_ticker();
+	stop_az_ele_ticker();		// also resets ant_az_autofilled
 }
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
@@ -1410,6 +1450,7 @@ function reset_fields() {
 	$('#partial_view').hide();
 	$('.callsign-suggest').hide();
 	$("#distance").val("");
+	clear_auto_ant_az();
 	setRst($(".mode").val());
 	var $select = $('#sota_ref').selectize();
 	var selectize = $select[0].selectize;
@@ -1795,6 +1836,7 @@ $("#callsign").on("focusout", function () {
 					if (result.callsign_geoloc != 'grid' || result.timesWorked > 0) {
 						$('#locator').val(result.callsign_qra);
 						$('#locator_info').html(result.bearing);
+						set_ant_az_from_bearing(result.bearing_deg);
 					}
 
 					if (result.callsign_distance != "" && result.callsign_distance != 0) {
@@ -2831,31 +2873,21 @@ $("#locator").on("input focus", function () {
 			$.ajax({
 				url: base_url + 'index.php/logbook/searchbearing',
 				type: 'post',
+				dataType: 'json',
 				data: {
 					grid: $(this).val(),
 					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
-					$('#locator_info').html(data).fadeIn("slow");
+					$('#locator_info').html(data.text).fadeIn("slow");
+					document.getElementById("distance").value = data.distance_km ?? '';
+					set_ant_az_from_bearing(data.bearing);
 				},
 				error: function () {
 					$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
-				},
-			});
-			$.ajax({
-				url: base_url + 'index.php/logbook/searchdistance',
-				type: 'post',
-				data: {
-					grid: $(this).val(),
-					ant_path: $('#ant_path').val(),
-					stationProfile: $('#stationProfile').val()
-				},
-				success: function (data) {
-					document.getElementById("distance").value = data;
-				},
-				error: function () {
 					document.getElementById("distance").value = null;
+					clear_auto_ant_az();
 				},
 			});
 		}
@@ -2866,6 +2898,7 @@ $("#locator").on("focusout", function () {
 	if ($(this).val().length == 0) {
 		$('#locator_info').text("");
 		document.getElementById("distance").value = null;
+		clear_auto_ant_az();
 	}
 });
 
@@ -2887,31 +2920,21 @@ $("#ant_path").on("change", function () {
 		$.ajax({
 			url: base_url + 'index.php/logbook/searchbearing',
 			type: 'post',
+			dataType: 'json',
 			data: {
 				grid: $('#locator').val(),
 				ant_path: $('#ant_path').val(),
 				stationProfile: $('#stationProfile').val()
 			},
 			success: function (data) {
-				$('#locator_info').html(data).fadeIn("slow");
+				$('#locator_info').html(data.text).fadeIn("slow");
+				$('#distance').val(data.distance_km ?? '');
+				set_ant_az_from_bearing(data.bearing);
 			},
 			error: function () {
 				$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
-			},
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbook/searchdistance',
-			type: 'post',
-			data: {
-				grid: $('#locator').val(),
-				ant_path: $('#ant_path').val(),
-				stationProfile: $('#stationProfile').val()
-			},
-			success: function (data) {
-				$('#distance').val(data);
-			},
-			error: function () {
 				$('#distance').val("");
+				clear_auto_ant_az();
 			},
 		});
 	}
@@ -3037,6 +3060,7 @@ function resetDefaultQSOFields() {
 	$('#country').val("");
 	$('#continent').val("");
 	$("#distance").val("");
+	clear_auto_ant_az();		// keeps a sat-ticker or hand-typed azimuth for the next QSO
 	$('#email').val("");
 	$('#email_info').html("").addClass('d-none').hide();
 	$('#region').val("");
