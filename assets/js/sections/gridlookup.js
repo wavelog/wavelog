@@ -21,6 +21,9 @@
 	let closeLbl        = cfg.closeLbl       || 'Close';
 	let errorLbl        = cfg.errorLbl       || 'Error';
 	let trackingLbl     = cfg.trackingLbl    || 'Tracking';
+	let fieldLbl        = cfg.fieldLbl       || 'Field';
+	let squareLbl       = cfg.squareLbl      || 'Square';
+	let subsquareLbl    = cfg.subsquareLbl   || 'Subsquare';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -256,6 +259,38 @@
 	function clearBorders() {
 		hideBordersPanel();
 		clearArrows();
+		setLabelsDim(false);
+	}
+
+	/*
+	 * Outline + tint the 4-character grid square containing [lat,lng]. Yellow on
+	 * dark themes, red on light themes (where yellow is hard to see). Used for
+	 * the single-grid selection (with arrows) and for both ends of a QRB.
+	 */
+	function drawSquareTint(lat, lng) {
+		let sq = locatorToCell(latLngToLocator(lat, lng, 2));
+		if (!sq) { return; }
+		let sqColor = (typeof isDarkModeTheme === 'function' && isDarkModeTheme()) ? '#ffd60a' : '#ff1900';
+		bordersOverlay.addLayer(L.rectangle([sq.sw, sq.ne], {
+			color: sqColor, weight: 2, dashArray: '8,5',
+			fillColor: sqColor, fillOpacity: 0.1,
+			interactive: false
+		}));
+	}
+
+	/* Two-grid QRB: tint both squares and dim the rest of the grid labels. */
+	function showTwoGridTint(c1, c2) {
+		if (!bordersOverlay) { return; }
+		bordersOverlay.clearLayers();
+		drawSquareTint(c1.center[0], c1.center[1]);
+		drawSquareTint(c2.center[0], c2.center[1]);
+		setLabelsDim(true);
+	}
+
+	/* Tone down every Maidenhead grid label so the tinted squares stand out. */
+	function setLabelsDim(on) {
+		let el = map && map.getContainer();
+		if (el) { el.classList.toggle('gl-dim-labels', on); }
 	}
 
 	/*
@@ -267,6 +302,9 @@
 	function drawArrows(lat, lng) {
 		if (!bordersOverlay) { return; }
 		bordersOverlay.clearLayers();
+
+		drawSquareTint(lat, lng);   // 4-char grid square outline + tint the arrows point to
+
 		let b = squareBorders(lat, lng);
 		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 		let minDist = Infinity;
@@ -329,18 +367,33 @@
 		return s.state + (s.code ? ' (' + s.code + ')' : '') + (s.country ? ', ' + s.country : '');
 	}
 
-	/* Join a marker popup's base line with any resolved zones/state (one per line). */
-	function popupContent(base, z, s) {
-		let parts = [base];
-		if (z) { parts.push(z); }
-		if (s) { parts.push(s); }
-		return parts.join('<br>');
-	}
+	/*
+	 * Rich gridsquare popup (click marker + Go markers): a title, the 4-char
+	 * grid large with any subsquare muted, coordinates, a Field/Square/Subsquare
+	 * hierarchy, and the nearest grid border (direction + adjacent grid +
+	 * distance + arrow). Echoes the corner info box. zones/state are appended
+	 * when resolved. Built on squareBorders() for the nearest-border figure.
+	 */
+	function gridPopupHTML(lat, lng, loc, zones, state) {
+		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
+		// Subsquare is the refinement (muted dot). Only tiers the locator has.
+		let tiers = [];
+		if (loc.length >= 2) { tiers.push({ lbl: fieldLbl, val: loc.substring(0, 2), strong: true }); }
+		if (loc.length >= 4) { tiers.push({ lbl: squareLbl, val: loc.substring(2, 4), strong: true }); }
+		if (loc.length >= 6) { tiers.push({ lbl: subsquareLbl, val: loc.substring(4, 6), strong: false }); }
+		let hier = tiers.map(function (t) {
+			return '<span class="gl-pop-tier' + (t.strong ? ' is-strong' : '') + '">' +
+				'<i class="gl-dot"></i>' + esc(t.lbl) + ' (' + esc(t.val) + ')</span>';
+		}).join(' ');
 
-	/* Base popup line for a resolved grid cell (used by Go's blue/orange markers). */
-	function cellPopupBase(cell) {
-		return '<strong>' + cell.loc + '</strong><br>' + cell.label + '<br>' +
-			fmtLat(cell.center[0]) + ', ' + fmtLng(cell.center[1]);
+		let meta = [zones, state].filter(Boolean).join(' &middot; ');
+
+		return '<div class="gl-popup">' +
+			'<div class="gl-pop-grid">' + loc + '</div>' +
+			'<div class="gl-pop-coords"><i class="fas fa-map-pin"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
+			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
+			(meta ? '<div class="gl-pop-meta">' + meta + '</div>' : '') +
+			'</div>';
 	}
 
 	/*
@@ -503,10 +556,10 @@
 					maxClusterRadius: 50,
 					showCoverageOnHover: false
 				});
-				for (var i = 0; i < data.length; i++) {
-					var D = data[i];
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					var dot = L.circleMarker([D.lat, D.lon], {
+					let dot = L.circleMarker([D.lat, D.lon], {
 						radius: 6,
 						weight: 1,
 						color: '#fff',
@@ -539,10 +592,10 @@
 					maxClusterRadius: 50,
 					showCoverageOnHover: false
 				});
-				for (var i = 0; i < data.length; i++) {
-					var D = data[i];
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					var dot = L.circleMarker([D.lat, D.lon], {
+					let dot = L.circleMarker([D.lat, D.lon], {
 						radius: 6,
 						weight: 1,
 						color: '#fff',
@@ -575,10 +628,10 @@
 					maxClusterRadius: 50,
 					showCoverageOnHover: false
 				});
-				for (var i = 0; i < data.length; i++) {
-					var D = data[i];
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					var dot = L.circleMarker([D.lat, D.lon], {
+					let dot = L.circleMarker([D.lat, D.lon], {
 						radius: 6,
 						weight: 1,
 						color: '#fff',
@@ -707,7 +760,7 @@
 		// Floating compass readout of the surrounding square borders. A custom
 		// Leaflet control so it stays parked in the corner while the map pans,
 		// and is hidden until a point is selected (see showBorders/clearBorders).
-		var BordersControl = L.Control.extend({
+		let BordersControl = L.Control.extend({
 			options: { position: 'topright' },
 			onAdd: function () {
 				this._c = L.DomUtil.create('div', 'gl-borders-control');
@@ -722,7 +775,7 @@
 				this._c.style.display = html ? '' : 'none';
 				// Bind the dismiss button directly and stop the event so the click
 				// can't bubble on to the map (where it would re-select a grid).
-				var btn = html && this._c.querySelector('.gl-comp-close');
+				let btn = html && this._c.querySelector('.gl-comp-close');
 				if (btn) {
 					L.DomEvent.on(btn, 'click', function (ev) {
 						L.DomEvent.stop(ev);
@@ -740,7 +793,7 @@
 
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
-		var locateBtn = document.getElementById('glLocate');
+		let locateBtn = document.getElementById('glLocate');
 		if (locateBtn) {
 			locateBtn.addEventListener('click', locate);
 			// Hide the button entirely when geolocation is unavailable (e.g. plain
@@ -750,11 +803,11 @@
 
 		// Mobile "More options" disclosure: toggles a class on the toolbar that
 		// CSS uses to show/hide the secondary controls (grid 2 + overlays).
-		var moreBtn = document.getElementById('glMore');
+		let moreBtn = document.getElementById('glMore');
 		if (moreBtn) {
 			moreBtn.addEventListener('click', function () {
-				var controls = document.getElementById('glControls');
-				var expanded = controls.classList.toggle('gl-expanded');
+				let controls = document.getElementById('glControls');
+				let expanded = controls.classList.toggle('gl-expanded');
 				moreBtn.setAttribute('aria-expanded', String(expanded));
 			});
 		}
@@ -765,19 +818,19 @@
 
 		// Optional WWFF reference directory overlay. Built lazily on first toggle
 		// (the directory can be large), then cached for instant re-toggle.
-		var wwffCb = document.getElementById('glWwffDir');
+		let wwffCb = document.getElementById('glWwffDir');
 		if (wwffCb) {
 			wwffCb.addEventListener('change', function () {
 				if (this.checked) { enableWwff(); } else { disableWwff(); }
 			});
 		}
-		var potaCb = document.getElementById('glPotaDir');
+		let potaCb = document.getElementById('glPotaDir');
 		if (potaCb) {
 			potaCb.addEventListener('change', function () {
 				if (this.checked) { enablePota(); } else { disablePota(); }
 			});
 		}
-		var sotaCb = document.getElementById('glSotaDir');
+		let sotaCb = document.getElementById('glSotaDir');
 		if (sotaCb) {
 			sotaCb.addEventListener('change', function () {
 				if (this.checked) { enableSota(); } else { disableSota(); }
@@ -837,7 +890,7 @@
 
 		// Grow/shrink the map when the Search panel collapses/expands, and let
 		// Leaflet pick up the new size once the transition has finished.
-		var topBody = document.getElementById('glTopBody');
+		let topBody = document.getElementById('glTopBody');
 		if (topBody) {
 			topBody.addEventListener('hidden.bs.collapse', function () { map.invalidateSize(); });
 			topBody.addEventListener('shown.bs.collapse', function () { map.invalidateSize(); });
@@ -869,7 +922,7 @@
 		// its dismiss button). Modern Leaflet routes map clicks through pointer
 		// events that disableClickPropagation doesn't stop, so without this the
 		// dismiss click would land here and immediately re-select a grid.
-		var t = e.originalEvent && e.originalEvent.target;
+		let t = e.originalEvent && e.originalEvent.target;
 		if (t && t.closest && t.closest('.gl-borders-control')) { return; }
 		selectPoint(e.latlng.lat, e.latlng.lng);
 	}
@@ -887,14 +940,18 @@
 		// Only one click marker + square at a time: drop the previous ones.
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
+		// Also clear any from/to (two-grid) artefacts and the dimmed-label state.
+		clearSecond();
+		if (highlight) { map.removeLayer(highlight); highlight = null; }
+		if (marker)    { map.removeLayer(marker);    marker = null; }
+		setLabelsDim(false);
 
 		clickSquare = L.rectangle([cell.sw, cell.ne], {
 			color: '#198754', weight: 3, fillColor: '#198754', fillOpacity: 0.18
 		}).addTo(map);
 
-		let popupBase = '<strong>' + loc + '</strong><br>' + fmtLat(lat) + ', ' + fmtLng(lng);
 		clickMarker = L.marker([lat, lng]).addTo(map)
-			.bindPopup(popupBase);
+			.bindPopup(gridPopupHTML(lat, lng, loc, '', ''));
 
 		// Frame the selection — on phones this centres on the 4-char square so
 		// the border arrows are in view; desktop fits the exact clicked cell.
@@ -914,7 +971,7 @@
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
-			if (clickMarker) { clickMarker.setPopupContent(popupContent(popupBase, zones, stateLabel)); }
+			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel)); }
 		}
 		renderInfo();
 		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
@@ -945,36 +1002,42 @@
 	 * "Locate me": ask the browser for the current GPS position (mobile or
 	 * desktop), convert it to a gridsquare, and zoom in — exactly like clicking
 	 * the map there. The click also starts autotracking: the position is polled
-	 * every 60 s so the marker/square follow the device. Click again (or Clear)
-	 * to stop. Requires a secure context (HTTPS or localhost); the button is
+	 * every 60 s so the marker/square follow the device. Clear stops it.
+	 * Requires a secure context (HTTPS or localhost); the button is
 	 * hidden up front in init() when geolocation is unavailable.
 	 */
 	function locate() {
 		if (!('geolocation' in navigator)) { return; }
-		if (trackTimer !== null) { stopTracking(); return; }   // toggle tracking off
-		locateOnce(true);                                     // immediate fix (shows "Locating…")
-		startTracking();
+		startTracking();    // show tracking state + ensure the 60 s poll is running
+		locateOnce(true);   // immediate fix (shows "Locating…")
 	}
 
-	/* Poll the position every 60 s and re-select on each update. */
+	/* Poll the position every 60 s and re-select on each update. The button is
+	 * (re)set on every call so the green "Tracking" state can never get stuck
+	 * off while the timer is quietly running. */
 	function startTracking() {
-		if (trackTimer !== null) { return; }
-		trackTimer = setInterval(function () { locateOnce(false); }, 60000);
-		let btn = document.getElementById('glLocate');
-		if (btn) {
-			if (!btn.dataset.origHtml) { btn.dataset.origHtml = btn.innerHTML; }
-			btn.classList.add('gl-tracking');
-			btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> ' + esc(trackingLbl);
+		if (trackTimer === null) {
+			trackTimer = setInterval(function () { locateOnce(false); }, 60000);
 		}
+		setTrackingButton(true);
 	}
 
 	/* Stop autotracking and restore the Locate button. */
 	function stopTracking() {
 		if (trackTimer !== null) { clearInterval(trackTimer); trackTimer = null; }
+		setTrackingButton(false);
+	}
+
+	/* Toggle the Locate button between its normal and active "Tracking" look. */
+	function setTrackingButton(on) {
 		let btn = document.getElementById('glLocate');
-		if (btn) {
+		if (!btn) { return; }
+		if (on) {
+			if (!btn.dataset.origHtml) { btn.dataset.origHtml = btn.innerHTML; }
+			btn.classList.add('gl-tracking');
+			btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> ' + esc(trackingLbl);
+		} else {
 			btn.classList.remove('gl-tracking');
-			btn.disabled = false;
 			if (btn.dataset.origHtml) { btn.innerHTML = btn.dataset.origHtml; }
 		}
 	}
@@ -987,15 +1050,10 @@
 	function locateOnce(isInitial) {
 		if (!('geolocation' in navigator)) { return; }
 		let info = document.getElementById('glInfo');
-		let btn = document.getElementById('glLocate');
 
-		if (isInitial) {
-			info.textContent = locatingMsg;
-			if (btn) { btn.disabled = true; }
-		}
+		if (isInitial) { info.textContent = locatingMsg; }   // "Locating…" cue (button stays active)
 
 		navigator.geolocation.getCurrentPosition(function (pos) {
-			if (btn && isInitial) { btn.disabled = false; }
 			let lat = pos.coords.latitude, lng = pos.coords.longitude;
 			let loc = latLngToLocator(lat, lng, 3);
 			// Fill grid 1 so the user can immediately type a second grid and hit Go
@@ -1003,7 +1061,6 @@
 			document.getElementById('glGrid').value = loc;
 			selectPoint(lat, lng, loc);
 		}, function (geoErr) {
-			if (btn) { btn.disabled = false; }
 			if (isInitial) { info.textContent = ''; }
 			if (geoErr.code === 1) {                            // permission denied → won't recover
 				stopTracking();
@@ -1038,6 +1095,9 @@
 		// Drop any second-grid artefacts; rebuilt below only when grid 2 is set.
 		clearSecond();
 		clearBorders();   // only the single-grid case shows square borders below
+		// Clear any left-over click marker/square from a prior map click.
+		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
+		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 
 		// Grid 1 square + marker (blue).
 		if (highlight) { map.removeLayer(highlight); }
@@ -1046,15 +1106,18 @@
 		}).addTo(map);
 
 		if (marker) { map.removeLayer(marker); }
-		marker = L.marker(cell1.center).addTo(map).bindPopup(cellPopupBase(cell1));
+		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', ''));
 
 		if (cell2) {
+			// Tint both 4-char squares and dim the rest of the grid labels.
+			showTwoGridTint(cell1, cell2);
+
 			// Grid 2 square + marker (orange).
 			highlight2 = L.rectangle([cell2.sw, cell2.ne], {
 				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
 			}).addTo(map);
 
-			marker2 = L.marker(cell2.center).addTo(map).bindPopup(cellPopupBase(cell2));
+			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', ''));
 
 			// Great-circle path between the two cell centres.
 			pathLine = L.polyline(greatCircle(cell1.center, cell2.center, 64), {
@@ -1082,8 +1145,8 @@
 			}
 			render();
 			function renderPopups() {
-				if (marker)  { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
-				if (marker2) { marker2.setPopupContent(popupContent(cellPopupBase(cell2), z2, s2)); }
+				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1)); }
+				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2)); }
 			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
@@ -1127,7 +1190,7 @@
 			}
 			render();
 			function renderPopup() {
-				if (marker) { marker.setPopupContent(popupContent(cellPopupBase(cell1), z1, s1)); }
+				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1)); }
 			}
 			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
