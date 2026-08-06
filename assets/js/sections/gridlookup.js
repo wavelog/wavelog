@@ -375,13 +375,6 @@
 	 * when resolved. Built on squareBorders() for the nearest-border figure.
 	 */
 	function gridPopupHTML(lat, lng, loc, zones, state) {
-		let arrows = { N: '↑', NE: '↗', E: '→', SE: '↘', S: '↓', SW: '↙', W: '←', NW: '↖' };
-		let b = squareBorders(lat, lng);
-		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-		let near = 'N';
-		order.forEach(function (d) { if (b[d].dist < b[near].dist) { near = d; } });
-		let nb = b[near];
-
 		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
 		// Subsquare is the refinement (muted dot). Only tiers the locator has.
 		let tiers = [];
