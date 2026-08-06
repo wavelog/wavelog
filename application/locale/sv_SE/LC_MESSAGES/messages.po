@@ -577,6 +577,7 @@ msgstr "Loggvy - VUCC"
 #: application/controllers/Timeline.php:136
 #: application/controllers/Timeline.php:139
 #: application/controllers/Timeline.php:142
+#: application/controllers/Statistics.php:373
 msgid "Log View"
 msgstr "Loggvy"
 
@@ -655,6 +656,7 @@ msgstr " och "
 #: application/views/visitor/index.php:21
 #: application/views/gridlookup/index.php:58
 #: application/views/logbookadvanced/index.php:490
+#: application/controllers/Logbook.php:1452
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -680,6 +682,7 @@ msgstr "SOTA"
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/views/gridlookup/index.php:56
 #: application/views/logbookadvanced/index.php:512
+#: application/controllers/Logbook.php:1453
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -708,6 +711,7 @@ msgstr "WWFF"
 #: application/views/gridlookup/index.php:57
 #: application/views/logbookadvanced/index.php:494
 #: application/views/logbookadvanced/index.php:1017
+#: application/controllers/Logbook.php:1454
 msgid "POTA"
 msgstr "POTA"
 
@@ -1047,6 +1051,7 @@ msgstr "Ingen användare har konfigurerat Clublog."
 #: application/views/view_log/partial/log_ajax.php:156
 #: application/views/view_log/qso.php:524
 #: application/views/view_log/qso.php:529
+#: application/controllers/Logbook.php:797
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1859,6 +1864,8 @@ msgstr "Loggbok"
 #: application/views/timeline/index.php:62 application/views/user/edit.php:735
 #: application/views/user/edit.php:1003 application/views/visitor/mini.php:187
 #: application/views/logbookadvanced/index.php:978
+#: application/controllers/Logbook.php:785
+#: application/controllers/Logbook.php:800
 msgid "QSL"
 msgstr "QSL"
 
@@ -1905,6 +1912,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:1013 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/controllers/Logbook.php:788
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1944,10 +1952,12 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:70 application/views/user/edit.php:737
 #: application/views/user/edit.php:1021 application/views/user/edit.php:1095
+#: application/controllers/Logbook.php:791
 msgid "eQSL"
 msgstr "eQSL"
 
 #: application/controllers/Logbook.php:986
+#: application/controllers/Logbook.php:994
 msgid "All callbook lookups failed or provided no results."
 msgstr "Alla callbook-sökningar misslyckades eller gav inga resultat."
 
@@ -2056,6 +2066,7 @@ msgstr "Alla callbook-sökningar misslyckades eller gav inga resultat."
 #: application/views/logbookadvanced/index.php:406
 #: application/views/logbookadvanced/index.php:559
 #: application/views/logbookadvanced/index.php:948
+#: application/controllers/Logbook.php:1447
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -2083,6 +2094,7 @@ msgstr "Trafiksätt"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
 #: application/views/logbookadvanced/index.php:951
+#: application/controllers/Logbook.php:1448
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -2111,6 +2123,7 @@ msgstr "RST (S)"
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
 #: application/views/logbookadvanced/index.php:954
+#: application/controllers/Logbook.php:1449
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -2132,6 +2145,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:290
 #: application/views/view_log/qso.php:646
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1450
 msgid "Country"
 msgstr "Land"
 
@@ -2166,6 +2180,7 @@ msgstr "Land"
 #: application/views/visitor/index.php:18
 #: application/views/logbookadvanced/index.php:500
 #: application/views/logbookadvanced/index.php:1014
+#: application/controllers/Logbook.php:1451
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2199,6 +2214,7 @@ msgstr "IOTA"
 #: application/views/visitor/index.php:24
 #: application/views/logbookadvanced/index.php:396
 #: application/views/logbookadvanced/index.php:1002
+#: application/controllers/Logbook.php:1455
 msgid "State"
 msgstr "Delstat"
 
@@ -2262,6 +2278,7 @@ msgstr "Delstat"
 #: application/views/gridlookup/index.php:79
 #: application/views/logbookadvanced/index.php:402
 #: application/views/logbookadvanced/index.php:963
+#: application/controllers/Logbook.php:1456
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -2295,6 +2312,7 @@ msgstr "Lokatorruta"
 #: application/views/visitor/index.php:30
 #: application/views/logbookadvanced/index.php:545
 #: application/views/logbookadvanced/index.php:1056
+#: application/controllers/Logbook.php:1457
 msgid "Distance"
 msgstr "Avstånd"
 
@@ -2405,6 +2423,7 @@ msgstr "Avstånd"
 #: application/views/logbookadvanced/index.php:417
 #: application/views/logbookadvanced/index.php:558
 #: application/views/logbookadvanced/index.php:957
+#: application/controllers/Logbook.php:1458
 msgid "Band"
 msgstr "Band"
 
@@ -2436,6 +2455,7 @@ msgstr "Band"
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
 #: application/views/logbookadvanced/index.php:960
+#: application/controllers/Logbook.php:1459
 msgid "Frequency"
 msgstr "Frekvens"
 
@@ -2464,6 +2484,7 @@ msgstr "Frekvens"
 #: application/views/visitor/index.php:39
 #: application/views/logbookadvanced/index.php:516
 #: application/views/logbookadvanced/index.php:1038
+#: application/controllers/Logbook.php:1460
 msgid "Operator"
 msgstr "Operatör"
 
@@ -2494,6 +2515,7 @@ msgstr "Operatör"
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
 #: application/views/logbookadvanced/index.php:388
+#: application/controllers/Logbook.php:1481
 msgid "Deleted DXCC"
 msgstr "Struket DXCC"
 
@@ -3614,15 +3636,18 @@ msgstr "QSL-statistik"
 #: application/controllers/Statistics.php:312
 #: application/views/interface_assets/header.php:162
 #: application/views/statistics/antennaanalytics.php:2
+#: application/controllers/Statistics.php:315
 msgid "Antenna Analytics"
 msgstr "Antennanalys"
 
 #: application/controllers/Statistics.php:370
+#: application/controllers/Statistics.php:373
 msgid "Satellite QSOs"
 msgstr "Satellit-QSOs"
 
 #: application/controllers/Statistics.php:387
 #: application/views/interface_assets/header.php:188
+#: application/controllers/Statistics.php:390
 msgid "EME Initials"
 msgstr "EME-initialer"
 
