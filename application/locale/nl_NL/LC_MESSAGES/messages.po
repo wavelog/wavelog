@@ -650,6 +650,7 @@ msgstr " en "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/gridlookup/index.php:58
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -673,6 +674,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/gridlookup/index.php:56
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -698,6 +700,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/gridlookup/index.php:57
 msgid "POTA"
 msgstr "POTA"
 
@@ -2245,6 +2248,9 @@ msgstr "Staat/Provincie"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/gridlookup/index.php:40
+#: application/views/gridlookup/index.php:55
+#: application/views/gridlookup/index.php:79
 msgid "Gridsquare"
 msgstr "Locatorvak"
 
@@ -5036,6 +5042,7 @@ msgstr "Markeringen wissen"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/gridlookup/index.php:77
 msgid "Latitude"
 msgstr "Breedtegraad"
 
@@ -5047,6 +5054,7 @@ msgstr "Breedtegraad"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/gridlookup/index.php:78
 msgid "Longitude"
 msgstr "Lengtegraad"
 
@@ -5483,7 +5491,8 @@ msgstr ""
 
 #: application/views/adif/import.php:189
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr "Markeer QSO's als geüpload (Dit uploadt GEEN QSO's naar deze diensten!)"
+msgstr ""
+"Markeer QSO's als geüpload (Dit uploadt GEEN QSO's naar deze diensten!)"
 
 #: application/views/adif/import.php:196
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -6929,6 +6938,7 @@ msgstr "QSO's bevestigd"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/gridlookup/index.php:80
 msgid "CQ Zone"
 msgstr "CQ Zone"
 
@@ -7135,6 +7145,7 @@ msgstr "Vorig jaar"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
+#: application/views/gridlookup/index.php:49
 msgid "Clear"
 msgstr "Wissen"
 
@@ -7970,6 +7981,7 @@ msgstr "Verwijderd"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/gridlookup/index.php:81
 msgid "ITU Zone"
 msgstr "ITU-zone"
 
@@ -13719,7 +13731,8 @@ msgstr[1] "De database bevat %d QSO's zonder een station-profiel (locatie)"
 
 #: application/views/debug/index.php:829
 msgid "Please mark QSOs and reassign them to an existing station location:"
-msgstr "Markeer QSO's en wijs ze opnieuw toe aan een bestaande stationslocatie:"
+msgstr ""
+"Markeer QSO's en wijs ze opnieuw toe aan een bestaande stationslocatie:"
 
 #: application/views/debug/index.php:837
 msgctxt "Stationlocation"
@@ -14422,6 +14435,7 @@ msgstr "Vind me"
 
 #: application/views/gridlookup/index.php:50
 #: application/views/simplefle/index.php:162
+#: application/views/gridlookup/index.php:53
 msgid "Refs"
 msgstr "Referenties"
 
@@ -17391,6 +17405,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/gridlookup/index.php:19
 msgid "Field"
 msgstr "Veld"
 
@@ -23329,6 +23344,14 @@ msgstr "Weergeven op kaart"
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
 "Geen zoneproblemen gevonden. Alle QSO's hebben correcte zone-informatie."
+
+#: application/views/gridlookup/index.php:20
+msgid "Square"
+msgstr ""
+
+#: application/views/gridlookup/index.php:21
+msgid "Subsquare"
+msgstr ""
 
 #~ msgid "WWFF QSO List"
 #~ msgstr "WWFF QSO-lijst"

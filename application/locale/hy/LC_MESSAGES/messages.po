@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-05 18:11+0000\n"
+"POT-Creation-Date: 2026-08-06 08:25+0000\n"
 "PO-Revision-Date: 2025-08-23 15:21+0000\n"
 "Last-Translator: Matthias Jung <jungma@eit.uni-kl.de>\n"
 "Language-Team: Armenian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -622,7 +622,7 @@ msgstr ""
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
-#: application/views/gridlookup/index.php:55
+#: application/views/gridlookup/index.php:58
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:487
@@ -652,7 +652,7 @@ msgstr ""
 #: application/controllers/Logbook.php:1463
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
-#: application/views/gridlookup/index.php:53
+#: application/views/gridlookup/index.php:56
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:244
@@ -676,7 +676,7 @@ msgstr ""
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
-#: application/views/gridlookup/index.php:54
+#: application/views/gridlookup/index.php:57
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:491
@@ -2165,9 +2165,9 @@ msgstr ""
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:37
-#: application/views/gridlookup/index.php:52
-#: application/views/gridlookup/index.php:76
+#: application/views/gridlookup/index.php:40
+#: application/views/gridlookup/index.php:55
+#: application/views/gridlookup/index.php:79
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -4908,7 +4908,7 @@ msgstr ""
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:74
+#: application/views/gridlookup/index.php:77
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
@@ -4919,7 +4919,7 @@ msgstr ""
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:75
+#: application/views/gridlookup/index.php:78
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
@@ -6665,7 +6665,7 @@ msgstr ""
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:77
+#: application/views/gridlookup/index.php:80
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
@@ -6876,7 +6876,7 @@ msgstr ""
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:46
+#: application/views/gridlookup/index.php:49
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
@@ -7614,7 +7614,7 @@ msgstr ""
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:78
+#: application/views/gridlookup/index.php:81
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
@@ -13626,68 +13626,82 @@ msgid "Tracking"
 msgstr ""
 
 #: application/views/gridlookup/index.php:19
-msgid "Locating…"
+#: application/views/logbookadvanced/mergedialog.php:71
+#: application/views/qslpostcard/designer.php:241
+msgid "Field"
 msgstr ""
 
 #: application/views/gridlookup/index.php:20
-msgid "Location access denied."
+msgid "Square"
 msgstr ""
 
 #: application/views/gridlookup/index.php:21
-msgid "Location unavailable."
+msgid "Subsquare"
 msgstr ""
 
 #: application/views/gridlookup/index.php:22
+msgid "Locating…"
+msgstr ""
+
+#: application/views/gridlookup/index.php:23
+msgid "Location access denied."
+msgstr ""
+
+#: application/views/gridlookup/index.php:24
+msgid "Location unavailable."
+msgstr ""
+
+#: application/views/gridlookup/index.php:25
 msgid "Location request timed out."
 msgstr ""
 
-#: application/views/gridlookup/index.php:32
+#: application/views/gridlookup/index.php:35
 msgid "Plan your activity here"
 msgstr ""
 
-#: application/views/gridlookup/index.php:40
+#: application/views/gridlookup/index.php:43
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr ""
 
-#: application/views/gridlookup/index.php:40
+#: application/views/gridlookup/index.php:43
 msgid "e.g. FN31pr"
 msgstr ""
 
-#: application/views/gridlookup/index.php:41
+#: application/views/gridlookup/index.php:44
 msgid "to"
 msgstr ""
 
-#: application/views/gridlookup/index.php:44
+#: application/views/gridlookup/index.php:47
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
 
-#: application/views/gridlookup/index.php:44
+#: application/views/gridlookup/index.php:47
 msgid "e.g. JN58qm"
 msgstr ""
 
-#: application/views/gridlookup/index.php:45
+#: application/views/gridlookup/index.php:48
 msgid "Go"
 msgstr ""
 
-#: application/views/gridlookup/index.php:47
+#: application/views/gridlookup/index.php:50
 msgid "Find my location and gridsquare"
 msgstr ""
 
-#: application/views/gridlookup/index.php:47
+#: application/views/gridlookup/index.php:50
 msgid "Locate me"
 msgstr ""
 
-#: application/views/gridlookup/index.php:50
+#: application/views/gridlookup/index.php:53
 #: application/views/simplefle/index.php:162
 msgid "Refs"
 msgstr ""
 
-#: application/views/gridlookup/index.php:62
+#: application/views/gridlookup/index.php:65
 #: application/views/qso/index.php:759
 msgid "More options"
 msgstr ""
 
-#: application/views/gridlookup/index.php:63
+#: application/views/gridlookup/index.php:66
 msgid "Hide options"
 msgstr ""
 
@@ -16532,11 +16546,6 @@ msgstr ""
 msgid ""
 "The selected fields will be merged into the primary QSO. You can select "
 "different fields from each QSO."
-msgstr ""
-
-#: application/views/logbookadvanced/mergedialog.php:71
-#: application/views/qslpostcard/designer.php:241
-msgid "Field"
 msgstr ""
 
 #: application/views/logbookadvanced/printQsl.php:9

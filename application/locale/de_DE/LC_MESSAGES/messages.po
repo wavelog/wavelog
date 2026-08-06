@@ -668,6 +668,7 @@ msgstr " und "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/gridlookup/index.php:58
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -691,6 +692,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/gridlookup/index.php:56
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -716,6 +718,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/gridlookup/index.php:57
 msgid "POTA"
 msgstr "POTA"
 
@@ -2270,6 +2273,9 @@ msgstr "Staat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/gridlookup/index.php:40
+#: application/views/gridlookup/index.php:55
+#: application/views/gridlookup/index.php:79
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -3005,8 +3011,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:566
@@ -5077,6 +5083,7 @@ msgstr "Lösche Markierungen"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/gridlookup/index.php:77
 msgid "Latitude"
 msgstr "Breitengrad"
 
@@ -5088,6 +5095,7 @@ msgstr "Breitengrad"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/gridlookup/index.php:78
 msgid "Longitude"
 msgstr "Längengrad"
 
@@ -6989,6 +6997,7 @@ msgstr "Bestätigte QSOs"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/gridlookup/index.php:80
 msgid "CQ Zone"
 msgstr "CQ-Zone"
 
@@ -7195,6 +7204,7 @@ msgstr "Letztes Jahr"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:354
 #: application/views/qso/index.php:758 application/views/user/edit.php:1330
+#: application/views/gridlookup/index.php:49
 msgid "Clear"
 msgstr "Zurücksetzen"
 
@@ -8029,6 +8039,7 @@ msgstr "Gelöscht"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/gridlookup/index.php:81
 msgid "ITU Zone"
 msgstr "ITU Zone"
 
@@ -14341,8 +14352,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -14457,18 +14468,22 @@ msgid "Tracking"
 msgstr "Tracking"
 
 #: application/views/gridlookup/index.php:19
+#: application/views/gridlookup/index.php:22
 msgid "Locating…"
 msgstr "Standortbestimmung…"
 
 #: application/views/gridlookup/index.php:20
+#: application/views/gridlookup/index.php:23
 msgid "Location access denied."
 msgstr "Standortzugriff verweigert."
 
 #: application/views/gridlookup/index.php:21
+#: application/views/gridlookup/index.php:24
 msgid "Location unavailable."
 msgstr "Standort nicht verfügbar."
 
 #: application/views/gridlookup/index.php:22
+#: application/views/gridlookup/index.php:25
 msgid "Location request timed out."
 msgstr "Standortanfrage dauerte zu lange."
 
@@ -14477,48 +14492,59 @@ msgid "Plan your activity here"
 msgstr "Plane deine Aktivität hier"
 
 #: application/views/gridlookup/index.php:40
+#: application/views/gridlookup/index.php:43
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 oder 10-stelliger Maidenhead-Locator"
 
 #: application/views/gridlookup/index.php:40
+#: application/views/gridlookup/index.php:43
 msgid "e.g. FN31pr"
 msgstr "z.B. FN31pr"
 
 #: application/views/gridlookup/index.php:41
+#: application/views/gridlookup/index.php:44
 msgid "to"
 msgstr "zu"
 
 #: application/views/gridlookup/index.php:44
+#: application/views/gridlookup/index.php:47
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Optionales zweiter Locator für Entfernung und Peilung"
 
 #: application/views/gridlookup/index.php:44
+#: application/views/gridlookup/index.php:47
 msgid "e.g. JN58qm"
 msgstr "z.B. JN58qm"
 
 #: application/views/gridlookup/index.php:45
+#: application/views/gridlookup/index.php:48
 msgid "Go"
 msgstr "Los"
 
 #: application/views/gridlookup/index.php:47
+#: application/views/gridlookup/index.php:50
 msgid "Find my location and gridsquare"
 msgstr "Finde meinen Standort und das Gridquare"
 
 #: application/views/gridlookup/index.php:47
+#: application/views/gridlookup/index.php:50
 msgid "Locate me"
 msgstr "Orte mich"
 
 #: application/views/gridlookup/index.php:50
 #: application/views/simplefle/index.php:162
+#: application/views/gridlookup/index.php:53
 msgid "Refs"
 msgstr "Refs"
 
 #: application/views/gridlookup/index.php:62
 #: application/views/qso/index.php:759
+#: application/views/gridlookup/index.php:65
 msgid "More options"
 msgstr "Weitere Optionen"
 
 #: application/views/gridlookup/index.php:63
+#: application/views/gridlookup/index.php:66
 msgid "Hide options"
 msgstr "Optionen ausblenden"
 
@@ -17499,6 +17525,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/gridlookup/index.php:19
 msgid "Field"
 msgstr "Feld"
 
@@ -18349,8 +18376,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -20768,8 +20795,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -21791,9 +21818,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23452,6 +23479,14 @@ msgstr "Zeige auf Karte"
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
 "Keine Probleme mit CQ-Zonen gefunden. Alle QSOs haben die korrekte CQ-Zone."
+
+#: application/views/gridlookup/index.php:20
+msgid "Square"
+msgstr ""
+
+#: application/views/gridlookup/index.php:21
+msgid "Subsquare"
+msgstr ""
 
 #~ msgid "Maidenhead grid"
 #~ msgstr "Maidenhead-Locator"

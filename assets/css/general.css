@@ -2094,6 +2094,21 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 #glLocate.gl-tracking .fa { animation: gl-pulse 1.5s ease-in-out infinite; }
 @keyframes gl-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 
+/* Rich gridsquare popup (click marker + Go markers). */
+.gl-popup { min-width: 300px; font-size: 1rem; line-height: 1.45; color: #fff; }
+.gl-pop-grid { margin-bottom: .35rem; white-space: nowrap; font-size: 3.0rem; font-weight: 900; letter-spacing: .02em;}
+.gl-pop-coords { display: flex; align-items: center; gap: .35rem; font-size: .95rem; opacity: .85; margin-bottom: .35rem; }
+.gl-pop-coords .fa { opacity: .7; }
+.gl-pop-hier { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: .35rem; font-size: .85rem; opacity: .9; }
+.gl-pop-tier { display: inline-flex; align-items: center; gap: .28rem; }
+.gl-dot { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; background: rgba(255, 255, 255, .35); flex: none; }
+.gl-pop-tier.is-strong .gl-dot { background: #fff; }
+.gl-pop-meta { margin-top: .3rem; font-size: .85rem; opacity: .75; }
+
+/* Two-grid QRB: tone down every Maidenhead grid label so the two tinted
+   squares are the focus. Toggled via .gl-dim-labels on the map container. */
+.gl-dim-labels .grid-text { opacity: .5; transition: opacity .25s ease; }
+
 /* Map height: grows when the Search panel (#glTopBody) is collapsed. */
 #glMap { height: calc(100vh - 350px); min-height: 400px; }
 #glTopBody:not(.show) ~ #glMap { height: calc(100vh - 240px); }
