@@ -105,11 +105,15 @@ class Pota extends CI_Model {
 				AND thcv.COL_POTA_REF <> ''";
 
 		$band = $postdata['band'] ?? 'All';
-		if ($band == 'SAT') {
+		if ($band == 'All') {
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
+		}
+		else if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode = ?";
 			$bindings[] = $band;
-		} else if ($band != 'All') {
+		} else {
 			$sql .= " AND thcv.COL_BAND = ?";
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 			$bindings[] = $band;
 		}
 
@@ -214,11 +218,15 @@ class Pota extends CI_Model {
 				AND thcv.COL_POTA_REF <> ''";
 
 		$band = $postdata['band'] ?? 'All';
-		if ($band == 'SAT') {
+		if ($band == 'All') {
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
+		}
+		else if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode = ?";
 			$bindings[] = $band;
-		} else if ($band != 'All') {
+		} else {
 			$sql .= " AND thcv.COL_BAND = ?";
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 			$bindings[] = $band;
 		}
 
