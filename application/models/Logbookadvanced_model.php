@@ -1065,6 +1065,11 @@ class Logbookadvanced_model extends CI_Model {
 				$newMode = $mode->col_submode;
 			}
 
+			// Skip rows where both mode and submode are empty/null
+			if ($newMode == null || $newMode == "") {
+				continue;
+			}
+
 			// Case-insensitive check if mode already exists
 			if (!in_array(strtolower($newMode), array_map('strtolower', $modes))) {
 				array_push($modes, $newMode);
