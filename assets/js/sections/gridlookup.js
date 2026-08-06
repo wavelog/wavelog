@@ -353,26 +353,25 @@
 	 * when resolved. Built on squareBorders() for the nearest-border figure.
 	 */
 	function gridPopupHTML(lat, lng, loc, zones, state) {
-		var arrows = { N: '↑', NE: '↗', E: '→', SE: '↘', S: '↓', SW: '↙', W: '←', NW: '↖' };
-		var b = squareBorders(lat, lng);
-		var order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-		var near = 'N';
+		let arrows = { N: '↑', NE: '↗', E: '→', SE: '↘', S: '↓', SW: '↙', W: '←', NW: '↖' };
+		let b = squareBorders(lat, lng);
+		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+		let near = 'N';
 		order.forEach(function (d) { if (b[d].dist < b[near].dist) { near = d; } });
-		var nb = b[near];
+		let nb = b[near];
 
 		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
 		// Subsquare is the refinement (muted dot). Only tiers the locator has.
-		var tiers = [];
+		let tiers = [];
 		if (loc.length >= 2) { tiers.push({ lbl: fieldLbl, val: loc.substring(0, 2), strong: true }); }
 		if (loc.length >= 4) { tiers.push({ lbl: squareLbl, val: loc.substring(2, 4), strong: true }); }
 		if (loc.length >= 6) { tiers.push({ lbl: subsquareLbl, val: loc.substring(4, 6), strong: false }); }
-		var hier = tiers.map(function (t) {
+		let hier = tiers.map(function (t) {
 			return '<span class="gl-pop-tier' + (t.strong ? ' is-strong' : '') + '">' +
 				'<i class="gl-dot"></i>' + esc(t.lbl) + ' (' + esc(t.val) + ')</span>';
 		}).join(' ');
 
-		var meta = [zones, state].filter(Boolean).join(' &middot; ');
-		var sub = loc.length > 4 ? '<span class="gl-pop-sub">' + esc(loc.substring(4)) + '</span>' : '';
+		let meta = [zones, state].filter(Boolean).join(' &middot; ');
 
 		return '<div class="gl-popup">' +
 			'<div class="gl-pop-grid">' + loc + '</div>' +
@@ -542,10 +541,10 @@
 					maxClusterRadius: 50,
 					showCoverageOnHover: false
 				});
-				for (var i = 0; i < data.length; i++) {
-					var D = data[i];
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					var dot = L.circleMarker([D.lat, D.lon], {
+					let dot = L.circleMarker([D.lat, D.lon], {
 						radius: 6,
 						weight: 1,
 						color: '#fff',
@@ -578,10 +577,10 @@
 					maxClusterRadius: 50,
 					showCoverageOnHover: false
 				});
-				for (var i = 0; i < data.length; i++) {
-					var D = data[i];
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					var dot = L.circleMarker([D.lat, D.lon], {
+					let dot = L.circleMarker([D.lat, D.lon], {
 						radius: 6,
 						weight: 1,
 						color: '#fff',
@@ -614,10 +613,10 @@
 					maxClusterRadius: 50,
 					showCoverageOnHover: false
 				});
-				for (var i = 0; i < data.length; i++) {
-					var D = data[i];
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					var dot = L.circleMarker([D.lat, D.lon], {
+					let dot = L.circleMarker([D.lat, D.lon], {
 						radius: 6,
 						weight: 1,
 						color: '#fff',
@@ -746,7 +745,7 @@
 		// Floating compass readout of the surrounding square borders. A custom
 		// Leaflet control so it stays parked in the corner while the map pans,
 		// and is hidden until a point is selected (see showBorders/clearBorders).
-		var BordersControl = L.Control.extend({
+		let BordersControl = L.Control.extend({
 			options: { position: 'topright' },
 			onAdd: function () {
 				this._c = L.DomUtil.create('div', 'gl-borders-control');
@@ -761,7 +760,7 @@
 				this._c.style.display = html ? '' : 'none';
 				// Bind the dismiss button directly and stop the event so the click
 				// can't bubble on to the map (where it would re-select a grid).
-				var btn = html && this._c.querySelector('.gl-comp-close');
+				let btn = html && this._c.querySelector('.gl-comp-close');
 				if (btn) {
 					L.DomEvent.on(btn, 'click', function (ev) {
 						L.DomEvent.stop(ev);
@@ -779,7 +778,7 @@
 
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
-		var locateBtn = document.getElementById('glLocate');
+		let locateBtn = document.getElementById('glLocate');
 		if (locateBtn) {
 			locateBtn.addEventListener('click', locate);
 			// Hide the button entirely when geolocation is unavailable (e.g. plain
@@ -789,11 +788,11 @@
 
 		// Mobile "More options" disclosure: toggles a class on the toolbar that
 		// CSS uses to show/hide the secondary controls (grid 2 + overlays).
-		var moreBtn = document.getElementById('glMore');
+		let moreBtn = document.getElementById('glMore');
 		if (moreBtn) {
 			moreBtn.addEventListener('click', function () {
-				var controls = document.getElementById('glControls');
-				var expanded = controls.classList.toggle('gl-expanded');
+				let controls = document.getElementById('glControls');
+				let expanded = controls.classList.toggle('gl-expanded');
 				moreBtn.setAttribute('aria-expanded', String(expanded));
 			});
 		}
@@ -804,19 +803,19 @@
 
 		// Optional WWFF reference directory overlay. Built lazily on first toggle
 		// (the directory can be large), then cached for instant re-toggle.
-		var wwffCb = document.getElementById('glWwffDir');
+		let wwffCb = document.getElementById('glWwffDir');
 		if (wwffCb) {
 			wwffCb.addEventListener('change', function () {
 				if (this.checked) { enableWwff(); } else { disableWwff(); }
 			});
 		}
-		var potaCb = document.getElementById('glPotaDir');
+		let potaCb = document.getElementById('glPotaDir');
 		if (potaCb) {
 			potaCb.addEventListener('change', function () {
 				if (this.checked) { enablePota(); } else { disablePota(); }
 			});
 		}
-		var sotaCb = document.getElementById('glSotaDir');
+		let sotaCb = document.getElementById('glSotaDir');
 		if (sotaCb) {
 			sotaCb.addEventListener('change', function () {
 				if (this.checked) { enableSota(); } else { disableSota(); }
@@ -876,7 +875,7 @@
 
 		// Grow/shrink the map when the Search panel collapses/expands, and let
 		// Leaflet pick up the new size once the transition has finished.
-		var topBody = document.getElementById('glTopBody');
+		let topBody = document.getElementById('glTopBody');
 		if (topBody) {
 			topBody.addEventListener('hidden.bs.collapse', function () { map.invalidateSize(); });
 			topBody.addEventListener('shown.bs.collapse', function () { map.invalidateSize(); });
@@ -908,7 +907,7 @@
 		// its dismiss button). Modern Leaflet routes map clicks through pointer
 		// events that disableClickPropagation doesn't stop, so without this the
 		// dismiss click would land here and immediately re-select a grid.
-		var t = e.originalEvent && e.originalEvent.target;
+		let t = e.originalEvent && e.originalEvent.target;
 		if (t && t.closest && t.closest('.gl-borders-control')) { return; }
 		selectPoint(e.latlng.lat, e.latlng.lng);
 	}
