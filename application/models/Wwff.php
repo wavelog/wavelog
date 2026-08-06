@@ -87,8 +87,15 @@ class Wwff extends CI_Model {
 				AND thcv.COL_WWFF_REF <> ''";
 
 		$band = $postdata['band'] ?? 'All';
-		if ($band !== 'All' && $band !== '') {
+		if ($band == 'All') {
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
+		}
+		else if ($band == 'SAT') {
+			$sql .= " and thcv.col_prop_mode = ?";
+			$bindings[] = $band;
+		} else {
 			$sql .= " AND thcv.COL_BAND = ?";
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 			$bindings[] = $band;
 		}
 
@@ -155,8 +162,15 @@ class Wwff extends CI_Model {
 				AND thcv.COL_WWFF_REF <> ''";
 
 		$band = $postdata['band'] ?? 'All';
-		if ($band !== 'All' && $band !== '') {
+		if ($band == 'All') {
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
+		}
+		else if ($band == 'SAT') {
+			$sql .= " and thcv.col_prop_mode = ?";
+			$bindings[] = $band;
+		} else {
 			$sql .= " AND thcv.COL_BAND = ?";
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 			$bindings[] = $band;
 		}
 
