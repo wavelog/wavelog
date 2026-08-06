@@ -1281,7 +1281,34 @@ class Logbook extends CI_Controller {
 	}
 
 
-	/* return station bearing */
+	/*
+	 * Resolve the operator's own locator.
+	 * Returns FALSE if a station profile was given which isn't accessible to the user.
+	 */
+	private function my_locator($station_id = null) {
+		if (isset($station_id)) {
+			// be sure that station belongs to user
+			$this->load->model('Stations');
+			if (!$this->Stations->check_station_is_accessible($station_id)) {
+				return false;
+			}
+
+			// get locator from station profile
+			return $this->Stations->profile_clean($station_id)->station_gridsquare;
+		}
+
+		if($this->session->userdata('user_locator') != null){
+			return $this->session->userdata('user_locator');
+		}
+		return $this->config->item('locator');
+	}
+
+	/*
+	 * Bearing to a grid, as JSON:
+	 *   bearing     => int degrees (long path already applied), NULL if not calculable
+	 *   distance_km => distance in km, regardless of the user's measurement base
+	 *   text        => ready-to-display string in the user's measurement base
+	 */
 	function searchbearing() {
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
@@ -1292,37 +1319,31 @@ class Logbook extends CI_Controller {
 			$this->load->library('Qra');
 		}
 
+		$payload = array('bearing' => null, 'distance_km' => null, 'text' => '');
+
 		if($locator != null) {
-			if (isset($station_id)) {
-				// be sure that station belongs to user
-				$this->load->model('Stations');
-				if (!$this->Stations->check_station_is_accessible($station_id)) {
-					return "";
+			$mylocator = $this->my_locator($station_id);
+
+			if ($mylocator !== false) {
+				if ($this->session->userdata('user_measurement_base') == NULL) {
+					$measurement_base = $this->config->item('measurement_base');
+				}
+				else {
+					$measurement_base = $this->session->userdata('user_measurement_base');
 				}
 
-				// get station profile
-				$station_profile = $this->Stations->profile_clean($station_id);
+				$bearing = $this->qra->get_bearing($mylocator, $locator, $ant_path);
+				$text = $this->qra->bearing($mylocator, $locator, $measurement_base, $ant_path);
 
-				// get locator
-				$mylocator = $station_profile->station_gridsquare;
-			} else if($this->session->userdata('user_locator') != null){
-				$mylocator = $this->session->userdata('user_locator');
-			} else {
-				$mylocator = $this->config->item('locator');
+				$payload = array(
+					'bearing' => ($bearing === false) ? null : (int)$bearing,
+					'distance_km' => $this->qra->distance($mylocator, $locator, 'K', $ant_path),
+					'text' => ($text === false) ? '' : $text,
+				);
 			}
-
-			if ($this->session->userdata('user_measurement_base') == NULL) {
-				$measurement_base = $this->config->item('measurement_base');
-			}
-			else {
-				$measurement_base = $this->session->userdata('user_measurement_base');
-			}
-
-			$bearing = $this->qra->bearing($mylocator, $locator, $measurement_base, $ant_path);
-
-			echo $bearing;
 		}
-		return "";
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($payload));
 	}
 
 	/* return distance */
@@ -1337,22 +1358,9 @@ class Logbook extends CI_Controller {
 		}
 
 		if($locator != null) {
-			if (isset($station_id)) {
-				// be sure that station belongs to user
-				$this->load->model('Stations');
-				if (!$this->Stations->check_station_is_accessible($station_id)) {
-					return 0;
-				}
-
-				// get station profile
-				$station_profile = $this->Stations->profile_clean($station_id);
-
-				// get locator
-				$mylocator = $station_profile->station_gridsquare;
-			} else if($this->session->userdata('user_locator') != null){
-				$mylocator = $this->session->userdata('user_locator');
-			} else {
-				$mylocator = $this->config->item('locator');
+			$mylocator = $this->my_locator($station_id);
+			if ($mylocator === false) {
+				return 0;
 			}
 
 			$distance = $this->qra->distance($mylocator, $locator, 'K', $ant_path);
@@ -1371,22 +1379,9 @@ class Logbook extends CI_Controller {
 		}
 
 		if($locator != null) {
-			if (isset($station_id)) {
-				// be sure that station belongs to user
-				$this->load->model('Stations');
-				if (!$this->Stations->check_station_is_accessible($station_id)) {
-					return "";
-				}
-
-				// get station profile
-				$station_profile = $this->Stations->profile_clean($station_id);
-
-				// get locator
-				$mylocator = $station_profile->station_gridsquare;
-			} else if($this->session->userdata('user_locator') != null){
-				$mylocator = $this->session->userdata('user_locator');
-			} else {
-				$mylocator = $this->config->item('locator');
+			$mylocator = $this->my_locator($station_id);
+			if ($mylocator === false) {
+				return "";
 			}
 
 			$bearing = $this->qra->bearing($mylocator, $locator, $unit, $ant_path);
@@ -1406,22 +1401,9 @@ class Logbook extends CI_Controller {
 		}
 
 		if($locator != null) {
-			if (isset($station_id)) {
-				// be sure that station belongs to user
-				$this->load->model('Stations');
-				if (!$this->Stations->check_station_is_accessible($station_id)) {
-					return 0;
-				}
-
-				// get station profile
-				$station_profile = $this->Stations->profile_clean($station_id);
-
-				// get locator
-				$mylocator = $station_profile->station_gridsquare;
-			} else if($this->session->userdata('user_locator') != null){
-				$mylocator = $this->session->userdata('user_locator');
-			} else {
-				$mylocator = $this->config->item('locator');
+			$mylocator = $this->my_locator($station_id);
+			if ($mylocator === false) {
+				return 0;
 			}
 
 			$distance = $this->qra->distance($mylocator, $locator, 'K', $ant_path);

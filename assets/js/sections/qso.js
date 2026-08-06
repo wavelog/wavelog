@@ -2831,30 +2831,18 @@ $("#locator").on("input focus", function () {
 			$.ajax({
 				url: base_url + 'index.php/logbook/searchbearing',
 				type: 'post',
+				dataType: 'json',
 				data: {
 					grid: $(this).val(),
 					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
-					$('#locator_info').html(data).fadeIn("slow");
+					$('#locator_info').html(data.text).fadeIn("slow");
+					document.getElementById("distance").value = data.distance_km ?? '';
 				},
 				error: function () {
 					$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
-				},
-			});
-			$.ajax({
-				url: base_url + 'index.php/logbook/searchdistance',
-				type: 'post',
-				data: {
-					grid: $(this).val(),
-					ant_path: $('#ant_path').val(),
-					stationProfile: $('#stationProfile').val()
-				},
-				success: function (data) {
-					document.getElementById("distance").value = data;
-				},
-				error: function () {
 					document.getElementById("distance").value = null;
 				},
 			});
@@ -2887,30 +2875,18 @@ $("#ant_path").on("change", function () {
 		$.ajax({
 			url: base_url + 'index.php/logbook/searchbearing',
 			type: 'post',
+			dataType: 'json',
 			data: {
 				grid: $('#locator').val(),
 				ant_path: $('#ant_path').val(),
 				stationProfile: $('#stationProfile').val()
 			},
 			success: function (data) {
-				$('#locator_info').html(data).fadeIn("slow");
+				$('#locator_info').html(data.text).fadeIn("slow");
+				$('#distance').val(data.distance_km ?? '');
 			},
 			error: function () {
 				$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
-			},
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbook/searchdistance',
-			type: 'post',
-			data: {
-				grid: $('#locator').val(),
-				ant_path: $('#ant_path').val(),
-				stationProfile: $('#stationProfile').val()
-			},
-			success: function (data) {
-				$('#distance').val(data);
-			},
-			error: function () {
 				$('#distance').val("");
 			},
 		});
