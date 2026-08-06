@@ -1001,12 +1001,12 @@
 
 		$conditions[] = "COL_PROP_MODE = 'SAT'";
 
-		if($sat != "All") {
+		if ($sat !== null && $sat != "All") {
 			$conditions[] = "COL_SAT_NAME = ? ";
 			$binding[] = trim($sat);
 		}
 
-		if ($orbit !== '') {
+		if (is_array($orbit) && count($orbit) > 0) {
 			$conditions[] = "orbit in ?";
 			$binding[] = $orbit;
 		}
@@ -1046,28 +1046,28 @@
 			return null;
 		}
 
-		if ($band !== 'All') {
-			if($band != "SAT") {
-				$conditions[] = "COL_BAND = ? and (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
-				$binding[] = trim($band);
-			} else {
-				$conditions[] = "COL_PROP_MODE = 'SAT'";
-				if ($sat !== 'All') {
-					$conditions[] = "COL_SAT_NAME = ?";
-					$binding[] = trim($sat);
-				}
+		// sat and orbit are satellite-only filters, so they live inside the SAT branch:
+		// applying them to any other band would drop every non-satellite QSO, since the
+		// LEFT JOIN below leaves orbit NULL for those and NULL IN (...) never matches
+		if ($band === 'SAT') {
+			$conditions[] = "COL_PROP_MODE = 'SAT'";
+			if ($sat !== null && $sat !== '' && $sat !== 'All') {
+				$conditions[] = "COL_SAT_NAME = ?";
+				$binding[] = trim($sat);
 			}
+			if (is_array($orbit) && count($orbit) > 0) {
+				$conditions[] = "orbit in ?";
+				$binding[] = $orbit;
+			}
+		} elseif ($band !== 'All') {
+			$conditions[] = "COL_BAND = ? and (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
+			$binding[] = trim($band);
 		}
 
 		if ($mode !== 'All') {
 			$conditions[] = "(COL_MODE = ? or COL_SUBMODE = ?)";
 			$binding[] = $mode;
 			$binding[] = $mode;
-		}
-
-		if ($orbit !== '') {
-			$conditions[] = "orbit in ?";
-			$binding[] = $orbit;
 		}
 
 		$where = trim(implode(" AND ", $conditions));
