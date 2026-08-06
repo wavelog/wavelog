@@ -76,10 +76,11 @@ function addQsoToPrintQueue(id) {
 
 					line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
                     line += '<td style="text-align: center" data-search="' + searchCallSign + '">';
-                    line += '<span class="qso_call">';
+                    line += '<span class="qso_call d-flex align-items-center justify-content-between">';
                     line += '<a id="edit_qso" href="javascript:displayQso(' + id + ');">';
                     line += formattedCallSign;
                     line += '</a>';
+                    line += '<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">';
                     line += '<a target="_blank" href="https://www.qrz.com/db/' + formattedCallSign + '">';
                     line += '<img width="16" height="16" src="' + base_url + 'images/icons/qrz.png" alt="Lookup ' + formattedCallSign + ' on QRZ.com">';
                     line += '</a> ';
@@ -89,7 +90,7 @@ function addQsoToPrintQueue(id) {
                     line += '<a target="_blank" href="https://www.eqsl.cc/Member.cfm?' + formattedCallSign + '">';
                     line += '<img width="16" height="16" src="' + base_url + 'images/icons/eqsl.png" alt="Lookup ' + formattedCallSign + ' on eQSL.cc">';
                     line += '</a>';
-                    line += '</span>';
+                    line += '</span></span>';
                     line += '</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
