@@ -819,6 +819,8 @@ class Awards extends CI_Controller {
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 		$data['worked_bands'] = $this->bands->get_worked_bands('pota');
 		$data['modes'] = $this->modes->active();
+		$data['pota_award_tiers'] = $this->pota->award_tiers();
+		$data['pota_hunted_count'] = $this->pota->count_unique_references('COL_POTA_REF');
 
 		// Render page
 		$data['page_title'] = sprintf(__("Awards - %s"), __("POTA"));

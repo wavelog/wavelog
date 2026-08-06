@@ -32,6 +32,94 @@
 	</div>
 	<!-- End of Award Info Box -->
 
+<?php
+// Renders the POTA award progress block for one track (Hunter or Activator):
+// a headline count, the current tier reached, a progress bar to the next tier
+// and a collapsible list of every tier with the achieved ones highlighted.
+$render_pota_progress = function ($count, $idPrefix, $verbText) use ($pota_award_tiers) {
+	$flat = array_merge($pota_award_tiers['standard'], $pota_award_tiers['advanced']);
+	$currentTier = null;
+	$nextTier = null;
+	foreach ($flat as $t) {
+		if ($count >= $t['threshold']) {
+			$currentTier = $t;
+		} elseif ($nextTier === null) {
+			$nextTier = $t;
+		}
+	}
+
+	$pct = 100;
+	$remaining = 0;
+	if ($nextTier !== null) {
+		$prevThreshold = $currentTier ? $currentTier['threshold'] : 0;
+		$remaining = max(0, $nextTier['threshold'] - (int) $count);
+		$span = $nextTier['threshold'] - $prevThreshold;
+		$pct = $span > 0 ? max(0, min(100, round(((int) $count - $prevThreshold) / $span * 100))) : 100;
+	}
+	?>
+	<div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
+		<div>
+			<span class="display-6 fw-bold"><?php echo (int) $count; ?></span>
+			<span class="text-muted"><?php echo $verbText; ?></span>
+		</div>
+		<div>
+			<?php if ($currentTier !== null): ?>
+				<span class="badge bg-success fs-6"><?php echo htmlspecialchars($currentTier['name']); ?></span>
+			<?php else: ?>
+				<span class="badge bg-secondary fs-6"><?php echo __("No award yet"); ?></span>
+			<?php endif; ?>
+		</div>
+	</div>
+
+	<?php if ($nextTier !== null): ?>
+		<div class="mb-1 d-flex justify-content-between">
+			<span><?php echo sprintf(__("Progress to %s"), '<strong>' . htmlspecialchars($nextTier['name']) . '</strong>'); ?></span>
+			<span><?php echo (int) $count; ?> / <?php echo (int) $nextTier['threshold']; ?></span>
+		</div>
+		<div class="progress" style="height: 10px;">
+			<div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $pct; ?>%" aria-valuenow="<?php echo $pct; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+		<small class="text-muted"><?php echo sprintf(__("%d more different park(s) for the next award"), $remaining); ?></small>
+	<?php else: ?>
+		<div class="alert alert-success mb-0"><?php echo __("You have reached the highest POTA award tier!"); ?></div>
+	<?php endif; ?>
+
+	<button class="btn btn-sm btn-outline-secondary mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $idPrefix; ?>_ladder" aria-expanded="false" aria-controls="<?php echo $idPrefix; ?>_ladder">
+		<i class="fas fa-list"></i> <?php echo __("Show all tiers"); ?>
+	</button>
+	<div class="collapse mt-2" id="<?php echo $idPrefix; ?>_ladder">
+		<?php foreach (['standard' => __("Standard Awards"), 'advanced' => __("Advanced Awards")] as $key => $label): ?>
+			<h6 class="mt-3 mb-2 text-muted"><?php echo $label; ?></h6>
+			<div class="row g-1">
+				<?php foreach ($pota_award_tiers[$key] as $t):
+					$achieved = $count >= $t['threshold'];
+				?>
+					<div class="col-12 col-md-6 col-xl-4">
+						<div class="d-flex justify-content-between align-items-center px-2 py-1 rounded <?php echo $achieved ? 'border border-success' : 'border border-secondary-subtle text-muted'; ?>">
+							<span class="text-truncate">
+								<?php if ($achieved): ?><i class="fas fa-check-circle text-success me-1"></i><?php endif; ?>
+								<?php echo htmlspecialchars($t['name']); ?>
+							</span>
+							<small class="flex-shrink-0 ms-2"><?php echo (int) $t['threshold']; ?></small>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php endforeach; ?>
+	</div>
+	<?php
+};
+?>
+
+<div class="card mb-3">
+	<div class="card-header">
+		<?= __("POTA Hunter progress"); ?>
+	</div>
+	<div class="card-body">
+		<?php $render_pota_progress($pota_hunted_count, 'pota_hunter', __("different parks hunted")); ?>
+	</div>
+</div>
+
 <div class="card">
 	<div class="card-header">
 		<ul class="nav nav-tabs card-header-tabs" role="tablist">
