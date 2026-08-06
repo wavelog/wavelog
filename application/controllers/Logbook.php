@@ -224,6 +224,14 @@ class Logbook extends CI_Controller {
 		if ($return['callsign_qra'] != "" || $return['callsign_qra'] != null) {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
+
+			// numeric counterpart of 'bearing', used to prefill the antenna azimuth while logging
+			if(!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
+			$mylocator = $this->my_locator($station_id);
+			$bearing_deg = ($mylocator === false) ? false : $this->qra->get_bearing($mylocator, $return['callsign_qra']);
+			$return['bearing_deg'] = ($bearing_deg === false) ? null : (int)$bearing_deg;
 		}
 		$return['callbook_source'] = $callbook['source'] ?? '';
 
