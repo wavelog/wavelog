@@ -940,6 +940,11 @@
 		// Only one click marker + square at a time: drop the previous ones.
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
+		// Also clear any from/to (two-grid) artefacts and the dimmed-label state.
+		clearSecond();
+		if (highlight) { map.removeLayer(highlight); highlight = null; }
+		if (marker)    { map.removeLayer(marker);    marker = null; }
+		setLabelsDim(false);
 
 		clickSquare = L.rectangle([cell.sw, cell.ne], {
 			color: '#198754', weight: 3, fillColor: '#198754', fillOpacity: 0.18
