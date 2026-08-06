@@ -136,7 +136,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 	<?php if ($user_station_to_qso_tab ?? false) { ?>
 	<div class="row">
               <div class="mb-3 col-md-12">
-              <label class="col-sm-3 col-form-label" for="stationProfile"><?= __("Station Location"); ?></label>
+              <label class="col-form-label" for="stationProfile"><?= __("Station Location"); ?></label>
               <select id="stationProfile" class="form-select form-control form-control-sm" name="station_profile" onChange="panMap(this.value);">
                 <?php
                    $power = '';
