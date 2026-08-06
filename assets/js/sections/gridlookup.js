@@ -1090,6 +1090,9 @@
 		// Drop any second-grid artefacts; rebuilt below only when grid 2 is set.
 		clearSecond();
 		clearBorders();   // only the single-grid case shows square borders below
+		// Clear any left-over click marker/square from a prior map click.
+		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
+		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 
 		// Grid 1 square + marker (blue).
 		if (highlight) { map.removeLayer(highlight); }
