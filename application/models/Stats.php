@@ -1001,7 +1001,7 @@
 
 		$conditions[] = "COL_PROP_MODE = 'SAT'";
 
-		if ($sat !== null && $sat != "All") {
+		if ($sat !== null && $sat !== '' && $sat !== 'All') {
 			$conditions[] = "COL_SAT_NAME = ? ";
 			$binding[] = trim($sat);
 		}
@@ -1019,6 +1019,7 @@
 		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM ".$this->config->item('table_name')."
 		LEFT JOIN satellite ON satellite.name = ".$this->config->item('table_name').".COL_SAT_NAME
 		where station_id in (" . implode(',',$logbooks_locations_array) . ") and coalesce(col_ant_el, '') <> ''";
+		$sql.=" $where";		// must be appended before the date clauses -- its bindings were pushed onto $binding first
 		if (!empty($dateFrom)) {
 			$sql.=" and COL_TIME_ON >= ? ";
 			$binding[]=$dateFrom . ' 00:00:00';
@@ -1027,7 +1028,7 @@
 			$sql.=" and COL_TIME_ON <= ? ";
 			$binding[]=$dateTo . ' 23:59:59';
 		}
-		$sql.=" $where
+		$sql.="
 		group by round(col_ant_el)
 		order by elevation asc";
 
@@ -1080,6 +1081,7 @@
 		LEFT JOIN satellite ON satellite.name = ".$this->config->item('table_name').".COL_SAT_NAME
 		where station_id in (" . implode(',',$logbooks_locations_array) . ")
 		and coalesce(col_ant_az, '') <> ''";
+		$sql.=" $where";		// must be appended before the date clauses -- its bindings were pushed onto $binding first
 		if (!empty($dateFrom)) {
 			$sql.=" and COL_TIME_ON >= ? ";
 			$binding[]=$dateFrom . ' 00:00:00';
@@ -1088,7 +1090,7 @@
 			$sql.=" and COL_TIME_ON <= ? ";
 			$binding[]=$dateTo . ' 23:59:59';
 		}
-		$sql.=" $where
+		$sql.="
 		group by round(col_ant_az)
 		order by azimuth asc";
 

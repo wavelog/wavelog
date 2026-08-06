@@ -216,7 +216,10 @@ class Distances_model extends CI_Model
 				}
 				$is_shortwave = trim((string)$qso['COL_PROP_MODE']) === '';   // only plain HF/VHF+ terrestrial QSOs -- SAT, EME, MS, etc. don't follow the great-circle bearing
 				if ($is_shortwave && ($qso['COL_ANT_AZ'] === null || $qso['COL_ANT_AZ'] === '')) {   // only fill if empty -- never overwrite a user/ADIF-supplied value
-					$updatedata['COL_ANT_AZ'] = $this->qra->get_bearing($stationgrid, $qso['grid'], $qso['COL_ANT_PATH']);
+					$bearing = $this->qra->get_bearing($stationgrid, $qso['grid'], $qso['COL_ANT_PATH']);
+					if ($bearing !== false) {   // unparsable qso-grid: leave the column NULL rather than stamping it with 0 (= due north)
+						$updatedata['COL_ANT_AZ'] = $bearing;
+					}
 				}
 				if (!empty($updatedata)) {
 					$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
