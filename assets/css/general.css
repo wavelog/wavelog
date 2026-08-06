@@ -2105,6 +2105,10 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .gl-pop-tier.is-strong .gl-dot { background: #fff; }
 .gl-pop-meta { margin-top: .3rem; font-size: .85rem; opacity: .75; }
 
+/* Two-grid QRB: tone down every Maidenhead grid label so the two tinted
+   squares are the focus. Toggled via .gl-dim-labels on the map container. */
+.gl-dim-labels .grid-text { opacity: .5; transition: opacity .25s ease; }
+
 /* Map height: grows when the Search panel (#glTopBody) is collapsed. */
 #glMap { height: calc(100vh - 350px); min-height: 400px; }
 #glTopBody:not(.show) ~ #glMap { height: calc(100vh - 240px); }

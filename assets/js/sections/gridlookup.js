@@ -259,6 +259,38 @@
 	function clearBorders() {
 		hideBordersPanel();
 		clearArrows();
+		setLabelsDim(false);
+	}
+
+	/*
+	 * Outline + tint the 4-character grid square containing [lat,lng]. Yellow on
+	 * dark themes, red on light themes (where yellow is hard to see). Used for
+	 * the single-grid selection (with arrows) and for both ends of a QRB.
+	 */
+	function drawSquareTint(lat, lng) {
+		let sq = locatorToCell(latLngToLocator(lat, lng, 2));
+		if (!sq) { return; }
+		let sqColor = (typeof isDarkModeTheme === 'function' && isDarkModeTheme()) ? '#ffd60a' : '#ff1900';
+		bordersOverlay.addLayer(L.rectangle([sq.sw, sq.ne], {
+			color: sqColor, weight: 2, dashArray: '8,5',
+			fillColor: sqColor, fillOpacity: 0.1,
+			interactive: false
+		}));
+	}
+
+	/* Two-grid QRB: tint both squares and dim the rest of the grid labels. */
+	function showTwoGridTint(c1, c2) {
+		if (!bordersOverlay) { return; }
+		bordersOverlay.clearLayers();
+		drawSquareTint(c1.center[0], c1.center[1]);
+		drawSquareTint(c2.center[0], c2.center[1]);
+		setLabelsDim(true);
+	}
+
+	/* Tone down every Maidenhead grid label so the tinted squares stand out. */
+	function setLabelsDim(on) {
+		let el = map && map.getContainer();
+		if (el) { el.classList.toggle('gl-dim-labels', on); }
 	}
 
 	/*
@@ -271,17 +303,7 @@
 		if (!bordersOverlay) { return; }
 		bordersOverlay.clearLayers();
 
-		// Outline the 4-character grid square the arrows point to. Yellow on
-		// dark themes; a dark line on light themes where yellow is hard to see.
-		let sq = locatorToCell(latLngToLocator(lat, lng, 2));
-		if (sq) {
-			let sqColor = (typeof isDarkModeTheme === 'function' && isDarkModeTheme()) ? '#ffd60a' : '#ff1900';
-			bordersOverlay.addLayer(L.rectangle([sq.sw, sq.ne], {
-				color: sqColor, weight: 2, dashArray: '8,5',
-				fillColor: sqColor, fillOpacity: 0.1,
-				interactive: false
-			}));
-		}
+		drawSquareTint(lat, lng);   // 4-char grid square outline + tint the arrows point to
 
 		let b = squareBorders(lat, lng);
 		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
@@ -1086,6 +1108,9 @@
 		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', ''));
 
 		if (cell2) {
+			// Tint both 4-char squares and dim the rest of the grid labels.
+			showTwoGridTint(cell1, cell2);
+
 			// Grid 2 square + marker (orange).
 			highlight2 = L.rectangle([cell2.sw, cell2.ne], {
 				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
