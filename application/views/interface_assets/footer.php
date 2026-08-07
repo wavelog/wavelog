@@ -343,6 +343,11 @@ function stopImpersonate_modal() {
     <script id="wwffmapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/wwffmap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "sota") ) { ?>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.markercluster.js'); ?>"></script>
+    <script id="sotamapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/sotamap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "pota") ) { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.markercluster.js'); ?>"></script>
     <script id="potamapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/potamap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
@@ -3172,6 +3177,7 @@ function viewEqsl(picture, callsign) {
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
+				columnDefs: [ { className: 'text-center', targets: '_all' } ],
                 "scrollY":        "500px",
                 "scrollCollapse": true,
                 "paging":         false,
