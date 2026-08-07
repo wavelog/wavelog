@@ -171,8 +171,8 @@
 				</thead>
 				<tbody>
 				<?php
-					if ($wwff_all->num_rows() > 0) {
-						foreach ($wwff_all->result() as $row) {
+					if (count($wwff_all) > 0) {
+						foreach ($wwff_all as $row) {
 				?>
 				<tr>
 					<td style="text-align: center"><a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=<?php echo $row->COL_WWFF_REF; ?>"><?php echo $row->COL_WWFF_REF; ?></a></td>
