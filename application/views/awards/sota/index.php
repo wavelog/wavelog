@@ -171,8 +171,8 @@
 				</thead>
 				<tbody>
 				<?php
-					if ($sota_all->num_rows() > 0) {
-						foreach ($sota_all->result() as $row) {
+					if (count($sota_all) > 0) {
+						foreach ($sota_all as $row) {
 				?>
 				<tr>
 					<td style="text-align: center"><a target="_blank" href="https://www.sotadata.org.uk/en/summit/<?php echo $row->COL_SOTA_REF; ?>"><?php echo $row->COL_SOTA_REF; ?></a></td>
