@@ -7,7 +7,11 @@ if (typeof(user_map_custom.qso) !== 'undefined') {
 	workedColor = user_map_custom.qso.color;
 }
 
-var osmUrl = $('#potamapjs').attr("tileUrl");
+let osmUrl = $('#potamapjs').attr("tileUrl");
+
+// Holds the current Leaflet map instance so we can dispose of it properly
+// before rebuilding. See load_pota_map2().
+let potaMap = null;
 
 function getPotaFilterData() {
 	return {
@@ -78,13 +82,14 @@ function applyPotaFilters() {
 
 function load_pota_map2(data) {
 
-	// If map is already initialized
-	var container = L.DomUtil.get('potamap');
-
-	if(container != null){
-		container._leaflet_id = null;
-		container.remove();
-		$("#potamaptab").append('<div id="potamap" class="map-leaflet" ></div>');
+	// Tear down the previous map instance properly instead of just dropping
+	// its DOM node. map.remove() clears layers, panes and every event
+	// listener (including document-level ones) and frees the container for
+	// re-use, so repeated "Apply Filters" refreshes don't accumulate leaked
+	// Leaflet internals.
+	if (potaMap !== null) {
+		potaMap.remove();
+		potaMap = null;
 	}
 
 	$("#potamap_status").empty();
@@ -95,6 +100,7 @@ function load_pota_map2(data) {
 			position: 'topleft'
 		},
 	});
+	potaMap = map;
 
 	L.tileLayer(
 		osmUrl,
