@@ -35,6 +35,7 @@ function getDxccFilterData() {
         orbit: $("#orbits").val(),
         dateFrom: $('#dateFrom').val(),
         dateTo: $('#dateTo').val(),
+        prop_mode: $('#prop_mode').val(),
     };
 }
 

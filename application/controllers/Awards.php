@@ -119,6 +119,7 @@ class Awards extends CI_Controller {
 
 		$data['worked_bands'] = $this->bands->get_worked_bands('dxcc'); // Used in the view for band select
 		$data['modes'] = $this->modes->active(); // Used in the view for mode select
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
 			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
@@ -154,6 +155,7 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
 			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+			$postdata['prop_mode'] = $this->security->xss_clean($this->input->post('prop_mode'));
 
 			$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
 			$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
@@ -179,6 +181,7 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = 'All';
 			$postdata['sat'] = 'All';
 			$postdata['orbit'] = 'All';
+			$postdata['prop_mode'] = 'All';
 
 			$postdata['dateFrom'] = null;
 			$postdata['dateTo'] = null;
@@ -240,6 +243,7 @@ class Awards extends CI_Controller {
 				$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 				$postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
 				$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
+				$postdata['prop_mode'] = $this->security->xss_clean($this->input->post('prop_mode'));
 				$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
 				$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
 			} else {
@@ -264,6 +268,7 @@ class Awards extends CI_Controller {
 				$postdata['mode'] = 'All';
 				$postdata['sat'] = 'All';
 				$postdata['orbit'] = 'All';
+				$postdata['prop_mode'] = 'All';
 				$postdata['dateFrom'] = null;
 				$postdata['dateTo'] = null;
 			}
@@ -2155,6 +2160,7 @@ class Awards extends CI_Controller {
 		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 		$postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
 		$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
+		$postdata['prop_mode'] = $this->security->xss_clean($this->input->post('prop_mode'));
 
 		$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
 		$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
