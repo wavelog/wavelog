@@ -44,7 +44,7 @@ class Station extends CI_Controller
 			$data['station_cnty'] = $this->input->post('station_cnty');
 			$data['station_cq'] = $this->input->post('station_cq');
 			$data['station_itu'] = $this->input->post('station_itu');
-			$data['gridsquare'] = $this->input->post('gridsquare');
+			$data['gridsquare'] = $this->input->post('gridsquare') ?? $this->input->get('gridsquare');
 			$data['iota'] = $this->input->post('iota');
 			$data['sota'] = $this->input->post('sota');
 			$data['wwff'] = $this->input->post('wwff');

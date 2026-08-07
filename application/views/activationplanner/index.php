@@ -22,7 +22,11 @@
 		locatingMsg:    <?php echo json_encode(__("Locating…")); ?>,
 		geoDenied:      <?php echo json_encode(__("Location access denied.")); ?>,
 		geoUnavailable: <?php echo json_encode(__("Location unavailable.")); ?>,
-		geoTimeout:     <?php echo json_encode(__("Location request timed out.")); ?>
+		geoTimeout:     <?php echo json_encode(__("Location request timed out.")); ?>,
+		createStationUrl: <?php echo json_encode(site_url('station/create')); ?>,
+		shareTweetLbl:    <?php echo json_encode(__("Share on X")); ?>,
+		newStationLocLbl: <?php echo json_encode(__("Create station location")); ?>,
+		refsTitleLbl:     <?php echo json_encode(__("References in this grid")); ?>
 	};
 </script>
 
