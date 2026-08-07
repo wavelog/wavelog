@@ -3,12 +3,12 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
  * ---------------------------------------------------------------------------
- * Gridsquare Lookup
+ * Activation Planner
  * ---------------------------------------------------------------------------
  * A simple full-page map: type a Maidenhead gridsquare, the map zooms to it
  * and draws a box around the exact grid cell. Pure Leaflet + OpenStreetMap.
  */
-class Gridlookup extends CI_Controller {
+class Activationplanner extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
@@ -72,17 +72,17 @@ class Gridlookup extends CI_Controller {
 		usort($states, function ($a, $b) { return strcasecmp($a['label'], $b['label']); });
 
 		$data['overlays']   = array_merge($overlays, $states);
-		$data['page_title'] = __("Gridsquare Lookup");
+		$data['page_title'] = __("Activation Planner");
 
 		$footerData['scripts'] = array(
-			'assets/js/sections/gridlookup.js',
+			'assets/js/sections/activationplanner.js',
 			'assets/js/leaflet/leaflet.markercluster.js',
 		);
 
 
 
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('gridlookup/index');
+		$this->load->view('activationplanner/index');
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 

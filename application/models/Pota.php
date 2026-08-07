@@ -54,7 +54,7 @@ class Pota extends CI_Model {
 	/*
 	 * The full POTA reference directory with coordinates only — no QSO or
 	 * worked/confirmed status. Powers the optional clustered overlay on the
-	 * Gridsquare Lookup map, where it's used to look up where a reference sits.
+	 * Activation Planner map, where it's used to look up where a reference sits.
 	 * Rows without coordinates are skipped because they can't be plotted.
 	 */
 	function get_directory() {

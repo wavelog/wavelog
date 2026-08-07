@@ -46,7 +46,7 @@ class Wwff extends CI_Model {
 
 	/*
 	 * The full WWFF reference directory with coordinates.
-	 * Powers the optional clustered overlay on the Gridsquare Lookup map. Rows without coordinates are
+	 * Powers the optional clustered overlay on the Activation Planner map. Rows without coordinates are
 	 * skipped because they can't be plotted.
 	 */
 	function get_directory() {

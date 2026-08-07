@@ -329,7 +329,7 @@
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('gridlookup'); ?>" title="Search for grid squares"><i class="fas fa-map-marked-alt"></i> <?= __("Gridsquare Lookup"); ?></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('activationplanner'); ?>" title="Plan an activation"><i class="fas fa-map-marked-alt"></i> <?= __("Activation Planner"); ?></a></li>
 							</ul>
 						</li>
 					<?php } ?>

@@ -2,13 +2,20 @@ var azimuthChart;
 var elevationChart;
 
 $('#band').change(function () {
-	var band = $("#band option:selected").text();
-	if (band != "SAT") {
-		$(".sats_dropdown").attr("hidden", true);
-		$(".orbits_dropdown").attr("hidden", true);
-	} else {
+	var isSat = ($('#band').val() === "SAT");
+	if (isSat) {
 		$(".sats_dropdown").removeAttr("hidden");
 		$(".orbits_dropdown").removeAttr("hidden");
+	} else {
+		$(".sats_dropdown").attr("hidden", true);
+		$(".orbits_dropdown").attr("hidden", true);
+	}
+	// the sat/orbit filters only apply to satellite QSOs, so clear them when
+	// leaving SAT and restore the all-selected default when coming back
+	$('#sat').val('All');
+	if ($('#orbit').length) {
+		$('#orbit').find('option').prop('selected', isSat);
+		$('#orbit').multiselect('refresh');
 	}
 });
 
@@ -125,8 +132,9 @@ function plot_azimuth() {
 		azimuthChart.destroy();
 	}
 	let band = $('#band').val();
-	let selectedOrbits = $('#orbit').val();
-	if (band == 'SAT' && Array.isArray(selectedOrbits) && selectedOrbits.length === 0) {
+	let isSat = (band === 'SAT');
+	let selectedOrbits = $('#orbit').val() || [];
+	if (isSat && selectedOrbits.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select at least one orbit type location to do a search!',
@@ -139,15 +147,20 @@ function plot_azimuth() {
 		return false;
 	}
 
+	let postData = {
+		'band': band,
+		'mode': $('#mode').val()
+	};
+	// only send the satellite-only filters when actually querying satellite QSOs
+	if (isSat) {
+		postData.sat = $('#sat').val();
+		postData.orbit = selectedOrbits;
+	}
+
 	$.ajax({
 		url: base_url + 'index.php/statistics/get_azimuth_data',
 		type: 'post',
-		data: {
-			'band': $('#band').val(),
-			'mode': $('#mode').val(),
-			'sat': $('#sat').val(),
-			'orbit': $('#orbit').val()
-		},
+		data: postData,
 		success: function (tmp) {
 			var dataQso = [];
 			var labels = [];

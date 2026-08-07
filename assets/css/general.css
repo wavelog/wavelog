@@ -2120,3 +2120,107 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	#glMap { height: calc(100vh - 390px); min-height: 300px; }
 	#glTopBody:not(.show) ~ #glMap { height: calc(100vh - 200px); }
 }
+
+/* ============================================================
+   AMSAT Satellite Status (application/views/amsatstatus)
+   Scoped under .amsat-status. Vivid status colors (green/amber/
+   blue/red); each cell's hue is reinforced by the icon+label
+   legend and the per-cell tooltip -- never color alone.
+   ============================================================ */
+.amsat-status {
+	--ams-heard: #22c55e;
+	--ams-gap: 2px;
+	--ams-name-w: 176px;
+	--ams-aos-w: 134px;
+	--ams-cell-w: 30px;
+}
+
+/* ---- KPI tiles ---- */
+.amsat-kpis { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.25rem; }
+.amsat-kpi {
+	flex: 1 1 150px;
+	min-width: 150px;
+	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 7%, transparent);
+	border: 1px solid var(--bs-border-color, rgba(125,125,125,.18));
+	border-radius: .55rem;
+	padding: .6rem .85rem;
+}
+.amsat-kpi-val { font-size: 1.5rem; font-weight: 650; line-height: 1.1; color: var(--bs-body-color, inherit); }
+.amsat-kpi-val small { font-size: .55em; font-weight: 500; color: var(--bs-secondary-color); }
+.amsat-kpi-lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; color: var(--bs-secondary-color); margin-top: .15rem; }
+.amsat-kpi-sub { font-size: .72rem; color: var(--bs-secondary-color); }
+
+/* ---- Legend (icon + label, never color alone) ---- */
+.amsat-legend {
+	display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: center;
+	margin-bottom: 1rem; font-size: .82rem; color: var(--bs-secondary-color);
+}
+.amsat-lgnd { display: inline-flex; align-items: center; gap: .4rem; }
+.amsat-lgnd i { font-size: .85rem; }
+
+/* ---- Heatmap table ---- */
+.amsat-heat {
+	border-collapse: separate;
+	border-spacing: var(--ams-gap);
+	width: 100%;
+	margin: 0 0 .5rem; /* keep left/top at 0 so the sticky name column still aligns */
+	font-size: .82rem;
+}
+.amsat-heat th, .amsat-heat td {
+	background-color: var(--bs-card-bg, var(--bs-body-bg));
+	vertical-align: middle;
+	font-weight: bold;
+}
+.amsat-heat thead th {
+	position: sticky; 
+	top: var(--ams-gap); 
+	z-index: 2;
+	color: var(--bs-secondary-color);
+	padding: .35rem 0; 
+	text-align: center;
+}
+/* Frozen satellite-name column */
+.amsat-heat .h-name, .amsat-heat .c-name {
+	position: sticky; left: var(--ams-gap); z-index: 3;
+	width: var(--ams-name-w); min-width: var(--ams-name-w); max-width: var(--ams-name-w);
+	text-align: left; padding: .35rem .7rem; white-space: nowrap;
+}
+.amsat-heat thead .h-name { z-index: 5; }
+/* Frozen next-AOS column */
+.amsat-heat .h-aos, .amsat-heat .c-aos {
+	position: sticky; left: calc(var(--ams-name-w) + var(--ams-gap) * 2); z-index: 3;
+	width: var(--ams-aos-w); min-width: var(--ams-aos-w); max-width: var(--ams-aos-w);
+	text-align: left; padding: .35rem .5rem; white-space: nowrap;
+}
+.amsat-heat thead .h-aos { z-index: 5; }
+
+.amsat-heat .c-name { font-weight: 600; }
+.amsat-heat .c-name-txt { display: inline-block; max-width: 118px; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; }
+.amsat-heat .c-name a { text-decoration: none; }
+.amsat-heat .c-name a:hover { text-decoration: underline; }
+.amsat-heat .c-name-cnt {
+	display: inline-block; min-width: 1.3em; text-align: center;
+	font-size: .68rem; font-weight: 600; color: var(--bs-secondary-color);
+	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 14%, transparent);
+	border-radius: 999px; padding: 0 .35rem; margin-left: .35rem; vertical-align: middle;
+}
+.amsat-heat .c-aos-time { font-weight: 600; }
+.amsat-heat .h-hr { width: var(--ams-cell-w); min-width: var(--ams-cell-w); }
+.amsat-heat thead .h-hr[data-now] { color: var(--bs-body-color, inherit); font-weight: 700; }
+
+/* Heatmap cells: status tint over the surface, lift to solid on hover */
+.amsat-heat .cell {
+	width: var(--ams-cell-w); min-width: var(--ams-cell-w); height: 28px;
+	border-radius: 5px; cursor: help;
+	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 25%, transparent);
+}
+.amsat-heat .cell[data-st] {
+	background-color: color-mix(in srgb, var(--cell) 82%, transparent);
+}
+.amsat-heat .cell[data-st]:hover {
+	background-color: var(--cell);
+	box-shadow: 0 2px 7px rgba(0,0,0,.22);
+	transform: translateY(-1px);
+}
+@media (hover: none) { .amsat-heat .cell[data-st]:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .amsat-heat .cell[data-st]:hover { transform: none; } }

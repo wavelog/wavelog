@@ -1,6 +1,6 @@
 
 <script>
-	window.gridlookupConfig = {
+	window.activationplannerConfig = {
 		tileUrl:     <?php echo json_encode($layer); ?>,
 		tileAttr:    <?php echo json_encode($attribution); ?>,
 		overlays:    <?php echo json_encode(isset($overlays) ? $overlays : array()); ?>,
@@ -8,10 +8,10 @@
 		invalidMsg:  <?php echo json_encode(__("Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr).")); ?>,
 		bearingLbl:  <?php echo json_encode(__("Bearing")); ?>,
 		measurementBase: <?php echo json_encode($measurement_base); ?>,
-		stateUrl:   <?php echo json_encode(site_url('gridlookup/state_for_point')); ?>,
-		wwffUrl:    <?php echo json_encode(site_url('gridlookup/wwff_directory')); ?>,
-		potaUrl:    <?php echo json_encode(site_url('gridlookup/pota_directory')); ?>,
-		sotaUrl:    <?php echo json_encode(site_url('gridlookup/sota_directory')); ?>,
+		stateUrl:   <?php echo json_encode(site_url('activationplanner/state_for_point')); ?>,
+		wwffUrl:    <?php echo json_encode(site_url('activationplanner/wwff_directory')); ?>,
+		potaUrl:    <?php echo json_encode(site_url('activationplanner/pota_directory')); ?>,
+		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
 		closeLbl:      <?php echo json_encode(__("Close")); ?>,
 		errorLbl:      <?php echo json_encode(__("Error")); ?>,
