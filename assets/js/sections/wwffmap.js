@@ -9,6 +9,8 @@ if (typeof(user_map_custom.qso) !== 'undefined') {
 
 var osmUrl = $('#wwffmapjs').attr("tileUrl");
 
+let wwffMap = null;
+
 function getWwffFilterData() {
 	return {
 		band: $('#band').val(),
@@ -78,13 +80,9 @@ function applyWwffFilters() {
 
 function load_wwff_map2(data) {
 
-	// If map is already initialized
-	var container = L.DomUtil.get('wwffmap');
-
-	if(container != null){
-		container._leaflet_id = null;
-		container.remove();
-		$("#wwffmaptab").append('<div id="wwffmap" class="map-leaflet" ></div>');
+	if (wwffMap !== null) {
+		wwffMap.remove();
+		wwffMap = null;
 	}
 
 	$("#wwffmap_status").empty();
@@ -95,6 +93,7 @@ function load_wwff_map2(data) {
 			position: 'topleft'
 		},
 	});
+	wwffMap = map;
 
 	L.tileLayer(
 		osmUrl,
