@@ -689,7 +689,10 @@ class Logbook_model extends CI_Model {
 				$this->db->where('COL_WWFF_REF', $searchphrase);
 				break;
 			case 'POTA':
-				$this->db->where('COL_POTA_REF', $searchphrase);
+				// COL_POTA_REF can hold several comma-separated references
+				// (e.g. "K-1234,K-5678"), so match with FIND_IN_SET. For
+				// single-reference rows this behaves like an equality check.
+				$this->db->where('FIND_IN_SET(' . $this->db->escape($searchphrase) . ', COL_POTA_REF) > 0', null, false);
 				break;
 			case 'DOK':
 				$this->db->where('COL_DARC_DOK', $searchphrase);
