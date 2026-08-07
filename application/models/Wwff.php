@@ -6,22 +6,30 @@ class Wwff extends CI_Model {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		if ($logbooks_locations_array[0] === -1) {
-			return null;
+		if (empty($logbooks_locations_array) || $logbooks_locations_array[0] === -1) {
+			return [];
 		}
 
-		$this->load->model('bands');
+		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 
-		$bandslots = $this->bands->get_worked_bands('wwff');
+		// Default filter mirrors the WWFF page's checkbox defaults, so the
+		// initial server-rendered table matches what the AJAX endpoints return
+		// (awards/wwff_table + awards/wwff_map) before "Apply Filters" is used.
+		$postdata = [
+			'qsl'       => 1,
+			'lotw'      => 1,
+			'eqsl'      => null,
+			'qrz'       => null,
+			'clublog'   => null,
+			'worked'    => 1,
+			'confirmed' => 1,
+			'band'      => 'All',
+			'mode'      => 'All',
+			'dateFrom'  => null,
+			'dateTo'    => null,
+		];
 
-		if(!$bandslots) return null;
-
-		$this->db->where_in("station_id", $logbooks_locations_array);
-		$this->db->where_in("col_band", $bandslots);
-		$this->db->order_by("COL_WWFF_REF", "ASC");
-		$this->db->where('COL_WWFF_REF !=', '');
-
-		return $this->db->get($this->config->item('table_name'));
+		return $this->get_qso_list($postdata, $location_list);
 	}
 
 	function search_refs($term) {
