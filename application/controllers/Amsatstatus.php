@@ -178,6 +178,7 @@ class Amsatstatus extends CI_Controller {
 				$pass = $this->satpredict->next_pass($wl, $grid, 0, 1);
 				if ($pass) {
 					$next_pass[$name] = [
+						'aos'   => (float) $pass->aos,
 						'time'  => Predict_Time::daynum2readable($pass->aos, 'UTC', 'H:i'),
 						'maxel' => isset($pass->max_el) ? (int)round($pass->max_el) : null,
 					];
