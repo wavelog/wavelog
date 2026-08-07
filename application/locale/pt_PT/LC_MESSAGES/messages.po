@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-06 13:58+0000\n"
+"POT-Creation-Date: 2026-08-07 05:56+0000\n"
 "PO-Revision-Date: 2026-08-03 12:17+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -125,6 +125,7 @@ msgstr "Ducting troposférico"
 
 #: application/controllers/Accumulated.php:11
 #: application/controllers/Activated_gridmap.php:8
+#: application/controllers/Activationplanner.php:18
 #: application/controllers/Activators.php:12
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22
@@ -174,7 +175,6 @@ msgstr "Ducting troposférico"
 #: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
 #: application/controllers/Eqsl.php:662
 #: application/controllers/Generic_qsl.php:11
-#: application/controllers/Gridlookup.php:18
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
 #: application/controllers/Kmlexport.php:17
@@ -306,6 +306,32 @@ msgstr "Campos não confirmados"
 msgid "Total fields worked"
 msgstr "Total de campos trabalhados"
 
+#: application/controllers/Activationplanner.php:32
+msgid "CQ Zones"
+msgstr "Zonas CQ"
+
+#: application/controllers/Activationplanner.php:32
+#: application/controllers/Activationplanner.php:33
+#: application/views/station_profile/create.php:125
+#: application/views/station_profile/edit.php:150
+msgid "Zones"
+msgstr "Zonas"
+
+#: application/controllers/Activationplanner.php:33
+#: application/controllers/Awards.php:2381
+#: application/views/awards/itu/index.php:27
+msgid "ITU Zones"
+msgstr "Zonas ITU"
+
+#: application/controllers/Activationplanner.php:66
+msgid "States / Provinces"
+msgstr "Estados / Províncias"
+
+#: application/controllers/Activationplanner.php:75
+#: application/views/interface_assets/header.php:332
+msgid "Activation Planner"
+msgstr ""
+
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
 #: application/views/activators/index.php:10
@@ -380,8 +406,8 @@ msgid ""
 msgstr ""
 
 #: application/controllers/Amsatstatus.php:37
-#: application/controllers/Amsatstatus.php:194
-#: application/views/amsatstatus/index.php:8
+#: application/controllers/Amsatstatus.php:195
+#: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
 msgstr ""
@@ -623,10 +649,10 @@ msgstr " e "
 
 #: application/controllers/Awards.php:704
 #: application/controllers/Logbook.php:1452
+#: application/views/activationplanner/index.php:58
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
-#: application/views/gridlookup/index.php:58
 #: application/views/interface_assets/header.php:225
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:490
@@ -654,9 +680,9 @@ msgstr "SOTA"
 
 #: application/controllers/Awards.php:726
 #: application/controllers/Logbook.php:1453
+#: application/views/activationplanner/index.php:56
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
-#: application/views/gridlookup/index.php:56
 #: application/views/logbookadvanced/edit.php:40
 #: application/views/logbookadvanced/index.php:512
 #: application/views/logbookadvanced/useroptions.php:244
@@ -677,10 +703,10 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:820
 #: application/controllers/Logbook.php:1454
+#: application/views/activationplanner/index.php:57
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
-#: application/views/gridlookup/index.php:57
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:494
@@ -784,12 +810,6 @@ msgstr "WAP"
 #: application/views/interface_assets/header.php:261
 msgid "WAIP"
 msgstr "WAIP"
-
-#: application/controllers/Awards.php:2381
-#: application/controllers/Gridlookup.php:33
-#: application/views/awards/itu/index.php:27
-msgid "ITU Zones"
-msgstr "Zonas ITU"
 
 #: application/controllers/Awards.php:2511
 #: application/views/awards/wac/index.php:7
@@ -1564,26 +1584,6 @@ msgstr "Ninguém está a transmitir nesta frequência."
 msgid "Confirmations"
 msgstr "Confirmações"
 
-#: application/controllers/Gridlookup.php:32
-msgid "CQ Zones"
-msgstr "Zonas CQ"
-
-#: application/controllers/Gridlookup.php:32
-#: application/controllers/Gridlookup.php:33
-#: application/views/station_profile/create.php:125
-#: application/views/station_profile/edit.php:150
-msgid "Zones"
-msgstr "Zonas"
-
-#: application/controllers/Gridlookup.php:66
-msgid "States / Provinces"
-msgstr "Estados / Províncias"
-
-#: application/controllers/Gridlookup.php:75
-#: application/views/interface_assets/header.php:332
-msgid "Gridsquare Lookup"
-msgstr "Consulta de Gridsquare"
-
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
@@ -2193,6 +2193,9 @@ msgstr "Estado"
 
 #: application/controllers/Logbook.php:1456
 #: application/views/activated_gridmap/index.php:107
+#: application/views/activationplanner/index.php:40
+#: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:79
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -2202,9 +2205,6 @@ msgstr "Estado"
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/dashboard/index.php:14
-#: application/views/gridlookup/index.php:40
-#: application/views/gridlookup/index.php:55
-#: application/views/gridlookup/index.php:79
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
@@ -3202,6 +3202,7 @@ msgid "Radio removed successfully"
 msgstr "Rádio removido com sucesso"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
+#: application/views/amsatstatus/index.php:74
 #: application/views/interface_assets/header.php:349
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
@@ -3393,10 +3394,10 @@ msgstr "Não autorizado"
 #: application/controllers/Stationsetup.php:156
 #: application/controllers/Stationsetup.php:177
 #: application/controllers/Stationsetup.php:478
+#: application/views/activationplanner/index.php:17
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
-#: application/views/gridlookup/index.php:17
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:765 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
@@ -4545,11 +4546,11 @@ msgstr "QSO atualizado"
 
 #: application/models/Logbook_model.php:6176
 #: application/views/activated_gridmap/index.php:109
+#: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:57
 #: application/views/contesting/logger/components/map.php:84
 #: application/views/dashboard/index.php:20
-#: application/views/gridlookup/index.php:9
 #: application/views/gridmap/index.php:228
 #: application/views/logbookadvanced/index.php:15
 #: application/views/map/qso_map.php:113 application/views/user/edit.php:310
@@ -4949,6 +4950,7 @@ msgid "Activated Gridsquares"
 msgstr "Quadrículas Ativadas"
 
 #: application/views/activated_gridmap/index.php:27
+#: application/views/amsatstatus/index.php:116
 #: application/views/awards/amsat_rover/index.php:226
 #: application/views/awards/dxcc/index.php:194
 #: application/views/awards/wab/index.php:36
@@ -5043,10 +5045,10 @@ msgid "Clear Markers"
 msgstr "Limpar marcadores"
 
 #: application/views/activated_gridmap/index.php:105
+#: application/views/activationplanner/index.php:77
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
-#: application/views/gridlookup/index.php:77
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
@@ -5054,15 +5056,192 @@ msgid "Latitude"
 msgstr "Latitude"
 
 #: application/views/activated_gridmap/index.php:106
+#: application/views/activationplanner/index.php:78
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
-#: application/views/gridlookup/index.php:78
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
 msgid "Longitude"
 msgstr "Longitude"
+
+#: application/views/activationplanner/index.php:8
+msgid ""
+"Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
+msgstr ""
+"Quadrícula inválida — use 2, 4, 6, 8 ou 10 caracteres (por exemplo, FN, "
+"FN31, FN31pr)."
+
+#: application/views/activationplanner/index.php:15
+msgid "Gridsquare borders"
+msgstr ""
+
+#: application/views/activationplanner/index.php:16
+#: application/views/api/components/create_token_modal.php:6
+#: application/views/api/components/new_token_modal.php:7
+#: application/views/api/components/new_token_modal.php:23
+#: application/views/bands/index.php:160
+#: application/views/club/permissions.php:191
+#: application/views/contesting/logger/components/winkeyer.php:22
+#: application/views/contesting/logger/index.php:67
+#: application/views/contesting/logger/index.php:93
+#: application/views/contesting/manager/components/confirm_delete.php:6
+#: application/views/contesting/manager/components/session_modal.php:12
+#: application/views/contesting/manager/index.php:124
+#: application/views/interface_assets/footer.php:54
+#: application/views/logbookadvanced/index.php:55
+#: application/views/simplefle/index.php:21
+#: application/views/user/modals/more_actions_modal.php:51
+#: application/views/user/modals/more_actions_modal.php:80
+#: application/views/user/modals/more_actions_modal.php:117
+#: application/views/user/modals/more_actions_modal.php:166
+#: application/views/version_dialog/index.php:79
+msgid "Close"
+msgstr "Fechar"
+
+#: application/views/activationplanner/index.php:18
+msgid "Tracking"
+msgstr ""
+
+#: application/views/activationplanner/index.php:19
+#: application/views/logbookadvanced/mergedialog.php:71
+#: application/views/qslpostcard/designer.php:241
+msgid "Field"
+msgstr "Campo"
+
+#: application/views/activationplanner/index.php:20
+msgid "Square"
+msgstr ""
+
+#: application/views/activationplanner/index.php:21
+msgid "Subsquare"
+msgstr ""
+
+#: application/views/activationplanner/index.php:22
+msgid "Locating…"
+msgstr ""
+
+#: application/views/activationplanner/index.php:23
+msgid "Location access denied."
+msgstr ""
+
+#: application/views/activationplanner/index.php:24
+msgid "Location unavailable."
+msgstr ""
+
+#: application/views/activationplanner/index.php:25
+msgid "Location request timed out."
+msgstr ""
+
+#: application/views/activationplanner/index.php:35
+msgid "Plan your activity here"
+msgstr ""
+
+#: application/views/activationplanner/index.php:43
+msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
+msgstr "Localizador Maidenhead de 2, 4, 6, 8 ou 10 carateres"
+
+#: application/views/activationplanner/index.php:43
+msgid "e.g. FN31pr"
+msgstr "por exemplo FN31pr"
+
+#: application/views/activationplanner/index.php:44
+msgid "to"
+msgstr "para"
+
+#: application/views/activationplanner/index.php:47
+msgid "Optional second gridsquare for distance and bearing"
+msgstr "Segunda quadrícula opcional para distância e azimute"
+
+#: application/views/activationplanner/index.php:47
+msgid "e.g. JN58qm"
+msgstr "p.ex. JN58qm"
+
+#: application/views/activationplanner/index.php:48
+msgid "Go"
+msgstr "Ir"
+
+#: application/views/activationplanner/index.php:49
+#: application/views/awards/cq/index.php:70
+#: application/views/awards/dxcc/index.php:69
+#: application/views/awards/itu/index.php:72
+#: application/views/awards/wae/index.php:60
+#: application/views/awards/wwff/index.php:65
+#: application/views/gridmap/index.php:54
+#: application/views/interface_assets/footer.php:56
+#: application/views/logbookadvanced/index.php:357
+#: application/views/qso/index.php:758 application/views/user/edit.php:1330
+msgid "Clear"
+msgstr "Limpar"
+
+#: application/views/activationplanner/index.php:50
+msgid "Find my location and gridsquare"
+msgstr ""
+
+#: application/views/activationplanner/index.php:50
+msgid "Locate me"
+msgstr ""
+
+#: application/views/activationplanner/index.php:53
+#: application/views/simplefle/index.php:162
+msgid "Refs"
+msgstr "Referências"
+
+#: application/views/activationplanner/index.php:65
+#: application/views/qso/index.php:759
+msgid "More options"
+msgstr "Mais opções"
+
+#: application/views/activationplanner/index.php:66
+msgid "Hide options"
+msgstr ""
+
+#: application/views/activationplanner/index.php:80
+#: application/views/awards/cq/index.php:3
+#: application/views/awards/cq/index.php:205
+#: application/views/bandmap/list.php:569
+#: application/views/bandmap/list.php:607 application/views/csv/index.php:80
+#: application/views/dxatlas/index.php:80
+#: application/views/gridmap/index.php:229 application/views/kml/index.php:65
+#: application/views/logbookadvanced/checkresult.php:246
+#: application/views/logbookadvanced/edit.php:29
+#: application/views/logbookadvanced/index.php:22
+#: application/views/logbookadvanced/index.php:456
+#: application/views/logbookadvanced/index.php:1008
+#: application/views/logbookadvanced/qslcarousel.php:37
+#: application/views/logbookadvanced/useroptions.php:193
+#: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
+#: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:519
+#: application/views/station_profile/create.php:129
+#: application/views/station_profile/edit.php:154
+#: application/views/stationsetup/locationlist.php:21
+#: application/views/timeline/index.php:344
+#: application/views/timeplotter/index.php:39
+#: application/views/user/modals/first_login_wizard.php:75
+#: application/views/zonechecker/index.php:23
+msgid "CQ Zone"
+msgstr "Zona CQ"
+
+#: application/views/activationplanner/index.php:81
+#: application/views/awards/itu/index.php:3
+#: application/views/awards/itu/index.php:207
+#: application/views/gridmap/index.php:230
+#: application/views/logbookadvanced/checkresult.php:322
+#: application/views/logbookadvanced/edit.php:34
+#: application/views/logbookadvanced/index.php:21
+#: application/views/logbookadvanced/index.php:470
+#: application/views/logbookadvanced/index.php:1011
+#: application/views/logbookadvanced/useroptions.php:199
+#: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
+#: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:529
+#: application/views/station_profile/create.php:144
+#: application/views/station_profile/edit.php:169
+#: application/views/stationsetup/locationlist.php:22
+#: application/views/user/modals/first_login_wizard.php:86
+#: application/views/zonechecker/index.php:24
+msgid "ITU Zone"
+msgstr "Zona ITU"
 
 #: application/views/activators/index.php:33
 msgctxt "Orbiter LEO or GEO"
@@ -5893,70 +6072,87 @@ msgstr "Referência POTA no ADIF"
 msgid "Status"
 msgstr "Estado"
 
-#: application/views/amsatstatus/index.php:10
+#: application/views/amsatstatus/index.php:13
 #, php-format
 msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
 
-#: application/views/amsatstatus/index.php:16
-msgid "AMSAT Satellite Status (Last 24h)"
-msgstr ""
-
-#: application/views/amsatstatus/index.php:20
+#: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
 msgstr ""
 
-#: application/views/amsatstatus/index.php:23
-msgid "Heard"
+#: application/views/amsatstatus/index.php:78
+msgid "Active last hour"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:24
-msgid "Crew Active"
+#: application/views/amsatstatus/index.php:79
+msgid "heard or crew active"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:25
-msgid "Telemetry Only"
+#: application/views/amsatstatus/index.php:83
+msgid "Next pass"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:26
-msgid "Not Heard"
+#: application/views/amsatstatus/index.php:89
+msgid "no upcoming pass"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:27
-#: application/views/amsatstatus/index.php:137
+#: application/views/amsatstatus/index.php:96
+msgid "Status legend"
+msgstr ""
+
+#: application/views/amsatstatus/index.php:102
+#: application/views/amsatstatus/index.php:171
 msgid "No report"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:88
+#: application/views/amsatstatus/index.php:108
+msgid "AMSAT Satellite Status (Last 24h)"
+msgstr ""
+
+#: application/views/amsatstatus/index.php:113
+msgid ""
+"Satellite status by hour for the past 24 hours. Each cell is coloured by its "
+"winning status; hover for the report breakdown."
+msgstr ""
+
+#: application/views/amsatstatus/index.php:117
 msgid "Next AOS"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:93
+#: application/views/amsatstatus/index.php:121
 #, php-format
 msgid "%dh"
 msgid_plural "%dh"
 msgstr[0] ""
 msgstr[1] ""
 
-#: application/views/amsatstatus/index.php:93
+#: application/views/amsatstatus/index.php:121
 msgid "now"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:98
+#: application/views/amsatstatus/index.php:123
 #, php-format
 msgid "%d hours ago"
 msgstr ""
 
-#: application/views/amsatstatus/index.php:158
+#: application/views/amsatstatus/index.php:146
+#, php-format
+msgid "%d report in 24h"
+msgid_plural "%d reports in 24h"
+msgstr[0] ""
+msgstr[1] ""
+
+#: application/views/amsatstatus/index.php:192
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
 msgstr[0] ""
 msgstr[1] ""
 
-#: application/views/amsatstatus/index.php:168
+#: application/views/amsatstatus/index.php:202
 #: application/views/qso/index.php:34
 msgid "more"
 msgstr "mais"
@@ -5965,29 +6161,6 @@ msgstr "mais"
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
 msgstr "Criar um novo Token de API"
-
-#: application/views/api/components/create_token_modal.php:6
-#: application/views/api/components/new_token_modal.php:7
-#: application/views/api/components/new_token_modal.php:23
-#: application/views/bands/index.php:160
-#: application/views/club/permissions.php:191
-#: application/views/contesting/logger/components/winkeyer.php:22
-#: application/views/contesting/logger/index.php:67
-#: application/views/contesting/logger/index.php:93
-#: application/views/contesting/manager/components/confirm_delete.php:6
-#: application/views/contesting/manager/components/session_modal.php:12
-#: application/views/contesting/manager/index.php:124
-#: application/views/gridlookup/index.php:16
-#: application/views/interface_assets/footer.php:54
-#: application/views/logbookadvanced/index.php:55
-#: application/views/simplefle/index.php:21
-#: application/views/user/modals/more_actions_modal.php:51
-#: application/views/user/modals/more_actions_modal.php:80
-#: application/views/user/modals/more_actions_modal.php:117
-#: application/views/user/modals/more_actions_modal.php:166
-#: application/views/version_dialog/index.php:79
-msgid "Close"
-msgstr "Fechar"
 
 #: application/views/api/components/create_token_modal.php:10
 msgid ""
@@ -6920,32 +7093,6 @@ msgstr "QSOs Realizados"
 msgid "QSOs Confirmed"
 msgstr "QSOs Confirmados"
 
-#: application/views/awards/cq/index.php:3
-#: application/views/awards/cq/index.php:205
-#: application/views/bandmap/list.php:569
-#: application/views/bandmap/list.php:607 application/views/csv/index.php:80
-#: application/views/dxatlas/index.php:80
-#: application/views/gridlookup/index.php:80
-#: application/views/gridmap/index.php:229 application/views/kml/index.php:65
-#: application/views/logbookadvanced/checkresult.php:246
-#: application/views/logbookadvanced/edit.php:29
-#: application/views/logbookadvanced/index.php:22
-#: application/views/logbookadvanced/index.php:456
-#: application/views/logbookadvanced/index.php:1008
-#: application/views/logbookadvanced/qslcarousel.php:37
-#: application/views/logbookadvanced/useroptions.php:193
-#: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
-#: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:519
-#: application/views/station_profile/create.php:129
-#: application/views/station_profile/edit.php:154
-#: application/views/stationsetup/locationlist.php:21
-#: application/views/timeline/index.php:344
-#: application/views/timeplotter/index.php:39
-#: application/views/user/modals/first_login_wizard.php:75
-#: application/views/zonechecker/index.php:23
-msgid "CQ Zone"
-msgstr "Zona CQ"
-
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
@@ -7138,19 +7285,6 @@ msgstr "Este ano"
 #: application/views/statistics/index.php:68
 msgid "Last Year"
 msgstr "Ano passado"
-
-#: application/views/awards/cq/index.php:70
-#: application/views/awards/dxcc/index.php:69
-#: application/views/awards/itu/index.php:72
-#: application/views/awards/wae/index.php:60
-#: application/views/awards/wwff/index.php:65
-#: application/views/gridlookup/index.php:49
-#: application/views/gridmap/index.php:54
-#: application/views/interface_assets/footer.php:56
-#: application/views/logbookadvanced/index.php:357
-#: application/views/qso/index.php:758 application/views/user/edit.php:1330
-msgid "Clear"
-msgstr "Limpar"
 
 #: application/views/awards/cq/index.php:75
 #: application/views/awards/dxcc/index.php:74
@@ -7965,26 +8099,6 @@ msgstr "IOTA eliminada"
 #: application/views/awards/iota/index.php:212
 msgid "Deleted"
 msgstr "Suprimido"
-
-#: application/views/awards/itu/index.php:3
-#: application/views/awards/itu/index.php:207
-#: application/views/gridlookup/index.php:81
-#: application/views/gridmap/index.php:230
-#: application/views/logbookadvanced/checkresult.php:322
-#: application/views/logbookadvanced/edit.php:34
-#: application/views/logbookadvanced/index.php:21
-#: application/views/logbookadvanced/index.php:470
-#: application/views/logbookadvanced/index.php:1011
-#: application/views/logbookadvanced/useroptions.php:199
-#: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
-#: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:529
-#: application/views/station_profile/create.php:144
-#: application/views/station_profile/edit.php:169
-#: application/views/stationsetup/locationlist.php:22
-#: application/views/user/modals/first_login_wizard.php:86
-#: application/views/zonechecker/index.php:24
-msgid "ITU Zone"
-msgstr "Zona ITU"
 
 #: application/views/awards/itu/index.php:28
 msgid ""
@@ -14398,101 +14512,6 @@ msgstr "Vista"
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
 msgstr "Voltar ao Painel de Controle"
-
-#: application/views/gridlookup/index.php:8
-msgid ""
-"Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
-msgstr ""
-"Quadrícula inválida — use 2, 4, 6, 8 ou 10 caracteres (por exemplo, FN, "
-"FN31, FN31pr)."
-
-#: application/views/gridlookup/index.php:15
-msgid "Gridsquare borders"
-msgstr ""
-
-#: application/views/gridlookup/index.php:18
-msgid "Tracking"
-msgstr ""
-
-#: application/views/gridlookup/index.php:19
-#: application/views/logbookadvanced/mergedialog.php:71
-#: application/views/qslpostcard/designer.php:241
-msgid "Field"
-msgstr "Campo"
-
-#: application/views/gridlookup/index.php:20
-msgid "Square"
-msgstr ""
-
-#: application/views/gridlookup/index.php:21
-msgid "Subsquare"
-msgstr ""
-
-#: application/views/gridlookup/index.php:22
-msgid "Locating…"
-msgstr ""
-
-#: application/views/gridlookup/index.php:23
-msgid "Location access denied."
-msgstr ""
-
-#: application/views/gridlookup/index.php:24
-msgid "Location unavailable."
-msgstr ""
-
-#: application/views/gridlookup/index.php:25
-msgid "Location request timed out."
-msgstr ""
-
-#: application/views/gridlookup/index.php:35
-msgid "Plan your activity here"
-msgstr ""
-
-#: application/views/gridlookup/index.php:43
-msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr "Localizador Maidenhead de 2, 4, 6, 8 ou 10 carateres"
-
-#: application/views/gridlookup/index.php:43
-msgid "e.g. FN31pr"
-msgstr "por exemplo FN31pr"
-
-#: application/views/gridlookup/index.php:44
-msgid "to"
-msgstr "para"
-
-#: application/views/gridlookup/index.php:47
-msgid "Optional second gridsquare for distance and bearing"
-msgstr "Segunda quadrícula opcional para distância e azimute"
-
-#: application/views/gridlookup/index.php:47
-msgid "e.g. JN58qm"
-msgstr "p.ex. JN58qm"
-
-#: application/views/gridlookup/index.php:48
-msgid "Go"
-msgstr "Ir"
-
-#: application/views/gridlookup/index.php:50
-msgid "Find my location and gridsquare"
-msgstr ""
-
-#: application/views/gridlookup/index.php:50
-msgid "Locate me"
-msgstr ""
-
-#: application/views/gridlookup/index.php:53
-#: application/views/simplefle/index.php:162
-msgid "Refs"
-msgstr "Referências"
-
-#: application/views/gridlookup/index.php:65
-#: application/views/qso/index.php:759
-msgid "More options"
-msgstr "Mais opções"
-
-#: application/views/gridlookup/index.php:66
-msgid "Hide options"
-msgstr ""
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -23413,6 +23432,9 @@ msgstr ""
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr ""
+
+#~ msgid "Gridsquare Lookup"
+#~ msgstr "Consulta de Gridsquare"
 
 #~ msgid "With selected: "
 #~ msgstr "Com selecionado: "
