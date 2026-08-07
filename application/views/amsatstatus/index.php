@@ -42,13 +42,9 @@
         // ---- KPI roll-up over the 24h matrix ----
         $total_sats   = count($sat_order);
         $reachable_1h = 0;   // Heard or Crew Active in the last hour
-        $silent_24h   = 0;   // no report at all in the window
         $next_aos     = null; // soonest upcoming pass
         foreach ($sat_order as $name) {
             $row = $matrix[$name] ?? [];
-            $any = false;
-            foreach ($row as $cell) { if ($cell !== null) { $any = true; break; } }
-            if (!$any) { $silent_24h++; }
 
             $c0 = $row[0] ?? null;
             if ($c0 !== null && in_array($c0['winning'], ['Heard', 'Crew Active'], true)) {
