@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-07 07:53+0000\n"
-"PO-Revision-Date: 2026-08-07 05:08+0000\n"
+"PO-Revision-Date: 2026-08-07 16:46+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -331,7 +331,7 @@ msgstr "州／県"
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "アクティベーションプランナー"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -6058,23 +6058,23 @@ msgstr "状況報告はありません。"
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "過去1時間以内の活動状況"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "聞こえた、クルーが活動中"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "次のパス"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "今後のパスはありません"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
-msgstr ""
+msgstr "状態の凡例"
 
 #: application/views/amsatstatus/index.php:102
 #: application/views/amsatstatus/index.php:171
@@ -6090,6 +6090,8 @@ msgid ""
 "Satellite status by hour for the past 24 hours. Each cell is coloured by its "
 "winning status; hover for the report breakdown."
 msgstr ""
+"過去24時間の衛星の状況を時間別に表示します。各セルは、その勝利状況に応じて色"
+"分けされています。カーソルを合わせると、レポートの詳細が表示されます。"
 
 #: application/views/amsatstatus/index.php:117
 msgid "Next AOS"
@@ -6114,7 +6116,7 @@ msgstr "%d 時間前"
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
-msgstr[0] ""
+msgstr[0] "24時間以内に%d件の 報告"
 
 #: application/views/amsatstatus/index.php:192
 #, php-format
@@ -8388,17 +8390,19 @@ msgstr "メイデンヘッドのロケーターから州を自動入力します
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "POTAマップデータの読み込みエラー"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "これらのフィルターでは、POTAの参照はどれも機能しませんでした。"
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
 msgstr ""
+"POTAディレクトリが読み込まれませんでした - 座標が不足しています。update_pota "
+"cronジョブを実行してください。"
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/wwff/index.php:7
@@ -8444,41 +8448,41 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "まだアワードは受賞していません"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "進む %s"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "次のアワードのために、さらに%d 種類の異なる公園を選定します"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "あなたはPOTAアワードの最高ランクに到達しました！"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "すべてのティアを表示"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "上級賞"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "標準賞"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "POTAハンターの進捗状況"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "異なる公園で狩猟"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/wwff/index.php:50
