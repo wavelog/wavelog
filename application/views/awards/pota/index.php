@@ -84,9 +84,11 @@ $render_pota_progress = function ($count, $idPrefix, $verbText) use ($pota_award
 		<div class="alert alert-success mb-0"><?php echo __("You have reached the highest POTA award tier!"); ?></div>
 	<?php endif; ?>
 
-	<button class="btn btn-sm btn-outline-secondary mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $idPrefix; ?>_ladder" aria-expanded="false" aria-controls="<?php echo $idPrefix; ?>_ladder">
-		<i class="fas fa-list"></i> <?php echo __("Show all tiers"); ?>
-	</button>
+	<div class="text-center mt-3">
+		<button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $idPrefix; ?>_ladder" aria-expanded="false" aria-controls="<?php echo $idPrefix; ?>_ladder">
+			<i class="fas fa-list"></i> <?php echo __("Show all tiers"); ?>
+		</button>
+	</div>
 	<div class="collapse mt-2" id="<?php echo $idPrefix; ?>_ladder">
 		<?php foreach (['standard' => __("Standard Awards"), 'advanced' => __("Advanced Awards")] as $key => $label): ?>
 			<h6 class="mt-3 mb-2 text-muted"><?php echo $label; ?></h6>
