@@ -261,8 +261,8 @@ $render_pota_progress = function ($count, $idPrefix, $verbText) use ($pota_award
 				</thead>
 				<tbody>
 				<?php
-					if ($pota_all->num_rows() > 0) {
-						foreach ($pota_all->result() as $row) {
+					if (count($pota_all) > 0) {
+						foreach ($pota_all as $row) {
 							$references = explode(',', $row->COL_POTA_REF);
 								foreach ($references as $reference) {
 				?>
