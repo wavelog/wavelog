@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-07 07:53+0000\n"
-"PO-Revision-Date: 2026-08-06 12:23+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"PO-Revision-Date: 2026-08-07 16:46+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -347,7 +347,7 @@ msgstr "Staaten / Provinzen"
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "Aktivierungsplaner"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -6132,23 +6132,23 @@ msgstr "Keine Statusinformationen verfügbar."
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "Aktiv in der letzten Stunde"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "gehört oder Crew aktiv"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "Nächster Überflug"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "kein bevorstehender Überflug"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
-msgstr ""
+msgstr "Statuslegende"
 
 #: application/views/amsatstatus/index.php:102
 #: application/views/amsatstatus/index.php:171
@@ -6164,6 +6164,8 @@ msgid ""
 "Satellite status by hour for the past 24 hours. Each cell is coloured by its "
 "winning status; hover for the report breakdown."
 msgstr ""
+"Satellitenstatus nach Stunde für die letzten 24 Stunden. Jede Zelle ist "
+"entsprechend ihrem Status eingefärbt; zum Bericht mit der Maus darüberfahren."
 
 #: application/views/amsatstatus/index.php:117
 msgid "Next AOS"
@@ -6189,8 +6191,8 @@ msgstr "%d Stunden her"
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Bericht in 24h"
+msgstr[1] "%d Berichte in 24h"
 
 #: application/views/amsatstatus/index.php:192
 #, php-format
@@ -8500,17 +8502,17 @@ msgstr "um die Staaten anhand des Locators automatisch zu befüllen."
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "Fehler beim Laden der POTA-Kartendaten"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "Keine POTA-QSOs mit dieser Filtereinstellung gefunden."
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
-msgstr ""
+msgstr "POTA Basisdaten nicht geladen - Lasse den Updatejob laufen."
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/wwff/index.php:7
@@ -8560,41 +8562,41 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "Noch kein Diplom"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "Fortschritt zu %s"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "%d weitere verschiedene Park(s) für die nächste Auszeichnung"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "Du hast die höchste POTA-Auszeichnungsstufe erreicht!"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "Alle Ebenen anzeigen"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "Fortgeschrittene Auszeichnungen"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "Standard-Auszeichnungen"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "POTA-Jäger Fortschritt"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "verschiedene Parks gejagt"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/wwff/index.php:50
