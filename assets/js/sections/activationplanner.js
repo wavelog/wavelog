@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	let cfg           = window.gridlookupConfig || {};
+	let cfg           = window.activationplannerConfig || {};
 	let tileUrl       = cfg.tileUrl    || 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	let tileAttr      = cfg.tileAttr   || '&copy; OpenStreetMap contributors';
 	let glOverlays    = cfg.overlays    || [];
