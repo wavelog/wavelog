@@ -537,6 +537,16 @@ class Logbook_model extends CI_Model {
 				} else {
 					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				}
+				if (($propagation ?? '') == 'None') {
+					$this->db->group_start();
+					$this->db->where("COL_PROP_MODE = ''");
+					$this->db->or_where("COL_PROP_MODE is null");
+					$this->db->group_end();
+				} elseif ($propagation == 'NoSAT') {
+					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+				} elseif ($propagation != '' && $propagation != null) {
+					$this->db->where("COL_PROP_MODE", $propagation);
+				}
 				break;
 			case 'IOTA':
 				$this->db->where('COL_IOTA', $searchphrase);
@@ -1851,10 +1861,10 @@ class Logbook_model extends CI_Model {
 
 	/*
 	 * Whether $call is a syntactically valid amateur radio callsign.
-	 * This is rather a soft check to catch malicious input, not a full validation of the callsign. 
+	 * This is rather a soft check to catch malicious input, not a full validation of the callsign.
 	 * (e.g. dashes are allowed, even though they are not valid, but they are used by the people and
 	 * we simply don't want too many support tickets).
-	 * 
+	 *
 	 * Make sure matches assets/js/sections/callsign_validation.js
 	 */
 	function is_valid_callsign($call) {

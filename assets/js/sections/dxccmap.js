@@ -65,9 +65,13 @@ $('#band2').change(function(){
       $("#orbits").val('All');
       $("#satrow").hide();
       $("#orbitrow").hide();
+      if ($("#prop_mode").val() == "SAT") {
+         $("#prop_mode").val('All');
+      }
    } else {
       $("#satrow").show();
       $("#orbitrow").show();
+      $("#prop_mode").val('SAT');
    }
 });
 
@@ -76,6 +80,7 @@ $('#band2').change();	// trigger the change on fresh-load to hide/show SAT-Param
 $('#sats').change(function(){
    var sat = $("#sats option:selected").text();
       $("#band2").val('SAT');
+      $("#prop_mode").val('SAT');
    if (sat != "All") {
    }
 });
@@ -225,7 +230,7 @@ function addMarker(L, D, mapColor, map) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'DXCC2', '', $('#dateFrom').val(), $('#dateTo').val());
+    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'DXCC2', '', $('#dateFrom').val(), $('#dateTo').val(), $('#prop_mode').val());
 }
 
 // Preset functionality
