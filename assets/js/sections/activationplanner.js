@@ -1011,6 +1011,9 @@
 	}
 
 	function onMapClick(e) {
+		// While autotracking, ignore map clicks so the GPS marker keeps following
+		// uninterrupted. Stop tracking (Locate/Clear) to click-select again.
+		if (trackTimer !== null) { return; }
 		// Ignore clicks that began on a floating control (the borders panel and
 		// its dismiss button). Modern Leaflet routes map clicks through pointer
 		// events that disableClickPropagation doesn't stop, so without this the
