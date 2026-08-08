@@ -555,6 +555,50 @@
 		if (overlayLayers[id]) { map.removeLayer(overlayLayers[id]); }
 	}
 
+	/* Popup for a SOTA/POTA/WWFF reference point: a coloured type badge, the
+	 * reference (prominent), optional name, gridsquare and coordinates. */
+	function refPopup(type, D, color) {
+		return '<div class="ref-popup">' +
+			'<span class="ref-popup-type text-white" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
+			'<div class="ref-popup-ref">' + esc(D.reference) + '</div>' +
+			(D.name ? '<div>' + esc(D.name) + '</div>' : '') +
+			'<div class="ref-popup-grid">' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</div>' +
+			'<div>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</div>' +
+			'</div>';
+	}
+
+	/* Coloured circle marker (white letter) for the reference overlays on the
+	 * map — same look as the .ref-menu-dot swatch in the Refs dropdown. */
+	function refIcon(color, letter) {
+		return L.divIcon({
+			className: 'ref-map-icon',
+			html: '<span class="ref-menu-dot" style="background:' + esc(color) + '">' + esc(letter) + '</span>',
+			iconSize: [18, 18],
+			iconAnchor: [9, 9],
+			popupAnchor: [0, -10]
+		});
+	}
+
+	/* Loading overlay: a blocking spinner over the map while a reference
+	 * directory is fetching. A counter backs it so concurrent loads share one. */
+	let loadingCount = 0, loadingEl = null;
+	function mapLoadingStart() {
+		loadingCount++;
+		if (loadingCount === 1 && map) {
+			if (!loadingEl) {
+				loadingEl = document.createElement('div');
+				loadingEl.className = 'gl-loading';
+				loadingEl.innerHTML = '<div class="spinner-border text-light" role="status" aria-hidden="true"></div>';
+				map.getContainer().appendChild(loadingEl);
+			}
+			loadingEl.style.display = 'flex';
+		}
+	}
+	function mapLoadingDone() {
+		if (loadingCount > 0) { loadingCount--; }
+		if (loadingCount === 0 && loadingEl) { loadingEl.style.display = 'none'; }
+	}
+
 	/* ---- WWFF reference directory overlay ---- */
 	/* Loads the full wwff_directory once, plots every reference as a circleMarker
 	 * inside a markerClusterGroup — the same recipe as the WWFF award map. This
@@ -567,32 +611,26 @@
 		if (wwffCluster) { map.addLayer(wwffCluster); return; }      // cached after first load
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
+		mapLoadingStart();
 		fetch(wwffUrl)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
 				wwffCluster = L.markerClusterGroup({
 					chunkedLoading: true,
 					maxClusterRadius: 50,
-					showCoverageOnHover: false
+					showCoverageOnHover: false,
+					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
 				});
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.circleMarker([D.lat, D.lon], {
-						radius: 6,
-						weight: 1,
-						color: '#fff',
-						fillColor: '#2b8cbe',
-						fillOpacity: 0.9
-					});
-					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
-						(D.name ? '<br>' + esc(D.name) : '') +
-						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
+					dot.bindPopup(refPopup('WWFF', D, '#2b8cbe'));
 					wwffCluster.addLayer(dot);
 				}
 				map.addLayer(wwffCluster);
 			})
-			.catch(function (err) { console.error('WWFF directory load failed:', err); });
+			.catch(function (err) { console.error('WWFF directory load failed:', err); mapLoadingDone(); });
 	}
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
@@ -602,32 +640,26 @@
 		if (potaCluster) { map.addLayer(potaCluster); return; }      // cached after first load
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
+		mapLoadingStart();
 		fetch(potaUrl)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
 				potaCluster = L.markerClusterGroup({
 					chunkedLoading: true,
 					maxClusterRadius: 50,
-					showCoverageOnHover: false
+					showCoverageOnHover: false,
+					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
 				});
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.circleMarker([D.lat, D.lon], {
-						radius: 6,
-						weight: 1,
-						color: '#fff',
-						fillColor: '#238b45',
-						fillOpacity: 0.9
-					});
-					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
-						(D.name ? '<br>' + esc(D.name) : '') +
-						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
+					dot.bindPopup(refPopup('POTA', D, '#238b45'));
 					potaCluster.addLayer(dot);
 				}
 				map.addLayer(potaCluster);
 			})
-			.catch(function (err) { console.error('POTA directory load failed:', err); });
+			.catch(function (err) { console.error('POTA directory load failed:', err); mapLoadingDone(); });
 	}
 	function disablePota() {
 		if (potaCluster) { map.removeLayer(potaCluster); }
@@ -637,32 +669,26 @@
 		if (sotaCluster) { map.addLayer(sotaCluster); return; }      // cached after first load
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
+		mapLoadingStart();
 		fetch(sotaUrl)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
 				sotaCluster = L.markerClusterGroup({
 					chunkedLoading: true,
 					maxClusterRadius: 50,
-					showCoverageOnHover: false
+					showCoverageOnHover: false,
+					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
 				});
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.circleMarker([D.lat, D.lon], {
-						radius: 6,
-						weight: 1,
-						color: '#fff',
-						fillColor: '#d95f0e',
-						fillOpacity: 0.9
-					});
-					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
-						(D.name ? '<br>' + esc(D.name) : '') +
-						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#d95f0e', 'S') });
+					dot.bindPopup(refPopup('SOTA', D, '#d95f0e'));
 					sotaCluster.addLayer(dot);
 				}
 				map.addLayer(sotaCluster);
 			})
-			.catch(function (err) { console.error('SOTA directory load failed:', err); });
+			.catch(function (err) { console.error('SOTA directory load failed:', err); mapLoadingDone(); });
 	}
 	function disableSota() {
 		if (sotaCluster) { map.removeLayer(sotaCluster); }

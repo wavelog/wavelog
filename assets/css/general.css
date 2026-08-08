@@ -1130,6 +1130,54 @@ label {
 	border-color: #e0a800 !important;
 }
 
+/* SOTA/POTA/WWFF reference popups (activation planner) */
+.ref-popup { line-height: 1.4; }
+.ref-popup-type {
+	display: inline-block;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	padding: 1px 6px;
+	border-radius: 3px;
+	margin-bottom: 4px;
+}
+.ref-popup-ref { font-size: 1.15rem; font-weight: 700; }
+.ref-popup-grid { font-weight: 600; }
+
+/* Coloured marker swatch in the activation planner Refs dropdown */
+.ref-menu-dot {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	color: #fff;
+	font-size: 0.7rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+/* Reference map markers reuse the .ref-menu-dot swatch inside a divIcon */
+.ref-map-icon { background: transparent; border: none; }
+
+/* Blocking loading overlay for the activation planner map */
+.gl-loading {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.35);
+	cursor: wait;
+}
+
 .info.leaflet-control {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
