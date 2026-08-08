@@ -143,13 +143,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <div>
                     <span class="status-indicator <?php echo $is_on_air ? 'on-air' : 'off-air'; ?>"></span>
                     <span class="<?= $text_size_class ?>">
-                        <?php
-                            if ($is_on_air === true) {
-                                printf("%s ON-AIR", $user_callsign);
-                            } else {
-                                printf("%s OFF-AIR", $user_callsign);
-                            }
-                        ?>
+						<?= sprintf(_pgettext("on air status test: callsign is on-air/off-air","%s is %s"), $user_callsign, $is_on_air ? 'ON-AIR' : 'OFF-AIR'); ?>
                     </span>
                 </div>
             </div>
@@ -204,13 +198,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <div>
                     <span class="status-indicator <?php echo $is_on_air ? 'on-air' : 'off-air'; ?>"></span>
                     <span class="<?= $text_size_class ?>" id="status-text">
-                        <?php
-                            if ($is_on_air === true) {
-                                printf("%s is ON-AIR", $user_callsign);
-                            } else {
-                                printf("%s is OFF-AIR", $user_callsign);
-                            }
-                        ?>
+						<?= sprintf(_pgettext("on air status test: callsign is on-air/off-air","%s is %s"), $user_callsign, $is_on_air ? 'ON-AIR' : 'OFF-AIR'); ?>
                     </span>
                 </div>
                 <div class="refresh-indicator" id="refresh-indicator">
@@ -255,6 +243,8 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             const userSlug = '<?php echo $user_slug ?? ''; ?>';
             let updateInterval;
 
+			let statusTextTranslation = "<?= _pgettext("on air status test: callsign is on-air/off-air","%s is %s"); ?>";
+
             function updateWidget() {
                 if (!userSlug) return;
 
@@ -269,7 +259,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                     refreshIndicator.classList.add('updating');
                 }
 
-                fetch(`${window.location.origin}/index.php/widgets/on_air_ajax/${userSlug}`)
+				fetch(`<?php echo base_url(); ?>index.php/widgets/on_air_ajax/${userSlug}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.error) {
@@ -278,7 +268,8 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                         }
 
                         if (statusText) {
-                            statusText.textContent = `${data.user_callsign} is ${data.is_on_air ? 'ON-AIR' : 'OFF-AIR'}`;
+							let airStatus = data.is_on_air ? 'ON-AIR' : 'OFF-AIR'
+                            statusText.textContent = statusTextTranslation.replace("%s", data.user_callsign).replace("%s", airStatus);
                         }
 
                         if (statusIndicator) {
@@ -298,14 +289,14 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                                         </div>
                                     `;
                                 });
-                                html += '<div class="last-updated mt-2"><small id="last-updated-text">Last updated: ' +
+								html += '<div class="last-updated mt-2"><small id="last-updated-text"><?= __("Last updated:"); ?> ' +
                                        new Date().toLocaleTimeString() + '</small></div>';
                             } else if (data.last_seen_text) {
                                 html = `<p class="${window.textSizeClass || ''}" id="last-seen-text">${data.last_seen_text}</p>`;
-                                html += '<div class="last-updated mt-2"><small id="last-updated-text">Last updated: ' +
+								html += '<div class="last-updated mt-2"><small id="last-updated-text"><?= __("Last updated:"); ?> ' +
                                        new Date().toLocaleTimeString() + '</small></div>';
                             } else {
-                                html = '<div class="last-updated mt-2"><small id="last-updated-text">Last updated: ' +
+								html = '<div class="last-updated mt-2"><small id="last-updated-text"><?= __("Last updated:"); ?> ' +
                                        new Date().toLocaleTimeString() + '</small></div>';
                             }
 
@@ -313,7 +304,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                         }
 
                         if (lastUpdatedText) {
-                            lastUpdatedText.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+							lastUpdatedText.textContent = '<?= __("Last updated:"); ?> ' + new Date().toLocaleTimeString();
                         }
                     })
                     .catch(error => {
