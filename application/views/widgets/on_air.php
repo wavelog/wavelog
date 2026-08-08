@@ -25,7 +25,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
     <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/overrides.css'); ?>">
     <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/general.css'); ?>">
 
-    <title><?= "Wavelog Dynamic On-Air widget"; ?></title>
+    <title>Wavelog Dynamic On-Air widget</title>
     <style>
         .widget.container {
             max-width: none;
@@ -142,7 +142,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             <div class="top-right">
                 <div>
                     <span class="status-indicator <?php echo $is_on_air ? 'on-air' : 'off-air'; ?>"></span>
-                    <span class="<?= $text_size_class ?>">
+                    <span class="<?php echo $text_size_class ?>">
 						<?= sprintf(_pgettext("on air status test: callsign is on-air/off-air","%s is %s"), $user_callsign, $is_on_air ? 'ON-AIR' : 'OFF-AIR'); ?>
                     </span>
                 </div>
@@ -151,14 +151,14 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <?php if ($is_on_air === true) { ?>
                     <?php foreach ($radios_online as $radio_data) { ?>
                         <div class="frequency-info mb-2">
-                            <span class="frequency-display <?= $text_size_class ?>">
-                                <?= htmlspecialchars($radio_data->frequency_string); ?>
+                            <span class="frequency-display <?php echo $text_size_class ?>">
+                                <?php echo htmlspecialchars($radio_data->frequency_string); ?>
                             </span>
                         </div>
                     <?php } ?>
                 <?php } else if ($last_seen_text !== null) { ?>
-                    <div class="<?= $text_size_class ?> text-muted">
-                        <?= htmlspecialchars($last_seen_text); ?>
+                    <div class="<?php echo $text_size_class ?> text-muted">
+                        <?php echo htmlspecialchars($last_seen_text); ?>
                     </div>
                 <?php } ?>
                 <div class="last-updated mt-2">
@@ -171,12 +171,12 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             <div class="top-right">
                 <div>
                     <span class="status-indicator off-air"></span>
-                    <span class="<?= $text_size_class ?>"><?= __("Error") ?></span>
+                    <span class="<?php echo $text_size_class ?>"><?= __("Error") ?></span>
                 </div>
             </div>
             <div class="bottom-right mt-2">
-                <div class="<?= $text_size_class ?> text-danger">
-                    <?= $error ?>
+                <div class="<?php echo $text_size_class ?> text-danger">
+                    <?php echo $error ?>
                 </div>
                 <div class="last-updated mt-2">
                     <small><?= sprintf(__("Updated: %s (%s)"), date('H:i:s'), __("auto-refreshed by QRZ.com every 60s")); ?></small>
@@ -197,7 +197,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             <div class="top-right d-flex justify-content-between align-items-center">
                 <div>
                     <span class="status-indicator <?php echo $is_on_air ? 'on-air' : 'off-air'; ?>"></span>
-                    <span class="<?= $text_size_class ?>" id="status-text">
+                    <span class="<?php echo $text_size_class ?>" id="status-text">
 						<?= sprintf(_pgettext("on air status test: callsign is on-air/off-air","%s is %s"), $user_callsign, $is_on_air ? 'ON-AIR' : 'OFF-AIR'); ?>
                     </span>
                 </div>
@@ -209,14 +209,14 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <?php if ($is_on_air === true) { ?>
                     <?php foreach ($radios_online as $radio_data) { ?>
                         <div class="frequency-info mb-2">
-                            <span class="frequency-display <?= $text_size_class ?>" id="frequency-display">
-                                <?= htmlspecialchars($radio_data->frequency_string); ?>
+                            <span class="frequency-display <?php echo $text_size_class ?>" id="frequency-display">
+                                <?php echo htmlspecialchars($radio_data->frequency_string); ?>
                             </span>
                         </div>
                     <?php } // end foreach ?>
                 <?php } else if ($last_seen_text !== null) { ?>
-                    <p class="<?= $text_size_class ?>" id="last-seen-text">
-                        <?= htmlspecialchars($last_seen_text); ?>
+                    <p class="<?php echo $text_size_class ?>" id="last-seen-text">
+                        <?php echo htmlspecialchars($last_seen_text); ?>
                     </p>
                 <?php } ?>
                 <div class="last-updated mt-2">
@@ -227,10 +227,10 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
      <?php } else { ?>
         <div class="right-column">
             <div class="top-right">
-                <p class="<?= $text_size_class ?>"><?= __("Error") ?></p>
+                <p class="<?php echo $text_size_class ?>"><?= __("Error") ?></p>
             </div>
             <div class="bottom-right mt-3">
-                <p class="<?= $text_size_class ?>"><?= htmlspecialchars($error) ?></p>
+                <p class="<?php echo $text_size_class ?>"><?php echo htmlspecialchars($error) ?></p>
            </div>
         </div>
      <?php } ?>
