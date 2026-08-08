@@ -24,6 +24,7 @@
 	let fieldLbl        = cfg.fieldLbl       || 'Field';
 	let squareLbl       = cfg.squareLbl      || 'Square';
 	let subsquareLbl    = cfg.subsquareLbl   || 'Subsquare';
+	let gridLbl         = cfg.gridLbl        || 'Gridsquare';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -392,13 +393,20 @@
 				'<i class="gl-dot"></i>' + esc(t.lbl) + ' (' + esc(t.val) + ')</span>';
 		}).join(' ');
 
-		let meta = [zones, state].filter(Boolean).join(' &middot; ');
+		let metaLines = [];
+		if (zones) {
+			zones.split(' / ').forEach(function (z) {
+				metaLines.push(z.replace(/^CQ /, 'CQ Zone ').replace(/^ITU /, 'ITU Zone '));
+			});
+		}
+		if (state) { metaLines.push(state); }
 
 		return '<div class="gl-popup">' +
+			'<div class="gl-pop-head"><span class="ref-popup-type" style="background:#dc3545">' + esc(gridLbl) + '</span></div>' +
 			'<div class="gl-pop-grid">' + loc + '</div>' +
-			'<div class="gl-pop-coords"><i class="fas fa-map-pin"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
+			'<div class="gl-pop-coords"><i class="fas fa-location-crosshairs"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
 			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
-			(meta ? '<div class="gl-pop-meta">' + meta + '</div>' : '') +
+			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
 			'</div>';
 	}
 
