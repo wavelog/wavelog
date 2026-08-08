@@ -216,7 +216,7 @@ class Widgets extends CI_Controller {
 			$data['user_slug'] = $user_slug;
 			$data['nojs'] = $nojs;
 
-			$data['user_callsign'] = strtoupper($user->user_callsign);
+			$data['user_callsign'] = $this->get_active_station_callsign($user_id, $user->user_callsign);
 			$data['is_on_air'] = count($radios_online) > 0;
 			$data['radios_online'] = $radios_online;
 			$data['last_seen_text'] = $last_seen_text;
@@ -227,7 +227,7 @@ class Widgets extends CI_Controller {
 			$data['user_slug'] = $user_slug;
 			$data['nojs'] = $nojs;
 			$data['error'] = __("No CAT interfaced radios found. You need to have at least one radio interface configured.");
-			$data['user_callsign'] = strtoupper($user->user_callsign);
+			$data['user_callsign'] = $this->get_active_station_callsign($user_id, $user->user_callsign);
 			$data['is_on_air'] = false;
 			$data['radios_online'] = [];
 			$data['last_seen_text'] = null;
@@ -296,7 +296,7 @@ class Widgets extends CI_Controller {
 
 			$response = [
 				'success' => true,
-				'user_callsign' => strtoupper($user->user_callsign),
+				'user_callsign' => $this->get_active_station_callsign($user_id, $user->user_callsign),
 				'is_on_air' => count($radios_online) > 0,
 				'radios_online' => $radios_online,
 				'last_seen_text' => $last_seen_text,
@@ -307,7 +307,7 @@ class Widgets extends CI_Controller {
 		} else {
 			echo json_encode([
 				'success' => true,
-				'user_callsign' => strtoupper($user->user_callsign),
+				'user_callsign' => $this->get_active_station_callsign($user_id, $user->user_callsign),
 				'is_on_air' => false,
 				'radios_online' => [],
 				'last_seen_text' => null,
@@ -390,6 +390,19 @@ class Widgets extends CI_Controller {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Fetch the callsign of the user's active station location.
+	 * Falls back to the user's own callsign if no station is active.
+	 *
+	 * @return string
+	 */
+	private function get_active_station_callsign($user_id, $fallback_callsign) {
+		$active_station_id = $this->stations->find_active($user_id);
+		$station = $this->stations->profile($active_station_id)->row();
+
+		return strtoupper($station->station_callsign ?? $fallback_callsign);
 	}
 
 	/**
