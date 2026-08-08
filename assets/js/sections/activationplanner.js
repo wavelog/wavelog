@@ -566,7 +566,6 @@
 						fillColor: '#2b8cbe',
 						fillOpacity: 0.9
 					});
-					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
 					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
 						(D.name ? '<br>' + esc(D.name) : '') +
 						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
@@ -602,7 +601,6 @@
 						fillColor: '#238b45',
 						fillOpacity: 0.9
 					});
-					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
 					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
 						(D.name ? '<br>' + esc(D.name) : '') +
 						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
@@ -638,7 +636,6 @@
 						fillColor: '#d95f0e',
 						fillOpacity: 0.9
 					});
-					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
 					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
 						(D.name ? '<br>' + esc(D.name) : '') +
 						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
