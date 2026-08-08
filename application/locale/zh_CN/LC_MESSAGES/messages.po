@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-08 08:09+0000\n"
+"POT-Creation-Date: 2026-08-08 09:50+0000\n"
 "PO-Revision-Date: 2026-08-04 09:05+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -250,11 +250,11 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Update.php:28 application/controllers/User.php:15
 #: application/controllers/User.php:61 application/controllers/User.php:108
 #: application/controllers/User.php:125 application/controllers/User.php:148
-#: application/controllers/User.php:406 application/controllers/User.php:407
-#: application/controllers/User.php:1160 application/controllers/User.php:1178
-#: application/controllers/User.php:1224 application/controllers/User.php:1476
-#: application/controllers/User.php:1614 application/controllers/User.php:1834
-#: application/controllers/User.php:1850 application/controllers/User.php:1874
+#: application/controllers/User.php:407 application/controllers/User.php:408
+#: application/controllers/User.php:1163 application/controllers/User.php:1181
+#: application/controllers/User.php:1227 application/controllers/User.php:1479
+#: application/controllers/User.php:1617 application/controllers/User.php:1837
+#: application/controllers/User.php:1853 application/controllers/User.php:1877
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
@@ -1200,7 +1200,7 @@ msgid "Access denied"
 msgstr "拒绝访问"
 
 #: application/controllers/Contesting.php:1052
-#: application/controllers/User.php:1432
+#: application/controllers/User.php:1435
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
@@ -1627,7 +1627,7 @@ msgid "User not found."
 msgstr "未找到此用户。"
 
 #: application/controllers/Header_auth.php:110
-#: application/controllers/User.php:1422
+#: application/controllers/User.php:1425
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr "你不能直接登录集体台站。使用你的个人账户登录。"
@@ -1638,12 +1638,12 @@ msgid ""
 "are currently allowed to log in."
 msgstr "抱歉。该服务器目前处于维护模式。目前仅允许管理员登录。"
 
-#: application/controllers/Header_auth.php:354
-#: application/controllers/Header_auth.php:358
+#: application/controllers/Header_auth.php:355
+#: application/controllers/Header_auth.php:359
 msgid "Something went terribly wrong. Check the error log."
 msgstr "出现了严重的问题，请检查错误日志。"
 
-#: application/controllers/Header_auth.php:434
+#: application/controllers/Header_auth.php:435
 msgid "SSO Config Error. Check error log."
 msgstr "SSO 设置错误，请检查错误日志。"
 
@@ -3321,7 +3321,7 @@ msgstr "创建台站地址"
 
 #: application/controllers/Station.php:74
 #: application/controllers/Station.php:99 application/controllers/User.php:269
-#: application/controllers/User.php:1017 application/controllers/User.php:1196
+#: application/controllers/User.php:1019 application/controllers/User.php:1199
 msgid "Invalid security token"
 msgstr "无效的安全令牌"
 
@@ -3354,7 +3354,7 @@ msgid "Duplicate Station Location:"
 msgstr "台站地址重复："
 
 #: application/controllers/Station.php:233
-#: application/controllers/User.php:1497 application/controllers/User.php:1750
+#: application/controllers/User.php:1500 application/controllers/User.php:1753
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "请检查网格定位的值 ( %s )"
@@ -3386,8 +3386,8 @@ msgstr "不允许"
 #: application/views/contesting/manager/index.php:152
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
-#: application/views/widgets/on_air.php:181
-#: application/views/widgets/on_air.php:243
+#: application/views/widgets/on_air.php:190
+#: application/views/widgets/on_air.php:249
 msgid "Error"
 msgstr "错误"
 
@@ -3755,92 +3755,92 @@ msgstr "无效参数！"
 msgid "Add User"
 msgstr "添加用户"
 
-#: application/controllers/User.php:341
+#: application/controllers/User.php:342
 #, php-format
 msgid "Username %s already in use!"
 msgstr "用户名 %s 已被使用！"
 
-#: application/controllers/User.php:344
+#: application/controllers/User.php:345
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "E-mail %s 已被使用！"
 
-#: application/controllers/User.php:347
+#: application/controllers/User.php:348
 msgid "Invalid Password!"
 msgstr "无效的密码！"
 
-#: application/controllers/User.php:351
+#: application/controllers/User.php:352
 #, php-format
 msgid "User %s added!"
 msgstr "用户 %s 已添加！"
 
-#: application/controllers/User.php:355
+#: application/controllers/User.php:356
 msgid "Users"
 msgstr "用户"
 
-#: application/controllers/User.php:464
+#: application/controllers/User.php:465
 msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr "无法修改设置，请通过您的身份提供商进行管理。"
 
-#: application/controllers/User.php:467
+#: application/controllers/User.php:468
 #: application/views/club/permissions.php:318
 msgid "Edit User"
 msgstr "编辑用户"
 
-#: application/controllers/User.php:1092 application/controllers/User.php:1095
+#: application/controllers/User.php:1094 application/controllers/User.php:1097
 #, php-format
 msgid "User %s edited"
 msgstr "用户 %s 已修改"
 
-#: application/controllers/User.php:1163
+#: application/controllers/User.php:1166
 msgid "Profile"
 msgstr "个人资料"
 
-#: application/controllers/User.php:1186
+#: application/controllers/User.php:1189
 #: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "删除用户"
 
-#: application/controllers/User.php:1202
+#: application/controllers/User.php:1205
 msgid "User deleted"
 msgstr "用户已删除"
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1208
 msgid "Could not delete user!"
 msgstr "无法删除用户！"
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1208
 msgid "Database error:"
 msgstr "数据库错误："
 
-#: application/controllers/User.php:1279
+#: application/controllers/User.php:1282
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
 msgstr "恭喜你，Wavelog 已成功安装，你可以登录并开始通联了。"
 
-#: application/controllers/User.php:1317
+#: application/controllers/User.php:1320
 msgid "This is not allowed!"
 msgstr "这不被允许！"
 
-#: application/controllers/User.php:1354 application/controllers/User.php:1367
+#: application/controllers/User.php:1357 application/controllers/User.php:1370
 msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
-#: application/controllers/User.php:1375
+#: application/controllers/User.php:1378
 #: application/views/interface_assets/header.php:429
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "登录"
 
-#: application/controllers/User.php:1425
+#: application/controllers/User.php:1428
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr "由于多次登录失败，你的账号已锁定。请重置你的密码。"
 
-#: application/controllers/User.php:1429
+#: application/controllers/User.php:1432
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -3849,18 +3849,18 @@ msgstr ""
 "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管"
 "理员登录。"
 
-#: application/controllers/User.php:1456
+#: application/controllers/User.php:1459
 #, php-format
 msgid "User %s logged out."
 msgstr "用户 '%s' 已登出。"
 
-#: application/controllers/User.php:1479
+#: application/controllers/User.php:1482
 #: application/views/oqrs/request_grouped.php:19
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "台站名称"
 
-#: application/controllers/User.php:1480 application/views/debug/index.php:804
+#: application/controllers/User.php:1483 application/views/debug/index.php:804
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
@@ -3870,27 +3870,27 @@ msgstr "台站名称"
 msgid "Station Callsign"
 msgstr "电台呼号"
 
-#: application/controllers/User.php:1481
+#: application/controllers/User.php:1484
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "台站 DXCC"
 
-#: application/controllers/User.php:1482
+#: application/controllers/User.php:1485
 msgid "Station CQ Zone"
 msgstr "电台站 CQ 分区"
 
-#: application/controllers/User.php:1483
+#: application/controllers/User.php:1486
 msgid "Station ITU Zone"
 msgstr "电台站 ITU 分区"
 
-#: application/controllers/User.php:1484
+#: application/controllers/User.php:1487
 #: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
 msgstr "台站网格坐标"
 
-#: application/controllers/User.php:1505
+#: application/controllers/User.php:1508
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -3898,47 +3898,47 @@ msgid ""
 msgstr ""
 "电台站创建成功！欢迎来到 Wavelog ！为了完成电台站设置，请 %s点击这里%s 。"
 
-#: application/controllers/User.php:1508
+#: application/controllers/User.php:1511
 msgid "Station setup failed! Please set up your station manually."
 msgstr "电台站设置失败！请手动设置你的电台站。"
 
-#: application/controllers/User.php:1525
+#: application/controllers/User.php:1528
 msgid "Password Reset is disabled on the Demo!"
 msgstr "在测试实例上，密码重置已禁用！"
 
-#: application/controllers/User.php:1539
+#: application/controllers/User.php:1542
 msgid "Forgot Password"
 msgstr "忘记密码"
 
-#: application/controllers/User.php:1589
+#: application/controllers/User.php:1592
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "邮件配置有误。"
 
-#: application/controllers/User.php:1593 application/controllers/User.php:1598
+#: application/controllers/User.php:1596 application/controllers/User.php:1601
 msgid "Password Reset Processed."
 msgstr "密码重置已处理。"
 
-#: application/controllers/User.php:1704
+#: application/controllers/User.php:1707
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "重置密码"
 
-#: application/controllers/User.php:1724
+#: application/controllers/User.php:1727
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr "无法为账户设置给定的用户名。请尝试使用除“%s”以外的用户名。"
 
-#: application/controllers/User.php:1733
+#: application/controllers/User.php:1736
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr "无法为账户设置给定的电子邮件地址。请尝试使用除“%s”以外的地址。"
 
-#: application/controllers/User.php:1772
+#: application/controllers/User.php:1775
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3946,54 +3946,54 @@ msgid ""
 msgstr ""
 "你当前无权以其他用户身份操作。你需要在你的 config.php 中将 %s 设置为 %s ！"
 
-#: application/controllers/User.php:1783
+#: application/controllers/User.php:1786
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr "无法进行此操作，请在 config.php 里设置 encryption_key！"
 
-#: application/controllers/User.php:1790
+#: application/controllers/User.php:1793
 msgid "Invalid Hash"
 msgstr "Hash 无效"
 
-#: application/controllers/User.php:1803
+#: application/controllers/User.php:1806
 msgid "The impersonation hash is too old. Please try again."
 msgstr "用户 Hash 已过期，请重试。"
 
-#: application/controllers/User.php:1810
+#: application/controllers/User.php:1813
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr "由于你未登录为原用户，故无法切换至另一个用户角色"
 
-#: application/controllers/User.php:1816
+#: application/controllers/User.php:1819
 msgid "There was a problem with your session. Please try again."
 msgstr "会话出现问题，请重试。"
 
-#: application/controllers/User.php:1823
+#: application/controllers/User.php:1826
 msgid "The requested user to impersonate does not exist"
 msgstr "切换的用户不存在"
 
-#: application/controllers/User.php:1844
+#: application/controllers/User.php:1847
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr "无法确认集体台站的正确角色。请重新登录后再试。"
 
-#: application/controllers/User.php:1885 application/controllers/User.php:1897
-#: application/controllers/User.php:1903 application/controllers/User.php:1912
-#: application/controllers/User.php:1920
+#: application/controllers/User.php:1888 application/controllers/User.php:1900
+#: application/controllers/User.php:1906 application/controllers/User.php:1915
+#: application/controllers/User.php:1923
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "呃… 发生了一些问题。请登录后重试。"
 
-#: application/controllers/User.php:1926
+#: application/controllers/User.php:1929
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr "快速返回功能因安全哈希过期而被禁用，请重新登录以继续操作。"
 
-#: application/controllers/User.php:1942
+#: application/controllers/User.php:1945
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -4040,17 +4040,17 @@ msgstr "未指定用户标识"
 msgid "User has on-air widget disabled"
 msgstr "用户禁用了 on-air 插件"
 
-#: application/controllers/Widgets.php:228
+#: application/controllers/Widgets.php:229
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr "找不到 CAT 接口的电台。你需要至少配置一个电台接口。"
 
-#: application/controllers/Widgets.php:421
+#: application/controllers/Widgets.php:440
 msgid "User not found by slug"
 msgstr "通过标识未找到用户"
 
-#: application/controllers/Widgets.php:424
+#: application/controllers/Widgets.php:443
 msgid "Multiple users found by slug"
 msgstr "通过标识找到多个用户"
 
@@ -5105,7 +5105,7 @@ msgstr "Go"
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
-#: application/views/qso/index.php:757 application/views/user/edit.php:1330
+#: application/views/qso/index.php:757 application/views/user/edit.php:1341
 msgid "Clear"
 msgstr "清除"
 
@@ -11237,7 +11237,7 @@ msgid "Time window"
 msgstr "时间窗口"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
-#: application/views/user/edit.php:1273
+#: application/views/user/edit.php:1284
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -11961,7 +11961,7 @@ msgstr "如果符合条件，向竞赛组织者申请纸质奖状。"
 #: application/views/station_profile/edit.php:447
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
-#: application/views/user/edit.php:1195
+#: application/views/user/edit.php:1206
 msgid "Yes"
 msgstr "是"
 
@@ -21839,15 +21839,25 @@ msgid ""
 "not."
 msgstr "这个设置控制是否在插件上显示 “上次出现” 时间。"
 
-#: application/views/user/edit.php:1192
+#: application/views/user/edit.php:1198
+msgid "Display radio name"
+msgstr ""
+
+#: application/views/user/edit.php:1199
+msgid ""
+"This setting controls whether the radio's name is displayed in the widget or "
+"not."
+msgstr ""
+
+#: application/views/user/edit.php:1203
 msgid "Display only most recently updated radio"
 msgstr "仅显示最近更新的电台"
 
-#: application/views/user/edit.php:1196
+#: application/views/user/edit.php:1207
 msgid "No, show all radios"
 msgstr "不，显示所有电台"
 
-#: application/views/user/edit.php:1198
+#: application/views/user/edit.php:1209
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -21857,75 +21867,75 @@ msgstr ""
 "如果你配置了多个 CAT 无线电，则此设置控制小部件是否应显示用户的所有电台，还是"
 "仅显示最近更新的电台。如果你只有一个电台，则此设置无效。"
 
-#: application/views/user/edit.php:1208
+#: application/views/user/edit.php:1219
 msgid "QSOs widget"
 msgstr "QSO 小部件"
 
-#: application/views/user/edit.php:1217
+#: application/views/user/edit.php:1228
 msgid "Display exact QSO time"
 msgstr "显示确切通联时间"
 
-#: application/views/user/edit.php:1218
+#: application/views/user/edit.php:1229
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr "此设置控制 QSO 小部件中是否显示确切的通联时间。"
 
-#: application/views/user/edit.php:1232
+#: application/views/user/edit.php:1243
 msgid "Miscellaneous"
 msgstr "其它"
 
-#: application/views/user/edit.php:1240
+#: application/views/user/edit.php:1251
 msgid "AMSAT Status Upload"
 msgstr "上传 AMSAT"
 
-#: application/views/user/edit.php:1249
+#: application/views/user/edit.php:1260
 msgid "Upload status of SAT QSOs to"
 msgstr "上传卫星状态到"
 
-#: application/views/user/edit.php:1259
+#: application/views/user/edit.php:1270
 msgid "Mastodonserver"
 msgstr "Mastodon 服务器"
 
-#: application/views/user/edit.php:1262
+#: application/views/user/edit.php:1273
 msgid "URL of Mastodonserver"
 msgstr "Mastodon 地址"
 
-#: application/views/user/edit.php:1264
+#: application/views/user/edit.php:1275
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "你的 Mastodon 服务器地址，例如 %s"
 
-#: application/views/user/edit.php:1282
+#: application/views/user/edit.php:1293
 msgid "Winkeyer Features Enabled"
 msgstr "启用 Winkeyer 功能"
 
-#: application/views/user/edit.php:1283
+#: application/views/user/edit.php:1294
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr "Wavelog 对 Winkeyer 的支持是实验性的，请在使用前阅读说明 %s。"
 
-#: application/views/user/edit.php:1295
+#: application/views/user/edit.php:1306
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1298
+#: application/views/user/edit.php:1309
 msgid "Private Feed Key"
 msgstr "Private Feed Key"
 
-#: application/views/user/edit.php:1300
+#: application/views/user/edit.php:1311
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "在 %s 查看个人资料。"
 
-#: application/views/user/edit.php:1309
+#: application/views/user/edit.php:1320
 msgid "Show Workable Passes Only"
 msgstr "只显示可通联的过境"
 
-#: application/views/user/edit.php:1310
+#: application/views/user/edit.php:1321
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -21933,15 +21943,15 @@ msgstr ""
 "如果启用，仅显示基于在 hams.at 设置好的位置信息计算过境，需要设置好 Private "
 "Feed Key。"
 
-#: application/views/user/edit.php:1323
+#: application/views/user/edit.php:1334
 msgid "Save Account"
 msgstr "保存账户更改"
 
-#: application/views/user/edit.php:1329
+#: application/views/user/edit.php:1340
 msgid "Search settings"
 msgstr "搜索设置"
 
-#: application/views/user/edit.php:1331
+#: application/views/user/edit.php:1342
 msgid "No settings match your search."
 msgstr "没有符合您搜索的设置。"
 
@@ -22590,6 +22600,40 @@ msgstr "标记 QSO 以导出至 QO-100 Dx Club"
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSO 已被标记成导出至 QO-100 Dx Club。"
+
+#: application/views/widgets/on_air.php:159
+#: application/views/widgets/on_air.php:217
+#: application/views/widgets/on_air.php:271
+#, php-format
+msgctxt "on air status test: callsign is on-air/off-air"
+msgid "%s is %s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:181
+#: application/views/widgets/on_air.php:198
+#, php-format
+msgid "Updated: %s (%s)"
+msgstr ""
+
+#: application/views/widgets/on_air.php:181
+msgid "auto-refreshed every 60s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:198
+msgid "auto-refreshed by QRZ.com every 60s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:242
+#, php-format
+msgid "Last updated: %s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:318
+#: application/views/widgets/on_air.php:322
+#: application/views/widgets/on_air.php:325
+#: application/views/widgets/on_air.php:333
+msgid "Last updated:"
+msgstr ""
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"

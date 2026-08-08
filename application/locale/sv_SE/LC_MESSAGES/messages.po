@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-08 08:09+0000\n"
+"POT-Creation-Date: 2026-08-08 09:50+0000\n"
 "PO-Revision-Date: 2026-08-07 16:46+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -225,11 +225,11 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Update.php:28 application/controllers/User.php:15
 #: application/controllers/User.php:61 application/controllers/User.php:108
 #: application/controllers/User.php:125 application/controllers/User.php:148
-#: application/controllers/User.php:406 application/controllers/User.php:407
-#: application/controllers/User.php:1160 application/controllers/User.php:1178
-#: application/controllers/User.php:1224 application/controllers/User.php:1476
-#: application/controllers/User.php:1614 application/controllers/User.php:1834
-#: application/controllers/User.php:1850 application/controllers/User.php:1874
+#: application/controllers/User.php:407 application/controllers/User.php:408
+#: application/controllers/User.php:1163 application/controllers/User.php:1181
+#: application/controllers/User.php:1227 application/controllers/User.php:1479
+#: application/controllers/User.php:1617 application/controllers/User.php:1837
+#: application/controllers/User.php:1853 application/controllers/User.php:1877
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
@@ -1182,7 +1182,7 @@ msgid "Access denied"
 msgstr "Åtkomst nekad"
 
 #: application/controllers/Contesting.php:1052
-#: application/controllers/User.php:1432
+#: application/controllers/User.php:1435
 msgid "Incorrect username or password!"
 msgstr "Fel användarnamn eller lösenord!"
 
@@ -1611,7 +1611,7 @@ msgid "User not found."
 msgstr "Användare hittades inte."
 
 #: application/controllers/Header_auth.php:110
-#: application/controllers/User.php:1422
+#: application/controllers/User.php:1425
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
@@ -1626,12 +1626,12 @@ msgstr ""
 "Beklagar. Denna instans är för närvarande i underhållsläge. Endast "
 "administratörer har för närvarande tillåtelse att logga in."
 
-#: application/controllers/Header_auth.php:354
-#: application/controllers/Header_auth.php:358
+#: application/controllers/Header_auth.php:355
+#: application/controllers/Header_auth.php:359
 msgid "Something went terribly wrong. Check the error log."
 msgstr "Något gick fruktansvärt fel. Kontrollera felloggen."
 
-#: application/controllers/Header_auth.php:434
+#: application/controllers/Header_auth.php:435
 msgid "SSO Config Error. Check error log."
 msgstr "SSO-konfigurationsfel. Kontrollera felloggen."
 
@@ -3339,7 +3339,7 @@ msgstr "Skapa stationsplats"
 
 #: application/controllers/Station.php:74
 #: application/controllers/Station.php:99 application/controllers/User.php:269
-#: application/controllers/User.php:1017 application/controllers/User.php:1196
+#: application/controllers/User.php:1019 application/controllers/User.php:1199
 msgid "Invalid security token"
 msgstr "Ogiltig säkerhetstoken"
 
@@ -3372,7 +3372,7 @@ msgid "Duplicate Station Location:"
 msgstr "Duplicera stationsplats:"
 
 #: application/controllers/Station.php:233
-#: application/controllers/User.php:1497 application/controllers/User.php:1750
+#: application/controllers/User.php:1500 application/controllers/User.php:1753
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Kontrollera värdet för Lokatorrutan (%s)"
@@ -3404,8 +3404,8 @@ msgstr "Inte tillåtet"
 #: application/views/contesting/manager/index.php:152
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
-#: application/views/widgets/on_air.php:181
-#: application/views/widgets/on_air.php:243
+#: application/views/widgets/on_air.php:190
+#: application/views/widgets/on_air.php:249
 msgid "Error"
 msgstr "Fel"
 
@@ -3778,65 +3778,65 @@ msgstr "Ogiltig parameter!"
 msgid "Add User"
 msgstr "Lägg till användare"
 
-#: application/controllers/User.php:341
+#: application/controllers/User.php:342
 #, php-format
 msgid "Username %s already in use!"
 msgstr "Användarnamnet %s är redan upptaget!"
 
-#: application/controllers/User.php:344
+#: application/controllers/User.php:345
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "E-post %s används redan!"
 
-#: application/controllers/User.php:347
+#: application/controllers/User.php:348
 msgid "Invalid Password!"
 msgstr "Ogiltigt lösenord!"
 
-#: application/controllers/User.php:351
+#: application/controllers/User.php:352
 #, php-format
 msgid "User %s added!"
 msgstr "Användare %s tillagd!"
 
-#: application/controllers/User.php:355
+#: application/controllers/User.php:356
 msgid "Users"
 msgstr "Användare"
 
-#: application/controllers/User.php:464
+#: application/controllers/User.php:465
 msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr "Kan inte ändras. Hantera detta genom din identitetsleverantör."
 
-#: application/controllers/User.php:467
+#: application/controllers/User.php:468
 #: application/views/club/permissions.php:318
 msgid "Edit User"
 msgstr "Redigera användare"
 
-#: application/controllers/User.php:1092 application/controllers/User.php:1095
+#: application/controllers/User.php:1094 application/controllers/User.php:1097
 #, php-format
 msgid "User %s edited"
 msgstr "Användare %s redigerad"
 
-#: application/controllers/User.php:1163
+#: application/controllers/User.php:1166
 msgid "Profile"
 msgstr "Profil"
 
-#: application/controllers/User.php:1186
+#: application/controllers/User.php:1189
 #: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "Radera användare"
 
-#: application/controllers/User.php:1202
+#: application/controllers/User.php:1205
 msgid "User deleted"
 msgstr "Användaren raderad"
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1208
 msgid "Could not delete user!"
 msgstr "Kunde inte ta bort användare!"
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1208
 msgid "Database error:"
 msgstr "Databasfel:"
 
-#: application/controllers/User.php:1279
+#: application/controllers/User.php:1282
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -3844,22 +3844,22 @@ msgstr ""
 "Grattis! Wavelog installerades framgångsrikt. Du kan nu logga in för första "
 "gången."
 
-#: application/controllers/User.php:1317
+#: application/controllers/User.php:1320
 msgid "This is not allowed!"
 msgstr "Det här är inte tillåtet!"
 
-#: application/controllers/User.php:1354 application/controllers/User.php:1367
+#: application/controllers/User.php:1357 application/controllers/User.php:1370
 msgid "Login failed. Try again."
 msgstr "Inloggning misslyckades. Försök igen."
 
-#: application/controllers/User.php:1375
+#: application/controllers/User.php:1378
 #: application/views/interface_assets/header.php:429
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Logga in"
 
-#: application/controllers/User.php:1425
+#: application/controllers/User.php:1428
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -3867,7 +3867,7 @@ msgstr ""
 "Ditt konto är låst på grund av för många misslyckade inloggningsförsök. "
 "Vänligen återställ ditt lösenord."
 
-#: application/controllers/User.php:1429
+#: application/controllers/User.php:1432
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -3877,18 +3877,18 @@ msgstr ""
 "meddelande visas oväntat eller fortsätter att visas, vänligen kontakta en "
 "administratör. Endast administratörer får för närvarande logga in."
 
-#: application/controllers/User.php:1456
+#: application/controllers/User.php:1459
 #, php-format
 msgid "User %s logged out."
 msgstr "Användare %s loggade ut."
 
-#: application/controllers/User.php:1479
+#: application/controllers/User.php:1482
 #: application/views/oqrs/request_grouped.php:19
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Stationsnamn"
 
-#: application/controllers/User.php:1480 application/views/debug/index.php:804
+#: application/controllers/User.php:1483 application/views/debug/index.php:804
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
@@ -3898,27 +3898,27 @@ msgstr "Stationsnamn"
 msgid "Station Callsign"
 msgstr "Stationsanropssignal"
 
-#: application/controllers/User.php:1481
+#: application/controllers/User.php:1484
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "Station DXCC"
 
-#: application/controllers/User.php:1482
+#: application/controllers/User.php:1485
 msgid "Station CQ Zone"
 msgstr "Station CQ-zon"
 
-#: application/controllers/User.php:1483
+#: application/controllers/User.php:1486
 msgid "Station ITU Zone"
 msgstr "Station ITU-zon"
 
-#: application/controllers/User.php:1484
+#: application/controllers/User.php:1487
 #: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
 msgstr "Stationens Lokatorsruta"
 
-#: application/controllers/User.php:1505
+#: application/controllers/User.php:1508
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -3927,36 +3927,36 @@ msgstr ""
 "Station framgångsrikt skapad! Välkommen till Wavelog! För att slutföra dina "
 "stationsinställningar, klicka %shär%s."
 
-#: application/controllers/User.php:1508
+#: application/controllers/User.php:1511
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "Stationsinställningar misslyckades! Vänligen ställ in din station manuellt."
 
-#: application/controllers/User.php:1525
+#: application/controllers/User.php:1528
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Återställning av lösenord är inaktiverad i demomod!"
 
-#: application/controllers/User.php:1539
+#: application/controllers/User.php:1542
 msgid "Forgot Password"
 msgstr "Glömt lösenord"
 
-#: application/controllers/User.php:1589
+#: application/controllers/User.php:1592
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "E-postinställningarna är felaktiga."
 
-#: application/controllers/User.php:1593 application/controllers/User.php:1598
+#: application/controllers/User.php:1596 application/controllers/User.php:1601
 msgid "Password Reset Processed."
 msgstr "Lösenordsåterställning utförd."
 
-#: application/controllers/User.php:1704
+#: application/controllers/User.php:1707
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Återställ lösenord"
 
-#: application/controllers/User.php:1724
+#: application/controllers/User.php:1727
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -3964,13 +3964,13 @@ msgstr ""
 "Kunde inte använda detta användarnamn. Vänligen försök med ett annat än "
 "\"%s\"."
 
-#: application/controllers/User.php:1733
+#: application/controllers/User.php:1736
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr "Kunde inte använda denna e-post. Försök med en annan adress än \"%s\"."
 
-#: application/controllers/User.php:1772
+#: application/controllers/User.php:1775
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3979,7 +3979,7 @@ msgstr ""
 "Du kan för närvarande inte utge dig för att vara en annan användare. Du "
 "behöver ändra %s till %s i din config.php!"
 
-#: application/controllers/User.php:1783
+#: application/controllers/User.php:1786
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3988,15 +3988,15 @@ msgstr ""
 "Du kan för närvarande inte utge dig för att vara en annan användare. Ändra "
 "först encryption_key i din config.php-fil!"
 
-#: application/controllers/User.php:1790
+#: application/controllers/User.php:1793
 msgid "Invalid Hash"
 msgstr "Ogiltig hash"
 
-#: application/controllers/User.php:1803
+#: application/controllers/User.php:1806
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Imitationshashen är för gammal. Försök igen."
 
-#: application/controllers/User.php:1810
+#: application/controllers/User.php:1813
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -4004,15 +4004,15 @@ msgstr ""
 "Du kan inte utge dig för att vara en annan användare när du inte är inloggad "
 "som källanvändaren"
 
-#: application/controllers/User.php:1816
+#: application/controllers/User.php:1819
 msgid "There was a problem with your session. Please try again."
 msgstr "Det uppstod ett problem med din session. Försök igen."
 
-#: application/controllers/User.php:1823
+#: application/controllers/User.php:1826
 msgid "The requested user to impersonate does not exist"
 msgstr "Den begärda användaren att utge dig för existerar inte"
 
-#: application/controllers/User.php:1844
+#: application/controllers/User.php:1847
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -4020,13 +4020,13 @@ msgstr ""
 "Kunde inte fastställa rätt behörighetsnivå för klubbstationen. Försök igen "
 "efter att ha loggat in på nytt."
 
-#: application/controllers/User.php:1885 application/controllers/User.php:1897
-#: application/controllers/User.php:1903 application/controllers/User.php:1912
-#: application/controllers/User.php:1920
+#: application/controllers/User.php:1888 application/controllers/User.php:1900
+#: application/controllers/User.php:1906 application/controllers/User.php:1915
+#: application/controllers/User.php:1923
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Oj.. Något gick fel. Försök logga in igen."
 
-#: application/controllers/User.php:1926
+#: application/controllers/User.php:1929
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -4034,7 +4034,7 @@ msgstr ""
 "Möjligheten att återvända snabbt har inaktiverats efter att säkerhetshashen "
 "har gått ut. Logga in igen."
 
-#: application/controllers/User.php:1942
+#: application/controllers/User.php:1945
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -4084,7 +4084,7 @@ msgstr "Användarslug ej angiven"
 msgid "User has on-air widget disabled"
 msgstr "Användaren har on-air-widgeten inaktiverad"
 
-#: application/controllers/Widgets.php:228
+#: application/controllers/Widgets.php:229
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
@@ -4092,11 +4092,11 @@ msgstr ""
 "Inga CAT-uppkopplade radioapparater hittades. Du måste ha minst en radio "
 "konfigurerat."
 
-#: application/controllers/Widgets.php:421
+#: application/controllers/Widgets.php:440
 msgid "User not found by slug"
 msgstr "Användare hittades inte med slug"
 
-#: application/controllers/Widgets.php:424
+#: application/controllers/Widgets.php:443
 msgid "Multiple users found by slug"
 msgstr "Flera användare hittades med slug"
 
@@ -5164,7 +5164,7 @@ msgstr "Gå"
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
-#: application/views/qso/index.php:757 application/views/user/edit.php:1330
+#: application/views/qso/index.php:757 application/views/user/edit.php:1341
 msgid "Clear"
 msgstr "Rensa"
 
@@ -11502,7 +11502,7 @@ msgid "Time window"
 msgstr "Tidsfönster"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
-#: application/views/user/edit.php:1273
+#: application/views/user/edit.php:1284
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -12249,7 +12249,7 @@ msgstr "Begär ett pappersdiplom från tävlingsarrangören om du är berättiga
 #: application/views/station_profile/edit.php:447
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
-#: application/views/user/edit.php:1195
+#: application/views/user/edit.php:1206
 msgid "Yes"
 msgstr "Ja"
 
@@ -22481,15 +22481,25 @@ msgstr ""
 "Denna inställning styr om tiden för 'Senast sedd' visas i widgeten eller "
 "inte."
 
-#: application/views/user/edit.php:1192
+#: application/views/user/edit.php:1198
+msgid "Display radio name"
+msgstr ""
+
+#: application/views/user/edit.php:1199
+msgid ""
+"This setting controls whether the radio's name is displayed in the widget or "
+"not."
+msgstr ""
+
+#: application/views/user/edit.php:1203
 msgid "Display only most recently updated radio"
 msgstr "Visa endast den senast uppdaterade radion"
 
-#: application/views/user/edit.php:1196
+#: application/views/user/edit.php:1207
 msgid "No, show all radios"
 msgstr "Nej, visa alla radioapparater"
 
-#: application/views/user/edit.php:1198
+#: application/views/user/edit.php:1209
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -22501,51 +22511,51 @@ msgstr ""
 "uppdaterade. Om du bara har en radio så har den här inställningen ingen "
 "effekt."
 
-#: application/views/user/edit.php:1208
+#: application/views/user/edit.php:1219
 msgid "QSOs widget"
 msgstr "QSO-widget"
 
-#: application/views/user/edit.php:1217
+#: application/views/user/edit.php:1228
 msgid "Display exact QSO time"
 msgstr "Visa exakt QSO-tid"
 
-#: application/views/user/edit.php:1218
+#: application/views/user/edit.php:1229
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
 "Denna inställning styr om exakt QSO-tid ska visas i QSO-widgeten eller inte."
 
-#: application/views/user/edit.php:1232
+#: application/views/user/edit.php:1243
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: application/views/user/edit.php:1240
+#: application/views/user/edit.php:1251
 msgid "AMSAT Status Upload"
 msgstr "AMSAT Statusuppladdning"
 
-#: application/views/user/edit.php:1249
+#: application/views/user/edit.php:1260
 msgid "Upload status of SAT QSOs to"
 msgstr "Ladda upp status för SAT QSOs till"
 
-#: application/views/user/edit.php:1259
+#: application/views/user/edit.php:1270
 msgid "Mastodonserver"
 msgstr "Mastodonserver"
 
-#: application/views/user/edit.php:1262
+#: application/views/user/edit.php:1273
 msgid "URL of Mastodonserver"
 msgstr "URL till Mastodonserver"
 
-#: application/views/user/edit.php:1264
+#: application/views/user/edit.php:1275
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Huvud-URL för din Mastodon-server, t.ex. %s"
 
-#: application/views/user/edit.php:1282
+#: application/views/user/edit.php:1293
 msgid "Winkeyer Features Enabled"
 msgstr "Winkeyer-funktioner aktiverade"
 
-#: application/views/user/edit.php:1283
+#: application/views/user/edit.php:1294
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -22554,25 +22564,25 @@ msgstr ""
 "Winkeyer-stöd i Wavelog är mycket experimentellt. Läs först wikin på %s "
 "innan du aktiverar."
 
-#: application/views/user/edit.php:1295
+#: application/views/user/edit.php:1306
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1298
+#: application/views/user/edit.php:1309
 msgid "Private Feed Key"
 msgstr "Privat nyckel"
 
-#: application/views/user/edit.php:1300
+#: application/views/user/edit.php:1311
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Se din profil på %s."
 
-#: application/views/user/edit.php:1309
+#: application/views/user/edit.php:1320
 msgid "Show Workable Passes Only"
 msgstr "Visa endast användbara passeringar"
 
-#: application/views/user/edit.php:1310
+#: application/views/user/edit.php:1321
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -22580,15 +22590,15 @@ msgstr ""
 "Om aktiverad visar endast användbara pass baserat på lokatorrutan som anges "
 "i ditt hams.at-konto. Kräver att privat nyckel är konfigurerad."
 
-#: application/views/user/edit.php:1323
+#: application/views/user/edit.php:1334
 msgid "Save Account"
 msgstr "Spara kontoändringar"
 
-#: application/views/user/edit.php:1329
+#: application/views/user/edit.php:1340
 msgid "Search settings"
 msgstr "Sökinställningar"
 
-#: application/views/user/edit.php:1331
+#: application/views/user/edit.php:1342
 msgid "No settings match your search."
 msgstr "Inga inställningar matchar din sökning."
 
@@ -23272,6 +23282,40 @@ msgstr "Markera QSOs som exporterade till QO-100 Dx Club"
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSOs är markerade som exporterade till QO-100 Dx Club."
+
+#: application/views/widgets/on_air.php:159
+#: application/views/widgets/on_air.php:217
+#: application/views/widgets/on_air.php:271
+#, php-format
+msgctxt "on air status test: callsign is on-air/off-air"
+msgid "%s is %s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:181
+#: application/views/widgets/on_air.php:198
+#, php-format
+msgid "Updated: %s (%s)"
+msgstr ""
+
+#: application/views/widgets/on_air.php:181
+msgid "auto-refreshed every 60s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:198
+msgid "auto-refreshed by QRZ.com every 60s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:242
+#, php-format
+msgid "Last updated: %s"
+msgstr ""
+
+#: application/views/widgets/on_air.php:318
+#: application/views/widgets/on_air.php:322
+#: application/views/widgets/on_air.php:325
+#: application/views/widgets/on_air.php:333
+msgid "Last updated:"
+msgstr ""
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
