@@ -89,6 +89,12 @@
 
 	function fmtLat(lat) { return Math.abs(lat).toFixed(5) + '°' + (lat >= 0 ? 'N' : 'S'); }
 	function fmtLng(lng) { return Math.abs(lng).toFixed(5) + '°' + (lng >= 0 ? 'E' : 'W'); }
+	/* Summit altitude in the user's unit (K -> metres, M/N -> feet). Source is metres. */
+	function fmtAltitude(m) {
+		if (m == null || m === '' || isNaN(m)) { return ''; }
+		let val = measurementBase === 'K' ? Math.round(Number(m)) : Math.round(Number(m) * 3.28084);
+		return groupThousands(val) + (measurementBase === 'K' ? ' m' : ' ft');
+	}
 
 	function deg2rad(d) { return d * Math.PI / 180; }
 	function rad2deg(r) { return r * 180 / Math.PI; }
@@ -562,6 +568,7 @@
 			'<span class="ref-popup-type text-white" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
 			'<div class="ref-popup-ref">' + esc(D.reference) + '</div>' +
 			(D.name ? '<div>' + esc(D.name) + '</div>' : '') +
+			(D.altitude != null && D.altitude !== '' ? '<div>' + fmtAltitude(D.altitude) + '</div>' : '') +
 			'<div class="ref-popup-grid">' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</div>' +
 			'<div>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</div>' +
 			'</div>';
