@@ -665,19 +665,18 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
             <div class="mb-3">
               <label for="sat_name"><?= __("Satellite Name"); ?></label>
 
-              <input list="satellite_names" id="sat_name" type="text" name="sat_name" class="form-control" value="<?php echo $this->session->userdata('sat_name'); ?>">
+              <input type="text" class="form-control" id="sat_name" name="sat_name" value="<?php echo $this->session->userdata('sat_name'); ?>" onblur="setTimeout(() => document.getElementById('satellite_names_list').innerHTML = '', 150)">
+              <ul class="list-group position-absolute" id="satellite_names_list" style="width: 95%; max-height: 512px; overflow-y: auto; z-index: 1100; display: none;"></ul>
               <div style="min-height: 24px;">
                  <small id="lotw_support" class="form-text text-muted" style="min-height: 20px;">&nbsp;</small>
               </div>
-              <datalist id="satellite_names" class="satellite_names_list"></datalist>
             </div>
 
             <div class="mb-3">
               <label for="sat_mode"><?= __("Satellite Mode"); ?></label>
 
-              <input list="satellite_modes" id="sat_mode" type="text" name="sat_mode" class="form-control" value="<?php echo $this->session->userdata('sat_mode'); ?>">
-
-              <datalist id="satellite_modes" class="satellite_modes_list"></datalist>
+              <input type="text" id="sat_mode" name="sat_mode" class="form-control" value="<?php echo $this->session->userdata('sat_mode'); ?>" onblur="setTimeout(() => document.getElementById('satellite_modes_list').innerHTML = '', 150)">
+              <ul class="list-group position-absolute" id="satellite_modes_list" style="width: 95%; max-height: 512px; overflow-y: auto; z-index: 1100; display: none;"></ul>
             </div>
 
             <div class="mb-3">
