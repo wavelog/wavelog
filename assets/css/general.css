@@ -1100,6 +1100,36 @@ label {
 	margin: 0 8px 0 0;
 }
 
+/* Permanent region labels on the activation planner zone/state overlays */
+.leaflet-tooltip.overlay-region-label {
+	background: rgba(0, 0, 0, 0.55);
+	border: none;
+	box-shadow: none;
+	color: #fff;
+	font-weight: 600;
+	font-size: 11px;
+	padding: 1px 5px;
+	border-radius: 3px;
+	max-width: 140px;
+	white-space: normal;
+	text-align: center;
+}
+.leaflet-tooltip.overlay-region-label::before {
+	display: none;
+}
+
+/* Dropdown toggle "active" state — any checkbox in the menu checked.
+ * Mirrors the advanced logbook filter button (.btn-filter-active). */
+.btn-filter-active {
+	background-color: #ffc107 !important;
+	border-color: #ffc107 !important;
+	color: #000 !important;
+}
+.btn-filter-active:hover {
+	background-color: #e0a800 !important;
+	border-color: #e0a800 !important;
+}
+
 .info.leaflet-control {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
