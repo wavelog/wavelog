@@ -242,6 +242,19 @@
 					</select>
 				</div>
 			</div>
+			<div class="mb-3 row">
+				<label class="col-md-2 control-label" for="prop_mode"><?= __("Propagation"); ?></label>
+				<div class="col-md-4">
+					<select id="prop_mode" name="prop_mode" class="form-select form-select-sm">
+						<option value="All" <?php if ($this->input->post('prop_mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?= __("All"); ?></option>
+						<?php foreach ($adif_propmodes as $prop_code => $prop_desc) {
+							echo '<option value="' . $prop_code . '"';
+							if ($this->input->post('prop_mode') == $prop_code) echo ' selected';
+							echo '>' . htmlspecialchars_decode($prop_desc) . '</option>' . "\n";
+						} ?>
+					</select>
+				</div>
+			</div>
 		</div>
 		</div>
 		</div>

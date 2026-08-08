@@ -298,9 +298,9 @@ function stopImpersonate_modal() {
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
-    // Replace all Ø in the searchbar
+    // Replace all Ã˜ in the searchbar
     $('#nav-bar-search-input').on('input', function () {
-        $(this).val($(this).val().replace(/0/g, 'Ø'));
+        $(this).val($(this).val().replace(/0/g, 'Ã˜'));
     });
 </script>
 
@@ -1027,7 +1027,7 @@ function searchButtonPress() {
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
-        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ø', '0'), function() {
+        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ã˜', '0'), function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -2379,7 +2379,7 @@ $('#sats').change(function(){
 		var target = document.body;
 		var observer = new MutationObserver(function() {
 			$('#dt-search-0').on('keyup', function (e) {
-				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
 				$(this).val(tocrappyzero);
 				$(this).trigger("input");
 			});
@@ -2503,7 +2503,7 @@ function viewEqsl(picture, callsign) {
   /*
    * Used to fetch QSOs from the logbook in the awards
    */
-    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto) {
+    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto, propagation) {
         $.ajax({
             url: base_url + 'index.php/awards/qso_details_ajax',
             type: 'post',
@@ -2516,7 +2516,8 @@ function viewEqsl(picture, callsign) {
                 'Type': type,
                 'QSL' : qsl,
 				'dateFrom': datefrom,
-				'dateTo': dateto
+				'dateTo': dateto,
+				'Propagation': (propagation && propagation !== 'All') ? propagation : '',
             },
             success: function (html) {
                 BootstrapDialog.show({
@@ -2556,7 +2557,7 @@ function viewEqsl(picture, callsign) {
                        var target = document.body;
                        var observer = new MutationObserver(function() {
                                $('#dt-search-0').on('keyup', function (e) {
-                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
                                        $(this).val(tocrappyzero);
                                        $(this).trigger("input");
                                });
@@ -2577,7 +2578,7 @@ function viewEqsl(picture, callsign) {
         });
     }
 
-    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto) {
+    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto, propagation) {
 	    $.ajax({
 	    url: base_url + 'index.php/awards/qso_details_ajax',
 		    type: 'post',
@@ -2590,7 +2591,8 @@ function viewEqsl(picture, callsign) {
 			    'Type': type,
 			    'QSL' : qsl,
 				'dateFrom': datefrom,
-				'dateTo': dateto
+				'dateTo': dateto,
+				'Propagation': (propagation && propagation !== 'All') ? propagation : '',
         },
 	    success: function (html) {
 		    var dialog = new BootstrapDialog({
@@ -3106,7 +3108,7 @@ function viewEqsl(picture, callsign) {
 		    var target = document.body;
 		    var observer = new MutationObserver(function() {
 			    $('#dt-search-1').on('keyup', function (e) {
-				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
 				    $(this).val(tocrappyzero);
 				    $(this).trigger("input");
 			    });
