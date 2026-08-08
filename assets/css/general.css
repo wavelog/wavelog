@@ -1118,6 +1118,18 @@ label {
 	display: none;
 }
 
+/* Dropdown toggle "active" state — any checkbox in the menu checked.
+ * Mirrors the advanced logbook filter button (.btn-filter-active). */
+.btn-filter-active {
+	background-color: #ffc107 !important;
+	border-color: #ffc107 !important;
+	color: #000 !important;
+}
+.btn-filter-active:hover {
+	background-color: #e0a800 !important;
+	border-color: #e0a800 !important;
+}
+
 .info.leaflet-control {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;

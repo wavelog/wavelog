@@ -455,6 +455,13 @@
 		}
 		return esc(props[cfg.numKey] != null ? props[cfg.numKey] : '');
 	}
+	/* Highlight a dropdown toggle (btn-filter-active) when any checkbox in its
+	 * menu is checked — mirrors the advanced logbook filter button. */
+	function syncToggleActive(menu, btn) {
+		if (!menu || !btn) return;
+		btn.classList.toggle('btn-filter-active', !!menu.querySelector('input[type="checkbox"]:checked'));
+	}
+
 	// Build the Overlays dropdown from the server-provided config (glOverlays).
 	function buildOverlays(host) {
 		if (!host || !glOverlays.length) return;
@@ -503,11 +510,13 @@
 			let id = e.target.getAttribute('data-oid');
 			if (!id) return;
 			if (e.target.checked) { addOverlay(id, e.target); } else { removeOverlay(id); }
+			syncToggleActive(menu, btn);
 		});
 
 		drop.appendChild(btn);
 		drop.appendChild(menu);
 		host.appendChild(drop);
+		syncToggleActive(menu, btn);   // initial state (none checked -> normal)
 	}
 	// Fetch (once, cached) and add a GeoJSON overlay layer to the map.
 	function addOverlay(id, cb) {
@@ -842,6 +851,17 @@
 			sotaCb.addEventListener('change', function () {
 				if (this.checked) { enableSota(); } else { disableSota(); }
 			});
+		}
+
+		// Reflect Refs/Overlays dropdown state on their toggle buttons.
+		let refsDrop = document.querySelector('.gl-refs');
+		if (refsDrop) {
+			let refsBtn = refsDrop.querySelector('.dropdown-toggle');
+			let refsMenu = refsDrop.querySelector('.dropdown-menu');
+			if (refsBtn && refsMenu) {
+				refsMenu.addEventListener('change', function () { syncToggleActive(refsMenu, refsBtn); });
+				syncToggleActive(refsMenu, refsBtn);   // gridsquare is on by default -> active
+			}
 		}
 
 		// Build the Overlays (GeoJSON) dropdown — zones + per-country states.
