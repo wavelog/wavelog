@@ -1,5 +1,4 @@
 <!--
-
 This is a DYNAMIC On-Air widget to place in your QRZ.com Bio or somewhere else.
 
 For normal use with JavaScript:
@@ -169,7 +168,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                     </div>
                 <?php } ?>
                 <div class="last-updated mt-2">
-                    <small>Updated: <?= date('H:i:s'); ?> (auto-refreshed every 60s)</small>
+					<small><?= sprintf(__("Updated: %s (%s)"), date('H:i:s'), __("auto-refreshed every 60s")); ?></small>
                 </div>
             </div>
         </div>
@@ -186,7 +185,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                     <?= $error ?>
                 </div>
                 <div class="last-updated mt-2">
-                    <small>Updated: <?= date('H:i:s'); ?> (auto-refreshed by QRZ.com every 60s)</small>
+                    <small><?= sprintf(__("Updated: %s (%s)"), date('H:i:s'), __("auto-refreshed by QRZ.com every 60s")); ?></small>
                 </div>
             </div>
         </div>
@@ -233,7 +232,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                     </p>
                 <?php } ?>
                 <div class="last-updated mt-2">
-                    <small id="last-updated-text">Last updated: <?= date('H:i:s'); ?></small>
+					<small id="last-updated-text"><?= sprintf(__("Last updated: %s"), date('H:i:s')); ?></small>
                 </div>
             </div>
         </div>
@@ -330,9 +329,9 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             window.textSizeClass = '<?php echo $text_size_class ?? ''; ?>';
 
             setTimeout(() => {
-                updateWidget(); 
-                updateInterval = setInterval(updateWidget, 30000); 
-            }, 2000); 
+                updateWidget();
+                updateInterval = setInterval(updateWidget, 30000);
+            }, 2000);
 
             window.addEventListener('beforeunload', () => {
                 if (updateInterval) {
