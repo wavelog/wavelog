@@ -183,4 +183,32 @@ class Activationplanner extends CI_Controller {
 		header('Content-Type: application/json');
 		echo $json;
 	}
+
+	/*
+	 * AJAX: given a 4-character gridsquare, return the DXCC entities covering it
+	 * (from the vuccgrids table) with their flag emoji, so the activation planner
+	 * can show the flag beside the grid. Outputs JSON [{name, flag}, ...].
+	 */
+	public function dxcc_for_grid() {
+		$grid = strtoupper((string) $this->input->get('grid', TRUE));
+		header('Content-Type: application/json');
+
+		if (strlen($grid) < 4) {
+			echo json_encode(array());
+			return;
+		}
+		$grid = substr($grid, 0, 4);
+
+		$this->load->model('lookup_model');
+		$this->load->library('DxccFlag');
+
+		$out = array();
+		foreach ($this->lookup_model->getDxccForVuccGrid($grid) as $row) {
+			$out[] = array(
+				'name' => ucwords(strtolower($row->name), "- (/"),
+				'flag' => $this->dxccflag->get($row->adif),
+			);
+		}
+		echo json_encode($out);
+	}
 }

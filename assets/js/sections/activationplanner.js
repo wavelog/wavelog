@@ -13,6 +13,7 @@
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
+	let dxccGridUrl     = cfg.dxccGridUrl || '';
 	let locatingMsg     = cfg.locatingMsg    || 'Locating…';
 	let geoDenied       = cfg.geoDenied      || 'Location access denied.';
 	let geoUnavailable  = cfg.geoUnavailable || 'Location unavailable.';
@@ -381,7 +382,7 @@
 	 * distance + arrow). Echoes the corner info box. zones/state are appended
 	 * when resolved. Built on squareBorders() for the nearest-border figure.
 	 */
-	function gridPopupHTML(lat, lng, loc, zones, state) {
+	function gridPopupHTML(lat, lng, loc, zones, state, flag) {
 		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
 		// Subsquare is the refinement (muted dot). Only tiers the locator has.
 		let tiers = [];
@@ -395,15 +396,15 @@
 
 		let metaLines = [];
 		if (zones) {
-			zones.split(' / ').forEach(function (z) {
-				metaLines.push(z.replace(/^CQ /, 'CQ Zone ').replace(/^ITU /, 'ITU Zone '));
-			});
+			metaLines.push(zones.split(' / ').map(function (z) {
+				return z.replace(/^CQ /, 'CQ Zone ').replace(/^ITU /, 'ITU Zone ');
+			}).join(' / '));
 		}
 		if (state) { metaLines.push(state); }
 
 		return '<div class="gl-popup">' +
 			'<div class="gl-pop-head"><span class="ref-popup-type" style="background:#dc3545">' + esc(gridLbl) + '</span></div>' +
-			'<div class="gl-pop-grid">' + loc + '</div>' +
+			'<div class="gl-pop-grid">' + (Array.isArray(flag) && flag.length ? flag.map(function (fl) { return '<span class="flag-emoji gl-pop-flag">' + esc(fl) + '</span>'; }).join('') : '') + loc + '</div>' +
 			'<div class="gl-pop-coords"><i class="fas fa-location-crosshairs"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
 			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
 			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
@@ -807,6 +808,17 @@
 		});
 	}
 
+	/* DXCC flag emoji(s) for a 4-char grid, via the vuccgrids table. cb(flag). */
+	function gridFlag(loc, cb) {
+		if (!dxccGridUrl || !loc || loc.length < 4) { cb(''); return; }
+		fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4)))
+			.then(function (r) { return r.json(); })
+			.then(function (rows) {
+				cb((rows || []).map(function (d) { return d.flag; }).filter(Boolean));
+			})
+			.catch(function () { cb(''); });
+	}
+
 	function init() {
 		map = L.map('glMap', { worldCopyJump: true }).setView(initialView, initialZoom);
 
@@ -1037,7 +1049,7 @@
 
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
-		let zones = '', stateLabel = '';
+		let zones = '', stateLabel = '', flag = '';
 
 		// Re-render from whatever has resolved so far, so the independently
 		// async zones and state enrichments compose instead of clobbering each
@@ -1049,7 +1061,7 @@
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
-			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel)); }
+			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, flag)); }
 		}
 		renderInfo();
 		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
@@ -1074,6 +1086,12 @@
 				})
 				.catch(function () { /* unsupported point or transient — ignore */ });
 		}
+		// DXCC flag for this 4-char grid (vuccgrids table).
+		gridFlag(loc, function (f) {
+			if (myReq !== zoneReq) { return; }
+			flag = f;
+			renderPopup();
+		});
 	}
 
 	/*
@@ -1208,7 +1226,7 @@
 
 			// Composed readout: each grid's "(zones, state)" tag fills in
 			// asynchronously and re-renders. zoneReq guards against stale updates.
-			let z1 = '', z2 = '', s1 = '', s2 = '';
+			let z1 = '', z2 = '', s1 = '', s2 = '', f1 = '', f2 = '';
 			function tag(z, s) {
 				let inner = [];
 				if (z) { inner.push(z); }
@@ -1223,8 +1241,8 @@
 			}
 			render();
 			function renderPopups() {
-				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1)); }
-				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2)); }
+				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, f1)); }
+				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, f2)); }
 			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
@@ -1253,10 +1271,13 @@
 					renderPopups();
 				});
 			}
+			// DXCC flag per 4-char grid (vuccgrids table).
+			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopups(); });
+			gridFlag(cell2.loc, function (f) { if (myReq !== zoneReq) { return; } f2 = f; renderPopups(); });
 		} else {
 			zoomToGrid(cell1.center[0], cell1.center[1], cell1);
 
-			let z1 = '', s1 = '';
+			let z1 = '', s1 = '', f1 = '';
 			function render() {
 				let parts = [
 					'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
@@ -1268,7 +1289,7 @@
 			}
 			render();
 			function renderPopup() {
-				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1)); }
+				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, f1)); }
 			}
 			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
@@ -1292,6 +1313,8 @@
 					})
 					.catch(function () { /* unsupported point or transient — ignore */ });
 			}
+			// DXCC flag for this 4-char grid (vuccgrids table).
+			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopup(); });
 		}
 	}
 
