@@ -196,6 +196,7 @@ class Widgets extends CI_Controller {
 					$radio_obj->updated_at = $radio_data->timestamp;
 					$radio_obj->frequency_string = $this->prepare_frequency_string_for_widget($radio_data);
 					$radio_obj->mode = $radio_data->mode ?? '';
+					$radio_obj->radio_name = $widget_options->display_radio_name ? ($radio_data->radio ?? '') : null;
 					$radios_online[] = $radio_obj;
 				}
 			}
@@ -278,6 +279,7 @@ class Widgets extends CI_Controller {
 					$radio_obj->updated_at = $radio_data->timestamp;
 					$radio_obj->frequency_string = $this->prepare_frequency_string_for_widget($radio_data);
 					$radio_obj->mode = $radio_data->mode ?? '';
+					$radio_obj->radio_name = $widget_options->display_radio_name ? ($radio_data->radio ?? '') : null;
 					$radios_online[] = $radio_obj;
 				}
 			}
@@ -359,6 +361,7 @@ class Widgets extends CI_Controller {
 		$options->is_enabled = false;
 		$options->display_last_seen = false;
 		$options->display_only_most_recent_radio = true;
+		$options->display_radio_name = false;
 
 		if ($raw_widget_options === null) {
 			return $options;
@@ -380,6 +383,9 @@ class Widgets extends CI_Controller {
 			}
 			if ($key === "display_only_most_recent_radio") {
 				$options->display_only_most_recent_radio = $value === "true";
+			}
+			if ($key === "display_radio_name") {
+				$options->display_radio_name = $value === "true";
 			}
 		}
 

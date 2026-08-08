@@ -122,6 +122,19 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             margin-left: 10px;
         }
 
+        .frequency-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-name-label {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-right: 10px;
+            padding-right: 10px;
+            border-right: 1px solid #6c757d;
+        }
+
         .last-updated {
             font-size: 0.8em;
             color: #6c757d;
@@ -151,6 +164,9 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <?php if ($is_on_air === true) { ?>
                     <?php foreach ($radios_online as $radio_data) { ?>
                         <div class="frequency-info mb-2">
+                            <?php if (!empty($radio_data->radio_name)) { ?>
+                            <span class="radio-name-label"><?php echo htmlspecialchars($radio_data->radio_name); ?></span>
+                            <?php } ?>
                             <span class="frequency-display <?php echo $text_size_class ?>">
                                 <?php echo htmlspecialchars($radio_data->frequency_string); ?>
                             </span>
@@ -209,6 +225,9 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <?php if ($is_on_air === true) { ?>
                     <?php foreach ($radios_online as $radio_data) { ?>
                         <div class="frequency-info mb-2">
+                            <?php if (!empty($radio_data->radio_name)) { ?>
+                            <span class="radio-name-label"><?php echo htmlspecialchars($radio_data->radio_name); ?></span>
+                            <?php } ?>
                             <span class="frequency-display <?php echo $text_size_class ?>" id="frequency-display">
                                 <?php echo htmlspecialchars($radio_data->frequency_string); ?>
                             </span>
@@ -242,6 +261,12 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
         (function() {
             const userSlug = '<?php echo $user_slug ?? ''; ?>';
             let updateInterval;
+
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
 
 			let statusTextTranslation = "<?= _pgettext("on air status test: callsign is on-air/off-air","%s is %s"); ?>";
 
@@ -283,6 +308,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                                 data.radios_online.forEach(radio => {
                                     html += `
                                         <div class="frequency-info mb-2">
+                                            ${radio.radio_name ? `<span class="radio-name-label">${escapeHtml(radio.radio_name)}</span>` : ''}
                                             <span class="frequency-display ${window.textSizeClass || ''}">
                                                 ${radio.frequency_string}
                                             </span>
