@@ -561,16 +561,26 @@
 		if (overlayLayers[id]) { map.removeLayer(overlayLayers[id]); }
 	}
 
-	/* Popup for a SOTA/POTA/WWFF reference point: a coloured type badge, the
-	 * reference (prominent), optional name, gridsquare and coordinates. */
+	/* External info-page URL for a reference (reference appended raw). */
+	function refUrl(type, reference) {
+		if (type === 'WWFF') { return 'https://www.gma.rocks/zinfo.php?ref=' + reference; }
+		if (type === 'POTA') { return 'https://pota.app/#/park/' + reference; }
+		if (type === 'SOTA') { return 'https://www.sotadata.org.uk/en/summit/' + reference; }
+		return '';
+	}
+
+	/* Popup for a SOTA/POTA/WWFF reference point: a coloured left stripe +
+	 * type badge with the reference (links to its info page), then name, etc. */
 	function refPopup(type, D, color) {
-		return '<div class="ref-popup">' +
-			'<span class="ref-popup-type text-white" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
-			'<div class="ref-popup-ref">' + esc(D.reference) + '</div>' +
-			(D.name ? '<div>' + esc(D.name) + '</div>' : '') +
-			(D.altitude != null && D.altitude !== '' ? '<div>' + fmtAltitude(D.altitude) + '</div>' : '') +
-			'<div class="ref-popup-grid">' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</div>' +
-			'<div>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</div>' +
+		return '<div class="ref-popup" style="border-left-color:' + esc(color) + '">' +
+			'<div class="ref-popup-top">' +
+			'<span class="ref-popup-type" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
+			'<a class="ref-popup-ref" href="' + esc(refUrl(type, D.reference)) + '" target="_blank" rel="noopener noreferrer">' + esc(D.reference) + ' <i class="fas fa-up-right-from-square"></i></a>' +
+			'</div>' +
+			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
+			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
 			'</div>';
 	}
 
