@@ -13,6 +13,8 @@
 		potaUrl:    <?php echo json_encode(site_url('activationplanner/pota_directory')); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
+		satPassUrl: <?php echo json_encode(site_url('satellite/pass')); ?>,
+		satPassLbl: <?php echo json_encode(__("Satellite passes")); ?>,
 		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
 		gridLbl:       <?php echo json_encode(__("Gridsquare")); ?>,
 		closeLbl:      <?php echo json_encode(__("Close")); ?>,

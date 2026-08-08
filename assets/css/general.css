@@ -2197,6 +2197,10 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .gl-dot { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; background: rgba(255, 255, 255, .35); flex: none; }
 .gl-pop-tier.is-strong .gl-dot { background: #fff; }
 .gl-pop-meta { margin-top: .3rem; font-size: .85rem; opacity: .75; }
+.gl-pop-link { margin-top: .4rem; }
+.gl-pop-link a { color: inherit; }
+.gl-pop-link a:hover { text-decoration: underline !important; }
+.gl-pop-link .fas { opacity: .75; margin-right: .25rem; }
 
 /* Two-grid QRB: tone down every Maidenhead grid label so the two tinted
    squares are the focus. Toggled via .gl-dim-labels on the map container. */

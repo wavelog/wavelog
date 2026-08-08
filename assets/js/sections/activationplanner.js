@@ -14,6 +14,8 @@
 	let potaUrl         = cfg.potaUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
+	let satPassUrl      = cfg.satPassUrl || '';
+	let satPassLbl      = cfg.satPassLbl || 'Satellite passes';
 	let locatingMsg     = cfg.locatingMsg    || 'Locating…';
 	let geoDenied       = cfg.geoDenied      || 'Location access denied.';
 	let geoUnavailable  = cfg.geoUnavailable || 'Location unavailable.';
@@ -408,6 +410,7 @@
 			'<div class="gl-pop-coords"><i class="fas fa-location-crosshairs"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
 			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
 			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
+			(satPassUrl ? '<div class="gl-pop-link"><a href="' + esc(satPassUrl + '?gridsquare=' + encodeURIComponent(loc)) + '" target="_blank" rel="noopener noreferrer"><i class="fas fa-satellite"></i> ' + esc(satPassLbl) + '</a></div>' : '') +
 			'</div>';
 	}
 
