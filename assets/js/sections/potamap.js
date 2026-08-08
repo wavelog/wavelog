@@ -7,11 +7,13 @@ if (typeof(user_map_custom.qso) !== 'undefined') {
 	workedColor = user_map_custom.qso.color;
 }
 
-var osmUrl = $('#wwffmapjs').attr("tileUrl");
+let osmUrl = $('#potamapjs').attr("tileUrl");
 
-let wwffMap = null;
+// Holds the current Leaflet map instance so we can dispose of it properly
+// before rebuilding. See load_pota_map2().
+let potaMap = null;
 
-function getWwffFilterData() {
+function getPotaFilterData() {
 	return {
 		band: $('#band').val(),
 		mode: $('#mode').val(),
@@ -27,36 +29,36 @@ function getWwffFilterData() {
 	};
 }
 
-function load_wwff_map() {
-	$('.nav-tabs a[href="#wwffmaptab"]').tab('show');
-	refresh_wwff_map();
+function load_pota_map() {
+	$('.nav-tabs a[href="#potamaptab"]').tab('show');
+	refresh_pota_map();
 }
 
-function refresh_wwff_map() {
+function refresh_pota_map() {
 	$.ajax({
-		url: base_url + 'index.php/awards/wwff_map',
+		url: base_url + 'index.php/awards/pota_map',
 		type: 'post',
-		data: getWwffFilterData(),
+		data: getPotaFilterData(),
 		success: function(data) {
-			load_wwff_map2(data);
+			load_pota_map2(data);
 		},
 		error: function() {
 			BootstrapDialog.alert({
 				title: lang_general_word_error,
-				message: lang_wwff_map_error,
+				message: lang_pota_map_error,
 				type: BootstrapDialog.TYPE_DANGER,
 			});
 		},
 	});
 }
 
-function refresh_wwff_table() {
+function refresh_pota_table() {
 	$.ajax({
-		url: base_url + 'index.php/awards/wwff_table',
+		url: base_url + 'index.php/awards/pota_table',
 		type: 'post',
-		data: getWwffFilterData(),
+		data: getPotaFilterData(),
 		success: function(resp) {
-			var dt = $('#wwfftable').DataTable();
+			var dt = $('#potatable').DataTable();
 			dt.clear();
 			dt.rows.add(resp.data || []);
 			dt.draw();
@@ -64,36 +66,41 @@ function refresh_wwff_table() {
 		error: function() {
 			BootstrapDialog.alert({
 				title: lang_general_word_error,
-				message: lang_wwff_map_error,
+				message: lang_pota_map_error,
 				type: BootstrapDialog.TYPE_DANGER,
 			});
 		},
 	});
 }
 
-function applyWwffFilters() {
-	refresh_wwff_table();
-	if ($('#wwffmaptab').hasClass('active')) {
-		refresh_wwff_map();
+function applyPotaFilters() {
+	refresh_pota_table();
+	if ($('#potamaptab').hasClass('active')) {
+		refresh_pota_map();
 	}
 }
 
-function load_wwff_map2(data) {
+function load_pota_map2(data) {
 
-	if (wwffMap !== null) {
-		wwffMap.remove();
-		wwffMap = null;
+	// Tear down the previous map instance properly instead of just dropping
+	// its DOM node. map.remove() clears layers, panes and every event
+	// listener (including document-level ones) and frees the container for
+	// re-use, so repeated "Apply Filters" refreshes don't accumulate leaked
+	// Leaflet internals.
+	if (potaMap !== null) {
+		potaMap.remove();
+		potaMap = null;
 	}
 
-	$("#wwffmap_status").empty();
+	$("#potamap_status").empty();
 
-	var map = new L.Map('wwffmap', {
+	var map = new L.Map('potamap', {
 		fullscreenControl: true,
 		fullscreenControlOptions: {
 			position: 'topleft'
 		},
 	});
-	wwffMap = map;
+	potaMap = map;
 
 	L.tileLayer(
 		osmUrl,
@@ -131,9 +138,9 @@ function load_wwff_map2(data) {
 	markers.addTo(map);
 
 	if (data.length === 0) {
-		$("#wwffmap_status").html('<div class="alert alert-info">' + lang_wwff_no_refs + '</div>');
+		$("#potamap_status").html('<div class="alert alert-info">' + lang_pota_no_refs + '</div>');
 	} else if (withoutCoords === data.length) {
-		$("#wwffmap_status").html('<div class="alert alert-warning">' + lang_wwff_dir_empty + '</div>');
+		$("#potamap_status").html('<div class="alert alert-warning">' + lang_pota_dir_empty + '</div>');
 	}
 
 	/*Legend specific*/
@@ -149,7 +156,7 @@ function load_wwff_map2(data) {
 		}
 		div.innerHTML += '<i style="background: ' + confirmedColor + '"></i><span>' + lang_general_word_confirmed + ' (' + confirmedCount + ')</span><br>';
 		div.innerHTML += '<i style="background: ' + workedColor + '"></i><span>' + lang_general_word_worked_not_confirmed + ' (' + workedNotConfirmedCount + ')</span><br>';
-		div.innerHTML += '<i style="background: #999"></i><span>' + lang_wwff_without_coordinates + ' (' + withoutCoords + ')</span><br>';
+		div.innerHTML += '<i style="background: #999"></i><span>' + lang_pota_without_coordinates + ' (' + withoutCoords + ')</span><br>';
 		return div;
 	};
 
@@ -165,7 +172,7 @@ function addMarker(L, D, mapColor, markers) {
 		color: '#fff',
 		fillColor: mapColor,
 		fillOpacity: 0.9,
-		wwff: D.reference
+		pota: D.reference
 	});
 	dot.bindTooltip(D.reference + ' - ' + (D.name || ''));
 	dot.on('click', onClick);
@@ -174,7 +181,7 @@ function addMarker(L, D, mapColor, markers) {
 
 function onClick(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#wwffmap"), marker.options.wwff, $('#band').val(), 'All', 'All', $('#mode').val(), 'WWFF', '', $('#dateFrom').val(), $('#dateTo').val());
+	displayContactsOnMap($("#potamap"), marker.options.pota, $('#band').val(), 'All', 'All', $('#mode').val(), 'POTA', '', $('#dateFrom').val(), $('#dateTo').val());
 }
 
 // Date presets

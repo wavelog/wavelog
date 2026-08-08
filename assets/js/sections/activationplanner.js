@@ -538,15 +538,22 @@
 	function styleFor(color) {
 		return { color: color, weight: 1, opacity: 0.85, fillColor: color, fillOpacity: 0.12 };
 	}
-	function overlayPopup(props, cfg) {
+	/* Permanent label shown on each overlay region. Zones (CQ/ITU) use their
+	 * number; state/province overlays use their full name. */
+	function overlayLabel(props, cfg) {
 		props = props || {};
 		if (cfg.type === 'state') {
-			return '<strong>' + esc(props[cfg.nameKey]) + '</strong>' +
-				(props[cfg.codeKey] ? ' <span class="text-muted">(' + esc(props[cfg.codeKey]) + ')</span>' : '');
+			return esc(props[cfg.nameKey] != null ? props[cfg.nameKey] : '');
 		}
-		let prefix = cfg.type === 'cq' ? 'CQ Zone' : 'ITU Zone';
-		return '<strong>' + prefix + ' ' + esc(props[cfg.numKey]) + '</strong><br>' + esc(props[cfg.nameKey]);
+		return esc(props[cfg.numKey] != null ? props[cfg.numKey] : '');
 	}
+	/* Highlight a dropdown toggle (btn-filter-active) when any checkbox in its
+	 * menu is checked — mirrors the advanced logbook filter button. */
+	function syncToggleActive(menu, btn) {
+		if (!menu || !btn) return;
+		btn.classList.toggle('btn-filter-active', !!menu.querySelector('input[type="checkbox"]:checked'));
+	}
+
 	// Build the Overlays dropdown from the server-provided config (glOverlays).
 	function buildOverlays(host) {
 		if (!host || !glOverlays.length) return;
@@ -595,31 +602,43 @@
 			let id = e.target.getAttribute('data-oid');
 			if (!id) return;
 			if (e.target.checked) { addOverlay(id, e.target); } else { removeOverlay(id); }
+			syncToggleActive(menu, btn);
 		});
 
 		drop.appendChild(btn);
 		drop.appendChild(menu);
 		host.appendChild(drop);
+		syncToggleActive(menu, btn);   // initial state (none checked -> normal)
 	}
 	// Fetch (once, cached) and add a GeoJSON overlay layer to the map.
 	function addOverlay(id, cb) {
 		let cfg = overlayCfg[id];
 		if (!cfg) return;
-		if (overlayLayers[id]) { map.addLayer(overlayLayers[id]); return; }
+		if (overlayLayers[id]) {
+			let cached = overlayLayers[id];
+			map.addLayer(cached);
+			map.fitBounds(cached.getBounds(), { padding: [20, 20] });
+			return;
+		}
 		if (cb) { cb.disabled = true; }
 		fetch(glGeojsonBase + cfg.file)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
 				let layer = L.geoJSON(data, {
-					style: function () { return styleFor(cfg.color); },
+					style: function () { return Object.assign(styleFor(cfg.color), { interactive: false }); },
 					onEachFeature: function (feature, lyr) {
-						lyr.bindPopup(overlayPopup(feature.properties, cfg));
-						lyr.on('mouseover', function (ev) { ev.target.setStyle({ weight: 3, fillOpacity: 0.32 }); });
-						lyr.on('mouseout',  function (ev) { ev.target.setStyle(styleFor(cfg.color)); });
+						lyr.bindTooltip(overlayLabel(feature.properties, cfg), {
+							permanent: true,
+							direction: 'center',
+							className: 'overlay-region-label'
+						});
 					}
 				});
 				overlayLayers[id] = layer;            // cache so re-toggle is instant
-				if (!cb || cb.checked) { layer.addTo(map); }
+				if (!cb || cb.checked) {
+					layer.addTo(map);
+					map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+				}
 			})
 			.catch(function (err) { console.error('Overlay load failed:', cfg.file, err); })
 			.finally(function () { if (cb) { cb.disabled = false; } });
@@ -658,7 +677,6 @@
 						fillColor: '#2b8cbe',
 						fillOpacity: 0.9
 					});
-					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
 					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
 						(D.name ? '<br>' + esc(D.name) : '') +
 						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
@@ -694,7 +712,6 @@
 						fillColor: '#238b45',
 						fillOpacity: 0.9
 					});
-					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
 					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
 						(D.name ? '<br>' + esc(D.name) : '') +
 						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
@@ -730,7 +747,6 @@
 						fillColor: '#d95f0e',
 						fillOpacity: 0.9
 					});
-					dot.bindTooltip(D.reference + (D.name ? ' - ' + D.name : ''));
 					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
 						(D.name ? '<br>' + esc(D.name) : '') +
 						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
@@ -930,6 +946,17 @@
 			sotaCb.addEventListener('change', function () {
 				if (this.checked) { enableSota(); } else { disableSota(); }
 			});
+		}
+
+		// Reflect Refs/Overlays dropdown state on their toggle buttons.
+		let refsDrop = document.querySelector('.gl-refs');
+		if (refsDrop) {
+			let refsBtn = refsDrop.querySelector('.dropdown-toggle');
+			let refsMenu = refsDrop.querySelector('.dropdown-menu');
+			if (refsBtn && refsMenu) {
+				refsMenu.addEventListener('change', function () { syncToggleActive(refsMenu, refsBtn); });
+				syncToggleActive(refsMenu, refsBtn);   // gridsquare is on by default -> active
+			}
 		}
 
 		// Build the Overlays (GeoJSON) dropdown — zones + per-country states.

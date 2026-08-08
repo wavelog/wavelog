@@ -7,11 +7,11 @@ if (typeof(user_map_custom.qso) !== 'undefined') {
 	workedColor = user_map_custom.qso.color;
 }
 
-var osmUrl = $('#wwffmapjs').attr("tileUrl");
+var osmUrl = $('#sotamapjs').attr("tileUrl");
 
-let wwffMap = null;
+let sotaMap = null;
 
-function getWwffFilterData() {
+function getSotaFilterData() {
 	return {
 		band: $('#band').val(),
 		mode: $('#mode').val(),
@@ -27,36 +27,36 @@ function getWwffFilterData() {
 	};
 }
 
-function load_wwff_map() {
-	$('.nav-tabs a[href="#wwffmaptab"]').tab('show');
-	refresh_wwff_map();
+function load_sota_map() {
+	$('.nav-tabs a[href="#sotamaptab"]').tab('show');
+	refresh_sota_map();
 }
 
-function refresh_wwff_map() {
+function refresh_sota_map() {
 	$.ajax({
-		url: base_url + 'index.php/awards/wwff_map',
+		url: base_url + 'index.php/awards/sota_map',
 		type: 'post',
-		data: getWwffFilterData(),
+		data: getSotaFilterData(),
 		success: function(data) {
-			load_wwff_map2(data);
+			load_sota_map2(data);
 		},
 		error: function() {
 			BootstrapDialog.alert({
 				title: lang_general_word_error,
-				message: lang_wwff_map_error,
+				message: lang_sota_map_error,
 				type: BootstrapDialog.TYPE_DANGER,
 			});
 		},
 	});
 }
 
-function refresh_wwff_table() {
+function refresh_sota_table() {
 	$.ajax({
-		url: base_url + 'index.php/awards/wwff_table',
+		url: base_url + 'index.php/awards/sota_table',
 		type: 'post',
-		data: getWwffFilterData(),
+		data: getSotaFilterData(),
 		success: function(resp) {
-			var dt = $('#wwfftable').DataTable();
+			var dt = $('#sotatable').DataTable();
 			dt.clear();
 			dt.rows.add(resp.data || []);
 			dt.draw();
@@ -64,36 +64,36 @@ function refresh_wwff_table() {
 		error: function() {
 			BootstrapDialog.alert({
 				title: lang_general_word_error,
-				message: lang_wwff_map_error,
+				message: lang_sota_map_error,
 				type: BootstrapDialog.TYPE_DANGER,
 			});
 		},
 	});
 }
 
-function applyWwffFilters() {
-	refresh_wwff_table();
-	if ($('#wwffmaptab').hasClass('active')) {
-		refresh_wwff_map();
+function applySotaFilters() {
+	refresh_sota_table();
+	if ($('#sotamaptab').hasClass('active')) {
+		refresh_sota_map();
 	}
 }
 
-function load_wwff_map2(data) {
+function load_sota_map2(data) {
 
-	if (wwffMap !== null) {
-		wwffMap.remove();
-		wwffMap = null;
+	if (sotaMap !== null) {
+		sotaMap.remove();
+		sotaMap = null;
 	}
 
-	$("#wwffmap_status").empty();
+	$("#sotamap_status").empty();
 
-	var map = new L.Map('wwffmap', {
+	var map = new L.Map('sotamap', {
 		fullscreenControl: true,
 		fullscreenControlOptions: {
 			position: 'topleft'
 		},
 	});
-	wwffMap = map;
+	sotaMap = map;
 
 	L.tileLayer(
 		osmUrl,
@@ -131,9 +131,9 @@ function load_wwff_map2(data) {
 	markers.addTo(map);
 
 	if (data.length === 0) {
-		$("#wwffmap_status").html('<div class="alert alert-info">' + lang_wwff_no_refs + '</div>');
+		$("#sotamap_status").html('<div class="alert alert-info">' + lang_sota_no_refs + '</div>');
 	} else if (withoutCoords === data.length) {
-		$("#wwffmap_status").html('<div class="alert alert-warning">' + lang_wwff_dir_empty + '</div>');
+		$("#sotamap_status").html('<div class="alert alert-warning">' + lang_sota_dir_empty + '</div>');
 	}
 
 	/*Legend specific*/
@@ -149,7 +149,7 @@ function load_wwff_map2(data) {
 		}
 		div.innerHTML += '<i style="background: ' + confirmedColor + '"></i><span>' + lang_general_word_confirmed + ' (' + confirmedCount + ')</span><br>';
 		div.innerHTML += '<i style="background: ' + workedColor + '"></i><span>' + lang_general_word_worked_not_confirmed + ' (' + workedNotConfirmedCount + ')</span><br>';
-		div.innerHTML += '<i style="background: #999"></i><span>' + lang_wwff_without_coordinates + ' (' + withoutCoords + ')</span><br>';
+		div.innerHTML += '<i style="background: #999"></i><span>' + lang_sota_without_coordinates + ' (' + withoutCoords + ')</span><br>';
 		return div;
 	};
 
@@ -165,16 +165,16 @@ function addMarker(L, D, mapColor, markers) {
 		color: '#fff',
 		fillColor: mapColor,
 		fillOpacity: 0.9,
-		wwff: D.reference
+		sota: D.reference
 	});
-	dot.bindTooltip(D.reference + ' - ' + (D.name || ''));
+	dot.bindTooltip(D.reference + ' - ' + (D.name || '') + (D.altitude ? ' (' + D.altitude + 'm)' : ''));
 	dot.on('click', onClick);
 	markers.addLayer(dot);
 }
 
 function onClick(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#wwffmap"), marker.options.wwff, $('#band').val(), 'All', 'All', $('#mode').val(), 'WWFF', '', $('#dateFrom').val(), $('#dateTo').val());
+	displayContactsOnMap($("#sotamap"), marker.options.sota, $('#band').val(), 'All', 'All', $('#mode').val(), 'SOTA', '', $('#dateFrom').val(), $('#dateTo').val());
 }
 
 // Date presets

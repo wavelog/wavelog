@@ -165,7 +165,7 @@ class DXCC extends CI_Model {
 			}
 
 			if ($isConfirmed) {
-				$dxccMatrix[$dxcc->dxcc][$dxcc->col_band] = '<div class="bg-success awardsBgSuccess" additional_successinfo=">C<"><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","DXCC2","'.$qsl.'","'.$postdata['dateFrom'].'","'.$postdata['dateTo'].'")\'>'.$confirmationLetters.'</a></div>';
+				$dxccMatrix[$dxcc->dxcc][$dxcc->col_band] = '<div class="bg-success awardsBgSuccess" additional_successinfo=">C<"><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","DXCC2","'.$qsl.'","'.$postdata['dateFrom'].'","'.$postdata['dateTo'].'","'.$postdata['prop_mode'].'")\'>'.$confirmationLetters.'</a></div>';
 				// Track confirmed DXCCs for summary
 				if (!isset($confirmedDxccs[$dxcc->col_band][$dxcc->dxcc])) {
 					$confirmedDxccs[$dxcc->col_band][$dxcc->dxcc] = true;
@@ -183,7 +183,7 @@ class DXCC extends CI_Model {
 				}
 			} else {
 				if ($postdata['worked'] != NULL) {
-					$dxccMatrix[$dxcc->dxcc][$dxcc->col_band] = '<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "", "'.$postdata['dateFrom'].'", "'.$postdata['dateTo'].'")\'>W</a></div>';
+					$dxccMatrix[$dxcc->dxcc][$dxcc->col_band] = '<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "", "'.$postdata['dateFrom'].'", "'.$postdata['dateTo'].'","'.$postdata['prop_mode'].'")\'>W</a></div>';
 				}
 			}
 
@@ -245,7 +245,7 @@ class DXCC extends CI_Model {
 				}
 
 				if ($isConfirmed) {
-					$dxccMatrix[$dxccKey][$dxcc->col_band] = '<div class="bg-success awardsBgSuccess" additional_successinfo=">C<"><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","DXCC2","'.$qsl.'","'.$postdata['dateFrom'].'","'.$postdata['dateTo'].'")\'>'.$confirmationLetters.'</a></div>';
+					$dxccMatrix[$dxccKey][$dxcc->col_band] = '<div class="bg-success awardsBgSuccess" additional_successinfo=">C<"><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","DXCC2","'.$qsl.'","'.$postdata['dateFrom'].'","'.$postdata['dateTo'].'","'.$postdata['prop_mode'].'")\'>'.$confirmationLetters.'</a></div>';
 					// Track confirmed DXCCs for summary
 					if (!isset($confirmedDxccs[$dxcc->col_band][$dxccKey])) {
 						$confirmedDxccs[$dxcc->col_band][$dxccKey] = true;
@@ -261,7 +261,7 @@ class DXCC extends CI_Model {
 					}
 				} else {
 					if ($postdata['worked'] != NULL) {
-						$dxccMatrix[$dxccKey][$dxcc->col_band] = '<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "", "'.$postdata['dateFrom'].'", "'.$postdata['dateTo'].'")\'>W</a></div>';
+						$dxccMatrix[$dxccKey][$dxcc->col_band] = '<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$dxcc->dxcc.'","'. $dxcc->col_band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "", "'.$postdata['dateFrom'].'", "'.$postdata['dateTo'].'","'.$postdata['prop_mode'].'")\'>W</a></div>';
 					}
 				}
 
@@ -488,6 +488,7 @@ class DXCC extends CI_Model {
 		}
 
 		$sql .= " and (thcv.col_prop_mode != 'SAT' or thcv.col_prop_mode is NULL)";
+		$sql .= $this->addPropModeToQuery($postdata, $bindings);
 
 		// Continent filters
 		$sql .= $this->addContinentsToQuery($postdata);
@@ -552,6 +553,7 @@ class DXCC extends CI_Model {
 		}
 
 		$sql .= " and col_prop_mode = 'SAT'";
+		$sql .= $this->addPropModeToQuery($postdata, $bindings);
 
 		$sql .= " GROUP BY thcv.col_dxcc";
 
@@ -630,6 +632,7 @@ class DXCC extends CI_Model {
 
 		// Continent filters
 		$sql .= $this->addContinentsToQuery($postdata);
+		$sql .= $this->addPropModeToQuery($postdata, $bindings);
 
 		// Deleted DXCC filter
 		if ($postdata['includedeleted'] == NULL) {
@@ -696,6 +699,7 @@ class DXCC extends CI_Model {
 			}
 
 			$sql .= $this->addOrbitToQuery($postdata, $bindings);
+			$sql .= $this->addPropModeToQuery($postdata, $bindings, '');
 
 			$sql .= ' group by col_dxcc) x on dxcc_entities.adif = x.col_dxcc';
 		}
@@ -763,6 +767,17 @@ class DXCC extends CI_Model {
 		if ($postdata['orbit'] != 'All') {
 			$sql .= ' AND satellite.orbit = ?';
 			$binding[]=$postdata['orbit'];
+		}
+
+		return $sql;
+	}
+
+	// Adds propagation mode to query
+	function addPropModeToQuery($postdata,&$binding, $col_prefix = 'thcv.') {
+		$sql = '';
+		if (isset($postdata['prop_mode']) && $postdata['prop_mode'] != 'All' && $postdata['prop_mode'] != '') {
+			$sql .= ' AND ' . $col_prefix . 'col_prop_mode = ?';
+			$binding[]=$postdata['prop_mode'];
 		}
 
 		return $sql;

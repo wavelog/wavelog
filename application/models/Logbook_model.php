@@ -537,6 +537,16 @@ class Logbook_model extends CI_Model {
 				} else {
 					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				}
+				if (($propagation ?? '') == 'None') {
+					$this->db->group_start();
+					$this->db->where("COL_PROP_MODE = ''");
+					$this->db->or_where("COL_PROP_MODE is null");
+					$this->db->group_end();
+				} elseif ($propagation == 'NoSAT') {
+					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+				} elseif ($propagation != '' && $propagation != null) {
+					$this->db->where("COL_PROP_MODE", $propagation);
+				}
 				break;
 			case 'IOTA':
 				$this->db->where('COL_IOTA', $searchphrase);
@@ -689,7 +699,10 @@ class Logbook_model extends CI_Model {
 				$this->db->where('COL_WWFF_REF', $searchphrase);
 				break;
 			case 'POTA':
-				$this->db->where('COL_POTA_REF', $searchphrase);
+				// COL_POTA_REF can hold several comma-separated references
+				// (e.g. "K-1234,K-5678"), so match with FIND_IN_SET. For
+				// single-reference rows this behaves like an equality check.
+				$this->db->where('FIND_IN_SET(' . $this->db->escape($searchphrase) . ', COL_POTA_REF) > 0', null, false);
 				break;
 			case 'DOK':
 				$this->db->where('COL_DARC_DOK', $searchphrase);
@@ -1848,10 +1861,10 @@ class Logbook_model extends CI_Model {
 
 	/*
 	 * Whether $call is a syntactically valid amateur radio callsign.
-	 * This is rather a soft check to catch malicious input, not a full validation of the callsign. 
+	 * This is rather a soft check to catch malicious input, not a full validation of the callsign.
 	 * (e.g. dashes are allowed, even though they are not valid, but they are used by the people and
 	 * we simply don't want too many support tickets).
-	 * 
+	 *
 	 * Make sure matches assets/js/sections/callsign_validation.js
 	 */
 	function is_valid_callsign($call) {
