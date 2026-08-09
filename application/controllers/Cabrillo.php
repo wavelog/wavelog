@@ -47,7 +47,7 @@ class Cabrillo extends CI_Controller {
 
 		//get data from upload
 		$contest_id = $this->input->post('contest_id', false) ?? '';
-		$data = array('upload_data' => $this->upload->data());
+		$data['upload_data'] = $this->upload->data();
 
 		//set memory limit to allow big files
 		ini_set('memory_limit', '-1');

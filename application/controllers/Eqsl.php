@@ -676,6 +676,12 @@ class eqsl extends CI_Controller {
 	 * Used for CRON job
 	 */
 	public function sync() {
+		$this->load->helper('cronauth');
+		if (!cronauth_allowed(3)) {
+			// return a 403
+			$this->output->set_status_header(403);
+			exit();
+		}
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);

@@ -90,39 +90,76 @@ class Update_model extends CI_Model {
         }
     }
 
-    function sota() {
+	function sota() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
-        $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
+        $csvfile = 'https://storage.sota.org.uk/summitslist.csv';
 
-        $sotafile = './updates/sota.txt';
-
-        $csvhandle = fopen($csvfile, "r");
-        if ($csvhandle === FALSE) {
-            return  "Something went wrong with fetching the SOTA file";
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $csvfile);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+        $csv = curl_exec($ch);
+        if ($csv === FALSE) {
+            return "Something went wrong with fetching the SOTA file";
         }
 
-        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\'); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\'); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\');
-        $sotafilehandle = fopen($sotafile, 'w');
-
-        if ($sotafilehandle === FALSE) {
-            return "FAILED: Could not write to sota.txt file";
+        $stream = fopen('php://temp', 'r+');
+        if ($stream === FALSE) {
+            return "FAILED: Could not open temp stream";
         }
+        fwrite($stream, $csv);
+        rewind($stream);
 
         $nCount = 0;
-        do {
-            if ($data[0]) {
-                fwrite($sotafilehandle, $data[0] . PHP_EOL);
-                $nCount++;
-            }
-        } while ($data = fgetcsv($csvhandle, 1000, ",", '"', '\\'));
+        $batch = [];
+        $first = true;
+		$second = true;
 
-        fclose($csvhandle);
-        fclose($sotafilehandle);
+        $this->db->trans_start();
+        $this->db->empty_table('sota_directory');
+
+        while (($cols = fgetcsv($stream, 0, ",", '"', '\\')) !== FALSE) {
+            if ($first) {
+                $first = false;
+                continue;
+            }
+
+			if ($second) {
+                $second = false;
+                continue;
+            }
+
+            $batch[] = [
+                'reference' => isset($cols[0]) ? trim($cols[0]) : null,
+                'name'      => isset($cols[3]) ? trim($cols[3]) : null,
+                'altitude'  => isset($cols[4]) ? trim($cols[4]) : null,
+                'lat'       => $this->_wwff_coord($cols[9] ?? null),
+                'lon'       => $this->_wwff_coord($cols[8] ?? null),
+            ];
+            $nCount++;
+
+            if (count($batch) >= 1000) {
+                $this->_sota_upsert_batch($batch);
+                $batch = [];
+            }
+        }
+
+        fclose($stream);
+
+        if (!empty($batch)) {
+            $this->_sota_upsert_batch($batch);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            return "FAILED: import rolled back";
+        }
 
         if ($nCount > 0) {
             return "DONE: " . number_format($nCount) . " SOTA's saved";
@@ -132,47 +169,131 @@ class Update_model extends CI_Model {
     }
 
     function wwff() {
-        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
-
-        $wwfffile = './updates/wwff.txt';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
         $csv = curl_exec($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the WWFF file";
         }
 
-        $wwfffilehandle = fopen($wwfffile, 'w');
-        if ($wwfffilehandle === FALSE) {
-            return "FAILED: Could not write to wwff.txt file";
+        $stream = fopen('php://temp', 'r+');
+        if ($stream === FALSE) {
+            return "FAILED: Could not open temp stream";
         }
+        fwrite($stream, $csv);
+        rewind($stream);
 
-        $data = str_getcsv($csv, "\n", '"', '\\');
         $nCount = 0;
-        foreach ($data as $idx => $row) {
-            if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',', '"', '\\');
-            if ($row[0]) {
-                fwrite($wwfffilehandle, $row[0] . PHP_EOL);
-                $nCount++;
+        $batch = [];
+        $first = true;
+
+        $this->db->trans_start();
+        $this->db->empty_table('wwff_directory');
+
+        while (($cols = fgetcsv($stream, 0, ",", '"', '\\')) !== FALSE) {
+            if ($first) {
+                $first = false;
+                continue;
+            }
+            $ref = strtoupper(trim($cols[0] ?? ''));
+            if ($ref === '') {
+                continue;
+            }
+
+            $batch[] = [
+                'reference' => $ref,
+                'name'      => isset($cols[2]) ? trim($cols[2]) : null,
+                'lat'       => $this->_wwff_coord($cols[10] ?? null),
+                'lon'       => $this->_wwff_coord($cols[11] ?? null),
+            ];
+            $nCount++;
+
+            if (count($batch) >= 1000) {
+                $this->_wwff_upsert_batch($batch);
+                $batch = [];
             }
         }
 
-        fclose($wwfffilehandle);
+        fclose($stream);
+
+        if (!empty($batch)) {
+            $this->_wwff_upsert_batch($batch);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            return "FAILED: import rolled back";
+        }
 
         if ($nCount > 0) {
             return "DONE: " . number_format($nCount) . " WWFF's saved";
         } else {
             return "FAILED: Empty file";
         }
+    }
+
+    private function _wwff_coord($val) {
+        if ($val === null) {
+            return null;
+        }
+        $val = trim($val);
+        if ($val === '' || !is_numeric($val)) {
+            return null;
+        }
+        $f = (float) $val;
+        return $f == 0 ? null : $f;
+    }
+
+	private function _pota_upsert_batch($batch) {
+        $placeholders = [];
+        $bindings = [];
+        foreach ($batch as $b) {
+            $placeholders[] = '(?, ?, ?, ?, ?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['active'], $b['entityid'], $b['locationdesc'], $b['lat'], $b['lon'], $b['gridsquare']);
+        }
+
+        $sql = 'INSERT IGNORE INTO pota_directory (reference, name, active, entityid, locationdesc, lat, lon, gridsquare) VALUES '
+            . implode(', ', $placeholders);
+
+        $this->db->query($sql, $bindings);
+    }
+
+    private function _wwff_upsert_batch($batch) {
+        $placeholders = [];
+        $bindings = [];
+        foreach ($batch as $b) {
+            $placeholders[] = '(?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon']);
+        }
+
+        $sql = 'INSERT IGNORE INTO wwff_directory (reference, name, lat, lon) VALUES '
+            . implode(', ', $placeholders);
+
+        $this->db->query($sql, $bindings);
+    }
+
+	private function _sota_upsert_batch($batch) {
+        $placeholders = [];
+        $bindings = [];
+        foreach ($batch as $b) {
+            $placeholders[] = '(?, ?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['altitude'], $b['lat'], $b['lon']);
+        }
+
+        $sql = 'INSERT IGNORE INTO sota_directory (reference, name, altitude, lat, lon) VALUES '
+            . implode(', ', $placeholders);
+
+        $this->db->query($sql, $bindings);
     }
 
     function hamqsl(){
@@ -208,41 +329,73 @@ class Update_model extends CI_Model {
 	    }
     }
 
-    function pota() {
+	function pota() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
-        $csvfile = 'https://pota.app/all_parks.csv';
-
-        $potafile = './updates/pota.txt';
+        $csvfile = 'https://pota.app/all_parks_ext.csv';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
         $csv = curl_exec($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the POTA file";
         }
 
-        $potafilehandle = fopen($potafile, 'w');
-        if ($potafilehandle === FALSE) {
-            return "FAILED: Could not write to pota.txt file";
+        $stream = fopen('php://temp', 'r+');
+        if ($stream === FALSE) {
+            return "FAILED: Could not open temp stream";
         }
-        $data = str_getcsv($csv, "\n", '"', '\\');
+        fwrite($stream, $csv);
+        rewind($stream);
+
         $nCount = 0;
-        foreach ($data as $idx => $row) {
-            if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',', '"', '\\');
-            if ($row[0]) {
-                fwrite($potafilehandle, $row[0] . PHP_EOL);
-                $nCount++;
+        $batch = [];
+        $first = true;
+
+        $this->db->trans_start();
+        $this->db->empty_table('pota_directory');
+
+        while (($cols = fgetcsv($stream, 0, ",", '"', '\\')) !== FALSE) {
+            if ($first) {
+                $first = false;
+                continue;
+            }
+
+            $batch[] = [
+                'reference'    => isset($cols[0]) ? trim($cols[0]) : null,
+                'name'         => isset($cols[1]) ? trim($cols[1]) : null,
+				'active'       => isset($cols[2]) ? trim($cols[2]) : null,
+				'entityid'     => isset($cols[3]) ? trim($cols[3]) : null,
+				'locationdesc' => isset($cols[4]) ? trim($cols[4]) : null,
+				'lat'          => $this->_wwff_coord($cols[5] ?? null),
+                'lon'          => $this->_wwff_coord($cols[6] ?? null),
+                'gridsquare'   => isset($cols[7]) ? trim($cols[7]) : null,
+            ];
+            $nCount++;
+
+            if (count($batch) >= 1000) {
+                $this->_pota_upsert_batch($batch);
+                $batch = [];
             }
         }
 
-        fclose($potafilehandle);
+        fclose($stream);
+
+        if (!empty($batch)) {
+            $this->_pota_upsert_batch($batch);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            return "FAILED: import rolled back";
+        }
 
         if ($nCount > 0) {
             return "DONE: " . number_format($nCount) . " POTA's saved";

@@ -76,6 +76,8 @@ class Calltester extends CI_Controller {
                                 'callsign'          => $call->col_call,
 								'qso_date'          => $call->date,
 								'station_profile'   => $call->station_profile_name,
+								'gridsquare'        => $call->col_gridsquare,
+								'band'              => $call->col_band,
                                 'existing_dxcc'     => $call->col_country,
                                 'existing_adif'     => $call->col_dxcc,
                                 'result_country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
@@ -120,6 +122,8 @@ class Calltester extends CI_Controller {
                                 'callsign'          => $call->col_call,
 								'qso_date'          => $call->date,
 								'station_profile'   => $call->station_profile_name,
+								'gridsquare'        => $call->col_gridsquare,
+								'band'              => $call->col_band,
                                 'existing_dxcc'     => $call->col_country,
                                 'existing_adif'     => $call->col_dxcc,
                                 'result_country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
@@ -144,6 +148,49 @@ class Calltester extends CI_Controller {
 
 	function loadView($data) {
 		$this->load->view('calltester/result', $data);
+	}
+
+	/*
+	 * Returns an HTML fragment (for a BootstrapDialog modal) showing, for the
+	 * given callsign, a header with the DXCC / CQ zone / gridsquare taken from
+	 * the user's logged QSOs, followed by a focused table of those QSOs.
+	 * No external/callbook lookup is performed.
+	 */
+	function call_info($call = '') {
+		// Normalize slashed-zero the same way logbook/search_result does
+		$call = strtoupper(str_replace('Ø', '0', $call));
+
+		if ($call === '') {
+			echo '<div class="alert alert-warning mb-0">' . __("No callsign provided.") . '</div>';
+			return;
+		}
+
+		$this->load->model('dxcc');
+		$query = $this->dxcc->getQsosForCall($call);
+
+		$data['call']  = $call;
+		$data['results'] = $query;
+		$data['count'] = $query->num_rows();
+
+		// Header summary comes from the most recent matching QSO (first row)
+		if ($data['count'] > 0) {
+			$row = $query->row();
+			$data['info'] = [
+				'dxcc_name'  => $row->COL_COUNTRY,
+				'dxcc_adif'  => $row->COL_DXCC,
+				'cqz'        => $row->COL_CQZ,
+				'gridsquare' => (!empty($row->COL_GRIDSQUARE)) ? $row->COL_GRIDSQUARE : ($row->COL_VUCC_GRIDS ?? ''),
+			];
+		}
+
+		// Resolve the user's date format the same way calltester/result.php does
+		if ($this->session->userdata('user_date_format')) {
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
+		}
+
+		$this->load->view('calltester/call_info', $data);
 	}
 
 	function compareDxccChecks($result, $result2) {

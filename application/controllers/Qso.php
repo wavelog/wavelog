@@ -657,79 +657,30 @@ class QSO extends CI_Controller {
 	 * Function is used for autocompletion of SOTA in the QSO entry form
 	 */
 	public function get_sota() {
-		$this->load->library('sota');
-		$json = [];
-
 		$query = $this->input->get('query', TRUE) ?? FALSE;
-		$json = $this->sota->get($query);
+
+		$this->load->model('sota');
+		$json = $this->sota->search_refs($query);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
 	}
 
 	public function get_wwff() {
-		$json = [];
-
 		$query = $this->input->get('query', TRUE) ?? FALSE;
-		$wwff = strtoupper($query);
 
-		$file = 'updates/wwff.txt';
-
-		if (is_readable($file)) {
-			$lines = file($file, FILE_IGNORE_NEW_LINES);
-			$input = preg_quote($wwff, '~');
-			$reg = '~^'. $input .'(.*)$~';
-			$result = preg_grep($reg, $lines);
-			$json = [];
-			$i = 0;
-			foreach ($result as &$value) {
-				// Limit to 100 as to not slowdown browser too much
-				if (count($json) <= 100) {
-					$json[] = ["name"=>$value];
-				}
-			}
-		} else {
-			$src = 'assets/resources/wwff.txt';
-			if (copy($src, $file)) {
-				$this->get_wwff();
-			} else {
-				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-			}
-		}
+		$this->load->model('wwff');
+		$json = $this->wwff->search_refs($query);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
 	}
 
 	public function get_pota() {
-		$json = [];
-
 		$query = $this->input->get('query', TRUE) ?? FALSE;
-		$pota = strtoupper($query);
 
-		$file = 'updates/pota.txt';
-
-		if (is_readable($file)) {
-			$lines = file($file, FILE_IGNORE_NEW_LINES);
-			$input = preg_quote($pota, '~');
-			$reg = '~^'. $input .'(.*)$~';
-			$result = preg_grep($reg, $lines);
-			$json = [];
-			$i = 0;
-			foreach ($result as &$value) {
-				// Limit to 100 as to not slowdown browser too much
-				if (count($json) <= 100) {
-					$json[] = ["name"=>$value];
-				}
-			}
-		} else {
-			$src = 'assets/resources/pota.txt';
-			if (copy($src, $file)) {
-				$this->get_pota();
-			} else {
-				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-			}
-		}
+		$this->load->model('pota');
+		$json = $this->pota->search_refs($query);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);

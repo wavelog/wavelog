@@ -22,7 +22,12 @@ class Hrdlog extends CI_Controller {
 	}
 
     public function upload() {
-
+		$this->load->helper('cronauth');
+		if (!cronauth_allowed(3)) {
+			// return a 403
+			$this->output->set_status_header(403);
+			exit();
+		}
 		$this->load->model('Hrdlog_model');
 		$this->Hrdlog_model->upload();
         

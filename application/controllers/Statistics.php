@@ -306,6 +306,9 @@ class Statistics extends CI_Controller {
 		$this->load->model('stats');
 		$this->load->model('logbookadvanced_model');
 		$this->load->model('bands');
+		$this->load->model('distances_model');
+
+		$this->distances_model->backfill_missing_geodata();   // azimuthdata() ignores QSOs without ANT_AZ, so fill the gaps first
 
 		$data = array();
 

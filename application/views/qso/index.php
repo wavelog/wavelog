@@ -36,6 +36,7 @@ switch ($date_format) {
   var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
   var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
   var lang_invalid_ant_el = "<?= __("Invalid value for antenna elevation:"); ?>";
+  var lang_qso_sat_below_horizon_confirm = "<?= __("Satellite appears below the horizon (elevation %s°). The stored TLE may be outdated for this QSO time. Do you really want to log this QSO?"); ?>";
   var lang_invalid_callsign = "<?= __("Invalid callsign"); ?>";
   var lang_qso_wait_before_saving = "<?= __("Please wait before saving another QSO"); ?>";
   var latlng=[<?php echo $lat.','.$lng;?>];
@@ -135,7 +136,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 	<?php if ($user_station_to_qso_tab ?? false) { ?>
 	<div class="row">
               <div class="mb-3 col-md-12">
-              <label class="col-sm-3 col-form-label" for="stationProfile"><?= __("Station Location"); ?></label>
+              <label class="col-form-label" for="stationProfile"><?= __("Station Location"); ?></label>
               <select id="stationProfile" class="form-select form-control form-control-sm" name="station_profile" onChange="panMap(this.value);">
                 <?php
                    $power = '';
@@ -664,19 +665,18 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
             <div class="mb-3">
               <label for="sat_name"><?= __("Satellite Name"); ?></label>
 
-              <input list="satellite_names" id="sat_name" type="text" name="sat_name" class="form-control" value="<?php echo $this->session->userdata('sat_name'); ?>">
+              <input type="text" class="form-control" id="sat_name" name="sat_name" value="<?php echo $this->session->userdata('sat_name'); ?>" onblur="setTimeout(() => document.getElementById('satellite_names_list').innerHTML = '', 150)">
+              <ul class="list-group position-absolute" id="satellite_names_list" style="width: 95%; max-height: 512px; overflow-y: auto; z-index: 1100; display: none;"></ul>
               <div style="min-height: 24px;">
                  <small id="lotw_support" class="form-text text-muted" style="min-height: 20px;">&nbsp;</small>
               </div>
-              <datalist id="satellite_names" class="satellite_names_list"></datalist>
             </div>
 
             <div class="mb-3">
               <label for="sat_mode"><?= __("Satellite Mode"); ?></label>
 
-              <input list="satellite_modes" id="sat_mode" type="text" name="sat_mode" class="form-control" value="<?php echo $this->session->userdata('sat_mode'); ?>">
-
-              <datalist id="satellite_modes" class="satellite_modes_list"></datalist>
+              <input type="text" id="sat_mode" name="sat_mode" class="form-control" value="<?php echo $this->session->userdata('sat_mode'); ?>" onblur="setTimeout(() => document.getElementById('satellite_modes_list').innerHTML = '', 150)">
+              <ul class="list-group position-absolute" id="satellite_modes_list" style="width: 95%; max-height: 512px; overflow-y: auto; z-index: 1100; display: none;"></ul>
             </div>
 
             <div class="mb-3">
@@ -687,7 +687,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 
             <div class="mb-3">
               <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
-              <input type="number" inputmode="decimal" step="0.1" min="-5" max="90" class="form-control" id="ant_el" name="ant_el" onInvalid="invalidAntEl()" />
+              <input type="number" inputmode="decimal" step="0.1" max="90" class="form-control" id="ant_el" name="ant_el" onInvalid="invalidAntEl()" />
               <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
             </div>
           </div>

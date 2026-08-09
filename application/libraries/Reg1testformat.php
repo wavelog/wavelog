@@ -201,7 +201,9 @@ class Reg1testformat {
          case 'ATV':
             return 9;
          default:
-            return 0;
+            // all other modes are most likely machine generated and according to the IARU R1 handbook should be marked with mode code 7
+            // https://www.iaru-r1.org/wp-content/uploads/2026/02/VHF_Handbook_V10_03_final.pdf
+            return 7;
       }
    }
 }

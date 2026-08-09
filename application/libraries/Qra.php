@@ -222,6 +222,10 @@ class Qra {
 		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
 		// Allow 10-digit locator
 		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		// Allow 6-digit grid line
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		// Allow 6-digit grid corner
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
 		return false;
 	}
 }

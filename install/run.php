@@ -1,5 +1,13 @@
 <?php
+require_once('includes/install_config/install_lib.php');
+require_once('includes/install_config/install_config.php');
+
 session_start();
+
+if (file_exists('.lock') || file_exists($db_config_path . 'config.php') || file_exists($db_config_path . 'database.php')) {
+	http_response_code(403);
+	exit('forbidden');
+}
 
 $form_token = $_POST['form_token'] ?? '';
 if (empty($form_token) || !isset($_SESSION['form_token']) || !hash_equals($_SESSION['form_token'], $form_token)) {
@@ -72,6 +80,8 @@ $_SESSION['installer_token'] = bin2hex(random_bytes(32));
 <script>
     let _POST = <?php echo json_encode($_POST, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
     let _installer_token = '<?= $_SESSION['installer_token'] ?>';
+    let _cron_token = '';
+    let _log_polling = true;
 
     $.ajaxSetup({
         headers: { 'X-Installer-Token': _installer_token }
@@ -87,6 +97,9 @@ $_SESSION['installer_token'] = bin2hex(random_bytes(32));
             await update_dxcc();
             await log_message('info', 'Finish. Installer went through successfully.');
             await installer_lock();
+
+            // close the ajax gateway for the log polling, since we are done with the install steps
+            _log_polling = false;
 
             if ($('#logContainer').css('display') == 'none') {
                 // after all install steps went through we can show a success message and redirect to the user/login
@@ -117,24 +130,35 @@ $_SESSION['installer_token'] = bin2hex(random_bytes(32));
         }
     });
 
+    // Poll the debug logfile with a self-scheduling timeout instead of a fixed
+    // interval: only one request is ever in flight, so a slow answer can never
+    // pile up further requests on top of the running install step.
     function init_read_log() {
-        var interval = setInterval(function() {
-            $.ajax({
-                type: 'POST',
-                url: 'ajax.php',
-                data: {
-                    read_logfile: 1
-                },
-                success: function(response) {
-                    $("#debuglog").text(response);
-                },
-                error: function(xhr) {
-                    if (xhr.status === 403) {
-                        clearInterval(interval);
-                    }
+        if (!_log_polling) {
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: 'ajax.php',
+            timeout: 10000,
+            data: {
+                read_logfile: 1
+            },
+            success: function(response) {
+                $("#debuglog").text(response);
+            },
+            error: function(xhr) {
+                // 403 means the installer got locked -- stop polling
+                if (xhr.status === 403) {
+                    _log_polling = false;
                 }
-            });
-        }, 500);
+            },
+            complete: function() {
+                if (_log_polling) {
+                    setTimeout(init_read_log, 500);
+                }
+            }
+        });
     }
 
     $('#toggleLogButton').on('click', function() {
@@ -282,14 +306,39 @@ $_SESSION['installer_token'] = bin2hex(random_bytes(32));
         });
     }
 
+    async function fetch_cron_token() {
+        return new Promise((resolve) => {
+            $.ajax({
+                type: 'POST',
+                url: 'ajax.php',
+                data: {
+                    run_cron_token: 1
+                },
+                success: function(response) {
+                    _cron_token = response;
+                    resolve();
+                },
+                error: async function(error) {
+                    await log_message('error', 'Could not fetch the cron auth token. Ajax crashed. Status: ' + error.status + ' Status Text: ' + error.statusText);
+                    resolve();
+                }
+            });
+        });
+    }
+
     async function update_dxcc() {
         var field = '#update_dxcc';
         await log_message('debug', 'Start updating DXCC database. This can take a moment or two... Please wait');
         running(field, true);
 
+        await fetch_cron_token();
+
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: <?= json_encode(($_POST['websiteurl'] ?? '') . 'index.php/update/dxcc', JSON_HEX_TAG | JSON_HEX_AMP) ?>,
+                headers: {
+                    'X-Wavelog-Auth': _cron_token
+                },
                 success: async function(response) {
                     if (response == 'success') {
                         running(field, false);

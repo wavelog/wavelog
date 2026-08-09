@@ -456,30 +456,18 @@ function qso_edit(id) {
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchbearing',
                                type: 'post',
+                               dataType: 'json',
                                data: {
                                   grid: $('#locator_edit').val(),
                                   ant_path: $('#ant_path_edit').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info_edit').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data.text).fadeIn("slow");
+                                  $("#distance").val(data.distance_km ?? '');
                                },
                                error: function() {
                                   $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
-                               },
-                            });
-                            $.ajax({
-                               url: base_url + 'index.php/logbook/searchdistance',
-                               type: 'post',
-                               data: {
-                                  grid: $('#locator_edit').val(),
-                                  ant_path: $('#ant_path_edit').val(),
-                                  stationProfile: $('#stationProfile').val()
-                               },
-                               success: function(data) {
-                                  $("#distance").val(parseFloat(data));
-                               },
-                               error: function() {
                                   $('#distance').val('');
                                },
                             });
@@ -494,28 +482,17 @@ function qso_edit(id) {
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchbearing',
                                type: 'post',
+                               dataType: 'json',
                                data: {
                                   grid: $(this).val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info_edit').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data.text).fadeIn("slow");
+                                  $("#distance").val(data.distance_km ?? '');
                                },
                                error: function() {
                                   $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
-                               },
-                            });
-                            $.ajax({
-                               url: base_url + 'index.php/logbook/searchdistance',
-                               type: 'post',
-                               data: {
-                                  grid: $(this).val(),
-                                  stationProfile: $('#stationProfile').val()
-                               },
-                               success: function(data) {
-                                  $("#distance").val(parseFloat(data));
-                               },
-                               error: function() {
                                   $("#distance").val('');
                                },
                             });
@@ -724,7 +701,7 @@ function selectize_usa_county(state_field, county_field) {
     });
 }
 
-async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown') {
+async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown', set_state = null) {
     var selectedDxcc = $(dxcc_field);
 	var selectedState = $(dropdown);
 
@@ -1384,7 +1361,7 @@ function enableMap() {
     map.keyboard.enable();
 }
 
-function shareModal(qso_data) {
+function shareModal(qso_data, title) {
     $.ajax({
         url: base_url + 'index.php/qso/getShareModal',
         type: 'post',
@@ -1393,7 +1370,7 @@ function shareModal(qso_data) {
         },
         success: function (html) {
             BootstrapDialog.show({
-                title: lang_general_share_qso,
+                title: title || lang_general_share_qso,
                 cssClass: 'bg-black bg-opacity-50',
                 nl2br: false,
                 message: html,

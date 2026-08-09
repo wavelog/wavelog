@@ -125,6 +125,10 @@ import { SettingsSyncHandler } from './core/settings-sync.js';
                     if (payload?.type === 'settings_changed') {
                         syncEngine.triggerNow();
                     }
+                    // Another operator took or gave back a serial — refresh the preview.
+                    if (payload?.type === 'serial_changed') {
+                        syncEngine.triggerNow();
+                    }
                 };
                 // Surface connection health as toasts.
                 wsTransport.onConnectTimeout = () => {

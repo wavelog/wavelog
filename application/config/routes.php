@@ -48,6 +48,12 @@
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+// REST API v2 - a single catch-all dispatcher handles every /api/v2/... request.
+// The remainder of the path (resource/id/...) is passed to Api_v2::route().
+// v1 (/api/...) is untouched: these routes only match the api/v2 prefix.
+$route['api/v2'] = 'api_v2/route';
+$route['api/v2/(.+)'] = 'api_v2/route/$1';
+
 $route['default_controller'] = "dashboard";
 $route['404_override'] = 'errors/show_404';
 $route['translate_uri_dashes'] = FALSE;

@@ -76,10 +76,11 @@ function addQsoToPrintQueue(id) {
 
 					line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
                     line += '<td style="text-align: center" data-search="' + searchCallSign + '">';
-                    line += '<span class="qso_call">';
+                    line += '<span class="qso_call d-flex align-items-center justify-content-between">';
                     line += '<a id="edit_qso" href="javascript:displayQso(' + id + ');">';
                     line += formattedCallSign;
                     line += '</a>';
+                    line += '<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">';
                     line += '<a target="_blank" href="https://www.qrz.com/db/' + formattedCallSign + '">';
                     line += '<img width="16" height="16" src="' + base_url + 'images/icons/qrz.png" alt="Lookup ' + formattedCallSign + ' on QRZ.com">';
                     line += '</a> ';
@@ -89,7 +90,7 @@ function addQsoToPrintQueue(id) {
                     line += '<a target="_blank" href="https://www.eqsl.cc/Member.cfm?' + formattedCallSign + '">';
                     line += '<img width="16" height="16" src="' + base_url + 'images/icons/eqsl.png" alt="Lookup ' + formattedCallSign + ' on eQSL.cc">';
                     line += '</a>';
-                    line += '</span>';
+                    line += '</span></span>';
                     line += '</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
@@ -572,6 +573,12 @@ function printDialog(printType, printAll = false) {
 }
 
 function requestedQslAction(action) {
+	var url = base_url + 'index.php/qslprint/' + action + '/' + $('.station_id').val();
+	// if someone wants to export we don't need to confirm, just do it
+	if (action !== 'qsl_printed') {
+		window.location.href = url;
+		return;
+	}
 	BootstrapDialog.confirm({
 			title: lang_qslprint_warning,
 			message: lang_qslprint_are_you_sure,
@@ -581,7 +588,7 @@ function requestedQslAction(action) {
 			btnOKClass: 'btn-danger',
 			callback: function(result) {
 				if(result) {
-					window.location.href = base_url + 'index.php/qslprint/' + action + '/' + $('.station_id').val();
+					window.location.href = url;
 				}
 			},
 		});
@@ -647,6 +654,17 @@ function saveAndPrintSelectedQsos(printAll) {
 
 function printLabel(printAll) {
 	const id_list = getSelectedIds();
+	if (printAll != true && id_list.length === 0) {
+		BootstrapDialog.alert({
+			title: lang_qslprint_warning,
+			message: lang_qslprint_select_at_least_one_row,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: false,
+			draggable: false,
+			callback: function () {}
+		});
+		return;
+	}
 	const options = {
 			'startat': $('#startat').val(),
 			'grid': $('#gridlabel')[0].checked,

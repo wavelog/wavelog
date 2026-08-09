@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
-"PO-Revision-Date: 2026-06-18 04:37+0000\n"
+"POT-Creation-Date: 2026-07-29 15:45+0000\n"
+"PO-Revision-Date: 2026-08-06 08:26+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
 "installer/nl/>\n"
@@ -332,8 +332,8 @@ msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
 msgstr ""
-"Configureer enkele basis instellingen voor jouw Wavelog installatie. Deze "
-"kunnen later in 'application/config/config.php' nog gewijzigd worden"
+"Configureer enkele basis instellingen voor jouw Wavelog server. Deze kunnen "
+"later in 'application/config/config.php' nog gewijzigd worden"
 
 #: install/index.php:395
 msgid ""
@@ -342,10 +342,10 @@ msgid ""
 "check your web server configuration. This is the base_url in your config."
 "php, which can be edited after the installation."
 msgstr ""
-"Dit is de URL waar u Wavelog kunt vinden nadat de installer klaar is. Als u "
-"niet dan het vinden kunt, kan het helpen om de webserver configuratie te "
-"controleren. Dit is de 'base_url' in uw config.php, die aangepast kan worden "
-"na de installatie."
+"Dit is de URL waar u deze Wavelog server kunt vinden nadat de installer "
+"klaar is. Als dit niet vertoont wat u verwacht, kan het helpen om uw "
+"webserverconfiguratie te controleren. Dit is de 'base_url' in uw config.php, "
+"die na de installatie aangepast kan worden."
 
 #: install/index.php:395
 msgid "Your final Wavelog URL"
@@ -754,78 +754,78 @@ msgstr "Zonder deze module werkt Wavelog installer niet!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Installeer a.u.b. de vereiste modules en herstart de webserver."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Installatie"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Even wachten..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Kopieer config.php naar application/config/"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Kopieer database.php naar application/config/"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Aanmaken database tabellen"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Draaien van database migraties"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "Updaten DXCC gegevens"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Zet de installer op slot"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Alle installatie stappen zijn doorlopen. Laad pagina voor login in %s "
 "seconden..."
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Klaar. Ga naar user login ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:168
 msgid "Show detailled debug log"
 msgstr "Bekijk gedetailleerde debug log"
 
-#: install/run.php:146
+#: install/run.php:170
 msgid "Hide detailled debug log"
 msgstr "Verberg gedetailleerde debug log"
 
-#: install/run.php:174
+#: install/run.php:198
 msgid "Could not create application/config/config.php"
 msgstr "Kan application/config/config.php niet aanmaken"
 
-#: install/run.php:209
+#: install/run.php:233
 msgid "Could not create application/config/database.php"
 msgstr "Kan application/config/database.php niet aanmaken"
 
-#: install/run.php:243
+#: install/run.php:267
 msgid "Could not create database tables"
 msgstr "Kan geen database tabellen aanmaken"
 
-#: install/run.php:273
+#: install/run.php:297
 msgid "Could not run database migrations"
 msgstr "Kan geen database migratie draaien"
 
-#: install/run.php:301
+#: install/run.php:350
 msgid "Could not update DXCC data"
 msgstr "Kan DXCC gegevens niet updaten"
 
-#: install/run.php:333
+#: install/run.php:382
 msgid "Could not create install/.lock file"
 msgstr "Kan install/.lock bestand niet aanmaken"
 

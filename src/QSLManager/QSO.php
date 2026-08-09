@@ -186,7 +186,7 @@ class QSO
 		$this->qsoDateTime = date($custom_date_format . " H:i", strtotime($data['COL_TIME_ON'] ?? '1970-01-01 00:00:00'));
 
 		$this->de = $data['station_callsign'];
-		$this->dx = $data['COL_CALL'];
+		$this->dx = xss_clean($data['COL_CALL']);
 		$this->continent = $data['COL_CONT'] ?? '';
 		$this->region = $this->getRegionString(strtoupper($data['COL_REGION'] ?? ''));
 
@@ -869,7 +869,7 @@ class QSO
 	 */
 	public function getQsoDateTime(): string
 	{
-		return $this->qsoDateTime;
+		return '<span id="qsoDateTime">' . $this->qsoDateTime . '</span>';
 	}
 
 	/**
@@ -885,7 +885,55 @@ class QSO
 	 */
 	public function getDx(): string
 	{
-		return $this->dx;
+		$dx = str_replace('0', 'Ø', $this->dx);
+
+		if ($dx === '') {
+			return '<span class="bg-danger">Missing callsign</span>';
+		}
+
+		return '<span class="qso_call d-flex align-items-center justify-content-between">'
+			. '<a id="edit_qso" href="javascript:displayQso(' . $this->qsoID . ')"><span id="lbadx">' . $dx . '</span></a>'
+			. '<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">'
+			. $this->lotwBadge()
+			. $this->lookupLink('https://www.qrz.com/db/' . $this->dx, 'qrz.png', sprintf(__("Lookup %s on QRZ.com"), $dx))
+			. $this->lookupLink('https://www.hamqth.com/' . $this->dx, 'hamqth.png', sprintf(__("Lookup %s on HamQTH"), $dx))
+			. $this->lookupLink('https://clublog.org/logsearch.php?log=' . $this->dx . '&call=' . $this->de, 'clublog.png', __("Clublog Log Search"))
+			. '</span>'
+			. '</span>';
+	}
+
+	/**
+	 * LoTW badge — emitted only when the callsign is known to LoTW.
+	 * The fragment is space-prefixed so it joins cleanly inside .qso_icons.
+	 */
+	private function lotwBadge(): string
+	{
+		if ($this->callsign === '') {
+			return '';
+		}
+
+		return sprintf(
+			' <a href="https://lotw.arrl.org/lotwuser/act?act=%1$s" target="_blank">'
+			. '<small id="lotw_info" class="badge bg-success%2$s" data-bs-toggle="tooltip" '
+			. 'title="%3$s%4$s">L</small></a>',
+			$this->callsign,
+			$this->lotw_hint,
+			__("LoTW User. Last upload was "),
+			$this->lastupload,
+		);
+	}
+
+	/**
+	 * A space-prefixed 16×16 lookup icon link (QRZ, HamQTH, Clublog, …).
+	 */
+	private function lookupLink(string $href, string $icon, string $alt): string
+	{
+		return sprintf(
+			' <a target="_blank" href="%1$s"><img width="16" height="16" src="%2$s" alt="%3$s"></a>',
+			$href,
+			base_url() . 'images/icons/' . $icon,
+			$alt,
+		);
 	}
 
 	/**
@@ -1272,7 +1320,7 @@ class QSO
 	{
 		return [
 			'qsoID' => $this->qsoID,
-			'qsoDateTime' => $this->qsoDateTime,
+			'qsoDateTime' => $this->getQsoDateTime(),
 			'de' => $this->de,
 			'dx' => $this->getDx(),
 			'mode' => $this->getFormattedMode(),
@@ -1393,11 +1441,17 @@ class QSO
 
 	private function getFormattedMode(): string
 	{
-		if ($this->submode !== '') {
-			return $this->submode;
-		} else {
-			return $this->mode;
+		if ($this->mode === '' && $this->submode === '') {
+			return '<span class="bg-danger">Missing mode</span>';
 		}
+		$mode = '<span id="lbamode">';
+		if ($this->submode !== '') {
+			$mode .= $this->submode;
+		} else {
+			$mode .= $this->mode;
+		}
+		$mode .= '</span>';
+		return $mode;
 	}
 
 	private function getFormattedBand(): string
@@ -1416,7 +1470,11 @@ class QSO
 		if ($this->bandRX !== '' && $this->band !== '') {
 			$label .= "/" . $this->bandRX;
 		}
-		return trim($label);
+
+		if (trim($label) === '') {
+			return '<span class="bg-danger">Missing band</span>';
+		}
+		return '<span id="lbaband">' . $label . '</span>';
 	}
 
 	private function getFormattedFrequency(): string

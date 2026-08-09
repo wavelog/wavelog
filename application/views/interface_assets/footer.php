@@ -298,9 +298,9 @@ function stopImpersonate_modal() {
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
-    // Replace all Ø in the searchbar
+    // Replace all Ã˜ in the searchbar
     $('#nav-bar-search-input').on('input', function () {
-        $(this).val($(this).val().replace(/0/g, 'Ø'));
+        $(this).val($(this).val().replace(/0/g, 'Ã˜'));
     });
 </script>
 
@@ -336,6 +336,21 @@ function stopImpersonate_modal() {
 
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "dxcc") ) { ?>
     <script id="dxccmapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/dxccmap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+<?php } ?>
+
+<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "wwff") ) { ?>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.markercluster.js'); ?>"></script>
+    <script id="wwffmapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/wwffmap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+<?php } ?>
+
+<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "sota") ) { ?>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.markercluster.js'); ?>"></script>
+    <script id="sotamapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/sotamap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+<?php } ?>
+
+<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "pota") ) { ?>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.markercluster.js'); ?>"></script>
+    <script id="potamapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/potamap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "wae") ) { ?>
@@ -1012,7 +1027,7 @@ function searchButtonPress() {
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
-        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ø', '0'), function() {
+        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ã˜', '0'), function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -2364,7 +2379,7 @@ $('#sats').change(function(){
 		var target = document.body;
 		var observer = new MutationObserver(function() {
 			$('#dt-search-0').on('keyup', function (e) {
-				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
 				$(this).val(tocrappyzero);
 				$(this).trigger("input");
 			});
@@ -2488,7 +2503,7 @@ function viewEqsl(picture, callsign) {
   /*
    * Used to fetch QSOs from the logbook in the awards
    */
-    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto) {
+    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto, propagation) {
         $.ajax({
             url: base_url + 'index.php/awards/qso_details_ajax',
             type: 'post',
@@ -2501,7 +2516,8 @@ function viewEqsl(picture, callsign) {
                 'Type': type,
                 'QSL' : qsl,
 				'dateFrom': datefrom,
-				'dateTo': dateto
+				'dateTo': dateto,
+				'Propagation': (propagation && propagation !== 'All') ? propagation : '',
             },
             success: function (html) {
                 BootstrapDialog.show({
@@ -2541,7 +2557,7 @@ function viewEqsl(picture, callsign) {
                        var target = document.body;
                        var observer = new MutationObserver(function() {
                                $('#dt-search-0').on('keyup', function (e) {
-                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
                                        $(this).val(tocrappyzero);
                                        $(this).trigger("input");
                                });
@@ -2562,7 +2578,7 @@ function viewEqsl(picture, callsign) {
         });
     }
 
-    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto) {
+    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto, propagation) {
 	    $.ajax({
 	    url: base_url + 'index.php/awards/qso_details_ajax',
 		    type: 'post',
@@ -2575,7 +2591,8 @@ function viewEqsl(picture, callsign) {
 			    'Type': type,
 			    'QSL' : qsl,
 				'dateFrom': datefrom,
-				'dateTo': dateto
+				'dateTo': dateto,
+				'Propagation': (propagation && propagation !== 'All') ? propagation : '',
         },
 	    success: function (html) {
 		    var dialog = new BootstrapDialog({
@@ -3091,7 +3108,7 @@ function viewEqsl(picture, callsign) {
 		    var target = document.body;
 		    var observer = new MutationObserver(function() {
 			    $('#dt-search-1').on('keyup', function (e) {
-				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
 				    $(this).val(tocrappyzero);
 				    $(this).trigger("input");
 			    });
@@ -3120,6 +3137,7 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                columnDefs: [ { className: 'text-center', targets: '_all' } ],
                 "language": {
                     url: getDataTablesLanguageUrl(),
                 },
@@ -3161,6 +3179,7 @@ function viewEqsl(picture, callsign) {
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
+				columnDefs: [ { className: 'text-center', targets: '_all' } ],
                 "scrollY":        "500px",
                 "scrollCollapse": true,
                 "paging":         false,
@@ -3206,6 +3225,7 @@ function viewEqsl(picture, callsign) {
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
+				columnDefs: [ { className: 'text-center', targets: '_all' } ],
                 "scrollY":        "500px",
                 "scrollCollapse": true,
                 "paging":         false,

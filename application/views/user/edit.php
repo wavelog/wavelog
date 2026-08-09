@@ -1188,6 +1188,17 @@
 											<small class="form-text text-muted"><?= __("This setting control whether the 'Last seen' time is displayed in widget or not."); ?></small>
 										</div>
 									</div>
+									<?php if(!isset($on_air_widget_display_radio_name)) { $on_air_widget_display_radio_name='false'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="on_air_widget_display_radio_name" value="false">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="on_air_widget_display_radio_name" name="on_air_widget_display_radio_name" value="true" <?php if ($on_air_widget_display_radio_name == 'true') { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0"><?= __("Display radio name"); ?></label>
+											<small class="form-text text-muted"><?= __("This setting controls whether the radio's name is displayed in the widget or not."); ?></small>
+										</div>
+									</div>
 									<div class="mb-3">
 										<label><?= __("Display only most recently updated radio"); ?></label>
 										<?php if(!isset($on_air_widget_show_only_most_recent_radio)) { $on_air_widget_show_only_most_recent_radio='true'; }?>
