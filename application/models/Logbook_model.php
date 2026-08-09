@@ -5817,9 +5817,9 @@ class Logbook_model extends CI_Model {
 			$nameRow = '';
 		}
 
-		$data = array(
-			'COL_CONTEST_ID ' => xss_clean($nameRow),
-		);
+			$data = array(
+				'COL_CONTEST_ID' => xss_clean($nameRow),
+			);
 
 		$this->db->where(array('COL_PRIMARY_KEY' => $qso_id));
 		$this->db->update($this->config->item('table_name'), $data);
