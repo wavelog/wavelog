@@ -499,7 +499,6 @@
 			'<div class="gl-pop-grid">' + (Array.isArray(flag) && flag.length ? flag.map(function (fl) { return '<span class="flag-emoji gl-pop-flag">' + esc(fl) + '</span>'; }).join('') : '') + loc + '</div>' +
 			'<div class="gl-pop-coords"><i class="fas fa-location-crosshairs"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
 			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
-			(meta ? '<div class="gl-pop-meta">' + meta + '</div>' : '') +
 			refsSection(refs) +
 			actions +
 			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
@@ -1197,7 +1196,7 @@
 			if (myReq !== zoneReq) { return; }
 			refs = rr;
 			drawRefs(rr);
-    }
+		});
 		// DXCC flag for this 4-char grid (vuccgrids table).
 		gridFlag(loc, function (f) {
 			if (myReq !== zoneReq) { return; }
