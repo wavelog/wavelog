@@ -251,7 +251,13 @@ class Satellite extends CI_Controller {
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
 		$active_station_id = $this->stations->find_active();
-		$pageData['activegrid'] = $this->stations->gridsquare_from_station($active_station_id);
+		// Prefer a gridsquare passed in the query string (e.g. a link from the
+		// activation planner); otherwise fall back to the active station's grid.
+		$grid_param = strtoupper((string) $this->input->get('gridsquare', TRUE));
+		if (!preg_match('/^[A-R]{2}[0-9A-X]{0,8}$/', $grid_param)) {
+			$grid_param = '';
+		}
+		$pageData['activegrid'] = ($grid_param !== '') ? $grid_param : $this->stations->gridsquare_from_station($active_station_id);
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
 

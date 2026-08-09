@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-08 09:50+0000\n"
+"POT-Creation-Date: 2026-08-09 07:34+0000\n"
 "PO-Revision-Date: 2026-06-29 12:11+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -213,8 +213,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Satellite.php:117
 #: application/controllers/Satellite.php:131
 #: application/controllers/Satellite.php:149
-#: application/controllers/Satellite.php:550
-#: application/controllers/Satellite.php:559
+#: application/controllers/Satellite.php:556
+#: application/controllers/Satellite.php:565
 #: application/controllers/Sattimers.php:8 application/controllers/Search.php:9
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:16
@@ -652,7 +652,7 @@ msgstr " ja "
 
 #: application/controllers/Awards.php:713
 #: application/controllers/Logbook.php:1452
-#: application/views/activationplanner/index.php:58
+#: application/views/activationplanner/index.php:62
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
@@ -683,7 +683,7 @@ msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
 #: application/controllers/Logbook.php:1453
-#: application/views/activationplanner/index.php:56
+#: application/views/activationplanner/index.php:60
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
 #: application/views/logbookadvanced/edit.php:40
@@ -706,7 +706,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
 #: application/controllers/Logbook.php:1454
-#: application/views/activationplanner/index.php:57
+#: application/views/activationplanner/index.php:61
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
@@ -2198,9 +2198,10 @@ msgstr "osavaltio"
 
 #: application/controllers/Logbook.php:1456
 #: application/views/activated_gridmap/index.php:107
-#: application/views/activationplanner/index.php:40
-#: application/views/activationplanner/index.php:55
-#: application/views/activationplanner/index.php:79
+#: application/views/activationplanner/index.php:19
+#: application/views/activationplanner/index.php:44
+#: application/views/activationplanner/index.php:59
+#: application/views/activationplanner/index.php:83
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -3228,35 +3229,35 @@ msgstr "Muokkaa satelliittia"
 msgid "Satellite Flightpath"
 msgstr "Satelliitin lentorata"
 
-#: application/controllers/Satellite.php:265
+#: application/controllers/Satellite.php:271
 msgid "Satellite pass"
 msgstr "Satelliitin ylilento"
 
-#: application/controllers/Satellite.php:322
+#: application/controllers/Satellite.php:328
 msgid "Failed to save pass settings!"
 msgstr "Ylilennon asetusten tallentaminen epäonnistui!"
 
-#: application/controllers/Satellite.php:325
+#: application/controllers/Satellite.php:331
 msgid "Pass settings saved!"
 msgstr "Ylilennon asetukset tallennettu!"
 
-#: application/controllers/Satellite.php:338
+#: application/controllers/Satellite.php:344
 msgid "No settings found!"
 msgstr "Asetuksia ei löytynyt!"
 
-#: application/controllers/Satellite.php:352
+#: application/controllers/Satellite.php:358
 msgid "Failed to delete pass settings!"
 msgstr "Ylilennon asetusten poistaminen epäonnistui!"
 
-#: application/controllers/Satellite.php:354
+#: application/controllers/Satellite.php:360
 msgid "Pass settings deleted!"
 msgstr "Ylilennon asetukset poistettu!"
 
-#: application/controllers/Satellite.php:364
+#: application/controllers/Satellite.php:370
 msgid "Saved Pass Settings"
 msgstr "Tallennetut ylilentoasetukset"
 
-#: application/controllers/Satellite.php:381
+#: application/controllers/Satellite.php:387
 msgid "No presets available"
 msgstr "Esiasetuksia ei ole saatavilla"
 
@@ -3399,7 +3400,7 @@ msgstr "Ei sallittu"
 #: application/controllers/Stationsetup.php:156
 #: application/controllers/Stationsetup.php:177
 #: application/controllers/Stationsetup.php:478
-#: application/views/activationplanner/index.php:17
+#: application/views/activationplanner/index.php:21
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
@@ -5029,7 +5030,7 @@ msgid "Clear Markers"
 msgstr "Poista markkerit"
 
 #: application/views/activated_gridmap/index.php:105
-#: application/views/activationplanner/index.php:77
+#: application/views/activationplanner/index.php:81
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
@@ -5040,7 +5041,7 @@ msgid "Latitude"
 msgstr "Leveysaste"
 
 #: application/views/activated_gridmap/index.php:106
-#: application/views/activationplanner/index.php:78
+#: application/views/activationplanner/index.php:82
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
@@ -5055,11 +5056,16 @@ msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
 
-#: application/views/activationplanner/index.php:15
+#: application/views/activationplanner/index.php:17
+#: application/views/satellite/pass.php:21
+msgid "Satellite passes"
+msgstr "Satelliittien ylilennot"
+
+#: application/views/activationplanner/index.php:18
 msgid "Gridsquare borders"
 msgstr ""
 
-#: application/views/activationplanner/index.php:16
+#: application/views/activationplanner/index.php:20
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
 #: application/views/api/components/new_token_modal.php:23
@@ -5082,69 +5088,69 @@ msgstr ""
 msgid "Close"
 msgstr "Sulje"
 
-#: application/views/activationplanner/index.php:18
+#: application/views/activationplanner/index.php:22
 msgid "Tracking"
 msgstr ""
 
-#: application/views/activationplanner/index.php:19
+#: application/views/activationplanner/index.php:23
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
 msgid "Field"
 msgstr "Kenttä"
 
-#: application/views/activationplanner/index.php:20
+#: application/views/activationplanner/index.php:24
 msgid "Square"
 msgstr ""
 
-#: application/views/activationplanner/index.php:21
+#: application/views/activationplanner/index.php:25
 msgid "Subsquare"
 msgstr ""
 
-#: application/views/activationplanner/index.php:22
+#: application/views/activationplanner/index.php:26
 msgid "Locating…"
 msgstr ""
 
-#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:27
 msgid "Location access denied."
 msgstr ""
 
-#: application/views/activationplanner/index.php:24
+#: application/views/activationplanner/index.php:28
 msgid "Location unavailable."
 msgstr ""
 
-#: application/views/activationplanner/index.php:25
+#: application/views/activationplanner/index.php:29
 msgid "Location request timed out."
 msgstr ""
 
-#: application/views/activationplanner/index.php:35
+#: application/views/activationplanner/index.php:39
 msgid "Plan your activity here"
 msgstr ""
 
-#: application/views/activationplanner/index.php:43
+#: application/views/activationplanner/index.php:47
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr ""
 
-#: application/views/activationplanner/index.php:43
+#: application/views/activationplanner/index.php:47
 msgid "e.g. FN31pr"
 msgstr ""
 
-#: application/views/activationplanner/index.php:44
+#: application/views/activationplanner/index.php:48
 msgid "to"
 msgstr ""
 
-#: application/views/activationplanner/index.php:47
+#: application/views/activationplanner/index.php:51
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
 
-#: application/views/activationplanner/index.php:47
+#: application/views/activationplanner/index.php:51
 msgid "e.g. JN58qm"
 msgstr ""
 
-#: application/views/activationplanner/index.php:48
+#: application/views/activationplanner/index.php:52
 msgid "Go"
 msgstr ""
 
-#: application/views/activationplanner/index.php:49
+#: application/views/activationplanner/index.php:53
 #: application/views/awards/cq/index.php:70
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
@@ -5159,29 +5165,29 @@ msgstr ""
 msgid "Clear"
 msgstr "Tyhjennä"
 
-#: application/views/activationplanner/index.php:50
+#: application/views/activationplanner/index.php:54
 msgid "Find my location and gridsquare"
 msgstr ""
 
-#: application/views/activationplanner/index.php:50
+#: application/views/activationplanner/index.php:54
 msgid "Locate me"
 msgstr ""
 
-#: application/views/activationplanner/index.php:53
+#: application/views/activationplanner/index.php:57
 #: application/views/simplefle/index.php:162
 msgid "Refs"
 msgstr "Referenssit"
 
-#: application/views/activationplanner/index.php:65
+#: application/views/activationplanner/index.php:69
 #: application/views/qso/index.php:758
 msgid "More options"
 msgstr ""
 
-#: application/views/activationplanner/index.php:66
+#: application/views/activationplanner/index.php:70
 msgid "Hide options"
 msgstr ""
 
-#: application/views/activationplanner/index.php:80
+#: application/views/activationplanner/index.php:84
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
 #: application/views/bandmap/list.php:569
@@ -5207,7 +5213,7 @@ msgstr ""
 msgid "CQ Zone"
 msgstr "CQ-alue"
 
-#: application/views/activationplanner/index.php:81
+#: application/views/activationplanner/index.php:85
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
 #: application/views/gridmap/index.php:230
@@ -20077,10 +20083,6 @@ msgstr "TLE"
 #: application/views/satellite/index.php:101
 msgid "OMM"
 msgstr ""
-
-#: application/views/satellite/pass.php:21
-msgid "Satellite passes"
-msgstr "Satelliittien ylilennot"
 
 #: application/views/satellite/pass.php:32
 msgid "Your station"
