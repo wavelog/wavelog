@@ -701,7 +701,7 @@ function selectize_usa_county(state_field, county_field) {
     });
 }
 
-async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown') {
+async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown', set_state = null) {
     var selectedDxcc = $(dxcc_field);
 	var selectedState = $(dropdown);
 

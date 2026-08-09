@@ -118,6 +118,7 @@ class Activationplanner extends CI_Controller {
 					'country' => $info['name'],
 					'state'   => array_key_exists('name', $props) ? $props['name'] : null,
 					'code'    => array_key_exists('code', $props) ? $props['code'] : null,
+					'dxcc'    => $dxcc,
 				));
 				return;
 			}
@@ -207,6 +208,7 @@ class Activationplanner extends CI_Controller {
 			$out[] = array(
 				'name' => ucwords(strtolower($row->name), "- (/"),
 				'flag' => $this->dxccflag->get($row->adif),
+				'adif' => (int) $row->adif,
 			);
 		}
 		$json = json_encode($out);

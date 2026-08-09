@@ -464,7 +464,7 @@
 	 * distance + arrow). Echoes the corner info box. zones/state are appended
 	 * when resolved. Built on squareBorders() for the nearest-border figure.
 	 */
-	function gridPopupHTML(lat, lng, loc, zones, state, refs, flag) {
+	function gridPopupHTML(lat, lng, loc, zones, state, refs, flag, createHref) {
 		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
 		// Subsquare is the refinement (muted dot). Only tiers the locator has.
 		let tiers = [];
@@ -490,9 +490,9 @@
 		let actions =
 			'<div class="gl-pop-actions">' +
 				'<a class="gl-pop-action" target="_blank" rel="noopener" href="' + tweet + '"><i class="fab fa-x-twitter"></i> ' + esc(shareTweetLbl) + '</a>' +
-				'<a class="gl-pop-action" target="_blank" rel="noopener" href="https://hams.at"><i class="fas fa-broadcast-tower"></i> hams.at</a>' +
-				(createStationUrl ? '<a class="gl-pop-action" href="' + createStationUrl + '?gridsquare=' + encodeURIComponent(loc) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
-			'</div>';
+			'<a class="gl-pop-action" target="_blank" rel="noopener" href="https://hams.at"><i class="fas fa-broadcast-tower"></i> hams.at</a>' +
+			(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+		'</div>';
 
 		return '<div class="gl-popup">' +
 			'<div class="gl-pop-head"><span class="ref-popup-type" style="background:#dc3545">' + esc(gridLbl) + '</span></div>' +
@@ -676,8 +676,10 @@
 	}
 
 	/* Popup for a SOTA/POTA/WWFF reference point: a coloured left stripe +
-	 * type badge with the reference (links to its info page), then name, etc. */
-	function refPopup(type, D, color) {
+	 * type badge with the reference (links to its info page), then name, etc.
+	 * Optional createHref appends a "Create station location" quick action
+	 * (prefilled with this grid + reference). */
+	function refPopup(type, D, color, createHref) {
 		return '<div class="ref-popup" style="border-left-color:' + esc(color) + '">' +
 			'<div class="ref-popup-top">' +
 			'<span class="ref-popup-type" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
@@ -687,7 +689,30 @@
 			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
+			(createHref ? '<div class="gl-pop-actions"><a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a></div>' : '') +
 			'</div>';
+	}
+
+	/*
+	 * Open-time popup builder for a POTA/SOTA/WWFF marker. Reads the stashed
+	 * {type, D} from the marker, renders the popup immediately with a create
+	 * link carrying gridsquare + the reference (always available, sync), then
+	 * enriches that link with DXCC/CQ/ITU/state (where resolvable) once the
+	 * server/client lookups settle. setPopupContent is idempotent if the popup
+	 * has already been closed by then.
+	 */
+	function refPopupRich(layer) {
+		let type = layer.refType, D = layer.refData, color = layer.refColor;
+		if (!type || !D) { return ''; }
+		let loc = latLngToLocator(D.lat, D.lon, 3);
+		let field = type.toLowerCase();   // 'wwff' | 'pota' | 'sota'
+		let extra = {};
+		if (field) { extra[field] = D.reference; }
+		let baseHref = buildCreateHref(loc, null, extra);
+		resolvePointMeta(D.lat, D.lon, loc).then(function (meta) {
+			if (layer.isPopupOpen && layer.isPopupOpen()) { layer.setPopupContent(refPopup(type, D, color, buildCreateHref(loc, meta, extra))); }
+		}).catch(function () { /* leave sync create link in place */ });
+		return refPopup(type, D, color, baseHref);
 	}
 
 	/* Coloured circle marker (white letter) for the reference overlays on the
@@ -747,7 +772,8 @@
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
 					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
-					dot.bindPopup(refPopup('WWFF', D, '#2b8cbe'));
+					dot.refType = 'WWFF'; dot.refData = D; dot.refColor = '#2b8cbe';
+					dot.bindPopup(refPopupRich);
 					wwffCluster.addLayer(dot);
 				}
 				map.addLayer(wwffCluster);
@@ -776,7 +802,8 @@
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
 					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
-					dot.bindPopup(refPopup('POTA', D, '#238b45'));
+					dot.refType = 'POTA'; dot.refData = D; dot.refColor = '#238b45';
+					dot.bindPopup(refPopupRich);
 					potaCluster.addLayer(dot);
 				}
 				map.addLayer(potaCluster);
@@ -805,7 +832,8 @@
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
 					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#d95f0e', 'S') });
-					dot.bindPopup(refPopup('SOTA', D, '#d95f0e'));
+					dot.refType = 'SOTA'; dot.refData = D; dot.refColor = '#d95f0e';
+					dot.bindPopup(refPopupRich);
 					sotaCluster.addLayer(dot);
 				}
 				map.addLayer(sotaCluster);
@@ -895,25 +923,58 @@
 		return null;
 	}
 
-	/* Compact "CQ 5 / ITU 8" label for a coordinate ("" if unresolved). */
-	function zonesLabel(lat, lng) {
-		return Promise.all([zoneFor(lat, lng, 'cq'), zoneFor(lat, lng, 'itu')]).then(function (res) {
-			let parts = [];
-			if (res[0] && res[0].num != null) { parts.push('CQ ' + res[0].num); }
-			if (res[1] && res[1].num != null) { parts.push('ITU ' + res[1].num); }
-			return parts.join(' / ');
+	/*
+	 * Resolve the raw station-location metadata for [lat, lng]: CQ + ITU zone
+	 * numbers (client-side against cached boundaries), DXCC adif + state code
+	 * (server-side via state_for_point, which only knows state-supporting
+	 * countries), and the DXCC flag(s) for the 4-char grid (vuccgrids). DXCC
+	 * prefers the point-precise state_for_point value, falling back to a
+	 * single-entity vuccgrids match for the grid; ambiguous (multi-entity) or
+	 * unknown → ''. Any failure → ''. Also returns the display labels. Shared
+	 * by the click/go popups and the POTA/SOTA/WWFF reference popups.
+	 */
+	function resolvePointMeta(lat, lng, loc) {
+		return Promise.all([
+			zoneFor(lat, lng, 'cq'),
+			zoneFor(lat, lng, 'itu'),
+			stateUrl ? fetch(stateUrl + '?lat=' + lat + '&lng=' + lng).then(function (r) { return r.json(); }).catch(function () { return null; }) : Promise.resolve(null),
+			(dxccGridUrl && loc && loc.length >= 4) ? fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4))).then(function (r) { return r.json(); }).catch(function () { return []; }) : Promise.resolve([])
+		]).then(function (res) {
+			let cqNum = (res[0] && res[0].num != null) ? res[0].num : '';
+			let ituNum = (res[1] && res[1].num != null) ? res[1].num : '';
+			let s = res[2];
+			let rows = Array.isArray(res[3]) ? res[3] : [];
+			let flag = rows.map(function (d) { return d.flag; }).filter(Boolean);
+			let stateDxcc = (s && s.dxcc != null) ? s.dxcc : '';
+			let gridDxcc  = (rows.length === 1 && rows[0].adif != null) ? rows[0].adif : '';
+			let zParts = [];
+			if (cqNum !== '')  { zParts.push('CQ ' + cqNum); }
+			if (ituNum !== '') { zParts.push('ITU ' + ituNum); }
+			return {
+				cq:         cqNum,
+				itu:        ituNum,
+				dxcc:       stateDxcc || gridDxcc,
+				stateCode:  (s && s.code != null) ? s.code : '',
+				zoneLabel:  zParts.join(' / '),
+				stateLabel: s ? stateStr(s) : '',
+				flag:       flag
+			};
 		});
 	}
 
-	/* DXCC flag emoji(s) for a 4-char grid, via the vuccgrids table. cb(flag). */
-	function gridFlag(loc, cb) {
-		if (!dxccGridUrl || !loc || loc.length < 4) { cb(''); return; }
-		fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4)))
-			.then(function (r) { return r.json(); })
-			.then(function (rows) {
-				cb((rows || []).map(function (d) { return d.flag; }).filter(Boolean));
-			})
-			.catch(function () { cb(''); });
+	/* Build the station/create URL with location params, omitting empty values. */
+	function buildCreateHref(loc, meta, extra) {
+		let p = { gridsquare: loc };
+		if (meta) {
+			if (meta.cq)        { p.station_cq = meta.cq; }
+			if (meta.itu)       { p.station_itu = meta.itu; }
+			if (meta.dxcc)      { p.dxcc = meta.dxcc; }
+			if (meta.stateCode) { p.station_state = meta.stateCode; }
+		}
+		if (extra) { for (let k in extra) { if (extra[k]) { p[k] = extra[k]; } } }
+		let qs = [];
+		for (let k in p) { if (p[k] != null && p[k] !== '') { qs.push(encodeURIComponent(k) + '=' + encodeURIComponent(p[k])); } }
+		return createStationUrl + (qs.length ? '?' + qs.join('&') : '');
 	}
 
 	function init() {
@@ -1146,7 +1207,7 @@
 		}).addTo(map);
 
 		clickMarker = L.marker([lat, lng]).addTo(map)
-			.bindPopup(gridPopupHTML(lat, lng, loc, '', ''));
+			.bindPopup(gridPopupHTML(lat, lng, loc, '', '', null, '', buildCreateHref(loc, null)));
 
 		// Frame the selection — on phones this centres on the 4-char square so
 		// the border arrows are in view; desktop fits the exact clicked cell.
@@ -1154,7 +1215,7 @@
 
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
-		let zones = '', stateLabel = '', refs = null, flag = '';
+		let zones = '', stateLabel = '', refs = null, meta = null, flag = '';
 
 		// Re-render from whatever has resolved so far, so the independently
 		// async zones and state enrichments compose instead of clobbering each
@@ -1166,42 +1227,27 @@
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
-			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, refs, flag)); }
+			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, refs, flag, buildCreateHref(loc, meta))); }
 		}
 		renderInfo();
 		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
 
 		let myReq = ++zoneReq;
-		// CQ/ITU zones — client-side against the cached boundaries.
-		zonesLabel(lat, lng).then(function (z) {
+		// CQ/ITU zones + DXCC + state + flag — one combined resolve.
+		resolvePointMeta(lat, lng, loc).then(function (m) {
 			if (myReq !== zoneReq) { return; }
-			zones = z || '';
+			meta = m;
+			zones = m.zoneLabel;
+			stateLabel = m.stateLabel;
+			flag = m.flag;
 			renderInfo();
 			renderPopup();
 		});
-		// State/province subdivision — server-side across the supported GeoJSON.
-		if (stateUrl) {
-			fetch(stateUrl + '?lat=' + lat + '&lng=' + lng)
-				.then(function (r) { return r.json(); })
-				.then(function (s) {
-					if (myReq !== zoneReq || !s || !s.state) { return; }
-					stateLabel = stateStr(s);
-					renderInfo();
-					renderPopup();
-				})
-				.catch(function () { /* unsupported point or transient — ignore */ });
-		}
 		// POTA/SOTA/WWFF references inside the clicked 6-char grid, plotted on the map.
 		refsInSquare(lat, lng).then(function (rr) {
 			if (myReq !== zoneReq) { return; }
 			refs = rr;
 			drawRefs(rr);
-		});
-		// DXCC flag for this 4-char grid (vuccgrids table).
-		gridFlag(loc, function (f) {
-			if (myReq !== zoneReq) { return; }
-			flag = f;
-			renderPopup();
 		});
 	}
 
@@ -1314,7 +1360,7 @@
 		}).addTo(map);
 
 		if (marker) { map.removeLayer(marker); }
-		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', ''));
+		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', '', null, '', buildCreateHref(cell1.loc, null)));
 
 		if (cell2) {
 			// Tint both 4-char squares and dim the rest of the grid labels.
@@ -1325,7 +1371,7 @@
 				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
 			}).addTo(map);
 
-			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', ''));
+			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', '', null, '', buildCreateHref(cell2.loc, null)));
 
 			// Great-circle path between the two cell centres.
 			pathLine = L.polyline(greatCircle(cell1.center, cell2.center, 64), {
@@ -1338,7 +1384,7 @@
 
 			// Composed readout: each grid's "(zones, state)" tag fills in
 			// asynchronously and re-renders. zoneReq guards against stale updates.
-			let z1 = '', z2 = '', s1 = '', s2 = '', f1 = '', f2 = '';
+			let z1 = '', z2 = '', s1 = '', s2 = '', f1 = '', f2 = '', m1 = null, m2 = null;
 			function tag(z, s) {
 				let inner = [];
 				if (z) { inner.push(z); }
@@ -1353,43 +1399,31 @@
 			}
 			render();
 			function renderPopups() {
-				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, f1)); }
-				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, f2)); }
+				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, null, f1, buildCreateHref(cell1.loc, m1))); }
+				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, null, f2, buildCreateHref(cell2.loc, m2))); }
 			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
 				{ padding: [60, 60], maxZoom: 17 });
 
 			let myReq = ++zoneReq;
-			// CQ/ITU zones (client-side, cached boundaries).
-			Promise.all([
-				zonesLabel(cell1.center[0], cell1.center[1]),
-				zonesLabel(cell2.center[0], cell2.center[1])
-			]).then(function (z) {
+			// CQ/ITU zones + DXCC + state + flag — one resolve per grid.
+			resolvePointMeta(cell1.center[0], cell1.center[1], cell1.loc).then(function (mm) {
 				if (myReq !== zoneReq) { return; }
-				z1 = z[0] || ''; z2 = z[1] || '';
+				m1 = mm; z1 = mm.zoneLabel; s1 = mm.stateLabel; f1 = mm.flag;
 				render();
 				renderPopups();
 			});
-			// State/province subdivision (server-side, one call per grid).
-			if (stateUrl) {
-				Promise.all([
-					fetch(stateUrl + '?lat=' + cell1.center[0] + '&lng=' + cell1.center[1]).then(function (r) { return r.json(); }).catch(function () { return null; }),
-					fetch(stateUrl + '?lat=' + cell2.center[0] + '&lng=' + cell2.center[1]).then(function (r) { return r.json(); }).catch(function () { return null; })
-				]).then(function (s) {
-					if (myReq !== zoneReq) { return; }
-					s1 = stateStr(s[0]); s2 = stateStr(s[1]);
-					render();
-					renderPopups();
-				});
-			}
-			// DXCC flag per 4-char grid (vuccgrids table).
-			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopups(); });
-			gridFlag(cell2.loc, function (f) { if (myReq !== zoneReq) { return; } f2 = f; renderPopups(); });
+			resolvePointMeta(cell2.center[0], cell2.center[1], cell2.loc).then(function (mm) {
+				if (myReq !== zoneReq) { return; }
+				m2 = mm; z2 = mm.zoneLabel; s2 = mm.stateLabel; f2 = mm.flag;
+				render();
+				renderPopups();
+			});
 		} else {
 			zoomToGrid(cell1.center[0], cell1.center[1], cell1);
 
-			let z1 = '', s1 = '', r1 = null, f1 = '';
+			let z1 = '', s1 = '', r1 = null, f1 = '', m1 = null;
 			function render() {
 				let parts = [
 					'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
@@ -1401,30 +1435,18 @@
 			}
 			render();
 			function renderPopup() {
-				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, r1, f1)); }
+				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, r1, f1, buildCreateHref(cell1.loc, m1))); }
 			}
 			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
 			let myReq = ++zoneReq;
-			// CQ/ITU zones (client-side, cached boundaries).
-			zonesLabel(cell1.center[0], cell1.center[1]).then(function (z) {
+			// CQ/ITU zones + DXCC + state + flag — one combined resolve.
+			resolvePointMeta(cell1.center[0], cell1.center[1], cell1.loc).then(function (mm) {
 				if (myReq !== zoneReq) { return; }
-				z1 = z || '';
+				m1 = mm; z1 = mm.zoneLabel; s1 = mm.stateLabel; f1 = mm.flag;
 				render();
 				renderPopup();
 			});
-			// State/province subdivision (server-side, across the supported GeoJSON).
-			if (stateUrl) {
-				fetch(stateUrl + '?lat=' + cell1.center[0] + '&lng=' + cell1.center[1])
-					.then(function (r) { return r.json(); })
-					.then(function (s) {
-						if (myReq !== zoneReq) { return; }
-						s1 = stateStr(s);
-						render();
-						renderPopup();
-					})
-					.catch(function () { /* unsupported point or transient — ignore */ });
-			}
 			// POTA/SOTA/WWFF references inside this grid's 6-char square, plotted on the map.
 			refsInSquare(cell1.center[0], cell1.center[1]).then(function (rr) {
 				if (myReq !== zoneReq) { return; }
@@ -1432,8 +1454,6 @@
 				drawRefs(rr);
 				renderPopup();
 			});
-			// DXCC flag for this 4-char grid (vuccgrids table).
-			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopup(); });
 		}
 	}
 
