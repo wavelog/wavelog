@@ -36,7 +36,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, trackTimer;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, trackTimer = null;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
