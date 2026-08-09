@@ -382,7 +382,7 @@
 	}
 
 	/*
-	 * POTA/SOTA/WWFF reference lookup for the clicked 4-character grid square.
+	 * POTA/SOTA/WWFF reference lookup for the clicked 6-character (subsquare) grid.
 	 * The full directories (reference, name, lat, lon) are fetched once from the
 	 * existing endpoints, cached, then filtered by the square's bounds.
 	 */
