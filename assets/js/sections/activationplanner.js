@@ -16,6 +16,7 @@
 	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
 	let satPassUrl      = cfg.satPassUrl || '';
+	let refsNearbyUrl   = cfg.refsNearbyUrl || '';
 	let satPassLbl      = decodeHtml(cfg.satPassLbl) || 'Satellite passes';
 	let locatingMsg     = decodeHtml(cfg.locatingMsg) || 'Locating…';
 	let geoDenied       = decodeHtml(cfg.geoDenied) || 'Location access denied.';
@@ -36,6 +37,7 @@
 	let shareActivationTitleLbl = decodeHtml(cfg.shareActivationTitleLbl) || 'Share activation';
 	let planningActivationLbl   = decodeHtml(cfg.planningActivationLbl) || '📻 Planning an activation from %s';
 	let gridLbl         = decodeHtml(cfg.gridLbl) || 'Gridsquare';
+	let nearbyRefsLbl   = decodeHtml(cfg.nearbyRefsLbl) || 'Nearby refs';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -506,6 +508,42 @@
 			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
 			(satPassUrl ? '<div class="gl-pop-link"><a href="' + esc(satPassUrl + '?gridsquare=' + encodeURIComponent(loc)) + '" target="_blank" rel="noopener noreferrer"><i class="fas fa-satellite"></i> ' + esc(satPassLbl) + '</a></div>' : '') +
 			'</div>';
+	}
+
+	/*
+	 * "Nearby refs" dialog: WWFF/POTA/SOTA references within 5/10/15/20 km of the
+	 * given gridsquare, fetched server-side and shown grouped by distance band.
+	 */
+	function showNearbyModal(loc, rows) {
+		let bands = [
+			{ label: 'Within 5 km', rows: [] },
+			{ label: '5-10 km', rows: [] },
+			{ label: '10-15 km', rows: [] },
+			{ label: '15-20 km', rows: [] }
+		];
+		(rows || []).forEach(function (r) {
+			bands[Math.min(bands.length - 1, Math.floor(r.dist / 5))].rows.push(r);
+		});
+
+		let body = bands.map(function (b) {
+			let trs = b.rows.map(function (r) {
+				let col = r.type === 'POTA' ? '#238b45' : r.type === 'SOTA' ? '#d95f0e' : '#2b8cbe';
+				return '<tr><td><span class="gl-pop-ref-type" style="background:' + col + '">' + esc(r.type) + '</span></td><td>' + esc(r.ref) + '</td><td>' +
+					esc(r.name || '') + '</td><td class="text-end">' + r.dist + '</td></tr>';
+			}).join('');
+			return '<h6 class="mt-3 mb-1">' + esc(b.label) + ' <span class="badge bg-secondary">' + b.rows.length + '</span></h6>' +
+				'<table class="table table-sm table-striped mb-0 gl-nearby-table">' +
+				'<thead><tr><th style="width:70px">Type</th><th style="width:120px">Reference</th><th>Name</th><th class="text-end" style="width:50px">km</th></tr></thead>' +
+				'<tbody>' + (trs || '<tr><td colspan="4" class="text-muted">—</td></tr>') + '</tbody></table>';
+		}).join('');
+
+		BootstrapDialog.show({
+			title: nearbyRefsLbl + ' · ' + loc,
+			message: body,
+			size: BootstrapDialog.SIZE_WIDE,
+			nl2br: false,
+			buttons: [{ label: closeLbl, action: function (dialog) { dialog.close(); } }]
+		});
 	}
 
 	/*
@@ -1154,6 +1192,21 @@
 			// Hide the button entirely when geolocation is unavailable (e.g. plain
 			// HTTP on a LAN IP) so users never see a dead control.
 			if (!('geolocation' in navigator)) { locateBtn.style.display = 'none'; }
+		}
+		// "Nearby refs": list WWFF/POTA/SOTA references within 20 km of the grid.
+		let nearbyBtn = document.getElementById('glNearby');
+		if (nearbyBtn) {
+			nearbyBtn.addEventListener('click', function () {
+				let raw = (document.getElementById('glGrid').value || '').trim();
+				let cell = locatorToCell(raw);
+				if (!cell) { showToast(errorLbl, esc(invalidMsg), 'bg-warning text-dark', 3000); return; }
+				nearbyBtn.disabled = true;
+				fetch(refsNearbyUrl + '?lat=' + cell.center[0] + '&lng=' + cell.center[1])
+					.then(function (r) { return r.json(); })
+					.then(function (rows) { showNearbyModal(raw.toUpperCase(), rows || []); })
+					.catch(function () { showToast(errorLbl, 'Failed to load nearby references', 'bg-danger text-white', 3000); })
+					.finally(function () { nearbyBtn.disabled = false; });
+			});
 		}
 
 		// Mobile "More options" disclosure: toggles a class on the toolbar that

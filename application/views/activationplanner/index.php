@@ -14,10 +14,12 @@
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
+		refsNearbyUrl: <?php echo json_encode(site_url('activationplanner/refs_nearby')); ?>,
 		satPassUrl: <?php echo json_encode(site_url('satellite/pass')); ?>,
 		satPassLbl: <?php echo json_encode(__("Satellite passes")); ?>,
 		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
 		gridLbl:       <?php echo json_encode(__("Gridsquare")); ?>,
+		nearbyRefsLbl: <?php echo json_encode(__("Nearby refs")); ?>,
 		closeLbl:      <?php echo json_encode(__("Close")); ?>,
 		errorLbl:      <?php echo json_encode(__("Error")); ?>,
 		trackingLbl:   <?php echo json_encode(__("Tracking")); ?>,
@@ -60,6 +62,7 @@
 					<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
 					<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 					<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
+					<button id="glNearby" class="btn btn-outline-primary btn-sm" title="<?= __("References within 20 km of the gridsquare"); ?>"><?= __("Nearby refs"); ?></button>
 					<div class="gl-refsrow gl-secondary">
 						<div class="gl-refs gl-secondary dropdown">
 							<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Refs"); ?></button>
