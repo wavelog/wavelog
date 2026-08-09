@@ -26,7 +26,14 @@
 		locatingMsg:    <?php echo json_encode(__("Locating…")); ?>,
 		geoDenied:      <?php echo json_encode(__("Location access denied.")); ?>,
 		geoUnavailable: <?php echo json_encode(__("Location unavailable.")); ?>,
-		geoTimeout:     <?php echo json_encode(__("Location request timed out.")); ?>
+		geoTimeout:     <?php echo json_encode(__("Location request timed out.")); ?>,
+		createStationUrl:    <?php echo json_encode(site_url('station/create')); ?>,
+		newStationLocLbl:    <?php echo json_encode(__("Create station location")); ?>,
+		refsTitleLbl:        <?php echo json_encode(__("References in this grid")); ?>,
+		userDxcc:            <?php echo json_encode(isset($user_dxcc) ? $user_dxcc : null); ?>,
+		shareLbl:            <?php echo json_encode(__("Share")); ?>,
+		shareActivationTitleLbl: <?php echo json_encode(__("Share activation")); ?>,
+		planningActivationLbl:   <?php echo json_encode(__("📻 Planning an activation from %s")); ?>
 	};
 </script>
 

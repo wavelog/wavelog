@@ -27,6 +27,13 @@
 	let fieldLbl        = cfg.fieldLbl       || 'Field';
 	let squareLbl       = cfg.squareLbl      || 'Square';
 	let subsquareLbl    = cfg.subsquareLbl   || 'Subsquare';
+	let createStationUrl = cfg.createStationUrl || '';
+	let newStationLocLbl = cfg.newStationLocLbl || 'Create station location';
+	let refsTitleLbl     = cfg.refsTitleLbl     || 'References in this grid';
+	let userDxcc         = cfg.userDxcc != null ? cfg.userDxcc : null;
+	let shareLbl         = cfg.shareLbl         || 'Share';
+	let shareActivationTitleLbl = cfg.shareActivationTitleLbl || 'Share activation';
+	let planningActivationLbl   = cfg.planningActivationLbl   || '📻 Planning an activation from %s';
 	let gridLbl         = cfg.gridLbl        || 'Gridsquare';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
@@ -36,7 +43,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, trackTimer = null;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -378,13 +385,89 @@
 	}
 
 	/*
+	 * POTA/SOTA/WWFF reference lookup for the clicked 6-character (subsquare) grid.
+	 * The full directories (reference, name, lat, lon) are fetched once from the
+	 * existing endpoints, cached, then filtered by the square's bounds.
+	 */
+	let refDirs = { wwff: null, pota: null, sota: null };
+	function loadRefDir(type) {
+		if (refDirs[type] !== null) { return Promise.resolve(refDirs[type]); }   // array done, or in-flight promise
+		let url = type === 'wwff' ? wwffUrl : type === 'pota' ? potaUrl : type === 'sota' ? sotaUrl : '';
+		if (!url) { refDirs[type] = []; return Promise.resolve([]); }
+		let p = fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+			refDirs[type] = Array.isArray(d) ? d : [];
+			return refDirs[type];
+		}).catch(function (err) { console.warn(type + ' directory load failed:', err); refDirs[type] = []; return []; });
+		refDirs[type] = p;   // share one in-flight request across callers
+		return p;
+	}
+
+	/* Resolved {wwff, pota, sota} arrays of references inside the 6-char grid. */
+	function refsInSquare(lat, lng) {
+		let sq = locatorToCell(latLngToLocator(lat, lng, 3));
+		if (!sq) { return Promise.resolve({ wwff: [], pota: [], sota: [] }); }
+		function inSq(r) {
+			return r && r.lat != null && r.lon != null &&
+				r.lat >= sq.sw[0] && r.lat <= sq.ne[0] && r.lon >= sq.sw[1] && r.lon <= sq.ne[1];
+		}
+		return Promise.all([
+			loadRefDir('wwff').then(function (d) { return d.filter(inSq); }),
+			loadRefDir('pota').then(function (d) { return d.filter(inSq); }),
+			loadRefDir('sota').then(function (d) { return d.filter(inSq); })
+		]).then(function (r) { return { wwff: r[0], pota: r[1], sota: r[2] }; });
+	}
+
+	/* Render the references block (empty string if none). */
+	function refsSection(refs) {
+		if (!refs) { return ''; }
+		let groups = [
+			{ label: 'POTA', cls: 'is-pota', items: refs.pota },
+			{ label: 'SOTA', cls: 'is-sota', items: refs.sota },
+			{ label: 'WWFF', cls: 'is-wwff', items: refs.wwff }
+		];
+		let html = '';
+		groups.forEach(function (g) {
+			if (!g.items || !g.items.length) { return; }
+			let cap = g.items.slice(0, 8);
+			let extra = g.items.length > cap.length ? ' <span class="gl-pop-ref-more">+' + (g.items.length - cap.length) + '</span>' : '';
+			let items = cap.map(function (r) {
+				return '<span class="gl-pop-ref"><b>' + esc(r.reference || '') + '</b>' + (r.name ? ' ' + esc(r.name) : '') + '</span>';
+			}).join('');
+			html += '<div class="gl-pop-ref-group ' + g.cls + '"><span class="gl-pop-ref-type">' + g.label + '</span>' + items + extra + '</div>';
+		});
+		if (!html) { return ''; }
+		return '<div class="gl-pop-refs"><div class="gl-pop-refs-title">' + esc(refsTitleLbl) + '</div>' + html + '</div>';
+	}
+
+	/* Plot the references (from refsInSquare) on the map, coloured by type. */
+	function drawRefs(refs) {
+		if (!refOverlay) { return; }
+		refOverlay.clearLayers();
+		let groups = [
+			{ items: refs.pota, color: '#238b45', label: 'POTA' },
+			{ items: refs.sota, color: '#d95f0e', label: 'SOTA' },
+			{ items: refs.wwff, color: '#2b8cbe', label: 'WWFF' }
+		];
+		groups.forEach(function (g) {
+			(g.items || []).forEach(function (r) {
+				if (r.lat == null || r.lon == null) { return; }
+				let m = L.circleMarker([r.lat, r.lon], {
+					radius: 7, weight: 1, color: '#fff', fillColor: g.color, fillOpacity: 0.9
+				});
+				m.bindTooltip(g.label + ' ' + esc(r.reference) + (r.name ? ' - ' + esc(r.name) : ''));
+				refOverlay.addLayer(m);
+			});
+		});
+	}
+
+	/*
 	 * Rich gridsquare popup (click marker + Go markers): a title, the 4-char
 	 * grid large with any subsquare muted, coordinates, a Field/Square/Subsquare
 	 * hierarchy, and the nearest grid border (direction + adjacent grid +
 	 * distance + arrow). Echoes the corner info box. zones/state are appended
 	 * when resolved. Built on squareBorders() for the nearest-border figure.
 	 */
-	function gridPopupHTML(lat, lng, loc, zones, state, flag) {
+	function gridPopupHTML(lat, lng, loc, zones, state, refs, flag, createHref, spotText) {
 		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
 		// Subsquare is the refinement (muted dot). Only tiers the locator has.
 		let tiers = [];
@@ -404,11 +487,21 @@
 		}
 		if (state) { metaLines.push(state); }
 
+		// Quick actions: share the spot (X / Bluesky / Mastodon via the existing
+		// modal) or create a station location here (location pre-filled).
+		let actions =
+			'<div class="gl-pop-actions">' +
+				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>';
+
 		return '<div class="gl-popup">' +
 			'<div class="gl-pop-head"><span class="ref-popup-type" style="background:#dc3545">' + esc(gridLbl) + '</span></div>' +
 			'<div class="gl-pop-grid">' + (Array.isArray(flag) && flag.length ? flag.map(function (fl) { return '<span class="flag-emoji gl-pop-flag">' + esc(fl) + '</span>'; }).join('') : '') + loc + '</div>' +
 			'<div class="gl-pop-coords"><i class="fas fa-location-crosshairs"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
 			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
+			refsSection(refs) +
+			actions +
 			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
 			(satPassUrl ? '<div class="gl-pop-link"><a href="' + esc(satPassUrl + '?gridsquare=' + encodeURIComponent(loc)) + '" target="_blank" rel="noopener noreferrer"><i class="fas fa-satellite"></i> ' + esc(satPassLbl) + '</a></div>' : '') +
 			'</div>';
@@ -584,8 +677,11 @@
 	}
 
 	/* Popup for a SOTA/POTA/WWFF reference point: a coloured left stripe +
-	 * type badge with the reference (links to its info page), then name, etc. */
-	function refPopup(type, D, color) {
+	 * type badge with the reference (links to its info page), then name, etc.
+	 * Optional createHref appends a "Create station location" quick action
+	 * (prefilled with this grid + reference); optional spotText adds a Share
+	 * action. */
+	function refPopup(type, D, color, createHref, spotText) {
 		return '<div class="ref-popup" style="border-left-color:' + esc(color) + '">' +
 			'<div class="ref-popup-top">' +
 			'<span class="ref-popup-type" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
@@ -595,7 +691,38 @@
 			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
+			((createHref || spotText) ? '<div class="gl-pop-actions">' +
+				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>' : '') +
 			'</div>';
+	}
+
+	/*
+	 * Open-time popup builder for a POTA/SOTA/WWFF marker. Reads the stashed
+	 * {type, D} from the marker, renders the popup immediately with create +
+	 * share actions carrying gridsquare + the reference (always available,
+	 * sync), then enriches both with DXCC/CQ/ITU/state (where resolvable) once
+	 * the server/client lookups settle. setPopupContent is idempotent if the
+	 * popup has already been closed by then.
+	 */
+	function refPopupRich(layer) {
+		let type = layer.refType, D = layer.refData, color = layer.refColor;
+		if (!type || !D) { return ''; }
+		let loc = latLngToLocator(D.lat, D.lon, 3);
+		let field = type.toLowerCase();   // 'wwff' | 'pota' | 'sota'
+		let extra = {};
+		if (field) { extra[field] = D.reference; }
+		let locDesc = D.reference + ' (' + loc + ')';
+		let extraHash = '#' + type + ' ' + D.reference;
+		let baseHref = buildCreateHref(loc, null, extra);
+		let baseSpot = buildSpotText(locDesc, null, extraHash);
+		resolvePointMeta(D.lat, D.lon, loc).then(function (meta) {
+			if (layer.isPopupOpen && layer.isPopupOpen()) {
+				layer.setPopupContent(refPopup(type, D, color, buildCreateHref(loc, meta, extra), buildSpotText(locDesc, meta, extraHash)));
+			}
+		}).catch(function () { /* leave sync create + share in place */ });
+		return refPopup(type, D, color, baseHref, baseSpot);
 	}
 
 	/* Coloured circle marker (white letter) for the reference overlays on the
@@ -643,25 +770,23 @@
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		fetch(wwffUrl)
-			.then(function (r) { return r.json(); })
-			.then(function (data) {
-				wwffCluster = L.markerClusterGroup({
-					chunkedLoading: true,
-					maxClusterRadius: 50,
-					showCoverageOnHover: false
-				});
-				for (let i = 0; i < data.length; i++) {
-					let D = data[i];
-					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
-					dot.bindPopup(refPopup('WWFF', D, '#2b8cbe'));
-					wwffCluster.addLayer(dot);
-				}
-				map.addLayer(wwffCluster);
-				mapLoadingDone();
-			})
-			.catch(function (err) { console.error('WWFF directory load failed:', err); mapLoadingDone(); });
+		loadRefDir('wwff').then(function (data) {
+			wwffCluster = L.markerClusterGroup({
+				chunkedLoading: true,
+				maxClusterRadius: 50,
+				showCoverageOnHover: false
+			});
+			for (let i = 0; i < data.length; i++) {
+				let D = data[i];
+				if (D.lat == null || D.lon == null) { continue; }
+				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
+				dot.refType = 'WWFF'; dot.refData = D; dot.refColor = '#2b8cbe';
+				dot.bindPopup(refPopupRich);
+				wwffCluster.addLayer(dot);
+			}
+			map.addLayer(wwffCluster);
+			mapLoadingDone();
+		}).catch(function (err) { console.error('WWFF overlay build failed:', err); mapLoadingDone(); });
 	}
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
@@ -672,25 +797,23 @@
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		fetch(potaUrl)
-			.then(function (r) { return r.json(); })
-			.then(function (data) {
-				potaCluster = L.markerClusterGroup({
-					chunkedLoading: true,
-					maxClusterRadius: 50,
-					showCoverageOnHover: false
-				});
-				for (let i = 0; i < data.length; i++) {
-					let D = data[i];
-					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
-					dot.bindPopup(refPopup('POTA', D, '#238b45'));
-					potaCluster.addLayer(dot);
-				}
-				map.addLayer(potaCluster);
-				mapLoadingDone();
-			})
-			.catch(function (err) { console.error('POTA directory load failed:', err); mapLoadingDone(); });
+		loadRefDir('pota').then(function (data) {
+			potaCluster = L.markerClusterGroup({
+				chunkedLoading: true,
+				maxClusterRadius: 50,
+				showCoverageOnHover: false
+			});
+			for (let i = 0; i < data.length; i++) {
+				let D = data[i];
+				if (D.lat == null || D.lon == null) { continue; }
+				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
+				dot.refType = 'POTA'; dot.refData = D; dot.refColor = '#238b45';
+				dot.bindPopup(refPopupRich);
+				potaCluster.addLayer(dot);
+			}
+			map.addLayer(potaCluster);
+			mapLoadingDone();
+		}).catch(function (err) { console.error('POTA overlay build failed:', err); mapLoadingDone(); });
 	}
 	function disablePota() {
 		if (potaCluster) { map.removeLayer(potaCluster); }
@@ -701,25 +824,23 @@
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		fetch(sotaUrl)
-			.then(function (r) { return r.json(); })
-			.then(function (data) {
-				sotaCluster = L.markerClusterGroup({
-					chunkedLoading: true,
-					maxClusterRadius: 50,
-					showCoverageOnHover: false
-				});
-				for (let i = 0; i < data.length; i++) {
-					let D = data[i];
-					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#d95f0e', 'S') });
-					dot.bindPopup(refPopup('SOTA', D, '#d95f0e'));
-					sotaCluster.addLayer(dot);
-				}
-				map.addLayer(sotaCluster);
-				mapLoadingDone();
-			})
-			.catch(function (err) { console.error('SOTA directory load failed:', err); mapLoadingDone(); });
+		loadRefDir('sota').then(function (data) {
+			sotaCluster = L.markerClusterGroup({
+				chunkedLoading: true,
+				maxClusterRadius: 50,
+				showCoverageOnHover: false
+			});
+			for (let i = 0; i < data.length; i++) {
+				let D = data[i];
+				if (D.lat == null || D.lon == null) { continue; }
+				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#d95f0e', 'S') });
+				dot.refType = 'SOTA'; dot.refData = D; dot.refColor = '#d95f0e';
+				dot.bindPopup(refPopupRich);
+				sotaCluster.addLayer(dot);
+			}
+			map.addLayer(sotaCluster);
+			mapLoadingDone();
+		}).catch(function (err) { console.error('SOTA overlay build failed:', err); mapLoadingDone(); });
 	}
 	function disableSota() {
 		if (sotaCluster) { map.removeLayer(sotaCluster); }
@@ -803,25 +924,86 @@
 		return null;
 	}
 
-	/* Compact "CQ 5 / ITU 8" label for a coordinate ("" if unresolved). */
-	function zonesLabel(lat, lng) {
-		return Promise.all([zoneFor(lat, lng, 'cq'), zoneFor(lat, lng, 'itu')]).then(function (res) {
-			let parts = [];
-			if (res[0] && res[0].num != null) { parts.push('CQ ' + res[0].num); }
-			if (res[1] && res[1].num != null) { parts.push('ITU ' + res[1].num); }
-			return parts.join(' / ');
+	/*
+	 * Resolve the raw station-location metadata for [lat, lng]: CQ + ITU zone
+	 * numbers (client-side against cached boundaries), DXCC adif + state code
+	 * (server-side via state_for_point, which only knows state-supporting
+	 * countries), and the DXCC flag(s) for the 4-char grid (vuccgrids). DXCC
+	 * prefers the point-precise state_for_point value, falling back to a
+	 * single-entity vuccgrids match for the grid; ambiguous (multi-entity) or
+	 * unknown → ''. Any failure → ''. Also returns the display labels. Shared
+	 * by the click/go popups and the POTA/SOTA/WWFF reference popups.
+	 */
+	function resolvePointMeta(lat, lng, loc) {
+		return Promise.all([
+			zoneFor(lat, lng, 'cq'),
+			zoneFor(lat, lng, 'itu'),
+			stateUrl ? fetch(stateUrl + '?lat=' + lat + '&lng=' + lng).then(function (r) { return r.json(); }).catch(function () { return null; }) : Promise.resolve(null),
+			(dxccGridUrl && loc && loc.length >= 4) ? fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4))).then(function (r) { return r.json(); }).catch(function () { return []; }) : Promise.resolve([])
+		]).then(function (res) {
+			let cqNum = (res[0] && res[0].num != null) ? res[0].num : '';
+			let ituNum = (res[1] && res[1].num != null) ? res[1].num : '';
+			let s = res[2];
+			let rows = Array.isArray(res[3]) ? res[3] : [];
+			let flag = rows.map(function (d) { return d.flag; }).filter(Boolean);
+			let stateDxcc = (s && s.dxcc != null) ? s.dxcc : '';
+			let gridDxcc  = (rows.length === 1 && rows[0].adif != null) ? rows[0].adif : '';
+			let dxccName  = stateDxcc !== '' ? (s && s.country ? s.country : '')
+			             : (gridDxcc !== '' ? (rows[0].name || '') : '');
+			let zParts = [];
+			if (cqNum !== '')  { zParts.push('CQ ' + cqNum); }
+			if (ituNum !== '') { zParts.push('ITU ' + ituNum); }
+			return {
+				cq:         cqNum,
+				itu:        ituNum,
+				dxcc:       stateDxcc || gridDxcc,
+				dxccName:   dxccName,
+				stateCode:  (s && s.code != null) ? s.code : '',
+				zoneLabel:  zParts.join(' / '),
+				stateLabel: s ? stateStr(s) : '',
+				flag:       flag
+			};
 		});
 	}
 
-	/* DXCC flag emoji(s) for a 4-char grid, via the vuccgrids table. cb(flag). */
-	function gridFlag(loc, cb) {
-		if (!dxccGridUrl || !loc || loc.length < 4) { cb(''); return; }
-		fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4)))
-			.then(function (r) { return r.json(); })
-			.then(function (rows) {
-				cb((rows || []).map(function (d) { return d.flag; }).filter(Boolean));
-			})
-			.catch(function () { cb(''); });
+	/* Build the station/create URL with location params, omitting empty values. */
+	function buildCreateHref(loc, meta, extra) {
+		let p = { gridsquare: loc };
+		if (meta) {
+			if (meta.cq)        { p.station_cq = meta.cq; }
+			if (meta.itu)       { p.station_itu = meta.itu; }
+			if (meta.dxcc)      { p.dxcc = meta.dxcc; }
+			if (meta.stateCode) { p.station_state = meta.stateCode; }
+		}
+		if (extra) { for (let k in extra) { if (extra[k]) { p[k] = extra[k]; } } }
+		let qs = [];
+		for (let k in p) { if (p[k] != null && p[k] !== '') { qs.push(encodeURIComponent(k) + '=' + encodeURIComponent(p[k])); } }
+		return createStationUrl + (qs.length ? '?' + qs.join('&') : '');
+	}
+
+	/*
+	 * Compose the social-share text for a point: the translatable lead with the
+	 * location descriptor, the DXCC entity name only when it differs from the
+	 * user's active station DXCC, then the hashtags (#hamr #wavelog, plus any
+	 * extra such as a reference). locDesc is e.g. "JN59ab" or "DL/NW-001 (JN59ab)".
+	 */
+	function buildSpotText(locDesc, meta, extraHash) {
+		if (!locDesc) { return ''; }
+		let t = planningActivationLbl.replace('%s', locDesc);
+		if (meta && meta.dxcc && meta.dxccName && userDxcc != null &&
+			String(meta.dxcc) !== String(userDxcc)) {
+			t += ' \u2014 ' + meta.dxccName;   // em dash + entity name
+		}
+		t += ' #hamr #wavelog';
+		if (extraHash) { t += ' ' + extraHash; }
+		return t;
+	}
+
+	/* Open the existing share modal (X / Bluesky / Mastodon) with a spot text. */
+	function shareActivation(text) {
+		if (typeof shareModal === 'function' && text) {
+			shareModal({ twitter_string: text }, shareActivationTitleLbl);
+		}
 	}
 
 	function init() {
@@ -840,6 +1022,14 @@
 		}
 
 		L.control.fullscreen && L.control.fullscreen().addTo(map);
+
+		// Delegated handler: any "Share" action inside a popup opens the share
+		// modal with the spot text stashed in data-spot. One listener covers the
+		// grid popup + all POTA/SOTA/WWFF reference popups.
+		map.getContainer().addEventListener('click', function (e) {
+			let el = e.target.closest ? e.target.closest('.gl-share') : null;
+			if (el) { shareActivation(el.dataset.spot || ''); }
+		});
 
 		// Floating compass readout of the surrounding square borders. A custom
 		// Leaflet control so it stays parked in the corner while the map pans,
@@ -874,6 +1064,9 @@
 
 		// Layer group holding the on-map direction arrows (see drawArrows).
 		bordersOverlay = L.layerGroup().addTo(map);
+
+		// Layer group holding the POTA/SOTA/WWFF markers near a click (see drawRefs).
+		refOverlay = L.layerGroup().addTo(map);
 
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
@@ -1000,6 +1193,7 @@
 		if (marker)      { map.removeLayer(marker);      marker = null; }
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
+		if (refOverlay)  { refOverlay.clearLayers(); }   // nearby POTA/SOTA/WWFF markers
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
 		stopTracking();  // stop autotracking, restore the Locate button
@@ -1043,13 +1237,14 @@
 		if (highlight) { map.removeLayer(highlight); highlight = null; }
 		if (marker)    { map.removeLayer(marker);    marker = null; }
 		setLabelsDim(false);
+		if (refOverlay) { refOverlay.clearLayers(); }
 
 		clickSquare = L.rectangle([cell.sw, cell.ne], {
 			color: '#198754', weight: 3, fillColor: '#198754', fillOpacity: 0.18
 		}).addTo(map);
 
 		clickMarker = L.marker([lat, lng]).addTo(map)
-			.bindPopup(gridPopupHTML(lat, lng, loc, '', ''));
+			.bindPopup(gridPopupHTML(lat, lng, loc, '', '', null, '', buildCreateHref(loc, null), buildSpotText(loc, null)));
 
 		// Frame the selection — on phones this centres on the 4-char square so
 		// the border arrows are in view; desktop fits the exact clicked cell.
@@ -1057,7 +1252,7 @@
 
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
-		let zones = '', stateLabel = '', flag = '';
+		let zones = '', stateLabel = '', refs = null, meta = null, flag = '';
 
 		// Re-render from whatever has resolved so far, so the independently
 		// async zones and state enrichments compose instead of clobbering each
@@ -1069,36 +1264,27 @@
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
-			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, flag)); }
+			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, refs, flag, buildCreateHref(loc, meta), buildSpotText(loc, meta))); }
 		}
 		renderInfo();
 		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
 
 		let myReq = ++zoneReq;
-		// CQ/ITU zones — client-side against the cached boundaries.
-		zonesLabel(lat, lng).then(function (z) {
+		// CQ/ITU zones + DXCC + state + flag — one combined resolve.
+		resolvePointMeta(lat, lng, loc).then(function (m) {
 			if (myReq !== zoneReq) { return; }
-			zones = z || '';
+			meta = m;
+			zones = m.zoneLabel;
+			stateLabel = m.stateLabel;
+			flag = m.flag;
 			renderInfo();
 			renderPopup();
 		});
-		// State/province subdivision — server-side across the supported GeoJSON.
-		if (stateUrl) {
-			fetch(stateUrl + '?lat=' + lat + '&lng=' + lng)
-				.then(function (r) { return r.json(); })
-				.then(function (s) {
-					if (myReq !== zoneReq || !s || !s.state) { return; }
-					stateLabel = stateStr(s);
-					renderInfo();
-					renderPopup();
-				})
-				.catch(function () { /* unsupported point or transient — ignore */ });
-		}
-		// DXCC flag for this 4-char grid (vuccgrids table).
-		gridFlag(loc, function (f) {
+		// POTA/SOTA/WWFF references inside the clicked 6-char grid, plotted on the map.
+		refsInSquare(lat, lng).then(function (rr) {
 			if (myReq !== zoneReq) { return; }
-			flag = f;
-			renderPopup();
+			refs = rr;
+			drawRefs(rr);
 		});
 	}
 
@@ -1202,6 +1388,7 @@
 		// Clear any left-over click marker/square from a prior map click.
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
+		if (refOverlay)  { refOverlay.clearLayers(); }   // prior POTA/SOTA/WWFF markers
 
 		// Grid 1 square + marker (blue).
 		if (highlight) { map.removeLayer(highlight); }
@@ -1210,7 +1397,7 @@
 		}).addTo(map);
 
 		if (marker) { map.removeLayer(marker); }
-		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', ''));
+		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', '', null, '', buildCreateHref(cell1.loc, null), buildSpotText(cell1.loc, null)));
 
 		if (cell2) {
 			// Tint both 4-char squares and dim the rest of the grid labels.
@@ -1221,7 +1408,7 @@
 				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
 			}).addTo(map);
 
-			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', ''));
+			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', '', null, '', buildCreateHref(cell2.loc, null), buildSpotText(cell2.loc, null)));
 
 			// Great-circle path between the two cell centres.
 			pathLine = L.polyline(greatCircle(cell1.center, cell2.center, 64), {
@@ -1234,7 +1421,7 @@
 
 			// Composed readout: each grid's "(zones, state)" tag fills in
 			// asynchronously and re-renders. zoneReq guards against stale updates.
-			let z1 = '', z2 = '', s1 = '', s2 = '', f1 = '', f2 = '';
+			let z1 = '', z2 = '', s1 = '', s2 = '', f1 = '', f2 = '', m1 = null, m2 = null;
 			function tag(z, s) {
 				let inner = [];
 				if (z) { inner.push(z); }
@@ -1249,43 +1436,31 @@
 			}
 			render();
 			function renderPopups() {
-				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, f1)); }
-				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, f2)); }
+				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, null, f1, buildCreateHref(cell1.loc, m1), buildSpotText(cell1.loc, m1))); }
+				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, null, f2, buildCreateHref(cell2.loc, m2), buildSpotText(cell2.loc, m2))); }
 			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
 				{ padding: [60, 60], maxZoom: 17 });
 
 			let myReq = ++zoneReq;
-			// CQ/ITU zones (client-side, cached boundaries).
-			Promise.all([
-				zonesLabel(cell1.center[0], cell1.center[1]),
-				zonesLabel(cell2.center[0], cell2.center[1])
-			]).then(function (z) {
+			// CQ/ITU zones + DXCC + state + flag — one resolve per grid.
+			resolvePointMeta(cell1.center[0], cell1.center[1], cell1.loc).then(function (mm) {
 				if (myReq !== zoneReq) { return; }
-				z1 = z[0] || ''; z2 = z[1] || '';
+				m1 = mm; z1 = mm.zoneLabel; s1 = mm.stateLabel; f1 = mm.flag;
 				render();
 				renderPopups();
 			});
-			// State/province subdivision (server-side, one call per grid).
-			if (stateUrl) {
-				Promise.all([
-					fetch(stateUrl + '?lat=' + cell1.center[0] + '&lng=' + cell1.center[1]).then(function (r) { return r.json(); }).catch(function () { return null; }),
-					fetch(stateUrl + '?lat=' + cell2.center[0] + '&lng=' + cell2.center[1]).then(function (r) { return r.json(); }).catch(function () { return null; })
-				]).then(function (s) {
-					if (myReq !== zoneReq) { return; }
-					s1 = stateStr(s[0]); s2 = stateStr(s[1]);
-					render();
-					renderPopups();
-				});
-			}
-			// DXCC flag per 4-char grid (vuccgrids table).
-			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopups(); });
-			gridFlag(cell2.loc, function (f) { if (myReq !== zoneReq) { return; } f2 = f; renderPopups(); });
+			resolvePointMeta(cell2.center[0], cell2.center[1], cell2.loc).then(function (mm) {
+				if (myReq !== zoneReq) { return; }
+				m2 = mm; z2 = mm.zoneLabel; s2 = mm.stateLabel; f2 = mm.flag;
+				render();
+				renderPopups();
+			});
 		} else {
 			zoomToGrid(cell1.center[0], cell1.center[1], cell1);
 
-			let z1 = '', s1 = '', f1 = '';
+			let z1 = '', s1 = '', r1 = null, f1 = '', m1 = null;
 			function render() {
 				let parts = [
 					'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
@@ -1297,32 +1472,25 @@
 			}
 			render();
 			function renderPopup() {
-				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, f1)); }
+				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, r1, f1, buildCreateHref(cell1.loc, m1), buildSpotText(cell1.loc, m1))); }
 			}
 			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
 			let myReq = ++zoneReq;
-			// CQ/ITU zones (client-side, cached boundaries).
-			zonesLabel(cell1.center[0], cell1.center[1]).then(function (z) {
+			// CQ/ITU zones + DXCC + state + flag — one combined resolve.
+			resolvePointMeta(cell1.center[0], cell1.center[1], cell1.loc).then(function (mm) {
 				if (myReq !== zoneReq) { return; }
-				z1 = z || '';
+				m1 = mm; z1 = mm.zoneLabel; s1 = mm.stateLabel; f1 = mm.flag;
 				render();
 				renderPopup();
 			});
-			// State/province subdivision (server-side, across the supported GeoJSON).
-			if (stateUrl) {
-				fetch(stateUrl + '?lat=' + cell1.center[0] + '&lng=' + cell1.center[1])
-					.then(function (r) { return r.json(); })
-					.then(function (s) {
-						if (myReq !== zoneReq) { return; }
-						s1 = stateStr(s);
-						render();
-						renderPopup();
-					})
-					.catch(function () { /* unsupported point or transient — ignore */ });
-			}
-			// DXCC flag for this 4-char grid (vuccgrids table).
-			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopup(); });
+			// POTA/SOTA/WWFF references inside this grid's 6-char square, plotted on the map.
+			refsInSquare(cell1.center[0], cell1.center[1]).then(function (rr) {
+				if (myReq !== zoneReq) { return; }
+				r1 = rr;
+				drawRefs(rr);
+				renderPopup();
+			});
 		}
 	}
 
