@@ -1361,7 +1361,7 @@ function enableMap() {
     map.keyboard.enable();
 }
 
-function shareModal(qso_data) {
+function shareModal(qso_data, title) {
     $.ajax({
         url: base_url + 'index.php/qso/getShareModal',
         type: 'post',
@@ -1370,7 +1370,7 @@ function shareModal(qso_data) {
         },
         success: function (html) {
             BootstrapDialog.show({
-                title: lang_general_share_qso,
+                title: title || lang_general_share_qso,
                 cssClass: 'bg-black bg-opacity-50',
                 nl2br: false,
                 message: html,

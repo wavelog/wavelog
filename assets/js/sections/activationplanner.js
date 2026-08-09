@@ -28,9 +28,12 @@
 	let squareLbl       = cfg.squareLbl      || 'Square';
 	let subsquareLbl    = cfg.subsquareLbl   || 'Subsquare';
 	let createStationUrl = cfg.createStationUrl || '';
-	let shareTweetLbl    = cfg.shareTweetLbl    || 'Share on X';
 	let newStationLocLbl = cfg.newStationLocLbl || 'Create station location';
 	let refsTitleLbl     = cfg.refsTitleLbl     || 'References in this grid';
+	let userDxcc         = cfg.userDxcc != null ? cfg.userDxcc : null;
+	let shareLbl         = cfg.shareLbl         || 'Share';
+	let shareActivationTitleLbl = cfg.shareActivationTitleLbl || 'Share activation';
+	let planningActivationLbl   = cfg.planningActivationLbl   || '📻 Planning an activation from %s';
 	let gridLbl         = cfg.gridLbl        || 'Gridsquare';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
@@ -394,7 +397,7 @@
 		let p = fetch(url).then(function (r) { return r.json(); }).then(function (d) {
 			refDirs[type] = Array.isArray(d) ? d : [];
 			return refDirs[type];
-		}).catch(function () { refDirs[type] = []; return []; });
+		}).catch(function (err) { console.warn(type + ' directory load failed:', err); refDirs[type] = []; return []; });
 		refDirs[type] = p;   // share one in-flight request across callers
 		return p;
 	}
@@ -464,7 +467,7 @@
 	 * distance + arrow). Echoes the corner info box. zones/state are appended
 	 * when resolved. Built on squareBorders() for the nearest-border figure.
 	 */
-	function gridPopupHTML(lat, lng, loc, zones, state, refs, flag, createHref) {
+	function gridPopupHTML(lat, lng, loc, zones, state, refs, flag, createHref, spotText) {
 		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
 		// Subsquare is the refinement (muted dot). Only tiers the locator has.
 		let tiers = [];
@@ -484,15 +487,13 @@
 		}
 		if (state) { metaLines.push(state); }
 
-		// Quick actions: tweet the spot, post to hams.at, or create a station
-		// location here (the grid is pre-filled into the create form).
-		let tweet = 'https://x.com/intent/tweet?text=' + encodeURIComponent(loc + ' (' + fmtLat(lat) + ', ' + fmtLng(lng) + ')');
+		// Quick actions: share the spot (X / Bluesky / Mastodon via the existing
+		// modal) or create a station location here (location pre-filled).
 		let actions =
 			'<div class="gl-pop-actions">' +
-				'<a class="gl-pop-action" target="_blank" rel="noopener" href="' + tweet + '"><i class="fab fa-x-twitter"></i> ' + esc(shareTweetLbl) + '</a>' +
-			'<a class="gl-pop-action" target="_blank" rel="noopener" href="https://hams.at"><i class="fas fa-broadcast-tower"></i> hams.at</a>' +
-			(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
-		'</div>';
+				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>';
 
 		return '<div class="gl-popup">' +
 			'<div class="gl-pop-head"><span class="ref-popup-type" style="background:#dc3545">' + esc(gridLbl) + '</span></div>' +
@@ -678,8 +679,9 @@
 	/* Popup for a SOTA/POTA/WWFF reference point: a coloured left stripe +
 	 * type badge with the reference (links to its info page), then name, etc.
 	 * Optional createHref appends a "Create station location" quick action
-	 * (prefilled with this grid + reference). */
-	function refPopup(type, D, color, createHref) {
+	 * (prefilled with this grid + reference); optional spotText adds a Share
+	 * action. */
+	function refPopup(type, D, color, createHref, spotText) {
 		return '<div class="ref-popup" style="border-left-color:' + esc(color) + '">' +
 			'<div class="ref-popup-top">' +
 			'<span class="ref-popup-type" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
@@ -689,17 +691,20 @@
 			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
-			(createHref ? '<div class="gl-pop-actions"><a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a></div>' : '') +
+			((createHref || spotText) ? '<div class="gl-pop-actions">' +
+				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>' : '') +
 			'</div>';
 	}
 
 	/*
 	 * Open-time popup builder for a POTA/SOTA/WWFF marker. Reads the stashed
-	 * {type, D} from the marker, renders the popup immediately with a create
-	 * link carrying gridsquare + the reference (always available, sync), then
-	 * enriches that link with DXCC/CQ/ITU/state (where resolvable) once the
-	 * server/client lookups settle. setPopupContent is idempotent if the popup
-	 * has already been closed by then.
+	 * {type, D} from the marker, renders the popup immediately with create +
+	 * share actions carrying gridsquare + the reference (always available,
+	 * sync), then enriches both with DXCC/CQ/ITU/state (where resolvable) once
+	 * the server/client lookups settle. setPopupContent is idempotent if the
+	 * popup has already been closed by then.
 	 */
 	function refPopupRich(layer) {
 		let type = layer.refType, D = layer.refData, color = layer.refColor;
@@ -708,11 +713,16 @@
 		let field = type.toLowerCase();   // 'wwff' | 'pota' | 'sota'
 		let extra = {};
 		if (field) { extra[field] = D.reference; }
+		let locDesc = D.reference + ' (' + loc + ')';
+		let extraHash = '#' + type + ' ' + D.reference;
 		let baseHref = buildCreateHref(loc, null, extra);
+		let baseSpot = buildSpotText(locDesc, null, extraHash);
 		resolvePointMeta(D.lat, D.lon, loc).then(function (meta) {
-			if (layer.isPopupOpen && layer.isPopupOpen()) { layer.setPopupContent(refPopup(type, D, color, buildCreateHref(loc, meta, extra))); }
-		}).catch(function () { /* leave sync create link in place */ });
-		return refPopup(type, D, color, baseHref);
+			if (layer.isPopupOpen && layer.isPopupOpen()) {
+				layer.setPopupContent(refPopup(type, D, color, buildCreateHref(loc, meta, extra), buildSpotText(locDesc, meta, extraHash)));
+			}
+		}).catch(function () { /* leave sync create + share in place */ });
+		return refPopup(type, D, color, baseHref, baseSpot);
 	}
 
 	/* Coloured circle marker (white letter) for the reference overlays on the
@@ -760,26 +770,23 @@
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		fetch(wwffUrl)
-			.then(function (r) { return r.json(); })
-			.then(function (data) {
-				wwffCluster = L.markerClusterGroup({
-					chunkedLoading: true,
-					maxClusterRadius: 50,
-					showCoverageOnHover: false
-				});
-				for (let i = 0; i < data.length; i++) {
-					let D = data[i];
-					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
-					dot.refType = 'WWFF'; dot.refData = D; dot.refColor = '#2b8cbe';
-					dot.bindPopup(refPopupRich);
-					wwffCluster.addLayer(dot);
-				}
-				map.addLayer(wwffCluster);
-				mapLoadingDone();
-			})
-			.catch(function (err) { console.error('WWFF directory load failed:', err); mapLoadingDone(); });
+		loadRefDir('wwff').then(function (data) {
+			wwffCluster = L.markerClusterGroup({
+				chunkedLoading: true,
+				maxClusterRadius: 50,
+				showCoverageOnHover: false
+			});
+			for (let i = 0; i < data.length; i++) {
+				let D = data[i];
+				if (D.lat == null || D.lon == null) { continue; }
+				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
+				dot.refType = 'WWFF'; dot.refData = D; dot.refColor = '#2b8cbe';
+				dot.bindPopup(refPopupRich);
+				wwffCluster.addLayer(dot);
+			}
+			map.addLayer(wwffCluster);
+			mapLoadingDone();
+		}).catch(function (err) { console.error('WWFF overlay build failed:', err); mapLoadingDone(); });
 	}
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
@@ -790,26 +797,23 @@
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		fetch(potaUrl)
-			.then(function (r) { return r.json(); })
-			.then(function (data) {
-				potaCluster = L.markerClusterGroup({
-					chunkedLoading: true,
-					maxClusterRadius: 50,
-					showCoverageOnHover: false
-				});
-				for (let i = 0; i < data.length; i++) {
-					let D = data[i];
-					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
-					dot.refType = 'POTA'; dot.refData = D; dot.refColor = '#238b45';
-					dot.bindPopup(refPopupRich);
-					potaCluster.addLayer(dot);
-				}
-				map.addLayer(potaCluster);
-				mapLoadingDone();
-			})
-			.catch(function (err) { console.error('POTA directory load failed:', err); mapLoadingDone(); });
+		loadRefDir('pota').then(function (data) {
+			potaCluster = L.markerClusterGroup({
+				chunkedLoading: true,
+				maxClusterRadius: 50,
+				showCoverageOnHover: false
+			});
+			for (let i = 0; i < data.length; i++) {
+				let D = data[i];
+				if (D.lat == null || D.lon == null) { continue; }
+				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
+				dot.refType = 'POTA'; dot.refData = D; dot.refColor = '#238b45';
+				dot.bindPopup(refPopupRich);
+				potaCluster.addLayer(dot);
+			}
+			map.addLayer(potaCluster);
+			mapLoadingDone();
+		}).catch(function (err) { console.error('POTA overlay build failed:', err); mapLoadingDone(); });
 	}
 	function disablePota() {
 		if (potaCluster) { map.removeLayer(potaCluster); }
@@ -820,26 +824,23 @@
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		fetch(sotaUrl)
-			.then(function (r) { return r.json(); })
-			.then(function (data) {
-				sotaCluster = L.markerClusterGroup({
-					chunkedLoading: true,
-					maxClusterRadius: 50,
-					showCoverageOnHover: false
-				});
-				for (let i = 0; i < data.length; i++) {
-					let D = data[i];
-					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#d95f0e', 'S') });
-					dot.refType = 'SOTA'; dot.refData = D; dot.refColor = '#d95f0e';
-					dot.bindPopup(refPopupRich);
-					sotaCluster.addLayer(dot);
-				}
-				map.addLayer(sotaCluster);
-				mapLoadingDone();
-			})
-			.catch(function (err) { console.error('SOTA directory load failed:', err); mapLoadingDone(); });
+		loadRefDir('sota').then(function (data) {
+			sotaCluster = L.markerClusterGroup({
+				chunkedLoading: true,
+				maxClusterRadius: 50,
+				showCoverageOnHover: false
+			});
+			for (let i = 0; i < data.length; i++) {
+				let D = data[i];
+				if (D.lat == null || D.lon == null) { continue; }
+				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#d95f0e', 'S') });
+				dot.refType = 'SOTA'; dot.refData = D; dot.refColor = '#d95f0e';
+				dot.bindPopup(refPopupRich);
+				sotaCluster.addLayer(dot);
+			}
+			map.addLayer(sotaCluster);
+			mapLoadingDone();
+		}).catch(function (err) { console.error('SOTA overlay build failed:', err); mapLoadingDone(); });
 	}
 	function disableSota() {
 		if (sotaCluster) { map.removeLayer(sotaCluster); }
@@ -947,6 +948,8 @@
 			let flag = rows.map(function (d) { return d.flag; }).filter(Boolean);
 			let stateDxcc = (s && s.dxcc != null) ? s.dxcc : '';
 			let gridDxcc  = (rows.length === 1 && rows[0].adif != null) ? rows[0].adif : '';
+			let dxccName  = stateDxcc !== '' ? (s && s.country ? s.country : '')
+			             : (gridDxcc !== '' ? (rows[0].name || '') : '');
 			let zParts = [];
 			if (cqNum !== '')  { zParts.push('CQ ' + cqNum); }
 			if (ituNum !== '') { zParts.push('ITU ' + ituNum); }
@@ -954,6 +957,7 @@
 				cq:         cqNum,
 				itu:        ituNum,
 				dxcc:       stateDxcc || gridDxcc,
+				dxccName:   dxccName,
 				stateCode:  (s && s.code != null) ? s.code : '',
 				zoneLabel:  zParts.join(' / '),
 				stateLabel: s ? stateStr(s) : '',
@@ -977,6 +981,31 @@
 		return createStationUrl + (qs.length ? '?' + qs.join('&') : '');
 	}
 
+	/*
+	 * Compose the social-share text for a point: the translatable lead with the
+	 * location descriptor, the DXCC entity name only when it differs from the
+	 * user's active station DXCC, then the hashtags (#hamr #wavelog, plus any
+	 * extra such as a reference). locDesc is e.g. "JN59ab" or "DL/NW-001 (JN59ab)".
+	 */
+	function buildSpotText(locDesc, meta, extraHash) {
+		if (!locDesc) { return ''; }
+		let t = planningActivationLbl.replace('%s', locDesc);
+		if (meta && meta.dxcc && meta.dxccName && userDxcc != null &&
+			String(meta.dxcc) !== String(userDxcc)) {
+			t += ' \u2014 ' + meta.dxccName;   // em dash + entity name
+		}
+		t += ' #hamr #wavelog';
+		if (extraHash) { t += ' ' + extraHash; }
+		return t;
+	}
+
+	/* Open the existing share modal (X / Bluesky / Mastodon) with a spot text. */
+	function shareActivation(text) {
+		if (typeof shareModal === 'function' && text) {
+			shareModal({ twitter_string: text }, shareActivationTitleLbl);
+		}
+	}
+
 	function init() {
 		map = L.map('glMap', { worldCopyJump: true }).setView(initialView, initialZoom);
 
@@ -993,6 +1022,14 @@
 		}
 
 		L.control.fullscreen && L.control.fullscreen().addTo(map);
+
+		// Delegated handler: any "Share" action inside a popup opens the share
+		// modal with the spot text stashed in data-spot. One listener covers the
+		// grid popup + all POTA/SOTA/WWFF reference popups.
+		map.getContainer().addEventListener('click', function (e) {
+			let el = e.target.closest ? e.target.closest('.gl-share') : null;
+			if (el) { shareActivation(el.dataset.spot || ''); }
+		});
 
 		// Floating compass readout of the surrounding square borders. A custom
 		// Leaflet control so it stays parked in the corner while the map pans,
@@ -1207,7 +1244,7 @@
 		}).addTo(map);
 
 		clickMarker = L.marker([lat, lng]).addTo(map)
-			.bindPopup(gridPopupHTML(lat, lng, loc, '', '', null, '', buildCreateHref(loc, null)));
+			.bindPopup(gridPopupHTML(lat, lng, loc, '', '', null, '', buildCreateHref(loc, null), buildSpotText(loc, null)));
 
 		// Frame the selection — on phones this centres on the 4-char square so
 		// the border arrows are in view; desktop fits the exact clicked cell.
@@ -1227,7 +1264,7 @@
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
-			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, refs, flag, buildCreateHref(loc, meta))); }
+			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, refs, flag, buildCreateHref(loc, meta), buildSpotText(loc, meta))); }
 		}
 		renderInfo();
 		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
@@ -1360,7 +1397,7 @@
 		}).addTo(map);
 
 		if (marker) { map.removeLayer(marker); }
-		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', '', null, '', buildCreateHref(cell1.loc, null)));
+		marker = L.marker(cell1.center).addTo(map).bindPopup(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, '', '', null, '', buildCreateHref(cell1.loc, null), buildSpotText(cell1.loc, null)));
 
 		if (cell2) {
 			// Tint both 4-char squares and dim the rest of the grid labels.
@@ -1371,7 +1408,7 @@
 				color: '#fd7e14', weight: 3, fillColor: '#fd7e14', fillOpacity: 0.18
 			}).addTo(map);
 
-			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', '', null, '', buildCreateHref(cell2.loc, null)));
+			marker2 = L.marker(cell2.center).addTo(map).bindPopup(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, '', '', null, '', buildCreateHref(cell2.loc, null), buildSpotText(cell2.loc, null)));
 
 			// Great-circle path between the two cell centres.
 			pathLine = L.polyline(greatCircle(cell1.center, cell2.center, 64), {
@@ -1399,8 +1436,8 @@
 			}
 			render();
 			function renderPopups() {
-				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, null, f1, buildCreateHref(cell1.loc, m1))); }
-				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, null, f2, buildCreateHref(cell2.loc, m2))); }
+				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, null, f1, buildCreateHref(cell1.loc, m1), buildSpotText(cell1.loc, m1))); }
+				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, null, f2, buildCreateHref(cell2.loc, m2), buildSpotText(cell2.loc, m2))); }
 			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
@@ -1435,7 +1472,7 @@
 			}
 			render();
 			function renderPopup() {
-				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, r1, f1, buildCreateHref(cell1.loc, m1))); }
+				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, r1, f1, buildCreateHref(cell1.loc, m1), buildSpotText(cell1.loc, m1))); }
 			}
 			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 

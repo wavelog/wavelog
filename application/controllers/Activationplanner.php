@@ -74,6 +74,14 @@ class Activationplanner extends CI_Controller {
 		$data['overlays']   = array_merge($overlays, $states);
 		$data['page_title'] = __("Activation Planner");
 
+		// Active station's DXCC (adif) so the share text can omit the entity
+		// when the activation is in the user's own country. null if none/hidden.
+		$this->load->model('stations');
+		$active_id = $this->session->userdata('station_profile_id');
+		$active_profile = ($active_id && $this->stations->check_station_is_accessible($active_id))
+			? $this->stations->profile($active_id)->row() : null;
+		$data['user_dxcc'] = $active_profile ? $active_profile->station_dxcc : null;
+
 		$footerData['scripts'] = array(
 			'assets/js/sections/activationplanner.js',
 			'assets/js/leaflet/leaflet.markercluster.js',
