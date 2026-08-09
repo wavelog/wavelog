@@ -13,6 +13,9 @@
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
+	let dxccGridUrl     = cfg.dxccGridUrl || '';
+	let satPassUrl      = cfg.satPassUrl || '';
+	let satPassLbl      = cfg.satPassLbl || 'Satellite passes';
 	let locatingMsg     = cfg.locatingMsg    || 'Locating…';
 	let geoDenied       = cfg.geoDenied      || 'Location access denied.';
 	let geoUnavailable  = cfg.geoUnavailable || 'Location unavailable.';
@@ -28,6 +31,7 @@
 	let shareTweetLbl    = cfg.shareTweetLbl    || 'Share on X';
 	let newStationLocLbl = cfg.newStationLocLbl || 'Create station location';
 	let refsTitleLbl     = cfg.refsTitleLbl     || 'References in this grid';
+	let gridLbl         = cfg.gridLbl        || 'Gridsquare';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -36,7 +40,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, refOverlay, trackTimer;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -93,6 +97,12 @@
 
 	function fmtLat(lat) { return Math.abs(lat).toFixed(5) + '°' + (lat >= 0 ? 'N' : 'S'); }
 	function fmtLng(lng) { return Math.abs(lng).toFixed(5) + '°' + (lng >= 0 ? 'E' : 'W'); }
+	/* Summit altitude in the user's unit (K -> metres, M/N -> feet). Source is metres. */
+	function fmtAltitude(m) {
+		if (m == null || m === '' || isNaN(m)) { return ''; }
+		let val = measurementBase === 'K' ? Math.round(Number(m)) : Math.round(Number(m) * 3.28084);
+		return groupThousands(val) + (measurementBase === 'K' ? ' m' : ' ft');
+	}
 
 	function deg2rad(d) { return d * Math.PI / 180; }
 	function rad2deg(r) { return r * 180 / Math.PI; }
@@ -454,7 +464,7 @@
 	 * distance + arrow). Echoes the corner info box. zones/state are appended
 	 * when resolved. Built on squareBorders() for the nearest-border figure.
 	 */
-	function gridPopupHTML(lat, lng, loc, zones, state, refs) {
+	function gridPopupHTML(lat, lng, loc, zones, state, refs, flag) {
 		// Hierarchy tiers: Field/Square are the "primary" 4-char grid (accent dot),
 		// Subsquare is the refinement (muted dot). Only tiers the locator has.
 		let tiers = [];
@@ -466,7 +476,13 @@
 				'<i class="gl-dot"></i>' + esc(t.lbl) + ' (' + esc(t.val) + ')</span>';
 		}).join(' ');
 
-		let meta = [zones, state].filter(Boolean).join(' &middot; ');
+		let metaLines = [];
+		if (zones) {
+			metaLines.push(zones.split(' / ').map(function (z) {
+				return z.replace(/^CQ /, 'CQ Zone ').replace(/^ITU /, 'ITU Zone ');
+			}).join(' / '));
+		}
+		if (state) { metaLines.push(state); }
 
 		// Quick actions: tweet the spot, post to hams.at, or create a station
 		// location here (the grid is pre-filled into the create form).
@@ -479,12 +495,15 @@
 			'</div>';
 
 		return '<div class="gl-popup">' +
-			'<div class="gl-pop-grid">' + loc + '</div>' +
-			'<div class="gl-pop-coords"><i class="fas fa-map-pin"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
+			'<div class="gl-pop-head"><span class="ref-popup-type" style="background:#dc3545">' + esc(gridLbl) + '</span></div>' +
+			'<div class="gl-pop-grid">' + (Array.isArray(flag) && flag.length ? flag.map(function (fl) { return '<span class="flag-emoji gl-pop-flag">' + esc(fl) + '</span>'; }).join('') : '') + loc + '</div>' +
+			'<div class="gl-pop-coords"><i class="fas fa-location-crosshairs"></i> ' + fmtLat(lat) + ', ' + fmtLng(lng) + '</div>' +
 			(hier ? '<div class="gl-pop-hier">' + hier + '</div>' : '') +
 			(meta ? '<div class="gl-pop-meta">' + meta + '</div>' : '') +
 			refsSection(refs) +
 			actions +
+			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
+			(satPassUrl ? '<div class="gl-pop-link"><a href="' + esc(satPassUrl + '?gridsquare=' + encodeURIComponent(loc)) + '" target="_blank" rel="noopener noreferrer"><i class="fas fa-satellite"></i> ' + esc(satPassLbl) + '</a></div>' : '') +
 			'</div>';
 	}
 
@@ -647,6 +666,63 @@
 		if (overlayLayers[id]) { map.removeLayer(overlayLayers[id]); }
 	}
 
+	/* External info-page URL for a reference. encodeURI keeps SOTA slashes
+	 * (G/SP-001) intact; encodeURIComponent would turn them into %2F. */
+	function refUrl(type, reference) {
+		let r = encodeURI(reference);
+		if (type === 'WWFF') { return 'https://www.gma.rocks/zinfo.php?ref=' + r; }
+		if (type === 'POTA') { return 'https://pota.app/#/park/' + r; }
+		if (type === 'SOTA') { return 'https://www.sotadata.org.uk/en/summit/' + r; }
+		return '';
+	}
+
+	/* Popup for a SOTA/POTA/WWFF reference point: a coloured left stripe +
+	 * type badge with the reference (links to its info page), then name, etc. */
+	function refPopup(type, D, color) {
+		return '<div class="ref-popup" style="border-left-color:' + esc(color) + '">' +
+			'<div class="ref-popup-top">' +
+			'<span class="ref-popup-type" style="background:' + esc(color) + '">' + esc(type) + '</span>' +
+			'<a class="ref-popup-ref" href="' + esc(refUrl(type, D.reference)) + '" target="_blank" rel="noopener noreferrer">' + esc(D.reference) + ' <i class="fas fa-up-right-from-square"></i></a>' +
+			'</div>' +
+			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
+			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
+			'</div>';
+	}
+
+	/* Coloured circle marker (white letter) for the reference overlays on the
+	 * map — same look as the .ref-menu-dot swatch in the Refs dropdown. */
+	function refIcon(color, letter) {
+		return L.divIcon({
+			className: 'ref-map-icon',
+			html: '<span class="ref-menu-dot" style="background:' + esc(color) + '">' + esc(letter) + '</span>',
+			iconSize: [18, 18],
+			iconAnchor: [9, 9],
+			popupAnchor: [0, -10]
+		});
+	}
+
+	/* Loading overlay: a blocking spinner over the map while a reference
+	 * directory is fetching. A counter backs it so concurrent loads share one. */
+	let loadingCount = 0, loadingEl = null;
+	function mapLoadingStart() {
+		loadingCount++;
+		if (loadingCount === 1 && map) {
+			if (!loadingEl) {
+				loadingEl = document.createElement('div');
+				loadingEl.className = 'gl-loading';
+				loadingEl.innerHTML = '<div class="spinner-border text-light" role="status" aria-hidden="true"></div>';
+				map.getContainer().appendChild(loadingEl);
+			}
+			loadingEl.style.display = 'flex';
+		}
+	}
+	function mapLoadingDone() {
+		if (loadingCount > 0) { loadingCount--; }
+		if (loadingCount === 0 && loadingEl) { loadingEl.style.display = 'none'; }
+	}
+
 	/* ---- WWFF reference directory overlay ---- */
 	/* Loads the full wwff_directory once, plots every reference as a circleMarker
 	 * inside a markerClusterGroup — the same recipe as the WWFF award map. This
@@ -659,6 +735,7 @@
 		if (wwffCluster) { map.addLayer(wwffCluster); return; }      // cached after first load
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
+		mapLoadingStart();
 		fetch(wwffUrl)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
@@ -670,21 +747,14 @@
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.circleMarker([D.lat, D.lon], {
-						radius: 6,
-						weight: 1,
-						color: '#fff',
-						fillColor: '#2b8cbe',
-						fillOpacity: 0.9
-					});
-					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
-						(D.name ? '<br>' + esc(D.name) : '') +
-						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
+					dot.bindPopup(refPopup('WWFF', D, '#2b8cbe'));
 					wwffCluster.addLayer(dot);
 				}
 				map.addLayer(wwffCluster);
+				mapLoadingDone();
 			})
-			.catch(function (err) { console.error('WWFF directory load failed:', err); });
+			.catch(function (err) { console.error('WWFF directory load failed:', err); mapLoadingDone(); });
 	}
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
@@ -694,6 +764,7 @@
 		if (potaCluster) { map.addLayer(potaCluster); return; }      // cached after first load
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
+		mapLoadingStart();
 		fetch(potaUrl)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
@@ -705,21 +776,14 @@
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.circleMarker([D.lat, D.lon], {
-						radius: 6,
-						weight: 1,
-						color: '#fff',
-						fillColor: '#238b45',
-						fillOpacity: 0.9
-					});
-					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
-						(D.name ? '<br>' + esc(D.name) : '') +
-						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
+					dot.bindPopup(refPopup('POTA', D, '#238b45'));
 					potaCluster.addLayer(dot);
 				}
 				map.addLayer(potaCluster);
+				mapLoadingDone();
 			})
-			.catch(function (err) { console.error('POTA directory load failed:', err); });
+			.catch(function (err) { console.error('POTA directory load failed:', err); mapLoadingDone(); });
 	}
 	function disablePota() {
 		if (potaCluster) { map.removeLayer(potaCluster); }
@@ -729,6 +793,7 @@
 		if (sotaCluster) { map.addLayer(sotaCluster); return; }      // cached after first load
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
+		mapLoadingStart();
 		fetch(sotaUrl)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
@@ -740,21 +805,14 @@
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
 					if (D.lat == null || D.lon == null) { continue; }
-					let dot = L.circleMarker([D.lat, D.lon], {
-						radius: 6,
-						weight: 1,
-						color: '#fff',
-						fillColor: '#d95f0e',
-						fillOpacity: 0.9
-					});
-					dot.bindPopup('<strong>' + esc(D.reference) + '</strong>' +
-						(D.name ? '<br>' + esc(D.name) : '') +
-						'<br>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon));
+					let dot = L.marker([D.lat, D.lon], { icon: refIcon('#d95f0e', 'S') });
+					dot.bindPopup(refPopup('SOTA', D, '#d95f0e'));
 					sotaCluster.addLayer(dot);
 				}
 				map.addLayer(sotaCluster);
+				mapLoadingDone();
 			})
-			.catch(function (err) { console.error('SOTA directory load failed:', err); });
+			.catch(function (err) { console.error('SOTA directory load failed:', err); mapLoadingDone(); });
 	}
 	function disableSota() {
 		if (sotaCluster) { map.removeLayer(sotaCluster); }
@@ -846,6 +904,17 @@
 			if (res[1] && res[1].num != null) { parts.push('ITU ' + res[1].num); }
 			return parts.join(' / ');
 		});
+	}
+
+	/* DXCC flag emoji(s) for a 4-char grid, via the vuccgrids table. cb(flag). */
+	function gridFlag(loc, cb) {
+		if (!dxccGridUrl || !loc || loc.length < 4) { cb(''); return; }
+		fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4)))
+			.then(function (r) { return r.json(); })
+			.then(function (rows) {
+				cb((rows || []).map(function (d) { return d.flag; }).filter(Boolean));
+			})
+			.catch(function () { cb(''); });
 	}
 
 	function init() {
@@ -1041,6 +1110,9 @@
 	}
 
 	function onMapClick(e) {
+		// While autotracking, ignore map clicks so the GPS marker keeps following
+		// uninterrupted. Stop tracking (Locate/Clear) to click-select again.
+		if (trackTimer !== null) { return; }
 		// Ignore clicks that began on a floating control (the borders panel and
 		// its dismiss button). Modern Leaflet routes map clicks through pointer
 		// events that disableClickPropagation doesn't stop, so without this the
@@ -1083,7 +1155,7 @@
 
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
-		let zones = '', stateLabel = '', refs = null;
+		let zones = '', stateLabel = '', refs = null, flag = '';
 
 		// Re-render from whatever has resolved so far, so the independently
 		// async zones and state enrichments compose instead of clobbering each
@@ -1095,7 +1167,7 @@
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
-			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, refs)); }
+			if (clickMarker) { clickMarker.setPopupContent(gridPopupHTML(lat, lng, loc, zones, stateLabel, refs, flag)); }
 		}
 		renderInfo();
 		showBorders(lat, lng);   // distance/bearing to each surrounding square edge
@@ -1125,6 +1197,11 @@
 			if (myReq !== zoneReq) { return; }
 			refs = rr;
 			drawRefs(rr);
+    }
+		// DXCC flag for this 4-char grid (vuccgrids table).
+		gridFlag(loc, function (f) {
+			if (myReq !== zoneReq) { return; }
+			flag = f;
 			renderPopup();
 		});
 	}
@@ -1262,7 +1339,7 @@
 
 			// Composed readout: each grid's "(zones, state)" tag fills in
 			// asynchronously and re-renders. zoneReq guards against stale updates.
-			let z1 = '', z2 = '', s1 = '', s2 = '';
+			let z1 = '', z2 = '', s1 = '', s2 = '', f1 = '', f2 = '';
 			function tag(z, s) {
 				let inner = [];
 				if (z) { inner.push(z); }
@@ -1277,8 +1354,8 @@
 			}
 			render();
 			function renderPopups() {
-				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1)); }
-				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2)); }
+				if (marker)  { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, f1)); }
+				if (marker2) { marker2.setPopupContent(gridPopupHTML(cell2.center[0], cell2.center[1], cell2.loc, z2, s2, f2)); }
 			}
 
 			map.fitBounds(L.latLngBounds([cell1.sw, cell1.ne, cell2.sw, cell2.ne]),
@@ -1307,10 +1384,13 @@
 					renderPopups();
 				});
 			}
+			// DXCC flag per 4-char grid (vuccgrids table).
+			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopups(); });
+			gridFlag(cell2.loc, function (f) { if (myReq !== zoneReq) { return; } f2 = f; renderPopups(); });
 		} else {
 			zoomToGrid(cell1.center[0], cell1.center[1], cell1);
 
-			let z1 = '', s1 = '', r1 = null;
+			let z1 = '', s1 = '', r1 = null, f1 = '';
 			function render() {
 				let parts = [
 					'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
@@ -1322,7 +1402,7 @@
 			}
 			render();
 			function renderPopup() {
-				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, r1)); }
+				if (marker) { marker.setPopupContent(gridPopupHTML(cell1.center[0], cell1.center[1], cell1.loc, z1, s1, r1, f1)); }
 			}
 			showBorders(cell1.center[0], cell1.center[1]);   // surrounding square edges for this grid
 
@@ -1353,6 +1433,8 @@
 				drawRefs(rr);
 				renderPopup();
 			});
+			// DXCC flag for this 4-char grid (vuccgrids table).
+			gridFlag(cell1.loc, function (f) { if (myReq !== zoneReq) { return; } f1 = f; renderPopup(); });
 		}
 	}
 

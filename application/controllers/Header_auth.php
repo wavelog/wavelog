@@ -334,6 +334,7 @@ class Header_auth extends CI_Controller {
             $mapped['on_air_widget_enabled']                  ?? '',
             $mapped['on_air_widget_display_last_seen']        ?? '',
             $mapped['on_air_widget_show_only_most_recent_radio'] ?? '',
+            $mapped['on_air_widget_display_radio_name']       ?? '',
             $mapped['qso_widget_display_qso_time']            ?? '',
             $mapped['dashboard_banner']                       ?? '',
             $mapped['dashboard_solar']                        ?? '',

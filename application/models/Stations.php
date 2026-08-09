@@ -353,8 +353,11 @@ class Stations extends CI_Model {
 		}
 	}
 
-	public function find_active() {
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+	public function find_active($user_id = null) {
+		if ($user_id == null) {
+			$user_id = $this->session->userdata('user_id');
+		}
+		$this->db->where('user_id', $user_id);
 		$this->db->where('station_active', 1);
 		$query = $this->db->get('station_profile');
 

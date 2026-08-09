@@ -1,5 +1,4 @@
 <!--
-
 This is a DYNAMIC On-Air widget to place in your QRZ.com Bio or somewhere else.
 
 For normal use with JavaScript:
@@ -26,7 +25,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
     <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/overrides.css'); ?>">
     <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/general.css'); ?>">
 
-    <title><?= "Wavelog Dynamic On-Air widget"; ?></title>
+    <title>Wavelog Dynamic On-Air widget</title>
     <style>
         .widget.container {
             max-width: none;
@@ -123,6 +122,19 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             margin-left: 10px;
         }
 
+        .frequency-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-name-label {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-right: 10px;
+            padding-right: 10px;
+            border-right: 1px solid #6c757d;
+        }
+
         .last-updated {
             font-size: 0.8em;
             color: #6c757d;
@@ -143,14 +155,8 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             <div class="top-right">
                 <div>
                     <span class="status-indicator <?php echo $is_on_air ? 'on-air' : 'off-air'; ?>"></span>
-                    <span class="<?= $text_size_class ?>">
-                        <?php
-                            if ($is_on_air === true) {
-                                printf("%s ON-AIR", $user_callsign);
-                            } else {
-                                printf("%s OFF-AIR", $user_callsign);
-                            }
-                        ?>
+                    <span class="<?php echo $text_size_class ?>">
+						<?= sprintf(_pgettext("on air status test: callsign is on-air/off-air","%s is %s"), $user_callsign, $is_on_air ? 'ON-AIR' : 'OFF-AIR'); ?>
                     </span>
                 </div>
             </div>
@@ -158,18 +164,21 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <?php if ($is_on_air === true) { ?>
                     <?php foreach ($radios_online as $radio_data) { ?>
                         <div class="frequency-info mb-2">
-                            <span class="frequency-display <?= $text_size_class ?>">
-                                <?= htmlspecialchars($radio_data->frequency_string); ?>
+                            <?php if (!empty($radio_data->radio_name)) { ?>
+                            <span class="radio-name-label"><?php echo htmlspecialchars($radio_data->radio_name); ?></span>
+                            <?php } ?>
+                            <span class="frequency-display <?php echo $text_size_class ?>">
+                                <?php echo htmlspecialchars($radio_data->frequency_string); ?>
                             </span>
                         </div>
                     <?php } ?>
                 <?php } else if ($last_seen_text !== null) { ?>
-                    <div class="<?= $text_size_class ?> text-muted">
-                        <?= htmlspecialchars($last_seen_text); ?>
+                    <div class="<?php echo $text_size_class ?> text-muted">
+                        <?php echo htmlspecialchars($last_seen_text); ?>
                     </div>
                 <?php } ?>
                 <div class="last-updated mt-2">
-                    <small>Updated: <?= date('H:i:s'); ?> (auto-refreshed every 60s)</small>
+					<small><?= sprintf(__("Updated: %s (%s)"), date('H:i:s'), __("auto-refreshed every 60s")); ?></small>
                 </div>
             </div>
         </div>
@@ -178,15 +187,15 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             <div class="top-right">
                 <div>
                     <span class="status-indicator off-air"></span>
-                    <span class="<?= $text_size_class ?>"><?= __("Error") ?></span>
+                    <span class="<?php echo $text_size_class ?>"><?= __("Error") ?></span>
                 </div>
             </div>
             <div class="bottom-right mt-2">
-                <div class="<?= $text_size_class ?> text-danger">
-                    <?= $error ?>
+                <div class="<?php echo $text_size_class ?> text-danger">
+                    <?php echo $error ?>
                 </div>
                 <div class="last-updated mt-2">
-                    <small>Updated: <?= date('H:i:s'); ?> (auto-refreshed by QRZ.com every 60s)</small>
+                    <small><?= sprintf(__("Updated: %s (%s)"), date('H:i:s'), __("auto-refreshed by QRZ.com every 60s")); ?></small>
                 </div>
             </div>
         </div>
@@ -204,14 +213,8 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             <div class="top-right d-flex justify-content-between align-items-center">
                 <div>
                     <span class="status-indicator <?php echo $is_on_air ? 'on-air' : 'off-air'; ?>"></span>
-                    <span class="<?= $text_size_class ?>" id="status-text">
-                        <?php
-                            if ($is_on_air === true) {
-                                printf("%s is ON-AIR", $user_callsign);
-                            } else {
-                                printf("%s is OFF-AIR", $user_callsign);
-                            }
-                        ?>
+                    <span class="<?php echo $text_size_class ?>" id="status-text">
+						<?= sprintf(_pgettext("on air status test: callsign is on-air/off-air","%s is %s"), $user_callsign, $is_on_air ? 'ON-AIR' : 'OFF-AIR'); ?>
                     </span>
                 </div>
                 <div class="refresh-indicator" id="refresh-indicator">
@@ -222,28 +225,31 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <?php if ($is_on_air === true) { ?>
                     <?php foreach ($radios_online as $radio_data) { ?>
                         <div class="frequency-info mb-2">
-                            <span class="frequency-display <?= $text_size_class ?>" id="frequency-display">
-                                <?= htmlspecialchars($radio_data->frequency_string); ?>
+                            <?php if (!empty($radio_data->radio_name)) { ?>
+                            <span class="radio-name-label"><?php echo htmlspecialchars($radio_data->radio_name); ?></span>
+                            <?php } ?>
+                            <span class="frequency-display <?php echo $text_size_class ?>" id="frequency-display">
+                                <?php echo htmlspecialchars($radio_data->frequency_string); ?>
                             </span>
                         </div>
                     <?php } // end foreach ?>
                 <?php } else if ($last_seen_text !== null) { ?>
-                    <p class="<?= $text_size_class ?>" id="last-seen-text">
-                        <?= htmlspecialchars($last_seen_text); ?>
+                    <p class="<?php echo $text_size_class ?>" id="last-seen-text">
+                        <?php echo htmlspecialchars($last_seen_text); ?>
                     </p>
                 <?php } ?>
                 <div class="last-updated mt-2">
-                    <small id="last-updated-text">Last updated: <?= date('H:i:s'); ?></small>
+					<small id="last-updated-text"><?= sprintf(__("Last updated: %s"), date('H:i:s')); ?></small>
                 </div>
             </div>
         </div>
      <?php } else { ?>
         <div class="right-column">
             <div class="top-right">
-                <p class="<?= $text_size_class ?>"><?= __("Error") ?></p>
+                <p class="<?php echo $text_size_class ?>"><?= __("Error") ?></p>
             </div>
             <div class="bottom-right mt-3">
-                <p class="<?= $text_size_class ?>"><?= htmlspecialchars($error) ?></p>
+                <p class="<?php echo $text_size_class ?>"><?php echo htmlspecialchars($error) ?></p>
            </div>
         </div>
      <?php } ?>
@@ -255,6 +261,14 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
         (function() {
             const userSlug = '<?php echo $user_slug ?? ''; ?>';
             let updateInterval;
+
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+			let statusTextTranslation = "<?= _pgettext("on air status test: callsign is on-air/off-air","%s is %s"); ?>";
 
             function updateWidget() {
                 if (!userSlug) return;
@@ -270,7 +284,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                     refreshIndicator.classList.add('updating');
                 }
 
-                fetch(`${window.location.origin}/index.php/widgets/on_air_ajax/${userSlug}`)
+				fetch(`<?php echo base_url(); ?>index.php/widgets/on_air_ajax/${userSlug}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.error) {
@@ -279,7 +293,8 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                         }
 
                         if (statusText) {
-                            statusText.textContent = `${data.user_callsign} is ${data.is_on_air ? 'ON-AIR' : 'OFF-AIR'}`;
+							let airStatus = data.is_on_air ? 'ON-AIR' : 'OFF-AIR'
+                            statusText.textContent = statusTextTranslation.replace("%s", data.user_callsign).replace("%s", airStatus);
                         }
 
                         if (statusIndicator) {
@@ -293,20 +308,21 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                                 data.radios_online.forEach(radio => {
                                     html += `
                                         <div class="frequency-info mb-2">
+                                            ${radio.radio_name ? `<span class="radio-name-label">${escapeHtml(radio.radio_name)}</span>` : ''}
                                             <span class="frequency-display ${window.textSizeClass || ''}">
                                                 ${radio.frequency_string}
                                             </span>
                                         </div>
                                     `;
                                 });
-                                html += '<div class="last-updated mt-2"><small id="last-updated-text">Last updated: ' +
+								html += '<div class="last-updated mt-2"><small id="last-updated-text"><?= __("Last updated:"); ?> ' +
                                        new Date().toLocaleTimeString() + '</small></div>';
                             } else if (data.last_seen_text) {
                                 html = `<p class="${window.textSizeClass || ''}" id="last-seen-text">${data.last_seen_text}</p>`;
-                                html += '<div class="last-updated mt-2"><small id="last-updated-text">Last updated: ' +
+								html += '<div class="last-updated mt-2"><small id="last-updated-text"><?= __("Last updated:"); ?> ' +
                                        new Date().toLocaleTimeString() + '</small></div>';
                             } else {
-                                html = '<div class="last-updated mt-2"><small id="last-updated-text">Last updated: ' +
+								html = '<div class="last-updated mt-2"><small id="last-updated-text"><?= __("Last updated:"); ?> ' +
                                        new Date().toLocaleTimeString() + '</small></div>';
                             }
 
@@ -314,7 +330,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                         }
 
                         if (lastUpdatedText) {
-                            lastUpdatedText.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+							lastUpdatedText.textContent = '<?= __("Last updated:"); ?> ' + new Date().toLocaleTimeString();
                         }
                     })
                     .catch(error => {
@@ -330,9 +346,9 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             window.textSizeClass = '<?php echo $text_size_class ?? ''; ?>';
 
             setTimeout(() => {
-                updateWidget(); 
-                updateInterval = setInterval(updateWidget, 30000); 
-            }, 2000); 
+                updateWidget();
+                updateInterval = setInterval(updateWidget, 30000);
+            }, 2000);
 
             window.addEventListener('beforeunload', () => {
                 if (updateInterval) {
