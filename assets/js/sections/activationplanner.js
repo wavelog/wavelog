@@ -13,6 +13,7 @@
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
+	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
 	let satPassUrl      = cfg.satPassUrl || '';
 	let satPassLbl      = decodeHtml(cfg.satPassLbl) || 'Satellite passes';
@@ -43,7 +44,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, iotaLayer, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -846,6 +847,83 @@
 		if (sotaCluster) { map.removeLayer(sotaCluster); }
 	}
 
+	/* ---- IOTA reference directory overlay ---- */
+	/* IOTA references are bounding-box rectangles, not points. Drawn as a flat
+	 * layer of polygons in one colour; click a rectangle for its details. Loads
+	 * lazily and is cached. NB: the table stores latitudes sign-reversed, and a
+	 * few islands wrap the antimeridian — both handled in iotaRect (mirrors
+	 * assets/js/sections/iotamap.js). */
+	function enableIota() {
+		if (!iotaUrl) { return; }
+		if (iotaLayer) { map.addLayer(iotaLayer); return; }       // cached after first load
+
+		mapLoadingStart();
+		fetch(iotaUrl)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				iotaLayer = L.layerGroup();
+				// Tag labels cluster when zoomed out (the rectangles stay plain layers).
+				let cluster = L.markerClusterGroup({
+					chunkedLoading: true,
+					maxClusterRadius: 50,
+					showCoverageOnHover: false,
+					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
+				});
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
+					if (D.lat1 == null || D.lon1 == null || D.lat2 == null || D.lon2 == null) { continue; }
+					let g = iotaGeometry(D);   // antimeridian-adjusted longitudes
+					// The rectangle is purely visual: non-interactive, so map clicks
+					// pass straight through it. The tag label is the click target.
+					iotaLayer.addLayer(L.polygon(
+						[[-D.lat1, g.lon1], [-D.lat2, g.lon1], [-D.lat2, g.lon2], [-D.lat1, g.lon2]],
+						{ interactive: false, color: '#17a2b8', weight: 1, fillColor: '#17a2b8', fillOpacity: 0.12 }
+					));
+					let cLat = -(Number(D.lat1) + Number(D.lat2)) / 2;
+					let cLng = (g.lon1 + g.lon2) / 2;
+					cluster.addLayer(L.marker([cLat, cLng], { icon: iotaIcon(D.tag) }).bindPopup(iotaPopup(D, cLat, cLng)));
+				}
+				iotaLayer.addLayer(cluster);   // cluster rides inside the group → atomic add/remove
+				map.addLayer(iotaLayer);
+			})
+			.catch(function (err) { console.error('IOTA directory load failed:', err); mapLoadingDone(); });
+	}
+	function disableIota() {
+		if (iotaLayer) { map.removeLayer(iotaLayer); }
+	}
+	/* Antimeridian unwrap for islands spanning ±180° (AN-016 is special-cased). */
+	function iotaGeometry(D) {
+		let lon1 = Number(D.lon1), lon2 = Number(D.lon2);
+		if (D.tag !== 'AN-016') {
+			if (lon1 > 0 && lon2 < 0 && lon1 - lon2 > 180) { lon2 += 360; }
+			if (lon1 < 0 && lon2 > 0 && lon2 - lon1 > 180) { lon1 += 360; }
+		}
+		return { lon1: lon1, lon2: lon2 };
+	}
+	/* Clickable tag label (e.g. EU-001) shown centred on each rectangle. */
+	function iotaIcon(tag) {
+		return L.divIcon({
+			className: 'iota-label',
+			html: esc(tag),
+			iconSize: [48, 14],
+			iconAnchor: [24, 7]
+		});
+	}
+	/* IOTA popup, styled like the WWFF/POTA/SOTA reference popups. The tag links
+	 * to its iota-world.org map page; grid + coords are the rectangle's centre. */
+	function iotaPopup(D, lat, lng) {
+		return '<div class="ref-popup" style="border-left-color:#17a2b8">' +
+			'<div class="ref-popup-top">' +
+			'<span class="ref-popup-type" style="background:#17a2b8">IOTA</span>' +
+			'<a class="ref-popup-ref" href="https://www.iota-world.org/iotamaps/?grpref=' + encodeURIComponent(D.tag) + '" target="_blank" rel="noopener noreferrer">' + esc(D.tag) + ' <i class="fas fa-up-right-from-square"></i></a>' +
+			'</div>' +
+			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.prefix ? '<div class="ref-popup-row"><i class="fas fa-broadcast-tower"></i><span>' + esc(D.prefix) + '</span></div>' : '') +
+			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(lat, lng, 3)) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(lat) + ', ' + fmtLng(lng) + '</span></div>' +
+			'</div>';
+	}
+
 	/* ---- CQ / ITU zone resolution (coordinate -> zone, client-side) ---- */
 
 	/* Lazily fetch + cache the CQ / ITU boundary GeoJSON. Returns a Promise of
@@ -1111,6 +1189,12 @@
 		if (sotaCb) {
 			sotaCb.addEventListener('change', function () {
 				if (this.checked) { enableSota(); } else { disableSota(); }
+			});
+		}
+		let iotaCb = document.getElementById('glIotaDir');
+		if (iotaCb) {
+			iotaCb.addEventListener('change', function () {
+				if (this.checked) { enableIota(); } else { disableIota(); }
 			});
 		}
 
