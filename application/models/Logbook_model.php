@@ -5829,7 +5829,7 @@ class Logbook_model extends CI_Model {
 
 	function mark_dcl_rcvd($key) {
 		$data = array(
-			'COL_DCL_QSL_RCVD ' => 'Y',
+			'COL_DCL_QSL_RCVD' => 'Y',
 		);
 
 		$this->db->where(array('COL_PRIMARY_KEY' => $key));
