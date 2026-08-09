@@ -183,4 +183,45 @@ class Activationplanner extends CI_Controller {
 		header('Content-Type: application/json');
 		echo $json;
 	}
+
+	/*
+	 * AJAX: given a 4-character gridsquare, return the DXCC entities covering it
+	 * (from the vuccgrids table) with their flag emoji, so the activation planner
+	 * can show the flag beside the grid. Outputs JSON [{name, flag}, ...].
+	 */
+	public function dxcc_for_grid() {
+		$grid = strtoupper((string) $this->input->get('grid', TRUE));
+
+		if (strlen($grid) < 4) {
+			header('Content-Type: application/json');
+			echo json_encode(array());
+			return;
+		}
+		$grid = substr($grid, 0, 4);
+
+		$this->load->model('lookup_model');
+		$this->load->library('DxccFlag');
+
+		$out = array();
+		foreach ($this->lookup_model->getDxccForVuccGrid($grid) as $row) {
+			$out[] = array(
+				'name' => ucwords(strtolower($row->name), "- (/"),
+				'flag' => $this->dxccflag->get($row->adif),
+			);
+		}
+		$json = json_encode($out);
+
+		$etag = '"' . md5($grid . ':' . $json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
 }
