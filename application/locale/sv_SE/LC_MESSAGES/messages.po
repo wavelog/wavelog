@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-09 07:34+0000\n"
-"PO-Revision-Date: 2026-08-07 16:46+0000\n"
+"POT-Creation-Date: 2026-08-08 09:50+0000\n"
+"PO-Revision-Date: 2026-08-09 07:35+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -213,8 +213,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Satellite.php:117
 #: application/controllers/Satellite.php:131
 #: application/controllers/Satellite.php:149
-#: application/controllers/Satellite.php:556
-#: application/controllers/Satellite.php:565
+#: application/controllers/Satellite.php:550
+#: application/controllers/Satellite.php:559
 #: application/controllers/Sattimers.php:8 application/controllers/Search.php:9
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:16
@@ -236,6 +236,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
+#: application/controllers/Satellite.php:556
+#: application/controllers/Satellite.php:565
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -653,7 +655,7 @@ msgstr " och "
 
 #: application/controllers/Awards.php:713
 #: application/controllers/Logbook.php:1452
-#: application/views/activationplanner/index.php:62
+#: application/views/activationplanner/index.php:58
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
@@ -679,12 +681,13 @@ msgstr " och "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/activationplanner/index.php:62
 msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
 #: application/controllers/Logbook.php:1453
-#: application/views/activationplanner/index.php:60
+#: application/views/activationplanner/index.php:56
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
 #: application/views/logbookadvanced/edit.php:40
@@ -702,12 +705,13 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/activationplanner/index.php:60
 msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
 #: application/controllers/Logbook.php:1454
-#: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:57
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
@@ -727,6 +731,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/activationplanner/index.php:61
 msgid "POTA"
 msgstr "POTA"
 
@@ -2198,10 +2203,9 @@ msgstr "Delstat"
 
 #: application/controllers/Logbook.php:1456
 #: application/views/activated_gridmap/index.php:107
-#: application/views/activationplanner/index.php:19
-#: application/views/activationplanner/index.php:44
-#: application/views/activationplanner/index.php:59
-#: application/views/activationplanner/index.php:83
+#: application/views/activationplanner/index.php:40
+#: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:79
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -2252,6 +2256,10 @@ msgstr "Delstat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/activationplanner/index.php:19
+#: application/views/activationplanner/index.php:44
+#: application/views/activationplanner/index.php:59
+#: application/views/activationplanner/index.php:83
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -3228,34 +3236,42 @@ msgstr "Redigera satellit"
 msgid "Satellite Flightpath"
 msgstr "Satellitflygbana"
 
+#: application/controllers/Satellite.php:265
 #: application/controllers/Satellite.php:271
 msgid "Satellite pass"
 msgstr "Satellitpassage"
 
+#: application/controllers/Satellite.php:322
 #: application/controllers/Satellite.php:328
 msgid "Failed to save pass settings!"
 msgstr "Det gick inte att spara passinställningarna!"
 
+#: application/controllers/Satellite.php:325
 #: application/controllers/Satellite.php:331
 msgid "Pass settings saved!"
 msgstr "Passinställningar sparade!"
 
+#: application/controllers/Satellite.php:338
 #: application/controllers/Satellite.php:344
 msgid "No settings found!"
 msgstr "Inga inställningar hittade!"
 
+#: application/controllers/Satellite.php:352
 #: application/controllers/Satellite.php:358
 msgid "Failed to delete pass settings!"
 msgstr "Det gick inte att ta bort passinställningarna!"
 
+#: application/controllers/Satellite.php:354
 #: application/controllers/Satellite.php:360
 msgid "Pass settings deleted!"
 msgstr "Inställningar för pass raderade!"
 
+#: application/controllers/Satellite.php:364
 #: application/controllers/Satellite.php:370
 msgid "Saved Pass Settings"
 msgstr "Sparade passinställningar"
 
+#: application/controllers/Satellite.php:381
 #: application/controllers/Satellite.php:387
 msgid "No presets available"
 msgstr "Inga förinställningar tillgängliga"
@@ -3399,7 +3415,7 @@ msgstr "Inte tillåtet"
 #: application/controllers/Stationsetup.php:156
 #: application/controllers/Stationsetup.php:177
 #: application/controllers/Stationsetup.php:478
-#: application/views/activationplanner/index.php:21
+#: application/views/activationplanner/index.php:17
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
@@ -3407,6 +3423,7 @@ msgstr "Inte tillåtet"
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/activationplanner/index.php:21
 msgid "Error"
 msgstr "Fel"
 
@@ -5038,24 +5055,26 @@ msgid "Clear Markers"
 msgstr "Rensa markörer"
 
 #: application/views/activated_gridmap/index.php:105
-#: application/views/activationplanner/index.php:81
+#: application/views/activationplanner/index.php:77
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/activationplanner/index.php:81
 msgid "Latitude"
 msgstr "Latitud"
 
 #: application/views/activated_gridmap/index.php:106
-#: application/views/activationplanner/index.php:82
+#: application/views/activationplanner/index.php:78
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/activationplanner/index.php:82
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -5065,16 +5084,12 @@ msgid ""
 msgstr ""
 "Ogiltig lokator — använd 2, 4, 6, 8 eller 10 tecken (t.ex. FN, FN31, FN31pr)."
 
-#: application/views/activationplanner/index.php:17
-#: application/views/satellite/pass.php:21
-msgid "Satellite passes"
-msgstr "Satellitpassager"
-
+#: application/views/activationplanner/index.php:15
 #: application/views/activationplanner/index.php:18
 msgid "Gridsquare borders"
 msgstr "Lokatorruta-gränser"
 
-#: application/views/activationplanner/index.php:20
+#: application/views/activationplanner/index.php:16
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
 #: application/views/api/components/new_token_modal.php:23
@@ -5094,72 +5109,88 @@ msgstr "Lokatorruta-gränser"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/activationplanner/index.php:20
 msgid "Close"
 msgstr "Stäng"
 
+#: application/views/activationplanner/index.php:18
 #: application/views/activationplanner/index.php:22
 msgid "Tracking"
 msgstr "Spårning"
 
-#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:19
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/activationplanner/index.php:23
 msgid "Field"
 msgstr "Fält"
 
+#: application/views/activationplanner/index.php:20
 #: application/views/activationplanner/index.php:24
 msgid "Square"
 msgstr "Ruta"
 
+#: application/views/activationplanner/index.php:21
 #: application/views/activationplanner/index.php:25
 msgid "Subsquare"
 msgstr "Delruta"
 
+#: application/views/activationplanner/index.php:22
 #: application/views/activationplanner/index.php:26
 msgid "Locating…"
 msgstr "Hämtar plats…"
 
+#: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:27
 msgid "Location access denied."
 msgstr "Platsåtkomst nekad."
 
+#: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:28
 msgid "Location unavailable."
 msgstr "Plats inte tillgänglig."
 
+#: application/views/activationplanner/index.php:25
 #: application/views/activationplanner/index.php:29
 msgid "Location request timed out."
 msgstr "Platsbegäran tog för lång tid och avslutades."
 
+#: application/views/activationplanner/index.php:35
 #: application/views/activationplanner/index.php:39
 msgid "Plan your activity here"
 msgstr "Planera din aktivitet här"
 
+#: application/views/activationplanner/index.php:43
 #: application/views/activationplanner/index.php:47
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 eller 10 tecken Maidenhead-lokator"
 
+#: application/views/activationplanner/index.php:43
 #: application/views/activationplanner/index.php:47
 msgid "e.g. FN31pr"
 msgstr "t.ex. FN31pr"
 
+#: application/views/activationplanner/index.php:44
 #: application/views/activationplanner/index.php:48
 msgid "to"
 msgstr "till"
 
+#: application/views/activationplanner/index.php:47
 #: application/views/activationplanner/index.php:51
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Valfri andra lokator för avstånd och bäring"
 
+#: application/views/activationplanner/index.php:47
 #: application/views/activationplanner/index.php:51
 msgid "e.g. JN58qm"
 msgstr "t.ex. JN58qm"
 
+#: application/views/activationplanner/index.php:48
 #: application/views/activationplanner/index.php:52
 msgid "Go"
 msgstr "Gå"
 
-#: application/views/activationplanner/index.php:53
+#: application/views/activationplanner/index.php:49
 #: application/views/awards/cq/index.php:70
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
@@ -5171,32 +5202,38 @@ msgstr "Gå"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
 #: application/views/qso/index.php:757 application/views/user/edit.php:1341
+#: application/views/activationplanner/index.php:53
 msgid "Clear"
 msgstr "Rensa"
 
+#: application/views/activationplanner/index.php:50
 #: application/views/activationplanner/index.php:54
 msgid "Find my location and gridsquare"
 msgstr "Hitta min plats och lokator"
 
+#: application/views/activationplanner/index.php:50
 #: application/views/activationplanner/index.php:54
 msgid "Locate me"
 msgstr "Hitta mig"
 
-#: application/views/activationplanner/index.php:57
+#: application/views/activationplanner/index.php:53
 #: application/views/simplefle/index.php:162
+#: application/views/activationplanner/index.php:57
 msgid "Refs"
 msgstr "Referenser"
 
-#: application/views/activationplanner/index.php:69
+#: application/views/activationplanner/index.php:65
 #: application/views/qso/index.php:758
+#: application/views/activationplanner/index.php:69
 msgid "More options"
 msgstr "Fler alternativ"
 
+#: application/views/activationplanner/index.php:66
 #: application/views/activationplanner/index.php:70
 msgid "Hide options"
 msgstr "Dölj alternativ"
 
-#: application/views/activationplanner/index.php:84
+#: application/views/activationplanner/index.php:80
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
 #: application/views/bandmap/list.php:569
@@ -5219,10 +5256,11 @@ msgstr "Dölj alternativ"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/activationplanner/index.php:84
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
-#: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:81
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
 #: application/views/gridmap/index.php:230
@@ -5239,6 +5277,7 @@ msgstr "CQ-zon"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/activationplanner/index.php:85
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -8662,17 +8701,19 @@ msgstr "Exportera QSOs till ADIF"
 
 #: application/views/awards/sota/index.php:4
 msgid "Error loading SOTA map data"
-msgstr ""
+msgstr "Fel vid inläsning av SOTA-kartdata"
 
 #: application/views/awards/sota/index.php:5
 msgid "No SOTA references worked for these filters."
-msgstr ""
+msgstr "Inga SOTA-referenser aktiverade för dessa filter."
 
 #: application/views/awards/sota/index.php:6
 msgid ""
 "SOTA directory not loaded - coordinates missing. Run the update_sota cron "
 "job."
 msgstr ""
+"SOTA-katalogen är inte laddad - koordinater saknas. Kör cron-jobbet "
+"update_sota."
 
 #: application/views/awards/sota/index.php:24
 msgid "SOTA Awards"
@@ -9090,8 +9131,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -15888,8 +15929,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -20193,6 +20234,11 @@ msgstr "TLE"
 msgid "OMM"
 msgstr "OMM"
 
+#: application/views/satellite/pass.php:21
+#: application/views/activationplanner/index.php:17
+msgid "Satellite passes"
+msgstr "Satellitpassager"
+
 #: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "Din station"
@@ -21747,8 +21793,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -22485,13 +22531,13 @@ msgstr ""
 
 #: application/views/user/edit.php:1198
 msgid "Display radio name"
-msgstr ""
+msgstr "Visa radionamn"
 
 #: application/views/user/edit.php:1199
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
-msgstr ""
+msgstr "Denna inställning styr om radions namn visas i widgeten eller inte."
 
 #: application/views/user/edit.php:1203
 msgid "Display only most recently updated radio"
@@ -23291,33 +23337,33 @@ msgstr "QSOs är markerade som exporterade till QO-100 Dx Club."
 #, php-format
 msgctxt "on air status test: callsign is on-air/off-air"
 msgid "%s is %s"
-msgstr ""
+msgstr "%s är %s"
 
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:198
 #, php-format
 msgid "Updated: %s (%s)"
-msgstr ""
+msgstr "Uppdaterad: %s (%s)"
 
 #: application/views/widgets/on_air.php:181
 msgid "auto-refreshed every 60s"
-msgstr ""
+msgstr "auto-uppdateras var 60:e sekund"
 
 #: application/views/widgets/on_air.php:198
 msgid "auto-refreshed by QRZ.com every 60s"
-msgstr ""
+msgstr "auto-uppdateras av QRZ.com var 60:e sekund"
 
 #: application/views/widgets/on_air.php:242
 #, php-format
 msgid "Last updated: %s"
-msgstr ""
+msgstr "Senast uppdaterad: %s"
 
 #: application/views/widgets/on_air.php:318
 #: application/views/widgets/on_air.php:322
 #: application/views/widgets/on_air.php:325
 #: application/views/widgets/on_air.php:333
 msgid "Last updated:"
-msgstr ""
+msgstr "Senast uppdaterad:"
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"

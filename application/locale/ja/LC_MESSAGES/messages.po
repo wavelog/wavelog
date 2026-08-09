@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-09 07:34+0000\n"
-"PO-Revision-Date: 2026-08-08 05:04+0000\n"
+"POT-Creation-Date: 2026-08-08 09:50+0000\n"
+"PO-Revision-Date: 2026-08-09 07:35+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -215,8 +215,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/Satellite.php:117
 #: application/controllers/Satellite.php:131
 #: application/controllers/Satellite.php:149
-#: application/controllers/Satellite.php:556
-#: application/controllers/Satellite.php:565
+#: application/controllers/Satellite.php:550
+#: application/controllers/Satellite.php:559
 #: application/controllers/Sattimers.php:8 application/controllers/Search.php:9
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:16
@@ -238,6 +238,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
+#: application/controllers/Satellite.php:556
+#: application/controllers/Satellite.php:565
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -656,7 +658,7 @@ msgstr " 及び "
 
 #: application/controllers/Awards.php:713
 #: application/controllers/Logbook.php:1452
-#: application/views/activationplanner/index.php:62
+#: application/views/activationplanner/index.php:58
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
@@ -682,12 +684,13 @@ msgstr " 及び "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/activationplanner/index.php:62
 msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
 #: application/controllers/Logbook.php:1453
-#: application/views/activationplanner/index.php:60
+#: application/views/activationplanner/index.php:56
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
 #: application/views/logbookadvanced/edit.php:40
@@ -705,12 +708,13 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/activationplanner/index.php:60
 msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
 #: application/controllers/Logbook.php:1454
-#: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:57
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
@@ -730,6 +734,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/activationplanner/index.php:61
 msgid "POTA"
 msgstr "POTA"
 
@@ -2204,10 +2209,9 @@ msgstr "州"
 
 #: application/controllers/Logbook.php:1456
 #: application/views/activated_gridmap/index.php:107
-#: application/views/activationplanner/index.php:19
-#: application/views/activationplanner/index.php:44
-#: application/views/activationplanner/index.php:59
-#: application/views/activationplanner/index.php:83
+#: application/views/activationplanner/index.php:40
+#: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:79
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -2258,6 +2262,10 @@ msgstr "州"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/activationplanner/index.php:19
+#: application/views/activationplanner/index.php:44
+#: application/views/activationplanner/index.php:59
+#: application/views/activationplanner/index.php:83
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -3228,34 +3236,42 @@ msgstr "衛星を編集"
 msgid "Satellite Flightpath"
 msgstr "衛星フライトパス"
 
+#: application/controllers/Satellite.php:265
 #: application/controllers/Satellite.php:271
 msgid "Satellite pass"
 msgstr "衛星パス"
 
+#: application/controllers/Satellite.php:322
 #: application/controllers/Satellite.php:328
 msgid "Failed to save pass settings!"
 msgstr "パス設定の保存に失敗しました！"
 
+#: application/controllers/Satellite.php:325
 #: application/controllers/Satellite.php:331
 msgid "Pass settings saved!"
 msgstr "パス設定が保存されました!"
 
+#: application/controllers/Satellite.php:338
 #: application/controllers/Satellite.php:344
 msgid "No settings found!"
 msgstr "設定が見つかりません!"
 
+#: application/controllers/Satellite.php:352
 #: application/controllers/Satellite.php:358
 msgid "Failed to delete pass settings!"
 msgstr "パス設定の削除に失敗しました！"
 
+#: application/controllers/Satellite.php:354
 #: application/controllers/Satellite.php:360
 msgid "Pass settings deleted!"
 msgstr "パス設定が削除されました!"
 
+#: application/controllers/Satellite.php:364
 #: application/controllers/Satellite.php:370
 msgid "Saved Pass Settings"
 msgstr "保存されたパス設定"
 
+#: application/controllers/Satellite.php:381
 #: application/controllers/Satellite.php:387
 msgid "No presets available"
 msgstr "プリセットはありません"
@@ -3398,7 +3414,7 @@ msgstr "許可されていません"
 #: application/controllers/Stationsetup.php:156
 #: application/controllers/Stationsetup.php:177
 #: application/controllers/Stationsetup.php:478
-#: application/views/activationplanner/index.php:21
+#: application/views/activationplanner/index.php:17
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
@@ -3406,6 +3422,7 @@ msgstr "許可されていません"
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/activationplanner/index.php:21
 msgid "Error"
 msgstr "エラー"
 
@@ -3922,8 +3939,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1511
 msgid "Station setup failed! Please set up your station manually."
@@ -5039,24 +5056,26 @@ msgid "Clear Markers"
 msgstr "クリアマーカー"
 
 #: application/views/activated_gridmap/index.php:105
-#: application/views/activationplanner/index.php:81
+#: application/views/activationplanner/index.php:77
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/activationplanner/index.php:81
 msgid "Latitude"
 msgstr "緯度"
 
 #: application/views/activated_gridmap/index.php:106
-#: application/views/activationplanner/index.php:82
+#: application/views/activationplanner/index.php:78
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/activationplanner/index.php:82
 msgid "Longitude"
 msgstr "経度"
 
@@ -5067,16 +5086,12 @@ msgstr ""
 "無効なグリッドマスです。2、4、6、8、または10文字を使用してください（例：PM、"
 "PM74、PM74kk）。"
 
-#: application/views/activationplanner/index.php:17
-#: application/views/satellite/pass.php:21
-msgid "Satellite passes"
-msgstr "衛星パス"
-
+#: application/views/activationplanner/index.php:15
 #: application/views/activationplanner/index.php:18
 msgid "Gridsquare borders"
 msgstr "グリッドスクエアの境界線"
 
-#: application/views/activationplanner/index.php:20
+#: application/views/activationplanner/index.php:16
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
 #: application/views/api/components/new_token_modal.php:23
@@ -5096,72 +5111,88 @@ msgstr "グリッドスクエアの境界線"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/activationplanner/index.php:20
 msgid "Close"
 msgstr "閉じる"
 
+#: application/views/activationplanner/index.php:18
 #: application/views/activationplanner/index.php:22
 msgid "Tracking"
 msgstr "トラッキング"
 
-#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:19
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/activationplanner/index.php:23
 msgid "Field"
 msgstr "フィールド"
 
+#: application/views/activationplanner/index.php:20
 #: application/views/activationplanner/index.php:24
 msgid "Square"
 msgstr "四角"
 
+#: application/views/activationplanner/index.php:21
 #: application/views/activationplanner/index.php:25
 msgid "Subsquare"
 msgstr "サブスクエア"
 
+#: application/views/activationplanner/index.php:22
 #: application/views/activationplanner/index.php:26
 msgid "Locating…"
 msgstr "検索中…"
 
+#: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:27
 msgid "Location access denied."
 msgstr "位置情報へのアクセスが拒否されました。"
 
+#: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:28
 msgid "Location unavailable."
 msgstr "場所が不明です。"
 
+#: application/views/activationplanner/index.php:25
 #: application/views/activationplanner/index.php:29
 msgid "Location request timed out."
 msgstr "位置情報のリクエストがタイムアウトしました。"
 
+#: application/views/activationplanner/index.php:35
 #: application/views/activationplanner/index.php:39
 msgid "Plan your activity here"
 msgstr "ここでアクティビティを計画しましょう"
 
+#: application/views/activationplanner/index.php:43
 #: application/views/activationplanner/index.php:47
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2、4、6、8、または10文字のメイデンヘッドロケーター"
 
+#: application/views/activationplanner/index.php:43
 #: application/views/activationplanner/index.php:47
 msgid "e.g. FN31pr"
 msgstr "例：PM74kk"
 
+#: application/views/activationplanner/index.php:44
 #: application/views/activationplanner/index.php:48
 msgid "to"
 msgstr "to"
 
+#: application/views/activationplanner/index.php:47
 #: application/views/activationplanner/index.php:51
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "距離と方位を示すオプションの2つ目のグリッドスクエア"
 
+#: application/views/activationplanner/index.php:47
 #: application/views/activationplanner/index.php:51
 msgid "e.g. JN58qm"
 msgstr "例：JN58qm"
 
+#: application/views/activationplanner/index.php:48
 #: application/views/activationplanner/index.php:52
 msgid "Go"
 msgstr "Go"
 
-#: application/views/activationplanner/index.php:53
+#: application/views/activationplanner/index.php:49
 #: application/views/awards/cq/index.php:70
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
@@ -5173,32 +5204,38 @@ msgstr "Go"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
 #: application/views/qso/index.php:757 application/views/user/edit.php:1341
+#: application/views/activationplanner/index.php:53
 msgid "Clear"
 msgstr "クリア"
 
+#: application/views/activationplanner/index.php:50
 #: application/views/activationplanner/index.php:54
 msgid "Find my location and gridsquare"
 msgstr "現在地とグリッドスクエアを検索"
 
+#: application/views/activationplanner/index.php:50
 #: application/views/activationplanner/index.php:54
 msgid "Locate me"
 msgstr "私を見つけてください"
 
-#: application/views/activationplanner/index.php:57
+#: application/views/activationplanner/index.php:53
 #: application/views/simplefle/index.php:162
+#: application/views/activationplanner/index.php:57
 msgid "Refs"
 msgstr "参照"
 
-#: application/views/activationplanner/index.php:69
+#: application/views/activationplanner/index.php:65
 #: application/views/qso/index.php:758
+#: application/views/activationplanner/index.php:69
 msgid "More options"
 msgstr "その他のオプション"
 
+#: application/views/activationplanner/index.php:66
 #: application/views/activationplanner/index.php:70
 msgid "Hide options"
 msgstr "オプションを非表示にする"
 
-#: application/views/activationplanner/index.php:84
+#: application/views/activationplanner/index.php:80
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
 #: application/views/bandmap/list.php:569
@@ -5221,10 +5258,11 @@ msgstr "オプションを非表示にする"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/activationplanner/index.php:84
 msgid "CQ Zone"
 msgstr "CQゾーン"
 
-#: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:81
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
 #: application/views/gridmap/index.php:230
@@ -5241,6 +5279,7 @@ msgstr "CQゾーン"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/activationplanner/index.php:85
 msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
@@ -20143,6 +20182,11 @@ msgstr "TLE"
 msgid "OMM"
 msgstr "OMM"
 
+#: application/views/satellite/pass.php:21
+#: application/views/activationplanner/index.php:17
+msgid "Satellite passes"
+msgstr "衛星パス"
+
 #: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "使用する衛星の情報"
@@ -22421,13 +22465,13 @@ msgstr ""
 
 #: application/views/user/edit.php:1198
 msgid "Display radio name"
-msgstr ""
+msgstr "ラジオボタン名を表示する"
 
 #: application/views/user/edit.php:1199
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
-msgstr ""
+msgstr "この設定は、ウィジェットにラジオの名前を表示するかどうかを制御します。"
 
 #: application/views/user/edit.php:1203
 msgid "Display only most recently updated radio"
@@ -23221,33 +23265,33 @@ msgstr "QSO は QO-100 Dx クラブにエクスポートされたものとして
 #, php-format
 msgctxt "on air status test: callsign is on-air/off-air"
 msgid "%s is %s"
-msgstr ""
+msgstr "%s は %s"
 
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:198
 #, php-format
 msgid "Updated: %s (%s)"
-msgstr ""
+msgstr "更新日: %s (%s )"
 
 #: application/views/widgets/on_air.php:181
 msgid "auto-refreshed every 60s"
-msgstr ""
+msgstr "60秒ごとに自動更新"
 
 #: application/views/widgets/on_air.php:198
 msgid "auto-refreshed by QRZ.com every 60s"
-msgstr ""
+msgstr "QRZ.comにより60秒ごとに自動更新されます"
 
 #: application/views/widgets/on_air.php:242
 #, php-format
 msgid "Last updated: %s"
-msgstr ""
+msgstr "最終更新日: %s"
 
 #: application/views/widgets/on_air.php:318
 #: application/views/widgets/on_air.php:322
 #: application/views/widgets/on_air.php:325
 #: application/views/widgets/on_air.php:333
 msgid "Last updated:"
-msgstr ""
+msgstr "最終更新日:"
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
@@ -24150,9 +24194,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -24483,8 +24527,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
