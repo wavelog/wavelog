@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-09 07:34+0000\n"
+"POT-Creation-Date: 2026-08-09 10:10+0000\n"
 "PO-Revision-Date: 2026-08-04 09:05+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -677,7 +677,7 @@ msgstr " 和 "
 
 #: application/controllers/Awards.php:713
 #: application/controllers/Logbook.php:1452
-#: application/views/activationplanner/index.php:62
+#: application/views/activationplanner/index.php:69
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
@@ -708,7 +708,7 @@ msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
 #: application/controllers/Logbook.php:1453
-#: application/views/activationplanner/index.php:60
+#: application/views/activationplanner/index.php:67
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
 #: application/views/logbookadvanced/edit.php:40
@@ -731,7 +731,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
 #: application/controllers/Logbook.php:1454
-#: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:68
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
@@ -2204,9 +2204,9 @@ msgstr "州"
 #: application/controllers/Logbook.php:1456
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:19
-#: application/views/activationplanner/index.php:44
-#: application/views/activationplanner/index.php:59
-#: application/views/activationplanner/index.php:83
+#: application/views/activationplanner/index.php:51
+#: application/views/activationplanner/index.php:66
+#: application/views/activationplanner/index.php:90
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -4980,7 +4980,7 @@ msgid "Clear Markers"
 msgstr "清除标记"
 
 #: application/views/activated_gridmap/index.php:105
-#: application/views/activationplanner/index.php:81
+#: application/views/activationplanner/index.php:88
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
@@ -4991,7 +4991,7 @@ msgid "Latitude"
 msgstr "纬度"
 
 #: application/views/activated_gridmap/index.php:106
-#: application/views/activationplanner/index.php:82
+#: application/views/activationplanner/index.php:89
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
@@ -5072,35 +5072,57 @@ msgstr "位置不可用。"
 msgid "Location request timed out."
 msgstr "定位请求超时。"
 
-#: application/views/activationplanner/index.php:39
+#: application/views/activationplanner/index.php:31
+msgid "Create station location"
+msgstr ""
+
+#: application/views/activationplanner/index.php:32
+msgid "References in this grid"
+msgstr ""
+
+#: application/views/activationplanner/index.php:34
+#: application/views/view_log/qso.php:615
+msgid "Share"
+msgstr "分享"
+
+#: application/views/activationplanner/index.php:35
+msgid "Share activation"
+msgstr ""
+
+#: application/views/activationplanner/index.php:36
+#, php-format
+msgid "📻 Planning an activation from %s"
+msgstr ""
+
+#: application/views/activationplanner/index.php:46
 msgid "Plan your activity here"
 msgstr ""
 
-#: application/views/activationplanner/index.php:47
+#: application/views/activationplanner/index.php:54
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2、 4、 6、 8 或 10 个字符的梅登黑德网格定位编码"
 
-#: application/views/activationplanner/index.php:47
+#: application/views/activationplanner/index.php:54
 msgid "e.g. FN31pr"
 msgstr "例：OM89ev"
 
-#: application/views/activationplanner/index.php:48
+#: application/views/activationplanner/index.php:55
 msgid "to"
 msgstr "至"
 
-#: application/views/activationplanner/index.php:51
+#: application/views/activationplanner/index.php:58
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "可选的第二网格，用于计算距离和方位"
 
-#: application/views/activationplanner/index.php:51
+#: application/views/activationplanner/index.php:58
 msgid "e.g. JN58qm"
 msgstr "例：JN58qm"
 
-#: application/views/activationplanner/index.php:52
+#: application/views/activationplanner/index.php:59
 msgid "Go"
 msgstr "Go"
 
-#: application/views/activationplanner/index.php:53
+#: application/views/activationplanner/index.php:60
 #: application/views/awards/cq/index.php:70
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
@@ -5115,29 +5137,29 @@ msgstr "Go"
 msgid "Clear"
 msgstr "清除"
 
-#: application/views/activationplanner/index.php:54
+#: application/views/activationplanner/index.php:61
 msgid "Find my location and gridsquare"
 msgstr "查找我的位置和网格"
 
-#: application/views/activationplanner/index.php:54
+#: application/views/activationplanner/index.php:61
 msgid "Locate me"
 msgstr "我的位置"
 
-#: application/views/activationplanner/index.php:57
+#: application/views/activationplanner/index.php:64
 #: application/views/simplefle/index.php:162
 msgid "Refs"
 msgstr "对方网格"
 
-#: application/views/activationplanner/index.php:69
+#: application/views/activationplanner/index.php:76
 #: application/views/qso/index.php:758
 msgid "More options"
 msgstr "更多选项"
 
-#: application/views/activationplanner/index.php:70
+#: application/views/activationplanner/index.php:77
 msgid "Hide options"
 msgstr "隐藏选项"
 
-#: application/views/activationplanner/index.php:84
+#: application/views/activationplanner/index.php:91
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
 #: application/views/bandmap/list.php:569
@@ -5163,7 +5185,7 @@ msgstr "隐藏选项"
 msgid "CQ Zone"
 msgstr "CQ 分区"
 
-#: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:92
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
 #: application/views/gridmap/index.php:230
@@ -22476,10 +22498,6 @@ msgstr "此 QSO 已在 DCL 上确认。"
 #: application/views/view_log/qso.php:553
 msgid "More QSOs"
 msgstr "更多 QSO"
-
-#: application/views/view_log/qso.php:615
-msgid "Share"
-msgstr "分享"
 
 #: application/views/view_log/qso.php:755
 msgid "Uploaded QSL Card front image"
