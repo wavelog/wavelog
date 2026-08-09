@@ -573,11 +573,13 @@
 		if (overlayLayers[id]) { map.removeLayer(overlayLayers[id]); }
 	}
 
-	/* External info-page URL for a reference (reference appended raw). */
+	/* External info-page URL for a reference. encodeURI keeps SOTA slashes
+	 * (G/SP-001) intact; encodeURIComponent would turn them into %2F. */
 	function refUrl(type, reference) {
-		if (type === 'WWFF') { return 'https://www.gma.rocks/zinfo.php?ref=' + reference; }
-		if (type === 'POTA') { return 'https://pota.app/#/park/' + reference; }
-		if (type === 'SOTA') { return 'https://www.sotadata.org.uk/en/summit/' + reference; }
+		let r = encodeURI(reference);
+		if (type === 'WWFF') { return 'https://www.gma.rocks/zinfo.php?ref=' + r; }
+		if (type === 'POTA') { return 'https://pota.app/#/park/' + r; }
+		if (type === 'SOTA') { return 'https://www.sotadata.org.uk/en/summit/' + r; }
 		return '';
 	}
 
@@ -647,8 +649,7 @@
 				wwffCluster = L.markerClusterGroup({
 					chunkedLoading: true,
 					maxClusterRadius: 50,
-					showCoverageOnHover: false,
-					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
+					showCoverageOnHover: false
 				});
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
@@ -658,6 +659,7 @@
 					wwffCluster.addLayer(dot);
 				}
 				map.addLayer(wwffCluster);
+				mapLoadingDone();
 			})
 			.catch(function (err) { console.error('WWFF directory load failed:', err); mapLoadingDone(); });
 	}
@@ -676,8 +678,7 @@
 				potaCluster = L.markerClusterGroup({
 					chunkedLoading: true,
 					maxClusterRadius: 50,
-					showCoverageOnHover: false,
-					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
+					showCoverageOnHover: false
 				});
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
@@ -687,6 +688,7 @@
 					potaCluster.addLayer(dot);
 				}
 				map.addLayer(potaCluster);
+				mapLoadingDone();
 			})
 			.catch(function (err) { console.error('POTA directory load failed:', err); mapLoadingDone(); });
 	}
@@ -705,8 +707,7 @@
 				sotaCluster = L.markerClusterGroup({
 					chunkedLoading: true,
 					maxClusterRadius: 50,
-					showCoverageOnHover: false,
-					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
+					showCoverageOnHover: false
 				});
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
@@ -716,6 +717,7 @@
 					sotaCluster.addLayer(dot);
 				}
 				map.addLayer(sotaCluster);
+				mapLoadingDone();
 			})
 			.catch(function (err) { console.error('SOTA directory load failed:', err); mapLoadingDone(); });
 	}

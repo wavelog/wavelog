@@ -191,9 +191,9 @@ class Activationplanner extends CI_Controller {
 	 */
 	public function dxcc_for_grid() {
 		$grid = strtoupper((string) $this->input->get('grid', TRUE));
-		header('Content-Type: application/json');
 
 		if (strlen($grid) < 4) {
+			header('Content-Type: application/json');
 			echo json_encode(array());
 			return;
 		}
@@ -209,6 +209,19 @@ class Activationplanner extends CI_Controller {
 				'flag' => $this->dxccflag->get($row->adif),
 			);
 		}
-		echo json_encode($out);
+		$json = json_encode($out);
+
+		$etag = '"' . md5($grid . ':' . $json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
 	}
 }
