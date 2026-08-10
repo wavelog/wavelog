@@ -1,3 +1,9 @@
+<style>
+    .dropdown-filters-responsive {
+        width: min(850px, 90vw);
+        min-width: 600px;
+    }
+</style>
 <div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
         <div id="awardInfoButton">
@@ -18,6 +24,45 @@
             <?= __("Counties Progress"); ?>
         </div>
         <div class="card-body">
+    <form class="form" action="<?php echo site_url('awards/counties'); ?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="qslFilterSet" value="1">
+        <div class="mb-4 text-center">
+            <div class="dropdown" data-bs-auto-close="outside">
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="countiesFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+                <button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+
+                <!-- Dropdown Menu with Filter Content -->
+                <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="countiesFilterDropdown">
+                    <div class="card-body filterbody">
+                        <div class="mb-3 row">
+                            <div class="col-md-3"><?= __("Count QSO as Confirmed via"); ?></div>
+                            <div class="col-md-9">
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="qsl" value="1" id="countiesQsl" <?php if (in_array('qsl', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <label class="form-check-label" for="countiesQsl"><?= __("QSL"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="lotw" value="1" id="countiesLotw" <?php if (in_array('lotw', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <label class="form-check-label" for="countiesLotw"><?= __("LoTW"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="countiesEqsl" <?php if (in_array('eqsl', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <label class="form-check-label" for="countiesEqsl"><?= __("eQSL"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="qrz" value="1" id="countiesQrz" <?php if (in_array('qrz', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <label class="form-check-label" for="countiesQrz"><?= __("QRZ.com"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="clublog" value="1" id="countiesClublog" <?php if (in_array('clublog', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <label class="form-check-label" for="countiesClublog"><?= __("Clublog"); ?></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <?php if ($counties_progress) {
         $progress_bar = function ($pct, $color) {
             return '<div class="progress" style="height: 20px; position: relative;">'
@@ -122,6 +167,7 @@
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
+    </form>
         </div>
     </div>
 </div>

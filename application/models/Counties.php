@@ -3,6 +3,18 @@
 class Counties extends CI_Model
 {
 
+    /*
+     * Maps the selectable QSL confirmation sources to their DB columns.
+     * Used to build the "confirmed" condition based on user selection.
+     */
+    private $qsl_source_columns = array(
+        'qsl'     => 'col_qsl_rcvd',
+        'lotw'    => 'col_lotw_qsl_rcvd',
+        'eqsl'    => 'col_eqsl_qsl_rcvd',
+        'qrz'     => 'COL_QRZCOM_QSO_DOWNLOAD_STATUS',
+        'clublog' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',
+    );
+
     function __construct() {
         $this->load->driver('cache', [
             'adapter' => $this->config->item('cache_adapter') ?? 'file',
@@ -12,12 +24,38 @@ class Counties extends CI_Model
     }
 
     /*
-     * Returns a result of worked/confirmed US Counties, grouped by STATE
-     * QSL card, LoTW, EQSL, QRZ.com and Clublog are valid for award.
-     * Satellite does not count.
+     * Builds the SQL "confirmed" condition from a list of selected QSL
+     * sources (subset of keys of $qsl_source_columns). Defaults to all
+     * sources when null (not just empty) is given, so existing callers keep
+     * prior behaviour while an explicit empty selection ("nothing counts as
+     * confirmed") is still honoured rather than silently falling back to all.
+     */
+    function build_confirmed_condition($qsl_sources) {
+        if ($qsl_sources === null) {
+            $qsl_sources = array_keys($this->qsl_source_columns);
+        }
+
+        $conditions = array();
+        foreach ($qsl_sources as $source) {
+            if (isset($this->qsl_source_columns[$source])) {
+                $conditions[] = $this->qsl_source_columns[$source] . " = 'Y'";
+            }
+        }
+
+        if (empty($conditions)) {
+            return '1=0';
+        }
+
+        return '(' . implode(' or ', $conditions) . ')';
+    }
+
+    /*
+     * Returns a result of worked/confirmed US Counties, grouped by STATE.
+     * The QSL sources counted as "confirmed" are selectable; see
+     * build_confirmed_condition(). Satellite does not count.
      * No band split, as it only count the number of counties in the award.
      */
-    function get_counties_summary() {
+    function get_counties_summary($qsl_sources = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -33,6 +71,8 @@ class Counties extends CI_Model
 
 		$bandslots_list = "'".implode("','",$bandslots)."'";
 
+		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
+
         $sql = "select count(distinct COL_CNTY) countycountworked, coalesce(x.countycountconfirmed, 0) countycountconfirmed, thcv.COL_STATE
                 from " . $this->config->item('table_name') . " thcv
                  left outer join (
@@ -43,7 +83,7 @@ class Counties extends CI_Model
             " and COL_DXCC in ('291', '6', '110')
                     and coalesce(COL_CNTY, '') <> ''
                     and COL_BAND != 'SAT'
-                    and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y' or col_lotw_qsl_rcvd='Y' or COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' or COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y')
+                    and " . $confirmed_condition . "
                     group by COL_STATE
                     order by COL_STATE
                 ) x on thcv.COL_STATE = x.COL_STATE
@@ -62,11 +102,11 @@ class Counties extends CI_Model
     /*
     * Makes a list of all counties in given state
     */
-    function counties_details($state, $type) {
+    function counties_details($state, $type, $qsl_sources = null) {
         if ($type == 'worked') {
-            $counties = $this->get_counties($state, 'none');
+            $counties = $this->get_counties($state, 'none', $qsl_sources);
         } else if ($type == 'confirmed') {
-            $counties = $this->get_counties($state, 'confirmed');
+            $counties = $this->get_counties($state, 'confirmed', $qsl_sources);
         }
         if (!isset($counties)) {
             return 0;
@@ -76,7 +116,7 @@ class Counties extends CI_Model
         }
     }
 
-    function get_counties($state, $confirmationtype) {
+    function get_counties($state, $confirmationtype, $qsl_sources = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -108,7 +148,7 @@ class Counties extends CI_Model
         }
 
         if ($confirmationtype != 'none') {
-            $sql .= " and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y' or col_lotw_qsl_rcvd='Y' or COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' or COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y')";
+            $sql .= " and " . $this->build_confirmed_condition($qsl_sources);
         }
 
         $sql .= " order by thcv.COL_STATE";
@@ -122,7 +162,7 @@ class Counties extends CI_Model
     * Uses the same band/DXCC/SAT rules as get_counties() so the counts match
     * what counts toward the USA-CA award.
     */
-    function get_county_counts($state) {
+    function get_county_counts($state, $qsl_sources = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -140,9 +180,11 @@ class Counties extends CI_Model
 
 		$binding = [];
 
+		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
+
         $sql = "select COL_CNTY,
 			count(*) as worked,
-			sum(case when (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y' or col_lotw_qsl_rcvd='Y' or COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' or COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y') then 1 else 0 end) as confirmed
+			sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 		from " . $this->config->item('table_name') . " thcv
 		where station_id in (" . $location_list . ")" .
 		" and col_band in (" . $bandslots_list . ")" .
@@ -221,9 +263,9 @@ class Counties extends CI_Model
      * 2-letter state code. Every state present in US_counties.csv is included,
      * even if nothing has been worked there yet.
      */
-    function get_counties_progress() {
+    function get_counties_progress($qsl_sources = null) {
         $targets = $this->get_counties_targets();
-        $worked = $this->get_counties_summary();
+        $worked = $this->get_counties_summary($qsl_sources);
 
         $worked_map = array();
         if (isset($worked)) {
