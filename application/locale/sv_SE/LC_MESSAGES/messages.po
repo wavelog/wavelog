@@ -313,6 +313,7 @@ msgstr "CQ-zoner"
 #: application/controllers/Activationplanner.php:33
 #: application/views/station_profile/create.php:125
 #: application/views/station_profile/edit.php:150
+#: application/views/station_profile/edit.php:147
 msgid "Zones"
 msgstr "Zoner"
 
@@ -679,6 +680,7 @@ msgstr " och "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/station_profile/edit.php:233
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -702,6 +704,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/station_profile/edit.php:247
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -727,6 +730,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/station_profile/edit.php:261
 msgid "POTA"
 msgstr "POTA"
 
@@ -1062,6 +1066,7 @@ msgstr "Ingen användare har konfigurerat Clublog."
 #: application/views/view_log/partial/log_ajax.php:156
 #: application/views/view_log/qso.php:524
 #: application/views/view_log/qso.php:529
+#: application/views/station_profile/edit.php:347
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1943,6 +1948,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:70 application/views/user/edit.php:737
 #: application/views/user/edit.php:1021 application/views/user/edit.php:1095
+#: application/views/station_profile/edit.php:298
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2162,6 +2168,7 @@ msgstr "Land"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/station_profile/edit.php:207
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -3365,6 +3372,7 @@ msgstr "Redigera stationsplats: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:11
+#: application/views/station_profile/edit.php:460
 msgid "Station Location"
 msgstr "Stationsplats"
 
@@ -3445,6 +3453,8 @@ msgstr "Fel. Länken används redan!"
 #: application/views/stationsetup/locationlist.php:55
 #: application/views/stationsetup/stationsetup.php:107
 #: application/views/user/edit.php:535
+#: application/views/station_profile/edit.php:333
+#: application/views/station_profile/edit.php:392
 msgid "Disabled"
 msgstr "Inaktiverad"
 
@@ -5241,6 +5251,7 @@ msgstr "Dölj alternativ"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/station_profile/edit.php:151
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
@@ -5261,6 +5272,7 @@ msgstr "CQ-zon"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/station_profile/edit.php:166
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -8570,6 +8582,7 @@ msgstr "Tillämpa filter"
 #: application/views/station_profile/edit.php:267
 #: application/views/user/edit.php:867 application/views/view_log/qso.php:362
 #: application/views/view_log/qso.php:695
+#: application/views/station_profile/edit.php:264
 msgid "POTA Reference(s)"
 msgstr "POTA-referens(er)"
 
@@ -8631,6 +8644,7 @@ msgstr "Visa framsteg för SIG diplom"
 #: application/views/awards/sig/index.php:25
 #: application/views/station_profile/create.php:255
 #: application/views/station_profile/edit.php:280
+#: application/views/station_profile/edit.php:277
 msgid "Special Interest Group"
 msgstr "Specialintressegrupp"
 
@@ -8737,6 +8751,7 @@ msgstr "Fält som används för detta diplom: SOTA-referens (ADIF: SOTA_REF)"
 #: application/views/station_profile/edit.php:239
 #: application/views/user/edit.php:859 application/views/view_log/qso.php:348
 #: application/views/view_log/qso.php:681
+#: application/views/station_profile/edit.php:236
 msgid "SOTA Reference"
 msgstr "SOTA-referens"
 
@@ -9114,8 +9129,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -9255,6 +9270,7 @@ msgstr "Fält som använts för detta diplom: WWFF (ADIF: WWFF_REF)"
 #: application/views/station_profile/edit.php:253
 #: application/views/user/edit.php:863 application/views/view_log/qso.php:355
 #: application/views/view_log/qso.php:688
+#: application/views/station_profile/edit.php:250
 msgid "WWFF Reference"
 msgstr "WWFF-referens"
 
@@ -12280,6 +12296,12 @@ msgstr "Begär ett pappersdiplom från tävlingsarrangören om du är berättiga
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1206
+#: application/views/station_profile/edit.php:352
+#: application/views/station_profile/edit.php:360
+#: application/views/station_profile/edit.php:390
+#: application/views/station_profile/edit.php:417
+#: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:444
 msgid "Yes"
 msgstr "Ja"
 
@@ -12343,6 +12365,12 @@ msgstr "Ja"
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:676 application/views/user/edit.php:680
 #: application/views/user/edit.php:770
+#: application/views/station_profile/edit.php:353
+#: application/views/station_profile/edit.php:361
+#: application/views/station_profile/edit.php:391
+#: application/views/station_profile/edit.php:418
+#: application/views/station_profile/edit.php:436
+#: application/views/station_profile/edit.php:443
 msgid "No"
 msgstr "Nej"
 
@@ -12698,6 +12726,7 @@ msgstr "Identifierare"
 #: application/views/stationsetup/stationsetup.php:104
 #: application/views/user/edit.php:533 application/views/user/edit.php:534
 #: application/views/user/edit.php:1169
+#: application/views/station_profile/edit.php:335
 msgid "Enabled"
 msgstr "Aktiverad"
 
@@ -15912,8 +15941,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -19723,6 +19752,7 @@ msgstr "Antennens elevation i decimalgrader."
 #: application/views/qso/edit_ajax.php:347 application/views/qso/index.php:572
 #: application/views/station_profile/create.php:114
 #: application/views/station_profile/edit.php:139
+#: application/views/station_profile/edit.php:136
 msgid "Station County"
 msgstr "Station County"
 
@@ -19922,6 +19952,7 @@ msgstr "Sök DXCluster efter senaste Spot"
 #: application/views/station_profile/edit.php:213
 #: application/views/user/edit.php:855 application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:674
+#: application/views/station_profile/edit.php:210
 msgid "IOTA Reference"
 msgstr "IOTA-referens"
 
@@ -20941,16 +20972,19 @@ msgstr "Stationsstad. Till exempel: Oslo"
 
 #: application/views/station_profile/create.php:109
 #: application/views/station_profile/edit.php:134
+#: application/views/station_profile/edit.php:131
 msgid "Station state. Applies to certain countries only."
 msgstr "Stationsstatus. Gäller endast vissa länder."
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/edit.php:141
+#: application/views/station_profile/edit.php:138
 msgid "Station County (Only used for specific DXCCs)."
 msgstr "Stationslän (Används endast för specifika DXCC)."
 
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:164
+#: application/views/station_profile/edit.php:161
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
@@ -20962,11 +20996,15 @@ msgstr "Om du inte vet din CQ-zon, %s för att hitta den!"
 #: application/views/station_profile/edit.php:164
 #: application/views/station_profile/edit.php:179
 #: application/views/station_profile/edit.php:200
+#: application/views/station_profile/edit.php:161
+#: application/views/station_profile/edit.php:176
+#: application/views/station_profile/edit.php:197
 msgid "click here"
 msgstr "klicka här"
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:179
+#: application/views/station_profile/edit.php:176
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
@@ -20976,16 +21014,19 @@ msgstr "Om du inte vet din ITU-zon så %s för att hitta den!"
 #: application/views/station_profile/create.php:168
 #: application/views/station_profile/edit.php:190
 #: application/views/station_profile/edit.php:193
+#: application/views/station_profile/edit.php:187
 msgid "Station Gridsquare"
 msgstr "Stationens Lokatorruta"
 
 #: application/views/station_profile/create.php:172
 #: application/views/station_profile/edit.php:197
+#: application/views/station_profile/edit.php:194
 msgid "Get Gridsquare"
 msgstr "Hämta Lokatorruta"
 
 #: application/views/station_profile/create.php:175
 #: application/views/station_profile/edit.php:200
+#: application/views/station_profile/edit.php:197
 #, php-format
 msgctxt "uses 'click here'"
 msgid ""
@@ -20997,6 +21038,7 @@ msgstr ""
 
 #: application/views/station_profile/create.php:176
 #: application/views/station_profile/edit.php:201
+#: application/views/station_profile/edit.php:198
 msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
@@ -21006,49 +21048,58 @@ msgstr ""
 
 #: application/views/station_profile/create.php:199
 #: application/views/station_profile/edit.php:224
+#: application/views/station_profile/edit.php:221
 msgid "Station IOTA reference. For example: EU-005"
 msgstr "Stationens IOTA-referens. Till exempel: EU-005"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:225
+#: application/views/station_profile/edit.php:222
 msgid "IOTA World website"
 msgstr "IOTA World webbplats"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:225
+#: application/views/station_profile/edit.php:222
 #, php-format
 msgid "You can look up IOTA references at the %s."
 msgstr "Du kan slå upp IOTA-referenser på %s."
 
 #: application/views/station_profile/create.php:216
 #: application/views/station_profile/edit.php:241
+#: application/views/station_profile/edit.php:238
 msgid "SOTA Maps website"
 msgstr "SOTA Maps webbplats"
 
 #: application/views/station_profile/create.php:216
 #: application/views/station_profile/edit.php:241
+#: application/views/station_profile/edit.php:238
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
 msgstr "Station SOTA-referens. Du kan leta upp SOTA-referenser på %s."
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:255
+#: application/views/station_profile/edit.php:252
 msgid "GMA Map website"
 msgstr "GMA-kartwebbplats"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:255
+#: application/views/station_profile/edit.php:252
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
 msgstr "Station WWFF-referens. Du kan leta upp WWFF-referenser på %s."
 
 #: application/views/station_profile/create.php:244
 #: application/views/station_profile/edit.php:269
+#: application/views/station_profile/edit.php:266
 msgid "POTA Map website"
 msgstr "POTA Karta webbplats"
 
 #: application/views/station_profile/create.php:244
 #: application/views/station_profile/edit.php:269
+#: application/views/station_profile/edit.php:266
 #, php-format
 msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
@@ -21059,49 +21110,58 @@ msgstr ""
 
 #: application/views/station_profile/create.php:258
 #: application/views/station_profile/edit.php:283
+#: application/views/station_profile/edit.php:280
 msgid "Special Interest Group Name"
 msgstr "Namn på specialintressegrupp"
 
 #: application/views/station_profile/create.php:260
 #: application/views/station_profile/edit.php:285
+#: application/views/station_profile/edit.php:282
 msgid "Station Special Interest Group Name (e.g. GMA)."
 msgstr "Stationens specialintressegruppnamn (t.ex. GMA)."
 
 #: application/views/station_profile/create.php:263
 #: application/views/station_profile/edit.php:288
+#: application/views/station_profile/edit.php:285
 msgid "Special Interest Group Information"
 msgstr "Information om specialintressegrupp"
 
 #: application/views/station_profile/create.php:265
 #: application/views/station_profile/edit.php:290
+#: application/views/station_profile/edit.php:287
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
 msgstr "Stationens specialintressegruppinfo (t.ex. DA/NW-357)."
 
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/edit.php:301
 #: application/views/user/edit.php:1095
+#: application/views/station_profile/edit.php:298
 #, php-format
 msgid "Trouble? Check the %swiki%s."
 msgstr "Problem? Kolla %swiki%s."
 
 #: application/views/station_profile/create.php:279
 #: application/views/station_profile/edit.php:304
+#: application/views/station_profile/edit.php:301
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
 msgstr "eQSL QTH Smeknamn"
 
 #: application/views/station_profile/create.php:281
 #: application/views/station_profile/edit.php:306
+#: application/views/station_profile/edit.php:303
 msgid "The QTH Nickname which is configured in your eQSL Profile"
 msgstr "QTH-smeknamnet som är konfigurerat i din eQSL-profil"
 
 #: application/views/station_profile/create.php:284
 #: application/views/station_profile/edit.php:309
+#: application/views/station_profile/edit.php:306
 msgid "Default QSLMSG"
 msgstr "Standard QSL-meddelande"
 
 #: application/views/station_profile/create.php:287
 #: application/views/station_profile/edit.php:312
+#: application/views/station_profile/edit.php:309
 msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
@@ -21111,6 +21171,7 @@ msgstr ""
 
 #: application/views/station_profile/create.php:296
 #: application/views/station_profile/edit.php:321
+#: application/views/station_profile/edit.php:318
 msgid "Subscription Required"
 msgstr "Prenumeration krävs"
 
@@ -21120,6 +21181,7 @@ msgstr "Testa API-nyckel"
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:331
+#: application/views/station_profile/edit.php:328
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
@@ -21127,27 +21189,32 @@ msgstr "Hitta din API-nyckel på %s"
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:331
+#: application/views/station_profile/edit.php:328
 msgid "the QRZ.com Logbook settings page"
 msgstr "QRZ.com Loggbok inställningssida"
 
 #: application/views/station_profile/create.php:308
 #: application/views/station_profile/edit.php:334
+#: application/views/station_profile/edit.php:331
 msgid "QRZ.com Logbook Upload"
 msgstr "QRZ.com Loggbok Uppladdning"
 
 #: application/views/station_profile/create.php:311
 #: application/views/station_profile/edit.php:337
 #: application/views/stationsetup/locationlist.php:51
+#: application/views/station_profile/edit.php:334
 msgid "Realtime"
 msgstr "Realtid"
 
 #: application/views/station_profile/create.php:327
 #: application/views/station_profile/edit.php:353
+#: application/views/station_profile/edit.php:350
 msgid "Ignore Clublog Upload"
 msgstr "Ignorera Clublog-uppladdning"
 
 #: application/views/station_profile/create.php:332
 #: application/views/station_profile/edit.php:358
+#: application/views/station_profile/edit.php:355
 msgid ""
 "If enabled, the QSOs made from this location will not be uploaded to "
 "Clublog. If this is deactivated on it's own please check if the Call is "
@@ -21159,16 +21226,19 @@ msgstr ""
 
 #: application/views/station_profile/create.php:335
 #: application/views/station_profile/edit.php:361
+#: application/views/station_profile/edit.php:358
 msgid "ClubLog Realtime Upload"
 msgstr "ClubLog Realtids-uppladdning"
 
 #: application/views/station_profile/create.php:353
 #: application/views/station_profile/edit.php:378
+#: application/views/station_profile/edit.php:375
 msgid "HRDLog.net Username"
 msgstr "HRDLog.net användarnamn"
 
 #: application/views/station_profile/create.php:355
 #: application/views/station_profile/edit.php:380
+#: application/views/station_profile/edit.php:377
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
@@ -21177,11 +21247,13 @@ msgstr ""
 
 #: application/views/station_profile/create.php:358
 #: application/views/station_profile/edit.php:383
+#: application/views/station_profile/edit.php:380
 msgid "HRDLog.net API Key"
 msgstr "HRDLog.net API-nyckel"
 
 #: application/views/station_profile/create.php:360
 #: application/views/station_profile/edit.php:388
+#: application/views/station_profile/edit.php:385
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
@@ -21189,22 +21261,26 @@ msgstr "Skapa din API-kod på din %s"
 
 #: application/views/station_profile/create.php:360
 #: application/views/station_profile/edit.php:388
+#: application/views/station_profile/edit.php:385
 msgid "HRDLog.net Userprofile page"
 msgstr "HRDLog.net användarprofilssida"
 
 #: application/views/station_profile/create.php:363
 #: application/views/station_profile/edit.php:391
+#: application/views/station_profile/edit.php:388
 msgid "HRDLog.net Logbook Realtime Upload"
 msgstr "HRDLog.net Loggbok Realtidsuppladdning"
 
 #: application/views/station_profile/create.php:382
 #: application/views/station_profile/edit.php:410
+#: application/views/station_profile/edit.php:407
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
 msgstr "QO-100 Dx Club API-nyckel"
 
 #: application/views/station_profile/create.php:384
 #: application/views/station_profile/edit.php:415
+#: application/views/station_profile/edit.php:412
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
@@ -21212,27 +21288,32 @@ msgstr "Skapa din API-nyckel på din %s"
 
 #: application/views/station_profile/create.php:384
 #: application/views/station_profile/edit.php:415
+#: application/views/station_profile/edit.php:412
 msgid "QO-100 Dx Club's profile page"
 msgstr "QO-100 Dx Clubs profilsida"
 
 #: application/views/station_profile/create.php:387
 #: application/views/station_profile/edit.php:418
+#: application/views/station_profile/edit.php:415
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "QO-100 Dx Club Realtids-Upladdning"
 
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:434
 msgid "OQRS Enabled"
 msgstr "OQRS aktiverad"
 
 #: application/views/station_profile/create.php:413
 #: application/views/station_profile/edit.php:444
 #: application/views/stationsetup/locationlist.php:33
+#: application/views/station_profile/edit.php:441
 msgid "OQRS Email alert"
 msgstr "OQRS e-postvarning"
 
 #: application/views/station_profile/create.php:418
 #: application/views/station_profile/edit.php:449
+#: application/views/station_profile/edit.php:446
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
 "Se till att e-post är konfigurerad under admin- och globala alternativ."
@@ -21240,11 +21321,13 @@ msgstr ""
 #: application/views/station_profile/create.php:421
 #: application/views/station_profile/edit.php:452
 #: application/views/stationsetup/locationlist.php:32
+#: application/views/station_profile/edit.php:449
 msgid "OQRS Text"
 msgstr "OQRS-text"
 
 #: application/views/station_profile/create.php:423
 #: application/views/station_profile/edit.php:454
+#: application/views/station_profile/edit.php:451
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "Information du vill lägga till angående QSL hanteringen."
 
@@ -21771,8 +21854,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"

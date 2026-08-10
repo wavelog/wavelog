@@ -315,6 +315,7 @@ msgstr "CQゾーン"
 #: application/controllers/Activationplanner.php:33
 #: application/views/station_profile/create.php:125
 #: application/views/station_profile/edit.php:150
+#: application/views/station_profile/edit.php:147
 msgid "Zones"
 msgstr "ゾーン"
 
@@ -682,6 +683,7 @@ msgstr " 及び "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/station_profile/edit.php:233
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -705,6 +707,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/station_profile/edit.php:247
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -730,6 +733,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/station_profile/edit.php:261
 msgid "POTA"
 msgstr "POTA"
 
@@ -1063,6 +1067,7 @@ msgstr "Clublog を設定しているユーザーはいません。"
 #: application/views/view_log/partial/log_ajax.php:156
 #: application/views/view_log/qso.php:524
 #: application/views/view_log/qso.php:529
+#: application/views/station_profile/edit.php:347
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1949,6 +1954,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:70 application/views/user/edit.php:737
 #: application/views/user/edit.php:1021 application/views/user/edit.php:1095
+#: application/views/station_profile/edit.php:298
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2168,6 +2174,7 @@ msgstr "国"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/station_profile/edit.php:207
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -3364,6 +3371,7 @@ msgstr "局の所在地を編集: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:11
+#: application/views/station_profile/edit.php:460
 msgid "Station Location"
 msgstr "局の所在地"
 
@@ -3444,6 +3452,8 @@ msgstr "エラー。リンクは既に使用中です！"
 #: application/views/stationsetup/locationlist.php:55
 #: application/views/stationsetup/stationsetup.php:107
 #: application/views/user/edit.php:535
+#: application/views/station_profile/edit.php:333
+#: application/views/station_profile/edit.php:392
 msgid "Disabled"
 msgstr "無効"
 
@@ -3922,8 +3932,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1511
 msgid "Station setup failed! Please set up your station manually."
@@ -5243,6 +5253,7 @@ msgstr "オプションを非表示にする"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/station_profile/edit.php:151
 msgid "CQ Zone"
 msgstr "CQゾーン"
 
@@ -5263,6 +5274,7 @@ msgstr "CQゾーン"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/station_profile/edit.php:166
 msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
@@ -8559,6 +8571,7 @@ msgstr "フィルターを適用する"
 #: application/views/station_profile/edit.php:267
 #: application/views/user/edit.php:867 application/views/view_log/qso.php:362
 #: application/views/view_log/qso.php:695
+#: application/views/station_profile/edit.php:264
 msgid "POTA Reference(s)"
 msgstr "POTA 参照先"
 
@@ -8620,6 +8633,7 @@ msgstr "SIGアワードの進捗状況を見る"
 #: application/views/awards/sig/index.php:25
 #: application/views/station_profile/create.php:255
 #: application/views/station_profile/edit.php:280
+#: application/views/station_profile/edit.php:277
 msgid "Special Interest Group"
 msgstr "専門分野別グループ"
 
@@ -8728,6 +8742,7 @@ msgstr "このアワードの対象分野: SOTA参照 (ADIF: SOTA_REF)"
 #: application/views/station_profile/edit.php:239
 #: application/views/user/edit.php:859 application/views/view_log/qso.php:348
 #: application/views/view_log/qso.php:681
+#: application/views/station_profile/edit.php:236
 msgid "SOTA Reference"
 msgstr "SOTA リファレンス"
 
@@ -9235,6 +9250,7 @@ msgstr "このアワードに応募したフィールド: WWFF (ADIF: WWFF_REF)"
 #: application/views/station_profile/edit.php:253
 #: application/views/user/edit.php:863 application/views/view_log/qso.php:355
 #: application/views/view_log/qso.php:688
+#: application/views/station_profile/edit.php:250
 msgid "WWFF Reference"
 msgstr "WWFFリファレンス"
 
@@ -12262,6 +12278,12 @@ msgstr ""
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1206
+#: application/views/station_profile/edit.php:352
+#: application/views/station_profile/edit.php:360
+#: application/views/station_profile/edit.php:390
+#: application/views/station_profile/edit.php:417
+#: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:444
 msgid "Yes"
 msgstr "はい"
 
@@ -12325,6 +12347,12 @@ msgstr "はい"
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:676 application/views/user/edit.php:680
 #: application/views/user/edit.php:770
+#: application/views/station_profile/edit.php:353
+#: application/views/station_profile/edit.php:361
+#: application/views/station_profile/edit.php:391
+#: application/views/station_profile/edit.php:418
+#: application/views/station_profile/edit.php:436
+#: application/views/station_profile/edit.php:443
 msgid "No"
 msgstr "いいえ"
 
@@ -12684,6 +12712,7 @@ msgstr "識別子"
 #: application/views/stationsetup/stationsetup.php:104
 #: application/views/user/edit.php:533 application/views/user/edit.php:534
 #: application/views/user/edit.php:1169
+#: application/views/station_profile/edit.php:335
 msgid "Enabled"
 msgstr "有効"
 
@@ -19673,6 +19702,7 @@ msgstr "アンテナの仰角（十進度）。"
 #: application/views/qso/edit_ajax.php:347 application/views/qso/index.php:572
 #: application/views/station_profile/create.php:114
 #: application/views/station_profile/edit.php:139
+#: application/views/station_profile/edit.php:136
 msgid "Station County"
 msgstr "郡"
 
@@ -19872,6 +19902,7 @@ msgstr "DXClusterで最新のスポットを検索"
 #: application/views/station_profile/edit.php:213
 #: application/views/user/edit.php:855 application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:674
+#: application/views/station_profile/edit.php:210
 msgid "IOTA Reference"
 msgstr "IOTAリファレンス"
 
@@ -20882,16 +20913,19 @@ msgstr "都市（例：オスロ）"
 
 #: application/views/station_profile/create.php:109
 #: application/views/station_profile/edit.php:134
+#: application/views/station_profile/edit.php:131
 msgid "Station state. Applies to certain countries only."
 msgstr "局の状態。一部の国にのみ適用されます。"
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/edit.php:141
+#: application/views/station_profile/edit.php:138
 msgid "Station County (Only used for specific DXCCs)."
 msgstr "郡 (特定の DXCC にのみ使用されます)。"
 
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:164
+#: application/views/station_profile/edit.php:161
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
@@ -20903,11 +20937,15 @@ msgstr "CQゾーンが分からない場合は %s で検索してください!"
 #: application/views/station_profile/edit.php:164
 #: application/views/station_profile/edit.php:179
 #: application/views/station_profile/edit.php:200
+#: application/views/station_profile/edit.php:161
+#: application/views/station_profile/edit.php:176
+#: application/views/station_profile/edit.php:197
 msgid "click here"
 msgstr "ここをクリック"
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:179
+#: application/views/station_profile/edit.php:176
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
@@ -20917,16 +20955,19 @@ msgstr "ITUゾーンが分からない場合は %s で検索してください!"
 #: application/views/station_profile/create.php:168
 #: application/views/station_profile/edit.php:190
 #: application/views/station_profile/edit.php:193
+#: application/views/station_profile/edit.php:187
 msgid "Station Gridsquare"
 msgstr "グリッドスクエア"
 
 #: application/views/station_profile/create.php:172
 #: application/views/station_profile/edit.php:197
+#: application/views/station_profile/edit.php:194
 msgid "Get Gridsquare"
 msgstr "Gridsquareを入手"
 
 #: application/views/station_profile/create.php:175
 #: application/views/station_profile/edit.php:200
+#: application/views/station_profile/edit.php:197
 #, php-format
 msgctxt "uses 'click here'"
 msgid ""
@@ -20936,6 +20977,7 @@ msgstr "グリッドスクエア　例：HM54AP。グリッドスクエアがわ
 
 #: application/views/station_profile/create.php:176
 #: application/views/station_profile/edit.php:201
+#: application/views/station_profile/edit.php:198
 msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
@@ -20945,49 +20987,58 @@ msgstr ""
 
 #: application/views/station_profile/create.php:199
 #: application/views/station_profile/edit.php:224
+#: application/views/station_profile/edit.php:221
 msgid "Station IOTA reference. For example: EU-005"
 msgstr "IOTA番号　例：EU-005"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:225
+#: application/views/station_profile/edit.php:222
 msgid "IOTA World website"
 msgstr "IOTAワールドウェブサイト"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:225
+#: application/views/station_profile/edit.php:222
 #, php-format
 msgid "You can look up IOTA references at the %s."
 msgstr "IOTAの参照先は、 %s 。"
 
 #: application/views/station_profile/create.php:216
 #: application/views/station_profile/edit.php:241
+#: application/views/station_profile/edit.php:238
 msgid "SOTA Maps website"
 msgstr "SOTAマップのウェブサイト"
 
 #: application/views/station_profile/create.php:216
 #: application/views/station_profile/edit.php:241
+#: application/views/station_profile/edit.php:238
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
 msgstr "SOTA番号　SOTA番号は以下で確認できます。 %s 。"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:255
+#: application/views/station_profile/edit.php:252
 msgid "GMA Map website"
 msgstr "GMAマップのウェブサイト"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:255
+#: application/views/station_profile/edit.php:252
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
 msgstr "WWFF番号　WWFF番号は以下で参照できます。 %s 。"
 
 #: application/views/station_profile/create.php:244
 #: application/views/station_profile/edit.php:269
+#: application/views/station_profile/edit.php:266
 msgid "POTA Map website"
 msgstr "POTAマップウェブサイト"
 
 #: application/views/station_profile/create.php:244
 #: application/views/station_profile/edit.php:269
+#: application/views/station_profile/edit.php:266
 #, php-format
 msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
@@ -20998,49 +21049,58 @@ msgstr ""
 
 #: application/views/station_profile/create.php:258
 #: application/views/station_profile/edit.php:283
+#: application/views/station_profile/edit.php:280
 msgid "Special Interest Group Name"
 msgstr "特別利益団体（SIG）名"
 
 #: application/views/station_profile/create.php:260
 #: application/views/station_profile/edit.php:285
+#: application/views/station_profile/edit.php:282
 msgid "Station Special Interest Group Name (e.g. GMA)."
 msgstr "SIG(Special Interest Group)名 (例: GMA)。"
 
 #: application/views/station_profile/create.php:263
 #: application/views/station_profile/edit.php:288
+#: application/views/station_profile/edit.php:285
 msgid "Special Interest Group Information"
 msgstr "特別利益団体(SIG)情報"
 
 #: application/views/station_profile/create.php:265
 #: application/views/station_profile/edit.php:290
+#: application/views/station_profile/edit.php:287
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
 msgstr "SIG(Special Interest Group)情報 (例: DA/NW-357)。"
 
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/edit.php:301
 #: application/views/user/edit.php:1095
+#: application/views/station_profile/edit.php:298
 #, php-format
 msgid "Trouble? Check the %swiki%s."
 msgstr "問題が発生しましたか？%swiki%sを確認してください。"
 
 #: application/views/station_profile/create.php:279
 #: application/views/station_profile/edit.php:304
+#: application/views/station_profile/edit.php:301
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
 msgstr "eQSL QTH ニックネーム( アカウント名)"
 
 #: application/views/station_profile/create.php:281
 #: application/views/station_profile/edit.php:306
+#: application/views/station_profile/edit.php:303
 msgid "The QTH Nickname which is configured in your eQSL Profile"
 msgstr "eQSLプロファイルで設定されているQTHニックネーム( アカウント名)"
 
 #: application/views/station_profile/create.php:284
 #: application/views/station_profile/edit.php:309
+#: application/views/station_profile/edit.php:306
 msgid "Default QSLMSG"
 msgstr "デフォルトのQSLMSG"
 
 #: application/views/station_profile/create.php:287
 #: application/views/station_profile/edit.php:312
+#: application/views/station_profile/edit.php:309
 msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
@@ -21050,6 +21110,7 @@ msgstr ""
 
 #: application/views/station_profile/create.php:296
 #: application/views/station_profile/edit.php:321
+#: application/views/station_profile/edit.php:318
 msgid "Subscription Required"
 msgstr "サブスクリプションが必要です"
 
@@ -21059,6 +21120,7 @@ msgstr "テストAPIキー"
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:331
+#: application/views/station_profile/edit.php:328
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
@@ -21066,27 +21128,32 @@ msgstr "%s で API キーを確認してください"
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:331
+#: application/views/station_profile/edit.php:328
 msgid "the QRZ.com Logbook settings page"
 msgstr "QRZ.com ログブック設定ページ"
 
 #: application/views/station_profile/create.php:308
 #: application/views/station_profile/edit.php:334
+#: application/views/station_profile/edit.php:331
 msgid "QRZ.com Logbook Upload"
 msgstr "QRZ.com ログブックアップロード"
 
 #: application/views/station_profile/create.php:311
 #: application/views/station_profile/edit.php:337
 #: application/views/stationsetup/locationlist.php:51
+#: application/views/station_profile/edit.php:334
 msgid "Realtime"
 msgstr "リアルタイム"
 
 #: application/views/station_profile/create.php:327
 #: application/views/station_profile/edit.php:353
+#: application/views/station_profile/edit.php:350
 msgid "Ignore Clublog Upload"
 msgstr "Clublogアップロードを無視"
 
 #: application/views/station_profile/create.php:332
 #: application/views/station_profile/edit.php:358
+#: application/views/station_profile/edit.php:355
 msgid ""
 "If enabled, the QSOs made from this location will not be uploaded to "
 "Clublog. If this is deactivated on it's own please check if the Call is "
@@ -21098,27 +21165,32 @@ msgstr ""
 
 #: application/views/station_profile/create.php:335
 #: application/views/station_profile/edit.php:361
+#: application/views/station_profile/edit.php:358
 msgid "ClubLog Realtime Upload"
 msgstr "ClubLogリアルタイムアップロード"
 
 #: application/views/station_profile/create.php:353
 #: application/views/station_profile/edit.php:378
+#: application/views/station_profile/edit.php:375
 msgid "HRDLog.net Username"
 msgstr "HRDLog.net ユーザー名"
 
 #: application/views/station_profile/create.php:355
 #: application/views/station_profile/edit.php:380
+#: application/views/station_profile/edit.php:377
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr "HRDlog.net に登録されているユーザー名 (通常はコールサイン)。"
 
 #: application/views/station_profile/create.php:358
 #: application/views/station_profile/edit.php:383
+#: application/views/station_profile/edit.php:380
 msgid "HRDLog.net API Key"
 msgstr "HRDLog.net APIキー"
 
 #: application/views/station_profile/create.php:360
 #: application/views/station_profile/edit.php:388
+#: application/views/station_profile/edit.php:385
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
@@ -21126,22 +21198,26 @@ msgstr "%s で API コードを作成してください"
 
 #: application/views/station_profile/create.php:360
 #: application/views/station_profile/edit.php:388
+#: application/views/station_profile/edit.php:385
 msgid "HRDLog.net Userprofile page"
 msgstr "HRDLog.net ユーザープロフィールページ"
 
 #: application/views/station_profile/create.php:363
 #: application/views/station_profile/edit.php:391
+#: application/views/station_profile/edit.php:388
 msgid "HRDLog.net Logbook Realtime Upload"
 msgstr "HRDLog.net ログブックのリアルタイムアップロード"
 
 #: application/views/station_profile/create.php:382
 #: application/views/station_profile/edit.php:410
+#: application/views/station_profile/edit.php:407
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
 msgstr "QO-100 DxクラブAPIキー"
 
 #: application/views/station_profile/create.php:384
 #: application/views/station_profile/edit.php:415
+#: application/views/station_profile/edit.php:412
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
@@ -21149,27 +21225,32 @@ msgstr "%s で API キーを作成してください"
 
 #: application/views/station_profile/create.php:384
 #: application/views/station_profile/edit.php:415
+#: application/views/station_profile/edit.php:412
 msgid "QO-100 Dx Club's profile page"
 msgstr "QO-100 Dx Clubのプロフィールページ"
 
 #: application/views/station_profile/create.php:387
 #: application/views/station_profile/edit.php:418
+#: application/views/station_profile/edit.php:415
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "QO-100 Dxクラブ リアルタイムアップロード"
 
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:434
 msgid "OQRS Enabled"
 msgstr "OQRS 有効"
 
 #: application/views/station_profile/create.php:413
 #: application/views/station_profile/edit.php:444
 #: application/views/stationsetup/locationlist.php:33
+#: application/views/station_profile/edit.php:441
 msgid "OQRS Email alert"
 msgstr "OQRS メールアラート"
 
 #: application/views/station_profile/create.php:418
 #: application/views/station_profile/edit.php:449
+#: application/views/station_profile/edit.php:446
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
 "管理者およびグローバル オプションで電子メールが設定されていることを確認しま"
@@ -21178,11 +21259,13 @@ msgstr ""
 #: application/views/station_profile/create.php:421
 #: application/views/station_profile/edit.php:452
 #: application/views/stationsetup/locationlist.php:32
+#: application/views/station_profile/edit.php:449
 msgid "OQRS Text"
 msgstr "OQRSテキスト"
 
 #: application/views/station_profile/create.php:423
 #: application/views/station_profile/edit.php:454
+#: application/views/station_profile/edit.php:451
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "QSL に関して追加したい情報。"
 
@@ -24168,9 +24251,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -24501,8 +24584,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
