@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-10 08:49+0000\n"
-"PO-Revision-Date: 2026-08-10 13:08+0000\n"
+"PO-Revision-Date: 2026-08-11 06:18+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -8681,27 +8681,27 @@ msgstr "%d больше различных парков до следующег�
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "Вы достигли самой высокого уровня дипломов POTA!"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "Показать все уровни"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "Дополнительные дипломы"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "Стандартные дипломы"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "Прогресс охотника POTA"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "сработано различных парков"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/sota/index.php:50
@@ -8829,17 +8829,19 @@ msgstr "Экспорт QSO в ADIF"
 
 #: application/views/awards/sota/index.php:4
 msgid "Error loading SOTA map data"
-msgstr ""
+msgstr "Ошибка загрузки данных карты POTA"
 
 #: application/views/awards/sota/index.php:5
 msgid "No SOTA references worked for these filters."
-msgstr ""
+msgstr "Нет сработанных референций POTA для этих фильтров."
 
 #: application/views/awards/sota/index.php:6
 msgid ""
 "SOTA directory not loaded - coordinates missing. Run the update_sota cron "
 "job."
 msgstr ""
+"Каталог SOTA не загружен — отсутствуют координаты. Запустите задачу "
+"update_sota."
 
 #: application/views/awards/sota/index.php:24
 msgid "SOTA Awards"
@@ -9351,17 +9353,19 @@ msgstr "Дата QSO"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "Ошибка загрузки данных карты WWFF"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "Нет сработанных референций WWFF для этих фильтров."
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
 msgstr ""
+"Каталог WWFF не загружен — отсутствуют координаты. Запустите задачу "
+"update_wwff."
 
 #: application/views/awards/wwff/index.php:24
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -10587,7 +10591,7 @@ msgstr "QSO"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr ""
+msgstr "В вашем журнале не найдены QSO с %s."
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -10621,7 +10625,7 @@ msgstr "QTH"
 
 #: application/views/calltester/call_info.php:79
 msgid "QSL card"
-msgstr ""
+msgstr "QSL карточка"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -10641,18 +10645,18 @@ msgstr "Результаты DXCC Class"
 #: application/views/calltester/comparison_result.php:46
 #: application/views/calltester/comparison_result.php:53
 msgid "Calls tested"
-msgstr ""
+msgstr "Проверенные позывные"
 
 #: application/views/calltester/comparison_result.php:47
 #: application/views/calltester/comparison_result.php:54
 #: application/views/calltester/result.php:6
 msgid "Execution time"
-msgstr ""
+msgstr "Время выполнения"
 
 #: application/views/calltester/comparison_result.php:48
 #: application/views/calltester/comparison_result.php:55
 msgid "Issues found"
-msgstr ""
+msgstr "Обнаруженные проблемы"
 
 #: application/views/calltester/comparison_result.php:51
 msgid "Logbook Model Results"
@@ -10725,7 +10729,7 @@ msgstr "Результат ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr ""
+msgstr "Показать все QSO с этим позывным"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -10764,15 +10768,17 @@ msgstr "Сравнить DXCC Сlass и Logbook model"
 
 #: application/views/calltester/result.php:5
 msgid "Callsigns tested"
-msgstr ""
+msgstr "Проверено позывных"
 
 #: application/views/calltester/result.php:7
 msgid "Potential wrong DXCC"
-msgstr ""
+msgstr "Возможная ошибка DXCC"
 
 #: application/views/calltester/result.php:92
 msgid "No DXCC issues found. All calls have correct DXCC information."
 msgstr ""
+"Проблем с DXCC не обнаружено. Все вызовы содержат правильную информацию о "
+"DXCC."
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -10979,12 +10985,12 @@ msgstr ""
 
 #: application/views/club/permissions.php:271
 msgid "Edit Selected"
-msgstr ""
+msgstr "Редактировать выбранное"
 
 #: application/views/club/permissions.php:274
 #: application/views/contesting/manager/index.php:23
 msgid "Delete Selected"
-msgstr ""
+msgstr "Удалить выбранное"
 
 #: application/views/club/permissions.php:282
 msgid "Firstname"
@@ -11042,27 +11048,30 @@ msgstr "Роль: %s"
 
 #: application/views/club/permissions.php:409
 msgid "Edit Selected Members"
-msgstr ""
+msgstr "Редактировать выбранных операторов коллективной станции"
 
 #: application/views/club/permissions.php:415
 msgid "Set the permission level for all selected members:"
 msgstr ""
+"Установить уровень разрешений для всех выбранных операторов коллективной "
+"станции:"
 
 #: application/views/club/permissions.php:426
 msgid "Notify the users via email about the change"
-msgstr ""
+msgstr "Уведомить пользователей по электронной почте об изменениях"
 
 #: application/views/club/permissions.php:443
 msgid "Delete Selected Members"
-msgstr ""
+msgstr "Удалить выбранных операторов коллективной станции"
 
 #: application/views/club/permissions.php:449
 msgid "Are you sure you want to delete the selected users from the club?"
 msgstr ""
+"Вы уверены, что хотите удалить выбранных операторов коллективной станции?"
 
 #: application/views/club/permissions.php:450
 msgid "user(s) will be removed."
-msgstr ""
+msgstr "пользователь(и) будет(ут) удалены."
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
@@ -11542,18 +11551,19 @@ msgctxt ""
 "Count serial number in contesting per Band; is an option in contesting "
 "manager."
 msgid "per band"
-msgstr ""
+msgstr "по диапазону"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
 msgid "per op"
-msgstr ""
+msgstr "по оператору"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgid "Red: preview only. Green: this number is reserved for you."
 msgstr ""
+"Красный: только предпросмотр. Зелёный: этот номер зарезервирован для вас."
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
@@ -12238,7 +12248,7 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:141
 msgid "Count serial number per band"
-msgstr ""
+msgstr "Подсчёт порядкового номера по диапазону"
 
 #: application/views/contesting/manager/components/session_modal.php:143
 msgid ""
@@ -12246,18 +12256,21 @@ msgid ""
 "running continuously across the whole contest (required by some multi-op "
 "categories)."
 msgstr ""
+"Когда включено, отправленный порядковый номер начинается с 1 на каждом "
+"диапазоне, вместо того чтобы увеличиваться непрерывно в течение всего "
+"контеста (требуется в некоторых многооператорских категориях)."
 
 #: application/views/contesting/manager/components/session_modal.php:146
 msgid "Serial Number Series"
-msgstr ""
+msgstr "Серии порядковых номеров"
 
 #: application/views/contesting/manager/components/session_modal.php:148
 msgid "Shared by all operators"
-msgstr ""
+msgstr "Общее для всех операторов"
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "Одна серия на оператора"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -12265,6 +12278,9 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"Порядковые номера выдаются сервером, поэтому тот же номер никогда не "
+"используется дважды, даже когда несколько операторов ведут лог одновременно. "
+"Большинство контестов ожидают единой общей серии на станцию."
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
@@ -12697,7 +12713,7 @@ msgstr ""
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "How grouping works:"
-msgstr ""
+msgstr "Как работает группировка:"
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid ""
@@ -12707,6 +12723,12 @@ msgid ""
 "as one session, while weekly or monthly contest series are imported as "
 "separate sessions."
 msgstr ""
+"QSO сгруппированы по контесту и станции. Последовательные QSO попадают в "
+"одну и ту же сессию, если они происходят с интервалом менее 72 часов или "
+"выпадают на одну и ту же неделю по ISO календарю (понедельник-воскресенье). "
+"Это позволяет объединять недельные активности в одну сессию, в то время как "
+"еженедельные или ежемесячные серии контестов импортируются как отдельные "
+"сессии."
 
 #: application/views/contesting/manager/import_legacy.php:22
 msgid "Admin mode:"
@@ -12745,7 +12767,7 @@ msgstr "Пожалуйста, выберите хотя бы один конте
 
 #: application/views/contesting/manager/import_legacy.php:102
 msgid "Are you sure you want to import the selected contest sessions?"
-msgstr ""
+msgstr "Вы уверены, что хотите импортировать выбранные контест-сессии?"
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:347
@@ -12771,7 +12793,7 @@ msgstr "Быстрый старт"
 
 #: application/views/contesting/manager/index.php:23
 msgid "Delete selected contest sessions"
-msgstr ""
+msgstr "Удалить выбранные контест-сессии"
 
 #: application/views/contesting/manager/index.php:49
 #: application/views/logbookadvanced/attachContest.php:28
@@ -12806,27 +12828,28 @@ msgstr "Экспорт EDI"
 
 #: application/views/contesting/manager/index.php:123
 msgid "Delete Contest Sessions"
-msgstr ""
+msgstr "Удаление контест-сессий"
 
 #: application/views/contesting/manager/index.php:128
 msgid "Do you really want to delete the selected contest sessions?"
-msgstr ""
+msgstr "Вы действительно хотите удалить выбранные контест-сессии?"
 
 #: application/views/contesting/manager/index.php:129
 msgid "Selected sessions: "
-msgstr ""
+msgstr "Выбранные контест-сессии: "
 
 #: application/views/contesting/manager/index.php:133
 msgid "Also delete all QSOs logged in these sessions from the logbook"
 msgstr ""
+"Также удалите все QSO, зарегистрированные в этих контест-сессиях, из журналa"
 
 #: application/views/contesting/manager/index.php:140
 msgid "Delete Sessions"
-msgstr ""
+msgstr "Удалить контест-сессии"
 
 #: application/views/contesting/manager/index.php:153
 msgid "Please select at least one contest session."
-msgstr ""
+msgstr "Пожалуйста, выберите, как минимум, одну контест-сессию."
 
 #: application/views/contesting/manager/index.php:183
 msgid "Import historical contests from logbook"
@@ -12990,7 +13013,7 @@ msgstr "ID"
 
 #: application/views/cron/index.php:77
 msgid "Interval"
-msgstr ""
+msgstr "Интервал"
 
 #: application/views/cron/index.php:78
 msgid "Last Run"
@@ -13815,7 +13838,7 @@ msgstr "Клиенты"
 
 #: application/views/debug/index.php:150
 msgid "Cluster nodes"
-msgstr ""
+msgstr "Узлы кластера"
 
 #: application/views/debug/index.php:151
 msgid "Uptime"
@@ -14151,7 +14174,7 @@ msgstr "Всё ОК"
 
 #: application/views/debug/index.php:876
 msgid "Degraded"
-msgstr ""
+msgstr "Деградировавшее"
 
 #: application/views/debug/index.php:877
 msgid "Worker backend is not configured."
@@ -14167,13 +14190,15 @@ msgstr "Сервер обработки настроен, но не отвеча
 
 #: application/views/debug/index.php:879
 msgid "Outdated"
-msgstr ""
+msgstr "Устаревшее"
 
 #: application/views/debug/index.php:879
 msgid ""
 "Please update your Wavelog Worker to version 0.2.0 or newer to see the "
 "status."
 msgstr ""
+"Пожалуйста, обновите ваш Wavelog Worker до версии 0.2.0 или новее, чтобы "
+"увидеть статус."
 
 #: application/views/debug/index.php:898
 msgid "Albanian"
@@ -14899,7 +14924,7 @@ msgstr "ОШИБКА"
 
 #: application/views/interface_assets/footer.php:36
 msgid "The query failed for a unknown reason"
-msgstr ""
+msgstr "Запрос не удался по неизвестной причине"
 
 #: application/views/interface_assets/footer.php:37
 msgid "Attention"
@@ -14907,13 +14932,15 @@ msgstr "Внимание"
 
 #: application/views/interface_assets/footer.php:41
 msgid "Session expired"
-msgstr ""
+msgstr "Сессия истекла"
 
 #: application/views/interface_assets/footer.php:42
 msgid ""
 "Your live connection has expired. Please reload the page to keep receiving "
 "live updates."
 msgstr ""
+"Ваше живое соединение истекло. Пожалуйста, перезагрузите страницу, чтобы "
+"продолжать получать обновления в реальном времени."
 
 #: application/views/interface_assets/footer.php:47
 msgid "Warning! Are you sure you want delete QSO with "
@@ -15553,7 +15580,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:212
 msgid "World Wide Flora Fauna (WWFF)"
-msgstr ""
+msgstr "Всемирная флора и фауна (WWFF)"
 
 #: application/views/interface_assets/header.php:219
 msgid "AMSAT Rover"
@@ -16799,24 +16826,31 @@ msgid ""
 "Wildcards (in Callsign, State, DOK, County, QSL via, SOTA, POTA, WWFF, "
 "Operator, Gridsquare, Comment and Contest):"
 msgstr ""
+"Подстановочные знаки (в Позывном, Штате, DOK, Округе, QSL через, SOTA, POTA, "
+"WWFF, Операторе, Квадрате локатора, Комментарии и Контесте):"
 
 #: application/views/logbookadvanced/help.php:30
 msgid "Matches any number of characters"
-msgstr ""
+msgstr "Соответствует любому количеству символов"
 
 #: application/views/logbookadvanced/help.php:34
 msgid "Matches a single character"
-msgstr ""
+msgstr "Совпадает с одиночным символом"
 
 #: application/views/logbookadvanced/help.php:38
 msgid "SQL wildcards (any chars / single char) are passed through directly"
 msgstr ""
+"Символы подстановки SQL (любые символы / одиночный символ) передаются "
+"напрямую"
 
 #: application/views/logbookadvanced/help.php:41
 msgid ""
 "Type a wildcard to take manual control of the match; without wildcards the "
 "default search behaviour is kept."
 msgstr ""
+"Введите подстановочный знак, чтобы взять на себя ручное управление "
+"совпадением; без подстановочных знаков сохраняется поведение поиска по "
+"умолчанию."
 
 #: application/views/logbookadvanced/help.php:50
 #: application/views/logbookadvanced/index.php:74
@@ -17610,7 +17644,7 @@ msgstr "Открепить от контеста"
 
 #: application/views/logbookadvanced/index.php:859
 msgid "Export to CSV"
-msgstr ""
+msgstr "Экспорт в CSV"
 
 #: application/views/logbookadvanced/index.php:863
 #: application/views/oqrs/showrequests.php:63
@@ -18187,77 +18221,78 @@ msgstr "Загрузить файл"
 
 #: application/views/map/qso_map.php:8
 msgid "Loading QSO data..."
-msgstr ""
+msgstr "Загрузка данных QSO..."
 
 #: application/views/map/qso_map.php:9
 msgid "Loading QSOs for all countries (this may take a moment)..."
-msgstr ""
+msgstr "Загрузка QSO для всех стран (это может занять некоторое время)..."
 
 #: application/views/map/qso_map.php:10
 msgid "Still loading... Processing large dataset, please wait..."
 msgstr ""
+"Ещё загружается... Обработка большого набора данных, пожалуйста, подождите..."
 
 #: application/views/map/qso_map.php:11
 msgid "Failed to load QSO data. Please try again."
-msgstr ""
+msgstr "Не удалось загрузить данные QSO. Попробуйте еще раз."
 
 #: application/views/map/qso_map.php:12
 msgid "Error:"
-msgstr ""
+msgstr "Ошибка:"
 
 #: application/views/map/qso_map.php:13
 msgid "Error parsing response:"
-msgstr ""
+msgstr "Ошибка разбора ответа:"
 
 #: application/views/map/qso_map.php:14
 msgid "Outside country boundaries"
-msgstr ""
+msgstr "За пределами границ страны"
 
 #: application/views/map/qso_map.php:15
 msgid "Inside country boundaries"
-msgstr ""
+msgstr "В пределах границ страны"
 
 #: application/views/map/qso_map.php:16
 msgid "Legend"
-msgstr ""
+msgstr "Легенда"
 
 #: application/views/map/qso_map.php:17
 msgid "Inside boundaries"
-msgstr ""
+msgstr "В пределах границ"
 
 #: application/views/map/qso_map.php:18
 msgid "Outside boundaries"
-msgstr ""
+msgstr "За пределами границ"
 
 #: application/views/map/qso_map.php:19
 msgid "Country/State boundaries"
-msgstr ""
+msgstr "Границы страны/области (штата)"
 
 #: application/views/map/qso_map.php:20
 #, php-format
 msgid "Showing %s of %s total QSOs"
-msgstr ""
+msgstr "Показано %s из %s всех QSO"
 
 #: application/views/map/qso_map.php:21
 #, php-format
 msgid "Total: %s QSOs with 6+ char grids"
-msgstr ""
+msgstr "Всего: %s QSO с квадратами локатора из 6+ символов"
 
 #: application/views/map/qso_map.php:23
 msgid "Hover over a region"
-msgstr ""
+msgstr "Наведите курсор на регион"
 
 #: application/views/map/qso_map.php:24
 msgid "Toggle layers"
-msgstr ""
+msgstr "Переключить слои"
 
 #: application/views/map/qso_map.php:28
 msgid "Regions worked:"
-msgstr ""
+msgstr "Сработанные регионы:"
 
 #: application/views/map/qso_map.php:29
 msgid "Show QSO list"
-msgstr ""
+msgstr "Показать список QSO"
 
 #: application/views/map/qso_map.php:48
 msgid "Select Country:"
@@ -18269,15 +18304,15 @@ msgstr "Выберите страну..."
 
 #: application/views/map/qso_map.php:60
 msgid "Location:"
-msgstr ""
+msgstr "QTH:"
 
 #: application/views/map/qso_map.php:72
 msgid "Band:"
-msgstr ""
+msgstr "Диапазон:"
 
 #: application/views/map/qso_map.php:81
 msgid "Load Map"
-msgstr ""
+msgstr "Загрузить карту"
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
@@ -18843,7 +18878,7 @@ msgstr "Продолжить"
 #: application/views/oqrs/request.php:1
 #: application/views/oqrs/request_grouped.php:1
 msgid "Request failed. Please try again."
-msgstr ""
+msgstr "Запрос не удался. Пожалуйста, попробуйте ещё раз."
 
 #: application/views/oqrs/notinlogform.php:4
 msgid ""
@@ -19297,15 +19332,15 @@ msgstr "Пожалуйста, выберите шаблон для удален�
 
 #: application/views/qslpostcard/designer.php:43
 msgid "Copy failed"
-msgstr ""
+msgstr "Копирование не удалось"
 
 #: application/views/qslpostcard/designer.php:44
 msgid "Template copied."
-msgstr ""
+msgstr "Шаблон скопирован."
 
 #: application/views/qslpostcard/designer.php:45
 msgid "Please select a template to copy."
-msgstr ""
+msgstr "Пожалуйста, выберите шаблон для копирования."
 
 #: application/views/qslpostcard/designer.php:48
 msgid "selected"
@@ -19313,31 +19348,35 @@ msgstr "выбрано"
 
 #: application/views/qslpostcard/designer.php:49
 msgid "Unsaved changes"
-msgstr ""
+msgstr "Несохранённые изменения"
 
 #: application/views/qslpostcard/designer.php:50
 msgid ""
 "Your current design has unsaved changes. Loading a different template will "
 "replace it. Continue?"
 msgstr ""
+"У вашего текущего дизайна есть несохранённые изменения. Загрузка другого "
+"шаблона заменит его. Продолжить?"
 
 #: application/views/qslpostcard/designer.php:51
 msgid ""
 "Your current design has unsaved changes. If you leave the page, those "
 "changes will be lost. Leave anyway?"
 msgstr ""
+"У вас есть несохранённые изменения в вашем текущем дизайне. Если вы покинете "
+"страницу, то изменения будут утеряны. Уйти в любом случае?"
 
 #: application/views/qslpostcard/designer.php:52
 msgid "Discard changes"
-msgstr ""
+msgstr "Отменить изменения"
 
 #: application/views/qslpostcard/designer.php:53
 msgid "Keep editing"
-msgstr ""
+msgstr "Продолжить редактировать"
 
 #: application/views/qslpostcard/designer.php:54
 msgid "Leave page"
-msgstr ""
+msgstr "Покинуть страницу"
 
 #: application/views/qslpostcard/designer.php:70
 msgid "(new)"
@@ -19353,7 +19392,7 @@ msgstr "Сохранить шаблон"
 
 #: application/views/qslpostcard/designer.php:79
 msgid "Copy Template"
-msgstr ""
+msgstr "Копировать шаблон"
 
 #: application/views/qslpostcard/designer.php:82
 msgid "Delete Template"
@@ -19459,11 +19498,11 @@ msgstr "Текст"
 
 #: application/views/qslpostcard/designer.php:251
 msgid "Frequency format"
-msgstr ""
+msgstr "Формат частоты"
 
 #: application/views/qslpostcard/designer.php:259
 msgid "Omit unit"
-msgstr ""
+msgstr "Опустить единицы измерения"
 
 #: application/views/qslpostcard/designer.php:265
 msgid "X"
@@ -19554,11 +19593,11 @@ msgstr "Центрирование на странице (по вертикал�
 
 #: application/views/qslprint/index.php:4
 msgid "Please select at least one row"
-msgstr ""
+msgstr "Пожалуйста, выберите хотя бы одну строку"
 
 #: application/views/qslprint/index.php:6
 msgid "Print QSLcard"
-msgstr ""
+msgstr "Распечатать QSL карточку"
 
 #: application/views/qslprint/index.php:7
 #: application/views/qslprint/qslprint.php:100
@@ -19573,7 +19612,7 @@ msgstr "Убрать"
 
 #: application/views/qslprint/index.php:11
 msgid "Are you sure you want to mark ALL requested QSLs as sent?"
-msgstr ""
+msgstr "Вы уверены, что хотите отметить ВСЕ запрошенные QSL как отправленные?"
 
 #: application/views/qslprint/index.php:29
 msgid "Export Requested QSLs for Printing"
@@ -19589,7 +19628,7 @@ msgstr "Диапазон и частота"
 
 #: application/views/qslprint/index.php:55
 msgid "Mark"
-msgstr ""
+msgstr "Пометить"
 
 #: application/views/qslprint/index.php:57
 msgid "Mark selected QSOs as sent"
@@ -19597,7 +19636,7 @@ msgstr "Отметить выбранные QSO как отправленные"
 
 #: application/views/qslprint/index.php:59
 msgid "Mark ALL requested QSLs as sent"
-msgstr ""
+msgstr "Отметить ВСЕ запрошенные QSL, как отправленые"
 
 #: application/views/qslprint/index.php:67
 msgid "Export selected QSOs to ADIF-file"
@@ -19621,11 +19660,11 @@ msgstr "Распечатать QSL-карточки для всех QSO"
 
 #: application/views/qslprint/index.php:83
 msgid "Print Selected QSL Labels"
-msgstr ""
+msgstr "Распечатать выбранные наклейки QSL"
 
 #: application/views/qslprint/index.php:85
 msgid "Print Labels for all QSOs"
-msgstr ""
+msgstr "Распечатать наклейки для всех QSO"
 
 #: application/views/qslprint/index.php:93
 msgid "Remove selected QSOs from the queue"
@@ -20072,6 +20111,9 @@ msgid ""
 "Satellite appears below the horizon (elevation %s°). The stored TLE may be "
 "outdated for this QSO time. Do you really want to log this QSO?"
 msgstr ""
+"Спутник появляется ниже горизонта (возвышение %s°). Записанные TLE могут "
+"быть устаревшими для этого времени QSO. Вы действительно хотите записать это "
+"QSO?"
 
 #: application/views/qso/index.php:41
 msgid "Please wait before saving another QSO"
@@ -20927,7 +20969,7 @@ msgstr "Пока нет опций"
 
 #: application/views/simplefle/syntax_help.php:10
 msgid "Getting started"
-msgstr ""
+msgstr "Начало работы"
 
 #: application/views/simplefle/syntax_help.php:11
 msgid "Before starting to log a QSO, please note the basic rules."
@@ -20947,7 +20989,7 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:17
 msgid "The first QSO"
-msgstr ""
+msgstr "Первое QSO"
 
 #: application/views/simplefle/syntax_help.php:18
 #, php-format
@@ -20957,6 +20999,10 @@ msgid ""
 "QRG in MHz, e.g., %s), mode, and time. After the time, you provide the first "
 "QSO, which is essentially the callsign."
 msgstr ""
+"Для начала убедитесь, что вы уже заполнили форму слева, указав дату, "
+"позывной станции и позывной оператора. Основные данные включают диапазон "
+"(или QRG в МГц, например, %s), вид модуляции и время. После времени "
+"указывается первое QSO, которое, по сути, является позывным."
 
 #: application/views/simplefle/syntax_help.php:23
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -20964,7 +21010,7 @@ msgstr "Например, QSO, начавшееся в 21:34 (UTC) с 4W7EST н�
 
 #: application/views/simplefle/syntax_help.php:25
 msgid "Signal reports (RST)"
-msgstr ""
+msgstr "Рапорт (RST)"
 
 #: application/views/simplefle/syntax_help.php:26
 msgid ""
@@ -20973,6 +21019,10 @@ msgid ""
 "sides, so we provide the information with the sent RST first. It was 2 "
 "minutes later than the first QSO."
 msgstr ""
+"Если вы не укажете RST, синтаксис будет использовать 59 для телефона, 599 "
+"для CW и +0 дБ для цифровых режимов передачи данных. Наше следующее QSO не "
+"было с рапортами 59 с обеих сторон, поэтому мы указываем сначала с "
+"переданный RST. Оно было на 2 минуты позже первого QSO."
 
 #: application/views/simplefle/syntax_help.php:32
 msgid ""
@@ -20987,7 +21037,7 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:34
 msgid "Date and time"
-msgstr ""
+msgstr "Дата и время"
 
 #: application/views/simplefle/syntax_help.php:35
 msgid ""
@@ -21004,7 +21054,7 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:47
 msgid "Additional information"
-msgstr ""
+msgstr "Дополнительная информация"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid "Additional informations can be submitted in the following way:"
@@ -21033,7 +21083,7 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:66
 msgid "Contest exchange"
-msgstr ""
+msgstr "Контрольные номера"
 
 #: application/views/simplefle/syntax_help.php:67
 msgid "Contest exchange; serials or other exchange - or even both:"
@@ -21054,6 +21104,17 @@ msgid ""
 "sent serial, add %s to a QSO line together with an initial sent exchange (it "
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
+"Принятый контрольный номер должен быть с префиксом точки %s, отправляемый "
+"обмен с запятой %s. Последние две строки эквивалентны - т.е. пробелы не "
+"имеют значения так же, как и порядок. Каждая из четырёх строк выше просто "
+"иллюстрирует один тип контрольного номера (только порядковый, только "
+"текстовый или оба); обратите внимание, что отправленный контрольный номер — "
+"'липкий': как только он установлен, он автоматически переносится в следующие "
+"QSO (всякий раз, когда следующая строка содержит полученный контрольный "
+"номер или одну запятую %s) до тех пор, пока вы его не измените или не "
+"очистите. Чтобы автоматически увеличивать отправленный порядковый номер, "
+"добавьте %s в строку QSO вместе с начальным отправленным контрольным номером "
+"(это не работает в собственной строке). Чтобы отключить, используйте %s:"
 
 #: application/views/simplefle/syntax_help.php:79
 #, php-format
@@ -21061,6 +21122,9 @@ msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use %s:"
 msgstr ""
+"Первое QSO использует установленный порядковый номер 1, второе будет "
+"использовать 2 в качестве порядкового номера. Если хотите стереть "
+"отправленный контрольный номер, используйте %s:"
 
 #: application/views/simplefle/syntax_help.php:84
 #, php-format
@@ -21068,10 +21132,13 @@ msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange %s would have been set also."
 msgstr ""
+"Сначала все предыдущие контрольные номера стираются, затем устанавливается "
+"только порядковый номер. В противном случае предыдущий контрольный номер %s "
+"также был бы установлен."
 
 #: application/views/simplefle/syntax_help.php:86
 msgid "Time zone"
-msgstr ""
+msgstr "Часовой пояс"
 
 #: application/views/simplefle/syntax_help.php:87
 #, php-format
@@ -21080,10 +21147,16 @@ msgid ""
 "(or the short form %s) followed by the signed hour offset. All following QSO "
 "times are then converted to UTC until you change the offset again:"
 msgstr ""
+"Если вы регистрируете местное время вместо UTC, укажите своё смещение один "
+"раз с помощью %s (или в краткой форме %s), за которым следует часовое "
+"смещение с учётом знака. Все последующие времена QSO затем будут "
+"преобразованы в UTC до тех пор, пока вы снова не измените смещение:"
 
 #: application/views/simplefle/syntax_help.php:92
 msgid "Here, the QSO logged at 14:00 local time is stored as 12:00 UTC."
 msgstr ""
+"Здесь QSO, зарегистрированное в 14:00 местного времени, сохраняется, как "
+"12:00 UTC."
 
 #: application/views/simplefle/syntax_help.php:95
 #, php-format
@@ -22713,13 +22786,13 @@ msgstr ""
 
 #: application/views/user/edit.php:1198
 msgid "Display radio name"
-msgstr ""
+msgstr "Отображать название радиостанции"
 
 #: application/views/user/edit.php:1199
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
-msgstr ""
+msgstr "Этот параметр управляет отображением имени радиостанции в виджете."
 
 #: application/views/user/edit.php:1203
 msgid "Display only most recently updated radio"
@@ -23437,7 +23510,7 @@ msgstr "Пока нет QSO"
 
 #: application/views/visitor/punchcard.php:147
 msgid "No QSOs"
-msgstr ""
+msgstr "Нет QSO"
 
 #: application/views/webadif/export.php:22
 msgid ""
@@ -23521,33 +23594,33 @@ msgstr "QSO отмечены как экспортированные в QO-100 D
 #, php-format
 msgctxt "on air status test: callsign is on-air/off-air"
 msgid "%s is %s"
-msgstr ""
+msgstr "%s является %s"
 
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:198
 #, php-format
 msgid "Updated: %s (%s)"
-msgstr ""
+msgstr "Обновлено: %s (%s)"
 
 #: application/views/widgets/on_air.php:181
 msgid "auto-refreshed every 60s"
-msgstr ""
+msgstr "автоматически обновляется каждые 60с"
 
 #: application/views/widgets/on_air.php:198
 msgid "auto-refreshed by QRZ.com every 60s"
-msgstr ""
+msgstr "автоматически обновляется сайтом QRZ.com каждые 60 секунд"
 
 #: application/views/widgets/on_air.php:242
 #, php-format
 msgid "Last updated: %s"
-msgstr ""
+msgstr "Последнее обновление: %s"
 
 #: application/views/widgets/on_air.php:318
 #: application/views/widgets/on_air.php:322
 #: application/views/widgets/on_air.php:325
 #: application/views/widgets/on_air.php:333
 msgid "Last updated:"
-msgstr ""
+msgstr "Последнее обновление:"
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
@@ -23620,29 +23693,29 @@ msgstr "CQ geojson"
 
 #: application/views/zonechecker/result.php:99
 msgid "Show on map"
-msgstr ""
+msgstr "Показать на карте"
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
-msgstr ""
+msgstr "Ошибок зон не найдено. Все QSO содержат правильную информацию о зонах."
 
 #: src/QSLManager/QSO.php:898
 #, php-format
 msgid "Lookup %s on QRZ.com"
-msgstr ""
+msgstr "Запрос %s на QRZ.com"
 
 #: src/QSLManager/QSO.php:899
 #, php-format
 msgid "Lookup %s on HamQTH"
-msgstr ""
+msgstr "Запрос %s на HamQTH"
 
 #: src/QSLManager/QSO.php:900
 msgid "Clublog Log Search"
-msgstr ""
+msgstr "Поиск лога на Clublog"
 
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
-msgstr ""
+msgstr "Пользователь LoTW. Последняя загрузка была "
 
 #~ msgid "SOTA QSO List"
 #~ msgstr "Список QSO SOTA"
