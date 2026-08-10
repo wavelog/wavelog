@@ -274,10 +274,6 @@ if ($public_maps_option == 'true') { ?>
 						</td>
 					</tr>
 					<tr>
-						<td width="50%"><?= __("eQSL"); ?></td>
-						<td width="50%"><?php echo $total_countries_confirmed_eqsl; ?></td>
-					</tr>
-					<tr>
 						<td width="50%"><?= __("Needed"); ?></td>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>
 					</tr>
