@@ -411,53 +411,98 @@ class Update_model extends CI_Model {
         $this->cron_model->set_last_run('update_pota_boundaries');
 
         set_time_limit(0);                       // 7 files, the big ones are slow
-        ini_set('memory_limit', '512M');          // headroom for the largest single park
+
+        // Peak is ~24 MB on the largest file (DE, 1436 parks), so 256M is ample.
+        // Raise-only: never shrink a host that is already configured higher.
+        $cur = trim((string) ini_get('memory_limit'));
+        if ($cur !== '' && $cur !== '-1') {
+            $bytes = (int) $cur;
+            switch (strtolower(substr($cur, -1))) {
+                case 'g': $bytes *= 1024 * 1024 * 1024; break;
+                case 'm': $bytes *= 1024 * 1024; break;
+                case 'k': $bytes *= 1024; break;
+            }
+            if ($bytes < 256 * 1024 * 1024) { ini_set('memory_limit', '256M'); }
+        }
 
         $total = 0;
         $errors = [];
         $per_source = [];
 
-        foreach ($this->pota_boundary_sources as $cc) {
-            $url = 'https://pota-map.info/geojson/' . $cc . '.geojson';
-            $tmp = tempnam(sys_get_temp_dir(), 'pota_geo_');
-            if ($tmp === false) {
-                $errors[] = $cc . ': tempnam failed';
-                continue;
-            }
-            if (!$this->_download_to_file($url, $tmp)) {
-                $errors[] = $cc . ': download failed';
+        // CI keeps every executed statement in $this->db->queries with the binds
+        // already substituted, so the whole ~150 MB of geometry would be retained
+        // for the rest of the request. Nothing reads it (the profiler is never
+        // enabled), so switch it off for the import and restore it afterwards --
+        // the controller still redirects to /debug in this same request.
+        $prev_save_queries = $this->db->save_queries;
+        $this->db->save_queries = FALSE;
+        try {
+            foreach ($this->pota_boundary_sources as $cc) {
+                $url = 'https://pota-map.info/geojson/' . $cc . '.geojson';
+                $tmp = tempnam(sys_get_temp_dir(), 'pota_geo_');
+                if ($tmp === false) {
+                    $errors[] = $cc . ': tempnam failed';
+                    continue;
+                }
+                if (!$this->_download_to_file($url, $tmp)) {
+                    $errors[] = $cc . ': download failed';
+                    @unlink($tmp);
+                    continue;
+                }
+
+                $this->db->trans_begin();
+                $this->db->query('DELETE FROM pota_boundaries WHERE source = ?', [$cc]);
+
+                $count = 0;
+                $last_ref = '';
+                $batch = [];
+                $batch_bytes = 0;
+                // Batch on accumulated bytes, not on row count: park geometry is
+                // very uneven (DE averages 60 kB but DE-1211 alone is 1.3 MB), so
+                // a fixed row count could overshoot max_allowed_packet.
+                $flush = function () use (&$batch, &$batch_bytes) {
+                    if ($batch) {
+                        $this->db->insert_batch('pota_boundaries', $batch);
+                        $batch = [];
+                        $batch_bytes = 0;
+                    }
+                };
+
+                foreach ($this->_stream_geojson_features($tmp) as $feature) {
+                    if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') { continue; }
+                    $ref = $feature['properties']['id'] ?? null;
+                    $geom = $feature['geometry'] ?? null;
+                    if ($ref === null || $geom === null) { continue; }
+
+                    $json = json_encode($geom);
+                    $batch[] = ['reference' => $ref, 'geom' => $json, 'source' => $cc];
+                    $batch_bytes += strlen($json);
+                    $last_ref = $ref;
+                    $count++;
+
+                    // 4 MB keeps every emitted statement well under the 16 MB
+                    // default max_allowed_packet even when outsized parks cluster.
+                    if ($batch_bytes >= 4 * 1024 * 1024) { $flush(); }
+                }
+                $flush();   // remainder
+
+                if ($count === 0) {
+                    $this->db->trans_rollback();
+                    $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
+                } elseif ($this->db->trans_status() === FALSE) {
+                    // last_query() is empty while save_queries is off, so name the
+                    // reference we got to instead -- more useful than the raw SQL.
+                    $this->db->trans_rollback();
+                    $errors[] = $cc . ': db error at/near ' . $last_ref . ' — rolled back';
+                } else {
+                    $this->db->trans_commit();
+                    $per_source[] = $cc . '=' . number_format($count);
+                    $total += $count;
+                }
                 @unlink($tmp);
-                continue;
             }
-
-            $this->db->trans_begin();
-            $this->db->query('DELETE FROM pota_boundaries WHERE source = ?', [$cc]);
-
-            $count = 0;
-            foreach ($this->_stream_geojson_features($tmp) as $feature) {
-                if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') { continue; }
-                $ref = $feature['properties']['id'] ?? null;
-                $geom = $feature['geometry'] ?? null;
-                if ($ref === null || $geom === null) { continue; }
-                $this->db->query(
-                    'INSERT INTO pota_boundaries (reference, geom, source) VALUES (?, ?, ?)',
-                    [$ref, json_encode($geom), $cc]
-                );
-                $count++;
-            }
-
-            if ($count === 0) {
-                $this->db->trans_rollback();
-                $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
-            } elseif ($this->db->trans_status() === FALSE) {
-                $this->db->trans_rollback();
-                $errors[] = $cc . ': db error — rolled back';
-            } else {
-                $this->db->trans_commit();
-                $per_source[] = $cc . '=' . number_format($count);
-                $total += $count;
-            }
-            @unlink($tmp);
+        } finally {
+            $this->db->save_queries = $prev_save_queries;
         }
 
         if ($total > 0) {
@@ -481,7 +526,6 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_TIMEOUT, 600);
         curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
         fclose($fp);
         return $code == 200;
     }
