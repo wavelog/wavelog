@@ -13,6 +13,7 @@
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
+	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
 	let satPassUrl      = cfg.satPassUrl || '';
 	let satPassLbl      = decodeHtml(cfg.satPassLbl) || 'Satellite passes';
@@ -43,7 +44,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, iotaLayer, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -491,7 +492,7 @@
 		// modal) or create a station location here (location pre-filled).
 		let actions =
 			'<div class="gl-pop-actions">' +
-				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
 				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
 			'</div>';
 
@@ -692,7 +693,7 @@
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
 			((createHref || spotText) ? '<div class="gl-pop-actions">' +
-				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
 				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
 			'</div>' : '') +
 			'</div>';
@@ -844,6 +845,114 @@
 	}
 	function disableSota() {
 		if (sotaCluster) { map.removeLayer(sotaCluster); }
+	}
+
+	/* ---- IOTA reference directory overlay ---- */
+	/* IOTA references are bounding-box rectangles, not points. Drawn as a flat
+	 * layer of polygons in one colour; click a rectangle for its details. Loads
+	 * lazily and is cached. NB: the table stores latitudes sign-reversed, and a
+	 * few islands wrap the antimeridian — both handled in iotaRect (mirrors
+	 * assets/js/sections/iotamap.js). */
+	function enableIota() {
+		if (!iotaUrl) { return; }
+		if (iotaLayer) { map.addLayer(iotaLayer); return; }       // cached after first load
+
+		mapLoadingStart();
+		fetch(iotaUrl)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				iotaLayer = L.layerGroup();
+				// Tag labels cluster when zoomed out (the rectangles stay plain layers).
+				let cluster = L.markerClusterGroup({
+					chunkedLoading: true,
+					maxClusterRadius: 50,
+					showCoverageOnHover: false
+				});
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
+					if (D.lat1 == null || D.lon1 == null || D.lat2 == null || D.lon2 == null) { continue; }
+					let g = iotaGeometry(D);   // antimeridian-adjusted longitudes
+					// The rectangle is purely visual: non-interactive, so map clicks
+					// pass straight through it. The tag label is the click target.
+					iotaLayer.addLayer(L.polygon(
+						[[-D.lat1, g.lon1], [-D.lat2, g.lon1], [-D.lat2, g.lon2], [-D.lat1, g.lon2]],
+						{ interactive: false, color: '#17a2b8', weight: 1, fillColor: '#17a2b8', fillOpacity: 0.12 }
+					));
+					let cLat = -(Number(D.lat1) + Number(D.lat2)) / 2;
+					let cLng = (g.lon1 + g.lon2) / 2;
+					let m = L.marker([cLat, cLng], { icon: iotaIcon(D.tag) });
+					m.refData = D;
+					m.bindPopup(iotaPopupRich);
+					cluster.addLayer(m);
+				}
+				iotaLayer.addLayer(cluster);   // cluster rides inside the group → atomic add/remove
+				map.addLayer(iotaLayer);
+				mapLoadingDone();
+			})
+			.catch(function (err) { console.error('IOTA directory load failed:', err); mapLoadingDone(); });
+	}
+	function disableIota() {
+		if (iotaLayer) { map.removeLayer(iotaLayer); }
+	}
+	/* Antimeridian unwrap for islands spanning ±180° (AN-016 is special-cased). */
+	function iotaGeometry(D) {
+		let lon1 = Number(D.lon1), lon2 = Number(D.lon2);
+		if (D.tag !== 'AN-016') {
+			if (lon1 > 0 && lon2 < 0 && lon1 - lon2 > 180) { lon2 += 360; }
+			if (lon1 < 0 && lon2 > 0 && lon2 - lon1 > 180) { lon1 += 360; }
+		}
+		return { lon1: lon1, lon2: lon2 };
+	}
+	/* Clickable tag label (e.g. EU-001) shown centred on each rectangle. */
+	function iotaIcon(tag) {
+		return L.divIcon({
+			className: 'iota-label',
+			html: esc(tag),
+			iconSize: [48, 14],
+			iconAnchor: [24, 7]
+		});
+	}
+	/* IOTA popup, styled like the WWFF/POTA/SOTA reference popups. The tag links
+	 * to its iota-world.org map page; grid + coords are the rectangle's centre. */
+	function iotaPopup(D, lat, lng, createHref, spotText) {
+		return '<div class="ref-popup" style="border-left-color:#17a2b8">' +
+			'<div class="ref-popup-top">' +
+			'<span class="ref-popup-type" style="background:#17a2b8">IOTA</span>' +
+			'<a class="ref-popup-ref" href="https://www.iota-world.org/iotamaps/?grpref=' + encodeURIComponent(D.tag) + '" target="_blank" rel="noopener noreferrer">' + esc(D.tag) + ' <i class="fas fa-up-right-from-square"></i></a>' +
+			'</div>' +
+			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.prefix ? '<div class="ref-popup-row"><i class="fas fa-broadcast-tower"></i><span>' + esc(D.prefix) + '</span></div>' : '') +
+			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(lat, lng, 3)) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(lat) + ', ' + fmtLng(lng) + '</span></div>' +
+			((createHref || spotText) ? '<div class="gl-pop-actions">' +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>' : '') +
+			'</div>';
+	}
+	/*
+	 * Open-time popup builder for an IOTA tag marker. Reads the stashed refData,
+	 * renders the popup immediately with create + share actions (sync), then
+	 * enriches both with DXCC/CQ/ITU/state once resolvePointMeta settles — the
+	 * same recipe as refPopupRich. The marker sits at the rectangle's centre
+	 * (antimeridian-unwrapped in enableIota), so its latLng is reused.
+	 */
+	function iotaPopupRich(layer) {
+		let D = layer.refData;
+		if (!D) { return ''; }
+		let ll = layer.getLatLng();
+		let cLat = ll.lat, cLng = ll.lng, loc = latLngToLocator(cLat, cLng, 3);
+		let extra = { iota: D.tag };
+		let locDesc = D.tag + ' (' + loc + ')';
+		let extraHash = '#IOTA ' + D.tag;
+		let baseHref = buildCreateHref(loc, null, extra);
+		let baseSpot = buildSpotText(locDesc, null, extraHash);
+		resolvePointMeta(cLat, cLng, loc).then(function (meta) {
+			if (layer.isPopupOpen && layer.isPopupOpen()) {
+				layer.setPopupContent(iotaPopup(D, cLat, cLng, buildCreateHref(loc, meta, extra), buildSpotText(locDesc, meta, extraHash)));
+			}
+		}).catch(function () { /* leave sync create + share in place */ });
+		return iotaPopup(D, cLat, cLng, baseHref, baseSpot);
 	}
 
 	/* ---- CQ / ITU zone resolution (coordinate -> zone, client-side) ---- */
@@ -1111,6 +1220,12 @@
 		if (sotaCb) {
 			sotaCb.addEventListener('change', function () {
 				if (this.checked) { enableSota(); } else { disableSota(); }
+			});
+		}
+		let iotaCb = document.getElementById('glIotaDir');
+		if (iotaCb) {
+			iotaCb.addEventListener('change', function () {
+				if (this.checked) { enableIota(); } else { disableIota(); }
 			});
 		}
 

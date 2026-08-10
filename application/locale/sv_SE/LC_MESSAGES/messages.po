@@ -681,6 +681,7 @@ msgstr " och "
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
 #: application/views/station_profile/edit.php:233
+#: application/views/activationplanner/index.php:70
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -705,6 +706,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/views/station_profile/edit.php:247
+#: application/views/activationplanner/index.php:68
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -731,6 +733,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/station_profile/edit.php:261
+#: application/views/activationplanner/index.php:69
 msgid "POTA"
 msgstr "POTA"
 
@@ -2169,6 +2172,7 @@ msgstr "Land"
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
 #: application/views/station_profile/edit.php:207
+#: application/views/activationplanner/index.php:71
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2259,6 +2263,10 @@ msgstr "Delstat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/activationplanner/index.php:20
+#: application/views/activationplanner/index.php:52
+#: application/views/activationplanner/index.php:67
+#: application/views/activationplanner/index.php:92
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -3415,6 +3423,7 @@ msgstr "Inte tillåtet"
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/activationplanner/index.php:22
 msgid "Error"
 msgstr "Fel"
 
@@ -5055,6 +5064,7 @@ msgstr "Rensa markörer"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/activationplanner/index.php:90
 msgid "Latitude"
 msgstr "Latitud"
 
@@ -5066,6 +5076,7 @@ msgstr "Latitud"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/activationplanner/index.php:91
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -5077,10 +5088,12 @@ msgstr ""
 
 #: application/views/activationplanner/index.php:17
 #: application/views/satellite/pass.php:21
+#: application/views/activationplanner/index.php:18
 msgid "Satellite passes"
 msgstr "Satellitpassager"
 
 #: application/views/activationplanner/index.php:18
+#: application/views/activationplanner/index.php:19
 msgid "Gridsquare borders"
 msgstr "Lokatorruta-gränser"
 
@@ -5104,40 +5117,49 @@ msgstr "Lokatorruta-gränser"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/activationplanner/index.php:21
 msgid "Close"
 msgstr "Stäng"
 
 #: application/views/activationplanner/index.php:22
+#: application/views/activationplanner/index.php:23
 msgid "Tracking"
 msgstr "Spårning"
 
 #: application/views/activationplanner/index.php:23
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/activationplanner/index.php:24
 msgid "Field"
 msgstr "Fält"
 
 #: application/views/activationplanner/index.php:24
+#: application/views/activationplanner/index.php:25
 msgid "Square"
 msgstr "Ruta"
 
 #: application/views/activationplanner/index.php:25
+#: application/views/activationplanner/index.php:26
 msgid "Subsquare"
 msgstr "Delruta"
 
 #: application/views/activationplanner/index.php:26
+#: application/views/activationplanner/index.php:27
 msgid "Locating…"
 msgstr "Hämtar plats…"
 
 #: application/views/activationplanner/index.php:27
+#: application/views/activationplanner/index.php:28
 msgid "Location access denied."
 msgstr "Platsåtkomst nekad."
 
 #: application/views/activationplanner/index.php:28
+#: application/views/activationplanner/index.php:29
 msgid "Location unavailable."
 msgstr "Plats inte tillgänglig."
 
 #: application/views/activationplanner/index.php:29
+#: application/views/activationplanner/index.php:30
 msgid "Location request timed out."
 msgstr "Platsbegäran tog för lång tid och avslutades."
 
@@ -5151,6 +5173,7 @@ msgstr "Referenser i denna ruta"
 
 #: application/views/activationplanner/index.php:34
 #: application/views/view_log/qso.php:615
+#: application/views/activationplanner/index.php:35
 msgid "Share"
 msgstr "Dela"
 
@@ -5164,30 +5187,37 @@ msgid "📻 Planning an activation from %s"
 msgstr "📻 Planerar en aktivering från %s"
 
 #: application/views/activationplanner/index.php:46
+#: application/views/activationplanner/index.php:47
 msgid "Plan your activity here"
 msgstr "Planera din aktivitet här"
 
 #: application/views/activationplanner/index.php:54
+#: application/views/activationplanner/index.php:55
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 eller 10 tecken Maidenhead-lokator"
 
 #: application/views/activationplanner/index.php:54
+#: application/views/activationplanner/index.php:55
 msgid "e.g. FN31pr"
 msgstr "t.ex. FN31pr"
 
 #: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:56
 msgid "to"
 msgstr "till"
 
 #: application/views/activationplanner/index.php:58
+#: application/views/activationplanner/index.php:59
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Valfri andra lokator för avstånd och bäring"
 
 #: application/views/activationplanner/index.php:58
+#: application/views/activationplanner/index.php:59
 msgid "e.g. JN58qm"
 msgstr "t.ex. JN58qm"
 
 #: application/views/activationplanner/index.php:59
+#: application/views/activationplanner/index.php:60
 msgid "Go"
 msgstr "Gå"
 
@@ -5203,28 +5233,34 @@ msgstr "Gå"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
 #: application/views/qso/index.php:757 application/views/user/edit.php:1341
+#: application/views/activationplanner/index.php:61
 msgid "Clear"
 msgstr "Rensa"
 
 #: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:62
 msgid "Find my location and gridsquare"
 msgstr "Hitta min plats och lokator"
 
 #: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:62
 msgid "Locate me"
 msgstr "Hitta mig"
 
 #: application/views/activationplanner/index.php:64
 #: application/views/simplefle/index.php:162
+#: application/views/activationplanner/index.php:65
 msgid "Refs"
 msgstr "Referenser"
 
 #: application/views/activationplanner/index.php:76
 #: application/views/qso/index.php:758
+#: application/views/activationplanner/index.php:78
 msgid "More options"
 msgstr "Fler alternativ"
 
 #: application/views/activationplanner/index.php:77
+#: application/views/activationplanner/index.php:79
 msgid "Hide options"
 msgstr "Dölj alternativ"
 
@@ -5252,6 +5288,7 @@ msgstr "Dölj alternativ"
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
 #: application/views/station_profile/edit.php:151
+#: application/views/activationplanner/index.php:93
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
@@ -5273,6 +5310,7 @@ msgstr "CQ-zon"
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
 #: application/views/station_profile/edit.php:166
+#: application/views/activationplanner/index.php:94
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
