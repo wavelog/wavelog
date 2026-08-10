@@ -241,7 +241,7 @@ class Widgets extends CI_Controller {
 	 * @param string $user_slug
 	 * @return void
 	 */
-	public function lotw_upload($user_slug = "") {
+	public function lotw_upload($user_slug = "", $sortcriterion = "") {
 
 		$this->load->model('themes_model');
 		$theme = $this->input->get('theme', TRUE);
@@ -283,17 +283,26 @@ class Widgets extends CI_Controller {
 
 		if ($widget_options->is_enabled === false) {
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
-			$data['error'] = __("User has on-air widget disabled");
+			$data['error'] = __("User has disabled the LoTW upload widget");
 			$data['user_slug'] = $user_slug;
 			$data['nojs'] = $nojs;
 			$this->load->view('widgets/lotw_upload', $data);
 			return;
 		}
 
+		$this->load->model('Lotw_model');
+		if ($sortcriterion == 'call') {
+			$orderby = 'callsign';
+		} else {
+			$orderby = 'last_upload';
+		}
+		$query = $this->Lotw_model->last_lotw_upload($user_id, $orderby);
+
 		$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 		$data['user_slug'] = $user_slug;
 
 		$data['user_callsign'] = strtoupper($user->user_callsign);
+		$data['lotw_uploads'] = $query->result();
 
 		$this->load->view('widgets/lotw_upload', $data);
 	}

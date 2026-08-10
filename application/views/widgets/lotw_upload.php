@@ -22,6 +22,55 @@ This is a widget to show the last LoTW upload in your QRZ.com Bio or somewhere e
         .widget.container {
             max-width: none;
         }
+
+        .left-column {
+            width: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: top;
+            border-right: 1px solid #444;
+            padding: 10px;
+        }
+
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .top-right {
+            height: 60px;
+            display: flex;
+        }
+
+        .top-right,
+        .bottom-right {
+            border-bottom: 1px solid #444;
+            padding: 10px;
+        }
+
+        .bottom-right {
+            flex: 1;
+        }
+
+        .widgetLogo {
+            width: 150px;
+            height: 150px;
+        }
+
+        .lotw-upload-label {
+            font-size: 0.9em;
+            margin-right: 10px;
+            padding-right: 10px;
+        }
+
+        .last-updated {
+            font-size: 0.8em;
+            color: #6c757d;
+            font-style: italic;
+        }
     </style>
 </head>
 
@@ -36,13 +85,28 @@ This is a widget to show the last LoTW upload in your QRZ.com Bio or somewhere e
             <div class="top-right d-flex justify-content-between align-items-center">
                 <div>
                     <span class="<?= $text_size_class ?>" id="status-text">
+                      <strong><?= __("Last LoTW Uploads"); ?></strong>
                     </span>
                 </div>
                 <div class="refresh-indicator" id="refresh-indicator">
                     <small>🔄</small>
                 </div>
             </div>
-            <div class="bottom-right mt-3" id="frequency-container">
+            <div class="bottom-right mt-3" id="lotw_uploads-container">
+                <div class="mb-2">
+                <table>
+                <tr>
+                    <th><?= __("Callsign"); ?></th>
+                    <th><?= __("Last Upload (UTC)"); ?></th>
+                </tr>
+                <?php foreach ($lotw_uploads as $upload) { ?>
+                    <tr>
+                    <td><span class="lotw-upload-label"><?php echo $upload->callsign.":"; ?></span></td>
+                    <td><span class="lotw-upload-label"><?php echo $upload->last_upload; ?></span></td>
+                    </tr>
+                <?php } ?>
+                </table>
+                </div>
                 <div class="last-updated mt-2">
                     <small id="last-updated-text">Last updated: <?= date('H:i:s'); ?></small>
                 </div>
