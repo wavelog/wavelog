@@ -1671,15 +1671,15 @@ class Logbook_model extends CI_Model {
 
 		if ($dcl_sent == 'N' && $qso->COL_DCL_QSL_SENT != $dcl_sent) {
 			$dclsdate = null;
-		} elseif (!$qso->COL_DCL_QSLSDATE || $qso->COL_DCL_QSLSDATE != $dcl_sent) {
+		} elseif (!$qso->COL_DCL_QSLSDATE || $qso->COL_DCL_QSL_SENT != $dcl_sent) {
 			$dclsdate = date('Y-m-d H:i:s');
 		} else {
 			$dclsdate = $qso->COL_DCL_QSLSDATE;
 		}
 
-		if ($dcl_rcvd == 'N' && $qso->COL_DCL_QSLRDATE != $dcl_rcvd) {
+		if ($dcl_rcvd == 'N' && $qso->COL_DCL_QSL_RCVD != $dcl_rcvd) {
 			$dclrdate = null;
-		} elseif (!$qso->COL_DCL_QSLRDATE || $qso->COL_DCL_QSLRDATE != $dcl_rcvd) {
+		} elseif (!$qso->COL_DCL_QSLRDATE || $qso->COL_DCL_QSL_RCVD != $dcl_rcvd) {
 			$dclrdate = date('Y-m-d H:i:s');
 		} else {
 			$dclrdate = $qso->COL_DCL_QSLRDATE;
