@@ -8,22 +8,20 @@ WAS award map.
 
 ## Source data
 
-- **Lower 48 states** (all counties except Connecticut, which is handled
-  separately below): US Census Bureau, 2018 Cartographic Boundary Files
-  (`cb_2018_us_county_20m`), as repackaged in FIPS-keyed GeoJSON by
-  [plotly/datasets](https://github.com/plotly/datasets/blob/master/geojson-counties-fips.json)
-  (plotly/datasets is MIT licensed; the underlying boundary data itself is a
-  work of the US federal government).
-- **Connecticut** and **Alaska**: fetched directly from the US Census Bureau's
-  [TIGERweb `State_County` MapServer](https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer)
-  (2025 vintage), because the 2018 cartographic file predates Connecticut's
-  2022 switch from 8 counties to 9 "planning regions" and Alaska's 2015/2019
-  renames and boundary changes (Wade Hampton -> Kusilvak Census Area,
-  Valdez-Cordova split into Chugach and Copper River Census Areas). These two
-  states' geometry was simplified (Ramer-Douglas-Peucker, ~0.001 degree
-  tolerance) to bring point density in line with the generalized cartographic
-  files used for the rest of the country, since TIGERweb serves full-resolution
-  TIGER/Line boundaries.
+All counties come from a single source: the US Census Bureau's 2022
+Cartographic Boundary Files at 1:500,000 scale (`cb_2022_us_county_500k`),
+downloaded from `https://www2.census.gov/geo/tiger/GENZ2022/shp/cb_2022_us_county_500k.zip`
+and converted from Shapefile to GeoJSON (via `pyshp`). This is the most
+detailed of the Census Bureau's standard cartographic boundary resolutions
+(500k/5m/20m); an earlier version of these files used the much coarser 20m
+scale, which produced visibly blocky/faceted county outlines - 500k fixes
+that while still being far lighter than the full-resolution TIGER/Line data.
+
+Because this is the 2022 vintage, it already reflects Connecticut's 2022
+switch from 8 counties to 9 "planning regions" and Alaska's 2015/2019 renames
+and boundary changes (Wade Hampton -> Kusilvak Census Area, Valdez-Cordova
+split into Chugach and Copper River Census Areas), so no separate/newer
+source or manual simplification was needed for those two states this time.
 
 All boundary data originates from the US Census Bureau and is in the public
 domain in the United States (17 U.S.C. § 105 - works of the US government are
@@ -39,8 +37,7 @@ from the Census Bureau's spelling/spacing (e.g. "St. Clair" vs "Saint Clair",
 disambiguate from same-named counties) - see the `NAME_OVERRIDES` table used
 to build these files for the full list of corrections applied.
 
-One ARRL county, Virginia's "Bedford City" (FIPS 51515), was legally merged
-into Bedford County in 2013 but is still counted as a distinct target in
-`US_counties.csv` and still ships as its own small polygon in the 2018
-cartographic file used here, so it renders correctly on the map as a
-historical boundary rather than being dropped.
+Every county in `US_counties.csv` has a matching feature except one: Virginia's
+"Bedford City" was legally merged into Bedford County in 2013 and has had no
+boundary of its own since, so it's still counted as a distinct target
+(matching MARAC's own list) but simply has no polygon on the map.
