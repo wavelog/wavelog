@@ -39,6 +39,10 @@
 	let gridLbl         = decodeHtml(cfg.gridLbl) || 'Gridsquare';
 	let nearbyRefsLbl   = decodeHtml(cfg.nearbyRefsLbl) || 'Nearby refs';
 	let nearbyRefsRadiusLbl = decodeHtml(cfg.nearbyRefsRadiusLbl) || 'References within %s of the gridsquare';
+	let colTypeLbl      = decodeHtml(cfg.colTypeLbl) || 'Type';
+	let colReferenceLbl = decodeHtml(cfg.colReferenceLbl) || 'Reference';
+	let colNameLbl      = decodeHtml(cfg.colNameLbl) || 'Name';
+	let colDistanceLbl  = decodeHtml(cfg.colDistanceLbl) || 'Distance';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -547,7 +551,11 @@
 			}).join('');
 			return '<h6 class="mt-3 mb-1">' + esc(b.label) + ' <span class="badge bg-secondary">' + b.rows.length + '</span></h6>' +
 				'<table class="table table-sm table-striped mb-0 gl-nearby-table">' +
-				'<thead><tr><th style="width:70px">Type</th><th style="width:120px">Reference</th><th>Name</th><th class="text-end" style="width:50px">' + ul + '</th></tr></thead>' +
+				'<thead><tr>' +
+				'<th style="width:70px">' + esc(colTypeLbl) + '</th>' +
+				'<th style="width:120px">' + esc(colReferenceLbl) + '</th>' +
+				'<th>' + esc(colNameLbl) + '</th>' +
+				'<th class="text-end" style="width:90px">' + esc(colDistanceLbl) + '</th></tr></thead>' +
 				'<tbody>' + (trs || '<tr><td colspan="4" class="text-muted">—</td></tr>') + '</tbody></table>';
 		}).join('');
 
