@@ -175,6 +175,46 @@ class Activationplanner extends CI_Controller {
 		echo $json;
 	}
 
+	public function pota_boundary($reference = '') {
+		$reference = preg_replace('/[^A-Za-z0-9\-]/', '', (string) $reference);
+		if ($reference === '') {
+			$this->output->set_status_header(404);
+			return;
+		}
+		$rows = $this->db->query('SELECT geom FROM pota_boundaries WHERE reference = ?', [$reference])->result();
+		if (!$rows) {
+			$this->output->set_status_header(404);
+			return;
+		}
+
+		$geoms = [];
+		foreach ($rows as $r) {
+			$g = json_decode($r->geom, true);
+			if (is_array($g)) { $geoms[] = $g; }
+		}
+		$geometry = count($geoms) === 1
+			? $geoms[0]
+			: ['type' => 'GeometryCollection', 'geometries' => $geoms];
+
+		$feature = [
+			'type'       => 'Feature',
+			'geometry'   => $geometry,
+			'properties' => ['reference' => $reference],
+		];
+		$json = json_encode($feature);
+		$etag = '"' . md5($json) . '"';
+		session_write_close();
+		session_cache_limiter('private');
+		header('Cache-Control: private, max-age=31536000');
+		header('ETag: ' . $etag);
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304);
+			return;
+		}
+		header('Content-Type: application/geo+json');
+		echo $json;
+	}
+
 	public function sota_directory() {
 		$this->load->model('sota');
 		$json = json_encode($this->sota->get_directory());

@@ -11,6 +11,7 @@
 		stateUrl:   <?php echo json_encode(site_url('activationplanner/state_for_point')); ?>,
 		wwffUrl:    <?php echo json_encode(site_url('activationplanner/wwff_directory')); ?>,
 		potaUrl:    <?php echo json_encode(site_url('activationplanner/pota_directory')); ?>,
+		potaBoundaryUrl: <?php echo json_encode(site_url('activationplanner/pota_boundary') . '/'); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,

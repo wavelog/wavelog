@@ -12,6 +12,7 @@
 	let stateUrl        = cfg.stateUrl || '';
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
+	let potaBoundaryUrl = cfg.potaBoundaryUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
 	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
@@ -45,6 +46,9 @@
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
 	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, iotaLayer, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
+	// Drawn POTA park boundaries, keyed by reference (ref -> L.geoJSON layer).
+	// Populated on demand when a marker is clicked; cleared by clearAll().
+	let boundaryLayers = {};
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -792,6 +796,26 @@
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
 	}
+
+	function drawParkBoundary(ref) {
+		if (!potaBoundaryUrl || !ref || boundaryLayers[ref]) { return; }
+		if (!/^(DE|AT|CH|CZ|DK|LU|LI)-/.test(ref)) { return; }
+		boundaryLayers[ref] = true; // sentinel: in-flight / done, prevents refetch
+		fetch(potaBoundaryUrl + encodeURIComponent(ref))
+			.then(function (r) {
+				if (!r.ok) { return null; }
+				return r.json();
+			})
+			.then(function (feature) {
+				if (!feature || !feature.geometry) { return; }
+				let layer = L.geoJSON(feature, {
+					style: { color: '#238b45', weight: 2, fillColor: '#238b45', fillOpacity: 0.15 }
+				}).addTo(map);
+				boundaryLayers[ref] = layer;
+			})
+			.catch(function () { /* 404 / network: leave the point marker as-is */ });
+	}
+
 	function enablePota() {
 		if (!potaUrl) { return; }
 		if (potaCluster) { map.addLayer(potaCluster); return; }      // cached after first load
@@ -810,6 +834,7 @@
 				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
 				dot.refType = 'POTA'; dot.refData = D; dot.refColor = '#238b45';
 				dot.bindPopup(refPopupRich);
+				dot.on('popupopen', function () { drawParkBoundary(D.reference); });
 				potaCluster.addLayer(dot);
 			}
 			map.addLayer(potaCluster);
@@ -1309,6 +1334,11 @@
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (refOverlay)  { refOverlay.clearLayers(); }   // nearby POTA/SOTA/WWFF markers
+		for (const ref in boundaryLayers) {               // drawn park boundaries
+			const l = boundaryLayers[ref];
+			if (l && l.remove) { map.removeLayer(l); }
+		}
+		boundaryLayers = {};
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
 		stopTracking();  // stop autotracking, restore the Locate button

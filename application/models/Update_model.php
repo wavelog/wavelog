@@ -404,6 +404,145 @@ class Update_model extends CI_Model {
         }
     }
 
+    private $pota_boundary_sources = ['DE', 'AT', 'CH', 'CZ', 'DK', 'LU', 'LI'];
+
+    function pota_boundaries() {
+        $this->load->model('cron_model');
+        $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+
+        set_time_limit(0);                       // 7 files, the big ones are slow
+        ini_set('memory_limit', '512M');          // headroom for the largest single park
+
+        $total = 0;
+        $errors = [];
+        $per_source = [];
+
+        foreach ($this->pota_boundary_sources as $cc) {
+            $url = 'https://pota-map.info/geojson/' . $cc . '.geojson';
+            $tmp = tempnam(sys_get_temp_dir(), 'pota_geo_');
+            if ($tmp === false) {
+                $errors[] = $cc . ': tempnam failed';
+                continue;
+            }
+            if (!$this->_download_to_file($url, $tmp)) {
+                $errors[] = $cc . ': download failed';
+                @unlink($tmp);
+                continue;
+            }
+
+            $this->db->trans_begin();
+            $this->db->query('DELETE FROM pota_boundaries WHERE source = ?', [$cc]);
+
+            $count = 0;
+            foreach ($this->_stream_geojson_features($tmp) as $feature) {
+                if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') { continue; }
+                $ref = $feature['properties']['id'] ?? null;
+                $geom = $feature['geometry'] ?? null;
+                if ($ref === null || $geom === null) { continue; }
+                $this->db->query(
+                    'INSERT INTO pota_boundaries (reference, geom, source) VALUES (?, ?, ?)',
+                    [$ref, json_encode($geom), $cc]
+                );
+                $count++;
+            }
+
+            if ($count === 0) {
+                $this->db->trans_rollback();
+                $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
+            } elseif ($this->db->trans_status() === FALSE) {
+                $this->db->trans_rollback();
+                $errors[] = $cc . ': db error — rolled back';
+            } else {
+                $this->db->trans_commit();
+                $per_source[] = $cc . '=' . number_format($count);
+                $total += $count;
+            }
+            @unlink($tmp);
+        }
+
+        if ($total > 0) {
+            $msg = 'DONE: ' . number_format($total) . ' park boundaries saved'
+                . ' (' . implode(', ', $per_source) . ')';
+            if ($errors) { $msg .= ' | errors: ' . implode('; ', $errors); }
+            return $msg;
+        }
+        return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
+    }
+
+    private function _download_to_file($url, $path) {
+        $fp = fopen($path, 'wb');
+        if ($fp === false) { return false; }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 600);
+        curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        fclose($fp);
+        return $code == 200;
+    }
+
+    private function _stream_geojson_features($filepath) {
+        $fh = fopen($filepath, 'rb');
+        if ($fh === false) { return; }
+        $depth = 0;          // global brace/bracket depth
+        $in_str = false;
+        $esc = false;
+        $capture = false;    // accumulating a candidate feature
+        $buf = '';
+        $open_depth = 0;     // depth at which the capture opened
+
+        while (!feof($fh)) {
+            $chunk = fread($fh, 65536);
+            if ($chunk === false || $chunk === '') { break; }
+            $n = strlen($chunk);
+            for ($i = 0; $i < $n; $i++) {
+                $c = $chunk[$i];
+                if ($in_str) {
+                    if ($capture) { $buf .= $c; }
+                    if ($esc) { $esc = false; }
+                    elseif ($c === '\\') { $esc = true; }
+                    elseif ($c === '"') { $in_str = false; }
+                    continue;
+                }
+                if ($c === '"') {
+                    $in_str = true;
+                    if ($capture) { $buf .= $c; }
+                } elseif ($c === '{' || $c === '[') {
+                    $depth++;
+                    if ($capture) {
+                        $buf .= $c;
+                    } elseif ($depth === 3) {
+                        // direct child of the features array → start a feature
+                        $capture = true;
+                        $buf = '{';
+                        $open_depth = $depth;
+                    }
+                } elseif ($c === '}' || $c === ']') {
+                    $depth--;
+                    if ($capture) {
+                        $buf .= $c;
+                        if ($depth < $open_depth) {
+                            $feat = json_decode($buf, true);
+                            if (is_array($feat)) {
+                                yield $feat;
+                            }
+                            $capture = false;
+                            $buf = '';
+                        }
+                    }
+                } elseif ($capture) {
+                    $buf .= $c;
+                }
+            }
+        }
+        fclose($fh);
+    }
+
     function lotw_users() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
