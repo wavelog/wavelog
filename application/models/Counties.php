@@ -13,7 +13,8 @@ class Counties extends CI_Model
 
     /*
      * Returns a result of worked/confirmed US Counties, grouped by STATE
-     * QSL card and EQSL is valid for award. Satellite does not count.
+     * QSL card, LoTW, EQSL, QRZ.com and Clublog are valid for award.
+     * Satellite does not count.
      * No band split, as it only count the number of counties in the award.
      */
     function get_counties_summary() {
@@ -42,7 +43,7 @@ class Counties extends CI_Model
             " and COL_DXCC in ('291', '6', '110')
                     and coalesce(COL_CNTY, '') <> ''
                     and COL_BAND != 'SAT'
-                    and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y')
+                    and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y' or col_lotw_qsl_rcvd='Y' or COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' or COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y')
                     group by COL_STATE
                     order by COL_STATE
                 ) x on thcv.COL_STATE = x.COL_STATE
@@ -107,7 +108,7 @@ class Counties extends CI_Model
         }
 
         if ($confirmationtype != 'none') {
-            $sql .= " and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y')";
+            $sql .= " and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y' or col_lotw_qsl_rcvd='Y' or COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' or COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y')";
         }
 
         $sql .= " order by thcv.COL_STATE";
@@ -141,7 +142,7 @@ class Counties extends CI_Model
 
         $sql = "select COL_CNTY,
 			count(*) as worked,
-			sum(case when (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y') then 1 else 0 end) as confirmed
+			sum(case when (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y' or col_lotw_qsl_rcvd='Y' or COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' or COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y') then 1 else 0 end) as confirmed
 		from " . $this->config->item('table_name') . " thcv
 		where station_id in (" . $location_list . ")" .
 		" and col_band in (" . $bandslots_list . ")" .
