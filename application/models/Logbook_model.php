@@ -4284,7 +4284,7 @@ class Logbook_model extends CI_Model {
 				$row = $query->row();
 				return [
 					// Country stats
-				'Unique_Callsigns' => $row->Unique_Callsigns,
+					'Unique_Callsigns' => $row->Unique_Callsigns,
 					'Countries_Worked' => $row->Countries_Worked,
 					'Countries_Worked_QSL' => $row->Countries_Worked_QSL,
 					'Countries_Worked_LOTW' => $row->Countries_Worked_LOTW,
