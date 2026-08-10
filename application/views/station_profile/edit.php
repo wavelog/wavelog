@@ -123,12 +123,9 @@ if ($dxcc_list->result() > 0) {
 					</div>
 
 					<!-- State -->
-					<script>
-						var set_state = '<?php echo $my_station_profile->state; ?>';
-					</script>
 					<div class="mb-3" id="location_state">
 		    			<label for="stateInput" id="stateInputLabel"></label>
-						<select class="form-select" name="station_state" id="stateDropdown">
+						<select class="form-select" name="station_state" id="stateDropdown" data-state="<?php echo htmlspecialchars((string)($my_station_profile->state ?? '')); ?>">
 							<option value=""></option>
 						</select>
 						<small id="StateHelp" class="form-text text-muted"><?= __("Station state. Applies to certain countries only."); ?></small>
