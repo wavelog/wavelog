@@ -38,6 +38,7 @@
 	let planningActivationLbl   = decodeHtml(cfg.planningActivationLbl) || '📻 Planning an activation from %s';
 	let gridLbl         = decodeHtml(cfg.gridLbl) || 'Gridsquare';
 	let nearbyRefsLbl   = decodeHtml(cfg.nearbyRefsLbl) || 'Nearby refs';
+	let nearbyRefsRadiusLbl = decodeHtml(cfg.nearbyRefsRadiusLbl) || 'References within %s of the gridsquare';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -178,6 +179,14 @@
 
 	/* Short unit label for the user's measurement base: km / mi / nm. */
 	function unitLabel(u) { return u === 'K' ? 'km' : u === 'N' ? 'nm' : 'mi'; }
+
+	/* km → the user's display unit, using the same factors as calcDistance so
+	   server-given km distances reconcile with distances computed client-side. */
+	function kmToUnit(km, unit) {
+		let mi = km / 1.609344;                                        // km → statute miles (calcDistance base)
+		let v = unit === 'K' ? km : unit === 'N' ? mi * 0.8684 : mi;   // M → mi
+		return Math.round(v * 10) / 10;                                // 1-decimal precision, like calcDistance
+	}
 
 	/*
 	 * Distance + bearing from [lat,lng] to each side of its 4-character
@@ -515,11 +524,16 @@
 	 * given gridsquare, fetched server-side and shown grouped by distance band.
 	 */
 	function showNearbyModal(loc, rows) {
+		let u = measurementBase, ul = unitLabel(u);
+		// Bands are fixed 5 km quadrants of the (server-side, km) query; the km
+		// boundary values are converted to the user's unit only for the labels,
+		// so bucketing stays exact while the readout matches the page's unit.
+		let bv = [5, 10, 15, 20].map(function (k) { return kmToUnit(k, u); });
 		let bands = [
-			{ label: 'Within 5 km', rows: [] },
-			{ label: '5-10 km', rows: [] },
-			{ label: '10-15 km', rows: [] },
-			{ label: '15-20 km', rows: [] }
+			{ label: 'Within ' + bv[0] + ' ' + ul, rows: [] },
+			{ label: bv[0] + '-' + bv[1] + ' ' + ul, rows: [] },
+			{ label: bv[1] + '-' + bv[2] + ' ' + ul, rows: [] },
+			{ label: bv[2] + '-' + bv[3] + ' ' + ul, rows: [] }
 		];
 		(rows || []).forEach(function (r) {
 			bands[Math.min(bands.length - 1, Math.floor(r.dist / 5))].rows.push(r);
@@ -529,11 +543,11 @@
 			let trs = b.rows.map(function (r) {
 				let col = r.type === 'POTA' ? '#238b45' : r.type === 'SOTA' ? '#d95f0e' : '#2b8cbe';
 				return '<tr><td><span class="gl-pop-ref-type" style="background:' + col + '">' + esc(r.type) + '</span></td><td>' + esc(r.ref) + '</td><td>' +
-					esc(r.name || '') + '</td><td class="text-end">' + r.dist + '</td></tr>';
+					esc(r.name || '') + '</td><td class="text-end">' + groupThousands(kmToUnit(r.dist, u)) + ' ' + ul + '</td></tr>';
 			}).join('');
 			return '<h6 class="mt-3 mb-1">' + esc(b.label) + ' <span class="badge bg-secondary">' + b.rows.length + '</span></h6>' +
 				'<table class="table table-sm table-striped mb-0 gl-nearby-table">' +
-				'<thead><tr><th style="width:70px">Type</th><th style="width:120px">Reference</th><th>Name</th><th class="text-end" style="width:50px">km</th></tr></thead>' +
+				'<thead><tr><th style="width:70px">Type</th><th style="width:120px">Reference</th><th>Name</th><th class="text-end" style="width:50px">' + ul + '</th></tr></thead>' +
 				'<tbody>' + (trs || '<tr><td colspan="4" class="text-muted">—</td></tr>') + '</tbody></table>';
 		}).join('');
 
@@ -1227,6 +1241,8 @@
 		// "Nearby refs": list WWFF/POTA/SOTA references within 20 km of the grid.
 		let nearbyBtn = document.getElementById('glNearby');
 		if (nearbyBtn) {
+			// Tooltip follows the user's unit (e.g. "References within 12.4 mi …").
+			nearbyBtn.title = nearbyRefsRadiusLbl.replace('%s', kmToUnit(20, measurementBase) + ' ' + unitLabel(measurementBase));
 			nearbyBtn.addEventListener('click', function () {
 				let raw = (document.getElementById('glGrid').value || '').trim();
 				let cell = locatorToCell(raw);

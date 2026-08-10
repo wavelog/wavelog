@@ -20,6 +20,7 @@
 		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
 		gridLbl:       <?php echo json_encode(__("Gridsquare")); ?>,
 		nearbyRefsLbl: <?php echo json_encode(__("Nearby refs")); ?>,
+		nearbyRefsRadiusLbl: <?php echo json_encode(__("References within %s of the gridsquare")); ?>,
 		closeLbl:      <?php echo json_encode(__("Close")); ?>,
 		errorLbl:      <?php echo json_encode(__("Error")); ?>,
 		trackingLbl:   <?php echo json_encode(__("Tracking")); ?>,
@@ -62,7 +63,7 @@
 					<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
 					<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 					<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
-					<button id="glNearby" class="btn btn-outline-primary btn-sm" title="<?= __("References within 20 km of the gridsquare"); ?>"><?= __("Nearby refs"); ?></button>
+					<button id="glNearby" class="btn btn-outline-primary btn-sm"><?= __("Nearby refs"); ?></button>
 					<div class="gl-refsrow gl-secondary">
 						<div class="gl-refs gl-secondary dropdown">
 							<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Refs"); ?></button>
