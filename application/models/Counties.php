@@ -204,6 +204,47 @@ class Counties extends CI_Model
     }
 
     /*
+     * Returns worked/confirmed QSO counts per county across every state in one
+     * query, for the "Show Counties Map" feature. Unlike get_county_counts(),
+     * which is scoped to a single state (or 'All' counties merged together,
+     * colliding same-named counties from different states), this keeps
+     * COL_STATE and COL_CNTY together so the caller can key results per state.
+     * Same band/DXCC/SAT rules as get_counties()/get_county_counts().
+     */
+    function get_counties_map($qsl_sources = null) {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        if ($logbooks_locations_array[0] === -1) {
+            return null;
+        }
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		$this->load->model('bands');
+
+		$bandslots = $this->bands->get_worked_bands('uscounties');
+
+		$bandslots_list = "'".implode("','",$bandslots)."'";
+
+		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
+
+        $sql = "select COL_STATE, COL_CNTY,
+				count(*) as worked,
+				sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
+			from " . $this->config->item('table_name') . " thcv
+			where station_id in (" . $location_list . ")" .
+			" and col_band in (" . $bandslots_list . ")" .
+			" and COL_DXCC in ('291', '6', '110')
+			and coalesce(COL_CNTY, '') <> ''
+			and COL_BAND != 'SAT'
+			group by COL_STATE, COL_CNTY order by COL_STATE, COL_CNTY";
+
+		$query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    /*
      * Map of US state names (as written in assets/json/US_counties.csv) to their
      * 2-letter postal codes, which is what COL_STATE stores.
      */
