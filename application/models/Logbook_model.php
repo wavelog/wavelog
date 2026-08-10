@@ -4245,7 +4245,6 @@ class Logbook_model extends CI_Model {
 				COUNT(DISTINCT t.COL_CALL) as Unique_Callsigns,
 				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked,
 				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_QSL,
-				COUNT(DISTINCT CASE WHEN t.COL_EQSL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_EQSL,
 				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_LOTW,
 				-- DXCC confirmed totals intentionally count only paper QSL + LoTW.
 				-- eQSL is tracked separately in the UI as display-only information.
@@ -4288,7 +4287,6 @@ class Logbook_model extends CI_Model {
 				'Unique_Callsigns' => $row->Unique_Callsigns,
 					'Countries_Worked' => $row->Countries_Worked,
 					'Countries_Worked_QSL' => $row->Countries_Worked_QSL,
-					'Countries_Worked_EQSL' => $row->Countries_Worked_EQSL,
 					'Countries_Worked_LOTW' => $row->Countries_Worked_LOTW,
 					'Countries_Worked_Confirmed' => $row->Countries_Worked_Confirmed,
 					'Countries_Current' => $row->Countries_Current,

@@ -495,12 +495,6 @@ function echo_table_header_col($name) {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row" width="50%"><?= __("eQSL"); ?></th>
-						<td width="50%">
-							<span aria-label="<?= __("eQSL"); ?>: <?php echo $total_countries_confirmed_eqsl; ?>"><?php echo $total_countries_confirmed_eqsl; ?></span>
-						</td>
-					</tr>
-					<tr>
 						<th scope="row" width="50%"><?= __("Needed"); ?></th>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>
 					</tr>
