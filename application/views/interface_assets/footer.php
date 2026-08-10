@@ -2846,12 +2846,25 @@ function viewEqsl(picture, callsign) {
         });
     }
 
+    function countiesQslFilterData() {
+        var sources = ['qsl', 'lotw', 'eqsl', 'qrz', 'clublog'];
+        var data = {};
+        var $qslCheckbox = $('#countiesQsl');
+        if ($qslCheckbox.length) {
+            data['qslFilterSet'] = 1;
+            sources.forEach(function(source) {
+                data[source] = $('#counties' + source.charAt(0).toUpperCase() + source.slice(1)).is(':checked') ? 1 : 0;
+            });
+        }
+        return data;
+    }
+
     function displayStateCounties(state) {
         var baseURL= "<?php echo base_url(); ?>";
         $.ajax({
             url: baseURL + 'index.php/awards/counties_state_ajax',
             type: 'post',
-            data: {'State': state },
+            data: $.extend({'State': state }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
                     title: "<?php echo __("US Counties for state"); ?>" + ': ' + state,
@@ -2904,7 +2917,7 @@ function viewEqsl(picture, callsign) {
         $.ajax({
             url: baseURL + 'index.php/awards/counties_list_ajax',
             type: 'post',
-            data: {'State': state, 'Type': type },
+            data: $.extend({'State': state, 'Type': type }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
                     title: (type === 'confirmed' ? "<?php echo __("Confirmed counties for state:"); ?>" : "<?php echo __("Worked counties for state:"); ?>") + " " +state,

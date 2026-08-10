@@ -1357,7 +1357,9 @@ class Awards extends CI_Controller {
 
     public function counties()	{
         $this->load->model('counties');
-        $data['counties_progress'] = $this->counties->get_counties_progress();
+        $qsl_sources = $this->counties_qsl_sources_from_post();
+        $data['counties_progress'] = $this->counties->get_counties_progress($qsl_sources);
+        $data['qsl_sources'] = $qsl_sources;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
@@ -1367,11 +1369,37 @@ class Awards extends CI_Controller {
         $this->load->view('interface_assets/footer');
     }
 
+    /*
+     * Reads which QSL confirmation sources (qsl/lotw/eqsl/qrz/clublog) are
+     * selected in the counties award filter. The filter form (and the state
+     * / list AJAX calls it drives) always posts a "qslFilterSet" marker
+     * alongside the checkboxes, so an unchecked box can be told apart from
+     * a request that never included the filter (which defaults to all
+     * sources, e.g. a fresh page load).
+     */
+    private function counties_qsl_sources_from_post() {
+        $available = array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog');
+
+        if (!$this->input->post('qslFilterSet')) {
+            return $available;
+        }
+
+        $qsl_sources = array();
+        foreach ($available as $source) {
+            if ($this->input->post($source)) {
+                $qsl_sources[] = $source;
+            }
+        }
+
+        return $qsl_sources;
+    }
+
     public function counties_list_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
-        $data['counties_array'] = $this->counties->counties_details($state, $type);
+        $qsl_sources = $this->counties_qsl_sources_from_post();
+        $data['counties_array'] = $this->counties->counties_details($state, $type, $qsl_sources);
         $data['type'] = $type;
         $this->load->view('awards/counties/details_ajax', $data);
     }
@@ -1393,7 +1421,8 @@ class Awards extends CI_Controller {
     public function counties_state_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $data['counties_array'] = $this->counties->get_county_counts($state);
+        $qsl_sources = $this->counties_qsl_sources_from_post();
+        $data['counties_array'] = $this->counties->get_county_counts($state, $qsl_sources);
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);
     }
