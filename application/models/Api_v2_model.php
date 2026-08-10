@@ -113,7 +113,7 @@ class Api_v2_model extends CI_Model {
 				'description' => __("Full access for the Wavelog Mobile app (iOS & Android)."),
 				'icon'        => 'fas fa-mobile-alt',
 				'class'       => 'btn-primary',
-				'scopes'      => ['qso:read', 'qso:write', 'qso:delete', 'station:read', 'station:write', 'station:delete', 'lookup:read', 'statistic:read', 'confirmation:read'],
+				'scopes'      => ['qso:read', 'qso:write', 'qso:delete', 'station:read', 'station:write', 'station:delete', 'lookup:read', 'statistic:read', 'confirmation:read', 'logbook:read', 'logbook:write', 'logbook:delete', 'dxcc:read', 'contest:read', 'contest:write', 'contest:delete'],
 			],
 			'readonly' => [
 				'name'        => __("Read-only"),
