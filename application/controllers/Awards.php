@@ -1356,6 +1356,12 @@ class Awards extends CI_Controller {
     }
 
     public function counties()	{
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/countiesmap.js',
+			'assets/js/leaflet/L.Maidenhead.js',
+		];
+
         $this->load->model('counties');
         $qsl_sources = $this->counties_qsl_sources_from_post();
         $data['counties_progress'] = $this->counties->get_counties_progress($qsl_sources);
@@ -1366,7 +1372,34 @@ class Awards extends CI_Controller {
         $data['page_title'] = sprintf(__("Awards - %s"), __("US Counties"));
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/counties/index');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('interface_assets/footer', $footerData);
+    }
+
+    /*
+        function counties_map
+
+        AJAX endpoint backing the "Show Counties Map" feature: returns a JSON
+        map of "STATE|County" -> 'C' (confirmed), 'W' (worked, not confirmed)
+        or omitted (not worked), for every county with at least one QSO.
+        Mirrors was_map()'s status-map convention but keyed per county
+        instead of per state, and respects the same QSL-source filter as the
+        rest of the counties award page.
+    */
+    public function counties_map() {
+        $this->load->model('counties');
+        $qsl_sources = $this->counties_qsl_sources_from_post();
+        $county_counts = $this->counties->get_counties_map($qsl_sources);
+
+        $statuses = array();
+        if (isset($county_counts)) {
+            foreach ($county_counts as $row) {
+                $key = $row['COL_STATE'] . '|' . $row['COL_CNTY'];
+                $statuses[$key] = ((int) $row['confirmed'] > 0) ? 'C' : 'W';
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($statuses);
     }
 
     /*
