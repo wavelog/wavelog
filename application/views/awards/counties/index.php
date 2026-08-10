@@ -1,4 +1,17 @@
+<script>
+	var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>";
+	var lang_usa_county = "<?= __("County"); ?>";
+	var lang_hover_over_a_county = "<?= __("Hover over a county"); ?>";
+</script>
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 <style>
+    #countiesmap {
+        height: calc(100vh - 300px) !important;
+        max-height: 900px !important;
+    }
+
     .dropdown-filters-responsive {
         width: min(850px, 90vw);
         min-width: 600px;
@@ -21,7 +34,14 @@
         <!-- End of Award Info Box -->
     <div class="card">
         <div class="card-header">
-            <?= __("Counties Progress"); ?>
+            <ul class="nav nav-tabs card-header-tabs" id="countiesTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="counties-table-tab" data-bs-toggle="tab" href="#countiestable" role="tab" aria-controls="countiestable" aria-selected="true"><i class="fas fa-table"></i> <?= __("Table"); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="counties-map-tab" onclick="load_counties_map();" data-bs-toggle="tab" href="#countiesmaptab" role="tab" aria-controls="countiesmaptab" aria-selected="false"><i class="fas fa-map"></i> <?= __("Map"); ?></a>
+                </li>
+            </ul>
         </div>
         <div class="card-body">
     <form class="form" action="<?php echo site_url('awards/counties'); ?>" method="post" enctype="multipart/form-data">
@@ -30,6 +50,9 @@
             <div class="dropdown" data-bs-auto-close="outside">
                 <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="countiesFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
                 <button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                <?php if ($counties_progress) { ?>
+                <button type="button" onclick="load_counties_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show Counties Map"); ?></button>
+                <?php } ?>
 
                 <!-- Dropdown Menu with Filter Content -->
                 <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="countiesFilterDropdown">
@@ -63,6 +86,9 @@
                 </div>
             </div>
         </div>
+
+        <div class="tab-content" id="countiesTabContent">
+        <div class="tab-pane fade show active" id="countiestable" role="tabpanel" aria-labelledby="counties-table-tab">
     <?php if ($counties_progress) {
         $progress_bar = function ($pct, $color) {
             return '<div class="progress" style="height: 20px; position: relative;">'
@@ -167,6 +193,12 @@
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
+        </div>
+
+        <div class="tab-pane fade" id="countiesmaptab" role="tabpanel" aria-labelledby="counties-map-tab">
+            <div id="countiesmap" class="map-leaflet"></div>
+        </div>
+        </div>
     </form>
         </div>
     </div>
