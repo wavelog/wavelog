@@ -243,6 +243,12 @@ class Lookup_model extends CI_Model{
 				}
 				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
 			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
+			}
 
 			if (($confirmedtype == 'confirmed') && ($extrawhere != '')){
 				$sqlqueryconfirmationstring = " and (".$extrawhere.")";

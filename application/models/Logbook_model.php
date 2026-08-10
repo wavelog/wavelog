@@ -2919,6 +2919,12 @@ class Logbook_model extends CI_Model {
 			}
 			$extrawhere .= " COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
 		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
+		}
 
 
 		$this->db->select('COL_CALL');
@@ -3031,6 +3037,12 @@ class Logbook_model extends CI_Model {
 			}
 			$extrawhere .= " COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
 		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
+		}
 		if ($extrawhere == '') {
 			$extrawhere='1=0';	// No default_confirmations set? in that case everything is false
 		}
@@ -3111,6 +3123,12 @@ class Logbook_model extends CI_Model {
 				$extrawhere .= " OR";
 			}
 			$extrawhere .= " COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
 		}
 
 
@@ -6225,6 +6243,11 @@ class Logbook_model extends CI_Model {
 			}
 			if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
 				if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'Y') {
+					$confirmed = true;
+				}
+			}
+			if (strpos($user_default_confirmation, 'C') !== false) { // Clublog
+				if ($qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == 'Y') {
 					$confirmed = true;
 				}
 			}
