@@ -194,6 +194,28 @@ class Activationplanner extends CI_Controller {
 	}
 
 	/*
+	 * AJAX: the full IOTA directory (tag, name, prefix, bounding box) for the
+	 * optional rectangle overlay on this map. Deleted refs are excluded.
+	 */
+	public function iota_directory() {
+		$this->load->model('iota');
+		$json = json_encode($this->iota->get_directory());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();            // release session lock; allow header override
+		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Cache-Control: private, max-age=3600');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
+	/*
 	 * AJAX: given a 4-character gridsquare, return the DXCC entities covering it
 	 * (from the vuccgrids table) with their flag emoji, so the activation planner
 	 * can show the flag beside the grid. Outputs JSON [{name, flag}, ...].

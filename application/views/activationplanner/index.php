@@ -12,6 +12,7 @@
 		wwffUrl:    <?php echo json_encode(site_url('activationplanner/wwff_directory')); ?>,
 		potaUrl:    <?php echo json_encode(site_url('activationplanner/pota_directory')); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
+		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
 		satPassUrl: <?php echo json_encode(site_url('satellite/pass')); ?>,
 		satPassLbl: <?php echo json_encode(__("Satellite passes")); ?>,
@@ -67,6 +68,7 @@
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWwffDir"><?= __("WWFF"); ?><span class="ref-menu-dot ms-auto" style="background:#2b8cbe">W</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glPotaDir"><?= __("POTA"); ?><span class="ref-menu-dot ms-auto" style="background:#238b45">P</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glSotaDir"><?= __("SOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#d95f0e">S</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glIotaDir"><?= __("IOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#17a2b8">I</span></label></li>
 							</ul>
 						</div>
 						<div id="glOverlaysHost" class="gl-secondary"></div>
