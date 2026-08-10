@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-10 08:49+0000\n"
-"PO-Revision-Date: 2026-08-03 12:16+0000\n"
+"PO-Revision-Date: 2026-08-10 13:08+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -331,7 +331,7 @@ msgstr "Stati / Province"
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "Pianificatore attivazioni"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -405,13 +405,15 @@ msgstr "Dati POTA importati"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"Il servizio sullo stato di AMSAT è attualmente non disponibile. Per favore "
+"riprova più tardi."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Stato satelliti AMSAT"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -4258,7 +4260,7 @@ msgstr "Rimuovi i membri del club"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "Leggi le conferme QSL"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -5107,7 +5109,7 @@ msgstr "Passaggi dei satelliti"
 
 #: application/views/activationplanner/index.php:19
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "Confini dei quadrati di griglia"
 
 #: application/views/activationplanner/index.php:21
 #: application/views/api/components/create_token_modal.php:6
@@ -5134,7 +5136,7 @@ msgstr "Chiudi"
 
 #: application/views/activationplanner/index.php:23
 msgid "Tracking"
-msgstr ""
+msgstr "Tracciamento"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/logbookadvanced/mergedialog.php:71
@@ -5144,35 +5146,36 @@ msgstr "Campo"
 
 #: application/views/activationplanner/index.php:25
 msgid "Square"
-msgstr ""
+msgstr "Quadrato"
 
 #: application/views/activationplanner/index.php:26
+#, fuzzy
 msgid "Subsquare"
-msgstr ""
+msgstr "Subsquare"
 
 #: application/views/activationplanner/index.php:27
 msgid "Locating…"
-msgstr ""
+msgstr "Localizzando…"
 
 #: application/views/activationplanner/index.php:28
 msgid "Location access denied."
-msgstr ""
+msgstr "Accesso alla posizione negato."
 
 #: application/views/activationplanner/index.php:29
 msgid "Location unavailable."
-msgstr ""
+msgstr "Posizione non disponibile."
 
 #: application/views/activationplanner/index.php:30
 msgid "Location request timed out."
-msgstr ""
+msgstr "La richiesta di posizione è scaduta."
 
 #: application/views/activationplanner/index.php:32
 msgid "Create station location"
-msgstr ""
+msgstr "Crea una posizione della stazione"
 
 #: application/views/activationplanner/index.php:33
 msgid "References in this grid"
-msgstr ""
+msgstr "Referenze in questa griglia"
 
 #: application/views/activationplanner/index.php:35
 #: application/views/view_log/qso.php:615
@@ -5181,16 +5184,16 @@ msgstr "Condividi"
 
 #: application/views/activationplanner/index.php:36
 msgid "Share activation"
-msgstr ""
+msgstr "Condividi attivazione"
 
 #: application/views/activationplanner/index.php:37
 #, php-format
 msgid "📻 Planning an activation from %s"
-msgstr ""
+msgstr "📻 Pianificando un'attivazione da %s"
 
 #: application/views/activationplanner/index.php:47
 msgid "Plan your activity here"
-msgstr ""
+msgstr "Pianifica la tua attività qui"
 
 #: application/views/activationplanner/index.php:55
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
@@ -5233,11 +5236,11 @@ msgstr "Pulisci"
 
 #: application/views/activationplanner/index.php:62
 msgid "Find my location and gridsquare"
-msgstr ""
+msgstr "Trova la mia posizione e il locatore"
 
 #: application/views/activationplanner/index.php:62
 msgid "Locate me"
-msgstr ""
+msgstr "Localizzami"
 
 #: application/views/activationplanner/index.php:65
 #: application/views/simplefle/index.php:162
@@ -5251,7 +5254,7 @@ msgstr "Più opzioni"
 
 #: application/views/activationplanner/index.php:79
 msgid "Hide options"
-msgstr ""
+msgstr "Nascondi opzioni"
 
 #: application/views/activationplanner/index.php:93
 #: application/views/awards/cq/index.php:3
@@ -6132,79 +6135,84 @@ msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
+"Stato dell'ultimo ascolto nelle ultime 24 ore. Fonte dei dati: %s "
+"(memorizzato nella cache per 15 minuti)."
 
 #: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
-msgstr ""
+msgstr "Nessun rapporto di stato disponibile."
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "Attivo nell'ultima ora"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "ascoltato o equipaggio attivo"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "Prossimo passaggio"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "nessun passaggio imminente"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
-msgstr ""
+msgstr "Legenda stato"
 
 #: application/views/amsatstatus/index.php:102
 #: application/views/amsatstatus/index.php:171
 msgid "No report"
-msgstr ""
+msgstr "Nessun rapporto"
 
 #: application/views/amsatstatus/index.php:108
 msgid "AMSAT Satellite Status (Last 24h)"
-msgstr ""
+msgstr "Stato del satellite AMSAT (Ultime 24h)"
 
 #: application/views/amsatstatus/index.php:113
 msgid ""
 "Satellite status by hour for the past 24 hours. Each cell is coloured by its "
 "winning status; hover for the report breakdown."
 msgstr ""
+"Stato del satellite per ogni ora nelle ultime 24 ore. Ogni cella è colorata "
+"in base al suo stato vincente; passa il mouse sopra per il dettaglio del "
+"rapporto."
 
 #: application/views/amsatstatus/index.php:117
 msgid "Next AOS"
-msgstr ""
+msgstr "Prossimo AOS"
 
 #: application/views/amsatstatus/index.php:121
 #, php-format
 msgid "%dh"
 msgid_plural "%dh"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%dh"
+msgstr[1] "%dh"
 
 #: application/views/amsatstatus/index.php:121
 msgid "now"
-msgstr ""
+msgstr "adesso"
 
 #: application/views/amsatstatus/index.php:123
 #, php-format
 msgid "%d hours ago"
-msgstr ""
+msgstr "%d ore fa"
 
 #: application/views/amsatstatus/index.php:146
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d rapporto in 24h"
+msgstr[1] "%d rapporti in 24h"
 
 #: application/views/amsatstatus/index.php:192
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d rapporto"
+msgstr[1] "%d rapporti"
 
 #: application/views/amsatstatus/index.php:202
 #: application/views/qso/index.php:34
@@ -8518,17 +8526,19 @@ msgstr "auto-compilare gli stati dai localizzatori Maidenhead."
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "Errore nel caricamento dei dati della mappa POTA"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "Nessuna referenza POTA ha funzionato per questi filtri."
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
 msgstr ""
+"Directory POTA non caricata - coordinate mancanti. Esegui il job cron "
+"update_pota."
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/sota/index.php:7
@@ -8578,41 +8588,41 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "Nessun diploma ancora"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "Avanzamento verso %s"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "%d più diversi parchi per il prossimo diploma"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "Hai raggiunto il livello più alto del diploma POTA!"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "Mostra tutti i livelli"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "Diplomi avanzati"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "Diplomi standard"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "Progresso del cacciatore POTA"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "parchi diversi cacciati"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/sota/index.php:50
@@ -8742,17 +8752,19 @@ msgstr "Esporta QSO in ADIF"
 
 #: application/views/awards/sota/index.php:4
 msgid "Error loading SOTA map data"
-msgstr ""
+msgstr "Errore nel caricamento dei dati della mappa SOTA"
 
 #: application/views/awards/sota/index.php:5
 msgid "No SOTA references worked for these filters."
-msgstr ""
+msgstr "Nessuna referenza SOTA ha funzionato per questi filtri."
 
 #: application/views/awards/sota/index.php:6
 msgid ""
 "SOTA directory not loaded - coordinates missing. Run the update_sota cron "
 "job."
 msgstr ""
+"Directory SOTA non caricato - coordinate mancanti. Esegui il job cron "
+"update_sota."
 
 #: application/views/awards/sota/index.php:24
 msgid "SOTA Awards"
@@ -12927,7 +12939,7 @@ msgstr "ID"
 
 #: application/views/cron/index.php:77
 msgid "Interval"
-msgstr ""
+msgstr "Intervallo"
 
 #: application/views/cron/index.php:78
 msgid "Last Run"
@@ -17461,11 +17473,11 @@ msgstr "Aggiornamento dal Callbook"
 
 #: application/views/logbookadvanced/index.php:832
 msgid "Queue Bureau"
-msgstr "Coda Bureau"
+msgstr "In coda (bureau)"
 
 #: application/views/logbookadvanced/index.php:833
 msgid "Queue Direct"
-msgstr "Coda Direct"
+msgstr "In coda (diretta)"
 
 #: application/views/logbookadvanced/index.php:834
 msgid "Queue Electronic"
@@ -17473,11 +17485,11 @@ msgstr "In coda (elettronica)"
 
 #: application/views/logbookadvanced/index.php:836
 msgid "Sent (Bureau)"
-msgstr "Inviato (Bureau)"
+msgstr "Inviata (bureau)"
 
 #: application/views/logbookadvanced/index.php:837
 msgid "Sent (Direct)"
-msgstr "Inviato (Direct)"
+msgstr "Inviata (diretta)"
 
 #: application/views/logbookadvanced/index.php:838
 msgid "Sent (Electronic)"
@@ -17485,7 +17497,7 @@ msgstr "Inviata (elettronica)"
 
 #: application/views/logbookadvanced/index.php:840
 msgid "Not Sent"
-msgstr "Non inviato"
+msgstr "non inviata"
 
 #: application/views/logbookadvanced/index.php:841
 msgid "QSL Not Required"
@@ -17497,11 +17509,11 @@ msgstr "Non ricevuta"
 
 #: application/views/logbookadvanced/index.php:844
 msgid "Received (Bureau)"
-msgstr "Ricevuto (Bureau)"
+msgstr "Ricevuta (bureau)"
 
 #: application/views/logbookadvanced/index.php:845
 msgid "Received (Direct)"
-msgstr "Ricevuto (Direct)"
+msgstr "Ricevuta (diretta)"
 
 #: application/views/logbookadvanced/index.php:846
 msgid "Received (Electronic)"
@@ -17519,7 +17531,7 @@ msgstr "Stampa etichetta"
 
 #: application/views/logbookadvanced/index.php:850
 msgid "QSL Slideshow"
-msgstr "Presentazione QSL"
+msgstr "Mostra QSL"
 
 #: application/views/logbookadvanced/index.php:851
 msgid "Print QSL Card"
@@ -17535,7 +17547,7 @@ msgstr "Scollega dal contest"
 
 #: application/views/logbookadvanced/index.php:859
 msgid "Export to CSV"
-msgstr ""
+msgstr "Esporta in CSV"
 
 #: application/views/logbookadvanced/index.php:863
 #: application/views/oqrs/showrequests.php:63
@@ -22707,13 +22719,15 @@ msgstr ""
 
 #: application/views/user/edit.php:1198
 msgid "Display radio name"
-msgstr ""
+msgstr "Visualizza nome della radio"
 
 #: application/views/user/edit.php:1199
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
 msgstr ""
+"Questa impostazione determina se il nome della radio viene visualizzato nel "
+"widget o meno."
 
 #: application/views/user/edit.php:1203
 msgid "Display only most recently updated radio"
@@ -23516,33 +23530,33 @@ msgstr "I QSO sono contrassegnati come esportati al QO-100 Dx Club."
 #, php-format
 msgctxt "on air status test: callsign is on-air/off-air"
 msgid "%s is %s"
-msgstr ""
+msgstr "%s è %s"
 
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:198
 #, php-format
 msgid "Updated: %s (%s)"
-msgstr ""
+msgstr "Aggiornato: %s (%s)"
 
 #: application/views/widgets/on_air.php:181
 msgid "auto-refreshed every 60s"
-msgstr ""
+msgstr "aggiornato automaticamente ogni 60s"
 
 #: application/views/widgets/on_air.php:198
 msgid "auto-refreshed by QRZ.com every 60s"
-msgstr ""
+msgstr "aggiornato automaticamente da QRZ.com ogni 60s"
 
 #: application/views/widgets/on_air.php:242
 #, php-format
 msgid "Last updated: %s"
-msgstr ""
+msgstr "Ultimo aggiornamento: %s"
 
 #: application/views/widgets/on_air.php:318
 #: application/views/widgets/on_air.php:322
 #: application/views/widgets/on_air.php:325
 #: application/views/widgets/on_air.php:333
 msgid "Last updated:"
-msgstr ""
+msgstr "Ultimo aggiornamento:"
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
@@ -23626,20 +23640,20 @@ msgstr ""
 #: src/QSLManager/QSO.php:898
 #, php-format
 msgid "Lookup %s on QRZ.com"
-msgstr ""
+msgstr "Cerca %s su QRZ.com"
 
 #: src/QSLManager/QSO.php:899
 #, php-format
 msgid "Lookup %s on HamQTH"
-msgstr ""
+msgstr "Cerca %s su HamQTH"
 
 #: src/QSLManager/QSO.php:900
 msgid "Clublog Log Search"
-msgstr ""
+msgstr "Ricerca Log Clublog"
 
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
-msgstr ""
+msgstr "Utente LoTW. L'ultimo caricamento è stato "
 
 #~ msgid "SOTA QSO List"
 #~ msgstr "Elenco QSO SOTA"
