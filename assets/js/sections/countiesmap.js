@@ -32,14 +32,20 @@ function load_counties_map() {
         },
         success: function(data) {
             countyStatus = data;
-            // Fetch lower 48 + DC (DXCC 291), Alaska (DXCC 6) and Hawaii (DXCC 110) separately
+            // Fetch lower 48 + DC (DXCC 291), Alaska (DXCC 6) and Hawaii (DXCC 110) separately,
+            // plus the state-level boundaries (reusing the WAS map's geojson) drawn as a bolder
+            // outline on top of the counties so state lines stand out from county lines.
             Promise.all([
                 fetch(base_url + 'assets/json/geojson/counties_291.geojson').then(r => r.json()),
                 fetch(base_url + 'assets/json/geojson/counties_6.geojson').then(r => r.json()),
-                fetch(base_url + 'assets/json/geojson/counties_110.geojson').then(r => r.json())
-            ]).then(([counties48, ak, hi]) => {
+                fetch(base_url + 'assets/json/geojson/counties_110.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/states_291.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/states_6.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/states_110.geojson').then(r => r.json())
+            ]).then(([counties48, ak, hi, states48, statesAk, statesHi]) => {
                 counties48.features = counties48.features.concat(ak.features, hi.features);
-                load_counties_map2(counties48);
+                states48.features = states48.features.concat(statesAk.features, statesHi.features);
+                load_counties_map2(counties48, states48);
             });
         },
         error: function() {
@@ -48,7 +54,7 @@ function load_counties_map() {
     });
 }
 
-function load_counties_map2(mapcoordinates) {
+function load_counties_map2(mapcoordinates, stateCoordinates) {
 
   // If map is already initialized
   var container = L.DomUtil.get('countiesmap');
@@ -123,6 +129,13 @@ function load_counties_map2(mapcoordinates) {
   countiesInfo.addTo(countiesMap);
 
   countiesGeojsonLayer = L.geoJson(mapcoordinates, {style: countyStyle, onEachFeature: onEachCountyFeature}).addTo(countiesMap);
+
+  // Bolder, non-interactive state outline drawn on top so state lines read
+  // clearly through the thin county boundaries underneath.
+  L.geoJson(stateCoordinates, {
+      interactive: false,
+      style: { fill: false, color: 'white', weight: 2.5, opacity: 1 },
+  }).addTo(countiesMap);
 
   countiesMap.setView([40, -97], 4);
 
