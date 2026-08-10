@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-10 08:49+0000\n"
-"PO-Revision-Date: 2026-07-08 19:20+0000\n"
+"PO-Revision-Date: 2026-08-10 13:08+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -312,7 +312,7 @@ msgstr "Всего полей сработано"
 
 #: application/controllers/Activationplanner.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "Зоны CQ"
 
 #: application/controllers/Activationplanner.php:32
 #: application/controllers/Activationplanner.php:33
@@ -329,12 +329,12 @@ msgstr "Зоны ITU"
 
 #: application/controllers/Activationplanner.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Области / Штаты / Провинции"
 
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "Планировщик активации"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -408,13 +408,15 @@ msgstr "Данные POTA импортированы"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"Служба статуса AMSAT в настоящее время недоступна. Пожалуйста, попробуйте "
+"позже."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Статус спутника AMSAT"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -467,27 +469,27 @@ msgstr "Ключ API %s удалён"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Пожалуйста, укажите назваение токена"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Пожалуйста, выберите, как минимум, одну область доступа"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "Токен API сгенерирован"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "Не удалось сгенерировать токен API"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Недействительный токен API"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "Токен API был удалён"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:192
@@ -982,49 +984,54 @@ msgstr ""
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Не выбрано ни одного оператора коллективной станции."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
 msgstr ""
+"Ни один из выбранных пользователей не является оператором этой коллективной "
+"станции."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Невозможно продолжить: это удалит последнего руководителя коллективной "
+"станции. Эту действие должен выполнить администратор Wavelog."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Не удалось обновить разрешения оператора коллективной станции."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Данные операторов коллективной станции не были обновлены."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Данные %d участника были обновнены."
+msgstr[1] "Данные %d участников были обновнены."
+msgstr[2] "Данные %d участников были обновнены."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
 msgstr ""
+"Пользователи не могут быть удалены из списка операторов коллективной станции."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Операторы коллективной станции не были удалены."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d участник был удалён."
+msgstr[1] "%d участника были удалёны."
+msgstr[2] "%d участников были удалёны."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1162,19 +1169,19 @@ msgstr "Удалять могут только руководители колл
 
 #: application/controllers/Contesting.php:790
 msgid "No contest sessions selected."
-msgstr ""
+msgstr "Контест-сессии не выбраны."
 
 #: application/controllers/Contesting.php:798
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d контест-сессия удалена."
+msgstr[1] "%d контест-сессии удалены."
+msgstr[2] "%d контест-сессий удалены."
 
 #: application/controllers/Contesting.php:800
 msgid "There was an error deleting the contest sessions. Please try again."
-msgstr ""
+msgstr "Произошла ошибка при удалении контест-сессий. Попробуйте позже."
 
 #: application/controllers/Contesting.php:1014
 msgid "Operator switching is disabled."
@@ -1235,27 +1242,27 @@ msgstr "Диспетчер задач"
 
 #: application/controllers/Cron.php:176
 msgid "Manual execution of cronjobs is disabled."
-msgstr ""
+msgstr "Ручной запуск периодических задач отключён."
 
 #: application/controllers/Cron.php:186
 msgid "Cronjob not found."
-msgstr ""
+msgstr "Задача не найдена."
 
 #: application/controllers/Cron.php:192
 msgid "Disabled cronjobs cannot be run."
-msgstr ""
+msgstr "Отключенные периодические задачи не могут быть запущены."
 
 #: application/controllers/Cron.php:200
 msgid "Cronjob is already running."
-msgstr ""
+msgstr "Задача уже выполняется."
 
 #: application/controllers/Cron.php:206
 msgid "Cronjob executed successfully."
-msgstr ""
+msgstr "Задача успешно выполнена."
 
 #: application/controllers/Cron.php:210
 msgid "Cronjob execution failed."
-msgstr ""
+msgstr "Задача не выполнена."
 
 #: application/controllers/Cron.php:222 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
@@ -1295,7 +1302,7 @@ msgstr "отключено"
 #: application/controllers/Cron.php:332 application/views/cron/index.php:81
 #: application/views/cron/index.php:113
 msgid "Run Now"
-msgstr ""
+msgstr "Запустить сейчас"
 
 #: application/controllers/Cron.php:425
 #: application/views/interface_assets/footer.php:45
@@ -2894,11 +2901,11 @@ msgstr "Запросы OQRS"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Пожалуйста, введите корректную дату."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Пожалуйста, введите корректное время."
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -3076,7 +3083,7 @@ msgstr "Добавить QSO"
 
 #: application/controllers/Qso.php:224
 msgid "QSO could not be saved"
-msgstr ""
+msgstr "QSO не может быть сохранено"
 
 #: application/controllers/Qso.php:829
 msgid "You have to be logged in to access this URL."
@@ -4129,11 +4136,11 @@ msgstr "Поиск зоны по квадрату QTH локатора"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "Данные GeoJSON недоступны"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr ""
+msgstr "Неверный квадрат локатора"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4242,89 +4249,92 @@ msgstr "Город / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "Просмотр данных об операторах коллективной станции"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Управление разрешениями операторов коллективной станции"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Удаление операторов коллективной станции"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "Просмотр QSL"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "Запрос позывных и квадратов локаторов"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "Просмотр QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "Создание и обновление QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "Удаление QSO"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "Просмотр радиоинтерфейсов"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "Создание и обновление радиоинтерфейсов"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "Удаление радиоинтерфейсов"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "Просмотр профилей QTH"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "Создание и обновление профилей QTH"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "Удаление профилей QTH"
 
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
-msgstr ""
+msgstr "Просмотр статистики"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " (мин. 2.1.0)"
 
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"Управление радиостанцией и загрузка QSO из WSJT-X, JTDX и т.п. Требуется "
+"WaveLogGate версии 2.1.0, как минимум."
 
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
-msgstr ""
+msgstr "Только для чтения"
 
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
 msgstr ""
+"Доступ только для чтения ко всему, без возможности изменений ваших данных."
 
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
-msgstr ""
+msgstr "Только статистика"
 
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "Только статистика, без возможности изменений ваших данных."
 
 #: application/models/Club_model.php:12
 msgid "Club Officer"
@@ -4472,6 +4482,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
+"QSO в %s: Вы пытались импортировать QSO без указания позывного. Это QSO не "
+"было импортировано. Оно недействительно."
 
 #: application/models/Logbook_model.php:4813
 #, php-format
@@ -4479,6 +4491,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
+"QSO в %s: Вы пытались импортировать QSO с недопустимым позывным. Это QSO не "
+"было импортировано. Недопустимый ввод — '%s'."
 
 #: application/models/Logbook_model.php:4883
 #, php-format
@@ -4486,6 +4500,8 @@ msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
+"QSO нв %s: диапазон '%s' отсутствует в конфигурации диапазонов. Этот QSO не "
+"было импортировано."
 
 #: application/models/Logbook_model.php:4890
 #, php-format
@@ -5085,6 +5101,8 @@ msgstr "Долгота"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"Неверный квадрат локатора — используйте 2, 4, 6, 8 или 10 символов "
+"(например, FN, FN31, FN31pr)."
 
 #: application/views/activationplanner/index.php:18
 #: application/views/satellite/pass.php:21
@@ -5093,7 +5111,7 @@ msgstr "Прохождения спутника"
 
 #: application/views/activationplanner/index.php:19
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "Границы квадрата локатора"
 
 #: application/views/activationplanner/index.php:21
 #: application/views/api/components/create_token_modal.php:6
@@ -5120,7 +5138,7 @@ msgstr "Закрыть"
 
 #: application/views/activationplanner/index.php:23
 msgid "Tracking"
-msgstr ""
+msgstr "Отслеживание"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/logbookadvanced/mergedialog.php:71
@@ -5130,35 +5148,35 @@ msgstr "Поля"
 
 #: application/views/activationplanner/index.php:25
 msgid "Square"
-msgstr ""
+msgstr "Квадрат"
 
 #: application/views/activationplanner/index.php:26
 msgid "Subsquare"
-msgstr ""
+msgstr "Подквадрат"
 
 #: application/views/activationplanner/index.php:27
 msgid "Locating…"
-msgstr ""
+msgstr "Поиск…"
 
 #: application/views/activationplanner/index.php:28
 msgid "Location access denied."
-msgstr ""
+msgstr "Доступ к местоположению запрещён."
 
 #: application/views/activationplanner/index.php:29
 msgid "Location unavailable."
-msgstr ""
+msgstr "Местоположение недоступно."
 
 #: application/views/activationplanner/index.php:30
 msgid "Location request timed out."
-msgstr ""
+msgstr "Время ожидания запроса местоположения истекло."
 
 #: application/views/activationplanner/index.php:32
 msgid "Create station location"
-msgstr ""
+msgstr "Создать профиль QTH"
 
 #: application/views/activationplanner/index.php:33
 msgid "References in this grid"
-msgstr ""
+msgstr "Референции в этом квадрате локатора"
 
 #: application/views/activationplanner/index.php:35
 #: application/views/view_log/qso.php:615
@@ -5167,40 +5185,41 @@ msgstr "Поделиться"
 
 #: application/views/activationplanner/index.php:36
 msgid "Share activation"
-msgstr ""
+msgstr "Поделиться активацией"
 
 #: application/views/activationplanner/index.php:37
 #, php-format
 msgid "📻 Planning an activation from %s"
-msgstr ""
+msgstr "📻 Планирование активации из %s"
 
 #: application/views/activationplanner/index.php:47
 msgid "Plan your activity here"
-msgstr ""
+msgstr "Планируйте вашу активность"
 
 #: application/views/activationplanner/index.php:55
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "2, 4, 6, 8 или 10-символьный локатор"
 
 #: application/views/activationplanner/index.php:55
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "например, FN31pr"
 
 #: application/views/activationplanner/index.php:56
 msgid "to"
-msgstr ""
+msgstr "до"
 
 #: application/views/activationplanner/index.php:59
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
+"Дополнительный второй квадрат локатора для вычисления расстояния и азимута"
 
 #: application/views/activationplanner/index.php:59
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "например, JN58qm"
 
 #: application/views/activationplanner/index.php:60
 msgid "Go"
-msgstr ""
+msgstr "Пуск"
 
 #: application/views/activationplanner/index.php:61
 #: application/views/awards/cq/index.php:70
@@ -5219,11 +5238,11 @@ msgstr "Очистить"
 
 #: application/views/activationplanner/index.php:62
 msgid "Find my location and gridsquare"
-msgstr ""
+msgstr "Определение моего местоположения и квадрата локатора"
 
 #: application/views/activationplanner/index.php:62
 msgid "Locate me"
-msgstr ""
+msgstr "Определение моего местоположения"
 
 #: application/views/activationplanner/index.php:65
 #: application/views/simplefle/index.php:162
@@ -5237,7 +5256,7 @@ msgstr "Больше вариантов"
 
 #: application/views/activationplanner/index.php:79
 msgid "Hide options"
-msgstr ""
+msgstr "Скрыть опции"
 
 #: application/views/activationplanner/index.php:93
 #: application/views/awards/cq/index.php:3
@@ -6119,82 +6138,85 @@ msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
+"Последий спот за прошлые 24 часа. Источник данных: %s (кешируется 15 минут)."
 
 #: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
-msgstr ""
+msgstr "Отчёты о состоянии недоступны."
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "Активность за последний час"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "был замечен или экипаж активен"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "Следующий пролёт"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "нет предстоящих пролётов"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
-msgstr ""
+msgstr "Легенда статусов"
 
 #: application/views/amsatstatus/index.php:102
 #: application/views/amsatstatus/index.php:171
 msgid "No report"
-msgstr ""
+msgstr "Нет отчётов"
 
 #: application/views/amsatstatus/index.php:108
 msgid "AMSAT Satellite Status (Last 24h)"
-msgstr ""
+msgstr "Состояние спутника AMSAT (Последние 24 часа)"
 
 #: application/views/amsatstatus/index.php:113
 msgid ""
 "Satellite status by hour for the past 24 hours. Each cell is coloured by its "
 "winning status; hover for the report breakdown."
 msgstr ""
+"Статус спутника по часам за последние 24 часа. Каждая ячейка окрашена в "
+"соответствии с ее статусом; наведите курсор, чтобы получить разбивку отчета."
 
 #: application/views/amsatstatus/index.php:117
 msgid "Next AOS"
-msgstr ""
+msgstr "Следующий AOS"
 
 #: application/views/amsatstatus/index.php:121
 #, php-format
 msgid "%dh"
 msgid_plural "%dh"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%dч"
+msgstr[1] "%dч"
+msgstr[2] "%dч"
 
 #: application/views/amsatstatus/index.php:121
 msgid "now"
-msgstr ""
+msgstr "сейчас"
 
 #: application/views/amsatstatus/index.php:123
 #, php-format
 msgid "%d hours ago"
-msgstr ""
+msgstr "%dч назад"
 
 #: application/views/amsatstatus/index.php:146
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d отчёт за 24ч"
+msgstr[1] "%d отчёта за 24ч"
+msgstr[2] "%d отчётов за 24ч"
 
 #: application/views/amsatstatus/index.php:192
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d отчёт"
+msgstr[1] "%d отчёта"
+msgstr[2] "%d отчётов"
 
 #: application/views/amsatstatus/index.php:202
 #: application/views/qso/index.php:34
@@ -6204,41 +6226,43 @@ msgstr "больше"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "Создать новый токен API"
 
 #: application/views/api/components/create_token_modal.php:10
 msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"Создайте токен с детализированными разрешениями (областями доступа). Токен "
+"показывается только один раз при создании, поэтому скопируйте его сразу."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "Название токена"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "например, Мой инструмент ведения журнала"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "Название, которое поможет вам позже распознать этот токен."
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "Срок действия"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30 дней"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90 дней"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1 год"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -6249,26 +6273,29 @@ msgstr "Никогда"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "Когда токен должен перестать работать."
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"Токен, который никогда не истекает, остаётся действительным до тех пор, пока "
+"вы не удалите его вручную. Это возможно, но не рекомендуется по соображениям "
+"безопасности."
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "Области доступа"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "Выберите, области API v2, к которым этот токен будет иметь доступ."
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "Пожалуйста, выберите, как минимум, одну область доступа."
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:149
@@ -6280,6 +6307,8 @@ msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
+"Не знаете, какие области доступа вам нужны? Выберите инструмент, который "
+"хотите использовать, и мы подберем области за вас."
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
@@ -6297,6 +6326,8 @@ msgid ""
 "A preset replaces your current selection. You can still adjust the scopes "
 "afterwards."
 msgstr ""
+"Предустановка заменит ваш текущий выбор. Вы всё ещё сможете настроить "
+"области доступа позже."
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -6324,7 +6355,7 @@ msgstr "Отмена"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "Создать токен"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -6362,15 +6393,17 @@ msgstr "Сохранить"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "Новый токен API"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
 msgstr ""
+"Скопируйте этот токен сейчас. В целях безопасности он больше не будет "
+"показан."
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "Ваш токен API"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -6381,13 +6414,15 @@ msgstr "Скопировать в буфер обмена"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "Устаревшие ключи API (API v1)"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"Новая интеграция должна использовать нижеуказанные токены API v2, если это "
+"поддерживается сторонней системой."
 
 #: application/views/api/index.php:11
 msgid ""
@@ -6414,7 +6449,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "Ссылки на стороннее ПО, которое работает с Wavelog API v1:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -6508,7 +6543,7 @@ msgstr "Проверка"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
@@ -6529,7 +6564,7 @@ msgstr "Создать ключ с правами 'Только Чтение'"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "Токены API (API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -6537,21 +6572,27 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"Токены API предоставляют доступ к REST API v2 с детальными разрешениями "
+"(областями доступа). Токен отображается только один раз при его создании, "
+"поэтому скопируйте его сразу."
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "Документация API v2 находится %sздесь%s."
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "Базовый URL API версии 2 для этого экземпляра Wavelog —"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"На коллективных станциях токены API являются личными и не подлежат "
+"распространению. Пользователи коллективных станций могут видеть только свои "
+"собственные токены."
 
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:210
@@ -6586,7 +6627,7 @@ msgstr "Имя"
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "Истекает"
 
 #: application/views/api/index.php:159
 msgid "Expired"
@@ -6595,11 +6636,11 @@ msgstr "Истёк"
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить токен API %s?"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
-msgstr ""
+msgstr "У вас еще нет токенов API. Нажмите на кнопку ниже, чтобы создать один."
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
@@ -8487,23 +8528,25 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "Ошибка загрузки данных карты POTA"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "Нет сработанных референций POTA для этих фильтров."
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
 msgstr ""
+"Каталог POTA не загружен — отсутствуют координаты. Запустите задачу "
+"update_pota."
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/sota/index.php:7
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "Не отображается (Нет координат)"
 
 #: application/views/awards/pota/index.php:24
 msgid "POTA Awards"
@@ -8547,17 +8590,17 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "Ещё нет дипломов"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "Прогресс до %s"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "%d больше различных парков до следующего диплома"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
