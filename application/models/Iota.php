@@ -181,7 +181,7 @@ class IOTA extends CI_Model {
 		foreach ($query->result() as $row) {
 			$result[] = [
 				'tag'     => $row->tag,
-				'name'    => ucwords(strtolower($row->name), "- (/"),
+				'name'    => mb_convert_case($row->name, MB_CASE_TITLE, 'UTF-8'),
 				'prefix'  => $row->prefix,
 				'lat1'    => $row->lat1 !== null ? (float) $row->lat1 : null,
 				'lat2'    => $row->lat2 !== null ? (float) $row->lat2 : null,

@@ -494,7 +494,7 @@
 		// modal) or create a station location here (location pre-filled).
 		let actions =
 			'<div class="gl-pop-actions">' +
-				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
 				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
 			'</div>';
 
@@ -731,7 +731,7 @@
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
 			((createHref || spotText) ? '<div class="gl-pop-actions">' +
-				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
 				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
 			'</div>' : '') +
 			'</div>';
@@ -904,8 +904,7 @@
 				let cluster = L.markerClusterGroup({
 					chunkedLoading: true,
 					maxClusterRadius: 50,
-					showCoverageOnHover: false,
-					chunkProgress: function (processed, total) { if (processed >= total) { mapLoadingDone(); } }
+					showCoverageOnHover: false
 				});
 				for (let i = 0; i < data.length; i++) {
 					let D = data[i];
@@ -919,10 +918,14 @@
 					));
 					let cLat = -(Number(D.lat1) + Number(D.lat2)) / 2;
 					let cLng = (g.lon1 + g.lon2) / 2;
-					cluster.addLayer(L.marker([cLat, cLng], { icon: iotaIcon(D.tag) }).bindPopup(iotaPopup(D, cLat, cLng)));
+					let m = L.marker([cLat, cLng], { icon: iotaIcon(D.tag) });
+					m.refData = D;
+					m.bindPopup(iotaPopupRich);
+					cluster.addLayer(m);
 				}
 				iotaLayer.addLayer(cluster);   // cluster rides inside the group → atomic add/remove
 				map.addLayer(iotaLayer);
+				mapLoadingDone();
 			})
 			.catch(function (err) { console.error('IOTA directory load failed:', err); mapLoadingDone(); });
 	}
@@ -949,7 +952,7 @@
 	}
 	/* IOTA popup, styled like the WWFF/POTA/SOTA reference popups. The tag links
 	 * to its iota-world.org map page; grid + coords are the rectangle's centre. */
-	function iotaPopup(D, lat, lng) {
+	function iotaPopup(D, lat, lng, createHref, spotText) {
 		return '<div class="ref-popup" style="border-left-color:#17a2b8">' +
 			'<div class="ref-popup-top">' +
 			'<span class="ref-popup-type" style="background:#17a2b8">IOTA</span>' +
@@ -959,7 +962,35 @@
 			(D.prefix ? '<div class="ref-popup-row"><i class="fas fa-broadcast-tower"></i><span>' + esc(D.prefix) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(lat, lng, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(lat) + ', ' + fmtLng(lng) + '</span></div>' +
+			((createHref || spotText) ? '<div class="gl-pop-actions">' +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>' : '') +
 			'</div>';
+	}
+	/*
+	 * Open-time popup builder for an IOTA tag marker. Reads the stashed refData,
+	 * renders the popup immediately with create + share actions (sync), then
+	 * enriches both with DXCC/CQ/ITU/state once resolvePointMeta settles — the
+	 * same recipe as refPopupRich. The marker sits at the rectangle's centre
+	 * (antimeridian-unwrapped in enableIota), so its latLng is reused.
+	 */
+	function iotaPopupRich(layer) {
+		let D = layer.refData;
+		if (!D) { return ''; }
+		let ll = layer.getLatLng();
+		let cLat = ll.lat, cLng = ll.lng, loc = latLngToLocator(cLat, cLng, 3);
+		let extra = { iota: D.tag };
+		let locDesc = D.tag + ' (' + loc + ')';
+		let extraHash = '#IOTA ' + D.tag;
+		let baseHref = buildCreateHref(loc, null, extra);
+		let baseSpot = buildSpotText(locDesc, null, extraHash);
+		resolvePointMeta(cLat, cLng, loc).then(function (meta) {
+			if (layer.isPopupOpen && layer.isPopupOpen()) {
+				layer.setPopupContent(iotaPopup(D, cLat, cLng, buildCreateHref(loc, meta, extra), buildSpotText(locDesc, meta, extraHash)));
+			}
+		}).catch(function () { /* leave sync create + share in place */ });
+		return iotaPopup(D, cLat, cLng, baseHref, baseSpot);
 	}
 
 	/* ---- CQ / ITU zone resolution (coordinate -> zone, client-side) ---- */

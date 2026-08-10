@@ -115,6 +115,14 @@ class Statistic_resource extends Api_v2_resource {
 	 * QSO analytics for the token owner: total, activity (today/month/year),
 	 * band/mode breakdown, confirmation and DXCC totals. Scoped to the owner's
 	 * station locations, so the numbers are the user's own, not the instance.
+	 *
+	 * DXCC semantics:
+	 * - worked: unique valid DXCC entities worked in the log
+	 * - confirmed: DXCC entities confirmed by paper QSL or LoTW only
+	 * - available: current DXCC entities in the active DXCC list
+	 *
+	 * eQSL remains visible in the dashboard/UI and in the confirmations topic,
+	 * but it is intentionally excluded from dxcc.confirmed.
 	 */
 	protected function qso_topic() {
 		$this->CI->load->model('logbook_model');
@@ -126,9 +134,9 @@ class Statistic_resource extends Api_v2_resource {
 
 		$counts = $this->CI->logbook_model->get_qso_counts($scope);
 
-		// dashboard_stats_batch() already computes confirmation (QSL/eQSL/LoTW
-		// received) and DXCC worked/confirmed totals for a given set of station
-		// locations, so we reuse it instead of duplicating those queries.
+		// dashboard_stats_batch() already computes confirmation counts and DXCC
+		// worked/confirmed totals for a given set of station locations, so we
+		// reuse it instead of duplicating those queries.
 		$batch = $this->CI->logbook_model->dashboard_stats_batch($scope);
 
 		return [
