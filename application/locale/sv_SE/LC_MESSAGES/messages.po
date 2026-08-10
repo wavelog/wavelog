@@ -261,18 +261,21 @@ msgstr "Karta Aktiverade Lokatorrutor"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Visitor.php:532
 msgid "Gridsquares"
 msgstr "Lokatorrutor"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:534
+#: application/controllers/Visitor.php:533
 msgid "Gridsquares confirmed"
 msgstr "Lokatorrutor bekräftade"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:535
+#: application/controllers/Visitor.php:534
 msgid "Gridsquares not confirmed"
 msgstr "Lokatorrutor inte bekräftade"
 
@@ -284,24 +287,28 @@ msgstr "Totalt aktiverade Lokatorrutor"
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:538
 #: application/views/qslpostcard/designer.php:151
+#: application/controllers/Visitor.php:537
 msgid "Fields"
 msgstr "Fält"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:539
+#: application/controllers/Visitor.php:538
 msgid "Fields confirmed"
 msgstr "Fält bekräftade"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
 #: application/controllers/Visitor.php:540
+#: application/controllers/Visitor.php:539
 msgid "Fields not confirmed"
 msgstr "Fält inte bekräftade"
 
 #: application/controllers/Activated_gridmap.php:41
 #: application/controllers/Gridmap.php:42
 #: application/controllers/Visitor.php:541
+#: application/controllers/Visitor.php:540
 msgid "Total fields worked"
 msgstr "Totalt antal fält kontaktade"
 
@@ -1333,6 +1340,8 @@ msgstr "SOTA CSV-export"
 
 #: application/controllers/Dashboard.php:177
 #: application/controllers/Visitor.php:131
+#: application/controllers/Dashboard.php:176
+#: application/controllers/Visitor.php:130
 msgid "Dashboard"
 msgstr "Instrumentpanel"
 
@@ -1477,6 +1486,9 @@ msgstr "DX Kalender"
 #: application/views/dashboard/index.php:577
 #: application/views/dashboard/index.php:580
 #: application/views/visitor/index.php:312
+#: application/views/dashboard/index.php:571
+#: application/views/dashboard/index.php:574
+#: application/views/visitor/index.php:308
 msgid "eQSL Cards"
 msgstr "eQSL-kort"
 
@@ -1598,6 +1610,7 @@ msgstr "Lokator karta"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:536
+#: application/controllers/Visitor.php:535
 msgid "Total gridsquares worked"
 msgstr "Totalt antal lokatorrutor kontaktade"
 
@@ -1913,6 +1926,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:1013 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/visitor/index.php:273
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2527,6 +2541,7 @@ msgstr "Snabb uppslagning"
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1067 application/views/visitor/index.php:328
 #: application/views/visitor/index.php:330
+#: application/views/visitor/index.php:326
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2876,6 +2891,16 @@ msgstr "Versionsinformation kommer inte att visas för någon användare"
 #: application/controllers/Visitor.php:378
 #: application/controllers/Visitor.php:635
 #: application/controllers/Widgets.php:67
+#: application/controllers/Visitor.php:143
+#: application/controllers/Visitor.php:155
+#: application/controllers/Visitor.php:179
+#: application/controllers/Visitor.php:205
+#: application/controllers/Visitor.php:217
+#: application/controllers/Visitor.php:241
+#: application/controllers/Visitor.php:317
+#: application/controllers/Visitor.php:343
+#: application/controllers/Visitor.php:377
+#: application/controllers/Visitor.php:634
 msgid "Unknown Public Page."
 msgstr "Okänd offentlig sida."
 
@@ -2982,6 +3007,10 @@ msgstr "QRZ ADIF-information"
 #: application/views/dashboard/index.php:514
 #: application/views/dashboard/index.php:517
 #: application/views/visitor/index.php:289
+#: application/views/dashboard/index.php:508
+#: application/views/dashboard/index.php:511
+#: application/views/visitor/index.php:272
+#: application/views/visitor/index.php:285
 msgid "QSL Cards"
 msgstr "QSL-kort"
 
@@ -3355,6 +3384,11 @@ msgstr "Enkel snabb loggning"
 #: application/controllers/Visitor.php:374
 #: application/controllers/Visitor.php:631
 #: application/controllers/Widgets.php:63
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:237
+#: application/controllers/Visitor.php:339
+#: application/controllers/Visitor.php:373
+#: application/controllers/Visitor.php:630
 msgid "Empty Logbook"
 msgstr "Tom loggbok"
 
@@ -4074,19 +4108,23 @@ msgstr ""
 "personliga konto!"
 
 #: application/controllers/Visitor.php:383
+#: application/controllers/Visitor.php:382
 msgid "No public slug found."
 msgstr "Ingen offentligt slug hittades."
 
 #: application/controllers/Visitor.php:389
+#: application/controllers/Visitor.php:388
 msgid "Satellite Gridsquare Map"
 msgstr "Satellit lokator-karta"
 
 #: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
+#: application/controllers/Visitor.php:568
 msgid "Public Search"
 msgstr "Offentlig sökning"
 
 #: application/controllers/Visitor.php:602
+#: application/controllers/Visitor.php:601
 msgid "Export Map"
 msgstr "Exportera karta"
 
@@ -4450,6 +4488,7 @@ msgstr "DXCC måste vara numerisk"
 
 #: application/models/Logbook_model.php:4770
 #: application/models/Logbook_model.php:4772
+#: application/models/Logbook_model.php:4769
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4457,6 +4496,7 @@ msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:4778
 #: application/models/Logbook_model.php:4780
+#: application/models/Logbook_model.php:4777
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4466,6 +4506,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4794
 #: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4793
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4475,6 +4516,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4804
 #: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4803
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4485,6 +4527,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4811
 #: application/models/Logbook_model.php:4813
+#: application/models/Logbook_model.php:4810
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4495,6 +4538,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4881
 #: application/models/Logbook_model.php:4883
+#: application/models/Logbook_model.php:4880
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4505,6 +4549,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4888
 #: application/models/Logbook_model.php:4890
+#: application/models/Logbook_model.php:4887
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4515,22 +4560,26 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5162
 #: application/models/Logbook_model.php:5164
+#: application/models/Logbook_model.php:5161
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5173
 #: application/models/Logbook_model.php:5175
+#: application/models/Logbook_model.php:5172
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5234
 #: application/models/Logbook_model.php:5236
+#: application/models/Logbook_model.php:5233
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5610
 #: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5612
+#: application/models/Logbook_model.php:5609
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
@@ -4538,31 +4587,38 @@ msgstr "Dubblett för"
 #: application/models/Logbook_model.php:5777
 #: application/models/Logbook_model.php:5679
 #: application/models/Logbook_model.php:5779
+#: application/models/Logbook_model.php:5676
+#: application/models/Logbook_model.php:5776
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
 #: application/models/Logbook_model.php:5685
 #: application/models/Logbook_model.php:5687
+#: application/models/Logbook_model.php:5684
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
 #: application/models/Logbook_model.php:5691
 #: application/models/Logbook_model.php:5693
+#: application/models/Logbook_model.php:5690
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
 #: application/models/Logbook_model.php:5695
 #: application/models/Logbook_model.php:5697
+#: application/models/Logbook_model.php:5694
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
 #: application/models/Logbook_model.php:5699
 #: application/models/Logbook_model.php:5701
+#: application/models/Logbook_model.php:5698
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
 #: application/models/Logbook_model.php:5702
 #: application/models/Logbook_model.php:5704
+#: application/models/Logbook_model.php:5701
 msgid "unconfirmed"
 msgstr "obekräftad"
 
@@ -4570,16 +4626,19 @@ msgstr "obekräftad"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/models/Logbook_model.php:5707
+#: application/models/Logbook_model.php:5704
 msgid "unknown"
 msgstr "Okänd"
 
 #: application/models/Logbook_model.php:5780
 #: application/models/Logbook_model.php:5782
+#: application/models/Logbook_model.php:5779
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
 #: application/models/Logbook_model.php:5783
 #: application/models/Logbook_model.php:5785
+#: application/models/Logbook_model.php:5782
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
@@ -4597,6 +4656,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/models/Logbook_model.php:6191
+#: application/models/Logbook_model.php:6188
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -4881,6 +4941,7 @@ msgstr "Skillnad"
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
 #: application/views/dashboard/index.php:671
+#: application/views/dashboard/index.php:665
 msgid "All"
 msgstr "Alla"
 
@@ -6172,6 +6233,12 @@ msgstr "POTA REF i ADIF"
 #: application/views/dashboard/index.php:612
 #: application/views/dashboard/index.php:641
 #: application/views/dashboard/index.php:670
+#: application/views/dashboard/index.php:514
+#: application/views/dashboard/index.php:548
+#: application/views/dashboard/index.php:577
+#: application/views/dashboard/index.php:606
+#: application/views/dashboard/index.php:635
+#: application/views/dashboard/index.php:664
 msgid "Status"
 msgstr "Status"
 
@@ -7111,6 +7178,7 @@ msgstr "%s%% bekräftade totalt"
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 #: application/views/dashboard/index.php:676
+#: application/views/dashboard/index.php:670
 msgid "Worked"
 msgstr "Kontaktade"
 
@@ -7133,6 +7201,7 @@ msgstr "Kontaktade"
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 #: application/views/dashboard/index.php:681
+#: application/views/dashboard/index.php:675
 msgid "Confirmed"
 msgstr "Bekräftade"
 
@@ -7191,6 +7260,11 @@ msgstr "Bekräftade Framsteg"
 #: application/views/dashboard/index.php:584
 #: application/views/dashboard/index.php:613
 #: application/views/dashboard/index.php:642
+#: application/views/dashboard/index.php:515
+#: application/views/dashboard/index.php:549
+#: application/views/dashboard/index.php:578
+#: application/views/dashboard/index.php:607
+#: application/views/dashboard/index.php:636
 msgid "Total"
 msgstr "Totalt"
 
@@ -7328,6 +7402,11 @@ msgstr "Datum Förinställningar"
 #: application/views/dashboard/index.php:585
 #: application/views/dashboard/index.php:614
 #: application/views/dashboard/index.php:643
+#: application/views/dashboard/index.php:516
+#: application/views/dashboard/index.php:550
+#: application/views/dashboard/index.php:579
+#: application/views/dashboard/index.php:608
+#: application/views/dashboard/index.php:637
 msgid "Today"
 msgstr "Idag"
 
@@ -8338,6 +8417,7 @@ msgstr "Stad"
 #: application/views/qslprint/qsolist.php:58
 #: application/views/qslprint/qsolist.php:60
 #: application/views/dashboard/index.php:672
+#: application/views/dashboard/index.php:666
 msgid "SAT"
 msgstr "SAT"
 
@@ -13192,6 +13272,8 @@ msgstr "DXCC-fördelning"
 #: application/views/visitor/index.php:279
 #: application/views/dashboard/index.php:504
 #: application/views/visitor/index.php:281
+#: application/views/dashboard/index.php:498
+#: application/views/visitor/index.php:277
 msgid "Needed"
 msgstr "Behövs"
 
@@ -13237,6 +13319,14 @@ msgstr "Behövs"
 #: application/views/visitor/index.php:293
 #: application/views/visitor/index.php:316
 #: application/views/visitor/index.php:334
+#: application/views/dashboard/index.php:520
+#: application/views/dashboard/index.php:554
+#: application/views/dashboard/index.php:583
+#: application/views/dashboard/index.php:612
+#: application/views/dashboard/index.php:641
+#: application/views/visitor/index.php:289
+#: application/views/visitor/index.php:312
+#: application/views/visitor/index.php:330
 msgid "Sent"
 msgstr "Skickad"
 
@@ -13281,6 +13371,14 @@ msgstr "Skickad"
 #: application/views/visitor/index.php:298
 #: application/views/visitor/index.php:321
 #: application/views/visitor/index.php:339
+#: application/views/dashboard/index.php:525
+#: application/views/dashboard/index.php:559
+#: application/views/dashboard/index.php:588
+#: application/views/dashboard/index.php:617
+#: application/views/dashboard/index.php:646
+#: application/views/visitor/index.php:294
+#: application/views/visitor/index.php:317
+#: application/views/visitor/index.php:335
 msgid "Received"
 msgstr "Mottagen"
 
@@ -13327,6 +13425,8 @@ msgstr "Mottagen"
 #: src/QSLManager/QSO.php:697 src/QSLManager/QSO.php:822
 #: src/QSLManager/QSO.php:847 application/views/dashboard/index.php:536
 #: application/views/visitor/index.php:303
+#: application/views/dashboard/index.php:530
+#: application/views/visitor/index.php:299
 msgid "Requested"
 msgstr "Begärt"
 
@@ -13334,6 +13434,8 @@ msgstr "Begärt"
 #: application/views/dashboard/index.php:546
 #: application/views/dashboard/index.php:548
 #: application/views/dashboard/index.php:551
+#: application/views/dashboard/index.php:542
+#: application/views/dashboard/index.php:545
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
@@ -13341,6 +13443,7 @@ msgstr "Logbook of the World"
 #: application/views/dashboard/index.php:633
 #: application/views/user/edit.php:1121
 #: application/views/dashboard/index.php:638
+#: application/views/dashboard/index.php:632
 msgid "Club Log"
 msgstr "Club Log"
 
@@ -13348,6 +13451,8 @@ msgstr "Club Log"
 #: application/views/dashboard/index.php:662
 #: application/views/dashboard/index.php:664
 #: application/views/dashboard/index.php:667
+#: application/views/dashboard/index.php:658
+#: application/views/dashboard/index.php:661
 msgid "VUCC-Grids"
 msgstr "VUCC-Lokatorrutor"
 

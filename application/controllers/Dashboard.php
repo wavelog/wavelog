@@ -133,7 +133,6 @@ class Dashboard extends CI_Controller {
 		$data['total_countries'] = $stats['Countries_Worked'];
 		$data['unique_callsigns'] = $stats['Unique_Callsigns'];
 		$data['total_countries_confirmed_paper'] = $stats['Countries_Worked_QSL'];
-		$data['total_countries_confirmed_eqsl'] = $stats['Countries_Worked_EQSL'];
 		$data['total_countries_confirmed_lotw'] = $stats['Countries_Worked_LOTW'];
 		$confirmed = $stats['Countries_Worked_Confirmed'];
 

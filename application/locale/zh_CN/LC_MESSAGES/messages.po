@@ -286,18 +286,21 @@ msgstr "已激活网格地图"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Visitor.php:532
 msgid "Gridsquares"
 msgstr "网格代码"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:534
+#: application/controllers/Visitor.php:533
 msgid "Gridsquares confirmed"
 msgstr "已确认网格"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:535
+#: application/controllers/Visitor.php:534
 msgid "Gridsquares not confirmed"
 msgstr "未确认网格"
 
@@ -309,24 +312,28 @@ msgstr "总激活网格"
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:538
 #: application/views/qslpostcard/designer.php:151
+#: application/controllers/Visitor.php:537
 msgid "Fields"
 msgstr "区块"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:539
+#: application/controllers/Visitor.php:538
 msgid "Fields confirmed"
 msgstr "已确认的区块"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
 #: application/controllers/Visitor.php:540
+#: application/controllers/Visitor.php:539
 msgid "Fields not confirmed"
 msgstr "未确认的区块"
 
 #: application/controllers/Activated_gridmap.php:41
 #: application/controllers/Gridmap.php:42
 #: application/controllers/Visitor.php:541
+#: application/controllers/Visitor.php:540
 msgid "Total fields worked"
 msgstr "全部的区块"
 
@@ -1350,6 +1357,8 @@ msgstr "SOTA CSV 导出"
 
 #: application/controllers/Dashboard.php:177
 #: application/controllers/Visitor.php:131
+#: application/controllers/Dashboard.php:176
+#: application/controllers/Visitor.php:130
 msgid "Dashboard"
 msgstr "仪表盘"
 
@@ -1493,6 +1502,9 @@ msgstr "DX 日历"
 #: application/views/dashboard/index.php:577
 #: application/views/dashboard/index.php:580
 #: application/views/visitor/index.php:312
+#: application/views/dashboard/index.php:571
+#: application/views/dashboard/index.php:574
+#: application/views/visitor/index.php:308
 msgid "eQSL Cards"
 msgstr "eQSL 卡片"
 
@@ -1614,6 +1626,7 @@ msgstr "网格地图"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:536
+#: application/controllers/Visitor.php:535
 msgid "Total gridsquares worked"
 msgstr "已通联网格总数"
 
@@ -1918,6 +1931,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:1013 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/visitor/index.php:273
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2532,6 +2546,7 @@ msgstr "快速查找"
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1067 application/views/visitor/index.php:328
 #: application/views/visitor/index.php:330
+#: application/views/visitor/index.php:326
 msgid "Logbook of the World"
 msgstr "Logbook of the World (LoTW)"
 
@@ -2869,6 +2884,16 @@ msgstr "版本信息不再会向用户显示"
 #: application/controllers/Visitor.php:378
 #: application/controllers/Visitor.php:635
 #: application/controllers/Widgets.php:67
+#: application/controllers/Visitor.php:143
+#: application/controllers/Visitor.php:155
+#: application/controllers/Visitor.php:179
+#: application/controllers/Visitor.php:205
+#: application/controllers/Visitor.php:217
+#: application/controllers/Visitor.php:241
+#: application/controllers/Visitor.php:317
+#: application/controllers/Visitor.php:343
+#: application/controllers/Visitor.php:377
+#: application/controllers/Visitor.php:634
 msgid "Unknown Public Page."
 msgstr "未知的公开页面。"
 
@@ -2970,6 +2995,10 @@ msgstr "QRZ ADIF 信息"
 #: application/views/dashboard/index.php:514
 #: application/views/dashboard/index.php:517
 #: application/views/visitor/index.php:289
+#: application/views/dashboard/index.php:508
+#: application/views/dashboard/index.php:511
+#: application/views/visitor/index.php:272
+#: application/views/visitor/index.php:285
 msgid "QSL Cards"
 msgstr "QSL 卡片"
 
@@ -3337,6 +3366,11 @@ msgstr "快速记录 QSO"
 #: application/controllers/Visitor.php:374
 #: application/controllers/Visitor.php:631
 #: application/controllers/Widgets.php:63
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:237
+#: application/controllers/Visitor.php:339
+#: application/controllers/Visitor.php:373
+#: application/controllers/Visitor.php:630
 msgid "Empty Logbook"
 msgstr "日志为空"
 
@@ -4031,19 +4065,23 @@ msgid ""
 msgstr "你已经登出 %s 。欢迎回到你的私人账户，%s ！"
 
 #: application/controllers/Visitor.php:383
+#: application/controllers/Visitor.php:382
 msgid "No public slug found."
 msgstr "未找到外部链接。"
 
 #: application/controllers/Visitor.php:389
+#: application/controllers/Visitor.php:388
 msgid "Satellite Gridsquare Map"
 msgstr "卫星网格地图"
 
 #: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
+#: application/controllers/Visitor.php:568
 msgid "Public Search"
 msgstr "公开搜索"
 
 #: application/controllers/Visitor.php:602
+#: application/controllers/Visitor.php:601
 msgid "Export Map"
 msgstr "导出地图"
 
@@ -4401,6 +4439,7 @@ msgstr "DXCC 应该是数字"
 
 #: application/models/Logbook_model.php:4770
 #: application/models/Logbook_model.php:4772
+#: application/models/Logbook_model.php:4769
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4410,6 +4449,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4778
 #: application/models/Logbook_model.php:4780
+#: application/models/Logbook_model.php:4777
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4420,6 +4460,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4794
 #: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4793
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4427,6 +4468,7 @@ msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的
 
 #: application/models/Logbook_model.php:4804
 #: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4803
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4435,6 +4477,7 @@ msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导
 
 #: application/models/Logbook_model.php:4811
 #: application/models/Logbook_model.php:4813
+#: application/models/Logbook_model.php:4810
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4443,6 +4486,7 @@ msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入
 
 #: application/models/Logbook_model.php:4881
 #: application/models/Logbook_model.php:4883
+#: application/models/Logbook_model.php:4880
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4451,6 +4495,7 @@ msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
 #: application/models/Logbook_model.php:4888
 #: application/models/Logbook_model.php:4890
+#: application/models/Logbook_model.php:4887
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4460,22 +4505,26 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5162
 #: application/models/Logbook_model.php:5164
+#: application/models/Logbook_model.php:5161
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5173
 #: application/models/Logbook_model.php:5175
+#: application/models/Logbook_model.php:5172
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5234
 #: application/models/Logbook_model.php:5236
+#: application/models/Logbook_model.php:5233
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5610
 #: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5612
+#: application/models/Logbook_model.php:5609
 msgid "Duplicate for"
 msgstr "内容重复"
 
@@ -4483,31 +4532,38 @@ msgstr "内容重复"
 #: application/models/Logbook_model.php:5777
 #: application/models/Logbook_model.php:5679
 #: application/models/Logbook_model.php:5779
+#: application/models/Logbook_model.php:5676
+#: application/models/Logbook_model.php:5776
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:5685
 #: application/models/Logbook_model.php:5687
+#: application/models/Logbook_model.php:5684
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:5691
 #: application/models/Logbook_model.php:5693
+#: application/models/Logbook_model.php:5690
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:5695
 #: application/models/Logbook_model.php:5697
+#: application/models/Logbook_model.php:5694
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:5699
 #: application/models/Logbook_model.php:5701
+#: application/models/Logbook_model.php:5698
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:5702
 #: application/models/Logbook_model.php:5704
+#: application/models/Logbook_model.php:5701
 msgid "unconfirmed"
 msgstr "未确认"
 
@@ -4515,16 +4571,19 @@ msgstr "未确认"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/models/Logbook_model.php:5707
+#: application/models/Logbook_model.php:5704
 msgid "unknown"
 msgstr "未知"
 
 #: application/models/Logbook_model.php:5780
 #: application/models/Logbook_model.php:5782
+#: application/models/Logbook_model.php:5779
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
 #: application/models/Logbook_model.php:5783
 #: application/models/Logbook_model.php:5785
+#: application/models/Logbook_model.php:5782
 msgid "QSO updated"
 msgstr "QSO已上传"
 
@@ -4542,6 +4601,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/models/Logbook_model.php:6191
+#: application/models/Logbook_model.php:6188
 msgid "Bearing"
 msgstr "方位角"
 
@@ -4823,6 +4883,7 @@ msgstr "差异"
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
 #: application/views/dashboard/index.php:671
+#: application/views/dashboard/index.php:665
 msgid "All"
 msgstr "所有"
 
@@ -6082,6 +6143,12 @@ msgstr "ADIF中的POTA编号"
 #: application/views/dashboard/index.php:612
 #: application/views/dashboard/index.php:641
 #: application/views/dashboard/index.php:670
+#: application/views/dashboard/index.php:514
+#: application/views/dashboard/index.php:548
+#: application/views/dashboard/index.php:577
+#: application/views/dashboard/index.php:606
+#: application/views/dashboard/index.php:635
+#: application/views/dashboard/index.php:664
 msgid "Status"
 msgstr "状态"
 
@@ -6993,6 +7060,7 @@ msgstr "已确认 %s%%"
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 #: application/views/dashboard/index.php:676
+#: application/views/dashboard/index.php:670
 msgid "Worked"
 msgstr "已通联"
 
@@ -7015,6 +7083,7 @@ msgstr "已通联"
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 #: application/views/dashboard/index.php:681
+#: application/views/dashboard/index.php:675
 msgid "Confirmed"
 msgstr "已确认"
 
@@ -7073,6 +7142,11 @@ msgstr "已确认通联"
 #: application/views/dashboard/index.php:584
 #: application/views/dashboard/index.php:613
 #: application/views/dashboard/index.php:642
+#: application/views/dashboard/index.php:515
+#: application/views/dashboard/index.php:549
+#: application/views/dashboard/index.php:578
+#: application/views/dashboard/index.php:607
+#: application/views/dashboard/index.php:636
 msgid "Total"
 msgstr "总计"
 
@@ -7209,6 +7283,11 @@ msgstr "预设日期"
 #: application/views/dashboard/index.php:585
 #: application/views/dashboard/index.php:614
 #: application/views/dashboard/index.php:643
+#: application/views/dashboard/index.php:516
+#: application/views/dashboard/index.php:550
+#: application/views/dashboard/index.php:579
+#: application/views/dashboard/index.php:608
+#: application/views/dashboard/index.php:637
 msgid "Today"
 msgstr "今天"
 
@@ -8174,6 +8253,7 @@ msgstr "城市"
 #: application/views/qslprint/qsolist.php:58
 #: application/views/qslprint/qsolist.php:60
 #: application/views/dashboard/index.php:672
+#: application/views/dashboard/index.php:666
 msgid "SAT"
 msgstr "卫星"
 
@@ -12869,6 +12949,8 @@ msgstr "DXCC 分析"
 #: application/views/visitor/index.php:279
 #: application/views/dashboard/index.php:504
 #: application/views/visitor/index.php:281
+#: application/views/dashboard/index.php:498
+#: application/views/visitor/index.php:277
 msgid "Needed"
 msgstr "待通联"
 
@@ -12914,6 +12996,14 @@ msgstr "待通联"
 #: application/views/visitor/index.php:293
 #: application/views/visitor/index.php:316
 #: application/views/visitor/index.php:334
+#: application/views/dashboard/index.php:520
+#: application/views/dashboard/index.php:554
+#: application/views/dashboard/index.php:583
+#: application/views/dashboard/index.php:612
+#: application/views/dashboard/index.php:641
+#: application/views/visitor/index.php:289
+#: application/views/visitor/index.php:312
+#: application/views/visitor/index.php:330
 msgid "Sent"
 msgstr "已发送"
 
@@ -12958,6 +13048,14 @@ msgstr "已发送"
 #: application/views/visitor/index.php:298
 #: application/views/visitor/index.php:321
 #: application/views/visitor/index.php:339
+#: application/views/dashboard/index.php:525
+#: application/views/dashboard/index.php:559
+#: application/views/dashboard/index.php:588
+#: application/views/dashboard/index.php:617
+#: application/views/dashboard/index.php:646
+#: application/views/visitor/index.php:294
+#: application/views/visitor/index.php:317
+#: application/views/visitor/index.php:335
 msgid "Received"
 msgstr "已收到"
 
@@ -13004,6 +13102,8 @@ msgstr "已收到"
 #: src/QSLManager/QSO.php:697 src/QSLManager/QSO.php:822
 #: src/QSLManager/QSO.php:847 application/views/dashboard/index.php:536
 #: application/views/visitor/index.php:303
+#: application/views/dashboard/index.php:530
+#: application/views/visitor/index.php:299
 msgid "Requested"
 msgstr "已（被）请求"
 
@@ -13011,6 +13111,8 @@ msgstr "已（被）请求"
 #: application/views/dashboard/index.php:546
 #: application/views/dashboard/index.php:548
 #: application/views/dashboard/index.php:551
+#: application/views/dashboard/index.php:542
+#: application/views/dashboard/index.php:545
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World (LoTW)"
@@ -13018,6 +13120,7 @@ msgstr "Logbook of the World (LoTW)"
 #: application/views/dashboard/index.php:633
 #: application/views/user/edit.php:1121
 #: application/views/dashboard/index.php:638
+#: application/views/dashboard/index.php:632
 msgid "Club Log"
 msgstr "Clublog"
 
@@ -13025,6 +13128,8 @@ msgstr "Clublog"
 #: application/views/dashboard/index.php:662
 #: application/views/dashboard/index.php:664
 #: application/views/dashboard/index.php:667
+#: application/views/dashboard/index.php:658
+#: application/views/dashboard/index.php:661
 msgid "VUCC-Grids"
 msgstr "VUCC 网格"
 
