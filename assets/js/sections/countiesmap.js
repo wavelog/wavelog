@@ -8,10 +8,12 @@ let confirmedColor = 'rgba(144,238,144)';
 if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
       confirmedColor = user_map_custom.qsoconfirm.color;
 }
-let workedColor = 'rgba(229, 165, 10)';
-if (typeof(user_map_custom.qso) !== 'undefined') {
-      workedColor = user_map_custom.qso.color;
-}
+// Deliberately not read from user_map_custom.qso: that option's shared
+// default is red (same as unworkedColor below), which makes "worked, not
+// confirmed" counties indistinguishable from unworked ones on this map.
+// Keep a fixed amber/orange here instead so the three states stay visually
+// distinct regardless of the user's global map color customization.
+let workedColor = '#f0ad4e';
 let unworkedColor = 'rgba(204, 55, 45)';
 if (typeof(user_map_custom.unworked) !== 'undefined') {
    unworkedColor = user_map_custom.unworked.color;
