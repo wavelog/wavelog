@@ -231,8 +231,9 @@ class Activationplanner extends CI_Controller {
 		$json = json_encode($feature);
 		$etag = '"' . md5($json) . '"';
 		session_write_close();
-		session_cache_limiter('private');
+		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
 		header('Cache-Control: private, max-age=31536000');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT');
 		header('ETag: ' . $etag);
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
 			$this->output->set_status_header(304);

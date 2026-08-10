@@ -116,12 +116,13 @@
 	}
 
 	/* Trim a DATETIME string (e.g. "2024-07-31 14:05:00") to its YYYY-MM-DD
-	 * date for the "last activated" popup row. Returns '' on bad/empty input. */
+	 * date for the "last activated" popup row. COL_TIME_ON is stored in UTC,
+	 * so the date is taken straight from the string — never run through a
+	 * Date object, which would reinterpret it in the viewer's local timezone
+	 * and shift the day. Returns '' on bad/empty input. */
 	function formatActivatedDate(s) {
-		if (!s) { return ''; }
-		let d = new Date(String(s).replace(' ', 'T'));
-		if (isNaN(d.getTime())) { return ''; }
-		return d.getUTCFullYear() + '-' + pad2(d.getUTCMonth() + 1, 2) + '-' + pad2(d.getUTCDate(), 2);
+		s = String(s || '').trim();
+		return /^\d{4}-\d{2}-\d{2}/.test(s) ? s.slice(0, 10) : '';
 	}
 
 	function deg2rad(d) { return d * Math.PI / 180; }
