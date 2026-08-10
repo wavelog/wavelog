@@ -12,6 +12,7 @@
 	let stateUrl        = cfg.stateUrl || '';
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
+	let activatedPotaUrl = cfg.activatedPotaUrl || '';
 	let potaBoundaryUrl = cfg.potaBoundaryUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
 	let iotaUrl         = cfg.iotaUrl || '';
@@ -32,6 +33,8 @@
 	let createStationUrl = cfg.createStationUrl || '';
 	let newStationLocLbl = decodeHtml(cfg.newStationLocLbl) || 'Create station location';
 	let refsTitleLbl     = decodeHtml(cfg.refsTitleLbl) || 'References in this grid';
+	let activatedLbl     = decodeHtml(cfg.activatedLbl) || 'Activated';
+	let lastLbl          = decodeHtml(cfg.lastLbl) || 'last';
 	let userDxcc         = cfg.userDxcc != null ? cfg.userDxcc : null;
 	let shareLbl         = decodeHtml(cfg.shareLbl) || 'Share';
 	let shareActivationTitleLbl = decodeHtml(cfg.shareActivationTitleLbl) || 'Share activation';
@@ -110,6 +113,15 @@
 		if (m == null || m === '' || isNaN(m)) { return ''; }
 		let val = measurementBase === 'K' ? Math.round(Number(m)) : Math.round(Number(m) * 3.28084);
 		return groupThousands(val) + (measurementBase === 'K' ? ' m' : ' ft');
+	}
+
+	/* Trim a DATETIME string (e.g. "2024-07-31 14:05:00") to its YYYY-MM-DD
+	 * date for the "last activated" popup row. Returns '' on bad/empty input. */
+	function formatActivatedDate(s) {
+		if (!s) { return ''; }
+		let d = new Date(String(s).replace(' ', 'T'));
+		if (isNaN(d.getTime())) { return ''; }
+		return d.getUTCFullYear() + '-' + pad2(d.getUTCMonth() + 1, 2) + '-' + pad2(d.getUTCDate(), 2);
 	}
 
 	function deg2rad(d) { return d * Math.PI / 180; }
@@ -407,6 +419,26 @@
 		return p;
 	}
 
+	/*
+	 * Set of POTA references the user has activated in the past, plus per-ref
+	 * {last, qso_count}. Fetched lazily only when the POTA overlay is enabled,
+	 * so users who leave it off pay nothing. Failed/off → empty set.
+	 */
+	let activatedPota = null;
+	function loadActivatedPota() {
+		if (activatedPota !== null) { return Promise.resolve(activatedPota); }
+		if (!activatedPotaUrl) { activatedPota = new Map(); return Promise.resolve(activatedPota); }
+		let p = fetch(activatedPotaUrl).then(function (r) { return r.json(); }).then(function (d) {
+			activatedPota = new Map();
+			(Array.isArray(d) ? d : []).forEach(function (a) {
+				if (a && a.reference) { activatedPota.set(a.reference, a); }
+			});
+			return activatedPota;
+		}).catch(function (err) { console.warn('activated POTA load failed:', err); activatedPota = new Map(); return activatedPota; });
+		activatedPota = p;
+		return p;
+	}
+
 	/* Resolved {wwff, pota, sota} arrays of references inside the 6-char grid. */
 	function refsInSquare(lat, lng) {
 		let sq = locatorToCell(latLngToLocator(lat, lng, 3));
@@ -693,6 +725,7 @@
 			'<a class="ref-popup-ref" href="' + esc(refUrl(type, D.reference)) + '" target="_blank" rel="noopener noreferrer">' + esc(D.reference) + ' <i class="fas fa-up-right-from-square"></i></a>' +
 			'</div>' +
 			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.activated ? '<div class="ref-popup-row is-activated"><i class="fas fa-circle-check"></i><span>' + esc(activatedLbl) + ': ' + D.activated.qso_count + ' &middot; ' + esc(lastLbl) + ' ' + esc(formatActivatedDate(D.activated.last)) + '</span></div>' : '') +
 			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
@@ -736,6 +769,19 @@
 		return L.divIcon({
 			className: 'ref-map-icon',
 			html: '<span class="ref-menu-dot" style="background:' + esc(color) + '">' + esc(letter) + '</span>',
+			iconSize: [18, 18],
+			iconAnchor: [9, 9],
+			popupAnchor: [0, -10]
+		});
+	}
+
+	/* "Already activated" variant: gold ring + check over the letter. Reuses
+	 * .ref-menu-dot so sizing stays consistent with the plain marker. */
+	function refIconActivated(letter) {
+		return L.divIcon({
+			className: 'ref-map-icon',
+			html: '<span class="ref-menu-dot is-activated">' + esc(letter) +
+				'<i class="fas fa-check ref-activated-check"></i></span>',
 			iconSize: [18, 18],
 			iconAnchor: [9, 9],
 			popupAnchor: [0, -10]
@@ -822,7 +868,14 @@
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		loadRefDir('pota').then(function (data) {
+		// Resolve the user's activated-refs set in parallel with the directory so
+		// the marker loop can tint already-activated parks in a single pass.
+		Promise.all([
+			loadRefDir('pota'),
+			loadActivatedPota()
+		]).then(function (res) {
+			let data = res[0];
+			let activated = res[1] || new Map();
 			potaCluster = L.markerClusterGroup({
 				chunkedLoading: true,
 				maxClusterRadius: 50,
@@ -831,7 +884,10 @@
 			for (let i = 0; i < data.length; i++) {
 				let D = data[i];
 				if (D.lat == null || D.lon == null) { continue; }
-				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
+				let act = activated.get(D.reference);
+				if (act) { D.activated = act; }
+				let icon = act ? refIconActivated('P') : refIcon('#238b45', 'P');
+				let dot = L.marker([D.lat, D.lon], { icon: icon });
 				dot.refType = 'POTA'; dot.refData = D; dot.refColor = '#238b45';
 				dot.bindPopup(refPopupRich);
 				dot.on('popupopen', function () { drawParkBoundary(D.reference); });

@@ -345,6 +345,45 @@ class Pota extends CI_Model {
 	}
 
 	/*
+	 * Distinct POTA references the user has ACTIVATED (as activator, i.e.
+	 * COL_MY_POTA_REF), across the active logbook's station locations.
+	 * Multi-park QSOs store "K-1234,K-5678" in one column, so each row's
+	 * value is split and counted per-park in PHP (mirrors the explode idiom
+	 * in count_unique_references()). Returns [{reference, last, qso_count}].
+	 */
+	function activated_references() {
+		$this->load->model('logbooks_model');
+		$locs = $this->logbooks_model->list_logbook_relationships(
+			$this->session->userdata('active_station_logbook'));
+		if (!$locs || $locs[0] === -1) {
+			return [];
+		}
+
+		$this->db->select('COL_MY_POTA_REF ref, COL_TIME_ON last');
+		$this->db->where_in('station_id', $locs);
+		$this->db->where('COL_MY_POTA_REF IS NOT NULL');
+		$this->db->where('COL_MY_POTA_REF !=', '');
+		$q = $this->db->get($this->config->item('table_name'));
+
+		$out = [];
+		foreach ($q->result() as $r) {
+			$last = $r->last ?: '';
+			foreach (explode(',', (string) $r->ref) as $sub) {
+				$sub = trim($sub);
+				if ($sub === '') { continue; }
+				if (!isset($out[$sub])) {
+					$out[$sub] = ['reference' => $sub, 'last' => $last, 'qso_count' => 0];
+				}
+				$out[$sub]['qso_count']++;
+				if ($last && (!$out[$sub]['last'] || strtotime($last) > strtotime($out[$sub]['last']))) {
+					$out[$sub]['last'] = $last;
+				}
+			}
+		}
+		return array_values($out);
+	}
+
+	/*
 	 * Count of distinct parks worked in the active logbook. $column selects
 	 * the track: COL_POTA_REF = parks hunted, COL_MY_POTA_REF = parks
 	 * activated. Comma-separated multi-park references are expanded so each

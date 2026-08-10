@@ -145,8 +145,9 @@ class Activationplanner extends CI_Controller {
 
 		$etag = '"' . md5($json) . '"';
 		session_write_close();            // release session lock; allow header override
-		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
 		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
 		header('ETag: ' . $etag);
 
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
@@ -163,12 +164,38 @@ class Activationplanner extends CI_Controller {
 
 		$etag = '"' . md5($json) . '"';
 		session_write_close();            // release session lock; allow header override
-		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
 		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
 		header('ETag: ' . $etag);
 
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
 			$this->output->set_status_header(304); // CI idiom for status codes
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
+	/*
+	 * AJAX: the set of POTA references the user has activated in the past
+	 * (as activator — COL_MY_POTA_REF across the active logbook's locations).
+	 * Lets the planner mark already-activated parks distinctly on the map.
+	 * User-scoped, so the response is private (never shared across users).
+	 */
+	public function activated_pota() {
+		$this->load->model('pota');
+		$json = json_encode($this->pota->activated_references());
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();
+		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
+		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304);
 			return;
 		}
 		header('Content-Type: application/json');
@@ -221,8 +248,9 @@ class Activationplanner extends CI_Controller {
 
 		$etag = '"' . md5($json) . '"';
 		session_write_close();            // release session lock; allow header override
-		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
 		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
 		header('ETag: ' . $etag);
 
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
@@ -243,8 +271,9 @@ class Activationplanner extends CI_Controller {
 
 		$etag = '"' . md5($json) . '"';
 		session_write_close();            // release session lock; allow header override
-		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
 		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
 		header('ETag: ' . $etag);
 
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
@@ -285,8 +314,9 @@ class Activationplanner extends CI_Controller {
 
 		$etag = '"' . md5($grid . ':' . $json) . '"';
 		session_write_close();            // release session lock; allow header override
-		session_cache_limiter('private'); // defeat PHP's default nocache limiter (cf. Eqsl.php)
+		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
 		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
 		header('ETag: ' . $etag);
 
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {

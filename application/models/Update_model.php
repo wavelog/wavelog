@@ -408,7 +408,7 @@ class Update_model extends CI_Model {
 
     function pota_boundaries() {
         $this->load->model('cron_model');
-        $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+        $this->cron_model->set_last_run('update_pota_boundaries');
 
         set_time_limit(0);                       // 7 files, the big ones are slow
         ini_set('memory_limit', '512M');          // headroom for the largest single park
