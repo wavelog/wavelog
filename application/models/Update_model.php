@@ -136,11 +136,13 @@ class Update_model extends CI_Model {
             }
 
             $batch[] = [
-                'reference' => isset($cols[0]) ? trim($cols[0]) : null,
-                'name'      => isset($cols[3]) ? trim($cols[3]) : null,
-                'altitude'  => isset($cols[4]) ? trim($cols[4]) : null,
-                'lat'       => $this->_wwff_coord($cols[9] ?? null),
-                'lon'       => $this->_wwff_coord($cols[8] ?? null),
+                'reference'  => isset($cols[0]) ? trim($cols[0]) : null,
+                'name'       => isset($cols[3]) ? trim($cols[3]) : null,
+                'altitude'   => isset($cols[4]) ? trim($cols[4]) : null,
+                'lat'        => $this->_wwff_coord($cols[9] ?? null),
+                'lon'        => $this->_wwff_coord($cols[8] ?? null),
+                'valid_from' => $this->_dir_date($cols[12] ?? null, '!d/m/Y'),
+                'valid_till' => $this->_dir_date($cols[13] ?? null, '!d/m/Y'),
             ];
             $nCount++;
 
@@ -211,10 +213,12 @@ class Update_model extends CI_Model {
             }
 
             $batch[] = [
-                'reference' => $ref,
-                'name'      => isset($cols[2]) ? trim($cols[2]) : null,
-                'lat'       => $this->_wwff_coord($cols[10] ?? null),
-                'lon'       => $this->_wwff_coord($cols[11] ?? null),
+                'reference'  => $ref,
+                'name'       => isset($cols[2]) ? trim($cols[2]) : null,
+                'lat'        => $this->_wwff_coord($cols[10] ?? null),
+                'lon'        => $this->_wwff_coord($cols[11] ?? null),
+                'valid_from' => $this->_dir_date($cols[13] ?? null, '!Y-m-d'),
+                'valid_till' => $this->_dir_date($cols[14] ?? null, '!Y-m-d'),
             ];
             $nCount++;
 
@@ -254,6 +258,26 @@ class Update_model extends CI_Model {
         return $f == 0 ? null : $f;
     }
 
+    // Normalises a directory date cell to a storage-ready DATE (Y-m-d) string.
+    // Returns null for empty cells, unparseable values, or the zero-date
+    // sentinel some sources use (e.g. WWFF's "0000-00-00"), which we treat as
+    // "no constraint". $fmt is the createFromFormat mask (e.g. '!d/m/Y' for
+    // SOTA, '!Y-m-d' for WWFF).
+    private function _dir_date($val, $fmt) {
+        if ($val === null) {
+            return null;
+        }
+        $val = trim($val);
+        if ($val === '' || $val === '0000-00-00') {
+            return null;
+        }
+        $dt = DateTime::createFromFormat($fmt, $val);
+        if ($dt === false) {
+            return null;
+        }
+        return $dt->format('Y-m-d');
+    }
+
 	private function _pota_upsert_batch($batch) {
         $placeholders = [];
         $bindings = [];
@@ -272,29 +296,29 @@ class Update_model extends CI_Model {
         $placeholders = [];
         $bindings = [];
         foreach ($batch as $b) {
-            $placeholders[] = '(?, ?, ?, ?)';
-            array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon']);
+            $placeholders[] = '(?, ?, ?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till']);
         }
 
-        $sql = 'INSERT IGNORE INTO wwff_directory (reference, name, lat, lon) VALUES '
+        $sql = 'INSERT IGNORE INTO wwff_directory (reference, name, lat, lon, valid_from, valid_till) VALUES '
             . implode(', ', $placeholders);
 
         $this->db->query($sql, $bindings);
     }
 
 	private function _sota_upsert_batch($batch) {
-        $placeholders = [];
-        $bindings = [];
-        foreach ($batch as $b) {
-            $placeholders[] = '(?, ?, ?, ?, ?)';
-            array_push($bindings, $b['reference'], $b['name'], $b['altitude'], $b['lat'], $b['lon']);
-        }
+		$placeholders = [];
+		$bindings = [];
+		foreach ($batch as $b) {
+			$placeholders[] = '(?, ?, ?, ?, ?, ?, ?)';
+			array_push($bindings, $b['reference'], $b['name'], $b['altitude'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till']);
+		}
 
-        $sql = 'INSERT IGNORE INTO sota_directory (reference, name, altitude, lat, lon) VALUES '
-            . implode(', ', $placeholders);
+		$sql = 'INSERT IGNORE INTO sota_directory (reference, name, altitude, lat, lon, valid_from, valid_till) VALUES '
+			. implode(', ', $placeholders);
 
-        $this->db->query($sql, $bindings);
-    }
+		$this->db->query($sql, $bindings);
+	}
 
     function hamqsl(){
 	    // This downloads and stores hamqsl propagation data XML file

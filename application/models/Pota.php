@@ -66,11 +66,10 @@ class Pota extends CI_Model {
 	 * Rows without coordinates are skipped because they can't be plotted.
 	 */
 	function get_directory() {
-		$sql = "SELECT reference, name, lat, lon
+		$sql = "SELECT reference, name, lat, lon, active
 				FROM pota_directory
 				WHERE lat IS NOT NULL
 				AND lon IS NOT NULL
-				AND active = 1
 				ORDER BY reference ASC";
 		$query = $this->db->query($sql);
 
@@ -81,6 +80,7 @@ class Pota extends CI_Model {
 				'name'      => $row->name,
 				'lat'       => (float) $row->lat,
 				'lon'       => (float) $row->lon,
+				'inactive'  => ((string) $row->active === '0'),
 			];
 		}
 
@@ -171,16 +171,17 @@ class Pota extends CI_Model {
 		$dirMap = [];
 		$refs = array_keys($perRef);
 		if ($refs) {
-			$q = $this->db->select('reference, name, lat, lon')
+			$q = $this->db->select('reference, name, lat, lon, active')
 				->from('pota_directory')
 				->where_in('reference', $refs)
 				->get();
 			foreach ($q->result() as $r) {
 				if ($r->lat !== null && $r->lon !== null) {
 					$dirMap[$r->reference] = [
-						'name' => $r->name,
-						'lat'  => (float) $r->lat,
-						'lon'  => (float) $r->lon,
+						'name'     => $r->name,
+						'lat'      => (float) $r->lat,
+						'lon'      => (float) $r->lon,
+						'inactive' => ((string) $r->active === '0'),
 					];
 				}
 			}
@@ -193,12 +194,13 @@ class Pota extends CI_Model {
 			if ($status == 'C' && ($postdata['confirmed'] ?? null) != 1) continue;
 			if ($status == 'W' && ($postdata['worked'] ?? null) != 1) continue;
 
-			$coords = $dirMap[$reference] ?? ['name' => null, 'lat' => null, 'lon' => null];
+			$coords = $dirMap[$reference] ?? ['name' => null, 'lat' => null, 'lon' => null, 'inactive' => false];
 			$result[] = [
 				'reference' => $reference,
 				'name'      => $coords['name'],
 				'lat'       => $coords['lat'],
 				'lon'       => $coords['lon'],
+				'inactive'  => $coords['inactive'],
 				'status'    => $status,
 			];
 		}

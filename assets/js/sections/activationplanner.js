@@ -35,6 +35,7 @@
 	let refsTitleLbl     = decodeHtml(cfg.refsTitleLbl) || 'References in this grid';
 	let activatedLbl     = decodeHtml(cfg.activatedLbl) || 'Activated';
 	let lastLbl          = decodeHtml(cfg.lastLbl) || 'last';
+	let inactiveLbl      = decodeHtml(cfg.inactiveLbl) || 'Inactive';
 	let userDxcc         = cfg.userDxcc != null ? cfg.userDxcc : null;
 	let shareLbl         = decodeHtml(cfg.shareLbl) || 'Share';
 	let shareActivationTitleLbl = decodeHtml(cfg.shareActivationTitleLbl) || 'Share activation';
@@ -726,6 +727,7 @@
 			'<a class="ref-popup-ref" href="' + esc(refUrl(type, D.reference)) + '" target="_blank" rel="noopener noreferrer">' + esc(D.reference) + ' <i class="fas fa-up-right-from-square"></i></a>' +
 			'</div>' +
 			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.inactive ? '<div class="ref-popup-row is-inactive"><i class="fas fa-circle-exclamation"></i><span>' + esc(inactiveLbl) + '</span></div>' : '') +
 			(D.activated ? '<div class="ref-popup-row is-activated"><i class="fas fa-circle-check"></i><span>' + esc(activatedLbl) + ': ' + D.activated.qso_count + ' &middot; ' + esc(lastLbl) + ' ' + esc(formatActivatedDate(D.activated.last)) + '</span></div>' : '') +
 			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +

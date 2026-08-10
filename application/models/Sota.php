@@ -59,7 +59,7 @@ class Sota extends CI_Model {
 	 * Rows without coordinates are skipped because they can't be plotted.
 	 */
 	function get_directory() {
-		$sql = "SELECT reference, name, lat, lon, altitude
+		$sql = "SELECT reference, name, lat, lon, altitude, valid_from, valid_till
 		FROM sota_directory
 		WHERE lat IS NOT null
 		AND lon IS NOT null
@@ -74,7 +74,8 @@ class Sota extends CI_Model {
 				'name'      => $row->name,
 				'lat'       => (float) $row->lat,
 				'lon'       => (float) $row->lon,
-				'altitude'  => $row->altitude
+				'altitude'  => $row->altitude,
+				'inactive'  => $this->_inactive($row->valid_from, $row->valid_till),
 			];
 		}
 
@@ -85,7 +86,8 @@ class Sota extends CI_Model {
 		$bindings = [];
 
 		$sql = "SELECT thcv.COL_SOTA_REF AS reference,
-				MAX(sd.lat) AS lat, MAX(sd.lon) AS lon, MAX(sd.name) AS name, MAX(sd.altitude) AS altitude,
+			MAX(sd.lat) AS lat, MAX(sd.lon) AS lon, MAX(sd.name) AS name, MAX(sd.altitude) AS altitude,
+			MAX(sd.valid_from) AS valid_from, MAX(sd.valid_till) AS valid_till,
 				MAX(CASE WHEN thcv.COL_QSL_RCVD = 'Y' THEN 1 ELSE 0 END) AS qsl,
 				MAX(CASE WHEN thcv.COL_LOTW_QSL_RCVD = 'Y' THEN 1 ELSE 0 END) AS lotw,
 				MAX(CASE WHEN thcv.COL_EQSL_QSL_RCVD = 'Y' THEN 1 ELSE 0 END) AS eqsl,
@@ -151,6 +153,7 @@ class Sota extends CI_Model {
 				'lat'       => $row->lat !== null ? (float) $row->lat : null,
 				'lon'       => $row->lon !== null ? (float) $row->lon : null,
 				'altitude'  => $row->altitude !== null ? (int) $row->altitude : null,
+				'inactive'  => $this->_inactive($row->valid_from, $row->valid_till),
 				'status'    => $status,
 			];
 		}
@@ -222,6 +225,20 @@ class Sota extends CI_Model {
 		}
 
 		return $result;
+	}
+
+	// A summit is inactive when today falls outside [valid_from, valid_till].
+	// A NULL bound means "no constraint" on that side, and the closing day
+	// (today == valid_till) still counts as active.
+	private function _inactive($valid_from, $valid_till) {
+		$today = date('Y-m-d');
+		if ($valid_from !== null && $today < $valid_from) {
+			return true;
+		}
+		if ($valid_till !== null && $today > $valid_till) {
+			return true;
+		}
+		return false;
 	}
 }
 

@@ -2,13 +2,6 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// Stores per-park boundary geometry for the parks that have a published
-// GeoJSON source (DE/AT/CH/CZ/DK/LU/LI from pota-map.info). A single park may
-// span several non-contiguous parts (multi-part polygons, or linear parks as
-// LineStrings), so one reference can have multiple rows — the activation
-// planner merges them into a GeometryCollection on read. Coverage is partial:
-// parks with no row keep their existing point marker. Populated by the
-// update_pota_boundaries cron job, not here.
 class Migration_pota_boundaries extends CI_Migration {
 
 	public function up() {
@@ -60,10 +53,46 @@ class Migration_pota_boundaries extends CI_Migration {
 				));
 			}
 		}
+
+		$validity_fields = array(
+			'valid_from' => array(
+				'type' => 'DATE',
+				'null' => TRUE,
+				'default' => null,
+			),
+			'valid_till' => array(
+				'type' => 'DATE',
+				'null' => TRUE,
+				'default' => null,
+			),
+		);
+		if ($this->db->table_exists('sota_directory') && !$this->db->field_exists('valid_from', 'sota_directory')) {
+			$this->dbforge->add_column('sota_directory', $validity_fields);
+		}
+		if ($this->db->table_exists('wwff_directory') && !$this->db->field_exists('valid_from', 'wwff_directory')) {
+			$this->dbforge->add_column('wwff_directory', $validity_fields);
+		}
 	}
 
 	public function down() {
 		$this->dbforge->drop_table('pota_boundaries', TRUE);
 		$this->db->delete('cron', array('id' => 'update_pota_boundaries'));
+
+		if ($this->db->table_exists('sota_directory')) {
+			if ($this->db->field_exists('valid_from', 'sota_directory')) {
+				$this->dbforge->drop_column('sota_directory', 'valid_from');
+			}
+			if ($this->db->field_exists('valid_till', 'sota_directory')) {
+				$this->dbforge->drop_column('sota_directory', 'valid_till');
+			}
+		}
+		if ($this->db->table_exists('wwff_directory')) {
+			if ($this->db->field_exists('valid_from', 'wwff_directory')) {
+				$this->dbforge->drop_column('wwff_directory', 'valid_from');
+			}
+			if ($this->db->field_exists('valid_till', 'wwff_directory')) {
+				$this->dbforge->drop_column('wwff_directory', 'valid_till');
+			}
+		}
 	}
 }
