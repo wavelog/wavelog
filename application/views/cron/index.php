@@ -74,7 +74,7 @@
                                     <th><?= __("ID"); ?></th>
                                     <th><?= __("Description"); ?></th>
                                     <th><?= __("Status"); ?></th>
-                                    <th><?= __("Intervall"); ?></th>
+                                    <th><?= __("Interval"); ?></th>
                                     <th><?= __("Last Run"); ?></th>
                                     <th><?= __("Next Run"); ?></th>
                                     <th><?= __("Edit"); ?></th>

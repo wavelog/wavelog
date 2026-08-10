@@ -60,6 +60,8 @@ class cron extends CI_Controller {
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
 		]);
 
+		$this->load->helper('cronauth');
+
 		$rate_limit_key = 'cron_run_rate_limit';
 		if ($this->cache->get($rate_limit_key) !== false) {
 			http_response_code(429); // Too Many Requests
@@ -82,6 +84,7 @@ class cron extends CI_Controller {
 			foreach ($crons as $cron) {
 				// Set the status to false by default
 				$set_status = false;
+				cronauth_mark_active();
 				try {
 					if ($cron->enabled == 1) {
 
@@ -341,6 +344,9 @@ class cron extends CI_Controller {
 	}
 
 	private function triggerCron($cron) {
+		$this->load->helper('cronauth');
+		$cron_token = cronauth_token();
+
 		if (ENVIRONMENT == "docker") {
 			$url = 'http://localhost/' . $cron->function;
 			log_message('debug', 'Docker Environment detected. Using URL: ' . $url);
@@ -368,6 +374,9 @@ class cron extends CI_Controller {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+		if ($cron_token !== '') {
+			curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-Wavelog-Auth: ' . $cron_token]);
+		}
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
 

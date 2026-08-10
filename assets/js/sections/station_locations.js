@@ -37,7 +37,8 @@ $(document).ready(function () {
 	})
 
 	if (window.location.pathname.indexOf('/station/edit') !== -1 || window.location.pathname.indexOf('/station/create') !== -1 || window.location.pathname.indexOf('/station/copy') !== -1) {
-		updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
+		var preState = $('#stateDropdown').data('state') || null;
+		updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit', '#stateDropdown', preState);
 		$('#location_us_county').show();
 		var dxcc = $('#dxcc_id').val();
 		switch (dxcc) {

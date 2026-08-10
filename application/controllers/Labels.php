@@ -139,6 +139,11 @@ class Labels extends CI_Controller {
 
 	public function printids() {
 		$ids = xss_clean(json_decode($this->input->post('id')));
+		if (empty($ids)) {
+			header('Content-Type: application/json');
+			echo json_encode(array('message' => __('No QSOs were selected')));
+			return;
+		}
 		$offset = xss_clean($this->input->post('startat'));
 		$grid = $this->input->post('grid') === "true" ? 1 : 0;
 		$via = $this->input->post('via') === "true" ? 1 : 0;

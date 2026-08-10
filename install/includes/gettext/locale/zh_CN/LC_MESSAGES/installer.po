@@ -16,11 +16,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 15:45+0000\n"
 "PO-Revision-Date: 2026-06-24 10:48+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/installer/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/installer/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -733,76 +733,76 @@ msgstr "Wavelog 需要这个模块来运行！"
 msgid "Please install the required modules and restart the webserver."
 msgstr "请安装缺失的模块，并重启网页服务器。"
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "安装"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "请稍等…"
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "复制 config.php 到 application/config/"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "复制 database.php 到 application/config/"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "创建数据表"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "运行数据库迁移"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "更新 DXCC 数据"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "锁定安装程序"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr "所有安装步骤已完成，正重定向至登录页，剩余 %s 秒…"
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "完成，前往登录页 ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:168
 msgid "Show detailled debug log"
 msgstr "显示详细调试日志"
 
-#: install/run.php:146
+#: install/run.php:170
 msgid "Hide detailled debug log"
 msgstr "隐藏详细调试日志"
 
-#: install/run.php:174
+#: install/run.php:198
 msgid "Could not create application/config/config.php"
 msgstr "无法创建 application/config/config.php"
 
-#: install/run.php:209
+#: install/run.php:233
 msgid "Could not create application/config/database.php"
 msgstr "无法创建 application/config/database.php"
 
-#: install/run.php:243
+#: install/run.php:267
 msgid "Could not create database tables"
 msgstr "无法创建数据表"
 
-#: install/run.php:273
+#: install/run.php:297
 msgid "Could not run database migrations"
 msgstr "无法运行数据库迁移（推荐检查命令安全限制）"
 
-#: install/run.php:301
+#: install/run.php:350
 msgid "Could not update DXCC data"
 msgstr "无法更新 DXCC 数据"
 
-#: install/run.php:333
+#: install/run.php:382
 msgid "Could not create install/.lock file"
 msgstr "无法创建 install/.lock 文件"
 

@@ -399,6 +399,25 @@ class Stationsetup_model extends CI_Model {
 		return 1;
 	}
 
+	/**
+	 * Update an existing station location from a plain column => value array,
+	 * scoped to the owner. Session-free counterpart to Stations::edit() for the
+	 * REST API (which has no POST form and no session user). Only the columns
+	 * present in $dbdata are written, so PATCH semantics are up to the caller.
+	 *
+	 * @param int        $station_id Target station_profile row.
+	 * @param array      $dbdata     column => value pairs to update.
+	 * @param int|null   $user_id    Owner; falls back to the session user.
+	 * @return int Number of affected rows.
+	 */
+	public function update_location($station_id, $dbdata, $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');
+		$this->db->where('user_id', $user_id);
+		$this->db->where('station_id', $station_id);
+		$this->db->update('station_profile', $dbdata);
+		return $this->db->affected_rows();
+	}
+
 }
 
 ?>

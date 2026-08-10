@@ -84,6 +84,21 @@ class Stations extends CI_Model {
 		return $row;
 	}
 
+	/**
+	 * Fetch a station profile by its UUID, scoped to the owner. Used by the
+	 * REST API after an insert to resolve the freshly created row (save_location
+	 * only reports success, not the new id), since the UUID is unique per row.
+	 *
+	 * @param string $uuid    station_uuid to look up.
+	 * @param int    $user_id Owner.
+	 * @return object|null The station_profile row, or null when not found.
+	 */
+	function profile_by_uuid($uuid, $user_id) {
+		$this->db->where('station_uuid', $this->security->xss_clean($uuid));
+		$this->db->where('user_id', $user_id);
+		return $this->db->get('station_profile')->row();
+	}
+
 	/*
 	*	Function: add
 	*	Adds post material into the station profile table.
@@ -323,6 +338,8 @@ class Stations extends CI_Model {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('station_id', $clean_new);
 		$this->db->update('station_profile', $newdefault);
+
+		$this->session->set_userdata('station_profile_id', $clean_new);
 	}
 
 	function edit_favourite($id) {
@@ -336,8 +353,11 @@ class Stations extends CI_Model {
 		}
 	}
 
-	public function find_active() {
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+	public function find_active($user_id = null) {
+		if ($user_id == null) {
+			$user_id = $this->session->userdata('user_id');
+		}
+		$this->db->where('user_id', $user_id);
 		$this->db->where('station_active', 1);
 		$query = $this->db->get('station_profile');
 

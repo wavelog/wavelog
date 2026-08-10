@@ -33,9 +33,15 @@ class API extends CI_Controller {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('api_model');
+		$this->load->model('api_v2_model');
 		$this->load->library('form_validation');
 
 		$data['api_keys'] = $this->api_model->keys();
+		$data['api_tokens'] = $this->api_v2_model->get_tokens_for_user();
+		$data['token_scopes'] = Api_v2_model::grantable_scope_registry();
+		$data['token_presets'] = Api_v2_model::preset_registry();
+		// One-time reveal: the plaintext token survives exactly one redirect.
+		$data['new_api_token'] = $this->session->flashdata('new_api_token');
 		$data['clubmode'] = $this->session->userdata('clubstation') == 1 ? true : false;
 		$data['page_title'] = __("API");
 
@@ -89,7 +95,7 @@ class API extends CI_Controller {
 			$data['page_title'] = __("Edit API Description");
 
 			$this->load->view('interface_assets/header', $data);
-			$this->load->view('api/description');
+			$this->load->view('api/components/edit_legacy');
 			$this->load->view('interface_assets/footer');
 		} else {
 			// Success!
@@ -1098,30 +1104,6 @@ class API extends CI_Controller {
 			$operator = $created_by;
 		} else {
 			$operator = $user_id;
-		}
-
-		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. Flex 3000 uses CWU and CWL. Icom uses CW-R. We override this here to CW
-		switch (strtoupper($obj['mode'] ?? '')) {
-			case 'CW-U':
-			case 'CW-L':
-			case 'CW-R':
-			case 'CWU':
-			case 'CWL':
-				$obj['mode'] = 'CW';
-				break;
-			case 'RTTY-L':
-			case 'RTTY-U':
-			case 'RTTY-R':
-				$obj['mode'] = 'RTTY';
-				break;
-			case 'USB-D':
-			case 'USB-D1':
-				$obj['mode'] = 'USB';
-				break;
-			case 'LSB-D':
-			case 'LSB-D1':
-				$obj['mode'] = 'LSB';
-				break;
 		}
 
 		// Handle optional cat_url
