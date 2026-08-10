@@ -43,9 +43,16 @@ class Contest_resource extends Api_v2_resource {
 
 	/**
 	 * GET /api/v2/contest
-	 * Optional: ?page=, ?per_page= (default 50, max 200)
+	 * Without query params: list the token owner's contest sessions (newest first).
+	 * ?templates=true: list active contest definitions from the contest table
+	 *                  instead (mirrors patch get_contest_list).
+	 * Optional pagination for sessions: ?page=, ?per_page= (default 50, max 200)
 	 */
 	public function index() {
+		if ($this->param('templates') === 'true') {
+			$this->index_templates();
+			return;
+		}
 		$uid  = $this->user_id();
 		$page = max(1, (int) $this->param('page', 1));
 		$per  = min(200, max(1, (int) $this->param('per_page', 50)));
@@ -220,6 +227,28 @@ class Contest_resource extends Api_v2_resource {
 	}
 
 	// --- Helpers -----------------------------------------------------------
+
+	/**
+	 * GET /api/v2/contest?templates=true
+	 * Returns the list of active contest definitions (not sessions) for use in
+	 * contest session creation forms. Mirrors patch get_contest_list.
+	 */
+	protected function index_templates() {
+		$rows = $this->CI->db
+			->select('id, name, adifname')
+			->where('active', 1)
+			->order_by('name', 'ASC')
+			->get('contest')
+			->result();
+
+		$out = array_map(fn($r) => [
+			'id'        => (int) $r->id,
+			'name'      => $r->name,
+			'adif_name' => $r->adifname,
+		], $rows);
+
+		$this->CI->api_v2_response->respond($out, 200, ['type' => 'templates', 'count' => count($out)]);
+	}
 
 	protected function require_owned($id) {
 		if (!is_numeric($id) || (int) $id < 1) {

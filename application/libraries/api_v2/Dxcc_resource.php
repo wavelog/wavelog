@@ -56,6 +56,7 @@ class Dxcc_resource extends Api_v2_resource {
 	/**
 	 * GET /api/v2/dxcc/{id}
 	 * {id} is the ADIF number of the entity.
+	 * Optional: ?subdivisions=true — include primary subdivisions (states/provinces).
 	 */
 	public function show($id) {
 		if (!is_numeric($id) || (int) $id < 1) {
@@ -72,7 +73,36 @@ class Dxcc_resource extends Api_v2_resource {
 			throw new Api_v2_exception('not_found', 'DXCC entity not found', 404);
 		}
 
-		$this->CI->api_v2_response->respond($this->format($q->row()));
+		$data = $this->format($q->row());
+
+		if ($this->param('subdivisions') === 'true') {
+			$data['subdivisions'] = $this->fetch_subdivisions((int) $id);
+		}
+
+		$this->CI->api_v2_response->respond($data);
+	}
+
+	/**
+	 * GET /api/v2/dxcc?subdivisions={adif}
+	 * Convenience endpoint: returns just the subdivision list for a given DXCC.
+	 * Equivalent to GET /api/v2/dxcc/{id}?subdivisions=true but usable without
+	 * knowing the entity's exact ADIF id in advance.
+	 *
+	 * Also maps the patch endpoint get_state_list: ?dxcc={adif}
+	 */
+	protected function fetch_subdivisions($adif_id) {
+		$rows = $this->CI->db
+			->select('state, subdivision')
+			->where('adif', $adif_id)
+			->where('deprecated', 0)
+			->order_by('subdivision', 'ASC')
+			->get('primary_subdivisions')
+			->result();
+
+		return array_map(fn($r) => [
+			'code' => $r->state,
+			'name' => $r->subdivision,
+		], $rows);
 	}
 
 	// --- Helpers -----------------------------------------------------------

@@ -12,11 +12,17 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * the token's user_id.
  *
  * Routes:
- *   GET    /api/v2/logbook           list all logbooks
+ *   GET    /api/v2/logbook           list all logbooks (includes linked station ids)
  *   GET    /api/v2/logbook/{id}      single logbook
  *   POST   /api/v2/logbook           create logbook (body: name)
- *   PATCH  /api/v2/logbook/{id}      rename and/or set active
+ *   PATCH  /api/v2/logbook/{id}      rename, set active, link/unlink a station
  *   DELETE /api/v2/logbook/{id}      delete (not allowed when active)
+ *
+ * PATCH body fields (all optional, any combination):
+ *   name              string  — new logbook name
+ *   active            bool    — make this the active logbook
+ *   link_station_id   int     — add a station location to this logbook
+ *   unlink_station_id int     — remove a station location from this logbook
  *
  * Scope: logbook:read / logbook:write / logbook:delete
  */
@@ -125,6 +131,36 @@ class Logbook_resource extends Api_v2_resource {
 			$changed = true;
 		}
 
+		// Link a station location to this logbook.
+		if (!empty($body['link_station_id'])) {
+			$station_id = (int) $body['link_station_id'];
+			$this->CI->load->model('stations');
+			if (!$this->CI->stations->check_station_against_user($station_id, $uid)) {
+				throw new Api_v2_exception('forbidden', 'link_station_id does not belong to this token', 403);
+			}
+			$exists = $this->CI->db
+				->where('station_logbook_id', $logbook_id)
+				->where('station_location_id', $station_id)
+				->get('station_logbooks_relationship')->num_rows();
+			if (!$exists) {
+				$this->CI->db->insert('station_logbooks_relationship', [
+					'station_logbook_id'  => $logbook_id,
+					'station_location_id' => $station_id,
+				]);
+			}
+			$changed = true;
+		}
+
+		// Unlink a station location from this logbook.
+		if (!empty($body['unlink_station_id'])) {
+			$station_id = (int) $body['unlink_station_id'];
+			$this->CI->db
+				->where('station_logbook_id', $logbook_id)
+				->where('station_location_id', $station_id)
+				->delete('station_logbooks_relationship');
+			$changed = true;
+		}
+
 		if (!$changed) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
@@ -204,10 +240,21 @@ class Logbook_resource extends Api_v2_resource {
 	}
 
 	protected function format($row, $active_id) {
+		$logbook_id = (int) $row->logbook_id;
 		return [
-			'id'     => (int) $row->logbook_id,
-			'name'   => $row->logbook_name ?? null,
-			'active' => ((int) $row->logbook_id === $active_id),
+			'id'                 => $logbook_id,
+			'name'               => $row->logbook_name ?? null,
+			'active'             => ($logbook_id === $active_id),
+			'linked_station_ids' => $this->linked_station_ids($logbook_id),
 		];
+	}
+
+	protected function linked_station_ids($logbook_id) {
+		$rows = $this->CI->db
+			->select('station_location_id')
+			->where('station_logbook_id', $logbook_id)
+			->get('station_logbooks_relationship')
+			->result();
+		return array_map(fn($r) => (int) $r->station_location_id, $rows);
 	}
 }

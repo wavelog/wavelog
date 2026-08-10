@@ -341,8 +341,38 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
+		// Optional: link the new QSO to a contest session.
+		if ($new_id && !empty($body['contest_session_id'])) {
+			$this->link_to_contest($new_id, (int) $body['contest_session_id']);
+		}
+
 		$headers = $new_id ? ['Location' => base_url('index.php/api/v2/qso/' . $new_id)] : [];
 		$this->CI->api_v2_response->respond($created ?? ['id' => $new_id], 201, null, $headers);
+	}
+
+	/**
+	 * Link a QSO to a contest session via the contest_qsos junction table.
+	 * Verifies session ownership; silently skips if the session is not found
+	 * (the QSO was already committed — throwing here would leave an orphan).
+	 *
+	 * @param int $qso_id     Freshly inserted QSO primary key.
+	 * @param int $session_id contest_session.id to link to.
+	 */
+	protected function link_to_contest($qso_id, $session_id) {
+		$ok = $this->CI->db
+			->where('id', $session_id)
+			->where('user_id', $this->user_id())
+			->get('contest_session')
+			->num_rows();
+
+		if (!$ok) {
+			return;
+		}
+
+		$this->CI->db->insert('contest_qsos', [
+			'contest_session_id' => $session_id,
+			'qso_id'             => $qso_id,
+		]);
 	}
 
 	/**
