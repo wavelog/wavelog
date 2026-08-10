@@ -4322,7 +4322,6 @@ class Logbook_model extends CI_Model {
 		return [
 			'Countries_Worked' => 0,
 			'Countries_Worked_QSL' => 0,
-			'Countries_Worked_EQSL' => 0,
 			'Countries_Worked_LOTW' => 0,
 			'Countries_Worked_Confirmed' => 0,
 			'Countries_Current' => 0,
