@@ -1098,7 +1098,6 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
     });
 }
 
-var set_state;
 function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
     var dropdown = $(dropdown);
     dropdown.empty();
