@@ -88,9 +88,6 @@ This is a widget to show the last LoTW upload in your QRZ.com Bio or somewhere e
                       <strong><?= __("Last LoTW Uploads"); ?></strong>
                     </span>
                 </div>
-                <div class="refresh-indicator" id="refresh-indicator">
-                    <small>🔄</small>
-                </div>
             </div>
             <div class="bottom-right mt-3" id="lotw_uploads-container">
                 <div class="mb-2">
