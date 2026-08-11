@@ -711,6 +711,9 @@ function globemap(x) {
 		OneQsoLab.text=element.callsign;
 		globePayLab.push(OneQsoLab);
 	});
+	if (startPos.length === 0 && x.length > 0) {
+		startPos = [x[0].latlng2[0], x[0].latlng2[1]];
+	}
 	renderGlobe(globePayArc,globePayLab);
 }
 
