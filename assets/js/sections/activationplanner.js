@@ -36,6 +36,7 @@
 	let activatedLbl     = decodeHtml(cfg.activatedLbl) || 'Activated';
 	let lastLbl          = decodeHtml(cfg.lastLbl) || 'last';
 	let inactiveLbl      = decodeHtml(cfg.inactiveLbl) || 'Inactive';
+	let validRangeLbl    = decodeHtml(cfg.validRangeLbl) || 'valid';
 	let userDxcc         = cfg.userDxcc != null ? cfg.userDxcc : null;
 	let shareLbl         = decodeHtml(cfg.shareLbl) || 'Share';
 	let shareActivationTitleLbl = decodeHtml(cfg.shareActivationTitleLbl) || 'Share activation';
@@ -124,6 +125,18 @@
 	function formatActivatedDate(s) {
 		s = String(s || '').trim();
 		return /^\d{4}-\d{2}-\d{2}/.test(s) ? s.slice(0, 10) : '';
+	}
+
+	/* Suffix for the "Inactive" popup row: when the directory carries
+	 * valid_from/valid_till (SOTA + WWFF), append the closed/open range so
+	 * the user sees *when* it was active. POTA has only a boolean flag, so
+	 * both stay empty and just the "Inactive" label is shown. Open bounds
+	 * render as '?' (e.g. '? – 2020-12-31' or '2010-01-01 – ?'). */
+	function inactiveRange(D) {
+		let from = formatActivatedDate(D.valid_from);
+		let till = formatActivatedDate(D.valid_till);
+		if (!from && !till) { return ''; }
+		return ' &middot; ' + esc(validRangeLbl) + ' ' + esc(from || '?') + ' – ' + esc(till || '?');
 	}
 
 	function deg2rad(d) { return d * Math.PI / 180; }
@@ -727,7 +740,7 @@
 			'<a class="ref-popup-ref" href="' + esc(refUrl(type, D.reference)) + '" target="_blank" rel="noopener noreferrer">' + esc(D.reference) + ' <i class="fas fa-up-right-from-square"></i></a>' +
 			'</div>' +
 			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
-			(D.inactive ? '<div class="ref-popup-row is-inactive"><i class="fas fa-circle-exclamation"></i><span>' + esc(inactiveLbl) + '</span></div>' : '') +
+			(D.inactive ? '<div class="ref-popup-row is-inactive"><i class="fas fa-circle-exclamation"></i><span>' + esc(inactiveLbl) + inactiveRange(D) + '</span></div>' : '') +
 			(D.activated ? '<div class="ref-popup-row is-activated"><i class="fas fa-circle-check"></i><span>' + esc(activatedLbl) + ': ' + D.activated.qso_count + ' &middot; ' + esc(lastLbl) + ' ' + esc(formatActivatedDate(D.activated.last)) + '</span></div>' : '') +
 			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +

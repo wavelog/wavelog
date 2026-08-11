@@ -36,6 +36,7 @@
 		activatedLbl:        <?php echo json_encode(__("Activated")); ?>,
 		lastLbl:             <?php echo json_encode(__("last")); ?>,
 		inactiveLbl:         <?php echo json_encode(__("Inactive")); ?>,
+		validRangeLbl:       <?php echo json_encode(__("valid")); ?>,
 		userDxcc:            <?php echo json_encode(isset($user_dxcc) ? $user_dxcc : null); ?>,
 		shareLbl:            <?php echo json_encode(__("Share")); ?>,
 		shareActivationTitleLbl: <?php echo json_encode(__("Share activation")); ?>,

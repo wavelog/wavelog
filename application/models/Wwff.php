@@ -68,11 +68,13 @@ class Wwff extends CI_Model {
 		$result = [];
 		foreach ($query->result() as $row) {
 			$result[] = [
-				'reference' => $row->reference,
-				'name'      => $row->name,
-				'lat'       => (float) $row->lat,
-				'lon'       => (float) $row->lon,
-				'inactive'  => $this->_inactive($row->valid_from, $row->valid_till),
+				'reference'  => $row->reference,
+				'name'       => $row->name,
+				'lat'        => (float) $row->lat,
+				'lon'        => (float) $row->lon,
+				'inactive'   => $this->_inactive($row->valid_from, $row->valid_till),
+				'valid_from' => $row->valid_from,
+				'valid_till' => $row->valid_till,
 			];
 		}
 
