@@ -245,9 +245,9 @@ class Activationplanner extends CI_Controller {
 
 	public function sota_directory() {
 		$this->load->model('sota');
-		$json = json_encode($this->sota->get_directory());
 
-		$etag = '"' . md5($json) . '"';
+		$etag = '"' . $this->sota->directory_signature() . '"';
+
 		session_write_close();            // release session lock; allow header override
 		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
 		header('Cache-Control: private, max-age=3600');
@@ -259,7 +259,7 @@ class Activationplanner extends CI_Controller {
 			return;
 		}
 		header('Content-Type: application/json');
-		echo $json;
+		$this->sota->stream_directory_json();
 	}
 
 	/*

@@ -53,23 +53,41 @@ class Sota extends CI_Model {
 	}
 
 	/*
-	 * The full SOTA reference directory with coordinates only — no QSO or
-	 * worked/confirmed status. Powers the optional clustered overlay on the
-	 * Activation Planner map, where it's used to look up where a reference sits.
-	 * Rows without coordinates are skipped because they can't be plotted.
+	 * Cheap content signature for the plotted directory rows. Changes only
+	 * when summits are added/removed/renamed/re-activated — i.e. only after
+	 * the update_sota cron runs. Powers the weak ETag so 304s short-circuit
+	 * before any row is touched.
 	 */
-	function get_directory() {
+	function directory_signature() {
+		$sql = "SELECT COUNT(*) AS c,
+				COALESCE(MAX(reference), '')     AS mr,
+				COALESCE(MAX(valid_till), '')    AS vt,
+				COALESCE(MAX(last_activated), '') AS la
+			FROM sota_directory
+			WHERE lat IS NOT NULL AND lon IS NOT NULL";
+		$r = $this->db->query($sql)->row();
+		return 'sota-dir-' . $r->c . '-' . substr(md5($r->mr . '|' . $r->vt . '|' . $r->la), 0, 16);
+	}
+
+	/*
+	 * Stream the plotted directory as a JSON array straight to stdout. Rows
+	 * are fetched one at a time via unbuffered_row() so peak memory stays
+	 * flat regardless of directory size (~140k SOTA summits). Body shape is
+	 * identical to the previous array-returning get_directory() — frontend
+	 * parsing is unchanged.
+	 */
+	function stream_directory_json() {
 		$sql = "SELECT reference, name, lat, lon, altitude, valid_from, valid_till
-		FROM sota_directory
-		WHERE lat IS NOT null
-		AND lon IS NOT null
-		ORDER by reference";
+			FROM sota_directory
+			WHERE lat IS NOT NULL AND lon IS NOT NULL
+			ORDER BY reference";
 
 		$query = $this->db->query($sql);
 
-		$result = [];
-		foreach ($query->result() as $row) {
-			$result[] = [
+		echo '[';
+		$first = true;
+		while ($row = $query->unbuffered_row('object')) {
+			echo ($first ? '' : ','), json_encode([
 				'reference'  => $row->reference,
 				'name'       => $row->name,
 				'lat'        => (float) $row->lat,
@@ -78,10 +96,10 @@ class Sota extends CI_Model {
 				'inactive'   => $this->_inactive($row->valid_from, $row->valid_till),
 				'valid_from' => $row->valid_from,
 				'valid_till' => $row->valid_till,
-			];
+			]);
+			$first = false;
 		}
-
-		return $result;
+		echo ']';
 	}
 
 	function get_map_data($postdata, $location_list) {
