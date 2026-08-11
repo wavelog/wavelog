@@ -878,6 +878,16 @@
 			.catch(function () { /* 404 / network: leave the point marker as-is */ });
 	}
 
+	/* Remove every drawn park-boundary layer and forget the per-ref cache so
+	 * the next popup re-fetches. Used by disablePota() and clearAll(). */
+	function clearBoundaries() {
+		for (const ref in boundaryLayers) {
+			const l = boundaryLayers[ref];
+			if (l && l.remove) { map.removeLayer(l); }
+		}
+		boundaryLayers = {};
+	}
+
 	function enablePota() {
 		if (!potaUrl) { return; }
 		if (potaCluster) { map.addLayer(potaCluster); return; }      // cached after first load
@@ -915,6 +925,7 @@
 	}
 	function disablePota() {
 		if (potaCluster) { map.removeLayer(potaCluster); }
+		clearBoundaries();
 	}
 	function enableSota() {
 		if (!sotaUrl) { return; }
@@ -1406,11 +1417,7 @@
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (refOverlay)  { refOverlay.clearLayers(); }   // nearby POTA/SOTA/WWFF markers
-		for (const ref in boundaryLayers) {               // drawn park boundaries
-			const l = boundaryLayers[ref];
-			if (l && l.remove) { map.removeLayer(l); }
-		}
-		boundaryLayers = {};
+		clearBoundaries();                               // drawn park boundaries
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
 		stopTracking();  // stop autotracking, restore the Locate button
