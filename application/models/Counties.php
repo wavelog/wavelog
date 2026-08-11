@@ -26,12 +26,21 @@ class Counties extends CI_Model
     );
 
     /*
-     * Modes counted toward the award's Phone endorsement. CW is its own
-     * group. Digital is everything else (defined by exclusion below rather
-     * than an enumerated list, so new data modes are counted automatically
-     * without needing a code change here).
+     * Modes counted toward the award's Phone endorsement, per ADIF 3.1.7
+     * (https://www.adif.org/317/ADIF_317.htm): SSB, AM and FM are Mode
+     * values (LSB/USB are legacy [import-only] Mode values for SSB); voice
+     * counts as phone whether analog or digital, so DIGITALVOICE and all of
+     * its Submode values (C4FM, DMR, DSTAR, FREEDV, M17 - same grouping
+     * assets/js/radiohelpers.js's MODE_LISTS.DIGITAL_VOICE uses) are
+     * included too. CW is its own group. Digital data is everything else
+     * (defined by exclusion below rather than an enumerated list, so new
+     * data modes are counted automatically without needing a code change
+     * here).
      */
-    private $phone_modes = array('AM', 'SSB', 'LSB', 'USB', 'FM', 'DSTAR');
+    private $phone_modes = array(
+        'AM', 'SSB', 'LSB', 'USB', 'FM',
+        'DIGITALVOICE', 'C4FM', 'DMR', 'DSTAR', 'FREEDV', 'M17',
+    );
 
     function __construct() {
         $this->load->driver('cache', [
