@@ -475,11 +475,12 @@
 		// prefilter (cheap) then exact haversine. loadRefDir returns the cached
 		// directories (the same ones the Refs overlays use), so the markers carry
 		// the full data needed for the rich popups.
-		let radius = 20, deg = radius / 110.0;
+		let radius = 20, latDeg = radius / 110.0,
+			lonDeg = latDeg / Math.max(0.2, Math.cos(Math.abs(lat) * Math.PI / 180));
 		function within(r) {
 			if (!r || r.lat == null || r.lon == null) { return false; }
 			if (r.inactive) { return false; }   // active-only, matching the nearby button
-			if (Math.abs(r.lat - lat) > deg || Math.abs(r.lon - lng) > deg) { return false; }
+			if (Math.abs(r.lat - lat) > latDeg || Math.abs(r.lon - lng) > lonDeg) { return false; }
 			return calcDistance(lat, lng, r.lat, r.lon, 'K') <= radius;
 		}
 		return Promise.all([
