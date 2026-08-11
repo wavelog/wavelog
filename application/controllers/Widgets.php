@@ -261,7 +261,6 @@ class Widgets extends CI_Controller {
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User slug not specified");
 			$data['user_slug'] = '';
-			$data['nojs'] = $nojs;
 			$this->load->view('widgets/lotw_upload', $data);
 			return;
 		}
@@ -273,7 +272,6 @@ class Widgets extends CI_Controller {
 			$data['error'] = __("User slug not specified");
 			$data['error'] = $e->getMessage();
 			$data['user_slug'] = $user_slug;
-			$data['nojs'] = $nojs;
 			$this->load->view('widgets/lotw_upload', $data);
 			return;
 		}
@@ -285,7 +283,6 @@ class Widgets extends CI_Controller {
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User has disabled the LoTW upload widget");
 			$data['user_slug'] = $user_slug;
-			$data['nojs'] = $nojs;
 			$this->load->view('widgets/lotw_upload', $data);
 			return;
 		}
