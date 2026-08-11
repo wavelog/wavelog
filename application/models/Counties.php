@@ -22,7 +22,7 @@ class Counties extends CI_Model
      */
     private $band_list = array(
         '160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m',
-        '6m', '4m', '2m', '1.25m', '70cm',
+        '6m', '2m', '1.25m', '70cm',
     );
 
     /*
