@@ -155,7 +155,6 @@ class Widgets extends CI_Controller {
 		} catch (\Exception $e) {
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User slug not specified");
-			$data['error'] = $e->getMessage();
 			$data['user_slug'] = $user_slug;
 			$data['nojs'] = $nojs;
 			$this->load->view('widgets/on_air', $data);
@@ -270,7 +269,6 @@ class Widgets extends CI_Controller {
 		} catch (\Exception $e) {
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User slug not specified");
-			$data['error'] = $e->getMessage();
 			$data['user_slug'] = $user_slug;
 			$this->load->view('widgets/lotw_upload', $data);
 			return;
