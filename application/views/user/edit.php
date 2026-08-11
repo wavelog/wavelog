@@ -1172,7 +1172,7 @@
 												<?php if (isset($on_air_widget_url)) {
 													// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here
 													print("<br>");
-													printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
+													printf(__("If enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
 												} ?>
 											</small>
 										</div>
@@ -1250,7 +1250,7 @@
 											<small class="form-text text-muted">
 												<?php if (isset($last_lotw_upload_widget_url)) {
 													// when adding user, the $last_lotw_upload_widget_url url is not yet availalable, hence the if condition here
-													printf(__("When enabled, widget will be available at %s."), "<a href='$last_lotw_upload_widget_url' target='_blank'>$last_lotw_upload_widget_url</a>");
+													printf(__("If enabled, widget will be available at %s."), "<a href='$last_lotw_upload_widget_url' target='_blank'>$last_lotw_upload_widget_url</a>");
 												} ?>
 											</small>
 										</div>
