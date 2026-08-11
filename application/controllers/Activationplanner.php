@@ -327,4 +327,23 @@ class Activationplanner extends CI_Controller {
 		header('Content-Type: application/json');
 		echo $json;
 	}
+
+	/*
+	 * AJAX: WWFF/POTA/SOTA references within 20 km of a point (the centre of the
+	 * entered gridsquare). The distance math lives in Activationplanner_model.
+	 * Outputs JSON [{type, ref, name, dist}, ...] sorted by distance (km).
+	 */
+	public function refs_nearby() {
+		$lat = $this->input->get('lat', TRUE);
+		$lng = $this->input->get('lng', TRUE);
+		header('Content-Type: application/json');
+
+		if ($lat === null || $lng === null || !is_numeric($lat) || !is_numeric($lng)) {
+			echo json_encode(array());
+			return;
+		}
+
+		$this->load->model('activationplanner_model');
+		echo json_encode($this->activationplanner_model->refs_nearby((float) $lat, (float) $lng, 20.0));
+	}
 }

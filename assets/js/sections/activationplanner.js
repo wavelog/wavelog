@@ -18,6 +18,7 @@
 	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
 	let satPassUrl      = cfg.satPassUrl || '';
+	let refsNearbyUrl   = cfg.refsNearbyUrl || '';
 	let satPassLbl      = decodeHtml(cfg.satPassLbl) || 'Satellite passes';
 	let locatingMsg     = decodeHtml(cfg.locatingMsg) || 'Locating…';
 	let geoDenied       = decodeHtml(cfg.geoDenied) || 'Location access denied.';
@@ -42,6 +43,12 @@
 	let shareActivationTitleLbl = decodeHtml(cfg.shareActivationTitleLbl) || 'Share activation';
 	let planningActivationLbl   = decodeHtml(cfg.planningActivationLbl) || '📻 Planning an activation from %s';
 	let gridLbl         = decodeHtml(cfg.gridLbl) || 'Gridsquare';
+	let nearbyRefsLbl   = decodeHtml(cfg.nearbyRefsLbl) || 'Nearby refs';
+	let nearbyRefsRadiusLbl = decodeHtml(cfg.nearbyRefsRadiusLbl) || 'References within %s of the gridsquare';
+	let colTypeLbl      = decodeHtml(cfg.colTypeLbl) || 'Type';
+	let colReferenceLbl = decodeHtml(cfg.colReferenceLbl) || 'Reference';
+	let colNameLbl      = decodeHtml(cfg.colNameLbl) || 'Name';
+	let colDistanceLbl  = decodeHtml(cfg.colDistanceLbl) || 'Distance';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -207,6 +214,14 @@
 
 	/* Short unit label for the user's measurement base: km / mi / nm. */
 	function unitLabel(u) { return u === 'K' ? 'km' : u === 'N' ? 'nm' : 'mi'; }
+
+	/* km → the user's display unit, using the same factors as calcDistance so
+	   server-given km distances reconcile with distances computed client-side. */
+	function kmToUnit(km, unit) {
+		let mi = km / 1.609344;                                        // km → statute miles (calcDistance base)
+		let v = unit === 'K' ? km : unit === 'N' ? mi * 0.8684 : mi;   // M → mi
+		return Math.round(v * 10) / 10;                                // 1-decimal precision, like calcDistance
+	}
 
 	/*
 	 * Distance + bearing from [lat,lng] to each side of its 4-character
@@ -456,16 +471,22 @@
 
 	/* Resolved {wwff, pota, sota} arrays of references inside the 6-char grid. */
 	function refsInSquare(lat, lng) {
-		let sq = locatorToCell(latLngToLocator(lat, lng, 3));
-		if (!sq) { return Promise.resolve({ wwff: [], pota: [], sota: [] }); }
-		function inSq(r) {
-			return r && r.lat != null && r.lon != null &&
-				r.lat >= sq.sw[0] && r.lat <= sq.ne[0] && r.lon >= sq.sw[1] && r.lon <= sq.ne[1];
+		// 20 km radius, matching the "Nearby refs" dialog. A coarse bounding-box
+		// prefilter (cheap) then exact haversine. loadRefDir returns the cached
+		// directories (the same ones the Refs overlays use), so the markers carry
+		// the full data needed for the rich popups.
+		let radius = 20, latDeg = radius / 110.0,
+			lonDeg = latDeg / Math.max(0.2, Math.cos(Math.abs(lat) * Math.PI / 180));
+		function within(r) {
+			if (!r || r.lat == null || r.lon == null) { return false; }
+			if (r.inactive) { return false; }   // active-only, matching the nearby button
+			if (Math.abs(r.lat - lat) > latDeg || Math.abs(r.lon - lng) > lonDeg) { return false; }
+			return calcDistance(lat, lng, r.lat, r.lon, 'K') <= radius;
 		}
 		return Promise.all([
-			loadRefDir('wwff').then(function (d) { return d.filter(inSq); }),
-			loadRefDir('pota').then(function (d) { return d.filter(inSq); }),
-			loadRefDir('sota').then(function (d) { return d.filter(inSq); })
+			loadRefDir('wwff').then(function (d) { return d.filter(within); }),
+			loadRefDir('pota').then(function (d) { return d.filter(within); }),
+			loadRefDir('sota').then(function (d) { return d.filter(within); })
 		]).then(function (r) { return { wwff: r[0], pota: r[1], sota: r[2] }; });
 	}
 
@@ -491,22 +512,23 @@
 		return '<div class="gl-pop-refs"><div class="gl-pop-refs-title">' + esc(refsTitleLbl) + '</div>' + html + '</div>';
 	}
 
-	/* Plot the references (from refsInSquare) on the map, coloured by type. */
+	/* Plot the references (from refsInSquare) on the map, using the same lettered
+	 * divIcon markers and rich popups as the Refs-dropdown overlays. */
 	function drawRefs(refs) {
 		if (!refOverlay) { return; }
 		refOverlay.clearLayers();
 		let groups = [
-			{ items: refs.pota, color: '#238b45', label: 'POTA' },
-			{ items: refs.sota, color: '#d95f0e', label: 'SOTA' },
-			{ items: refs.wwff, color: '#2b8cbe', label: 'WWFF' }
+			{ items: refs.pota, color: '#238b45', label: 'POTA', letter: 'P' },
+			{ items: refs.sota, color: '#d95f0e', label: 'SOTA', letter: 'S' },
+			{ items: refs.wwff, color: '#2b8cbe', label: 'WWFF', letter: 'W' }
 		];
 		groups.forEach(function (g) {
 			(g.items || []).forEach(function (r) {
 				if (r.lat == null || r.lon == null) { return; }
-				let m = L.circleMarker([r.lat, r.lon], {
-					radius: 7, weight: 1, color: '#fff', fillColor: g.color, fillOpacity: 0.9
-				});
-				m.bindTooltip(g.label + ' ' + esc(r.reference) + (r.name ? ' - ' + esc(r.name) : ''));
+				let icon = r.activated ? refIconActivated(g.letter) : refIcon(g.color, g.letter);
+				let m = L.marker([r.lat, r.lon], { icon: icon });
+				m.refType = g.label; m.refData = r; m.refColor = g.color;
+				m.bindPopup(refPopupRich);
 				refOverlay.addLayer(m);
 			});
 		});
@@ -557,6 +579,51 @@
 			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
 			(satPassUrl ? '<div class="gl-pop-link"><a href="' + esc(satPassUrl + '?gridsquare=' + encodeURIComponent(loc)) + '" target="_blank" rel="noopener noreferrer"><i class="fas fa-satellite"></i> ' + esc(satPassLbl) + '</a></div>' : '') +
 			'</div>';
+	}
+
+	/*
+	 * "Nearby refs" dialog: WWFF/POTA/SOTA references within 5/10/15/20 km of the
+	 * given gridsquare, fetched server-side and shown grouped by distance band.
+	 */
+	function showNearbyModal(loc, rows) {
+		let u = measurementBase, ul = unitLabel(u);
+		// Bands are fixed 5 km quadrants of the (server-side, km) query; the km
+		// boundary values are converted to the user's unit only for the labels,
+		// so bucketing stays exact while the readout matches the page's unit.
+		let bv = [5, 10, 15, 20].map(function (k) { return kmToUnit(k, u); });
+		let bands = [
+			{ label: 'Within ' + bv[0] + ' ' + ul, rows: [] },
+			{ label: bv[0] + '-' + bv[1] + ' ' + ul, rows: [] },
+			{ label: bv[1] + '-' + bv[2] + ' ' + ul, rows: [] },
+			{ label: bv[2] + '-' + bv[3] + ' ' + ul, rows: [] }
+		];
+		(rows || []).forEach(function (r) {
+			bands[Math.min(bands.length - 1, Math.floor(r.dist / 5))].rows.push(r);
+		});
+
+		let body = bands.map(function (b) {
+			let trs = b.rows.map(function (r) {
+				let col = r.type === 'POTA' ? '#238b45' : r.type === 'SOTA' ? '#d95f0e' : '#2b8cbe';
+				return '<tr><td><span class="gl-pop-ref-type" style="background:' + col + '">' + esc(r.type) + '</span></td><td>' + esc(r.ref) + '</td><td>' +
+					esc(r.name || '') + '</td><td class="text-end">' + groupThousands(kmToUnit(r.dist, u)) + ' ' + ul + '</td></tr>';
+			}).join('');
+			return '<h6 class="mt-3 mb-1">' + esc(b.label) + ' <span class="badge bg-secondary">' + b.rows.length + '</span></h6>' +
+				'<table class="table table-sm table-striped mb-0 gl-nearby-table">' +
+				'<thead><tr>' +
+				'<th style="width:70px">' + esc(colTypeLbl) + '</th>' +
+				'<th style="width:120px">' + esc(colReferenceLbl) + '</th>' +
+				'<th>' + esc(colNameLbl) + '</th>' +
+				'<th class="text-end" style="width:90px">' + esc(colDistanceLbl) + '</th></tr></thead>' +
+				'<tbody>' + (trs || '<tr><td colspan="4" class="text-muted">—</td></tr>') + '</tbody></table>';
+		}).join('');
+
+		BootstrapDialog.show({
+			title: nearbyRefsLbl + ' · ' + loc,
+			message: body,
+			size: BootstrapDialog.SIZE_WIDE,
+			nl2br: false,
+			buttons: [{ label: closeLbl, action: function (dialog) { dialog.close(); } }]
+		});
 	}
 
 	/*
@@ -1294,6 +1361,23 @@
 			// HTTP on a LAN IP) so users never see a dead control.
 			if (!('geolocation' in navigator)) { locateBtn.style.display = 'none'; }
 		}
+		// "Nearby refs": list WWFF/POTA/SOTA references within 20 km of the grid.
+		let nearbyBtn = document.getElementById('glNearby');
+		if (nearbyBtn) {
+			// Tooltip follows the user's unit (e.g. "References within 12.4 mi …").
+			nearbyBtn.title = nearbyRefsRadiusLbl.replace('%s', kmToUnit(20, measurementBase) + ' ' + unitLabel(measurementBase));
+			nearbyBtn.addEventListener('click', function () {
+				let raw = (document.getElementById('glGrid').value || '').trim();
+				let cell = locatorToCell(raw);
+				if (!cell) { showToast(errorLbl, esc(invalidMsg), 'bg-warning text-dark', 3000); return; }
+				nearbyBtn.disabled = true;
+				fetch(refsNearbyUrl + '?lat=' + cell.center[0] + '&lng=' + cell.center[1])
+					.then(function (r) { return r.json(); })
+					.then(function (rows) { showNearbyModal(raw.toUpperCase(), rows || []); })
+					.catch(function () { showToast(errorLbl, 'Failed to load nearby references', 'bg-danger text-white', 3000); })
+					.finally(function () { nearbyBtn.disabled = false; });
+			});
+		}
 
 		// Mobile "More options" disclosure: toggles a class on the toolbar that
 		// CSS uses to show/hide the secondary controls (grid 2 + overlays).
@@ -1452,6 +1536,9 @@
 	function selectPoint(lat, lng, loc) {
 		loc = loc || latLngToLocator(lat, lng, 3);   // 6-character gridsquare
 		let cell = locatorToCell(loc);              // exact bounds of that grid cell
+
+		// Fill the gridsquare box so Go / QRB can be used from the clicked point.
+		document.getElementById('glGrid').value = loc;
 
 		// Only one click marker + square at a time: drop the previous ones.
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
