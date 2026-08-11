@@ -9,12 +9,17 @@
 	'use strict';
 
 	// ===== Constants =====
+	const DEFAULT_W_IN = 5.5;
+	const DEFAULT_H_IN = 3.5;
+
 	const STAGE_W_PX = 900;
-	const STAGE_H_PX = 600;
-	const W_IN = 5.5;
-	const H_IN = 3.5;
+	let STAGE_H_PX = Math.round(STAGE_W_PX * DEFAULT_H_IN / DEFAULT_W_IN);
+
+	let W_IN = DEFAULT_W_IN;
+	let H_IN = DEFAULT_H_IN;
+	updateStageGeometry;
 	const GRID_IN = 0.25;                       // snap grid (quarter inch)
-	const GRID_PX = (GRID_IN / W_IN) * STAGE_W_PX; // 37.5px
+	const gridPx = () => (GRID_IN / W_IN) * STAGE_W_PX;
 	const SNAP_PX = 8;                          // snap threshold (internal px)
 	const ZOOM_MIN = 0.5, ZOOM_MAX = 2.0, ZOOM_STEP = 0.1;
 	const HISTORY_MAX = 100;
@@ -64,6 +69,8 @@
 	const rulerWrap  = document.getElementById('rulerWrap');
 	const stageZoom  = document.getElementById('stageZoom');
 	const stageScroll = document.getElementById('stageScroll');
+	const rulerTop   = document.getElementById('rulerTop');
+	const rulerLeft  = document.getElementById('rulerLeft');
 	const ctxMenu    = document.getElementById('qslCtxMenu');
 	const offXInput  = document.getElementById('offX');
 	const offYInput  = document.getElementById('offY');
@@ -265,6 +272,32 @@
 		return { x: x, y: y };
 	}
 
+	function updateStageGeometry() {
+		STAGE_H_PX = Math.round(STAGE_W_PX * H_IN / W_IN);
+
+		const rulerSizePx = 40;
+		const wrapWidthPx = STAGE_W_PX + rulerSizePx;
+		const wrapHeightPx = STAGE_H_PX + rulerSizePx;
+
+		stage.style.width = STAGE_W_PX + 'px';
+		stage.style.height = STAGE_H_PX + 'px';
+
+		rulerTop.style.width = STAGE_W_PX + 'px';
+		rulerLeft.style.height = STAGE_H_PX + 'px';
+
+		rulerWrap.style.width = wrapWidthPx + 'px';
+		rulerWrap.style.height = wrapHeightPx + 'px';
+
+		stageZoom.style.width = wrapWidthPx + 'px';
+		stageZoom.style.height = wrapHeightPx + 'px';
+
+		const gridSizeX = (GRID_IN / W_IN) * STAGE_W_PX;
+		const gridSizeY = (GRID_IN / H_IN) * STAGE_H_PX;
+		stage.style.backgroundSize = gridSizeX + 'px ' + gridSizeY + 'px';
+
+		drawRulers();
+	}
+
 	// ===================================================================
 	//  Selection (multi)
 	// ===================================================================
@@ -392,8 +425,9 @@
 			xLines.push(ox, ox + ow / 2, ox + ow);
 			yLines.push(oy, oy + oh / 2, oy + oh);
 		});
-		for (let g = 0; g <= STAGE_W_PX + 0.1; g += GRID_PX) xLines.push(g);
-		for (let g = 0; g <= STAGE_H_PX + 0.1; g += GRID_PX) yLines.push(g);
+		const gp = gridPx();
+		for (let g = 0; g <= STAGE_W_PX + 0.1; g += gp) xLines.push(g);
+		for (let g = 0; g <= STAGE_H_PX + 0.1; g += gp) yLines.push(g);
 
 		// X: try snapping left / center / right edges
 		let bestX = null, bestXd = SNAP_PX + 1, nxSnap = nx;
@@ -738,8 +772,9 @@
 		if (!field) return;
 		e.preventDefault();
 		const p = clientToStagePx(e.clientX, e.clientY);
-		const x = clamp(Math.round(p.x / GRID_PX) * GRID_PX, 0, STAGE_W_PX - 6);
-		const y = clamp(Math.round(p.y / GRID_PX) * GRID_PX, 0, STAGE_H_PX - 6);
+		const gp = gridPx();
+		const x = clamp(Math.round(p.x / gp) * gp, 0, STAGE_W_PX - 6);
+		const y = clamp(Math.round(p.y / gp) * gp, 0, STAGE_H_PX - 6);
 		addElement('field', field, pxToInX(x), pxToInY(y));
 	});
 
@@ -1016,6 +1051,13 @@
 		const tpl = await r.json();
 		const layout = tpl.layout || {};
 
+		const page = layout.page || {};
+
+		W_IN = parseFloat(page.w_in) || DEFAULT_W_IN;
+		H_IN = parseFloat(page.h_in) || DEFAULT_H_IN;
+
+		updateStageGeometry();
+
 		previewImagePath = tpl.preview_image || null;
 		previewImageUrl = previewImagePath ? base_url + previewImagePath : null;
 		setBackground(previewImageUrl);
@@ -1085,6 +1127,8 @@
 	async function applyTemplateSelection(id) {
 		prefSet('tpl', id);
 		if (!id) {
+			W_IN = DEFAULT_W_IN;
+			H_IN = DEFAULT_H_IN;
 			// "(new)" — start a blank canvas
 			elements = [];
 			previewImagePath = null; previewImageUrl = null;

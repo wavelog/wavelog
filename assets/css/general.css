@@ -1710,14 +1710,10 @@ svg text.month { fill: #AAA; }
 }
 
 #stageZoom {
-	width: 940px;
-	height: 640px;
 }
 
 #rulerWrap {
 	position: relative;
-	width: 940px;
-	height: 640px;
 }
 
 #rulerTop,
@@ -1735,7 +1731,6 @@ svg text.month { fill: #AAA; }
 #rulerTop {
 	left: 40px;
 	top: 0;
-	width: 900px;
 	height: 40px;
 }
 
@@ -1743,15 +1738,12 @@ svg text.month { fill: #AAA; }
 	left: 0;
 	top: 40px;
 	width: 40px;
-	height: 600px;
 }
 
 #stage {
 	position: absolute;
 	left: 40px;
 	top: 40px;
-	width: 900px;
-	height: 600px;
 	border: 1px solid var(--bs-border-color);
 	overflow: hidden;
 	background-repeat: no-repeat;

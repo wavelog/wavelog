@@ -348,12 +348,18 @@ class Qslpostcard_model extends CI_Model {
         // tFPDF reads FPDF_FONTPATH in its constructor; TTFs live in font/unifont/.
         if (!defined('FPDF_FONTPATH')) {
             define('FPDF_FONTPATH', FCPATH . 'src/Label/font/');
-        }
+	}
 
-        $w_mm = 139.7; // 5.5 in (standard QSL card size, landscape)
-        $h_mm = 88.9;  // 3.5 in
+	$page = $layout['page'] ?? [];
 
-        $pdf = new tFPDF('L', 'mm', [$w_mm, $h_mm]);
+	$w_in = (float)($page['w_in'] ?? 5.5);
+	$h_in = (float)($page['h_in'] ?? 3.5);
+
+	$w_mm = $w_in * 25.4;
+	$h_mm = $h_in * 25.4;
+
+	$pdf = new tFPDF('L', 'mm', [$w_mm, $h_mm]);
+
         $pdf->SetAutoPageBreak(false);
 
         // Register each DejaVu family once, regular + bold (uni=true embeds a subset).
