@@ -129,14 +129,15 @@ class Counties extends CI_Model
             $mode_groups = $this->get_mode_groups();
         }
 
-        // COALESCE COL_SUBMODE to '' before comparing: a NULL submode (the
-        // common case - most modes aren't logged with one) makes the "or
-        // UPPER(COL_SUBMODE) in (...)" clause evaluate to NULL rather than
-        // false, which poisons "not phone_condition and not cw_condition"
-        // into NULL (i.e. excluded) for every plain-COL_MODE digital QSO.
+        // COALESCE both COL_MODE and COL_SUBMODE to '' before comparing: a
+        // NULL on either side (a submode-less QSO is the common case, but a
+        // mode-less QSO with only a submode logged also happens on old/
+        // imported data) makes an "or ... in (...)" clause evaluate to NULL
+        // rather than false, which poisons "not phone_condition and not
+        // cw_condition" into NULL (i.e. excluded) rather than true.
         $phone_list = "'" . implode("','", $this->phone_modes) . "'";
-        $phone_condition = "(UPPER(COL_MODE) in ($phone_list) or UPPER(COALESCE(COL_SUBMODE, '')) in ($phone_list))";
-        $cw_condition = "(UPPER(COL_MODE) = 'CW' or UPPER(COALESCE(COL_SUBMODE, '')) = 'CW')";
+        $phone_condition = "(UPPER(COALESCE(COL_MODE, '')) in ($phone_list) or UPPER(COALESCE(COL_SUBMODE, '')) in ($phone_list))";
+        $cw_condition = "(UPPER(COALESCE(COL_MODE, '')) = 'CW' or UPPER(COALESCE(COL_SUBMODE, '')) = 'CW')";
         $digital_condition = "(not $phone_condition and not $cw_condition)";
 
         $conditions = array();
