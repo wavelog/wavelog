@@ -112,7 +112,6 @@ class Worker {
 		curl_exec($ch);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		$curl_err  = curl_error($ch);
-		curl_close($ch);
 
 		if ($curl_err !== '') {
 			log_message('error', 'Worker: publish(' . $topic . ') failed: ' . $curl_err);
@@ -255,7 +254,6 @@ class Worker {
 		]);
 		$raw       = curl_exec($ch);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		curl_close($ch);
 
 		$stats = ($http_code === 200 && $raw) ? json_decode($raw, true) : null;
 
@@ -297,7 +295,6 @@ class Worker {
 		curl_exec($ch);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		$curl_err  = curl_error($ch);
-		curl_close($ch);
 
 		if ($curl_err !== '') {
 			log_message('error', 'Worker: POST ' . $path . ' failed: ' . $curl_err);
