@@ -33,7 +33,7 @@
 	let createStationUrl = cfg.createStationUrl || '';
 	let newStationLocLbl = decodeHtml(cfg.newStationLocLbl) || 'Create station location';
 	let refsTitleLbl     = decodeHtml(cfg.refsTitleLbl) || 'References in this grid';
-	let activatedLbl     = decodeHtml(cfg.activatedLbl) || 'Activated';
+	let activatedLbl     = decodeHtml(cfg.activatedLbl) || 'QSOs';
 	let lastLbl          = decodeHtml(cfg.lastLbl) || 'last';
 	let inactiveLbl      = decodeHtml(cfg.inactiveLbl) || 'Inactive';
 	let validRangeLbl    = decodeHtml(cfg.validRangeLbl) || 'valid';

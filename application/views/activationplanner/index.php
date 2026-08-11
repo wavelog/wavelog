@@ -33,7 +33,7 @@
 		createStationUrl:    <?php echo json_encode(site_url('station/create')); ?>,
 		newStationLocLbl:    <?php echo json_encode(__("Create station location")); ?>,
 		refsTitleLbl:        <?php echo json_encode(__("References in this grid")); ?>,
-		activatedLbl:        <?php echo json_encode(__("Activated")); ?>,
+		activatedLbl:        <?php echo json_encode(__("QSOs")); ?>,
 		lastLbl:             <?php echo json_encode(__("last")); ?>,
 		inactiveLbl:         <?php echo json_encode(__("Inactive")); ?>,
 		validRangeLbl:       <?php echo json_encode(__("valid")); ?>,
