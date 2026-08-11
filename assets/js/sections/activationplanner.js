@@ -471,16 +471,20 @@
 
 	/* Resolved {wwff, pota, sota} arrays of references inside the 6-char grid. */
 	function refsInSquare(lat, lng) {
-		let sq = locatorToCell(latLngToLocator(lat, lng, 3));
-		if (!sq) { return Promise.resolve({ wwff: [], pota: [], sota: [] }); }
-		function inSq(r) {
-			return r && r.lat != null && r.lon != null &&
-				r.lat >= sq.sw[0] && r.lat <= sq.ne[0] && r.lon >= sq.sw[1] && r.lon <= sq.ne[1];
+		// 20 km radius, matching the "Nearby refs" dialog. A coarse bounding-box
+		// prefilter (cheap) then exact haversine. loadRefDir returns the cached
+		// directories (the same ones the Refs overlays use), so the markers carry
+		// the full data needed for the rich popups.
+		let radius = 20, deg = radius / 110.0;
+		function within(r) {
+			if (!r || r.lat == null || r.lon == null) { return false; }
+			if (Math.abs(r.lat - lat) > deg || Math.abs(r.lon - lng) > deg) { return false; }
+			return calcDistance(lat, lng, r.lat, r.lon, 'K') <= radius;
 		}
 		return Promise.all([
-			loadRefDir('wwff').then(function (d) { return d.filter(inSq); }),
-			loadRefDir('pota').then(function (d) { return d.filter(inSq); }),
-			loadRefDir('sota').then(function (d) { return d.filter(inSq); })
+			loadRefDir('wwff').then(function (d) { return d.filter(within); }),
+			loadRefDir('pota').then(function (d) { return d.filter(within); }),
+			loadRefDir('sota').then(function (d) { return d.filter(within); })
 		]).then(function (r) { return { wwff: r[0], pota: r[1], sota: r[2] }; });
 	}
 
