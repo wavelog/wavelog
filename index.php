@@ -77,12 +77,12 @@ switch (ENVIRONMENT)
 	case 'development':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
-	break;
+		break;
 
 	case 'maintenance':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
-	break;
+		break;
 
 	case 'docker':
 		ini_set('display_errors', 0);
@@ -91,6 +91,11 @@ switch (ENVIRONMENT)
 		} else {
 			error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
 		}
+		if (($_ENV['DOCKER_DEVELOPMENT'] ?? false) == true) {
+			error_reporting(-1);
+			ini_set('display_errors', 1);
+		}
+		break;
 
 	case 'production':
 		ini_set('display_errors', 0);
@@ -99,7 +104,7 @@ switch (ENVIRONMENT)
 		} else {
 			error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
 		}
-	break;
+		break;
 
 	default:
 		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
