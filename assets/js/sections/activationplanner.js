@@ -506,22 +506,23 @@
 		return '<div class="gl-pop-refs"><div class="gl-pop-refs-title">' + esc(refsTitleLbl) + '</div>' + html + '</div>';
 	}
 
-	/* Plot the references (from refsInSquare) on the map, coloured by type. */
+	/* Plot the references (from refsInSquare) on the map, using the same lettered
+	 * divIcon markers and rich popups as the Refs-dropdown overlays. */
 	function drawRefs(refs) {
 		if (!refOverlay) { return; }
 		refOverlay.clearLayers();
 		let groups = [
-			{ items: refs.pota, color: '#238b45', label: 'POTA' },
-			{ items: refs.sota, color: '#d95f0e', label: 'SOTA' },
-			{ items: refs.wwff, color: '#2b8cbe', label: 'WWFF' }
+			{ items: refs.pota, color: '#238b45', label: 'POTA', letter: 'P' },
+			{ items: refs.sota, color: '#d95f0e', label: 'SOTA', letter: 'S' },
+			{ items: refs.wwff, color: '#2b8cbe', label: 'WWFF', letter: 'W' }
 		];
 		groups.forEach(function (g) {
 			(g.items || []).forEach(function (r) {
 				if (r.lat == null || r.lon == null) { return; }
-				let m = L.circleMarker([r.lat, r.lon], {
-					radius: 7, weight: 1, color: '#fff', fillColor: g.color, fillOpacity: 0.9
-				});
-				m.bindTooltip(g.label + ' ' + esc(r.reference) + (r.name ? ' - ' + esc(r.name) : ''));
+				let icon = r.activated ? refIconActivated(g.letter) : refIcon(g.color, g.letter);
+				let m = L.marker([r.lat, r.lon], { icon: icon });
+				m.refType = g.label; m.refData = r; m.refColor = g.color;
+				m.bindPopup(refPopupRich);
 				refOverlay.addLayer(m);
 			});
 		});
