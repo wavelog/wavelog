@@ -152,7 +152,7 @@ function getDistance($distance) {
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                         <th scope="col">QRZ</th>
                     <?php } ?>
-    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false  ) { ?>
+		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false && ($this->session->userdata('user_clublog_name') != "") ) { ?>
                         <th scope="col"><?= __("Clublog"); ?></th>
                     <?php } ?>
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false  ) { ?>
@@ -474,7 +474,7 @@ function getDistance($distance) {
                     </td>
                 <?php } ?>
 
-                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false && ($this->session->userdata('user_clublog_name') != "") ) { ?>
                     <td class="clublog">
                     <span <?php
                         $timestamp = '';

@@ -98,7 +98,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo $this->paths->cache_buster('/assets/logo/'. $this->optionslib->get_logo('header_logo').'.png'); ?>" alt="<?= __("Wavelog home"); ?>" /></a>
-			<?php if (ENVIRONMENT == "development") { ?>
+			<?php if (ENVIRONMENT == "development" || (ENVIRONMENT == "docker" && ($_ENV['DOCKER_DEVELOPMENT'] ?? false) == true)) { ?>
 				<span class="badge text-bg-danger me-1"><?= __("Developer Mode"); ?></span>
 			<?php } ?>
 			<?php if (ENVIRONMENT == "maintenance") { ?>

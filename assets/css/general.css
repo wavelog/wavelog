@@ -1176,6 +1176,22 @@ a.ref-popup-ref .fas { font-size: 0.7rem; opacity: 0.7; }
 /* Reference map markers reuse the .ref-menu-dot swatch inside a divIcon */
 .ref-map-icon { background: transparent; border: none; }
 
+/* "Already activated" POTA marker: gold swatch with a check badge. */
+.ref-menu-dot.is-activated { background: #ffd60a; color: #1f1f1f; position: relative; }
+.ref-menu-dot.is-activated .ref-activated-check {
+	position: absolute;
+	right: -3px;
+	bottom: -3px;
+	font-size: 0.6rem;
+	color: #198754;
+	background: #fff;
+	border-radius: 50%;
+	padding: 1px;
+	line-height: 1;
+}
+.ref-popup-row.is-activated { color: #198754; font-weight: 600; }
+.ref-popup-row.is-activated .fas { opacity: 1; color: #198754; }
+
 /* IOTA tag labels (clickable) drawn at the centre of each rectangle overlay */
 .iota-label {
 	background: rgba(23, 162, 184, 0.9);
