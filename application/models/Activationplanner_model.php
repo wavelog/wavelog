@@ -29,7 +29,15 @@ class Activationplanner_model extends CI_Model {
 	private function refs_nearby_in($table, $type, $lat, $lng, $max_km) {
 		$lat_deg = $max_km / 110.0;                                  // ~km per degree of latitude
 		$lon_deg = $lat_deg / max(0.2, cos(deg2rad(abs($lat))));     // wider near the poles
-		$active = ($table === 'pota_directory') ? ' AND active = 1' : '';
+		// POTA uses an active flag; WWFF/SOTA use a valid_till date
+		// (NULL = no expiry, today == valid_till still counts as active).
+		if ($table === 'pota_directory') {
+			$active = ' AND active = 1';
+		} elseif ($table === 'wwff_directory' || $table === 'sota_directory') {
+			$active = " AND (valid_till IS NULL OR valid_till >= CURDATE())";
+		} else {
+			$active = '';
+		}
 		$sql = "SELECT reference, name, lat, lon FROM `" . $table . "`
 			WHERE lat IS NOT NULL AND lon IS NOT NULL" . $active . "
 			  AND lat BETWEEN ? AND ? AND lon BETWEEN ? AND ?";
