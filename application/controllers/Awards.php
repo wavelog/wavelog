@@ -1364,8 +1364,14 @@ class Awards extends CI_Controller {
 
         $this->load->model('counties');
         $qsl_sources = $this->counties_qsl_sources_from_post();
-        $data['counties_progress'] = $this->counties->get_counties_progress($qsl_sources);
+        $bands = $this->counties_bands_from_post();
+        $mode_groups = $this->counties_modes_from_post();
+        $data['counties_progress'] = $this->counties->get_counties_progress($qsl_sources, $bands, $mode_groups);
         $data['qsl_sources'] = $qsl_sources;
+        $data['band_list'] = $this->counties->get_band_list();
+        $data['selected_bands'] = $bands;
+        $data['mode_groups'] = $this->counties->get_mode_groups();
+        $data['selected_modes'] = $mode_groups;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
@@ -1388,7 +1394,9 @@ class Awards extends CI_Controller {
     public function counties_map() {
         $this->load->model('counties');
         $qsl_sources = $this->counties_qsl_sources_from_post();
-        $county_counts = $this->counties->get_counties_map($qsl_sources);
+        $bands = $this->counties_bands_from_post();
+        $mode_groups = $this->counties_modes_from_post();
+        $county_counts = $this->counties->get_counties_map($qsl_sources, $bands, $mode_groups);
 
         $statuses = array();
         if (isset($county_counts)) {
@@ -1474,12 +1482,61 @@ class Awards extends CI_Controller {
         return $qsl_sources;
     }
 
+    /*
+     * Reads which bands (subset of Counties::get_band_list(), 160m through
+     * 70cm) are selected in the counties award filter. Same "qslFilterSet"
+     * marker convention as counties_qsl_sources_from_post(): absent means a
+     * fresh page load (defaults to all bands checked), present means every
+     * checked band was posted as an array element (an unchecked band simply
+     * isn't in the array, so no separate "was the filter submitted" signal
+     * is needed per band the way it is for the individually-named QSL
+     * checkboxes).
+     */
+    private function counties_bands_from_post() {
+        $this->load->model('counties');
+        $available = $this->counties->get_band_list();
+
+        if (!$this->input->post('qslFilterSet')) {
+            return $available;
+        }
+
+        $posted = $this->input->post('bands');
+        if (!is_array($posted)) {
+            return array();
+        }
+
+        return array_values(array_intersect($available, $posted));
+    }
+
+    /*
+     * Reads which mode-endorsement groups (subset of
+     * Counties::get_mode_groups(): phone/cw/digital) are selected in the
+     * counties award filter. Same convention as counties_bands_from_post().
+     */
+    private function counties_modes_from_post() {
+        $this->load->model('counties');
+        $available = $this->counties->get_mode_groups();
+
+        if (!$this->input->post('qslFilterSet')) {
+            return $available;
+        }
+
+        $posted = $this->input->post('modes');
+        if (!is_array($posted)) {
+            return array();
+        }
+
+        return array_values(array_intersect($available, $posted));
+    }
+
     public function counties_list_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
         $qsl_sources = $this->counties_qsl_sources_from_post();
-        $data['counties_array'] = $this->counties->counties_details($state, $type, $qsl_sources);
+        $bands = $this->counties_bands_from_post();
+        $mode_groups = $this->counties_modes_from_post();
+        $data['counties_array'] = $this->counties->counties_details($state, $type, $qsl_sources, $bands, $mode_groups);
         $data['type'] = $type;
         $this->load->view('awards/counties/details_ajax', $data);
     }
@@ -1502,7 +1559,9 @@ class Awards extends CI_Controller {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $qsl_sources = $this->counties_qsl_sources_from_post();
-        $data['counties_array'] = $this->counties->get_county_counts($state, $qsl_sources);
+        $bands = $this->counties_bands_from_post();
+        $mode_groups = $this->counties_modes_from_post();
+        $data['counties_array'] = $this->counties->get_county_counts($state, $qsl_sources, $bands, $mode_groups);
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);
     }

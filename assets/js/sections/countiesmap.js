@@ -31,6 +31,8 @@ function load_counties_map() {
             eqsl: +$('#countiesEqsl').prop('checked'),
             qrz: +$('#countiesQrz').prop('checked'),
             clublog: +$('#countiesClublog').prop('checked'),
+            bands: $('input[name="bands[]"]:checked').map(function() { return this.value; }).get(),
+            modes: $('input[name="modes[]"]:checked').map(function() { return this.value; }).get(),
         },
         success: function(data) {
             countyStatus = data;

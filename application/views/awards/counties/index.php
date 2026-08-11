@@ -82,6 +82,38 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <div class="col-md-3"><?= __("Mode Endorsement"); ?></div>
+                            <div class="col-md-9">
+                                <?php
+                                $mode_labels = array(
+                                    'phone'   => __("Phone"),
+                                    'cw'      => __("CW"),
+                                    'digital' => __("Digital"),
+                                );
+                                foreach ($mode_groups as $mode) {
+                                    $mode_id = 'countiesMode' . ucfirst($mode);
+                                ?>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="modes[]" value="<?= $mode; ?>" id="<?= $mode_id; ?>" <?php if (in_array($mode, $selected_modes)) echo ' checked="checked"'; ?>>
+                                    <label class="form-check-label" for="<?= $mode_id; ?>"><?= $mode_labels[$mode] ?? ucfirst($mode); ?></label>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-md-3"><?= __("Bands"); ?></div>
+                            <div class="col-md-9">
+                                <?php foreach ($band_list as $band) {
+                                    $band_id = 'countiesBand' . str_replace('.', '_', $band);
+                                ?>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="bands[]" value="<?= $band; ?>" id="<?= $band_id; ?>" <?php if (in_array($band, $selected_bands)) echo ' checked="checked"'; ?>>
+                                    <label class="form-check-label" for="<?= $band_id; ?>"><?= $band; ?></label>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

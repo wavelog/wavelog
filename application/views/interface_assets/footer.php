@@ -2855,6 +2855,8 @@ function viewEqsl(picture, callsign) {
             sources.forEach(function(source) {
                 data[source] = $('#counties' + source.charAt(0).toUpperCase() + source.slice(1)).is(':checked') ? 1 : 0;
             });
+            data['bands'] = $('input[name="bands[]"]:checked').map(function() { return this.value; }).get();
+            data['modes'] = $('input[name="modes[]"]:checked').map(function() { return this.value; }).get();
         }
         return data;
     }
