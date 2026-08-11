@@ -478,6 +478,7 @@
 		let radius = 20, deg = radius / 110.0;
 		function within(r) {
 			if (!r || r.lat == null || r.lon == null) { return false; }
+			if (r.inactive) { return false; }   // active-only, matching the nearby button
 			if (Math.abs(r.lat - lat) > deg || Math.abs(r.lon - lng) > deg) { return false; }
 			return calcDistance(lat, lng, r.lat, r.lon, 'K') <= radius;
 		}
