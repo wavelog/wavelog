@@ -99,7 +99,7 @@ This is a widget to show the last LoTW upload in your QRZ.com Bio or somewhere e
                 <?php foreach ($lotw_uploads as $upload) { ?>
                     <tr>
                     <td><span class="lotw-upload-label"><?php echo $upload->callsign.":"; ?></span></td>
-                    <td><span class="lotw-upload-label"><?php echo $upload->last_upload; ?></span></td>
+                    <td><span class="lotw-upload-label"><?php echo $upload->last_upload; ?>Z</span></td>
                     </tr>
                 <?php } ?>
                 </table>
