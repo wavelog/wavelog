@@ -21,7 +21,7 @@
 # ShenRQ <shen.ruiqin@foxmail.com>, 2025.
 # "ShenRQ(BH4FJN)" <shen.ruiqin@foxmail.com>, 2025.
 # Jerry <jerry19980425@gmail.com>, 2025, 2026.
-# MCyiqiehuanying <me@sharedow.cn>, 2025.
+# MCyiqiehuanying <me@sharedow.cn>, 2025, 2026.
 # FATDEER <fatdeer@yeah.net>, 2025.
 # 范明明 <mingming@live.com>, 2026.
 # "Xu, Zefan (BI1GHZ)" <ceba_robot@outlook.com>, 2026.
@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-11 11:45+0000\n"
-"PO-Revision-Date: 2026-08-04 09:05+0000\n"
-"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
+"PO-Revision-Date: 2026-08-11 09:57+0000\n"
+"Last-Translator: MCyiqiehuanying <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -354,7 +354,7 @@ msgstr "州/省"
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "激活规划器"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -427,14 +427,14 @@ msgstr "POTA数据已导入"
 #: application/controllers/Amsatstatus.php:30
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
-msgstr ""
+msgstr "AMSAT 状态服务目前不可用。请稍后再试。"
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "AMSAT 卫星状态"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -4203,7 +4203,7 @@ msgstr "移除俱乐部成员"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "读取QSL确认信息"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -5031,7 +5031,7 @@ msgstr "卫星过境"
 
 #: application/views/activationplanner/index.php:21
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "网格边框"
 
 #: application/views/activationplanner/index.php:23
 #: application/views/api/components/create_token_modal.php:6
@@ -5058,7 +5058,7 @@ msgstr "关闭"
 
 #: application/views/activationplanner/index.php:25
 msgid "Tracking"
-msgstr ""
+msgstr "追踪中"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/logbookadvanced/mergedialog.php:71
@@ -5068,11 +5068,11 @@ msgstr "字段"
 
 #: application/views/activationplanner/index.php:27
 msgid "Square"
-msgstr ""
+msgstr "网格"
 
 #: application/views/activationplanner/index.php:28
 msgid "Subsquare"
-msgstr ""
+msgstr "子网格"
 
 #: application/views/activationplanner/index.php:29
 msgid "Locating…"
@@ -5092,11 +5092,11 @@ msgstr "定位请求超时。"
 
 #: application/views/activationplanner/index.php:34
 msgid "Create station location"
-msgstr ""
+msgstr "创建台站位置"
 
 #: application/views/activationplanner/index.php:35
 msgid "References in this grid"
-msgstr ""
+msgstr "此网格中的活动"
 
 #: application/views/activationplanner/index.php:36
 #: application/views/calltester/call_info.php:30
@@ -5126,16 +5126,16 @@ msgstr "分享"
 
 #: application/views/activationplanner/index.php:42
 msgid "Share activation"
-msgstr ""
+msgstr "分享激活信息"
 
 #: application/views/activationplanner/index.php:43
 #, php-format
 msgid "📻 Planning an activation from %s"
-msgstr ""
+msgstr "📻从%s开始规划"
 
 #: application/views/activationplanner/index.php:53
 msgid "Plan your activity here"
-msgstr ""
+msgstr "在此开始规划"
 
 #: application/views/activationplanner/index.php:61
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
@@ -6038,77 +6038,79 @@ msgstr "状态"
 msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
-msgstr ""
+msgstr "过去24小时内的最新卫星状态反馈。数据来源：%s（缓存15分钟）。"
 
 #: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
-msgstr ""
+msgstr "暂无反馈的卫星状态。"
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "最近一小时的活跃报告"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "含成功接收或乘组活跃"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "即将过境"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "无下次过境信息"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
-msgstr ""
+msgstr "状态图例"
 
 #: application/views/amsatstatus/index.php:102
 #: application/views/amsatstatus/index.php:171
 msgid "No report"
-msgstr ""
+msgstr "无反馈"
 
 #: application/views/amsatstatus/index.php:108
 msgid "AMSAT Satellite Status (Last 24h)"
-msgstr ""
+msgstr "AMSAT 卫星状态（过去24小时）"
 
 #: application/views/amsatstatus/index.php:113
 msgid ""
 "Satellite status by hour for the past 24 hours. Each cell is coloured by its "
 "winning status; hover for the report breakdown."
 msgstr ""
+"过去24小时的卫星状态按小时显示。每个单元格根据其出现状态着色；将鼠标悬停以查"
+"看报告明细。"
 
 #: application/views/amsatstatus/index.php:117
 msgid "Next AOS"
-msgstr ""
+msgstr "下次过境"
 
 #: application/views/amsatstatus/index.php:121
 #, php-format
 msgid "%dh"
 msgid_plural "%dh"
-msgstr[0] ""
+msgstr[0] "%dh"
 
 #: application/views/amsatstatus/index.php:121
 msgid "now"
-msgstr ""
+msgstr "现在"
 
 #: application/views/amsatstatus/index.php:123
 #, php-format
 msgid "%d hours ago"
-msgstr ""
+msgstr "%d小时之前"
 
 #: application/views/amsatstatus/index.php:146
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
-msgstr[0] ""
+msgstr[0] "24小时内%d个报告"
 
 #: application/views/amsatstatus/index.php:192
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
-msgstr[0] ""
+msgstr[0] "%d个报告"
 
 #: application/views/amsatstatus/index.php:202
 #: application/views/qso/index.php:34
@@ -8330,17 +8332,17 @@ msgstr "从梅登黑德的定位信息中自动填充省(或州)名。"
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "在加载POTA地图数据时出错"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "当前筛选条件下无匹配的POTA公园条目。"
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
-msgstr ""
+msgstr "未能加载 POTA 目录 — 坐标数据缺失。请执行 update_cron 定时任务。"
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/sota/index.php:7
@@ -8385,41 +8387,41 @@ msgstr "本奖项所需要的字段：POTA_REF（必须包含公园编号）"
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "暂无评级"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "%s 获奖进度"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "再通联 %d 个不同的公园以解锁下一评级"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "你已经达到了POTA奖项的最高等级！"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "显示所有奖项"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "进阶奖项"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "标准奖项"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "POTA Hunter 奖项获奖进度"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "公园已解锁"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/sota/index.php:50
@@ -8545,17 +8547,17 @@ msgstr "将 QSO 导出至 ADIF 文件"
 
 #: application/views/awards/sota/index.php:4
 msgid "Error loading SOTA map data"
-msgstr ""
+msgstr "加载SOTA地图数据时出错"
 
 #: application/views/awards/sota/index.php:5
 msgid "No SOTA references worked for these filters."
-msgstr ""
+msgstr "没有任何SOTA参考适用于这些过滤器。"
 
 #: application/views/awards/sota/index.php:6
 msgid ""
 "SOTA directory not loaded - coordinates missing. Run the update_sota cron "
 "job."
-msgstr ""
+msgstr "SOTA目录未加载 - 坐标缺失。运行update_sota定时任务。"
 
 #: application/views/awards/sota/index.php:24
 msgid "SOTA Awards"
@@ -16998,7 +17000,7 @@ msgstr "从竞赛中剥离"
 
 #: application/views/logbookadvanced/index.php:859
 msgid "Export to CSV"
-msgstr ""
+msgstr "导出为CSV"
 
 #: application/views/logbookadvanced/index.php:863
 #: application/views/oqrs/showrequests.php:63
@@ -21911,13 +21913,13 @@ msgstr "这个设置控制是否在插件上显示 “上次出现” 时间。"
 
 #: application/views/user/edit.php:1198
 msgid "Display radio name"
-msgstr ""
+msgstr "显示电台名称"
 
 #: application/views/user/edit.php:1199
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
-msgstr ""
+msgstr "此设置控制电台的名称是否在小部件中显示。"
 
 #: application/views/user/edit.php:1203
 msgid "Display only most recently updated radio"
@@ -22685,33 +22687,33 @@ msgstr ""
 #, php-format
 msgctxt "on air status test: callsign is on-air/off-air"
 msgid "%s is %s"
-msgstr ""
+msgstr "%s 正 %s"
 
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:198
 #, php-format
 msgid "Updated: %s (%s)"
-msgstr ""
+msgstr "更新于：%s (%s)"
 
 #: application/views/widgets/on_air.php:181
 msgid "auto-refreshed every 60s"
-msgstr ""
+msgstr "每60秒自动刷新"
 
 #: application/views/widgets/on_air.php:198
 msgid "auto-refreshed by QRZ.com every 60s"
-msgstr ""
+msgstr "每60秒由QRZ.com自动刷新"
 
 #: application/views/widgets/on_air.php:242
 #, php-format
 msgid "Last updated: %s"
-msgstr ""
+msgstr "最后更新:%s"
 
 #: application/views/widgets/on_air.php:318
 #: application/views/widgets/on_air.php:322
 #: application/views/widgets/on_air.php:325
 #: application/views/widgets/on_air.php:333
 msgid "Last updated:"
-msgstr ""
+msgstr "最后更新："
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
@@ -22793,20 +22795,20 @@ msgstr "未发现分区问题。所有 QSO 都具有正确的分区信息。"
 #: src/QSLManager/QSO.php:898
 #, php-format
 msgid "Lookup %s on QRZ.com"
-msgstr ""
+msgstr "在 QRZ.com 上查找%s"
 
 #: src/QSLManager/QSO.php:899
 #, php-format
 msgid "Lookup %s on HamQTH"
-msgstr ""
+msgstr "在 HamQTH上查找%s"
 
 #: src/QSLManager/QSO.php:900
 msgid "Clublog Log Search"
-msgstr ""
+msgstr "Clublog 日志搜索"
 
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
-msgstr ""
+msgstr "LoTW 用户。最后上传于 "
 
 #~ msgid "SOTA QSO List"
 #~ msgstr "SOTA QSO 列表"
