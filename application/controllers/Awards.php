@@ -1403,6 +1403,51 @@ class Awards extends CI_Controller {
     }
 
     /*
+        function counties_geojson
+
+        AJAX endpoint serving the county/state boundary GeoJSON files used by
+        the counties map (assets/json/geojson/{counties,states}_{291,6,110}.geojson,
+        ~24MB combined, dominated by the 21MB lower-48 counties file). Fetched
+        directly as static assets before; routed through here instead so we can
+        set explicit, portable Cache-Control/ETag headers regardless of the
+        host's web server config (mirrors Activationplanner.php's directory
+        endpoints, but with a cheap stat-based ETag instead of hashing the
+        multi-MB payload on every request, and a long max-age since this data
+        only changes on a Wavelog upgrade, not per request).
+    */
+    public function counties_geojson($scope = '') {
+        $allowed = array(
+            'counties_291', 'counties_6', 'counties_110',
+            'states_291', 'states_6', 'states_110',
+        );
+        if (!in_array($scope, $allowed, TRUE)) {
+            show_404();
+            return;
+        }
+
+        $path = FCPATH . 'assets/json/geojson/' . $scope . '.geojson';
+        if (!is_file($path)) {
+            show_404();
+            return;
+        }
+
+        $etag = '"' . md5($scope . ':' . filemtime($path) . ':' . filesize($path)) . '"';
+        session_write_close();            // release session lock; allow header override
+        session_cache_limiter('public');  // defeat PHP's default nocache limiter (cf. Eqsl.php)
+        header('Cache-Control: public, max-age=2592000'); // 30 days; not user-specific, only changes on upgrade
+        header('ETag: ' . $etag);
+
+        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+            $this->output->set_status_header(304); // CI idiom for status codes
+            return;
+        }
+
+        header('Content-Type: application/geo+json');
+        header('Content-Length: ' . filesize($path));
+        readfile($path); // stream instead of buffering multi-MB files into a PHP string
+    }
+
+    /*
      * Reads which QSL confirmation sources (qsl/lotw/eqsl/qrz/clublog) are
      * selected in the counties award filter. The filter form (and the state
      * / list AJAX calls it drives) always posts a "qslFilterSet" marker

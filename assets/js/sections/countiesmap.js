@@ -37,13 +37,16 @@ function load_counties_map() {
             // Fetch lower 48 + DC (DXCC 291), Alaska (DXCC 6) and Hawaii (DXCC 110) separately,
             // plus the state-level boundaries (reusing the WAS map's geojson) drawn as a bolder
             // outline on top of the counties so state lines stand out from county lines.
+            // Routed through counties_geojson() rather than fetched as static assets so the
+            // ~24MB combined payload gets an explicit long-lived Cache-Control/ETag (see
+            // Awards::counties_geojson()) instead of depending on the host's web server defaults.
             Promise.all([
-                fetch(base_url + 'assets/json/geojson/counties_291.geojson').then(r => r.json()),
-                fetch(base_url + 'assets/json/geojson/counties_6.geojson').then(r => r.json()),
-                fetch(base_url + 'assets/json/geojson/counties_110.geojson').then(r => r.json()),
-                fetch(base_url + 'assets/json/geojson/states_291.geojson').then(r => r.json()),
-                fetch(base_url + 'assets/json/geojson/states_6.geojson').then(r => r.json()),
-                fetch(base_url + 'assets/json/geojson/states_110.geojson').then(r => r.json())
+                fetch(base_url + 'index.php/awards/counties_geojson/counties_291').then(r => r.json()),
+                fetch(base_url + 'index.php/awards/counties_geojson/counties_6').then(r => r.json()),
+                fetch(base_url + 'index.php/awards/counties_geojson/counties_110').then(r => r.json()),
+                fetch(base_url + 'index.php/awards/counties_geojson/states_291').then(r => r.json()),
+                fetch(base_url + 'index.php/awards/counties_geojson/states_6').then(r => r.json()),
+                fetch(base_url + 'index.php/awards/counties_geojson/states_110').then(r => r.json())
             ]).then(([counties48, ak, hi, states48, statesAk, statesHi]) => {
                 counties48.features = counties48.features.concat(ak.features, hi.features);
                 states48.features = states48.features.concat(statesAk.features, statesHi.features);
