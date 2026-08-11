@@ -21,7 +21,7 @@
 # ShenRQ <shen.ruiqin@foxmail.com>, 2025.
 # "ShenRQ(BH4FJN)" <shen.ruiqin@foxmail.com>, 2025.
 # Jerry <jerry19980425@gmail.com>, 2025, 2026.
-# MCyiqiehuanying <me@sharedow.cn>, 2025.
+# MCyiqiehuanying <me@sharedow.cn>, 2025, 2026.
 # FATDEER <fatdeer@yeah.net>, 2025.
 # 范明明 <mingming@live.com>, 2026.
 # "Xu, Zefan (BI1GHZ)" <ceba_robot@outlook.com>, 2026.
@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-09 10:10+0000\n"
-"PO-Revision-Date: 2026-08-11 06:18+0000\n"
-"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
+"PO-Revision-Date: 2026-08-11 09:57+0000\n"
+"Last-Translator: MCyiqiehuanying <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -362,7 +362,7 @@ msgstr "州/省"
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "激活规划器"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -5213,12 +5213,12 @@ msgstr "字段"
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:25
 msgid "Square"
-msgstr ""
+msgstr "网格"
 
 #: application/views/activationplanner/index.php:25
 #: application/views/activationplanner/index.php:26
 msgid "Subsquare"
-msgstr ""
+msgstr "子网格"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/activationplanner/index.php:27
@@ -5248,7 +5248,7 @@ msgstr "创建台站位置"
 #: application/views/activationplanner/index.php:32
 #: application/views/activationplanner/index.php:33
 msgid "References in this grid"
-msgstr ""
+msgstr "此网格中的活动"
 
 #: application/views/activationplanner/index.php:34
 #: application/views/view_log/qso.php:615
@@ -5259,18 +5259,18 @@ msgstr "分享"
 #: application/views/activationplanner/index.php:35
 #: application/views/activationplanner/index.php:36
 msgid "Share activation"
-msgstr ""
+msgstr "分享激活信息"
 
 #: application/views/activationplanner/index.php:36
 #: application/views/activationplanner/index.php:37
 #, php-format
 msgid "📻 Planning an activation from %s"
-msgstr ""
+msgstr "📻从%s开始规划"
 
 #: application/views/activationplanner/index.php:46
 #: application/views/activationplanner/index.php:47
 msgid "Plan your activity here"
-msgstr ""
+msgstr "在此开始规划"
 
 #: application/views/activationplanner/index.php:54
 #: application/views/activationplanner/index.php:55
@@ -6200,36 +6200,36 @@ msgstr "状态"
 msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
-msgstr ""
+msgstr "过去24小时内的最新卫星状态反馈。数据来源：%s（缓存15分钟）。"
 
 #: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
-msgstr ""
+msgstr "暂无反馈的卫星状态。"
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "最近一小时的活跃报告"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "含成功接收或乘组活跃"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "即将过境"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "无下次过境信息"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
-msgstr ""
+msgstr "状态图例"
 
 #: application/views/amsatstatus/index.php:102
 #: application/views/amsatstatus/index.php:171
 msgid "No report"
-msgstr ""
+msgstr "无反馈"
 
 #: application/views/amsatstatus/index.php:108
 msgid "AMSAT Satellite Status (Last 24h)"
@@ -6245,17 +6245,17 @@ msgstr ""
 
 #: application/views/amsatstatus/index.php:117
 msgid "Next AOS"
-msgstr ""
+msgstr "下次过境"
 
 #: application/views/amsatstatus/index.php:121
 #, php-format
 msgid "%dh"
 msgid_plural "%dh"
-msgstr[0] ""
+msgstr[0] "%dh"
 
 #: application/views/amsatstatus/index.php:121
 msgid "now"
-msgstr ""
+msgstr "现在"
 
 #: application/views/amsatstatus/index.php:123
 #, php-format
@@ -8520,17 +8520,17 @@ msgstr "从梅登黑德的定位信息中自动填充省(或州)名。"
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "在加载POTA地图数据时出错"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "当前筛选条件下无匹配的POTA公园条目。"
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
-msgstr ""
+msgstr "未能加载 POTA 目录 — 坐标数据缺失。请执行 update_cron 定时任务。"
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/sota/index.php:7
@@ -8575,41 +8575,41 @@ msgstr "本奖项所需要的字段：POTA_REF（必须包含公园编号）"
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "暂无评级"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "%s 获奖进度"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "再通联 %d 个不同的公园以解锁下一评级"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "你已经达到了POTA奖项的最高等级！"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "显示所有奖项"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "进阶奖项"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "标准奖项"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "POTA Hunter 奖项获奖进度"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "公园已解锁"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/sota/index.php:50
@@ -22975,13 +22975,13 @@ msgstr "QSO 已被标记成导出至 QO-100 Dx Club。"
 #, php-format
 msgctxt "on air status test: callsign is on-air/off-air"
 msgid "%s is %s"
-msgstr ""
+msgstr "%s 正 %s"
 
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:198
 #, php-format
 msgid "Updated: %s (%s)"
-msgstr ""
+msgstr "更新于：%s (%s)"
 
 #: application/views/widgets/on_air.php:181
 msgid "auto-refreshed every 60s"
