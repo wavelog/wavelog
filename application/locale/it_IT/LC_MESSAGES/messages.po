@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-11 11:45+0000\n"
+"POT-Creation-Date: 2026-08-11 16:14+0000\n"
 "PO-Revision-Date: 2026-08-10 13:08+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -656,7 +656,7 @@ msgstr " e "
 
 #: application/controllers/Awards.php:713
 #: application/controllers/Logbook.php:1470
-#: application/views/activationplanner/index.php:76
+#: application/views/activationplanner/index.php:84
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
@@ -687,7 +687,7 @@ msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
 #: application/controllers/Logbook.php:1471
-#: application/views/activationplanner/index.php:74
+#: application/views/activationplanner/index.php:82
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
 #: application/views/logbookadvanced/edit.php:40
@@ -710,7 +710,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
 #: application/controllers/Logbook.php:1472
-#: application/views/activationplanner/index.php:75
+#: application/views/activationplanner/index.php:83
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
@@ -2150,7 +2150,7 @@ msgid "Country"
 msgstr "Country"
 
 #: application/controllers/Logbook.php:1469
-#: application/views/activationplanner/index.php:77
+#: application/views/activationplanner/index.php:85
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
@@ -2215,10 +2215,10 @@ msgstr "Stato"
 
 #: application/controllers/Logbook.php:1474
 #: application/views/activated_gridmap/index.php:107
-#: application/views/activationplanner/index.php:22
-#: application/views/activationplanner/index.php:58
-#: application/views/activationplanner/index.php:73
-#: application/views/activationplanner/index.php:98
+#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:65
+#: application/views/activationplanner/index.php:81
+#: application/views/activationplanner/index.php:106
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -2274,6 +2274,7 @@ msgstr "Locatore"
 
 #: application/controllers/Logbook.php:1475
 #: application/views/activated_gridmap/index.php:108
+#: application/views/activationplanner/index.php:29
 #: application/views/awards/ffma/index.php:40
 #: application/views/awards/gridmaster/index.php:55
 #: application/views/contesting/logger/components/map.php:82
@@ -3419,7 +3420,7 @@ msgstr "Non permesso"
 #: application/controllers/Stationsetup.php:156
 #: application/controllers/Stationsetup.php:177
 #: application/controllers/Stationsetup.php:478
-#: application/views/activationplanner/index.php:24
+#: application/views/activationplanner/index.php:31
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
@@ -5090,7 +5091,7 @@ msgid "Clear Markers"
 msgstr "Cancella indicatori"
 
 #: application/views/activated_gridmap/index.php:105
-#: application/views/activationplanner/index.php:96
+#: application/views/activationplanner/index.php:104
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
@@ -5101,7 +5102,7 @@ msgid "Latitude"
 msgstr "Latitudine"
 
 #: application/views/activated_gridmap/index.php:106
-#: application/views/activationplanner/index.php:97
+#: application/views/activationplanner/index.php:105
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
@@ -5117,16 +5118,69 @@ msgid ""
 msgstr ""
 "Gridsquare non valido — usa 2, 4, 6, 8 o 10 caratteri (es. FN, FN31, FN31pr)."
 
-#: application/views/activationplanner/index.php:20
+#: application/views/activationplanner/index.php:21
 #: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "Passaggi dei satelliti"
 
-#: application/views/activationplanner/index.php:21
+#: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
 msgstr "Confini dei quadrati di griglia"
 
-#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:24
+#: application/views/activationplanner/index.php:76
+msgid "Nearby refs"
+msgstr ""
+
+#: application/views/activationplanner/index.php:25
+#, php-format
+msgid "References within %s of the gridsquare"
+msgstr ""
+
+#: application/views/activationplanner/index.php:26
+#: application/views/qslcard/confirmationresult.php:21
+#: application/views/user/index.php:30
+msgid "Type"
+msgstr "Tipo"
+
+#: application/views/activationplanner/index.php:27
+#: application/views/awards/sig/qso_list.php:13
+msgid "Reference"
+msgstr "Riferenza"
+
+#: application/views/activationplanner/index.php:28
+#: application/views/api/index.php:135
+#: application/views/awards/iota/index.php:210
+#: application/views/contest_admin/add.php:34
+#: application/views/contest_admin/create.php:24
+#: application/views/contesting/manager/components/session_modal.php:122
+#: application/views/contesting/manager/export_cbr.php:252
+#: application/views/dashboard/index.php:19
+#: application/views/labels/index.php:42 application/views/labels/index.php:76
+#: application/views/logbookadvanced/index.php:966
+#: application/views/logbookadvanced/qslcarousel.php:34
+#: application/views/logbookadvanced/useroptions.php:91
+#: application/views/lotw/satupdate.php:7
+#: application/views/qso/components/fav_modal.php:8
+#: application/views/qso/components/winkeysettings.php:11
+#: application/views/qso/components/winkeysettings.php:28
+#: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:289
+#: application/views/satellite/satinfo.php:6
+#: application/views/search/result.php:16
+#: application/views/search/search_result_ajax.php:19
+#: application/views/stationsetup/locationlist.php:12
+#: application/views/stationsetup/stationsetup.php:43
+#: application/views/themes/index.php:82
+#: application/views/timeline/index.php:307 application/views/user/edit.php:309
+#: application/views/user/edit.php:332 application/views/user/edit.php:355
+#: application/views/user/edit.php:378 application/views/user/edit.php:402
+#: application/views/view_log/partial/log_ajax.php:20
+#: application/views/view_log/qso.php:232
+#: application/views/view_log/qso.php:629
+msgid "Name"
+msgstr "Nome"
+
+#: application/views/activationplanner/index.php:30
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
 #: application/views/api/components/new_token_modal.php:23
@@ -5149,49 +5203,49 @@ msgstr "Confini dei quadrati di griglia"
 msgid "Close"
 msgstr "Chiudi"
 
-#: application/views/activationplanner/index.php:25
+#: application/views/activationplanner/index.php:32
 msgid "Tracking"
 msgstr "Tracciamento"
 
-#: application/views/activationplanner/index.php:26
+#: application/views/activationplanner/index.php:33
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
 msgid "Field"
 msgstr "Campo"
 
-#: application/views/activationplanner/index.php:27
+#: application/views/activationplanner/index.php:34
 msgid "Square"
 msgstr "Quadrato"
 
-#: application/views/activationplanner/index.php:28
+#: application/views/activationplanner/index.php:35
 msgid "Subsquare"
 msgstr "Subsquare"
 
-#: application/views/activationplanner/index.php:29
+#: application/views/activationplanner/index.php:36
 msgid "Locating…"
 msgstr "Localizzando…"
 
-#: application/views/activationplanner/index.php:30
+#: application/views/activationplanner/index.php:37
 msgid "Location access denied."
 msgstr "Accesso alla posizione negato."
 
-#: application/views/activationplanner/index.php:31
+#: application/views/activationplanner/index.php:38
 msgid "Location unavailable."
 msgstr "Posizione non disponibile."
 
-#: application/views/activationplanner/index.php:32
+#: application/views/activationplanner/index.php:39
 msgid "Location request timed out."
 msgstr "La richiesta di posizione è scaduta."
 
-#: application/views/activationplanner/index.php:34
+#: application/views/activationplanner/index.php:41
 msgid "Create station location"
 msgstr "Crea una posizione della stazione"
 
-#: application/views/activationplanner/index.php:35
+#: application/views/activationplanner/index.php:42
 msgid "References in this grid"
 msgstr "Referenze in questa griglia"
 
-#: application/views/activationplanner/index.php:36
+#: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
 #: application/views/labels/index.php:82
 #: application/views/logbookadvanced/statecheckresult.php:12
@@ -5200,61 +5254,61 @@ msgstr "Referenze in questa griglia"
 msgid "QSOs"
 msgstr "QSO"
 
-#: application/views/activationplanner/index.php:37
+#: application/views/activationplanner/index.php:44
 msgid "last"
 msgstr ""
 
-#: application/views/activationplanner/index.php:38
+#: application/views/activationplanner/index.php:45
 msgid "Inactive"
 msgstr ""
 
-#: application/views/activationplanner/index.php:39
+#: application/views/activationplanner/index.php:46
 msgid "valid"
 msgstr ""
 
-#: application/views/activationplanner/index.php:41
+#: application/views/activationplanner/index.php:48
 #: application/views/view_log/qso.php:615
 msgid "Share"
 msgstr "Condividi"
 
-#: application/views/activationplanner/index.php:42
+#: application/views/activationplanner/index.php:49
 msgid "Share activation"
 msgstr "Condividi attivazione"
 
-#: application/views/activationplanner/index.php:43
+#: application/views/activationplanner/index.php:50
 #, php-format
 msgid "📻 Planning an activation from %s"
 msgstr "📻 Pianificando un'attivazione da %s"
 
-#: application/views/activationplanner/index.php:53
+#: application/views/activationplanner/index.php:60
 msgid "Plan your activity here"
 msgstr "Pianifica la tua attività qui"
 
-#: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:68
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "Localizzatore Maidenhead di 2, 4, 6, 8 o 10 caratteri"
 
-#: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:68
 msgid "e.g. FN31pr"
 msgstr "ad es. FN31pr"
 
-#: application/views/activationplanner/index.php:62
+#: application/views/activationplanner/index.php:69
 msgid "to"
 msgstr "a"
 
-#: application/views/activationplanner/index.php:65
+#: application/views/activationplanner/index.php:72
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Secondo locatore opzionale per distanza e direttrice (bearing)"
 
-#: application/views/activationplanner/index.php:65
+#: application/views/activationplanner/index.php:72
 msgid "e.g. JN58qm"
 msgstr "ad es. JN58qm"
 
-#: application/views/activationplanner/index.php:66
+#: application/views/activationplanner/index.php:73
 msgid "Go"
 msgstr "Vai"
 
-#: application/views/activationplanner/index.php:67
+#: application/views/activationplanner/index.php:74
 #: application/views/awards/cq/index.php:70
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
@@ -5269,29 +5323,29 @@ msgstr "Vai"
 msgid "Clear"
 msgstr "Pulisci"
 
-#: application/views/activationplanner/index.php:68
+#: application/views/activationplanner/index.php:75
 msgid "Find my location and gridsquare"
 msgstr "Trova la mia posizione e il locatore"
 
-#: application/views/activationplanner/index.php:68
+#: application/views/activationplanner/index.php:75
 msgid "Locate me"
 msgstr "Localizzami"
 
-#: application/views/activationplanner/index.php:71
+#: application/views/activationplanner/index.php:79
 #: application/views/simplefle/index.php:162
 msgid "Refs"
 msgstr "Riferimenti"
 
-#: application/views/activationplanner/index.php:84
+#: application/views/activationplanner/index.php:92
 #: application/views/qso/index.php:758
 msgid "More options"
 msgstr "Più opzioni"
 
-#: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:93
 msgid "Hide options"
 msgstr "Nascondi opzioni"
 
-#: application/views/activationplanner/index.php:99
+#: application/views/activationplanner/index.php:107
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
 #: application/views/bandmap/list.php:569
@@ -5317,7 +5371,7 @@ msgstr "Nascondi opzioni"
 msgid "CQ Zone"
 msgstr "Zona CQ"
 
-#: application/views/activationplanner/index.php:100
+#: application/views/activationplanner/index.php:108
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
 #: application/views/gridmap/index.php:230
@@ -6624,37 +6678,6 @@ msgid ""
 msgstr ""
 "Sulle Clubstation i Token API sono personali e non condivisi. Gli utenti "
 "delle Clubstation possono vedere solo i propri token."
-
-#: application/views/api/index.php:135
-#: application/views/awards/iota/index.php:210
-#: application/views/contest_admin/add.php:34
-#: application/views/contest_admin/create.php:24
-#: application/views/contesting/manager/components/session_modal.php:122
-#: application/views/contesting/manager/export_cbr.php:252
-#: application/views/dashboard/index.php:19
-#: application/views/labels/index.php:42 application/views/labels/index.php:76
-#: application/views/logbookadvanced/index.php:966
-#: application/views/logbookadvanced/qslcarousel.php:34
-#: application/views/logbookadvanced/useroptions.php:91
-#: application/views/lotw/satupdate.php:7
-#: application/views/qso/components/fav_modal.php:8
-#: application/views/qso/components/winkeysettings.php:11
-#: application/views/qso/components/winkeysettings.php:28
-#: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:289
-#: application/views/satellite/satinfo.php:6
-#: application/views/search/result.php:16
-#: application/views/search/search_result_ajax.php:19
-#: application/views/stationsetup/locationlist.php:12
-#: application/views/stationsetup/stationsetup.php:43
-#: application/views/themes/index.php:82
-#: application/views/timeline/index.php:307 application/views/user/edit.php:309
-#: application/views/user/edit.php:332 application/views/user/edit.php:355
-#: application/views/user/edit.php:378 application/views/user/edit.php:402
-#: application/views/view_log/partial/log_ajax.php:20
-#: application/views/view_log/qso.php:232
-#: application/views/view_log/qso.php:629
-msgid "Name"
-msgstr "Nome"
 
 #: application/views/api/index.php:138
 msgid "Expires"
@@ -8755,10 +8778,6 @@ msgstr "Numero di referenze"
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
 msgstr "Elenco QSO"
-
-#: application/views/awards/sig/qso_list.php:13
-msgid "Reference"
-msgstr "Riferenza"
 
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/logbookadvanced/index.php:933
@@ -19136,11 +19155,6 @@ msgstr "Data QSO"
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
 msgstr "Data di conferma"
-
-#: application/views/qslcard/confirmationresult.php:21
-#: application/views/user/index.php:30
-msgid "Type"
-msgstr "Tipo"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."

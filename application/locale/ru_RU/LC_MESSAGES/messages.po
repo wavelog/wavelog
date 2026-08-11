@@ -685,6 +685,7 @@ msgstr " и "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/activationplanner/index.php:84
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -708,6 +709,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/activationplanner/index.php:82
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -733,6 +735,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/activationplanner/index.php:83
 msgid "POTA"
 msgstr "POTA"
 
@@ -2182,6 +2185,7 @@ msgstr "Страна"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/activationplanner/index.php:85
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2272,6 +2276,10 @@ msgstr "Область/штат"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:65
+#: application/views/activationplanner/index.php:81
+#: application/views/activationplanner/index.php:106
 msgid "Gridsquare"
 msgstr "QTH локатор"
 
@@ -2303,6 +2311,7 @@ msgstr "QTH локатор"
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/views/activationplanner/index.php:29
 msgid "Distance"
 msgstr "Расстояние"
 
@@ -3434,6 +3443,7 @@ msgstr "Не разрешено"
 #: application/views/widgets/lotw_upload.php:123
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/activationplanner/index.php:31
 msgid "Error"
 msgstr "Ошибка"
 
@@ -5098,6 +5108,7 @@ msgstr "Очистить маркеры"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/activationplanner/index.php:104
 msgid "Latitude"
 msgstr "Широта"
 
@@ -5109,6 +5120,7 @@ msgstr "Широта"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/activationplanner/index.php:105
 msgid "Longitude"
 msgstr "Долгота"
 
@@ -5121,10 +5133,12 @@ msgstr ""
 
 #: application/views/activationplanner/index.php:20
 #: application/views/satellite/pass.php:21
+#: application/views/activationplanner/index.php:21
 msgid "Satellite passes"
 msgstr "Прохождения спутника"
 
 #: application/views/activationplanner/index.php:21
+#: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
 msgstr "Границы квадрата QTH локатора"
 
@@ -5148,48 +5162,59 @@ msgstr "Границы квадрата QTH локатора"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/activationplanner/index.php:30
 msgid "Close"
 msgstr "Закрыть"
 
 #: application/views/activationplanner/index.php:25
+#: application/views/activationplanner/index.php:32
 msgid "Tracking"
 msgstr "Отслеживание"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/activationplanner/index.php:33
 msgid "Field"
 msgstr "Поля"
 
 #: application/views/activationplanner/index.php:27
+#: application/views/activationplanner/index.php:34
 msgid "Square"
 msgstr "Квадрат"
 
 #: application/views/activationplanner/index.php:28
+#: application/views/activationplanner/index.php:35
 msgid "Subsquare"
 msgstr "Подквадрат"
 
 #: application/views/activationplanner/index.php:29
+#: application/views/activationplanner/index.php:36
 msgid "Locating…"
 msgstr "Поиск…"
 
 #: application/views/activationplanner/index.php:30
+#: application/views/activationplanner/index.php:37
 msgid "Location access denied."
 msgstr "Доступ к местоположению запрещён."
 
 #: application/views/activationplanner/index.php:31
+#: application/views/activationplanner/index.php:38
 msgid "Location unavailable."
 msgstr "Местоположение недоступно."
 
 #: application/views/activationplanner/index.php:32
+#: application/views/activationplanner/index.php:39
 msgid "Location request timed out."
 msgstr "Время ожидания запроса местоположения истекло."
 
 #: application/views/activationplanner/index.php:34
+#: application/views/activationplanner/index.php:41
 msgid "Create station location"
 msgstr "Создать профиль QTH"
 
 #: application/views/activationplanner/index.php:35
+#: application/views/activationplanner/index.php:42
 msgid "References in this grid"
 msgstr "Референции в этом квадрате QTH локатора"
 
@@ -5199,6 +5224,7 @@ msgstr "Референции в этом квадрате QTH локатора"
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
+#: application/views/activationplanner/index.php:43
 msgid "QSOs"
 msgstr "QSO"
 
@@ -5216,45 +5242,55 @@ msgstr "действительный"
 
 #: application/views/activationplanner/index.php:41
 #: application/views/view_log/qso.php:615
+#: application/views/activationplanner/index.php:48
 msgid "Share"
 msgstr "Поделиться"
 
 #: application/views/activationplanner/index.php:42
+#: application/views/activationplanner/index.php:49
 msgid "Share activation"
 msgstr "Поделиться активацией"
 
 #: application/views/activationplanner/index.php:43
+#: application/views/activationplanner/index.php:50
 #, php-format
 msgid "📻 Planning an activation from %s"
 msgstr "📻 Планирование активации из %s"
 
 #: application/views/activationplanner/index.php:53
+#: application/views/activationplanner/index.php:60
 msgid "Plan your activity here"
 msgstr "Планируйте вашу активность"
 
 #: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:68
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 или 10-символьный локатор"
 
 #: application/views/activationplanner/index.php:61
+#: application/views/activationplanner/index.php:68
 msgid "e.g. FN31pr"
 msgstr "например, FN31pr"
 
 #: application/views/activationplanner/index.php:62
+#: application/views/activationplanner/index.php:69
 msgid "to"
 msgstr "до"
 
 #: application/views/activationplanner/index.php:65
+#: application/views/activationplanner/index.php:72
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
 "Дополнительный второй квадрат QTH локатора для вычисления расстояния и "
 "азимута"
 
 #: application/views/activationplanner/index.php:65
+#: application/views/activationplanner/index.php:72
 msgid "e.g. JN58qm"
 msgstr "например, JN58qm"
 
 #: application/views/activationplanner/index.php:66
+#: application/views/activationplanner/index.php:73
 msgid "Go"
 msgstr "Пуск"
 
@@ -5270,28 +5306,34 @@ msgstr "Пуск"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
 #: application/views/qso/index.php:757 application/views/user/edit.php:1367
+#: application/views/activationplanner/index.php:74
 msgid "Clear"
 msgstr "Очистить"
 
 #: application/views/activationplanner/index.php:68
+#: application/views/activationplanner/index.php:75
 msgid "Find my location and gridsquare"
 msgstr "Определение моего местоположения и квадрата QTH локатора"
 
 #: application/views/activationplanner/index.php:68
+#: application/views/activationplanner/index.php:75
 msgid "Locate me"
 msgstr "Определение моего местоположения"
 
 #: application/views/activationplanner/index.php:71
 #: application/views/simplefle/index.php:162
+#: application/views/activationplanner/index.php:79
 msgid "Refs"
 msgstr "Референции"
 
 #: application/views/activationplanner/index.php:84
 #: application/views/qso/index.php:758
+#: application/views/activationplanner/index.php:92
 msgid "More options"
 msgstr "Больше вариантов"
 
 #: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:93
 msgid "Hide options"
 msgstr "Скрыть опции"
 
@@ -5318,6 +5360,7 @@ msgstr "Скрыть опции"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/activationplanner/index.php:107
 msgid "CQ Zone"
 msgstr "Зона CQ"
 
@@ -5338,6 +5381,7 @@ msgstr "Зона CQ"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/activationplanner/index.php:108
 msgid "ITU Zone"
 msgstr "Зона ITU"
 
@@ -6660,6 +6704,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:232
 #: application/views/view_log/qso.php:629
+#: application/views/activationplanner/index.php:28
 msgid "Name"
 msgstr "Имя"
 
@@ -8759,6 +8804,7 @@ msgid "QSO List"
 msgstr "Список QSO"
 
 #: application/views/awards/sig/qso_list.php:13
+#: application/views/activationplanner/index.php:27
 msgid "Reference"
 msgstr "Референция"
 
@@ -19137,6 +19183,7 @@ msgstr "Дата подтверждения"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
+#: application/views/activationplanner/index.php:26
 msgid "Type"
 msgstr "Тип"
 
@@ -21957,8 +22004,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -22293,8 +22341,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:466
 msgid ""
@@ -23672,6 +23720,16 @@ msgstr "Поиск лога на Clublog"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "Пользователь LoTW. Последняя загрузка была "
+
+#: application/views/activationplanner/index.php:24
+#: application/views/activationplanner/index.php:76
+msgid "Nearby refs"
+msgstr ""
+
+#: application/views/activationplanner/index.php:25
+#, php-format
+msgid "References within %s of the gridsquare"
+msgstr ""
 
 #~ msgid "SOTA QSO List"
 #~ msgstr "Список QSO SOTA"
