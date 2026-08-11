@@ -394,19 +394,19 @@ class Logbookadvanced extends CI_Controller {
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
-		$this->prepareMappedQSos($result);
+		$this->prepareMappedQsos($result);
 	}
 
 	public function mapQsos() {
-        $this->load->model('logbookadvanced_model');
+		$this->load->model('logbookadvanced_model');
 
 		$searchCriteria = $this->mapParameters();
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
-		$this->prepareMappedQSos($result);
+		$this->prepareMappedQsos($result);
 	}
 
-	public function prepareMappedQSos($qsos) {
+	public function prepareMappedQsos($qsos) {
 		if ($this->session->userdata('user_measurement_base') == NULL) {
 			$measurement_base = $this->config->item('measurement_base');
 		}
@@ -529,16 +529,17 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-
-		$latlng1 = $this->qra->qra2latlong($mygrid);
+		if (!empty($mygrid)) {
+			$latlng1 = $this->qra->qra2latlong($mygrid);
+			$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+			$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+			$data['latlng1'] = $latlng1;
+		}
 		$latlng2[0] = $lat;
 		$latlng2[1] = $long;
-		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
-		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
 		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
 		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
 
-		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
 		$data['callsign'] = $qso['COL_CALL'];
 		$data['band'] = $qso['COL_BAND'];
