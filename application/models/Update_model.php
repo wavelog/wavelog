@@ -599,7 +599,6 @@ class Update_model extends CI_Model {
 		$response = curl_exec($curl);
 		$err  = curl_error($curl);
 		$http = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-		curl_close($curl);
 
 		if ($response === false || $http !== 200) {
 			log_message('error', 'CelesTrak OMM fetch failed (HTTP ' . $http . '): ' . $err);
