@@ -101,6 +101,29 @@ class Migration_pota_boundaries extends CI_Migration {
 		if ($this->db->table_exists('wwff_directory') && !$this->db->field_exists('last_activated', 'wwff_directory')) {
 			$this->dbforge->add_column('wwff_directory', $wwff_activation_fields);
 		}
+
+		// Populate the table immediately so autocomplete works out of the box
+		// before the admin/cron runs the update. Best-effort: a network failure
+		// must never break this migration (it runs on every login), so swallow
+		// any error and leave filling to the normal update path.
+		$CI =& get_instance();
+		$CI->load->model('update_model');
+		try {
+			$result = $CI->update_model->pota();
+			if (strncmp($result, 'DONE', 4) !== 0) {
+				log_message('error', 'POTA initial import during migration 292: ' . $result);
+			}
+			$result = $CI->update_model->pota_boundaries();
+			if (strncmp($result, 'DONE', 4) !== 0) {
+				log_message('error', 'POTA-Boundaries initial import during migration 292: ' . $result);
+			}
+			$result = $CI->update_model->sota();
+			if (strncmp($result, 'DONE', 4) !== 0) {
+				log_message('error', 'SOTA initial import during migration 292: ' . $result);
+			}
+		} catch (\Throwable $e) {
+			log_message('error', 'SOTA or POTA (Ref+Boundaries) initial import (migration 292) failed: ' . $e->getMessage());
+		}
 	}
 
 	public function down() {
