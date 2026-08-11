@@ -1530,6 +1530,9 @@
 		loc = loc || latLngToLocator(lat, lng, 3);   // 6-character gridsquare
 		let cell = locatorToCell(loc);              // exact bounds of that grid cell
 
+		// Fill the gridsquare box so Go / QRB can be used from the clicked point.
+		document.getElementById('glGrid').value = loc;
+
 		// Only one click marker + square at a time: drop the previous ones.
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
