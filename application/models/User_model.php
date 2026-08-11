@@ -249,7 +249,7 @@ class User_Model extends CI_Model {
 		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab, $user_station_to_qso_tab,
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
 		$user_winkey, $on_air_widget_enabled, $on_air_widget_display_last_seen, $on_air_widget_show_only_most_recent_radio, $on_air_widget_display_radio_name,
-		$qso_widget_display_qso_time, $dashboard_banner, $dashboard_solar, $global_oqrs_text, $oqrs_grouped_search,
+		$qso_widget_display_qso_time, $last_lotw_upload_widget_enabled, $dashboard_banner, $dashboard_solar, $global_oqrs_text, $oqrs_grouped_search,
 		$oqrs_grouped_search_show_station_name, $oqrs_auto_matching, $oqrs_direct_auto_matching,$user_dxwaterfall_enable, $user_qso_show_map, $clubstation = 0, $external_account = null) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
@@ -343,6 +343,7 @@ class User_Model extends CI_Model {
 				['widget',     'qso',                     'display_qso_time',              $qso_widget_display_qso_time                ?? 'false'],
 				['qso_db_search_priority', 'enable',      'boolean',                       $user_qso_db_search_priority ?? 'Y'],
 				['dxwaterfall', 'enable',                 'boolean',                       $user_dxwaterfall_enable     ?? 'N'],
+				['widget',     'lotw_upload_upload',      'enabled',                       $last_lotw_upload_widget_enabled            ?? 'false'],
 			];
 
 			foreach ($user_options as [$type, $name, $key, $value]) {
@@ -430,7 +431,8 @@ class User_Model extends CI_Model {
 					['dashboard',  'show_dashboard_banner',   'boolean',                       $fields['user_dashboard_banner'] ?? 'Y'],
 					['dashboard',  'show_dashboard_solar',    'boolean',                       $fields['user_dashboard_solar']  ?? 'N'],
 					['qso_db_search_priority', 'enable',      'boolean',                       $fields['user_qso_db_search_priority'] ?? 'Y'],
-					['dxwaterfall', 'enable',                 'boolean',                       $fields['user_dxwaterfall_enable']     ?? 'N'],
+					['dxwaterfall','enable',                  'boolean',                       $fields['user_dxwaterfall_enable']     ?? 'N'],
+					['widget',     'last_lotw_upload',        'enabled',                       $fields['last_lotw_upload_widget_enabled']           ?? 'false'],
 				];
 
 				foreach ($user_options as [$type, $name, $key, $value]) {

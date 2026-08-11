@@ -277,7 +277,7 @@ class Widgets extends CI_Controller {
 		}
 
 		$user_id = $user->user_id;
-		$widget_options = $this->get_on_air_widget_options($user_id);
+		$widget_options = $this->get_last_lotw_upload_widget_options($user_id);
 
 		if ($widget_options->is_enabled === false) {
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
@@ -456,6 +456,38 @@ class Widgets extends CI_Controller {
 			}
 			if ($key === "display_radio_name") {
 				$options->display_radio_name = $value === "true";
+			}
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Fetch and prepare user options for last lotw upload widget
+	 *
+	 * @return stdClass
+	 */
+	private function get_last_lotw_upload_widget_options($user_id) {
+		$raw_widget_options = $this->user_options_model->get_options('widget', null, $user_id)->result_array();
+
+		// default values
+		$options = new \stdClass();
+		$options->is_enabled = false;
+
+		if ($raw_widget_options === null) {
+			return $options;
+		}
+
+		foreach ($raw_widget_options as $opt_data) {
+			if ($opt_data["option_name"] !== 'last_lotw_upload') {
+				continue;
+			}
+
+			$key = $opt_data["option_key"];
+			$value = $opt_data["option_value"];
+
+			if ($key === "enabled") {
+				$options->is_enabled = $value === "true";
 			}
 		}
 
