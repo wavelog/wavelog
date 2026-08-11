@@ -190,8 +190,8 @@ class Activationplanner extends CI_Controller {
 		$etag = '"' . md5($json) . '"';
 		session_write_close();
 		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
-		header('Cache-Control: private, max-age=3600');
-		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+		header('Cache-Control: private, no-cache');
+		header('Expires: 0');
 		header('ETag: ' . $etag);
 
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {

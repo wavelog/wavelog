@@ -72,6 +72,35 @@ class Migration_pota_boundaries extends CI_Migration {
 		if ($this->db->table_exists('wwff_directory') && !$this->db->field_exists('valid_from', 'wwff_directory')) {
 			$this->dbforge->add_column('wwff_directory', $validity_fields);
 		}
+
+		// Last-activation fields ingested from the SOTA/WWFF directory CSVs.
+		// SOTA also carries the activator's callsign; WWFF does not.
+		$sota_activation_fields = array(
+			'last_activated' => array(
+				'type' => 'DATE',
+				'null' => TRUE,
+				'default' => null,
+			),
+			'last_activator' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 32,
+				'null' => TRUE,
+				'default' => null,
+			),
+		);
+		$wwff_activation_fields = array(
+			'last_activated' => array(
+				'type' => 'DATE',
+				'null' => TRUE,
+				'default' => null,
+			),
+		);
+		if ($this->db->table_exists('sota_directory') && !$this->db->field_exists('last_activated', 'sota_directory')) {
+			$this->dbforge->add_column('sota_directory', $sota_activation_fields);
+		}
+		if ($this->db->table_exists('wwff_directory') && !$this->db->field_exists('last_activated', 'wwff_directory')) {
+			$this->dbforge->add_column('wwff_directory', $wwff_activation_fields);
+		}
 	}
 
 	public function down() {
@@ -85,6 +114,12 @@ class Migration_pota_boundaries extends CI_Migration {
 			if ($this->db->field_exists('valid_till', 'sota_directory')) {
 				$this->dbforge->drop_column('sota_directory', 'valid_till');
 			}
+			if ($this->db->field_exists('last_activated', 'sota_directory')) {
+				$this->dbforge->drop_column('sota_directory', 'last_activated');
+			}
+			if ($this->db->field_exists('last_activator', 'sota_directory')) {
+				$this->dbforge->drop_column('sota_directory', 'last_activator');
+			}
 		}
 		if ($this->db->table_exists('wwff_directory')) {
 			if ($this->db->field_exists('valid_from', 'wwff_directory')) {
@@ -92,6 +127,9 @@ class Migration_pota_boundaries extends CI_Migration {
 			}
 			if ($this->db->field_exists('valid_till', 'wwff_directory')) {
 				$this->dbforge->drop_column('wwff_directory', 'valid_till');
+			}
+			if ($this->db->field_exists('last_activated', 'wwff_directory')) {
+				$this->dbforge->drop_column('wwff_directory', 'last_activated');
 			}
 		}
 	}

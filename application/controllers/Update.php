@@ -589,32 +589,37 @@ class Update extends CI_Controller {
 		// a lock that outlives the 120 s guard used by the lighter directory jobs.
 		set_time_limit(0);
 		$lockfilename = '/tmp/.update_pota_boundaries_running';
-		if (!file_exists($lockfilename)) {
-			touch($lockfilename);
-			$this->load->model('Update_model');
-			$result = $this->Update_model->pota_boundaries();
-			@unlink($lockfilename);
-			if ($this->session->userdata('user_type') == '99') {
-				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("POTA boundaries update complete. Result: ") . "'" . $result . "'");
-				} else {
-					$this->session->set_flashdata('error', __("POTA boundaries update failed. Result: ") . "'" . $result . "'");
-				}
-				redirect('debug');
-			} else {
-				echo $result;
-			}
-		} else {
-			log_message('debug', 'There is a lockfile for this job. Checking the age...');
-			$lockfile_time = filemtime($lockfilename);
-			$tdiff = time() - $lockfile_time;
-			if ($tdiff > 1800) {
-				unlink($lockfilename);
-				log_message('debug', 'Deleted stale boundary-import lockfile (older than 1800 s).');
-			} else {
-				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+		if (file_exists($lockfilename)) {
+			$tdiff = time() - filemtime($lockfilename);
+			if ($tdiff <= 1800) {
+				log_message('debug', 'update_pota_boundaries: already running, ignoring.');
 				echo 'locked - running';
+				return;
 			}
+			unlink($lockfilename);
+			log_message('debug', 'update_pota_boundaries: reclaimed stale lock (older than ' . $tdiff . ' s).');
+		}
+
+		touch($lockfilename);
+		$this->load->model('Update_model');
+		try {
+			$result = $this->Update_model->pota_boundaries();
+		} catch (Throwable $e) {
+			log_message('error', 'update_pota_boundaries threw: ' . $e->getMessage());
+			$result = 'FAILED: exception - ' . $e->getMessage();
+		} finally {
+			@unlink($lockfilename);
+		}
+
+		if ($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("POTA boundaries update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("POTA boundaries update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+			echo $result;
 		}
 	}
 

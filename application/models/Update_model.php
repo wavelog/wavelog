@@ -136,13 +136,15 @@ class Update_model extends CI_Model {
             }
 
             $batch[] = [
-                'reference'  => isset($cols[0]) ? trim($cols[0]) : null,
-                'name'       => isset($cols[3]) ? trim($cols[3]) : null,
-                'altitude'   => isset($cols[4]) ? trim($cols[4]) : null,
-                'lat'        => $this->_wwff_coord($cols[9] ?? null),
-                'lon'        => $this->_wwff_coord($cols[8] ?? null),
-                'valid_from' => $this->_dir_date($cols[12] ?? null, '!d/m/Y'),
-                'valid_till' => $this->_dir_date($cols[13] ?? null, '!d/m/Y'),
+                'reference'      => isset($cols[0]) ? trim($cols[0]) : null,
+                'name'           => isset($cols[3]) ? trim($cols[3]) : null,
+                'altitude'       => isset($cols[4]) ? trim($cols[4]) : null,
+                'lat'            => $this->_wwff_coord($cols[9] ?? null),
+                'lon'            => $this->_wwff_coord($cols[8] ?? null),
+                'valid_from'     => $this->_dir_date($cols[12] ?? null, '!d/m/Y'),
+                'valid_till'     => $this->_dir_date($cols[13] ?? null, '!d/m/Y'),
+                'last_activated' => $this->_dir_date($cols[15] ?? null, '!d/m/Y'),
+                'last_activator' => isset($cols[16]) ? trim($cols[16]) : null,
             ];
             $nCount++;
 
@@ -213,12 +215,13 @@ class Update_model extends CI_Model {
             }
 
             $batch[] = [
-                'reference'  => $ref,
-                'name'       => isset($cols[2]) ? trim($cols[2]) : null,
-                'lat'        => $this->_wwff_coord($cols[10] ?? null),
-                'lon'        => $this->_wwff_coord($cols[11] ?? null),
-                'valid_from' => $this->_dir_date($cols[13] ?? null, '!Y-m-d'),
-                'valid_till' => $this->_dir_date($cols[14] ?? null, '!Y-m-d'),
+                'reference'      => $ref,
+                'name'           => isset($cols[2]) ? trim($cols[2]) : null,
+                'lat'            => $this->_wwff_coord($cols[10] ?? null),
+                'lon'            => $this->_wwff_coord($cols[11] ?? null),
+                'valid_from'     => $this->_dir_date($cols[13] ?? null, '!Y-m-d'),
+                'valid_till'     => $this->_dir_date($cols[14] ?? null, '!Y-m-d'),
+                'last_activated' => $this->_dir_date($cols[25] ?? null, '!Y-m-d'),
             ];
             $nCount++;
 
@@ -296,11 +299,11 @@ class Update_model extends CI_Model {
         $placeholders = [];
         $bindings = [];
         foreach ($batch as $b) {
-            $placeholders[] = '(?, ?, ?, ?, ?, ?)';
-            array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till']);
+            $placeholders[] = '(?, ?, ?, ?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till'], $b['last_activated']);
         }
 
-        $sql = 'INSERT IGNORE INTO wwff_directory (reference, name, lat, lon, valid_from, valid_till) VALUES '
+        $sql = 'INSERT IGNORE INTO wwff_directory (reference, name, lat, lon, valid_from, valid_till, last_activated) VALUES '
             . implode(', ', $placeholders);
 
         $this->db->query($sql, $bindings);
@@ -310,11 +313,11 @@ class Update_model extends CI_Model {
 		$placeholders = [];
 		$bindings = [];
 		foreach ($batch as $b) {
-			$placeholders[] = '(?, ?, ?, ?, ?, ?, ?)';
-			array_push($bindings, $b['reference'], $b['name'], $b['altitude'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till']);
+			$placeholders[] = '(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			array_push($bindings, $b['reference'], $b['name'], $b['altitude'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till'], $b['last_activated'], $b['last_activator']);
 		}
 
-		$sql = 'INSERT IGNORE INTO sota_directory (reference, name, altitude, lat, lon, valid_from, valid_till) VALUES '
+		$sql = 'INSERT IGNORE INTO sota_directory (reference, name, altitude, lat, lon, valid_from, valid_till, last_activated, last_activator) VALUES '
 			. implode(', ', $placeholders);
 
 		$this->db->query($sql, $bindings);
@@ -460,6 +463,7 @@ class Update_model extends CI_Model {
         // the controller still redirects to /debug in this same request.
         $prev_save_queries = $this->db->save_queries;
         $this->db->save_queries = FALSE;
+        $txn_open = false;
         try {
             foreach ($this->pota_boundary_sources as $cc) {
                 $url = 'https://pota-map.info/geojson/' . $cc . '.geojson';
@@ -475,6 +479,7 @@ class Update_model extends CI_Model {
                 }
 
                 $this->db->trans_begin();
+                $txn_open = true;
                 $this->db->query('DELETE FROM pota_boundaries WHERE source = ?', [$cc]);
 
                 $count = 0;
@@ -512,19 +517,25 @@ class Update_model extends CI_Model {
 
                 if ($count === 0) {
                     $this->db->trans_rollback();
+                    $txn_open = false;
                     $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
                 } elseif ($this->db->trans_status() === FALSE) {
                     // last_query() is empty while save_queries is off, so name the
                     // reference we got to instead -- more useful than the raw SQL.
                     $this->db->trans_rollback();
+                    $txn_open = false;
                     $errors[] = $cc . ': db error at/near ' . $last_ref . ' — rolled back';
                 } else {
                     $this->db->trans_commit();
+                    $txn_open = false;
                     $per_source[] = $cc . '=' . number_format($count);
                     $total += $count;
                 }
                 @unlink($tmp);
             }
+        } catch (Throwable $e) {
+            if ($txn_open) { $this->db->trans_rollback(); }
+            throw $e;
         } finally {
             $this->db->save_queries = $prev_save_queries;
         }
