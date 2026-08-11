@@ -1452,14 +1452,16 @@ class Awards extends CI_Controller {
      * selected in the counties award filter. The filter form (and the state
      * / list AJAX calls it drives) always posts a "qslFilterSet" marker
      * alongside the checkboxes, so an unchecked box can be told apart from
-     * a request that never included the filter (which defaults to all
-     * sources, e.g. a fresh page load).
+     * a request that never included the filter (which defaults to QSL +
+     * LoTW only, e.g. a fresh page load - those are the two confirmation
+     * methods that actually matter for this award; eQSL/QRZ/Clublog are
+     * available but opt-in).
      */
     private function counties_qsl_sources_from_post() {
         $available = array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog');
 
         if (!$this->input->post('qslFilterSet')) {
-            return $available;
+            return array('qsl', 'lotw');
         }
 
         $qsl_sources = array();
