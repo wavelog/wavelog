@@ -335,8 +335,8 @@ class User extends CI_Controller {
 				$this->input->post('oqrs_direct_auto_matching') ?? 'on',
 				$this->input->post('user_dxwaterfall_enable') ?? 'N',
 				$this->input->post('user_qso_show_map') ?? 1,
-				$this->input->post('clubstation') == '1' ? true : false,
-				$this->input->post('last_lotw_upload_widget_enabled'))
+				$this->input->post('last_lotw_upload_widget_enabled'),
+				$this->input->post('clubstation') == '1' ? true : false)
 			) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
