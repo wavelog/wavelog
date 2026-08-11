@@ -1101,13 +1101,6 @@ $($('#callsign')).on('keypress',function(e) {
     $active_station_id = $this->stations->find_active();
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
-
-    if (strpos(($active_station_info->station_gridsquare ?? ''), ',') !== false) {
-        $gridsquareArray = explode(',', $active_station_info->station_gridsquare);
-        $user_gridsquare = $gridsquareArray[0];
-    } else {
-        $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
-    }
 ?>
 <style>
 .grid-text {
