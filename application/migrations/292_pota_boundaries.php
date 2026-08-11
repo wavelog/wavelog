@@ -121,6 +121,10 @@ class Migration_pota_boundaries extends CI_Migration {
 			if (strncmp($result, 'DONE', 4) !== 0) {
 				log_message('error', 'SOTA initial import during migration 292: ' . $result);
 			}
+			$result = $CI->update_model->wwff();
+			if (strncmp($result, 'DONE', 4) !== 0) {
+				log_message('error', 'WWFF initial import during migration 289: ' . $result);
+			}
 		} catch (\Throwable $e) {
 			log_message('error', 'SOTA or POTA (Ref+Boundaries) initial import (migration 292) failed: ' . $e->getMessage());
 		}
