@@ -343,7 +343,7 @@ class User_Model extends CI_Model {
 				['widget',     'qso',                     'display_qso_time',              $qso_widget_display_qso_time                ?? 'false'],
 				['qso_db_search_priority', 'enable',      'boolean',                       $user_qso_db_search_priority ?? 'Y'],
 				['dxwaterfall', 'enable',                 'boolean',                       $user_dxwaterfall_enable     ?? 'N'],
-				['widget',     'lotw_upload_upload',      'enabled',                       $last_lotw_upload_widget_enabled            ?? 'false'],
+				['widget',     'last_lotw_upload',        'enabled',                       $last_lotw_upload_widget_enabled            ?? 'false'],
 			];
 
 			foreach ($user_options as [$type, $name, $key, $value]) {
