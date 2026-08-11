@@ -15,39 +15,13 @@ class Counties extends CI_Model
         'clublog' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',
     );
 
-    /*
-     * Selectable bands for the counties award's Band filter (160m through
-     * 70cm - the HF/VHF/UHF bands typically worked for USA-CA). Order here
-     * is also the display order in the filter UI.
-     */
-    private $band_list = array(
-        '160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m',
-        '6m', '2m', '1.25m', '70cm',
-    );
-
-    /*
-     * Modes counted toward the award's Phone endorsement, per ADIF 3.1.7
-     * (https://www.adif.org/317/ADIF_317.htm): SSB, AM and FM are Mode
-     * values (LSB/USB are legacy [import-only] Mode values for SSB); voice
-     * counts as phone whether analog or digital, so DIGITALVOICE and all of
-     * its Submode values (C4FM, DMR, DSTAR, FREEDV, M17 - same grouping
-     * assets/js/radiohelpers.js's MODE_LISTS.DIGITAL_VOICE uses) are
-     * included too. CW is its own group. Digital data is everything else
-     * (defined by exclusion below rather than an enumerated list, so new
-     * data modes are counted automatically without needing a code change
-     * here).
-     */
-    private $phone_modes = array(
-        'AM', 'SSB', 'LSB', 'USB', 'FM',
-        'DIGITALVOICE', 'C4FM', 'DMR', 'DSTAR', 'FREEDV', 'M17',
-    );
-
     function __construct() {
         $this->load->driver('cache', [
             'adapter' => $this->config->item('cache_adapter') ?? 'file',
             'backup'  => $this->config->item('cache_backup')  ?? 'file',
             'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
         ]);
+        $this->load->library('Genfunctions');
     }
 
     /*
@@ -77,85 +51,32 @@ class Counties extends CI_Model
     }
 
     /*
-     * Returns the selectable bands (160m through 70cm) for the counties
-     * award's Band filter, in display order.
+     * Builds the SQL band condition for a single selected band (or 'All'),
+     * appending any bindings it needs to $binding by reference. Mirrors how
+     * every other award page (WAS, RAC, Helvetia, ...) filters by band via
+     * Genfunctions::addBandToQuery() with a single-select dropdown, rather
+     * than a bespoke multi-select band list.
      */
-    function get_band_list() {
-        return $this->band_list;
+    function band_condition($band, &$binding) {
+        return $this->genfunctions->addBandToQuery($band, $binding);
     }
 
     /*
-     * Returns the selectable mode-endorsement groups for the counties
-     * award's Mode filter, in display order.
+     * Builds the SQL mode condition for a single selected Mode/Submode value
+     * (or 'All'), appending any bindings it needs to $binding by reference.
+     * Mirrors every other award page's Mode dropdown, which is populated
+     * from Modes::active() (the ADIF modes actually configured in this
+     * install) rather than a bespoke Phone/CW/Digital grouping.
      */
-    function get_mode_groups() {
-        return array('phone', 'cw', 'digital');
-    }
-
-    /*
-     * Builds the SQL "COL_BAND in (...)" condition from a list of selected
-     * bands (subset of $band_list). Defaults to all bands when null (not
-     * just empty) is given. Values are validated against $band_list before
-     * being interpolated into the query, since they come from user input.
-     */
-    function build_band_condition($bands) {
-        if ($bands === null) {
-            $bands = $this->band_list;
+    function mode_condition($mode, &$binding) {
+        if ($mode === 'All' || $mode === null) {
+            return '';
         }
 
-        $valid_bands = array_values(array_intersect($bands, $this->band_list));
+        $binding[] = $mode;
+        $binding[] = $mode;
 
-        if (empty($valid_bands)) {
-            return '1=0';
-        }
-
-        $escaped = array_map(function ($band) {
-            return $this->db->escape($band);
-        }, $valid_bands);
-
-        return 'COL_BAND in (' . implode(',', $escaped) . ')';
-    }
-
-    /*
-     * Builds the SQL condition for the selected mode-endorsement groups
-     * (subset of 'phone', 'cw', 'digital'). Defaults to all three when null
-     * (not just empty) is given. Checks both COL_MODE and COL_SUBMODE, since
-     * logging software varies in which one it populates for a given mode
-     * (mirrors Award_pl_polska's approach). 'digital' is everything that
-     * isn't phone or CW, rather than an enumerated list.
-     */
-    function build_mode_condition($mode_groups) {
-        if ($mode_groups === null) {
-            $mode_groups = $this->get_mode_groups();
-        }
-
-        // COALESCE both COL_MODE and COL_SUBMODE to '' before comparing: a
-        // NULL on either side (a submode-less QSO is the common case, but a
-        // mode-less QSO with only a submode logged also happens on old/
-        // imported data) makes an "or ... in (...)" clause evaluate to NULL
-        // rather than false, which poisons "not phone_condition and not
-        // cw_condition" into NULL (i.e. excluded) rather than true.
-        $phone_list = "'" . implode("','", $this->phone_modes) . "'";
-        $phone_condition = "(UPPER(COALESCE(COL_MODE, '')) in ($phone_list) or UPPER(COALESCE(COL_SUBMODE, '')) in ($phone_list))";
-        $cw_condition = "(UPPER(COALESCE(COL_MODE, '')) = 'CW' or UPPER(COALESCE(COL_SUBMODE, '')) = 'CW')";
-        $digital_condition = "(not $phone_condition and not $cw_condition)";
-
-        $conditions = array();
-        if (in_array('phone', $mode_groups)) {
-            $conditions[] = $phone_condition;
-        }
-        if (in_array('cw', $mode_groups)) {
-            $conditions[] = $cw_condition;
-        }
-        if (in_array('digital', $mode_groups)) {
-            $conditions[] = $digital_condition;
-        }
-
-        if (empty($conditions)) {
-            return '1=0';
-        }
-
-        return '(' . implode(' or ', $conditions) . ')';
+        return ' and (COL_MODE = ? or COL_SUBMODE = ?)';
     }
 
     /*
@@ -164,7 +85,7 @@ class Counties extends CI_Model
      * build_confirmed_condition(). Satellite does not count.
      * No band split, as it only count the number of counties in the award.
      */
-    function get_counties_summary($qsl_sources = null, $bands = null, $mode_groups = null) {
+    function get_counties_summary($qsl_sources = null, $band = 'All', $mode = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -181,8 +102,9 @@ class Counties extends CI_Model
 		$bandslots_list = "'".implode("','",$bandslots)."'";
 
 		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
-		$band_condition = $this->build_band_condition($bands);
-		$mode_condition = $this->build_mode_condition($mode_groups);
+		$binding = [];
+		$band_condition = $this->band_condition($band, $binding);
+		$mode_condition = $this->mode_condition($mode, $binding);
 
         $sql = "select count(distinct COL_CNTY) countycountworked, coalesce(x.countycountconfirmed, 0) countycountconfirmed, thcv.COL_STATE
                 from " . $this->config->item('table_name') . " thcv
@@ -194,8 +116,8 @@ class Counties extends CI_Model
             " and COL_DXCC in ('291', '6', '110')
                     and coalesce(COL_CNTY, '') <> ''
                     and COL_BAND != 'SAT'
-                    and " . $band_condition . "
-                    and " . $mode_condition . "
+                    " . $band_condition . "
+                    " . $mode_condition . "
                     and " . $confirmed_condition . "
                     group by COL_STATE
                     order by COL_STATE
@@ -205,23 +127,26 @@ class Counties extends CI_Model
             " and COL_DXCC in ('291', '6', '110')
                 and coalesce(COL_CNTY, '') <> ''
                 and COL_BAND != 'SAT'
-                and " . $band_condition . "
-                and " . $mode_condition . "
+                " . $band_condition . "
+                " . $mode_condition . "
                 group by thcv.COL_STATE, countycountconfirmed
                 order by thcv.COL_STATE";
 
-        $query = $this->db->query($sql);
+        // band_condition()/mode_condition() append the same bindings twice
+        // (once per subquery use above), since both copies of the SQL need
+        // the same "?" placeholders filled.
+        $query = $this->db->query($sql, array_merge($binding, $binding));
         return $query->result_array();
     }
 
     /*
     * Makes a list of all counties in given state
     */
-    function counties_details($state, $type, $qsl_sources = null, $bands = null, $mode_groups = null) {
+    function counties_details($state, $type, $qsl_sources = null, $band = 'All', $mode = 'All') {
         if ($type == 'worked') {
-            $counties = $this->get_counties($state, 'none', $qsl_sources, $bands, $mode_groups);
+            $counties = $this->get_counties($state, 'none', $qsl_sources, $band, $mode);
         } else if ($type == 'confirmed') {
-            $counties = $this->get_counties($state, 'confirmed', $qsl_sources, $bands, $mode_groups);
+            $counties = $this->get_counties($state, 'confirmed', $qsl_sources, $band, $mode);
         }
         if (!isset($counties)) {
             return 0;
@@ -231,7 +156,7 @@ class Counties extends CI_Model
         }
     }
 
-    function get_counties($state, $confirmationtype, $qsl_sources = null, $bands = null, $mode_groups = null) {
+    function get_counties($state, $confirmationtype, $qsl_sources = null, $band = 'All', $mode = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -256,8 +181,8 @@ class Counties extends CI_Model
 		" and COL_DXCC in ('291', '6', '110')
 		and coalesce(COL_CNTY, '') <> ''
 		and COL_BAND != 'SAT'
-		and " . $this->build_band_condition($bands) . "
-		and " . $this->build_mode_condition($mode_groups);
+		" . $this->band_condition($band, $binding) . "
+		" . $this->mode_condition($mode, $binding);
 
         if ($state != 'All') {
 			$sql .= " and COL_STATE = ?";
@@ -279,7 +204,7 @@ class Counties extends CI_Model
     * Uses the same band/DXCC/SAT rules as get_counties() so the counts match
     * what counts toward the USA-CA award.
     */
-    function get_county_counts($state, $qsl_sources = null, $bands = null, $mode_groups = null) {
+    function get_county_counts($state, $qsl_sources = null, $band = 'All', $mode = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -308,8 +233,8 @@ class Counties extends CI_Model
 		" and COL_DXCC in ('291', '6', '110')
 		and coalesce(COL_CNTY, '') <> ''
 		and COL_BAND != 'SAT'
-		and " . $this->build_band_condition($bands) . "
-		and " . $this->build_mode_condition($mode_groups);
+		" . $this->band_condition($band, $binding) . "
+		" . $this->mode_condition($mode, $binding);
 
 		if ($state != 'All') {
 			$sql .= " and COL_STATE = ?";
@@ -330,7 +255,7 @@ class Counties extends CI_Model
      * COL_STATE and COL_CNTY together so the caller can key results per state.
      * Same band/DXCC/SAT rules as get_counties()/get_county_counts().
      */
-    function get_counties_map($qsl_sources = null, $bands = null, $mode_groups = null) {
+    function get_counties_map($qsl_sources = null, $band = 'All', $mode = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -347,8 +272,24 @@ class Counties extends CI_Model
 		$bandslots_list = "'".implode("','",$bandslots)."'";
 
 		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
+		$binding = [];
+		$band_condition = $this->band_condition($band, $binding);
+		$mode_condition = $this->mode_condition($mode, $binding);
 
-        $sql = "select COL_STATE, COL_CNTY,
+        // COL_CNTY is stored as "STATE,COUNTY" for US QSOs, not just the bare
+        // county name (see Logbook_model::add_contact's $clean_county_input
+        // and Logbookadvanced_model's callbook auto-fill, both of which
+        // follow the ADIF Secondary Administrative Subdivision format
+        // https://www.adif.org/317/ADIF_317.htm#Special_Country_Format).
+        // The boundary GeoJSON's feature ids and US_counties.csv only use
+        // the bare name, so strip the "STATE," prefix here (if present -
+        // some entry paths omit it) and group on the normalized name, or
+        // rows for the same physical county but different COL_CNTY
+        // spellings would never merge and the map's confirmed/worked totals
+        // would undercount.
+        $cnty_name = "TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1))";
+
+        $sql = "select COL_STATE, $cnty_name as COL_CNTY,
 				count(*) as worked,
 				sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 			from " . $this->config->item('table_name') . " thcv
@@ -357,11 +298,11 @@ class Counties extends CI_Model
 			" and COL_DXCC in ('291', '6', '110')
 			and coalesce(COL_CNTY, '') <> ''
 			and COL_BAND != 'SAT'
-			and " . $this->build_band_condition($bands) . "
-			and " . $this->build_mode_condition($mode_groups) . "
-			group by COL_STATE, COL_CNTY order by COL_STATE, COL_CNTY";
+			" . $band_condition . "
+			" . $mode_condition . "
+			group by COL_STATE, $cnty_name order by COL_STATE, $cnty_name";
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $binding);
         return $query->result_array();
     }
 
@@ -425,9 +366,9 @@ class Counties extends CI_Model
      * 2-letter state code. Every state present in US_counties.csv is included,
      * even if nothing has been worked there yet.
      */
-    function get_counties_progress($qsl_sources = null, $bands = null, $mode_groups = null) {
+    function get_counties_progress($qsl_sources = null, $band = 'All', $mode = 'All') {
         $targets = $this->get_counties_targets();
-        $worked = $this->get_counties_summary($qsl_sources, $bands, $mode_groups);
+        $worked = $this->get_counties_summary($qsl_sources, $band, $mode);
 
         $worked_map = array();
         if (isset($worked)) {

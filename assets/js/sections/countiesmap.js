@@ -31,8 +31,8 @@ function load_counties_map() {
             eqsl: +$('#countiesEqsl').prop('checked'),
             qrz: +$('#countiesQrz').prop('checked'),
             clublog: +$('#countiesClublog').prop('checked'),
-            bands: $('input[name="bands[]"]:checked').map(function() { return this.value; }).get(),
-            modes: $('input[name="modes[]"]:checked').map(function() { return this.value; }).get(),
+            band: $('#countiesBand').val(),
+            mode: $('#countiesMode').val(),
         },
         success: function(data) {
             countyStatus = data;
@@ -155,9 +155,13 @@ function load_counties_map2(mapcoordinates, stateCoordinates) {
 }
 
 function getCountyColor(id) {
-    return countyStatus[id] == 'C' ? confirmedColor :
-           countyStatus[id] == 'W' ? workedColor :
-                                      unworkedColor;
+    // Uppercase to match Awards::counties_map()'s case-insensitive key
+    // (a QSO's logged county name can be typed/imported in any case, but
+    // the boundary GeoJSON's feature ids use fixed ARRL/MARAC casing).
+    var status = countyStatus[id.toUpperCase()];
+    return status == 'C' ? confirmedColor :
+           status == 'W' ? workedColor :
+                            unworkedColor;
 }
 
 function countyStyle(feature) {

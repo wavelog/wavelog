@@ -83,35 +83,29 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <div class="col-md-3"><?= __("Mode Endorsement"); ?></div>
+                            <div class="col-md-3"><label class="control-label" for="countiesBand"><?= __("Band"); ?></label></div>
                             <div class="col-md-9">
-                                <?php
-                                $mode_labels = array(
-                                    'phone'   => __("Phone"),
-                                    'cw'      => __("CW"),
-                                    'digital' => __("Digital"),
-                                );
-                                foreach ($mode_groups as $mode) {
-                                    $mode_id = 'countiesMode' . ucfirst($mode);
-                                ?>
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="modes[]" value="<?= $mode; ?>" id="<?= $mode_id; ?>" <?php if (in_array($mode, $selected_modes)) echo ' checked="checked"'; ?>>
-                                    <label class="form-check-label" for="<?= $mode_id; ?>"><?= $mode_labels[$mode] ?? ucfirst($mode); ?></label>
-                                </div>
-                                <?php } ?>
+                                <select id="countiesBand" name="band" class="form-select form-select-sm">
+                                    <option value="All" <?php if ($selected_band == "All") echo ' selected'; ?>><?= __("Every band"); ?></option>
+                                    <?php foreach ($worked_bands as $band) { ?>
+                                    <option value="<?= $band; ?>" <?php if ($selected_band == $band) echo ' selected'; ?>><?= $band; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <div class="col-md-3"><?= __("Bands"); ?></div>
+                            <div class="col-md-3"><label class="control-label" for="countiesMode"><?= __("Mode"); ?></label></div>
                             <div class="col-md-9">
-                                <?php foreach ($band_list as $band) {
-                                    $band_id = 'countiesBand' . str_replace('.', '_', $band);
-                                ?>
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="bands[]" value="<?= $band; ?>" id="<?= $band_id; ?>" <?php if (in_array($band, $selected_bands)) echo ' checked="checked"'; ?>>
-                                    <label class="form-check-label" for="<?= $band_id; ?>"><?= $band; ?></label>
-                                </div>
-                                <?php } ?>
+                                <select id="countiesMode" name="mode" class="form-select form-select-sm">
+                                    <option value="All" <?php if ($selected_mode == "All") echo ' selected'; ?>><?= __("All"); ?></option>
+                                    <?php foreach ($modes->result() as $mode) {
+                                        if ($mode->submode == null) { ?>
+                                    <option value="<?= $mode->mode; ?>" <?php if ($selected_mode == $mode->mode) echo ' selected'; ?>><?= $mode->mode; ?></option>
+                                    <?php } else { ?>
+                                    <option value="<?= $mode->submode; ?>" <?php if ($selected_mode == $mode->submode) echo ' selected'; ?>><?= $mode->submode; ?></option>
+                                    <?php }
+                                    } ?>
+                                </select>
                             </div>
                         </div>
                     </div>
