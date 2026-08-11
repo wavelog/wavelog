@@ -1413,20 +1413,24 @@ class Awards extends CI_Controller {
     /*
         function counties_geojson
 
-        AJAX endpoint serving the county/state boundary GeoJSON files used by
-        the counties map (assets/json/geojson/{counties,states}_{291,6,110}.geojson,
-        ~24MB combined, dominated by the 21MB lower-48 counties file). Fetched
-        directly as static assets before; routed through here instead so we can
-        set explicit, portable Cache-Control/ETag headers regardless of the
-        host's web server config (mirrors Activationplanner.php's directory
-        endpoints, but with a cheap stat-based ETag instead of hashing the
-        multi-MB payload on every request, and a long max-age since this data
-        only changes on a Wavelog upgrade, not per request).
+        AJAX endpoint serving the county boundary GeoJSON files used by the
+        counties map (assets/json/geojson/counties_{291,6,110}.geojson, plus
+        counties_state_outline_{291,6,110}.geojson - the same county
+        boundaries dissolved per state for the bolder state-line overlay;
+        see COUNTIES_SOURCE.md for how those are generated and why they're
+        derived from the county file rather than reusing the WAS map's
+        separately-simplified states_*.geojson). Fetched directly as static
+        assets before; routed through here instead so we can set explicit,
+        portable Cache-Control/ETag headers regardless of the host's web
+        server config (mirrors Activationplanner.php's directory endpoints,
+        but with a cheap stat-based ETag instead of hashing the multi-MB
+        payload on every request, and a long max-age since this data only
+        changes on a Wavelog upgrade, not per request).
     */
     public function counties_geojson($scope = '') {
         $allowed = array(
             'counties_291', 'counties_6', 'counties_110',
-            'states_291', 'states_6', 'states_110',
+            'counties_state_outline_291', 'counties_state_outline_6', 'counties_state_outline_110',
         );
         if (!in_array($scope, $allowed, TRUE)) {
             show_404();

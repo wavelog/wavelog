@@ -37,18 +37,22 @@ function load_counties_map() {
         success: function(data) {
             countyStatus = data;
             // Fetch lower 48 + DC (DXCC 291), Alaska (DXCC 6) and Hawaii (DXCC 110) separately,
-            // plus the state-level boundaries (reusing the WAS map's geojson) drawn as a bolder
-            // outline on top of the counties so state lines stand out from county lines.
+            // plus the state-level outline for each, drawn bolder on top of the counties so
+            // state lines stand out from county lines. The outline files are the *same* county
+            // boundaries dissolved per state (see COUNTIES_SOURCE.md), not the WAS map's
+            // independently-simplified states_*.geojson - reusing that caused the bold outline
+            // to visibly diverge from the county shading underneath at high zoom, since the two
+            // were different simplifications of the same physical line.
             // Routed through counties_geojson() rather than fetched as static assets so the
-            // ~24MB combined payload gets an explicit long-lived Cache-Control/ETag (see
+            // combined payload gets an explicit long-lived Cache-Control/ETag (see
             // Awards::counties_geojson()) instead of depending on the host's web server defaults.
             Promise.all([
                 fetch(base_url + 'index.php/awards/counties_geojson/counties_291').then(r => r.json()),
                 fetch(base_url + 'index.php/awards/counties_geojson/counties_6').then(r => r.json()),
                 fetch(base_url + 'index.php/awards/counties_geojson/counties_110').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/states_291').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/states_6').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/states_110').then(r => r.json())
+                fetch(base_url + 'index.php/awards/counties_geojson/counties_state_outline_291').then(r => r.json()),
+                fetch(base_url + 'index.php/awards/counties_geojson/counties_state_outline_6').then(r => r.json()),
+                fetch(base_url + 'index.php/awards/counties_geojson/counties_state_outline_110').then(r => r.json())
             ]).then(([counties48, ak, hi, states48, statesAk, statesHi]) => {
                 counties48.features = counties48.features.concat(ak.features, hi.features);
                 states48.features = states48.features.concat(statesAk.features, statesHi.features);
