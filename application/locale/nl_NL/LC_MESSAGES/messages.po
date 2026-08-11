@@ -681,6 +681,7 @@ msgstr " en "
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
 #: application/controllers/Logbook.php:1470
+#: application/views/activationplanner/index.php:76
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -705,6 +706,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/controllers/Logbook.php:1471
+#: application/views/activationplanner/index.php:74
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -731,6 +733,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/controllers/Logbook.php:1472
+#: application/views/activationplanner/index.php:75
 msgid "POTA"
 msgstr "POTA"
 
@@ -1275,6 +1278,7 @@ msgstr "Cronjob bewerken"
 #: application/views/debug/index.php:749 application/views/debug/index.php:755
 #: application/views/debug/index.php:761 application/views/debug/index.php:767
 #: application/views/debug/index.php:773 application/views/debug/index.php:779
+#: application/views/debug/index.php:785
 msgid "never"
 msgstr "nooit"
 
@@ -1394,35 +1398,36 @@ msgstr "Sleutel(s) verwijderd."
 msgid "(empty)"
 msgstr "(leeg)"
 
-#: application/controllers/Debug.php:131
+#: application/controllers/Debug.php:131 application/controllers/Debug.php:132
 msgid "Debug"
 msgstr "Debug"
 
-#: application/controllers/Debug.php:183
+#: application/controllers/Debug.php:183 application/controllers/Debug.php:184
 msgid "Migrate data now"
 msgstr "Gegevens nu migreren"
 
-#: application/controllers/Debug.php:186
+#: application/controllers/Debug.php:186 application/controllers/Debug.php:187
 msgid "Migration already done. Run again?"
 msgstr "Migratie al voltooid. Opnieuw uitvoeren?"
 
-#: application/controllers/Debug.php:190
+#: application/controllers/Debug.php:190 application/controllers/Debug.php:191
 msgid "No data to migrate"
 msgstr "Geen gegevens om te migreren"
 
 #: application/controllers/Debug.php:194 application/controllers/Debug.php:199
+#: application/controllers/Debug.php:195 application/controllers/Debug.php:200
 msgid "No migration possible"
 msgstr "Geen migratie mogelijk"
 
-#: application/controllers/Debug.php:264
+#: application/controllers/Debug.php:264 application/controllers/Debug.php:265
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog is succesvol bijgewerkt!"
 
-#: application/controllers/Debug.php:282
+#: application/controllers/Debug.php:282 application/controllers/Debug.php:283
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() niet beschikbaar. Controleer het foutlogboek."
 
-#: application/controllers/Debug.php:341
+#: application/controllers/Debug.php:341 application/controllers/Debug.php:342
 msgid ""
 "File Migration was successful, but please check also manually. If everything "
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
@@ -1432,7 +1437,7 @@ msgstr ""
 "goed lijkt, kun je de directories 'assets/qslcard' en 'images/"
 "eqsl_card_images' verwijderen."
 
-#: application/controllers/Debug.php:344
+#: application/controllers/Debug.php:344 application/controllers/Debug.php:345
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Bestandsoverdracht mislukt. Controleer het foutlogboek."
 
@@ -2074,6 +2079,7 @@ msgstr "Alle callbook opzoekingen zijn mislukt of leverden geen resultaten op."
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/controllers/Logbook.php:1465
+#: application/views/debug/index.php:808
 msgid "Mode"
 msgstr "Modus"
 
@@ -2187,6 +2193,7 @@ msgstr "Land"
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
 #: application/controllers/Logbook.php:1469
+#: application/views/activationplanner/index.php:77
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2279,6 +2286,10 @@ msgstr "Staat/Provincie"
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
 #: application/controllers/Logbook.php:1474
+#: application/views/activationplanner/index.php:22
+#: application/views/activationplanner/index.php:58
+#: application/views/activationplanner/index.php:73
+#: application/views/activationplanner/index.php:98
 msgid "Gridsquare"
 msgstr "Locatorvak"
 
@@ -2421,6 +2432,7 @@ msgstr "Afstand"
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
 #: application/controllers/Logbook.php:1476
+#: application/views/debug/index.php:809
 msgid "Band"
 msgstr "Band"
 
@@ -3442,6 +3454,7 @@ msgstr "Niet toegestaan"
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/activationplanner/index.php:24
 msgid "Error"
 msgstr "Fout"
 
@@ -3479,7 +3492,7 @@ msgstr "Fout. Link is al in gebruik!"
 #: application/views/station_profile/edit.php:392
 #: application/views/stationsetup/locationlist.php:55
 #: application/views/stationsetup/stationsetup.php:107
-#: application/views/user/edit.php:535
+#: application/views/user/edit.php:535 application/views/debug/index.php:883
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
@@ -3761,26 +3774,32 @@ msgid "POTA Update failed. Result: "
 msgstr "POTA-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:596
+#: application/controllers/Update.php:635
 msgid "TLE Update complete. Result: "
 msgstr "TLE-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:598
+#: application/controllers/Update.php:637
 msgid "TLE Update failed. Result: "
 msgstr "TLE-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:625
+#: application/controllers/Update.php:664
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT update"
 
 #: application/controllers/Update.php:653
+#: application/controllers/Update.php:692
 msgid "Update of Hams of Note"
 msgstr "Update van Vermeldenswaardige Radiozendamateurs"
 
 #: application/controllers/Update.php:693
+#: application/controllers/Update.php:732
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC-vakken bestand update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:695
+#: application/controllers/Update.php:734
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC-vakken bestandsupdate mislukt. Resultaat: "
 
@@ -3931,6 +3950,7 @@ msgstr "Stationsnaam"
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:156
 #: application/views/user/modals/first_login_wizard.php:34
+#: application/views/debug/index.php:810
 msgid "Station Callsign"
 msgstr "Stationsroepnaam"
 
@@ -4663,20 +4683,24 @@ msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! GEEN VERZENDBAAR ADRES GEVONDEN !!!"
 
 #: application/models/Update_model.php:502
+#: application/models/Update_model.php:708
 msgid "Newer release available:"
 msgstr "Nieuwere release beschikbaar:"
 
 #: application/models/Update_model.php:506
+#: application/models/Update_model.php:712
 msgid "You are running the latest version."
 msgstr "Je draait de nieuwste versie."
 
 #: application/models/Update_model.php:647
 #: application/models/Update_model.php:646
+#: application/models/Update_model.php:852
 msgid "cURL error:"
 msgstr "cURL-fout:"
 
 #: application/models/Update_model.php:681
 #: application/models/Update_model.php:680
+#: application/models/Update_model.php:886
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT bestaat al. LoTW-status bijgewerkt."
 
@@ -4684,6 +4708,8 @@ msgstr "SAT bestaat al. LoTW-status bijgewerkt."
 #: application/models/Update_model.php:713
 #: application/models/Update_model.php:683
 #: application/models/Update_model.php:712
+#: application/models/Update_model.php:889
+#: application/models/Update_model.php:918
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -4692,31 +4718,37 @@ msgstr[1] "LoTW-status voor %d QSO's bijgewerkt"
 
 #: application/models/Update_model.php:687
 #: application/models/Update_model.php:686
+#: application/models/Update_model.php:892
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT bestaat al. Bijwerken van LoTW-status mislukt."
 
 #: application/models/Update_model.php:690
 #: application/models/Update_model.php:689
+#: application/models/Update_model.php:895
 msgid "SAT already existing. Ignored."
 msgstr "SAT bestaat al. Genegeerd."
 
 #: application/models/Update_model.php:697
 #: application/models/Update_model.php:696
+#: application/models/Update_model.php:902
 msgid "SAT already existing. Display name updated."
 msgstr "SAT bestaat al. Weergavenaam bijgewerkt."
 
 #: application/models/Update_model.php:699
 #: application/models/Update_model.php:698
+#: application/models/Update_model.php:904
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT bestaat al. Bijwerken van de weergavenaam is mislukt."
 
 #: application/models/Update_model.php:709
 #: application/models/Update_model.php:708
+#: application/models/Update_model.php:914
 msgid "New SAT. Inserted."
 msgstr "Nieuwe SAT. ingevoegd."
 
 #: application/models/Update_model.php:717
 #: application/models/Update_model.php:716
+#: application/models/Update_model.php:922
 msgid "New SAT. Insert failed."
 msgstr "Nieuwe SAT. invoegen mislukt."
 
@@ -5118,6 +5150,7 @@ msgstr "Markeringen wissen"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/activationplanner/index.php:96
 msgid "Latitude"
 msgstr "Breedtegraad"
 
@@ -5129,6 +5162,7 @@ msgstr "Breedtegraad"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/activationplanner/index.php:97
 msgid "Longitude"
 msgstr "Lengtegraad"
 
@@ -5141,10 +5175,12 @@ msgstr ""
 
 #: application/views/activationplanner/index.php:18
 #: application/views/satellite/pass.php:21
+#: application/views/activationplanner/index.php:20
 msgid "Satellite passes"
 msgstr "Satelliet passages"
 
 #: application/views/activationplanner/index.php:19
+#: application/views/activationplanner/index.php:21
 msgid "Gridsquare borders"
 msgstr "Locatorvak-grenzen"
 
@@ -5168,40 +5204,49 @@ msgstr "Locatorvak-grenzen"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/activationplanner/index.php:23
 msgid "Close"
 msgstr "Sluiten"
 
 #: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:25
 msgid "Tracking"
 msgstr "Volgen"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/activationplanner/index.php:26
 msgid "Field"
 msgstr "Veld"
 
 #: application/views/activationplanner/index.php:25
+#: application/views/activationplanner/index.php:27
 msgid "Square"
 msgstr ""
 
 #: application/views/activationplanner/index.php:26
+#: application/views/activationplanner/index.php:28
 msgid "Subsquare"
 msgstr ""
 
 #: application/views/activationplanner/index.php:27
+#: application/views/activationplanner/index.php:29
 msgid "Locating…"
 msgstr "Bezig met lokaliseren…"
 
 #: application/views/activationplanner/index.php:28
+#: application/views/activationplanner/index.php:30
 msgid "Location access denied."
 msgstr "Toegang tot locatie geweigerd."
 
 #: application/views/activationplanner/index.php:29
+#: application/views/activationplanner/index.php:31
 msgid "Location unavailable."
 msgstr "Locatie niet beschikbaar."
 
 #: application/views/activationplanner/index.php:30
+#: application/views/activationplanner/index.php:32
 msgid "Location request timed out."
 msgstr "Locatieverzoek is verlopen."
 
@@ -5215,6 +5260,7 @@ msgstr "Referenties in dit locatorvak"
 
 #: application/views/activationplanner/index.php:35
 #: application/views/view_log/qso.php:615
+#: application/views/activationplanner/index.php:41
 msgid "Share"
 msgstr "Delen"
 
@@ -5228,30 +5274,37 @@ msgid "📻 Planning an activation from %s"
 msgstr "📻 Een activatie plannen vanuit %s"
 
 #: application/views/activationplanner/index.php:47
+#: application/views/activationplanner/index.php:53
 msgid "Plan your activity here"
 msgstr "Plan hier je activiteit"
 
 #: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:61
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2, 4, 6, 8 of 10 karakter Maidenhead-locator"
 
 #: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:61
 msgid "e.g. FN31pr"
 msgstr "bijv. FN31pr"
 
 #: application/views/activationplanner/index.php:56
+#: application/views/activationplanner/index.php:62
 msgid "to"
 msgstr "naar"
 
 #: application/views/activationplanner/index.php:59
+#: application/views/activationplanner/index.php:65
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "Optionele tweede locatorvak voor afstand en richting"
 
 #: application/views/activationplanner/index.php:59
+#: application/views/activationplanner/index.php:65
 msgid "e.g. JN58qm"
 msgstr "bijv. JN58qm"
 
 #: application/views/activationplanner/index.php:60
+#: application/views/activationplanner/index.php:66
 msgid "Go"
 msgstr "Ga"
 
@@ -5267,28 +5320,34 @@ msgstr "Ga"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
 #: application/views/qso/index.php:757 application/views/user/edit.php:1341
+#: application/views/activationplanner/index.php:67
 msgid "Clear"
 msgstr "Wissen"
 
 #: application/views/activationplanner/index.php:62
+#: application/views/activationplanner/index.php:68
 msgid "Find my location and gridsquare"
 msgstr "Vind mijn locatie en locatorvak"
 
 #: application/views/activationplanner/index.php:62
+#: application/views/activationplanner/index.php:68
 msgid "Locate me"
 msgstr "Vind me"
 
 #: application/views/activationplanner/index.php:65
 #: application/views/simplefle/index.php:162
+#: application/views/activationplanner/index.php:71
 msgid "Refs"
 msgstr "Referenties"
 
 #: application/views/activationplanner/index.php:78
 #: application/views/qso/index.php:758
+#: application/views/activationplanner/index.php:84
 msgid "More options"
 msgstr "Meer opties"
 
 #: application/views/activationplanner/index.php:79
+#: application/views/activationplanner/index.php:85
 msgid "Hide options"
 msgstr "Opties verbergen"
 
@@ -5315,6 +5374,7 @@ msgstr "Opties verbergen"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/activationplanner/index.php:99
 msgid "CQ Zone"
 msgstr "CQ Zone"
 
@@ -5335,6 +5395,7 @@ msgstr "CQ Zone"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/activationplanner/index.php:100
 msgid "ITU Zone"
 msgstr "ITU-zone"
 
@@ -5554,6 +5615,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:130
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/debug/index.php:805
 msgid "Date"
 msgstr "Datum"
 
@@ -5590,6 +5652,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log_ajax.php:132
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/debug/index.php:806
 msgid "Time"
 msgstr "Tijd"
 
@@ -5611,7 +5674,8 @@ msgstr "Tijd"
 #: application/views/search/search_result_ajax.php:93
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:156
-#: application/views/widgets/qsos.php:17
+#: application/views/widgets/qsos.php:17 application/views/debug/index.php:807
+#: application/views/debug/index.php:842
 msgid "Call"
 msgstr "Roepnaam"
 
@@ -5673,6 +5737,7 @@ msgstr "Maximale bestandsgrootte voor uploaden is "
 #: application/views/view_log/qso.php:747
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/debug/index.php:797
 msgid "Warning"
 msgstr "Waarschuwing"
 
@@ -10530,6 +10595,7 @@ msgstr "Laatste QSO"
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
+#: application/views/activationplanner/index.php:36
 msgid "QSOs"
 msgstr "QSO's"
 
@@ -13747,6 +13813,7 @@ msgid "Uptime"
 msgstr "Uptime"
 
 #: application/views/debug/index.php:156 application/views/debug/index.php:875
+#: application/views/debug/index.php:881
 msgid "Online"
 msgstr "Online"
 
@@ -13996,6 +14063,7 @@ msgstr "DXCC-update van Club Log"
 #: application/views/debug/index.php:768 application/views/debug/index.php:774
 #: application/views/debug/index.php:780
 #: application/views/station_profile/edit.php:53
+#: application/views/debug/index.php:786
 msgid "Update"
 msgstr "Bijwerken"
 
@@ -14011,39 +14079,39 @@ msgstr "LoTW-gebruikers downloaden"
 msgid "POTA file download"
 msgstr "POTA-bestandsdownload"
 
-#: application/views/debug/index.php:741
+#: application/views/debug/index.php:741 application/views/debug/index.php:747
 msgid "SCP file download"
 msgstr "SCP-bestand downloaden"
 
-#: application/views/debug/index.php:747
+#: application/views/debug/index.php:747 application/views/debug/index.php:753
 msgid "SOTA file download"
 msgstr "SOTA-bestand downloaden"
 
-#: application/views/debug/index.php:753
+#: application/views/debug/index.php:753 application/views/debug/index.php:759
 msgid "WWFF file download"
 msgstr "WWFF-bestandsdownload"
 
-#: application/views/debug/index.php:759
+#: application/views/debug/index.php:759 application/views/debug/index.php:765
 msgid "TLE update"
 msgstr "TLE-update"
 
-#: application/views/debug/index.php:765
+#: application/views/debug/index.php:765 application/views/debug/index.php:771
 msgid "Hams Of Note update"
 msgstr "Radioamateurs van belang update"
 
-#: application/views/debug/index.php:771
+#: application/views/debug/index.php:771 application/views/debug/index.php:777
 msgid "HAMqsl"
 msgstr "HAMqsl"
 
-#: application/views/debug/index.php:777
+#: application/views/debug/index.php:777 application/views/debug/index.php:783
 msgid "VUCC Grids"
 msgstr "VUCC-Vakken"
 
-#: application/views/debug/index.php:787
+#: application/views/debug/index.php:787 application/views/debug/index.php:793
 msgid "QSO-DB Maintenance"
 msgstr "QSO-DB Onderhoud"
 
-#: application/views/debug/index.php:791
+#: application/views/debug/index.php:791 application/views/debug/index.php:797
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -14051,177 +14119,178 @@ msgid_plural ""
 msgstr[0] "De database bevat %d QSO zonder een stationsprofiel (locatie)"
 msgstr[1] "De database bevat %d QSO's zonder een station-profiel (locatie)"
 
-#: application/views/debug/index.php:829
+#: application/views/debug/index.php:829 application/views/debug/index.php:835
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 "Markeer QSO's en wijs ze opnieuw toe aan een bestaande stationslocatie:"
 
-#: application/views/debug/index.php:837
+#: application/views/debug/index.php:837 application/views/debug/index.php:843
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "Doellocatie"
 
 #: application/views/debug/index.php:838 application/views/debug/index.php:849
+#: application/views/debug/index.php:844 application/views/debug/index.php:855
 msgid "Reassign"
 msgstr "Opnieuw toewijzen"
 
-#: application/views/debug/index.php:858
+#: application/views/debug/index.php:858 application/views/debug/index.php:864
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 "Elke QSO in je database is toegewezen aan een stationsprofiel (locatie)"
 
-#: application/views/debug/index.php:858
+#: application/views/debug/index.php:858 application/views/debug/index.php:864
 msgid "Everything ok"
 msgstr "Alles oké"
 
-#: application/views/debug/index.php:876
+#: application/views/debug/index.php:876 application/views/debug/index.php:882
 msgid "Degraded"
 msgstr "Gedegradeerd"
 
-#: application/views/debug/index.php:877
+#: application/views/debug/index.php:877 application/views/debug/index.php:883
 msgid "Worker backend is not configured."
 msgstr "Worker-backend is niet geconfigureerd."
 
-#: application/views/debug/index.php:878
+#: application/views/debug/index.php:878 application/views/debug/index.php:884
 msgid "Unreachable"
 msgstr "Onbereikbaar"
 
-#: application/views/debug/index.php:878
+#: application/views/debug/index.php:878 application/views/debug/index.php:884
 msgid "Worker is configured but did not respond."
 msgstr "Worker is geconfigureerd maar reageerde niet."
 
-#: application/views/debug/index.php:879
+#: application/views/debug/index.php:879 application/views/debug/index.php:885
 msgid "Outdated"
 msgstr "Verouderd"
 
-#: application/views/debug/index.php:879
+#: application/views/debug/index.php:879 application/views/debug/index.php:885
 msgid ""
 "Please update your Wavelog Worker to version 0.2.0 or newer to see the "
 "status."
 msgstr ""
 "Werk je Wavelog Worker bij naar versie 0.2.0 of nieuwer om de status te zien."
 
-#: application/views/debug/index.php:898
+#: application/views/debug/index.php:898 application/views/debug/index.php:904
 msgid "Albanian"
 msgstr "Albanees"
 
-#: application/views/debug/index.php:899
+#: application/views/debug/index.php:899 application/views/debug/index.php:905
 msgid "Armenian"
 msgstr "Armeens"
 
-#: application/views/debug/index.php:900
+#: application/views/debug/index.php:900 application/views/debug/index.php:906
 msgid "Bosnian"
 msgstr "Bosnisch"
 
-#: application/views/debug/index.php:901
+#: application/views/debug/index.php:901 application/views/debug/index.php:907
 msgid "Bulgarian"
 msgstr "Bulgaars"
 
-#: application/views/debug/index.php:902
+#: application/views/debug/index.php:902 application/views/debug/index.php:908
 msgid "Chinese (Simplified)"
 msgstr "Chinees (Vereenvoudigd)"
 
-#: application/views/debug/index.php:903
+#: application/views/debug/index.php:903 application/views/debug/index.php:909
 msgid "Croatian"
 msgstr "Kroatisch"
 
-#: application/views/debug/index.php:904
+#: application/views/debug/index.php:904 application/views/debug/index.php:910
 msgid "Czech"
 msgstr "Tsjechisch"
 
-#: application/views/debug/index.php:905
+#: application/views/debug/index.php:905 application/views/debug/index.php:911
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: application/views/debug/index.php:906
+#: application/views/debug/index.php:906 application/views/debug/index.php:912
 msgid "English"
 msgstr "Engels"
 
-#: application/views/debug/index.php:907
+#: application/views/debug/index.php:907 application/views/debug/index.php:913
 msgid "Estonian"
 msgstr "Estisch"
 
-#: application/views/debug/index.php:908
+#: application/views/debug/index.php:908 application/views/debug/index.php:914
 msgid "Finnish"
 msgstr "Fins"
 
-#: application/views/debug/index.php:909
+#: application/views/debug/index.php:909 application/views/debug/index.php:915
 msgid "French"
 msgstr "Frans"
 
-#: application/views/debug/index.php:910
+#: application/views/debug/index.php:910 application/views/debug/index.php:916
 msgid "German"
 msgstr "Duits"
 
-#: application/views/debug/index.php:911
+#: application/views/debug/index.php:911 application/views/debug/index.php:917
 msgid "Greek"
 msgstr "Grieks"
 
-#: application/views/debug/index.php:912
+#: application/views/debug/index.php:912 application/views/debug/index.php:918
 msgid "Hungarian"
 msgstr "Hongaars"
 
-#: application/views/debug/index.php:913
+#: application/views/debug/index.php:913 application/views/debug/index.php:919
 msgid "Italian"
 msgstr "Italiaans"
 
-#: application/views/debug/index.php:914
+#: application/views/debug/index.php:914 application/views/debug/index.php:920
 msgid "Japanese"
 msgstr "Japans"
 
-#: application/views/debug/index.php:915
+#: application/views/debug/index.php:915 application/views/debug/index.php:921
 msgid "Latvian"
 msgstr "Lets"
 
-#: application/views/debug/index.php:916
+#: application/views/debug/index.php:916 application/views/debug/index.php:922
 msgid "Lithuanian"
 msgstr "Litouws"
 
-#: application/views/debug/index.php:917
+#: application/views/debug/index.php:917 application/views/debug/index.php:923
 msgid "Montenegrin"
 msgstr "Montenegrijnse"
 
-#: application/views/debug/index.php:918
+#: application/views/debug/index.php:918 application/views/debug/index.php:924
 msgid "Polish"
 msgstr "Pools"
 
-#: application/views/debug/index.php:919
+#: application/views/debug/index.php:919 application/views/debug/index.php:925
 msgid "Portuguese"
 msgstr "Portugees"
 
-#: application/views/debug/index.php:920
+#: application/views/debug/index.php:920 application/views/debug/index.php:926
 msgid "Romanian"
 msgstr "Roemeens"
 
-#: application/views/debug/index.php:921
+#: application/views/debug/index.php:921 application/views/debug/index.php:927
 msgid "Russian"
 msgstr "Russisch"
 
-#: application/views/debug/index.php:922
+#: application/views/debug/index.php:922 application/views/debug/index.php:928
 msgid "Serbian"
 msgstr "Servisch"
 
-#: application/views/debug/index.php:923
+#: application/views/debug/index.php:923 application/views/debug/index.php:929
 msgid "Slovak"
 msgstr "Slowaaks"
 
-#: application/views/debug/index.php:924
+#: application/views/debug/index.php:924 application/views/debug/index.php:930
 msgid "Slovenian"
 msgstr "Sloveens"
 
-#: application/views/debug/index.php:925
+#: application/views/debug/index.php:925 application/views/debug/index.php:931
 msgid "Spanish"
 msgstr "Spaans"
 
-#: application/views/debug/index.php:926
+#: application/views/debug/index.php:926 application/views/debug/index.php:932
 msgid "Swedish"
 msgstr "Zweeds"
 
-#: application/views/debug/index.php:927
+#: application/views/debug/index.php:927 application/views/debug/index.php:933
 msgid "Turkish"
 msgstr "Turks"
 
-#: application/views/debug/index.php:928
+#: application/views/debug/index.php:928 application/views/debug/index.php:934
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
@@ -23633,6 +23702,30 @@ msgstr ""
 
 #: application/views/qso/components/share_modal.php:17
 msgid "Share on Whatsapp"
+msgstr ""
+
+#: application/controllers/Update.php:616
+msgid "POTA boundaries update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:618
+msgid "POTA boundaries update failed. Result: "
+msgstr ""
+
+#: application/views/activationplanner/index.php:37
+msgid "last"
+msgstr ""
+
+#: application/views/activationplanner/index.php:38
+msgid "Inactive"
+msgstr ""
+
+#: application/views/activationplanner/index.php:39
+msgid "valid"
+msgstr ""
+
+#: application/views/debug/index.php:741
+msgid "POTA park boundaries (GeoJSON)"
 msgstr ""
 
 #~ msgid "SOTA QSO List"
