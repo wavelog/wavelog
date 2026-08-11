@@ -91,18 +91,22 @@ This is a widget to show the last LoTW upload in your QRZ.com Bio or somewhere e
             </div>
             <div class="bottom-right mt-3" id="lotw_uploads-container">
                 <div class="mb-2">
-                <table>
-                <tr>
-                    <th><?= __("Callsign"); ?></th>
-                    <th><?= __("Last Upload (UTC)"); ?></th>
-                </tr>
-                <?php foreach ($lotw_uploads as $upload) { ?>
+                <?php if (!empty($lotw_uploads)) { ?>
+                    <table>
                     <tr>
-                    <td><span class="lotw-upload-label"><?php echo $upload->callsign.":"; ?></span></td>
-                    <td><span class="lotw-upload-label"><?php echo $upload->last_upload; ?>Z</span></td>
+                        <th><?= __("Callsign"); ?></th>
+                        <th><?= __("Last Upload (UTC)"); ?></th>
                     </tr>
+                    <?php foreach ($lotw_uploads as $upload) { ?>
+                        <tr>
+                        <td><span class="lotw-upload-label"><?php echo $upload->callsign.":"; ?></span></td>
+                        <td><span class="lotw-upload-label"><?php echo $upload->last_upload; ?>Z</span></td>
+                        </tr>
+                    <?php } ?>
+                    </table>
+                <?php } else { ?>
+                    <?= __("No data available"); ?>
                 <?php } ?>
-                </table>
                 </div>
                 <div class="last-updated mt-2">
                     <small id="last-updated-text">Last updated: <?= date('H:i:s'); ?></small>
