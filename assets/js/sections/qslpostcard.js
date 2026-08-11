@@ -1235,4 +1235,56 @@
 		tplSelect.value = savedTpl;
 		tplSelect.dispatchEvent(new Event('change'));
 	}
+
+	// ===== Leave-with-unsaved-changes guard =====
+	// Two layers, because the browser won't wait on an async modal during
+	// beforeunload:
+	//  1. A translated BootstrapDialog intercepts clicks on in-app links (the
+	//     normal way people leave this page) — that we *can* block via
+	//     preventDefault and resolve async.
+	//  2. A native beforeunload fallback still catches tab close, refresh, and
+	//     URL-bar edits, which a custom modal physically cannot intercept.
+	let leaving = false;
+
+	function confirmLeavePage(href) {
+		BootstrapDialog.confirm({
+			title: LANG.unsavedChangesTitle,
+			message: LANG.unsavedLeaveConfirm,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-warning',
+			btnOKLabel: LANG.leavePage,
+			btnCancelLabel: LANG.keepEditing,
+			callback: result => {
+				if (!result) return;
+				leaving = true; // suppress the native fallback below
+				window.location.href = href;
+			},
+		});
+	}
+
+	// Intercept clicks on links that leave the designer (header nav, logo, etc.).
+	// Skip new-tab/modifier opens, downloads, target=_blank, and links that stay
+	// on this page — none of those unload the canvas.
+	document.addEventListener('click', e => {
+		if (leaving || e.defaultPrevented || !hasUnsavedChanges()) return;
+		if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+		const a = e.target.closest('a');
+		if (!a || !a.href || a.target === '_blank' || a.hasAttribute('download')) return;
+		let url;
+		try { url = new URL(a.href, window.location.href); } catch (_) { return; }
+		if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+		e.preventDefault();
+		confirmLeavePage(a.href);
+	});
+
+	// Fallback for tab close, refresh, and URL-bar navigation — the only unload
+	// paths a custom modal can't intercept. Browsers show their own generic
+	// "leave site?" wording and ignore custom text here.
+	window.addEventListener('beforeunload', e => {
+		if (leaving || !hasUnsavedChanges()) return;
+		e.preventDefault();
+		e.returnValue = '';
+	});
 })();

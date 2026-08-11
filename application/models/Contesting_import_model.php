@@ -3,8 +3,10 @@ class Contesting_import_model extends CI_Model {
 
 	/**
 	 * Returns historical contest QSO groups not yet linked to any contest session,
-	 * scoped to the current user's stations. Groups by (COL_CONTEST_ID, station_id, year).
-	 * QSOs without a valid COL_TIME_ON are excluded.
+	 * scoped to the current user's stations. Groups by (COL_CONTEST_ID, station_id)
+	 * and splits into separate sessions wherever consecutive QSOs are at least
+	 * 72 hours apart and not within the same ISO calendar week (see
+	 * _segment_qsos). QSOs without a valid COL_TIME_ON are excluded.
 	 *
 	 * @return array
 	 */
@@ -45,12 +47,12 @@ class Contesting_import_model extends CI_Model {
 	 *
 	 * @param string $adif_name
 	 * @param int    $station_id
-	 * @param int    $year
-	 * @return int Number of QSOs linked, 0 on ownership failure
+	 * @param int    $segment_start Unix timestamp of the segment's first QSO
+	 * @return int Number of QSOs linked, 0 on ownership failure or unknown segment
 	 */
-	function import_legacy_contest_group($adif_name, $station_id, $year) {
+	function import_legacy_contest_group($adif_name, $station_id, $segment_start) {
 		$user_id = $this->session->userdata('user_id');
-		return $this->_do_import_legacy_group($adif_name, $station_id, $year, $user_id);
+		return $this->_do_import_legacy_group($adif_name, $station_id, $segment_start, $user_id);
 	}
 
 	/**
@@ -59,12 +61,12 @@ class Contesting_import_model extends CI_Model {
 	 *
 	 * @param string $adif_name
 	 * @param int    $station_id
-	 * @param int    $year
+	 * @param int    $segment_start Unix timestamp of the segment's first QSO
 	 * @param int    $user_id
-	 * @return int Number of QSOs linked, 0 on ownership failure
+	 * @return int Number of QSOs linked, 0 on ownership failure or unknown segment
 	 */
-	function import_legacy_contest_group_as_user($adif_name, $station_id, $year, $user_id) {
-		return $this->_do_import_legacy_group($adif_name, $station_id, $year, (int)$user_id);
+	function import_legacy_contest_group_as_user($adif_name, $station_id, $segment_start, $user_id) {
+		return $this->_do_import_legacy_group($adif_name, $station_id, $segment_start, (int)$user_id);
 	}
 
 	// -------------------------------------------------------------------------
@@ -81,14 +83,11 @@ class Contesting_import_model extends CI_Model {
 		$sql = "SELECT
 					t.COL_CONTEST_ID AS adif_name,
 					t.station_id,
-					YEAR(t.COL_TIME_ON) AS contest_year,
-					MIN(t.COL_TIME_ON) AS time_start,
-					MAX(t.COL_TIME_ON) AS time_end,
-					COUNT(*) AS qso_count,
-					MAX(c.id) AS contest_table_id,
-					COALESCE(MAX(c.name), t.COL_CONTEST_ID) AS contest_name,
-					MAX(sp.station_callsign) AS station_callsign,
-					MAX(sp.user_id) AS owner_user_id
+					t.COL_TIME_ON,
+					c.id AS contest_table_id,
+					COALESCE(c.name, t.COL_CONTEST_ID) AS contest_name,
+					sp.station_callsign,
+					sp.user_id AS owner_user_id
 				FROM {$table} t
 				LEFT JOIN contest c ON c.adifname = t.COL_CONTEST_ID
 				LEFT JOIN station_profile sp ON sp.station_id = t.station_id
@@ -98,15 +97,77 @@ class Contesting_import_model extends CI_Model {
 					AND t.COL_TIME_ON IS NOT NULL
 					AND cq.id IS NULL
 					{$user_filter}
-				GROUP BY t.COL_CONTEST_ID, t.station_id, YEAR(t.COL_TIME_ON)
-				ORDER BY time_start DESC";
+				ORDER BY t.COL_CONTEST_ID, t.station_id, t.COL_TIME_ON";
 
 		$bindings = empty($user_ids) ? [] : $user_ids;
-		$query = $this->db->query($sql, $bindings);
-		return $query->result_array();
+		$qsos = $this->db->query($sql, $bindings)->result_array();
+
+		// Group QSOs by (adif_name, station_id), then split each group into
+		// time segments so that preview rows match the sessions created on import
+		$grouped = [];
+		foreach ($qsos as $qso) {
+			$grouped[$qso['adif_name'] . '|' . $qso['station_id']][] = $qso;
+		}
+
+		$result = [];
+		foreach ($grouped as $group_qsos) {
+			foreach ($this->_segment_qsos($group_qsos) as $segment) {
+				$first = $segment[0];
+				$last  = end($segment);
+				$result[] = [
+					'adif_name'        => $first['adif_name'],
+					'station_id'       => $first['station_id'],
+					'segment_start'    => strtotime($first['COL_TIME_ON']),
+					'contest_year'     => (int)date('Y', strtotime($first['COL_TIME_ON'])),
+					'time_start'       => $first['COL_TIME_ON'],
+					'time_end'         => $last['COL_TIME_ON'],
+					'qso_count'        => count($segment),
+					'contest_table_id' => $first['contest_table_id'],
+					'contest_name'     => $first['contest_name'],
+					'station_callsign' => $first['station_callsign'],
+					'owner_user_id'    => $first['owner_user_id'],
+				];
+			}
+		}
+
+		usort($result, function ($a, $b) {
+			return $b['segment_start'] <=> $a['segment_start'];
+		});
+		return $result;
 	}
 
-	private function _do_import_legacy_group($adif_name, $station_id, $year, $user_id) {
+	/**
+	 * Splits a time-ordered list of QSOs into segments. A new segment starts
+	 * whenever two consecutive QSOs are at least 72h apart — unless both QSOs
+	 * fall into the same ISO calendar week (Mon-Sun). This keeps week-long
+	 * activity events with sparse QSOs (e.g. one QSO on Monday, one on Friday)
+	 * in a single session, while weekly series (same weekday every week) always
+	 * cross a week boundary and are still split.
+	 *
+	 * @param array $qsos QSO rows ordered by COL_TIME_ON ascending
+	 * @return array Array of segments, each an array of QSO rows
+	 */
+	private function _segment_qsos(array $qsos) {
+		$segments = [];
+		$current  = [];
+		$prev_ts  = null;
+
+		foreach ($qsos as $qso) {
+			$ts = strtotime($qso['COL_TIME_ON']);
+			if ($prev_ts !== null && ($ts - $prev_ts) >= 72 * 3600 && date('oW', $ts) !== date('oW', $prev_ts)) {
+				$segments[] = $current;
+				$current = [];
+			}
+			$current[] = $qso;
+			$prev_ts = $ts;
+		}
+		if (!empty($current)) {
+			$segments[] = $current;
+		}
+		return $segments;
+	}
+
+	private function _do_import_legacy_group($adif_name, $station_id, $segment_start, $user_id) {
 		$table = $this->config->item('table_name');
 
 		// Verify station belongs to the specified user
@@ -121,23 +182,36 @@ class Contesting_import_model extends CI_Model {
 		$contest_id = $this->ensure_contest_exists($adif_name);
 		$is_other   = ($contest_id === 1 && $adif_name !== 'Other');
 
-		// Fetch unlinked QSOs for this group
-		$qsos = $this->db->query(
+		// Fetch all unlinked QSOs for this contest/station combination
+		$all_qsos = $this->db->query(
 			"SELECT t.COL_PRIMARY_KEY, t.COL_TIME_ON
 			FROM {$table} t
 			LEFT JOIN contest_qsos cq ON cq.qso_id = t.COL_PRIMARY_KEY
 			WHERE t.COL_CONTEST_ID = ?
 				AND t.station_id = ?
-				AND YEAR(t.COL_TIME_ON) = ?
+				AND t.COL_TIME_ON IS NOT NULL
 				AND cq.id IS NULL
 			ORDER BY t.COL_TIME_ON ASC",
-			[$adif_name, $station_id, $year]
+			[$adif_name, $station_id]
 		)->result_array();
 
-		if (empty($qsos)) {
+		if (empty($all_qsos)) {
 			return 0;
 		}
 
+		// Re-derive the segments and pick the one starting at the requested time
+		$qsos = null;
+		foreach ($this->_segment_qsos($all_qsos) as $segment) {
+			if (strtotime($segment[0]['COL_TIME_ON']) === (int)$segment_start) {
+				$qsos = $segment;
+				break;
+			}
+		}
+		if ($qsos === null) {
+			return 0;
+		}
+
+		$year       = (int)date('Y', strtotime($qsos[0]['COL_TIME_ON']));
 		$time_start = date('Y-m-d H:i:s', strtotime($qsos[0]['COL_TIME_ON']) - 3600);
 		$time_end   = date('Y-m-d H:i:s', strtotime(end($qsos)['COL_TIME_ON']) + 3600);
 

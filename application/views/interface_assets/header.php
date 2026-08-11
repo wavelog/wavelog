@@ -45,6 +45,8 @@
 	<!-- Maps -->
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.css'); ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/Control.FullScreen.css'); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/MarkerCluster.css'); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/MarkerCluster.Default.css'); ?>" />
 
 	<?php if ($this->uri->segment(1) == "search" && $this->uri->segment(2) == "filter") { ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/query-builder.default.min.css'); ?>" />
@@ -96,7 +98,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo $this->paths->cache_buster('/assets/logo/'. $this->optionslib->get_logo('header_logo').'.png'); ?>" alt="<?= __("Wavelog home"); ?>" /></a>
-			<?php if (ENVIRONMENT == "development") { ?>
+			<?php if (ENVIRONMENT == "development" || (ENVIRONMENT == "docker" && ($_ENV['DOCKER_DEVELOPMENT'] ?? false) == true)) { ?>
 				<span class="badge text-bg-danger me-1"><?= __("Developer Mode"); ?></span>
 			<?php } ?>
 			<?php if (ENVIRONMENT == "maintenance") { ?>
@@ -207,7 +209,7 @@
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/wpx'); ?>"><i class="fas fa-trophy"></i> <?= __("Worked All Prefixes (WPX)"); ?></a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="<?php echo site_url('awards/wwff'); ?>"><i class="fas fa-trophy"></i> <?= __("WWFF"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/wwff'); ?>"><i class="fas fa-trophy"></i> <?= __("World Wide Flora Fauna (WWFF)"); ?></a></li>
 									</ul>
 								</li>
 								<li><hr class="dropdown-divider"></li>
@@ -321,9 +323,13 @@
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?= __("SAT Timers"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('amsatstatus'); ?>" title="AMSAT Satellite Status"><i class="fas fa-satellite-dish"></i> <?= __("AMSAT Satellite Status"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Show Satellite Flight Path"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('activationplanner'); ?>" title="Plan an activation"><i class="fas fa-map-marked-alt"></i> <?= __("Activation Planner"); ?></a></li>
 							</ul>
 						</li>
 					<?php } ?>

@@ -131,11 +131,10 @@ class Dashboard extends CI_Controller {
 
 		// Country stats
 		$data['total_countries'] = $stats['Countries_Worked'];
-			$data['unique_callsigns'] = $stats['Unique_Callsigns'];
+		$data['unique_callsigns'] = $stats['Unique_Callsigns'];
 		$data['total_countries_confirmed_paper'] = $stats['Countries_Worked_QSL'];
-		$data['total_countries_confirmed_eqsl'] = $stats['Countries_Worked_EQSL'];
 		$data['total_countries_confirmed_lotw'] = $stats['Countries_Worked_LOTW'];
-		$current = $stats['Countries_Current'];
+		$confirmed = $stats['Countries_Worked_Confirmed'];
 
 		// QSL stats
 		$data['total_qsl_sent'] = $stats['QSL_Sent'];
@@ -216,7 +215,7 @@ class Dashboard extends CI_Controller {
 			$data['firstloginwizard'] = $this->load->view('user/modals/first_login_wizard', $viewdata, true);
 		}
 
-		$data['total_countries_needed'] = count($dxcc->result()) - $current;
+		$data['total_countries_needed'] = max(0, count($dxcc->result()) - $confirmed);
 
 		// Check user preferrence to show Solar Data on Dashboard and load data if yes
 		// Default to not show

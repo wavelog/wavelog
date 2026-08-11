@@ -1,9 +1,45 @@
+var contestsTable;
+
 $(document).ready(function () {
-    $("#user_contests_table").DataTable({
-        stateSave: true,
+    contestsTable = $("#user_contests_table").DataTable({
+        stateSave: false,
+        order: [], // keep server-side order by default
+        columnDefs: [
+            { orderable: false, targets: 0 }, // checkbox column
+            { orderable: false, targets: 1 }, // start column
+        ],
         language: {
             url: getDataTablesLanguageUrl(),
         },
+    });
+
+    // Select/unselect all rows (including rows on other DataTables pages)
+    $('#checkBoxAll').on('change', function () {
+        contestsTable.$('input.row-check').prop('checked', this.checked);
+    });
+
+    // Unchecking a single row unchecks the "select all" checkbox
+    $('#user_contests_table tbody').on('change', 'input.row-check', function () {
+        if (!this.checked) {
+            $('#checkBoxAll').prop('checked', false);
+        }
+    });
+
+    // Batch delete of selected contest sessions
+    $('#deleteSelectedSessions').on('click', function () {
+        var ids = contestsTable.$('input.row-check:checked').map(function () {
+            return this.value;
+        }).get();
+
+        if (ids.length === 0) {
+            alert(lang_contesting_no_selection);
+            return;
+        }
+
+        $('#batchDeleteCount').text(ids.length);
+        $('#batchDeleteIds').val(ids.join(','));
+        $('#batchDeleteQsosCheck').prop('checked', false);
+        $('#contestBatchDeleteModal').modal('show');
     });
 });
 

@@ -251,7 +251,13 @@ class Satellite extends CI_Controller {
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
 		$active_station_id = $this->stations->find_active();
-		$pageData['activegrid'] = $this->stations->gridsquare_from_station($active_station_id);
+		// Prefer a gridsquare passed in the query string (e.g. a link from the
+		// activation planner); otherwise fall back to the active station's grid.
+		$grid_param = strtoupper((string) $this->input->get('gridsquare', TRUE));
+		if (!preg_match('/^[A-R]{2}[0-9A-X]{0,8}$/', $grid_param)) {
+			$grid_param = '';
+		}
+		$pageData['activegrid'] = ($grid_param !== '') ? $grid_param : $this->stations->gridsquare_from_station($active_station_id);
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
 
@@ -389,17 +395,8 @@ class Satellite extends CI_Controller {
 	 * and CCSDS OMM JSON.
 	 */
 	private function build_predict_tle($sat_tle) {
-		$raw = isset($sat_tle->tle) ? trim($sat_tle->tle) : '';
-
-		if (Predict_TLE::isOmmJson($raw)) {
-			return Predict_TLE::fromOmmJson($raw);
-		}
-
-		$name = (isset($sat_tle->satellite) && $sat_tle->satellite)
-			? $sat_tle->satellite
-			: (isset($sat_tle->displayname) ? $sat_tle->displayname : '');
-		$temp = preg_split('/\n/', $sat_tle->tle);
-		return new Predict_TLE($name, $temp[0], $temp[1]);
+		$this->load->library('satpredict');
+		return $this->satpredict->build_tle($sat_tle);
 	}
 
 	public function get_tle_for_predict() {
@@ -423,151 +420,13 @@ class Satellite extends CI_Controller {
 	}
 
 	function calcPasses($sat_tles, $yourgrid, $date, $mintime, $minelevation, $timezone = 'UTC') {
-
-		require_once "./src/predict/Predict.php";
-		require_once "./src/predict/Predict/Sat.php";
-		require_once "./src/predict/Predict/QTH.php";
-		require_once "./src/predict/Predict/Time.php";
-		require_once "./src/predict/Predict/TLE.php";
-
-		// The observer or groundstation is called QTH in ham radio terms
-		$predict  = new Predict();
-		$qth      = new Predict_QTH();
-		$qth->alt = 100;
-
-		$strQRA = $yourgrid;
-
-		if ((strlen($strQRA) % 2 == 0) && (strlen($strQRA) <= 10)) {	// Check if QRA is EVEN (the % 2 does that) and smaller/equal 8
-			$strQRA = strtoupper($strQRA);
-			if (strlen($strQRA) == 4)  $strQRA .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
-			if (strlen($strQRA) == 6)  $strQRA .= "55";	// Only 6 Chars? Fill with center "55"
-			if (strlen($strQRA) == 8)  $strQRA .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed
-
-			if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $strQRA)) {
-				return false;
-			}
-		}
-
-		if(!$this->load->is_loaded('Qra')) {
-			$this->load->library('Qra');
-		}
-		$homecoordinates = $this->qra->qra2latlong($yourgrid);
-
-		$qth->lat = $homecoordinates[0];
-		$qth->lon = $homecoordinates[1];
-
-		$filtered=[];
-		foreach ($sat_tles as $sat_tle) {
-			if ($sat_tle->tle == null) {
-				continue;
-			}
-			try {
-				$tle     = $this->build_predict_tle($sat_tle);
-				$sat     = new Predict_Sat($tle); // Load up the satellite data
-
-				$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)
-
-				// You can modify some preferences in Predict(), the defaults are below
-				//
-				$predict->minEle     = intval($minelevation); // Minimum elevation for a pass
-				$predict->timeRes    = 1; // Pass details: time resolution in seconds
-				$predict->numEntries = 20; // Pass details: number of entries per pass
-				// $predict->threshold  = -6; // Twilight threshold (sun must be at this lat or lower)
-
-				// Get the passes and filter visible only, takes about 4 seconds for 10 days
-				$results  = $predict->get_passes($sat, $qth, $now, 1);
-				$all_of_sat = $predict->filterVisiblePasses($results);
-				array_push($filtered, ...$all_of_sat);
-			} catch (\Throwable $th) {
-				log_message("Error", "Exception while calculating passes for SAT ".$sat_tle->satellite);
-			}
-		}
-		$sortKey = array_column($filtered, 'aos');
-		array_multisort($sortKey, SORT_ASC, $filtered);
-		// Get Date format
-		if ($this->session->userdata('user_date_format')) {
-			// If Logged in and session exists
-			$custom_date_format = $this->session->userdata('user_date_format');
-		} else {
-			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $this->config->item('qso_date_format');
-		}
-
-		$data['format'] = $custom_date_format . ' H:i:s';
-
-		$data['filtered'] = $filtered;
-		$data['zone'] = $timezone;
-
-		return $data;
-
+		$this->load->library('satpredict');
+		return $this->satpredict->calcPasses($sat_tles, $yourgrid, $date, $mintime, $minelevation, $timezone);
 	}
 
 	function calcPass($sat_tle, $yourgrid, $date, $mintime, $minelevation, $timezone = 'UTC') {
-
-		require_once "./src/predict/Predict.php";
-		require_once "./src/predict/Predict/Sat.php";
-		require_once "./src/predict/Predict/QTH.php";
-		require_once "./src/predict/Predict/Time.php";
-		require_once "./src/predict/Predict/TLE.php";
-
-		// The observer or groundstation is called QTH in ham radio terms
-		$predict  = new Predict();
-		$qth      = new Predict_QTH();
-		$qth->alt = 100;
-
-		$strQRA = $yourgrid;
-
-		if ((strlen($strQRA) % 2 == 0) && (strlen($strQRA) <= 10)) {	// Check if QRA is EVEN (the % 2 does that) and smaller/equal 8
-			$strQRA = strtoupper($strQRA);
-			if (strlen($strQRA) == 4)  $strQRA .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
-			if (strlen($strQRA) == 6)  $strQRA .= "55";	// Only 6 Chars? Fill with center "55"
-			if (strlen($strQRA) == 8)  $strQRA .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed
-
-			if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $strQRA)) {
-				return false;
-			}
-		}
-
-		if(!$this->load->is_loaded('Qra')) {
-			$this->load->library('Qra');
-		}
-		$homecoordinates = $this->qra->qra2latlong($yourgrid);
-
-		$qth->lat = $homecoordinates[0];
-		$qth->lon = $homecoordinates[1];
-
-		$tle     = $this->build_predict_tle($sat_tle);
-		$sat     = new Predict_Sat($tle); // Load up the satellite data
-
-		$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)
-
-		// You can modify some preferences in Predict(), the defaults are below
-		//
-		$predict->minEle     = intval($minelevation); // Minimum elevation for a pass
-		$predict->timeRes    = 1; // Pass details: time resolution in seconds
-		$predict->numEntries = 20; // Pass details: number of entries per pass
-		// $predict->threshold  = -6; // Twilight threshold (sun must be at this lat or lower)
-
-		// Get the passes and filter visible only, takes about 4 seconds for 10 days
-		$results  = $predict->get_passes($sat, $qth, $now, 1);
-		$filtered = $predict->filterVisiblePasses($results);
-
-		// Get Date format
-		if ($this->session->userdata('user_date_format')) {
-			// If Logged in and session exists
-			$custom_date_format = $this->session->userdata('user_date_format');
-		} else {
-			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $this->config->item('qso_date_format');
-		}
-
-		$data['format'] = $custom_date_format . ' H:i:s';
-
-		$data['filtered'] = $filtered;
-		$data['zone'] = $timezone;
-
-		return $data;
-
+		$this->load->library('satpredict');
+		return $this->satpredict->calcPass($sat_tle, $yourgrid, $date, $mintime, $minelevation, $timezone);
 	}
 
 	function calcSkedPasses($tles) {
@@ -641,6 +500,7 @@ class Satellite extends CI_Controller {
 	}
 
 	public static function get_daynum_from_date($date) {
+		require_once "./src/predict/Predict/Time.php";
 		// Convert a Y-m-d date to a day number
 
 		// Convert date to Unix timestamp

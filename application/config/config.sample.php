@@ -129,7 +129,7 @@ $config['auth_level'][99] = 'Administrator';
 |--------------------------------------------------------------------------
 |
 | Enable SSO support via a trusted HTTP header containing a JWT access token.
-| When enabled, a sso.php config file is required (see sso.sample.php).
+| If enabled, a sso.php config file is required (see sso.sample.php).
 |
 | Documentation: https://docs.wavelog.org/admin-guide/configuration/thirdparty-authentication/
 */
@@ -629,7 +629,7 @@ $config['csrf_exclude_uris'] = array();
 | Output Compression
 |--------------------------------------------------------------------------
 |
-| Enables Gzip output compression for faster page loads.  When enabled,
+| Enables Gzip output compression for faster page loads.  If enabled,
 | the output class will test whether your server supports Gzip.
 | Even if it does, however, not all browsers support compression
 | so enable only if you are reasonably sure your visitors can handle it.
@@ -906,6 +906,8 @@ $config['internal_tools'] = false;
 |
 | Format: Array of endpoint-specific limits
 |   - Endpoint name: the API function name (e.g., 'private_lookup', 'lookup')
+|     API v2 looks its endpoints up as 'api_v2_<resource>' (e.g. 'api_v2_qso',
+|     'api_v2_lookup'), plus 'api_v2_auth' for failed authentication attempts.
 |   - requests: maximum number of requests allowed
 |   - window: time window in seconds
 |
@@ -939,5 +941,7 @@ $config['internal_tools'] = false;
 //     'qso'            => ['requests' => 10, 'window' => 60],
 //     'radio'          => ['requests' => 60, 'window' => 60],
 //     'statistics'     => ['requests' => 30, 'window' => 60],
+//     'api_v2_auth'    => ['requests' => 10, 'window' => 60],
+//     'api_v2_qso'     => ['requests' => 10, 'window' => 60],
 //     'default'        => ['requests' => 30, 'window' => 60],
 // ];

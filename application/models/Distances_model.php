@@ -28,7 +28,7 @@ class Distances_model extends CI_Model
 
 				$table = $this->config->item('table_name');
 				$sql = "
-					SELECT COL_PRIMARY_KEY, COL_DISTANCE, COL_ANT_PATH, col_call callsign, col_gridsquare grid
+					SELECT COL_PRIMARY_KEY, COL_DISTANCE, COL_ANT_PATH, COL_ANT_AZ, COL_PROP_MODE, col_call callsign, col_gridsquare grid
 					FROM $table
 					LEFT OUTER JOIN satellite
 						ON $table.COL_PROP_MODE = 'SAT'
@@ -209,10 +209,11 @@ class Distances_model extends CI_Model
 				$qrb['Qsos']++;                                                        // Counts up number of qsos
 				$bearingdistance = $this->qra->distance($stationgrid, $qso['grid'], $measurement_base, $qso['COL_ANT_PATH']);
 				$bearingdistance_km = $this->qra->distance($stationgrid, $qso['grid'], 'K', $qso['COL_ANT_PATH']);
-				if ($bearingdistance_km != $qso['COL_DISTANCE']) {
-					$data = array('COL_DISTANCE' => $bearingdistance_km);
+
+				$updatedata = $this->geodata_update($stationgrid, $qso, false, $bearingdistance_km);
+				if (!empty($updatedata)) {
 					$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
-					$this->db->update($this->config->item('table_name'), $data);
+					$this->db->update($this->config->item('table_name'), $updatedata);
 				}
 				$arrayplacement = (int)($bearingdistance / 50);                                // Resolution is 50, calculates where to put result in array
 				if ($bearingdistance > $qrb['Distance']) {                              // Saves the longest QSO
@@ -239,6 +240,99 @@ class Distances_model extends CI_Model
 			$data['unit'] = $unit;
 
 			return $data;
+		}
+	}
+
+	/*
+	 * Works out which geodata-columns of a single QSO need writing.
+	 * Input:  $stationgrid    gridsquare of the station_profile (uppercase, at least 6 chars)
+	 *         $qso            row containing COL_DISTANCE, COL_ANT_PATH, COL_ANT_AZ, COL_PROP_MODE and grid
+	 *         $only_if_empty  true: only fill a missing distance (Antenna Analytics repairs gaps only)
+	 *                         false: also refresh a stale distance (Distances Worked recalculates)
+	 *         $distance_km    already calculated distance in km, saves recalculating it
+	 * Returns: array of columns to update, empty if there is nothing to do
+	 */
+	private function geodata_update($stationgrid, $qso, $only_if_empty = false, $distance_km = null) {
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+		if ($distance_km === null) {
+			$distance_km = $this->qra->distance($stationgrid, $qso['grid'], 'K', $qso['COL_ANT_PATH']);
+		}
+
+		$updatedata = array();
+		$distance_missing = ($qso['COL_DISTANCE'] === null || $qso['COL_DISTANCE'] === '');
+		if ($only_if_empty ? $distance_missing : ($distance_km != $qso['COL_DISTANCE'])) {
+			$updatedata['COL_DISTANCE'] = $distance_km;
+		}
+		$is_shortwave = trim((string)$qso['COL_PROP_MODE']) === '';   // only plain HF/VHF+ terrestrial QSOs -- SAT, EME, MS, etc. don't follow the great-circle bearing
+		if ($is_shortwave && ($qso['COL_ANT_AZ'] === null || $qso['COL_ANT_AZ'] === '')) {   // only fill if empty -- never overwrite a user/ADIF-supplied value
+			$bearing = $this->qra->get_bearing($stationgrid, $qso['grid'], $qso['COL_ANT_PATH']);
+			if ($bearing !== false) {   // unparsable qso-grid: leave the column NULL rather than stamping it with 0 (= due north)
+				$updatedata['COL_ANT_AZ'] = $bearing;
+			}
+		}
+
+		return $updatedata;
+	}
+
+	/*
+	 * Fills distance and bearing for QSOs of the active logbook which are still missing them.
+	 * Called when opening a page which reads those columns (e.g. Antenna Analytics), so a log
+	 * imported without ANT_AZ/DISTANCE gets repaired without having to visit Distances Worked.
+	 * Only gaps are filled, existing values are never touched.
+	 */
+	public function backfill_missing_geodata() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if ($logbooks_locations_array[0] === -1) {
+			return;
+		}
+
+		$table = $this->config->item('table_name');
+
+		foreach ($logbooks_locations_array as $station_id) {
+			$station_gridsquare = $this->find_gridsquare($station_id);
+
+			if ($station_gridsquare == null) {
+				continue;
+			}
+
+			$gridsquare = explode(',', $station_gridsquare);        // A user can enter several gridsquares
+			$stationgrid = strtoupper(trim($gridsquare[0]));        // We use only the first entered gridsquare from the active profile
+			if (strlen($stationgrid) == 4) $stationgrid .= 'MM';    // adding center of grid if only 4 digits are specified
+
+			if (!$this->valid_locator($stationgrid)) {              // Broken profile-grid: skip this station, this runs while rendering a page
+				continue;
+			}
+
+			$sql = "
+				SELECT COL_PRIMARY_KEY, COL_DISTANCE, COL_ANT_PATH, COL_ANT_AZ, COL_PROP_MODE, col_gridsquare grid
+				FROM $table
+				WHERE LENGTH(col_gridsquare) > 0
+					AND station_id = ?
+					AND (
+						COL_DISTANCE IS NULL
+						OR (COL_ANT_AZ IS NULL AND (COL_PROP_MODE IS NULL OR TRIM(COL_PROP_MODE) = ''))
+					)
+			";
+
+			$qsoArray = $this->db->query($sql, array($station_id))->result_array();
+
+			if (!$qsoArray) {
+				continue;
+			}
+
+			$this->db->trans_start();
+			foreach ($qsoArray as $qso) {
+				$updatedata = $this->geodata_update($stationgrid, $qso, true);
+				if (!empty($updatedata)) {
+					$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
+					$this->db->update($table, $updatedata);
+				}
+			}
+			$this->db->trans_complete();
 		}
 	}
 

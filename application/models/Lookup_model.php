@@ -46,6 +46,19 @@ class Lookup_model extends CI_Model{
 		return $dxccArray;
 	}
 
+	/* Like getDxccForVucc, but returns adif + name rows (the flag is added by the
+	 * caller via the DxccFlag library). Powers the activation-planner grid flag. */
+	function getDxccForVuccGrid($grid) {
+		$fixedgrid = (strlen($grid) > 4) ? substr($grid, 0, 4) : $grid;
+
+		$sql = "select dxcc_entities.adif, dxcc_entities.name from dxcc_entities
+		join vuccgrids on dxcc_entities.adif = vuccgrids.adif
+		where gridsquare = ?";
+		$query = $this->db->query($sql, array($fixedgrid));
+
+		return $query->result();
+	}
+
 	function getResultFromDatabase($queryinfo, $modes) {
 		// Creating an empty array with all the bands and modes from the database
 		foreach ($modes as $mode) {
@@ -229,6 +242,12 @@ class Lookup_model extends CI_Model{
 					$extrawhere.=" OR";
 				}
 				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
 			}
 
 			if (($confirmedtype == 'confirmed') && ($extrawhere != '')){

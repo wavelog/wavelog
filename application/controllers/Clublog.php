@@ -27,6 +27,12 @@ class Clublog extends CI_Controller
 	// Upload ADIF to Clublog
 	public function upload()
 	{
+		$this->load->helper('cronauth');
+		if (!cronauth_allowed(3)) {
+			// return a 403
+			$this->output->set_status_header(403);
+			exit();
+		}
 
 		$this->load->model('clublog_model');
 

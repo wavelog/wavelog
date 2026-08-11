@@ -160,8 +160,8 @@ $(document).ready(function () {
 		if (!cluster) { setBadge(false); } // single instance: always "Online"; cluster badge is owned by the fan-out
 		$('#ws-url').text(WavelogWorker.url);
 		$('#ws-version').text(val(p.version));
-		$('#ws-topics').text(val(p.active_topics - 1));       // subtract this debug page
-		$('#ws-clients').text(val(p.connected_clients - 1));  // subtract this debug page
+		$('#ws-topics').text(val(p.active_topics));
+		$('#ws-clients').text(val(p.connected_clients));
 		if (typeof p.uptime_seconds === 'number') {
 			uptimeBase = p.uptime_seconds; uptimeAt = Date.now();
 			startTick(); tick();

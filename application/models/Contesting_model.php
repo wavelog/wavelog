@@ -92,6 +92,7 @@ class Contesting_model extends CI_Model {
 			$row['callbook_lookup'] = $settings['callbook_lookup'] ?? true;
 			$row['custom_name']     = $settings['custom_name']     ?? '';
 			$row['serial_per_band'] = $settings['serial_per_band'] ?? false;
+			$row['serial_scope']    = $settings['serial_scope']    ?? 'station';
 		} else {
 			$row['copyexchangeto']  = '';
 			$row['exchangefields']  = ['exchange'];
@@ -99,6 +100,7 @@ class Contesting_model extends CI_Model {
 			$row['callbook_lookup'] = true;
 			$row['custom_name']     = '';
 			$row['serial_per_band'] = false;
+			$row['serial_scope']    = 'station';
 		}
 		unset($row['settings']);
 		return $row;
@@ -119,6 +121,7 @@ class Contesting_model extends CI_Model {
 			'callbook_lookup' => true,
 			'custom_name'     => '',
 			'serial_per_band' => false,
+			'serial_scope'    => 'station',
 		];
 
 		return json_encode(array_merge($defaults, $parameter_array));
@@ -133,7 +136,7 @@ class Contesting_model extends CI_Model {
 	 * @param int $station_location The station location (station_id).
 	 * @param string $session_notes Notes for the session.
 	 * @param bool $return_id If true, returns the inserted session ID instead of a boolean.
-	 * @param array $parameter_array Session settings (exchangetype, copyexchangeto, exchangefields, callbook_lookup, custom_name, serial_per_band). Missing keys fall back to defaults.
+	 * @param array $parameter_array Session settings (exchangetype, copyexchangeto, exchangefields, callbook_lookup, custom_name, serial_per_band, serial_scope). Missing keys fall back to defaults.
 	 * @return bool True on success, false on failure. If $return_id is true, returns the inserted session ID instead.
 	 */
 	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $parameter_array = []) {
@@ -171,7 +174,7 @@ class Contesting_model extends CI_Model {
 	 * @param string $time_end The end time of the session.
 	 * @param int $station_id The station location (station_id).
 	 * @param string $notes Notes for the session.
-	 * @param array $parameter_array Session settings (exchangetype, copyexchangeto, exchangefields, callbook_lookup, custom_name, serial_per_band). Missing keys fall back to defaults.
+	 * @param array $parameter_array Session settings (exchangetype, copyexchangeto, exchangefields, callbook_lookup, custom_name, serial_per_band, serial_scope). Missing keys fall back to defaults.
 	 * @return bool True on success, false on failure.
 	 */
 	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $parameter_array = []) {
@@ -228,6 +231,32 @@ class Contesting_model extends CI_Model {
 
 		$this->db->query("DELETE FROM contest_session WHERE id = ? AND user_id = ?", [$contest_session_id, $user_id]);
 		return true;
+	}
+
+	/**
+	 * Deletes multiple contest sessions for the current user.
+	 * Ownership is verified before any QSO links are touched.
+	 *
+	 * @param array $contest_session_ids IDs of the contest sessions to delete.
+	 * @param bool  $delete_qsos Also delete the linked QSOs from the logbook.
+	 * @return int Number of sessions deleted.
+	 */
+	function batch_delete_sessions(array $contest_session_ids, $delete_qsos = false) {
+		$user_id = $this->session->userdata('user_id');
+
+		// Only keep sessions actually owned by the current user
+		$placeholders = implode(',', array_fill(0, count($contest_session_ids), '?'));
+		$query = $this->db->query(
+			"SELECT id FROM contest_session WHERE id IN ({$placeholders}) AND user_id = ?",
+			array_merge($contest_session_ids, [$user_id])
+		);
+
+		$deleted = 0;
+		foreach ($query->result() as $row) {
+			$this->delete_contest_session($row->id, $delete_qsos);
+			$deleted++;
+		}
+		return $deleted;
 	}
 
 	/**
@@ -593,5 +622,165 @@ class Contesting_model extends CI_Model {
 
 		return $this->db->query($sql, $bindings);
 		
+	}
+
+	const SERIAL_COUNTER_TTL = 259200; // 72 hours
+
+	private function _load_cache() {
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
+			'backup'     => $this->config->item('cache_backup')     ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+	}
+
+	/**
+	 * Builds the cache key of a serial pool.
+	 *
+	 * @param int $contest_session_id
+	 * @param string|null $band Current band, ignored unless the session counts per band.
+	 * @param string|null $operator Current operator callsign, ignored unless the session counts per operator.
+	 * @return string
+	 */
+	private function _serial_cache_key($contest_session_id, $band = null, $operator = null) {
+		return 'contest_serial_' . (int) $contest_session_id . '_' . strtolower(trim($band ?? '')) . '_' . strtoupper(trim($operator ?? ''));
+	}
+
+	/**
+	 * Seeds a serial counter from the QSOs already logged in the session.
+	 *
+	 * @param string $key Cache key of the pool.
+	 * @param int $contest_session_id
+	 * @param string|null $band Set to scope the pool to a band.
+	 * @param string|null $operator Set to scope the pool to an operator.
+	 * @return int The highest serial already used, 0 if the session is empty.
+	 */
+	private function _serial_init($key, $contest_session_id, $band = null, $operator = null) {
+		$filter = '';
+		$bindings = [$contest_session_id];
+
+		if (!empty($band)) {
+			$filter .= ' AND lb.COL_BAND = ?';
+			$bindings[] = $band;
+		}
+		if (!empty($operator)) {
+			$filter .= ' AND lb.COL_OPERATOR = ?';
+			$bindings[] = $operator;
+		}
+
+		$sql = "SELECT MAX(lb.COL_STX) AS max_serial
+				FROM contest_qsos cq
+				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
+				WHERE cq.contest_session_id = ? {$filter}";
+
+		$row = $this->db->query($sql, $bindings)->row_array();
+		$current = (int) ($row['max_serial'] ?? 0);
+
+		$this->cache->save($key, $current, self::SERIAL_COUNTER_TTL);
+		return $current;
+	}
+
+	/**
+	 * Returns the serial the next claim would most likely get, without
+	 * consuming it.
+	 *
+	 * @param int $contest_session_id
+	 * @param string|null $band
+	 * @param string|null $operator
+	 * @return int
+	 */
+	function serial_peek($contest_session_id, $band = null, $operator = null) {
+		$this->_load_cache();
+
+		$key = $this->_serial_cache_key($contest_session_id, $band, $operator);
+		$current = $this->cache->get($key);
+
+		if ($current === FALSE) {
+			$current = $this->_serial_init($key, $contest_session_id, $band, $operator);
+		}
+
+		return (int) $current + 1;
+	}
+
+	/**
+	 * Hands out the next serial number and marks it as used.
+	 *
+	 * @param int $contest_session_id
+	 * @param string|null $band
+	 * @param string|null $operator
+	 * @return int|false The claimed serial, or false if the cache cannot count.
+	 */
+	function serial_claim($contest_session_id, $band = null, $operator = null) {
+		$this->_load_cache();
+
+		$key = $this->_serial_cache_key($contest_session_id, $band, $operator);
+		$current = $this->cache->get($key);
+
+		if ($current === FALSE) {
+			$current = $this->_serial_init($key, $contest_session_id, $band, $operator);
+		}
+
+		$next = (int) $current + 1;
+
+		if (!$this->cache->save($key, $next, self::SERIAL_COUNTER_TTL)) {
+			log_message('error', 'Contest serial counter could not be stored for key ' . $key . ' (cache adapter: ' . $this->cache->get_loaded_driver() . ')');
+			return false;
+		}
+
+		return $next;
+	}
+
+	/**
+	 * Gives a claimed serial back when it was never logged.
+	 *
+	 * @param int $contest_session_id
+	 * @param string|null $band
+	 * @param string|null $operator
+	 * @param int $serial The serial being given back.
+	 * @return bool True if the counter was rolled back.
+	 */
+	function serial_release($contest_session_id, $band = null, $operator = null, $serial = 0) {
+		$serial = (int) $serial;
+		if ($serial < 1) {
+			return false;
+		}
+
+		$this->_load_cache();
+
+		$key = $this->_serial_cache_key($contest_session_id, $band, $operator);
+		$current = $this->cache->get($key);
+
+		if ($current === FALSE || (int) $current !== $serial) {
+			return false;
+		}
+
+		return (bool) $this->cache->save($key, $serial - 1, self::SERIAL_COUNTER_TTL);
+	}
+
+	/**
+	 * Raises the counter if a QSO was logged with a serial above it.
+	 *
+	 * @param int $contest_session_id
+	 * @param string|null $band
+	 * @param string|null $operator
+	 * @param int $serial The serial that was actually logged.
+	 * @return void
+	 */
+	function serial_bump($contest_session_id, $band = null, $operator = null, $serial = 0) {
+		$serial = (int) $serial;
+		if ($serial < 1) {
+			return;
+		}
+
+		$this->_load_cache();
+
+		$key = $this->_serial_cache_key($contest_session_id, $band, $operator);
+		$current = $this->cache->get($key);
+
+		if ($current !== FALSE && (int) $current >= $serial) {
+			return;
+		}
+
+		$this->cache->save($key, $serial, self::SERIAL_COUNTER_TTL);
 	}
 }

@@ -12,6 +12,11 @@
 					<p class="card-text">
 						<?= __("The following contest groups were found in your logbook but are not yet linked to a contest session. Select the ones you want to import and click \"Import Selected\".") ?>
 					</p>
+					<p class="alert alert-info">
+						<i class="fas fa-info-circle me-1"></i>
+						<?= __("How grouping works:"); ?><br>
+						<?= __("QSOs are grouped by contest and station. Consecutive QSOs end up in the same session if they are less than 72 hours apart or fall into the same ISO calendar week (Monday-Sunday). This keeps week-long activity events together as one session, while weekly or monthly contest series are imported as separate sessions.") ?>
+					</p>
 					<?php if (!empty($all_users)): ?>
 						<div class="alert alert-warning">
 							<strong><?= __("Admin mode:") ?></strong>
@@ -42,9 +47,9 @@
 									<?php foreach ($groups as $row):
 										$is_other = (empty($row['contest_table_id']) || ($row['contest_table_id'] == 1 && $row['adif_name'] !== 'Other'));
 										if (!empty($all_users)) {
-											$key = $row['adif_name'] . '|' . $row['station_id'] . '|' . $row['contest_year'] . '|' . $row['owner_user_id'];
+											$key = $row['adif_name'] . '|' . $row['station_id'] . '|' . $row['segment_start'] . '|' . $row['owner_user_id'];
 										} else {
-											$key = $row['adif_name'] . '|' . $row['station_id'] . '|' . $row['contest_year'];
+											$key = $row['adif_name'] . '|' . $row['station_id'] . '|' . $row['segment_start'];
 										}
 									?>
 									<tr>
@@ -94,7 +99,7 @@ document.getElementById('import-legacy-form').addEventListener('submit', functio
 		alert(decodeHtml("<?= __("Please select at least one contest to import.") ?>"));
 		return;
 	}
-	if (!confirm(decodeHtml("<?= __("Are you sure you want to import the selected contest sessions? This cannot be undone.") ?>"))) {
+	if (!confirm(decodeHtml("<?= __("Are you sure you want to import the selected contest sessions?") ?>"))) {
 		e.preventDefault();
 	}
 });

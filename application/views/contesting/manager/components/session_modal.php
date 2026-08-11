@@ -140,7 +140,15 @@
                                 <?php if (isset($session_info) && ($session_info['serial_per_band'] ?? false)) echo 'checked'; ?>>
                             <label class="form-check-label" for="serial_per_band"><?= __("Count serial number per band") ?></label>
                         </div>
-                        <small class="text-muted d-block mt-1"><?= __("When enabled, the sent serial number starts at 1 on each band instead of running continuously across the whole contest (required by some multi-op categories).") ?></small>
+                        <small class="text-muted d-block mt-1"><?= __("If enabled, the sent serial number starts at 1 on each band instead of running continuously across the whole contest (required by some multi-op categories).") ?></small>
+                    </div>
+                    <div class="mb-4">
+                        <label for="serial_scope" class="form-label"><?= __("Serial Number Series") ?></label>
+                        <select class="form-select" id="serial_scope" name="serial_scope">
+                            <option value="station"  <?php if (!isset($session_info) || ($session_info['serial_scope'] ?? 'station') === 'station')  echo 'selected'; ?>><?= __("Shared by all operators") ?></option>
+                            <option value="operator" <?php if (isset($session_info) && ($session_info['serial_scope'] ?? 'station') === 'operator') echo 'selected'; ?>><?= __("One series per operator") ?></option>
+                        </select>
+                        <small class="text-muted d-block mt-2"><?= __("Serial numbers are handed out by the server so the same number is never used twice, even when several operators log at the same time. Most contests expect a single shared series per station.") ?></small>
                     </div>
                     <div class="mb-4">
                         <label for="session_notes" class="form-label"><?= __("Session Notes") ?></label>

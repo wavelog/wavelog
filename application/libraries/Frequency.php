@@ -160,6 +160,10 @@ class Frequency {
 
 		$result = $db->get()->row();
 
+		if ($result === null) {
+			return null;
+		}
+
 		$mode = strtolower($mode);
 
 		return $result->$mode;

@@ -128,7 +128,7 @@ $config['auth_level'][99] = 'Administrator';
 |--------------------------------------------------------------------------
 |
 | Enable SSO support via a trusted HTTP header containing a JWT access token.
-| When enabled, a sso.php config file is required (see sso.sample.php).
+| If enabled, a sso.php config file is required (see sso.sample.php).
 |
 | Documentation: https://docs.wavelog.org/admin-guide/configuration/thirdparty-authentication/
 */
@@ -628,7 +628,7 @@ $config['csrf_exclude_uris'] = array();
 | Output Compression
 |--------------------------------------------------------------------------
 |
-| Enables Gzip output compression for faster page loads.  When enabled,
+| Enables Gzip output compression for faster page loads.  If enabled,
 | the output class will test whether your server supports Gzip.
 | Even if it does, however, not all browsers support compression
 | so enable only if you are reasonably sure your visitors can handle it.

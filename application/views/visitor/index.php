@@ -267,14 +267,12 @@ if ($public_maps_option == 'true') { ?>
 						<td width="50%"><?php echo $total_countries; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
+						<td width="50%"><?= __("Confirmed"); ?></td>
 						<td width="50%">
-							<?php echo $total_countries_confirmed_paper; ?> /
-							<?php echo $total_countries_confirmed_eqsl; ?> /
-							<?php echo $total_countries_confirmed_lotw; ?>
+							<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?></span> /
+							<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?></span>
 						</td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Needed"); ?></td>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>

@@ -18,14 +18,14 @@ class Qrz extends CI_Controller {
 
 	// Show frontend if there is one
 	public function index() {
-		$this->config->load('config');
+		redirect('dashboard');
 	}
 
 	/* 
 	 * API Key Status Test
 	 */
-
 	public function qrz_apitest() {
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$apikey = trim(xss_clean($this->input->post('APIKEY')));
 		$url = 'https://logbook.qrz.com/api'; // TODO: Move this to database
   
@@ -69,6 +69,14 @@ class Qrz extends CI_Controller {
 	 * All QSOs not previously uploaded, will then be uploaded, one at a time
 	 */
 	public function upload() {
+
+		$this->load->helper('cronauth');
+		if (!cronauth_allowed(3)) {
+			// return a 403
+			$this->output->set_status_header(403);
+			exit();
+		}
+
 		$this->setOptions();
 
 		// set the last run in cron table for the correct cron id
@@ -98,7 +106,7 @@ class Qrz extends CI_Controller {
 		}
 	}
 
-	function setOptions() {
+	private function setOptions() {
 		$this->config->load('config');
 		ini_set('memory_limit', '-1');
 		ini_set('display_errors', 1);
@@ -189,7 +197,7 @@ class Qrz extends CI_Controller {
 	/*
 	 * Function marks QSO with given primarykey as uploaded to qrz
 	 */
-	function markqso($primarykey,$state = 'Y') {
+	private function markqso($primarykey,$state = 'Y') {
 		$this->logbook_model->mark_qrz_qsos_sent($primarykey, $state);
 	}
 
@@ -220,6 +228,7 @@ class Qrz extends CI_Controller {
 	 * Used for ajax-function when selecting log for upload to qrz
 	 */
 	public function upload_station() {
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		if (!($this->config->item('disable_manual_qrz'))) {
 			$this->setOptions();
 			$this->load->model('stations');
@@ -300,6 +309,12 @@ class Qrz extends CI_Controller {
 	} // end function
 
 	function download($user_id_to_load = null, $lastqrz = null, $show_views = false) {
+		$this->load->helper('cronauth');
+		if (!cronauth_allowed(3)) {
+			// return a 403
+			$this->output->set_status_header(403);
+			exit();
+		}
 		$this->load->model('logbook_model');
 
 		$this->load->model('cron_model');

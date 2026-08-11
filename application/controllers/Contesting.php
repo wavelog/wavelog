@@ -110,9 +110,7 @@ class Contesting extends CI_Controller {
 
 		$session_id = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, true);
 
-		$logging_token = $this->paths->create_contesting_logging_token($session_id);
-
-		redirect('contesting/logging_engine/' . $logging_token);
+		redirect('contesting/logging_engine/' . $session_id);
 	}
 
 	/**
@@ -434,47 +432,38 @@ class Contesting extends CI_Controller {
 	/**
 	 * This starts the main logging engine for contesting
 	 */
-	public function logging_engine($logging_token) {
+	public function logging_engine($contest_session_id = 0) {
 		$this->load->model('contesting_model');
 
-		// Decode logging token
-		$decoded_token = $this->paths->decode_contesting_logging_token($logging_token);
-		if (!$decoded_token || !isset($decoded_token['contest_session_id'])) {
-			$this->session->set_flashdata('error', __("Invalid logging token."));
-			redirect('contesting');
-		}
+		$contest_session_id = intval($contest_session_id);
 
 		// Security Check: Ensure the user is authorized for this contest session
-		$source_uid = $this->session->userdata('source_uid') ?: $this->session->userdata('user_id');
-		if ($decoded_token['user_id'] != $source_uid) {
-			$this->session->set_flashdata('error', __("You are not authorized to access this contest session."));
-			redirect('contesting');
-		}
-
-		if (!$this->contesting_model->check_user_contest($decoded_token['contest_session_id'])) {
+		if (!$contest_session_id || !$this->contesting_model->check_user_contest($contest_session_id)) {
 			$this->session->set_flashdata('error', __("You are not authorized to access this contest session."));
 			redirect('contesting');
 		}
 
 		// setting up worker if available
-		$worker_topic = 'contest_session.' . $decoded_token['contest_session_id']; // shared topic for all operators in this contest session
+		$worker_topic = 'contest_session.' . $contest_session_id; // shared topic for all operators in this contest session
 		if ($this->worker_available) {
 			$this->worker->register_topic($worker_topic);
-		}
 
-		if ($this->worker_available && $decoded_token) {
 			$data['worker_client_url'] = $this->worker->client_url();
 			$data['worker_topic']      = $worker_topic;
 			$data['worker_token']      = $this->worker->create_token($worker_topic);
 		}
-
-		$contest_session_id = $decoded_token['contest_session_id'];
 
 		// Load session data
 		$data['session_info'] = $this->contesting_model->get_session_info($contest_session_id);
 		if (!$data['session_info']) {
 			$this->session->set_flashdata('error', __("Contest session not found."));
 			redirect('contesting');
+		}
+
+		// if cache driver is dummy and serial numbers are required, log an error message
+		if (in_array('serial', $data['session_info']['exchangefields'] ?? [], true)
+			&& $this->cache->get_loaded_driver() === 'dummy') {
+			log_message('error', 'Contest logger: no cache is available (dummy adapter), so serial numbers cannot be handed out per operator. Configure Redis/Valkey, Memcached, APCu or the file cache.');
 		}
 
 		// Per-user map preferences (night shadow / path line / station marker).
@@ -635,6 +624,7 @@ class Contesting extends CI_Controller {
 				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
 				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
 				$serial_per_band = (bool) $this->input->post('serial_per_band', true);
+				$serial_scope    = $this->_parseSerialScope($this->input->post('serial_scope', true));
 
 				$parameter_array = [
 					'exchangetype'    => $exchangetype,
@@ -643,6 +633,7 @@ class Contesting extends CI_Controller {
 					'callbook_lookup' => $callbook_lookup,
 					'custom_name'     => $custom_name,
 					'serial_per_band' => $serial_per_band,
+					'serial_scope'    => $serial_scope,
 				];
 
 				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $parameter_array);
@@ -697,6 +688,7 @@ class Contesting extends CI_Controller {
 				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
 				$custom_name    = trim($this->input->post('custom_name', true) ?? '');
 				$serial_per_band = (bool) $this->input->post('serial_per_band', true);
+				$serial_scope    = $this->_parseSerialScope($this->input->post('serial_scope', true));
 
 				$parameter_array = [
 					'exchangetype'    => $exchangetype,
@@ -705,6 +697,7 @@ class Contesting extends CI_Controller {
 					'callbook_lookup' => $callbook_lookup,
 					'custom_name'     => $custom_name,
 					'serial_per_band' => $serial_per_band,
+					'serial_scope'    => $serial_scope,
 				];
 
 				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $parameter_array);
@@ -772,6 +765,42 @@ class Contesting extends CI_Controller {
 				$this->session->set_flashdata('error', __("Invalid request method."));
 				redirect('contesting');
 		}
+	}
+
+	/**
+	 * Deletes multiple contest sessions at once.
+	 * Endpoint: POST /contesting/batch_delete_sessions
+	 * POST: ids = comma-separated contest_session ids, delete_qsos = optional flag
+	 */
+	public function batch_delete_sessions() {
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('contesting');
+		}
+
+		if (!clubaccess_check(9)) {
+			$this->session->set_flashdata('error', __("Only clubstation officers can delete."));
+			redirect('contesting');
+		}
+
+		$ids = array_filter(array_map('intval', explode(',', (string)$this->input->post('ids', true))));
+		$delete_qsos = (bool) $this->input->post('delete_qsos', true);
+
+		if (empty($ids)) {
+			$this->session->set_flashdata('error', __("No contest sessions selected."));
+			redirect('contesting');
+		}
+
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+		$deleted = $this->contesting_model->batch_delete_sessions($ids, $delete_qsos);
+
+		if ($deleted > 0) {
+			$this->session->set_flashdata('success', sprintf(_ngettext("%d contest session deleted.", "%d contest sessions deleted.", $deleted), $deleted));
+		} else {
+			$this->session->set_flashdata('error', __("There was an error deleting the contest sessions. Please try again."));
+		}
+
+		redirect('contesting');
 	}
 
 	/**
@@ -1064,17 +1093,39 @@ class Contesting extends CI_Controller {
 			// update_session keeps an existing operator_callsign, so override it explicitly.
 			$this->session->set_userdata('operator_callsign', strtoupper(trim($op->user_callsign)));
 
-			// Fresh token now carries the new operator as token user_id (reads source_uid).
-			$token = $this->paths->create_contesting_logging_token($contest_session_id);
-
+			// Reload the engine; it picks up the new operator from the session.
 			echo json_encode([
 				'success'  => true,
-				'redirect' => site_url('contesting/logging_engine') . '/' . $token,
+				'redirect' => site_url('contesting/logging_engine') . '/' . intval($contest_session_id),
 			]);
 		} catch (Exception $e) {
 			http_response_code(400);
 			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 		}
+	}
+
+	/**
+	 * Resolves which serial pool a request belongs to.
+	 *
+	 * @param array $session_info Result of Contesting_model::get_session_info()
+	 * @param string|null $band Band reported by the client.
+	 * @return array [band, operator], each null when the pool is not scoped by it.
+	 */
+	private function _serialPool($session_info, $band = null) {
+		$pool_band = null;
+		$pool_operator = null;
+
+		if (!empty($session_info['serial_per_band'])) {
+			// Format check only, no db required here
+			$band = strtolower(trim($band ?? ''));
+			$pool_band = preg_match('/^\d{1,4}(\.\d{1,2})?(mm|cm|m)$/', $band) ? $band : '';
+		}
+
+		if (($session_info['serial_scope'] ?? 'station') === 'operator') {
+			$pool_operator = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
+		}
+
+		return [$pool_band, $pool_operator];
 	}
 
 	/**
@@ -1212,6 +1263,7 @@ class Contesting extends CI_Controller {
 					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,
 					'cqz' => $command['data']['cqz'] ?? NULL,
 					'operator_callsign' => strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign'))),
+					'station_profile' => $session_info['station_id'],
 					'contestname' => $session_info['contest_adifname'],
 					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange',
 					'copyexchangeto' => $session_info['copyexchangeto'] ?? NULL
@@ -1221,8 +1273,22 @@ class Contesting extends CI_Controller {
 				$save_result = $this->logbook_model->create_qso($qso_data, false);
 
 				// Link QSO to contest session
-				if ($save_result['qso_id']) {
+				if (is_array($save_result) && !empty($save_result['qso_id'])) {
 					$this->contesting_model->link_qso($save_result['qso_id'], $session_info['contest_session_id']);
+
+					// Keep the counter ahead of the log: if the operator overrode the
+					// serial in the form by hand, the counter would otherwise hand the
+					// same number out again.
+					if (!empty($command['data']['serial_sent'])) {
+						list($pool_band, $pool_operator) = $this->_serialPool($session_info, $command['data']['band'] ?? null);
+						$this->contesting_model->serial_bump(
+							$session_info['contest_session_id'],
+							$pool_band,
+							$pool_operator,
+							$command['data']['serial_sent']
+						);
+					}
+
 					// Notify worker clients about new QSO if worker is available
 					if ($this->worker_available) {
 						$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'sync_required']);
@@ -1332,6 +1398,54 @@ class Contesting extends CI_Controller {
 				$fresh = $this->contesting_model->get_session_info($session_info['contest_session_id']);
 				$response['data']['session_settings'] = $fresh;
 				$this->cache->save($cache_key, $response['data']['session_settings'], 3600); // Cache for 1h
+				break;
+
+			case 'serial_state':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				list($pool_band, $pool_operator) = $this->_serialPool($session_info, $request['band'] ?? null);
+				$response['data']['next_serial'] = $this->contesting_model->serial_peek(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator
+				);
+				break;
+
+			case 'claim_serial':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				list($pool_band, $pool_operator) = $this->_serialPool($session_info, $request['band'] ?? null);
+				$claimed = $this->contesting_model->serial_claim(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator
+				);
+
+				$response['data']['claimed_serial'] = ($claimed === false) ? null : $claimed;
+
+				// Let the other operators refresh their preview right away.
+				if ($claimed !== false && $this->worker_available) {
+					$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'serial_changed']);
+				}
+				break;
+
+			case 'release_serial':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				list($pool_band, $pool_operator) = $this->_serialPool($session_info, $request['band'] ?? null);
+				$released = $this->contesting_model->serial_release(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator,
+					$request['serial'] ?? 0
+				);
+				$response['data']['next_serial'] = $this->contesting_model->serial_peek(
+					$session_info['contest_session_id'],
+					$pool_band,
+					$pool_operator
+				);
+
+				// Only a successful rollback changes anything for the others.
+				if ($released && $this->worker_available) {
+					$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'serial_changed']);
+				}
 				break;
 
 			default:
@@ -1719,6 +1833,16 @@ class Contesting extends CI_Controller {
 		}
 		$fields = array_values(array_filter($decoded, fn($f) => in_array($f, $allowed)));
 		return $fields ?: ['exchange'];
+	}
+
+	/**
+	 * Normalise the serial number scope of a contest session.
+	 *
+	 * @param string|null $scope Raw POST value.
+	 * @return string Either 'station' or 'operator'.
+	 */
+	private function _parseSerialScope($scope) {
+		return in_array($scope, ['station', 'operator'], true) ? $scope : 'station';
 	}
 
 	private function _fieldsToLegacyType($fields) {

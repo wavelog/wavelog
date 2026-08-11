@@ -738,6 +738,12 @@
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
+                            <td><?= __("POTA park boundaries (GeoJSON)"); ?></td>
+                            <?php $timestamp = strtotime($pota_boundaries_update->last_run ?? ''); ?>
+                            <td><?php echo $pota_boundaries_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
+                            <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota_boundaries'); ?>"><?= __("Update"); ?></a></td>
+                        </tr>
+                        <tr>
                             <td><?= __("SCP file download"); ?></td>
                             <?php $timestamp = strtotime($scp_update->last_run ?? ''); ?>
                             <td><?php echo $scp_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>

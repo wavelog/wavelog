@@ -155,7 +155,6 @@ class Widgets extends CI_Controller {
 		} catch (\Exception $e) {
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User slug not specified");
-			$data['error'] = $e->getMessage();
 			$data['user_slug'] = $user_slug;
 			$data['nojs'] = $nojs;
 			$this->load->view('widgets/on_air', $data);
@@ -196,6 +195,7 @@ class Widgets extends CI_Controller {
 					$radio_obj->updated_at = $radio_data->timestamp;
 					$radio_obj->frequency_string = $this->prepare_frequency_string_for_widget($radio_data);
 					$radio_obj->mode = $radio_data->mode ?? '';
+					$radio_obj->radio_name = $widget_options->display_radio_name ? ($radio_data->radio ?? '') : null;
 					$radios_online[] = $radio_obj;
 				}
 			}
@@ -215,7 +215,7 @@ class Widgets extends CI_Controller {
 			$data['user_slug'] = $user_slug;
 			$data['nojs'] = $nojs;
 
-			$data['user_callsign'] = strtoupper($user->user_callsign);
+			$data['user_callsign'] = $this->get_active_station_callsign($user_id, $user->user_callsign);
 			$data['is_on_air'] = count($radios_online) > 0;
 			$data['radios_online'] = $radios_online;
 			$data['last_seen_text'] = $last_seen_text;
@@ -226,12 +226,81 @@ class Widgets extends CI_Controller {
 			$data['user_slug'] = $user_slug;
 			$data['nojs'] = $nojs;
 			$data['error'] = __("No CAT interfaced radios found. You need to have at least one radio interface configured.");
-			$data['user_callsign'] = strtoupper($user->user_callsign);
+			$data['user_callsign'] = $this->get_active_station_callsign($user_id, $user->user_callsign);
 			$data['is_on_air'] = false;
 			$data['radios_online'] = [];
 			$data['last_seen_text'] = null;
 			$this->load->view('widgets/on_air', $data);
 		}
+	}
+
+	/**
+	 * LoTW upload widget handler
+	 *
+	 * @param string $user_slug
+	 * @return void
+	 */
+	public function lotw_upload($user_slug = "") {
+
+		$this->load->model('themes_model');
+		$theme = $this->input->get('theme', TRUE);
+		if ($theme != null) {
+			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
+				$data['theme'] = $theme;
+			} else {
+				$data['theme'] = $this->config->item('option_theme');
+			}
+		} else {
+			$data['theme'] = $this->config->item('option_theme');
+		}
+
+		$text_size = $this->input->get('text_size', true) ?? 1;
+
+		if (empty($user_slug)) {
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User slug not specified");
+			$data['user_slug'] = '';
+			$this->load->view('widgets/lotw_upload', $data);
+			return;
+		}
+
+		try {
+			$user = $this->get_user_by_slug($user_slug);
+		} catch (\Exception $e) {
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User slug not specified");
+			$data['user_slug'] = $user_slug;
+			$this->load->view('widgets/lotw_upload', $data);
+			return;
+		}
+
+		$user_id = $user->user_id;
+		$widget_options = $this->get_last_lotw_upload_widget_options($user_id);
+
+		if ($widget_options->is_enabled === false) {
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User has disabled the LoTW upload widget");
+			$data['user_slug'] = $user_slug;
+			$this->load->view('widgets/lotw_upload', $data);
+			return;
+		}
+
+		$sortcriterion = $this->input->get('sort', TRUE);
+		if ($sortcriterion == 'call') {
+			$orderby = 'callsign';
+		} else {
+			$orderby = 'last_upload';
+		}
+		$this->load->model('Lotw_model');
+		$query = $this->Lotw_model->last_lotw_upload($user_id, $orderby);
+
+		$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+		$data['user_slug'] = $user_slug;
+
+		$data['user_callsign'] = strtoupper($user->user_callsign);
+		$data['lotw_uploads'] = $query->result();
+
+		$this->load->view('widgets/lotw_upload', $data);
 	}
 
 	public function on_air_ajax($user_slug = "") {
@@ -278,6 +347,7 @@ class Widgets extends CI_Controller {
 					$radio_obj->updated_at = $radio_data->timestamp;
 					$radio_obj->frequency_string = $this->prepare_frequency_string_for_widget($radio_data);
 					$radio_obj->mode = $radio_data->mode ?? '';
+					$radio_obj->radio_name = $widget_options->display_radio_name ? ($radio_data->radio ?? '') : null;
 					$radios_online[] = $radio_obj;
 				}
 			}
@@ -294,7 +364,7 @@ class Widgets extends CI_Controller {
 
 			$response = [
 				'success' => true,
-				'user_callsign' => strtoupper($user->user_callsign),
+				'user_callsign' => $this->get_active_station_callsign($user_id, $user->user_callsign),
 				'is_on_air' => count($radios_online) > 0,
 				'radios_online' => $radios_online,
 				'last_seen_text' => $last_seen_text,
@@ -305,7 +375,7 @@ class Widgets extends CI_Controller {
 		} else {
 			echo json_encode([
 				'success' => true,
-				'user_callsign' => strtoupper($user->user_callsign),
+				'user_callsign' => $this->get_active_station_callsign($user_id, $user->user_callsign),
 				'is_on_air' => false,
 				'radios_online' => [],
 				'last_seen_text' => null,
@@ -359,6 +429,7 @@ class Widgets extends CI_Controller {
 		$options->is_enabled = false;
 		$options->display_last_seen = false;
 		$options->display_only_most_recent_radio = true;
+		$options->display_radio_name = false;
 
 		if ($raw_widget_options === null) {
 			return $options;
@@ -381,9 +452,57 @@ class Widgets extends CI_Controller {
 			if ($key === "display_only_most_recent_radio") {
 				$options->display_only_most_recent_radio = $value === "true";
 			}
+			if ($key === "display_radio_name") {
+				$options->display_radio_name = $value === "true";
+			}
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Fetch and prepare user options for last lotw upload widget
+	 *
+	 * @return stdClass
+	 */
+	private function get_last_lotw_upload_widget_options($user_id) {
+		$raw_widget_options = $this->user_options_model->get_options('widget', null, $user_id)->result_array();
+
+		// default values
+		$options = new \stdClass();
+		$options->is_enabled = false;
+
+		if ($raw_widget_options === null) {
+			return $options;
+		}
+
+		foreach ($raw_widget_options as $opt_data) {
+			if ($opt_data["option_name"] !== 'last_lotw_upload') {
+				continue;
+			}
+
+			$key = $opt_data["option_key"];
+			$value = $opt_data["option_value"];
+
+			if ($key === "enabled") {
+				$options->is_enabled = $value === "true";
+			}
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Fetch the callsign of the user's active station location.
+	 * Falls back to the user's own callsign if no station is active.
+	 *
+	 * @return string
+	 */
+	private function get_active_station_callsign($user_id, $fallback_callsign) {
+		$active_station_id = $this->stations->find_active($user_id);
+		$station = $this->stations->profile($active_station_id)->row();
+
+		return strtoupper($station->station_callsign ?? $fallback_callsign);
 	}
 
 	/**

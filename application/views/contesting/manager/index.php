@@ -20,11 +20,13 @@
                     <p class="card-text"><?= __("Here you can manage your contests, create new, edit or export them in various formats.") ?></p>
                     <button class="btn btn-primary btn-sm" onclick="create_modal();"><i class="fas fa-plus"></i> <?= __("Create New Contest") ?></button>
                     <a class="btn btn-primary btn-sm" href="<?php echo site_url('contesting/quickstart'); ?>" target="_blank"><i class="fas fa-play"></i> <?= __("Quick Start") ?></a>
+                    <button class="btn btn-danger btn-sm" id="deleteSelectedSessions" data-bs-toggle="tooltip" title="<?= __("Delete selected contest sessions") ?>"><i class="fas fa-trash-alt"></i> <?= __("Delete Selected") ?></button>
                     <hr>
                     <div class="table-responsive" style="overflow: visible;">
                         <table id="user_contests_table" class="table-sm table table-hover table-striped table-condensed">
                             <thead>
                                 <tr>
+                                    <th><div class="form-check"><input class="form-check-input" type="checkbox" id="checkBoxAll" title="<?= __("Select all") ?>"></div></th>
                                     <th></th>
                                     <th scope="col"><?= __("Status") ?></th>
                                     <th scope="col"><?= __("Start") ?></th>
@@ -37,9 +39,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($my_contests as $row) {
-                                    $logging_token = $this->paths->create_contesting_logging_token($row['contest_session_id']);
-                                ?>
+                                <?php foreach ($my_contests as $row) { ?>
                                     <?php
                                     $now = time();
                                     $start = !empty($row['time_start']) ? strtotime($row['time_start']) : null;
@@ -56,7 +56,8 @@
                                     }
                                     ?>
                                     <tr>
-                                        <td><a target="_blank" href="<?php echo site_url('contesting/logging_engine') . "/" . $logging_token; ?>" class="btn btn-success btn-sm"><i class="fas fa-play"></i> <?= __("START") ?></a></td>
+                                        <td><div class="form-check"><input class="row-check form-check-input" type="checkbox" value="<?php echo $row['contest_session_id']; ?>"></div></td>
+                                        <td><a target="_blank" href="<?php echo site_url('contesting/logging_engine') . "/" . $row['contest_session_id']; ?>" class="btn btn-success btn-sm"><i class="fas fa-play"></i> <?= __("START") ?></a></td>
                                         <td><?php echo $status; ?></td>
                                         <td><?php echo !empty($row['time_start']) ? date($custom_date_format . ' H:i', strtotime($row['time_start'])) : '-'; ?></td>
                                         <td><?php echo !empty($row['time_end']) ? date($custom_date_format . ' H:i', strtotime($row['time_end'])) : '-'; ?></td>
@@ -113,10 +114,43 @@
     </div>
 </div>
 <div id="contestSessionModal-container"></div>
+
+<!-- Batch delete confirmation modal -->
+<div class="modal fade bg-black bg-opacity-50" id="contestBatchDeleteModal" tabindex="-1" aria-labelledby="contestBatchDeleteLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" id="contestBatchDeleteLabel"><i class="fas fa-trash-alt me-2"></i><?= __("Delete Contest Sessions"); ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= __("Close"); ?>" style="flex-shrink: 0;"></button>
+            </div>
+            <form action="<?= site_url('contesting/batch_delete_sessions'); ?>" method="post" id="contestBatchDeleteForm">
+                <div class="modal-body">
+                    <p class="text-muted"><?= __("Do you really want to delete the selected contest sessions?"); ?></p>
+                    <p><strong><?= __("Selected sessions: "); ?></strong><span id="batchDeleteCount"></span></p>
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" name="delete_qsos" id="batchDeleteQsosCheck" value="1">
+                        <label class="form-check-label text-danger" for="batchDeleteQsosCheck">
+                            <?= __("Also delete all QSOs logged in these sessions from the logbook"); ?>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer border-top">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt me-2"></i><?= __("Delete Sessions"); ?>
+                    </button>
+                </div>
+                <input type="hidden" name="ids" id="batchDeleteIds" value="">
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
     var custom_date_format = "<?php echo $custom_date_format ?>";
     var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
     var lang_error = "<?= __("Error") ?>";
+    var lang_contesting_no_selection = "<?= __("Please select at least one contest session.") ?>";
 
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.contest-export-dropdown').forEach(function (dropdownToggle) {

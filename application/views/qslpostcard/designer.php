@@ -48,8 +48,10 @@ $_step_pitch = $_metric ? '0.1'  : '0.05';   // row pitch
 		selected: <?= json_encode(__("selected")); ?>,
 		unsavedChangesTitle: <?= json_encode(__("Unsaved changes")); ?>,
 		unsavedChangesConfirm: <?= json_encode(__("Your current design has unsaved changes. Loading a different template will replace it. Continue?")); ?>,
+		unsavedLeaveConfirm: <?= json_encode(__("Your current design has unsaved changes. If you leave the page, those changes will be lost. Leave anyway?")); ?>,
 		discardChanges: <?= json_encode(__("Discard changes")); ?>,
 		keepEditing: <?= json_encode(__("Keep editing")); ?>,
+		leavePage: <?= json_encode(__("Leave page")); ?>,
 	};
 </script>
 

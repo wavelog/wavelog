@@ -324,6 +324,7 @@ class User extends CI_Controller {
 				$this->input->post('on_air_widget_enabled'),
 				$this->input->post('on_air_widget_display_last_seen'),
 				$this->input->post('on_air_widget_show_only_most_recent_radio'),
+				$this->input->post('on_air_widget_display_radio_name'),
 				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('user_dashboard_banner') ?? 'Y',
 				$this->input->post('user_dashboard_solar') ?? 'Y',
@@ -332,8 +333,9 @@ class User extends CI_Controller {
 				$this->input->post('oqrs_grouped_search_show_station_name') ?? 'off',
 				$this->input->post('oqrs_auto_matching') ?? 'on',
 				$this->input->post('oqrs_direct_auto_matching') ?? 'on',
-        			$this->input->post('user_dxwaterfall_enable') ?? 'N',
+				$this->input->post('user_dxwaterfall_enable') ?? 'N',
 				$this->input->post('user_qso_show_map') ?? 1,
+				$this->input->post('last_lotw_upload_widget_enabled'),
 				$this->input->post('clubstation') == '1' ? true : false)
 			) {
 				// Check for errors
@@ -1004,8 +1006,11 @@ class User extends CI_Controller {
 			$data['on_air_widget_enabled'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? "false");
 			$data['on_air_widget_display_last_seen'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_last_seen'), $this->uri->segment(3))->row()->option_value ?? "false");
 			$data['on_air_widget_show_only_most_recent_radio'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_only_most_recent_radio'), $this->uri->segment(3))->row()->option_value ?? "true");
+			$data['on_air_widget_display_radio_name'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_radio_name'), $this->uri->segment(3))->row()->option_value ?? "false");
 			$data['on_air_widget_url'] = site_url('widgets/on_air/' . $q->slug);
 			$data['qso_widget_display_qso_time'] = ($this->user_options_model->get_options('widget', array('option_name'=>'qso', 'option_key' => 'display_qso_time'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['last_lotw_upload_widget_enabled'] = ($this->user_options_model->get_options('widget', array('option_name'=>'last_lotw_upload', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['last_lotw_upload_widget_url'] = site_url('widgets/lotw_upload/' . $q->slug);
 			$data['csrf_token'] = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 
 			$this->load->view('interface_assets/header', $data);
@@ -1142,6 +1147,7 @@ class User extends CI_Controller {
 			$data['on_air_widget_enabled'] = $this->input->post('on_air_widget_enabled', true);
 			$data['on_air_widget_display_last_seen'] = $this->input->post('on_air_widget_display_last_seen', true);
 			$data['on_air_widget_show_only_most_recent_radio'] = $this->input->post('on_air_widget_show_only_most_recent_radio', true);
+			$data['on_air_widget_display_radio_name'] = $this->input->post('on_air_widget_display_radio_name', true);
 			$data['qso_widget_display_qso_time'] = $this->input->post('qso_widget_display_qso_time', true);
 			$data['global_oqrs_text'] = $this->input->post('global_oqrs_text', true);
 			$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search', true);
@@ -1150,6 +1156,7 @@ class User extends CI_Controller {
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
 			$data['oqrs_delivery_method'] = $this->input->post('oqrs_delivery_method', true);
 			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', true);
+			$data['last_lotw_upload_widget_enabled'] = $this->input->post('last_lotw_upload_widget_enabled', true);
 
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);

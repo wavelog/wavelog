@@ -15,6 +15,21 @@ if (empty($token) || !isset($_SESSION['installer_token']) || !hash_equals($_SESS
 	exit;
 }
 
+// PHP locks the session file for the whole request, so a long running step would
+// block every other call - including the debug log polling of run.php. Only these
+// handlers write to $_SESSION, everything else releases the lock right away.
+$session_writers = ['run_config_file', 'run_cron_token', 'run_installer_lock'];
+$needs_session = false;
+foreach ($session_writers as $key) {
+	if (isset($_POST[$key])) {
+		$needs_session = true;
+		break;
+	}
+}
+if (!$needs_session) {
+	session_write_close();
+}
+
 // Target for Ajax Calls
 
 require_once('includes/install_config/install_lib.php');

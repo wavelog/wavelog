@@ -90,39 +90,80 @@ class Update_model extends CI_Model {
         }
     }
 
-    function sota() {
+	function sota() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
-        $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
+        $csvfile = 'https://storage.sota.org.uk/summitslist.csv';
 
-        $sotafile = './updates/sota.txt';
-
-        $csvhandle = fopen($csvfile, "r");
-        if ($csvhandle === FALSE) {
-            return  "Something went wrong with fetching the SOTA file";
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $csvfile);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+        $csv = curl_exec($ch);
+        if ($csv === FALSE) {
+            return "Something went wrong with fetching the SOTA file";
         }
 
-        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\'); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\'); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\');
-        $sotafilehandle = fopen($sotafile, 'w');
-
-        if ($sotafilehandle === FALSE) {
-            return "FAILED: Could not write to sota.txt file";
+        $stream = fopen('php://temp', 'r+');
+        if ($stream === FALSE) {
+            return "FAILED: Could not open temp stream";
         }
+        fwrite($stream, $csv);
+        rewind($stream);
 
         $nCount = 0;
-        do {
-            if ($data[0]) {
-                fwrite($sotafilehandle, $data[0] . PHP_EOL);
-                $nCount++;
-            }
-        } while ($data = fgetcsv($csvhandle, 1000, ",", '"', '\\'));
+        $batch = [];
+        $first = true;
+		$second = true;
 
-        fclose($csvhandle);
-        fclose($sotafilehandle);
+        $this->db->trans_start();
+        $this->db->empty_table('sota_directory');
+
+        while (($cols = fgetcsv($stream, 0, ",", '"', '\\')) !== FALSE) {
+            if ($first) {
+                $first = false;
+                continue;
+            }
+
+			if ($second) {
+                $second = false;
+                continue;
+            }
+
+            $batch[] = [
+                'reference'      => isset($cols[0]) ? trim($cols[0]) : null,
+                'name'           => isset($cols[3]) ? trim($cols[3]) : null,
+                'altitude'       => isset($cols[4]) ? trim($cols[4]) : null,
+                'lat'            => $this->_wwff_coord($cols[9] ?? null),
+                'lon'            => $this->_wwff_coord($cols[8] ?? null),
+                'valid_from'     => $this->_dir_date($cols[12] ?? null, '!d/m/Y'),
+                'valid_till'     => $this->_dir_date($cols[13] ?? null, '!d/m/Y'),
+                'last_activated' => $this->_dir_date($cols[15] ?? null, '!d/m/Y'),
+                'last_activator' => isset($cols[16]) ? trim($cols[16]) : null,
+            ];
+            $nCount++;
+
+            if (count($batch) >= 1000) {
+                $this->_sota_upsert_batch($batch);
+                $batch = [];
+            }
+        }
+
+        fclose($stream);
+
+        if (!empty($batch)) {
+            $this->_sota_upsert_batch($batch);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            return "FAILED: import rolled back";
+        }
 
         if ($nCount > 0) {
             return "DONE: " . number_format($nCount) . " SOTA's saved";
@@ -132,41 +173,74 @@ class Update_model extends CI_Model {
     }
 
     function wwff() {
-        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
-
-        $wwfffile = './updates/wwff.txt';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
         $csv = curl_exec($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the WWFF file";
         }
 
-        $wwfffilehandle = fopen($wwfffile, 'w');
-        if ($wwfffilehandle === FALSE) {
-            return "FAILED: Could not write to wwff.txt file";
+        $stream = fopen('php://temp', 'r+');
+        if ($stream === FALSE) {
+            return "FAILED: Could not open temp stream";
         }
+        fwrite($stream, $csv);
+        rewind($stream);
 
-        $data = str_getcsv($csv, "\n", '"', '\\');
         $nCount = 0;
-        foreach ($data as $idx => $row) {
-            if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',', '"', '\\');
-            if ($row[0]) {
-                fwrite($wwfffilehandle, $row[0] . PHP_EOL);
-                $nCount++;
+        $batch = [];
+        $first = true;
+
+        $this->db->trans_start();
+        $this->db->empty_table('wwff_directory');
+
+        while (($cols = fgetcsv($stream, 0, ",", '"', '\\')) !== FALSE) {
+            if ($first) {
+                $first = false;
+                continue;
+            }
+            $ref = strtoupper(trim($cols[0] ?? ''));
+            if ($ref === '') {
+                continue;
+            }
+
+            $batch[] = [
+                'reference'      => $ref,
+                'name'           => isset($cols[2]) ? trim($cols[2]) : null,
+                'lat'            => $this->_wwff_coord($cols[10] ?? null),
+                'lon'            => $this->_wwff_coord($cols[11] ?? null),
+                'valid_from'     => $this->_dir_date($cols[13] ?? null, '!Y-m-d'),
+                'valid_till'     => $this->_dir_date($cols[14] ?? null, '!Y-m-d'),
+                'last_activated' => $this->_dir_date($cols[25] ?? null, '!Y-m-d'),
+            ];
+            $nCount++;
+
+            if (count($batch) >= 1000) {
+                $this->_wwff_upsert_batch($batch);
+                $batch = [];
             }
         }
 
-        fclose($wwfffilehandle);
+        fclose($stream);
+
+        if (!empty($batch)) {
+            $this->_wwff_upsert_batch($batch);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            return "FAILED: import rolled back";
+        }
 
         if ($nCount > 0) {
             return "DONE: " . number_format($nCount) . " WWFF's saved";
@@ -174,6 +248,80 @@ class Update_model extends CI_Model {
             return "FAILED: Empty file";
         }
     }
+
+    private function _wwff_coord($val) {
+        if ($val === null) {
+            return null;
+        }
+        $val = trim($val);
+        if ($val === '' || !is_numeric($val)) {
+            return null;
+        }
+        $f = (float) $val;
+        return $f == 0 ? null : $f;
+    }
+
+    // Normalises a directory date cell to a storage-ready DATE (Y-m-d) string.
+    // Returns null for empty cells, unparseable values, or the zero-date
+    // sentinel some sources use (e.g. WWFF's "0000-00-00"), which we treat as
+    // "no constraint". $fmt is the createFromFormat mask (e.g. '!d/m/Y' for
+    // SOTA, '!Y-m-d' for WWFF).
+    private function _dir_date($val, $fmt) {
+        if ($val === null) {
+            return null;
+        }
+        $val = trim($val);
+        if ($val === '' || $val === '0000-00-00') {
+            return null;
+        }
+        $dt = DateTime::createFromFormat($fmt, $val);
+        if ($dt === false) {
+            return null;
+        }
+        return $dt->format('Y-m-d');
+    }
+
+	private function _pota_upsert_batch($batch) {
+        $placeholders = [];
+        $bindings = [];
+        foreach ($batch as $b) {
+            $placeholders[] = '(?, ?, ?, ?, ?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['active'], $b['entityid'], $b['locationdesc'], $b['lat'], $b['lon'], $b['gridsquare']);
+        }
+
+        $sql = 'INSERT IGNORE INTO pota_directory (reference, name, active, entityid, locationdesc, lat, lon, gridsquare) VALUES '
+            . implode(', ', $placeholders);
+
+        $this->db->query($sql, $bindings);
+    }
+
+    private function _wwff_upsert_batch($batch) {
+        $placeholders = [];
+        $bindings = [];
+        foreach ($batch as $b) {
+            $placeholders[] = '(?, ?, ?, ?, ?, ?, ?)';
+            array_push($bindings, $b['reference'], $b['name'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till'], $b['last_activated']);
+        }
+
+        $sql = 'INSERT IGNORE INTO wwff_directory (reference, name, lat, lon, valid_from, valid_till, last_activated) VALUES '
+            . implode(', ', $placeholders);
+
+        $this->db->query($sql, $bindings);
+    }
+
+	private function _sota_upsert_batch($batch) {
+		$placeholders = [];
+		$bindings = [];
+		foreach ($batch as $b) {
+			$placeholders[] = '(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			array_push($bindings, $b['reference'], $b['name'], $b['altitude'], $b['lat'], $b['lon'], $b['valid_from'], $b['valid_till'], $b['last_activated'], $b['last_activator']);
+		}
+
+		$sql = 'INSERT IGNORE INTO sota_directory (reference, name, altitude, lat, lon, valid_from, valid_till, last_activated, last_activator) VALUES '
+			. implode(', ', $placeholders);
+
+		$this->db->query($sql, $bindings);
+	}
 
     function hamqsl(){
 	    // This downloads and stores hamqsl propagation data XML file
@@ -208,46 +356,257 @@ class Update_model extends CI_Model {
 	    }
     }
 
-    function pota() {
+	function pota() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
-        $csvfile = 'https://pota.app/all_parks.csv';
-
-        $potafile = './updates/pota.txt';
+        $csvfile = 'https://pota.app/all_parks_ext.csv';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
         $csv = curl_exec($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the POTA file";
         }
 
-        $potafilehandle = fopen($potafile, 'w');
-        if ($potafilehandle === FALSE) {
-            return "FAILED: Could not write to pota.txt file";
+        $stream = fopen('php://temp', 'r+');
+        if ($stream === FALSE) {
+            return "FAILED: Could not open temp stream";
         }
-        $data = str_getcsv($csv, "\n", '"', '\\');
+        fwrite($stream, $csv);
+        rewind($stream);
+
         $nCount = 0;
-        foreach ($data as $idx => $row) {
-            if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',', '"', '\\');
-            if ($row[0]) {
-                fwrite($potafilehandle, $row[0] . PHP_EOL);
-                $nCount++;
+        $batch = [];
+        $first = true;
+
+        $this->db->trans_start();
+        $this->db->empty_table('pota_directory');
+
+        while (($cols = fgetcsv($stream, 0, ",", '"', '\\')) !== FALSE) {
+            if ($first) {
+                $first = false;
+                continue;
+            }
+
+            $batch[] = [
+                'reference'    => isset($cols[0]) ? trim($cols[0]) : null,
+                'name'         => isset($cols[1]) ? trim($cols[1]) : null,
+				'active'       => isset($cols[2]) ? trim($cols[2]) : null,
+				'entityid'     => isset($cols[3]) ? trim($cols[3]) : null,
+				'locationdesc' => isset($cols[4]) ? trim($cols[4]) : null,
+				'lat'          => $this->_wwff_coord($cols[5] ?? null),
+                'lon'          => $this->_wwff_coord($cols[6] ?? null),
+                'gridsquare'   => isset($cols[7]) ? trim($cols[7]) : null,
+            ];
+            $nCount++;
+
+            if (count($batch) >= 1000) {
+                $this->_pota_upsert_batch($batch);
+                $batch = [];
             }
         }
 
-        fclose($potafilehandle);
+        fclose($stream);
+
+        if (!empty($batch)) {
+            $this->_pota_upsert_batch($batch);
+        }
+
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            return "FAILED: import rolled back";
+        }
 
         if ($nCount > 0) {
             return "DONE: " . number_format($nCount) . " POTA's saved";
         } else {
             return "FAILED: Empty file";
+        }
+    }
+
+    private $pota_boundary_sources = ['DE', 'AT', 'CH', 'CZ', 'DK', 'LU', 'LI'];
+
+    function pota_boundaries() {
+        $this->load->model('cron_model');
+        $this->cron_model->set_last_run('update_pota_boundaries');
+
+         set_time_limit(0);                       // 7 files, the big ones are slow
+
+        // Peak is ~24 MB on the largest file (DE, 1436 parks), so 256M is ample.
+        // Raise-only: never shrink a host that is already configured higher.
+        $cur = trim((string) ini_get('memory_limit'));
+        if ($cur !== '' && $cur !== '-1') {
+            $bytes = (int) $cur;
+            switch (strtolower(substr($cur, -1))) {
+                case 'g': $bytes *= 1024 * 1024 * 1024; break;
+                case 'm': $bytes *= 1024 * 1024; break;
+                case 'k': $bytes *= 1024; break;
+            }
+            if ($bytes < 256 * 1024 * 1024) { ini_set('memory_limit', '256M'); }
+        }
+
+        $total = 0;
+        $errors = [];
+        $per_source = [];
+
+        // CI keeps every executed statement in $this->db->queries with the binds
+        // already substituted, so the whole ~150 MB of geometry would be retained
+        // for the rest of the request. Nothing reads it (the profiler is never
+        // enabled), so switch it off for the import and restore it afterwards --
+        // the controller still redirects to /debug in this same request.
+        $prev_save_queries = $this->db->save_queries;
+        $this->db->save_queries = FALSE;
+        $txn_open = false;
+        try {
+            foreach ($this->pota_boundary_sources as $cc) {
+                $url = 'https://pota-map.info/geojson/' . $cc . '.geojson';
+                $tmp = tempnam(sys_get_temp_dir(), 'pota_geo_');
+                if ($tmp === false) {
+                    $errors[] = $cc . ': tempnam failed';
+                    continue;
+                }
+                if (!$this->_download_to_file($url, $tmp)) {
+                    $errors[] = $cc . ': download failed';
+                    @unlink($tmp);
+                    continue;
+                }
+
+                $this->db->trans_begin();
+                $txn_open = true;
+                $this->db->query('DELETE FROM pota_boundaries WHERE source = ?', [$cc]);
+
+                $count = 0;
+                $last_ref = '';
+                $batch = [];
+                $batch_bytes = 0;
+                // Batch on accumulated bytes, not on row count: park geometry is
+                // very uneven (DE averages 60 kB but DE-1211 alone is 1.3 MB), so
+                // a fixed row count could overshoot max_allowed_packet.
+                $flush = function () use (&$batch, &$batch_bytes) {
+                    if ($batch) {
+                        $this->db->insert_batch('pota_boundaries', $batch);
+                        $batch = [];
+                        $batch_bytes = 0;
+                    }
+                };
+
+                foreach ($this->_stream_geojson_features($tmp) as $feature) {
+                    if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') { continue; }
+                    $ref = $feature['properties']['id'] ?? null;
+                    $geom = $feature['geometry'] ?? null;
+                    if ($ref === null || $geom === null) { continue; }
+
+                    $json = json_encode($geom);
+                    $batch[] = ['reference' => $ref, 'geom' => $json, 'source' => $cc];
+                    $batch_bytes += strlen($json);
+                    $last_ref = $ref;
+                    $count++;
+
+                    // 4 MB keeps every emitted statement well under the 16 MB
+                    // default max_allowed_packet even when outsized parks cluster.
+                    if ($batch_bytes >= 4 * 1024 * 1024) { $flush(); }
+                }
+                $flush();   // remainder
+
+                if ($count === 0) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
+                } elseif ($this->db->trans_status() === FALSE) {
+                    // last_query() is empty while save_queries is off, so name the
+                    // reference we got to instead -- more useful than the raw SQL.
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $cc . ': db error at/near ' . $last_ref . ' — rolled back';
+                } else {
+                    $this->db->trans_commit();
+                    $txn_open = false;
+                    $per_source[] = $cc . '=' . number_format($count);
+                    $total += $count;
+                }
+                @unlink($tmp);
+            }
+        } catch (Throwable $e) {
+            if ($txn_open) { $this->db->trans_rollback(); }
+            throw $e;
+        } finally {
+            $this->db->save_queries = $prev_save_queries;
+        }
+
+        if ($total > 0) {
+            $msg = 'DONE: ' . number_format($total) . ' park boundaries saved'
+                . ' (' . implode(', ', $per_source) . ')';
+            if ($errors) { $msg .= ' | errors: ' . implode('; ', $errors); }
+            return $msg;
+        }
+        return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
+    }
+
+    private function _download_to_file($url, $path) {
+        $fp = fopen($path, 'wb');
+        if ($fp === false) { return false; }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 600);
+        curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        fclose($fp);
+        return $code == 200;
+    }
+
+    private function _stream_geojson_features($filepath) {
+        // Extract each Feature object from a GeoJSON FeatureCollection.
+        //
+        // The file is read whole (the largest source, DE, is ~95 MB) and the
+        // features are pulled out with a recursive PCRE pattern that matches one
+        // balanced JSON object at a time, string-aware. We deliberately do NOT
+        // walk the text byte-by-byte in PHP: on some builds (notably the Windows
+        // XAMPP PHP) single-character string indexing runs at only ~180K chars/s,
+        // which made a 95 MB file take 10+ minutes. PCRE does the same scan in C
+        // in well under a second (~0.13 s for DE). Each feature is decoded and
+        // yielded on its own, so only one feature is held in memory at a time.
+        $json = file_get_contents($filepath);
+        if ($json === false) { return; }
+
+        // Start matching inside the "features":[ array -- matching from the very
+        // start of the document would swallow the whole FeatureCollection as a
+        // single object.
+        $p = strpos($json, '"features"');
+        if ($p === false) { return; }
+        $bracket = strpos($json, '[', $p);
+        if ($bracket === false) { return; }
+
+        // Raise PCRE's safety ceilings for the large subject; harmless for the
+        // rest of the request, so not restored.
+        ini_set('pcre.backtrack_limit', '100000000');
+        ini_set('pcre.recursion_limit', '100000000');
+
+        // Alternation order matters: a string literal first (so braces that
+        // appear inside strings don't break the depth count), then ordinary
+        // non-brace characters (numbers, [], commas, whitespace, ...), then a
+        // nested object via (?R). Possessive quantifiers keep it linear.
+        $pattern = '/\{(?:[^{}"\\\\]++|"(?:\\\\.|[^"\\\\])*"|(?R))*\}/';
+
+        $off = $bracket + 1;
+        $len = strlen($json);
+        while ($off < $len) {
+            if (!preg_match($pattern, $json, $m, PREG_OFFSET_CAPTURE, $off)) {
+                break;
+            }
+            $feat = json_decode($m[0][0], true);
+            if (is_array($feat)) { yield $feat; }
+            $off = $m[0][1] + strlen($m[0][0]);
         }
     }
 
@@ -446,7 +805,6 @@ class Update_model extends CI_Model {
 		$response = curl_exec($curl);
 		$err  = curl_error($curl);
 		$http = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-		curl_close($curl);
 
 		if ($response === false || $http !== 200) {
 			log_message('error', 'CelesTrak OMM fetch failed (HTTP ' . $http . '): ' . $err);

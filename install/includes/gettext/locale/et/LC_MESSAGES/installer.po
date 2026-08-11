@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-14 15:06+0000\n"
+"POT-Creation-Date: 2026-07-29 15:45+0000\n"
 "PO-Revision-Date: 2024-10-21 06:05+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/"
@@ -735,78 +735,78 @@ msgstr "Ilma käesoleva moodulita Wavelogi installeerija ei tööta!"
 msgid "Please install the required modules and restart the webserver."
 msgstr "Palun installeerige vajalikud moodulid ja taaskäivitage veebiserver."
 
-#: install/run.php:22
+#: install/run.php:30
 msgid "Installation"
 msgstr "Installeerimine"
 
-#: install/run.php:24
+#: install/run.php:32
 msgid "Please wait..."
 msgstr "Palun oodake..."
 
-#: install/run.php:27
+#: install/run.php:35
 msgid "Copy config.php to application/config/"
 msgstr "Kopeerige config.php kausta application/config/"
 
-#: install/run.php:30
+#: install/run.php:38
 msgid "Copy database.php to application/config/"
 msgstr "Kopeerige database.php kausta application/config/"
 
-#: install/run.php:33
+#: install/run.php:41
 msgid "Creating database tables"
 msgstr "Loon andmebaasi tabeleid"
 
-#: install/run.php:36
+#: install/run.php:44
 msgid "Running database migrations"
 msgstr "Käib andmebaasi migratsioon"
 
-#: install/run.php:39
+#: install/run.php:47
 msgid "Updating DXCC data"
 msgstr "DXCC andmete uuendamine"
 
-#: install/run.php:47
+#: install/run.php:55
 msgid "Lock the installer"
 msgstr "Lukusta installeerija"
 
-#: install/run.php:51
+#: install/run.php:59
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
 "Kõik installeerimise sammud lõpetatud. Suuname sisselogimise lehele %s "
 "sekundi pärast."
 
-#: install/run.php:54
+#: install/run.php:62
 msgid "Done. Go to the user login ->"
 msgstr "Valmis. Liikuge sisselogimise lehele ->"
 
-#: install/run.php:58 install/run.php:144
+#: install/run.php:66 install/run.php:168
 msgid "Show detailled debug log"
 msgstr "Kuva üksikasjalik silumislogi"
 
-#: install/run.php:146
+#: install/run.php:170
 msgid "Hide detailled debug log"
 msgstr "Peitke üksikasjalik silumislogi"
 
-#: install/run.php:174
+#: install/run.php:198
 msgid "Could not create application/config/config.php"
 msgstr "application/config/config.php loomine ebaõnnestus"
 
-#: install/run.php:209
+#: install/run.php:233
 msgid "Could not create application/config/database.php"
 msgstr "application/config/database.php loomine ebaõnnestus"
 
-#: install/run.php:243
+#: install/run.php:267
 msgid "Could not create database tables"
 msgstr "Andmebaasi tabelite loomine ebaõnnestus"
 
-#: install/run.php:273
+#: install/run.php:297
 msgid "Could not run database migrations"
 msgstr "Andmebaasi migratsioon ebaõnnestus"
 
-#: install/run.php:301
+#: install/run.php:350
 msgid "Could not update DXCC data"
 msgstr "DXCC andmete uuendamine ebaõnnestus"
 
-#: install/run.php:333
+#: install/run.php:382
 msgid "Could not create install/.lock file"
 msgstr "install/.lock file loomine ebaõnnestus"
 

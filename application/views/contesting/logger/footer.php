@@ -52,6 +52,8 @@ foreach (array_keys($components ?? []) as $c) {
 }
 </script>
 
+<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/callsign_validation.js'); ?>"></script>
+
 <?php
 // Load Contest Engine as ES6 Module - all dependencies are auto-imported
 ?>
