@@ -250,8 +250,8 @@ class User_Model extends CI_Model {
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
 		$user_winkey, $on_air_widget_enabled, $on_air_widget_display_last_seen, $on_air_widget_show_only_most_recent_radio, $on_air_widget_display_radio_name,
 		$qso_widget_display_qso_time, $dashboard_banner, $dashboard_solar, $global_oqrs_text, $oqrs_grouped_search,
-		$oqrs_grouped_search_show_station_name, $oqrs_auto_matching, $oqrs_direct_auto_matching,$user_dxwaterfall_enable, $user_qso_show_map, $clubstation = 0,
-		$last_lotw_upload_widget_enabled, $external_account = null) {
+		$oqrs_grouped_search_show_station_name, $oqrs_auto_matching, $oqrs_direct_auto_matching,$user_dxwaterfall_enable, $user_qso_show_map,
+		$last_lotw_upload_widget_enabled, $clubstation = 0, $external_account = null) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
