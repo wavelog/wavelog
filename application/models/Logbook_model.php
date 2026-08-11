@@ -2762,16 +2762,7 @@ class Logbook_model extends CI_Model {
 	 */
 
 	function set_qrzcom_modified($qso_id) {
-		$data = array(
-			'COL_QRZCOM_QSO_UPLOAD_STATUS' => 'M'
-		);
-
-		$this->db->where('COL_PRIMARY_KEY', $qso_id);
-		$this->db->group_start();
-		$this->db->where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'Y');
-		$this->db->or_where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'I');
-		$this->db->group_end();
-		$this->db->update($this->config->item('table_name'), $data);
+		$this->set_modified_status($qso_id, 'COL_QRZCOM_QSO_UPLOAD_STATUS');
 	}
 
 	/**
@@ -2783,14 +2774,26 @@ class Logbook_model extends CI_Model {
 	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
 	 */
 	function set_clublog_modified($qso_id) {
+		$this->set_modified_status($qso_id, 'COL_CLUBLOG_QSO_UPLOAD_STATUS');
+	}
+
+	/**
+	 * Set a confirmation upload status to 'modified'.
+	 *
+	 * Only mark rows that were already uploaded before or were invalid.
+	 *
+	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
+	 * @param string $column The status column to update.
+	 */
+	private function set_modified_status($qso_id, $column) {
 		$data = array(
-			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => 'M'
+			$column => 'M'
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $qso_id);
 		$this->db->group_start();
-		$this->db->where('COL_CLUBLOG_QSO_UPLOAD_STATUS', 'Y');
-		$this->db->or_where('COL_CLUBLOG_QSO_UPLOAD_STATUS', 'I');
+		$this->db->where($column, 'Y');
+		$this->db->or_where($column, 'I');
 		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
