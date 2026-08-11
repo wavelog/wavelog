@@ -345,8 +345,8 @@ class Header_auth extends CI_Controller {
             $mapped['oqrs_direct_auto_matching']              ?? '',
             $mapped['user_dxwaterfall_enable']                ?? '',
             $mapped['user_qso_show_map']                      ?? '',
-            0,                                                   // clubstation
             $mapped['last_lotw_upload_widget_enabled']        ?? '',
+            0,                                                   // clubstation
             $external_identifier,                                // external_account
         );
 
