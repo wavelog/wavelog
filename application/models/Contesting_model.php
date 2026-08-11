@@ -38,8 +38,8 @@ class Contesting_model extends CI_Model {
 	 * @param int $contest_session_id The ID of the contest session.
 	 * @return bool If user is associated with contest
 	 */
-	function check_user_contest($contest_session_id) {
-		$user_id = $this->session->userdata('user_id');
+	function check_user_contest($contest_session_id, $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');
 
 		$sql = "SELECT 
 					COUNT(*) AS cnt
@@ -59,8 +59,8 @@ class Contesting_model extends CI_Model {
 	 * @param int $contest_session_id The ID of the contest session.
 	 * @return array|null The contest session information or null if not found.
 	 */
-	function get_session_info($contest_session_id) {
-		$user_id = $this->session->userdata('user_id');
+	function get_session_info($contest_session_id, $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');
 
 		$binding = [];
 		$sql = "SELECT cs.id AS contest_session_id,
@@ -68,6 +68,8 @@ class Contesting_model extends CI_Model {
 				cs.time_end AS time_end,
 				cs.comment AS comment,
 				cs.settings AS settings,
+				cs.creation_date AS creation_date,
+				cs.last_modified AS last_modified,
 				c.name AS contest_name,
 				c.id AS contest_id,
 				c.adifname AS contest_adifname,
@@ -139,8 +141,8 @@ class Contesting_model extends CI_Model {
 	 * @param array $parameter_array Session settings (exchangetype, copyexchangeto, exchangefields, callbook_lookup, custom_name, serial_per_band, serial_scope). Missing keys fall back to defaults.
 	 * @return bool True on success, false on failure. If $return_id is true, returns the inserted session ID instead.
 	 */
-	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $parameter_array = []) {
-		$user_id = $this->session->userdata('user_id');
+	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $parameter_array = [], $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');
 
 		$settings = $this->build_session_settings($parameter_array);
 
@@ -177,12 +179,12 @@ class Contesting_model extends CI_Model {
 	 * @param array $parameter_array Session settings (exchangetype, copyexchangeto, exchangefields, callbook_lookup, custom_name, serial_per_band, serial_scope). Missing keys fall back to defaults.
 	 * @return bool True on success, false on failure.
 	 */
-	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $parameter_array = []) {
+	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $parameter_array = [], $user_id = null) {
 		if (!clubaccess_check(9)) {
 			$this->session->set_flashdata('error', __("Officers must edit contests."));
 			redirect('contesting');
 		}
-		$user_id = $this->session->userdata('user_id');
+		$user_id = $user_id ?? $this->session->userdata('user_id');
 
 		$settings = $this->build_session_settings($parameter_array);
 
@@ -211,12 +213,12 @@ class Contesting_model extends CI_Model {
 	 * @param int $contest_session_id The ID of the contest session to delete.
 	 * @return bool True on success, false on failure.
 	 */
-	function delete_contest_session($contest_session_id, $delete_qsos = false) {
+	function delete_contest_session($contest_session_id, $delete_qsos = false, $user_id = null) {
 		if (!clubaccess_check(9)) {
 			$this->session->set_flashdata('error', __("Only clubstation officers can delete."));
 			redirect('contesting');
 		}
-		$user_id = $this->session->userdata('user_id');
+		$user_id = $user_id ?? $this->session->userdata('user_id');
 
 		if ($delete_qsos) {
 			$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
@@ -438,6 +440,151 @@ class Contesting_model extends CI_Model {
 		$table = $this->config->item('table_name');
 		$this->db->where('COL_PRIMARY_KEY', $qso_id)->update($table, $fields);
 		return $this->db->affected_rows() > 0;
+	}
+
+	/**
+	 * Retrieves contest sessions for the API v2 contest resource: full rows
+	 * (including settings JSON and timestamps) with catalog names and QSO
+	 * counts, optionally filtered by station and id watermark.
+	 *
+	 * @param int        $user_id
+	 * @param int[]|null $station_ids Restrict to these stations (null = all).
+	 * @param int        $since_id    Only sessions with id > $since_id.
+	 * @param int|null   $session_id  Single session by id (null = all).
+	 * @return array List of session rows.
+	 */
+	function get_sessions_for_user($user_id, $station_ids = null, $since_id = 0, $session_id = null) {
+		$bindings = [$user_id, (int) $since_id];
+		$constraints = '';
+
+		if (!empty($station_ids)) {
+			$constraints .= ' AND cs.station_id IN (' . implode(',', array_fill(0, count($station_ids), '?')) . ')';
+			$bindings = array_merge($bindings, array_map('intval', $station_ids));
+		}
+		if ($session_id !== null) {
+			$constraints .= ' AND cs.id = ?';
+			$bindings[] = (int) $session_id;
+		}
+
+		$sql = "SELECT
+					cs.id,
+					cs.time_start,
+					cs.time_end,
+					cs.station_id,
+					cs.comment,
+					cs.settings,
+					cs.creation_date,
+					cs.last_modified,
+					c.name AS contest_name,
+					c.adifname AS contest_adifname,
+					(SELECT COUNT(*) FROM contest_qsos cq
+						WHERE cq.contest_session_id = cs.id) AS qso_count
+				FROM contest_session cs
+				JOIN contest c ON c.id = cs.contest_adif_id
+				WHERE cs.user_id = ?
+				AND cs.id > ?
+				{$constraints}
+				ORDER BY cs.time_start DESC, cs.id DESC";
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	/**
+	 * Filters a list of QSO ids down to the ones owned by the given user -
+	 * the batched counterpart to Logbook_model::check_qso_is_accessible(),
+	 * with the same station_profile join semantics.
+	 *
+	 * @param int[] $qso_ids
+	 * @param int   $user_id
+	 * @return int[] The subset of $qso_ids the user owns.
+	 */
+	function filter_owned_qso_ids(array $qso_ids, $user_id) {
+		if (empty($qso_ids)) {
+			return [];
+		}
+		$placeholders = implode(',', array_fill(0, count($qso_ids), '?'));
+		$sql = "SELECT lb.COL_PRIMARY_KEY AS qso_id
+				FROM " . $this->config->item('table_name') . " lb
+				JOIN station_profile sp ON sp.station_id = lb.station_id
+				WHERE lb.COL_PRIMARY_KEY IN ({$placeholders})
+				AND sp.user_id = ?";
+
+		$query = $this->db->query($sql, array_merge(array_map('intval', $qso_ids), [$user_id]));
+		$owned = [];
+		foreach ($query->result() as $row) {
+			$owned[] = (int) $row->qso_id;
+		}
+		return $owned;
+	}
+
+	/**
+	 * Returns the contest session each of the given QSOs is linked to - the
+	 * batched counterpart to get_linked_contest().
+	 *
+	 * @param int[] $qso_ids
+	 * @return array qso_id => contest_session_id (unlinked QSOs are absent).
+	 */
+	function get_linked_sessions(array $qso_ids) {
+		if (empty($qso_ids)) {
+			return [];
+		}
+		$placeholders = implode(',', array_fill(0, count($qso_ids), '?'));
+		$query = $this->db->query(
+			"SELECT qso_id, contest_session_id FROM contest_qsos
+				WHERE qso_id IN ({$placeholders})",
+			array_map('intval', $qso_ids)
+		);
+		$linked = [];
+		foreach ($query->result() as $row) {
+			$linked[(int) $row->qso_id] = (int) $row->contest_session_id;
+		}
+		return $linked;
+	}
+
+	/**
+	 * Links several QSOs to a contest session in one statement - the batched
+	 * counterpart to link_qso(). The caller is responsible for ownership and
+	 * duplicate checks (see get_linked_sessions()).
+	 *
+	 * @param int   $contest_session_id
+	 * @param int[] $qso_ids
+	 * @return int Number of links created.
+	 */
+	function link_qsos($contest_session_id, array $qso_ids) {
+		if (empty($qso_ids)) {
+			return 0;
+		}
+		$rows = [];
+		foreach ($qso_ids as $qso_id) {
+			$rows[] = [
+				'contest_session_id' => (int) $contest_session_id,
+				'qso_id'             => (int) $qso_id,
+			];
+		}
+		$this->db->insert_batch('contest_qsos', $rows);
+		return count($rows);
+	}
+
+	/**
+	 * Unlinks several QSOs from a contest session in one statement - the
+	 * batched counterpart to unlink_qso(). The QSOs stay in the logbook.
+	 *
+	 * @param int   $contest_session_id
+	 * @param int[] $qso_ids
+	 * @return int Number of links removed.
+	 */
+	function unlink_qsos($contest_session_id, array $qso_ids) {
+		if (empty($qso_ids)) {
+			return 0;
+		}
+		$placeholders = implode(',', array_fill(0, count($qso_ids), '?'));
+		$this->db->query(
+			"DELETE FROM contest_qsos
+				WHERE contest_session_id = ? AND qso_id IN ({$placeholders})",
+			array_merge([(int) $contest_session_id], array_map('intval', $qso_ids))
+		);
+		return $this->db->affected_rows();
 	}
 
 	/**

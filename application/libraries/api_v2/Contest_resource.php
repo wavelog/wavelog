@@ -23,6 +23,9 @@ require_once __DIR__ . '/Api_v2_resource.php';
  *   PATCH  /contest/{id}   Partial update; link/unlink QSOs
  *   DELETE /contest/{id}   Delete a session (QSOs stay in the log by default)
  *
+ * All database access lives in the models (Contesting_model,
+ * Contest_admin_model); this class only validates, orchestrates and formats.
+ *
  * The contest itself is addressed by its ADIF name ("contest", e.g.
  * "DARC-WAG") because the numeric catalog ids are instance-local; responses
  * always carry both. QSO links are addressed by the QSO primary key, as used
@@ -38,20 +41,19 @@ class Contest_resource extends Api_v2_resource {
 	protected $scope = 'contest';
 
 	/**
-	 * Session settings defaults, mirroring
-	 * Contesting_model::build_session_settings(). The keys double as the
-	 * whitelist of what the API accepts; unknown keys are rejected rather
-	 * than silently dropped, so a client notices its typo.
+	 * Session settings keys the API accepts, mirroring the defaults in
+	 * Contesting_model::build_session_settings(). Unknown keys are rejected
+	 * rather than silently dropped, so a client notices its typo.
 	 */
-	protected const SETTINGS_DEFAULTS = [
-		'exchangetype'    => 'Serial',
-		'copyexchangeto'  => '',
-		'exchangefields'  => ['serial'],
-		'callbook_lookup' => true,
-		'custom_name'     => '',
-		'serial_per_band' => false,
-		'serial_scope'    => 'station',
+	protected const SETTINGS_KEYS = [
+		'exchangetype', 'copyexchangeto', 'exchangefields', 'callbook_lookup',
+		'custom_name', 'serial_per_band', 'serial_scope',
 	];
+
+	public function __construct($auth, $body = null) {
+		parent::__construct($auth, $body);
+		$this->CI->load->model('contesting_model');
+	}
 
 	/** Registry label for this resource's scope (see scope_definitions()). */
 	protected static function scope_labels() {
@@ -76,25 +78,12 @@ class Contest_resource extends Api_v2_resource {
 			return;
 		}
 
-		$since_id = (int) $this->param('since_id', 0);
-
-		$placeholders = implode(',', array_fill(0, count($station_ids), '?'));
-		$bindings = array_merge([$this->user_id()], $station_ids, [$since_id]);
-		$query = $this->CI->db->query(
-			"SELECT cs.*, c.name AS contest_name, c.adifname AS contest_adifname,
-					(SELECT COUNT(*) FROM contest_qsos cq
-						WHERE cq.contest_session_id = cs.id) AS qso_count
-				FROM contest_session cs
-				JOIN contest c ON c.id = cs.contest_adif_id
-				WHERE cs.user_id = ?
-				AND cs.station_id IN ({$placeholders})
-				AND cs.id > ?
-				ORDER BY cs.time_start DESC, cs.id DESC",
-			$bindings
+		$rows = $this->CI->contesting_model->get_sessions_for_user(
+			$this->user_id(), $station_ids, (int) $this->param('since_id', 0)
 		);
 
 		$sessions = [];
-		foreach ($query->result() as $row) {
+		foreach ($rows as $row) {
 			$sessions[] = $this->format_session($row);
 		}
 		$this->CI->api_v2_response->respond($sessions);
@@ -111,13 +100,10 @@ class Contest_resource extends Api_v2_resource {
 		$session = $this->format_session($row);
 
 		$qso_ids = [];
-		$query = $this->CI->db->query(
-			"SELECT qso_id FROM contest_qsos WHERE contest_session_id = ? ORDER BY qso_id",
-			[(int) $id]
-		);
-		foreach ($query->result() as $link) {
-			$qso_ids[] = (int) $link->qso_id;
+		foreach ($this->CI->contesting_model->get_session_qsos((int) $id) as $qso) {
+			$qso_ids[] = (int) $qso['qso_id'];
 		}
+		sort($qso_ids);
 		$session['qso_ids'] = $qso_ids;
 
 		$this->CI->api_v2_response->respond($session);
@@ -129,6 +115,10 @@ class Contest_resource extends Api_v2_resource {
 	 * Create a contest session. Required: contest (ADIF name) or contest_id,
 	 * time_start, time_end, station_id. Optional: comment, settings (object),
 	 * qso_ids (owned QSOs to link right away).
+	 *
+	 * The settings are merged over the module defaults by
+	 * Contesting_model::build_session_settings(), exactly like a session
+	 * created in the web UI.
 	 */
 	public function create() {
 		$this->require_write();
@@ -141,27 +131,19 @@ class Contest_resource extends Api_v2_resource {
 		$time_end   = $this->parse_datetime_field($body, 'time_end', true);
 		$station_id = $this->resolve_station_field($body, true);
 		$comment    = isset($body['comment']) ? (string) $body['comment'] : '';
-		// merge over the defaults, exactly like build_session_settings() does
-		// for sessions created in the web UI
-		$settings   = array_merge(self::SETTINGS_DEFAULTS,
-			$this->parse_settings($body['settings'] ?? []));
+		$settings   = $this->parse_settings($body['settings'] ?? []);
 
-		$this->CI->db->query(
-			"INSERT INTO contest_session
-				(user_id, contest_adif_id, time_start, time_end, station_id, comment, settings)
-				VALUES (?, ?, ?, ?, ?, ?, ?)",
-			[$this->user_id(), $contest_id, $time_start, $time_end, $station_id,
-				$comment, json_encode($settings)]
+		$session_id = (int) $this->CI->contesting_model->create_contest_session(
+			$contest_id, $time_start, $time_end, $station_id, $comment,
+			true, $settings, $this->user_id()
 		);
-		$session_id = (int) $this->CI->db->insert_id();
 
 		$link_result = null;
 		if (!empty($body['qso_ids'])) {
 			$link_result = $this->link_qsos($session_id, $body['qso_ids']);
 		}
 
-		$row = $this->require_owned_session($session_id);
-		$session = $this->format_session($row);
+		$session = $this->format_session($this->require_owned_session($session_id));
 		if ($link_result !== null) {
 			$session['linked']  = $link_result['linked'];
 			$session['skipped'] = $link_result['skipped'];
@@ -188,50 +170,44 @@ class Contest_resource extends Api_v2_resource {
 		$body = $this->body();
 		$this->require_session_scalars($body);
 
-		$fields = [];
-		$bindings = [];
-		if (isset($body['contest']) || isset($body['contest_id'])) {
-			$fields[] = 'contest_adif_id = ?';
-			$bindings[] = $this->resolve_contest($body, true);
-		}
-		if (array_key_exists('time_start', $body)) {
-			$fields[] = 'time_start = ?';
-			$bindings[] = $this->parse_datetime_field($body, 'time_start', true);
-		}
-		if (array_key_exists('time_end', $body)) {
-			$fields[] = 'time_end = ?';
-			$bindings[] = $this->parse_datetime_field($body, 'time_end', true);
-		}
-		if (array_key_exists('station_id', $body)) {
-			$fields[] = 'station_id = ?';
-			$bindings[] = $this->resolve_station_field($body, true);
-		}
-		if (array_key_exists('comment', $body)) {
-			$fields[] = 'comment = ?';
-			$bindings[] = (string) $body['comment'];
-		}
-		if (array_key_exists('settings', $body)) {
-			// merge over the stored settings so a partial object keeps the
-			// rest; only the incoming keys are validated - stored settings may
-			// legitimately carry keys a future version added
-			$stored = json_decode($row->settings ?? '', true) ?? [];
-			$fields[] = 'settings = ?';
-			$bindings[] = json_encode(array_merge(
-				$stored, $this->parse_settings($body['settings'] ?? [])
-			));
-		}
-
-		if (empty($fields) && empty($body['link_qso_ids']) && empty($body['unlink_qso_ids'])) {
+		$has_fields = isset($body['contest']) || isset($body['contest_id'])
+			|| array_key_exists('time_start', $body)
+			|| array_key_exists('time_end', $body)
+			|| array_key_exists('station_id', $body)
+			|| array_key_exists('comment', $body)
+			|| array_key_exists('settings', $body);
+		if (!$has_fields && empty($body['link_qso_ids']) && empty($body['unlink_qso_ids'])) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
-		if (!empty($fields)) {
-			$bindings[] = (int) $id;
-			$bindings[] = $this->user_id();
-			$this->CI->db->query(
-				"UPDATE contest_session SET " . implode(', ', $fields) .
-				" WHERE id = ? AND user_id = ?",
-				$bindings
+		if ($has_fields) {
+			// Merge the request over the stored state and hand the full set to
+			// update_contest_session(), which the web UI uses as well. Only the
+			// incoming settings keys are validated - stored settings may
+			// legitimately carry keys a future version added.
+			$contest_id = (isset($body['contest']) || isset($body['contest_id']))
+				? $this->resolve_contest($body, true)
+				: $this->catalog_id_of($row);
+			$time_start = array_key_exists('time_start', $body)
+				? $this->parse_datetime_field($body, 'time_start', true)
+				: $row->time_start;
+			$time_end = array_key_exists('time_end', $body)
+				? $this->parse_datetime_field($body, 'time_end', true)
+				: $row->time_end;
+			$station_id = array_key_exists('station_id', $body)
+				? $this->resolve_station_field($body, true)
+				: (int) $row->station_id;
+			$comment = array_key_exists('comment', $body)
+				? (string) $body['comment']
+				: ($row->comment ?? '');
+			$stored_settings = json_decode($row->settings ?? '', true) ?? [];
+			$settings = array_key_exists('settings', $body)
+				? array_merge($stored_settings, $this->parse_settings($body['settings'] ?? []))
+				: $stored_settings;
+
+			$this->CI->contesting_model->update_contest_session(
+				(int) $id, $contest_id, $time_start, $time_end, $station_id,
+				$comment, $settings, $this->user_id()
 			);
 		}
 
@@ -240,11 +216,12 @@ class Contest_resource extends Api_v2_resource {
 			$link_result = $this->link_qsos((int) $id, $body['link_qso_ids']);
 		}
 		if (!empty($body['unlink_qso_ids'])) {
-			$unlinked = $this->unlink_qsos((int) $id, $body['unlink_qso_ids']);
+			$unlinked = $this->CI->contesting_model->unlink_qsos(
+				(int) $id, $this->validate_qso_ids($body['unlink_qso_ids'], 'unlink_qso_ids')
+			);
 		}
 
-		$row = $this->require_owned_session($id);
-		$session = $this->format_session($row);
+		$session = $this->format_session($this->require_owned_session($id));
 		if ($link_result !== null) {
 			$session['linked']  = $link_result['linked'];
 			$session['skipped'] = $link_result['skipped'];
@@ -270,25 +247,8 @@ class Contest_resource extends Api_v2_resource {
 		$this->require_owned_session($id);
 
 		$delete_qsos = filter_var($this->param('delete_qsos', 'false'), FILTER_VALIDATE_BOOLEAN);
-		if ($delete_qsos) {
-			$this->CI->load->model('logbook_model');
-			$query = $this->CI->db->query(
-				"SELECT qso_id FROM contest_qsos WHERE contest_session_id = ?",
-				[(int) $id]
-			);
-			foreach ($query->result() as $link) {
-				$this->CI->logbook_model->delete($link->qso_id);
-			}
-			// contest_qsos rows cascade away with the logbook rows
-		} else {
-			$this->CI->db->query(
-				"DELETE FROM contest_qsos WHERE contest_session_id = ?", [(int) $id]
-			);
-		}
-
-		$this->CI->db->query(
-			"DELETE FROM contest_session WHERE id = ? AND user_id = ?",
-			[(int) $id, $this->user_id()]
+		$this->CI->contesting_model->delete_contest_session(
+			(int) $id, $delete_qsos, $this->user_id()
 		);
 
 		$this->CI->api_v2_response->no_content();
@@ -304,51 +264,59 @@ class Contest_resource extends Api_v2_resource {
 		if (!is_numeric($id)) {
 			throw new Api_v2_exception('validation_error', 'Session id must be numeric', 400);
 		}
-		$query = $this->CI->db->query(
-			"SELECT cs.*, c.name AS contest_name, c.adifname AS contest_adifname,
-					(SELECT COUNT(*) FROM contest_qsos cq
-						WHERE cq.contest_session_id = cs.id) AS qso_count
-				FROM contest_session cs
-				JOIN contest c ON c.id = cs.contest_adif_id
-				WHERE cs.id = ? AND cs.user_id = ?
-				LIMIT 1",
-			[(int) $id, $this->user_id()]
+		$rows = $this->CI->contesting_model->get_sessions_for_user(
+			$this->user_id(), null, 0, (int) $id
 		);
-		$row = $query->row();
-		if ($row === null) {
+		if (empty($rows)) {
 			throw new Api_v2_exception('not_found', 'Contest session not found', 404);
 		}
-		return $row;
+		return $rows[0];
 	}
 
 	/**
-	 * Cast a session row to its public shape. The settings JSON is exposed as
-	 * an object so a sync client can mirror a session 1:1.
+	 * Catalog id of a session row (get_sessions_for_user() carries the ADIF
+	 * name; resolve it back for update_contest_session()).
+	 */
+	protected function catalog_id_of($row) {
+		$this->CI->load->model('contest_admin_model');
+		$contest = $this->CI->contest_admin_model->contest_by_adifname($row->contest_adifname);
+		if ($contest === null) {
+			// Cannot happen for a stored session; guard against catalog edits.
+			throw new Api_v2_exception('validation_error', 'Unknown contest: ' . $row->contest_adifname, 400);
+		}
+		return (int) $contest->id;
+	}
+
+	/**
+	 * Cast a session row (get_sessions_for_user()) to its public shape. The
+	 * settings are exposed merged over the module defaults, matching what
+	 * get_session_info() reports to the web UI.
 	 */
 	protected function format_session($row) {
-		return [
-			'id'          => (int) $row->id,
-			'contest'     => $row->contest_adifname,
-			'contest_name'=> $row->contest_name,
-			'time_start'  => $row->time_start,
-			'time_end'    => $row->time_end,
-			'station_id'  => (int) $row->station_id,
-			'comment'     => $row->comment ?? '',
-			'settings'    => $this->settings_object($row->settings),
-			'qso_count'   => (int) ($row->qso_count ?? 0),
-			'created_at'  => $row->creation_date ?? null,
-			'updated_at'  => $row->last_modified ?? null,
+		$defaults = [
+			'exchangetype'    => 'Serial',
+			'copyexchangeto'  => '',
+			'exchangefields'  => ['serial'],
+			'callbook_lookup' => true,
+			'custom_name'     => '',
+			'serial_per_band' => false,
+			'serial_scope'    => 'station',
 		];
-	}
+		$settings = array_merge($defaults, json_decode($row->settings ?? '', true) ?? []);
 
-	/**
-	 * Decode the stored settings JSON for a response. An empty result is
-	 * emitted as {} rather than [] - PHP's empty array would otherwise
-	 * change the JSON type between "no settings" and "some settings".
-	 */
-	protected function settings_object($raw) {
-		$settings = json_decode($raw ?? '', true);
-		return (is_array($settings) && !empty($settings)) ? $settings : new stdClass();
+		return [
+			'id'           => (int) $row->id,
+			'contest'      => $row->contest_adifname,
+			'contest_name' => $row->contest_name,
+			'time_start'   => $row->time_start,
+			'time_end'     => $row->time_end,
+			'station_id'   => (int) $row->station_id,
+			'comment'      => $row->comment ?? '',
+			'settings'     => $settings,
+			'qso_count'    => (int) ($row->qso_count ?? 0),
+			'created_at'   => $row->creation_date ?? null,
+			'updated_at'   => $row->last_modified ?? null,
+		];
 	}
 
 	/**
@@ -366,15 +334,14 @@ class Contest_resource extends Api_v2_resource {
 	 * catalog ids are instance-local) or "contest_id". Returns the catalog id.
 	 */
 	protected function resolve_contest($body, $required) {
+		$this->CI->load->model('contest_admin_model');
+
 		$adifname = isset($body['contest']) ? trim((string) $body['contest']) : '';
 		$id = isset($body['contest_id']) ? $body['contest_id'] : null;
 
 		if ($adifname !== '') {
-			$query = $this->CI->db->query(
-				"SELECT id FROM contest WHERE adifname = ? LIMIT 1", [$adifname]
-			);
-			$row = $query->row();
-			if ($row === null) {
+			$contest = $this->CI->contest_admin_model->contest_by_adifname($adifname);
+			if ($contest === null) {
 				throw new Api_v2_exception(
 					'validation_error',
 					'Unknown contest: ' . $adifname,
@@ -382,17 +349,15 @@ class Contest_resource extends Api_v2_resource {
 					['field' => 'contest']
 				);
 			}
-			return (int) $row->id;
+			return (int) $contest->id;
 		}
 
 		if ($id !== null) {
 			if (!is_numeric($id)) {
 				throw new Api_v2_exception('validation_error', 'contest_id must be numeric', 400);
 			}
-			$query = $this->CI->db->query(
-				"SELECT id FROM contest WHERE id = ? LIMIT 1", [(int) $id]
-			);
-			if ($query->row() === null) {
+			$contest = $this->CI->contest_admin_model->contest((int) $id);
+			if (empty($contest)) {
 				throw new Api_v2_exception(
 					'validation_error',
 					'Unknown contest_id: ' . (int) $id,
@@ -471,20 +436,20 @@ class Contest_resource extends Api_v2_resource {
 
 	/**
 	 * Validate a settings object against the known session settings keys.
-	 * Mirrors Contesting_model::build_session_settings(): missing keys keep
-	 * their defaults when the session is used, unknown keys are a 400.
+	 * Only the incoming keys are checked; merging over defaults respectively
+	 * the stored settings happens in the caller.
 	 */
 	protected function parse_settings($settings) {
 		if (!is_array($settings)) {
 			throw new Api_v2_exception('validation_error', 'settings must be an object', 400);
 		}
-		$unknown = array_diff(array_keys($settings), array_keys(self::SETTINGS_DEFAULTS));
+		$unknown = array_diff(array_keys($settings), self::SETTINGS_KEYS);
 		if (!empty($unknown)) {
 			throw new Api_v2_exception(
 				'validation_error',
 				'Unknown settings key(s): ' . implode(', ', $unknown),
 				400,
-				['allowed' => array_keys(self::SETTINGS_DEFAULTS)]
+				['allowed' => self::SETTINGS_KEYS]
 			);
 		}
 		return $settings;
@@ -501,21 +466,10 @@ class Contest_resource extends Api_v2_resource {
 	protected function link_qsos($session_id, $qso_ids) {
 		$ids = $this->validate_qso_ids($qso_ids, 'qso_ids');
 
-		// One lookup for the existing links, one batched insert - a contest
-		// session can easily hold thousands of QSOs.
-		$placeholders = implode(',', array_fill(0, count($ids), '?'));
-		$query = $this->CI->db->query(
-			"SELECT qso_id, contest_session_id FROM contest_qsos
-				WHERE qso_id IN ({$placeholders})",
-			$ids
-		);
-		$existing = [];
-		foreach ($query->result() as $link) {
-			$existing[(int) $link->qso_id] = (int) $link->contest_session_id;
-		}
+		$existing = $this->CI->contesting_model->get_linked_sessions($ids);
 
 		$skipped = [];
-		$rows = [];
+		$to_link = [];
 		foreach ($ids as $qso_id) {
 			if (isset($existing[$qso_id])) {
 				if ($existing[$qso_id] !== (int) $session_id) {
@@ -523,35 +477,15 @@ class Contest_resource extends Api_v2_resource {
 				}
 				continue; // already in this session: idempotent no-op
 			}
-			$rows[] = ['contest_session_id' => (int) $session_id, 'qso_id' => $qso_id];
+			$to_link[] = $qso_id;
 		}
-		if (!empty($rows)) {
-			$this->CI->db->insert_batch('contest_qsos', $rows);
-		}
-		return ['linked' => count($rows), 'skipped' => $skipped];
+		$linked = $this->CI->contesting_model->link_qsos((int) $session_id, $to_link);
+		return ['linked' => $linked, 'skipped' => $skipped];
 	}
 
 	/**
-	 * Unlink QSOs from a session (the QSOs stay in the logbook).
-	 *
-	 * @return int Number of removed links.
-	 */
-	protected function unlink_qsos($session_id, $qso_ids) {
-		$ids = $this->validate_qso_ids($qso_ids, 'unlink_qso_ids');
-		if (empty($ids)) {
-			return 0;
-		}
-		$placeholders = implode(',', array_fill(0, count($ids), '?'));
-		$this->CI->db->query(
-			"DELETE FROM contest_qsos
-				WHERE contest_session_id = ? AND qso_id IN ({$placeholders})",
-			array_merge([(int) $session_id], $ids)
-		);
-		return $this->CI->db->affected_rows();
-	}
-
-	/**
-	 * Validate a QSO id list from the body: numeric, owned by the token user.
+	 * Validate a QSO id list from the body: numeric, owned by the token user
+	 * (batched ownership check, see Contesting_model::filter_owned_qso_ids()).
 	 *
 	 * @return int[]
 	 */
@@ -571,22 +505,7 @@ class Contest_resource extends Api_v2_resource {
 			return [];
 		}
 
-		// Ownership exactly like Logbook_model::check_qso_is_accessible(),
-		// batched into one query instead of one round-trip per QSO
-		$table = $this->CI->config->item('table_name');
-		$qso_placeholders = implode(',', array_fill(0, count($ids), '?'));
-		$query = $this->CI->db->query(
-			"SELECT q.COL_PRIMARY_KEY
-				FROM {$table} q
-				JOIN station_profile sp ON sp.station_id = q.station_id
-				WHERE q.COL_PRIMARY_KEY IN ({$qso_placeholders})
-				AND sp.user_id = ?",
-			array_merge($ids, [$this->user_id()])
-		);
-		$owned = [];
-		foreach ($query->result() as $row) {
-			$owned[] = (int) $row->COL_PRIMARY_KEY;
-		}
+		$owned = $this->CI->contesting_model->filter_owned_qso_ids($ids, $this->user_id());
 		$foreign = array_diff($ids, $owned);
 		if (!empty($foreign)) {
 			throw new Api_v2_exception(
