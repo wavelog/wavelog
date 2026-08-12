@@ -803,7 +803,9 @@ class QSO extends CI_Controller {
 		switch ($type) {
 		case 'grid':
 			$grid = $this->input->post('locator', TRUE);
-			$this->load->library('Qra');
+			if (!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
 			if ($this->qra->validate_grid($grid, 'grid')) {
 				return true;
 			} else {
@@ -813,7 +815,9 @@ class QSO extends CI_Controller {
 			break;
 		case 'vucc':
 			$grid = $this->input->post('vucc_grids', TRUE);
-			$this->load->library('Qra');
+			if (!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
 			if ($this->qra->validate_grid($grid, 'vucc')) {
 				return true;
 			} else {
@@ -822,7 +826,9 @@ class QSO extends CI_Controller {
 			}
 			break;
 		default:
-			$this->load->library('Qra');
+			if (!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
 			if ($this->qra->validate_grid($grid, 'any')) {
 				return true;
 			} else {
