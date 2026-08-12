@@ -58,6 +58,7 @@
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
+    var lang_qrbcalc_empty_loc = '<?= __("At least one of the locators is empty. Calculation not possible. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
