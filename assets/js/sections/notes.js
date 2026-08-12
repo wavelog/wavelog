@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					data.forEach(function(note) {
 						tbody += '<tr>' +
 							'<td>' + (note.cat ? note.cat : '') + '</td>' +
-							'<td><a href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '">' + (note.title ? note.title : '') + '</a></td>' +
+							'<td><a ' + (note.cat === 'Contacts' ? 'class="callsign"' : '') + ' href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '">' + (note.title ? note.title : '') + '</a></td>' +
 							'<td>' + (note.last_modified ? note.last_modified : '') + '</td>' +
 						'</tr>';
 					});
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var preview = plainContent.length > 100 ? plainContent.substring(0, 100) + '…' : plainContent;
                     tbody += '<tr>' +
                         '<td class="text-center">' + getTranslatedCategory(note.cat) + '</td>' +
-                        '<td class="text-start"><a href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '" title="' + preview.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" data-bs-toggle="tooltip">' + (note.title ? note.title : '') + '</a></td>' +
+                        '<td class="text-start"><a ' + (note.cat === 'Contacts' ? 'class="callsign"' : '') + ' href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '" title="' + preview.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" data-bs-toggle="tooltip">' + (note.title ? note.title : '') + '</a></td>' +
                         '<td class="text-center" data-utc="' + (note.creation_date ? note.creation_date : '') + '"></td>' +
                         '<td class="text-center" data-utc="' + (note.last_modified ? note.last_modified : '') + '"></td>' +
                         '<td class="text-center">' +
