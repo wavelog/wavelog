@@ -125,7 +125,43 @@
                         <td><?php echo $row->COL_RST_RCVD; ?> <?php if ($row->COL_SRX) { ?>(<?php printf("%03d", $row->COL_SRX);?>)<?php } ?> <?php if ($row->COL_SRX_STRING) { ?>(<?php echo $row->COL_SRX_STRING;?>)<?php } ?></td>
                     </tr>
 
-                    <?php if($row->COL_GRIDSQUARE != null) { ?>
+                    <?php $ant_path = $row->COL_ANT_PATH ?? null; ?>
+                    <?php if($row->COL_VUCC_GRIDS != null) { ?>
+                    <tr>
+                        <th scope="row"><?= __("Gridsquare"); ?> (Multi):</th>
+                        <td>
+                        <?php
+                           if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
+                              echo "<span class='fw-bolder text-warning'>";
+                           }
+                           echo $row->COL_VUCC_GRIDS;
+                           if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
+                              echo " <i class='fa fa-question-circle' aria-hidden='true' data-bs-toggle='tooltip' title='".__("A single gridsquare was entered into the VUCC gridsquares field which should contain two or four gridsquares instead of a single grid.")."'></i>";
+                              echo "</span>";
+                           }
+                           echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
+                        ?>
+                        </td>
+                            <?php
+                                // Cacluate Distance
+                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base, $row->COL_ANT_PATH ?? null);
+
+                                switch ($measurement_base) {
+                                    case 'M':
+                                        $distance .= " mi";
+                                        break;
+                                    case 'K':
+                                        $distance .= " km";
+                                        break;
+                                    case 'N':
+                                        $distance .= " nmi";
+                                        break;
+                                }
+                                echo $distance;
+                            ?>
+                    </tr>
+
+                    <?php } else if($row->COL_GRIDSQUARE != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Gridsquare"); ?>:</th>
                         <td><?php echo $row->COL_GRIDSQUARE; ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator('<?php echo $row->station_gridsquare . '\',\'' . $row->COL_GRIDSQUARE; ?>')" aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button></td>
@@ -135,7 +171,6 @@
                     <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
                     <?php
                         if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
-                            $ant_path = $row->COL_ANT_PATH ?? null;
                             $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
                             if ($distance != false) { ?>
                                 <tr>
@@ -176,42 +211,6 @@
                                     </td>
                                 </tr>
                         <?php } ?>
-                    <?php } ?>
-
-                    <?php if($row->COL_VUCC_GRIDS != null) { ?>
-                    <tr>
-                        <th scope="row"><?= __("Gridsquare"); ?> (Multi):</th>
-                        <td>
-                        <?php
-                           if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
-                              echo "<span class='fw-bolder text-warning'>";
-                           }
-                           echo $row->COL_VUCC_GRIDS;
-                           if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
-                              echo " <i class='fa fa-question-circle' aria-hidden='true' data-bs-toggle='tooltip' title='".__("A single gridsquare was entered into the VUCC gridsquares field which should contain two or four gridsquares instead of a single grid.")."'></i>";
-                              echo "</span>";
-                           }
-                           echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
-                        ?>
-                        </td>
-                            <?php
-                                // Cacluate Distance
-                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base, $row->COL_ANT_PATH ?? null);
-
-                                switch ($measurement_base) {
-                                    case 'M':
-                                        $distance .= " mi";
-                                        break;
-                                    case 'K':
-                                        $distance .= " km";
-                                        break;
-                                    case 'N':
-                                        $distance .= " nmi";
-                                        break;
-                                }
-                                echo $distance;
-                            ?>
-                    </tr>
                     <?php } ?>
 
                     <?php if($row->COL_STATE != null) { ?>
