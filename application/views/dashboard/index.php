@@ -485,7 +485,7 @@ function echo_table_header_col($name) {
 				<table class="table table-striped mb-0" aria-label="<?= __("DXCCs Breakdown"); ?>">
 					<tr>
 						<th scope="row" width="50%"><?= __("Worked"); ?></th>
-						<td width="50%"><?php echo $total_countries; ?></td>
+						<td width="50%"><?php echo $total_countries; ?> <?php echo (isset($total_deleted_countries) && $total_deleted_countries > 0) ? "<span title=\"". __("Deleted DXCCs") ."\" aria-label=\"i". __("Deleted DXCCs") .": ".$total_deleted_countries."\" data-bs-toggle=\"tooltip\">(".$total_deleted_countries.")</span>" : ''; ?></td>
 					</tr>
 					<tr>
 						<th scope="row" width="50%"><?= __("Confirmed"); ?></th>
