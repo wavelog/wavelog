@@ -28,6 +28,8 @@ class User_Options extends CI_Controller {
 	}
 
 	public function get_fav() {
+		session_write_close();
+
 		$result=$this->user_options_model->get_options('Favourite');
 		$jsonout=[];
 		foreach($result->result() as $options) {
@@ -126,6 +128,7 @@ class User_Options extends CI_Controller {
 	}
 
 	public function get_qrg_units() {
+		session_write_close();
 
 		$qrg_units = [];
 

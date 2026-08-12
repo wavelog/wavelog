@@ -1451,6 +1451,8 @@ class Logbook extends CI_Controller {
 	function qralatlngjson() {
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
+		session_write_close();
+
 		$qra = xss_clean($this->input->post('qra'));
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
