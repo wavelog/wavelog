@@ -152,7 +152,7 @@ class QSO extends CI_Controller {
 		$this->form_validation->set_rules('callsign', 'Callsign', 'required');
 		$this->form_validation->set_rules('band', 'Band', 'required');
 		$this->form_validation->set_rules('mode', 'Mode', 'required');
-		$this->form_validation->set_rules('locator', 'Locator', 'callback_check_locator');
+		$this->form_validation->set_rules('locator', 'Locator', 'callback_check_locator[any]');
 
 		// [eQSL default msg] GET user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg',array('option_name'=>'key_station_id','option_key'=>$data['active_station_profile']))->result();
@@ -495,10 +495,10 @@ class QSO extends CI_Controller {
 		$this->form_validation->set_rules('time_off', 'End Date', 'required');
 		$this->form_validation->set_rules('id', 'qso ID', 'required');
 		if (strtoupper(trim($this->input->post('locator')) ?? '') != '') {
-			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
+			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator[grid]');
 		}
 		if (strtoupper(trim($this->input->post('vucc_grids')) ?? '') != '') {
-			$this->form_validation->set_rules('vucc_grids', 'VUCC Grids', 'callback_check_grids');
+			$this->form_validation->set_rules('vucc_grids', 'VUCC Grids', 'callback_check_locator[vucc]');
 		}
 
 		$edit_result=array();
@@ -797,25 +797,37 @@ class QSO extends CI_Controller {
 		echo json_encode($this->config->item('lotw_unsupported_prop_modes'));
 	}
 
-	function check_locator($grid) {
-		$grid = $this->input->post('locator', TRUE);
-		$this->load->library('Qra');
-		if ($this->qra->validate_grid($grid, 'grid')) {
-			return true;
-		} else {
-			$this->form_validation->set_message('check_locator', sprintf(__("Please check value for gridsquare (%s)"), strtoupper($grid)));
-			return false;
-		}
-	}
-
-	function check_grids($grid) {
-		$grid = $this->input->post('vucc_grids', TRUE);
-		$this->load->library('Qra');
-		if ($this->qra->validate_grid($grid, 'vucc')) {
-			return true;
-		} else {
-			$this->form_validation->set_message('check_grids', sprintf(__("Please check value for VUCC gridsquare (%s)"), strtoupper($grid)));
-			return false;
+	function check_locator($grid, $type) {
+		switch ($type) {
+		case 'grid':
+			$grid = $this->input->post('locator', TRUE);
+			$this->load->library('Qra');
+			if ($this->qra->validate_grid($grid, 'grid')) {
+				return true;
+			} else {
+				$this->form_validation->set_message('check_locator', sprintf(__("Please check value for gridsquare (%s)"), strtoupper($grid)));
+				return false;
+			}
+			break;
+		case 'vucc':
+			$grid = $this->input->post('vucc_grids', TRUE);
+			$this->load->library('Qra');
+			if ($this->qra->validate_grid($grid, 'vucc')) {
+				return true;
+			} else {
+				$this->form_validation->set_message('check_locator', sprintf(__("Please check value for VUCC gridsquare (%s)"), strtoupper($grid)));
+				return false;
+			}
+			break;
+		default:
+			$this->load->library('Qra');
+			if ($this->qra->validate_grid($grid, 'any')) {
+				return true;
+			} else {
+				$this->form_validation->set_message('check_locator', sprintf(__("Please check value for gridsquare (%s)"), strtoupper($grid)));
+				return false;
+			}
+			break;
 		}
 	}
 
