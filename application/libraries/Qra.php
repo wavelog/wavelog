@@ -306,7 +306,7 @@ function get_bearing($lat1, $lon1, $lat2, $lon2, $ant_path = null) {
 }
 
 function qra2latlong($strQRA) {
-	$strQRA = preg_replace('/\s+/', '', $strQRA);
+	$strQRA = preg_replace('/\s+/', '', ($strQRA ?? ''));
 	if (substr_count($strQRA, ',') > 0) {
 		$grids = explode(',', $strQRA);
 		if (count($grids) != 2 && count($grids) != 4) {
