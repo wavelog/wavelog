@@ -490,8 +490,8 @@ function echo_table_header_col($name) {
 					<tr>
 						<th scope="row" width="50%"><?= __("Confirmed"); ?></th>
 						<td width="50%">
-							<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?></span> /
-							<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?></span>
+						<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?> <?php echo (isset($total_deleted_countries_confirmed_paper) && $total_deleted_countries_confirmed_paper > 0) ? "(".$total_deleted_countries_confirmed_paper.")" : ""; ?></span> /
+						<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?> <?php echo (isset($total_deleted_countries_confirmed_lotw) && $total_deleted_countries_confirmed_lotw > 0) ? "(".$total_deleted_countries_confirmed_lotw.")" : ""; ?></span>
 						</td>
 					</tr>
 					<tr>
