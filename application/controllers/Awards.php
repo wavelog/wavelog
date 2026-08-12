@@ -1364,7 +1364,7 @@ class Awards extends CI_Controller {
 		];
 
         $this->load->model('counties');
-        $this->load->model('modes');
+        $this->load->model('logbookadvanced_model');
         $this->load->model('bands');
         $qsl_sources = $this->counties_qsl_sources_from_post();
         $band = $this->counties_band_from_post();
@@ -1373,12 +1373,11 @@ class Awards extends CI_Controller {
         $data['qsl_sources'] = $qsl_sources;
         // Band/Mode filter options: a multi-select dropdown (same widget as
         // the Satellite Pass page's satellite picker) sourced from the
-        // bands actually worked/configured for this award and the ADIF
-        // modes active on this install, rather than a bespoke Phone/CW/
-        // Digital grouping.
+        // bands and modes actually logged, rather than a bespoke Phone/CW/
+        // Digital grouping or every ADIF-active mode on the install.
         $data['worked_bands'] = $this->bands->get_worked_bands('uscounties');
         $data['selected_band'] = $band;
-        $data['modes'] = $this->modes->active();
+        $data['modes'] = $this->logbookadvanced_model->get_modes();
         $data['selected_mode'] = $mode;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 

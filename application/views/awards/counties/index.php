@@ -118,9 +118,7 @@
                             <div class="col-md-3"><label class="control-label" for="countiesMode"><?= __("Mode"); ?></label></div>
                             <div class="col-md-9">
                                 <select id="countiesMode" name="mode[]" multiple class="form-select form-select-sm">
-                                    <?php foreach ($modes->result() as $mode) {
-                                        $value = $mode->submode == null ? $mode->mode : $mode->submode;
-                                        ?>
+                                    <?php foreach ($modes as $value) { ?>
                                     <option value="<?= $value; ?>" <?php if ($selected_mode === 'All' || (is_array($selected_mode) && in_array($value, $selected_mode))) echo ' selected'; ?>><?= $value; ?></option>
                                     <?php } ?>
                                 </select>
