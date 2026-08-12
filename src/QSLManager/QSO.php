@@ -1646,10 +1646,12 @@ class QSO
 
 	private function getQrbLink($mygrid, $grid, $vucc) : string
 	{
-		if (!empty($grid)) {
-			return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>';
-		} else if (!empty($vucc)) {
-			return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>';
+		if (!empty($mygrid)) {
+			if (!empty($grid)) {
+				return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>';
+			} else if (!empty($vucc)) {
+				return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>';
+			}
 		}
 		return '';
 	}
