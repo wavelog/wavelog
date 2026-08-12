@@ -211,6 +211,9 @@ class QSO extends CI_Controller {
 				$this->session->set_userdata('prop_mode', 'SAT');
 			}
 
+			// All session writes are done, release the lock before the expensive part
+			session_write_close();
+
 			// Add QSO
 			// $this->logbook_model->add();
 			//change to create_qso function as add and create_qso duplicate functionality
@@ -260,6 +263,8 @@ class QSO extends CI_Controller {
 			             ->set_output(json_encode(['error' => 'Forbidden']));
 			return;
 		}
+
+		session_write_close();
 
 		$this->load->model('logbook_model');
 
@@ -654,6 +659,7 @@ class QSO extends CI_Controller {
 
 
 	function band_to_freq($band, $mode) {
+		session_write_close();
 
 		if ($band != null and $band != 'null') {
 			echo $this->frequency->convert_band($band, $mode);
@@ -665,6 +671,8 @@ class QSO extends CI_Controller {
 	 * Function is used for autocompletion of SOTA in the QSO entry form
 	 */
 	public function get_sota() {
+		session_write_close();
+
 		$query = $this->input->get('query', TRUE) ?? FALSE;
 
 		$this->load->model('sota');
@@ -675,6 +683,8 @@ class QSO extends CI_Controller {
 	}
 
 	public function get_wwff() {
+		session_write_close();
+
 		$query = $this->input->get('query', TRUE) ?? FALSE;
 
 		$this->load->model('wwff');
@@ -685,6 +695,8 @@ class QSO extends CI_Controller {
 	}
 
 	public function get_pota() {
+		session_write_close();
+
 		$query = $this->input->get('query', TRUE) ?? FALSE;
 
 		$this->load->model('pota');
@@ -698,6 +710,8 @@ class QSO extends CI_Controller {
 	 * Function is used for autocompletion of DOK in the QSO entry form
 	 */
 	public function get_dok() {
+		session_write_close();
+
 		$json = [];
 
 		$query = $this->input->get('query', TRUE) ?? FALSE;
@@ -732,6 +746,8 @@ class QSO extends CI_Controller {
 	}
 
 	public function get_sota_info() {
+		session_write_close();
+
 		$this->load->library('sota');
 
 		$sota = $this->input->post('sota', TRUE);
@@ -741,6 +757,8 @@ class QSO extends CI_Controller {
 	}
 
 	public function get_wwff_info() {
+		session_write_close();
+
 		$this->load->library('wwff');
 
 		$wwff = $this->input->post('wwff', TRUE);
@@ -750,6 +768,8 @@ class QSO extends CI_Controller {
 	}
 
 	public function get_pota_info() {
+		session_write_close();
+
 		$this->load->library('pota');
 
 		$pota = $this->input->post('pota', TRUE);
@@ -759,6 +779,8 @@ class QSO extends CI_Controller {
 	}
 
 	public function get_station_power() {
+		session_write_close();
+
 		$this->load->model('stations');
 		$this->load->library('qra');
 		$stationProfile = $this->input->post('stationProfile', TRUE);

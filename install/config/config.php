@@ -489,7 +489,13 @@ $config['encryption_key'] = '%encryptionkey%';
 |
 | 'sess_driver'
 |
-|	The storage driver to use: files, database, redis, memcached
+|	The storage driver to use: files, database, redis, redis2, memcached
+|
+|	'redis2' is Wavelog's own Redis driver. It behaves like 'redis' but waits
+|	for the session lock with BLPOP instead of polling, so parallel AJAX
+|	requests of the same user are no longer delayed by up to a second each.
+|	When redis is needed, use 'redis2' instead of 'redis' for better performance
+|   unless you have a really good reason to use the original 'redis' driver.
 |
 | 'sess_cookie_name'
 |

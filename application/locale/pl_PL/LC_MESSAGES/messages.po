@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-12 14:57+0000\n"
+"POT-Creation-Date: 2026-08-12 15:18+0000\n"
 "PO-Revision-Date: 2026-07-29 08:14+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -154,7 +154,7 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
-#: application/controllers/Contesting.php:1072
+#: application/controllers/Contesting.php:1074
 #: application/controllers/Contesting_import.php:10
 #: application/controllers/Contesting_import.php:26
 #: application/controllers/Contesting_import.php:56
@@ -205,9 +205,9 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
-#: application/controllers/Qso.php:20 application/controllers/Qso.php:472
-#: application/controllers/Qso.php:494 application/controllers/Qso.php:522
-#: application/controllers/Qso.php:777 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:20 application/controllers/Qso.php:477
+#: application/controllers/Qso.php:499 application/controllers/Qso.php:527
+#: application/controllers/Qso.php:799 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -221,8 +221,8 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Satellite.php:117
 #: application/controllers/Satellite.php:131
 #: application/controllers/Satellite.php:149
-#: application/controllers/Satellite.php:556
-#: application/controllers/Satellite.php:565
+#: application/controllers/Satellite.php:557
+#: application/controllers/Satellite.php:566
 #: application/controllers/Sattimers.php:8 application/controllers/Search.php:9
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:16
@@ -443,7 +443,7 @@ msgstr "Opis klucza API %s został zaktualizowany."
 
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:27
-#: application/controllers/Api_token.php:80 application/controllers/Qso.php:617
+#: application/controllers/Api_token.php:80 application/controllers/Qso.php:622
 msgid "Invalid request method"
 msgstr "Nieprawidłowa metoda żądania"
 
@@ -659,7 +659,7 @@ msgid " and "
 msgstr " i "
 
 #: application/controllers/Awards.php:713
-#: application/controllers/Logbook.php:1470
+#: application/controllers/Logbook.php:1472
 #: application/views/activationplanner/index.php:84
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
@@ -690,7 +690,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
-#: application/controllers/Logbook.php:1471
+#: application/controllers/Logbook.php:1473
 #: application/views/activationplanner/index.php:82
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
@@ -713,7 +713,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
-#: application/controllers/Logbook.php:1472
+#: application/controllers/Logbook.php:1474
 #: application/views/activationplanner/index.php:83
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
@@ -919,7 +919,7 @@ msgid "Call Tester"
 msgstr "Tester połączeń"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:866
+#: application/controllers/Qso.php:888
 msgid "No callsign provided."
 msgstr "Nie podano znaku wywoławczego."
 
@@ -1178,24 +1178,24 @@ msgstr[2] "%d sesji zawodów usuniętych."
 msgid "There was an error deleting the contest sessions. Please try again."
 msgstr "Wystąpił błąd podczas usuwania sesji zawodów. Spróbuj ponownie."
 
-#: application/controllers/Contesting.php:1014
+#: application/controllers/Contesting.php:1016
 msgid "Operator switching is disabled."
 msgstr "Przełączanie operatorów jest wyłączone."
 
-#: application/controllers/Contesting.php:1034
+#: application/controllers/Contesting.php:1036
 msgid "Operator switching is only available in club stations."
 msgstr "Przełączanie operatorów jest dostępne tylko dla stacji klubowych."
 
-#: application/controllers/Contesting.php:1044
+#: application/controllers/Contesting.php:1046
 msgid "Access denied"
 msgstr "Dostęp zabroniony"
 
-#: application/controllers/Contesting.php:1052
+#: application/controllers/Contesting.php:1054
 #: application/controllers/User.php:1439
 msgid "Incorrect username or password!"
 msgstr "Niepoprawna nazwa użytkownika lub hasło!"
 
-#: application/controllers/Contesting.php:1061
+#: application/controllers/Contesting.php:1063
 msgid "A club account cannot be used as an operator."
 msgstr "Konto klubowe nie może być użyte jako operator."
 
@@ -1965,7 +1965,7 @@ msgstr ""
 "Wszystkie wyszukiwania w książce telefonicznej zakończyły się niepowodzeniem "
 "lub nie przyniosły żadnych wyników."
 
-#: application/controllers/Logbook.php:1465
+#: application/controllers/Logbook.php:1467
 #: application/controllers/Radio.php:56
 #: application/views/accumulate/index.php:37
 #: application/views/activated_gridmap/index.php:44
@@ -2073,7 +2073,7 @@ msgstr ""
 msgid "Mode"
 msgstr "Emisja"
 
-#: application/controllers/Logbook.php:1466
+#: application/controllers/Logbook.php:1468
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:258
 #: application/views/awards/sota/index.php:168
@@ -2100,7 +2100,7 @@ msgstr "Emisja"
 msgid "RST (S)"
 msgstr "RST (S)"
 
-#: application/controllers/Logbook.php:1467
+#: application/controllers/Logbook.php:1469
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:259
 #: application/views/awards/sota/index.php:169
@@ -2128,7 +2128,7 @@ msgstr "RST (S)"
 msgid "RST (R)"
 msgstr "RST (R)"
 
-#: application/controllers/Logbook.php:1468
+#: application/controllers/Logbook.php:1470
 #: application/views/contesting/manager/export_cbr.php:282
 #: application/views/dashboard/index.php:8
 #: application/views/qslcard/searchresult.php:15
@@ -2149,7 +2149,7 @@ msgstr "RST (R)"
 msgid "Country"
 msgstr "Kraj"
 
-#: application/controllers/Logbook.php:1469
+#: application/controllers/Logbook.php:1471
 #: application/views/activationplanner/index.php:85
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
@@ -2182,7 +2182,7 @@ msgstr "Kraj"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1473
+#: application/controllers/Logbook.php:1475
 #: application/views/awards/counties/details_ajax.php:8
 #: application/views/awards/counties/index.php:76
 #: application/views/awards/rac/index.php:156
@@ -2213,7 +2213,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "Stan"
 
-#: application/controllers/Logbook.php:1474
+#: application/controllers/Logbook.php:1476
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:65
@@ -2272,7 +2272,7 @@ msgstr "Stan"
 msgid "Gridsquare"
 msgstr "Lokator"
 
-#: application/controllers/Logbook.php:1475
+#: application/controllers/Logbook.php:1477
 #: application/views/activated_gridmap/index.php:108
 #: application/views/activationplanner/index.php:29
 #: application/views/awards/ffma/index.php:40
@@ -2304,7 +2304,7 @@ msgstr "Lokator"
 msgid "Distance"
 msgstr "Odległość"
 
-#: application/controllers/Logbook.php:1476
+#: application/controllers/Logbook.php:1478
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
 #: application/views/activators/index.php:17
@@ -2413,7 +2413,7 @@ msgstr "Odległość"
 msgid "Band"
 msgstr "Pasmo"
 
-#: application/controllers/Logbook.php:1477
+#: application/controllers/Logbook.php:1479
 #: application/controllers/Radio.php:55 application/views/bandmap/list.php:172
 #: application/views/bandmap/list.php:562
 #: application/views/bandmap/list.php:602
@@ -2443,7 +2443,7 @@ msgstr "Pasmo"
 msgid "Frequency"
 msgstr "Częstotliwość"
 
-#: application/controllers/Logbook.php:1478
+#: application/controllers/Logbook.php:1480
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/qso-form.php:157
 #: application/views/contesting/manager/export_cbr.php:61
@@ -2469,7 +2469,7 @@ msgstr "Częstotliwość"
 msgid "Operator"
 msgstr "Operator"
 
-#: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1501
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/dxcc/index.php:471
@@ -3081,25 +3081,25 @@ msgstr "Wydruk żądanych QSL"
 msgid "Add QSO"
 msgstr "Dodaj QSO"
 
-#: application/controllers/Qso.php:226
+#: application/controllers/Qso.php:229
 msgid "QSO could not be saved"
 msgstr "Nie udało się zapisać QSO"
 
-#: application/controllers/Qso.php:812 application/controllers/Qso.php:835
+#: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr ""
 
-#: application/controllers/Qso.php:824
+#: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr ""
 
-#: application/controllers/Qso.php:853
+#: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
 msgstr "Należy być zalogowanym, aby uzyskać dostęp do tej strony."
 
-#: application/controllers/Qso.php:859
+#: application/controllers/Qso.php:881
 msgid "Call Transfer"
 msgstr "Przekazywanie znaków wywoławczych"
 
@@ -3256,40 +3256,40 @@ msgstr "Dodaj satelitę"
 msgid "Edit Satellite"
 msgstr "Edytuj satelitę"
 
-#: application/controllers/Satellite.php:200
+#: application/controllers/Satellite.php:201
 #: application/views/interface_assets/header.php:328
 msgid "Satellite Flightpath"
 msgstr "Satelity - tory lotu"
 
-#: application/controllers/Satellite.php:271
+#: application/controllers/Satellite.php:272
 msgid "Satellite pass"
 msgstr "Przelot satelity"
 
-#: application/controllers/Satellite.php:328
+#: application/controllers/Satellite.php:329
 msgid "Failed to save pass settings!"
 msgstr "Nie udało się zapisać ustawień przelotu!"
 
-#: application/controllers/Satellite.php:331
+#: application/controllers/Satellite.php:332
 msgid "Pass settings saved!"
 msgstr "Ustawienia trasy przelotu zostały zapisane!"
 
-#: application/controllers/Satellite.php:344
+#: application/controllers/Satellite.php:345
 msgid "No settings found!"
 msgstr "Nie znaleziono ustawień!"
 
-#: application/controllers/Satellite.php:358
+#: application/controllers/Satellite.php:359
 msgid "Failed to delete pass settings!"
 msgstr "Nie udało się usunąć ustawień przelotu!"
 
-#: application/controllers/Satellite.php:360
+#: application/controllers/Satellite.php:361
 msgid "Pass settings deleted!"
 msgstr "Trasy przelotu usnieto!"
 
-#: application/controllers/Satellite.php:370
+#: application/controllers/Satellite.php:371
 msgid "Saved Pass Settings"
 msgstr "Zapisano trasy przelotu"
 
-#: application/controllers/Satellite.php:387
+#: application/controllers/Satellite.php:388
 msgid "No presets available"
 msgstr "Brak ustawień wstępnych"
 

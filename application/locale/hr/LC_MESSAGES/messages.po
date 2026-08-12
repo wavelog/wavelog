@@ -238,6 +238,11 @@ msgstr ""
 #: application/models/Club_model.php:84 application/controllers/Qso.php:472
 #: application/controllers/Qso.php:494 application/controllers/Qso.php:522
 #: application/controllers/Qso.php:777
+#: application/controllers/Contesting.php:1074
+#: application/controllers/Qso.php:477 application/controllers/Qso.php:499
+#: application/controllers/Qso.php:527 application/controllers/Qso.php:799
+#: application/controllers/Satellite.php:557
+#: application/controllers/Satellite.php:566
 msgid "You're not allowed to do that!"
 msgstr "To ti nije dopušteno!"
 
@@ -438,7 +443,7 @@ msgstr "Opis API ključa %s je ažuriran."
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:27
 #: application/controllers/Api_token.php:80 application/controllers/Qso.php:609
-#: application/controllers/Qso.php:617
+#: application/controllers/Qso.php:617 application/controllers/Qso.php:622
 msgid "Invalid request method"
 msgstr "Nepravilna metoda zahtjeva"
 
@@ -682,6 +687,7 @@ msgstr " i "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1472
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -705,6 +711,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1473
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -730,6 +737,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/controllers/Logbook.php:1474
 msgid "POTA"
 msgstr "POTA"
 
@@ -918,6 +926,7 @@ msgstr "Provjeravanje pozivnog snaka"
 
 #: application/controllers/Calltester.php:164
 #: application/controllers/Qso.php:842 application/controllers/Qso.php:866
+#: application/controllers/Qso.php:888
 msgid "No callsign provided."
 msgstr ""
 
@@ -1178,23 +1187,28 @@ msgid "There was an error deleting the contest sessions. Please try again."
 msgstr ""
 
 #: application/controllers/Contesting.php:1014
+#: application/controllers/Contesting.php:1016
 msgid "Operator switching is disabled."
 msgstr "Mijenjanje operatora je ugašeno."
 
 #: application/controllers/Contesting.php:1034
+#: application/controllers/Contesting.php:1036
 msgid "Operator switching is only available in club stations."
 msgstr "Mijenjanje operatora dostupno je samo klupskim postajama."
 
 #: application/controllers/Contesting.php:1044
+#: application/controllers/Contesting.php:1046
 msgid "Access denied"
 msgstr "Pristup zabranjen"
 
 #: application/controllers/Contesting.php:1052
 #: application/controllers/User.php:1439
+#: application/controllers/Contesting.php:1054
 msgid "Incorrect username or password!"
 msgstr "Neispravno korisničko ime ili lozinka!"
 
 #: application/controllers/Contesting.php:1061
+#: application/controllers/Contesting.php:1063
 msgid "A club account cannot be used as an operator."
 msgstr "Klupski račun ne može es koristiti kao operator."
 
@@ -2058,6 +2072,7 @@ msgstr ""
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/views/distances/index.php:66
+#: application/controllers/Logbook.php:1467
 msgid "Mode"
 msgstr ""
 
@@ -2085,6 +2100,7 @@ msgstr ""
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1468
 msgid "RST (S)"
 msgstr "RST (TX)"
 
@@ -2113,6 +2129,7 @@ msgstr "RST (TX)"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1469
 msgid "RST (R)"
 msgstr "RST (RX)"
 
@@ -2136,6 +2153,7 @@ msgstr "RST (RX)"
 #: application/views/visitor/index.php:15
 #: application/views/view_log/qso.php:275
 #: application/views/view_log/qso.php:631
+#: application/controllers/Logbook.php:1470
 msgid "Country"
 msgstr "Država"
 
@@ -2169,6 +2187,7 @@ msgstr "Država"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1471
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2200,6 +2219,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:374 application/views/user/edit.php:398
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1475
 msgid "State"
 msgstr ""
 
@@ -2262,6 +2282,7 @@ msgstr ""
 #: application/views/view_log/qso.php:131
 #: application/views/view_log/qso.php:153
 #: application/views/view_log/qso.php:618
+#: application/controllers/Logbook.php:1476
 msgid "Gridsquare"
 msgstr ""
 
@@ -2294,6 +2315,7 @@ msgstr ""
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1477
 msgid "Distance"
 msgstr ""
 
@@ -2403,6 +2425,7 @@ msgstr ""
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/controllers/Logbook.php:1478
 msgid "Band"
 msgstr "Opseg"
 
@@ -2433,6 +2456,7 @@ msgstr "Opseg"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1479
 msgid "Frequency"
 msgstr "Frekvencija"
 
@@ -2460,6 +2484,7 @@ msgstr "Frekvencija"
 #: application/views/view_log/qso.php:653
 #: application/views/visitor/index.php:39
 #: application/views/view_log/qso.php:638
+#: application/controllers/Logbook.php:1480
 msgid "Operator"
 msgstr "Operator"
 
@@ -2491,6 +2516,7 @@ msgstr "Operator"
 #: application/views/view_log/qso.php:647
 #: application/views/view_log/qso.php:279
 #: application/views/view_log/qso.php:632
+#: application/controllers/Logbook.php:1501
 msgid "Deleted DXCC"
 msgstr "Izbrisane DXCC"
 
@@ -3055,14 +3081,17 @@ msgid "Add QSO"
 msgstr ""
 
 #: application/controllers/Qso.php:224 application/controllers/Qso.php:226
+#: application/controllers/Qso.php:229
 msgid "QSO could not be saved"
 msgstr ""
 
 #: application/controllers/Qso.php:829 application/controllers/Qso.php:853
+#: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
 msgstr ""
 
 #: application/controllers/Qso.php:835 application/controllers/Qso.php:859
+#: application/controllers/Qso.php:881
 msgid "Call Transfer"
 msgstr ""
 
@@ -3224,38 +3253,47 @@ msgstr ""
 
 #: application/controllers/Satellite.php:200
 #: application/views/interface_assets/header.php:328
+#: application/controllers/Satellite.php:201
 msgid "Satellite Flightpath"
 msgstr ""
 
 #: application/controllers/Satellite.php:271
+#: application/controllers/Satellite.php:272
 msgid "Satellite pass"
 msgstr ""
 
 #: application/controllers/Satellite.php:328
+#: application/controllers/Satellite.php:329
 msgid "Failed to save pass settings!"
 msgstr ""
 
 #: application/controllers/Satellite.php:331
+#: application/controllers/Satellite.php:332
 msgid "Pass settings saved!"
 msgstr ""
 
 #: application/controllers/Satellite.php:344
+#: application/controllers/Satellite.php:345
 msgid "No settings found!"
 msgstr ""
 
 #: application/controllers/Satellite.php:358
+#: application/controllers/Satellite.php:359
 msgid "Failed to delete pass settings!"
 msgstr ""
 
 #: application/controllers/Satellite.php:360
+#: application/controllers/Satellite.php:361
 msgid "Pass settings deleted!"
 msgstr ""
 
 #: application/controllers/Satellite.php:370
+#: application/controllers/Satellite.php:371
 msgid "Saved Pass Settings"
 msgstr ""
 
 #: application/controllers/Satellite.php:387
+#: application/controllers/Satellite.php:388
 msgid "No presets available"
 msgstr ""
 
@@ -22521,11 +22559,12 @@ msgid "LoTW User. Last upload was "
 msgstr ""
 
 #: application/controllers/Qso.php:812 application/controllers/Qso.php:835
+#: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr ""
 
-#: application/controllers/Qso.php:824
+#: application/controllers/Qso.php:824 application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr ""

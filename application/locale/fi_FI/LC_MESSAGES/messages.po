@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-12 14:57+0000\n"
+"POT-Creation-Date: 2026-08-12 15:18+0000\n"
 "PO-Revision-Date: 2026-06-29 12:11+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -146,7 +146,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
-#: application/controllers/Contesting.php:1072
+#: application/controllers/Contesting.php:1074
 #: application/controllers/Contesting_import.php:10
 #: application/controllers/Contesting_import.php:26
 #: application/controllers/Contesting_import.php:56
@@ -197,9 +197,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
-#: application/controllers/Qso.php:20 application/controllers/Qso.php:472
-#: application/controllers/Qso.php:494 application/controllers/Qso.php:522
-#: application/controllers/Qso.php:777 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:20 application/controllers/Qso.php:477
+#: application/controllers/Qso.php:499 application/controllers/Qso.php:527
+#: application/controllers/Qso.php:799 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -213,8 +213,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Satellite.php:117
 #: application/controllers/Satellite.php:131
 #: application/controllers/Satellite.php:149
-#: application/controllers/Satellite.php:556
-#: application/controllers/Satellite.php:565
+#: application/controllers/Satellite.php:557
+#: application/controllers/Satellite.php:566
 #: application/controllers/Sattimers.php:8 application/controllers/Search.php:9
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:16
@@ -435,7 +435,7 @@ msgstr "API-avaimen %s kuvaus on päivitetty."
 
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:27
-#: application/controllers/Api_token.php:80 application/controllers/Qso.php:617
+#: application/controllers/Api_token.php:80 application/controllers/Qso.php:622
 msgid "Invalid request method"
 msgstr "Virheellinen pyyntömenetelmä"
 
@@ -651,7 +651,7 @@ msgid " and "
 msgstr " ja "
 
 #: application/controllers/Awards.php:713
-#: application/controllers/Logbook.php:1470
+#: application/controllers/Logbook.php:1472
 #: application/views/activationplanner/index.php:84
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
@@ -682,7 +682,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
-#: application/controllers/Logbook.php:1471
+#: application/controllers/Logbook.php:1473
 #: application/views/activationplanner/index.php:82
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
@@ -705,7 +705,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
-#: application/controllers/Logbook.php:1472
+#: application/controllers/Logbook.php:1474
 #: application/views/activationplanner/index.php:83
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
@@ -911,7 +911,7 @@ msgid "Call Tester"
 msgstr "Kutsumerkkitestaaja"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:866
+#: application/controllers/Qso.php:888
 msgid "No callsign provided."
 msgstr "Kutsutunnusta ei ole annettu."
 
@@ -1166,24 +1166,24 @@ msgstr[1] ""
 msgid "There was an error deleting the contest sessions. Please try again."
 msgstr ""
 
-#: application/controllers/Contesting.php:1014
+#: application/controllers/Contesting.php:1016
 msgid "Operator switching is disabled."
 msgstr "Operaattorin vaihto on poistettu käytöstä."
 
-#: application/controllers/Contesting.php:1034
+#: application/controllers/Contesting.php:1036
 msgid "Operator switching is only available in club stations."
 msgstr "Operaattorin vaihto on saatavilla vain kerhoasemilla."
 
-#: application/controllers/Contesting.php:1044
+#: application/controllers/Contesting.php:1046
 msgid "Access denied"
 msgstr "Pääsy evätty"
 
-#: application/controllers/Contesting.php:1052
+#: application/controllers/Contesting.php:1054
 #: application/controllers/User.php:1439
 msgid "Incorrect username or password!"
 msgstr "Virheellinen käyttäjänimi tai salasana!"
 
-#: application/controllers/Contesting.php:1061
+#: application/controllers/Contesting.php:1063
 msgid "A club account cannot be used as an operator."
 msgstr "Kerhotiliä ei voida käyttää operaattorina."
 
@@ -1951,7 +1951,7 @@ msgstr ""
 "Kaikki kutsumerkkiluettelohakujen haut epäonnistuivat tai eivät tuottaneet "
 "tuloksia."
 
-#: application/controllers/Logbook.php:1465
+#: application/controllers/Logbook.php:1467
 #: application/controllers/Radio.php:56
 #: application/views/accumulate/index.php:37
 #: application/views/activated_gridmap/index.php:44
@@ -2059,7 +2059,7 @@ msgstr ""
 msgid "Mode"
 msgstr "Lähetelaji"
 
-#: application/controllers/Logbook.php:1466
+#: application/controllers/Logbook.php:1468
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:258
 #: application/views/awards/sota/index.php:168
@@ -2086,7 +2086,7 @@ msgstr "Lähetelaji"
 msgid "RST (S)"
 msgstr "RST (L)"
 
-#: application/controllers/Logbook.php:1467
+#: application/controllers/Logbook.php:1469
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:259
 #: application/views/awards/sota/index.php:169
@@ -2114,7 +2114,7 @@ msgstr "RST (L)"
 msgid "RST (R)"
 msgstr "RST (V)"
 
-#: application/controllers/Logbook.php:1468
+#: application/controllers/Logbook.php:1470
 #: application/views/contesting/manager/export_cbr.php:282
 #: application/views/dashboard/index.php:8
 #: application/views/qslcard/searchresult.php:15
@@ -2135,7 +2135,7 @@ msgstr "RST (V)"
 msgid "Country"
 msgstr "Maa"
 
-#: application/controllers/Logbook.php:1469
+#: application/controllers/Logbook.php:1471
 #: application/views/activationplanner/index.php:85
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
@@ -2168,7 +2168,7 @@ msgstr "Maa"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1473
+#: application/controllers/Logbook.php:1475
 #: application/views/awards/counties/details_ajax.php:8
 #: application/views/awards/counties/index.php:76
 #: application/views/awards/rac/index.php:156
@@ -2199,7 +2199,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "osavaltio"
 
-#: application/controllers/Logbook.php:1474
+#: application/controllers/Logbook.php:1476
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:65
@@ -2258,7 +2258,7 @@ msgstr "osavaltio"
 msgid "Gridsquare"
 msgstr "Lokaattoriruutu"
 
-#: application/controllers/Logbook.php:1475
+#: application/controllers/Logbook.php:1477
 #: application/views/activated_gridmap/index.php:108
 #: application/views/activationplanner/index.php:29
 #: application/views/awards/ffma/index.php:40
@@ -2290,7 +2290,7 @@ msgstr "Lokaattoriruutu"
 msgid "Distance"
 msgstr "Etäisyys"
 
-#: application/controllers/Logbook.php:1476
+#: application/controllers/Logbook.php:1478
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
 #: application/views/activators/index.php:17
@@ -2399,7 +2399,7 @@ msgstr "Etäisyys"
 msgid "Band"
 msgstr "Bandi"
 
-#: application/controllers/Logbook.php:1477
+#: application/controllers/Logbook.php:1479
 #: application/controllers/Radio.php:55 application/views/bandmap/list.php:172
 #: application/views/bandmap/list.php:562
 #: application/views/bandmap/list.php:602
@@ -2429,7 +2429,7 @@ msgstr "Bandi"
 msgid "Frequency"
 msgstr "Taajuus"
 
-#: application/controllers/Logbook.php:1478
+#: application/controllers/Logbook.php:1480
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/qso-form.php:157
 #: application/views/contesting/manager/export_cbr.php:61
@@ -2455,7 +2455,7 @@ msgstr "Taajuus"
 msgid "Operator"
 msgstr "Operaattori"
 
-#: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1501
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/dxcc/index.php:471
@@ -3063,26 +3063,26 @@ msgstr "Tulosta pyydetyt QSL:t"
 msgid "Add QSO"
 msgstr "Lisää QSO"
 
-#: application/controllers/Qso.php:226
+#: application/controllers/Qso.php:229
 msgid "QSO could not be saved"
 msgstr ""
 
-#: application/controllers/Qso.php:812 application/controllers/Qso.php:835
+#: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr ""
 
-#: application/controllers/Qso.php:824
+#: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr ""
 
-#: application/controllers/Qso.php:853
+#: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
 msgstr ""
 "Sinun täytyy olla kirjautuneena sisään päästäksesi tälle URL-osoitteelle."
 
-#: application/controllers/Qso.php:859
+#: application/controllers/Qso.php:881
 msgid "Call Transfer"
 msgstr "Call Transfer"
 
@@ -3239,40 +3239,40 @@ msgstr "Luo satelliitti"
 msgid "Edit Satellite"
 msgstr "Muokkaa satelliittia"
 
-#: application/controllers/Satellite.php:200
+#: application/controllers/Satellite.php:201
 #: application/views/interface_assets/header.php:328
 msgid "Satellite Flightpath"
 msgstr "Satelliitin lentorata"
 
-#: application/controllers/Satellite.php:271
+#: application/controllers/Satellite.php:272
 msgid "Satellite pass"
 msgstr "Satelliitin ylilento"
 
-#: application/controllers/Satellite.php:328
+#: application/controllers/Satellite.php:329
 msgid "Failed to save pass settings!"
 msgstr "Ylilennon asetusten tallentaminen epäonnistui!"
 
-#: application/controllers/Satellite.php:331
+#: application/controllers/Satellite.php:332
 msgid "Pass settings saved!"
 msgstr "Ylilennon asetukset tallennettu!"
 
-#: application/controllers/Satellite.php:344
+#: application/controllers/Satellite.php:345
 msgid "No settings found!"
 msgstr "Asetuksia ei löytynyt!"
 
-#: application/controllers/Satellite.php:358
+#: application/controllers/Satellite.php:359
 msgid "Failed to delete pass settings!"
 msgstr "Ylilennon asetusten poistaminen epäonnistui!"
 
-#: application/controllers/Satellite.php:360
+#: application/controllers/Satellite.php:361
 msgid "Pass settings deleted!"
 msgstr "Ylilennon asetukset poistettu!"
 
-#: application/controllers/Satellite.php:370
+#: application/controllers/Satellite.php:371
 msgid "Saved Pass Settings"
 msgstr "Tallennetut ylilentoasetukset"
 
-#: application/controllers/Satellite.php:387
+#: application/controllers/Satellite.php:388
 msgid "No presets available"
 msgstr "Esiasetuksia ei ole saatavilla"
 
