@@ -4267,7 +4267,7 @@ class Logbook_model extends CI_Model {
 				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_LOTW,
 				-- DXCC confirmed totals intentionally count only paper QSL + LoTW.
 				-- eQSL is tracked separately in the UI as display-only information.
-				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_Confirmed,
+				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_Confirmed,
 				COUNT(DISTINCT CASE WHEN d.end IS NULL AND d.adif != 0 AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Current,
 				-- QSL stats (SUM - no filtering, all QSOs)
 				SUM(CASE WHEN t.COL_QSL_SENT = 'Y' THEN 1 ELSE 0 END) as QSL_Sent,
