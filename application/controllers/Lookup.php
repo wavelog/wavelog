@@ -177,6 +177,8 @@ class Lookup extends CI_Controller {
 	}
 
 	public function get_state_list() {
+		session_write_close();
+
 		$this->load->library('subdivisions');
 
 		$dxcc = xss_clean($this->input->post('dxcc'));

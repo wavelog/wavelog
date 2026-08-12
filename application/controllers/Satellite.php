@@ -157,6 +157,7 @@ class Satellite extends CI_Controller {
 	}
 
 	public function satellite_data() {
+		session_write_close();
 
 		$this->load->model('satellite_model');
 		$satellite_data = $this->satellite_model->satellite_data();
