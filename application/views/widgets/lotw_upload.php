@@ -123,7 +123,7 @@ This is a widget to show the last LoTW upload in your QRZ.com Bio or somewhere e
                 <p class="<?= $text_size_class ?>"><?= __("Error") ?></p>
             </div>
             <div class="bottom-right mt-3">
-                <p class="<?= $text_size_class ?>"><?= htmlspecialchars_decode($error) ?></p>
+                <p class="<?= $text_size_class ?>"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8', false) ?></p>
            </div>
         </div>
      <?php } ?>
