@@ -885,14 +885,14 @@ class QSO
 	 */
 	public function getDx(): string
 	{
-		$dx = str_replace('0', 'Ø', $this->dx);
+		$dx = $this->dx;
 
 		if ($dx === '') {
 			return '<span class="bg-danger">Missing callsign</span>';
 		}
 
 		return '<span class="qso_call d-flex align-items-center justify-content-between">'
-			. '<a id="edit_qso" href="javascript:displayQso(' . $this->qsoID . ')"><span id="lbadx">' . $dx . '</span></a>'
+			. '<a id="edit_qso" href="javascript:displayQso(' . $this->qsoID . ')"><span id="lbadx" class="callsign">' . $dx . '</span></a>'
 			. '<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">'
 			. $this->lotwBadge()
 			. $this->lookupLink('https://www.qrz.com/db/' . $this->dx, 'qrz.png', sprintf(__("Lookup %s on QRZ.com"), $dx))

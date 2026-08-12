@@ -298,13 +298,6 @@ function stopImpersonate_modal() {
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
-    // Replace all Ø in the searchbar
-    $('#nav-bar-search-input').on('input', function () {
-        $(this).val($(this).val().replace(/0/g, 'Ø'));
-    });
-</script>
-
-<script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
     quickswitcher_show_activebadge(current_active_location);
 </script>
@@ -1027,7 +1020,7 @@ function searchButtonPress() {
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
-        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ø', '0'), function() {
+        $('#partial_view').load("logbook/search_result/" + fixedcall, function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -2375,19 +2368,6 @@ $('#sats').change(function(){
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
         }
-	$(document).ready(function() {
-		var target = document.body;
-		var observer = new MutationObserver(function() {
-			$('#dt-search-0').on('keyup', function (e) {
-				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
-				$(this).val(tocrappyzero);
-				$(this).trigger("input");
-			});
-		});
-		var config = { childList: true, subtree: true};
-		// pass in the target node, as well as the observer options
-		observer.observe(target, config);
-	});
 
     </script>
 <?php } ?>
@@ -2553,20 +2533,8 @@ function viewEqsl(picture, callsign) {
                         $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
                             showQsoActionsMenu($(this).closest('.dropdown'));
                         });
-
-                       var target = document.body;
-                       var observer = new MutationObserver(function() {
-                               $('#dt-search-0').on('keyup', function (e) {
-                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
-                                       $(this).val(tocrappyzero);
-                                       $(this).trigger("input");
-                               });
-                       });
-                       var config = { childList: true, subtree: true};
-                       // pass in the target node, as well as the observer options
-                       observer.observe(target, config);
-                    },
-                    buttons: [{
+                     },
+                     buttons: [{
                         label: lang_admin_close,
                         action: function (dialogItself) {
                             dialogItself.close();
@@ -3103,21 +3071,6 @@ function viewEqsl(picture, callsign) {
     }
 
     ?>
-    <script>
-    	    $(document).ready(function() {
-		    var target = document.body;
-		    var observer = new MutationObserver(function() {
-			    $('#dt-search-1').on('keyup', function (e) {
-				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
-				    $(this).val(tocrappyzero);
-				    $(this).trigger("input");
-			    });
-		    });
-		    var config = { childList: true, subtree: true};
-		    // pass in the target node, as well as the observer options
-		    observer.observe(target, config);
-	    });
-    </script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
     <?php if ($this->uri->segment(2) == "wwff") { ?>

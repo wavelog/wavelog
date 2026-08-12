@@ -321,14 +321,11 @@ function loadQSOTable(rows) {
 										if (typeof data === 'string') {
 											data = data.replace(/<[^>]*>/g, '');
 										}
-										// then replace Ø with 0 in specific columns
-										if (column === 1 || column === 2 || column === 3 || column === 4) {
-											// remove a trailing "L" and trim whitespaces
-											data = data.replace(/\s*L\s*$/, '').trim();
-											if (typeof data === 'string' && data.includes('Ø')) {
-												data = data.replace(/Ø/g, '0');
-											}
-										}
+										// strip HTML from cell text
+									if (column === 1 || column === 2 || column === 3 || column === 4) {
+										// remove a trailing "L" and trim whitespaces
+										data = data.replace(/\s*L\s*$/, '').trim();
+									}
 										if (typeof data === 'string' && data.includes('&#9650')) {
 												data = data.replace(/&#9650;/g, '');
 										}
@@ -375,7 +372,7 @@ function loadQSOTable(rows) {
 			data.push(qso.last_modified);
 		}
 		if ((user_options.de.show ?? 'true') == "true"){
-			data.push(qso.de.replaceAll('0', 'Ø'));
+			data.push(qso.de);
 		}
 		if ((user_options.dx.show ?? 'true') == "true"){
 
@@ -1959,7 +1956,7 @@ $(document).ready(function () {
 				case 'ituzone': 	col1 = currentRow.find('#ituzone').text(); break;
 				case 'iota': 		col1 = currentRow.find('#iota').text(); col1 = col1.trim(); break;
 				case 'state': 		col1 = currentRow.find('#state').text(); break;
-				case 'dx': 			col1 = currentRow.find('#lbadx').text().replaceAll('Ø', '0'); col1 = col1.match(/^([^\s]+)/gm); break;
+				case 'dx': 			col1 = currentRow.find('#lbadx').text(); col1 = col1.match(/^([^\s]+)/gm); break;
 				case 'gridsquare': 	col1 = $(currentRow).find('#dxgrid').text(); col1 = col1.substring(0, 4); break;
 				case 'sota': 		col1 = $(currentRow).find('#dxsota').text(); break;
 				case 'wwff': 		col1 = $(currentRow).find('#dxwwff').text(); break;

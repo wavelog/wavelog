@@ -371,12 +371,12 @@ function loadMap(data, iconsList) {
 
 		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false});
-			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
+			marker2.bindTooltip(this.callsign, {permanent: false, direction: 'bottom', className: "lba-label"});
 			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qsoconfirm.color;
 		} else {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false});
-			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
+			marker2.bindTooltip(this.callsign, {permanent: false, direction: 'bottom', className: "lba-label"});
 			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qso.color;
 		}
@@ -479,7 +479,7 @@ function createContentMessage(qso) {
 	var table = '<table><tbody>' +
 	'<tr>' +
 	'<td>' +
-	'Station callsign: ' + qso.mycallsign.replaceAll('0', 'Ø') +
+	'Station callsign: <span class="callsign">' + qso.mycallsign + '</span>' +
 	"</td></tr>" +
 	'<tr>' +
 	'<td>' +
@@ -495,7 +495,7 @@ function createContentMessageDx(qso) {
 	if (qso.dxccFlag != '') {
 		table += '<div class="flag">' + qso.dxccFlag + '</div>';
 	}
-	table += '<a id="edit_qso" href="javascript:displayQso('+qso.id+')">'+qso.callsign.replaceAll('0', 'Ø')+'</a></div>';
+	table += '<a id="edit_qso" class="callsign" href="javascript:displayQso('+qso.id+')">'+qso.callsign+'</a></div>';
 	table += '</td>' +
 	'</tr>' +
 	'<tr>' +
