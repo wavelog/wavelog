@@ -494,6 +494,9 @@ class QSO extends CI_Controller {
 		$this->form_validation->set_rules('time_on', 'Start Date', 'required');
 		$this->form_validation->set_rules('time_off', 'End Date', 'required');
 		$this->form_validation->set_rules('id', 'qso ID', 'required');
+		if (strtoupper(trim($this->input->post('locator')) ?? '') != '') {
+			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
+		}
 
 		$edit_result=array();
 		$edit_result['success']=false;
@@ -793,24 +796,11 @@ class QSO extends CI_Controller {
 
 	function check_locator($grid) {
 		$grid = $this->input->post('locator', TRUE);
-		// Allow empty locator
-		if (preg_match('/^$/', $grid)) return true;
-		// Allow 6-digit locator
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}$/', $grid)) return true;
-		// Allow 4-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 4-digit grid line
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 4-digit grid corner
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 2-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
-		// Allow 8-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 10-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}[0-9]{2}[A-Xa-x]{2}$/', $grid)) return true;
-		else {
-			$this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
+		$this->load->library('Qra');
+		if ($this->qra->validate_grid($grid, 'grid')) {
+			return true;
+		} else {
+			$this->form_validation->set_message('check_locator', sprintf(__("Please check value for grid locator (%s)"), strtoupper($grid)));
 			return false;
 		}
 	}
