@@ -19,6 +19,14 @@
 	font-variant-numeric: slashed-zero;
 }
 
+/* Callsign input fields — slashed-zero font while typing */
+input[name="callsign"],
+input[name$="_callsign"],
+input[id^="dt-search-"] {
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
+}
+
 body {
 	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
 }
