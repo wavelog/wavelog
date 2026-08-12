@@ -50,14 +50,14 @@ class Qra {
 			try {
 				$total_distance = calc_distance($my[0], $my[1], $stn[0], $stn[1], $unit, $ant_path);
 			} catch (Exception $e) {
-				$total_distance = 0;
+				$total_distance = false;
 			}
 
 			// Return the distance
 			return $total_distance;
 		} else {
 			// Handle the case where qra2latlong did not return valid values
-			return 0;
+			return false;
 		}
 	}
 

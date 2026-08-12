@@ -132,49 +132,50 @@
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) { ?>
                     <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
-                    <tr>
-                        <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
-                        <td>
-                            <?php
-                                // Cacluate Distance if COL_DISTANCE is not set
-                                $ant_path = $row->COL_ANT_PATH ?? null;
-                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
-                                switch ($measurement_base) {
-                                    case 'M':
-                                        $distance .= " mi";
-                                        break;
-                                    case 'K':
-                                        $distance .= " km";
-                                        break;
-                                    case 'N':
-                                        $distance .= " nmi";
-                                        break;
-                                }
-
-                                if ($ant_path != null) {
-                                    switch ($row->COL_ANT_PATH) {
-                                        case "S":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
-                                            break;
-                                        case "L":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
-                                            break;
-                                        case "O":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
-                                            break;
-                                        case "G":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                echo $distance;
-                            ?>
-                        </td>
-                    </tr>
+                    <?php
+                        if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
+                            $ant_path = $row->COL_ANT_PATH ?? null;
+                            $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
+                            if ($distance != false) { ?>
+                                <tr>
+                                    <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
+                                    <td>
+                                        <?php
+                                            switch ($measurement_base) {
+                                                case 'M':
+                                                    $distance .= " mi";
+                                                    break;
+                                                case 'K':
+                                                    $distance .= " km";
+                                                    break;
+                                                case 'N':
+                                                    $distance .= " nmi";
+                                                    break;
+                                            }
+                                            if ($ant_path != null) {
+                                                switch ($row->COL_ANT_PATH) {
+                                                    case "S":
+                                                        $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
+                                                        break;
+                                                    case "L":
+                                                        $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
+                                                        break;
+                                                    case "O":
+                                                        $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
+                                                        break;
+                                                    case "G":
+                                                        $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            }
+                                            echo $distance;
+                                        ?>
+                                    </td>
+                                </tr>
+                        <?php } ?>
                     <?php } ?>
 
                     <?php if($row->COL_VUCC_GRIDS != null) { ?>
