@@ -15,6 +15,23 @@ class Counties extends CI_Model
         'clublog' => 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',
     );
 
+    /*
+     * DXCC entities this award counts: USA (291), Alaska (6), Hawaii (110).
+     * Bound as parameters (see placeholders()) rather than embedded as a SQL
+     * literal, matching the bound-variable convention used throughout this
+     * file's queries.
+     */
+    private $us_counties_dxcc = array('291', '6', '110');
+
+    /*
+     * Returns a "?,?,?" placeholder string sized to $values, for building an
+     * IN (...) clause whose values are bound via the driver rather than
+     * embedded as literals in the query string.
+     */
+    private function placeholders($values) {
+        return implode(',', array_fill(0, count($values), '?'));
+    }
+
     function __construct() {
         $this->load->driver('cache', [
             'adapter' => $this->config->item('cache_adapter') ?? 'file',
@@ -125,27 +142,34 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
         $this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
-
 		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
-		$binding = [];
-		$band_condition = $this->band_condition($band, $binding);
-		$mode_condition = $this->mode_condition($mode, $binding);
+
+        // Every "?" placeholder below is bound via $binding, built up in the
+        // same left-to-right order the placeholders appear in $sql. The
+        // subquery and outer query repeat the same where-clause, so each
+        // group of placeholders (location/band/DXCC/band_condition/
+        // mode_condition) is bound twice - once per copy.
+        $location_placeholders = $this->placeholders($logbooks_locations_array);
+        $bandslots_placeholders = $this->placeholders($bandslots);
+        $dxcc_placeholders = $this->placeholders($this->us_counties_dxcc);
+
+        $condition_binding = [];
+        $band_condition = $this->band_condition($band, $condition_binding);
+        $mode_condition = $this->mode_condition($mode, $condition_binding);
+        $where_binding = array_merge($logbooks_locations_array, $bandslots, $this->us_counties_dxcc, $condition_binding);
 
         $sql = "select count(distinct COL_CNTY) countycountworked, coalesce(x.countycountconfirmed, 0) countycountconfirmed, thcv.COL_STATE
                 from " . $this->config->item('table_name') . " thcv
                  left outer join (
                         select count(distinct COL_CNTY) countycountconfirmed, COL_STATE
                         from " . $this->config->item('table_name') .
-            " where station_id in (" . $location_list . ")" .
-            " and col_band in (" . $bandslots_list . ")" .
-            " and COL_DXCC in ('291', '6', '110')
+            " where station_id in (" . $location_placeholders . ")" .
+            " and col_band in (" . $bandslots_placeholders . ")" .
+            " and COL_DXCC in (" . $dxcc_placeholders . ")
                     and coalesce(COL_CNTY, '') <> ''
                     and COL_BAND != 'SAT'
                     " . $band_condition . "
@@ -154,9 +178,9 @@ class Counties extends CI_Model
                     group by COL_STATE
                     order by COL_STATE
                 ) x on thcv.COL_STATE = x.COL_STATE
-                 where station_id in (" . $location_list . ")" .
-                 " and col_band in (" . $bandslots_list . ")" .
-            " and COL_DXCC in ('291', '6', '110')
+                 where station_id in (" . $location_placeholders . ")" .
+                 " and col_band in (" . $bandslots_placeholders . ")" .
+            " and COL_DXCC in (" . $dxcc_placeholders . ")
                 and coalesce(COL_CNTY, '') <> ''
                 and COL_BAND != 'SAT'
                 " . $band_condition . "
@@ -164,10 +188,7 @@ class Counties extends CI_Model
                 group by thcv.COL_STATE, countycountconfirmed
                 order by thcv.COL_STATE";
 
-        // band_condition()/mode_condition() append the same bindings twice
-        // (once per subquery use above), since both copies of the SQL need
-        // the same "?" placeholders filled.
-        $query = $this->db->query($sql, array_merge($binding, $binding));
+        $query = $this->db->query($sql, array_merge($where_binding, $where_binding));
         return $query->result_array();
     }
 
@@ -196,21 +217,21 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
         $this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
+		$dxcc_placeholders = $this->placeholders($this->us_counties_dxcc);
 
-		$binding = [];
+		$binding = array_merge($logbooks_locations_array, $bandslots, $this->us_counties_dxcc);
 
         $sql = "select distinct COL_CNTY, COL_STATE
 		from " . $this->config->item('table_name') . " thcv
-		where station_id in (" . $location_list . ")" .
-		" and col_band in (" . $bandslots_list . ")" .
-		" and COL_DXCC in ('291', '6', '110')
+		where station_id in (" . $location_placeholders . ")" .
+		" and col_band in (" . $bandslots_placeholders . ")" .
+		" and COL_DXCC in (" . $dxcc_placeholders . ")
 		and coalesce(COL_CNTY, '') <> ''
 		and COL_BAND != 'SAT'
 		" . $this->band_condition($band, $binding) . "
@@ -244,15 +265,15 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
 		$this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
+		$dxcc_placeholders = $this->placeholders($this->us_counties_dxcc);
 
-		$binding = [];
+		$binding = array_merge($logbooks_locations_array, $bandslots, $this->us_counties_dxcc);
 
 		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
 
@@ -260,9 +281,9 @@ class Counties extends CI_Model
 			count(*) as worked,
 			sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 		from " . $this->config->item('table_name') . " thcv
-		where station_id in (" . $location_list . ")" .
-		" and col_band in (" . $bandslots_list . ")" .
-		" and COL_DXCC in ('291', '6', '110')
+		where station_id in (" . $location_placeholders . ")" .
+		" and col_band in (" . $bandslots_placeholders . ")" .
+		" and COL_DXCC in (" . $dxcc_placeholders . ")
 		and coalesce(COL_CNTY, '') <> ''
 		and COL_BAND != 'SAT'
 		" . $this->band_condition($band, $binding) . "
@@ -295,16 +316,16 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
 		$this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
+		$dxcc_placeholders = $this->placeholders($this->us_counties_dxcc);
 
 		$confirmed_condition = $this->build_confirmed_condition($qsl_sources);
-		$binding = [];
+		$binding = array_merge($logbooks_locations_array, $bandslots, $this->us_counties_dxcc);
 		$band_condition = $this->band_condition($band, $binding);
 		$mode_condition = $this->mode_condition($mode, $binding);
 
@@ -325,9 +346,9 @@ class Counties extends CI_Model
 				count(*) as worked,
 				sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 			from " . $this->config->item('table_name') . " thcv
-			where station_id in (" . $location_list . ")" .
-			" and col_band in (" . $bandslots_list . ")" .
-			" and COL_DXCC in ('291', '6', '110')
+			where station_id in (" . $location_placeholders . ")" .
+			" and col_band in (" . $bandslots_placeholders . ")" .
+			" and COL_DXCC in (" . $dxcc_placeholders . ")
 			and coalesce(COL_CNTY, '') <> ''
 			and COL_BAND != 'SAT'
 			" . $band_condition . "
