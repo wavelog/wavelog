@@ -199,7 +199,7 @@ function getDistance($distance) {
                        } elseif ($diff > 7) {
                           $lotw_hint = ' lotw_info_yellow';
                        }
-                       $timestamp = strtotime($row->lastupload); echo ($row->callsign == '' ? '' : ' <a id="lotw_badge" style="float: right; user-select: none;" href="https://lotw.arrl.org/lotwuser/act?act='.$row->COL_CALL.'" target="_blank"><small id="lotw_info" class="badge text-bg-success'.$lotw_hint.'" data-bs-toggle="tooltip" title="LoTW User. Last upload was '.date($custom_date_format." H:i", $timestamp).'">L</small></a>');
+                       $timestamp = strtotime($row->lastupload); echo ($row->callsign == '' ? '' : ' <a id="lotw_badge" style="float: right; user-select: none;" href="https://lotw.arrl.org/lotwuser/act?act='.html_escape($row->COL_CALL).'" target="_blank"><small id="lotw_info" class="badge text-bg-success'.$lotw_hint.'" data-bs-toggle="tooltip" title="LoTW User. Last upload was '.date($custom_date_format." H:i", $timestamp).'">L</small></a>');
                     }
                  ?>
             </td>
@@ -245,7 +245,7 @@ function getDistance($distance) {
                                 echo " (".__("Direct").")";
                                 break;
                              case "M":
-                                echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
+                                echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? html_escape($row->COL_QSL_VIA):"n/a").")";
                                 break;
                              case "E":
                                 echo " (".__("Electronic").")";
@@ -631,13 +631,13 @@ function getDistance($distance) {
                                 <div class="dropdown-divider"></div>
                             <?php } ?>
 
-                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question" aria-hidden="true"></i> <?= __("Lookup on QRZ.com"); ?></a>
+                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo html_escape($row->COL_CALL); ?>" target="_blank"><i class="fas fa-question" aria-hidden="true"></i> <?= __("Lookup on QRZ.com"); ?></a>
 
-                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question" aria-hidden="true"></i> <?= __("Lookup on HamQTH"); ?></a>
+                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo html_escape($row->COL_CALL); ?>" target="_blank"><i class="fas fa-question" aria-hidden="true"></i> <?= __("Lookup on HamQTH"); ?></a>
 
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div class="dropdown-divider"></div>
-                            <button type="button" class="dropdown-item" onclick="qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt" aria-hidden="true"></i> <?= __("Delete QSO"); ?></button>
+                            <button type="button" class="dropdown-item" onclick="qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo json_encode($row->COL_CALL, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>)"><i class="fas fa-trash-alt" aria-hidden="true"></i> <?= __("Delete QSO"); ?></button>
                             <?php } ?>
                         </div>
                     </div>

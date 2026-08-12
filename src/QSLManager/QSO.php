@@ -449,7 +449,7 @@ class QSO
 				$qslstring .= " (".__("Direct").")";
 					break;
 				case "M":
-				$qslstring .= " (".__("Via").": ".($data['COL_QSL_VIA'] !="" ? $data['COL_QSL_VIA']:"n/a").")";
+				$qslstring .= " (".__("Via").": ".($data['COL_QSL_VIA'] !="" ? html_escape($data['COL_QSL_VIA']):"n/a").")";
 					break;
 				case "E":
 				$qslstring .= " (".__("Electronic").")";
@@ -1434,7 +1434,7 @@ class QSO
 			$dokstring = $dok;
 		}
 		if ($dokstring !== '') {
-			$dokstring .= '<a href="javascript:spawnLookupModal('.self::jsString($this->dxDARCDOK).',\'dok\');"> <i class="fas fa-globe"></a>';
+			$dokstring .= '<a href="javascript:spawnLookupModal(\''.$this->dxDARCDOK.'\',\'dok\');"> <i class="fas fa-globe"></a>';
 		}
 
 		return $dokstring;
@@ -1652,7 +1652,7 @@ class QSO
 	{
 		$target = !empty($grid) ? $grid : $vucc;
 		if (!empty($target)) {
-			return '<a href="javascript:spawnQrbCalculator(' . self::jsString($mygrid) . ',' . self::jsString($target) . ')"><i class="fas fa-globe"></i></a>';
+			return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $target . '\')"><i class="fas fa-globe"></i></a>';
 		}
 		return '';
 	}
@@ -1660,18 +1660,8 @@ class QSO
 	private function getIotaLink($iota) : string
 	{
 		if ($iota !== '') {
-			return '<a href="javascript:spawnLookupModal('.self::jsString($iota).',\'iota\');">'.html_escape($iota).'</a> <a href="https://www.iota-world.org/iotamaps/?grpref=' .html_escape($iota) . '" target="_blank"><i class="fas fa-globe"></i></a>';
+			return '<a href="javascript:spawnLookupModal(\''.$iota.'\',\'iota\');">'.html_escape($iota).'</a> <a href="https://www.iota-world.org/iotamaps/?grpref=' .html_escape($iota) . '" target="_blank"><i class="fas fa-globe"></i></a>';
 		}
 		return '';
-	}
-
-	/**
-	 * Render a value as a JS string literal safe for a javascript: attribute.
-	 * Hex-escapes every HTML-special character so neither the attribute nor
-	 * the literal can be broken out of.
-	 */
-	private static function jsString($value): string
-	{
-		return json_encode((string) $value, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 	}
 }

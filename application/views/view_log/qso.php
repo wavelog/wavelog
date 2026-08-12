@@ -252,7 +252,7 @@
                     <?php if($row->COL_SAT_MODE != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Satellite Mode"); ?></th>
-                        <td><?php echo (strlen($row->COL_SAT_MODE) == 2 ? (strtoupper($row->COL_SAT_MODE[0]).'/'.strtoupper($row->COL_SAT_MODE[1])) : strtoupper($row->COL_SAT_MODE)); ?></td>
+                        <td><?php echo html_escape(strlen($row->COL_SAT_MODE) == 2 ? strtoupper($row->COL_SAT_MODE[0]).'/'.strtoupper($row->COL_SAT_MODE[1]) : strtoupper($row->COL_SAT_MODE)); ?></td>
                     </tr>
                     <?php } ?>
 
@@ -417,7 +417,7 @@
                     <?php if($row->COL_REGION != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Region"); ?></th>
-                        <td><?php echo $this->logbook_model->getLongRegion($row->COL_REGION).' ('.$row->COL_REGION.')'; ?></td>
+                        <td><?php echo html_escape($this->logbook_model->getLongRegion($row->COL_REGION)).' ('.html_escape($row->COL_REGION).')'; ?></td>
                     </tr>
                     <?php } ?>
 

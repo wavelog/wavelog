@@ -47,7 +47,7 @@ function echo_table_col($row, $name) {
             echo html_escape($row->COL_POTA_REF);
             break;
         case 'Grid':
-            echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
+            echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
             break;
         case 'Distance':
             echo ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '');
@@ -205,7 +205,7 @@ $ci =& get_instance();
                         echo " (".__("Direct").")";
                         break;
                      case "M":
-                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
+                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? html_escape($row->COL_QSL_VIA):"n/a").")";
                         break;
                      case "E":
                         echo " (".__("Electronic").")";
