@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-12 15:18+0000\n"
+"POT-Creation-Date: 2026-08-12 17:38+0000\n"
 "PO-Revision-Date: 2026-07-29 08:13+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -256,7 +256,7 @@ msgstr "Mapa aktivovaných lokátorů"
 #: application/controllers/Awards.php:1421
 #: application/controllers/Awards.php:1457
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:532
+#: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
 #: application/views/contesting/logger/index.php:57
 #: application/views/interface_assets/footer.php:53
@@ -267,13 +267,13 @@ msgstr "Lokátory"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
-#: application/controllers/Visitor.php:533
+#: application/controllers/Visitor.php:534
 msgid "Gridsquares confirmed"
 msgstr "Potvrzené lokátory"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
-#: application/controllers/Visitor.php:534
+#: application/controllers/Visitor.php:535
 msgid "Gridsquares not confirmed"
 msgstr "Nepotvrzené lokátory"
 
@@ -283,26 +283,26 @@ msgstr "Celkem aktivovaných lokátorů"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
-#: application/controllers/Visitor.php:537
+#: application/controllers/Visitor.php:538
 #: application/views/qslpostcard/designer.php:151
 msgid "Fields"
 msgstr "Pole"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
-#: application/controllers/Visitor.php:538
+#: application/controllers/Visitor.php:539
 msgid "Fields confirmed"
 msgstr "Pole potvrzena"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
-#: application/controllers/Visitor.php:539
+#: application/controllers/Visitor.php:540
 msgid "Fields not confirmed"
 msgstr "Pole nepotvrzena"
 
 #: application/controllers/Activated_gridmap.php:41
 #: application/controllers/Gridmap.php:42
-#: application/controllers/Visitor.php:540
+#: application/controllers/Visitor.php:541
 msgid "Total fields worked"
 msgstr "Celkem pracováno polí"
 
@@ -1325,8 +1325,8 @@ msgstr "Není spuštěno"
 msgid "SOTA CSV Export"
 msgstr "Export SOTA CSV"
 
-#: application/controllers/Dashboard.php:176
-#: application/controllers/Visitor.php:130
+#: application/controllers/Dashboard.php:179
+#: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Přehled"
 
@@ -1588,7 +1588,7 @@ msgid "Gridsquare Map"
 msgstr "Mapa lokátorů"
 
 #: application/controllers/Gridmap.php:37
-#: application/controllers/Visitor.php:535
+#: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
 msgstr "Celkový počet lokátorů"
 
@@ -2847,16 +2847,16 @@ msgstr "Informace o verzi se nezobrazí žádnému uživateli"
 #: application/controllers/Staticmap.php:202
 #: application/controllers/Visitor.php:48
 #: application/controllers/Visitor.php:77
-#: application/controllers/Visitor.php:143
-#: application/controllers/Visitor.php:155
-#: application/controllers/Visitor.php:179
-#: application/controllers/Visitor.php:205
-#: application/controllers/Visitor.php:217
-#: application/controllers/Visitor.php:241
-#: application/controllers/Visitor.php:317
-#: application/controllers/Visitor.php:343
-#: application/controllers/Visitor.php:377
-#: application/controllers/Visitor.php:634
+#: application/controllers/Visitor.php:144
+#: application/controllers/Visitor.php:156
+#: application/controllers/Visitor.php:180
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:218
+#: application/controllers/Visitor.php:242
+#: application/controllers/Visitor.php:318
+#: application/controllers/Visitor.php:344
+#: application/controllers/Visitor.php:378
+#: application/controllers/Visitor.php:635
 #: application/controllers/Widgets.php:67
 msgid "Unknown Public Page."
 msgstr "Neznámá veřejná stránka."
@@ -3340,11 +3340,11 @@ msgstr "Jednoduché rychlé zadání logu"
 
 #: application/controllers/Staticmap.php:198
 #: application/controllers/Visitor.php:73
-#: application/controllers/Visitor.php:175
-#: application/controllers/Visitor.php:237
-#: application/controllers/Visitor.php:339
-#: application/controllers/Visitor.php:373
-#: application/controllers/Visitor.php:630
+#: application/controllers/Visitor.php:176
+#: application/controllers/Visitor.php:238
+#: application/controllers/Visitor.php:340
+#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:631
 #: application/controllers/Widgets.php:63
 msgid "Empty Logbook"
 msgstr "Prázdný logbook"
@@ -4067,20 +4067,20 @@ msgid ""
 msgstr ""
 "Byli jste odhlášeni z účtu %s. Vítejte zpět, %s, ve vašem osobním účtu!"
 
-#: application/controllers/Visitor.php:382
+#: application/controllers/Visitor.php:383
 msgid "No public slug found."
 msgstr "Nebyl nalezen žádný veřejný slug."
 
-#: application/controllers/Visitor.php:388
+#: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
 msgstr "Mapa satelitních lokátorů"
 
-#: application/controllers/Visitor.php:568
+#: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
 msgid "Public Search"
 msgstr "Veřejné vyhledávání"
 
-#: application/controllers/Visitor.php:601
+#: application/controllers/Visitor.php:602
 msgid "Export Map"
 msgstr "Exportovat mapu"
 
@@ -4442,13 +4442,13 @@ msgstr "Značka není zadána"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musí být číselné"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4796
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Odlišná značka stanice %s při importu QSO s %s pro %s: PŘESKOČENO"
 
-#: application/models/Logbook_model.php:4795
+#: application/models/Logbook_model.php:4804
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4456,7 +4456,7 @@ msgid ""
 msgstr ""
 "Odlišný lokátor %s při importu QSO s %s pro lokátor stanice %s: PŘESKOČENO"
 
-#: application/models/Logbook_model.php:4811
+#: application/models/Logbook_model.php:4820
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4464,7 +4464,7 @@ msgstr ""
 "Pokusili jste se importovat QSO bez platného data. Toto QSO nebylo "
 "importováno. Je neplatné"
 
-#: application/models/Logbook_model.php:4821
+#: application/models/Logbook_model.php:4830
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4473,7 +4473,7 @@ msgstr ""
 "QSO dne %s: Pokusili jste se importovat QSO bez uvedeného pole CALL. Toto "
 "QSO nebylo importováno. Je neplatné."
 
-#: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:4837
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4482,7 +4482,7 @@ msgstr ""
 "QSO dne %s: Pokusili jste se importovat QSO s neplatným polem CALL. Toto QSO "
 "nebylo importováno. Neplatný vstup je '%s'."
 
-#: application/models/Logbook_model.php:4898
+#: application/models/Logbook_model.php:4907
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4490,7 +4490,7 @@ msgid ""
 msgstr ""
 "QSO dne %s: Pásmo '%s' není v konfiguraci pásem. Toto QSO nebylo importováno."
 
-#: application/models/Logbook_model.php:4905
+#: application/models/Logbook_model.php:4914
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4499,63 +4499,63 @@ msgstr ""
 "QSO na %s: Pokusili jste se importovat QSO bez zadaného pásma. Toto QSO "
 "nebylo importováno. Je neplatné"
 
-#: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5188
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "datum qslrdate je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5190
+#: application/models/Logbook_model.php:5199
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "datum qslsdate je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5251
+#: application/models/Logbook_model.php:5260
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5627
+#: application/models/Logbook_model.php:5636
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikát pro"
 
-#: application/models/Logbook_model.php:5694
-#: application/models/Logbook_model.php:5794
+#: application/models/Logbook_model.php:5703
+#: application/models/Logbook_model.php:5803
 msgid "QSO could not be matched"
 msgstr "QSO nelze spárovat"
 
-#: application/models/Logbook_model.php:5702
+#: application/models/Logbook_model.php:5711
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrzeno přes LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5708
+#: application/models/Logbook_model.php:5717
 msgid "confirmed by award manager"
 msgstr "potvrzeno manažerem diplomů"
 
-#: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5721
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrzeno kontrolou DCL dat"
 
-#: application/models/Logbook_model.php:5716
+#: application/models/Logbook_model.php:5725
 msgid "confirmation pending"
 msgstr "čeká na potvrzení"
 
-#: application/models/Logbook_model.php:5719
+#: application/models/Logbook_model.php:5728
 msgid "unconfirmed"
 msgstr "nepotvrzeno"
 
-#: application/models/Logbook_model.php:5722
+#: application/models/Logbook_model.php:5731
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "neznámé"
 
-#: application/models/Logbook_model.php:5797
+#: application/models/Logbook_model.php:5806
 msgid "POTA reference already in log"
 msgstr "POTA reference již v logu"
 
-#: application/models/Logbook_model.php:5800
+#: application/models/Logbook_model.php:5809
 msgid "QSO updated"
 msgstr "QSO aktualizováno"
 
-#: application/models/Logbook_model.php:6206
+#: application/models/Logbook_model.php:6215
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -13082,6 +13082,11 @@ msgstr "Detaily"
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "Rozpis DXCC"
+
+#: application/views/dashboard/index.php:488
+#: application/views/visitor/index.php:267
+msgid "Deleted DXCCs"
+msgstr ""
 
 #: application/views/dashboard/index.php:498
 #: application/views/visitor/index.php:277
