@@ -158,7 +158,7 @@
                     <?php } ?>
 
                     <?php
-                        if ($distance != false) { ?>
+                        if (isset($distance) && $distance != false) { ?>
                             <tr>
                                 <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
                                 <td>
