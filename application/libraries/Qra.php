@@ -53,14 +53,14 @@ class Qra {
 			try {
 				$total_distance = calc_distance($my[0], $my[1], $stn[0], $stn[1], $unit, $ant_path);
 			} catch (Exception $e) {
-				$total_distance = 0;
+				$total_distance = false;
 			}
 
 			// Return the distance
 			return $total_distance;
 		} else {
 			// Handle the case where qra2latlong did not return valid values
-			return 0;
+			return false;
 		}
 	}
 
@@ -210,29 +210,34 @@ class Qra {
 		return [atan2(($z / $n), sqrt($x * $x + $y * $y)) * 180 / pi(), atan2($y, $x) * 180 / pi()];
 	}
 
-	function validate_grid($grid) {
+	function validate_grid($grid, $type='any') {
 		// (Try to) Detect placeholders like AA00aa (returned from qrz.com for example)
 		if (strlen($grid) == 6 && strtoupper($grid) == 'AA00AA') {
 			return false;
 		}
+		if ($type == 'vucc') goto vucc;
 		// Allow 6-digit locator
 		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
 		// Allow 4-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 4-digit grid line
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 4-digit grid corner
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
 		// Allow 2-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
+		if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
 		// Allow 8-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
 		// Allow 10-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		if ($type == 'grid') return false;
+
+		vucc:
+		// Allow 4-digit grid line
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
 		// Allow 6-digit grid line
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+
+		// Allow 4-digit grid corner
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
 		// Allow 6-digit grid corner
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
 		return false;
 	}
 }
@@ -308,7 +313,7 @@ function get_bearing($lat1, $lon1, $lat2, $lon2, $ant_path = null) {
 }
 
 function qra2latlong($strQRA) {
-	$strQRA = preg_replace('/\s+/', '', $strQRA);
+	$strQRA = preg_replace('/\s+/', '', ($strQRA ?? ''));
 	if (substr_count($strQRA, ',') > 0) {
 		$grids = explode(',', $strQRA);
 		if (count($grids) != 2 && count($grids) != 4) {

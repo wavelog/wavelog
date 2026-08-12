@@ -299,9 +299,9 @@ function stopImpersonate_modal() {
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
-    // Replace all Ã˜ in the searchbar
+    // Replace all Ø in the searchbar
     $('#nav-bar-search-input').on('input', function () {
-        $(this).val($(this).val().replace(/0/g, 'Ã˜'));
+        $(this).val($(this).val().replace(/0/g, 'Ø'));
     });
 </script>
 
@@ -1028,7 +1028,7 @@ function searchButtonPress() {
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
-        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ã˜', '0'), function() {
+        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ø', '0'), function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -2386,7 +2386,7 @@ $('#sats').change(function(){
 		var target = document.body;
 		var observer = new MutationObserver(function() {
 			$('#dt-search-0').on('keyup', function (e) {
-				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
+				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
 				$(this).val(tocrappyzero);
 				$(this).trigger("input");
 			});
@@ -2564,7 +2564,7 @@ function viewEqsl(picture, callsign) {
                        var target = document.body;
                        var observer = new MutationObserver(function() {
                                $('#dt-search-0').on('keyup', function (e) {
-                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
+                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
                                        $(this).val(tocrappyzero);
                                        $(this).trigger("input");
                                });
@@ -3115,7 +3115,7 @@ function viewEqsl(picture, callsign) {
 		    var target = document.body;
 		    var observer = new MutationObserver(function() {
 			    $('#dt-search-1').on('keyup', function (e) {
-				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
+				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
 				    $(this).val(tocrappyzero);
 				    $(this).trigger("input");
 			    });

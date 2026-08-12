@@ -125,58 +125,7 @@
                         <td><?php echo $row->COL_RST_RCVD; ?> <?php if ($row->COL_SRX) { ?>(<?php printf("%03d", $row->COL_SRX);?>)<?php } ?> <?php if ($row->COL_SRX_STRING) { ?>(<?php echo $row->COL_SRX_STRING;?>)<?php } ?></td>
                     </tr>
 
-                    <?php if($row->COL_GRIDSQUARE != null) { ?>
-                    <tr>
-                        <th scope="row"><?= __("Gridsquare"); ?>:</th>
-                        <td><?php echo $row->COL_GRIDSQUARE; ?> <?php if (!empty($row->station_gridsquare)) { ?><button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator('<?php echo $row->station_gridsquare . '\',\'' . $row->COL_GRIDSQUARE; ?>')" aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button><?php } ?></td>
-                    </tr>
-                    <?php } ?>
-
-                    <?php if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4 && !empty($row->station_gridsquare)) { ?>
-                    <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
-                    <tr>
-                        <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
-                        <td>
-                            <?php
-                                // Cacluate Distance if COL_DISTANCE is not set
-                                $ant_path = $row->COL_ANT_PATH ?? null;
-                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
-                                switch ($measurement_base) {
-                                    case 'M':
-                                        $distance .= " mi";
-                                        break;
-                                    case 'K':
-                                        $distance .= " km";
-                                        break;
-                                    case 'N':
-                                        $distance .= " nmi";
-                                        break;
-                                }
-
-                                if ($ant_path != null) {
-                                    switch ($row->COL_ANT_PATH) {
-                                        case "S":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
-                                            break;
-                                        case "L":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
-                                            break;
-                                        case "O":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
-                                            break;
-                                        case "G":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                echo $distance;
-                            ?>
-                        </td>
-                    </tr>
-                    <?php } ?>
-
+                    <?php $ant_path = $row->COL_ANT_PATH ?? null; ?>
                     <?php if($row->COL_VUCC_GRIDS != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Gridsquare"); ?> (Multi):</th>
@@ -198,21 +147,57 @@
                             <?php
                                 // Cacluate Distance
                                 $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base, $row->COL_ANT_PATH ?? null);
-
-                                switch ($measurement_base) {
-                                    case 'M':
-                                        $distance .= " mi";
-                                        break;
-                                    case 'K':
-                                        $distance .= " km";
-                                        break;
-                                    case 'N':
-                                        $distance .= " nmi";
-                                        break;
-                                }
-                                echo $distance;
                             ?>
                     </tr>
+
+                    <?php } else if($row->COL_GRIDSQUARE != null) { ?>
+                    <tr>
+                        <th scope="row"><?= __("Gridsquare"); ?>:</th>
+                        <td><?php echo $row->COL_GRIDSQUARE; ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator('<?php echo $row->station_gridsquare . '\',\'' . $row->COL_GRIDSQUARE; ?>')" aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button></td>
+                        <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
+                        <?php $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $row->COL_ANT_PATH ?? null); ?>
+                    </tr>
+                    <?php } ?>
+
+                    <?php
+                        if (isset($distance) && $distance != false) { ?>
+                            <tr>
+                                <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
+                                <td>
+                                    <?php
+                                        switch ($measurement_base) {
+                                            case 'M':
+                                                $distance .= " mi";
+                                                break;
+                                            case 'K':
+                                                $distance .= " km";
+                                                break;
+                                            case 'N':
+                                                $distance .= " nmi";
+                                                break;
+                                        }
+                                        if ($ant_path != null) {
+                                            switch ($row->COL_ANT_PATH) {
+                                                case "S":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
+                                                    break;
+                                                case "L":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
+                                                    break;
+                                                case "O":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
+                                                    break;
+                                                case "G":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                        echo $distance;
+                                    ?>
+                                </td>
+                            </tr>
                     <?php } ?>
 
                     <?php if($row->COL_STATE != null) { ?>
@@ -818,9 +803,22 @@
 <?php
    if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
       $stn_loc = $this->qra->qra2latlong(trim($row->COL_GRIDSQUARE));
-      if($stn_loc[0] != 0) {
-         $lat = $stn_loc[0];
-         $lng = $stn_loc[1];
+      if ($stn_loc != false) {
+         if($stn_loc[0] != 0) {
+            $lat = $stn_loc[0];
+            $lng = $stn_loc[1];
+         }
+      } else {
+         if (isset($row->lat)) {
+            $lat = $row->lat;
+         } else {
+            $lat = 0;
+         }
+         if (isset($row->long)) {
+            $lng = $row->long;
+         } else {
+            $lng = 0;
+         }
       }
    } else if ($row->COL_VUCC_GRIDS != null) {
       $midpoint = $this->qra->qra2latlong($row->COL_VUCC_GRIDS);
