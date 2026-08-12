@@ -814,9 +814,22 @@
 <?php
    if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
       $stn_loc = $this->qra->qra2latlong(trim($row->COL_GRIDSQUARE));
-      if($stn_loc[0] != 0) {
-         $lat = $stn_loc[0];
-         $lng = $stn_loc[1];
+      if ($stn_loc != false) {
+         if($stn_loc[0] != 0) {
+            $lat = $stn_loc[0];
+            $lng = $stn_loc[1];
+         }
+      } else {
+         if (isset($row->lat)) {
+            $lat = $row->lat;
+         } else {
+            $lat = 0;
+         }
+         if (isset($row->long)) {
+            $lng = $row->long;
+         } else {
+            $lng = 0;
+         }
       }
    } else if ($row->COL_VUCC_GRIDS != null) {
       $midpoint = $this->qra->qra2latlong($row->COL_VUCC_GRIDS);
