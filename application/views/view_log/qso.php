@@ -153,7 +153,7 @@
                         <th scope="row"><?= __("Gridsquare"); ?>:</th>
                         <td><?php echo $row->COL_GRIDSQUARE; ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator('<?php echo $row->station_gridsquare . '\',\'' . $row->COL_GRIDSQUARE; ?>')" aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button></td>
                         <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
-                        <?php $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base, $row->COL_ANT_PATH ?? null); ?>
+                        <?php $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $row->COL_ANT_PATH ?? null); ?>
                     </tr>
                     <?php } ?>
 
