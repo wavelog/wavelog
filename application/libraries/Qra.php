@@ -208,6 +208,7 @@ class Qra {
 		if (strlen($grid) == 6 && strtoupper($grid) == 'AA00AA') {
 			return false;
 		}
+		if ($type == 'vucc') goto vucc;
 		// Allow 6-digit locator
 		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
 		// Allow 4-digit locator
@@ -220,11 +221,11 @@ class Qra {
 		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
 		if ($type == 'grid') return false;
 
+		vucc:
 		// Allow 4-digit grid line
 		if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
 		// Allow 6-digit grid line
 		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-		if ($type == 'line') return false;
 
 		// Allow 4-digit grid corner
 		if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;

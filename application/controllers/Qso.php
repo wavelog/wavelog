@@ -497,6 +497,9 @@ class QSO extends CI_Controller {
 		if (strtoupper(trim($this->input->post('locator')) ?? '') != '') {
 			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
 		}
+		if (strtoupper(trim($this->input->post('vucc_grids')) ?? '') != '') {
+			$this->form_validation->set_rules('vucc_grids', 'VUCC Grids', 'callback_check_grids');
+		}
 
 		$edit_result=array();
 		$edit_result['success']=false;
@@ -800,7 +803,18 @@ class QSO extends CI_Controller {
 		if ($this->qra->validate_grid($grid, 'grid')) {
 			return true;
 		} else {
-			$this->form_validation->set_message('check_locator', sprintf(__("Please check value for grid locator (%s)"), strtoupper($grid)));
+			$this->form_validation->set_message('check_locator', sprintf(__("Please check value for gridsquare (%s)"), strtoupper($grid)));
+			return false;
+		}
+	}
+
+	function check_grids($grid) {
+		$grid = $this->input->post('vucc_grids', TRUE);
+		$this->load->library('Qra');
+		if ($this->qra->validate_grid($grid, 'vucc')) {
+			return true;
+		} else {
+			$this->form_validation->set_message('check_grids', sprintf(__("Please check value for VUCC gridsquare (%s)"), strtoupper($grid)));
 			return false;
 		}
 	}
