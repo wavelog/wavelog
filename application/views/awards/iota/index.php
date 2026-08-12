@@ -223,9 +223,13 @@
         foreach ($iota_array as $iota => $value) {
             echo '<tr>
                             <td>'. $i++ .'</td>
-                            <td>'. $iota .'</td>';
-            foreach ($value  as $key) {
-                echo '<td>' . $key . '</td>';
+                            <td class="callsign">'. $iota .'</td>';
+            foreach ($value  as $col => $key) {
+                if ($col === 'prefix') {
+                    echo '<td class="callsign">' . $key . '</td>';
+                } else {
+                    echo '<td>' . $key . '</td>';
+                }
             }
             echo '</tr>';
         }
