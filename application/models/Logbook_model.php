@@ -2150,6 +2150,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+				$this->set_clublog_modified($qso_id);
 			}
 		} else {
 			return;
@@ -2177,6 +2178,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+				$this->set_clublog_modified($qso_id);
 			}
 		} else {
 			return;
