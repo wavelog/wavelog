@@ -823,9 +823,9 @@
                                         echo '<td>' . date($custom_date_format, $timestamp) . '</td>';
                                         $timestamp = strtotime($qso->COL_TIME_ON);
                                         echo '<td>' . date('H:i', $timestamp) . '</td>';
-                                        echo '<td>' . $qso->COL_CALL . '</td>';
-                                        echo '<td>' . $qso->COL_MODE . '</td>';
-                                        echo '<td>' . $qso->COL_BAND . '</td>';
+                                        echo '<td>' . html_escape($qso->COL_CALL) . '</td>';
+                                        echo '<td>' . html_escape($qso->COL_MODE) . '</td>';
+                                        echo '<td>' . html_escape($qso->COL_BAND) . '</td>';
                                         echo '<td>' . $qso->COL_STATION_CALLSIGN . '</td>';
                                         echo '</tr>';
                                     } ?>

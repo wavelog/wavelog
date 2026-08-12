@@ -485,7 +485,7 @@ $ci =& get_instance();
 
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo json_encode($row->COL_CALL, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>)"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, '<?php echo html_escape($row->COL_CALL); ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                             <?php } ?>
                         </div>
                     </div>
