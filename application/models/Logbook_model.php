@@ -4261,12 +4261,15 @@ class Logbook_model extends CI_Model {
 				-- Country stats (COUNT DISTINCT - filtered to valid DXCC only)
 				-- Callsign stats
 				COUNT(DISTINCT t.COL_CALL) as Unique_Callsigns,
-				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked,
-				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_QSL,
-				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_LOTW,
+				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked,
+				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Deleted_Worked,
+				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_QSL,
+				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Deleted_Worked_QSL,
+				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_LOTW,
+				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Deleted_Worked_LOTW,
 				-- DXCC confirmed totals intentionally count only paper QSL + LoTW.
 				-- eQSL is tracked separately in the UI as display-only information.
-				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_Confirmed,
+				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_Confirmed,
 				COUNT(DISTINCT CASE WHEN d.end IS NULL AND d.adif != 0 AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Current,
 				-- QSL stats (SUM - no filtering, all QSOs)
 				SUM(CASE WHEN t.COL_QSL_SENT = 'Y' THEN 1 ELSE 0 END) as QSL_Sent,
@@ -4304,8 +4307,11 @@ class Logbook_model extends CI_Model {
 					// Country stats
 					'Unique_Callsigns' => $row->Unique_Callsigns,
 					'Countries_Worked' => $row->Countries_Worked,
+					'Countries_Deleted_Worked' => $row->Countries_Deleted_Worked,
 					'Countries_Worked_QSL' => $row->Countries_Worked_QSL,
+					'Countries_Deleted_Worked_QSL' => $row->Countries_Deleted_Worked_QSL,
 					'Countries_Worked_LOTW' => $row->Countries_Worked_LOTW,
+					'Countries_Deleted_Worked_LOTW' => $row->Countries_Deleted_Worked_LOTW,
 					'Countries_Worked_Confirmed' => $row->Countries_Worked_Confirmed,
 					'Countries_Current' => $row->Countries_Current,
 					// QSL stats
@@ -4339,8 +4345,11 @@ class Logbook_model extends CI_Model {
 		// Return zero values if no data
 		return [
 			'Countries_Worked' => 0,
+			'Countries_Deleted_Worked' => 0,
 			'Countries_Worked_QSL' => 0,
+			'Countries_Deleted_Worked_QSL' => 0,
 			'Countries_Worked_LOTW' => 0,
+			'Countries_Deleted_Worked_LOTW' => 0,
 			'Countries_Worked_Confirmed' => 0,
 			'Countries_Current' => 0,
 			'QSL_Sent' => 0,
