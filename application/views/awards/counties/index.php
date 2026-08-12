@@ -16,6 +16,18 @@
         width: min(850px, 90vw);
         min-width: 600px;
     }
+
+    /* Ensure label sits above multiselect, not beside it (overrides span.multiselect-native-select) */
+    span.multiselect-native-select {
+        display: block !important;
+        width: 100% !important;
+    }
+    span.multiselect-native-select .btn-group {
+        width: 100% !important;
+    }
+    span.multiselect-native-select .multiselect {
+        text-align: left !important;
+    }
 </style>
 <div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
@@ -47,8 +59,18 @@
     <form class="form" action="<?php echo site_url('awards/counties'); ?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="qslFilterSet" value="1">
         <div class="mb-4 text-center">
-            <div class="dropdown" data-bs-auto-close="outside">
-                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="countiesFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+            <div class="dropdown">
+                <?php /* auto-close "false" (must be on the toggle button itself - Bootstrap
+                    reads data-bs-auto-close off the [data-bs-toggle="dropdown"] element,
+                    not the wrapping .dropdown div): Band/Mode are now their own nested
+                    bootstrap-multiselect dropdowns, each with their own
+                    data-bs-toggle="dropdown" button. Bootstrap 5 closes every other open
+                    dropdown whenever a new [data-bs-toggle="dropdown"] is clicked, *unless*
+                    that dropdown's own autoClose config is exactly false ('outside'/'inside'
+                    aren't enough - those only protect against plain outside/inside clicks,
+                    not another toggle's click-to-open), so without this the outer Filters
+                    panel closed itself as soon as the Band/Mode dropdown was opened. */ ?>
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="countiesFilterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"><?= __("Filters") ?></button>
                 <button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
                 <?php if ($counties_progress) { ?>
                 <button type="button" onclick="load_counties_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show Counties Map"); ?></button>
@@ -85,10 +107,9 @@
                         <div class="mb-3 row">
                             <div class="col-md-3"><label class="control-label" for="countiesBand"><?= __("Band"); ?></label></div>
                             <div class="col-md-9">
-                                <select id="countiesBand" name="band" class="form-select form-select-sm">
-                                    <option value="All" <?php if ($selected_band == "All") echo ' selected'; ?>><?= __("Every band"); ?></option>
+                                <select id="countiesBand" name="band[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($worked_bands as $band) { ?>
-                                    <option value="<?= $band; ?>" <?php if ($selected_band == $band) echo ' selected'; ?>><?= $band; ?></option>
+                                    <option value="<?= $band; ?>" <?php if ($selected_band === 'All' || (is_array($selected_band) && in_array($band, $selected_band))) echo ' selected'; ?>><?= $band; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -96,15 +117,12 @@
                         <div class="mb-3 row">
                             <div class="col-md-3"><label class="control-label" for="countiesMode"><?= __("Mode"); ?></label></div>
                             <div class="col-md-9">
-                                <select id="countiesMode" name="mode" class="form-select form-select-sm">
-                                    <option value="All" <?php if ($selected_mode == "All") echo ' selected'; ?>><?= __("All"); ?></option>
+                                <select id="countiesMode" name="mode[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($modes->result() as $mode) {
-                                        if ($mode->submode == null) { ?>
-                                    <option value="<?= $mode->mode; ?>" <?php if ($selected_mode == $mode->mode) echo ' selected'; ?>><?= $mode->mode; ?></option>
-                                    <?php } else { ?>
-                                    <option value="<?= $mode->submode; ?>" <?php if ($selected_mode == $mode->submode) echo ' selected'; ?>><?= $mode->submode; ?></option>
-                                    <?php }
-                                    } ?>
+                                        $value = $mode->submode == null ? $mode->mode : $mode->submode;
+                                        ?>
+                                    <option value="<?= $value; ?>" <?php if ($selected_mode === 'All' || (is_array($selected_mode) && in_array($value, $selected_mode))) echo ' selected'; ?>><?= $value; ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -229,3 +247,7 @@
         </div>
     </div>
 </div>
+<script>
+    var lang_counties_every_band = "<?= __("Every band"); ?>";
+    var lang_counties_every_mode = "<?= __("All"); ?>";
+</script>

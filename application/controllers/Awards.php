@@ -1358,6 +1358,7 @@ class Awards extends CI_Controller {
     public function counties()	{
 		$footerData = [];
 		$footerData['scripts'] = [
+			'assets/js/bootstrap-multiselect.js',
 			'assets/js/sections/countiesmap.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
@@ -1370,11 +1371,11 @@ class Awards extends CI_Controller {
         $mode = $this->counties_mode_from_post();
         $data['counties_progress'] = $this->counties->get_counties_progress($qsl_sources, $band, $mode);
         $data['qsl_sources'] = $qsl_sources;
-        // Band/Mode filter options mirror every other award page (WAS, RAC,
-        // Helvetia, ...): a single-select dropdown sourced from the bands
-        // actually worked/configured for this award and the ADIF modes
-        // active on this install, rather than a bespoke band list or
-        // Phone/CW/Digital grouping (int2001 PR review, 2026-08-11).
+        // Band/Mode filter options: a multi-select dropdown (same widget as
+        // the Satellite Pass page's satellite picker) sourced from the
+        // bands actually worked/configured for this award and the ADIF
+        // modes active on this install, rather than a bespoke Phone/CW/
+        // Digital grouping.
         $data['worked_bands'] = $this->bands->get_worked_bands('uscounties');
         $data['selected_band'] = $band;
         $data['modes'] = $this->modes->active();
@@ -1503,25 +1504,31 @@ class Awards extends CI_Controller {
     }
 
     /*
-     * Reads the selected Band filter value from the counties award filter -
-     * a single band (or 'All'), matching the dropdown convention used by
-     * every other award page (was(), rac(), helvetia(), ...) instead of a
-     * bespoke multi-select band list.
+     * Reads the selected Band filter values from the counties award filter -
+     * a list of bands from the multi-select dropdown (Satellite Pass page's
+     * satellite picker style), or 'All' when nothing was selected/posted.
      */
     private function counties_band_from_post() {
-        $band = $this->input->post('band');
-        return $band !== null ? $this->security->xss_clean($band) : 'All';
+        $bands = $this->input->post('band');
+        if (empty($bands)) {
+            return 'All';
+        }
+
+        return array_map(array($this->security, 'xss_clean'), $bands);
     }
 
     /*
-     * Reads the selected Mode filter value from the counties award filter -
-     * a single Mode/Submode value (or 'All'), matching the dropdown
-     * convention used by every other award page instead of a bespoke
-     * Phone/CW/Digital grouping.
+     * Reads the selected Mode filter values from the counties award filter -
+     * a list of Mode/Submode values from the multi-select dropdown, or
+     * 'All' when nothing was selected/posted.
      */
     private function counties_mode_from_post() {
-        $mode = $this->input->post('mode');
-        return $mode !== null ? $this->security->xss_clean($mode) : 'All';
+        $modes = $this->input->post('mode');
+        if (empty($modes)) {
+            return 'All';
+        }
+
+        return array_map(array($this->security, 'xss_clean'), $modes);
     }
 
     public function counties_list_ajax() {

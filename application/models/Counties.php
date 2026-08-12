@@ -51,32 +51,64 @@ class Counties extends CI_Model
     }
 
     /*
-     * Builds the SQL band condition for a single selected band (or 'All'),
-     * appending any bindings it needs to $binding by reference. Mirrors how
-     * every other award page (WAS, RAC, Helvetia, ...) filters by band via
-     * Genfunctions::addBandToQuery() with a single-select dropdown, rather
-     * than a bespoke multi-select band list.
+     * Builds the SQL band condition from a list of selected bands (or 'All'/
+     * null/empty for no filter), appending any bindings it needs to
+     * $binding by reference. Band/Mode are multi-select on this page (a
+     * dropdown-multiselect widget, matching the Satellite Pass page's
+     * satellite picker) rather than the single-select dropdown every other
+     * award page uses, so this can't delegate to
+     * Genfunctions::addBandToQuery() like it used to - it ORs a COL_BAND IN
+     * (...) across every selected band instead.
      */
-    function band_condition($band, &$binding) {
-        return $this->genfunctions->addBandToQuery($band, $binding);
-    }
-
-    /*
-     * Builds the SQL mode condition for a single selected Mode/Submode value
-     * (or 'All'), appending any bindings it needs to $binding by reference.
-     * Mirrors every other award page's Mode dropdown, which is populated
-     * from Modes::active() (the ADIF modes actually configured in this
-     * install) rather than a bespoke Phone/CW/Digital grouping.
-     */
-    function mode_condition($mode, &$binding) {
-        if ($mode === 'All' || $mode === null) {
+    function band_condition($bands, &$binding) {
+        if ($bands === 'All' || $bands === null) {
             return '';
         }
 
-        $binding[] = $mode;
-        $binding[] = $mode;
+        if (!is_array($bands)) {
+            $bands = array($bands);
+        }
 
-        return ' and (COL_MODE = ? or COL_SUBMODE = ?)';
+        if (empty($bands)) {
+            return '';
+        }
+
+        $placeholders = implode(',', array_fill(0, count($bands), '?'));
+        foreach ($bands as $band) {
+            $binding[] = $band;
+        }
+
+        return ' and COL_BAND in (' . $placeholders . ')';
+    }
+
+    /*
+     * Builds the SQL mode condition from a list of selected Mode/Submode
+     * values (or 'All'/null/empty for no filter), appending any bindings it
+     * needs to $binding by reference. Same multi-select rationale as
+     * band_condition() above - ORs a (COL_MODE = ? or COL_SUBMODE = ?) pair
+     * across every selected mode.
+     */
+    function mode_condition($modes, &$binding) {
+        if ($modes === 'All' || $modes === null) {
+            return '';
+        }
+
+        if (!is_array($modes)) {
+            $modes = array($modes);
+        }
+
+        if (empty($modes)) {
+            return '';
+        }
+
+        $conditions = array();
+        foreach ($modes as $mode) {
+            $binding[] = $mode;
+            $binding[] = $mode;
+            $conditions[] = '(COL_MODE = ? or COL_SUBMODE = ?)';
+        }
+
+        return ' and (' . implode(' or ', $conditions) . ')';
     }
 
     /*

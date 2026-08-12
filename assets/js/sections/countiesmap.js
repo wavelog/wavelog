@@ -1,3 +1,22 @@
+$(document).ready(function() {
+    // Band/Mode multi-select dropdowns, same bootstrap-multiselect widget/config
+    // as the Satellite Pass page's satellite picker (assets/js/sections/satpasses.js).
+    var multiselectOptions = {
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        filterPlaceholder: lang_general_word_search,
+        templates: {
+            button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+        },
+        numberDisplayed: 1,
+        inheritClass: true,
+        includeSelectAllOption: true,
+        buttonTextAlignment: 'left',
+    };
+    $('#countiesBand').multiselect($.extend({}, multiselectOptions, {nonSelectedText: lang_counties_every_band}));
+    $('#countiesMode').multiselect($.extend({}, multiselectOptions, {nonSelectedText: lang_counties_every_mode}));
+});
+
 let osmUrl = tileUrl;
 let countyStatus;
 let countiesGeojsonLayer;
@@ -31,8 +50,8 @@ function load_counties_map() {
             eqsl: +$('#countiesEqsl').prop('checked'),
             qrz: +$('#countiesQrz').prop('checked'),
             clublog: +$('#countiesClublog').prop('checked'),
-            band: $('#countiesBand').val(),
-            mode: $('#countiesMode').val(),
+            band: $('#countiesBand').val() || [],
+            mode: $('#countiesMode').val() || [],
         },
         success: function(data) {
             countyStatus = data;
