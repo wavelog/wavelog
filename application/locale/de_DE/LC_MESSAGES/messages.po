@@ -1470,14 +1470,17 @@ msgstr "Gearbeitete Entfernungen"
 
 #: application/controllers/Distances.php:84
 #: application/views/distances/index.php:13
+#: application/controllers/Distances.php:88
 msgid "QSOs with"
 msgstr "QSOs mit"
 
 #: application/controllers/Distances.php:84
+#: application/controllers/Distances.php:88
 msgid "and band"
 msgstr "und Band"
 
 #: application/controllers/Distances.php:84
+#: application/controllers/Distances.php:88
 msgid "and propagation"
 msgstr "und Ausbreitungsart"
 
@@ -2090,6 +2093,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/distances/index.php:66
 msgid "Mode"
 msgstr "Mode"
 
@@ -3028,8 +3032,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:566
@@ -4917,6 +4921,8 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/distances/index.php:59
+#: application/views/distances/index.php:68
 msgid "All"
 msgstr "Alle"
 
@@ -4972,6 +4978,7 @@ msgstr "Ausbreitungsart"
 #: application/views/accumulate/index.php:90
 #: application/views/distances/index.php:61
 #: application/views/timeline/index.php:89
+#: application/views/distances/index.php:60
 msgid "All but SAT"
 msgstr "Alle außer SAT"
 
@@ -4983,6 +4990,7 @@ msgstr "Alle außer SAT"
 #: application/views/logbookadvanced/edit.php:229
 #: application/views/logbookadvanced/index.php:527
 #: application/views/timeline/index.php:90
+#: application/views/distances/index.php:61
 msgid "None/Empty"
 msgstr "Keine/Leer"
 
@@ -5020,6 +5028,7 @@ msgstr "Keine/Leer"
 #: application/views/timeline/index.php:363
 #: application/views/timeline/index.php:399
 #: application/views/timeplotter/index.php:75
+#: application/views/distances/index.php:73
 msgid "Show"
 msgstr "Anzeigen"
 
@@ -14682,8 +14691,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -18604,8 +18613,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -21014,8 +21023,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -22037,9 +22046,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
