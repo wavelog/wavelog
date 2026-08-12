@@ -6094,14 +6094,38 @@ class Logbook_model extends CI_Model {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
-		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
-		$this->db->where('COL_STATE', $state);
-		$this->db->where('COL_CNTY', $county);
-		$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+		// COL_CNTY is stored as "STATE,COUNTY" for US QSOs (see
+		// add_contact()'s $clean_county_input below), but $county here can
+		// arrive either bare (the counties map passes the boundary
+		// GeoJSON's un-prefixed feature name when a county is clicked) or
+		// already prefixed (the state list dialog echoes COL_CNTY as-is,
+		// e.g. "ME,AROOSTOOK"). An exact match against the raw column only
+		// ever satisfied the second case, so clicking a county on the map
+		// always returned zero rows even for counties shown confirmed -
+		// normalize both sides the same way Counties::get_counties_map()
+		// does, and match case-insensitively since a QSO's logged county
+		// can be typed/imported in any case.
+		//
+		// Built as raw SQL with bound placeholders rather than the query
+		// builder's where(): CI3's where() tries to parse a string key for
+		// multiple comma-separated columns, and SUBSTRING_INDEX(COL_CNTY,
+		// ',', -1)'s own comma trips that up and fatals.
+		$bare_county = trim(preg_replace('/^.*,/', '', $county));
 
-		return $this->db->get($this->config->item('table_name'));
+		$table = $this->config->item('table_name');
+		$station_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+
+		$sql = "select * from $table thcv
+			join station_profile on station_profile.station_id = thcv.station_id
+			left outer join lotw_users on lotw_users.callsign = thcv.col_call
+			where thcv.station_id in ($station_placeholders)
+			and UPPER(thcv.COL_STATE) = ?
+			and UPPER(TRIM(SUBSTRING_INDEX(thcv.COL_CNTY, ',', -1))) = ?
+			and (thcv.COL_PROP_MODE != 'SAT' OR thcv.COL_PROP_MODE IS NULL)";
+
+		$binding = array_merge($logbooks_locations_array, [strtoupper($state), strtoupper($bare_county)]);
+
+		return $this->db->query($sql, $binding);
 	}
 
 	public function check_qso_is_accessible($id, $user_id = null) {

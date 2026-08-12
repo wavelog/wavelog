@@ -1553,7 +1553,11 @@ class Awards extends CI_Controller {
 
         // Render Page
         $data['page_title'] = __("Log View - Counties");
-        $data['filter'] = "county " . $state;
+        // $county may arrive bare (map click) or "STATE,COUNTY"-prefixed
+        // (state list dialog, which echoes COL_CNTY as-is) - strip any
+        // prefix so the label doesn't show the state twice.
+        $bare_county = trim(preg_replace('/^.*,/', '', $county));
+        $data['filter'] = "county " . $bare_county . ", " . $state;
         $this->load->view('awards/details', $data);
     }
 
