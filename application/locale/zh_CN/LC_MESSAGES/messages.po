@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-12 14:57+0000\n"
+"POT-Creation-Date: 2026-08-12 15:18+0000\n"
 "PO-Revision-Date: 2026-08-11 09:57+0000\n"
 "Last-Translator: MCyiqiehuanying <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -171,7 +171,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
-#: application/controllers/Contesting.php:1072
+#: application/controllers/Contesting.php:1074
 #: application/controllers/Contesting_import.php:10
 #: application/controllers/Contesting_import.php:26
 #: application/controllers/Contesting_import.php:56
@@ -222,9 +222,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
-#: application/controllers/Qso.php:20 application/controllers/Qso.php:472
-#: application/controllers/Qso.php:494 application/controllers/Qso.php:522
-#: application/controllers/Qso.php:777 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:20 application/controllers/Qso.php:477
+#: application/controllers/Qso.php:499 application/controllers/Qso.php:527
+#: application/controllers/Qso.php:799 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -238,8 +238,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Satellite.php:117
 #: application/controllers/Satellite.php:131
 #: application/controllers/Satellite.php:149
-#: application/controllers/Satellite.php:556
-#: application/controllers/Satellite.php:565
+#: application/controllers/Satellite.php:557
+#: application/controllers/Satellite.php:566
 #: application/controllers/Sattimers.php:8 application/controllers/Search.php:9
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:16
@@ -460,7 +460,7 @@ msgstr "API Key %s 的说明信息已更新。"
 
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:27
-#: application/controllers/Api_token.php:80 application/controllers/Qso.php:617
+#: application/controllers/Api_token.php:80 application/controllers/Qso.php:622
 msgid "Invalid request method"
 msgstr "无效的请求方法"
 
@@ -676,7 +676,7 @@ msgid " and "
 msgstr " 和 "
 
 #: application/controllers/Awards.php:713
-#: application/controllers/Logbook.php:1470
+#: application/controllers/Logbook.php:1472
 #: application/views/activationplanner/index.php:84
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
@@ -707,7 +707,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:811
-#: application/controllers/Logbook.php:1471
+#: application/controllers/Logbook.php:1473
 #: application/views/activationplanner/index.php:82
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
@@ -730,7 +730,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:911
-#: application/controllers/Logbook.php:1472
+#: application/controllers/Logbook.php:1474
 #: application/views/activationplanner/index.php:83
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
@@ -936,7 +936,7 @@ msgid "Call Tester"
 msgstr "通联记录检测器"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:866
+#: application/controllers/Qso.php:888
 msgid "No callsign provided."
 msgstr "未提供呼号。"
 
@@ -1187,24 +1187,24 @@ msgstr[0] "%d竞赛会话已删除。"
 msgid "There was an error deleting the contest sessions. Please try again."
 msgstr "删除竞赛会话时出现错误，请重试。"
 
-#: application/controllers/Contesting.php:1014
+#: application/controllers/Contesting.php:1016
 msgid "Operator switching is disabled."
 msgstr "已禁用操作员切换。"
 
-#: application/controllers/Contesting.php:1034
+#: application/controllers/Contesting.php:1036
 msgid "Operator switching is only available in club stations."
 msgstr "操作员切换仅对俱乐部台站可用。"
 
-#: application/controllers/Contesting.php:1044
+#: application/controllers/Contesting.php:1046
 msgid "Access denied"
 msgstr "拒绝访问"
 
-#: application/controllers/Contesting.php:1052
+#: application/controllers/Contesting.php:1054
 #: application/controllers/User.php:1439
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
-#: application/controllers/Contesting.php:1061
+#: application/controllers/Contesting.php:1063
 msgid "A club account cannot be used as an operator."
 msgstr "俱乐部账户不能作为操作员。"
 
@@ -1956,7 +1956,7 @@ msgstr "eQSL"
 msgid "All callbook lookups failed or provided no results."
 msgstr "所有呼号簿的查询均失败或没有结果。"
 
-#: application/controllers/Logbook.php:1465
+#: application/controllers/Logbook.php:1467
 #: application/controllers/Radio.php:56
 #: application/views/accumulate/index.php:37
 #: application/views/activated_gridmap/index.php:44
@@ -2064,7 +2064,7 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 msgid "Mode"
 msgstr "模式"
 
-#: application/controllers/Logbook.php:1466
+#: application/controllers/Logbook.php:1468
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:258
 #: application/views/awards/sota/index.php:168
@@ -2091,7 +2091,7 @@ msgstr "模式"
 msgid "RST (S)"
 msgstr "我收对方"
 
-#: application/controllers/Logbook.php:1467
+#: application/controllers/Logbook.php:1469
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:259
 #: application/views/awards/sota/index.php:169
@@ -2119,7 +2119,7 @@ msgstr "我收对方"
 msgid "RST (R)"
 msgstr "对方收我"
 
-#: application/controllers/Logbook.php:1468
+#: application/controllers/Logbook.php:1470
 #: application/views/contesting/manager/export_cbr.php:282
 #: application/views/dashboard/index.php:8
 #: application/views/qslcard/searchresult.php:15
@@ -2140,7 +2140,7 @@ msgstr "对方收我"
 msgid "Country"
 msgstr "DXCC 实体"
 
-#: application/controllers/Logbook.php:1469
+#: application/controllers/Logbook.php:1471
 #: application/views/activationplanner/index.php:85
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
@@ -2173,7 +2173,7 @@ msgstr "DXCC 实体"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1473
+#: application/controllers/Logbook.php:1475
 #: application/views/awards/counties/details_ajax.php:8
 #: application/views/awards/counties/index.php:76
 #: application/views/awards/rac/index.php:156
@@ -2204,7 +2204,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "州"
 
-#: application/controllers/Logbook.php:1474
+#: application/controllers/Logbook.php:1476
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:65
@@ -2263,7 +2263,7 @@ msgstr "州"
 msgid "Gridsquare"
 msgstr "网格坐标"
 
-#: application/controllers/Logbook.php:1475
+#: application/controllers/Logbook.php:1477
 #: application/views/activated_gridmap/index.php:108
 #: application/views/activationplanner/index.php:29
 #: application/views/awards/ffma/index.php:40
@@ -2295,7 +2295,7 @@ msgstr "网格坐标"
 msgid "Distance"
 msgstr "距离"
 
-#: application/controllers/Logbook.php:1476
+#: application/controllers/Logbook.php:1478
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
 #: application/views/activators/index.php:17
@@ -2404,7 +2404,7 @@ msgstr "距离"
 msgid "Band"
 msgstr "频段"
 
-#: application/controllers/Logbook.php:1477
+#: application/controllers/Logbook.php:1479
 #: application/controllers/Radio.php:55 application/views/bandmap/list.php:172
 #: application/views/bandmap/list.php:562
 #: application/views/bandmap/list.php:602
@@ -2434,7 +2434,7 @@ msgstr "频段"
 msgid "Frequency"
 msgstr "频率"
 
-#: application/controllers/Logbook.php:1478
+#: application/controllers/Logbook.php:1480
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/qso-form.php:157
 #: application/views/contesting/manager/export_cbr.php:61
@@ -2460,7 +2460,7 @@ msgstr "频率"
 msgid "Operator"
 msgstr "操作员"
 
-#: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1501
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/dxcc/index.php:471
@@ -3047,25 +3047,25 @@ msgstr "打印被请求的 QSL 卡片"
 msgid "Add QSO"
 msgstr "添加 QSO"
 
-#: application/controllers/Qso.php:226
+#: application/controllers/Qso.php:229
 msgid "QSO could not be saved"
 msgstr "QSO无法保存"
 
-#: application/controllers/Qso.php:812 application/controllers/Qso.php:835
+#: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr ""
 
-#: application/controllers/Qso.php:824
+#: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr ""
 
-#: application/controllers/Qso.php:853
+#: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
 msgstr "需要登录方可浏览此页面。"
 
-#: application/controllers/Qso.php:859
+#: application/controllers/Qso.php:881
 msgid "Call Transfer"
 msgstr "通联转接"
 
@@ -3222,40 +3222,40 @@ msgstr "创建卫星信息"
 msgid "Edit Satellite"
 msgstr "编辑卫星"
 
-#: application/controllers/Satellite.php:200
+#: application/controllers/Satellite.php:201
 #: application/views/interface_assets/header.php:328
 msgid "Satellite Flightpath"
 msgstr "卫星轨迹"
 
-#: application/controllers/Satellite.php:271
+#: application/controllers/Satellite.php:272
 msgid "Satellite pass"
 msgstr "卫星过境"
 
-#: application/controllers/Satellite.php:328
+#: application/controllers/Satellite.php:329
 msgid "Failed to save pass settings!"
 msgstr "过境设置保存失败！"
 
-#: application/controllers/Satellite.php:331
+#: application/controllers/Satellite.php:332
 msgid "Pass settings saved!"
 msgstr "过境设置已保存！"
 
-#: application/controllers/Satellite.php:344
+#: application/controllers/Satellite.php:345
 msgid "No settings found!"
 msgstr "未找到设置！"
 
-#: application/controllers/Satellite.php:358
+#: application/controllers/Satellite.php:359
 msgid "Failed to delete pass settings!"
 msgstr "过境设置删除失败！"
 
-#: application/controllers/Satellite.php:360
+#: application/controllers/Satellite.php:361
 msgid "Pass settings deleted!"
 msgstr "过境设置已删除！"
 
-#: application/controllers/Satellite.php:370
+#: application/controllers/Satellite.php:371
 msgid "Saved Pass Settings"
 msgstr "保存的过境设置"
 
-#: application/controllers/Satellite.php:387
+#: application/controllers/Satellite.php:388
 msgid "No presets available"
 msgstr "无可用预设"
 
