@@ -114,12 +114,13 @@ class Qra {
 
 	function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 		$echo = "";
-		if (!empty($grid)) {
-			$echo = $grid;
-			$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>') : '';
-		} else if (!empty($vucc)) {
-			$echo = $vucc;
-			$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>') : '';
+		$target = !empty($grid) ? $grid : $vucc;
+		if (!empty($target)) {
+			$echo = html_escape($target);
+			// JS string context: hex-escape everything HTML-special so neither the
+			// attribute nor the JS literal can be broken out of
+			$flags = JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP;
+			$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(' . json_encode($mygrid, $flags) . ',' . json_encode($target, $flags) . ')"><i class="fas fa-globe"></i></a>') : '';
 		}
 		return $echo;
 	}

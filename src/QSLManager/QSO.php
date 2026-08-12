@@ -892,7 +892,7 @@ class QSO
 		}
 
 		return '<span class="qso_call d-flex align-items-center justify-content-between">'
-			. '<a id="edit_qso" href="javascript:displayQso(' . $this->qsoID . ')"><span id="lbadx">' . $dx . '</span></a>'
+			. '<a id="edit_qso" href="javascript:displayQso(' . (int) $this->qsoID . ')"><span id="lbadx">' . html_escape($dx) . '</span></a>'
 			. '<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">'
 			. $this->lotwBadge()
 			. $this->lookupLink('https://www.qrz.com/db/' . $this->dx, 'qrz.png', sprintf(__("Lookup %s on QRZ.com"), $dx))
@@ -930,9 +930,9 @@ class QSO
 	{
 		return sprintf(
 			' <a target="_blank" href="%1$s"><img width="16" height="16" src="%2$s" alt="%3$s"></a>',
-			$href,
+			html_escape($href),
 			base_url() . 'images/icons/' . $icon,
-			$alt,
+			html_escape($alt),
 		);
 	}
 
@@ -959,20 +959,20 @@ class QSO
 	{
 		$returnstring = '';
 		if ($this->srx != '' || $this->srxstring != '') {
-			$returnstring = '<span data-bs-toggle="tooltip" title="'. $this->contest .'" class="badge text-bg-light">';
+			$returnstring = '<span data-bs-toggle="tooltip" title="'. html_escape($this->contest) .'" class="badge text-bg-light">';
 
 			if ($this->srx != '') {
 				$returnstring .= sprintf("%03d", $this->srx);
 			}
 
 			if ($this->srxstring != '') {
-				$returnstring .= $this->srxstring;
+				$returnstring .= html_escape($this->srxstring);
 			}
 
 			$returnstring .= '</span>';
 		}
 
-		return $this->rstR . $returnstring;
+		return html_escape($this->rstR) . $returnstring;
 	}
 
 	/**
@@ -982,20 +982,20 @@ class QSO
 	{
 		$returnstring = '';
 		if ($this->stx != '' || $this->stxstring != '') {
-			$returnstring = '<span data-bs-toggle="tooltip" title="'. $this->contest .'" class="badge text-bg-light">';
+			$returnstring = '<span data-bs-toggle="tooltip" title="'. html_escape($this->contest) .'" class="badge text-bg-light">';
 
 			if ($this->stx != '') {
 				$returnstring .= sprintf("%03d", $this->stx);
 			}
 
 			if ($this->stxstring != '') {
-				$returnstring .= $this->stxstring;
+				$returnstring .= html_escape($this->stxstring);
 			}
 
 			$returnstring .= '</span>';
 		}
 
-		return $this->rstS . $returnstring;
+		return html_escape($this->rstS) . $returnstring;
 	}
 
 	/**
@@ -1109,9 +1109,9 @@ class QSO
 	{
 		$returnstring = '';
 		if ($this->dxVUCCGridsquares !== '') {
-			$returnstring = '<span id="dxgrid">' . $this->dxVUCCGridsquares . '</span> ' . $this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
+			$returnstring = '<span id="dxgrid">' . html_escape($this->dxVUCCGridsquares) . '</span> ' . $this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
 		} else if ($this->dxGridsquare !== '') {
-			$returnstring = '<span id="dxgrid">' . $this->dxGridsquare . '</span> ' . $this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
+			$returnstring = '<span id="dxgrid">' . html_escape($this->dxGridsquare) . '</span> ' . $this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
 		}
 		return $returnstring;
 	}
@@ -1303,7 +1303,7 @@ class QSO
 
 	public function getState(): string
 	{
-		return '<span id="state">' . $this->state . '</span>';
+		return '<span id="state">' . html_escape($this->state) . '</span>';
 	}
 
 	public function getIOTA(): string
@@ -1313,7 +1313,7 @@ class QSO
 
 	public function getOperator(): string
 	{
-		return '<span id="operator">' . $this->operator . '</span>';
+		return '<span id="operator">' . html_escape($this->operator) . '</span>';
 	}
 
 	public function toArray(): array
@@ -1422,18 +1422,19 @@ class QSO
 
 	private function getFormattedDok(): string
 	{
+		$dok = html_escape($this->dxDARCDOK);
 		$dokstring = '';
 		if (preg_match('/^[A-Y]\d{2}$/', $this->dxDARCDOK)) {
-			$dokstring = '<a href="https://www.darc.de/' .  $this->dxDARCDOK . '" target="_blank">' . $this->dxDARCDOK . '</a>';
+			$dokstring = '<a href="https://www.darc.de/' .  $dok . '" target="_blank">' . $dok . '</a>';
 		} else if (preg_match('/^DV[ABCDEFGHIKLMNOPQRSTUVWXY]$/', $this->dxDARCDOK)) {
-			$dokstring = '<a href="https://www.darc.de/der-club/distrikte/' . strtolower(substr($this->dxDARCDOK, 2, 1)) . '" target="_blank">' . $this->dxDARCDOK . '</a>';
+			$dokstring = '<a href="https://www.darc.de/der-club/distrikte/' . strtolower(substr($this->dxDARCDOK, 2, 1)) . '" target="_blank">' . $dok . '</a>';
 		} else if (preg_match('/^Z\d{2}$/', $this->dxDARCDOK)) {
-			$dokstring = '<a href="https://' . $this->dxDARCDOK . '.vfdb.org" target="_blank">' . $this->dxDARCDOK . '</a>';
+			$dokstring = '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>';
 		} else {
-			$dokstring = $this->dxDARCDOK;
+			$dokstring = $dok;
 		}
 		if ($dokstring !== '') {
-			$dokstring .= '<a href="javascript:spawnLookupModal(\''.$this->dxDARCDOK.'\',\'dok\');"> <i class="fas fa-globe"></a>';
+			$dokstring .= '<a href="javascript:spawnLookupModal('.self::jsString($this->dxDARCDOK).',\'dok\');"> <i class="fas fa-globe"></a>';
 		}
 
 		return $dokstring;
@@ -1446,9 +1447,9 @@ class QSO
 		}
 		$mode = '<span id="lbamode">';
 		if ($this->submode !== '') {
-			$mode .= $this->submode;
+			$mode .= html_escape($this->submode);
 		} else {
-			$mode .= $this->mode;
+			$mode .= html_escape($this->mode);
 		}
 		$mode .= '</span>';
 		return $mode;
@@ -1474,7 +1475,7 @@ class QSO
 		if (trim($label) === '') {
 			return '<span class="bg-danger">Missing band</span>';
 		}
-		return '<span id="lbaband">' . $label . '</span>';
+		return '<span id="lbaband">' . html_escape($label) . '</span>';
 	}
 
 	private function getFormattedFrequency(): string
@@ -1531,7 +1532,8 @@ class QSO
 	}
 
 	private function getFormattedSotaLink() {
-		return '<span id="dxsota"><a href="https://summits.sota.org.uk/summit/' . $this->dxSOTAReference . '" target="_blank">' . $this->dxSOTAReference . '</a></span>';
+		$ref = html_escape($this->dxSOTAReference);
+		return '<span id="dxsota"><a href="https://summits.sota.org.uk/summit/' . $ref . '" target="_blank">' . $ref . '</a></span>';
 	}
 
 	private function getFormattedSig(): string
@@ -1543,11 +1545,13 @@ class QSO
 	}
 
 	private function getFormattedWwff() {
-		return '<a href="https://www.cqgma.org/zinfo.php?ref=' . $this->dxWWFFReference . '" target="_blank"><span id="dxwwff">'. $this->dxWWFFReference . '</span></a>';
+		$ref = html_escape($this->dxWWFFReference);
+		return '<a href="https://www.cqgma.org/zinfo.php?ref=' . $ref . '" target="_blank"><span id="dxwwff">'. $ref . '</span></a>';
 	}
 
 	private function getFormattedPota() {
-		return '<a href="https://pota.app/#/park/' . $this->dxPOTAReference . '" target="_blank"><span id="dxpota">'. $this->dxPOTAReference . '</span></a>';
+		$ref = html_escape($this->dxPOTAReference);
+		return '<a href="https://pota.app/#/park/' . $ref . '" target="_blank"><span id="dxpota">'. $ref . '</span></a>';
 	}
 
 	private function getFormattedQSLSent(): string
@@ -1646,10 +1650,9 @@ class QSO
 
 	private function getQrbLink($mygrid, $grid, $vucc) : string
 	{
-		if (!empty($grid)) {
-			return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>';
-		} else if (!empty($vucc)) {
-			return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>';
+		$target = !empty($grid) ? $grid : $vucc;
+		if (!empty($target)) {
+			return '<a href="javascript:spawnQrbCalculator(' . self::jsString($mygrid) . ',' . self::jsString($target) . ')"><i class="fas fa-globe"></i></a>';
 		}
 		return '';
 	}
@@ -1657,8 +1660,18 @@ class QSO
 	private function getIotaLink($iota) : string
 	{
 		if ($iota !== '') {
-			return '<a href="javascript:spawnLookupModal(\''.$iota.'\',\'iota\');">'.$iota.'</a> <a href="https://www.iota-world.org/iotamaps/?grpref=' .$iota . '" target="_blank"><i class="fas fa-globe"></i></a>';
+			return '<a href="javascript:spawnLookupModal('.self::jsString($iota).',\'iota\');">'.html_escape($iota).'</a> <a href="https://www.iota-world.org/iotamaps/?grpref=' .html_escape($iota) . '" target="_blank"><i class="fas fa-globe"></i></a>';
 		}
 		return '';
+	}
+
+	/**
+	 * Render a value as a JS string literal safe for a javascript: attribute.
+	 * Hex-escapes every HTML-special character so neither the attribute nor
+	 * the literal can be broken out of.
+	 */
+	private static function jsString($value): string
+	{
+		return json_encode((string) $value, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 	}
 }

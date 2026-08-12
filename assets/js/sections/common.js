@@ -1,3 +1,16 @@
+/**
+ * Escape a value for insertion into HTML.
+ * Needed wherever markup is built as a string instead of via .text(), e.g.
+ * DataTables cells, which are rendered through innerHTML.
+ *
+ * @param {*} value Value to escape
+ * @returns {*} Escaped string, or the value unchanged if null/undefined
+ */
+function escapeHtml(value) {
+	if (value === null || value === undefined) return value;
+	return String(value).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'})[c]);
+}
+
 // ========================================
 // PLATFORM DETECTION UTILITIES
 // ========================================
@@ -1034,9 +1047,10 @@ function qso_set_eqsl_qslmsg(station_id, force_diff_to_origin=false, object='') 
         success: function(res) {
             if (typeof res.eqsl_default_qslmsg !== "undefined") {
                 object = (object!='')?(object+' '):'';
-                if ((force_diff_to_origin) || ($(object+'#qslmsg').val()==$(object+'#qslmsg_hide').html())) {
+                // .text() so the comparison sees the same decoded string as .val()
+                if ((force_diff_to_origin) || ($(object+'#qslmsg').val()==$(object+'#qslmsg_hide').text())) {
                     $(object+'#qslmsg').val(res.eqsl_default_qslmsg);
-                    $(object+'#qslmsg_hide').html(res.eqsl_default_qslmsg);
+                    $(object+'#qslmsg_hide').text(res.eqsl_default_qslmsg);
                 }
             }
         },
