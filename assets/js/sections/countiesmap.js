@@ -104,7 +104,8 @@ function load_counties_map2(mapcoordinates, stateCoordinates) {
       osmUrl,
       {
           attribution: option_map_tile_server_copyright,
-          maxZoom: 18
+          maxZoom: 18,
+          minZoom: 3
       }
   ).addTo(countiesMap);
 
