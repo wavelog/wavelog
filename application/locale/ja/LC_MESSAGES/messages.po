@@ -268,18 +268,21 @@ msgstr "アクティブなグリッドロケーターマップ"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Visitor.php:533
 msgid "Gridsquares"
 msgstr "グリッドスクウェア"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:533
+#: application/controllers/Visitor.php:534
 msgid "Gridsquares confirmed"
 msgstr "確認されたグリッドスクウェア"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:534
+#: application/controllers/Visitor.php:535
 msgid "Gridsquares not confirmed"
 msgstr "未確認のグリッドスクウェア"
 
@@ -291,24 +294,28 @@ msgstr "アクティブなグリッドスクウェア数"
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:537
 #: application/views/qslpostcard/designer.php:151
+#: application/controllers/Visitor.php:538
 msgid "Fields"
 msgstr "フィールド"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:538
+#: application/controllers/Visitor.php:539
 msgid "Fields confirmed"
 msgstr "確認されたフィールド"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
 #: application/controllers/Visitor.php:539
+#: application/controllers/Visitor.php:540
 msgid "Fields not confirmed"
 msgstr "確認されてないフィールド"
 
 #: application/controllers/Activated_gridmap.php:41
 #: application/controllers/Gridmap.php:42
 #: application/controllers/Visitor.php:540
+#: application/controllers/Visitor.php:541
 msgid "Total fields worked"
 msgstr "交信したフィールドの合計"
 
@@ -1345,6 +1352,8 @@ msgstr "SOTA CSVエクスポート"
 
 #: application/controllers/Dashboard.php:176
 #: application/controllers/Visitor.php:130
+#: application/controllers/Dashboard.php:179
+#: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
@@ -1612,6 +1621,7 @@ msgstr "グリッドスクエアマップ"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:535
+#: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
 msgstr "交信したグリッドスクエアの合計"
 
@@ -2893,6 +2903,16 @@ msgstr "バージョン情報はどのユーザーにも表示されません"
 #: application/controllers/Visitor.php:377
 #: application/controllers/Visitor.php:634
 #: application/controllers/Widgets.php:67
+#: application/controllers/Visitor.php:144
+#: application/controllers/Visitor.php:156
+#: application/controllers/Visitor.php:180
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:218
+#: application/controllers/Visitor.php:242
+#: application/controllers/Visitor.php:318
+#: application/controllers/Visitor.php:344
+#: application/controllers/Visitor.php:378
+#: application/controllers/Visitor.php:635
 msgid "Unknown Public Page."
 msgstr "不明な公開ページ。"
 
@@ -3382,6 +3402,11 @@ msgstr "簡単で高速なログ入力"
 #: application/controllers/Visitor.php:373
 #: application/controllers/Visitor.php:630
 #: application/controllers/Widgets.php:63
+#: application/controllers/Visitor.php:176
+#: application/controllers/Visitor.php:238
+#: application/controllers/Visitor.php:340
+#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:631
 msgid "Empty Logbook"
 msgstr "空のログブック"
 
@@ -4105,19 +4130,23 @@ msgstr ""
 "うこそ！"
 
 #: application/controllers/Visitor.php:382
+#: application/controllers/Visitor.php:383
 msgid "No public slug found."
 msgstr "公開されているスラッグは見つかりませんでした。"
 
 #: application/controllers/Visitor.php:388
+#: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
 msgstr "衛星グリッドスクエアマップ"
 
 #: application/controllers/Visitor.php:568
 #: application/views/stationsetup/stationsetup.php:48
+#: application/controllers/Visitor.php:569
 msgid "Public Search"
 msgstr "パブリックサーチ"
 
 #: application/controllers/Visitor.php:601
+#: application/controllers/Visitor.php:602
 msgid "Export Map"
 msgstr "マップをエクスポート"
 
@@ -4488,6 +4517,7 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
 #: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4796
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4496,6 +4526,7 @@ msgstr ""
 "れました"
 
 #: application/models/Logbook_model.php:4795
+#: application/models/Logbook_model.php:4804
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4505,6 +4536,7 @@ msgstr ""
 "た：スキップしました"
 
 #: application/models/Logbook_model.php:4811
+#: application/models/Logbook_model.php:4820
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4513,6 +4545,7 @@ msgstr ""
 "んでした。無効です"
 
 #: application/models/Logbook_model.php:4821
+#: application/models/Logbook_model.php:4830
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4522,6 +4555,7 @@ msgstr ""
 "はインポートされませんでした。無効です。"
 
 #: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:4837
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4531,6 +4565,7 @@ msgstr ""
 "はインポートされませんでした。無効な入力は '%s '。"
 
 #: application/models/Logbook_model.php:4898
+#: application/models/Logbook_model.php:4907
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4540,6 +4575,7 @@ msgstr ""
 "されませんでした。"
 
 #: application/models/Logbook_model.php:4905
+#: application/models/Logbook_model.php:4914
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4549,58 +4585,72 @@ msgstr ""
 "はインポートされませんでした。無効です"
 
 #: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5188
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5190
+#: application/models/Logbook_model.php:5199
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5251
+#: application/models/Logbook_model.php:5260
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5627
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5636
 msgid "Duplicate for"
 msgstr "複製用"
 
 #: application/models/Logbook_model.php:5694
 #: application/models/Logbook_model.php:5794
+#: application/models/Logbook_model.php:5703
+#: application/models/Logbook_model.php:5803
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
 #: application/models/Logbook_model.php:5702
+#: application/models/Logbook_model.php:5711
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
 #: application/models/Logbook_model.php:5708
+#: application/models/Logbook_model.php:5717
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
 #: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5721
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
 #: application/models/Logbook_model.php:5716
+#: application/models/Logbook_model.php:5725
 msgid "confirmation pending"
 msgstr "確認中"
 
 #: application/models/Logbook_model.php:5719
+#: application/models/Logbook_model.php:5728
 msgid "unconfirmed"
 msgstr "未確認"
 
 #: application/models/Logbook_model.php:5722
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5731
 msgid "unknown"
 msgstr "不明"
 
 #: application/models/Logbook_model.php:5797
+#: application/models/Logbook_model.php:5806
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
 #: application/models/Logbook_model.php:5800
+#: application/models/Logbook_model.php:5809
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
@@ -4617,6 +4667,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6215
 msgid "Bearing"
 msgstr "方位"
 
@@ -23489,6 +23540,11 @@ msgstr "Clublog Log を検索"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
+
+#: application/views/dashboard/index.php:488
+#: application/views/visitor/index.php:267
+msgid "Deleted DXCCs"
+msgstr ""
 
 #~ msgid "SOTA QSO List"
 #~ msgstr "SOTA交信リスト"

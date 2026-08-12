@@ -273,18 +273,21 @@ msgstr "Карта активированных квадратов QTH лока�
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Visitor.php:533
 msgid "Gridsquares"
 msgstr "Квадраты QTH локатора"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:533
+#: application/controllers/Visitor.php:534
 msgid "Gridsquares confirmed"
 msgstr "Подтверждённые квадраты QTH локатора"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:534
+#: application/controllers/Visitor.php:535
 msgid "Gridsquares not confirmed"
 msgstr "Неподтверждённые квадраты QTH локатора"
 
@@ -296,24 +299,28 @@ msgstr "Всего квадратов QTH локатора активирова�
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:537
 #: application/views/qslpostcard/designer.php:151
+#: application/controllers/Visitor.php:538
 msgid "Fields"
 msgstr "Поля"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:538
+#: application/controllers/Visitor.php:539
 msgid "Fields confirmed"
 msgstr "Подтверждённые поля"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
 #: application/controllers/Visitor.php:539
+#: application/controllers/Visitor.php:540
 msgid "Fields not confirmed"
 msgstr "Неподтверждённые поля"
 
 #: application/controllers/Activated_gridmap.php:41
 #: application/controllers/Gridmap.php:42
 #: application/controllers/Visitor.php:540
+#: application/controllers/Visitor.php:541
 msgid "Total fields worked"
 msgstr "Всего полей сработано"
 
@@ -1365,6 +1372,8 @@ msgstr "Экспорт SOTA в CSV"
 
 #: application/controllers/Dashboard.php:176
 #: application/controllers/Visitor.php:130
+#: application/controllers/Dashboard.php:179
+#: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Панель управления"
 
@@ -1635,6 +1644,7 @@ msgstr "Карта квадратов QTH локатора"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:535
+#: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
 msgstr "Всего сработано квадратов QTH локатора"
 
@@ -2934,6 +2944,16 @@ msgstr "Информация о версии не будет показана п
 #: application/controllers/Visitor.php:377
 #: application/controllers/Visitor.php:634
 #: application/controllers/Widgets.php:67
+#: application/controllers/Visitor.php:144
+#: application/controllers/Visitor.php:156
+#: application/controllers/Visitor.php:180
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:218
+#: application/controllers/Visitor.php:242
+#: application/controllers/Visitor.php:318
+#: application/controllers/Visitor.php:344
+#: application/controllers/Visitor.php:378
+#: application/controllers/Visitor.php:635
 msgid "Unknown Public Page."
 msgstr "Неизвестная публичная страница."
 
@@ -3431,6 +3451,11 @@ msgstr "Простой быстрый ввод журнала"
 #: application/controllers/Visitor.php:373
 #: application/controllers/Visitor.php:630
 #: application/controllers/Widgets.php:63
+#: application/controllers/Visitor.php:176
+#: application/controllers/Visitor.php:238
+#: application/controllers/Visitor.php:340
+#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:631
 msgid "Empty Logbook"
 msgstr "Пустой журнал"
 
@@ -4158,19 +4183,23 @@ msgstr ""
 "Вы вышли из аккаунта %s. Добро пожаловать обратно, %s, в ваш личный аккаунт!"
 
 #: application/controllers/Visitor.php:382
+#: application/controllers/Visitor.php:383
 msgid "No public slug found."
 msgstr "Публичная метка не найдена."
 
 #: application/controllers/Visitor.php:388
+#: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
 msgstr "Карта квадратов QTH локатора (спутники)"
 
 #: application/controllers/Visitor.php:568
 #: application/views/stationsetup/stationsetup.php:48
+#: application/controllers/Visitor.php:569
 msgid "Public Search"
 msgstr "Публичный поиск"
 
 #: application/controllers/Visitor.php:601
+#: application/controllers/Visitor.php:602
 msgid "Export Map"
 msgstr "Экспорт карты"
 
@@ -4545,12 +4574,14 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
 #: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4796
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Отличающийся позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:4795
+#: application/models/Logbook_model.php:4804
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4560,6 +4591,7 @@ msgstr ""
 "ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:4811
+#: application/models/Logbook_model.php:4820
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4568,6 +4600,7 @@ msgstr ""
 "действительно и не было импортировано"
 
 #: application/models/Logbook_model.php:4821
+#: application/models/Logbook_model.php:4830
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4577,6 +4610,7 @@ msgstr ""
 "было импортировано. Оно недействительно."
 
 #: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:4837
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4586,6 +4620,7 @@ msgstr ""
 "было импортировано. Недопустимый ввод — '%s'."
 
 #: application/models/Logbook_model.php:4898
+#: application/models/Logbook_model.php:4907
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4595,6 +4630,7 @@ msgstr ""
 "было импортировано."
 
 #: application/models/Logbook_model.php:4905
+#: application/models/Logbook_model.php:4914
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4604,58 +4640,72 @@ msgstr ""
 "некорректно, импорт отклонён.imported. It's invalid"
 
 #: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5188
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:5190
+#: application/models/Logbook_model.php:5199
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:5251
+#: application/models/Logbook_model.php:5260
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:5627
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5636
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
 #: application/models/Logbook_model.php:5694
 #: application/models/Logbook_model.php:5794
+#: application/models/Logbook_model.php:5703
+#: application/models/Logbook_model.php:5803
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:5702
+#: application/models/Logbook_model.php:5711
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5708
+#: application/models/Logbook_model.php:5717
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5721
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:5716
+#: application/models/Logbook_model.php:5725
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:5719
+#: application/models/Logbook_model.php:5728
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:5722
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5731
 msgid "unknown"
 msgstr "неизвестно"
 
 #: application/models/Logbook_model.php:5797
+#: application/models/Logbook_model.php:5806
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
 #: application/models/Logbook_model.php:5800
+#: application/models/Logbook_model.php:5809
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
@@ -4672,6 +4722,7 @@ msgstr "QSO обновлено"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6215
 msgid "Bearing"
 msgstr "Направление"
 
@@ -23913,6 +23964,11 @@ msgstr ""
 #: application/controllers/Qso.php:824 application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
+msgstr ""
+
+#: application/views/dashboard/index.php:488
+#: application/views/visitor/index.php:267
+msgid "Deleted DXCCs"
 msgstr ""
 
 #~ msgid "SOTA QSO List"
