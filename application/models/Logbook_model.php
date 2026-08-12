@@ -6147,7 +6147,7 @@ class Logbook_model extends CI_Model {
 		foreach ($qsos_result as $row) {
 			$plot = array('lat' => 0, 'lng' => 0, 'html' => '', 'label' => '', 'confirmed' => 'N');
 
-			$plot['label'] = str_replace('0', '&Oslash;', $row->COL_CALL);
+			$plot['label'] = $row->COL_CALL;
 
 			$plot['html'] = "";
 			if ($row->COL_NAME != null) {

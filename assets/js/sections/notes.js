@@ -92,18 +92,6 @@ if (typeof EasyMDE !== 'undefined') {
 
 // Main notes page functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Replace 0 with Ø in inputTitle as user types
-    var inputTitle = document.getElementById('inputTitle');
-    if (inputTitle) {
-        inputTitle.addEventListener('input', function() {
-            var caret = inputTitle.selectionStart;
-            var newValue = inputTitle.value.replace(/0/g, 'Ø');
-            if (inputTitle.value !== newValue) {
-                inputTitle.value = newValue;
-                inputTitle.setSelectionRange(caret, caret);
-            }
-        });
-    }
     // Early exit if we're not on a notes page
     var notesTableBody = document.querySelector('#notesTable tbody');
     var isNotesMainPage = notesTableBody !== null;
@@ -574,30 +562,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial render - only if we have the necessary elements
     if (domCache.notesTableBody) {
         performNotesSearch();
-    }
-
-    // Add stroked zero (Ø) to search box
-    var addStrokedZeroBtn = document.getElementById('notesAddStrokedZero');
-    if (addStrokedZeroBtn) {
-        addStrokedZeroBtn.addEventListener('click', function() {
-            var searchBox = domCache.searchBox;
-            if (searchBox) {
-                var currentValue = searchBox.value;
-                var cursorPos = searchBox.selectionStart;
-
-                // Insert Ø at cursor position
-                var newValue = currentValue.slice(0, cursorPos) + 'Ø' + currentValue.slice(cursorPos);
-                searchBox.value = newValue;
-
-                // Set cursor position after the inserted character
-                searchBox.focus();
-                searchBox.setSelectionRange(cursorPos + 1, cursorPos + 1);
-
-                // Trigger search if minimum length is met
-                if (newValue.length >= SEARCH_MIN_LENGTH) {
-                    performNotesSearch();
-                }
-            }
-        });
     }
 });

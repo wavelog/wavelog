@@ -72,7 +72,7 @@ if ($qsos->result() != NULL) { ?>
 		echo '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" name="selected_qsos[]" value="'.$qsl->COL_PRIMARY_KEY.'" /></div></td>';
                 ?><td style='text-align: center' data-search="<?php echo htmlspecialchars(strtoupper($qsl->COL_CALL), ENT_QUOTES); ?>">
 				<span class="qso_call d-flex align-items-center justify-content-between">
-					<a id="edit_qso" href="javascript:displayQso(<?php echo $qsl->COL_PRIMARY_KEY; ?>);"><?php echo str_replace("0","&Oslash;",strtoupper($qsl->COL_CALL)); ?></a>
+					<a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo $qsl->COL_PRIMARY_KEY; ?>);"><?php echo strtoupper($qsl->COL_CALL); ?></a>
 					<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">
 						<a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on QRZ.com"></a>
 						<a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on HamQTH"></a>
