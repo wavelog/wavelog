@@ -38,8 +38,8 @@ class Contesting_model extends CI_Model {
 	 * @param int $contest_session_id The ID of the contest session.
 	 * @return bool If user is associated with contest
 	 */
-	function check_user_contest($contest_session_id, $user_id = null) {
-		$user_id = $user_id ?? $this->session->userdata('user_id');
+	function check_user_contest($contest_session_id) {
+		$user_id = $this->session->userdata('user_id');
 
 		$sql = "SELECT 
 					COUNT(*) AS cnt
@@ -59,8 +59,8 @@ class Contesting_model extends CI_Model {
 	 * @param int $contest_session_id The ID of the contest session.
 	 * @return array|null The contest session information or null if not found.
 	 */
-	function get_session_info($contest_session_id, $user_id = null) {
-		$user_id = $user_id ?? $this->session->userdata('user_id');
+	function get_session_info($contest_session_id) {
+		$user_id = $this->session->userdata('user_id');
 
 		$binding = [];
 		$sql = "SELECT cs.id AS contest_session_id,
@@ -68,8 +68,6 @@ class Contesting_model extends CI_Model {
 				cs.time_end AS time_end,
 				cs.comment AS comment,
 				cs.settings AS settings,
-				cs.creation_date AS creation_date,
-				cs.last_modified AS last_modified,
 				c.name AS contest_name,
 				c.id AS contest_id,
 				c.adifname AS contest_adifname,
@@ -116,7 +114,18 @@ class Contesting_model extends CI_Model {
 	 * @return string JSON encoded settings.
 	 */
 	private function build_session_settings($parameter_array = []) {
-		$defaults = [
+		return json_encode(array_merge($this->session_settings_defaults(), $parameter_array));
+	}
+
+	/**
+	 * Public defaults for a contest session's settings - the single source of
+	 * truth for build_session_settings(), the API v2 contest resource and any
+	 * other caller that needs the effective settings of a sparse JSON.
+	 *
+	 * @return array
+	 */
+	function session_settings_defaults() {
+		return [
 			'exchangetype'    => 'Serial',
 			'copyexchangeto'  => '',
 			'exchangefields'  => ['serial'],
@@ -125,8 +134,72 @@ class Contesting_model extends CI_Model {
 			'serial_per_band' => false,
 			'serial_scope'    => 'station',
 		];
+	}
 
-		return json_encode(array_merge($defaults, $parameter_array));
+	/**
+	 * Validates contest session settings values. Only the keys present are
+	 * checked, so it works for partial (API) and full (form) input alike.
+	 * The allowed values mirror what the session form offers.
+	 *
+	 * @param mixed $settings Settings array to validate.
+	 * @return string[] List of error messages, empty when valid.
+	 */
+	function validate_session_settings($settings) {
+		if (!is_array($settings)) {
+			return ['settings must be an object'];
+		}
+		$errors = [];
+
+		$unknown = array_diff(array_keys($settings), array_keys($this->session_settings_defaults()));
+		if (!empty($unknown)) {
+			$errors[] = 'unknown settings key(s): ' . implode(', ', $unknown);
+		}
+		if (array_key_exists('exchangefields', $settings)) {
+			$allowed = ['serial', 'gridsquare', 'exchange'];
+			$fields = $settings['exchangefields'];
+			if (!is_array($fields) || empty($fields) || array_diff($fields, $allowed) !== []) {
+				$errors[] = 'exchangefields must be a non-empty array of: ' . implode(', ', $allowed);
+			}
+		}
+		if (array_key_exists('serial_scope', $settings)
+			&& !in_array($settings['serial_scope'], ['station', 'operator'], true)) {
+			$errors[] = "serial_scope must be 'station' or 'operator'";
+		}
+		if (array_key_exists('copyexchangeto', $settings)
+			&& !in_array($settings['copyexchangeto'], ['', 'dok', 'locator', 'qth', 'name', 'age', 'state', 'power'], true)) {
+			$errors[] = 'copyexchangeto must be one of: dok, locator, qth, name, age, state, power (or empty)';
+		}
+		foreach (['callbook_lookup', 'serial_per_band'] as $flag) {
+			if (array_key_exists($flag, $settings) && !is_bool($settings[$flag])) {
+				$errors[] = $flag . ' must be a boolean';
+			}
+		}
+		foreach (['custom_name', 'exchangetype'] as $string_key) {
+			if (array_key_exists($string_key, $settings) && !is_string($settings[$string_key])) {
+				$errors[] = $string_key . ' must be a string';
+			}
+		}
+		return $errors;
+	}
+
+	/**
+	 * Derives the legacy exchangetype value from the exchange fields - the
+	 * same mapping the Contesting controller applies to the session form, so
+	 * exchangetype and exchangefields can never drift apart.
+	 *
+	 * @param array $fields exchangefields value.
+	 * @return string
+	 */
+	function exchangetype_for_fields($fields) {
+		$s = in_array('serial', $fields, true);
+		$g = in_array('gridsquare', $fields, true);
+		$e = in_array('exchange', $fields, true);
+		if ($s && $g && $e) return 'SerialGridExchange';
+		if ($s && $g)       return 'Serialgridsquare';
+		if ($s && $e)       return 'Serialexchange';
+		if ($e && $g)       return 'Exchangegridsquare';
+		if ($s)             return 'Serial';
+		return 'Exchange';
 	}
 
 	/**
@@ -224,7 +297,10 @@ class Contesting_model extends CI_Model {
 			$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
 			$query = $this->db->query("SELECT qso_id FROM contest_qsos WHERE contest_session_id = ?", [$contest_session_id]);
 			foreach ($query->result() as $row) {
-				$this->logbook_model->delete($row->qso_id);
+				// pass the resolved user explicitly - Logbook_model::delete()
+				// verifies ownership and would silently no-op in a sessionless
+				// (API) context otherwise
+				$this->logbook_model->delete($row->qso_id, $user_id);
 			}
 			// contest_qsos rows are cascade-deleted via FK when logbook rows are removed
 		} else {
@@ -493,13 +569,16 @@ class Contesting_model extends CI_Model {
 	/**
 	 * Filters a list of QSO ids down to the ones owned by the given user -
 	 * the batched counterpart to Logbook_model::check_qso_is_accessible(),
-	 * with the same station_profile join semantics.
+	 * with the same station_profile join semantics. With an operator callsign
+	 * the result is further limited to QSOs that operator logged (for club
+	 * members below officer level).
 	 *
-	 * @param int[] $qso_ids
-	 * @param int   $user_id
-	 * @return int[] The subset of $qso_ids the user owns.
+	 * @param int[]       $qso_ids
+	 * @param int         $user_id
+	 * @param string|null $operator_callsign Restrict to this COL_OPERATOR.
+	 * @return int[] The subset of $qso_ids the user (and operator) owns.
 	 */
-	function filter_owned_qso_ids(array $qso_ids, $user_id) {
+	function filter_owned_qso_ids(array $qso_ids, $user_id, $operator_callsign = null) {
 		if (empty($qso_ids)) {
 			return [];
 		}
@@ -509,8 +588,16 @@ class Contesting_model extends CI_Model {
 				JOIN station_profile sp ON sp.station_id = lb.station_id
 				WHERE lb.COL_PRIMARY_KEY IN ({$placeholders})
 				AND sp.user_id = ?";
+		$bindings = array_merge(array_map('intval', $qso_ids), [$user_id]);
 
-		$query = $this->db->query($sql, array_merge(array_map('intval', $qso_ids), [$user_id]));
+		// Restricted club members (below officer level) may only touch QSOs
+		// they logged themselves - same rule as clubaccess_check() with a qso_id.
+		if ($operator_callsign !== null && $operator_callsign !== '') {
+			$sql .= " AND lb.COL_OPERATOR = ?";
+			$bindings[] = $operator_callsign;
+		}
+
+		$query = $this->db->query($sql, $bindings);
 		$owned = [];
 		foreach ($query->result() as $row) {
 			$owned[] = (int) $row->qso_id;

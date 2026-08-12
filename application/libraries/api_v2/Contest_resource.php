@@ -24,31 +24,25 @@ require_once __DIR__ . '/Api_v2_resource.php';
  *   DELETE /contest/{id}   Delete a session (QSOs stay in the log by default)
  *
  * All database access lives in the models (Contesting_model,
- * Contest_admin_model); this class only validates, orchestrates and formats.
+ * Contest_admin_model, Logbook_model); this class only validates,
+ * orchestrates and formats. Settings defaults and validation come from
+ * Contesting_model (session_settings_defaults() /
+ * validate_session_settings()), so the rules live in one place.
  *
  * The contest itself is addressed by its ADIF name ("contest", e.g.
  * "DARC-WAG") because the numeric catalog ids are instance-local; responses
  * always carry both. QSO links are addressed by the QSO primary key, as used
- * by the QSO resource.
+ * by the QSO resource; linking and unlinking also maintain COL_CONTEST_ID on
+ * the QSO rows, mirroring the advanced logbook's attach workflow.
  *
- * Clubstations: creating is open to every member (mirroring the web UI),
- * updating and deleting require officer level 9, exactly like the
- * corresponding Contesting controller actions.
+ * Clubstations: creating, updating and deleting sessions require officer
+ * level 9; club members below that level may only link/unlink QSOs they
+ * logged themselves.
  */
 class Contest_resource extends Api_v2_resource {
 
 	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'contest';
-
-	/**
-	 * Session settings keys the API accepts, mirroring the defaults in
-	 * Contesting_model::build_session_settings(). Unknown keys are rejected
-	 * rather than silently dropped, so a client notices its typo.
-	 */
-	protected const SETTINGS_KEYS = [
-		'exchangetype', 'copyexchangeto', 'exchangefields', 'callbook_lookup',
-		'custom_name', 'serial_per_band', 'serial_scope',
-	];
 
 	public function __construct($auth, $body = null) {
 		parent::__construct($auth, $body);
@@ -118,10 +112,14 @@ class Contest_resource extends Api_v2_resource {
 	 *
 	 * The settings are merged over the module defaults by
 	 * Contesting_model::build_session_settings(), exactly like a session
-	 * created in the web UI.
+	 * created in the web UI; exchangetype is derived from the exchange
+	 * fields, never taken from the request.
 	 */
 	public function create() {
 		$this->require_write();
+		// Contest sessions are shared club infrastructure - officer-only,
+		// like update and delete.
+		$this->require_club_level(9);
 
 		$body = $this->body();
 		$this->require_session_scalars($body);
@@ -132,6 +130,13 @@ class Contest_resource extends Api_v2_resource {
 		$station_id = $this->resolve_station_field($body, true);
 		$comment    = isset($body['comment']) ? (string) $body['comment'] : '';
 		$settings   = $this->parse_settings($body['settings'] ?? []);
+		$settings   = $this->derive_exchangetype($settings);
+
+		// Validate the QSO links BEFORE creating the session, so a rejected
+		// link list cannot leave a stale session behind.
+		$link_ids = !empty($body['qso_ids'])
+			? $this->validate_qso_ids($body['qso_ids'], 'qso_ids')
+			: [];
 
 		$session_id = (int) $this->CI->contesting_model->create_contest_session(
 			$contest_id, $time_start, $time_end, $station_id, $comment,
@@ -139,8 +144,8 @@ class Contest_resource extends Api_v2_resource {
 		);
 
 		$link_result = null;
-		if (!empty($body['qso_ids'])) {
-			$link_result = $this->link_qsos($session_id, $body['qso_ids']);
+		if (!empty($link_ids)) {
+			$link_result = $this->perform_link($session_id, $link_ids, $contest_id);
 		}
 
 		$session = $this->format_session($this->require_owned_session($session_id));
@@ -180,14 +185,26 @@ class Contest_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
+		// Catalog id of the (possibly changed) contest - the field update and
+		// the COL_CONTEST_ID maintenance below both need it.
+		$catalog_id = (isset($body['contest']) || isset($body['contest_id']))
+			? $this->resolve_contest($body, true)
+			: $this->catalog_id_of($row);
+
+		// Validate the link lists BEFORE touching the session, so a rejected
+		// list cannot leave a half-applied update behind.
+		$link_ids = !empty($body['link_qso_ids'])
+			? $this->validate_qso_ids($body['link_qso_ids'], 'link_qso_ids')
+			: [];
+		$unlink_ids = !empty($body['unlink_qso_ids'])
+			? $this->validate_qso_ids($body['unlink_qso_ids'], 'unlink_qso_ids')
+			: [];
+
 		if ($has_fields) {
 			// Merge the request over the stored state and hand the full set to
 			// update_contest_session(), which the web UI uses as well. Only the
 			// incoming settings keys are validated - stored settings may
 			// legitimately carry keys a future version added.
-			$contest_id = (isset($body['contest']) || isset($body['contest_id']))
-				? $this->resolve_contest($body, true)
-				: $this->catalog_id_of($row);
 			$time_start = array_key_exists('time_start', $body)
 				? $this->parse_datetime_field($body, 'time_start', true)
 				: $row->time_start;
@@ -204,21 +221,20 @@ class Contest_resource extends Api_v2_resource {
 			$settings = array_key_exists('settings', $body)
 				? array_merge($stored_settings, $this->parse_settings($body['settings'] ?? []))
 				: $stored_settings;
+			$settings = $this->derive_exchangetype($settings);
 
 			$this->CI->contesting_model->update_contest_session(
-				(int) $id, $contest_id, $time_start, $time_end, $station_id,
+				(int) $id, $catalog_id, $time_start, $time_end, $station_id,
 				$comment, $settings, $this->user_id()
 			);
 		}
 
 		$link_result = $unlinked = null;
-		if (!empty($body['link_qso_ids'])) {
-			$link_result = $this->link_qsos((int) $id, $body['link_qso_ids']);
+		if (!empty($link_ids)) {
+			$link_result = $this->perform_link((int) $id, $link_ids, $catalog_id);
 		}
-		if (!empty($body['unlink_qso_ids'])) {
-			$unlinked = $this->CI->contesting_model->unlink_qsos(
-				(int) $id, $this->validate_qso_ids($body['unlink_qso_ids'], 'unlink_qso_ids')
-			);
+		if (!empty($unlink_ids)) {
+			$unlinked = $this->perform_unlink((int) $id, $unlink_ids);
 		}
 
 		$session = $this->format_session($this->require_owned_session($id));
@@ -238,6 +254,7 @@ class Contest_resource extends Api_v2_resource {
 	 * Delete a session. The linked QSOs stay in the logbook and only lose
 	 * their link - pass ?delete_qsos=true to remove them as well (full
 	 * teardown via Logbook_model::delete(), like the web UI's checkbox).
+	 * Removing QSOs additionally requires the qso:delete scope.
 	 */
 	public function delete($id) {
 		$this->require_delete();
@@ -247,6 +264,17 @@ class Contest_resource extends Api_v2_resource {
 		$this->require_owned_session($id);
 
 		$delete_qsos = filter_var($this->param('delete_qsos', 'false'), FILTER_VALIDATE_BOOLEAN);
+		if ($delete_qsos && !in_array('qso:delete', $this->auth['scopes'] ?? [], true)) {
+			// contest:delete covers the session; removing logbook QSOs is a
+			// QSO-resource power and needs that resource's delete scope.
+			throw new Api_v2_exception(
+				'insufficient_scope',
+				'Token is missing the required scope: qso:delete',
+				403,
+				['required_scope' => 'qso:delete']
+			);
+		}
+
 		$this->CI->contesting_model->delete_contest_session(
 			(int) $id, $delete_qsos, $this->user_id()
 		);
@@ -289,20 +317,15 @@ class Contest_resource extends Api_v2_resource {
 
 	/**
 	 * Cast a session row (get_sessions_for_user()) to its public shape. The
-	 * settings are exposed merged over the module defaults, matching what
+	 * settings are exposed merged over the module defaults
+	 * (Contesting_model::session_settings_defaults()), matching what
 	 * get_session_info() reports to the web UI.
 	 */
 	protected function format_session($row) {
-		$defaults = [
-			'exchangetype'    => 'Serial',
-			'copyexchangeto'  => '',
-			'exchangefields'  => ['serial'],
-			'callbook_lookup' => true,
-			'custom_name'     => '',
-			'serial_per_band' => false,
-			'serial_scope'    => 'station',
-		];
-		$settings = array_merge($defaults, json_decode($row->settings ?? '', true) ?? []);
+		$settings = array_merge(
+			$this->CI->contesting_model->session_settings_defaults(),
+			json_decode($row->settings ?? '', true) ?? []
+		);
 
 		return [
 			'id'           => (int) $row->id,
@@ -435,37 +458,46 @@ class Contest_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * Validate a settings object against the known session settings keys.
-	 * Only the incoming keys are checked; merging over defaults respectively
-	 * the stored settings happens in the caller.
+	 * Validate a settings object - keys AND values - via
+	 * Contesting_model::validate_session_settings(), the single place that
+	 * knows the allowed values. Merging over defaults respectively the stored
+	 * settings happens in the caller.
 	 */
 	protected function parse_settings($settings) {
-		if (!is_array($settings)) {
-			throw new Api_v2_exception('validation_error', 'settings must be an object', 400);
-		}
-		$unknown = array_diff(array_keys($settings), self::SETTINGS_KEYS);
-		if (!empty($unknown)) {
+		$errors = $this->CI->contesting_model->validate_session_settings($settings);
+		if (!empty($errors)) {
 			throw new Api_v2_exception(
 				'validation_error',
-				'Unknown settings key(s): ' . implode(', ', $unknown),
+				'Invalid settings: ' . implode('; ', $errors),
 				400,
-				['allowed' => self::SETTINGS_KEYS]
+				['errors' => $errors]
 			);
 		}
 		return $settings;
 	}
 
 	/**
-	 * Link QSOs to a session. Every id must be a QSO of the token owner;
-	 * foreign ids are a 403 (like foreign station ids elsewhere). Ids already
-	 * linked - to this or any other session - are skipped and reported, so a
-	 * sync client can re-send its full list idempotently.
+	 * Recompute exchangetype from the final exchange fields
+	 * (Contesting_model::exchangetype_for_fields()) - the web UI derives it
+	 * the same way, so the two values can never drift apart.
+	 */
+	protected function derive_exchangetype($settings) {
+		$fields = $settings['exchangefields']
+			?? $this->CI->contesting_model->session_settings_defaults()['exchangefields'];
+		$settings['exchangetype'] = $this->CI->contesting_model->exchangetype_for_fields($fields);
+		return $settings;
+	}
+
+	/**
+	 * Link pre-validated QSO ids to a session (see validate_qso_ids()). Ids
+	 * already linked - to this or any other session - are skipped and
+	 * reported, so a sync client can re-send its full list idempotently.
+	 * COL_CONTEST_ID on the fresh links follows the advanced logbook's
+	 * attach workflow (Logbook_model::set_contest()).
 	 *
 	 * @return array { linked: int, skipped: int[] }
 	 */
-	protected function link_qsos($session_id, $qso_ids) {
-		$ids = $this->validate_qso_ids($qso_ids, 'qso_ids');
-
+	protected function perform_link($session_id, $ids, $contest_catalog_id) {
 		$existing = $this->CI->contesting_model->get_linked_sessions($ids);
 
 		$skipped = [];
@@ -480,12 +512,44 @@ class Contest_resource extends Api_v2_resource {
 			$to_link[] = $qso_id;
 		}
 		$linked = $this->CI->contesting_model->link_qsos((int) $session_id, $to_link);
+
+		$this->CI->load->model('logbook_model');
+		foreach ($to_link as $qso_id) {
+			$this->CI->logbook_model->set_contest($qso_id, (int) $contest_catalog_id);
+		}
 		return ['linked' => $linked, 'skipped' => $skipped];
+	}
+
+	/**
+	 * Unlink pre-validated QSO ids from a session. COL_CONTEST_ID is cleared
+	 * only on QSOs that were actually linked to THIS session, mirroring the
+	 * advanced logbook's detach workflow.
+	 *
+	 * @return int Number of removed links.
+	 */
+	protected function perform_unlink($session_id, $ids) {
+		$existing = $this->CI->contesting_model->get_linked_sessions($ids);
+		$here = [];
+		foreach ($ids as $qso_id) {
+			if (($existing[$qso_id] ?? 0) === (int) $session_id) {
+				$here[] = $qso_id;
+			}
+		}
+
+		$unlinked = $this->CI->contesting_model->unlink_qsos((int) $session_id, $here);
+
+		$this->CI->load->model('logbook_model');
+		foreach ($here as $qso_id) {
+			$this->CI->logbook_model->set_contest($qso_id, 0);
+		}
+		return $unlinked;
 	}
 
 	/**
 	 * Validate a QSO id list from the body: numeric, owned by the token user
 	 * (batched ownership check, see Contesting_model::filter_owned_qso_ids()).
+	 * Club members below officer level are additionally restricted to QSOs
+	 * they logged themselves.
 	 *
 	 * @return int[]
 	 */
@@ -505,7 +569,10 @@ class Contest_resource extends Api_v2_resource {
 			return [];
 		}
 
-		$owned = $this->CI->contesting_model->filter_owned_qso_ids($ids, $this->user_id());
+		$owned = $this->CI->contesting_model->filter_owned_qso_ids(
+			$ids, $this->user_id(),
+			$this->is_restricted_club_member() ? $this->operator_callsign() : null
+		);
 		$foreign = array_diff($ids, $owned);
 		if (!empty($foreign)) {
 			throw new Api_v2_exception(
