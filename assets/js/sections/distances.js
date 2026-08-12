@@ -27,7 +27,8 @@ function distPlot(form) {
 		data: {'band': form.distplot_bands.value,
 			'sat': form.distplot_sats.value,
 			'orbit': form.orbits.value,
-			'propagation': form.propmode.value
+			'propagation': form.propmode.value,
+			'mode': form.distplot_mode.value
 		},
 		success: function(tmp) {
 			if (tmp.ok == 'OK') {
@@ -158,7 +159,8 @@ function getDistanceQsos(distance) {
 			'band': $("#distplot_bands").val(),
 			'sat' : $("#distplot_sats").val(),
 			'orbit': $("#orbits").val(),
-			'propagation': $("#propmode").val()
+			'propagation': $("#propmode").val(),
+			'mode': $("#distplot_mode").val()
 		},
 		success: function (html) {
 			BootstrapDialog.show({
