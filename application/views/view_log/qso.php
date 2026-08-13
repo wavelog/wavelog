@@ -139,7 +139,9 @@
                               echo " <i class='fa fa-question-circle' aria-hidden='true' data-bs-toggle='tooltip' title='".__("A single gridsquare was entered into the VUCC gridsquares field which should contain two or four gridsquares instead of a single grid.")."'></i>";
                               echo "</span>";
                            }
-                           echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
+                           if (!empty($row->station_gridsquare)) {
+                              echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
+                           }
                         ?>
                         </td>
                             <?php
@@ -614,10 +616,12 @@
                         <th scope="row"><?= __("Station") . ' ' . __("Name"); ?></th>
                         <td><?php echo $row->station_profile_name; ?></td>
                     </tr>
+                    <?php if (!empty($row->station_gridsquare)) { ?>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Gridsquare"); ?></th>
                         <td><?php echo $row->station_gridsquare; ?></td>
                     </tr>
+                    <?php } ?>
 
                     <?php if($row->station_city) { ?>
                     <tr>

@@ -40,6 +40,9 @@ class Qra {
 	*
 	*/
 	function distance($tx, $rx, $unit = 'M', $ant_path = null) {
+		if (empty($tx) || empty($rx)) {
+			return null;
+		}
 		// Calc LatLongs
 		$my = qra2latlong($tx);
 		$stn = qra2latlong($rx);
@@ -116,10 +119,14 @@ class Qra {
 		$echo = "";
 		if (!empty($grid)) {
 			$echo = $grid;
-			$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>') : '';
+			if (!empty($mygrid)) {
+				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>') : '';
+			}
 		} else if (!empty($vucc)) {
 			$echo = $vucc;
-			$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>') : '';
+			if (!empty($mygrid)) {
+				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>') : '';
+			}
 		}
 		return $echo;
 	}

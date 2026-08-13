@@ -841,6 +841,9 @@ function calculateQrb() {
                 newpath(html['latlng1'], html['latlng2'], locator1, locator2);
             }
         });
+    } else if (locator1 == '' || locator2 == '') {
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_empty_loc + '</div>');
+        $("#mapqrb").hide();
     } else {
         $("#mapqrb").hide();
         $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_errmsg + '</div>');
