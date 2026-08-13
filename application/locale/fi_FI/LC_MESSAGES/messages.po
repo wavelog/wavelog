@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-13 09:11+0000\n"
+"POT-Creation-Date: 2026-08-13 12:11+0000\n"
 "PO-Revision-Date: 2026-06-29 12:11+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2462,7 +2462,7 @@ msgstr "Operaattori"
 #: application/views/awards/wae/index.php:231
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:845
+#: application/views/interface_assets/footer.php:838
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:388
 #: application/views/lookup/index.php:47
@@ -2622,22 +2622,22 @@ msgstr "Muokkaustila"
 msgid "Notes"
 msgstr "Muistiinpanot"
 
-#: application/controllers/Notes.php:71
+#: application/controllers/Notes.php:70
 msgid "Add Notes"
 msgstr "Lisää muistiinpanoja"
 
-#: application/controllers/Notes.php:97
+#: application/controllers/Notes.php:96
 #: application/views/contesting/manager/import_legacy.php:43
 #: application/views/oqrs/showrequests.php:98
 msgid "Note"
 msgstr "Huomautus"
 
-#: application/controllers/Notes.php:127 application/views/notes/edit.php:20
+#: application/controllers/Notes.php:125 application/views/notes/edit.php:20
 #: application/views/notes/view.php:47 application/views/qso/index.php:789
 msgid "Edit Note"
 msgstr "Muokkaa muistiinpanoa"
 
-#: application/controllers/Notes.php:220
+#: application/controllers/Notes.php:218
 msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
@@ -2645,43 +2645,43 @@ msgstr ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
 
-#: application/controllers/Notes.php:285
+#: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
 msgstr "Ei löydy tai ei sallittu"
 
-#: application/controllers/Notes.php:300
+#: application/controllers/Notes.php:298
 msgid "Not found"
 msgstr "Ei löytynyt"
 
-#: application/controllers/Notes.php:316
+#: application/controllers/Notes.php:314
 msgid "Category and title are required"
 msgstr "Kategoria ja otsikko ovat pakollisia"
 
-#: application/controllers/Notes.php:330
+#: application/controllers/Notes.php:327
 msgid "Note not found or not allowed"
 msgstr "Muistiinpanoa ei löytynyt tai se ei ole sallittu"
 
-#: application/controllers/Notes.php:337
+#: application/controllers/Notes.php:334
 msgid "Note deleted"
 msgstr "Huomautus poistettu."
 
-#: application/controllers/Notes.php:341
+#: application/controllers/Notes.php:338
 msgid "Note updated"
 msgstr "Muistiinpano päivitetty"
 
-#: application/controllers/Notes.php:346
+#: application/controllers/Notes.php:343
 msgid "Cannot create empty note"
 msgstr "Ei voi luoda tyhjää muistiinpanoa"
 
-#: application/controllers/Notes.php:354
+#: application/controllers/Notes.php:351
 msgid "A note with this callsign already exists"
 msgstr "Muistiinpano tällä kutsumerkillä on jo olemassa"
 
-#: application/controllers/Notes.php:364
+#: application/controllers/Notes.php:361
 msgid "Note created"
 msgstr "Muistiinpano on luotu"
 
-#: application/controllers/Notes.php:378 application/controllers/Notes.php:402
+#: application/controllers/Notes.php:374 application/controllers/Notes.php:397
 #, php-format
 msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
@@ -2690,7 +2690,7 @@ msgstr ""
 "Yhteystietojen muistiinpanon otsikon on oltava vain kutsu ilman etuliitettä/"
 "jälkiliitettä. Ehdotettu: %s"
 
-#: application/controllers/Notes.php:384 application/controllers/Notes.php:410
+#: application/controllers/Notes.php:380 application/controllers/Notes.php:405
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
@@ -3148,8 +3148,8 @@ msgstr "viimeksi päivitetty"
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
-#: application/views/interface_assets/footer.php:705
-#: application/views/interface_assets/footer.php:714
+#: application/views/interface_assets/footer.php:698
+#: application/views/interface_assets/footer.php:707
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:891
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -3173,10 +3173,10 @@ msgstr "Muokkaa"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:70
-#: application/views/interface_assets/footer.php:2677
-#: application/views/interface_assets/footer.php:2695
-#: application/views/interface_assets/footer.php:2714
-#: application/views/interface_assets/footer.php:2732
+#: application/views/interface_assets/footer.php:2645
+#: application/views/interface_assets/footer.php:2663
+#: application/views/interface_assets/footer.php:2682
+#: application/views/interface_assets/footer.php:2700
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:912
 #: application/views/lotw_views/index.php:143
@@ -4611,7 +4611,7 @@ msgstr "Yleinen"
 msgid "Antennas"
 msgstr "Antennit"
 
-#: application/models/Note.php:64 application/models/Note.php:95
+#: application/models/Note.php:65 application/models/Note.php:96
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr ""
 "Kontakti-kategoriassa muistiinpanojen otsikoiden on oltava ainutlaatuisia."
@@ -4802,8 +4802,8 @@ msgstr "Ero"
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1553
-#: application/views/interface_assets/footer.php:1692
+#: application/views/interface_assets/footer.php:1546
+#: application/views/interface_assets/footer.php:1685
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -5378,7 +5378,7 @@ msgstr "Minimimäärä"
 #: application/views/awards/cq/index.php:273
 #: application/views/awards/dok/index.php:202
 #: application/views/awards/helvetia/index.php:204
-#: application/views/awards/iota/index.php:311
+#: application/views/awards/iota/index.php:315
 #: application/views/awards/itu/index.php:275
 #: application/views/awards/jcc/index.php:248
 #: application/views/awards/pl_polska/index.php:380
@@ -5389,7 +5389,7 @@ msgstr "Minimimäärä"
 #: application/views/awards/sota/index.php:193
 #: application/views/awards/vucc/band.php:45
 #: application/views/awards/vucc/index.php:43
-#: application/views/awards/wae/index.php:311
+#: application/views/awards/wae/index.php:313
 #: application/views/awards/waja/index.php:205
 #: application/views/awards/wap/index.php:202
 #: application/views/awards/wapc/index.php:214
@@ -5757,8 +5757,8 @@ msgstr ""
 
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:665
-#: application/views/interface_assets/footer.php:2432
+#: application/views/interface_assets/footer.php:658
+#: application/views/interface_assets/footer.php:2412
 msgid "DANGER"
 msgstr "VAARA"
 
@@ -6412,7 +6412,7 @@ msgstr "Yksinkertainen nimi, joka kuvaa, mihin tätä API:a käytetään."
 #: application/views/contesting/logger/components/qso-form.php:37
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
-#: application/views/interface_assets/footer.php:700
+#: application/views/interface_assets/footer.php:693
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
@@ -6555,7 +6555,7 @@ msgstr "Oikeudet"
 #: application/views/contesting/manager/index.php:38
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:826
-#: application/views/notes/main.php:77 application/views/qrz/export.php:44
+#: application/views/notes/main.php:74 application/views/qrz/export.php:44
 #: application/views/qslprint/qslprint.php:47
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/view_log/partial/log_ajax.php:164
@@ -6907,7 +6907,7 @@ msgstr "Lokaattori"
 #: application/views/awards/waip/index.php:41
 #: application/views/contesting/manager/export_cbr.php:57
 #: application/views/notes/add.php:47 application/views/notes/edit.php:42
-#: application/views/notes/main.php:73 application/views/notes/view.php:30
+#: application/views/notes/main.php:70 application/views/notes/view.php:30
 msgid "Category"
 msgstr "Kategoria"
 
@@ -7121,7 +7121,7 @@ msgstr "Vahvistusten (confirmed) edistyminen"
 #: application/views/awards/counties/state_ajax.php:32
 #: application/views/awards/dok/index.php:182
 #: application/views/awards/helvetia/index.php:183
-#: application/views/awards/iota/index.php:247
+#: application/views/awards/iota/index.php:251
 #: application/views/awards/jcc/index.php:198
 #: application/views/awards/rac/index.php:184
 #: application/views/awards/waja/index.php:183
@@ -7478,7 +7478,7 @@ msgstr "Näytä QSOt QSL-tyypillä"
 #: application/views/awards/iota/index.php:90
 #: application/views/awards/itu/index.php:117
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2411
+#: application/views/interface_assets/footer.php:2391
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
@@ -7543,14 +7543,14 @@ msgstr "(W) Työskennellyt"
 
 #: application/views/awards/cq/index.php:225
 #: application/views/awards/dok/index.php:173
-#: application/views/awards/dxcc/index.php:481
+#: application/views/awards/dxcc/index.php:483
 #: application/views/awards/helvetia/index.php:174
-#: application/views/awards/iota/index.php:234
+#: application/views/awards/iota/index.php:238
 #: application/views/awards/itu/index.php:227
 #: application/views/awards/jcc/index.php:182
 #: application/views/awards/rac/index.php:175
 #: application/views/awards/wac/index.php:168
-#: application/views/awards/wae/index.php:242
+#: application/views/awards/wae/index.php:244
 #: application/views/awards/waja/index.php:174
 #: application/views/awards/wap/index.php:172
 #: application/views/awards/wapc/index.php:184
@@ -7561,23 +7561,23 @@ msgstr "Yhteenveto"
 
 #: application/views/awards/cq/index.php:238
 #: application/views/awards/dxcc/index.php:349
-#: application/views/awards/dxcc/index.php:494
+#: application/views/awards/dxcc/index.php:496
 #: application/views/awards/itu/index.php:240
 #: application/views/awards/wac/index.php:181
-#: application/views/awards/wae/index.php:255
+#: application/views/awards/wae/index.php:257
 msgid "Total (ex SAT)"
 msgstr "Yhteensä (ilman SAT)"
 
 #: application/views/awards/cq/index.php:244
 #: application/views/awards/dok/index.php:186
-#: application/views/awards/dxcc/index.php:504
+#: application/views/awards/dxcc/index.php:506
 #: application/views/awards/helvetia/index.php:187
-#: application/views/awards/iota/index.php:255
+#: application/views/awards/iota/index.php:259
 #: application/views/awards/itu/index.php:246
 #: application/views/awards/jcc/index.php:208
 #: application/views/awards/rac/index.php:188
 #: application/views/awards/wac/index.php:188
-#: application/views/awards/wae/index.php:262
+#: application/views/awards/wae/index.php:264
 #: application/views/awards/waja/index.php:188
 #: application/views/awards/wap/index.php:185
 #: application/views/awards/wapc/index.php:198
@@ -7588,14 +7588,14 @@ msgstr "Työskennelty yhteensä"
 
 #: application/views/awards/cq/index.php:257
 #: application/views/awards/dok/index.php:193
-#: application/views/awards/dxcc/index.php:529
+#: application/views/awards/dxcc/index.php:531
 #: application/views/awards/helvetia/index.php:194
-#: application/views/awards/iota/index.php:281
+#: application/views/awards/iota/index.php:285
 #: application/views/awards/itu/index.php:259
 #: application/views/awards/jcc/index.php:227
 #: application/views/awards/rac/index.php:195
 #: application/views/awards/wac/index.php:208
-#: application/views/awards/wae/index.php:284
+#: application/views/awards/wae/index.php:286
 #: application/views/awards/waip/index.php:149
 #: application/views/awards/waip/index.php:213
 #: application/views/awards/waja/index.php:195
@@ -7919,11 +7919,11 @@ msgstr "DXCC:n nimi"
 msgid "Prefix"
 msgstr "Prefiksi"
 
-#: application/views/awards/dxcc/index.php:497
+#: application/views/awards/dxcc/index.php:499
 msgid "Slots"
 msgstr "Slotit"
 
-#: application/views/awards/dxcc/index.php:560
+#: application/views/awards/dxcc/index.php:562
 msgid "No results found for your search criteria. Please try again."
 msgstr "Ei tuloksia hakuehdoillasi. Yritä uudelleen."
 
@@ -10637,7 +10637,7 @@ msgid "Callsign DXCC identification"
 msgstr "Kutsumerkkien DXCC-tunniste"
 
 #: application/views/calltester/index.php:16
-#: application/views/interface_assets/footer.php:901
+#: application/views/interface_assets/footer.php:894
 #: application/views/logbookadvanced/index.php:875
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
@@ -14556,10 +14556,10 @@ msgid "QSL Date"
 msgstr "QSL-päivämäärä"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2678
-#: application/views/interface_assets/footer.php:2696
-#: application/views/interface_assets/footer.php:2715
-#: application/views/interface_assets/footer.php:2733
+#: application/views/interface_assets/footer.php:2646
+#: application/views/interface_assets/footer.php:2664
+#: application/views/interface_assets/footer.php:2683
+#: application/views/interface_assets/footer.php:2701
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:720
 #: application/views/view_log/qso.php:728
@@ -15118,76 +15118,76 @@ msgstr "Versioinfo"
 msgid "Failed to load the modal. Please try again."
 msgstr "Virhe modaalin lataamisessa. Yritä uudelleen."
 
-#: application/views/interface_assets/footer.php:555
+#: application/views/interface_assets/footer.php:548
 msgid "Description:"
 msgstr "Kuvaus:"
 
-#: application/views/interface_assets/footer.php:558
+#: application/views/interface_assets/footer.php:551
 msgid "Query description"
 msgstr "Kyselyn kuvaus"
 
-#: application/views/interface_assets/footer.php:574
+#: application/views/interface_assets/footer.php:567
 msgid "Your query has been saved!"
 msgstr "Kyselysi on tallennettu!"
 
-#: application/views/interface_assets/footer.php:576
+#: application/views/interface_assets/footer.php:569
 #: application/views/search/filter.php:43
 msgid "Edit queries"
 msgstr "Muokkaa kyselyjä"
 
-#: application/views/interface_assets/footer.php:578
+#: application/views/interface_assets/footer.php:571
 msgid "Stored queries:"
 msgstr "Tallennetut kyselyt:"
 
-#: application/views/interface_assets/footer.php:583
+#: application/views/interface_assets/footer.php:576
 #: application/views/search/filter.php:57
 msgid "Run Query"
 msgstr "Suorita kysely"
 
-#: application/views/interface_assets/footer.php:595
-#: application/views/interface_assets/footer.php:731
-#: application/views/interface_assets/footer.php:801
+#: application/views/interface_assets/footer.php:588
+#: application/views/interface_assets/footer.php:724
+#: application/views/interface_assets/footer.php:794
 msgid "Stored Queries"
 msgstr "Tallennetut kyselyt"
 
-#: application/views/interface_assets/footer.php:600
-#: application/views/interface_assets/footer.php:806
+#: application/views/interface_assets/footer.php:593
+#: application/views/interface_assets/footer.php:799
 msgid "You need to make a query before you search!"
 msgstr "Sinun täytyy tehdä kysely ennen kuin voit suorittaa hakua!"
 
-#: application/views/interface_assets/footer.php:621
-#: application/views/interface_assets/footer.php:758
+#: application/views/interface_assets/footer.php:614
+#: application/views/interface_assets/footer.php:751
 #: application/views/search/filter.php:76
 msgid "Export to ADIF"
 msgstr "Vie ADIF-muotoon"
 
-#: application/views/interface_assets/footer.php:622
-#: application/views/interface_assets/footer.php:759
+#: application/views/interface_assets/footer.php:615
+#: application/views/interface_assets/footer.php:752
 #: application/views/search/main.php:32
 msgid "Open in the Advanced Logbook"
 msgstr "Avaa laajennettu lokikirja"
 
-#: application/views/interface_assets/footer.php:666
+#: application/views/interface_assets/footer.php:659
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Varoitus! Oletko varma, että haluat poistaa tämän tallennetun kyselyn?"
 
-#: application/views/interface_assets/footer.php:680
+#: application/views/interface_assets/footer.php:673
 msgid "The stored query has been deleted!"
 msgstr "Tallennettu kysely on poistettu!"
 
-#: application/views/interface_assets/footer.php:689
+#: application/views/interface_assets/footer.php:682
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Tallennettua kyselyä ei voitu poistaa. Yritä uudelleen!"
 
-#: application/views/interface_assets/footer.php:715
+#: application/views/interface_assets/footer.php:708
 msgid "The query description has been updated!"
 msgstr "Kyselyn kuvausta on päivitetty!"
 
-#: application/views/interface_assets/footer.php:719
+#: application/views/interface_assets/footer.php:712
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Tallennuksessa tapahtui virhe. Yritä uudelleen!"
 
-#: application/views/interface_assets/footer.php:848
+#: application/views/interface_assets/footer.php:841
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -15197,15 +15197,15 @@ msgstr ""
 "voimassa. Tarkista, mikä DXCC on oikea tälle sijainnille. Jos olet varma "
 "valinnastasi, voit sivuuttaa tämän varoituksen."
 
-#: application/views/interface_assets/footer.php:902
+#: application/views/interface_assets/footer.php:895
 msgid "Count: "
 msgstr "Lukumäärä: "
 
-#: application/views/interface_assets/footer.php:903
+#: application/views/interface_assets/footer.php:896
 msgid "Grids: "
 msgstr "Lokaattoriruudut: "
 
-#: application/views/interface_assets/footer.php:1122
+#: application/views/interface_assets/footer.php:1115
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
@@ -15213,82 +15213,82 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokaattoriruudut"
 
-#: application/views/interface_assets/footer.php:1329
+#: application/views/interface_assets/footer.php:1322
 msgid "Location Lookup failed. Please check browser console."
 msgstr "Sijainnin haku epäonnistui. Tarkista selainkonsoli."
 
+#: application/views/interface_assets/footer.php:1473
+#: application/views/interface_assets/footer.php:1477
 #: application/views/interface_assets/footer.php:1480
-#: application/views/interface_assets/footer.php:1484
-#: application/views/interface_assets/footer.php:1487
+#: application/views/interface_assets/footer.php:1617
+#: application/views/interface_assets/footer.php:1621
 #: application/views/interface_assets/footer.php:1624
-#: application/views/interface_assets/footer.php:1628
-#: application/views/interface_assets/footer.php:1631
 msgid "grid square"
 msgstr "Lokaattori"
 
-#: application/views/interface_assets/footer.php:1487
-#: application/views/interface_assets/footer.php:1631
+#: application/views/interface_assets/footer.php:1480
+#: application/views/interface_assets/footer.php:1624
 msgid "Total count"
 msgstr "Yhteensä"
 
-#: application/views/interface_assets/footer.php:2413
+#: application/views/interface_assets/footer.php:2393
 msgid "QSL Card for "
 msgstr "QSL-kortti "
 
-#: application/views/interface_assets/footer.php:2433
+#: application/views/interface_assets/footer.php:2413
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varoitus! Haluatko varmasti poistaa tämän QSL-kortin?"
 
-#: application/views/interface_assets/footer.php:2473
+#: application/views/interface_assets/footer.php:2453
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL-kortti"
 
-#: application/views/interface_assets/footer.php:2475
+#: application/views/interface_assets/footer.php:2455
 msgid "eQSL Card for "
 msgstr "eQSL-kortti "
 
-#: application/views/interface_assets/footer.php:2689
-#: application/views/interface_assets/footer.php:2726
+#: application/views/interface_assets/footer.php:2657
+#: application/views/interface_assets/footer.php:2694
 #: application/views/view_log/qso.php:718
 msgid "QSL image file"
 msgstr "QSL-kuvatiedosto"
 
-#: application/views/interface_assets/footer.php:2708
+#: application/views/interface_assets/footer.php:2676
 msgid "Front QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2744
+#: application/views/interface_assets/footer.php:2712
 msgid "Back QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2748
+#: application/views/interface_assets/footer.php:2716
 msgid "The QSL card upload could not be completed."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2748
+#: application/views/interface_assets/footer.php:2716
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2756
-#: application/views/interface_assets/footer.php:2781
+#: application/views/interface_assets/footer.php:2724
+#: application/views/interface_assets/footer.php:2749
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Liitä muita QSOja QSL-korttiin"
 
-#: application/views/interface_assets/footer.php:2792
+#: application/views/interface_assets/footer.php:2760
 msgid "Something went wrong. Please try again!"
 msgstr "Jokin meni pieleen. Yritä uudelleen!"
 
-#: application/views/interface_assets/footer.php:2864
+#: application/views/interface_assets/footer.php:2832
 msgid "US Counties for state"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2917
+#: application/views/interface_assets/footer.php:2885
 msgid "Confirmed counties for state:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2917
+#: application/views/interface_assets/footer.php:2885
 msgid "Worked counties for state:"
 msgstr ""
 
@@ -18151,7 +18151,7 @@ msgid "Create Note"
 msgstr "Luo uusi muistiinpano"
 
 #: application/views/notes/add.php:31 application/views/notes/edit.php:37
-#: application/views/notes/main.php:74
+#: application/views/notes/main.php:71
 msgid "Title"
 msgstr "Otsikko"
 
@@ -18185,18 +18185,14 @@ msgid "Search notes (min. 3 chars)"
 msgstr "Hae muistiinpanoista (vähintään 3 merkkiä)"
 
 #: application/views/notes/main.php:54
-msgid "Add stroked zero (Ø)"
-msgstr "Lisää yliviivattu nolla (Ø)"
-
-#: application/views/notes/main.php:57
 msgid "Reset search"
 msgstr "Nollaa haku"
 
-#: application/views/notes/main.php:75
+#: application/views/notes/main.php:72
 msgid "Creation"
 msgstr "Luonti"
 
-#: application/views/notes/main.php:76
+#: application/views/notes/main.php:73
 msgid "Last Modification"
 msgstr "Viimeisin muutos"
 
@@ -23397,6 +23393,9 @@ msgstr ""
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr ""
+
+#~ msgid "Add stroked zero (Ø)"
+#~ msgstr "Lisää yliviivattu nolla (Ø)"
 
 #~ msgid "With selected: "
 #~ msgstr "Valituissa: "
