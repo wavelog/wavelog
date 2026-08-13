@@ -6121,8 +6121,11 @@ class Logbook_model extends CI_Model {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
+		$this->db->select($this->config->item('table_name').'.*, `station_profile`.*, `dxcc_entities`.*, `lotw_users`.*, `satellite`.`displayname` AS sat_displayname, satellite.name AS sat_name');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+		$this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
+		$this->db->join('satellite', 'col_prop_mode="SAT" AND col_sat_name = COALESCE(NULLIF(satellite.name, ""), NULLIF(satellite.displayname, ""))', 'left outer');
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->where('COL_STATE', $state);
 		$this->db->where('COL_CNTY', $county);
