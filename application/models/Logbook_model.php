@@ -1669,6 +1669,20 @@ class Logbook_model extends CI_Model {
 			$clublogrdate = $qso->COL_CLUBLOG_QSO_DOWNLOAD_DATE;
 		}
 
+		$clublog_modified = false;
+		if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS != $clublog_sent) {
+			$clublog_modified = true;
+		}
+		if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS != $clublog_rcvd) {
+			$clublog_modified = true;
+		}
+		if ($qso->COL_CLUBLOG_QSO_UPLOAD_DATE != $clublogsdate) {
+			$clublog_modified = true;
+		}
+		if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_DATE != $clublogrdate) {
+			$clublog_modified = true;
+		}
+
 		if ($dcl_sent == 'N' && $qso->COL_DCL_QSL_SENT != $dcl_sent) {
 			$dclsdate = null;
 		} elseif (!$qso->COL_DCL_QSLSDATE || $qso->COL_DCL_QSL_SENT != $dcl_sent) {
@@ -1807,6 +1821,13 @@ class Logbook_model extends CI_Model {
 			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
+		$clublog_relevant_update = $this->has_non_routing_changes($qso, $data);
+
+		$old_clublog = ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS ?? '');
+		if (($old_clublog == 'I' || $old_clublog == 'Y') && $clublog_relevant_update && !$clublog_modified) {
+			$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
+		}
+
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
 		$data = $this->sanitize_utf8($data);
 		try {
@@ -1849,7 +1870,16 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $id);
+		$current_row = $this->db->get($this->config->item('table_name'))->row();
+		$old_clublog = $current_row->COL_CLUBLOG_QSO_UPLOAD_STATUS ?? '';
+		$clublog_relevant_update = $this->has_non_routing_changes($current_row, $data);
+
+		$this->db->where('COL_PRIMARY_KEY', $id);
 		$this->db->update($this->config->item('table_name'), $data);
+
+		if (($old_clublog == 'I' || $old_clublog == 'Y') && $clublog_relevant_update) {
+			$this->set_clublog_modified($id);
+		}
 
 		// Invalidate DXCluster cache for this callsign
 		if (isset($data['COL_CALL'])) {
@@ -2088,6 +2118,7 @@ class Logbook_model extends CI_Model {
 			$this->db->update($this->config->item('table_name'), $data);
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+				$this->set_clublog_modified($qso_id);
 			}
 
 		} else {
@@ -2119,6 +2150,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+				$this->set_clublog_modified($qso_id);
 			}
 		} else {
 			return;
@@ -2146,6 +2178,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+				$this->set_clublog_modified($qso_id);
 			}
 		} else {
 			return;
@@ -2168,6 +2201,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+				$this->set_clublog_modified($qso_id);
 			}
 		} else {
 			return;
@@ -2730,16 +2764,76 @@ class Logbook_model extends CI_Model {
 	 */
 
 	function set_qrzcom_modified($qso_id) {
+		$this->set_modified_status($qso_id, 'COL_QRZCOM_QSO_UPLOAD_STATUS');
+	}
+
+	/**
+	 * Set Club Log upload status to 'modified'.
+	 *
+	 * Club Log reacts to the exported confirmation fields and dates, not to
+	 * paper routing metadata like QSL_*_VIA.
+	 *
+	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
+	 */
+	function set_clublog_modified($qso_id) {
+		$this->set_modified_status($qso_id, 'COL_CLUBLOG_QSO_UPLOAD_STATUS');
+	}
+
+	/**
+	 * Set a confirmation upload status to 'modified'.
+	 *
+	 * Only mark rows that were already uploaded before or were invalid.
+	 *
+	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
+	 * @param string $column The status column to update.
+	 */
+	private function set_modified_status($qso_id, $column) {
 		$data = array(
-			'COL_QRZCOM_QSO_UPLOAD_STATUS' => 'M'
+			$column => 'M'
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $qso_id);
 		$this->db->group_start();
-		$this->db->where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'Y');
-		$this->db->or_where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'I');
+		$this->db->where($column, 'Y');
+		$this->db->or_where($column, 'I');
 		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
+	}
+
+	/**
+	 * Detect whether an update changes anything relevant for Club Log beyond
+	 * routing metadata.
+	 *
+	 * Routing fields like QSL_*_VIA do not count here, because Club Log does
+	 * not use them for its confirmation state.
+	 *
+	 * @param object|null $current_row The current QSO row loaded from the DB.
+	 * @param array $data The pending update payload.
+	 * @return bool True when at least one non-routing field changed.
+	 */
+	private function has_non_routing_changes($current_row, $data) {
+		if ($current_row === null) {
+			return false;
+		}
+
+		$routing_columns = array(
+			'COL_QSL_VIA',
+			'COL_QSL_SENT_VIA',
+			'COL_QSL_RCVD_VIA',
+		);
+
+		foreach ($data as $column => $value) {
+			if (in_array($column, $routing_columns, true)) {
+				continue;
+			}
+
+			$current_value = $current_row->$column ?? null;
+			if ($current_value != $value) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/*
@@ -4469,7 +4563,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		$data = array(
-			'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => date('Y-m-d'),
+			'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => date('Y-m-d H:i:s'),
 			'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
 		);
 

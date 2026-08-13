@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-13 12:11+0000\n"
+"POT-Creation-Date: 2026-08-13 13:59+0000\n"
 "PO-Revision-Date: 2026-08-12 19:17+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4445,11 +4445,11 @@ msgid "No Call given"
 msgstr "コールなし"
 
 #: application/models/Logbook_model.php:1507
-#: application/models/Logbook_model.php:1711
+#: application/models/Logbook_model.php:1725
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4797
+#: application/models/Logbook_model.php:4891
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4457,7 +4457,7 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:4805
+#: application/models/Logbook_model.php:4899
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4466,7 +4466,7 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:4821
+#: application/models/Logbook_model.php:4915
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4474,7 +4474,7 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4831
+#: application/models/Logbook_model.php:4925
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4483,7 +4483,7 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:4838
+#: application/models/Logbook_model.php:4932
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4492,7 +4492,7 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:4908
+#: application/models/Logbook_model.php:5002
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4501,7 +4501,7 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:4915
+#: application/models/Logbook_model.php:5009
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4510,63 +4510,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5189
+#: application/models/Logbook_model.php:5283
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5200
+#: application/models/Logbook_model.php:5294
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5261
+#: application/models/Logbook_model.php:5355
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5637
+#: application/models/Logbook_model.php:5731
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5704
-#: application/models/Logbook_model.php:5804
+#: application/models/Logbook_model.php:5798
+#: application/models/Logbook_model.php:5898
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5806
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5718
+#: application/models/Logbook_model.php:5812
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5722
+#: application/models/Logbook_model.php:5816
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5726
+#: application/models/Logbook_model.php:5820
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5729
+#: application/models/Logbook_model.php:5823
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5732
+#: application/models/Logbook_model.php:5826
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5807
+#: application/models/Logbook_model.php:5901
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5810
+#: application/models/Logbook_model.php:5904
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6219
+#: application/models/Logbook_model.php:6313
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4582,27 +4582,27 @@ msgstr "QSOが更新されました"
 msgid "Bearing"
 msgstr "方位"
 
-#: application/models/Logbookadvanced_model.php:1862
+#: application/models/Logbookadvanced_model.php:1870
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
 "VuccGridsテーブルが空です。まずVUCCグリッドデータをインポートしてください。"
 
-#: application/models/Logbookadvanced_model.php:2482
+#: application/models/Logbookadvanced_model.php:2490
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr "プライマリQSOIDが無効、またはQSOへのアクセス権限がない"
 
-#: application/models/Logbookadvanced_model.php:2492
+#: application/models/Logbookadvanced_model.php:2500
 #: application/views/view_log/qso.php:868
 msgid "QSO not found"
 msgstr "QSOが見つかりません"
 
-#: application/models/Logbookadvanced_model.php:2578
+#: application/models/Logbookadvanced_model.php:2586
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "統合用のフィールドが選択されていないか、QSO同士の違いもありません"
 
-#: application/models/Logbookadvanced_model.php:2591
+#: application/models/Logbookadvanced_model.php:2599
 msgid "QSOs merged successfully"
 msgstr "QSOの統合に成功しました"
 
