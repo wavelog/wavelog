@@ -206,7 +206,7 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->prefix . '</td>
+                <td class="callsign">' . $line->prefix . '</td>
                 <td>' . ucwords(strtolower($line->dxcc_name)) . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
             echo '<td>'.$line->sat_name.'</td>';
@@ -322,7 +322,7 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_iota . '</td>
                 <td>' . $line->name . '</td>
-                <td>' . $line->prefix . '</td>';
+                <td class="callsign">' . $line->prefix . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
            echo '<td>' . $line->sat_name . '</td>';
         }
