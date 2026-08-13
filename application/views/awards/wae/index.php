@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span></td>';
                 } else if ($name == "Deleted") {
 					continue;
-                } else if ($name == "prefix") {
+                } else if ($name == "Dxccprefix") {
 					echo '<td style="text-align: center" class="callsign">' . $key . '</td>';
                 } else {
 					echo '<td style="text-align: center">' . $key . '</td>';
