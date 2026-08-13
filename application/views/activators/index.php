@@ -134,7 +134,7 @@ function write_activators($activators_array, $vucc_grids, $custom_date_format, $
 	foreach ($activators as $line) {
 		echo '<tr>
 				<td>' . $i++ . '</td>
-				<td>' . $line[1] . '</td>
+				<td class="callsign">' . $line[1] . '</td>
 				<td>' . $line[0] . '</td>
 				<td style="text-align: left; font-family: monospace;">' . $line[2] . '</td>
 				<td><a href="javascript:displayActivatorsContacts(\'' . $line[1] . '\',\'' . $band . '\',\'' . $leogeo . '\')"><i class="fas fa-list"></i></a></td>
