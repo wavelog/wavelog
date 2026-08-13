@@ -1,9 +1,3 @@
-/** 0 → Ø for callsign display */
-function callsignToDisplay(call) { return call ? call.replace(/0/g, 'Ø') : call; }
-
-/** Ø → 0 for callsign storage/lookup */
-function callsignToRaw(call)     { return call ? call.replace(/Ø/g, '0') : call; }
-
 /**
  * SCP (Super Check Partial) Component
  * Provides fast callsign lookup from MASTER.SCP and Clublog databases
@@ -389,8 +383,8 @@ class SCPComponent {
 			return;
 		}
 
-		// Normalize to raw (0) for matching against MASTER.SCP data; keep display form for highlighting
-		const rawQuery = callsignToRaw(query);
+		// Use raw query for matching against MASTER.SCP data
+		const rawQuery = query;
 
 		// Check cache first
 		if (this.prefixCache.has(rawQuery)) {
@@ -467,13 +461,11 @@ class SCPComponent {
 		const worked = window.contestApp?.qsoFormComponent?.getWorkedCallsignsCurrentBandMode?.();
 
 		resultsContainer.innerHTML = matches.map(callsign => {
-			// Convert 0→Ø for display; keep raw form in data-callsign for selectCallsign
-			const displayCallsign = callsignToDisplay(callsign);
-			const highlighted = this.highlightMatch(displayCallsign, query);
-			const isWorked = !!(worked && worked.has(callsignToRaw(callsign).toUpperCase()));
+			const highlighted = this.highlightMatch(callsign, query);
+			const isWorked = !!(worked && worked.has(callsign.toUpperCase()));
 			return `
 				<div class="scp-result-item font-monospace${isWorked ? ' scp-worked' : ''}" data-callsign="${callsign}">
-					<span class="scp-callsign">${highlighted}</span>
+					<span class="scp-callsign callsign">${highlighted}</span>
 				</div>
 			`;
 		}).join('');
@@ -529,7 +521,7 @@ class SCPComponent {
 		// Try to insert into QSO form if available
 		const qsoCallsignInput = document.querySelector('#qso-callsign');
 		if (qsoCallsignInput) {
-			qsoCallsignInput.value = callsignToDisplay(callsign);
+			qsoCallsignInput.value = callsign;
 			// Fire input so side effects of typing run (instant-search filter,
 			// worked-before warning, SCP self-narrow) before the callbook blur lookup.
 			qsoCallsignInput.dispatchEvent(new Event('input', { bubbles: true }));

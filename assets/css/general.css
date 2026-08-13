@@ -1,3 +1,36 @@
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('../fonts/JetBrainsMono/JetBrainsMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('../fonts/JetBrainsMono/JetBrainsMono-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+.callsign {
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
+}
+
+/* Callsign input fields — slashed-zero font while typing */
+input[name="callsign"],
+input[id="callsign"],
+select[name="callsign"],
+select[name="callsign"] option,
+input[name="qsl_via"],
+input[name$="_callsign"],
+input[id^="dt-search-"] {
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
+}
+
 body {
 	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
 }

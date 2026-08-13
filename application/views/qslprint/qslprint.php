@@ -72,7 +72,7 @@ if ($qsos->result() != NULL) { ?>
 		echo '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" name="selected_qsos[]" value="'.$qsl->COL_PRIMARY_KEY.'" /></div></td>';
                 ?><td style='text-align: center' data-search="<?php echo htmlspecialchars(strtoupper($qsl->COL_CALL), ENT_QUOTES); ?>">
 				<span class="qso_call d-flex align-items-center justify-content-between">
-					<a id="edit_qso" href="javascript:displayQso(<?php echo $qsl->COL_PRIMARY_KEY; ?>);"><?php echo str_replace("0","&Oslash;",strtoupper($qsl->COL_CALL)); ?></a>
+					<a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo $qsl->COL_PRIMARY_KEY; ?>);"><?php echo strtoupper($qsl->COL_CALL); ?></a>
 					<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">
 						<a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on QRZ.com"></a>
 						<a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on HamQTH"></a>
@@ -87,7 +87,7 @@ if ($qsos->result() != NULL) { ?>
 		echo '<td class=\'col-freq\' style=\'text-align: center;display:none;\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . $qsl->COL_SAT_NAME . ' ' . $ci->frequency->qrg_conversion($qsl->frequency) . '/' . $ci->frequency->qrg_conversion($qsl->frequency_rx); } else { echo $ci->frequency->qrg_conversion($qsl->frequency); }; echo '</td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_SENT . '</td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_RCVD . '</td>';
-		echo '<td style=\'text-align: center\'>' . $qsl->COL_QSL_VIA . '</td>';
+		echo '<td style=\'text-align: center\'><span class="callsign">' . $qsl->COL_QSL_VIA . '</span></td>';
 		echo '<td style=\'text-align: center\' data-search="' . htmlspecialchars($qsl->station_callsign, ENT_QUOTES) . '"><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->station_profile_name . '</span></td>';
 		echo '<td class=\'send-method\' style=\'text-align: center\'>'; echo_qsl_sent_via($qsl->COL_QSL_SENT_VIA); echo '</td>';

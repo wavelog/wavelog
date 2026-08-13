@@ -54,7 +54,7 @@
 
 			foreach ($qslarray->result() as $qsl) {
 				echo '<tr>';
-				echo '<td style=\'text-align: center\'>'.str_replace("0", "&Oslash;", $qsl->COL_CALL).'</td>';
+				echo '<td style=\'text-align: center\' class=\'callsign\'>'.$qsl->COL_CALL.'</td>';
 				echo '<td style=\'text-align: center\'>';
 				echo $qsl->COL_SUBMODE == null ? $qsl->COL_MODE : $qsl->COL_SUBMODE;
 				echo '</td>';
@@ -114,10 +114,10 @@
 					<div class="waterfall-item">
 						<div class="card h-100">
 							<div class="card-img-container">
-								<img src="<?= $image_path ?>" class="card-img-top qsl-card-img" alt="QSL Card from <?= str_replace("0", "&Oslash;", $qsl->COL_CALL) ?>" onclick="viewQsl('<?= $qsl->filename ?>', '<?= str_replace("0", "&Oslash;", $qsl->COL_CALL) ?>')">
-							</div>
-							<div class="card-body">
-								<h5 class="card-title"><?= str_replace("0", "&Oslash;", $qsl->COL_CALL) ?></h5>
+							<img src="<?= $image_path ?>" class="card-img-top qsl-card-img" alt="QSL Card from <?= $qsl->COL_CALL ?>" onclick="viewQsl('<?= $qsl->filename ?>', '<?= $qsl->COL_CALL ?>')">
+						</div>
+						<div class="card-body">
+							<h5 class="card-title callsign"><?= $qsl->COL_CALL ?></h5>
 								<p class="card-text">
 									<?= $mode ?> | <?= $band ?><br>
 									<?= date($custom_date_format, $timestamp) ?> <?= date('H:i', $timestamp) ?><br>

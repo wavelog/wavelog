@@ -1,9 +1,3 @@
-/** 0 → Ø for callsign display in input fields */
-function callsignToDisplay(call) { return call ? call.replace(/0/g, 'Ø') : call; }
-
-/** Ø → 0 for callsign storage/lookup */
-function callsignToRaw(call)     { return call ? call.replace(/Ø/g, '0') : call; }
-
 /**
  * QSO Form Component
  * Handles QSO logging via DataStore
@@ -440,14 +434,13 @@ class QsoFormComponent {
 			callsignInput.addEventListener('input', (e) => {
 				const el = e.target;
 				// Only A-Z/0-9 and the special chars "/", "?" are allowed.
-				// Strip anything else as the user types (Ø is the display form of 0).
-				const clean = (s) => callsignToDisplay(s.toUpperCase().replace(/[^A-Z0-9Ø/?]/g, ''));
+				const clean = (s) => s.toUpperCase().replace(/[^A-Z0-9/?]/g, '');
 				const caret = clean(el.value.slice(0, el.selectionStart)).length;
 				el.value = clean(el.value);
 				el.setSelectionRange(caret, caret);
 				const callsign = el.value;
 
-				if (this.lastDxccCallsign && callsignToRaw(callsign) !== this.lastDxccCallsign) {
+				if (this.lastDxccCallsign && callsign !== this.lastDxccCallsign) {
 					this.lastDxccCallsign = null;
 					this.lastDxccInfo = null;
 					this.updateDxccInfoDisplay(null);
@@ -753,9 +746,9 @@ class QsoFormComponent {
 			{ cls: 'text-nowrap', style: editMode ? 'font-size:0.75rem;' : '',
 			  display: timeStr,
 			  edit: `<input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:5rem;" name="time_on" placeholder="HH:MM:SS" maxlength="8" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 8)}">` },
-			{ cls: editMode ? 'callsign-col' : 'callsign-col fw-bold',
-			  display: callsignToDisplay(qso.callsign || ''),
-			  edit: inp(callsignToDisplay(qso.callsign || ''), 'callsign', 'fw-bold text-uppercase') },
+		  { cls: editMode ? 'callsign-col' : 'callsign-col fw-bold',
+			  display: (qso.callsign || ''),
+			  edit: inp((qso.callsign || ''), 'callsign', 'fw-bold text-uppercase') },
 			// Frequency in the user's per-band unit; editable. QRG is authoritative — on save the band is derived from it.
 			{ display: qrgDisp || '-',
 			  edit: `<div class="d-flex align-items-center flex-nowrap gap-1"><input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:4rem;" name="frequency" value="${this._esc(qrgValue)}"><span class="small text-muted qrg-unit-label" style="cursor:default; user-select:none;">${this._esc(qrgUnit)}</span></div>` },
@@ -793,7 +786,7 @@ class QsoFormComponent {
 	_renderQsoRow(row, qso) {
 		row.dataset.qsoId = qso.tmpId || qso.serverId;
 		if (qso.serverId) row.dataset.serverId = qso.serverId;
-		row.dataset.callsign = callsignToRaw(qso.callsign || '').toUpperCase();
+		row.dataset.callsign = (qso.callsign || '').toUpperCase();
 		row.dataset.sig = this._qsoRowSignature(qso);
 
 		const qsoOperator = (qso.operator ?? '').toUpperCase();
@@ -813,10 +806,9 @@ class QsoFormComponent {
 		inputs.forEach(input => {
 			// Skip inputs inside hidden cells — their empty values would overwrite DB data
 			if (input.closest('td')?.offsetParent !== null) {
-				let val = input.value.trim();
-				if (input.name !== 'band' && input.name !== 'frequency') val = val.toUpperCase();
-				if (input.name === 'callsign') val = callsignToRaw(val);
-				data[input.name] = val;
+			let val = input.value.trim();
+			if (input.name !== 'band' && input.name !== 'frequency') val = val.toUpperCase();
+			data[input.name] = val;
 			}
 		});
 
@@ -940,7 +932,7 @@ class QsoFormComponent {
 	}
 
 	async handleCallsignBlur(e) {
-		const callsign = callsignToRaw(e.target.value.trim().toUpperCase());
+		const callsign = e.target.value.trim().toUpperCase();
 		if (!callsign) {
 			this.resetLookupState();
 			this.updateWorkedBeforeWarning('');
@@ -1147,7 +1139,7 @@ class QsoFormComponent {
 		}
 
 		for (const qso of this.dataStore.getPattern('qso.*').values()) {
-			if ((qso.callsign || '').toUpperCase() !== callsignToRaw(callsign)) {
+			if ((qso.callsign || '').toUpperCase() !== callsign) {
 				continue;
 			}
 			const qsoBand = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
@@ -1172,7 +1164,7 @@ class QsoFormComponent {
 			const qsoBand = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
 			const qsoMode = qso.submode?.toUpperCase() || qso.mode?.toUpperCase() || null;
 			if (qsoBand === currentBand && qsoMode === currentMode) {
-				const c = callsignToRaw(qso.callsign || '').toUpperCase();
+				const c = (qso.callsign || '').toUpperCase();
 				if (c) set.add(c);
 			}
 		}
@@ -1390,7 +1382,7 @@ class QsoFormComponent {
 	applyCallsignFilter() {
 		const tbody = this.container?.querySelector('#qso-tbody');
 		if (!tbody) return;
-		const raw = callsignToRaw(this.container.querySelector('#qso-callsign')?.value || '')
+		const raw = (this.container.querySelector('#qso-callsign')?.value || '')
 			.toUpperCase().replace(/[^A-Z0-9/]/g, '');
 		tbody.querySelectorAll('tr[data-qso-id]').forEach(row => {
 			row.style.display = (!raw || (row.dataset.callsign || '').startsWith(raw)) ? '' : 'none';
@@ -1775,9 +1767,8 @@ class QsoFormComponent {
 		}
 
 		// Callsign format gate — identical to the server (wlIsValidCallsign mirrors
-		// Logbook_model::is_valid_callsign). callsignToRaw() first, since create_qso()
-		// applies the same Ø→0 replacement before validating.
-		if (!window.wlIsValidCallsign(callsignToRaw(callsign))) {
+		// Logbook_model::is_valid_callsign).
+		if (!window.wlIsValidCallsign(callsign)) {
 			this.windowmanager.showToast(lang_error, lang_invalid_callsign, 'bg-danger text-white', 5000);
 			this.container.querySelector('#qso-callsign')?.focus();
 			return;
