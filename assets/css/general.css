@@ -22,6 +22,8 @@
 /* Callsign input fields — slashed-zero font while typing */
 input[name="callsign"],
 input[id="callsign"],
+select[name="callsign"],
+select[name="callsign"] option,
 input[name="qsl_via"],
 input[name$="_callsign"],
 input[id^="dt-search-"] {
