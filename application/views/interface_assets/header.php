@@ -503,7 +503,7 @@
 											<li>
 												<div class="btn-group w-100" role="group">
 													<button class="dropdown-item text-start" style="flex: 1;" title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>" onclick="clubswitch_modal('<?php echo $clubstation->user_id; ?>', '<?php echo $clubstation->user_callsign; ?>')">
-														<i class="fas fa-exchange-alt"></i> <?php echo $clubstation->user_callsign; ?>
+														<i class="fas fa-exchange-alt"></i> <span class="callsign"><?php echo $clubstation->user_callsign; ?></span>
 													</button>
 													<?php if ($clubstation->p_level >= 9 || $this->session->userdata('user_type') == 99) { ?>
 														<a class="dropdown-item text-end" style="flex: 0 0 50px;" title="<?= sprintf(_pgettext("Managing a Club Callsign", "Manage %s"), $clubstation->user_callsign); ?>" aria-label="<?= sprintf(_pgettext("Managing a Club Callsign", "Manage %s"), $clubstation->user_callsign); ?>" href="<?php echo site_url('club/permissions/' . $clubstation->user_id); ?>">
