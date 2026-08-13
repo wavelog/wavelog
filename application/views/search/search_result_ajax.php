@@ -205,7 +205,7 @@ $ci =& get_instance();
                         echo " (".__("Direct").")";
                         break;
                      case "M":
-                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
+                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? '<span class="callsign">'.$row->COL_QSL_VIA.'</span>':"n/a").")";
                         break;
                      case "E":
                         echo " (".__("Electronic").")";

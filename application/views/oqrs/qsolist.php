@@ -73,7 +73,7 @@ if ($qsos->result() != NULL) {
 				echo " (".__("Direct").")";
 				break;
 			case "M":
-				echo " (".__("Via").": ".($qsl->COL_QSL_VIA!="" ? $qsl->COL_QSL_VIA:"n/a").")";
+				echo " (".__("Via").": ".($qsl->COL_QSL_VIA!="" ? '<span class="callsign">'.$qsl->COL_QSL_VIA.'</span>':"n/a").")";
 				break;
 			case "E":
 				echo " (".__("Electronic").")";

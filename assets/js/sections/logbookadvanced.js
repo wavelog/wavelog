@@ -125,7 +125,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qth);
 	}
 	if ((user_options.qslvia.show ?? 'true') == "true"){
-		cells.eq(c++).text(qso.qslVia);
+		cells.eq(c++).text(qso.qslVia).addClass('callsign');
 	}
 	if ((user_options.clublog.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.clublog);
@@ -403,7 +403,7 @@ function loadQSOTable(rows) {
 			data.push(qso.qth);
 		}
 		if ((user_options.qslvia.show ?? 'true') == "true"){
-			data.push(qso.qslVia);
+			data.push('<span class="callsign">' + qso.qslVia + '</span>');
 		}
 		if ((user_options.clublog.show ?? 'true') == "true"){
 			data.push(qso.clublog);

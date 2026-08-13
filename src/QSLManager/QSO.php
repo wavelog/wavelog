@@ -449,7 +449,7 @@ class QSO
 				$qslstring .= " (".__("Direct").")";
 					break;
 				case "M":
-				$qslstring .= " (".__("Via").": ".($data['COL_QSL_VIA'] !="" ? $data['COL_QSL_VIA']:"n/a").")";
+				$qslstring .= " (".__("Via").": ".($data['COL_QSL_VIA'] !="" ? '<span class="callsign">'.$data['COL_QSL_VIA'].'</span>':"n/a").")";
 					break;
 				case "E":
 				$qslstring .= " (".__("Electronic").")";

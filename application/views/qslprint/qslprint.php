@@ -87,7 +87,7 @@ if ($qsos->result() != NULL) { ?>
 		echo '<td class=\'col-freq\' style=\'text-align: center;display:none;\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . $qsl->COL_SAT_NAME . ' ' . $ci->frequency->qrg_conversion($qsl->frequency) . '/' . $ci->frequency->qrg_conversion($qsl->frequency_rx); } else { echo $ci->frequency->qrg_conversion($qsl->frequency); }; echo '</td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_SENT . '</td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_RCVD . '</td>';
-		echo '<td style=\'text-align: center\'>' . $qsl->COL_QSL_VIA . '</td>';
+		echo '<td style=\'text-align: center\'><span class="callsign">' . $qsl->COL_QSL_VIA . '</span></td>';
 		echo '<td style=\'text-align: center\' data-search="' . htmlspecialchars($qsl->station_callsign, ENT_QUOTES) . '"><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->station_profile_name . '</span></td>';
 		echo '<td class=\'send-method\' style=\'text-align: center\'>'; echo_qsl_sent_via($qsl->COL_QSL_SENT_VIA); echo '</td>';
