@@ -25,7 +25,7 @@
 	<!-- Station Cards Row -->
 	<div class="row gx-2">
 	<?php if ($activegrid == '') { ?>
-		<p id="nogridhint"><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("Active station location does not have a gridsquare configured. Please check"); ?>
+		<p id="nogridhint"><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("Active station location does not have a gridsquare configured. Please check"); ?></p>
 	<?php } ?>
 
 		<!-- Home Station Card -->
