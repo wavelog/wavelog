@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-12 15:18+0000\n"
-"PO-Revision-Date: 2026-08-11 06:18+0000\n"
+"POT-Creation-Date: 2026-08-13 05:57+0000\n"
+"PO-Revision-Date: 2026-08-11 16:14+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -254,59 +254,59 @@ msgstr "Накопленная статистика"
 #: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
 msgid "Activated Gridsquare Map"
-msgstr "Карта активированных квадратов"
+msgstr "Карта активированных квадратов QTH локатора"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Awards.php:1421
 #: application/controllers/Awards.php:1457
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:532
+#: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
 #: application/views/contesting/logger/index.php:57
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Квадраты"
+msgstr "Квадраты QTH локатора"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
-#: application/controllers/Visitor.php:533
+#: application/controllers/Visitor.php:534
 msgid "Gridsquares confirmed"
-msgstr "Подтверждённые квадраты"
+msgstr "Подтверждённые квадраты QTH локатора"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
-#: application/controllers/Visitor.php:534
+#: application/controllers/Visitor.php:535
 msgid "Gridsquares not confirmed"
-msgstr "Неподтверждённые квадраты"
+msgstr "Неподтверждённые квадраты QTH локатора"
 
 #: application/controllers/Activated_gridmap.php:36
 msgid "Total gridsquares activated"
-msgstr "Всего квадратов активировано"
+msgstr "Всего квадратов QTH локатора активировано"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
-#: application/controllers/Visitor.php:537
+#: application/controllers/Visitor.php:538
 #: application/views/qslpostcard/designer.php:151
 msgid "Fields"
 msgstr "Поля"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
-#: application/controllers/Visitor.php:538
+#: application/controllers/Visitor.php:539
 msgid "Fields confirmed"
 msgstr "Подтверждённые поля"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
-#: application/controllers/Visitor.php:539
+#: application/controllers/Visitor.php:540
 msgid "Fields not confirmed"
 msgstr "Неподтверждённые поля"
 
 #: application/controllers/Activated_gridmap.php:41
 #: application/controllers/Gridmap.php:42
-#: application/controllers/Visitor.php:540
+#: application/controllers/Visitor.php:541
 msgid "Total fields worked"
 msgstr "Всего полей сработано"
 
@@ -341,7 +341,7 @@ msgstr "Планировщик активации"
 #: application/views/activators/index.php:10
 #: application/views/interface_assets/header.php:170
 msgid "Gridsquare Activators"
-msgstr "Активаторы квадратов"
+msgstr "Активаторы квадратов QTH локатора"
 
 #: application/controllers/Activatorsmap.php:16
 #: application/views/activators/index.php:2
@@ -775,22 +775,22 @@ msgstr "Дипломы — "
 #: application/controllers/Awards.php:1422
 #: application/controllers/Awards.php:1458
 msgid "Gridsquares worked"
-msgstr "Сработанные квадраты"
+msgstr "Сработанные квадраты QTH локатора"
 
 #: application/controllers/Awards.php:1423
 #: application/controllers/Awards.php:1459
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Квадраты, подтверждённые на LoTW"
+msgstr "Квадраты QTH локатора, подтверждённые на LoTW"
 
 #: application/controllers/Awards.php:1424
 #: application/controllers/Awards.php:1460
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Квадраты, подтверждённые бумажными QSL"
+msgstr "Квадраты QTH локатора, подтверждённые бумажными QSL"
 
 #: application/controllers/Awards.php:1425
 #: application/controllers/Awards.php:1461
 msgid "Total Gridsquares worked"
-msgstr "Всего сработано квадратов"
+msgstr "Всего сработано квадратов QTH локатора"
 
 #: application/controllers/Awards.php:1442
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -1338,8 +1338,8 @@ msgstr "Не работает"
 msgid "SOTA CSV Export"
 msgstr "Экспорт SOTA в CSV"
 
-#: application/controllers/Dashboard.php:176
-#: application/controllers/Visitor.php:130
+#: application/controllers/Dashboard.php:179
+#: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Панель управления"
 
@@ -1604,7 +1604,7 @@ msgid "Gridsquare Map"
 msgstr "Карта квадратов QTH локатора"
 
 #: application/controllers/Gridmap.php:37
-#: application/controllers/Visitor.php:535
+#: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
 msgstr "Всего сработано квадратов QTH локатора"
 
@@ -2865,16 +2865,16 @@ msgstr "Информация о версии не будет показана п
 #: application/controllers/Staticmap.php:202
 #: application/controllers/Visitor.php:48
 #: application/controllers/Visitor.php:77
-#: application/controllers/Visitor.php:143
-#: application/controllers/Visitor.php:155
-#: application/controllers/Visitor.php:179
-#: application/controllers/Visitor.php:205
-#: application/controllers/Visitor.php:217
-#: application/controllers/Visitor.php:241
-#: application/controllers/Visitor.php:317
-#: application/controllers/Visitor.php:343
-#: application/controllers/Visitor.php:377
-#: application/controllers/Visitor.php:634
+#: application/controllers/Visitor.php:144
+#: application/controllers/Visitor.php:156
+#: application/controllers/Visitor.php:180
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:218
+#: application/controllers/Visitor.php:242
+#: application/controllers/Visitor.php:318
+#: application/controllers/Visitor.php:344
+#: application/controllers/Visitor.php:378
+#: application/controllers/Visitor.php:635
 #: application/controllers/Widgets.php:67
 msgid "Unknown Public Page."
 msgstr "Неизвестная публичная страница."
@@ -3362,11 +3362,11 @@ msgstr "Простой быстрый ввод журнала"
 
 #: application/controllers/Staticmap.php:198
 #: application/controllers/Visitor.php:73
-#: application/controllers/Visitor.php:175
-#: application/controllers/Visitor.php:237
-#: application/controllers/Visitor.php:339
-#: application/controllers/Visitor.php:373
-#: application/controllers/Visitor.php:630
+#: application/controllers/Visitor.php:176
+#: application/controllers/Visitor.php:238
+#: application/controllers/Visitor.php:340
+#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:631
 #: application/controllers/Widgets.php:63
 msgid "Empty Logbook"
 msgstr "Пустой журнал"
@@ -3765,11 +3765,11 @@ msgstr "Обновление POTA не удалось. Результат: "
 
 #: application/controllers/Update.php:616
 msgid "POTA boundaries update complete. Result: "
-msgstr ""
+msgstr "Обновление границ POTA завершено. Результат: "
 
 #: application/controllers/Update.php:618
 msgid "POTA boundaries update failed. Result: "
-msgstr ""
+msgstr "Обновление границ POTA не удалось. Результат: "
 
 #: application/controllers/Update.php:635
 msgid "TLE Update complete. Result: "
@@ -4093,20 +4093,20 @@ msgid ""
 msgstr ""
 "Вы вышли из аккаунта %s. Добро пожаловать обратно, %s, в ваш личный аккаунт!"
 
-#: application/controllers/Visitor.php:382
+#: application/controllers/Visitor.php:383
 msgid "No public slug found."
 msgstr "Публичная метка не найдена."
 
-#: application/controllers/Visitor.php:388
+#: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
 msgstr "Карта квадратов QTH локатора (спутники)"
 
-#: application/controllers/Visitor.php:568
+#: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
 msgid "Public Search"
 msgstr "Публичный поиск"
 
-#: application/controllers/Visitor.php:601
+#: application/controllers/Visitor.php:602
 msgid "Export Map"
 msgstr "Экспорт карты"
 
@@ -4147,7 +4147,7 @@ msgstr ""
 
 #: application/controllers/Widgets.php:282
 msgid "User has disabled the LoTW upload widget"
-msgstr ""
+msgstr "Пользователь отключил виджет загрузки LoTW"
 
 #: application/controllers/Widgets.php:540
 msgid "User not found by slug"
@@ -4167,7 +4167,7 @@ msgstr "Данные GeoJSON недоступны"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr "Неверный квадрат локатора"
+msgstr "Неверный квадрат QTH локатора"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4292,7 +4292,7 @@ msgstr "Просмотр QSL"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr "Запрос позывных и квадратов локаторов"
+msgstr "Запрос позывных и квадратов QTH локатора"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
@@ -4480,13 +4480,13 @@ msgstr "Не указан позывной"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4796
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Отличающийся позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4795
+#: application/models/Logbook_model.php:4804
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4495,7 +4495,7 @@ msgstr ""
 "Отличающийся локатор %s при импорте QSO с %s от локатора в профиле QTH %s: "
 "ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4811
+#: application/models/Logbook_model.php:4820
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4503,7 +4503,7 @@ msgstr ""
 "Вы пытались импортировать QSO без действительной даты. Это QSO не "
 "действительно и не было импортировано"
 
-#: application/models/Logbook_model.php:4821
+#: application/models/Logbook_model.php:4830
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4512,7 +4512,7 @@ msgstr ""
 "QSO в %s: Вы пытались импортировать QSO без указания позывного. Это QSO не "
 "было импортировано. Оно недействительно."
 
-#: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:4837
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4521,7 +4521,7 @@ msgstr ""
 "QSO в %s: Вы пытались импортировать QSO с недопустимым позывным. Это QSO не "
 "было импортировано. Недопустимый ввод — '%s'."
 
-#: application/models/Logbook_model.php:4898
+#: application/models/Logbook_model.php:4907
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4530,7 +4530,7 @@ msgstr ""
 "QSO нв %s: диапазон '%s' отсутствует в конфигурации диапазонов. Этот QSO не "
 "было импортировано."
 
-#: application/models/Logbook_model.php:4905
+#: application/models/Logbook_model.php:4914
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4539,63 +4539,63 @@ msgstr ""
 "QSO в %s: Вы пыталсь импортировать QSO без информации о диапазоне. Это QSO "
 "некорректно, импорт отклонён.imported. It's invalid"
 
-#: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5188
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5190
+#: application/models/Logbook_model.php:5199
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5251
+#: application/models/Logbook_model.php:5260
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5627
+#: application/models/Logbook_model.php:5636
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:5694
-#: application/models/Logbook_model.php:5794
+#: application/models/Logbook_model.php:5703
+#: application/models/Logbook_model.php:5803
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:5702
+#: application/models/Logbook_model.php:5711
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5708
+#: application/models/Logbook_model.php:5717
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5721
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:5716
+#: application/models/Logbook_model.php:5725
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:5719
+#: application/models/Logbook_model.php:5728
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:5722
+#: application/models/Logbook_model.php:5731
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5797
+#: application/models/Logbook_model.php:5806
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
-#: application/models/Logbook_model.php:5800
+#: application/models/Logbook_model.php:5809
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
-#: application/models/Logbook_model.php:6206
+#: application/models/Logbook_model.php:6218
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5129,7 +5129,7 @@ msgstr "Долгота"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
-"Неверный квадрат локатора — используйте 2, 4, 6, 8 или 10 символов "
+"Неверный квадрат QTH локатора — используйте 2, 4, 6, 8 или 10 символов "
 "(например, FN, FN31, FN31pr)."
 
 #: application/views/activationplanner/index.php:21
@@ -5139,7 +5139,7 @@ msgstr "Прохождения спутника"
 
 #: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
-msgstr "Границы квадрата локатора"
+msgstr "Границы квадрата QTH локатора"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:76
@@ -5257,7 +5257,7 @@ msgstr "Создать профиль QTH"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
-msgstr "Референции в этом квадрате локатора"
+msgstr "Референции в этом квадрате QTH локатора"
 
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
@@ -5270,15 +5270,15 @@ msgstr "QSO"
 
 #: application/views/activationplanner/index.php:44
 msgid "last"
-msgstr ""
+msgstr "последний"
 
 #: application/views/activationplanner/index.php:45
 msgid "Inactive"
-msgstr ""
+msgstr "Неактивный"
 
 #: application/views/activationplanner/index.php:46
 msgid "valid"
-msgstr ""
+msgstr "действительный"
 
 #: application/views/activationplanner/index.php:48
 #: application/views/view_log/qso.php:600
@@ -5313,7 +5313,8 @@ msgstr "до"
 #: application/views/activationplanner/index.php:72
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
-"Дополнительный второй квадрат локатора для вычисления расстояния и азимута"
+"Дополнительный второй квадрат QTH локатора для вычисления расстояния и "
+"азимута"
 
 #: application/views/activationplanner/index.php:72
 msgid "e.g. JN58qm"
@@ -5340,7 +5341,7 @@ msgstr "Очистить"
 
 #: application/views/activationplanner/index.php:75
 msgid "Find my location and gridsquare"
-msgstr "Определение моего местоположения и квадрата локатора"
+msgstr "Определение моего местоположения и квадрата QTH локатора"
 
 #: application/views/activationplanner/index.php:75
 msgid "Locate me"
@@ -6830,7 +6831,7 @@ msgid ""
 "points using satellite grid activations."
 msgstr ""
 "Диплом AMSAT Rover присуждается станциям, набравшим, в общей сложности, 25 "
-"очков, используя активизацию квадратов через спутники."
+"очков, используя активизацию квадратов QTH локатора через спутники."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
@@ -13248,6 +13249,11 @@ msgstr "Подробно"
 msgid "DXCCs Breakdown"
 msgstr "Статистика по DXCC"
 
+#: application/views/dashboard/index.php:488
+#: application/views/visitor/index.php:267
+msgid "Deleted DXCCs"
+msgstr ""
+
 #: application/views/dashboard/index.php:498
 #: application/views/visitor/index.php:277
 msgid "Needed"
@@ -14074,7 +14080,7 @@ msgstr "Скачать файл POTA"
 
 #: application/views/debug/index.php:741
 msgid "POTA park boundaries (GeoJSON)"
-msgstr ""
+msgstr "Границы парка POTA (GeoJSON)"
 
 #: application/views/debug/index.php:747
 msgid "SCP file download"
@@ -14352,7 +14358,7 @@ msgstr ""
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
 msgstr ""
-"Только QSO с заполненным полем 'квадрат QTH локатора' будут экспортированы!"
+"Будут экспортированы только QSO с заполненным полем 'квадрат QTH локатора'!"
 
 #: application/views/dxcalendar/index.php:18
 #: application/views/view_log/qso.php:433
@@ -16794,7 +16800,7 @@ msgid ""
 "Operator, Gridsquare, Comment and Contest):"
 msgstr ""
 "Подстановочные знаки (в Позывном, Штате, DOK, Округе, QSL через, SOTA, POTA, "
-"WWFF, Операторе, Квадрате локатора, Комментарии и Контесте):"
+"WWFF, Операторе, Квадрате QTH локатора, Комментарии и Контесте):"
 
 #: application/views/logbookadvanced/help.php:30
 msgid "Matches any number of characters"
@@ -18243,7 +18249,7 @@ msgstr "Показано %s из %s всех QSO"
 #: application/views/map/qso_map.php:21
 #, php-format
 msgid "Total: %s QSOs with 6+ char grids"
-msgstr "Всего: %s QSO с квадратами локатора из 6+ символов"
+msgstr "Всего: %s QSO с квадратами QTH локатора из 6+ символов"
 
 #: application/views/map/qso_map.php:23
 msgid "Hover over a region"
@@ -19809,11 +19815,11 @@ msgstr "Тут на Мастодоне"
 
 #: application/views/qso/components/share_modal.php:14
 msgid "Share on Telegram"
-msgstr ""
+msgstr "Поделиться в Telegram"
 
 #: application/views/qso/components/share_modal.php:17
 msgid "Share on Whatsapp"
-msgstr ""
+msgstr "Поделиться в Whatsapp"
 
 #: application/views/qso/components/winkeysettings.php:15
 #: application/views/qso/components/winkeysettings.php:32
@@ -22801,7 +22807,7 @@ msgstr ""
 
 #: application/views/user/edit.php:1240
 msgid "Last LoTW Upload widget"
-msgstr ""
+msgstr "Виджет последней загрузки в LoTW"
 
 #: application/views/user/edit.php:1269
 msgid "Miscellaneous"
@@ -23563,11 +23569,11 @@ msgstr "QSO отмечены как экспортированные в QO-100 D
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
-msgstr ""
+msgstr "Последние загрузки в LoTW"
 
 #: application/views/widgets/lotw_upload.php:98
 msgid "Last Upload (UTC)"
-msgstr ""
+msgstr "Последняя загрузка (UTC)"
 
 #: application/views/widgets/on_air.php:159
 #: application/views/widgets/on_air.php:217

@@ -264,7 +264,7 @@ if ($public_maps_option == 'true') { ?>
 
 					<tr>
 						<td width="50%"><?= __("Worked"); ?></td>
-						<td width="50%"><?php echo $total_countries; ?></td>
+                  <td width="50%"><?php echo $total_countries; ?> <?php echo (isset($total_deleted_countries) && $total_deleted_countries > 0) ? "<span title=\"". __("Deleted DXCCs") ."\" aria-label=\"i". __("Deleted DXCCs") .": ".$total_deleted_countries."\" data-bs-toggle=\"tooltip\">(".$total_deleted_countries.")</span>" : ''; ?></td>
 					</tr>
 					<tr>
 						<td width="50%"><?= __("Confirmed"); ?></td>

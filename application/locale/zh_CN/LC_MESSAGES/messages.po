@@ -32,12 +32,13 @@
 # "Luoyu (BG7QBL)" <i@luotianyi.eu>, 2026.
 # 橙子木 <czm233@ypa.moe>, 2026.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2026.
+# Takasaka Chikuho <chikuho@gov.moe>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-12 15:18+0000\n"
-"PO-Revision-Date: 2026-08-11 09:57+0000\n"
-"Last-Translator: MCyiqiehuanying <me@sharedow.cn>\n"
+"POT-Creation-Date: 2026-08-13 05:57+0000\n"
+"PO-Revision-Date: 2026-08-12 09:36+0000\n"
+"Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -280,7 +281,7 @@ msgstr "已激活网格地图"
 #: application/controllers/Awards.php:1421
 #: application/controllers/Awards.php:1457
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:532
+#: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
 #: application/views/contesting/logger/index.php:57
 #: application/views/interface_assets/footer.php:53
@@ -291,13 +292,13 @@ msgstr "网格代码"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
-#: application/controllers/Visitor.php:533
+#: application/controllers/Visitor.php:534
 msgid "Gridsquares confirmed"
 msgstr "已确认网格"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
-#: application/controllers/Visitor.php:534
+#: application/controllers/Visitor.php:535
 msgid "Gridsquares not confirmed"
 msgstr "未确认网格"
 
@@ -307,26 +308,26 @@ msgstr "总激活网格"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
-#: application/controllers/Visitor.php:537
+#: application/controllers/Visitor.php:538
 #: application/views/qslpostcard/designer.php:151
 msgid "Fields"
 msgstr "区块"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
-#: application/controllers/Visitor.php:538
+#: application/controllers/Visitor.php:539
 msgid "Fields confirmed"
 msgstr "已确认的区块"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
-#: application/controllers/Visitor.php:539
+#: application/controllers/Visitor.php:540
 msgid "Fields not confirmed"
 msgstr "未确认的区块"
 
 #: application/controllers/Activated_gridmap.php:41
 #: application/controllers/Gridmap.php:42
-#: application/controllers/Visitor.php:540
+#: application/controllers/Visitor.php:541
 msgid "Total fields worked"
 msgstr "全部的区块"
 
@@ -1341,8 +1342,8 @@ msgstr "未运行"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
-#: application/controllers/Dashboard.php:176
-#: application/controllers/Visitor.php:130
+#: application/controllers/Dashboard.php:179
+#: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "仪表盘"
 
@@ -1603,7 +1604,7 @@ msgid "Gridsquare Map"
 msgstr "网格地图"
 
 #: application/controllers/Gridmap.php:37
-#: application/controllers/Visitor.php:535
+#: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
 msgstr "已通联网格总数"
 
@@ -2840,16 +2841,16 @@ msgstr "版本信息不再会向用户显示"
 #: application/controllers/Staticmap.php:202
 #: application/controllers/Visitor.php:48
 #: application/controllers/Visitor.php:77
-#: application/controllers/Visitor.php:143
-#: application/controllers/Visitor.php:155
-#: application/controllers/Visitor.php:179
-#: application/controllers/Visitor.php:205
-#: application/controllers/Visitor.php:217
-#: application/controllers/Visitor.php:241
-#: application/controllers/Visitor.php:317
-#: application/controllers/Visitor.php:343
-#: application/controllers/Visitor.php:377
-#: application/controllers/Visitor.php:634
+#: application/controllers/Visitor.php:144
+#: application/controllers/Visitor.php:156
+#: application/controllers/Visitor.php:180
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:218
+#: application/controllers/Visitor.php:242
+#: application/controllers/Visitor.php:318
+#: application/controllers/Visitor.php:344
+#: application/controllers/Visitor.php:378
+#: application/controllers/Visitor.php:635
 #: application/controllers/Widgets.php:67
 msgid "Unknown Public Page."
 msgstr "未知的公开页面。"
@@ -3321,11 +3322,11 @@ msgstr "快速记录 QSO"
 
 #: application/controllers/Staticmap.php:198
 #: application/controllers/Visitor.php:73
-#: application/controllers/Visitor.php:175
-#: application/controllers/Visitor.php:237
-#: application/controllers/Visitor.php:339
-#: application/controllers/Visitor.php:373
-#: application/controllers/Visitor.php:630
+#: application/controllers/Visitor.php:176
+#: application/controllers/Visitor.php:238
+#: application/controllers/Visitor.php:340
+#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:631
 #: application/controllers/Widgets.php:63
 msgid "Empty Logbook"
 msgstr "日志为空"
@@ -3720,11 +3721,11 @@ msgstr "POTA 更新失败。结果为： "
 
 #: application/controllers/Update.php:616
 msgid "POTA boundaries update complete. Result: "
-msgstr ""
+msgstr "POTA 边界更新完成。结果为： "
 
 #: application/controllers/Update.php:618
 msgid "POTA boundaries update failed. Result: "
-msgstr ""
+msgstr "POTA 边界更新失败。结果为： "
 
 #: application/controllers/Update.php:635
 msgid "TLE Update complete. Result: "
@@ -4025,20 +4026,20 @@ msgid ""
 "personal account!"
 msgstr "你已经登出 %s 。欢迎回到你的私人账户，%s ！"
 
-#: application/controllers/Visitor.php:382
+#: application/controllers/Visitor.php:383
 msgid "No public slug found."
 msgstr "未找到外部链接。"
 
-#: application/controllers/Visitor.php:388
+#: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
 msgstr "卫星网格地图"
 
-#: application/controllers/Visitor.php:568
+#: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
 msgid "Public Search"
 msgstr "公开搜索"
 
-#: application/controllers/Visitor.php:601
+#: application/controllers/Visitor.php:602
 msgid "Export Map"
 msgstr "导出地图"
 
@@ -4075,7 +4076,7 @@ msgstr "找不到 CAT 接口的电台。你需要至少配置一个电台接口�
 
 #: application/controllers/Widgets.php:282
 msgid "User has disabled the LoTW upload widget"
-msgstr ""
+msgstr "用户禁用了 LoTW 上传组件"
 
 #: application/controllers/Widgets.php:540
 msgid "User not found by slug"
@@ -4400,7 +4401,7 @@ msgstr "未提供呼号"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4796
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4408,7 +4409,7 @@ msgstr ""
 "导入的本台呼号 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的呼号"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:4795
+#: application/models/Logbook_model.php:4804
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4417,34 +4418,34 @@ msgstr ""
 "导入的本台网格 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的网格"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:4811
+#: application/models/Logbook_model.php:4820
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
-#: application/models/Logbook_model.php:4821
+#: application/models/Logbook_model.php:4830
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
-#: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:4837
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
-#: application/models/Logbook_model.php:4898
+#: application/models/Logbook_model.php:4907
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
-#: application/models/Logbook_model.php:4905
+#: application/models/Logbook_model.php:4914
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4452,63 +4453,63 @@ msgid ""
 msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
-#: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5188
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5190
+#: application/models/Logbook_model.php:5199
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5251
+#: application/models/Logbook_model.php:5260
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5627
+#: application/models/Logbook_model.php:5636
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:5694
-#: application/models/Logbook_model.php:5794
+#: application/models/Logbook_model.php:5703
+#: application/models/Logbook_model.php:5803
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:5702
+#: application/models/Logbook_model.php:5711
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:5708
+#: application/models/Logbook_model.php:5717
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5721
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:5716
+#: application/models/Logbook_model.php:5725
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:5719
+#: application/models/Logbook_model.php:5728
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:5722
+#: application/models/Logbook_model.php:5731
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5797
+#: application/models/Logbook_model.php:5806
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
-#: application/models/Logbook_model.php:5800
+#: application/models/Logbook_model.php:5809
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:6206
+#: application/models/Logbook_model.php:6218
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5049,12 +5050,12 @@ msgstr "网格边框"
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:76
 msgid "Nearby refs"
-msgstr ""
+msgstr "附近的参考号"
 
 #: application/views/activationplanner/index.php:25
 #, php-format
 msgid "References within %s of the gridsquare"
-msgstr ""
+msgstr "此网格周边 %s 的活动编号"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/qslcard/confirmationresult.php:21
@@ -5175,15 +5176,15 @@ msgstr "QSO"
 
 #: application/views/activationplanner/index.php:44
 msgid "last"
-msgstr ""
+msgstr "last"
 
 #: application/views/activationplanner/index.php:45
 msgid "Inactive"
-msgstr ""
+msgstr "不活跃"
 
 #: application/views/activationplanner/index.php:46
 msgid "valid"
-msgstr ""
+msgstr "有效的"
 
 #: application/views/activationplanner/index.php:48
 #: application/views/view_log/qso.php:600
@@ -5253,7 +5254,7 @@ msgstr "我的位置"
 #: application/views/activationplanner/index.php:79
 #: application/views/simplefle/index.php:162
 msgid "Refs"
-msgstr "对方网格"
+msgstr "参考号"
 
 #: application/views/activationplanner/index.php:92
 #: application/views/qso/index.php:758
@@ -8541,7 +8542,7 @@ msgstr "QSO 数量"
 
 #: application/views/awards/sig/index.php:27
 msgid "Number of Refs"
-msgstr "编号数量"
+msgstr "参考号数量"
 
 #: application/views/awards/sig/qso_list.php:6
 #: application/views/qslprint/index.php:9
@@ -11451,7 +11452,7 @@ msgstr "重置布局时出错"
 
 #: application/views/contesting/logger/index.php:46
 msgid "Error loading application. Please refresh the page."
-msgstr "加载应用是出错，请刷新此页面。"
+msgstr "加载应用时出错，请刷新此页面。"
 
 #: application/views/contesting/logger/index.php:48
 msgid "Initializing data store..."
@@ -12809,6 +12810,11 @@ msgstr "详情"
 msgid "DXCCs Breakdown"
 msgstr "DXCC 分析"
 
+#: application/views/dashboard/index.php:488
+#: application/views/visitor/index.php:267
+msgid "Deleted DXCCs"
+msgstr ""
+
 #: application/views/dashboard/index.php:498
 #: application/views/visitor/index.php:277
 msgid "Needed"
@@ -13615,7 +13621,7 @@ msgstr "下载 POTA 文件"
 
 #: application/views/debug/index.php:741
 msgid "POTA park boundaries (GeoJSON)"
-msgstr ""
+msgstr "POTA 公园边界 (GeoJSON)"
 
 #: application/views/debug/index.php:747
 msgid "SCP file download"
@@ -17091,7 +17097,7 @@ msgstr "SIG 信息"
 #: application/views/logbookadvanced/index.php:1050
 #: application/views/logbookadvanced/useroptions.php:302
 msgid "My Refs"
-msgstr "电台网格"
+msgstr "我的参考号"
 
 #: application/views/logbookadvanced/index.php:1059
 msgid "Ant az"
@@ -19118,11 +19124,11 @@ msgstr "Toot on Mastodon"
 
 #: application/views/qso/components/share_modal.php:14
 msgid "Share on Telegram"
-msgstr ""
+msgstr "分享到 Telegram"
 
 #: application/views/qso/components/share_modal.php:17
 msgid "Share on Whatsapp"
-msgstr ""
+msgstr "分享到 WhatsApp"
 
 #: application/views/qso/components/winkeysettings.php:15
 #: application/views/qso/components/winkeysettings.php:32
@@ -20129,7 +20135,7 @@ msgstr "警告！你不能记录 QSO 列表，因为某些 QSO 没有定义时�
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
-msgstr "警告！你不能记录 QSO 列表，因为你正在使用示例数据！"
+msgstr "注意！数据字段包含示例数据。请先清除日志会话！"
 
 #: application/views/simplefle/index.php:35
 msgid ""
@@ -20198,7 +20204,7 @@ msgstr "输入信息"
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr "标识符可为其中任意：%sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
+msgstr "参考号可为其中任意：%sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
@@ -21981,7 +21987,7 @@ msgstr "此设置控制 QSO 小部件中是否显示确切的通联时间。"
 
 #: application/views/user/edit.php:1240
 msgid "Last LoTW Upload widget"
-msgstr ""
+msgstr "最后上传 LoTW 插件"
 
 #: application/views/user/edit.php:1269
 msgid "Miscellaneous"
@@ -22701,11 +22707,11 @@ msgstr "QSO 已被标记成导出至 QO-100 Dx Club。"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
-msgstr ""
+msgstr "最后一次 LoTW 上传"
 
 #: application/views/widgets/lotw_upload.php:98
 msgid "Last Upload (UTC)"
-msgstr ""
+msgstr "最后上传于 (UTC)"
 
 #: application/views/widgets/on_air.php:159
 #: application/views/widgets/on_air.php:217
