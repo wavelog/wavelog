@@ -49,7 +49,7 @@
                    if ($station->notcount != null) {
                        echo '<tr>';
                            echo '<td>' . $station->station_profile_name . '</td>';
-                           echo '<td>' . $station->station_callsign . '</td>';
+                           echo '<td><span class="callsign">' . $station->station_callsign . '</span></td>';
                            echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
                            echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
                            echo '<td><button id="webadifUpload" type="button" name="webadifUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportWebADIF('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> ' . __("Upload") . '<div class="ld ld-ring ld-spin"></div></button></td>';
