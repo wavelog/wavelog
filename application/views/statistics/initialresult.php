@@ -30,7 +30,7 @@ if ($intials_array) {
                 <td>' . $i++ . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
-                <td><a href=javascript:displayQso(' . $line->col_primary_key . ')>' . $line->col_call . '</a></td>
+                <td class="callsign"><a href=javascript:displayQso(' . $line->col_primary_key . ')>' . $line->col_call . '</a></td>
                 <td>' . $line->col_band . '</td>
                 <td>' . (empty($line->col_submode) ? ($line->col_mode ?? '') : $line->col_submode) . '</td>
 				<td>' . (empty($line->col_vucc_grids) ? ($line->col_gridsquare ?? '') : $line->col_vucc_grids) . '</td>
