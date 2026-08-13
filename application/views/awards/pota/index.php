@@ -270,7 +270,7 @@ $render_pota_progress = function ($count, $idPrefix, $verbText) use ($pota_award
 					<td style="text-align: center"><a target="_blank" href="https://pota.app/#/park/<?php echo html_escape($reference); ?>"><?php echo html_escape($reference); ?></a></td>
 					<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
 					<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
-					<td style="text-align: center"><a href="javascript:displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape($row->COL_CALL); ?></a></td>
+					<td style="text-align: center"><a class="callsign" href="javascript:displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape($row->COL_CALL); ?></a></td>
 					<td style="text-align: center"><?php if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape($row->COL_BAND); } ?></td>
 					<td style="text-align: center"><?php echo html_escape($row->COL_RST_SENT); ?></td>
 					<td style="text-align: center"><?php echo html_escape($row->COL_RST_RCVD); ?></td>

@@ -256,7 +256,7 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 		foreach ($result as $qso) {
 			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
 			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
-			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . (int) $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",html_escape(strtoupper($qso->COL_CALL))) . '</a></td>';
+			echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso(' . (int) $qso->COL_PRIMARY_KEY . ')">' . html_escape(strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?html_escape($qso->COL_MODE):html_escape($qso->COL_SUBMODE); echo '</td>';
@@ -332,7 +332,7 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 		foreach ($result as $qso) {
 			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
 			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
-			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . (int) $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",html_escape(strtoupper($qso->COL_CALL))) . '</a></td>';
+			echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso(' . (int) $qso->COL_PRIMARY_KEY . ')">' . html_escape(strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?html_escape($qso->COL_MODE):html_escape($qso->COL_SUBMODE); echo '</td>';

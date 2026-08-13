@@ -105,7 +105,7 @@
 				<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
 			<?php } ?>
 			<td>
-				<a id="edit_qso" href="javascript:displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",html_escape(strtoupper($row->COL_CALL))); ?></a>
+				<a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></a>
 			</td>
 			<?php
 

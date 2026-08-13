@@ -226,6 +226,9 @@ class Station extends CI_Controller
 	}
 
 	function check_locator($grid = '') {
+		if ($grid == '') {
+			return true;
+		}
 		$this->load->library('Qra');
 		if ($this->qra->validate_grid($grid)) {
 			return true;

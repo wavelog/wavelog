@@ -43,7 +43,7 @@
 
         foreach ($qslarray->result() as $qsl) {
             echo '<tr>';
-            echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso('.(int) $qsl->COL_PRIMARY_KEY.')">' . str_replace("0","&Oslash;",html_escape($qsl->COL_CALL)) . '</a></td>';
+            echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso('.(int) $qsl->COL_PRIMARY_KEY.')">' . html_escape($qsl->COL_CALL) . '</a></td>';
          echo '<td style=\'text-align: center\'>';
          echo $qsl->COL_SUBMODE==null?html_escape($qsl->COL_MODE):html_escape($qsl->COL_SUBMODE);
          echo '</td>';

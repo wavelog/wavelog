@@ -64,7 +64,7 @@ if ($qsos->result() != NULL) {
 		echo '<td style=\'text-align: center\'>' . html_escape($qsl->COL_RST_RCVD) . '</td>';
 		echo '<td style=\'text-align: center\'><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->station_profile_name . '</span></td>';
-		echo '<td style=\'text-align: center\'>' . html_escape($qsl->COL_QSL_VIA) . '</td>';
+		echo '<td style=\'text-align: center\'><span class="callsign">' . html_escape($qsl->COL_QSL_VIA) . '</span></td>';
 		echo '<td style=\'text-align: center\'>'; echo_qsl_sent_via($qsl->COL_QSL_SENT_VIA); echo '</td>';
 		echo '<td style=\'text-align: center; white-space: nowrap;\'>';
 		echo '<span class="badge ' . ($qsl->previous_qsl > 0 ? 'bg-warning' : 'bg-success') . '" data-bs-toggle="tooltip" data-bs-title="' . __("Previous QSL sent (same band/mode)") . '">' . $qsl->previous_qsl . '</span> / ';

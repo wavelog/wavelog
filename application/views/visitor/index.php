@@ -189,8 +189,8 @@ if ($public_maps_option == 'true') { ?>
 										echo date('H:i', $timestamp); ?></td>
 
 								<?php } ?>
-								<td>
-									<?php echo str_replace("0", "&Oslash;", html_escape(strtoupper($row->COL_CALL))); ?>
+								<td class="callsign">
+									<?php echo html_escape(strtoupper($row->COL_CALL)); ?>
 								</td>
 								<?php
 								echo_table_col($row, $this->session->userdata('user_column1') == "" ? 'Mode' : $this->session->userdata('user_column1'));

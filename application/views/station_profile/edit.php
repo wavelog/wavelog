@@ -189,13 +189,14 @@ if ($dxcc_list->result() > 0) {
 					<div class="mb-3">
 						<label for="stationGridsquareInput"><?= __("Station Gridsquare"); ?></label>
 						<div class="input-group mb-3">
-							<input type="text" class="form-control uppercase" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" value="<?php if(set_value('gridsquare') != "") { echo set_value('gridsquare'); } else { echo $my_station_profile->station_gridsquare; } ?>" required>
+							<input type="text" class="form-control uppercase" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" value="<?php if(set_value('gridsquare') != "") { echo set_value('gridsquare'); } else { echo $my_station_profile->station_gridsquare; } ?>">
 							<div class="input-group-append">
 								<button type="button" class="btn btn-outline-secondary" onclick="getLocation()"><i class="fas fa-compass"></i> <?= __("Get Gridsquare"); ?></button>
 							</div>
 						</div>
 						<small id="stationGridInputHelp" class="form-text text-muted"><?= sprintf(_pgettext("uses 'click here'", "Station gridsquare. For example: HM54AP. If you don't know your grid square then %s!"), "<a href='https://zone-check.eu/?m=loc' target='_blank'>".__("click here")."</a>"); ?></small><br>
-						<small id="stationGridInputHelp" class="form-text text-muted"><?= __("If you are located on a grid line, enter multiple grid squares separated with commas. For example: IO77,IO78,IO87,IO88."); ?></small>
+						<small id="stationGridMultiInputHelp" class="form-text text-muted"><?= __("If you are located on a grid line, enter multiple grid squares separated with commas. For example: IO77,IO78,IO87,IO88."); ?></small><br />
+                  <span class="badge text-bg-warning"><?= __("Warning"); ?></span> <small id="stationGridWarning" class="form-text text-muted"><b><?= __("This is needed for all features based on current location, e.g. maps, distance statistics and more. Make sure to fill in the gridsquare if you want to use those features"); ?></b></small>
 					</div>
 				</div>
 			</div>

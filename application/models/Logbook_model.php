@@ -3958,14 +3958,15 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
-	 * Number of DXCC entities that exist (i.e. are theoretically workable),
-	 * excluding the "None" (deleted/invalid) placeholder entry. Used by the
-	 * statistics API as the denominator for "DXCC worked".
+	 * Number of currently active DXCC entities (not deleted, excluding the
+	 * "None" placeholder). Matches the dashboard's Needed denominator
+	 * (Dxcc::list_current()) and feeds the statistics API's "available"
+	 * DXCC count.
 	 *
 	 * @return int
 	 */
 	function count_dxcc_entities() {
-		return (int) $this->db->query('SELECT COUNT(*) AS count FROM dxcc_entities')->row()->count - 1; // Subtract 1 for the "None" entry
+		return (int) $this->db->query('SELECT COUNT(*) AS count FROM dxcc_entities WHERE end IS NULL AND adif != 0')->row()->count;
 	}
 
 	private function where_date_range($dateFrom, $dateTo) {
@@ -5700,7 +5701,7 @@ class Logbook_model extends CI_Model {
 				if ($ignoreAmbiguous == '1') {
 					return array();
 				} else {
-					return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . __("QSO could not be matched") . "</td></tr>");
+					return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . __("QSO could not be matched") . "</td></tr>");
 				}
 			} else {
 				$dcl_recvd='';
@@ -5740,17 +5741,17 @@ class Logbook_model extends CI_Model {
 								$this->set_dok($check->row()->COL_PRIMARY_KEY, $darc_dok);
 								return array(0, '');
 							} else {
-								return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td><a id=\"edit_qso\" href=\"javascript:displayQso(" . $check->row()->COL_PRIMARY_KEY . ")\">" . str_replace('0', 'Ø', $call) . "</a></td><td>" . $band . "</td><td>" . $mode . "</td><td>" . ($check->row()->COL_DARC_DOK == '' ? 'n/a' : (preg_match('/^[A-Y]\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://www.darc.de/' . $check->row()->COL_DARC_DOK . '" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : (preg_match('/^Z\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://' . $check->row()->COL_DARC_DOK . '.vfdb.org" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : $check->row()->COL_DARC_DOK))) . "</td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . $dcl_qsl_status . "</td></tr>");
+								return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td><a id=\"edit_qso\" class=\"callsign\" href=\"javascript:displayQso(" . $check->row()->COL_PRIMARY_KEY . ")\">" . $call . "</a></td><td>" . $band . "</td><td>" . $mode . "</td><td>" . ($check->row()->COL_DARC_DOK == '' ? 'n/a' : (preg_match('/^[A-Y]\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://www.darc.de/' . $check->row()->COL_DARC_DOK . '" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : (preg_match('/^Z\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://' . $check->row()->COL_DARC_DOK . '.vfdb.org" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : $check->row()->COL_DARC_DOK))) . "</td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . $dcl_qsl_status . "</td></tr>");
 							}
 						} else {
-							return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td><a id=\"edit_qso\" href=\"javascript:displayQso(" . $check->row()->COL_PRIMARY_KEY . ")\">" . str_replace('0', 'Ø', $call) . "</a></td><td>" . $band . "</td><td>" . $mode . "</td><td>" . ($check->row()->COL_DARC_DOK == '' ? 'n/a' : (preg_match('/^[A-Y]\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://www.darc.de/' . $check->row()->COL_DARC_DOK . '" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : (preg_match('/^Z\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://' . $check->row()->COL_DARC_DOK . '.vfdb.org" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : $check->row()->COL_DARC_DOK))) . "</td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . $dcl_qsl_status . "</td></tr>");
+							return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td><a id=\"edit_qso\" class=\"callsign\" href=\"javascript:displayQso(" . $check->row()->COL_PRIMARY_KEY . ")\">" . $call . "</a></td><td>" . $band . "</td><td>" . $mode . "</td><td>" . ($check->row()->COL_DARC_DOK == '' ? 'n/a' : (preg_match('/^[A-Y]\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://www.darc.de/' . $check->row()->COL_DARC_DOK . '" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : (preg_match('/^Z\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://' . $check->row()->COL_DARC_DOK . '.vfdb.org" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : $check->row()->COL_DARC_DOK))) . "</td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . $dcl_qsl_status . "</td></tr>");
 						}
 					} else {
 						if ($check->row()->COL_DARC_DOK == '' || $overwriteDok == '1') {
 							$this->set_dok($check->row()->COL_PRIMARY_KEY, $darc_dok);
 							return array(0, '');
 						} else {
-							return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td><a id=\"edit_qso\" href=\"javascript:displayQso(" . $check->row()->COL_PRIMARY_KEY . ")\">" . str_replace('0', 'Ø', $call) . "</a></td><td>" . $band . "</td><td>" . $mode . "</td><td>" . ($check->row()->COL_DARC_DOK == '' ? 'n/a' : (preg_match('/^[A-Y]\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://www.darc.de/' . $check->row()->COL_DARC_DOK . '" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : (preg_match('/^Z\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://' . $check->row()->COL_DARC_DOK . '.vfdb.org" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : $check->row()->COL_DARC_DOK))) . "</td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . $dcl_qsl_status . "</td></tr>");
+							return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td><a id=\"edit_qso\" class=\"callsign\" href=\"javascript:displayQso(" . $check->row()->COL_PRIMARY_KEY . ")\">" . $call . "</a></td><td>" . $band . "</td><td>" . $mode . "</td><td>" . ($check->row()->COL_DARC_DOK == '' ? 'n/a' : (preg_match('/^[A-Y]\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://www.darc.de/' . $check->row()->COL_DARC_DOK . '" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : (preg_match('/^Z\d{2}$/', $check->row()->COL_DARC_DOK) ? '<a href="https://' . $check->row()->COL_DARC_DOK . '.vfdb.org" target="_blank">' . $check->row()->COL_DARC_DOK . '</a>' : $check->row()->COL_DARC_DOK))) . "</td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . $dcl_qsl_status . "</td></tr>");
 						}
 					}
 				}
@@ -5800,13 +5801,13 @@ class Logbook_model extends CI_Model {
 				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
 			}
 			if ($check->num_rows() != 1) {
-				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");
+				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");
 			} else {
 				if (str_contains(($check->row()->COL_POTA_REF ?? ''), $pota_ref)) {
-					return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td>".$check->row()->COL_POTA_REF."</td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("POTA reference already in log") . "</td></tr>");
+					return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td>".$check->row()->COL_POTA_REF."</td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("POTA reference already in log") . "</td></tr>");
 				} else {
 					$this->set_pota_ref($check->row()->COL_PRIMARY_KEY, $check->row()->COL_POTA_REF, $pota_ref);
-					return array(0, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td>".$check->row()->COL_POTA_REF."</td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO updated") . " (" . $check->row()->COL_POTA_REF . ($check->row()->COL_POTA_REF != '' ? ',' : "") . $pota_ref . ")</td></tr>");
+					return array(0, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td>".$check->row()->COL_POTA_REF."</td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO updated") . " (" . $check->row()->COL_POTA_REF . ($check->row()->COL_POTA_REF != '' ? ',' : "") . $pota_ref . ")</td></tr>");
 				}
 			}
 		}
@@ -6159,7 +6160,7 @@ class Logbook_model extends CI_Model {
 		foreach ($qsos_result as $row) {
 			$plot = array('lat' => 0, 'lng' => 0, 'html' => '', 'label' => '', 'confirmed' => 'N');
 
-			$plot['label'] = str_replace('0', '&Oslash;', $row->COL_CALL);
+			$plot['label'] = $row->COL_CALL;
 
 			$plot['html'] = "";
 			if ($row->COL_NAME != null) {

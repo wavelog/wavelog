@@ -39,7 +39,7 @@ function echo_table_col($row, $name, $adif_propmodes) {
 				$ci->load->library('Qra');
 			}
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare ?? '', $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
-		case 'Distance':echo '<td><span data-bs-toggle="tooltip" title="'.html_escape($row->COL_GRIDSQUARE).'">' . getDistance($row->COL_DISTANCE) . '</span></td>'; break;
+		case 'Distance':echo '<td>'. ($row->COL_DISTANCE != null ? '<span data-bs-toggle="tooltip" title="'.html_escape($row->COL_GRIDSQUARE).'">' . getDistance($row->COL_DISTANCE) . '</span>' : '') .'</td>'; break;
 		case 'Bearing':echo '<td><span data-bs-toggle="tooltip" title="'.html_escape($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE).'">' . getBearing(($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE)) . '</span></td>'; break;
 		case 'Band':
 			echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank"><span data-bs-toggle="tooltip" title="'.html_escape($row->COL_BAND ?? '').'">'.html_escape(($row->sat_name ?? '') != '' ? ($row->sat_name ?? '')." (".($row->sat_displayname ?? '').")" : ($row->sat_displayname ?? '')).'</span></a></td>'; } else { if ($row->COL_FREQ ?? ''!= '') { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->qrg_conversion($row->COL_FREQ ?? 0).'">'. html_escape(strtolower($row->COL_BAND ?? '')).'</span>'; } else { echo html_escape(strtolower($row->COL_BAND ?? '')); } } echo '</td>'; break;
@@ -187,7 +187,7 @@ function getDistance($distance) {
                 <td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
             <?php } ?>
             <td>
-                <button type="button" class="btn btn-link text-decoration-none p-0" id="edit_qso" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></button>
+                <button type="button" class="btn btn-link text-decoration-none p-0 callsign" id="edit_qso" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo strtoupper($row->COL_CALL); ?></button>
                 <?php
                    if (isset($row->lastupload) && ($row->lastupload)) {
                        $lotw_hint = '';
@@ -245,7 +245,7 @@ function getDistance($distance) {
                                 echo " (".__("Direct").")";
                                 break;
                              case "M":
-                                echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? html_escape($row->COL_QSL_VIA):"n/a").")";
+                                echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? '<span class="callsign">'.html_escape($row->COL_QSL_VIA).'</span>':"n/a").")";
                                 break;
                              case "E":
                                 echo " (".__("Electronic").")";
@@ -590,7 +590,7 @@ function getDistance($distance) {
 
                     <?php if(isset($row->station_callsign)) { ?>
                         <td>
-                            <span class="badge text-bg-light"><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></span>
+                            <span class="badge text-bg-light callsign"><?php echo strtoupper($row->station_callsign); ?></span>
                         </td>
                     <?php } else { ?>
 			<td></td>

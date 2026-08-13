@@ -61,7 +61,7 @@
                     <hr class="my-4">
                     <div class="mb-4">
                         <label for="station_location" class="form-label"><?= __("Station Location") ?> <span class="text-danger">*</span></label>
-                        <select class="form-select form-control form-control-sm" id="station_location" name="station_location" required>
+                        <select class="form-select form-control form-control-sm callsign" id="station_location" name="station_location" required>
                             <option value="" disabled selected><?= __("Please select a station"); ?></option>
                             <?php
                             function is_current($value, $session_info = null, $active_station_location = null) {

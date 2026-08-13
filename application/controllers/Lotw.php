@@ -279,7 +279,7 @@ class Lotw extends CI_Controller {
 				// Nothing to upload
 				if(empty($data['qsos']->result())){
 					if ($this->user_model->authorize(2)) {	// Only be verbose if we have a session
-						echo str_replace("0", "&Oslash;", $station_profile->station_callsign)." (".$station_profile->station_profile_name."): No QSOs to upload.<br>";
+						echo '<span class="callsign">'.$station_profile->station_callsign.'</span> ('.$station_profile->station_profile_name.'): No QSOs to upload.<br>';
 					}
 					continue;
 				}
@@ -575,7 +575,7 @@ class Lotw extends CI_Controller {
 			if($status[0] == "Found") {
 				$qso_id4lotw=$status[1];
 
-				$call = str_replace("0", "&Oslash;", html_escape($record['call']));
+				$call = html_escape($record['call']);
 
 				if (isset($record['state'])) {
 					$state = $record['state'];

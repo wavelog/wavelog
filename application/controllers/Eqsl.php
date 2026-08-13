@@ -222,15 +222,15 @@ class eqsl extends CI_Controller {
 				$timestamp = strtotime($qsl['COL_TIME_ON']);
 				$rows .= "<td>" . date($custom_date_format, $timestamp) . "</td>";
 				$rows .= "<td>" . date('H:i', $timestamp) . "</td>";
-				$rows .= "<td>" . str_replace("0", "&Oslash;", html_escape($qsl['COL_CALL'])) . "</td>";
-			$rows .= "<td>" . html_escape($qsl['COL_MODE']) . "</td>";
-			if (isset($qsl['COL_SUBMODE'])) {
-				$rows .= "<td>" . html_escape($qsl['COL_SUBMODE']) . "</td>";
-			} else {
-				$rows .= "<td></td>";
-			}
-			$rows .= "<td>" . html_escape($qsl['COL_BAND']) . "</td>";
-			$rows .= "<td>" . html_escape($status) . "</td>";
+				$rows .= "<td class='callsign'>" . html_escape($qsl['COL_CALL']) . "</td>";
+				$rows .= "<td>" . html_escape($qsl['COL_MODE']) . "</td>";
+				if (isset($qsl['COL_SUBMODE'])) {
+					$rows .= "<td>" . html_escape($qsl['COL_SUBMODE']) . "</td>";
+				} else {
+					$rows .= "<td></td>";
+				}
+				$rows .= "<td>" . html_escape($qsl['COL_BAND']) . "</td>";
+				$rows .= "<td>" . html_escape($status) . "</td>";
 			}
 			$rows .= "</tr>";
 			$data['eqsl_table'] = $this->generateResultTable($custom_date_format, $rows);
@@ -290,7 +290,7 @@ class eqsl extends CI_Controller {
 			$timestamp = strtotime($qsl['COL_TIME_ON']);
 			$table .= "<td>" . date($custom_date_format, $timestamp) . "</td>";
 			$table .= "<td>" . date('H:i', $timestamp) . "</td>";
-			$table .= "<td><a href=\"javascript:displayQso(" . (int) $qsl['COL_PRIMARY_KEY'] . ")\">" . str_replace("0", "&Oslash;", html_escape(strtoupper($qsl['COL_CALL']))) . "</a></td>";
+			$table .= "<td><a class=\"callsign\" href=\"javascript:displayQso(" . (int) $qsl['COL_PRIMARY_KEY'] . ")\">" . html_escape(strtoupper($qsl['COL_CALL'])) . "</a></td>";
 			$table .= "<td>" . html_escape($qsl['COL_MODE']) . "</td>";
 
 			if (isset($qsl['COL_SUBMODE'])) {

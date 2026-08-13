@@ -30,7 +30,7 @@ var lang_oqrs_invalid_date = "<?= __("Please enter a valid date."); ?>"; </scrip
                     echo '<td><input class="form-control qsotime" type="text" name="time" value="" id="time" maxlength="5" placeholder="hh:mm"></td>';
                     echo '<td id="band">'. $qso->col_band .'</td>';
                     echo '<td id="mode">'; echo $qso->col_submode == null ? strtoupper($qso->col_mode) : strtoupper($qso->col_submode);  echo '</td>';
-                    echo '<td>'. $qso->station_callsign .'</td>';
+                    echo '<td class="callsign">'. $qso->station_callsign .'</td>';
                     if ($showStationName == 'on'):
                         echo '<td>'. $qso->station_profile_name .'</td>';
                     endif;

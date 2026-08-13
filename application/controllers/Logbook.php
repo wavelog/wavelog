@@ -834,7 +834,7 @@ class Logbook extends CI_Controller {
 				$timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00');
 				$html .= "<tr>";
 					$html .= "<td>".date($custom_date_format, $timestamp). date(' H:i',strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00')) . "</td>";
-					$html .= "<td><a id='edit_qso' href='javascript:displayQso(" . (int) $row->COL_PRIMARY_KEY . ");'>" . str_replace('0','&Oslash;',html_escape(strtoupper($row->COL_CALL))) . "</a></td>";
+					$html .= "<td><a id='edit_qso' class='callsign' href='javascript:displayQso(" . (int) $row->COL_PRIMARY_KEY . ");'>" . html_escape(strtoupper($row->COL_CALL)) . "</a></td>";
 					$html .= $this->part_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
 					$html .= $this->part_table_col($row, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
 					$html .= $this->part_table_col($row, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
