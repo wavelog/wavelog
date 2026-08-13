@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-13 09:11+0000\n"
-"PO-Revision-Date: 2026-08-13 05:11+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2026-08-13 09:37+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -14981,6 +14981,8 @@ msgid ""
 "At least one of the locators is empty. Calculation not possible. Possibly "
 "missing locator in station location. Please check."
 msgstr ""
+"Mindestens einer der Locator is leer. Berechnung nicht möglich. "
+"Möglicherweise fehlender Locator im Stationsprofil. Bitte prüfen."
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -20481,7 +20483,7 @@ msgstr "Zeige eine Karte der Satellitenflugbahnen"
 #: application/views/satellite/pass.php:28
 msgid ""
 "Active station location does not have a gridsquare configured. Please check"
-msgstr ""
+msgstr "Das aktive Stationsprofil enthält keinen Locator. Bitte prüfen"
 
 #: application/views/satellite/flightpath.php:57
 msgid ""
@@ -21324,6 +21326,9 @@ msgid ""
 "distance statistics and more. Make sure to fill in the gridsquare if you "
 "want to use those features"
 msgstr ""
+"Dies wird für alle Features benötigt, die auf der derzeitigen Position "
+"beruhen wie z.B. Karten, Entfernungsstatistiken und mehr. Stelle sicher, "
+"dass ein Locator eingetragen ist, wenn du diese Features nutzen möchtest"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:222
