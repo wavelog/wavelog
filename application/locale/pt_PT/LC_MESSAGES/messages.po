@@ -8,12 +8,13 @@
 # David Quental <ct1drb72@gmail.com>, 2024, 2025, 2026.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
 # CS7AFM <sergio.t.mata@gmail.com>, 2026.
+# CS7AFM <user-141@users.noreply.translate.wavelog.org>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-12 17:38+0000\n"
-"PO-Revision-Date: 2026-08-03 12:17+0000\n"
-"Last-Translator: David Quental <ct1drb72@gmail.com>\n"
+"PO-Revision-Date: 2026-08-13 05:12+0000\n"
+"Last-Translator: CS7AFM <user-141@users.noreply.translate.wavelog.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -330,7 +331,7 @@ msgstr "Estados / Províncias"
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "Planeador de Ativação"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -404,13 +405,15 @@ msgstr "Dados POTA importados"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"O serviço da AMSAT está atualmente indisponível. Por favor, tente novamente "
+"mais tarde."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Estado do Serviço Satélite da AMSAT"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -3084,12 +3087,12 @@ msgstr "O QSO não pôde ser salvo"
 #: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr ""
+msgstr "Por favor, verifique o valor para o gridsquare (%s)"
 
 #: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr ""
+msgstr "Por favor, verifique o valor para o gridsquare VUCC (%s)"
 
 #: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
@@ -3759,11 +3762,11 @@ msgstr "Atualização do POTA falhou. Resultado: "
 
 #: application/controllers/Update.php:616
 msgid "POTA boundaries update complete. Result: "
-msgstr ""
+msgstr "Atualização dos limites POTA concluída. Resultado: "
 
 #: application/controllers/Update.php:618
 msgid "POTA boundaries update failed. Result: "
-msgstr ""
+msgstr "Atualização dos limites POTA falhou. Resultado: "
 
 #: application/controllers/Update.php:635
 msgid "TLE Update complete. Result: "
@@ -4142,7 +4145,7 @@ msgstr ""
 
 #: application/controllers/Widgets.php:282
 msgid "User has disabled the LoTW upload widget"
-msgstr ""
+msgstr "O widget de carregamento do LoTW foi desativado pelo utilizador"
 
 #: application/controllers/Widgets.php:540
 msgid "User not found by slug"
@@ -4282,7 +4285,7 @@ msgstr "Remover membros do clube"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "Ler confirmações de QSL"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -5136,17 +5139,17 @@ msgstr "Passagens de satélites"
 
 #: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "Fronteiras de gridsquare"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:76
 msgid "Nearby refs"
-msgstr ""
+msgstr "Referências próximas"
 
 #: application/views/activationplanner/index.php:25
 #, php-format
 msgid "References within %s of the gridsquare"
-msgstr ""
+msgstr "Referências a %s do gridsquare"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/qslcard/confirmationresult.php:21
@@ -5216,7 +5219,7 @@ msgstr "Fechar"
 
 #: application/views/activationplanner/index.php:32
 msgid "Tracking"
-msgstr ""
+msgstr "Rastrear"
 
 #: application/views/activationplanner/index.php:33
 #: application/views/logbookadvanced/mergedialog.php:71
@@ -5226,35 +5229,35 @@ msgstr "Campo"
 
 #: application/views/activationplanner/index.php:34
 msgid "Square"
-msgstr ""
+msgstr "Quadrado"
 
 #: application/views/activationplanner/index.php:35
 msgid "Subsquare"
-msgstr ""
+msgstr "Sub-quadrado"
 
 #: application/views/activationplanner/index.php:36
 msgid "Locating…"
-msgstr ""
+msgstr "A localizar…"
 
 #: application/views/activationplanner/index.php:37
 msgid "Location access denied."
-msgstr ""
+msgstr "Acesso à localização negado."
 
 #: application/views/activationplanner/index.php:38
 msgid "Location unavailable."
-msgstr ""
+msgstr "Localização indisponível."
 
 #: application/views/activationplanner/index.php:39
 msgid "Location request timed out."
-msgstr ""
+msgstr "O pedido de localização expirou."
 
 #: application/views/activationplanner/index.php:41
 msgid "Create station location"
-msgstr ""
+msgstr "Criar localização da estação"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
-msgstr ""
+msgstr "Referências nesta grelha"
 
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
@@ -5267,15 +5270,15 @@ msgstr "Contactos"
 
 #: application/views/activationplanner/index.php:44
 msgid "last"
-msgstr ""
+msgstr "último"
 
 #: application/views/activationplanner/index.php:45
 msgid "Inactive"
-msgstr ""
+msgstr "Inativo"
 
 #: application/views/activationplanner/index.php:46
 msgid "valid"
-msgstr ""
+msgstr "válido"
 
 #: application/views/activationplanner/index.php:48
 #: application/views/view_log/qso.php:600
@@ -5284,16 +5287,16 @@ msgstr "Partilhar"
 
 #: application/views/activationplanner/index.php:49
 msgid "Share activation"
-msgstr ""
+msgstr "Partilhar ativação"
 
 #: application/views/activationplanner/index.php:50
 #, php-format
 msgid "📻 Planning an activation from %s"
-msgstr ""
+msgstr "📻A planear uma ativação a partir de %s"
 
 #: application/views/activationplanner/index.php:60
 msgid "Plan your activity here"
-msgstr ""
+msgstr "Planeie a sua atividade aqui"
 
 #: application/views/activationplanner/index.php:68
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
@@ -5336,11 +5339,11 @@ msgstr "Limpar"
 
 #: application/views/activationplanner/index.php:75
 msgid "Find my location and gridsquare"
-msgstr ""
+msgstr "Localizar a minha posição e o meu gridsquare"
 
 #: application/views/activationplanner/index.php:75
 msgid "Locate me"
-msgstr ""
+msgstr "Localizar-me"
 
 #: application/views/activationplanner/index.php:79
 #: application/views/simplefle/index.php:162
@@ -5354,7 +5357,7 @@ msgstr "Mais opções"
 
 #: application/views/activationplanner/index.php:93
 msgid "Hide options"
-msgstr ""
+msgstr "Ocultar opções"
 
 #: application/views/activationplanner/index.php:107
 #: application/views/awards/cq/index.php:3
@@ -6238,26 +6241,28 @@ msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
+"Estado de última escuta (last-heard) das últimas 24 horas. Fonte de dados: "
+"%s (em cache durante 15 minutos)."
 
 #: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
-msgstr ""
+msgstr "Sem relatórios de estado disponíveis."
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "Ativo na última hora"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "Escutada ou equipa ativa"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "Próxima passagem"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "sem passagem próxima"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
