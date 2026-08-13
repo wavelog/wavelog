@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-13 12:11+0000\n"
+"POT-Creation-Date: 2026-08-13 13:59+0000\n"
 "PO-Revision-Date: 2026-08-13 09:37+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4498,11 +4498,11 @@ msgid "No Call given"
 msgstr "Kein Rufzeichen angegeben"
 
 #: application/models/Logbook_model.php:1507
-#: application/models/Logbook_model.php:1711
+#: application/models/Logbook_model.php:1725
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
-#: application/models/Logbook_model.php:4797
+#: application/models/Logbook_model.php:4891
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4510,7 +4510,7 @@ msgstr ""
 "Abweichendes Stationsrufzeichen %s beim Import des QSO mit %s für %s: "
 "ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:4805
+#: application/models/Logbook_model.php:4899
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4519,7 +4519,7 @@ msgstr ""
 "Abweichendes Planquadrat %s beim Import des QSO mit %s für "
 "Stationsplanquadrat %s: ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:4821
+#: application/models/Logbook_model.php:4915
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4527,7 +4527,7 @@ msgstr ""
 "Du hast versucht, ein QSO mit ungültigem Datum zu importieren. Dieses QSO "
 "wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4831
+#: application/models/Logbook_model.php:4925
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4536,7 +4536,7 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO ohne jedes Rufzeichen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig."
 
-#: application/models/Logbook_model.php:4838
+#: application/models/Logbook_model.php:4932
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4545,7 +4545,7 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO mit einem ungültigen Rufzeichen zu "
 "importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist '%s'."
 
-#: application/models/Logbook_model.php:4908
+#: application/models/Logbook_model.php:5002
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4554,7 +4554,7 @@ msgstr ""
 "QSO bei %s: Band '%s' ist nicht in der Bandkonfiguration. Dieses QSO wurde "
 "nicht importiert."
 
-#: application/models/Logbook_model.php:4915
+#: application/models/Logbook_model.php:5009
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4563,63 +4563,63 @@ msgstr ""
 "QSO um %s: Du hast versucht, ein QSO ohne Bandinformationen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:5189
+#: application/models/Logbook_model.php:5283
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5200
+#: application/models/Logbook_model.php:5294
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5261
+#: application/models/Logbook_model.php:5355
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5637
+#: application/models/Logbook_model.php:5731
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:5704
-#: application/models/Logbook_model.php:5804
+#: application/models/Logbook_model.php:5798
+#: application/models/Logbook_model.php:5898
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5806
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5718
+#: application/models/Logbook_model.php:5812
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:5722
+#: application/models/Logbook_model.php:5816
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:5726
+#: application/models/Logbook_model.php:5820
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:5729
+#: application/models/Logbook_model.php:5823
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:5732
+#: application/models/Logbook_model.php:5826
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5807
+#: application/models/Logbook_model.php:5901
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
-#: application/models/Logbook_model.php:5810
+#: application/models/Logbook_model.php:5904
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
-#: application/models/Logbook_model.php:6219
+#: application/models/Logbook_model.php:6313
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4635,11 +4635,11 @@ msgstr "QSO aktualisiert"
 msgid "Bearing"
 msgstr "Peilung"
 
-#: application/models/Logbookadvanced_model.php:1862
+#: application/models/Logbookadvanced_model.php:1870
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids Tabelle ist leer. Bitte aktualisiere die VUCC-Grid-Daten."
 
-#: application/models/Logbookadvanced_model.php:2482
+#: application/models/Logbookadvanced_model.php:2490
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -4647,18 +4647,18 @@ msgstr ""
 "Invalide primäre QSO ID oder du hast keinen Zugriff auf mindestens eines der "
 "QSOs"
 
-#: application/models/Logbookadvanced_model.php:2492
+#: application/models/Logbookadvanced_model.php:2500
 #: application/views/view_log/qso.php:868
 msgid "QSO not found"
 msgstr "QSO nicht gefunden"
 
-#: application/models/Logbookadvanced_model.php:2578
+#: application/models/Logbookadvanced_model.php:2586
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
 "Keine Felder für die Zusammenführung ausgewählt oder es exisitieren keine "
 "Unterschiede zwischen den QSOs"
 
-#: application/models/Logbookadvanced_model.php:2591
+#: application/models/Logbookadvanced_model.php:2599
 msgid "QSOs merged successfully"
 msgstr "QSOs erfolgreich zusammengeführt"
 
