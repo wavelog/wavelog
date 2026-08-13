@@ -953,6 +953,22 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
+	public function fixStateAll() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbookadvanced_model');
+
+		$stationid = $this->input->post('stationid', true);
+
+		// Run the state fix for every DXCC in one pass and aggregate the result
+		$result = $this->logbookadvanced_model->fixStateAll($stationid);
+
+		$data['result'] = $result;
+		$data['type'] = 'stateall';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
+	}
+
 	public function openStateList() {
 		if(!clubaccess_check(9)) return;
 

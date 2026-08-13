@@ -3,6 +3,10 @@
     <h5><?= __("State Check Results"); ?></h5>
     <p><?= __("QSOs with missing state and gridsquares with 6 or more characters found for the following DXCCs:"); ?></p>
 
+	<button type="button" class="btn btn-sm btn-primary ld-ext-right mb-2" id="fixAllStatesBtn" onclick="fixAllStates()">
+		<?= __("Fix all DXCCs") ?><div class="ld ld-ring ld-spin"></div>
+	</button>
+
 	<div class="table-responsive" style="max-height:50vh; overflow:auto;">
 		<table class="table table-sm table-striped table-bordered table-condensed mb-0">
 			<thead>
