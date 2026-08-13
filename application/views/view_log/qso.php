@@ -81,7 +81,7 @@
 
                     <tr>
                         <th scope="row"><?= __("Callsign"); ?></th>
-                        <td><b><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a>
+                        <td><b class="callsign"><?php echo strtoupper($row->COL_CALL); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a>
                         <?php if (!empty($contacts_note_id) && $this->session->userdata('user_show_notes')==1) { ?>
                             <a href="<?php echo base_url(); ?>index.php/notes/view/<?php echo $contacts_note_id; ?>" target="_blank" title="<?= __("View note for this callsign"); ?>" style="margin-left:2px;vertical-align:middle;">
                                 <i class="fa fa-sticky-note text-info" style="font-size:16px;vertical-align:middle;"></i>
@@ -139,7 +139,9 @@
                               echo " <i class='fa fa-question-circle' aria-hidden='true' data-bs-toggle='tooltip' title='".__("A single gridsquare was entered into the VUCC gridsquares field which should contain two or four gridsquares instead of a single grid.")."'></i>";
                               echo "</span>";
                            }
-                           echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
+                           if (!empty($row->station_gridsquare)) {
+                              echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
+                           }
                         ?>
                         </td>
                             <?php
@@ -608,16 +610,18 @@
             <table width="100%" aria-label="<?= __("Station") . ' ' . __("Details"); ?>">
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Callsign"); ?></th>
-                        <td><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></td>
+                        <td class="callsign"><?php echo strtoupper($row->station_callsign); ?></td>
                     </tr>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Name"); ?></th>
                         <td><?php echo $row->station_profile_name; ?></td>
                     </tr>
+                    <?php if (!empty($row->station_gridsquare)) { ?>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Gridsquare"); ?></th>
                         <td><?php echo $row->station_gridsquare; ?></td>
                     </tr>
+                    <?php } ?>
 
                     <?php if($row->station_city) { ?>
                     <tr>

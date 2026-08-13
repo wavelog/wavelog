@@ -32,7 +32,7 @@
 							<?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?>
 						<?php } ?>
 					</td>
-					<td class="<?= $text_size_class ?>"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></td>
+					<td class="<?= $text_size_class ?> callsign"><?php echo strtoupper($row->COL_CALL); ?></td>
 					<td class="<?= $text_size_class ?>"><?php echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; ?></td>
 					<td class="<?= $text_size_class ?>"><?php echo $row->COL_RST_SENT; ?> <?php if ($row->COL_STX_STRING) { ?>(<?php echo $row->COL_STX_STRING;?>)<?php } ?></td>
 					<td class="<?= $text_size_class ?>"><?php echo $row->COL_RST_RCVD; ?> <?php if ($row->COL_SRX_STRING) { ?>(<?php echo $row->COL_SRX_STRING;?>)<?php } ?></td>

@@ -222,7 +222,7 @@ class eqsl extends CI_Controller {
 				$timestamp = strtotime($qsl['COL_TIME_ON']);
 				$rows .= "<td>" . date($custom_date_format, $timestamp) . "</td>";
 				$rows .= "<td>" . date('H:i', $timestamp) . "</td>";
-				$rows .= "<td>" . str_replace("0", "&Oslash;", $qsl['COL_CALL']) . "</td>";
+				$rows .= "<td class='callsign'>" . $qsl['COL_CALL'] . "</td>";
 				$rows .= "<td>" . $qsl['COL_MODE'] . "</td>";
 				if (isset($qsl['COL_SUBMODE'])) {
 					$rows .= "<td>" . $qsl['COL_SUBMODE'] . "</td>";
@@ -290,7 +290,7 @@ class eqsl extends CI_Controller {
 			$timestamp = strtotime($qsl['COL_TIME_ON']);
 			$table .= "<td>" . date($custom_date_format, $timestamp) . "</td>";
 			$table .= "<td>" . date('H:i', $timestamp) . "</td>";
-			$table .= "<td><a href=\"javascript:displayQso(" . $qsl['COL_PRIMARY_KEY'] . ")\">" . str_replace("0", "&Oslash;", strtoupper($qsl['COL_CALL'])) . "</a></td>";
+			$table .= "<td><a class=\"callsign\" href=\"javascript:displayQso(" . $qsl['COL_PRIMARY_KEY'] . ")\">" . strtoupper($qsl['COL_CALL']) . "</a></td>";
 			$table .= "<td>" . $qsl['COL_MODE'] . "</td>";
 
 			if (isset($qsl['COL_SUBMODE'])) {

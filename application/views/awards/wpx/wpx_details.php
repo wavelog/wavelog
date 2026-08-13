@@ -30,8 +30,8 @@ if ($this->session->userdata('user_date_format')) {
 			?>
             <tr>
 				<td><?php echo $i++; ?></td>
-				<td><?php echo $qso->wpx_prefix; ?></td>
-				<td><a href="javascript:displayQso(<?php echo $qso->col_primary_key; ?>)"><?php echo $qso->col_call; ?></a></td>
+			<td class="callsign"><?php echo $qso->wpx_prefix; ?></td>
+			<td><a class="callsign" href="javascript:displayQso(<?php echo $qso->col_primary_key; ?>)"><?php echo $qso->col_call; ?></a></td>
 				<td><?php echo date($custom_date_format, $qsotimestamp) . ' ' . date('H:i', $qsotimestamp); ?></td>
 				<td><?php echo getFormattedBand($qso->col_band, $qso->col_sat_name); ?></td>
 				<td><?php echo (($qso->col_submode ?? '') == '') ? $qso->col_mode : $qso->col_submode; ?></td>
