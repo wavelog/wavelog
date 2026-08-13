@@ -85,7 +85,7 @@
 				if ($station_profiles->result()!==[]){
 				?>
 				<form class="form" action="<?php echo site_url('webadif/mark_webadif'); ?>" method="post" enctype="multipart/form-data">
-					<select name="station_profile" class="form-select mb-4 me-sm-4" style="width: 30%;">
+					<select name="station_profile" class="form-select mb-4 me-sm-4 callsign" style="width: 30%;">
 						<option value="0"><?= __("Select Station Location"); ?></option>
 						<?php foreach ($station_profiles->result() as $station) { ?>
 							<option value="<?php echo $station->station_id; ?>">Callsign: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
