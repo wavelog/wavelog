@@ -58,6 +58,7 @@
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
+    var lang_qrbcalc_empty_loc = '<?= __("At least one of the locators is empty. Calculation not possible. Possibly missing locator in station location. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
@@ -1101,13 +1102,6 @@ $($('#callsign')).on('keypress',function(e) {
     $active_station_id = $this->stations->find_active();
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
-
-    if (strpos(($active_station_info->station_gridsquare ?? ''), ',') !== false) {
-        $gridsquareArray = explode(',', $active_station_info->station_gridsquare);
-        $user_gridsquare = $gridsquareArray[0];
-    } else {
-        $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
-    }
 ?>
 <style>
 .grid-text {
@@ -1132,24 +1126,36 @@ $($('#callsign')).on('keypress',function(e) {
   var mymap = L.map('qsomap', {
     fullscreenControl: true,
     fullscreenControlOptions: {
-			position: 'topleft'
-		},
-}).setView(pos, 12);
+      position: 'topleft'
+    },
+  }).setView(pos, 12);
 
 maidenhead = L.maidenheadqrb().addTo(mymap);
 mymap.on('mousemove', onQsoMapMove);
+<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
      data: {
-<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
-        qra: '<?php echo $user_gridsquare; ?>',
-<?php } else if (null !== $this->config->item('locator')) { ?>
-        qra: '<?php echo $this->config->item('locator'); ?>',
-<?php } else { ?>
-        // Fallback to London in case all else fails
-        qra: 'IO91WM',
-<?php } ?>
+        qra: "<?=$active_station_info->station_gridsquare; ?>",
+     },
+     success: function(data) {
+        result = JSON.parse(data);
+        if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+           mymap.panTo([result[0], result[1]]);
+        }
+     },
+     error: function() {
+     },
+  });
+<?php } else if (($active_station_info->dxcc_lat ?? '') != '' && ($active_station_info->dxcc_lon ?? '') != '') { ?>
+     mymap.panTo([<?= $active_station_info->dxcc_lat;?> , <?= $active_station_info->dxcc_lon; ?>]);
+<?php } else if (($this->config->item('locator') ?? '') != '') { ?>
+  $.ajax({
+     url: base_url + 'index.php/logbook/qralatlngjson',
+     type: 'post',
+     data: {
+     qra: "<?= $this->config->item('locator'); ?>",
      },
      success: function(data) {
         result = JSON.parse(data);
@@ -1161,6 +1167,7 @@ mymap.on('mousemove', onQsoMapMove);
      error: function() {
      },
   });
+<?php } ?>
 
   L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
