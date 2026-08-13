@@ -174,7 +174,7 @@ if ($dxcc_list->result() > 0) {
 						</div>
 						<small id="stationGridInputHelp" class="form-text text-muted"><?= sprintf(_pgettext("uses 'click here'", "Station gridsquare. For example: HM54AP. If you don't know your grid square then %s!"), "<a href='https://zone-check.eu/?m=loc' target='_blank'>".__("click here")."</a>"); ?></small><br>
 						<small id="stationGridInputHelp" class="form-text text-muted"><?= __("If you are located on a grid line, enter multiple grid squares separated with commas. For example: IO77,IO78,IO87,IO88."); ?></small><br />
-						<span class="badge text-bg-warning">Warning</span> <small id="stationGridInputHelp" class="form-text text-muted"><b><?= __("This is needed for all features based on current location. E.g. maps, distance statistics and more. Make sure to fill in the gridsquare if you want to use those features"); ?></b></small>
+						<span class="badge text-bg-warning">Warning</span> <small id="stationGridInputHelp" class="form-text text-muted"><b><?= __("This is needed for all features based on current location, e.g. maps, distance statistics and more. Make sure to fill in the gridsquare if you want to use those features"); ?></b></small>
 					</div>
 				</div>
 			</div>

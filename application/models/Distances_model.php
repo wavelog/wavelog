@@ -18,12 +18,14 @@ class Distances_model extends CI_Model
 		}
 
 		$result = array();
+		$station_grid_found = 0;
 
 		foreach ($logbooks_locations_array as $station_id) {
 
 			$station_gridsquare = $this->find_gridsquare($station_id);
 
 			if ($station_gridsquare != null) {
+				$station_grid_found = 1;
 				$gridsquare = explode(',', $station_gridsquare); // We need to convert to an array, since a user can enter several gridsquares
 
 				$table = $this->config->item('table_name');
@@ -94,8 +96,13 @@ class Distances_model extends CI_Model
 			echo json_encode($result);
 		}
 		else {
-			header('Content-Type: application/json');
-			echo json_encode(array('Error' => 'No QSOs found to plot.'));
+			if ($station_grid_found == 0) {
+				header('Content-Type: application/json');
+				echo json_encode(array('Error' => 'No station gridsquare(s) found in active logbook. Please check.'));
+			} else {
+				header('Content-Type: application/json');
+				echo json_encode(array('Error' => 'No QSOs found to plot.'));
+			}
 		}
 
 	}
