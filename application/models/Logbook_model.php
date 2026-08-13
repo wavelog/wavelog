@@ -3958,14 +3958,15 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
-	 * Number of DXCC entities that exist (i.e. are theoretically workable),
-	 * excluding the "None" (deleted/invalid) placeholder entry. Used by the
-	 * statistics API as the denominator for "DXCC worked".
+	 * Number of currently active DXCC entities (not deleted, excluding the
+	 * "None" placeholder). Matches the dashboard's Needed denominator
+	 * (Dxcc::list_current()) and feeds the statistics API's "available"
+	 * DXCC count.
 	 *
 	 * @return int
 	 */
 	function count_dxcc_entities() {
-		return (int) $this->db->query('SELECT COUNT(*) AS count FROM dxcc_entities')->row()->count - 1; // Subtract 1 for the "None" entry
+		return (int) $this->db->query('SELECT COUNT(*) AS count FROM dxcc_entities WHERE end IS NULL AND adif != 0')->row()->count;
 	}
 
 	private function where_date_range($dateFrom, $dateTo) {
