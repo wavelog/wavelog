@@ -487,37 +487,23 @@
 	}
 
 	/*
-	 * POTA/SOTA/WWFF reference lookup for the clicked 6-character (subsquare) grid.
-	 * The full directories (reference, name, lat, lon) are fetched once from the
-	 * existing endpoints, cached, then filtered by the square's bounds.
+	 * WWFF/POTA/SOTA/IOTA directory lookup for the clicked 6-character
+	 * (subsquare) grid and the search box. The full directories (reference,
+	 * name, lat, lon — or a bounding box for IOTA) are fetched once from the
+	 * existing endpoints, cached, then filtered by the square's bounds. The
+	 * IOTA overlay fetches independently in enableIota(); this only powers the
+	 * search index.
 	 */
 	let refDirs = { wwff: null, pota: null, sota: null, iota: null };
 	function loadRefDir(type) {
 		if (refDirs[type] !== null) { return Promise.resolve(refDirs[type]); }   // array done, or in-flight promise
-		let url = type === 'wwff' ? wwffUrl : type === 'pota' ? potaUrl : type === 'sota' ? sotaUrl : '';
+		let url = type === 'wwff' ? wwffUrl : type === 'pota' ? potaUrl : type === 'sota' ? sotaUrl : type === 'iota' ? iotaUrl : '';
 		if (!url) { refDirs[type] = []; return Promise.resolve([]); }
 		let p = fetch(url).then(function (r) { return r.json(); }).then(function (d) {
 			refDirs[type] = Array.isArray(d) ? d : [];
 			return refDirs[type];
 		}).catch(function (err) { console.warn(type + ' directory load failed:', err); refDirs[type] = []; return []; });
 		refDirs[type] = p;   // share one in-flight request across callers
-		return p;
-	}
-
-	/*
-	 * IOTA directory loader for the search box. Mirrors loadRefDir, but IOTA is a
-	 * bounding-box table {tag,name,prefix,lat1,lon1,lat2,lon2}, not a point
-	 * directory — the IOTA overlay fetches independently in enableIota(), so this
-	 * only powers the search index. Cached in refDirs.iota for the session.
-	 */
-	function loadIotaDir() {
-		if (refDirs.iota !== null) { return Promise.resolve(refDirs.iota); }
-		if (!iotaUrl) { refDirs.iota = []; return Promise.resolve([]); }
-		let p = fetch(iotaUrl).then(function (r) { return r.json(); }).then(function (d) {
-			refDirs.iota = Array.isArray(d) ? d : [];
-			return refDirs.iota;
-		}).catch(function (err) { console.warn('iota directory load failed:', err); refDirs.iota = []; return []; });
-		refDirs.iota = p;   // share one in-flight request across callers
 		return p;
 	}
 
@@ -1240,7 +1226,7 @@
 	/* Load all four directories (cached) and build their indexes once. */
 	function ensureSearchIndexes() {
 		if (searchIndexes) { return Promise.resolve(searchIndexes); }
-		return Promise.all([loadRefDir('wwff'), loadRefDir('pota'), loadRefDir('sota'), loadIotaDir()]).then(function () {
+		return Promise.all([loadRefDir('wwff'), loadRefDir('pota'), loadRefDir('sota'), loadRefDir('iota')]).then(function () {
 			searchIndexes = {};
 			SEARCH_TYPES.forEach(function (t) { searchIndexes[t.type] = buildSearchIndex(t.type); });
 			return searchIndexes;
@@ -1647,14 +1633,17 @@
 		}
 		document.getElementById('glGridOverlay').addEventListener('change', function () {
 			if (!gridOverlay) return;
-			if (this.checked) { gridOverlay.addTo(map); } else { map.removeLayer(gridOverlay); }
-			// The local selection mesh only shows while the global overlay is off:
-			// turning the overlay on clears it, turning it off restores it around
-			// the current selection (if any).
 			if (this.checked) {
+				gridOverlay.addTo(map);
+				// The local selection mesh only shows while the global overlay is
+				// off: turning the overlay on clears it.
 				if (localGridLayer) { localGridLayer.clearLayers(); }
-			} else if (localGridPoint) {
-				drawLocalGrid(localGridPoint[0], localGridPoint[1]);
+			} else {
+				map.removeLayer(gridOverlay);
+				// Turning it off restores the mesh around the current selection (if any).
+				if (localGridPoint) {
+					drawLocalGrid(localGridPoint[0], localGridPoint[1]);
+				}
 			}
 		});
 
