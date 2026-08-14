@@ -363,6 +363,7 @@ class Contest_resource extends Api_v2_resource {
 		$id = isset($body['contest_id']) ? $body['contest_id'] : null;
 
 		if ($adifname !== '') {
+			$field = 'contest';
 			$contest = $this->CI->contest_admin_model->contest_by_adifname($adifname);
 			if ($contest === null) {
 				throw new Api_v2_exception(
@@ -372,10 +373,8 @@ class Contest_resource extends Api_v2_resource {
 					['field' => 'contest']
 				);
 			}
-			return (int) $contest->id;
-		}
-
-		if ($id !== null) {
+		} elseif ($id !== null) {
+			$field = 'contest_id';
 			if (!is_numeric($id)) {
 				throw new Api_v2_exception('validation_error', 'contest_id must be numeric', 400);
 			}
@@ -388,18 +387,27 @@ class Contest_resource extends Api_v2_resource {
 					['field' => 'contest_id']
 				);
 			}
-			return (int) $id;
+		} else {
+			if ($required) {
+				throw new Api_v2_exception(
+					'validation_error',
+					'Missing required field: contest (ADIF contest name) or contest_id',
+					400,
+					['missing' => ['contest']]
+				);
+			}
+			return null;
 		}
 
-		if ($required) {
+		if ((int) $contest->active !== 1) {
 			throw new Api_v2_exception(
 				'validation_error',
-				'Missing required field: contest (ADIF contest name) or contest_id',
+				'Contest is not active: ' . $contest->adifname,
 				400,
-				['missing' => ['contest']]
+				['field' => $field]
 			);
 		}
-		return null;
+		return (int) $contest->id;
 	}
 
 	/**
