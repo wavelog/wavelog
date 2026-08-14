@@ -27,11 +27,11 @@ class Themes_model extends CI_Model {
 
 	function add() {
 		$data = array(
-			'name' => xss_clean($this->input->post('name', true)),
-			'foldername' => xss_clean($this->input->post('foldername', true)),
-			'theme_mode' => xss_clean($this->input->post('theme_mode', true)),
-			'header_logo' => xss_clean($this->input->post('header_logo', true)),
-			'main_logo' => xss_clean($this->input->post('main_logo', true)),
+			'name' => $this->input->post('name', true),
+			'foldername' => $this->input->post('foldername', true),
+			'theme_mode' => $this->input->post('theme_mode', true),
+			'header_logo' => $this->input->post('header_logo', true),
+			'main_logo' => $this->input->post('main_logo', true),
 		);
 
 		$this->db->insert('themes', $data);
@@ -60,11 +60,11 @@ class Themes_model extends CI_Model {
 
 	function edit($id) {
 		$data = array(
-			'name' => xss_clean($this->input->post('name', true)),
-			'foldername' => xss_clean($this->input->post('foldername', true)),
-			'theme_mode' => xss_clean($this->input->post('theme_mode', true)),
-			'header_logo' => xss_clean($this->input->post('header_logo', true)),
-			'main_logo' => xss_clean($this->input->post('main_logo', true)),
+			'name' => $this->input->post('name', true),
+			'foldername' => $this->input->post('foldername', true),
+			'theme_mode' => $this->input->post('theme_mode', true),
+			'header_logo' => $this->input->post('header_logo', true),
+			'main_logo' => $this->input->post('main_logo', true),
 		);
 
 		$this->db->where('id', $id);

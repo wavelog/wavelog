@@ -1,12 +1,16 @@
 <?php
 
-		$colors = json_decode($user_map_custom);?>
+		$colors = json_decode($user_map_custom);
+		$_hex = function($c) { return preg_match('/^#[0-9a-fA-F]{6}$/', $c ?? '') ? $c : '#000000'; };
+		$_qsoconfirm = $_hex($colors->qsoconfirm->color ?? '');
+		$_qso = $_hex($colors->qso->color ?? '');
+		?>
 		<style>
 			.awardsBgSuccess {
-				background-color: <?php echo $colors->qsoconfirm->color; ?> !important;
+				background-color: <?php echo $_qsoconfirm; ?> !important;
 			}
 			.awardsBgDanger {
-				background-color: <?php echo $colors->qso->color; ?> !important;
+				background-color: <?php echo $_qso; ?> !important;
 			}
 		</style>
 <?php

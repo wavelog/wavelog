@@ -20,7 +20,7 @@ if ($counties_array) {
         $total_confirmed += $confirmed;
         echo '<tr>
         <td>'. $i++ .'</td>
-        <td><a href=\'javascript:displayCountyContacts("'. $state .'","'. $county['COL_CNTY'] .'")\'>'. $county['COL_CNTY'] .'</a></td>
+        <td><a href=\'javascript:displayCountyContacts("'. $state .'","'. $county['COL_CNTY'] .'")\'>'. html_escape($county['COL_CNTY']) .'</a></td>
         <td>'. $worked .'</td>
         <td>'. $confirmed .'</td>';
         echo '</tr>';

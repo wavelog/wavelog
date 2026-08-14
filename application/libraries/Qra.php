@@ -117,15 +117,11 @@ class Qra {
 
 	function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 		$echo = "";
-		if (!empty($grid)) {
-			$echo = $grid;
+		$target = !empty($grid) ? $grid : $vucc;
+		if (!empty($target)) {
+			$echo = html_escape($target);
 			if (!empty($mygrid)) {
-				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>') : '';
-			}
-		} else if (!empty($vucc)) {
-			$echo = $vucc;
-			if (!empty($mygrid)) {
-				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>') : '';
+				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $target . '\')"><i class="fas fa-globe"></i></a>') : '';
 			}
 		}
 		return $echo;
