@@ -1,0 +1,81 @@
+$(document).ready(function(){
+	$('#prepare_sub').click(function(e){
+		e.preventDefault();
+		var fi = document.getElementById("userfile");
+		var file = fi.files[0];;
+		if (!(file)) {
+			return;
+		}
+		$("#prepare_sub").prop("disabled",true).addClass("running");
+		if (JSZip.support.blob) {	// Check if Browser supports ZIP
+			var zip = new JSZip();
+			//add all files to zip
+			addFileToZip(file);
+			function addFileToZip(n) {
+				var arrayBuffer;
+				var fileReader = new FileReader();
+				fileReader.onloadend = function() {
+					arrayBuffer = this.result;
+					let chker = partof(arrayBuffer,4096);
+					if (chker.toUpperCase().includes('<CALL')) {
+						zip.file($("#fhash").val()+'.adif', arrayBuffer, { binary:true });
+						zip.generateAsync({type:"blob", compression:"DEFLATE"}).then(function(content){
+
+							//generated zip content to file type
+							var files = new File([content], file.name + ".zip");
+
+							const dataTransfer = new DataTransfer();
+							dataTransfer.items.add(files);
+							//send generated file to server
+							fi.files=dataTransfer.files;
+							$("#upform").submit();
+							return;
+						});
+					} else {
+						$("#prepare_sub").prop("disabled",false).removeClass("running");;
+						alert("Unsupported File. Must be ADIF");
+					}
+
+				};
+				fileReader.readAsArrayBuffer(file);
+			}
+		} else {
+			$("#upform").submit();
+		}
+	});
+	$('#markExportedToLotw').click(function(e){
+		let form = $(this).closest('form');
+		let station = form.find('select[name=station_profile]');
+		if (station.val() == 0) {
+			station.addClass('is-invalid');
+		}else{
+			form.submit();
+		}
+	})
+
+	function partof(buf,size) {
+		return String.fromCharCode.apply(null, new Uint8Array(buf.slice(0,size-1)));
+	}
+
+});
+
+function toggleAll(btn) {
+    const cardBody = btn.closest('.card-body');   // find the card body where the button lives
+    const boxes = cardBody.querySelectorAll('.form-check-input[type="checkbox"]');
+    const allChecked = Array.from(boxes).every(cb => cb.checked);
+    boxes.forEach(cb => cb.checked = !allChecked);
+}
+
+$('#adif_import select[name=station_profile]').multiselect({
+	templates: {
+		button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+	},
+	enableFiltering: true,
+	enableFullValueFiltering: false,
+	enableCaseInsensitiveFiltering: true,
+	filterPlaceholder: lang_general_word_search,
+	numberDisplayed: 1,
+	inheritClass: true,
+	buttonWidth: '100%',
+	maxHeight: 600
+});

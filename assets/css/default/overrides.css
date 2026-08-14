@@ -1,0 +1,137 @@
+:root {
+	--cl-border-btn-pwd:var(--bs-border-color);
+}
+
+thead > tr > td {
+	background-color: aliceblue !important;
+}
+
+.form-select {
+	border: 1px solid #ced4da;
+}
+
+.selectize-input {
+	border: 1px solid #ced4da;
+}
+
+.awardsBgDanger {
+	background-color: #f8d7db !important;
+}
+
+.awardsBgSuccess {
+	background-color: #d4edda !important;
+}
+
+#edit_qso:not(.btn) {
+	float: left;
+}
+
+.btn {
+	white-space: normal;
+}
+
+#qsoList_wrapper th {
+	text-align: left !important;
+	white-space: nowrap;
+}
+
+#qsoList_wrapper td {
+	text-align: left !important;
+	white-space: nowrap;
+}
+
+.accordion {
+	--bs-accordion-btn-bg: #f9f9f9;
+	--bs-accordion-active-bg: #f9f9f9;
+}
+
+.dxccsummaryheader:after {
+	background-image: linear-gradient(to right, black 0, black 12ch, black 12ch, black 100%);
+}
+
+.spw-buttons {
+	--bs-btn-bg: #e9ecef;
+	--bs-btn-border-color: transparent;
+}
+
+#utc_header_li {
+	color: #575757;
+}
+
+.multiselect {
+	--bs-btn-color: inherit !important;
+	--bs-btn-bg: inherit !important;
+	--bs-btn-border-color: #dee2e6;
+	--bs-btn-hover-border-color: #dee2e6;
+	--bs-btn-hover-bg: inherit !important;
+	--bs-btn-hover-color: inherit !important;
+	--bs-btn-active-bg: inherit !important;
+	--bs-btn-active-color: inherit !important;
+}
+
+path.grid-rectangle {
+	stroke: rgba(97, 97, 97, 1);
+}
+
+span.grid-text > font {
+	color: rgb(97, 97, 97) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-unworked > font {
+	color: rgb(97, 97, 97) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-worked > font {
+	color: rgb(255, 255, 255) !important;
+	font-weight: 400 !important;
+}
+
+/* Override CAT frequency gradient */
+.cat-frequency-gradient,
+.cat-frequency-gradient td,
+.cat-frequency-gradient td:hover,
+.cat-frequency-gradient td:focus {
+	background-color: rgba(82, 81, 81, 0.7) !important;
+	--bs-table-bg: rgba(82, 81, 81, 0.7) !important;
+	--bs-table-accent-bg: rgba(82, 81, 81, 0.7) !important;
+}
+
+/* Only set text color to white for direct text content, not spans with text classes */
+.cat-frequency-gradient td,
+.cat-frequency-gradient th,
+tr[data-gradient-color] td,
+tr[data-gradient-color] th {
+	color: #fff !important;
+}
+
+.cat-frequency-gradient > td > a > .text-success {
+	color: #08ff42 !important;
+}
+
+.cat-frequency-gradient > td > .text-success > a {
+	color: #08ff42 !important;
+}
+
+.cat-frequency-gradient > td > .text-danger > a {
+	color: #ffc4c4 !important;
+}
+
+.cat-frequency-gradient > td > a > .text-danger {
+	color: #ffc4c4 !important;
+}
+
+/* Contest Logger */
+:root {
+	--cl-contest-loading-bg: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
+	--cl-contest-workspace-bg: linear-gradient(135deg, #e8e8e8 0%, #f8f9fa 100%);
+	--cl-contest-window-header-bg: #e9ecef;
+	--cl-contest-btn-hover-bg: #dee2e6;
+	--cl-contest-scrollbar: #c0c0c0;
+	--cl-contest-scrollbar-hover: #a0a0a0;
+	--cl-contest-scp-border: rgba(0, 0, 0, 0.08);
+	--cl-contest-scp-hover-bg: rgba(0, 0, 0, 0.05);
+	--cl-contest-scp-active-bg: rgba(0, 0, 0, 0.10);
+	--cl-contest-border: var(--bs-border-color);
+}

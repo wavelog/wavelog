@@ -1,0 +1,1250 @@
+<?php
+
+/* user_model.php
+ *
+ * This model implements user authentication and authorization
+ *
+ */
+
+
+// Uses 'phpass' from http://www.openwall.com/phpass/ to implement password hashing
+// TODO migration away from this?
+//require_once('application/third_party/PasswordHash.php');
+
+class User_Model extends CI_Model {
+
+	// FUNCTION: object get($username)
+	// Retrieve a user
+	function get($username) {
+		// Clean ID
+		$clean_username = $this->security->xss_clean($username);
+
+		$this->db->where('upper(user_name)', strtoupper($clean_username));
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
+	// GET — returns the installed themes plus the one currently active for the user
+	public function getUserThemes() {
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
+		$cache_key = 'user_themes';
+
+		// Cache check - early return
+		if ($cached = $this->cache->get($cache_key)) {
+			$themes = $cached;
+		} else {
+			// Load the Themes_model if not already loaded
+			if (!isset($this->Themes_model)) {
+				$this->load->model('Themes_model');
+			}
+
+			$themes = $this->Themes_model->getThemes();
+
+			// Cache the themes for 1 year
+			$this->cache->save($cache_key, $themes, 60 * 60 * 24 * 7 * 52);
+		}
+
+		return array(
+			'current' => $this->optionslib->get_theme(),
+			'themes'  => $themes
+		);
+	}
+
+	// FUNCTION: object get_by_id($id)
+	// Retrieve a user by user ID
+	function get_by_id($id) {
+				// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		$this->db->where('user_id', $clean_id);
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
+	// FUNCTION: object get_by_slug($slug)
+	// Retrieve a user by slug
+	function get_by_slug($slug) {
+		$clean_slug = $this->security->xss_clean($slug);
+		$clean_slug = strtoupper($clean_slug);
+
+		$this->db->where('slug', $clean_slug);
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
+	// FUNCTION: object get_all_lotw_users
+	// Returns all users with lotw details
+	function get_all_lotw_users() {
+		$this->db->where('user_lotw_name !=', null);
+		$this->db->where('trim(user_lotw_name) !=', "");
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
+	// FUNCTION: object get_by_email($email)
+	// Retrieve a user by email address
+	function get_by_email($email) {
+
+		$clean_email = $this->security->xss_clean($email);
+
+		$this->db->where('upper(user_email)', strtoupper($clean_email));
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
+	/*
+	 * Function: check_email_address
+	 *
+	 * Checks if an email address is already in use
+	 *
+	 * @param string $email
+	 */
+	function check_email_address($email) {
+
+		$clean_email = $this->security->xss_clean($email);
+
+		$this->db->where('user_email', $clean_email);
+		$query = $this->db->get($this->config->item('auth_table'));
+
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function get_user_email_by_id($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		$this->db->where('user_id', $clean_id);
+		$query = $this->db->get($this->config->item('auth_table'));
+
+		$r = $query->row();
+		return $r->user_email;
+	}
+
+	function get_user_amsat_status_upload_by_id($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		$this->db->where('user_id', $clean_id);
+		$query = $this->db->get($this->config->item('auth_table'));
+
+		$r = $query->row();
+		return $r->user_amsat_status_upload;
+	}
+
+	function hasQrzKey($user_id) {
+		$this->db->where('station_profile.qrzapikey is not null');
+		$this->db->where('station_profile.qrzapikey != ""');
+		$this->db->where('station_profile.user_id',$user_id);
+		$this->db->join('station_profile', 'station_profile.user_id = '.$this->config->item('auth_table').'.user_id');
+		$query = $this->db->get($this->config->item('auth_table'));
+
+		$ret = $query->row();
+		if ($ret->user_email ?? '' != '') {
+			return $ret->user_email;
+		} else {
+			return '';
+		}
+	}
+
+	function get_email_address($station_id) {
+		$this->db->where('station_id', $station_id);
+		$this->db->join('station_profile', 'station_profile.user_id = '.$this->config->item('auth_table').'.user_id');
+		$query = $this->db->get($this->config->item('auth_table'));
+
+		$ret = $query->row();
+		return $ret->user_email;
+	}
+
+	// FUNCTION: bool exists($username)
+	// Check if a user exists (by username)
+	function exists($username) {
+		$clean_username = $this->security->xss_clean($username);
+		if($this->get($clean_username)->num_rows() == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	// FUNCTION: bool exists_by_id($id)
+	// Check if a user exists (by user ID)
+	function exists_by_id($id) {
+		$clean_id = $this->security->xss_clean($id);
+
+		if($this->get_by_id($clean_id)->num_rows() == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	// FUNCTION: bool exists_by_email($email)
+	// Check if a user exists (by email address)
+	function exists_by_email($email) {
+		if($this->get_by_email($email)->num_rows() == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	// FUNCTION: array search_users($query)
+	// Search for users by parts of their callsign
+	function search_users($query, $clubstations = false) {
+		if (strlen($query) < 2) {
+			return false;
+		}
+		$this->db->select('user_id, user_name, user_callsign, user_firstname, user_lastname');
+		if (!$clubstations) {
+			$this->db->where('clubstation', 0);
+		}
+
+		// if there is a space it's probably a firstname + lastname search
+		if (strpos($query, ' ') !== false) {
+			$parts = explode(' ', $query, 2);
+
+			$this->db->group_start();
+			$this->db->like('user_firstname', $parts[0]);
+			$this->db->or_like('user_lastname', $parts[0]);
+			$this->db->like('user_lastname', $parts[1]);
+			$this->db->or_like('user_firstname', $parts[1]);
+			$this->db->group_end();
+		} else {
+			$this->db->group_start();
+			$this->db->like('user_callsign', $query);
+			$this->db->or_like('user_name', $query);
+			$this->db->or_like('user_firstname', $query);
+			$this->db->or_like('user_lastname', $query);
+			$this->db->group_end();
+		}
+
+		$this->db->limit(100);
+
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
+	// FUNCTION: bool add($username, $password, $email, $type)
+	// Add a user
+	// !!!!!!!!!!!!!!!!
+	// !! IMPORTANT NOTICE: Please inform DJ7NT and/or DF2ET when adding/removing/changing parameters here.
+	// !! Also make sure you modify Header_auth::_create_user accordingly, otherwise SSO user creation will break.
+	// !! Also modify User_model::update_sso_claims with attributes that can be modified by IdP
+	// !!!!!!!!!!!!!!!!
+	function add($username, $password, $email, $type, $firstname, $lastname, $callsign, $locator, $timezone,
+		$measurement, $dashboard_map, $user_date_format, $user_stylesheet, $user_qth_lookup, $user_sota_lookup, $user_wwff_lookup,
+		$user_pota_lookup, $user_show_notes, $user_column1, $user_column2, $user_column3, $user_column4, $user_column5,
+		$user_show_profile_image, $user_previous_qsl_type, $user_amsat_status_upload, $user_mastodon_url,
+		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_qso_db_search_priority,$user_quicklog, $user_quicklog_enter,
+		$user_language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
+		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab, $user_station_to_qso_tab,
+		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
+		$user_winkey, $on_air_widget_enabled, $on_air_widget_display_last_seen, $on_air_widget_show_only_most_recent_radio, $on_air_widget_display_radio_name,
+		$qso_widget_display_qso_time, $dashboard_banner, $dashboard_solar, $global_oqrs_text, $oqrs_grouped_search,
+		$oqrs_grouped_search_show_station_name, $oqrs_auto_matching, $oqrs_direct_auto_matching,$user_dxwaterfall_enable, $user_qso_show_map,
+		$last_lotw_upload_widget_enabled, $clubstation = 0, $external_account = null) {
+		// Check that the user isn't already used
+		if(!$this->exists($username)) {
+			$data = array(
+				'user_name' => xss_clean($username),
+				'user_password' => $this->_hash($password),
+				'user_email' => xss_clean($email),
+				'user_type' => xss_clean($type),
+				'user_firstname' => xss_clean($firstname) ?? '',
+				'user_lastname' => xss_clean($lastname) ?? '',
+				'user_callsign' => str_replace('Ø', "0",strtoupper(xss_clean($callsign))),
+				'user_locator' => strtoupper(xss_clean($locator)),
+				'user_timezone' => xss_clean($timezone),
+				'user_measurement_base' => xss_clean($measurement),
+				'user_date_format' => xss_clean($user_date_format),
+				'user_stylesheet' => xss_clean($user_stylesheet),
+				'user_qth_lookup' => xss_clean($user_qth_lookup),
+				'user_sota_lookup' => xss_clean($user_sota_lookup),
+				'user_wwff_lookup' => xss_clean($user_wwff_lookup),
+				'user_pota_lookup' => xss_clean($user_pota_lookup),
+				'user_show_notes' => xss_clean($user_show_notes),
+				'user_column1' => xss_clean($user_column1),
+				'user_column2' => xss_clean($user_column2),
+				'user_column3' => xss_clean($user_column3),
+				'user_column4' => xss_clean($user_column4),
+				'user_column5' => xss_clean($user_column5),
+				'user_show_profile_image' => xss_clean($user_show_profile_image),
+				'user_previous_qsl_type' => xss_clean($user_previous_qsl_type),
+				'user_amsat_status_upload' => xss_clean($user_amsat_status_upload),
+				'user_mastodon_url' => xss_clean($user_mastodon_url),
+				'user_default_band' => xss_clean($user_default_band),
+				'user_default_confirmation' => xss_clean($user_default_confirmation),
+				'user_qso_end_times' => xss_clean($user_qso_end_times),
+				'user_quicklog' => xss_clean($user_quicklog),
+				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
+				'user_language' => xss_clean($user_language),
+				'user_lotw_name' => xss_clean($user_lotw_name),
+				'user_lotw_password' => xss_clean($user_lotw_password),
+				'user_eqsl_name' => xss_clean($user_eqsl_name),
+				'user_eqsl_password' => xss_clean($user_eqsl_password),
+				'user_clublog_name' => xss_clean($user_clublog_name),
+				'user_clublog_password' => xss_clean($user_clublog_password),
+				'winkey' => xss_clean($user_winkey),
+				'clubstation' => $clubstation,
+				'external_account' => $external_account
+			);
+
+			// Check the password is valid
+			if($data['user_password'] == EPASSWORDINVALID) {
+				return EPASSWORDINVALID;
+			}
+
+			// Check the email address isn't in use
+			if($this->exists_by_email($email)) {
+				return EEMAILEXISTS;
+			}
+
+			// Generate user-slug
+			if (!$this->load->is_loaded('encryption')) {
+				$this->load->library('encryption');
+			}
+			$user_slug_base = md5($this->encryption->encrypt($username));
+			$user_slug = substr($user_slug_base, 0, USER_SLUG_LENGTH);
+			$data['slug'] = $user_slug;
+
+			// Add user and insert bandsettings for user
+			$this->db->insert($this->config->item('auth_table'), $data);
+			$insert_id = $this->db->insert_id();
+
+			$this->db->query("insert into bandxuser (bandid, userid) select bands.id, ? from bands;", [$insert_id]);
+			$this->db->query("insert into paper_types (user_id,paper_name,metric,width,orientation,height) SELECT ?, paper_name, metric, width, orientation,height FROM paper_types where user_id = 0;", [$insert_id]);
+
+			$user_options = [
+				['hamsat',     'hamsat_key',              'api',                           $user_hamsat_key],
+				['hamsat',     'hamsat_key',              'workable',                      $user_hamsat_workable_only],
+				['qso_tab',    'iota',                    'show',                          (($user_iota_to_qso_tab    ?? 'off') == "on" ? 1 : 0)],
+				['qso_tab',    'sota',                    'show',                          (($user_sota_to_qso_tab    ?? 'off') == "on" ? 1 : 0)],
+				['qso_tab',    'wwff',                    'show',                          (($user_wwff_to_qso_tab    ?? 'off') == "on" ? 1 : 0)],
+				['qso_tab',    'pota',                    'show',                          (($user_pota_to_qso_tab    ?? 'off') == "on" ? 1 : 0)],
+				['qso_tab',    'sig',                     'show',                          (($user_sig_to_qso_tab     ?? 'off') == "on" ? 1 : 0)],
+				['qso_tab',    'dok',                     'show',                          (($user_dok_to_qso_tab     ?? 'off') == "on" ? 1 : 0)],
+				['qso_tab',    'station',                 'show',                          (($user_station_to_qso_tab ?? 'off') == "on" ? 1 : 0)],
+				['qso_tab',    'map',                     'show',                          (int)(xss_clean($user_qso_show_map ?? 1))],
+				['dashboard',  'show_map',                'boolean',                       $dashboard_map    ?? 'Y'],
+				['dashboard',  'show_dashboard_banner',   'boolean',                       $dashboard_banner ?? 'Y'],
+				['dashboard',  'show_dashboard_solar',    'boolean',                       $dashboard_solar  ?? 'Y'],
+				['widget',     'on_air',                  'enabled',                       $on_air_widget_enabled                      ?? 'false'],
+				['widget',     'on_air',                  'display_last_seen',             $on_air_widget_display_last_seen            ?? 'false'],
+				['widget',     'on_air',                  'display_only_most_recent_radio',$on_air_widget_show_only_most_recent_radio  ?? 'true'],
+				['widget',     'on_air',                  'display_radio_name',            $on_air_widget_display_radio_name           ?? 'false'],
+				['widget',     'qso',                     'display_qso_time',              $qso_widget_display_qso_time                ?? 'false'],
+				['qso_db_search_priority', 'enable',      'boolean',                       $user_qso_db_search_priority ?? 'Y'],
+				['dxwaterfall', 'enable',                 'boolean',                       $user_dxwaterfall_enable     ?? 'N'],
+				['widget',     'last_lotw_upload',        'enabled',                       $last_lotw_upload_widget_enabled            ?? 'false'],
+			];
+
+			foreach ($user_options as [$type, $name, $key, $value]) {
+				$this->db->query(
+					"INSERT INTO user_options (user_id, option_type, option_name, option_key, option_value) VALUES (?, ?, ?, ?, ?)",
+					[$insert_id, $type, $name, $key, $value]
+				);
+			}
+			return OK;
+		} else {
+			return EUSERNAMEEXISTS;
+		}
+	}
+
+	// FUNCTION: bool edit()
+	// Edit a user
+	function edit($fields) {
+
+		// Check user privileges
+		if(($this->session->userdata('user_type') == 99) || ($this->session->userdata('user_id') == $fields['id'])) {
+			if($this->exists_by_id($fields['id'])) {
+				$data = array(
+					'user_name' => xss_clean($fields['user_name']),
+					'user_email' => xss_clean($fields['user_email']),
+					'user_callsign' => str_replace('Ø', "0", strtoupper(xss_clean($fields['user_callsign']))),
+					'user_locator' => strtoupper(xss_clean($fields['user_locator'])),
+					'user_firstname' => xss_clean($fields['user_firstname']),
+					'user_lastname' => xss_clean($fields['user_lastname']),
+					'user_timezone' => xss_clean($fields['user_timezone']),
+					'user_lotw_name' => xss_clean($fields['user_lotw_name']),
+					'user_eqsl_name' => xss_clean($fields['user_eqsl_name']),
+					'user_clublog_name' => xss_clean($fields['user_clublog_name']),
+					'user_measurement_base' => xss_clean($fields['user_measurement_base']),
+					'user_date_format' => xss_clean($fields['user_date_format']),
+					'user_stylesheet' => xss_clean($fields['user_stylesheet']),
+					'user_qth_lookup' => xss_clean($fields['user_qth_lookup']),
+					'user_sota_lookup' => xss_clean($fields['user_sota_lookup']),
+					'user_wwff_lookup' => xss_clean($fields['user_wwff_lookup']),
+					'user_pota_lookup' => xss_clean($fields['user_pota_lookup']),
+					'user_show_notes' => xss_clean($fields['user_show_notes']),
+					'user_column1' => xss_clean($fields['user_column1']),
+					'user_column2' => xss_clean($fields['user_column2']),
+					'user_column3' => xss_clean($fields['user_column3']),
+					'user_column4' => xss_clean($fields['user_column4']),
+					'user_column5' => xss_clean($fields['user_column5']),
+					'user_show_profile_image' => xss_clean($fields['user_show_profile_image']),
+					'user_previous_qsl_type' => xss_clean($fields['user_previous_qsl_type']),
+					'user_amsat_status_upload' => xss_clean($fields['user_amsat_status_upload']),
+					'user_mastodon_url' => xss_clean($fields['user_mastodon_url']),
+					'user_default_band' => xss_clean($fields['user_default_band']),
+					'user_default_confirmation' => (isset($fields['user_default_confirmation_qsl']) ? 'Q' : '').(isset($fields['user_default_confirmation_lotw']) ? 'L' : '').(isset($fields['user_default_confirmation_eqsl']) ? 'E' : '').(isset($fields['user_default_confirmation_qrz']) ? 'Z' : '').(isset($fields['user_default_confirmation_clublog']) ? 'C' : '').(isset($fields['user_default_confirmation_dcl']) ? 'D' : ''),
+					'user_qso_end_times' => xss_clean($fields['user_qso_end_times']),
+					'user_quicklog' => xss_clean($fields['user_quicklog']),
+					'user_quicklog_enter' => xss_clean($fields['user_quicklog_enter']),
+					'user_language' => xss_clean($fields['user_language']),
+					'winkey' => xss_clean($fields['user_winkey']),
+				);
+
+				// Hard limit safety check for last (recent) QSO count settings
+				$dashboard_last_qso_count = xss_clean($fields['user_dashboard_last_qso_count']);
+				$dashboard_last_qso_count = $dashboard_last_qso_count > DASHBOARD_QSOS_COUNT_LIMIT ? DASHBOARD_QSOS_COUNT_LIMIT : $dashboard_last_qso_count;
+				$qso_page_last_qso_count = xss_clean($fields['user_qso_page_last_qso_count']);
+				$qso_page_last_qso_count = $qso_page_last_qso_count > QSO_PAGE_QSOS_COUNT_LIMIT ? QSO_PAGE_QSOS_COUNT_LIMIT : $qso_page_last_qso_count;
+
+				// Updated user_options rows — [option_type, option_name, option_key, option_value]
+				$user_options = [
+					['hamsat',     'hamsat_key',              'api',                           $fields['user_hamsat_key']],
+					['hamsat',     'hamsat_key',              'workable',                      $fields['user_hamsat_workable_only']],
+					['qso_tab',    'iota',                    'show',                          (($fields['user_iota_to_qso_tab']    ?? 'off') == "on" ? 1 : 0)],
+					['qso_tab',    'sota',                    'show',                          (($fields['user_sota_to_qso_tab']    ?? 'off') == "on" ? 1 : 0)],
+					['qso_tab',    'wwff',                    'show',                          (($fields['user_wwff_to_qso_tab']    ?? 'off') == "on" ? 1 : 0)],
+					['qso_tab',    'pota',                    'show',                          (($fields['user_pota_to_qso_tab']    ?? 'off') == "on" ? 1 : 0)],
+					['qso_tab',    'sig',                     'show',                          (($fields['user_sig_to_qso_tab']     ?? 'off') == "on" ? 1 : 0)],
+					['qso_tab',    'dok',                     'show',                          (($fields['user_dok_to_qso_tab']     ?? 'off') == "on" ? 1 : 0)],
+					['qso_tab',    'station',                 'show',                          (($fields['user_station_to_qso_tab'] ?? 'off') == "on" ? 1 : 0)],
+					['qso_tab',    'map',                     'show',                          (int)($fields['user_qso_show_map'] ?? 1)],
+					['qso_tab',    'last_qso_count',          'count',                         $qso_page_last_qso_count],
+					['widget',     'on_air',                  'enabled',                       $fields['on_air_widget_enabled']                     ?? 'false'],
+					['widget',     'on_air',                  'display_last_seen',             $fields['on_air_widget_display_last_seen']           ?? 'false'],
+					['widget',     'on_air',                  'display_only_most_recent_radio',$fields['on_air_widget_show_only_most_recent_radio'] ?? 'true'],
+					['widget',     'on_air',                  'display_radio_name',            $fields['on_air_widget_display_radio_name']          ?? 'false'],
+					['widget',     'qso',                     'display_qso_time',              $fields['qso_widget_display_qso_time']               ?? 'false'],
+					['dashboard',  'last_qso_count',          'count',                         $dashboard_last_qso_count],
+					['dashboard',  'show_map',                'boolean',                       $fields['user_dashboard_map']    ?? 'Y'],
+					['dashboard',  'show_dashboard_banner',   'boolean',                       $fields['user_dashboard_banner'] ?? 'Y'],
+					['dashboard',  'show_dashboard_solar',    'boolean',                       $fields['user_dashboard_solar']  ?? 'N'],
+					['qso_db_search_priority', 'enable',      'boolean',                       $fields['user_qso_db_search_priority'] ?? 'Y'],
+					['dxwaterfall','enable',                  'boolean',                       $fields['user_dxwaterfall_enable']     ?? 'N'],
+					['widget',     'last_lotw_upload',        'enabled',                       $fields['last_lotw_upload_widget_enabled']           ?? 'false'],
+				];
+
+				foreach ($user_options as [$type, $name, $key, $value]) {
+					$this->db->query(
+						"REPLACE INTO user_options (user_id, option_type, option_name, option_key, option_value) VALUES (?, ?, ?, ?, ?)",
+						[$fields['id'], $type, $name, $key, $value]
+					);
+				}
+				$this->session->set_userdata('dashboard_last_qso_count', $dashboard_last_qso_count);
+				$this->session->set_userdata('qso_page_last_qso_count', $qso_page_last_qso_count);
+				$this->session->set_userdata('user_dashboard_map',xss_clean($fields['user_dashboard_map'] ?? 'Y'));
+				$this->session->set_userdata('user_dashboard_banner',xss_clean($fields['user_dashboard_banner'] ?? 'Y'));
+				$this->session->set_userdata('user_dashboard_solar',xss_clean($fields['user_dashboard_solar'] ?? 'N'));
+				$this->session->set_userdata('user_dashboard_show_dxpeditions',xss_clean($fields['user_dashboard_show_dxpeditions'] ?? '1'));
+				$this->session->set_userdata('user_dashboard_show_contests',xss_clean($fields['user_dashboard_show_contests'] ?? '1'));
+				$this->session->set_userdata('user_dashboard_show_kpi_stats',xss_clean($fields['user_dashboard_show_kpi_stats'] ?? '1'));
+				$this->session->set_userdata('user_dxwaterfall_enable',xss_clean($fields['user_dxwaterfall_enable'] ?? 'N'));
+				$this->session->set_userdata('user_stations_active_log_only',xss_clean($fields['user_stations_active_log_only'] ?? '0'));
+
+				// Check to see if the user is allowed to change user levels
+				if($this->session->userdata('user_type') == 99) {
+					$data['user_type'] = $fields['user_type'];
+				}
+
+				// Check to see if username is used already
+				if($this->exists($fields['user_name']) && $this->get($fields['user_name'])->row()->user_id != $fields['id']) {
+					return EUSERNAMEEXISTS;
+				}
+				// Check to see if email address is used already
+				if($this->exists_by_email($fields['user_email']) && $this->get_by_email($fields['user_email'])->row()->user_id != $fields['id']) {
+					return EEMAILEXISTS;
+				}
+
+				$pwd_placeholder = '**********';
+
+				// Hash password
+				if(array_key_exists('user_password', $fields) && ($fields['user_password'] != NULL))
+				{
+					if (!file_exists('.demo') || (file_exists('.demo') && $this->session->userdata('user_type') == 99)) {
+
+						if ($fields['user_password'] !== $pwd_placeholder) {
+							$decoded_password = htmlspecialchars_decode($fields['user_password']);
+							$data['user_password'] = $this->_hash($decoded_password);
+							if($data['user_password'] == EPASSWORDINVALID) {
+								return EPASSWORDINVALID;
+							}
+							$data['login_attempts'] = 0;
+						}
+					}
+				}
+
+				if($fields['user_lotw_password'] != '')
+				{
+					if ($fields['user_lotw_password'] !== $pwd_placeholder) {
+						$data['user_lotw_password'] = $fields['user_lotw_password'];
+					}
+				} else {
+					$data['user_lotw_password'] = NULL;
+				}
+
+				if($fields['user_clublog_password'] != '')
+				{
+					if ($fields['user_clublog_password'] !== $pwd_placeholder) {
+						$data['user_clublog_password'] = $fields['user_clublog_password'];
+					}
+				} else {
+					$data['user_clublog_password'] = NULL;
+				}
+
+				if($fields['user_eqsl_password'] != '')
+				{
+					if ($fields['user_eqsl_password'] !== $pwd_placeholder) {
+						$data['user_eqsl_password'] = $fields['user_eqsl_password'];
+					}
+				} else {
+					$data['user_eqsl_password'] = NULL;
+				}
+
+				// Update the user
+				$this->db->where('user_id', $fields['id']);
+				$this->db->update($this->config->item('auth_table'), $data);
+
+				// Remove static map images in cache to make sure they are updated
+				$this->load->model('Stations');
+				$this->load->model('staticmap_model');
+				$stations = $this->Stations->all_station_ids_of_user($fields['id']);
+				$station_ids = explode(',', $stations);
+				foreach ($station_ids as $station_id) {
+					$this->staticmap_model->remove_static_map_image(trim($station_id));
+				}
+
+				return OK;
+			} else {
+				return ENOSUCHUSER;
+			}
+		} else {
+			return EFORBIDDEN;
+		}
+	}
+
+	// FUNCTION: bool delete()
+	// Deletes a user
+	function delete($user_id) {
+		if($this->exists_by_id($user_id)) {
+			$this->load->model('Stations');
+			$stations = $this->Stations->all_of_user($user_id);
+			foreach ($stations->result() as $row) {
+				$this->Stations->delete($row->station_id,true, $user_id);
+			}
+			// Delete QSOs from $this->config->item('table_name')
+			$this->db->query("DELETE FROM bandxuser WHERE userid = ?",$user_id);
+			$this->db->query("DELETE FROM api WHERE user_id = ? OR created_by = ?", [$user_id, $user_id]);
+			$this->db->query("DELETE FROM api_token WHERE user_id = ? OR created_by = ?", [$user_id, $user_id]);
+			$this->db->query("DELETE FROM club_permissions WHERE user_id = ? OR club_id = ?", [$user_id, $user_id]);
+			$this->db->query("DELETE FROM cat WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM lotw_certs WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM notes WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM paper_types WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM label_types WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM queries WHERE userid = ?",$user_id);
+			$this->db->query("DELETE FROM station_profile WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM station_logbooks WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM user_options WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM qsl_postcard_templates WHERE user_id = ?",$user_id);
+			if (!$this->paths->delete_user_files($user_id)) {
+				log_message('error', 'Failed to delete files for user ID ' . $user_id . '. Delete them manually to free up disk space.');
+			}
+
+			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	// FUNCTION: bool login()
+	// Validates a username/password combination
+	// This is really just a wrapper around User_Model::authenticate
+	function login() {
+
+		if (($this->config->item('auth_header_enable') ?? false) && !($this->config->item('auth_header_allow_direct_login') ?? true)) {
+			$this->session->set_flashdata('error', 'Direct login is disabled. Please use the SSO option to log in.');
+			redirect('user/login');
+		}
+
+		$username = $this->input->post('user_name', true);
+		$password = htmlspecialchars_decode($this->input->post('user_password', true));
+
+		return $this->authenticate($username, $password);
+	}
+
+	// FUNCTION: void clear_session()
+	// Clears a user's login session
+	// Nothing is returned - it can be assumed that if this is called, the user's
+	// login session *will* be cleared, no matter what state it is in
+	function clear_session() {
+
+		$this->session->sess_destroy();
+	}
+
+	// FUNCTION: void update_session()
+	// Updates a user's login session after they've logged in
+	function update_session($id, $u = null, $impersonate = false, $custom_data = null) {
+
+		$u = $u ?: $this->get_by_id($id);
+		if (!$u) {
+			return false;
+		}
+		$u = $u->row();
+
+		// Load all user options once instead of querying per setting below
+		$user_options = $this->user_options_model->get_all_options_for_user($u->user_id);
+
+		// Read sessiondata once
+		$sess = $this->session->userdata();
+
+		$token = $sess['session_token'] ?? NULL;
+		if (!$token) {
+			$token = bin2hex(random_bytes(32));
+		}
+
+		$userdata = array(
+			'user_id'		 				=> $u->user_id,
+			'user_name'		 				=> $u->user_name,
+			'user_email'		 			=> $u->user_email,
+			'user_type'		 				=> $u->user_type,
+			'user_callsign'		 			=> $u->user_callsign,
+			'operator_callsign'	 			=> ((($sess['operator_callsign'] ?? '') == '') ? $u->user_callsign : $sess['operator_callsign']),
+			'user_locator'		 			=> $u->user_locator,
+			'user_lotw_name'	 			=> $u->user_lotw_name,
+			'user_clublog_name'	 			=> $u->user_clublog_name ?? '',
+			'user_eqsl_name'	 			=> $u->user_eqsl_name,
+			'user_eqsl_qth_nickname' 		=> $u->user_eqsl_qth_nickname,
+			'user_hash'		     			=> $this->_session_hash($u->user_id . $u->user_type . $token),
+			'session_token'		 			=> $token,
+			'radio' 						=> ((($sess['radio'] ?? '') == '') ? ($user_options['cat']['default_radio']['radio_id'] ?? '') : $sess['radio']),
+			'station_profile_id' 			=> $sess['station_profile_id'] ?? '',
+			'user_measurement_base' 		=> $u->user_measurement_base,
+			'user_dashboard_map' 			=> array_key_exists('user_dashboard_map', $sess) ? $sess['user_dashboard_map'] : ($user_options['dashboard']['show_map']['boolean'] ?? 'Y'),
+			'user_dashboard_banner' 		=> array_key_exists('user_dashboard_banner', $sess) ? $sess['user_dashboard_banner'] : ($user_options['dashboard']['show_dashboard_banner']['boolean'] ?? 'Y'),
+			'user_dashboard_solar' 			=> array_key_exists('user_dashboard_solar', $sess) ? $sess['user_dashboard_solar'] : ($user_options['dashboard']['show_dashboard_solar']['boolean'] ?? 'N'),
+			'user_dashboard_show_dxpeditions' => array_key_exists('user_dashboard_show_dxpeditions', $sess) ? $sess['user_dashboard_show_dxpeditions'] : ($user_options['dashboard']['show_dxpeditions']['boolean'] ?? '0'),
+			'user_dashboard_show_contests' 	=> array_key_exists('user_dashboard_show_contests', $sess) ? $sess['user_dashboard_show_contests'] : ($user_options['dashboard']['show_contests']['boolean'] ?? '0'),
+			'user_dashboard_show_kpi_stats'	=> array_key_exists('user_dashboard_show_kpi_stats', $sess) ? $sess['user_dashboard_show_kpi_stats'] : ($user_options['dashboard']['show_kpi_stats']['boolean'] ?? '1'),
+			'user_qso_db_search_priority' 	=> array_key_exists('user_qso_db_search_priority', $sess) ? $sess['user_qso_db_search_priority'] : ($user_options['qso_db_search_priority']['enable']['boolean'] ?? 'Y'),
+			'user_dxwaterfall_enable' 		=> array_key_exists('user_dxwaterfall_enable', $sess) ? $sess['user_dxwaterfall_enable'] : ($user_options['dxwaterfall']['enable']['boolean'] ?? 'N'),
+			'user_date_format' 				=> $u->user_date_format,
+			'user_stylesheet' 				=> $u->user_stylesheet,
+			'user_qth_lookup' 				=> isset($u->user_qth_lookup) ? $u->user_qth_lookup : 0,
+			'user_sota_lookup' 				=> isset($u->user_sota_lookup) ? $u->user_sota_lookup : 0,
+			'user_wwff_lookup' 				=> isset($u->user_wwff_lookup) ? $u->user_wwff_lookup : 0,
+			'user_pota_lookup' 				=> isset($u->user_pota_lookup) ? $u->user_pota_lookup : 0,
+			'user_show_notes' 				=> isset($u->user_show_notes) ? $u->user_show_notes : 1,
+			'user_show_profile_image' 		=> isset($u->user_show_profile_image) ? $u->user_show_profile_image : 0,
+			'user_column1' 					=> isset($u->user_column1) ? $u->user_column1: 'Mode',
+			'user_column2' 					=> isset($u->user_column2) ? $u->user_column2: 'RSTS',
+			'user_column3' 					=> isset($u->user_column3) ? $u->user_column3: 'RSTR',
+			'user_column4' 					=> isset($u->user_column4) ? $u->user_column4: 'Band',
+			'user_column5' 					=> isset($u->user_column5) ? $u->user_column5: 'Country',
+			'user_previous_qsl_type' 		=> isset($u->user_previous_qsl_type) ? $u->user_previous_qsl_type: 0,
+			'user_amsat_status_upload' 		=> isset($u->user_amsat_status_upload) ? $u->user_amsat_status_upload: 0,
+			'user_mastodon_url'				=> $u->user_mastodon_url,
+			'user_default_band'	 			=> $u->user_default_band,
+			'user_default_confirmation'	 	=> $u->user_default_confirmation,
+			'user_qso_end_times' 			=> isset($u->user_qso_end_times) ? $u->user_qso_end_times : 1,
+			'user_quicklog' 				=> isset($u->user_quicklog) ? $u->user_quicklog : 1,
+			'user_quicklog_enter' 			=> isset($u->user_quicklog_enter) ? $u->user_quicklog_enter : 1,
+			'active_station_logbook' 		=> $u->active_station_logbook,
+			'user_stations_active_log_only' => array_key_exists('user_stations_active_log_only', $sess) ? $sess['user_stations_active_log_only'] : ($user_options['stations']['active_log_only']['boolean'] ?? '0'),
+			'user_language' 				=> isset($u->user_language) ? $u->user_language: 'english',
+			'isWinkeyEnabled' 				=> $u->winkey,
+			'FirstLoginWizard' 				=> ((($sess['FirstLoginWizard'] ?? '') == '') ? ($user_options['FirstLoginWizard']['showed']['boolean'] ?? null) : $sess['FirstLoginWizard']),
+			'hasQrzKey' 					=> $this->hasQrzKey($u->user_id),
+			'impersonate' 					=> $sess['impersonate'] ?? false,
+			'clubstation' 					=> $u->clubstation,
+			'dashboard_last_qso_count' 		=> ($sess['dashboard_last_qso_count'] ?? '') == '' ? ($user_options['dashboard']['last_qso_count']['count'] ?? '') : $sess['dashboard_last_qso_count'],
+			'qso_page_last_qso_count' 		=> ($sess['qso_page_last_qso_count'] ?? '') == '' ? ($user_options['qso_tab']['last_qso_count']['count'] ?? '') : $sess['qso_page_last_qso_count'],
+			'source_uid' 					=> $sess['source_uid'] ?? ''
+		);
+
+		if ($this->config->item('special_callsign')) {
+			$userdata['available_clubstations'] = $this->get_clubstations($u->user_id) ?? 'none';
+		}
+
+		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
+			$qrg_unit = $sess["qrgunit_$band"] ?? ($user_options['frequency']['unit'][$band] ?? '');
+			if ($qrg_unit !== '') {
+				$userdata['qrgunit_'.$band] = $qrg_unit;
+			} else {
+				$userdata['qrgunit_'.$band] = $this->frequency->defaultFrequencies[$band]['UNIT'];
+			}
+		}
+
+		// Restore custom data in impersonation mode
+		foreach ($sess as $key => $value) {
+			if (substr($key, 0, 3) == 'cd_') {
+				$userdata[$key] = $value;
+			}
+		}
+
+		// Overrides
+		if ($impersonate) {
+			$userdata['impersonate'] = true;
+			$userdata['available_clubstations'] = $this->get_clubstations($u->user_id);
+		}
+		if ($userdata['clubstation'] == 1) {
+			$userdata['available_clubstations'] = 'none';
+		}
+		if (isset($custom_data)) {
+			foreach ($custom_data as $key => $value) {
+				$userdata['cd_' . $key] = $value;
+			}
+		}
+
+		$this->session->set_userdata($userdata);
+
+		return true;
+	}
+
+	// FUNCTION: bool validate_session()
+	// Validate a user's login session
+	// If the user's session is corrupted in any way, it will clear the session
+	function validate_session($u = null) {
+
+		if($this->session->userdata('user_id'))
+		{
+			$user_id = $this->session->userdata('user_id');
+			$user_type = $this->session->userdata('user_type');
+			$src_user_type = $this->session->userdata('cd_src_user_type');
+			$user_hash = $this->session->userdata('user_hash');
+			$impersonate = $this->session->userdata('impersonate');
+
+			if(ENVIRONMENT != 'maintenance') {
+				$session_token = $this->session->userdata('session_token');
+				if($session_token && $this->_auth($user_id . $user_type . $session_token, $user_hash)) {
+					// Freshen the session
+					$this->update_session($user_id, $u);
+					return 1;
+				} else {
+					$this->clear_session();
+					return 0;
+				}
+			} else {  // handle the maintenance mode and kick out user on page reload if not an admin
+				if($user_type == '99' || $src_user_type === '99') {
+					$session_token = $this->session->userdata('session_token');
+					if($session_token && $this->_auth($user_id . $user_type . $session_token, $user_hash)) {
+						// Freshen the session
+						$this->update_session($user_id, $u);
+						return 1;
+					} else {
+						$this->clear_session();
+						return 0;
+					}
+				} else {
+					$this->clear_session();
+					return 0;
+				}
+			}
+		} else {
+			return 0;
+		}
+	}
+
+	// FUNCTION: bool authenticate($username, $password)
+	// Authenticate a user against the users table
+	function authenticate($username, $password) {
+		$u = $this->get($username);
+		if($u->num_rows() != 0) {
+			// direct login to clubstations are not allowed
+			if ($u->row()->clubstation == 1 && !($this->config->item('club_direct') ?? false)) {
+				$uid = $u->row()->user_id;
+				log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt.");
+				return 2;
+			}
+
+			if ($this->config->item('max_login_attempts')) {
+				$maxattempts = $this->config->item('max_login_attempts');
+			} else {
+				$maxattempts = 3;
+			}
+			if ($u->row()->login_attempts > $maxattempts) {
+				$uid = $u->row()->user_id;
+				log_message('debug', "User ID: [$uid] Login rejected because of too many failed login attempts.");
+				return 3;
+			}
+
+			if($this->_auth($password, $u->row()->user_password)) {
+				$this->db->query("UPDATE users SET login_attempts = 0 WHERE user_id = ?", [$u->row()->user_id]);	// Reset failurecount
+				if (ENVIRONMENT != "maintenance") {
+					return 1;
+				} else {
+					if($u->row()->user_type != 99){
+						return 0;
+					} else {
+						return 1;
+					}
+				}
+			} else { // Update failurecount
+				$this->db->query("UPDATE users SET login_attempts = login_attempts+1 WHERE user_id = ?", [$u->row()->user_id]);
+			}
+		}
+		return 0;
+	}
+
+	// FUNCTION: retrieve a user by their SSO composite key {iss, sub} stored as JSON
+	function get_by_external_account(string $key) {
+		$table = $this->config->item('auth_table');
+		$decoded = json_decode($key, true);
+		return $this->db->query(
+			"SELECT * FROM `$table` WHERE JSON_VALUE(external_account, '$.iss') = ? AND JSON_VALUE(external_account, '$.sub') = ?",
+			[$decoded['iss'], $decoded['sub']]
+		);
+	}
+
+	// FUNCTION: update specific user fields from SSO claims (bypass privilege check, used during login flow)
+	function update_sso_claims(int $user_id, array $fields): void {
+		// Only modify the following
+		$allowed = [
+			'user_name',
+			'user_email',
+			'user_callsign',
+			'user_locator',
+			'user_firstname',
+			'user_lastname',
+			'user_timezone',
+			'user_lotw_name',
+			'user_lotw_password',
+			'user_eqsl_name',
+			'user_eqsl_password',
+			'user_eqsl_qth_nickname',
+			'active_station_logbook',
+			'user_language',
+			'user_clublog_name',
+			'user_clublog_password',
+			'user_clublog_callsign',
+			'user_measurement_base',
+			'user_date_format',
+			'user_stylesheet',
+			'user_sota_lookup',
+			'user_wwff_lookup',
+			'user_pota_lookup',
+			'user_qth_lookup',
+			'user_show_notes',
+			'user_column1',
+			'user_column2',
+			'user_column3',
+			'user_column4',
+			'user_column5',
+			'user_show_profile_image',
+			'user_previous_qsl_type',
+			'user_amsat_status_upload',
+			'user_mastodon_url',
+			'user_default_band',
+			'user_default_confirmation',
+			'user_quicklog_enter',
+			'user_quicklog',
+			'user_qso_end_times',
+			'winkey',
+			'slug'
+		];
+		$fields = array_intersect_key($fields, array_flip($allowed));
+
+		$this->db->where('user_id', $user_id);
+		$this->db->update('users', $fields);
+	}
+
+	// FUNCTION: set's the last-login timestamp in user table
+	function set_last_seen($user_id) {
+		$data = array(
+			'last_seen' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('user_id', $user_id);
+		$this->db->update('users', $data);
+	}
+
+	// FUNCTION: bool set_user_stylesheet($user_id, $foldername)
+	// Quickly switch the active theme (stylesheet foldername) for a single user.
+	// Used by the header theme switcher so users can change skin without opening
+	// their profile settings. Returns TRUE on success.
+	function set_user_stylesheet($user_id, $foldername) {
+		$this->db->where('user_id', xss_clean($user_id));
+		return $this->db->update('users', array('user_stylesheet' => xss_clean($foldername)));
+	}
+
+	/**
+	 * Whether a user is a Wavelog administrator (user_type 99)
+	 *
+	 * @param int $user_id
+	 * @return boolean
+	 */
+	function is_admin($user_id) {
+		$u = $this->get_by_id($user_id);
+		if ($u->num_rows() == 0) {
+			return false;
+		}
+		return $u->row()->user_type == 99;
+	}
+
+	// FUNCTION: bool authorize($level)
+	// Checks a user's level of access against the given $level
+	function authorize($level) {
+		$u = $this->get_by_id($this->session->userdata('user_id'));
+		$l = $this->config->item('auth_mode');
+
+		// Run the cache garbage collector here, probability check is already built in
+		// We run this only for file cache as other adapters have their own GC methods
+		if ($this->config->item('cache_adapter') == 'file') {
+			$this->load->library('GarbageCollector');
+			$this->garbagecollector->run();
+		}
+
+		// Check to see if the minimum level of access is higher than
+		// the user's own level. If it is, use that.
+		if($this->config->item('auth_mode') > $level) {
+			$level = $this->config->item('auth_mode');
+		}
+		if(($this->validate_session($u)) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
+			$ls = strtotime($u->row()->last_seen ?? '1970-01-01');
+			$n = time();
+			if (($n - $ls) > 60) {	// Reduce load. 'set_last_seen()' Shouldn't be called at anytime. 60 seconds diff is enough.
+
+				$this->set_last_seen($u->row()->user_id);
+			}
+				return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	// FUNCTION: bool unlock($user_id)
+	// Unlocks a user account after it was locked doe too many failed login attempts
+	function unlock($user_id) {
+		return $this->db->query("UPDATE users SET login_attempts = 0 WHERE user_id = ?", [$user_id]);
+	}
+
+	// FUNCTION: object users()
+	// Returns a list of users with additional counts
+	function users($club = '') {
+		$qsocount_select = "";
+		$qsocount_join = "";
+		if (!($this->config->item('disable_user_stats') ?? false)) {
+			$qsocount_select = ", COALESCE(lc.qsocount, 0) AS qsocount, lc.lastqso";
+			$qsocount_join =
+				" LEFT JOIN (
+					SELECT sp.user_id,
+						COUNT(l.col_primary_key) AS qsocount,
+						MAX(l.COL_TIME_ON)      AS lastqso
+					FROM station_profile sp
+					JOIN " . $this->config->item('table_name') . " l ON l.station_id = sp.station_id
+					GROUP BY sp.user_id
+				) lc ON lc.user_id = u.user_id";
+		}
+		$sql = "SELECT
+					u.user_id,
+					u.user_name,
+					u.user_firstname,
+					u.user_lastname,
+					u.user_callsign,
+					u.user_email,
+					u.user_type,
+					u.last_seen,
+					u.login_attempts,
+					u.clubstation,
+					COALESCE(sp_count.stationcount, 0)    	AS stationcount,
+					COALESCE(sl_count.logbookcount, 0)   	AS logbookcount
+					".$qsocount_select."
+				FROM users u
+				LEFT JOIN (
+					SELECT user_id, COUNT(*) AS stationcount
+					FROM station_profile
+					GROUP BY user_id
+				) sp_count ON sp_count.user_id = u.user_id
+				LEFT JOIN (
+					SELECT user_id, COUNT(*) AS logbookcount
+					FROM station_logbooks
+					GROUP BY user_id
+				) sl_count ON sl_count.user_id = u.user_id"
+				 .$qsocount_join;
+
+		if ($this->config->item('special_callsign')) {
+			if ($club === 'is_club') {
+				$sql .= " WHERE u.clubstation = 1";
+			} else {
+				$sql .= " WHERE u.clubstation != 1";
+			}
+		}
+
+		$result = $this->db->query($sql);
+		if ($this->config->item('special_callsign')) {
+			if ($club === 'is_club' && !($this->config->item('disable_user_stats') ?? false)) {
+				foreach ($result->result() as &$row) {
+					$row->lastoperator = $this->get_last_op($row->user_id, $row->lastqso);
+				}
+			} else {
+				foreach ($result->result() as &$row) {
+					$row->lastoperator = '';   				// Important: If 'disable_user_stats' is set to true, the admin won't see the last operator of a clubstation
+				}
+			}
+		}
+		return $result;
+	}
+
+	function get_last_op($userid,$lastqso) {
+		$sql="SELECT log.COL_OPERATOR FROM ". $this->config->item('table_name') ." log INNER JOIN station_profile sp ON (log.station_id=sp.station_id) where sp.user_id=? AND col_time_on=? ORDER BY col_time_on DESC LIMIT 1";
+		$resu=$this->db->query($sql,array($userid,$lastqso));
+		return $resu->result()[0]->COL_OPERATOR ?? '';
+	}
+
+	// FUNCTION: array timezones()
+	// Returns a list of timezones
+	function timezones() {
+		$r = $this->db->query('SELECT id, name FROM timezones ORDER BY `offset`');
+		$ts = array();
+		foreach ($r->result_array() as $t) {
+			$ts[$t['id']] = $t['name'];
+		}
+		return $ts;
+	}
+
+	// FUNCTION: array getThemes()
+	// Returns a list of themes
+	function getThemes() {
+		$result = $this->db->query('SELECT * FROM themes order by name');
+
+		return $result->result();
+	}
+
+	/*
+	 * FUNCTION: set_password_reset_code
+	 *
+	 * Stores generated password reset code in the database and sets the date to exactly
+	 * when the sql query runs.
+	 *
+	 * @param string $user_email
+	 * @return string $reset_code
+	 */
+	function set_password_reset_code($user_email, $reset_code) {
+		$data = array(
+			'reset_password_code' => $reset_code,
+			'reset_password_date' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('user_email', $user_email);
+		$this->db->update('users', $data);
+	}
+
+	/*
+	 * FUNCTION: reset_password
+	 *
+	 * Sets new password for users account where the reset code matches then clears the password reset code and password reset date.
+	 *
+	 * @param string $password
+	 * @return string $reset_code
+	 */
+	function reset_password($password, $reset_code) {
+		$data = array(
+			'user_password' => $this->_hash($password),
+			'reset_password_code' => NULL,
+			'reset_password_date' => NULL,
+			'login_attempts' => 0
+		);
+
+		$this->db->where('reset_password_code', $reset_code);
+		$this->db->update('users', $data);
+	}
+
+	// FUNCTION: bool _auth($password, $hash)
+	// Checks a password against the stored hash
+	// Understands the difference between password and session hashes
+	private function _auth($password, $hash) {
+		if (strpos($hash, '$2y$') === 0 || strlen($hash) === 60) {
+			return password_verify($password, $hash) ? 1 : 0;
+		}
+		return hash_equals($this->_session_hash($password), $hash) ? 1 : 0;
+	}
+
+	// FUNCTION: string _hash($password)
+	// Returns a hashed version of the supplied $password
+	// Will return '0' in the event of problems with the
+	// hashing function
+	private function _hash($password) {
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+
+		if(strlen($hash) < 20) {
+			return EPASSWORDINVALID;
+		} else {
+			return $hash;
+		}
+	}
+
+	// FUNCTION: string _session_hash($payload)
+	// Creates a HMAC-SHA256 hash of the supplied $payload
+	// Used for session validation as it is blazing fast and will
+	// Be different after each Login
+	private function _session_hash($payload) {
+		$secret = $this->config->item('encryption_key');
+		if (($secret ?? NULL) == NULL) {
+			log_message('error', 'Encryption key is not set in config.php! Session security is compromised!');
+			// A fully missing encryption key is a showstopper, throw an exception
+			// This also means that there is something seriously wrong with the installation
+			throw new RuntimeException('Encryption key not configured');
+		} elseif ($secret == 'flossie1234555541') { // Once upon a time, this was the default key shipped which never changed
+			log_message('error', 'Default encryption key is set in config.php ("flossie...")! Session security is compromised! Change the encryption key to a unique value!');
+		}
+		return hash_hmac('sha256', (string)$payload, $secret);
+	}
+
+	/**
+	 * Function to create a safe hash, which can be securely stored in the browser
+	 * to keep a user logged in for a defined time range.
+	 */
+	function keep_cookie_hash($user_id) {
+
+		/**
+		 * get some client information, to include in the hash we want to make a has unique for a certain browser
+		 */
+
+		// Client Browser and OS
+		$client_browser = base64_encode($_SERVER['HTTP_USER_AGENT']);
+
+		// Client language
+		$client_lang = base64_encode($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+		$uid = base64_encode($user_id);
+
+		// Create a long string out of the client data
+		$client_string = $client_browser . $client_lang . $uid;
+
+		// Now we load the Encryption Lib
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+
+		// And creating a secure hash of the client data
+		$encrypted_string = $this->encryption->encrypt($client_string);
+		$hash = $encrypted_string . base64_encode($this->config->item('base_url')) . base64_encode($user_id);
+
+		return $hash;
+
+	}
+
+	function check_keep_hash($a, $b) {
+
+		// Load the Encryption Lib
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+
+		// Decrypt string a
+		$dec_a = $this->encryption->decrypt($a);
+
+		// Decrypt string b
+		$dec_b = $this->encryption->decrypt($b);
+
+		if ($dec_a === $dec_b) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function get_clubstations($user_id) {
+		$this->load->model('club_model');
+		$clubstations = $this->club_model->get_clubstations($user_id);
+
+		return $clubstations;
+	}
+
+	function convert($user_id, $clubstation) {
+		$sql = "UPDATE users SET clubstation = ? WHERE user_id = ?;";
+
+		$this->db->trans_start();
+
+		if (!$this->db->query($sql, [$clubstation, $user_id])) {
+			$this->db->trans_rollback();
+			return false;
+		}
+
+		// Remove all club permissions in case there is a club with this user id
+		$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
+		if (!$this->db->query($delete_sql, [$user_id])) {
+			$this->db->trans_rollback();
+			return false;
+		}
+
+		$this->load->model('api_v2_model');
+		$this->api_v2_model->revoke_club_tokens($user_id);
+
+		$this->db->query("DELETE FROM api WHERE user_id = ? AND created_by != ?", [$user_id, $user_id]);
+		$this->db->query("DELETE FROM cat WHERE user_id = ? AND operator != ?", [$user_id, $user_id]);
+
+		$this->db->trans_complete();
+
+		return $this->db->trans_status();
+	}
+
+	function firstlogin_wizard($stationdata) {
+		if (empty($stationdata)) {
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // We try to setup the station only once, so we set the user_option to 1 to prevent the wizard from showing up again
+			return false;
+		}
+
+		try {
+			$this->db->query("INSERT INTO station_logbooks (user_id, logbook_name, modified, public_slug, public_search)
+				VALUES (?, 'Home Logbook', NULL, NULL, 0)", [$stationdata['user_id']]
+			);
+			$station_logbooks_insert_id = $this->db->insert_id();
+
+			$this->db->query("UPDATE users
+				SET active_station_logbook = ?
+				WHERE user_id = ?", [$station_logbooks_insert_id, $stationdata['user_id']]
+			);
+
+			$this->load->model('logbook_model');
+
+			$this->db->query("INSERT INTO station_profile (
+					station_profile_name, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power,
+					station_dxcc, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, qrzapikey, county,
+					station_sig, station_sig_info, qrzrealtime, user_id, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email,
+					webadifapikey, webadifapiurl, webadifrealtime, clublogignore, clublogrealtime, hrdlogrealtime, hrdlog_code, hrdlog_username
+				) VALUES (
+					?, ?, '', '', '', ?, NULL, ?, '', ?, ?, 1, '', '', '', '', '', '', 0, ?, '', '', 0, '', 0, '',
+					'https://qo100dx.club/api', 0, 0, 0, 0, '', ''
+				)", [
+					$stationdata['station_name'],
+					strtoupper($stationdata['station_locator']),
+					strtoupper($stationdata['station_callsign']),
+					$stationdata['station_dxcc'],
+					$stationdata['station_cqz'],
+					$stationdata['station_ituz'],
+					$stationdata['user_id']
+				]
+			);
+			$station_profile_insert_id = $this->db->insert_id();
+
+			$this->db->query("INSERT INTO station_logbooks_relationship (station_logbook_id, station_location_id, modified)
+				VALUES (?, ?, NULL)", [$station_logbooks_insert_id, $station_profile_insert_id]
+			);
+
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));
+
+			return true;
+
+		} catch (Exception $e) {
+			log_message('error', 'Firstlogin wizard failed: ' . $e->getMessage());
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // We try to setup the station only once, so we set the user_option to 1 to prevent the wizard from showing up again
+			return false;
+		}
+	}
+
+}
+
+?>

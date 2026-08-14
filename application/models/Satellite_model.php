@@ -1,0 +1,217 @@
+<?php
+
+class Satellite_model extends CI_Model {
+
+	function get_all_satellites() {
+		$sql = "select satellite.id, satellite.name as satname, group_concat(distinct satellitemode.name separator ', ') as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, tle.tle
+		from satellite
+		left outer join satellitemode on satellite.id = satellitemode.satelliteid
+		left outer join tle on satellite.id = tle.satelliteid
+		group by satellite.name, satellite.id, tle.id, satellite.displayname, satellite.orbit, satellite.id, tle.updated, satellite.lotw, tle.tle";
+
+		return $this->db->query($sql)->result();
+	}
+
+	function get_satellite_information($satname = null) {
+		$bindings = [];
+		$sql = "select satellite.id, coalesce(nullif(satellite.name, ''), satellite.displayname) as satname, satellitemode.name as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, satellitemode.uplink_mode, satellitemode.downlink_mode, FORMAT((satellitemode.uplink_freq / 1000000), 3) AS uplink_freq, FORMAT((satellitemode.downlink_freq / 1000000), 3) AS downlink_freq
+		from satellite
+		left outer join satellitemode on satellite.id = satellitemode.satelliteid
+		left outer join tle on satellite.id = tle.satelliteid ";
+
+		if ($satname != null) {
+			$sql .= " where satellite.name = ? or satellite.displayname = ?";
+			$bindings[] = $satname;
+			$bindings[] = $satname;
+		}
+
+		return $this->db->query($sql, $bindings)->result();
+	}
+
+	function get_all_satellites_with_tle() {
+		$sql = "select satellite.id, satellite.name as satname, satellite.displayname as displayname, tle.tle
+		from satellite
+		join tle on satellite.id = tle.satelliteid
+		where tle is not NULL
+		order by satellite.name
+		";
+
+		return $this->db->query($sql)->result();
+	}
+
+	function get_last_worked_sat() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		if ($logbooks_locations_array[0] === -1) {
+			return null;
+		}
+		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
+		$sql = "select COL_SAT_NAME as sat from " . $this->config->item('table_name') .
+			" where station_id in (" . $location_list . ")" .
+			" AND COL_PROP_MODE = 'SAT' AND COL_SAT_NAME is not null AND COL_SAT_NAME != '' ".
+			"order by COL_TIME_ON DESC LIMIT 1";
+
+		$query = $this->db->query($sql);
+		$row = $query->row();
+		if (isset($row)) {
+			return ($row->sat);
+		}
+		return null;
+	}
+
+	function delete($id) {
+		// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		// Delete Satellite
+		$this->db->delete('satellite', array('id' => $clean_id));
+	}
+
+
+	function deleteTle($id) {
+		// Delete TLE
+		$this->db->delete('tle', array('satelliteid' => $id));
+	}
+
+	function saveTle($id, $tle) {
+		$tlelines = explode("\n", trim($tle)); // Trim to remove extra spaces or newlines
+		$lineCount = count($tlelines);
+
+		if ($lineCount === 3) {
+			$tleline1 = trim($tlelines[1]); // First data line
+			$tleline2 = trim($tlelines[2]); // Second data line
+		} else {
+			$tleline1 = trim($tlelines[0]);
+			$tleline2 = trim($tlelines[1]);
+		}
+
+		$text = $tleline1 . "\n" . $tleline2;
+
+		$this->db->where('satelliteid', $id);
+		if ($this->db->get('tle')->num_rows() > 0) {
+			$data = array(
+				'tle'			=> $text,
+			);
+			$this->db->where('satelliteid', $id);
+			$this->db->update('tle', $data);
+		} else {
+			$data = array(
+				'satelliteid' 	=> $id,
+				'tle'			=> $text,
+			);
+			$this->db->insert('tle', $data);
+			$insert_id = $this->db->insert_id();
+			return $insert_id;
+		}
+	}
+
+	function deleteSatMode($id) {
+		// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		// Delete Satellite
+		$this->db->delete('satellitemode', array('id' => $clean_id));
+	}
+
+	function saveupdatedsatellite($id, $satellite) {
+		$this->db->where('satellite.id', $id);
+		$this->db->update('satellite', $satellite);
+		return true;
+	}
+
+	function saveSatelliteMode($id, $satmode) {
+		$this->db->where('satellitemode.id', $id);
+		$this->db->update('satellitemode', $satmode);
+		return true;
+	}
+
+	function add() {
+		$data = array(
+			'name' 			=> $this->input->post('name', true),
+			'displayname' 	=> $this->input->post('displayname', true),
+			'orbit' 		=> $this->input->post('orbit', true),
+		);
+		if ($this->input->post('lotw', true) == 'Y') {
+			$data['lotw'] = 'Y';
+		} else {
+			$data['lotw'] = 'N';
+		}
+
+		$this->db->where('name', $this->input->post('name', true));
+		$this->db->where('displayname', $this->input->post('displayname', true));
+		$result = $this->db->get('satellite');
+
+		if ($result->num_rows() == 0) {
+			$this->db->insert('satellite', $data);
+			$insert_id = $this->db->insert_id();
+
+			$data = array(
+				'name' 				=> $this->input->post('modename', true),
+				'satelliteid' 		=> $insert_id,
+				'uplink_mode'		=> $this->input->post('uplinkmode', true),
+				'uplink_freq'		=> $this->input->post('uplinkfrequency', true),
+				'downlink_mode'		=> $this->input->post('downlinkmode', true),
+				'downlink_freq'		=> $this->input->post('downlinkfrequency', true),
+			);
+
+			$this->db->insert('satellitemode', $data);
+		} else {
+			log_message('error', 'Duplicate satellite to be added: '.$data['displayname'].' - '.$data['name']);
+		}
+
+	}
+
+	function getsatellite($id) {
+		$this->db->where('id', $id);
+		return $this->db->get('satellite');
+	}
+
+	function getsatmodes($id) {
+		$this->db->where('satelliteid', $id);
+		return $this->db->get('satellitemode');
+	}
+
+	function insertSatelliteMode() {
+		$data = array(
+			'name' 				=> $this->input->post('name', true),
+			'satelliteid' 		=> $this->input->post('id', true),
+			'uplink_mode'		=> $this->input->post('uplink_mode', true),
+			'uplink_freq'		=> $this->input->post('uplink_freq', true),
+			'downlink_mode'		=> $this->input->post('downlink_mode', true),
+			'downlink_freq'		=> $this->input->post('downlink_freq', true),
+		);
+		$this->db->insert('satellitemode', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
+	}
+
+	function satellite_data() {
+		$this->db->select('COALESCE(NULLIF(satellite.name, \'\'), satellite.displayname) AS satellite, satellitemode.name AS satmode, satellitemode.uplink_mode AS Uplink_Mode, satellitemode.uplink_freq AS Uplink_Freq, satellitemode.downlink_mode AS Downlink_Mode, satellitemode.downlink_freq AS Downlink_Freq');
+		$this->db->join('satellitemode', 'satellite.id = satellitemode.satelliteid', 'LEFT OUTER');
+		$this->db->order_by('satellite', 'ASC');
+		$query = $this->db->get('satellite');
+		return $query->result();
+	}
+
+	function get_sat_info($sat) {
+		$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated, satellite.lotw AS lotw_support');
+		$this->db->join('tle', 'satellite.id = tle.satelliteid', 'left');
+		$this->db->where('name', $sat);
+		$this->db->or_where('displayname', $sat);
+		$query = $this->db->get('satellite');
+		if ($query->num_rows() == 1) {
+			return $query->row();
+		} else {
+			// Looks for TLEs with displayname in case name fails
+			$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated');
+			$this->db->join('tle', 'satellite.id = tle.satelliteid');
+			$this->db->where('displayname', $sat);
+			$query = $this->db->get('satellite');
+			return $query->row();
+		}
+		return null;
+	}
+
+}
+
+?>

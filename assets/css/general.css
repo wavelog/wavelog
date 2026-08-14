@@ -1,0 +1,2484 @@
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('../fonts/JetBrainsMono/JetBrainsMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('../fonts/JetBrainsMono/JetBrainsMono-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+.callsign {
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
+}
+
+/* Callsign input fields — slashed-zero font while typing */
+input[name="callsign"],
+input[id="callsign"],
+select[name="callsign"],
+select[name="callsign"] option,
+input[name="qsl_via"],
+input[name$="_callsign"],
+input[id^="dt-search-"] {
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
+}
+
+body {
+	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
+}
+
+@media (min-width: 992px) {
+	.modal-lg,
+	.modal-xl {
+		max-width: 900px;
+	}
+
+	#firstloginwizard_modal_content {
+		overflow-y: visible;
+	}
+}
+
+@media (max-width: 991px) {
+
+	#firstloginwizard_modal_content {
+		overflow-y: auto;
+	}
+
+	.h-lg-25 {
+		height: 25% !important;
+	}
+
+	.h-lg-50 {
+		height: 50% !important;
+	}
+
+	.h-lg-75 {
+		height: 75% !important;
+	}
+
+	.h-lg-100 {
+		height: 100% !important;
+	}
+
+	.h-lg-auto {
+		height: auto !important;
+	}
+
+	.w-lg-25 {
+		width: 25% !important;
+	}
+
+	.w-lg-50 {
+		width: 50% !important;
+	}
+
+	.w-lg-75 {
+		width: 75% !important;
+	}
+
+	.w-lg-100 {
+		width: 100% !important;
+	}
+
+	.w-lg-auto {
+		width: auto !important;
+	}
+
+}
+/* ============  HEADER MENU ============ */
+/* Adapted from https://bootstrap-menu.com/detail-multilevel.html  */
+/* ============ desktop view ============ */
+@media all and (min-width: 992px) {
+
+	.navbar-nav-left .dropdown-menu > li > a:hover:after {
+		transform: rotate(-90deg);
+	}
+
+	.navbar-nav-right .dropdown-menu > li > a:hover:after {
+		transform: rotate(90deg);
+	}
+
+	.header-dropdown li {
+		position: relative;
+	}
+
+	.nav-item .submenu {
+		display: none;
+		position: absolute;
+		left: 100%;
+		top: -7px;
+	}
+
+	.nav-item .submenu-left {
+		right: 100%;
+		left: auto;
+	}
+
+	.header-dropdown > li:hover > .submenu {
+		display: block;
+	}
+
+	.dropdown:hover > .header-dropdown {
+		display: block;
+	}
+	
+	.dropdown > .header-dropdown {
+		display: none;
+	}
+
+	.navbar-nav-left {
+		flex-grow: 1;
+	}
+
+	.navbar-nav-right {
+		float: right;
+	}
+
+	.dropdown-menu-right {
+		right: 0 !important;
+		left: auto !important;
+	 }
+}
+/* ============ desktop view .end// ============ */
+
+/* ============ small devices ============ */
+@media (max-width: 991px) {
+
+	.header-dropdown {
+		margin-left: 0.7rem;
+		margin-right: 0.7rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.header-dropdown li {
+		position: relative;
+	}
+
+	.nav-item .submenu {
+		display: none;
+		position: absolute;
+		left: 30%;
+		top: -7px;
+	}
+
+}
+/* ============ small devices .end// ============ */
+
+.modal-header {
+	display: initial;
+}
+
+.dropdown-menu {
+	z-index: 2000 !important;
+	position: absolute !important;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.main-nav .container {
+	margin-top: 0px !important;
+}
+
+#nav-container {
+	margin-top: 0;
+	position: sticky;
+	top: 0;
+}
+
+thead > tr > td {
+	position: sticky;
+	top: 45px;
+}
+
+.headerLogo {
+	width: 50px;
+	height: 50px;
+}
+
+.mainLogo {
+	width: 300px;
+	height: 300px;
+}
+
+.navbar {
+	--bs-navbar-padding-y: 0.25rem;
+}
+
+.dashboard {
+	padding-top: none;
+}
+
+.statistics {
+	padding-top: 15px;
+}
+
+.statistics_custom {
+	padding-top: 15px;
+}
+
+.notes {
+	padding-top: 15px;
+}
+
+.eqsl {
+	padding-top: 15px;
+}
+
+.publicsearch {
+	padding-top: 15px;
+	max-width: 540px;
+}
+
+.search {
+	padding-top: 15px;
+}
+
+.logbook {
+	padding-top: 15px;
+}
+
+.adif {
+	padding-top: 15px;
+}
+
+.adif .alert p {
+	margin-bottom: 0rem;
+}
+
+.api .alert p {
+	margin-bottom: 0rem;
+}
+
+.qso_panel {
+	padding-top: 25px;
+}
+
+.qso_panel .iota_ref {
+	text-transform: uppercase;
+}
+
+.qso_panel #sota_ref-selectized {
+	text-transform: uppercase;
+}
+
+.qso_panel #wwff_ref-selectized {
+	text-transform: uppercase;
+}
+
+.qso_panel #pota_ref-selectized {
+	text-transform: uppercase;
+}
+
+.qso_panel #darc_dok-selectized {
+	text-transform: uppercase;
+}
+
+.card-body #sota_ref_edit-selectized {
+	text-transform: uppercase;
+}
+
+.card-body #wwff_ref_edit-selectized {
+	text-transform: uppercase;
+}
+
+.card-body #pota_ref_edit-selectized {
+	text-transform: uppercase;
+}
+
+.card-body #darc_dok_edit-selectized {
+	text-transform: uppercase;
+}
+
+#share_modal {
+	display: grid;
+	grid-template-columns: auto;
+}
+
+#oqrssearch:valid {
+	text-transform: uppercase;
+}
+
+.confirmedGrid {
+	border-color: green;
+}
+
+.workedGrid {
+	border-color: yellow;
+}
+
+.newGrid {
+	border-color: red;
+}
+
+#country {
+	border: none;
+}
+
+TD.eqsl {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.eqsl-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.eqsl-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.eqsl-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
+.eqsl-grey {
+	color: #dddddd !important;
+	font-size: 1.1em;
+}
+
+TD.qsl {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.qsl-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.qsl-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.qsl-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
+.qsl-grey {
+	color: #dddddd !important;
+	font-size: 1.1em;
+}
+
+TD.clublog {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.clublog-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.clublog-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
+.clublog-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.clublog-grey {
+	color: #dddddd !important;
+	font-size: 1.1em;
+}
+
+TD.dcl {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.dcl-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.dcl-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
+.dcl-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+TD.qrz {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.qrz-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.qrz-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.qrz-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
+.qrz-grey {
+	color: #dddddd !important;
+	font-size: 1.1em;
+}
+
+TD.lotw {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.lotw-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.lotw-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.lotw-grey {
+	color: #dddddd !important;
+	font-size: 1.1em;
+}
+
+.lotw-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
+.qso-edit-box {
+	padding: 10px;
+}
+
+.previous-qsos .card-title {
+	margin-bottom: 0px;
+}
+
+.qso-map .card-title {
+	margin-bottom: 0px;
+}
+
+.qso-map {
+	margin-bottom: 10px;
+}
+
+.callsign-suggest {
+	margin-bottom: 10px;
+}
+
+.callsign-suggest .card-title {
+	margin-bottom: 0px;
+}
+
+.callsign-suggestions .scp-call {
+	display: inline-block;
+	margin: 0 4px 4px 0;
+	padding: 1px 5px;
+	cursor: pointer;
+	border-radius: 3px;
+	font-family: monospace;
+}
+
+.callsign-suggestions .scp-call:hover {
+	background: color-mix(in srgb, var(--bs-body-color) 12%, transparent);
+}
+
+.callsign-suggestions .scp-call .text-primary {
+	font-weight: bold;
+}
+
+#search_box #callsign {
+	text-transform: uppercase;
+}
+
+#nav-bar-search-input {
+    text-transform: uppercase;
+}
+
+#nav-bar-search-input::placeholder {
+    text-transform: none;
+}
+
+.settings {
+	padding-top: 15px;
+}
+
+.settings-nav {
+	margin-bottom: 15px;
+	list-style: none;
+	background-color: #fff;
+	border: 1px solid #d1d5da;
+	border-radius: 3px;
+}
+
+.settings-nav .nav-link {
+	list-style: none;
+	background-color: #fff;
+	border: 1px solid #d1d5da;
+}
+
+.settings-nav .nav-link:hover {
+	background-color: #e1e4e8;
+}
+
+/* QSL Card Management CSS */
+
+.qsl_management {
+	padding-top: 15px;
+}
+
+/*
+*
+*
+*/
+.qso-map-new .card-header {
+	background: #0f2027;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color: #ffffff;
+}
+
+/* Round bottom corners of callsign notes header when collapsed */
+.callsign-notes .card-header {
+	border-radius: 0.25rem;
+}
+
+.callsign-notes .card-header[aria-expanded="true"] {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+#myTab .nav-link {
+	padding: 8px !important;
+}
+
+#map {
+	z-index: 1;
+}
+
+#qsomap {
+	z-index: 1;
+	border-radius: 0.25rem;
+	overflow: hidden;
+}
+
+.qso-map {
+	border-radius: 0.25rem;
+	overflow: hidden;
+}
+
+#create_station_profile .row {
+	margin-bottom: 10px;
+}
+
+/*
+*   Debug CSS
+*/
+
+.card {
+	margin-bottom: 10px;
+}
+
+.modal-backdrop {
+	z-index: 1000 !important;
+}
+
+.was-map-dialog .modal-dialog {
+	width: 100%;
+}
+
+@media (min-width: 576px) {
+	.was-map-dialog .modal-dialog {
+		max-width: 73% !important;
+	}
+}
+
+/*
+ * Timepicker alignment
+ */
+.exportdatepicker {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.modal-body {
+	max-height: calc(100vh - 200px);
+	overflow-y: auto;
+}
+
+/* Station Logbooks Styles */
+
+div#station_logbooks_table_length {
+	padding-top: 12px;
+	padding-left: 12px;
+	padding-bottom: 0px;
+}
+
+div#station_logbooks_table_filter {
+	padding-top: 12px;
+	padding-right: 12px;
+	padding-bottom: 0px;
+}
+
+div#station_logbooks_table_info {
+	padding-left: 12px;
+}
+
+div#station_logbooks_table_paginate {
+	padding-right: 12px;
+	padding-bottom: 12px;
+}
+
+div#station_logbooks_linked_table_length {
+	padding-top: 12px;
+	padding-left: 12px;
+	padding-bottom: 0px;
+}
+
+div#station_logbooks_linked_table_filter {
+	padding-top: 12px;
+	padding-left: 12px;
+	padding-bottom: 0px;
+}
+
+div#station_logbooks_linked_table_info {
+	padding-left: 12px;
+}
+
+div#station_logbooks_linked_table_paginate {
+	padding-right: 12px;
+	padding-bottom: 12px;
+}
+
+/* qrz.com profile picture Styles */
+
+.card-title {
+	margin-bottom: 0px;
+}
+
+.callsign-image {
+	margin-bottom: 10px;
+}
+
+.callsign-image-content {
+	display: block;
+	max-height: 300px;
+	max-width: 75%;
+	text-align: center;
+}
+
+.callsign-image-pic {
+	max-height: 250px;
+	max-width: 100%;
+	border: 1px solid var(--bs-card-cap-bg);
+	border-radius: 0.375rem;
+	display: block;
+}
+
+#mapactivators {
+	height: calc(100vh - 380px) !important;
+	max-height: 900px !important;
+}
+
+.copy-icon {
+	display: block;
+	cursor: pointer;
+	padding-left: 0.5em;
+}
+
+.flash-copy {
+	animation-name: flash;
+	animation-timing-function: ease-out;
+	animation-duration: 1s;
+}
+
+@keyframes flash {
+	0% {
+		background: #28a745;
+	}
+
+	100% {
+		background: transparent;
+	}
+}
+
+.api-url {
+	font-family: Monospace;
+}
+
+.api-key {
+	font-family: Monospace;
+}
+
+.qso_panel .dxccsummary {
+	margin-bottom: 10px;
+}
+
+.qso_panel .dxccsummaryheader {
+	cursor: pointer;
+}
+
+.table-striped tbody > tr.activeRow {
+	background-color: #5cb85c !important;
+	--bs-table-bg: none;
+}
+
+.border-top {
+	--bs-border-color: #dee2e6;
+}
+
+.activeRow a {
+	color: #fff;
+}
+
+.w-qsl {
+	max-height: calc(100vh - 270px);
+	overflow-y: auto;
+}
+
+#lotw_manual_results {
+	padding-top: 10px;
+}
+
+.lotw_info_yellow {
+	background-image: linear-gradient(to bottom, #3fb618, yellow);
+}
+
+.lotw_info_orange {
+	background-image: linear-gradient(to bottom, #3fb618, orange);
+}
+
+.lotw_info_red {
+	background-image: linear-gradient(to bottom, #3fb618, red);
+}
+
+.highcharts-strong {
+	font-weight: bold;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+	min-width: 320px;
+	max-width: 100%;
+	margin: 1em auto;
+	max-height: calc(100vh - 200px) !important;
+	overflow-y: auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #ebebeb;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+
+.highcharts-data-table caption {
+	padding: 1em 0;
+	font-size: 1.2em;
+	color: #555;
+}
+
+.highcharts-data-table th {
+	font-weight: 600;
+	padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+	padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+	background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+	background: #f1f7ff;
+}
+
+#radio_cat_state {
+	margin-bottom: 10px;
+}
+
+.previous-qsos table {
+	margin-bottom: 0px;
+}
+
+.lotw-cert-list table {
+	margin-bottom: 0px;
+}
+
+.qso_panel a i.fa.fa-star:hover {
+	color: #ffd700 !important;
+}
+
+#dx,
+#state,
+#gridsquare,
+#sota,
+#wwff,
+#dok,
+#pota {
+	text-transform: uppercase;
+}
+
+#dx::placeholder,
+#state::placeholder,
+#gridsquare::placeholder,
+#sota::placeholder,
+#wwff::placeholder,
+#pota::placeholder {
+    text-transform: none;
+}
+
+#awardInfoButton {
+	display: flex;
+	align-items: center;
+}
+
+#awardInfoButton h2 {
+	margin-right: 30px;
+}
+
+#simpleFleInfo {
+	display: flex;
+	align-items: center;
+}
+
+#simpleFleInfo h2 {
+	margin-right: 30px;
+}
+
+@media (min-width: 768px) {
+
+	.sfletable.table {
+		width: 100%;
+	}
+
+	.sfletable.table thead,
+	.sfletable.table tbody tr {
+		display: block;
+		width: 100%;
+		table-layout: fixed;
+		display: inline-table;
+	}
+
+	.sfletable.table tbody {
+		width: 95%;
+		overflow-y: scroll;
+		position: absolute;
+	}
+
+	.simplefle {
+		--bs-card-bg: none;
+	}
+
+	#sfle_textarea {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
+
+@media (max-width: 767px) {
+
+	.sfletable.table {
+		overflow-x: auto;
+		font-size: 0.8em;
+	}
+
+	#refs_hint {
+		font-size: 0.8em;
+	}
+}
+
+.red {
+	color: var(--red);
+}
+
+.green {
+	color: var(--green);
+}
+
+.blue {
+	color: var(--indigo);
+}
+
+.gray {
+	color: var(--gray);
+}
+
+.orange {
+	color: var(--orange);
+}
+
+.qso_eqsl_qslmsg_update {
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.icon_selectBox {
+	position: relative;
+}
+
+.icon_selectBox_data {
+	display: none;
+	position: absolute;
+	z-index: 50;
+	left: initial;
+	border: 1px solid var(--bs-border-color);
+	padding: 5px;
+	top: initial;
+	background-color: var(--bs-card-bg);
+	color: var(--bs-body-color);
+}
+
+.icon_selectBox_data label {
+	display: block;
+	margin-bottom: 0px !important;
+	text-align: center;
+	cursor: pointer;
+}
+
+.icon_selectBox_data label:hover {
+	background-color: var(--bs-primary);
+}
+
+.inputError {
+	border: 2px solid rgb(217, 83, 79);
+}
+
+table.dataTable thead th,
+table.dataTable thead td,
+table.dataTable tfoot th,
+table.dataTable tfoot td {
+	text-align: center !important;
+}
+
+.table-responsive .dropdown-menu.notdisplay {
+	padding: 0px !important;
+	border: 0px !important;
+}
+
+#partial_view .table-responsive {
+	overflow-x: unset;
+}
+
+label {
+	margin-bottom: 0.25rem;
+}
+
+.btn-pwd-showhide,
+.btn-pwd-showhide:hover,
+.btn-included-on-field,
+.btn-included-on-field:hover {
+	border: 1px solid var(--cl-border-btn-pwd);
+	cursor: pointer;
+}
+
+.dxccsummaryheader:after {
+	content: "\02795"; /* Unicode character for "plus" sign (+) */
+	float: right;
+	margin-left: 5px;
+	color: #000000;
+	background-image: linear-gradient(
+		to right,
+		white 0,
+		white 12ch,
+		black 12ch,
+		black 100%
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: transparent;
+}
+
+.dxccsummaryheaderopened:after {
+	content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.coordinates {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 200px);
+	justify-content: center;
+	gap: 0 1rem;
+}
+
+.coord-pair {
+	white-space: nowrap;
+}
+
+.coord-pair .text-success {
+	display: inline-block;
+	width: 120px;
+}
+
+.cohidden {
+    display:none;
+}
+
+@media (min-width: 1920px) {
+	.coordinates {
+		display: flex;
+		gap: 0 1rem;
+	}
+	#latDeg, #lngDeg {
+		width: 170px;
+	}
+	#locator, #distance, #bearing, #ituzonedisplay, #cqzonedisplay{
+		width: 120px;
+	}
+}
+
+.hamsatBgLin {
+	background-color: rgb(224 242 254) !important;
+	--bs-badge-color: rgb(2 132 199) !important;
+}
+
+.hamsatBgData {
+	background-color: rgb(250 232 255) !important;
+	--bs-badge-color: rgb(192 38 211) !important;
+}
+
+.hamsatBgFm {
+	background-color: rgb(254 243 199) !important;
+	--bs-badge-color: rgb(217 119 6) !important;
+}
+
+.spw-buttons {
+	--bs-btn-padding-x: 0.3rem;
+	--bs-btn-padding-y: 0.6rem;
+	display: none;
+}
+
+.quickswitcher.disabled {
+    --bs-dropdown-link-disabled-color: initial !important;
+}
+
+#station_logbooks_table tbody td, #station_locations_table tbody td, #user_contests_table tbody td {
+	text-align: center; 
+	vertical-align: middle;
+}
+
+.table .editRow {
+	--bs-table-bg: none !important;
+	--bs-table-accent-bg: none !important;
+}
+
+/* Used in maps */
+.legend {
+	padding: 6px 8px;
+	font: 14px Arial, Helvetica, sans-serif;
+	line-height: 24px;
+	color: rgb(255, 255, 255) !important;	
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 10px;
+	background-color: rgb(52, 55, 56) !important;
+}
+.legend h4 {
+	text-align: center;
+	font-size: 16px;
+	margin: 2px 12px 8px;
+	color: rgb(255, 255, 255) !important;
+}
+.legend span {
+	position: relative;
+	bottom: 3px;
+}
+.legend i {
+	width: 18px;
+	height: 18px;
+	float: left;
+	margin: 0 8px 0 0;
+}
+
+/* Permanent region labels on the activation planner zone/state overlays */
+.leaflet-tooltip.overlay-region-label {
+	background: rgba(0, 0, 0, 0.55);
+	border: none;
+	box-shadow: none;
+	color: #fff;
+	font-weight: 600;
+	font-size: 11px;
+	padding: 1px 5px;
+	border-radius: 3px;
+	max-width: 140px;
+	white-space: normal;
+	text-align: center;
+}
+.leaflet-tooltip.overlay-region-label::before {
+	display: none;
+}
+
+/* Dropdown toggle "active" state — any checkbox in the menu checked.
+ * Mirrors the advanced logbook filter button (.btn-filter-active). */
+.btn-filter-active {
+	background-color: #ffc107 !important;
+	border-color: #ffc107 !important;
+	color: #000 !important;
+}
+.btn-filter-active:hover {
+	background-color: #e0a800 !important;
+	border-color: #e0a800 !important;
+}
+
+/* SOTA/POTA/WWFF reference popups (activation planner) */
+.ref-popup { line-height: 1.4; min-width: 180px; padding-left: 10px; border-left: 5px solid #888; }
+.ref-popup-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.ref-popup-type {
+	display: inline-block;
+	font-size: 0.65rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 2px 8px;
+	border-radius: 9999px;
+	line-height: 1.3;
+}
+.ref-popup-ref { font-size: 1.1rem; font-weight: 700; line-height: 1.2; }
+a.ref-popup-ref { color: inherit; text-decoration: none; }
+a.ref-popup-ref:hover { text-decoration: underline; }
+a.ref-popup-ref .fas { font-size: 0.7rem; opacity: 0.7; }
+.ref-popup-name { font-weight: 600; margin-bottom: 6px; }
+.ref-popup-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.85rem;
+}
+.ref-popup-row + .ref-popup-row { margin-top: 3px; }
+.ref-popup-row .fas { width: 14px; text-align: center; opacity: 0.75; }
+
+/* Coloured marker swatch in the activation planner Refs dropdown */
+.ref-menu-dot {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	color: #fff;
+	font-size: 0.7rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+/* Reference map markers reuse the .ref-menu-dot swatch inside a divIcon */
+.ref-map-icon { background: transparent; border: none; }
+
+/* "Already activated" POTA marker: gold swatch with a check badge. */
+.ref-menu-dot.is-activated { background: #ffd60a; color: #1f1f1f; position: relative; }
+.ref-menu-dot.is-activated .ref-activated-check {
+	position: absolute;
+	right: -3px;
+	bottom: -3px;
+	font-size: 0.6rem;
+	color: #198754;
+	background: #fff;
+	border-radius: 50%;
+	padding: 1px;
+	line-height: 1;
+}
+.ref-popup-row.is-activated { color: #198754; font-weight: 600; }
+.ref-popup-row.is-activated .fas { opacity: 1; color: #198754; }
+
+/* IOTA tag labels (clickable) drawn at the centre of each rectangle overlay */
+.iota-label {
+	background: rgba(23, 162, 184, 0.9);
+	color: #fff;
+	font-size: 9px;
+	font-weight: 700;
+	line-height: 14px;
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid rgba(255, 255, 255, 0.45);
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+/* Blocking loading overlay for the activation planner map */
+.gl-loading {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.35);
+	cursor: wait;
+}
+
+.info.leaflet-control {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+	background-color: rgb(52, 55, 56) !important;
+	color: rgb(255, 255, 255) !important;
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: rgb(255, 255, 255) !important;
+}
+
+.leaflet-popup-content-wrapper {
+	background-color: rgb(52, 55, 56) !important;
+	color: rgb(255, 255, 255) !important;
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.leaflet-popup-close-button {
+	color: rgb(255, 255, 255) !important;
+}
+
+.leaflet-popup-tip {
+	background-color: rgb(52, 55, 56) !important;
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.lba-label {
+    background-color: rgb(52, 55, 56) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid #fff; /* White border */
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+/* Modify the tooltip's arrow (triangle) */
+.lba-label::before {
+    border-bottom-color: rgb(52, 55, 56) !important; /* Triangle color (matches background) */
+    border-width: 6px; /* Keep same size */
+}
+
+/* Create a white border effect around the triangle */
+.lba-label::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 8px 8px 8px; /* triangle pointing down */
+    border-color: transparent transparent white transparent; /* white bottom border */
+    top: -8px; /* place above the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1; /* optional: to place it behind */
+}
+
+
+.satellite-label {
+    background-color: rgb(52, 55, 56) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid #fff; /* White border */
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+/* Modify the tooltip's arrow (triangle) */
+.satellite-label::before {
+    border-top-color: rgb(52, 55, 56) !important; /* Triangle color (matches background) */
+    border-width: 6px; /* Keep same size */
+}
+
+/* Create a white border effect around the triangle */
+.satellite-label::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 8px; /* Slightly larger than ::before */
+    border-color: white transparent transparent transparent; /* White top border */
+    bottom: -16px; /* Match ::before position */
+    left: 50%;
+    transform: translateX(-50%);
+	z-index: -1;
+}
+
+
+.blank-row {
+	height: 20px !important;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.tables-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Optional: add some space between tables */
+    justify-content: center;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+	max-width: 100%; /* Ensure the container doesn't exceed the viewport width */
+    padding: 10px; /* Optional: add some padding */
+    box-sizing: border-box;
+}
+
+.table-wrapper {
+    flex: 1 1 400px; /* Adjust the base width of tables */
+    box-sizing: border-box;
+}
+
+.multiselect-container.dropdown-menu {
+    --bs-dropdown-padding-y: 0;
+}
+
+.btn-group .multiselect-container .multiselect-option input[type="radio"] {
+    display: none;
+}
+
+@media screen and (max-width:991px){ 
+	.multiselect-container button.dropdown-item {
+	  pointer-events:none;
+	}
+	.multiselect-container span.form-check input {
+	  pointer-events: all;
+	}
+	.multiselect-container span.form-check label  {
+	  pointer-events: none;
+	}
+	.btn-group .multiselect-container .multiselect-option input[type="radio"] {
+		display: block !important;
+	}
+}
+
+/* ============  Glanceyear ============ */
+.glanceyear-container {
+	border: 1px solid #D8D8D8;
+	border-radius: 5px;
+	max-width: 683px;
+}
+.glanceyear-header {
+	position: relative;
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #D8D8D8;
+	border-radius: 5px 5px 0 0;
+	color: #000;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0;
+	padding: 7px 10px;
+}
+.glanceyear-quantity {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color:#aaa;
+	font-size: 10px;
+}
+.glanceyear-content { padding: 10px; }
+.glanceyear-text {
+	color: #aaa;
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0 0;
+	padding: 0;
+}
+.glanceyear-summary { color: #aaa; font-size: 12px; margin: 0 10px 10px; }
+
+.glanceyear-legend {
+	color: #aaa;
+	float: right;
+	font-size: 12px;
+	text-align: middle;
+	text-wrap: none;
+}
+.glanceyear-legend span { display: inline-block; height: 10px; width: 10px; }
+
+svg rect.day { fill: #eee; shape-rendering: crispedges; }
+svg rect.day:hover { stroke: #aaa; stroke-width: 1px; }
+svg rect.day[data-col] { fill: #3d9692; }
+svg rect.day[data-col='1'] { fill: #c3dbda; }
+svg rect.day[data-col='3'] { fill: #5caeaa; }
+svg rect.day[data-col='6'] { fill: #277672; }
+svg rect.day[data-col='12'] { fill: #176662; }
+svg rect.day[data-col='24'] { fill: #075652; }
+svg rect.day[data-col='48'] { fill: #004642; }
+
+svg text { fill: #CCC; font-size: 9px; }
+svg text.month { fill: #AAA; }
+
+.svg-tag {
+	background-color: rgba(0,0,0,0.8);
+	border-radius: 3px;
+	color: #eee;
+	font-size: 12px;
+	line-height: 15px;
+	padding: 5px 15px;
+	position: absolute;
+	text-align: center;
+}
+.svg-tag:after {
+	border-color: rgba(0,0,0,0.8) transparent transparent transparent;
+	border-style: solid;
+	border-width: 5px 5px 0 5px;
+	bottom: -5px;
+	content: "";
+	height: 0;
+	left: 50%;
+	margin-left: -5px;
+	position: absolute;
+	width: 0;
+}
+
+.glanceyear-legend-1 {
+	background-color: #eee;	
+}
+.glanceyear-legend-2 {
+	background-color: #c3dbda;	
+}
+.glanceyear-legend-3 {
+	background-color: #5caeaa;	
+}
+.glanceyear-legend-4 {
+	background-color: #277672;	
+}
+
+.leaflet-popup-content {
+    font-family: "Twemoji Country Flags", sans-serif;
+	min-width: 260px; /* Minimum width to ensure readability */
+}
+
+.big-flag {
+	float: left;
+    font-size: 3em;
+    line-height: 1;
+	white-space: no-wrap;
+	display: flex;
+    align-items: center; /* Vertically aligns the flag and callsign */
+    gap: 0.5em; /* Adds space between the flag and callsign */
+}
+
+.sync-indicator {
+   display: none;
+   animation: blinker 2s linear infinite;
+}
+
+.sync-indicator.active {
+   display: inline;
+}
+
+@keyframes blinker {
+   50% {
+      opacity: 0;
+   }
+}
+
+.spacingcell {
+   background-color: transparent !important;
+   --bs-table-accent-bg: transparent !important;
+   border-top-style: none !important;
+   border-bottom-style: none !important;
+   border-right-style: none !important;
+   --dt-row-hover: transparent !important;
+   --dt-row-stripe: transparent !important;
+}
+
+/* Target the bootstrap-multiselect button */
+.btn.dropdown-toggle.multiselect {
+  position: relative;
+  padding-right: 30px; /* room for arrow */
+}
+
+.qsl-gallery .waterfall-grid {
+		column-count: 4;
+		column-gap: 20px;
+	}
+
+	.qsl-gallery .waterfall-item {
+		break-inside: avoid;
+		margin-bottom: 20px;
+		display: inline-block;
+		width: 100%;
+	}
+
+	@media (max-width: 767px) {
+		.qsl-gallery .waterfall-grid {
+			column-count: 1;
+		}
+	}
+
+	@media (min-width: 768px) and (max-width: 991px) {
+		.qsl-gallery .waterfall-grid {
+			column-count: 2;
+		}
+	}
+
+	@media (min-width: 992px) and (max-width: 1199px) {
+		.qsl-gallery .waterfall-grid {
+			column-count: 3;
+		}
+	}
+
+	.qsl-gallery .card-img-container {
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #f8f9fa;
+	}
+
+	.qsl-gallery .qsl-card-img {
+		object-fit: contain;
+		width: 100%;
+		cursor: pointer;
+		transition: transform 0.2s ease;
+	}
+
+	.qsl-gallery .qsl-card-img:hover {
+		transform: scale(1.03);
+	}
+
+	.qsl-gallery .card:hover {
+		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	}
+
+	.qsl-gallery .card {
+		display: flex;
+		flex-direction: column;
+		transition: box-shadow 0.3s ease;
+	}
+
+	.qsl-gallery .card-body {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.legendClose {
+		float: right;
+	}
+
+
+/* Ensure tooltip appears above everything */
+.tooltip {
+    z-index: 9999 !important;
+}
+
+.qso_icons {
+	user-select: none;
+}
+
+.heatmap-grid { 
+	display: grid; 
+	grid-template-columns: repeat(24, minmax(0, 1fr)); 
+	gap: 2px; 
+	max-width: 100%; 
+}
+.heatmap-header {
+	text-align: center;
+	padding: 6px 4px;
+}
+.heatmap-row-label {
+	font-weight: 600;
+	padding: 8px 4px;
+	text-align: left;
+	font-size: 0.85rem;
+}
+.heatmap-cell {
+	text-align: center;
+	padding: 8px 4px;
+	border-radius: 3px;
+	border: 1px solid #d1d5da;
+	cursor: default;
+	color: #000;
+}
+.legend-item { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem;}
+.legend-swatch { width: 16px; height: 16px; border: 1px solid #d1d5da; border-radius: 3px; display: inline-block; }
+
+.my-div-icon {
+	white-space: nowrap;
+	background: transparent !important;
+	border: none !important;
+}
+
+#gridsquare_map {
+	height: calc(100vh - 350px) !important; 
+}
+
+.lbatable thead tr th:nth-child(1),
+.lbatable tbody tr td:nth-child(1) {
+	padding-left: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* ===================================================================
+   QSL Postcard Designer
+   =================================================================== */
+
+/* --- Toolbar --- */
+.qsl-toolbar .qsl-tb-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.qsl-tb-label {
+	font-size: .68rem;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	opacity: .65;
+	margin-bottom: .25rem;
+}
+
+/* --- Three-pane editor grid --- */
+.qsl-editor {
+	display: grid;
+	grid-template-columns: 240px minmax(0, 1fr) 280px;
+	gap: 1rem;
+	align-items: start;
+}
+
+@media (max-width: 1199.98px) {
+	.qsl-editor {
+		grid-template-columns: 1fr;
+	}
+}
+
+.qsl-pane {
+	margin-bottom: 0;
+}
+
+/* Right column stack (template options + properties) */
+.qsl-right-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* --- Palette (left) --- */
+.qsl-palette .card-body {
+	max-height: 78vh;
+	overflow-y: auto;
+}
+
+.qsl-cat {
+	margin-bottom: .35rem;
+}
+
+.qsl-cat > summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: .85rem;
+	padding: .3rem .4rem;
+	border-radius: 6px;
+	user-select: none;
+}
+
+.qsl-cat > summary:hover {
+    color: var(--bs-primary-text-emphasis);
+    background: var(--bs-primary-bg-subtle);
+}
+
+
+.qsl-cat-body {
+	padding: .35rem 0 .15rem .25rem;
+}
+
+.qsl_designer_field {
+	cursor: grab;
+	user-select: none;
+	padding: 5px 8px;
+	margin-bottom: 5px;
+	border: 1px solid var(--bs-border-color);
+	border-radius: 6px;
+	background: var(--bs-body-bg);
+	color: var(--bs-body-color);
+	font-family: monospace;
+	font-size: .8rem;
+	transition: background .12s, border-color .12s;
+}
+
+.qsl_designer_field:hover {
+	color: var(--bs-emphasis-color);
+    background: var(--bs-primary-bg-subtle);
+}
+
+.qsl_designer_field:active {
+	cursor: grabbing;
+}
+
+/* WYSIWYG ghost rows for "repeats per QSO" fields (non-interactive clones) */
+.qsl_designer_ghost {
+	opacity: .35;
+	pointer-events: none;
+}
+
+/* --- Properties (right) --- */
+.qsl-props .card-body {
+	max-height: 78vh;
+	overflow-y: auto;
+}
+
+/* --- Canvas (center) --- */
+.qsl-canvas .card-body {
+	background: var(--bs-tertiary-bg, #eef0f2);
+}
+
+#stageScroll {
+	overflow: auto;
+	max-height: 80vh;
+	padding: 14px;
+}
+
+#stageZoom {
+	width: 940px;
+	height: 640px;
+}
+
+#rulerWrap {
+	position: relative;
+	width: 940px;
+	height: 640px;
+}
+
+#rulerTop,
+#rulerLeft {
+	position: absolute;
+	background: #e9ecef;
+	background: light-dark(#e9ecef, #343a40);
+	border: 1px solid #dee2e6;
+	border-color: light-dark(#dee2e6, #495057);
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
+	font-weight: 600;
+}
+
+#rulerTop {
+	left: 40px;
+	top: 0;
+	width: 900px;
+	height: 40px;
+}
+
+#rulerLeft {
+	left: 0;
+	top: 40px;
+	width: 40px;
+	height: 600px;
+}
+
+#stage {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+	width: 900px;
+	height: 600px;
+	border: 1px solid var(--bs-border-color);
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		linear-gradient(to right, rgba(0, 0, 0, .06) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(0, 0, 0, .06) 1px, transparent 1px);
+	background-size: 37.5px 37.5px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 14px rgba(0, 0, 0, .2);
+}
+
+/* Ruler tick marks */
+.ruler-tick-top {
+	position: absolute;
+	bottom: 0;
+	width: 1px;
+	background: #495057;
+	background: light-dark(#495057, #adb5bd);
+}
+
+.ruler-tick-top.major {
+	height: 18px;
+}
+
+.ruler-tick-top.minor {
+	height: 9px;
+	opacity: .55;
+}
+
+.ruler-tick-left {
+	position: absolute;
+	right: 0;
+	height: 1px;
+	background: #495057;
+	background: light-dark(#495057, #adb5bd);
+}
+
+.ruler-tick-left.major {
+	width: 18px;
+}
+
+.ruler-tick-left.minor {
+	width: 9px;
+	opacity: .55;
+}
+
+/* Ruler labels */
+.ruler-label-top {
+	position: absolute;
+	top: 3px;
+	font-size: 10px;
+	line-height: 1;
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
+	background: transparent;
+}
+
+.ruler-label-left {
+	position: absolute;
+	right: 18px;
+	font-size: 10px;
+	line-height: 1;
+	color: #212529;
+	color: light-dark(#212529, #e9ecef);
+	background: transparent;
+}
+
+/* --- Placed elements (sit on the white postcard) --- */
+.qsl_designer_placed {
+	position: absolute;
+	padding: 2px 5px;
+	border: 1px solid rgba(13, 110, 253, .5);
+	border-radius: 4px;
+	background: rgba(255, 255, 255, .92);
+	color: #111111;
+	font-weight: 600;
+	line-height: 1.25;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
+	cursor: move;
+	white-space: nowrap;
+}
+
+.qsl_designer_placed:hover {
+	border-color: var(--bs-primary);
+}
+
+.qsl_designer_placed.selected {
+	border: 1px solid #ff7a00;
+	box-shadow: 0 0 0 2px rgba(255, 122, 0, .35);
+	z-index: 50;
+}
+
+/* --- Snapping guides --- */
+.qsl-guide {
+	position: absolute;
+	pointer-events: none;
+	z-index: 60;
+}
+
+.qsl-guide-v {
+	top: 0;
+	width: 0;
+	height: 600px;
+	border-left: 1px dashed #ff3b8b;
+}
+
+.qsl-guide-h {
+	left: 0;
+	width: 900px;
+	height: 0;
+	border-top: 1px dashed #ff3b8b;
+}
+
+/* --- Marquee (rubber-band) selection --- */
+.qsl-marquee {
+	position: absolute;
+	pointer-events: none;
+	z-index: 70;
+	border: 1px solid var(--bs-primary, #0d6efd);
+	background: rgba(13, 110, 253, .12);
+}
+
+/* --- Context menu --- */
+.qsl-ctx-menu {
+	position: fixed;
+	z-index: 2000;
+	min-width: 184px;
+	padding: 4px;
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+	border-radius: 8px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, .25);
+}
+
+.qsl-ctx-item {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 6px 10px;
+	border: 0;
+	border-radius: 5px;
+	background: transparent;
+	color: var(--bs-body-color);
+	font-size: .85rem;
+	text-align: left;
+}
+
+.qsl-ctx-item:hover {
+	background: rgba(127, 127, 127, .15);
+	background: color-mix(in srgb, var(--bs-body-color) 50%, transparent);
+}
+
+.qsl-ctx-item.text-danger:hover {
+	background: rgba(220, 53, 69, .15);
+	background: color-mix(in srgb, var(--bs-danger) 50%, transparent);
+}
+
+.qsl-ctx-sep {
+	height: 1px;
+	margin: 4px 6px;
+	background: var(--bs-border-color);
+}
+
+/* Context submenu (align & distribute) */
+.qsl-ctx-sub {
+	position: relative;
+}
+
+.qsl-ctx-submenu {
+	position: absolute;
+	left: 100%;
+	top: -5px;
+	display: none;
+	min-width: 232px;
+	margin-left: 2px;
+	padding: 4px;
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+	border-radius: 8px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, .25);
+}
+
+.qsl-ctx-sub:hover > .qsl-ctx-submenu {
+	display: block;
+}
+
+/* ============================================================
+   Custom map tile styles (user-selectable; override active theme)
+   Body class = user_options map_custom.tile.style (see custom_map_style_helper).
+   map-follow = no override (active theme overrides.css wins).
+   Higher specificity (body.<slug>) beats the theme's bare .leaflet-tile.
+   ============================================================ */
+
+/* Follow active theme -- intentionally empty; theme overrides.css wins */
+body.map-follow .leaflet-tile,
+body.map-follow path.grid-rectangle,
+body.map-follow span.grid-text > font,
+body.map-follow span.grid-text-unworked > font,
+body.map-follow span.grid-text-worked > font {}
+
+/* --- Light looks: cosmo / default (+ _wide) -- no tile filter --- */
+body.map-cosmo .leaflet-tile,
+body.map-cosmo_wide .leaflet-tile,
+body.map-default .leaflet-tile,
+body.map-default_wide .leaflet-tile { filter: none !important; }
+
+body.map-cosmo path.grid-rectangle,
+body.map-cosmo_wide path.grid-rectangle,
+body.map-default path.grid-rectangle,
+body.map-default_wide path.grid-rectangle { stroke: rgba(97, 97, 97, 1); }
+
+body.map-cosmo span.grid-text > font,
+body.map-cosmo_wide span.grid-text > font,
+body.map-default span.grid-text > font,
+body.map-default_wide span.grid-text > font,
+body.map-cosmo span.grid-text-unworked > font,
+body.map-cosmo_wide span.grid-text-unworked > font,
+body.map-default span.grid-text-unworked > font,
+body.map-default_wide span.grid-text-unworked > font { color: rgb(97, 97, 97) !important; font-weight: 400 !important; }
+
+body.map-cosmo span.grid-text-worked > font,
+body.map-cosmo_wide span.grid-text-worked > font,
+body.map-default span.grid-text-worked > font,
+body.map-default_wide span.grid-text-worked > font { color: rgb(255, 255, 255) !important; font-weight: 400 !important; }
+
+/* --- Dark looks: shared grid-text (identical across cyborg/darkly/superhero) --- */
+body.map-cyborg path.grid-rectangle,
+body.map-cyborg_wide path.grid-rectangle,
+body.map-darkly path.grid-rectangle,
+body.map-darkly_wide path.grid-rectangle,
+body.map-superhero path.grid-rectangle,
+body.map-superhero_wide path.grid-rectangle { stroke: rgba(200, 200, 200, 0.5); }
+
+body.map-cyborg span.grid-text > font,
+body.map-cyborg_wide span.grid-text > font,
+body.map-darkly span.grid-text > font,
+body.map-darkly_wide span.grid-text > font,
+body.map-superhero span.grid-text > font,
+body.map-superhero_wide span.grid-text > font,
+body.map-cyborg span.grid-text-worked > font,
+body.map-cyborg_wide span.grid-text-worked > font,
+body.map-darkly span.grid-text-worked > font,
+body.map-darkly_wide span.grid-text-worked > font,
+body.map-superhero span.grid-text-worked > font,
+body.map-superhero_wide span.grid-text-worked > font { color: rgba(255, 255, 255, 1) !important; font-weight: 400 !important; }
+
+body.map-cyborg span.grid-text-unworked > font,
+body.map-cyborg_wide span.grid-text-unworked > font,
+body.map-darkly span.grid-text-unworked > font,
+body.map-darkly_wide span.grid-text-unworked > font,
+body.map-superhero span.grid-text-unworked > font,
+body.map-superhero_wide span.grid-text-unworked > font { color: rgba(255, 255, 255, .4) !important; font-weight: 400 !important; }
+
+/* Dark tile filters -- the only difference between dark looks */
+body.map-cyborg .leaflet-tile,
+body.map-cyborg_wide .leaflet-tile { filter: invert() hue-rotate(180deg) grayscale(0.8) !important; }
+
+body.map-darkly .leaflet-tile,
+body.map-darkly_wide .leaflet-tile { filter: invert() hue-rotate(180deg) grayscale(0.8) brightness(1.2) !important; }
+
+body.map-superhero .leaflet-tile,
+body.map-superhero_wide .leaflet-tile { filter: invert() hue-rotate(180deg) sepia(100%) hue-rotate(180deg) !important; }
+
+/* --- Synthetic (non-theme) looks --- */
+body.map-gray .leaflet-tile { filter: contrast(1.3) grayscale(0.8) !important; }
+body.map-gray path.grid-rectangle { stroke: rgba(0, 0, 0, 0.09); }
+body.map-gray span.grid-text > font { color: rgba(0, 0, 0, 0.09) !important; font-weight: 400 !important; }
+body.map-gray span.grid-text-unworked > font { color: rgba(0, 0, 0, .4) !important; font-weight: 400 !important; }
+body.map-gray span.grid-text-worked > font { color: rgba(0, 0, 0, 1) !important; font-weight: 400 !important; }
+
+body.map-high-contrast .leaflet-tile { filter: saturate(2.2) grayscale(0.8) contrast(1.2) !important; }
+body.map-high-contrast path.grid-rectangle { stroke: rgba(0, 0, 0, 0.2); }
+body.map-high-contrast span.grid-text > font { color: rgba(0, 0, 0, 0.4) !important; font-weight: 400 !important; }
+body.map-high-contrast span.grid-text-unworked > font { color: rgba(0, 0, 0, 0.2) !important; font-weight: 400 !important; }
+body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) !important; font-weight: 400 !important; }
+
+/* ============================================================
+   Gridsquare Lookup (gridlookup view)
+   - Mobile toolbar: secondary controls collapse behind
+     "More options" on phones (xs); full inline toolbar on sm+.
+   - Compass-style grid-border readout: a Leaflet control
+     (top-right of the map) with the current square centred
+     and N/S/E/W neighbours around it.
+   ============================================================ */
+
+/* Mobile toolbar */
+#glControls .gl-input { max-width: 150px; }
+.gl-chevron {
+	display: inline-block;
+	width: .45em;
+	height: .45em;
+	margin-right: .4em;
+	vertical-align: middle;
+	border-right: 2px solid currentColor;
+	border-top: 2px solid currentColor;
+	transform: rotate(45deg);          /* › points right when collapsed */
+	transition: transform .15s ease;
+}
+#glControls.gl-expanded .gl-chevron { transform: rotate(135deg); }  /* ∨ points down when open */
+#glControls:not(.gl-expanded) .gl-more-open,
+#glControls.gl-expanded .gl-more-closed { display: none; }
+#glControls .gl-refsrow { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+@media (max-width: 575.98px) {
+	#glControls:not(.gl-expanded) .gl-secondary { display: none !important; }
+	#glControls .gl-input { flex: 0 0 100%; max-width: 100%; }
+	#glControls .gl-refsrow { flex: 0 0 100%; }
+	#glControls .gl-search-wrap { flex: 0 0 100%; }
+	.gl-more {
+		flex: 0 0 100%;
+		border-radius: 0;
+		text-align: left;
+		padding-left: 0;
+	}
+}
+
+/* Activation planner reference search box. The input inherits its chrome from
+   Bootstrap's .form-control-sm; .gl-search-* only adds the icon, dropdown and
+   type-badge rows (the badge reuses .ref-menu-dot verbatim). */
+.gl-search-wrap {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	flex: 0 0 auto;          /* don't stretch across the toolbar */
+	width: 240px;            /* desktop width; mobile goes full-width via the media query */
+	max-width: 100%;
+}
+.gl-search-icon {
+	position: absolute;
+	top: 50%;                /* vertically centre inside the input */
+	left: .55rem;
+	transform: translateY(-50%);
+	color: var(--bs-secondary-color, #6c757d);
+	font-size: .8rem;
+	pointer-events: none;
+	z-index: 2;
+}
+/* Specificity (#id .class) beats the theme overrides.css `.form-control` padding
+   shorthand (loaded after general.css), so the icon's left padding survives. */
+#glControls .gl-search-input { padding-left: 1.75rem; }
+.gl-search-results {
+	position: absolute;
+	top: calc(100% + 2px);
+	left: 0;
+	min-width: 100%;
+	max-width: 26rem;
+	max-height: 60vh;
+	overflow-y: auto;
+	z-index: 1000;
+	background: var(--bs-body-bg, #fff);
+	color: var(--bs-body-color, #212529);
+	border: 1px solid var(--bs-border-color, #dee2e6);
+	border-radius: .375rem;
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+	padding: .25rem;
+}
+.gl-search-header {
+	padding: .25rem .5rem;
+	font-size: .7rem;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	color: var(--bs-secondary-color, #6c757d);
+}
+.gl-search-item {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	padding: .3rem .5rem;
+	border-radius: .25rem;
+	cursor: pointer;
+}
+.gl-search-item:hover,
+.gl-search-item.is-active {
+	background: var(--bs-primary, #0d6efd);
+	color: #fff;
+}
+.gl-search-item:hover .gl-search-sub,
+.gl-search-item.is-active .gl-search-sub { color: rgba(255, 255, 255, .8); }
+.gl-search-ref { font-weight: 600; white-space: nowrap; }
+.gl-search-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1 1 auto; }
+.gl-search-sub { font-size: .72rem; color: var(--bs-secondary-color, #6c757d); white-space: nowrap; }
+.gl-search-empty,
+.gl-search-loading {
+	padding: .5rem .75rem;
+	font-size: .85rem;
+	color: var(--bs-secondary-color, #6c757d);
+}
+.gl-search-footer {
+	padding: .3rem .5rem;
+	font-size: .72rem;
+	color: var(--bs-secondary-color, #6c757d);
+	border-top: 1px solid var(--bs-border-color, #dee2e6);
+	margin-top: .25rem;
+}
+
+/* Compass grid-border readout panel (Leaflet control). Neutral rgba tints
+   read on both light and dark themes; the nearest edge uses Bootstrap green. */
+.gl-borders-control.leaflet-control {
+	position: relative;
+	padding: .5rem .6rem .6rem;
+	background: #000;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: .55rem;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, .22);
+	max-width: 21rem;
+}
+/* Dismiss button: top-right of the panel. White to match the title on the black panel. */
+.gl-comp-close {
+	position: absolute; top: .2rem; right: .35rem;
+	background: transparent; border: 0; padding: .1rem .4rem;
+	color: #fff; font-size: 1.2rem; line-height: 1; cursor: pointer; opacity: .65;
+}
+.gl-comp-close:hover, .gl-comp-close:focus { opacity: 1; }
+.gl-comp-title {
+	font-size: 16px;
+	margin: 2px 12px 8px;
+	color: rgb(255, 255, 255) !important;
+}
+.gl-compass {
+	display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: .4rem; max-width: 30rem;
+}
+.gl-comp-edge, .gl-comp-center {
+	display: flex; flex-direction: column; align-items: center; justify-content: center;
+	gap: .12rem; padding: .45rem .2rem; border-radius: .45rem;
+	text-align: center; min-height: 3.8rem;
+}
+.gl-comp-edge { background: rgba(127, 127, 127, .16); border: 1px solid rgba(127, 127, 127, .30); }
+.gl-comp-center { border: 1px dashed rgba(127, 127, 127, .55); }
+.gl-comp-edge.gl-comp-nearest { background: rgba(25, 135, 84, .16); border-color: #198754; }
+.gl-comp-pin { font-size: .85rem; opacity: .85; }   /* crosshairs icon inside the centre badge */
+.gl-badge {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 1.5rem; height: 1.5rem; border-radius: 50%;
+	border: 1px solid currentColor; font-weight: 700; font-size: .62rem; line-height: 1; opacity: .85;
+}
+.gl-comp-edge.gl-comp-nearest .gl-badge { background: #198754; color: #fff; border-color: #198754; opacity: 1; }
+.gl-comp-grid { font-weight: 700; font-size: .92rem; }
+.gl-comp-center .gl-comp-grid { font-weight: 700;}
+.gl-comp-meta { font-size: .70rem; }
+@media (max-width: 359.98px) {                              /* let the meta line breathe on small phones */
+	.gl-comp-meta { font-size: .62rem; }
+	.gl-comp-edge, .gl-comp-center { padding: .35rem .1rem; }
+}
+
+/* On-map direction arrows (spokes + labeled tips) — the spatial alternative to
+   the corner compass; drawn at all sizes. Each tip centres on its border point. */
+.gl-arrow-anchor { background: transparent; border: 0; }
+.gl-arrow-tip {
+	transform: translate(-50%, -50%);
+	display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap;
+	padding: 1px 6px; border-radius: 9px;
+	background: rgba(0, 0, 0, .72); color: #fff;
+	font-size: .70rem; font-weight: 600; line-height: 1.5;
+	border: 1px solid rgba(255, 255, 255, .45);
+}
+.gl-arrow-tip .gl-arrow-head {                       /* CSS triangle pointing north, rotated to the bearing */
+	display: inline-block; width: 0; height: 0;
+	border-left: 4px solid transparent; border-right: 4px solid transparent;
+	border-bottom: 6px solid currentColor;
+}
+.gl-arrow-tip.gl-arrow-near { background: #198754; border-color: #34c759; }
+
+/* Selection info box above the map (grid, coordinates, zones, QRB). */
+#glInfo {
+	margin: 0 0 0;
+	padding: .5rem .75rem;
+	background: rgba(127, 127, 127, .10);
+	border: 1px solid rgba(127, 127, 127, .25);
+	border-left: 3px solid #0d6efd;
+	border-radius: .45rem;
+	font-size: .85rem;
+	line-height: 1.6;
+	color: var(--bs-body-color);
+}
+#glInfo:empty { display: none; }                /* no selection yet → no empty box */
+#glInfo::before {                               /* leading info icon (FA6 circle-info) */
+	content: "\f05a";
+	font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome";
+	font-weight: 900;
+	color: #0d6efd;
+	margin-right: .45rem;
+	opacity: .9;
+	background: #fff;
+	border-radius: 50%;
+}
+#glInfo strong {                                 /* gridsquare locator → high-contrast badge */
+	display: inline-block;
+	margin: 0 .1rem;
+	padding: 0 .4rem;
+	border-radius: .3rem;
+	background: #0d6efd;
+	color: #fff;
+	font-weight: 700;
+	font-size: .8rem;
+	line-height: 1.5;
+	vertical-align: baseline;
+}
+
+/* Collapsible top card-body — rotate the header chevron when collapsed. */
+.gl-top-chevron { transition: transform .2s ease; }
+[data-bs-target="#glTopBody"].collapsed .gl-top-chevron { transform: rotate(-180deg); }
+
+/* "Locate me" active autotracking state: green button + pulsing icon. */
+#glLocate.gl-tracking {
+	color: #fff;
+	background-color: #198754;
+	border-color: #198754;
+}
+#glLocate.gl-tracking .fa { animation: gl-pulse 1.5s ease-in-out infinite; }
+@keyframes gl-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* Rich gridsquare popup (click marker + Go markers). */
+.gl-popup { min-width: 320px; font-size: 1rem; line-height: 1.45; color: #fff; padding-left: 10px; border-left: 5px solid #dc3545; }
+.gl-pop-head { margin-bottom: .4rem; }
+.gl-pop-grid { margin-bottom: .35rem; white-space: nowrap; font-size: 2.0rem; font-weight: 900; letter-spacing: .02em;}
+.gl-pop-flag { font-size: 2rem; margin-right: .2rem; }
+.gl-pop-coords { display: flex; align-items: center; gap: .35rem; font-size: .95rem; opacity: .85; margin-bottom: .35rem; }
+.gl-pop-coords .fa { opacity: .7; }
+.gl-pop-hier { display: flex; flex-wrap: nowrap; gap: .6rem; margin-bottom: .35rem; font-size: .85rem; opacity: .9; }
+.gl-pop-tier { display: inline-flex; align-items: center; gap: .28rem; }
+.gl-dot { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; background: rgba(255, 255, 255, .35); flex: none; }
+.gl-pop-tier.is-strong .gl-dot { background: #fff; }
+.gl-pop-meta { margin-top: .3rem; font-size: .85rem; opacity: .75; }
+.gl-pop-link { margin-top: .4rem; }
+.gl-pop-link a { color: inherit; }
+.gl-pop-link a:hover { text-decoration: underline !important; }
+.gl-pop-link .fas { opacity: .75; margin-right: .25rem; }
+
+/* Quick-action links at the foot of the gridsquare popup. */
+.gl-pop-actions { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .4rem; padding-top: .4rem; border-top: 1px solid rgba(255, 255, 255, .25); }
+.gl-pop-action { display: inline-flex; align-items: center; gap: .3rem; font-size: .8rem; padding: .15rem .5rem; border-radius: .3rem; background: rgba(255, 255, 255, .12); color: #fff; text-decoration: none; }
+.gl-pop-action:hover { background: rgba(255, 255, 255, .22); }
+
+/* POTA/SOTA/WWFF references found inside the clicked 6-char subsquare. */
+.gl-pop-refs { margin-top: .4rem; padding-top: .4rem; border-top: 1px solid rgba(255, 255, 255, .25); }
+.gl-pop-refs-title { font-size: .65rem; letter-spacing: .07em; text-transform: uppercase; opacity: .6; margin-bottom: .25rem; }
+.gl-pop-ref-group { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .4rem; margin-bottom: .25rem; font-size: .8rem; }
+.gl-pop-ref-type { display: inline-block; font-weight: 700; font-size: .65rem; padding: 0 .35rem; border-radius: .25rem; color: #fff; }
+.gl-pop-ref-group.is-pota .gl-pop-ref-type { background: #238b45; }
+.gl-pop-ref-group.is-sota .gl-pop-ref-type { background: #d95f0e; }
+.gl-pop-ref-group.is-wwff .gl-pop-ref-type { background: #2b8cbe; }
+.gl-pop-ref { line-height: 1.3; }
+.gl-pop-ref-more { opacity: .6; }
+/* Fixed column widths so every nearby-refs band table lines up. */
+.gl-nearby-table { table-layout: fixed; width: 100%; }
+
+/* Two-grid QRB: tone down every Maidenhead grid label so the two tinted
+   squares are the focus. Toggled via .gl-dim-labels on the map container. */
+.gl-dim-labels .grid-text { opacity: .5; transition: opacity .25s ease; }
+
+/* Map height: grows when the Search panel (#glTopBody) is collapsed. */
+#glMap { height: calc(100vh - 350px); min-height: 400px; }
+#glTopBody:not(.show) ~ #glMap { height: calc(100vh - 240px); }
+
+/* Phones: the corner compass panel is too big, so rely on the on-map arrows. */
+@media (max-width: 575.98px) {
+	.gl-borders-control.leaflet-control { display: none !important; }
+	.gl-coords-body { display: none !important; }
+	#glMap { height: calc(100vh - 390px); min-height: 300px; }
+	#glTopBody:not(.show) ~ #glMap { height: calc(100vh - 200px); }
+}
+
+/* ============================================================
+   AMSAT Satellite Status (application/views/amsatstatus)
+   Scoped under .amsat-status. Vivid status colors (green/amber/
+   blue/red); each cell's hue is reinforced by the icon+label
+   legend and the per-cell tooltip -- never color alone.
+   ============================================================ */
+.amsat-status {
+	--ams-heard: #22c55e;
+	--ams-gap: 2px;
+	--ams-name-w: 176px;
+	--ams-aos-w: 134px;
+	--ams-cell-w: 30px;
+}
+
+/* ---- KPI tiles ---- */
+.amsat-kpis { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.25rem; }
+.amsat-kpi {
+	flex: 1 1 150px;
+	min-width: 150px;
+	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 7%, transparent);
+	border: 1px solid var(--bs-border-color, rgba(125,125,125,.18));
+	border-radius: .55rem;
+	padding: .6rem .85rem;
+}
+.amsat-kpi-val { font-size: 1.5rem; font-weight: 650; line-height: 1.1; color: var(--bs-body-color, inherit); }
+.amsat-kpi-val small { font-size: .55em; font-weight: 500; color: var(--bs-secondary-color); }
+.amsat-kpi-lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; color: var(--bs-secondary-color); margin-top: .15rem; }
+.amsat-kpi-sub { font-size: .72rem; color: var(--bs-secondary-color); }
+
+/* ---- Legend (icon + label, never color alone) ---- */
+.amsat-legend {
+	display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: center;
+	margin-bottom: 1rem; font-size: .82rem; color: var(--bs-secondary-color);
+}
+.amsat-lgnd { display: inline-flex; align-items: center; gap: .4rem; }
+.amsat-lgnd i { font-size: .85rem; }
+
+/* ---- Heatmap table ---- */
+.amsat-heat {
+	border-collapse: separate;
+	border-spacing: var(--ams-gap);
+	width: 100%;
+	margin: 0 0 .5rem; /* keep left/top at 0 so the sticky name column still aligns */
+	font-size: .82rem;
+}
+.amsat-heat th, .amsat-heat td {
+	background-color: var(--bs-card-bg, var(--bs-body-bg));
+	vertical-align: middle;
+	font-weight: bold;
+}
+.amsat-heat thead th {
+	position: sticky; 
+	top: var(--ams-gap); 
+	z-index: 2;
+	color: var(--bs-secondary-color);
+	padding: .35rem 0; 
+	text-align: center;
+}
+/* Frozen satellite-name column */
+.amsat-heat .h-name, .amsat-heat .c-name {
+	position: sticky; left: var(--ams-gap); z-index: 3;
+	width: var(--ams-name-w); min-width: var(--ams-name-w); max-width: var(--ams-name-w);
+	text-align: left; padding: .35rem .7rem; white-space: nowrap;
+}
+.amsat-heat thead .h-name { z-index: 5; }
+/* Frozen next-AOS column */
+.amsat-heat .h-aos, .amsat-heat .c-aos {
+	position: sticky; left: calc(var(--ams-name-w) + var(--ams-gap) * 2); z-index: 3;
+	width: var(--ams-aos-w); min-width: var(--ams-aos-w); max-width: var(--ams-aos-w);
+	text-align: left; padding: .35rem .5rem; white-space: nowrap;
+}
+.amsat-heat thead .h-aos { z-index: 5; }
+
+.amsat-heat .c-name { font-weight: 600; }
+.amsat-heat .c-name-txt { display: inline-block; max-width: 118px; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; }
+.amsat-heat .c-name a { text-decoration: none; }
+.amsat-heat .c-name a:hover { text-decoration: underline; }
+.amsat-heat .c-name-cnt {
+	display: inline-block; min-width: 1.3em; text-align: center;
+	font-size: .68rem; font-weight: 600; color: var(--bs-secondary-color);
+	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 14%, transparent);
+	border-radius: 999px; padding: 0 .35rem; margin-left: .35rem; vertical-align: middle;
+}
+.amsat-heat .c-aos-time { font-weight: 600; }
+.amsat-heat .h-hr { width: var(--ams-cell-w); min-width: var(--ams-cell-w); }
+.amsat-heat thead .h-hr[data-now] { color: var(--bs-body-color, inherit); font-weight: 700; }
+
+/* Heatmap cells: status tint over the surface, lift to solid on hover */
+.amsat-heat .cell {
+	width: var(--ams-cell-w); min-width: var(--ams-cell-w); height: 28px;
+	border-radius: 5px; cursor: help;
+	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 25%, transparent);
+}
+.amsat-heat .cell[data-st] {
+	background-color: color-mix(in srgb, var(--cell) 82%, transparent);
+}
+.amsat-heat .cell[data-st]:hover {
+	background-color: var(--cell);
+	box-shadow: 0 2px 7px rgba(0,0,0,.22);
+	transform: translateY(-1px);
+}
+@media (hover: none) { .amsat-heat .cell[data-st]:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .amsat-heat .cell[data-st]:hover { transform: none; } }

@@ -1,0 +1,837 @@
+let station_id;
+
+function loadStationInfo() {
+	station_id = $("#station").val();
+    $(".resulttable").empty();
+    $(".searchinfo").empty();
+    $.ajax({
+        url: base_url+'index.php/oqrs/get_station_info',
+        type: 'post',
+        data: {'station_id': station_id},
+        success: function (data) {
+            if (data.count > 0) {
+                $(".resulttable").append('<br />' + data.count + ' Qsos logged between ' + data.mindate + ' and ' + data.maxdate + '.<br /><br />');
+                $(".resulttable").append('<form class="d-flex align-items-center" onsubmit="return false;"><label for="oqrssearch">Enter your callsign: </label><input class="form-control m-2 w-auto" id="oqrssearch" type="search" name="callsign" placeholder="Search Callsign" aria-label="Search" required="required"><button onclick="searchOqrs();" class="btn btn-sm btn-primary" id="stationbuttonsubmit" type="button"><i class="fas fa-search"></i> Search</button></form>');
+                // Get the input field
+                var input = document.getElementById("oqrssearch");
+
+                // Execute a function when the user presses a key on the keyboard
+                input.addEventListener("keypress", function(event) {
+                // If the user presses the "Enter" key on the keyboard
+                if (event.key === "Enter") {
+                    // Cancel the default action, if needed
+                    event.preventDefault();
+                    // Trigger the button element with a click
+                    document.getElementById("stationbuttonsubmit").click();
+                }
+                });
+            } else {
+                $(".stationinfo").append("No QSOs for this callsign was found!");
+            }
+        }
+    });
+}
+
+function searchOqrs() {
+    $(".searchinfo").empty();
+    $.ajax({
+        url: base_url+'index.php/oqrs/get_qsos',
+        type: 'post',
+        data: {'station_id': station_id, 'callsign': $("#oqrssearch").val().toUpperCase()},
+        success: function (data) {
+            $(".searchinfo").append(data);
+        }
+    });
+}
+
+function searchOqrsGrouped() {
+    $(".searchinfo").empty();
+    $.ajax({
+        url: base_url+'index.php/oqrs/get_qsos_grouped',
+        type: 'post',
+        data: {'callsign': ($("#oqrssearch").val() || '').toUpperCase(), 'slug': $("#slug").val()},
+        success: function (data) {
+            $(".searchinfo").append(data);
+            $('.qsotime').change(function() {
+                var raw_time = $(this).val();
+                if(raw_time.match(/^\d\[0-6]d$/)) {
+                    raw_time = "0"+raw_time;
+                }
+                if(raw_time.match(/^[012]\d[0-5]\d$/)) {
+                    raw_time = raw_time.substring(0,2)+":"+raw_time.substring(2,4);
+                    $(this).val(raw_time);
+                }
+            });
+            $('.result-table').DataTable({
+                "pageLength": 25,
+                responsive: false,
+                ordering: false,
+                "scrollY": "410px",
+                "scrollCollapse": true,
+                "paging": false,
+                "scrollX": true,
+                // "language": {
+                //     url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
+                // }
+            });
+
+            // Get the input field
+            var input = document.getElementById("emailInput");
+
+            // If we are on the correct page we can add the EventListener
+            if (input) {
+                // Execute a function when the user presses a key on the keyboard
+                input.addEventListener("keypress", function(event) {
+                    // If the user presses the "Enter" key on the keyboard
+                    if (event.key === "Enter") {
+                        // Cancel the default action, if needed
+                        event.preventDefault();
+                        // Trigger the button element with a click
+                        document.getElementById("requestGroupedSubmit").click();
+                    }
+                });
+            }
+        }
+    });
+}
+
+function notInLog() {
+    $.ajax({
+        url: base_url + 'index.php/oqrs/not_in_log',
+        type: 'post',
+        data: {'station_id': station_id, 'callsign': $("#oqrssearch").val().toUpperCase()},
+        success: function(html) {
+            $(".searchinfo").html(html);
+            $('.qsotime').change(function() {
+                var raw_time = $(this).val();
+                if(raw_time.match(/^\d\[0-6]d$/)) {
+                    raw_time = "0"+raw_time;
+                }
+                if(raw_time.match(/^[012]\d[0-5]\d$/)) {
+                    raw_time = raw_time.substring(0,2)+":"+raw_time.substring(2,4);
+                    $(this).val(raw_time);
+                }
+            });
+        }
+    });
+}
+
+function saveNotInLogRequest() {
+	const qsos = [];
+    $(".alertinfo").remove();
+    if ($("#emailInput").val() == '') {
+        $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>You need to fill out an email address!</div></div>');
+    } else {
+        $(".notinlog-table tbody tr").each(function(i) {
+            var data = [];
+            var datecell = $("#date", this).val();
+            var timecell = $("#time", this).val();
+            var bandcell = $("#band", this).val();
+            var modecell = $("#mode", this).val();
+            if (datecell !== "" && !/^\d{4}-\d{2}-\d{2}$/.test(datecell)) {
+                $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+lang_oqrs_invalid_date+'</div></div>');
+                return false;
+            }
+            if (datecell != "" && timecell != "" && bandcell != "" && modecell != "") {
+                data.push(datecell);
+                data.push(timecell);
+                data.push(bandcell);
+                data.push(modecell);
+                qsos.push(data);
+            }
+        });
+        if (qsos.length === 0) {
+            $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>You need to fill the QSO information before submitting a request!</div></div>');
+        } else {
+            $.ajax({
+                url: base_url+'index.php/oqrs/save_not_in_log',
+                type: 'post',
+                data: { 'station_id': station_id,
+                        'callsign': $("#oqrssearch").val().toUpperCase(),
+                        'email': $("#emailInput").val(),
+                        'message': $("#messageInput").val(),
+                        'qsos': qsos
+                },
+                success: function (data) {
+                    $(".stationinfo").empty();
+                    $(".searchinfo").empty();
+                    $(".stationinfo").append('<br /><div class="alert alert-success alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>Your not in log query has been saved!</div>');
+                },
+                error: function(xhr) {
+                    var msg = (xhr.responseJSON && xhr.responseJSON.error) || lang_oqrs_request_failed;
+                    $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-danger alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' + msg + '</div></div>');
+                }
+            });
+        }
+    }
+}
+
+function oqrsAddLine() {
+    var rowCount = $('.notinlog-table tr').length;
+    var $myTable = $('.notinlog-table');
+
+    var $row = $('<tr></tr>');
+
+    var $iterator = $('<td></td>').html(rowCount);
+    var $date = $('<td></td>').html('<input class="form-control" type="date" name="date" value="" id="date" max="' + new Date().toISOString().slice(0,10) + '" required>');
+    var $time = $('<td></td>').html('<input class="form-control qsotime" type="text" name="time" value="" id="time" maxlength="5" placeholder="hh:mm">');
+    var $band = $('<td></td>').html('<input class="form-control" type="text" name="band" value="" id="band">');
+    var $mode = $('<td></td>').html('<input class="form-control" type="text" name="mode" value="" id="mode">');
+
+    $row.append($iterator, $date, $time, $band, $mode);
+
+    $myTable.append($row);
+    $('.qsotime').change(function() {
+        var raw_time = $(this).val();
+        if(raw_time.match(/^\d\[0-6]d$/)) {
+            raw_time = "0"+raw_time;
+        }
+        if(raw_time.match(/^[012]\d[0-5]\d$/)) {
+            raw_time = raw_time.substring(0,2)+":"+raw_time.substring(2,4);
+            $(this).val(raw_time);
+        }
+    });
+}
+
+function requestOqrs() {
+    $.ajax({
+        url: base_url + 'index.php/oqrs/request_form',
+        type: 'post',
+        data: {'station_id': station_id, 'callsign': $("#oqrssearch").val().toUpperCase()},
+        success: function(html) {
+            $(".searchinfo").html(html);
+            /* time input shortcut */
+            $('.qsotime').change(function() {
+                var raw_time = $(this).val();
+                if(raw_time.match(/^\d\[0-6]d$/)) {
+                    raw_time = "0"+raw_time;
+                }
+                if(raw_time.match(/^[012]\d[0-5]\d$/)) {
+                    raw_time = raw_time.substring(0,2)+":"+raw_time.substring(2,4);
+                    $(this).val(raw_time);
+                }
+            });
+            $('.result-table').DataTable({
+                "pageLength": 25,
+                responsive: false,
+                ordering: false,
+                "scrollY": "410px",
+                "scrollCollapse": true,
+                "paging": false,
+                "scrollX": true,
+                // "language": {
+                //     url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
+                // }
+            });
+            // Get the input field
+            var input = document.getElementById("emailInput");
+
+            // Execute a function when the user presses a key on the keyboard
+            input.addEventListener("keypress", function(event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                document.getElementById("requestSubmit").click();
+            }
+            });
+        }
+    });
+}
+
+function submitOqrsRequest() {
+	const qsos = [];
+    $(".alertinfo").remove();
+    if ($("#emailInput").val() == '') {
+        $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>You need to fill out an email address!</div></div>');
+    } else {
+        $(".result-table tbody tr").each(function(i) {
+            var data = [];
+            var datecell = $("#date", this).val();
+            var timecell = $("#time", this).val();
+            var bandcell = $("#band", this).text();
+            var modecell = $("#mode", this).text();
+            if (datecell !== "" && !/^\d{4}-\d{2}-\d{2}$/.test(datecell)) {
+                $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+lang_oqrs_invalid_date+'</div></div>');
+                return false;
+            }
+            if (datecell != "" && timecell != "") {
+                data.push(datecell);
+                data.push(timecell);
+                data.push(bandcell);
+                data.push(modecell);
+                qsos.push(data);
+            }
+        });
+
+        if (qsos.length === 0) {
+            $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>You need to fill the QSO information before submitting a request!</div></div>');
+        } else {
+            $.ajax({
+                url: base_url+'index.php/oqrs/save_oqrs_request',
+                type: 'post',
+                data: { 'station_id': station_id,
+                        'callsign': $("#oqrssearch").val().toUpperCase(),
+                        'email': $("#emailInput").val(),
+                        'message': $("#messageInput").val(),
+                        'qsos': qsos,
+                        'qslroute': $('input[name="qslroute"]:checked').val()
+                },
+                success: function (data) {
+                    $(".resulttable").empty();
+                    $(".stationinfo").empty();
+                    $(".searchinfo").empty();
+                    $(".stationinfo").append('<br /><div class="alert alert-success alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>Your QSL request has been saved!</div>');
+                },
+                error: function(xhr) {
+                    var msg = (xhr.responseJSON && xhr.responseJSON.error) || lang_oqrs_request_failed;
+                    $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-danger alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' + msg + '</div></div>');
+                }
+            });
+        }
+    }
+}
+
+function submitOqrsRequestGrouped() {
+	const qsos = [];
+    $(".alertinfo").remove();
+    if ($("#emailInput").val() == '') {
+        $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>You need to fill out an email address!</div></div>');
+    } else {
+        $(".result-table tbody tr").each(function(i) {
+            var data = [];
+            var stationid = this.getAttribute('stationid');;
+            var datecell = $("#date", this).val();
+            var timecell = $("#time", this).val();
+            var bandcell = $("#band", this).text();
+            var modecell = $("#mode", this).text();
+            if (datecell !== "" && !/^\d{4}-\d{2}-\d{2}$/.test(datecell)) {
+                $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+lang_oqrs_invalid_date+'</div></div>');
+                return false;
+            }
+            if (datecell != "" && timecell != "") {
+                data.push(datecell);
+                data.push(timecell);
+                data.push(bandcell);
+                data.push(modecell);
+                data.push(stationid);
+                qsos.push(data);
+            }
+        });
+
+        if (qsos.length === 0) {
+            $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-warning alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>You need to fill the QSO information before submitting a request!</div></div>');
+        } else {
+            $.ajax({
+                url: base_url+'index.php/oqrs/save_oqrs_request_grouped',
+                type: 'post',
+                data: {
+                        'callsign': $("#oqrssearch").val().toUpperCase(),
+                        'email': $("#emailInput").val(),
+                        'message': $("#messageInput").val(),
+                        'qsos': qsos,
+                        'qslroute': $('input[name="qslroute"]:checked').val()
+                },
+                success: function (data) {
+                    $(".stationinfo").empty();
+                    $(".searchinfo").empty();
+                    $(".stationinfo").append('<br /><div class="alert alert-success alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>Your QSL request has been saved!</div>');
+                },
+                error: function(xhr) {
+                    var msg = (xhr.responseJSON && xhr.responseJSON.error) || lang_oqrs_request_failed;
+                    $(".searchinfo").prepend('<div class="alertinfo"><br /><div class="alert alert-danger alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' + msg + '</div></div>');
+                }
+            });
+        }
+    }
+}
+
+function searchLog(callsign, qsoid, id) {
+    $.ajax({
+        url: base_url + 'index.php/oqrs/search_log',
+        type: 'post',
+        data: {'callsign': callsign,
+                'qsoid': qsoid,
+                'oqrsid': id
+        },
+        success: function(html) {
+            BootstrapDialog.show({
+                title: 'QSO List',
+                size: BootstrapDialog.SIZE_WIDE,
+                cssClass: 'qso-dialog',
+                nl2br: false,
+                message: html,
+                onshown: function(dialog) {
+					$('.qsolist').DataTable({
+							searching: true,
+							responsive: false,
+							ordering: true,
+							"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"order": [ 0, 'asc' ],
+							'white-space': 'nowrap',
+					});
+                },
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
+}
+
+function addQsoMatchToOqrs(qsoid, oqrsid) {
+    $.ajax({
+        url: base_url + 'index.php/oqrs/add_qso_match_to_oqrs',
+        type: 'post',
+        data: {'qsoid': qsoid, 'oqrsid': oqrsid},
+        success: function(html) {
+            BootstrapDialog.closeAll();
+			$('#searchForm').submit();
+        }
+    });
+}
+
+function searchLogTimeDate(id, qsoid) {
+    $.ajax({
+        url: base_url + 'index.php/oqrs/search_log_time_date',
+        type: 'post',
+        data: {'time': $('#oqrsID_'+id+ ' td:nth-child(4)').text(),
+            'date': $('#oqrsID_'+id+ ' td:nth-child(3)').text(),
+            'band': $('#oqrsID_'+id+ ' td:nth-child(5)').text(),
+            'mode': $('#oqrsID_'+id+ ' td:nth-child(6)').text(),
+            'qsoid': qsoid,
+			'oqrsid': id
+        },
+        success: function(html) {
+            BootstrapDialog.show({
+                title: 'QSO List',
+                size: BootstrapDialog.SIZE_WIDE,
+                cssClass: 'qso-dialog',
+                nl2br: false,
+                message: html,
+                onshown: function(dialog) {
+                    $('[data-bs-toggle="tooltip"]').tooltip();
+					$('.qsolist').DataTable({
+							searching: true,
+							responsive: false,
+							ordering: true,
+							"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"order": [ 0, 'asc' ],
+							'white-space': 'nowrap',
+					});
+                },
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
+}
+
+function loadOqrsTable(rows) {
+	var uninitialized = $('.oqrstable').filter(function() {
+		return !$.fn.DataTable.isDataTable(this);
+	});
+
+	uninitialized.each(function() {
+	$(this).DataTable({
+			searching: true,
+			responsive: false,
+			ordering: true,
+			createdRow: function (row, data, dataIndex) {
+				$(row).attr('id',data.id);
+			},
+			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+			"scrollCollapse": true,
+			"paging":         false,
+			"scrollX": true,
+			"order": [ 0, 'asc' ],
+            'white-space': 'nowrap',
+		});
+	});
+
+	var table = $('.oqrstable').DataTable();
+
+	table.clear();
+
+	for (i = 0; i < rows.length; i++) {
+		let qso = rows[i];
+
+		var data = [
+			'<div class="form-check"><input class="form-check-input" type="checkbox" /></div>',
+			qso.requesttime,
+			qso.date,
+			qso.time,
+			qso.band,
+			qso.mode,
+			'<span class="callsign">' + qso.requestcallsign + '</span>',
+			'<span class="callsign">' + qso.station_callsign + '</span>',
+			qso.email,
+			qso.note,
+			echo_qsl_method(qso.qslroute),
+			echo_searchlog_button(qso.requestcallsign, qso.id, qso.qsoid),
+			echo_matched_qso(qso.qsoid, qso.id),
+			echo_status(qso.status),
+		];
+		data.id='oqrsID_' + qso.id;
+		let createdRow = table.row.add(data).index();
+		table.rows(createdRow).nodes().to$().data('oqrsID', qso.id);
+	}
+    table.columns.adjust().draw();
+}
+
+function echo_matched_qso(qsoid, oqrsid) {
+	if (qsoid > 0) {
+		return '<span class="me-1 pe-2 text-success"><i class="fas fa-check"></i></span> ' +
+		'<button type="button" onclick="deleteQsoMatch(' + qsoid + ',' + oqrsid + ');" class="btn btn-sm btn-outline-danger" style="white-space: nowrap;" aria-label="Delete QSO match" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete QSO match"><i class="fas fa-trash-alt"></i></button>';
+	} else {
+		return '<span class="text-danger"><i class="fas fa-times"></i></span>';
+	}
+}
+
+function echo_status(status) {
+	switch(status.toUpperCase()) {
+		case '0': return lang_oqrs_status_open_request; break;
+		case '1': return lang_oqrs_status_not_in_log_request; break;
+		case '2': return lang_oqrs_status_request_done; break;
+		case '3': return lang_oqrs_status_pending_request; break;
+		case '4': return lang_oqrs_status_request_rejected; break;
+        default: return '';
+	}
+}
+function echo_qsl_method(method) {
+	switch(method.toUpperCase()) {
+		case 'B': return lang_oqrs_qsl_method_bureau; break;
+		case 'D': return lang_oqrs_qsl_method_direct; break;
+		case 'E': return lang_oqrs_qsl_method_electronic; break;
+        default: return '';
+	}
+}
+
+function echo_searchlog_button(callsign, id, qsoid) {
+    return '<button class="btn btn-primary btn-sm" type="button" onclick="searchLog(\'' + callsign + '\', ' + qsoid + ', ' + id + ');"><i class="fas fa-search"></i> Call</button> ' +
+    '<button class="btn btn-primary btn-sm" type="button" onclick="searchLogTimeDate(' + id + ', ' + qsoid + ');"><i class="fas fa-search"></i> Date/Time</button>';
+}
+
+$(document).ready(function () {
+
+	$('#searchForm').submit(function (e) {
+		$('#searchButton').prop("disabled", true);
+
+		$.ajax({
+			url: this.action,
+			type: 'post',
+			data: {
+				de: this.de.value,
+				dx: this.dx.value,
+				status: this.status.value,
+				oqrsResults: this.oqrsResults.value
+			},
+			dataType: 'json',
+			success: function (data) {
+				$('#searchButton').prop("disabled", false);
+				loadOqrsTable(data);
+			},
+			error: function (data) {
+				$('#searchButton').prop("disabled", false);
+				BootstrapDialog.alert({
+					title: 'ERROR',
+					message: lang_oqrs_error_request,
+					type: BootstrapDialog.TYPE_DANGER,
+					closable: false,
+					draggable: false,
+					callback: function (result) {
+					}
+				});
+			},
+		});
+		return false;
+	});
+
+	$('.oqrstable').on('click', 'input[type="checkbox"]', function() {
+		if ($(this).is(":checked")) {
+			$(this).closest('tr').addClass('activeRow');
+		} else {
+			$(this).closest('tr').removeClass('activeRow');
+		}
+	});
+
+	$('#deleteOqrs').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#deleteOqrs').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'DANGER',
+			message: lang_oqrs_warning_delete,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/delete_oqrs_line',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								var row = $("#oqrsID_" + id);
+								table.row(row).remove().draw(false);
+							}
+						});
+					})
+				}
+				$('#deleteOqrs').prop("disabled", false);
+			}
+		});
+	});
+
+	$('.statusinfo').click(function (event) {
+		$.ajax({
+        url: base_url + 'index.php/oqrs/status_info',
+        type: 'post',
+        success: function(html) {
+            BootstrapDialog.show({
+                title: lang_oqrs_status_message,
+                size: BootstrapDialog.SIZE_NORMAL,
+                cssClass: 'qso-dialog',
+                nl2br: false,
+                message: html,
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
+	});
+
+	$('#rejectOqrs').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#rejectOqrs').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'WARNING',
+			message: lang_oqrs_warning_reject,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-warning',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/reject_oqrs_line',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								$('#searchForm').submit();
+							}
+						});
+					})
+					$('#rejectOqrs').prop("disabled", false);
+				}
+			}
+		});
+	});
+
+	$('#markOqrs').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#markOqrs').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'DANGER',
+			message: lang_oqrs_warning_mark,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/mark_oqrs_line_as_done',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								$('#searchForm').submit();
+							}
+						});
+					})
+				}
+				$('#markOqrs').prop("disabled", false);
+			}
+		});
+	});
+
+
+
+	$('#addOqrsToQueue').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#addOqrsToQueue').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'WARNING',
+			message: lang_oqrs_warning_add_to_queue,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-warning',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/add_oqrs_to_print_queue',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								$('#searchForm').submit();
+							}
+						});
+					})
+				}
+				$('#addOqrsToQueue').prop("disabled", false);
+			}
+		});
+	});
+
+
+	$('#checkBoxAll').change(function (event) {
+		if (this.checked) {
+			$('.oqrstable tbody tr').each(function (i) {
+				selectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
+			});
+		} else {
+			$('.oqrstable tbody tr').each(function (i) {
+				unselectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
+			});
+		}
+	});
+
+	$('#searchForm').submit();
+
+    $('#searchForm').on('reset', function(e) {
+        setTimeout(function() {
+            $('#searchForm').submit();
+        });
+    });
+
+    if($('#oqrssearch').val() != '' && $('#oqrssearch').val() != null) {
+        searchOqrsGrouped();
+    }
+
+});
+
+function deleteQsoMatch(qsoid, oqrsid) {
+		$('.deleteMatch').prop("disabled", true);
+
+		BootstrapDialog.confirm({
+			title: 'DANGER',
+			message: lang_oqrs_warning_delete_match,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					$.ajax({
+						url: base_url + 'index.php/oqrs/delete_oqrs_qso_match',
+						type: 'post',
+						data: {'id': oqrsid,
+							'qsoid': qsoid
+						},
+						success: function(data) {
+							$('#searchForm').submit();
+						},
+						error: function (data) {
+							BootstrapDialog.alert({
+								title: 'ERROR',
+								message: 'An error occurred while making the request',
+								type: BootstrapDialog.TYPE_DANGER,
+								closable: false,
+								draggable: false,
+								callback: function (result) {
+								}
+							});
+						},
+					});
+				}
+				$('.deleteMatch').prop("disabled", false);
+			}
+		});
+	}
+
+function selectQsoID(qsoID) {
+	var element = $("#oqrsID_" + qsoID);
+	element.find("input[type=checkbox]").prop("checked", true);
+	element.addClass('activeRow');
+}
+
+function unselectQsoID(qsoID) {
+	var element = $("#oqrsID_" + qsoID);
+	element.find("input[type=checkbox]").prop("checked", false);
+	element.removeClass('activeRow');
+	$('#checkBoxAll').prop("checked", false);
+}
+
+function addQsoToPrintQueue(id) {
+	$.ajax({
+		url: base_url + 'index.php/qslprint/add_qso_to_print_queue',
+		type: 'post',
+		data: {'id': id},
+		success: function(html) {
+			$("#qsolist_"+id).remove();''
+		}
+	});
+}

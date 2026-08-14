@@ -1,0 +1,216 @@
+<?php
+
+class User_Options extends CI_Controller {
+
+	function __construct() {
+		parent::__construct();
+		$this->load->model('user_options_model');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+	}
+
+	public function add_edit_fav() {
+		$obj = json_decode(file_get_contents("php://input"), true);
+		foreach($obj as $option_key => $option_value) {
+			$obj[$option_key]=$this->security->xss_clean($option_value);
+		}
+		if (($obj['fav_name'] ?? '') !== '') {
+			$option_name = $obj['fav_name'];
+		} elseif ($obj['sat_name'] ?? '' != '') {
+			$option_name=$obj['sat_name'].'/'.$obj['mode'];
+		} else {
+			$option_name=$obj['band'].'/'.$obj['mode'];
+		}
+		$option_name = mb_substr($option_name, 0, 45);
+		$this->user_options_model->set_option('Favourite',$option_name, $obj);
+		$jsonout['success']=1;
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	public function get_fav() {
+		session_write_close();
+
+		$result=$this->user_options_model->get_options('Favourite');
+		$jsonout=[];
+		foreach($result->result() as $options) {
+			$jsonout[$options->option_name][$options->option_key]=$options->option_value;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	public function del_fav() {
+		$result=$this->user_options_model->get_options('Favourite');
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj['option_name'] ?? '' != '') {
+			$option_name=$this->security->xss_clean($obj['option_name']);
+			$this->user_options_model->del_option('Favourite',$option_name);
+		}
+		$jsonout['success']=1;
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	public function dismissVersionDialog() {
+		$this->user_options_model->set_option('version_dialog', 'confirmed', array('boolean' => 'true'));
+	}
+
+	/**
+	 * Save a dashboard layout preference from the dashboard context menu.
+	 * Body: {"pref":"kpi|solar","value":...}
+	 */
+	public function save_dashboard_pref() {
+		$obj = json_decode(file_get_contents("php://input"), true);
+		$pref = $this->security->xss_clean($obj['pref'] ?? '');
+		$value = $this->security->xss_clean($obj['value'] ?? '');
+
+		if ($pref === 'kpi' && in_array($value, ['1', '0'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_kpi_stats', array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_show_kpi_stats', $value);
+		} elseif ($pref === 'solar' && in_array($value, ['top', 'bottom', 'N'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_dashboard_solar', array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_solar', $value);
+		} else {
+			header('Content-Type: application/json');
+			echo json_encode(['success' => 0, 'error' => 'Invalid data']);
+			return;
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode(['success' => 1]);
+	}
+
+	/**
+	 * DX Cluster Filter Favorites
+	 */
+	public function add_edit_dxcluster_fav() {
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if (!$obj || !isset($obj['fav_name']) || trim($obj['fav_name']) === '') {
+			header('Content-Type: application/json');
+			echo json_encode(['success' => 0, 'error' => 'Invalid data']);
+			return;
+		}
+
+		// Sanitize all input
+		foreach($obj as $option_key => $option_value) {
+			if (is_array($option_value)) {
+				$obj[$option_key] = array_map([$this->security, 'xss_clean'], $option_value);
+			} else {
+				$obj[$option_key] = $this->security->xss_clean($option_value);
+			}
+		}
+
+		$option_name = $obj['fav_name'];
+		unset($obj['fav_name']); // Don't store the name as a value
+
+		// Convert arrays to JSON for storage
+		foreach($obj as $key => $value) {
+			if (is_array($value)) {
+				$obj[$key] = json_encode($value);
+			}
+		}
+
+		$this->user_options_model->set_option('DXClusterFavourite', $option_name, $obj);
+		$jsonout['success'] = 1;
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	public function del_dxcluster_fav() {
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj['option_name'] ?? '' != '') {
+			$option_name = $this->security->xss_clean($obj['option_name']);
+			$this->user_options_model->del_option('DXClusterFavourite', $option_name);
+		}
+		$jsonout['success'] = 1;
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	public function get_qrg_units() {
+		session_write_close();
+
+		$qrg_units = [];
+
+		foreach($this->session->get_userdata() as $key => $value) {
+			if (strpos($key, 'qrgunit_') === 0) {
+				$band = str_replace('qrgunit_', '', $key);
+				$qrg_units[$band] = $value;
+			}
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($qrg_units);
+	}
+
+        /**
+         * Combined endpoint: DX Cluster favorites + user bands/modes settings
+         * Returns both favorites and user configuration in a single request
+         */
+        public function get_dxcluster_user_favs_and_settings() {
+                session_write_close();
+                
+                // Get DX Cluster favorites
+                $result = $this->user_options_model->get_options('DXClusterFavourite');
+                $favorites = [];
+                foreach($result->result() as $options) {
+                        $value = $options->option_value;
+                        if (is_string($value) && (strpos($value, '[') === 0 || strpos($value, '{') === 0)) {
+                                $decoded = json_decode($value, true);
+                                if (json_last_error() === JSON_ERROR_NONE) {
+                                        $value = $decoded;
+                                }
+                        }
+                        $favorites[$options->option_name][$options->option_key] = $value;
+                }
+
+                // Get user bands and modes
+                $this->load->model('bands');
+                $this->load->model('usermodes');
+
+                $activeBands = $this->bands->get_user_bands_for_qso_entry(false);
+                $bandList = [];
+                if (is_array($activeBands)) {
+                        foreach ($activeBands as $group => $bands) {
+                                if (is_array($bands)) {
+                                        foreach ($bands as $band) {
+                                                $bandList[] = $band;
+                                        }
+                                }
+                        }
+                }
+
+                $activeModes = $this->usermodes->active();
+                $modeCategories = ['cw' => false, 'phone' => false, 'digi' => false];
+                $submodes = [];
+
+                if ($activeModes) {
+                        foreach ($activeModes as $mode) {
+                                $qrgmode = strtoupper($mode->qrgmode ?? '');
+                                if ($qrgmode === 'CW') {
+                                        $modeCategories['cw'] = true;
+                                } elseif ($qrgmode === 'SSB') {
+                                        $modeCategories['phone'] = true;
+                                } elseif ($qrgmode === 'DATA') {
+                                        $modeCategories['digi'] = true;
+                                }
+                                $submode = !empty($mode->submode) ? $mode->submode : $mode->mode;
+                                if (!empty($submode) && !in_array($submode, $submodes)) {
+                                        $submodes[] = $submode;
+                                }
+                        }
+                }
+
+                header('Content-Type: application/json');
+                echo json_encode([
+                        'favorites' => $favorites,
+                        'userConfig' => [
+                                'bands' => $bandList,
+                                'modes' => $modeCategories,
+                                'submodes' => $submodes
+                        ]
+                ]);
+        }
+}
+
+?>

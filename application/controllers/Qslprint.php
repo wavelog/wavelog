@@ -1,0 +1,221 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class QSLPrint extends CI_Controller {
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper(array('form', 'url'));
+
+
+		// Check if users logged in
+
+		if($this->user_model->validate_session() == 0) {
+			// user is not logged in
+			redirect('user/login');
+		}
+	}
+
+	public function index($station_id = 'All')
+	{
+		// Check if users logged in
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$this->load->model('stations');
+		$data['station_id'] = $this->security->xss_clean($station_id);
+		$data['station_profile'] = $this->stations->all_of_user();
+
+		$this->load->model('qslprint_model');
+		if ( ($station_id != 'All') && ($this->stations->check_station_is_accessible($station_id)) ) {
+			$qsos = $this->qslprint_model->get_qsos_for_print($station_id);
+		} else {
+			$qsos = $this->qslprint_model->get_qsos_for_print();
+		}
+
+		$data['qsos'] = $qsos;
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/qslprint.js',
+		];
+
+		$data['page_title'] = __("Print Requested QSLs");
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('qslprint/index');
+		$this->load->view('interface_assets/footer', $footerData);
+
+	}
+
+	public function exportadif()
+	{
+		// Set memory limit to unlimited to allow heavy usage
+		ini_set('memory_limit', '-1');
+
+		if ($this->uri->segment(3) == 'all') {
+			$station_id = 'All';
+		} else {
+			$station_id = $this->security->xss_clean($this->uri->segment(3));
+		}
+
+		$this->load->model('adif_data');
+
+		$data['qsos'] = $this->adif_data->export_printrequested($station_id);
+
+		$this->load->view('adif/data/exportall', $data);
+	}
+
+	public function exportcsv()
+	{
+		// Set memory limit to unlimited to allow heavy usage
+		ini_set('memory_limit', '-1');
+
+		if ($this->uri->segment(3) == 'all') {
+			$station_id = 'All';
+		} else {
+			$station_id = $this->security->xss_clean($this->uri->segment(3));
+		}
+
+		$this->load->model('logbook_model');
+
+		$myData = $this->logbook_model->get_qsos_for_printing($station_id);
+
+		// file name
+		$filename = 'qsl_export.csv';
+		header("Content-Description: File Transfer");
+		header("Content-Disposition: attachment; filename=$filename");
+		header("Content-Type: application/csv;charset=iso-8859-1");
+
+		// file creation
+		$file = fopen('php://output', 'w');
+
+		$header = array("STATION_CALLSIGN",
+						"CALL",
+						"QSL_VIA",
+						"DATE_ON",
+						"TIME_ON",
+						"MODE",
+						"SUBMODE",
+						"FREQ",
+						"BAND",
+						"RST_SENT",
+						"SAT_NAME",
+						"SAT_MODE",
+						"PROP_MODE",
+						"QSL_RCVD",
+						"COMMENT",
+						"ROUTING",
+						"ADIF",
+						"ENTITY",
+						"GRIDSQUARE",
+						"STATION_GRIDSQUARE");
+
+		fputcsv($file, $header, separator: ",", enclosure: "\"", escape: "\\");
+
+		foreach ($myData->result() as $qso) {
+				$datetimeObj = new DateTime($qso->COL_TIME_ON);
+				$date = $datetimeObj->format('Y-m-d');
+				$time = $datetimeObj->format('H:i:s');
+
+			fputcsv($file,
+				array($qso->STATION_CALLSIGN,
+				$qso->COL_CALL,
+				$qso->COL_QSL_VIA!=""?"via ".$qso->COL_QSL_VIA:"",
+				$date,
+				$time,
+				$qso->COL_MODE,
+				$qso->COL_SUBMODE,
+				$qso->COL_FREQ,
+				$qso->COL_BAND,
+				$qso->COL_RST_SENT,
+				$qso->COL_SAT_NAME,
+				$qso->COL_SAT_MODE,
+				$qso->COL_PROP_MODE,
+				$qso->COL_QSL_RCVD =='Y'?'TNX QSL':'PSE QSL',
+				$qso->COL_COMMENT,
+				$qso->COL_ROUTING,
+				$qso->ADIF,
+				$qso->ENTITY,
+				$qso->COL_GRIDSQUARE,
+				$qso->COL_MY_GRIDSQUARE), separator: ",", enclosure: "\"", escape: "\\");
+		}
+
+		fclose($file);
+		exit;
+	}
+
+	function qsl_printed() {
+
+		if ($this->uri->segment(3) == 'all') {
+			$station_id = 'All';
+		} else {
+			$station_id = $this->security->xss_clean($this->uri->segment(3));
+		}
+
+		$this->load->model('qslprint_model');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+			// Update Logbook to Mark Paper Card Sent
+
+			$this->qslprint_model->mark_qsos_printed($station_id);
+
+			$this->session->set_flashdata('notice', 'QSOs are marked as sent');
+
+			redirect('logbook');
+	}
+
+	public function delete_from_qsl_queue() {
+		$id = $this->input->post('id', true);
+		$this->load->model('qslprint_model');
+
+		$this->qslprint_model->delete_from_qsl_queue($id);
+	}
+
+	public function get_qsos_for_print_ajax() {
+		$station_id = $this->input->post('station_id', true);
+		$this->load->model('qslprint_model');
+
+		$data['qsos'] = $this->qslprint_model->get_qsos_for_print_ajax($station_id);
+		$data['station_id'] = $station_id;
+		$this->load->view('qslprint/qslprint', $data);
+	}
+
+	public function open_qso_list() {
+		$callsign = $this->input->post('callsign', true);
+		$this->load->model('qslprint_model');
+
+		$data['qsos'] = $this->qslprint_model->open_qso_list($callsign);
+		$this->load->view('qslprint/qsolist', $data);
+	}
+
+	public function add_qso_to_print_queue() {
+		$id = $this->input->post('id', true);
+		$this->load->model('qslprint_model');
+
+		$this->qslprint_model->add_qso_to_print_queue($id);
+	}
+
+	public function show_oqrs() {
+		$id = $this->input->post('id', true);
+
+		$this->load->model('qslprint_model');
+
+		$data['result'] = $this->qslprint_model->show_oqrs($id);
+		$this->load->view('oqrs/showoqrs', $data);
+	}
+
+	public function printdialog() {
+		$data['type'] = $this->input->post('printType', true);
+		$data['id_list'] = $this->input->post('id_list', true);
+		$data['printAll'] = $this->input->post('printAll', true);
+
+		if ($data['type'] === 'label') {
+			$this->load->view('qslprint/printlabel', $data);
+		} else {
+			$this->load->model('Qslpostcard_model');
+			$data['templates'] = $this->Qslpostcard_model->list_templates();
+			$this->load->view('qslprint/printqsl', $data);
+		}
+	}
+
+}

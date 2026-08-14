@@ -1,0 +1,15 @@
+/* Radio Component Styling */
+.radio-component {
+	/* background: var(--bs-body-bg); */
+}
+
+.radio-component .radio-display {
+	margin-top: 0.5rem;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+	.radio-component {
+		background: rgba(255, 255, 255, 0.05);
+	}
+}

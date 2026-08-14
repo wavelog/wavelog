@@ -1,0 +1,953 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+/*
+|--------------------------------------------------------------------------
+| Install Options
+|--------------------------------------------------------------------------
+|
+|	'app_name'		Name of the App 'Wavelog'
+|	'directory'		directory where wavelog is installed eg "logger"
+|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but also supports: "qrz", "qrzcq", "qrzru" and "qrzcall"
+*/
+
+$config['app_name'] = 'Wavelog';
+$config['directory'] = 'logbook';
+
+/*
+|--------------------------------------------------------------------------
+| Callbook Settings
+|--------------------------------------------------------------------------
+| Options are hamqth, qrz, qrzcq, qrzru or qrzcall
+| For a single callbook configure just one value as string. Example:
+| $config['callbook'] = 'hamqth';
+| This can also be set to an array of callbooks to search sequentially until a match is found. Example:
+| $config['callbook'] = ['qrz', 'hamqth'];
+ */
+$config['callbook'] = 'hamqth';
+
+$config['datadir'] = null; // default to install directory
+
+/*
+|--------------------------------------------------------------------------
+| Logbook Options
+|--------------------------------------------------------------------------
+|
+| 	'table_name'	SQL table where log can be found
+|	'locator'	    Default locator used to calculate bearings/distance
+|	'display_freq'	Show or Hide frequency info
+*/
+
+$config['table_name'] = 'TABLE_HRD_CONTACTS_V01';
+$config['locator'] = '';
+$config['display_freq'] = true;
+
+/*
+|--------------------------------------------------------------------------
+| QRZ Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrz_username'	QRZ.com user login (callsign, not email)
+|	'qrz_password'	QRZ.com user password
+|	'use_fullname'  Get full names from QRZ, may not be GDPR compliant
+*/
+
+$config['qrz_username'] = '';
+$config['qrz_password'] = '';
+$config['use_fullname'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| HamQTH Login Options
+|--------------------------------------------------------------------------
+|
+| 	'hamqth_username'	HamQTH user login
+|	'hamqth_password'	HamQTH user password
+*/
+$config['hamqth_username'] = '';
+$config['hamqth_password'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| QRZcq Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzcq_username'	QRZcq.com user login
+|	'qrzcq_password'	QRZcq.com user password
+*/
+$config['qrzcq_username'] = '';
+$config['qrzcq_password'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| QRZ.ru Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzru_username'	QRZ.ru user login
+|	'qrzru_password'	QRZ.ru user password
+*/
+$config['qrzru_username'] = '';
+$config['qrzru_password'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| QRZCALL.EU Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzcall_token'	QRZCALL.EU Personal Access Token (starts with "pat_")
+|
+| Generate the token at https://qrzcall.eu/ → My Profile → Account →
+| API Tokens. Requires a Data or Extra subscription. Tokens are
+| revocable individually so this Wavelog install can be locked out
+| without changing your QRZCALL.EU password or disturbing other clients.
+*/
+$config['qrzcall_token'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Authentication
+|--------------------------------------------------------------------------
+|
+| 'use_auth'	False turns all authentication off, best used when setting up
+| 'auth_table'	MySQL Database Table defaults "users"
+| 'auth_mode'	Minimum user level required 0 = anonymous, 1 = viewer,
+|				2 = editor, 3 = api user, 99 = owner
+| 'auth_level[]'	Defines level titles
+*/
+
+$config['use_auth'] = true;
+$config['auth_table'] = 'users';
+$config['auth_mode'] = '3';
+
+$config['auth_level'][3] = 'Operator';
+$config['auth_level'][99] = 'Administrator';
+
+/*
+|--------------------------------------------------------------------------
+| Third-Party Authentication (SSO)
+|--------------------------------------------------------------------------
+|
+| Enable SSO support via a trusted HTTP header containing a JWT access token.
+| If enabled, a sso.php config file is required (see sso.sample.php).
+|
+| Documentation: https://docs.wavelog.org/admin-guide/configuration/thirdparty-authentication/
+*/
+
+$config['auth_header_enable'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Base Site URL
+|--------------------------------------------------------------------------
+|
+| URL to your CodeIgniter root. Typically this will be your base URL,
+| WITH a trailing slash:
+|
+|	http://example.com/
+|
+| WARNING: You MUST set this value!
+|
+| If it is not set, then CodeIgniter will try guess the protocol and path
+| your installation, but due to security concerns the hostname will be set
+| to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.
+| The auto-detection mechanism exists only for convenience during
+| development and MUST NOT be used in production!
+|
+| If you need to allow multiple domains, remember that this file is still
+| a PHP script and you can easily do that on your own.
+|
+*/
+$config['base_url'] = 'http://localhost/logbook/';
+
+/*
+|--------------------------------------------------------------------------
+| Index File
+|--------------------------------------------------------------------------
+|
+| Typically this will be your index.php file, unless you've renamed it to
+| something else. If you are using mod_rewrite to remove the page set this
+| variable so that it is blank.
+|
+*/
+$config['index_page'] = 'index.php';
+
+/*
+|--------------------------------------------------------------------------
+| URI PROTOCOL
+|--------------------------------------------------------------------------
+|
+| This item determines which server global should be used to retrieve the
+| URI string.  The default setting of 'REQUEST_URI' works for most servers.
+| If your links do not seem to work, try one of the other delicious flavors:
+|
+| 'REQUEST_URI'    Uses $_SERVER['REQUEST_URI']
+| 'QUERY_STRING'   Uses $_SERVER['QUERY_STRING']
+| 'PATH_INFO'      Uses $_SERVER['PATH_INFO']
+|
+| WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
+*/
+$config['uri_protocol']	= 'REQUEST_URI';
+
+/*
+|--------------------------------------------------------------------------
+| URL suffix
+|--------------------------------------------------------------------------
+|
+| This option allows you to add a suffix to all URLs generated by CodeIgniter.
+| For more information please see the user guide:
+|
+| https://codeigniter.com/user_guide/general/urls.html
+*/
+$config['url_suffix'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Default Character Set
+|--------------------------------------------------------------------------
+|
+| This determines which character set is used by default in various methods
+| that require a character set to be provided.
+|
+| See http://php.net/htmlspecialchars for a list of supported charsets.
+|
+*/
+$config['charset'] = 'UTF-8';
+
+/*
+|--------------------------------------------------------------------------
+| Class Extension Prefix
+|--------------------------------------------------------------------------
+|
+| This item allows you to set the filename/classname prefix when extending
+| native libraries.  For more information please see the user guide:
+|
+| https://codeigniter.com/user_guide/general/core_classes.html
+| https://codeigniter.com/user_guide/general/creating_libraries.html
+|
+*/
+$config['subclass_prefix'] = 'MY_';
+
+/*
+|--------------------------------------------------------------------------
+| Composer auto-loading
+|--------------------------------------------------------------------------
+|
+| Enabling this setting will tell CodeIgniter to look for a Composer
+| package auto-loader script in application/vendor/autoload.php.
+|
+|	$config['composer_autoload'] = TRUE;
+|
+| Or if you have your vendor/ directory located somewhere else, you
+| can opt to set a specific path as well:
+|
+|	$config['composer_autoload'] = '/path/to/vendor/autoload.php';
+|
+| For more information about Composer, please visit http://getcomposer.org/
+|
+| Note: This will NOT disable or override the CodeIgniter-specific
+|	autoloading (application/config/autoload.php)
+*/
+$config['composer_autoload'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Allowed URL Characters
+|--------------------------------------------------------------------------
+|
+| This lets you specify which characters are permitted within your URLs.
+| When someone tries to submit a URL with disallowed characters they will
+| get a warning message.
+|
+| As a security measure you are STRONGLY encouraged to restrict URLs to
+| as few characters as possible.  By default only these are allowed: a-z 0-9~%.:_-
+|
+| Leave blank to allow all characters -- but only if you are insane.
+|
+| The configured value is actually a regular expression character group
+| and it will be executed as: ! preg_match('/^[<permitted_uri_chars>]+$/i
+|
+| DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
+|
+*/
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+
+/*
+|--------------------------------------------------------------------------
+| Enable Query Strings
+|--------------------------------------------------------------------------
+|
+| By default CodeIgniter uses search-engine friendly segment based URLs:
+| example.com/who/what/where/
+|
+| You can optionally enable standard query string based URLs:
+| example.com?who=me&what=something&where=here
+|
+| Options are: TRUE or FALSE (boolean)
+|
+| The other items let you set the query string 'words' that will
+| invoke your controllers and its functions:
+| example.com/index.php?c=controller&m=function
+|
+| Please note that some of the helpers won't work as expected when
+| this feature is enabled, since CodeIgniter is designed primarily to
+| use segment based URLs.
+|
+*/
+$config['enable_query_strings'] = FALSE;
+$config['controller_trigger'] = 'c';
+$config['function_trigger'] = 'm';
+$config['directory_trigger'] = 'd';
+
+/*
+|--------------------------------------------------------------------------
+| Allow $_GET array
+|--------------------------------------------------------------------------
+|
+| By default CodeIgniter enables access to the $_GET array.  If for some
+| reason you would like to disable it, set 'allow_get_array' to FALSE.
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['allow_get_array'] = TRUE;
+
+/*
+|--------------------------------------------------------------------------
+| Error Logging Threshold
+|--------------------------------------------------------------------------
+|
+| You can enable error logging by setting a threshold over zero. The
+| threshold determines what gets logged. Threshold options are:
+|
+|	0 = Disables logging, Error logging TURNED OFF
+|	1 = Error Messages (including PHP errors)
+|	2 = Debug Messages
+|	3 = Informational Messages
+|	4 = All Messages
+|
+| You can also pass an array with threshold levels to show individual error types
+|
+| 	array(2) = Debug Messages, without Error Messages
+|
+| For a live site you'll usually only enable Errors (1) to be logged otherwise
+| your log files will fill up very fast.
+|
+*/
+$config['log_threshold'] = 0;
+
+/*
+|--------------------------------------------------------------------------
+| Error Logging Directory Path
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| application/logs/ directory. Use a full server path with trailing slash.
+|
+*/
+$config['log_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| One Logfile (true) or daily logfile?
+|--------------------------------------------------------------------------
+|
+| Leave this set to false unless you would like to have one big logfile
+| at application/logs/ directory.
+|
+| true == one big log
+| false (or non-existent): daily logs
+*/
+$config['one_log'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Log File Extension
+|--------------------------------------------------------------------------
+|
+| The default filename extension for log files. The default 'php' allows for
+| protecting the log files via basic scripting, when they are to be stored
+| under a publicly accessible directory.
+|
+| Note: Leaving it blank will default to 'php'.
+|
+*/
+$config['log_file_extension'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Log File Permissions
+|--------------------------------------------------------------------------
+|
+| The file system permissions to be applied on newly created log files.
+|
+| IMPORTANT: This MUST be an integer (no quotes) and you MUST use octal
+|            integer notation (i.e. 0700, 0644, etc.)
+*/
+$config['log_file_permissions'] = 0644;
+
+/*
+|--------------------------------------------------------------------------
+| Date Format for Logs
+|--------------------------------------------------------------------------
+|
+| Each item that is logged has an associated date. You can use PHP date
+| codes to set your own date formatting
+|
+*/
+$config['log_date_format'] = 'Y-m-d H:i:s';
+
+/*
+|--------------------------------------------------------------------------
+| Error Views Directory Path
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| application/views/errors/ directory.  Use a full server path with trailing slash.
+|
+*/
+$config['error_views_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Cache Configuration
+|--------------------------------------------------------------------------
+|
+| CodeIgniter supports multiple cache adapters to improve application performance
+| by storing frequently accessed data.
+| 
+| Important Notice:
+| There might some places where Wavelog forces the file adapter instead using the configured one.
+| This happens when caching for large files like images or comparable data is needed. So even
+| when you configure another adapter here, Wavelog might still use file caching in some places and respects 
+| the configured cache path for that.
+|
+| 'cache_path'
+|     Directory path for file-based caching. Leave BLANK to use the default
+|     application/cache/ directory. Use absolute paths with trailing slash.
+|     Must be writable by the web server (typically www-data or apache user).
+|     This is only used for 'file' cache adapter.
+|     Example: /var/cache/wavelog/ or /tmp/wavelog_cache/
+|
+| 'cache_adapter'
+|     The primary cache adapter to use. Options include:
+|     - 'file'      : File-based caching (default, works everywhere)
+|     - 'redis'     : Redis in-memory cache (requires Redis server & extension)
+|     - 'memcached' : Memcached (requires Memcached server & extension)
+|     - 'apcu'      : APCu in-memory cache (requires APCu extension)
+|
+| 'cache_backup'
+|     Fallback adapter if primary adapter fails or is unavailable.
+|     Recommended: 'file' as a safe fallback option
+|
+| 'cache_key_prefix'
+|     Prefix added to all cache keys to avoid collisions between
+|     applications sharing the same cache storage.
+|
+| Note: Redis configuration is stored separately in application/config/redis.php
+|
+*/
+$config['cache_path'] = '';
+$config['cache_adapter'] = 'apcu';
+$config['cache_backup'] = 'file';
+$config['cache_key_prefix'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Cache Include Query String
+|--------------------------------------------------------------------------
+|
+| Whether to take the URL query string into consideration when generating
+| output cache files. Valid options are:
+|
+|	FALSE      = Disabled
+|	TRUE       = Enabled, take all query parameters into account.
+|	             Please be aware that this may result in numerous cache
+|	             files generated for the same page over and over again.
+|	array('q') = Enabled, but only take into account the specified list
+|	             of query parameters.
+|
+*/
+$config['cache_query_string'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Encryption Key
+|--------------------------------------------------------------------------
+|
+| Encryption Key is used to encrypt sensitive data. Choose a strong and secure key.
+| Example: 'cnawuihp87f4g3ofb837rf93brlcve378rgf93be9837dgvzcl39rlzfbrzvc834lvvf83frgv83zrbzv'
+|
+|
+*/
+$config['encryption_key'] = 'flossie1234555541';
+
+/*
+|--------------------------------------------------------------------------
+| Session Variables
+|--------------------------------------------------------------------------
+|
+| 'sess_driver'
+|
+|	The storage driver to use: files, database, redis, redis2, memcached
+|
+|	'redis2' is Wavelog's own Redis driver. It behaves like 'redis' but waits
+|	for the session lock with BLPOP instead of polling, so parallel AJAX
+|	requests of the same user are no longer delayed by up to a second each.
+|	When redis is needed, use 'redis2' instead of 'redis' for better performance
+|   unless you have a really good reason to use the original 'redis' driver.
+|
+| 'sess_cookie_name'
+|
+|	The session cookie name, must contain only [0-9a-z_-] characters
+|
+| 'sess_expiration'
+|
+|	The number of SECONDS you want the session to last.
+|	Default: 43200 seconds (12 hours).
+|   Setting to 0 means use the default value of 43200 seconds (12 hours).
+|
+| 'sess_save_path'
+|
+|	The location to save sessions to, driver dependent.
+|
+|	For the 'files' driver, it's a path to a writable directory.
+|	WARNING: Only absolute paths are supported!
+|
+|	For the 'database' driver, it's a table name.
+|	Please read up the manual for the format with other session drivers.
+|
+|	IMPORTANT: You are REQUIRED to set a valid save path!
+|
+| 'sess_match_ip'
+|
+|	Whether to match the user's IP address when reading the session data.
+|
+|	WARNING: If you're using the database driver, don't forget to update
+|	         your session table's PRIMARY KEY when changing this setting.
+|
+| 'sess_time_to_update'
+|
+|	How many seconds between CI regenerating the session ID.
+|
+| 'sess_regenerate_destroy'
+|
+|	Whether to destroy session data associated with the old session ID
+|	when auto-regenerating the session ID. When set to FALSE, the data
+|	will be later deleted by the garbage collector.
+|
+| Other session cookie settings are shared with the rest of the application,
+| except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
+|
+*/
+$config['sess_driver'] = 'files';
+$config['sess_cookie_name'] = 'ci_wavelog';
+$config['sess_expiration'] = 43200;
+$config['sess_save_path'] = '/tmp';
+$config['sess_match_ip'] = FALSE;
+$config['sess_time_to_update'] = 300;
+$config['sess_regenerate_destroy'] = FALSE;
+
+/*
+ * To make sure we do not collect infinite sessions we set some garbage collection settings
+ * see https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability
+ * and https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
+ * and https://osvaldas.info/enabling-codeigniters-garbage-collector/
+ *
+ * set the probability to 1/1000 to make sure we do not collect too often
+*/
+$config['sess_gc_probability'] = 1;
+$config['sess_gc_divisor'] = 1000;
+
+/*
+|--------------------------------------------------------------------------
+| Cookie Related Variables
+|--------------------------------------------------------------------------
+|
+| 'cookie_prefix'   = Set a cookie name prefix if you need to avoid collisions
+| 'cookie_domain'   = Set to .your-domain.com for site-wide cookies
+| 'cookie_path'     = Typically will be a forward slash
+| 'cookie_secure'   = Cookie will only be set if a secure HTTPS connection exists.
+| 'cookie_samesite' = Cookie SameSite attribute (None, Lax, Strict)
+|
+| Note: These settings (with the exception of 'cookie_prefix' and
+|       'cookie_httponly') will also affect sessions.
+|
+*/
+$config['cookie_prefix']	= '';
+$config['cookie_domain']	= '';
+$config['cookie_path']		= '/';
+$config['cookie_secure']	= FALSE;
+$config['cookie_samesite']  = 'Lax';
+
+/*
+|--------------------------------------------------------------------------
+| Standardize newlines
+|--------------------------------------------------------------------------
+|
+| Determines whether to standardize newline characters in input data,
+| meaning to replace \r\n, \r, \n occurrences with the PHP_EOL value.
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['standardize_newlines'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Global XSS Filtering
+|--------------------------------------------------------------------------
+|
+| Determines whether the XSS filter is always active when GET, POST or
+| COOKIE data is encountered
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['global_xss_filtering'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Cross Site Request Forgery
+|--------------------------------------------------------------------------
+| Enables a CSRF cookie token to be set. When set to TRUE, token will be
+| checked on a submitted form. If you are accepting user data, it is strongly
+| recommended CSRF protection be enabled.
+|
+| 'csrf_token_name' = The token name
+| 'csrf_cookie_name' = The cookie name
+| 'csrf_expire' = The number in seconds the token should expire.
+| 'csrf_regenerate' = Regenerate token on every submission
+| 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
+*/
+$config['csrf_protection'] = FALSE;
+$config['csrf_token_name'] = 'csrf_test_name';
+$config['csrf_cookie_name'] = 'csrf_cookie_name';
+$config['csrf_expire'] = 7200;
+$config['csrf_regenerate'] = TRUE;
+$config['csrf_exclude_uris'] = array();
+
+/*
+|--------------------------------------------------------------------------
+| Output Compression
+|--------------------------------------------------------------------------
+|
+| Enables Gzip output compression for faster page loads.  If enabled,
+| the output class will test whether your server supports Gzip.
+| Even if it does, however, not all browsers support compression
+| so enable only if you are reasonably sure your visitors can handle it.
+|
+| Only used if zlib.output_compression is turned off in your php.ini.
+| Please do not use it together with httpd-level output compression.
+|
+| VERY IMPORTANT:  If you are getting a blank page when compression is enabled it
+| means you are prematurely outputting something to your browser. It could
+| even be a line of whitespace at the end of one of your scripts.  For
+| compression to work, nothing can be sent before the output buffer is called
+| by the output class.  Do not 'echo' any values with compression enabled.
+|
+*/
+$config['compress_output'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Master Time Reference
+|--------------------------------------------------------------------------
+|
+| Options are 'local' or any PHP supported timezone. This preference tells
+| the system whether to use your server's local time as the master 'now'
+| reference, or convert it to the configured one timezone. See the 'date
+| helper' page of the user guide for information regarding date handling.
+|
+*/
+$config['time_reference'] = 'UTC';
+date_default_timezone_set($config['time_reference']);
+
+/*
+|--------------------------------------------------------------------------
+| Rewrite PHP Short Tags
+|--------------------------------------------------------------------------
+|
+| If your PHP installation does not have short tag support enabled CI
+| can rewrite the tags on-the-fly, enabling you to utilize that syntax
+| in your view files.  Options are TRUE or FALSE (boolean)
+|
+| Note: You need to have eval() enabled for this to work.
+|
+*/
+$config['rewrite_short_tags'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Reverse Proxy IPs
+|--------------------------------------------------------------------------
+|
+| If your server is behind a reverse proxy, you must whitelist the proxy
+| IP addresses from which CodeIgniter should trust headers such as
+| HTTP_X_FORWARDED_FOR and HTTP_CLIENT_IP in order to properly identify
+| the visitor's IP address.
+|
+| You can use both an array or a comma-separated list of proxy addresses,
+| as well as specifying whole subnets. Here are a few examples:
+|
+| Comma-separated:	'10.0.1.200,192.168.5.0/24'
+| Array:		array('10.0.1.200', '192.168.5.0/24')
+*/
+$config['proxy_ips'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Users Data Directory Options
+|--------------------------------------------------------------------------
+|
+|	'userdata'		Name of principal/centralized data folder
+|
+|   If you are a contributor to Wavelog you perhaps should add this folder path to .gitignore
+|
+*/
+
+$config['userdata'] = 'userdata';
+
+/*
+|--------------------------------------------------------------------------
+| Disable Syncing to 3rd party-Services at UI
+|--------------------------------------------------------------------------
+|
+| Here you can disable triggering the syncing-logics by Users.
+| Helpful if u have a huge instance or active-users, because of preventing race-conditions between UI and Cron
+|
+*/
+
+$config['disable_manual_lotw'] = false;
+$config['disable_manual_eqsl'] = false;
+$config['disable_manual_hrdlog'] = false;
+$config['disable_manual_qrz'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Disables QSL-Image-Feature
+|--------------------------------------------------------------------------
+|
+| This disabled the whole QSL image feature if you don't need it and want to hide it.
+| Set to true will hide all QSL image related stuff in Wavelog
+|
+*/
+
+$config['disable_qsl'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Disables OQRS-Feature
+|--------------------------------------------------------------------------
+|
+| This disabled the whole OQRS feature if you don't need it and want to hide it.
+| Set to true will hide all OQRS related stuff in Wavelog
+|
+*/
+
+$config['disable_oqrs'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Special Callsign Feature aka. Clubstations Support
+|--------------------------------------------------------------------------
+|
+| This config switch is meant for Special Callsign operations or Clubstations.
+| If this switch is set to true it enables a whole bunch of features to handle Special Callsigns and Club Callsigns.
+| For more Information please visit the Wiki:
+| https://docs.wavelog.org/admin-guide/administration/clubstations/
+|
+| !!! Important !!!
+| $config['disable_impersonate'] has to be set to false to use this feature.
+|
+*/
+
+$config['special_callsign'] = false;
+
+
+/*
+|--------------------------------------------------------------------------
+| Impersonate
+|--------------------------------------------------------------------------
+|
+| This config switch disables the impersonate feature. This feature is used to impersonate another user.
+| Impersonate is enabled by default. To disable it, set the value to false. Also the special_callsign feature needs this to be false.
+|
+*/
+
+$config['disable_impersonate'] = false;
+
+
+/*
+|--------------------------------------------------------------------------
+| Cronmanager Allow Insecure
+|--------------------------------------------------------------------------
+|
+| The cronmanager needs http or https with a valid certificate to work.
+| If you want to use it with https and a self-signed certificate, you need to set this to true.
+|
+*/
+
+$config['cron_allow_insecure'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Update / version check
+|--------------------------------------------------------------------------
+
+| This config switch disables the check for newer releases on github and
+| hides the banner to admin users if a newer release as published.
+| Default ON.
+ */
+
+$config['disable_version_check'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| eqsl.cc Massdownload
+|--------------------------------------------------------------------------
+|
+| The eqsl.cc mass download function is not threadsafe. So it is disabled by default.
+| Please consider enabling this carefully. Not recommended for multi-user environments.
+ */
+
+$config['enable_eqsl_massdownload'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Lock Account after n failed login-attempts
+|--------------------------------------------------------------------------
+ */
+
+$config['max_login_attempts'] = 3;
+
+/*
+|--------------------------------------------------------------------------
+| Disable User QSO Count in User List (Admin Menu)
+| Reason for this setting is to prevent performance issues on large installations
+| where the QSO count is not needed. Set to true to disable the QSO count.
+| This also hides the last Operator for CLubstations. Default is false.
+|--------------------------------------------------------------------------
+ */
+
+ $config['disable_user_stats'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Enable DCL Interface
+| Set this to true if your Users and you want to connect your instance to the German DCL
+|--------------------------------------------------------------------------
+ */
+
+ $config['enable_dcl_interface'] = true;
+
+/*
+|--------------------------------------------------------------------------
+| DXCluster File Cache
+|--------------------------------------------------------------------------
+|
+| Controls file-based caching for DXCluster features. Two independent settings:
+|
+| 1. enable_dxcluster_file_cache_band
+|    - Caches processed spot lists (WITHOUT worked status) from DXCache API
+|    - Cache is INSTANCE-WIDE (shared by all users)
+|    - Cache duration: 59 seconds
+|    - Cache key format: dxcluster_raw_{maxage}_{continent}_{mode}_{band}
+|    - Example: dxcluster_raw_60_Any_All_20m
+|    - Contains: callsign, frequency, DXCC, mode, age, metadata
+|    - Does NOT contain: worked/confirmed status (always false in cache)
+|    - Set to TRUE to reduce API calls and speed up spot list loading
+|    - Set to FALSE to always fetch fresh data from API
+|
+| 2. enable_dxcluster_file_cache_worked
+|    - Caches worked/confirmed status lookups from database
+|    - Cache is USER-SPECIFIC (separate for each user/logbook)
+|    - Cache duration: 15 minutes (900 seconds)
+|    - Cache includes: All bands/modes combinations per callsign/DXCC/continent
+|    - Set to TRUE to significantly reduce database load
+|    - Set to FALSE to always query database for fresh status
+|
+| Default: false (both caching disabled)
+|
+| Recommendation:
+|   - Enable BAND cache on all installations to reduce API load (instance-wide)
+|   - Enable WORKED cache on high-traffic multi-user installations to reduce DB queries
+| Warning: WORKED cache may cause high disk usage on large multi-user installations.
+|--------------------------------------------------------------------------
+ */
+
+$config['enable_dxcluster_file_cache_band'] = false;
+$config['enable_dxcluster_file_cache_worked'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| DXCluster Refresh Time
+|--------------------------------------------------------------------------
+| This defines the how often the DXCluster spots are refreshed in seconds. Default is 30 seconds.
+| Be careful with this and do not set it too low because depending on how many QSOs a user has it 
+| can cause a lot of load on the server. Also consider enabling a proper caching (file caches are 
+| not recommended for very large installations) to reduce the load on the server.
+|--------------------------------------------------------------------------
+ */
+$config['dxcluster_refresh_time'] = 30;
+
+/*
+|--------------------------------------------------------------------------
+| Internal tools
+| Set this to true if you want to display the admin internal tools in the header menu
+|--------------------------------------------------------------------------
+ */
+$config['internal_tools'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| API Rate Limiting
+|--------------------------------------------------------------------------
+|
+| Rate limiting for API endpoints using sliding window algorithm.
+| Rate limiting is only enabled if api_rate_limits is defined (not null/empty).
+|
+| Format: Array of endpoint-specific limits
+|   - Endpoint name: the API function name (e.g., 'private_lookup', 'lookup')
+|     API v2 looks its endpoints up as 'api_v2_<resource>' (e.g. 'api_v2_qso',
+|     'api_v2_lookup'), plus 'api_v2_auth' for failed authentication attempts.
+|   - requests: maximum number of requests allowed
+|   - window: time window in seconds
+|
+| Example configuration:
+|
+| $config['api_rate_limits'] = [
+|     'private_lookup' => ['requests' => 60, 'window' => 60],  // 60 requests per minute
+|     'lookup'         => ['requests' => 60, 'window' => 60],  // 60 requests per minute
+|     'qso'            => ['requests' => 10, 'window' => 60],  // 10 requests per minute
+|     'default'        => ['requests' => 30, 'window' => 60],  // Default for all other endpoints
+| ];
+|
+| Set to null or leave commented to disable rate limiting entirely:
+| $config['api_rate_limits'] = null;
+|
+| The 'default' key is optional and applies to any API endpoint not explicitly
+| listed. If no default is provided, endpoints without specific limits have no
+| rate limiting applied.
+|
+| Rate limiting tracks requests by:
+|   - API key (if provided)
+|   - Session user ID (if authenticated via session)
+|   - IP address (fallback)
+|
+*/
+
+// Example configuration (uncomment to enable):
+// $config['api_rate_limits'] = [
+//     'private_lookup' => ['requests' => 60, 'window' => 60],
+//     'lookup'         => ['requests' => 60, 'window' => 60],
+//     'qso'            => ['requests' => 10, 'window' => 60],
+//     'radio'          => ['requests' => 60, 'window' => 60],
+//     'statistics'     => ['requests' => 30, 'window' => 60],
+//     'api_v2_auth'    => ['requests' => 10, 'window' => 60],
+//     'api_v2_qso'     => ['requests' => 10, 'window' => 60],
+//     'default'        => ['requests' => 30, 'window' => 60],
+// ];

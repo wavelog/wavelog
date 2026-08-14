@@ -1,0 +1,246 @@
+{
+    "emptyTable": "Ei näytettäviä tuloksia",
+    "infoEmpty": "Näytetään 0 - 0 (yhteensä 0)",
+    "infoFiltered": "(suodatettu _MAX_ tuloksen joukosta)",
+    "infoThousands": ",",
+    "lengthMenu": "Näytä kerralla _MENU_ riviä",
+    "loadingRecords": "Ladataan...",
+    "processing": "Hetkinen...",
+    "search": "Etsi:",
+    "zeroRecords": "Tietoja ei löytynyt",
+    "paginate": {
+        "first": "Ensimmäinen",
+        "last": "Viimeinen",
+        "next": "Seuraava",
+        "previous": "Edellinen"
+    },
+    "aria": {
+        "sortAscending": ": lajittele sarake nousevasti",
+        "sortDescending": ": lajittele sarake laskevasti"
+    },
+    "select": {
+        "rows": {
+            "_": "Valittuna %d riviä",
+            "1": "Valittuna vain yksi rivi"
+        },
+        "cells": {
+            "1": "1 solu valittu",
+            "_": "%d solua valittu"
+        },
+        "columns": {
+            "1": "1 sarake valittu",
+            "_": "%d saraketta valittu"
+        }
+    },
+    "buttons": {
+        "copy": "Kopioi",
+        "copySuccess": {
+            "1": "Yksi rivi kopioitu leikepöydälle",
+            "_": "%d riviä kopioitu leikepöydälle"
+        },
+        "copyTitle": "Kopioi leikepöydälle",
+        "copyKeys": "Paina Ctrl tai ⌘ + C kopioidaksesi taulukon arvot leikepöydälle.<br>Peruuttaaksesi klikkaa tätä viestiä tai Esc.",
+        "colvisRestore": "Palauta oletusasetukset",
+        "colvis": "Sarakkeen näkyvyys",
+        "csv": "CSV",
+        "excel": "Excel",
+        "pdf": "PDF",
+        "pageLength": {
+            "-1": "Näytä kaikki rivit",
+            "_": "Näytä %d riviä",
+            "1": "Näytä 1 rivi"
+        },
+        "print": "Tulosta",
+        "createState": "Luo tila",
+        "removeAllStates": "Poista kaikki osavaltiot",
+        "removeState": "Poista",
+        "renameState": "Nimeä uudelleen",
+        "stateRestore": "Valinta %d",
+        "updateState": "Päivitä",
+        "collection": "Kokoelma<span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
+        "savedStates": "Tallennetut valinnat"
+    },
+    "info": "Näytetään rivit _START_ - _END_ (yhteensä _TOTAL_)",
+    "autoFill": {
+        "cancel": "Peruuta",
+        "fill": "Täytä kaikki solut seuraavilla tiedoilla <i>%d</i>",
+        "fillHorizontal": "Täytä solut vaakasuunnassa",
+        "fillVertical": "Täytä solut pystysuunnassa",
+        "info": "Automaattinen täyttöesimerkki"
+    },
+    "datetime": {
+        "previous": "Edellinen",
+        "next": "Seuraava",
+        "hours": "Tunnit",
+        "minutes": "Minuutit",
+        "seconds": "Sekunnit",
+        "unknown": "-",
+        "amPm": [
+            "ap",
+            "ip"
+        ],
+        "weekdays": [
+            "Su",
+            "Ma",
+            "Ti",
+            "Ke",
+            "To",
+            "Pe",
+            "La"
+        ],
+        "months": {
+            "0": "tammikuu",
+            "1": "helmikuu",
+            "2": "maaliskuu",
+            "3": "huhtikuu",
+            "4": "toukokuu",
+            "5": "kesäkuu",
+            "6": "heinäkuu",
+            "7": "elokuu",
+            "8": "syyskuu",
+            "9": "lokakuu",
+            "10": "marraskuu",
+            "11": "joulukuu"
+        }
+    },
+    "editor": {
+        "close": "Sulje",
+        "create": {
+            "button": "Uusi",
+            "title": "Otsikko",
+            "submit": "Tallenna"
+        },
+        "edit": {
+            "button": "Muokkaa",
+            "title": "Otsikko",
+            "submit": "Tallenna"
+        },
+        "remove": {
+            "button": "Poista",
+            "title": "Otsikko",
+            "submit": "Poista",
+            "confirm": {
+                "_": "Haluatko varmasti poistaa %d riviä?",
+                "1": "Haluatko varmasti poistaa 1 rivin?"
+            }
+        },
+        "multi": {
+            "restore": "Kumoa muutokset",
+            "title": "Useita arvoja",
+            "noMulti": "Tätä kenttää voidaan muokata erikseen, mutta ei ryhmän osana.",
+            "info": "Valituilla kohteilla on eri arvot tälle kentälle. Muokataksesi ja asettaaksesi kaikki kohteet tämän syötteen samaan arvoon, napsauta tai napauta tästä, muuten ne säilyttävät yksilölliset arvonsa."
+        },
+        "error": {
+            "system": "Järjestelmävirhe on ilmennyt (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Lisätietoja&lt;\\/a&gt;).</a>"
+        }
+    },
+    "searchBuilder": {
+        "button": {
+            "0": "Edistynyt haku",
+            "_": "Edistynyt haku (%d)"
+        },
+        "clearAll": "Tyhjennä kaikki",
+        "condition": "Ehdot",
+        "data": "Data",
+        "title": {
+            "0": "Edsitynyt haku",
+            "_": "Edistynyt haku (%d)"
+        },
+        "value": "Arvo",
+        "conditions": {
+            "date": {
+                "equals": "Yhtä suuri kuin",
+                "after": "Jälkeen",
+                "before": "Ennen",
+                "between": "Välillä",
+                "empty": "Tyhjä",
+                "not": "Ei",
+                "notBetween": "Ei välissä",
+                "notEmpty": "Ei tyhjä"
+            },
+            "number": {
+                "between": "Välissä",
+                "empty": "Tyhjä",
+                "equals": "Yhtä suuri kuin",
+                "gt": "Suurempi kuin",
+                "gte": "Suurempi tai yhtä suuri kuin",
+                "lt": "Pienempi kuin",
+                "lte": "Pienempi tai yhtä suuri kuin",
+                "not": "Ei",
+                "notBetween": "Ei välillä",
+                "notEmpty": "Ei tyhjä"
+            },
+            "string": {
+                "contains": "Sisältää",
+                "empty": "Tyhjä",
+                "endsWith": "Päättyy",
+                "equals": "Yhtä suuri kuin",
+                "not": "Ei",
+                "notEmpty": "Ei tyhjä",
+                "startsWith": "Alkaa seuraavalla",
+                "notContains": "Ei sisällä",
+                "notStartsWith": "Ei ala seuraavalla",
+                "notEndsWith": "Ei lopu tällä"
+            },
+            "array": {
+                "equals": "Yhtä suuri kuin",
+                "empty": "Tyhjä",
+                "contains": "Sisältää",
+                "not": "Ei",
+                "notEmpty": "Ei tyhjä",
+                "without": "Ilman"
+            }
+        },
+        "add": "Lisää ehto",
+        "deleteTitle": "Poista suodatussääntö",
+        "logicAnd": "Ja",
+        "logicOr": "Tai",
+        "leftTitle": "Sisennyskriteerit",
+        "rightTitle": "Sisennyskriteerit"
+    },
+    "searchPanes": {
+        "clearMessage": "Tyhjennä kaikki",
+        "collapse": {
+            "0": "Hakukentät",
+            "_": "Hakukentät (%d)"
+        },
+        "count": "{yhteensä}",
+        "countFiltered": "{näkyvissä} ({yhteensä})",
+        "emptyPanes": "Hakukentät puuttuvat",
+        "loadMessage": "Lataa hakukenttiä...",
+        "showMessage": "Näytä kaikki",
+        "collapseMessage": "Tiivistä kaikki",
+        "title": "Aktiiviset suodatukset - %d"
+    },
+    "thousands": ",",
+    "decimal": ".",
+    "stateRestore": {
+        "creationModal": {
+            "button": "Luo",
+            "columns": {
+                "search": "Hakusarake",
+                "visible": "Sarakkeen näkyvyys"
+            },
+            "name": "Nimi:",
+            "order": "Lajittelu",
+            "paging": "Sivut",
+            "search": "Etsi",
+            "searchBuilder": "Edistynyt haku",
+            "select": "Valitse",
+            "title": "Luo uusi valinta",
+            "toggleLabel": "Sisällytä:",
+            "scroller": "Vierityspaikka"
+        },
+        "duplicateError": "Tämän niminen valinta on jo olemassa.",
+        "emptyError": "Nimi ei voi olla tyhjä.",
+        "emptyStates": "Ei tallennettuja valintoja",
+        "removeConfirm": "Oletko varma, että haluat poistaa %s?",
+        "removeError": "Valinnan poistaminen epäonnistui.",
+        "removeJoiner": "ja",
+        "removeSubmit": "Poista",
+        "removeTitle": "Poista valinta",
+        "renameButton": "Nimeä uudelleen",
+        "renameLabel": "Uusi nimi %s:",
+        "renameTitle": "Uudelleennimeä valinta"
+    }
+}

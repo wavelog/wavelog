@@ -1,0 +1,76 @@
+<div class="container publicsearch">
+<h1><?= __("Results"); ?> <small class="text-muted"><?= __("Searching for"); ?> <span class="callsign"><?php echo strtoupper($callsign); ?></span></small></h1>
+<div class="card text-center">
+<div class="card-body">
+<?php
+
+if ($results) { ?>
+
+<div class="table-responsive">
+    <table style="width:100%" id="publicsearchtable" class="publicsearchtable table table-sm table-striped table-hover">
+        <thead>
+            <tr class="titles">
+                <th><?= __("Date"); ?></th>
+                <th><?= __("Call"); ?></th>
+                <th><?= __("Mode"); ?></th>
+                <th><?= __("Band"); ?></th>
+                <th><?= __("Station Callsign"); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <?php  $i = 0;
+            foreach ($results->result() as $row) {
+                echo '<tr class="tr'.($i & 1).'">'; ?>
+            <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($this->config->item('qso_date_format'), $timestamp); ?></td>
+            <td>
+                <span class="callsign"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></span>
+            </td>
+            <td>
+                <?php echo html_escape($row->COL_SUBMODE==null ? $row->COL_MODE : $row->COL_SUBMODE); ?>
+            </td>
+            <td>
+                <?php if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); } ?>
+            </td>
+            <td>
+                <?php echo $row->station_callsign; ?>
+            </td>
+            </tr>
+            <?php $i++; } ?>
+        </tbody>
+    </table></div>
+    <?php } ?>
+
+    <?php if (isset($this->pagination)){ ?>
+        <?php
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['attributes'] = ['class' => 'page-link'];
+        $config['first_link'] = false;
+        $config['last_link'] = false;
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><a href="#" class="page-link">';
+        $config['cur_tag_close'] = '<span class="visually-hidden">(current)</span></a></li>';
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+        $this->pagination->initialize($config);
+        ?>
+
+        <?php echo $this->pagination->create_links(); ?>
+
+    <?php } ?>
+
+</div>
+</div>
+</div>
+</div>
+</div>

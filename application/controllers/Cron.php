@@ -1,0 +1,444 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+class cron extends CI_Controller {
+
+	private $min_php_version;
+
+	function __construct() {
+
+		parent::__construct();
+
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+			echo __("Maintenance Mode is active. Try again later.")."\n";
+			redirect('user/login');
+		}
+
+		$this->load->model('cron_model');
+
+		// Minimum PHP Version for the Cron Manager
+		$this->min_php_version = '8.1.0';
+	}
+
+	public function index() {
+
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+
+		$this->load->helper('file');
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/cronstrue.min.js',
+			'assets/js/sections/cron.js'
+		];
+
+		$data['page_title'] = __("Cron Manager");
+		$data['crons'] = $this->cron_model->get_crons();
+		$data['cron_allow_insecure'] = $this->config->item('cron_allow_insecure') ?? false;
+		$data['cron_disable_run_now'] = ($this->config->item('cron_disable_run_now') ?? false) == true;
+
+		$mastercron = array();
+		$mastercron = $this->get_mastercron_status();
+		$data['mastercron'] = $mastercron;
+		$data['min_php_version'] = $this->min_php_version;
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('cron/index');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function run() {
+
+		// This is the main function, which handles all crons, runs them if enabled and writes the 'next run' timestamp to the database
+
+		// Rate limit: this function may only be triggered once every minute. To prevent attack vectors we lock the cron runner for 30 seconds after it's last run.
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
+		$this->load->helper('cronauth');
+
+		$rate_limit_key = 'cron_run_rate_limit';
+		if ($this->cache->get($rate_limit_key) !== false) {
+			http_response_code(429); // Too Many Requests
+			log_message('debug', 'CRON: run() called within the 30s rate limit window, skipping.');
+			echo "CRON: rate limit active, skipping. Try again in a few seconds.\n";
+			return;
+		}
+		// Set the lock for 30 seconds
+		$this->cache->save($rate_limit_key, time(), 30);
+
+		// check for min. PHP version
+		if (version_compare(PHP_VERSION, $this->min_php_version) >= 0) {
+
+			// TODO Add an API Key to the cronjob to improve security?
+
+			$crons = $this->cron_model->get_crons();
+
+			$status = 'pending';
+
+			foreach ($crons as $cron) {
+				// Set the status to false by default
+				$set_status = false;
+				cronauth_mark_active();
+				try {
+					if ($cron->enabled == 1) {
+
+						// calculate the crons expression
+						$data = array(
+							'expression' => $cron->expression,
+							'timeZone' => new DateTimeZone('UTC')
+						);
+						$this->load->library('CronExpression', $data);
+
+						$cronjob = $this->cronexpression;
+						$dt = new DateTime();
+						$isdue = $cronjob->isMatching($dt);
+						// Set the status to true, if the cron is enabled by default
+						$set_status = true;
+
+						$next_run = $cronjob->getNext();
+						$next_run_date = gmdate('Y-m-d H:i:s', $next_run);
+						$this->cron_model->set_next_run($cron->id, $next_run_date);
+
+						if ($isdue == true) {
+							$isdue_result = 'true';
+
+							log_message('debug', 'CRON: ' . $cron->id . ' is due and will be executed.');
+
+							echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
+							echo "CRON: " . $cron->id . " -> RUNNING...\n";
+
+							$cron_result = $this->triggerCron($cron);
+							if (ENVIRONMENT == "development") {
+								echo "CRON: " . $cron->id . " -> URL: " . $cron_result['url'] . "\n";
+							}
+
+							if ($cron_result['locked']) {
+								echo "CRON: " . $cron->id . " -> already running. skipped.\n";
+								$set_status = false;
+							} else if ($cron_result['success']) {
+								echo "CRON: " . $cron->id . " -> CURL Result: " . $cron_result['response'] . "\n";
+								$status = 'healthy';
+							} else {
+								echo "ERROR: Something went wrong with " . $cron->id . "; Message: " . $cron_result['error'] . "\n";
+								$status = 'failed';
+							}
+						} else {
+							$isdue_result = 'false';
+							echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
+							$status = 'healthy';
+							// Don't set the status as the cronjob is not due
+							$set_status = false;
+						}
+					} else {
+						echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
+						$status = 'disabled';
+						// Set the status if the cron needs to be disabled.
+						$set_status = true;
+
+						// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
+						$this->cron_model->set_next_run($cron->id, null);
+					}
+					if ($set_status == true) {
+						$this->cron_model->set_status($cron->id, $status);
+					}
+					$this->cronexpression = null;
+				} catch (Exception $e) {
+					log_message('error', 'CRON: ' . $cron->id . ' failed: ' . $e->getMessage());
+					echo "ERROR: CRON " . $cron->id . " failed: " . $e->getMessage() . "\n";
+					$this->cron_model->set_status($cron->id, 'failed');
+				}
+			}
+
+			$datetime = new DateTime("now", new DateTimeZone('UTC'));
+			$datetime = $datetime->format('Y-m-d H:i:s');
+			$this->optionslib->update('mastercron_last_run', $datetime , 'no');
+		} else {
+			log_message('error', 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version);
+			echo 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version . "\n";
+		}
+	}
+
+	public function runNow() {
+		if (!$this->user_model->authorize(99)) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => __("You're not allowed to do that!")]);
+			return;
+		}
+
+		if (($this->config->item('cron_disable_run_now') ?? false) == true) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'warning', 'message' => __('Manual execution of cronjobs is disabled.')]);
+			return;
+		}
+		// Release the session lock: the job runs synchronously and would otherwise
+		// block every other request of this user (with the file session driver) until it finishes.
+		session_write_close();
+
+		$cron = $this->cron_model->cron($this->input->post('id', true))->row();
+		if ($cron === null) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => __('Cronjob not found.')]);
+			return;
+		}
+
+		if ($cron->enabled != 1) {
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'warning', 'message' => __('Disabled cronjobs cannot be run.')]);
+			return;
+		}
+
+		$cron_result = $this->triggerCron($cron);
+		header("Content-type: application/json");
+
+		if ($cron_result['locked']) {
+			echo json_encode(['success' => false, 'messagecategory' => 'warning', 'message' => __('Cronjob is already running.')]);
+			return;
+		}
+
+		if ($cron_result['success']) {
+			$this->cron_model->set_status($cron->id, 'healthy');
+			echo json_encode(['success' => true, 'messagecategory' => 'success', 'message' => __('Cronjob executed successfully.')]);
+		} else {
+			$this->cron_model->set_status($cron->id, 'failed');
+			log_message('error', 'CRON: Manual execution of ' . $cron->id . ' failed: ' . $cron_result['error']);
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => __('Cronjob execution failed.')]);
+		}
+	}
+
+	public function editDialog() {
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		$cron_query = $this->cron_model->cron($this->input->post('id', true));
+
+		$data['cron'] = $cron_query->row();
+		$data['page_title'] = __("Edit Cronjob");
+
+		$this->load->view('cron/edit', $data);
+	}
+
+	public function edit() {
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+
+		$id = $this->input->post('cron_id', true);
+		$description = $this->input->post('cron_description', true);
+		$expression = $this->input->post('cron_expression', true);
+		$enabled = $this->input->post('cron_enabled', true);
+
+		$data = array(
+			'expression' => $expression,
+			'timeZone' => new DateTimeZone('UTC')
+		);
+		$this->load->library('CronExpression', $data);
+		$cron = $this->cronexpression;
+
+		if ($cron->isValid()) {
+			$this->cron_model->edit_cron($id, $description, $expression, $enabled);
+			$this->cronexpression = null;
+
+			header("Content-type: application/json");
+			echo json_encode(['success' => true, 'messagecategory' => 'success', 'message' => 'Changes saved for Cronjob "' . $id . '"']);
+		} else {
+			$this->session->set_flashdata('error', 'The Cron Expression you entered is not valid');
+			$this->cronexpression = null;
+
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'The expression "' . $expression . '" is not valid. Please try again.']);
+		}
+	}
+
+	public function toogleEnableCronSwitch() {
+		if (!$this->user_model->authorize(99)) {
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'Not allowed']);
+			return;
+		}
+
+		$id = $this->input->post('id', true);
+		$cron_enabled = $this->input->post('checked', true);
+
+		if ($id ?? '' != '') {
+			$this->cron_model->set_cron_enabled($id, $cron_enabled);
+			$data['success'] = 1;
+		} else {
+			$data['success'] = 0;
+			$data['flashdata'] = 'Not allowed';
+		}
+		echo json_encode($data);
+	}
+
+	public function fetchCrons() {
+		if (!$this->user_model->authorize(99)) {
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'Not allowed']);
+			return;
+		}
+		$hres = [];
+		$result = $this->cron_model->get_crons();
+
+		foreach ($result as $cron) {
+			$single = (object) [];
+			$single->cron_id = $cron->id;
+			$single->cron_description = $cron->description;
+			$single->cron_status = $this->cronStatus2html($cron->enabled, $cron->status);
+			$single->cron_expression = $this->cronExpression2html($cron->expression);
+			$single->cron_last_run = $cron->last_run ?? __("never");
+			$single->cron_next_run = ($cron->enabled == '1') ? ($cron->next_run ?? __("calculating...")) : __("never");
+			$single->cron_edit = $this->cronEdit2html($cron->id);
+			$single->cron_run = $this->cronRun2html($cron->id, $cron->enabled);
+			$single->cron_enabled = $this->cronEnabled2html($cron->id, $cron->enabled);
+			array_push($hres, $single);
+		}
+		echo json_encode($hres);
+	}
+
+	private function cronStatus2html($enabled, $status) {
+		if ($enabled == '1') {
+			if ($status == 'healthy') {
+				$htmlret = '<span class="badge text-bg-success">' . __("healthy") . '</span>';
+			} else if ($status == 'failed') {
+				$htmlret = '<span class="badge text-bg-danger">' . __("failed") . '</span>';
+			} else if ($status == 'pending') {
+				$htmlret = '<span class="badge text-bg-warning">' . __("pending") . '</span>';
+			} else {
+				$htmlret = '<span class="badge text-bg-warning">' . $status . '</span>';
+			}
+		} else {
+			$htmlret = '<span class="badge text-bg-secondary">' . __("disabled") . '</span>';
+		}
+		return $htmlret;
+	}
+
+	private function cronExpression2html($expression) {
+		$htmlret = '<code id="humanreadable_tooltip" data-bs-toggle="tooltip">' . $expression . '</code>';
+		return $htmlret;
+	}
+
+	private function cronEdit2html($id) {
+		$htmlret = '<button id="' . $id . '" class="editCron btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button>';
+		return $htmlret;
+	}
+
+	private function cronRun2html($id, $enabled) {
+		$disabled = ($enabled == '1') ? '' : ' disabled';
+		$htmlret = '<button id="' . $id . '" class="runCron btn btn-outline-success btn-sm"' . $disabled . '>' . __("Run Now") . '</button>';
+		return $htmlret;
+	}
+
+	private function cronEnabled2html($id, $enabled) {
+		if ($enabled == '1') {
+			$checked = 'checked';
+		} else {
+			$checked = '';
+		}
+		$htmlret = '<div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="' . $id . '" ' . $checked . '></div>';
+		return $htmlret;
+	}
+
+	private function triggerCron($cron) {
+		$this->load->helper('cronauth');
+		$cron_token = cronauth_token();
+
+		if (ENVIRONMENT == "docker") {
+			$url = 'http://localhost/' . $cron->function;
+			log_message('debug', 'Docker Environment detected. Using URL: ' . $url);
+		} else {
+			$url = local_url() . $cron->function;
+		}
+
+		// Prevent manual and scheduled executions of the same cronjob from overlapping.
+		// Load cache driver for locking mechanism.
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+		$lock_key = 'cron_lock_' . md5($cron->id);
+		if ($this->cache->get($lock_key)) {
+			return ['success' => false, 'locked' => true, 'response' => '', 'error' => '', 'url' => $url];
+		}
+
+		// we lock only for 3 minutes since the curl progressfunction renews the lock by itself every 30s
+		$lock_ttl = 180;
+		$this->cache->save($lock_key, time(), $lock_ttl);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+		if ($cron_token !== '') {
+			curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-Wavelog-Auth: ' . $cron_token]);
+		}
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+
+		$last_renew = time();
+		curl_setopt($ch, CURLOPT_NOPROGRESS, false);
+		curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, function ($ch, $dltotal, $dlnow, $ultotal, $ulnow) use ($lock_key, $lock_ttl, &$last_renew) {
+			// make sure the progressfunction is called not more than once every 30s
+			if (time() - $last_renew >= 30) {
+				$this->cache->save($lock_key, time(), $lock_ttl);
+				$last_renew = time();
+			}
+			return 0;
+		});
+
+		if ($this->config->item('cron_allow_insecure') ?? false == true) {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		}
+		$response = curl_exec($ch);
+		$error = $response === false ? curl_error($ch) : '';
+
+		// invalidate the cache so the job can run next time
+		$this->cache->delete($lock_key);
+		return [
+			'success' => $response !== false,
+			'locked' => false,
+			'response' => $response,
+			'error' => $error,
+			'url' => $url
+		];
+	}
+
+	private function get_mastercron_status() {
+		$warning_timelimit_seconds = 120; 	// yellow - warning please check
+		$error_timelimit_seconds = 600; 	// red - "not running"
+
+		$result = array();
+
+		$last_run = $this->optionslib->get_option('mastercron_last_run') ?? null;
+
+		if ($last_run != null) {
+			$timestamp_last_run = DateTime::createFromFormat('Y-m-d H:i:s', $last_run, new DateTimeZone('UTC'));
+			$now = new DateTime();
+			$diff = $now->getTimestamp() - $timestamp_last_run->getTimestamp();
+
+			if ($diff >= 0 && $diff <= $warning_timelimit_seconds) {
+				$result['status'] = __("OK");
+				$result['status_class'] = 'success';
+			} else {
+				if ($diff <= $error_timelimit_seconds) {
+					$result['status'] = sprintf(__("Last run occurred more than %s seconds ago.%sPlease check your master cron! It should run every minute (* * * * *)."), $warning_timelimit_seconds, '<br>');
+					$result['status_class'] = 'warning';
+				} else {
+					$result['status'] = sprintf(__("Last run occurred more than %s minutes ago.%sSeems like your Mastercron isn't running!%sIt should run every minute (* * * * *)."), ($error_timelimit_seconds / 60), '<br>', '<br>');
+					$result['status_class'] = 'danger';
+				}
+			}
+		} else {
+			$result['status'] = _pgettext("Master Cron", "Not running");
+			$result['status_class'] = 'danger';
+		}
+
+		return $result;
+	}
+
+}

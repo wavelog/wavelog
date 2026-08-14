@@ -1,0 +1,46 @@
+/* Statistics Component */
+
+.stats-body {
+	display: flex;
+	flex-direction: column;
+	padding: 8px;
+	overflow: hidden;
+	height: 100%;
+}
+
+.stats-counter-box {
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 4px;
+	padding: 5px 3px;
+	min-width: 0;
+}
+
+.stats-counter-value {
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.1;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.stats-counter-label {
+	font-size: 0.6rem;
+	text-transform: uppercase;
+	letter-spacing: 0.4px;
+	color: var(--bs-secondary-color, #6c757d);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.stats-chart-wrap {
+	position: relative;
+	flex: 1;
+	min-height: 80px;
+}
+
+.stats-chart-wrap canvas {
+	display: block;
+}

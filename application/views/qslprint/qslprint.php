@@ -1,0 +1,115 @@
+<?php
+$ci =& get_instance();
+
+function echo_qsl_sent_via($method) {
+	switch($method) {
+		case 'B': echo __("Bureau"); break;
+		case 'D': echo __("Direct"); break;
+		case 'E': echo __("Electronic"); break;
+	}
+}
+
+if (empty($station_id)) {
+	$station_id = 'all';
+}
+
+?><form method="post" action="<?= site_url('qslpostcard/printqueue_selected') ?>" id="postcardQueueForm">
+<?php
+
+// Get Date format
+	if($this->session->userdata('user_date_format')) {
+		// If Logged in and session exists
+		$custom_date_format = $this->session->userdata('user_date_format');
+	} else {
+		// Get Default date format from /config/wavelog.php
+		$custom_date_format = $this->config->item('qso_date_format');
+	}
+
+if ($qsos->result() != NULL) { ?>
+
+		<table style="width:100%" class="table table-sm table-bordered table-hover table-striped table-condensed qslprint" id="qslprint_table">
+			<thead>
+				<tr>
+					<th style="text-align: center"><div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div></th>
+					<th class='select-filter select-filter-html' style='text-align: center'><?= __("Callsign") ?></th>
+					<th class='select-filter' style='text-align: center'><?= __("Date") ?></th>
+					<th style='text-align: center'><?= __("Time") ?></th>
+					<th class='select-filter' style='text-align: center'><?= __("Mode") ?></th>
+					<th class='col-band select-filter' style='text-align: center'><?= __("Band") ?></th>
+					<th class='col-freq' style='text-align: center;display:none;'><?= __("Frequency") ?></th>
+					<th style='text-align: center'><?= __("RST (S)") ?></th>
+					<th style='text-align: center'><?= __("RST (R)") ?></th>
+					<th style='text-align: center'><?= __("QSL") ?> <?= __("Via") ?></th>
+					<th class='select-filter select-filter-html' style='text-align: center'><?= __("Station") ?></th>
+					<th style='text-align: center'><?= __("Profile name") ?></th>
+					<th class='select-filter' style='text-align: center'><?= __("Send Method") ?></th>
+					<th style='text-align: center; white-space: nowrap;'><?= __("Previous QSL") ?></th>
+					<th style='text-align: center; white-space: nowrap;'><?= __("Actions") ?></th>
+				</tr>
+				<tr>
+					<th></th>
+					<th class='select-filter select-filter-html'></th>
+					<th class='select-filter'></th>
+					<th></th>
+					<th class='select-filter'></th>
+					<th class='select-filter col-band'></th>
+					<th class='col-freq' style='display:none;'></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th class='select-filter select-filter-html'></th>
+					<th></th>
+					<th class='select-filter'></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead><tbody>
+
+
+
+	<?php foreach ($qsos->result() as $qsl) {
+		echo '<tr id="qslprint_'.$qsl->COL_PRIMARY_KEY.'">';
+		echo '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" name="selected_qsos[]" value="'.$qsl->COL_PRIMARY_KEY.'" /></div></td>';
+                ?><td style='text-align: center' data-search="<?php echo htmlspecialchars(strtoupper($qsl->COL_CALL), ENT_QUOTES); ?>">
+				<span class="qso_call d-flex align-items-center justify-content-between">
+					<a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo (int) $qsl->COL_PRIMARY_KEY; ?>);"><?php echo html_escape(strtoupper($qsl->COL_CALL)); ?></a>
+					<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">
+						<a target="_blank" href="https://www.qrz.com/db/<?php echo html_escape(strtoupper($qsl->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo html_escape(strtoupper($qsl->COL_CALL)); ?> on QRZ.com"></a>
+						<a target="_blank" href="https://www.hamqth.com/<?php echo html_escape(strtoupper($qsl->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo html_escape(strtoupper($qsl->COL_CALL)); ?> on HamQTH"></a>
+						<a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo html_escape(strtoupper($qsl->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo html_escape(strtoupper($qsl->COL_CALL)); ?> on eQSL.cc"></a>
+					</span>
+				</span>
+			</td><?php
+		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
+		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
+		echo '<td style=\'text-align: center\'>'; echo $qsl->COL_SUBMODE==null?html_escape($qsl->COL_MODE):html_escape($qsl->COL_SUBMODE); echo '</td>';
+		echo '<td class=\'col-band\' style=\'text-align: center\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . html_escape($qsl->COL_SAT_NAME) . ' '. html_escape(strtolower($qsl->COL_BAND)) . '/' . html_escape(strtolower($qsl->COL_BAND_RX)); } else { echo html_escape(strtolower($qsl->COL_BAND)); }; echo '</td>';
+		echo '<td class=\'col-freq\' style=\'text-align: center;display:none;\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . html_escape($qsl->COL_SAT_NAME) . ' ' . $ci->frequency->qrg_conversion($qsl->frequency) . '/' . $ci->frequency->qrg_conversion($qsl->frequency_rx); } else { echo $ci->frequency->qrg_conversion($qsl->frequency); }; echo '</td>';
+		echo '<td style=\'text-align: center\'>' . html_escape($qsl->COL_RST_SENT) . '</td>';
+		echo '<td style=\'text-align: center\'>' . html_escape($qsl->COL_RST_RCVD) . '</td>';
+		echo '<td style=\'text-align: center\'><span class="callsign">' . html_escape($qsl->COL_QSL_VIA) . '</span></td>';
+		echo '<td style=\'text-align: center\' data-search="' . htmlspecialchars($qsl->station_callsign, ENT_QUOTES) . '"><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
+		echo '<td style=\'text-align: center\'>' . $qsl->station_profile_name . '</span></td>';
+		echo '<td class=\'send-method\' style=\'text-align: center\'>'; echo_qsl_sent_via($qsl->COL_QSL_SENT_VIA); echo '</td>';
+		echo '<td style=\'text-align: center; white-space: nowrap;\'>';
+		echo '<span class="badge ' . ($qsl->previous_qsl > 0 ? 'bg-warning' : 'bg-success') . '" data-bs-toggle="tooltip" data-bs-title="' . __("Previous QSL sent (same band/mode)") . '">' . $qsl->previous_qsl . '</span> / ';
+		echo '<span class="badge bg-info" data-bs-toggle="tooltip" data-bs-title="' . __("QSL sent to callsign (total)") . '">' . $qsl->qsl_sent_to_call . '</span> / ';
+		echo '<span class="badge bg-info" data-bs-toggle="tooltip" data-bs-title="' . __("QSL received from callsign (total)") . '">' . $qsl->qsl_rcvd_from_call . '</span>';
+		echo '</td>';
+		echo '<td style=\'text-align: center; white-space: nowrap;\'><div class="d-inline-flex align-items-center gap-1">';
+		echo '<button type="button" onclick="mark_qsl_sent(\''.$qsl->COL_PRIMARY_KEY.'\', \''. $qsl->COL_QSL_SENT_VIA. '\')" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-title="' . __("Mark as sent") . '"><i class="fa fa-check"></i></button>';
+		echo '<button type="button" onclick="deleteFromQslQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-title="' . __("Remove") . '"><i class="fas fa-trash-alt"></i></button>';
+		echo '<button type="button" onclick="openQsoList(\''.html_escape($qsl->COL_CALL).'\')" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-title="' . __("QSO List") . '"><i class="fas fa-search"></i></button>';
+		echo '</div></td>';
+		echo '</tr>';
+	}
+	echo '</tbody></table>';
+	?>
+
+
+</form>
+<?php
+} else {
+	echo '<div class="alert alert-danger">' . __("No QSLs to print were found!") . '</div>';
+}
+?>

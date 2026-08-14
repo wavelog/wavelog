@@ -1,0 +1,19 @@
+# If you want to hide 'index.php' from the URL, rename this file to '.htaccess' on your server
+# Then change the following variable in /application/config/config.php
+#   $config['index_page'] = '';
+
+Options -Indexes
+ServerSignature off
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^/backup/$
+RewriteRule ^(.*)$ /index.php?/$1 "[L,QSA,B= ?,BNP]"
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?/$1 "[L,QSA,B= ?,BNP]"
+
+RedirectMatch 404 ^/\.git
+RedirectMatch 404 ^/docker
+RedirectMatch 410 ^/sitemap

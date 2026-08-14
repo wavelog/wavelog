@@ -1,0 +1,47 @@
+name: Run the po generator script
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+
+jobs:
+  run_scripts:
+    if: github.repository == 'wavelog/wavelog'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: wavelog/wavelog
+          ref: dev
+
+      - name: Set up gettext
+        run: sudo apt-get install -y gettext
+
+      - name: Run all po_gen scripts
+        run: |
+          bash po_gen.sh
+          bash install/po_gen_installer.sh
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          if [[ -n $(git status --porcelain) ]]; then
+            git add .
+            git commit -m "po/mo updates"
+            git push
+          else
+            echo "No changes to commit."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Invoke Weblate Update
+        uses: distributhor/workflow-webhook@v3
+        with:
+          webhook_type: 'json-extended'
+          webhook_url: ${{ secrets.WEBLATE_HOOKURL }}

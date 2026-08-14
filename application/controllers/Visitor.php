@@ -1,0 +1,702 @@
+<?php if (! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Visitor extends CI_Controller {
+
+	// Define number of QSO per page
+	private $qso_per_page;
+
+	function __construct() {
+		parent::__construct();
+
+		$this->qso_per_page = 25;
+	}
+
+	function _remap($method, $params = []) {
+		if ($method == "config") {
+			$this->$method();
+		} elseif ($method == "map") {
+			$this->map();
+		} elseif ($method == "satellites") {
+			$this->satellites();
+		} elseif ($method == "search") {
+			$this->search();
+		} elseif ($method == "exportmap") {
+			$this->exportmap();
+		} elseif ($method == "mapqsos") {
+			$this->mapqsos();
+		} else {
+			if (!empty($params) && $params[0] == "mini") {
+				$this->mini($method);
+			} elseif (!empty($params) && $params[0] == "punchcard") {
+				$this->punchcard($method);
+			} else {
+				$this->index($method);
+			}
+		}
+	}
+
+	/*
+        This is the default function that is called when the user visits the root of the public controller
+    */
+	public function index($public_slug = NULL) {
+
+		// Check slug passed and is valid
+		if ($this->security->xss_clean($public_slug, TRUE) === FALSE) {
+
+			// Public Slug failed the XSS test
+			log_message('error', '[Visitor] XSS Attack detected on public_slug ' . $public_slug);
+			show_404(__("Unknown Public Page."));
+		} else {
+
+			// Checked slug passed and clean
+			log_message('info', '[Visitor] public_slug ' . $public_slug . ' loaded');
+
+			// Load necessary models
+			$this->load->model('dxcc');
+			$this->load->model('cat');
+			$this->load->model('logbook_model');
+			$this->load->model('logbooks_model');
+			$this->load->model('oqrs_model');
+			$this->load->model('publicsearch');
+
+			if ($this->logbooks_model->public_slug_exists($public_slug)) {
+
+				// Load the public view
+				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
+
+				if ($logbook_id != false) {
+
+					// Get associated station locations for mysql queries
+					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+
+					if ($logbooks_locations_array[0] === -1) {
+						show_404(__("Empty Logbook"));
+					}
+				} else {
+					log_message('error', $public_slug . ' has no associated station locations');
+					show_404(__("Unknown Public Page."));
+					die;
+				}
+
+				// Public visitor so no QRA to setup
+				$data['qra'] = "none";
+
+				// Pagination Configuration
+				$this->load->library('pagination');
+				$config['base_url'] = base_url() . 'index.php/visitor/' . $public_slug;
+				$config['total_rows'] = $this->logbook_model->total_qsos($logbooks_locations_array);
+				$config['per_page'] = $this->qso_per_page;
+				$config['num_links'] = 6;
+				$config['full_tag_open'] = '';
+				$config['full_tag_close'] = '';
+				$config['cur_tag_open'] = '<strong class="active"><a href="">';
+				$config['cur_tag_close'] = '</a></strong>';
+
+				$this->pagination->initialize($config);
+
+				$qso_counts = $this->logbook_model->get_qso_counts($logbooks_locations_array);
+				$data['todays_qsos'] = $qso_counts['today'];
+				$data['total_qsos'] = $qso_counts['total'];
+				$data['month_qsos'] = $qso_counts['month'];
+				$data['year_qsos'] = $qso_counts['year'];
+
+				$data['user_map_custom'] = $this->optionslib->get_map_custom(true, $public_slug);
+
+				// Load Dashboard stats (countries + QSL stats in one query)
+				$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array);
+
+				// Country stats
+				$data['total_countries'] = $stats['Countries_Worked'];
+				$data['total_deleted_countries'] = $stats['Countries_Deleted_Worked'];
+				$data['total_countries_confirmed_paper'] = $stats['Countries_Worked_QSL'];
+				$data['total_countries_confirmed_lotw'] = $stats['Countries_Worked_LOTW'];
+				$confirmed = $stats['Countries_Worked_Confirmed'];
+
+				$dxcc = $this->dxcc->list_current();
+				$data['total_countries_needed'] = max(0, count($dxcc->result()) - $confirmed);
+
+				// QSL stats
+				$data['total_qsl_sent'] = $stats['QSL_Sent'];
+				$data['total_qsl_rcvd'] = $stats['QSL_Received'];
+				$data['total_qsl_requested'] = $stats['QSL_Requested'];
+
+				$data['total_eqsl_sent'] = $stats['eQSL_Sent'];
+				$data['total_eqsl_rcvd'] = $stats['eQSL_Received'];
+
+				$data['total_lotw_sent'] = $stats['LoTW_Sent'];
+				$data['total_lotw_rcvd'] = $stats['LoTW_Received'];
+
+				$data['results'] = $this->logbook_model->get_qsos($this->qso_per_page, $this->uri->segment(3), $logbooks_locations_array);
+
+				$data['page_title'] = __("Dashboard");
+				$data['slug'] = $public_slug;
+
+				$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($public_slug);
+				$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($public_slug);
+				$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+
+				$this->load->view('visitor/layout/header', $data);
+				$this->load->view('visitor/index');
+				$this->load->view('visitor/layout/footer');
+			} else {
+				// Show 404
+				log_message('error', '[Visitor] XSS Attack detected on public_slug ' . $public_slug);
+				show_404(__("Unknown Public Page."));
+			}
+		}
+	}
+
+	public function mini($public_slug) {
+
+		// Check slug passed and is valid
+		if ($this->security->xss_clean($public_slug, TRUE) === FALSE) {
+
+			// Public Slug failed the XSS test
+			log_message('error', '[Visitor] XSS Attack detected on public_slug ' . $public_slug);
+			show_404(__("Unknown Public Page."));
+		} else {
+
+			// Checked slug passed and clean
+			log_message('info', '[Visitor] public_slug ' . $public_slug . ' loaded (mini)');
+
+			// Load necessary models
+			$this->load->model('logbooks_model');
+
+			if ($this->logbooks_model->public_slug_exists($public_slug)) {
+
+				// Load the public view
+				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
+
+				if ($logbook_id != false) {
+
+					// Get associated station locations for mysql queries
+					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+
+					if ($logbooks_locations_array[0] === -1) {
+						show_404(__("Empty Logbook"));
+					}
+				} else {
+					log_message('error', $public_slug . ' has no associated station locations');
+					show_404(__("Unknown Public Page."));
+					die;
+				}
+
+				$this->load->model('logbook_model');
+
+				$callsign = $this->security->xss_clean(trim($this->input->post('callsign') ?? ''));
+
+				$this->db->select('COL_TIME_ON, COL_CALL, COL_BAND, COL_MODE, COL_SUBMODE, COL_RST_SENT, COL_RST_RCVD, COL_QSL_SENT, COL_QSL_RCVD, COL_LOTW_QSL_SENT, COL_LOTW_QSL_RCVD, COL_PROP_MODE, COL_SAT_NAME');
+				$this->db->from($this->config->item('table_name'));
+				$this->db->where_in('station_id', $logbooks_locations_array);
+				if (!empty($callsign)) {
+					$this->db->where('COL_CALL', strtoupper($callsign));
+				}
+				$this->db->order_by('COL_TIME_ON', 'DESC');
+				$this->db->limit(10);
+				$query = $this->db->get();
+				$results = $query->result();
+
+				$data['slug'] = $public_slug;
+				$data['results'] = $results;
+				$data['search_callsign'] = $callsign;
+
+				$this->load->view('visitor/mini', $data);
+			} else {
+				log_message('error', '[Visitor] Public slug not found: ' . $public_slug);
+				show_404(__("Unknown Public Page."));
+			}
+		}
+	}
+
+	public function punchcard($public_slug) {
+
+		// Check slug passed and is valid
+		if ($this->security->xss_clean($public_slug, TRUE) === FALSE) {
+
+			// Public Slug failed the XSS test
+			log_message('error', '[Visitor] XSS Attack detected on public_slug ' . $public_slug);
+			show_404(__("Unknown Public Page."));
+		} else {
+
+			// Checked slug passed and clean
+			log_message('info', '[Visitor] public_slug ' . $public_slug . ' loaded (punchcard)');
+
+			// Load necessary models
+			$this->load->model('logbooks_model');
+
+			if ($this->logbooks_model->public_slug_exists($public_slug)) {
+
+				// Load the public view
+				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
+
+				if ($logbook_id != false) {
+
+					// Get associated station locations for mysql queries
+					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+
+					if ($logbooks_locations_array[0] === -1) {
+						show_404(__("Empty Logbook"));
+					}
+				} else {
+					log_message('error', $public_slug . ' has no associated station locations');
+					show_404(__("Unknown Public Page."));
+					die;
+				}
+
+				$yr = (int) date('Y');
+
+				$this->load->model('dayswithqso_model');
+				$raw = $this->dayswithqso_model->getPunchvals($yr, $logbooks_locations_array);
+
+				// Bucket counts into color levels and index by date key
+				$counts = [];
+				$total = 0;
+				if ($raw) {
+					foreach ($raw as $p) {
+						$n = (int) $p->qsos;
+						$col = $n <= 0 ? 0 : ($n <= 3 ? 3 : ($n <= 6 ? 6 : ($n <= 12 ? 12 : ($n <= 24 ? 24 : 48))));
+						$key = $p->date;
+						$counts[$key] = ['n' => $n, 'col' => $col];
+						$total += $n;
+					}
+				}
+
+				// Build 53-week (Mon-start) continuous grid for the year
+				$weeks = [];
+				$monthLabels = [];
+				$start = new DateTime($yr . '-01-01');
+				$end = new DateTime($yr . '-12-31');
+				$isoDays = (int) $start->format('N'); // 1=Mon .. 7=Sun
+				$cursor = clone $start;
+				$cursor->modify('-' . ($isoDays - 1) . ' days'); // back up to Monday
+				$lastMonth = -1;
+				$weekIdx = 0;
+				while ($cursor <= $end) {
+					for ($d = 1; $d <= 7; $d++) {
+						if ($cursor < $start || $cursor > $end) {
+							$weeks[$weekIdx][$d] = null;
+						} else {
+							$key = $cursor->format('Y-n-j');
+							$cell = $counts[$key] ?? null;
+							// In-range day always emits a cell; no-QSO days fall back to
+							// the zero bucket so they render as the lowest gray.
+							$weeks[$weekIdx][$d] = [
+								'date'  => $cursor->format('Y-m-d'),
+								'n'     => $cell['n'] ?? 0,
+								'col'   => $cell['col'] ?? 0,
+							];
+
+							$curMonth = (int) $cursor->format('n');
+							if ($d <= 4 && $curMonth !== $lastMonth) {
+								$monthLabels[$weekIdx] = $curMonth;
+								$lastMonth = $curMonth;
+							}
+						}
+						$cursor->modify('+1 day');
+					}
+					$weekIdx++;
+				}
+
+				// Theme resolution (?theme=<folder>, validated; defaults to light)
+				$this->load->model('themes_model');
+				$reqTheme = $this->input->get('theme', TRUE);
+				$mode = 'light';
+				if ($reqTheme !== null && ($this->themes_model->get_theme_mode($reqTheme) ?? '') === 'dark') {
+					$mode = 'dark';
+				}
+
+				$data['slug'] = $public_slug;
+				$data['weeks'] = $weeks;
+				$data['monthLabels'] = $monthLabels;
+				$data['total'] = $total;
+				$data['mode'] = $mode;
+				$data['yr'] = $yr;
+
+				$this->load->view('visitor/punchcard', $data);
+			} else {
+				log_message('error', '[Visitor] Public slug not found: ' . $public_slug);
+				show_404(__("Unknown Public Page."));
+			}
+		}
+	}
+
+
+	public function map() {
+		$this->load->model('logbook_model');
+
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+
+		$this->load->model('logbooks_model');
+		$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($slug);
+		if ($logbook_id != false) {
+			// Get associated station locations for mysql queries
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+
+			if ($logbooks_locations_array[0] === -1) {
+				show_404(__("Empty Logbook"));
+			}
+		} else {
+			log_message('error', $slug . ' has no associated station locations');
+			show_404(__("Unknown Public Page."));
+			die;
+		}
+
+		$qsos = $this->logbook_model->get_qsos($this->qso_per_page, $this->uri->segment(4), $logbooks_locations_array);
+		// [PLOT] ADD plot //
+		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
+
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($plot_array);
+	}
+
+	public function satellites() {
+
+		$this->load->model('publicsearch');
+		$this->load->model('oqrs_model');
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+		$data['slug'] = $slug;
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+		$this->load->model('logbooks_model');
+		if ($this->logbooks_model->public_slug_exists($slug)) {
+			// Load the public view
+			$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($slug);
+			if ($logbook_id != false) {
+				// Get associated station locations for mysql queries
+				$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+
+				if ($logbooks_locations_array[0] === -1) {
+					show_404(__("Empty Logbook"));
+				}
+			} else {
+				log_message('error', $slug . ' has no associated station locations');
+				show_404(__("Unknown Public Page."));
+				die;
+			}
+		} else {
+			log_message('error', '[Visitor] Public slug not found.');
+			show_404(__("No public slug found."));
+			die;
+		}
+
+		$this->load->model('gridmap_model');
+
+		$data['page_title'] = __("Satellite Gridsquare Map");
+
+
+		$array_grid_2char = array();
+		$array_grid_4char = array();
+		$array_grid_6char = array();
+
+
+		$array_confirmed_grid_2char = array();
+		$array_confirmed_grid_4char = array();
+		$array_confirmed_grid_6char = array();
+
+		$grid_2char = "";
+		$grid_4char = "";
+		$grid_6char = "";
+
+		$grid_2char_confirmed = "";
+		$grid_4char_confirmed = "";
+		$grid_6char_confirmed = "";
+
+
+		// Get Confirmed LoTW & Paper Squares (non VUCC)
+		$query = $this->gridmap_model->get_band_confirmed('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', null, null, $logbooks_locations_array);
+
+
+		if ($query && $query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+
+				$grid_2char_confirmed = strtoupper(substr($row->GRID_SQUARES, 0, 2));
+				$grid_4char_confirmed = strtoupper(substr($row->GRID_SQUARES, 0, 4));
+				if ($this->config->item('map_6digit_grids')) {
+					$grid_6char_confirmed = strtoupper(substr($row->GRID_SQUARES, 0, 6));
+				}
+
+				// Check if 2 Char is in array
+				if (!in_array($grid_2char_confirmed, $array_confirmed_grid_2char)) {
+					array_push($array_confirmed_grid_2char, $grid_2char_confirmed);
+				}
+
+
+				if (!in_array($grid_4char_confirmed, $array_confirmed_grid_4char)) {
+					array_push($array_confirmed_grid_4char, $grid_4char_confirmed);
+				}
+
+
+				if ($this->config->item('map_6digit_grids')) {
+					if (!in_array($grid_6char_confirmed, $array_confirmed_grid_6char)) {
+						array_push($array_confirmed_grid_6char, $grid_6char_confirmed);
+					}
+				}
+			}
+		}
+
+		// Get worked squares
+		$query = $this->gridmap_model->get_band('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', null, null, $logbooks_locations_array);
+
+		if ($query && $query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+
+				$grid_two = strtoupper(substr($row->GRID_SQUARES, 0, 2));
+				$grid_four = strtoupper(substr($row->GRID_SQUARES, 0, 4));
+				if ($this->config->item('map_6digit_grids')) {
+					$grid_six = strtoupper(substr($row->GRID_SQUARES, 0, 6));
+				}
+
+				// Check if 2 Char is in array
+				if (!in_array($grid_two, $array_grid_2char)) {
+					array_push($array_grid_2char, $grid_two);
+				}
+
+
+				if (!in_array($grid_four, $array_grid_4char)) {
+					array_push($array_grid_4char, $grid_four);
+				}
+
+
+				if ($this->config->item('map_6digit_grids')) {
+					if (!in_array($grid_six, $array_grid_6char)) {
+						array_push($array_grid_6char, $grid_six);
+					}
+				}
+			}
+		}
+
+		$query_vucc = $this->gridmap_model->get_band_worked_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', null, null, $logbooks_locations_array);
+
+		if ($query_vucc && $query_vucc->num_rows() > 0) {
+			foreach ($query_vucc->result() as $row) {
+
+				$grids = explode(",", $row->COL_VUCC_GRIDS);
+
+				foreach ($grids as $key) {
+					$grid_two = strtoupper(substr($key, 0, 2));
+					$grid_four = strtoupper(substr($key, 0, 4));
+
+					// Check if 2 Char is in array
+					if (!in_array($grid_two, $array_grid_2char)) {
+						array_push($array_grid_2char, $grid_two);
+					}
+
+
+					if (!in_array($grid_four, $array_grid_4char)) {
+						array_push($array_grid_4char, $grid_four);
+					}
+				}
+			}
+		}
+
+		// Confirmed Squares
+		$query_vucc = $this->gridmap_model->get_band_confirmed_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', null, null, $logbooks_locations_array);
+
+		if ($query_vucc && $query_vucc->num_rows() > 0) {
+			foreach ($query_vucc->result() as $row) {
+
+				$grids = explode(",", $row->COL_VUCC_GRIDS);
+
+				foreach ($grids as $key) {
+					$grid_2char_confirmed = strtoupper(substr($key, 0, 2));
+					$grid_4char_confirmed = strtoupper(substr($key, 0, 4));
+
+					// Check if 2 Char is in array
+					if (!in_array($grid_2char_confirmed, $array_confirmed_grid_2char)) {
+						array_push($array_confirmed_grid_2char, $grid_2char_confirmed);
+					}
+
+
+					if (!in_array($grid_4char_confirmed, $array_confirmed_grid_4char)) {
+						array_push($array_confirmed_grid_4char, $grid_4char_confirmed);
+					}
+				}
+			}
+		}
+
+		$data['grid_2char_confirmed'] = $this->js_array($array_confirmed_grid_2char);
+		$data['grid_4char_confirmed'] = $this->js_array($array_confirmed_grid_4char);
+		$data['grid_6char_confirmed'] = $this->js_array($array_confirmed_grid_6char);
+
+		$data['grid_2char'] = $this->js_array($array_grid_2char);
+		$data['grid_4char'] = $this->js_array($array_grid_4char);
+		$data['grid_6char'] = $this->js_array($array_grid_6char);
+
+		$data['layer'] = $this->optionslib->get_option('option_map_tile_server');
+		$data['attribution'] = $this->optionslib->get_option('option_map_tile_server_copyright');
+
+		$data['gridsquares_gridsquares'] = __("Gridsquares");
+		$data['gridsquares_gridsquares_confirmed'] = __("Gridsquares confirmed");
+		$data['gridsquares_gridsquares_not_confirmed'] = __("Gridsquares not confirmed");
+		$data['gridsquares_gridsquares_total_worked'] = __("Total gridsquares worked");
+
+		$data['gridsquares_fields'] = __("Fields");
+		$data['gridsquares_fields_confirmed'] = __("Fields confirmed");
+		$data['gridsquares_fields_not_confirmed'] = __("Fields not confirmed");
+		$data['gridsquares_fields_total_worked'] = __("Total fields worked");
+
+		$data['user_map_custom'] = $this->optionslib->get_map_custom(true, $slug);
+
+		$data['visitor'] = true;
+
+		$this->load->view('visitor/layout/header', $data);
+		$this->load->view('gridmap/index', $data);
+		$this->load->view('visitor/layout/footer');
+	}
+
+	private function js_str($s) {
+		return '"' . addcslashes($s, "\0..\37\"\\") . '"';
+	}
+
+	private function js_array($array) {
+		$temp = array_map([$this, 'js_str'], $array);
+		return '[' . implode(',', $temp) . ']';
+	}
+
+	public function search() {
+		$this->load->model('publicsearch');
+		$this->load->model('oqrs_model');
+		$callsign = trim($this->security->xss_clean($this->input->post('callsign')));
+		$public_slug = $this->security->xss_clean($this->input->post('public_slug'));
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($public_slug);
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($public_slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+		$data['page_title'] = __("Public Search");
+		$data['callsign'] = $callsign;
+		$data['slug'] = $public_slug;
+		if ($callsign != '') {
+			$result = $this->publicsearch->search($public_slug, $callsign);
+		}
+		if (!empty($result) && $result->num_rows() > 0) {
+			$data['results'] = $result;
+			$this->load->view('visitor/layout/header', $data);
+			$this->load->view('public_search/result.php', $data);
+			$this->load->view('visitor/layout/footer');
+		} else {
+			$this->load->view('visitor/layout/header', $data);
+			$this->load->view('public_search/empty.php', $data);
+			$this->load->view('visitor/layout/footer');
+		}
+	}
+
+	public function exportmap() {
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+		$lastqso = $this->security->xss_clean($this->uri->segment(4));
+
+		if (!empty($slug)) {
+			if ($lastqso === "lastqso") {
+				$this->load->model('visitor_model');
+				$result = $this->visitor_model->getlastqsodate($slug)->row();
+				header('Content-Type: application/json');
+				echo json_encode($result);
+				return;
+			}
+
+			$data['slug'] = $slug;
+
+			$data['page_title'] = __("Export Map");
+			$data['user_map_custom'] = $this->optionslib->get_map_custom(true, $slug);
+
+			$this->load->view('visitor/exportmap/header', $data);
+			$this->load->view('visitor/exportmap/exportmap', $data);
+			$this->load->view('visitor/exportmap/footer');
+		} else {
+			redirect('user/login');
+		}
+	}
+
+	public function mapqsos() {
+		$this->load->model('visitor_model');
+
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+
+		$slug = $this->security->xss_clean($this->input->post('slug'));
+		$qsocount = $this->security->xss_clean($this->input->post('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->post('qsocount'));
+		$band = $this->security->xss_clean($this->input->post('band'));
+
+		$this->load->model('stationsetup_model');
+		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
+		if ($logbook_id != false) {
+			// Get associated station locations for mysql queries
+			$logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
+
+			if ($logbooks_locations_array[0] === -1) {
+				show_404(__("Empty Logbook"));
+			}
+		} else {
+			log_message('error', $slug . ' has no associated station locations');
+			show_404(__("Unknown Public Page."));
+			die;
+		}
+
+		$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
+		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
+		$user_default_confirmation = $this->visitor_model->get_user_default_confirmation($userid);
+
+		$mappedcoordinates = array();
+		foreach ($qsos->result('array') as $qso) {
+			if (!empty($qso['COL_MY_GRIDSQUARE']) || !empty($qso['COL_MY_VUCC_GRIDS'])) {
+				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
+					$mappedcoordinates[] = $this->calculate($qso, ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $user_default_confirmation);
+				} else {
+					if (!empty($qso['lat'])  || !empty($qso['long'])) {
+						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], $user_default_confirmation);
+					}
+				}
+			}
+		}
+
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($mappedcoordinates);
+	}
+
+	public function calculate($qso, $locator1, $locator2, $user_default_confirmation) {
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+		$this->load->model('logbook_model');
+		$this->load->model('visitor_model');
+
+		$latlng1 = $this->qra->qra2latlong($locator1);
+		$latlng2 = $this->qra->qra2latlong($locator2);
+		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+
+		$data['latlng1'] = $latlng1;
+		$data['latlng2'] = $latlng2;
+		$data['confirmed'] = ($this->visitor_model->qso_is_confirmed($qso, $user_default_confirmation) == true) ? true : false;
+
+		return $data;
+	}
+
+	public function calculateCoordinates($qso, $lat, $long, $mygrid, $user_default_confirmation) {
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+		$this->load->model('logbook_model');
+		$this->load->model('visitor_model');
+
+		$latlng1 = $this->qra->qra2latlong($mygrid);
+		$latlng2[0] = $lat;
+		$latlng2[1] = $long;
+		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+
+		$data['latlng1'] = $latlng1;
+		$data['latlng2'] = $latlng2;
+		$data['confirmed'] = ($this->visitor_model->qso_is_confirmed($qso, $user_default_confirmation) == true) ? true : false;
+
+		return $data;
+	}
+}

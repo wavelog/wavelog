@@ -1,0 +1,197 @@
+<div class="container lotw">
+<?php if($uploads_folder != true) { ?>
+	<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
+		<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-ban"></i> <?= __("Upload folder is not writable. Please contact your admin."); ?>
+	</div>
+<?php } ?>
+<?php
+	// Get Date format
+	if($this->session->userdata('user_date_format')) {
+		// If Logged in and session exists
+		$custom_date_format = $this->session->userdata('user_date_format');
+	} else {
+		// Get Default date format from /config/wavelog.php
+		$custom_date_format = $this->config->item('qso_date_format');
+	}
+?>
+<br>
+	<a class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('/lotw/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?= __("LoTW Import"); ?></a>
+	<h2><?= __("Logbook of the World"); ?></h2>
+
+	<!-- Card Starts -->
+	<div class="card">
+		<div class="card-header">
+			<a class="btn btn-outline-success btn-sm float-end" href="<?php echo site_url('/lotw/cert_upload'); ?>" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Upload Certificate"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("Available Certificates"); ?> <span class="badge bg-primary ms-1"><?php echo $lotw_cert_results->num_rows(); ?></span>
+		</div>
+
+		<div class="lotw-cert-list">
+			<?php if(isset($error)) { ?>
+				<div class="alert alert-danger" role="alert">
+			  	<?php echo $error; ?>
+				</div>
+	    	<?php } ?>	
+		
+			<?php $this->load->view('layout/messages'); ?>
+
+	    	<?php if ($lotw_cert_results->num_rows() > 0) { ?>
+
+	    	<div class="table-responsive">
+				<table class="table table-hover">
+					<thead class="thead-light">
+						<tr>
+				 			<th scope="col"><?= __("Callsign"); ?></th>
+							<th scope="col"><?= __("DXCC"); ?></th>
+							<th scope="col"><?= __("QSO Start Date"); ?></th>
+							<th scope="col"><?= __("QSO End Date"); ?></th>
+							<th scope="col"><?= __("Date Created"); ?></th>
+							<th scope="col"><?= __("Date Expires"); ?></th>
+							<th scope="col"><?= __("Status"); ?></th>
+							<th scope="col"><?= __("Last Upload"); ?></th>
+							<th scope="col"><?= __("Options"); ?></th>
+						</tr>
+					</thead>
+				 
+					<tbody>
+						<?php $current_date = date('Y-m-d H:i:s'); ?>
+						<?php foreach ($lotw_cert_results->result() as $row) { ?>
+							<tr>
+								<td><span class="callsign"><?php echo $row->callsign; ?></span></td>
+								<td><?php echo $row->cert_dxcc == '' ? '- NONE -' : ucfirst($row->cert_dxcc); if ($row->cert_dxcc_end != NULL) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
+								<td><?php
+									if (isset($row->qso_start_date)) {
+										$valid_qso_start = strtotime( $row->qso_start_date );
+										$new_valid_qso_start = date($custom_date_format, $valid_qso_start );
+										echo $new_valid_qso_start;
+									} else {
+										echo "n/a";
+									} ?>
+								</td>
+								<td><?php
+									if (isset($row->qso_end_date)) {
+										$valid_qso_end = strtotime( $row->qso_end_date );
+										$new_valid_qso_end = date($custom_date_format, $valid_qso_end );
+										$qso_warning_date = date('Y-m-d H:i:s', strtotime($row->qso_end_date.'-30 days'));
+										if ($current_date > $row->qso_end_date) {
+											echo "<span class='fw-bolder text-warning'>".$new_valid_qso_end."</span>";
+										} else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) {
+											echo "<span class='fw-bolder text-warning'>".$new_valid_qso_end."</span>";
+										} else {
+											echo $new_valid_qso_end;
+										}
+									} else {
+										echo "n/a";
+									} ?>
+								</td>
+								<td><?php
+									$valid_from = strtotime( $row->date_created );
+									$new_valid_from = date($custom_date_format, $valid_from );
+									echo $new_valid_from; ?>
+								</td>
+								<td>
+									<?php
+									$cert_warning_date = date('Y-m-d H:i:s', strtotime($row->date_expires.'-30 days'));
+									$valid_to = strtotime( $row->date_expires );
+									$new_valid_to = date($custom_date_format, $valid_to );
+									if ($current_date > $row->date_expires) {
+										echo "<span class='fw-bolder text-danger'>".$new_valid_to."</span>";
+									} else if ($current_date <= $row->date_expires && $current_date > $cert_warning_date) {
+										echo "<span class='fw-bolder text-warning'>".$new_valid_to."</span>";
+									} else {
+										echo $new_valid_to;
+									} ?>
+								</td>
+								<td>
+									<span data-bs-toggle="tooltip" data-bs-html="true" data-bs-original-title="<?= __("Serial number:")." ".((($row->serial ?? '')  != '' )? $row->serial : __("n/a")); ?><br><?= __("Last change:")." ".(date($custom_date_format.' H:i', strtotime($row->last_modified))); ?>">
+									<?php if ($row->status == 1) { ?>
+										<span class="badge text-bg-danger"><?= __("Certificate superseded"); ?></span>
+									<?php } else { ?>
+										<?php if ($current_date > $row->date_expires) { ?>
+											<span class="badge text-bg-danger"><?= __("Certificate expired"); ?></span>
+										<?php } else if ($current_date <= $row->date_expires && $current_date > $cert_warning_date) { ?>
+											<span class="badge text-bg-warning"><?= __("Certificate expiring"); ?></span>
+										<?php } else { ?>
+											<span class="badge text-bg-success"><?= __("Certificate valid"); ?></span>
+										<?php } ?>
+										<?php if ($current_date > $row->qso_end_date) { ?>
+											<span class="badge text-bg-warning">QSO end date exceeded</span>
+										<?php } else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) { ?>
+											<span class="badge text-bg-warning"><?= __("QSO end date nearing"); ?></span>
+										<?php } ?>
+									<?php } ?>
+									</span>
+								</td>
+								<td>
+									<?php if ($row->last_upload) {
+										$last_upload_ts = strtotime($row->last_upload ?? '1970-01-01');
+										$last_upload = date($custom_date_format.' H:i:s', $last_upload_ts);
+										$last_upload_fail_ts = strtotime($row->last_upload_fail ?? '1970-01-01');
+										$last_upload_fail = date($custom_date_format.' H:i:s', $last_upload_fail_ts);
+										if ($last_upload_fail_ts > $last_upload_ts) { ?>
+											<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. <?= sprintf(__("Last success: %s"), $last_upload); ?>" class="badge text-bg-danger"><?php echo $last_upload_fail; ?></span>
+										<?php } else {
+											if ($row->last_upload_fail && $last_upload_fail && $row->last_upload_status)  { ?>
+												<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. <?= sprintf(__("Last fail: %s"), $last_upload_fail); ?>" class="badge text-bg-success"><?php echo $last_upload; ?></span>
+											<?php } else { ?>
+												<span class="badge text-bg-success"><?php echo $last_upload; ?></span>
+											<?php } ?>
+										<?php } ?>
+									<?php } else { ?>
+										<span class="badge text-bg-warning"><?= __("Not Synced"); ?></span>
+									<?php } ?>
+								</td>
+								<td>
+									<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('lotw/delete_cert/'.$row->lotw_cert_id); ?>" role="button"><i class="far fa-trash-alt"></i> <?= __("Delete"); ?></a>
+								</td>
+							</tr>
+						<?php } ?>
+
+					</tbody>
+				</table>
+			</div>
+
+			<?php } else { ?>
+			<div class="alert alert-info" role="alert">
+				<?= __("You need to upload some LoTW p12 certificates to use this area."); ?>
+			</div>
+			<?php } ?>
+
+	    </div>
+	</div>
+	<!-- Card Ends -->
+
+	<br>
+
+	<!-- Card Starts -->
+	<?php
+	if (!($this->config->item('disable_manual_lotw'))) { ?>
+	<div class="card">
+		<div class="card-header">
+			<?= __("Information"); ?>
+		</div>
+
+		<div class="card-body">
+            		<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with LoTW will happen at: ").$next_run."</p>"; } ?>
+			<button id="lotw-sync-btn" class="btn btn-outline-success">
+            <?= __("Manual Sync"); ?>
+			</button>
+			<span style="margin-left: 10px;" id="lotw-sync-running" class="sync-indicator"> <?php echo __("running..."); ?></span>
+
+			<div id="lotw_manual_results"></div>
+		</div>
+	</div>
+	<script>
+		// Manual LoTW sync: clear old results, show indicator, load result (was htmx button).
+		document.addEventListener('DOMContentLoaded', function () {
+			document.getElementById('lotw-sync-btn').addEventListener('click', function () {
+				const results = document.getElementById('lotw_manual_results');
+				const ind = document.getElementById('lotw-sync-running');
+				results.innerHTML = '';
+				ind.classList.add('active');
+				wlLoadInto('<?php echo site_url('lotw/lotw_upload'); ?>', results)
+					.finally(() => ind.classList.remove('active'));
+			});
+		});
+	</script>
+	<?php } ?>
+
+</div>
