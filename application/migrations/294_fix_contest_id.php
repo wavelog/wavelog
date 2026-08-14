@@ -15,11 +15,13 @@ class Migration_fix_contest_id extends CI_Migration
 	{
 		$table_name = $this->config->item('table_name');
 		$ix_name = 'HRD_IDX_COL_CONTEST_ID';
+		$ix_created = false;
 
 		$ix_exist = $this->db->query("SHOW INDEX FROM {$table_name} WHERE Column_name = 'COL_CONTEST_ID' AND Seq_in_index = 1")->num_rows();
 
 		if ($ix_exist == 0) {
 			$this->dbtry("ALTER TABLE {$table_name} ADD INDEX `{$ix_name}` (COL_CONTEST_ID)");
+			$ix_created = true;
 		}
 
 		$this->dbtry("UPDATE {$table_name} t
@@ -33,6 +35,10 @@ class Migration_fix_contest_id extends CI_Migration
 							HAVING COUNT(*) = 1
 						) c ON t.COL_CONTEST_ID = c.name
 						SET t.COL_CONTEST_ID = c.adifname");
+		
+		if ($ix_created) {
+			$this->dbtry("ALTER TABLE {$table_name} DROP INDEX `{$ix_name}`");
+		}
 	}
 
 	public function down()
