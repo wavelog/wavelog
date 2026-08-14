@@ -55,11 +55,11 @@ class Logbooks_model extends CI_Model {
 
 	function edit() {
 		$data = array(
-			'logbook_name' => xss_clean($this->input->post('station_logbook_name', true)),
+			'logbook_name' => $this->input->post('station_logbook_name', true),
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', xss_clean($this->input->post('logbook_id', true)));
+		$this->db->where('logbook_id', $this->input->post('logbook_id', true));
 		$this->db->update('station_logbooks', $data);
 	}
 

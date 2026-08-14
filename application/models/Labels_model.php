@@ -208,11 +208,11 @@ class Labels_model extends CI_Model {
 	function updatePaper($id) {
         $data = array(
 			'user_id' 		=> $this->session->userdata('user_id'),
-            'paper_name' 	=> xss_clean($this->input->post('paper_name', true)),
-            'metric' 		=> xss_clean($this->input->post('measurementType', true)),
-            'width' 		=> str_replace(',', '.', (xss_clean($this->input->post('width', true)))),
-            'height' 		=> str_replace(',', '.', (xss_clean($this->input->post('height', true)))),
-            'orientation'	=> xss_clean($this->input->post('orientation', true)),
+            'paper_name' 	=> $this->input->post('paper_name', true),
+            'metric' 		=> $this->input->post('measurementType', true),
+            'width' 		=> str_replace(',', '.', ($this->input->post('width', true))),
+            'height' 		=> str_replace(',', '.', ($this->input->post('height', true))),
+            'orientation'	=> $this->input->post('orientation', true),
             'last_modified' => date('Y-m-d H:i:s'),
 		);
 

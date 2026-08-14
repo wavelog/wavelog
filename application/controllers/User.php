@@ -1077,8 +1077,8 @@ class User extends CI_Controller {
 				);
 				$_hex_re = '/^#[0-9a-fA-F]{6}$/';
 				foreach ($array_icon as $icon) {
-					$_raw_icon  = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
-					$_raw_color = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
+					$_raw_icon  = $this->input->post('user_map_'.$icon.'_icon', true);
+					$_raw_color = $this->input->post('user_map_'.$icon.'_color', true);
 					if (isset($_icon_allow[$icon]) && is_array($_icon_allow[$icon])) {
 						$_icon = in_array($_raw_icon, $_icon_allow[$icon], true) ? $_raw_icon : $_icon_defaults[$icon];
 					} else {
@@ -1096,7 +1096,7 @@ class User extends CI_Controller {
 					$_gridshow = $this->input->post('user_map_gridsquare_show', true);
 					$_gridshow = ($_gridshow === '1' || $_gridshow === 1) ? '1' : '0';
 					$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>$_gridshow), $user_id);
-					$_tile = xss_clean($this->input->post('user_map_tile_style', true));
+					$_tile = $this->input->post('user_map_tile_style', true);
 					$_tile = array_key_exists($_tile, map_style_options()) ? $_tile : 'map-follow';
 					$this->user_options_model->set_option('map_custom','tile',array('style' => $_tile),$user_id);
 				} else {
@@ -1104,9 +1104,9 @@ class User extends CI_Controller {
 					$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
 					$this->user_options_model->del_option('map_custom','tile', null, $user_id);
 				}
-					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
-					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
-					$this->user_options_model->set_option('header_menu', 'quick_theme_switcher', array('boolean'=>xss_clean($this->input->post('user_quick_theme_switcher', true))), $user_id);
+					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>$this->input->post('user_locations_quickswitch', true)), $user_id);
+					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>$this->input->post('user_utc_headermenu', true)), $user_id);
+					$this->user_options_model->set_option('header_menu', 'quick_theme_switcher', array('boolean'=>$this->input->post('user_quick_theme_switcher', true)), $user_id);
 
 					$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)), $user_id);
