@@ -115,7 +115,7 @@ function showStateAllUpdateResult($result) {
 			<tbody>
 			<?php foreach ($result['failures'] as $r) { ?>
 				<tr>
-					<td><a id="edit_qso" href="javascript:displayQso(<?php echo $r['id']; ?>)"><?php echo htmlspecialchars($r['callsign']); ?></a></td>
+					<td><a class="callsign" id="edit_qso" href="javascript:displayQso(<?php echo $r['id']; ?>)"><?php echo htmlspecialchars($r['callsign']); ?></a></td>
 					<td> <?php echo htmlspecialchars($r['gridsquare']); ?> </td>
 					<td> <?php echo htmlspecialchars($r['station_profile_name']); ?> </td>
 					<td> <?php echo htmlspecialchars($r['reason']); ?> </td>
