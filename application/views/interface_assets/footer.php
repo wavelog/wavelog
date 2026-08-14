@@ -2824,7 +2824,7 @@ function viewEqsl(picture, callsign) {
         $.ajax({
             url: baseURL + 'index.php/awards/counties_details_ajax',
             type: 'post',
-            data: {'State': state, 'County': county },
+            data: $.extend({'State': state, 'County': county }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
                     title: lang_general_word_qso_data,

@@ -76,6 +76,13 @@ class Counties extends CI_Model
      * award page uses, so this can't delegate to
      * Genfunctions::addBandToQuery() like it used to - it ORs a COL_BAND IN
      * (...) across every selected band instead.
+     *
+     * 'SAT' is not a real COL_BAND value - satellite QSOs are flagged via
+     * COL_PROP_MODE = 'SAT' instead (see Bands_model::get_worked_bands(),
+     * which is where 'SAT' comes from in the first place), while COL_BAND
+     * still holds the actual band worked. So a 'SAT' entry is split out and
+     * turned into its own COL_PROP_MODE clause, ORed alongside the COL_BAND
+     * IN (...) for whatever other bands were selected.
      */
     function band_condition($bands, &$binding) {
         if ($bands === 'All' || $bands === null) {
@@ -90,12 +97,45 @@ class Counties extends CI_Model
             return '';
         }
 
-        $placeholders = implode(',', array_fill(0, count($bands), '?'));
-        foreach ($bands as $band) {
-            $binding[] = $band;
+        $sat_selected = in_array('SAT', $bands, true);
+        $bands = array_values(array_diff($bands, array('SAT')));
+
+        $conditions = array();
+
+        if (!empty($bands)) {
+            $placeholders = implode(',', array_fill(0, count($bands), '?'));
+            foreach ($bands as $band) {
+                $binding[] = $band;
+            }
+            $conditions[] = 'COL_BAND in (' . $placeholders . ')';
         }
 
-        return ' and COL_BAND in (' . $placeholders . ')';
+        if ($sat_selected) {
+            $conditions[] = "COL_PROP_MODE = 'SAT'";
+        }
+
+        if (empty($conditions)) {
+            return '';
+        }
+
+        return ' and (' . implode(' or ', $conditions) . ')';
+    }
+
+    /*
+     * Returns the SQL clause that excludes satellite QSOs by default, unless
+     * 'SAT' is one of the selected bands (in which case band_condition()
+     * already scopes the query to COL_PROP_MODE = 'SAT' and this would just
+     * contradict it, matching Bands_model::get_worked_bands()'s own
+     * COL_PROP_MODE != 'SAT' exclusion).
+     */
+    function sat_exclusion($bands) {
+        $bands_array = is_array($bands) ? $bands : (($bands === null || $bands === 'All') ? array() : array($bands));
+
+        if (in_array('SAT', $bands_array, true)) {
+            return '';
+        }
+
+        return " and (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
     }
 
     /*
@@ -171,7 +211,7 @@ class Counties extends CI_Model
             " and col_band in (" . $bandslots_placeholders . ")" .
             " and COL_DXCC in (" . $dxcc_placeholders . ")
                     and coalesce(COL_CNTY, '') <> ''
-                    and COL_BAND != 'SAT'
+                    " . $this->sat_exclusion($band) . "
                     " . $band_condition . "
                     " . $mode_condition . "
                     and " . $confirmed_condition . "
@@ -182,7 +222,7 @@ class Counties extends CI_Model
                  " and col_band in (" . $bandslots_placeholders . ")" .
             " and COL_DXCC in (" . $dxcc_placeholders . ")
                 and coalesce(COL_CNTY, '') <> ''
-                and COL_BAND != 'SAT'
+                " . $this->sat_exclusion($band) . "
                 " . $band_condition . "
                 " . $mode_condition . "
                 group by thcv.COL_STATE, countycountconfirmed
@@ -233,7 +273,7 @@ class Counties extends CI_Model
 		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in (" . $dxcc_placeholders . ")
 		and coalesce(COL_CNTY, '') <> ''
-		and COL_BAND != 'SAT'
+		" . $this->sat_exclusion($band) . "
 		" . $this->band_condition($band, $binding) . "
 		" . $this->mode_condition($mode, $binding);
 
@@ -285,7 +325,7 @@ class Counties extends CI_Model
 		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in (" . $dxcc_placeholders . ")
 		and coalesce(COL_CNTY, '') <> ''
-		and COL_BAND != 'SAT'
+		" . $this->sat_exclusion($band) . "
 		" . $this->band_condition($band, $binding) . "
 		" . $this->mode_condition($mode, $binding);
 
@@ -350,7 +390,7 @@ class Counties extends CI_Model
 			" and col_band in (" . $bandslots_placeholders . ")" .
 			" and COL_DXCC in (" . $dxcc_placeholders . ")
 			and coalesce(COL_CNTY, '') <> ''
-			and COL_BAND != 'SAT'
+			" . $this->sat_exclusion($band) . "
 			" . $band_condition . "
 			" . $mode_condition . "
 			group by COL_STATE, $cnty_name order by COL_STATE, $cnty_name";

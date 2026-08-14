@@ -1547,7 +1547,9 @@ class Awards extends CI_Controller {
 
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
-        $data['results'] = $this->logbook_model->county_qso_details($state, $county);
+        $band = $this->counties_band_from_post();
+        $mode = $this->counties_mode_from_post();
+        $data['results'] = $this->logbook_model->county_qso_details($state, $county, $band, $mode);
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         // Render Page

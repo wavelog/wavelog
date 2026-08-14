@@ -6090,7 +6090,7 @@ class Logbook_model extends CI_Model {
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
-	function county_qso_details($state, $county) {
+	function county_qso_details($state, $county, $band = 'All', $mode = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -6115,15 +6115,27 @@ class Logbook_model extends CI_Model {
 		$table = $this->config->item('table_name');
 		$station_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
 
+		// Reuses Counties_model's band/mode/SAT rules so this detail dialog
+		// (opened from either the map or the state list) always matches
+		// whatever the counties award Band/Mode filter is currently
+		// showing - it previously ignored Band/Mode entirely and hardcoded
+		// SAT out, so e.g. filtering to just "SAT" would show a county as
+		// confirmed on the map but list zero QSOs when clicked.
+		$this->load->model('counties');
+		$binding = array_merge($logbooks_locations_array, [strtoupper($state), strtoupper($bare_county)]);
+		$band_condition = $this->counties->band_condition($band, $binding);
+		$mode_condition = $this->counties->mode_condition($mode, $binding);
+		$sat_exclusion = $this->counties->sat_exclusion($band);
+
 		$sql = "select * from $table thcv
 			join station_profile on station_profile.station_id = thcv.station_id
 			left outer join lotw_users on lotw_users.callsign = thcv.col_call
 			where thcv.station_id in ($station_placeholders)
 			and UPPER(thcv.COL_STATE) = ?
 			and UPPER(TRIM(SUBSTRING_INDEX(thcv.COL_CNTY, ',', -1))) = ?
-			and (thcv.COL_PROP_MODE != 'SAT' OR thcv.COL_PROP_MODE IS NULL)";
-
-		$binding = array_merge($logbooks_locations_array, [strtoupper($state), strtoupper($bare_county)]);
+			$sat_exclusion
+			$band_condition
+			$mode_condition";
 
 		return $this->db->query($sql, $binding);
 	}
