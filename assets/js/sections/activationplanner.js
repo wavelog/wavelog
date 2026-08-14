@@ -46,6 +46,8 @@
 	let searchNoMatchesLbl   = decodeHtml(cfg.searchNoMatchesLbl) || 'No matches';
 	let searchLoadingLbl     = decodeHtml(cfg.searchLoadingLbl) || 'Loading…';
 	let searchRefsHeaderLbl  = decodeHtml(cfg.searchRefsHeaderLbl) || 'References';
+	let searchPlacesLbl      = decodeHtml(cfg.searchPlacesLbl) || 'Places';
+	let searchEnterHintLbl   = decodeHtml(cfg.searchEnterHintLbl) || 'Press Enter to search places';
 	let gridLbl         = decodeHtml(cfg.gridLbl) || 'Gridsquare';
 	let nearbyRefsLbl   = decodeHtml(cfg.nearbyRefsLbl) || 'Nearby refs';
 	let nearbyRefsRadiusLbl = decodeHtml(cfg.nearbyRefsRadiusLbl) || 'References within %s of the gridsquare';
@@ -1245,7 +1247,7 @@
 			for (let i = 0; i < idx.length && typeCount < SEARCH_PER_TYPE && out.length < SEARCH_TOTAL; i++) {
 				let e = idx[i];
 				if (e.a.indexOf(q) > -1 || e.b.indexOf(q) > -1) {
-					out.push({ type: t.type, label: t.label, letter: t.letter, color: t.color, r: e.r });
+					out.push({ type: t.type, label: t.label, letter: t.letter, color: t.color, group: 'refs', r: e.r });
 					typeCount++;
 				}
 			}
@@ -1286,6 +1288,13 @@
 		let active = rows[searchActiveIdx];
 		if (active && active.scrollIntoView) { active.scrollIntoView({ block: 'nearest' }); }
 	}
+	/*
+	 * Render the dropdown. Rows are grouped ('refs' from the local directories,
+	 * 'places' from Nominatim); a header is emitted on each group change. Places
+	 * use a pin badge instead of a directory letter. Pseudo-rows {loading} and
+	 * {empty} render status lines inside their group. The footer carries the
+	 * Enter hint (before any place search) or the OSM credit once places show.
+	 */
 	function renderResults(rows) {
 		let box = document.getElementById('glRefSearchResults');
 		if (!box) { return; }
@@ -1296,19 +1305,73 @@
 			box.hidden = false;
 			return;
 		}
-		let html = '<div class="gl-search-header">' + esc(searchRefsHeaderLbl) +
-			' <span class="badge bg-secondary">' + rows.length + (rows.length >= SEARCH_TOTAL ? '+' : '') + '</span></div>';
+		let counts = {};
+		rows.forEach(function (row) { if (!row.loading && !row.empty) { counts[row.group] = (counts[row.group] || 0) + 1; } });
+		let lastGroup = null, html = '';
 		rows.forEach(function (row, i) {
+			if (row.group !== lastGroup) {
+				lastGroup = row.group;
+				let lbl = row.group === 'places' ? searchPlacesLbl : searchRefsHeaderLbl;
+				html += '<div class="gl-search-header">' + esc(lbl) +
+					(counts[row.group] ? ' <span class="badge bg-secondary">' + counts[row.group] +
+					(row.group === 'refs' && counts[row.group] >= SEARCH_TOTAL ? '+' : '') + '</span>' : '') +
+					'</div>';
+			}
+			if (row.loading) { html += '<div class="gl-search-loading">' + esc(searchLoadingLbl) + '</div>'; return; }
+			if (row.empty)  { html += '<div class="gl-search-empty">' + esc(searchNoMatchesLbl) + '</div>'; return; }
 			let r = row.r, sub = refSubGrid(row);
+			let badge = row.type === 'place' ? '<i class="fas fa-location-dot"></i>' : esc(row.letter);
 			html += '<div class="gl-search-item" data-idx="' + i + '">' +
-				'<span class="ref-menu-dot" style="background:' + esc(row.color) + '">' + esc(row.letter) + '</span>' +
+				'<span class="ref-menu-dot" style="background:' + esc(row.color) + '">' + badge + '</span>' +
 				'<span class="gl-search-ref">' + esc(refKeyOf(r, row.type)) + '</span>' +
 				'<span class="gl-search-name">' + esc(r.name || '') + '</span>' +
 				(sub ? '<span class="gl-search-sub">' + esc(sub) + '</span>' : '') +
 				'</div>';
 		});
+		html += '<div class="gl-search-footer">' +
+			(lastGroup === 'places' ? '&copy; OpenStreetMap contributors' : esc(searchEnterHintLbl) + ' &middot; &copy; OpenStreetMap') +
+			'</div>';
 		box.innerHTML = html;
 		box.hidden = false;
+	}
+
+	/*
+	 * Place-name search (geocoding) via OSM's Nominatim — client-side fetch, no
+	 * proxy. Fired by Enter (not per keystroke) so the public service's max
+	 * 1 request/second policy is respected. Results are appended to the current
+	 * reference matches as a "Places" group; selecting one reuses selectPoint
+	 * (grid square, local mesh, zones, popup) and fits the result's bounding box.
+	 */
+	let NOMINATIM_URL = 'https://nominatim.openstreetmap.org/search';
+	let placeAbort = null;
+	function searchPlaces(q) {
+		let localRows = searchCurrent.filter(function (row) { return row.group === 'refs'; });
+		renderResults(localRows.concat([{ group: 'places', loading: true }]));
+		if (placeAbort) { placeAbort.abort(); }
+		let ctl = new AbortController();
+		placeAbort = ctl;
+		let timer = setTimeout(function () { ctl.abort(); }, 8000);   // don't hang on offline LANs
+		fetch(NOMINATIM_URL + '?q=' + encodeURIComponent(q) + '&format=jsonv2&limit=5', { signal: ctl.signal })
+			.then(function (res) { return res.json(); })
+			.then(function (rows) {
+				let places = (Array.isArray(rows) ? rows : []).map(function (p) {
+					let parts = String(p.display_name || '').split(', ');
+					return {
+						type: 'place', label: 'Place', group: 'places', color: '#6c757d',
+						r: {
+							reference: parts.shift() || '—',             // primary name (bold slot)
+							name: parts.join(', '),                      // remainder of display_name
+							lat: Number(p.lat), lon: Number(p.lon),
+							bbox: Array.isArray(p.boundingbox) ? p.boundingbox.map(Number) : null
+						}
+					};
+				});
+				renderResults(localRows.concat(places.length ? places : [{ group: 'places', empty: true }]));
+			})
+			.catch(function () {   // offline / timeout / aborted → quiet "no matches"
+				renderResults(localRows.concat([{ group: 'places', empty: true }]));
+			})
+			.finally(function () { clearTimeout(timer); });
 	}
 
 	/*
@@ -1323,6 +1386,16 @@
 		hideSearchResults();
 		if (searchOverlay) { searchOverlay.clearLayers(); }
 		clearBoundaries();   // drop any park outline drawn by a previous selection / the POTA overlay
+
+		if (row.type === 'place') {
+			// Reuse the full selection machinery (grid square, local mesh, zones,
+			// arrows, popup), then frame the result's extent when it has one.
+			selectPoint(r.lat, r.lon);
+			if (r.bbox && r.bbox.length === 4) {
+				map.fitBounds([[r.bbox[0], r.bbox[2]], [r.bbox[1], r.bbox[3]]], { padding: [40, 40], maxZoom: 13 });
+			}
+			return;
+		}
 
 		if (row.type === 'iota') {
 			let g = iotaGeometry(r);                       // unwrap longitudes (AN-016 special-cased)
@@ -1722,6 +1795,16 @@
 			});
 			searchInput.addEventListener('keydown', function (e) {
 				if (e.key === 'Escape') { hideSearchResults(); searchInput.blur(); return; }
+				if (e.key === 'Enter') {
+					e.preventDefault();
+					if (searchActiveIdx >= 0 && searchActiveIdx < searchCurrent.length) {
+						onSearchSelect(searchCurrent[searchActiveIdx]);   // highlighted row
+					} else {
+						let q = searchInput.value.trim();
+						if (q.length >= SEARCH_MIN) { searchPlaces(q); } // place-name geocoding
+					}
+					return;
+				}
 				if (!searchCurrent.length) { return; }
 				if (e.key === 'ArrowDown') {
 					e.preventDefault();
@@ -1731,11 +1814,6 @@
 					e.preventDefault();
 					searchActiveIdx = (searchActiveIdx - 1 + searchCurrent.length) % searchCurrent.length;
 					highlightSearchRow();
-				} else if (e.key === 'Enter') {
-					e.preventDefault();
-					if (searchActiveIdx >= 0 && searchActiveIdx < searchCurrent.length) {
-						onSearchSelect(searchCurrent[searchActiveIdx]);
-					}
 				}
 			});
 			// Clicking a result row selects it. mousedown prevention keeps focus on

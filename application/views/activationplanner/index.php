@@ -51,7 +51,9 @@
 		searchPlaceholderLbl:    <?php echo json_encode(__("Search references…")); ?>,
 		searchNoMatchesLbl:      <?php echo json_encode(__("No matches")); ?>,
 		searchLoadingLbl:        <?php echo json_encode(__("Loading…")); ?>,
-		searchRefsHeaderLbl:     <?php echo json_encode(__("References")); ?>
+		searchRefsHeaderLbl:     <?php echo json_encode(__("References")); ?>,
+		searchPlacesLbl:         <?php echo json_encode(__("Places")); ?>,
+		searchEnterHintLbl:      <?php echo json_encode(__("Press Enter to search places")); ?>
 	};
 </script>
 
@@ -82,7 +84,7 @@
 						<i class="fas fa-magnifying-glass gl-search-icon"></i>
 						<input type="text" id="glRefSearch" class="gl-search-input form-control form-control-sm"
 							autocomplete="off" spellcheck="false"
-							placeholder="<?= __("Search references…"); ?>" title="<?= __("Search WWFF / POTA / SOTA / IOTA by name or reference"); ?>">
+							placeholder="<?= __("Search references…"); ?>" title="<?= __("Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place names (OpenStreetMap)"); ?>">
 						<div class="gl-search-results" id="glRefSearchResults" hidden></div>
 					</div>
 					<div class="gl-refsrow gl-secondary">

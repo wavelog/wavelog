@@ -2202,6 +2202,13 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	font-size: .85rem;
 	color: var(--bs-secondary-color, #6c757d);
 }
+.gl-search-footer {
+	padding: .3rem .5rem;
+	font-size: .72rem;
+	color: var(--bs-secondary-color, #6c757d);
+	border-top: 1px solid var(--bs-border-color, #dee2e6);
+	margin-top: .25rem;
+}
 
 /* Compass grid-border readout panel (Leaflet control). Neutral rgba tints
    read on both light and dark themes; the nearest edge uses Bootstrap green. */
