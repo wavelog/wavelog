@@ -5918,34 +5918,25 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
-	 * Sets the display contest name (contest_name) in logbook
+	 * Sets the ADIF contest name (COL_CONTEST_ID) in logbook
 	 *
 	 * @param int $qso_id The ID of the QSO.
 	 * @param int $contest_adif_id The contest adif id, if 0 empty
-	 * @return bool True on success, false on failure.
 	 */
-	function set_contest($qso_id, $contest_adif_id) {
-
+	function set_contest($qso_id, $contest_adif_id = 0) {
 
 		if ($contest_adif_id != 0) {
-
-			$getName = "SELECT id, name FROM contest WHERE active = 1 AND id = ?;";
-			$nameQuery = $this->db->query($getName, $contest_adif_id);
-
-			$nameRow = $nameQuery->row() ? $nameQuery->row()->name : '';
-
+			$sql = "SELECT id, adifname FROM contest WHERE active = 1 AND id = ?;";
+			$nameQuery = $this->db->query($sql, [$contest_adif_id]);
+			$adifname = $nameQuery->row() ? $nameQuery->row()->adifname : '';
 		} else {
-			$nameRow = '';
+			$adifname = '';
 		}
 
-			$data = array(
-				'COL_CONTEST_ID' => xss_clean($nameRow),
-			);
-
-		$this->db->where(array('COL_PRIMARY_KEY' => $qso_id));
-		$this->db->update($this->config->item('table_name'), $data);
-
-		return true;
+		$table_name = $this->config->item('table_name');
+		$sql = "UPDATE {$table_name} SET COL_CONTEST_ID = ? WHERE COL_PRIMARY_KEY = ?;";
+		$this->db->query($sql, [$adifname, $qso_id]);
+		return;
 	}
 
 	function mark_dcl_rcvd($key) {
