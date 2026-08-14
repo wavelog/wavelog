@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 06:32+0000\n"
+"POT-Creation-Date: 2026-08-14 09:39+0000\n"
 "PO-Revision-Date: 2026-08-12 09:36+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -1170,7 +1170,7 @@ msgid "There was an error deleting the contest session. Please try again."
 msgstr "删除竞赛会话出现错误，请重试。"
 
 #: application/controllers/Contesting.php:782
-#: application/models/Contesting_model.php:216
+#: application/models/Contesting_model.php:291
 msgid "Only clubstation officers can delete."
 msgstr "只有集体台站管理员可以删除。"
 
@@ -4218,6 +4218,18 @@ msgstr "移除俱乐部成员"
 msgid "Read QSL confirmations"
 msgstr "读取QSL确认信息"
 
+#: application/libraries/api_v2/Contest_resource.php:55
+msgid "Read contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:56
+msgid "Create and update contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:57
+msgid "Delete contest sessions"
+msgstr ""
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr "查询呼号和网格"
@@ -4335,7 +4347,7 @@ msgstr ""
 "已从日志簿中导入\n"
 "（ADIF：%s，年：%d）"
 
-#: application/models/Contesting_model.php:182
+#: application/models/Contesting_model.php:257
 msgid "Officers must edit contests."
 msgstr "集体台站管理员必须编辑好竞赛。"
 

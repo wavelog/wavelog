@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 06:32+0000\n"
+"POT-Creation-Date: 2026-08-14 09:39+0000\n"
 "PO-Revision-Date: 2026-08-12 19:17+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1155,7 +1155,7 @@ msgstr ""
 "コンテストセッションの削除中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting.php:782
-#: application/models/Contesting_model.php:216
+#: application/models/Contesting_model.php:291
 msgid "Only clubstation officers can delete."
 msgstr "クラブシャック の役員のみが削除できます。"
 
@@ -4261,6 +4261,18 @@ msgstr "クラブメンバーを削除する"
 msgid "Read QSL confirmations"
 msgstr "QSLカードの確認書を読む"
 
+#: application/libraries/api_v2/Contest_resource.php:55
+msgid "Read contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:56
+msgid "Create and update contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:57
+msgid "Delete contest sessions"
+msgstr ""
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr "コールサインとグリッドを調べる"
@@ -4379,7 +4391,7 @@ msgstr ""
 "ログブックからインポート\n"
 "(ADIF: %s, 年: %d)"
 
-#: application/models/Contesting_model.php:182
+#: application/models/Contesting_model.php:257
 msgid "Officers must edit contests."
 msgstr "管理者はコンテストを編集しなければなりません。"
 

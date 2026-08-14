@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 06:32+0000\n"
+"POT-Creation-Date: 2026-08-14 09:39+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Latvian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1143,7 +1143,7 @@ msgid "There was an error deleting the contest session. Please try again."
 msgstr ""
 
 #: application/controllers/Contesting.php:782
-#: application/models/Contesting_model.php:216
+#: application/models/Contesting_model.php:291
 msgid "Only clubstation officers can delete."
 msgstr ""
 
@@ -4183,6 +4183,18 @@ msgstr ""
 msgid "Read QSL confirmations"
 msgstr ""
 
+#: application/libraries/api_v2/Contest_resource.php:55
+msgid "Read contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:56
+msgid "Create and update contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:57
+msgid "Delete contest sessions"
+msgstr ""
+
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
 msgstr ""
@@ -4294,7 +4306,7 @@ msgid ""
 "(ADIF: %s, Year: %d)"
 msgstr ""
 
-#: application/models/Contesting_model.php:182
+#: application/models/Contesting_model.php:257
 msgid "Officers must edit contests."
 msgstr ""
 
