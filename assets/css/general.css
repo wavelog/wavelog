@@ -2122,12 +2122,85 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	#glControls:not(.gl-expanded) .gl-secondary { display: none !important; }
 	#glControls .gl-input { flex: 0 0 100%; max-width: 100%; }
 	#glControls .gl-refsrow { flex: 0 0 100%; }
+	#glControls .gl-search-wrap { flex: 0 0 100%; }
 	.gl-more {
 		flex: 0 0 100%;
 		border-radius: 0;
 		text-align: left;
 		padding-left: 0;
 	}
+}
+
+/* Activation planner reference search box. The input inherits its chrome from
+   Bootstrap's .form-control-sm; .gl-search-* only adds the icon, dropdown and
+   type-badge rows (the badge reuses .ref-menu-dot verbatim). */
+.gl-search-wrap {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	flex: 0 0 auto;          /* don't stretch across the toolbar */
+	width: 240px;            /* desktop width; mobile goes full-width via the media query */
+	max-width: 100%;
+}
+.gl-search-icon {
+	position: absolute;
+	top: 50%;                /* vertically centre inside the input */
+	left: .55rem;
+	transform: translateY(-50%);
+	color: var(--bs-secondary-color, #6c757d);
+	font-size: .8rem;
+	pointer-events: none;
+	z-index: 2;
+}
+/* Specificity (#id .class) beats the theme overrides.css `.form-control` padding
+   shorthand (loaded after general.css), so the icon's left padding survives. */
+#glControls .gl-search-input { padding-left: 1.75rem; }
+.gl-search-results {
+	position: absolute;
+	top: calc(100% + 2px);
+	left: 0;
+	min-width: 100%;
+	max-width: 26rem;
+	max-height: 60vh;
+	overflow-y: auto;
+	z-index: 1000;
+	background: var(--bs-body-bg, #fff);
+	color: var(--bs-body-color, #212529);
+	border: 1px solid var(--bs-border-color, #dee2e6);
+	border-radius: .375rem;
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+	padding: .25rem;
+}
+.gl-search-header {
+	padding: .25rem .5rem;
+	font-size: .7rem;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	color: var(--bs-secondary-color, #6c757d);
+}
+.gl-search-item {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	padding: .3rem .5rem;
+	border-radius: .25rem;
+	cursor: pointer;
+}
+.gl-search-item:hover,
+.gl-search-item.is-active {
+	background: var(--bs-primary, #0d6efd);
+	color: #fff;
+}
+.gl-search-item:hover .gl-search-sub,
+.gl-search-item.is-active .gl-search-sub { color: rgba(255, 255, 255, .8); }
+.gl-search-ref { font-weight: 600; white-space: nowrap; }
+.gl-search-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1 1 auto; }
+.gl-search-sub { font-size: .72rem; color: var(--bs-secondary-color, #6c757d); white-space: nowrap; }
+.gl-search-empty,
+.gl-search-loading {
+	padding: .5rem .75rem;
+	font-size: .85rem;
+	color: var(--bs-secondary-color, #6c757d);
 }
 
 /* Compass grid-border readout panel (Leaflet control). Neutral rgba tints
