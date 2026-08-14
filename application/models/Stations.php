@@ -112,9 +112,9 @@ class Stations extends CI_Model {
 
 		// Check if the state is Canada and get the correct state
 		if ($this->input->post('dxcc') == 1 && $this->input->post('station_ca_state') !="") {
-			$state = xss_clean($this->input->post('station_ca_state', true));
+			$state = $this->input->post('station_ca_state', true);
 		} else {
-			$state = xss_clean($this->input->post('station_state', true));
+			$state = $this->input->post('station_state', true);
 		}
 
 		// Check if DXCC is USA, Alaska or Hawaii, RU, UR, and others with subareas.
@@ -135,7 +135,7 @@ class Stations extends CI_Model {
 			case 29:
 			case 32:
 			case 281:
-				$county = xss_clean($this->input->post('station_cnty', true));
+				$county = $this->input->post('station_cnty', true);
 				break;
 			default:
 				$county = '';
@@ -145,9 +145,9 @@ class Stations extends CI_Model {
 		$data = array(
 			'user_id' => $this->session->userdata('user_id'),
 			'station_active' => $station_active,
-			'station_profile_name' => xss_clean($this->input->post('station_profile_name', true)),
+			'station_profile_name' => $this->input->post('station_profile_name', true),
 			'station_gridsquare' =>  xss_clean(strtoupper($this->input->post('gridsquare', true))),
-			'station_city' =>  xss_clean($this->input->post('city', true)),
+			'station_city' =>  $this->input->post('city', true),
 			'station_iota' =>  xss_clean(strtoupper($this->input->post('iota', true))),
 			'station_sota' =>  xss_clean(strtoupper($this->input->post('sota', true))),
 			'station_wwff' =>  xss_clean(strtoupper($this->input->post('wwff', true))),
@@ -155,33 +155,33 @@ class Stations extends CI_Model {
 			'station_sig' =>  xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' =>  xss_clean(strtoupper($this->input->post('sig_info', true))),
 			'station_callsign' =>  str_replace('Ø', '0', trim(xss_clean(strtoupper($this->input->post('station_callsign', true))))),
-			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
-			'station_dxcc' =>  xss_clean($this->input->post('dxcc', true)),
+			'station_power' => is_numeric($this->input->post('station_power', true)) ? $this->input->post('station_power', true) : NULL,
+			'station_dxcc' =>  $this->input->post('dxcc', true),
 			'station_cnty' =>  $county,
-			'station_cq' =>  xss_clean($this->input->post('station_cq', true)),
-			'station_itu' =>  xss_clean($this->input->post('station_itu', true)),
+			'station_cq' =>  $this->input->post('station_cq', true),
+			'station_itu' =>  $this->input->post('station_itu', true),
 			'state' =>  $state,
-			'eqslqthnickname' => xss_clean($this->input->post('eqslnickname', true)),
-			'hrdlog_username' => xss_clean($this->input->post('hrdlog_username', true)),
-			'hrdlog_code' => xss_clean($this->input->post('hrdlog_code', true)),
-			'hrdlogrealtime' => xss_clean($this->input->post('hrdlogrealtime', true)),
-			'clublogignore' => xss_clean($this->input->post('clublogignore', true)),
-			'clublogrealtime' => xss_clean($this->input->post('clublogrealtime', true)),
-			'qrzapikey' => trim(xss_clean($this->input->post('qrzapikey', true))),
-			'qrzrealtime' => xss_clean($this->input->post('qrzrealtime', true)),
+			'eqslqthnickname' => $this->input->post('eqslnickname', true),
+			'hrdlog_username' => $this->input->post('hrdlog_username', true),
+			'hrdlog_code' => $this->input->post('hrdlog_code', true),
+			'hrdlogrealtime' => $this->input->post('hrdlogrealtime', true),
+			'clublogignore' => $this->input->post('clublogignore', true),
+			'clublogrealtime' => $this->input->post('clublogrealtime', true),
+			'qrzapikey' => trim($this->input->post('qrzapikey', true)),
+			'qrzrealtime' => $this->input->post('qrzrealtime', true),
 			'oqrs' => xss_clean($this->input->post('oqrs', true) ?? '0'),
 			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true) ?? '0'),
-			'oqrs_text' => xss_clean($this->input->post('oqrstext', true)),
-			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
+			'oqrs_text' => $this->input->post('oqrstext', true),
+			'webadifapikey' => $this->input->post('webadifapikey', true),
 			'webadifapiurl' => 'https://qo100dx.club/api',
-			'webadifrealtime' => xss_clean($this->input->post('webadifrealtime', true)),
+			'webadifrealtime' => $this->input->post('webadifrealtime', true),
 			'station_uuid' => $this->db->query("SELECT UUID() as uuid")->row()->uuid,
 		);
 
 		// Insert Records & return insert id //
 		if ($this->db->insert('station_profile', $data)) {
 			$new_station_id = $this->db->insert_id();
-			$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
+			$eqsl_default_qslmsg = $this->input->post('eqsl_default_qslmsg', true);
 			if (!empty(trim($eqsl_default_qslmsg))) {
 				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($new_station_id => $eqsl_default_qslmsg));
 			}
@@ -195,9 +195,9 @@ class Stations extends CI_Model {
 
 		// Check if the state is Canada and get the correct state
 		if ($this->input->post('dxcc') == 1 && $this->input->post('station_ca_state') !="") {
-			$state = xss_clean($this->input->post('station_ca_state', true));
+			$state = $this->input->post('station_ca_state', true);
 		} else {
-			$state = xss_clean($this->input->post('station_state', true));
+			$state = $this->input->post('station_state', true);
 		}
 
 		// Check if DXCC is USA, Alaska or Hawaii, RU, UR, and others with subareas.
@@ -218,16 +218,16 @@ class Stations extends CI_Model {
 			case 29:
 			case 32:
 			case 281:
-				$county = xss_clean($this->input->post('station_cnty', true));
+				$county = $this->input->post('station_cnty', true);
 				break;
 			default:
 				$county = '';
 		}
 
 		$data = array(
-			'station_profile_name' => xss_clean($this->input->post('station_profile_name', true)),
+			'station_profile_name' => $this->input->post('station_profile_name', true),
 			'station_gridsquare' => xss_clean(strtoupper($this->input->post('gridsquare', true))),
-			'station_city' => xss_clean($this->input->post('city', true)),
+			'station_city' => $this->input->post('city', true),
 			'station_iota' => xss_clean(strtoupper($this->input->post('iota', true))),
 			'station_sota' => xss_clean(strtoupper($this->input->post('sota', true))),
 			'station_wwff' => xss_clean(strtoupper($this->input->post('wwff', true))),
@@ -235,34 +235,34 @@ class Stations extends CI_Model {
 			'station_sig' => xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' => xss_clean(strtoupper($this->input->post('sig_info', true))),
 			'station_callsign' => str_replace('Ø', '0', trim(xss_clean(strtoupper($this->input->post('station_callsign', true))))),
-			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
-			'station_dxcc' => xss_clean($this->input->post('dxcc', true)),
+			'station_power' => is_numeric($this->input->post('station_power', true)) ? $this->input->post('station_power', true) : NULL,
+			'station_dxcc' => $this->input->post('dxcc', true),
 			'station_cnty' =>  $county,
-			'station_cq' => xss_clean($this->input->post('station_cq', true)),
-			'station_itu' => xss_clean($this->input->post('station_itu', true)),
+			'station_cq' => $this->input->post('station_cq', true),
+			'station_itu' => $this->input->post('station_itu', true),
 			'state' => $state,
-			'eqslqthnickname' => xss_clean($this->input->post('eqslnickname', true)),
-			'hrdlog_username' => xss_clean($this->input->post('hrdlog_username', true)),
-			'hrdlog_code' => xss_clean($this->input->post('hrdlog_code', true)),
-			'hrdlogrealtime' => xss_clean($this->input->post('hrdlogrealtime', true)),
-			'clublogignore' => xss_clean($this->input->post('clublogignore', true)),
-			'clublogrealtime' => xss_clean($this->input->post('clublogrealtime', true)),
-			'qrzapikey' => trim(xss_clean($this->input->post('qrzapikey', true))),
-			'qrzrealtime' => xss_clean($this->input->post('qrzrealtime', true)),
+			'eqslqthnickname' => $this->input->post('eqslnickname', true),
+			'hrdlog_username' => $this->input->post('hrdlog_username', true),
+			'hrdlog_code' => $this->input->post('hrdlog_code', true),
+			'hrdlogrealtime' => $this->input->post('hrdlogrealtime', true),
+			'clublogignore' => $this->input->post('clublogignore', true),
+			'clublogrealtime' => $this->input->post('clublogrealtime', true),
+			'qrzapikey' => trim($this->input->post('qrzapikey', true)),
+			'qrzrealtime' => $this->input->post('qrzrealtime', true),
 			'oqrs' => xss_clean($this->input->post('oqrs', true) ?? '0'),
 			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true) ?? '0'),
-			'oqrs_text' => xss_clean($this->input->post('oqrstext', true)),
-			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
+			'oqrs_text' => $this->input->post('oqrstext', true),
+			'webadifapikey' => $this->input->post('webadifapikey', true),
 			'webadifapiurl' => 'https://qo100dx.club/api',
-			'webadifrealtime' => xss_clean($this->input->post('webadifrealtime', true)),
+			'webadifrealtime' => $this->input->post('webadifrealtime', true),
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('station_id', xss_clean($this->input->post('station_id', true)));
+		$this->db->where('station_id', $this->input->post('station_id', true));
 		$this->db->update('station_profile', $data);
 
-		$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true) ?? '');
-		$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array(xss_clean($this->input->post('station_id', true)) => $eqsl_default_qslmsg));
+		$eqsl_default_qslmsg = $this->input->post('eqsl_default_qslmsg', true) ?? '';
+		$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($this->input->post('station_id', true) => $eqsl_default_qslmsg));
 	}
 
 	function delete($id,$force = false, $user_id = null) {

@@ -256,12 +256,12 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 		foreach ($result as $qso) {
 			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
 			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
-			echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . strtoupper($qso->COL_CALL) . '</a></td>';
+			echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso(' . (int) $qso->COL_PRIMARY_KEY . ')">' . html_escape(strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
-			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?$qso->COL_MODE:$qso->COL_SUBMODE; echo '</td>';
-			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo $qso->COL_SAT_NAME; } else { echo strtolower($qso->COL_BAND); }; echo '</td>';
-			echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
+			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?html_escape($qso->COL_MODE):html_escape($qso->COL_SUBMODE); echo '</td>';
+			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo html_escape($qso->COL_SAT_NAME); } else { echo html_escape(strtolower($qso->COL_BAND)); }; echo '</td>';
+			echo '<td style=\'text-align: center\'>'; echo html_escape(strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE); echo '</td>';
 			echo '<td style=\'text-align: center\'>' . $qso->COL_CQZ . '</td>';
 			echo '<td id=\'cqZones\' style=\'text-align: center\'>' . $qso->correctcqzone . '</td>';
 			echo '<td style=\'text-align: center\'>' . ucwords(strtolower($qso->COL_COUNTRY), "- (/") . '</td>';
@@ -332,12 +332,12 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 		foreach ($result as $qso) {
 			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
 			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
-			echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . strtoupper($qso->COL_CALL) . '</a></td>';
+			echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso(' . (int) $qso->COL_PRIMARY_KEY . ')">' . html_escape(strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
-			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?$qso->COL_MODE:$qso->COL_SUBMODE; echo '</td>';
-			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo $qso->COL_SAT_NAME; } else { echo strtolower($qso->COL_BAND); }; echo '</td>';
-			echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
+			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?html_escape($qso->COL_MODE):html_escape($qso->COL_SUBMODE); echo '</td>';
+			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo html_escape($qso->COL_SAT_NAME); } else { echo html_escape(strtolower($qso->COL_BAND)); }; echo '</td>';
+			echo '<td style=\'text-align: center\'>'; echo html_escape(strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE); echo '</td>';
 			echo '<td style=\'text-align: center\'>' . $qso->COL_ITUZ . '</td>';
 			echo '<td id=\'ituZones\' style=\'text-align: center\'>' . $qso->correctituzone . '</td>';
 			echo '<td style=\'text-align: center\'>' . ucwords(strtolower($qso->COL_COUNTRY), "- (/") . '</td>';

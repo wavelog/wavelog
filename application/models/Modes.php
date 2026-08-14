@@ -71,13 +71,13 @@ class Modes extends CI_Model {
 		if ($this->input->post('submode', true) == "")
 			$submode = null;
 		else
-			$submode = xss_clean($this->input->post('submode', true));
+			$submode = $this->input->post('submode', true);
 		
 		$data = array(
-			'mode' => xss_clean($this->input->post('mode', true)),
+			'mode' => $this->input->post('mode', true),
 			'submode' => $submode,
 			'qrgmode' =>  xss_clean(strtoupper($this->input->post('qrgmode', true))),
-			'active' =>  xss_clean($this->input->post('active', true)),
+			'active' =>  $this->input->post('active', true),
 		);
 
 		$this->db->insert('adif_modes', $data); 
@@ -87,16 +87,16 @@ class Modes extends CI_Model {
 		if ($this->input->post('submode', true) == "")
 			$submode = null;
 		else
-			$submode = xss_clean($this->input->post('submode', true));
+			$submode = $this->input->post('submode', true);
 		
 		$data = array(
-			'mode' => xss_clean($this->input->post('mode', true)),
+			'mode' => $this->input->post('mode', true),
 			'submode' => $submode,
 			'qrgmode' =>  xss_clean(strtoupper($this->input->post('qrgmode', true))),
-			'active' =>  xss_clean($this->input->post('active', true)),
+			'active' =>  $this->input->post('active', true),
 		);
 
-		$this->db->where('id', xss_clean($this->input->post('id', true)));
+		$this->db->where('id', $this->input->post('id', true));
 		$this->db->update('adif_modes', $data); 
 	}
 

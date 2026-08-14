@@ -158,7 +158,7 @@ function updateRow(qso) {
 		cells.eq(c++).html(qso.state);
 	}
 	if ((user_options.county.show ?? 'true') == "true"){
-		cells.eq(c++).html(qso.county);
+		cells.eq(c++).text(qso.county);
 	}
 	if ((user_options.cqzone.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.cqzone);
@@ -182,25 +182,25 @@ function updateRow(qso) {
 		cells.eq(c++).html(qso.wwff);
 	}
 	if ((user_options.sig) && ((user_options.sig.show ?? 'true') == "true")){
-		cells.eq(c++).html(qso.sig);
+		cells.eq(c++).text(qso.sig);
 	}
 	if ((user_options.sig_info) && ((user_options.sig_info.show ?? 'false') == "true")){
-		cells.eq(c++).html(qso.sig_info);
+		cells.eq(c++).text(qso.sig_info);
 	}
 	if ((user_options.region) && ((user_options.region.show ?? 'true') == "true")){
-		cells.eq(c++).html(qso.region);
+		cells.eq(c++).text(qso.region);
 	}
 	if ((user_options.operator) && ((user_options.operator.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.operator);
 	}
 	if ((user_options.comment) && ((user_options.comment.show ?? 'true') == "true")){
-		cells.eq(c++).html(qso.comment);
+		cells.eq(c++).text(qso.comment);
 	}
 	if ((user_options.propagation) && ((user_options.propagation.show ?? 'true') == "true")){
-		cells.eq(c++).html(qso.propagation);
+		cells.eq(c++).text(qso.propagation);
 	}
 	if ((user_options.contest) && ((user_options.contest.show ?? 'true') == "true")){
-		cells.eq(c++).html(qso.contest);
+		cells.eq(c++).text(qso.contest);
 	}
 	if ((user_options.myrefs.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.deRefs);
@@ -366,13 +366,13 @@ function loadQSOTable(rows) {
 			}
 		}
 		if ((user_options.duration.show ?? 'true') == "true"){
-			data.push(qso.duration);
+			data.push(escapeHtml(qso.duration));
 		}
 		if ((user_options.last_modification.show ?? 'true') == "true"){
-			data.push(qso.last_modified);
+			data.push(escapeHtml(qso.last_modified));
 		}
 		if ((user_options.de.show ?? 'true') == "true"){
-			data.push(qso.de);
+			data.push(escapeHtml(qso.de));
 		}
 		if ((user_options.dx.show ?? 'true') == "true"){
 
@@ -391,19 +391,19 @@ function loadQSOTable(rows) {
 			data.push(qso.band);
 		}
 		if ((user_options.frequency.show ?? 'true') == "true"){
-			data.push(qso.frequency);
+			data.push(escapeHtml(qso.frequency));
 		}
 		if ((user_options.gridsquare.show ?? 'true') == "true"){
 			data.push(qso.gridsquare);
 		}
 		if ((user_options.name.show ?? 'true') == "true"){
-			data.push(qso.name);
+			data.push(escapeHtml(qso.name));
 		}
 		if ((user_options.qth.show ?? 'true') == "true"){
-			data.push(qso.qth);
+			data.push(escapeHtml(qso.qth));
 		}
 		if ((user_options.qslvia.show ?? 'true') == "true"){
-			data.push('<span class="callsign">' + qso.qslVia + '</span>');
+			data.push('<span class="callsign">' + escapeHtml(qso.qslVia) + '</span>');
 		}
 		if ((user_options.clublog.show ?? 'true') == "true"){
 			data.push(qso.clublog);
@@ -424,10 +424,10 @@ function loadQSOTable(rows) {
 			data.push(qso.dcl);
 		}
 		if ((user_options.qslmsgs.show ?? 'true') == "true"){
-			data.push(qso.qslMessage);
+			data.push(escapeHtml(qso.qslMessage));
 		}
 		if ((user_options.qslmsgr.show ?? 'true') == "true"){
-			data.push(qso.qslMessageR);
+			data.push(escapeHtml(qso.qslMessageR));
 		}
 		if ((user_options.dxcc.show ?? 'true') == "true"){
 			data.push(qso.dxcc+qso.flag+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
@@ -436,7 +436,7 @@ function loadQSOTable(rows) {
 			data.push(qso.state);
 		}
 		if ((user_options.county.show ?? 'true') == "true"){
-			data.push(qso.county);
+			data.push(escapeHtml(qso.county));
 		}
 		if ((user_options.cqzone.show ?? 'true') == "true"){
 			data.push(qso.cqzone);
@@ -460,46 +460,46 @@ function loadQSOTable(rows) {
 			data.push(qso.wwff);
 		}
 		if ((user_options.sig.show ?? 'true') == "true"){
-			data.push(qso.sig);
+			data.push(escapeHtml(qso.sig));
 		}
 		if ((user_options.sig_info.show ?? 'false') == "true"){
-			data.push(qso.sig_info);
+			data.push(escapeHtml(qso.sig_info));
 		}
 		if ((user_options.region.show ?? 'true') == "true"){
-			data.push(qso.region);
+			data.push(escapeHtml(qso.region));
 		}
 		if ((user_options.operator.show ?? 'true') == "true"){
 			data.push(qso.operator);
 		}
 		if ((user_options.comment.show ?? 'true') == "true"){
-			data.push(qso.comment);
+			data.push(escapeHtml(qso.comment));
 		}
 		if ((user_options.propagation.show ?? 'true') == "true"){
-			data.push(qso.propagation);
+			data.push(escapeHtml(qso.propagation));
 		}
 		if ((user_options.contest.show ?? 'true') == "true"){
-			data.push(qso.contest);
+			data.push(escapeHtml(qso.contest));
 		}
 		if ((user_options.myrefs.show ?? 'true') == "true"){
-			data.push(qso.deRefs);
+			data.push(escapeHtml(qso.deRefs));
 		}
 		if ((user_options.continent.show ?? 'true') == "true"){
 			data.push(qso.continent);
 		}
 		if ((user_options.distance.show ?? 'true') == "true"){
-			data.push(qso.distance);
+			data.push(escapeHtml(qso.distance));
 		}
 		if ((user_options.antennaazimuth.show ?? 'true') == "true"){
-			data.push(qso.antennaazimuth);
+			data.push(escapeHtml(qso.antennaazimuth));
 		}
 		if ((user_options.antennaelevation.show ?? 'true') == "true"){
-			data.push(qso.antennaelevation);
+			data.push(escapeHtml(qso.antennaelevation));
 		}
 		if ((user_options.profilename.show ?? 'true') == "true"){
-			data.push(qso.profilename);
+			data.push(escapeHtml(qso.profilename));
 		}
 		if ((user_options.stationpower.show ?? 'true') == "true"){
-			data.push(qso.stationpower);
+			data.push(escapeHtml(qso.stationpower));
 		}
 		data.id='qsoID-' + qso.qsoID;
 		let createdRow = table.row.add(data).index();
