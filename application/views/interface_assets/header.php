@@ -321,8 +321,6 @@
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?= __("SAT Timers"); ?></a></li>
-								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('amsatstatus'); ?>" title="AMSAT Satellite Status"><i class="fas fa-satellite-dish"></i> <?= __("AMSAT Satellite Status"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Show Satellite Flight Path"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?></a></li>
