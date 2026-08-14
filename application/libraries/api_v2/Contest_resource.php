@@ -35,9 +35,9 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * by the QSO resource; linking and unlinking also maintain COL_CONTEST_ID on
  * the QSO rows, mirroring the advanced logbook's attach workflow.
  *
- * Clubstations: creating, updating and deleting sessions require officer
- * level 9; club members below that level may only link/unlink QSOs they
- * logged themselves.
+ * Clubstations: creating and deleting a session and editing its fields,
+ * require officer level 9; club members below that level may only link and
+ * unlink QSOs they logged themselves, as in the advanced logbook.
  */
 class Contest_resource extends Api_v2_resource {
 
@@ -167,9 +167,6 @@ class Contest_resource extends Api_v2_resource {
 	 */
 	public function update($id) {
 		$this->require_write();
-		// Contest sessions are shared club infrastructure; the web UI limits
-		// editing to officers (clubaccess_check(9)) - mirror that here.
-		$this->require_club_level(9);
 
 		$row = $this->require_owned_session($id);
 		$body = $this->body();
@@ -183,6 +180,14 @@ class Contest_resource extends Api_v2_resource {
 			|| array_key_exists('settings', $body);
 		if (!$has_fields && empty($body['link_qso_ids']) && empty($body['unlink_qso_ids'])) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
+		}
+
+		// Editing the session itself is officer-only in the web UI
+		// (clubaccess_check(9)); attaching and detaching QSOs is not
+		// (Logbookadvanced uses clubaccess_check(3, $qsoID)) - members below
+		// officer level are limited to their own QSOs by validate_qso_ids().
+		if ($has_fields) {
+			$this->require_club_level(9);
 		}
 
 		// Catalog id of the (possibly changed) contest - the field update and
