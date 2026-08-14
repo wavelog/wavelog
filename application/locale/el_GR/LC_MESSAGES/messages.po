@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 10:36+0000\n"
+"POT-Creation-Date: 2026-08-14 13:27+0000\n"
 "PO-Revision-Date: 2025-12-30 19:49+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: Greek <https://translate.wavelog.org/projects/wavelog/main-"
@@ -650,7 +650,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:713
 #: application/controllers/Logbook.php:1472
-#: application/views/activationplanner/index.php:84
+#: application/views/activationplanner/index.php:95
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
@@ -681,7 +681,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:811
 #: application/controllers/Logbook.php:1473
-#: application/views/activationplanner/index.php:82
+#: application/views/activationplanner/index.php:93
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
 #: application/views/logbookadvanced/edit.php:40
@@ -704,7 +704,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:911
 #: application/controllers/Logbook.php:1474
-#: application/views/activationplanner/index.php:83
+#: application/views/activationplanner/index.php:94
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
@@ -2118,7 +2118,7 @@ msgid "Country"
 msgstr "Χώρα"
 
 #: application/controllers/Logbook.php:1471
-#: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:96
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
@@ -2184,9 +2184,9 @@ msgstr "Επαρχία"
 #: application/controllers/Logbook.php:1476
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:23
-#: application/views/activationplanner/index.php:65
-#: application/views/activationplanner/index.php:81
-#: application/views/activationplanner/index.php:106
+#: application/views/activationplanner/index.php:69
+#: application/views/activationplanner/index.php:92
+#: application/views/activationplanner/index.php:117
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -4973,7 +4973,7 @@ msgid "Clear Markers"
 msgstr ""
 
 #: application/views/activated_gridmap/index.php:105
-#: application/views/activationplanner/index.php:104
+#: application/views/activationplanner/index.php:115
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/contesting/logger/components/map.php:76
@@ -4984,7 +4984,7 @@ msgid "Latitude"
 msgstr ""
 
 #: application/views/activated_gridmap/index.php:106
-#: application/views/activationplanner/index.php:105
+#: application/views/activationplanner/index.php:116
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/contesting/logger/components/map.php:78
@@ -5009,7 +5009,7 @@ msgid "Gridsquare borders"
 msgstr ""
 
 #: application/views/activationplanner/index.php:24
-#: application/views/activationplanner/index.php:76
+#: application/views/activationplanner/index.php:80
 msgid "Nearby refs"
 msgstr ""
 
@@ -5161,35 +5161,52 @@ msgstr ""
 msgid "📻 Planning an activation from %s"
 msgstr ""
 
-#: application/views/activationplanner/index.php:60
+#: application/views/activationplanner/index.php:51
+#: application/views/activationplanner/index.php:85
+msgid "Search references…"
+msgstr ""
+
+#: application/views/activationplanner/index.php:52
+msgid "No matches"
+msgstr ""
+
+#: application/views/activationplanner/index.php:53
+msgid "Loading…"
+msgstr ""
+
+#: application/views/activationplanner/index.php:54
+msgid "References"
+msgstr ""
+
+#: application/views/activationplanner/index.php:64
 msgid "Plan your activity here"
 msgstr ""
 
-#: application/views/activationplanner/index.php:68
+#: application/views/activationplanner/index.php:72
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr ""
 
-#: application/views/activationplanner/index.php:68
+#: application/views/activationplanner/index.php:72
 msgid "e.g. FN31pr"
 msgstr ""
 
-#: application/views/activationplanner/index.php:69
+#: application/views/activationplanner/index.php:73
 msgid "to"
 msgstr ""
 
-#: application/views/activationplanner/index.php:72
+#: application/views/activationplanner/index.php:76
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
 
-#: application/views/activationplanner/index.php:72
+#: application/views/activationplanner/index.php:76
 msgid "e.g. JN58qm"
 msgstr ""
 
-#: application/views/activationplanner/index.php:73
+#: application/views/activationplanner/index.php:77
 msgid "Go"
 msgstr ""
 
-#: application/views/activationplanner/index.php:74
+#: application/views/activationplanner/index.php:78
 #: application/views/awards/cq/index.php:70
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:72
@@ -5204,29 +5221,33 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: application/views/activationplanner/index.php:75
+#: application/views/activationplanner/index.php:79
 msgid "Find my location and gridsquare"
 msgstr ""
 
-#: application/views/activationplanner/index.php:75
+#: application/views/activationplanner/index.php:79
 msgid "Locate me"
 msgstr ""
 
-#: application/views/activationplanner/index.php:79
+#: application/views/activationplanner/index.php:85
+msgid "Search WWFF / POTA / SOTA / IOTA by name or reference"
+msgstr ""
+
+#: application/views/activationplanner/index.php:90
 #: application/views/simplefle/index.php:162
 msgid "Refs"
 msgstr ""
 
-#: application/views/activationplanner/index.php:92
+#: application/views/activationplanner/index.php:103
 #: application/views/qso/index.php:758
 msgid "More options"
 msgstr ""
 
-#: application/views/activationplanner/index.php:93
+#: application/views/activationplanner/index.php:104
 msgid "Hide options"
 msgstr ""
 
-#: application/views/activationplanner/index.php:107
+#: application/views/activationplanner/index.php:118
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:205
 #: application/views/bandmap/list.php:569
@@ -5252,7 +5273,7 @@ msgstr ""
 msgid "CQ Zone"
 msgstr ""
 
-#: application/views/activationplanner/index.php:108
+#: application/views/activationplanner/index.php:119
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:207
 #: application/views/gridmap/index.php:230
