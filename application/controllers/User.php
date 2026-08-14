@@ -1060,24 +1060,50 @@ class User extends CI_Controller {
 
 					$user_id = $this->input->post('id', true);
 
-					// [MAP Custom] ADD to user options //
-					$array_icon = array('station','qso','qsoconfirm', 'unworked');
-					foreach ($array_icon as $icon) {
-						$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
-						$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
-					}
-					if (!empty($data_options['user_map_qso_icon'])) {
-						foreach ($array_icon as $icon) {
-							$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
-							$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
-						}
-						$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))), $user_id);
-						$this->user_options_model->set_option('map_custom','tile',array('style' => xss_clean($this->input->post('user_map_tile_style', true))),$user_id);
+				// [MAP Custom] ADD to user options //
+				$array_icon = array('station','qso','qsoconfirm', 'unworked');
+				$_icon_allow = $data['map_icon_select'];
+				$_icon_defaults = array(
+					'station'    => '0',
+					'qso'        => 'fas fa-dot-circle',
+					'qsoconfirm' => '0',
+					'unworked'   => '0',
+				);
+				$_color_defaults = array(
+					'station'    => '#0000FF',
+					'qso'        => '#E5A50A',
+					'qsoconfirm' => '#90EE90',
+					'unworked'   => '#CC372D',
+				);
+				$_hex_re = '/^#[0-9a-fA-F]{6}$/';
+				foreach ($array_icon as $icon) {
+					$_raw_icon  = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
+					$_raw_color = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
+					if (isset($_icon_allow[$icon]) && is_array($_icon_allow[$icon])) {
+						$_icon = in_array($_raw_icon, $_icon_allow[$icon], true) ? $_raw_icon : $_icon_defaults[$icon];
 					} else {
-						$this->user_options_model->del_option('map_custom','icon', null, $user_id);
-						$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
-						$this->user_options_model->del_option('map_custom','tile', null, $user_id);
+						$_icon = $_icon_defaults[$icon];
 					}
+					$_color = preg_match($_hex_re, $_raw_color ?? '') ? $_raw_color : $_color_defaults[$icon];
+					$data_options['user_map_'.$icon.'_icon']  = $_icon;
+					$data_options['user_map_'.$icon.'_color'] = $_color;
+				}
+				if (!empty($data_options['user_map_qso_icon'])) {
+					foreach ($array_icon as $icon) {
+						$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
+						$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
+					}
+					$_gridshow = $this->input->post('user_map_gridsquare_show', true);
+					$_gridshow = ($_gridshow === '1' || $_gridshow === 1) ? '1' : '0';
+					$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>$_gridshow), $user_id);
+					$_tile = xss_clean($this->input->post('user_map_tile_style', true));
+					$_tile = array_key_exists($_tile, map_style_options()) ? $_tile : 'map-follow';
+					$this->user_options_model->set_option('map_custom','tile',array('style' => $_tile),$user_id);
+				} else {
+					$this->user_options_model->del_option('map_custom','icon', null, $user_id);
+					$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
+					$this->user_options_model->del_option('map_custom','tile', null, $user_id);
+				}
 					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
 					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
 					$this->user_options_model->set_option('header_menu', 'quick_theme_switcher', array('boolean'=>xss_clean($this->input->post('user_quick_theme_switcher', true))), $user_id);
