@@ -2700,6 +2700,43 @@ function saveOptions() {
 		});
 	}
 
+	function fixAllStates() {
+		$('#fixAllStatesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		// Disable the per-row "Run fix" buttons while the batch is running
+		$('button[id^="fixStateBtn_"]').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixStateAll',
+			type: 'post',
+			data: {
+				stationid: $('#dbtools_station_id').val()
+			},
+			success: function (response) {
+				// The response replaces the whole result pane (including the
+				// buttons above), so there is nothing left to re-enable here.
+				$('.result').html(response);
+				$('#closeButton').prop("disabled", false);
+			},
+			error: function (xhr, status, error) {
+				$('#fixAllStatesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('button[id^="fixStateBtn_"]').prop("disabled", false);
+
+				let errorMsg = 'Error fixing state information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
 	function openStateList(dxcc, country) {
 		$('#openStateListBtn_' + dxcc).prop("disabled", true).addClass("running");
 

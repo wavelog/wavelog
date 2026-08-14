@@ -2042,6 +2042,56 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	/**
+	 * Fix state for every DXCC that has QSOs eligible for a state fix.
+	 *
+	 * Reuses check_missing_state() to determine the candidate DXCCs (so the
+	 * set of DXCCs fixed matches exactly what was shown in the check result),
+	 * then runs fixStateBatch() for each one, aggregating the outcome.
+	 *
+	 * @param string $stationid Station id, or 'All'
+	 * @return array Aggregated result: total_updated, dxccs_processed,
+	 *               dxcc_counts[] (per-DXCC name + count) and failures[]
+	 */
+	function fixStateAll($stationid) {
+		$aggregated = [
+			'total_updated' => 0,
+			'dxccs_processed' => 0,
+			'dxcc_counts' => [],
+			'failures' => [],
+		];
+
+		$candidates = $this->check_missing_state($stationid);
+
+		foreach ($candidates as $candidate) {
+			$dxcc = $candidate->col_dxcc;
+			$dxcc_name = isset($candidate->dxcc_name) ? ucwords(strtolower($candidate->dxcc_name), "- (/") : '';
+
+			$result = $this->fixStateBatch($dxcc, $stationid);
+
+			$aggregated['dxccs_processed']++;
+
+			$count = isset($result['count']) ? (int)$result['count'] : 0;
+			$aggregated['total_updated'] += $count;
+			$aggregated['dxcc_counts'][] = [
+				'name' => $dxcc_name,
+				'count' => $count,
+			];
+
+			// fixStateBatch() returns numeric entries for per-QSO failures
+			// (each an array containing 'id') plus a 'count' scalar.
+			if (is_array($result)) {
+				foreach ($result as $value) {
+					if (is_array($value) && isset($value['id'])) {
+						$aggregated['failures'][] = $value;
+					}
+				}
+			}
+		}
+
+		return $aggregated;
+	}
+
+	/**
 	 * Fix state for a batch of QSOs, based on the DXCC
 	 * Note: This now only validates and prepares data
 	 *
