@@ -683,6 +683,7 @@ msgstr " 及び "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/activationplanner/index.php:97
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -706,6 +707,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/activationplanner/index.php:95
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -731,6 +733,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/activationplanner/index.php:96
 msgid "POTA"
 msgstr "POTA"
 
@@ -2177,6 +2180,7 @@ msgstr "国"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/activationplanner/index.php:98
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2268,6 +2272,9 @@ msgstr "州"
 #: application/views/view_log/qso.php:621
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/activationplanner/index.php:71
+#: application/views/activationplanner/index.php:94
+#: application/views/activationplanner/index.php:119
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -3943,8 +3950,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1541
 msgid "Station setup failed! Please set up your station manually."
@@ -5086,6 +5093,7 @@ msgstr "クリアマーカー"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/activationplanner/index.php:117
 msgid "Latitude"
 msgstr "緯度"
 
@@ -5097,6 +5105,7 @@ msgstr "緯度"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/activationplanner/index.php:118
 msgid "Longitude"
 msgstr "経度"
 
@@ -5118,6 +5127,7 @@ msgstr "グリッドスクエアの境界線"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:80
+#: application/views/activationplanner/index.php:82
 msgid "Nearby refs"
 msgstr "関連する位置の参照:"
 
@@ -5287,30 +5297,37 @@ msgid "References"
 msgstr "参考文献"
 
 #: application/views/activationplanner/index.php:64
+#: application/views/activationplanner/index.php:66
 msgid "Plan your activity here"
 msgstr "ここでアクティビティを計画しましょう"
 
 #: application/views/activationplanner/index.php:72
+#: application/views/activationplanner/index.php:74
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2、4、6、8、または10文字のメイデンヘッドロケーター"
 
 #: application/views/activationplanner/index.php:72
+#: application/views/activationplanner/index.php:74
 msgid "e.g. FN31pr"
 msgstr "例：PM74kk"
 
 #: application/views/activationplanner/index.php:73
+#: application/views/activationplanner/index.php:75
 msgid "to"
 msgstr "to"
 
 #: application/views/activationplanner/index.php:76
+#: application/views/activationplanner/index.php:78
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "距離と方位を示すオプションの2つ目のグリッドスクエア"
 
 #: application/views/activationplanner/index.php:76
+#: application/views/activationplanner/index.php:78
 msgid "e.g. JN58qm"
 msgstr "例：JN58qm"
 
 #: application/views/activationplanner/index.php:77
+#: application/views/activationplanner/index.php:79
 msgid "Go"
 msgstr "Go"
 
@@ -5326,14 +5343,17 @@ msgstr "Go"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:357
 #: application/views/qso/index.php:757 application/views/user/edit.php:1367
+#: application/views/activationplanner/index.php:80
 msgid "Clear"
 msgstr "クリア"
 
 #: application/views/activationplanner/index.php:79
+#: application/views/activationplanner/index.php:81
 msgid "Find my location and gridsquare"
 msgstr "現在地とグリッドスクエアを検索"
 
 #: application/views/activationplanner/index.php:79
+#: application/views/activationplanner/index.php:81
 msgid "Locate me"
 msgstr "私を見つけてください"
 
@@ -5343,15 +5363,18 @@ msgstr "WWFF / POTA / SOTA / IOTA を名前または参照番号で検索"
 
 #: application/views/activationplanner/index.php:90
 #: application/views/simplefle/index.php:162
+#: application/views/activationplanner/index.php:92
 msgid "Refs"
 msgstr "参照"
 
 #: application/views/activationplanner/index.php:103
 #: application/views/qso/index.php:758
+#: application/views/activationplanner/index.php:105
 msgid "More options"
 msgstr "その他のオプション"
 
 #: application/views/activationplanner/index.php:104
+#: application/views/activationplanner/index.php:106
 msgid "Hide options"
 msgstr "オプションを非表示にする"
 
@@ -5378,6 +5401,7 @@ msgstr "オプションを非表示にする"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/activationplanner/index.php:120
 msgid "CQ Zone"
 msgstr "CQゾーン"
 
@@ -5398,6 +5422,7 @@ msgstr "CQゾーン"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/activationplanner/index.php:121
 msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
@@ -23547,6 +23572,20 @@ msgstr "Clublog Log を検索"
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
 
+#: application/views/activationplanner/index.php:55
+msgid "Places"
+msgstr ""
+
+#: application/views/activationplanner/index.php:56
+msgid "Press Enter to search places"
+msgstr ""
+
+#: application/views/activationplanner/index.php:87
+msgid ""
+"Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place "
+"names (OpenStreetMap)"
+msgstr ""
+
 #~ msgid "Add stroked zero (Ø)"
 #~ msgstr "ストローク付きゼロ（Ø）を追加"
 
@@ -24354,9 +24393,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -24687,8 +24726,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
