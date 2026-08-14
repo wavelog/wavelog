@@ -1172,7 +1172,7 @@
 												<?php if (isset($on_air_widget_url)) {
 													// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here
 													print("<br>");
-													printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
+													printf(__("If enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
 												} ?>
 											</small>
 										</div>
@@ -1227,6 +1227,32 @@
 										<div>
 											<label class="d-block mb-0"><?= __('Display exact QSO time'); ?></label>
 											<small class="form-text text-muted"><?= __("This setting control whether exact QSO time should displayed in the QSO widget or not."); ?></small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<!-- Last LoTW Upload Widget Settings -->
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?= __("Last LoTW Upload widget"); ?></div>
+								<div class="card-body">
+									<?php if(!isset($last_lotw_upload_widget_enabled)) { $last_lotw_upload_widget_enabled='false'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="last_lotw_upload_widget_enabled" value="false">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="last_lotw_upload_widget_enabled" name="last_lotw_upload_widget_enabled" value="true" <?php if ($last_lotw_upload_widget_enabled == 'true') { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0"><?= __("Enabled"); ?></label>
+											<small class="form-text text-muted">
+												<?php if (isset($last_lotw_upload_widget_url)) {
+													// when adding user, the $last_lotw_upload_widget_url url is not yet availalable, hence the if condition here
+													printf(__("If enabled, widget will be available at %s."), "<a href='$last_lotw_upload_widget_url' target='_blank'>$last_lotw_upload_widget_url</a>");
+												} ?>
+											</small>
 										</div>
 									</div>
 								</div>

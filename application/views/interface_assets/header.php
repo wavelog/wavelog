@@ -98,7 +98,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo $this->paths->cache_buster('/assets/logo/'. $this->optionslib->get_logo('header_logo').'.png'); ?>" alt="<?= __("Wavelog home"); ?>" /></a>
-			<?php if (ENVIRONMENT == "development") { ?>
+			<?php if (ENVIRONMENT == "development" || (ENVIRONMENT == "docker" && ($_ENV['DOCKER_DEVELOPMENT'] ?? false) == true)) { ?>
 				<span class="badge text-bg-danger me-1"><?= __("Developer Mode"); ?></span>
 			<?php } ?>
 			<?php if (ENVIRONMENT == "maintenance") { ?>
@@ -473,14 +473,14 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
 								<?php if ($this->session->userdata('clubstation') == 1) {
-									echo '<i class="fas fa-users"></i> '
-										. '<b>' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))) . '</b>'
-										. ' <br><small>'
-										. sprintf(_pgettext("Operator: Callsign", "Op: %s"), str_replace("0","&Oslash;", strtoupper($this->session->userdata('operator_callsign'))))
-										. '</small>';
-								} else {
-									echo '<i class="fas fa-user"></i> ' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign')));
-								} ?>
+								echo '<i class="fas fa-users"></i> '
+									. '<b class="callsign">' . strtoupper($this->session->userdata('user_callsign')) . '</b>'
+									. ' <br><small>'
+									. sprintf(_pgettext("Operator: Callsign", "Op: %s"), '<span class="callsign">' . strtoupper($this->session->userdata('operator_callsign')) . '</span>')
+									. '</small>';
+							} else {
+								echo '<i class="fas fa-user"></i> <span class="callsign">' . strtoupper($this->session->userdata('user_callsign')) . '</span>';
+							} ?>
 							</a>
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
@@ -503,7 +503,7 @@
 											<li>
 												<div class="btn-group w-100" role="group">
 													<button class="dropdown-item text-start" style="flex: 1;" title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>" onclick="clubswitch_modal('<?php echo $clubstation->user_id; ?>', '<?php echo $clubstation->user_callsign; ?>')">
-														<i class="fas fa-exchange-alt"></i> <?php echo $clubstation->user_callsign; ?>
+														<i class="fas fa-exchange-alt"></i> <span class="callsign"><?php echo $clubstation->user_callsign; ?></span>
 													</button>
 													<?php if ($clubstation->p_level >= 9 || $this->session->userdata('user_type') == 99) { ?>
 														<a class="dropdown-item text-end" style="flex: 0 0 50px;" title="<?= sprintf(_pgettext("Managing a Club Callsign", "Manage %s"), $clubstation->user_callsign); ?>" aria-label="<?= sprintf(_pgettext("Managing a Club Callsign", "Manage %s"), $clubstation->user_callsign); ?>" href="<?php echo site_url('club/permissions/' . $clubstation->user_id); ?>">

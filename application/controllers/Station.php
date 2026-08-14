@@ -45,7 +45,7 @@ class Station extends CI_Controller
 			$data['station_cq'] = $this->input->post('station_cq') ?? $this->input->get('station_cq');
 			$data['station_itu'] = $this->input->post('station_itu') ?? $this->input->get('station_itu');
 			$data['gridsquare'] = $this->input->post('gridsquare') ?? $this->input->get('gridsquare');
-			$data['iota'] = $this->input->post('iota');
+			$data['iota'] = $this->input->post('iota') ?? $this->input->get('iota');
 			$data['sota'] = $this->input->post('sota') ?? $this->input->get('sota');
 			$data['wwff'] = $this->input->post('wwff') ?? $this->input->get('wwff');
 			$data['pota'] = $this->input->post('pota') ?? $this->input->get('pota');
@@ -226,6 +226,9 @@ class Station extends CI_Controller
 	}
 
 	function check_locator($grid = '') {
+		if ($grid == '') {
+			return true;
+		}
 		$this->load->library('Qra');
 		if ($this->qra->validate_grid($grid)) {
 			return true;

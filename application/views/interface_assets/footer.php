@@ -58,6 +58,7 @@
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
+    var lang_qrbcalc_empty_loc = '<?= __("At least one of the locators is empty. Calculation not possible. Possibly missing locator in station location. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
@@ -296,13 +297,6 @@ function stopImpersonate_modal() {
 }
 </script>
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
-
-<script>
-    // Replace all Ã˜ in the searchbar
-    $('#nav-bar-search-input').on('input', function () {
-        $(this).val($(this).val().replace(/0/g, 'Ã˜'));
-    });
-</script>
 
 <script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
@@ -897,7 +891,7 @@ function showActivatorsMap(call, count, grids, grid_color) {
     let re = /,/g;
     grids = grids.replace(re, ', ');
 
-    var result = '<?= __("Callsign: "); ?>'+call.replace('0', '&Oslash;')+"<br />";
+    var result = '<?= __("Callsign: "); ?>'+'<span class="callsign">'+call+'</span>'+"<br />";
     result +=    '<?= __("Count: "); ?>'+count+"<br/>";
     result +=    '<?= __("Grids: "); ?>'+grids+"<br/><br />";
 
@@ -1027,7 +1021,7 @@ function searchButtonPress() {
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
-        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ã˜', '0'), function() {
+        $('#partial_view').load("logbook/search_result/" + fixedcall, function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -1101,13 +1095,6 @@ $($('#callsign')).on('keypress',function(e) {
     $active_station_id = $this->stations->find_active();
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
-
-    if (strpos(($active_station_info->station_gridsquare ?? ''), ',') !== false) {
-        $gridsquareArray = explode(',', $active_station_info->station_gridsquare);
-        $user_gridsquare = $gridsquareArray[0];
-    } else {
-        $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
-    }
 ?>
 <style>
 .grid-text {
@@ -1132,24 +1119,36 @@ $($('#callsign')).on('keypress',function(e) {
   var mymap = L.map('qsomap', {
     fullscreenControl: true,
     fullscreenControlOptions: {
-			position: 'topleft'
-		},
-}).setView(pos, 12);
+      position: 'topleft'
+    },
+  }).setView(pos, 12);
 
 maidenhead = L.maidenheadqrb().addTo(mymap);
 mymap.on('mousemove', onQsoMapMove);
+<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
      data: {
-<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
-        qra: '<?php echo $user_gridsquare; ?>',
-<?php } else if (null !== $this->config->item('locator')) { ?>
-        qra: '<?php echo $this->config->item('locator'); ?>',
-<?php } else { ?>
-        // Fallback to London in case all else fails
-        qra: 'IO91WM',
-<?php } ?>
+        qra: "<?=$active_station_info->station_gridsquare; ?>",
+     },
+     success: function(data) {
+        result = JSON.parse(data);
+        if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+           mymap.panTo([result[0], result[1]]);
+        }
+     },
+     error: function() {
+     },
+  });
+<?php } else if (($active_station_info->dxcc_lat ?? '') != '' && ($active_station_info->dxcc_lon ?? '') != '') { ?>
+     mymap.panTo([<?= $active_station_info->dxcc_lat;?> , <?= $active_station_info->dxcc_lon; ?>]);
+<?php } else if (($this->config->item('locator') ?? '') != '') { ?>
+  $.ajax({
+     url: base_url + 'index.php/logbook/qralatlngjson',
+     type: 'post',
+     data: {
+     qra: "<?= $this->config->item('locator'); ?>",
      },
      success: function(data) {
         result = JSON.parse(data);
@@ -1161,6 +1160,7 @@ mymap.on('mousemove', onQsoMapMove);
      error: function() {
      },
   });
+<?php } ?>
 
   L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
@@ -2375,19 +2375,6 @@ $('#sats').change(function(){
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
         }
-	$(document).ready(function() {
-		var target = document.body;
-		var observer = new MutationObserver(function() {
-			$('#dt-search-0').on('keyup', function (e) {
-				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
-				$(this).val(tocrappyzero);
-				$(this).trigger("input");
-			});
-		});
-		var config = { childList: true, subtree: true};
-		// pass in the target node, as well as the observer options
-		observer.observe(target, config);
-	});
 
     </script>
 <?php } ?>
@@ -2403,7 +2390,7 @@ function viewQsl(picture, callsign) {
             if (callsign == null) {
                 title = "<?= __("QSL Card"); ?>";
             } else {
-                title = "<?= __("QSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
+                title = "<?= __("QSL Card for "); ?>" + '<span class="callsign">'+callsign+'</span>';
             }
 
             BootstrapDialog.show({
@@ -2465,7 +2452,7 @@ function viewEqsl(picture, callsign) {
             if (callsign == null) {
                 title = "<?= __("eQSL Card"); ?>";
             } else {
-                title = "<?= __("eQSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
+                title = "<?= __("eQSL Card for "); ?>" + '<span class="callsign">'+callsign+'</span>';
             }
 
             BootstrapDialog.show({
@@ -2553,20 +2540,8 @@ function viewEqsl(picture, callsign) {
                         $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
                             showQsoActionsMenu($(this).closest('.dropdown'));
                         });
-
-                       var target = document.body;
-                       var observer = new MutationObserver(function() {
-                               $('#dt-search-0').on('keyup', function (e) {
-                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
-                                       $(this).val(tocrappyzero);
-                                       $(this).trigger("input");
-                               });
-                       });
-                       var config = { childList: true, subtree: true};
-                       // pass in the target node, as well as the observer options
-                       observer.observe(target, config);
-                    },
-                    buttons: [{
+                     },
+                     buttons: [{
                         label: lang_admin_close,
                         action: function (dialogItself) {
                             dialogItself.close();
@@ -3103,21 +3078,6 @@ function viewEqsl(picture, callsign) {
     }
 
     ?>
-    <script>
-    	    $(document).ready(function() {
-		    var target = document.body;
-		    var observer = new MutationObserver(function() {
-			    $('#dt-search-1').on('keyup', function (e) {
-				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
-				    $(this).val(tocrappyzero);
-				    $(this).trigger("input");
-			    });
-		    });
-		    var config = { childList: true, subtree: true};
-		    // pass in the target node, as well as the observer options
-		    observer.observe(target, config);
-	    });
-    </script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
     <?php if ($this->uri->segment(2) == "wwff") { ?>

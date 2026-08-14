@@ -841,6 +841,9 @@ function calculateQrb() {
                 newpath(html['latlng1'], html['latlng2'], locator1, locator2);
             }
         });
+    } else if (locator1 == '' || locator2 == '') {
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_empty_loc + '</div>');
+        $("#mapqrb").hide();
     } else {
         $("#mapqrb").hide();
         $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_errmsg + '</div>');
@@ -1098,7 +1101,6 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
     });
 }
 
-var set_state;
 function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
     var dropdown = $(dropdown);
     dropdown.empty();

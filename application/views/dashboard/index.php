@@ -27,7 +27,7 @@ function echo_table_header_col($name) {
 			case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
 			case 'RSTS':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
 			case 'RSTR':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
-			case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if ($row->end != NULL) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
+			case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if (($row->end ?? null) != NULL) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; echo '</td>'; break;
 			case 'IOTA':    echo '<td>' . ($row->COL_IOTA) . '</td>'; break;
 			case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 			case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
@@ -366,7 +366,7 @@ function echo_table_header_col($name) {
 								<td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
 								<?php } ?>
 								<td>
-									<button type="button" class="btn btn-link text-decoration-none p-0" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)" aria-label="<?= __("View QSO"); ?> <?php echo $row->COL_CALL; ?>"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></button>
+									<button type="button" class="btn btn-link text-decoration-none p-0 callsign" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)" aria-label="<?= __("View QSO"); ?> <?php echo $row->COL_CALL; ?>"><?php echo strtoupper($row->COL_CALL); ?></button>
 								</td>
 								<?php
 									echo_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
@@ -485,14 +485,13 @@ function echo_table_header_col($name) {
 				<table class="table table-striped mb-0" aria-label="<?= __("DXCCs Breakdown"); ?>">
 					<tr>
 						<th scope="row" width="50%"><?= __("Worked"); ?></th>
-						<td width="50%"><?php echo $total_countries; ?></td>
+						<td width="50%"><?php echo $total_countries; ?> <?php echo (isset($total_deleted_countries) && $total_deleted_countries > 0) ? "<span title=\"". __("Deleted DXCCs") ."\" aria-label=\"i". __("Deleted DXCCs") .": ".$total_deleted_countries."\" data-bs-toggle=\"tooltip\">(".$total_deleted_countries.")</span>" : ''; ?></td>
 					</tr>
 					<tr>
 						<th scope="row" width="50%"><?= __("Confirmed"); ?></th>
 						<td width="50%">
-							<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?></span> /
-							<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?></span> /
-							<span title="<?= __("eQSL"); ?>" aria-label="<?= __("eQSL"); ?>: <?php echo $total_countries_confirmed_eqsl; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_eqsl; ?></span>
+						<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?> <?php echo (isset($total_deleted_countries_confirmed_paper) && $total_deleted_countries_confirmed_paper > 0) ? "(".$total_deleted_countries_confirmed_paper.")" : ""; ?></span> /
+						<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?> <?php echo (isset($total_deleted_countries_confirmed_lotw) && $total_deleted_countries_confirmed_lotw > 0) ? "(".$total_deleted_countries_confirmed_lotw.")" : ""; ?></span>
 						</td>
 					</tr>
 					<tr>

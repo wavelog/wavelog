@@ -34,7 +34,7 @@
                     echo '<td>'. $value['qsl'] . '</td>
                         <td>'. $value['lotw'] .'</td>';
                 } else {
-                    echo '<td>'. $value['call'] .'</td>';
+                    echo '<td class="callsign">'. $value['call'] .'</td>';
                 }
 
                 echo '</tr>';

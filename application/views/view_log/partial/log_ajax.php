@@ -29,7 +29,7 @@ function echo_table_col($row, $name, $adif_propmodes) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
 		case 'RSTS':    echo '<td>' . $row->COL_RST_SENT ?? ''; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
 		case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD ?? ''; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
-		case 'Country': echo '<td>'; if ($row->adif == 0) { echo $row->name; } else echo ucwords(strtolower(($row->name==null?"- NONE -":$row->name))); if ($row->end != null) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>' . '</td>'; break;
+		case 'Country': echo '<td>'; $adif = $row->adif ?? null; $cname = $row->name ?? null; if ($adif !== null) { if ($adif == 0) { echo $cname; } else { echo ucwords(strtolower(($cname==null?"- NONE -":$cname))); } if (($row->end ?? null) != null) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } echo '</td>'; break;
 		case 'IOTA':    echo '<td>' . ($row->COL_IOTA ?? '') . '</td>'; break;
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF ?? '') . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF ?? '') . '</td>'; break;
@@ -39,7 +39,7 @@ function echo_table_col($row, $name, $adif_propmodes) {
 				$ci->load->library('Qra');
 			}
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
-		case 'Distance':echo '<td><span data-bs-toggle="tooltip" title="'.$row->COL_GRIDSQUARE.'">' . getDistance($row->COL_DISTANCE) . '</span></td>'; break;
+		case 'Distance':echo '<td>'. ($row->COL_DISTANCE != null ? '<span data-bs-toggle="tooltip" title="'.$row->COL_GRIDSQUARE.'">' . getDistance($row->COL_DISTANCE) . '</span>' : '') .'</td>'; break;
 		case 'Bearing':echo '<td><span data-bs-toggle="tooltip" title="'.($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE).'">' . getBearing(($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE)) . '</span></td>'; break;
 		case 'Band':
 			echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.(($row->sat_name ?? '') != '' ? $row->sat_name." (".$row->sat_displayname.")" : $row->sat_displayname).'</span></a></td>'; } else { if ($row->COL_FREQ ?? ''!= '') { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->qrg_conversion($row->COL_FREQ ?? 0).'">'. strtolower($row->COL_BAND ?? '').'</span>'; } else { echo strtolower($row->COL_BAND ?? ''); } } echo '</td>'; break;
@@ -152,7 +152,7 @@ function getDistance($distance) {
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                         <th scope="col">QRZ</th>
                     <?php } ?>
-    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false  ) { ?>
+		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false && ($this->session->userdata('user_clublog_name') != "") ) { ?>
                         <th scope="col"><?= __("Clublog"); ?></th>
                     <?php } ?>
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false  ) { ?>
@@ -183,7 +183,7 @@ function getDistance($distance) {
                 <td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
             <?php } ?>
             <td>
-                <button type="button" class="btn btn-link text-decoration-none p-0" id="edit_qso" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></button>
+                <button type="button" class="btn btn-link text-decoration-none p-0 callsign" id="edit_qso" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo strtoupper($row->COL_CALL); ?></button>
                 <?php
                    if (isset($row->lastupload) && ($row->lastupload)) {
                        $lotw_hint = '';
@@ -241,7 +241,7 @@ function getDistance($distance) {
                                 echo " (".__("Direct").")";
                                 break;
                              case "M":
-                                echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
+                                echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? '<span class="callsign">'.$row->COL_QSL_VIA.'</span>':"n/a").")";
                                 break;
                              case "E":
                                 echo " (".__("Electronic").")";
@@ -474,7 +474,7 @@ function getDistance($distance) {
                     </td>
                 <?php } ?>
 
-                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false && ($this->session->userdata('user_clublog_name') != "") ) { ?>
                     <td class="clublog">
                     <span <?php
                         $timestamp = '';
@@ -586,7 +586,7 @@ function getDistance($distance) {
 
                     <?php if(isset($row->station_callsign)) { ?>
                         <td>
-                            <span class="badge text-bg-light"><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></span>
+                            <span class="badge text-bg-light callsign"><?php echo strtoupper($row->station_callsign); ?></span>
                         </td>
                     <?php } else { ?>
 			<td></td>

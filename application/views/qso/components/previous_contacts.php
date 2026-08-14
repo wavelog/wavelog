@@ -35,7 +35,7 @@
           ?>
         </td>
         <td>
-            <a id="edit_qso" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></a>
+            <a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo strtoupper($row->COL_CALL); ?></a>
         </td>
 	<?php
 		echo_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
@@ -56,7 +56,7 @@ function echo_table_col($row, $name) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
       	case 'RSTS':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
       	case 'RSTR':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
-		case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if ($row->end != NULL) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
+		case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if (($row->end ?? null) != NULL) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; echo '</td>'; break;
 		case 'IOTA':    echo '<td>' . ($row->COL_IOTA) . '</td>'; break;
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;

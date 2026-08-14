@@ -11,12 +11,22 @@
 		stateUrl:   <?php echo json_encode(site_url('activationplanner/state_for_point')); ?>,
 		wwffUrl:    <?php echo json_encode(site_url('activationplanner/wwff_directory')); ?>,
 		potaUrl:    <?php echo json_encode(site_url('activationplanner/pota_directory')); ?>,
+		activatedPotaUrl: <?php echo json_encode(site_url('activationplanner/activated_pota')); ?>,
+		potaBoundaryUrl: <?php echo json_encode(site_url('activationplanner/pota_boundary') . '/'); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
+		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
+		refsNearbyUrl: <?php echo json_encode(site_url('activationplanner/refs_nearby')); ?>,
 		satPassUrl: <?php echo json_encode(site_url('satellite/pass')); ?>,
 		satPassLbl: <?php echo json_encode(__("Satellite passes")); ?>,
 		bordersLbl:    <?php echo json_encode(__("Gridsquare borders")); ?>,
 		gridLbl:       <?php echo json_encode(__("Gridsquare")); ?>,
+		nearbyRefsLbl: <?php echo json_encode(__("Nearby refs")); ?>,
+		nearbyRefsRadiusLbl: <?php echo json_encode(__("References within %s of the gridsquare")); ?>,
+		colTypeLbl:           <?php echo json_encode(__("Type")); ?>,
+		colReferenceLbl:      <?php echo json_encode(__("Reference")); ?>,
+		colNameLbl:           <?php echo json_encode(__("Name")); ?>,
+		colDistanceLbl:       <?php echo json_encode(__("Distance")); ?>,
 		closeLbl:      <?php echo json_encode(__("Close")); ?>,
 		errorLbl:      <?php echo json_encode(__("Error")); ?>,
 		trackingLbl:   <?php echo json_encode(__("Tracking")); ?>,
@@ -30,6 +40,10 @@
 		createStationUrl:    <?php echo json_encode(site_url('station/create')); ?>,
 		newStationLocLbl:    <?php echo json_encode(__("Create station location")); ?>,
 		refsTitleLbl:        <?php echo json_encode(__("References in this grid")); ?>,
+		activatedLbl:        <?php echo json_encode(__("QSOs")); ?>,
+		lastLbl:             <?php echo json_encode(__("last")); ?>,
+		inactiveLbl:         <?php echo json_encode(__("Inactive")); ?>,
+		validRangeLbl:       <?php echo json_encode(__("valid")); ?>,
 		userDxcc:            <?php echo json_encode(isset($user_dxcc) ? $user_dxcc : null); ?>,
 		shareLbl:            <?php echo json_encode(__("Share")); ?>,
 		shareActivationTitleLbl: <?php echo json_encode(__("Share activation")); ?>,
@@ -59,6 +73,7 @@
 					<button id="glGo" class="btn btn-primary btn-sm"><?= __("Go"); ?></button>
 					<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 					<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
+					<button id="glNearby" class="btn btn-outline-primary btn-sm"><?= __("Nearby refs"); ?></button>
 					<div class="gl-refsrow gl-secondary">
 						<div class="gl-refs gl-secondary dropdown">
 							<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Refs"); ?></button>
@@ -67,6 +82,7 @@
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWwffDir"><?= __("WWFF"); ?><span class="ref-menu-dot ms-auto" style="background:#2b8cbe">W</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glPotaDir"><?= __("POTA"); ?><span class="ref-menu-dot ms-auto" style="background:#238b45">P</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glSotaDir"><?= __("SOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#d95f0e">S</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glIotaDir"><?= __("IOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#17a2b8">I</span></label></li>
 							</ul>
 						</div>
 						<div id="glOverlaysHost" class="gl-secondary"></div>

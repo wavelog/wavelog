@@ -191,7 +191,7 @@ tr:hover td {
         <?php foreach ($results as $row): ?>
         <tr>
           <td><?php echo date('Y-m-d', strtotime($row->COL_TIME_ON)); ?></td>
-          <td><?php echo str_replace("0", "&Oslash;", strtoupper($row->COL_CALL)); ?></td>
+          <td class="callsign"><?php echo strtoupper($row->COL_CALL); ?></td>
           <td><?php echo $row->COL_PROP_MODE == 'SAT' ? $row->COL_SAT_NAME : strtolower($row->COL_BAND); ?></td>
           <td><?php echo $row->COL_SUBMODE ?? $row->COL_MODE; ?></td>
           <td>

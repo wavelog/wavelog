@@ -189,8 +189,8 @@ if ($public_maps_option == 'true') { ?>
 										echo date('H:i', $timestamp); ?></td>
 
 								<?php } ?>
-								<td>
-									<?php echo str_replace("0", "&Oslash;", strtoupper($row->COL_CALL)); ?>
+								<td class="callsign">
+									<?php echo strtoupper($row->COL_CALL); ?>
 								</td>
 								<?php
 								echo_table_col($row, $this->session->userdata('user_column1') == "" ? 'Mode' : $this->session->userdata('user_column1'));
@@ -264,17 +264,15 @@ if ($public_maps_option == 'true') { ?>
 
 					<tr>
 						<td width="50%"><?= __("Worked"); ?></td>
-						<td width="50%"><?php echo $total_countries; ?></td>
+                  <td width="50%"><?php echo $total_countries; ?> <?php echo (isset($total_deleted_countries) && $total_deleted_countries > 0) ? "<span title=\"". __("Deleted DXCCs") ."\" aria-label=\"i". __("Deleted DXCCs") .": ".$total_deleted_countries."\" data-bs-toggle=\"tooltip\">(".$total_deleted_countries.")</span>" : ''; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
+						<td width="50%"><?= __("Confirmed"); ?></td>
 						<td width="50%">
-							<?php echo $total_countries_confirmed_paper; ?> /
-							<?php echo $total_countries_confirmed_eqsl; ?> /
-							<?php echo $total_countries_confirmed_lotw; ?>
+							<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?></span> /
+							<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?></span>
 						</td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Needed"); ?></td>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>

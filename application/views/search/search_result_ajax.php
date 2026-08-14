@@ -152,7 +152,7 @@ $ci =& get_instance();
                 <td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
             <?php } ?>
             <td>
-                <a id="edit_qso" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></a>
+                <a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo strtoupper($row->COL_CALL); ?></a>
             </td>
 			<?php
 
@@ -205,7 +205,7 @@ $ci =& get_instance();
                         echo " (".__("Direct").")";
                         break;
                      case "M":
-                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
+                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? '<span class="callsign">'.$row->COL_QSL_VIA.'</span>':"n/a").")";
                         break;
                      case "E":
                         echo " (".__("Electronic").")";

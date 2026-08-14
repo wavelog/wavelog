@@ -68,9 +68,8 @@ function addQsoToPrintQueue(id) {
                         qsoDialogInstance.close();
                     }
                     let callSign = $("#qsolist_"+id).find("td:eq(0)").text();
-                    let formattedCallSign = callSign.replace(/0/g, "Ø").toUpperCase();
-                    // Plain callsign (with 0, not Ø) for the DataTables search source
-                    let searchCallSign = formattedCallSign.replace(/Ø/g, "0");
+                    let formattedCallSign = callSign.toUpperCase();
+                    let searchCallSign = formattedCallSign;
                     let line = '<tr id="qslprint_'+id+'">';
 					let freq_or_band = $('#frequency_or_band').val();
 
