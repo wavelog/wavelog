@@ -547,6 +547,7 @@ class Contesting_model extends CI_Model {
 					cs.time_start,
 					cs.time_end,
 					cs.station_id,
+					cs.contest_adif_id,
 					cs.comment,
 					cs.settings,
 					cs.creation_date,

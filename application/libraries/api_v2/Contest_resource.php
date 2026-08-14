@@ -35,9 +35,9 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * by the QSO resource; linking and unlinking also maintain COL_CONTEST_ID on
  * the QSO rows, mirroring the advanced logbook's attach workflow.
  *
- * Clubstations: creating, updating and deleting sessions require officer
- * level 9; club members below that level may only link/unlink QSOs they
- * logged themselves.
+ * Clubstations: creating and deleting a session and editing its fields,
+ * require officer level 9; club members below that level may only link and
+ * unlink QSOs they logged themselves, as in the advanced logbook.
  */
 class Contest_resource extends Api_v2_resource {
 
@@ -167,9 +167,6 @@ class Contest_resource extends Api_v2_resource {
 	 */
 	public function update($id) {
 		$this->require_write();
-		// Contest sessions are shared club infrastructure; the web UI limits
-		// editing to officers (clubaccess_check(9)) - mirror that here.
-		$this->require_club_level(9);
 
 		$row = $this->require_owned_session($id);
 		$body = $this->body();
@@ -185,11 +182,19 @@ class Contest_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
+		// Editing the session itself is officer-only in the web UI
+		// (clubaccess_check(9)); attaching and detaching QSOs is not
+		// (Logbookadvanced uses clubaccess_check(3, $qsoID)) - members below
+		// officer level are limited to their own QSOs by validate_qso_ids().
+		if ($has_fields) {
+			$this->require_club_level(9);
+		}
+
 		// Catalog id of the (possibly changed) contest - the field update and
 		// the COL_CONTEST_ID maintenance below both need it.
 		$catalog_id = (isset($body['contest']) || isset($body['contest_id']))
 			? $this->resolve_contest($body, true)
-			: $this->catalog_id_of($row);
+			: (int) $row->contest_adif_id;
 
 		// Validate the link lists BEFORE touching the session, so a rejected
 		// list cannot leave a half-applied update behind.
@@ -302,20 +307,6 @@ class Contest_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * Catalog id of a session row (get_sessions_for_user() carries the ADIF
-	 * name; resolve it back for update_contest_session()).
-	 */
-	protected function catalog_id_of($row) {
-		$this->CI->load->model('contest_admin_model');
-		$contest = $this->CI->contest_admin_model->contest_by_adifname($row->contest_adifname);
-		if ($contest === null) {
-			// Cannot happen for a stored session; guard against catalog edits.
-			throw new Api_v2_exception('validation_error', 'Unknown contest: ' . $row->contest_adifname, 400);
-		}
-		return (int) $contest->id;
-	}
-
-	/**
 	 * Cast a session row (get_sessions_for_user()) to its public shape. The
 	 * settings are exposed merged over the module defaults
 	 * (Contesting_model::session_settings_defaults()), matching what
@@ -363,6 +354,7 @@ class Contest_resource extends Api_v2_resource {
 		$id = isset($body['contest_id']) ? $body['contest_id'] : null;
 
 		if ($adifname !== '') {
+			$field = 'contest';
 			$contest = $this->CI->contest_admin_model->contest_by_adifname($adifname);
 			if ($contest === null) {
 				throw new Api_v2_exception(
@@ -372,10 +364,8 @@ class Contest_resource extends Api_v2_resource {
 					['field' => 'contest']
 				);
 			}
-			return (int) $contest->id;
-		}
-
-		if ($id !== null) {
+		} elseif ($id !== null) {
+			$field = 'contest_id';
 			if (!is_numeric($id)) {
 				throw new Api_v2_exception('validation_error', 'contest_id must be numeric', 400);
 			}
@@ -388,18 +378,27 @@ class Contest_resource extends Api_v2_resource {
 					['field' => 'contest_id']
 				);
 			}
-			return (int) $id;
+		} else {
+			if ($required) {
+				throw new Api_v2_exception(
+					'validation_error',
+					'Missing required field: contest (ADIF contest name) or contest_id',
+					400,
+					['missing' => ['contest']]
+				);
+			}
+			return null;
 		}
 
-		if ($required) {
+		if ((int) $contest->active !== 1) {
 			throw new Api_v2_exception(
 				'validation_error',
-				'Missing required field: contest (ADIF contest name) or contest_id',
+				'Contest is not active: ' . $contest->adifname,
 				400,
-				['missing' => ['contest']]
+				['field' => $field]
 			);
 		}
-		return null;
+		return (int) $contest->id;
 	}
 
 	/**
