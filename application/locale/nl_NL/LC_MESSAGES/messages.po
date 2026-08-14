@@ -1158,6 +1158,7 @@ msgstr ""
 
 #: application/controllers/Contesting.php:782
 #: application/models/Contesting_model.php:216
+#: application/models/Contesting_model.php:291
 msgid "Only clubstation officers can delete."
 msgstr "Alleen clubstationfunctionarissen kunnen verwijderen."
 
@@ -4393,6 +4394,7 @@ msgstr ""
 "(ADIF: %s, Jaar: %d)"
 
 #: application/models/Contesting_model.php:182
+#: application/models/Contesting_model.php:257
 msgid "Officers must edit contests."
 msgstr "Officials moeten contesten bewerken."
 
@@ -21034,8 +21036,8 @@ msgid ""
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
 "Ontvangen berichten moeten worden voorafgegaan door een punt %s, verzonden "
-"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - d.w."
-"z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
+"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - "
+"d.w.z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
 "bovenstaande regels toont een type uitwisseling (alleen serie, alleen tekst "
 "of beide); merk op dat de verzonden uitwisseling 'sticky' is: eenmaal "
 "ingesteld, wordt deze automatisch meegenomen in de volgende QSO's (wanneer "
@@ -23687,6 +23689,18 @@ msgstr "Clublog Log Zoekopdracht"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-gebruiker. Laatste upload was "
+
+#: application/libraries/api_v2/Contest_resource.php:55
+msgid "Read contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:56
+msgid "Create and update contest sessions"
+msgstr ""
+
+#: application/libraries/api_v2/Contest_resource.php:57
+msgid "Delete contest sessions"
+msgstr ""
 
 #~ msgid "Add stroked zero (Ø)"
 #~ msgstr "Voeg gestreepte nul (Ø) toe"
