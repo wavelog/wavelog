@@ -194,7 +194,7 @@ class Contest_resource extends Api_v2_resource {
 		// the COL_CONTEST_ID maintenance below both need it.
 		$catalog_id = (isset($body['contest']) || isset($body['contest_id']))
 			? $this->resolve_contest($body, true)
-			: $this->catalog_id_of($row);
+			: (int) $row->contest_adif_id;
 
 		// Validate the link lists BEFORE touching the session, so a rejected
 		// list cannot leave a half-applied update behind.
@@ -304,20 +304,6 @@ class Contest_resource extends Api_v2_resource {
 			throw new Api_v2_exception('not_found', 'Contest session not found', 404);
 		}
 		return $rows[0];
-	}
-
-	/**
-	 * Catalog id of a session row (get_sessions_for_user() carries the ADIF
-	 * name; resolve it back for update_contest_session()).
-	 */
-	protected function catalog_id_of($row) {
-		$this->CI->load->model('contest_admin_model');
-		$contest = $this->CI->contest_admin_model->contest_by_adifname($row->contest_adifname);
-		if ($contest === null) {
-			// Cannot happen for a stored session; guard against catalog edits.
-			throw new Api_v2_exception('validation_error', 'Unknown contest: ' . $row->contest_adifname, 400);
-		}
-		return (int) $contest->id;
 	}
 
 	/**
