@@ -137,8 +137,8 @@ function write_activators($activators_array, $vucc_grids, $custom_date_format, $
 				<td class="callsign">' . $line[1] . '</td>
 				<td>' . $line[0] . '</td>
 				<td style="text-align: left; font-family: monospace;">' . $line[2] . '</td>
-				<td><a href="javascript:displayActivatorsContacts(\'' . $line[1] . '\',\'' . $band . '\',\'' . $leogeo . '\')"><i class="fas fa-list"></i></a></td>
-				<td><a href="javascript:spawnActivatorsMap(\'' . $line[1] . '\',\'' . $line[0] . '\',\'' . str_replace(' ', '', $line[2]) . '\')"><i class="fas fa-globe"></i></a></td>
+				<td><a href=\'javascript:displayActivatorsContacts(' . json_encode($line[1], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($band, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($leogeo, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'><i class="fas fa-list"></i></a></td>
+				<td><a href=\'javascript:spawnActivatorsMap(' . json_encode($line[1], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($line[0], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode(str_replace(' ', '', $line[2]), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'><i class="fas fa-globe"></i></a></td>
 			</tr>';
 	}
 	echo '</tbody></table>';

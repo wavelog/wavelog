@@ -121,7 +121,7 @@ class Qra {
 		if (!empty($target)) {
 			$echo = html_escape($target);
 			if (!empty($mygrid)) {
-				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $target . '\')"><i class="fas fa-globe"></i></a>') : '';
+				$echo .= (!$isVisitor) ? (' <a href=\'javascript:spawnQrbCalculator(' . json_encode($mygrid, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($target, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'><i class="fas fa-globe"></i></a>') : '';
 			}
 		}
 		return $echo;

@@ -252,7 +252,7 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
         if ($propmode == 'SAT' || $propmode == 'All') {
             echo '<td>'.$line->sat_name.'</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . json_encode($line->col_state, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($bandselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($modeselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($propmode, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($award, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'>' . __("Show") . '</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -286,7 +286,7 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
         if ($propmode == 'SAT' || $propmode == 'All') {
            echo '<td>' . $line->sat_name . '</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","' . $bandselect . '","' . $modeselect . '","' . $propmode . '","' . $award .'")>' . __("Show") . '</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . json_encode($line->col_state, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($bandselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($modeselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($propmode, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($award, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'>' . __("Show") . '</a></td>
               </tr>';
     }
     echo '</tbody></table>';
@@ -326,7 +326,7 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
         if ($propmode == 'SAT' || $propmode == 'All') {
            echo '<td>' . $line->sat_name . '</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . json_encode($line->col_iota, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($bandselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($modeselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($propmode, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($award, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'>' . __("Show") . '</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -396,7 +396,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
         if ($propmode == 'SAT' || $propmode == 'All') {
             echo '<td>'.$line['sat_name'].'</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . json_encode($line['gridsquare'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($bandselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($modeselect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($propmode, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($award, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'>' . __("Show") . '</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';

@@ -153,7 +153,7 @@
                     <?php } else if($row->COL_GRIDSQUARE != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Gridsquare"); ?>:</th>
-                        <td><?php echo html_escape($row->COL_GRIDSQUARE); ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator('<?php echo html_escape($row->station_gridsquare); ?>', '<?php echo html_escape($row->COL_GRIDSQUARE); ?>')" aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button></td>
+                        <td><?php echo html_escape($row->COL_GRIDSQUARE); ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick='spawnQrbCalculator(<?php echo json_encode($row->station_gridsquare, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>, <?php echo json_encode($row->COL_GRIDSQUARE, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>)' aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button></td>
                         <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
                         <?php $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $row->COL_ANT_PATH ?? null); ?>
                     </tr>

@@ -194,7 +194,7 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 										}
 										?>
 									</td>
-									<td><a href="javascript:showMapForIncorrectGrid('<?php echo $qso->col_gridsquare; ?>','<?php echo $qso->col_dxcc; ?>','<?php echo htmlspecialchars(ucwords(strtolower($qso->col_country), "- (/"), ENT_QUOTES, 'UTF-8'); ?>')"><i class="fas fa-map-marker-alt"></i> <?php echo __('View on map'); ?></a></td>
+									<td><a href='javascript:showMapForIncorrectGrid(<?php echo json_encode($qso->col_gridsquare, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>,<?php echo json_encode($qso->col_dxcc, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>,<?php echo json_encode(ucwords(strtolower($qso->col_country), "- (/"), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>)'><i class="fas fa-map-marker-alt"></i> <?php echo __('View on map'); ?></a></td>
 								</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -405,7 +405,7 @@ function check_iota($result, $custom_date_format) { ?>
 									<td style='text-align: center'><div class="<?php echo $qso->col_lotw_qsl_rcvd == 'Y' ? 'bg-success' : 'bg-danger'; ?>"><?php echo $qso->col_lotw_qsl_rcvd == 'Y' ? __('Yes') : __('No'); ?></div></td>
 									<td><?php echo $qso->station_profile_name; ?></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso->col_country), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
-									<td><?php echo '<a href=\'javascript:displayContacts("'.$qso->col_iota.'","All","All","All","All","IOTA")\'>' . $qso->col_iota . '</a>'; ?> <a href="https://www.iota-world.org/iotamaps/?grpref=<?php echo $qso->col_iota; ?>" target="_blank"><i class="fas fa-globe"></i></a></td>
+									<td><?php echo '<a href=\'javascript:displayContacts(' . json_encode($qso->col_iota, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',"All","All","All","All","IOTA")\'>' . html_escape($qso->col_iota) . '</a>'; ?> <a href="https://www.iota-world.org/iotamaps/?grpref=<?php echo html_escape($qso->col_iota); ?>" target="_blank"><i class="fas fa-globe"></i></a></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso->correctdxcc ?? ''), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
 								</tr>
 						<?php endforeach; ?>

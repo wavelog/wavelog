@@ -20,7 +20,7 @@ if ($counties_array) {
         $total_confirmed += $confirmed;
         echo '<tr>
         <td>'. $i++ .'</td>
-        <td><a href=\'javascript:displayCountyContacts("'. $state .'","'. $county['COL_CNTY'] .'")\'>'. html_escape($county['COL_CNTY']) .'</a></td>
+        <td><a href=\'javascript:displayCountyContacts(' . json_encode($state, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($county['COL_CNTY'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'>'. html_escape($county['COL_CNTY']) .'</a></td>
         <td>'. $worked .'</td>
         <td>'. $confirmed .'</td>';
         echo '</tr>';
