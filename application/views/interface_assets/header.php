@@ -60,10 +60,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/ldbtn.min.css'); ?>" />
 
 
-	<?php if ($this->uri->segment(1) == "sattimers") { ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/sattimers.css'); ?>" />
-	<?php } ?>
-
 	<?php if (file_exists(APPPATH . '../assets/css/custom.css')) { ?>
 		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/custom.css'); ?>" />
 	<?php } ?>
