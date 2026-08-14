@@ -2716,6 +2716,7 @@ function saveOptions() {
 				// The response replaces the whole result pane (including the
 				// buttons above), so there is nothing left to re-enable here.
 				$('.result').html(response);
+				$('#closeButton').prop("disabled", false);
 			},
 			error: function (xhr, status, error) {
 				$('#fixAllStatesBtn').prop("disabled", false).removeClass("running");
