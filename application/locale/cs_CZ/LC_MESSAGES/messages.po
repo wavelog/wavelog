@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 13:27+0000\n"
+"POT-Creation-Date: 2026-08-14 13:51+0000\n"
 "PO-Revision-Date: 2026-07-29 08:13+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -553,7 +553,8 @@ msgstr "DOK"
 #: application/views/logbookadvanced/index.php:999
 #: application/views/logbookadvanced/qslcarousel.php:35
 #: application/views/logbookadvanced/showStateQsos.php:27
-#: application/views/logbookadvanced/statecheckresult.php:11
+#: application/views/logbookadvanced/showUpdateResult.php:87
+#: application/views/logbookadvanced/statecheckresult.php:15
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
 #: application/views/lotw_views/index.php:43
@@ -2233,7 +2234,8 @@ msgstr "Stát"
 #: application/views/logbookadvanced/index.php:963
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/showStateQsos.php:26
-#: application/views/logbookadvanced/showUpdateResult.php:44
+#: application/views/logbookadvanced/showUpdateResult.php:47
+#: application/views/logbookadvanced/showUpdateResult.php:110
 #: application/views/logbookadvanced/useroptions.php:85
 #: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
 #: application/views/map/qso_map.php:111
@@ -2496,12 +2498,12 @@ msgstr "Smazané DXCC"
 msgid "Advanced logbook"
 msgstr "Rozšířený deník"
 
-#: application/controllers/Logbookadvanced.php:1002
+#: application/controllers/Logbookadvanced.php:1018
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC aktualizováno pro %d QSO."
 
-#: application/controllers/Logbookadvanced.php:1018
+#: application/controllers/Logbookadvanced.php:1034
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "Mapa pro DXCC %s a lokátor %s."
@@ -4582,24 +4584,24 @@ msgstr "Azimut"
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "Tabulka VuccGrids je prázdná. Nejprve importujte data VUCC sítě."
 
-#: application/models/Logbookadvanced_model.php:2490
+#: application/models/Logbookadvanced_model.php:2540
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr ""
 "Neplatné ID primárního QSO nebo nemáte oprávnění k přístupu k jednomu z QSO"
 
-#: application/models/Logbookadvanced_model.php:2500
+#: application/models/Logbookadvanced_model.php:2550
 #: application/views/view_log/qso.php:868
 msgid "QSO not found"
 msgstr "QSO nenalezeno"
 
-#: application/models/Logbookadvanced_model.php:2586
+#: application/models/Logbookadvanced_model.php:2636
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
 "Nebyla vybrána žádná pole ke sloučení nebo mezi QSO nejsou žádné rozdíly"
 
-#: application/models/Logbookadvanced_model.php:2599
+#: application/models/Logbookadvanced_model.php:2649
 msgid "QSOs merged successfully"
 msgstr "QSO byla úspěšně sloučena"
 
@@ -5225,7 +5227,7 @@ msgstr ""
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
 #: application/views/labels/index.php:82
-#: application/views/logbookadvanced/statecheckresult.php:12
+#: application/views/logbookadvanced/statecheckresult.php:16
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -5468,7 +5470,8 @@ msgstr "Nic nebylo nalezeno!"
 #: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
-#: application/views/logbookadvanced/showUpdateResult.php:43
+#: application/views/logbookadvanced/showUpdateResult.php:46
+#: application/views/logbookadvanced/showUpdateResult.php:109
 #: application/views/lotw_views/index.php:42
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
@@ -5549,6 +5552,7 @@ msgstr "QSO bez shody"
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
+#: application/views/logbookadvanced/showUpdateResult.php:88
 msgid "QSOs updated"
 msgstr "QSO aktualizována"
 
@@ -7939,7 +7943,7 @@ msgstr "Název DXCC"
 #: application/views/awards/dxcc/index.php:456
 #: application/views/awards/iota/index.php:209
 #: application/views/awards/wae/index.php:216
-#: application/views/logbookadvanced/statecheckresult.php:10
+#: application/views/logbookadvanced/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
 msgid "Prefix"
@@ -10759,7 +10763,7 @@ msgstr "Dostupná oprávnění"
 
 #: application/views/club/permissions.php:36
 #: application/views/eqsl/download.php:45
-#: application/views/logbookadvanced/statecheckresult.php:13
+#: application/views/logbookadvanced/statecheckresult.php:17
 msgid "Action"
 msgstr "Akce"
 
@@ -17650,49 +17654,62 @@ msgstr "Nalezeno %s spojení s chybějícími informacemi o státu pro DXCC %s."
 msgid "No Issues Found"
 msgstr "Nebyly nalezeny žádné problémy"
 
-#: application/views/logbookadvanced/showUpdateResult.php:22
+#: application/views/logbookadvanced/showUpdateResult.php:25
+#: application/views/logbookadvanced/showUpdateResult.php:75
 msgid "Results for state update:"
 msgstr "Výsledky aktualizace státu:"
 
-#: application/views/logbookadvanced/showUpdateResult.php:24
-#: application/views/logbookadvanced/showUpdateResult.php:26
+#: application/views/logbookadvanced/showUpdateResult.php:27
+#: application/views/logbookadvanced/showUpdateResult.php:29
 msgid "The number of QSOs updated for state/province in"
 msgstr "Počet spojení aktualizovaných pro stát/provincii v"
 
-#: application/views/logbookadvanced/showUpdateResult.php:38
+#: application/views/logbookadvanced/showUpdateResult.php:41
+#: application/views/logbookadvanced/showUpdateResult.php:104
 msgid "These QSOs could not be updated:"
 msgstr "Tato spojení nelze aktualizovat:"
 
-#: application/views/logbookadvanced/showUpdateResult.php:45
+#: application/views/logbookadvanced/showUpdateResult.php:48
+#: application/views/logbookadvanced/showUpdateResult.php:111
 #: application/views/search/lotw_unconfirmed.php:28
 msgid "Station location"
 msgstr "Lokace stanice"
 
-#: application/views/logbookadvanced/showUpdateResult.php:46
+#: application/views/logbookadvanced/showUpdateResult.php:49
+#: application/views/logbookadvanced/showUpdateResult.php:112
 msgid "Reason"
 msgstr "Důvod"
 
-#: application/views/logbookadvanced/showUpdateResult.php:69
+#: application/views/logbookadvanced/showUpdateResult.php:77
+#: application/views/logbookadvanced/showUpdateResult.php:79
+msgid "The number of QSOs updated for state/province across all DXCCs is"
+msgstr ""
+
+#: application/views/logbookadvanced/showUpdateResult.php:79
+msgid "DXCCs processed"
+msgstr ""
+
+#: application/views/logbookadvanced/showUpdateResult.php:131
 msgid "Results for continent update:"
 msgstr "Výsledky aktualizace kontinentu:"
 
-#: application/views/logbookadvanced/showUpdateResult.php:70
+#: application/views/logbookadvanced/showUpdateResult.php:132
 msgid "The number of QSOs updated for continent is"
 msgstr "Počet spojení aktualizovaných pro kontinent je"
 
-#: application/views/logbookadvanced/showUpdateResult.php:74
+#: application/views/logbookadvanced/showUpdateResult.php:136
 msgid "Results for distance update:"
 msgstr "Výsledky aktualizace vzdálenosti:"
 
-#: application/views/logbookadvanced/showUpdateResult.php:75
+#: application/views/logbookadvanced/showUpdateResult.php:137
 msgid "The number of QSOs updated for distance is"
 msgstr "Počet spojení aktualizovaných pro vzdálenost je"
 
-#: application/views/logbookadvanced/showUpdateResult.php:79
+#: application/views/logbookadvanced/showUpdateResult.php:141
 msgid "Results for gridsquare update:"
 msgstr "Výsledky aktualizace lokátoru:"
 
-#: application/views/logbookadvanced/showUpdateResult.php:80
+#: application/views/logbookadvanced/showUpdateResult.php:142
 msgid "The number of QSOs updated for gridsquare is"
 msgstr "Počet spojení aktualizovaných pro lokátor je"
 
@@ -17712,7 +17729,7 @@ msgid "Include TNX message"
 msgstr "Zahrnout zprávu TNX"
 
 #: application/views/logbookadvanced/statecheckresult.php:3
-#: application/views/logbookadvanced/statecheckresult.php:42
+#: application/views/logbookadvanced/statecheckresult.php:46
 msgid "State Check Results"
 msgstr "Výsledky kontroly státu"
 
@@ -17724,11 +17741,15 @@ msgstr ""
 "Nalezena spojení s chybějícím státem a lokátory s 6 a více znaky pro "
 "následující DXCC:"
 
-#: application/views/logbookadvanced/statecheckresult.php:30
+#: application/views/logbookadvanced/statecheckresult.php:7
+msgid "Fix all DXCCs"
+msgstr ""
+
+#: application/views/logbookadvanced/statecheckresult.php:34
 msgid "Run fix"
 msgstr "Spustit opravu"
 
-#: application/views/logbookadvanced/statecheckresult.php:43
+#: application/views/logbookadvanced/statecheckresult.php:47
 msgid "No QSOs were found where state information can be fixed."
 msgstr "Nebyla nalezena žádná spojení, kde lze opravit informace o státu."
 

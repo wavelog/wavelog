@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 13:27+0000\n"
+"POT-Creation-Date: 2026-08-14 13:51+0000\n"
 "PO-Revision-Date: 2026-08-12 09:36+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -578,7 +578,8 @@ msgstr "DOK"
 #: application/views/logbookadvanced/index.php:999
 #: application/views/logbookadvanced/qslcarousel.php:35
 #: application/views/logbookadvanced/showStateQsos.php:27
-#: application/views/logbookadvanced/statecheckresult.php:11
+#: application/views/logbookadvanced/showUpdateResult.php:87
+#: application/views/logbookadvanced/statecheckresult.php:15
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
 #: application/views/lotw_views/index.php:43
@@ -2236,7 +2237,8 @@ msgstr "州"
 #: application/views/logbookadvanced/index.php:963
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/showStateQsos.php:26
-#: application/views/logbookadvanced/showUpdateResult.php:44
+#: application/views/logbookadvanced/showUpdateResult.php:47
+#: application/views/logbookadvanced/showUpdateResult.php:110
 #: application/views/logbookadvanced/useroptions.php:85
 #: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
 #: application/views/map/qso_map.php:111
@@ -2499,12 +2501,12 @@ msgstr "删除 DXCC 实体"
 msgid "Advanced logbook"
 msgstr "详细日志"
 
-#: application/controllers/Logbookadvanced.php:1002
+#: application/controllers/Logbookadvanced.php:1018
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "已更新 %d 个 QSO 的 DXCC。"
 
-#: application/controllers/Logbookadvanced.php:1018
+#: application/controllers/Logbookadvanced.php:1034
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "为 DXCC %s 和网格 %s 的地图。"
@@ -4536,22 +4538,22 @@ msgstr "方位角"
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids 表为空。请先导入 VUCC 网格数据。"
 
-#: application/models/Logbookadvanced_model.php:2490
+#: application/models/Logbookadvanced_model.php:2540
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr "主 QSO ID 无效，或您无权访问其中一个 QSO"
 
-#: application/models/Logbookadvanced_model.php:2500
+#: application/models/Logbookadvanced_model.php:2550
 #: application/views/view_log/qso.php:868
 msgid "QSO not found"
 msgstr "QSO 未找到"
 
-#: application/models/Logbookadvanced_model.php:2586
+#: application/models/Logbookadvanced_model.php:2636
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "未选择要合并的字段，或 QSO 之间无差异"
 
-#: application/models/Logbookadvanced_model.php:2599
+#: application/models/Logbookadvanced_model.php:2649
 msgid "QSOs merged successfully"
 msgstr "QSO 合并成功"
 
@@ -5175,7 +5177,7 @@ msgstr "此网格中的活动"
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
 #: application/views/labels/index.php:82
-#: application/views/logbookadvanced/statecheckresult.php:12
+#: application/views/logbookadvanced/statecheckresult.php:16
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -5418,7 +5420,8 @@ msgstr "未找到！"
 #: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
-#: application/views/logbookadvanced/showUpdateResult.php:43
+#: application/views/logbookadvanced/showUpdateResult.php:46
+#: application/views/logbookadvanced/showUpdateResult.php:109
 #: application/views/lotw_views/index.php:42
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
@@ -5499,6 +5502,7 @@ msgstr "无法匹配的 QSO"
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
+#: application/views/logbookadvanced/showUpdateResult.php:88
 msgid "QSOs updated"
 msgstr "已更新的 QSO"
 
@@ -7839,7 +7843,7 @@ msgstr "DXCC名称"
 #: application/views/awards/dxcc/index.php:456
 #: application/views/awards/iota/index.php:209
 #: application/views/awards/wae/index.php:216
-#: application/views/logbookadvanced/statecheckresult.php:10
+#: application/views/logbookadvanced/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
 msgid "Prefix"
@@ -10553,7 +10557,7 @@ msgstr "可用的角色"
 
 #: application/views/club/permissions.php:36
 #: application/views/eqsl/download.php:45
-#: application/views/logbookadvanced/statecheckresult.php:13
+#: application/views/logbookadvanced/statecheckresult.php:17
 msgid "Action"
 msgstr "操作"
 
@@ -17270,49 +17274,62 @@ msgstr "发现%s QSO(s) 缺少 DXCC %s 的状态信息。"
 msgid "No Issues Found"
 msgstr "未发现问题"
 
-#: application/views/logbookadvanced/showUpdateResult.php:22
+#: application/views/logbookadvanced/showUpdateResult.php:25
+#: application/views/logbookadvanced/showUpdateResult.php:75
 msgid "Results for state update:"
 msgstr "州级更新结果："
 
-#: application/views/logbookadvanced/showUpdateResult.php:24
-#: application/views/logbookadvanced/showUpdateResult.php:26
+#: application/views/logbookadvanced/showUpdateResult.php:27
+#: application/views/logbookadvanced/showUpdateResult.php:29
 msgid "The number of QSOs updated for state/province in"
 msgstr "州/省份的 QSO 更新数量"
 
-#: application/views/logbookadvanced/showUpdateResult.php:38
+#: application/views/logbookadvanced/showUpdateResult.php:41
+#: application/views/logbookadvanced/showUpdateResult.php:104
 msgid "These QSOs could not be updated:"
 msgstr "这些通联记录无法更新："
 
-#: application/views/logbookadvanced/showUpdateResult.php:45
+#: application/views/logbookadvanced/showUpdateResult.php:48
+#: application/views/logbookadvanced/showUpdateResult.php:111
 #: application/views/search/lotw_unconfirmed.php:28
 msgid "Station location"
 msgstr "台站地址"
 
-#: application/views/logbookadvanced/showUpdateResult.php:46
+#: application/views/logbookadvanced/showUpdateResult.php:49
+#: application/views/logbookadvanced/showUpdateResult.php:112
 msgid "Reason"
 msgstr "原因"
 
-#: application/views/logbookadvanced/showUpdateResult.php:69
+#: application/views/logbookadvanced/showUpdateResult.php:77
+#: application/views/logbookadvanced/showUpdateResult.php:79
+msgid "The number of QSOs updated for state/province across all DXCCs is"
+msgstr ""
+
+#: application/views/logbookadvanced/showUpdateResult.php:79
+msgid "DXCCs processed"
+msgstr ""
+
+#: application/views/logbookadvanced/showUpdateResult.php:131
 msgid "Results for continent update:"
 msgstr "大洲更新结果:"
 
-#: application/views/logbookadvanced/showUpdateResult.php:70
+#: application/views/logbookadvanced/showUpdateResult.php:132
 msgid "The number of QSOs updated for continent is"
 msgstr "已更新的洲际通联数量为"
 
-#: application/views/logbookadvanced/showUpdateResult.php:74
+#: application/views/logbookadvanced/showUpdateResult.php:136
 msgid "Results for distance update:"
 msgstr "距离更新结果："
 
-#: application/views/logbookadvanced/showUpdateResult.php:75
+#: application/views/logbookadvanced/showUpdateResult.php:137
 msgid "The number of QSOs updated for distance is"
 msgstr "已更新距离信息的 QSO 数量为"
 
-#: application/views/logbookadvanced/showUpdateResult.php:79
+#: application/views/logbookadvanced/showUpdateResult.php:141
 msgid "Results for gridsquare update:"
 msgstr "网格更新结果："
 
-#: application/views/logbookadvanced/showUpdateResult.php:80
+#: application/views/logbookadvanced/showUpdateResult.php:142
 msgid "The number of QSOs updated for gridsquare is"
 msgstr "网格更新的 QSO 数量为"
 
@@ -17332,7 +17349,7 @@ msgid "Include TNX message"
 msgstr "包含 TNX 信息"
 
 #: application/views/logbookadvanced/statecheckresult.php:3
-#: application/views/logbookadvanced/statecheckresult.php:42
+#: application/views/logbookadvanced/statecheckresult.php:46
 msgid "State Check Results"
 msgstr "州级检查结果"
 
@@ -17342,11 +17359,15 @@ msgid ""
 "the following DXCCs:"
 msgstr "已找到以下 DXCC 的 QSO，但缺少州名和包含 6 个或更多字符的网格代码："
 
-#: application/views/logbookadvanced/statecheckresult.php:30
+#: application/views/logbookadvanced/statecheckresult.php:7
+msgid "Fix all DXCCs"
+msgstr ""
+
+#: application/views/logbookadvanced/statecheckresult.php:34
 msgid "Run fix"
 msgstr "运行修复"
 
-#: application/views/logbookadvanced/statecheckresult.php:43
+#: application/views/logbookadvanced/statecheckresult.php:47
 msgid "No QSOs were found where state information can be fixed."
 msgstr "没有找到可以确定州级信息的 QSO。"
 

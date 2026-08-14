@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 13:27+0000\n"
+"POT-Creation-Date: 2026-08-14 13:51+0000\n"
 "PO-Revision-Date: 2026-07-13 09:35+0000\n"
 "Last-Translator: Telectroboy <telectroboy@hotmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -563,7 +563,8 @@ msgstr "DOK"
 #: application/views/logbookadvanced/index.php:999
 #: application/views/logbookadvanced/qslcarousel.php:35
 #: application/views/logbookadvanced/showStateQsos.php:27
-#: application/views/logbookadvanced/statecheckresult.php:11
+#: application/views/logbookadvanced/showUpdateResult.php:87
+#: application/views/logbookadvanced/statecheckresult.php:15
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
 #: application/views/lotw_views/index.php:43
@@ -2255,7 +2256,8 @@ msgstr "Etat"
 #: application/views/logbookadvanced/index.php:963
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/showStateQsos.php:26
-#: application/views/logbookadvanced/showUpdateResult.php:44
+#: application/views/logbookadvanced/showUpdateResult.php:47
+#: application/views/logbookadvanced/showUpdateResult.php:110
 #: application/views/logbookadvanced/useroptions.php:85
 #: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
 #: application/views/map/qso_map.php:111
@@ -2518,12 +2520,12 @@ msgstr "DXCC Supprimé"
 msgid "Advanced logbook"
 msgstr "Journal avancé"
 
-#: application/controllers/Logbookadvanced.php:1002
+#: application/controllers/Logbookadvanced.php:1018
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC mis à jour pour %d QSO(s)."
 
-#: application/controllers/Logbookadvanced.php:1018
+#: application/controllers/Logbookadvanced.php:1034
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "Carte pour DXCC %s et grille %s."
@@ -4636,7 +4638,7 @@ msgstr ""
 "La table VuccGrids est vide. Veuillez d'abord importer les données des "
 "grilles VUCC."
 
-#: application/models/Logbookadvanced_model.php:2490
+#: application/models/Logbookadvanced_model.php:2540
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -4644,17 +4646,17 @@ msgstr ""
 "Identifiant QSO principal invalide, ou vous n'êtes pas autorisé à accéder à "
 "l'un des QSO"
 
-#: application/models/Logbookadvanced_model.php:2500
+#: application/models/Logbookadvanced_model.php:2550
 #: application/views/view_log/qso.php:868
 msgid "QSO not found"
 msgstr "QSO introuvable"
 
-#: application/models/Logbookadvanced_model.php:2586
+#: application/models/Logbookadvanced_model.php:2636
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
 "Aucun champ sélectionné pour la fusion ou aucune différence entre les QSO"
 
-#: application/models/Logbookadvanced_model.php:2599
+#: application/models/Logbookadvanced_model.php:2649
 msgid "QSOs merged successfully"
 msgstr "Les QSO ont été fusionnés avec succès"
 
@@ -5279,7 +5281,7 @@ msgstr ""
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
 #: application/views/labels/index.php:82
-#: application/views/logbookadvanced/statecheckresult.php:12
+#: application/views/logbookadvanced/statecheckresult.php:16
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -5522,7 +5524,8 @@ msgstr "Rien trouvé !"
 #: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
-#: application/views/logbookadvanced/showUpdateResult.php:43
+#: application/views/logbookadvanced/showUpdateResult.php:46
+#: application/views/logbookadvanced/showUpdateResult.php:109
 #: application/views/lotw_views/index.php:42
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
@@ -5603,6 +5606,7 @@ msgstr "QSO sans correspondance"
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
+#: application/views/logbookadvanced/showUpdateResult.php:88
 msgid "QSOs updated"
 msgstr "QSO mis à jour"
 
@@ -8026,7 +8030,7 @@ msgstr "Nom DXCC"
 #: application/views/awards/dxcc/index.php:456
 #: application/views/awards/iota/index.php:209
 #: application/views/awards/wae/index.php:216
-#: application/views/logbookadvanced/statecheckresult.php:10
+#: application/views/logbookadvanced/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
 msgid "Prefix"
@@ -10903,7 +10907,7 @@ msgstr "Autorisations disponibles"
 
 #: application/views/club/permissions.php:36
 #: application/views/eqsl/download.php:45
-#: application/views/logbookadvanced/statecheckresult.php:13
+#: application/views/logbookadvanced/statecheckresult.php:17
 msgid "Action"
 msgstr "Action"
 
@@ -17844,49 +17848,62 @@ msgstr "Trouvé %s QSO(s) informations d'état manquantes pour DXCC %s."
 msgid "No Issues Found"
 msgstr "Aucun problème détecté"
 
-#: application/views/logbookadvanced/showUpdateResult.php:22
+#: application/views/logbookadvanced/showUpdateResult.php:25
+#: application/views/logbookadvanced/showUpdateResult.php:75
 msgid "Results for state update:"
 msgstr "Résultats de la mise à jour de l'état :"
 
-#: application/views/logbookadvanced/showUpdateResult.php:24
-#: application/views/logbookadvanced/showUpdateResult.php:26
+#: application/views/logbookadvanced/showUpdateResult.php:27
+#: application/views/logbookadvanced/showUpdateResult.php:29
 msgid "The number of QSOs updated for state/province in"
 msgstr "Le nombre de QSO mis à jour pour l'état/la province en"
 
-#: application/views/logbookadvanced/showUpdateResult.php:38
+#: application/views/logbookadvanced/showUpdateResult.php:41
+#: application/views/logbookadvanced/showUpdateResult.php:104
 msgid "These QSOs could not be updated:"
 msgstr "Ces QSO n'ont pas pu être mis à jour :"
 
-#: application/views/logbookadvanced/showUpdateResult.php:45
+#: application/views/logbookadvanced/showUpdateResult.php:48
+#: application/views/logbookadvanced/showUpdateResult.php:111
 #: application/views/search/lotw_unconfirmed.php:28
 msgid "Station location"
 msgstr "Emplacement de la Station"
 
-#: application/views/logbookadvanced/showUpdateResult.php:46
+#: application/views/logbookadvanced/showUpdateResult.php:49
+#: application/views/logbookadvanced/showUpdateResult.php:112
 msgid "Reason"
 msgstr "Raison"
 
-#: application/views/logbookadvanced/showUpdateResult.php:69
+#: application/views/logbookadvanced/showUpdateResult.php:77
+#: application/views/logbookadvanced/showUpdateResult.php:79
+msgid "The number of QSOs updated for state/province across all DXCCs is"
+msgstr ""
+
+#: application/views/logbookadvanced/showUpdateResult.php:79
+msgid "DXCCs processed"
+msgstr ""
+
+#: application/views/logbookadvanced/showUpdateResult.php:131
 msgid "Results for continent update:"
 msgstr "Résultats de la mise à jour des continents :"
 
-#: application/views/logbookadvanced/showUpdateResult.php:70
+#: application/views/logbookadvanced/showUpdateResult.php:132
 msgid "The number of QSOs updated for continent is"
 msgstr "Le nombre de QSO mis à jour pour le continent est"
 
-#: application/views/logbookadvanced/showUpdateResult.php:74
+#: application/views/logbookadvanced/showUpdateResult.php:136
 msgid "Results for distance update:"
 msgstr "Résultats de la mise à jour des distances :"
 
-#: application/views/logbookadvanced/showUpdateResult.php:75
+#: application/views/logbookadvanced/showUpdateResult.php:137
 msgid "The number of QSOs updated for distance is"
 msgstr "Le nombre de QSO mis à jour pour la distance est"
 
-#: application/views/logbookadvanced/showUpdateResult.php:79
+#: application/views/logbookadvanced/showUpdateResult.php:141
 msgid "Results for gridsquare update:"
 msgstr "Résultats de la mise à jour de gridsquare :"
 
-#: application/views/logbookadvanced/showUpdateResult.php:80
+#: application/views/logbookadvanced/showUpdateResult.php:142
 msgid "The number of QSOs updated for gridsquare is"
 msgstr "Le nombre de QSO mis à jour pour gridsquare est"
 
@@ -17906,7 +17923,7 @@ msgid "Include TNX message"
 msgstr "Inclure message TNX"
 
 #: application/views/logbookadvanced/statecheckresult.php:3
-#: application/views/logbookadvanced/statecheckresult.php:42
+#: application/views/logbookadvanced/statecheckresult.php:46
 msgid "State Check Results"
 msgstr "Résultats de la vérification d'État"
 
@@ -17918,11 +17935,15 @@ msgstr ""
 "QSOs avec état manquant et cases de grille avec 6 caractères ou plus trouvés "
 "pour les DXCC suivants :"
 
-#: application/views/logbookadvanced/statecheckresult.php:30
+#: application/views/logbookadvanced/statecheckresult.php:7
+msgid "Fix all DXCCs"
+msgstr ""
+
+#: application/views/logbookadvanced/statecheckresult.php:34
 msgid "Run fix"
 msgstr "Exécuter la correction"
 
-#: application/views/logbookadvanced/statecheckresult.php:43
+#: application/views/logbookadvanced/statecheckresult.php:47
 msgid "No QSOs were found where state information can be fixed."
 msgstr ""
 "Aucun QSO n'a été trouvé pour lequel les informations d'état peuvent être "
