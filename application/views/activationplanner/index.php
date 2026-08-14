@@ -47,7 +47,11 @@
 		userDxcc:            <?php echo json_encode(isset($user_dxcc) ? $user_dxcc : null); ?>,
 		shareLbl:            <?php echo json_encode(__("Share")); ?>,
 		shareActivationTitleLbl: <?php echo json_encode(__("Share activation")); ?>,
-		planningActivationLbl:   <?php echo json_encode(__("📻 Planning an activation from %s")); ?>
+		planningActivationLbl:   <?php echo json_encode(__("📻 Planning an activation from %s")); ?>,
+		searchPlaceholderLbl:    <?php echo json_encode(__("Search references…")); ?>,
+		searchNoMatchesLbl:      <?php echo json_encode(__("No matches")); ?>,
+		searchLoadingLbl:        <?php echo json_encode(__("Loading…")); ?>,
+		searchRefsHeaderLbl:     <?php echo json_encode(__("References")); ?>
 	};
 </script>
 
@@ -74,11 +78,18 @@
 					<button id="glClear" class="btn btn-outline-primary btn-sm"><?= __("Clear"); ?></button>
 					<button id="glLocate" class="btn btn-outline-primary btn-sm" title="<?= __("Find my location and gridsquare"); ?>"><i class="fa fa-location-crosshairs"></i> <?= __("Locate me"); ?></button>
 					<button id="glNearby" class="btn btn-outline-primary btn-sm"><?= __("Nearby refs"); ?></button>
+					<div class="gl-search-wrap">
+						<i class="fas fa-magnifying-glass gl-search-icon"></i>
+						<input type="text" id="glRefSearch" class="gl-search-input form-control form-control-sm"
+							autocomplete="off" spellcheck="false"
+							placeholder="<?= __("Search references…"); ?>" title="<?= __("Search WWFF / POTA / SOTA / IOTA by name or reference"); ?>">
+						<div class="gl-search-results" id="glRefSearchResults" hidden></div>
+					</div>
 					<div class="gl-refsrow gl-secondary">
 						<div class="gl-refs gl-secondary dropdown">
 							<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Refs"); ?></button>
 							<ul class="dropdown-menu p-2" style="max-height:60vh; overflow-y:auto;">
-								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glGridOverlay" checked><?= __("Gridsquare"); ?></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glGridOverlay"><?= __("Gridsquare"); ?></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWwffDir"><?= __("WWFF"); ?><span class="ref-menu-dot ms-auto" style="background:#2b8cbe">W</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glPotaDir"><?= __("POTA"); ?><span class="ref-menu-dot ms-auto" style="background:#238b45">P</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glSotaDir"><?= __("SOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#d95f0e">S</span></label></li>
