@@ -31,18 +31,6 @@ class OptionsLib {
     }
 
     /**
-     * Save an option to the options table
-     * 
-     * @param string $option_name The name of the option to save
-     * @param mixed $option_value The value of the option to save
-     * @param string $autoload Whether the option should be autoloaded ('yes' or 'no')
-     * @return bool True if the option was saved successfully, false otherwise
-     */
-    function save($option_name, $option_value, $autoload) {
-        return $this->CI->options_model->save($option_name, $option_value, $autoload);
-    }
-
-    /**
      * Update an option in the options table
      * 
      * @param string $option_name The name of the option to update
