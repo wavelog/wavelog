@@ -100,21 +100,13 @@
                                         <select id="mode" name="mode" class="form-select form-select-sm">
                                             <option value="All" <?php if (($postdata['mode'] ?? 'All') == 'All') echo ' selected'; ?>><?= __("All"); ?></option>
                                             <?php
-                                            foreach ($modes->result() as $mode) {
-                                                if ($mode->submode == null) {
-                                                    echo '<option value="' . $mode->mode . '"';
-                                                    if (($postdata['mode'] ?? 'All') == $mode->mode) {
-                                                        echo ' selected';
-                                                    }
-                                                    echo '>' . $mode->mode . '</option>' . "\n";
-                                                } else {
-                                                    echo '<option value="' . $mode->submode . '"';
-                                                    if (($postdata['mode'] ?? 'All') == $mode->submode) {
-                                                        echo ' selected';
-                                                    }
-                                                    echo '>' . $mode->submode . '</option>' . "\n";
-                                                }
-                                            }
+                                            foreach ($modes as $mode) {
+												echo '<option value="' . $mode . '"';
+												if (($postdata['mode'] ?? 'All') == $mode) {
+													echo ' selected';
+												}
+												echo '>' . $mode . '</option>' . "\n";
+											}
                                             ?>
                                         </select>
                                     </div>

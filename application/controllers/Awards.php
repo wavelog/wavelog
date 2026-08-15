@@ -485,7 +485,7 @@ class Awards extends CI_Controller {
 		];
 
 		$this->load->model('jcc_model');
-		$this->load->model('modes');
+		$this->load->model('logbookadvanced_model');
 		$this->load->model('bands');
 
 		if ($this->input->method() === 'post') {
@@ -513,7 +513,7 @@ class Awards extends CI_Controller {
 		$data['postdata'] = $postdata;
 
 		$data['worked_bands'] = $this->bands->get_worked_bands('jcc');
-		$data['modes'] = $this->modes->active();
+		$data['modes'] = $this->logbookadvanced_model->get_modes();
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata);
@@ -2268,29 +2268,26 @@ class Awards extends CI_Controller {
 	 * Provide data for AJAX to render the JCC map
 	 */
     public function jcc_map() {
-	    $this->load->model('jcc_model');
-	    $this->load->model('bands');
+		$this->load->model('jcc_model');
+		$this->load->model('bands');
 
-	    $bands[] = $this->security->xss_clean($this->input->post('band'));
+		$bands[] = $this->security->xss_clean($this->input->post('band'));
 
-	    $postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
-	    $postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
-	    $postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
-	    $postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
-	    $postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
-	    $postdata['worked'] = ($this->input->post('worked', true) ?? 0) == 0 ? null : 1;
-	    $postdata['confirmed'] = ($this->input->post('confirmed', true) ?? 0) == 0 ? null : 1;
-	    $postdata['notworked'] = ($this->input->post('notworked', true) ?? 0) == 0 ? null : 1;
-	    $postdata['includedeleted'] = ($this->input->post('includedeleted', true) ?? 0) == 0 ? null : 1;
-	    $postdata['band'] = $this->input->post('band', true) ?? 'All';
-	    $postdata['mode'] = $this->input->post('mode', true) ?? 'All';
-	    $postdata['prop_mode'] = $this->input->post('prop_mode', true) ?? 'All';
+		$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
+		$postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
+		$postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
+		$postdata['includedeleted'] = ($this->input->post('includedeleted', true) ?? 0) == 0 ? null : 1;
+		$postdata['band'] = $this->input->post('band', true) ?? 'All';
+		$postdata['mode'] = $this->input->post('mode', true) ?? 'All';
+		$postdata['prop_mode'] = $this->input->post('prop_mode', true) ?? 'All';
 
-	    $jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata);
-	    $jccs = $this->jcc_model->get_jcc_map_array($postdata, $jcc_entity_status);
+		$jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata);
+		$jccs = $this->jcc_model->get_jcc_map_array($postdata, $jcc_entity_status);
 
-	    header('Content-Type: application/json');
-	    echo json_encode($jccs);
+		header('Content-Type: application/json');
+		echo json_encode($jccs);
     }
 
     /*
