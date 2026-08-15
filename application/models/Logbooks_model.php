@@ -49,6 +49,11 @@ class Logbooks_model extends CI_Model {
 		// Clean ID
 		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
 
+		// be sure that logbook belongs to user, the deletes below span two tables
+		if (!$this->check_logbook_is_accessible($clean_id, $user_id)) {
+			return;
+		}
+
 		// do not delete active logbook
 		if ($this->find_active_station_logbook_from_userid($user_id) == $clean_id) {
 			return;
