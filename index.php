@@ -87,7 +87,7 @@ switch (ENVIRONMENT)
 	case 'docker':
 		ini_set('display_errors', 0);
 		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
-		if (($_ENV['DOCKER_DEVELOPMENT'] ?? false) == true) {
+		if (filter_var($_ENV['DOCKER_DEVELOPMENT'] ?? false, FILTER_VALIDATE_BOOLEAN)) {
 			error_reporting(-1);
 			ini_set('display_errors', 1);
 		}
