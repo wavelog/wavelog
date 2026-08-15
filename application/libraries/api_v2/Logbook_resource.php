@@ -41,7 +41,6 @@ class Logbook_resource extends Api_v2_resource {
 	 * GET /api/v2/logbook
 	 */
 	public function index() {
-		$this->CI->load->model('logbooks_model');
 		$uid      = $this->user_id();
 		$rows     = $this->CI->logbooks_model->list_for_user($uid);
 		$active_id = $this->CI->logbooks_model->get_active_id_for_user($uid);
@@ -56,7 +55,6 @@ class Logbook_resource extends Api_v2_resource {
 	 * GET /api/v2/logbook/{id}
 	 */
 	public function show($id) {
-		$this->CI->load->model('logbooks_model');
 		$row = $this->require_owned($id);
 		$active_id = $this->CI->logbooks_model->get_active_id_for_user($this->user_id());
 		$this->CI->api_v2_response->respond($this->format($row, $active_id));
@@ -68,7 +66,6 @@ class Logbook_resource extends Api_v2_resource {
 	 */
 	public function create() {
 		$this->require_write();
-		$this->CI->load->model('logbooks_model');
 
 		$body = $this->body();
 		$this->require_scalar_fields($body);
@@ -102,8 +99,6 @@ class Logbook_resource extends Api_v2_resource {
 	 */
 	public function update($id) {
 		$this->require_write();
-		$this->CI->load->model('logbooks_model');
-		$this->CI->load->model('stations');
 
 		$row = $this->require_owned($id);
 		$body = $this->body();
@@ -161,7 +156,6 @@ class Logbook_resource extends Api_v2_resource {
 	 */
 	public function delete($id) {
 		$this->require_delete();
-		$this->CI->load->model('logbooks_model');
 
 		$row        = $this->require_owned($id);
 		$logbook_id = (int) $row->logbook_id;
