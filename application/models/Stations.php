@@ -14,18 +14,6 @@ class Stations extends CI_Model {
 		return $this->db->get();
 	}
 
-	/*
-	 * Makes $station_id the active station for $user_id, deactivating all others.
-	 * Mirrors the web UI's station-switch behaviour without requiring a session.
-	 */
-	function switch_active($station_id, $user_id) {
-		$this->db->where('user_id', (int) $user_id)
-			->update('station_profile', ['station_active' => 0]);
-		$this->db->where('station_id', (int) $station_id)
-			->where('user_id', (int) $user_id)
-			->update('station_profile', ['station_active' => 1]);
-	}
-
 	function all_of_user($userid = null) {
 		if ($userid == null) {
 			$userid=$this->session->userdata('user_id'); // Fallback to session-uid, if userid is omitted
@@ -321,18 +309,19 @@ class Stations extends CI_Model {
 		$this->staticmap_model->remove_static_map_image($clean_id);
 	}
 
-	function set_active($current, $new) {
+	function set_active($current, $new, $user_id = null) {
 		// Clean inputs
 		$clean_current = $this->security->xss_clean($current);
 		$clean_new = $this->security->xss_clean($new);
+		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
 
 		// be sure that stations belong to user
 		if ($clean_current != 0) {
-			if (!$this->check_station_is_accessible($clean_current)) {
+			if (!$this->check_station_against_user($clean_current, $user_id)) {
 				return;
 			}
 		}
-		if (!$this->check_station_is_accessible($clean_new)) {
+		if (!$this->check_station_against_user($clean_new, $user_id)) {
 			return;
 		}
 
@@ -340,18 +329,21 @@ class Stations extends CI_Model {
 		$current_default = array(
 			'station_active' => null,
 		);
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id);
 		$this->db->update('station_profile', $current_default);
 
 		// Deselect current default
 		$newdefault = array(
 			'station_active' => 1,
 		);
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id);
 		$this->db->where('station_id', $clean_new);
 		$this->db->update('station_profile', $newdefault);
 
-		$this->session->set_userdata('station_profile_id', $clean_new);
+		// Only meaningful for a web request; a token request has no session.
+		if ($this->session->userdata('user_id') == $user_id) {
+			$this->session->set_userdata('station_profile_id', $clean_new);
+		}
 	}
 
 	function edit_favourite($id) {

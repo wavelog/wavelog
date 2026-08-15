@@ -81,25 +81,20 @@ class Station_resource extends Api_v2_resource {
 
 	/**
 	 * POST /api/v2/station
-	 * Create a station location, or clone an existing one (clone_from: id).
-	 * Required body fields for create: see REQUIRED_FIELDS.
+	 * Create a station location. Required body fields: see REQUIRED_FIELDS.
+	 *
+	 * There is no dedicated "clone" mode: the GET representation is symmetric
+	 * with the writable fields, so a client duplicates a location by sending a
+	 * GET result back with a new name.
 	 */
 	public function create() {
 		$this->require_write();
 		$this->require_club_level(9);
-
-		$body = $this->body();
-		$this->require_scalar_fields($body);
-
-		// Clone shortcut: copy all settings from an existing owned station.
-		if (isset($body['clone_from'])) {
-			$this->clone_station($body);
-			return;
-		}
-
 		$this->CI->load->model('stations');
 		$this->CI->load->model('stationsetup_model');
 
+		$body = $this->body();
+		$this->require_scalar_fields($body);
 		$this->require_present($body, self::REQUIRED_FIELDS);
 		$this->validate_grid($body);
 
@@ -131,35 +126,13 @@ class Station_resource extends Api_v2_resource {
 	/**
 	 * PATCH /api/v2/station/{id}
 	 * Partial update: only the fields present in the body are changed.
-	 * Passing active:true makes this station the active one (deactivates others).
+	 *
+	 * `set_active: true` additionally makes this the owner's active station
+	 * location. It is deliberately a different key from the read-only `active`
+	 * in the response: a client can send a GET result straight back through
+	 * PATCH without silently reassigning the active location.
 	 */
 	public function update($id) {
-		$body = $this->body();
-
-		// Handle active switching before the standard field update so the
-		// response reflects the new active state even when no other fields changed.
-		if (!empty($body['active'])) {
-			$this->require_write();
-			$this->require_owned_station($id);
-			$this->switch_active_station((int) $id);
-		}
-
-		// If only active was supplied, skip the standard field update path to
-		// avoid the "no editable fields" error.
-		$remaining = array_diff_key($body, ['active' => true]);
-		if (!empty($remaining)) {
-			$this->apply_update($id);
-			return;
-		}
-
-		// active-only PATCH: return updated station.
-		if (!empty($body['active'])) {
-			$this->require_write();
-			$row = $this->CI->stations->profile_clean($id);
-			$this->CI->api_v2_response->respond($this->format_station($row));
-			return;
-		}
-
 		$this->apply_update($id);
 	}
 
@@ -194,68 +167,6 @@ class Station_resource extends Api_v2_resource {
 	// --- Internal helpers --------------------------------------------------
 
 	/**
-	 * Clone an existing owned station. Called from create() when clone_from is set.
-	 *
-	 * @param array $body Decoded request body.
-	 */
-	protected function clone_station($body) {
-		$source_id = (int) $body['clone_from'];
-		$source    = $this->require_owned_station($source_id);
-
-		$this->CI->load->model('stations');
-		$this->CI->load->model('stationsetup_model');
-
-		$name = isset($body['name']) && trim((string) $body['name']) !== ''
-			? xss_clean(trim((string) $body['name']))
-			: ($source->station_profile_name . ' (copy)');
-
-		$dbdata = [
-			'user_id'              => $this->user_id(),
-			'station_profile_name' => $name,
-			'station_callsign'     => $source->station_callsign,
-			'station_gridsquare'   => $source->station_gridsquare,
-			'station_city'         => $source->station_city,
-			'station_dxcc'         => $source->station_dxcc,
-			'station_cq'           => $source->station_cq,
-			'station_itu'          => $source->station_itu,
-			'state'                => $source->state,
-			'station_cnty'         => $source->station_cnty,
-			'station_iota'         => $source->station_iota,
-			'station_sota'         => $source->station_sota,
-			'station_wwff'         => $source->station_wwff,
-			'station_pota'         => $source->station_pota,
-			'station_sig'          => $source->station_sig,
-			'station_sig_info'     => $source->station_sig_info,
-			'station_power'        => $source->station_power,
-			'station_active'       => 0,
-			'webadifapiurl'        => 'https://qo100dx.club/api',
-			'station_uuid'         => $this->CI->db->query("SELECT UUID() as uuid")->row()->uuid,
-		];
-
-		$optiondata = ['eqsl_default_qslmsg' => '', 'link_active_logbook' => 'false'];
-		$result = $this->CI->stationsetup_model->save_location($dbdata, $optiondata, $this->user_id());
-
-		if ($result === false || $result === 0) {
-			throw new Api_v2_exception('conflict', 'Could not clone station (name may already exist)', 409);
-		}
-
-		$row = $this->CI->stations->profile_by_uuid($dbdata['station_uuid'], $this->user_id());
-		$headers = $row ? ['Location' => base_url('index.php/api/v2/station/' . (int) $row->station_id)] : [];
-		$this->CI->api_v2_response->respond($row ? $this->format_station($row) : null, 201, null, $headers);
-	}
-
-	/**
-	 * Make $station_id the active station for the token owner.
-	 * Deactivates all other stations first (mirrors the web UI behaviour).
-	 *
-	 * @param int $station_id
-	 */
-	protected function switch_active_station($station_id) {
-		$this->CI->load->model('stations');
-		$this->CI->stations->switch_active((int) $station_id, $this->user_id());
-	}
-
-	/**
 	 * PATCH implementation.
 	 *
 	 * @param int $id station_id from the path.
@@ -273,12 +184,24 @@ class Station_resource extends Api_v2_resource {
 		$this->require_not_cleared($body, self::REQUIRED_FIELDS);
 		$this->validate_grid($body);
 
+		$set_active = !empty($body['set_active']);
 		$data = $this->build_columns($body, false, (int) $current->station_dxcc);
-		if (empty($data)) {
+		if (empty($data) && !$set_active) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
-		$this->CI->stationsetup_model->update_location((int) $id, $data, $this->user_id());
+		if (!empty($data)) {
+			$this->CI->stationsetup_model->update_location((int) $id, $data, $this->user_id());
+		}
+		if ($set_active) {
+			// Same call the web UI makes (Stationsetup::setActiveStation_json),
+			// with the owner passed in instead of read from the session.
+			$this->CI->stations->set_active(
+				$this->CI->stations->find_active($this->user_id()),
+				(int) $id,
+				$this->user_id()
+			);
+		}
 
 		$this->CI->api_v2_response->respond($this->format_station($this->CI->stations->profile_clean($id)));
 	}

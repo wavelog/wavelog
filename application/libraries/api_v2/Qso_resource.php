@@ -341,37 +341,8 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
-		// Optional: link the new QSO to a contest session.
-		if ($new_id && !empty($body['contest_session_id'])) {
-			$this->link_to_contest($new_id, (int) $body['contest_session_id']);
-		}
-
 		$headers = $new_id ? ['Location' => base_url('index.php/api/v2/qso/' . $new_id)] : [];
 		$this->CI->api_v2_response->respond($created ?? ['id' => $new_id], 201, null, $headers);
-	}
-
-	/**
-	 * Link a QSO to a contest session via the contest_qsos junction table.
-	 * Verifies session ownership; silently skips if the session is not found
-	 * (the QSO was already committed — throwing here would leave an orphan).
-	 *
-	 * @param int $qso_id     Freshly inserted QSO primary key.
-	 * @param int $session_id contest_session.id to link to.
-	 */
-	protected function link_to_contest($qso_id, $session_id) {
-		$this->CI->load->model('contesting_model');
-
-		// Verify ownership: get_sessions_for_user returns empty when the session
-		// does not belong to this user, so silently skip rather than throwing —
-		// the QSO is already committed and rolling it back is not an option here.
-		$sessions = $this->CI->contesting_model->get_sessions_for_user(
-			$this->user_id(), null, 0, (int) $session_id
-		);
-		if (empty($sessions)) {
-			return;
-		}
-
-		$this->CI->contesting_model->link_qsos((int) $session_id, [(int) $qso_id]);
 	}
 
 	/**
