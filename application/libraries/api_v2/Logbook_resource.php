@@ -7,28 +7,40 @@ require_once __DIR__ . '/Api_v2_resource.php';
 /**
  * API v2 - Logbook resource
  *
- * Exposes the token owner's logbooks (station_logbooks table) via the
- * Logbooks_model, which owns all access to that table.
+ * Exposes the token owner's logbooks (station_logbooks table) through the
+ * Logbooks_model, which owns all access to that table. Ownership is enforced
+ * against the token's user_id, never the session.
+ *
+ * Every write here has a counterpart in Stationsetup (newLogbook_json,
+ * saveContainerName, setActiveLogbook_json, linkLocations, unLinkLocations,
+ * deleteLogbook_json). That controller is gated at clubstation officer level as
+ * a whole, so the write verbs below carry the same require_club_level(9).
  *
  * Routes:
- *   GET    /api/v2/logbook           list all logbooks (includes linked station ids)
+ *   GET    /api/v2/logbook           list all logbooks
  *   GET    /api/v2/logbook/{id}      single logbook
- *   POST   /api/v2/logbook           create logbook (body: name)
- *   PATCH  /api/v2/logbook/{id}      rename, set active, link/unlink a station
+ *   POST   /api/v2/logbook           create logbook
+ *   PATCH  /api/v2/logbook/{id}      rename, set active, change linked stations
  *   DELETE /api/v2/logbook/{id}      delete (not allowed when active)
  *
- * PATCH body fields (all optional, any combination):
- *   name              string  — new logbook name
- *   active            bool    — make this the active logbook
- *   link_station_id   int     — add a station location to this logbook
- *   unlink_station_id int     — remove a station location from this logbook
+ * Body fields (all optional on PATCH, `name` required on POST):
+ *   name         string  — logbook name
+ *   station_ids  int[]   — the station locations this logbook contains. The list
+ *                          replaces the stored one, so it round-trips with what
+ *                          a GET returns.
+ *   set_active   bool    — make this the owner's active logbook. Deliberately a
+ *                          different key from the read-only `active` in the
+ *                          response, so a GET result can be sent straight back
+ *                          through PATCH without reassigning the active logbook.
  *
  * Scope: logbook:read / logbook:write / logbook:delete
  */
 class Logbook_resource extends Api_v2_resource {
 
+	/** Token scope of this resource (see Api_v2_resource::required_scope()). */
 	protected $scope = 'logbook';
 
+	/** Registry labels for this resource's scopes (see scope_definitions()). */
 	protected static function scope_labels() {
 		return [
 			'read'   => __('Read logbooks'),
@@ -39,15 +51,18 @@ class Logbook_resource extends Api_v2_resource {
 
 	/**
 	 * GET /api/v2/logbook
+	 * All logbooks of the token owner. No pagination, same as Station_resource:
+	 * users only have a handful of them.
 	 */
 	public function index() {
-		$uid      = $this->user_id();
-		$rows     = $this->CI->logbooks_model->list_for_user($uid);
-		$active_id = $this->CI->logbooks_model->get_active_id_for_user($uid);
+		$rows = $this->CI->logbooks_model->show_all($this->user_id())->result();
+
+		$active_id = $this->active_id();
 		$out = [];
 		foreach ($rows as $row) {
 			$out[] = $this->format($row, $active_id);
 		}
+
 		$this->CI->api_v2_response->respond($out);
 	}
 
@@ -55,140 +70,211 @@ class Logbook_resource extends Api_v2_resource {
 	 * GET /api/v2/logbook/{id}
 	 */
 	public function show($id) {
-		$row = $this->require_owned($id);
-		$active_id = $this->CI->logbooks_model->get_active_id_for_user($this->user_id());
-		$this->CI->api_v2_response->respond($this->format($row, $active_id));
+		$row = $this->require_owned_logbook($id);
+		$this->CI->api_v2_response->respond($this->format($row, $this->active_id()));
 	}
 
 	/**
 	 * POST /api/v2/logbook
-	 * Required body field: name
+	 * Required body field: name.
 	 */
 	public function create() {
 		$this->require_write();
+		$this->require_club_level(9);
 
+		$uid  = $this->user_id();
 		$body = $this->body();
-		$this->require_scalar_fields($body);
+		$this->require_body_fields($body);
 
-		$name = trim((string) ($body['name'] ?? ''));
-		if ($name === '') {
-			throw new Api_v2_exception('validation_error', 'Missing required field: name', 400, ['missing' => ['name']]);
-		}
-
-		$uid = $this->user_id();
-		$logbook_id = $this->CI->logbooks_model->create_for_user($name, $uid);
-		if ($logbook_id === -1) {
+		$name = $this->clean_name($body['name'] ?? '');
+		if ($this->CI->logbooks_model->logbook_name_exists($name, $uid)) {
 			throw new Api_v2_exception('conflict', 'A logbook with that name already exists', 409);
 		}
+		$station_ids = array_key_exists('station_ids', $body)
+			? $this->validate_station_ids($body['station_ids'])
+			: [];
 
-		// Make active if it is the user's first logbook.
-		$active_id = $this->CI->logbooks_model->get_active_id_for_user($uid);
-		if ($active_id === null) {
-			$this->CI->logbooks_model->set_active_for_user($logbook_id, $uid);
-			$active_id = $logbook_id;
-		}
+		// add() also makes the logbook active when the user has none yet,
+		// mirroring Stationsetup::newLogbook_json().
+		$logbook_id = (int) $this->CI->logbooks_model->add($name, $uid);
+		$this->sync_station_links($logbook_id, $station_ids, $uid);
 
-		$row = $this->CI->logbooks_model->get_by_id_for_user($logbook_id, $uid);
+		$row = $this->CI->logbooks_model->logbook($logbook_id, $uid)->row();
 		$headers = ['Location' => base_url('index.php/api/v2/logbook/' . $logbook_id)];
-		$this->CI->api_v2_response->respond($this->format($row, $active_id), 201, null, $headers);
+		$this->CI->api_v2_response->respond($this->format($row, $this->active_id()), 201, null, $headers);
 	}
 
 	/**
 	 * PATCH /api/v2/logbook/{id}
-	 * Accepts: name (string), active (bool true), link_station_id (int), unlink_station_id (int)
+	 *
+	 * Everything is validated before the first write, so a rejected request
+	 * cannot leave the logbook half-updated.
 	 */
 	public function update($id) {
 		$this->require_write();
-
-		$row = $this->require_owned($id);
-		$body = $this->body();
-		$this->require_scalar_fields($body);
+		$this->require_club_level(9);
 
 		$uid        = $this->user_id();
+		$row        = $this->require_owned_logbook($id);
 		$logbook_id = (int) $row->logbook_id;
-		$changed    = false;
 
-		// Rename.
-		if (array_key_exists('name', $body)) {
-			$name = trim((string) $body['name']);
-			if ($name === '') {
-				throw new Api_v2_exception('validation_error', 'name cannot be blank', 400);
-			}
-			$this->CI->logbooks_model->rename_for_user($logbook_id, $name, $uid);
-			$changed = true;
+		$body = $this->body();
+		$this->require_body_fields($body);
+
+		$name = array_key_exists('name', $body) ? $this->clean_name($body['name']) : null;
+		if ($name !== null && $name !== $row->logbook_name
+			&& $this->CI->logbooks_model->logbook_name_exists($name, $uid)) {
+			throw new Api_v2_exception('conflict', 'A logbook with that name already exists', 409);
 		}
 
-		// Set active.
-		if (!empty($body['active'])) {
-			$this->CI->logbooks_model->set_active_for_user($logbook_id, $uid);
-			$changed = true;
-		}
+		$station_ids = array_key_exists('station_ids', $body)
+			? $this->validate_station_ids($body['station_ids'])
+			: null;
 
-		// Link a station location to this logbook.
-		if (!empty($body['link_station_id'])) {
-			$station_id = (int) $body['link_station_id'];
-			if (!$this->CI->stations->check_station_against_user($station_id, $uid)) {
-				throw new Api_v2_exception('forbidden', 'link_station_id does not belong to this token', 403);
-			}
-			$this->CI->logbooks_model->link_station($logbook_id, $station_id);
-			$changed = true;
-		}
+		$set_active = !empty($body['set_active']);
 
-		// Unlink a station location from this logbook.
-		if (!empty($body['unlink_station_id'])) {
-			$station_id = (int) $body['unlink_station_id'];
-			$this->CI->logbooks_model->unlink_station($logbook_id, $station_id);
-			$changed = true;
-		}
-
-		if (!$changed) {
+		if ($name === null && $station_ids === null && !$set_active) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
-		$updated   = $this->CI->logbooks_model->get_by_id_for_user($logbook_id, $uid);
-		$active_id = $this->CI->logbooks_model->get_active_id_for_user($uid);
-		$this->CI->api_v2_response->respond($this->format($updated, $active_id));
+		if ($name !== null) {
+			$this->CI->logbooks_model->rename($logbook_id, $name, $uid);
+		}
+		if ($station_ids !== null) {
+			$this->sync_station_links($logbook_id, $station_ids, $uid);
+		}
+		if ($set_active) {
+			$this->CI->logbooks_model->set_logbook_active($logbook_id, $uid);
+		}
+
+		$updated = $this->CI->logbooks_model->logbook($logbook_id, $uid)->row();
+		$this->CI->api_v2_response->respond($this->format($updated, $this->active_id()));
 	}
 
 	/**
 	 * DELETE /api/v2/logbook/{id}
-	 * The active logbook cannot be deleted.
+	 * The active logbook cannot be deleted, the same rule Logbooks_model::delete()
+	 * enforces internally; checked here so the caller gets a 409 instead of a
+	 * silent no-op. QSOs are not touched - they belong to a station location.
 	 */
 	public function delete($id) {
 		$this->require_delete();
+		$this->require_club_level(9);
 
-		$row        = $this->require_owned($id);
+		$row        = $this->require_owned_logbook($id);
 		$logbook_id = (int) $row->logbook_id;
-		$uid        = $this->user_id();
 
-		if ($logbook_id === $this->CI->logbooks_model->get_active_id_for_user($uid)) {
+		if ($logbook_id === $this->active_id()) {
 			throw new Api_v2_exception('conflict', 'The active logbook cannot be deleted', 409);
 		}
 
-		$this->CI->logbooks_model->delete_for_user($logbook_id, $uid);
+		$this->CI->logbooks_model->delete($logbook_id, $this->user_id());
 		$this->CI->api_v2_response->no_content();
 	}
 
-	// --- Helpers -----------------------------------------------------------
+	// --- Internal helpers --------------------------------------------------
 
-	protected function require_owned($id) {
+	/**
+	 * The owner's active logbook id, or 0 when none is set.
+	 */
+	protected function active_id() {
+		return (int) $this->CI->logbooks_model->find_active_station_logbook_from_userid($this->user_id());
+	}
+
+	/**
+	 * Verify a logbook exists and belongs to the token owner, returning its row.
+	 *
+	 * @throws Api_v2_exception 404 when missing or not owned.
+	 * @return object station_logbooks row.
+	 */
+	protected function require_owned_logbook($id) {
 		if (!is_numeric($id) || (int) $id < 1) {
 			throw new Api_v2_exception('not_found', 'Logbook not found', 404);
 		}
-		$row = $this->CI->logbooks_model->get_by_id_for_user((int) $id, $this->user_id());
+		$row = $this->CI->logbooks_model->logbook((int) $id, $this->user_id())->row();
 		if ($row === null) {
 			throw new Api_v2_exception('not_found', 'Logbook not found', 404);
 		}
 		return $row;
 	}
 
+	/**
+	 * Guard against nested JSON, with station_ids exempted: it is the one
+	 * list-valued field and validate_station_ids() checks it element by element.
+	 */
+	protected function require_body_fields($body) {
+		$this->require_scalar_fields(array_diff_key($body, ['station_ids' => true]));
+	}
+
+	/**
+	 * Clean a logbook name exactly as it will be stored, so the duplicate check
+	 * and the insert compare the same value.
+	 */
+	protected function clean_name($raw) {
+		$name = xss_clean(trim((string) $raw));
+		if ($name === '') {
+			throw new Api_v2_exception('validation_error', 'Missing required field: name', 400, ['missing' => ['name']]);
+		}
+		return $name;
+	}
+
+	/**
+	 * Validate a station_ids list: numeric and owned by the token user. Foreign
+	 * ids are rejected rather than silently dropped, the same rule
+	 * resolve_station_ids() applies to the query string.
+	 *
+	 * @return int[]
+	 */
+	protected function validate_station_ids($raw) {
+		if (!is_array($raw)) {
+			throw new Api_v2_exception('validation_error', 'station_ids must be an array of station location ids', 400);
+		}
+		$owned = $this->owner_station_ids();
+		$ids = [];
+		foreach ($raw as $sid) {
+			if (!is_numeric($sid)) {
+				throw new Api_v2_exception('validation_error', 'station_ids values must be numeric', 400);
+			}
+			$sid = (int) $sid;
+			if (!in_array($sid, $owned, true)) {
+				throw new Api_v2_exception(
+					'forbidden',
+					'station_ids contains stations not accessible for this token',
+					403,
+					['station_ids' => [$sid]]
+				);
+			}
+			$ids[] = $sid;
+		}
+		return array_values(array_unique($ids));
+	}
+
+	/**
+	 * Make the logbook's station links match $station_ids exactly.
+	 */
+	protected function sync_station_links($logbook_id, $station_ids, $user_id) {
+		$current = $this->CI->logbooks_model->get_linked_station_ids($logbook_id);
+
+		foreach (array_diff($current, $station_ids) as $station_id) {
+			$this->CI->logbooks_model->remove_logbook_location_link($logbook_id, $station_id, $user_id);
+		}
+		foreach (array_diff($station_ids, $current) as $station_id) {
+			$this->CI->logbooks_model->create_logbook_location_link($logbook_id, $station_id, $user_id);
+		}
+	}
+
+	/**
+	 * Shape a station_logbooks row into the public API representation. The shape
+	 * is symmetric with the writable fields, so a GET result can be sent straight
+	 * back through POST or PATCH.
+	 */
 	protected function format($row, $active_id) {
 		$logbook_id = (int) $row->logbook_id;
 		return [
-			'id'                 => $logbook_id,
-			'name'               => $row->logbook_name ?? null,
-			'active'             => ($logbook_id === $active_id),
-			'linked_station_ids' => $this->CI->logbooks_model->get_linked_station_ids($logbook_id),
+			'id'          => $logbook_id,
+			'name'        => $row->logbook_name ?? null,
+			'active'      => ($logbook_id === $active_id),
+			'station_ids' => $this->CI->logbooks_model->get_linked_station_ids($logbook_id),
 		];
 	}
 }
