@@ -34,6 +34,13 @@ class Counties extends CI_Model
         return trim(preg_replace('/^.*,/', '', $county));
     }
 
+    private function placeholders($values) {
+        if (empty($values)) {
+            return "''";
+        }
+        return implode(',', array_fill(0, count($values), '?'));
+    }
+
     /*
      * Returns a result of worked/confirmed US Counties, grouped by STATE.
      * Satellite does not count.
@@ -47,29 +54,29 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
         $this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
 
 		$confirmed_condition = $this->genfunctions->addQslToQuery($postdata, true);
 
         // The where-clause is repeated in the subquery and the outer query,
         // so the bindings are passed twice.
-		$binding = array();
-		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
-		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
+		$condition_binding = array();
+		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $condition_binding);
+		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $condition_binding);
+		$where_binding = array_merge($logbooks_locations_array, $bandslots, $condition_binding);
 
         $sql = "select count(distinct COL_CNTY) countycountworked, coalesce(x.countycountconfirmed, 0) countycountconfirmed, thcv.COL_STATE
                 from " . $this->config->item('table_name') . " thcv
                  left outer join (
                         select count(distinct COL_CNTY) countycountconfirmed, COL_STATE
                         from " . $this->config->item('table_name') .
-            " where station_id in (" . $location_list . ")" .
-            " and col_band in (" . $bandslots_list . ")" .
+            " where station_id in (" . $location_placeholders . ")" .
+            " and col_band in (" . $bandslots_placeholders . ")" .
             " and COL_DXCC in ('291', '6', '110')
                     and coalesce(COL_CNTY, '') <> ''
                     " . $band_condition . "
@@ -78,8 +85,8 @@ class Counties extends CI_Model
                     group by COL_STATE
                     order by COL_STATE
                 ) x on thcv.COL_STATE = x.COL_STATE
-                 where station_id in (" . $location_list . ")" .
-                 " and col_band in (" . $bandslots_list . ")" .
+                 where station_id in (" . $location_placeholders . ")" .
+                 " and col_band in (" . $bandslots_placeholders . ")" .
             " and COL_DXCC in ('291', '6', '110')
                 and coalesce(COL_CNTY, '') <> ''
                 " . $band_condition . "
@@ -87,7 +94,7 @@ class Counties extends CI_Model
                 group by thcv.COL_STATE, countycountconfirmed
                 order by thcv.COL_STATE";
 
-        $query = $this->db->query($sql, array_merge($binding, $binding));
+        $query = $this->db->query($sql, array_merge($where_binding, $where_binding));
         return $query->result_array();
     }
 
@@ -116,22 +123,21 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
         $this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
 
-		$binding = array();
+		$binding = array_merge($logbooks_locations_array, $bandslots);
 		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
 		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
 
         $sql = "select distinct COL_CNTY, COL_STATE
 		from " . $this->config->item('table_name') . " thcv
-		where station_id in (" . $location_list . ")" .
-		" and col_band in (" . $bandslots_list . ")" .
+		where station_id in (" . $location_placeholders . ")" .
+		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in ('291', '6', '110')
 		and coalesce(COL_CNTY, '') <> ''
 		" . $band_condition . "
@@ -169,13 +175,12 @@ class Counties extends CI_Model
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
 
 		$confirmed_condition = $this->genfunctions->addQslToQuery($postdata, true);
 
-		$binding = array();
+		$binding = array_merge($logbooks_locations_array, $bandslots);
 		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
 		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
 
@@ -183,8 +188,8 @@ class Counties extends CI_Model
 			count(*) as worked,
 			sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 		from " . $this->config->item('table_name') . " thcv
-		where station_id in (" . $location_list . ")" .
-		" and col_band in (" . $bandslots_list . ")" .
+		where station_id in (" . $location_placeholders . ")" .
+		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in ('291', '6', '110')
 		and coalesce(COL_CNTY, '') <> ''
 		" . $band_condition . "
@@ -219,13 +224,12 @@ class Counties extends CI_Model
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
 
 		$confirmed_condition = $this->genfunctions->addQslToQuery($postdata, true);
 
-		$binding = array();
+		$binding = array_merge($logbooks_locations_array, $bandslots);
 		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
 		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
 
@@ -237,8 +241,8 @@ class Counties extends CI_Model
 				count(*) as worked,
 				sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 			from " . $this->config->item('table_name') . " thcv
-			where station_id in (" . $location_list . ")" .
-			" and col_band in (" . $bandslots_list . ")" .
+			where station_id in (" . $location_placeholders . ")" .
+			" and col_band in (" . $bandslots_placeholders . ")" .
 			" and COL_DXCC in ('291', '6', '110')
 			and coalesce(COL_CNTY, '') <> ''
 			" . $band_condition . "
