@@ -20,7 +20,7 @@
 </style>
 <main class="form-signin">
     <a href="<?php echo base_url() ?>"><img src="<?php echo $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('main_logo') . '.png'); ?>" class="mx-auto d-block mainLogo" alt=""></a>
-    <?php if (ENVIRONMENT == 'maintenance') { ?>
+    <?php if (MAINTENANCE_MODE) { ?>
         <div class="d-flex justify-content-center align-items-center">
             <span class="badge text-bg-warning mb-4 pt-2 pb-2"><?= __("MAINTENANCE MODE"); ?></span>
         </div>
