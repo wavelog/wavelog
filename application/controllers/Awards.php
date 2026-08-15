@@ -2269,9 +2269,6 @@ class Awards extends CI_Controller {
 	 */
     public function jcc_map() {
 		$this->load->model('jcc_model');
-		$this->load->model('bands');
-
-		$bands[] = $this->security->xss_clean($this->input->post('band'));
 
 		$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
 		$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;

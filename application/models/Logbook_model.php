@@ -675,10 +675,13 @@ class Logbook_model extends CI_Model {
 				}
 				break;
 			case 'JCC':
-				$designated_cities = array(
-					'0101', '0601', '0801', '1101', '1103', '1110', '1201', '1344', '1801', '1802',
-					'2001', '2201', '2501', '2502', '2701', '3101', '3501', '4001', '4021', '4301',
-				);
+				// Designated cities have their wards listed in ku_list.json as
+				// "city number + ward" (e.g. 131013 = ward of city 1310), so the
+				// city numbers are the first four digits of the ward numbers.
+				$ku_list = json_decode(file_get_contents(FCPATH . 'assets/json/japan_award/ku_list.json'), true) ?? [];
+				$designated_cities = array_unique(array_map(function ($ward) {
+					return substr((string) $ward, 0, 4);
+				}, array_keys($ku_list)));
 				if (in_array($searchphrase, $designated_cities, true)) {
 					$this->db->group_start();
 					$this->db->where('COL_CNTY', $searchphrase);

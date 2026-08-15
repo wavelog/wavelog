@@ -37,9 +37,11 @@ function export_qsos() {
 }
 
 $(document).ready(function() {
-   $('[data-bs-toggle="tooltip"]').tooltip({
+   // Delegated init: the results grid holds hundreds of pills, so tooltips
+   // are only built for a pill the first time it is hovered
+   $('#jcc-results').tooltip({
+      selector: '[data-bs-toggle="tooltip"]',
       html: true,
       placement: 'top',
-      boundary: 'window'
    });
 });

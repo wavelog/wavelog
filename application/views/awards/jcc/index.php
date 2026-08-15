@@ -37,7 +37,7 @@
                         <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters"); ?></button>
                         <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
                         <button type="button" onclick="load_jcc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-asia"></i> <?= __("Show JCC Map"); ?></button>
-                        <button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info"<?php echo !$has_active_slots ? ' disabled' : ''; ?>><?= __("Export confirmed QSOs"); ?></button>
+                        <button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info"<?php echo (($jcc_summary['confirmed'] ?? 0) == 0) ? ' disabled' : ''; ?>><?= __("Export confirmed QSOs"); ?></button>
 
                         <!-- Dropdown Menu with Filter Content -->
                         <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">

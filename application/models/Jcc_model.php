@@ -67,12 +67,22 @@ class Jcc_model extends CI_Model {
 	}
 
 	/**
+	 * SQL IN list of quoted reference numbers: "'0101','1001',...".
+	 * COL_CNTY is a varchar column, so quoted values compare as strings -
+	 * unquoted numbers would force a numeric cast on every row and could
+	 * false-match values like '1001A'.
+	 */
+	private function quoted_in_list($keys) {
+		return "'" . implode("','", array_map('strval', $keys)) . "'";
+	}
+
+	/**
 	 * COL_CNTY holds either a city number ("1001") or the ward number of a
 	 * designated city ("131013"). Wards count for their city, so map ward
 	 * numbers down to their first four digits.
 	 */
 	private function entity_expr() {
-		return "case when col_cnty in (" . implode(',', array_keys($this->ja_kus)) . ") then left(col_cnty, 4) else col_cnty end";
+		return "case when col_cnty in (" . $this->quoted_in_list(array_keys($this->ja_kus)) . ") then left(col_cnty, 4) else col_cnty end";
 	}
 
 	/**
@@ -81,7 +91,7 @@ class Jcc_model extends CI_Model {
 	 * active logbook, honoring the band/mode/propagation filters.
 	 */
 	private function matching_where($postdata, &$bindings) {
-		$in_list = implode(',', array_merge(array_keys($this->jcc_cities($postdata)), array_keys($this->ja_kus)));
+		$in_list = $this->quoted_in_list(array_merge(array_keys($this->jcc_cities($postdata)), array_keys($this->ja_kus)));
 
 		$where = "col_dxcc in ('339')
 			and col_cnty in (" . $in_list . ")
@@ -184,7 +194,9 @@ class Jcc_model extends CI_Model {
 			$classes .= ' award-grid-slot-deleted';
 		}
 
-		$label = html_escape(substr((string) $number, 2));
+		// City pills show the number's last two digits; Tokyo's 23 wards
+		// (six-digit numbers 100101+) show their ward number instead
+		$label = html_escape(substr((string) $number, strlen((string) $number) > 4 ? 4 : 2));
 
 		// Tooltip shows the full number, the city name and "Deleted"
 		$tooltip = '<strong>' . html_escape($number) . '</strong>';
