@@ -98,7 +98,7 @@
 							<label for="stationProfile">
 								<?= __("Station Call/Location"); ?>
 							</label>
-							<select name="station_profile" class="station_id form-select" id="stationProfile">
+							<select name="station_profile" class="station_id form-select callsign" id="stationProfile">
 								<?php if($station_profile !== FALSE) { foreach ($station_profile->result() as $station) { ?>
 									<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
 																							echo 'selected';
@@ -115,7 +115,7 @@
 					<div class="col-xs-12 col-lg-6">
 						<div class="mb-3">
 							<label for="operator"><?= __("Operator"); ?> <span class="text-muted input-example"><?= __("e.g. OK2CQR"); ?></span></label>
-							<input type="text" class="form-control text-uppercase" id="operator" value="<?php echo $this->session->userdata('operator_callsign'); ?>">
+							<input type="text" class="form-control text-uppercase callsign" id="operator" value="<?php echo $this->session->userdata('operator_callsign'); ?>">
 							<div class="alert alert-danger" role="alert" id="warningOperatorField" style="display: none"> </div>
 							<small class="form-text text-muted"><?= __("This is callsign of the operator. Without any pre- or suffixes."); ?></small>
 						</div>
@@ -131,7 +131,7 @@
 				<div class="row">
 					<div class="col">
 						<p><?= __("Enter the Data"); ?></p>
-						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="sfle_textarea" style="font-family: 'Courier New', sans-serif;"></textarea>
+						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="sfle_textarea" style="font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;"></textarea>
 					</div>
 				</div>
 			<!-- Container for errors -->

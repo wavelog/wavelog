@@ -336,14 +336,20 @@ class CI_Session_memcached_driver extends CI_Session_driver implements SessionHa
 			return TRUE;
 		}
 
-		// 30 attempts to obtain a lock, in case another request already has it
+		// Wavelog: upstream CI3 polled with sleep(1), so every waiting request paid a full
+		// second even when the lock was released milliseconds later. With several parallel
+		// AJAX requests per page this produced a 1s/2s/3s staircase. Polling at 100ms keeps
+		// the total wait ceiling at 30s while picking up a released lock almost immediately.
+		$retry_interval = 100000; // microseconds
+		$max_attempts = 300;
+
 		$lock_key = $this->_key_prefix.$session_id.':lock';
 		$attempt = 0;
 		do
 		{
 			if ($this->_memcached->get($lock_key))
 			{
-				sleep(1);
+				usleep($retry_interval);
 				continue;
 			}
 
@@ -357,11 +363,11 @@ class CI_Session_memcached_driver extends CI_Session_driver implements SessionHa
 			$this->_lock_key = $lock_key;
 			break;
 		}
-		while (++$attempt < 30);
+		while (++$attempt < $max_attempts);
 
-		if ($attempt === 30)
+		if ($attempt === $max_attempts)
 		{
-			log_message('error', 'Session: Unable to obtain lock for '.$this->_key_prefix.$session_id.' after 30 attempts, aborting.');
+			log_message('error', 'Session: Unable to obtain lock for '.$this->_key_prefix.$session_id.' after '.$max_attempts.' attempts, aborting.');
 			return FALSE;
 		}
 

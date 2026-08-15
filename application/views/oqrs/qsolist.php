@@ -32,12 +32,12 @@ if ($qsos->result() != NULL) {
 
 	foreach ($qsos->result() as $qsl) {
 		echo '<tr id ="qsolist_'.$qsl->COL_PRIMARY_KEY.'">';
-		echo '<td style=\'text-align: center\'>' . $qsl->COL_CALL . '</td>';
+		echo '<td style=\'text-align: center\' class="callsign">' . html_escape($qsl->COL_CALL) . '</td>';
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
-		echo '<td style=\'text-align: center\'>'; echo $qsl->COL_SUBMODE==null?$qsl->COL_MODE:$qsl->COL_SUBMODE; echo '</td>';
-		echo '<td style=\'text-align: center\'>'; if($qsl->COL_SAT_NAME != null) { echo $qsl->COL_SAT_NAME; } else { echo strtolower($qsl->COL_BAND); }; echo '</td>';
-		echo '<td style=\'text-align: center\'><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
+		echo '<td style=\'text-align: center\'>'; echo $qsl->COL_SUBMODE==null?html_escape($qsl->COL_MODE):html_escape($qsl->COL_SUBMODE); echo '</td>';
+		echo '<td style=\'text-align: center\'>'; if($qsl->COL_SAT_NAME != null) { echo html_escape($qsl->COL_SAT_NAME); } else { echo html_escape(strtolower($qsl->COL_BAND)); }; echo '</td>';
+		echo '<td style=\'text-align: center\'><span class="badge text-bg-light callsign">' . $qsl->station_callsign . '</span></td>';
 		echo '<td style=\'text-align: center\' class="qsl">';
 		echo '<span ';
 		if ($qsl->COL_QSL_SENT != "N") {
@@ -73,7 +73,7 @@ if ($qsos->result() != NULL) {
 				echo " (".__("Direct").")";
 				break;
 			case "M":
-				echo " (".__("Via").": ".($qsl->COL_QSL_VIA!="" ? $qsl->COL_QSL_VIA:"n/a").")";
+					echo " (".__("Via").": ".($qsl->COL_QSL_VIA!="" ? '<span class="callsign">'.html_escape($qsl->COL_QSL_VIA).'</span>':"n/a").")";
 				break;
 			case "E":
 				echo " (".__("Electronic").")";

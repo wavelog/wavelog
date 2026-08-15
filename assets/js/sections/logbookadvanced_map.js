@@ -340,6 +340,7 @@ function loadMap(data, iconsList) {
 	});
 
 	var counter = 0;
+	var stationMarkerExists = false;
 
 	clicklines = [];
 	$.each(data, function(k, v) {
@@ -348,35 +349,40 @@ function loadMap(data, iconsList) {
 		if (this.latlng2[1] < -170) {
 			this.latlng2[1] =  parseFloat(this.latlng2[1])+360;
 		}
-		if (this.latlng1[1] < -170) {
-			this.latlng1[1] =  parseFloat(this.latlng1[1])+360;
-		}
+		if (typeof(this.latlng1) !== 'undefined') {
+			if (this.latlng1[1] < -170) {
+				this.latlng1[1] =  parseFloat(this.latlng1[1])+360;
+			}
 
-		if ((this.latlng1[1] - this.latlng2[1]) < -180) {
-			this.latlng2[1] =  parseFloat(this.latlng2[1]) -360;
-		} else if ((this.latlng1[1] - this.latlng2[1]) > 180) {
-			this.latlng2[1] =  parseFloat(this.latlng2[1]) +360;
+			if ((this.latlng1[1] - this.latlng2[1]) < -180) {
+				this.latlng2[1] =  parseFloat(this.latlng2[1]) -360;
+			} else if ((this.latlng1[1] - this.latlng2[1]) > 180) {
+				this.latlng2[1] =  parseFloat(this.latlng2[1]) +360;
+			}
 		}
 
 		var popupmessage = createContentMessage(this);
 		var popupmessage2 = createContentMessageDx(this);
 
-		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage);
+		if (typeof(this.latlng1) !== 'undefined') {
+			var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage);
+			stationMarkerExists = true;
 
-		marker.on('mouseover',function(ev) {
-			ev.target.openPopup();
-		});
-		let lat_lng = [this.latlng1[0], this.latlng1[1]];
-		bounds.extend(lat_lng);
+			marker.on('mouseover',function(ev) {
+				ev.target.openPopup();
+			});
+			let lat_lng = [this.latlng1[0], this.latlng1[1]];
+			bounds.extend(lat_lng);
+		}
 
 		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false});
-			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
+			marker2.bindTooltip(this.callsign, {permanent: false, direction: 'bottom', className: "lba-label"});
 			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qsoconfirm.color;
 		} else {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false});
-			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
+			marker2.bindTooltip(this.callsign, {permanent: false, direction: 'bottom', className: "lba-label"});
 			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qso.color;
 		}
@@ -388,39 +394,43 @@ function loadMap(data, iconsList) {
 		lat_lng = [this.latlng2[0], this.latlng2[1]];
 		bounds.extend(lat_lng);
 
-		const multiplelines = [];
-		multiplelines.push(
-			new L.LatLng(this.latlng1[0], this.latlng1[1]),
-			new L.LatLng(this.latlng2[0], this.latlng2[1])
-		)
+		if (typeof(this.latlng1) !== 'undefined') {
+			const multiplelines = [];
+			multiplelines.push(
+				new L.LatLng(this.latlng1[0], this.latlng1[1]),
+				new L.LatLng(this.latlng2[0], this.latlng2[1])
+			)
 
-		const geodesic = L.geodesic(multiplelines, {
-			weight: 1,
-			opacity: 1,
-			color: linecolor,
-			wrap: false,
-			steps: 100
-		}).addTo(map);
+			const geodesic = L.geodesic(multiplelines, {
+				weight: 1,
+				opacity: 1,
+				color: linecolor,
+				wrap: false,
+				steps: 100
+			}).addTo(map);
 
-		clicklines.push(geodesic);
+			clicklines.push(geodesic);
+		}
 	});
 
 	/*Legend specific*/
-    var legend = L.control({ position: "topright" });
+	var legend = L.control({ position: "topright" });
 
-    legend.onAdd = function(map) {
-        var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += '<div>' + counter + " QSO" +(counter > 1 ? 's' : '') +" plotted</div>";
-		div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_pathlines + '</span><br>';
+	legend.onAdd = function(map) {
+		var div = L.DomUtil.create("div", "legend");
+		div.innerHTML += '<div>' + counter + " QSO" +(counter > 1 ? 's' : '') +" plotted</div>";
+		if (stationMarkerExists == true) {
+			div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_pathlines + '</span><br>';
+		}
 		div.innerHTML += '<input type="checkbox" onclick="toggleCallsigns(this.checked)" ' + (typeof callsign_layer !== 'undefined' && callsign_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_callsigns + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_cq_zones + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleItuZones(this.checked)" ' + (typeof ituzones_layer !== 'undefined' && ituzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_itu_zones + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleNightShadow(this.checked)" ' + (typeof nightshadow_layer !== 'undefined' && nightshadow_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_nightshadow + '</span>';
-        return div;
-    };
+		return div;
+	};
 
-    legend.addTo(map);
+	legend.addTo(map);
 
 	maidenhead = L.maidenheadqrb().addTo(map);
 	nightlayer = L.terminator().addTo(map);
@@ -479,7 +489,7 @@ function createContentMessage(qso) {
 	var table = '<table><tbody>' +
 	'<tr>' +
 	'<td>' +
-	'Station callsign: ' + qso.mycallsign.replaceAll('0', 'Ø') +
+	'Station callsign: <span class="callsign">' + qso.mycallsign + '</span>' +
 	"</td></tr>" +
 	'<tr>' +
 	'<td>' +
@@ -495,7 +505,7 @@ function createContentMessageDx(qso) {
 	if (qso.dxccFlag != '') {
 		table += '<div class="flag">' + qso.dxccFlag + '</div>';
 	}
-	table += '<a id="edit_qso" href="javascript:displayQso('+qso.id+')">'+qso.callsign.replaceAll('0', 'Ø')+'</a></div>';
+	table += '<a id="edit_qso" class="callsign" href="javascript:displayQso('+qso.id+')">'+qso.callsign+'</a></div>';
 	table += '</td>' +
 	'</tr>' +
 	'<tr>' +
@@ -676,34 +686,41 @@ function globemap(x) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
 	globePayArc=[];
 	globePayLab=[];
+	startPos=[];
 	x.forEach((element) => {
-		let OneQsoArc={};
-		OneQsoArc.startLat=element.latlng1[0];
-		OneQsoArc.startLng=element.latlng1[1];
-		OneQsoArc.endLat=element.latlng2[0];
-		OneQsoArc.endLng=element.latlng2[1];
-		OneQsoArc.name=element.callsign;
-		if (element.confirmed) {
-			OneQsoArc.color = 'green';
-		} else {
-			OneQsoArc.color = 'red';
+		if (typeof(element.latlng1) !== 'undefined') {
+			let OneQsoArc={};
+			startPos = [element.latlng1[0], element.latlng1[1]];
+			OneQsoArc.startLat=element.latlng1[0];
+			OneQsoArc.startLng=element.latlng1[1];
+			OneQsoArc.endLat=element.latlng2[0];
+			OneQsoArc.endLng=element.latlng2[1];
+			OneQsoArc.name=element.callsign;
+			if (element.confirmed) {
+				OneQsoArc.color = 'green';
+			} else {
+				OneQsoArc.color = 'red';
+			}
+			// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
+			OneQsoArc.altitude=0.15;
+			globePayArc.push(OneQsoArc);
 		}
-		// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
-		OneQsoArc.altitude=0.15;
-		globePayArc.push(OneQsoArc);
 		let OneQsoLab={};
 		OneQsoLab.lat=element.latlng2[0];
 		OneQsoLab.lng=element.latlng2[1];
 		OneQsoLab.text=element.callsign;
 		globePayLab.push(OneQsoLab);
 	});
+	if (startPos.length === 0 && x.length > 0) {
+		startPos = [x[0].latlng2[0], x[0].latlng2[1]];
+	}
 	renderGlobe(globePayArc,globePayLab);
 }
 
 function renderGlobe(arcsData,labelData) {
 	Globe()
 	.globeImageUrl(base_url + '/assets/images/earth-blue-marble.jpg')
-	.pointOfView({ lat: arcsData[0].startLat, lng: arcsData[0].startLng, altitude:1}, 100)
+	.pointOfView({ lat: startPos[0], lng: startPos[1], altitude:1}, 100)
 	.labelsData(labelData)
 	.arcsData(arcsData)
 	.arcColor('color')

@@ -1,5 +1,5 @@
 <div class="container publicsearch">
-<h1><?= __("Results"); ?> <small class="text-muted"><?= __("Searching for"); ?> <?php echo str_replace("0","&Oslash;",strtoupper($callsign)); ?></small></h1>
+<h1><?= __("Results"); ?> <small class="text-muted"><?= __("Searching for"); ?> <span class="callsign"><?php echo strtoupper($callsign); ?></span></small></h1>
 <div class="card text-center">
 <div class="card-body">
 <?php
@@ -24,13 +24,13 @@ if ($results) { ?>
                 echo '<tr class="tr'.($i & 1).'">'; ?>
             <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($this->config->item('qso_date_format'), $timestamp); ?></td>
             <td>
-                <?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?>
+                <span class="callsign"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></span>
             </td>
             <td>
-                <?php echo $row->COL_SUBMODE==null ? $row->COL_MODE : $row->COL_SUBMODE; ?>
+                <?php echo html_escape($row->COL_SUBMODE==null ? $row->COL_MODE : $row->COL_SUBMODE); ?>
             </td>
             <td>
-                <?php if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); } ?>
+                <?php if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); } ?>
             </td>
             <td>
                 <?php echo $row->station_callsign; ?>

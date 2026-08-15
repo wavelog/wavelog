@@ -872,8 +872,8 @@ $options = json_decode($options);
 					<?php if($station_profile !== FALSE) { foreach ($station_profile->result() as $station) { ?>
 						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
 							echo " selected =\"selected\""; } ?>>
-							<?= __("Callsign: ") . " " ?>
-							<?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
+						<?= __("Callsign: ") . " " ?>
+						<span class="callsign"><?php echo strtoupper($station->station_callsign); ?></span> (<?php echo $station->station_profile_name; ?>)
 						</option>
 					<?php } } ?>
 				</select>

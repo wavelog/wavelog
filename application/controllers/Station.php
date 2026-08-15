@@ -102,7 +102,7 @@ class Station extends CI_Controller
 				}
 
 				if ($this->stations->edit()) {
-					$data['notice'] = __("Station Location") . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
+					$data['notice'] = sprintf(__("Station Location %s updated"), $this->input->post('station_profile_name', true));
 				}
 				// Also clean up static map images
 				if (!$this->load->is_loaded('staticmap_model')) {
@@ -226,6 +226,9 @@ class Station extends CI_Controller
 	}
 
 	function check_locator($grid = '') {
+		if ($grid == '') {
+			return true;
+		}
 		$this->load->library('Qra');
 		if ($this->qra->validate_grid($grid)) {
 			return true;

@@ -213,7 +213,7 @@ class OptionsLib {
             $jsonout['band']                = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'band','option_key'=>$slug), $userid)->row()->option_value ?? '';
         }
 
-        return json_encode($jsonout);
+        return json_encode($jsonout, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
     }
 
 }
