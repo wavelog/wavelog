@@ -683,26 +683,11 @@ class Update_model extends CI_Model {
         return $latest_tag;
     }
 
-    function set_latest_release($release) {
-        $this->db->select('option_value');
-        $this->db->where('option_name', 'latest_release');
-        $query = $this->db->get('options');
-        if ($query->num_rows() > 0) {
-            $this->db->where('option_name', 'latest_release');
-            $this->db->update('options', array('option_value' => $release));
-        } else {
-            $data = array(
-                array('option_name' => "latest_release", 'option_value' => $release),
-            );
-            $this->db->insert_batch('options', $data);
-        }
-    }
-
     function update_check($silent = false) {
         if (!$this->config->item('disable_version_check') ?? false) {
             $running_version = $this->optionslib->get_option('version');
             $latest_release = $this->wavelog_latest_release();
-            $this->set_latest_release($latest_release);
+            $this->optionslib->update('latest_release', $latest_release);
             if (version_compare($latest_release, $running_version, '>')) {
                 if (!$silent) {
                    print __("Newer release available:")." ".$latest_release;
