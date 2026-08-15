@@ -688,7 +688,7 @@
 						// The menu items will be displayed to the top right under extras.
 						//
 						// Example:
-						// INSERT INTO options (option_name,option_value,autoload) VALUES
+						// INSERT INTO options (option_name,option_value) VALUES
 						// 	('menuitems','[
 						// {
 						// 		"url":"gridmap",
@@ -700,7 +700,7 @@
 						// 		"text":"Gallery",
 						// 		"icon":"fa-globe-europe"
 						// }
-						// ]','yes');
+						// ]');
 						$menuitems = $this->optionslib->get_option('menuitems');
 
 						if ($menuitems) { ?>

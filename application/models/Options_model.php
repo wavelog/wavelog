@@ -8,12 +8,6 @@
 
 class Options_model extends CI_Model {
 
-    // Returns all options that are autoload yes
-	function get_autoloads() {
-		$this->db->where('autoload', "yes");
-		return $this->db->get('options');
-	}
-
 	// Return option value for an option
 	function item($option_name) {
 		$this->db->where('option_name', $option_name);
@@ -34,9 +28,8 @@ class Options_model extends CI_Model {
 	* Parameters
 	* - option_name: name of the option with no spaces
 	* - option_value: the value of the option name
-	* - autoload: this is whether it needs to be loaded every page load set to yes or no
 	*/
-	function save($option_name, $option_value, $autoload) {
+	function save($option_name, $option_value) {
 		$this->db->where('option_name', $option_name);
 		$query = $this->db->get('options');
 
@@ -47,7 +40,6 @@ class Options_model extends CI_Model {
 			$data = array(
 				'option_name' => $option_name,
 				'option_value' => $option_value,
-				'autoload' => $autoload,
 			);
 
 			// Save to database
@@ -65,14 +57,13 @@ class Options_model extends CI_Model {
 	* - option_name: name of the option with no spaces
 	* - option_value: the value of the option name
 	*/
-	function update($option_name, $option_value, $auto_load = NULL) {
+	function update($option_name, $option_value) {
 		$this->db->where('option_name', $option_name);
 		$query = $this->db->get('options');
 
 		$data = array(
 			'option_name' => $option_name,
 			'option_value' => $option_value,
-			'autoload' => $auto_load,
 		);
 
 		if($query->num_rows() > 0) {

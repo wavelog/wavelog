@@ -25,9 +25,11 @@ class OptionsLib {
      */
     function get_option($option_name) {
         // We remove the legacy "option_" prefix to maintain backwards compatibility with older code that may still use it
-        $removed_options_tag = trim($option_name, 'option_');
+        if (str_starts_with($option_name, 'option_')) {
+            $option_name = substr($option_name, 7);
+        }
 
-        return $this->CI->options_model->item($removed_options_tag);
+        return $this->CI->options_model->item($option_name);
     }
 
     /**
@@ -35,11 +37,10 @@ class OptionsLib {
      * 
      * @param string $option_name The name of the option to update
      * @param mixed $option_value The new value of the option
-     * @param string|null $auto_load Whether the option should be autoloaded ('yes' or 'no'), or null to leave unchanged
      * @return bool True if the option was updated successfully, false otherwise
      */
-    function update($option_name, $option_value, $auto_load = NULL) {
-        return $this->CI->options_model->update($option_name, $option_value, $auto_load);
+    function update($option_name, $option_value) {
+        return $this->CI->options_model->update($option_name, $option_value);
     }
 
 

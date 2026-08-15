@@ -692,7 +692,7 @@ class Update_model extends CI_Model {
             $this->db->update('options', array('option_value' => $release));
         } else {
             $data = array(
-                array('option_name' => "latest_release", 'option_value' => $release, 'autoload' => "yes"),
+                array('option_name' => "latest_release", 'option_value' => $release),
             );
             $this->db->insert_batch('options', $data);
         }
