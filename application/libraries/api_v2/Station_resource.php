@@ -203,7 +203,9 @@ class Station_resource extends Api_v2_resource {
 			);
 		}
 
-		$this->CI->api_v2_response->respond($this->format_station($this->CI->stations->profile_clean($id)));
+		// profile() rather than profile_clean(): only that one joins the DXCC
+		// entity, so the response carries `country` like index() and show() do.
+		$this->CI->api_v2_response->respond($this->format_station($this->CI->stations->profile($id)->row()));
 	}
 
 	/**

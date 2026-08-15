@@ -55,7 +55,7 @@ class Stations extends CI_Model {
 
 	function profile($id) {
 		// Clean ID
-		$sql = 'SELECT `station_profile`.*, `dxcc_entities`.`lat` AS dxcc_lat, `dxcc_entities`.`long` AS dxcc_lon FROM `station_profile` LEFT JOIN `dxcc_entities` ON `station_profile`.`station_dxcc` = `dxcc_entities`.`adif` WHERE `station_id` = ?';
+		$sql = 'SELECT `station_profile`.*, `dxcc_entities`.`name` AS station_country, `dxcc_entities`.`lat` AS dxcc_lat, `dxcc_entities`.`long` AS dxcc_lon FROM `station_profile` LEFT JOIN `dxcc_entities` ON `station_profile`.`station_dxcc` = `dxcc_entities`.`adif` WHERE `station_id` = ?';
 		$query = $this->db->query($sql, $this->security->xss_clean($id));
 		return $query;
 	}
@@ -94,8 +94,10 @@ class Stations extends CI_Model {
 	 * @return object|null The station_profile row, or null when not found.
 	 */
 	function profile_by_uuid($uuid, $user_id) {
+		$this->db->select('station_profile.*, dxcc_entities.name as station_country');
+		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
 		$this->db->where('station_uuid', $this->security->xss_clean($uuid));
-		$this->db->where('user_id', $user_id);
+		$this->db->where('station_profile.user_id', $user_id);
 		return $this->db->get('station_profile')->row();
 	}
 

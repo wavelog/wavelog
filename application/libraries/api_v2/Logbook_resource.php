@@ -100,8 +100,8 @@ class Logbook_resource extends Api_v2_resource {
 		$this->sync_station_links($logbook_id, $station_ids, $uid);
 
 		$row = $this->CI->logbooks_model->logbook($logbook_id, $uid)->row();
-		$headers = ['Location' => base_url('index.php/api/v2/logbook/' . $logbook_id)];
-		$this->CI->api_v2_response->respond($this->format($row, $this->active_id()), 201, null, $headers);
+		$headers = $row ? ['Location' => base_url('index.php/api/v2/logbook/' . $logbook_id)] : [];
+		$this->CI->api_v2_response->respond($row ? $this->format($row, $this->active_id()) : null, 201, null, $headers);
 	}
 
 	/**
