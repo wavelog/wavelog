@@ -23,34 +23,6 @@ class Options_model extends CI_Model {
 
 	/*
 	*
-	* Saves an option to the database
-	*
-	* Parameters
-	* - option_name: name of the option with no spaces
-	* - option_value: the value of the option name
-	*/
-	function save($option_name, $option_value) {
-		$this->db->where('option_name', $option_name);
-		$query = $this->db->get('options');
-
-		if($query->num_rows() > 0) {
-			// Update the Entry
-			return FALSE;
-		} else {
-			$data = array(
-				'option_name' => $option_name,
-				'option_value' => $option_value,
-			);
-
-			// Save to database
-			$this->db->insert('options', $data);
-
-			return TRUE;
-		}
-	}
-
-	/*
-	*
 	* Saves an update to option
 	*
 	* Parameters
