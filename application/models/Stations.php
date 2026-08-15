@@ -14,6 +14,18 @@ class Stations extends CI_Model {
 		return $this->db->get();
 	}
 
+	/*
+	 * Makes $station_id the active station for $user_id, deactivating all others.
+	 * Mirrors the web UI's station-switch behaviour without requiring a session.
+	 */
+	function switch_active($station_id, $user_id) {
+		$this->db->where('user_id', (int) $user_id)
+			->update('station_profile', ['station_active' => 0]);
+		$this->db->where('station_id', (int) $station_id)
+			->where('user_id', (int) $user_id)
+			->update('station_profile', ['station_active' => 1]);
+	}
+
 	function all_of_user($userid = null) {
 		if ($userid == null) {
 			$userid=$this->session->userdata('user_id'); // Fallback to session-uid, if userid is omitted

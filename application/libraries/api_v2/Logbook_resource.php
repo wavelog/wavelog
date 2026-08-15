@@ -7,9 +7,8 @@ require_once __DIR__ . '/Api_v2_resource.php';
 /**
  * API v2 - Logbook resource
  *
- * Exposes the token owner's logbooks (station_logbooks table). The existing
- * Logbooks_model is session-bound, so this resource issues direct queries using
- * the token's user_id.
+ * Exposes the token owner's logbooks (station_logbooks table) via the
+ * Logbooks_model, which owns all access to that table.
  *
  * Routes:
  *   GET    /api/v2/logbook           list all logbooks (includes linked station ids)
@@ -42,8 +41,10 @@ class Logbook_resource extends Api_v2_resource {
 	 * GET /api/v2/logbook
 	 */
 	public function index() {
-		$rows = $this->fetch_all();
-		$active_id = $this->active_logbook_id();
+		$this->CI->load->model('logbooks_model');
+		$uid      = $this->user_id();
+		$rows     = $this->CI->logbooks_model->list_for_user($uid);
+		$active_id = $this->CI->logbooks_model->get_active_id_for_user($uid);
 		$out = [];
 		foreach ($rows as $row) {
 			$out[] = $this->format($row, $active_id);
@@ -55,8 +56,10 @@ class Logbook_resource extends Api_v2_resource {
 	 * GET /api/v2/logbook/{id}
 	 */
 	public function show($id) {
+		$this->CI->load->model('logbooks_model');
 		$row = $this->require_owned($id);
-		$this->CI->api_v2_response->respond($this->format($row, $this->active_logbook_id()));
+		$active_id = $this->CI->logbooks_model->get_active_id_for_user($this->user_id());
+		$this->CI->api_v2_response->respond($this->format($row, $active_id));
 	}
 
 	/**
@@ -65,6 +68,7 @@ class Logbook_resource extends Api_v2_resource {
 	 */
 	public function create() {
 		$this->require_write();
+		$this->CI->load->model('logbooks_model');
 
 		$body = $this->body();
 		$this->require_scalar_fields($body);
@@ -75,44 +79,39 @@ class Logbook_resource extends Api_v2_resource {
 		}
 
 		$uid = $this->user_id();
-
-		// Check for duplicate name.
-		$existing = $this->CI->db->where('user_id', $uid)->where('logbook_name', $name)->get('station_logbooks');
-		if ($existing->num_rows() > 0) {
+		$logbook_id = $this->CI->logbooks_model->create_for_user($name, $uid);
+		if ($logbook_id === -1) {
 			throw new Api_v2_exception('conflict', 'A logbook with that name already exists', 409);
 		}
 
-		$this->CI->db->insert('station_logbooks', [
-			'user_id'      => $uid,
-			'logbook_name' => xss_clean($name),
-		]);
-		$logbook_id = $this->CI->db->insert_id();
-
 		// Make active if it is the user's first logbook.
-		$active_id = $this->active_logbook_id();
+		$active_id = $this->CI->logbooks_model->get_active_id_for_user($uid);
 		if ($active_id === null) {
-			$this->set_active($logbook_id);
+			$this->CI->logbooks_model->set_active_for_user($logbook_id, $uid);
 			$active_id = $logbook_id;
 		}
 
-		$row = $this->fetch_one($logbook_id);
+		$row = $this->CI->logbooks_model->get_by_id_for_user($logbook_id, $uid);
 		$headers = ['Location' => base_url('index.php/api/v2/logbook/' . $logbook_id)];
 		$this->CI->api_v2_response->respond($this->format($row, $active_id), 201, null, $headers);
 	}
 
 	/**
 	 * PATCH /api/v2/logbook/{id}
-	 * Accepts: name (string), active (bool true)
+	 * Accepts: name (string), active (bool true), link_station_id (int), unlink_station_id (int)
 	 */
 	public function update($id) {
 		$this->require_write();
+		$this->CI->load->model('logbooks_model');
+		$this->CI->load->model('stations');
+
 		$row = $this->require_owned($id);
 		$body = $this->body();
 		$this->require_scalar_fields($body);
 
-		$uid = $this->user_id();
+		$uid        = $this->user_id();
 		$logbook_id = (int) $row->logbook_id;
-		$changed = false;
+		$changed    = false;
 
 		// Rename.
 		if (array_key_exists('name', $body)) {
@@ -120,44 +119,30 @@ class Logbook_resource extends Api_v2_resource {
 			if ($name === '') {
 				throw new Api_v2_exception('validation_error', 'name cannot be blank', 400);
 			}
-			$this->CI->db->where('user_id', $uid)->where('logbook_id', $logbook_id)
-				->update('station_logbooks', ['logbook_name' => xss_clean($name)]);
+			$this->CI->logbooks_model->rename_for_user($logbook_id, $name, $uid);
 			$changed = true;
 		}
 
 		// Set active.
 		if (!empty($body['active'])) {
-			$this->set_active($logbook_id);
+			$this->CI->logbooks_model->set_active_for_user($logbook_id, $uid);
 			$changed = true;
 		}
 
 		// Link a station location to this logbook.
 		if (!empty($body['link_station_id'])) {
 			$station_id = (int) $body['link_station_id'];
-			$this->CI->load->model('stations');
 			if (!$this->CI->stations->check_station_against_user($station_id, $uid)) {
 				throw new Api_v2_exception('forbidden', 'link_station_id does not belong to this token', 403);
 			}
-			$exists = $this->CI->db
-				->where('station_logbook_id', $logbook_id)
-				->where('station_location_id', $station_id)
-				->get('station_logbooks_relationship')->num_rows();
-			if (!$exists) {
-				$this->CI->db->insert('station_logbooks_relationship', [
-					'station_logbook_id'  => $logbook_id,
-					'station_location_id' => $station_id,
-				]);
-			}
+			$this->CI->logbooks_model->link_station($logbook_id, $station_id);
 			$changed = true;
 		}
 
 		// Unlink a station location from this logbook.
 		if (!empty($body['unlink_station_id'])) {
 			$station_id = (int) $body['unlink_station_id'];
-			$this->CI->db
-				->where('station_logbook_id', $logbook_id)
-				->where('station_location_id', $station_id)
-				->delete('station_logbooks_relationship');
+			$this->CI->logbooks_model->unlink_station($logbook_id, $station_id);
 			$changed = true;
 		}
 
@@ -165,8 +150,9 @@ class Logbook_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
-		$updated = $this->fetch_one($logbook_id);
-		$this->CI->api_v2_response->respond($this->format($updated, $this->active_logbook_id()));
+		$updated   = $this->CI->logbooks_model->get_by_id_for_user($logbook_id, $uid);
+		$active_id = $this->CI->logbooks_model->get_active_id_for_user($uid);
+		$this->CI->api_v2_response->respond($this->format($updated, $active_id));
 	}
 
 	/**
@@ -175,22 +161,17 @@ class Logbook_resource extends Api_v2_resource {
 	 */
 	public function delete($id) {
 		$this->require_delete();
-		$row = $this->require_owned($id);
-		$logbook_id = (int) $row->logbook_id;
+		$this->CI->load->model('logbooks_model');
 
-		if ($logbook_id === $this->active_logbook_id()) {
+		$row        = $this->require_owned($id);
+		$logbook_id = (int) $row->logbook_id;
+		$uid        = $this->user_id();
+
+		if ($logbook_id === $this->CI->logbooks_model->get_active_id_for_user($uid)) {
 			throw new Api_v2_exception('conflict', 'The active logbook cannot be deleted', 409);
 		}
 
-		// Remove static map images first (mirrors Logbooks_model::delete()).
-		if (!$this->CI->load->is_loaded('staticmap_model')) {
-			$this->CI->load->model('staticmap_model');
-		}
-		$this->CI->staticmap_model->remove_static_map_image(null, $logbook_id);
-
-		$this->CI->db->where('user_id', $this->user_id())->where('logbook_id', $logbook_id)
-			->delete('station_logbooks');
-
+		$this->CI->logbooks_model->delete_for_user($logbook_id, $uid);
 		$this->CI->api_v2_response->no_content();
 	}
 
@@ -200,43 +181,11 @@ class Logbook_resource extends Api_v2_resource {
 		if (!is_numeric($id) || (int) $id < 1) {
 			throw new Api_v2_exception('not_found', 'Logbook not found', 404);
 		}
-		$row = $this->fetch_one((int) $id);
+		$row = $this->CI->logbooks_model->get_by_id_for_user((int) $id, $this->user_id());
 		if ($row === null) {
 			throw new Api_v2_exception('not_found', 'Logbook not found', 404);
 		}
 		return $row;
-	}
-
-	protected function fetch_all() {
-		return $this->CI->db
-			->where('user_id', $this->user_id())
-			->order_by('logbook_id', 'ASC')
-			->get('station_logbooks')
-			->result();
-	}
-
-	protected function fetch_one($id) {
-		$q = $this->CI->db
-			->where('user_id', $this->user_id())
-			->where('logbook_id', (int) $id)
-			->get('station_logbooks');
-		return $q->num_rows() > 0 ? $q->row() : null;
-	}
-
-	protected function active_logbook_id() {
-		$q = $this->CI->db
-			->select('active_station_logbook')
-			->where('user_id', $this->user_id())
-			->get('users');
-		if ($q->num_rows() === 0) return null;
-		$v = $q->row()->active_station_logbook;
-		return ($v !== null && $v > 0) ? (int) $v : null;
-	}
-
-	protected function set_active($logbook_id) {
-		$this->CI->db
-			->where('user_id', $this->user_id())
-			->update('users', ['active_station_logbook' => (int) $logbook_id]);
 	}
 
 	protected function format($row, $active_id) {
@@ -245,16 +194,7 @@ class Logbook_resource extends Api_v2_resource {
 			'id'                 => $logbook_id,
 			'name'               => $row->logbook_name ?? null,
 			'active'             => ($logbook_id === $active_id),
-			'linked_station_ids' => $this->linked_station_ids($logbook_id),
+			'linked_station_ids' => $this->CI->logbooks_model->get_linked_station_ids($logbook_id),
 		];
-	}
-
-	protected function linked_station_ids($logbook_id) {
-		$rows = $this->CI->db
-			->select('station_location_id')
-			->where('station_logbook_id', $logbook_id)
-			->get('station_logbooks_relationship')
-			->result();
-		return array_map(fn($r) => (int) $r->station_location_id, $rows);
 	}
 }

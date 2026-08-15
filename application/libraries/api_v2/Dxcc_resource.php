@@ -64,16 +64,12 @@ class Dxcc_resource extends Api_v2_resource {
 		}
 		$this->CI->load->model('dxcc');
 
-		$q = $this->CI->db
-			->where('adif', (int) $id)
-			->where('end', null)
-			->get('dxcc_entities');
-
-		if ($q->num_rows() === 0) {
+		$row = $this->CI->dxcc->get_by_adif((int) $id);
+		if ($row === null) {
 			throw new Api_v2_exception('not_found', 'DXCC entity not found', 404);
 		}
 
-		$data = $this->format($q->row());
+		$data = $this->format($row);
 
 		if ($this->param('subdivisions') === 'true') {
 			$data['subdivisions'] = $this->fetch_subdivisions((int) $id);
@@ -91,14 +87,7 @@ class Dxcc_resource extends Api_v2_resource {
 	 * Also maps the patch endpoint get_state_list: ?dxcc={adif}
 	 */
 	protected function fetch_subdivisions($adif_id) {
-		$rows = $this->CI->db
-			->select('state, subdivision')
-			->where('adif', $adif_id)
-			->where('deprecated', 0)
-			->order_by('subdivision', 'ASC')
-			->get('primary_subdivisions')
-			->result();
-
+		$rows = $this->CI->dxcc->get_subdivisions($adif_id);
 		return array_map(fn($r) => [
 			'code' => $r->state,
 			'name' => $r->subdivision,

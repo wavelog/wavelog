@@ -251,15 +251,8 @@ class Station_resource extends Api_v2_resource {
 	 * @param int $station_id
 	 */
 	protected function switch_active_station($station_id) {
-		// Deactivate every station for this user, then activate the target.
 		$this->CI->load->model('stations');
-		$this->CI->db
-			->where('user_id', $this->user_id())
-			->update('station_profile', ['station_active' => 0]);
-		$this->CI->db
-			->where('station_id', $station_id)
-			->where('user_id', $this->user_id())
-			->update('station_profile', ['station_active' => 1]);
+		$this->CI->stations->switch_active((int) $station_id, $this->user_id());
 	}
 
 	/**

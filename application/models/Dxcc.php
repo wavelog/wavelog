@@ -17,6 +17,26 @@ class DXCC extends CI_Model {
 	}
 
 	/*
+	 * Returns a single current DXCC entity by ADIF number, or null when not found.
+	 */
+	function get_by_adif($adif_id) {
+		$this->db->where('adif', (int) $adif_id)->where('end', null);
+		$q = $this->db->get('dxcc_entities');
+		return $q->num_rows() > 0 ? $q->row() : null;
+	}
+
+	/*
+	 * Returns the primary subdivisions (states/provinces) for a DXCC entity.
+	 */
+	function get_subdivisions($adif_id) {
+		$this->db->select('state, subdivision')
+			->where('adif', (int) $adif_id)
+			->where('deprecated', 0)
+			->order_by('subdivision', 'ASC');
+		return $this->db->get('primary_subdivisions')->result();
+	}
+
+	/*
 	 * Fetches a list of all current dxcc's (non-deleted)
 	 */
 	function list_current($orderer = 'name') {

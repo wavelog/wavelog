@@ -359,20 +359,19 @@ class Qso_resource extends Api_v2_resource {
 	 * @param int $session_id contest_session.id to link to.
 	 */
 	protected function link_to_contest($qso_id, $session_id) {
-		$ok = $this->CI->db
-			->where('id', $session_id)
-			->where('user_id', $this->user_id())
-			->get('contest_session')
-			->num_rows();
+		$this->CI->load->model('contesting_model');
 
-		if (!$ok) {
+		// Verify ownership: get_sessions_for_user returns empty when the session
+		// does not belong to this user, so silently skip rather than throwing —
+		// the QSO is already committed and rolling it back is not an option here.
+		$sessions = $this->CI->contesting_model->get_sessions_for_user(
+			$this->user_id(), null, 0, (int) $session_id
+		);
+		if (empty($sessions)) {
 			return;
 		}
 
-		$this->CI->db->insert('contest_qsos', [
-			'contest_session_id' => $session_id,
-			'qso_id'             => $qso_id,
-		]);
+		$this->CI->contesting_model->link_qsos((int) $session_id, [(int) $qso_id]);
 	}
 
 	/**

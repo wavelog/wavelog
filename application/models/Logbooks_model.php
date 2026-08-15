@@ -279,5 +279,146 @@ class Logbooks_model extends CI_Model {
 
 		return $query->result_array()[0]['public_search'];
 	}
+
+	// --- API v2 helpers (user_id-parameterised, no session dependency) ------
+
+	/*
+	 * All logbooks for a given user, ordered by id.
+	 */
+	function list_for_user($user_id) {
+		return $this->db->where('user_id', (int) $user_id)
+			->order_by('logbook_id', 'ASC')
+			->get('station_logbooks')
+			->result();
+	}
+
+	/*
+	 * Single logbook by id, ownership-checked. Returns the row or null.
+	 */
+	function get_by_id_for_user($logbook_id, $user_id) {
+		$q = $this->db->where('user_id', (int) $user_id)
+			->where('logbook_id', (int) $logbook_id)
+			->get('station_logbooks');
+		return $q->num_rows() > 0 ? $q->row() : null;
+	}
+
+	/*
+	 * Create a logbook for $user_id. Returns the new logbook_id, or -1 if name
+	 * is empty or already exists for this user.
+	 */
+	function create_for_user($name, $user_id) {
+		$name = trim($name);
+		if ($name === '') {
+			return -1;
+		}
+		$dupe = $this->db->where('user_id', (int) $user_id)
+			->where('logbook_name', $name)
+			->get('station_logbooks');
+		if ($dupe->num_rows() > 0) {
+			return -1;
+		}
+		$this->db->insert('station_logbooks', [
+			'user_id'      => (int) $user_id,
+			'logbook_name' => xss_clean($name),
+		]);
+		return $this->db->insert_id();
+	}
+
+	/*
+	 * Rename a logbook. Returns false when the logbook does not belong to the user.
+	 */
+	function rename_for_user($logbook_id, $name, $user_id) {
+		if ($this->get_by_id_for_user($logbook_id, $user_id) === null) {
+			return false;
+		}
+		$this->db->where('user_id', (int) $user_id)
+			->where('logbook_id', (int) $logbook_id)
+			->update('station_logbooks', ['logbook_name' => xss_clean(trim($name))]);
+		return true;
+	}
+
+	/*
+	 * Delete a logbook (and clean up static map images). Returns false when the
+	 * logbook does not belong to the user.
+	 */
+	function delete_for_user($logbook_id, $user_id) {
+		if ($this->get_by_id_for_user($logbook_id, $user_id) === null) {
+			return false;
+		}
+		if (!$this->load->is_loaded('staticmap_model')) {
+			$this->load->model('staticmap_model');
+		}
+		$this->staticmap_model->remove_static_map_image(null, (int) $logbook_id);
+		$this->db->where('user_id', (int) $user_id)
+			->where('logbook_id', (int) $logbook_id)
+			->delete('station_logbooks');
+		return true;
+	}
+
+	/*
+	 * Returns the active logbook id for a user, or null when none is set.
+	 */
+	function get_active_id_for_user($user_id) {
+		$q = $this->db->select('active_station_logbook')
+			->where('user_id', (int) $user_id)
+			->get('users');
+		if ($q->num_rows() === 0) {
+			return null;
+		}
+		$v = $q->row()->active_station_logbook;
+		return ($v !== null && $v > 0) ? (int) $v : null;
+	}
+
+	/*
+	 * Makes $logbook_id the active logbook for $user_id. Ownership is not
+	 * re-checked here — callers must verify before calling.
+	 */
+	function set_active_for_user($logbook_id, $user_id) {
+		$this->db->where('user_id', (int) $user_id)
+			->update('users', ['active_station_logbook' => (int) $logbook_id]);
+	}
+
+	/*
+	 * Returns the station_location_ids linked to a logbook as an int array.
+	 */
+	function get_linked_station_ids($logbook_id) {
+		$rows = $this->db->select('station_location_id')
+			->where('station_logbook_id', (int) $logbook_id)
+			->get('station_logbooks_relationship')
+			->result();
+		return array_map(fn($r) => (int) $r->station_location_id, $rows);
+	}
+
+	/*
+	 * Links a station location to a logbook. Silently skips when the link
+	 * already exists (idempotent).
+	 */
+	function link_station($logbook_id, $station_id) {
+		if (!$this->station_link_exists($logbook_id, $station_id)) {
+			$this->db->insert('station_logbooks_relationship', [
+				'station_logbook_id'  => (int) $logbook_id,
+				'station_location_id' => (int) $station_id,
+			]);
+		}
+	}
+
+	/*
+	 * Removes the link between a logbook and a station location.
+	 */
+	function unlink_station($logbook_id, $station_id) {
+		$this->db->where('station_logbook_id', (int) $logbook_id)
+			->where('station_location_id', (int) $station_id)
+			->delete('station_logbooks_relationship');
+	}
+
+	/*
+	 * Returns true when the logbook↔station link already exists.
+	 */
+	function station_link_exists($logbook_id, $station_id) {
+		$q = $this->db->where('station_logbook_id', (int) $logbook_id)
+			->where('station_location_id', (int) $station_id)
+			->get('station_logbooks_relationship');
+		return $q->num_rows() > 0;
+	}
 }
 ?>
