@@ -50,7 +50,9 @@ class Dxcc_resource extends Api_v2_resource {
 			$out[] = $this->format($row);
 		}
 
-		$this->CI->api_v2_response->respond($out, 200, ['count' => count($out)]);
+		// No meta block and no pagination, same as Station_resource::index():
+		// the entity list is short, static and always returned in full.
+		$this->CI->api_v2_response->respond($out);
 	}
 
 	/**
@@ -79,15 +81,17 @@ class Dxcc_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * GET /api/v2/dxcc?subdivisions={adif}
-	 * Convenience endpoint: returns just the subdivision list for a given DXCC.
-	 * Equivalent to GET /api/v2/dxcc/{id}?subdivisions=true but usable without
-	 * knowing the entity's exact ADIF id in advance.
+	 * Primary administrative subdivisions (states/provinces) of an entity, from
+	 * the same source as the QSO editor's state dropdown
+	 * (Subdivisions::get_state_list() -> Logbook_model::get_states_by_dxcc()).
 	 *
-	 * Also maps the patch endpoint get_state_list: ?dxcc={adif}
+	 * Deprecated subdivisions are left out here: they exist so an old QSO can
+	 * still show the state it was logged with, but they are not valid choices
+	 * for anything a client creates.
 	 */
 	protected function fetch_subdivisions($adif_id) {
-		$rows = $this->CI->dxcc->get_subdivisions($adif_id);
+		$this->CI->load->model('logbook_model');
+		$rows = $this->CI->logbook_model->get_states_by_dxcc($adif_id, true)->result();
 		return array_map(fn($r) => [
 			'code' => $r->state,
 			'name' => $r->subdivision,
