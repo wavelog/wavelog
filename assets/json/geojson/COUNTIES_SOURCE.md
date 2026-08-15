@@ -77,6 +77,6 @@ def round_coords(x, y, z=None):
 This is heavier than the states file it replaces for this purpose
 (`counties_state_outline_291.geojson` is ~3.8MB vs `states_291.geojson`'s
 ~60KB) since it necessarily carries the same vertex density as the county
-data along every state edge - but it's cached the same way as the other
-boundary files (`Awards::counties_geojson()`, 30-day `Cache-Control`/ETag),
-and correctness at high zoom was judged worth the size.
+data along every state edge - but it is served as a static asset and cached
+by the browser like the other boundary files, and correctness at high zoom
+was judged worth the size.

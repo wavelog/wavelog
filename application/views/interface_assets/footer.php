@@ -2851,7 +2851,6 @@ function viewEqsl(picture, callsign) {
         var data = {};
         var $qslCheckbox = $('#countiesQsl');
         if ($qslCheckbox.length) {
-            data['qslFilterSet'] = 1;
             sources.forEach(function(source) {
                 data[source] = $('#counties' + source.charAt(0).toUpperCase() + source.slice(1)).is(':checked') ? 1 : 0;
             });

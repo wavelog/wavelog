@@ -6090,50 +6090,36 @@ class Logbook_model extends CI_Model {
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
-	function county_qso_details($state, $county, $band = 'All', $mode = 'All') {
+	function county_qso_details($state, $county, $postdata = array()) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		// COL_CNTY is stored as "STATE,COUNTY" for US QSOs (see
-		// add_contact()'s $clean_county_input below), but $county here can
-		// arrive either bare (the counties map passes the boundary
-		// GeoJSON's un-prefixed feature name when a county is clicked) or
-		// already prefixed (the state list dialog echoes COL_CNTY as-is,
-		// e.g. "ME,AROOSTOOK"). An exact match against the raw column only
-		// ever satisfied the second case, so clicking a county on the map
-		// always returned zero rows even for counties shown confirmed -
-		// normalize both sides the same way Counties::get_counties_map()
-		// does, and match case-insensitively since a QSO's logged county
-		// can be typed/imported in any case.
-		//
-		// Built as raw SQL with bound placeholders rather than the query
-		// builder's where(): CI3's where() tries to parse a string key for
-		// multiple comma-separated columns, and SUBSTRING_INDEX(COL_CNTY,
-		// ',', -1)'s own comma trips that up and fatals.
-		$bare_county = trim(preg_replace('/^.*,/', '', $county));
+		// COL_CNTY is stored as "STATE,COUNTY", but $county can arrive bare
+		// (map click) or prefixed (state list dialog), so match on the bare
+		// name, case-insensitively. Raw SQL because CI3's where() cannot
+		// bind arguments inside SUBSTRING_INDEX() (comma parsing fatals).
+		$this->load->model('counties');
+		$bare_county = $this->counties->bare_county($county);
 
 		$table = $this->config->item('table_name');
 		$station_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
 
-		// Reuses Counties_model's band/mode/SAT rules so this detail dialog
-		// (opened from either the map or the state list) always matches
-		// whatever the counties award Band/Mode filter is currently
-		// showing - it previously ignored Band/Mode entirely and hardcoded
-		// SAT out, so e.g. filtering to just "SAT" would show a county as
-		// confirmed on the map but list zero QSOs when clicked.
-		$this->load->model('counties');
+		// Band/Mode follow the counties award filter so the dialog matches
+		// what the map and state list are showing.
+		$this->load->library('Genfunctions');
 		$binding = array_merge($logbooks_locations_array, [strtoupper($state), strtoupper($bare_county)]);
-		$band_condition = $this->counties->band_condition($band, $binding);
-		$mode_condition = $this->counties->mode_condition($mode, $binding);
-		$sat_exclusion = $this->counties->sat_exclusion($band);
+		$band_condition = $this->counties->band_condition($postdata['band'] ?? 'All', $binding);
+		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
 
-		$sql = "select * from $table thcv
+		$sql = "select thcv.*, station_profile.*, dxcc_entities.*, lotw_users.*, satellite.displayname as sat_displayname, satellite.name as sat_name
+			from $table thcv
 			join station_profile on station_profile.station_id = thcv.station_id
+			left outer join dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
 			left outer join lotw_users on lotw_users.callsign = thcv.col_call
+			left outer join satellite on thcv.col_prop_mode = 'SAT' and thcv.col_sat_name = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
 			where thcv.station_id in ($station_placeholders)
 			and UPPER(thcv.COL_STATE) = ?
 			and UPPER(TRIM(SUBSTRING_INDEX(thcv.COL_CNTY, ',', -1))) = ?
-			$sat_exclusion
 			$band_condition
 			$mode_condition";
 

@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    // Band/Mode multi-select dropdowns, same bootstrap-multiselect widget/config
-    // as the Satellite Pass page's satellite picker (assets/js/sections/satpasses.js).
+    // Band/Mode multi-select dropdowns (same widget as the Satellite Pass page's satellite picker)
     var multiselectOptions = {
         enableFiltering: true,
         enableCaseInsensitiveFiltering: true,
@@ -41,35 +40,19 @@ function load_counties_map() {
     $.ajax({
         url: base_url + 'index.php/awards/counties_map',
         type: 'post',
-        data: {
-            qslFilterSet: 1,
-            qsl: +$('#countiesQsl').prop('checked'),
-            lotw: +$('#countiesLotw').prop('checked'),
-            eqsl: +$('#countiesEqsl').prop('checked'),
-            qrz: +$('#countiesQrz').prop('checked'),
-            clublog: +$('#countiesClublog').prop('checked'),
-            band: $('#countiesBand').val() || [],
-            mode: $('#countiesMode').val() || [],
-        },
+        data: countiesQslFilterData(),
         success: function(data) {
             countyStatus = data;
-            // Fetch lower 48 + DC (DXCC 291), Alaska (DXCC 6) and Hawaii (DXCC 110) separately,
-            // plus the state-level outline for each, drawn bolder on top of the counties so
-            // state lines stand out from county lines. The outline files are the *same* county
-            // boundaries dissolved per state (see COUNTIES_SOURCE.md), not the WAS map's
-            // independently-simplified states_*.geojson - reusing that caused the bold outline
-            // to visibly diverge from the county shading underneath at high zoom, since the two
-            // were different simplifications of the same physical line.
-            // Routed through counties_geojson() rather than fetched as static assets so the
-            // combined payload gets an explicit long-lived Cache-Control/ETag (see
-            // Awards::counties_geojson()) instead of depending on the host's web server defaults.
+            // Lower 48 + DC (DXCC 291), Alaska (DXCC 6) and Hawaii (DXCC 110), plus the
+            // state outlines dissolved from the same county boundaries, drawn bolder
+            // on top so state lines stand out from county lines.
             Promise.all([
-                fetch(base_url + 'index.php/awards/counties_geojson/counties_291').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/counties_6').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/counties_110').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/counties_state_outline_291').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/counties_state_outline_6').then(r => r.json()),
-                fetch(base_url + 'index.php/awards/counties_geojson/counties_state_outline_110').then(r => r.json())
+                fetch(base_url + 'assets/json/geojson/counties_291.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/counties_6.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/counties_110.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/counties_state_outline_291.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/counties_state_outline_6.geojson').then(r => r.json()),
+                fetch(base_url + 'assets/json/geojson/counties_state_outline_110.geojson').then(r => r.json())
             ]).then(([counties48, ak, hi, states48, statesAk, statesHi]) => {
                 counties48.features = counties48.features.concat(ak.features, hi.features);
                 states48.features = states48.features.concat(statesAk.features, statesHi.features);
@@ -173,9 +156,7 @@ function load_counties_map2(mapcoordinates, stateCoordinates) {
 }
 
 function getCountyColor(id) {
-    // Uppercase to match Awards::counties_map()'s case-insensitive key
-    // (a QSO's logged county name can be typed/imported in any case, but
-    // the boundary GeoJSON's feature ids use fixed ARRL/MARAC casing).
+    // Uppercased to match Awards::counties_map()'s case-insensitive keys
     var status = countyStatus[id.toUpperCase()];
     return status == 'C' ? confirmedColor :
            status == 'W' ? workedColor :

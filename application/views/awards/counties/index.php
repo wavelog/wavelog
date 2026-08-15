@@ -56,20 +56,10 @@
             </ul>
         </div>
         <div class="card-body">
-    <form class="form" action="<?php echo site_url('awards/counties'); ?>" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="qslFilterSet" value="1">
+    <form class="form" action="<?php echo site_url('awards/counties'); ?>" method="post">
         <div class="mb-4 text-center">
             <div class="dropdown">
-                <?php /* auto-close "false" (must be on the toggle button itself - Bootstrap
-                    reads data-bs-auto-close off the [data-bs-toggle="dropdown"] element,
-                    not the wrapping .dropdown div): Band/Mode are now their own nested
-                    bootstrap-multiselect dropdowns, each with their own
-                    data-bs-toggle="dropdown" button. Bootstrap 5 closes every other open
-                    dropdown whenever a new [data-bs-toggle="dropdown"] is clicked, *unless*
-                    that dropdown's own autoClose config is exactly false ('outside'/'inside'
-                    aren't enough - those only protect against plain outside/inside clicks,
-                    not another toggle's click-to-open), so without this the outer Filters
-                    panel closed itself as soon as the Band/Mode dropdown was opened. */ ?>
+                <?php /* data-bs-auto-close="false" needed on the toggle itself, or Bootstrap 5 closes the Filters panel when the nested Band/Mode multiselect dropdowns open */ ?>
                 <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="countiesFilterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"><?= __("Filters") ?></button>
                 <button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
                 <?php if ($counties_progress) { ?>
@@ -83,23 +73,23 @@
                             <div class="col-md-3"><?= __("Count QSO as Confirmed via"); ?></div>
                             <div class="col-md-9">
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="qsl" value="1" id="countiesQsl" <?php if (in_array('qsl', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <input class="form-check-input" type="checkbox" name="qsl" value="1" id="countiesQsl" <?php if ($postdata['qsl']) echo ' checked="checked"'; ?>>
                                     <label class="form-check-label" for="countiesQsl"><?= __("QSL"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="lotw" value="1" id="countiesLotw" <?php if (in_array('lotw', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <input class="form-check-input" type="checkbox" name="lotw" value="1" id="countiesLotw" <?php if ($postdata['lotw']) echo ' checked="checked"'; ?>>
                                     <label class="form-check-label" for="countiesLotw"><?= __("LoTW"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="countiesEqsl" <?php if (in_array('eqsl', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="countiesEqsl" <?php if ($postdata['eqsl']) echo ' checked="checked"'; ?>>
                                     <label class="form-check-label" for="countiesEqsl"><?= __("eQSL"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="qrz" value="1" id="countiesQrz" <?php if (in_array('qrz', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <input class="form-check-input" type="checkbox" name="qrz" value="1" id="countiesQrz" <?php if ($postdata['qrz']) echo ' checked="checked"'; ?>>
                                     <label class="form-check-label" for="countiesQrz"><?= __("QRZ.com"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="clublog" value="1" id="countiesClublog" <?php if (in_array('clublog', $qsl_sources)) echo ' checked="checked"'; ?>>
+                                    <input class="form-check-input" type="checkbox" name="clublog" value="1" id="countiesClublog" <?php if ($postdata['clublog']) echo ' checked="checked"'; ?>>
                                     <label class="form-check-label" for="countiesClublog"><?= __("Clublog"); ?></label>
                                 </div>
                             </div>
@@ -109,7 +99,7 @@
                             <div class="col-md-9">
                                 <select id="countiesBand" name="band[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($worked_bands as $band) { ?>
-                                    <option value="<?= $band; ?>" <?php if ($selected_band === 'All' || (is_array($selected_band) && in_array($band, $selected_band))) echo ' selected'; ?>><?= $band; ?></option>
+                                    <option value="<?= $band; ?>" <?php if ($postdata['band'] === 'All' || in_array($band, (array)$postdata['band'])) echo ' selected'; ?>><?= $band; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -119,7 +109,7 @@
                             <div class="col-md-9">
                                 <select id="countiesMode" name="mode[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($modes as $value) { ?>
-                                    <option value="<?= $value; ?>" <?php if ($selected_mode === 'All' || (is_array($selected_mode) && in_array($value, $selected_mode))) echo ' selected'; ?>><?= $value; ?></option>
+                                    <option value="<?= $value; ?>" <?php if ($postdata['mode'] === 'All' || in_array($value, (array)$postdata['mode'])) echo ' selected'; ?>><?= $value; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

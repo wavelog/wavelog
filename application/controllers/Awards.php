@@ -1366,19 +1366,17 @@ class Awards extends CI_Controller {
         $this->load->model('counties');
         $this->load->model('logbookadvanced_model');
         $this->load->model('bands');
-        $qsl_sources = $this->counties_qsl_sources_from_post();
-        $band = $this->counties_band_from_post();
-        $mode = $this->counties_mode_from_post();
-        $data['counties_progress'] = $this->counties->get_counties_progress($qsl_sources, $band, $mode);
-        $data['qsl_sources'] = $qsl_sources;
-        // Band/Mode filter options: a multi-select dropdown (same widget as
-        // the Satellite Pass page's satellite picker) sourced from the
-        // bands and modes actually logged, rather than a bespoke Phone/CW/
-        // Digital grouping or every ADIF-active mode on the install.
+
+        $postdata = $this->counties_postdata();
+        if ($this->input->method() !== 'post') {   // Default QSL + LoTW at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+        }
+
+        $data['counties_progress'] = $this->counties->get_counties_progress($postdata);
+        $data['postdata'] = $postdata;
         $data['worked_bands'] = $this->bands->get_worked_bands('uscounties');
-        $data['selected_band'] = $band;
         $data['modes'] = $this->logbookadvanced_model->get_modes();
-        $data['selected_mode'] = $mode;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
@@ -1391,26 +1389,17 @@ class Awards extends CI_Controller {
     /*
         function counties_map
 
-        AJAX endpoint backing the "Show Counties Map" feature: returns a JSON
-        map of "STATE|County" -> 'C' (confirmed), 'W' (worked, not confirmed)
-        or omitted (not worked), for every county with at least one QSO.
-        Mirrors was_map()'s status-map convention but keyed per county
-        instead of per state, and respects the same QSL-source filter as the
-        rest of the counties award page.
+        AJAX endpoint backing the counties map: returns a JSON map of
+        "STATE|County" -> 'C' (confirmed), 'W' (worked, not confirmed) or
+        omitted (not worked), mirroring was_map()'s status-map convention.
     */
     public function counties_map() {
         $this->load->model('counties');
-        $qsl_sources = $this->counties_qsl_sources_from_post();
-        $band = $this->counties_band_from_post();
-        $mode = $this->counties_mode_from_post();
-        $county_counts = $this->counties->get_counties_map($qsl_sources, $band, $mode);
+        $county_counts = $this->counties->get_counties_map($this->counties_postdata());
 
-        // Uppercase both halves of the key: the boundary GeoJSON's feature
-        // ids use the exact ARRL/MARAC casing from US_counties.csv (e.g.
-        // "PA|Lancaster"), but a QSO's COL_CNTY reflects however it was
-        // typed/imported (e.g. "PA,LANCASTER") - matched case-insensitively
-        // here, and countiesmap.js does the same to feature.id before
-        // looking it up (int2001 PR review, 2026-08-11).
+        // Keys are uppercased because a QSO's county name can be typed or
+        // imported in any case; countiesmap.js uppercases the GeoJSON
+        // feature ids to match.
         $statuses = array();
         if (isset($county_counts)) {
             foreach ($county_counts as $row) {
@@ -1427,148 +1416,54 @@ class Awards extends CI_Controller {
     }
 
     /*
-        function counties_geojson
-
-        AJAX endpoint serving the county boundary GeoJSON files used by the
-        counties map (assets/json/geojson/counties_{291,6,110}.geojson, plus
-        counties_state_outline_{291,6,110}.geojson - the same county
-        boundaries dissolved per state for the bolder state-line overlay;
-        see COUNTIES_SOURCE.md for how those are generated and why they're
-        derived from the county file rather than reusing the WAS map's
-        separately-simplified states_*.geojson). Fetched directly as static
-        assets before; routed through here instead so we can set explicit,
-        portable Cache-Control/ETag headers regardless of the host's web
-        server config (mirrors Activationplanner.php's directory endpoints,
-        but with a cheap stat-based ETag instead of hashing the multi-MB
-        payload on every request, and a long max-age since this data only
-        changes on a Wavelog upgrade, not per request).
-    */
-    public function counties_geojson($scope = '') {
-        $allowed = array(
-            'counties_291', 'counties_6', 'counties_110',
-            'counties_state_outline_291', 'counties_state_outline_6', 'counties_state_outline_110',
-        );
-        if (!in_array($scope, $allowed, TRUE)) {
-            show_404();
-            return;
-        }
-
-        $path = FCPATH . 'assets/json/geojson/' . $scope . '.geojson';
-        if (!is_file($path)) {
-            show_404();
-            return;
-        }
-
-        $etag = '"' . md5($scope . ':' . filemtime($path) . ':' . filesize($path)) . '"';
-        session_write_close();            // release session lock; allow header override
-        session_cache_limiter('public');  // defeat PHP's default nocache limiter (cf. Eqsl.php)
-        header('Cache-Control: public, max-age=2592000'); // 30 days; not user-specific, only changes on upgrade
-        header('ETag: ' . $etag);
-
-        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
-            $this->output->set_status_header(304); // CI idiom for status codes
-            return;
-        }
-
-        header('Content-Type: application/geo+json');
-        header('Content-Length: ' . filesize($path));
-        readfile($path); // stream instead of buffering multi-MB files into a PHP string
-    }
-
-    /*
-     * Reads which QSL confirmation sources (qsl/lotw/eqsl/qrz/clublog) are
-     * selected in the counties award filter. The filter form (and the state
-     * / list AJAX calls it drives) always posts a "qslFilterSet" marker
-     * alongside the checkboxes, so an unchecked box can be told apart from
-     * a request that never included the filter (which defaults to QSL +
-     * LoTW only, e.g. a fresh page load - those are the two confirmation
-     * methods that actually matter for this award; eQSL/QRZ/Clublog are
-     * available but opt-in).
+     * Builds the filter postdata for the counties award, like the other
+     * award pages: qsl/lotw/eqsl/qrz/clublog checkboxes plus band/mode
+     * multi-selects ('All' when nothing is selected).
      */
-    private function counties_qsl_sources_from_post() {
-        $available = array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog');
-
-        if (!$this->input->post('qslFilterSet')) {
-            return array('qsl', 'lotw');
+    private function counties_postdata() {
+        $postdata = array();
+        foreach (array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog') as $source) {
+            $postdata[$source] = $this->input->post($source) ? 1 : NULL;
         }
 
-        $qsl_sources = array();
-        foreach ($available as $source) {
-            if ($this->input->post($source)) {
-                $qsl_sources[] = $source;
-            }
-        }
+        $band = $this->input->post('band');
+        $postdata['band'] = empty($band) ? 'All' : $this->security->xss_clean($band);
 
-        return $qsl_sources;
-    }
+        $mode = $this->input->post('mode');
+        $postdata['mode'] = empty($mode) ? 'All' : $this->security->xss_clean($mode);
 
-    /*
-     * Reads the selected Band filter values from the counties award filter -
-     * a list of bands from the multi-select dropdown (Satellite Pass page's
-     * satellite picker style), or 'All' when nothing was selected/posted.
-     */
-    private function counties_band_from_post() {
-        $bands = $this->input->post('band');
-        if (empty($bands)) {
-            return 'All';
-        }
-
-        return array_map(array($this->security, 'xss_clean'), $bands);
-    }
-
-    /*
-     * Reads the selected Mode filter values from the counties award filter -
-     * a list of Mode/Submode values from the multi-select dropdown, or
-     * 'All' when nothing was selected/posted.
-     */
-    private function counties_mode_from_post() {
-        $modes = $this->input->post('mode');
-        if (empty($modes)) {
-            return 'All';
-        }
-
-        return array_map(array($this->security, 'xss_clean'), $modes);
+        return $postdata;
     }
 
     public function counties_list_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
-        $qsl_sources = $this->counties_qsl_sources_from_post();
-        $band = $this->counties_band_from_post();
-        $mode = $this->counties_mode_from_post();
-        $data['counties_array'] = $this->counties->counties_details($state, $type, $qsl_sources, $band, $mode);
+        $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
         $data['type'] = $type;
         $this->load->view('awards/counties/details_ajax', $data);
     }
 
     public function counties_details_ajax() {
         $this->load->model('logbook_model');
+        $this->load->model('counties');
 
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
-        $band = $this->counties_band_from_post();
-        $mode = $this->counties_mode_from_post();
-        $data['results'] = $this->logbook_model->county_qso_details($state, $county, $band, $mode);
+        $data['results'] = $this->logbook_model->county_qso_details($state, $county, $this->counties_postdata());
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         // Render Page
         $data['page_title'] = __("Log View - Counties");
-        // $county may arrive bare (map click) or "STATE,COUNTY"-prefixed
-        // (state list dialog, which echoes COL_CNTY as-is) - strip any
-        // prefix so the label doesn't show the state twice.
-        $bare_county = trim(preg_replace('/^.*,/', '', $county));
-        $data['filter'] = "county " . $bare_county . ", " . $state;
+        // $county may arrive bare (map click) or "STATE,COUNTY"-prefixed (state list dialog)
+        $data['filter'] = "county " . $this->counties->bare_county($county) . ", " . $state;
         $this->load->view('awards/details', $data);
     }
 
     public function counties_state_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $qsl_sources = $this->counties_qsl_sources_from_post();
-        $band = $this->counties_band_from_post();
-        $mode = $this->counties_mode_from_post();
-        $data['counties_array'] = $this->counties->get_county_counts($state, $qsl_sources, $band, $mode);
+        $data['counties_array'] = $this->counties->get_county_counts($state, $this->counties_postdata());
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);
     }
