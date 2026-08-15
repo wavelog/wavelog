@@ -481,23 +481,19 @@ class Awards extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/sections/jcc.js',
-			'assets/js/sections/jccmap.js'
+			'assets/js/sections/jccmap.js',
 		];
 
-		$this->load->helper('awards');
 		$this->load->model('jcc_model');
 		$this->load->model('modes');
 		$this->load->model('bands');
 
-		if($this->input->method() === 'post') {
+		if ($this->input->method() === 'post') {
 			$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
 			$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
 			$postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
 			$postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
 			$postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
-			$postdata['worked'] = ($this->input->post('worked', true) ?? 0) == 0 ? null : 1;
-			$postdata['confirmed'] = ($this->input->post('confirmed', true) ?? 0) == 0 ? null : 1;
-			$postdata['notworked'] = ($this->input->post('notworked', true) ?? 0) == 0 ? null : 1;
 			$postdata['includedeleted'] = ($this->input->post('includedeleted', true) ?? 0) == 0 ? null : 1;
 			$postdata['band'] = $this->input->post('band', true) ?? 'All';
 			$postdata['mode'] = $this->input->post('mode', true) ?? 'All';
@@ -509,9 +505,6 @@ class Awards extends CI_Controller {
 			$postdata['eqsl'] = 1;
 			$postdata['qrz'] = null;
 			$postdata['clublog'] = null;
-			$postdata['worked'] = 1;
-			$postdata['confirmed'] = 1;
-			$postdata['notworked'] = null;
 			$postdata['includedeleted'] = null;
 			$postdata['band'] = 'All';
 			$postdata['mode'] = 'All';
@@ -523,21 +516,11 @@ class Awards extends CI_Controller {
 		$data['modes'] = $this->modes->active();
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
-		// If "All" is selected, show all bands that have been worked. Otherwise, just the selected band.
-		if ($postdata['band'] == 'All') {
-			$bands = $data['worked_bands'];
-		} else {
-			$bands = [$postdata['band']];
-		}
-		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+		$jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata);
+		$data['jcc_groups'] = $this->jcc_model->get_jcc_grouped_slot($postdata, $jcc_entity_status);
+		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($postdata, $jcc_entity_status);
+		$data['has_active_slots'] = ($data['jcc_summary']['worked'] ?? 0) > 0;
 
-		// Query the database for JCC status
-		$jcc_entity_status = $this->jcc_model->query_entity_status($postdata, 'band');
-
-		$data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata, $jcc_entity_status);
-		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata, $jcc_entity_status);
-
-		// Render Page
 		$data['page_title'] = sprintf(__("Awards - %s"), __("JCC"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/jcc/index');
@@ -2303,7 +2286,7 @@ class Awards extends CI_Controller {
 	    $postdata['mode'] = $this->input->post('mode', true) ?? 'All';
 	    $postdata['prop_mode'] = $this->input->post('prop_mode', true) ?? 'All';
 
-	    $jcc_entity_status = $this->jcc_model->query_entity_status($postdata, 'none');
+	    $jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata);
 	    $jccs = $this->jcc_model->get_jcc_map_array($postdata, $jcc_entity_status);
 
 	    header('Content-Type: application/json');

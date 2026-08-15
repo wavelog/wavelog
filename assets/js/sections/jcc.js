@@ -1,22 +1,3 @@
-$(document).ready(function () {
-	$('#jccTable').DataTable({
-        "pageLength": 25,
-        responsive: false,
-        ordering: false,
-        "scrollY":        "400px",
-        "scrollCollapse": true,
-        "paging":         false,
-        "scrollX": true,
-        "language": {
-            url: getDataTablesLanguageUrl(),
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'csv'
-        ]
-    });
-});
-
 function export_qsos() {
    $.ajax({
        url: base_url + 'index.php/awards/jcc_export',
@@ -54,3 +35,11 @@ function export_qsos() {
        },
    });
 }
+
+$(document).ready(function() {
+   $('[data-bs-toggle="tooltip"]').tooltip({
+      html: true,
+      placement: 'top',
+      boundary: 'window'
+   });
+});
