@@ -152,7 +152,7 @@ $ci =& get_instance();
                 <td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
             <?php } ?>
             <td>
-                <a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></a>
+                <a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></a>
             </td>
 			<?php
 
@@ -485,7 +485,7 @@ $ci =& get_instance();
 
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, '<?php echo html_escape($row->COL_CALL); ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+                            <a class="dropdown-item" href='javascript:qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo js_escape($row->COL_CALL); ?>)'><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                             <?php } ?>
                         </div>
                     </div>

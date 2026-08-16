@@ -160,11 +160,11 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
     foreach ($activators as $line) {
         echo '<tr>
                 <td>' . $i++ . '</td>
-                <td class="callsign">' . $line[1] . '</td>
+                <td class="callsign">' . html_escape($line[1]) . '</td>
                 <td>' . $line[0] . '</td>
 				<td>' . $line[2] . '</td>
 				<td>' . $line[3] . '</td>
-                <td><a href=javascript:displayCallstatsContacts("' . $line[1] . '","' . $band . '","' . $mode . '","' . $sat . '","' . $orbit . '","' . $propagation .  '")><i class="fas fa-list"></i></a></td>
+                <td><a href=\'javascript:displayCallstatsContacts(' . js_escape($line[1]) . ',' . js_escape($band) . ',' . js_escape($mode) . ',' . js_escape($sat) . ',' . js_escape($orbit) . ',' . js_escape($propagation) . ')\'><i class="fas fa-list"></i></a></td>
 			</tr>';
     }
     echo '</tfoot></table></div>';

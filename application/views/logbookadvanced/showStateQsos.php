@@ -31,14 +31,14 @@
                 <tbody>
                     <?php foreach ($qsos as $qso): ?>
                         <tr>
-                            <td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso->col_primary_key . ')">' . htmlspecialchars($qso->col_call) . '</a>'; ?></td>
+                            <td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . (int) $qso->col_primary_key . ')">' . htmlspecialchars($qso->col_call) . '</a>'; ?></td>
 							<td><?php $timestamp = strtotime($qso->col_time_on); echo date($custom_date_format . ' H:i', $timestamp); ?></td>
-                            <td><?php echo $qso->col_mode; ?></td>
-                            <td><?php echo $qso->col_band; ?></td>
-							<td><?php echo $qso->col_state; ?></td>
-                            <td><?php echo $qso->col_gridsquare; ?></td>
+                            <td><?php echo html_escape($qso->col_mode); ?></td>
+                            <td><?php echo html_escape($qso->col_band); ?></td>
+							<td><?php echo html_escape($qso->col_state); ?></td>
+                            <td><?php echo html_escape($qso->col_gridsquare); ?></td>
 							<td><?php echo htmlspecialchars(ucwords(strtolower($qso->dxcc_name), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
-							<td><?php echo $qso->station_profile_name; ?></td>
+							<td><?php echo html_escape($qso->station_profile_name); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
