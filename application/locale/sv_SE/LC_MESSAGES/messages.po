@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-16 05:55+0000\n"
+"POT-Creation-Date: 2026-08-16 06:01+0000\n"
 "PO-Revision-Date: 2026-08-14 06:33+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1570,14 +1570,17 @@ msgid "All eQSLs marked as uploaded"
 msgstr "Alla eQSLs markerade som uppladdade"
 
 #: application/controllers/Errors.php:22
+#: application/views/errors/html/error_404.php:6
 msgid "Page Not Found"
 msgstr "Sidan kunde inte hittas"
 
 #: application/controllers/Errors.php:23
+#: application/views/errors/html/error_404.php:7
 msgid "QRZ? ... no reply."
 msgstr "QRZ? ... inget svar."
 
 #: application/controllers/Errors.php:24
+#: application/views/errors/html/error_404.php:8
 msgid "Nobody is transmitting on this frequency."
 msgstr "Ingen sänder på denna frekvens."
 
@@ -14700,7 +14703,7 @@ msgstr "QSL-datum"
 msgid "View"
 msgstr "Visa"
 
-#: application/views/errors/html/error_404.php:82
+#: application/views/errors/html/error_404.php:94
 msgid "Go Back to Dashboard"
 msgstr "Gå tillbaka till instrumentpanelen"
 

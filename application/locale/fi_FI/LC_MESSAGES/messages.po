@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-16 05:55+0000\n"
+"POT-Creation-Date: 2026-08-16 06:01+0000\n"
 "PO-Revision-Date: 2026-06-29 12:11+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1568,14 +1568,17 @@ msgid "All eQSLs marked as uploaded"
 msgstr "Kaikki eQSL:t merkitty ladatuiksi"
 
 #: application/controllers/Errors.php:22
+#: application/views/errors/html/error_404.php:6
 msgid "Page Not Found"
 msgstr "Sivua ei löytynyt"
 
 #: application/controllers/Errors.php:23
+#: application/views/errors/html/error_404.php:7
 msgid "QRZ? ... no reply."
 msgstr "QRZ? ... ei vastausta."
 
 #: application/controllers/Errors.php:24
+#: application/views/errors/html/error_404.php:8
 msgid "Nobody is transmitting on this frequency."
 msgstr "Kukaan ei lähetä tällä taajuudella."
 
@@ -14630,7 +14633,7 @@ msgstr "QSL-päivämäärä"
 msgid "View"
 msgstr "Näytä"
 
-#: application/views/errors/html/error_404.php:82
+#: application/views/errors/html/error_404.php:94
 msgid "Go Back to Dashboard"
 msgstr "Palaa takaisin hallintapaneeliin"
 

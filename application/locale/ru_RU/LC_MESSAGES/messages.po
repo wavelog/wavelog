@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-16 05:55+0000\n"
+"POT-Creation-Date: 2026-08-16 06:01+0000\n"
 "PO-Revision-Date: 2026-08-13 07:51+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1587,14 +1587,17 @@ msgid "All eQSLs marked as uploaded"
 msgstr "Все eQSL отмечены как загруженные"
 
 #: application/controllers/Errors.php:22
+#: application/views/errors/html/error_404.php:6
 msgid "Page Not Found"
 msgstr "Страница не найдена"
 
 #: application/controllers/Errors.php:23
+#: application/views/errors/html/error_404.php:7
 msgid "QRZ? ... no reply."
 msgstr "QRZ? ... нет ответа."
 
 #: application/controllers/Errors.php:24
+#: application/views/errors/html/error_404.php:8
 msgid "Nobody is transmitting on this frequency."
 msgstr "На этой частоте никто не передает."
 
@@ -14824,7 +14827,7 @@ msgstr "Дата QSL"
 msgid "View"
 msgstr "Посмотреть"
 
-#: application/views/errors/html/error_404.php:82
+#: application/views/errors/html/error_404.php:94
 msgid "Go Back to Dashboard"
 msgstr "Вернуться на панель управления"
 
