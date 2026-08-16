@@ -294,14 +294,19 @@ class Options extends CI_Controller {
 			}
 			// Options_model::update() reports FALSE when it has to create the row instead
 			// of updating it. Create it up front so the return value stays meaningful.
-			$this->optionslib->save('smtpTimeout', $smtpTimeout_value, 'yes');
-			$smtpTimeoutupdate = $this->optionslib->update('smtpTimeout', $smtpTimeout_value, 'yes');
+			$this->optionslib->update('smtpTimeout', $smtpTimeout_value);
+			$smtpTimeoutupdate = $this->optionslib->update('smtpTimeout', $smtpTimeout_value);
 
 			// Update smtpUsername choice within the options system
 			$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername', false));
 
-			// Update smtpPassword choice within the options system
-			$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $this->input->post('smtpPassword', false));
+			// Update smtpPassword choice within the options system - an empty field keeps the stored password
+			$smtpPassword_value = (string) $this->input->post('smtpPassword', false);
+			if ($smtpPassword_value === '') {
+				$smtpPasswordupdate = true;
+			} else {
+				$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $smtpPassword_value);
+			}
 
 			// Check if all updates are successful
 			$updateSuccessful = $emailProtocolupdate &&
