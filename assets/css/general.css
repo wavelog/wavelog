@@ -2416,20 +2416,33 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .amsat-status .award-grid-prefecture {
 	width: 14rem;
 }
+/* Tight row rhythm: 2px above and below each satellite block */
+.amsat-status .amsat-sat {
+	padding-top: .125rem;
+	padding-bottom: .125rem;
+}
 @media (max-width: 991.98px) {
 	.amsat-status .award-grid-prefecture {
 		width: auto;
 	}
 }
-/* Pill row: slightly tighter than the JCC grid's gap-2 */
+/* Pill row: tighter than the JCC grid's gap-2 */
 .amsat-status .amsat-pills {
-	gap: .3rem;
+	gap: .1rem;
 }
 .amsat-status .amsat-sat-aos {
 	font-size: .78rem;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+/* AOS column between the name and the pills: fixed width so the pill
+   strips still align across satellites. The section centers its
+   columns (align-items-lg-center) so name, AOS and pills share one line. */
+@media (min-width: 992px) {
+	.amsat-status .amsat-sat-aos {
+		width: 10rem;
+	}
 }
 .amsat-status .amsat-sat-aos strong { font-weight: 600; }
 .amsat-status .amsat-sat-cnt {
@@ -2443,10 +2456,10 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
    The .btn class supplies radius and the body text colour; the white
    border comes from award-grid-slot. */
 .amsat-status .amsat-slot {
-	width: 2.25rem;
-	height: 2.25rem;
-	padding: .2rem .25rem;
-	font-size: .78rem; font-weight: 600;
+	width: 2rem;
+	height: 2rem;
+	padding: .15rem .2rem;
+	font-size: .7rem; font-weight: 600;
 	cursor: help;
 	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 25%, transparent);
 }

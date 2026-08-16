@@ -110,7 +110,7 @@
                 <span class="small text-muted"><?= __("Hours ago (left-most: now)"); ?></span>
             </div>
             <div class="card-body">
-                <div class="border-top">
+                <div>
                     <?php foreach ($sat_order as $name):
                         $display     = $display_names[$name] ?? $name;
                         $display_esc = htmlspecialchars($display);
@@ -119,9 +119,9 @@
                         $row_total = 0;
                         foreach ($row as $cell) { if ($cell !== null) { $row_total += $cell['total']; } }
                     ?>
-                        <section class="d-flex flex-column flex-lg-row gap-3 py-3 border-bottom">
+                        <section class="amsat-sat d-flex flex-column flex-lg-row align-items-lg-center gap-3">
                             <div class="award-grid-prefecture flex-shrink-0">
-                                <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                                <div class="d-flex align-items-center flex-wrap gap-2">
                                     <span class="fw-bold"><?php
                                         if (isset($wl_link[$name])) {
                                             echo '<a href="' . site_url('satellite/flightpath/' . $wl_link[$name]) . '" target="_blank" rel="noopener">' . $display_esc . '</a>';
@@ -132,18 +132,18 @@
                                         <span class="amsat-sat-cnt" title="<?= htmlspecialchars(sprintf(_ngettext('%d report in 24h', '%d reports in 24h', $row_total), $row_total)); ?>"><?= (int)$row_total; ?></span>
                                     <?php } ?>
                                 </div>
-                                <div class="amsat-sat-aos"><?php
-                                    if (isset($next_pass[$name])) {
-                                        $np = $next_pass[$name];
-                                        echo '<span class="text-muted">' . __("Next AOS") . '</span>&nbsp;<strong>' . htmlspecialchars($np['time']) . '</strong>&nbsp;<span class="text-muted">UTC</span>';
-                                        if ($np['maxel'] !== null) {
-                                            echo '&nbsp;<span class="text-muted">&middot; ' . (int)$np['maxel'] . '&deg;</span>';
-                                        }
-                                    } else {
-                                        echo '<span class="text-muted">&mdash;</span>';
-                                    }
-                                ?></div>
                             </div>
+                            <div class="amsat-sat-aos flex-shrink-0"><?php
+                                if (isset($next_pass[$name])) {
+                                    $np = $next_pass[$name];
+                                    echo '<span class="text-muted">' . __("Next AOS") . '</span>&nbsp;<strong>' . htmlspecialchars($np['time']) . '</strong>&nbsp;<span class="text-muted">UTC</span>';
+                                    if ($np['maxel'] !== null) {
+                                        echo '&nbsp;<span class="text-muted">&middot; ' . (int)$np['maxel'] . '&deg;</span>';
+                                    }
+                                } else {
+                                    echo '<span class="text-muted">&mdash;</span>';
+                                }
+                            ?></div>
                             <div class="d-flex flex-wrap amsat-pills">
                                 <?php for ($col = 0; $col < 24; $col++):
                                     $age  = $col;
