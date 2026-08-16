@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-14 15:34+0000\n"
+"POT-Creation-Date: 2026-08-16 07:33+0000\n"
 "PO-Revision-Date: 2026-08-16 05:44+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -170,9 +170,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
 #: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:518
-#: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
-#: application/controllers/Eqsl.php:662
+#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
+#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
+#: application/controllers/Eqsl.php:658
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -234,9 +234,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "Je mag dat niet doen!"
 
@@ -1480,12 +1478,10 @@ msgid "DX Calendar"
 msgstr "DX-kalender"
 
 #: application/controllers/Eqsl.php:45
-#: application/views/dashboard/index.php:571
-#: application/views/dashboard/index.php:574
-#: application/views/eqslcard/index.php:3
-#: application/views/visitor/index.php:308
 #: application/views/dashboard/index.php:573
 #: application/views/dashboard/index.php:576
+#: application/views/eqslcard/index.php:3
+#: application/views/visitor/index.php:308
 msgid "eQSL Cards"
 msgstr "eQSL-kaarten"
 
@@ -1547,8 +1543,7 @@ msgstr "eQSL-afbeelding niet beschikbaar"
 msgid "Failed to download eQSL image"
 msgstr "Kon niet eQSL-afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:576
-#: application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Niet genoeg vrije schijfruimte om de eQSL-kaart op te slaan"
 
@@ -1556,31 +1551,31 @@ msgstr "Niet genoeg vrije schijfruimte om de eQSL-kaart op te slaan"
 msgid "Failed to load cached eQSL image"
 msgstr "Kan de gecachte eQSL-afbeelding niet laden"
 
-#: application/controllers/Eqsl.php:593 application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:589
 msgid "eQSL Tools"
 msgstr "eQSL-hulpmiddelen"
 
-#: application/controllers/Eqsl.php:622 application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:618
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Beperkt tot de eerste 150 QSO's voor dit verzoek. Voer opnieuw uit."
 
-#: application/controllers/Eqsl.php:628 application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:624
 msgid " / Errors: "
 msgstr " / Fouten: "
 
-#: application/controllers/Eqsl.php:628 application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:624
 msgid "Successfully downloaded: "
 msgstr "Succesvol gedownload: "
 
-#: application/controllers/Eqsl.php:635 application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:631
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "eQSL limiet bereikt. Wacht even voordat je het opnieuw probeert."
 
-#: application/controllers/Eqsl.php:647 application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:643
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kaart afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:670 application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:666
 msgid "All eQSLs marked as uploaded"
 msgstr "Alle eQSL's gemarkeerd als geüpload"
 
@@ -1906,7 +1901,7 @@ msgstr "QSL"
 #: application/views/awards/wpx/index.php:36
 #: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
-#: application/views/dashboard/index.php:494
+#: application/views/dashboard/index.php:496
 #: application/views/gridmap/index.php:182
 #: application/views/logbookadvanced/checkresult.php:105
 #: application/views/logbookadvanced/checkresult.php:163
@@ -1927,7 +1922,6 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:482
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
-#: application/views/dashboard/index.php:496
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2877,7 +2871,7 @@ msgstr "Versie-informatie wordt niet aan gebruikers getoond"
 
 #: application/controllers/Oqrs.php:39 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
-#: application/controllers/Staticmap.php:202
+#: application/controllers/Staticmap.php:210
 #: application/controllers/Visitor.php:48
 #: application/controllers/Visitor.php:77
 #: application/controllers/Visitor.php:144
@@ -2891,7 +2885,6 @@ msgstr "Versie-informatie wordt niet aan gebruikers getoond"
 #: application/controllers/Visitor.php:378
 #: application/controllers/Visitor.php:635
 #: application/controllers/Widgets.php:67
-#: application/controllers/Staticmap.php:210
 msgid "Unknown Public Page."
 msgstr "Onbekende openbare pagina."
 
@@ -2990,15 +2983,12 @@ msgstr "QRZ QSL importeren"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF Informatie"
 
-#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:493
-#: application/views/dashboard/index.php:508
-#: application/views/dashboard/index.php:511
+#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:495
+#: application/views/dashboard/index.php:510
+#: application/views/dashboard/index.php:513
 #: application/views/qslcard/index.php:3
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
-#: application/views/dashboard/index.php:495
-#: application/views/dashboard/index.php:510
-#: application/views/dashboard/index.php:513
 msgid "QSL Cards"
 msgstr "QSL-kaarten"
 
@@ -3351,7 +3341,7 @@ msgstr ""
 msgid "Simple Fast Log Entry"
 msgstr "Simple Fast Log Entry"
 
-#: application/controllers/Staticmap.php:198
+#: application/controllers/Staticmap.php:206
 #: application/controllers/Visitor.php:73
 #: application/controllers/Visitor.php:176
 #: application/controllers/Visitor.php:238
@@ -3359,7 +3349,6 @@ msgstr "Simple Fast Log Entry"
 #: application/controllers/Visitor.php:374
 #: application/controllers/Visitor.php:631
 #: application/controllers/Widgets.php:63
-#: application/controllers/Staticmap.php:206
 msgid "Empty Logbook"
 msgstr "Leeg logboek"
 
@@ -4647,28 +4636,22 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! GEEN VERZENDBAAR ADRES GEVONDEN !!!"
 
-#: application/models/Update_model.php:708
 #: application/models/Update_model.php:693
 msgid "Newer release available:"
 msgstr "Nieuwere release beschikbaar:"
 
-#: application/models/Update_model.php:712
 #: application/models/Update_model.php:697
 msgid "You are running the latest version."
 msgstr "Je draait de nieuwste versie."
 
-#: application/models/Update_model.php:852
 #: application/models/Update_model.php:837
 msgid "cURL error:"
 msgstr "cURL-fout:"
 
-#: application/models/Update_model.php:886
 #: application/models/Update_model.php:871
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT bestaat al. LoTW-status bijgewerkt."
 
-#: application/models/Update_model.php:889
-#: application/models/Update_model.php:918
 #: application/models/Update_model.php:874
 #: application/models/Update_model.php:903
 #, php-format
@@ -4677,32 +4660,26 @@ msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW-status voor %d QSO bijgewerkt"
 msgstr[1] "LoTW-status voor %d QSO's bijgewerkt"
 
-#: application/models/Update_model.php:892
 #: application/models/Update_model.php:877
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT bestaat al. Bijwerken van LoTW-status mislukt."
 
-#: application/models/Update_model.php:895
 #: application/models/Update_model.php:880
 msgid "SAT already existing. Ignored."
 msgstr "SAT bestaat al. Genegeerd."
 
-#: application/models/Update_model.php:902
 #: application/models/Update_model.php:887
 msgid "SAT already existing. Display name updated."
 msgstr "SAT bestaat al. Weergavenaam bijgewerkt."
 
-#: application/models/Update_model.php:904
 #: application/models/Update_model.php:889
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT bestaat al. Bijwerken van de weergavenaam is mislukt."
 
-#: application/models/Update_model.php:914
 #: application/models/Update_model.php:899
 msgid "New SAT. Inserted."
 msgstr "Nieuwe SAT. ingevoegd."
 
-#: application/models/Update_model.php:922
 #: application/models/Update_model.php:907
 msgid "New SAT. Insert failed."
 msgstr "Nieuwe SAT. invoegen mislukt."
@@ -4821,7 +4798,7 @@ msgstr "Verschil"
 #: application/views/continents/index.php:46 application/views/csv/index.php:21
 #: application/views/csv/index.php:33 application/views/csv/index.php:44
 #: application/views/csv/index.php:60 application/views/csv/index.php:82
-#: application/views/csv/index.php:94 application/views/dashboard/index.php:665
+#: application/views/csv/index.php:94 application/views/dashboard/index.php:667
 #: application/views/distances/index.php:25
 #: application/views/distances/index.php:40
 #: application/views/distances/index.php:50
@@ -4890,7 +4867,6 @@ msgstr "Verschil"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
-#: application/views/dashboard/index.php:667
 msgid "All"
 msgstr "Alles"
 
@@ -6250,12 +6226,12 @@ msgstr "POTA REF in ADIF"
 #: application/views/awards/amsat_rover/index.php:159
 #: application/views/contesting/manager/index.php:31
 #: application/views/cron/index.php:76
-#: application/views/dashboard/index.php:514
-#: application/views/dashboard/index.php:548
-#: application/views/dashboard/index.php:577
-#: application/views/dashboard/index.php:606
-#: application/views/dashboard/index.php:635
-#: application/views/dashboard/index.php:664
+#: application/views/dashboard/index.php:516
+#: application/views/dashboard/index.php:550
+#: application/views/dashboard/index.php:579
+#: application/views/dashboard/index.php:608
+#: application/views/dashboard/index.php:637
+#: application/views/dashboard/index.php:666
 #: application/views/logbookadvanced/attachContest.php:11
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:48
@@ -6265,12 +6241,6 @@ msgstr "POTA REF in ADIF"
 #: application/views/stationsetup/stationsetup.php:44
 #: application/views/timeline/index.php:197
 #: application/views/usermode/index.php:41
-#: application/views/dashboard/index.php:516
-#: application/views/dashboard/index.php:550
-#: application/views/dashboard/index.php:579
-#: application/views/dashboard/index.php:608
-#: application/views/dashboard/index.php:637
-#: application/views/dashboard/index.php:666
 msgid "Status"
 msgstr "Status"
 
@@ -7184,12 +7154,10 @@ msgstr "%s%% totaal bevestigd"
 #: application/views/bandmap/list.php:91 application/views/bandmap/list.php:306
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:487
-#: application/views/dashboard/index.php:670
-#: application/views/map/qso_map.php:26 application/views/search/result.php:35
-#: application/views/visitor/index.php:266
 #: application/views/dashboard/index.php:489
 #: application/views/dashboard/index.php:672
+#: application/views/map/qso_map.php:26 application/views/search/result.php:35
+#: application/views/visitor/index.php:266
 msgid "Worked"
 msgstr "Gewerkt"
 
@@ -7206,13 +7174,11 @@ msgstr "Gewerkt"
 #: application/views/bandmap/list.php:92 application/views/bandmap/list.php:307
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:491
-#: application/views/dashboard/index.php:675
+#: application/views/dashboard/index.php:493
+#: application/views/dashboard/index.php:677
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
-#: application/views/dashboard/index.php:493
-#: application/views/dashboard/index.php:677
 msgid "Confirmed"
 msgstr "Bevestigd"
 
@@ -7246,11 +7212,11 @@ msgstr "Voortgang bevestigd"
 #: application/views/awards/wapc/index.php:193
 #: application/views/awards/was/index.php:185
 #: application/views/awards/wpx/index.php:176
-#: application/views/dashboard/index.php:515
-#: application/views/dashboard/index.php:549
-#: application/views/dashboard/index.php:578
-#: application/views/dashboard/index.php:607
-#: application/views/dashboard/index.php:636
+#: application/views/dashboard/index.php:517
+#: application/views/dashboard/index.php:551
+#: application/views/dashboard/index.php:580
+#: application/views/dashboard/index.php:609
+#: application/views/dashboard/index.php:638
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:88
 #: application/views/statistics/qsltable.php:150
@@ -7266,11 +7232,6 @@ msgstr "Voortgang bevestigd"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
-#: application/views/dashboard/index.php:517
-#: application/views/dashboard/index.php:551
-#: application/views/dashboard/index.php:580
-#: application/views/dashboard/index.php:609
-#: application/views/dashboard/index.php:638
 msgid "Total"
 msgstr "Totaal"
 
@@ -7362,13 +7323,13 @@ msgstr "Tabel"
 #: application/views/awards/was/index.php:44
 #: application/views/awards/wwff/index.php:42
 #: application/views/contesting/logger/components/map.php:8
+#: application/views/dashboard/_options_menu.php:35
 #: application/views/dashboard/index.php:308
 #: application/views/dashboard/index.php:323
 #: application/views/dashboard/index.php:393
 #: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:896
 #: application/views/logbookadvanced/useroptions.php:7
-#: application/views/dashboard/_options_menu.php:35
 msgid "Map"
 msgstr "Kaart"
 
@@ -7397,19 +7358,14 @@ msgstr "Datumvoorkeuren"
 #: application/views/awards/wae/index.php:52
 #: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
-#: application/views/dashboard/index.php:516
-#: application/views/dashboard/index.php:550
-#: application/views/dashboard/index.php:579
-#: application/views/dashboard/index.php:608
-#: application/views/dashboard/index.php:637
-#: application/views/gridmap/index.php:47
-#: application/views/logbookadvanced/index.php:349
-#: application/views/statistics/index.php:61
 #: application/views/dashboard/index.php:518
 #: application/views/dashboard/index.php:552
 #: application/views/dashboard/index.php:581
 #: application/views/dashboard/index.php:610
 #: application/views/dashboard/index.php:639
+#: application/views/gridmap/index.php:47
+#: application/views/logbookadvanced/index.php:349
+#: application/views/statistics/index.php:61
 msgid "Today"
 msgstr "Vandaag"
 
@@ -8422,7 +8378,7 @@ msgid "City"
 msgstr "Woonplaats"
 
 #: application/views/awards/jcc/index.php:200
-#: application/views/dashboard/index.php:666
+#: application/views/dashboard/index.php:668
 #: application/views/distances/index.php:27
 #: application/views/qslprint/qslprint.php:86
 #: application/views/qslprint/qslprint.php:87
@@ -8430,7 +8386,6 @@ msgstr "Woonplaats"
 #: application/views/qslprint/qsolist.php:51
 #: application/views/qslprint/qsolist.php:58
 #: application/views/qslprint/qsolist.php:60
-#: application/views/dashboard/index.php:668
 msgid "SAT"
 msgstr "SAT"
 
@@ -12057,16 +12012,14 @@ msgid "Right"
 msgstr "Rechts"
 
 #: application/views/contesting/logger/index.php:136
-#: application/views/dashboard/_options_menu.php:6
-#: application/views/user/edit.php:782
 #: application/views/dashboard/_options_menu.php:10
+#: application/views/user/edit.php:782
 msgid "Top"
 msgstr "Bovenkant"
 
 #: application/views/contesting/logger/index.php:137
-#: application/views/dashboard/_options_menu.php:6
-#: application/views/user/edit.php:783
 #: application/views/dashboard/_options_menu.php:10
+#: application/views/user/edit.php:783
 msgid "Bottom"
 msgstr "Onderkant"
 
@@ -13096,24 +13049,48 @@ msgstr "Alle behalve repeater"
 msgid "Export"
 msgstr "Exporteren"
 
-#: application/views/dashboard/_options_menu.php:6
-#: application/views/user/edit.php:784
 #: application/views/dashboard/_options_menu.php:10
 #: application/views/dashboard/_options_menu.php:13
+#: application/views/user/edit.php:784
 msgid "Off"
 msgstr "Uit"
 
-#: application/views/dashboard/_options_menu.php:10
+#: application/views/dashboard/_options_menu.php:13
+#: application/views/user/edit.php:768
+msgid "Map at left"
+msgstr "Kaart aan de linkerkant"
+
+#: application/views/dashboard/_options_menu.php:13
+#: application/views/user/edit.php:769
+msgid "Map at right"
+msgstr "Kaart rechts"
+
+#: application/views/dashboard/_options_menu.php:13
+#: application/views/user/edit.php:767
+msgid "Map on top"
+msgstr "Kaart bovenaan"
+
 #: application/views/dashboard/_options_menu.php:17
 msgid "Dashboard options"
 msgstr "Dashboardopties"
 
-#: application/views/dashboard/_options_menu.php:12
 #: application/views/dashboard/_options_menu.php:19
 msgid "KPI statistics"
 msgstr "KPI-statistieken"
 
-#: application/views/dashboard/_options_menu.php:15
+#: application/views/dashboard/_options_menu.php:22
+#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:412
+#: application/views/user/edit.php:808
+msgid "Active Expeditions"
+msgstr "Actieve expedities"
+
+#: application/views/dashboard/_options_menu.php:25
+#: application/views/dashboard/index.php:456
+#: application/views/user/edit.php:818
+msgid "Active Contests"
+msgstr "Actieve contesten"
+
 #: application/views/dashboard/_options_menu.php:28
 msgid "Solar data"
 msgstr "Zonnedata"
@@ -13226,12 +13203,12 @@ msgid "At least one of your certificates is expiring"
 msgstr "Ten minste een van je certificaten verloopt"
 
 #: application/views/dashboard/index.php:231
-#: application/views/dashboard/solar_data.php:2
 #: application/views/dashboard/index.php:306
 #: application/views/dashboard/index.php:321
 #: application/views/dashboard/index.php:391
 #: application/views/dashboard/index.php:407
 #: application/views/dashboard/index.php:454
+#: application/views/dashboard/solar_data.php:2
 msgid "Right-click for options"
 msgstr "Klik met de rechtermuisknop voor opties"
 
@@ -13276,13 +13253,6 @@ msgid_plural "Max. %d previous contacts are shown"
 msgstr[0] "Max. %d vorige contacten worden getoond"
 msgstr[1] "Max. %d vorige contacten worden getoond"
 
-#: application/views/dashboard/index.php:409
-#: application/views/dashboard/index.php:412
-#: application/views/user/edit.php:808
-#: application/views/dashboard/_options_menu.php:22
-msgid "Active Expeditions"
-msgstr "Actieve expedities"
-
 #: application/views/dashboard/index.php:417
 msgid "Dates"
 msgstr "Data"
@@ -13291,45 +13261,33 @@ msgstr "Data"
 msgid "Lookup DXCC"
 msgstr "Zoek DXCC"
 
-#: application/views/dashboard/index.php:455
-#: application/views/user/edit.php:818
-#: application/views/dashboard/_options_menu.php:25
-#: application/views/dashboard/index.php:456
-msgid "Active Contests"
-msgstr "Actieve contesten"
-
-#: application/views/dashboard/index.php:471
+#: application/views/dashboard/index.php:472
 #: application/views/view_log/qso.php:608
 #: application/views/view_log/qso.php:610
-#: application/views/dashboard/index.php:472
 msgid "Details"
 msgstr "Details"
 
-#: application/views/dashboard/index.php:482
-#: application/views/dashboard/index.php:485
-#: application/views/visitor/index.php:262
 #: application/views/dashboard/index.php:484
 #: application/views/dashboard/index.php:487
+#: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "DXCC's overzicht"
 
-#: application/views/dashboard/index.php:488
-#: application/views/visitor/index.php:267
 #: application/views/dashboard/index.php:490
+#: application/views/visitor/index.php:267
 msgid "Deleted DXCCs"
 msgstr "Verwijderde DXCC's"
 
-#: application/views/dashboard/index.php:498
-#: application/views/visitor/index.php:277
 #: application/views/dashboard/index.php:500
+#: application/views/visitor/index.php:277
 msgid "Needed"
 msgstr "Nodig"
 
-#: application/views/dashboard/index.php:520
-#: application/views/dashboard/index.php:554
-#: application/views/dashboard/index.php:583
-#: application/views/dashboard/index.php:612
-#: application/views/dashboard/index.php:641
+#: application/views/dashboard/index.php:522
+#: application/views/dashboard/index.php:556
+#: application/views/dashboard/index.php:585
+#: application/views/dashboard/index.php:614
+#: application/views/dashboard/index.php:643
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:84
@@ -13359,19 +13317,15 @@ msgstr "Nodig"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:420
 #: src/QSLManager/QSO.php:521 src/QSLManager/QSO.php:575
 #: src/QSLManager/QSO.php:664 src/QSLManager/QSO.php:721
-#: src/QSLManager/QSO.php:810 application/views/dashboard/index.php:522
-#: application/views/dashboard/index.php:556
-#: application/views/dashboard/index.php:585
-#: application/views/dashboard/index.php:614
-#: application/views/dashboard/index.php:643
+#: src/QSLManager/QSO.php:810
 msgid "Sent"
 msgstr "Verzonden"
 
-#: application/views/dashboard/index.php:525
-#: application/views/dashboard/index.php:559
-#: application/views/dashboard/index.php:588
-#: application/views/dashboard/index.php:617
-#: application/views/dashboard/index.php:646
+#: application/views/dashboard/index.php:527
+#: application/views/dashboard/index.php:561
+#: application/views/dashboard/index.php:590
+#: application/views/dashboard/index.php:619
+#: application/views/dashboard/index.php:648
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:126
@@ -13400,15 +13354,11 @@ msgstr "Verzonden"
 #: application/views/visitor/index.php:335 src/QSLManager/QSO.php:465
 #: src/QSLManager/QSO.php:548 src/QSLManager/QSO.php:625
 #: src/QSLManager/QSO.php:691 src/QSLManager/QSO.php:771
-#: src/QSLManager/QSO.php:838 application/views/dashboard/index.php:527
-#: application/views/dashboard/index.php:561
-#: application/views/dashboard/index.php:590
-#: application/views/dashboard/index.php:619
-#: application/views/dashboard/index.php:648
+#: src/QSLManager/QSO.php:838
 msgid "Received"
 msgstr "Ontvangen"
 
-#: application/views/dashboard/index.php:530
+#: application/views/dashboard/index.php:532
 #: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/edit.php:189
 #: application/views/logbookadvanced/edit.php:215
@@ -13449,26 +13399,21 @@ msgstr "Ontvangen"
 #: src/QSLManager/QSO.php:471 src/QSLManager/QSO.php:533
 #: src/QSLManager/QSO.php:556 src/QSLManager/QSO.php:670
 #: src/QSLManager/QSO.php:697 src/QSLManager/QSO.php:822
-#: src/QSLManager/QSO.php:847 application/views/dashboard/index.php:532
+#: src/QSLManager/QSO.php:847
 msgid "Requested"
 msgstr "Aangevraagd"
 
-#: application/views/dashboard/index.php:542
-#: application/views/dashboard/index.php:545
 #: application/views/dashboard/index.php:544
 #: application/views/dashboard/index.php:547
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of The World"
 
-#: application/views/dashboard/index.php:632
-#: application/views/user/edit.php:1121
 #: application/views/dashboard/index.php:634
+#: application/views/user/edit.php:1121
 msgid "Club Log"
 msgstr "Club Log"
 
-#: application/views/dashboard/index.php:658
-#: application/views/dashboard/index.php:661
 #: application/views/dashboard/index.php:660
 #: application/views/dashboard/index.php:663
 msgid "VUCC-Grids"
@@ -14831,7 +14776,6 @@ msgstr "QSL Datum"
 msgid "View"
 msgstr "Bekijken"
 
-#: application/views/errors/html/error_404.php:82
 #: application/views/errors/html/error_404.php:94
 msgid "Go Back to Dashboard"
 msgstr "Ga terug naar dashboard"
@@ -21152,8 +21096,8 @@ msgid ""
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
 "Ontvangen berichten moeten worden voorafgegaan door een punt %s, verzonden "
-"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - "
-"d.w.z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
+"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - d.w."
+"z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
 "bovenstaande regels toont een type uitwisseling (alleen serie, alleen tekst "
 "of beide); merk op dat de verzonden uitwisseling 'sticky' is: eenmaal "
 "ingesteld, wordt deze automatisch meegenomen in de volgende QSO's (wanneer "
@@ -22613,21 +22557,6 @@ msgstr "Kies het aantal laatste QSO's dat op het dashboard wordt weergegeven."
 #: application/views/user/edit.php:764
 msgid "Show Dashboard Map"
 msgstr "Dashboardkaart weergeven"
-
-#: application/views/user/edit.php:767
-#: application/views/dashboard/_options_menu.php:13
-msgid "Map on top"
-msgstr "Kaart bovenaan"
-
-#: application/views/user/edit.php:768
-#: application/views/dashboard/_options_menu.php:13
-msgid "Map at left"
-msgstr "Kaart aan de linkerkant"
-
-#: application/views/user/edit.php:769
-#: application/views/dashboard/_options_menu.php:13
-msgid "Map at right"
-msgstr "Kaart rechts"
 
 #: application/views/user/edit.php:772
 msgid "Choose whether to show map on dashboard or not"
