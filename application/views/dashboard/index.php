@@ -303,7 +303,7 @@ function echo_table_header_col($name) {
 	<!-- Map -->
 		<?php if($dashboard_map == "Y") { ?>
 		<div class="col-12 map-breakout">
-			<div class="card">
+			<div class="card" id="map-card" title="<?= __("Right-click for options"); ?>">
 				<div class="card-header py-2">
 					<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
 				</div>
@@ -318,7 +318,7 @@ function echo_table_header_col($name) {
 	<div class="col-12 col-lg-8">
 
 		<?php if($dashboard_map == "map_at_left") { ?>
-		<div class="card mb-3">
+		<div class="card mb-3" id="map-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
 			</div>
@@ -388,7 +388,7 @@ function echo_table_header_col($name) {
 	<!-- Right column: cards -->
 	<div class="col-12 col-lg-4">
 		<?php if($dashboard_map == "map_at_right") { ?>
-		<div class="card mb-3">
+		<div class="card mb-3" id="map-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
 			</div>
@@ -404,7 +404,7 @@ function echo_table_header_col($name) {
 
 			<?php if (($dashboard_solar ?? 'N') === 'top') { $this->load->view('dashboard/solar_data'); } ?>
 			<?php if (!empty($active_dxpeditions) && $active_dxpeditions !== false) { ?>
-			<div class="card mb-3">
+			<div class="card mb-3" id="dxpeditions-card" title="<?= __("Right-click for options"); ?>">
 				<div class="card-header py-2">
 					<h6 class="mb-0"><i class="fas fa-broadcast-tower"></i> <?= __("Active Expeditions"); ?> <a href="<?php echo site_url('dxcalendar'); ?>" aria-label="<?= __("Active Expeditions"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 				</div>
@@ -447,10 +447,11 @@ function echo_table_header_col($name) {
 					</table>
 				</div>
 			</div>
-			<?php } ?>
+			<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'dxpeditionsOptsMenu','target_id'=>'dxpeditions-card']); ?>
+		<?php } ?>
 
 			<?php if (!empty($active_contests) && $active_contests !== false) { ?>
-			<div class="card mb-3">
+			<div class="card mb-3" id="contests-card" title="<?= __("Right-click for options"); ?>">
 				<div class="card-header py-2">
 					<h6 class="mb-0"><i class="fas fa-trophy"></i> <?= __("Active Contests"); ?> <a href="<?php echo site_url('contestcalendar'); ?>" aria-label="<?= __("Active Contests"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 				</div>
@@ -476,7 +477,8 @@ function echo_table_header_col($name) {
 					</table>
 				</div>
 			</div>
-			<?php } ?>
+			<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'contestsOptsMenu','target_id'=>'contests-card']); ?>
+		<?php } ?>
 		<div class="card mb-3">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?> <a href="<?php echo site_url('awards/dxcc'); ?>" aria-label="<?= __("DXCCs Breakdown"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
@@ -686,5 +688,6 @@ function echo_table_header_col($name) {
 	</div>
 
 </div>
+<?php if($dashboard_map != "N") { $this->load->view('dashboard/_options_menu', ['menu_id'=>'mapOptsMenu','target_id'=>'map-card']); } ?>
 <?php echo $firstloginwizard; ?>
 </div>

@@ -48,21 +48,27 @@
  * This can be set to anything, but default usage is:
  *
  *     development			Developer Mode - Shows for example PHP errors in frontend
- *     maintenance			Maintenance Mode - Only Admin's are allowed to login
  *     production			Production Mode - Regular Mode
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	#define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-	if (isset($_ENV['CI_ENV'])) {
-		define('ENVIRONMENT', $_ENV['CI_ENV']);
-	} else if (file_exists('.debug')) {
-		define('ENVIRONMENT', 'development');
-	} else if (file_exists('.maintenance')) {
-		define('ENVIRONMENT', 'maintenance');
-	} else {
-		define('ENVIRONMENT', 'production');
-	}
+#define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+if (isset($_ENV['CI_ENV'])) {
+	define('ENVIRONMENT', $_ENV['CI_ENV']);
+} else if (file_exists('.debug')) {
+	define('ENVIRONMENT', 'development');
+} else {
+	define('ENVIRONMENT', 'production');
+}
+
+/*
+ *---------------------------------------------------------------
+ * MAINTENANCE MODE
+ *---------------------------------------------------------------
+ *
+ * Only Admin's are allowed to login while this is active.
+ */
+define('MAINTENANCE_MODE', file_exists(__DIR__.'/.maintenance'));
 
 /*
  *---------------------------------------------------------------
@@ -75,11 +81,6 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(-1);
-		ini_set('display_errors', 1);
-		break;
-
-	case 'maintenance':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
 		break;

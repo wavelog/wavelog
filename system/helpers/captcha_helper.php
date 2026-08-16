@@ -377,7 +377,6 @@ if ( ! function_exists('create_captcha'))
 		$img_class = (bool) strlen($img_class) ? 'class="'.$img_class.'" ' : '';
 
 		$img = '<img '.($img_id === '' ? '' : 'id="'.$img_id.'"').' src="'.$img_src.'" style="width: '.$img_width.'px; height: '.$img_height .'px; border: 0;" '.$img_class.'alt="'.$img_alt.'" />';
-		ImageDestroy($im);
 
 		return array('word' => $word, 'time' => $now, 'image' => $img, 'filename' => $img_filename);
 	}

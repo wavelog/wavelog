@@ -101,7 +101,7 @@
 			<?php if (ENVIRONMENT == "development" || (ENVIRONMENT == "docker" && filter_var($_ENV['DOCKER_DEVELOPMENT'] ?? false, FILTER_VALIDATE_BOOLEAN))) { ?>
 				<span class="badge text-bg-danger me-1"><?= __("Developer Mode"); ?></span>
 			<?php } ?>
-			<?php if (ENVIRONMENT == "maintenance") { ?>
+			<?php if (MAINTENANCE_MODE) { ?>
 				<span class="badge text-bg-info me-1"><?= __("Maintenance Mode"); ?></span>
 			<?php } ?>
 			<?php if ($this->session->userdata('clubstation') == '1' && $this->session->userdata('impersonate') == '1') { ?>
@@ -688,7 +688,7 @@
 						// The menu items will be displayed to the top right under extras.
 						//
 						// Example:
-						// INSERT INTO options (option_name,option_value,autoload) VALUES
+						// INSERT INTO options (option_name,option_value) VALUES
 						// 	('menuitems','[
 						// {
 						// 		"url":"gridmap",
@@ -700,7 +700,7 @@
 						// 		"text":"Gallery",
 						// 		"icon":"fa-globe-europe"
 						// }
-						// ]','yes');
+						// ]');
 						$menuitems = $this->optionslib->get_option('menuitems');
 
 						if ($menuitems) { ?>
