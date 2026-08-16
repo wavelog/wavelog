@@ -2863,6 +2863,7 @@ msgstr "版本信息不再会向用户显示"
 #: application/controllers/Visitor.php:378
 #: application/controllers/Visitor.php:635
 #: application/controllers/Widgets.php:67
+#: application/controllers/Staticmap.php:210
 msgid "Unknown Public Page."
 msgstr "未知的公开页面。"
 
@@ -3317,6 +3318,7 @@ msgstr "快速记录 QSO"
 #: application/controllers/Visitor.php:374
 #: application/controllers/Visitor.php:631
 #: application/controllers/Widgets.php:63
+#: application/controllers/Staticmap.php:206
 msgid "Empty Logbook"
 msgstr "日志为空"
 
@@ -8526,8 +8528,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -20561,7 +20563,8 @@ msgid ""
 "This is needed for all features based on current location, e.g. maps, "
 "distance statistics and more. Make sure to fill in the gridsquare if you "
 "want to use those features"
-msgstr "如需实现地图、距离计算等基于台站位置的功能，请确保你已完成配置网格坐标配置"
+msgstr ""
+"如需实现地图、距离计算等基于台站位置的功能，请确保你已完成配置网格坐标配置"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:222
@@ -21316,8 +21319,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -24417,8 +24420,8 @@ msgstr "LoTW 用户。最后上传于 "
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
