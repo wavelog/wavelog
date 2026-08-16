@@ -847,6 +847,7 @@ $(document).ready(function () {
 				dupemode: this.dupemode.value,
 				dupeband: this.dupeband.value,
 				dupesat: this.dupesat.value,
+				dupedateval: this.dupedateval.value,
 				contest: this.contest.value,
 				invalid: this.invalid.value,
 				continent: this.continent.value,
@@ -1885,6 +1886,7 @@ $(document).ready(function () {
 								$('#dupemode').val($('#mode_check').is(':checked') ? "Y" : "N");
 								$('#dupeband').val($('#band_check').is(':checked') ? "Y" : "N");
 								$('#dupesat').val($('#satellite_check').is(':checked') ? "Y" : "N");
+								$('#dupedateval').val($('#dupe_time').length ? $('#dupe_time').val() * 60 : '1800');
 								dupeSearch();
 							}
 						},
@@ -3810,3 +3812,15 @@ function saveOptions() {
 			}
 		});
 	}
+
+	// Dupe search dialog: live time-window slider label (slider value is minutes).
+	// Bound via delegation because the dialog HTML is injected via AJAX.
+	$(document).on('input', '#dupe_time', function () {
+		$('#dupe_time_display').text(this.value + ' min');
+	});
+
+	$(document).on('change', '#date_check', function () {
+		var checked = $(this).is(':checked');
+		$('#dupe_time').prop('disabled', !checked);
+		$('#dupe_time_group').css('opacity', checked ? 1 : 0.5);
+	});

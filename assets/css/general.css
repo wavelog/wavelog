@@ -2498,3 +2498,24 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	height: 2rem;
 	border: var(--bs-border-width) solid rgba(255, 255, 255, 0.45) !important;
 }
+
+/* Dupe search dialog: larger, high-contrast checkboxes on colored card headers */
+.dupe-search-dialog .form-check-input {
+	width: 1.5em;
+	height: 1.5em;
+	margin-top: 0.125em;
+	margin-right: 0.3em;
+	border: 2px solid rgba(255, 255, 255, 0.9);
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
+.dupe-search-dialog .form-check-input:checked {
+	background-color: #fff;
+	border-color: #fff;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23212529' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.dupe-search-dialog .form-check-input:focus {
+	border-color: #fff;
+	box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5);
+}

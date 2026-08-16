@@ -46,9 +46,16 @@ class Logbookadvanced_model extends CI_Model {
 			$where_conditions = "AND " . implode(" AND ", $conditions);
 		}
 
+		// Time window for the dupedate check (seconds), adjustable via the dupe search dialog
+		$dupe_time = (int)($searchCriteria['dupedateval'] ?? 0);
+		if ($dupe_time <= 0) {
+			$dupe_time = 1800; // default 30 minutes
+		}
+		$dupe_time = min($dupe_time, 86400);
+
 		// Build the dupedate HAVING condition
 		$having_condition = isset($searchCriteria['dupedate']) && $searchCriteria['dupedate'] === 'Y'
-			? "AND TIMESTAMPDIFF(SECOND, prev_time_on, col_time_on) < 1800"
+			? "AND TIMESTAMPDIFF(SECOND, prev_time_on, col_time_on) < $dupe_time"
 			: "";
 
 		$id_sql = "

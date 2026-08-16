@@ -155,6 +155,7 @@ class Logbookadvanced extends CI_Controller {
 			'dupemode' => xss_clean($this->input->post('dupemode')),
 			'dupeband' => xss_clean($this->input->post('dupeband')),
 			'dupesat' => xss_clean($this->input->post('dupesat')),
+			'dupedateval' => xss_clean($this->input->post('dupedateval')),
 			'operator' => xss_clean($this->input->post('operator')),
 			'contest' => xss_clean($this->input->post('contest')),
 			'invalid' => xss_clean($this->input->post('invalid')),
