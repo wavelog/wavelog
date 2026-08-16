@@ -4,6 +4,11 @@ class OptionsLib {
 
     private $CI;
 
+    // Per-request cache: get_option() is called many times per page load
+    // (footer alone reads some options 10+ times), so each option is only
+    // fetched from the database once per request.
+    private array $cache = [];
+
     function __construct() {
 
         // Make Codeigniter functions available to library
@@ -29,7 +34,11 @@ class OptionsLib {
             $option_name = substr($option_name, 7);
         }
 
-        return $this->CI->options_model->item($option_name);
+        if (!array_key_exists($option_name, $this->cache)) {
+            $this->cache[$option_name] = $this->CI->options_model->item($option_name);
+        }
+
+        return $this->cache[$option_name];
     }
 
     /**
@@ -40,6 +49,8 @@ class OptionsLib {
      * @return bool True if the option was updated successfully, false otherwise
      */
     function update($option_name, $option_value) {
+        unset($this->cache[$option_name]);
+
         return $this->CI->options_model->update($option_name, $option_value);
     }
 
