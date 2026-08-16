@@ -711,7 +711,7 @@
                                 <input type="hidden" name="id" value="<?php echo html_escape($qso->COL_PRIMARY_KEY); ?>" />
 
                                 <div class="actions">
-                                    <a class="btn btn-danger" href='javascript:qso_delete(<?php echo (int) $qso->COL_PRIMARY_KEY; ?>, <?php echo json_encode($qso->COL_CALL, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>)'><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+                                    <a class="btn btn-danger" href='javascript:qso_delete(<?php echo (int) $qso->COL_PRIMARY_KEY; ?>, <?php echo js_escape($qso->COL_CALL); ?>)'><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
 									<button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
                                     <div class="float-end">
                                         <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>

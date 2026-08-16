@@ -637,7 +637,7 @@ function getDistance($distance) {
 
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div class="dropdown-divider"></div>
-                            <button type="button" class="dropdown-item" onclick='qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo json_encode($row->COL_CALL, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>)'><i class="fas fa-trash-alt" aria-hidden="true"></i> <?= __("Delete QSO"); ?></button>
+                            <button type="button" class="dropdown-item" onclick='qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo js_escape($row->COL_CALL); ?>)'><i class="fas fa-trash-alt" aria-hidden="true"></i> <?= __("Delete QSO"); ?></button>
                             <?php } ?>
                         </div>
                     </div>

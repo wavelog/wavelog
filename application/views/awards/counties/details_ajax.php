@@ -14,7 +14,7 @@ if ($counties_array) {
         echo '<tr>
         <td>'. $i++ .'</td>
         <td>'. html_escape($county['COL_STATE']) .'</td>
-        <td><a href=\'javascript:displayCountyContacts(' . json_encode($county['COL_STATE'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($county['COL_CNTY'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'>'. html_escape($county['COL_CNTY']) .'</a></td>';
+        <td><a href=\'javascript:displayCountyContacts(' . js_escape($county['COL_STATE']) . ',' . js_escape($county['COL_CNTY']) . ')\'>'. html_escape($county['COL_CNTY']) .'</a></td>';
         echo '</tr>';
     }
     echo '</tbody></table>';

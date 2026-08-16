@@ -164,7 +164,7 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
                 <td>' . $line[0] . '</td>
 				<td>' . $line[2] . '</td>
 				<td>' . $line[3] . '</td>
-                <td><a href=\'javascript:displayCallstatsContacts(' . json_encode($line[1], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($band, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($mode, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($sat, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($orbit, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($propagation, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'><i class="fas fa-list"></i></a></td>
+                <td><a href=\'javascript:displayCallstatsContacts(' . js_escape($line[1]) . ',' . js_escape($band) . ',' . js_escape($mode) . ',' . js_escape($sat) . ',' . js_escape($orbit) . ',' . js_escape($propagation) . ')\'><i class="fas fa-list"></i></a></td>
 			</tr>';
     }
     echo '</tfoot></table></div>';

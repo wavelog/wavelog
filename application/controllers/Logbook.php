@@ -1485,9 +1485,9 @@ class Logbook extends CI_Controller {
 	function part_QrbCalcLink($mygrid, $grid, $vucc) {
 		$ret='';
 		if (!empty($grid)) {
-			$ret.= html_escape($grid) . ' <a href=\'javascript:spawnQrbCalculator(' . json_encode($mygrid, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($grid, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'><i class="fas fa-globe"></i></a>';
+			$ret.= html_escape($grid) . ' <a href=\'javascript:spawnQrbCalculator(' . js_escape($mygrid) . ',' . js_escape($grid) . ')\'><i class="fas fa-globe"></i></a>';
 		} else if (!empty($vucc)) {
-			$ret.= html_escape($vucc) .' <a href=\'javascript:spawnQrbCalculator(' . json_encode($mygrid, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ',' . json_encode($vucc, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ')\'><i class="fas fa-globe"></i></a>';
+			$ret.= html_escape($vucc) .' <a href=\'javascript:spawnQrbCalculator(' . js_escape($mygrid) . ',' . js_escape($vucc) . ')\'><i class="fas fa-globe"></i></a>';
 		}
 		return $ret;
 	}
