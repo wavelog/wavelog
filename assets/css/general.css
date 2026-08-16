@@ -2382,15 +2382,11 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 /* ============================================================
    AMSAT Satellite Status (application/views/amsatstatus)
    Scoped under .amsat-status. Vivid status colors (green/amber/
-   blue/red); each cell's hue is reinforced by the icon+label
-   legend and the per-cell tooltip -- never color alone.
+   blue/red); each pill's hue is reinforced by the icon+label
+   legend and the per-pill tooltip -- never color alone.
    ============================================================ */
 .amsat-status {
 	--ams-heard: #22c55e;
-	--ams-gap: 2px;
-	--ams-name-w: 176px;
-	--ams-aos-w: 134px;
-	--ams-cell-w: 30px;
 }
 
 /* ---- KPI tiles ---- */
@@ -2416,66 +2412,81 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .amsat-lgnd { display: inline-flex; align-items: center; gap: .4rem; }
 .amsat-lgnd i { font-size: .85rem; }
 
-/* ---- Heatmap table ---- */
-.amsat-heat {
-	border-collapse: separate;
-	border-spacing: var(--ams-gap);
-	width: 100%;
-	margin: 0 0 .5rem; /* keep left/top at 0 so the sticky name column still aligns */
-	font-size: .82rem;
+/* Fixed-width name column so every satellite's pills start aligned */
+.amsat-status .award-grid-prefecture {
+	width: 14rem;
+	font-size: .85rem; /* name size, between the .78rem AOS line and body text */
 }
-.amsat-heat th, .amsat-heat td {
-	background-color: var(--bs-card-bg, var(--bs-body-bg));
-	vertical-align: middle;
-	font-weight: bold;
+/* Tight row rhythm: 2px above and below each satellite block */
+.amsat-status .amsat-sat {
+	padding-top: .125rem;
+	padding-bottom: .125rem;
 }
-.amsat-heat thead th {
-	position: sticky; 
-	top: var(--ams-gap); 
-	z-index: 2;
-	color: var(--bs-secondary-color);
-	padding: .35rem 0; 
-	text-align: center;
+@media (max-width: 991.98px) {
+	.amsat-status .award-grid-prefecture {
+		width: auto;
+	}
 }
-/* Frozen satellite-name column */
-.amsat-heat .h-name, .amsat-heat .c-name {
-	position: sticky; left: var(--ams-gap); z-index: 3;
-	width: var(--ams-name-w); min-width: var(--ams-name-w); max-width: var(--ams-name-w);
-	text-align: left; padding: .35rem .7rem; white-space: nowrap;
+/* Pill strip: a grid that soaks up whatever width is left after the
+   name and AOS columns and spreads it between the pills. Capped at
+   56rem so wide themes only gain a little air (~5px gaps); when space
+   is tight the .1rem gap is the minimum and pills wrap onto the next
+   grid row. */
+.amsat-status .amsat-pills {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 2rem);
+	gap: .1rem;
+	justify-content: space-between;
+	flex: 1 1 auto;
+	max-width: 56rem;
+	min-width: 0; /* allow the grid to shrink so tracks wrap, instead of overflowing */
 }
-.amsat-heat thead .h-name { z-index: 5; }
-/* Frozen next-AOS column */
-.amsat-heat .h-aos, .amsat-heat .c-aos {
-	position: sticky; left: calc(var(--ams-name-w) + var(--ams-gap) * 2); z-index: 3;
-	width: var(--ams-aos-w); min-width: var(--ams-aos-w); max-width: var(--ams-aos-w);
-	text-align: left; padding: .35rem .5rem; white-space: nowrap;
+/* Mobile: name and AOS share the first line (section wraps instead of
+   stacking); the pill strip gets its own full-width line below them */
+@media (max-width: 991.98px) {
+	.amsat-status .amsat-pills {
+		flex: 1 1 100%;
+	}
 }
-.amsat-heat thead .h-aos { z-index: 5; }
-
-.amsat-heat .c-name { font-weight: 600; }
-.amsat-heat .c-name-txt { display: inline-block; max-width: 118px; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; }
-.amsat-heat .c-name a { text-decoration: none; }
-.amsat-heat .c-name a:hover { text-decoration: underline; }
-.amsat-heat .c-name-cnt {
+.amsat-status .amsat-sat-aos {
+	font-size: .78rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/* AOS column between the name and the pills: fixed width so the pill
+   strips still align across satellites. The section centers its
+   columns (align-items-lg-center) so name, AOS and pills share one line. */
+@media (min-width: 992px) {
+	.amsat-status .amsat-sat-aos {
+		width: 6rem;
+	}
+}
+.amsat-status .amsat-sat-aos strong { font-weight: 600; }
+.amsat-status .amsat-sat-cnt {
 	display: inline-block; min-width: 1.3em; text-align: center;
 	font-size: .68rem; font-weight: 600; color: var(--bs-secondary-color);
 	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 14%, transparent);
-	border-radius: 999px; padding: 0 .35rem; margin-left: .35rem; vertical-align: middle;
+	border-radius: 999px; padding: 0 .35rem;
 }
-.amsat-heat .c-aos-time { font-weight: 600; }
-.amsat-heat .h-hr { width: var(--ams-cell-w); min-width: var(--ams-cell-w); }
-.amsat-heat thead .h-hr[data-now] { color: var(--bs-body-color, inherit); font-weight: 700; }
 
-/* Heatmap cells: status tint over the surface, lift to solid on hover */
-.amsat-heat .cell {
-	width: var(--ams-cell-w); min-width: var(--ams-cell-w); height: 28px;
-	border-radius: 5px; cursor: help;
+/* Hour pill base: a perfect square (overrides award-grid-slot's 3x2rem).
+   The .btn class supplies radius and the body text colour; the white
+   border comes from award-grid-slot. */
+.amsat-status .amsat-slot {
+	width: 2rem;
+	height: 2rem;
+	padding: .15rem .2rem;
+	font-size: .7rem; font-weight: 600;
+	cursor: help;
 	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 25%, transparent);
 }
-.amsat-heat .cell[data-st] {
+
+/* Status tint over the surface, lift to solid on hover */
+.amsat-status .amsat-slot[data-st] {
 	background-color: color-mix(in srgb, var(--cell) 82%, transparent);
 }
-.amsat-heat .cell[data-st]:hover {
+.amsat-status .amsat-slot[data-st]:hover {
 	background-color: var(--cell);
 	box-shadow: 0 2px 7px rgba(0,0,0,.22);
 	transform: translateY(-1px);
@@ -2546,4 +2557,10 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .legend .legend-layer-row input {
 	margin: 0;
 	flex-shrink: 0;
+@media (hover: none) { .amsat-status .amsat-slot[data-st]:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .amsat-status .amsat-slot[data-st]:hover { transform: none; } }
+.amsat-grid-pill {
+	width: 3rem;
+	height: 2rem;
+	border: var(--bs-border-width) solid rgba(255, 255, 255, 0.45) !important;
 }

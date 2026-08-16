@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-16 07:33+0000\n"
+"POT-Creation-Date: 2026-08-16 08:02+0000\n"
 "PO-Revision-Date: 2026-08-14 06:33+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4961,7 +4961,7 @@ msgid "Activated Gridsquares"
 msgstr "Aktiverade Lokatorrutor"
 
 #: application/views/activated_gridmap/index.php:27
-#: application/views/amsatstatus/index.php:116
+#: application/views/amsatstatus/index.php:113
 #: application/views/awards/amsat_rover/index.php:226
 #: application/views/awards/dxcc/index.php:194
 #: application/views/awards/wab/index.php:36
@@ -6250,7 +6250,8 @@ msgid "Status legend"
 msgstr "Statuslegend"
 
 #: application/views/amsatstatus/index.php:102
-#: application/views/amsatstatus/index.php:171
+#: application/views/amsatstatus/index.php:164
+#: application/views/amsatstatus/index.php:199
 msgid "No report"
 msgstr "Ingen rapport"
 
@@ -6258,49 +6259,39 @@ msgstr "Ingen rapport"
 msgid "AMSAT Satellite Status (Last 24h)"
 msgstr "AMSAT satellitstatus (senaste 24 timmarna)"
 
-#: application/views/amsatstatus/index.php:113
-msgid ""
-"Satellite status by hour for the past 24 hours. Each cell is coloured by its "
-"winning status; hover for the report breakdown."
-msgstr ""
-"Satellitstatus per timme för de senaste 24 timmarna. Varje cell är färgad "
-"efter sin vinststatus; håll musen över för att se rapportens uppdelning."
-
-#: application/views/amsatstatus/index.php:117
+#: application/views/amsatstatus/index.php:114
 msgid "Next AOS"
 msgstr "Nästa AOS"
 
-#: application/views/amsatstatus/index.php:121
-#, php-format
-msgid "%dh"
-msgid_plural "%dh"
-msgstr[0] "%dh"
-msgstr[1] "%dh"
+#: application/views/amsatstatus/index.php:115
+msgid "Hours ago (left-most: now)"
+msgstr ""
 
-#: application/views/amsatstatus/index.php:121
-msgid "now"
-msgstr "nu"
-
-#: application/views/amsatstatus/index.php:123
-#, php-format
-msgid "%d hours ago"
-msgstr "%d timmar sedan"
-
-#: application/views/amsatstatus/index.php:146
+#: application/views/amsatstatus/index.php:135
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
 msgstr[0] "%d rapport inom 24 timmar"
 msgstr[1] "%d rapporter inom 24 timmar"
 
-#: application/views/amsatstatus/index.php:192
+#: application/views/amsatstatus/index.php:158
+#, php-format
+msgid "%d hours ago"
+msgstr "%d timmar sedan"
+
+#: application/views/amsatstatus/index.php:158
+#: application/views/amsatstatus/index.php:201
+msgid "now"
+msgstr "nu"
+
+#: application/views/amsatstatus/index.php:185
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
 msgstr[0] "%d rapport"
 msgstr[1] "%d rapporter"
 
-#: application/views/amsatstatus/index.php:202
+#: application/views/amsatstatus/index.php:195
 #: application/views/qso/index.php:34
 msgid "more"
 msgstr "mer"
@@ -23599,6 +23590,19 @@ msgstr "Clublog Loggsökning"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-användare. Senaste uppladdningen var "
+
+#~ msgid ""
+#~ "Satellite status by hour for the past 24 hours. Each cell is coloured by "
+#~ "its winning status; hover for the report breakdown."
+#~ msgstr ""
+#~ "Satellitstatus per timme för de senaste 24 timmarna. Varje cell är färgad "
+#~ "efter sin vinststatus; håll musen över för att se rapportens uppdelning."
+
+#, php-format
+#~ msgid "%dh"
+#~ msgid_plural "%dh"
+#~ msgstr[0] "%dh"
+#~ msgstr[1] "%dh"
 
 #, php-format
 #~ msgid "You have no station locations. Go %s to create it!"
