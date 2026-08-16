@@ -10,8 +10,8 @@
 				<div class="mb-3">
 					<label for="emailProtocol"><?= __("Outgoing Protocol"); ?></label>
 					<select name="emailProtocol" class="form-select" id="emailProtocol">
-						<option value="sendmail" <?php if($this->optionslib->get_option('emailProtocol')== "sendmail") { echo "selected=\"selected\""; } ?>><?= __("Local mailer (PHP mail)"); ?></option>
 						<option value="smtp" <?php if($this->optionslib->get_option('emailProtocol')== "smtp") { echo "selected=\"selected\""; } ?>>SMTP</option>
+						<option value="sendmail" <?php if($this->optionslib->get_option('emailProtocol')== "sendmail") { echo "selected=\"selected\""; } ?>><?= __("Local mailer (PHP mail)"); ?></option>
 					</select>
 					<small class="form-text text-muted"><?= __("The protocol that will be used to send out emails. The local mailer hands the message to PHP's mail() function and therefore needs a mail transfer agent installed on the host - the official Docker image does not ship one, so use SMTP there."); ?></small>
 				</div>
@@ -77,7 +77,7 @@
 				<div class="mb-3 row">
 					<label for="smtpPassword" class="col-sm-2 col-form-label"><?= __("SMTP Password"); ?></label>
 					<div class="col-sm-10">
-						<input type="password" name="smtpPassword" class="form-control" id="smtpPassword"  value="<?php if($this->optionslib->get_option('smtpPassword') != "") { echo $this->optionslib->get_option('smtpPassword'); } ?>">
+						<input type="password" name="smtpPassword" class="form-control" id="smtpPassword" value="" placeholder="<?php if($this->optionslib->get_option('smtpPassword') != "") { echo __("Leave empty to keep current password"); } ?>">
 						<small class="form-text text-muted"><?= __("The password to log in to the mail server."); ?></small>
 					</div>
 				</div>
