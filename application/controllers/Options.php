@@ -300,9 +300,12 @@ class Options extends CI_Controller {
 			// Update smtpUsername choice within the options system
 			$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername', false));
 
-			// Update smtpPassword choice within the options system - an empty field keeps the stored password
+			// Update smtpPassword choice within the options system - an empty field keeps the
+			// stored password, the clear checkbox removes it
 			$smtpPassword_value = (string) $this->input->post('smtpPassword', false);
-			if ($smtpPassword_value === '') {
+			if ($this->input->post('smtpPasswordClear') !== null) {
+				$smtpPasswordupdate = $this->optionslib->update('smtpPassword', '');
+			} else if ($smtpPassword_value === '') {
 				$smtpPasswordupdate = true;
 			} else {
 				$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $smtpPassword_value);
