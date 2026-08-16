@@ -54,7 +54,7 @@ class Options extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		} else {
 			// Update theme choice within the options system
-			$theme_update_status = $this->optionslib->update('theme', $this->input->post('theme'), 'yes');
+			$theme_update_status = $this->optionslib->update('theme', $this->input->post('theme', true));
 
 			// If theme update is complete set a flashsession with a success note
 			if($theme_update_status == TRUE) {
@@ -62,7 +62,7 @@ class Options extends CI_Controller {
 			}
 
 			// Update logbook map within the options system
-			$logbook_map_update_status = $this->optionslib->update('logbook_map', $this->input->post('logbookMap'), 'yes');
+			$logbook_map_update_status = $this->optionslib->update('logbook_map', $this->input->post('logbookMap', true));
 
 			// If logbook map update is complete set a flashsession with a success note
 			if($logbook_map_update_status == TRUE) {
@@ -70,7 +70,7 @@ class Options extends CI_Controller {
 			}
 
 			// Update public maps within the options system
-			$public_maps_update_status = $this->optionslib->update('public_maps', $this->input->post('publicMaps'), 'yes');
+			$public_maps_update_status = $this->optionslib->update('public_maps', $this->input->post('publicMaps', true));
 
 			// If the option was saved successfully set a flashsession with success note
 			if($public_maps_update_status == TRUE) {
@@ -78,7 +78,7 @@ class Options extends CI_Controller {
 			}
 
 			// Update public github button within the options system
-			$public_github_button_update_status = $this->optionslib->update('public_github_button', $this->input->post('publicGithubButton'), 'yes');
+			$public_github_button_update_status = $this->optionslib->update('public_github_button', $this->input->post('publicGithubButton', true));
 
 			// If the option was saved successfully set a flashsession with success note
 			if($public_github_button_update_status == TRUE) {
@@ -86,7 +86,7 @@ class Options extends CI_Controller {
 			}
 
 			// Update public login button within the options system
-			$public_login_button_update_status = $this->optionslib->update('public_login_button', $this->input->post('publicLoginButton'), 'yes');
+			$public_login_button_update_status = $this->optionslib->update('public_login_button', $this->input->post('publicLoginButton', true));
 
 			// If the option was saved successfully set a flashsession with success note
 			if($public_login_button_update_status == TRUE) {
@@ -127,7 +127,7 @@ class Options extends CI_Controller {
 			$this->load->view('options/hon');
 			$this->load->view('interface_assets/footer');
 		} else {
-			$hon_url_update = $this->optionslib->update('hon_url', $this->input->post('hon_url'), 'yes');
+			$hon_url_update = $this->optionslib->update('hon_url', $this->input->post('hon_url', false)); // no xss cleaning of urls
 			if($hon_url_update == TRUE) {
 				$this->session->set_flashdata('success', __("Hams-Of-Note URL changed to ").$this->input->post('hon_url',true));
 			}
@@ -165,17 +165,17 @@ class Options extends CI_Controller {
 			$this->load->view('options/dxcluster');
 			$this->load->view('interface_assets/footer');
 		} else {
-			$dxcluster_decont_update = $this->optionslib->update('dxcluster_decont', $this->input->post('dxcluster_decont'), 'yes');
+			$dxcluster_decont_update = $this->optionslib->update('dxcluster_decont', $this->input->post('dxcluster_decont', true));
 			if($dxcluster_decont_update == TRUE) {
 				$this->session->set_flashdata('success', __("de continent changed to ").$this->input->post('dxcluster_decont'));
 			}
 
-			$dxcluster_maxage_update = $this->optionslib->update('dxcluster_maxage', $this->input->post('dxcluster_maxage'), 'yes');
+			$dxcluster_maxage_update = $this->optionslib->update('dxcluster_maxage', $this->input->post('dxcluster_maxage', true));
 			if($dxcluster_maxage_update == TRUE) {
 				$this->session->set_flashdata('success', __("Maximum age of spots changed to ").$this->input->post('dxcluster_maxage'));
 			}
 
-			$dxcache_url_update = $this->optionslib->update('dxcache_url', $this->input->post('dxcache_url'), 'yes');
+			$dxcache_url_update = $this->optionslib->update('dxcache_url', $this->input->post('dxcache_url', false)); // no xss cleaning of urls
 			if($dxcache_url_update == TRUE) {
 				$this->session->set_flashdata('success', __("DXCluster Cache URL changed to ").$this->input->post('dxcache_url'));
 			}
@@ -217,7 +217,7 @@ class Options extends CI_Controller {
 		else
 		{
 			// Update theme choice within the options system
-			$radioTimeout_update = $this->optionslib->update('cat_timeout_interval', $this->input->post('radioTimeout'), 'yes');
+			$radioTimeout_update = $this->optionslib->update('cat_timeout_interval', $this->input->post('radioTimeout', true));
 
 			// If theme update is complete set a flashsession with a success note
 			if($radioTimeout_update == TRUE) {
@@ -264,32 +264,32 @@ class Options extends CI_Controller {
 		{
 
 			// Update emailProtocol choice within the options system
-			$emailProtocolupdate = $this->optionslib->update('emailProtocol', $this->input->post('emailProtocol'), 'yes');
+			$emailProtocolupdate = $this->optionslib->update('emailProtocol', $this->input->post('emailProtocol', true));
 
 			// Update smtpEncryption choice within the options system
-			$smtpEncryptionupdate = $this->optionslib->update('smtpEncryption', $this->input->post('smtpEncryption'), 'yes');
+			$smtpEncryptionupdate = $this->optionslib->update('smtpEncryption', $this->input->post('smtpEncryption', true));
 
 			// Update email sender name within the options system
 			$emailSenderName_value = $this->input->post('emailSenderName');
 			if (empty($emailSenderName_value)) {
 				$emailSenderName_value = 'Wavelog';
 			}
-			$emailSenderNameupdate = $this->optionslib->update('emailSenderName', $emailSenderName_value, 'yes');
+			$emailSenderNameupdate = $this->optionslib->update('emailSenderName', $emailSenderName_value);
 
 			// Update email address choice within the options system
-			$emailAddressupdate = $this->optionslib->update('emailAddress', $this->input->post('emailAddress'), 'yes');
+			$emailAddressupdate = $this->optionslib->update('emailAddress', $this->input->post('emailAddress', false));
 
 			// Update smtpHost choice within the options system
-			$smtpHostupdate = $this->optionslib->update('smtpHost', $this->input->post('smtpHost'), 'yes');
+			$smtpHostupdate = $this->optionslib->update('smtpHost', $this->input->post('smtpHost', false));
 
 			// Update smtpPort choice within the options system
-			$smtpPortupdate = $this->optionslib->update('smtpPort', $this->input->post('smtpPort'), 'yes');
+			$smtpPortupdate = $this->optionslib->update('smtpPort', $this->input->post('smtpPort', true));
 
 			// Update smtpUsername choice within the options system
-			$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername'), 'yes');
+			$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername', false));
 
 			// Update smtpPassword choice within the options system
-			$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $this->input->post('smtpPassword'), 'yes');
+			$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $this->input->post('smtpPassword', false));
 
 			// Check if all updates are successful
 			$updateSuccessful = $emailProtocolupdate &&
@@ -399,16 +399,16 @@ class Options extends CI_Controller {
 			$saved = false;
 			if ($this->input->post('reset_defaults') == '1') {
 				$map_tile_server_copyright = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
-				$saved = $this->optionslib->update('map_tile_server', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 'yes');
-				$saved = $this->optionslib->update('map_tile_server_dark', 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', 'yes');
-				$saved = $this->optionslib->update('map_tile_subdomains', 'abc', 'yes');
+				$saved = $this->optionslib->update('map_tile_server', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+				$saved = $this->optionslib->update('map_tile_server_dark', 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png');
+				$saved = $this->optionslib->update('map_tile_subdomains', 'abc');
 			} else {
 				$map_tile_server_copyright = 'Map data &copy; <a href="' . $this->input->post('copyright_url', true) . '">' . $this->input->post('copyright_text', true) . '</a>';
-				$saved = $this->optionslib->update('map_tile_server', $this->input->post('maptile_server_url', true), 'yes');
-				$saved = $this->optionslib->update('map_tile_server_dark', $this->input->post('maptile_server_url_dark', true), 'yes');
-				$saved = $this->optionslib->update('map_tile_subdomains', $this->input->post('subdomain_system', true), 'yes');
+				$saved = $this->optionslib->update('map_tile_server', $this->input->post('maptile_server_url', false));
+				$saved = $this->optionslib->update('map_tile_server_dark', $this->input->post('maptile_server_url_dark', false));
+				$saved = $this->optionslib->update('map_tile_subdomains', $this->input->post('subdomain_system', false));
 			}
-			$saved = $this->optionslib->update('map_tile_server_copyright', $map_tile_server_copyright, 'yes');
+			$saved = $this->optionslib->update('map_tile_server_copyright', $map_tile_server_copyright);
 
 			// Also clean up static map images
 			if (!$this->load->is_loaded('staticmap_model')) {
@@ -470,16 +470,16 @@ class Options extends CI_Controller {
 
 		$this->load->helper(array('form', 'url'));
 
-		$version_dialog_header_update = $this->optionslib->update('version_dialog_header', $this->input->post('version_dialog_header'), 'yes');
+		$version_dialog_header_update = $this->optionslib->update('version_dialog_header', $this->input->post('version_dialog_header', true));
 		if($version_dialog_header_update == TRUE) {
 			$this->session->set_flashdata('success0', __("Version Info Header changed to")." "."'".$this->input->post('version_dialog_header')."'");
 		}
-		$version_dialog_mode_update = $this->optionslib->update('version_dialog', $this->input->post('version_dialog_mode'), 'yes');
+		$version_dialog_mode_update = $this->optionslib->update('version_dialog', $this->input->post('version_dialog_mode', true));
 		if($version_dialog_mode_update == TRUE) {
 			$this->session->set_flashdata('success1', __("Version Info Mode changed to")." "."'".$this->input->post('version_dialog_mode')."'");
 		}
 		if ($this->input->post('version_dialog_mode') == "both" || $this->input->post('version_dialog_mode') == "custom_text" ) {
-			$version_dialog_custom_text_update = $this->optionslib->update('version_dialog_text', $this->input->post('version_dialog_custom_text'), 'yes');
+			$version_dialog_custom_text_update = $this->optionslib->update('version_dialog_text', $this->input->post('version_dialog_custom_text', true));
 			if($version_dialog_custom_text_update == TRUE) {
 				$this->session->set_flashdata('success2', __("Version Info Custom Text saved!"));
 			}

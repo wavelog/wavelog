@@ -28,7 +28,7 @@ class Widgets extends CI_Controller {
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
 			} else {
-				$data['theme'] = $this->config->item('option_theme');
+				$data['theme'] = $this->optionslib->get_option('theme');
 			}
 		} else {
 			$data['theme'] = "default";
@@ -100,10 +100,10 @@ class Widgets extends CI_Controller {
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
 			} else {
-				$data['theme'] = $this->config->item('option_theme');
+				$data['theme'] = $this->optionslib->get_option('theme');
 			}
 		} else {
-			$data['theme'] = $this->config->item('option_theme');
+			$data['theme'] = $this->optionslib->get_option('theme');
 		}
 
 		$user = $this->user_model->get_by_id($data['userid'])->row();
@@ -133,10 +133,10 @@ class Widgets extends CI_Controller {
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
 			} else {
-				$data['theme'] = $this->config->item('option_theme');
+				$data['theme'] = $this->optionslib->get_option('theme');
 			}
 		} else {
-			$data['theme'] = $this->config->item('option_theme');
+			$data['theme'] = $this->optionslib->get_option('theme');
 		}
 
 		$text_size = $this->input->get('text_size', true) ?? 1;
@@ -248,10 +248,10 @@ class Widgets extends CI_Controller {
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
 			} else {
-				$data['theme'] = $this->config->item('option_theme');
+				$data['theme'] = $this->optionslib->get_option('theme');
 			}
 		} else {
-			$data['theme'] = $this->config->item('option_theme');
+			$data['theme'] = $this->optionslib->get_option('theme');
 		}
 
 		$text_size = $this->input->get('text_size', true) ?? 1;

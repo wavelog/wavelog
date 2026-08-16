@@ -216,11 +216,11 @@ if ($lang_code !== 'en' && file_exists(FCPATH . "assets/json/datatables_language
 if($this->session->userdata('user_id') != null) {
     $versionDialog = $this->optionslib->get_option('version_dialog');
     if (empty($versionDialog)) {
-        $this->optionslib->update('version_dialog', 'release_notes', 'yes');
+        $this->optionslib->update('version_dialog', 'release_notes');
     }
     $versionDialogHeader = $this->optionslib->get_option('version_dialog_header');
     if (empty($versionDialogHeader)) {
-        $this->optionslib->update('version_dialog_header', __("Version Info"), 'yes');
+        $this->optionslib->update('version_dialog_header', __("Version Info"));
     }
     if($versionDialog != "disabled" && !($is_first_login ?? false)) {
         $confirmed = $this->user_options_model->get_options('version_dialog', array('option_name'=>'confirmed'))->result();

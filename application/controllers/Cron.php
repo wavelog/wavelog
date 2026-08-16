@@ -157,7 +157,7 @@ class cron extends CI_Controller {
 
 			$datetime = new DateTime("now", new DateTimeZone('UTC'));
 			$datetime = $datetime->format('Y-m-d H:i:s');
-			$this->optionslib->update('mastercron_last_run', $datetime , 'no');
+			$this->optionslib->update('mastercron_last_run', $datetime);
 		} else {
 			log_message('error', 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version);
 			echo 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version . "\n";
