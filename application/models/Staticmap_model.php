@@ -54,7 +54,7 @@ class Staticmap_model extends CI_Model {
             require_once($class);
         }
 
-        $fontPath = 'src/StaticMap/src/resources/font.ttf';
+        $fontPath = FCPATH . 'src/StaticMap/src/resources/font.ttf';
 
         //===============================================================================================================================
         //===================================================== CONFIGURE GRAPHICS ======================================================
@@ -579,7 +579,7 @@ class Staticmap_model extends CI_Model {
 
         // Add continent text
         if ($continentEnabled) {
-            $fontPath = 'src/StaticMap/src/resources/font.ttf';
+            $fontPath = FCPATH . 'src/StaticMap/src/resources/font.ttf';
             $color = 'ff0000'; // Red
             $image->writeText($continentText, $fontPath, $fontSize, $color, $contFontPosX, $contFontPosY);
         }
