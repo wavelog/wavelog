@@ -16,14 +16,16 @@
 					<small class="form-text text-muted"><?= __("The protocol that will be used to send out emails. The local mailer hands the message to PHP's mail() function and therefore needs a mail transfer agent installed on the host - the official Docker image does not ship one, so use SMTP there."); ?></small>
 				</div>
 
-				<div class="mb-3">
-					<label for="smtpEncryption"><?= __("SMTP Encryption"); ?></label>
-					<select name="smtpEncryption" class="form-select" id="smtpEncryption">
-						<option value="" <?php if($this->optionslib->get_option('smtpEncryption') == "") { echo "selected=\"selected\""; } ?>><?= __("No Encryption"); ?></option>
-						<option value="tls" <?php if($this->optionslib->get_option('smtpEncryption') == "tls") { echo "selected=\"selected\""; } ?>>TLS</option>
-						<option value="ssl" <?php if($this->optionslib->get_option('smtpEncryption') == "ssl") { echo "selected=\"selected\""; } ?>>SSL</option>
-					</select>
-					<small class="form-text text-muted"><?= __("Choose whether emails should be sent with TLS or SSL."); ?></small>
+				<div class="mb-3 row">
+					<label for="smtpEncryption" class="col-sm-2 col-form-label"><?= __("SMTP Encryption"); ?></label>
+					<div class="col-sm-10">
+						<select name="smtpEncryption" class="form-select" id="smtpEncryption">
+							<option value="" <?php if($this->optionslib->get_option('smtpEncryption') == "") { echo "selected=\"selected\""; } ?>><?= __("No Encryption"); ?></option>
+							<option value="tls" <?php if($this->optionslib->get_option('smtpEncryption') == "tls") { echo "selected=\"selected\""; } ?>>TLS</option>
+							<option value="ssl" <?php if($this->optionslib->get_option('smtpEncryption') == "ssl") { echo "selected=\"selected\""; } ?>>SSL</option>
+						</select>
+						<small class="form-text text-muted"><?= __("Choose whether emails should be sent with TLS or SSL."); ?></small>
+					</div>
 				</div>
 
 				<div class="mb-3 row">
