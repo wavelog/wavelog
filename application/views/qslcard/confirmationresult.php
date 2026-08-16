@@ -29,7 +29,7 @@ if ($result) { ?>
 					<tr>
 						<td style="text-align: center; vertical-align: middle;" ><a class="callsign" href="javascript:displayQso(<?php echo (int) $qso->col_primary_key; ?>)"><?php echo html_escape($qso->col_call); ?></a></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $qsotimestamp) . ' ' . date('H:i', $qsotimestamp)?></td>
-						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_submode == null ? $qso->col_mode : $qso->col_submode;?></td>
+						<td style="text-align: center; vertical-align: middle;" ><?php echo html_escape($qso->col_submode == null ? $qso->col_mode : $qso->col_submode);?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php if($qso->col_sat_name != null) { echo html_escape($qso->col_sat_name); } else { echo html_escape(strtolower($qso->col_band)); };?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php if($qso->col_vucc_grids != null) { echo html_escape($qso->col_vucc_grids); } else { echo html_escape($qso->col_gridsquare); } ;?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $confirmationtimestamp);

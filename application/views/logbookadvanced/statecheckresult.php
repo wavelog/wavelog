@@ -26,7 +26,7 @@
 					$qsos = isset($item->count) ? intval($item->count) : 0;
 				?>
 				<tr>
-					<td><?php echo $item->prefix; ?></td>
+					<td><?php echo html_escape($item->prefix); ?></td>
 					<td><?php echo $name; ?></td>
 					<td><?php echo $qsos; ?></td>
 					<td>

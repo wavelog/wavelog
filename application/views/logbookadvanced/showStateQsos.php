@@ -38,7 +38,7 @@
 							<td><?php echo html_escape($qso->col_state); ?></td>
                             <td><?php echo html_escape($qso->col_gridsquare); ?></td>
 							<td><?php echo htmlspecialchars(ucwords(strtolower($qso->dxcc_name), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
-							<td><?php echo $qso->station_profile_name; ?></td>
+							<td><?php echo html_escape($qso->station_profile_name); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

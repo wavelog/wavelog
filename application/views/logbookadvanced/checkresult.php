@@ -114,10 +114,10 @@ function check_dxcc($result, $custom_date_format) { ?>
 									<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>
 									<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso['id'] . ')">' . htmlspecialchars($qso['callsign']) . '</a>'; ?></td>
 									<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
-									<td ><?php if($qso['sat_name'] != '') { echo $qso['sat_name']; } else { echo strtolower($qso['band']); }; ?></td>
+									<td ><?php if($qso['sat_name'] != '') { echo html_escape($qso['sat_name']); } else { echo html_escape(strtolower($qso['band'])); }; ?></td>
 									<td><?php echo htmlspecialchars($qso['submode'] ? $qso['submode'] : $qso['mode']); ?></td>
 									<td style='text-align: center'><div class="<?php echo $qso['lotw_qsl_rcvd'] == 'Y' ? 'bg-success' : 'bg-danger'; ?>"><?php echo $qso['lotw_qsl_rcvd'] == 'Y' ? __('Yes') : __('No'); ?></div></td>
-									<td><?php echo $qso['station_profile']; ?></td>
+									<td><?php echo html_escape($qso['station_profile']); ?></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['existing_dxcc']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['result_country']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
 								</tr>
@@ -263,9 +263,9 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo html_escape($qso->COL_SAT_NAME); } else { echo html_escape(strtolower($qso->COL_BAND)); }; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo html_escape(strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE); echo '</td>';
 			echo '<td style=\'text-align: center\'>' . $qso->COL_CQZ . '</td>';
-			echo '<td id=\'cqZones\' style=\'text-align: center\'>' . $qso->correctcqzone . '</td>';
-			echo '<td style=\'text-align: center\'>' . ucwords(strtolower($qso->COL_COUNTRY), "- (/") . '</td>';
-			echo '<td style=\'text-align: center\'>' . $qso->station_profile_name . '</td>';
+			echo '<td id=\'cqZones\' style=\'text-align: center\'>' . html_escape($qso->correctcqzone) . '</td>';
+			echo '<td style=\'text-align: center\'>' . htmlspecialchars(ucwords(strtolower($qso->COL_COUNTRY), "- (/"), ENT_QUOTES, 'UTF-8') . '</td>';
+			echo '<td style=\'text-align: center\'>' . html_escape($qso->station_profile_name) . '</td>';
 			echo '</tr>';
 		}
 
@@ -338,10 +338,10 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?html_escape($qso->COL_MODE):html_escape($qso->COL_SUBMODE); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo html_escape($qso->COL_SAT_NAME); } else { echo html_escape(strtolower($qso->COL_BAND)); }; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo html_escape(strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE); echo '</td>';
-			echo '<td style=\'text-align: center\'>' . $qso->COL_ITUZ . '</td>';
-			echo '<td id=\'ituZones\' style=\'text-align: center\'>' . $qso->correctituzone . '</td>';
-			echo '<td style=\'text-align: center\'>' . ucwords(strtolower($qso->COL_COUNTRY), "- (/") . '</td>';
-			echo '<td style=\'text-align: center\'>' . $qso->station_profile_name . '</td>';
+			echo '<td style=\'text-align: center\'>' . html_escape($qso->COL_ITUZ) . '</td>';
+			echo '<td id=\'ituZones\' style=\'text-align: center\'>' . html_escape($qso->correctituzone) . '</td>';
+			echo '<td style=\'text-align: center\'>' . htmlspecialchars(ucwords(strtolower($qso->COL_COUNTRY), "- (/"), ENT_QUOTES, 'UTF-8') . '</td>';
+			echo '<td style=\'text-align: center\'>' . html_escape($qso->station_profile_name) . '</td>';
 			echo '</tr>';
 		}
 

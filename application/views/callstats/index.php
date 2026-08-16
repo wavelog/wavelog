@@ -160,7 +160,7 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
     foreach ($activators as $line) {
         echo '<tr>
                 <td>' . $i++ . '</td>
-                <td class="callsign">' . $line[1] . '</td>
+                <td class="callsign">' . html_escape($line[1]) . '</td>
                 <td>' . $line[0] . '</td>
 				<td>' . $line[2] . '</td>
 				<td>' . $line[3] . '</td>
