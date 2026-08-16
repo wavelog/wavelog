@@ -726,7 +726,7 @@ class User_Model extends CI_Model {
 			$user_hash = $this->session->userdata('user_hash');
 			$impersonate = $this->session->userdata('impersonate');
 
-			if(ENVIRONMENT != 'maintenance') {
+			if(!MAINTENANCE_MODE) {
 				$session_token = $this->session->userdata('session_token');
 				if($session_token && $this->_auth($user_id . $user_type . $session_token, $user_hash)) {
 					// Freshen the session
@@ -782,7 +782,7 @@ class User_Model extends CI_Model {
 
 			if($this->_auth($password, $u->row()->user_password)) {
 				$this->db->query("UPDATE users SET login_attempts = 0 WHERE user_id = ?", [$u->row()->user_id]);	// Reset failurecount
-				if (ENVIRONMENT != "maintenance") {
+				if (!MAINTENANCE_MODE) {
 					return 1;
 				} else {
 					if($u->row()->user_type != 99){

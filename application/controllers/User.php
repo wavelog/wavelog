@@ -1357,7 +1357,7 @@ class User extends CI_Controller {
 				if ($this->user_model->check_keep_hash($a, $b)) {
 
 					// check if maintenance mode is active or the user is an admin
-					if (ENVIRONMENT != 'maintenance' || $user_type == 99) {
+					if (!MAINTENANCE_MODE || $user_type == 99) {
 
 						// if everything is fine we can log in the user
 						$this->user_model->update_session($uid);
@@ -1458,7 +1458,7 @@ class User extends CI_Controller {
 				$this->session->set_flashdata('warning', __("Your account is locked, due to too many failed login-attempts. Please reset your password."));
 				redirect('user/login');
 			} else {
-				if(ENVIRONMENT == 'maintenance') {
+				if(MAINTENANCE_MODE) {
 					$this->session->set_flashdata('notice', __("Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."));
 					redirect('user/login');
 				} else {
