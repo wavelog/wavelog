@@ -105,12 +105,15 @@
         <!-- Hour pill grid (same layout as the JCC award grid:
              satellite left, status pills for each hour right) -->
         <div class="card amsat-card">
-            <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-1" id="amsatStatusCardHeader">
-                <span><?= __("AMSAT Satellite Status (Last 24h)"); ?></span>
-                <span class="small text-muted"><?= __("Hours ago (left-most: now)"); ?></span>
-            </div>
+            <div class="card-header" id="amsatStatusCardHeader"><?= __("AMSAT Satellite Status (Last 24h)"); ?></div>
             <div class="card-body">
                 <div>
+                    <!-- Column headers, mirroring the section layout -->
+                    <div class="d-none d-lg-flex align-items-end gap-3 pb-1 mb-1 text-muted">
+                        <div class="award-grid-prefecture flex-shrink-0 small fw-bold"><?= __("Satellite"); ?></div>
+                        <div class="amsat-sat-aos flex-shrink-0 small fw-bold"><?= __("Next AOS"); ?></div>
+                        <div class="small"><?= __("Hours ago (left-most: now)"); ?></div>
+                    </div>
                     <?php foreach ($sat_order as $name):
                         $display     = $display_names[$name] ?? $name;
                         $display_esc = htmlspecialchars($display);
@@ -136,7 +139,7 @@
                             <div class="amsat-sat-aos flex-shrink-0"><?php
                                 if (isset($next_pass[$name])) {
                                     $np = $next_pass[$name];
-                                    echo '<span class="text-muted">' . __("Next AOS") . '</span>&nbsp;<strong>' . htmlspecialchars($np['time']) . '</strong>&nbsp;<span class="text-muted">UTC</span>';
+                                    echo '<strong>' . htmlspecialchars($np['time']) . '</strong>&nbsp;<span class="text-muted">UTC</span>';
                                     if ($np['maxel'] !== null) {
                                         echo '&nbsp;<span class="text-muted">&middot; ' . (int)$np['maxel'] . '&deg;</span>';
                                     }
