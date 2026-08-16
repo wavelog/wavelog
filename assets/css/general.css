@@ -2439,6 +2439,14 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	justify-content: space-between;
 	flex: 1 1 auto;
 	max-width: 56rem;
+	min-width: 0; /* allow the grid to shrink so tracks wrap, instead of overflowing */
+}
+/* Mobile: name and AOS share the first line (section wraps instead of
+   stacking); the pill strip gets its own full-width line below them */
+@media (max-width: 991.98px) {
+	.amsat-status .amsat-pills {
+		flex: 1 1 100%;
+	}
 }
 .amsat-status .amsat-sat-aos {
 	font-size: .78rem;

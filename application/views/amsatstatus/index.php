@@ -122,7 +122,7 @@
                         $row_total = 0;
                         foreach ($row as $cell) { if ($cell !== null) { $row_total += $cell['total']; } }
                     ?>
-                        <section class="amsat-sat d-flex flex-column flex-lg-row align-items-lg-center gap-3">
+                        <section class="amsat-sat d-flex flex-wrap flex-lg-nowrap align-items-lg-center gap-3">
                             <div class="award-grid-prefecture flex-shrink-0">
                                 <div class="d-flex align-items-center flex-wrap gap-2">
                                     <span class="fw-bold"><?php
@@ -147,7 +147,7 @@
                                     echo '<span class="text-muted">&mdash;</span>';
                                 }
                             ?></div>
-                            <div class="d-flex flex-wrap amsat-pills">
+                            <div class="amsat-pills">
                                 <?php for ($col = 0; $col < 24; $col++):
                                     $age  = $col;
                                     $cell = $row[$col] ?? null;
