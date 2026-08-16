@@ -260,7 +260,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Eqsl.php:514
+#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
+#: application/controllers/Eqsl.php:658
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -1553,6 +1555,7 @@ msgid "Failed to download eQSL image"
 msgstr "未能下载 eQSL 图片"
 
 #: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:572
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "磁盘空间不足，无法存储eQSL卡"
 
@@ -1560,31 +1563,31 @@ msgstr "磁盘空间不足，无法存储eQSL卡"
 msgid "Failed to load cached eQSL image"
 msgstr "未能加载缓存的 eQSL 图像"
 
-#: application/controllers/Eqsl.php:593
+#: application/controllers/Eqsl.php:593 application/controllers/Eqsl.php:589
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:622
+#: application/controllers/Eqsl.php:622 application/controllers/Eqsl.php:618
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "此请求限于前150个 QSO。请再次运行。"
 
-#: application/controllers/Eqsl.php:628
+#: application/controllers/Eqsl.php:628 application/controllers/Eqsl.php:624
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:628
+#: application/controllers/Eqsl.php:628 application/controllers/Eqsl.php:624
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:635
+#: application/controllers/Eqsl.php:635 application/controllers/Eqsl.php:631
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "已达到 eQSL 访问次数限制。请等待后再运行。"
 
-#: application/controllers/Eqsl.php:647
+#: application/controllers/Eqsl.php:647 application/controllers/Eqsl.php:643
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图片下载"
 
-#: application/controllers/Eqsl.php:670
+#: application/controllers/Eqsl.php:670 application/controllers/Eqsl.php:666
 msgid "All eQSLs marked as uploaded"
 msgstr "所有 eQSL 已标记为已上传"
 

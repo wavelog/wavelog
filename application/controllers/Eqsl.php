@@ -507,10 +507,6 @@ class eqsl extends CI_Controller {
 
 		// Output
 		imagejpeg($thumbnail, null, 90); // 90% quality
-
-		// Clean up
-		imagedestroy($original_image);
-		imagedestroy($thumbnail);
 	}
 
 	function bulk_download_image($id) {

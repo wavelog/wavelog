@@ -320,9 +320,6 @@ class Image {
      * @return $this Fluent interface
      */
     public function destroy(): Image {
-        if ($this->isImageDefined()) {
-            \imagedestroy($this->image);
-        }
         $this->resetFields();
         return $this;
     }
@@ -724,7 +721,6 @@ class Image {
             }
         }
 
-        \imagedestroy($this->image);
         $this->image = $newImage;
 
         return $this;
@@ -832,7 +828,6 @@ class Image {
             ) {
                 return [];
             }
-            \imagedestroy($newImg);
 
             $xMin = 0;
             $xMax = 0;
