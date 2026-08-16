@@ -1434,7 +1434,7 @@ class QSO
 			$dokstring = $dok;
 		}
 		if ($dokstring !== '') {
-			$dokstring .= '<a href="javascript:spawnLookupModal(\''.$this->dxDARCDOK.'\',\'dok\');"> <i class="fas fa-globe"></a>';
+			$dokstring .= '<a href=\'javascript:spawnLookupModal(' . js_escape($this->dxDARCDOK) . ',"dok");\'> <i class="fas fa-globe"></a>';
 		}
 
 		return $dokstring;
@@ -1653,7 +1653,7 @@ class QSO
 		$target = !empty($grid) ? $grid : $vucc;
 		if (!empty($mygrid)) {
 			if (!empty($target)) {
-				return '<a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $target . '\')"><i class="fas fa-globe"></i></a>';
+				return '<a href=\'javascript:spawnQrbCalculator(' . js_escape($mygrid) . ',' . js_escape($target) . ')\'><i class="fas fa-globe"></i></a>';
 			}
 		}
 		return '';
@@ -1662,7 +1662,7 @@ class QSO
 	private function getIotaLink($iota) : string
 	{
 		if ($iota !== '') {
-			return '<a href="javascript:spawnLookupModal(\''.$iota.'\',\'iota\');">'.html_escape($iota).'</a> <a href="https://www.iota-world.org/iotamaps/?grpref=' .html_escape($iota) . '" target="_blank"><i class="fas fa-globe"></i></a>';
+			return '<a href=\'javascript:spawnLookupModal(' . js_escape($iota) . ',"iota");\'>' . html_escape($iota) . '</a> <a href="https://www.iota-world.org/iotamaps/?grpref=' .html_escape($iota) . '" target="_blank"><i class="fas fa-globe"></i></a>';
 		}
 		return '';
 	}

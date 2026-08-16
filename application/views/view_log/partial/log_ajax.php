@@ -187,7 +187,7 @@ function getDistance($distance) {
                 <td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
             <?php } ?>
             <td>
-                <button type="button" class="btn btn-link text-decoration-none p-0 callsign" id="edit_qso" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo strtoupper($row->COL_CALL); ?></button>
+                <button type="button" class="btn btn-link text-decoration-none p-0 callsign" id="edit_qso" onclick="displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></button>
                 <?php
                    if (isset($row->lastupload) && ($row->lastupload)) {
                        $lotw_hint = '';
@@ -637,7 +637,7 @@ function getDistance($distance) {
 
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div class="dropdown-divider"></div>
-                            <button type="button" class="dropdown-item" onclick="qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, '<?php echo html_escape($row->COL_CALL); ?>')"><i class="fas fa-trash-alt" aria-hidden="true"></i> <?= __("Delete QSO"); ?></button>
+                            <button type="button" class="dropdown-item" onclick='qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo js_escape($row->COL_CALL); ?>)'><i class="fas fa-trash-alt" aria-hidden="true"></i> <?= __("Delete QSO"); ?></button>
                             <?php } ?>
                         </div>
                     </div>
