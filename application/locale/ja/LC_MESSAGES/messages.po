@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-16 07:33+0000\n"
+"POT-Creation-Date: 2026-08-16 08:02+0000\n"
 "PO-Revision-Date: 2026-08-14 22:43+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4962,7 +4962,7 @@ msgid "Activated Gridsquares"
 msgstr "アクティブ化されたグリッドスクエア"
 
 #: application/views/activated_gridmap/index.php:27
-#: application/views/amsatstatus/index.php:116
+#: application/views/amsatstatus/index.php:113
 #: application/views/awards/amsat_rover/index.php:226
 #: application/views/awards/dxcc/index.php:194
 #: application/views/awards/wab/index.php:36
@@ -6252,7 +6252,8 @@ msgid "Status legend"
 msgstr "状態の凡例"
 
 #: application/views/amsatstatus/index.php:102
-#: application/views/amsatstatus/index.php:171
+#: application/views/amsatstatus/index.php:164
+#: application/views/amsatstatus/index.php:199
 msgid "No report"
 msgstr "報告なし"
 
@@ -6260,46 +6261,37 @@ msgstr "報告なし"
 msgid "AMSAT Satellite Status (Last 24h)"
 msgstr "AMSAT衛星の状態（過去24時間）"
 
-#: application/views/amsatstatus/index.php:113
-msgid ""
-"Satellite status by hour for the past 24 hours. Each cell is coloured by its "
-"winning status; hover for the report breakdown."
-msgstr ""
-"過去24時間の衛星の状況を時間別に表示します。各セルは、その勝利状況に応じて色"
-"分けされています。カーソルを合わせると、レポートの詳細が表示されます。"
-
-#: application/views/amsatstatus/index.php:117
+#: application/views/amsatstatus/index.php:114
 msgid "Next AOS"
 msgstr "次期AOS"
 
-#: application/views/amsatstatus/index.php:121
-#, php-format
-msgid "%dh"
-msgid_plural "%dh"
-msgstr[0] "%d h"
+#: application/views/amsatstatus/index.php:115
+msgid "Hours ago (left-most: now)"
+msgstr ""
 
-#: application/views/amsatstatus/index.php:121
-msgid "now"
-msgstr "今"
-
-#: application/views/amsatstatus/index.php:123
-#, php-format
-msgid "%d hours ago"
-msgstr "%d 時間前"
-
-#: application/views/amsatstatus/index.php:146
+#: application/views/amsatstatus/index.php:135
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
 msgstr[0] "24時間以内に%d件の 報告"
 
-#: application/views/amsatstatus/index.php:192
+#: application/views/amsatstatus/index.php:158
+#, php-format
+msgid "%d hours ago"
+msgstr "%d 時間前"
+
+#: application/views/amsatstatus/index.php:158
+#: application/views/amsatstatus/index.php:201
+msgid "now"
+msgstr "今"
+
+#: application/views/amsatstatus/index.php:185
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
 msgstr[0] "%d件の 報告"
 
-#: application/views/amsatstatus/index.php:202
+#: application/views/amsatstatus/index.php:195
 #: application/views/qso/index.php:34
 msgid "more"
 msgstr "もっと"
@@ -23531,6 +23523,18 @@ msgstr "Clublog Log を検索"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
+
+#~ msgid ""
+#~ "Satellite status by hour for the past 24 hours. Each cell is coloured by "
+#~ "its winning status; hover for the report breakdown."
+#~ msgstr ""
+#~ "過去24時間の衛星の状況を時間別に表示します。各セルは、その勝利状況に応じて"
+#~ "色分けされています。カーソルを合わせると、レポートの詳細が表示されます。"
+
+#, php-format
+#~ msgid "%dh"
+#~ msgid_plural "%dh"
+#~ msgstr[0] "%d h"
 
 #, php-format
 #~ msgid "You have no station locations. Go %s to create it!"
