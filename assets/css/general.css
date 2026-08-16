@@ -2427,9 +2427,18 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 		width: auto;
 	}
 }
-/* Pill row: tighter than the JCC grid's gap-2 */
+/* Pill strip: a grid that soaks up whatever width is left after the
+   name and AOS columns and spreads it between the pills. Capped at
+   56rem so wide themes only gain a little air (~5px gaps); when space
+   is tight the .1rem gap is the minimum and pills wrap onto the next
+   grid row. */
 .amsat-status .amsat-pills {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 2rem);
 	gap: .1rem;
+	justify-content: space-between;
+	flex: 1 1 auto;
+	max-width: 56rem;
 }
 .amsat-status .amsat-sat-aos {
 	font-size: .78rem;
