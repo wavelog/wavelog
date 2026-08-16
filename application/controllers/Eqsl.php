@@ -9,7 +9,7 @@ class eqsl extends CI_Controller {
 
 		$this->load->helper(array('form', 'url'));
 
-		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+		if (MAINTENANCE_MODE && $this->session->userdata('user_id') == '') {
 			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
@@ -507,10 +507,6 @@ class eqsl extends CI_Controller {
 
 		// Output
 		imagejpeg($thumbnail, null, 90); // 90% quality
-
-		// Clean up
-		imagedestroy($original_image);
-		imagedestroy($thumbnail);
 	}
 
 	function bulk_download_image($id) {

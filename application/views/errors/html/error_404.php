@@ -1,3 +1,15 @@
+<?php
+if (!isset($message1)) {
+	$CI =& get_instance();
+	$theme    = $CI ? $CI->optionslib->get_theme() : '';
+	$logo     = $CI ? $CI->paths->cache_buster('/assets/logo/'.$CI->optionslib->get_logo('header_logo').'.png') : '';
+	$heading  = __("Page Not Found");
+	$message1 = __("QRZ? ... no reply.");
+	$message2 = __("Nobody is transmitting on this frequency.");
+	$language = (function_exists('current_language') ? current_language() : null) ?: ['code' => 'en', 'direction' => 'ltr'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="<?php echo $language['code']; ?>">
 <head>

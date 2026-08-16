@@ -54,7 +54,7 @@ class Staticmap_model extends CI_Model {
             require_once($class);
         }
 
-        $fontPath = 'src/StaticMap/src/resources/font.ttf';
+        $fontPath = FCPATH . 'src/StaticMap/src/resources/font.ttf';
 
         //===============================================================================================================================
         //===================================================== CONFIGURE GRAPHICS ======================================================
@@ -167,14 +167,14 @@ class Staticmap_model extends CI_Model {
                 $server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
                 if ($server_url == '') {
                     $server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-                    $this->optionslib->update('map_tile_server', $server_url, 'yes');
+                    $this->optionslib->update('map_tile_server', $server_url);
                 }
                 $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
             } elseif ($thememode == 'dark') {
                 $server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
                 if ($server_url == '') {
                     $server_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-                    $this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
+                    $this->optionslib->update('map_tile_server_dark', $server_url);
                 }
                 $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
             } else {
@@ -579,7 +579,7 @@ class Staticmap_model extends CI_Model {
 
         // Add continent text
         if ($continentEnabled) {
-            $fontPath = 'src/StaticMap/src/resources/font.ttf';
+            $fontPath = FCPATH . 'src/StaticMap/src/resources/font.ttf';
             $color = 'ff0000'; // Red
             $image->writeText($continentText, $fontPath, $fontSize, $color, $contFontPosX, $contFontPosY);
         }
