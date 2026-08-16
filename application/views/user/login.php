@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="w-100 btn btn-primary mb-2" type="submit"><?= __("Login"); ?> →</button>
+                <button class="w-100 btn btn-primary mb-2" type="submit" id="loginButton"><span class="spinner-border spinner-border-sm me-1 d-none" role="status" aria-hidden="true"></span><?= __("Login"); ?> →</button>
                 <?php } ?>
                 <?php  // only show if header auth enabled
                     if ($auth_header_enable == true) { ?>
@@ -92,3 +92,12 @@
         </div>
     </div>
 </main>
+<script>
+    document.querySelector('form[name="users"]').addEventListener('submit', function () {
+        const button = document.getElementById('loginButton');
+        if (button) {
+            button.querySelector('.spinner-border').classList.remove('d-none');
+            button.disabled = true;
+        }
+    });
+</script>
