@@ -1899,6 +1899,14 @@ $(document).ready(function () {
 							}
 						}],
 				});
+				// Restore the last-used time window from localStorage
+				if (localStorage.hasOwnProperty(`user_${user_id}_dupetimewindow`)) {
+					var savedDupeTime = parseInt(localStorage.getItem(`user_${user_id}_dupetimewindow`), 10);
+					if (savedDupeTime >= 1 && savedDupeTime <= 60) {
+						$('#dupe_time').val(savedDupeTime);
+						$('#dupe_time_display').text(savedDupeTime + ' min');
+					}
+				}
 			}
 		});
 	}
@@ -3817,6 +3825,7 @@ function saveOptions() {
 	// Bound via delegation because the dialog HTML is injected via AJAX.
 	$(document).on('input', '#dupe_time', function () {
 		$('#dupe_time_display').text(this.value + ' min');
+		localStorage.setItem(`user_${user_id}_dupetimewindow`, this.value);
 	});
 
 	$(document).on('change', '#date_check', function () {
