@@ -1,22 +1,3 @@
-$(document).ready(function () {
-	$('#jccTable').DataTable({
-        "pageLength": 25,
-        responsive: false,
-        ordering: false,
-        "scrollY":        "400px",
-        "scrollCollapse": true,
-        "paging":         false,
-        "scrollX": true,
-        "language": {
-            url: getDataTablesLanguageUrl(),
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'csv'
-        ]
-    });
-});
-
 function export_qsos() {
    $.ajax({
        url: base_url + 'index.php/awards/jcc_export',
@@ -54,3 +35,13 @@ function export_qsos() {
        },
    });
 }
+
+$(document).ready(function() {
+   // Delegated init: the results grid holds hundreds of pills, so tooltips
+   // are only built for a pill the first time it is hovered
+   $('#jcc-results').tooltip({
+      selector: '[data-bs-toggle="tooltip"]',
+      html: true,
+      placement: 'top',
+   });
+});
