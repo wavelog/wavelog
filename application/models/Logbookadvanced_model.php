@@ -55,7 +55,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		// Build the dupedate HAVING condition
 		$having_condition = isset($searchCriteria['dupedate']) && $searchCriteria['dupedate'] === 'Y'
-			? "AND TIMESTAMPDIFF(SECOND, prev_time_on, col_time_on) < $dupe_time"
+			? "AND TIMESTAMPDIFF(SECOND, prev_time_on, col_time_on) <= $dupe_time"
 			: "";
 
 		$id_sql = "
