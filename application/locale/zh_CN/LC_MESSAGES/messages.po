@@ -286,6 +286,8 @@ msgstr "已激活网格地图"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1404
+#: application/controllers/Awards.php:1440
 msgid "Gridsquares"
 msgstr "网格代码"
 
@@ -344,6 +346,7 @@ msgstr "分区"
 #: application/controllers/Activationplanner.php:33
 #: application/controllers/Awards.php:2561
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2538
 msgid "ITU Zones"
 msgstr "ITU 分区"
 
@@ -540,6 +543,28 @@ msgstr "奖项"
 #: application/controllers/Awards.php:2778
 #: application/controllers/Awards.php:2853
 #: application/controllers/Awards.php:2995
+#: application/controllers/Awards.php:524
+#: application/controllers/Awards.php:574
+#: application/controllers/Awards.php:696
+#: application/controllers/Awards.php:794
+#: application/controllers/Awards.php:894
+#: application/controllers/Awards.php:1064
+#: application/controllers/Awards.php:1126
+#: application/controllers/Awards.php:1188
+#: application/controllers/Awards.php:1250
+#: application/controllers/Awards.php:1335
+#: application/controllers/Awards.php:1347
+#: application/controllers/Awards.php:1425
+#: application/controllers/Awards.php:1631
+#: application/controllers/Awards.php:1782
+#: application/controllers/Awards.php:1833
+#: application/controllers/Awards.php:2389
+#: application/controllers/Awards.php:2538
+#: application/controllers/Awards.php:2668
+#: application/controllers/Awards.php:2742
+#: application/controllers/Awards.php:2755
+#: application/controllers/Awards.php:2830
+#: application/controllers/Awards.php:2972
 #, php-format
 msgid "Awards - %s"
 msgstr "奖项 - %s"
@@ -602,15 +627,18 @@ msgstr "奖项 - WAJA"
 
 #: application/controllers/Awards.php:541 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:269
+#: application/controllers/Awards.php:524
 msgid "JCC"
 msgstr "JCC"
 
 #: application/controllers/Awards.php:591 application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:204
+#: application/controllers/Awards.php:574
 msgid "VUCC"
 msgstr "VUCC"
 
 #: application/controllers/Awards.php:622
+#: application/controllers/Awards.php:605
 msgid "Log View - VUCC"
 msgstr "日志视图 - VUCC"
 
@@ -624,10 +652,12 @@ msgstr "日志视图 - VUCC"
 #: application/controllers/Timeline.php:136
 #: application/controllers/Timeline.php:139
 #: application/controllers/Timeline.php:142
+#: application/controllers/Awards.php:656
 msgid "Log View"
 msgstr "日志视图"
 
 #: application/controllers/Awards.php:674
+#: application/controllers/Awards.php:657
 msgid "and"
 msgstr "和"
 
@@ -646,33 +676,40 @@ msgstr "和"
 #: application/views/awards/wpx/index.php:85
 #: application/views/awards/wwff/index.php:3
 #: application/views/awards/wwff/index.php:122
+#: application/controllers/Awards.php:658
 msgid "Every band (w/o SAT)"
 msgstr "所有频段 (不含卫星)"
 
 #: application/controllers/Awards.php:675
+#: application/controllers/Awards.php:658
 msgid "band"
 msgstr "频段"
 
 #: application/controllers/Awards.php:678
+#: application/controllers/Awards.php:661
 msgid " and satellite "
 msgstr " 和卫星 "
 
 #: application/controllers/Awards.php:681
 #: application/controllers/Callstats.php:108
+#: application/controllers/Awards.php:664
 msgid " and orbit type "
 msgstr " 和轨道类型 "
 
 #: application/controllers/Awards.php:685
 #: application/controllers/Callstats.php:112
+#: application/controllers/Awards.php:668
 msgid " and propagation "
 msgstr " 和传播方式 "
 
 #: application/controllers/Awards.php:688
 #: application/controllers/Callstats.php:115
+#: application/controllers/Awards.php:671
 msgid " and mode "
 msgstr " 和模式 "
 
 #: application/controllers/Awards.php:691
+#: application/controllers/Awards.php:674
 msgid " and "
 msgstr " 和 "
 
@@ -704,6 +741,7 @@ msgstr " 和 "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/controllers/Awards.php:696
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -727,6 +765,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Awards.php:794
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -752,66 +791,84 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/controllers/Awards.php:894
 msgid "POTA"
 msgstr "POTA"
 
 #: application/controllers/Awards.php:1081
+#: application/controllers/Awards.php:1064
 msgid "CQ WAZ (Worked All Zones)"
 msgstr "CQ WAZ(通联全部分区)"
 
 #: application/controllers/Awards.php:1143
 #: application/views/accumulate/index.php:60
 #: application/views/timeline/index.php:51
+#: application/controllers/Awards.php:1126
 msgid "Worked All States (WAS)"
 msgstr "通联全部美国州奖(WAS)"
 
 #: application/controllers/Awards.php:1205 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:235
+#: application/controllers/Awards.php:1188
 msgid "RAC"
 msgstr "RAC"
 
 #: application/controllers/Awards.php:1267 application/views/bands/index.php:51
+#: application/controllers/Awards.php:1250
 msgid "H26"
 msgstr "H26"
 
 #: application/controllers/Awards.php:1352
+#: application/controllers/Awards.php:1335
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (空中之岛)"
 
 #: application/controllers/Awards.php:1364
 #: application/views/interface_assets/header.php:301
+#: application/controllers/Awards.php:1347
 msgid "US Counties"
 msgstr "美国县奖"
 
 #: application/controllers/Awards.php:1388
+#: application/controllers/Awards.php:1371
 msgid "Log View - Counties"
 msgstr "日志视图 - 县(美国)"
 
 #: application/controllers/Awards.php:1403
+#: application/controllers/Awards.php:1386
 msgid "Awards - "
 msgstr "奖项 - "
 
 #: application/controllers/Awards.php:1422
 #: application/controllers/Awards.php:1458
+#: application/controllers/Awards.php:1405
+#: application/controllers/Awards.php:1441
 msgid "Gridsquares worked"
 msgstr "已通联网格"
 
 #: application/controllers/Awards.php:1423
 #: application/controllers/Awards.php:1459
+#: application/controllers/Awards.php:1406
+#: application/controllers/Awards.php:1442
 msgid "Gridsquares confirmed on LoTW"
 msgstr "LoTW 已确认网格"
 
 #: application/controllers/Awards.php:1424
 #: application/controllers/Awards.php:1460
+#: application/controllers/Awards.php:1407
+#: application/controllers/Awards.php:1443
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "通过纸质QSL已确认网格"
 
 #: application/controllers/Awards.php:1425
 #: application/controllers/Awards.php:1461
+#: application/controllers/Awards.php:1408
+#: application/controllers/Awards.php:1444
 msgid "Total Gridsquares worked"
 msgstr "已确认网格的总数"
 
 #: application/controllers/Awards.php:1442
+#: application/controllers/Awards.php:1425
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "弗雷德·菲什纪念奖 (FFMA)"
 
@@ -824,49 +881,59 @@ msgstr "弗雷德·菲什纪念奖 (FFMA)"
 #: application/views/stationsetup/locationlist.php:26
 #: application/views/user/edit.php:871 application/views/view_log/qso.php:371
 #: application/views/view_log/qso.php:691
+#: application/controllers/Awards.php:1631
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1667
+#: application/controllers/Awards.php:1650
 msgid "Awards - SIG - "
 msgstr "奖项 - SIG - "
 
 #: application/controllers/Awards.php:1799 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1782
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:1850
 #: application/views/interface_assets/header.php:261
+#: application/controllers/Awards.php:1833
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2691
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:208
+#: application/controllers/Awards.php:2668
 msgid "Worked All Continents (WAC)"
 msgstr "通联世界大洲奖（WAC）"
 
 #: application/controllers/Awards.php:2765
+#: application/controllers/Awards.php:2742
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2778
 #: application/views/interface_assets/header.php:218
+#: application/controllers/Awards.php:2755
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:2853
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2830
 msgid "WPX"
 msgstr "WPX"
 
 #: application/controllers/Awards.php:2995
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:283
+#: application/controllers/Awards.php:2972
 msgid "\"Polska\" Award"
 msgstr "“波兰”奖项"
 
 #: application/controllers/Awards.php:3039
+#: application/controllers/Awards.php:3016
 msgid "Awards - AMSAT Rover"
 msgstr "奖状 - AMSAT 漫游者 (AMSAT Rover)"
 
@@ -1083,6 +1150,7 @@ msgstr "未找到配置 Clublog 的用户。"
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:511
 #: application/views/view_log/qso.php:516
+#: application/views/awards/jcc/index.php:66
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1869,6 +1937,7 @@ msgstr "日志簿"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:62 application/views/user/edit.php:735
 #: application/views/user/edit.php:1003 application/views/visitor/mini.php:187
+#: application/views/awards/jcc/index.php:50
 msgid "QSL"
 msgstr "QSL"
 
@@ -1918,6 +1987,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:482
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/views/awards/jcc/index.php:54
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1958,6 +2028,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:299
 #: application/views/timeline/index.php:70 application/views/user/edit.php:737
 #: application/views/user/edit.php:1021 application/views/user/edit.php:1095
+#: application/views/awards/jcc/index.php:58
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2070,6 +2141,7 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/awards/jcc/index.php:98
 msgid "Mode"
 msgstr "模式"
 
@@ -2411,6 +2483,7 @@ msgstr "距离"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/awards/jcc/index.php:82
 msgid "Band"
 msgstr "频段"
 
@@ -2711,7 +2784,7 @@ msgstr "通讯录中已存在带有此呼号的笔记。请输入一个唯一的
 #: application/models/Logbook_model.php:97
 #: application/models/Logbook_model.php:1437
 #: application/views/contesting/logger/components/qso-form.php:43
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1440
 msgid "Invalid callsign"
 msgstr "不合法的呼号"
 
@@ -4378,19 +4451,24 @@ msgid "Station not accessible"
 msgstr "台站不可用"
 
 #: application/models/Logbook_model.php:1427
+#: application/models/Logbook_model.php:1430
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
 #: application/models/Logbook_model.php:1432
+#: application/models/Logbook_model.php:1435
 msgid "No Call given"
 msgstr "未提供呼号"
 
 #: application/models/Logbook_model.php:1507
 #: application/models/Logbook_model.php:1725
+#: application/models/Logbook_model.php:1510
+#: application/models/Logbook_model.php:1728
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
 #: application/models/Logbook_model.php:4891
+#: application/models/Logbook_model.php:4894
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4399,6 +4477,7 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:4899
+#: application/models/Logbook_model.php:4902
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4408,12 +4487,14 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:4915
+#: application/models/Logbook_model.php:4918
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
 #: application/models/Logbook_model.php:4925
+#: application/models/Logbook_model.php:4928
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4421,6 +4502,7 @@ msgid ""
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
 #: application/models/Logbook_model.php:4932
+#: application/models/Logbook_model.php:4935
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4428,6 +4510,7 @@ msgid ""
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
 #: application/models/Logbook_model.php:5002
+#: application/models/Logbook_model.php:5005
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4435,6 +4518,7 @@ msgid ""
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
 #: application/models/Logbook_model.php:5009
+#: application/models/Logbook_model.php:5012
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4443,58 +4527,72 @@ msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
 #: application/models/Logbook_model.php:5283
+#: application/models/Logbook_model.php:5286
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5294
+#: application/models/Logbook_model.php:5297
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5355
+#: application/models/Logbook_model.php:5358
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5731
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5734
 msgid "Duplicate for"
 msgstr "内容重复"
 
 #: application/models/Logbook_model.php:5798
 #: application/models/Logbook_model.php:5898
+#: application/models/Logbook_model.php:5801
+#: application/models/Logbook_model.php:5901
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:5806
+#: application/models/Logbook_model.php:5809
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:5812
+#: application/models/Logbook_model.php:5815
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:5816
+#: application/models/Logbook_model.php:5819
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:5820
+#: application/models/Logbook_model.php:5823
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:5823
+#: application/models/Logbook_model.php:5826
 msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:5826
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5829
 msgid "unknown"
 msgstr "未知"
 
 #: application/models/Logbook_model.php:5901
+#: application/models/Logbook_model.php:5904
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
 #: application/models/Logbook_model.php:5904
+#: application/models/Logbook_model.php:5907
 msgid "QSO updated"
 msgstr "QSO已上传"
 
@@ -4511,6 +4609,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6307
 msgid "Bearing"
 msgstr "方位角"
 
@@ -4792,6 +4891,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/awards/jcc/index.php:101
 msgid "All"
 msgstr "所有"
 
@@ -4895,6 +4995,7 @@ msgstr "无/空"
 #: application/views/timeline/index.php:363
 #: application/views/timeline/index.php:399
 #: application/views/timeplotter/index.php:75
+#: application/views/awards/jcc/index.php:38
 msgid "Show"
 msgstr "显示"
 
@@ -4986,6 +5087,7 @@ msgstr "确认"
 #: application/views/awards/wpx/index.php:44
 #: application/views/awards/wwff/index.php:109
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1029
+#: application/views/awards/jcc/index.php:62
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -6618,6 +6720,8 @@ msgstr "您目前还没有 API 令牌。请点击下方按钮创建一个。"
 #: application/views/awards/was/index.php:34
 #: application/views/awards/wwff/index.php:23
 #: application/views/awards/wwff/index.php:31
+#: application/views/awards/jcc/index.php:10
+#: application/views/awards/jcc/index.php:18
 msgid "Award Info"
 msgstr "奖状详情"
 
@@ -6640,6 +6744,7 @@ msgstr ""
 #: application/views/awards/wab/index.php:16
 #: application/views/awards/waja/index.php:29
 #: application/views/awards/wwff/index.php:27
+#: application/views/awards/jcc/index.php:14
 #, php-format
 msgid "For more information, please visit: %s."
 msgstr "欲了解更多信息，你可以访问此链接：%s。"
@@ -6719,6 +6824,7 @@ msgstr "跳转到台站设置"
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:341
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
+#: application/views/awards/jcc/index.php:37
 msgid "Filters"
 msgstr "筛选器"
 
@@ -6998,6 +7104,7 @@ msgstr "已确认 %s%%"
 #: application/views/dashboard/index.php:672
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/awards/jcc/index.php:131
 msgid "Worked"
 msgstr "已通联"
 
@@ -7019,6 +7126,8 @@ msgstr "已通联"
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/awards/jcc/index.php:126
+#: application/views/awards/jcc/index.php:150
 msgid "Confirmed"
 msgstr "已确认"
 
@@ -7072,6 +7181,7 @@ msgstr "已确认通联"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/jcc/index.php:136
 msgid "Total"
 msgstr "总计"
 
@@ -7168,6 +7278,7 @@ msgstr "表格"
 #: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:896
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/jcc/index.php:29
 msgid "Map"
 msgstr "地图"
 
@@ -7619,6 +7730,7 @@ msgstr "通联过 / 已确认"
 #: application/views/awards/wap/index.php:103
 #: application/views/awards/wapc/index.php:110
 #: application/views/awards/was/index.php:106
+#: application/views/awards/jcc/index.php:85
 msgid "Every band"
 msgstr "各个频段"
 
@@ -7676,6 +7788,7 @@ msgstr "显示 DXCC 地图"
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:62
 #: application/views/awards/jcc/index.php:106
+#: application/views/awards/jcc/index.php:76
 msgid "Include deleted"
 msgstr "包括已删除"
 
@@ -8073,6 +8186,9 @@ msgid "Deleted IOTA"
 msgstr "已删除的IOTA"
 
 #: application/views/awards/iota/index.php:212
+#: application/models/Jcc_model.php:209 application/models/Jcc_model.php:210
+#: application/views/awards/jcc/index.php:141
+#: application/views/awards/jcc/index.php:163
 msgid "Deleted"
 msgstr "已删除"
 
@@ -8105,10 +8221,12 @@ msgid "Show ITU Zone Map"
 msgstr "显示 ITU 分区地图"
 
 #: application/views/awards/jcc/index.php:21
+#: application/views/awards/jcc/index.php:11
 msgid "JCC - Japan Century Cities Award"
 msgstr "JCC - 日本百市奖"
 
 #: application/views/awards/jcc/index.php:22
+#: application/views/awards/jcc/index.php:12
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
@@ -8116,6 +8234,7 @@ msgstr ""
 "申请条件：通联（或收听）日本 100 个不同城市的电台，并收到他们的 QSL 卡片。"
 
 #: application/views/awards/jcc/index.php:23
+#: application/views/awards/jcc/index.php:13
 msgid ""
 "JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. "
 "A list of QSL cards should be arranged in order of JCC reference number, "
@@ -8127,6 +8246,7 @@ msgstr ""
 "450、550、650 和 750 个城市）将额外收到一张贴纸。"
 
 #: application/views/awards/jcc/index.php:25
+#: application/views/awards/jcc/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
@@ -8136,18 +8256,22 @@ msgstr "本奖项所需要的字段：DXCC（日本）和郡（必须包含有�
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:129
+#: application/views/awards/jcc/index.php:26
 msgid "Results"
 msgstr "结果"
 
 #: application/views/awards/jcc/index.php:49
+#: application/views/awards/jcc/index.php:39
 msgid "Show JCC Map"
 msgstr "显示 JCC 地图"
 
 #: application/views/awards/jcc/index.php:50
+#: application/views/awards/jcc/index.php:40
 msgid "Export confirmed QSOs"
 msgstr "导出已确认的 QSO"
 
 #: application/views/awards/jcc/index.php:102
+#: application/views/awards/jcc/index.php:72
 msgid "Deleted cities"
 msgstr "已删除的市"
 
@@ -8521,8 +8645,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -9431,6 +9555,7 @@ msgstr "正在获取..."
 #: application/views/dashboard/index.php:438
 #: application/views/interface_assets/footer.php:51
 #: application/views/map/qso_map.php:27
+#: application/views/awards/jcc/index.php:158
 msgid "Not worked"
 msgstr "未通联"
 
@@ -14491,6 +14616,7 @@ msgid "Colors"
 msgstr "颜色"
 
 #: application/views/interface_assets/footer.php:50
+#: application/views/awards/jcc/index.php:154
 msgid "Worked not confirmed"
 msgstr "已通联未确认"
 
@@ -21335,8 +21461,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -22910,6 +23036,24 @@ msgstr "Clublog 日志搜索"
 msgid "LoTW User. Last upload was "
 msgstr "LoTW 用户。最后上传于 "
 
+#: application/views/awards/jcc/index.php:46
+msgid "QSL Type"
+msgstr ""
+
+#: application/views/awards/jcc/index.php:169
+msgid "JCC progress"
+msgstr ""
+
+#: application/views/awards/jcc/index.php:179
+msgid ""
+"Attention! Wavelog does not verify whether a QSO happened before the entity "
+"deletion date."
+msgstr ""
+
+#: application/views/awards/jcc/index.php:185
+msgid "No worked or confirmed JCC slots match the current filters."
+msgstr ""
+
 #~ msgid ""
 #~ "Satellite status by hour for the past 24 hours. Each cell is coloured by "
 #~ "its winning status; hover for the report breakdown."
@@ -24436,8 +24580,8 @@ msgstr "LoTW 用户。最后上传于 "
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
