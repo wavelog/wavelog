@@ -28,7 +28,7 @@
 					<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
 						<option value="All"><?= __("All")?></option>
 						<?php foreach($sats_available as $sat) {
-							echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
+							echo '<option value="' . html_escape($sat) . '"' . '>' . html_escape($sat) . '</option>'."\n";
 						} ?>
 					</select>
 				<?php } else { ?>

@@ -121,7 +121,7 @@ class Qra {
 		if (!empty($target)) {
 			$echo = html_escape($target);
 			if (!empty($mygrid)) {
-				$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $target . '\')"><i class="fas fa-globe"></i></a>') : '';
+				$echo .= (!$isVisitor) ? (' <a href=\'javascript:spawnQrbCalculator(' . js_escape($mygrid) . ',' . js_escape($target) . ')\'><i class="fas fa-globe"></i></a>') : '';
 			}
 		}
 		return $echo;

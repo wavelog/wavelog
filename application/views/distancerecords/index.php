@@ -35,7 +35,7 @@
 
 	<tr>
 		<td style="text-align: center"><?php echo $i; ?></td>
-		<td style="text-align: center"><a href="javascript:displayDistanceQsos('<?php echo $row->sat; ?>')"><?php echo ($row->sat_displayname != null ? $row->sat_displayname." (".$row->sat.")" : $row->sat); ?></a></td>
+		<td style="text-align: center"><a href='javascript:displayDistanceQsos(<?php echo js_escape($row->sat); ?>)'><?php echo html_escape($row->sat_displayname != null ? $row->sat_displayname." (".$row->sat.")" : $row->sat); ?></a></td>
 		<td style="text-align: right"><?php printf("%.01f", (floatval($row->distance) * $factor)); echo ' '.$unit; ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->time ?? ''); echo date($custom_date_format, $timestamp); ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->time ?? ''); echo date('H:i', $timestamp); ?></td>
