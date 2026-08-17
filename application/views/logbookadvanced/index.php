@@ -331,6 +331,7 @@ $options = json_decode($options);
 				<input type="hidden" id="dupemode" name="dupemode" value="" class="filter-field">
 				<input type="hidden" id="dupeband" name="dupeband" value="" class="filter-field">
 				<input type="hidden" id="dupesat" name="dupesat" value="" class="filter-field">
+				<input type="hidden" id="dupedateval" name="dupedateval" value="1800" class="filter-field">
 
         <div class="row pt-2">
 			<div class="d-flex flex-wrap btn-group w-auto mx-auto">
