@@ -9,7 +9,7 @@
 			<tbody>
 				<?php foreach ($wab_array as $wab => $key) { ?>
 				<tr>
-					<td style="text-align: center; vertical-align: middle;" ><?php echo '<a href=\'javascript:displayContacts("'. $wab .'","'. $postdata['band'] . '","' . $postdata['sat'] . '","' . $postdata['orbit'] . '","' . $postdata['mode'] . '","WAB")\'>'. $wab; ?></td>
+					<td style="text-align: center; vertical-align: middle;" ><?php echo '<a href=\'javascript:displayContacts(' . js_escape($wab) . ',' . js_escape($postdata['band']) . ',' . js_escape($postdata['sat']) . ',' . js_escape($postdata['orbit']) . ',' . js_escape($postdata['mode']) . ',"WAB")\'>'. html_escape($wab); ?></td>
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $key == 'C' ? 'Yes' : 'No'; ?></td>
 				</tr>
 

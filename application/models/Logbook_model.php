@@ -6252,7 +6252,7 @@ class Logbook_model extends CI_Model {
 
 			$plot['html'] = "";
 			if ($row->COL_NAME != null) {
-				$plot['html'] .= "Name: " . $row->COL_NAME . "<br />";
+				$plot['html'] .= "Name: " . html_escape($row->COL_NAME) . "<br />";
 			}
 			$date_cat = "Date";
 
@@ -6280,8 +6280,8 @@ class Logbook_model extends CI_Model {
 			}
 
 			$plot['html'] .= $date_cat . ": " . $qso_time_on . "<br />";
-			$plot['html'] .= ($row->COL_SAT_NAME != null) ? ("SAT: " . $row->COL_SAT_NAME . "<br />") : ("Band: " . $row->COL_BAND . "<br />");
-			$plot['html'] .= "Mode: " . ($row->COL_SUBMODE == null ? $row->COL_MODE : $row->COL_SUBMODE) . "<br />";
+			$plot['html'] .= ($row->COL_SAT_NAME != null) ? ("SAT: " . html_escape($row->COL_SAT_NAME) . "<br />") : ("Band: " . html_escape($row->COL_BAND) . "<br />");
+			$plot['html'] .= "Mode: " . html_escape($row->COL_SUBMODE == null ? $row->COL_MODE : $row->COL_SUBMODE) . "<br />";
 
 			// check if qso is confirmed //
 			if (!$isVisitor) {
