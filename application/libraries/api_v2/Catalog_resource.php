@@ -114,7 +114,7 @@ class Catalog_resource extends Api_v2_resource {
 		if (!in_array($order, $allowed, true)) {
 			throw new Api_v2_exception(
 				'validation_error',
-				'Unknown order parameter:' . $order,
+				'Unknown order parameter: ' . $order,
 				400,
 				['allowed' => $allowed]
 			);
