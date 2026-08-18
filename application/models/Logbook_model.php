@@ -6315,8 +6315,13 @@ class Logbook_model extends CI_Model {
 		return $json;
 	}
 
-	public function get_states_by_dxcc($dxcc) {
+	// $skip_deprecated hides subdivisions that no longer exist; the QSO editor
+	// keeps them so an old QSO still shows its state.
+	public function get_states_by_dxcc($dxcc, $skip_deprecated = false) {
 		$this->db->where('adif', $dxcc);
+		if ($skip_deprecated) {
+			$this->db->where('deprecated', 0);
+		}
 		$this->db->order_by('subdivision', 'ASC');
 		return $this->db->get('primary_subdivisions');
 	}
