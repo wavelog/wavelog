@@ -100,8 +100,8 @@ class Catalog_resource extends Api_v2_resource {
 
 	/**
 	 * DXCC entities, as offered by the DXCC module.
-	 * Please note that this is public available data and Wavelog just provides it for convenience.
-	 * If possibel please use the official dxcc sources. 
+	 * Please note that this is publicly available data and Wavelog just provides it for convenience.
+	 * If possible please use the official dxcc sources. 
 	 * 
 	 * Optional parameters:
 	 * - order: name|prefix (default: name)
@@ -141,7 +141,7 @@ class Catalog_resource extends Api_v2_resource {
 	 * The primary administrative subdivisions (ADIF STATE) of one DXCC entity,
 	 * as offered by the Logbook model. The "state" values are what the
 	 * QSO resource expects in a STATE field.
-	 * Please note that this is public available data and Wavelog just provides
+	 * Please note that this is publicly available data and Wavelog just provides
 	 * it for convenience. If possible please use the official ADIF sources.
 	 *
 	 * Required parameters:
