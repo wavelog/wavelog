@@ -11,10 +11,13 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * Logbooks_model, which owns all access to that table. Ownership is enforced
  * against the token's user_id, never the session.
  *
- * Every write here has a counterpart in Stationsetup (newLogbook_json,
+ * Every verb here has a counterpart in Stationsetup (index, newLogbook_json,
  * saveContainerName, setActiveLogbook_json, linkLocations, unLinkLocations,
  * deleteLogbook_json). That controller is gated at clubstation officer level as
- * a whole, so the write verbs below carry the same require_club_level(9).
+ * a whole - its single exception is list_locations, which Station_resource
+ * mirrors with ungated reads - so every verb below carries the same
+ * require_club_level(9), reads included: a member below officer level manages
+ * no logbooks in the web UI and manages none through the API either.
  *
  * Routes:
  *   GET    /api/v2/logbook           list all logbooks
@@ -50,11 +53,24 @@ class Logbook_resource extends Api_v2_resource {
 	}
 
 	/**
+	 * Only sessions that could actually use these scopes are offered them:
+	 * outside a clubstation every user manages their own logbooks, inside one
+	 * it takes officer level. A member below that would end up with a token
+	 * that can only ever answer 403.
+	 */
+	public static function is_grantable() {
+		// Returns true outside a clubstation, so this covers both cases.
+		return clubaccess_check(9);
+	}
+
+	/**
 	 * GET /api/v2/logbook
 	 * All logbooks of the token owner. No pagination, same as Station_resource:
 	 * users only have a handful of them.
 	 */
 	public function index() {
+		$this->require_club_level(9);
+
 		$rows = $this->CI->logbooks_model->show_all($this->user_id())->result();
 
 		$active_id = $this->active_id();
@@ -70,6 +86,8 @@ class Logbook_resource extends Api_v2_resource {
 	 * GET /api/v2/logbook/{id}
 	 */
 	public function show($id) {
+		$this->require_club_level(9);
+
 		$row = $this->require_owned_logbook($id);
 		$this->CI->api_v2_response->respond($this->format($row, $this->active_id()));
 	}
