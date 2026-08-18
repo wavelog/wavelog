@@ -55,7 +55,7 @@ class Stations extends CI_Model {
 
 	function profile($id) {
 		// Clean ID
-		$sql = 'SELECT `station_profile`.*, `dxcc_entities`.`lat` AS dxcc_lat, `dxcc_entities`.`long` AS dxcc_lon FROM `station_profile` LEFT JOIN `dxcc_entities` ON `station_profile`.`station_dxcc` = `dxcc_entities`.`adif` WHERE `station_id` = ?';
+		$sql = 'SELECT `station_profile`.*, `dxcc_entities`.`name` AS station_country, `dxcc_entities`.`lat` AS dxcc_lat, `dxcc_entities`.`long` AS dxcc_lon FROM `station_profile` LEFT JOIN `dxcc_entities` ON `station_profile`.`station_dxcc` = `dxcc_entities`.`adif` WHERE `station_id` = ?';
 		$query = $this->db->query($sql, $this->security->xss_clean($id));
 		return $query;
 	}
@@ -94,8 +94,10 @@ class Stations extends CI_Model {
 	 * @return object|null The station_profile row, or null when not found.
 	 */
 	function profile_by_uuid($uuid, $user_id) {
+		$this->db->select('station_profile.*, dxcc_entities.name as station_country');
+		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
 		$this->db->where('station_uuid', $this->security->xss_clean($uuid));
-		$this->db->where('user_id', $user_id);
+		$this->db->where('station_profile.user_id', $user_id);
 		return $this->db->get('station_profile')->row();
 	}
 
@@ -309,18 +311,19 @@ class Stations extends CI_Model {
 		$this->staticmap_model->remove_static_map_image($clean_id);
 	}
 
-	function set_active($current, $new) {
+	function set_active($current, $new, $user_id = null) {
 		// Clean inputs
 		$clean_current = $this->security->xss_clean($current);
 		$clean_new = $this->security->xss_clean($new);
+		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
 
 		// be sure that stations belong to user
 		if ($clean_current != 0) {
-			if (!$this->check_station_is_accessible($clean_current)) {
+			if (!$this->check_station_against_user($clean_current, $user_id)) {
 				return;
 			}
 		}
-		if (!$this->check_station_is_accessible($clean_new)) {
+		if (!$this->check_station_against_user($clean_new, $user_id)) {
 			return;
 		}
 
@@ -328,18 +331,21 @@ class Stations extends CI_Model {
 		$current_default = array(
 			'station_active' => null,
 		);
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id);
 		$this->db->update('station_profile', $current_default);
 
 		// Deselect current default
 		$newdefault = array(
 			'station_active' => 1,
 		);
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id);
 		$this->db->where('station_id', $clean_new);
 		$this->db->update('station_profile', $newdefault);
 
-		$this->session->set_userdata('station_profile_id', $clean_new);
+		// Only meaningful for a web request; a token request has no session.
+		if ($this->session->userdata('user_id') == $user_id) {
+			$this->session->set_userdata('station_profile_id', $clean_new);
+		}
 	}
 
 	function edit_favourite($id) {
