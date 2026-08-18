@@ -104,7 +104,7 @@ function distinctPlot() {
 	$(".ld-ext-right-distinctplot").prop('disabled', true);
 	$(".alert").remove();
 	$.ajax({
-		url: site_url + '/distinctcounts/get_counts',
+		url: site_url + '/countqsoby/get_counts',
 		type: 'post',
 		data: {
 			'type': $("#distincttype").val(),
@@ -126,7 +126,7 @@ function distinctPlot() {
 			} else {
 				destroyDistinctTable();
 				$("#distinct_summary").empty();
-				$("#distinctcounts_div").append('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + escapeHtml(tmp.Error) + '</div>');
+				$("#countqsoby_div").append('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + escapeHtml(tmp.Error) + '</div>');
 			}
 			$(".ld-ext-right-distinctplot").removeClass('running');
 			$(".ld-ext-right-distinctplot").prop('disabled', false);
@@ -198,7 +198,7 @@ function renderDistinctTable(tmp) {
 
 function getDistinctQsos(group) {
 	$.ajax({
-		url: site_url + '/distinctcounts/details',
+		url: site_url + '/countqsoby/details',
 		type: 'post',
 		data: {
 			'type': $("#distincttype").val(),

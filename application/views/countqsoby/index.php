@@ -1,6 +1,6 @@
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 
-    <h2><?= __("Distinct Counts"); ?></h2>
+    <h2><?= __("Count QSOs by..."); ?></h2>
     <script>
         var lang_general_word_qso_data = '<?= __("QSO Data"); ?>';
         var lang_gen_hamradio_qso_short = '<?= __("QSOs"); ?>';
@@ -12,10 +12,10 @@
         var lang_distinct_counts_type_ref = '<?= __("Reference"); ?>';
     </script>
 
-    <div id="distinctcounts_div">
+    <div id="countqsoby_div">
         <div class="card">
             <div class="card-header">
-                <?= __("Distinct Counts"); ?>
+                <?= __("Count QSOs by..."); ?>
             </div>
             <div class="card-body">
 
@@ -105,7 +105,7 @@
                             <option value="All"><?= __("All") ?></option>
                             <?php
                             foreach($orbits as $orbit){
-                                echo '<option value="' . html_escape($orbit->orbit) . '">' . strtoupper($orbit->orbit) . '</option>'."\n";
+                                echo '<option value="' . html_escape($orbit->orbit) . '">' . html_escape(strtoupper($orbit->orbit)) . '</option>'."\n";
                             }
                             ?>
                         </select>

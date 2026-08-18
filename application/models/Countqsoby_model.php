@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Distinctcounts_model extends CI_Model
+class Countqsoby_model extends CI_Model
 {
 	/*
 	 * Returns distinct QSO counts grouped by grid, dxcc or an award reference,

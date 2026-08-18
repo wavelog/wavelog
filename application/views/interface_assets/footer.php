@@ -1725,8 +1725,8 @@ $(document).ready(function(){
 	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/distances.js'); ?>"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "distinctcounts") { ?>
-	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/distinctcounts.js'); ?>"></script>
+<?php if ($this->uri->segment(1) == "countqsoby") { ?>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/countqsoby.js'); ?>"></script>
 <?php } ?>
 
 
