@@ -1071,6 +1071,11 @@ class API extends CI_Controller {
 
 		// Decode JSON and store
 		$obj = json_decode(file_get_contents("php://input"), true);
+		if (!is_array($obj)) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			die();
+		}
 
 		// Check rate limit
 		$identifier = isset($obj['key']) ? $obj['key'] : null;
@@ -1094,6 +1099,13 @@ class API extends CI_Controller {
 			die();
 		}
 
+		$invalid_fields = $this->validate_radio_payload($obj);
+		if (!empty($invalid_fields)) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "invalid field(s): " . implode(', ', $invalid_fields)]);
+			die();
+		}
+
 		$this->api_model->update_last_used($obj['key']);
 
 		$user_id = $this->api_model->key_userid($obj['key']);
@@ -1108,10 +1120,7 @@ class API extends CI_Controller {
 
 		// Handle optional cat_url
 		if (isset($obj['cat_url']) && !empty($obj['cat_url'])) {
-			$cat_url = $this->sanitize_cat_url($obj['cat_url']);
-			if ($cat_url !== false) {
-				$obj['cat_url'] = $cat_url;
-			}
+			$obj['cat_url'] = $this->sanitize_cat_url($obj['cat_url']);
 		}
 
 		// Store Result to Database
@@ -1123,6 +1132,42 @@ class API extends CI_Controller {
 
 		echo json_encode($arr);
 
+	}
+
+	private function validate_radio_payload(&$obj) {
+		$invalid = [];
+
+		if (!isset($obj['radio']) || !is_string($obj['radio']) || trim($obj['radio']) == '' || strlen($obj['radio']) > 250) {
+			$invalid[] = 'radio';
+		}
+
+		$numeric_fields = ['frequency', 'frequency_rx', 'uplink_freq', 'downlink_freq', 'power'];
+		foreach ($numeric_fields as $field) {
+			if (isset($obj[$field]) && $obj[$field] !== null && $obj[$field] !== '' && $obj[$field] !== 'NULL') {
+				if (!is_numeric($obj[$field]) || (int) $obj[$field] != $obj[$field]) {
+					$invalid[] = $field;
+				} else {
+					$obj[$field] = (int) $obj[$field];
+				}
+			}
+		}
+
+		$string_limits = ['mode' => 10, 'mode_rx' => 10, 'uplink_mode' => 10, 'downlink_mode' => 10, 'prop_mode' => 10, 'sat_name' => 255];
+		foreach ($string_limits as $field => $limit) {
+			if (isset($obj[$field]) && $obj[$field] !== null && $obj[$field] !== '' && $obj[$field] !== 'NULL') {
+				if (!is_string($obj[$field]) || strlen($obj[$field]) > $limit) {
+					$invalid[] = $field;
+				}
+			}
+		}
+
+		if (isset($obj['cat_url']) && $obj['cat_url'] !== null && $obj['cat_url'] !== '' && $obj['cat_url'] !== 'NULL') {
+			if (!is_string($obj['cat_url']) || $this->sanitize_cat_url($obj['cat_url']) === false) {
+				$invalid[] = 'cat_url';
+			}
+		}
+
+		return $invalid;
 	}
 
 	/*
