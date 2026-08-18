@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-18 12:57+0000\n"
-"PO-Revision-Date: 2026-08-14 06:33+0000\n"
+"POT-Creation-Date: 2026-08-17 09:04+0000\n"
+"PO-Revision-Date: 2026-08-18 11:16+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -1080,7 +1080,7 @@ msgstr "Uppdatera tävling"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Tävling %s uppdaterad"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:320
@@ -2624,7 +2624,7 @@ msgstr "Redigera Trafiksätt"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr ""
+msgstr "Trafiksätt %s uppdaterad"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3358,7 +3358,7 @@ msgstr "Redigera stationsplats: "
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr ""
+msgstr "Stationsplats %s uppdaterad"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
@@ -4242,27 +4242,15 @@ msgstr "Läs QSL-bekräftelser"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
-msgstr ""
+msgstr "Läs tävlingssessioner"
 
 #: application/libraries/api_v2/Contest_resource.php:56
 msgid "Create and update contest sessions"
-msgstr ""
+msgstr "Skapa och uppdatera tävlingssessioner"
 
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
-msgstr ""
-
-#: application/libraries/api_v2/Logbook_resource.php:49
-msgid "Read logbooks"
-msgstr ""
-
-#: application/libraries/api_v2/Logbook_resource.php:50
-msgid "Create and update logbooks"
-msgstr ""
-
-#: application/libraries/api_v2/Logbook_resource.php:51
-msgid "Delete logbooks"
-msgstr ""
+msgstr "Radera tävlingssessioner"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -5268,27 +5256,27 @@ msgstr "📻 Planerar en aktivering från %s"
 #: application/views/activationplanner/index.php:51
 #: application/views/activationplanner/index.php:87
 msgid "Search references…"
-msgstr ""
+msgstr "Sök referenser…"
 
 #: application/views/activationplanner/index.php:52
 msgid "No matches"
-msgstr ""
+msgstr "Inga matchningar"
 
 #: application/views/activationplanner/index.php:53
 msgid "Loading…"
-msgstr ""
+msgstr "Laddar…"
 
 #: application/views/activationplanner/index.php:54
 msgid "References"
-msgstr ""
+msgstr "Referenser"
 
 #: application/views/activationplanner/index.php:55
 msgid "Places"
-msgstr ""
+msgstr "Platser"
 
 #: application/views/activationplanner/index.php:56
 msgid "Press Enter to search places"
-msgstr ""
+msgstr "Tryck på Enter för att söka platser"
 
 #: application/views/activationplanner/index.php:66
 msgid "Plan your activity here"
@@ -5346,6 +5334,8 @@ msgid ""
 "Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place "
 "names (OpenStreetMap)"
 msgstr ""
+"Sök WWFF / POTA / SOTA / IOTA efter namn eller referens — Ange sökningar "
+"efter platsnamn (OpenStreetMap)"
 
 #: application/views/activationplanner/index.php:92
 #: application/views/simplefle/index.php:162
@@ -6283,7 +6273,7 @@ msgstr "Nästa AOS"
 
 #: application/views/amsatstatus/index.php:115
 msgid "Hours ago (left-most: now)"
-msgstr ""
+msgstr "Timmar sedan (längst till vänster: nu)"
 
 #: application/views/amsatstatus/index.php:135
 #, php-format
@@ -8320,7 +8310,7 @@ msgstr "Exportera bekräftade QSOs"
 
 #: application/views/awards/jcc/index.php:46
 msgid "QSL Type"
-msgstr ""
+msgstr "QSL-typ"
 
 #: application/views/awards/jcc/index.php:72
 msgid "Deleted cities"
@@ -8342,17 +8332,20 @@ msgstr "Ej kontaktade"
 
 #: application/views/awards/jcc/index.php:169
 msgid "JCC progress"
-msgstr ""
+msgstr "JCC framsteg"
 
 #: application/views/awards/jcc/index.php:179
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
 msgstr ""
+"OBS! Wavelog verifierar inte om ett QSO inträffade före entitetens "
+"borttagningsdatum."
 
 #: application/views/awards/jcc/index.php:185
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
+"Inga kontaktade eller bekräftade JCC-platser matchar de nuvarande filtren."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -9225,8 +9218,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -16078,8 +16071,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -16403,7 +16396,7 @@ msgstr "Sök efter dubbletter med:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "Matcha QSOs inom det valda tidsfönstret med varandra"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
@@ -16799,7 +16792,7 @@ msgstr "Tidsspann:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "justerbar, 1 till 60 minuter (standard 30 minuter)"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -17782,11 +17775,11 @@ msgstr "Anledning"
 #: application/views/logbookadvanced/showUpdateResult.php:77
 #: application/views/logbookadvanced/showUpdateResult.php:79
 msgid "The number of QSOs updated for state/province across all DXCCs is"
-msgstr ""
+msgstr "Antalet QSOs uppdaterade för delstat/provins över alla DXCCs är"
 
 #: application/views/logbookadvanced/showUpdateResult.php:79
 msgid "DXCCs processed"
-msgstr ""
+msgstr "DXCC har hanterats"
 
 #: application/views/logbookadvanced/showUpdateResult.php:131
 msgid "Results for continent update:"
@@ -17842,7 +17835,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/statecheckresult.php:7
 msgid "Fix all DXCCs"
-msgstr ""
+msgstr "Fixa alla DXCC"
 
 #: application/views/logbookadvanced/statecheckresult.php:34
 msgid "Run fix"
@@ -21958,8 +21951,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -23620,6 +23613,18 @@ msgstr "Clublog Loggsökning"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-användare. Senaste uppladdningen var "
+
+#: application/libraries/api_v2/Logbook_resource.php:49
+msgid "Read logbooks"
+msgstr ""
+
+#: application/libraries/api_v2/Logbook_resource.php:50
+msgid "Create and update logbooks"
+msgstr ""
+
+#: application/libraries/api_v2/Logbook_resource.php:51
+msgid "Delete logbooks"
+msgstr ""
 
 #~ msgid "Match QSOs within 1800s (30min) of each other"
 #~ msgstr "Matcha QSOs inom 1800s (30 min) från varandra"

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-18 12:57+0000\n"
-"PO-Revision-Date: 2026-08-17 09:04+0000\n"
+"POT-Creation-Date: 2026-08-17 09:04+0000\n"
+"PO-Revision-Date: 2026-08-18 11:16+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -3923,8 +3923,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1541
 msgid "Station setup failed! Please set up your station manually."
@@ -4249,18 +4249,6 @@ msgstr "コンテストセッションの作成と更新"
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
 msgstr "コンテストセッションを削除する"
-
-#: application/libraries/api_v2/Logbook_resource.php:49
-msgid "Read logbooks"
-msgstr ""
-
-#: application/libraries/api_v2/Logbook_resource.php:50
-msgid "Create and update logbooks"
-msgstr ""
-
-#: application/libraries/api_v2/Logbook_resource.php:51
-msgid "Delete logbooks"
-msgstr ""
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -16381,7 +16369,7 @@ msgstr "重複を検索するには以下を使用します:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "選択した時間帯内で互いに一致する交信を行う"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
@@ -16776,7 +16764,7 @@ msgstr "時間枠:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "調節可能、1～60分（デフォルトは30分）"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -23558,6 +23546,18 @@ msgstr "Clublog Log を検索"
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
 
+#: application/libraries/api_v2/Logbook_resource.php:49
+msgid "Read logbooks"
+msgstr ""
+
+#: application/libraries/api_v2/Logbook_resource.php:50
+msgid "Create and update logbooks"
+msgstr ""
+
+#: application/libraries/api_v2/Logbook_resource.php:51
+msgid "Delete logbooks"
+msgstr ""
+
 #~ msgid "Match QSOs within 1800s (30min) of each other"
 #~ msgstr "1800秒（30分）以内のQSOをマッチング"
 
@@ -24404,9 +24404,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -24737,8 +24737,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
