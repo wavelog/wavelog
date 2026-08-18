@@ -17,18 +17,6 @@ class DXCC extends CI_Model {
 	}
 
 	/*
-	 * Returns a single current DXCC entity by ADIF number, or null when not
-	 * found. Same filter as list_current(), for one entity.
-	 */
-	function get_by_adif($adif_id) {
-		$this->db->where('adif', (int) $adif_id);
-		$this->db->where('adif !=', 0);
-		$this->db->where('end', null);
-		$q = $this->db->get('dxcc_entities');
-		return $q->num_rows() > 0 ? $q->row() : null;
-	}
-
-	/*
 	 * Fetches a list of all current dxcc's (non-deleted)
 	 */
 	function list_current($orderer = 'name') {
