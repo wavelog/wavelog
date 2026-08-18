@@ -11,7 +11,7 @@ class Logbooks_model extends CI_Model {
 		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
 
 		// Create data array with field values
-		if ($logbook_name ?? '' != '') {
+		if (($logbook_name ?? '') !== '') {
 			$data = array(
 				'user_id' => $user_id,
 				'logbook_name' =>  $logbook_name,
