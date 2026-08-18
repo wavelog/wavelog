@@ -186,6 +186,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('callstats'); ?>" title="Callsign Statistics"><i class="fas fa-chart-area"></i> <?= __("Callsign Statistics"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('statistics/initials'); ?>" title="EME Initials"><i class="fas fa-chart-area"></i> <?= __("EME Initials"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('distinctcounts'); ?>" title="Distinct Counts"><i class="fas fa-chart-area"></i> <?= __("Distinct Counts"); ?></a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"> <!-- AWARDS -->
