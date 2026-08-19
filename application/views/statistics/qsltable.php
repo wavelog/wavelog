@@ -1,230 +1,185 @@
+<?php
+if (!function_exists('qsl_field_keys')) {
+	function qsl_field_keys() {
+		return ['qso', 'qsl', 'lotw', 'eqsl', 'qrz', 'clublog'];
+	}
+}
+
+if (!function_exists('qsl_mode_rows')) {
+	/* Normalize a [mode => stats] map to full integer counters and drop modes without any QSOs or confirmations. */
+	function qsl_mode_rows($modeStats) {
+		$rows = [];
+		foreach ($modeStats as $mode => $stats) {
+			$row = [];
+			$sum = 0;
+			foreach (qsl_field_keys() as $field) {
+				$row[$field] = (int)($stats[$field] ?? 0);
+				$sum += $row[$field];
+			}
+			if ($sum > 0) {
+				$rows[$mode] = $row;
+			}
+		}
+		return $rows;
+	}
+}
+
+if (!function_exists('qsl_render_table')) {
+	/* Render one QSL statistics table (overall, per band or per satellite) with a totals footer.
+	 * Confirmation cells carry data-abs/data-pct so qslSetDisplay() can toggle between absolute counts and percentages. */
+	function qsl_render_table($title, $rows) {
+		$totals = array_fill_keys(qsl_field_keys(), 0);
+		foreach ($rows as $stats) {
+			foreach (qsl_field_keys() as $field) {
+				$totals[$field] += $stats[$field];
+			}
+		}
+
+		$percent = function ($value, $qsos) {
+			return number_format($value / ($qsos ?: 1) * 100, 1) . '%';
+		};
+
+		echo '<div class="table-wrapper">';
+		echo '<table class="table table-sm table-bordered table-hover table-striped w-100 text-center">';
+		echo '<thead>';
+		echo '<tr><th colspan="7">' . htmlspecialchars($title) . '</th></tr>';
+		echo '<tr><th></th><th>QSO</th><th>QSL</th><th>LoTW</th><th>eQSL</th><th>QRZ</th><th>Clublog</th></tr>';
+		echo '</thead>';
+		echo '<tbody>';
+		foreach ($rows as $mode => $stats) {
+			echo '<tr><th>' . htmlspecialchars($mode) . '</th>';
+			echo '<td>' . $stats['qso'] . '</td>';
+			foreach (['qsl', 'lotw', 'eqsl', 'qrz', 'clublog'] as $field) {
+				echo '<td data-abs="' . $stats[$field] . '" data-pct="' . $percent($stats[$field], $stats['qso']) . '">' . $stats[$field] . '</td>';
+			}
+			echo '</tr>';
+		}
+		echo '</tbody>';
+		echo '<tfoot>';
+		echo '<tr><th>' . __("Total") . '</th>';
+		echo '<th>' . $totals['qso'] . '</th>';
+		foreach (['qsl', 'lotw', 'eqsl', 'qrz', 'clublog'] as $field) {
+			echo '<th data-abs="' . $totals[$field] . '" data-pct="' . $percent($totals[$field], $totals['qso']) . '">' . $totals[$field] . '</th>';
+		}
+		echo '</tr>';
+		echo '</tfoot>';
+		echo '</table>';
+		echo '</div>';
+	}
+}
+?>
 <div class="container px-3 px-lg-4 mt-3 mb-3">
-<h2><?php echo $page_title; ?></h2>
-<div class="card">
-	<div class="card-header d-flex justify-content-between align-items-center">
-		<span><?= __("QSL Statistics"); ?></span>
-		<div class="btn-group btn-group-sm" role="group">
-			<button type="button" class="btn btn-primary" id="qsl_abs" onclick="qslSetDisplay(false)"><?= __("Absolute"); ?></button>
-			<button type="button" class="btn btn-outline-primary" id="qsl_pct" onclick="qslSetDisplay(true)"><?= __("Percent"); ?></button>
+	<h2><?= $page_title; ?></h2>
+	<div class="card">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<span><?= __("QSL Statistics"); ?></span>
+			<div class="d-flex align-items-center gap-2">
+				<?= __("Year"); ?>
+				<select class="form-select form-select-sm w-auto" id="qsl_year" onchange="qslYearFilter()">
+					<option value=""><?= __("All"); ?></option>
+					<?php foreach (($years ?? []) as $y): ?>
+						<option value="<?= $y; ?>"<?php if ((string) ($selected_year ?? '') === (string) $y) { echo ' selected'; } ?>><?= $y; ?></option>
+					<?php endforeach; ?>
+				</select>
+				<div class="btn-group btn-group-sm" role="group">
+					<button type="button" class="btn btn-primary" id="qsl_abs" onclick="qslSetDisplay(false)"><?= __("Absolute"); ?></button>
+					<button type="button" class="btn btn-outline-primary" id="qsl_pct" onclick="qslSetDisplay(true)"><?= __("Percent"); ?></button>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<?php $hasBands = !empty($qsoarray); $hasSats = !empty($qsosatarray ?? []); ?>
+			<?php if ($hasBands || $hasSats): ?>
+				<?php
+				// Grand totals per mode across every band and satellite
+				$modeTotals = [];
+				foreach ([($qsoarray ?? []), ($qsosatarray ?? [])] as $source) {
+					foreach ($source as $mode => $perKey) {
+						if (!isset($modeTotals[$mode])) {
+							$modeTotals[$mode] = array_fill_keys(qsl_field_keys(), 0);
+						}
+						foreach ($perKey as $stats) {
+							foreach (qsl_field_keys() as $field) {
+								$modeTotals[$mode][$field] += (int)($stats[$field] ?? 0);
+							}
+						}
+					}
+				}
+				?>
+				<ul class="nav nav-tabs mb-3" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="qsl-modes-tab" data-bs-toggle="tab" href="#qsl-modes" role="tab" aria-controls="qsl-modes" aria-selected="true"><?= __("Modes"); ?></a>
+					</li>
+					<?php if ($hasBands): ?>
+						<li class="nav-item">
+							<a class="nav-link" id="qsl-bands-tab" data-bs-toggle="tab" href="#qsl-bands" role="tab" aria-controls="qsl-bands" aria-selected="false"><?= __("Bands"); ?></a>
+						</li>
+					<?php endif; ?>
+					<?php if ($hasSats): ?>
+						<li class="nav-item">
+							<a class="nav-link" id="qsl-sats-tab" data-bs-toggle="tab" href="#qsl-sats" role="tab" aria-controls="qsl-sats" aria-selected="false"><?= __("Satellites"); ?></a>
+						</li>
+					<?php endif; ?>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="qsl-modes" role="tabpanel" aria-labelledby="qsl-modes-tab">
+						<div class="tables-container">
+							<?php qsl_render_table(__("Overall Stats by Mode"), qsl_mode_rows($modeTotals)); ?>
+						</div>
+					</div>
+					<?php if ($hasBands): ?>
+						<div class="tab-pane fade" id="qsl-bands" role="tabpanel" aria-labelledby="qsl-bands-tab">
+							<div class="tables-container">
+								<?php foreach ($bands as $band): ?>
+									<?php
+									$modeBand = [];
+									foreach ($qsoarray as $mode => $perBand) {
+										$modeBand[$mode] = $perBand[$band] ?? [];
+									}
+									qsl_render_table($band, qsl_mode_rows($modeBand));
+									?>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					<?php endif; ?>
+					<?php if ($hasSats): ?>
+						<div class="tab-pane fade" id="qsl-sats" role="tabpanel" aria-labelledby="qsl-sats-tab">
+							<div class="tables-container">
+								<?php foreach ($sats as $sat): ?>
+									<?php
+									$modeSat = [];
+									foreach ($qsosatarray as $mode => $perSat) {
+										$modeSat[$mode] = $perSat[$sat] ?? [];
+									}
+									qsl_render_table($sat, qsl_mode_rows($modeSat));
+									?>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					<?php endif; ?>
+				</div>
+			<?php else: ?>
+				<p class="text-muted mb-0"><?= __("Nothing found!"); ?></p>
+			<?php endif; ?>
 		</div>
 	</div>
-	<div class="card-body">
-	<?php
-	if ($qsoarray) {
-		$modeTotals = [];
-		foreach ($qsoarray as $mode => $bandData) {
-			foreach ($bandData as $band => $stats) {
-				if (!isset($modeTotals[$mode])) {
-					$modeTotals[$mode] = ['qso'=>0,'qsl'=>0,'lotw'=>0,'eqsl'=>0,'qrz'=>0,'clublog'=>0];
-				}
-				$modeTotals[$mode]['qso']     += $stats['qso']     ?? 0;
-				$modeTotals[$mode]['qsl']     += $stats['qsl']     ?? 0;
-				$modeTotals[$mode]['lotw']    += $stats['lotw']    ?? 0;
-				$modeTotals[$mode]['eqsl']    += $stats['eqsl']    ?? 0;
-				$modeTotals[$mode]['qrz']     += $stats['qrz']     ?? 0;
-				$modeTotals[$mode]['clublog'] += $stats['clublog'] ?? 0;
-			}
-		}
-		if ($qsosatarray) {
-			foreach ($qsosatarray as $mode => $satData) {
-				foreach ($satData as $sat => $stats) {
-					if (!isset($modeTotals[$mode])) {
-						$modeTotals[$mode] = ['qso'=>0,'qsl'=>0,'lotw'=>0,'eqsl'=>0,'qrz'=>0,'clublog'=>0];
-					}
-					$modeTotals[$mode]['qso']     += $stats['qso']     ?? 0;
-					$modeTotals[$mode]['qsl']     += $stats['qsl']     ?? 0;
-					$modeTotals[$mode]['lotw']    += $stats['lotw']    ?? 0;
-					$modeTotals[$mode]['eqsl']    += $stats['eqsl']    ?? 0;
-					$modeTotals[$mode]['qrz']     += $stats['qrz']     ?? 0;
-					$modeTotals[$mode]['clublog'] += $stats['clublog'] ?? 0;
-				}
-			}
-		}
-
-		$grandQso = $grandQsl = $grandLotw = $grandEqsl = $grandQrz = $grandClublog = 0;
-
-		echo '
-		<div class="mx-2"><div class="table-wrapper" style="width:100%">
-			<table style="width: 100%" class="flex-wrap table-sm table table-bordered table-hover table-striped table-condensed text-center">
-				<thead>
-					<tr><th colspan="7">' . __("Overall Stats by Mode") . '</th></tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th></th>
-						<th>QSO</th>
-						<th>QSL</th>
-						<th>LoTW</th>
-						<th>eQSL</th>
-						<th>QRZ</th>
-						<th>Clublog</th>
-					</tr>';
-
-		foreach ($modeTotals as $mode => $totals) {
-			if (($totals['qso'] + $totals['qsl'] + $totals['lotw'] + $totals['eqsl'] + $totals['qrz'] + $totals['clublog']) > 0) {
-				$grandQso     += $totals['qso'];
-				$grandQsl     += $totals['qsl'];
-				$grandLotw    += $totals['lotw'];
-				$grandEqsl    += $totals['eqsl'];
-				$grandQrz     += $totals['qrz'];
-				$grandClublog += $totals['clublog'];
-				$q = $totals['qso'] ?: 1;
-				echo '<tr>
-					<th>' . $mode . '</th>
-					<td>' . $totals['qso'] . '</td>
-					<td data-abs="' . $totals['qsl']     . '" data-pct="' . number_format($totals['qsl']     / $q * 100, 1) . '%">' . $totals['qsl']     . '</td>
-					<td data-abs="' . $totals['lotw']    . '" data-pct="' . number_format($totals['lotw']    / $q * 100, 1) . '%">' . $totals['lotw']    . '</td>
-					<td data-abs="' . $totals['eqsl']    . '" data-pct="' . number_format($totals['eqsl']    / $q * 100, 1) . '%">' . $totals['eqsl']    . '</td>
-					<td data-abs="' . $totals['qrz']     . '" data-pct="' . number_format($totals['qrz']     / $q * 100, 1) . '%">' . $totals['qrz']     . '</td>
-					<td data-abs="' . $totals['clublog'] . '" data-pct="' . number_format($totals['clublog'] / $q * 100, 1) . '%">' . $totals['clublog'] . '</td>
-				</tr>';
-			}
-		}
-
-		$gq = $grandQso ?: 1;
-		echo '</tbody>
-			<tfoot>
-				<tr>
-					<th>' . __("Total") . '</th>
-					<th>' . $grandQso . '</th>
-					<th data-abs="' . $grandQsl     . '" data-pct="' . number_format($grandQsl     / $gq * 100, 1) . '%">' . $grandQsl     . '</th>
-					<th data-abs="' . $grandLotw    . '" data-pct="' . number_format($grandLotw    / $gq * 100, 1) . '%">' . $grandLotw    . '</th>
-					<th data-abs="' . $grandEqsl    . '" data-pct="' . number_format($grandEqsl    / $gq * 100, 1) . '%">' . $grandEqsl    . '</th>
-					<th data-abs="' . $grandQrz     . '" data-pct="' . number_format($grandQrz     / $gq * 100, 1) . '%">' . $grandQrz     . '</th>
-					<th data-abs="' . $grandClublog . '" data-pct="' . number_format($grandClublog / $gq * 100, 1) . '%">' . $grandClublog . '</th>
-				</tr>
-			</tfoot>
-		</table>
-		</div></div>';
-	}
-	?>
-	<div class="tables-container mx-2">
-	<?php
-	if ($qsoarray) {
-		foreach($bands as $band) {
-			echo '
-			<div class="table-wrapper">
-				<table style="width: 100%" class="flex-wrap table-sm table table-bordered table-hover table-striped table-condensed text-center">
-					<thead>';
-					echo '<tr>';
-					echo '<th colspan = 7>' . $band . '</th>';
-					echo '</tr>
-					</thead>
-					<tbody>';
-					echo '<tr><th></th>';
-						echo '<th>QSO</th>';
-						echo '<th>QSL</th>';
-						echo '<th>LoTW</th>';
-						echo '<th>eQSL</th>';
-						echo '<th>QRZ</th>';
-						echo '<th>Clublog</th>';
-					echo '</tr>';
-			$qsototal = 0;
-			$qsltotal = 0;
-			$lotwtotal = 0;
-			$eqsltotal = 0;
-			$qrztotal = 0;
-			$clublogtotal = 0;
-			foreach ($qsoarray as $mode => $value) {
-				$qsototal += $value[$band]['qso'] ?? 0;
-				$qsltotal += $value[$band]['qsl'] ?? 0;
-				$lotwtotal += $value[$band]['lotw'] ?? 0;
-				$eqsltotal += $value[$band]['eqsl'] ?? 0;
-				$qrztotal += $value[$band]['qrz'] ?? 0;
-				$clublogtotal += $value[$band]['clublog'] ?? 0;
-				$total = ($value[$band]['qso'] ?? 0) + ($value[$band]['qsl'] ?? 0) + ($value[$band]['lotw'] ?? 0) + ($value[$band]['eqsl'] ?? 0) + ($value[$band]['qrz'] ?? 0) + ($value[$band]['clublog'] ??0 );
-				if ($total > 0) {
-					$q = ($value[$band]['qso'] ?? 0) ?: 1;
-					echo '<tr>
-							<th>'. $mode .'</th>';
-						echo '<td>' . $value[$band]['qso'] . '</td>';
-						echo '<td data-abs="' . $value[$band]['qsl']     . '" data-pct="' . number_format(($value[$band]['qsl']     ?? 0) / $q * 100, 1) . '%">' . $value[$band]['qsl']     . '</td>';
-						echo '<td data-abs="' . $value[$band]['lotw']    . '" data-pct="' . number_format(($value[$band]['lotw']    ?? 0) / $q * 100, 1) . '%">' . $value[$band]['lotw']    . '</td>';
-						echo '<td data-abs="' . $value[$band]['eqsl']    . '" data-pct="' . number_format(($value[$band]['eqsl']    ?? 0) / $q * 100, 1) . '%">' . $value[$band]['eqsl']    . '</td>';
-						echo '<td data-abs="' . $value[$band]['qrz']     . '" data-pct="' . number_format(($value[$band]['qrz']     ?? 0) / $q * 100, 1) . '%">' . $value[$band]['qrz']     . '</td>';
-						echo '<td data-abs="' . $value[$band]['clublog'] . '" data-pct="' . number_format(($value[$band]['clublog'] ?? 0) / $q * 100, 1) . '%">' . $value[$band]['clublog'] . '</td>';
-					echo '</tr>';
-				}
-			}
-			$bq = $qsototal ?: 1;
-			echo '</tbody><tfoot><tr><th>'.__("Total").'</th>';
-			echo '<th>' . $qsototal . '</th>';
-			echo '<th data-abs="' . $qsltotal    . '" data-pct="' . number_format($qsltotal    / $bq * 100, 1) . '%">' . $qsltotal    . '</th>';
-			echo '<th data-abs="' . $lotwtotal   . '" data-pct="' . number_format($lotwtotal   / $bq * 100, 1) . '%">' . $lotwtotal   . '</th>';
-			echo '<th data-abs="' . $eqsltotal   . '" data-pct="' . number_format($eqsltotal   / $bq * 100, 1) . '%">' . $eqsltotal   . '</th>';
-			echo '<th data-abs="' . $qrztotal    . '" data-pct="' . number_format($qrztotal    / $bq * 100, 1) . '%">' . $qrztotal    . '</th>';
-			echo '<th data-abs="' . $clublogtotal . '" data-pct="' . number_format($clublogtotal / $bq * 100, 1) . '%">' . $clublogtotal . '</th>';
-			echo '</tr></tfoot></table></div>';
-		}
-	}
-	if ($qsosatarray) {
-		foreach($sats as $sat) {
-			echo '
-			<div class="table-wrapper">
-				<table style="width: 100%" class="mx-2 flex-wrap table-sm table table-bordered table-hover table-striped table-condensed text-center">
-					<thead>';
-					echo '<tr>';
-					echo '<th colspan = 7>' . $sat . '</th>';
-					echo '</tr>
-					</thead>
-					<tbody>';
-					echo '<tr><th></th>';
-						echo '<th>QSO</th>';
-						echo '<th>QSL</th>';
-						echo '<th>LoTW</th>';
-						echo '<th>eQSL</th>';
-						echo '<th>QRZ</th>';
-						echo '<th>Clublog</th>';
-					echo '</tr>';
-			$qsototal = 0;
-			$qsltotal = 0;
-			$lotwtotal = 0;
-			$eqsltotal = 0;
-			$qrztotal = 0;
-			$clublogtotal = 0;
-			foreach ($qsosatarray as $mode => $value) {
-				$qsototal += $value[$sat]['qso'] ?? 0;
-				$qsltotal += $value[$sat]['qsl'] ?? 0;
-				$lotwtotal += $value[$sat]['lotw'] ?? 0;
-				$eqsltotal += $value[$sat]['eqsl'] ?? 0;
-				$qrztotal += $value[$sat]['qrz'] ?? 0;
-				$clublogtotal += $value[$sat]['clublog'] ?? 0;
-				$total = ($value[$sat]['qso'] ?? 0) + ($value[$sat]['qsl'] ?? 0) + ($value[$sat]['lotw'] ?? 0) + ($value[$sat]['eqsl'] ?? 0) + ($value[$sat]['qrz'] ?? 0) + ($value[$sat]['clublog'] ?? 0);
-				if ($total > 0) {
-					$q = ($value[$sat]['qso'] ?? 0) ?: 1;
-					echo '<tr>
-							<th>'. $mode .'</th>';
-					echo '<td>' . $value[$sat]['qso'] . '</td>';
-					echo '<td data-abs="' . $value[$sat]['qsl']     . '" data-pct="' . number_format(($value[$sat]['qsl']     ?? 0) / $q * 100, 1) . '%">' . $value[$sat]['qsl']     . '</td>';
-					echo '<td data-abs="' . $value[$sat]['lotw']    . '" data-pct="' . number_format(($value[$sat]['lotw']    ?? 0) / $q * 100, 1) . '%">' . $value[$sat]['lotw']    . '</td>';
-					echo '<td data-abs="' . $value[$sat]['eqsl']    . '" data-pct="' . number_format(($value[$sat]['eqsl']    ?? 0) / $q * 100, 1) . '%">' . $value[$sat]['eqsl']    . '</td>';
-					echo '<td data-abs="' . $value[$sat]['qrz']     . '" data-pct="' . number_format(($value[$sat]['qrz']     ?? 0) / $q * 100, 1) . '%">' . $value[$sat]['qrz']     . '</td>';
-					echo '<td data-abs="' . $value[$sat]['clublog'] . '" data-pct="' . number_format(($value[$sat]['clublog'] ?? 0) / $q * 100, 1) . '%">' . $value[$sat]['clublog'] . '</td>';
-				echo '</tr>';
-				}
-			}
-			$sq = $qsototal ?: 1;
-			echo '</tbody><tfoot><tr><th>'.__("Total").'</th>';
-			echo '<th>' . $qsototal . '</th>';
-			echo '<th data-abs="' . $qsltotal    . '" data-pct="' . number_format($qsltotal    / $sq * 100, 1) . '%">' . $qsltotal    . '</th>';
-			echo '<th data-abs="' . $lotwtotal   . '" data-pct="' . number_format($lotwtotal   / $sq * 100, 1) . '%">' . $lotwtotal   . '</th>';
-			echo '<th data-abs="' . $eqsltotal   . '" data-pct="' . number_format($eqsltotal   / $sq * 100, 1) . '%">' . $eqsltotal   . '</th>';
-			echo '<th data-abs="' . $qrztotal    . '" data-pct="' . number_format($qrztotal    / $sq * 100, 1) . '%">' . $qrztotal    . '</th>';
-			echo '<th data-abs="' . $clublogtotal . '" data-pct="' . number_format($clublogtotal / $sq * 100, 1) . '%">' . $clublogtotal . '</th>';
-			echo '</tr></tfoot></table></div>';
-		}
-	}
-	?>
-	</div>
-</div>
-</div>
 </div>
 <script>
+function qslYearFilter() {
+	var year = document.getElementById('qsl_year').value;
+	window.location.href = '<?php echo site_url('statistics/qslstats'); ?>' + (year ? '?year=' + encodeURIComponent(year) : '');
+}
 function qslSetDisplay(pct) {
 	document.querySelectorAll('[data-abs][data-pct]').forEach(function (cell) {
 		cell.textContent = pct ? cell.dataset.pct : cell.dataset.abs;
 	});
 	document.getElementById('qsl_abs').className = pct ? 'btn btn-outline-primary' : 'btn btn-primary';
 	document.getElementById('qsl_pct').className = pct ? 'btn btn-primary' : 'btn btn-outline-primary';
+	try { localStorage.setItem('qslstats_pct', pct ? '1' : '0'); } catch (e) { /* storage unavailable */ }
 }
+(function () {
+	var pct = false;
+	try { pct = localStorage.getItem('qslstats_pct') === '1'; } catch (e) { /* storage unavailable */ }
+	if (pct) { qslSetDisplay(true); }
+})();
 </script>
