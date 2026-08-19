@@ -150,14 +150,19 @@ function renderDistinctTable(tmp) {
 	destroyDistinctTable();
 
 	var columns = [
-		{ title: decodeHtml(typeLabel), data: 'display_key' },
-		{ title: decodeHtml(lang_gen_hamradio_qso_short), data: 'qso_count', type: 'num', render: function(data, type, row) {
+		{ title: decodeHtml(typeLabel), data: 'display_key', className: 'dt-body-left', render: function(data, type, row) {
+			if (type === 'display') {
+				return data + (row.group_deleted ? ' <span class="badge text-bg-danger">' + decodeHtml(lang_distinct_counts_deleted_dxcc) + '</span>' : '');
+			}
+			return data;
+		} },
+		{ title: decodeHtml(lang_gen_hamradio_qso_short), data: 'qso_count', type: 'num', className: 'dt-body-right', render: function(data, type, row) {
 			if (type === 'display') {
 				return '<a href="#" class="dc-link" data-group="' + row.group_key + '">' + data + '</a>';
 			}
 			return data;
 		} },
-		{ title: decodeHtml(lang_distinct_counts_confirmed), data: 'confirmed_count', type: 'num', render: function(data, type, row) {
+		{ title: decodeHtml(lang_distinct_counts_confirmed), data: 'confirmed_count', type: 'num', className: 'dt-body-right', render: function(data, type, row) {
 			if (type === 'display') {
 				return '<a href="#" class="dc-link" data-group="' + row.group_key + '">' + data + '</a>';
 			}
@@ -170,6 +175,7 @@ function renderDistinctTable(tmp) {
 		rows.push({
 			group_key: escapeHtml(String(this.group_key)),
 			display_key: escapeHtml(this.group_name != null ? String(this.group_name) : String(this.group_key)),
+			group_deleted: !!this.group_deleted,
 			qso_count: Number(this.qso_count),
 			confirmed_count: Number(this.confirmed_count)
 		});

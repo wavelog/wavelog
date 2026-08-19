@@ -29,9 +29,9 @@ class Countqsoby_model extends CI_Model
 			switch ($type) {
 				case 'dxcc':
 					$group = 'col_dxcc';
-					$where = "col_dxcc IS NOT NULL AND col_dxcc <> ''";
-					$name_select = ', dxcc_entities.name AS group_name';
-					$name_group = ', dxcc_entities.name';
+					$where = "col_dxcc IS NOT NULL AND col_dxcc > 0";
+					$name_select = ', dxcc_entities.name AS group_name, dxcc_entities.prefix AS group_prefix, dxcc_entities.end AS group_end';
+					$name_group = ', dxcc_entities.name, dxcc_entities.prefix, dxcc_entities.end';
 					$join = ' LEFT OUTER JOIN dxcc_entities ON dxcc_entities.adif = ' . $table . '.COL_DXCC';
 					break;
 				case 'sota':
@@ -79,9 +79,15 @@ class Countqsoby_model extends CI_Model
 			// Rows without a name keep NULL so the frontend can fall back
 			// to the ADIF entity id.
 			foreach ($rows as &$row) {
+				$row['group_deleted'] = !empty($row['group_end']);
+				unset($row['group_end']);
 				if ($row['group_name'] !== null) {
 					$row['group_name'] = ucwords(strtolower($row['group_name']), '- (/');
+					if (!empty($row['group_prefix'])) {
+						$row['group_name'] .= ' (' . $row['group_prefix'] . ')';
+					}
 				}
+				unset($row['group_prefix']);
 			}
 			unset($row);
 		}

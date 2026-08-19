@@ -10,7 +10,13 @@
         var lang_distinct_counts_type_grid = '<?= __("Gridsquare"); ?>';
         var lang_distinct_counts_type_dxcc = '<?= __("DXCC"); ?>';
         var lang_distinct_counts_type_ref = '<?= __("Reference"); ?>';
+        var lang_distinct_counts_deleted_dxcc = '<?= __("Deleted DXCC"); ?>';
     </script>
+
+    <style>
+        #distincttable th:nth-child(1) { text-align: left !important; }
+        #distincttable th:nth-child(2), #distincttable th:nth-child(3) { text-align: right !important; }
+    </style>
 
     <div id="countqsoby_div">
         <div class="card">
@@ -19,9 +25,9 @@
             </div>
             <div class="card-body">
 
-                <div class="row mb-3 justify-content-center">
-                    <label class="form-label" for="datepresets"><?= __("Filter") . ": " ?></label>
-                    <div class="d-flex gap-1 d-flex flex-wrap justify-content-center">
+                <div class="row mb-3">
+                    <div class="col-md-3 control-label" for="datepresets"><?= __("Date presets"); ?></div>
+                    <div class="col-md-9 d-flex flex-wrap gap-1">
                         <button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="distinctApplyPreset('today')"><?= __("Today") ?></button>
                         <button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="distinctApplyPreset('yesterday')"><?= __("Yesterday") ?></button>
                         <button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="distinctApplyPreset('last7days')"><?= __("Last 7 Days") ?></button>
@@ -36,15 +42,13 @@
 
                 <div class="mb-3 row justify-content-center">
                     <div class="col-md-3 control-label" for="distinctdateFrom"><?= __("Date from"); ?></div>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div class="form-check-inline">
                             <input id="distinctdateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary">
                         </div>
                     </div>
-                </div>
-                <div class="mb-3 row justify-content-center">
                     <div class="col-md-3 control-label" for="distinctdateTo"><?= __("Date to"); ?></div>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div class="form-check-inline">
                             <input id="distinctdateTo" type="date" class="form-control form-control-sm w-auto border border-secondary">
                         </div>
@@ -53,7 +57,7 @@
 
                 <div class="mb-3 row justify-content-center">
                     <label class="col-md-3 control-label" for="distincttype"><?= __("Count QSOs by"); ?></label>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <select class="form-select form-select-sm" id="distincttype">
                             <option value="grid"><?= __("Gridsquare"); ?></option>
                             <option value="dxcc" selected="selected"><?= __("DXCC"); ?></option>
@@ -63,11 +67,8 @@
                             <option value="wwff"><?= __("WWFF Reference"); ?></option>
                         </select>
                     </div>
-                </div>
-
-                <div class="mb-3 row justify-content-center">
                     <label class="col-md-3 control-label" for="distinctplot_bands"><?= __("Band"); ?></label>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <select class="form-select form-select-sm" id="distinctplot_bands">
                             <option value="All"><?= __("Every band (w/o SAT)"); ?></option>
                             <?php foreach($user_bands as $band) {
@@ -81,40 +82,45 @@
                     </div>
                 </div>
 
-                <div id="distinctsatrow" class="mb-3 row justify-content-center">
-                <?php if (count($sats_available) != 0) { ?>
-                    <label class="col-md-3 control-label" id="distinctsatslabel" for="distinctplot_sats"><?= __("Satellite") ?></label>
-                    <div class="col-md-5">
-                        <select class="form-select form-select-sm" id="distinctplot_sats">
-                            <option value="All"><?= __("All") ?></option>
-                            <?php foreach($sats_available as $sat) {
-                                $sat_display = ($sat->displayname ?? '') != '' ? $sat->displayname : $sat->name;
-                                echo '<option value="' . html_escape($sat->name) . '">' . html_escape($sat_display) . '</option>'."\n";
-                            } ?>
-                        </select>
+                <div class="row justify-content-center">
+                    <div id="distinctsatrow" class="mb-3 col-md-6">
+                    <?php if (count($sats_available) != 0) { ?>
+                        <div class="row justify-content-center">
+                            <label class="col-md-6 control-label" id="distinctsatslabel" for="distinctplot_sats"><?= __("Satellite") ?></label>
+                            <div class="col-md-6">
+                                <select class="form-select form-select-sm" id="distinctplot_sats">
+                                    <option value="All"><?= __("All") ?></option>
+                                    <?php foreach($sats_available as $sat) {
+                                        $sat_display = ($sat->displayname ?? '') != '' ? $sat->displayname : $sat->name;
+                                        echo '<option value="' . html_escape($sat->name) . '">' . html_escape($sat_display) . '</option>'."\n";
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <input id="distinctplot_sats" type="hidden" value="All">
+                    <?php } ?>
                     </div>
-                <?php } else { ?>
-                    <input id="distinctplot_sats" type="hidden" value="All">
-                <?php } ?>
-                </div>
-
-                <div id="distinctorbitrow" class="mb-3 row justify-content-center">
-                    <label class="col-md-3 control-label" id="distinctorbitslabel" for="distinctorbits"><?= __("Orbit"); ?></label>
-                    <div class="col-md-5">
-                        <select class="form-select form-select-sm" id="distinctorbits">
-                            <option value="All"><?= __("All") ?></option>
-                            <?php
-                            foreach($orbits as $orbit){
-                                echo '<option value="' . html_escape($orbit->orbit) . '">' . html_escape(strtoupper($orbit->orbit)) . '</option>'."\n";
-                            }
-                            ?>
-                        </select>
+                    <div id="distinctorbitrow" class="mb-3 col-md-6">
+                        <div class="row justify-content-center">
+                            <label class="col-md-6 control-label" id="distinctorbitslabel" for="distinctorbits"><?= __("Orbit"); ?></label>
+                            <div class="col-md-6">
+                                <select class="form-select form-select-sm" id="distinctorbits">
+                                    <option value="All"><?= __("All") ?></option>
+                                    <?php
+                                    foreach($orbits as $orbit){
+                                        echo '<option value="' . html_escape($orbit->orbit) . '">' . html_escape(strtoupper($orbit->orbit)) . '</option>'."\n";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mb-3 row justify-content-center">
                     <label class="col-md-3 control-label" for="distinctplot_mode"><?= __("Mode"); ?></label>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <select class="form-select form-select-sm" id="distinctplot_mode">
                             <option value="All"><?= __("All"); ?></option>
                             <?php foreach ($modes->result() as $mode) {
@@ -126,11 +132,8 @@
                             } ?>
                         </select>
                     </div>
-                </div>
-
-                <div class="mb-3 row justify-content-center">
                     <label class="col-md-3 control-label" for="distinctpropmode"><?= __("Propagation"); ?></label>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <select class="form-select form-select-sm" name="distinctpropmode" id="distinctpropmode">
                             <option value="All"><?= __("All"); ?></option>
                             <option value="None"><?= __("None/Empty"); ?></option>
@@ -141,9 +144,9 @@
                     </div>
                 </div>
 
-                <div class="mb-3 row justify-content-center">
+                <div class="mb-3 row">
                     <div class="col-md-3 control-label" for="distinctqsl"><?= __("Confirmation"); ?></div>
-                    <div class="col-md-5">
+                    <div class="col-md-9">
                         <div class="form-check-inline">
                             <?php echo '<input class="form-check-input" type="checkbox" id="distinctqsl"';
                             if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
@@ -185,7 +188,7 @@
 
                 <div class="mt-3 text-center" id="distinct_summary"></div>
                 <div class="table-responsive mt-2">
-                    <table id="distincttable" class="table table-sm table-striped" style="width:100%"></table>
+                    <table id="distincttable" class="table table-sm table-striped table-hover" style="width:100%"></table>
                 </div>
 
             </div>
