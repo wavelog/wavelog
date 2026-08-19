@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-18 12:57+0000\n"
+"POT-Creation-Date: 2026-08-19 06:13+0000\n"
 "PO-Revision-Date: 2026-08-17 05:56+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -178,7 +178,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Contesting_import.php:56
 #: application/controllers/Contesting_import.php:94
 #: application/controllers/Contesting_import.php:124
-#: application/controllers/Continents.php:7 application/controllers/Cron.php:25
+#: application/controllers/Continents.php:7
+#: application/controllers/Countqsoby.php:9 application/controllers/Cron.php:25
 #: application/controllers/Cron.php:170 application/controllers/Cron.php:216
 #: application/controllers/Cron.php:229 application/controllers/Csv.php:6
 #: application/controllers/Csv.php:28
@@ -352,7 +353,7 @@ msgid "States / Provinces"
 msgstr "州/省"
 
 #: application/controllers/Activationplanner.php:75
-#: application/views/interface_assets/header.php:330
+#: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
 msgstr "激活规划器"
 
@@ -381,7 +382,7 @@ msgid "date incorrect"
 msgstr "日期错误"
 
 #: application/controllers/Adif.php:264
-#: application/views/interface_assets/header.php:525
+#: application/views/interface_assets/header.php:527
 msgid "ADIF Import / Export"
 msgstr "ADIF 导入/导出"
 
@@ -432,7 +433,7 @@ msgstr "AMSAT 状态服务目前不可用。请稍后再试。"
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
-#: application/views/interface_assets/header.php:324
+#: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
 msgstr "AMSAT 卫星状态"
 
@@ -510,7 +511,7 @@ msgid "API Token has been deleted"
 msgstr "API令牌已删除"
 
 #: application/controllers/Awards.php:30
-#: application/views/interface_assets/header.php:192
+#: application/views/interface_assets/header.php:194
 #: application/views/logbookadvanced/edit.php:27
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
@@ -548,7 +549,7 @@ msgstr "奖项 - %s"
 #: application/views/awards/dok/index.php:157
 #: application/views/bands/index.php:49
 #: application/views/contesting/manager/components/session_modal.php:119
-#: application/views/interface_assets/header.php:247
+#: application/views/interface_assets/header.php:249
 #: application/views/logbookadvanced/index.php:487
 #: application/views/logbookadvanced/index.php:1024
 #: application/views/logbookadvanced/useroptions.php:238
@@ -560,14 +561,18 @@ msgstr "奖项 - %s"
 msgid "DOK"
 msgstr "DOK"
 
-#: application/controllers/Awards.php:209 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:102 application/views/bands/index.php:50
+#: application/controllers/Awards.php:209
+#: application/controllers/Countqsoby.php:73
+#: application/views/awards/index.php:7 application/views/bandmap/list.php:102
+#: application/views/bands/index.php:50
 #: application/views/calltester/call_info.php:29
 #: application/views/calltester/call_info.php:61
-#: application/views/csv/index.php:58 application/views/dashboard/index.php:416
+#: application/views/countqsoby/index.php:12
+#: application/views/countqsoby/index.php:66 application/views/csv/index.php:58
+#: application/views/dashboard/index.php:416
 #: application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:16
-#: application/views/interface_assets/header.php:198
+#: application/views/interface_assets/header.php:200
 #: application/views/kml/index.php:47
 #: application/views/logbookadvanced/checkresult.php:165
 #: application/views/logbookadvanced/checkresult.php:248
@@ -601,12 +606,12 @@ msgid "Awards - WAJA"
 msgstr "奖项 - WAJA"
 
 #: application/controllers/Awards.php:524 application/views/bands/index.php:53
-#: application/views/interface_assets/header.php:269
+#: application/views/interface_assets/header.php:271
 msgid "JCC"
 msgstr "JCC"
 
 #: application/controllers/Awards.php:574 application/views/bands/index.php:59
-#: application/views/interface_assets/header.php:204
+#: application/views/interface_assets/header.php:206
 msgid "VUCC"
 msgstr "VUCC"
 
@@ -628,10 +633,12 @@ msgid "Log View"
 msgstr "日志视图"
 
 #: application/controllers/Awards.php:657
+#: application/controllers/Countqsoby.php:93
 msgid "and"
 msgstr "和"
 
 #: application/controllers/Awards.php:658
+#: application/controllers/Countqsoby.php:94
 #: application/views/awards/cq/index.php:140
 #: application/views/awards/dxcc/index.php:25
 #: application/views/awards/dxcc/index.php:183
@@ -646,33 +653,40 @@ msgstr "和"
 #: application/views/awards/wpx/index.php:85
 #: application/views/awards/wwff/index.php:3
 #: application/views/awards/wwff/index.php:122
+#: application/views/countqsoby/index.php:79
 msgid "Every band (w/o SAT)"
 msgstr "所有频段 (不含卫星)"
 
 #: application/controllers/Awards.php:658
+#: application/controllers/Countqsoby.php:94
 msgid "band"
 msgstr "频段"
 
 #: application/controllers/Awards.php:661
+#: application/controllers/Countqsoby.php:97
 msgid " and satellite "
 msgstr " 和卫星 "
 
 #: application/controllers/Awards.php:664
 #: application/controllers/Callstats.php:108
+#: application/controllers/Countqsoby.php:100
 msgid " and orbit type "
 msgstr " 和轨道类型 "
 
 #: application/controllers/Awards.php:668
 #: application/controllers/Callstats.php:112
+#: application/controllers/Countqsoby.php:104
 msgid " and propagation "
 msgstr " 和传播方式 "
 
 #: application/controllers/Awards.php:671
 #: application/controllers/Callstats.php:115
+#: application/controllers/Countqsoby.php:107
 msgid " and mode "
 msgstr " 和模式 "
 
 #: application/controllers/Awards.php:674
+#: application/controllers/Countqsoby.php:116
 msgid " and "
 msgstr " 和 "
 
@@ -682,7 +696,7 @@ msgstr " 和 "
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
 #: application/views/dashboard/index.php:10
-#: application/views/interface_assets/header.php:225
+#: application/views/interface_assets/header.php:227
 #: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:491
 #: application/views/logbookadvanced/useroptions.php:232
@@ -736,7 +750,7 @@ msgstr "WWFF"
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:12
-#: application/views/interface_assets/header.php:229
+#: application/views/interface_assets/header.php:231
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:495
 #: application/views/logbookadvanced/index.php:1018
@@ -766,7 +780,7 @@ msgid "Worked All States (WAS)"
 msgstr "通联全部美国州奖(WAS)"
 
 #: application/controllers/Awards.php:1188 application/views/bands/index.php:55
-#: application/views/interface_assets/header.php:235
+#: application/views/interface_assets/header.php:237
 msgid "RAC"
 msgstr "RAC"
 
@@ -779,7 +793,7 @@ msgid "IOTA (Island On The Air)"
 msgstr "IOTA (空中之岛)"
 
 #: application/controllers/Awards.php:1347
-#: application/views/interface_assets/header.php:301
+#: application/views/interface_assets/header.php:303
 msgid "US Counties"
 msgstr "美国县奖"
 
@@ -816,7 +830,7 @@ msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "弗雷德·菲什纪念奖 (FFMA)"
 
 #: application/controllers/Awards.php:1631
-#: application/views/interface_assets/header.php:202
+#: application/views/interface_assets/header.php:204
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
 #: application/views/qso/edit_ajax.php:378 application/views/qso/index.php:349
@@ -836,13 +850,13 @@ msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:1833
-#: application/views/interface_assets/header.php:261
+#: application/views/interface_assets/header.php:263
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2668
 #: application/views/awards/wac/index.php:7
-#: application/views/interface_assets/header.php:208
+#: application/views/interface_assets/header.php:210
 msgid "Worked All Continents (WAC)"
 msgstr "通联世界大洲奖（WAC）"
 
@@ -851,7 +865,7 @@ msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2755
-#: application/views/interface_assets/header.php:218
+#: application/views/interface_assets/header.php:220
 msgid "73 on 73"
 msgstr "73 on 73"
 
@@ -862,7 +876,7 @@ msgstr "WPX"
 
 #: application/controllers/Awards.php:2972
 #: application/views/awards/pl_polska/index.php:41
-#: application/views/interface_assets/header.php:283
+#: application/views/interface_assets/header.php:285
 msgid "\"Polska\" Award"
 msgstr "“波兰”奖项"
 
@@ -871,7 +885,7 @@ msgid "Awards - AMSAT Rover"
 msgstr "奖状 - AMSAT 漫游者 (AMSAT Rover)"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
-#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:353
 msgid "Backup"
 msgstr "备份"
 
@@ -881,7 +895,7 @@ msgstr "笔记 - 备份"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
-#: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:494
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 msgid "Bands"
@@ -1072,6 +1086,7 @@ msgstr "未找到配置 Clublog 的用户。"
 #: application/views/awards/wapc/index.php:101
 #: application/views/awards/wpx/index.php:48
 #: application/views/awards/wwff/index.php:113
+#: application/views/countqsoby/index.php:194
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:417
 #: application/views/search/search_result_ajax.php:124
@@ -1104,7 +1119,7 @@ msgid "Contest %s updated"
 msgstr "比赛 %s 已更新"
 
 #: application/controllers/Contestcalendar.php:11
-#: application/views/interface_assets/header.php:320
+#: application/views/interface_assets/header.php:322
 msgid "Contest Calendar"
 msgstr "比赛日历"
 
@@ -1245,8 +1260,167 @@ msgstr "导入历史竞赛（所有用户）"
 msgid "Continents"
 msgstr "大洲列表"
 
+#: application/controllers/Countqsoby.php:13
+#: application/views/countqsoby/index.php:3
+#: application/views/countqsoby/index.php:209
+#: application/views/interface_assets/header.php:190
+msgid "Count QSOs by..."
+msgstr ""
+
+#: application/controllers/Countqsoby.php:74
+#: application/controllers/Logbook.php:1476
+#: application/views/activated_gridmap/index.php:107
+#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:71
+#: application/views/activationplanner/index.php:94
+#: application/views/activationplanner/index.php:119
+#: application/views/awards/ffma/index.php:38
+#: application/views/awards/gridmaster/index.php:53
+#: application/views/awards/vucc/band.php:17
+#: application/views/calltester/comparison_result.php:80
+#: application/views/calltester/comparison_result.php:129
+#: application/views/calltester/comparison_result.php:178
+#: application/views/calltester/result.php:54
+#: application/views/contesting/logger/components/map.php:80
+#: application/views/countqsoby/index.php:11
+#: application/views/countqsoby/index.php:67
+#: application/views/dashboard/index.php:14
+#: application/views/gridmap/index.php:226
+#: application/views/labels/index.php:126
+#: application/views/logbookadvanced/checkresult.php:166
+#: application/views/logbookadvanced/checkresult.php:245
+#: application/views/logbookadvanced/checkresult.php:321
+#: application/views/logbookadvanced/edit.php:32
+#: application/views/logbookadvanced/index.php:12
+#: application/views/logbookadvanced/index.php:403
+#: application/views/logbookadvanced/index.php:964
+#: application/views/logbookadvanced/qslcarousel.php:39
+#: application/views/logbookadvanced/showStateQsos.php:26
+#: application/views/logbookadvanced/showUpdateResult.php:47
+#: application/views/logbookadvanced/showUpdateResult.php:110
+#: application/views/logbookadvanced/useroptions.php:85
+#: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
+#: application/views/map/qso_map.php:111
+#: application/views/qslcard/confirmationresult.php:19
+#: application/views/qslcard/searchresult.php:19
+#: application/views/qslcard/searchresult.php:35
+#: application/views/qslcard/searchresult.php:51
+#: application/views/qslcard/searchresult.php:67
+#: application/views/qslcard/searchresult.php:83
+#: application/views/qso/award_tabs.php:45
+#: application/views/qso/components/previous_contacts.php:86
+#: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:380
+#: application/views/satellite/pass.php:41
+#: application/views/satellite/pass.php:83
+#: application/views/search/result.php:49
+#: application/views/search/search_result_ajax.php:13
+#: application/views/simplefle/index.php:161
+#: application/views/stationsetup/stationsetup.php:158
+#: application/views/statistics/initialresult.php:20
+#: application/views/timeline/index.php:379 application/views/user/edit.php:192
+#: application/views/user/edit.php:306 application/views/user/edit.php:329
+#: application/views/user/edit.php:352 application/views/user/edit.php:375
+#: application/views/user/edit.php:399 application/views/user/profile.php:34
+#: application/views/view_log/partial/log_ajax.php:14
+#: application/views/view_log/qso.php:131
+#: application/views/view_log/qso.php:155
+#: application/views/view_log/qso.php:621
+#: application/views/visitor/index.php:27
+#: application/views/zonechecker/result.php:68
+msgid "Gridsquare"
+msgstr "网格坐标"
+
+#: application/controllers/Countqsoby.php:75
+#: application/views/activationplanner/index.php:121
+#: application/views/awards/itu/index.php:3
+#: application/views/awards/itu/index.php:207
+#: application/views/countqsoby/index.php:14
+#: application/views/countqsoby/index.php:68
+#: application/views/gridmap/index.php:230
+#: application/views/logbookadvanced/checkresult.php:322
+#: application/views/logbookadvanced/edit.php:34
+#: application/views/logbookadvanced/index.php:21
+#: application/views/logbookadvanced/index.php:471
+#: application/views/logbookadvanced/index.php:1012
+#: application/views/logbookadvanced/useroptions.php:199
+#: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
+#: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:529
+#: application/views/station_profile/create.php:144
+#: application/views/station_profile/edit.php:166
+#: application/views/stationsetup/locationlist.php:22
+#: application/views/user/modals/first_login_wizard.php:86
+#: application/views/zonechecker/index.php:24
+msgid "ITU Zone"
+msgstr "ITU 分区"
+
+#: application/controllers/Countqsoby.php:76
+#: application/views/activationplanner/index.php:120
+#: application/views/awards/cq/index.php:3
+#: application/views/awards/cq/index.php:205
+#: application/views/bandmap/list.php:569
+#: application/views/bandmap/list.php:607
+#: application/views/countqsoby/index.php:15
+#: application/views/countqsoby/index.php:69 application/views/csv/index.php:80
+#: application/views/dxatlas/index.php:80
+#: application/views/gridmap/index.php:229 application/views/kml/index.php:65
+#: application/views/logbookadvanced/checkresult.php:246
+#: application/views/logbookadvanced/edit.php:29
+#: application/views/logbookadvanced/index.php:22
+#: application/views/logbookadvanced/index.php:457
+#: application/views/logbookadvanced/index.php:1009
+#: application/views/logbookadvanced/qslcarousel.php:37
+#: application/views/logbookadvanced/useroptions.php:193
+#: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
+#: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:519
+#: application/views/station_profile/create.php:129
+#: application/views/station_profile/edit.php:151
+#: application/views/stationsetup/locationlist.php:21
+#: application/views/timeline/index.php:344
+#: application/views/timeplotter/index.php:39
+#: application/views/user/modals/first_login_wizard.php:75
+#: application/views/zonechecker/index.php:23
+msgid "CQ Zone"
+msgstr "CQ 分区"
+
+#: application/controllers/Countqsoby.php:77
+#: application/views/countqsoby/index.php:70
+msgid "POTA Reference"
+msgstr ""
+
+#: application/controllers/Countqsoby.php:78
+#: application/views/awards/sota/index.php:163
+#: application/views/countqsoby/index.php:71
+#: application/views/qso/index.php:313 application/views/qso/index.php:595
+#: application/views/station_profile/create.php:215
+#: application/views/station_profile/edit.php:237
+#: application/views/user/edit.php:859 application/views/view_log/qso.php:335
+#: application/views/view_log/qso.php:670
+msgid "SOTA Reference"
+msgstr "SOTA 编号"
+
+#: application/controllers/Countqsoby.php:79
+#: application/views/countqsoby/index.php:72
+#: application/views/qso/index.php:297 application/views/qso/index.php:578
+#: application/views/station_profile/create.php:189
+#: application/views/station_profile/edit.php:211
+#: application/views/user/edit.php:855 application/views/view_log/qso.php:328
+#: application/views/view_log/qso.php:663
+msgid "IOTA Reference"
+msgstr "IOTA 编号"
+
+#: application/controllers/Countqsoby.php:80
+#: application/views/awards/wwff/index.php:163
+#: application/views/countqsoby/index.php:73
+#: application/views/qso/index.php:325 application/views/qso/index.php:608
+#: application/views/station_profile/create.php:229
+#: application/views/station_profile/edit.php:251
+#: application/views/user/edit.php:863 application/views/view_log/qso.php:342
+#: application/views/view_log/qso.php:677
+msgid "WWFF Reference"
+msgstr "WWFF 编号"
+
 #: application/controllers/Cron.php:37
-#: application/views/interface_assets/header.php:355
+#: application/views/interface_assets/header.php:357
 msgid "Cron Manager"
 msgstr "计划任务管理器"
 
@@ -1343,7 +1517,7 @@ msgid "Not running"
 msgstr "未运行"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:536
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
@@ -1474,13 +1648,13 @@ msgid "and propagation"
 msgstr "和传播方式"
 
 #: application/controllers/Dxatlas.php:18
-#: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:534
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas 网格导出"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
-#: application/views/interface_assets/header.php:318
+#: application/views/interface_assets/header.php:320
 msgid "DX Calendar"
 msgstr "DX 日历"
 
@@ -1672,7 +1846,7 @@ msgid "No QSOs found to upload."
 msgstr "无 QSO 可供上传。"
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:530
+#: application/views/interface_assets/header.php:532
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "KML 导出"
@@ -1857,6 +2031,7 @@ msgstr "日志簿"
 #: application/views/awards/wpx/index.php:32
 #: application/views/awards/wwff/index.php:97
 #: application/views/calltester/call_info.php:66
+#: application/views/countqsoby/index.php:162
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:111
@@ -1897,6 +2072,7 @@ msgstr "QSL"
 #: application/views/awards/wpx/index.php:36
 #: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
+#: application/views/countqsoby/index.php:170
 #: application/views/dashboard/index.php:496
 #: application/views/gridmap/index.php:182
 #: application/views/logbookadvanced/checkresult.php:105
@@ -1944,6 +2120,7 @@ msgstr "LoTW"
 #: application/views/awards/wpx/index.php:40
 #: application/views/awards/wwff/index.php:105
 #: application/views/calltester/call_info.php:81
+#: application/views/countqsoby/index.php:178
 #: application/views/gridmap/index.php:190
 #: application/views/logbookadvanced/useroptions.php:130
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -2007,8 +2184,9 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/contesting/logger/components/qso-form.php:150
 #: application/views/contesting/logger/components/radio.php:73
 #: application/views/contesting/manager/export_cbr.php:106
-#: application/views/continents/index.php:44 application/views/csv/index.php:42
-#: application/views/dashboard/index.php:5
+#: application/views/continents/index.php:44
+#: application/views/countqsoby/index.php:128
+#: application/views/csv/index.php:42 application/views/dashboard/index.php:5
 #: application/views/debug/index.php:808
 #: application/views/distancerecords/index.php:23
 #: application/views/distances/index.php:66
@@ -2154,7 +2332,7 @@ msgstr "DXCC 实体"
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
-#: application/views/interface_assets/header.php:227
+#: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/checkresult.php:394
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:501
@@ -2212,66 +2390,6 @@ msgstr "IOTA"
 #: application/views/visitor/index.php:24
 msgid "State"
 msgstr "州"
-
-#: application/controllers/Logbook.php:1476
-#: application/views/activated_gridmap/index.php:107
-#: application/views/activationplanner/index.php:23
-#: application/views/activationplanner/index.php:71
-#: application/views/activationplanner/index.php:94
-#: application/views/activationplanner/index.php:119
-#: application/views/awards/ffma/index.php:38
-#: application/views/awards/gridmaster/index.php:53
-#: application/views/awards/vucc/band.php:17
-#: application/views/calltester/comparison_result.php:80
-#: application/views/calltester/comparison_result.php:129
-#: application/views/calltester/comparison_result.php:178
-#: application/views/calltester/result.php:54
-#: application/views/contesting/logger/components/map.php:80
-#: application/views/dashboard/index.php:14
-#: application/views/gridmap/index.php:226
-#: application/views/labels/index.php:126
-#: application/views/logbookadvanced/checkresult.php:166
-#: application/views/logbookadvanced/checkresult.php:245
-#: application/views/logbookadvanced/checkresult.php:321
-#: application/views/logbookadvanced/edit.php:32
-#: application/views/logbookadvanced/index.php:12
-#: application/views/logbookadvanced/index.php:403
-#: application/views/logbookadvanced/index.php:964
-#: application/views/logbookadvanced/qslcarousel.php:39
-#: application/views/logbookadvanced/showStateQsos.php:26
-#: application/views/logbookadvanced/showUpdateResult.php:47
-#: application/views/logbookadvanced/showUpdateResult.php:110
-#: application/views/logbookadvanced/useroptions.php:85
-#: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
-#: application/views/map/qso_map.php:111
-#: application/views/qslcard/confirmationresult.php:19
-#: application/views/qslcard/searchresult.php:19
-#: application/views/qslcard/searchresult.php:35
-#: application/views/qslcard/searchresult.php:51
-#: application/views/qslcard/searchresult.php:67
-#: application/views/qslcard/searchresult.php:83
-#: application/views/qso/award_tabs.php:45
-#: application/views/qso/components/previous_contacts.php:86
-#: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:380
-#: application/views/satellite/pass.php:41
-#: application/views/satellite/pass.php:83
-#: application/views/search/result.php:49
-#: application/views/search/search_result_ajax.php:13
-#: application/views/simplefle/index.php:161
-#: application/views/stationsetup/stationsetup.php:158
-#: application/views/statistics/initialresult.php:20
-#: application/views/timeline/index.php:379 application/views/user/edit.php:192
-#: application/views/user/edit.php:306 application/views/user/edit.php:329
-#: application/views/user/edit.php:352 application/views/user/edit.php:375
-#: application/views/user/edit.php:399 application/views/user/profile.php:34
-#: application/views/view_log/partial/log_ajax.php:14
-#: application/views/view_log/qso.php:131
-#: application/views/view_log/qso.php:155
-#: application/views/view_log/qso.php:621
-#: application/views/visitor/index.php:27
-#: application/views/zonechecker/result.php:68
-msgid "Gridsquare"
-msgstr "网格坐标"
 
 #: application/controllers/Logbook.php:1477
 #: application/views/activated_gridmap/index.php:108
@@ -2353,7 +2471,8 @@ msgstr "距离"
 #: application/views/contesting/logger/components/qso-form.php:149
 #: application/views/contesting/logger/components/radio.php:90
 #: application/views/contesting/manager/export_cbr.php:76
-#: application/views/continents/index.php:35 application/views/csv/index.php:31
+#: application/views/continents/index.php:35
+#: application/views/countqsoby/index.php:76 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
 #: application/views/debug/index.php:809 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
@@ -2475,7 +2594,8 @@ msgstr "操作员"
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/dxcc/index.php:471
 #: application/views/awards/wae/index.php:231
-#: application/views/csv/index.php:65 application/views/dashboard/index.php:30
+#: application/views/countqsoby/index.php:16 application/views/csv/index.php:65
+#: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
 #: application/views/interface_assets/footer.php:838
 #: application/views/kml/index.php:54
@@ -2519,7 +2639,7 @@ msgstr "快速查找"
 
 #: application/controllers/Lotw.php:63 application/controllers/Lotw.php:94
 #: application/controllers/Lotw.php:133
-#: application/views/interface_assets/header.php:570
+#: application/views/interface_assets/header.php:572
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
@@ -2612,8 +2732,8 @@ msgid "QSO Map"
 msgstr "QSO 地图"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/views/interface_assets/header.php:343
-#: application/views/interface_assets/header.php:494
+#: application/views/interface_assets/header.php:345
+#: application/views/interface_assets/header.php:496
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
 msgid "Modes"
 msgstr "模式"
@@ -2883,7 +3003,7 @@ msgid "Invalid station slug"
 msgstr "无效的台站标识符"
 
 #: application/controllers/Oqrs.php:180
-#: application/views/interface_assets/header.php:555
+#: application/views/interface_assets/header.php:557
 msgid "OQRS Requests"
 msgstr "OQRS"
 
@@ -2947,7 +3067,7 @@ msgid ""
 msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:212
-#: application/views/interface_assets/header.php:573
+#: application/views/interface_assets/header.php:575
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
 
@@ -2995,7 +3115,7 @@ msgstr ""
 "请将您当前的 config.php 和最新的 config.sample.php 进行比较，并相应更新。"
 
 #: application/controllers/Qslpostcard.php:34
-#: application/views/interface_assets/header.php:564
+#: application/views/interface_assets/header.php:566
 msgid "QSL Postcard Designer"
 msgstr "QSL 明信片设计器"
 
@@ -3085,7 +3205,7 @@ msgid "Call Transfer"
 msgstr "通联转接"
 
 #: application/controllers/Radio.php:16
-#: application/views/interface_assets/header.php:587
+#: application/views/interface_assets/header.php:589
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
 
@@ -3171,10 +3291,10 @@ msgstr "编辑"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:70
-#: application/views/interface_assets/footer.php:2645
-#: application/views/interface_assets/footer.php:2663
-#: application/views/interface_assets/footer.php:2682
-#: application/views/interface_assets/footer.php:2700
+#: application/views/interface_assets/footer.php:2649
+#: application/views/interface_assets/footer.php:2667
+#: application/views/interface_assets/footer.php:2686
+#: application/views/interface_assets/footer.php:2704
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:913
 #: application/views/lotw_views/index.php:143
@@ -3222,7 +3342,7 @@ msgstr "电台已成功移除"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
 #: application/views/amsatstatus/index.php:74
-#: application/views/interface_assets/header.php:347
+#: application/views/interface_assets/header.php:349
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
@@ -3238,7 +3358,7 @@ msgid "Edit Satellite"
 msgstr "编辑卫星"
 
 #: application/controllers/Satellite.php:201
-#: application/views/interface_assets/header.php:326
+#: application/views/interface_assets/header.php:328
 msgid "Satellite Flightpath"
 msgstr "卫星轨迹"
 
@@ -3277,8 +3397,8 @@ msgstr "无可用预设"
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:46
-#: application/views/interface_assets/header.php:407
-#: application/views/interface_assets/header.php:414
+#: application/views/interface_assets/header.php:409
+#: application/views/interface_assets/header.php:416
 #: application/views/logbookadvanced/index.php:75
 #: application/views/logbookadvanced/index.php:881
 #: application/views/oqrs/index.php:30
@@ -3354,9 +3474,9 @@ msgid "Please check value for grid locator (%s)"
 msgstr "请检查网格定位的值 ( %s )"
 
 #: application/controllers/Stationsetup.php:60
-#: application/views/interface_assets/header.php:491
-#: application/views/interface_assets/header.php:523
-#: application/views/interface_assets/header.php:671
+#: application/views/interface_assets/header.php:493
+#: application/views/interface_assets/header.php:525
+#: application/views/interface_assets/header.php:673
 msgid "Station Setup"
 msgstr "设置台站"
 
@@ -3430,7 +3550,7 @@ msgid "Set as Active Logbook"
 msgstr "设置为正在使用的日志"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:669
+#: application/views/interface_assets/header.php:671
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -3578,9 +3698,9 @@ msgid "EME Initials"
 msgstr "EME 首通记录"
 
 #: application/controllers/Themes.php:26
-#: application/views/interface_assets/header.php:349
-#: application/views/interface_assets/header.php:445
+#: application/views/interface_assets/header.php:351
 #: application/views/interface_assets/header.php:447
+#: application/views/interface_assets/header.php:449
 msgid "Themes"
 msgstr "主题"
 
@@ -3729,7 +3849,7 @@ msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC 网格文件更新失败。结果： "
 
 #: application/controllers/User.php:51
-#: application/views/interface_assets/header.php:339
+#: application/views/interface_assets/header.php:341
 msgid "User Accounts"
 msgstr "用户账户"
 
@@ -3831,7 +3951,7 @@ msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
 #: application/controllers/User.php:1408
-#: application/views/interface_assets/header.php:427
+#: application/views/interface_assets/header.php:429
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
@@ -4022,7 +4142,7 @@ msgstr "导出地图"
 
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
-#: application/views/interface_assets/header.php:574
+#: application/views/interface_assets/header.php:576
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
 
@@ -4739,10 +4859,15 @@ msgstr "差异"
 #: application/views/contesting/logger/components/statistics.php:73
 #: application/views/contesting/manager/export_cbr.php:78
 #: application/views/continents/index.php:37
-#: application/views/continents/index.php:46 application/views/csv/index.php:21
-#: application/views/csv/index.php:33 application/views/csv/index.php:44
-#: application/views/csv/index.php:60 application/views/csv/index.php:82
-#: application/views/csv/index.php:94 application/views/dashboard/index.php:667
+#: application/views/continents/index.php:46
+#: application/views/countqsoby/index.php:98
+#: application/views/countqsoby/index.php:115
+#: application/views/countqsoby/index.php:131
+#: application/views/countqsoby/index.php:144
+#: application/views/csv/index.php:21 application/views/csv/index.php:33
+#: application/views/csv/index.php:44 application/views/csv/index.php:60
+#: application/views/csv/index.php:82 application/views/csv/index.php:94
+#: application/views/dashboard/index.php:667
 #: application/views/distances/index.php:25
 #: application/views/distances/index.php:40
 #: application/views/distances/index.php:50
@@ -4851,6 +4976,7 @@ msgstr "周期"
 #: application/views/accumulate/index.php:86
 #: application/views/awards/dxcc/index.php:246
 #: application/views/callstats/index.php:70
+#: application/views/countqsoby/index.php:141
 #: application/views/distances/index.php:57
 #: application/views/gridmap/index.php:91
 #: application/views/logbookadvanced/edit.php:19
@@ -4871,6 +4997,7 @@ msgstr "全部（除卫星以外）"
 
 #: application/views/accumulate/index.php:91
 #: application/views/callstats/index.php:74
+#: application/views/countqsoby/index.php:145
 #: application/views/distances/index.php:61
 #: application/views/gridmap/index.php:95
 #: application/views/logbookadvanced/edit.php:221
@@ -4899,6 +5026,7 @@ msgstr "无/空"
 #: application/views/awards/was/index.php:53
 #: application/views/awards/wpx/index.php:18
 #: application/views/callstats/index.php:97
+#: application/views/countqsoby/index.php:200
 #: application/views/distances/index.php:73
 #: application/views/lookup/index.php:94
 #: application/views/qslcard/confirmations.php:24
@@ -4931,11 +5059,12 @@ msgstr "激活的网格"
 #: application/views/awards/wae/index.php:141
 #: application/views/awards/wpx/index.php:95
 #: application/views/callstats/index.php:26
+#: application/views/countqsoby/index.php:95
 #: application/views/distancerecords/index.php:18
 #: application/views/distances/index.php:38
 #: application/views/gridmap/index.php:107
 #: application/views/hamsat/index.php:37
-#: application/views/interface_assets/header.php:216
+#: application/views/interface_assets/header.php:218
 #: application/views/logbookadvanced/dupesearchdialog.php:64
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/logbookadvanced/help.php:59
@@ -4963,6 +5092,7 @@ msgstr "卫星"
 #: application/views/awards/wae/index.php:157
 #: application/views/awards/wpx/index.php:109
 #: application/views/callstats/index.php:40
+#: application/views/countqsoby/index.php:112
 #: application/views/distances/index.php:48
 #: application/views/gridmap/index.php:122
 #: application/views/logbookadvanced/index.php:438
@@ -4978,6 +5108,7 @@ msgstr "轨道"
 #: application/views/activated_gridmap/index.php:53
 #: application/views/awards/amsat_rover/index.php:225
 #: application/views/awards/wab/index.php:66
+#: application/views/countqsoby/index.php:154
 #: application/views/gridmap/index.php:165
 #: application/views/timeline/index.php:58
 msgid "Confirmation"
@@ -5004,6 +5135,7 @@ msgstr "确认"
 #: application/views/awards/was/index.php:97
 #: application/views/awards/wpx/index.php:44
 #: application/views/awards/wwff/index.php:109
+#: application/views/countqsoby/index.php:186
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1029
 msgid "QRZ.com"
 msgstr "QRZ.com"
@@ -5072,6 +5204,7 @@ msgstr "类型"
 
 #: application/views/activationplanner/index.php:27
 #: application/views/awards/sig/qso_list.php:13
+#: application/views/countqsoby/index.php:13
 msgid "Reference"
 msgstr "编号"
 
@@ -5174,6 +5307,7 @@ msgstr "此网格中的活动"
 
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
+#: application/views/countqsoby/index.php:7
 #: application/views/labels/index.php:82
 #: application/views/logbookadvanced/statecheckresult.php:16
 #: application/views/statistics/index.php:113
@@ -5268,6 +5402,7 @@ msgstr "Go"
 #: application/views/awards/sota/index.php:65
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:65
+#: application/views/countqsoby/index.php:43
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:358
@@ -5302,52 +5437,6 @@ msgstr "更多选项"
 #: application/views/activationplanner/index.php:106
 msgid "Hide options"
 msgstr "隐藏选项"
-
-#: application/views/activationplanner/index.php:120
-#: application/views/awards/cq/index.php:3
-#: application/views/awards/cq/index.php:205
-#: application/views/bandmap/list.php:569
-#: application/views/bandmap/list.php:607 application/views/csv/index.php:80
-#: application/views/dxatlas/index.php:80
-#: application/views/gridmap/index.php:229 application/views/kml/index.php:65
-#: application/views/logbookadvanced/checkresult.php:246
-#: application/views/logbookadvanced/edit.php:29
-#: application/views/logbookadvanced/index.php:22
-#: application/views/logbookadvanced/index.php:457
-#: application/views/logbookadvanced/index.php:1009
-#: application/views/logbookadvanced/qslcarousel.php:37
-#: application/views/logbookadvanced/useroptions.php:193
-#: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
-#: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:519
-#: application/views/station_profile/create.php:129
-#: application/views/station_profile/edit.php:151
-#: application/views/stationsetup/locationlist.php:21
-#: application/views/timeline/index.php:344
-#: application/views/timeplotter/index.php:39
-#: application/views/user/modals/first_login_wizard.php:75
-#: application/views/zonechecker/index.php:23
-msgid "CQ Zone"
-msgstr "CQ 分区"
-
-#: application/views/activationplanner/index.php:121
-#: application/views/awards/itu/index.php:3
-#: application/views/awards/itu/index.php:207
-#: application/views/gridmap/index.php:230
-#: application/views/logbookadvanced/checkresult.php:322
-#: application/views/logbookadvanced/edit.php:34
-#: application/views/logbookadvanced/index.php:21
-#: application/views/logbookadvanced/index.php:471
-#: application/views/logbookadvanced/index.php:1012
-#: application/views/logbookadvanced/useroptions.php:199
-#: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
-#: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:529
-#: application/views/station_profile/create.php:144
-#: application/views/station_profile/edit.php:166
-#: application/views/stationsetup/locationlist.php:22
-#: application/views/user/modals/first_login_wizard.php:86
-#: application/views/zonechecker/index.php:24
-msgid "ITU Zone"
-msgstr "ITU 分区"
 
 #: application/views/activators/index.php:33
 msgctxt "Orbiter LEO or GEO"
@@ -5744,7 +5833,7 @@ msgstr "如果不选择，Wavelog 将会自动判断 QSO 的 DXCC。"
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:658
-#: application/views/interface_assets/footer.php:2412
+#: application/views/interface_assets/footer.php:2416
 msgid "DANGER"
 msgstr "警告"
 
@@ -7010,6 +7099,7 @@ msgstr "已确认 %s%%"
 #: application/views/awards/itu/index.php:95
 #: application/views/awards/jcc/index.php:131
 #: application/views/bandmap/list.php:91 application/views/bandmap/list.php:306
+#: application/views/countqsoby/index.php:8
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
 #: application/views/dashboard/index.php:489
@@ -7032,6 +7122,7 @@ msgstr "已通联"
 #: application/views/awards/waip/index.php:63
 #: application/views/awards/wpx/wpx_details.php:24
 #: application/views/bandmap/list.php:92 application/views/bandmap/list.php:307
+#: application/views/countqsoby/index.php:9
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
 #: application/views/dashboard/index.php:493
@@ -7216,6 +7307,7 @@ msgstr "预设日期"
 #: application/views/awards/wae/index.php:52
 #: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
+#: application/views/countqsoby/index.php:35
 #: application/views/dashboard/index.php:518
 #: application/views/dashboard/index.php:552
 #: application/views/dashboard/index.php:581
@@ -7234,6 +7326,7 @@ msgstr "今天"
 #: application/views/awards/sota/index.php:58
 #: application/views/awards/wae/index.php:53
 #: application/views/awards/wwff/index.php:58
+#: application/views/countqsoby/index.php:36
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:351
 #: application/views/statistics/index.php:62
@@ -7247,6 +7340,7 @@ msgstr "昨日"
 #: application/views/awards/sota/index.php:59
 #: application/views/awards/wae/index.php:54
 #: application/views/awards/wwff/index.php:59
+#: application/views/countqsoby/index.php:37
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:352
 #: application/views/statistics/index.php:63
@@ -7260,6 +7354,7 @@ msgstr "过去7天"
 #: application/views/awards/sota/index.php:60
 #: application/views/awards/wae/index.php:55
 #: application/views/awards/wwff/index.php:60
+#: application/views/countqsoby/index.php:38
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:353
 #: application/views/statistics/index.php:64
@@ -7273,6 +7368,7 @@ msgstr "过去30天"
 #: application/views/awards/sota/index.php:61
 #: application/views/awards/wae/index.php:56
 #: application/views/awards/wwff/index.php:61
+#: application/views/countqsoby/index.php:39
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:354
 #: application/views/statistics/index.php:65
@@ -7286,6 +7382,7 @@ msgstr "这个月"
 #: application/views/awards/sota/index.php:62
 #: application/views/awards/wae/index.php:57
 #: application/views/awards/wwff/index.php:62
+#: application/views/countqsoby/index.php:40
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:355
 #: application/views/statistics/index.php:66
@@ -7299,6 +7396,7 @@ msgstr "上个月"
 #: application/views/awards/sota/index.php:63
 #: application/views/awards/wae/index.php:58
 #: application/views/awards/wwff/index.php:63
+#: application/views/countqsoby/index.php:41
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:356
 #: application/views/statistics/index.php:67
@@ -7312,6 +7410,7 @@ msgstr "今年"
 #: application/views/awards/sota/index.php:64
 #: application/views/awards/wae/index.php:59
 #: application/views/awards/wwff/index.php:64
+#: application/views/countqsoby/index.php:42
 #: application/views/logbookadvanced/index.php:357
 #: application/views/statistics/index.php:68
 msgid "Last Year"
@@ -7324,6 +7423,7 @@ msgstr "去年"
 #: application/views/awards/sota/index.php:70
 #: application/views/awards/wae/index.php:65
 #: application/views/awards/wwff/index.php:70
+#: application/views/countqsoby/index.php:48
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
@@ -7337,6 +7437,7 @@ msgstr "开始日期"
 #: application/views/awards/sota/index.php:74
 #: application/views/awards/wae/index.php:73
 #: application/views/awards/wwff/index.php:74
+#: application/views/countqsoby/index.php:54
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
@@ -7417,7 +7518,7 @@ msgstr "显示 QSL 分类下的 QSO"
 #: application/views/awards/iota/index.php:90
 #: application/views/awards/itu/index.php:117
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2391
+#: application/views/interface_assets/footer.php:2395
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
@@ -7859,7 +7960,7 @@ msgid "No mode data available."
 msgstr "没有模式数据可用。"
 
 #: application/views/awards/ffma/index.php:11
-#: application/views/interface_assets/header.php:307
+#: application/views/interface_assets/header.php:309
 msgid "Fred Fish Memorial Award"
 msgstr "弗雷德·菲什纪念奖"
 
@@ -8663,15 +8764,6 @@ msgstr ""
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
 msgstr "此奖项采用的字段：SOTA 参考（ADIF：SOTA_REF）"
 
-#: application/views/awards/sota/index.php:163
-#: application/views/qso/index.php:313 application/views/qso/index.php:595
-#: application/views/station_profile/create.php:215
-#: application/views/station_profile/edit.php:237
-#: application/views/user/edit.php:859 application/views/view_log/qso.php:335
-#: application/views/view_log/qso.php:670
-msgid "SOTA Reference"
-msgstr "SOTA 编号"
-
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
 msgstr "网格列表"
@@ -9140,15 +9232,6 @@ msgstr ""
 #: application/views/awards/wwff/index.php:28
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
 msgstr "本奖项所需要的字段：WWFF（ADIF: WWFF_REF）"
-
-#: application/views/awards/wwff/index.php:163
-#: application/views/qso/index.php:325 application/views/qso/index.php:608
-#: application/views/station_profile/create.php:229
-#: application/views/station_profile/edit.php:251
-#: application/views/user/edit.php:863 application/views/view_log/qso.php:342
-#: application/views/view_log/qso.php:677
-msgid "WWFF Reference"
-msgstr "WWFF 编号"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -9714,7 +9797,7 @@ msgid "Return to Home"
 msgstr "返回主页"
 
 #: application/views/bandmap/list.php:212
-#: application/views/interface_assets/header.php:316
+#: application/views/interface_assets/header.php:318
 msgid "DX Cluster"
 msgstr "DX Cluster"
 
@@ -10178,17 +10261,17 @@ msgid "USA County"
 msgstr "县(美国)"
 
 #: application/views/bands/index.php:61
-#: application/views/interface_assets/header.php:241
+#: application/views/interface_assets/header.php:243
 msgid "WAPC"
 msgstr "WAPC"
 
 #: application/views/bands/index.php:62
-#: application/views/interface_assets/header.php:267
+#: application/views/interface_assets/header.php:269
 msgid "WAJA"
 msgstr "WAJA"
 
 #: application/views/bands/index.php:63
-#: application/views/interface_assets/header.php:303
+#: application/views/interface_assets/header.php:305
 msgid "WAS"
 msgstr "WAS"
 
@@ -11039,7 +11122,7 @@ msgstr "ADIF 名称"
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:507 application/views/debug/index.php:518
-#: application/views/interface_assets/header.php:648
+#: application/views/interface_assets/header.php:650
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -11624,7 +11707,7 @@ msgstr "重新加载"
 #: application/views/contesting/logger/index.php:104
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
-#: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:615
 msgid "Switch Operator"
 msgstr "切换操作员"
 
@@ -11968,7 +12051,7 @@ msgid ""
 msgstr "你没有权限导出文件，请联系集体台站管理员。"
 
 #: application/views/contesting/manager/export_cbr.php:46
-#: application/views/interface_assets/header.php:536
+#: application/views/interface_assets/header.php:538
 msgid "Cabrillo Export"
 msgstr "Cabrillo 导出"
 
@@ -12215,7 +12298,7 @@ msgid "Download Cabrillo"
 msgstr "下载 Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
-#: application/views/interface_assets/header.php:538
+#: application/views/interface_assets/header.php:540
 msgid "EDI Export"
 msgstr "EDI 导出"
 
@@ -12409,7 +12492,7 @@ msgid "Are you sure you want to import the selected contest sessions?"
 msgstr "你确定要导入所选的竞赛会话吗？"
 
 #: application/views/contesting/manager/index.php:17
-#: application/views/interface_assets/header.php:345
+#: application/views/interface_assets/header.php:347
 msgid "Contests"
 msgstr "比赛列表"
 
@@ -12505,6 +12588,29 @@ msgstr "查看大洲统计数据"
 #: application/views/statistics/index.php:23
 msgid "# of QSOs worked"
 msgstr "已完成的 QSO 数量"
+
+#: application/views/countqsoby/index.php:5
+#: application/views/distances/index.php:5
+#: application/views/interface_assets/footer.php:31
+#: application/views/simplefle/index.php:72
+msgid "QSO Data"
+msgstr "QSO 数据"
+
+#: application/views/countqsoby/index.php:10
+msgid "QSOs total"
+msgstr ""
+
+#: application/views/countqsoby/index.php:27
+msgid "Filter"
+msgstr ""
+
+#: application/views/countqsoby/index.php:33
+msgid "Date presets"
+msgstr ""
+
+#: application/views/countqsoby/index.php:63
+msgid "Count QSOs by"
+msgstr ""
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -13942,12 +14048,6 @@ msgstr "对方网格"
 msgid "No QSOs found matching the criteria for this page!"
 msgstr "未找到符合此页面条件的 QSO！"
 
-#: application/views/distances/index.php:5
-#: application/views/interface_assets/footer.php:31
-#: application/views/simplefle/index.php:72
-msgid "QSO Data"
-msgstr "QSO 数据"
-
 #: application/views/distances/index.php:7
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
@@ -14186,7 +14286,7 @@ msgstr "上传 QSO"
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
 #: application/views/eqsl/import.php:15 application/views/eqsl/result.php:17
 #: application/views/eqsl/tools.php:15
-#: application/views/interface_assets/header.php:314
+#: application/views/interface_assets/header.php:316
 msgid "Tools"
 msgstr "工具"
 
@@ -14352,10 +14452,10 @@ msgid "QSL Date"
 msgstr "QSL 日期"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2646
-#: application/views/interface_assets/footer.php:2664
-#: application/views/interface_assets/footer.php:2683
-#: application/views/interface_assets/footer.php:2701
+#: application/views/interface_assets/footer.php:2650
+#: application/views/interface_assets/footer.php:2668
+#: application/views/interface_assets/footer.php:2687
+#: application/views/interface_assets/footer.php:2705
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:720
 #: application/views/view_log/qso.php:728
@@ -14879,7 +14979,7 @@ msgid ""
 msgstr "要将你的电台连接到 Wavelog，请访问 Wavelog 维基获取设置说明。"
 
 #: application/views/interface_assets/footer.php:223
-#: application/views/interface_assets/header.php:601
+#: application/views/interface_assets/header.php:603
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "版本信息"
@@ -15001,64 +15101,64 @@ msgstr "网格"
 msgid "Total count"
 msgstr "总数"
 
-#: application/views/interface_assets/footer.php:2393
+#: application/views/interface_assets/footer.php:2397
 msgid "QSL Card for "
 msgstr "QSL 卡片至 "
 
-#: application/views/interface_assets/footer.php:2413
+#: application/views/interface_assets/footer.php:2417
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "警告！确定要删除这个 QSL 卡片吗？"
 
-#: application/views/interface_assets/footer.php:2453
+#: application/views/interface_assets/footer.php:2457
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "电子 QSL 卡片"
 
-#: application/views/interface_assets/footer.php:2455
+#: application/views/interface_assets/footer.php:2459
 msgid "eQSL Card for "
 msgstr "eQSL 卡片至 "
 
-#: application/views/interface_assets/footer.php:2657
-#: application/views/interface_assets/footer.php:2694
+#: application/views/interface_assets/footer.php:2661
+#: application/views/interface_assets/footer.php:2698
 #: application/views/view_log/qso.php:718
 msgid "QSL image file"
 msgstr "QSL 图片文件"
 
-#: application/views/interface_assets/footer.php:2676
+#: application/views/interface_assets/footer.php:2680
 msgid "Front QSL Card"
 msgstr "QSL 卡片正面"
 
-#: application/views/interface_assets/footer.php:2712
+#: application/views/interface_assets/footer.php:2716
 msgid "Back QSL Card"
 msgstr "QSL 卡片背面"
 
-#: application/views/interface_assets/footer.php:2716
+#: application/views/interface_assets/footer.php:2720
 msgid "The QSL card upload could not be completed."
 msgstr "QSL 卡片上传未能完成。"
 
-#: application/views/interface_assets/footer.php:2716
+#: application/views/interface_assets/footer.php:2720
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
 msgstr "上传失败"
 
-#: application/views/interface_assets/footer.php:2724
-#: application/views/interface_assets/footer.php:2749
+#: application/views/interface_assets/footer.php:2728
+#: application/views/interface_assets/footer.php:2753
 msgid "Add additional QSOs to a QSL Card"
 msgstr "向一张卡片添加额外的 QSO"
 
-#: application/views/interface_assets/footer.php:2760
+#: application/views/interface_assets/footer.php:2764
 msgid "Something went wrong. Please try again!"
 msgstr "出现了错误，请重试！"
 
-#: application/views/interface_assets/footer.php:2832
+#: application/views/interface_assets/footer.php:2836
 msgid "US Counties for state"
 msgstr "美国州下辖的县"
 
-#: application/views/interface_assets/footer.php:2885
+#: application/views/interface_assets/footer.php:2889
 msgid "Confirmed counties for state:"
 msgstr "此州已确认的县："
 
-#: application/views/interface_assets/footer.php:2885
+#: application/views/interface_assets/footer.php:2889
 msgid "Worked counties for state:"
 msgstr "此州已通联的县："
 
@@ -15116,262 +15216,262 @@ msgstr "分析"
 msgid "Callsign Statistics"
 msgstr "呼号统计"
 
-#: application/views/interface_assets/header.php:194
+#: application/views/interface_assets/header.php:196
 msgid "International"
 msgstr "国际"
 
-#: application/views/interface_assets/header.php:196
+#: application/views/interface_assets/header.php:198
 msgid "CQ WAZ"
 msgstr "CQ WAZ"
 
-#: application/views/interface_assets/header.php:200
+#: application/views/interface_assets/header.php:202
 msgid "ITU"
 msgstr "ITU"
 
-#: application/views/interface_assets/header.php:206
+#: application/views/interface_assets/header.php:208
 msgid "Worked All Europe (WAE)"
 msgstr "全欧通信竞赛（WAE）"
 
-#: application/views/interface_assets/header.php:210
+#: application/views/interface_assets/header.php:212
 msgid "Worked All Prefixes (WPX)"
 msgstr "Worked All Prefixes (WPX)"
 
-#: application/views/interface_assets/header.php:212
+#: application/views/interface_assets/header.php:214
 msgid "World Wide Flora Fauna (WWFF)"
 msgstr "业余无线电中的世界动植物（WWFF）"
 
-#: application/views/interface_assets/header.php:219
+#: application/views/interface_assets/header.php:221
 msgid "AMSAT Rover"
 msgstr "AMSAT 漫游者（AMSAT Rover）"
 
-#: application/views/interface_assets/header.php:233
+#: application/views/interface_assets/header.php:235
 msgid "Canada"
 msgstr "加拿大"
 
-#: application/views/interface_assets/header.php:239
+#: application/views/interface_assets/header.php:241
 msgid "China"
 msgstr "中国"
 
-#: application/views/interface_assets/header.php:245
+#: application/views/interface_assets/header.php:247
 msgid "Germany"
 msgstr "德国"
 
-#: application/views/interface_assets/header.php:249
+#: application/views/interface_assets/header.php:251
 msgid "DL Gridmaster"
 msgstr "DL Gridmaster"
 
-#: application/views/interface_assets/header.php:253
+#: application/views/interface_assets/header.php:255
 msgid "Great Britain"
 msgstr "英国"
 
-#: application/views/interface_assets/header.php:255
+#: application/views/interface_assets/header.php:257
 msgid "WAB"
 msgstr "WAB"
 
-#: application/views/interface_assets/header.php:259
+#: application/views/interface_assets/header.php:261
 msgid "Italy"
 msgstr "意大利"
 
-#: application/views/interface_assets/header.php:265
+#: application/views/interface_assets/header.php:267
 msgid "Japan"
 msgstr "日本"
 
-#: application/views/interface_assets/header.php:271
+#: application/views/interface_assets/header.php:273
 msgid "JA Gridmaster"
 msgstr "JA Gridmaster"
 
-#: application/views/interface_assets/header.php:275
+#: application/views/interface_assets/header.php:277
 msgid "Luxemburg"
 msgstr "卢森堡"
 
-#: application/views/interface_assets/header.php:277
+#: application/views/interface_assets/header.php:279
 msgid "LX Gridmaster"
 msgstr "LX Gridmaster"
 
-#: application/views/interface_assets/header.php:281
+#: application/views/interface_assets/header.php:283
 msgid "Poland"
 msgstr "波兰"
 
-#: application/views/interface_assets/header.php:287
+#: application/views/interface_assets/header.php:289
 msgid "Switzerland"
 msgstr "瑞士"
 
-#: application/views/interface_assets/header.php:293
+#: application/views/interface_assets/header.php:295
 msgid "The Netherlands"
 msgstr "荷兰"
 
-#: application/views/interface_assets/header.php:295
+#: application/views/interface_assets/header.php:297
 msgid "WAP Worked All Provinces"
 msgstr "WAP 通联各省"
 
-#: application/views/interface_assets/header.php:299
+#: application/views/interface_assets/header.php:301
 msgid "USA"
 msgstr "美国"
 
-#: application/views/interface_assets/header.php:305
+#: application/views/interface_assets/header.php:307
 msgid "US Gridmaster"
 msgstr "US Gridmaster"
 
-#: application/views/interface_assets/header.php:328
+#: application/views/interface_assets/header.php:330
 msgid "Satellite Pass"
 msgstr "卫星过境"
 
-#: application/views/interface_assets/header.php:336
+#: application/views/interface_assets/header.php:338
 #: application/views/stationsetup/stationsetup.php:146
 msgid "Admin"
 msgstr "管理员"
 
-#: application/views/interface_assets/header.php:341
+#: application/views/interface_assets/header.php:343
 msgid "Global Options"
 msgstr "全局选项"
 
-#: application/views/interface_assets/header.php:353
+#: application/views/interface_assets/header.php:355
 msgid "Update Country Files"
 msgstr "更新 DXCC 实体文件"
 
-#: application/views/interface_assets/header.php:357
+#: application/views/interface_assets/header.php:359
 msgid "Debug Information"
 msgstr "调试信息"
 
-#: application/views/interface_assets/header.php:404
+#: application/views/interface_assets/header.php:406
 msgid "Add/Search Callsign"
 msgstr "添加/搜索 呼号"
 
-#: application/views/interface_assets/header.php:406
+#: application/views/interface_assets/header.php:408
 msgid "Log"
 msgstr "日志"
 
-#: application/views/interface_assets/header.php:413
+#: application/views/interface_assets/header.php:415
 #: application/views/logbookadvanced/index.php:777
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:579
 #: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "搜索呼号"
 
-#: application/views/interface_assets/header.php:477
+#: application/views/interface_assets/header.php:479
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
 msgstr "操作员：%s"
 
-#: application/views/interface_assets/header.php:487
+#: application/views/interface_assets/header.php:489
 #: application/views/user/edit.php:58
 msgid "Account"
 msgstr "账户信息"
 
-#: application/views/interface_assets/header.php:493
+#: application/views/interface_assets/header.php:495
 msgid "Band Edges"
 msgstr "频段边界"
 
-#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:501
 msgid "Switch to Clubstation:"
 msgstr "切换到集体台站："
 
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:505
 #: application/views/user/modals/first_login_wizard.php:119
 #: application/views/user/modals/first_login_wizard.php:133
 #, php-format
 msgid "Switch to %s"
 msgstr "切换到 %s"
 
-#: application/views/interface_assets/header.php:507
+#: application/views/interface_assets/header.php:509
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "管理 %s"
 
-#: application/views/interface_assets/header.php:516
+#: application/views/interface_assets/header.php:518
 msgid "No Clubstations available"
 msgstr "没有可用的集体台站"
 
-#: application/views/interface_assets/header.php:528
+#: application/views/interface_assets/header.php:530
 msgid "Other Export Options"
 msgstr "其它导出选项"
 
-#: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:562
 msgid "QSL Queue"
 msgstr "QSL 队列"
 
-#: application/views/interface_assets/header.php:561
+#: application/views/interface_assets/header.php:563
 msgid "Labels"
 msgstr "标签"
 
-#: application/views/interface_assets/header.php:568
+#: application/views/interface_assets/header.php:570
 msgid "Third-Party Services"
 msgstr "第三方服务"
 
-#: application/views/interface_assets/header.php:571
+#: application/views/interface_assets/header.php:573
 msgid "eQSL Import / Export"
 msgstr "eQSL 导入/导出"
 
-#: application/views/interface_assets/header.php:572
+#: application/views/interface_assets/header.php:574
 msgid "HRDLog Logbook"
 msgstr "HRDLog 日志簿"
 
-#: application/views/interface_assets/header.php:575
+#: application/views/interface_assets/header.php:577
 msgid "Clublog Import / Export"
 msgstr "Clublog 导入/导出"
 
-#: application/views/interface_assets/header.php:578
+#: application/views/interface_assets/header.php:580
 msgid "DCL Export"
 msgstr "DCL 导出"
 
-#: application/views/interface_assets/header.php:586
+#: application/views/interface_assets/header.php:588
 msgid "API Keys"
 msgstr "API 密钥"
 
-#: application/views/interface_assets/header.php:591
+#: application/views/interface_assets/header.php:593
 msgid "Internal tools"
 msgstr "内部工具"
 
-#: application/views/interface_assets/header.php:593
+#: application/views/interface_assets/header.php:595
 msgid "Callsign DXCC checker"
 msgstr "呼号 DXCC 检查器"
 
-#: application/views/interface_assets/header.php:594
+#: application/views/interface_assets/header.php:596
 msgid "GeoJSON QSO Map"
 msgstr "GeoJSON QSO 地图"
 
-#: application/views/interface_assets/header.php:595
+#: application/views/interface_assets/header.php:597
 msgid "Gridsquare Zone checker"
 msgstr "网格分区检查器"
 
-#: application/views/interface_assets/header.php:602
+#: application/views/interface_assets/header.php:604
 #: application/views/logbookadvanced/index.php:920
 msgid "Help"
 msgstr "帮助"
 
-#: application/views/interface_assets/header.php:603
+#: application/views/interface_assets/header.php:605
 msgid "Forum"
 msgstr "论坛"
 
-#: application/views/interface_assets/header.php:607
+#: application/views/interface_assets/header.php:609
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "登出并返回到 %s"
 
-#: application/views/interface_assets/header.php:608
+#: application/views/interface_assets/header.php:610
 #, php-format
 msgid "Switch back to %s"
 msgstr "切换回 %s"
 
-#: application/views/interface_assets/header.php:615
+#: application/views/interface_assets/header.php:617
 msgid "Logout"
 msgstr "注销"
 
-#: application/views/interface_assets/header.php:621
+#: application/views/interface_assets/header.php:623
 msgid "Station locations and logbooks"
 msgstr "台站位置和日志簿"
 
-#: application/views/interface_assets/header.php:623
+#: application/views/interface_assets/header.php:625
 msgid "Select a Location"
 msgstr "选择电台站位置"
 
-#: application/views/interface_assets/header.php:671
+#: application/views/interface_assets/header.php:673
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr "没有看到你的台站位置？前往台站设置并收藏它们"
 
-#: application/views/interface_assets/header.php:708
+#: application/views/interface_assets/header.php:710
 msgid "Extras"
 msgstr "额外"
 
@@ -19572,14 +19672,6 @@ msgstr "重置结束时间"
 #: application/views/qso/index.php:218
 msgid "Search DXCluster for latest Spot"
 msgstr "在 DXCluster 搜索最新 Spot"
-
-#: application/views/qso/index.php:297 application/views/qso/index.php:578
-#: application/views/station_profile/create.php:189
-#: application/views/station_profile/edit.php:211
-#: application/views/user/edit.php:855 application/views/view_log/qso.php:328
-#: application/views/view_log/qso.php:663
-msgid "IOTA Reference"
-msgstr "IOTA 编号"
 
 #: application/views/qso/index.php:429 application/views/view_log/qso.php:107
 msgid "Frequency (RX)"
