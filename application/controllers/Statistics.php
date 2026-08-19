@@ -284,14 +284,24 @@ class Statistics extends CI_Controller {
 
 	public function qslstats() {
 		$this->load->model('stats');
+		$this->load->model('timeline_model');
 
 		$total_qsos = array();
 
-		$result = $this->stats->total_qsls();
+		$year = xss_clean($this->input->get('year'));
+		if (!ctype_digit((string) $year) || strlen((string) $year) != 4) {
+			$year = null;
+		}
+		$dateFrom = $year !== null ? $year . '-01-01' : null;
+		$dateTo = $year !== null ? $year . '-12-31' : null;
+
+		$result = $this->stats->total_qsls($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['qsosatarray'] = $result['qsoSatView'];
-		$total_qsos['bands'] = $this->stats->get_bands();
-		$total_qsos['sats'] = $this->stats->get_sats();
+		$total_qsos['bands'] = $this->stats->get_bands($dateFrom, $dateTo);
+		$total_qsos['sats'] = $this->stats->get_sats($dateFrom, $dateTo);
+		$total_qsos['years'] = $this->timeline_model->get_years();
+		$total_qsos['selected_year'] = $year;
 
 		// Set Page Title
 		$data['page_title'] = __("QSL Statistics");
