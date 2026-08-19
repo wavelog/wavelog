@@ -14,7 +14,7 @@
 
 		<div class="alert alert-warning" role="alert">
 			<?= __("No gridsquare is set for your active station location, so the map cannot be centered."); ?>
-			<a href="<?php echo site_url('station'); ?>" class="alert-link"><?= __("Station Locations"); ?></a>
+			<a href="<?php echo site_url('stationsetup'); ?>" class="alert-link"><?= __("Station Setup"); ?></a>
 		</div>
 
 	<?php } else { ?>
