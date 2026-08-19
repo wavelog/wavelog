@@ -42,12 +42,12 @@ if (!function_exists('qsl_render_table')) {
 		echo '<div class="table-wrapper">';
 		echo '<table class="table table-sm table-bordered table-hover table-striped w-100 text-center">';
 		echo '<thead>';
-		echo '<tr><th colspan="7">' . $title . '</th></tr>';
+		echo '<tr><th colspan="7">' . htmlspecialchars($title) . '</th></tr>';
 		echo '<tr><th></th><th>QSO</th><th>QSL</th><th>LoTW</th><th>eQSL</th><th>QRZ</th><th>Clublog</th></tr>';
 		echo '</thead>';
 		echo '<tbody>';
 		foreach ($rows as $mode => $stats) {
-			echo '<tr><th>' . $mode . '</th>';
+			echo '<tr><th>' . htmlspecialchars($mode) . '</th>';
 			echo '<td>' . $stats['qso'] . '</td>';
 			foreach (['qsl', 'lotw', 'eqsl', 'qrz', 'clublog'] as $field) {
 				echo '<td data-abs="' . $stats[$field] . '" data-pct="' . $percent($stats[$field], $stats['qso']) . '">' . $stats[$field] . '</td>';
