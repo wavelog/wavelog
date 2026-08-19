@@ -607,6 +607,7 @@ msgstr "Visualizza log - VUCC"
 #: application/controllers/Timeline.php:136
 #: application/controllers/Timeline.php:139
 #: application/controllers/Timeline.php:142
+#: application/controllers/Statistics.php:383
 msgid "Log View"
 msgstr "Visualizza Log"
 
@@ -876,6 +877,7 @@ msgstr "Note - Backup"
 #: application/views/interface_assets/header.php:494
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
+#: application/views/statistics/qsltable.php:115
 msgid "Bands"
 msgstr "Bande"
 
@@ -2749,6 +2751,7 @@ msgstr "Mappa QSO"
 #: application/views/interface_assets/header.php:345
 #: application/views/interface_assets/header.php:496
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
+#: application/views/statistics/qsltable.php:111
 msgid "Modes"
 msgstr "Modi"
 
@@ -3142,8 +3145,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Per favore, confronta il tuo attuale config.php con l'ultimo config.sample."
-"php e aggiornalo di conseguenza."
+"Per favore, confronta il tuo attuale config.php con l'ultimo "
+"config.sample.php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:566
@@ -3378,6 +3381,7 @@ msgstr "Radio rimossa con successo"
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
+#: application/views/statistics/qsltable.php:120
 msgid "Satellites"
 msgstr "Satelliti"
 
@@ -3719,21 +3723,26 @@ msgstr "Statistiche"
 #: application/controllers/Statistics.php:297
 #: application/views/interface_assets/header.php:164
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:307
+#: application/views/statistics/qsltable.php:75
 msgid "QSL Statistics"
 msgstr "Statistiche QSL"
 
 #: application/controllers/Statistics.php:315
 #: application/views/interface_assets/header.php:162
 #: application/views/statistics/antennaanalytics.php:2
+#: application/controllers/Statistics.php:325
 msgid "Antenna Analytics"
 msgstr "Statistiche antenna"
 
 #: application/controllers/Statistics.php:373
+#: application/controllers/Statistics.php:383
 msgid "Satellite QSOs"
 msgstr "QSO via satellite"
 
 #: application/controllers/Statistics.php:390
 #: application/views/interface_assets/header.php:188
+#: application/controllers/Statistics.php:400
 msgid "EME Initials"
 msgstr "EME Initials"
 
@@ -4870,6 +4879,7 @@ msgstr "Numero totale di WAJA collegate"
 #: application/views/statistics/index.php:21
 #: application/views/timeline/index.php:98
 #: application/views/visitor/index.php:250
+#: application/views/statistics/qsltable.php:77
 msgid "Year"
 msgstr "Anno"
 
@@ -5027,6 +5037,7 @@ msgstr "Differenza"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/statistics/qsltable.php:79
 msgid "All"
 msgstr "Tutti"
 
@@ -5571,6 +5582,7 @@ msgstr "Conteggio minimo"
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:149
+#: application/views/statistics/qsltable.php:162
 msgid "Nothing found!"
 msgstr "Non ho trovato nulla!"
 
@@ -7349,6 +7361,7 @@ msgstr "Progresso confermati"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/statistics/qsltable.php:59
 msgid "Total"
 msgstr "Totale"
 
@@ -22082,14 +22095,17 @@ msgstr ""
 "risultati."
 
 #: application/views/statistics/qsltable.php:7
+#: application/views/statistics/qsltable.php:85
 msgid "Absolute"
 msgstr "Assoluto"
 
 #: application/views/statistics/qsltable.php:8
+#: application/views/statistics/qsltable.php:86
 msgid "Percent"
 msgstr "Percento"
 
 #: application/views/statistics/qsltable.php:50
+#: application/views/statistics/qsltable.php:127
 msgid "Overall Stats by Mode"
 msgstr "Statistiche complessive per modo"
 
@@ -22214,8 +22230,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"

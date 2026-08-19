@@ -607,6 +607,7 @@ msgstr "ログ表示 - VUCC"
 #: application/controllers/Timeline.php:136
 #: application/controllers/Timeline.php:139
 #: application/controllers/Timeline.php:142
+#: application/controllers/Statistics.php:383
 msgid "Log View"
 msgstr "ログ表示"
 
@@ -876,6 +877,7 @@ msgstr "メモ - バックアップ"
 #: application/views/interface_assets/header.php:494
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
+#: application/views/statistics/qsltable.php:115
 msgid "Bands"
 msgstr "バンド"
 
@@ -2739,6 +2741,7 @@ msgstr "QSOマップ"
 #: application/views/interface_assets/header.php:345
 #: application/views/interface_assets/header.php:496
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
+#: application/views/statistics/qsltable.php:111
 msgid "Modes"
 msgstr "モード"
 
@@ -3361,6 +3364,7 @@ msgstr "ラジオが正常に削除されました"
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
+#: application/views/statistics/qsltable.php:120
 msgid "Satellites"
 msgstr "衛星"
 
@@ -3698,21 +3702,26 @@ msgstr "統計"
 #: application/controllers/Statistics.php:297
 #: application/views/interface_assets/header.php:164
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:307
+#: application/views/statistics/qsltable.php:75
 msgid "QSL Statistics"
 msgstr "QSL統計"
 
 #: application/controllers/Statistics.php:315
 #: application/views/interface_assets/header.php:162
 #: application/views/statistics/antennaanalytics.php:2
+#: application/controllers/Statistics.php:325
 msgid "Antenna Analytics"
 msgstr "アンテナ分析"
 
 #: application/controllers/Statistics.php:373
+#: application/controllers/Statistics.php:383
 msgid "Satellite QSOs"
 msgstr "衛星QSO"
 
 #: application/controllers/Statistics.php:390
 #: application/views/interface_assets/header.php:188
+#: application/controllers/Statistics.php:400
 msgid "EME Initials"
 msgstr "EMEイニシャル"
 
@@ -4043,8 +4052,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1541
 msgid "Station setup failed! Please set up your station manually."
@@ -4837,6 +4846,7 @@ msgstr "WAJAの累計交信数"
 #: application/views/statistics/index.php:21
 #: application/views/timeline/index.php:98
 #: application/views/visitor/index.php:250
+#: application/views/statistics/qsltable.php:77
 msgid "Year"
 msgstr "年"
 
@@ -4994,6 +5004,7 @@ msgstr "違い"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/statistics/qsltable.php:79
 msgid "All"
 msgstr "全て"
 
@@ -5539,6 +5550,7 @@ msgstr "最小数"
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:149
+#: application/views/statistics/qsltable.php:162
 msgid "Nothing found!"
 msgstr "何も見つかりません!"
 
@@ -7302,6 +7314,7 @@ msgstr "進捗状況を確認済み"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/statistics/qsltable.php:59
 msgid "Total"
 msgstr "合計"
 
@@ -21831,14 +21844,17 @@ msgstr ""
 "バンドとモードを選択して結果を絞り込むことも可能です。"
 
 #: application/views/statistics/qsltable.php:7
+#: application/views/statistics/qsltable.php:85
 msgid "Absolute"
 msgstr "絶対的"
 
 #: application/views/statistics/qsltable.php:8
+#: application/views/statistics/qsltable.php:86
 msgid "Percent"
 msgstr "パーセント"
 
 #: application/views/statistics/qsltable.php:50
+#: application/views/statistics/qsltable.php:127
 msgid "Overall Stats by Mode"
 msgstr "モード別の総合統計"
 
@@ -24496,9 +24512,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -24829,8 +24845,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
