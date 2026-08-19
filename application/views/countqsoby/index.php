@@ -29,8 +29,8 @@
             <div class="card-body">
 
                 <div class="row mb-3">
-                    <div class="col-md-3 control-label" for="datepresets"><?= __("Date presets"); ?></div>
-                    <div class="col-md-9 d-flex flex-wrap gap-1">
+                    <div class="col-md-2 control-label" for="datepresets"><?= __("Date presets"); ?></div>
+                    <div class="col-md-10 d-flex flex-wrap gap-1">
                         <button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="distinctApplyPreset('today')"><?= __("Today") ?></button>
                         <button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="distinctApplyPreset('yesterday')"><?= __("Yesterday") ?></button>
                         <button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="distinctApplyPreset('last7days')"><?= __("Last 7 Days") ?></button>
@@ -44,14 +44,14 @@
                 </div>
 
                 <div class="mb-3 row justify-content-center">
-                    <div class="col-md-3 control-label" for="distinctdateFrom"><?= __("Date from"); ?></div>
-                    <div class="col-md-3">
+                    <div class="col-md-2 control-label" for="distinctdateFrom"><?= __("Date from"); ?></div>
+                    <div class="col-md-4">
                         <div class="form-check-inline">
                             <input id="distinctdateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary">
                         </div>
                     </div>
-                    <div class="col-md-3 control-label" for="distinctdateTo"><?= __("Date to"); ?></div>
-                    <div class="col-md-3">
+                    <div class="col-md-2 control-label" for="distinctdateTo"><?= __("Date to"); ?></div>
+                    <div class="col-md-4">
                         <div class="form-check-inline">
                             <input id="distinctdateTo" type="date" class="form-control form-control-sm w-auto border border-secondary">
                         </div>
@@ -59,8 +59,8 @@
                 </div>
 
                 <div class="mb-3 row justify-content-center">
-                    <label class="col-md-3 control-label" for="distincttype"><?= __("Count QSOs by"); ?></label>
-                    <div class="col-md-3">
+                    <label class="col-md-2 control-label" for="distincttype"><?= __("Count QSOs by"); ?></label>
+                    <div class="col-md-4">
                         <select class="form-select form-select-sm" id="distincttype">
                             <option value="dxcc" selected="selected"><?= __("DXCC"); ?></option>
                             <option value="grid"><?= __("Gridsquare"); ?></option>
@@ -72,8 +72,8 @@
                             <option value="wwff"><?= __("WWFF Reference"); ?></option>
                         </select>
                     </div>
-                    <label class="col-md-3 control-label" for="distinctplot_bands"><?= __("Band"); ?></label>
-                    <div class="col-md-3">
+                    <label class="col-md-2 control-label" for="distinctplot_bands"><?= __("Band"); ?></label>
+                    <div class="col-md-4">
                         <select class="form-select form-select-sm" id="distinctplot_bands">
                             <option value="All"><?= __("Every band (w/o SAT)"); ?></option>
                             <?php foreach($user_bands as $band) {
@@ -124,8 +124,8 @@
                 </div>
 
                 <div class="mb-3 row justify-content-center">
-                    <label class="col-md-3 control-label" for="distinctplot_mode"><?= __("Mode"); ?></label>
-                    <div class="col-md-3">
+                    <label class="col-md-2 control-label" for="distinctplot_mode"><?= __("Mode"); ?></label>
+                    <div class="col-md-4">
                         <select class="form-select form-select-sm" id="distinctplot_mode">
                             <option value="All"><?= __("All"); ?></option>
                             <?php foreach ($modes->result() as $mode) {
@@ -137,21 +137,21 @@
                             } ?>
                         </select>
                     </div>
-                    <label class="col-md-3 control-label" for="distinctpropmode"><?= __("Propagation"); ?></label>
-                    <div class="col-md-3">
+                    <label class="col-md-2 control-label" for="distinctpropmode"><?= __("Propagation"); ?></label>
+                    <div class="col-md-4">
                         <select class="form-select form-select-sm" name="distinctpropmode" id="distinctpropmode">
                             <option value="All"><?= __("All"); ?></option>
                             <option value="None"><?= __("None/Empty"); ?></option>
                             <?php foreach ($adif_propmodes as $mode => $desc) {
-                               echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
+								echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
                             } ?>
                         </select>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <div class="col-md-3 control-label" for="distinctqsl"><?= __("Confirmation"); ?></div>
-                    <div class="col-md-9">
+                    <div class="col-md-2 control-label" for="distinctqsl"><?= __("Confirmation"); ?></div>
+                    <div class="col-md-10">
                         <div class="form-check-inline">
                             <?php echo '<input class="form-check-input" type="checkbox" id="distinctqsl"';
                             if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
