@@ -90,9 +90,9 @@
                 <div class="row justify-content-center">
                     <div id="distinctsatrow" class="mb-3 col-md-6">
                     <?php if (count($sats_available) != 0) { ?>
-                        <div class="row justify-content-center">
-                            <label class="col-md-6 control-label" id="distinctsatslabel" for="distinctplot_sats"><?= __("Satellite") ?></label>
-                            <div class="col-md-6">
+                        <div class="row">
+                            <label class="col-md-4 control-label" id="distinctsatslabel" for="distinctplot_sats"><?= __("Satellite") ?></label>
+                            <div class="col-md-8">
                                 <select class="form-select form-select-sm" id="distinctplot_sats">
                                     <option value="All"><?= __("All") ?></option>
                                     <?php foreach($sats_available as $sat) {
@@ -107,9 +107,9 @@
                     <?php } ?>
                     </div>
                     <div id="distinctorbitrow" class="mb-3 col-md-6">
-                        <div class="row justify-content-center">
-                            <label class="col-md-6 control-label" id="distinctorbitslabel" for="distinctorbits"><?= __("Orbit"); ?></label>
-                            <div class="col-md-6">
+                        <div class="row">
+                            <label class="col-md-4 control-label" id="distinctorbitslabel" for="distinctorbits"><?= __("Orbit"); ?></label>
+                            <div class="col-md-8">
                                 <select class="form-select form-select-sm" id="distinctorbits">
                                     <option value="All"><?= __("All") ?></option>
                                     <?php
