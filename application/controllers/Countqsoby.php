@@ -77,7 +77,7 @@ class Countqsoby extends CI_Controller {
             'iota' => __("IOTA Reference"),
             'wwff' => __("WWFF Reference"),
         );
-        $type_label = $type_labels[$type] ?? $type;
+        $type_label = $type_labels[$type] ?? htmlspecialchars((string) $type);
 
         $group_label = (string) $group;
         if ($type == 'dxcc') {
