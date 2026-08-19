@@ -175,5 +175,11 @@ function qslSetDisplay(pct) {
 	});
 	document.getElementById('qsl_abs').className = pct ? 'btn btn-outline-primary' : 'btn btn-primary';
 	document.getElementById('qsl_pct').className = pct ? 'btn btn-primary' : 'btn btn-outline-primary';
+	try { localStorage.setItem('qslstats_pct', pct ? '1' : '0'); } catch (e) { /* storage unavailable */ }
 }
+(function () {
+	var pct = false;
+	try { pct = localStorage.getItem('qslstats_pct') === '1'; } catch (e) { /* storage unavailable */ }
+	if (pct) { qslSetDisplay(true); }
+})();
 </script>
