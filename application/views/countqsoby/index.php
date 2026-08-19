@@ -10,6 +10,8 @@
         var lang_distinct_counts_type_grid = '<?= __("Gridsquare"); ?>';
         var lang_distinct_counts_type_dxcc = '<?= __("DXCC"); ?>';
         var lang_distinct_counts_type_ref = '<?= __("Reference"); ?>';
+        var lang_distinct_counts_type_itu = '<?= __("ITU Zone"); ?>';
+        var lang_distinct_counts_type_cq = '<?= __("CQ Zone"); ?>';
         var lang_distinct_counts_deleted_dxcc = '<?= __("Deleted DXCC"); ?>';
     </script>
 
@@ -59,8 +61,10 @@
                     <label class="col-md-3 control-label" for="distincttype"><?= __("Count QSOs by"); ?></label>
                     <div class="col-md-3">
                         <select class="form-select form-select-sm" id="distincttype">
-                            <option value="grid"><?= __("Gridsquare"); ?></option>
                             <option value="dxcc" selected="selected"><?= __("DXCC"); ?></option>
+                            <option value="grid"><?= __("Gridsquare"); ?></option>
+                            <option value="itu"><?= __("ITU Zone"); ?></option>
+                            <option value="cq"><?= __("CQ Zone"); ?></option>
                             <option value="pota"><?= __("POTA Reference"); ?></option>
                             <option value="sota"><?= __("SOTA Reference"); ?></option>
                             <option value="iota"><?= __("IOTA Reference"); ?></option>

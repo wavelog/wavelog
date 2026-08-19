@@ -143,7 +143,8 @@ function destroyDistinctTable() {
 }
 
 function renderDistinctTable(tmp) {
-	var typeLabel = tmp.type == 'dxcc' ? lang_distinct_counts_type_dxcc : (tmp.type == 'grid' ? lang_distinct_counts_type_grid : lang_distinct_counts_type_ref);
+	var typeLabels = { dxcc: lang_distinct_counts_type_dxcc, grid: lang_distinct_counts_type_grid, itu: lang_distinct_counts_type_itu, cq: lang_distinct_counts_type_cq };
+	var typeLabel = typeLabels[tmp.type] || lang_distinct_counts_type_ref;
 
 	$("#distinct_summary").html('<strong>' + decodeHtml(typeLabel) + ':</strong> ' + tmp.summary.distinct + ' ' + decodeHtml(lang_distinct_counts_worked) + ', <strong>' + tmp.summary.confirmed + '</strong> ' + decodeHtml(lang_distinct_counts_confirmed) + ', ' + tmp.summary.qsos + ' ' + decodeHtml(lang_gen_hamradio_qso_short) + ' (' + decodeHtml(lang_distinct_counts_qsos_total) + ')');
 
@@ -158,13 +159,13 @@ function renderDistinctTable(tmp) {
 		} },
 		{ title: decodeHtml(lang_gen_hamradio_qso_short), data: 'qso_count', type: 'num', className: 'dt-body-right', render: function(data, type, row) {
 			if (type === 'display') {
-				return '<a href="#" class="dc-link" data-group="' + row.group_key + '">' + data + '</a>';
+				return '<a href="#" class="dc-link" data-group="' + row.group_key + '" data-confirmed="false">' + data + '</a>';
 			}
 			return data;
 		} },
 		{ title: decodeHtml(lang_distinct_counts_confirmed), data: 'confirmed_count', type: 'num', className: 'dt-body-right', render: function(data, type, row) {
 			if (type === 'display') {
-				return '<a href="#" class="dc-link" data-group="' + row.group_key + '">' + data + '</a>';
+				return '<a href="#" class="dc-link" data-group="' + row.group_key + '" data-confirmed="true">' + data + '</a>';
 			}
 			return data;
 		} }
@@ -198,11 +199,11 @@ function renderDistinctTable(tmp) {
 	$('#distincttable tbody').off('click', '.dc-link').on('click', '.dc-link', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
-		getDistinctQsos($(this).attr('data-group'));
+		getDistinctQsos($(this).attr('data-group'), $(this).attr('data-confirmed') === 'true');
 	});
 }
 
-function getDistinctQsos(group) {
+function getDistinctQsos(group, confirmed) {
 	$.ajax({
 		url: site_url + '/countqsoby/details',
 		type: 'post',
@@ -215,7 +216,12 @@ function getDistinctQsos(group) {
 			'propagation': $("#distinctpropmode").val(),
 			'mode': $("#distinctplot_mode").val(),
 			'dateFrom': $("#distinctdateFrom").val(),
-			'dateTo': $("#distinctdateTo").val()
+			'dateTo': $("#distinctdateTo").val(),
+			'confirmed': confirmed === true,
+			'qsl': $("#distinctqsl").is(":checked"),
+			'lotw': $("#distinctlotw").is(":checked"),
+			'eqsl': $("#distincteqsl").is(":checked"),
+			'qrz': $("#distinctqrz").is(":checked")
 		},
 		success: function (html) {
 			BootstrapDialog.show({

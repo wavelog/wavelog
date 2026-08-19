@@ -49,6 +49,16 @@ class Countqsoby_model extends CI_Model
 					$where = 'LENGTH(col_wwff_ref) > 0';
 					$name_select = $name_group = $join = '';
 					break;
+				case 'itu':
+					$group = 'col_ituz';
+					$where = 'LENGTH(col_ituz) > 0';
+					$name_select = $name_group = $join = '';
+					break;
+				case 'cq':
+					$group = 'col_cqz';
+					$where = 'LENGTH(col_cqz) > 0';
+					$name_select = $name_group = $join = '';
+					break;
 				default:
 					$type = 'grid';
 					$group = 'UPPER(SUBSTRING(col_gridsquare,1,4))';
@@ -272,7 +282,7 @@ class Countqsoby_model extends CI_Model
 	 * QSO drill-down for one group value. Same column list and joins as
 	 * Distances_model::qso_details so the awards/details partial works.
 	 */
-	public function qso_details($type, $group, $band, $sat, $propagation, $mode = 'All', $orbit = 'All', $dateFrom = null, $dateTo = null) {
+	public function qso_details($type, $group, $band, $sat, $propagation, $mode = 'All', $orbit = 'All', $dateFrom = null, $dateTo = null, $postdata = array()) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->scoped_station_ids();
 
@@ -328,6 +338,14 @@ class Countqsoby_model extends CI_Model
 				$sql .= ' AND col_wwff_ref = ?';
 				$params[] = $group;
 				break;
+			case 'itu':
+				$sql .= ' AND col_ituz = ?';
+				$params[] = $group;
+				break;
+			case 'cq':
+				$sql .= ' AND col_cqz = ?';
+				$params[] = $group;
+				break;
 			case 'pota':
 				$sql .= ' AND FIND_IN_SET(?, REPLACE(COL_POTA_REF, \' \', \'\')) > 0';
 				$params[] = $group;
@@ -339,6 +357,12 @@ class Countqsoby_model extends CI_Model
 
 		$clean = array('band' => $band, 'sat' => $sat, 'orbit' => $orbit, 'propagation' => $propagation, 'mode' => $mode, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo);
 		$this->add_filters($sql, $params, $clean);
+
+		// When the drill-down was opened from the "confirmed" column, only
+		// QSOs confirmed via one of the checked sources are shown.
+		if (($postdata['confirmed'] ?? '') === 'true') {
+			$sql .= ' AND ' . $this->confirm_condition($this->security->xss_clean($postdata));
+		}
 
 		$sql .= ' ORDER BY COL_TIME_ON DESC';
 

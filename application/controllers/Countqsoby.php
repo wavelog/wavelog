@@ -54,12 +54,68 @@ class Countqsoby extends CI_Controller {
         $dateFrom = $this->input->post('dateFrom', true);
         $dateTo = $this->input->post('dateTo', true);
 
-        $data['results'] = $this->countqsoby_model->qso_details($type, $group, $band, $sat, $propagation, $mode, $orbit, $dateFrom, $dateTo);
+        $postdata = array(
+            'confirmed' => $this->input->post('confirmed', true),
+            'qsl' => $this->input->post('qsl', true),
+            'lotw' => $this->input->post('lotw', true),
+            'eqsl' => $this->input->post('eqsl', true),
+            'qrz' => $this->input->post('qrz', true),
+        );
+
+        $data['results'] = $this->countqsoby_model->qso_details($type, $group, $band, $sat, $propagation, $mode, $orbit, $dateFrom, $dateTo, $postdata);
         $data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         $data['page_title'] = "Log View - " . $group;
-        // awards/details echoes $filter raw, so escape the user-supplied part here
-        $data['filter'] = __("QSOs with") . " " . htmlspecialchars((string)$group);
+
+        $type_labels = array(
+            'dxcc' => __("DXCC"),
+            'grid' => __("Gridsquare"),
+            'itu' => __("ITU Zone"),
+            'cq' => __("CQ Zone"),
+            'pota' => __("POTA Reference"),
+            'sota' => __("SOTA Reference"),
+            'iota' => __("IOTA Reference"),
+            'wwff' => __("WWFF Reference"),
+        );
+        $type_label = $type_labels[$type] ?? $type;
+
+        $group_label = (string) $group;
+        if ($type == 'dxcc') {
+            $this->load->model('logbook_model');
+            $entity = $this->logbook_model->get_entity($group);
+            if (!empty($entity['name'])) {
+                $group_label = ucwords(strtolower($entity['name']), '- (/');
+            }
+        }
+
+        $data['filter'] = $type_label . " " . htmlspecialchars($group_label) . " " . __("and") . " ";
+        $data['filter'] .= ($band == 'All' ? lcfirst(__("Every band (w/o SAT)")) : __("band") . " " . htmlspecialchars((string) $band));
+        if ($band == 'SAT') {
+            if ($sat != 'All' && $sat != null) {
+                $data['filter'] .= __(" and satellite ") . htmlspecialchars((string) $sat);
+            }
+            if ($orbit != 'All' && $orbit != null) {
+                $data['filter'] .= __(" and orbit type ") . htmlspecialchars((string) $orbit);
+            }
+        }
+        if ($propagation != '' && $propagation != null && $propagation != 'All') {
+            $data['filter'] .= __(" and propagation ") . htmlspecialchars((string) $propagation);
+        }
+        if ($mode != null && strtolower($mode) != 'all') {
+            $data['filter'] .= __(" and mode ") . htmlspecialchars(strtoupper((string) $mode));
+        }
+        if (($postdata['confirmed'] ?? '') === 'true') {
+            $qsltype = array();
+            if (($postdata['qsl'] ?? '') === 'true') { $qsltype[] = "QSL"; }
+            if (($postdata['lotw'] ?? '') === 'true') { $qsltype[] = "LoTW"; }
+            if (($postdata['eqsl'] ?? '') === 'true') { $qsltype[] = "eQSL"; }
+            if (($postdata['qrz'] ?? '') === 'true') { $qsltype[] = "QRZ.com"; }
+            if (!empty($qsltype)) {
+                $data['filter'] .= __(" and ") . implode('/', $qsltype);
+            }
+        }
+
+        $data['ispopup'] = true;
         $this->load->view('awards/details', $data);
     }
 }
