@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-19 06:13+0000\n"
+"POT-Creation-Date: 2026-08-19 12:21+0000\n"
 "PO-Revision-Date: 2026-08-03 12:17+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -603,7 +603,7 @@ msgstr "Vista de registro - VUCC"
 #: application/controllers/Awards.php:656
 #: application/controllers/Callstats.php:101
 #: application/controllers/Distancerecords.php:87
-#: application/controllers/Statistics.php:373
+#: application/controllers/Statistics.php:383
 #: application/controllers/Timeline.php:127
 #: application/controllers/Timeline.php:130
 #: application/controllers/Timeline.php:133
@@ -879,6 +879,7 @@ msgstr "Notas - Copia de seguridad"
 #: application/views/interface_assets/header.php:494
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
+#: application/views/statistics/qsltable.php:115
 msgid "Bands"
 msgstr "Bandas"
 
@@ -2750,7 +2751,9 @@ msgstr "Mapa de QSO"
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
 #: application/views/interface_assets/header.php:345
 #: application/views/interface_assets/header.php:496
-#: application/views/mode/index.php:27 application/views/usermode/index.php:25
+#: application/views/mode/index.php:27
+#: application/views/statistics/qsltable.php:111
+#: application/views/usermode/index.php:25
 msgid "Modes"
 msgstr "Modos"
 
@@ -3385,6 +3388,7 @@ msgstr "Radio eliminado con éxito"
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
+#: application/views/statistics/qsltable.php:120
 msgid "Satellites"
 msgstr "Satélites"
 
@@ -3723,23 +3727,23 @@ msgstr "Lista de ubicaciones de la estación"
 msgid "Statistics"
 msgstr "Estadísticas"
 
-#: application/controllers/Statistics.php:297
+#: application/controllers/Statistics.php:307
 #: application/views/interface_assets/header.php:164
-#: application/views/statistics/qsltable.php:5
+#: application/views/statistics/qsltable.php:75
 msgid "QSL Statistics"
 msgstr "Estadísticas de QSL"
 
-#: application/controllers/Statistics.php:315
+#: application/controllers/Statistics.php:325
 #: application/views/interface_assets/header.php:162
 #: application/views/statistics/antennaanalytics.php:2
 msgid "Antenna Analytics"
 msgstr "Análisis de antenas"
 
-#: application/controllers/Statistics.php:373
+#: application/controllers/Statistics.php:383
 msgid "Satellite QSOs"
 msgstr "QSOs por satélite"
 
-#: application/controllers/Statistics.php:390
+#: application/controllers/Statistics.php:400
 #: application/views/interface_assets/header.php:188
 msgid "EME Initials"
 msgstr "Iniciales EME"
@@ -4881,6 +4885,7 @@ msgstr "Número acumulado de WAJA trabajados"
 #: application/views/dayswithqso/index.php:47
 #: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
+#: application/views/statistics/qsltable.php:77
 #: application/views/timeline/index.php:98
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -5031,6 +5036,7 @@ msgstr "Diferencia"
 #: application/views/statistics/antennaanalytics.php:92
 #: application/views/statistics/index.php:69
 #: application/views/statistics/initials.php:24
+#: application/views/statistics/qsltable.php:79
 #: application/views/timeline/index.php:16
 #: application/views/timeline/index.php:28
 #: application/views/timeline/index.php:88
@@ -5581,7 +5587,9 @@ msgstr "Cuenta Mínima"
 #: application/views/callstats/index.php:118
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
-#: application/views/qrz/export.php:65 application/views/timeline/index.php:149
+#: application/views/qrz/export.php:65
+#: application/views/statistics/qsltable.php:162
+#: application/views/timeline/index.php:149
 msgid "Nothing found!"
 msgstr "¡Nada encontrado!"
 
@@ -7351,9 +7359,7 @@ msgstr "Progreso confirmado"
 #: application/views/dashboard/index.php:609
 #: application/views/dashboard/index.php:638
 #: application/views/simplefle/index.php:27
-#: application/views/statistics/qsltable.php:88
-#: application/views/statistics/qsltable.php:150
-#: application/views/statistics/qsltable.php:207
+#: application/views/statistics/qsltable.php:59
 #: application/views/statistics/qsotable.php:10
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
@@ -22123,15 +22129,15 @@ msgstr ""
 "has trabajado. Puedes seleccionar una banda y un modo para filtrar los "
 "resultados."
 
-#: application/views/statistics/qsltable.php:7
+#: application/views/statistics/qsltable.php:85
 msgid "Absolute"
 msgstr "Absoluto"
 
-#: application/views/statistics/qsltable.php:8
+#: application/views/statistics/qsltable.php:86
 msgid "Percent"
 msgstr "Porcentaje"
 
-#: application/views/statistics/qsltable.php:50
+#: application/views/statistics/qsltable.php:127
 msgid "Overall Stats by Mode"
 msgstr "Estadísticas generales por modo"
 
