@@ -53,6 +53,11 @@
 					<label class="form-check-label" for="az_itu"><?= __("ITU zones"); ?></label>
 				</div>
 
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="az_dxcc">
+					<label class="form-check-label" for="az_dxcc"><?= __("DXCC prefixes"); ?></label>
+				</div>
+
 				<button type="button" class="btn btn-sm btn-primary ms-auto" id="az_btn_png"><i class="fas fa-download"></i> <?= __("Download PNG"); ?></button>
 			</div>
 
@@ -69,6 +74,7 @@
 		var az_center = <?php echo json_encode(['lat' => $center_lat, 'lng' => $center_lng], JSON_HEX_TAG | JSON_HEX_APOS); ?>;
 		var az_homegrid = <?php echo json_encode($homegrid, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
 		var az_station_label = <?php echo json_encode($station_label, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
+		var az_dxcc_list = <?php echo json_encode($dxcc_markers, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
 	</script>
 
 	<?php } ?>

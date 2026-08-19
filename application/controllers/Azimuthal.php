@@ -40,6 +40,16 @@ class Azimuthal extends CI_Controller {
 			}
 		}
 
+		// Current (non-deleted) DXCC entities for the prefix marker overlay,
+		// positioned at each entity's reference coordinates
+		$this->load->model('dxcc');
+		$data['dxcc_markers'] = [];
+		foreach ($this->dxcc->list_current()->result() as $row) {
+			if ($row->lat !== null && $row->long !== null) {
+				$data['dxcc_markers'][] = ['name' => $row->name, 'prefix' => $row->prefix, 'lat' => (float)$row->lat, 'lng' => (float)$row->long];
+			}
+		}
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/d3.min.js',

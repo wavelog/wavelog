@@ -15,6 +15,7 @@ let az_spacing = 5000;           // km between distance rings
 let az_show_fields = true;       // Maidenhead field overlay
 let az_show_cq = false;          // CQ zone overlay
 let az_show_itu = false;         // ITU zone overlay
+let az_show_dxcc = false;        // worked DXCC marker overlay
 let az_cq = null;                // fetched cqzones FeatureCollection (lazy)
 let az_itu = null;               // fetched ituzones FeatureCollection (lazy)
 
@@ -27,12 +28,12 @@ function az_theme() {
 		return { ocean: '#212930', land: '#5d6d7a', landStroke: '#141a1f',
 			graticule: '#46535c', field: '#39454d', ring: '#93a1ab',
 			text: '#dee2e6', sphere: '#8a979f', center: '#dc3545',
-			cq: '#c9a55c', itu: '#7aa5d0' };
+			cq: '#c9a55c', itu: '#7aa5d0', dxcc: '#2e9e5b' };
 	}
 	return { ocean: '#ffffff', land: '#c3ccd4', landStroke: '#ffffff',
 		graticule: '#c4ccd3', field: '#d3dade', ring: '#77828a',
 		text: '#212529', sphere: '#5c676e', center: '#dc3545',
-		cq: '#94753a', itu: '#4a7396' };
+		cq: '#94753a', itu: '#4a7396', dxcc: '#198754' };
 }
 
 // Great-circle destination point [lng, lat] from the center, distance in
@@ -166,6 +167,25 @@ function az_render() {
 		}
 	}
 
+	// DXCC entity markers with visible prefix labels (hover for the full name)
+	if (az_show_dxcc && az_dxcc_list.length) {
+		var dxccR = Math.max(1.5, size / 350);
+		var dxccFont = Math.max(8, size / 80);
+		var dxccG = svg.append('g');
+		az_dxcc_list.forEach(function (d) {
+			var xy = proj([d.lng, d.lat]);
+			if (!xy) return;
+			dxccG.append('circle')
+				.attr('cx', xy[0]).attr('cy', xy[1])
+				.attr('r', dxccR)
+				.attr('fill', t.dxcc)
+				.append('title').text(d.name);
+			if (Math.hypot(xy[0] - cx, xy[1] - cy) < R * 0.92) { // skip labels smeared near the antipode
+				az_text(dxccG, xy[0] + dxccR + 2, xy[1], d.prefix, dxccFont, t.dxcc, { weight: 'bold', anchor: 'start' });
+			}
+		});
+	}
+
 	// Maidenhead field letters at field centers
 	if (az_show_fields) {
 		var fieldFont = Math.max(10, size / 55);
@@ -260,6 +280,7 @@ $(document).ready(function () {
 	az_show_fields = $('#az_fields').prop('checked');
 	az_show_cq = $('#az_cq').prop('checked');
 	az_show_itu = $('#az_itu').prop('checked');
+	az_show_dxcc = $('#az_dxcc').prop('checked');
 
 	// Zones pre-checked in the view still need their (lazy) geojson loaded
 	if (az_show_cq) $('#az_cq').trigger('change');
@@ -316,6 +337,11 @@ $(document).ready(function () {
 		} else {
 			az_render();
 		}
+	});
+
+	$('#az_dxcc').on('change', function () {
+		az_show_dxcc = this.checked;
+		az_render();
 	});
 
 	$('#az_btn_png').on('click', az_export_png);
