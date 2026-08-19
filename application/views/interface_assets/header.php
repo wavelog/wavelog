@@ -291,7 +291,7 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
 									</ul>
 								</li>
-							    <li><hr class="dropdown-divider"></li>
+								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇳🇱️ <?= __("The Netherlands"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/wap'); ?>"><i class="fas fa-trophy"></i> <?= __("WAP Worked All Provinces"); ?></a></li>
@@ -330,6 +330,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('activationplanner'); ?>" title="Plan an activation"><i class="fas fa-map-marked-alt"></i> <?= __("Activation Planner"); ?></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('azimuthal'); ?>" title="Azimuthal Map"><i class="fas fa-compass"></i> <?= __("Azimuthal Map"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
 							</ul>
 						</li>
 					<?php } ?>
