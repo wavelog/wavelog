@@ -3,6 +3,7 @@
     <h2><?= __("Count QSOs by..."); ?></h2>
     <script>
         var lang_general_word_qso_data = '<?= __("QSO Data"); ?>';
+        var user_map_custom = JSON.parse('<?= $user_map_custom; ?>');
         var lang_gen_hamradio_qso_short = '<?= __("QSOs"); ?>';
         var lang_distinct_counts_worked = '<?= __("Worked"); ?>';
         var lang_distinct_counts_confirmed = '<?= __("Confirmed"); ?>';

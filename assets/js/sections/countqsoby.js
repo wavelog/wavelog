@@ -142,15 +142,24 @@ function destroyDistinctTable() {
 	distinctTable = null;
 }
 
+function distinctBadgeStyle(color) {
+	var r = parseInt(color.substr(1, 2), 16), g = parseInt(color.substr(3, 2), 16), b = parseInt(color.substr(5, 2), 16);
+	var textColor = (0.299 * r + 0.587 * g + 0.114 * b) > 150 ? '#000' : '#fff';
+	return 'background: ' + color + '; color: ' + textColor + ';';
+}
+
 function renderDistinctTable(tmp) {
 	var typeLabels = { dxcc: lang_distinct_counts_type_dxcc, grid: lang_distinct_counts_type_grid, itu: lang_distinct_counts_type_itu, cq: lang_distinct_counts_type_cq };
 	var typeLabel = typeLabels[tmp.type] || lang_distinct_counts_type_ref;
 
+	var workedColor = (typeof user_map_custom !== 'undefined' && user_map_custom.qso && user_map_custom.qso.color) ? user_map_custom.qso.color : '#0d6efd';
+	var confirmedColor = (typeof user_map_custom !== 'undefined' && user_map_custom.qsoconfirm && user_map_custom.qsoconfirm.color) ? user_map_custom.qsoconfirm.color : '#198754';
+
 	$("#distinct_summary").html(
 		'<div class="d-flex flex-wrap justify-content-center align-items-center gap-2">' +
 			'<span class="fs-5 fw-semibold">' + decodeHtml(typeLabel) + '</span>' +
-			'<span class="badge text-bg-primary fs-6">' + tmp.summary.distinct + ' ' + decodeHtml(lang_distinct_counts_worked) + '</span>' +
-			'<span class="badge text-bg-success fs-6">' + tmp.summary.confirmed + ' ' + decodeHtml(lang_distinct_counts_confirmed) + '</span>' +
+			'<span class="badge fs-6" style="' + distinctBadgeStyle(workedColor) + '">' + tmp.summary.distinct + ' ' + decodeHtml(lang_distinct_counts_worked) + '</span>' +
+			'<span class="badge fs-6" style="' + distinctBadgeStyle(confirmedColor) + '">' + tmp.summary.confirmed + ' ' + decodeHtml(lang_distinct_counts_confirmed) + '</span>' +
 			'<span class="badge text-bg-secondary fs-6">' + tmp.summary.qsos + ' ' + decodeHtml(lang_gen_hamradio_qso_short) + ' (' + decodeHtml(lang_distinct_counts_qsos_total) + ')</span>' +
 		'</div>'
 	);
