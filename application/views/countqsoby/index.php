@@ -21,10 +21,11 @@
     </style>
 
     <div id="countqsoby_div">
-        <div class="card">
-            <div class="card-header">
-                <?= __("Count QSOs by..."); ?>
+        <div class="card mb-3">
+                        <div class="card-header" role="button" data-bs-toggle="collapse" data-bs-target="#distinctFilterBody" aria-expanded="true" aria-controls="distinctFilterBody">
+                <h6 class="mb-0"><?= __("Filter"); ?> <i class="fas fa-chevron-down float-end" style="font-size: 0.75rem; line-height: 1.5;"></i></h6>
             </div>
+            <div class="collapse show" id="distinctFilterBody">
             <div class="card-body">
 
                 <div class="row mb-3">
@@ -190,12 +191,37 @@
                     <button id="distinctplot" type="button" name="distinctplot" class="btn btn-sm btn-primary ld-ext-right ld-ext-right-distinctplot" onclick="distinctPlot()"><?= __("Show") ?><div class="ld ld-ring ld-spin"></div></button>
                 </div>
 
-                <div class="mt-3 text-center" id="distinct_summary"></div>
+				</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <?= __("Count QSOs by..."); ?>
+            </div>
+            <div class="card-body">
+                <div class="text-center" id="distinct_summary"></div>
                 <div class="table-responsive mt-2">
                     <table id="distincttable" class="table table-sm table-striped table-hover" style="width:100%"></table>
                 </div>
-
             </div>
         </div>
     </div>
+
+	<script>
+        document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(function(header) {
+            var target = document.querySelector(header.dataset.bsTarget);
+            if (target) {
+                var icon = header.querySelector('.fa-chevron-down');
+                if (icon) {
+                    target.addEventListener('show.bs.collapse', function() {
+                        icon.style.transform = 'rotate(0deg)';
+                    });
+                    target.addEventListener('hidden.bs.collapse', function() {
+                        icon.style.transform = 'rotate(180deg)';
+                    });
+                }
+            }
+        });
+    </script>
 </div>

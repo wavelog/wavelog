@@ -146,7 +146,14 @@ function renderDistinctTable(tmp) {
 	var typeLabels = { dxcc: lang_distinct_counts_type_dxcc, grid: lang_distinct_counts_type_grid, itu: lang_distinct_counts_type_itu, cq: lang_distinct_counts_type_cq };
 	var typeLabel = typeLabels[tmp.type] || lang_distinct_counts_type_ref;
 
-	$("#distinct_summary").html('<strong>' + decodeHtml(typeLabel) + ':</strong> ' + tmp.summary.distinct + ' ' + decodeHtml(lang_distinct_counts_worked) + ', <strong>' + tmp.summary.confirmed + '</strong> ' + decodeHtml(lang_distinct_counts_confirmed) + ', ' + tmp.summary.qsos + ' ' + decodeHtml(lang_gen_hamradio_qso_short) + ' (' + decodeHtml(lang_distinct_counts_qsos_total) + ')');
+	$("#distinct_summary").html(
+		'<div class="d-flex flex-wrap justify-content-center align-items-center gap-2">' +
+			'<span class="fs-5 fw-semibold">' + decodeHtml(typeLabel) + '</span>' +
+			'<span class="badge text-bg-primary fs-6">' + tmp.summary.distinct + ' ' + decodeHtml(lang_distinct_counts_worked) + '</span>' +
+			'<span class="badge text-bg-success fs-6">' + tmp.summary.confirmed + ' ' + decodeHtml(lang_distinct_counts_confirmed) + '</span>' +
+			'<span class="badge text-bg-secondary fs-6">' + tmp.summary.qsos + ' ' + decodeHtml(lang_gen_hamradio_qso_short) + ' (' + decodeHtml(lang_distinct_counts_qsos_total) + ')</span>' +
+		'</div>'
+	);
 
 	destroyDistinctTable();
 
