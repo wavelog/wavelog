@@ -118,7 +118,8 @@ function distinctPlot() {
 			'qsl': $("#distinctqsl").is(":checked"),
 			'lotw': $("#distinctlotw").is(":checked"),
 			'eqsl': $("#distincteqsl").is(":checked"),
-			'qrz': $("#distinctqrz").is(":checked")
+			'qrz': $("#distinctqrz").is(":checked"),
+			'clublog': $("#distinctclublog").is(":checked")
 		},
 		success: function(tmp) {
 			if (tmp.ok == 'OK') {
@@ -237,7 +238,8 @@ function getDistinctQsos(group, confirmed) {
 			'qsl': $("#distinctqsl").is(":checked"),
 			'lotw': $("#distinctlotw").is(":checked"),
 			'eqsl': $("#distincteqsl").is(":checked"),
-			'qrz': $("#distinctqrz").is(":checked")
+			'qrz': $("#distinctqrz").is(":checked"),
+			'clublog': $("#distinctclublog").is(":checked")
 		},
 		success: function (html) {
 			BootstrapDialog.show({

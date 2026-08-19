@@ -61,6 +61,7 @@ class Countqsoby extends CI_Controller {
             'lotw' => $this->input->post('lotw', true),
             'eqsl' => $this->input->post('eqsl', true),
             'qrz' => $this->input->post('qrz', true),
+            'clublog' => $this->input->post('clublog', true),
         );
 
         $data['results'] = $this->countqsoby_model->qso_details($type, $group, $band, $sat, $propagation, $mode, $orbit, $dateFrom, $dateTo, $postdata);

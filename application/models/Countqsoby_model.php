@@ -6,7 +6,7 @@ class Countqsoby_model extends CI_Model
 	/*
 	 * Returns distinct QSO counts grouped by grid, dxcc or an award reference,
 	 * honouring band/sat/orbit/propagation/mode filters.
-	 * QSL checkboxes (qsl/lotw/eqsl/qrz) select the confirmation sources that
+	 * QSL checkboxes (qsl/lotw/eqsl/qrz/clublog) select the confirmation sources that
 	 * count towards the "confirmed" number; they never hide unconfirmed QSOs.
 	 */
 	public function get_counts($postdata) {
@@ -162,7 +162,7 @@ class Countqsoby_model extends CI_Model
 
 	/*
 	 * Builds the SQL condition deciding which QSOs count as confirmed.
-	 * Mirrors the checkbox set used by gridmap: qsl, lotw, eqsl, qrz
+	 * Mirrors the checkbox set used by gridmap: qsl, lotw, eqsl, qrz, clublog
 	 * (sent as "true"/"false" strings by the JS).
 	 */
 	private function confirm_condition($clean) {
@@ -178,6 +178,9 @@ class Countqsoby_model extends CI_Model
 		}
 		if (($clean['qrz'] ?? '') === 'true') {
 			$sql .= " or col_qrzcom_qso_download_status = 'Y'";
+		}
+		if (($clean['clublog'] ?? '') === 'true') {
+			$sql .= " or col_clublog_qso_download_status = 'Y'";
 		}
 		return $sql === '' ? '1=0' : '(' . substr($sql, 4) . ')';
 	}

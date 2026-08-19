@@ -185,6 +185,14 @@
                             echo '>'; ?>
                             <label class="form-check-label" for="distinctqrz"><?= __("QRZ.com"); ?></label>
                         </div>
+                        <div class="form-check-inline">
+                            <?php echo '<input class="form-check-input" type="checkbox" id="distinctclublog"';
+                            if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+                                echo ' checked';
+                            }
+                            echo '>'; ?>
+                            <label class="form-check-label" for="distinctclublog"><?= __("Clublog"); ?></label>
+                        </div>
                     </div>
                 </div>
 
