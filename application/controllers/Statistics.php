@@ -330,9 +330,25 @@ class Statistics extends CI_Controller {
 		$data['sats'] = $this->bands->get_worked_sats();
 		$data['orbits'] = $this->bands->get_worked_orbits();
 
+		// Center for the azimuthal map: active station location's gridsquare
+		$this->load->library('qra');
+		$data['home_lat'] = null;
+		$data['home_lng'] = null;
+		$data['homegrid'] = '';
+		$homegrid = explode(',', $this->stations->find_gridsquare());
+		if ($homegrid && isset($homegrid[0]) && $homegrid[0] != '0') {
+			$latlng = $this->qra->qra2latlong($homegrid[0]);
+			if ($latlng !== false) {
+				$data['home_lat'] = round((float)$latlng[0], 6);
+				$data['home_lng'] = round((float)$latlng[1], 6);
+				$data['homegrid'] = strtoupper($homegrid[0]);
+			}
+		}
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/chart.js',
+			'assets/js/d3.min.js',
 			'assets/js/sections/antennastats.js',
 			'assets/js/bootstrap-multiselect.js',
 		];
