@@ -609,6 +609,7 @@ msgstr "Kayıt Görünümü - VUCC"
 #: application/controllers/Timeline.php:136
 #: application/controllers/Timeline.php:139
 #: application/controllers/Timeline.php:142
+#: application/controllers/Statistics.php:399
 msgid "Log View"
 msgstr "Kayıt Görünümü"
 
@@ -2255,6 +2256,7 @@ msgstr "Tüm callbook aramaları başarısız oldu veya sonuç döndürmedi."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/statistics/antennaanalytics.php:43
 msgid "Mode"
 msgstr "Mod"
 
@@ -2537,6 +2539,7 @@ msgstr "Mesafe"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/statistics/antennaanalytics.php:31
 msgid "Band"
 msgstr "Band"
 
@@ -3721,15 +3724,18 @@ msgstr "QSL İstatistikleri"
 #: application/controllers/Statistics.php:325
 #: application/views/interface_assets/header.php:162
 #: application/views/statistics/antennaanalytics.php:2
+#: application/views/statistics/antennaanalytics.php:10
 msgid "Antenna Analytics"
 msgstr "Anten Analizi"
 
 #: application/controllers/Statistics.php:383
+#: application/controllers/Statistics.php:399
 msgid "Satellite QSOs"
 msgstr "Uydu QSO'ları"
 
 #: application/controllers/Statistics.php:400
 #: application/views/interface_assets/header.php:188
+#: application/controllers/Statistics.php:416
 msgid "EME Initials"
 msgstr "Dünya-Ay-Dünya (EME) İletişimi"
 
@@ -4997,6 +5003,10 @@ msgstr "Fark"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/statistics/antennaanalytics.php:34
+#: application/views/statistics/antennaanalytics.php:46
+#: application/views/statistics/antennaanalytics.php:60
+#: application/views/statistics/antennaanalytics.php:116
 msgid "All"
 msgstr "Tümü"
 
@@ -5103,6 +5113,8 @@ msgstr "Yok/Boş"
 #: application/views/timeline/index.php:363
 #: application/views/timeline/index.php:399
 #: application/views/timeplotter/index.php:75
+#: application/views/statistics/antennaanalytics.php:91
+#: application/views/statistics/antennaanalytics.php:138
 msgid "Show"
 msgstr "Göster"
 
@@ -5163,6 +5175,8 @@ msgstr "Uydu"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:64
 #: application/views/statistics/antennaanalytics.php:102
+#: application/views/statistics/antennaanalytics.php:72
+#: application/views/statistics/antennaanalytics.php:126
 msgid "Orbit"
 msgstr "Yörünge"
 
@@ -7381,6 +7395,7 @@ msgstr "Tablo"
 #: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/statistics/antennaanalytics.php:86
 msgid "Map"
 msgstr "Harita"
 
@@ -9469,6 +9484,7 @@ msgid "Download PNG"
 msgstr ""
 
 #: application/views/azimuthal/index.php:65
+#: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
 msgstr ""
 
@@ -14786,6 +14802,7 @@ msgstr "QSL Tarihi"
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:720
 #: application/views/view_log/qso.php:728
+#: application/views/statistics/antennaanalytics.php:85
 msgid "View"
 msgstr "Görüntüle"
 
@@ -17764,6 +17781,7 @@ msgstr "Bu QSO'lar güncellenemedi:"
 #: application/views/logbookadvanced/showUpdateResult.php:48
 #: application/views/logbookadvanced/showUpdateResult.php:111
 #: application/views/search/lotw_unconfirmed.php:28
+#: application/views/statistics/antennaanalytics.php:104
 msgid "Station location"
 msgstr "İstasyon Konumu"
 
@@ -20042,6 +20060,8 @@ msgstr "GEÇMİŞ"
 #: application/views/qso/index.php:108
 #: application/views/statistics/antennaanalytics.php:49
 #: application/views/statistics/antennaanalytics.php:89
+#: application/views/statistics/antennaanalytics.php:57
+#: application/views/statistics/antennaanalytics.php:113
 msgid "Sat"
 msgstr "Uydu"
 
@@ -21629,14 +21649,18 @@ msgid "Visit Public Page"
 msgstr "Ziyaretçi Sayfasına Git"
 
 #: application/views/statistics/antennaanalytics.php:5
+#: application/views/statistics/antennaanalytics.php:13
 msgid "View azimuth and elevation data"
 msgstr ""
 
 #: application/views/statistics/antennaanalytics.php:12
+#: application/views/statistics/antennaanalytics.php:20
+#: application/views/statistics/antennaanalytics.php:99
 msgid "Azimuth"
 msgstr "Azimut"
 
 #: application/views/statistics/antennaanalytics.php:15
+#: application/views/statistics/antennaanalytics.php:23
 msgid "Elevation"
 msgstr "Yükseklik"
 
@@ -23541,6 +23565,23 @@ msgstr ""
 
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
+msgstr ""
+
+#: application/views/statistics/antennaanalytics.php:87
+msgid "Radar"
+msgstr ""
+
+#: application/views/statistics/antennaanalytics.php:101
+msgid "QSOs per degree of azimuth"
+msgstr ""
+
+#: application/views/statistics/antennaanalytics.php:102
+#, php-format
+msgid "25 / 50 / 75 % of peak"
+msgstr ""
+
+#: application/views/statistics/antennaanalytics.php:103
+msgid "Marker every 5°"
 msgstr ""
 
 #, php-format
