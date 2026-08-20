@@ -57,7 +57,7 @@
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
                 <div class="mb-2">
                     <label for="floatingInput"><strong><?= __("Username"); ?></strong></label>
-                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php if (file_exists('.demo')) { echo "demo"; } else { echo __("Username"); } ?>" value="<?php echo $this->input->post('user_name'); ?>" autocomplete="username" autofocus>
+                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php if (file_exists('.demo')) { echo "demo"; } else { echo __("Username"); } ?>" value="<?php echo html_escape($this->input->post('user_name')); ?>" autocomplete="username" autofocus>
                 </div>
                 <div class="mb-2">
                     <label for="floatingPassword"><strong><?= __("Password"); ?></strong></label>
