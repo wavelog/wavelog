@@ -2002,6 +2002,48 @@ svg text.month { fill: #AAA; }
 	display: block;
 }
 
+/* ===================================================================
+   Label Designer
+   Same editor components as the postcard designer, but the canvas
+   (stage, rulers, guides) is sized dynamically from the selected
+   label type instead of the postcard's fixed 5.5 × 3.5 in. JS sets
+   the three --lbl-* custom properties; these scoped rules override
+   the fixed postcard dimensions only inside #lblDesigner.
+   =================================================================== */
+#lblDesigner {
+	--lbl-stage-w: 600px;
+	--lbl-stage-h: 300px;
+	--lbl-grid: 28.75px;
+}
+
+#lblDesigner #stageZoom,
+#lblDesigner #rulerWrap {
+	width: calc(var(--lbl-stage-w) + 40px);
+	height: calc(var(--lbl-stage-h) + 40px);
+}
+
+#lblDesigner #rulerTop {
+	width: var(--lbl-stage-w);
+}
+
+#lblDesigner #rulerLeft {
+	height: var(--lbl-stage-h);
+}
+
+#lblDesigner #stage {
+	width: var(--lbl-stage-w);
+	height: var(--lbl-stage-h);
+	background-size: var(--lbl-grid) var(--lbl-grid);
+}
+
+#lblDesigner .qsl-guide-v {
+	height: var(--lbl-stage-h);
+}
+
+#lblDesigner .qsl-guide-h {
+	width: var(--lbl-stage-w);
+}
+
 /* ============================================================
    Custom map tile styles (user-selectable; override active theme)
    Body class = user_options map_custom.tile.style (see custom_map_style_helper).
