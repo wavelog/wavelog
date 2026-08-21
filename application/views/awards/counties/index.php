@@ -204,8 +204,8 @@
             echo '<td><a href="javascript:displayStateCounties(\'' . $state . '\')">' . $state . '</a></td>';
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'worked\')">' . $worked . '</a></td>';
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'confirmed\')">' . $confirmed . '</a></td>';
-            echo '<td>' . $target . '</td>';
-            echo '<td>' . $remaining . '</td>';
+            echo '<td><a href="javascript:displayStateCountiesTarget(\'' . $state . '\')">' . $target . '</a></td>';
+            echo '<td><a href="javascript:displayStateCountiesNeeded(\'' . $state . '\')">' . $remaining . '</a></td>';
             echo '<td>' . $progress_bar($worked_pct, $colorWkd) . '</td>';
             echo '<td>' . $progress_bar($confirmed_pct, $colorCnfm) . '</td>';
             echo '</tr>';

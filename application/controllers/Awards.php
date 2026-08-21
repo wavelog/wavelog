@@ -1408,22 +1408,22 @@ class Awards extends CI_Controller {
     private function counties_postdata() {
         $postdata = array();
         foreach (array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog') as $source) {
-            $postdata[$source] = $this->input->post($source) ? 1 : NULL;
+            $postdata[$source] = $this->input->post($source, true) ? 1 : NULL;
         }
 
-        $band = $this->input->post('band');
-        $postdata['band'] = empty($band) ? 'All' : $this->security->xss_clean($band);
+        $band = $this->input->post('band', true);
+        $postdata['band'] = empty($band) ? 'All' : $band;
 
-        $mode = $this->input->post('mode');
-        $postdata['mode'] = empty($mode) ? 'All' : $this->security->xss_clean($mode);
+        $mode = $this->input->post('mode', true);
+        $postdata['mode'] = empty($mode) ? 'All' : $mode;
 
         return $postdata;
     }
 
     public function counties_list_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $type  = str_replace('"', "", $this->input->post("Type", true));
         $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
         $data['type'] = $type;
         $this->load->view('awards/counties/details_ajax', $data);
@@ -1433,8 +1433,8 @@ class Awards extends CI_Controller {
         $this->load->model('logbook_model');
         $this->load->model('counties');
 
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $county = str_replace('"', "", $this->input->post("County", true));
         $data['results'] = $this->logbook_model->county_qso_details($state, $county, $this->counties_postdata());
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
@@ -1447,10 +1447,35 @@ class Awards extends CI_Controller {
 
     public function counties_state_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
+        $state = str_replace('"', "", $this->input->post("State", true));
         $data['counties_array'] = $this->counties->get_county_counts($state, $this->counties_postdata());
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);
+    }
+
+    /*
+        AJAX endpoint behind the "Target" link of the counties progress
+        table: returns every county of the state, not only worked ones.
+    */
+    public function counties_target_ajax() {
+        $this->load->model('counties');
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $data['counties_array'] = $this->counties->get_counties_list($state);
+        $data['state'] = $state;
+        $this->load->view('awards/counties/target_ajax', $data);
+    }
+
+    /*
+        AJAX endpoint behind the "Remaining" link of the counties progress
+        table: returns the counties of the state that are not worked yet.
+        Honors the QSL/band/mode filters, like the worked lists.
+    */
+    public function counties_needed_ajax() {
+        $this->load->model('counties');
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $data['counties_array'] = $this->counties->get_counties_needed($state, $this->counties_postdata());
+        $data['state'] = $state;
+        $this->load->view('awards/counties/needed_ajax', $data);
     }
 
     public function gridmaster($dxcc) {

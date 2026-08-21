@@ -161,7 +161,10 @@ class Counties extends CI_Model
     /*
     * Returns worked and confirmed QSO counts per county for a given state.
     * Uses the same band/DXCC/SAT rules as get_counties() so the counts match
-    * what counts toward the USA-CA award.
+    * what counts toward the USA-CA award. Every county of the state is listed
+    * (worked or not); worked counties missing from US_counties.csv are
+    * appended after them. Names are the bare county names, matched
+    * case-insensitively.
     */
     function get_county_counts($state, $postdata) {
 		$this->load->model('logbooks_model');
@@ -184,7 +187,11 @@ class Counties extends CI_Model
 		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
 		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
 
-        $sql = "select COL_CNTY,
+        // COL_CNTY is stored as "STATE,COUNTY" for US QSOs (ADIF format),
+        // but the counties are listed by their bare name.
+        $cnty_name = "TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1))";
+
+        $sql = "select $cnty_name as COL_CNTY,
 			count(*) as worked,
 			sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 		from " . $this->config->item('table_name') . " thcv
@@ -200,10 +207,36 @@ class Counties extends CI_Model
 			$binding[] = $state;
 		}
 
-		$sql .= " group by COL_CNTY order by COL_CNTY";
+		$sql .= " group by $cnty_name order by $cnty_name";
 
 		$query = $this->db->query($sql, $binding);
-        return $query->result_array();
+
+        $worked = array();
+        foreach ($query->result_array() as $row) {
+            $worked[strtoupper($row['COL_CNTY'])] = $row;
+        }
+
+        $result = array();
+        foreach ($this->get_counties_list($state) as $county) {
+            $row = $worked[strtoupper($county)] ?? null;
+            $result[] = array(
+                'COL_CNTY'   => $county,
+                'worked'     => $row ? (int) $row['worked'] : 0,
+                'confirmed'  => $row ? (int) $row['confirmed'] : 0,
+            );
+            unset($worked[strtoupper($county)]);
+        }
+
+        // Counties in the log but not in US_counties.csv keep their counts
+        foreach ($worked as $row) {
+            $result[] = array(
+                'COL_CNTY'   => $row['COL_CNTY'],
+                'worked'     => (int) $row['worked'],
+                'confirmed'  => (int) $row['confirmed'],
+            );
+        }
+
+        return $result;
     }
 
     /*
@@ -307,6 +340,62 @@ class Counties extends CI_Model
 	    }
 
 	    return $targets;
+    }
+
+    /*
+     * Returns all county names of a state (the "target" list) taken from
+     * assets/json/US_counties.csv, keyed by the 2-letter state code.
+     */
+    function get_counties_list($state) {
+	    $cache_key = 'UsCountiesList';
+
+	    if (!$counties = $this->cache->get($cache_key)) {
+		    $counties = array();
+		    $file = 'assets/json/US_counties.csv';
+
+		    if (is_readable($file) && ($handle = fopen($file, 'r')) !== false) {
+			    while (($row = fgetcsv($handle, 1000, ",", '"', '\\')) !== false) {
+				    if (count($row) < 2) {
+					    continue;
+				    }
+				    $code = isset($this->us_state_codes[$row[0]]) ? $this->us_state_codes[$row[0]] : null;
+				    if ($code !== null) {
+					    $counties[$code][] = $row[1];
+				    }
+			    }
+			    fclose($handle);
+		    }
+
+		    $this->cache->save($cache_key, $counties, (60 * 60 * 24));
+	    }
+
+	    return isset($counties[$state]) ? $counties[$state] : array();
+    }
+
+    /*
+     * Returns the counties of a state that count toward the target but are not
+     * worked yet: the US_counties.csv list minus the worked counties of the
+     * log. Names are compared case-insensitively, as a QSO's county can be
+     * typed or imported in any case.
+     */
+    function get_counties_needed($state, $postdata) {
+        $needed = array();
+        $worked = $this->get_counties($state, 'none', $postdata);
+
+        $worked_map = array();
+        if (isset($worked)) {
+            foreach ($worked as $row) {
+                $worked_map[strtoupper($this->bare_county($row['COL_CNTY']))] = true;
+            }
+        }
+
+        foreach ($this->get_counties_list($state) as $county) {
+            if (!isset($worked_map[strtoupper($county)])) {
+                $needed[] = $county;
+            }
+        }
+
+        return $needed;
     }
 
     /*
