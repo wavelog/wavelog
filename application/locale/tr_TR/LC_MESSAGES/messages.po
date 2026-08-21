@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-20 18:43+0000\n"
-"PO-Revision-Date: 2026-08-21 06:13+0000\n"
+"PO-Revision-Date: 2026-08-21 09:31+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -254,7 +254,7 @@ msgstr "Toplu İstatistikler"
 #: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
 msgid "Activated Gridsquare Map"
-msgstr "Aktif Grid Konum Haritası"
+msgstr "Aktif Grid Kare Haritası"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Awards.php:1404
@@ -793,17 +793,17 @@ msgstr "Çalışılan Grid Karesi"
 #: application/controllers/Awards.php:1406
 #: application/controllers/Awards.php:1442
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Çalışılan Grid Karesi LoTW'de onaylandı"
+msgstr "LoTW'de onaylanan Grid Karesi"
 
 #: application/controllers/Awards.php:1407
 #: application/controllers/Awards.php:1443
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Çalışılan Grid Karesi kart QSL ile doğrulandı"
+msgstr "QSL kart ile doğrulanan Grid Karesi"
 
 #: application/controllers/Awards.php:1408
 #: application/controllers/Awards.php:1444
 msgid "Total Gridsquares worked"
-msgstr "Toplam çalışılan grid kareleri"
+msgstr "Toplam çalışılan grid karesi"
 
 #: application/controllers/Awards.php:1425
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -1321,7 +1321,7 @@ msgstr "QSO'ları şuna göre say..."
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
-msgstr "Gridsquare"
+msgstr "Grid Karesi"
 
 #: application/controllers/Countqsoby.php:75
 #: application/views/activationplanner/index.php:121
@@ -1646,7 +1646,7 @@ msgstr "ve propagasyon"
 #: application/controllers/Dxatlas.php:18
 #: application/views/interface_assets/header.php:536
 msgid "DX Atlas Gridsquare Export"
-msgstr "DX Atlas Konum belirleyici Dışa Aktarma"
+msgstr "DX Atlas Grid Karesi Dışa Aktarma"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
@@ -1780,12 +1780,12 @@ msgstr "Onaylar"
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
-msgstr "Grid Konum Haritası"
+msgstr "Grid Kare Haritası"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
-msgstr "Çalışılmış Grid Karesi"
+msgstr "Toplam çalışılmış Grid Karesi"
 
 #: application/controllers/Hamsat.php:58
 msgid "Hamsat - Satellite Roving"
@@ -2638,7 +2638,7 @@ msgstr "DXCC %d QSO için güncellendi."
 #: application/controllers/Logbookadvanced.php:1035
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr "DXCC %s ve gridsquare %s için harita."
+msgstr "DXCC %s ve grid karesi %s için harita."
 
 #: application/controllers/Lookup.php:21
 msgid "Quick Lookup"
@@ -3216,12 +3216,12 @@ msgstr "QSO kaydedilemedi"
 #: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr "Lütfen gridsquare için değeri kontrol et (%s)"
+msgstr "Lütfen grid karesi için değeri kontrol edin (%s)"
 
 #: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr "Lütfen VUCC gridsquare (%s) değerini kontrol edin"
+msgstr "Lütfen VUCC grid karesi (%s) değerini kontrol edin"
 
 #: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
@@ -4186,7 +4186,7 @@ msgstr "Herhangi bir genel erişim etiketi bulunamadı."
 
 #: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
-msgstr "Uydu Gridsquare Haritası"
+msgstr "Uydu Grid Karesi Haritası"
 
 #: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
@@ -4244,7 +4244,7 @@ msgstr "Sayfa Adı ile birden fazla kullanıcı bulundu"
 
 #: application/controllers/Zonechecker.php:30
 msgid "Gridsquare Zone finder"
-msgstr "Izgara Kare Bölge Bulucu"
+msgstr "Grid Kare Bölge Bulucu"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
@@ -4252,7 +4252,7 @@ msgstr "GeoJSON verileri kullanılamıyor"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr "Geçersiz gridsquare"
+msgstr "Geçersiz grid karesi"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -5115,7 +5115,7 @@ msgstr "Göster"
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:168
 msgid "Activated Gridsquares"
-msgstr "İstasyonumun Aktivasyon Lokasyonları"
+msgstr "Aktive edilmiş grid kareleri"
 
 #: application/views/activated_gridmap/index.php:27
 #: application/views/amsatstatus/index.php:113
@@ -5243,6 +5243,8 @@ msgstr "Boylam"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"Geçersiz grid karesi — 2, 4, 6, 8 veya 10 karakter kullan (ör. FN, FN31, "
+"FN31pr)."
 
 #: application/views/activationplanner/index.php:21
 #: application/views/satellite/pass.php:21
@@ -5251,7 +5253,7 @@ msgstr "Uydu geçişleri"
 
 #: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "Grid karesi sınırları"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:82
@@ -5261,7 +5263,7 @@ msgstr ""
 #: application/views/activationplanner/index.php:25
 #, php-format
 msgid "References within %s of the gridsquare"
-msgstr ""
+msgstr "%s grid karesi içinde kalan referanslar"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/qslcard/confirmationresult.php:21
@@ -5451,7 +5453,7 @@ msgstr ""
 
 #: application/views/activationplanner/index.php:78
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "Mesafe ve yön için isteğe bağlı ikinci grid karesi"
 
 #: application/views/activationplanner/index.php:78
 msgid "e.g. JN58qm"
@@ -5479,7 +5481,7 @@ msgstr "Temizle"
 
 #: application/views/activationplanner/index.php:81
 msgid "Find my location and gridsquare"
-msgstr ""
+msgstr "Konumumu ve grid karemi bul"
 
 #: application/views/activationplanner/index.php:81
 msgid "Locate me"
@@ -5930,6 +5932,8 @@ msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Seçilirse, Wavelog, ADIF kayıtlarındaki MY_GRIDSQUARE alanı seçilen istasyon "
+"konumunun lokatorü ile eşleşmezse bile QSO'ları içe aktarmaya çalışacak."
 
 #: application/views/adif/import.php:178
 msgid ""
@@ -8110,7 +8114,7 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
-"Bu Ödül için dikkate alınan Alanlar: DXCC (ABD olmalı), Gridsquare (488 ana "
+"Bu Ödül için dikkate alınan Alanlar: DXCC (ABD olmalı), Grid Karesi (488 ana "
 "kara grid karesinden birini içermeli), Band 6M olmalı."
 
 #: application/views/awards/gridmaster/index.php:11
@@ -8194,24 +8198,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
-"Bu Ödül için dikkate alınan Alanlar: DXCC (Almanya olmalı), Gridsquare, "
-"Propogasyon ve Uydu Adı"
+"Bu Ödül için dikkate alınan alanlar: DXCC (Almanya olmalı), Grid Karesi, "
+"Propagasyon ve Uydu Adı"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
-"Bu Ödül için dikkate alınan Alanlar: DXCC (Lüksemburg olmalı), Gridsquare, "
-"Propogasyon ve Uydu Adı"
+"Bu Ödül için dikkate alınan alanlar: DXCC (Lüksemburg olmalı), Grid Karesi, "
+"Propagasyon ve Uydu Adı"
 
 #: application/views/awards/gridmaster/index.php:29
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
-"Bu Ödül için dikkate alınan Alanlar: DXCC (Japonya olmalı), Gridsquare, "
-"Propogasyon ve Uydu Adı"
+"Bu Ödül için dikkate alınan alanlar: DXCC (Japonya olmalı), Grid Karesi, "
+"Propagasyon ve Uydu Adı"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -8937,7 +8941,7 @@ msgstr ""
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
-msgstr ""
+msgstr "Grid karesi listesi"
 
 #: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -8949,7 +8953,7 @@ msgid ""
 "confirmed gridsquares on a desired band."
 msgstr ""
 "VHF/UHF Century Club Ödülü, istenen bandta çalışılan ve teyit edilen asgari "
-"sayıda Grid Karesi için verilir."
+"sayıda grid karesi için verilir."
 
 #: application/views/awards/vucc/index.php:8
 #: application/views/awards/wae/index.php:27
@@ -8966,12 +8970,12 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
-"Bu Ödül için Dikkate Alınan Alanlar: Grid karesi ve vucc_grids (ADIF: "
+"Bu Ödül için dikkate alınan alanlar: Grid karesi ve vucc_grids (ADIF: "
 "GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
-msgstr ""
+msgstr "VUCC Bant Başına Grid Kareleri"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
@@ -9434,6 +9438,8 @@ msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Etkin istasyon konumunuz için herhangi bir grid karesi atanmadığından, "
+"harita merkezlenemiyor."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
@@ -14350,12 +14356,12 @@ msgstr "Ukraynalı"
 #: application/views/distancerecords/index.php:6
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
-"Bu sayfa, uydular için grid karelerini baz alarak hesaplanan mesafe "
+"Bu sayfa, uydular için grid karelerini dikkate alarak hesaplanan mesafe "
 "rekorlarını listeler."
 
 #: application/views/distancerecords/index.php:24
 msgid "My Gridsquare"
-msgstr "Grid Locator'um"
+msgstr "Grid Karem"
 
 #: application/views/distancerecords/index.php:25
 msgid "DX Gridsquare"
@@ -14400,7 +14406,7 @@ msgstr ""
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
-msgstr "Yalnızca grid bilgisi olan QSO'lar dışa aktarılacaktır!"
+msgstr "Yalnızca grid karesi bilgisi olan QSO'lar dışa aktarılacaktır!"
 
 #: application/views/dxcalendar/index.php:18
 #: application/views/view_log/qso.php:435
@@ -14804,7 +14810,7 @@ msgstr ""
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "Çalışılan / onaylanan grid karelerinin haritasını görüntüle"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:373
@@ -14849,7 +14855,7 @@ msgstr "Profiliniz"
 
 #: application/views/hamsat/index.php:39
 msgid "Gridsquare(s)"
-msgstr "QTH lokator(ları)"
+msgstr "QTH grid kareleri"
 
 #: application/views/hamsat/index.php:40
 msgid "Workable"
@@ -15212,7 +15218,7 @@ msgstr "A Sınıfı"
 
 #: application/views/interface_assets/footer.php:118
 msgid "Gridsquare Formatting"
-msgstr "Gridsquare Biçimlendirme"
+msgstr "Grid Karesi Biçimlendirme"
 
 #: application/views/interface_assets/footer.php:119
 msgid ""
@@ -15290,16 +15296,16 @@ msgstr "WebSocket Telsiz"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Location is fetched from provided gridsquare"
-msgstr "Konum, istayon tarafından sağlanan gridsquare’dan alındı"
+msgstr "Konum, istayon tarafından sağlanan grid karesinden alındı"
 
 #: application/views/interface_assets/footer.php:139
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
-msgstr "Konum DXCC koordinatlarından alındı (gridsquare sağlanmadı)"
+msgstr "Konum DXCC koordinatlarından alındı (grid karesi bilgisi yok)"
 
 #: application/views/interface_assets/footer.php:140
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
-msgstr ""
+msgstr "Konum belirlenemedi çünkü grid karesi boş ve DXCC bilgisi yok"
 
 #: application/views/interface_assets/footer.php:141
 msgid "Error saving operator callsign. Please try again."
@@ -15783,7 +15789,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:599
 msgid "Gridsquare Zone checker"
-msgstr ""
+msgstr "Grid Karesi Bölge kontrolcüsü"
 
 #: application/views/interface_assets/header.php:606
 #: application/views/logbookadvanced/index.php:920
@@ -16159,9 +16165,9 @@ msgid ""
 "station profile, and the gridsquare of the QSO partner. Distance will be "
 "calculated based on if short path or long path is set."
 msgstr ""
-"Tüm QSO’ları, istasyon profilinizdeki gridsquare ve QSO ortağının gridsquare "
-"bilgisine göre mesafeyi ayarlayarak güncelle. Mesafe, kısa yol veya uzun yol "
-"seçimine göre hesaplanacaktır."
+"Tüm QSO'ları, istasyon profilinde ayarlı gridkaresi ve QSO partnerinin grid "
+"karesi bilgisine göre mesafeyi ayarlayarak güncelle. Mesafe, kısa yol veya "
+"uzun yol seçimine göre hesaplanır."
 
 #: application/views/logbookadvanced/checkresult.php:47
 #: application/views/logbookadvanced/distancedialog.php:3
@@ -16197,7 +16203,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:74
 #: application/views/logbookadvanced/checkresult.php:146
 msgid "Gridsquare Check Results"
-msgstr ""
+msgstr "Grid Karesi Kontrol Sonuçları"
 
 #: application/views/logbookadvanced/checkresult.php:83
 msgid "DXCC Check Results"
@@ -16223,17 +16229,19 @@ msgstr "Seçilenleri güncelle"
 
 #: application/views/logbookadvanced/checkresult.php:153
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Bu QSQ'lar hatalı grid karelerine sahip OLABİLİR."
 
 #: application/views/logbookadvanced/checkresult.php:154
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Sonuçlar doğru DXCC'ye bağlıdır. Grid karesi listesi TQSL grid karesi "
+"veritabanından gelmektedir."
 
 #: application/views/logbookadvanced/checkresult.php:167
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "DXCC Grid Karesi"
 
 #: application/views/logbookadvanced/checkresult.php:191
 #: application/views/logbookadvanced/index.php:77
@@ -16373,11 +16381,11 @@ msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:55
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Grid Karelerini Kontrol Et"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:56
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "DXCC ile uyuşmayan grid karelerini kontrol et"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:66
 msgid "Fix Continent"
@@ -16414,7 +16422,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:112
 msgid "Use callbook lookup to set gridsquare"
-msgstr ""
+msgstr "Izgara karesini ayarlamak için callbook aramasını kullan"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:113
 msgid "This is limited to 150 callsigns for each run!"
@@ -16755,7 +16763,7 @@ msgid ""
 "a gridsquare is set)."
 msgstr ""
 "Mesafe (km cinsinden). Mesafeyi yeniden hesaplamak için boş bırakın. (Sadece "
-"bir grid ayarlandığında çalışır)."
+"bir grid karesi ayarlandığında çalışır)."
 
 #: application/views/logbookadvanced/edit.php:258
 #: application/views/logbookadvanced/edit.php:261
@@ -16791,6 +16799,8 @@ msgid ""
 "Wildcards (in Callsign, State, DOK, County, QSL via, SOTA, POTA, WWFF, "
 "Operator, Gridsquare, Comment and Contest):"
 msgstr ""
+"Joker karakterler (Çağrı işareti, Eyalet, DOK, İlçe, QSL yoluyla, SOTA, "
+"POTA, WWFF, Operatör, Grid Karesi, Yorum ve Yarışma içinde):"
 
 #: application/views/logbookadvanced/help.php:30
 msgid "Matches any number of characters"
@@ -17141,11 +17151,11 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:80
 msgid "Gridsquares for"
-msgstr ""
+msgstr "Şunlar için grid kareleri"
 
 #: application/views/logbookadvanced/index.php:81
 msgid "Non DXCC matching gridsquare"
-msgstr ""
+msgstr "DXCC ile eşleşmeyen grid karesi"
 
 #: application/views/logbookadvanced/index.php:84
 msgid "You need to select exactly 2 QSOs to merge!"
@@ -17454,7 +17464,7 @@ msgstr "Eyaleti Ara"
 
 #: application/views/logbookadvanced/index.php:786
 msgid "Search Gridsquare"
-msgstr "Grid'i Ara"
+msgstr "Grid Karesini Ara"
 
 #: application/views/logbookadvanced/index.php:789
 msgid "Search CQ Zone"
@@ -17809,7 +17819,7 @@ msgstr "Mesafe için güncellenen QSO sayısı"
 
 #: application/views/logbookadvanced/showUpdateResult.php:141
 msgid "Results for gridsquare update:"
-msgstr "Gridsquare güncellemesinin sonuçları:"
+msgstr "Grid karesi güncelleme sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:142
 msgid "The number of QSOs updated for gridsquare is"
