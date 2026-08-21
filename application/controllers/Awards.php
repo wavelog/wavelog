@@ -1338,13 +1338,13 @@ class Awards extends CI_Controller {
 	    $this->load->view('interface_assets/footer');
     }
 
-    public function counties()	{
-		$footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/bootstrap-multiselect.js',
-			'assets/js/sections/countiesmap.js',
-			'assets/js/leaflet/L.Maidenhead.js',
-		];
+    public function counties() {
+        $footerData = [];
+        $footerData['scripts'] = [
+            'assets/js/bootstrap-multiselect.js',
+            'assets/js/sections/countiesmap.js',
+            'assets/js/leaflet/L.Maidenhead.js',
+        ];
 
         $this->load->model('counties');
         $this->load->model('logbookadvanced_model');
@@ -1360,12 +1360,14 @@ class Awards extends CI_Controller {
         $data['postdata'] = $postdata;
         $data['worked_bands'] = $this->bands->get_worked_bands('uscounties');
         $data['modes'] = $this->logbookadvanced_model->get_modes();
-		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+        $data['user_map_custom'] = $this->optionslib->get_map_custom();
+
+        //$bodyData['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
         $data['page_title'] = sprintf(__("Awards - %s"), __("US Counties"));
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/counties/index');
+        $this->load->view('awards/counties/index'); //, $bodyData);
         $this->load->view('interface_assets/footer', $footerData);
     }
 

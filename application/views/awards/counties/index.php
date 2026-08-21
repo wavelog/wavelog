@@ -1,7 +1,12 @@
+<?php
+    $colors = json_decode($user_map_custom);
+    $colorCnfm = $colors->qsoconfirm->color;
+    $colorWkd = $colors->qso->color;
+?>
 <script>
-	var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>";
-	var lang_usa_county = "<?= __("County"); ?>";
-	var lang_hover_over_a_county = "<?= __("Hover over a county"); ?>";
+    var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>";
+    var lang_usa_county = "<?= __("County"); ?>";
+    var lang_hover_over_a_county = "<?= __("Hover over a county"); ?>";
 </script>
 <script>
 	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
@@ -201,8 +206,8 @@
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'confirmed\')">' . $confirmed . '</a></td>';
             echo '<td>' . $target . '</td>';
             echo '<td>' . $remaining . '</td>';
-            echo '<td>' . $progress_bar($worked_pct, '#fd7e14') . '</td>';
-            echo '<td>' . $progress_bar($confirmed_pct, '#198754') . '</td>';
+            echo '<td>' . $progress_bar($worked_pct, $colorWkd) . '</td>';
+            echo '<td>' . $progress_bar($confirmed_pct, $colorCnfm) . '</td>';
             echo '</tr>';
         }
         ?>
@@ -215,8 +220,8 @@
         echo '<td>' . $total_confirmed . '</td>';
         echo '<td>' . $total_target . '</td>';
         echo '<td>' . $total_remaining . '</td>';
-        echo '<td>' . $progress_bar($total_worked_pct, '#fd7e14') . '</td>';
-        echo '<td>' . $progress_bar($total_confirmed_pct, '#198754') . '</td>';
+        echo '<td>' . $progress_bar($total_worked_pct, $colorWkd) . '</td>';
+        echo '<td>' . $progress_bar($total_confirmed_pct, $colorCnfm) . '</td>';
         echo '</tr>';
         ?>
         </tfoot>
