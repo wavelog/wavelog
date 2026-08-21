@@ -43,6 +43,8 @@ foreach (($labels ?? []) as $l) {
 	// ===== Translatable strings (PHP → JS) =====
 	const LANG = {
 		customText: <?= json_encode(__("Custom Text")); ?>,
+		line: <?= json_encode(__("Line")); ?>,
+		table: <?= json_encode(__("Table")); ?>,
 		untitled: <?= json_encode(__("Untitled")); ?>,
 		saveFailed: <?= json_encode(__("Save failed")); ?>,
 		saved: <?= json_encode(__("Template saved.")); ?>,
@@ -181,6 +183,19 @@ foreach (($labels ?? []) as $l) {
 					<i class="fas fa-font me-1"></i><?= __("Add Custom Text"); ?>
 				</button>
 
+				<div class="d-flex gap-2 mb-2">
+					<button type="button" id="btnAddLineH" class="btn btn-sm btn-outline-primary w-100" title="<?= __("Horizontal rule — enable 'Repeats per QSO' to draw a separator under every QSO row"); ?>">
+						<i class="fas fa-grip-lines me-1"></i><?= __("Horizontal Line"); ?>
+					</button>
+					<button type="button" id="btnAddLineV" class="btn btn-sm btn-outline-primary w-100" title="<?= __("Vertical rule — place at column edges to build a table grid"); ?>">
+						<i class="fas fa-grip-lines-vertical me-1"></i><?= __("Vertical Line"); ?>
+					</button>
+				</div>
+
+				<button type="button" id="btnAddTable" class="btn btn-sm btn-outline-primary w-100 mb-2" title="<?= __("Table grid — drag the corner to resize, drag the column markers to adjust column widths"); ?>">
+					<i class="fas fa-table me-1"></i><?= __("Add Table"); ?>
+				</button>
+
 				<?php $first = true; foreach ($qsl_field_groups as $group => $fields): ?>
 					<details class="qsl-cat" <?= $first ? 'open' : '' ?>>
 						<summary><?= $group ?></summary>
@@ -234,6 +249,14 @@ foreach (($labels ?? []) as $l) {
 						<label class="form-label small mb-1" for="tplRowPitch"><?= __("Row spacing"); ?> (<?= $_disp_u ?>)</label>
 						<input id="tplRowPitch" type="number" min="0.05" step="<?= $_step_pitch ?>" value="0.3" class="form-control form-control-sm">
 					</div>
+					<div class="mb-2 form-check">
+						<input type="checkbox" class="form-check-input" id="tplRowSeparators">
+						<label class="form-check-label small" for="tplRowSeparators" title="<?= __("Draws a rule between the QSO rows automatically, like the classic label layout"); ?>"><?= __("Separator lines between QSO rows"); ?></label>
+					</div>
+					<div class="mb-2" id="tplSepThickWrap" style="display:none;">
+						<label class="form-label small mb-1" for="tplSepThick"><?= __("Separator thickness"); ?> (pt)</label>
+						<input id="tplSepThick" type="number" min="0.1" max="4" step="0.1" value="0.4" class="form-control form-control-sm">
+					</div>
 				</div>
 			</aside>
 
@@ -284,7 +307,50 @@ foreach (($labels ?? []) as $l) {
 						</div>
 					</div>
 
-					<div class="mb-2">
+					<div class="mb-2" id="propTableRow" style="display:none;">
+						<div class="row g-2 mb-2">
+							<div class="col-6">
+								<label class="form-label small mb-1" for="propTableRows"><?= __("Rows"); ?></label>
+								<input id="propTableRows" type="number" min="1" max="20" step="1" class="form-control form-control-sm">
+							</div>
+							<div class="col-6">
+								<label class="form-label small mb-1" for="propTableCols"><?= __("Columns"); ?></label>
+								<input id="propTableCols" type="number" min="1" max="12" step="1" class="form-control form-control-sm">
+							</div>
+						</div>
+						<div class="row g-2 mb-2">
+							<div class="col-6">
+								<label class="form-label small mb-1"><?= __("Width"); ?> (<?= $_disp_u ?>)</label>
+								<input id="propTableW" type="number" step="<?= $_step_pos ?>" min="0.1" class="form-control form-control-sm">
+							</div>
+							<div class="col-6">
+								<label class="form-label small mb-1"><?= __("Height"); ?> (<?= $_disp_u ?>)</label>
+								<input id="propTableH" type="number" step="<?= $_step_pos ?>" min="0.05" class="form-control form-control-sm">
+							</div>
+						</div>
+						<label class="form-label small mb-1" for="propTableThick"><?= __("Thickness"); ?> (pt)</label>
+						<input id="propTableThick" type="number" step="0.1" min="0.1" max="4" value="0.4" class="form-control form-control-sm">
+					</div>
+
+					<div class="mb-2" id="propLineRow" style="display:none;">
+						<label class="form-label small mb-1"><?= __("Orientation"); ?></label>
+						<select id="propLineOrient" class="form-select form-select-sm">
+							<option value="h"><?= __("Horizontal"); ?></option>
+							<option value="v"><?= __("Vertical"); ?></option>
+						</select>
+						<div class="row g-2 mt-1">
+							<div class="col-6">
+								<label class="form-label small mb-1"><?= __("Length"); ?> (<?= $_disp_u ?>)</label>
+								<input id="propLineLen" type="number" step="<?= $_step_pos ?>" min="0.05" class="form-control form-control-sm">
+							</div>
+							<div class="col-6">
+								<label class="form-label small mb-1"><?= __("Thickness"); ?> (pt)</label>
+								<input id="propLineThick" type="number" step="0.1" min="0.1" max="4" class="form-control form-control-sm">
+							</div>
+						</div>
+					</div>
+
+					<div class="mb-2" id="propFontRow">
 						<label class="form-label small mb-1"><?= __("Font"); ?></label>
 						<select id="propFont" class="form-select form-select-sm">
 							<option value="Helvetica">Helvetica</option>
@@ -293,7 +359,7 @@ foreach (($labels ?? []) as $l) {
 						</select>
 					</div>
 
-					<div class="row g-2 mb-2 align-items-end">
+					<div class="row g-2 mb-2 align-items-end" id="propFontMiscRow">
 						<div class="col-6">
 							<label class="form-label small mb-1"><?= __("Font Size"); ?></label>
 							<input id="propFontSize" type="number" step="1" min="4" max="36" class="form-control form-control-sm" value="8">
@@ -311,7 +377,7 @@ foreach (($labels ?? []) as $l) {
 						<input type="color" id="propColor" class="form-control form-control-sm" value="#000000" style="max-width:80px;">
 					</div>
 
-					<div class="mb-3">
+					<div class="mb-3" id="propWrapRow">
 						<label class="form-label small mb-1"><?= __("Wrap width"); ?> (<?= $_disp_u ?>)</label>
 						<input id="propWrap" type="number" step="<?= $_step_wrap ?>" min="0.1" class="form-control form-control-sm">
 					</div>

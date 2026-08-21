@@ -2044,6 +2044,104 @@ svg text.month { fill: #AAA; }
 	width: var(--lbl-stage-w);
 }
 
+/* --- Ruled line elements (grid separators between QSO details) --- */
+/* Thin filled bars; selection/hover use outline so it doesn't change the
+   line's on-screen size (which maps to its printed thickness). */
+#lblDesigner .qsl_designer_placed.qsl-line-h,
+#lblDesigner .qsl_designer_placed.qsl-line-v {
+	padding: 0;
+	background: #000000; /* JS sets the element color inline */
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	white-space: normal;
+}
+
+#lblDesigner .qsl_designer_placed.qsl-line-h:hover,
+#lblDesigner .qsl_designer_placed.qsl-line-v:hover,
+#lblDesigner .qsl_designer_placed.qsl-line-h.selected,
+#lblDesigner .qsl_designer_placed.qsl-line-v.selected {
+	outline: 1px solid #ff7a00;
+	outline-offset: 1px;
+}
+
+#lblDesigner .qsl_designer_ghost.qsl-line-h,
+#lblDesigner .qsl_designer_ghost.qsl-line-v {
+	opacity: .35;
+}
+
+/* Resize handle at a selected line's end (drag to change its length) */
+#lblDesigner .qsl-line-handle {
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: #ff7a00;
+	border: 1px solid #ffffff;
+	border-radius: 2px;
+	z-index: 80;
+}
+
+#lblDesigner .qsl-line-handle.ew {
+	cursor: ew-resize;
+}
+
+#lblDesigner .qsl-line-handle.ns {
+	cursor: ns-resize;
+}
+
+/* --- Table element (rows × columns grid) --- */
+/* The container draws the outer border (JS sets color/thickness inline);
+   child divs are the internal column/row rules and never catch events. */
+#lblDesigner .qsl_designer_placed.qsl-table {
+	padding: 0;
+	background: transparent;
+	border-style: solid;
+	box-shadow: none;
+	white-space: normal;
+}
+
+#lblDesigner .qsl-table .qsl-tbl-v,
+#lblDesigner .qsl-table .qsl-tbl-h {
+	position: absolute;
+	pointer-events: none;
+}
+
+#lblDesigner .qsl-table.selected {
+	outline: 1px solid #ff7a00;
+	outline-offset: 1px;
+}
+
+/* Corner resize (whole table, one handle per corner) + column-boundary resize */
+#lblDesigner .qsl-tbl-handle {
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: #ff7a00;
+	border: 1px solid #ffffff;
+	border-radius: 2px;
+	z-index: 80;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-nw {
+	cursor: nw-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-ne {
+	cursor: ne-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-sw {
+	cursor: sw-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-se {
+	cursor: se-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-col {
+	cursor: col-resize;
+}
+
 /* ============================================================
    Custom map tile styles (user-selectable; override active theme)
    Body class = user_options map_custom.tile.style (see custom_map_style_helper).

@@ -60,6 +60,8 @@
 	const DEFAULT_TPL_OPTIONS = Object.freeze({
 		qsos_per_label: 1,
 		row_pitch_in: 0.3,
+		row_separators: false,
+		sep_thick_pt: 0.4,
 	});
 	let tplOptions = { ...DEFAULT_TPL_OPTIONS };
 	const history = [];
@@ -199,18 +201,74 @@
 	// True WYSIWYG font scale: a pt is 1/72 in, the stage is PX_PER_IN px/in.
 	const fontPx = pt => Math.max(4, Math.round((pt || 8) * PX_PER_IN / 72));
 
+	// ===== Table element helpers =====
+	// Effective per-column widths (inches). Normalizes the stored col_w list:
+	// falls back to equal widths when missing/malformed.
+	function tableCols(item) {
+		const cols = clamp(parseInt(item.cols, 10) || 3, 1, 12);
+		let w = Array.isArray(item.col_w) ? item.col_w.map(v => parseFloat(v) || 0) : [];
+		if (w.length !== cols || w.reduce((a, b) => a + b, 0) <= 0) {
+			w = Array.from({ length: cols }, () => (item.w_in || 1.8) / cols);
+		}
+		return w;
+	}
+
+	// (Re)build a table element's DOM: the container carries the outer border,
+	// child divs are the internal column/row rules. Children have no listeners;
+	// mouse events bubble to the container, which owns the drag binding.
+	function buildTableNode(el, item) {
+		el.classList.add('qsl-table');
+		const tpx = Math.max(1, (item.thick_pt || 0.4) * PX_PER_IN / 72);
+		const col = item.color || '#000000';
+		el.style.width = inToPxX(item.w_in || 1.8) + 'px';
+		el.style.height = inToPxY(item.h_in || 0.5) + 'px';
+		el.style.borderColor = col;
+		el.style.borderWidth = tpx + 'px';
+		el.style.background = 'transparent';
+		el.querySelectorAll('.qsl-tbl-v,.qsl-tbl-h').forEach(n => n.remove());
+		const rows = clamp(parseInt(item.rows, 10) || 3, 1, 20);
+		const hpx = inToPxY(item.h_in || 0.5);
+		tableCols(item).forEach((cw, i, arr) => {
+			if (i === arr.length - 1) return;
+			const v = document.createElement('div');
+			v.className = 'qsl-tbl-v';
+			v.style.left = (arr.slice(0, i + 1).reduce((a, b) => a + b, 0) * PX_PER_IN - tpx / 2) + 'px';
+			v.style.top = (-tpx / 2) + 'px';
+			v.style.bottom = (-tpx / 2) + 'px';
+			v.style.width = tpx + 'px';
+			v.style.background = col;
+			el.appendChild(v);
+		});
+		for (let i = 1; i < rows; i++) {
+			const h = document.createElement('div');
+			h.className = 'qsl-tbl-h';
+			h.style.top = (hpx * i / rows - tpx / 2) + 'px';
+			h.style.left = (-tpx / 2) + 'px';
+			h.style.right = (-tpx / 2) + 'px';
+			h.style.height = tpx + 'px';
+			h.style.background = col;
+			el.appendChild(h);
+		}
+	}
+
 	function renderElement(item) {
 		const el = document.createElement('div');
 		el.className = 'qsl_designer_placed';
 		el.dataset.id = item.id;
 		el.dataset.type = item.type;
-		el.textContent = item.type === 'field' ? item.field : (item.text || LANG.customText);
 		el.style.left = inToPxX(item.x_in) + 'px';
 		el.style.top = inToPxY(item.y_in) + 'px';
-		el.style.fontFamily = item.font || 'Helvetica';
-		el.style.fontSize = fontPx(item.font_pt) + 'px';
-		el.style.fontWeight = item.bold ? '700' : '600';
-		el.style.color = item.color || '#000000';
+		if (item.type === 'line') {
+			styleLineNode(el, item);
+		} else if (item.type === 'table') {
+			buildTableNode(el, item);
+		} else {
+			el.textContent = item.type === 'field' ? item.field : (item.text || LANG.customText);
+			el.style.fontFamily = item.font || 'Helvetica';
+			el.style.fontSize = fontPx(item.font_pt) + 'px';
+			el.style.fontWeight = item.bold ? '700' : '600';
+			el.style.color = item.color || '#000000';
+		}
 
 		el.addEventListener('mousedown', e => onElementMouseDown(e, item.id));
 
@@ -219,22 +277,54 @@
 		return el;
 	}
 
+	// Ruled line element: a thin filled bar (h or v) sized from len_in/thick_pt.
+	// Minimum 2px so thin rules stay grabbable on screen; the PDF prints the
+	// true thickness.
+	function styleLineNode(node, item) {
+		node.classList.add(item.orient === 'v' ? 'qsl-line-v' : 'qsl-line-h');
+		const tpx = Math.max(2, (item.thick_pt || 0.5) * PX_PER_IN / 72);
+		node.style.background = item.color || '#000000';
+		if (item.orient === 'v') {
+			node.style.width = tpx + 'px';
+			node.style.height = inToPxY(item.len_in || 1) + 'px';
+		} else {
+			node.style.height = tpx + 'px';
+			node.style.width = inToPxX(item.len_in || 1) + 'px';
+		}
+	}
+
 	function positionNode(id) {
 		const item = byId(id), node = nodeById(id);
 		if (!item || !node) return;
 		node.style.left = inToPxX(item.x_in) + 'px';
 		node.style.top = inToPxY(item.y_in) + 'px';
 		repositionGhosts(item);
+		refreshLineHandleFor(id);
+		refreshTableHandlesFor(id);
 	}
 
 	function styleNode(id) {
 		const item = byId(id), node = nodeById(id);
 		if (!item || !node) return;
-		node.textContent = item.type === 'field' ? item.field : (item.text || LANG.customText);
-		node.style.fontFamily = item.font || 'Helvetica';
-		node.style.fontSize = fontPx(item.font_pt) + 'px';
-		node.style.fontWeight = item.bold ? '700' : '600';
-		node.style.color = item.color || '#000000';
+		if (item.type === 'line') {
+			node.classList.remove('qsl-line-h', 'qsl-line-v');
+			node.textContent = '';
+			node.style.fontFamily = node.style.fontSize = node.style.fontWeight = '';
+			styleLineNode(node, item);
+			refreshLineHandleFor(item.id);
+		} else if (item.type === 'table') {
+			node.textContent = '';
+			node.style.fontFamily = node.style.fontSize = node.style.fontWeight = '';
+			node.style.color = '';
+			buildTableNode(node, item);
+			refreshTableHandlesFor(item.id);
+		} else {
+			node.textContent = item.type === 'field' ? item.field : (item.text || LANG.customText);
+			node.style.fontFamily = item.font || 'Helvetica';
+			node.style.fontSize = fontPx(item.font_pt) + 'px';
+			node.style.fontWeight = item.bold ? '700' : '600';
+			node.style.color = item.color || '#000000';
+		}
 		// Keep WYSIWYG ghost rows in sync with the primary.
 		stage.querySelectorAll('.qsl_designer_ghost[data-ghost-for="' + item.id + '"]').forEach(g => {
 			g.textContent = node.textContent;
@@ -242,7 +332,25 @@
 			g.style.fontSize = node.style.fontSize;
 			g.style.fontWeight = node.style.fontWeight;
 			g.style.color = node.style.color;
+			if (item.type === 'line') { syncGhostLine(g, item); }
 		});
+	}
+
+	// Ghost copies of a line carry the same geometry as the primary.
+	function syncGhostLine(g, item) {
+		g.classList.remove('qsl-line-h', 'qsl-line-v');
+		const tpx = Math.max(2, (item.thick_pt || 0.5) * PX_PER_IN / 72);
+		g.style.background = item.color || '#000000';
+		g.style.color = '';
+		if (item.orient === 'v') {
+			g.classList.add('qsl-line-v');
+			g.style.width = tpx + 'px';
+			g.style.height = inToPxY(item.len_in || 1) + 'px';
+		} else {
+			g.classList.add('qsl-line-h');
+			g.style.height = tpx + 'px';
+			g.style.width = inToPxX(item.len_in || 1) + 'px';
+		}
 	}
 
 	// WYSIWYG ghost rows: faded extra copies of a "repeats per QSO" field, stacked
@@ -305,6 +413,15 @@
 			freq_no_unit: false,
 		};
 		if (type === 'field') item.field = value;
+		else if (type === 'line') { item.orient = (value === 'v') ? 'v' : 'h'; item.len_in = 1.5; item.thick_pt = 0.5; }
+		else if (type === 'table') {
+			item.cols = 3;
+			item.rows = Math.max(3, tplOptions.qsos_per_label);
+			item.h_in = round2(item.rows * (tplOptions.row_pitch_in || 0.12));
+			item.w_in = Math.min(1.8, round2(W_IN * 0.8));
+			item.col_w = tableCols(item);
+			item.thick_pt = 0.4;
+		}
 		else item.text = value;
 		elements.push(item);
 		renderElement(item);
@@ -354,6 +471,8 @@
 	function syncSelection() {
 		stage.querySelectorAll('.qsl_designer_placed').forEach(n =>
 			n.classList.toggle('selected', isSelected(n.dataset.id)));
+		syncLineHandle();
+		syncTableHandles();
 	}
 
 	// ===================================================================
@@ -364,9 +483,20 @@
 		return { x: (clientX - rect.left) / zoom, y: (clientY - rect.top) / zoom };
 	}
 
+	// The mousedown handlers below preventDefault() (to stop text selection
+	// while dragging), which also stops the browser from moving focus. Without
+	// this, focus lingers on the last-used control (toolbar dropdowns,
+	// property inputs) and its keydown handler eats the arrow keys — or worse,
+	// arrows change a focused dropdown. Give the canvas keyboard focus back.
+	function blurActiveControl() {
+		const ae = document.activeElement;
+		if (ae && ae !== document.body && typeof ae.blur === 'function') ae.blur();
+	}
+
 	function onElementMouseDown(e, id) {
 		if (e.button !== 0) return;
 		e.preventDefault();
+		blurActiveControl();
 
 		const additive = e.shiftKey || e.ctrlKey || e.metaKey;
 		if (additive) {
@@ -423,11 +553,15 @@
 	}
 
 	window.addEventListener('mousemove', e => {
+		if (tblDrag) { onTblDragMove(e); return; }
+		if (lineResize) { onLineResizeMove(e); return; }
 		if (drag) { onElementDragMove(e); return; }
 		if (marquee) { onMarqueeMove(e); return; }
 	});
 
 	window.addEventListener('mouseup', () => {
+		if (tblDrag) { tblDrag = null; return; }
+		if (lineResize) { lineResize = null; return; }
 		if (drag) { drag = null; clearGuides(); return; }
 		if (marquee) { onMarqueeEnd(); return; }
 	});
@@ -495,6 +629,199 @@
 	}
 
 	// ===================================================================
+	//  Line resize handle — drag the square at a selected line's end to
+	//  change its length (lines are the only element with a meaningful
+	//  user-editable extent; fields size to their text).
+	// ===================================================================
+	let lineResize = null;
+
+	function clearLineHandle() {
+		stage.querySelectorAll('.qsl-line-handle').forEach(n => n.remove());
+	}
+
+	// Show a handle when exactly one LINE element is selected.
+	function syncLineHandle() {
+		clearLineHandle();
+		if (selectedIds.length !== 1) return;
+		const item = byId(selectedIds[0]);
+		if (!item || item.type !== 'line') return;
+		const h = document.createElement('div');
+		h.className = 'qsl-line-handle ' + (item.orient === 'v' ? 'ns' : 'ew');
+		h.dataset.for = item.id;
+		positionLineHandle(h, item);
+		h.addEventListener('mousedown', e => onStartLineResize(e, item.id));
+		stage.appendChild(h);
+	}
+
+	function positionLineHandle(h, item) {
+		const len = item.len_in || 1;
+		const cx = item.orient === 'v' ? 0 : inToPxX(len);
+		const cy = item.orient === 'v' ? inToPxY(len) : 0;
+		h.style.left = (inToPxX(item.x_in) + cx - 4) + 'px';
+		h.style.top = (inToPxY(item.y_in) + cy - 4) + 'px';
+	}
+
+	// Keep the handle glued to its line when the line moves or restyles.
+	function refreshLineHandleFor(id) {
+		const h = stage.querySelector('.qsl-line-handle');
+		if (h && h.dataset.for === id) positionLineHandle(h, byId(id));
+	}
+
+	function onStartLineResize(e, id) {
+		if (e.button !== 0) return;
+		e.preventDefault();
+		e.stopPropagation();
+		const item = byId(id);
+		if (!item) return;
+		lineResize = { id: id, orient: item.orient, startLen: item.len_in || 1, startX: e.clientX, startY: e.clientY, moved: false };
+	}
+
+	function onLineResizeMove(e) {
+		const item = byId(lineResize.id);
+		if (!item) { lineResize = null; return; }
+		if (!lineResize.moved) { pushHistory(); lineResize.moved = true; }
+		const d = (lineResize.orient === 'v') ? (e.clientY - lineResize.startY) : (e.clientX - lineResize.startX);
+		item.len_in = clamp(round2(lineResize.startLen + pxToInX(d)), 0.05, 20);
+		styleNode(item.id);
+		refreshLineHandleFor(item.id);
+		refreshProperties();
+	}
+
+	// ===== Table handles =====
+	// Corner handle (bottom-right) resizes the whole table (column widths keep
+	// their proportions); one handle per internal column boundary (top edge)
+	// resizes that boundary, shifting width between the two adjacent columns.
+	let tblDrag = null;
+
+	function clearTableHandles() {
+		stage.querySelectorAll('.qsl-tbl-handle').forEach(n => n.remove());
+	}
+
+	function syncTableHandles() {
+		clearTableHandles();
+		if (selectedIds.length !== 1) return;
+		const item = byId(selectedIds[0]);
+		if (!item || item.type !== 'table') return;
+
+		// One resize handle per corner; each anchors the opposite corner.
+		['nw', 'ne', 'sw', 'se'].forEach(dir => {
+			const c = document.createElement('div');
+			c.className = 'qsl-tbl-handle qsl-tbl-' + dir;
+			c.dataset.for = item.id;
+			c.dataset.kind = dir;
+			c.addEventListener('mousedown', e => startTblDrag(e, item.id, 'corner', dir));
+			stage.appendChild(c);
+		});
+
+		const cols = tableCols(item);
+		let cum = 0;
+		for (let i = 0; i < cols.length - 1; i++) {
+			cum += cols[i];
+			const h = document.createElement('div');
+			h.className = 'qsl-tbl-handle qsl-tbl-col';
+			h.dataset.for = item.id;
+			h.dataset.kind = 'col';
+			h.dataset.idx = i;
+			h.addEventListener('mousedown', e => startTblDrag(e, item.id, 'col', i));
+			stage.appendChild(h);
+		}
+		positionTableHandles(item);
+	}
+
+	function positionTableHandles(item) {
+		stage.querySelectorAll('.qsl-tbl-handle[data-for="' + item.id + '"]').forEach(h => {
+			if (h.dataset.kind === 'col') {
+				const cols = tableCols(item);
+				let cum = 0;
+				for (let i = 0; i <= parseInt(h.dataset.idx, 10); i++) cum += cols[i];
+				h.style.left = (inToPxX(item.x_in) + cum * PX_PER_IN - 4) + 'px';
+				h.style.top = (inToPxY(item.y_in) + 4) + 'px';
+			} else {
+				// Corner handle ('nw' | 'ne' | 'sw' | 'se'), centered on its corner
+				const kind = h.dataset.kind;
+				const x = inToPxX(item.x_in), y = inToPxY(item.y_in);
+				const w = inToPxX(item.w_in || 1.8), hh = inToPxY(item.h_in || 0.5);
+				h.style.left = ((kind.indexOf('e') >= 0 ? x + w : x) - 4) + 'px';
+				h.style.top = ((kind.indexOf('s') >= 0 ? y + hh : y) - 4) + 'px';
+			}
+		});
+	}
+
+	function refreshTableHandlesFor(id) {
+		const item = byId(id);
+		if (item && stage.querySelector('.qsl-tbl-handle[data-for="' + id + '"]')) {
+			positionTableHandles(item);
+		}
+	}
+
+	function startTblDrag(e, id, mode, idx) {
+		if (e.button !== 0) return;
+		e.preventDefault();
+		e.stopPropagation();
+		const item = byId(id);
+		if (!item) return;
+		tblDrag = {
+			id: id, mode: mode, idx: idx,
+			startX: e.clientX, startY: e.clientY,
+			x0: item.x_in || 0, y0: item.y_in || 0,
+			w0: item.w_in || 1.8, h0: item.h_in || 0.5,
+			cols0: tableCols(item).slice(),
+			moved: false,
+		};
+	}
+
+	function onTblDragMove(e) {
+		const item = byId(tblDrag.id);
+		if (!item) { tblDrag = null; return; }
+		if (!tblDrag.moved) { pushHistory(); tblDrag.moved = true; }
+
+		if (tblDrag.mode === 'corner') {
+			// idx is the corner being dragged ('nw'|'ne'|'sw'|'se'); the opposite
+			// corner stays anchored. West/north drags move x/y and grow the
+			// width/height toward the fixed opposite edge; everything is clamped
+			// to minimum sizes and the label bounds so the table can't flip or
+			// slide off the canvas.
+			const dir = tblDrag.idx;
+			const dx = pxToInX(e.clientX - tblDrag.startX);
+			const dy = pxToInY(e.clientY - tblDrag.startY);
+			const east = dir.indexOf('e') >= 0, south = dir.indexOf('s') >= 0;
+
+			let w, h;
+			if (east) {
+				w = clamp(round2(tblDrag.w0 + dx), 0.2, Math.max(0.2, W_IN - tblDrag.x0));
+				item.x_in = tblDrag.x0;
+			} else {
+				const x = clamp(round2(tblDrag.x0 + dx), 0, Math.max(0, tblDrag.x0 + tblDrag.w0 - 0.2));
+				item.x_in = x;
+				w = round2(tblDrag.x0 + tblDrag.w0 - x);
+			}
+			if (south) {
+				h = clamp(round2(tblDrag.h0 + dy), 0.1, Math.max(0.1, H_IN - tblDrag.y0));
+				item.y_in = tblDrag.y0;
+			} else {
+				const y = clamp(round2(tblDrag.y0 + dy), 0, Math.max(0, tblDrag.y0 + tblDrag.h0 - 0.1));
+				item.y_in = y;
+				h = round2(tblDrag.y0 + tblDrag.h0 - y);
+			}
+			item.w_in = w;
+			item.h_in = h;
+			// Keep the column proportions while resizing the whole table
+			const ratio = w / tblDrag.w0;
+			item.col_w = tblDrag.cols0.map(cw => round2(cw * ratio));
+			positionNode(item.id);   // west/north drags moved the top-left corner
+		} else {
+			const d = pxToInX(e.clientX - tblDrag.startX);
+			const pair = tblDrag.cols0[tblDrag.idx] + tblDrag.cols0[tblDrag.idx + 1];
+			const cols = tblDrag.cols0.slice();
+			cols[tblDrag.idx] = clamp(round2(tblDrag.cols0[tblDrag.idx] + d), 0.05, pair - 0.05);
+			cols[tblDrag.idx + 1] = round2(pair - cols[tblDrag.idx]);
+			item.col_w = cols;
+		}
+		styleNode(item.id);
+		refreshProperties();
+	}
+
+	// ===================================================================
 	//  Properties panel (live)
 	// ===================================================================
 	function refreshProperties() {
@@ -508,24 +835,48 @@
 		const multi = selectedIds.length > 1;
 		const item = byId(primaryId()); // primary drives the shown values
 		const isText = item.type === 'text';
+		const isLine = item.type === 'line';
+		const isTable = item.type === 'table';
+		const noFont = isLine || isTable;
 
 		// Position & text only make sense for a single element.
 		document.getElementById('propPosRow').style.display = multi ? 'none' : '';
 		document.getElementById('propTextRow').style.display = (!multi && isText) ? 'block' : 'none';
 
-		const isFreq = !multi && !isText && item.field === 'qso.freq';
+		const isFreq = !multi && !isText && !noFont && item.field === 'qso.freq';
 		document.getElementById('propFreqFormatRow').style.display = isFreq ? '' : 'none';
 		if (isFreq) {
 			document.getElementById('propFreqFormat').value = item.freq_format || 'MHz';
 			document.getElementById('propFreqNoUnit').checked = !!item.freq_no_unit;
 		}
 
+		// Lines/tables have geometry controls instead of font properties.
+		document.getElementById('propLineRow').style.display = (!multi && isLine) ? 'block' : 'none';
+		document.getElementById('propTableRow').style.display = (!multi && isTable) ? 'block' : 'none';
+		document.getElementById('propFontRow').style.display = noFont ? 'none' : '';
+		document.getElementById('propFontMiscRow').style.display = noFont ? 'none' : '';
+		document.getElementById('propWrapRow').style.display = noFont ? 'none' : '';
+		// A table's row count is explicit — per-QSO repeating doesn't apply.
+		document.getElementById('propRepeatRow').style.display = isTable ? 'none' : '';
+		if (!multi && isLine) {
+			document.getElementById('propLineOrient').value = item.orient === 'v' ? 'v' : 'h';
+			document.getElementById('propLineLen').value = inToDisp(item.len_in ?? 1.5);
+			document.getElementById('propLineThick').value = item.thick_pt ?? 0.5;
+		}
+		if (!multi && isTable) {
+			document.getElementById('propTableRows').value = clamp(parseInt(item.rows, 10) || 3, 1, 20);
+			document.getElementById('propTableCols').value = clamp(parseInt(item.cols, 10) || 3, 1, 12);
+			document.getElementById('propTableW').value = inToDisp(item.w_in ?? 1.8);
+			document.getElementById('propTableH').value = inToDisp(item.h_in ?? 0.5);
+			document.getElementById('propTableThick').value = item.thick_pt ?? 0.4;
+		}
+
 		if (multi) {
 			document.getElementById('propTypeBadge').textContent = selectedIds.length;
 			document.getElementById('propTypeLabel').textContent = LANG.selected;
 		} else {
-			document.getElementById('propTypeBadge').textContent = isText ? LANG.customText : 'Field';
-			document.getElementById('propTypeLabel').textContent = isText ? '' : item.field;
+			document.getElementById('propTypeBadge').textContent = isText ? LANG.customText : (isLine ? LANG.line : (isTable ? LANG.table : 'Field'));
+			document.getElementById('propTypeLabel').textContent = (isText || isLine || isTable) ? '' : item.field;
 			if (isText) document.getElementById('propText').value = item.text || '';
 			document.getElementById('propX').value = inToDisp(item.x_in);
 			document.getElementById('propY').value = inToDisp(item.y_in);
@@ -584,6 +935,27 @@
 	wireProp('propNoSnap', (item, n) => { item.no_snap = n.checked; });
 	wireProp('propFreqFormat', (item, n) => { item.freq_format = n.value; });
 	wireProp('propFreqNoUnit', (item, n) => { item.freq_no_unit = n.checked; });
+	wireProp('propLineOrient', (item, n) => { item.orient = n.value; styleNode(item.id); });
+	wireProp('propLineLen', (item, n) => { item.len_in = clamp(dispToIn(parseFloat(n.value || '1.5')), 0.05, 20); styleNode(item.id); });
+	wireProp('propLineThick', (item, n) => { item.thick_pt = clamp(parseFloat(n.value || '0.5'), 0.1, 4); styleNode(item.id); });
+	wireProp('propTableRows', (item, n) => { item.rows = clamp(parseInt(n.value || '3', 10), 1, 20); styleNode(item.id); });
+	wireProp('propTableCols', (item, n) => {
+		item.cols = clamp(parseInt(n.value || '3', 10), 1, 12);
+		// Column count changed: redistribute the width equally
+		item.col_w = tableCols({ ...item, col_w: null });
+		styleNode(item.id);
+		syncTableHandles();
+	});
+	wireProp('propTableW', (item, n) => {
+		const w = clamp(dispToIn(parseFloat(n.value || '1.8')), 0.2, 20);
+		const sum = tableCols(item).reduce((a, b) => a + b, 0);
+		const ratio = sum > 0 ? w / sum : 1;   // keep the column proportions
+		item.w_in = w;
+		item.col_w = tableCols(item).map(cw => round2(cw * ratio));
+		styleNode(item.id);
+	});
+	wireProp('propTableH', (item, n) => { item.h_in = clamp(dispToIn(parseFloat(n.value || '0.5')), 0.1, 20); styleNode(item.id); });
+	wireProp('propTableThick', (item, n) => { item.thick_pt = clamp(parseFloat(n.value || '0.4'), 0.1, 4); styleNode(item.id); });
 
 	document.getElementById('btnDuplicate').addEventListener('click', duplicateSelected);
 	document.getElementById('btnDeleteElem').addEventListener('click', deleteSelected);
@@ -592,6 +964,8 @@
 	function applyTplOptionsToControls() {
 		document.getElementById('tplQsosPerLabel').value = tplOptions.qsos_per_label;
 		document.getElementById('tplRowPitch').value = inToDisp(tplOptions.row_pitch_in);
+		document.getElementById('tplRowSeparators').checked = !!tplOptions.row_separators;
+		document.getElementById('tplSepThick').value = tplOptions.sep_thick_pt;
 	}
 
 	// Show "Row spacing" only for multi-QSO labels.
@@ -614,6 +988,10 @@
 
 	wireTpl('tplQsosPerLabel', 'qsos_per_label', n => Math.max(1, parseInt(n.value, 10) || 1), updateRepeatVisibility);
 	wireTpl('tplRowPitch',     'row_pitch_in',    n => Math.max(0.05, dispToIn(parseFloat(n.value) || 0.3)), updateRepeatVisibility);
+	wireTpl('tplRowSeparators', 'row_separators', n => n.checked, () => {
+		document.getElementById('tplSepThickWrap').style.display = tplOptions.row_separators ? '' : 'none';
+	});
+	wireTpl('tplSepThick', 'sep_thick_pt', n => Math.max(0.1, Math.min(4, parseFloat(n.value) || 0.4)));
 
 	// ===================================================================
 	//  Element actions
@@ -807,6 +1185,22 @@
 		document.getElementById('propText').select();
 	});
 
+	// Ruled lines (grid separators between QSO details)
+	document.getElementById('btnAddLineH').addEventListener('click', () => {
+		const spot = freeSpot();
+		addElement('line', 'h', pxToInX(spot.x), pxToInY(spot.y));
+	});
+	document.getElementById('btnAddLineV').addEventListener('click', () => {
+		const spot = freeSpot();
+		addElement('line', 'v', pxToInX(spot.x), pxToInY(spot.y));
+	});
+
+	// Table grid (rows × columns, resizable whole and per column)
+	document.getElementById('btnAddTable').addEventListener('click', () => {
+		const spot = freeSpot();
+		addElement('table', null, pxToInX(spot.x), pxToInY(spot.y));
+	});
+
 	// Field search filter
 	document.getElementById('fieldSearch').addEventListener('input', e => {
 		const q = e.target.value.trim().toLowerCase();
@@ -830,6 +1224,7 @@
 	stage.addEventListener('mousedown', e => {
 		if (e.button !== 0 || e.target !== stage) return; // only the empty canvas area
 		e.preventDefault();
+		blurActiveControl();
 		const p = clientToStagePx(e.clientX, e.clientY);
 		const additive = e.shiftKey || e.ctrlKey || e.metaKey;
 		if (!additive) setSelection([]);
@@ -1056,9 +1451,12 @@
 		tplOptions = {
 			qsos_per_label: Math.max(1, parseInt(o.qsos_per_label, 10) || 1),
 			row_pitch_in: parseFloat(o.row_pitch_in) || 0.3,
+			row_separators: !!o.row_separators,
+			sep_thick_pt: parseFloat(o.sep_thick_pt) || 0.4,
 		};
 		applyTplOptionsToControls();
 		setPitchWrapVisibility();
+		document.getElementById('tplSepThickWrap').style.display = tplOptions.row_separators ? '' : 'none';
 
 		elements = (layout.elements || []).map(el => ({
 			id: el.id || newId(),
@@ -1076,6 +1474,14 @@
 			no_snap: !!el.no_snap,
 			freq_format: el.freq_format || 'MHz',
 			freq_no_unit: !!el.freq_no_unit,
+			orient: el.orient === 'v' ? 'v' : 'h',
+			len_in: el.len_in ?? 1.5,
+			thick_pt: el.thick_pt ?? 0.5,
+			cols: parseInt(el.cols, 10) || 3,
+			rows: parseInt(el.rows, 10) || 3,
+			w_in: el.w_in ?? 1.8,
+			h_in: el.h_in ?? 0.5,
+			col_w: Array.isArray(el.col_w) ? el.col_w.map(v => parseFloat(v) || 0) : null,
 		}));
 
 		history.length = 0;
@@ -1274,7 +1680,15 @@
 	const savedTpl = prefGet('tpl', '');
 	if (savedTpl && tplSelect.querySelector('option[value="' + savedTpl + '"]')) {
 		tplSelect.value = savedTpl;
+		// The label-type restore above changed the canvas state AFTER the
+		// initial clean snapshot was taken (label_type_id now differs), which
+		// would make the unsaved-changes guard misfire and block this
+		// programmatic load. Re-snapshot so the baseline includes the restore.
+		markClean();
 		tplSelect.dispatchEvent(new Event('change'));
+	} else {
+		// Blank canvas with a restored label type — same baseline refresh.
+		markClean();
 	}
 
 	// ===== Leave-with-unsaved-changes guard =====

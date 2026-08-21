@@ -156,9 +156,10 @@ class Labeldesigner_model extends CI_Model {
         $pdf->AddFont('DejaVuSansMono', '', 'DejaVuSansMono.ttf', true);
         $pdf->AddFont('DejaVuSansMono', 'B', 'DejaVuSansMono-Bold.ttf', true);
 
-        // Label cell width in mm — used to clamp wrapped text so it can't bleed
-        // into the neighbouring cell on the sheet.
+        // Label cell size in mm — used to clamp wrapped text and drawn lines so
+        // they can't bleed into the neighbouring cell on the sheet.
         $cell_w_mm = (($label->metric ?? 'mm') == 'in') ? $label->width * 25.4 : (float)$label->width;
+        $cell_h_mm = (($label->metric ?? 'mm') == 'in') ? $label->height * 25.4 : (float)$label->height;
 
         $cal = $layout['calibration'] ?? ['offset_x_in' => 0, 'offset_y_in' => 0];
         $ox = (float)($cal['offset_x_in'] ?? 0);
@@ -170,6 +171,22 @@ class Labeldesigner_model extends CI_Model {
         $opts     = $layout['options'] ?? [];
         $perLabel = max(1, (int)($opts['qsos_per_label'] ?? 1));
         $pitch    = (float)($opts['row_pitch_in'] ?? 0.3);
+
+        // Classic ruled look: automatic separator lines between QSO rows. The
+        // rows' origin is derived from the repeating elements themselves (their
+        // topmost y), so the rules land between the rows the user placed — no
+        // line elements needed. Manual line elements can still be added on top.
+        $rowSeparators = !empty($opts['row_separators']);
+        $sepThickMm    = max(0.1, min(4, (float)($opts['sep_thick_pt'] ?? 0.4))) * 0.3528;
+        $firstRowY     = null;
+        if ($rowSeparators) {
+            foreach (($layout['elements'] ?? []) as $el) {
+                if (!empty($el['repeat_per_qso']) && ($el['type'] ?? 'field') !== 'line') {
+                    $y = (float)($el['y_in'] ?? 0);
+                    $firstRowY = ($firstRowY === null) ? $y : min($firstRowY, $y);
+                }
+            }
+        }
 
         // Skip already-used cells on a partially consumed sheet (same semantics
         // as the classic flow's startat handling).
@@ -204,11 +221,89 @@ class Labeldesigner_model extends CI_Model {
             foreach (array_chunk($groupQsos, $perLabel) as $chunk) {
                 $cell = $pdf->Next_Label($orientation);
 
+                // Automatic separators between QSO rows (drawn first, so text
+                // prints on top). One rule per row boundary, nudged 0.5mm up
+                // from the next row's top edge so ascenders aren't struck.
+                if ($rowSeparators && $firstRowY !== null && count($chunk) > 1) {
+                    $pdf->SetDrawColor(0, 0, 0);
+                    $pdf->SetLineWidth($sepThickMm);
+                    $w = max(2, $cell_w_mm - 2);
+                    for ($i = 1; $i < count($chunk); $i++) {
+                        $y_mm = $cell['y'] + ($firstRowY + $oy + $pitch * $i) * 25.4 - 0.5;
+                        $pdf->Line($cell['x'] + 1, $y_mm, $cell['x'] + 1 + $w, $y_mm);
+                    }
+                }
                 foreach (($layout['elements'] ?? []) as $el) {
                     $type   = $el['type'] ?? 'field';
                     $field  = $el['field'] ?? '';
                     $repeat = !empty($el['repeat_per_qso']) && $type !== 'text';
                     $targets = $repeat ? $chunk : [$chunk[0]];
+
+                    // Table grid: outer border + column/row rules. Column
+                    // widths come from the (relative) col_w list; rows are
+                    // evenly divided over the table height. Fields are placed
+                    // into the cells separately (drawn on top).
+                    if ($type === 'table') {
+                        [$tr2, $tg2, $tb2] = $this->Qslpostcard_model->hex_to_rgb($el['color'] ?? '#000000');
+                        $pdf->SetDrawColor($tr2, $tg2, $tb2);
+                        $pdf->SetLineWidth(max(0.1, min(4, (float)($el['thick_pt'] ?? 0.4))) * 0.3528);
+
+                        $x_mm = $cell['x'] + ((float)($el['x_in'] ?? 0) + $ox) * 25.4;
+                        $y_mm = $cell['y'] + ((float)($el['y_in'] ?? 0) + $oy) * 25.4;
+                        $w_mm = min((float)($el['w_in'] ?? 1) * 25.4, max(2, $cell_w_mm - 2));
+                        $h_mm = min((float)($el['h_in'] ?? 0.5) * 25.4, max(2, $cell_h_mm - 2));
+
+                        $pdf->Rect($x_mm, $y_mm, $w_mm, $h_mm);
+
+                        $cols = max(1, min(12, (int)($el['cols'] ?? 3)));
+                        $rows = max(1, min(20, (int)($el['rows'] ?? 3)));
+
+                        // Column boundaries as cumulative fractions of the width
+                        $colw = [];
+                        if (is_array($el['col_w'] ?? null)) {
+                            foreach ($el['col_w'] as $cw) {
+                                $colw[] = max(0, (float)$cw);
+                            }
+                        }
+                        if (count($colw) < $cols || array_sum($colw) <= 0) {
+                            $colw = array_fill(0, $cols, 1);
+                        }
+                        $tot = array_sum($colw);
+                        $frac = 0;
+                        for ($i = 0; $i < $cols - 1; $i++) {
+                            $frac += $colw[$i] / $tot;
+                            $bx = $x_mm + $w_mm * $frac;
+                            $pdf->Line($bx, $y_mm, $bx, $y_mm + $h_mm);
+                        }
+                        for ($i = 1; $i < $rows; $i++) {
+                            $by = $y_mm + $h_mm * $i / $rows;
+                            $pdf->Line($x_mm, $by, $x_mm + $w_mm, $by);
+                        }
+                        continue;
+                    }
+
+                    // Ruled lines (grid separators between QSO details). Like
+                    // "repeats per QSO" fields, an h-line with repeat enabled
+                    // draws once per row at the row pitch.
+                    if ($type === 'line') {
+                        [$lr, $lg, $lb] = $this->Qslpostcard_model->hex_to_rgb($el['color'] ?? '#000000');
+                        $pdf->SetDrawColor($lr, $lg, $lb);
+                        $pdf->SetLineWidth(max(0.1, min(4, (float)($el['thick_pt'] ?? 0.5))) * 0.3528);
+                        $len_mm = max(0.5, (float)($el['len_in'] ?? 1)) * 25.4;
+                        $isV = (($el['orient'] ?? 'h') === 'v');
+                        foreach ($targets as $rowIdx => $_q) {
+                            $x_mm = $cell['x'] + ((float)($el['x_in'] ?? 0) + $ox) * 25.4;
+                            $y_mm = $cell['y'] + ((float)($el['y_in'] ?? 0) + $oy + ($repeat ? $pitch * $rowIdx : 0)) * 25.4;
+                            if ($isV) {
+                                $h = min($len_mm, max(2, $cell_h_mm - 2));
+                                $pdf->Line($x_mm, $y_mm, $x_mm, $y_mm + $h);
+                            } else {
+                                $w = min($len_mm, max(2, $cell_w_mm - 2));
+                                $pdf->Line($x_mm, $y_mm, $x_mm + $w, $y_mm);
+                            }
+                        }
+                        continue;
+                    }
 
                     $font      = Qslpostcard_model::FONT_MAP[$el['font'] ?? 'Helvetica'] ?? 'DejaVuSans';
                     $pt        = (float)($el['font_pt'] ?? 8);
