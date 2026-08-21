@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-20 18:43+0000\n"
-"PO-Revision-Date: 2026-08-13 07:51+0000\n"
+"PO-Revision-Date: 2026-08-21 09:31+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -256,7 +256,7 @@ msgstr "Накопленная статистика"
 #: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
 msgid "Activated Gridsquare Map"
-msgstr "Карта активированных квадратов QTH локатора"
+msgstr "Карта активированных квадратов QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Awards.php:1404
@@ -269,23 +269,23 @@ msgstr "Карта активированных квадратов QTH лока�
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Квадраты QTH локатора"
+msgstr "Квадраты QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:534
 msgid "Gridsquares confirmed"
-msgstr "Подтверждённые квадраты QTH локатора"
+msgstr "Подтверждённые квадраты QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:535
 msgid "Gridsquares not confirmed"
-msgstr "Неподтверждённые квадраты QTH локатора"
+msgstr "Неподтверждённые квадраты QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:36
 msgid "Total gridsquares activated"
-msgstr "Всего квадратов QTH локатора активировано"
+msgstr "Всего квадратов QTH-локатора активировано"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
@@ -343,7 +343,7 @@ msgstr "Планировщик активации"
 #: application/views/activators/index.php:10
 #: application/views/interface_assets/header.php:170
 msgid "Gridsquare Activators"
-msgstr "Активаторы квадратов QTH локатора"
+msgstr "Активаторы квадратов QTH-локатора"
 
 #: application/controllers/Activatorsmap.php:16
 #: application/views/activators/index.php:2
@@ -791,22 +791,22 @@ msgstr "Дипломы — "
 #: application/controllers/Awards.php:1405
 #: application/controllers/Awards.php:1441
 msgid "Gridsquares worked"
-msgstr "Сработанные квадраты QTH локатора"
+msgstr "Сработанные квадраты QTH-локатора"
 
 #: application/controllers/Awards.php:1406
 #: application/controllers/Awards.php:1442
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Квадраты QTH локатора, подтверждённые на LoTW"
+msgstr "Квадраты QTH-локатора, подтверждённые на LoTW"
 
 #: application/controllers/Awards.php:1407
 #: application/controllers/Awards.php:1443
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Квадраты QTH локатора, подтверждённые бумажными QSL"
+msgstr "Квадраты QTH-локатора, подтверждённые бумажными QSL"
 
 #: application/controllers/Awards.php:1408
 #: application/controllers/Awards.php:1444
 msgid "Total Gridsquares worked"
-msgstr "Всего сработано квадратов QTH локатора"
+msgstr "Всего сработано квадратов QTH-локатора"
 
 #: application/controllers/Awards.php:1425
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -870,7 +870,7 @@ msgstr "Дипломы — AMSAT Rover"
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Азимутальная карта"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:355
@@ -1117,7 +1117,7 @@ msgstr "Обновить контест"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Контест %s обновлён"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:322
@@ -1243,7 +1243,7 @@ msgstr "Не найдено прошедших соревнований, кот�
 
 #: application/controllers/Contesting_import.php:40
 msgid "Import Historical Contests"
-msgstr "Импортировать прошедшие соревнования"
+msgstr "Импортировать прошедшие контест-сессии"
 
 #: application/controllers/Contesting_import.php:83
 #: application/controllers/Contesting_import.php:152
@@ -1268,7 +1268,7 @@ msgstr "Континенты"
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Подсчитать QSO по..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1476
@@ -1331,7 +1331,7 @@ msgstr ""
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
-msgstr "QTH локатор"
+msgstr "QTH-локатор"
 
 #: application/controllers/Countqsoby.php:75
 #: application/views/activationplanner/index.php:121
@@ -1388,7 +1388,7 @@ msgstr "Зона CQ"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "Референция POTA"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:163
@@ -1656,7 +1656,7 @@ msgstr "и тип прохождения"
 #: application/controllers/Dxatlas.php:18
 #: application/views/interface_assets/header.php:536
 msgid "DX Atlas Gridsquare Export"
-msgstr "Экспорт квадратов QTH локатора DX Atlas"
+msgstr "Экспорт квадратов QTH-локатора DX Atlas"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
@@ -1791,12 +1791,12 @@ msgstr "Подтверждения"
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
-msgstr "Карта квадратов QTH локатора"
+msgstr "Карта квадратов QTH-локатора"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
-msgstr "Всего сработано квадратов QTH локатора"
+msgstr "Всего сработано квадратов QTH-локатора"
 
 #: application/controllers/Hamsat.php:58
 msgid "Hamsat - Satellite Roving"
@@ -2651,7 +2651,7 @@ msgstr "Значение DXCC обновлено для %d QSO."
 #: application/controllers/Logbookadvanced.php:1035
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr "Карта для DXCC %s и квадратов QTH локатора %s."
+msgstr "Карта для DXCC %s и квадратов QTH-локатора %s."
 
 #: application/controllers/Lookup.php:21
 msgid "Quick Lookup"
@@ -2769,7 +2769,7 @@ msgstr "Редактировать"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr ""
+msgstr "Вид модуляции %s обновлён"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3234,12 +3234,12 @@ msgstr "QSO не может быть сохранено"
 #: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr "Пожалуйста, проверьте значение квадрата QTH локатора (%s)"
+msgstr "Пожалуйста, проверьте значение квадрата QTH-локатора (%s)"
 
 #: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr "Пожалуйста, проверьте значение квадрата QTH локатора VUCC (%s)"
+msgstr "Пожалуйста, проверьте значение квадрата QTH-локатора VUCC (%s)"
 
 #: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
@@ -3512,7 +3512,7 @@ msgstr "Редактировать профиль QTH: "
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr ""
+msgstr "Профиль QTH %s обновлён"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
@@ -3522,7 +3522,7 @@ msgstr "Дубликат профиля QTH:"
 #: application/controllers/User.php:1530 application/controllers/User.php:1783
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr "Пожалуйста, проверьте значение QTH локатора (%s)"
+msgstr "Пожалуйста, проверьте значение QTH-локатора (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/azimuthal/index.php:17
@@ -3898,11 +3898,11 @@ msgstr "Обновить \"Заметки о корреспондентах\""
 
 #: application/controllers/Update.php:732
 msgid "VUCC Grid file update complete. Result: "
-msgstr "Обновление файла квадратов QTH локатора VUCC завершено. Результат: "
+msgstr "Обновление файла квадратов QTH-локатора VUCC завершено. Результат: "
 
 #: application/controllers/Update.php:734
 msgid "VUCC Grid file update failed. Result: "
-msgstr "Обновление файла квадратов QTH локатора VUCC не удалось. Результат: "
+msgstr "Обновление файла квадратов QTH-локатора VUCC не удалось. Результат: "
 
 #: application/controllers/User.php:51
 #: application/views/interface_assets/header.php:343
@@ -4208,7 +4208,7 @@ msgstr "Публичная метка не найдена."
 
 #: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
-msgstr "Карта квадратов QTH локатора (спутники)"
+msgstr "Карта квадратов QTH-локатора (спутники)"
 
 #: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
@@ -4268,7 +4268,7 @@ msgstr "Несколько пользователей найдено по пуб
 
 #: application/controllers/Zonechecker.php:30
 msgid "Gridsquare Zone finder"
-msgstr "Поиск зоны по квадрату QTH локатора"
+msgstr "Поиск зоны по квадрату QTH-локатора"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
@@ -4276,7 +4276,7 @@ msgstr "Данные GeoJSON недоступны"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr "Неверный квадрат QTH локатора"
+msgstr "Неверный квадрат QTH-локатора"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4401,31 +4401,31 @@ msgstr "Просмотр QSL"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
-msgstr ""
+msgstr "Прочитать контест-сессии"
 
 #: application/libraries/api_v2/Contest_resource.php:56
 msgid "Create and update contest sessions"
-msgstr ""
+msgstr "Создание и обновление контест-сессий"
 
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
-msgstr ""
+msgstr "Удаление контест-сессий"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Чтение журналов"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Создание и обновление журналов"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Удаление журналов"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr "Запрос позывных и квадратов QTH локатора"
+msgstr "Запрос позывных и квадратов QTH-локатора"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
@@ -4632,8 +4632,8 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
-"Отличающийся локатор %s при импорте QSO с %s от локатора в профиле QTH %s: "
-"ПРОПУЩЕНО"
+"Отличающийся QTH-локатор %s при импорте QSO с %s от QTH-локатора в профиле "
+"QTH %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:4918
 msgid ""
@@ -4754,7 +4754,7 @@ msgstr "Направление"
 #: application/models/Logbookadvanced_model.php:1877
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
-"Таблица VUCCGrids пуста. Сначала импортируйте данные квадратов QTH локатора "
+"Таблица VUCCGrids пуста. Сначала импортируйте данные квадратов QTH-локатора "
 "VUCC."
 
 #: application/models/Logbookadvanced_model.php:2547
@@ -4870,7 +4870,7 @@ msgstr "Всего сработано зон CQ"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr "Всего сработано квадратов QTH локатора VUCC"
+msgstr "Всего сработано квадратов QTH-локатора VUCC"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
@@ -5154,7 +5154,7 @@ msgstr "Показать"
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:168
 msgid "Activated Gridsquares"
-msgstr "Активированные квадраты QTH локатора"
+msgstr "Активированные квадраты QTH-локатора"
 
 #: application/views/activated_gridmap/index.php:27
 #: application/views/amsatstatus/index.php:113
@@ -5282,7 +5282,7 @@ msgstr "Долгота"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
-"Неверный квадрат QTH локатора — используйте 2, 4, 6, 8 или 10 символов "
+"Неверный квадрат QTH-локатора — используйте 2, 4, 6, 8 или 10 символов "
 "(например, FN, FN31, FN31pr)."
 
 #: application/views/activationplanner/index.php:21
@@ -5292,7 +5292,7 @@ msgstr "Прохождения спутника"
 
 #: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
-msgstr "Границы квадрата QTH локатора"
+msgstr "Границы квадрата QTH-локатора"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:82
@@ -5302,7 +5302,7 @@ msgstr "Ближайшие референции"
 #: application/views/activationplanner/index.php:25
 #, php-format
 msgid "References within %s of the gridsquare"
-msgstr "Ссылки в пределах %s квадрата QTH локатора"
+msgstr "Ссылки в пределах %s квадрата QTH-локатора"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/qslcard/confirmationresult.php:21
@@ -5411,7 +5411,7 @@ msgstr "Создать профиль QTH"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
-msgstr "Референции в этом квадрате QTH локатора"
+msgstr "Референции в этом квадрате QTH-локатора"
 
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
@@ -5452,27 +5452,27 @@ msgstr "📻 Планирование активации из %s"
 #: application/views/activationplanner/index.php:51
 #: application/views/activationplanner/index.php:87
 msgid "Search references…"
-msgstr ""
+msgstr "Поиск референций…"
 
 #: application/views/activationplanner/index.php:52
 msgid "No matches"
-msgstr ""
+msgstr "Нет совпадений"
 
 #: application/views/activationplanner/index.php:53
 msgid "Loading…"
-msgstr ""
+msgstr "Загрузка…"
 
 #: application/views/activationplanner/index.php:54
 msgid "References"
-msgstr ""
+msgstr "Референции"
 
 #: application/views/activationplanner/index.php:55
 msgid "Places"
-msgstr ""
+msgstr "Места"
 
 #: application/views/activationplanner/index.php:56
 msgid "Press Enter to search places"
-msgstr ""
+msgstr "Нажмите Enter для поиска мест"
 
 #: application/views/activationplanner/index.php:66
 msgid "Plan your activity here"
@@ -5493,7 +5493,7 @@ msgstr "до"
 #: application/views/activationplanner/index.php:78
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
-"Дополнительный второй квадрат QTH локатора для вычисления расстояния и "
+"Дополнительный второй квадрат QTH-локатора для вычисления расстояния и "
 "азимута"
 
 #: application/views/activationplanner/index.php:78
@@ -5522,7 +5522,7 @@ msgstr "Очистить"
 
 #: application/views/activationplanner/index.php:81
 msgid "Find my location and gridsquare"
-msgstr "Определение моего местоположения и квадрата QTH локатора"
+msgstr "Определение моего местоположения и квадрата QTH-локатора"
 
 #: application/views/activationplanner/index.php:81
 msgid "Locate me"
@@ -5533,6 +5533,8 @@ msgid ""
 "Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place "
 "names (OpenStreetMap)"
 msgstr ""
+"Поиск WWFF / POTA / SOTA / IOTA по названию или референции — Введите "
+"названия искомых мест (OpenStreetMap)"
 
 #: application/views/activationplanner/index.php:92
 #: application/views/simplefle/index.php:162
@@ -5976,7 +5978,8 @@ msgid ""
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
 "Если выбрано, Wavelog попытается импортировать QSOs, даже если поле "
-"MY_GRIDSQUARE в записях ADIF не совпадает с локатором выбранного профиля QTH."
+"MY_GRIDSQUARE в записях ADIF не совпадает с QTH-локатором выбранного профиля "
+"QTH."
 
 #: application/views/adif/import.php:178
 msgid ""
@@ -6431,7 +6434,7 @@ msgstr "Следующий AOS"
 
 #: application/views/amsatstatus/index.php:115
 msgid "Hours ago (left-most: now)"
-msgstr ""
+msgstr "Часов назад (крайний слева: сейчас)"
 
 #: application/views/amsatstatus/index.php:135
 #, php-format
@@ -6961,7 +6964,7 @@ msgid ""
 "points using satellite grid activations."
 msgstr ""
 "Диплом AMSAT Rover присуждается станциям, набравшим, в общей сложности, 25 "
-"очков, используя активизацию квадратов QTH локатора через спутники."
+"очков, используя активизацию квадратов QTH-локатора через спутники."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
@@ -6972,7 +6975,7 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
-"Пожалуйста, укажите свой домашний QTH локатор в профиле вашего QTH, чтобы "
+"Пожалуйста, укажите свой домашний QTH-локатор в профиле вашего QTH, чтобы "
 "правильно рассчитать активации."
 
 #: application/views/awards/amsat_rover/index.php:31
@@ -7101,7 +7104,7 @@ msgstr ""
 
 #: application/views/awards/amsat_rover/index.php:216
 msgid "Grid Activations"
-msgstr "Активации квадратов QTH локатора"
+msgstr "Активации квадратов QTH-локатора"
 
 #: application/views/awards/amsat_rover/index.php:221
 #: application/views/calltester/call_info.php:60
@@ -7109,7 +7112,7 @@ msgstr "Активации квадратов QTH локатора"
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
 msgid "Grid"
-msgstr "Квадрат QTH локатора"
+msgstr "Квадрат QTH-локатора"
 
 #: application/views/awards/amsat_rover/index.php:223
 #: application/views/awards/waip/index.php:41
@@ -8167,7 +8170,7 @@ msgid ""
 msgstr ""
 "The Fred Fish Memorial Award был учрежден в честь Фреда Фиша, W5FF (SK), "
 "который был первым радиолюбителем, сработавшим и подтвердившим все 488 "
-"квадратов QTH локатора в 48 континентальных Соединенных Штатах на 6 метрах."
+"квадратов QTH-локатора в 48 континентальных Соединенных Штатах на 6 метрах."
 
 #: application/views/awards/ffma/index.php:13
 msgid ""
@@ -8189,7 +8192,7 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
 "Поля, используемые для этого диплома: DXCC (должен быть 291 (США)), "
-"GRIDSQUARE (должно содержать квадрат QTH локатора из 488 материковых!), BAND "
+"GRIDSQUARE (должно содержать квадрат QTH-локатора из 488 материковых!), BAND "
 "(должен быть 6M)."
 
 #: application/views/awards/gridmaster/index.php:11
@@ -8205,7 +8208,7 @@ msgid ""
 msgstr ""
 "The GridMaster Award — самый престижный диплом AMSAT, впервые учрежденный в "
 "2014 году группой Star Comm. Его могут получить все радиолюбители мира, "
-"которым удастся сработать со всеми 488 квадратами QTH локатора в США через "
+"которым удастся сработать со всеми 488 квадратами QTH-локатора в США через "
 "спутник и предоставить QSL-подтверждения для каждого QSO."
 
 #: application/views/awards/gridmaster/index.php:13
@@ -8220,7 +8223,7 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
-"Официальная информация от %s: С каждым квадратом QTH локатора должно быть "
+"Официальная информация от %s: С каждым квадратом QTH-локатора должно быть "
 "проведено двустороннее QSO через любительский спутник. Минимальный уровень "
 "сигнала не требуется. QSO должны проводиться из одного и того же места или "
 "из мест, не удаленных друг от друга более чем на 200 километров. "
@@ -8245,7 +8248,7 @@ msgid ""
 "Name"
 msgstr ""
 "Поля, используемые для этого диплома: DXCC (должен быть 291 (США)), "
-"GRIDSQUARE (должно содержать квадрат QTH локатора из 488 материковых!), "
+"GRIDSQUARE (должно содержать квадрат QTH-локатора из 488 материковых!), "
 "PROP_MODE (должно быть SAT) и SAT_NAME (название спутника)"
 
 #: application/views/awards/gridmaster/index.php:17
@@ -8257,7 +8260,7 @@ msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
-"Диплом Gridmaster изначально был разработан для работы с 488 квадратами QTH "
+"Диплом Gridmaster изначально был разработан для работы с 488 квадратами QTH-"
 "локатора в США."
 
 #: application/views/awards/gridmaster/index.php:19
@@ -8266,8 +8269,8 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
-"На этой карте показаны квадраты QTH локатора для конкретного DXCC. Это не "
-"официальный диплом, а просто отображение квадратов QTH локатора, которые "
+"На этой карте показаны квадраты QTH-локатора для конкретного DXCC. Это не "
+"официальный диплом, а просто отображение квадратов QTH-локатора, которые "
 "были сработаны в соответствии с правилами диплома US Gridmaster для этого "
 "DXCC."
 
@@ -8498,7 +8501,7 @@ msgstr "Экспорт подтверждённых QSO"
 
 #: application/views/awards/jcc/index.php:46
 msgid "QSL Type"
-msgstr ""
+msgstr "Тип QSL"
 
 #: application/views/awards/jcc/index.php:72
 msgid "Deleted cities"
@@ -8520,17 +8523,19 @@ msgstr "Не сработано"
 
 #: application/views/awards/jcc/index.php:169
 msgid "JCC progress"
-msgstr ""
+msgstr "Прогресс JCC"
 
 #: application/views/awards/jcc/index.php:179
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
-msgstr ""
+msgstr "Внимание! Wavelog не проверяет, проведено ли QSO до даты удаления DXCC."
 
 #: application/views/awards/jcc/index.php:185
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
+"Ни один из сработанных или подтвержденных слотов JCC не соответствует "
+"текущим фильтрам."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -8752,7 +8757,7 @@ msgstr "Используйте"
 #: application/views/awards/pl_polska/index.php:375
 msgid "to auto-populate states from Maidenhead locators."
 msgstr ""
-"для авто заполнения поля \"Область/Штат\" из значений квадратов QTH локатора."
+"для авто заполнения поля \"Область/Штат\" из значений квадратов QTH-локатора."
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
@@ -9026,7 +9031,7 @@ msgstr "Поля, используемые для этого диплома: р�
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
-msgstr "Список квадратов QTH локатора"
+msgstr "Список квадратов QTH-локатора"
 
 #: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -9059,15 +9064,15 @@ msgstr "Поля, используемые для этого диплома: GRI
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
-msgstr "Квадраты QTH локатора VUCC по диапазонам"
+msgstr "Квадраты QTH-локатора VUCC по диапазонам"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
-msgstr "Сработанные квадраты QTH локатора"
+msgstr "Сработанные квадраты QTH-локатора"
 
 #: application/views/awards/vucc/index.php:28
 msgid "Grids Confirmed"
-msgstr "Подтверждённые квадраты QTH локатора"
+msgstr "Подтверждённые квадраты QTH-локатора"
 
 #: application/views/awards/wab/index.php:13
 msgid "WAB - Worked All Britain Award"
@@ -9539,51 +9544,53 @@ msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Для вашего активного профиля QTH квадрат QTH локатора, поэтому карта не "
+"может быть центрирована."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Азимутальная карта центрирована на по вашему активному профилю QTH"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Проекция"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Азимутальная равнопромежуточная"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Проекция Ламберта равновеликая"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Кольца дистанции"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Поля QTH локатора"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
-msgstr ""
+msgstr "Зоны CQ"
 
 #: application/views/azimuthal/index.php:53
 msgid "ITU zones"
-msgstr ""
+msgstr "Зоны ITU"
 
 #: application/views/azimuthal/index.php:58
 msgid "DXCC prefixes"
-msgstr ""
+msgstr "Префиксы DXCC"
 
 #: application/views/azimuthal/index.php:61
 msgid "Download PNG"
-msgstr ""
+msgstr "Скачать PNG"
 
 #: application/views/azimuthal/index.php:65
 #: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Азимутальная карта"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -11959,7 +11966,7 @@ msgstr "Отправить"
 
 #: application/views/contesting/logger/index.php:31
 msgid "Are you sure you want to end the contest?"
-msgstr "Вы хотите закончить соревнования?"
+msgstr "Вы хотите закончить контест-сессию?"
 
 #: application/views/contesting/logger/index.php:32
 msgid "Layout reset to default!"
@@ -13072,19 +13079,19 @@ msgstr "Данные QSO"
 
 #: application/views/countqsoby/index.php:10
 msgid "QSOs total"
-msgstr ""
+msgstr "Всего QSO"
 
 #: application/views/countqsoby/index.php:27
 msgid "Filter"
-msgstr ""
+msgstr "Фильтр"
 
 #: application/views/countqsoby/index.php:33
 msgid "Date presets"
-msgstr ""
+msgstr "Предустановки даты"
 
 #: application/views/countqsoby/index.php:63
 msgid "Count QSOs by"
-msgstr ""
+msgstr "Подсчитать QSO по"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -13311,7 +13318,7 @@ msgstr "Активные экспедиции"
 #: application/views/dashboard/index.php:456
 #: application/views/user/edit.php:818
 msgid "Active Contests"
-msgstr "Активные соревнования"
+msgstr "Активные контесты"
 
 #: application/views/dashboard/_options_menu.php:28
 msgid "Solar data"
@@ -15205,6 +15212,8 @@ msgid ""
 "At least one of the locators is empty. Calculation not possible. Possibly "
 "missing locator in station location. Please check."
 msgstr ""
+"По крайней мере, один из QTH локаторов пуст. Расчёт невозможен. Возможно, он "
+"не задан в профиле QTH. Пожалуйста, проверьте."
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -16702,7 +16711,7 @@ msgstr "Поиск дубликатов, используя:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "Сопоставление QSO в рамках выбранного временного окна друг с другом"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
@@ -17100,7 +17109,7 @@ msgstr "Временное окно:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "настраиваемо, от 1 до 60 минут (по умолчанию 30 минут)"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -18091,10 +18100,12 @@ msgstr "Причина"
 #: application/views/logbookadvanced/showUpdateResult.php:79
 msgid "The number of QSOs updated for state/province across all DXCCs is"
 msgstr ""
+"Количество обновлённых QSO в значении области/штата/провинции по всем DXCC "
+"равно"
 
 #: application/views/logbookadvanced/showUpdateResult.php:79
 msgid "DXCCs processed"
-msgstr ""
+msgstr "обработано DXCC"
 
 #: application/views/logbookadvanced/showUpdateResult.php:131
 msgid "Results for continent update:"
@@ -18150,7 +18161,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/statecheckresult.php:7
 msgid "Fix all DXCCs"
-msgstr ""
+msgstr "Исправить все DXCC"
 
 #: application/views/logbookadvanced/statecheckresult.php:34
 msgid "Run fix"
@@ -20703,6 +20714,8 @@ msgstr "Посмотр карты с траекториями полета сп�
 msgid ""
 "Active station location does not have a gridsquare configured. Please check"
 msgstr ""
+"Для активного профиля QTH не задан квадрат QTH локатора. Пожалуйста, "
+"проверьте"
 
 #: application/views/satellite/flightpath.php:57
 msgid ""
@@ -21315,8 +21328,8 @@ msgstr "Контрольные номера"
 #: application/views/simplefle/syntax_help.php:67
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
-"Контрольные номера в соревнованиях; порядковые номера QSO или другой вариант "
-"— или даже оба варианта разом:"
+"Контрольные номера; порядковые номера QSO или другой вариант — или даже оба "
+"варианта разом:"
 
 #: application/views/simplefle/syntax_help.php:74
 #, php-format
@@ -21514,6 +21527,9 @@ msgid ""
 "distance statistics and more. Make sure to fill in the gridsquare if you "
 "want to use those features"
 msgstr ""
+"Это необходимо для всех функций, основанных на текущем местоположении — "
+"например карты, статистики расстояний и других. Обязательно заполните "
+"квадрат QTH-локатора, если хотите использовать эти возможности"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:222
@@ -22035,20 +22051,20 @@ msgstr "Возвышение"
 
 #: application/views/statistics/antennaanalytics.php:87
 msgid "Radar"
-msgstr ""
+msgstr "Радар"
 
 #: application/views/statistics/antennaanalytics.php:101
 msgid "QSOs per degree of azimuth"
-msgstr ""
+msgstr "QSO на градус азимута"
 
 #: application/views/statistics/antennaanalytics.php:102
 #, php-format
 msgid "25 / 50 / 75 % of peak"
-msgstr ""
+msgstr "25 / 50 / 75 % от максимума"
 
 #: application/views/statistics/antennaanalytics.php:103
 msgid "Marker every 5°"
-msgstr ""
+msgstr "Маркер каждые 5°"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:101
