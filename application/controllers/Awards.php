@@ -1338,45 +1338,117 @@ class Awards extends CI_Controller {
 	    $this->load->view('interface_assets/footer');
     }
 
-    public function counties()	{
+    public function counties() {
+        $footerData = [];
+        $footerData['scripts'] = [
+            'assets/js/bootstrap-multiselect.js',
+            'assets/js/sections/countiesmap.js',
+            'assets/js/leaflet/L.Maidenhead.js',
+        ];
+
         $this->load->model('counties');
-        $data['counties_progress'] = $this->counties->get_counties_progress();
-		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+        $this->load->model('logbookadvanced_model');
+        $this->load->model('bands');
+
+        $postdata = $this->counties_postdata();
+        if ($this->input->method() !== 'post') {   // Default QSL + LoTW at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+        }
+
+        $data['counties_progress'] = $this->counties->get_counties_progress($postdata);
+        $data['postdata'] = $postdata;
+        $data['worked_bands'] = $this->bands->get_worked_bands('uscounties');
+        $data['modes'] = $this->logbookadvanced_model->get_modes();
+        $data['user_map_custom'] = $this->optionslib->get_map_custom();
+
+        //$bodyData['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
         $data['page_title'] = sprintf(__("Awards - %s"), __("US Counties"));
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/counties/index');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('awards/counties/index'); //, $bodyData);
+        $this->load->view('interface_assets/footer', $footerData);
+    }
+
+    /*
+        function counties_map
+
+        AJAX endpoint backing the counties map: returns a JSON map of
+        "STATE|County" -> 'C' (confirmed), 'W' (worked, not confirmed) or
+        omitted (not worked), mirroring was_map()'s status-map convention.
+    */
+    public function counties_map() {
+        $this->load->model('counties');
+        $county_counts = $this->counties->get_counties_map($this->counties_postdata());
+
+        // Keys are uppercased because a QSO's county name can be typed or
+        // imported in any case; countiesmap.js uppercases the GeoJSON
+        // feature ids to match.
+        $statuses = array();
+        if (isset($county_counts)) {
+            foreach ($county_counts as $row) {
+                $key = strtoupper($row['COL_STATE'] . '|' . trim($row['COL_CNTY']));
+                $status = ((int) $row['confirmed'] > 0) ? 'C' : 'W';
+                if ($status === 'C' || !isset($statuses[$key])) {
+                    $statuses[$key] = $status;
+                }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($statuses);
+    }
+
+    /*
+     * Builds the filter postdata for the counties award, like the other
+     * award pages: qsl/lotw/eqsl/qrz/clublog checkboxes plus band/mode
+     * multi-selects ('All' when nothing is selected).
+     */
+    private function counties_postdata() {
+        $postdata = array();
+        foreach (array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog') as $source) {
+            $postdata[$source] = $this->input->post($source) ? 1 : NULL;
+        }
+
+        $band = $this->input->post('band');
+        $postdata['band'] = empty($band) ? 'All' : $this->security->xss_clean($band);
+
+        $mode = $this->input->post('mode');
+        $postdata['mode'] = empty($mode) ? 'All' : $this->security->xss_clean($mode);
+
+        return $postdata;
     }
 
     public function counties_list_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
-        $data['counties_array'] = $this->counties->counties_details($state, $type);
+        $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
         $data['type'] = $type;
         $this->load->view('awards/counties/details_ajax', $data);
     }
 
     public function counties_details_ajax() {
         $this->load->model('logbook_model');
+        $this->load->model('counties');
 
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
         $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
-        $data['results'] = $this->logbook_model->county_qso_details($state, $county);
+        $data['results'] = $this->logbook_model->county_qso_details($state, $county, $this->counties_postdata());
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         // Render Page
         $data['page_title'] = __("Log View - Counties");
-        $data['filter'] = "county " . $state;
+        // $county may arrive bare (map click) or "STATE,COUNTY"-prefixed (state list dialog)
+        $data['filter'] = "county " . $this->counties->bare_county($county) . ", " . $state;
         $this->load->view('awards/details', $data);
     }
 
     public function counties_state_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $data['counties_array'] = $this->counties->get_county_counts($state);
+        $data['counties_array'] = $this->counties->get_county_counts($state, $this->counties_postdata());
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);
     }
