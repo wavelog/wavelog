@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-20 18:43+0000\n"
-"PO-Revision-Date: 2026-08-19 07:10+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"POT-Creation-Date: 2026-08-19 18:14+0000\n"
+"PO-Revision-Date: 2026-08-20 19:11+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -618,13 +618,14 @@ msgstr "Log Ansicht – VUCC"
 #: application/controllers/Awards.php:656
 #: application/controllers/Callstats.php:101
 #: application/controllers/Distancerecords.php:87
-#: application/controllers/Statistics.php:399
+#: application/controllers/Statistics.php:383
 #: application/controllers/Timeline.php:127
 #: application/controllers/Timeline.php:130
 #: application/controllers/Timeline.php:133
 #: application/controllers/Timeline.php:136
 #: application/controllers/Timeline.php:139
 #: application/controllers/Timeline.php:142
+#: application/controllers/Statistics.php:399
 msgid "Log View"
 msgstr "Log-Ansicht"
 
@@ -883,7 +884,7 @@ msgstr "Diplome - AMSAT Rover"
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Azimuthalkarte"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:355
@@ -2271,7 +2272,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/search_result_ajax.php:4
 #: application/views/simplefle/index.php:158
-#: application/views/statistics/antennaanalytics.php:43
+#: application/views/statistics/antennaanalytics.php:35
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:24
 #: application/views/statistics/index.php:107
@@ -2285,6 +2286,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/statistics/antennaanalytics.php:43
 msgid "Mode"
 msgstr "Mode"
 
@@ -2554,7 +2556,7 @@ msgstr "Distanz"
 #: application/views/search/search_result_ajax.php:15
 #: application/views/simplefle/index.php:157
 #: application/views/stationsetup/exportmapoptions.php:31
-#: application/views/statistics/antennaanalytics.php:31
+#: application/views/statistics/antennaanalytics.php:23
 #: application/views/statistics/index.php:25
 #: application/views/statistics/initialresult.php:18
 #: application/views/statistics/initials.php:12
@@ -2567,6 +2569,7 @@ msgstr "Distanz"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/statistics/antennaanalytics.php:31
 msgid "Band"
 msgstr "Band"
 
@@ -3173,8 +3176,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:568
@@ -3761,16 +3764,19 @@ msgstr "QSL-Statistiken"
 
 #: application/controllers/Statistics.php:325
 #: application/views/interface_assets/header.php:162
+#: application/views/statistics/antennaanalytics.php:2
 #: application/views/statistics/antennaanalytics.php:10
 msgid "Antenna Analytics"
 msgstr "Antennenanalyse"
 
+#: application/controllers/Statistics.php:383
 #: application/controllers/Statistics.php:399
 msgid "Satellite QSOs"
 msgstr "Satellit QSOs"
 
-#: application/controllers/Statistics.php:416
+#: application/controllers/Statistics.php:400
 #: application/views/interface_assets/header.php:188
+#: application/controllers/Statistics.php:416
 msgid "EME Initials"
 msgstr "EME Erstverbindungen"
 
@@ -5050,10 +5056,10 @@ msgstr "Differenz"
 #: application/views/qslprint/index.php:36
 #: application/views/search/lotw_unconfirmed.php:30
 #: application/views/stationsetup/exportmapoptions.php:33
-#: application/views/statistics/antennaanalytics.php:34
-#: application/views/statistics/antennaanalytics.php:46
-#: application/views/statistics/antennaanalytics.php:60
-#: application/views/statistics/antennaanalytics.php:116
+#: application/views/statistics/antennaanalytics.php:26
+#: application/views/statistics/antennaanalytics.php:38
+#: application/views/statistics/antennaanalytics.php:52
+#: application/views/statistics/antennaanalytics.php:92
 #: application/views/statistics/index.php:69
 #: application/views/statistics/initials.php:24
 #: application/views/statistics/qsltable.php:79
@@ -5066,6 +5072,10 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/statistics/antennaanalytics.php:34
+#: application/views/statistics/antennaanalytics.php:46
+#: application/views/statistics/antennaanalytics.php:60
+#: application/views/statistics/antennaanalytics.php:116
 msgid "All"
 msgstr "Alle"
 
@@ -5161,8 +5171,8 @@ msgstr "Keine/Leer"
 #: application/views/lookup/index.php:94
 #: application/views/qslcard/confirmations.php:24
 #: application/views/stationsetup/exportmapoptions.php:6
-#: application/views/statistics/antennaanalytics.php:91
-#: application/views/statistics/antennaanalytics.php:138
+#: application/views/statistics/antennaanalytics.php:78
+#: application/views/statistics/antennaanalytics.php:114
 #: application/views/statistics/initials.php:34
 #: application/views/timeline/index.php:119
 #: application/views/timeline/index.php:218
@@ -5172,6 +5182,8 @@ msgstr "Keine/Leer"
 #: application/views/timeline/index.php:363
 #: application/views/timeline/index.php:399
 #: application/views/timeplotter/index.php:75
+#: application/views/statistics/antennaanalytics.php:91
+#: application/views/statistics/antennaanalytics.php:138
 msgid "Show"
 msgstr "Anzeigen"
 
@@ -5230,6 +5242,8 @@ msgstr "Satellit"
 #: application/views/satellite/edit.php:19
 #: application/views/satellite/index.php:54
 #: application/views/satellite/satinfo.php:12
+#: application/views/statistics/antennaanalytics.php:64
+#: application/views/statistics/antennaanalytics.php:102
 #: application/views/statistics/antennaanalytics.php:72
 #: application/views/statistics/antennaanalytics.php:126
 msgid "Orbit"
@@ -9589,51 +9603,52 @@ msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Da das aktive Stationsprofil keinen Locator enthält, kann die Karte nicht "
+"zentriert werden."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Azimuthalkarte zentriert auf dem aktiven Stationsprofil"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Projektion"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Azimuthal abstandsgetreu"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Lambert flächentreu"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Dinstanzringe"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Maidenhead-Felder"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
-msgstr ""
+msgstr "CQ-Zonen"
 
 #: application/views/azimuthal/index.php:53
 msgid "ITU zones"
-msgstr ""
+msgstr "ITU-Zonen"
 
 #: application/views/azimuthal/index.php:58
 msgid "DXCC prefixes"
-msgstr ""
+msgstr "DXCC-Präfixe"
 
 #: application/views/azimuthal/index.php:61
 msgid "Download PNG"
-msgstr ""
+msgstr "Lade PNG herunter"
 
 #: application/views/azimuthal/index.php:65
-#: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Azimuthalkarte"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -14953,8 +14968,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -15044,9 +15059,9 @@ msgstr "QSL-Datum"
 #: application/views/interface_assets/footer.php:2687
 #: application/views/interface_assets/footer.php:2705
 #: application/views/qslcard/index.php:81
-#: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:720
 #: application/views/view_log/qso.php:728
+#: application/views/statistics/antennaanalytics.php:85
 msgid "View"
 msgstr "Ansicht"
 
@@ -18895,8 +18910,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -20442,6 +20457,8 @@ msgid "POST"
 msgstr "POST"
 
 #: application/views/qso/index.php:108
+#: application/views/statistics/antennaanalytics.php:49
+#: application/views/statistics/antennaanalytics.php:89
 #: application/views/statistics/antennaanalytics.php:57
 #: application/views/statistics/antennaanalytics.php:113
 msgid "Sat"
@@ -21283,8 +21300,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -22089,35 +22106,21 @@ msgstr "Gib ein, wie der öffentliche Link lauten soll"
 msgid "Visit Public Page"
 msgstr "Besuche die öffentl. Seite"
 
+#: application/views/statistics/antennaanalytics.php:5
 #: application/views/statistics/antennaanalytics.php:13
 msgid "View azimuth and elevation data"
 msgstr "Zeige Azimuth und Elevationsdaten"
 
+#: application/views/statistics/antennaanalytics.php:12
 #: application/views/statistics/antennaanalytics.php:20
 #: application/views/statistics/antennaanalytics.php:99
 msgid "Azimuth"
 msgstr "Azimut"
 
+#: application/views/statistics/antennaanalytics.php:15
 #: application/views/statistics/antennaanalytics.php:23
 msgid "Elevation"
 msgstr "Elevation"
-
-#: application/views/statistics/antennaanalytics.php:87
-msgid "Radar"
-msgstr ""
-
-#: application/views/statistics/antennaanalytics.php:101
-msgid "QSOs per degree of azimuth"
-msgstr ""
-
-#: application/views/statistics/antennaanalytics.php:102
-#, php-format
-msgid "25 / 50 / 75 % of peak"
-msgstr ""
-
-#: application/views/statistics/antennaanalytics.php:103
-msgid "Marker every 5°"
-msgstr ""
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:101
@@ -22339,9 +22342,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -24060,6 +24063,23 @@ msgstr "Clublog Logsuche"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Nutzer. Letzter Upload vom "
+
+#: application/views/statistics/antennaanalytics.php:87
+msgid "Radar"
+msgstr "Radar"
+
+#: application/views/statistics/antennaanalytics.php:101
+msgid "QSOs per degree of azimuth"
+msgstr "QSOs pro Grad Azimuth"
+
+#: application/views/statistics/antennaanalytics.php:102
+#, php-format
+msgid "25 / 50 / 75 % of peak"
+msgstr "27 / 50 / 75% des Maximums"
+
+#: application/views/statistics/antennaanalytics.php:103
+msgid "Marker every 5°"
+msgstr "Marker je 5°"
 
 #~ msgid "Match QSOs within 1800s (30min) of each other"
 #~ msgstr "Prüfe Übereinstimmung von QSOs innerhalb von 1800s (30 Min)"
