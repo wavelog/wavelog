@@ -268,6 +268,8 @@ msgstr "Карта активированных квадратов QTH-лока�
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1476
+#: application/controllers/Awards.php:1512
 msgid "Gridsquares"
 msgstr "Квадраты QTH-локатора"
 
@@ -326,6 +328,7 @@ msgstr "Зоны"
 #: application/controllers/Activationplanner.php:33
 #: application/controllers/Awards.php:2538
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2610
 msgid "ITU Zones"
 msgstr "Зоны ITU"
 
@@ -524,6 +527,18 @@ msgstr "Дипломы"
 #: application/controllers/Awards.php:2755
 #: application/controllers/Awards.php:2830
 #: application/controllers/Awards.php:2972
+#: application/controllers/Awards.php:1368
+#: application/controllers/Awards.php:1497
+#: application/controllers/Awards.php:1703
+#: application/controllers/Awards.php:1854
+#: application/controllers/Awards.php:1905
+#: application/controllers/Awards.php:2461
+#: application/controllers/Awards.php:2610
+#: application/controllers/Awards.php:2740
+#: application/controllers/Awards.php:2814
+#: application/controllers/Awards.php:2827
+#: application/controllers/Awards.php:2902
+#: application/controllers/Awards.php:3044
 #, php-format
 msgid "Awards - %s"
 msgstr "Дипломы — %s"
@@ -777,38 +792,50 @@ msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:1347
 #: application/views/interface_assets/header.php:303
+#: application/controllers/Awards.php:1368
 msgid "US Counties"
 msgstr "US Counties"
 
 #: application/controllers/Awards.php:1371
+#: application/controllers/Awards.php:1442
 msgid "Log View - Counties"
 msgstr "Просмотр журнала — Округа"
 
 #: application/controllers/Awards.php:1386
+#: application/controllers/Awards.php:1458
 msgid "Awards - "
 msgstr "Дипломы — "
 
 #: application/controllers/Awards.php:1405
 #: application/controllers/Awards.php:1441
+#: application/controllers/Awards.php:1477
+#: application/controllers/Awards.php:1513
 msgid "Gridsquares worked"
 msgstr "Сработанные квадраты QTH-локатора"
 
 #: application/controllers/Awards.php:1406
 #: application/controllers/Awards.php:1442
+#: application/controllers/Awards.php:1478
+#: application/controllers/Awards.php:1514
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Квадраты QTH-локатора, подтверждённые на LoTW"
 
 #: application/controllers/Awards.php:1407
 #: application/controllers/Awards.php:1443
+#: application/controllers/Awards.php:1479
+#: application/controllers/Awards.php:1515
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Квадраты QTH-локатора, подтверждённые бумажными QSL"
 
 #: application/controllers/Awards.php:1408
 #: application/controllers/Awards.php:1444
+#: application/controllers/Awards.php:1480
+#: application/controllers/Awards.php:1516
 msgid "Total Gridsquares worked"
 msgstr "Всего сработано квадратов QTH-локатора"
 
 #: application/controllers/Awards.php:1425
+#: application/controllers/Awards.php:1497
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -821,49 +848,59 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/stationsetup/locationlist.php:26
 #: application/views/user/edit.php:871 application/views/view_log/qso.php:371
 #: application/views/view_log/qso.php:691
+#: application/controllers/Awards.php:1703
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1650
+#: application/controllers/Awards.php:1722
 msgid "Awards - SIG - "
 msgstr "Дипломы — SIG — "
 
 #: application/controllers/Awards.php:1782 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1854
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:1833
 #: application/views/interface_assets/header.php:263
+#: application/controllers/Awards.php:1905
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2668
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:210
+#: application/controllers/Awards.php:2740
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2742
+#: application/controllers/Awards.php:2814
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2755
 #: application/views/interface_assets/header.php:220
+#: application/controllers/Awards.php:2827
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:2830
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2902
 msgid "WPX"
 msgstr "WPX"
 
 #: application/controllers/Awards.php:2972
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:285
+#: application/controllers/Awards.php:3044
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:3016
+#: application/controllers/Awards.php:3088
 msgid "Awards - AMSAT Rover"
 msgstr "Дипломы — AMSAT Rover"
 
@@ -1099,6 +1136,7 @@ msgstr "Ни один пользователь не сконфигурирова
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:511
 #: application/views/view_log/qso.php:516
+#: application/views/awards/counties/index.php:98
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -2064,6 +2102,7 @@ msgstr "Журнал"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:62 application/views/user/edit.php:735
 #: application/views/user/edit.php:1003 application/views/visitor/mini.php:187
+#: application/views/awards/counties/index.php:82
 msgid "QSL"
 msgstr "QSL"
 
@@ -2114,6 +2153,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:482
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/views/awards/counties/index.php:86
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2155,6 +2195,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:299
 #: application/views/timeline/index.php:70 application/views/user/edit.php:737
 #: application/views/user/edit.php:1021 application/views/user/edit.php:1095
+#: application/views/awards/counties/index.php:90
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2268,6 +2309,7 @@ msgstr "Все запросы к коллбукам не удались или �
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/awards/counties/index.php:113
 msgid "Mode"
 msgstr "Модуляция"
 
@@ -2408,6 +2450,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:374 application/views/user/edit.php:398
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/views/awards/counties/index.php:184
 msgid "State"
 msgstr "Область/штат"
 
@@ -2550,6 +2593,7 @@ msgstr "Расстояние"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/awards/counties/index.php:103
 msgid "Band"
 msgstr "Диапазон"
 
@@ -4748,6 +4792,7 @@ msgstr "QSO обновлено"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6326
 msgid "Bearing"
 msgstr "Направление"
 
@@ -5042,6 +5087,7 @@ msgstr "Разница"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/awards/counties/index.php:245
 msgid "All"
 msgstr "Все"
 
@@ -5148,6 +5194,7 @@ msgstr "Нет/Пусто"
 #: application/views/timeline/index.php:363
 #: application/views/timeline/index.php:399
 #: application/views/timeplotter/index.php:75
+#: application/views/awards/counties/index.php:69
 msgid "Show"
 msgstr "Показать"
 
@@ -5243,6 +5290,7 @@ msgstr "Подтверждение"
 #: application/views/awards/wwff/index.php:109
 #: application/views/countqsoby/index.php:186
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1029
+#: application/views/awards/counties/index.php:94
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -5591,6 +5639,7 @@ msgstr "Минимальное количество"
 #: application/views/qrz/export.php:65
 #: application/views/statistics/qsltable.php:162
 #: application/views/timeline/index.php:149
+#: application/views/awards/counties/index.php:230
 msgid "Nothing found!"
 msgstr "Не найдено!"
 
@@ -6899,6 +6948,8 @@ msgstr "У вас еще нет токенов API. Нажмите на кноп
 #: application/views/awards/was/index.php:34
 #: application/views/awards/wwff/index.php:23
 #: application/views/awards/wwff/index.php:31
+#: application/views/awards/counties/index.php:41
+#: application/views/awards/counties/index.php:49
 msgid "Award Info"
 msgstr "Информация о дипломе"
 
@@ -7004,6 +7055,7 @@ msgstr "Перейти к профилю QTH"
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:342
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
+#: application/views/awards/counties/index.php:68
 msgid "Filters"
 msgstr "Фильтры"
 
@@ -7072,6 +7124,7 @@ msgstr "Общее количество очков"
 
 #: application/views/awards/amsat_rover/index.php:152
 #: application/views/awards/counties/index.php:79
+#: application/views/awards/counties/index.php:187
 msgid "Target"
 msgstr "Цель"
 
@@ -7184,14 +7237,17 @@ msgstr "Скачать CSV"
 #: application/views/logbookadvanced/index.php:1006
 #: application/views/logbookadvanced/useroptions.php:187
 #: application/views/stationsetup/locationlist.php:20
+#: application/views/awards/counties/index.php:8
 msgid "County"
 msgstr "Район"
 
 #: application/views/awards/counties/index.php:6
+#: application/views/awards/counties/index.php:42
 msgid "US County Award"
 msgstr "US County Award"
 
 #: application/views/awards/counties/index.php:7
+#: application/views/awards/counties/index.php:43
 #, php-format
 msgid ""
 "The United States of America Counties Award (USA-CA), sponsored by MARAC "
@@ -7211,10 +7267,12 @@ msgstr ""
 #: application/views/awards/wapc/index.php:29
 #: application/views/awards/was/index.php:30
 #: application/views/simplefle/index.php:16
+#: application/views/awards/counties/index.php:43
 msgid "here"
 msgstr "здесь"
 
 #: application/views/awards/counties/index.php:8
+#: application/views/awards/counties/index.php:44
 msgid ""
 "USA-CA is available to all licensed amateurs worldwide and is issued to "
 "individuals for all county contacts made, regardless of callsigns used, "
@@ -7225,11 +7283,13 @@ msgstr ""
 "от используемых позывных, места работы или даты."
 
 #: application/views/awards/counties/index.php:9
+#: application/views/awards/counties/index.php:45
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
 msgstr ""
 "Специальные дипломы USA-CA также доступны для SWL на постоянной основе."
 
 #: application/views/awards/counties/index.php:10
+#: application/views/awards/counties/index.php:46
 msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
@@ -7242,28 +7302,34 @@ msgid "Counties Progress"
 msgstr "Прогресс по округам"
 
 #: application/views/awards/counties/index.php:45
+#: application/views/awards/counties/index.php:153
 msgid "Worked Counties"
 msgstr "Сработано округов"
 
 #: application/views/awards/counties/index.php:47
+#: application/views/awards/counties/index.php:155
 #, php-format
 msgid "of %s known counties"
 msgstr "%s известных округов"
 
 #: application/views/awards/counties/index.php:52
+#: application/views/awards/counties/index.php:160
 msgid "Confirmed Counties"
 msgstr "Подтверждено округов"
 
 #: application/views/awards/counties/index.php:54
+#: application/views/awards/counties/index.php:162
 #, php-format
 msgid "%s%% of worked"
 msgstr "%s%% сработано"
 
 #: application/views/awards/counties/index.php:59
+#: application/views/awards/counties/index.php:167
 msgid "Remaining Counties"
 msgstr "Оставшиеся округа"
 
 #: application/views/awards/counties/index.php:61
+#: application/views/awards/counties/index.php:169
 msgid "Based on current worked count"
 msgstr "На основе на текущего количества сработанных"
 
@@ -7271,10 +7337,12 @@ msgstr "На основе на текущего количества срабо�
 #: application/views/awards/dxcc/index.php:41
 #: application/views/awards/waip/index.php:41
 #: application/views/awards/waip/index.php:63
+#: application/views/awards/counties/index.php:174
 msgid "Progress"
 msgstr "Прогресс"
 
 #: application/views/awards/counties/index.php:68
+#: application/views/awards/counties/index.php:176
 #, php-format
 msgid "%s%% confirmed overall"
 msgstr "%s%% подтверждено в целом"
@@ -7294,6 +7362,7 @@ msgstr "%s%% подтверждено в целом"
 #: application/views/dashboard/index.php:672
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/awards/counties/index.php:185
 msgid "Worked"
 msgstr "Сработано"
 
@@ -7318,10 +7387,12 @@ msgstr "Сработано"
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/awards/counties/index.php:186
 msgid "Confirmed"
 msgstr "Подтверждено"
 
 #: application/views/awards/counties/index.php:80
+#: application/views/awards/counties/index.php:188
 msgid "Remaining"
 msgstr "Осталось"
 
@@ -7329,6 +7400,7 @@ msgstr "Осталось"
 #: application/views/awards/dxcc/index.php:300
 #: application/views/awards/dxcc/index.php:373
 #: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/counties/index.php:189
 msgid "Worked Progress"
 msgstr "Прогресс (сработано)"
 
@@ -7336,6 +7408,7 @@ msgstr "Прогресс (сработано)"
 #: application/views/awards/dxcc/index.php:301
 #: application/views/awards/dxcc/index.php:374
 #: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/counties/index.php:190
 msgid "Confirmed Progress"
 msgstr "Прогресс (подтверждено)"
 
@@ -7369,6 +7442,7 @@ msgstr "Прогресс (подтверждено)"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/counties/index.php:218
 msgid "Total"
 msgstr "Всего"
 
@@ -7438,6 +7512,7 @@ msgstr "Дипломы — CQ WAZ"
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:41
 #: application/views/awards/wwff/index.php:39
+#: application/views/awards/counties/index.php:56
 msgid "Table"
 msgstr "Таблица"
 
@@ -7467,6 +7542,7 @@ msgstr "Таблица"
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
+#: application/views/awards/counties/index.php:59
 msgid "Map"
 msgstr "Карта"
 
@@ -7925,6 +8001,7 @@ msgstr "Сработано / Подтверждено"
 #: application/views/awards/wap/index.php:103
 #: application/views/awards/wapc/index.php:110
 #: application/views/awards/was/index.php:106
+#: application/views/awards/counties/index.php:244
 msgid "Every band"
 msgstr "Каждый диапазон"
 
@@ -8529,7 +8606,8 @@ msgstr "Прогресс JCC"
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
-msgstr "Внимание! Wavelog не проверяет, проведено ли QSO до даты удаления DXCC."
+msgstr ""
+"Внимание! Wavelog не проверяет, проведено ли QSO до даты удаления DXCC."
 
 #: application/views/awards/jcc/index.php:185
 msgid "No worked or confirmed JCC slots match the current filters."
@@ -15735,14 +15813,17 @@ msgid "Something went wrong. Please try again!"
 msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
 
 #: application/views/interface_assets/footer.php:2836
+#: application/views/interface_assets/footer.php:2850
 msgid "US Counties for state"
 msgstr "Округа США для штата"
 
 #: application/views/interface_assets/footer.php:2889
+#: application/views/interface_assets/footer.php:2903
 msgid "Confirmed counties for state:"
 msgstr "Подтверждённые округа для штата:"
 
 #: application/views/interface_assets/footer.php:2889
+#: application/views/interface_assets/footer.php:2903
 msgid "Worked counties for state:"
 msgstr "Сработанные округа для штата:"
 
@@ -22285,8 +22366,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -22621,8 +22703,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:466
 msgid ""
@@ -23988,6 +24070,18 @@ msgstr "Поиск лога на Clublog"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "Пользователь LoTW. Последняя загрузка была "
+
+#: application/views/awards/counties/index.php:9
+msgid "Hover over a county"
+msgstr ""
+
+#: application/views/awards/counties/index.php:71
+msgid "Show Counties Map"
+msgstr ""
+
+#: application/views/awards/counties/index.php:78
+msgid "Count QSO as Confirmed via"
+msgstr ""
 
 #~ msgid "Match QSOs within 1800s (30min) of each other"
 #~ msgstr "Сопоставление QSO в интервале 1800 секунд (30 минут)"
