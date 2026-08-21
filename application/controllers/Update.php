@@ -11,7 +11,7 @@ class Update extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
-		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+		if (MAINTENANCE_MODE && $this->session->userdata('user_id') == '') {
 			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
@@ -581,6 +581,45 @@ class Update extends CI_Controller {
 				log_message('debug', 'Process is currently locked. Further calls are ignored.');
 				echo 'locked - running';
 			}
+		}
+	}
+
+	public function update_pota_boundaries() {
+		// Boundary import downloads ~160 MB across 7 files; allow a long run and
+		// a lock that outlives the 120 s guard used by the lighter directory jobs.
+		set_time_limit(0);
+		$lockfilename = '/tmp/.update_pota_boundaries_running';
+		if (file_exists($lockfilename)) {
+			$tdiff = time() - filemtime($lockfilename);
+			if ($tdiff <= 1800) {
+				log_message('debug', 'update_pota_boundaries: already running, ignoring.');
+				echo 'locked - running';
+				return;
+			}
+			unlink($lockfilename);
+			log_message('debug', 'update_pota_boundaries: reclaimed stale lock (older than ' . $tdiff . ' s).');
+		}
+
+		touch($lockfilename);
+		$this->load->model('Update_model');
+		try {
+			$result = $this->Update_model->pota_boundaries();
+		} catch (Throwable $e) {
+			log_message('error', 'update_pota_boundaries threw: ' . $e->getMessage());
+			$result = 'FAILED: exception - ' . $e->getMessage();
+		} finally {
+			@unlink($lockfilename);
+		}
+
+		if ($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("POTA boundaries update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("POTA boundaries update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+			echo $result;
 		}
 	}
 

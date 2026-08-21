@@ -13,8 +13,8 @@ if ($counties_array) {
     foreach ($counties_array as $county) {
         echo '<tr>
         <td>'. $i++ .'</td>
-        <td>'. $county['COL_STATE'] .'</td>
-        <td><a href=\'javascript:displayCountyContacts("'. $county['COL_STATE'] .'","'. $county['COL_CNTY'] .'")\'>'. $county['COL_CNTY'] .'</a></td>';
+        <td>'. html_escape($county['COL_STATE']) .'</td>
+        <td><a href=\'javascript:displayCountyContacts(' . js_escape($county['COL_STATE']) . ',' . js_escape($county['COL_CNTY']) . ')\'>'. html_escape($county['COL_CNTY']) .'</a></td>';
         echo '</tr>';
     }
     echo '</tbody></table>';

@@ -400,7 +400,7 @@ class Labels extends CI_Controller {
 			if ($ref_avail == true) {$text .= $ref_text."\n";}
 		}
 		if ($qslmsg) {
-		    if (!empty($qso['qslmsg'])) { $text .= $qso['qslmsg']."\n";}
+		    if (!empty($qso['qslmsg'])) { $text .= html_entity_decode($qso['qslmsg'])."\n";}
 		}
 		if ($tnxmsg) {
 		    $text .= "Thanks for the QSO".($numofqsos>1 ? 's' : '');

@@ -163,5 +163,15 @@ class Lotw_model extends CI_Model {
 		$query = $this->db->query($sql, array($status, $cert_id));
 	}
 
+	function last_lotw_upload($userid, $orderby = null) {
+		if ($orderby == 'callsign') {
+			$sql = "SELECT `callsign`, `last_upload` FROM `lotw_certs` WHERE user_id = ? ORDER BY `callsign` ASC;";
+		} else {
+			$sql = "SELECT `callsign`, `last_upload` FROM `lotw_certs` WHERE user_id = ? ORDER BY `last_upload` DESC;";
+		}
+		$query = $this->db->query($sql, array($userid));
+		return $query;
+	}
+
 }
 ?>

@@ -3,6 +3,10 @@
     <h5><?= __("State Check Results"); ?></h5>
     <p><?= __("QSOs with missing state and gridsquares with 6 or more characters found for the following DXCCs:"); ?></p>
 
+	<button type="button" class="btn btn-sm btn-primary ld-ext-right mb-2" id="fixAllStatesBtn" onclick="fixAllStates()">
+		<?= __("Fix all DXCCs") ?><div class="ld ld-ring ld-spin"></div>
+	</button>
+
 	<div class="table-responsive" style="max-height:50vh; overflow:auto;">
 		<table class="table table-sm table-striped table-bordered table-condensed mb-0">
 			<thead>
@@ -22,14 +26,14 @@
 					$qsos = isset($item->count) ? intval($item->count) : 0;
 				?>
 				<tr>
-					<td><?php echo $item->prefix; ?></td>
+					<td><?php echo html_escape($item->prefix); ?></td>
 					<td><?php echo $name; ?></td>
 					<td><?php echo $qsos; ?></td>
 					<td>
-						<button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixStateBtn_<?php echo $item->col_dxcc; ?>" onclick="fixState(<?php echo $item->col_dxcc; ?>, '<?php echo $formattedName; ?>')">
+						<button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixStateBtn_<?php echo (int) $item->col_dxcc; ?>" onclick='fixState(<?php echo (int) $item->col_dxcc; ?>, <?php echo js_escape($formattedName); ?>)'>
 							<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
 						</button>
-						<button id="openStateListBtn_<?php echo $item->col_dxcc; ?>" onclick="openStateList(<?php echo $item->col_dxcc; ?>, '<?php echo $formattedName; ?>')" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button>
+						<button id="openStateListBtn_<?php echo (int) $item->col_dxcc; ?>" onclick='openStateList(<?php echo (int) $item->col_dxcc; ?>, <?php echo js_escape($formattedName); ?>)' class="btn btn-sm btn-success"><i class="fas fa-search"></i></button>
 					</td>
 				</tr>
 			<?php endforeach; ?>

@@ -15,11 +15,11 @@ class Stationsetup_model extends CI_Model {
 
 	function saveContainer() {
 		$data = array(
-			'logbook_name' => xss_clean($this->input->post('name', true)),
+			'logbook_name' => $this->input->post('name', true),
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', xss_clean($this->input->post('id', true)));
+		$this->db->where('logbook_id', $this->input->post('id', true));
 		$this->db->update('station_logbooks', $data);
 	}
 

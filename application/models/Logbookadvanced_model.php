@@ -46,9 +46,16 @@ class Logbookadvanced_model extends CI_Model {
 			$where_conditions = "AND " . implode(" AND ", $conditions);
 		}
 
+		// Time window for the dupedate check (seconds), adjustable via the dupe search dialog
+		$dupe_time = (int)($searchCriteria['dupedateval'] ?? 0);
+		if ($dupe_time <= 0) {
+			$dupe_time = 1800; // default 30 minutes
+		}
+		$dupe_time = min($dupe_time, 86400);
+
 		// Build the dupedate HAVING condition
 		$having_condition = isset($searchCriteria['dupedate']) && $searchCriteria['dupedate'] === 'Y'
-			? "AND TIMESTAMPDIFF(SECOND, prev_time_on, col_time_on) < 1800"
+			? "AND TIMESTAMPDIFF(SECOND, prev_time_on, col_time_on) <= $dupe_time"
 			: "";
 
 		$id_sql = "
@@ -887,6 +894,10 @@ class Logbookadvanced_model extends CI_Model {
 					NULLIF(COL_QSL_SENT_VIA, ''),
 					'B'
 				),
+				COL_CLUBLOG_QSO_UPLOAD_STATUS = CASE
+					WHEN COL_CLUBLOG_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
+					ELSE COL_CLUBLOG_QSO_UPLOAD_STATUS
+				END,
 				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE
 					WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
 					ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
@@ -925,6 +936,10 @@ class Logbookadvanced_model extends CI_Model {
 				COL_QSLRDATE = CURRENT_TIMESTAMP,
 				COL_QSL_RCVD = ?,
 				COL_QSL_RCVD_VIA = ?,
+				COL_CLUBLOG_QSO_UPLOAD_STATUS = CASE
+				WHEN COL_CLUBLOG_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
+				ELSE COL_CLUBLOG_QSO_UPLOAD_STATUS
+				END,
 				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE
 				WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
 				ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
@@ -2031,6 +2046,56 @@ class Logbookadvanced_model extends CI_Model {
 		$results['count'] = $count;
 
 		return $results;
+	}
+
+	/**
+	 * Fix state for every DXCC that has QSOs eligible for a state fix.
+	 *
+	 * Reuses check_missing_state() to determine the candidate DXCCs (so the
+	 * set of DXCCs fixed matches exactly what was shown in the check result),
+	 * then runs fixStateBatch() for each one, aggregating the outcome.
+	 *
+	 * @param string $stationid Station id, or 'All'
+	 * @return array Aggregated result: total_updated, dxccs_processed,
+	 *               dxcc_counts[] (per-DXCC name + count) and failures[]
+	 */
+	function fixStateAll($stationid) {
+		$aggregated = [
+			'total_updated' => 0,
+			'dxccs_processed' => 0,
+			'dxcc_counts' => [],
+			'failures' => [],
+		];
+
+		$candidates = $this->check_missing_state($stationid);
+
+		foreach ($candidates as $candidate) {
+			$dxcc = $candidate->col_dxcc;
+			$dxcc_name = isset($candidate->dxcc_name) ? ucwords(strtolower($candidate->dxcc_name), "- (/") : '';
+
+			$result = $this->fixStateBatch($dxcc, $stationid);
+
+			$aggregated['dxccs_processed']++;
+
+			$count = isset($result['count']) ? (int)$result['count'] : 0;
+			$aggregated['total_updated'] += $count;
+			$aggregated['dxcc_counts'][] = [
+				'name' => $dxcc_name,
+				'count' => $count,
+			];
+
+			// fixStateBatch() returns numeric entries for per-QSO failures
+			// (each an array containing 'id') plus a 'count' scalar.
+			if (is_array($result)) {
+				foreach ($result as $value) {
+					if (is_array($value) && isset($value['id'])) {
+						$aggregated['failures'][] = $value;
+					}
+				}
+			}
+		}
+
+		return $aggregated;
 	}
 
 	/**

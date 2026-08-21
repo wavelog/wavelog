@@ -51,18 +51,18 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="start_date"><?= __("Start Date/Time"); ?></label>
-                                            <input type="text" class="form-control" name="time_on" id="time_on" value="<?php echo $qso->COL_TIME_ON; ?>">
+                                            <input type="text" class="form-control" name="time_on" id="time_on" value="<?php echo html_escape($qso->COL_TIME_ON); ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="start_time"><?= __("End Date/Time"); ?></label>
-                                            <input type="text" class="form-control" name="time_off" id="time_off" value="<?php echo $qso->COL_TIME_OFF; ?>">
+                                            <input type="text" class="form-control" name="time_off" id="time_off" value="<?php echo html_escape($qso->COL_TIME_OFF); ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="callsign"><?= __("Callsign"); ?></label>
-                                            <input type="text" class="form-control uppercase" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
+                                            <input type="text" class="form-control uppercase" id="edit_callsign" name="callsign" value="<?php echo html_escape($qso->COL_CALL); ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
@@ -71,12 +71,12 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="freq"><?= __("Frequency"); ?></label>
-                                            <input type="number" step="1" class="form-control" id="freq" name="freq" value="<?php echo $qso->COL_FREQ; ?>">
+                                            <input type="number" step="1" class="form-control" id="freq" name="freq" value="<?php echo html_escape($qso->COL_FREQ); ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="freq"><?= __("RX Frequency"); ?></label>
-                                            <input type="number" step="1" class="form-control" id="freqrx" name="freq_display_rx" value="<?php if ($qso->COL_FREQ_RX != "0") { echo $qso->COL_FREQ_RX; } ?>">
+                                            <input type="number" step="1" class="form-control" id="freqrx" name="freq_display_rx" value="<?php if ($qso->COL_FREQ_RX != "0") { echo html_escape($qso->COL_FREQ_RX); } ?>">
                                         </div>
                                     </div>
 
@@ -134,19 +134,19 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="transmit_power"><?= __("Transmit Power (W)"); ?> <i id="power_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Give power value in Watts. Include only numbers in the input."); ?>"></i></label>
-                                            <input type="number" step="0.001" class="form-control" id="transmit_power" name="transmit_power" value="<?php echo $qso->COL_TX_PWR; ?>" />
+                                            <input type="number" step="0.001" class="form-control" id="transmit_power" name="transmit_power" value="<?php echo html_escape($qso->COL_TX_PWR); ?>" />
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="rst_sent"><?= __("RST (S)"); ?></label>
-                                            <input type="text" class="form-control" name="rst_sent" id="rst_sent" value="<?php echo $qso->COL_RST_SENT; ?>">
+                                            <input type="text" class="form-control" name="rst_sent" id="rst_sent" value="<?php echo html_escape($qso->COL_RST_SENT); ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="rst_rcvd"><?= __("RST (R)"); ?></label>
-                                            <input type="text" class="form-control" name="rst_rcvd" id="rst_rcvd" value="<?php echo $qso->COL_RST_RCVD; ?>">
+                                            <input type="text" class="form-control" name="rst_rcvd" id="rst_rcvd" value="<?php echo html_escape($qso->COL_RST_RCVD); ?>">
                                         </div>
                                     </div>
 
@@ -155,27 +155,27 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="locator"><?= __("Gridsquare"); ?></label>
-                                            <input type="text" class="form-control uppercase" id="locator_edit" name="locator" value="<?php echo $qso->COL_GRIDSQUARE; ?>">
-                                            <small id="locator_info_edit" class="form-text text-muted"><?php if ($qso->COL_DISTANCE != "") echo $qso->COL_DISTANCE . " km"; ?></small>
+                                            <input type="text" class="form-control uppercase" id="locator_edit" name="locator" value="<?php echo html_escape($qso->COL_GRIDSQUARE); ?>">
+                                            <small id="locator_info_edit" class="form-text text-muted"><?php if ($qso->COL_DISTANCE != "") echo html_escape($qso->COL_DISTANCE) . " km"; ?></small>
                                         </div>
 
                                         <input type="hidden" name="distance" id="distance" value="<?php print ($qso->COL_DISTANCE != "") ? $qso->COL_DISTANCE : "0"; ?>">
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="vucc_grids"><?= __("VUCC Gridsquare"); ?> <i id="vucc_grid_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Used for VUCC MultiGrids"); ?>"></i></label>
-                                            <input type="text" class="form-control uppercase" id="vucc_grids" name="vucc_grids" value="<?php echo $qso->COL_VUCC_GRIDS; ?>">
+                                            <input type="text" class="form-control uppercase" id="vucc_grids" name="vucc_grids" value="<?php echo html_escape($qso->COL_VUCC_GRIDS); ?>">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="name"><?= __("Name"); ?></label>
-                                            <input type="text" class="form-control" id="name_edit" name="name" value="<?php echo $qso->COL_NAME; ?>">
+                                            <input type="text" class="form-control" id="name_edit" name="name" value="<?php echo html_escape($qso->COL_NAME); ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="qth"><?= __("QTH"); ?></label>
-                                            <input type="text" class="form-control" id="qth_edit" name="qth" value="<?php echo $qso->COL_QTH; ?>">
+                                            <input type="text" class="form-control" id="qth_edit" name="qth" value="<?php echo html_escape($qso->COL_QTH); ?>">
                                         </div>
                                     </div>
 
@@ -201,7 +201,7 @@
                                                 } ?>
                                             </small>
                                         </div>
-                                        <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
+                                        <input type="hidden" class="form-control" id="country" name="country" value="<?php echo html_escape($qso->COL_COUNTRY); ?>">
                                         <div class="mb-3 col-sm-6">
                                             <label for="ant_path"><?= __("Antenna Path"); ?></label>
                                             <select class="form-select" id="ant_path_edit" name="ant_path">
@@ -258,7 +258,7 @@
                                         </div>
                                     	<div class="mb-3">
                                        		<label for="email"><?= __("E-mail"); ?></label>
-                                       		<input type="text" class="form-control" id="email_edit" name="email" value="<?php echo $qso->COL_EMAIL; ?>">
+                                       		<input type="text" class="form-control" id="email_edit" name="email" value="<?php echo html_escape($qso->COL_EMAIL); ?>">
                                     	</div>
                                     </div>
                                 </div>
@@ -267,22 +267,22 @@
                                 <div class="tab-pane fade" id="nav-satellites" role="tabpanel" aria-labelledby="nav-satellites-tab">
                                     <div class="mb-3">
                                         <label for="sat_name"><?= __("Sat Name"); ?></label>
-                                        <input type="text" class="form-control" name="sat_name" id="sat_name" value="<?php echo $qso->COL_SAT_NAME; ?>">
+                                        <input type="text" class="form-control" name="sat_name" id="sat_name" value="<?php echo html_escape($qso->COL_SAT_NAME); ?>">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="sat_mode"><?= __("Sat Mode"); ?></label>
-                                        <input type="text" class="form-control" name="sat_mode" id="sat_mode" value="<?php echo $qso->COL_SAT_MODE; ?>">
+                                        <input type="text" class="form-control" name="sat_mode" id="sat_mode" value="<?php echo html_escape($qso->COL_SAT_MODE); ?>">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="ant_az"><?= __("Antenna Azimuth (°)"); ?> <i id="azimuth_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Antenna azimuth in decimal degrees."); ?>"></i></label>
-                                        <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" value="<?php echo $qso->COL_ANT_AZ; ?>" />
+                                        <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" value="<?php echo html_escape($qso->COL_ANT_AZ); ?>" />
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="ant_el"><?= __("Antenna Elevation (°)"); ?> <i id="elevation_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Antenna elevation in decimal degrees."); ?>"></i></label>
-                                        <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" value="<?php echo $qso->COL_ANT_EL; ?>" />
+                                        <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" value="<?php echo html_escape($qso->COL_ANT_EL); ?>" />
                                     </div>
                                 </div>
 
@@ -345,7 +345,7 @@
                                         </div>
                                         <div style="display: none;" class="mb-3 col-sm-6" id="location_us_county_edit">
                                             <label for="stationCntyInput"><?= __("Station County"); ?></label>
-                                            <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
+                                            <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo html_escape($qso->COL_CNTY); ?>" />
                                         </div>
                                     </div>
                                     <div class="row">
@@ -360,32 +360,32 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="sota_ref"><?= __("SOTA"); ?></label>
-                                            <input type="text" class="form-control text-uppercase" id="sota_ref_edit" name="sota_ref" value="<?php echo $qso->COL_SOTA_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sota_ref_edit" name="sota_ref" value="<?php echo html_escape($qso->COL_SOTA_REF); ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="pota_ref"><?= __("POTA"); ?></label>
-                                            <input type="text" class="form-control text-uppercase" id="pota_ref_edit" name="pota_ref" value="<?php echo $qso->COL_POTA_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="pota_ref_edit" name="pota_ref" value="<?php echo html_escape($qso->COL_POTA_REF); ?>">
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="wwff_ref"><?= __("WWFF"); ?></label>
-                                            <input type="text" class="form-control text-uppercase" id="wwff_ref_edit" name="wwff_ref" value="<?php echo $qso->COL_WWFF_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="wwff_ref_edit" name="wwff_ref" value="<?php echo html_escape($qso->COL_WWFF_REF); ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig"><?= __("SIG"); ?></label>
-                                            <input type="text" class="form-control text-uppercase" id="sig" name="sig" value="<?php echo $qso->COL_SIG; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sig" name="sig" value="<?php echo html_escape($qso->COL_SIG); ?>">
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig_info"><?= __("SIG Info"); ?></label>
-                                            <input type="text" class="form-control text-uppercase" id="sig_info" name="sig_info" value="<?php echo $qso->COL_SIG_INFO; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sig_info" name="sig_info" value="<?php echo html_escape($qso->COL_SIG_INFO); ?>">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="darc_dok"><?= __("DOK"); ?></label>
-                                        <input type="text" class="form-control text-uppercase" id="darc_dok_edit" name="darc_dok" value="<?php echo $qso->COL_DARC_DOK; ?>">
+                                        <input type="text" class="form-control text-uppercase" id="darc_dok_edit" name="darc_dok" value="<?php echo html_escape($qso->COL_DARC_DOK); ?>">
                                     </div>
                                 </div>
 
@@ -393,7 +393,7 @@
                                 <div class="tab-pane fade" id="nav-qso-notes" role="tabpanel" aria-labelledby="nav-qso-notes-tab">
                                     <div class="mb-3">
                                         <label for="notes"><?= __("Notes"); ?></label>
-                                        <textarea type="text" class="form-control" id="notes" name="notes" rows="10"><?php echo $qso->COL_NOTES; ?></textarea>
+                                        <textarea type="text" class="form-control" id="notes" name="notes" rows="10"><?php echo html_escape($qso->COL_NOTES); ?></textarea>
                                         <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
                                     </div>
                                 </div>
@@ -451,7 +451,7 @@
                                             <div class="mb-3 row">
                                                 <label for="qsl-via" class="col-sm-3 col-form-label"><?= __("Sent Via"); ?></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" id="qsl-via" class="form-control" name="qsl_via_callsign" value="<?php echo $qso->COL_QSL_VIA; ?>" />
+                                                    <input type="text" id="qsl-via" class="form-control" name="qsl_via_callsign" value="<?php echo html_escape($qso->COL_QSL_VIA); ?>" />
                                                 </div>
                                             </div>
 
@@ -512,9 +512,9 @@
                                                 <div>
                                                     <label for="qslmsg"><?= __("QSL Msg (S)"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
                                                     <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
-                                                    <textarea type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
+                                                    <textarea type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo html_escape($qso->COL_QSLMSG); ?></textarea>
                                                     <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
-                                                    <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>
+                                                    <div id="qslmsg_hide" style="display:none;"><?php echo html_escape($qso->COL_QSLMSG); ?></div>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
@@ -665,7 +665,7 @@
                                     <?php if(clubaccess_check(9)) { ?>
                                     <div class="mb-3">
                                         <label for="operatorCallsign"><?= __("Operator Callsign"); ?></label>
-                                        <input type="text" id="operatorCallsign" class="form-control uppercase" name="operator_callsign" value="<?php echo $qso->COL_OPERATOR; ?>" />
+                                        <input type="text" id="operatorCallsign" class="form-control uppercase" name="operator_callsign" value="<?php echo html_escape($qso->COL_OPERATOR); ?>" />
                                     </div>
                                     <?php } ?>
 
@@ -685,22 +685,22 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-3">
                                             <label for="srx"><?= __("Serial (R)"); ?></label>
-                                            <input type="text" id="srx" class="form-control" name="srx" value="<?php echo $qso->COL_SRX; ?>" />
+                                            <input type="text" id="srx" class="form-control" name="srx" value="<?php echo html_escape($qso->COL_SRX); ?>" />
                                         </div>
 
                                         <div class="mb-3 col-sm-3">
                                             <label for="stx"><?= __("Serial (S)"); ?></label>
-                                            <input type="text" id="stx" class="form-control" name="stx" value="<?php echo $qso->COL_STX; ?>" />
+                                            <input type="text" id="stx" class="form-control" name="stx" value="<?php echo html_escape($qso->COL_STX); ?>" />
                                         </div>
 
                                         <div class="mb-3 col-sm-3">
                                             <label for="srx_string"><?= __("Exchange (R)"); ?></label>
-                                            <input type="text" id="srx_string" class="form-control uppercase" name="srx_string" value="<?php echo $qso->COL_SRX_STRING; ?>" />
+                                            <input type="text" id="srx_string" class="form-control uppercase" name="srx_string" value="<?php echo html_escape($qso->COL_SRX_STRING); ?>" />
                                         </div>
 
                                         <div class="mb-3 col-sm-3">
                                             <label for="stx_string"><?= __("Exchange (S)"); ?></label>
-                                            <input type="text" id="stx_string" class="form-control uppercase" name="stx_string" value="<?php echo $qso->COL_STX_STRING; ?>" />
+                                            <input type="text" id="stx_string" class="form-control uppercase" name="stx_string" value="<?php echo html_escape($qso->COL_STX_STRING); ?>" />
                                         </div>
                                     </div>
 
@@ -708,10 +708,10 @@
 
                                 </div>
 
-                                <input type="hidden" name="id" value="<?php echo $qso->COL_PRIMARY_KEY; ?>" />
+                                <input type="hidden" name="id" value="<?php echo html_escape($qso->COL_PRIMARY_KEY); ?>" />
 
                                 <div class="actions">
-                                    <a class="btn btn-danger" href="javascript:qso_delete(<?php echo $qso->COL_PRIMARY_KEY; ?>, '<?php echo $qso->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+                                    <a class="btn btn-danger" href='javascript:qso_delete(<?php echo (int) $qso->COL_PRIMARY_KEY; ?>, <?php echo js_escape($qso->COL_CALL); ?>)'><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
 									<button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
                                     <div class="float-end">
                                         <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>

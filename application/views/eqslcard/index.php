@@ -43,9 +43,9 @@
 
         foreach ($qslarray->result() as $qsl) {
             echo '<tr>';
-            echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso('.$qsl->COL_PRIMARY_KEY.')">' . str_replace("0","&Oslash;",$qsl->COL_CALL) . '</a></td>';
+            echo '<td style=\'text-align: center\'><a id="edit_qso" class="callsign" href="javascript:displayQso('.(int) $qsl->COL_PRIMARY_KEY.')">' . html_escape($qsl->COL_CALL) . '</a></td>';
          echo '<td style=\'text-align: center\'>';
-         echo $qsl->COL_SUBMODE==null?$qsl->COL_MODE:$qsl->COL_SUBMODE;
+         echo $qsl->COL_SUBMODE==null?html_escape($qsl->COL_MODE):html_escape($qsl->COL_SUBMODE);
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
          $timestamp = strtotime($qsl->COL_TIME_ON); echo date($custom_date_format, $timestamp);
@@ -54,10 +54,10 @@
          $timestamp = strtotime($qsl->COL_TIME_ON); echo date('H:i', $timestamp);
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
-         if($qsl->COL_SAT_NAME != null) { echo $qsl->COL_SAT_NAME; } else { echo strtolower($qsl->COL_BAND); };
+         if($qsl->COL_SAT_NAME != null) { echo html_escape($qsl->COL_SAT_NAME); } else { echo html_escape(strtolower($qsl->COL_BAND)); };
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
-         if($qsl->COL_PROP_MODE != null) { echo $qsl->COL_PROP_MODE; };
+         if($qsl->COL_PROP_MODE != null) { echo html_escape($qsl->COL_PROP_MODE); };
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
          if($qsl->COL_QSLMSG_RCVD != null) { echo htmlentities($qsl->COL_QSLMSG_RCVD); };

@@ -97,13 +97,7 @@ When submitting PRs please make sure code is commented and includes one feature 
 
 Support Wavelog by starring the repository on GitHub!
 
-<a href="https://www.star-history.com/?repos=wavelog%2Fwavelog&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=wavelog/wavelog&type=date&theme=dark&legend=top-left&sealed_token=iL83440cfP1r51cWS7LaQp9k39fQvc8LQSp-CNzW_xZ_tPn7OWTCtPdVm19udzG44Hwzb1wdaLgUVi3T2dxq9tereqmhIUdKi4IEEPHSbTMWxHYIqOEcz6ToZIZaU1R8o-psEVQEaT1V2zcQkgul4Khc9SVIoifhfvxCWKhhMj0oGkOfhc2yimF5RV7a" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=wavelog/wavelog&type=date&legend=top-left&sealed_token=iL83440cfP1r51cWS7LaQp9k39fQvc8LQSp-CNzW_xZ_tPn7OWTCtPdVm19udzG44Hwzb1wdaLgUVi3T2dxq9tereqmhIUdKi4IEEPHSbTMWxHYIqOEcz6ToZIZaU1R8o-psEVQEaT1V2zcQkgul4Khc9SVIoifhfvxCWKhhMj0oGkOfhc2yimF5RV7a" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=wavelog/wavelog&type=date&legend=top-left&sealed_token=iL83440cfP1r51cWS7LaQp9k39fQvc8LQSp-CNzW_xZ_tPn7OWTCtPdVm19udzG44Hwzb1wdaLgUVi3T2dxq9tereqmhIUdKi4IEEPHSbTMWxHYIqOEcz6ToZIZaU1R8o-psEVQEaT1V2zcQkgul4Khc9SVIoifhfvxCWKhhMj0oGkOfhc2yimF5RV7a" />
- </picture>
-</a>
+<img width="1600" height="441" alt="star_wavelog" src="https://github.com/user-attachments/assets/6ae874c2-6ca2-4ebe-a8b1-fbd1e1093341" />
 
 ---
 

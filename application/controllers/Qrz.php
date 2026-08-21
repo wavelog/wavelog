@@ -10,7 +10,7 @@ class Qrz extends CI_Controller {
 	{
 		parent::__construct();
 		
-		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+		if (MAINTENANCE_MODE && $this->session->userdata('user_id') == '') {
             echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
@@ -482,21 +482,21 @@ class Qrz extends CI_Controller {
 					$qrz_status = $this->logbook_model->qrz_update($status[1], $qsl_date, $record['qsl_rcvd']);
 					// log_message('error', $record['call'].": ".$qrz_status);
 					$table .= "<tr>";
-					$table .= "<td>".$record['station_callsign']."</td>";
+					$table .= "<td>".html_escape($record['station_callsign'])."</td>";
 					$table .= "<td>".$time_on."</td>";
-					$table .= "<td><a id=\"view_qrz_qso\" href=\"javascript:displayQso(".$status[1].")\">".$record['call']."</a></td>";
-					$table .= "<td>".($record['mode'] ?? '')."</td>";
-					$table .= "<td>".$record['qsl_rcvd']."</td>";
+					$table .= "<td><a id=\"view_qrz_qso\" href=\"javascript:displayQso(".(int) $status[1].")\">".html_escape($record['call'])."</a></td>";
+					$table .= "<td>".html_escape($record['mode'] ?? '')."</td>";
+					$table .= "<td>".html_escape($record['qsl_rcvd'])."</td>";
 					$table .= "<td>".$qsl_date."</td>";
 					$table .= "<td>QSO Record: ".$status[0]."</td>";
 					$table .= "</tr>";
 				} else {
 					$table .= "<tr>";
-					$table .= "<td>".$record['station_callsign']."</td>";
+					$table .= "<td>".html_escape($record['station_callsign'])."</td>";
 					$table .= "<td>".$time_on."</td>";
-					$table .= "<td>".$record['call']."</td>";
-					$table .= "<td>".($record['mode'] ?? '')."</td>";
-					$table .= "<td>".$record['qsl_rcvd']."</td>";
+					$table .= "<td>".html_escape($record['call'])."</td>";
+					$table .= "<td>".html_escape($record['mode'] ?? '')."</td>";
+					$table .= "<td>".html_escape($record['qsl_rcvd'])."</td>";
 					$table .= "<td>QSO Record: ".$status[0]."</td>";
 					$table .= "</tr>";
 				}

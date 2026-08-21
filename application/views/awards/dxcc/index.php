@@ -196,9 +196,9 @@
 					<select class="form-select form-select-sm"  id="sats" name="sats">
 						<option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?= __("All")?></option>
 						<?php foreach($sats_available as $sat) {
-							echo '<option value="' . $sat . '"';
+							echo '<option value="' . html_escape($sat) . '"';
 							if ($this->input->post('sats') == $sat) echo ' selected';
-							echo '>' . $sat . '</option>'."\n";
+							echo '>' . html_escape($sat) . '</option>'."\n";
 						} ?>
 					</select>
 					</div>
@@ -471,6 +471,8 @@
 					echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span></td>';
 				} else if ($name == "Deleted") {
 					continue;
+				} else if ($name == "prefix") {
+					echo '<td style="text-align: center" class="callsign">' . $key . '</td>';
 				} else {
 					echo '<td style="text-align: center">' . $key . '</td>';
 				}

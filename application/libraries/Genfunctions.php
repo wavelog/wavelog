@@ -301,9 +301,6 @@ class Genfunctions
 			// Sleep to make sure the file is available in the next run.
 			usleep(100000); // 100ms
 
-			// Clean up
-			imagedestroy($im);
-
 			return $icon;
 
 		} catch (Exception $e) {

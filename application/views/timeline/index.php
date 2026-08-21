@@ -206,10 +206,10 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->prefix . '</td>
+                <td class="callsign">' . $line->prefix . '</td>
                 <td>' . ucwords(strtolower($line->dxcc_name)) . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
-            echo '<td>'.$line->sat_name.'</td>';
+            echo '<td>'.html_escape($line->sat_name).'</td>';
         }
         echo '  <td>';
         if (!empty($line->end)) echo '<span class="badge text-bg-danger">' . __("Deleted DXCC") . '</span>';
@@ -248,11 +248,11 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>';
+                <td>' . html_escape($CI->Waja->jaPrefectures[$line->col_state]) . ' ('.html_escape($line->col_state).')</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
-            echo '<td>'.$line->sat_name.'</td>';
+            echo '<td>'.html_escape($line->sat_name).'</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . js_escape($line->col_state) . ',' . js_escape($bandselect) . ',' . js_escape($modeselect) . ',' . js_escape($propmode) . ',' . js_escape($award) . ')\'>' . __("Show") . '</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -282,11 +282,11 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->col_state . '</td>';
+                <td>' . html_escape($line->col_state) . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
-           echo '<td>' . $line->sat_name . '</td>';
+           echo '<td>' . html_escape($line->sat_name) . '</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","' . $bandselect . '","' . $modeselect . '","' . $propmode . '","' . $award .'")>' . __("Show") . '</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . js_escape($line->col_state) . ',' . js_escape($bandselect) . ',' . js_escape($modeselect) . ',' . js_escape($propmode) . ',' . js_escape($award) . ')\'>' . __("Show") . '</a></td>
               </tr>';
     }
     echo '</tbody></table>';
@@ -320,13 +320,13 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->col_iota . '</td>
+                <td>' . html_escape($line->col_iota) . '</td>
                 <td>' . $line->name . '</td>
-                <td>' . $line->prefix . '</td>';
+                <td class="callsign">' . $line->prefix . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
-           echo '<td>' . $line->sat_name . '</td>';
+           echo '<td>' . html_escape($line->sat_name) . '</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . js_escape($line->col_iota) . ',' . js_escape($bandselect) . ',' . js_escape($modeselect) . ',' . js_escape($propmode) . ',' . js_escape($award) . ')\'>' . __("Show") . '</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -358,9 +358,9 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_cqz . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
-           echo '<td>' . $line->sat_name . '</td>';
+           echo '<td>' . html_escape($line->sat_name) . '</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . js_escape($line->col_cqz) . ',' . js_escape($bandselect) . ',' . js_escape($modeselect) . ',' . js_escape($propmode) . ',' . js_escape($award) . ')\'>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -392,11 +392,11 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
-                <td>' . $line['gridsquare'] . '</td>';
+                <td>' . html_escape($line['gridsquare']) . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
-            echo '<td>'.$line['sat_name'].'</td>';
+            echo '<td>'.html_escape($line['sat_name']).'</td>';
         }
-        echo '  <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+        echo '  <td><a href=\'javascript:displayTimelineContacts(' . js_escape($line['gridsquare']) . ',' . js_escape($bandselect) . ',' . js_escape($modeselect) . ',' . js_escape($propmode) . ',' . js_escape($award) . ')\'>' . __("Show") . '</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';

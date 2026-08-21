@@ -20,7 +20,7 @@
 </style>
 <main class="form-signin">
     <a href="<?php echo base_url() ?>"><img src="<?php echo $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('main_logo') . '.png'); ?>" class="mx-auto d-block mainLogo" alt=""></a>
-    <?php if (ENVIRONMENT == 'maintenance') { ?>
+    <?php if (MAINTENANCE_MODE) { ?>
         <div class="d-flex justify-content-center align-items-center">
             <span class="badge text-bg-warning mb-4 pt-2 pb-2"><?= __("MAINTENANCE MODE"); ?></span>
         </div>
@@ -57,7 +57,7 @@
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
                 <div class="mb-2">
                     <label for="floatingInput"><strong><?= __("Username"); ?></strong></label>
-                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php if (file_exists('.demo')) { echo "demo"; } else { echo __("Username"); } ?>" value="<?php echo $this->input->post('user_name'); ?>" autocomplete="username" autofocus>
+                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php if (file_exists('.demo')) { echo "demo"; } else { echo __("Username"); } ?>" value="<?php echo html_escape($this->input->post('user_name')); ?>" autocomplete="username" autofocus>
                 </div>
                 <div class="mb-2">
                     <label for="floatingPassword"><strong><?= __("Password"); ?></strong></label>
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="w-100 btn btn-primary mb-2" type="submit"><?= __("Login"); ?> →</button>
+                <button class="w-100 btn btn-primary mb-2" type="submit" id="loginButton"><span class="spinner-border spinner-border-sm me-1 d-none" role="status" aria-hidden="true"></span><?= __("Login"); ?> →</button>
                 <?php } ?>
                 <?php  // only show if header auth enabled
                     if ($auth_header_enable == true) { ?>
@@ -92,3 +92,12 @@
         </div>
     </div>
 </main>
+<script>
+    document.querySelector('form[name="users"]').addEventListener('submit', function () {
+        const button = document.getElementById('loginButton');
+        if (button) {
+            button.querySelector('.spinner-border').classList.remove('d-none');
+            button.disabled = true;
+        }
+    });
+</script>

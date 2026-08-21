@@ -33,7 +33,7 @@
 				<br>
 				<p><?= sprintf(__("Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as confirmed on eQSL."), '<a href="https://eqsl.cc/qslcard/DownloadInBox.cfm" target="_blank">' . __("Download Inbox") . '</a>'); ?></p>
 				<p><?= __("Choose Station(location) eQSL File belongs to:"); ?></p>
-				<select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
+				<select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100 callsign">
 					<option value="0"><?= __("Select Station Location"); ?></option>
 					<?php foreach ($station_profile->result() as $station) {
 						if ($station->eqslqthnickname) { ?>

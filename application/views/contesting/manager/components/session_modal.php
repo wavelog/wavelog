@@ -61,7 +61,7 @@
                     <hr class="my-4">
                     <div class="mb-4">
                         <label for="station_location" class="form-label"><?= __("Station Location") ?> <span class="text-danger">*</span></label>
-                        <select class="form-select form-control form-control-sm" id="station_location" name="station_location" required>
+                        <select class="form-select form-control form-control-sm callsign" id="station_location" name="station_location" required>
                             <option value="" disabled selected><?= __("Please select a station"); ?></option>
                             <?php
                             function is_current($value, $session_info = null, $active_station_location = null) {
@@ -140,7 +140,7 @@
                                 <?php if (isset($session_info) && ($session_info['serial_per_band'] ?? false)) echo 'checked'; ?>>
                             <label class="form-check-label" for="serial_per_band"><?= __("Count serial number per band") ?></label>
                         </div>
-                        <small class="text-muted d-block mt-1"><?= __("When enabled, the sent serial number starts at 1 on each band instead of running continuously across the whole contest (required by some multi-op categories).") ?></small>
+                        <small class="text-muted d-block mt-1"><?= __("If enabled, the sent serial number starts at 1 on each band instead of running continuously across the whole contest (required by some multi-op categories).") ?></small>
                     </div>
                     <div class="mb-4">
                         <label for="serial_scope" class="form-label"><?= __("Serial Number Series") ?></label>

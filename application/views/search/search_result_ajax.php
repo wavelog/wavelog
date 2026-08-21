@@ -23,59 +23,59 @@ function echo_table_header_col($name) {
 function echo_table_col($row, $name) {
     switch($name) {
         case 'Mode':
-            echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE;
+            echo html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE);
             break;
         case 'RSTS':
-            echo $row->COL_RST_SENT; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';};
+            echo html_escape($row->COL_RST_SENT); if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';};
             break;
         case 'RSTR':
-            echo $row->COL_RST_RCVD; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';};
+            echo html_escape($row->COL_RST_RCVD); if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';};
             break;
         case 'Country':
-            echo ucwords(strtolower(($row->COL_COUNTRY)));
+            echo html_escape(ucwords(strtolower(($row->COL_COUNTRY))));
             break;
         case 'IOTA':
-            echo ($row->COL_IOTA);
+            echo html_escape($row->COL_IOTA);
             break;
         case 'SOTA':
-            echo ($row->COL_SOTA_REF);
+            echo html_escape($row->COL_SOTA_REF);
             break;
         case 'WWFF':
-            echo ($row->COL_WWFF_REF);
+            echo html_escape($row->COL_WWFF_REF);
             break;
         case 'POTA':
-            echo ($row->COL_POTA_REF);
+            echo html_escape($row->COL_POTA_REF);
             break;
         case 'Grid':
-            echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
+            echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
             break;
         case 'Distance':
             echo ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '');
             break;
         case 'Band':
-            if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); };
+            if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); };
             break;
         case 'State':
-            echo ($row->COL_STATE);
+            echo html_escape($row->COL_STATE);
             break;
         case 'Operator':
-            echo ($row->COL_OPERATOR);
+            echo html_escape($row->COL_OPERATOR);
             break;
         case 'Frequency':
             $CI =& get_instance();
-            if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'; if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$CI->frequency->qrg_conversion($row->COL_FREQ).'">'.$row->COL_SAT_NAME.'</span>'; } else { echo $row->COL_SAT_NAME; } echo '</a></td>'; } else { if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$row->COL_BAND.'">'.$CI->frequency->qrg_conversion($row->COL_FREQ).'</span>'; } else { echo strtolower($row->COL_BAND); } };
+            if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank">'; if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$CI->frequency->qrg_conversion($row->COL_FREQ).'">'.html_escape($row->COL_SAT_NAME).'</span>'; } else { echo html_escape($row->COL_SAT_NAME); } echo '</a></td>'; } else { if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_BAND).'">'.$CI->frequency->qrg_conversion($row->COL_FREQ).'</span>'; } else { echo html_escape(strtolower($row->COL_BAND)); } };
             break;
         case 'State':
-            echo ($row->COL_STATE);
+            echo html_escape($row->COL_STATE);
             break;
         case 'Operator':
-            echo ($row->COL_OPERATOR);
+            echo html_escape($row->COL_OPERATOR);
             break;
         case 'Location':
-            echo ($row->station_profile_name);
+            echo html_escape($row->station_profile_name);
             break;
         case 'Name':
-            echo ($row->COL_NAME);
+            echo html_escape($row->COL_NAME);
             break;
         default:
             echo '(unknown col)';
@@ -152,7 +152,7 @@ $ci =& get_instance();
                 <td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
             <?php } ?>
             <td>
-                <a id="edit_qso" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></a>
+                <a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></a>
             </td>
 			<?php
 
@@ -205,7 +205,7 @@ $ci =& get_instance();
                         echo " (".__("Direct").")";
                         break;
                      case "M":
-                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
+                        echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? '<span class="callsign">'.html_escape($row->COL_QSL_VIA).'</span>':"n/a").")";
                         break;
                      case "E":
                         echo " (".__("Electronic").")";
@@ -440,7 +440,7 @@ $ci =& get_instance();
 
                     <?php if(isset($row->station_callsign)) { ?>
                         <td>
-                            <span class="badge text-bg-light"><?php echo $row->station_callsign; ?></span>
+                            <span class="badge text-bg-light"><?php echo html_escape($row->station_callsign); ?></span>
                         </td>
                     <?php } ?>
 
@@ -479,13 +479,13 @@ $ci =& get_instance();
                             <?php } ?>
 
 
-                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on QRZ.com"); ?></a>
+                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo html_escape($row->COL_CALL); ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on QRZ.com"); ?></a>
 
-                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on HamQTH"); ?></a>
+                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo html_escape($row->COL_CALL); ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on HamQTH"); ?></a>
 
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+                            <a class="dropdown-item" href='javascript:qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo js_escape($row->COL_CALL); ?>)'><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                             <?php } ?>
                         </div>
                     </div>

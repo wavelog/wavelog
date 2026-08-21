@@ -134,11 +134,11 @@ function write_activators($activators_array, $vucc_grids, $custom_date_format, $
 	foreach ($activators as $line) {
 		echo '<tr>
 				<td>' . $i++ . '</td>
-				<td>' . $line[1] . '</td>
+				<td class="callsign">' . html_escape($line[1]) . '</td>
 				<td>' . $line[0] . '</td>
-				<td style="text-align: left; font-family: monospace;">' . $line[2] . '</td>
-				<td><a href="javascript:displayActivatorsContacts(\'' . $line[1] . '\',\'' . $band . '\',\'' . $leogeo . '\')"><i class="fas fa-list"></i></a></td>
-				<td><a href="javascript:spawnActivatorsMap(\'' . $line[1] . '\',\'' . $line[0] . '\',\'' . str_replace(' ', '', $line[2]) . '\')"><i class="fas fa-globe"></i></a></td>
+				<td style="text-align: left; font-family: monospace;">' . html_escape($line[2]) . '</td>
+				<td><a href=\'javascript:displayActivatorsContacts(' . js_escape($line[1]) . ',' . js_escape($band) . ',' . js_escape($leogeo) . ')\'><i class="fas fa-list"></i></a></td>
+				<td><a href=\'javascript:spawnActivatorsMap(' . js_escape($line[1]) . ',' . js_escape($line[0]) . ',' . js_escape(str_replace(' ', '', $line[2])) . ')\'><i class="fas fa-globe"></i></a></td>
 			</tr>';
 	}
 	echo '</tbody></table>';

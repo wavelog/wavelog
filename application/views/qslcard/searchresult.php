@@ -105,89 +105,89 @@
 				<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
 			<?php } ?>
 			<td>
-				<a id="edit_qso" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></a>
+				<a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo (int) $row->COL_PRIMARY_KEY; ?>)"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></a>
 			</td>
 			<?php
 
 			switch($this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1')) {
-				case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; break;
-				case 'RSTS':    echo '<td>' . $row->COL_RST_SENT; if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';}; break;
-				case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';}; break;
+				case 'Mode':    echo '<td>'; echo html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE); break;
+				case 'RSTS':    echo '<td>' . html_escape($row->COL_RST_SENT); if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';}; break;
+				case 'RSTR':    echo '<td>' . html_escape($row->COL_RST_RCVD); if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';}; break;
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
-				case 'IOTA':    echo '<td>' . ($row->COL_IOTA); break;
-				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
-				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
-				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
+				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
+				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
+				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
+				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
-				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
-				case 'State':   echo '<td>' . ($row->COL_STATE); break;
-				case 'Operator':   echo '<td>' . ($row->COL_OPERATOR); break;
+				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); }; break;
+				case 'State':   echo '<td>' . html_escape($row->COL_STATE); break;
+				case 'Operator':   echo '<td>' . html_escape($row->COL_OPERATOR); break;
 			}
 			echo '</td>';
 			switch($this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2')) {
-				case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; break;
-				case 'RSTS':    echo '<td>' . $row->COL_RST_SENT; if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';}; break;
-				case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';}; break;
+				case 'Mode':    echo '<td>'; echo html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE); break;
+				case 'RSTS':    echo '<td>' . html_escape($row->COL_RST_SENT); if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';}; break;
+				case 'RSTR':    echo '<td>' . html_escape($row->COL_RST_RCVD); if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';}; break;
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
-				case 'IOTA':    echo '<td>' . ($row->COL_IOTA); break;
-				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
-				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
-				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
+				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
+				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
+				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
+				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
-				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
-				case 'State':   echo '<td>' . ($row->COL_STATE); break;
-				case 'Operator':   echo '<td>' . ($row->COL_OPERATOR); break;
+				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); }; break;
+				case 'State':   echo '<td>' . html_escape($row->COL_STATE); break;
+				case 'Operator':   echo '<td>' . html_escape($row->COL_OPERATOR); break;
 			}
 			echo '</td>';
 
 			switch($this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3')) {
-				case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; break;
-				case 'RSTS':    echo '<td>' . $row->COL_RST_SENT; if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';}; break;
-				case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';}; break;
+				case 'Mode':    echo '<td>'; echo html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE); break;
+				case 'RSTS':    echo '<td>' . html_escape($row->COL_RST_SENT); if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';}; break;
+				case 'RSTR':    echo '<td>' . html_escape($row->COL_RST_RCVD); if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';}; break;
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
-				case 'IOTA':    echo '<td>' . ($row->COL_IOTA); break;
-				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
-				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
-				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
+				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
+				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
+				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
+				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
-				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
-				case 'State':   echo '<td>' . ($row->COL_STATE); break;
-				case 'Operator':   echo '<td>' . ($row->COL_OPERATOR); break;
+				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); }; break;
+				case 'State':   echo '<td>' . html_escape($row->COL_STATE); break;
+				case 'Operator':   echo '<td>' . html_escape($row->COL_OPERATOR); break;
 			}
 			echo '</td>';
 			switch($this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4')) {
-				case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; break;
-				case 'RSTS':    echo '<td>' . $row->COL_RST_SENT; if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';}; break;
-				case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';}; break;
+				case 'Mode':    echo '<td>'; echo html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE); break;
+				case 'RSTS':    echo '<td>' . html_escape($row->COL_RST_SENT); if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';}; break;
+				case 'RSTR':    echo '<td>' . html_escape($row->COL_RST_RCVD); if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';}; break;
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
-				case 'IOTA':    echo '<td>' . ($row->COL_IOTA); break;
-				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
-				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
-				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
+				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
+				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
+				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
+				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
-				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
-				case 'State':   echo '<td>' . ($row->COL_STATE); break;
-				case 'Operator':   echo '<td>' . ($row->COL_OPERATOR); break;
+				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); }; break;
+				case 'State':   echo '<td>' . html_escape($row->COL_STATE); break;
+				case 'Operator':   echo '<td>' . html_escape($row->COL_OPERATOR); break;
 			}
 			echo '</td>';
 			switch($this->session->userdata('user_column5')==""?'Country':$this->session->userdata('user_column5')) {
-				case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; break;
-				case 'RSTS':    echo '<td>' . $row->COL_RST_SENT; if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';}; break;
-				case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';}; break;
+				case 'Mode':    echo '<td>'; echo html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE); break;
+				case 'RSTS':    echo '<td>' . html_escape($row->COL_RST_SENT); if ($row->COL_STX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';}; break;
+				case 'RSTR':    echo '<td>' . html_escape($row->COL_RST_RCVD); if ($row->COL_SRX) { echo '<span class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo '<span class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';}; break;
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
-				case 'IOTA':    echo '<td>' . ($row->COL_IOTA); break;
-				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
-				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
-				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
+				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
+				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
+				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
+				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
-				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
-				case 'State':   echo '<td>' . ($row->COL_STATE); break;
-				case 'Operator':   echo '<td>' . ($row->COL_OPERATOR); break;
+				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo html_escape($row->COL_SAT_NAME); } else { echo html_escape(strtolower($row->COL_BAND)); }; break;
+				case 'State':   echo '<td>' . html_escape($row->COL_STATE); break;
+				case 'Operator':   echo '<td>' . html_escape($row->COL_OPERATOR); break;
 			}
 			echo '</td>
 				<td><button onclick="addQsoToQsl(' . $row->COL_PRIMARY_KEY . ', \'' . $filename . '\')" class="btn btn-sm btn-success" type="button"> ' . __("Add to QSL") . '</button></td>';

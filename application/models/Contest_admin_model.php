@@ -66,6 +66,20 @@ class Contest_admin_model extends CI_Model {
 		$this->db->insert('contest', $data);
 	}
 
+	/**
+	 * Finds a contest catalog entry by its ADIF name, or null if unknown.
+	 * Unlike Contesting_import_model::ensure_contest_exists() this does not
+	 * fall back to "Other", so callers can reject unknown names.
+	 *
+	 * @param string $adifname
+	 * @return object|null { id, name, adifname, active }
+	 */
+	function contest_by_adifname($adifname) {
+		$sql = "SELECT id, name, adifname, active FROM contest WHERE adifname = ? LIMIT 1";
+		$query = $this->db->query($sql, [$adifname]);
+		return $query->num_rows() > 0 ? $query->row() : null;
+	}
+
 	function contest($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
