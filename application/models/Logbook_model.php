@@ -6206,21 +6206,40 @@ class Logbook_model extends CI_Model {
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
-	function county_qso_details($state, $county) {
+	function county_qso_details($state, $county, $postdata = array()) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->db->select($this->config->item('table_name').'.*, `station_profile`.*, `dxcc_entities`.*, `lotw_users`.*, `satellite`.`displayname` AS sat_displayname, satellite.name AS sat_name');
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC', 'left outer');
-		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
-		$this->db->join('satellite', 'col_prop_mode="SAT" AND col_sat_name = COALESCE(NULLIF(satellite.name, ""), NULLIF(satellite.displayname, ""))', 'left outer');
-		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
-		$this->db->where('COL_STATE', $state);
-		$this->db->where('COL_CNTY', $county);
-		$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+		// COL_CNTY is stored as "STATE,COUNTY", but $county can arrive bare
+		// (map click) or prefixed (state list dialog), so match on the bare
+		// name, case-insensitively. Raw SQL because CI3's where() cannot
+		// bind arguments inside SUBSTRING_INDEX() (comma parsing fatals).
+		$this->load->model('counties');
+		$bare_county = $this->counties->bare_county($county);
 
-		return $this->db->get($this->config->item('table_name'));
+		$table = $this->config->item('table_name');
+		$station_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+
+		// Band/Mode follow the counties award filter so the dialog matches
+		// what the map and state list are showing.
+		$this->load->library('Genfunctions');
+		$binding = array_merge($logbooks_locations_array, [strtoupper($state), strtoupper($bare_county)]);
+		$band_condition = $this->counties->band_condition($postdata['band'] ?? 'All', $binding);
+		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
+
+		$sql = "select thcv.*, station_profile.*, dxcc_entities.*, lotw_users.*, satellite.displayname as sat_displayname, satellite.name as sat_name
+			from $table thcv
+			join station_profile on station_profile.station_id = thcv.station_id
+			left outer join dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
+			left outer join lotw_users on lotw_users.callsign = thcv.col_call
+			left outer join satellite on thcv.col_prop_mode = 'SAT' and thcv.col_sat_name = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
+			where thcv.station_id in ($station_placeholders)
+			and UPPER(thcv.COL_STATE) = ?
+			and UPPER(TRIM(SUBSTRING_INDEX(thcv.COL_CNTY, ',', -1))) = ?
+			$band_condition
+			$mode_condition";
+
+		return $this->db->query($sql, $binding);
 	}
 
 	public function check_qso_is_accessible($id, $user_id = null) {
