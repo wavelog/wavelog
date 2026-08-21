@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-21 09:31+0000\n"
-"PO-Revision-Date: 2026-08-16 05:44+0000\n"
+"PO-Revision-Date: 2026-08-22 10:16+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -865,7 +865,7 @@ msgstr "Awards - AMSAT Rover"
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Azimutkaart"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:355
@@ -1264,7 +1264,7 @@ msgstr "Continenten"
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Tel QSO's op basis van ..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1476
@@ -1384,7 +1384,7 @@ msgstr "CQ Zone"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "POTA Referentie"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:163
@@ -4404,15 +4404,15 @@ msgstr "Contest-sessie verwijderen"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Lees logboeken"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Maak en werk logboeken bij"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Verwijder logboeken"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -6425,7 +6425,7 @@ msgstr "Volgende AOS"
 
 #: application/views/amsatstatus/index.php:115
 msgid "Hours ago (left-most: now)"
-msgstr ""
+msgstr "Uren geleden (meest links: nu)"
 
 #: application/views/amsatstatus/index.php:135
 #, php-format
@@ -7179,7 +7179,7 @@ msgstr "County"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
-msgstr ""
+msgstr "Zweef over een countynaam"
 
 #: application/views/awards/counties/index.php:42
 msgid "US County Award"
@@ -7280,11 +7280,11 @@ msgstr "Kaart"
 
 #: application/views/awards/counties/index.php:71
 msgid "Show Counties Map"
-msgstr ""
+msgstr "Counties-kaart tonen"
 
 #: application/views/awards/counties/index.php:78
 msgid "Count QSO as Confirmed via"
-msgstr ""
+msgstr "Tel QSO als Bevestigd via"
 
 #: application/views/awards/counties/index.php:153
 msgid "Worked Counties"
@@ -8504,7 +8504,7 @@ msgstr "Bevestigde QSO's exporteren"
 
 #: application/views/awards/jcc/index.php:46
 msgid "QSL Type"
-msgstr ""
+msgstr "QSL-type"
 
 #: application/views/awards/jcc/index.php:72
 msgid "Deleted cities"
@@ -8526,17 +8526,21 @@ msgstr "Niet gewerkt"
 
 #: application/views/awards/jcc/index.php:169
 msgid "JCC progress"
-msgstr ""
+msgstr "JCC voortgang"
 
 #: application/views/awards/jcc/index.php:179
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
 msgstr ""
+"Let op! Wavelog controleert niet of een QSO heeft plaatsgevonden vóór de "
+"verwijderingsdatum van de entiteit."
 
 #: application/views/awards/jcc/index.php:185
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
+"Er zijn geen gewerkte of bevestigde JCC-slots die overeenkomen met de "
+"huidige filters."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -9547,51 +9551,53 @@ msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Er is geen locatorvak ingesteld voor je actieve stationlocatie, dus de kaart "
+"kan niet gecentreerd worden."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Azimutale kaart gecentreerd op de locatie van je actieve station"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Projectie"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Azimutale equidistant"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Lambert-oppervlaktegetrouw"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Afstandsringen"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Maidenhead (Locatorvak) velden"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
-msgstr ""
+msgstr "CQ-zones"
 
 #: application/views/azimuthal/index.php:53
 msgid "ITU zones"
-msgstr ""
+msgstr "ITU-zones"
 
 #: application/views/azimuthal/index.php:58
 msgid "DXCC prefixes"
-msgstr ""
+msgstr "DXCC-prefixen"
 
 #: application/views/azimuthal/index.php:61
 msgid "Download PNG"
-msgstr ""
+msgstr "Download PNG"
 
 #: application/views/azimuthal/index.php:65
 #: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Azimutkaart"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -13056,19 +13062,19 @@ msgstr "QSO-gegevens"
 
 #: application/views/countqsoby/index.php:10
 msgid "QSOs total"
-msgstr ""
+msgstr "QSO's totaal"
 
 #: application/views/countqsoby/index.php:27
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: application/views/countqsoby/index.php:33
 msgid "Date presets"
-msgstr ""
+msgstr "Datumvoorkeuren"
 
 #: application/views/countqsoby/index.php:63
 msgid "Count QSOs by"
-msgstr ""
+msgstr "Tel QSO's op basis van"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -16666,7 +16672,7 @@ msgstr "Zoek naar duplicaten met:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "Stem QSO's binnen het geselecteerde tijdsvenster op elkaar af"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
@@ -17062,7 +17068,7 @@ msgstr "Tijdvenster:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "aanpasbaar, 1 tot 60 minuten (standaard 30 minuten)"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -22008,20 +22014,20 @@ msgstr "Hoogte"
 
 #: application/views/statistics/antennaanalytics.php:87
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: application/views/statistics/antennaanalytics.php:101
 msgid "QSOs per degree of azimuth"
-msgstr ""
+msgstr "QSO's per graad van azimut"
 
 #: application/views/statistics/antennaanalytics.php:102
 #, php-format
 msgid "25 / 50 / 75 % of peak"
-msgstr ""
+msgstr "25 / 50 / 75 % of piek"
 
 #: application/views/statistics/antennaanalytics.php:103
 msgid "Marker every 5°"
-msgstr ""
+msgstr "Marker elke 5°"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:101
