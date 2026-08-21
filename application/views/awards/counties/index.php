@@ -99,7 +99,7 @@
                             <div class="col-md-9">
                                 <select id="countiesBand" name="band[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($worked_bands as $band) { ?>
-                                    <option value="<?= $band; ?>" <?php if ($postdata['band'] === 'All' || in_array($band, (array)$postdata['band'])) echo ' selected'; ?>><?= $band; ?></option>
+                                    <option value="<?= html_escape($band); ?>" <?php if ($postdata['band'] === 'All' || in_array($band, (array)$postdata['band'])) echo ' selected'; ?>><?= html_escape($band); ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -109,7 +109,7 @@
                             <div class="col-md-9">
                                 <select id="countiesMode" name="mode[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($modes as $value) { ?>
-                                    <option value="<?= $value; ?>" <?php if ($postdata['mode'] === 'All' || in_array($value, (array)$postdata['mode'])) echo ' selected'; ?>><?= $value; ?></option>
+                                    <option value="<?= html_escape($value); ?>" <?php if ($postdata['mode'] === 'All' || in_array($value, (array)$postdata['mode'])) echo ' selected'; ?>><?= html_escape($value); ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
