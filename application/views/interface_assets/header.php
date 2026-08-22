@@ -597,6 +597,7 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('calltester'); ?>" title="Callsign DXCC checker"><i class="fas fa-wrench"></i> <?= __("Callsign DXCC checker"); ?></a></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('map/qso_map'); ?>" title="GeoJSON QSO Map"><i class="fas fa-wrench"></i> <?= __("GeoJSON QSO Map"); ?></a></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('zonechecker'); ?>" title="Gridsquare Zone checker"><i class="fas fa-wrench"></i> <?= __("Gridsquare Zone checker"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('countychecker'); ?>" title="Gridsquare County checker"><i class="fas fa-wrench"></i> <?= __("Gridsquare County checker"); ?></a></li>
 									</ul>
 								</li>
 								<?php } ?>

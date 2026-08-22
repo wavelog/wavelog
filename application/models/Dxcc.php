@@ -1143,12 +1143,14 @@ class DXCC extends CI_Model {
 
 	/*
 	 * Returns all of the current user's QSOs whose COL_CALL contains the given
-	 * callsign, most recent first. Used by the calltester and zonechecker "call info" view
+	 * callsign, most recent first. Used by the calltester, zonechecker and
+	 * countychecker "call info" view
 	 */
 	function getQsosForCall($callsign) {
 		$sql = 'SELECT qsos.COL_PRIMARY_KEY, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND,
 				qsos.COL_MODE, qsos.COL_SUBMODE, qsos.COL_FREQ, qsos.COL_GRIDSQUARE,
 				qsos.COL_VUCC_GRIDS, qsos.COL_COUNTRY, qsos.COL_DXCC, qsos.COL_CQZ, qsos.COL_ITUZ,
+				qsos.COL_CNTY,
 				qsos.COL_RST_SENT, qsos.COL_RST_RCVD, qsos.COL_QSL_RCVD,
 				qsos.COL_LOTW_QSL_RCVD, qsos.COL_EQSL_QSL_RCVD, qsos.COL_PROP_MODE,
 				qsos.COL_SAT_NAME, qsos.COL_NAME,
