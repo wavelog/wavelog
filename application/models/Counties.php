@@ -108,7 +108,7 @@ class Counties extends CI_Model
 		where station_id in (" . $location_placeholders . ")" .
 		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in ('291', '6', '110')
-		and coalesce(COL_CNTY, '') <> ''
+		and coalesce(TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1)), '') <> ''
 		" . $band_condition . "
 		" . $mode_condition;
 
@@ -167,7 +167,7 @@ class Counties extends CI_Model
 		where station_id in (" . $location_placeholders . ")" .
 		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in ('291', '6', '110')
-		and coalesce(COL_CNTY, '') <> ''
+		and coalesce(TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1)), '') <> ''
 		" . $band_condition . "
 		" . $mode_condition;
 
@@ -247,7 +247,7 @@ class Counties extends CI_Model
 			where station_id in (" . $location_placeholders . ")" .
 			" and col_band in (" . $bandslots_placeholders . ")" .
 			" and COL_DXCC in ('291', '6', '110')
-			and coalesce(COL_CNTY, '') <> ''
+			and coalesce(TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1)), '') <> ''
 			" . $band_condition . "
 			" . $mode_condition . "
 			group by COL_STATE, $cnty_name order by COL_STATE, $cnty_name";
