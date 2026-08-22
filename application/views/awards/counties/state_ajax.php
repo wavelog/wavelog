@@ -22,6 +22,9 @@ if ($counties_array) {
         $county_cell = $worked > 0
             ? '<a href=\'javascript:displayCountyContacts(' . js_escape($state) . ',' . js_escape($county['COL_CNTY']) . ')\'>'. html_escape($county['COL_CNTY']) .'</a>'
             : html_escape($county['COL_CNTY']);
+        if (isset($county['not_in_list'])) {
+            $county_cell .= ' <i data-bs-toggle="tooltip" title="' . __("Not in USA-CA county list") . '" class="fas fa-exclamation-triangle text-warning"></i>';
+        }
         echo '<tr>
         <td>'. $i++ .'</td>
         <td>'. $county_cell .'</td>

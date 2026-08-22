@@ -41,66 +41,12 @@ class Counties extends CI_Model
         return implode(',', array_fill(0, count($values), '?'));
     }
 
+
     /*
-     * Returns a result of worked/confirmed US Counties, grouped by STATE.
-     * Satellite does not count.
-     * No band split, as it only count the number of counties in the award.
+     * Worked/confirmed counties of a state for the detail dialogs. CSV
+     * counties come first (canonical name, case variants merged), counties
+     * only present in the log follow after and are flagged not_in_list.
      */
-    function get_counties_summary($postdata) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-        if ($logbooks_locations_array[0] === -1) {
-            return null;
-        }
-
-        $this->load->model('bands');
-
-		$bandslots = $this->bands->get_worked_bands('uscounties');
-
-		$location_placeholders = $this->placeholders($logbooks_locations_array);
-		$bandslots_placeholders = $this->placeholders($bandslots);
-
-		$confirmed_condition = $this->genfunctions->addQslToQuery($postdata, true);
-
-        // The where-clause is repeated in the subquery and the outer query,
-        // so the bindings are passed twice.
-		$condition_binding = array();
-		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $condition_binding);
-		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $condition_binding);
-		$where_binding = array_merge($logbooks_locations_array, $bandslots, $condition_binding);
-
-        $sql = "select count(distinct COL_CNTY) countycountworked, coalesce(x.countycountconfirmed, 0) countycountconfirmed, thcv.COL_STATE
-                from " . $this->config->item('table_name') . " thcv
-                 left outer join (
-                        select count(distinct COL_CNTY) countycountconfirmed, COL_STATE
-                        from " . $this->config->item('table_name') .
-            " where station_id in (" . $location_placeholders . ")" .
-            " and col_band in (" . $bandslots_placeholders . ")" .
-            " and COL_DXCC in ('291', '6', '110')
-                    and coalesce(COL_CNTY, '') <> ''
-                    " . $band_condition . "
-                    " . $mode_condition . "
-                    and " . $confirmed_condition . "
-                    group by COL_STATE
-                    order by COL_STATE
-                ) x on thcv.COL_STATE = x.COL_STATE
-                 where station_id in (" . $location_placeholders . ")" .
-                 " and col_band in (" . $bandslots_placeholders . ")" .
-            " and COL_DXCC in ('291', '6', '110')
-                and coalesce(COL_CNTY, '') <> ''
-                " . $band_condition . "
-                " . $mode_condition . "
-                group by thcv.COL_STATE, countycountconfirmed
-                order by thcv.COL_STATE";
-
-        $query = $this->db->query($sql, array_merge($where_binding, $where_binding));
-        return $query->result_array();
-    }
-
-    /*
-    * Makes a list of all counties in given state
-    */
     function counties_details($state, $type, $postdata) {
         if ($type == 'worked') {
             $counties = $this->get_counties($state, 'none', $postdata);
@@ -109,10 +55,33 @@ class Counties extends CI_Model
         }
         if (!isset($counties)) {
             return 0;
-        } else {
-            ksort($counties);
-            return $counties;
         }
+
+        $canonical = array();
+        foreach ($this->get_counties_list($state) as $name) {
+            $canonical[strtoupper($name)] = $name;
+        }
+
+        $result = array();
+        $extras = array();
+        $seen = array();
+        foreach ($counties as $row) {
+            $bare = strtoupper($this->bare_county($row['COL_CNTY']));
+            if (isset($canonical[$bare])) {
+                if (!isset($seen[$bare])) {
+                    $seen[$bare] = true;
+                    $result[] = array('COL_CNTY' => $canonical[$bare], 'COL_STATE' => $row['COL_STATE']);
+                }
+            } else {
+                $row['not_in_list'] = true;
+                $extras[] = $row;
+            }
+        }
+
+        $by_name = function ($a, $b) { return strcasecmp($a['COL_CNTY'], $b['COL_CNTY']); };
+        usort($result, $by_name);
+        usort($extras, $by_name);
+        return array_merge($result, $extras);
     }
 
     function get_counties($state, $confirmationtype, $postdata) {
@@ -233,6 +202,7 @@ class Counties extends CI_Model
                 'COL_CNTY'   => $row['COL_CNTY'],
                 'worked'     => (int) $row['worked'],
                 'confirmed'  => (int) $row['confirmed'],
+                'not_in_list' => true,
             );
         }
 
@@ -340,13 +310,6 @@ class Counties extends CI_Model
 	    return isset($counties[$state]) ? $counties[$state] : array();
     }
 
-    // Number of counties per state, keyed by state code
-    function get_counties_targets() {
-	    $targets = array_map('count', $this->parse_us_counties_csv());
-	    ksort($targets);
-	    return $targets;
-    }
-
     /*
      * Returns the counties of a state that count toward the target but are not
      * worked yet: the US_counties.csv list minus the worked counties of the
@@ -375,29 +338,39 @@ class Counties extends CI_Model
 
     /*
      * Returns worked/confirmed/target progress per US state, keyed by the
-     * 2-letter state code. Every state present in US_counties.csv is included,
-     * even if nothing has been worked there yet.
+     * 2-letter state code. Only counties present in US_counties.csv count;
+     * every such state is included, even if nothing has been worked there.
      */
     function get_counties_progress($postdata) {
-        $targets = $this->get_counties_targets();
-        $worked = $this->get_counties_summary($postdata);
+        $counties = $this->parse_us_counties_csv();
+        $county_counts = $this->get_counties_map($postdata);
 
+        // Keyed by uppercase "STATE|COUNTY", like counties_map()
         $worked_map = array();
-        if (isset($worked)) {
-            foreach ($worked as $row) {
-                $worked_map[$row['COL_STATE']] = array(
-                    'worked'     => (int) $row['countycountworked'],
-                    'confirmed'  => (int) $row['countycountconfirmed'],
+        if (isset($county_counts)) {
+            foreach ($county_counts as $row) {
+                $worked_map[strtoupper($row['COL_STATE'] . '|' . trim($row['COL_CNTY']))] = array(
+                    'worked'    => (int) $row['worked'],
+                    'confirmed' => (int) $row['confirmed'],
                 );
             }
         }
 
         $progress = array();
-        foreach ($targets as $code => $target) {
+        foreach ($counties as $code => $names) {
+            $worked = 0;
+            $confirmed = 0;
+            foreach ($names as $name) {
+                $entry = $worked_map[strtoupper($code . '|' . $name)] ?? null;
+                if ($entry) {
+                    $worked += ($entry['worked'] > 0) ? 1 : 0;
+                    $confirmed += ($entry['confirmed'] > 0) ? 1 : 0;
+                }
+            }
             $progress[$code] = array(
-                'worked'     => isset($worked_map[$code]) ? $worked_map[$code]['worked'] : 0,
-                'confirmed'  => isset($worked_map[$code]) ? $worked_map[$code]['confirmed'] : 0,
-                'target'     => $target,
+                'worked'    => $worked,
+                'confirmed' => $confirmed,
+                'target'    => count($names),
             );
         }
 
