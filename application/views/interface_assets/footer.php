@@ -2894,13 +2894,19 @@ function viewEqsl(picture, callsign) {
 
     function displayStateCountiesList(state, type) {
         var baseURL= "<?php echo base_url(); ?>";
+        var titles = {
+            worked: "<?php echo __("Worked counties for state:"); ?>",
+            confirmed: "<?php echo __("Confirmed counties for state:"); ?>",
+            target: "<?php echo __("Counties in state:"); ?>",
+            needed: "<?php echo __("Needed counties for state:"); ?>"
+        };
         $.ajax({
             url: baseURL + 'index.php/awards/counties_list_ajax',
             type: 'post',
             data: $.extend({'State': state, 'Type': type }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
-                    title: (type === 'confirmed' ? "<?php echo __("Confirmed counties for state:"); ?>" : "<?php echo __("Worked counties for state:"); ?>") + " " +state,
+                    title: (titles[type] || titles.worked) + " " +state,
                     size: BootstrapDialog.SIZE_WIDE,
                     cssClass: 'counties-list-dialog',
                     nl2br: false,
@@ -2915,112 +2921,6 @@ function viewEqsl(picture, callsign) {
                             "scrollCollapse": true,
                             "paging":         false,
                             "scrollX": true,
-                            "language": {
-                                url: getDataTablesLanguageUrl(),
-                            },
-                            dom: 'Bfrtip',
-                            buttons: [
-                                {
-                                    extend: 'csv',
-                                    className: 'mb-1 btn btn-primary', // Bootstrap classes
-                                    init: function(api, node, config) {
-                                        $(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
-                                    },
-                                }
-                            ]
-                        });
-                        // change color of csv-button if dark mode is chosen
-                        if (isDarkModeTheme()) {
-                            $(".buttons-csv").css("color", "white");
-                        }
-                    },
-                    buttons: [{
-                        label: lang_admin_close,
-                        action: function (dialogItself) {
-                            dialogItself.close();
-                        }
-                    }]
-                });
-            }
-        });
-    }
-
-    function displayStateCountiesTarget(state) {
-        var baseURL= "<?php echo base_url(); ?>";
-        $.ajax({
-            url: baseURL + 'index.php/awards/counties_target_ajax',
-            type: 'post',
-            data: {'State': state },
-            success: function(html) {
-                BootstrapDialog.show({
-                    title: "<?php echo __("Counties in state:"); ?>" + " " + state,
-                    size: BootstrapDialog.SIZE_WIDE,
-                    cssClass: 'counties-target-dialog',
-                    nl2br: false,
-                    message: html,
-                    onshown: function(dialog) {
-                        $('[data-bs-toggle="tooltip"]').tooltip();
-                        $('.counties_target_table').DataTable({
-                            "pageLength": 25,
-                            responsive: true,
-                            ordering: false,
-                            "scrollCollapse": true,
-                            "scrollY":        "390px",
-                            "paging":  false,
-                            "scrollX": false,
-                            "language": {
-                                url: getDataTablesLanguageUrl(),
-                            },
-                            dom: 'Bfrtip',
-                            buttons: [
-                                {
-                                    extend: 'csv',
-                                    className: 'mb-1 btn btn-primary', // Bootstrap classes
-                                    init: function(api, node, config) {
-                                        $(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
-                                    },
-                                }
-                            ]
-                        });
-                        // change color of csv-button if dark mode is chosen
-                        if (isDarkModeTheme()) {
-                            $(".buttons-csv").css("color", "white");
-                        }
-                    },
-                    buttons: [{
-                        label: lang_admin_close,
-                        action: function (dialogItself) {
-                            dialogItself.close();
-                        }
-                    }]
-                });
-            }
-        });
-    }
-
-    function displayStateCountiesNeeded(state) {
-        var baseURL= "<?php echo base_url(); ?>";
-        $.ajax({
-            url: baseURL + 'index.php/awards/counties_needed_ajax',
-            type: 'post',
-            data: $.extend({'State': state }, countiesQslFilterData()),
-            success: function(html) {
-                BootstrapDialog.show({
-                    title: "<?php echo __("Needed counties for state:"); ?>" + " " + state,
-                    size: BootstrapDialog.SIZE_WIDE,
-                    cssClass: 'counties-needed-dialog',
-                    nl2br: false,
-                    message: html,
-                    onshown: function(dialog) {
-                        $('[data-bs-toggle="tooltip"]').tooltip();
-                        $('.counties_needed_table').DataTable({
-                            "pageLength": 25,
-                            responsive: true,
-                            ordering: false,
-                            "scrollCollapse": true,
-                            "scrollY":        "390px",
-                            "paging":  false,
-                            "scrollX": false,
                             "language": {
                                 url: getDataTablesLanguageUrl(),
                             },

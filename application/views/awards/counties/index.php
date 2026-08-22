@@ -104,7 +104,7 @@
                             <div class="col-md-9">
                                 <select id="countiesBand" name="band[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($worked_bands as $band) { ?>
-                                    <option value="<?= html_escape($band); ?>" <?php if ($postdata['band'] === 'All' || in_array($band, (array)$postdata['band'])) echo ' selected'; ?>><?= html_escape($band); ?></option>
+                                    <option value="<?= html_escape($band); ?>" <?php if ($postdata['band'] === 'All' ? $band !== 'SAT' : in_array($band, (array)$postdata['band'])) echo ' selected'; ?>><?= html_escape($band); ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -204,8 +204,8 @@
             echo '<td><a href="javascript:displayStateCounties(\'' . $state . '\')">' . $state . '</a></td>';
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'worked\')">' . $worked . '</a></td>';
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'confirmed\')">' . $confirmed . '</a></td>';
-            echo '<td><a href="javascript:displayStateCountiesTarget(\'' . $state . '\')">' . $target . '</a></td>';
-            echo '<td><a href="javascript:displayStateCountiesNeeded(\'' . $state . '\')">' . $remaining . '</a></td>';
+            echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'target\')">' . $target . '</a></td>';
+            echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'needed\')">' . $remaining . '</a></td>';
             echo '<td>' . $progress_bar($worked_pct, $colorWkd) . '</td>';
             echo '<td>' . $progress_bar($confirmed_pct, $colorCnfm) . '</td>';
             echo '</tr>';
