@@ -18,11 +18,15 @@ if ($counties_array) {
         $confirmed = (int) $county['confirmed'];
         $total_worked += $worked;
         $total_confirmed += $confirmed;
+        // Worked counties link to their QSOs; unworked ones have nothing to show
+        $county_cell = $worked > 0
+            ? '<a href=\'javascript:displayCountyContacts(' . js_escape($state) . ',' . js_escape($county['COL_CNTY']) . ')\'>'. html_escape($county['COL_CNTY']) .'</a>'
+            : html_escape($county['COL_CNTY']);
         echo '<tr>
         <td>'. $i++ .'</td>
-        <td><a href=\'javascript:displayCountyContacts(' . js_escape($state) . ',' . js_escape($county['COL_CNTY']) . ')\'>'. html_escape($county['COL_CNTY']) .'</a></td>
-        <td>'. $worked .'</td>
-        <td>'. $confirmed .'</td>';
+        <td>'. $county_cell .'</td>
+        <td>'. ($worked > 0 ? $worked : '–') .'</td>
+        <td>'. ($confirmed > 0 ? $confirmed : '–') .'</td>';
         echo '</tr>';
     }
     echo '</tbody>
