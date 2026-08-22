@@ -136,7 +136,7 @@ class Countychecker extends CI_Controller {
 						// center-derived county is uncertain.
 						$box = $this->gridBox($gridsquare, $coords['lat'], $coords['lng']);
 						if ($box !== null) {
-							$boxcount = max(1, $this->countiesIntersectingBox($box));
+							$boxcount = max(1, count($this->findCountiesIntersectingBox($box)));
 						}
 					}
 				}
@@ -537,13 +537,13 @@ class Countychecker extends CI_Controller {
 	}
 
 	/**
-	 * Number of distinct counties the box overlaps with. Counties do not
-	 * overlap each other, so a count of 1 means the whole grid box is inside
-	 * a single county and the center-derived county is certain.
+	 * All county features the box overlaps with. Counties do not overlap each
+	 * other, so a single result means the whole grid box is inside one county
+	 * and the center-derived county is certain.
 	 */
-	private function countiesIntersectingBox($box) {
+	private function findCountiesIntersectingBox($box) {
 		list($lat_min, $lng_min, $lat_max, $lng_max) = $box;
-		$count = 0;
+		$hits = array();
 
 		foreach (self::$countyFiles as $dxcc) {
 			$dataset = $this->datasets[$dxcc];
@@ -571,12 +571,12 @@ class Countychecker extends CI_Controller {
 					continue; // bounding boxes don't even touch
 				}
 				if ($this->boxIntersectsFeature($lat_min, $lng_min, $lat_max, $lng_max, $feature)) {
-					$count++;
+					$hits[] = $feature;
 				}
 			}
 		}
 
-		return $count;
+		return $hits;
 	}
 
 	/**
@@ -778,6 +778,24 @@ class Countychecker extends CI_Controller {
 			$feature = $this->findCountyFeature($derived['state'], $derived['county']);
 		}
 
+		// Every county the grid box overlaps, minus the center one: when the
+		// confidence is below 100% the QSO could be in any of them
+		$candidates = array();
+		if ($grid_bounds !== null) {
+			foreach ($this->findCountiesIntersectingBox($grid_bounds) as $f) {
+				if ($derived !== null
+					&& strtoupper($f['properties']['state']) === strtoupper($derived['state'])
+					&& self::normCounty($f['properties']['county']) === self::normCounty($derived['county'])) {
+					continue;
+				}
+				$candidates[] = array(
+					'state' => $f['properties']['state'],
+					'county' => $f['properties']['county'],
+					'feature' => $f,
+				);
+			}
+		}
+
 		$logged_feature = null;
 		if ($loggedState !== '' && $loggedCounty !== '') {
 			$logged_feature = $this->findCountyFeature($loggedState, $loggedCounty);
@@ -793,6 +811,7 @@ class Countychecker extends CI_Controller {
 			'logged_county' => $loggedCounty,
 			'feature' => $feature,
 			'logged_feature' => $logged_feature,
+			'candidates' => $candidates,
 		]);
 	}
 

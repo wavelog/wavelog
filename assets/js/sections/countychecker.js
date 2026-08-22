@@ -185,6 +185,19 @@ function renderCountyMap(data, grid, mapId) {
 		}).addTo(map));
 	}
 
+	// Other counties the grid box overlaps (orange): with confidence below
+	// 100% the QSO could be in any of them
+	var candidateLegendEntries = [];
+	(data.candidates || []).forEach(function(cand) {
+		layers.push(L.geoJSON({ type: 'FeatureCollection', features: [cand.feature] }, {
+			style: { color: '#ff851b', weight: 2, fillColor: '#ff851b', fillOpacity: 0.15 },
+			onEachFeature: function (feature, lyr) {
+				lyr.bindTooltip(cand.state + ', ' + cand.county, labelOpts);
+			}
+		}).addTo(map));
+		candidateLegendEntries.push({ style: 'background:#ff851b;', label: 'Possible: ' + cand.state + ', ' + cand.county });
+	});
+
 	// Outline of the gridsquare itself (6-char grids are 5' x 2.5')
 	if (data.grid_bounds) {
 		L.rectangle([[data.grid_bounds[0], data.grid_bounds[1]], [data.grid_bounds[2], data.grid_bounds[3]]], {
@@ -200,9 +213,10 @@ function renderCountyMap(data, grid, mapId) {
 
 	addCountyLegend(map, [
 		data.feature && { style: 'background:#ff4136;', label: 'GeoJSON: ' + data.state + ', ' + data.county },
-		data.logged_feature && { style: 'background:#0074d9;', label: 'Log: ' + data.logged_state + ', ' + data.logged_county },
+		data.logged_feature && { style: 'background:#0074d9;', label: 'Log: ' + data.logged_state + ', ' + data.logged_county }
+	].concat(candidateLegendEntries).concat([
 		data.grid_bounds && { style: 'border:2px dashed #ffdc00;background:transparent;', label: grid }
-	].filter(Boolean));
+	]).filter(Boolean));
 
 	try {
 		map.fitBounds(L.featureGroup(layers).getBounds().pad(0.15));
