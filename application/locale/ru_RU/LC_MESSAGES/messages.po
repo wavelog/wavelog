@@ -244,6 +244,7 @@ msgstr "Тропосферное прохождение"
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84 application/controllers/Qsl.php:132
 #: application/controllers/Dbtools.php:13
+#: application/controllers/Labeldesigner.php:14
 msgid "You're not allowed to do that!"
 msgstr "Вы не можете это делать!"
 
@@ -294,6 +295,7 @@ msgstr "Всего квадратов QTH-локатора активирова�
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:538
 #: application/views/qslpostcard/designer.php:151
+#: application/views/labeldesigner/designer.php:174
 msgid "Fields"
 msgstr "Поля"
 
@@ -1388,6 +1390,7 @@ msgstr "Подсчитать QSO по..."
 #: application/views/dbtools/showUpdateResult.php:47
 #: application/views/dbtools/showUpdateResult.php:110
 #: application/views/logbookadvanced/index.php:961
+#: application/views/labels/index.php:127
 msgid "Gridsquare"
 msgstr "QTH-локатор"
 
@@ -1945,57 +1948,71 @@ msgstr "Новый тип наклеек"
 
 #: application/controllers/Labels.php:77 application/controllers/Labels.php:435
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
+#: application/controllers/Labels.php:534
 msgid "Label Name"
 msgstr "Название наклейки"
 
 #: application/controllers/Labels.php:78 application/controllers/Labels.php:436
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:77
+#: application/views/labels/index.php:77 application/controllers/Labels.php:535
+#: application/views/labels/index.php:78
 msgid "Paper Type"
 msgstr "Тип бумаги"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:437
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
+#: application/controllers/Labels.php:536 application/views/labels/index.php:44
+#: application/views/labels/index.php:79
 msgid "Measurement"
 msgstr "Единицы измерения"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:438
+#: application/controllers/Labels.php:537
 msgid "Top Margin"
 msgstr "Отступ сверху"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:439
+#: application/controllers/Labels.php:538
 msgid "Left Margin"
 msgstr "Отступ слева"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:440
+#: application/controllers/Labels.php:539
 msgid "QSLs Horizontally"
 msgstr "QSL в строку"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:441
+#: application/controllers/Labels.php:540
 msgid "QSLs Vertically"
 msgstr "QSL в столбец"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:442
+#: application/controllers/Labels.php:541
 msgid "Horizontal Space"
 msgstr "Интервал по горизонтали"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:443
+#: application/controllers/Labels.php:542
 msgid "Vertical Space"
 msgstr "Интервал по вертикали"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:444
+#: application/controllers/Labels.php:543
 msgid "Label width"
 msgstr "Ширина наклейки"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:445
+#: application/controllers/Labels.php:544
 msgid "Label height"
 msgstr "Высота наклейки"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:446
+#: application/controllers/Labels.php:545
 msgid "Size of Font"
 msgstr "Размер шрифта"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:447
+#: application/controllers/Labels.php:546
 msgid "Number of QSOs on label"
 msgstr "Количество QSO на наклейке"
 
@@ -2005,21 +2022,25 @@ msgstr "Новый тип бумаги"
 
 #: application/controllers/Labels.php:118
 #: application/controllers/Labels.php:494
+#: application/controllers/Labels.php:599
 msgid "Paper Name"
 msgstr "Название типа бумаги"
 
 #: application/controllers/Labels.php:119
 #: application/controllers/Labels.php:495
+#: application/controllers/Labels.php:600
 msgid "Paper Width"
 msgstr "Ширина бумаги"
 
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:496
+#: application/controllers/Labels.php:601
 msgid "Paper Height"
 msgstr "Высота бумаги"
 
 #: application/controllers/Labels.php:131
 #: application/controllers/Labels.php:504
+#: application/controllers/Labels.php:609
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -2035,17 +2056,27 @@ msgstr "QSO не выбраны"
 
 #: application/controllers/Labels.php:216
 #: application/controllers/Labels.php:219
+#: application/controllers/Labeldesigner.php:136
+#: application/controllers/Labels.php:225
+#: application/controllers/Labels.php:315
+#: application/controllers/Labels.php:318
 msgid "You need to assign a paperType to the label before printing"
 msgstr "Вам необходимо указать тип бумаги для наклеек перед печатью"
 
 #: application/controllers/Labels.php:226
 #: application/controllers/Labels.php:229
+#: application/controllers/Labels.php:325
+#: application/controllers/Labels.php:328
 msgid "You need to create a label and set it to be used for print."
 msgstr ""
 "Вам нужно создать шаблон наклейки и назначить его используемым при печати."
 
 #: application/controllers/Labels.php:236
 #: application/controllers/Labels.php:239
+#: application/controllers/Labels.php:237
+#: application/controllers/Labels.php:244
+#: application/controllers/Labels.php:335
+#: application/controllers/Labels.php:338
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -2054,30 +2085,38 @@ msgstr ""
 "наклеек и размер шрифта."
 
 #: application/controllers/Labels.php:267
+#: application/controllers/Labels.php:230
+#: application/controllers/Labels.php:366
 msgid "0 QSOs found for print!"
 msgstr "QSO для печати не найдены!"
 
 #: application/controllers/Labels.php:424
+#: application/controllers/Labels.php:523
 msgid "Edit Label"
 msgstr "Редактировать тип наклеек"
 
 #: application/controllers/Labels.php:453
+#: application/controllers/Labels.php:552
 msgid "Label was saved."
 msgstr "Шаблон наклейки сохранён."
 
 #: application/controllers/Labels.php:461
+#: application/controllers/Labels.php:560
 msgid "Label was deleted."
 msgstr "Шаблон наклейки удалён."
 
 #: application/controllers/Labels.php:483
+#: application/controllers/Labels.php:588
 msgid "Edit Paper"
 msgstr "Редактировать тип бумаги"
 
 #: application/controllers/Labels.php:508
+#: application/controllers/Labels.php:613
 msgid "Paper was saved."
 msgstr "Тип бумаги сохранён."
 
 #: application/controllers/Labels.php:521
+#: application/controllers/Labels.php:626
 msgid "Paper was deleted."
 msgstr "Тип бумаги удалён."
 
@@ -3294,6 +3333,8 @@ msgstr "Недостаточно свободного места на диске
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
 #: application/controllers/Qslpostcard.php:302
+#: application/controllers/Labeldesigner.php:114
+#: application/controllers/Labels.php:213
 msgid "Template not found"
 msgstr "Шаблон не найден"
 
@@ -3303,16 +3344,20 @@ msgstr "Шаблон не найден"
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
 #: application/controllers/Qslpostcard.php:308
+#: application/controllers/Labeldesigner.php:120
+#: application/controllers/Labels.php:219
 msgid "Template JSON is invalid"
 msgstr "JSON шаблона некорректен"
 
 #: application/controllers/Qslpostcard.php:204
 #: application/controllers/Qslpostcard.php:207
+#: application/controllers/Labeldesigner.php:149
 msgid "No QSOs returned by get_sample_qsos()"
 msgstr "get_sample_qsos() не вернула ни одного QSO"
 
 #: application/controllers/Qslpostcard.php:214
 #: application/controllers/Qslpostcard.php:217
+#: application/controllers/Labeldesigner.php:156
 msgid "PDF file was not created"
 msgstr "PDF файл не был создан"
 
@@ -3458,7 +3503,8 @@ msgstr "последнее обновление"
 #: application/views/stationsetup/stationsetup.php:162
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
-#: application/views/user/index.php:203
+#: application/views/user/index.php:203 application/views/labels/index.php:49
+#: application/views/labels/index.php:85
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -3496,6 +3542,9 @@ msgstr "Редактировать"
 #: application/views/user/index.php:228 application/views/view_log/qso.php:719
 #: application/views/view_log/qso.php:727
 #: application/views/logbookadvanced/index.php:910
+#: application/views/labeldesigner/designer.php:400
+#: application/views/labeldesigner/designer.php:439
+#: application/views/labels/index.php:50 application/views/labels/index.php:86
 msgid "Delete"
 msgstr "Удалить"
 
@@ -3699,6 +3748,7 @@ msgstr "Не разрешено"
 #: application/views/widgets/lotw_upload.php:123
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/labeldesigner/designer.php:60
 msgid "Error"
 msgstr "Ошибка"
 
@@ -3841,6 +3891,7 @@ msgstr "Очистить лог"
 #: application/models/Qslpostcard_model.php:78
 #: application/views/stationsetup/stationsetup.php:163
 #: application/views/stationsetup/stationsetup.php:203
+#: application/models/Labeldesigner_model.php:74
 msgid "Copy"
 msgstr "Скопировать"
 
@@ -4978,6 +5029,7 @@ msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "В категории Контакты заголовки записей должны быть уникальными."
 
 #: application/models/Qslpostcard_model.php:440
+#: application/models/Qslpostcard_model.php:442
 msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! НЕ НАЙДЕН ПРИГОДНЫЙ ДЛЯ ОТПРАВКИ АДРЕС !!!"
@@ -5530,6 +5582,7 @@ msgstr "Референция"
 #: application/views/view_log/qso.php:219
 #: application/views/view_log/qso.php:616
 #: application/views/logbookadvanced/index.php:964
+#: application/views/labels/index.php:43 application/views/labels/index.php:77
 msgid "Name"
 msgstr "Имя"
 
@@ -5563,6 +5616,7 @@ msgstr "Отслеживание"
 #: application/views/activationplanner/index.php:33
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/labeldesigner/designer.php:277
 msgid "Field"
 msgstr "Поля"
 
@@ -5606,6 +5660,7 @@ msgstr "Референции в этом квадрате QTH-локатора"
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 #: application/views/dbtools/statecheckresult.php:16
+#: application/views/labels/index.php:83
 msgid "QSOs"
 msgstr "QSO"
 
@@ -5851,6 +5906,7 @@ msgstr "Не найдено!"
 #: application/views/dbtools/checkresult.php:389
 #: application/views/dbtools/showUpdateResult.php:46
 #: application/views/dbtools/showUpdateResult.php:109
+#: application/views/labels/index.php:125
 msgid "Callsign"
 msgstr "Позывной"
 
@@ -6841,6 +6897,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:188
 #: application/views/simplefle/index.php:22
+#: application/views/labeldesigner/designer.php:95
 msgid "Save"
 msgstr "Сохранить"
 
@@ -7683,6 +7740,7 @@ msgstr "Дипломы — CQ WAZ"
 #: application/views/awards/was/index.php:41
 #: application/views/awards/wwff/index.php:39
 #: application/views/awards/counties/index.php:56
+#: application/views/labeldesigner/designer.php:47
 msgid "Table"
 msgstr "Таблица"
 
@@ -11208,6 +11266,7 @@ msgstr "Идентификация DXCC для позывного"
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:11
 #: application/views/dbtools/index.php:28
+#: application/views/labels/index.php:126
 msgid "Station Location"
 msgstr "Профиль QTH"
 
@@ -12387,6 +12446,7 @@ msgstr "Неизвестная ошибка"
 #: application/views/debug/index.php:228
 #: application/views/interface_assets/footer.php:39
 #: application/views/qslpostcard/designer.php:46
+#: application/views/labeldesigner/designer.php:59
 msgid "Success"
 msgstr "Успешно"
 
@@ -15557,6 +15617,8 @@ msgstr "Дублирование отключено для заметок о к�
 #: application/views/interface_assets/footer.php:71
 #: application/views/qslpostcard/designer.php:318
 #: application/views/qslpostcard/designer.php:334
+#: application/views/labeldesigner/designer.php:397
+#: application/views/labeldesigner/designer.php:413
 msgid "Duplicate"
 msgstr "Дубликат"
 
@@ -16511,6 +16573,8 @@ msgstr "Полная высота одной наклейки"
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:81
 #: application/views/qslpostcard/designer.php:285
+#: application/views/labeldesigner/designer.php:364
+#: application/views/labels/index.php:82
 msgid "Font Size"
 msgstr "Размер шрифта"
 
@@ -16570,14 +16634,14 @@ msgstr "Ориентация бумаги"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:61 application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr "Ландшафтная"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:61 application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr "Портретная"
@@ -16599,11 +16663,14 @@ msgstr ""
 #: application/views/logbookadvanced/startatform.php:104
 #: application/views/qslprint/printlabel.php:117
 #: application/views/qslprint/printqsl.php:37
+#: application/views/logbookadvanced/startatform.php:125
+#: application/views/qslprint/printlabel.php:138
 msgid "Mark QSL as printed"
 msgstr "Отметить, что QSL напечатана"
 
 #: application/views/labels/index.php:3 application/views/labels/index.php:129
 #: application/views/qslprint/index.php:77
+#: application/views/labels/index.php:130
 msgid "Print"
 msgstr "Печать"
 
@@ -16620,97 +16687,129 @@ msgstr "Добавить новый тип наклейки"
 msgid "Create New Paper Type"
 msgstr "Добавить новый тип бумаги"
 
-#: application/views/labels/index.php:38
+#: application/views/labels/index.php:38 application/views/labels/index.php:39
 msgid "Paper types"
 msgstr "Типы бумаги"
 
 #: application/views/labels/index.php:44 application/views/labels/index.php:79
+#: application/views/labeldesigner/designer.php:323
+#: application/views/labels/index.php:45 application/views/labels/index.php:80
 msgid "Width"
 msgstr "Ширина"
 
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
+#: application/views/labeldesigner/designer.php:327
+#: application/views/labels/index.php:46 application/views/labels/index.php:81
 msgid "Height"
 msgstr "Высота"
 
-#: application/views/labels/index.php:46
+#: application/views/labels/index.php:46 application/views/labels/index.php:47
 msgid "Used by labels"
 msgstr "Используется для наклеек"
 
 #: application/views/labels/index.php:47
+#: application/views/labeldesigner/designer.php:336
+#: application/views/labels/index.php:48
 msgid "Orientation"
 msgstr "Ориентация"
 
-#: application/views/labels/index.php:72
+#: application/views/labels/index.php:72 application/views/labels/index.php:73
 msgid "Label types"
 msgstr "Тип наклеек"
 
-#: application/views/labels/index.php:83
+#: application/views/labels/index.php:83 application/views/labels/index.php:84
 msgid "Use For Print"
 msgstr "Используется для печати"
 
 #: application/views/labels/index.php:93
+#: application/views/labeldesigner/designer.php:113
+#: application/views/labels/index.php:94
 msgid "No paper assigned"
 msgstr "Не выбрана бумага"
 
 #: application/views/labels/index.php:118
+#: application/views/labels/index.php:119
 msgid "QSL Card Labels Pending"
 msgstr "Наклейки для QSL-карточек в ожидании"
 
 #: application/views/labels/index.php:127
+#: application/views/labels/index.php:128
 msgid "QSOs Waiting"
 msgstr "QSO в ожидании"
 
 #: application/views/labels/index.php:128
+#: application/views/labels/index.php:129
 msgid "View QSOs"
 msgstr "Просмотр QSO"
 
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
+#: application/views/labels/startatform.php:41
+#: application/views/logbookadvanced/startatform.php:40
+#: application/views/qslprint/printlabel.php:40
 msgid "Include my call?"
 msgstr "Включить мой позывной?"
 
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
 #: application/views/qslprint/printlabel.php:32
+#: application/views/labels/startatform.php:53
+#: application/views/logbookadvanced/startatform.php:52
+#: application/views/qslprint/printlabel.php:52
 msgid "Include OP-Call? (if filled)"
 msgstr "Включать позывной оператора? (если заполнено)"
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
 #: application/views/qslprint/printlabel.php:44
+#: application/views/labels/startatform.php:65
+#: application/views/logbookadvanced/startatform.php:64
+#: application/views/qslprint/printlabel.php:64
 msgid "Include Grid?"
 msgstr "Включить квадрат QTH-локатора?"
 
 #: application/views/labels/startatform.php:57
 #: application/views/logbookadvanced/startatform.php:56
 #: application/views/qslprint/printlabel.php:56
+#: application/views/labels/startatform.php:77
+#: application/views/logbookadvanced/startatform.php:76
+#: application/views/qslprint/printlabel.php:76
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
 "Включить референцию (SIG, SOTA, POTA, IOTA, WWFF; если указано в профиле QTH)"
 
 #: application/views/labels/startatform.php:69
+#: application/views/labels/startatform.php:89
 msgid "Include Via (if filled)?"
 msgstr "Включить via (если заполнено)?"
 
 #: application/views/labels/startatform.php:81
+#: application/views/labels/startatform.php:101
 msgid "Include QSLMSG (if filled)?"
 msgstr "Включить QSLMSG (если заполнено)?"
 
 #: application/views/labels/startatform.php:93
+#: application/views/labels/startatform.php:113
 msgid "Include TNX message?"
 msgstr "Включить сообщение TNX?"
 
 #: application/views/labels/startatform.php:106
 #: application/views/logbookadvanced/startatform.php:117
 #: application/views/qslprint/printlabel.php:105
+#: application/views/labels/startatform.php:128
+#: application/views/logbookadvanced/startatform.php:138
+#: application/views/qslprint/printlabel.php:126
 msgid "Start printing at?"
 msgstr "С какой позиции на листе начать печать?"
 
 #: application/views/labels/startatform.php:112
 #: application/views/logbookadvanced/startatform.php:123
 #: application/views/qslprint/printlabel.php:111
+#: application/views/labels/startatform.php:134
+#: application/views/logbookadvanced/startatform.php:144
+#: application/views/qslprint/printlabel.php:132
 msgid "Enter the starting position for label printing"
 msgstr "Введите начальную позицию для печати наклеек"
 
@@ -18295,6 +18394,7 @@ msgstr "Создать ADIF"
 #: application/views/logbookadvanced/index.php:850
 #: application/views/qslprint/index.php:5
 #: application/views/qslprint/printlabel.php:116
+#: application/views/qslprint/printlabel.php:137
 msgid "Print Label"
 msgstr "Напечатать наклейки"
 
@@ -18447,6 +18547,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
+#: application/views/labeldesigner/designer.php:85
 msgid "Template"
 msgstr "Шаблон"
 
@@ -18473,6 +18574,7 @@ msgstr "Создать PDF QSL-карточки"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:34
 #: application/views/qslprint/printqsl.php:34
+#: application/views/labeldesigner/designer.php:122
 msgid "Save PDF"
 msgstr "Сохранить PDF"
 
@@ -18596,16 +18698,22 @@ msgstr "Количество QSO, в которых обновлена инфо�
 
 #: application/views/logbookadvanced/startatform.php:68
 #: application/views/qslprint/printlabel.php:68
+#: application/views/logbookadvanced/startatform.php:88
+#: application/views/qslprint/printlabel.php:88
 msgid "Include Via"
 msgstr "Включить via"
 
 #: application/views/logbookadvanced/startatform.php:80
 #: application/views/qslprint/printlabel.php:80
+#: application/views/logbookadvanced/startatform.php:100
+#: application/views/qslprint/printlabel.php:100
 msgid "Include QSLMSG"
 msgstr "Включить QSLMSG"
 
 #: application/views/logbookadvanced/startatform.php:92
 #: application/views/qslprint/printlabel.php:92
+#: application/views/logbookadvanced/startatform.php:112
+#: application/views/qslprint/printlabel.php:112
 msgid "Include TNX message"
 msgstr "Включить сообщение TNX"
 
@@ -19972,27 +20080,33 @@ msgid "Address"
 msgstr "Адрес"
 
 #: application/views/qslpostcard/designer.php:6
+#: application/views/labeldesigner/designer.php:7
 msgid "QSO Core"
 msgstr "Данные QSO"
 
 #: application/views/qslpostcard/designer.php:7
+#: application/views/labeldesigner/designer.php:8
 msgid "Date & Time"
 msgstr "Дата и время"
 
 #: application/views/qslpostcard/designer.php:8
+#: application/views/labeldesigner/designer.php:9
 msgid "Station & Equipment"
 msgstr "Станция и оборудование"
 
 #: application/views/qslpostcard/designer.php:9
+#: application/views/labeldesigner/designer.php:10
 msgid "My References"
 msgstr "Мои референции"
 
 #: application/views/qslpostcard/designer.php:10
+#: application/views/labeldesigner/designer.php:11
 msgid "Markers"
 msgstr "Отметки"
 
 #: application/views/qslpostcard/designer.php:11
 #: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
+#: application/views/labeldesigner/designer.php:12
 msgid "Other"
 msgstr "Другое"
 
@@ -20013,64 +20127,79 @@ msgid "Preview image uploaded."
 msgstr "Изображение для предварительного просмотра загружено."
 
 #: application/views/qslpostcard/designer.php:34
+#: application/views/labeldesigner/designer.php:45
 msgid "Custom Text"
 msgstr "Пользовательский текст"
 
 #: application/views/qslpostcard/designer.php:35
+#: application/views/labeldesigner/designer.php:48
 msgid "Untitled"
 msgstr "Без названия"
 
 #: application/views/qslpostcard/designer.php:36
+#: application/views/labeldesigner/designer.php:49
 msgid "Save failed"
 msgstr "Сохранение не удалось"
 
 #: application/views/qslpostcard/designer.php:37
+#: application/views/labeldesigner/designer.php:50
 msgid "Template saved."
 msgstr "Шаблон сохранен."
 
 #: application/views/qslpostcard/designer.php:38
+#: application/views/labeldesigner/designer.php:51
 msgid "Delete Template?"
 msgstr "Удалить шаблон?"
 
 #: application/views/qslpostcard/designer.php:39
+#: application/views/labeldesigner/designer.php:52
 msgid ""
 "Are you sure you want to delete this template? This action cannot be undone."
 msgstr ""
 "Вы уверены, что хотите удалить этот шаблон? Это действие нельзя отменить."
 
 #: application/views/qslpostcard/designer.php:40
+#: application/views/labeldesigner/designer.php:53
 msgid "Delete failed"
 msgstr "Удаление не удалось"
 
 #: application/views/qslpostcard/designer.php:41
+#: application/views/labeldesigner/designer.php:54
 msgid "Template deleted successfully!"
 msgstr "Шаблон успешно удалён!"
 
 #: application/views/qslpostcard/designer.php:42
+#: application/views/labeldesigner/designer.php:55
 msgid "Please select a template to delete."
 msgstr "Пожалуйста, выберите шаблон для удаления."
 
 #: application/views/qslpostcard/designer.php:43
+#: application/views/labeldesigner/designer.php:56
 msgid "Copy failed"
 msgstr "Копирование не удалось"
 
 #: application/views/qslpostcard/designer.php:44
+#: application/views/labeldesigner/designer.php:57
 msgid "Template copied."
 msgstr "Шаблон скопирован."
 
 #: application/views/qslpostcard/designer.php:45
+#: application/views/labeldesigner/designer.php:58
 msgid "Please select a template to copy."
 msgstr "Пожалуйста, выберите шаблон для копирования."
 
 #: application/views/qslpostcard/designer.php:48
+#: application/views/labeldesigner/designer.php:61
 msgid "selected"
 msgstr "выбрано"
 
 #: application/views/qslpostcard/designer.php:49
+#: application/views/labeldesigner/designer.php:64
 msgid "Unsaved changes"
 msgstr "Несохранённые изменения"
 
 #: application/views/qslpostcard/designer.php:50
+#: application/views/labeldesigner/designer.php:65
 msgid ""
 "Your current design has unsaved changes. Loading a different template will "
 "replace it. Continue?"
@@ -20079,6 +20208,7 @@ msgstr ""
 "шаблона заменит его. Продолжить?"
 
 #: application/views/qslpostcard/designer.php:51
+#: application/views/labeldesigner/designer.php:66
 msgid ""
 "Your current design has unsaved changes. If you leave the page, those "
 "changes will be lost. Leave anyway?"
@@ -20087,34 +20217,42 @@ msgstr ""
 "страницу, то изменения будут утеряны. Уйти в любом случае?"
 
 #: application/views/qslpostcard/designer.php:52
+#: application/views/labeldesigner/designer.php:67
 msgid "Discard changes"
 msgstr "Отменить изменения"
 
 #: application/views/qslpostcard/designer.php:53
+#: application/views/labeldesigner/designer.php:68
 msgid "Keep editing"
 msgstr "Продолжить редактировать"
 
 #: application/views/qslpostcard/designer.php:54
+#: application/views/labeldesigner/designer.php:69
 msgid "Leave page"
 msgstr "Покинуть страницу"
 
 #: application/views/qslpostcard/designer.php:70
+#: application/views/labeldesigner/designer.php:88
 msgid "(new)"
 msgstr "(новый)"
 
 #: application/views/qslpostcard/designer.php:75
+#: application/views/labeldesigner/designer.php:93
 msgid "Template name"
 msgstr "Имя шаблона"
 
 #: application/views/qslpostcard/designer.php:76
+#: application/views/labeldesigner/designer.php:94
 msgid "Save Template"
 msgstr "Сохранить шаблон"
 
 #: application/views/qslpostcard/designer.php:79
+#: application/views/labeldesigner/designer.php:97
 msgid "Copy Template"
 msgstr "Копировать шаблон"
 
 #: application/views/qslpostcard/designer.php:82
+#: application/views/labeldesigner/designer.php:100
 msgid "Delete Template"
 msgstr "Удалить шаблон"
 
@@ -20127,26 +20265,32 @@ msgid "Generate PDF (demo)"
 msgstr "Создать PDF (демо)"
 
 #: application/views/qslpostcard/designer.php:95
+#: application/views/labeldesigner/designer.php:118
 msgid "PDF"
 msgstr "PDF"
 
 #: application/views/qslpostcard/designer.php:107
+#: application/views/labeldesigner/designer.php:130
 msgid "History"
 msgstr "История"
 
 #: application/views/qslpostcard/designer.php:109
+#: application/views/labeldesigner/designer.php:132
 msgid "Undo"
 msgstr "Отменить"
 
 #: application/views/qslpostcard/designer.php:110
+#: application/views/labeldesigner/designer.php:133
 msgid "Redo"
 msgstr "Повторить"
 
 #: application/views/qslpostcard/designer.php:116
+#: application/views/labeldesigner/designer.php:139
 msgid "Zoom"
 msgstr "Увеличение"
 
 #: application/views/qslpostcard/designer.php:126
+#: application/views/labeldesigner/designer.php:149
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
@@ -20155,18 +20299,22 @@ msgstr ""
 "перемещайте каждое поле."
 
 #: application/views/qslpostcard/designer.php:127
+#: application/views/labeldesigner/designer.php:150
 msgid "Print offset"
 msgstr "Печать со смещением"
 
 #: application/views/qslpostcard/designer.php:156
+#: application/views/labeldesigner/designer.php:179
 msgid "Search fields…"
 msgstr "Поиск полей…"
 
 #: application/views/qslpostcard/designer.php:160
+#: application/views/labeldesigner/designer.php:183
 msgid "Add Custom Text"
 msgstr "Добавить пользовательский текст"
 
 #: application/views/qslpostcard/designer.php:175
+#: application/views/labeldesigner/designer.php:211
 msgid "No fields match your search."
 msgstr "Нет полей, соответствующих вашему запросу."
 
@@ -20179,6 +20327,7 @@ msgid "drag fields onto the postcard"
 msgstr "перетащите поля на карточку"
 
 #: application/views/qslpostcard/designer.php:205
+#: application/views/labeldesigner/designer.php:241
 msgid "Template Options"
 msgstr "Параметры шаблона"
 
@@ -20187,6 +20336,7 @@ msgid "Number of QSOs per QSL card"
 msgstr "Количество QSO на одну QSL карточку"
 
 #: application/views/qslpostcard/designer.php:213
+#: application/views/labeldesigner/designer.php:249
 msgid "Row spacing"
 msgstr "Расстояние между рядами"
 
@@ -20201,50 +20351,62 @@ msgid "Skip address printing (for printing on regular QSL cards)"
 msgstr "Пропустить печать адреса (для печати на обычных QSL-карточках)"
 
 #: application/views/qslpostcard/designer.php:230
+#: application/views/labeldesigner/designer.php:266
 msgid "Properties"
 msgstr "Свойства"
 
 #: application/views/qslpostcard/designer.php:235
+#: application/views/labeldesigner/designer.php:271
 msgid "Select a field on the canvas to edit it."
 msgstr "Выберите поле на холсте, чтобы отредактировать его."
 
 #: application/views/qslpostcard/designer.php:236
+#: application/views/labeldesigner/designer.php:272
 msgid "Right-click a field for more actions."
 msgstr "Щелкните правой кнопкой мыши на поле для дополнительных действий."
 
 #: application/views/qslpostcard/designer.php:246
+#: application/views/labeldesigner/designer.php:282
 msgid "Text"
 msgstr "Текст"
 
 #: application/views/qslpostcard/designer.php:251
+#: application/views/labeldesigner/designer.php:287
 msgid "Frequency format"
 msgstr "Формат частоты"
 
 #: application/views/qslpostcard/designer.php:259
+#: application/views/labeldesigner/designer.php:295
 msgid "Omit unit"
 msgstr "Опустить единицы измерения"
 
 #: application/views/qslpostcard/designer.php:265
+#: application/views/labeldesigner/designer.php:301
 msgid "X"
 msgstr "X"
 
 #: application/views/qslpostcard/designer.php:269
+#: application/views/labeldesigner/designer.php:305
 msgid "Y"
 msgstr "У"
 
 #: application/views/qslpostcard/designer.php:275
+#: application/views/labeldesigner/designer.php:354
 msgid "Font"
 msgstr "Шрифт"
 
 #: application/views/qslpostcard/designer.php:291
+#: application/views/labeldesigner/designer.php:370
 msgid "Bold"
 msgstr "Жирный"
 
 #: application/views/qslpostcard/designer.php:297
+#: application/views/labeldesigner/designer.php:376
 msgid "Color"
 msgstr "Цвет"
 
 #: application/views/qslpostcard/designer.php:302
+#: application/views/labeldesigner/designer.php:381
 msgid "Wrap width"
 msgstr "Ширина переноса"
 
@@ -20254,60 +20416,74 @@ msgstr ""
 "Печать этого поля для каждого QSO, если карточка содержит несколько QSO"
 
 #: application/views/qslpostcard/designer.php:308
+#: application/views/labeldesigner/designer.php:387
 msgid "Repeats per QSO"
 msgstr "Повторение для каждого QSO"
 
 #: application/views/qslpostcard/designer.php:312
+#: application/views/labeldesigner/designer.php:391
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
 "Свободное перемещение этого элемента, без привязки к сетке или другим "
 "элементам"
 
 #: application/views/qslpostcard/designer.php:313
+#: application/views/labeldesigner/designer.php:392
 msgid "Disable Auto-Snap"
 msgstr "Отключение автопривязки"
 
 #: application/views/qslpostcard/designer.php:339
+#: application/views/labeldesigner/designer.php:418
 msgid "Align & distribute"
 msgstr "Выравнивание и распределение"
 
 #: application/views/qslpostcard/designer.php:343
+#: application/views/labeldesigner/designer.php:422
 msgid "Align left"
 msgstr "Выравнивание по левому краю"
 
 #: application/views/qslpostcard/designer.php:344
+#: application/views/labeldesigner/designer.php:423
 msgid "Align horizontal centers"
 msgstr "Выравнивание по центру, по горизонтали"
 
 #: application/views/qslpostcard/designer.php:345
+#: application/views/labeldesigner/designer.php:424
 msgid "Align right"
 msgstr "Выравнивание по правому краю"
 
 #: application/views/qslpostcard/designer.php:347
+#: application/views/labeldesigner/designer.php:426
 msgid "Align top"
 msgstr "Выравнивание по верхнему краю"
 
 #: application/views/qslpostcard/designer.php:348
+#: application/views/labeldesigner/designer.php:427
 msgid "Align vertical centers"
 msgstr "Выравнивание по центру, по вертикали"
 
 #: application/views/qslpostcard/designer.php:349
+#: application/views/labeldesigner/designer.php:428
 msgid "Align bottom"
 msgstr "Выравнивание по нижнему краю"
 
 #: application/views/qslpostcard/designer.php:351
+#: application/views/labeldesigner/designer.php:430
 msgid "Distribute horizontally"
 msgstr "Распределение по горизонтали"
 
 #: application/views/qslpostcard/designer.php:352
+#: application/views/labeldesigner/designer.php:431
 msgid "Distribute vertically"
 msgstr "Распределение по вертикали"
 
 #: application/views/qslpostcard/designer.php:354
+#: application/views/labeldesigner/designer.php:433
 msgid "Center on page (horizontal)"
 msgstr "Центрирование на странице (по горизонтали)"
 
 #: application/views/qslpostcard/designer.php:355
+#: application/views/labeldesigner/designer.php:434
 msgid "Center on page (vertical)"
 msgstr "Центрирование на странице (по вертикали)"
 
@@ -24476,6 +24652,150 @@ msgstr ""
 
 #: application/controllers/Dashboard.php:219
 msgid "VHF+"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:22
+#: application/views/labels/index.php:36
+msgid "Label Designer"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:125
+msgid "Template has no elements"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:131
+msgid "Label type not found"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:165
+msgid "Label PDF failed: "
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:46
+msgid "Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:62
+msgid "Please select a label type first."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:63
+msgid ""
+"The label type of this template no longer exists. Please select another one."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:108
+msgid "Label type"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:111
+msgid "(select label type)"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:117
+msgid "Generate sample PDF with your latest QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:187
+msgid ""
+"Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
+"QSO row"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:188
+msgid "Horizontal Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:190
+msgid "Vertical rule — place at column edges to build a table grid"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:191
+msgid "Vertical Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:195
+msgid ""
+"Table grid — drag the corner to resize, drag the column markers to adjust "
+"column widths"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:196
+msgid "Add Table"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:219
+msgid "Label Canvas"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:220
+msgid "drag fields onto the label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:245
+msgid "Number of QSOs per label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:254
+msgid ""
+"Draws a rule between the QSO rows automatically, like the classic label "
+"layout"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:254
+msgid "Separator lines between QSO rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:257
+msgid "Separator thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:313
+msgid "Rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:317
+msgid "Columns"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:331
+#: application/views/labeldesigner/designer.php:347
+msgid "Thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:338
+msgid "Horizontal"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:339
+msgid "Vertical"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:343
+msgid "Length"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:386
+msgid "Print this field once per QSO when a label holds multiple QSOs"
+msgstr ""
+
+#: application/views/labels/startatform.php:21
+#: application/views/logbookadvanced/startatform.php:20
+#: application/views/qslprint/printlabel.php:20
+msgid "Label layout"
+msgstr ""
+
+#: application/views/labels/startatform.php:24
+#: application/views/logbookadvanced/startatform.php:23
+#: application/views/qslprint/printlabel.php:23
+msgid "Standard"
+msgstr ""
+
+#: application/views/labels/startatform.php:30
+#: application/views/logbookadvanced/startatform.php:29
+#: application/views/qslprint/printlabel.php:29
+msgid ""
+"Designed label templates use their own layout and ignore the options below."
 msgstr ""
 
 #~ msgid "Match QSOs within 1800s (30min) of each other"
