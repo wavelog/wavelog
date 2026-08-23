@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 08:05+0000\n"
+"POT-Creation-Date: 2026-08-23 09:42+0000\n"
 "PO-Revision-Date: 2025-02-11 12:33+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1498,10 +1498,30 @@ msgstr "Ei ole käivitatud"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV eksport"
 
-#: application/controllers/Dashboard.php:179
+#: application/controllers/Dashboard.php:172
 #: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Paneel"
+
+#: application/controllers/Dashboard.php:219
+msgid "HF"
+msgstr ""
+
+#: application/controllers/Dashboard.php:219
+#: application/views/dashboard/index.php:684
+#: application/views/distances/index.php:27
+#: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/qslprint.php:87
+#: application/views/qslprint/qsolist.php:49
+#: application/views/qslprint/qsolist.php:51
+#: application/views/qslprint/qsolist.php:58
+#: application/views/qslprint/qsolist.php:60
+msgid "SAT"
+msgstr ""
+
+#: application/controllers/Dashboard.php:219
+msgid "VHF+"
+msgstr ""
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1649,8 +1669,8 @@ msgid "DX Calendar"
 msgstr "DX kalender"
 
 #: application/controllers/Eqsl.php:45
-#: application/views/dashboard/index.php:573
-#: application/views/dashboard/index.php:576
+#: application/views/dashboard/index.php:589
+#: application/views/dashboard/index.php:592
 #: application/views/eqslcard/index.php:3
 #: application/views/visitor/index.php:308
 msgid "eQSL Cards"
@@ -2068,7 +2088,7 @@ msgstr "QSL"
 #: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
 #: application/views/countqsoby/index.php:170
-#: application/views/dashboard/index.php:496
+#: application/views/dashboard/index.php:508
 #: application/views/dbtools/checkresult.php:107
 #: application/views/dbtools/checkresult.php:165
 #: application/views/dbtools/checkresult.php:393
@@ -3068,9 +3088,9 @@ msgstr ""
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF informatsioon"
 
-#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:495
-#: application/views/dashboard/index.php:510
-#: application/views/dashboard/index.php:513
+#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:507
+#: application/views/dashboard/index.php:526
+#: application/views/dashboard/index.php:529
 #: application/views/qslcard/index.php:3
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
@@ -4512,110 +4532,110 @@ msgstr ""
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:4894
+#: application/models/Logbook_model.php:4930
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4902
+#: application/models/Logbook_model.php:4938
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4918
+#: application/models/Logbook_model.php:4954
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4928
+#: application/models/Logbook_model.php:4964
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:4935
+#: application/models/Logbook_model.php:4971
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5041
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:5012
+#: application/models/Logbook_model.php:5048
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5286
+#: application/models/Logbook_model.php:5322
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5297
+#: application/models/Logbook_model.php:5333
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5358
+#: application/models/Logbook_model.php:5394
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5734
+#: application/models/Logbook_model.php:5770
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:5801
-#: application/models/Logbook_model.php:5901
+#: application/models/Logbook_model.php:5837
+#: application/models/Logbook_model.php:5937
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5845
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:5815
+#: application/models/Logbook_model.php:5851
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:5819
+#: application/models/Logbook_model.php:5855
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:5823
+#: application/models/Logbook_model.php:5859
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:5826
+#: application/models/Logbook_model.php:5862
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:5829
+#: application/models/Logbook_model.php:5865
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:5904
+#: application/models/Logbook_model.php:5940
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5943
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6326
+#: application/models/Logbook_model.php:6362
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4844,7 +4864,7 @@ msgstr ""
 #: application/views/csv/index.php:21 application/views/csv/index.php:33
 #: application/views/csv/index.php:44 application/views/csv/index.php:60
 #: application/views/csv/index.php:82 application/views/csv/index.php:94
-#: application/views/dashboard/index.php:667
+#: application/views/dashboard/index.php:683
 #: application/views/distances/index.php:25
 #: application/views/distances/index.php:40
 #: application/views/distances/index.php:50
@@ -6171,12 +6191,13 @@ msgstr ""
 #: application/views/awards/amsat_rover/index.php:159
 #: application/views/contesting/manager/index.php:31
 #: application/views/cron/index.php:76
-#: application/views/dashboard/index.php:516
-#: application/views/dashboard/index.php:550
-#: application/views/dashboard/index.php:579
-#: application/views/dashboard/index.php:608
-#: application/views/dashboard/index.php:637
-#: application/views/dashboard/index.php:666
+#: application/views/dashboard/index.php:490
+#: application/views/dashboard/index.php:532
+#: application/views/dashboard/index.php:566
+#: application/views/dashboard/index.php:595
+#: application/views/dashboard/index.php:624
+#: application/views/dashboard/index.php:653
+#: application/views/dashboard/index.php:682
 #: application/views/logbookadvanced/attachContest.php:11
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:48
@@ -7089,8 +7110,8 @@ msgstr ""
 #: application/views/countqsoby/index.php:8
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:489
-#: application/views/dashboard/index.php:672
+#: application/views/dashboard/index.php:498
+#: application/views/dashboard/index.php:688
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -7112,8 +7133,8 @@ msgstr ""
 #: application/views/countqsoby/index.php:9
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:493
-#: application/views/dashboard/index.php:677
+#: application/views/dashboard/index.php:504
+#: application/views/dashboard/index.php:693
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -7150,11 +7171,11 @@ msgstr ""
 #: application/views/awards/wapc/index.php:193
 #: application/views/awards/was/index.php:185
 #: application/views/awards/wpx/index.php:176
-#: application/views/dashboard/index.php:517
-#: application/views/dashboard/index.php:551
-#: application/views/dashboard/index.php:580
-#: application/views/dashboard/index.php:609
-#: application/views/dashboard/index.php:638
+#: application/views/dashboard/index.php:533
+#: application/views/dashboard/index.php:567
+#: application/views/dashboard/index.php:596
+#: application/views/dashboard/index.php:625
+#: application/views/dashboard/index.php:654
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:59
 #: application/views/statistics/qsotable.php:10
@@ -7255,11 +7276,11 @@ msgstr ""
 #: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
 #: application/views/countqsoby/index.php:35
-#: application/views/dashboard/index.php:518
-#: application/views/dashboard/index.php:552
-#: application/views/dashboard/index.php:581
-#: application/views/dashboard/index.php:610
-#: application/views/dashboard/index.php:639
+#: application/views/dashboard/index.php:534
+#: application/views/dashboard/index.php:568
+#: application/views/dashboard/index.php:597
+#: application/views/dashboard/index.php:626
+#: application/views/dashboard/index.php:655
 #: application/views/gridmap/index.php:47
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:61
@@ -12836,21 +12857,21 @@ msgstr ""
 msgid "DXCCs Breakdown"
 msgstr ""
 
-#: application/views/dashboard/index.php:490
+#: application/views/dashboard/index.php:500
 #: application/views/visitor/index.php:267
 msgid "Deleted DXCCs"
 msgstr ""
 
-#: application/views/dashboard/index.php:500
+#: application/views/dashboard/index.php:513
 #: application/views/visitor/index.php:277
 msgid "Needed"
 msgstr ""
 
-#: application/views/dashboard/index.php:522
-#: application/views/dashboard/index.php:556
-#: application/views/dashboard/index.php:585
-#: application/views/dashboard/index.php:614
-#: application/views/dashboard/index.php:643
+#: application/views/dashboard/index.php:538
+#: application/views/dashboard/index.php:572
+#: application/views/dashboard/index.php:601
+#: application/views/dashboard/index.php:630
+#: application/views/dashboard/index.php:659
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:84
@@ -12884,11 +12905,11 @@ msgstr ""
 msgid "Sent"
 msgstr ""
 
-#: application/views/dashboard/index.php:527
-#: application/views/dashboard/index.php:561
-#: application/views/dashboard/index.php:590
-#: application/views/dashboard/index.php:619
-#: application/views/dashboard/index.php:648
+#: application/views/dashboard/index.php:543
+#: application/views/dashboard/index.php:577
+#: application/views/dashboard/index.php:606
+#: application/views/dashboard/index.php:635
+#: application/views/dashboard/index.php:664
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:126
@@ -12921,7 +12942,7 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: application/views/dashboard/index.php:532
+#: application/views/dashboard/index.php:548
 #: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/edit.php:189
 #: application/views/logbookadvanced/edit.php:215
@@ -12966,31 +12987,20 @@ msgstr ""
 msgid "Requested"
 msgstr ""
 
-#: application/views/dashboard/index.php:544
-#: application/views/dashboard/index.php:547
+#: application/views/dashboard/index.php:560
+#: application/views/dashboard/index.php:563
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
 
-#: application/views/dashboard/index.php:634
+#: application/views/dashboard/index.php:650
 #: application/views/user/edit.php:1121
 msgid "Club Log"
 msgstr ""
 
-#: application/views/dashboard/index.php:660
-#: application/views/dashboard/index.php:663
+#: application/views/dashboard/index.php:676
+#: application/views/dashboard/index.php:679
 msgid "VUCC-Grids"
-msgstr ""
-
-#: application/views/dashboard/index.php:668
-#: application/views/distances/index.php:27
-#: application/views/qslprint/qslprint.php:86
-#: application/views/qslprint/qslprint.php:87
-#: application/views/qslprint/qsolist.php:49
-#: application/views/qslprint/qsolist.php:51
-#: application/views/qslprint/qsolist.php:58
-#: application/views/qslprint/qsolist.php:60
-msgid "SAT"
 msgstr ""
 
 #: application/views/dashboard/solar_data.php:6
