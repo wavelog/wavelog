@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-23 16:43+0000\n"
-"PO-Revision-Date: 2026-08-22 10:17+0000\n"
+"PO-Revision-Date: 2026-08-23 22:44+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -1526,7 +1526,7 @@ msgstr "ダッシュボード"
 
 #: application/controllers/Dashboard.php:219
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:219
 #: application/views/dashboard/index.php:684
@@ -1542,7 +1542,7 @@ msgstr "衛星"
 
 #: application/controllers/Dashboard.php:219
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1894,7 +1894,7 @@ msgstr "KMLエクスポート"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "ラベルデザイナー"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1914,11 +1914,11 @@ msgstr "テンプレートJSONが無効です"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "テンプレートには要素がありません"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "ラベルタイプが見つかりません"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1939,13 +1939,15 @@ msgstr "PDFファイルは作成されませんでした"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "PDFラベルの失敗: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"このテンプレートのラベルタイプは現在存在しません。エクスポートする前に別の"
+"ラベルタイプを選択してください。"
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -4650,15 +4652,15 @@ msgstr "削除済み"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "輸入品"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "輸入紙"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "輸入ラベルタイプ"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -7230,7 +7232,7 @@ msgstr "郡"
 #: application/views/awards/counties/details_ajax.php:14
 #: application/views/awards/counties/state_ajax.php:26
 msgid "Not in USA-CA county list"
-msgstr ""
+msgstr "米国カリフォルニア州の郡リストには含まれていません"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
@@ -16127,11 +16129,11 @@ msgstr "州として確認された郡："
 
 #: application/views/interface_assets/footer.php:2900
 msgid "Counties in state:"
-msgstr ""
+msgstr "州内の郡："
 
 #: application/views/interface_assets/footer.php:2901
 msgid "Needed counties for state:"
-msgstr ""
+msgstr "州に必要な郡数："
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16492,7 +16494,7 @@ msgstr "カスタムテキスト"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Line"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16557,12 +16559,14 @@ msgstr "選択済み"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "まずラベルの種類を選択してください。"
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"このテンプレートのラベルタイプは現在存在しません。別のラベルタイプを選択して"
+"ください。"
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -16604,23 +16608,23 @@ msgstr "ページを離れる"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "インポートに失敗しました"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "エクスポートに失敗しました"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "テンプレートがインポートされました。"
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "エクスポートするテンプレートを選択してください。"
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "ファイルサイズが大きすぎます。"
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -16664,23 +16668,23 @@ msgstr "テンプレートを削除"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "エクスポートテンプレート"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "テンプレートのインポート"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "ラベルの種類"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "（ラベルの種類を選択してください）"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "最新の交信記録を含むサンプルPDFを生成します"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -16745,28 +16749,32 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"水平線 — 「QSOごとの繰り返し回数」を有効にすると、各QSO行の下に区切り線が描画"
+"されます"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "水平線"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
-msgstr ""
+msgstr "縦線 — 列の端に配置して表のグリッドを作成します"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "垂直線"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"テーブルグリッド - 角をドラッグしてサイズを変更し、列マーカーをドラッグして列"
+"幅を調整します"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "テーブルを追加"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -16775,11 +16783,11 @@ msgstr "検索条件に一致する項目が見つかりませんでした。"
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "ラベルキャンバス"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "フィールドをラベルにドラッグする"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -16788,7 +16796,7 @@ msgstr "テンプレートオプション"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "ラベルごとの交信数"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -16799,15 +16807,15 @@ msgstr "行間"
 msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
-msgstr ""
+msgstr "従来のラベルレイアウトのように、QSO行間に自動的にルールを描画します"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "QSO行間の区切り線"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "セパレーターの厚さ"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -16851,11 +16859,11 @@ msgstr "Y"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "行"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "コラム"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -16870,7 +16878,7 @@ msgstr "高さ"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "厚さ"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -16879,15 +16887,15 @@ msgstr "オリエンテーション"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "水平"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "垂直"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "長さ"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -16919,6 +16927,8 @@ msgstr "幅をつめる"
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
 msgstr ""
+"ラベルに複数のQSOが含まれている場合は、QSOごとにこのフィールドを1回印刷してく"
+"ださい"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17221,13 +17231,13 @@ msgstr "QSOを表示"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "ラベルレイアウト"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "標準"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -17235,6 +17245,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"デザイン済みのラベルテンプレートは独自のレイアウトを使用するため、以下の"
+"オプションは無視されます。"
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
