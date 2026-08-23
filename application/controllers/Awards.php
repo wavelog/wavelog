@@ -1408,33 +1408,43 @@ class Awards extends CI_Controller {
     private function counties_postdata() {
         $postdata = array();
         foreach (array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog') as $source) {
-            $postdata[$source] = $this->input->post($source) ? 1 : NULL;
+            $postdata[$source] = $this->input->post($source, true) ? 1 : NULL;
         }
 
-        $band = $this->input->post('band');
-        $postdata['band'] = empty($band) ? 'All' : $this->security->xss_clean($band);
+        $band = $this->input->post('band', true);
+        $postdata['band'] = empty($band) ? 'All' : $band;
 
-        $mode = $this->input->post('mode');
-        $postdata['mode'] = empty($mode) ? 'All' : $this->security->xss_clean($mode);
+        $mode = $this->input->post('mode', true);
+        $postdata['mode'] = empty($mode) ? 'All' : $mode;
 
         return $postdata;
     }
 
+    // Type: 'worked'|'confirmed' (from log), 'target' (all), 'needed' (not worked)
     public function counties_list_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
-        $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
-        $data['type'] = $type;
-        $this->load->view('awards/counties/details_ajax', $data);
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $type  = str_replace('"', "", $this->input->post("Type", true));
+
+        if ($type == 'target') {
+            $data['counties_array'] = $this->counties->get_counties_list($state);
+            $this->load->view('awards/counties/counties_simple_ajax', $data);
+        } else if ($type == 'needed') {
+            $data['counties_array'] = $this->counties->get_counties_needed($state, $this->counties_postdata());
+            $this->load->view('awards/counties/counties_simple_ajax', $data);
+        } else {
+            $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
+            $data['type'] = $type;
+            $this->load->view('awards/counties/details_ajax', $data);
+        }
     }
 
     public function counties_details_ajax() {
         $this->load->model('logbook_model');
         $this->load->model('counties');
 
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $county = str_replace('"', "", $this->input->post("County", true));
         $data['results'] = $this->logbook_model->county_qso_details($state, $county, $this->counties_postdata());
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
@@ -1447,7 +1457,7 @@ class Awards extends CI_Controller {
 
     public function counties_state_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
+        $state = str_replace('"', "", $this->input->post("State", true));
         $data['counties_array'] = $this->counties->get_county_counts($state, $this->counties_postdata());
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);

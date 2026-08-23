@@ -282,6 +282,8 @@ msgstr "Karte der aktivierten Locator"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1486
+#: application/controllers/Awards.php:1522
 msgid "Gridsquares"
 msgstr "Locator"
 
@@ -341,6 +343,7 @@ msgstr "Zonen"
 #: application/controllers/Activationplanner.php:33
 #: application/controllers/Awards.php:2610
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2620
 msgid "ITU Zones"
 msgstr "ITU-Zonen"
 
@@ -539,6 +542,17 @@ msgstr "Diplome"
 #: application/controllers/Awards.php:2827
 #: application/controllers/Awards.php:2902
 #: application/controllers/Awards.php:3044
+#: application/controllers/Awards.php:1507
+#: application/controllers/Awards.php:1713
+#: application/controllers/Awards.php:1864
+#: application/controllers/Awards.php:1915
+#: application/controllers/Awards.php:2471
+#: application/controllers/Awards.php:2620
+#: application/controllers/Awards.php:2750
+#: application/controllers/Awards.php:2824
+#: application/controllers/Awards.php:2837
+#: application/controllers/Awards.php:2912
+#: application/controllers/Awards.php:3054
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplome – %s"
@@ -796,34 +810,45 @@ msgid "US Counties"
 msgstr "US Counties"
 
 #: application/controllers/Awards.php:1442
+#: application/controllers/Awards.php:1452
 msgid "Log View - Counties"
 msgstr "Log Ansicht – Counties"
 
 #: application/controllers/Awards.php:1458
+#: application/controllers/Awards.php:1468
 msgid "Awards - "
 msgstr "Diplome - "
 
 #: application/controllers/Awards.php:1477
 #: application/controllers/Awards.php:1513
+#: application/controllers/Awards.php:1487
+#: application/controllers/Awards.php:1523
 msgid "Gridsquares worked"
 msgstr "Gearbeitete Locator"
 
 #: application/controllers/Awards.php:1478
 #: application/controllers/Awards.php:1514
+#: application/controllers/Awards.php:1488
+#: application/controllers/Awards.php:1524
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Auf LoTW bestätigte Locator"
 
 #: application/controllers/Awards.php:1479
 #: application/controllers/Awards.php:1515
+#: application/controllers/Awards.php:1489
+#: application/controllers/Awards.php:1525
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Per Papier QSL bestätigte Locator"
 
 #: application/controllers/Awards.php:1480
 #: application/controllers/Awards.php:1516
+#: application/controllers/Awards.php:1490
+#: application/controllers/Awards.php:1526
 msgid "Total Gridsquares worked"
 msgstr "Summe gearbeiteter Locator"
 
 #: application/controllers/Awards.php:1497
+#: application/controllers/Awards.php:1507
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -836,49 +861,59 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/stationsetup/locationlist.php:26
 #: application/views/user/edit.php:871 application/views/view_log/qso.php:371
 #: application/views/view_log/qso.php:691
+#: application/controllers/Awards.php:1713
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1722
+#: application/controllers/Awards.php:1732
 msgid "Awards - SIG - "
 msgstr "Diplome - SIG - "
 
 #: application/controllers/Awards.php:1854 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1864
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:1905
 #: application/views/interface_assets/header.php:263
+#: application/controllers/Awards.php:1915
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2740
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:210
+#: application/controllers/Awards.php:2750
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2814
+#: application/controllers/Awards.php:2824
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2827
 #: application/views/interface_assets/header.php:220
+#: application/controllers/Awards.php:2837
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:2902
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2912
 msgid "WPX"
 msgstr "WPX"
 
 #: application/controllers/Awards.php:3044
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:285
+#: application/controllers/Awards.php:3054
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Diplom"
 
 #: application/controllers/Awards.php:3088
+#: application/controllers/Awards.php:3098
 msgid "Awards - AMSAT Rover"
 msgstr "Diplome - AMSAT Rover"
 
@@ -5702,6 +5737,9 @@ msgstr "Minimale Anzahl"
 #: application/views/qrz/export.php:65
 #: application/views/statistics/qsltable.php:162
 #: application/views/timeline/index.php:149
+#: application/views/awards/counties/counties_simple_ajax.php:21
+#: application/views/awards/counties/details_ajax.php:24
+#: application/views/awards/counties/state_ajax.php:47
 msgid "Nothing found!"
 msgstr "Nichts gefunden!"
 
@@ -7312,6 +7350,7 @@ msgstr "CSV herunterladen"
 #: application/views/logbookadvanced/index.php:1003
 #: application/views/logbookadvanced/useroptions.php:187
 #: application/views/stationsetup/locationlist.php:20
+#: application/views/awards/counties/counties_simple_ajax.php:7
 msgid "County"
 msgstr "County"
 
@@ -7555,6 +7594,7 @@ msgstr "Fortschritt Bestätigt"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/counties/state_ajax.php:39
 msgid "Total"
 msgstr "Gesamt"
 
@@ -16313,10 +16353,12 @@ msgid "US Counties for state"
 msgstr "US Bezirk für Bundesstaat"
 
 #: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2899
 msgid "Confirmed counties for state:"
 msgstr "Bestätigte Bezirke für Bundesstaat:"
 
 #: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2898
 msgid "Worked counties for state:"
 msgstr "Gearbeitete Bezirke für Bundesstaat:"
 
@@ -24407,6 +24449,19 @@ msgstr "LoTW Nutzer. Letzter Upload vom "
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
 msgstr "Drucke dieses Feld pro QSO, wenn ein Label mehrere QSOs enthält"
+
+#: application/views/awards/counties/details_ajax.php:14
+#: application/views/awards/counties/state_ajax.php:26
+msgid "Not in USA-CA county list"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2900
+msgid "Counties in state:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2901
+msgid "Needed counties for state:"
+msgstr ""
 
 #~ msgid "Counties Progress"
 #~ msgstr "Fortschritt Bezirke"
