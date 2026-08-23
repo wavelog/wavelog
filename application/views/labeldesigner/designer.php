@@ -67,6 +67,12 @@ foreach (($labels ?? []) as $l) {
 		discardChanges: <?= json_encode(__("Discard changes")); ?>,
 		keepEditing: <?= json_encode(__("Keep editing")); ?>,
 		leavePage: <?= json_encode(__("Leave page")); ?>,
+		importFailed: <?= json_encode(__("Import failed")); ?>,
+		exportFailed: <?= json_encode(__("Export failed")); ?>,
+		importSuccess: <?= json_encode(__("Template imported.")); ?>,
+		selectTemplateToExport: <?= json_encode(__("Please select a template to export.")); ?>,
+		fileTooLarge: <?= json_encode(__("File is too large.")); ?>,
+		noPaperAssigned: <?= json_encode(__("No paper assigned")); ?>,
 	};
 
 	// Label type geometry: id → {w_in, h_in, nx, ny, name, has_paper}
@@ -100,6 +106,13 @@ foreach (($labels ?? []) as $l) {
 						<button id="btnDelete" class="btn btn-sm btn-outline-danger text-nowrap" title="<?= __("Delete Template"); ?>">
 							<i class="fas fa-trash"></i>
 						</button>
+						<button id="btnExport" class="btn btn-sm btn-outline-primary text-nowrap" title="<?= __("Export Template"); ?>">
+							<i class="fas fa-file-export"></i>
+						</button>
+						<button id="btnImport" class="btn btn-sm btn-outline-primary text-nowrap" title="<?= __("Import Template"); ?>">
+							<i class="fas fa-file-import"></i>
+						</button>
+						<input type="file" id="importFile" accept=".json,application/json" hidden>
 					</div>
 				</div>
 

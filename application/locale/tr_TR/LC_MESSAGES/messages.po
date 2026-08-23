@@ -294,6 +294,7 @@ msgstr "Toplam Aktif Grid Karesi"
 #: application/controllers/Visitor.php:538
 #: application/views/qslpostcard/designer.php:151
 #: application/views/labeldesigner/designer.php:174
+#: application/views/labeldesigner/designer.php:187
 msgid "Fields"
 msgstr "Alanlar"
 
@@ -3527,6 +3528,8 @@ msgstr "Düzenle"
 #: application/views/labeldesigner/designer.php:400
 #: application/views/labeldesigner/designer.php:439
 #: application/views/labels/index.php:50 application/views/labels/index.php:86
+#: application/views/labeldesigner/designer.php:413
+#: application/views/labeldesigner/designer.php:452
 msgid "Delete"
 msgstr "Sil"
 
@@ -5580,6 +5583,7 @@ msgstr ""
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
 #: application/views/labeldesigner/designer.php:277
+#: application/views/labeldesigner/designer.php:290
 msgid "Field"
 msgstr ""
 
@@ -6844,6 +6848,7 @@ msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama.
 #: application/views/satellite/pass.php:188
 #: application/views/simplefle/index.php:22
 #: application/views/labeldesigner/designer.php:95
+#: application/views/labeldesigner/designer.php:101
 msgid "Save"
 msgstr "Kaydet"
 
@@ -15412,6 +15417,8 @@ msgstr "Kişi notları için kopyalama devre dışı bırakılmıştır"
 #: application/views/qslpostcard/designer.php:334
 #: application/views/labeldesigner/designer.php:397
 #: application/views/labeldesigner/designer.php:413
+#: application/views/labeldesigner/designer.php:410
+#: application/views/labeldesigner/designer.php:426
 msgid "Duplicate"
 msgstr "Çoğalt"
 
@@ -16360,6 +16367,7 @@ msgstr "Bir etiketin toplam yüksekliği"
 #: application/views/qslpostcard/designer.php:285
 #: application/views/labeldesigner/designer.php:364
 #: application/views/labels/index.php:82
+#: application/views/labeldesigner/designer.php:377
 msgid "Font Size"
 msgstr "Yazı Tipi Boyutu"
 
@@ -16478,12 +16486,14 @@ msgstr "Kağıt türleri"
 #: application/views/labels/index.php:44 application/views/labels/index.php:79
 #: application/views/labeldesigner/designer.php:323
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
+#: application/views/labeldesigner/designer.php:336
 msgid "Width"
 msgstr "Genişlik"
 
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
 #: application/views/labeldesigner/designer.php:327
 #: application/views/labels/index.php:46 application/views/labels/index.php:81
+#: application/views/labeldesigner/designer.php:340
 msgid "Height"
 msgstr "Yükseklik"
 
@@ -16494,6 +16504,7 @@ msgstr "Etiketlerde kullanım için"
 #: application/views/labels/index.php:47
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:48
+#: application/views/labeldesigner/designer.php:349
 msgid "Orientation"
 msgstr "Yönlendirme"
 
@@ -16508,6 +16519,8 @@ msgstr "Baskı İçin Kullan"
 #: application/views/labels/index.php:93
 #: application/views/labeldesigner/designer.php:113
 #: application/views/labels/index.php:94
+#: application/views/labeldesigner/designer.php:75
+#: application/views/labeldesigner/designer.php:126
 msgid "No paper assigned"
 msgstr "Kağıt atanmadı"
 
@@ -18256,6 +18269,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
 #: application/views/labeldesigner/designer.php:85
+#: application/views/labeldesigner/designer.php:91
 msgid "Template"
 msgstr ""
 
@@ -18281,6 +18295,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue_selected.php:34
 #: application/views/qslprint/printqsl.php:34
 #: application/views/labeldesigner/designer.php:122
+#: application/views/labeldesigner/designer.php:135
 msgid "Save PDF"
 msgstr ""
 
@@ -19913,26 +19928,31 @@ msgstr ""
 
 #: application/views/qslpostcard/designer.php:70
 #: application/views/labeldesigner/designer.php:88
+#: application/views/labeldesigner/designer.php:94
 msgid "(new)"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:75
 #: application/views/labeldesigner/designer.php:93
+#: application/views/labeldesigner/designer.php:99
 msgid "Template name"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:76
 #: application/views/labeldesigner/designer.php:94
+#: application/views/labeldesigner/designer.php:100
 msgid "Save Template"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:79
 #: application/views/labeldesigner/designer.php:97
+#: application/views/labeldesigner/designer.php:103
 msgid "Copy Template"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:82
 #: application/views/labeldesigner/designer.php:100
+#: application/views/labeldesigner/designer.php:106
 msgid "Delete Template"
 msgstr ""
 
@@ -19946,31 +19966,37 @@ msgstr ""
 
 #: application/views/qslpostcard/designer.php:95
 #: application/views/labeldesigner/designer.php:118
+#: application/views/labeldesigner/designer.php:131
 msgid "PDF"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:107
 #: application/views/labeldesigner/designer.php:130
+#: application/views/labeldesigner/designer.php:143
 msgid "History"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:109
 #: application/views/labeldesigner/designer.php:132
+#: application/views/labeldesigner/designer.php:145
 msgid "Undo"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:110
 #: application/views/labeldesigner/designer.php:133
+#: application/views/labeldesigner/designer.php:146
 msgid "Redo"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:116
 #: application/views/labeldesigner/designer.php:139
+#: application/views/labeldesigner/designer.php:152
 msgid "Zoom"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:126
 #: application/views/labeldesigner/designer.php:149
+#: application/views/labeldesigner/designer.php:162
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
@@ -19978,21 +20004,25 @@ msgstr ""
 
 #: application/views/qslpostcard/designer.php:127
 #: application/views/labeldesigner/designer.php:150
+#: application/views/labeldesigner/designer.php:163
 msgid "Print offset"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:156
 #: application/views/labeldesigner/designer.php:179
+#: application/views/labeldesigner/designer.php:192
 msgid "Search fields…"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:160
 #: application/views/labeldesigner/designer.php:183
+#: application/views/labeldesigner/designer.php:196
 msgid "Add Custom Text"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:175
 #: application/views/labeldesigner/designer.php:211
+#: application/views/labeldesigner/designer.php:224
 msgid "No fields match your search."
 msgstr ""
 
@@ -20006,6 +20036,7 @@ msgstr ""
 
 #: application/views/qslpostcard/designer.php:205
 #: application/views/labeldesigner/designer.php:241
+#: application/views/labeldesigner/designer.php:254
 msgid "Template Options"
 msgstr ""
 
@@ -20015,6 +20046,7 @@ msgstr ""
 
 #: application/views/qslpostcard/designer.php:213
 #: application/views/labeldesigner/designer.php:249
+#: application/views/labeldesigner/designer.php:262
 msgid "Row spacing"
 msgstr ""
 
@@ -20028,61 +20060,73 @@ msgstr ""
 
 #: application/views/qslpostcard/designer.php:230
 #: application/views/labeldesigner/designer.php:266
+#: application/views/labeldesigner/designer.php:279
 msgid "Properties"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:235
 #: application/views/labeldesigner/designer.php:271
+#: application/views/labeldesigner/designer.php:284
 msgid "Select a field on the canvas to edit it."
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:236
 #: application/views/labeldesigner/designer.php:272
+#: application/views/labeldesigner/designer.php:285
 msgid "Right-click a field for more actions."
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:246
 #: application/views/labeldesigner/designer.php:282
+#: application/views/labeldesigner/designer.php:295
 msgid "Text"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:251
 #: application/views/labeldesigner/designer.php:287
+#: application/views/labeldesigner/designer.php:300
 msgid "Frequency format"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:259
 #: application/views/labeldesigner/designer.php:295
+#: application/views/labeldesigner/designer.php:308
 msgid "Omit unit"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:265
 #: application/views/labeldesigner/designer.php:301
+#: application/views/labeldesigner/designer.php:314
 msgid "X"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:269
 #: application/views/labeldesigner/designer.php:305
+#: application/views/labeldesigner/designer.php:318
 msgid "Y"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:275
 #: application/views/labeldesigner/designer.php:354
+#: application/views/labeldesigner/designer.php:367
 msgid "Font"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:291
 #: application/views/labeldesigner/designer.php:370
+#: application/views/labeldesigner/designer.php:383
 msgid "Bold"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:297
 #: application/views/labeldesigner/designer.php:376
+#: application/views/labeldesigner/designer.php:389
 msgid "Color"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:302
 #: application/views/labeldesigner/designer.php:381
+#: application/views/labeldesigner/designer.php:394
 msgid "Wrap width"
 msgstr ""
 
@@ -20092,71 +20136,85 @@ msgstr ""
 
 #: application/views/qslpostcard/designer.php:308
 #: application/views/labeldesigner/designer.php:387
+#: application/views/labeldesigner/designer.php:400
 msgid "Repeats per QSO"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:312
 #: application/views/labeldesigner/designer.php:391
+#: application/views/labeldesigner/designer.php:404
 msgid "Move this element freely without snapping to the grid or other elements"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:313
 #: application/views/labeldesigner/designer.php:392
+#: application/views/labeldesigner/designer.php:405
 msgid "Disable Auto-Snap"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:339
 #: application/views/labeldesigner/designer.php:418
+#: application/views/labeldesigner/designer.php:431
 msgid "Align & distribute"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:343
 #: application/views/labeldesigner/designer.php:422
+#: application/views/labeldesigner/designer.php:435
 msgid "Align left"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:344
 #: application/views/labeldesigner/designer.php:423
+#: application/views/labeldesigner/designer.php:436
 msgid "Align horizontal centers"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:345
 #: application/views/labeldesigner/designer.php:424
+#: application/views/labeldesigner/designer.php:437
 msgid "Align right"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:347
 #: application/views/labeldesigner/designer.php:426
+#: application/views/labeldesigner/designer.php:439
 msgid "Align top"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:348
 #: application/views/labeldesigner/designer.php:427
+#: application/views/labeldesigner/designer.php:440
 msgid "Align vertical centers"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:349
 #: application/views/labeldesigner/designer.php:428
+#: application/views/labeldesigner/designer.php:441
 msgid "Align bottom"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:351
 #: application/views/labeldesigner/designer.php:430
+#: application/views/labeldesigner/designer.php:443
 msgid "Distribute horizontally"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:352
 #: application/views/labeldesigner/designer.php:431
+#: application/views/labeldesigner/designer.php:444
 msgid "Distribute vertically"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:354
 #: application/views/labeldesigner/designer.php:433
+#: application/views/labeldesigner/designer.php:446
 msgid "Center on page (horizontal)"
 msgstr ""
 
 #: application/views/qslpostcard/designer.php:355
 #: application/views/labeldesigner/designer.php:434
+#: application/views/labeldesigner/designer.php:447
 msgid "Center on page (vertical)"
 msgstr ""
 
@@ -24299,97 +24357,120 @@ msgid ""
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:108
+#: application/views/labeldesigner/designer.php:121
 msgid "Label type"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:111
+#: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:117
+#: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:187
+#: application/views/labeldesigner/designer.php:200
 msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:188
+#: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:190
+#: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:191
+#: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:195
+#: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:196
+#: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:219
+#: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:220
+#: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:245
+#: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:254
+#: application/views/labeldesigner/designer.php:267
 msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:254
+#: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:257
+#: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:313
+#: application/views/labeldesigner/designer.php:326
 msgid "Rows"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:317
+#: application/views/labeldesigner/designer.php:330
 msgid "Columns"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:331
 #: application/views/labeldesigner/designer.php:347
+#: application/views/labeldesigner/designer.php:344
+#: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:338
+#: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:339
+#: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:343
+#: application/views/labeldesigner/designer.php:356
 msgid "Length"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:386
+#: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO when a label holds multiple QSOs"
 msgstr ""
 
@@ -24410,6 +24491,52 @@ msgstr ""
 #: application/views/qslprint/printlabel.php:29
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:180
+msgid ""
+"The label type of this template no longer exists. Please select another one "
+"before exporting."
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:158
+msgid "Imported"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:182
+msgid "Imported paper"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:244
+msgid "Imported label type"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:70
+msgid "Import failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:71
+msgid "Export failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:72
+msgid "Template imported."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:73
+msgid "Please select a template to export."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:74
+msgid "File is too large."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:109
+msgid "Export Template"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:112
+msgid "Import Template"
 msgstr ""
 
 #, php-format

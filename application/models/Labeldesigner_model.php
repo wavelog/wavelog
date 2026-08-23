@@ -85,9 +85,225 @@ class Labeldesigner_model extends CI_Model {
     }
 
     function delete_template($id) {
-        $uid = $this->session->userdata('user_id');
-        $this->db->query("DELETE FROM label_templates WHERE id = ? AND user_id = ?", [$id, $uid]);
-        return true;
+	$uid = $this->session->userdata('user_id');
+	$this->db->query("DELETE FROM label_templates WHERE id = ? AND user_id = ?", [$id, $uid]);
+	return true;
+    }
+
+    // --- Import / export -----------------------------------------------
+    // The exchanged file is a versioned envelope: template name, a geometry
+    // snapshot of the label type (plus its paper type, if any) and the layout
+    // JSON. Row ids are user/install-specific, so only geometry travels.
+
+    public function export_envelope($id) {
+	$tpl = $this->get_template($id);
+	if (!$tpl) {
+	    return null;
+	}
+
+	$label = $this->get_label_with_paper($tpl['label_type_id']);
+
+	$label_type = null;
+	$paper_type = null;
+	if ($label) {
+	    $label_type = [
+		'label_name' => (string)$label->label_name,
+		'metric'     => (string)$label->metric,
+		'marginleft' => (float)$label->marginleft,
+		'margintop'  => (float)$label->margintop,
+		'nx'         => (float)$label->nx,
+		'ny'         => (float)$label->ny,
+		'spacex'     => (float)$label->spacex,
+		'spacey'     => (float)$label->spacey,
+		'width'      => (float)$label->width,
+		'height'     => (float)$label->height,
+		'font_size'  => (int)$label->font_size,
+		'qsos'       => (int)$label->qsos,
+	    ];
+
+	    if (!empty($label->paper_id)) {
+		$paper = $this->db->query(
+		    "SELECT paper_name, metric, width, height, orientation
+		     FROM paper_types WHERE paper_id = ? AND user_id = ?",
+		    [(int)$label->paper_id, $this->session->userdata('user_id')]
+		)->row_array();
+		if ($paper) {
+		    $paper_type = [
+			'paper_name'  => (string)$paper['paper_name'],
+			'metric'      => (string)$paper['metric'],
+			'width'       => (float)$paper['width'],
+			'height'      => (float)$paper['height'],
+			'orientation' => (string)$paper['orientation'],
+		    ];
+		}
+	    }
+	}
+
+	return [
+	    'wavelog_label_template' => 1,
+	    'name'       => (string)$tpl['name'],
+	    'label_type' => $label_type,
+	    'paper_type' => $paper_type,
+	    'layout'     => json_decode($tpl['layout_json'], true),
+	];
+    }
+
+    // $name arrives raw from the client; cleaned here so all sanitizing for
+    // the import path lives in one place.
+    public function import_template(array $label_type, $paper_type, array $layout, $name) {
+	$uid = $this->session->userdata('user_id');
+
+	$name = $this->_clean_name($name, 100);
+	if ($name === '') {
+	    $name = __('Imported');
+	}
+
+	$paper_id = is_array($paper_type)
+	    ? $this->_find_or_create_paper_type($paper_type, $uid)
+	    : 0;
+
+	$lt = $this->_find_or_create_label_type($label_type, $paper_id, $uid);
+
+	$tpl_id = $this->save_template(0, $name, $lt['id'], json_encode($layout, JSON_UNESCAPED_SLASHES));
+
+	return [
+	    'template_id' => $tpl_id,
+	    'name'        => $name,
+	    'label_type'  => $lt['meta'],
+	];
+    }
+
+    // paper_types identity is (user_id, paper_name) — there's a unique index.
+    // An import matching an existing name reuses that row, else a new one is
+    // created with the geometry from the file.
+    private function _find_or_create_paper_type(array $pt, $uid) {
+	$name = $this->_clean_name($pt['paper_name'] ?? '', 191);
+	if ($name === '') {
+	    $name = __('Imported paper');
+	}
+	$metric      = self::_metric_or_default($pt['metric'] ?? '');
+	$width       = $this->_clamp_num($pt['width'] ?? 210);
+	$height      = $this->_clamp_num($pt['height'] ?? 297);
+	$orientation = in_array($pt['orientation'] ?? '', ['P', 'L'], true) ? $pt['orientation'] : 'P';
+
+	$row = $this->db->query(
+	    "SELECT paper_id FROM paper_types WHERE user_id = ? AND paper_name = ?",
+	    [$uid, $name]
+	)->row_array();
+	if ($row) {
+	    return (int)$row['paper_id'];
+	}
+
+	$this->db->insert('paper_types', [
+	    'user_id'     => $uid,
+	    'paper_name'  => $name,
+	    'metric'      => $metric,
+	    'width'       => $width,
+	    'height'      => $height,
+	    'orientation' => $orientation,
+	    'last_modified' => date('Y-m-d H:i:s'),
+	]);
+	return (int)$this->db->insert_id();
+    }
+
+    // label_types has no unique key on name; its identity for import purposes
+    // is the geometry (incl. paper). A template whose geometry matches an
+    // existing type reuses that row — the name is cosmetic and stays as-is.
+    // On creation, a colliding name gets a " (n)" suffix like copy_template.
+    private function _find_or_create_label_type(array $lt, $paper_id, $uid) {
+	$metric = self::_metric_or_default($lt['metric'] ?? '');
+	$geo = [
+	    'marginleft' => $this->_clamp_num($lt['marginleft'] ?? 0),
+	    'margintop'  => $this->_clamp_num($lt['margintop'] ?? 0),
+	    'nx'         => $this->_clamp_num($lt['nx'] ?? 3, 1, 100),
+	    'ny'         => $this->_clamp_num($lt['ny'] ?? 8, 1, 100),
+	    'spacex'     => $this->_clamp_num($lt['spacex'] ?? 0),
+	    'spacey'     => $this->_clamp_num($lt['spacey'] ?? 0),
+	    'width'      => $this->_clamp_num($lt['width'] ?? 66.675),
+	    'height'     => $this->_clamp_num($lt['height'] ?? 25.4),
+	];
+	$font_size = (int)$this->_clamp_num($lt['font_size'] ?? 8, 1, 100);
+	$qsos      = (int)$this->_clamp_num($lt['qsos'] ?? 1, 1, 100);
+
+	$row = $this->db->query(
+	    "SELECT id, label_name FROM label_types
+	     WHERE user_id = ? AND metric = ? AND marginleft = ? AND margintop = ?
+	       AND nx = ? AND ny = ? AND spacex = ? AND spacey = ?
+	       AND width = ? AND height = ? AND paper_type_id = ?",
+	    [$uid, $metric, $geo['marginleft'], $geo['margintop'], $geo['nx'], $geo['ny'],
+	     $geo['spacex'], $geo['spacey'], $geo['width'], $geo['height'], $paper_id]
+	)->row_array();
+
+	$lt_name = null;
+	if ($row) {
+	    $id       = (int)$row['id'];
+	    $lt_name  = (string)$row['label_name'];
+	} else {
+	    $base = $this->_clean_name($lt['label_name'] ?? '', 250);
+	    if ($base === '') {
+		$base = __('Imported label type');
+	    }
+	    $lt_name = $base;
+	    $i = 0;
+	    while ($this->db->query(
+		"SELECT 1 FROM label_types WHERE user_id = ? AND label_name = ?",
+		[$uid, $lt_name]
+	    )->row_array()) {
+		$i++;
+		$lt_name = mb_substr($base, 0, 250 - strlen(" ($i)")) . " ($i)";
+	    }
+
+	    $this->db->insert('label_types', [
+		'user_id'     => $uid,
+		'label_name'  => $lt_name,
+		'metric'      => $metric,
+		'marginleft'  => $geo['marginleft'],
+		'margintop'   => $geo['margintop'],
+		'nx'          => $geo['nx'],
+		'ny'          => $geo['ny'],
+		'spacex'      => $geo['spacex'],
+		'spacey'      => $geo['spacey'],
+		'width'       => $geo['width'],
+		'height'      => $geo['height'],
+		'font_size'   => $font_size,
+		'qsos'        => $qsos,
+		'paper_type_id' => $paper_id,
+		'last_modified' => date('Y-m-d H:i:s'),
+	    ]);
+	    $id = (int)$this->db->insert_id();
+	}
+
+	// Meta for the frontend dropdown/canvas (same shape as LABEL_TYPES in
+	// the designer view).
+	$w_in = ($metric == 'in') ? $geo['width'] : $geo['width'] / 25.4;
+	$h_in = ($metric == 'in') ? $geo['height'] : $geo['height'] / 25.4;
+	$meta = [
+	    'id'        => $id,
+	    'w_in'      => round($w_in, 4),
+	    'h_in'      => round($h_in, 4),
+	    'nx'        => (int)$geo['nx'],
+	    'ny'        => (int)$geo['ny'],
+	    'name'      => $lt_name,
+	    'has_paper' => $paper_id > 0,
+	];
+
+	return ['id' => $id, 'meta' => $meta];
+    }
+
+    private static function _metric_or_default($m) {
+	return in_array($m, ['mm', 'in'], true) ? $m : 'mm';
+    }
+
+    // decimal(6,3) columns — clamp into range and round to column precision
+    // (a value like 66.6751 would be stored as 66.675 and never match the
+    // find-or-create geometry SELECT again).
+    private function _clamp_num($v, $min = 0, $max = 999.999) {
+	return round(max($min, min($max, (float)$v)), 3);
+    }
+
+    private function _clean_name($s, $max) {
+	$s = preg_replace('/[\x00-\x1F\x7F]/u', '', strip_tags((string)$s));
+	return mb_substr(trim($s), 0, $max);
     }
 
     // Fetch a label type together with its paper type geometry (aliases
