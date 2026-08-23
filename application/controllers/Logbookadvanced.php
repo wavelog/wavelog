@@ -105,7 +105,6 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/globe/globe.gl.js',
 			'assets/js/bootstrap-multiselect.js',
-			'assets/js/leaflet/L.MaidenheadColouredGridMap.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
