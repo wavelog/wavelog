@@ -42,4 +42,26 @@ class Upload_guard {
         }
         return in_array($info[2], array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF), true);
     }
+
+    /**
+     * Returns the extension implied by the file's actual content ('jpg',
+     * 'png', 'gif'), or null if it is not a raster image we accept. Used to
+     * normalize client filenames whose extension doesn't match the real
+     * payload (e.g. a JPEG named .png), which the Upload library's
+     * ext-vs-mime cross-check would otherwise reject.
+     *
+     * @param string $tmp_name $_FILES[<field>]['tmp_name']
+     */
+    public function real_image_ext($tmp_name) {
+        $info = @getimagesize($tmp_name);
+        if ($info === false) {
+            return null;
+        }
+        switch ($info[2]) {
+            case IMAGETYPE_JPEG: return 'jpg';
+            case IMAGETYPE_PNG:  return 'png';
+            case IMAGETYPE_GIF:  return 'gif';
+            default:             return null;
+        }
+    }
 }
