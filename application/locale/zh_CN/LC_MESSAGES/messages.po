@@ -37,7 +37,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 09:42+0000\n"
+"POT-Creation-Date: 2026-08-23 11:18+0000\n"
 "PO-Revision-Date: 2026-08-20 17:09+0000\n"
 "Last-Translator: BI7BLA <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -208,6 +208,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Hrdlog.php:40
 #: application/controllers/Kmlexport.php:17
 #: application/controllers/Kmlexport.php:32
+#: application/controllers/Labeldesigner.php:14
 #: application/controllers/Labels.php:25
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
@@ -312,6 +313,7 @@ msgstr "总激活网格"
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:538
+#: application/views/labeldesigner/designer.php:174
 #: application/views/qslpostcard/designer.php:151
 msgid "Fields"
 msgstr "区块"
@@ -1302,7 +1304,7 @@ msgstr ""
 #: application/views/dbtools/showUpdateResult.php:47
 #: application/views/dbtools/showUpdateResult.php:110
 #: application/views/gridmap/index.php:226
-#: application/views/labels/index.php:126
+#: application/views/labels/index.php:127
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:12
 #: application/views/logbookadvanced/index.php:403
@@ -1896,6 +1898,56 @@ msgstr "无 QSO 可供上传。"
 msgid "KML Export"
 msgstr "KML 导出"
 
+#: application/controllers/Labeldesigner.php:22
+#: application/views/labels/index.php:36
+msgid "Label Designer"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:114
+#: application/controllers/Labels.php:213
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
+msgid "Template not found"
+msgstr "模板未找到"
+
+#: application/controllers/Labeldesigner.php:120
+#: application/controllers/Labels.php:219
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
+msgid "Template JSON is invalid"
+msgstr "模板 JSON 无效"
+
+#: application/controllers/Labeldesigner.php:125
+msgid "Template has no elements"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:131
+msgid "Label type not found"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:136
+#: application/controllers/Labels.php:225
+#: application/controllers/Labels.php:315
+#: application/controllers/Labels.php:318
+msgid "You need to assign a paperType to the label before printing"
+msgstr "在打印前，需要给标签指定一种纸张类型"
+
+#: application/controllers/Labeldesigner.php:149
+#: application/controllers/Qslpostcard.php:207
+msgid "No QSOs returned by get_sample_qsos()"
+msgstr "get_sample_qsos() 没有返回任何 QSO"
+
+#: application/controllers/Labeldesigner.php:156
+#: application/controllers/Qslpostcard.php:217
+msgid "PDF file was not created"
+msgstr "未能生成 PDF 文件"
+
+#: application/controllers/Labeldesigner.php:165
+msgid "Label PDF failed: "
+msgstr ""
+
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
 msgstr "QSL 卡片标签"
@@ -1904,59 +1956,59 @@ msgstr "QSL 卡片标签"
 msgid "Create Label Type"
 msgstr "创建标签类型"
 
-#: application/controllers/Labels.php:77 application/controllers/Labels.php:435
+#: application/controllers/Labels.php:77 application/controllers/Labels.php:534
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "标签名称"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:436
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:535
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:77
+#: application/views/labels/index.php:78
 msgid "Paper Type"
 msgstr "纸张类型"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:437
-#: application/views/labels/index.php:43 application/views/labels/index.php:78
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:536
+#: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Measurement"
 msgstr "测量单位"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:438
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:537
 msgid "Top Margin"
 msgstr "顶边距"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:439
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:538
 msgid "Left Margin"
 msgstr "左边距"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:440
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:539
 msgid "QSLs Horizontally"
 msgstr "QSL 水平数量"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:441
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:540
 msgid "QSLs Vertically"
 msgstr "QSL 垂直数量"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:442
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:541
 msgid "Horizontal Space"
 msgstr "水平空白间隔"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:443
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:542
 msgid "Vertical Space"
 msgstr "垂直空白间隔"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:444
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:543
 msgid "Label width"
 msgstr "标签宽度"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:445
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:544
 msgid "Label height"
 msgstr "标签高度"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:446
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:545
 msgid "Size of Font"
 msgstr "字体大小"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:447
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:546
 msgid "Number of QSOs on label"
 msgstr "标签上的 QSO 数量"
 
@@ -1965,22 +2017,22 @@ msgid "Create Paper Type"
 msgstr "创建纸张类型"
 
 #: application/controllers/Labels.php:118
-#: application/controllers/Labels.php:494
+#: application/controllers/Labels.php:599
 msgid "Paper Name"
 msgstr "纸张名称"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:495
+#: application/controllers/Labels.php:600
 msgid "Paper Width"
 msgstr "纸张宽度"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:496
+#: application/controllers/Labels.php:601
 msgid "Paper Height"
 msgstr "纸张高度"
 
 #: application/controllers/Labels.php:131
-#: application/controllers/Labels.php:504
+#: application/controllers/Labels.php:609
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -1991,48 +2043,46 @@ msgstr "此纸张未被保存，请检查是否与已有名称重复。"
 msgid "No QSOs were selected"
 msgstr "没有选择任何 QSO"
 
-#: application/controllers/Labels.php:216
-#: application/controllers/Labels.php:219
-msgid "You need to assign a paperType to the label before printing"
-msgstr "在打印前，需要给标签指定一种纸张类型"
+#: application/controllers/Labels.php:230
+#: application/controllers/Labels.php:366
+msgid "0 QSOs found for print!"
+msgstr "无 QSO 可供打印！"
 
-#: application/controllers/Labels.php:226
-#: application/controllers/Labels.php:229
-msgid "You need to create a label and set it to be used for print."
-msgstr "你需要创建并启用一个用于打印信息的标签。"
-
-#: application/controllers/Labels.php:236
-#: application/controllers/Labels.php:239
+#: application/controllers/Labels.php:237
+#: application/controllers/Labels.php:244
+#: application/controllers/Labels.php:335
+#: application/controllers/Labels.php:338
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
 msgstr "出现了错误，标签未生成，请检查标签和字体大小。"
 
-#: application/controllers/Labels.php:267
-msgid "0 QSOs found for print!"
-msgstr "无 QSO 可供打印！"
+#: application/controllers/Labels.php:325
+#: application/controllers/Labels.php:328
+msgid "You need to create a label and set it to be used for print."
+msgstr "你需要创建并启用一个用于打印信息的标签。"
 
-#: application/controllers/Labels.php:424
+#: application/controllers/Labels.php:523
 msgid "Edit Label"
 msgstr "编辑标签"
 
-#: application/controllers/Labels.php:453
+#: application/controllers/Labels.php:552
 msgid "Label was saved."
 msgstr "标签已保存。"
 
-#: application/controllers/Labels.php:461
+#: application/controllers/Labels.php:560
 msgid "Label was deleted."
 msgstr "标签已删除。"
 
-#: application/controllers/Labels.php:483
+#: application/controllers/Labels.php:588
 msgid "Edit Paper"
 msgstr "编辑纸张"
 
-#: application/controllers/Labels.php:508
+#: application/controllers/Labels.php:613
 msgid "Paper was saved."
 msgstr "纸张已保存。"
 
-#: application/controllers/Labels.php:521
+#: application/controllers/Labels.php:626
 msgid "Paper was deleted."
 msgstr "纸张已删除。"
 
@@ -3165,26 +3215,6 @@ msgstr "QSL 明信片设计器"
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "磁盘空间不足，无法存储QSL卡。"
 
-#: application/controllers/Qslpostcard.php:186
-#: application/controllers/Qslpostcard.php:243
-#: application/controllers/Qslpostcard.php:302
-msgid "Template not found"
-msgstr "模板未找到"
-
-#: application/controllers/Qslpostcard.php:192
-#: application/controllers/Qslpostcard.php:249
-#: application/controllers/Qslpostcard.php:308
-msgid "Template JSON is invalid"
-msgstr "模板 JSON 无效"
-
-#: application/controllers/Qslpostcard.php:207
-msgid "No QSOs returned by get_sample_qsos()"
-msgstr "get_sample_qsos() 没有返回任何 QSO"
-
-#: application/controllers/Qslpostcard.php:217
-msgid "PDF file was not created"
-msgstr "未能生成 PDF 文件"
-
 #: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr "生成 QSL 明信片 PDF 失败： "
@@ -3310,7 +3340,7 @@ msgstr "上次更新"
 #: application/views/cron/index.php:80
 #: application/views/interface_assets/footer.php:698
 #: application/views/interface_assets/footer.php:707
-#: application/views/labels/index.php:48 application/views/labels/index.php:84
+#: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:892
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:58
@@ -3337,7 +3367,9 @@ msgstr "编辑"
 #: application/views/interface_assets/footer.php:2667
 #: application/views/interface_assets/footer.php:2686
 #: application/views/interface_assets/footer.php:2704
-#: application/views/labels/index.php:49 application/views/labels/index.php:85
+#: application/views/labeldesigner/designer.php:400
+#: application/views/labeldesigner/designer.php:439
+#: application/views/labels/index.php:50 application/views/labels/index.php:86
 #: application/views/logbookadvanced/index.php:910
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
@@ -3542,6 +3574,7 @@ msgstr "不允许"
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
+#: application/views/labeldesigner/designer.php:60
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/lotw_upload.php:123
@@ -3683,6 +3716,7 @@ msgid "Empty Log"
 msgstr "清空日志"
 
 #: application/controllers/Stationsetup.php:409
+#: application/models/Labeldesigner_model.php:74
 #: application/models/Qslpostcard_model.php:78
 #: application/views/stationsetup/stationsetup.php:163
 #: application/views/stationsetup/stationsetup.php:203
@@ -4740,7 +4774,7 @@ msgstr "天线"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "在通讯录类别中，笔记标题需要是唯一的。"
 
-#: application/models/Qslpostcard_model.php:440
+#: application/models/Qslpostcard_model.php:442
 msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! 未找到可邮寄地址 !!!"
@@ -5265,7 +5299,7 @@ msgstr "编号"
 #: application/views/contesting/manager/components/session_modal.php:122
 #: application/views/contesting/manager/export_cbr.php:252
 #: application/views/dashboard/index.php:19
-#: application/views/labels/index.php:42 application/views/labels/index.php:76
+#: application/views/labels/index.php:43 application/views/labels/index.php:77
 #: application/views/logbookadvanced/index.php:964
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:91
@@ -5317,6 +5351,7 @@ msgid "Tracking"
 msgstr "追踪中"
 
 #: application/views/activationplanner/index.php:33
+#: application/views/labeldesigner/designer.php:277
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
 msgid "Field"
@@ -5358,7 +5393,7 @@ msgstr "此网格中的活动"
 #: application/views/calltester/call_info.php:30
 #: application/views/countqsoby/index.php:7
 #: application/views/dbtools/statecheckresult.php:16
-#: application/views/labels/index.php:82
+#: application/views/labels/index.php:83
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -5565,7 +5600,7 @@ msgstr "未找到！"
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:35
-#: application/views/labels/index.php:124
+#: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:42
@@ -6506,6 +6541,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
 #: application/views/interface_assets/footer.php:693
+#: application/views/labeldesigner/designer.php:95
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
@@ -7120,6 +7156,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:41
 #: application/views/awards/wwff/index.php:39
+#: application/views/labeldesigner/designer.php:47
 msgid "Table"
 msgstr "表格"
 
@@ -10643,7 +10680,7 @@ msgstr "呼号 DXCC 识别"
 #: application/views/contesting/manager/components/session_modal.php:63
 #: application/views/csv/index.php:19 application/views/dbtools/index.php:28
 #: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:125
+#: application/views/labels/index.php:126
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/qslprint/index.php:34 application/views/qso/index.php:139
 #: application/views/qso/index.php:402
@@ -11784,6 +11821,7 @@ msgstr "未知错误"
 #: application/views/debug/index.php:205 application/views/debug/index.php:216
 #: application/views/debug/index.php:228
 #: application/views/interface_assets/footer.php:39
+#: application/views/labeldesigner/designer.php:59
 #: application/views/qslpostcard/designer.php:46
 msgid "Success"
 msgstr "成功"
@@ -15192,6 +15230,8 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "通讯录笔记已禁用复制功能"
 
 #: application/views/interface_assets/footer.php:71
+#: application/views/labeldesigner/designer.php:397
+#: application/views/labeldesigner/designer.php:413
 #: application/views/qslpostcard/designer.php:318
 #: application/views/qslpostcard/designer.php:334
 msgid "Duplicate"
@@ -15993,6 +16033,507 @@ msgstr "额外"
 msgid "Export your logbook to a KML file for use in Google Earth."
 msgstr "将日志导出为 KML 文件以在 Google 地球中使用。"
 
+#: application/views/labeldesigner/designer.php:7
+#: application/views/qslpostcard/designer.php:6
+msgid "QSO Core"
+msgstr "QSO 核心信息"
+
+#: application/views/labeldesigner/designer.php:8
+#: application/views/qslpostcard/designer.php:7
+msgid "Date & Time"
+msgstr "日期和时间"
+
+#: application/views/labeldesigner/designer.php:9
+#: application/views/qslpostcard/designer.php:8
+msgid "Station & Equipment"
+msgstr "台站和设备"
+
+#: application/views/labeldesigner/designer.php:10
+#: application/views/qslpostcard/designer.php:9
+msgid "My References"
+msgstr "我的参考信息"
+
+#: application/views/labeldesigner/designer.php:11
+#: application/views/qslpostcard/designer.php:10
+msgid "Markers"
+msgstr "标签"
+
+#: application/views/labeldesigner/designer.php:12
+#: application/views/qslpostcard/designer.php:11
+#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
+msgid "Other"
+msgstr "其它"
+
+#: application/views/labeldesigner/designer.php:45
+#: application/views/qslpostcard/designer.php:34
+msgid "Custom Text"
+msgstr "自定义文本"
+
+#: application/views/labeldesigner/designer.php:46
+msgid "Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:48
+#: application/views/qslpostcard/designer.php:35
+msgid "Untitled"
+msgstr "无标题"
+
+#: application/views/labeldesigner/designer.php:49
+#: application/views/qslpostcard/designer.php:36
+msgid "Save failed"
+msgstr "保存失败"
+
+#: application/views/labeldesigner/designer.php:50
+#: application/views/qslpostcard/designer.php:37
+msgid "Template saved."
+msgstr "模板已保存。"
+
+#: application/views/labeldesigner/designer.php:51
+#: application/views/qslpostcard/designer.php:38
+msgid "Delete Template?"
+msgstr "删除此模板？"
+
+#: application/views/labeldesigner/designer.php:52
+#: application/views/qslpostcard/designer.php:39
+msgid ""
+"Are you sure you want to delete this template? This action cannot be undone."
+msgstr "您确定要删除此模板吗？此操作无法撤销。"
+
+#: application/views/labeldesigner/designer.php:53
+#: application/views/qslpostcard/designer.php:40
+msgid "Delete failed"
+msgstr "删除失败"
+
+#: application/views/labeldesigner/designer.php:54
+#: application/views/qslpostcard/designer.php:41
+msgid "Template deleted successfully!"
+msgstr "模板删除成功！"
+
+#: application/views/labeldesigner/designer.php:55
+#: application/views/qslpostcard/designer.php:42
+msgid "Please select a template to delete."
+msgstr "请选择一个模板来删除。"
+
+#: application/views/labeldesigner/designer.php:56
+#: application/views/qslpostcard/designer.php:43
+msgid "Copy failed"
+msgstr "复制失败"
+
+#: application/views/labeldesigner/designer.php:57
+#: application/views/qslpostcard/designer.php:44
+msgid "Template copied."
+msgstr "模板已复制。"
+
+#: application/views/labeldesigner/designer.php:58
+#: application/views/qslpostcard/designer.php:45
+msgid "Please select a template to copy."
+msgstr "请选择一个模板以供复制。"
+
+#: application/views/labeldesigner/designer.php:61
+#: application/views/qslpostcard/designer.php:48
+msgid "selected"
+msgstr "已选择"
+
+#: application/views/labeldesigner/designer.php:62
+msgid "Please select a label type first."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:63
+msgid ""
+"The label type of this template no longer exists. Please select another one."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:64
+#: application/views/qslpostcard/designer.php:49
+msgid "Unsaved changes"
+msgstr "未保存的更改"
+
+#: application/views/labeldesigner/designer.php:65
+#: application/views/qslpostcard/designer.php:50
+msgid ""
+"Your current design has unsaved changes. Loading a different template will "
+"replace it. Continue?"
+msgstr "您当前的设计有未保存的更改。加载不同的模板将会替换它。是否继续？"
+
+#: application/views/labeldesigner/designer.php:66
+#: application/views/qslpostcard/designer.php:51
+msgid ""
+"Your current design has unsaved changes. If you leave the page, those "
+"changes will be lost. Leave anyway?"
+msgstr "您当前的设计未保存。如果离开此页面，这些更改将会丢失，确定要离开吗？"
+
+#: application/views/labeldesigner/designer.php:67
+#: application/views/qslpostcard/designer.php:52
+msgid "Discard changes"
+msgstr "放弃更改"
+
+#: application/views/labeldesigner/designer.php:68
+#: application/views/qslpostcard/designer.php:53
+msgid "Keep editing"
+msgstr "继续编辑"
+
+#: application/views/labeldesigner/designer.php:69
+#: application/views/qslpostcard/designer.php:54
+msgid "Leave page"
+msgstr "离开页面"
+
+#: application/views/labeldesigner/designer.php:85
+#: application/views/logbookadvanced/printQsl.php:9
+#: application/views/qslpostcard/designer.php:67
+#: application/views/qslpostcard/printqueue.php:8
+#: application/views/qslpostcard/printqueue_selected.php:10
+#: application/views/qslprint/printqsl.php:9
+msgid "Template"
+msgstr "模板"
+
+#: application/views/labeldesigner/designer.php:88
+#: application/views/qslpostcard/designer.php:70
+msgid "(new)"
+msgstr "（新）"
+
+#: application/views/labeldesigner/designer.php:93
+#: application/views/qslpostcard/designer.php:75
+msgid "Template name"
+msgstr "模板名"
+
+#: application/views/labeldesigner/designer.php:94
+#: application/views/qslpostcard/designer.php:76
+msgid "Save Template"
+msgstr "保存模板"
+
+#: application/views/labeldesigner/designer.php:97
+#: application/views/qslpostcard/designer.php:79
+msgid "Copy Template"
+msgstr "复制模板"
+
+#: application/views/labeldesigner/designer.php:100
+#: application/views/qslpostcard/designer.php:82
+msgid "Delete Template"
+msgstr "删除模板"
+
+#: application/views/labeldesigner/designer.php:108
+msgid "Label type"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:111
+msgid "(select label type)"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:113
+#: application/views/labels/index.php:94
+msgid "No paper assigned"
+msgstr "未选定纸张"
+
+#: application/views/labeldesigner/designer.php:117
+msgid "Generate sample PDF with your latest QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:118
+#: application/views/qslpostcard/designer.php:95
+msgid "PDF"
+msgstr "PDF"
+
+#: application/views/labeldesigner/designer.php:122
+#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/qslpostcard/designer.php:99
+#: application/views/qslpostcard/printqueue.php:26
+#: application/views/qslpostcard/printqueue_selected.php:34
+#: application/views/qslprint/printqsl.php:34
+msgid "Save PDF"
+msgstr "保存 PDF"
+
+#: application/views/labeldesigner/designer.php:130
+#: application/views/qslpostcard/designer.php:107
+msgid "History"
+msgstr "历史"
+
+#: application/views/labeldesigner/designer.php:132
+#: application/views/qslpostcard/designer.php:109
+msgid "Undo"
+msgstr "撤销"
+
+#: application/views/labeldesigner/designer.php:133
+#: application/views/qslpostcard/designer.php:110
+msgid "Redo"
+msgstr "重做"
+
+#: application/views/labeldesigner/designer.php:139
+#: application/views/qslpostcard/designer.php:116
+msgid "Zoom"
+msgstr "缩放"
+
+#: application/views/labeldesigner/designer.php:149
+#: application/views/qslpostcard/designer.php:126
+msgid ""
+"Tip: After a test print, adjust global offsets rather than moving every "
+"field."
+msgstr "提示：打印测试后，你可以调整全局偏移，而无需分别移动每个字段。"
+
+#: application/views/labeldesigner/designer.php:150
+#: application/views/qslpostcard/designer.php:127
+msgid "Print offset"
+msgstr "打印偏移"
+
+#: application/views/labeldesigner/designer.php:179
+#: application/views/qslpostcard/designer.php:156
+msgid "Search fields…"
+msgstr "搜索字段…"
+
+#: application/views/labeldesigner/designer.php:183
+#: application/views/qslpostcard/designer.php:160
+msgid "Add Custom Text"
+msgstr "添加自定义文本"
+
+#: application/views/labeldesigner/designer.php:187
+msgid ""
+"Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
+"QSO row"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:188
+msgid "Horizontal Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:190
+msgid "Vertical rule — place at column edges to build a table grid"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:191
+msgid "Vertical Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:195
+msgid ""
+"Table grid — drag the corner to resize, drag the column markers to adjust "
+"column widths"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:196
+msgid "Add Table"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:211
+#: application/views/qslpostcard/designer.php:175
+msgid "No fields match your search."
+msgstr "未找到符合的字段。"
+
+#: application/views/labeldesigner/designer.php:219
+msgid "Label Canvas"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:220
+msgid "drag fields onto the label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:241
+#: application/views/qslpostcard/designer.php:205
+msgid "Template Options"
+msgstr "模板选项"
+
+#: application/views/labeldesigner/designer.php:245
+msgid "Number of QSOs per label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:249
+#: application/views/qslpostcard/designer.php:213
+msgid "Row spacing"
+msgstr "行距"
+
+#: application/views/labeldesigner/designer.php:254
+msgid ""
+"Draws a rule between the QSO rows automatically, like the classic label "
+"layout"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:254
+msgid "Separator lines between QSO rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:257
+msgid "Separator thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:266
+#: application/views/qslpostcard/designer.php:230
+msgid "Properties"
+msgstr "属性"
+
+#: application/views/labeldesigner/designer.php:271
+#: application/views/qslpostcard/designer.php:235
+msgid "Select a field on the canvas to edit it."
+msgstr "在画布上选择一个字段以编辑。"
+
+#: application/views/labeldesigner/designer.php:272
+#: application/views/qslpostcard/designer.php:236
+msgid "Right-click a field for more actions."
+msgstr "右键单击字段以获得更多操作。"
+
+#: application/views/labeldesigner/designer.php:282
+#: application/views/qslpostcard/designer.php:246
+msgid "Text"
+msgstr "文本"
+
+#: application/views/labeldesigner/designer.php:287
+#: application/views/qslpostcard/designer.php:251
+msgid "Frequency format"
+msgstr "频率格式"
+
+#: application/views/labeldesigner/designer.php:295
+#: application/views/qslpostcard/designer.php:259
+msgid "Omit unit"
+msgstr "省略单位"
+
+#: application/views/labeldesigner/designer.php:301
+#: application/views/qslpostcard/designer.php:265
+msgid "X"
+msgstr "X"
+
+#: application/views/labeldesigner/designer.php:305
+#: application/views/qslpostcard/designer.php:269
+msgid "Y"
+msgstr "Y"
+
+#: application/views/labeldesigner/designer.php:313
+msgid "Rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:317
+msgid "Columns"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:323
+#: application/views/labels/index.php:45 application/views/labels/index.php:80
+msgid "Width"
+msgstr "宽度"
+
+#: application/views/labeldesigner/designer.php:327
+#: application/views/labels/index.php:46 application/views/labels/index.php:81
+msgid "Height"
+msgstr "长度"
+
+#: application/views/labeldesigner/designer.php:331
+#: application/views/labeldesigner/designer.php:347
+msgid "Thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:336
+#: application/views/labels/index.php:48
+msgid "Orientation"
+msgstr "方向"
+
+#: application/views/labeldesigner/designer.php:338
+msgid "Horizontal"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:339
+msgid "Vertical"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:343
+msgid "Length"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:354
+#: application/views/qslpostcard/designer.php:275
+msgid "Font"
+msgstr "字体"
+
+#: application/views/labeldesigner/designer.php:364
+#: application/views/labels/create.php:105
+#: application/views/labels/edit.php:107 application/views/labels/index.php:82
+#: application/views/qslpostcard/designer.php:285
+msgid "Font Size"
+msgstr "字体大小"
+
+#: application/views/labeldesigner/designer.php:370
+#: application/views/qslpostcard/designer.php:291
+msgid "Bold"
+msgstr "粗体"
+
+#: application/views/labeldesigner/designer.php:376
+#: application/views/qslpostcard/designer.php:297
+msgid "Color"
+msgstr "颜色"
+
+#: application/views/labeldesigner/designer.php:381
+#: application/views/qslpostcard/designer.php:302
+msgid "Wrap width"
+msgstr "列宽"
+
+#: application/views/labeldesigner/designer.php:386
+msgid "Print this field once per QSO when a label holds multiple QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:387
+#: application/views/qslpostcard/designer.php:308
+msgid "Repeats per QSO"
+msgstr "每个 QSO 都重复"
+
+#: application/views/labeldesigner/designer.php:391
+#: application/views/qslpostcard/designer.php:312
+msgid "Move this element freely without snapping to the grid or other elements"
+msgstr "自由移动这个元素，无需贴齐到网格或其他元素"
+
+#: application/views/labeldesigner/designer.php:392
+#: application/views/qslpostcard/designer.php:313
+msgid "Disable Auto-Snap"
+msgstr "禁用自动贴齐"
+
+#: application/views/labeldesigner/designer.php:418
+#: application/views/qslpostcard/designer.php:339
+msgid "Align & distribute"
+msgstr "对齐和分布"
+
+#: application/views/labeldesigner/designer.php:422
+#: application/views/qslpostcard/designer.php:343
+msgid "Align left"
+msgstr "左对齐"
+
+#: application/views/labeldesigner/designer.php:423
+#: application/views/qslpostcard/designer.php:344
+msgid "Align horizontal centers"
+msgstr "水平居中"
+
+#: application/views/labeldesigner/designer.php:424
+#: application/views/qslpostcard/designer.php:345
+msgid "Align right"
+msgstr "右对齐"
+
+#: application/views/labeldesigner/designer.php:426
+#: application/views/qslpostcard/designer.php:347
+msgid "Align top"
+msgstr "顶端对齐"
+
+#: application/views/labeldesigner/designer.php:427
+#: application/views/qslpostcard/designer.php:348
+msgid "Align vertical centers"
+msgstr "垂直居中"
+
+#: application/views/labeldesigner/designer.php:428
+#: application/views/qslpostcard/designer.php:349
+msgid "Align bottom"
+msgstr "底端对齐"
+
+#: application/views/labeldesigner/designer.php:430
+#: application/views/qslpostcard/designer.php:351
+msgid "Distribute horizontally"
+msgstr "横向分布"
+
+#: application/views/labeldesigner/designer.php:431
+#: application/views/qslpostcard/designer.php:352
+msgid "Distribute vertically"
+msgstr "纵向分布"
+
+#: application/views/labeldesigner/designer.php:433
+#: application/views/qslpostcard/designer.php:354
+msgid "Center on page (horizontal)"
+msgstr "页面居中（水平）"
+
+#: application/views/labeldesigner/designer.php:434
+#: application/views/qslpostcard/designer.php:355
+msgid "Center on page (vertical)"
+msgstr "页面居中（垂直）"
+
 #: application/views/labels/create.php:24
 msgid ""
 "Label name used for display purposes, so pick something meaningful, perhaps "
@@ -16085,12 +16626,6 @@ msgstr "标签高度"
 msgid "Total height of one label"
 msgstr "单个标签的垂直高度"
 
-#: application/views/labels/create.php:105
-#: application/views/labels/edit.php:107 application/views/labels/index.php:81
-#: application/views/qslpostcard/designer.php:285
-msgid "Font Size"
-msgstr "字体大小"
-
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
@@ -16145,14 +16680,14 @@ msgstr "纸张方向"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr "水平"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr "垂直"
@@ -16169,13 +16704,13 @@ msgid ""
 msgstr "用于展示用途的标签名称，建议选择一个有明确含义的名称。"
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:104
-#: application/views/qslprint/printlabel.php:117
+#: application/views/logbookadvanced/startatform.php:125
+#: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
 msgid "Mark QSL as printed"
 msgstr "标记 QSL 已打印"
 
-#: application/views/labels/index.php:3 application/views/labels/index.php:129
+#: application/views/labels/index.php:3 application/views/labels/index.php:130
 #: application/views/qslprint/index.php:77
 msgid "Print"
 msgstr "打印"
@@ -16193,96 +16728,99 @@ msgstr "创建新标签"
 msgid "Create New Paper Type"
 msgstr "创建新纸张"
 
-#: application/views/labels/index.php:38
+#: application/views/labels/index.php:39
 msgid "Paper types"
 msgstr "纸张"
 
-#: application/views/labels/index.php:44 application/views/labels/index.php:79
-msgid "Width"
-msgstr "宽度"
-
-#: application/views/labels/index.php:45 application/views/labels/index.php:80
-msgid "Height"
-msgstr "长度"
-
-#: application/views/labels/index.php:46
+#: application/views/labels/index.php:47
 msgid "Used by labels"
 msgstr "已被标签使用"
 
-#: application/views/labels/index.php:47
-msgid "Orientation"
-msgstr "方向"
-
-#: application/views/labels/index.php:72
+#: application/views/labels/index.php:73
 msgid "Label types"
 msgstr "标签类型"
 
-#: application/views/labels/index.php:83
+#: application/views/labels/index.php:84
 msgid "Use For Print"
 msgstr "使用它来打印"
 
-#: application/views/labels/index.php:93
-msgid "No paper assigned"
-msgstr "未选定纸张"
-
-#: application/views/labels/index.php:118
+#: application/views/labels/index.php:119
 msgid "QSL Card Labels Pending"
 msgstr "待打印的 QSL 卡片标签"
 
-#: application/views/labels/index.php:127
+#: application/views/labels/index.php:128
 msgid "QSOs Waiting"
 msgstr "QSO 等待中"
 
-#: application/views/labels/index.php:128
+#: application/views/labels/index.php:129
 msgid "View QSOs"
 msgstr "查看 QSO"
 
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
+msgid "Label layout"
+msgstr ""
+
+#: application/views/labels/startatform.php:24
+#: application/views/logbookadvanced/startatform.php:23
+#: application/views/qslprint/printlabel.php:23
+msgid "Standard"
+msgstr ""
+
+#: application/views/labels/startatform.php:30
+#: application/views/logbookadvanced/startatform.php:29
+#: application/views/qslprint/printlabel.php:29
+msgid ""
+"Designed label templates use their own layout and ignore the options below."
+msgstr ""
+
+#: application/views/labels/startatform.php:41
+#: application/views/logbookadvanced/startatform.php:40
+#: application/views/qslprint/printlabel.php:40
 msgid "Include my call?"
 msgstr "包含我的呼号？"
 
-#: application/views/labels/startatform.php:33
-#: application/views/logbookadvanced/startatform.php:32
-#: application/views/qslprint/printlabel.php:32
+#: application/views/labels/startatform.php:53
+#: application/views/logbookadvanced/startatform.php:52
+#: application/views/qslprint/printlabel.php:52
 msgid "Include OP-Call? (if filled)"
 msgstr "包含操作员的呼号？（如果有）"
 
-#: application/views/labels/startatform.php:45
-#: application/views/logbookadvanced/startatform.php:44
-#: application/views/qslprint/printlabel.php:44
+#: application/views/labels/startatform.php:65
+#: application/views/logbookadvanced/startatform.php:64
+#: application/views/qslprint/printlabel.php:64
 msgid "Include Grid?"
 msgstr "包含网格？"
 
-#: application/views/labels/startatform.php:57
-#: application/views/logbookadvanced/startatform.php:56
-#: application/views/qslprint/printlabel.php:56
+#: application/views/labels/startatform.php:77
+#: application/views/logbookadvanced/startatform.php:76
+#: application/views/qslprint/printlabel.php:76
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr "包含编号？(SIG, SOTA, POTA, IOTA, WWFF; 如存在则显示)"
 
-#: application/views/labels/startatform.php:69
+#: application/views/labels/startatform.php:89
 msgid "Include Via (if filled)?"
 msgstr "包含 Via（如提供）？"
 
-#: application/views/labels/startatform.php:81
+#: application/views/labels/startatform.php:101
 msgid "Include QSLMSG (if filled)?"
 msgstr "是否包含 QSLMSG （如果已经填写）？"
 
-#: application/views/labels/startatform.php:93
+#: application/views/labels/startatform.php:113
 msgid "Include TNX message?"
 msgstr "是否包含 TNX 信息？"
 
-#: application/views/labels/startatform.php:106
-#: application/views/logbookadvanced/startatform.php:117
-#: application/views/qslprint/printlabel.php:105
+#: application/views/labels/startatform.php:128
+#: application/views/logbookadvanced/startatform.php:138
+#: application/views/qslprint/printlabel.php:126
 msgid "Start printing at?"
 msgstr "开始打印编号？"
 
-#: application/views/labels/startatform.php:112
-#: application/views/logbookadvanced/startatform.php:123
-#: application/views/qslprint/printlabel.php:111
+#: application/views/labels/startatform.php:134
+#: application/views/logbookadvanced/startatform.php:144
+#: application/views/qslprint/printlabel.php:132
 msgid "Enter the starting position for label printing"
 msgstr "输入标签打印的起始位置"
 
@@ -17414,7 +17952,7 @@ msgstr "生成 ADIF"
 
 #: application/views/logbookadvanced/index.php:850
 #: application/views/qslprint/index.php:5
-#: application/views/qslprint/printlabel.php:116
+#: application/views/qslprint/printlabel.php:137
 msgid "Print Label"
 msgstr "打印标签"
 
@@ -17541,14 +18079,6 @@ msgid ""
 "different fields from each QSO."
 msgstr "所选字段将合并到主 QSO，你可以在每个 QSO 中选择不同的字段。"
 
-#: application/views/logbookadvanced/printQsl.php:9
-#: application/views/qslpostcard/designer.php:67
-#: application/views/qslpostcard/printqueue.php:8
-#: application/views/qslpostcard/printqueue_selected.php:10
-#: application/views/qslprint/printqsl.php:9
-msgid "Template"
-msgstr "模板"
-
 #: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -17566,14 +18096,6 @@ msgstr ""
 #: application/views/qslprint/printqsl.php:30
 msgid "Generate Postcard PDF"
 msgstr "生成明信片 PDF"
-
-#: application/views/logbookadvanced/printQsl.php:34
-#: application/views/qslpostcard/designer.php:99
-#: application/views/qslpostcard/printqueue.php:26
-#: application/views/qslpostcard/printqueue_selected.php:34
-#: application/views/qslprint/printqsl.php:34
-msgid "Save PDF"
-msgstr "保存 PDF"
 
 #: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
@@ -17599,18 +18121,18 @@ msgstr "前一项"
 msgid "Next"
 msgstr "后一项"
 
-#: application/views/logbookadvanced/startatform.php:68
-#: application/views/qslprint/printlabel.php:68
+#: application/views/logbookadvanced/startatform.php:88
+#: application/views/qslprint/printlabel.php:88
 msgid "Include Via"
 msgstr "包含通过"
 
-#: application/views/logbookadvanced/startatform.php:80
-#: application/views/qslprint/printlabel.php:80
+#: application/views/logbookadvanced/startatform.php:100
+#: application/views/qslprint/printlabel.php:100
 msgid "Include QSLMSG"
 msgstr "包含 QSLMSG"
 
-#: application/views/logbookadvanced/startatform.php:92
-#: application/views/qslprint/printlabel.php:92
+#: application/views/logbookadvanced/startatform.php:112
+#: application/views/qslprint/printlabel.php:112
 msgid "Include TNX message"
 msgstr "包含 TNX 信息"
 
@@ -18861,31 +19383,6 @@ msgstr "添加到 QSL"
 msgid "Address"
 msgstr "地址"
 
-#: application/views/qslpostcard/designer.php:6
-msgid "QSO Core"
-msgstr "QSO 核心信息"
-
-#: application/views/qslpostcard/designer.php:7
-msgid "Date & Time"
-msgstr "日期和时间"
-
-#: application/views/qslpostcard/designer.php:8
-msgid "Station & Equipment"
-msgstr "台站和设备"
-
-#: application/views/qslpostcard/designer.php:9
-msgid "My References"
-msgstr "我的参考信息"
-
-#: application/views/qslpostcard/designer.php:10
-msgid "Markers"
-msgstr "标签"
-
-#: application/views/qslpostcard/designer.php:11
-#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
-msgid "Other"
-msgstr "其它"
-
 #: application/views/qslpostcard/designer.php:29
 msgid "Please choose an image first."
 msgstr "首先请选择一个图片。"
@@ -18902,107 +19399,6 @@ msgstr "未知错误"
 msgid "Preview image uploaded."
 msgstr "预览图片已上传。"
 
-#: application/views/qslpostcard/designer.php:34
-msgid "Custom Text"
-msgstr "自定义文本"
-
-#: application/views/qslpostcard/designer.php:35
-msgid "Untitled"
-msgstr "无标题"
-
-#: application/views/qslpostcard/designer.php:36
-msgid "Save failed"
-msgstr "保存失败"
-
-#: application/views/qslpostcard/designer.php:37
-msgid "Template saved."
-msgstr "模板已保存。"
-
-#: application/views/qslpostcard/designer.php:38
-msgid "Delete Template?"
-msgstr "删除此模板？"
-
-#: application/views/qslpostcard/designer.php:39
-msgid ""
-"Are you sure you want to delete this template? This action cannot be undone."
-msgstr "您确定要删除此模板吗？此操作无法撤销。"
-
-#: application/views/qslpostcard/designer.php:40
-msgid "Delete failed"
-msgstr "删除失败"
-
-#: application/views/qslpostcard/designer.php:41
-msgid "Template deleted successfully!"
-msgstr "模板删除成功！"
-
-#: application/views/qslpostcard/designer.php:42
-msgid "Please select a template to delete."
-msgstr "请选择一个模板来删除。"
-
-#: application/views/qslpostcard/designer.php:43
-msgid "Copy failed"
-msgstr "复制失败"
-
-#: application/views/qslpostcard/designer.php:44
-msgid "Template copied."
-msgstr "模板已复制。"
-
-#: application/views/qslpostcard/designer.php:45
-msgid "Please select a template to copy."
-msgstr "请选择一个模板以供复制。"
-
-#: application/views/qslpostcard/designer.php:48
-msgid "selected"
-msgstr "已选择"
-
-#: application/views/qslpostcard/designer.php:49
-msgid "Unsaved changes"
-msgstr "未保存的更改"
-
-#: application/views/qslpostcard/designer.php:50
-msgid ""
-"Your current design has unsaved changes. Loading a different template will "
-"replace it. Continue?"
-msgstr "您当前的设计有未保存的更改。加载不同的模板将会替换它。是否继续？"
-
-#: application/views/qslpostcard/designer.php:51
-msgid ""
-"Your current design has unsaved changes. If you leave the page, those "
-"changes will be lost. Leave anyway?"
-msgstr "您当前的设计未保存。如果离开此页面，这些更改将会丢失，确定要离开吗？"
-
-#: application/views/qslpostcard/designer.php:52
-msgid "Discard changes"
-msgstr "放弃更改"
-
-#: application/views/qslpostcard/designer.php:53
-msgid "Keep editing"
-msgstr "继续编辑"
-
-#: application/views/qslpostcard/designer.php:54
-msgid "Leave page"
-msgstr "离开页面"
-
-#: application/views/qslpostcard/designer.php:70
-msgid "(new)"
-msgstr "（新）"
-
-#: application/views/qslpostcard/designer.php:75
-msgid "Template name"
-msgstr "模板名"
-
-#: application/views/qslpostcard/designer.php:76
-msgid "Save Template"
-msgstr "保存模板"
-
-#: application/views/qslpostcard/designer.php:79
-msgid "Copy Template"
-msgstr "复制模板"
-
-#: application/views/qslpostcard/designer.php:82
-msgid "Delete Template"
-msgstr "删除模板"
-
 #: application/views/qslpostcard/designer.php:90
 msgid "Background image"
 msgstr "背景图片"
@@ -19010,48 +19406,6 @@ msgstr "背景图片"
 #: application/views/qslpostcard/designer.php:94
 msgid "Generate PDF (demo)"
 msgstr "生成 PDF（演示）"
-
-#: application/views/qslpostcard/designer.php:95
-msgid "PDF"
-msgstr "PDF"
-
-#: application/views/qslpostcard/designer.php:107
-msgid "History"
-msgstr "历史"
-
-#: application/views/qslpostcard/designer.php:109
-msgid "Undo"
-msgstr "撤销"
-
-#: application/views/qslpostcard/designer.php:110
-msgid "Redo"
-msgstr "重做"
-
-#: application/views/qslpostcard/designer.php:116
-msgid "Zoom"
-msgstr "缩放"
-
-#: application/views/qslpostcard/designer.php:126
-msgid ""
-"Tip: After a test print, adjust global offsets rather than moving every "
-"field."
-msgstr "提示：打印测试后，你可以调整全局偏移，而无需分别移动每个字段。"
-
-#: application/views/qslpostcard/designer.php:127
-msgid "Print offset"
-msgstr "打印偏移"
-
-#: application/views/qslpostcard/designer.php:156
-msgid "Search fields…"
-msgstr "搜索字段…"
-
-#: application/views/qslpostcard/designer.php:160
-msgid "Add Custom Text"
-msgstr "添加自定义文本"
-
-#: application/views/qslpostcard/designer.php:175
-msgid "No fields match your search."
-msgstr "未找到符合的字段。"
 
 #: application/views/qslpostcard/designer.php:183
 msgid "Postcard Canvas"
@@ -19061,17 +19415,9 @@ msgstr "明信片画布"
 msgid "drag fields onto the postcard"
 msgstr "将字段拖放到明信片上"
 
-#: application/views/qslpostcard/designer.php:205
-msgid "Template Options"
-msgstr "模板选项"
-
 #: application/views/qslpostcard/designer.php:209
 msgid "Number of QSOs per QSL card"
 msgstr "每张 QSL 卡的 QSO 数量"
-
-#: application/views/qslpostcard/designer.php:213
-msgid "Row spacing"
-msgstr "行距"
 
 #: application/views/qslpostcard/designer.php:218
 msgid "Print background image (uncheck for pre-printed cards)"
@@ -19081,113 +19427,9 @@ msgstr "打印背景图像（预印卡请取消勾选）"
 msgid "Skip address printing (for printing on regular QSL cards)"
 msgstr "跳过地址打印（用于普通 QSL 卡）"
 
-#: application/views/qslpostcard/designer.php:230
-msgid "Properties"
-msgstr "属性"
-
-#: application/views/qslpostcard/designer.php:235
-msgid "Select a field on the canvas to edit it."
-msgstr "在画布上选择一个字段以编辑。"
-
-#: application/views/qslpostcard/designer.php:236
-msgid "Right-click a field for more actions."
-msgstr "右键单击字段以获得更多操作。"
-
-#: application/views/qslpostcard/designer.php:246
-msgid "Text"
-msgstr "文本"
-
-#: application/views/qslpostcard/designer.php:251
-msgid "Frequency format"
-msgstr "频率格式"
-
-#: application/views/qslpostcard/designer.php:259
-msgid "Omit unit"
-msgstr "省略单位"
-
-#: application/views/qslpostcard/designer.php:265
-msgid "X"
-msgstr "X"
-
-#: application/views/qslpostcard/designer.php:269
-msgid "Y"
-msgstr "Y"
-
-#: application/views/qslpostcard/designer.php:275
-msgid "Font"
-msgstr "字体"
-
-#: application/views/qslpostcard/designer.php:291
-msgid "Bold"
-msgstr "粗体"
-
-#: application/views/qslpostcard/designer.php:297
-msgid "Color"
-msgstr "颜色"
-
-#: application/views/qslpostcard/designer.php:302
-msgid "Wrap width"
-msgstr "列宽"
-
 #: application/views/qslpostcard/designer.php:307
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr "当卡片包含多个 QSO 时，每个 QSO 都打印一次此字段"
-
-#: application/views/qslpostcard/designer.php:308
-msgid "Repeats per QSO"
-msgstr "每个 QSO 都重复"
-
-#: application/views/qslpostcard/designer.php:312
-msgid "Move this element freely without snapping to the grid or other elements"
-msgstr "自由移动这个元素，无需贴齐到网格或其他元素"
-
-#: application/views/qslpostcard/designer.php:313
-msgid "Disable Auto-Snap"
-msgstr "禁用自动贴齐"
-
-#: application/views/qslpostcard/designer.php:339
-msgid "Align & distribute"
-msgstr "对齐和分布"
-
-#: application/views/qslpostcard/designer.php:343
-msgid "Align left"
-msgstr "左对齐"
-
-#: application/views/qslpostcard/designer.php:344
-msgid "Align horizontal centers"
-msgstr "水平居中"
-
-#: application/views/qslpostcard/designer.php:345
-msgid "Align right"
-msgstr "右对齐"
-
-#: application/views/qslpostcard/designer.php:347
-msgid "Align top"
-msgstr "顶端对齐"
-
-#: application/views/qslpostcard/designer.php:348
-msgid "Align vertical centers"
-msgstr "垂直居中"
-
-#: application/views/qslpostcard/designer.php:349
-msgid "Align bottom"
-msgstr "底端对齐"
-
-#: application/views/qslpostcard/designer.php:351
-msgid "Distribute horizontally"
-msgstr "横向分布"
-
-#: application/views/qslpostcard/designer.php:352
-msgid "Distribute vertically"
-msgstr "纵向分布"
-
-#: application/views/qslpostcard/designer.php:354
-msgid "Center on page (horizontal)"
-msgstr "页面居中（水平）"
-
-#: application/views/qslpostcard/designer.php:355
-msgid "Center on page (vertical)"
-msgstr "页面居中（垂直）"
 
 #: application/views/qslprint/index.php:4
 msgid "Please select at least one row"
