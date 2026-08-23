@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-23 14:30+0000\n"
-"PO-Revision-Date: 2026-08-22 10:16+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"PO-Revision-Date: 2026-08-23 15:36+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -1551,7 +1551,7 @@ msgstr "Dashboard"
 
 #: application/controllers/Dashboard.php:219
 msgid "HF"
-msgstr ""
+msgstr "KW"
 
 #: application/controllers/Dashboard.php:219
 #: application/views/dashboard/index.php:684
@@ -1567,7 +1567,7 @@ msgstr "SAT"
 
 #: application/controllers/Dashboard.php:219
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1921,7 +1921,7 @@ msgstr "KML-Export"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "Label Designer"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1941,11 +1941,11 @@ msgstr "Vorlagen-JSON ist ungültig"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Vorlage hat keine Elemente"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Labeltyp nicht gefunden"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1967,13 +1967,15 @@ msgstr "PDF-Datei wurde nicht erstellt"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Label PDF fehlgeschlaten: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Der Labeltyp für diese Vorlage existiert nicht mehr. Bitte wähle vor dem "
+"Export eine andere aus."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -4702,15 +4704,15 @@ msgstr "Gelöscht"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "Importiert"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "Importiertes Papier"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "Importierter Labeltyp"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -16676,7 +16678,7 @@ msgstr "Freitext"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Linie"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16743,12 +16745,14 @@ msgstr "ausgewählt"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "Bitte zuerst einen Labeltyp auswählen."
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"Der Labeltyp dieser Vorlage existiert nicht mehr. Bitte wähle eine andere "
+"aus."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -16790,23 +16794,23 @@ msgstr "Seite verlassen"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "Import fehlgeschlagen"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "Export fehlgeschlagen"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "Vorlage importiert."
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "Bitte wähle eine Vorlage zum Export aus."
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "Datei ist zu groß."
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -16850,23 +16854,23 @@ msgstr "Lösche Vorlage"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "Exportiere Vorlage"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "Importiere Vorlage"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "Labeltyp"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "(wähle Labeltyp)"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "Generiere Beispiel-PDF mit deinen letztes QSOs"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -16931,28 +16935,34 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"Horizontale Linie - aktiviere 'Wiederholungen pro QSO', um unter jeder QSO-"
+"Zeile eine Trennlinie zu zeichnen"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Horizontale Linie"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
 msgstr ""
+"Vertikale Linie — Platziere an Spaltenenden, um ein Tabellenlayout zu "
+"erzeugen"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "Vertikale Linie"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"Tabellenlayout — Ziehe die Ecke für Größenänderung, ziehe die Spaltenmarker, "
+"um Spaltenbreite zu adjustieren"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "Füge Tabelle hinzu"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -16961,11 +16971,11 @@ msgstr "Kein entsprechendes Feld gefunden."
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "Labelleinwand"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "ziehe Felder auf das Label"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -16974,7 +16984,7 @@ msgstr "Vorlagenoptionen"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "Anzahl QSOs pro Label"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -16986,14 +16996,15 @@ msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
+"Zeichnet automatisch eine Linie zwischen den QSOs wie im klassischen Layout"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "Trennlinien zwischen QSO-Zeilen"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "Dicke der Trennlinie"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -17037,11 +17048,11 @@ msgstr "Y"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "Zeilen"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "Spalten"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -17056,7 +17067,7 @@ msgstr "Höhe"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "Breite"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -17065,15 +17076,15 @@ msgstr "Ausrichtung"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikal"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "Länge"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -17104,7 +17115,7 @@ msgstr "Umbruch"
 
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO when a label holds multiple QSOs"
-msgstr ""
+msgstr "Drucke dieses Feld pro QSO, wenn ein Label mehrere QSOs enthält"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17408,13 +17419,13 @@ msgstr "QSOs ansehen"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "Labellayout"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -17422,6 +17433,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"Entworfene Labellayouts verwenden ihr eigenes Layout und die Optionen unten "
+"werden ignoriert."
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
