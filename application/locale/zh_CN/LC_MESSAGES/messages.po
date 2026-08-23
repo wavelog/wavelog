@@ -37,11 +37,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 14:30+0000\n"
-"PO-Revision-Date: 2026-08-20 17:09+0000\n"
+"POT-Creation-Date: 2026-08-21 09:31+0000\n"
+"PO-Revision-Date: 2026-08-23 07:14+0000\n"
 "Last-Translator: BI7BLA <me@sharedow.cn>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,10 +187,10 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Cron.php:229 application/controllers/Csv.php:6
 #: application/controllers/Csv.php:28
 #: application/controllers/Dayswithqso.php:10
-#: application/controllers/Dbtools.php:13 application/controllers/Dcl.php:10
-#: application/controllers/Dcl.php:18 application/controllers/Dcl.php:44
-#: application/controllers/Dcl.php:46 application/controllers/Dcl.php:216
-#: application/controllers/Dcl.php:247 application/controllers/Debug.php:9
+#: application/controllers/Dcl.php:10 application/controllers/Dcl.php:18
+#: application/controllers/Dcl.php:44 application/controllers/Dcl.php:46
+#: application/controllers/Dcl.php:216 application/controllers/Dcl.php:247
+#: application/controllers/Debug.php:9
 #: application/controllers/Distancerecords.php:10
 #: application/controllers/Distances.php:10
 #: application/controllers/Dxatlas.php:6 application/controllers/Dxatlas.php:28
@@ -208,7 +208,6 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Hrdlog.php:40
 #: application/controllers/Kmlexport.php:17
 #: application/controllers/Kmlexport.php:32
-#: application/controllers/Labeldesigner.php:14
 #: application/controllers/Labels.php:25
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
@@ -224,7 +223,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qrz.php:231 application/controllers/Qrz.php:295
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:47 application/controllers/Qsl.php:54
-#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:132
+#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:130
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
@@ -265,7 +264,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qsl.php:132
+#: application/controllers/Dbtools.php:13
+#: application/controllers/Labeldesigner.php:14
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -313,8 +314,9 @@ msgstr "总激活网格"
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:538
-#: application/views/labeldesigner/designer.php:187
 #: application/views/qslpostcard/designer.php:151
+#: application/views/labeldesigner/designer.php:174
+#: application/views/labeldesigner/designer.php:187
 msgid "Fields"
 msgstr "区块"
 
@@ -387,6 +389,7 @@ msgid "date incorrect"
 msgstr "日期错误"
 
 #: application/controllers/Adif.php:264
+#: application/views/interface_assets/header.php:529
 #: application/views/interface_assets/header.php:533
 msgid "ADIF Import / Export"
 msgstr "ADIF 导入/导出"
@@ -556,13 +559,14 @@ msgstr "奖项 - %s"
 #: application/views/contesting/manager/components/session_modal.php:119
 #: application/views/interface_assets/header.php:249
 #: application/views/logbookadvanced/index.php:487
-#: application/views/logbookadvanced/index.php:1021
+#: application/views/logbookadvanced/index.php:1024
 #: application/views/logbookadvanced/useroptions.php:238
 #: application/views/lookup/index.php:14
 #: application/views/qso/award_tabs.php:41
 #: application/views/qso/edit_ajax.php:387 application/views/qso/index.php:365
 #: application/views/qso/index.php:647 application/views/user/edit.php:875
 #: application/views/view_log/qso.php:406
+#: application/views/logbookadvanced/index.php:1021
 msgid "DOK"
 msgstr "DOK"
 
@@ -575,20 +579,20 @@ msgstr "DOK"
 #: application/views/countqsoby/index.php:12
 #: application/views/countqsoby/index.php:66 application/views/csv/index.php:58
 #: application/views/dashboard/index.php:416
-#: application/views/dbtools/checkresult.php:167
-#: application/views/dbtools/checkresult.php:250
-#: application/views/dbtools/checkresult.php:326
-#: application/views/dbtools/showStateQsos.php:27
-#: application/views/dbtools/showUpdateResult.php:87
-#: application/views/dbtools/statecheckresult.php:15
 #: application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:16
 #: application/views/interface_assets/header.php:200
 #: application/views/kml/index.php:47
+#: application/views/logbookadvanced/checkresult.php:165
+#: application/views/logbookadvanced/checkresult.php:248
+#: application/views/logbookadvanced/checkresult.php:324
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:376
-#: application/views/logbookadvanced/index.php:997
+#: application/views/logbookadvanced/index.php:1000
 #: application/views/logbookadvanced/qslcarousel.php:35
+#: application/views/logbookadvanced/showStateQsos.php:27
+#: application/views/logbookadvanced/showUpdateResult.php:87
+#: application/views/logbookadvanced/statecheckresult.php:15
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
 #: application/views/lotw_views/index.php:43
@@ -599,6 +603,13 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/views/dbtools/checkresult.php:167
+#: application/views/dbtools/checkresult.php:250
+#: application/views/dbtools/checkresult.php:326
+#: application/views/dbtools/showStateQsos.php:27
+#: application/views/dbtools/showUpdateResult.php:87
+#: application/views/dbtools/statecheckresult.php:15
+#: application/views/logbookadvanced/index.php:997
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -758,7 +769,7 @@ msgstr "WWFF"
 #: application/views/interface_assets/header.php:231
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:495
-#: application/views/logbookadvanced/index.php:1015
+#: application/views/logbookadvanced/index.php:1018
 #: application/views/logbookadvanced/useroptions.php:226
 #: application/views/lookup/index.php:9 application/views/qso/award_tabs.php:57
 #: application/views/qso/components/previous_contacts.php:84
@@ -771,6 +782,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/logbookadvanced/index.php:1015
 msgid "POTA"
 msgstr "POTA"
 
@@ -895,6 +907,7 @@ msgid "Azimuthal Map"
 msgstr "方位投影图"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
+#: application/views/interface_assets/header.php:355
 #: application/views/interface_assets/header.php:359
 msgid "Backup"
 msgstr "备份"
@@ -905,10 +918,11 @@ msgstr "笔记 - 备份"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
-#: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:496
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 #: application/views/statistics/qsltable.php:115
+#: application/views/interface_assets/header.php:500
 msgid "Bands"
 msgstr "频段"
 
@@ -1297,19 +1311,19 @@ msgstr ""
 #: application/views/countqsoby/index.php:11
 #: application/views/countqsoby/index.php:67
 #: application/views/dashboard/index.php:14
-#: application/views/dbtools/checkresult.php:168
-#: application/views/dbtools/checkresult.php:247
-#: application/views/dbtools/checkresult.php:323
-#: application/views/dbtools/showStateQsos.php:26
-#: application/views/dbtools/showUpdateResult.php:47
-#: application/views/dbtools/showUpdateResult.php:110
 #: application/views/gridmap/index.php:226
-#: application/views/labels/index.php:127
+#: application/views/labels/index.php:126
+#: application/views/logbookadvanced/checkresult.php:166
+#: application/views/logbookadvanced/checkresult.php:245
+#: application/views/logbookadvanced/checkresult.php:321
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:12
 #: application/views/logbookadvanced/index.php:403
-#: application/views/logbookadvanced/index.php:961
+#: application/views/logbookadvanced/index.php:964
 #: application/views/logbookadvanced/qslcarousel.php:39
+#: application/views/logbookadvanced/showStateQsos.php:26
+#: application/views/logbookadvanced/showUpdateResult.php:47
+#: application/views/logbookadvanced/showUpdateResult.php:110
 #: application/views/logbookadvanced/useroptions.php:85
 #: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
 #: application/views/map/qso_map.php:111
@@ -1339,6 +1353,14 @@ msgstr ""
 #: application/views/view_log/qso.php:621
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/dbtools/checkresult.php:168
+#: application/views/dbtools/checkresult.php:247
+#: application/views/dbtools/checkresult.php:323
+#: application/views/dbtools/showStateQsos.php:26
+#: application/views/dbtools/showUpdateResult.php:47
+#: application/views/dbtools/showUpdateResult.php:110
+#: application/views/logbookadvanced/index.php:961
+#: application/views/labels/index.php:127
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -1348,12 +1370,12 @@ msgstr "网格坐标"
 #: application/views/awards/itu/index.php:207
 #: application/views/countqsoby/index.php:14
 #: application/views/countqsoby/index.php:68
-#: application/views/dbtools/checkresult.php:324
 #: application/views/gridmap/index.php:230
+#: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
 #: application/views/logbookadvanced/index.php:21
 #: application/views/logbookadvanced/index.php:471
-#: application/views/logbookadvanced/index.php:1009
+#: application/views/logbookadvanced/index.php:1012
 #: application/views/logbookadvanced/useroptions.php:199
 #: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
 #: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:529
@@ -1362,6 +1384,8 @@ msgstr "网格坐标"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/dbtools/checkresult.php:324
+#: application/views/logbookadvanced/index.php:1009
 msgid "ITU Zone"
 msgstr "ITU 分区"
 
@@ -1373,13 +1397,13 @@ msgstr "ITU 分区"
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
 #: application/views/countqsoby/index.php:69 application/views/csv/index.php:80
-#: application/views/dbtools/checkresult.php:248
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
+#: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
 #: application/views/logbookadvanced/index.php:22
 #: application/views/logbookadvanced/index.php:457
-#: application/views/logbookadvanced/index.php:1006
+#: application/views/logbookadvanced/index.php:1009
 #: application/views/logbookadvanced/qslcarousel.php:37
 #: application/views/logbookadvanced/useroptions.php:193
 #: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
@@ -1391,13 +1415,15 @@ msgstr "ITU 分区"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/dbtools/checkresult.php:248
+#: application/views/logbookadvanced/index.php:1006
 msgid "CQ Zone"
 msgstr "CQ 分区"
 
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "POTA 编号"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:163
@@ -1432,6 +1458,7 @@ msgid "WWFF Reference"
 msgstr "WWFF 编号"
 
 #: application/controllers/Cron.php:37
+#: application/views/interface_assets/header.php:359
 #: application/views/interface_assets/header.php:363
 msgid "Cron Manager"
 msgstr "计划任务管理器"
@@ -1529,34 +1556,16 @@ msgid "Not running"
 msgstr "未运行"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
+#: application/views/interface_assets/header.php:538
 #: application/views/interface_assets/header.php:542
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
-#: application/controllers/Dashboard.php:172
+#: application/controllers/Dashboard.php:179
 #: application/controllers/Visitor.php:131
+#: application/controllers/Dashboard.php:172
 msgid "Dashboard"
 msgstr "仪表盘"
-
-#: application/controllers/Dashboard.php:219
-msgid "HF"
-msgstr ""
-
-#: application/controllers/Dashboard.php:219
-#: application/views/dashboard/index.php:684
-#: application/views/distances/index.php:27
-#: application/views/qslprint/qslprint.php:86
-#: application/views/qslprint/qslprint.php:87
-#: application/views/qslprint/qsolist.php:49
-#: application/views/qslprint/qsolist.php:51
-#: application/views/qslprint/qsolist.php:58
-#: application/views/qslprint/qsolist.php:60
-msgid "SAT"
-msgstr "卫星"
-
-#: application/controllers/Dashboard.php:219
-msgid "VHF+"
-msgstr ""
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1565,28 +1574,13 @@ msgstr ""
 msgid "Days with QSOs"
 msgstr "QSO 天数"
 
-#: application/controllers/Dbtools.php:22
-#: application/views/interface_assets/header.php:337
-msgid "Database Tools"
-msgstr "数据库工具"
-
-#: application/controllers/Dbtools.php:158
-#, php-format
-msgid "DXCC updated for %d QSO(s)."
-msgstr "已更新 %d 个 QSO 的 DXCC。"
-
-#: application/controllers/Dbtools.php:174
-#, php-format
-msgid "Map for DXCC %s and gridsquare %s."
-msgstr "为 DXCC %s 和网格 %s 的地图。"
-
 #: application/controllers/Dcl.php:27
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
 msgstr "DCL密钥导入"
 
 #: application/controllers/Dcl.php:61 application/views/dcl_views/index.php:3
-#: application/views/logbookadvanced/index.php:988
+#: application/views/logbookadvanced/index.php:991
 #: application/views/logbookadvanced/useroptions.php:148
 #: application/views/qso/edit_ajax.php:420
 #: application/views/search/search_result_ajax.php:127
@@ -1594,6 +1588,7 @@ msgstr "DCL密钥导入"
 #: application/views/view_log/partial/log_ajax.php:163
 #: application/views/view_log/qso.php:521
 #: application/views/view_log/qso.php:526
+#: application/views/logbookadvanced/index.php:988
 msgid "DCL"
 msgstr "DCL"
 
@@ -1695,6 +1690,7 @@ msgid "and propagation"
 msgstr "和传播方式"
 
 #: application/controllers/Dxatlas.php:18
+#: application/views/interface_assets/header.php:536
 #: application/views/interface_assets/header.php:540
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas 网格导出"
@@ -1706,10 +1702,12 @@ msgid "DX Calendar"
 msgstr "DX 日历"
 
 #: application/controllers/Eqsl.php:45
-#: application/views/dashboard/index.php:589
-#: application/views/dashboard/index.php:592
+#: application/views/dashboard/index.php:573
+#: application/views/dashboard/index.php:576
 #: application/views/eqslcard/index.php:3
 #: application/views/visitor/index.php:308
+#: application/views/dashboard/index.php:589
+#: application/views/dashboard/index.php:592
 msgid "eQSL Cards"
 msgstr "eQSL 卡片"
 
@@ -1893,66 +1891,11 @@ msgid "No QSOs found to upload."
 msgstr "无 QSO 可供上传。"
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:538
+#: application/views/interface_assets/header.php:534
 #: application/views/kml/index.php:3
+#: application/views/interface_assets/header.php:538
 msgid "KML Export"
 msgstr "KML 导出"
-
-#: application/controllers/Labeldesigner.php:22
-#: application/views/labels/index.php:36
-msgid "Label Designer"
-msgstr ""
-
-#: application/controllers/Labeldesigner.php:114
-#: application/controllers/Labels.php:213
-#: application/controllers/Qslpostcard.php:186
-#: application/controllers/Qslpostcard.php:243
-#: application/controllers/Qslpostcard.php:302
-msgid "Template not found"
-msgstr "模板未找到"
-
-#: application/controllers/Labeldesigner.php:120
-#: application/controllers/Labels.php:219
-#: application/controllers/Qslpostcard.php:192
-#: application/controllers/Qslpostcard.php:249
-#: application/controllers/Qslpostcard.php:308
-msgid "Template JSON is invalid"
-msgstr "模板 JSON 无效"
-
-#: application/controllers/Labeldesigner.php:125
-msgid "Template has no elements"
-msgstr ""
-
-#: application/controllers/Labeldesigner.php:131
-msgid "Label type not found"
-msgstr ""
-
-#: application/controllers/Labeldesigner.php:136
-#: application/controllers/Labels.php:225
-#: application/controllers/Labels.php:315
-#: application/controllers/Labels.php:318
-msgid "You need to assign a paperType to the label before printing"
-msgstr "在打印前，需要给标签指定一种纸张类型"
-
-#: application/controllers/Labeldesigner.php:149
-#: application/controllers/Qslpostcard.php:207
-msgid "No QSOs returned by get_sample_qsos()"
-msgstr "get_sample_qsos() 没有返回任何 QSO"
-
-#: application/controllers/Labeldesigner.php:156
-#: application/controllers/Qslpostcard.php:217
-msgid "PDF file was not created"
-msgstr "未能生成 PDF 文件"
-
-#: application/controllers/Labeldesigner.php:165
-msgid "Label PDF failed: "
-msgstr ""
-
-#: application/controllers/Labeldesigner.php:180
-msgid ""
-"The label type of this template no longer exists. Please select another one "
-"before exporting."
-msgstr ""
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -1962,59 +1905,73 @@ msgstr "QSL 卡片标签"
 msgid "Create Label Type"
 msgstr "创建标签类型"
 
-#: application/controllers/Labels.php:77 application/controllers/Labels.php:534
+#: application/controllers/Labels.php:77 application/controllers/Labels.php:435
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
+#: application/controllers/Labels.php:534
 msgid "Label Name"
 msgstr "标签名称"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:535
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:436
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
+#: application/views/labels/index.php:77 application/controllers/Labels.php:535
 #: application/views/labels/index.php:78
 msgid "Paper Type"
 msgstr "纸张类型"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:536
-#: application/views/labels/index.php:44 application/views/labels/index.php:79
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:437
+#: application/views/labels/index.php:43 application/views/labels/index.php:78
+#: application/controllers/Labels.php:536 application/views/labels/index.php:44
+#: application/views/labels/index.php:79
 msgid "Measurement"
 msgstr "测量单位"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:537
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:438
+#: application/controllers/Labels.php:537
 msgid "Top Margin"
 msgstr "顶边距"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:538
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:439
+#: application/controllers/Labels.php:538
 msgid "Left Margin"
 msgstr "左边距"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:539
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:440
+#: application/controllers/Labels.php:539
 msgid "QSLs Horizontally"
 msgstr "QSL 水平数量"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:540
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:441
+#: application/controllers/Labels.php:540
 msgid "QSLs Vertically"
 msgstr "QSL 垂直数量"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:541
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:442
+#: application/controllers/Labels.php:541
 msgid "Horizontal Space"
 msgstr "水平空白间隔"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:542
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:443
+#: application/controllers/Labels.php:542
 msgid "Vertical Space"
 msgstr "垂直空白间隔"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:543
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:444
+#: application/controllers/Labels.php:543
 msgid "Label width"
 msgstr "标签宽度"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:544
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:445
+#: application/controllers/Labels.php:544
 msgid "Label height"
 msgstr "标签高度"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:545
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:446
+#: application/controllers/Labels.php:545
 msgid "Size of Font"
 msgstr "字体大小"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:546
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:447
+#: application/controllers/Labels.php:546
 msgid "Number of QSOs on label"
 msgstr "标签上的 QSO 数量"
 
@@ -2023,21 +1980,25 @@ msgid "Create Paper Type"
 msgstr "创建纸张类型"
 
 #: application/controllers/Labels.php:118
+#: application/controllers/Labels.php:494
 #: application/controllers/Labels.php:599
 msgid "Paper Name"
 msgstr "纸张名称"
 
 #: application/controllers/Labels.php:119
+#: application/controllers/Labels.php:495
 #: application/controllers/Labels.php:600
 msgid "Paper Width"
 msgstr "纸张宽度"
 
 #: application/controllers/Labels.php:120
+#: application/controllers/Labels.php:496
 #: application/controllers/Labels.php:601
 msgid "Paper Height"
 msgstr "纸张高度"
 
 #: application/controllers/Labels.php:131
+#: application/controllers/Labels.php:504
 #: application/controllers/Labels.php:609
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
@@ -2045,15 +2006,29 @@ msgid ""
 msgstr "此纸张未被保存，请检查是否与已有名称重复。"
 
 #: application/controllers/Labels.php:144
+#: application/controllers/Qslpostcard.php:282
 #: application/controllers/Qslpostcard.php:285
 msgid "No QSOs were selected"
 msgstr "没有选择任何 QSO"
 
-#: application/controllers/Labels.php:230
-#: application/controllers/Labels.php:366
-msgid "0 QSOs found for print!"
-msgstr "无 QSO 可供打印！"
+#: application/controllers/Labels.php:216
+#: application/controllers/Labels.php:219
+#: application/controllers/Labeldesigner.php:136
+#: application/controllers/Labels.php:225
+#: application/controllers/Labels.php:315
+#: application/controllers/Labels.php:318
+msgid "You need to assign a paperType to the label before printing"
+msgstr "在打印前，需要给标签指定一种纸张类型"
 
+#: application/controllers/Labels.php:226
+#: application/controllers/Labels.php:229
+#: application/controllers/Labels.php:325
+#: application/controllers/Labels.php:328
+msgid "You need to create a label and set it to be used for print."
+msgstr "你需要创建并启用一个用于打印信息的标签。"
+
+#: application/controllers/Labels.php:236
+#: application/controllers/Labels.php:239
 #: application/controllers/Labels.php:237
 #: application/controllers/Labels.php:244
 #: application/controllers/Labels.php:335
@@ -2063,31 +2038,38 @@ msgid ""
 "font size."
 msgstr "出现了错误，标签未生成，请检查标签和字体大小。"
 
-#: application/controllers/Labels.php:325
-#: application/controllers/Labels.php:328
-msgid "You need to create a label and set it to be used for print."
-msgstr "你需要创建并启用一个用于打印信息的标签。"
+#: application/controllers/Labels.php:267
+#: application/controllers/Labels.php:230
+#: application/controllers/Labels.php:366
+msgid "0 QSOs found for print!"
+msgstr "无 QSO 可供打印！"
 
+#: application/controllers/Labels.php:424
 #: application/controllers/Labels.php:523
 msgid "Edit Label"
 msgstr "编辑标签"
 
+#: application/controllers/Labels.php:453
 #: application/controllers/Labels.php:552
 msgid "Label was saved."
 msgstr "标签已保存。"
 
+#: application/controllers/Labels.php:461
 #: application/controllers/Labels.php:560
 msgid "Label was deleted."
 msgstr "标签已删除。"
 
+#: application/controllers/Labels.php:483
 #: application/controllers/Labels.php:588
 msgid "Edit Paper"
 msgstr "编辑纸张"
 
+#: application/controllers/Labels.php:508
 #: application/controllers/Labels.php:613
 msgid "Paper was saved."
 msgstr "纸张已保存。"
 
+#: application/controllers/Labels.php:521
 #: application/controllers/Labels.php:626
 msgid "Paper was deleted."
 msgstr "纸张已删除。"
@@ -2137,7 +2119,7 @@ msgstr "日志簿"
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:111
-#: application/views/logbookadvanced/index.php:976
+#: application/views/logbookadvanced/index.php:979
 #: application/views/logbookadvanced/useroptions.php:124
 #: application/views/oqrs/qsolist.php:12
 #: application/views/qslprint/qslprint.php:42
@@ -2146,6 +2128,7 @@ msgstr "日志簿"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:62 application/views/user/edit.php:735
 #: application/views/user/edit.php:1003 application/views/visitor/mini.php:187
+#: application/views/logbookadvanced/index.php:976
 msgid "QSL"
 msgstr "QSL"
 
@@ -2176,11 +2159,11 @@ msgstr "QSL"
 #: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
 #: application/views/countqsoby/index.php:170
-#: application/views/dashboard/index.php:508
-#: application/views/dbtools/checkresult.php:107
-#: application/views/dbtools/checkresult.php:165
-#: application/views/dbtools/checkresult.php:393
+#: application/views/dashboard/index.php:496
 #: application/views/gridmap/index.php:182
+#: application/views/logbookadvanced/checkresult.php:105
+#: application/views/logbookadvanced/checkresult.php:163
+#: application/views/logbookadvanced/checkresult.php:391
 #: application/views/logbookadvanced/useroptions.php:136
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
 #: application/views/oqrs/qsolist.php:175
@@ -2197,6 +2180,10 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:482
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/views/dbtools/checkresult.php:107
+#: application/views/dbtools/checkresult.php:165
+#: application/views/dbtools/checkresult.php:393
+#: application/views/dashboard/index.php:508
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2292,12 +2279,6 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/continents/index.php:44
 #: application/views/countqsoby/index.php:128
 #: application/views/csv/index.php:42 application/views/dashboard/index.php:5
-#: application/views/dbtools/checkresult.php:106
-#: application/views/dbtools/checkresult.php:164
-#: application/views/dbtools/checkresult.php:245
-#: application/views/dbtools/checkresult.php:321
-#: application/views/dbtools/checkresult.php:392
-#: application/views/dbtools/showStateQsos.php:23
 #: application/views/debug/index.php:808
 #: application/views/distancerecords/index.php:23
 #: application/views/distances/index.php:66
@@ -2309,14 +2290,20 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/hamsat/index.php:38
 #: application/views/interface_assets/footer.php:126
 #: application/views/kml/index.php:31
+#: application/views/logbookadvanced/checkresult.php:104
+#: application/views/logbookadvanced/checkresult.php:162
+#: application/views/logbookadvanced/checkresult.php:243
+#: application/views/logbookadvanced/checkresult.php:319
+#: application/views/logbookadvanced/checkresult.php:390
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 #: application/views/logbookadvanced/edit.php:17
 #: application/views/logbookadvanced/index.php:407
 #: application/views/logbookadvanced/index.php:560
-#: application/views/logbookadvanced/index.php:946
+#: application/views/logbookadvanced/index.php:949
 #: application/views/logbookadvanced/mergedialog.php:29
 #: application/views/logbookadvanced/mergedialog.php:52
 #: application/views/logbookadvanced/qslcarousel.php:32
+#: application/views/logbookadvanced/showStateQsos.php:23
 #: application/views/logbookadvanced/useroptions.php:46
 #: application/views/map/qso_map.php:33 application/views/mode/index.php:40
 #: application/views/oqrs/notinlogform.php:13
@@ -2353,6 +2340,13 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/dbtools/checkresult.php:106
+#: application/views/dbtools/checkresult.php:164
+#: application/views/dbtools/checkresult.php:245
+#: application/views/dbtools/checkresult.php:321
+#: application/views/dbtools/checkresult.php:392
+#: application/views/dbtools/showStateQsos.php:23
+#: application/views/logbookadvanced/index.php:946
 msgid "Mode"
 msgstr "模式"
 
@@ -2362,7 +2356,7 @@ msgstr "模式"
 #: application/views/awards/sota/index.php:168
 #: application/views/awards/wwff/index.php:168
 #: application/views/logbookadvanced/edit.php:21
-#: application/views/logbookadvanced/index.php:949
+#: application/views/logbookadvanced/index.php:952
 #: application/views/logbookadvanced/useroptions.php:52
 #: application/views/qslcard/searchresult.php:13
 #: application/views/qslcard/searchresult.php:29
@@ -2380,6 +2374,7 @@ msgstr "模式"
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/views/logbookadvanced/index.php:949
 msgid "RST (S)"
 msgstr "我收对方"
 
@@ -2389,7 +2384,7 @@ msgstr "我收对方"
 #: application/views/awards/sota/index.php:169
 #: application/views/awards/wwff/index.php:169
 #: application/views/logbookadvanced/edit.php:20
-#: application/views/logbookadvanced/index.php:952
+#: application/views/logbookadvanced/index.php:955
 #: application/views/logbookadvanced/useroptions.php:58
 #: application/views/qslcard/searchresult.php:14
 #: application/views/qslcard/searchresult.php:30
@@ -2408,6 +2403,7 @@ msgstr "我收对方"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/views/logbookadvanced/index.php:952
 msgid "RST (R)"
 msgstr "对方收我"
 
@@ -2437,11 +2433,11 @@ msgstr "DXCC 实体"
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
-#: application/views/dbtools/checkresult.php:396
 #: application/views/interface_assets/header.php:229
+#: application/views/logbookadvanced/checkresult.php:394
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:501
-#: application/views/logbookadvanced/index.php:1012
+#: application/views/logbookadvanced/index.php:1015
 #: application/views/logbookadvanced/qslcarousel.php:38
 #: application/views/logbookadvanced/useroptions.php:220
 #: application/views/lookup/index.php:7
@@ -2462,6 +2458,8 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/dbtools/checkresult.php:396
+#: application/views/logbookadvanced/index.php:1012
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2472,12 +2470,12 @@ msgstr "IOTA"
 #: application/views/awards/was/index.php:156
 #: application/views/contesting/manager/components/session_modal.php:124
 #: application/views/dashboard/index.php:13
-#: application/views/dbtools/showStateQsos.php:25
 #: application/views/logbookadvanced/edit.php:38
 #: application/views/logbookadvanced/edit.php:104
 #: application/views/logbookadvanced/index.php:397
-#: application/views/logbookadvanced/index.php:1000
+#: application/views/logbookadvanced/index.php:1003
 #: application/views/logbookadvanced/qslcarousel.php:36
+#: application/views/logbookadvanced/showStateQsos.php:25
 #: application/views/logbookadvanced/useroptions.php:181
 #: application/views/qslcard/searchresult.php:18
 #: application/views/qslcard/searchresult.php:34
@@ -2493,6 +2491,8 @@ msgstr "IOTA"
 #: application/views/user/edit.php:374 application/views/user/edit.php:398
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/views/dbtools/showStateQsos.php:25
+#: application/views/logbookadvanced/index.php:1000
 msgid "State"
 msgstr "州"
 
@@ -2509,7 +2509,7 @@ msgstr "州"
 #: application/views/logbookadvanced/edit.php:16
 #: application/views/logbookadvanced/index.php:14
 #: application/views/logbookadvanced/index.php:546
-#: application/views/logbookadvanced/index.php:1054
+#: application/views/logbookadvanced/index.php:1057
 #: application/views/logbookadvanced/useroptions.php:318
 #: application/views/map/qso_map.php:112
 #: application/views/qslcard/searchresult.php:20
@@ -2525,6 +2525,7 @@ msgstr "州"
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/views/logbookadvanced/index.php:1054
 msgid "Distance"
 msgstr "距离"
 
@@ -2580,25 +2581,25 @@ msgstr "距离"
 #: application/views/continents/index.php:35
 #: application/views/countqsoby/index.php:76 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
-#: application/views/dbtools/checkresult.php:105
-#: application/views/dbtools/checkresult.php:163
-#: application/views/dbtools/checkresult.php:246
-#: application/views/dbtools/checkresult.php:322
-#: application/views/dbtools/checkresult.php:391
-#: application/views/dbtools/showStateQsos.php:24
 #: application/views/debug/index.php:809 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:36
 #: application/views/gridmap/index.php:78 application/views/kml/index.php:19
+#: application/views/logbookadvanced/checkresult.php:103
+#: application/views/logbookadvanced/checkresult.php:161
+#: application/views/logbookadvanced/checkresult.php:244
+#: application/views/logbookadvanced/checkresult.php:320
+#: application/views/logbookadvanced/checkresult.php:389
 #: application/views/logbookadvanced/dupesearchdialog.php:49
 #: application/views/logbookadvanced/edit.php:10
 #: application/views/logbookadvanced/help.php:58
 #: application/views/logbookadvanced/index.php:418
 #: application/views/logbookadvanced/index.php:559
-#: application/views/logbookadvanced/index.php:955
+#: application/views/logbookadvanced/index.php:958
 #: application/views/logbookadvanced/mergedialog.php:30
 #: application/views/logbookadvanced/mergedialog.php:53
 #: application/views/logbookadvanced/qslcarousel.php:33
+#: application/views/logbookadvanced/showStateQsos.php:24
 #: application/views/logbookadvanced/useroptions.php:64
 #: application/views/map/qso_map.php:32
 #: application/views/oqrs/notinlogform.php:12
@@ -2636,6 +2637,13 @@ msgstr "距离"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/dbtools/checkresult.php:105
+#: application/views/dbtools/checkresult.php:163
+#: application/views/dbtools/checkresult.php:246
+#: application/views/dbtools/checkresult.php:322
+#: application/views/dbtools/checkresult.php:391
+#: application/views/dbtools/showStateQsos.php:24
+#: application/views/logbookadvanced/index.php:955
 msgid "Band"
 msgstr "频段"
 
@@ -2647,7 +2655,7 @@ msgstr "频段"
 #: application/views/contesting/logger/components/radio.php:65
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:11
-#: application/views/logbookadvanced/index.php:958
+#: application/views/logbookadvanced/index.php:961
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/qslcard/searchresult.php:22
 #: application/views/qslcard/searchresult.php:38
@@ -2666,6 +2674,7 @@ msgstr "频段"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/views/logbookadvanced/index.php:958
 msgid "Frequency"
 msgstr "频率"
 
@@ -2676,7 +2685,7 @@ msgstr "频率"
 #: application/views/dashboard/index.php:18
 #: application/views/logbookadvanced/edit.php:18
 #: application/views/logbookadvanced/index.php:517
-#: application/views/logbookadvanced/index.php:1036
+#: application/views/logbookadvanced/index.php:1039
 #: application/views/logbookadvanced/useroptions.php:278
 #: application/views/qslcard/searchresult.php:23
 #: application/views/qslcard/searchresult.php:55
@@ -2692,6 +2701,7 @@ msgstr "频率"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:642
 #: application/views/visitor/index.php:39
+#: application/views/logbookadvanced/index.php:1036
 msgid "Operator"
 msgstr "操作员"
 
@@ -2729,17 +2739,30 @@ msgstr "删除 DXCC 实体"
 msgid "Advanced logbook"
 msgstr "详细日志"
 
+#: application/controllers/Logbookadvanced.php:1019
+#: application/controllers/Dbtools.php:158
+#, php-format
+msgid "DXCC updated for %d QSO(s)."
+msgstr "已更新 %d 个 QSO 的 DXCC。"
+
+#: application/controllers/Logbookadvanced.php:1035
+#: application/controllers/Dbtools.php:174
+#, php-format
+msgid "Map for DXCC %s and gridsquare %s."
+msgstr "为 DXCC %s 和网格 %s 的地图。"
+
 #: application/controllers/Lookup.php:21
 msgid "Quick Lookup"
 msgstr "快速查找"
 
 #: application/controllers/Lotw.php:63 application/controllers/Lotw.php:94
 #: application/controllers/Lotw.php:133
-#: application/views/interface_assets/header.php:578
+#: application/views/interface_assets/header.php:574
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1067 application/views/visitor/index.php:326
+#: application/views/interface_assets/header.php:578
 msgid "Logbook of the World"
 msgstr "Logbook of the World (LoTW)"
 
@@ -2828,11 +2851,13 @@ msgid "QSO Map"
 msgstr "QSO 地图"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/views/interface_assets/header.php:351
-#: application/views/interface_assets/header.php:502
+#: application/views/interface_assets/header.php:347
+#: application/views/interface_assets/header.php:498
 #: application/views/mode/index.php:27
 #: application/views/statistics/qsltable.php:111
 #: application/views/usermode/index.php:25
+#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:502
 msgid "Modes"
 msgstr "模式"
 
@@ -3101,6 +3126,7 @@ msgid "Invalid station slug"
 msgstr "无效的台站标识符"
 
 #: application/controllers/Oqrs.php:180
+#: application/views/interface_assets/header.php:559
 #: application/views/interface_assets/header.php:563
 msgid "OQRS Requests"
 msgstr "OQRS"
@@ -3165,6 +3191,7 @@ msgid ""
 msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:212
+#: application/views/interface_assets/header.php:577
 #: application/views/interface_assets/header.php:581
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
@@ -3177,12 +3204,15 @@ msgstr "QRZ QSL 导入"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF 信息"
 
-#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:507
-#: application/views/dashboard/index.php:526
-#: application/views/dashboard/index.php:529
+#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:495
+#: application/views/dashboard/index.php:510
+#: application/views/dashboard/index.php:513
 #: application/views/qslcard/index.php:3
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
+#: application/views/dashboard/index.php:507
+#: application/views/dashboard/index.php:526
+#: application/views/dashboard/index.php:529
 msgid "QSL Cards"
 msgstr "QSL 卡片"
 
@@ -3190,10 +3220,13 @@ msgstr "QSL 卡片"
 msgid "Upload QSL Cards"
 msgstr "上传 QSL 卡片"
 
+#: application/controllers/Qsl.php:93 application/controllers/Qsl.php:140
 #: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
 msgid "Not enough free disk space to store the QSL card."
 msgstr "没有足够的磁盘空间来保存 QSL 卡片。"
 
+#: application/controllers/Qsl.php:110 application/controllers/Qsl.php:157
+#: application/controllers/Qslpostcard.php:86
 #: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
 #: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
@@ -3213,41 +3246,85 @@ msgstr ""
 "请将您当前的 config.php 和最新的 config.sample.php 进行比较，并相应更新。"
 
 #: application/controllers/Qslpostcard.php:34
+#: application/views/interface_assets/header.php:568
 #: application/views/interface_assets/header.php:572
 msgid "QSL Postcard Designer"
 msgstr "QSL 明信片设计器"
 
+#: application/controllers/Qslpostcard.php:61
 #: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "磁盘空间不足，无法存储QSL卡。"
 
+#: application/controllers/Qslpostcard.php:183
+#: application/controllers/Qslpostcard.php:240
+#: application/controllers/Qslpostcard.php:299
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
+#: application/controllers/Labeldesigner.php:114
+#: application/controllers/Labels.php:213
+msgid "Template not found"
+msgstr "模板未找到"
+
+#: application/controllers/Qslpostcard.php:189
+#: application/controllers/Qslpostcard.php:246
+#: application/controllers/Qslpostcard.php:305
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
+#: application/controllers/Labeldesigner.php:120
+#: application/controllers/Labels.php:219
+msgid "Template JSON is invalid"
+msgstr "模板 JSON 无效"
+
+#: application/controllers/Qslpostcard.php:204
+#: application/controllers/Qslpostcard.php:207
+#: application/controllers/Labeldesigner.php:149
+msgid "No QSOs returned by get_sample_qsos()"
+msgstr "get_sample_qsos() 没有返回任何 QSO"
+
+#: application/controllers/Qslpostcard.php:214
+#: application/controllers/Qslpostcard.php:217
+#: application/controllers/Labeldesigner.php:156
+msgid "PDF file was not created"
+msgstr "未能生成 PDF 文件"
+
+#: application/controllers/Qslpostcard.php:223
 #: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr "生成 QSL 明信片 PDF 失败： "
 
-#: application/controllers/Qslpostcard.php:231
+#: application/controllers/Qslpostcard.php:228
 #: application/views/qslpostcard/printqueue.php:2
+#: application/controllers/Qslpostcard.php:231
 msgid "Print QSL Postcards"
 msgstr "打印 QSL 明信片"
 
+#: application/controllers/Qslpostcard.php:259
+#: application/controllers/Qslpostcard.php:318
 #: application/controllers/Qslpostcard.php:262
 #: application/controllers/Qslpostcard.php:321
 msgid "No QSOs found for postcard printing"
 msgstr "没有找到要打印为明信片的 QSO"
 
+#: application/controllers/Qslpostcard.php:274
 #: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSL 明信片队列 PDF 失败： "
 
-#: application/controllers/Qslpostcard.php:289
+#: application/controllers/Qslpostcard.php:286
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:289
 msgid "Print Selected QSL Postcards"
 msgstr "打印已选择的 QSL 明信片"
 
+#: application/controllers/Qslpostcard.php:311
 #: application/controllers/Qslpostcard.php:314
 msgid "No selected QSO IDs were provided"
 msgstr "没有提供已选择的 QSO ID"
 
+#: application/controllers/Qslpostcard.php:336
 #: application/controllers/Qslpostcard.php:339
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "已选择的 QSL 明信片生成 PDF 失败： "
@@ -3283,6 +3360,7 @@ msgid "Call Transfer"
 msgstr "通联转接"
 
 #: application/controllers/Radio.php:16
+#: application/views/interface_assets/header.php:591
 #: application/views/interface_assets/header.php:595
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
@@ -3346,7 +3424,7 @@ msgstr "上次更新"
 #: application/views/cron/index.php:80
 #: application/views/interface_assets/footer.php:698
 #: application/views/interface_assets/footer.php:707
-#: application/views/labels/index.php:49 application/views/labels/index.php:85
+#: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:892
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:58
@@ -3354,7 +3432,8 @@ msgstr "上次更新"
 #: application/views/stationsetup/stationsetup.php:162
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
-#: application/views/user/index.php:203
+#: application/views/user/index.php:203 application/views/labels/index.php:49
+#: application/views/labels/index.php:85
 msgid "Edit"
 msgstr "编辑"
 
@@ -3373,10 +3452,8 @@ msgstr "编辑"
 #: application/views/interface_assets/footer.php:2667
 #: application/views/interface_assets/footer.php:2686
 #: application/views/interface_assets/footer.php:2704
-#: application/views/labeldesigner/designer.php:413
-#: application/views/labeldesigner/designer.php:452
-#: application/views/labels/index.php:50 application/views/labels/index.php:86
-#: application/views/logbookadvanced/index.php:910
+#: application/views/labels/index.php:49 application/views/labels/index.php:85
+#: application/views/logbookadvanced/index.php:913
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:80
@@ -3393,6 +3470,12 @@ msgstr "编辑"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:719
 #: application/views/view_log/qso.php:727
+#: application/views/logbookadvanced/index.php:910
+#: application/views/labeldesigner/designer.php:400
+#: application/views/labeldesigner/designer.php:439
+#: application/views/labels/index.php:50 application/views/labels/index.php:86
+#: application/views/labeldesigner/designer.php:413
+#: application/views/labeldesigner/designer.php:452
 msgid "Delete"
 msgstr "删除"
 
@@ -3422,11 +3505,12 @@ msgstr "电台已成功移除"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
 #: application/views/amsatstatus/index.php:74
-#: application/views/interface_assets/header.php:355
+#: application/views/interface_assets/header.php:351
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
 #: application/views/statistics/qsltable.php:120
+#: application/views/interface_assets/header.php:355
 msgid "Satellites"
 msgstr "卫星"
 
@@ -3478,8 +3562,8 @@ msgstr "无可用预设"
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:46
-#: application/views/interface_assets/header.php:415
-#: application/views/interface_assets/header.php:422
+#: application/views/interface_assets/header.php:411
+#: application/views/interface_assets/header.php:418
 #: application/views/logbookadvanced/index.php:75
 #: application/views/logbookadvanced/index.php:881
 #: application/views/oqrs/index.php:30
@@ -3495,6 +3579,8 @@ msgstr "无可用预设"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/interface_assets/header.php:415
+#: application/views/interface_assets/header.php:422
 msgid "Search"
 msgstr "搜索"
 
@@ -3556,6 +3642,9 @@ msgstr "请检查网格定位的值 ( %s )"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/azimuthal/index.php:17
+#: application/views/interface_assets/header.php:495
+#: application/views/interface_assets/header.php:527
+#: application/views/interface_assets/header.php:675
 #: application/views/interface_assets/header.php:499
 #: application/views/interface_assets/header.php:531
 #: application/views/interface_assets/header.php:679
@@ -3580,12 +3669,12 @@ msgstr "不允许"
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
-#: application/views/labeldesigner/designer.php:60
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/lotw_upload.php:123
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/labeldesigner/designer.php:60
 msgid "Error"
 msgstr "错误"
 
@@ -3633,9 +3722,10 @@ msgid "Set as Active Logbook"
 msgstr "设置为正在使用的日志"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:677
+#: application/views/interface_assets/header.php:673
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
+#: application/views/interface_assets/header.php:677
 msgid "Active Logbook"
 msgstr "启用"
 
@@ -3722,10 +3812,10 @@ msgid "Empty Log"
 msgstr "清空日志"
 
 #: application/controllers/Stationsetup.php:409
-#: application/models/Labeldesigner_model.php:74
 #: application/models/Qslpostcard_model.php:78
 #: application/views/stationsetup/stationsetup.php:163
 #: application/views/stationsetup/stationsetup.php:203
+#: application/models/Labeldesigner_model.php:74
 msgid "Copy"
 msgstr "复制"
 
@@ -3782,6 +3872,9 @@ msgid "EME Initials"
 msgstr "EME 首通记录"
 
 #: application/controllers/Themes.php:26
+#: application/views/interface_assets/header.php:353
+#: application/views/interface_assets/header.php:449
+#: application/views/interface_assets/header.php:451
 #: application/views/interface_assets/header.php:357
 #: application/views/interface_assets/header.php:453
 #: application/views/interface_assets/header.php:455
@@ -3933,6 +4026,7 @@ msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC 网格文件更新失败。结果： "
 
 #: application/controllers/User.php:51
+#: application/views/interface_assets/header.php:343
 #: application/views/interface_assets/header.php:347
 msgid "User Accounts"
 msgstr "用户账户"
@@ -4035,9 +4129,10 @@ msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
 #: application/controllers/User.php:1408
-#: application/views/interface_assets/header.php:435
+#: application/views/interface_assets/header.php:431
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
+#: application/views/interface_assets/header.php:435
 msgid "Login"
 msgstr "登录"
 
@@ -4226,6 +4321,7 @@ msgstr "导出地图"
 
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
+#: application/views/interface_assets/header.php:578
 #: application/views/interface_assets/header.php:582
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
@@ -4413,15 +4509,15 @@ msgstr "删除比赛记录"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "读取日志簿"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "创建并更新日志簿"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "删除日志簿"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -4544,10 +4640,6 @@ msgstr ""
 msgid "Officers must edit contests."
 msgstr "集体台站管理员必须编辑好竞赛。"
 
-#: application/models/Dbtools_model.php:120
-msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr "VuccGrids 表为空。请先导入 VUCC 网格数据。"
-
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "你的 eQSL 用户名或密码错误。"
@@ -4600,18 +4692,6 @@ msgstr "HRDlog：无台站配置信息。"
 msgid "Deleted"
 msgstr "已删除"
 
-#: application/models/Labeldesigner_model.php:158
-msgid "Imported"
-msgstr ""
-
-#: application/models/Labeldesigner_model.php:182
-msgid "Imported paper"
-msgstr ""
-
-#: application/models/Labeldesigner_model.php:244
-msgid "Imported label type"
-msgstr ""
-
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "台站不可用"
@@ -4629,6 +4709,7 @@ msgstr "未提供呼号"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
+#: application/models/Logbook_model.php:4894
 #: application/models/Logbook_model.php:4930
 #, php-format
 msgid ""
@@ -4637,6 +4718,7 @@ msgstr ""
 "导入的本台呼号 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的呼号"
 "为 %s：已跳过"
 
+#: application/models/Logbook_model.php:4902
 #: application/models/Logbook_model.php:4938
 #, php-format
 msgid ""
@@ -4646,12 +4728,14 @@ msgstr ""
 "导入的本台网格 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的网格"
 "为 %s：已跳过"
 
+#: application/models/Logbook_model.php:4918
 #: application/models/Logbook_model.php:4954
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
+#: application/models/Logbook_model.php:4928
 #: application/models/Logbook_model.php:4964
 #, php-format
 msgid ""
@@ -4659,6 +4743,7 @@ msgid ""
 "imported. It's invalid."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
+#: application/models/Logbook_model.php:4935
 #: application/models/Logbook_model.php:4971
 #, php-format
 msgid ""
@@ -4666,6 +4751,7 @@ msgid ""
 "imported. The invalid input is '%s'."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
+#: application/models/Logbook_model.php:5005
 #: application/models/Logbook_model.php:5041
 #, php-format
 msgid ""
@@ -4673,6 +4759,7 @@ msgid ""
 "imported."
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
+#: application/models/Logbook_model.php:5012
 #: application/models/Logbook_model.php:5048
 #, php-format
 msgid ""
@@ -4681,63 +4768,77 @@ msgid ""
 msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
+#: application/models/Logbook_model.php:5286
 #: application/models/Logbook_model.php:5322
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:5297
 #: application/models/Logbook_model.php:5333
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:5358
 #: application/models/Logbook_model.php:5394
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5770
+#: application/models/Logbook_model.php:5734
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5770
 msgid "Duplicate for"
 msgstr "内容重复"
 
+#: application/models/Logbook_model.php:5801
+#: application/models/Logbook_model.php:5901
 #: application/models/Logbook_model.php:5837
 #: application/models/Logbook_model.php:5937
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
+#: application/models/Logbook_model.php:5809
 #: application/models/Logbook_model.php:5845
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
+#: application/models/Logbook_model.php:5815
 #: application/models/Logbook_model.php:5851
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
+#: application/models/Logbook_model.php:5819
 #: application/models/Logbook_model.php:5855
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
+#: application/models/Logbook_model.php:5823
 #: application/models/Logbook_model.php:5859
 msgid "confirmation pending"
 msgstr "等待确认"
 
+#: application/models/Logbook_model.php:5826
 #: application/models/Logbook_model.php:5862
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:5865
+#: application/models/Logbook_model.php:5829
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5865
 msgid "unknown"
 msgstr "未知"
 
+#: application/models/Logbook_model.php:5904
 #: application/models/Logbook_model.php:5940
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
+#: application/models/Logbook_model.php:5907
 #: application/models/Logbook_model.php:5943
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:6362
+#: application/models/Logbook_model.php:6326
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4750,24 +4851,34 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6362
 msgid "Bearing"
 msgstr "方位角"
 
+#: application/models/Logbookadvanced_model.php:1877
+#: application/models/Dbtools_model.php:120
+msgid "VuccGrids table is empty. Please import the VUCC grids data first."
+msgstr "VuccGrids 表为空。请先导入 VUCC 网格数据。"
+
+#: application/models/Logbookadvanced_model.php:2547
 #: application/models/Logbookadvanced_model.php:1782
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr "主 QSO ID 无效，或您无权访问其中一个 QSO"
 
-#: application/models/Logbookadvanced_model.php:1792
+#: application/models/Logbookadvanced_model.php:2557
 #: application/views/view_log/qso.php:868
+#: application/models/Logbookadvanced_model.php:1792
 msgid "QSO not found"
 msgstr "QSO 未找到"
 
+#: application/models/Logbookadvanced_model.php:2643
 #: application/models/Logbookadvanced_model.php:1878
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "未选择要合并的字段，或 QSO 之间无差异"
 
+#: application/models/Logbookadvanced_model.php:2656
 #: application/models/Logbookadvanced_model.php:1891
 msgid "QSOs merged successfully"
 msgstr "QSO 合并成功"
@@ -4792,6 +4903,7 @@ msgstr "天线"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "在通讯录类别中，笔记标题需要是唯一的。"
 
+#: application/models/Qslpostcard_model.php:440
 #: application/models/Qslpostcard_model.php:442
 msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
@@ -4965,7 +5077,7 @@ msgstr "差异"
 #: application/views/csv/index.php:21 application/views/csv/index.php:33
 #: application/views/csv/index.php:44 application/views/csv/index.php:60
 #: application/views/csv/index.php:82 application/views/csv/index.php:94
-#: application/views/dashboard/index.php:683
+#: application/views/dashboard/index.php:667
 #: application/views/distances/index.php:25
 #: application/views/distances/index.php:40
 #: application/views/distances/index.php:50
@@ -5035,6 +5147,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:987
 #: application/views/visitor/layout/footer.php:168
+#: application/views/dashboard/index.php:683
 msgid "All"
 msgstr "所有"
 
@@ -5080,11 +5193,12 @@ msgstr "周期"
 #: application/views/gridmap/index.php:91
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:447
-#: application/views/logbookadvanced/index.php:1042
+#: application/views/logbookadvanced/index.php:1045
 #: application/views/logbookadvanced/useroptions.php:290
 #: application/views/timeline/index.php:85 application/views/user/edit.php:405
 #: application/views/view_log/partial/log_ajax.php:22
 #: application/views/view_log/qso.php:235
+#: application/views/logbookadvanced/index.php:1042
 msgid "Propagation"
 msgstr "传播方式"
 
@@ -5317,8 +5431,8 @@ msgstr "编号"
 #: application/views/contesting/manager/components/session_modal.php:122
 #: application/views/contesting/manager/export_cbr.php:252
 #: application/views/dashboard/index.php:19
-#: application/views/labels/index.php:43 application/views/labels/index.php:77
-#: application/views/logbookadvanced/index.php:964
+#: application/views/labels/index.php:42 application/views/labels/index.php:76
+#: application/views/logbookadvanced/index.php:967
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:91
 #: application/views/lotw/satupdate.php:7
@@ -5338,6 +5452,8 @@ msgstr "编号"
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:219
 #: application/views/view_log/qso.php:616
+#: application/views/logbookadvanced/index.php:964
+#: application/views/labels/index.php:43 application/views/labels/index.php:77
 msgid "Name"
 msgstr "名称"
 
@@ -5369,9 +5485,10 @@ msgid "Tracking"
 msgstr "追踪中"
 
 #: application/views/activationplanner/index.php:33
-#: application/views/labeldesigner/designer.php:290
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/labeldesigner/designer.php:277
+#: application/views/labeldesigner/designer.php:290
 msgid "Field"
 msgstr "字段"
 
@@ -5410,10 +5527,12 @@ msgstr "此网格中的活动"
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
 #: application/views/countqsoby/index.php:7
-#: application/views/dbtools/statecheckresult.php:16
-#: application/views/labels/index.php:83
+#: application/views/labels/index.php:82
+#: application/views/logbookadvanced/statecheckresult.php:16
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
+#: application/views/dbtools/statecheckresult.php:16
+#: application/views/labels/index.php:83
 msgid "QSOs"
 msgstr "QSO"
 
@@ -5606,21 +5725,22 @@ msgstr "未找到！"
 #: application/views/contesting/logger/components/qso-form.php:66
 #: application/views/contesting/logger/components/qso-form.php:147
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:343
-#: application/views/dbtools/checkresult.php:103
-#: application/views/dbtools/checkresult.php:161
-#: application/views/dbtools/checkresult.php:242
-#: application/views/dbtools/checkresult.php:318
-#: application/views/dbtools/checkresult.php:389
-#: application/views/dbtools/showUpdateResult.php:46
-#: application/views/dbtools/showUpdateResult.php:109
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:35
-#: application/views/labels/index.php:125
+#: application/views/labels/index.php:124
+#: application/views/logbookadvanced/checkresult.php:101
+#: application/views/logbookadvanced/checkresult.php:159
+#: application/views/logbookadvanced/checkresult.php:240
+#: application/views/logbookadvanced/checkresult.php:316
+#: application/views/logbookadvanced/checkresult.php:387
+#: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
+#: application/views/logbookadvanced/showUpdateResult.php:46
+#: application/views/logbookadvanced/showUpdateResult.php:109
 #: application/views/lotw_views/index.php:42
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
@@ -5646,6 +5766,14 @@ msgstr "未找到！"
 #: application/views/visitor/mini.php:183
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
+#: application/views/dbtools/checkresult.php:103
+#: application/views/dbtools/checkresult.php:161
+#: application/views/dbtools/checkresult.php:242
+#: application/views/dbtools/checkresult.php:318
+#: application/views/dbtools/checkresult.php:389
+#: application/views/dbtools/showUpdateResult.php:46
+#: application/views/dbtools/showUpdateResult.php:109
+#: application/views/labels/index.php:125
 msgid "Callsign"
 msgstr "呼号"
 
@@ -5701,6 +5829,7 @@ msgstr "无法匹配的 QSO"
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
+#: application/views/logbookadvanced/showUpdateResult.php:88
 #: application/views/dbtools/showUpdateResult.php:88
 msgid "QSOs updated"
 msgstr "已更新的 QSO"
@@ -5726,14 +5855,14 @@ msgstr ""
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
-#: application/views/dbtools/checkresult.php:243
-#: application/views/dbtools/checkresult.php:319
 #: application/views/debug/index.php:805
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:34
 #: application/views/hamsat/index.php:33
+#: application/views/logbookadvanced/checkresult.php:241
+#: application/views/logbookadvanced/checkresult.php:317
 #: application/views/logbookadvanced/dupesearchdialog.php:12
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/oqrs/notinlogform.php:10
@@ -5759,6 +5888,8 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/dbtools/checkresult.php:243
+#: application/views/dbtools/checkresult.php:319
 msgid "Date"
 msgstr "日期"
 
@@ -5773,15 +5904,15 @@ msgstr "日期"
 #: application/views/contesting/logger/components/qso-form.php:146
 #: application/views/contesting/manager/export_cbr.php:158
 #: application/views/dashboard/index.php:341
-#: application/views/dbtools/checkresult.php:244
-#: application/views/dbtools/checkresult.php:320
 #: application/views/debug/index.php:806
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:35
-#: application/views/hamsat/index.php:34 application/views/oqrs/qsolist.php:8
-#: application/views/qslcard/index.php:46
+#: application/views/hamsat/index.php:34
+#: application/views/logbookadvanced/checkresult.php:242
+#: application/views/logbookadvanced/checkresult.php:318
+#: application/views/oqrs/qsolist.php:8 application/views/qslcard/index.php:46
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:36
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:199
@@ -5795,6 +5926,8 @@ msgstr "日期"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/dbtools/checkresult.php:244
+#: application/views/dbtools/checkresult.php:320
 msgid "Time"
 msgstr "时间"
 
@@ -5802,7 +5935,6 @@ msgstr "时间"
 #: application/views/adif/pota_success.php:31
 #: application/views/awards/vucc/band.php:23
 #: application/views/dashboard/index.php:415
-#: application/views/dbtools/showStateQsos.php:21
 #: application/views/dcl_views/key_import.php:45
 #: application/views/debug/index.php:807 application/views/debug/index.php:842
 #: application/views/dxcalendar/index.php:17
@@ -5810,6 +5942,7 @@ msgstr "时间"
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
 #: application/views/logbookadvanced/mergedialog.php:28
 #: application/views/logbookadvanced/mergedialog.php:51
+#: application/views/logbookadvanced/showStateQsos.php:21
 #: application/views/public_search/result.php:14
 #: application/views/qslcard/searchresult.php:8
 #: application/views/qso/components/previous_contacts.php:7
@@ -5817,6 +5950,7 @@ msgstr "时间"
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/dbtools/showStateQsos.php:21
 msgid "Call"
 msgstr "呼号"
 
@@ -6316,13 +6450,12 @@ msgstr "ADIF中的POTA编号"
 #: application/views/awards/amsat_rover/index.php:159
 #: application/views/contesting/manager/index.php:31
 #: application/views/cron/index.php:76
-#: application/views/dashboard/index.php:490
-#: application/views/dashboard/index.php:532
-#: application/views/dashboard/index.php:566
-#: application/views/dashboard/index.php:595
-#: application/views/dashboard/index.php:624
-#: application/views/dashboard/index.php:653
-#: application/views/dashboard/index.php:682
+#: application/views/dashboard/index.php:516
+#: application/views/dashboard/index.php:550
+#: application/views/dashboard/index.php:579
+#: application/views/dashboard/index.php:608
+#: application/views/dashboard/index.php:637
+#: application/views/dashboard/index.php:666
 #: application/views/logbookadvanced/attachContest.php:11
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:48
@@ -6332,6 +6465,13 @@ msgstr "ADIF中的POTA编号"
 #: application/views/stationsetup/stationsetup.php:44
 #: application/views/timeline/index.php:197
 #: application/views/usermode/index.php:41
+#: application/views/dashboard/index.php:490
+#: application/views/dashboard/index.php:532
+#: application/views/dashboard/index.php:566
+#: application/views/dashboard/index.php:595
+#: application/views/dashboard/index.php:624
+#: application/views/dashboard/index.php:653
+#: application/views/dashboard/index.php:682
 msgid "Status"
 msgstr "状态"
 
@@ -6499,11 +6639,13 @@ msgstr ""
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
 #: application/views/continents/index.php:55
-#: application/views/logbookadvanced/index.php:914
-#: application/views/logbookadvanced/index.php:915
+#: application/views/logbookadvanced/index.php:917
+#: application/views/logbookadvanced/index.php:918
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:883
+#: application/views/logbookadvanced/index.php:914
+#: application/views/logbookadvanced/index.php:915
 msgid "Reset"
 msgstr "重置筛选条件"
 
@@ -6559,7 +6701,6 @@ msgstr "如用于描述用途的名字。"
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
 #: application/views/interface_assets/footer.php:693
-#: application/views/labeldesigner/designer.php:101
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
@@ -6573,6 +6714,8 @@ msgstr "如用于描述用途的名字。"
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:188
 #: application/views/simplefle/index.php:22
+#: application/views/labeldesigner/designer.php:95
+#: application/views/labeldesigner/designer.php:101
 msgid "Save"
 msgstr "保存"
 
@@ -7103,9 +7246,10 @@ msgstr "下载 CSV 文件"
 #: application/views/awards/counties/index.php:8
 #: application/views/awards/counties/state_ajax.php:7
 #: application/views/logbookadvanced/index.php:483
-#: application/views/logbookadvanced/index.php:1003
+#: application/views/logbookadvanced/index.php:1006
 #: application/views/logbookadvanced/useroptions.php:187
 #: application/views/stationsetup/locationlist.php:20
+#: application/views/logbookadvanced/index.php:1003
 msgid "County"
 msgstr "县"
 
@@ -7201,10 +7345,11 @@ msgstr "表格"
 #: application/views/dashboard/index.php:308
 #: application/views/dashboard/index.php:323
 #: application/views/dashboard/index.php:393
-#: application/views/dbtools/checkresult.php:170
+#: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
+#: application/views/dbtools/checkresult.php:170
 msgid "Map"
 msgstr "地图"
 
@@ -7265,10 +7410,12 @@ msgstr "已确认 %s%%"
 #: application/views/countqsoby/index.php:8
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:498
-#: application/views/dashboard/index.php:688
+#: application/views/dashboard/index.php:489
+#: application/views/dashboard/index.php:672
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:498
+#: application/views/dashboard/index.php:688
 msgid "Worked"
 msgstr "已通联"
 
@@ -7288,11 +7435,13 @@ msgstr "已通联"
 #: application/views/countqsoby/index.php:9
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:504
-#: application/views/dashboard/index.php:693
+#: application/views/dashboard/index.php:493
+#: application/views/dashboard/index.php:677
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:504
+#: application/views/dashboard/index.php:693
 msgid "Confirmed"
 msgstr "已确认"
 
@@ -7326,11 +7475,11 @@ msgstr "已确认通联"
 #: application/views/awards/wapc/index.php:193
 #: application/views/awards/was/index.php:185
 #: application/views/awards/wpx/index.php:176
-#: application/views/dashboard/index.php:533
-#: application/views/dashboard/index.php:567
-#: application/views/dashboard/index.php:596
-#: application/views/dashboard/index.php:625
-#: application/views/dashboard/index.php:654
+#: application/views/dashboard/index.php:517
+#: application/views/dashboard/index.php:551
+#: application/views/dashboard/index.php:580
+#: application/views/dashboard/index.php:609
+#: application/views/dashboard/index.php:638
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:59
 #: application/views/statistics/qsotable.php:10
@@ -7344,6 +7493,11 @@ msgstr "已确认通联"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:533
+#: application/views/dashboard/index.php:567
+#: application/views/dashboard/index.php:596
+#: application/views/dashboard/index.php:625
+#: application/views/dashboard/index.php:654
 msgid "Total"
 msgstr "总计"
 
@@ -7437,14 +7591,19 @@ msgstr "预设日期"
 #: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
 #: application/views/countqsoby/index.php:35
+#: application/views/dashboard/index.php:518
+#: application/views/dashboard/index.php:552
+#: application/views/dashboard/index.php:581
+#: application/views/dashboard/index.php:610
+#: application/views/dashboard/index.php:639
+#: application/views/gridmap/index.php:47
+#: application/views/logbookadvanced/index.php:350
+#: application/views/statistics/index.php:61
 #: application/views/dashboard/index.php:534
 #: application/views/dashboard/index.php:568
 #: application/views/dashboard/index.php:597
 #: application/views/dashboard/index.php:626
 #: application/views/dashboard/index.php:655
-#: application/views/gridmap/index.php:47
-#: application/views/logbookadvanced/index.php:350
-#: application/views/statistics/index.php:61
 msgid "Today"
 msgstr "今天"
 
@@ -8030,11 +8189,12 @@ msgstr "按模式"
 #: application/views/continents/index.php:67
 #: application/views/logbookadvanced/edit.php:28
 #: application/views/logbookadvanced/index.php:525
-#: application/views/logbookadvanced/index.php:1051
+#: application/views/logbookadvanced/index.php:1054
 #: application/views/logbookadvanced/useroptions.php:205
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:490
 #: application/views/view_log/qso.php:288
+#: application/views/logbookadvanced/index.php:1051
 msgid "Continent"
 msgstr "大陆"
 
@@ -8059,9 +8219,10 @@ msgstr "DXCC名称"
 #: application/views/awards/dxcc/index.php:456
 #: application/views/awards/iota/index.php:209
 #: application/views/awards/wae/index.php:216
-#: application/views/dbtools/statecheckresult.php:14
+#: application/views/logbookadvanced/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
+#: application/views/dbtools/statecheckresult.php:14
 msgid "Prefix"
 msgstr "前缀"
 
@@ -8376,7 +8537,7 @@ msgstr "导出已确认的 QSO"
 
 #: application/views/awards/jcc/index.php:46
 msgid "QSL Type"
-msgstr ""
+msgstr "QSL 类型"
 
 #: application/views/awards/jcc/index.php:72
 msgid "Deleted cities"
@@ -8398,7 +8559,7 @@ msgstr "未通联"
 
 #: application/views/awards/jcc/index.php:169
 msgid "JCC progress"
-msgstr ""
+msgstr "JCC 进度"
 
 #: application/views/awards/jcc/index.php:179
 msgid ""
@@ -8597,8 +8758,9 @@ msgid "Band Categories"
 msgstr "频段分类"
 
 #: application/views/awards/pl_polska/index.php:375
-#: application/views/dbtools/index.php:88
+#: application/views/logbookadvanced/dbtoolsdialog.php:77
 #: application/views/logbookadvanced/index.php:854
+#: application/views/dbtools/index.php:88
 msgid "Fix State"
 msgstr "修正省/州"
 
@@ -8760,8 +8922,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -8812,16 +8974,18 @@ msgid "QSO List"
 msgstr "QSO 列表"
 
 #: application/views/awards/sig/qso_list.php:14
-#: application/views/dbtools/showStateQsos.php:22
-#: application/views/logbookadvanced/index.php:931
+#: application/views/logbookadvanced/index.php:934
 #: application/views/logbookadvanced/mergedialog.php:27
 #: application/views/logbookadvanced/mergedialog.php:50
 #: application/views/logbookadvanced/qslcarousel.php:31
+#: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
 #: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
+#: application/views/dbtools/showStateQsos.php:22
+#: application/views/logbookadvanced/index.php:931
 msgid "Date/Time"
 msgstr "日期/时间"
 
@@ -9302,12 +9466,15 @@ msgstr "频段 / 卫星 / 轨道"
 #: application/views/calltester/comparison_result.php:127
 #: application/views/calltester/comparison_result.php:176
 #: application/views/calltester/result.php:52
-#: application/views/dbtools/checkresult.php:104
-#: application/views/dbtools/checkresult.php:162
-#: application/views/dbtools/checkresult.php:390
+#: application/views/logbookadvanced/checkresult.php:102
+#: application/views/logbookadvanced/checkresult.php:160
+#: application/views/logbookadvanced/checkresult.php:388
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:65
+#: application/views/dbtools/checkresult.php:104
+#: application/views/dbtools/checkresult.php:162
+#: application/views/dbtools/checkresult.php:390
 msgid "QSO Date"
 msgstr "QSO 日期"
 
@@ -9758,10 +9925,11 @@ msgstr "新 spot（< 5分钟）"
 #: application/views/logbookadvanced/attachContest.php:14
 #: application/views/logbookadvanced/edit.php:13
 #: application/views/logbookadvanced/index.php:521
-#: application/views/logbookadvanced/index.php:1045
+#: application/views/logbookadvanced/index.php:1048
 #: application/views/logbookadvanced/useroptions.php:296
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
+#: application/views/logbookadvanced/index.php:1045
 msgid "Contest"
 msgstr "比赛"
 
@@ -9873,10 +10041,11 @@ msgstr "Spotter"
 #: application/views/logbookadvanced/attachContest.php:16
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:542
-#: application/views/logbookadvanced/index.php:1039
+#: application/views/logbookadvanced/index.php:1042
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:390
 #: application/views/view_log/qso.php:227
+#: application/views/logbookadvanced/index.php:1039
 msgid "Comment"
 msgstr "备注"
 
@@ -10631,10 +10800,13 @@ msgstr "只在 DXCC 类别中找到的问题（不在日志簿模型中）："
 #: application/views/calltester/comparison_result.php:128
 #: application/views/calltester/comparison_result.php:177
 #: application/views/calltester/result.php:53
+#: application/views/logbookadvanced/checkresult.php:106
+#: application/views/logbookadvanced/checkresult.php:164
+#: application/views/logbookadvanced/checkresult.php:392
+#: application/views/zonechecker/result.php:67
 #: application/views/dbtools/checkresult.php:108
 #: application/views/dbtools/checkresult.php:166
 #: application/views/dbtools/checkresult.php:394
-#: application/views/zonechecker/result.php:67
 msgid "Station Profile"
 msgstr "台站信息"
 
@@ -10642,6 +10814,7 @@ msgstr "台站信息"
 #: application/views/calltester/comparison_result.php:131
 #: application/views/calltester/comparison_result.php:180
 #: application/views/calltester/result.php:56
+#: application/views/logbookadvanced/checkresult.php:107
 #: application/views/dbtools/checkresult.php:109
 msgid "Existing DXCC"
 msgstr "现有 DXCC"
@@ -10657,6 +10830,7 @@ msgstr "现有 ADIF"
 #: application/views/calltester/comparison_result.php:133
 #: application/views/calltester/comparison_result.php:182
 #: application/views/calltester/result.php:58
+#: application/views/logbookadvanced/checkresult.php:108
 #: application/views/dbtools/checkresult.php:110
 msgid "Result DXCC"
 msgstr "结果 DXCC"
@@ -10696,9 +10870,9 @@ msgstr "呼号 DXCC 识别"
 
 #: application/views/calltester/index.php:11
 #: application/views/contesting/manager/components/session_modal.php:63
-#: application/views/csv/index.php:19 application/views/dbtools/index.php:28
-#: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:126
+#: application/views/csv/index.php:19 application/views/dxatlas/index.php:19
+#: application/views/labels/index.php:125
+#: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/qslprint/index.php:34 application/views/qso/index.php:139
 #: application/views/qso/index.php:402
@@ -10710,14 +10884,16 @@ msgstr "呼号 DXCC 识别"
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:11
+#: application/views/dbtools/index.php:28
+#: application/views/labels/index.php:126
 msgid "Station Location"
 msgstr "电台站地址"
 
 #: application/views/calltester/index.php:16
-#: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:894
 #: application/views/logbookadvanced/index.php:876
 #: application/views/zonechecker/index.php:16
+#: application/views/dbtools/index.php:33
 msgid "Callsign: "
 msgstr "呼号： "
 
@@ -10805,8 +10981,9 @@ msgid "Available Permissions"
 msgstr "可用的角色"
 
 #: application/views/club/permissions.php:36
-#: application/views/dbtools/statecheckresult.php:17
 #: application/views/eqsl/download.php:45
+#: application/views/logbookadvanced/statecheckresult.php:17
+#: application/views/dbtools/statecheckresult.php:17
 msgid "Action"
 msgstr "操作"
 
@@ -11045,12 +11222,13 @@ msgstr "请先设置用户名及密码，并且启用台站的日志上传功能
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
-#: application/views/logbookadvanced/index.php:1063
+#: application/views/logbookadvanced/index.php:1066
 #: application/views/logbookadvanced/useroptions.php:336
 #: application/views/qrz/export.php:39
 #: application/views/qslprint/qslprint.php:44
 #: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
+#: application/views/logbookadvanced/index.php:1063
 msgid "Profile name"
 msgstr "台站"
 
@@ -11292,13 +11470,14 @@ msgstr "ADIF 名称"
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:507 application/views/debug/index.php:518
-#: application/views/interface_assets/header.php:656
+#: application/views/interface_assets/header.php:652
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/stationsetup/locationlist.php:10
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:656
 msgid "Active"
 msgstr "启用"
 
@@ -11793,12 +11972,12 @@ msgstr "卫星路径"
 #: application/views/contesting/manager/export_cbr.php:132
 #: application/views/contesting/manager/import_legacy.php:39
 #: application/views/contesting/manager/index.php:35
-#: application/views/dbtools/checkresult.php:251
-#: application/views/dbtools/checkresult.php:327
-#: application/views/dbtools/showStateQsos.php:28
 #: application/views/logbookadvanced/attachContest.php:15
+#: application/views/logbookadvanced/checkresult.php:249
+#: application/views/logbookadvanced/checkresult.php:325
 #: application/views/logbookadvanced/mergedialog.php:31
 #: application/views/logbookadvanced/mergedialog.php:54
+#: application/views/logbookadvanced/showStateQsos.php:28
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:43
 #: application/views/qslprint/qsolist.php:14
@@ -11823,6 +12002,9 @@ msgstr "卫星路径"
 #: application/views/view_log/qso.php:684
 #: application/views/view_log/qso.php:691
 #: application/views/view_log/qso.php:696
+#: application/views/dbtools/checkresult.php:251
+#: application/views/dbtools/checkresult.php:327
+#: application/views/dbtools/showStateQsos.php:28
 msgid "Station"
 msgstr "电台站"
 
@@ -11839,8 +12021,8 @@ msgstr "未知错误"
 #: application/views/debug/index.php:205 application/views/debug/index.php:216
 #: application/views/debug/index.php:228
 #: application/views/interface_assets/footer.php:39
-#: application/views/labeldesigner/designer.php:59
 #: application/views/qslpostcard/designer.php:46
+#: application/views/labeldesigner/designer.php:59
 msgid "Success"
 msgstr "成功"
 
@@ -11878,6 +12060,7 @@ msgstr "重新加载"
 #: application/views/contesting/logger/index.php:104
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
+#: application/views/interface_assets/header.php:617
 #: application/views/interface_assets/header.php:621
 msgid "Switch Operator"
 msgstr "切换操作员"
@@ -12121,9 +12304,10 @@ msgid "Gridquare"
 msgstr "网格坐标"
 
 #: application/views/contesting/manager/components/session_modal.php:121
-#: application/views/logbookadvanced/index.php:967
+#: application/views/logbookadvanced/index.php:970
 #: application/views/logbookadvanced/useroptions.php:97
 #: application/views/qso/edit_ajax.php:177
+#: application/views/logbookadvanced/index.php:967
 msgid "QTH"
 msgstr "QTH"
 
@@ -12222,6 +12406,7 @@ msgid ""
 msgstr "你没有权限导出文件，请联系集体台站管理员。"
 
 #: application/views/contesting/manager/export_cbr.php:46
+#: application/views/interface_assets/header.php:540
 #: application/views/interface_assets/header.php:544
 msgid "Cabrillo Export"
 msgstr "Cabrillo 导出"
@@ -12307,9 +12492,9 @@ msgstr "如果符合条件，向竞赛组织者申请纸质奖状。"
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
-#: application/views/dbtools/checkresult.php:121
-#: application/views/dbtools/checkresult.php:180
-#: application/views/dbtools/checkresult.php:407
+#: application/views/logbookadvanced/checkresult.php:119
+#: application/views/logbookadvanced/checkresult.php:178
+#: application/views/logbookadvanced/checkresult.php:405
 #: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/edit.php:187
 #: application/views/logbookadvanced/edit.php:195
@@ -12363,14 +12548,17 @@ msgstr "如果符合条件，向竞赛组织者申请纸质奖状。"
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1206
+#: application/views/dbtools/checkresult.php:121
+#: application/views/dbtools/checkresult.php:180
+#: application/views/dbtools/checkresult.php:407
 msgid "Yes"
 msgstr "是"
 
 #: application/views/contesting/manager/export_cbr.php:222
 #: application/views/contesting/manager/export_cbr.php:233
-#: application/views/dbtools/checkresult.php:121
-#: application/views/dbtools/checkresult.php:180
-#: application/views/dbtools/checkresult.php:407
+#: application/views/logbookadvanced/checkresult.php:119
+#: application/views/logbookadvanced/checkresult.php:178
+#: application/views/logbookadvanced/checkresult.php:405
 #: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/edit.php:188
 #: application/views/logbookadvanced/edit.php:196
@@ -12426,6 +12614,9 @@ msgstr "是"
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:676 application/views/user/edit.php:680
 #: application/views/user/edit.php:770
+#: application/views/dbtools/checkresult.php:121
+#: application/views/dbtools/checkresult.php:180
+#: application/views/dbtools/checkresult.php:407
 msgid "No"
 msgstr "否"
 
@@ -12469,6 +12660,7 @@ msgid "Download Cabrillo"
 msgstr "下载 Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
+#: application/views/interface_assets/header.php:542
 #: application/views/interface_assets/header.php:546
 msgid "EDI Export"
 msgstr "EDI 导出"
@@ -12663,6 +12855,7 @@ msgid "Are you sure you want to import the selected contest sessions?"
 msgstr "你确定要导入所选的竞赛会话吗？"
 
 #: application/views/contesting/manager/index.php:17
+#: application/views/interface_assets/header.php:349
 #: application/views/interface_assets/header.php:353
 msgid "Contests"
 msgstr "比赛列表"
@@ -13169,21 +13362,23 @@ msgstr "详情"
 msgid "DXCCs Breakdown"
 msgstr "DXCC 分析"
 
-#: application/views/dashboard/index.php:500
+#: application/views/dashboard/index.php:490
 #: application/views/visitor/index.php:267
+#: application/views/dashboard/index.php:500
 msgid "Deleted DXCCs"
 msgstr "删除 DXCC"
 
-#: application/views/dashboard/index.php:513
+#: application/views/dashboard/index.php:500
 #: application/views/visitor/index.php:277
+#: application/views/dashboard/index.php:513
 msgid "Needed"
 msgstr "待通联"
 
-#: application/views/dashboard/index.php:538
-#: application/views/dashboard/index.php:572
-#: application/views/dashboard/index.php:601
-#: application/views/dashboard/index.php:630
-#: application/views/dashboard/index.php:659
+#: application/views/dashboard/index.php:522
+#: application/views/dashboard/index.php:556
+#: application/views/dashboard/index.php:585
+#: application/views/dashboard/index.php:614
+#: application/views/dashboard/index.php:643
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:84
@@ -13213,15 +13408,19 @@ msgstr "待通联"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:420
 #: src/QSLManager/QSO.php:521 src/QSLManager/QSO.php:575
 #: src/QSLManager/QSO.php:664 src/QSLManager/QSO.php:721
-#: src/QSLManager/QSO.php:810
+#: src/QSLManager/QSO.php:810 application/views/dashboard/index.php:538
+#: application/views/dashboard/index.php:572
+#: application/views/dashboard/index.php:601
+#: application/views/dashboard/index.php:630
+#: application/views/dashboard/index.php:659
 msgid "Sent"
 msgstr "已发送"
 
-#: application/views/dashboard/index.php:543
-#: application/views/dashboard/index.php:577
-#: application/views/dashboard/index.php:606
-#: application/views/dashboard/index.php:635
-#: application/views/dashboard/index.php:664
+#: application/views/dashboard/index.php:527
+#: application/views/dashboard/index.php:561
+#: application/views/dashboard/index.php:590
+#: application/views/dashboard/index.php:619
+#: application/views/dashboard/index.php:648
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:126
@@ -13250,11 +13449,15 @@ msgstr "已发送"
 #: application/views/visitor/index.php:335 src/QSLManager/QSO.php:465
 #: src/QSLManager/QSO.php:548 src/QSLManager/QSO.php:625
 #: src/QSLManager/QSO.php:691 src/QSLManager/QSO.php:771
-#: src/QSLManager/QSO.php:838
+#: src/QSLManager/QSO.php:838 application/views/dashboard/index.php:543
+#: application/views/dashboard/index.php:577
+#: application/views/dashboard/index.php:606
+#: application/views/dashboard/index.php:635
+#: application/views/dashboard/index.php:664
 msgid "Received"
 msgstr "已收到"
 
-#: application/views/dashboard/index.php:548
+#: application/views/dashboard/index.php:532
 #: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/edit.php:189
 #: application/views/logbookadvanced/edit.php:215
@@ -13295,25 +13498,43 @@ msgstr "已收到"
 #: src/QSLManager/QSO.php:471 src/QSLManager/QSO.php:533
 #: src/QSLManager/QSO.php:556 src/QSLManager/QSO.php:670
 #: src/QSLManager/QSO.php:697 src/QSLManager/QSO.php:822
-#: src/QSLManager/QSO.php:847
+#: src/QSLManager/QSO.php:847 application/views/dashboard/index.php:548
 msgid "Requested"
 msgstr "已（被）请求"
 
+#: application/views/dashboard/index.php:544
+#: application/views/dashboard/index.php:547
 #: application/views/dashboard/index.php:560
 #: application/views/dashboard/index.php:563
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World (LoTW)"
 
-#: application/views/dashboard/index.php:650
+#: application/views/dashboard/index.php:634
 #: application/views/user/edit.php:1121
+#: application/views/dashboard/index.php:650
 msgid "Club Log"
 msgstr "Clublog"
 
+#: application/views/dashboard/index.php:660
+#: application/views/dashboard/index.php:663
 #: application/views/dashboard/index.php:676
 #: application/views/dashboard/index.php:679
 msgid "VUCC-Grids"
 msgstr "VUCC 网格"
+
+#: application/views/dashboard/index.php:668
+#: application/views/distances/index.php:27
+#: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/qslprint.php:87
+#: application/views/qslprint/qsolist.php:49
+#: application/views/qslprint/qsolist.php:51
+#: application/views/qslprint/qsolist.php:58
+#: application/views/qslprint/qsolist.php:60
+#: application/controllers/Dashboard.php:219
+#: application/views/dashboard/index.php:684
+msgid "SAT"
+msgstr "卫星"
 
 #: application/views/dashboard/solar_data.php:6
 msgid "Solar Data & Propagation"
@@ -13477,423 +13698,6 @@ msgstr "如果你今天进行 QSO，连续天数将会增加，否则当前的�
 #: application/views/dayswithqso/index.php:201
 msgid "No current streak found!"
 msgstr "没有找到连续的天数！"
-
-#: application/views/dbtools/checkresult.php:42
-msgid "Distance Check Results"
-msgstr "距离检查结果"
-
-#: application/views/dbtools/checkresult.php:43
-#: application/views/dbtools/checkresult.php:59
-#: application/views/dbtools/checkresult.php:75
-msgid "QSOs to update found:"
-msgstr "已找到需要更新的 QSO："
-
-#: application/views/dbtools/checkresult.php:46
-#: application/views/logbookadvanced/distancedialog.php:2
-msgid ""
-"Update all QSOs with the distance based on your gridsquare set in the "
-"station profile, and the gridsquare of the QSO partner. Distance will be "
-"calculated based on if short path or long path is set."
-msgstr ""
-"根据你在电台配置文件及 QSO 友台所设的网格位置来更新所有 QSO 的距离。距离将根"
-"据设置的短路径或长路径进行计算。"
-
-#: application/views/dbtools/checkresult.php:47
-#: application/views/logbookadvanced/distancedialog.php:3
-msgid "This is useful if you have imported QSOs without distance information."
-msgstr "如果你导入的 QSO 没有距离信息，这将很有用。"
-
-#: application/views/dbtools/checkresult.php:48
-#: application/views/logbookadvanced/distancedialog.php:4
-msgid "Update will only set the distance for QSOs where the distance is empty."
-msgstr "更新只会设置距离为空的 QSO。"
-
-#: application/views/dbtools/checkresult.php:52
-#: application/views/dbtools/checkresult.php:68
-#: application/views/dbtools/checkresult.php:79
-#: application/views/debug/index.php:689
-#: application/views/logbookadvanced/index.php:57
-msgid "Update now"
-msgstr "现在升级"
-
-#: application/views/dbtools/checkresult.php:58
-msgid "Continent Check Results"
-msgstr "大洲检查结果"
-
-#: application/views/dbtools/checkresult.php:62
-msgid ""
-"Update all QSOs with the continent based on the DXCC country of the QSO."
-msgstr "根据通联的 DXCC 国家更新所有通联的洲。"
-
-#: application/views/dbtools/checkresult.php:63
-msgid "This is useful if you have imported QSOs without continent information."
-msgstr "如果你导入的 QSO 没有大洲信息，这将很有用。"
-
-#: application/views/dbtools/checkresult.php:64
-msgid ""
-"Update will only set the continent for QSOs where the continent is empty."
-msgstr "只会为空白大洲的 QSO 更新设置大洲。"
-
-#: application/views/dbtools/checkresult.php:74
-#: application/views/dbtools/checkresult.php:148
-msgid "Gridsquare Check Results"
-msgstr "网格检查结果"
-
-#: application/views/dbtools/checkresult.php:85
-msgid "DXCC Check Results"
-msgstr "DXCC 检查结果"
-
-#: application/views/dbtools/checkresult.php:87
-msgid "Callsigns tested: "
-msgstr "已测试的呼号： "
-
-#: application/views/dbtools/checkresult.php:88
-msgid "Execution time: "
-msgstr "执行耗时： "
-
-#: application/views/dbtools/checkresult.php:89
-msgid "Number of potential QSOs with wrong DXCC: "
-msgstr "可能错误 DXCC 的 QSO 数量： "
-
-#: application/views/dbtools/checkresult.php:94
-#: application/views/dbtools/checkresult.php:236
-#: application/views/dbtools/checkresult.php:312
-msgid "Update selected"
-msgstr "更新选中的"
-
-#: application/views/dbtools/checkresult.php:155
-msgid "These QSOs MAY have incorrect gridsquares."
-msgstr "这些 QSO 可能有错误的网格。"
-
-#: application/views/dbtools/checkresult.php:156
-msgid ""
-"Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
-"gridsquare database."
-msgstr "结果取决于正确的 DXCC。网格列表来自 TQSL 网格数据库。"
-
-#: application/views/dbtools/checkresult.php:169
-msgid "DXCC Gridsquare"
-msgstr "DXCC 网格"
-
-#: application/views/dbtools/checkresult.php:193
-#: application/views/dbtools/index.php:6
-#: application/views/logbookadvanced/index.php:77
-msgid "Show more"
-msgstr "显示更多"
-
-#: application/views/dbtools/checkresult.php:199
-msgid "View on map"
-msgstr "在地图上查看"
-
-#: application/views/dbtools/checkresult.php:224
-msgid "CQ Zone Check Results"
-msgstr "CQ分区检查结果"
-
-#: application/views/dbtools/checkresult.php:226
-msgid ""
-"The following QSOs were found to have a different CQ zone compared to what "
-"this DXCC normally has (a maximum of 5000 QSOs are shown):"
-msgstr "找到以下 QSO 与该 DXCC 通常对应的 CQ 区不同（最多显示 5000 个 QSO）："
-
-#: application/views/dbtools/checkresult.php:231
-msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr "即使 DXCC 覆盖多个 CQ 分区，仍强制更新"
-
-#: application/views/dbtools/checkresult.php:232
-msgid ""
-"The update function can only set the main CQ zone which is assigned to the "
-"DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
-"not correct. So by default only QSOs with DXCCs covering a single CQ zone "
-"are updated. This checkbox overrides this but might result in wrong data. "
-"Use with caution!"
-msgstr ""
-"更新功能仅能设置分配给 DXCC 的主 CQ 分区。若DXCC覆盖多个 CQ 分区，则可能存在"
-"设置错误。因此默认情况下，仅更新覆盖单一 CQ 分区的 DXCC QSO。勾选本项可覆盖该"
-"设置，但可能导致数据错误。请谨慎使用！"
-
-#: application/views/dbtools/checkresult.php:249
-msgid "DXCC CQ Zone"
-msgstr "DXCC CQ 分区"
-
-#: application/views/dbtools/checkresult.php:295
-#: application/views/dbtools/checkresult.php:371
-msgid "No incorrect CQ Zones were found."
-msgstr "全部 CQ 分区填写正确。"
-
-#: application/views/dbtools/checkresult.php:300
-msgid "ITU Zone Check Results"
-msgstr "ITU分区检查结果"
-
-#: application/views/dbtools/checkresult.php:302
-msgid ""
-"The following QSOs were found to have a different ITU zone compared to what "
-"this DXCC normally has (a maximum of 5000 QSOs are shown):"
-msgstr "找到以下 QSO 与该 DXCC 通常对应的 ITU 区不同（最多显示 5000 个 QSO）："
-
-#: application/views/dbtools/checkresult.php:307
-msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr "即使 DXCC 覆盖多个 ITU 分区，仍强制更新"
-
-#: application/views/dbtools/checkresult.php:308
-msgid ""
-"The update function can only set the main ITU zone which is assigned to the "
-"DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
-"not correct. So by default only QSOs with DXCCs covering a single ITU zone "
-"are updated. This checkbox overrides this but might result in wrong data. "
-"Use with caution!"
-msgstr ""
-"更新功能仅能设置分配给 DXCC 的主 ITU 分区。若DXCC覆盖多个 ITU 分区，则可能存"
-"在设置错误。因此默认情况下，仅更新覆盖单一 ITU 分区的 DXCC QSO。勾选本项可覆"
-"盖该设置，但可能导致数据错误。请谨慎使用！"
-
-#: application/views/dbtools/checkresult.php:325
-msgid "DXCC ITU Zone"
-msgstr "DXCC ITU 区域"
-
-#: application/views/dbtools/checkresult.php:376
-msgid "IOTA Check Results"
-msgstr "IOTA 检查结果"
-
-#: application/views/dbtools/checkresult.php:383
-msgid "These QSOs MAY have an incorrect IOTA reference."
-msgstr "这些 QSO 可能含有一个错误的 IOTA 编号。"
-
-#: application/views/dbtools/checkresult.php:384
-msgid ""
-"Results depends on the correct DXCC, and it will only be checked against "
-"current DXCC. False positive results may occur."
-msgstr "结果取决于正确的 DXCC，且仅与当前 DXCC 进行比对。可能出现误报结果。"
-
-#: application/views/dbtools/checkresult.php:395
-msgid "QSO DXCC"
-msgstr "QSO DXCC"
-
-#: application/views/dbtools/checkresult.php:397
-msgid "IOTA DXCC"
-msgstr "IOTA DXCC"
-
-#: application/views/dbtools/index.php:4
-#: application/views/logbookadvanced/index.php:52
-#: application/views/qslprint/index.php:3
-msgid "INFO"
-msgstr "信息"
-
-#: application/views/dbtools/index.php:5
-#: application/views/logbookadvanced/index.php:60
-msgid "You need to select a least 1 row!"
-msgstr "你至少需要选择 1 行！"
-
-#: application/views/dbtools/index.php:7
-#: application/views/logbookadvanced/index.php:78
-msgid "Show less"
-msgstr "显示更少"
-
-#: application/views/dbtools/index.php:8
-#: application/views/logbookadvanced/index.php:80
-msgid "Gridsquares for"
-msgstr "网格"
-
-#: application/views/dbtools/index.php:9
-#: application/views/logbookadvanced/index.php:81
-msgid "Non DXCC matching gridsquare"
-msgstr "DXCC 匹配失败的网格"
-
-#: application/views/dbtools/index.php:17
-msgid "Wiki Help"
-msgstr "Wiki 帮助"
-
-#: application/views/dbtools/index.php:20
-msgid ""
-"Warning. This tool can be dangerous to your data, and should only be used if "
-"you know what you are doing."
-msgstr ""
-"警告。此工具可能会对你的数据造成危险，只有在你知道如何操作的情况下才应该使"
-"用。"
-
-#: application/views/dbtools/index.php:24
-msgid "Data Repair Tools"
-msgstr "数据修复工具"
-
-#: application/views/dbtools/index.php:30
-msgid "All Station Locations"
-msgstr "全部电台位置"
-
-#: application/views/dbtools/index.php:44
-msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr "检查日志簿中所有 QSO 是否存在错误的 CQ 分区"
-
-#: application/views/dbtools/index.php:45
-msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr "使用 Wavelog 确定所有 QSO 的 CQ 分区。"
-
-#: application/views/dbtools/index.php:48
-#: application/views/dbtools/index.php:59
-#: application/views/dbtools/index.php:70
-#: application/views/dbtools/index.php:81
-#: application/views/dbtools/index.php:92
-#: application/views/dbtools/index.php:103
-#: application/views/dbtools/index.php:114
-#: application/views/dbtools/index.php:127
-#: application/views/dbtools/index.php:139
-msgid "Check"
-msgstr "检查"
-
-#: application/views/dbtools/index.php:55
-msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr "检查日志簿中所有 QSO 是否存在错误的 ITU 分区"
-
-#: application/views/dbtools/index.php:56
-msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr "使用 Wavelog 确定所有 QSO 的 ITU 分区。"
-
-#: application/views/dbtools/index.php:66
-msgid "Check Gridsquares"
-msgstr "检查网格"
-
-#: application/views/dbtools/index.php:67
-msgid "Check gridsquares that does not match the DXCC"
-msgstr "检查不匹配 DXCC 的网格"
-
-#: application/views/dbtools/index.php:77
-msgid "Fix Continent"
-msgstr "修正大洲"
-
-#: application/views/dbtools/index.php:78
-msgid "Update missing or incorrect continent information"
-msgstr "更新缺失或不正确的大洲信息"
-
-#: application/views/dbtools/index.php:89
-msgid "Update missing state/province information"
-msgstr "更新缺失的州/省信息"
-
-#: application/views/dbtools/index.php:99
-#: application/views/logbookadvanced/index.php:68
-msgid "Update Distances"
-msgstr "更新距离"
-
-#: application/views/dbtools/index.php:100
-msgid "Calculate and update distance information for QSOs"
-msgstr "计算并更新 QSO 的距离信息"
-
-#: application/views/dbtools/index.php:110
-msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr "检查日志簿中所有 QSO 的 DXCC 正确性"
-
-#: application/views/dbtools/index.php:111
-msgid "Use Wavelog to determine DXCC for all QSOs."
-msgstr "使用 Wavelog 确定所有 QSO 的 DXCC。"
-
-#: application/views/dbtools/index.php:122
-msgid "Lookup QSOs with missing grid in callbook"
-msgstr "查找呼号簿中缺少网格的 QSO"
-
-#: application/views/dbtools/index.php:123
-msgid "Use callbook lookup to set gridsquare"
-msgstr "使用呼号簿查找来设置网格"
-
-#: application/views/dbtools/index.php:124
-msgid "This is limited to 150 callsigns for each run!"
-msgstr "每次执行限制 150 个呼号！"
-
-#: application/views/dbtools/index.php:135
-msgid "Check IOTA against DXCC"
-msgstr "检查 IOTA 是否符合 DXCC"
-
-#: application/views/dbtools/index.php:136
-msgid "Use Wavelog to check IOTA against DXCC"
-msgstr "使用 Wavelog 检查 IOTA 是否符合 DXCC"
-
-#: application/views/dbtools/showStateQsos.php:16
-#, php-format
-msgid "Found %s QSO(s) missing state information for DXCC %s."
-msgstr "发现%s QSO(s) 缺少 DXCC %s 的状态信息。"
-
-#: application/views/dbtools/showStateQsos.php:49
-msgid "No Issues Found"
-msgstr "未发现问题"
-
-#: application/views/dbtools/showUpdateResult.php:25
-#: application/views/dbtools/showUpdateResult.php:75
-msgid "Results for state update:"
-msgstr "州级更新结果："
-
-#: application/views/dbtools/showUpdateResult.php:27
-#: application/views/dbtools/showUpdateResult.php:29
-msgid "The number of QSOs updated for state/province in"
-msgstr "州/省份的 QSO 更新数量"
-
-#: application/views/dbtools/showUpdateResult.php:41
-#: application/views/dbtools/showUpdateResult.php:104
-msgid "These QSOs could not be updated:"
-msgstr "这些通联记录无法更新："
-
-#: application/views/dbtools/showUpdateResult.php:48
-#: application/views/dbtools/showUpdateResult.php:111
-#: application/views/search/lotw_unconfirmed.php:28
-#: application/views/statistics/antennaanalytics.php:104
-msgid "Station location"
-msgstr "台站地址"
-
-#: application/views/dbtools/showUpdateResult.php:49
-#: application/views/dbtools/showUpdateResult.php:112
-msgid "Reason"
-msgstr "原因"
-
-#: application/views/dbtools/showUpdateResult.php:77
-#: application/views/dbtools/showUpdateResult.php:79
-msgid "The number of QSOs updated for state/province across all DXCCs is"
-msgstr "所有 DXCC 中更新的州/省的 QSO 数量是"
-
-#: application/views/dbtools/showUpdateResult.php:79
-msgid "DXCCs processed"
-msgstr "已处理的 DXCC"
-
-#: application/views/dbtools/showUpdateResult.php:131
-msgid "Results for continent update:"
-msgstr "大洲更新结果:"
-
-#: application/views/dbtools/showUpdateResult.php:132
-msgid "The number of QSOs updated for continent is"
-msgstr "已更新的洲际通联数量为"
-
-#: application/views/dbtools/showUpdateResult.php:136
-msgid "Results for distance update:"
-msgstr "距离更新结果："
-
-#: application/views/dbtools/showUpdateResult.php:137
-msgid "The number of QSOs updated for distance is"
-msgstr "已更新距离信息的 QSO 数量为"
-
-#: application/views/dbtools/showUpdateResult.php:141
-msgid "Results for gridsquare update:"
-msgstr "网格更新结果："
-
-#: application/views/dbtools/showUpdateResult.php:142
-msgid "The number of QSOs updated for gridsquare is"
-msgstr "网格更新的 QSO 数量为"
-
-#: application/views/dbtools/statecheckresult.php:3
-#: application/views/dbtools/statecheckresult.php:46
-msgid "State Check Results"
-msgstr "州级检查结果"
-
-#: application/views/dbtools/statecheckresult.php:4
-msgid ""
-"QSOs with missing state and gridsquares with 6 or more characters found for "
-"the following DXCCs:"
-msgstr "已找到以下 DXCC 的 QSO，但缺少州名和包含 6 个或更多字符的网格代码："
-
-#: application/views/dbtools/statecheckresult.php:7
-msgid "Fix all DXCCs"
-msgstr "修复所有 DXCC"
-
-#: application/views/dbtools/statecheckresult.php:34
-msgid "Run fix"
-msgstr "运行修复"
-
-#: application/views/dbtools/statecheckresult.php:47
-msgid "No QSOs were found where state information can be fixed."
-msgstr "没有找到可以确定州级信息的 QSO。"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
@@ -14348,6 +14152,17 @@ msgstr "上次抓取"
 #: application/views/debug/index.php:688
 msgid "Check for new version"
 msgstr "检查新版本"
+
+#: application/views/debug/index.php:689
+#: application/views/logbookadvanced/checkresult.php:52
+#: application/views/logbookadvanced/checkresult.php:68
+#: application/views/logbookadvanced/checkresult.php:78
+#: application/views/logbookadvanced/index.php:57
+#: application/views/dbtools/checkresult.php:52
+#: application/views/dbtools/checkresult.php:68
+#: application/views/dbtools/checkresult.php:79
+msgid "Update now"
+msgstr "现在升级"
 
 #: application/views/debug/index.php:707
 msgid "File download date"
@@ -15248,10 +15063,12 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "通讯录笔记已禁用复制功能"
 
 #: application/views/interface_assets/footer.php:71
-#: application/views/labeldesigner/designer.php:410
-#: application/views/labeldesigner/designer.php:426
 #: application/views/qslpostcard/designer.php:318
 #: application/views/qslpostcard/designer.php:334
+#: application/views/labeldesigner/designer.php:397
+#: application/views/labeldesigner/designer.php:413
+#: application/views/labeldesigner/designer.php:410
+#: application/views/labeldesigner/designer.php:426
 msgid "Duplicate"
 msgstr "复制"
 
@@ -15551,8 +15368,9 @@ msgid ""
 msgstr "要将你的电台连接到 Wavelog，请访问 Wavelog 维基获取设置说明。"
 
 #: application/views/interface_assets/footer.php:223
-#: application/views/interface_assets/header.php:609
+#: application/views/interface_assets/header.php:605
 #: application/views/options/tabs.php:37
+#: application/views/interface_assets/header.php:609
 msgid "Version Info"
 msgstr "版本信息"
 
@@ -15888,161 +15706,198 @@ msgstr "US Gridmaster"
 msgid "Satellite Pass"
 msgstr "卫星过境"
 
-#: application/views/interface_assets/header.php:344
+#: application/views/interface_assets/header.php:340
 #: application/views/stationsetup/stationsetup.php:146
+#: application/views/interface_assets/header.php:344
 msgid "Admin"
 msgstr "管理员"
 
+#: application/views/interface_assets/header.php:345
 #: application/views/interface_assets/header.php:349
 msgid "Global Options"
 msgstr "全局选项"
 
+#: application/views/interface_assets/header.php:357
 #: application/views/interface_assets/header.php:361
 msgid "Update Country Files"
 msgstr "更新 DXCC 实体文件"
 
+#: application/views/interface_assets/header.php:361
 #: application/views/interface_assets/header.php:365
 msgid "Debug Information"
 msgstr "调试信息"
 
+#: application/views/interface_assets/header.php:408
 #: application/views/interface_assets/header.php:412
 msgid "Add/Search Callsign"
 msgstr "添加/搜索 呼号"
 
+#: application/views/interface_assets/header.php:410
 #: application/views/interface_assets/header.php:414
 msgid "Log"
 msgstr "日志"
 
-#: application/views/interface_assets/header.php:421
+#: application/views/interface_assets/header.php:417
 #: application/views/logbookadvanced/index.php:777
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:579
 #: application/views/visitor/layout/header.php:95
+#: application/views/interface_assets/header.php:421
 msgid "Search Callsign"
 msgstr "搜索呼号"
 
+#: application/views/interface_assets/header.php:481
 #: application/views/interface_assets/header.php:485
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
 msgstr "操作员：%s"
 
-#: application/views/interface_assets/header.php:495
+#: application/views/interface_assets/header.php:491
 #: application/views/user/edit.php:58
+#: application/views/interface_assets/header.php:495
 msgid "Account"
 msgstr "账户信息"
 
+#: application/views/interface_assets/header.php:497
 #: application/views/interface_assets/header.php:501
 msgid "Band Edges"
 msgstr "频段边界"
 
+#: application/views/interface_assets/header.php:503
 #: application/views/interface_assets/header.php:507
 msgid "Switch to Clubstation:"
 msgstr "切换到集体台站："
 
-#: application/views/interface_assets/header.php:511
+#: application/views/interface_assets/header.php:507
 #: application/views/user/modals/first_login_wizard.php:119
 #: application/views/user/modals/first_login_wizard.php:133
+#: application/views/interface_assets/header.php:511
 #, php-format
 msgid "Switch to %s"
 msgstr "切换到 %s"
 
+#: application/views/interface_assets/header.php:511
 #: application/views/interface_assets/header.php:515
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "管理 %s"
 
+#: application/views/interface_assets/header.php:520
 #: application/views/interface_assets/header.php:524
 msgid "No Clubstations available"
 msgstr "没有可用的集体台站"
 
+#: application/views/interface_assets/header.php:532
 #: application/views/interface_assets/header.php:536
 msgid "Other Export Options"
 msgstr "其它导出选项"
 
+#: application/views/interface_assets/header.php:564
 #: application/views/interface_assets/header.php:568
 msgid "QSL Queue"
 msgstr "QSL 队列"
 
+#: application/views/interface_assets/header.php:565
 #: application/views/interface_assets/header.php:569
 msgid "Labels"
 msgstr "标签"
 
+#: application/views/interface_assets/header.php:572
 #: application/views/interface_assets/header.php:576
 msgid "Third-Party Services"
 msgstr "第三方服务"
 
+#: application/views/interface_assets/header.php:575
 #: application/views/interface_assets/header.php:579
 msgid "eQSL Import / Export"
 msgstr "eQSL 导入/导出"
 
+#: application/views/interface_assets/header.php:576
 #: application/views/interface_assets/header.php:580
 msgid "HRDLog Logbook"
 msgstr "HRDLog 日志簿"
 
+#: application/views/interface_assets/header.php:579
 #: application/views/interface_assets/header.php:583
 msgid "Clublog Import / Export"
 msgstr "Clublog 导入/导出"
 
+#: application/views/interface_assets/header.php:582
 #: application/views/interface_assets/header.php:586
 msgid "DCL Export"
 msgstr "DCL 导出"
 
+#: application/views/interface_assets/header.php:590
 #: application/views/interface_assets/header.php:594
 msgid "API Keys"
 msgstr "API 密钥"
 
+#: application/views/interface_assets/header.php:595
 #: application/views/interface_assets/header.php:599
 msgid "Internal tools"
 msgstr "内部工具"
 
+#: application/views/interface_assets/header.php:597
 #: application/views/interface_assets/header.php:601
 msgid "Callsign DXCC checker"
 msgstr "呼号 DXCC 检查器"
 
+#: application/views/interface_assets/header.php:598
 #: application/views/interface_assets/header.php:602
 msgid "GeoJSON QSO Map"
 msgstr "GeoJSON QSO 地图"
 
+#: application/views/interface_assets/header.php:599
 #: application/views/interface_assets/header.php:603
 msgid "Gridsquare Zone checker"
 msgstr "网格分区检查器"
 
+#: application/views/interface_assets/header.php:606
+#: application/views/logbookadvanced/index.php:920
 #: application/views/interface_assets/header.php:610
 #: application/views/logbookadvanced/index.php:917
 msgid "Help"
 msgstr "帮助"
 
+#: application/views/interface_assets/header.php:607
 #: application/views/interface_assets/header.php:611
 msgid "Forum"
 msgstr "论坛"
 
+#: application/views/interface_assets/header.php:611
 #: application/views/interface_assets/header.php:615
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "登出并返回到 %s"
 
+#: application/views/interface_assets/header.php:612
 #: application/views/interface_assets/header.php:616
 #, php-format
 msgid "Switch back to %s"
 msgstr "切换回 %s"
 
+#: application/views/interface_assets/header.php:619
 #: application/views/interface_assets/header.php:623
 msgid "Logout"
 msgstr "注销"
 
+#: application/views/interface_assets/header.php:625
 #: application/views/interface_assets/header.php:629
 msgid "Station locations and logbooks"
 msgstr "台站位置和日志簿"
 
+#: application/views/interface_assets/header.php:627
 #: application/views/interface_assets/header.php:631
 msgid "Select a Location"
 msgstr "选择电台站位置"
 
+#: application/views/interface_assets/header.php:675
 #: application/views/interface_assets/header.php:679
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr "没有看到你的台站位置？前往台站设置并收藏它们"
 
+#: application/views/interface_assets/header.php:712
 #: application/views/interface_assets/header.php:716
 msgid "Extras"
 msgstr "额外"
@@ -16050,536 +15905,6 @@ msgstr "额外"
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
 msgstr "将日志导出为 KML 文件以在 Google 地球中使用。"
-
-#: application/views/labeldesigner/designer.php:7
-#: application/views/qslpostcard/designer.php:6
-msgid "QSO Core"
-msgstr "QSO 核心信息"
-
-#: application/views/labeldesigner/designer.php:8
-#: application/views/qslpostcard/designer.php:7
-msgid "Date & Time"
-msgstr "日期和时间"
-
-#: application/views/labeldesigner/designer.php:9
-#: application/views/qslpostcard/designer.php:8
-msgid "Station & Equipment"
-msgstr "台站和设备"
-
-#: application/views/labeldesigner/designer.php:10
-#: application/views/qslpostcard/designer.php:9
-msgid "My References"
-msgstr "我的参考信息"
-
-#: application/views/labeldesigner/designer.php:11
-#: application/views/qslpostcard/designer.php:10
-msgid "Markers"
-msgstr "标签"
-
-#: application/views/labeldesigner/designer.php:12
-#: application/views/qslpostcard/designer.php:11
-#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
-msgid "Other"
-msgstr "其它"
-
-#: application/views/labeldesigner/designer.php:45
-#: application/views/qslpostcard/designer.php:34
-msgid "Custom Text"
-msgstr "自定义文本"
-
-#: application/views/labeldesigner/designer.php:46
-msgid "Line"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:48
-#: application/views/qslpostcard/designer.php:35
-msgid "Untitled"
-msgstr "无标题"
-
-#: application/views/labeldesigner/designer.php:49
-#: application/views/qslpostcard/designer.php:36
-msgid "Save failed"
-msgstr "保存失败"
-
-#: application/views/labeldesigner/designer.php:50
-#: application/views/qslpostcard/designer.php:37
-msgid "Template saved."
-msgstr "模板已保存。"
-
-#: application/views/labeldesigner/designer.php:51
-#: application/views/qslpostcard/designer.php:38
-msgid "Delete Template?"
-msgstr "删除此模板？"
-
-#: application/views/labeldesigner/designer.php:52
-#: application/views/qslpostcard/designer.php:39
-msgid ""
-"Are you sure you want to delete this template? This action cannot be undone."
-msgstr "您确定要删除此模板吗？此操作无法撤销。"
-
-#: application/views/labeldesigner/designer.php:53
-#: application/views/qslpostcard/designer.php:40
-msgid "Delete failed"
-msgstr "删除失败"
-
-#: application/views/labeldesigner/designer.php:54
-#: application/views/qslpostcard/designer.php:41
-msgid "Template deleted successfully!"
-msgstr "模板删除成功！"
-
-#: application/views/labeldesigner/designer.php:55
-#: application/views/qslpostcard/designer.php:42
-msgid "Please select a template to delete."
-msgstr "请选择一个模板来删除。"
-
-#: application/views/labeldesigner/designer.php:56
-#: application/views/qslpostcard/designer.php:43
-msgid "Copy failed"
-msgstr "复制失败"
-
-#: application/views/labeldesigner/designer.php:57
-#: application/views/qslpostcard/designer.php:44
-msgid "Template copied."
-msgstr "模板已复制。"
-
-#: application/views/labeldesigner/designer.php:58
-#: application/views/qslpostcard/designer.php:45
-msgid "Please select a template to copy."
-msgstr "请选择一个模板以供复制。"
-
-#: application/views/labeldesigner/designer.php:61
-#: application/views/qslpostcard/designer.php:48
-msgid "selected"
-msgstr "已选择"
-
-#: application/views/labeldesigner/designer.php:62
-msgid "Please select a label type first."
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:63
-msgid ""
-"The label type of this template no longer exists. Please select another one."
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:64
-#: application/views/qslpostcard/designer.php:49
-msgid "Unsaved changes"
-msgstr "未保存的更改"
-
-#: application/views/labeldesigner/designer.php:65
-#: application/views/qslpostcard/designer.php:50
-msgid ""
-"Your current design has unsaved changes. Loading a different template will "
-"replace it. Continue?"
-msgstr "您当前的设计有未保存的更改。加载不同的模板将会替换它。是否继续？"
-
-#: application/views/labeldesigner/designer.php:66
-#: application/views/qslpostcard/designer.php:51
-msgid ""
-"Your current design has unsaved changes. If you leave the page, those "
-"changes will be lost. Leave anyway?"
-msgstr "您当前的设计未保存。如果离开此页面，这些更改将会丢失，确定要离开吗？"
-
-#: application/views/labeldesigner/designer.php:67
-#: application/views/qslpostcard/designer.php:52
-msgid "Discard changes"
-msgstr "放弃更改"
-
-#: application/views/labeldesigner/designer.php:68
-#: application/views/qslpostcard/designer.php:53
-msgid "Keep editing"
-msgstr "继续编辑"
-
-#: application/views/labeldesigner/designer.php:69
-#: application/views/qslpostcard/designer.php:54
-msgid "Leave page"
-msgstr "离开页面"
-
-#: application/views/labeldesigner/designer.php:70
-msgid "Import failed"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:71
-msgid "Export failed"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:72
-msgid "Template imported."
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:73
-msgid "Please select a template to export."
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:74
-msgid "File is too large."
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:75
-#: application/views/labeldesigner/designer.php:126
-#: application/views/labels/index.php:94
-msgid "No paper assigned"
-msgstr "未选定纸张"
-
-#: application/views/labeldesigner/designer.php:91
-#: application/views/logbookadvanced/printQsl.php:9
-#: application/views/qslpostcard/designer.php:67
-#: application/views/qslpostcard/printqueue.php:8
-#: application/views/qslpostcard/printqueue_selected.php:10
-#: application/views/qslprint/printqsl.php:9
-msgid "Template"
-msgstr "模板"
-
-#: application/views/labeldesigner/designer.php:94
-#: application/views/qslpostcard/designer.php:70
-msgid "(new)"
-msgstr "（新）"
-
-#: application/views/labeldesigner/designer.php:99
-#: application/views/qslpostcard/designer.php:75
-msgid "Template name"
-msgstr "模板名"
-
-#: application/views/labeldesigner/designer.php:100
-#: application/views/qslpostcard/designer.php:76
-msgid "Save Template"
-msgstr "保存模板"
-
-#: application/views/labeldesigner/designer.php:103
-#: application/views/qslpostcard/designer.php:79
-msgid "Copy Template"
-msgstr "复制模板"
-
-#: application/views/labeldesigner/designer.php:106
-#: application/views/qslpostcard/designer.php:82
-msgid "Delete Template"
-msgstr "删除模板"
-
-#: application/views/labeldesigner/designer.php:109
-msgid "Export Template"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:112
-msgid "Import Template"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:121
-msgid "Label type"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:124
-msgid "(select label type)"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:130
-msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:131
-#: application/views/qslpostcard/designer.php:95
-msgid "PDF"
-msgstr "PDF"
-
-#: application/views/labeldesigner/designer.php:135
-#: application/views/logbookadvanced/printQsl.php:34
-#: application/views/qslpostcard/designer.php:99
-#: application/views/qslpostcard/printqueue.php:26
-#: application/views/qslpostcard/printqueue_selected.php:34
-#: application/views/qslprint/printqsl.php:34
-msgid "Save PDF"
-msgstr "保存 PDF"
-
-#: application/views/labeldesigner/designer.php:143
-#: application/views/qslpostcard/designer.php:107
-msgid "History"
-msgstr "历史"
-
-#: application/views/labeldesigner/designer.php:145
-#: application/views/qslpostcard/designer.php:109
-msgid "Undo"
-msgstr "撤销"
-
-#: application/views/labeldesigner/designer.php:146
-#: application/views/qslpostcard/designer.php:110
-msgid "Redo"
-msgstr "重做"
-
-#: application/views/labeldesigner/designer.php:152
-#: application/views/qslpostcard/designer.php:116
-msgid "Zoom"
-msgstr "缩放"
-
-#: application/views/labeldesigner/designer.php:162
-#: application/views/qslpostcard/designer.php:126
-msgid ""
-"Tip: After a test print, adjust global offsets rather than moving every "
-"field."
-msgstr "提示：打印测试后，你可以调整全局偏移，而无需分别移动每个字段。"
-
-#: application/views/labeldesigner/designer.php:163
-#: application/views/qslpostcard/designer.php:127
-msgid "Print offset"
-msgstr "打印偏移"
-
-#: application/views/labeldesigner/designer.php:192
-#: application/views/qslpostcard/designer.php:156
-msgid "Search fields…"
-msgstr "搜索字段…"
-
-#: application/views/labeldesigner/designer.php:196
-#: application/views/qslpostcard/designer.php:160
-msgid "Add Custom Text"
-msgstr "添加自定义文本"
-
-#: application/views/labeldesigner/designer.php:200
-msgid ""
-"Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
-"QSO row"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:201
-msgid "Horizontal Line"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:203
-msgid "Vertical rule — place at column edges to build a table grid"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:204
-msgid "Vertical Line"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:208
-msgid ""
-"Table grid — drag the corner to resize, drag the column markers to adjust "
-"column widths"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:209
-msgid "Add Table"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:224
-#: application/views/qslpostcard/designer.php:175
-msgid "No fields match your search."
-msgstr "未找到符合的字段。"
-
-#: application/views/labeldesigner/designer.php:232
-msgid "Label Canvas"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:233
-msgid "drag fields onto the label"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:254
-#: application/views/qslpostcard/designer.php:205
-msgid "Template Options"
-msgstr "模板选项"
-
-#: application/views/labeldesigner/designer.php:258
-msgid "Number of QSOs per label"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:262
-#: application/views/qslpostcard/designer.php:213
-msgid "Row spacing"
-msgstr "行距"
-
-#: application/views/labeldesigner/designer.php:267
-msgid ""
-"Draws a rule between the QSO rows automatically, like the classic label "
-"layout"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:267
-msgid "Separator lines between QSO rows"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:270
-msgid "Separator thickness"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:279
-#: application/views/qslpostcard/designer.php:230
-msgid "Properties"
-msgstr "属性"
-
-#: application/views/labeldesigner/designer.php:284
-#: application/views/qslpostcard/designer.php:235
-msgid "Select a field on the canvas to edit it."
-msgstr "在画布上选择一个字段以编辑。"
-
-#: application/views/labeldesigner/designer.php:285
-#: application/views/qslpostcard/designer.php:236
-msgid "Right-click a field for more actions."
-msgstr "右键单击字段以获得更多操作。"
-
-#: application/views/labeldesigner/designer.php:295
-#: application/views/qslpostcard/designer.php:246
-msgid "Text"
-msgstr "文本"
-
-#: application/views/labeldesigner/designer.php:300
-#: application/views/qslpostcard/designer.php:251
-msgid "Frequency format"
-msgstr "频率格式"
-
-#: application/views/labeldesigner/designer.php:308
-#: application/views/qslpostcard/designer.php:259
-msgid "Omit unit"
-msgstr "省略单位"
-
-#: application/views/labeldesigner/designer.php:314
-#: application/views/qslpostcard/designer.php:265
-msgid "X"
-msgstr "X"
-
-#: application/views/labeldesigner/designer.php:318
-#: application/views/qslpostcard/designer.php:269
-msgid "Y"
-msgstr "Y"
-
-#: application/views/labeldesigner/designer.php:326
-msgid "Rows"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:330
-msgid "Columns"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:336
-#: application/views/labels/index.php:45 application/views/labels/index.php:80
-msgid "Width"
-msgstr "宽度"
-
-#: application/views/labeldesigner/designer.php:340
-#: application/views/labels/index.php:46 application/views/labels/index.php:81
-msgid "Height"
-msgstr "长度"
-
-#: application/views/labeldesigner/designer.php:344
-#: application/views/labeldesigner/designer.php:360
-msgid "Thickness"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:349
-#: application/views/labels/index.php:48
-msgid "Orientation"
-msgstr "方向"
-
-#: application/views/labeldesigner/designer.php:351
-msgid "Horizontal"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:352
-msgid "Vertical"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:356
-msgid "Length"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:367
-#: application/views/qslpostcard/designer.php:275
-msgid "Font"
-msgstr "字体"
-
-#: application/views/labeldesigner/designer.php:377
-#: application/views/labels/create.php:105
-#: application/views/labels/edit.php:107 application/views/labels/index.php:82
-#: application/views/qslpostcard/designer.php:285
-msgid "Font Size"
-msgstr "字体大小"
-
-#: application/views/labeldesigner/designer.php:383
-#: application/views/qslpostcard/designer.php:291
-msgid "Bold"
-msgstr "粗体"
-
-#: application/views/labeldesigner/designer.php:389
-#: application/views/qslpostcard/designer.php:297
-msgid "Color"
-msgstr "颜色"
-
-#: application/views/labeldesigner/designer.php:394
-#: application/views/qslpostcard/designer.php:302
-msgid "Wrap width"
-msgstr "列宽"
-
-#: application/views/labeldesigner/designer.php:399
-msgid "Print this field once per QSO when a label holds multiple QSOs"
-msgstr ""
-
-#: application/views/labeldesigner/designer.php:400
-#: application/views/qslpostcard/designer.php:308
-msgid "Repeats per QSO"
-msgstr "每个 QSO 都重复"
-
-#: application/views/labeldesigner/designer.php:404
-#: application/views/qslpostcard/designer.php:312
-msgid "Move this element freely without snapping to the grid or other elements"
-msgstr "自由移动这个元素，无需贴齐到网格或其他元素"
-
-#: application/views/labeldesigner/designer.php:405
-#: application/views/qslpostcard/designer.php:313
-msgid "Disable Auto-Snap"
-msgstr "禁用自动贴齐"
-
-#: application/views/labeldesigner/designer.php:431
-#: application/views/qslpostcard/designer.php:339
-msgid "Align & distribute"
-msgstr "对齐和分布"
-
-#: application/views/labeldesigner/designer.php:435
-#: application/views/qslpostcard/designer.php:343
-msgid "Align left"
-msgstr "左对齐"
-
-#: application/views/labeldesigner/designer.php:436
-#: application/views/qslpostcard/designer.php:344
-msgid "Align horizontal centers"
-msgstr "水平居中"
-
-#: application/views/labeldesigner/designer.php:437
-#: application/views/qslpostcard/designer.php:345
-msgid "Align right"
-msgstr "右对齐"
-
-#: application/views/labeldesigner/designer.php:439
-#: application/views/qslpostcard/designer.php:347
-msgid "Align top"
-msgstr "顶端对齐"
-
-#: application/views/labeldesigner/designer.php:440
-#: application/views/qslpostcard/designer.php:348
-msgid "Align vertical centers"
-msgstr "垂直居中"
-
-#: application/views/labeldesigner/designer.php:441
-#: application/views/qslpostcard/designer.php:349
-msgid "Align bottom"
-msgstr "底端对齐"
-
-#: application/views/labeldesigner/designer.php:443
-#: application/views/qslpostcard/designer.php:351
-msgid "Distribute horizontally"
-msgstr "横向分布"
-
-#: application/views/labeldesigner/designer.php:444
-#: application/views/qslpostcard/designer.php:352
-msgid "Distribute vertically"
-msgstr "纵向分布"
-
-#: application/views/labeldesigner/designer.php:446
-#: application/views/qslpostcard/designer.php:354
-msgid "Center on page (horizontal)"
-msgstr "页面居中（水平）"
-
-#: application/views/labeldesigner/designer.php:447
-#: application/views/qslpostcard/designer.php:355
-msgid "Center on page (vertical)"
-msgstr "页面居中（垂直）"
 
 #: application/views/labels/create.php:24
 msgid ""
@@ -16673,6 +15998,15 @@ msgstr "标签高度"
 msgid "Total height of one label"
 msgstr "单个标签的垂直高度"
 
+#: application/views/labels/create.php:105
+#: application/views/labels/edit.php:107 application/views/labels/index.php:81
+#: application/views/qslpostcard/designer.php:285
+#: application/views/labeldesigner/designer.php:364
+#: application/views/labels/index.php:82
+#: application/views/labeldesigner/designer.php:377
+msgid "Font Size"
+msgstr "字体大小"
+
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
@@ -16727,14 +16061,14 @@ msgstr "纸张方向"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:62
+#: application/views/labels/index.php:61 application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr "水平"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:62
+#: application/views/labels/index.php:61 application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr "垂直"
@@ -16751,14 +16085,17 @@ msgid ""
 msgstr "用于展示用途的标签名称，建议选择一个有明确含义的名称。"
 
 #: application/views/labels/index.php:2
+#: application/views/logbookadvanced/startatform.php:104
+#: application/views/qslprint/printlabel.php:117
+#: application/views/qslprint/printqsl.php:37
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
-#: application/views/qslprint/printqsl.php:37
 msgid "Mark QSL as printed"
 msgstr "标记 QSL 已打印"
 
-#: application/views/labels/index.php:3 application/views/labels/index.php:130
+#: application/views/labels/index.php:3 application/views/labels/index.php:129
 #: application/views/qslprint/index.php:77
+#: application/views/labels/index.php:130
 msgid "Print"
 msgstr "打印"
 
@@ -16775,30 +16112,62 @@ msgstr "创建新标签"
 msgid "Create New Paper Type"
 msgstr "创建新纸张"
 
-#: application/views/labels/index.php:39
+#: application/views/labels/index.php:38 application/views/labels/index.php:39
 msgid "Paper types"
 msgstr "纸张"
 
-#: application/views/labels/index.php:47
+#: application/views/labels/index.php:44 application/views/labels/index.php:79
+#: application/views/labeldesigner/designer.php:323
+#: application/views/labels/index.php:45 application/views/labels/index.php:80
+#: application/views/labeldesigner/designer.php:336
+msgid "Width"
+msgstr "宽度"
+
+#: application/views/labels/index.php:45 application/views/labels/index.php:80
+#: application/views/labeldesigner/designer.php:327
+#: application/views/labels/index.php:46 application/views/labels/index.php:81
+#: application/views/labeldesigner/designer.php:340
+msgid "Height"
+msgstr "长度"
+
+#: application/views/labels/index.php:46 application/views/labels/index.php:47
 msgid "Used by labels"
 msgstr "已被标签使用"
 
-#: application/views/labels/index.php:73
+#: application/views/labels/index.php:47
+#: application/views/labeldesigner/designer.php:336
+#: application/views/labels/index.php:48
+#: application/views/labeldesigner/designer.php:349
+msgid "Orientation"
+msgstr "方向"
+
+#: application/views/labels/index.php:72 application/views/labels/index.php:73
 msgid "Label types"
 msgstr "标签类型"
 
-#: application/views/labels/index.php:84
+#: application/views/labels/index.php:83 application/views/labels/index.php:84
 msgid "Use For Print"
 msgstr "使用它来打印"
 
+#: application/views/labels/index.php:93
+#: application/views/labeldesigner/designer.php:113
+#: application/views/labels/index.php:94
+#: application/views/labeldesigner/designer.php:75
+#: application/views/labeldesigner/designer.php:126
+msgid "No paper assigned"
+msgstr "未选定纸张"
+
+#: application/views/labels/index.php:118
 #: application/views/labels/index.php:119
 msgid "QSL Card Labels Pending"
 msgstr "待打印的 QSL 卡片标签"
 
+#: application/views/labels/index.php:127
 #: application/views/labels/index.php:128
 msgid "QSOs Waiting"
 msgstr "QSO 等待中"
 
+#: application/views/labels/index.php:128
 #: application/views/labels/index.php:129
 msgid "View QSOs"
 msgstr "查看 QSO"
@@ -16806,40 +16175,33 @@ msgstr "查看 QSO"
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
-msgid "Label layout"
-msgstr ""
-
-#: application/views/labels/startatform.php:24
-#: application/views/logbookadvanced/startatform.php:23
-#: application/views/qslprint/printlabel.php:23
-msgid "Standard"
-msgstr ""
-
-#: application/views/labels/startatform.php:30
-#: application/views/logbookadvanced/startatform.php:29
-#: application/views/qslprint/printlabel.php:29
-msgid ""
-"Designed label templates use their own layout and ignore the options below."
-msgstr ""
-
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
 #: application/views/qslprint/printlabel.php:40
 msgid "Include my call?"
 msgstr "包含我的呼号？"
 
+#: application/views/labels/startatform.php:33
+#: application/views/logbookadvanced/startatform.php:32
+#: application/views/qslprint/printlabel.php:32
 #: application/views/labels/startatform.php:53
 #: application/views/logbookadvanced/startatform.php:52
 #: application/views/qslprint/printlabel.php:52
 msgid "Include OP-Call? (if filled)"
 msgstr "包含操作员的呼号？（如果有）"
 
+#: application/views/labels/startatform.php:45
+#: application/views/logbookadvanced/startatform.php:44
+#: application/views/qslprint/printlabel.php:44
 #: application/views/labels/startatform.php:65
 #: application/views/logbookadvanced/startatform.php:64
 #: application/views/qslprint/printlabel.php:64
 msgid "Include Grid?"
 msgstr "包含网格？"
 
+#: application/views/labels/startatform.php:57
+#: application/views/logbookadvanced/startatform.php:56
+#: application/views/qslprint/printlabel.php:56
 #: application/views/labels/startatform.php:77
 #: application/views/logbookadvanced/startatform.php:76
 #: application/views/qslprint/printlabel.php:76
@@ -16847,24 +16209,33 @@ msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr "包含编号？(SIG, SOTA, POTA, IOTA, WWFF; 如存在则显示)"
 
+#: application/views/labels/startatform.php:69
 #: application/views/labels/startatform.php:89
 msgid "Include Via (if filled)?"
 msgstr "包含 Via（如提供）？"
 
+#: application/views/labels/startatform.php:81
 #: application/views/labels/startatform.php:101
 msgid "Include QSLMSG (if filled)?"
 msgstr "是否包含 QSLMSG （如果已经填写）？"
 
+#: application/views/labels/startatform.php:93
 #: application/views/labels/startatform.php:113
 msgid "Include TNX message?"
 msgstr "是否包含 TNX 信息？"
 
+#: application/views/labels/startatform.php:106
+#: application/views/logbookadvanced/startatform.php:117
+#: application/views/qslprint/printlabel.php:105
 #: application/views/labels/startatform.php:128
 #: application/views/logbookadvanced/startatform.php:138
 #: application/views/qslprint/printlabel.php:126
 msgid "Start printing at?"
 msgstr "开始打印编号？"
 
+#: application/views/labels/startatform.php:112
+#: application/views/logbookadvanced/startatform.php:123
+#: application/views/qslprint/printlabel.php:111
 #: application/views/labels/startatform.php:134
 #: application/views/logbookadvanced/startatform.php:144
 #: application/views/qslprint/printlabel.php:132
@@ -16886,6 +16257,370 @@ msgid ""
 msgstr ""
 "我们将保留原始值，并在匹配成功时添加更精确的网格坐标（例如，JO90AB 或 "
 "JO90AB12）。"
+
+#: application/views/logbookadvanced/checkresult.php:42
+#: application/views/dbtools/checkresult.php:42
+msgid "Distance Check Results"
+msgstr "距离检查结果"
+
+#: application/views/logbookadvanced/checkresult.php:43
+#: application/views/logbookadvanced/checkresult.php:59
+#: application/views/logbookadvanced/checkresult.php:75
+#: application/views/dbtools/checkresult.php:43
+#: application/views/dbtools/checkresult.php:59
+#: application/views/dbtools/checkresult.php:75
+msgid "QSOs to update found:"
+msgstr "已找到需要更新的 QSO："
+
+#: application/views/logbookadvanced/checkresult.php:46
+#: application/views/logbookadvanced/distancedialog.php:2
+#: application/views/dbtools/checkresult.php:46
+msgid ""
+"Update all QSOs with the distance based on your gridsquare set in the "
+"station profile, and the gridsquare of the QSO partner. Distance will be "
+"calculated based on if short path or long path is set."
+msgstr ""
+"根据你在电台配置文件及 QSO 友台所设的网格位置来更新所有 QSO 的距离。距离将根"
+"据设置的短路径或长路径进行计算。"
+
+#: application/views/logbookadvanced/checkresult.php:47
+#: application/views/logbookadvanced/distancedialog.php:3
+#: application/views/dbtools/checkresult.php:47
+msgid "This is useful if you have imported QSOs without distance information."
+msgstr "如果你导入的 QSO 没有距离信息，这将很有用。"
+
+#: application/views/logbookadvanced/checkresult.php:48
+#: application/views/logbookadvanced/distancedialog.php:4
+#: application/views/dbtools/checkresult.php:48
+msgid "Update will only set the distance for QSOs where the distance is empty."
+msgstr "更新只会设置距离为空的 QSO。"
+
+#: application/views/logbookadvanced/checkresult.php:58
+#: application/views/dbtools/checkresult.php:58
+msgid "Continent Check Results"
+msgstr "大洲检查结果"
+
+#: application/views/logbookadvanced/checkresult.php:62
+#: application/views/dbtools/checkresult.php:62
+msgid ""
+"Update all QSOs with the continent based on the DXCC country of the QSO."
+msgstr "根据通联的 DXCC 国家更新所有通联的洲。"
+
+#: application/views/logbookadvanced/checkresult.php:63
+#: application/views/dbtools/checkresult.php:63
+msgid "This is useful if you have imported QSOs without continent information."
+msgstr "如果你导入的 QSO 没有大洲信息，这将很有用。"
+
+#: application/views/logbookadvanced/checkresult.php:64
+#: application/views/dbtools/checkresult.php:64
+msgid ""
+"Update will only set the continent for QSOs where the continent is empty."
+msgstr "只会为空白大洲的 QSO 更新设置大洲。"
+
+#: application/views/logbookadvanced/checkresult.php:74
+#: application/views/logbookadvanced/checkresult.php:146
+#: application/views/dbtools/checkresult.php:74
+#: application/views/dbtools/checkresult.php:148
+msgid "Gridsquare Check Results"
+msgstr "网格检查结果"
+
+#: application/views/logbookadvanced/checkresult.php:83
+#: application/views/dbtools/checkresult.php:85
+msgid "DXCC Check Results"
+msgstr "DXCC 检查结果"
+
+#: application/views/logbookadvanced/checkresult.php:85
+#: application/views/dbtools/checkresult.php:87
+msgid "Callsigns tested: "
+msgstr "已测试的呼号： "
+
+#: application/views/logbookadvanced/checkresult.php:86
+#: application/views/dbtools/checkresult.php:88
+msgid "Execution time: "
+msgstr "执行耗时： "
+
+#: application/views/logbookadvanced/checkresult.php:87
+#: application/views/dbtools/checkresult.php:89
+msgid "Number of potential QSOs with wrong DXCC: "
+msgstr "可能错误 DXCC 的 QSO 数量： "
+
+#: application/views/logbookadvanced/checkresult.php:92
+#: application/views/logbookadvanced/checkresult.php:234
+#: application/views/logbookadvanced/checkresult.php:310
+#: application/views/dbtools/checkresult.php:94
+#: application/views/dbtools/checkresult.php:236
+#: application/views/dbtools/checkresult.php:312
+msgid "Update selected"
+msgstr "更新选中的"
+
+#: application/views/logbookadvanced/checkresult.php:153
+#: application/views/dbtools/checkresult.php:155
+msgid "These QSOs MAY have incorrect gridsquares."
+msgstr "这些 QSO 可能有错误的网格。"
+
+#: application/views/logbookadvanced/checkresult.php:154
+#: application/views/dbtools/checkresult.php:156
+msgid ""
+"Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
+"gridsquare database."
+msgstr "结果取决于正确的 DXCC。网格列表来自 TQSL 网格数据库。"
+
+#: application/views/logbookadvanced/checkresult.php:167
+#: application/views/dbtools/checkresult.php:169
+msgid "DXCC Gridsquare"
+msgstr "DXCC 网格"
+
+#: application/views/logbookadvanced/checkresult.php:191
+#: application/views/logbookadvanced/index.php:77
+#: application/views/dbtools/checkresult.php:193
+#: application/views/dbtools/index.php:6
+msgid "Show more"
+msgstr "显示更多"
+
+#: application/views/logbookadvanced/checkresult.php:197
+#: application/views/dbtools/checkresult.php:199
+msgid "View on map"
+msgstr "在地图上查看"
+
+#: application/views/logbookadvanced/checkresult.php:222
+#: application/views/dbtools/checkresult.php:224
+msgid "CQ Zone Check Results"
+msgstr "CQ分区检查结果"
+
+#: application/views/logbookadvanced/checkresult.php:224
+#: application/views/dbtools/checkresult.php:226
+msgid ""
+"The following QSOs were found to have a different CQ zone compared to what "
+"this DXCC normally has (a maximum of 5000 QSOs are shown):"
+msgstr "找到以下 QSO 与该 DXCC 通常对应的 CQ 区不同（最多显示 5000 个 QSO）："
+
+#: application/views/logbookadvanced/checkresult.php:229
+#: application/views/dbtools/checkresult.php:231
+msgid "Force update even if DXCC covers multiple CQ zones"
+msgstr "即使 DXCC 覆盖多个 CQ 分区，仍强制更新"
+
+#: application/views/logbookadvanced/checkresult.php:230
+#: application/views/dbtools/checkresult.php:232
+msgid ""
+"The update function can only set the main CQ zone which is assigned to the "
+"DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
+"not correct. So by default only QSOs with DXCCs covering a single CQ zone "
+"are updated. This checkbox overrides this but might result in wrong data. "
+"Use with caution!"
+msgstr ""
+"更新功能仅能设置分配给 DXCC 的主 CQ 分区。若DXCC覆盖多个 CQ 分区，则可能存在"
+"设置错误。因此默认情况下，仅更新覆盖单一 CQ 分区的 DXCC QSO。勾选本项可覆盖该"
+"设置，但可能导致数据错误。请谨慎使用！"
+
+#: application/views/logbookadvanced/checkresult.php:247
+#: application/views/dbtools/checkresult.php:249
+msgid "DXCC CQ Zone"
+msgstr "DXCC CQ 分区"
+
+#: application/views/logbookadvanced/checkresult.php:293
+#: application/views/logbookadvanced/checkresult.php:369
+#: application/views/dbtools/checkresult.php:295
+#: application/views/dbtools/checkresult.php:371
+msgid "No incorrect CQ Zones were found."
+msgstr "全部 CQ 分区填写正确。"
+
+#: application/views/logbookadvanced/checkresult.php:298
+#: application/views/dbtools/checkresult.php:300
+msgid "ITU Zone Check Results"
+msgstr "ITU分区检查结果"
+
+#: application/views/logbookadvanced/checkresult.php:300
+#: application/views/dbtools/checkresult.php:302
+msgid ""
+"The following QSOs were found to have a different ITU zone compared to what "
+"this DXCC normally has (a maximum of 5000 QSOs are shown):"
+msgstr "找到以下 QSO 与该 DXCC 通常对应的 ITU 区不同（最多显示 5000 个 QSO）："
+
+#: application/views/logbookadvanced/checkresult.php:305
+#: application/views/dbtools/checkresult.php:307
+msgid "Force update even if DXCC covers multiple ITU zones"
+msgstr "即使 DXCC 覆盖多个 ITU 分区，仍强制更新"
+
+#: application/views/logbookadvanced/checkresult.php:306
+#: application/views/dbtools/checkresult.php:308
+msgid ""
+"The update function can only set the main ITU zone which is assigned to the "
+"DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
+"not correct. So by default only QSOs with DXCCs covering a single ITU zone "
+"are updated. This checkbox overrides this but might result in wrong data. "
+"Use with caution!"
+msgstr ""
+"更新功能仅能设置分配给 DXCC 的主 ITU 分区。若DXCC覆盖多个 ITU 分区，则可能存"
+"在设置错误。因此默认情况下，仅更新覆盖单一 ITU 分区的 DXCC QSO。勾选本项可覆"
+"盖该设置，但可能导致数据错误。请谨慎使用！"
+
+#: application/views/logbookadvanced/checkresult.php:323
+#: application/views/dbtools/checkresult.php:325
+msgid "DXCC ITU Zone"
+msgstr "DXCC ITU 区域"
+
+#: application/views/logbookadvanced/checkresult.php:374
+#: application/views/dbtools/checkresult.php:376
+msgid "IOTA Check Results"
+msgstr "IOTA 检查结果"
+
+#: application/views/logbookadvanced/checkresult.php:381
+#: application/views/dbtools/checkresult.php:383
+msgid "These QSOs MAY have an incorrect IOTA reference."
+msgstr "这些 QSO 可能含有一个错误的 IOTA 编号。"
+
+#: application/views/logbookadvanced/checkresult.php:382
+#: application/views/dbtools/checkresult.php:384
+msgid ""
+"Results depends on the correct DXCC, and it will only be checked against "
+"current DXCC. False positive results may occur."
+msgstr "结果取决于正确的 DXCC，且仅与当前 DXCC 进行比对。可能出现误报结果。"
+
+#: application/views/logbookadvanced/checkresult.php:393
+#: application/views/dbtools/checkresult.php:395
+msgid "QSO DXCC"
+msgstr "QSO DXCC"
+
+#: application/views/logbookadvanced/checkresult.php:395
+#: application/views/dbtools/checkresult.php:397
+msgid "IOTA DXCC"
+msgstr "IOTA DXCC"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:4
+#: application/views/dbtools/index.php:24
+msgid "Data Repair Tools"
+msgstr "数据修复工具"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:6
+#: application/views/dbtools/index.php:17
+msgid "Wiki Help"
+msgstr "Wiki 帮助"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:8
+#: application/views/dbtools/index.php:20
+msgid ""
+"Warning. This tool can be dangerous to your data, and should only be used if "
+"you know what you are doing."
+msgstr ""
+"警告。此工具可能会对你的数据造成危险，只有在你知道如何操作的情况下才应该使"
+"用。"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:19
+#: application/views/dbtools/index.php:30
+msgid "All Station Locations"
+msgstr "全部电台位置"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:33
+#: application/views/dbtools/index.php:44
+msgid "Check all QSOs in the logbook for incorrect CQ Zones"
+msgstr "检查日志簿中所有 QSO 是否存在错误的 CQ 分区"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:34
+#: application/views/dbtools/index.php:45
+msgid "Use Wavelog to determine CQ Zone for all QSOs."
+msgstr "使用 Wavelog 确定所有 QSO 的 CQ 分区。"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:38
+#: application/views/logbookadvanced/dbtoolsdialog.php:49
+#: application/views/logbookadvanced/dbtoolsdialog.php:60
+#: application/views/logbookadvanced/dbtoolsdialog.php:71
+#: application/views/logbookadvanced/dbtoolsdialog.php:82
+#: application/views/logbookadvanced/dbtoolsdialog.php:93
+#: application/views/logbookadvanced/dbtoolsdialog.php:104
+#: application/views/logbookadvanced/dbtoolsdialog.php:117
+#: application/views/logbookadvanced/dbtoolsdialog.php:129
+#: application/views/dbtools/index.php:48
+#: application/views/dbtools/index.php:59
+#: application/views/dbtools/index.php:70
+#: application/views/dbtools/index.php:81
+#: application/views/dbtools/index.php:92
+#: application/views/dbtools/index.php:103
+#: application/views/dbtools/index.php:114
+#: application/views/dbtools/index.php:127
+#: application/views/dbtools/index.php:139
+msgid "Check"
+msgstr "检查"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:44
+#: application/views/dbtools/index.php:55
+msgid "Check all QSOs in the logbook for incorrect ITU Zones"
+msgstr "检查日志簿中所有 QSO 是否存在错误的 ITU 分区"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:45
+#: application/views/dbtools/index.php:56
+msgid "Use Wavelog to determine ITU Zone for all QSOs."
+msgstr "使用 Wavelog 确定所有 QSO 的 ITU 分区。"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:55
+#: application/views/dbtools/index.php:66
+msgid "Check Gridsquares"
+msgstr "检查网格"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:56
+#: application/views/dbtools/index.php:67
+msgid "Check gridsquares that does not match the DXCC"
+msgstr "检查不匹配 DXCC 的网格"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:66
+#: application/views/dbtools/index.php:77
+msgid "Fix Continent"
+msgstr "修正大洲"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:67
+#: application/views/dbtools/index.php:78
+msgid "Update missing or incorrect continent information"
+msgstr "更新缺失或不正确的大洲信息"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:78
+#: application/views/dbtools/index.php:89
+msgid "Update missing state/province information"
+msgstr "更新缺失的州/省信息"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:88
+#: application/views/logbookadvanced/index.php:68
+#: application/views/dbtools/index.php:99
+msgid "Update Distances"
+msgstr "更新距离"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:89
+#: application/views/dbtools/index.php:100
+msgid "Calculate and update distance information for QSOs"
+msgstr "计算并更新 QSO 的距离信息"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:99
+#: application/views/dbtools/index.php:110
+msgid "Check all QSOs in the logbook for incorrect DXCC"
+msgstr "检查日志簿中所有 QSO 的 DXCC 正确性"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:100
+#: application/views/dbtools/index.php:111
+msgid "Use Wavelog to determine DXCC for all QSOs."
+msgstr "使用 Wavelog 确定所有 QSO 的 DXCC。"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:111
+#: application/views/dbtools/index.php:122
+msgid "Lookup QSOs with missing grid in callbook"
+msgstr "查找呼号簿中缺少网格的 QSO"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:112
+#: application/views/dbtools/index.php:123
+msgid "Use callbook lookup to set gridsquare"
+msgstr "使用呼号簿查找来设置网格"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:113
+#: application/views/dbtools/index.php:124
+msgid "This is limited to 150 callsigns for each run!"
+msgstr "每次执行限制 150 个呼号！"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:124
+#: application/views/dbtools/index.php:135
+msgid "Check IOTA against DXCC"
+msgstr "检查 IOTA 是否符合 DXCC"
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:125
+#: application/views/dbtools/index.php:136
+msgid "Use Wavelog to check IOTA against DXCC"
+msgstr "使用 Wavelog 检查 IOTA 是否符合 DXCC"
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -16944,10 +16679,11 @@ msgid "DARC DOK"
 msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:36
-#: application/views/logbookadvanced/index.php:1033
+#: application/views/logbookadvanced/index.php:1036
 #: application/views/logbookadvanced/useroptions.php:263
 #: application/views/map/qso_map.php:22 application/views/qso/edit_ajax.php:313
 #: application/views/qso/index.php:503 application/views/view_log/qso.php:421
+#: application/views/logbookadvanced/index.php:1033
 msgid "Region"
 msgstr "区"
 
@@ -17021,8 +16757,9 @@ msgstr "QSL 发送方式"
 
 #: application/views/logbookadvanced/edit.php:59
 #: application/views/logbookadvanced/index.php:725
-#: application/views/logbookadvanced/index.php:970
+#: application/views/logbookadvanced/index.php:973
 #: application/views/logbookadvanced/useroptions.php:103
+#: application/views/logbookadvanced/index.php:970
 msgid "QSL via"
 msgstr "QSL Via"
 
@@ -17529,6 +17266,11 @@ msgstr "修正大洲时出现了问题。"
 msgid "SUCCESS"
 msgstr "成功"
 
+#: application/views/logbookadvanced/index.php:52
+#: application/views/qslprint/index.php:3 application/views/dbtools/index.php:4
+msgid "INFO"
+msgstr "信息"
+
 #: application/views/logbookadvanced/index.php:58
 msgid "Options for the Advanced Logbook"
 msgstr "日志簿的高级选项"
@@ -17540,6 +17282,11 @@ msgid ""
 msgstr ""
 "标签打印出现了问题。请前往“标签”选项卡，检查你是否已定义了标签，并且该标签已"
 "设置为可打印状态！"
+
+#: application/views/logbookadvanced/index.php:60
+#: application/views/dbtools/index.php:5
+msgid "You need to select a least 1 row!"
+msgstr "你至少需要选择 1 行！"
 
 #: application/views/logbookadvanced/index.php:61
 msgid "Start printing at which label?"
@@ -17588,6 +17335,21 @@ msgid ""
 "Are you sure you want to fix all QSOs with missing DXCC information? This "
 "action cannot be undone."
 msgstr "您确定要修复所有缺少 DXCC 信息的 QSO 吗？此操作无法撤销。"
+
+#: application/views/logbookadvanced/index.php:78
+#: application/views/dbtools/index.php:7
+msgid "Show less"
+msgstr "显示更少"
+
+#: application/views/logbookadvanced/index.php:80
+#: application/views/dbtools/index.php:8
+msgid "Gridsquares for"
+msgstr "网格"
+
+#: application/views/logbookadvanced/index.php:81
+#: application/views/dbtools/index.php:9
+msgid "Non DXCC matching gridsquare"
+msgstr "DXCC 匹配失败的网格"
 
 #: application/views/logbookadvanced/index.php:84
 msgid "You need to select exactly 2 QSOs to merge!"
@@ -17690,8 +17452,9 @@ msgid "To"
 msgstr "截止日期"
 
 #: application/views/logbookadvanced/index.php:372
-#: application/views/logbookadvanced/index.php:943
+#: application/views/logbookadvanced/index.php:946
 #: application/views/logbookadvanced/useroptions.php:40
+#: application/views/logbookadvanced/index.php:943
 msgid "Dx"
 msgstr "对方呼号(Dx)"
 
@@ -17707,11 +17470,12 @@ msgid ""
 msgstr "距离（公里）。搜索将查找大于或等于此值的项目。"
 
 #: application/views/logbookadvanced/index.php:550
-#: application/views/logbookadvanced/index.php:934
+#: application/views/logbookadvanced/index.php:937
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:43
+#: application/views/logbookadvanced/index.php:934
 msgid "Duration"
 msgstr "持续时间"
 
@@ -17999,6 +17763,7 @@ msgstr "生成 ADIF"
 
 #: application/views/logbookadvanced/index.php:850
 #: application/views/qslprint/index.php:5
+#: application/views/qslprint/printlabel.php:116
 #: application/views/qslprint/printlabel.php:137
 msgid "Print Label"
 msgstr "打印标签"
@@ -18036,69 +17801,87 @@ msgstr "重复的 QSO"
 msgid "Globe map"
 msgstr "全球地图"
 
-#: application/views/logbookadvanced/index.php:937
+#: application/views/logbookadvanced/index.php:908
+#: application/controllers/Dbtools.php:22
+#: application/views/interface_assets/header.php:337
+msgid "Database Tools"
+msgstr "数据库工具"
+
+#: application/views/logbookadvanced/index.php:940
 #: application/views/logbookadvanced/useroptions.php:349
+#: application/views/logbookadvanced/index.php:937
 msgid "Last modified"
 msgstr "上次修改"
 
-#: application/views/logbookadvanced/index.php:940
+#: application/views/logbookadvanced/index.php:943
 #: application/views/logbookadvanced/useroptions.php:34
+#: application/views/logbookadvanced/index.php:940
 msgid "De"
 msgstr "本台呼号(De)"
 
-#: application/views/logbookadvanced/index.php:985
+#: application/views/logbookadvanced/index.php:988
 #: application/views/logbookadvanced/useroptions.php:142
 #: application/views/qso/edit_ajax.php:414
 #: application/views/timeline/index.php:78 application/views/user/edit.php:738
+#: application/views/logbookadvanced/index.php:985
 msgid "QRZ"
 msgstr "QRZ"
 
-#: application/views/logbookadvanced/index.php:991
+#: application/views/logbookadvanced/index.php:994
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/qso/edit_ajax.php:513
+#: application/views/logbookadvanced/index.php:991
 msgid "QSL Msg (S)"
 msgstr "QSL 消息（发送）"
 
-#: application/views/logbookadvanced/index.php:994
+#: application/views/logbookadvanced/index.php:997
 #: application/views/logbookadvanced/useroptions.php:160
 #: application/views/qso/edit_ajax.php:522
+#: application/views/logbookadvanced/index.php:994
 msgid "QSL Msg (R)"
 msgstr "QSL 消息（接收）"
 
-#: application/views/logbookadvanced/index.php:1030
+#: application/views/logbookadvanced/index.php:1033
 #: application/views/qso/edit_ajax.php:382 application/views/qso/index.php:356
 #: application/views/qso/index.php:639
 #: application/views/stationsetup/locationlist.php:27
 #: application/views/user/edit.php:871 application/views/view_log/qso.php:387
 #: application/views/view_log/qso.php:696
+#: application/views/logbookadvanced/index.php:1030
 msgid "SIG Info"
 msgstr "SIG 信息"
 
-#: application/views/logbookadvanced/index.php:1048
+#: application/views/logbookadvanced/index.php:1051
 #: application/views/logbookadvanced/useroptions.php:302
+#: application/views/logbookadvanced/index.php:1048
 msgid "My Refs"
 msgstr "我的参考号"
 
+#: application/views/logbookadvanced/index.php:1060
 #: application/views/logbookadvanced/index.php:1057
 msgid "Ant az"
 msgstr "天线方向角"
 
-#: application/views/logbookadvanced/index.php:1057
+#: application/views/logbookadvanced/index.php:1060
 #: application/views/logbookadvanced/useroptions.php:324
+#: application/views/logbookadvanced/index.php:1057
 msgid "Antenna azimuth"
 msgstr "天线方向角"
 
+#: application/views/logbookadvanced/index.php:1063
 #: application/views/logbookadvanced/index.php:1060
 msgid "Ant el"
 msgstr "天线仰角"
 
-#: application/views/logbookadvanced/index.php:1060
+#: application/views/logbookadvanced/index.php:1063
 #: application/views/logbookadvanced/useroptions.php:330
+#: application/views/logbookadvanced/index.php:1060
 msgid "Antenna elevation"
 msgstr "天线仰角"
 
-#: application/views/logbookadvanced/index.php:1066
+#: application/views/logbookadvanced/index.php:1069
 #: application/views/logbookadvanced/useroptions.php:342
+#: application/views/logbookadvanced/index.php:1066
 msgid "Station power"
 msgstr "台站功率"
 
@@ -18126,6 +17909,16 @@ msgid ""
 "different fields from each QSO."
 msgstr "所选字段将合并到主 QSO，你可以在每个 QSO 中选择不同的字段。"
 
+#: application/views/logbookadvanced/printQsl.php:9
+#: application/views/qslpostcard/designer.php:67
+#: application/views/qslpostcard/printqueue.php:8
+#: application/views/qslpostcard/printqueue_selected.php:10
+#: application/views/qslprint/printqsl.php:9
+#: application/views/labeldesigner/designer.php:85
+#: application/views/labeldesigner/designer.php:91
+msgid "Template"
+msgstr "模板"
+
 #: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -18143,6 +17936,16 @@ msgstr ""
 #: application/views/qslprint/printqsl.php:30
 msgid "Generate Postcard PDF"
 msgstr "生成明信片 PDF"
+
+#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/qslpostcard/designer.php:99
+#: application/views/qslpostcard/printqueue.php:26
+#: application/views/qslpostcard/printqueue_selected.php:34
+#: application/views/qslprint/printqsl.php:34
+#: application/views/labeldesigner/designer.php:122
+#: application/views/labeldesigner/designer.php:135
+msgid "Save PDF"
+msgstr "保存 PDF"
 
 #: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
@@ -18168,20 +17971,145 @@ msgstr "前一项"
 msgid "Next"
 msgstr "后一项"
 
+#: application/views/logbookadvanced/showStateQsos.php:16
+#: application/views/dbtools/showStateQsos.php:16
+#, php-format
+msgid "Found %s QSO(s) missing state information for DXCC %s."
+msgstr "发现%s QSO(s) 缺少 DXCC %s 的状态信息。"
+
+#: application/views/logbookadvanced/showStateQsos.php:49
+#: application/views/dbtools/showStateQsos.php:49
+msgid "No Issues Found"
+msgstr "未发现问题"
+
+#: application/views/logbookadvanced/showUpdateResult.php:25
+#: application/views/logbookadvanced/showUpdateResult.php:75
+#: application/views/dbtools/showUpdateResult.php:25
+#: application/views/dbtools/showUpdateResult.php:75
+msgid "Results for state update:"
+msgstr "州级更新结果："
+
+#: application/views/logbookadvanced/showUpdateResult.php:27
+#: application/views/logbookadvanced/showUpdateResult.php:29
+#: application/views/dbtools/showUpdateResult.php:27
+#: application/views/dbtools/showUpdateResult.php:29
+msgid "The number of QSOs updated for state/province in"
+msgstr "州/省份的 QSO 更新数量"
+
+#: application/views/logbookadvanced/showUpdateResult.php:41
+#: application/views/logbookadvanced/showUpdateResult.php:104
+#: application/views/dbtools/showUpdateResult.php:41
+#: application/views/dbtools/showUpdateResult.php:104
+msgid "These QSOs could not be updated:"
+msgstr "这些通联记录无法更新："
+
+#: application/views/logbookadvanced/showUpdateResult.php:48
+#: application/views/logbookadvanced/showUpdateResult.php:111
+#: application/views/search/lotw_unconfirmed.php:28
+#: application/views/statistics/antennaanalytics.php:104
+#: application/views/dbtools/showUpdateResult.php:48
+#: application/views/dbtools/showUpdateResult.php:111
+msgid "Station location"
+msgstr "台站地址"
+
+#: application/views/logbookadvanced/showUpdateResult.php:49
+#: application/views/logbookadvanced/showUpdateResult.php:112
+#: application/views/dbtools/showUpdateResult.php:49
+#: application/views/dbtools/showUpdateResult.php:112
+msgid "Reason"
+msgstr "原因"
+
+#: application/views/logbookadvanced/showUpdateResult.php:77
+#: application/views/logbookadvanced/showUpdateResult.php:79
+#: application/views/dbtools/showUpdateResult.php:77
+#: application/views/dbtools/showUpdateResult.php:79
+msgid "The number of QSOs updated for state/province across all DXCCs is"
+msgstr "所有 DXCC 中更新的州/省的 QSO 数量是"
+
+#: application/views/logbookadvanced/showUpdateResult.php:79
+#: application/views/dbtools/showUpdateResult.php:79
+msgid "DXCCs processed"
+msgstr "已处理的 DXCC"
+
+#: application/views/logbookadvanced/showUpdateResult.php:131
+#: application/views/dbtools/showUpdateResult.php:131
+msgid "Results for continent update:"
+msgstr "大洲更新结果:"
+
+#: application/views/logbookadvanced/showUpdateResult.php:132
+#: application/views/dbtools/showUpdateResult.php:132
+msgid "The number of QSOs updated for continent is"
+msgstr "已更新的洲际通联数量为"
+
+#: application/views/logbookadvanced/showUpdateResult.php:136
+#: application/views/dbtools/showUpdateResult.php:136
+msgid "Results for distance update:"
+msgstr "距离更新结果："
+
+#: application/views/logbookadvanced/showUpdateResult.php:137
+#: application/views/dbtools/showUpdateResult.php:137
+msgid "The number of QSOs updated for distance is"
+msgstr "已更新距离信息的 QSO 数量为"
+
+#: application/views/logbookadvanced/showUpdateResult.php:141
+#: application/views/dbtools/showUpdateResult.php:141
+msgid "Results for gridsquare update:"
+msgstr "网格更新结果："
+
+#: application/views/logbookadvanced/showUpdateResult.php:142
+#: application/views/dbtools/showUpdateResult.php:142
+msgid "The number of QSOs updated for gridsquare is"
+msgstr "网格更新的 QSO 数量为"
+
+#: application/views/logbookadvanced/startatform.php:68
+#: application/views/qslprint/printlabel.php:68
 #: application/views/logbookadvanced/startatform.php:88
 #: application/views/qslprint/printlabel.php:88
 msgid "Include Via"
 msgstr "包含通过"
 
+#: application/views/logbookadvanced/startatform.php:80
+#: application/views/qslprint/printlabel.php:80
 #: application/views/logbookadvanced/startatform.php:100
 #: application/views/qslprint/printlabel.php:100
 msgid "Include QSLMSG"
 msgstr "包含 QSLMSG"
 
+#: application/views/logbookadvanced/startatform.php:92
+#: application/views/qslprint/printlabel.php:92
 #: application/views/logbookadvanced/startatform.php:112
 #: application/views/qslprint/printlabel.php:112
 msgid "Include TNX message"
 msgstr "包含 TNX 信息"
+
+#: application/views/logbookadvanced/statecheckresult.php:3
+#: application/views/logbookadvanced/statecheckresult.php:46
+#: application/views/dbtools/statecheckresult.php:3
+#: application/views/dbtools/statecheckresult.php:46
+msgid "State Check Results"
+msgstr "州级检查结果"
+
+#: application/views/logbookadvanced/statecheckresult.php:4
+#: application/views/dbtools/statecheckresult.php:4
+msgid ""
+"QSOs with missing state and gridsquares with 6 or more characters found for "
+"the following DXCCs:"
+msgstr "已找到以下 DXCC 的 QSO，但缺少州名和包含 6 个或更多字符的网格代码："
+
+#: application/views/logbookadvanced/statecheckresult.php:7
+#: application/views/dbtools/statecheckresult.php:7
+msgid "Fix all DXCCs"
+msgstr "修复所有 DXCC"
+
+#: application/views/logbookadvanced/statecheckresult.php:34
+#: application/views/dbtools/statecheckresult.php:34
+msgid "Run fix"
+msgstr "运行修复"
+
+#: application/views/logbookadvanced/statecheckresult.php:47
+#: application/views/dbtools/statecheckresult.php:47
+msgid "No QSOs were found where state information can be fixed."
+msgstr "没有找到可以确定州级信息的 QSO。"
 
 #: application/views/logbookadvanced/statedialog.php:2
 msgid ""
@@ -19430,6 +19358,37 @@ msgstr "添加到 QSL"
 msgid "Address"
 msgstr "地址"
 
+#: application/views/qslpostcard/designer.php:6
+#: application/views/labeldesigner/designer.php:7
+msgid "QSO Core"
+msgstr "QSO 核心信息"
+
+#: application/views/qslpostcard/designer.php:7
+#: application/views/labeldesigner/designer.php:8
+msgid "Date & Time"
+msgstr "日期和时间"
+
+#: application/views/qslpostcard/designer.php:8
+#: application/views/labeldesigner/designer.php:9
+msgid "Station & Equipment"
+msgstr "台站和设备"
+
+#: application/views/qslpostcard/designer.php:9
+#: application/views/labeldesigner/designer.php:10
+msgid "My References"
+msgstr "我的参考信息"
+
+#: application/views/qslpostcard/designer.php:10
+#: application/views/labeldesigner/designer.php:11
+msgid "Markers"
+msgstr "标签"
+
+#: application/views/qslpostcard/designer.php:11
+#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
+#: application/views/labeldesigner/designer.php:12
+msgid "Other"
+msgstr "其它"
+
 #: application/views/qslpostcard/designer.php:29
 msgid "Please choose an image first."
 msgstr "首先请选择一个图片。"
@@ -19446,6 +19405,136 @@ msgstr "未知错误"
 msgid "Preview image uploaded."
 msgstr "预览图片已上传。"
 
+#: application/views/qslpostcard/designer.php:34
+#: application/views/labeldesigner/designer.php:45
+msgid "Custom Text"
+msgstr "自定义文本"
+
+#: application/views/qslpostcard/designer.php:35
+#: application/views/labeldesigner/designer.php:48
+msgid "Untitled"
+msgstr "无标题"
+
+#: application/views/qslpostcard/designer.php:36
+#: application/views/labeldesigner/designer.php:49
+msgid "Save failed"
+msgstr "保存失败"
+
+#: application/views/qslpostcard/designer.php:37
+#: application/views/labeldesigner/designer.php:50
+msgid "Template saved."
+msgstr "模板已保存。"
+
+#: application/views/qslpostcard/designer.php:38
+#: application/views/labeldesigner/designer.php:51
+msgid "Delete Template?"
+msgstr "删除此模板？"
+
+#: application/views/qslpostcard/designer.php:39
+#: application/views/labeldesigner/designer.php:52
+msgid ""
+"Are you sure you want to delete this template? This action cannot be undone."
+msgstr "您确定要删除此模板吗？此操作无法撤销。"
+
+#: application/views/qslpostcard/designer.php:40
+#: application/views/labeldesigner/designer.php:53
+msgid "Delete failed"
+msgstr "删除失败"
+
+#: application/views/qslpostcard/designer.php:41
+#: application/views/labeldesigner/designer.php:54
+msgid "Template deleted successfully!"
+msgstr "模板删除成功！"
+
+#: application/views/qslpostcard/designer.php:42
+#: application/views/labeldesigner/designer.php:55
+msgid "Please select a template to delete."
+msgstr "请选择一个模板来删除。"
+
+#: application/views/qslpostcard/designer.php:43
+#: application/views/labeldesigner/designer.php:56
+msgid "Copy failed"
+msgstr "复制失败"
+
+#: application/views/qslpostcard/designer.php:44
+#: application/views/labeldesigner/designer.php:57
+msgid "Template copied."
+msgstr "模板已复制。"
+
+#: application/views/qslpostcard/designer.php:45
+#: application/views/labeldesigner/designer.php:58
+msgid "Please select a template to copy."
+msgstr "请选择一个模板以供复制。"
+
+#: application/views/qslpostcard/designer.php:48
+#: application/views/labeldesigner/designer.php:61
+msgid "selected"
+msgstr "已选择"
+
+#: application/views/qslpostcard/designer.php:49
+#: application/views/labeldesigner/designer.php:64
+msgid "Unsaved changes"
+msgstr "未保存的更改"
+
+#: application/views/qslpostcard/designer.php:50
+#: application/views/labeldesigner/designer.php:65
+msgid ""
+"Your current design has unsaved changes. Loading a different template will "
+"replace it. Continue?"
+msgstr "您当前的设计有未保存的更改。加载不同的模板将会替换它。是否继续？"
+
+#: application/views/qslpostcard/designer.php:51
+#: application/views/labeldesigner/designer.php:66
+msgid ""
+"Your current design has unsaved changes. If you leave the page, those "
+"changes will be lost. Leave anyway?"
+msgstr "您当前的设计未保存。如果离开此页面，这些更改将会丢失，确定要离开吗？"
+
+#: application/views/qslpostcard/designer.php:52
+#: application/views/labeldesigner/designer.php:67
+msgid "Discard changes"
+msgstr "放弃更改"
+
+#: application/views/qslpostcard/designer.php:53
+#: application/views/labeldesigner/designer.php:68
+msgid "Keep editing"
+msgstr "继续编辑"
+
+#: application/views/qslpostcard/designer.php:54
+#: application/views/labeldesigner/designer.php:69
+msgid "Leave page"
+msgstr "离开页面"
+
+#: application/views/qslpostcard/designer.php:70
+#: application/views/labeldesigner/designer.php:88
+#: application/views/labeldesigner/designer.php:94
+msgid "(new)"
+msgstr "（新）"
+
+#: application/views/qslpostcard/designer.php:75
+#: application/views/labeldesigner/designer.php:93
+#: application/views/labeldesigner/designer.php:99
+msgid "Template name"
+msgstr "模板名"
+
+#: application/views/qslpostcard/designer.php:76
+#: application/views/labeldesigner/designer.php:94
+#: application/views/labeldesigner/designer.php:100
+msgid "Save Template"
+msgstr "保存模板"
+
+#: application/views/qslpostcard/designer.php:79
+#: application/views/labeldesigner/designer.php:97
+#: application/views/labeldesigner/designer.php:103
+msgid "Copy Template"
+msgstr "复制模板"
+
+#: application/views/qslpostcard/designer.php:82
+#: application/views/labeldesigner/designer.php:100
+#: application/views/labeldesigner/designer.php:106
+msgid "Delete Template"
+msgstr "删除模板"
+
 #: application/views/qslpostcard/designer.php:90
 msgid "Background image"
 msgstr "背景图片"
@@ -19453,6 +19542,68 @@ msgstr "背景图片"
 #: application/views/qslpostcard/designer.php:94
 msgid "Generate PDF (demo)"
 msgstr "生成 PDF（演示）"
+
+#: application/views/qslpostcard/designer.php:95
+#: application/views/labeldesigner/designer.php:118
+#: application/views/labeldesigner/designer.php:131
+msgid "PDF"
+msgstr "PDF"
+
+#: application/views/qslpostcard/designer.php:107
+#: application/views/labeldesigner/designer.php:130
+#: application/views/labeldesigner/designer.php:143
+msgid "History"
+msgstr "历史"
+
+#: application/views/qslpostcard/designer.php:109
+#: application/views/labeldesigner/designer.php:132
+#: application/views/labeldesigner/designer.php:145
+msgid "Undo"
+msgstr "撤销"
+
+#: application/views/qslpostcard/designer.php:110
+#: application/views/labeldesigner/designer.php:133
+#: application/views/labeldesigner/designer.php:146
+msgid "Redo"
+msgstr "重做"
+
+#: application/views/qslpostcard/designer.php:116
+#: application/views/labeldesigner/designer.php:139
+#: application/views/labeldesigner/designer.php:152
+msgid "Zoom"
+msgstr "缩放"
+
+#: application/views/qslpostcard/designer.php:126
+#: application/views/labeldesigner/designer.php:149
+#: application/views/labeldesigner/designer.php:162
+msgid ""
+"Tip: After a test print, adjust global offsets rather than moving every "
+"field."
+msgstr "提示：打印测试后，你可以调整全局偏移，而无需分别移动每个字段。"
+
+#: application/views/qslpostcard/designer.php:127
+#: application/views/labeldesigner/designer.php:150
+#: application/views/labeldesigner/designer.php:163
+msgid "Print offset"
+msgstr "打印偏移"
+
+#: application/views/qslpostcard/designer.php:156
+#: application/views/labeldesigner/designer.php:179
+#: application/views/labeldesigner/designer.php:192
+msgid "Search fields…"
+msgstr "搜索字段…"
+
+#: application/views/qslpostcard/designer.php:160
+#: application/views/labeldesigner/designer.php:183
+#: application/views/labeldesigner/designer.php:196
+msgid "Add Custom Text"
+msgstr "添加自定义文本"
+
+#: application/views/qslpostcard/designer.php:175
+#: application/views/labeldesigner/designer.php:211
+#: application/views/labeldesigner/designer.php:224
+msgid "No fields match your search."
+msgstr "未找到符合的字段。"
 
 #: application/views/qslpostcard/designer.php:183
 msgid "Postcard Canvas"
@@ -19462,9 +19613,21 @@ msgstr "明信片画布"
 msgid "drag fields onto the postcard"
 msgstr "将字段拖放到明信片上"
 
+#: application/views/qslpostcard/designer.php:205
+#: application/views/labeldesigner/designer.php:241
+#: application/views/labeldesigner/designer.php:254
+msgid "Template Options"
+msgstr "模板选项"
+
 #: application/views/qslpostcard/designer.php:209
 msgid "Number of QSOs per QSL card"
 msgstr "每张 QSL 卡的 QSO 数量"
+
+#: application/views/qslpostcard/designer.php:213
+#: application/views/labeldesigner/designer.php:249
+#: application/views/labeldesigner/designer.php:262
+msgid "Row spacing"
+msgstr "行距"
 
 #: application/views/qslpostcard/designer.php:218
 msgid "Print background image (uncheck for pre-printed cards)"
@@ -19474,9 +19637,165 @@ msgstr "打印背景图像（预印卡请取消勾选）"
 msgid "Skip address printing (for printing on regular QSL cards)"
 msgstr "跳过地址打印（用于普通 QSL 卡）"
 
+#: application/views/qslpostcard/designer.php:230
+#: application/views/labeldesigner/designer.php:266
+#: application/views/labeldesigner/designer.php:279
+msgid "Properties"
+msgstr "属性"
+
+#: application/views/qslpostcard/designer.php:235
+#: application/views/labeldesigner/designer.php:271
+#: application/views/labeldesigner/designer.php:284
+msgid "Select a field on the canvas to edit it."
+msgstr "在画布上选择一个字段以编辑。"
+
+#: application/views/qslpostcard/designer.php:236
+#: application/views/labeldesigner/designer.php:272
+#: application/views/labeldesigner/designer.php:285
+msgid "Right-click a field for more actions."
+msgstr "右键单击字段以获得更多操作。"
+
+#: application/views/qslpostcard/designer.php:246
+#: application/views/labeldesigner/designer.php:282
+#: application/views/labeldesigner/designer.php:295
+msgid "Text"
+msgstr "文本"
+
+#: application/views/qslpostcard/designer.php:251
+#: application/views/labeldesigner/designer.php:287
+#: application/views/labeldesigner/designer.php:300
+msgid "Frequency format"
+msgstr "频率格式"
+
+#: application/views/qslpostcard/designer.php:259
+#: application/views/labeldesigner/designer.php:295
+#: application/views/labeldesigner/designer.php:308
+msgid "Omit unit"
+msgstr "省略单位"
+
+#: application/views/qslpostcard/designer.php:265
+#: application/views/labeldesigner/designer.php:301
+#: application/views/labeldesigner/designer.php:314
+msgid "X"
+msgstr "X"
+
+#: application/views/qslpostcard/designer.php:269
+#: application/views/labeldesigner/designer.php:305
+#: application/views/labeldesigner/designer.php:318
+msgid "Y"
+msgstr "Y"
+
+#: application/views/qslpostcard/designer.php:275
+#: application/views/labeldesigner/designer.php:354
+#: application/views/labeldesigner/designer.php:367
+msgid "Font"
+msgstr "字体"
+
+#: application/views/qslpostcard/designer.php:291
+#: application/views/labeldesigner/designer.php:370
+#: application/views/labeldesigner/designer.php:383
+msgid "Bold"
+msgstr "粗体"
+
+#: application/views/qslpostcard/designer.php:297
+#: application/views/labeldesigner/designer.php:376
+#: application/views/labeldesigner/designer.php:389
+msgid "Color"
+msgstr "颜色"
+
+#: application/views/qslpostcard/designer.php:302
+#: application/views/labeldesigner/designer.php:381
+#: application/views/labeldesigner/designer.php:394
+msgid "Wrap width"
+msgstr "列宽"
+
 #: application/views/qslpostcard/designer.php:307
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr "当卡片包含多个 QSO 时，每个 QSO 都打印一次此字段"
+
+#: application/views/qslpostcard/designer.php:308
+#: application/views/labeldesigner/designer.php:387
+#: application/views/labeldesigner/designer.php:400
+msgid "Repeats per QSO"
+msgstr "每个 QSO 都重复"
+
+#: application/views/qslpostcard/designer.php:312
+#: application/views/labeldesigner/designer.php:391
+#: application/views/labeldesigner/designer.php:404
+msgid "Move this element freely without snapping to the grid or other elements"
+msgstr "自由移动这个元素，无需贴齐到网格或其他元素"
+
+#: application/views/qslpostcard/designer.php:313
+#: application/views/labeldesigner/designer.php:392
+#: application/views/labeldesigner/designer.php:405
+msgid "Disable Auto-Snap"
+msgstr "禁用自动贴齐"
+
+#: application/views/qslpostcard/designer.php:339
+#: application/views/labeldesigner/designer.php:418
+#: application/views/labeldesigner/designer.php:431
+msgid "Align & distribute"
+msgstr "对齐和分布"
+
+#: application/views/qslpostcard/designer.php:343
+#: application/views/labeldesigner/designer.php:422
+#: application/views/labeldesigner/designer.php:435
+msgid "Align left"
+msgstr "左对齐"
+
+#: application/views/qslpostcard/designer.php:344
+#: application/views/labeldesigner/designer.php:423
+#: application/views/labeldesigner/designer.php:436
+msgid "Align horizontal centers"
+msgstr "水平居中"
+
+#: application/views/qslpostcard/designer.php:345
+#: application/views/labeldesigner/designer.php:424
+#: application/views/labeldesigner/designer.php:437
+msgid "Align right"
+msgstr "右对齐"
+
+#: application/views/qslpostcard/designer.php:347
+#: application/views/labeldesigner/designer.php:426
+#: application/views/labeldesigner/designer.php:439
+msgid "Align top"
+msgstr "顶端对齐"
+
+#: application/views/qslpostcard/designer.php:348
+#: application/views/labeldesigner/designer.php:427
+#: application/views/labeldesigner/designer.php:440
+msgid "Align vertical centers"
+msgstr "垂直居中"
+
+#: application/views/qslpostcard/designer.php:349
+#: application/views/labeldesigner/designer.php:428
+#: application/views/labeldesigner/designer.php:441
+msgid "Align bottom"
+msgstr "底端对齐"
+
+#: application/views/qslpostcard/designer.php:351
+#: application/views/labeldesigner/designer.php:430
+#: application/views/labeldesigner/designer.php:443
+msgid "Distribute horizontally"
+msgstr "横向分布"
+
+#: application/views/qslpostcard/designer.php:352
+#: application/views/labeldesigner/designer.php:431
+#: application/views/labeldesigner/designer.php:444
+msgid "Distribute vertically"
+msgstr "纵向分布"
+
+#: application/views/qslpostcard/designer.php:354
+#: application/views/labeldesigner/designer.php:433
+#: application/views/labeldesigner/designer.php:446
+msgid "Center on page (horizontal)"
+msgstr "页面居中（水平）"
+
+#: application/views/qslpostcard/designer.php:355
+#: application/views/labeldesigner/designer.php:434
+#: application/views/labeldesigner/designer.php:447
+msgid "Center on page (vertical)"
+msgstr "页面居中（垂直）"
 
 #: application/views/qslprint/index.php:4
 msgid "Please select at least one row"
@@ -21872,8 +22191,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -23447,6 +23766,227 @@ msgstr "Clublog 日志搜索"
 msgid "LoTW User. Last upload was "
 msgstr "LoTW 用户。最后上传于 "
 
+#: application/controllers/Dashboard.php:219
+msgid "HF"
+msgstr ""
+
+#: application/controllers/Dashboard.php:219
+msgid "VHF+"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:22
+#: application/views/labels/index.php:36
+msgid "Label Designer"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:125
+msgid "Template has no elements"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:131
+msgid "Label type not found"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:165
+msgid "Label PDF failed: "
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:46
+msgid "Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:62
+msgid "Please select a label type first."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:63
+msgid ""
+"The label type of this template no longer exists. Please select another one."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:108
+#: application/views/labeldesigner/designer.php:121
+msgid "Label type"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:111
+#: application/views/labeldesigner/designer.php:124
+msgid "(select label type)"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:117
+#: application/views/labeldesigner/designer.php:130
+msgid "Generate sample PDF with your latest QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:187
+#: application/views/labeldesigner/designer.php:200
+msgid ""
+"Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
+"QSO row"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:188
+#: application/views/labeldesigner/designer.php:201
+msgid "Horizontal Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:190
+#: application/views/labeldesigner/designer.php:203
+msgid "Vertical rule — place at column edges to build a table grid"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:191
+#: application/views/labeldesigner/designer.php:204
+msgid "Vertical Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:195
+#: application/views/labeldesigner/designer.php:208
+msgid ""
+"Table grid — drag the corner to resize, drag the column markers to adjust "
+"column widths"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:196
+#: application/views/labeldesigner/designer.php:209
+msgid "Add Table"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:219
+#: application/views/labeldesigner/designer.php:232
+msgid "Label Canvas"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:220
+#: application/views/labeldesigner/designer.php:233
+msgid "drag fields onto the label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:245
+#: application/views/labeldesigner/designer.php:258
+msgid "Number of QSOs per label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:254
+#: application/views/labeldesigner/designer.php:267
+msgid ""
+"Draws a rule between the QSO rows automatically, like the classic label "
+"layout"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:254
+#: application/views/labeldesigner/designer.php:267
+msgid "Separator lines between QSO rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:257
+#: application/views/labeldesigner/designer.php:270
+msgid "Separator thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:313
+#: application/views/labeldesigner/designer.php:326
+msgid "Rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:317
+#: application/views/labeldesigner/designer.php:330
+msgid "Columns"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:331
+#: application/views/labeldesigner/designer.php:347
+#: application/views/labeldesigner/designer.php:344
+#: application/views/labeldesigner/designer.php:360
+msgid "Thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:338
+#: application/views/labeldesigner/designer.php:351
+msgid "Horizontal"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:339
+#: application/views/labeldesigner/designer.php:352
+msgid "Vertical"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:343
+#: application/views/labeldesigner/designer.php:356
+msgid "Length"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:386
+#: application/views/labeldesigner/designer.php:399
+msgid "Print this field once per QSO when a label holds multiple QSOs"
+msgstr ""
+
+#: application/views/labels/startatform.php:21
+#: application/views/logbookadvanced/startatform.php:20
+#: application/views/qslprint/printlabel.php:20
+msgid "Label layout"
+msgstr ""
+
+#: application/views/labels/startatform.php:24
+#: application/views/logbookadvanced/startatform.php:23
+#: application/views/qslprint/printlabel.php:23
+msgid "Standard"
+msgstr ""
+
+#: application/views/labels/startatform.php:30
+#: application/views/logbookadvanced/startatform.php:29
+#: application/views/qslprint/printlabel.php:29
+msgid ""
+"Designed label templates use their own layout and ignore the options below."
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:180
+msgid ""
+"The label type of this template no longer exists. Please select another one "
+"before exporting."
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:158
+msgid "Imported"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:182
+msgid "Imported paper"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:244
+msgid "Imported label type"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:70
+msgid "Import failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:71
+msgid "Export failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:72
+msgid "Template imported."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:73
+msgid "Please select a template to export."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:74
+msgid "File is too large."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:109
+msgid "Export Template"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:112
+msgid "Import Template"
+msgstr ""
+
 #~ msgid "Counties Progress"
 #~ msgstr "通联县进展"
 
@@ -24979,8 +25519,8 @@ msgstr "LoTW 用户。最后上传于 "
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
