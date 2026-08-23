@@ -130,14 +130,7 @@ class Dashboard extends CI_Controller {
 		$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array);
 
 		// Country stats
-		$data['total_countries'] = $stats['Countries_Worked'];
-		$data['total_deleted_countries'] = $stats['Countries_Deleted_Worked'];
 		$data['unique_callsigns'] = $stats['Unique_Callsigns'];
-		$data['total_countries_confirmed_paper'] = $stats['Countries_Worked_QSL'];
-		$data['total_deleted_countries_confirmed_paper'] = $stats['Countries_Deleted_Worked_QSL'];
-		$data['total_countries_confirmed_lotw'] = $stats['Countries_Worked_LOTW'];
-		$data['total_deleted_countries_confirmed_lotw'] = $stats['Countries_Deleted_Worked_LOTW'];
-		$confirmed = $stats['Countries_Worked_Confirmed'];
 
 		// QSL stats
 		$data['total_qsl_sent'] = $stats['QSL_Sent'];
@@ -218,7 +211,20 @@ class Dashboard extends CI_Controller {
 			$data['firstloginwizard'] = $this->load->view('user/modals/first_login_wizard', $viewdata, true);
 		}
 
-		$data['total_countries_needed'] = max(0, count($dxcc->result()) - $confirmed);
+		// DXCC breakdown sections: HF always, SAT/VHF+ only when such QSOs exist
+		$groups = $stats['DXCC_Groups'] ?? [];
+		$current_count = count($dxcc->result());
+		$zero_group = ['qsos' => 0, 'worked' => 0, 'deleted' => 0, 'qsl' => 0, 'deleted_qsl' => 0, 'lotw' => 0, 'deleted_lotw' => 0, 'confirmed' => 0];
+		$data['dxcc_sections'] = [];
+		foreach (['hf' => __("HF"), 'sat' => __("SAT"), 'vhf' => __("VHF+")] as $key => $label) {
+			$group = array_merge($zero_group, $groups[$key] ?? []);
+			if ($key != 'hf' && $group['qsos'] == 0) {
+				continue;
+			}
+			$group['label'] = $label;
+			$group['needed'] = max(0, $current_count - $group['confirmed']);
+			$data['dxcc_sections'][$key] = $group;
+		}
 
 		// Check user preferrence to show Solar Data on Dashboard and load data if yes
 		// Default to not show
