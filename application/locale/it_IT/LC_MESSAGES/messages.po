@@ -239,7 +239,7 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qsl.php:132
 msgid "You're not allowed to do that!"
 msgstr "Non ti è permesso farlo!"
 
@@ -1956,6 +1956,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:282
+#: application/controllers/Qslpostcard.php:285
 msgid "No QSOs were selected"
 msgstr "Nessun QSO è stato selezionato"
 
@@ -3137,11 +3138,14 @@ msgid "Upload QSL Cards"
 msgstr "Carica QSL"
 
 #: application/controllers/Qsl.php:93 application/controllers/Qsl.php:140
+#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
 msgid "Not enough free disk space to store the QSL card."
 msgstr "Spazio su disco insufficiente per memorizzare la cartolina QSL."
 
 #: application/controllers/Qsl.php:110 application/controllers/Qsl.php:157
 #: application/controllers/Qslpostcard.php:86
+#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr "Il file caricato non è un'immagine valida."
 
@@ -3158,8 +3162,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Per favore, confronta il tuo attuale config.php con l'ultimo config.sample."
-"php e aggiornalo di conseguenza."
+"Per favore, confronta il tuo attuale config.php con l'ultimo "
+"config.sample.php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:568
@@ -3167,57 +3171,74 @@ msgid "QSL Postcard Designer"
 msgstr "Designer di cartoline QSL"
 
 #: application/controllers/Qslpostcard.php:61
+#: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "Spazio libero su disco insufficiente per salvare lo sfondo QSL."
 
 #: application/controllers/Qslpostcard.php:183
 #: application/controllers/Qslpostcard.php:240
 #: application/controllers/Qslpostcard.php:299
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
 msgid "Template not found"
 msgstr "Modello non trovato"
 
 #: application/controllers/Qslpostcard.php:189
 #: application/controllers/Qslpostcard.php:246
 #: application/controllers/Qslpostcard.php:305
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
 msgid "Template JSON is invalid"
 msgstr "Il modello JSON non è valido"
 
 #: application/controllers/Qslpostcard.php:204
+#: application/controllers/Qslpostcard.php:207
 msgid "No QSOs returned by get_sample_qsos()"
 msgstr "Nessun QSO restituito da get_sample_qsos()"
 
 #: application/controllers/Qslpostcard.php:214
+#: application/controllers/Qslpostcard.php:217
 msgid "PDF file was not created"
 msgstr "Il file PDF non è stato creato"
 
 #: application/controllers/Qslpostcard.php:223
+#: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr "Cartolina QSL PDF fallita: "
 
 #: application/controllers/Qslpostcard.php:228
 #: application/views/qslpostcard/printqueue.php:2
+#: application/controllers/Qslpostcard.php:231
 msgid "Print QSL Postcards"
 msgstr "Stampa cartoline QSL"
 
 #: application/controllers/Qslpostcard.php:259
 #: application/controllers/Qslpostcard.php:318
+#: application/controllers/Qslpostcard.php:262
+#: application/controllers/Qslpostcard.php:321
 msgid "No QSOs found for postcard printing"
 msgstr "Nessun QSO trovato per la stampa di cartoline"
 
 #: application/controllers/Qslpostcard.php:274
+#: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "Coda per cartoline QSL PDF non riuscita: "
 
 #: application/controllers/Qslpostcard.php:286
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:289
 msgid "Print Selected QSL Postcards"
 msgstr "Stampa le cartoline QSL selezionate"
 
 #: application/controllers/Qslpostcard.php:311
+#: application/controllers/Qslpostcard.php:314
 msgid "No selected QSO IDs were provided"
 msgstr "Nessun ID QSO selezionato è stato fornito"
 
 #: application/controllers/Qslpostcard.php:336
+#: application/controllers/Qslpostcard.php:339
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "cartolina QSL PDF selezionata non riuscito: "
 
@@ -22324,8 +22345,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"

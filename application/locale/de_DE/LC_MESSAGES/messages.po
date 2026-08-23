@@ -255,7 +255,7 @@ msgstr "troposphärisches Ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qsl.php:132
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -1975,6 +1975,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:282
+#: application/controllers/Qslpostcard.php:285
 msgid "No QSOs were selected"
 msgstr "Keine QSOs wurden ausgewählt"
 
@@ -3157,11 +3158,14 @@ msgid "Upload QSL Cards"
 msgstr "QSL-Karten Upload"
 
 #: application/controllers/Qsl.php:93 application/controllers/Qsl.php:140
+#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
 msgid "Not enough free disk space to store the QSL card."
 msgstr "Nicht genug freier Speicherplatz, um die QSL-Karte zu speichern."
 
 #: application/controllers/Qsl.php:110 application/controllers/Qsl.php:157
 #: application/controllers/Qslpostcard.php:86
+#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr "Die hochgeladene Datei ist kein gültiges Bild."
 
@@ -3179,8 +3183,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:568
@@ -3188,6 +3192,7 @@ msgid "QSL Postcard Designer"
 msgstr "QSL-Postkarten-Designer"
 
 #: application/controllers/Qslpostcard.php:61
+#: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr ""
 "Nicht genügend Speicherplatz vorhanden, um den Kartenhintergrund zu "
@@ -3196,51 +3201,67 @@ msgstr ""
 #: application/controllers/Qslpostcard.php:183
 #: application/controllers/Qslpostcard.php:240
 #: application/controllers/Qslpostcard.php:299
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
 msgid "Template not found"
 msgstr "Vorlage nicht gefunden"
 
 #: application/controllers/Qslpostcard.php:189
 #: application/controllers/Qslpostcard.php:246
 #: application/controllers/Qslpostcard.php:305
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
 msgid "Template JSON is invalid"
 msgstr "Vorlagen-JSON ist ungültig"
 
 #: application/controllers/Qslpostcard.php:204
+#: application/controllers/Qslpostcard.php:207
 msgid "No QSOs returned by get_sample_qsos()"
 msgstr "Keine QSOs von get_sample_qsos() zurückgegeben"
 
 #: application/controllers/Qslpostcard.php:214
+#: application/controllers/Qslpostcard.php:217
 msgid "PDF file was not created"
 msgstr "PDF-Datei wurde nicht erstellt"
 
 #: application/controllers/Qslpostcard.php:223
+#: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr "QSL-Postkarten-PDF fehlgeschlagen: "
 
 #: application/controllers/Qslpostcard.php:228
 #: application/views/qslpostcard/printqueue.php:2
+#: application/controllers/Qslpostcard.php:231
 msgid "Print QSL Postcards"
 msgstr "QSL-Postkarten drucken"
 
 #: application/controllers/Qslpostcard.php:259
 #: application/controllers/Qslpostcard.php:318
+#: application/controllers/Qslpostcard.php:262
+#: application/controllers/Qslpostcard.php:321
 msgid "No QSOs found for postcard printing"
 msgstr "Keine QSOs für den Postkartendruck gefunden"
 
 #: application/controllers/Qslpostcard.php:274
+#: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSL-Postkarten-Warteschlange PDF fehlgeschlagen: "
 
 #: application/controllers/Qslpostcard.php:286
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:289
 msgid "Print Selected QSL Postcards"
 msgstr "Drucke ausgewählte QSL-Karten"
 
 #: application/controllers/Qslpostcard.php:311
+#: application/controllers/Qslpostcard.php:314
 msgid "No selected QSO IDs were provided"
 msgstr "Es wurden keine QSOs ausgewählt"
 
 #: application/controllers/Qslpostcard.php:336
+#: application/controllers/Qslpostcard.php:339
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Generierung des PDFs für ausgewählte QSL-Karten fehlgeschalgen: "
 
@@ -14977,8 +14998,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -18919,8 +18940,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -21307,8 +21328,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -22363,9 +22384,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"

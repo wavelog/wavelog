@@ -240,7 +240,7 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qsl.php:132
 msgid "You're not allowed to do that!"
 msgstr "Bunu yapmanıza izin verilmiyor!"
 
@@ -1984,6 +1984,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:282
+#: application/controllers/Qslpostcard.php:285
 msgid "No QSOs were selected"
 msgstr "Hiçbir QSO seçilmedi"
 
@@ -3161,11 +3162,14 @@ msgid "Upload QSL Cards"
 msgstr "QSL Kartları yükle"
 
 #: application/controllers/Qsl.php:93 application/controllers/Qsl.php:140
+#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
 msgid "Not enough free disk space to store the QSL card."
 msgstr "QSL kartını saklamak için yeterli boş disk alanı yok."
 
 #: application/controllers/Qsl.php:110 application/controllers/Qsl.php:157
 #: application/controllers/Qslpostcard.php:86
+#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr "Yüklenen dosya geçerli bir görsel değil."
 
@@ -3191,57 +3195,74 @@ msgid "QSL Postcard Designer"
 msgstr "QSL Kart Tasarımcısı"
 
 #: application/controllers/Qslpostcard.php:61
+#: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "QSL Arka Planı depolamak için yeterli boş disk alanı yok."
 
 #: application/controllers/Qslpostcard.php:183
 #: application/controllers/Qslpostcard.php:240
 #: application/controllers/Qslpostcard.php:299
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
 msgid "Template not found"
 msgstr "Şablon bulunamadı"
 
 #: application/controllers/Qslpostcard.php:189
 #: application/controllers/Qslpostcard.php:246
 #: application/controllers/Qslpostcard.php:305
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
 msgid "Template JSON is invalid"
 msgstr "Şablon JSON geçersiz"
 
 #: application/controllers/Qslpostcard.php:204
+#: application/controllers/Qslpostcard.php:207
 msgid "No QSOs returned by get_sample_qsos()"
 msgstr "get_sample_qsos() tarafından hiçbir QSO dönmedi"
 
 #: application/controllers/Qslpostcard.php:214
+#: application/controllers/Qslpostcard.php:217
 msgid "PDF file was not created"
 msgstr "PDF dosyası oluşturulmadı"
 
 #: application/controllers/Qslpostcard.php:223
+#: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr "QSL Kart PDF'i başarısız oldu: "
 
 #: application/controllers/Qslpostcard.php:228
 #: application/views/qslpostcard/printqueue.php:2
+#: application/controllers/Qslpostcard.php:231
 msgid "Print QSL Postcards"
 msgstr "QSL Kartları Yazdır"
 
 #: application/controllers/Qslpostcard.php:259
 #: application/controllers/Qslpostcard.php:318
+#: application/controllers/Qslpostcard.php:262
+#: application/controllers/Qslpostcard.php:321
 msgid "No QSOs found for postcard printing"
 msgstr "QSL Kart yazdırma için QSO bulunamadı"
 
 #: application/controllers/Qslpostcard.php:274
+#: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSL Kart Kuyruğu PDF'i başarısız oldu: "
 
 #: application/controllers/Qslpostcard.php:286
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:289
 msgid "Print Selected QSL Postcards"
 msgstr "Seçili QSL Kartları Yazdır"
 
 #: application/controllers/Qslpostcard.php:311
+#: application/controllers/Qslpostcard.php:314
 msgid "No selected QSO IDs were provided"
 msgstr "Hiçbir seçili QSO ID sağlanmadı"
 
 #: application/controllers/Qslpostcard.php:336
+#: application/controllers/Qslpostcard.php:339
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Seçilen QSL Kart PDF'i başarısız oldu: "
 
@@ -22565,8 +22586,8 @@ msgid ""
 "month/today, Current Streak, Unique callsigns) on the dashboard."
 msgstr ""
 "Bu, gösterge panelindeki KPI istatistiklerinin görünümünü değiştirir (Toplam "
-"QSO, bu yıl/ay/gün gerçekleşen QSO, Devam Eden Seri, Benzersiz çağrı işareti)"
-"."
+"QSO, bu yıl/ay/gün gerçekleşen QSO, Devam Eden Seri, Benzersiz çağrı "
+"işareti)."
 
 #: application/views/user/edit.php:838
 msgid "Show Fields on QSO Tab"

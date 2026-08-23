@@ -237,7 +237,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qsl.php:132
 msgid "You're not allowed to do that!"
 msgstr "Je mag dat niet doen!"
 
@@ -1952,6 +1952,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:282
+#: application/controllers/Qslpostcard.php:285
 msgid "No QSOs were selected"
 msgstr "Er zijn geen QSO's geselecteerd"
 
@@ -3133,11 +3134,14 @@ msgid "Upload QSL Cards"
 msgstr "QSL-kaarten uploaden"
 
 #: application/controllers/Qsl.php:93 application/controllers/Qsl.php:140
+#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
 msgid "Not enough free disk space to store the QSL card."
 msgstr "Niet genoeg vrije schijfruimte om de QSL-kaart op te slaan."
 
 #: application/controllers/Qsl.php:110 application/controllers/Qsl.php:157
 #: application/controllers/Qslpostcard.php:86
+#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr "Het geüploade bestand is geen geldige afbeelding."
 
@@ -3163,57 +3167,74 @@ msgid "QSL Postcard Designer"
 msgstr "QSL Ansichtkaart Ontwerper"
 
 #: application/controllers/Qslpostcard.php:61
+#: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "Niet genoeg vrije schijfruimte om de QSL-achtergrond op te slaan."
 
 #: application/controllers/Qslpostcard.php:183
 #: application/controllers/Qslpostcard.php:240
 #: application/controllers/Qslpostcard.php:299
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
 msgid "Template not found"
 msgstr "Sjabloon niet gevonden"
 
 #: application/controllers/Qslpostcard.php:189
 #: application/controllers/Qslpostcard.php:246
 #: application/controllers/Qslpostcard.php:305
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
 msgid "Template JSON is invalid"
 msgstr "Sjabloon JSON is ongeldig"
 
 #: application/controllers/Qslpostcard.php:204
+#: application/controllers/Qslpostcard.php:207
 msgid "No QSOs returned by get_sample_qsos()"
 msgstr "Geen QSO's geretourneerd door get_sample_qsos()"
 
 #: application/controllers/Qslpostcard.php:214
+#: application/controllers/Qslpostcard.php:217
 msgid "PDF file was not created"
 msgstr "PDF-bestand werd niet aangemaakt"
 
 #: application/controllers/Qslpostcard.php:223
+#: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr "QSL-ansichtkaart PDF mislukt: "
 
 #: application/controllers/Qslpostcard.php:228
 #: application/views/qslpostcard/printqueue.php:2
+#: application/controllers/Qslpostcard.php:231
 msgid "Print QSL Postcards"
 msgstr "QSL-kaarten afdrukken"
 
 #: application/controllers/Qslpostcard.php:259
 #: application/controllers/Qslpostcard.php:318
+#: application/controllers/Qslpostcard.php:262
+#: application/controllers/Qslpostcard.php:321
 msgid "No QSOs found for postcard printing"
 msgstr "Geen QSO's gevonden voor het afdrukken van ansichtkaarten"
 
 #: application/controllers/Qslpostcard.php:274
+#: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSL-ansichtkaartwachtrij PDF mislukt: "
 
 #: application/controllers/Qslpostcard.php:286
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:289
 msgid "Print Selected QSL Postcards"
 msgstr "Geselecteerde QSL-kaarten afdrukken"
 
 #: application/controllers/Qslpostcard.php:311
+#: application/controllers/Qslpostcard.php:314
 msgid "No selected QSO IDs were provided"
 msgstr "Er zijn geen geselecteerde QSO-ID's opgegeven"
 
 #: application/controllers/Qslpostcard.php:336
+#: application/controllers/Qslpostcard.php:339
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Geselecteerde QSL-ansichtkaart PDF mislukt: "
 
@@ -21305,8 +21326,8 @@ msgid ""
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
 "Ontvangen berichten moeten worden voorafgegaan door een punt %s, verzonden "
-"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - d.w."
-"z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
+"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - "
+"d.w.z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
 "bovenstaande regels toont een type uitwisseling (alleen serie, alleen tekst "
 "of beide); merk op dat de verzonden uitwisseling 'sticky' is: eenmaal "
 "ingesteld, wordt deze automatisch meegenomen in de volgende QSO's (wanneer "
