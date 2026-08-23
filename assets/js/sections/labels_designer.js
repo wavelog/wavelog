@@ -1659,6 +1659,83 @@
 		showToast(LANG.success, LANG.copySuccess, 'bg-success text-white', 4000);
 	});
 
+	document.getElementById('btnExport').addEventListener('click', async () => {
+		const id = parseInt(tplSelect.value || '0', 10);
+		if (!id) { showToast(LANG.error, LANG.selectTemplateToExport, 'bg-danger text-white', 5000); return; }
+
+		// Fetch as a blob so server-side errors surface as a toast instead of
+		// navigating the browser to an error page.
+		const r = await fetch(base_url + 'index.php/labeldesigner/export_template/' + id);
+		if (!r.ok) { showToast(LANG.error, LANG.exportFailed, 'bg-danger text-white', 5000); return; }
+
+		const blob = await r.blob();
+		const cd = r.headers.get('Content-Disposition') || '';
+		const m = cd.match(/filename="([^"]+)"/);
+		const a = Object.assign(document.createElement('a'), {
+			href: URL.createObjectURL(blob),
+			download: m ? m[1] : 'label_template.json',
+		});
+		a.click();
+		// Safari starts the download asynchronously — revoking immediately can abort it.
+		setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+	});
+
+	document.getElementById('btnImport').addEventListener('click', () => {
+		document.getElementById('importFile').click();
+	});
+
+	document.getElementById('importFile').addEventListener('change', async () => {
+		const input = document.getElementById('importFile');
+		const f = input.files && input.files[0];
+		input.value = ''; // allow re-selecting the same file later
+		if (!f) return;
+
+		if (f.size > 256 * 1024) {
+			showToast(LANG.error, LANG.fileTooLarge, 'bg-danger text-white', 5000);
+			return;
+		}
+
+		let out;
+		try {
+			const r = await fetch(base_url + 'index.php/labeldesigner/import_template', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: await f.text(),
+			});
+			out = await r.json();
+		} catch (_) {
+			showToast(LANG.error, LANG.importFailed, 'bg-danger text-white', 5000);
+			return;
+		}
+		if (!out.ok) { showToast(LANG.error, out.error || LANG.importFailed, 'bg-danger text-white', 5000); return; }
+
+		// Register the (possibly new) label type so loadTemplate() can select it.
+		const lt = out.label_type;
+		if (lt && !labelTypeSelect.querySelector('option[value="' + String(lt.id) + '"]')) {
+			const o = document.createElement('option');
+			o.value = lt.id;
+			o.textContent = lt.name + (lt.has_paper ? '' : ' — ' + LANG.noPaperAssigned);
+			labelTypeSelect.appendChild(o);
+			LABEL_TYPES[lt.id] = {
+				w_in: lt.w_in, h_in: lt.h_in, nx: lt.nx, ny: lt.ny,
+				name: lt.name, has_paper: lt.has_paper,
+			};
+		}
+
+		const opt = document.createElement('option');
+		opt.value = out.id;
+		opt.textContent = out.name || LANG.untitled;
+		tplSelect.appendChild(opt);
+
+		// Same behaviour as Copy: switch to the imported template unless the
+		// canvas holds unsaved work.
+		if (!hasUnsavedChanges()) {
+			tplSelect.value = out.id;
+			await applyTemplateSelection(out.id);
+		}
+		showToast(LANG.success, LANG.importSuccess, 'bg-success text-white', 4000);
+	});
+
 	// ===================================================================
 	//  Init
 	// ===================================================================

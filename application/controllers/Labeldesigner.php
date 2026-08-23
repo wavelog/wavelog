@@ -166,6 +166,84 @@ class Labeldesigner extends CI_Controller {
         }
     }
 
+    // Download a template as a versioned JSON file (geometry snapshot + layout)
+    public function export_template($id) {
+        $envelope = $this->Labeldesigner_model->export_envelope((int)$id);
+        if (!$envelope) {
+            show_404();
+            return;
+        }
+
+        // A template whose label type was deleted carries no geometry; the
+        // import side needs one, so refuse rather than ship a half envelope.
+        if (!is_array($envelope['label_type'] ?? null)) {
+            show_error(__("The label type of this template no longer exists. Please select another one before exporting."));
+            return;
+        }
+
+        $json = json_encode($envelope, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+        session_write_close();
+
+        $name = preg_replace('/[^A-Za-z0-9_-]/', '_', $envelope['name'] ?? '');
+        if ($name === '') {
+            $name = 'tpl_' . (int)$id;
+        }
+
+        header('Content-Type: application/json; charset=utf-8');
+        header('Content-Disposition: attachment; filename="label_template_' . $name . '_' . date('Ymd-Hi') . '.json"');
+        if (!ini_get('zlib.output_compression')) {
+            header('Content-Length: ' . strlen($json));
+        }
+        echo $json;
+        exit;
+    }
+
+    // AJAX: POST a template JSON file (same caps as save_template)
+    public function import_template() {
+        $raw = $this->input->raw_input_stream;
+
+        if (strlen($raw) > 256 * 1024) {
+            return $this->_json_error('Payload too large', 413);
+        }
+
+        $payload = json_decode($raw, true);
+
+        if (!is_array($payload)
+            || ($payload['wavelog_label_template'] ?? 0) !== 1
+            || !is_array($payload['label_type'] ?? null)
+            || !is_array($payload['layout'] ?? null)
+        ) {
+            return $this->_json_error('Invalid payload');
+        }
+
+        $els = $payload['layout']['elements'] ?? null;
+        if ($els !== null && (!is_array($els) || count($els) > 200)) {
+            return $this->_json_error('Too many layout elements');
+        }
+
+        try {
+            $out = $this->Labeldesigner_model->import_template(
+                $payload['label_type'],
+                empty($payload['paper_type']) ? null : $payload['paper_type'],
+                $payload['layout'],
+                is_string($payload['name'] ?? null) ? $payload['name'] : ''
+            );
+        } catch (Throwable $e) {
+            log_message('error', 'LABELDESIGNER import failed: ' . $e->getMessage());
+            return $this->_json_error('Import failed', 500);
+        }
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode([
+                'ok'         => true,
+                'id'         => $out['template_id'],
+                'name'       => $out['name'],
+                'label_type' => $out['label_type'],
+            ]));
+    }
+
     private function _json_error($msg, $code = 400) {
         $this->output
             ->set_status_header($code)
