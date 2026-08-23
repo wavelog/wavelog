@@ -106,10 +106,10 @@ foreach (($labels ?? []) as $l) {
 						<button id="btnDelete" class="btn btn-sm btn-outline-danger text-nowrap" title="<?= __("Delete Template"); ?>">
 							<i class="fas fa-trash"></i>
 						</button>
-						<button id="btnExport" class="btn btn-sm btn-outline-secondary text-nowrap" title="<?= __("Export Template"); ?>">
+						<button id="btnExport" class="btn btn-sm btn-outline-primary text-nowrap" title="<?= __("Export Template"); ?>">
 							<i class="fas fa-file-export"></i>
 						</button>
-						<button id="btnImport" class="btn btn-sm btn-outline-secondary text-nowrap" title="<?= __("Import Template"); ?>">
+						<button id="btnImport" class="btn btn-sm btn-outline-primary text-nowrap" title="<?= __("Import Template"); ?>">
 							<i class="fas fa-file-import"></i>
 						</button>
 						<input type="file" id="importFile" accept=".json,application/json" hidden>
