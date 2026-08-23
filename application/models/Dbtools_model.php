@@ -255,6 +255,7 @@ class Dbtools_model extends CI_Model {
 			return [
 				'success' => false,
 				'skipped' => true,
+				'count' => 0,
 				'reason' => 'QSOs not found'
 			];
 		}

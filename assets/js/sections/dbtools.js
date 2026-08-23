@@ -332,7 +332,7 @@ function checkDxcc() {
 							// Add options with counts
 							for (var text in counts) {
 								if (!select.find('option[value="' + text + '"]').length) {
-									select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
 								}
 							}
 
@@ -401,7 +401,7 @@ function checkIncorrectCqZones() {
 							// Add options with counts
 							for (var text in counts) {
 								if (!select.find('option[value="' + text + '"]').length) {
-									select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
 								}
 							}
 
@@ -477,7 +477,7 @@ function checkIncorrectItuZones() {
 							// Add options with counts
 							for (var text in counts) {
 								if (!select.find('option[value="' + text + '"]').length) {
-									select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
 								}
 							}
 
@@ -665,7 +665,7 @@ function checkIncorrectGridsquares() {
 							// Add options with counts
 							for (var text in counts) {
 								if (!select.find('option[value="' + text + '"]').length) {
-									select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
 								}
 							}
 
@@ -850,7 +850,7 @@ function checkIota() {
 							// Add options with counts
 							for (var text in counts) {
 								if (!select.find('option[value="' + text + '"]').length) {
-									select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
 								}
 							}
 
@@ -966,6 +966,8 @@ function showMapForIncorrectGrid(gridsquare, dxcc, dxccname) {
 }
 
 function drawMap(data) {
+	let confirmedColor = '#00aa00';
+	let workedColor = '#ff0000';
 	if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
 		confirmedColor = user_map_custom.qsoconfirm.color;
 	}
@@ -1129,15 +1131,31 @@ function drawMap(data) {
 		div.style.borderRadius = '5px';
 		div.style.boxShadow = '0 0 10px rgba(0,0,0,0.2)';
 
-		div.innerHTML =
-			'<div style="display: flex; align-items: center; margin-bottom: 8px;">' +
-				'<div style="width: 20px; height: 20px; background-color: ' + confirmedColor + '; border: 1px solid #ccc; margin-right: 8px;"></div>' +
-				'<span style="font-size: 12px;">' + lang_gen_advanced_logbook_confirmedLabel + ' ' + data.dxccnameDisplay + '</span>' +
-			'</div>' +
-			'<div style="display: flex; align-items: center;">' +
-				'<div style="width: 20px; height: 20px; background-color: ' + workedColor + '; border: 1px solid #ccc; margin-right: 8px;"></div>' +
-				'<span style="font-size: 12px;">' + lang_gen_advanced_logbook_workedLabel + ' ' + data.gridsquareDisplay + '</span>' +
-			'</div>';
+		let rows = [
+			{ color: confirmedColor, text: lang_gen_advanced_logbook_confirmedLabel + ' ' + data.dxccnameDisplay },
+			{ color: workedColor, text: lang_gen_advanced_logbook_workedLabel + ' ' + data.gridsquareDisplay },
+		];
+		for (let i = 0; i < rows.length; i++) {
+			let row = document.createElement('div');
+			row.style.display = 'flex';
+			row.style.alignItems = 'center';
+			if (i === 0) row.style.marginBottom = '8px';
+
+			let swatch = document.createElement('div');
+			swatch.style.width = '20px';
+			swatch.style.height = '20px';
+			swatch.style.backgroundColor = rows[i].color;
+			swatch.style.border = '1px solid #ccc';
+			swatch.style.marginRight = '8px';
+			row.appendChild(swatch);
+
+			let label = document.createElement('span');
+			label.style.fontSize = '12px';
+			label.textContent = rows[i].text;
+			row.appendChild(label);
+
+			div.appendChild(row);
+		}
 		return div;
 	};
 	legend.addTo(window.map);
