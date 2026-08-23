@@ -105,7 +105,6 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/globe/globe.gl.js',
 			'assets/js/bootstrap-multiselect.js',
-			'assets/js/leaflet/L.MaidenheadColouredGridMap.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
@@ -847,19 +846,6 @@ class Logbookadvanced extends CI_Controller {
 		print json_encode($result);
 	}
 
-	public function fixContinent() {
-		$this->load->model('logbookadvanced_model');
-
-		$stationid = $this->input->post('stationid', true);
-		$result = $this->logbookadvanced_model->check_missing_continent($stationid);
-
-		$data['result'] = $result;
-
-		$data['type'] = 'continent';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
 	public function fixStateProgress() {
 		if(!clubaccess_check(9)) return;
 
@@ -895,147 +881,14 @@ class Logbookadvanced extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	public function updateDistances() {
-		if(!clubaccess_check(9)) return;
-
-		$stationid = $this->input->post('stationid', true);
-
-		$this->load->model('logbookadvanced_model');
-		$result = $this->logbookadvanced_model->update_distances_batch($stationid);
-
-		$data['result'] = $result;
-
-		$data['type'] = 'distance';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
 	public function callbookDialog() {
 		$this->load->view('logbookadvanced/callbookdialog');
-	}
-
-	public function dbtoolsDialog() {
-		$this->load->model('stations');
-		$data['station_profile'] = $this->stations->all_of_user();
-
-		$this->load->view('logbookadvanced/dbtoolsdialog', $data);
-	}
-
-	public function checkDb() {
-		if(!clubaccess_check(9)) return;
-
-		$type = $this->input->post('type', true);
-		$stationid = $this->input->post('stationid', true);
-		$this->load->model('logbookadvanced_model');
-
-		$data['result'] = $this->logbookadvanced_model->runCheckDb($type, $stationid);
-		if ($type == 'checkstate') {
-			$this->load->view('logbookadvanced/statecheckresult', $data);
-		} else {
-			$data['type'] = $type;
-			$this->load->view('logbookadvanced/checkresult', $data);
-		}
-
-	}
-
-	public function fixStateBatch() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbook_model');
-		$this->load->model('logbookadvanced_model');
-
-		$dxcc = $this->input->post('dxcc', true);
-		$stationid = $this->input->post('stationid', true);
-		$data['country'] = $this->input->post('country', true);
-
-		// Process for batch QSO state fix
-		$result = $this->logbookadvanced_model->fixStateBatch($dxcc, $stationid);
-
-		$data['result'] = $result;
-
-		$data['type'] = 'state';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
-	public function fixStateAll() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbookadvanced_model');
-
-		$stationid = $this->input->post('stationid', true);
-
-		// Run the state fix for every DXCC in one pass and aggregate the result
-		$result = $this->logbookadvanced_model->fixStateAll($stationid);
-
-		$data['result'] = $result;
-		$data['type'] = 'stateall';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
-	public function openStateList() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbookadvanced_model');
-
-		$data['dxcc'] = $this->input->post('dxcc', true);
-		$data['country'] = $this->input->post('country', true);
-		$data['stationid'] = $this->input->post('stationid', true);
-
-		// Process for batch QSO state fix
-		$data['qsos'] = $this->logbookadvanced_model->getStateListQsos($data['dxcc'], $data['stationid']);
-
-		$this->load->view('logbookadvanced/showStateQsos', $data);
-	}
-
-	public function fixMissingGrids() {
-		if(!clubaccess_check(9)) return;
-
-		$type = $this->input->post('type', true);
-		$stationid = $this->input->post('stationid', true);
-		$this->load->model('logbookadvanced_model');
-		$result = $this->logbookadvanced_model->check_missing_grid($stationid);
-
-		$data['result'] = $result;
-		$data['type'] = $type;
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	function dupeSearchDialog() {
 		if(!clubaccess_check(9)) return;
 
 		$this->load->view('logbookadvanced/dupesearchdialog');
-	}
-
-	function fixDxccSelected() {
-		if(!clubaccess_check(9)) return;
-
-		$ids = xss_clean($this->input->post('ids'));
-
-		$this->load->model('logbookadvanced_model');
-		$result = $this->logbookadvanced_model->fixDxccSelected($ids);
-		$result['message'] = '<div class="alert alert-' . ($result['count'] == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("DXCC updated for %d QSO(s)."), $result['count']) . '</div>';
-
-		header("Content-Type: application/json");
-		print json_encode($result);
-	}
-
-	function showMapForIncorrectGrid() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbookadvanced_model');
-		$dxcc = $this->input->post('dxcc', true);
-
-		$data['grids'] = $this->logbookadvanced_model->getGridsForDxcc($dxcc);
-		$data['dxcc'] = $dxcc;
-		$data['gridsquare'] = $this->input->post('gridsquare', true);
-		$dxccname = $this->input->post('dxccname', true);
-		$data['title'] = sprintf(__("Map for DXCC %s and gridsquare %s."), $dxccname, $data['gridsquare']);
-
-		header("Content-Type: application/json");
-		print json_encode($data);
 	}
 
 	function getQsos() {

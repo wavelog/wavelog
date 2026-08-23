@@ -332,6 +332,10 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('activationplanner'); ?>" title="Plan an activation"><i class="fas fa-map-marked-alt"></i> <?= __("Activation Planner"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('azimuthal'); ?>" title="Azimuthal Map"><i class="fas fa-compass"></i> <?= __("Azimuthal Map"); ?></a></li>
+								<?php if (clubaccess_check(9)) { ?>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('dbtools'); ?>" title="Database Tools"><i class="fas fa-database"></i> <?= __("Database Tools"); ?></a></li>
+								<?php } ?>
 							</ul>
 						</li>
 					<?php } ?>

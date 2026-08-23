@@ -53,6 +53,9 @@ class Qslpostcard extends CI_Controller {
 
         $this->load->library('upload_guard');
 
+        // Align the filename's extension with the file's real content (JPEGs named .png etc.)
+        $this->upload_guard->normalize_image_ext('preview_image');
+
         if (!$this->upload_guard->has_free_space($config['upload_path'], $_FILES['preview_image']['size'])) {
             $this->output
                 ->set_content_type('application/json')

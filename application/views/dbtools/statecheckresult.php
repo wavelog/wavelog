@@ -43,7 +43,7 @@
 </div>
 <?php else: ?>
 <div class="col-md-12 result">
-    <h5></h5><?= __("State Check Results"); ?></h5>
+    <h5><?= __("State Check Results"); ?></h5>
     <p><?= __("No QSOs were found where state information can be fixed."); ?></p>
 </div>
 <?php endif; ?>

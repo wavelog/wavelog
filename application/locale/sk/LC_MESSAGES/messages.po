@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-21 09:31+0000\n"
+"POT-Creation-Date: 2026-08-23 08:05+0000\n"
 "PO-Revision-Date: 2026-03-20 07:25+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -159,10 +159,10 @@ msgstr "Tropo ducting"
 #: application/controllers/Cron.php:229 application/controllers/Csv.php:6
 #: application/controllers/Csv.php:28
 #: application/controllers/Dayswithqso.php:10
-#: application/controllers/Dcl.php:10 application/controllers/Dcl.php:18
-#: application/controllers/Dcl.php:44 application/controllers/Dcl.php:46
-#: application/controllers/Dcl.php:216 application/controllers/Dcl.php:247
-#: application/controllers/Debug.php:9
+#: application/controllers/Dbtools.php:13 application/controllers/Dcl.php:10
+#: application/controllers/Dcl.php:18 application/controllers/Dcl.php:44
+#: application/controllers/Dcl.php:46 application/controllers/Dcl.php:216
+#: application/controllers/Dcl.php:247 application/controllers/Debug.php:9
 #: application/controllers/Distancerecords.php:10
 #: application/controllers/Distances.php:10
 #: application/controllers/Dxatlas.php:6 application/controllers/Dxatlas.php:28
@@ -195,7 +195,7 @@ msgstr "Tropo ducting"
 #: application/controllers/Qrz.php:231 application/controllers/Qrz.php:295
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:47 application/controllers/Qsl.php:54
-#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:130
+#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:132
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
@@ -357,7 +357,7 @@ msgid "date incorrect"
 msgstr "nesprávny dátum"
 
 #: application/controllers/Adif.php:264
-#: application/views/interface_assets/header.php:529
+#: application/views/interface_assets/header.php:533
 msgid "ADIF Import / Export"
 msgstr "ADIF import / export"
 
@@ -526,7 +526,7 @@ msgstr "Diplomy - %s"
 #: application/views/contesting/manager/components/session_modal.php:119
 #: application/views/interface_assets/header.php:249
 #: application/views/logbookadvanced/index.php:487
-#: application/views/logbookadvanced/index.php:1024
+#: application/views/logbookadvanced/index.php:1021
 #: application/views/logbookadvanced/useroptions.php:238
 #: application/views/lookup/index.php:14
 #: application/views/qso/award_tabs.php:41
@@ -545,20 +545,20 @@ msgstr "DOK"
 #: application/views/countqsoby/index.php:12
 #: application/views/countqsoby/index.php:66 application/views/csv/index.php:58
 #: application/views/dashboard/index.php:416
+#: application/views/dbtools/checkresult.php:167
+#: application/views/dbtools/checkresult.php:250
+#: application/views/dbtools/checkresult.php:326
+#: application/views/dbtools/showStateQsos.php:27
+#: application/views/dbtools/showUpdateResult.php:87
+#: application/views/dbtools/statecheckresult.php:15
 #: application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:16
 #: application/views/interface_assets/header.php:200
 #: application/views/kml/index.php:47
-#: application/views/logbookadvanced/checkresult.php:165
-#: application/views/logbookadvanced/checkresult.php:248
-#: application/views/logbookadvanced/checkresult.php:324
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:376
-#: application/views/logbookadvanced/index.php:1000
+#: application/views/logbookadvanced/index.php:997
 #: application/views/logbookadvanced/qslcarousel.php:35
-#: application/views/logbookadvanced/showStateQsos.php:27
-#: application/views/logbookadvanced/showUpdateResult.php:87
-#: application/views/logbookadvanced/statecheckresult.php:15
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
 #: application/views/lotw_views/index.php:43
@@ -728,7 +728,7 @@ msgstr "WWFF"
 #: application/views/interface_assets/header.php:231
 #: application/views/logbookadvanced/edit.php:35
 #: application/views/logbookadvanced/index.php:495
-#: application/views/logbookadvanced/index.php:1018
+#: application/views/logbookadvanced/index.php:1015
 #: application/views/logbookadvanced/useroptions.php:226
 #: application/views/lookup/index.php:9 application/views/qso/award_tabs.php:57
 #: application/views/qso/components/previous_contacts.php:84
@@ -865,7 +865,7 @@ msgid "Azimuthal Map"
 msgstr ""
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
-#: application/views/interface_assets/header.php:355
+#: application/views/interface_assets/header.php:359
 msgid "Backup"
 msgstr "Záloha"
 
@@ -875,7 +875,7 @@ msgstr "Poznámky - záloha"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
-#: application/views/interface_assets/header.php:496
+#: application/views/interface_assets/header.php:500
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 #: application/views/statistics/qsltable.php:115
@@ -1279,19 +1279,19 @@ msgstr ""
 #: application/views/countqsoby/index.php:11
 #: application/views/countqsoby/index.php:67
 #: application/views/dashboard/index.php:14
+#: application/views/dbtools/checkresult.php:168
+#: application/views/dbtools/checkresult.php:247
+#: application/views/dbtools/checkresult.php:323
+#: application/views/dbtools/showStateQsos.php:26
+#: application/views/dbtools/showUpdateResult.php:47
+#: application/views/dbtools/showUpdateResult.php:110
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
-#: application/views/logbookadvanced/checkresult.php:166
-#: application/views/logbookadvanced/checkresult.php:245
-#: application/views/logbookadvanced/checkresult.php:321
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:12
 #: application/views/logbookadvanced/index.php:403
-#: application/views/logbookadvanced/index.php:964
+#: application/views/logbookadvanced/index.php:961
 #: application/views/logbookadvanced/qslcarousel.php:39
-#: application/views/logbookadvanced/showStateQsos.php:26
-#: application/views/logbookadvanced/showUpdateResult.php:47
-#: application/views/logbookadvanced/showUpdateResult.php:110
 #: application/views/logbookadvanced/useroptions.php:85
 #: application/views/lookup/index.php:6 application/views/map/qso_map.php:34
 #: application/views/map/qso_map.php:111
@@ -1330,12 +1330,12 @@ msgstr "Lokátor"
 #: application/views/awards/itu/index.php:207
 #: application/views/countqsoby/index.php:14
 #: application/views/countqsoby/index.php:68
+#: application/views/dbtools/checkresult.php:324
 #: application/views/gridmap/index.php:230
-#: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
 #: application/views/logbookadvanced/index.php:21
 #: application/views/logbookadvanced/index.php:471
-#: application/views/logbookadvanced/index.php:1012
+#: application/views/logbookadvanced/index.php:1009
 #: application/views/logbookadvanced/useroptions.php:199
 #: application/views/lookup/index.php:8 application/views/map/qso_map.php:115
 #: application/views/qso/edit_ajax.php:302 application/views/qso/index.php:529
@@ -1355,13 +1355,13 @@ msgstr "ITU zóna"
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
 #: application/views/countqsoby/index.php:69 application/views/csv/index.php:80
+#: application/views/dbtools/checkresult.php:248
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
-#: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
 #: application/views/logbookadvanced/index.php:22
 #: application/views/logbookadvanced/index.php:457
-#: application/views/logbookadvanced/index.php:1009
+#: application/views/logbookadvanced/index.php:1006
 #: application/views/logbookadvanced/qslcarousel.php:37
 #: application/views/logbookadvanced/useroptions.php:193
 #: application/views/lookup/index.php:3 application/views/map/qso_map.php:114
@@ -1414,7 +1414,7 @@ msgid "WWFF Reference"
 msgstr "WWFF referencie"
 
 #: application/controllers/Cron.php:37
-#: application/views/interface_assets/header.php:359
+#: application/views/interface_assets/header.php:363
 msgid "Cron Manager"
 msgstr "Cron Manager"
 
@@ -1522,7 +1522,7 @@ msgid "Not running"
 msgstr "Nespustené"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:538
+#: application/views/interface_assets/header.php:542
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV export"
 
@@ -1538,13 +1538,28 @@ msgstr "Dashboard"
 msgid "Days with QSOs"
 msgstr "Dni s QSO"
 
+#: application/controllers/Dbtools.php:22
+#: application/views/interface_assets/header.php:337
+msgid "Database Tools"
+msgstr "Databázové nástroje"
+
+#: application/controllers/Dbtools.php:158
+#, php-format
+msgid "DXCC updated for %d QSO(s)."
+msgstr "DXCC aktualizované pre %d spojenie/í."
+
+#: application/controllers/Dbtools.php:174
+#, php-format
+msgid "Map for DXCC %s and gridsquare %s."
+msgstr "Mapa pre DXCC %s a lokátor %s."
+
 #: application/controllers/Dcl.php:27
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
 msgstr "Import DCL kľúča"
 
 #: application/controllers/Dcl.php:61 application/views/dcl_views/index.php:3
-#: application/views/logbookadvanced/index.php:991
+#: application/views/logbookadvanced/index.php:988
 #: application/views/logbookadvanced/useroptions.php:148
 #: application/views/qso/edit_ajax.php:420
 #: application/views/search/search_result_ajax.php:127
@@ -1651,7 +1666,7 @@ msgid "and propagation"
 msgstr "a šírenie"
 
 #: application/controllers/Dxatlas.php:18
-#: application/views/interface_assets/header.php:536
+#: application/views/interface_assets/header.php:540
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas export lokátorov"
 
@@ -1853,7 +1868,7 @@ msgid "No QSOs found to upload."
 msgstr "Žiadne QSOs na nahratie."
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:538
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "KML export"
@@ -1956,7 +1971,7 @@ msgstr ""
 "mať rovnaký názov ako existujúce typy prác."
 
 #: application/controllers/Labels.php:144
-#: application/controllers/Qslpostcard.php:282
+#: application/controllers/Qslpostcard.php:285
 msgid "No QSOs were selected"
 msgstr ""
 
@@ -2064,7 +2079,7 @@ msgstr "Logbook"
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:111
-#: application/views/logbookadvanced/index.php:979
+#: application/views/logbookadvanced/index.php:976
 #: application/views/logbookadvanced/useroptions.php:124
 #: application/views/oqrs/qsolist.php:12
 #: application/views/qslprint/qslprint.php:42
@@ -2104,10 +2119,10 @@ msgstr "QSL"
 #: application/views/calltester/call_info.php:80
 #: application/views/countqsoby/index.php:170
 #: application/views/dashboard/index.php:496
+#: application/views/dbtools/checkresult.php:107
+#: application/views/dbtools/checkresult.php:165
+#: application/views/dbtools/checkresult.php:393
 #: application/views/gridmap/index.php:182
-#: application/views/logbookadvanced/checkresult.php:105
-#: application/views/logbookadvanced/checkresult.php:163
-#: application/views/logbookadvanced/checkresult.php:391
 #: application/views/logbookadvanced/useroptions.php:136
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
 #: application/views/oqrs/qsolist.php:175
@@ -2221,6 +2236,12 @@ msgstr ""
 #: application/views/continents/index.php:44
 #: application/views/countqsoby/index.php:128
 #: application/views/csv/index.php:42 application/views/dashboard/index.php:5
+#: application/views/dbtools/checkresult.php:106
+#: application/views/dbtools/checkresult.php:164
+#: application/views/dbtools/checkresult.php:245
+#: application/views/dbtools/checkresult.php:321
+#: application/views/dbtools/checkresult.php:392
+#: application/views/dbtools/showStateQsos.php:23
 #: application/views/debug/index.php:808
 #: application/views/distancerecords/index.php:23
 #: application/views/distances/index.php:66
@@ -2232,20 +2253,14 @@ msgstr ""
 #: application/views/hamsat/index.php:38
 #: application/views/interface_assets/footer.php:126
 #: application/views/kml/index.php:31
-#: application/views/logbookadvanced/checkresult.php:104
-#: application/views/logbookadvanced/checkresult.php:162
-#: application/views/logbookadvanced/checkresult.php:243
-#: application/views/logbookadvanced/checkresult.php:319
-#: application/views/logbookadvanced/checkresult.php:390
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 #: application/views/logbookadvanced/edit.php:17
 #: application/views/logbookadvanced/index.php:407
 #: application/views/logbookadvanced/index.php:560
-#: application/views/logbookadvanced/index.php:949
+#: application/views/logbookadvanced/index.php:946
 #: application/views/logbookadvanced/mergedialog.php:29
 #: application/views/logbookadvanced/mergedialog.php:52
 #: application/views/logbookadvanced/qslcarousel.php:32
-#: application/views/logbookadvanced/showStateQsos.php:23
 #: application/views/logbookadvanced/useroptions.php:46
 #: application/views/map/qso_map.php:33 application/views/mode/index.php:40
 #: application/views/oqrs/notinlogform.php:13
@@ -2291,7 +2306,7 @@ msgstr "Mód"
 #: application/views/awards/sota/index.php:168
 #: application/views/awards/wwff/index.php:168
 #: application/views/logbookadvanced/edit.php:21
-#: application/views/logbookadvanced/index.php:952
+#: application/views/logbookadvanced/index.php:949
 #: application/views/logbookadvanced/useroptions.php:52
 #: application/views/qslcard/searchresult.php:13
 #: application/views/qslcard/searchresult.php:29
@@ -2318,7 +2333,7 @@ msgstr "RST (S)"
 #: application/views/awards/sota/index.php:169
 #: application/views/awards/wwff/index.php:169
 #: application/views/logbookadvanced/edit.php:20
-#: application/views/logbookadvanced/index.php:955
+#: application/views/logbookadvanced/index.php:952
 #: application/views/logbookadvanced/useroptions.php:58
 #: application/views/qslcard/searchresult.php:14
 #: application/views/qslcard/searchresult.php:30
@@ -2366,11 +2381,11 @@ msgstr "Krajina"
 #: application/views/awards/iota/index.php:208
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
+#: application/views/dbtools/checkresult.php:396
 #: application/views/interface_assets/header.php:229
-#: application/views/logbookadvanced/checkresult.php:394
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:501
-#: application/views/logbookadvanced/index.php:1015
+#: application/views/logbookadvanced/index.php:1012
 #: application/views/logbookadvanced/qslcarousel.php:38
 #: application/views/logbookadvanced/useroptions.php:220
 #: application/views/lookup/index.php:7
@@ -2401,12 +2416,12 @@ msgstr "IOTA"
 #: application/views/awards/was/index.php:156
 #: application/views/contesting/manager/components/session_modal.php:124
 #: application/views/dashboard/index.php:13
+#: application/views/dbtools/showStateQsos.php:25
 #: application/views/logbookadvanced/edit.php:38
 #: application/views/logbookadvanced/edit.php:104
 #: application/views/logbookadvanced/index.php:397
-#: application/views/logbookadvanced/index.php:1003
+#: application/views/logbookadvanced/index.php:1000
 #: application/views/logbookadvanced/qslcarousel.php:36
-#: application/views/logbookadvanced/showStateQsos.php:25
 #: application/views/logbookadvanced/useroptions.php:181
 #: application/views/qslcard/searchresult.php:18
 #: application/views/qslcard/searchresult.php:34
@@ -2438,7 +2453,7 @@ msgstr "Štát"
 #: application/views/logbookadvanced/edit.php:16
 #: application/views/logbookadvanced/index.php:14
 #: application/views/logbookadvanced/index.php:546
-#: application/views/logbookadvanced/index.php:1057
+#: application/views/logbookadvanced/index.php:1054
 #: application/views/logbookadvanced/useroptions.php:318
 #: application/views/map/qso_map.php:112
 #: application/views/qslcard/searchresult.php:20
@@ -2509,25 +2524,25 @@ msgstr "Vzdialenosť"
 #: application/views/continents/index.php:35
 #: application/views/countqsoby/index.php:76 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
+#: application/views/dbtools/checkresult.php:105
+#: application/views/dbtools/checkresult.php:163
+#: application/views/dbtools/checkresult.php:246
+#: application/views/dbtools/checkresult.php:322
+#: application/views/dbtools/checkresult.php:391
+#: application/views/dbtools/showStateQsos.php:24
 #: application/views/debug/index.php:809 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:36
 #: application/views/gridmap/index.php:78 application/views/kml/index.php:19
-#: application/views/logbookadvanced/checkresult.php:103
-#: application/views/logbookadvanced/checkresult.php:161
-#: application/views/logbookadvanced/checkresult.php:244
-#: application/views/logbookadvanced/checkresult.php:320
-#: application/views/logbookadvanced/checkresult.php:389
 #: application/views/logbookadvanced/dupesearchdialog.php:49
 #: application/views/logbookadvanced/edit.php:10
 #: application/views/logbookadvanced/help.php:58
 #: application/views/logbookadvanced/index.php:418
 #: application/views/logbookadvanced/index.php:559
-#: application/views/logbookadvanced/index.php:958
+#: application/views/logbookadvanced/index.php:955
 #: application/views/logbookadvanced/mergedialog.php:30
 #: application/views/logbookadvanced/mergedialog.php:53
 #: application/views/logbookadvanced/qslcarousel.php:33
-#: application/views/logbookadvanced/showStateQsos.php:24
 #: application/views/logbookadvanced/useroptions.php:64
 #: application/views/map/qso_map.php:32
 #: application/views/oqrs/notinlogform.php:12
@@ -2576,7 +2591,7 @@ msgstr "Pásmo"
 #: application/views/contesting/logger/components/radio.php:65
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:11
-#: application/views/logbookadvanced/index.php:961
+#: application/views/logbookadvanced/index.php:958
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/qslcard/searchresult.php:22
 #: application/views/qslcard/searchresult.php:38
@@ -2605,7 +2620,7 @@ msgstr "Frekvencia"
 #: application/views/dashboard/index.php:18
 #: application/views/logbookadvanced/edit.php:18
 #: application/views/logbookadvanced/index.php:517
-#: application/views/logbookadvanced/index.php:1039
+#: application/views/logbookadvanced/index.php:1036
 #: application/views/logbookadvanced/useroptions.php:278
 #: application/views/qslcard/searchresult.php:23
 #: application/views/qslcard/searchresult.php:55
@@ -2658,23 +2673,13 @@ msgstr "Zrušené DXCC"
 msgid "Advanced logbook"
 msgstr "Pokročilý denník"
 
-#: application/controllers/Logbookadvanced.php:1019
-#, php-format
-msgid "DXCC updated for %d QSO(s)."
-msgstr "DXCC aktualizované pre %d spojenie/í."
-
-#: application/controllers/Logbookadvanced.php:1035
-#, php-format
-msgid "Map for DXCC %s and gridsquare %s."
-msgstr "Mapa pre DXCC %s a lokátor %s."
-
 #: application/controllers/Lookup.php:21
 msgid "Quick Lookup"
 msgstr "Rýchly náhľad"
 
 #: application/controllers/Lotw.php:63 application/controllers/Lotw.php:94
 #: application/controllers/Lotw.php:133
-#: application/views/interface_assets/header.php:574
+#: application/views/interface_assets/header.php:578
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
@@ -2785,8 +2790,8 @@ msgid "QSO Map"
 msgstr "QSO mapa"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/views/interface_assets/header.php:347
-#: application/views/interface_assets/header.php:498
+#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:502
 #: application/views/mode/index.php:27
 #: application/views/statistics/qsltable.php:111
 #: application/views/usermode/index.php:25
@@ -3084,7 +3089,7 @@ msgid "Invalid station slug"
 msgstr ""
 
 #: application/controllers/Oqrs.php:180
-#: application/views/interface_assets/header.php:559
+#: application/views/interface_assets/header.php:563
 msgid "OQRS Requests"
 msgstr "Žiadosti OQRS"
 
@@ -3159,7 +3164,7 @@ msgstr ""
 "dĺžky sú západne od Greenwichu."
 
 #: application/controllers/Qrz.php:212
-#: application/views/interface_assets/header.php:577
+#: application/views/interface_assets/header.php:581
 msgid "QRZ Logbook"
 msgstr "QRZ Logbook"
 
@@ -3184,12 +3189,12 @@ msgstr "QSL karty"
 msgid "Upload QSL Cards"
 msgstr "Nahrať QSL karty"
 
-#: application/controllers/Qsl.php:93 application/controllers/Qsl.php:140
+#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
 msgid "Not enough free disk space to store the QSL card."
 msgstr ""
 
-#: application/controllers/Qsl.php:110 application/controllers/Qsl.php:157
-#: application/controllers/Qslpostcard.php:86
+#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr ""
 
@@ -3206,62 +3211,62 @@ msgid ""
 msgstr ""
 
 #: application/controllers/Qslpostcard.php:34
-#: application/views/interface_assets/header.php:568
+#: application/views/interface_assets/header.php:572
 msgid "QSL Postcard Designer"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:61
+#: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:183
-#: application/controllers/Qslpostcard.php:240
-#: application/controllers/Qslpostcard.php:299
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
 msgid "Template not found"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:189
-#: application/controllers/Qslpostcard.php:246
-#: application/controllers/Qslpostcard.php:305
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
 msgid "Template JSON is invalid"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:204
+#: application/controllers/Qslpostcard.php:207
 msgid "No QSOs returned by get_sample_qsos()"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:214
+#: application/controllers/Qslpostcard.php:217
 msgid "PDF file was not created"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:223
+#: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:228
+#: application/controllers/Qslpostcard.php:231
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:259
-#: application/controllers/Qslpostcard.php:318
+#: application/controllers/Qslpostcard.php:262
+#: application/controllers/Qslpostcard.php:321
 msgid "No QSOs found for postcard printing"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:274
+#: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:286
+#: application/controllers/Qslpostcard.php:289
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:311
+#: application/controllers/Qslpostcard.php:314
 msgid "No selected QSO IDs were provided"
 msgstr ""
 
-#: application/controllers/Qslpostcard.php:336
+#: application/controllers/Qslpostcard.php:339
 msgid "Selected QSL Postcard PDF failed: "
 msgstr ""
 
@@ -3296,7 +3301,7 @@ msgid "Call Transfer"
 msgstr "Prenos volacej značky"
 
 #: application/controllers/Radio.php:16
-#: application/views/interface_assets/header.php:591
+#: application/views/interface_assets/header.php:595
 msgid "Hardware Interfaces"
 msgstr "Hardvérové rozhrania"
 
@@ -3387,7 +3392,7 @@ msgstr "Upraviť"
 #: application/views/interface_assets/footer.php:2686
 #: application/views/interface_assets/footer.php:2704
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
-#: application/views/logbookadvanced/index.php:913
+#: application/views/logbookadvanced/index.php:910
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:80
@@ -3433,7 +3438,7 @@ msgstr "Rádio bolo úspešne odstránené"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
 #: application/views/amsatstatus/index.php:74
-#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:355
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
@@ -3489,8 +3494,8 @@ msgstr "Nie sú k dispozícii žiadne predvoľby"
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:46
-#: application/views/interface_assets/header.php:411
-#: application/views/interface_assets/header.php:418
+#: application/views/interface_assets/header.php:415
+#: application/views/interface_assets/header.php:422
 #: application/views/logbookadvanced/index.php:75
 #: application/views/logbookadvanced/index.php:881
 #: application/views/oqrs/index.php:30
@@ -3569,9 +3574,9 @@ msgstr "Skontroluj hodnotu pre lokátor (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/azimuthal/index.php:17
-#: application/views/interface_assets/header.php:495
-#: application/views/interface_assets/header.php:527
-#: application/views/interface_assets/header.php:675
+#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:531
+#: application/views/interface_assets/header.php:679
 msgid "Station Setup"
 msgstr "Nastavenie stanice"
 
@@ -3645,7 +3650,7 @@ msgid "Set as Active Logbook"
 msgstr "Nastaviť ako aktívny denník"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:673
+#: application/views/interface_assets/header.php:677
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -3801,9 +3806,9 @@ msgid "EME Initials"
 msgstr "EME iniciály"
 
 #: application/controllers/Themes.php:26
-#: application/views/interface_assets/header.php:353
-#: application/views/interface_assets/header.php:449
-#: application/views/interface_assets/header.php:451
+#: application/views/interface_assets/header.php:357
+#: application/views/interface_assets/header.php:453
+#: application/views/interface_assets/header.php:455
 msgid "Themes"
 msgstr "Motívy"
 
@@ -3952,7 +3957,7 @@ msgid "VUCC Grid file update failed. Result: "
 msgstr "Aktualizácia súboru VUCC lokátorov zlyhala. Výsledok: "
 
 #: application/controllers/User.php:51
-#: application/views/interface_assets/header.php:343
+#: application/views/interface_assets/header.php:347
 msgid "User Accounts"
 msgstr "Používateľské účty"
 
@@ -4057,7 +4062,7 @@ msgid "Login failed. Try again."
 msgstr "Prihlásenie zlyhalo. Skúste to znova."
 
 #: application/controllers/User.php:1408
-#: application/views/interface_assets/header.php:431
+#: application/views/interface_assets/header.php:435
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
@@ -4271,7 +4276,7 @@ msgstr "Exportovať mapu"
 
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
-#: application/views/interface_assets/header.php:578
+#: application/views/interface_assets/header.php:582
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club nahrávanie"
 
@@ -4586,6 +4591,12 @@ msgstr ""
 msgid "Officers must edit contests."
 msgstr ""
 
+#: application/models/Dbtools_model.php:120
+msgid "VuccGrids table is empty. Please import the VUCC grids data first."
+msgstr ""
+"Tabuľka VuccGrids je prázdna. Najprv importujte údaje VUCC lokátorov.Tabuľka "
+"VuccGrids je prázdna. Najprv importujte údaje o VUCC lokátoroch."
+
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Vaše používateľské meno a/alebo heslo pre eQSL je nesprávne."
@@ -4782,28 +4793,22 @@ msgstr "QSO aktualizované"
 msgid "Bearing"
 msgstr "Smerovanie"
 
-#: application/models/Logbookadvanced_model.php:1877
-msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
-"Tabuľka VuccGrids je prázdna. Najprv importujte údaje VUCC lokátorov.Tabuľka "
-"VuccGrids je prázdna. Najprv importujte údaje o VUCC lokátoroch."
-
-#: application/models/Logbookadvanced_model.php:2547
+#: application/models/Logbookadvanced_model.php:1782
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr ""
 
-#: application/models/Logbookadvanced_model.php:2557
+#: application/models/Logbookadvanced_model.php:1792
 #: application/views/view_log/qso.php:868
 msgid "QSO not found"
 msgstr "QSO nebolo nájdené"
 
-#: application/models/Logbookadvanced_model.php:2643
+#: application/models/Logbookadvanced_model.php:1878
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
 
-#: application/models/Logbookadvanced_model.php:2656
+#: application/models/Logbookadvanced_model.php:1891
 msgid "QSOs merged successfully"
 msgstr ""
 
@@ -5117,7 +5122,7 @@ msgstr "Obdobie"
 #: application/views/gridmap/index.php:91
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:447
-#: application/views/logbookadvanced/index.php:1045
+#: application/views/logbookadvanced/index.php:1042
 #: application/views/logbookadvanced/useroptions.php:290
 #: application/views/timeline/index.php:85 application/views/user/edit.php:405
 #: application/views/view_log/partial/log_ajax.php:22
@@ -5355,7 +5360,7 @@ msgstr "Referencie"
 #: application/views/contesting/manager/export_cbr.php:252
 #: application/views/dashboard/index.php:19
 #: application/views/labels/index.php:42 application/views/labels/index.php:76
-#: application/views/logbookadvanced/index.php:967
+#: application/views/logbookadvanced/index.php:964
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:91
 #: application/views/lotw/satupdate.php:7
@@ -5446,8 +5451,8 @@ msgstr ""
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
 #: application/views/countqsoby/index.php:7
+#: application/views/dbtools/statecheckresult.php:16
 #: application/views/labels/index.php:82
-#: application/views/logbookadvanced/statecheckresult.php:16
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -5642,22 +5647,21 @@ msgstr "Nič sa nenašlo!"
 #: application/views/contesting/logger/components/qso-form.php:66
 #: application/views/contesting/logger/components/qso-form.php:147
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:343
+#: application/views/dbtools/checkresult.php:103
+#: application/views/dbtools/checkresult.php:161
+#: application/views/dbtools/checkresult.php:242
+#: application/views/dbtools/checkresult.php:318
+#: application/views/dbtools/checkresult.php:389
+#: application/views/dbtools/showUpdateResult.php:46
+#: application/views/dbtools/showUpdateResult.php:109
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:35
 #: application/views/labels/index.php:124
-#: application/views/logbookadvanced/checkresult.php:101
-#: application/views/logbookadvanced/checkresult.php:159
-#: application/views/logbookadvanced/checkresult.php:240
-#: application/views/logbookadvanced/checkresult.php:316
-#: application/views/logbookadvanced/checkresult.php:387
-#: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
-#: application/views/logbookadvanced/showUpdateResult.php:46
-#: application/views/logbookadvanced/showUpdateResult.php:109
 #: application/views/lotw_views/index.php:42
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
@@ -5738,7 +5742,7 @@ msgstr "Nespárované spojenia"
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
-#: application/views/logbookadvanced/showUpdateResult.php:88
+#: application/views/dbtools/showUpdateResult.php:88
 msgid "QSOs updated"
 msgstr "QSOs aktualizované"
 
@@ -5764,14 +5768,14 @@ msgstr ""
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
+#: application/views/dbtools/checkresult.php:243
+#: application/views/dbtools/checkresult.php:319
 #: application/views/debug/index.php:805
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:34
 #: application/views/hamsat/index.php:33
-#: application/views/logbookadvanced/checkresult.php:241
-#: application/views/logbookadvanced/checkresult.php:317
 #: application/views/logbookadvanced/dupesearchdialog.php:12
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/oqrs/notinlogform.php:10
@@ -5811,15 +5815,15 @@ msgstr "Dátum"
 #: application/views/contesting/logger/components/qso-form.php:146
 #: application/views/contesting/manager/export_cbr.php:158
 #: application/views/dashboard/index.php:341
+#: application/views/dbtools/checkresult.php:244
+#: application/views/dbtools/checkresult.php:320
 #: application/views/debug/index.php:806
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:35
-#: application/views/hamsat/index.php:34
-#: application/views/logbookadvanced/checkresult.php:242
-#: application/views/logbookadvanced/checkresult.php:318
-#: application/views/oqrs/qsolist.php:8 application/views/qslcard/index.php:46
+#: application/views/hamsat/index.php:34 application/views/oqrs/qsolist.php:8
+#: application/views/qslcard/index.php:46
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:36
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:199
@@ -5840,6 +5844,7 @@ msgstr "Čas"
 #: application/views/adif/pota_success.php:31
 #: application/views/awards/vucc/band.php:23
 #: application/views/dashboard/index.php:415
+#: application/views/dbtools/showStateQsos.php:21
 #: application/views/dcl_views/key_import.php:45
 #: application/views/debug/index.php:807 application/views/debug/index.php:842
 #: application/views/dxcalendar/index.php:17
@@ -5847,7 +5852,6 @@ msgstr "Čas"
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
 #: application/views/logbookadvanced/mergedialog.php:28
 #: application/views/logbookadvanced/mergedialog.php:51
-#: application/views/logbookadvanced/showStateQsos.php:21
 #: application/views/public_search/result.php:14
 #: application/views/qslcard/searchresult.php:8
 #: application/views/qso/components/previous_contacts.php:7
@@ -6603,8 +6607,8 @@ msgstr ""
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:152
 #: application/views/continents/index.php:55
-#: application/views/logbookadvanced/index.php:917
-#: application/views/logbookadvanced/index.php:918
+#: application/views/logbookadvanced/index.php:914
+#: application/views/logbookadvanced/index.php:915
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:883
@@ -7214,7 +7218,7 @@ msgstr ""
 #: application/views/awards/counties/index.php:8
 #: application/views/awards/counties/state_ajax.php:7
 #: application/views/logbookadvanced/index.php:483
-#: application/views/logbookadvanced/index.php:1006
+#: application/views/logbookadvanced/index.php:1003
 #: application/views/logbookadvanced/useroptions.php:187
 #: application/views/stationsetup/locationlist.php:20
 msgid "County"
@@ -7324,7 +7328,7 @@ msgstr "Tabuľka"
 #: application/views/dashboard/index.php:308
 #: application/views/dashboard/index.php:323
 #: application/views/dashboard/index.php:393
-#: application/views/logbookadvanced/checkresult.php:168
+#: application/views/dbtools/checkresult.php:170
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
@@ -8241,7 +8245,7 @@ msgstr ""
 #: application/views/continents/index.php:67
 #: application/views/logbookadvanced/edit.php:28
 #: application/views/logbookadvanced/index.php:525
-#: application/views/logbookadvanced/index.php:1054
+#: application/views/logbookadvanced/index.php:1051
 #: application/views/logbookadvanced/useroptions.php:205
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:490
@@ -8270,7 +8274,7 @@ msgstr "DXCC názov"
 #: application/views/awards/dxcc/index.php:456
 #: application/views/awards/iota/index.php:209
 #: application/views/awards/wae/index.php:216
-#: application/views/logbookadvanced/statecheckresult.php:14
+#: application/views/dbtools/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
 msgid "Prefix"
@@ -8959,7 +8963,7 @@ msgid "Band Categories"
 msgstr "Kategórie pásiem"
 
 #: application/views/awards/pl_polska/index.php:375
-#: application/views/logbookadvanced/dbtoolsdialog.php:77
+#: application/views/dbtools/index.php:88
 #: application/views/logbookadvanced/index.php:854
 msgid "Fix State"
 msgstr "Opraviť štát"
@@ -9215,11 +9219,11 @@ msgid "QSO List"
 msgstr "Zoznam QSO"
 
 #: application/views/awards/sig/qso_list.php:14
-#: application/views/logbookadvanced/index.php:934
+#: application/views/dbtools/showStateQsos.php:22
+#: application/views/logbookadvanced/index.php:931
 #: application/views/logbookadvanced/mergedialog.php:27
 #: application/views/logbookadvanced/mergedialog.php:50
 #: application/views/logbookadvanced/qslcarousel.php:31
-#: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
 #: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
@@ -9789,9 +9793,9 @@ msgstr "Pásmo / Satelit / Obežná dráha"
 #: application/views/calltester/comparison_result.php:127
 #: application/views/calltester/comparison_result.php:176
 #: application/views/calltester/result.php:52
-#: application/views/logbookadvanced/checkresult.php:102
-#: application/views/logbookadvanced/checkresult.php:160
-#: application/views/logbookadvanced/checkresult.php:388
+#: application/views/dbtools/checkresult.php:104
+#: application/views/dbtools/checkresult.php:162
+#: application/views/dbtools/checkresult.php:390
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:65
@@ -10275,7 +10279,7 @@ msgstr "Čerstvý spot (< 5 minút staré)"
 #: application/views/logbookadvanced/attachContest.php:14
 #: application/views/logbookadvanced/edit.php:13
 #: application/views/logbookadvanced/index.php:521
-#: application/views/logbookadvanced/index.php:1048
+#: application/views/logbookadvanced/index.php:1045
 #: application/views/logbookadvanced/useroptions.php:296
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
@@ -10391,7 +10395,7 @@ msgstr "Spotter"
 #: application/views/logbookadvanced/attachContest.php:16
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:542
-#: application/views/logbookadvanced/index.php:1042
+#: application/views/logbookadvanced/index.php:1039
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:390
 #: application/views/view_log/qso.php:227
@@ -11172,9 +11176,9 @@ msgstr "Problémy sa našli iba v triede DXCC (nie v modeli denníka):"
 #: application/views/calltester/comparison_result.php:128
 #: application/views/calltester/comparison_result.php:177
 #: application/views/calltester/result.php:53
-#: application/views/logbookadvanced/checkresult.php:106
-#: application/views/logbookadvanced/checkresult.php:164
-#: application/views/logbookadvanced/checkresult.php:392
+#: application/views/dbtools/checkresult.php:108
+#: application/views/dbtools/checkresult.php:166
+#: application/views/dbtools/checkresult.php:394
 #: application/views/zonechecker/result.php:67
 msgid "Station Profile"
 msgstr "Profil stanice"
@@ -11183,7 +11187,7 @@ msgstr "Profil stanice"
 #: application/views/calltester/comparison_result.php:131
 #: application/views/calltester/comparison_result.php:180
 #: application/views/calltester/result.php:56
-#: application/views/logbookadvanced/checkresult.php:107
+#: application/views/dbtools/checkresult.php:109
 msgid "Existing DXCC"
 msgstr "Existujúca DXCC"
 
@@ -11198,7 +11202,7 @@ msgstr "Existujúci ADIF"
 #: application/views/calltester/comparison_result.php:133
 #: application/views/calltester/comparison_result.php:182
 #: application/views/calltester/result.php:58
-#: application/views/logbookadvanced/checkresult.php:108
+#: application/views/dbtools/checkresult.php:110
 msgid "Result DXCC"
 msgstr "Výsledok DXCC"
 
@@ -11240,9 +11244,9 @@ msgstr "Identifikácia DXCC volacieho znaku"
 
 #: application/views/calltester/index.php:11
 #: application/views/contesting/manager/components/session_modal.php:63
-#: application/views/csv/index.php:19 application/views/dxatlas/index.php:19
+#: application/views/csv/index.php:19 application/views/dbtools/index.php:28
+#: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:125
-#: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/qslprint/index.php:34 application/views/qso/index.php:139
 #: application/views/qso/index.php:402
@@ -11258,6 +11262,7 @@ msgid "Station Location"
 msgstr "Poloha stanice"
 
 #: application/views/calltester/index.php:16
+#: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:894
 #: application/views/logbookadvanced/index.php:876
 #: application/views/zonechecker/index.php:16
@@ -11346,8 +11351,8 @@ msgid "Available Permissions"
 msgstr "Dostupné povolenia"
 
 #: application/views/club/permissions.php:36
+#: application/views/dbtools/statecheckresult.php:17
 #: application/views/eqsl/download.php:45
-#: application/views/logbookadvanced/statecheckresult.php:17
 msgid "Action"
 msgstr "Akcia"
 
@@ -11604,7 +11609,7 @@ msgstr ""
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
-#: application/views/logbookadvanced/index.php:1066
+#: application/views/logbookadvanced/index.php:1063
 #: application/views/logbookadvanced/useroptions.php:336
 #: application/views/qrz/export.php:39
 #: application/views/qslprint/qslprint.php:44
@@ -11858,7 +11863,7 @@ msgstr "ADIF názov"
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:507 application/views/debug/index.php:518
-#: application/views/interface_assets/header.php:652
+#: application/views/interface_assets/header.php:656
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -12359,12 +12364,12 @@ msgstr "Cesta"
 #: application/views/contesting/manager/export_cbr.php:132
 #: application/views/contesting/manager/import_legacy.php:39
 #: application/views/contesting/manager/index.php:35
+#: application/views/dbtools/checkresult.php:251
+#: application/views/dbtools/checkresult.php:327
+#: application/views/dbtools/showStateQsos.php:28
 #: application/views/logbookadvanced/attachContest.php:15
-#: application/views/logbookadvanced/checkresult.php:249
-#: application/views/logbookadvanced/checkresult.php:325
 #: application/views/logbookadvanced/mergedialog.php:31
 #: application/views/logbookadvanced/mergedialog.php:54
-#: application/views/logbookadvanced/showStateQsos.php:28
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:43
 #: application/views/qslprint/qsolist.php:14
@@ -12443,7 +12448,7 @@ msgstr ""
 #: application/views/contesting/logger/index.php:104
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
-#: application/views/interface_assets/header.php:617
+#: application/views/interface_assets/header.php:621
 msgid "Switch Operator"
 msgstr ""
 
@@ -12690,7 +12695,7 @@ msgid "Gridquare"
 msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:121
-#: application/views/logbookadvanced/index.php:970
+#: application/views/logbookadvanced/index.php:967
 #: application/views/logbookadvanced/useroptions.php:97
 #: application/views/qso/edit_ajax.php:177
 msgid "QTH"
@@ -12785,7 +12790,7 @@ msgid ""
 msgstr ""
 
 #: application/views/contesting/manager/export_cbr.php:46
-#: application/views/interface_assets/header.php:540
+#: application/views/interface_assets/header.php:544
 msgid "Cabrillo Export"
 msgstr "Export Cabrillo"
 
@@ -12868,9 +12873,9 @@ msgstr ""
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
-#: application/views/logbookadvanced/checkresult.php:119
-#: application/views/logbookadvanced/checkresult.php:178
-#: application/views/logbookadvanced/checkresult.php:405
+#: application/views/dbtools/checkresult.php:121
+#: application/views/dbtools/checkresult.php:180
+#: application/views/dbtools/checkresult.php:407
 #: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/edit.php:187
 #: application/views/logbookadvanced/edit.php:195
@@ -12929,9 +12934,9 @@ msgstr "Áno"
 
 #: application/views/contesting/manager/export_cbr.php:222
 #: application/views/contesting/manager/export_cbr.php:233
-#: application/views/logbookadvanced/checkresult.php:119
-#: application/views/logbookadvanced/checkresult.php:178
-#: application/views/logbookadvanced/checkresult.php:405
+#: application/views/dbtools/checkresult.php:121
+#: application/views/dbtools/checkresult.php:180
+#: application/views/dbtools/checkresult.php:407
 #: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/edit.php:188
 #: application/views/logbookadvanced/edit.php:196
@@ -13030,7 +13035,7 @@ msgid "Download Cabrillo"
 msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:46
-#: application/views/interface_assets/header.php:542
+#: application/views/interface_assets/header.php:546
 msgid "EDI Export"
 msgstr "EDI export"
 
@@ -13228,7 +13233,7 @@ msgid "Are you sure you want to import the selected contest sessions?"
 msgstr ""
 
 #: application/views/contesting/manager/index.php:17
-#: application/views/interface_assets/header.php:349
+#: application/views/interface_assets/header.php:353
 msgid "Contests"
 msgstr "Contesty"
 
@@ -14091,6 +14096,461 @@ msgstr ""
 msgid "No current streak found!"
 msgstr "Žiadna aktuálna séria nebola nájdená!"
 
+#: application/views/dbtools/checkresult.php:42
+msgid "Distance Check Results"
+msgstr "Výsledky kontroly vzdialenosti"
+
+#: application/views/dbtools/checkresult.php:43
+#: application/views/dbtools/checkresult.php:59
+#: application/views/dbtools/checkresult.php:75
+msgid "QSOs to update found:"
+msgstr "Našli sa spojenia na aktualizáciu:"
+
+#: application/views/dbtools/checkresult.php:46
+#: application/views/logbookadvanced/distancedialog.php:2
+msgid ""
+"Update all QSOs with the distance based on your gridsquare set in the "
+"station profile, and the gridsquare of the QSO partner. Distance will be "
+"calculated based on if short path or long path is set."
+msgstr ""
+"Aktualizovať všetky QSO vzdialenosťou na základe vášho lokátora nastaveného\n"
+"v profile stanice a lokátora partnera QSO. Vzdialenosť sa vypočíta na\n"
+"základe nastavenia krátkej alebo dlhej cesty.Aktualizuj všetky QSO so "
+"vzdialenosťou na základe lokátora nastavenéhov profile stanice a lokátora "
+"QSO partnera. Vzdialenosť bude vypočítaná na základe toho, či je nastavená "
+"krátka alebo dlhá cesta."
+
+#: application/views/dbtools/checkresult.php:47
+#: application/views/logbookadvanced/distancedialog.php:3
+msgid "This is useful if you have imported QSOs without distance information."
+msgstr ""
+"Toto je užitočné, ak ste importovali QSO bez informácií o vzdialenosti.Toto "
+"je užitočné, ak ste importovali QSO bez informácií o vzdialenosti."
+
+#: application/views/dbtools/checkresult.php:48
+#: application/views/logbookadvanced/distancedialog.php:4
+msgid "Update will only set the distance for QSOs where the distance is empty."
+msgstr ""
+"Aktualizácia nastaví vzdialenosť iba pre QSO, kde je vzdialenosť prázdna."
+"Aktualizácia nastaví vzdialenosť iba pre QSO, kde je vzdialenosť prázdna."
+
+#: application/views/dbtools/checkresult.php:52
+#: application/views/dbtools/checkresult.php:68
+#: application/views/dbtools/checkresult.php:79
+#: application/views/debug/index.php:689
+#: application/views/logbookadvanced/index.php:57
+msgid "Update now"
+msgstr "Aktualizuj teraz"
+
+#: application/views/dbtools/checkresult.php:58
+msgid "Continent Check Results"
+msgstr "Výsledky kontroly kontinentov"
+
+#: application/views/dbtools/checkresult.php:62
+msgid ""
+"Update all QSOs with the continent based on the DXCC country of the QSO."
+msgstr ""
+"Aktualizovať všetky QSO kontinentom na základe DXCC krajiny QSO.Aktualizuj "
+"všetky spojenia QSO podľa kontinentu na základe DXCC krajiny spojenia QSO."
+
+#: application/views/dbtools/checkresult.php:63
+msgid "This is useful if you have imported QSOs without continent information."
+msgstr ""
+"Toto je užitočné, ak ste importovali QSO bez informácií o kontinente.Toto je "
+"užitočné, ak ste importovali spojenia bez informácií o kontinente."
+
+#: application/views/dbtools/checkresult.php:64
+msgid ""
+"Update will only set the continent for QSOs where the continent is empty."
+msgstr "Aktualizácia nastaví kontinent iba pre QSO, kde je kontinent prázdny."
+
+#: application/views/dbtools/checkresult.php:74
+#: application/views/dbtools/checkresult.php:148
+msgid "Gridsquare Check Results"
+msgstr "Výsledky kontroly lokátorov"
+
+#: application/views/dbtools/checkresult.php:85
+msgid "DXCC Check Results"
+msgstr "Výsledky kontroly DXCC"
+
+#: application/views/dbtools/checkresult.php:87
+msgid "Callsigns tested: "
+msgstr "Overované volacie značky: "
+
+#: application/views/dbtools/checkresult.php:88
+msgid "Execution time: "
+msgstr "Čas vykonávania: "
+
+#: application/views/dbtools/checkresult.php:89
+msgid "Number of potential QSOs with wrong DXCC: "
+msgstr "Počet potenciálnych spojení s nesprávnou DXCC: "
+
+#: application/views/dbtools/checkresult.php:94
+#: application/views/dbtools/checkresult.php:236
+#: application/views/dbtools/checkresult.php:312
+msgid "Update selected"
+msgstr "Aktualizovať vybrané"
+
+#: application/views/dbtools/checkresult.php:155
+msgid "These QSOs MAY have incorrect gridsquares."
+msgstr "Tieto spojenia môžu mať nesprávne lokátory."
+
+#: application/views/dbtools/checkresult.php:156
+msgid ""
+"Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
+"gridsquare database."
+msgstr ""
+"Výsledky závisia od správneho DXCC. Zoznam lokátorov pochádza z databázy\n"
+"lokátorov TQSL.Výsledky závisia od správnej DXCC. Zoznam lokátorov pochádza "
+"z databázy TQSL lokátorových štvorcov."
+
+#: application/views/dbtools/checkresult.php:169
+msgid "DXCC Gridsquare"
+msgstr "DXCC lokátor"
+
+#: application/views/dbtools/checkresult.php:193
+#: application/views/dbtools/index.php:6
+#: application/views/logbookadvanced/index.php:77
+msgid "Show more"
+msgstr "Zobraziť viac"
+
+#: application/views/dbtools/checkresult.php:199
+msgid "View on map"
+msgstr "Zobraziť na mape"
+
+#: application/views/dbtools/checkresult.php:224
+msgid "CQ Zone Check Results"
+msgstr "Výsledky kontroly CQ zón"
+
+#: application/views/dbtools/checkresult.php:226
+msgid ""
+"The following QSOs were found to have a different CQ zone compared to what "
+"this DXCC normally has (a maximum of 5000 QSOs are shown):"
+msgstr ""
+"Nasledujúce QSO majú inú CQ zónu v porovnaní s tým, čo tento DXCC zvyčajne\n"
+"má (zobrazuje sa maximálne 5000 QSO):Nasledujúce spojenia majú odlišnú CQ "
+"zónu v porovnaní s tým, čo táto DXCC zvyčajne má (zobrazených je maximálne "
+"5000 QSO):"
+
+#: application/views/dbtools/checkresult.php:231
+msgid "Force update even if DXCC covers multiple CQ zones"
+msgstr "Vynútiť aktualizáciu, aj keď DXCC pokrýva viacero CQ zón"
+
+#: application/views/dbtools/checkresult.php:232
+msgid ""
+"The update function can only set the main CQ zone which is assigned to the "
+"DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
+"not correct. So by default only QSOs with DXCCs covering a single CQ zone "
+"are updated. This checkbox overrides this but might result in wrong data. "
+"Use with caution!"
+msgstr ""
+"Funkcia aktualizácie môže nastaviť iba hlavnú CQ zónu, ktorá je priradená k "
+"DXCC. Ak DXCC pokrýva viacero CQ zón, je možné, že to nie je správne. Preto "
+"sa predvolene aktualizujú len spojenia s DXCC pokrývajúcimi jednu CQ zónu. "
+"Toto pole to mení, ale môže mať za následok nesprávne údaje. Používajte "
+"opatrne!"
+
+#: application/views/dbtools/checkresult.php:249
+msgid "DXCC CQ Zone"
+msgstr "DXCC zóna CQ"
+
+#: application/views/dbtools/checkresult.php:295
+#: application/views/dbtools/checkresult.php:371
+msgid "No incorrect CQ Zones were found."
+msgstr "Neboli nájdené žiadne nesprávne CQ zóny."
+
+#: application/views/dbtools/checkresult.php:300
+msgid "ITU Zone Check Results"
+msgstr "Výsledky kontroly ITU zón"
+
+#: application/views/dbtools/checkresult.php:302
+msgid ""
+"The following QSOs were found to have a different ITU zone compared to what "
+"this DXCC normally has (a maximum of 5000 QSOs are shown):"
+msgstr ""
+"Nasledujúce QSO majú inú ITU zónu v porovnaní s tým, čo tento DXCC zvyčajne\n"
+"má (zobrazuje sa maximálne 5000 QSO):Nasledujúce spojenia majú odlišnú zónu "
+"ITU v porovnaní s tou, ktorú toto DXCC normálne má (zobrazených je maximálne "
+"5000 QSO):"
+
+#: application/views/dbtools/checkresult.php:307
+msgid "Force update even if DXCC covers multiple ITU zones"
+msgstr "Vynútiť aktualizáciu, aj keď DXCC pokrýva viacero zón ITU"
+
+#: application/views/dbtools/checkresult.php:308
+msgid ""
+"The update function can only set the main ITU zone which is assigned to the "
+"DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
+"not correct. So by default only QSOs with DXCCs covering a single ITU zone "
+"are updated. This checkbox overrides this but might result in wrong data. "
+"Use with caution!"
+msgstr ""
+"Funkcia aktualizácie môže nastaviť iba hlavnú ITU zónu, ktorá je priradená k "
+"DXCC. Ak DXCC pokrýva viacero ITU zón, môže sa stať, že to nebude správne. "
+"Takže štandardne sa aktualizujú len spojenia s DXCC, ktoré pokrývajú jednu "
+"ITU zónu. Toto políčko to mení, ale môže to viesť k nesprávnym údajom. "
+"Používajte s opatrnosťou!"
+
+#: application/views/dbtools/checkresult.php:325
+msgid "DXCC ITU Zone"
+msgstr "DXCC ITU zóna"
+
+#: application/views/dbtools/checkresult.php:376
+msgid "IOTA Check Results"
+msgstr "Výsledky kontroly IOTA"
+
+#: application/views/dbtools/checkresult.php:383
+msgid "These QSOs MAY have an incorrect IOTA reference."
+msgstr "Tieto spojenia môžu mať nesprávnu IOTA referenciu."
+
+#: application/views/dbtools/checkresult.php:384
+msgid ""
+"Results depends on the correct DXCC, and it will only be checked against "
+"current DXCC. False positive results may occur."
+msgstr ""
+"Výsledky závisia od správneho DXCC a kontroluje sa iba voči aktuálnemu\n"
+"DXCC. Môžu nastať falošne pozitívne výsledky.Výsledky závisia od správnej "
+"DXCC a budú overované len podľa aktuálnej DXCC. Môžu sa tak vyskytnúť "
+"falošne pozitívne výsledky."
+
+#: application/views/dbtools/checkresult.php:395
+msgid "QSO DXCC"
+msgstr "QSO DXCC"
+
+#: application/views/dbtools/checkresult.php:397
+msgid "IOTA DXCC"
+msgstr "IOTA DXCC"
+
+#: application/views/dbtools/index.php:4
+#: application/views/logbookadvanced/index.php:52
+#: application/views/qslprint/index.php:3
+msgid "INFO"
+msgstr "INFO"
+
+#: application/views/dbtools/index.php:5
+#: application/views/logbookadvanced/index.php:60
+msgid "You need to select a least 1 row!"
+msgstr "Musíš vybrať aspoň 1 riadok!"
+
+#: application/views/dbtools/index.php:7
+#: application/views/logbookadvanced/index.php:78
+msgid "Show less"
+msgstr "Ukázať menej"
+
+#: application/views/dbtools/index.php:8
+#: application/views/logbookadvanced/index.php:80
+msgid "Gridsquares for"
+msgstr "Lokátorové štvorce pre"
+
+#: application/views/dbtools/index.php:9
+#: application/views/logbookadvanced/index.php:81
+msgid "Non DXCC matching gridsquare"
+msgstr "Nesúladný lokátor mimo DXCC"
+
+#: application/views/dbtools/index.php:17
+msgid "Wiki Help"
+msgstr "Wiki pomoc"
+
+#: application/views/dbtools/index.php:20
+msgid ""
+"Warning. This tool can be dangerous to your data, and should only be used if "
+"you know what you are doing."
+msgstr ""
+"Varovanie. Tento nástroj môže byť nebezpečný pre vaše dáta a mal by sa\n"
+"používať iba vtedy, ak viete, čo robíte.Upozornenie. Tento nástroj môže byť "
+"nebezpečný pre vaše dáta a mal by sa používať len v prípade, že viete, čo "
+"robíte."
+
+#: application/views/dbtools/index.php:24
+msgid "Data Repair Tools"
+msgstr "Nástroje na opravu dát"
+
+#: application/views/dbtools/index.php:30
+msgid "All Station Locations"
+msgstr "Všetky miesta staníc"
+
+#: application/views/dbtools/index.php:44
+msgid "Check all QSOs in the logbook for incorrect CQ Zones"
+msgstr "Skontroluj všetky spojenia v logbooku na nesprávne CQ zóny"
+
+#: application/views/dbtools/index.php:45
+msgid "Use Wavelog to determine CQ Zone for all QSOs."
+msgstr "Pomocou Wavelog zisti CQ zónu pre všetky spojenia."
+
+#: application/views/dbtools/index.php:48
+#: application/views/dbtools/index.php:59
+#: application/views/dbtools/index.php:70
+#: application/views/dbtools/index.php:81
+#: application/views/dbtools/index.php:92
+#: application/views/dbtools/index.php:103
+#: application/views/dbtools/index.php:114
+#: application/views/dbtools/index.php:127
+#: application/views/dbtools/index.php:139
+msgid "Check"
+msgstr "Skontroluj"
+
+#: application/views/dbtools/index.php:55
+msgid "Check all QSOs in the logbook for incorrect ITU Zones"
+msgstr "Skontroluj všetky spojenia v denníku pre nesprávne ITU zóny"
+
+#: application/views/dbtools/index.php:56
+msgid "Use Wavelog to determine ITU Zone for all QSOs."
+msgstr "Použi Wavelog na určenie ITU zóny pre všetky spojenia."
+
+#: application/views/dbtools/index.php:66
+msgid "Check Gridsquares"
+msgstr "Skontroluj lokátorové štvorce"
+
+#: application/views/dbtools/index.php:67
+msgid "Check gridsquares that does not match the DXCC"
+msgstr "Skontroluj lokátory, ktoré nezodpovedajú DXCC"
+
+#: application/views/dbtools/index.php:77
+msgid "Fix Continent"
+msgstr "Oprav kontinent"
+
+#: application/views/dbtools/index.php:78
+msgid "Update missing or incorrect continent information"
+msgstr "Aktualizovať chýbajúce alebo nesprávne informácie o kontinente"
+
+#: application/views/dbtools/index.php:89
+msgid "Update missing state/province information"
+msgstr "Aktualizovať chýbajúce informácie o štáte/provincii"
+
+#: application/views/dbtools/index.php:99
+#: application/views/logbookadvanced/index.php:68
+msgid "Update Distances"
+msgstr "Aktualizuj vzdialeností"
+
+#: application/views/dbtools/index.php:100
+msgid "Calculate and update distance information for QSOs"
+msgstr "Vypočítaj a aktualizuj informácie o vzdialenosti pre spojenia"
+
+#: application/views/dbtools/index.php:110
+msgid "Check all QSOs in the logbook for incorrect DXCC"
+msgstr "Skontroluj všetky spojenia v denníku na nesprávne DXCC"
+
+#: application/views/dbtools/index.php:111
+msgid "Use Wavelog to determine DXCC for all QSOs."
+msgstr "Použi Wavelog na určenie DXCC pre všetky spojenia."
+
+#: application/views/dbtools/index.php:122
+msgid "Lookup QSOs with missing grid in callbook"
+msgstr "Náhľad spojení s chýbajúcim lokátorom v callbooku"
+
+#: application/views/dbtools/index.php:123
+msgid "Use callbook lookup to set gridsquare"
+msgstr "Použi callbook na určenie lokátora"
+
+#: application/views/dbtools/index.php:124
+msgid "This is limited to 150 callsigns for each run!"
+msgstr "Toto je obmedzené na 150 volacích znakov pre každé spustenie!"
+
+#: application/views/dbtools/index.php:135
+msgid "Check IOTA against DXCC"
+msgstr "Skontrolovať IOTA voči DXCC"
+
+#: application/views/dbtools/index.php:136
+msgid "Use Wavelog to check IOTA against DXCC"
+msgstr "Použi Wavelog na kontrolu IOTA voči DXCC"
+
+#: application/views/dbtools/showStateQsos.php:16
+#, php-format
+msgid "Found %s QSO(s) missing state information for DXCC %s."
+msgstr "Nájdených %s QSO bez informácií o štáte pre DXCC %s."
+
+#: application/views/dbtools/showStateQsos.php:49
+msgid "No Issues Found"
+msgstr "Žiadne problémy nenájdené"
+
+#: application/views/dbtools/showUpdateResult.php:25
+#: application/views/dbtools/showUpdateResult.php:75
+msgid "Results for state update:"
+msgstr "Výsledky pre aktualizáciu štátu:"
+
+#: application/views/dbtools/showUpdateResult.php:27
+#: application/views/dbtools/showUpdateResult.php:29
+msgid "The number of QSOs updated for state/province in"
+msgstr "Počet aktualizovaných QSO pre štát/provinciu v"
+
+#: application/views/dbtools/showUpdateResult.php:41
+#: application/views/dbtools/showUpdateResult.php:104
+msgid "These QSOs could not be updated:"
+msgstr "Tieto spojenia sa nepodarilo aktualizovať:"
+
+#: application/views/dbtools/showUpdateResult.php:48
+#: application/views/dbtools/showUpdateResult.php:111
+#: application/views/search/lotw_unconfirmed.php:28
+#: application/views/statistics/antennaanalytics.php:104
+msgid "Station location"
+msgstr "Umiestnenie stanice"
+
+#: application/views/dbtools/showUpdateResult.php:49
+#: application/views/dbtools/showUpdateResult.php:112
+msgid "Reason"
+msgstr "Dôvod"
+
+#: application/views/dbtools/showUpdateResult.php:77
+#: application/views/dbtools/showUpdateResult.php:79
+msgid "The number of QSOs updated for state/province across all DXCCs is"
+msgstr ""
+
+#: application/views/dbtools/showUpdateResult.php:79
+msgid "DXCCs processed"
+msgstr ""
+
+#: application/views/dbtools/showUpdateResult.php:131
+msgid "Results for continent update:"
+msgstr "Výsledky aktualizácie kontinentu:"
+
+#: application/views/dbtools/showUpdateResult.php:132
+msgid "The number of QSOs updated for continent is"
+msgstr "Počet aktualizovaných spojení pre kontinent je"
+
+#: application/views/dbtools/showUpdateResult.php:136
+msgid "Results for distance update:"
+msgstr "Výsledky aktualizácie vzdialenosti:"
+
+#: application/views/dbtools/showUpdateResult.php:137
+msgid "The number of QSOs updated for distance is"
+msgstr "Počet aktualizovaných spojení pre vzdialenosť je"
+
+#: application/views/dbtools/showUpdateResult.php:141
+msgid "Results for gridsquare update:"
+msgstr "Výsledky pre aktualizáciu lokátorových štvorcov:"
+
+#: application/views/dbtools/showUpdateResult.php:142
+msgid "The number of QSOs updated for gridsquare is"
+msgstr "Počet aktualizovaných spojení pre lokátorové štvorce je"
+
+#: application/views/dbtools/statecheckresult.php:3
+#: application/views/dbtools/statecheckresult.php:46
+msgid "State Check Results"
+msgstr "Výsledok kontroly štátov"
+
+#: application/views/dbtools/statecheckresult.php:4
+msgid ""
+"QSOs with missing state and gridsquares with 6 or more characters found for "
+"the following DXCCs:"
+msgstr ""
+"Nájdené spojenia (QSO) s chýbajúcim štátom a lokátory s 6 alebo viac znakmi\n"
+"pre nasledujúce DXCC:Spojenia s chýbajúcimi štátmi a lokátormi so 6 alebo "
+"viac znakmi boli nájdené pre nasledujúce DXCC:"
+
+#: application/views/dbtools/statecheckresult.php:7
+msgid "Fix all DXCCs"
+msgstr ""
+
+#: application/views/dbtools/statecheckresult.php:34
+msgid "Run fix"
+msgstr "Spusti opravu"
+
+#: application/views/dbtools/statecheckresult.php:47
+msgid "No QSOs were found where state information can be fixed."
+msgstr ""
+"Nenašli sa žiadne QSO, kde by sa dali opraviť informácie o štáte.Neboli "
+"nájdené žiadne spojenia, kde by sa dala opraviť informácia o štáte."
+
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
 msgstr "Odstrániť kľúče"
@@ -14577,14 +15037,6 @@ msgstr "Posledné načítanie"
 #: application/views/debug/index.php:688
 msgid "Check for new version"
 msgstr "Skontrolovať novú verziu"
-
-#: application/views/debug/index.php:689
-#: application/views/logbookadvanced/checkresult.php:52
-#: application/views/logbookadvanced/checkresult.php:68
-#: application/views/logbookadvanced/checkresult.php:78
-#: application/views/logbookadvanced/index.php:57
-msgid "Update now"
-msgstr "Aktualizuj teraz"
 
 #: application/views/debug/index.php:707
 msgid "File download date"
@@ -15886,7 +16338,7 @@ msgstr ""
 "pre inštrukcie na nastavenie."
 
 #: application/views/interface_assets/footer.php:223
-#: application/views/interface_assets/header.php:605
+#: application/views/interface_assets/header.php:609
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Informácie o verzii"
@@ -16226,165 +16678,165 @@ msgstr "US Gridmaster"
 msgid "Satellite Pass"
 msgstr "Satelitný prelet"
 
-#: application/views/interface_assets/header.php:340
+#: application/views/interface_assets/header.php:344
 #: application/views/stationsetup/stationsetup.php:146
 msgid "Admin"
 msgstr "Admin"
 
-#: application/views/interface_assets/header.php:345
+#: application/views/interface_assets/header.php:349
 msgid "Global Options"
 msgstr "Globálne možnosti"
 
-#: application/views/interface_assets/header.php:357
+#: application/views/interface_assets/header.php:361
 msgid "Update Country Files"
 msgstr "Aktualizovať súbory krajín"
 
-#: application/views/interface_assets/header.php:361
+#: application/views/interface_assets/header.php:365
 msgid "Debug Information"
 msgstr "Informácie o ladení"
 
-#: application/views/interface_assets/header.php:408
+#: application/views/interface_assets/header.php:412
 msgid "Add/Search Callsign"
 msgstr "Pridať/Vyhľadať volaciu značku"
 
-#: application/views/interface_assets/header.php:410
+#: application/views/interface_assets/header.php:414
 msgid "Log"
 msgstr "Denník"
 
-#: application/views/interface_assets/header.php:417
+#: application/views/interface_assets/header.php:421
 #: application/views/logbookadvanced/index.php:777
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:579
 #: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "Vyhľadať volaciu značku"
 
-#: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:485
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
 msgstr "Op: %s"
 
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:495
 #: application/views/user/edit.php:58
 msgid "Account"
 msgstr "Účet"
 
-#: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:501
 msgid "Band Edges"
 msgstr "Okraje pásiem"
 
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:507
 msgid "Switch to Clubstation:"
 msgstr "Prepni na klubovú stanicu:"
 
-#: application/views/interface_assets/header.php:507
+#: application/views/interface_assets/header.php:511
 #: application/views/user/modals/first_login_wizard.php:119
 #: application/views/user/modals/first_login_wizard.php:133
 #, php-format
 msgid "Switch to %s"
 msgstr "Prepnúť na %s"
 
-#: application/views/interface_assets/header.php:511
+#: application/views/interface_assets/header.php:515
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "Spravovať %s"
 
-#: application/views/interface_assets/header.php:520
+#: application/views/interface_assets/header.php:524
 msgid "No Clubstations available"
 msgstr "Žiadne klubové stanice nie sú k dispozícii"
 
-#: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:536
 msgid "Other Export Options"
 msgstr "Ďalšie možnosti exportu"
 
-#: application/views/interface_assets/header.php:564
+#: application/views/interface_assets/header.php:568
 msgid "QSL Queue"
 msgstr "QSL fronta"
 
-#: application/views/interface_assets/header.php:565
+#: application/views/interface_assets/header.php:569
 msgid "Labels"
 msgstr "Štítky"
 
-#: application/views/interface_assets/header.php:572
+#: application/views/interface_assets/header.php:576
 msgid "Third-Party Services"
 msgstr "Služby tretích strán"
 
-#: application/views/interface_assets/header.php:575
+#: application/views/interface_assets/header.php:579
 msgid "eQSL Import / Export"
 msgstr "Import / Export eQSL"
 
-#: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:580
 msgid "HRDLog Logbook"
 msgstr "HRDLog denník"
 
-#: application/views/interface_assets/header.php:579
+#: application/views/interface_assets/header.php:583
 msgid "Clublog Import / Export"
 msgstr "Import / Export Clublog"
 
-#: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:586
 msgid "DCL Export"
 msgstr "DCL export"
 
-#: application/views/interface_assets/header.php:590
+#: application/views/interface_assets/header.php:594
 msgid "API Keys"
 msgstr "API kľúče"
 
-#: application/views/interface_assets/header.php:595
+#: application/views/interface_assets/header.php:599
 msgid "Internal tools"
 msgstr "Interné nástroje"
 
-#: application/views/interface_assets/header.php:597
+#: application/views/interface_assets/header.php:601
 msgid "Callsign DXCC checker"
 msgstr "Overenie DXCC podľa značiek"
 
-#: application/views/interface_assets/header.php:598
+#: application/views/interface_assets/header.php:602
 msgid "GeoJSON QSO Map"
 msgstr "QSO mapa GeoJSON"
 
-#: application/views/interface_assets/header.php:599
+#: application/views/interface_assets/header.php:603
 msgid "Gridsquare Zone checker"
 msgstr "Overovač lokátorových zón"
 
-#: application/views/interface_assets/header.php:606
-#: application/views/logbookadvanced/index.php:920
+#: application/views/interface_assets/header.php:610
+#: application/views/logbookadvanced/index.php:917
 msgid "Help"
 msgstr "Pomoc"
 
-#: application/views/interface_assets/header.php:607
+#: application/views/interface_assets/header.php:611
 msgid "Forum"
 msgstr "Fórum"
 
-#: application/views/interface_assets/header.php:611
+#: application/views/interface_assets/header.php:615
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Zruš impersonáciu a prepnite sa späť na %s"
 
-#: application/views/interface_assets/header.php:612
+#: application/views/interface_assets/header.php:616
 #, php-format
 msgid "Switch back to %s"
 msgstr "Prepnúť späť na %s"
 
-#: application/views/interface_assets/header.php:619
+#: application/views/interface_assets/header.php:623
 msgid "Logout"
 msgstr "Odhlásiť sa"
 
-#: application/views/interface_assets/header.php:625
+#: application/views/interface_assets/header.php:629
 msgid "Station locations and logbooks"
 msgstr ""
 
-#: application/views/interface_assets/header.php:627
+#: application/views/interface_assets/header.php:631
 msgid "Select a Location"
 msgstr "Vyber lokalitu"
 
-#: application/views/interface_assets/header.php:675
+#: application/views/interface_assets/header.php:679
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Chýbajú vám tu stanice? Choďte na nastavenie staníc a označte ich "
 "hviezdičkouChýbajú ti tu umiestnenia staníc? Prejdi na nastavenie stanice a "
 "ulož ich medzi obľúbené"
 
-#: application/views/interface_assets/header.php:712
+#: application/views/interface_assets/header.php:716
 msgid "Extras"
 msgstr "Doplnky"
 
@@ -16715,329 +17167,6 @@ msgstr ""
 "JO90AB12), keď je zhoda spoľahlivá.Ponecháme si pôvodnú hodnotu a pridáme "
 "presnejší lokátor (napríklad JO90AB alebo JO90AB12), keď bude zhoda istá."
 
-#: application/views/logbookadvanced/checkresult.php:42
-msgid "Distance Check Results"
-msgstr "Výsledky kontroly vzdialenosti"
-
-#: application/views/logbookadvanced/checkresult.php:43
-#: application/views/logbookadvanced/checkresult.php:59
-#: application/views/logbookadvanced/checkresult.php:75
-msgid "QSOs to update found:"
-msgstr "Našli sa spojenia na aktualizáciu:"
-
-#: application/views/logbookadvanced/checkresult.php:46
-#: application/views/logbookadvanced/distancedialog.php:2
-msgid ""
-"Update all QSOs with the distance based on your gridsquare set in the "
-"station profile, and the gridsquare of the QSO partner. Distance will be "
-"calculated based on if short path or long path is set."
-msgstr ""
-"Aktualizovať všetky QSO vzdialenosťou na základe vášho lokátora nastaveného\n"
-"v profile stanice a lokátora partnera QSO. Vzdialenosť sa vypočíta na\n"
-"základe nastavenia krátkej alebo dlhej cesty.Aktualizuj všetky QSO so "
-"vzdialenosťou na základe lokátora nastavenéhov profile stanice a lokátora "
-"QSO partnera. Vzdialenosť bude vypočítaná na základe toho, či je nastavená "
-"krátka alebo dlhá cesta."
-
-#: application/views/logbookadvanced/checkresult.php:47
-#: application/views/logbookadvanced/distancedialog.php:3
-msgid "This is useful if you have imported QSOs without distance information."
-msgstr ""
-"Toto je užitočné, ak ste importovali QSO bez informácií o vzdialenosti.Toto "
-"je užitočné, ak ste importovali QSO bez informácií o vzdialenosti."
-
-#: application/views/logbookadvanced/checkresult.php:48
-#: application/views/logbookadvanced/distancedialog.php:4
-msgid "Update will only set the distance for QSOs where the distance is empty."
-msgstr ""
-"Aktualizácia nastaví vzdialenosť iba pre QSO, kde je vzdialenosť prázdna."
-"Aktualizácia nastaví vzdialenosť iba pre QSO, kde je vzdialenosť prázdna."
-
-#: application/views/logbookadvanced/checkresult.php:58
-msgid "Continent Check Results"
-msgstr "Výsledky kontroly kontinentov"
-
-#: application/views/logbookadvanced/checkresult.php:62
-msgid ""
-"Update all QSOs with the continent based on the DXCC country of the QSO."
-msgstr ""
-"Aktualizovať všetky QSO kontinentom na základe DXCC krajiny QSO.Aktualizuj "
-"všetky spojenia QSO podľa kontinentu na základe DXCC krajiny spojenia QSO."
-
-#: application/views/logbookadvanced/checkresult.php:63
-msgid "This is useful if you have imported QSOs without continent information."
-msgstr ""
-"Toto je užitočné, ak ste importovali QSO bez informácií o kontinente.Toto je "
-"užitočné, ak ste importovali spojenia bez informácií o kontinente."
-
-#: application/views/logbookadvanced/checkresult.php:64
-msgid ""
-"Update will only set the continent for QSOs where the continent is empty."
-msgstr "Aktualizácia nastaví kontinent iba pre QSO, kde je kontinent prázdny."
-
-#: application/views/logbookadvanced/checkresult.php:74
-#: application/views/logbookadvanced/checkresult.php:146
-msgid "Gridsquare Check Results"
-msgstr "Výsledky kontroly lokátorov"
-
-#: application/views/logbookadvanced/checkresult.php:83
-msgid "DXCC Check Results"
-msgstr "Výsledky kontroly DXCC"
-
-#: application/views/logbookadvanced/checkresult.php:85
-msgid "Callsigns tested: "
-msgstr "Overované volacie značky: "
-
-#: application/views/logbookadvanced/checkresult.php:86
-msgid "Execution time: "
-msgstr "Čas vykonávania: "
-
-#: application/views/logbookadvanced/checkresult.php:87
-msgid "Number of potential QSOs with wrong DXCC: "
-msgstr "Počet potenciálnych spojení s nesprávnou DXCC: "
-
-#: application/views/logbookadvanced/checkresult.php:92
-#: application/views/logbookadvanced/checkresult.php:234
-#: application/views/logbookadvanced/checkresult.php:310
-msgid "Update selected"
-msgstr "Aktualizovať vybrané"
-
-#: application/views/logbookadvanced/checkresult.php:153
-msgid "These QSOs MAY have incorrect gridsquares."
-msgstr "Tieto spojenia môžu mať nesprávne lokátory."
-
-#: application/views/logbookadvanced/checkresult.php:154
-msgid ""
-"Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
-"gridsquare database."
-msgstr ""
-"Výsledky závisia od správneho DXCC. Zoznam lokátorov pochádza z databázy\n"
-"lokátorov TQSL.Výsledky závisia od správnej DXCC. Zoznam lokátorov pochádza "
-"z databázy TQSL lokátorových štvorcov."
-
-#: application/views/logbookadvanced/checkresult.php:167
-msgid "DXCC Gridsquare"
-msgstr "DXCC lokátor"
-
-#: application/views/logbookadvanced/checkresult.php:191
-#: application/views/logbookadvanced/index.php:77
-msgid "Show more"
-msgstr "Zobraziť viac"
-
-#: application/views/logbookadvanced/checkresult.php:197
-msgid "View on map"
-msgstr "Zobraziť na mape"
-
-#: application/views/logbookadvanced/checkresult.php:222
-msgid "CQ Zone Check Results"
-msgstr "Výsledky kontroly CQ zón"
-
-#: application/views/logbookadvanced/checkresult.php:224
-msgid ""
-"The following QSOs were found to have a different CQ zone compared to what "
-"this DXCC normally has (a maximum of 5000 QSOs are shown):"
-msgstr ""
-"Nasledujúce QSO majú inú CQ zónu v porovnaní s tým, čo tento DXCC zvyčajne\n"
-"má (zobrazuje sa maximálne 5000 QSO):Nasledujúce spojenia majú odlišnú CQ "
-"zónu v porovnaní s tým, čo táto DXCC zvyčajne má (zobrazených je maximálne "
-"5000 QSO):"
-
-#: application/views/logbookadvanced/checkresult.php:229
-msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr "Vynútiť aktualizáciu, aj keď DXCC pokrýva viacero CQ zón"
-
-#: application/views/logbookadvanced/checkresult.php:230
-msgid ""
-"The update function can only set the main CQ zone which is assigned to the "
-"DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
-"not correct. So by default only QSOs with DXCCs covering a single CQ zone "
-"are updated. This checkbox overrides this but might result in wrong data. "
-"Use with caution!"
-msgstr ""
-"Funkcia aktualizácie môže nastaviť iba hlavnú CQ zónu, ktorá je priradená k "
-"DXCC. Ak DXCC pokrýva viacero CQ zón, je možné, že to nie je správne. Preto "
-"sa predvolene aktualizujú len spojenia s DXCC pokrývajúcimi jednu CQ zónu. "
-"Toto pole to mení, ale môže mať za následok nesprávne údaje. Používajte "
-"opatrne!"
-
-#: application/views/logbookadvanced/checkresult.php:247
-msgid "DXCC CQ Zone"
-msgstr "DXCC zóna CQ"
-
-#: application/views/logbookadvanced/checkresult.php:293
-#: application/views/logbookadvanced/checkresult.php:369
-msgid "No incorrect CQ Zones were found."
-msgstr "Neboli nájdené žiadne nesprávne CQ zóny."
-
-#: application/views/logbookadvanced/checkresult.php:298
-msgid "ITU Zone Check Results"
-msgstr "Výsledky kontroly ITU zón"
-
-#: application/views/logbookadvanced/checkresult.php:300
-msgid ""
-"The following QSOs were found to have a different ITU zone compared to what "
-"this DXCC normally has (a maximum of 5000 QSOs are shown):"
-msgstr ""
-"Nasledujúce QSO majú inú ITU zónu v porovnaní s tým, čo tento DXCC zvyčajne\n"
-"má (zobrazuje sa maximálne 5000 QSO):Nasledujúce spojenia majú odlišnú zónu "
-"ITU v porovnaní s tou, ktorú toto DXCC normálne má (zobrazených je maximálne "
-"5000 QSO):"
-
-#: application/views/logbookadvanced/checkresult.php:305
-msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr "Vynútiť aktualizáciu, aj keď DXCC pokrýva viacero zón ITU"
-
-#: application/views/logbookadvanced/checkresult.php:306
-msgid ""
-"The update function can only set the main ITU zone which is assigned to the "
-"DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
-"not correct. So by default only QSOs with DXCCs covering a single ITU zone "
-"are updated. This checkbox overrides this but might result in wrong data. "
-"Use with caution!"
-msgstr ""
-"Funkcia aktualizácie môže nastaviť iba hlavnú ITU zónu, ktorá je priradená k "
-"DXCC. Ak DXCC pokrýva viacero ITU zón, môže sa stať, že to nebude správne. "
-"Takže štandardne sa aktualizujú len spojenia s DXCC, ktoré pokrývajú jednu "
-"ITU zónu. Toto políčko to mení, ale môže to viesť k nesprávnym údajom. "
-"Používajte s opatrnosťou!"
-
-#: application/views/logbookadvanced/checkresult.php:323
-msgid "DXCC ITU Zone"
-msgstr "DXCC ITU zóna"
-
-#: application/views/logbookadvanced/checkresult.php:374
-msgid "IOTA Check Results"
-msgstr "Výsledky kontroly IOTA"
-
-#: application/views/logbookadvanced/checkresult.php:381
-msgid "These QSOs MAY have an incorrect IOTA reference."
-msgstr "Tieto spojenia môžu mať nesprávnu IOTA referenciu."
-
-#: application/views/logbookadvanced/checkresult.php:382
-msgid ""
-"Results depends on the correct DXCC, and it will only be checked against "
-"current DXCC. False positive results may occur."
-msgstr ""
-"Výsledky závisia od správneho DXCC a kontroluje sa iba voči aktuálnemu\n"
-"DXCC. Môžu nastať falošne pozitívne výsledky.Výsledky závisia od správnej "
-"DXCC a budú overované len podľa aktuálnej DXCC. Môžu sa tak vyskytnúť "
-"falošne pozitívne výsledky."
-
-#: application/views/logbookadvanced/checkresult.php:393
-msgid "QSO DXCC"
-msgstr "QSO DXCC"
-
-#: application/views/logbookadvanced/checkresult.php:395
-msgid "IOTA DXCC"
-msgstr "IOTA DXCC"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:4
-msgid "Data Repair Tools"
-msgstr "Nástroje na opravu dát"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:6
-msgid "Wiki Help"
-msgstr "Wiki pomoc"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:8
-msgid ""
-"Warning. This tool can be dangerous to your data, and should only be used if "
-"you know what you are doing."
-msgstr ""
-"Varovanie. Tento nástroj môže byť nebezpečný pre vaše dáta a mal by sa\n"
-"používať iba vtedy, ak viete, čo robíte.Upozornenie. Tento nástroj môže byť "
-"nebezpečný pre vaše dáta a mal by sa používať len v prípade, že viete, čo "
-"robíte."
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:19
-msgid "All Station Locations"
-msgstr "Všetky miesta staníc"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:33
-msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr "Skontroluj všetky spojenia v logbooku na nesprávne CQ zóny"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:34
-msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr "Pomocou Wavelog zisti CQ zónu pre všetky spojenia."
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:38
-#: application/views/logbookadvanced/dbtoolsdialog.php:49
-#: application/views/logbookadvanced/dbtoolsdialog.php:60
-#: application/views/logbookadvanced/dbtoolsdialog.php:71
-#: application/views/logbookadvanced/dbtoolsdialog.php:82
-#: application/views/logbookadvanced/dbtoolsdialog.php:93
-#: application/views/logbookadvanced/dbtoolsdialog.php:104
-#: application/views/logbookadvanced/dbtoolsdialog.php:117
-#: application/views/logbookadvanced/dbtoolsdialog.php:129
-msgid "Check"
-msgstr "Skontroluj"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:44
-msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr "Skontroluj všetky spojenia v denníku pre nesprávne ITU zóny"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:45
-msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr "Použi Wavelog na určenie ITU zóny pre všetky spojenia."
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:55
-msgid "Check Gridsquares"
-msgstr "Skontroluj lokátorové štvorce"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:56
-msgid "Check gridsquares that does not match the DXCC"
-msgstr "Skontroluj lokátory, ktoré nezodpovedajú DXCC"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:66
-msgid "Fix Continent"
-msgstr "Oprav kontinent"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:67
-msgid "Update missing or incorrect continent information"
-msgstr "Aktualizovať chýbajúce alebo nesprávne informácie o kontinente"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:78
-msgid "Update missing state/province information"
-msgstr "Aktualizovať chýbajúce informácie o štáte/provincii"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:88
-#: application/views/logbookadvanced/index.php:68
-msgid "Update Distances"
-msgstr "Aktualizuj vzdialeností"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:89
-msgid "Calculate and update distance information for QSOs"
-msgstr "Vypočítaj a aktualizuj informácie o vzdialenosti pre spojenia"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:99
-msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr "Skontroluj všetky spojenia v denníku na nesprávne DXCC"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:100
-msgid "Use Wavelog to determine DXCC for all QSOs."
-msgstr "Použi Wavelog na určenie DXCC pre všetky spojenia."
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:111
-msgid "Lookup QSOs with missing grid in callbook"
-msgstr "Náhľad spojení s chýbajúcim lokátorom v callbooku"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:112
-msgid "Use callbook lookup to set gridsquare"
-msgstr "Použi callbook na určenie lokátora"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:113
-msgid "This is limited to 150 callsigns for each run!"
-msgstr "Toto je obmedzené na 150 volacích znakov pre každé spustenie!"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:124
-msgid "Check IOTA against DXCC"
-msgstr "Skontrolovať IOTA voči DXCC"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:125
-msgid "Use Wavelog to check IOTA against DXCC"
-msgstr "Použi Wavelog na kontrolu IOTA voči DXCC"
-
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
 msgid "Detach %s QSO from contest?"
@@ -17095,7 +17224,7 @@ msgid "DARC DOK"
 msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:36
-#: application/views/logbookadvanced/index.php:1036
+#: application/views/logbookadvanced/index.php:1033
 #: application/views/logbookadvanced/useroptions.php:263
 #: application/views/map/qso_map.php:22 application/views/qso/edit_ajax.php:313
 #: application/views/qso/index.php:503 application/views/view_log/qso.php:421
@@ -17172,7 +17301,7 @@ msgstr "Metóda odoslania QSL"
 
 #: application/views/logbookadvanced/edit.php:59
 #: application/views/logbookadvanced/index.php:725
-#: application/views/logbookadvanced/index.php:973
+#: application/views/logbookadvanced/index.php:970
 #: application/views/logbookadvanced/useroptions.php:103
 msgid "QSL via"
 msgstr "QSL cez"
@@ -17683,11 +17812,6 @@ msgstr "Vyskytol sa problém s opravou kontinentov."
 msgid "SUCCESS"
 msgstr "ÚSPECH"
 
-#: application/views/logbookadvanced/index.php:52
-#: application/views/qslprint/index.php:3
-msgid "INFO"
-msgstr "INFO"
-
 #: application/views/logbookadvanced/index.php:58
 msgid "Options for the Advanced Logbook"
 msgstr "Možnosti pre pokročilý denník"
@@ -17701,10 +17825,6 @@ msgstr ""
 "skontrolujte, či máte definovaný štítok a či je nastavený na tlač!Niečo sa "
 "pokazilo s tlačou štítkov. Choď do štítkov a skontroluj, či máš definovaný "
 "štítok a či je nastavený na tlač!"
-
-#: application/views/logbookadvanced/index.php:60
-msgid "You need to select a least 1 row!"
-msgstr "Musíš vybrať aspoň 1 riadok!"
 
 #: application/views/logbookadvanced/index.php:61
 msgid "Start printing at which label?"
@@ -17756,18 +17876,6 @@ msgstr ""
 "Ste si istí, že chcete opraviť všetky spojenia (QSO) s chýbajúcimi DXCC\n"
 "informáciami? Táto akcia sa nedá vrátiť späť.Si si istý, že chceš opraviť "
 "všetky spojenia s chýbajúcimi DXCC"
-
-#: application/views/logbookadvanced/index.php:78
-msgid "Show less"
-msgstr "Ukázať menej"
-
-#: application/views/logbookadvanced/index.php:80
-msgid "Gridsquares for"
-msgstr "Lokátorové štvorce pre"
-
-#: application/views/logbookadvanced/index.php:81
-msgid "Non DXCC matching gridsquare"
-msgstr "Nesúladný lokátor mimo DXCC"
 
 #: application/views/logbookadvanced/index.php:84
 msgid "You need to select exactly 2 QSOs to merge!"
@@ -17870,7 +17978,7 @@ msgid "To"
 msgstr "urobiť"
 
 #: application/views/logbookadvanced/index.php:372
-#: application/views/logbookadvanced/index.php:946
+#: application/views/logbookadvanced/index.php:943
 #: application/views/logbookadvanced/useroptions.php:40
 msgid "Dx"
 msgstr "DX"
@@ -17890,7 +17998,7 @@ msgstr ""
 "väčšiu alebo rovná tejto hodnote."
 
 #: application/views/logbookadvanced/index.php:550
-#: application/views/logbookadvanced/index.php:937
+#: application/views/logbookadvanced/index.php:934
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:9
@@ -18222,40 +18330,36 @@ msgstr "Duplicity"
 msgid "Globe map"
 msgstr "Mapa sveta"
 
-#: application/views/logbookadvanced/index.php:908
-msgid "Database Tools"
-msgstr "Databázové nástroje"
-
-#: application/views/logbookadvanced/index.php:940
+#: application/views/logbookadvanced/index.php:937
 #: application/views/logbookadvanced/useroptions.php:349
 msgid "Last modified"
 msgstr "Naposledy upravené"
 
-#: application/views/logbookadvanced/index.php:943
+#: application/views/logbookadvanced/index.php:940
 #: application/views/logbookadvanced/useroptions.php:34
 msgid "De"
 msgstr "de"
 
-#: application/views/logbookadvanced/index.php:988
+#: application/views/logbookadvanced/index.php:985
 #: application/views/logbookadvanced/useroptions.php:142
 #: application/views/qso/edit_ajax.php:414
 #: application/views/timeline/index.php:78 application/views/user/edit.php:738
 msgid "QRZ"
 msgstr "QRZ"
 
-#: application/views/logbookadvanced/index.php:994
+#: application/views/logbookadvanced/index.php:991
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/qso/edit_ajax.php:513
 msgid "QSL Msg (S)"
 msgstr "QSL správa (S)"
 
-#: application/views/logbookadvanced/index.php:997
+#: application/views/logbookadvanced/index.php:994
 #: application/views/logbookadvanced/useroptions.php:160
 #: application/views/qso/edit_ajax.php:522
 msgid "QSL Msg (R)"
 msgstr "QSL správa (R)"
 
-#: application/views/logbookadvanced/index.php:1033
+#: application/views/logbookadvanced/index.php:1030
 #: application/views/qso/edit_ajax.php:382 application/views/qso/index.php:356
 #: application/views/qso/index.php:639
 #: application/views/stationsetup/locationlist.php:27
@@ -18264,30 +18368,30 @@ msgstr "QSL správa (R)"
 msgid "SIG Info"
 msgstr "SIG Info"
 
-#: application/views/logbookadvanced/index.php:1051
+#: application/views/logbookadvanced/index.php:1048
 #: application/views/logbookadvanced/useroptions.php:302
 msgid "My Refs"
 msgstr "Moje refrencie"
 
-#: application/views/logbookadvanced/index.php:1060
+#: application/views/logbookadvanced/index.php:1057
 msgid "Ant az"
 msgstr "Ant az"
 
-#: application/views/logbookadvanced/index.php:1060
+#: application/views/logbookadvanced/index.php:1057
 #: application/views/logbookadvanced/useroptions.php:324
 msgid "Antenna azimuth"
 msgstr "Azimut antény"
 
-#: application/views/logbookadvanced/index.php:1063
+#: application/views/logbookadvanced/index.php:1060
 msgid "Ant el"
 msgstr "Ant el"
 
-#: application/views/logbookadvanced/index.php:1063
+#: application/views/logbookadvanced/index.php:1060
 #: application/views/logbookadvanced/useroptions.php:330
 msgid "Antenna elevation"
 msgstr "Elevácia antény"
 
-#: application/views/logbookadvanced/index.php:1069
+#: application/views/logbookadvanced/index.php:1066
 #: application/views/logbookadvanced/useroptions.php:342
 msgid "Station power"
 msgstr "Výkon stanice"
@@ -18372,75 +18476,6 @@ msgstr "Predošlý"
 msgid "Next"
 msgstr "Ďalší"
 
-#: application/views/logbookadvanced/showStateQsos.php:16
-#, php-format
-msgid "Found %s QSO(s) missing state information for DXCC %s."
-msgstr "Nájdených %s QSO bez informácií o štáte pre DXCC %s."
-
-#: application/views/logbookadvanced/showStateQsos.php:49
-msgid "No Issues Found"
-msgstr "Žiadne problémy nenájdené"
-
-#: application/views/logbookadvanced/showUpdateResult.php:25
-#: application/views/logbookadvanced/showUpdateResult.php:75
-msgid "Results for state update:"
-msgstr "Výsledky pre aktualizáciu štátu:"
-
-#: application/views/logbookadvanced/showUpdateResult.php:27
-#: application/views/logbookadvanced/showUpdateResult.php:29
-msgid "The number of QSOs updated for state/province in"
-msgstr "Počet aktualizovaných QSO pre štát/provinciu v"
-
-#: application/views/logbookadvanced/showUpdateResult.php:41
-#: application/views/logbookadvanced/showUpdateResult.php:104
-msgid "These QSOs could not be updated:"
-msgstr "Tieto spojenia sa nepodarilo aktualizovať:"
-
-#: application/views/logbookadvanced/showUpdateResult.php:48
-#: application/views/logbookadvanced/showUpdateResult.php:111
-#: application/views/search/lotw_unconfirmed.php:28
-#: application/views/statistics/antennaanalytics.php:104
-msgid "Station location"
-msgstr "Umiestnenie stanice"
-
-#: application/views/logbookadvanced/showUpdateResult.php:49
-#: application/views/logbookadvanced/showUpdateResult.php:112
-msgid "Reason"
-msgstr "Dôvod"
-
-#: application/views/logbookadvanced/showUpdateResult.php:77
-#: application/views/logbookadvanced/showUpdateResult.php:79
-msgid "The number of QSOs updated for state/province across all DXCCs is"
-msgstr ""
-
-#: application/views/logbookadvanced/showUpdateResult.php:79
-msgid "DXCCs processed"
-msgstr ""
-
-#: application/views/logbookadvanced/showUpdateResult.php:131
-msgid "Results for continent update:"
-msgstr "Výsledky aktualizácie kontinentu:"
-
-#: application/views/logbookadvanced/showUpdateResult.php:132
-msgid "The number of QSOs updated for continent is"
-msgstr "Počet aktualizovaných spojení pre kontinent je"
-
-#: application/views/logbookadvanced/showUpdateResult.php:136
-msgid "Results for distance update:"
-msgstr "Výsledky aktualizácie vzdialenosti:"
-
-#: application/views/logbookadvanced/showUpdateResult.php:137
-msgid "The number of QSOs updated for distance is"
-msgstr "Počet aktualizovaných spojení pre vzdialenosť je"
-
-#: application/views/logbookadvanced/showUpdateResult.php:141
-msgid "Results for gridsquare update:"
-msgstr "Výsledky pre aktualizáciu lokátorových štvorcov:"
-
-#: application/views/logbookadvanced/showUpdateResult.php:142
-msgid "The number of QSOs updated for gridsquare is"
-msgstr "Počet aktualizovaných spojení pre lokátorové štvorce je"
-
 #: application/views/logbookadvanced/startatform.php:68
 #: application/views/qslprint/printlabel.php:68
 msgid "Include Via"
@@ -18455,34 +18490,6 @@ msgstr "Zahrnúť QSLMSG"
 #: application/views/qslprint/printlabel.php:92
 msgid "Include TNX message"
 msgstr "Zahrnúť správu TNX"
-
-#: application/views/logbookadvanced/statecheckresult.php:3
-#: application/views/logbookadvanced/statecheckresult.php:46
-msgid "State Check Results"
-msgstr "Výsledok kontroly štátov"
-
-#: application/views/logbookadvanced/statecheckresult.php:4
-msgid ""
-"QSOs with missing state and gridsquares with 6 or more characters found for "
-"the following DXCCs:"
-msgstr ""
-"Nájdené spojenia (QSO) s chýbajúcim štátom a lokátory s 6 alebo viac znakmi\n"
-"pre nasledujúce DXCC:Spojenia s chýbajúcimi štátmi a lokátormi so 6 alebo "
-"viac znakmi boli nájdené pre nasledujúce DXCC:"
-
-#: application/views/logbookadvanced/statecheckresult.php:7
-msgid "Fix all DXCCs"
-msgstr ""
-
-#: application/views/logbookadvanced/statecheckresult.php:34
-msgid "Run fix"
-msgstr "Spusti opravu"
-
-#: application/views/logbookadvanced/statecheckresult.php:47
-msgid "No QSOs were found where state information can be fixed."
-msgstr ""
-"Nenašli sa žiadne QSO, kde by sa dali opraviť informácie o štáte.Neboli "
-"nájdené žiadne spojenia, kde by sa dala opraviť informácia o štáte."
 
 #: application/views/logbookadvanced/statedialog.php:2
 msgid ""

@@ -42,4 +42,46 @@ class Upload_guard {
         }
         return in_array($info[2], array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF), true);
     }
+
+    /**
+     * Returns the extension implied by the file's actual content ('jpg',
+     * 'png', 'gif'), or null if it is not a raster image we accept. Used to
+     * normalize client filenames whose extension doesn't match the real
+     * payload (e.g. a JPEG named .png), which the Upload library's
+     * ext-vs-mime cross-check would otherwise reject.
+     *
+     * @param string $tmp_name $_FILES[<field>]['tmp_name']
+     */
+    public function real_image_ext($tmp_name) {
+        $info = @getimagesize($tmp_name);
+        if ($info === false) {
+            return null;
+        }
+        switch ($info[2]) {
+            case IMAGETYPE_JPEG: return 'jpg';
+            case IMAGETYPE_PNG:  return 'png';
+            case IMAGETYPE_GIF:  return 'gif';
+            default:             return null;
+        }
+    }
+
+    /**
+     * Aligns the extension of an uploaded image's client filename with the
+     * file's actual content (e.g. a JPEG named .png becomes *.jpg), in place
+     * in $_FILES. The Upload library's ext-vs-mime cross-check would
+     * otherwise reject such files, and the honest extension ensures the
+     * stored file is served with the correct Content-Type. Non-images are
+     * left untouched, so the existing rejection paths apply unchanged.
+     *
+     * @param string $field Key in the $_FILES array
+     */
+    public function normalize_image_ext($field) {
+        if (empty($_FILES[$field]['tmp_name'])) {
+            return;
+        }
+        $ext = $this->real_image_ext($_FILES[$field]['tmp_name']);
+        if ($ext !== null) {
+            $_FILES[$field]['name'] = 'image.' . $ext;
+        }
+    }
 }
