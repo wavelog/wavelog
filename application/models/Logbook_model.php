@@ -4399,6 +4399,39 @@ class Logbook_model extends CI_Model {
 
 			$query = $this->db->query($sql);
 
+			// HF / SAT / VHF+ DXCC split, based on propagation mode and frequency
+			$dxcc_groups = [];
+			$sql_groups = "SELECT
+				CASE WHEN t.COL_PROP_MODE = 'SAT' THEN 'sat'
+					WHEN COALESCE(t.COL_FREQ, 0) >= 50000000 THEN 'vhf'
+					ELSE 'hf' END as grp,
+				COUNT(*) as qsos,
+				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as worked,
+				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted,
+				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as qsl,
+				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_qsl,
+				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as lotw,
+				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_lotw,
+				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as confirmed
+				FROM " . $this->config->item('table_name') . " t
+				LEFT JOIN dxcc_entities d ON d.adif = t.col_dxcc
+				WHERE t.station_id IN (" . $location_list . ")
+				GROUP BY grp";
+
+			$query_groups = $this->db->query($sql_groups);
+			foreach ($query_groups->result() as $group_row) {
+				$dxcc_groups[$group_row->grp] = [
+					'qsos' => (int) $group_row->qsos,
+					'worked' => (int) $group_row->worked,
+					'deleted' => (int) $group_row->deleted,
+					'qsl' => (int) $group_row->qsl,
+					'deleted_qsl' => (int) $group_row->deleted_qsl,
+					'lotw' => (int) $group_row->lotw,
+					'deleted_lotw' => (int) $group_row->deleted_lotw,
+					'confirmed' => (int) $group_row->confirmed,
+				];
+			}
+
 			if ($query->num_rows() > 0) {
 				$row = $query->row();
 				return [
@@ -4412,6 +4445,8 @@ class Logbook_model extends CI_Model {
 					'Countries_Deleted_Worked_LOTW' => $row->Countries_Deleted_Worked_LOTW,
 					'Countries_Worked_Confirmed' => $row->Countries_Worked_Confirmed,
 					'Countries_Current' => $row->Countries_Current,
+					// HF / SAT / VHF+ split
+					'DXCC_Groups' => $dxcc_groups,
 					// QSL stats
 					'QSL_Sent' => $row->QSL_Sent,
 					'QSL_Received' => $row->QSL_Received,
@@ -4450,6 +4485,7 @@ class Logbook_model extends CI_Model {
 			'Countries_Deleted_Worked_LOTW' => 0,
 			'Countries_Worked_Confirmed' => 0,
 			'Countries_Current' => 0,
+			'DXCC_Groups' => [],
 			'QSL_Sent' => 0,
 			'QSL_Received' => 0,
 			'QSL_Requested' => 0,

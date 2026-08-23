@@ -2082,6 +2082,11 @@ $(document).ready(function () {
 					nl2br: false,
 					message: html,
 					onshown: function(dialog) {
+						// A designed label template has its own layout — hide the
+						// classic text-layout options while one is selected.
+						$('#print_template').on('change', function() {
+							$('#classicOptions').toggle(!this.value);
+						});
 					},
 					buttons: [{
 						label: 'Print',
@@ -2359,7 +2364,8 @@ function printlabel(id_list) {
 				'qslmsg': $('#qslmsg')[0].checked,
 				'reference': $('#reference')[0].checked,
 				'mycall': $('#mycall')[0].checked,
-				'opcall': $('#opcall')[0].checked
+				'opcall': $('#opcall')[0].checked,
+				'print_template': $('#print_template').length ? $('#print_template').val() : ''
 			},
 		xhr:function(){
 			var xhr = new XMLHttpRequest();

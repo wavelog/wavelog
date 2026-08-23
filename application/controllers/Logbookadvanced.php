@@ -323,7 +323,11 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function startAtLabel() {
-		$this->load->view('logbookadvanced/startatform');
+		// Offer Label Designer templates as an alternative to the classic
+		// text layout in the dialog.
+		$this->load->model('Labeldesigner_model');
+		$data['label_templates'] = $this->Labeldesigner_model->list_templates();
+		$this->load->view('logbookadvanced/startatform', $data);
 	}
 
 	public function printQslForm() {

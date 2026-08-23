@@ -486,21 +486,37 @@ function echo_table_header_col($name) {
 			</div>
 			<div class="card-body p-0">
 				<table class="table table-striped mb-0" aria-label="<?= __("DXCCs Breakdown"); ?>">
-					<tr>
-						<th scope="row" width="50%"><?= __("Worked"); ?></th>
-						<td width="50%"><?php echo $total_countries; ?> <?php echo (isset($total_deleted_countries) && $total_deleted_countries > 0) ? "<span title=\"". __("Deleted DXCCs") ."\" aria-label=\"i". __("Deleted DXCCs") .": ".$total_deleted_countries."\" data-bs-toggle=\"tooltip\">(".$total_deleted_countries.")</span>" : ''; ?></td>
-					</tr>
-					<tr>
-						<th scope="row" width="50%"><?= __("Confirmed"); ?></th>
-						<td width="50%">
-						<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?> <?php echo (isset($total_deleted_countries_confirmed_paper) && $total_deleted_countries_confirmed_paper > 0) ? "(".$total_deleted_countries_confirmed_paper.")" : ""; ?></span> /
-						<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?> <?php echo (isset($total_deleted_countries_confirmed_lotw) && $total_deleted_countries_confirmed_lotw > 0) ? "(".$total_deleted_countries_confirmed_lotw.")" : ""; ?></span>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row" width="50%"><?= __("Needed"); ?></th>
-						<td width="50%"><?php echo $total_countries_needed; ?></td>
-					</tr>
+					<thead>
+						<tr>
+							<th scope="col" width="25%"><span class="visually-hidden"><?= __("Status"); ?></span></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<th scope="col" width="25%"><?= $section['label']; ?></th>
+							<?php } ?>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row"><?= __("Worked"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td><?php echo $section['worked']; ?> <?php echo ($section['deleted'] > 0) ? "<span title=\"". __("Deleted DXCCs") ."\" aria-label=\"". __("Deleted DXCCs") .": ".$section['deleted']."\" data-bs-toggle=\"tooltip\">(".$section['deleted'].")</span>" : ''; ?></td>
+							<?php } ?>
+						</tr>
+						<tr>
+							<th scope="row"><?= __("Confirmed"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td>
+								<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $section['qsl']; ?>" data-bs-toggle="tooltip"><?php echo $section['qsl']; ?> <?php echo ($section['deleted_qsl'] > 0) ? "(".$section['deleted_qsl'].")" : ""; ?></span> /
+								<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $section['lotw']; ?>" data-bs-toggle="tooltip"><?php echo $section['lotw']; ?> <?php echo ($section['deleted_lotw'] > 0) ? "(".$section['deleted_lotw'].")" : ""; ?></span>
+							</td>
+							<?php } ?>
+						</tr>
+						<tr>
+							<th scope="row"><?= __("Needed"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td><?php echo $section['needed']; ?></td>
+							<?php } ?>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>

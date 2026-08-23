@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 08:05+0000\n"
-"PO-Revision-Date: 2026-08-13 07:51+0000\n"
+"POT-Creation-Date: 2026-08-23 16:43+0000\n"
+"PO-Revision-Date: 2026-08-22 10:16+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -186,6 +186,7 @@ msgstr "Тропосферное прохождение"
 #: application/controllers/Hrdlog.php:40
 #: application/controllers/Kmlexport.php:17
 #: application/controllers/Kmlexport.php:32
+#: application/controllers/Labeldesigner.php:14
 #: application/controllers/Labels.php:25
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
@@ -256,11 +257,11 @@ msgstr "Накопленная статистика"
 #: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
 msgid "Activated Gridsquare Map"
-msgstr "Карта активированных квадратов QTH локатора"
+msgstr "Карта активированных квадратов QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:33
-#: application/controllers/Awards.php:1476
-#: application/controllers/Awards.php:1512
+#: application/controllers/Awards.php:1486
+#: application/controllers/Awards.php:1522
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
@@ -269,27 +270,28 @@ msgstr "Карта активированных квадратов QTH лока�
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Квадраты QTH локатора"
+msgstr "Квадраты QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:534
 msgid "Gridsquares confirmed"
-msgstr "Подтверждённые квадраты QTH локатора"
+msgstr "Подтверждённые квадраты QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:535
 msgid "Gridsquares not confirmed"
-msgstr "Неподтверждённые квадраты QTH локатора"
+msgstr "Неподтверждённые квадраты QTH-локатора"
 
 #: application/controllers/Activated_gridmap.php:36
 msgid "Total gridsquares activated"
-msgstr "Всего квадратов QTH локатора активировано"
+msgstr "Всего квадратов QTH-локатора активировано"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:538
+#: application/views/labeldesigner/designer.php:187
 #: application/views/qslpostcard/designer.php:151
 msgid "Fields"
 msgstr "Поля"
@@ -324,7 +326,7 @@ msgid "Zones"
 msgstr "Зоны"
 
 #: application/controllers/Activationplanner.php:33
-#: application/controllers/Awards.php:2610
+#: application/controllers/Awards.php:2620
 #: application/views/awards/itu/index.php:27
 msgid "ITU Zones"
 msgstr "Зоны ITU"
@@ -343,7 +345,7 @@ msgstr "Планировщик активации"
 #: application/views/activators/index.php:10
 #: application/views/interface_assets/header.php:170
 msgid "Gridsquare Activators"
-msgstr "Активаторы квадратов QTH локатора"
+msgstr "Активаторы квадратов QTH-локатора"
 
 #: application/controllers/Activatorsmap.php:16
 #: application/views/activators/index.php:2
@@ -513,17 +515,17 @@ msgstr "Дипломы"
 #: application/controllers/Awards.php:1250
 #: application/controllers/Awards.php:1335
 #: application/controllers/Awards.php:1368
-#: application/controllers/Awards.php:1497
-#: application/controllers/Awards.php:1703
-#: application/controllers/Awards.php:1854
-#: application/controllers/Awards.php:1905
-#: application/controllers/Awards.php:2461
-#: application/controllers/Awards.php:2610
-#: application/controllers/Awards.php:2740
-#: application/controllers/Awards.php:2814
-#: application/controllers/Awards.php:2827
-#: application/controllers/Awards.php:2902
-#: application/controllers/Awards.php:3044
+#: application/controllers/Awards.php:1507
+#: application/controllers/Awards.php:1713
+#: application/controllers/Awards.php:1864
+#: application/controllers/Awards.php:1915
+#: application/controllers/Awards.php:2471
+#: application/controllers/Awards.php:2620
+#: application/controllers/Awards.php:2750
+#: application/controllers/Awards.php:2824
+#: application/controllers/Awards.php:2837
+#: application/controllers/Awards.php:2912
+#: application/controllers/Awards.php:3054
 #, php-format
 msgid "Awards - %s"
 msgstr "Дипломы — %s"
@@ -780,39 +782,39 @@ msgstr "IOTA (Island On The Air)"
 msgid "US Counties"
 msgstr "US Counties"
 
-#: application/controllers/Awards.php:1442
+#: application/controllers/Awards.php:1452
 msgid "Log View - Counties"
 msgstr "Просмотр журнала — Округа"
 
-#: application/controllers/Awards.php:1458
+#: application/controllers/Awards.php:1468
 msgid "Awards - "
 msgstr "Дипломы — "
 
-#: application/controllers/Awards.php:1477
-#: application/controllers/Awards.php:1513
+#: application/controllers/Awards.php:1487
+#: application/controllers/Awards.php:1523
 msgid "Gridsquares worked"
-msgstr "Сработанные квадраты QTH локатора"
+msgstr "Сработанные квадраты QTH-локатора"
 
-#: application/controllers/Awards.php:1478
-#: application/controllers/Awards.php:1514
+#: application/controllers/Awards.php:1488
+#: application/controllers/Awards.php:1524
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Квадраты QTH локатора, подтверждённые на LoTW"
+msgstr "Квадраты QTH-локатора, подтверждённые на LoTW"
 
-#: application/controllers/Awards.php:1479
-#: application/controllers/Awards.php:1515
+#: application/controllers/Awards.php:1489
+#: application/controllers/Awards.php:1525
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Квадраты QTH локатора, подтверждённые бумажными QSL"
+msgstr "Квадраты QTH-локатора, подтверждённые бумажными QSL"
 
-#: application/controllers/Awards.php:1480
-#: application/controllers/Awards.php:1516
+#: application/controllers/Awards.php:1490
+#: application/controllers/Awards.php:1526
 msgid "Total Gridsquares worked"
-msgstr "Всего сработано квадратов QTH локатора"
+msgstr "Всего сработано квадратов QTH-локатора"
 
-#: application/controllers/Awards.php:1497
+#: application/controllers/Awards.php:1507
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
-#: application/controllers/Awards.php:1703
+#: application/controllers/Awards.php:1713
 #: application/views/interface_assets/header.php:204
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
@@ -824,53 +826,53 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 msgid "SIG"
 msgstr "SIG"
 
-#: application/controllers/Awards.php:1722
+#: application/controllers/Awards.php:1732
 msgid "Awards - SIG - "
 msgstr "Дипломы — SIG — "
 
-#: application/controllers/Awards.php:1854 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1864 application/views/bands/index.php:60
 msgid "WAP"
 msgstr "WAP"
 
-#: application/controllers/Awards.php:1905
+#: application/controllers/Awards.php:1915
 #: application/views/interface_assets/header.php:263
 msgid "WAIP"
 msgstr "WAIP"
 
-#: application/controllers/Awards.php:2740
+#: application/controllers/Awards.php:2750
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:210
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
-#: application/controllers/Awards.php:2814
+#: application/controllers/Awards.php:2824
 msgid "WAE"
 msgstr "WAE"
 
-#: application/controllers/Awards.php:2827
+#: application/controllers/Awards.php:2837
 #: application/views/interface_assets/header.php:220
 msgid "73 on 73"
 msgstr "73 on 73"
 
-#: application/controllers/Awards.php:2902
+#: application/controllers/Awards.php:2912
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:3044
+#: application/controllers/Awards.php:3054
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:285
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Award"
 
-#: application/controllers/Awards.php:3088
+#: application/controllers/Awards.php:3098
 msgid "Awards - AMSAT Rover"
 msgstr "Дипломы — AMSAT Rover"
 
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Азимутальная карта"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:359
@@ -1118,7 +1120,7 @@ msgstr "Обновить контест"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Контест %s обновлён"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:322
@@ -1244,7 +1246,7 @@ msgstr "Не найдено прошедших соревнований, кот�
 
 #: application/controllers/Contesting_import.php:40
 msgid "Import Historical Contests"
-msgstr "Импортировать прошедшие соревнования"
+msgstr "Импортировать прошедшие контест-сессии"
 
 #: application/controllers/Contesting_import.php:83
 #: application/controllers/Contesting_import.php:152
@@ -1269,7 +1271,7 @@ msgstr "Континенты"
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Подсчитать QSO по..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1476
@@ -1296,7 +1298,7 @@ msgstr ""
 #: application/views/dbtools/showUpdateResult.php:47
 #: application/views/dbtools/showUpdateResult.php:110
 #: application/views/gridmap/index.php:226
-#: application/views/labels/index.php:126
+#: application/views/labels/index.php:127
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:12
 #: application/views/logbookadvanced/index.php:403
@@ -1332,7 +1334,7 @@ msgstr ""
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
-msgstr "QTH локатор"
+msgstr "QTH-локатор"
 
 #: application/controllers/Countqsoby.php:75
 #: application/views/activationplanner/index.php:121
@@ -1389,7 +1391,7 @@ msgstr "Зона CQ"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "Референция POTA"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:163
@@ -1526,10 +1528,30 @@ msgstr "Не работает"
 msgid "SOTA CSV Export"
 msgstr "Экспорт SOTA в CSV"
 
-#: application/controllers/Dashboard.php:179
+#: application/controllers/Dashboard.php:172
 #: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Панель управления"
+
+#: application/controllers/Dashboard.php:219
+msgid "HF"
+msgstr ""
+
+#: application/controllers/Dashboard.php:219
+#: application/views/dashboard/index.php:684
+#: application/views/distances/index.php:27
+#: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/qslprint.php:87
+#: application/views/qslprint/qsolist.php:49
+#: application/views/qslprint/qsolist.php:51
+#: application/views/qslprint/qsolist.php:58
+#: application/views/qslprint/qsolist.php:60
+msgid "SAT"
+msgstr "Спутники"
+
+#: application/controllers/Dashboard.php:219
+msgid "VHF+"
+msgstr ""
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1551,7 +1573,7 @@ msgstr "Значение DXCC обновлено для %d QSO."
 #: application/controllers/Dbtools.php:174
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr "Карта для DXCC %s и квадратов QTH локатора %s."
+msgstr "Карта для DXCC %s и квадратов QTH-локатора %s."
 
 #: application/controllers/Dcl.php:27
 #: application/views/dcl_views/key_import.php:3
@@ -1672,7 +1694,7 @@ msgstr "и тип прохождения"
 #: application/controllers/Dxatlas.php:18
 #: application/views/interface_assets/header.php:540
 msgid "DX Atlas Gridsquare Export"
-msgstr "Экспорт квадратов QTH локатора DX Atlas"
+msgstr "Экспорт квадратов QTH-локатора DX Atlas"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
@@ -1681,8 +1703,8 @@ msgid "DX Calendar"
 msgstr "Календарь DX экспедиций"
 
 #: application/controllers/Eqsl.php:45
-#: application/views/dashboard/index.php:573
-#: application/views/dashboard/index.php:576
+#: application/views/dashboard/index.php:589
+#: application/views/dashboard/index.php:592
 #: application/views/eqslcard/index.php:3
 #: application/views/visitor/index.php:308
 msgid "eQSL Cards"
@@ -1807,12 +1829,12 @@ msgstr "Подтверждения"
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
-msgstr "Карта квадратов QTH локатора"
+msgstr "Карта квадратов QTH-локатора"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:536
 msgid "Total gridsquares worked"
-msgstr "Всего сработано квадратов QTH локатора"
+msgstr "Всего сработано квадратов QTH-локатора"
 
 #: application/controllers/Hamsat.php:58
 msgid "Hamsat - Satellite Roving"
@@ -1881,6 +1903,62 @@ msgstr "Не найдены QSO для загрузки."
 msgid "KML Export"
 msgstr "Экспорт KML"
 
+#: application/controllers/Labeldesigner.php:22
+#: application/views/labels/index.php:36
+msgid "Label Designer"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:114
+#: application/controllers/Labels.php:213
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
+msgid "Template not found"
+msgstr "Шаблон не найден"
+
+#: application/controllers/Labeldesigner.php:120
+#: application/controllers/Labels.php:219
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
+msgid "Template JSON is invalid"
+msgstr "JSON шаблона некорректен"
+
+#: application/controllers/Labeldesigner.php:125
+msgid "Template has no elements"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:131
+msgid "Label type not found"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:136
+#: application/controllers/Labels.php:225
+#: application/controllers/Labels.php:315
+#: application/controllers/Labels.php:318
+msgid "You need to assign a paperType to the label before printing"
+msgstr "Вам необходимо указать тип бумаги для наклеек перед печатью"
+
+#: application/controllers/Labeldesigner.php:149
+#: application/controllers/Qslpostcard.php:207
+msgid "No QSOs returned by get_sample_qsos()"
+msgstr "get_sample_qsos() не вернула ни одного QSO"
+
+#: application/controllers/Labeldesigner.php:156
+#: application/controllers/Qslpostcard.php:217
+msgid "PDF file was not created"
+msgstr "PDF файл не был создан"
+
+#: application/controllers/Labeldesigner.php:165
+msgid "Label PDF failed: "
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:180
+msgid ""
+"The label type of this template no longer exists. Please select another one "
+"before exporting."
+msgstr ""
+
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
 msgstr "наклейки QSL карточек"
@@ -1889,59 +1967,59 @@ msgstr "наклейки QSL карточек"
 msgid "Create Label Type"
 msgstr "Новый тип наклеек"
 
-#: application/controllers/Labels.php:77 application/controllers/Labels.php:435
+#: application/controllers/Labels.php:77 application/controllers/Labels.php:534
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "Название наклейки"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:436
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:535
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:77
+#: application/views/labels/index.php:78
 msgid "Paper Type"
 msgstr "Тип бумаги"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:437
-#: application/views/labels/index.php:43 application/views/labels/index.php:78
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:536
+#: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Measurement"
 msgstr "Единицы измерения"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:438
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:537
 msgid "Top Margin"
 msgstr "Отступ сверху"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:439
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:538
 msgid "Left Margin"
 msgstr "Отступ слева"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:440
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:539
 msgid "QSLs Horizontally"
 msgstr "QSL в строку"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:441
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:540
 msgid "QSLs Vertically"
 msgstr "QSL в столбец"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:442
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:541
 msgid "Horizontal Space"
 msgstr "Интервал по горизонтали"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:443
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:542
 msgid "Vertical Space"
 msgstr "Интервал по вертикали"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:444
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:543
 msgid "Label width"
 msgstr "Ширина наклейки"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:445
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:544
 msgid "Label height"
 msgstr "Высота наклейки"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:446
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:545
 msgid "Size of Font"
 msgstr "Размер шрифта"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:447
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:546
 msgid "Number of QSOs on label"
 msgstr "Количество QSO на наклейке"
 
@@ -1950,22 +2028,22 @@ msgid "Create Paper Type"
 msgstr "Новый тип бумаги"
 
 #: application/controllers/Labels.php:118
-#: application/controllers/Labels.php:494
+#: application/controllers/Labels.php:599
 msgid "Paper Name"
 msgstr "Название типа бумаги"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:495
+#: application/controllers/Labels.php:600
 msgid "Paper Width"
 msgstr "Ширина бумаги"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:496
+#: application/controllers/Labels.php:601
 msgid "Paper Height"
 msgstr "Высота бумаги"
 
 #: application/controllers/Labels.php:131
-#: application/controllers/Labels.php:504
+#: application/controllers/Labels.php:609
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -1978,19 +2056,15 @@ msgstr ""
 msgid "No QSOs were selected"
 msgstr "QSO не выбраны"
 
-#: application/controllers/Labels.php:216
-#: application/controllers/Labels.php:219
-msgid "You need to assign a paperType to the label before printing"
-msgstr "Вам необходимо указать тип бумаги для наклеек перед печатью"
+#: application/controllers/Labels.php:230
+#: application/controllers/Labels.php:366
+msgid "0 QSOs found for print!"
+msgstr "QSO для печати не найдены!"
 
-#: application/controllers/Labels.php:226
-#: application/controllers/Labels.php:229
-msgid "You need to create a label and set it to be used for print."
-msgstr ""
-"Вам нужно создать шаблон наклейки и назначить его используемым при печати."
-
-#: application/controllers/Labels.php:236
-#: application/controllers/Labels.php:239
+#: application/controllers/Labels.php:237
+#: application/controllers/Labels.php:244
+#: application/controllers/Labels.php:335
+#: application/controllers/Labels.php:338
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -1998,31 +2072,33 @@ msgstr ""
 "Что-то пошло не так! Наклейки не могут быть сгенерированы. Проверьте размер "
 "наклеек и размер шрифта."
 
-#: application/controllers/Labels.php:267
-msgid "0 QSOs found for print!"
-msgstr "QSO для печати не найдены!"
+#: application/controllers/Labels.php:325
+#: application/controllers/Labels.php:328
+msgid "You need to create a label and set it to be used for print."
+msgstr ""
+"Вам нужно создать шаблон наклейки и назначить его используемым при печати."
 
-#: application/controllers/Labels.php:424
+#: application/controllers/Labels.php:523
 msgid "Edit Label"
 msgstr "Редактировать тип наклеек"
 
-#: application/controllers/Labels.php:453
+#: application/controllers/Labels.php:552
 msgid "Label was saved."
 msgstr "Шаблон наклейки сохранён."
 
-#: application/controllers/Labels.php:461
+#: application/controllers/Labels.php:560
 msgid "Label was deleted."
 msgstr "Шаблон наклейки удалён."
 
-#: application/controllers/Labels.php:483
+#: application/controllers/Labels.php:588
 msgid "Edit Paper"
 msgstr "Редактировать тип бумаги"
 
-#: application/controllers/Labels.php:508
+#: application/controllers/Labels.php:613
 msgid "Paper was saved."
 msgstr "Тип бумаги сохранён."
 
-#: application/controllers/Labels.php:521
+#: application/controllers/Labels.php:626
 msgid "Paper was deleted."
 msgstr "Тип бумаги удалён."
 
@@ -2111,7 +2187,7 @@ msgstr "QSL"
 #: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
 #: application/views/countqsoby/index.php:170
-#: application/views/dashboard/index.php:496
+#: application/views/dashboard/index.php:508
 #: application/views/dbtools/checkresult.php:107
 #: application/views/dbtools/checkresult.php:165
 #: application/views/dbtools/checkresult.php:393
@@ -2780,7 +2856,7 @@ msgstr "Редактировать"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr ""
+msgstr "Вид модуляции %s обновлён"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3132,9 +3208,9 @@ msgstr "QRZ. Импорт QSL"
 msgid "QRZ ADIF Information"
 msgstr "QRZ. Информация ADIF"
 
-#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:495
-#: application/views/dashboard/index.php:510
-#: application/views/dashboard/index.php:513
+#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:507
+#: application/views/dashboard/index.php:526
+#: application/views/dashboard/index.php:529
 #: application/views/qslcard/index.php:3
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
@@ -3178,26 +3254,6 @@ msgstr "Дизайнер QSL карточек"
 #: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "Недостаточно свободного места на диске для сохранения фона QSL."
-
-#: application/controllers/Qslpostcard.php:186
-#: application/controllers/Qslpostcard.php:243
-#: application/controllers/Qslpostcard.php:302
-msgid "Template not found"
-msgstr "Шаблон не найден"
-
-#: application/controllers/Qslpostcard.php:192
-#: application/controllers/Qslpostcard.php:249
-#: application/controllers/Qslpostcard.php:308
-msgid "Template JSON is invalid"
-msgstr "JSON шаблона некорректен"
-
-#: application/controllers/Qslpostcard.php:207
-msgid "No QSOs returned by get_sample_qsos()"
-msgstr "get_sample_qsos() не вернула ни одного QSO"
-
-#: application/controllers/Qslpostcard.php:217
-msgid "PDF file was not created"
-msgstr "PDF файл не был создан"
 
 #: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
@@ -3245,12 +3301,12 @@ msgstr "QSO не может быть сохранено"
 #: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr "Пожалуйста, проверьте значение квадрата QTH локатора (%s)"
+msgstr "Пожалуйста, проверьте значение квадрата QTH-локатора (%s)"
 
 #: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr "Пожалуйста, проверьте значение квадрата QTH локатора VUCC (%s)"
+msgstr "Пожалуйста, проверьте значение квадрата QTH-локатора VUCC (%s)"
 
 #: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
@@ -3324,7 +3380,7 @@ msgstr "последнее обновление"
 #: application/views/cron/index.php:80
 #: application/views/interface_assets/footer.php:698
 #: application/views/interface_assets/footer.php:707
-#: application/views/labels/index.php:48 application/views/labels/index.php:84
+#: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:892
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:58
@@ -3351,7 +3407,9 @@ msgstr "Редактировать"
 #: application/views/interface_assets/footer.php:2667
 #: application/views/interface_assets/footer.php:2686
 #: application/views/interface_assets/footer.php:2704
-#: application/views/labels/index.php:49 application/views/labels/index.php:85
+#: application/views/labeldesigner/designer.php:413
+#: application/views/labeldesigner/designer.php:452
+#: application/views/labels/index.php:50 application/views/labels/index.php:86
 #: application/views/logbookadvanced/index.php:910
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
@@ -3523,7 +3581,7 @@ msgstr "Редактировать профиль QTH: "
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr ""
+msgstr "Профиль QTH %s обновлён"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
@@ -3533,7 +3591,7 @@ msgstr "Дубликат профиля QTH:"
 #: application/controllers/User.php:1530 application/controllers/User.php:1783
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr "Пожалуйста, проверьте значение QTH локатора (%s)"
+msgstr "Пожалуйста, проверьте значение QTH-локатора (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/azimuthal/index.php:17
@@ -3561,6 +3619,7 @@ msgstr "Не разрешено"
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
+#: application/views/labeldesigner/designer.php:60
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/lotw_upload.php:123
@@ -3704,6 +3763,7 @@ msgid "Empty Log"
 msgstr "Очистить лог"
 
 #: application/controllers/Stationsetup.php:409
+#: application/models/Labeldesigner_model.php:74
 #: application/models/Qslpostcard_model.php:78
 #: application/views/stationsetup/stationsetup.php:163
 #: application/views/stationsetup/stationsetup.php:203
@@ -3909,11 +3969,11 @@ msgstr "Обновить \"Заметки о корреспондентах\""
 
 #: application/controllers/Update.php:732
 msgid "VUCC Grid file update complete. Result: "
-msgstr "Обновление файла квадратов QTH локатора VUCC завершено. Результат: "
+msgstr "Обновление файла квадратов QTH-локатора VUCC завершено. Результат: "
 
 #: application/controllers/Update.php:734
 msgid "VUCC Grid file update failed. Result: "
-msgstr "Обновление файла квадратов QTH локатора VUCC не удалось. Результат: "
+msgstr "Обновление файла квадратов QTH-локатора VUCC не удалось. Результат: "
 
 #: application/controllers/User.php:51
 #: application/views/interface_assets/header.php:347
@@ -4219,7 +4279,7 @@ msgstr "Публичная метка не найдена."
 
 #: application/controllers/Visitor.php:389
 msgid "Satellite Gridsquare Map"
-msgstr "Карта квадратов QTH локатора (спутники)"
+msgstr "Карта квадратов QTH-локатора (спутники)"
 
 #: application/controllers/Visitor.php:569
 #: application/views/stationsetup/stationsetup.php:48
@@ -4279,7 +4339,7 @@ msgstr "Несколько пользователей найдено по пуб
 
 #: application/controllers/Zonechecker.php:30
 msgid "Gridsquare Zone finder"
-msgstr "Поиск зоны по квадрату QTH локатора"
+msgstr "Поиск зоны по квадрату QTH-локатора"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
@@ -4287,7 +4347,7 @@ msgstr "Данные GeoJSON недоступны"
 
 #: application/controllers/Zonechecker.php:483
 msgid "Invalid gridsquare"
-msgstr "Неверный квадрат QTH локатора"
+msgstr "Неверный квадрат QTH-локатора"
 
 #: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
@@ -4412,31 +4472,31 @@ msgstr "Просмотр QSL"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
-msgstr ""
+msgstr "Прочитать контест-сессии"
 
 #: application/libraries/api_v2/Contest_resource.php:56
 msgid "Create and update contest sessions"
-msgstr ""
+msgstr "Создание и обновление контест-сессий"
 
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
-msgstr ""
+msgstr "Удаление контест-сессий"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Чтение журналов"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Создание и обновление журналов"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Удаление журналов"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr "Запрос позывных и квадратов QTH локатора"
+msgstr "Запрос позывных и квадратов QTH-локатора"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
@@ -4559,7 +4619,7 @@ msgstr "Руководители должны отредактировать с�
 #: application/models/Dbtools_model.php:120
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
-"Таблица VUCCGrids пуста. Сначала импортируйте данные квадратов QTH локатора "
+"Таблица VUCCGrids пуста. Сначала импортируйте данные квадратов QTH-локатора "
 "VUCC."
 
 #: application/models/Eqslmethods_model.php:291
@@ -4620,6 +4680,18 @@ msgstr "HRDlog: Не найдены профили QTH с данными вхо�
 msgid "Deleted"
 msgstr "Удалено"
 
+#: application/models/Labeldesigner_model.php:158
+msgid "Imported"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:182
+msgid "Imported paper"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:244
+msgid "Imported label type"
+msgstr ""
+
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "Станция недоступна"
@@ -4637,22 +4709,22 @@ msgstr "Не указан позывной"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
-#: application/models/Logbook_model.php:4894
+#: application/models/Logbook_model.php:4930
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Отличающийся позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4902
+#: application/models/Logbook_model.php:4938
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
-"Отличающийся локатор %s при импорте QSO с %s от локатора в профиле QTH %s: "
-"ПРОПУЩЕНО"
+"Отличающийся QTH-локатор %s при импорте QSO с %s от QTH-локатора в профиле "
+"QTH %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4918
+#: application/models/Logbook_model.php:4954
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4660,7 +4732,7 @@ msgstr ""
 "Вы пытались импортировать QSO без действительной даты. Это QSO не "
 "действительно и не было импортировано"
 
-#: application/models/Logbook_model.php:4928
+#: application/models/Logbook_model.php:4964
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4669,7 +4741,7 @@ msgstr ""
 "QSO в %s: Вы пытались импортировать QSO без указания позывного. Это QSO не "
 "было импортировано. Оно недействительно."
 
-#: application/models/Logbook_model.php:4935
+#: application/models/Logbook_model.php:4971
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4678,7 +4750,7 @@ msgstr ""
 "QSO в %s: Вы пытались импортировать QSO с недопустимым позывным. Это QSO не "
 "было импортировано. Недопустимый ввод — '%s'."
 
-#: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5041
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4687,7 +4759,7 @@ msgstr ""
 "QSO нв %s: диапазон '%s' отсутствует в конфигурации диапазонов. Этот QSO не "
 "было импортировано."
 
-#: application/models/Logbook_model.php:5012
+#: application/models/Logbook_model.php:5048
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4696,63 +4768,63 @@ msgstr ""
 "QSO в %s: Вы пыталсь импортировать QSO без информации о диапазоне. Это QSO "
 "некорректно, импорт отклонён.imported. It's invalid"
 
-#: application/models/Logbook_model.php:5286
+#: application/models/Logbook_model.php:5322
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5297
+#: application/models/Logbook_model.php:5333
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5358
+#: application/models/Logbook_model.php:5394
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5734
+#: application/models/Logbook_model.php:5770
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:5801
-#: application/models/Logbook_model.php:5901
+#: application/models/Logbook_model.php:5837
+#: application/models/Logbook_model.php:5937
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5845
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5815
+#: application/models/Logbook_model.php:5851
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:5819
+#: application/models/Logbook_model.php:5855
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:5823
+#: application/models/Logbook_model.php:5859
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:5826
+#: application/models/Logbook_model.php:5862
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:5829
+#: application/models/Logbook_model.php:5865
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5904
+#: application/models/Logbook_model.php:5940
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
-#: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5943
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
-#: application/models/Logbook_model.php:6326
+#: application/models/Logbook_model.php:6362
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4809,7 +4881,7 @@ msgstr "Антенны"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "В категории Контакты заголовки записей должны быть уникальными."
 
-#: application/models/Qslpostcard_model.php:440
+#: application/models/Qslpostcard_model.php:442
 msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! НЕ НАЙДЕН ПРИГОДНЫЙ ДЛЯ ОТПРАВКИ АДРЕС !!!"
@@ -4881,7 +4953,7 @@ msgstr "Всего сработано зон CQ"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr "Всего сработано квадратов QTH локатора VUCC"
+msgstr "Всего сработано квадратов QTH-локатора VUCC"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
@@ -4984,7 +5056,7 @@ msgstr "Разница"
 #: application/views/csv/index.php:21 application/views/csv/index.php:33
 #: application/views/csv/index.php:44 application/views/csv/index.php:60
 #: application/views/csv/index.php:82 application/views/csv/index.php:94
-#: application/views/dashboard/index.php:667
+#: application/views/dashboard/index.php:683
 #: application/views/distances/index.php:25
 #: application/views/distances/index.php:40
 #: application/views/distances/index.php:50
@@ -5167,7 +5239,7 @@ msgstr "Показать"
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:168
 msgid "Activated Gridsquares"
-msgstr "Активированные квадраты QTH локатора"
+msgstr "Активированные квадраты QTH-локатора"
 
 #: application/views/activated_gridmap/index.php:27
 #: application/views/amsatstatus/index.php:113
@@ -5296,7 +5368,7 @@ msgstr "Долгота"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
-"Неверный квадрат QTH локатора — используйте 2, 4, 6, 8 или 10 символов "
+"Неверный квадрат QTH-локатора — используйте 2, 4, 6, 8 или 10 символов "
 "(например, FN, FN31, FN31pr)."
 
 #: application/views/activationplanner/index.php:21
@@ -5306,7 +5378,7 @@ msgstr "Прохождения спутника"
 
 #: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
-msgstr "Границы квадрата QTH локатора"
+msgstr "Границы квадрата QTH-локатора"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:82
@@ -5316,7 +5388,7 @@ msgstr "Ближайшие референции"
 #: application/views/activationplanner/index.php:25
 #, php-format
 msgid "References within %s of the gridsquare"
-msgstr "Ссылки в пределах %s квадрата QTH локатора"
+msgstr "Ссылки в пределах %s квадрата QTH-локатора"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/qslcard/confirmationresult.php:21
@@ -5338,7 +5410,7 @@ msgstr "Референция"
 #: application/views/contesting/manager/components/session_modal.php:122
 #: application/views/contesting/manager/export_cbr.php:252
 #: application/views/dashboard/index.php:19
-#: application/views/labels/index.php:42 application/views/labels/index.php:76
+#: application/views/labels/index.php:43 application/views/labels/index.php:77
 #: application/views/logbookadvanced/index.php:964
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:91
@@ -5390,6 +5462,7 @@ msgid "Tracking"
 msgstr "Отслеживание"
 
 #: application/views/activationplanner/index.php:33
+#: application/views/labeldesigner/designer.php:290
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
 msgid "Field"
@@ -5425,13 +5498,13 @@ msgstr "Создать профиль QTH"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
-msgstr "Референции в этом квадрате QTH локатора"
+msgstr "Референции в этом квадрате QTH-локатора"
 
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
 #: application/views/countqsoby/index.php:7
 #: application/views/dbtools/statecheckresult.php:16
-#: application/views/labels/index.php:82
+#: application/views/labels/index.php:83
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -5466,27 +5539,27 @@ msgstr "📻 Планирование активации из %s"
 #: application/views/activationplanner/index.php:51
 #: application/views/activationplanner/index.php:87
 msgid "Search references…"
-msgstr ""
+msgstr "Поиск референций…"
 
 #: application/views/activationplanner/index.php:52
 msgid "No matches"
-msgstr ""
+msgstr "Нет совпадений"
 
 #: application/views/activationplanner/index.php:53
 msgid "Loading…"
-msgstr ""
+msgstr "Загрузка…"
 
 #: application/views/activationplanner/index.php:54
 msgid "References"
-msgstr ""
+msgstr "Референции"
 
 #: application/views/activationplanner/index.php:55
 msgid "Places"
-msgstr ""
+msgstr "Места"
 
 #: application/views/activationplanner/index.php:56
 msgid "Press Enter to search places"
-msgstr ""
+msgstr "Нажмите Enter для поиска мест"
 
 #: application/views/activationplanner/index.php:66
 msgid "Plan your activity here"
@@ -5507,7 +5580,7 @@ msgstr "до"
 #: application/views/activationplanner/index.php:78
 msgid "Optional second gridsquare for distance and bearing"
 msgstr ""
-"Дополнительный второй квадрат QTH локатора для вычисления расстояния и "
+"Дополнительный второй квадрат QTH-локатора для вычисления расстояния и "
 "азимута"
 
 #: application/views/activationplanner/index.php:78
@@ -5536,7 +5609,7 @@ msgstr "Очистить"
 
 #: application/views/activationplanner/index.php:81
 msgid "Find my location and gridsquare"
-msgstr "Определение моего местоположения и квадрата QTH локатора"
+msgstr "Определение моего местоположения и квадрата QTH-локатора"
 
 #: application/views/activationplanner/index.php:81
 msgid "Locate me"
@@ -5547,6 +5620,8 @@ msgid ""
 "Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place "
 "names (OpenStreetMap)"
 msgstr ""
+"Поиск WWFF / POTA / SOTA / IOTA по названию или референции — Введите "
+"названия искомых мест (OpenStreetMap)"
 
 #: application/views/activationplanner/index.php:92
 #: application/views/simplefle/index.php:162
@@ -5574,9 +5649,10 @@ msgstr "Минимальное количество"
 
 #: application/views/activators/index.php:82
 #: application/views/awards/73on73/index.php:71
-#: application/views/awards/counties/details_ajax.php:23
+#: application/views/awards/counties/counties_simple_ajax.php:21
+#: application/views/awards/counties/details_ajax.php:24
 #: application/views/awards/counties/index.php:230
-#: application/views/awards/counties/state_ajax.php:40
+#: application/views/awards/counties/state_ajax.php:47
 #: application/views/awards/cq/index.php:273
 #: application/views/awards/dok/index.php:202
 #: application/views/awards/helvetia/index.php:204
@@ -5640,7 +5716,7 @@ msgstr "Не найдено!"
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:35
-#: application/views/labels/index.php:124
+#: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:42
@@ -5989,7 +6065,8 @@ msgid ""
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
 "Если выбрано, Wavelog попытается импортировать QSOs, даже если поле "
-"MY_GRIDSQUARE в записях ADIF не совпадает с локатором выбранного профиля QTH."
+"MY_GRIDSQUARE в записях ADIF не совпадает с QTH-локатором выбранного профиля "
+"QTH."
 
 #: application/views/adif/import.php:178
 msgid ""
@@ -6378,12 +6455,13 @@ msgstr "Референцим POTA в ADIF"
 #: application/views/awards/amsat_rover/index.php:159
 #: application/views/contesting/manager/index.php:31
 #: application/views/cron/index.php:76
-#: application/views/dashboard/index.php:516
-#: application/views/dashboard/index.php:550
-#: application/views/dashboard/index.php:579
-#: application/views/dashboard/index.php:608
-#: application/views/dashboard/index.php:637
-#: application/views/dashboard/index.php:666
+#: application/views/dashboard/index.php:490
+#: application/views/dashboard/index.php:532
+#: application/views/dashboard/index.php:566
+#: application/views/dashboard/index.php:595
+#: application/views/dashboard/index.php:624
+#: application/views/dashboard/index.php:653
+#: application/views/dashboard/index.php:682
 #: application/views/logbookadvanced/attachContest.php:11
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:48
@@ -6444,7 +6522,7 @@ msgstr "Следующий AOS"
 
 #: application/views/amsatstatus/index.php:115
 msgid "Hours ago (left-most: now)"
-msgstr ""
+msgstr "Часов назад (крайний слева: сейчас)"
 
 #: application/views/amsatstatus/index.php:135
 #, php-format
@@ -6629,6 +6707,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
 #: application/views/interface_assets/footer.php:693
+#: application/views/labeldesigner/designer.php:101
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
@@ -6974,7 +7053,7 @@ msgid ""
 "points using satellite grid activations."
 msgstr ""
 "Диплом AMSAT Rover присуждается станциям, набравшим, в общей сложности, 25 "
-"очков, используя активизацию квадратов QTH локатора через спутники."
+"очков, используя активизацию квадратов QTH-локатора через спутники."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
@@ -6985,7 +7064,7 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
-"Пожалуйста, укажите свой домашний QTH локатор в профиле вашего QTH, чтобы "
+"Пожалуйста, укажите свой домашний QTH-локатор в профиле вашего QTH, чтобы "
 "правильно рассчитать активации."
 
 #: application/views/awards/amsat_rover/index.php:31
@@ -7115,7 +7194,7 @@ msgstr ""
 
 #: application/views/awards/amsat_rover/index.php:216
 msgid "Grid Activations"
-msgstr "Активации квадратов QTH локатора"
+msgstr "Активации квадратов QTH-локатора"
 
 #: application/views/awards/amsat_rover/index.php:221
 #: application/views/calltester/call_info.php:60
@@ -7123,7 +7202,7 @@ msgstr "Активации квадратов QTH локатора"
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
 msgid "Grid"
-msgstr "Квадрат QTH локатора"
+msgstr "Квадрат QTH-локатора"
 
 #: application/views/awards/amsat_rover/index.php:223
 #: application/views/awards/waip/index.php:41
@@ -7189,6 +7268,7 @@ msgstr "Скопировать в буфер обмена"
 msgid "Download CSV"
 msgstr "Скачать CSV"
 
+#: application/views/awards/counties/counties_simple_ajax.php:7
 #: application/views/awards/counties/details_ajax.php:9
 #: application/views/awards/counties/index.php:8
 #: application/views/awards/counties/state_ajax.php:7
@@ -7199,9 +7279,14 @@ msgstr "Скачать CSV"
 msgid "County"
 msgstr "Район"
 
+#: application/views/awards/counties/details_ajax.php:14
+#: application/views/awards/counties/state_ajax.php:26
+msgid "Not in USA-CA county list"
+msgstr ""
+
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
-msgstr ""
+msgstr "При наведении курсора на район/округ"
 
 #: application/views/awards/counties/index.php:42
 msgid "US County Award"
@@ -7267,6 +7352,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:41
 #: application/views/awards/wwff/index.php:39
+#: application/views/labeldesigner/designer.php:47
 msgid "Table"
 msgstr "Таблица"
 
@@ -7302,11 +7388,11 @@ msgstr "Карта"
 
 #: application/views/awards/counties/index.php:71
 msgid "Show Counties Map"
-msgstr ""
+msgstr "Показать карту районов/округов"
 
 #: application/views/awards/counties/index.php:78
 msgid "Count QSO as Confirmed via"
-msgstr ""
+msgstr "Подсчитать QSO, подтверждённые через"
 
 #: application/views/awards/counties/index.php:153
 msgid "Worked Counties"
@@ -7357,8 +7443,8 @@ msgstr "%s%% подтверждено в целом"
 #: application/views/countqsoby/index.php:8
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:489
-#: application/views/dashboard/index.php:672
+#: application/views/dashboard/index.php:498
+#: application/views/dashboard/index.php:688
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -7380,8 +7466,8 @@ msgstr "Сработано"
 #: application/views/countqsoby/index.php:9
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:493
-#: application/views/dashboard/index.php:677
+#: application/views/dashboard/index.php:504
+#: application/views/dashboard/index.php:693
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -7407,7 +7493,7 @@ msgid "Confirmed Progress"
 msgstr "Прогресс (подтверждено)"
 
 #: application/views/awards/counties/index.php:218
-#: application/views/awards/counties/state_ajax.php:32
+#: application/views/awards/counties/state_ajax.php:39
 #: application/views/awards/dok/index.php:182
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:251
@@ -7418,11 +7504,11 @@ msgstr "Прогресс (подтверждено)"
 #: application/views/awards/wapc/index.php:193
 #: application/views/awards/was/index.php:185
 #: application/views/awards/wpx/index.php:176
-#: application/views/dashboard/index.php:517
-#: application/views/dashboard/index.php:551
-#: application/views/dashboard/index.php:580
-#: application/views/dashboard/index.php:609
-#: application/views/dashboard/index.php:638
+#: application/views/dashboard/index.php:533
+#: application/views/dashboard/index.php:567
+#: application/views/dashboard/index.php:596
+#: application/views/dashboard/index.php:625
+#: application/views/dashboard/index.php:654
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:59
 #: application/views/statistics/qsotable.php:10
@@ -7530,11 +7616,11 @@ msgstr "Предустановки даты"
 #: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
 #: application/views/countqsoby/index.php:35
-#: application/views/dashboard/index.php:518
-#: application/views/dashboard/index.php:552
-#: application/views/dashboard/index.php:581
-#: application/views/dashboard/index.php:610
-#: application/views/dashboard/index.php:639
+#: application/views/dashboard/index.php:534
+#: application/views/dashboard/index.php:568
+#: application/views/dashboard/index.php:597
+#: application/views/dashboard/index.php:626
+#: application/views/dashboard/index.php:655
 #: application/views/gridmap/index.php:47
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:61
@@ -8193,7 +8279,7 @@ msgid ""
 msgstr ""
 "The Fred Fish Memorial Award был учрежден в честь Фреда Фиша, W5FF (SK), "
 "который был первым радиолюбителем, сработавшим и подтвердившим все 488 "
-"квадратов QTH локатора в 48 континентальных Соединенных Штатах на 6 метрах."
+"квадратов QTH-локатора в 48 континентальных Соединенных Штатах на 6 метрах."
 
 #: application/views/awards/ffma/index.php:13
 msgid ""
@@ -8215,7 +8301,7 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
 "Поля, используемые для этого диплома: DXCC (должен быть 291 (США)), "
-"GRIDSQUARE (должно содержать квадрат QTH локатора из 488 материковых!), BAND "
+"GRIDSQUARE (должно содержать квадрат QTH-локатора из 488 материковых!), BAND "
 "(должен быть 6M)."
 
 #: application/views/awards/gridmaster/index.php:11
@@ -8231,7 +8317,7 @@ msgid ""
 msgstr ""
 "The GridMaster Award — самый престижный диплом AMSAT, впервые учрежденный в "
 "2014 году группой Star Comm. Его могут получить все радиолюбители мира, "
-"которым удастся сработать со всеми 488 квадратами QTH локатора в США через "
+"которым удастся сработать со всеми 488 квадратами QTH-локатора в США через "
 "спутник и предоставить QSL-подтверждения для каждого QSO."
 
 #: application/views/awards/gridmaster/index.php:13
@@ -8246,7 +8332,7 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
-"Официальная информация от %s: С каждым квадратом QTH локатора должно быть "
+"Официальная информация от %s: С каждым квадратом QTH-локатора должно быть "
 "проведено двустороннее QSO через любительский спутник. Минимальный уровень "
 "сигнала не требуется. QSO должны проводиться из одного и того же места или "
 "из мест, не удаленных друг от друга более чем на 200 километров. "
@@ -8271,7 +8357,7 @@ msgid ""
 "Name"
 msgstr ""
 "Поля, используемые для этого диплома: DXCC (должен быть 291 (США)), "
-"GRIDSQUARE (должно содержать квадрат QTH локатора из 488 материковых!), "
+"GRIDSQUARE (должно содержать квадрат QTH-локатора из 488 материковых!), "
 "PROP_MODE (должно быть SAT) и SAT_NAME (название спутника)"
 
 #: application/views/awards/gridmaster/index.php:17
@@ -8283,7 +8369,7 @@ msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
-"Диплом Gridmaster изначально был разработан для работы с 488 квадратами QTH "
+"Диплом Gridmaster изначально был разработан для работы с 488 квадратами QTH-"
 "локатора в США."
 
 #: application/views/awards/gridmaster/index.php:19
@@ -8292,8 +8378,8 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
-"На этой карте показаны квадраты QTH локатора для конкретного DXCC. Это не "
-"официальный диплом, а просто отображение квадратов QTH локатора, которые "
+"На этой карте показаны квадраты QTH-локатора для конкретного DXCC. Это не "
+"официальный диплом, а просто отображение квадратов QTH-локатора, которые "
 "были сработаны в соответствии с правилами диплома US Gridmaster для этого "
 "DXCC."
 
@@ -8524,7 +8610,7 @@ msgstr "Экспорт подтверждённых QSO"
 
 #: application/views/awards/jcc/index.php:46
 msgid "QSL Type"
-msgstr ""
+msgstr "Тип QSL"
 
 #: application/views/awards/jcc/index.php:72
 msgid "Deleted cities"
@@ -8546,17 +8632,20 @@ msgstr "Не сработано"
 
 #: application/views/awards/jcc/index.php:169
 msgid "JCC progress"
-msgstr ""
+msgstr "Прогресс JCC"
 
 #: application/views/awards/jcc/index.php:179
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
 msgstr ""
+"Внимание! Wavelog не проверяет, проведено ли QSO до даты удаления DXCC."
 
 #: application/views/awards/jcc/index.php:185
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
+"Ни один из сработанных или подтвержденных слотов JCC не соответствует "
+"текущим фильтрам."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -8778,7 +8867,7 @@ msgstr "Используйте"
 #: application/views/awards/pl_polska/index.php:375
 msgid "to auto-populate states from Maidenhead locators."
 msgstr ""
-"для авто заполнения поля \"Область/Штат\" из значений квадратов QTH локатора."
+"для авто заполнения поля \"Область/Штат\" из значений квадратов QTH-локатора."
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
@@ -9052,7 +9141,7 @@ msgstr "Поля, используемые для этого диплома: р�
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
-msgstr "Список квадратов QTH локатора"
+msgstr "Список квадратов QTH-локатора"
 
 #: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -9085,15 +9174,15 @@ msgstr "Поля, используемые для этого диплома: GRI
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
-msgstr "Квадраты QTH локатора VUCC по диапазонам"
+msgstr "Квадраты QTH-локатора VUCC по диапазонам"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
-msgstr "Сработанные квадраты QTH локатора"
+msgstr "Сработанные квадраты QTH-локатора"
 
 #: application/views/awards/vucc/index.php:28
 msgid "Grids Confirmed"
-msgstr "Подтверждённые квадраты QTH локатора"
+msgstr "Подтверждённые квадраты QTH-локатора"
 
 #: application/views/awards/wab/index.php:13
 msgid "WAB - Worked All Britain Award"
@@ -9105,7 +9194,7 @@ msgid ""
 "radio operators to work all the squares in Great Britain."
 msgstr ""
 "WAB, Worked All Britain squares in Amateur Radio, поощряет лицензированных "
-"радиооператоров сработать со всеми квадратами QTH локатора Великобритании."
+"радиооператоров сработать со всеми квадратами QTH-локатора Великобритании."
 
 #: application/views/awards/wab/index.php:15
 msgid ""
@@ -9113,7 +9202,7 @@ msgid ""
 "required amount of squares, described on the page linked below."
 msgstr ""
 "Может быть заявлен за QSO с любительскими станциями, расположенными в "
-"необходимом количестве квадратов QTH локатора, описанных на странице по "
+"необходимом количестве квадратов QTH-локатора, описанных на странице по "
 "ссылке ниже."
 
 #: application/views/awards/wab/index.php:17
@@ -9130,7 +9219,7 @@ msgstr "Список"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr "Квадраты QTH локатора WAB"
+msgstr "Квадраты QTH-локатора WAB"
 
 #: application/views/awards/wac/index.php:8
 msgid ""
@@ -9565,51 +9654,53 @@ msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Для вашего активного профиля QTH квадрат QTH-локатора, поэтому карта не "
+"может быть центрирована."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Азимутальная карта центрирована на по вашему активному профилю QTH"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Проекция"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Азимутальная равнопромежуточная"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Проекция Ламберта равновеликая"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Кольца дистанции"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Поля QTH-локатора"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
-msgstr ""
+msgstr "Зоны CQ"
 
 #: application/views/azimuthal/index.php:53
 msgid "ITU zones"
-msgstr ""
+msgstr "Зоны ITU"
 
 #: application/views/azimuthal/index.php:58
 msgid "DXCC prefixes"
-msgstr ""
+msgstr "Префиксы DXCC"
 
 #: application/views/azimuthal/index.php:61
 msgid "Download PNG"
-msgstr ""
+msgstr "Скачать PNG"
 
 #: application/views/azimuthal/index.php:65
 #: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Азимутальная карта"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -10945,7 +11036,7 @@ msgstr "Идентификация DXCC для позывного"
 #: application/views/contesting/manager/components/session_modal.php:63
 #: application/views/csv/index.php:19 application/views/dbtools/index.php:28
 #: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:125
+#: application/views/labels/index.php:126
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/qslprint/index.php:34 application/views/qso/index.php:139
 #: application/views/qso/index.php:402
@@ -11986,7 +12077,7 @@ msgstr "Отправить"
 
 #: application/views/contesting/logger/index.php:31
 msgid "Are you sure you want to end the contest?"
-msgstr "Вы хотите закончить соревнования?"
+msgstr "Вы хотите закончить контест-сессию?"
 
 #: application/views/contesting/logger/index.php:32
 msgid "Layout reset to default!"
@@ -12129,6 +12220,7 @@ msgstr "Неизвестная ошибка"
 #: application/views/debug/index.php:205 application/views/debug/index.php:216
 #: application/views/debug/index.php:228
 #: application/views/interface_assets/footer.php:39
+#: application/views/labeldesigner/designer.php:59
 #: application/views/qslpostcard/designer.php:46
 msgid "Success"
 msgstr "Успешно"
@@ -12403,7 +12495,7 @@ msgstr "Порядковый номер"
 
 #: application/views/contesting/manager/components/session_modal.php:89
 msgid "Grid Square"
-msgstr "Квадрат QTH локатора"
+msgstr "Квадрат QTH-локатора"
 
 #: application/views/contesting/manager/components/session_modal.php:90
 msgid "Exchange (text)"
@@ -12423,7 +12515,7 @@ msgstr "— Нет —"
 
 #: application/views/contesting/manager/components/session_modal.php:120
 msgid "Gridquare"
-msgstr "Квадрат QTH локатора"
+msgstr "Квадрат QTH-локатора"
 
 #: application/views/contesting/manager/components/session_modal.php:121
 #: application/views/logbookadvanced/index.php:967
@@ -12745,15 +12837,15 @@ msgstr "Нет"
 
 #: application/views/contesting/manager/export_cbr.php:227
 msgid "Grid in exchange?"
-msgstr "Квадрат QTH локатора в контрольном номере?"
+msgstr "Квадрат QTH-локатора в контрольном номере?"
 
 #: application/views/contesting/manager/export_cbr.php:230
 msgid "Select Yes if the grid square was part of the contest exchange."
-msgstr "Выберите Да, если квадрат QTH локатора — часть контрольного номера."
+msgstr "Выберите Да, если квадрат QTH-локатора — часть контрольного номера."
 
 #: application/views/contesting/manager/export_cbr.php:240
 msgid "Use 6-char grid instead of 4-char"
-msgstr "Используйте 6-символьный квадрат QTH локатора вместо 4-символьного"
+msgstr "Используйте 6-символьный квадрат QTH-локатора вместо 4-символьного"
 
 #: application/views/contesting/manager/export_cbr.php:249
 msgid "Contact & Address"
@@ -13099,19 +13191,19 @@ msgstr "Данные QSO"
 
 #: application/views/countqsoby/index.php:10
 msgid "QSOs total"
-msgstr ""
+msgstr "Всего QSO"
 
 #: application/views/countqsoby/index.php:27
 msgid "Filter"
-msgstr ""
+msgstr "Фильтр"
 
 #: application/views/countqsoby/index.php:33
 msgid "Date presets"
-msgstr ""
+msgstr "Предустановки даты"
 
 #: application/views/countqsoby/index.php:63
 msgid "Count QSOs by"
-msgstr ""
+msgstr "Подсчитать QSO по"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -13338,7 +13430,7 @@ msgstr "Активные экспедиции"
 #: application/views/dashboard/index.php:456
 #: application/views/user/edit.php:818
 msgid "Active Contests"
-msgstr "Активные соревнования"
+msgstr "Активные контесты"
 
 #: application/views/dashboard/_options_menu.php:28
 msgid "Solar data"
@@ -13528,21 +13620,21 @@ msgstr "Подробно"
 msgid "DXCCs Breakdown"
 msgstr "Статистика по DXCC"
 
-#: application/views/dashboard/index.php:490
+#: application/views/dashboard/index.php:500
 #: application/views/visitor/index.php:267
 msgid "Deleted DXCCs"
 msgstr "Удалённые DXCC"
 
-#: application/views/dashboard/index.php:500
+#: application/views/dashboard/index.php:513
 #: application/views/visitor/index.php:277
 msgid "Needed"
 msgstr "Необходимо"
 
-#: application/views/dashboard/index.php:522
-#: application/views/dashboard/index.php:556
-#: application/views/dashboard/index.php:585
-#: application/views/dashboard/index.php:614
-#: application/views/dashboard/index.php:643
+#: application/views/dashboard/index.php:538
+#: application/views/dashboard/index.php:572
+#: application/views/dashboard/index.php:601
+#: application/views/dashboard/index.php:630
+#: application/views/dashboard/index.php:659
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:84
@@ -13576,11 +13668,11 @@ msgstr "Необходимо"
 msgid "Sent"
 msgstr "Отправлено"
 
-#: application/views/dashboard/index.php:527
-#: application/views/dashboard/index.php:561
-#: application/views/dashboard/index.php:590
-#: application/views/dashboard/index.php:619
-#: application/views/dashboard/index.php:648
+#: application/views/dashboard/index.php:543
+#: application/views/dashboard/index.php:577
+#: application/views/dashboard/index.php:606
+#: application/views/dashboard/index.php:635
+#: application/views/dashboard/index.php:664
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:126
@@ -13613,7 +13705,7 @@ msgstr "Отправлено"
 msgid "Received"
 msgstr "Принято"
 
-#: application/views/dashboard/index.php:532
+#: application/views/dashboard/index.php:548
 #: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/edit.php:189
 #: application/views/logbookadvanced/edit.php:215
@@ -13658,32 +13750,21 @@ msgstr "Принято"
 msgid "Requested"
 msgstr "Запрошено"
 
-#: application/views/dashboard/index.php:544
-#: application/views/dashboard/index.php:547
+#: application/views/dashboard/index.php:560
+#: application/views/dashboard/index.php:563
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/views/dashboard/index.php:634
+#: application/views/dashboard/index.php:650
 #: application/views/user/edit.php:1121
 msgid "Club Log"
 msgstr "Clublog"
 
-#: application/views/dashboard/index.php:660
-#: application/views/dashboard/index.php:663
+#: application/views/dashboard/index.php:676
+#: application/views/dashboard/index.php:679
 msgid "VUCC-Grids"
-msgstr "Квадраты QTH локатора VUCC"
-
-#: application/views/dashboard/index.php:668
-#: application/views/distances/index.php:27
-#: application/views/qslprint/qslprint.php:86
-#: application/views/qslprint/qslprint.php:87
-#: application/views/qslprint/qsolist.php:49
-#: application/views/qslprint/qsolist.php:51
-#: application/views/qslprint/qsolist.php:58
-#: application/views/qslprint/qsolist.php:60
-msgid "SAT"
-msgstr "Спутники"
+msgstr "Квадраты QTH-локатора VUCC"
 
 #: application/views/dashboard/solar_data.php:6
 msgid "Solar Data & Propagation"
@@ -13867,8 +13948,8 @@ msgid ""
 "station profile, and the gridsquare of the QSO partner. Distance will be "
 "calculated based on if short path or long path is set."
 msgstr ""
-"Обновите все QSO, заполнив информацию о расстоянии, основываясь на вашем "
-"локаторе, установленном в профиле QTH, и локаторе корреспондента. Расстояние "
+"Обновите все QSO, заполнив информацию о расстоянии, основываясь на QTH-"
+"локаторе, указанном в профиле QTH, и QTH-локаторе корреспондента. Расстояние "
 "будет вычисляться в зависимости от того, установлен ли короткий путь или "
 "длинный путь."
 
@@ -13915,7 +13996,7 @@ msgstr ""
 #: application/views/dbtools/checkresult.php:74
 #: application/views/dbtools/checkresult.php:148
 msgid "Gridsquare Check Results"
-msgstr "Результаты проверки информации о квадрате QTH локатора"
+msgstr "Результаты проверки информации о квадрате QTH-локатора"
 
 #: application/views/dbtools/checkresult.php:85
 msgid "DXCC Check Results"
@@ -13942,19 +14023,19 @@ msgstr "Обновить выбранное"
 #: application/views/dbtools/checkresult.php:155
 msgid "These QSOs MAY have incorrect gridsquares."
 msgstr ""
-"В этих QSO МОГУТ быть указаны неправильные значения квадратов QTH локатора."
+"В этих QSO МОГУТ быть указаны неправильные значения квадратов QTH-локатора."
 
 #: application/views/dbtools/checkresult.php:156
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
-"Результаты зависят от правильного указания DXCC. Список квадратов QTH "
-"локатора берётся из базы данных квадратов QTH локатора TQSL."
+"Результаты зависят от правильного указания DXCC. Список квадратов QTH-"
+"локатора берётся из базы данных квадратов QTH-локатора TQSL."
 
 #: application/views/dbtools/checkresult.php:169
 msgid "DXCC Gridsquare"
-msgstr "Квадраты QTH локатора, относящиеся к DXCC"
+msgstr "Квадраты QTH-локатора, относящиеся к DXCC"
 
 #: application/views/dbtools/checkresult.php:193
 #: application/views/dbtools/index.php:6
@@ -14084,12 +14165,12 @@ msgstr "Показать меньше"
 #: application/views/dbtools/index.php:8
 #: application/views/logbookadvanced/index.php:80
 msgid "Gridsquares for"
-msgstr "Квадраты QTH локатора для"
+msgstr "Квадраты QTH-локатора для"
 
 #: application/views/dbtools/index.php:9
 #: application/views/logbookadvanced/index.php:81
 msgid "Non DXCC matching gridsquare"
-msgstr "Квадрат QTH локатора, не соответствующий DXCC"
+msgstr "Квадрат QTH-локатора, не соответствующий DXCC"
 
 #: application/views/dbtools/index.php:17
 msgid "Wiki Help"
@@ -14143,11 +14224,11 @@ msgstr "Использовать Wavelog для определения знач�
 
 #: application/views/dbtools/index.php:66
 msgid "Check Gridsquares"
-msgstr "Проверка квадратов QTH локатора"
+msgstr "Проверка квадратов QTH-локатора"
 
 #: application/views/dbtools/index.php:67
 msgid "Check gridsquares that does not match the DXCC"
-msgstr "Проверка квадратов QTH локатора, которые не совпадают с DXCC"
+msgstr "Проверка квадратов QTH-локатора, которые не совпадают с DXCC"
 
 #: application/views/dbtools/index.php:77
 msgid "Fix Continent"
@@ -14181,13 +14262,13 @@ msgstr "Использовать Wavelog, чтобы определить инф
 #: application/views/dbtools/index.php:122
 msgid "Lookup QSOs with missing grid in callbook"
 msgstr ""
-"Запросить данные для QSO с отсутствующей информацией о квадрате QTH локатора "
+"Запросить данные для QSO с отсутствующей информацией о квадрате QTH-локатора "
 "в колбуке"
 
 #: application/views/dbtools/index.php:123
 msgid "Use callbook lookup to set gridsquare"
 msgstr ""
-"Использовать запрос данных из колбука для определения квадрата QTH локатора"
+"Использовать запрос данных из колбука для определения квадрата QTH-локатора"
 
 #: application/views/dbtools/index.php:124
 msgid "This is limited to 150 callsigns for each run!"
@@ -14244,10 +14325,12 @@ msgstr "Причина"
 #: application/views/dbtools/showUpdateResult.php:79
 msgid "The number of QSOs updated for state/province across all DXCCs is"
 msgstr ""
+"Количество обновлённых QSO в значении области/штата/провинции по всем DXCC "
+"равно"
 
 #: application/views/dbtools/showUpdateResult.php:79
 msgid "DXCCs processed"
-msgstr ""
+msgstr "обработано DXCC"
 
 #: application/views/dbtools/showUpdateResult.php:131
 msgid "Results for continent update:"
@@ -14267,11 +14350,11 @@ msgstr "Количество QSO, в которых обновлена инфо�
 
 #: application/views/dbtools/showUpdateResult.php:141
 msgid "Results for gridsquare update:"
-msgstr "Результаты обновления информации о квадрате QTH локатора:"
+msgstr "Результаты обновления информации о квадрате QTH-локатора:"
 
 #: application/views/dbtools/showUpdateResult.php:142
 msgid "The number of QSOs updated for gridsquare is"
-msgstr "Количество QSO, в которых обновлена информация о квадрате QTH локатора"
+msgstr "Количество QSO, в которых обновлена информация о квадрате QTH-локатора"
 
 #: application/views/dbtools/statecheckresult.php:3
 #: application/views/dbtools/statecheckresult.php:46
@@ -14284,11 +14367,11 @@ msgid ""
 "the following DXCCs:"
 msgstr ""
 "QSO с отсутствующей информацией об области/штате/провинции штатом и "
-"квадратами QTH локатора с 6 или более символами найдены для следующих DXCC:"
+"квадратами QTH-локатора с 6 или более символами найдены для следующих DXCC:"
 
 #: application/views/dbtools/statecheckresult.php:7
 msgid "Fix all DXCCs"
-msgstr ""
+msgstr "Исправить все DXCC"
 
 #: application/views/dbtools/statecheckresult.php:34
 msgid "Run fix"
@@ -14840,7 +14923,7 @@ msgstr "HAMqsl"
 
 #: application/views/debug/index.php:783
 msgid "VUCC Grids"
-msgstr "Квадраты QTH локатора VUCC"
+msgstr "Квадраты QTH-локатора VUCC"
 
 #: application/views/debug/index.php:793
 msgid "QSO-DB Maintenance"
@@ -15033,15 +15116,15 @@ msgstr "Украинский"
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
 "На этой странице перечислены рекорды расстояний QSO, проведённых через "
-"спутники, на основе квадратов QTH локатора."
+"спутники, на основе квадратов QTH-локатора."
 
 #: application/views/distancerecords/index.php:24
 msgid "My Gridsquare"
-msgstr "Мой квадрат QTH локатора"
+msgstr "Мой квадрат QTH-локатора"
 
 #: application/views/distancerecords/index.php:25
 msgid "DX Gridsquare"
-msgstr "Квадрат QTH локатора DX"
+msgstr "Квадрат QTH-локатора DX"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
@@ -15055,7 +15138,7 @@ msgstr "контакты были нанесены на карту.%s Ваш с�
 
 #: application/views/distances/index.php:8
 msgid "in gridsquare"
-msgstr "в квадрате QTH локатора"
+msgstr "в квадрате QTH-локатора"
 
 #: application/views/distances/index.php:9
 msgid "the distance was"
@@ -15079,12 +15162,12 @@ msgid ""
 "gridsquares."
 msgstr ""
 "Экспорт вашего журнала для использования в DX Atlas, чтобы отобразить "
-"сработанные/подтверждённые квадраты QTH локатора."
+"сработанные/подтверждённые квадраты QTH-локатора."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
 msgstr ""
-"Будут экспортированы только QSO с заполненным полем 'квадрат QTH локатора'!"
+"Будут экспортированы только QSO с заполненным полем 'квадрат QTH-локатора'!"
 
 #: application/views/dxcalendar/index.php:18
 #: application/views/view_log/qso.php:435
@@ -15489,7 +15572,7 @@ msgstr "Вернуться на панель управления"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr "Посмотр карты сработанных / подтвержденных квадратов QTH локатора"
+msgstr "Посмотр карты сработанных / подтвержденных квадратов QTH-локатора"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:373
@@ -15534,7 +15617,7 @@ msgstr "вашем профиле"
 
 #: application/views/hamsat/index.php:39
 msgid "Gridsquare(s)"
-msgstr "Квадрат(ы) QTH локатора"
+msgstr "Квадрат(ы) QTH-локатора"
 
 #: application/views/hamsat/index.php:40
 msgid "Workable"
@@ -15674,6 +15757,8 @@ msgid ""
 "At least one of the locators is empty. Calculation not possible. Possibly "
 "missing locator in station location. Please check."
 msgstr ""
+"По крайней мере, один из QTH-локаторов пуст. Расчёт невозможен. Возможно, он "
+"не задан в профиле QTH. Пожалуйста, проверьте."
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -15707,6 +15792,8 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "Дублирование отключено для заметок о контактах"
 
 #: application/views/interface_assets/footer.php:71
+#: application/views/labeldesigner/designer.php:410
+#: application/views/labeldesigner/designer.php:426
 #: application/views/qslpostcard/designer.php:318
 #: application/views/qslpostcard/designer.php:334
 msgid "Duplicate"
@@ -15791,15 +15878,15 @@ msgstr "Новый позывной!"
 
 #: application/views/interface_assets/footer.php:90
 msgid "Grid was already worked and confirmed in the past"
-msgstr "Квадрат QTH локатора уже сработан и подтвержден"
+msgstr "Квадрат QTH-локатора уже сработан и подтвержден"
 
 #: application/views/interface_assets/footer.php:91
 msgid "Grid was already worked in the past"
-msgstr "Квадрат QTH локатора уже сработан"
+msgstr "Квадрат QTH-локатора уже сработан"
 
 #: application/views/interface_assets/footer.php:92
 msgid "New grid!"
-msgstr "Новый квадрат QTH локатора!"
+msgstr "Новый квадрат QTH-локатора!"
 
 #: application/views/interface_assets/footer.php:93
 msgid "Are you sure to delete Fav?"
@@ -15901,13 +15988,13 @@ msgstr "Extra"
 
 #: application/views/interface_assets/footer.php:118
 msgid "Gridsquare Formatting"
-msgstr "Форматирование квадратов QTH локатора"
+msgstr "Форматирование квадратов QTH-локатора"
 
 #: application/views/interface_assets/footer.php:119
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Введите несколько (4-значных) квадратов QTH локатора, разделённых запятыми. "
+"Введите несколько (4-значных) квадратов QTH-локатора, разделённых запятыми. "
 "Например: IO77,IO78"
 
 #: application/views/interface_assets/footer.php:120
@@ -15983,18 +16070,18 @@ msgstr "WebSocket радиостанция"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Location is fetched from provided gridsquare"
-msgstr "Название QTH определено из предоставленного квадрата QTH локатора"
+msgstr "Название QTH определено из предоставленного квадрата QTH-локатора"
 
 #: application/views/interface_assets/footer.php:139
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
 msgstr ""
-"Название QTH определено из координат DXCC (квадрат QTH локатора не указан)"
+"Название QTH определено из координат DXCC (квадрат QTH-локатора не указан)"
 
 #: application/views/interface_assets/footer.php:140
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
-"Название QTH не может быть определено, так как поле квадрата QTH локатора "
+"Название QTH не может быть определено, так как поле квадрата QTH-локатора "
 "пустое, а DXCC — -NONE-"
 
 #: application/views/interface_assets/footer.php:141
@@ -16117,7 +16204,7 @@ msgstr "Всего: "
 
 #: application/views/interface_assets/footer.php:896
 msgid "Grids: "
-msgstr "Квадратов QTH локатора: "
+msgstr "Квадратов QTH-локатора: "
 
 #: application/views/interface_assets/footer.php:1115
 #: application/views/logbookadvanced/index.php:13
@@ -16125,7 +16212,7 @@ msgstr "Квадратов QTH локатора: "
 #: application/views/satellite/flightpath.php:11
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr "Квадраты QTH локатора"
+msgstr "Квадраты QTH-локатора"
 
 #: application/views/interface_assets/footer.php:1322
 msgid "Location Lookup failed. Please check browser console."
@@ -16138,7 +16225,7 @@ msgstr "Поиск QTH не удался. Пожалуйста, проверьт
 #: application/views/interface_assets/footer.php:1621
 #: application/views/interface_assets/footer.php:1624
 msgid "grid square"
-msgstr "квадрат(/-а/-ов) QTH локатора"
+msgstr "квадрат(/-а/-ов) QTH-локатора"
 
 #: application/views/interface_assets/footer.php:1480
 #: application/views/interface_assets/footer.php:1624
@@ -16198,13 +16285,21 @@ msgstr "Что-то пошло не так. Пожалуйста, попробу
 msgid "US Counties for state"
 msgstr "Округа США для штата"
 
-#: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2898
+msgid "Worked counties for state:"
+msgstr "Сработанные округа для штата:"
+
+#: application/views/interface_assets/footer.php:2899
 msgid "Confirmed counties for state:"
 msgstr "Подтверждённые округа для штата:"
 
-#: application/views/interface_assets/footer.php:2903
-msgid "Worked counties for state:"
-msgstr "Сработанные округа для штата:"
+#: application/views/interface_assets/footer.php:2900
+msgid "Counties in state:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2901
+msgid "Needed counties for state:"
+msgstr ""
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16478,7 +16573,7 @@ msgstr "Карта QSO в формате GeoJSON"
 
 #: application/views/interface_assets/header.php:603
 msgid "Gridsquare Zone checker"
-msgstr "Проверка значения зоны по квадрату QTH локатора"
+msgstr "Проверка значения зоны по квадрату QTH-локатора"
 
 #: application/views/interface_assets/header.php:610
 #: application/views/logbookadvanced/index.php:917
@@ -16524,6 +16619,545 @@ msgstr "Дополнения"
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
 msgstr "Экспорт вашего журнала в файл KML для использования в Google Earth."
+
+#: application/views/labeldesigner/designer.php:7
+#: application/views/qslpostcard/designer.php:6
+msgid "QSO Core"
+msgstr "Данные QSO"
+
+#: application/views/labeldesigner/designer.php:8
+#: application/views/qslpostcard/designer.php:7
+msgid "Date & Time"
+msgstr "Дата и время"
+
+#: application/views/labeldesigner/designer.php:9
+#: application/views/qslpostcard/designer.php:8
+msgid "Station & Equipment"
+msgstr "Станция и оборудование"
+
+#: application/views/labeldesigner/designer.php:10
+#: application/views/qslpostcard/designer.php:9
+msgid "My References"
+msgstr "Мои референции"
+
+#: application/views/labeldesigner/designer.php:11
+#: application/views/qslpostcard/designer.php:10
+msgid "Markers"
+msgstr "Отметки"
+
+#: application/views/labeldesigner/designer.php:12
+#: application/views/qslpostcard/designer.php:11
+#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
+msgid "Other"
+msgstr "Другое"
+
+#: application/views/labeldesigner/designer.php:45
+#: application/views/qslpostcard/designer.php:34
+msgid "Custom Text"
+msgstr "Пользовательский текст"
+
+#: application/views/labeldesigner/designer.php:46
+msgid "Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:48
+#: application/views/qslpostcard/designer.php:35
+msgid "Untitled"
+msgstr "Без названия"
+
+#: application/views/labeldesigner/designer.php:49
+#: application/views/qslpostcard/designer.php:36
+msgid "Save failed"
+msgstr "Сохранение не удалось"
+
+#: application/views/labeldesigner/designer.php:50
+#: application/views/qslpostcard/designer.php:37
+msgid "Template saved."
+msgstr "Шаблон сохранен."
+
+#: application/views/labeldesigner/designer.php:51
+#: application/views/qslpostcard/designer.php:38
+msgid "Delete Template?"
+msgstr "Удалить шаблон?"
+
+#: application/views/labeldesigner/designer.php:52
+#: application/views/qslpostcard/designer.php:39
+msgid ""
+"Are you sure you want to delete this template? This action cannot be undone."
+msgstr ""
+"Вы уверены, что хотите удалить этот шаблон? Это действие нельзя отменить."
+
+#: application/views/labeldesigner/designer.php:53
+#: application/views/qslpostcard/designer.php:40
+msgid "Delete failed"
+msgstr "Удаление не удалось"
+
+#: application/views/labeldesigner/designer.php:54
+#: application/views/qslpostcard/designer.php:41
+msgid "Template deleted successfully!"
+msgstr "Шаблон успешно удалён!"
+
+#: application/views/labeldesigner/designer.php:55
+#: application/views/qslpostcard/designer.php:42
+msgid "Please select a template to delete."
+msgstr "Пожалуйста, выберите шаблон для удаления."
+
+#: application/views/labeldesigner/designer.php:56
+#: application/views/qslpostcard/designer.php:43
+msgid "Copy failed"
+msgstr "Копирование не удалось"
+
+#: application/views/labeldesigner/designer.php:57
+#: application/views/qslpostcard/designer.php:44
+msgid "Template copied."
+msgstr "Шаблон скопирован."
+
+#: application/views/labeldesigner/designer.php:58
+#: application/views/qslpostcard/designer.php:45
+msgid "Please select a template to copy."
+msgstr "Пожалуйста, выберите шаблон для копирования."
+
+#: application/views/labeldesigner/designer.php:61
+#: application/views/qslpostcard/designer.php:48
+msgid "selected"
+msgstr "выбрано"
+
+#: application/views/labeldesigner/designer.php:62
+msgid "Please select a label type first."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:63
+msgid ""
+"The label type of this template no longer exists. Please select another one."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:64
+#: application/views/qslpostcard/designer.php:49
+msgid "Unsaved changes"
+msgstr "Несохранённые изменения"
+
+#: application/views/labeldesigner/designer.php:65
+#: application/views/qslpostcard/designer.php:50
+msgid ""
+"Your current design has unsaved changes. Loading a different template will "
+"replace it. Continue?"
+msgstr ""
+"У вашего текущего дизайна есть несохранённые изменения. Загрузка другого "
+"шаблона заменит его. Продолжить?"
+
+#: application/views/labeldesigner/designer.php:66
+#: application/views/qslpostcard/designer.php:51
+msgid ""
+"Your current design has unsaved changes. If you leave the page, those "
+"changes will be lost. Leave anyway?"
+msgstr ""
+"У вас есть несохранённые изменения в вашем текущем дизайне. Если вы покинете "
+"страницу, то изменения будут утеряны. Уйти в любом случае?"
+
+#: application/views/labeldesigner/designer.php:67
+#: application/views/qslpostcard/designer.php:52
+msgid "Discard changes"
+msgstr "Отменить изменения"
+
+#: application/views/labeldesigner/designer.php:68
+#: application/views/qslpostcard/designer.php:53
+msgid "Keep editing"
+msgstr "Продолжить редактировать"
+
+#: application/views/labeldesigner/designer.php:69
+#: application/views/qslpostcard/designer.php:54
+msgid "Leave page"
+msgstr "Покинуть страницу"
+
+#: application/views/labeldesigner/designer.php:70
+msgid "Import failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:71
+msgid "Export failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:72
+msgid "Template imported."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:73
+msgid "Please select a template to export."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:74
+msgid "File is too large."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:75
+#: application/views/labeldesigner/designer.php:126
+#: application/views/labels/index.php:94
+msgid "No paper assigned"
+msgstr "Не выбрана бумага"
+
+#: application/views/labeldesigner/designer.php:91
+#: application/views/logbookadvanced/printQsl.php:9
+#: application/views/qslpostcard/designer.php:67
+#: application/views/qslpostcard/printqueue.php:8
+#: application/views/qslpostcard/printqueue_selected.php:10
+#: application/views/qslprint/printqsl.php:9
+msgid "Template"
+msgstr "Шаблон"
+
+#: application/views/labeldesigner/designer.php:94
+#: application/views/qslpostcard/designer.php:70
+msgid "(new)"
+msgstr "(новый)"
+
+#: application/views/labeldesigner/designer.php:99
+#: application/views/qslpostcard/designer.php:75
+msgid "Template name"
+msgstr "Имя шаблона"
+
+#: application/views/labeldesigner/designer.php:100
+#: application/views/qslpostcard/designer.php:76
+msgid "Save Template"
+msgstr "Сохранить шаблон"
+
+#: application/views/labeldesigner/designer.php:103
+#: application/views/qslpostcard/designer.php:79
+msgid "Copy Template"
+msgstr "Копировать шаблон"
+
+#: application/views/labeldesigner/designer.php:106
+#: application/views/qslpostcard/designer.php:82
+msgid "Delete Template"
+msgstr "Удалить шаблон"
+
+#: application/views/labeldesigner/designer.php:109
+msgid "Export Template"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:112
+msgid "Import Template"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:121
+msgid "Label type"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:124
+msgid "(select label type)"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:130
+msgid "Generate sample PDF with your latest QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:131
+#: application/views/qslpostcard/designer.php:95
+msgid "PDF"
+msgstr "PDF"
+
+#: application/views/labeldesigner/designer.php:135
+#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/qslpostcard/designer.php:99
+#: application/views/qslpostcard/printqueue.php:26
+#: application/views/qslpostcard/printqueue_selected.php:34
+#: application/views/qslprint/printqsl.php:34
+msgid "Save PDF"
+msgstr "Сохранить PDF"
+
+#: application/views/labeldesigner/designer.php:143
+#: application/views/qslpostcard/designer.php:107
+msgid "History"
+msgstr "История"
+
+#: application/views/labeldesigner/designer.php:145
+#: application/views/qslpostcard/designer.php:109
+msgid "Undo"
+msgstr "Отменить"
+
+#: application/views/labeldesigner/designer.php:146
+#: application/views/qslpostcard/designer.php:110
+msgid "Redo"
+msgstr "Повторить"
+
+#: application/views/labeldesigner/designer.php:152
+#: application/views/qslpostcard/designer.php:116
+msgid "Zoom"
+msgstr "Увеличение"
+
+#: application/views/labeldesigner/designer.php:162
+#: application/views/qslpostcard/designer.php:126
+msgid ""
+"Tip: After a test print, adjust global offsets rather than moving every "
+"field."
+msgstr ""
+"Совет: После тестовой печати корректируйте глобальные смещения, а не "
+"перемещайте каждое поле."
+
+#: application/views/labeldesigner/designer.php:163
+#: application/views/qslpostcard/designer.php:127
+msgid "Print offset"
+msgstr "Печать со смещением"
+
+#: application/views/labeldesigner/designer.php:192
+#: application/views/qslpostcard/designer.php:156
+msgid "Search fields…"
+msgstr "Поиск полей…"
+
+#: application/views/labeldesigner/designer.php:196
+#: application/views/qslpostcard/designer.php:160
+msgid "Add Custom Text"
+msgstr "Добавить пользовательский текст"
+
+#: application/views/labeldesigner/designer.php:200
+msgid ""
+"Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
+"QSO row"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:201
+msgid "Horizontal Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:203
+msgid "Vertical rule — place at column edges to build a table grid"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:204
+msgid "Vertical Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:208
+msgid ""
+"Table grid — drag the corner to resize, drag the column markers to adjust "
+"column widths"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:209
+msgid "Add Table"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:224
+#: application/views/qslpostcard/designer.php:175
+msgid "No fields match your search."
+msgstr "Нет полей, соответствующих вашему запросу."
+
+#: application/views/labeldesigner/designer.php:232
+msgid "Label Canvas"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:233
+msgid "drag fields onto the label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:254
+#: application/views/qslpostcard/designer.php:205
+msgid "Template Options"
+msgstr "Параметры шаблона"
+
+#: application/views/labeldesigner/designer.php:258
+msgid "Number of QSOs per label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:262
+#: application/views/qslpostcard/designer.php:213
+msgid "Row spacing"
+msgstr "Расстояние между рядами"
+
+#: application/views/labeldesigner/designer.php:267
+msgid ""
+"Draws a rule between the QSO rows automatically, like the classic label "
+"layout"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:267
+msgid "Separator lines between QSO rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:270
+msgid "Separator thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:279
+#: application/views/qslpostcard/designer.php:230
+msgid "Properties"
+msgstr "Свойства"
+
+#: application/views/labeldesigner/designer.php:284
+#: application/views/qslpostcard/designer.php:235
+msgid "Select a field on the canvas to edit it."
+msgstr "Выберите поле на холсте, чтобы отредактировать его."
+
+#: application/views/labeldesigner/designer.php:285
+#: application/views/qslpostcard/designer.php:236
+msgid "Right-click a field for more actions."
+msgstr "Щелкните правой кнопкой мыши на поле для дополнительных действий."
+
+#: application/views/labeldesigner/designer.php:295
+#: application/views/qslpostcard/designer.php:246
+msgid "Text"
+msgstr "Текст"
+
+#: application/views/labeldesigner/designer.php:300
+#: application/views/qslpostcard/designer.php:251
+msgid "Frequency format"
+msgstr "Формат частоты"
+
+#: application/views/labeldesigner/designer.php:308
+#: application/views/qslpostcard/designer.php:259
+msgid "Omit unit"
+msgstr "Опустить единицы измерения"
+
+#: application/views/labeldesigner/designer.php:314
+#: application/views/qslpostcard/designer.php:265
+msgid "X"
+msgstr "X"
+
+#: application/views/labeldesigner/designer.php:318
+#: application/views/qslpostcard/designer.php:269
+msgid "Y"
+msgstr "У"
+
+#: application/views/labeldesigner/designer.php:326
+msgid "Rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:330
+msgid "Columns"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:336
+#: application/views/labels/index.php:45 application/views/labels/index.php:80
+msgid "Width"
+msgstr "Ширина"
+
+#: application/views/labeldesigner/designer.php:340
+#: application/views/labels/index.php:46 application/views/labels/index.php:81
+msgid "Height"
+msgstr "Высота"
+
+#: application/views/labeldesigner/designer.php:344
+#: application/views/labeldesigner/designer.php:360
+msgid "Thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:349
+#: application/views/labels/index.php:48
+msgid "Orientation"
+msgstr "Ориентация"
+
+#: application/views/labeldesigner/designer.php:351
+msgid "Horizontal"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:352
+msgid "Vertical"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:356
+msgid "Length"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:367
+#: application/views/qslpostcard/designer.php:275
+msgid "Font"
+msgstr "Шрифт"
+
+#: application/views/labeldesigner/designer.php:377
+#: application/views/labels/create.php:105
+#: application/views/labels/edit.php:107 application/views/labels/index.php:82
+#: application/views/qslpostcard/designer.php:285
+msgid "Font Size"
+msgstr "Размер шрифта"
+
+#: application/views/labeldesigner/designer.php:383
+#: application/views/qslpostcard/designer.php:291
+msgid "Bold"
+msgstr "Жирный"
+
+#: application/views/labeldesigner/designer.php:389
+#: application/views/qslpostcard/designer.php:297
+msgid "Color"
+msgstr "Цвет"
+
+#: application/views/labeldesigner/designer.php:394
+#: application/views/qslpostcard/designer.php:302
+msgid "Wrap width"
+msgstr "Ширина переноса"
+
+#: application/views/labeldesigner/designer.php:399
+msgid "Print this field once per QSO if a label holds multiple QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:400
+#: application/views/qslpostcard/designer.php:308
+msgid "Repeats per QSO"
+msgstr "Повторение для каждого QSO"
+
+#: application/views/labeldesigner/designer.php:404
+#: application/views/qslpostcard/designer.php:312
+msgid "Move this element freely without snapping to the grid or other elements"
+msgstr ""
+"Свободное перемещение этого элемента, без привязки к сетке или другим "
+"элементам"
+
+#: application/views/labeldesigner/designer.php:405
+#: application/views/qslpostcard/designer.php:313
+msgid "Disable Auto-Snap"
+msgstr "Отключение автопривязки"
+
+#: application/views/labeldesigner/designer.php:431
+#: application/views/qslpostcard/designer.php:339
+msgid "Align & distribute"
+msgstr "Выравнивание и распределение"
+
+#: application/views/labeldesigner/designer.php:435
+#: application/views/qslpostcard/designer.php:343
+msgid "Align left"
+msgstr "Выравнивание по левому краю"
+
+#: application/views/labeldesigner/designer.php:436
+#: application/views/qslpostcard/designer.php:344
+msgid "Align horizontal centers"
+msgstr "Выравнивание по центру, по горизонтали"
+
+#: application/views/labeldesigner/designer.php:437
+#: application/views/qslpostcard/designer.php:345
+msgid "Align right"
+msgstr "Выравнивание по правому краю"
+
+#: application/views/labeldesigner/designer.php:439
+#: application/views/qslpostcard/designer.php:347
+msgid "Align top"
+msgstr "Выравнивание по верхнему краю"
+
+#: application/views/labeldesigner/designer.php:440
+#: application/views/qslpostcard/designer.php:348
+msgid "Align vertical centers"
+msgstr "Выравнивание по центру, по вертикали"
+
+#: application/views/labeldesigner/designer.php:441
+#: application/views/qslpostcard/designer.php:349
+msgid "Align bottom"
+msgstr "Выравнивание по нижнему краю"
+
+#: application/views/labeldesigner/designer.php:443
+#: application/views/qslpostcard/designer.php:351
+msgid "Distribute horizontally"
+msgstr "Распределение по горизонтали"
+
+#: application/views/labeldesigner/designer.php:444
+#: application/views/qslpostcard/designer.php:352
+msgid "Distribute vertically"
+msgstr "Распределение по вертикали"
+
+#: application/views/labeldesigner/designer.php:446
+#: application/views/qslpostcard/designer.php:354
+msgid "Center on page (horizontal)"
+msgstr "Центрирование на странице (по горизонтали)"
+
+#: application/views/labeldesigner/designer.php:447
+#: application/views/qslpostcard/designer.php:355
+msgid "Center on page (vertical)"
+msgstr "Центрирование на странице (по вертикали)"
 
 #: application/views/labels/create.php:24
 msgid ""
@@ -16619,12 +17253,6 @@ msgstr "Высота наклейки"
 msgid "Total height of one label"
 msgstr "Полная высота одной наклейки"
 
-#: application/views/labels/create.php:105
-#: application/views/labels/edit.php:107 application/views/labels/index.php:81
-#: application/views/qslpostcard/designer.php:285
-msgid "Font Size"
-msgstr "Размер шрифта"
-
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
@@ -16681,14 +17309,14 @@ msgstr "Ориентация бумаги"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr "Ландшафтная"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr "Портретная"
@@ -16707,13 +17335,13 @@ msgstr ""
 "осмысленное, к примеру, стиль наклейки."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:104
-#: application/views/qslprint/printlabel.php:117
+#: application/views/logbookadvanced/startatform.php:125
+#: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
 msgid "Mark QSL as printed"
 msgstr "Отметить, что QSL напечатана"
 
-#: application/views/labels/index.php:3 application/views/labels/index.php:129
+#: application/views/labels/index.php:3 application/views/labels/index.php:130
 #: application/views/qslprint/index.php:77
 msgid "Print"
 msgstr "Печать"
@@ -16731,97 +17359,100 @@ msgstr "Добавить новый тип наклейки"
 msgid "Create New Paper Type"
 msgstr "Добавить новый тип бумаги"
 
-#: application/views/labels/index.php:38
+#: application/views/labels/index.php:39
 msgid "Paper types"
 msgstr "Типы бумаги"
 
-#: application/views/labels/index.php:44 application/views/labels/index.php:79
-msgid "Width"
-msgstr "Ширина"
-
-#: application/views/labels/index.php:45 application/views/labels/index.php:80
-msgid "Height"
-msgstr "Высота"
-
-#: application/views/labels/index.php:46
+#: application/views/labels/index.php:47
 msgid "Used by labels"
 msgstr "Используется для наклеек"
 
-#: application/views/labels/index.php:47
-msgid "Orientation"
-msgstr "Ориентация"
-
-#: application/views/labels/index.php:72
+#: application/views/labels/index.php:73
 msgid "Label types"
 msgstr "Тип наклеек"
 
-#: application/views/labels/index.php:83
+#: application/views/labels/index.php:84
 msgid "Use For Print"
 msgstr "Используется для печати"
 
-#: application/views/labels/index.php:93
-msgid "No paper assigned"
-msgstr "Не выбрана бумага"
-
-#: application/views/labels/index.php:118
+#: application/views/labels/index.php:119
 msgid "QSL Card Labels Pending"
 msgstr "Наклейки для QSL-карточек в ожидании"
 
-#: application/views/labels/index.php:127
+#: application/views/labels/index.php:128
 msgid "QSOs Waiting"
 msgstr "QSO в ожидании"
 
-#: application/views/labels/index.php:128
+#: application/views/labels/index.php:129
 msgid "View QSOs"
 msgstr "Просмотр QSO"
 
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
+msgid "Label layout"
+msgstr ""
+
+#: application/views/labels/startatform.php:24
+#: application/views/logbookadvanced/startatform.php:23
+#: application/views/qslprint/printlabel.php:23
+msgid "Standard"
+msgstr ""
+
+#: application/views/labels/startatform.php:30
+#: application/views/logbookadvanced/startatform.php:29
+#: application/views/qslprint/printlabel.php:29
+msgid ""
+"Designed label templates use their own layout and ignore the options below."
+msgstr ""
+
+#: application/views/labels/startatform.php:41
+#: application/views/logbookadvanced/startatform.php:40
+#: application/views/qslprint/printlabel.php:40
 msgid "Include my call?"
 msgstr "Включить мой позывной?"
 
-#: application/views/labels/startatform.php:33
-#: application/views/logbookadvanced/startatform.php:32
-#: application/views/qslprint/printlabel.php:32
+#: application/views/labels/startatform.php:53
+#: application/views/logbookadvanced/startatform.php:52
+#: application/views/qslprint/printlabel.php:52
 msgid "Include OP-Call? (if filled)"
 msgstr "Включать позывной оператора? (если заполнено)"
 
-#: application/views/labels/startatform.php:45
-#: application/views/logbookadvanced/startatform.php:44
-#: application/views/qslprint/printlabel.php:44
+#: application/views/labels/startatform.php:65
+#: application/views/logbookadvanced/startatform.php:64
+#: application/views/qslprint/printlabel.php:64
 msgid "Include Grid?"
-msgstr "Включить квадрат QTH локатора?"
+msgstr "Включить квадрат QTH-локатора?"
 
-#: application/views/labels/startatform.php:57
-#: application/views/logbookadvanced/startatform.php:56
-#: application/views/qslprint/printlabel.php:56
+#: application/views/labels/startatform.php:77
+#: application/views/logbookadvanced/startatform.php:76
+#: application/views/qslprint/printlabel.php:76
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
 "Включить референцию (SIG, SOTA, POTA, IOTA, WWFF; если указано в профиле QTH)"
 
-#: application/views/labels/startatform.php:69
+#: application/views/labels/startatform.php:89
 msgid "Include Via (if filled)?"
 msgstr "Включить via (если заполнено)?"
 
-#: application/views/labels/startatform.php:81
+#: application/views/labels/startatform.php:101
 msgid "Include QSLMSG (if filled)?"
 msgstr "Включить QSLMSG (если заполнено)?"
 
-#: application/views/labels/startatform.php:93
+#: application/views/labels/startatform.php:113
 msgid "Include TNX message?"
 msgstr "Включить сообщение TNX?"
 
-#: application/views/labels/startatform.php:106
-#: application/views/logbookadvanced/startatform.php:117
-#: application/views/qslprint/printlabel.php:105
+#: application/views/labels/startatform.php:128
+#: application/views/logbookadvanced/startatform.php:138
+#: application/views/qslprint/printlabel.php:126
 msgid "Start printing at?"
 msgstr "С какой позиции на листе начать печать?"
 
-#: application/views/labels/startatform.php:112
-#: application/views/logbookadvanced/startatform.php:123
-#: application/views/qslprint/printlabel.php:111
+#: application/views/labels/startatform.php:134
+#: application/views/logbookadvanced/startatform.php:144
+#: application/views/qslprint/printlabel.php:132
 msgid "Enter the starting position for label printing"
 msgstr "Введите начальную позицию для печати наклеек"
 
@@ -16855,7 +17486,7 @@ msgstr "Поиск дубликатов, используя:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "Сопоставление QSO в рамках выбранного временного окна друг с другом"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
@@ -17172,7 +17803,7 @@ msgid ""
 "a gridsquare is set)."
 msgstr ""
 "Расстояние (в км). Оставьте пустым для пересчета расстояния. (Будет работать "
-"только если указан квадрат QTH локатора)."
+"только если указан квадрат QTH-локатора)."
 
 #: application/views/logbookadvanced/edit.php:258
 #: application/views/logbookadvanced/edit.php:261
@@ -17209,7 +17840,7 @@ msgid ""
 "Operator, Gridsquare, Comment and Contest):"
 msgstr ""
 "Подстановочные знаки (в Позывном, Штате, DOK, Округе, QSL через, SOTA, POTA, "
-"WWFF, Операторе, Квадрате QTH локатора, Комментарии и Контесте):"
+"WWFF, Операторе, Квадрате QTH-локатора, Комментарии и Контесте):"
 
 #: application/views/logbookadvanced/help.php:30
 msgid "Matches any number of characters"
@@ -17253,7 +17884,7 @@ msgstr "Временное окно:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "настраиваемо, от 1 до 60 минут (по умолчанию 30 минут)"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -17881,7 +18512,7 @@ msgstr "Поиск штата"
 
 #: application/views/logbookadvanced/index.php:786
 msgid "Search Gridsquare"
-msgstr "Поиск квадрата QTH локатора"
+msgstr "Поиск квадрата QTH-локатора"
 
 #: application/views/logbookadvanced/index.php:789
 msgid "Search CQ Zone"
@@ -17986,7 +18617,7 @@ msgstr "Создать ADIF"
 
 #: application/views/logbookadvanced/index.php:850
 #: application/views/qslprint/index.php:5
-#: application/views/qslprint/printlabel.php:116
+#: application/views/qslprint/printlabel.php:137
 msgid "Print Label"
 msgstr "Напечатать наклейки"
 
@@ -18116,14 +18747,6 @@ msgstr ""
 "Выбранные поля будут объединены с основным QSO. Вы можете выбрать разные "
 "поля из каждого QSO."
 
-#: application/views/logbookadvanced/printQsl.php:9
-#: application/views/qslpostcard/designer.php:67
-#: application/views/qslpostcard/printqueue.php:8
-#: application/views/qslpostcard/printqueue_selected.php:10
-#: application/views/qslprint/printqsl.php:9
-msgid "Template"
-msgstr "Шаблон"
-
 #: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -18141,14 +18764,6 @@ msgstr ""
 #: application/views/qslprint/printqsl.php:30
 msgid "Generate Postcard PDF"
 msgstr "Создать PDF QSL-карточки"
-
-#: application/views/logbookadvanced/printQsl.php:34
-#: application/views/qslpostcard/designer.php:99
-#: application/views/qslpostcard/printqueue.php:26
-#: application/views/qslpostcard/printqueue_selected.php:34
-#: application/views/qslprint/printqsl.php:34
-msgid "Save PDF"
-msgstr "Сохранить PDF"
 
 #: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
@@ -18176,18 +18791,18 @@ msgstr "Пред"
 msgid "Next"
 msgstr "След."
 
-#: application/views/logbookadvanced/startatform.php:68
-#: application/views/qslprint/printlabel.php:68
+#: application/views/logbookadvanced/startatform.php:88
+#: application/views/qslprint/printlabel.php:88
 msgid "Include Via"
 msgstr "Включить via"
 
-#: application/views/logbookadvanced/startatform.php:80
-#: application/views/qslprint/printlabel.php:80
+#: application/views/logbookadvanced/startatform.php:100
+#: application/views/qslprint/printlabel.php:100
 msgid "Include QSLMSG"
 msgstr "Включить QSLMSG"
 
-#: application/views/logbookadvanced/startatform.php:92
-#: application/views/qslprint/printlabel.php:92
+#: application/views/logbookadvanced/startatform.php:112
+#: application/views/qslprint/printlabel.php:112
 msgid "Include TNX message"
 msgstr "Включить сообщение TNX"
 
@@ -18197,7 +18812,7 @@ msgid ""
 "country."
 msgstr ""
 "Обновить в записях QSO информацию о областях/штатах/провинциях/... на "
-"основании квадратов QTH локатора и DXCC."
+"основании квадратов QTH-локатора и DXCC."
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
@@ -18205,7 +18820,7 @@ msgid ""
 "the gridsquare locator."
 msgstr ""
 "Эта функция использует данные границ GeoJSON для определения области/штата/"
-"провинции/... по значению квадрата QTH локатора."
+"провинции/... по значению квадрата QTH-локатора."
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
@@ -18217,7 +18832,7 @@ msgstr "Поле области/штата пусто"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr "Значение квадрата QTH локатора указано (по крайней мере 6 символов)"
+msgstr "Значение квадрата QTH-локатора указано (по крайней мере 6 символов)"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
@@ -18299,7 +18914,7 @@ msgstr "Не использует LoTW"
 
 #: application/views/lookup/result.php:20
 msgid "This gridsquare exists in the following DXCC(s):"
-msgstr "Этот квадрат QTH локатора присутствует в следующих DXCC:"
+msgstr "Этот квадрат QTH-локатора присутствует в следующих DXCC:"
 
 #: application/views/lotw/analysis.php:8 application/views/qrz/analysis.php:8
 msgid "No data imported. please check selected date. Must be in the past!"
@@ -18555,7 +19170,7 @@ msgstr "Показано %s из %s всех QSO"
 #: application/views/map/qso_map.php:21
 #, php-format
 msgid "Total: %s QSOs with 6+ char grids"
-msgstr "Всего: %s QSO с квадратами QTH локатора из 6+ символов"
+msgstr "Всего: %s QSO с квадратами QTH-локатора из 6+ символов"
 
 #: application/views/map/qso_map.php:23
 msgid "Hover over a region"
@@ -18774,7 +19389,7 @@ msgid ""
 "map and the gridsquares map."
 msgstr ""
 "Позволяет отключить все карты в публичном представлении, касается основной "
-"карты и карты квадратов QTH локатора."
+"карты и карты квадратов QTH-локатора."
 
 #: application/views/options/appearance.php:46
 msgid "Public Github Button"
@@ -19521,31 +20136,6 @@ msgstr "Добавить к QSL"
 msgid "Address"
 msgstr "Адрес"
 
-#: application/views/qslpostcard/designer.php:6
-msgid "QSO Core"
-msgstr "Данные QSO"
-
-#: application/views/qslpostcard/designer.php:7
-msgid "Date & Time"
-msgstr "Дата и время"
-
-#: application/views/qslpostcard/designer.php:8
-msgid "Station & Equipment"
-msgstr "Станция и оборудование"
-
-#: application/views/qslpostcard/designer.php:9
-msgid "My References"
-msgstr "Мои референции"
-
-#: application/views/qslpostcard/designer.php:10
-msgid "Markers"
-msgstr "Отметки"
-
-#: application/views/qslpostcard/designer.php:11
-#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
-msgid "Other"
-msgstr "Другое"
-
 #: application/views/qslpostcard/designer.php:29
 msgid "Please choose an image first."
 msgstr "Пожалуйста, сначала выберите изображение."
@@ -19562,112 +20152,6 @@ msgstr "неизвестная ошибка"
 msgid "Preview image uploaded."
 msgstr "Изображение для предварительного просмотра загружено."
 
-#: application/views/qslpostcard/designer.php:34
-msgid "Custom Text"
-msgstr "Пользовательский текст"
-
-#: application/views/qslpostcard/designer.php:35
-msgid "Untitled"
-msgstr "Без названия"
-
-#: application/views/qslpostcard/designer.php:36
-msgid "Save failed"
-msgstr "Сохранение не удалось"
-
-#: application/views/qslpostcard/designer.php:37
-msgid "Template saved."
-msgstr "Шаблон сохранен."
-
-#: application/views/qslpostcard/designer.php:38
-msgid "Delete Template?"
-msgstr "Удалить шаблон?"
-
-#: application/views/qslpostcard/designer.php:39
-msgid ""
-"Are you sure you want to delete this template? This action cannot be undone."
-msgstr ""
-"Вы уверены, что хотите удалить этот шаблон? Это действие нельзя отменить."
-
-#: application/views/qslpostcard/designer.php:40
-msgid "Delete failed"
-msgstr "Удаление не удалось"
-
-#: application/views/qslpostcard/designer.php:41
-msgid "Template deleted successfully!"
-msgstr "Шаблон успешно удалён!"
-
-#: application/views/qslpostcard/designer.php:42
-msgid "Please select a template to delete."
-msgstr "Пожалуйста, выберите шаблон для удаления."
-
-#: application/views/qslpostcard/designer.php:43
-msgid "Copy failed"
-msgstr "Копирование не удалось"
-
-#: application/views/qslpostcard/designer.php:44
-msgid "Template copied."
-msgstr "Шаблон скопирован."
-
-#: application/views/qslpostcard/designer.php:45
-msgid "Please select a template to copy."
-msgstr "Пожалуйста, выберите шаблон для копирования."
-
-#: application/views/qslpostcard/designer.php:48
-msgid "selected"
-msgstr "выбрано"
-
-#: application/views/qslpostcard/designer.php:49
-msgid "Unsaved changes"
-msgstr "Несохранённые изменения"
-
-#: application/views/qslpostcard/designer.php:50
-msgid ""
-"Your current design has unsaved changes. Loading a different template will "
-"replace it. Continue?"
-msgstr ""
-"У вашего текущего дизайна есть несохранённые изменения. Загрузка другого "
-"шаблона заменит его. Продолжить?"
-
-#: application/views/qslpostcard/designer.php:51
-msgid ""
-"Your current design has unsaved changes. If you leave the page, those "
-"changes will be lost. Leave anyway?"
-msgstr ""
-"У вас есть несохранённые изменения в вашем текущем дизайне. Если вы покинете "
-"страницу, то изменения будут утеряны. Уйти в любом случае?"
-
-#: application/views/qslpostcard/designer.php:52
-msgid "Discard changes"
-msgstr "Отменить изменения"
-
-#: application/views/qslpostcard/designer.php:53
-msgid "Keep editing"
-msgstr "Продолжить редактировать"
-
-#: application/views/qslpostcard/designer.php:54
-msgid "Leave page"
-msgstr "Покинуть страницу"
-
-#: application/views/qslpostcard/designer.php:70
-msgid "(new)"
-msgstr "(новый)"
-
-#: application/views/qslpostcard/designer.php:75
-msgid "Template name"
-msgstr "Имя шаблона"
-
-#: application/views/qslpostcard/designer.php:76
-msgid "Save Template"
-msgstr "Сохранить шаблон"
-
-#: application/views/qslpostcard/designer.php:79
-msgid "Copy Template"
-msgstr "Копировать шаблон"
-
-#: application/views/qslpostcard/designer.php:82
-msgid "Delete Template"
-msgstr "Удалить шаблон"
-
 #: application/views/qslpostcard/designer.php:90
 msgid "Background image"
 msgstr "Фоновое изображение"
@@ -19675,50 +20159,6 @@ msgstr "Фоновое изображение"
 #: application/views/qslpostcard/designer.php:94
 msgid "Generate PDF (demo)"
 msgstr "Создать PDF (демо)"
-
-#: application/views/qslpostcard/designer.php:95
-msgid "PDF"
-msgstr "PDF"
-
-#: application/views/qslpostcard/designer.php:107
-msgid "History"
-msgstr "История"
-
-#: application/views/qslpostcard/designer.php:109
-msgid "Undo"
-msgstr "Отменить"
-
-#: application/views/qslpostcard/designer.php:110
-msgid "Redo"
-msgstr "Повторить"
-
-#: application/views/qslpostcard/designer.php:116
-msgid "Zoom"
-msgstr "Увеличение"
-
-#: application/views/qslpostcard/designer.php:126
-msgid ""
-"Tip: After a test print, adjust global offsets rather than moving every "
-"field."
-msgstr ""
-"Совет: После тестовой печати корректируйте глобальные смещения, а не "
-"перемещайте каждое поле."
-
-#: application/views/qslpostcard/designer.php:127
-msgid "Print offset"
-msgstr "Печать со смещением"
-
-#: application/views/qslpostcard/designer.php:156
-msgid "Search fields…"
-msgstr "Поиск полей…"
-
-#: application/views/qslpostcard/designer.php:160
-msgid "Add Custom Text"
-msgstr "Добавить пользовательский текст"
-
-#: application/views/qslpostcard/designer.php:175
-msgid "No fields match your search."
-msgstr "Нет полей, соответствующих вашему запросу."
 
 #: application/views/qslpostcard/designer.php:183
 msgid "Postcard Canvas"
@@ -19728,17 +20168,9 @@ msgstr "Холст карточки"
 msgid "drag fields onto the postcard"
 msgstr "перетащите поля на карточку"
 
-#: application/views/qslpostcard/designer.php:205
-msgid "Template Options"
-msgstr "Параметры шаблона"
-
 #: application/views/qslpostcard/designer.php:209
 msgid "Number of QSOs per QSL card"
 msgstr "Количество QSO на одну QSL карточку"
-
-#: application/views/qslpostcard/designer.php:213
-msgid "Row spacing"
-msgstr "Расстояние между рядами"
 
 #: application/views/qslpostcard/designer.php:218
 msgid "Print background image (uncheck for pre-printed cards)"
@@ -19750,116 +20182,10 @@ msgstr ""
 msgid "Skip address printing (for printing on regular QSL cards)"
 msgstr "Пропустить печать адреса (для печати на обычных QSL-карточках)"
 
-#: application/views/qslpostcard/designer.php:230
-msgid "Properties"
-msgstr "Свойства"
-
-#: application/views/qslpostcard/designer.php:235
-msgid "Select a field on the canvas to edit it."
-msgstr "Выберите поле на холсте, чтобы отредактировать его."
-
-#: application/views/qslpostcard/designer.php:236
-msgid "Right-click a field for more actions."
-msgstr "Щелкните правой кнопкой мыши на поле для дополнительных действий."
-
-#: application/views/qslpostcard/designer.php:246
-msgid "Text"
-msgstr "Текст"
-
-#: application/views/qslpostcard/designer.php:251
-msgid "Frequency format"
-msgstr "Формат частоты"
-
-#: application/views/qslpostcard/designer.php:259
-msgid "Omit unit"
-msgstr "Опустить единицы измерения"
-
-#: application/views/qslpostcard/designer.php:265
-msgid "X"
-msgstr "X"
-
-#: application/views/qslpostcard/designer.php:269
-msgid "Y"
-msgstr "У"
-
-#: application/views/qslpostcard/designer.php:275
-msgid "Font"
-msgstr "Шрифт"
-
-#: application/views/qslpostcard/designer.php:291
-msgid "Bold"
-msgstr "Жирный"
-
-#: application/views/qslpostcard/designer.php:297
-msgid "Color"
-msgstr "Цвет"
-
-#: application/views/qslpostcard/designer.php:302
-msgid "Wrap width"
-msgstr "Ширина переноса"
-
 #: application/views/qslpostcard/designer.php:307
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr ""
 "Печать этого поля для каждого QSO, если карточка содержит несколько QSO"
-
-#: application/views/qslpostcard/designer.php:308
-msgid "Repeats per QSO"
-msgstr "Повторение для каждого QSO"
-
-#: application/views/qslpostcard/designer.php:312
-msgid "Move this element freely without snapping to the grid or other elements"
-msgstr ""
-"Свободное перемещение этого элемента, без привязки к сетке или другим "
-"элементам"
-
-#: application/views/qslpostcard/designer.php:313
-msgid "Disable Auto-Snap"
-msgstr "Отключение автопривязки"
-
-#: application/views/qslpostcard/designer.php:339
-msgid "Align & distribute"
-msgstr "Выравнивание и распределение"
-
-#: application/views/qslpostcard/designer.php:343
-msgid "Align left"
-msgstr "Выравнивание по левому краю"
-
-#: application/views/qslpostcard/designer.php:344
-msgid "Align horizontal centers"
-msgstr "Выравнивание по центру, по горизонтали"
-
-#: application/views/qslpostcard/designer.php:345
-msgid "Align right"
-msgstr "Выравнивание по правому краю"
-
-#: application/views/qslpostcard/designer.php:347
-msgid "Align top"
-msgstr "Выравнивание по верхнему краю"
-
-#: application/views/qslpostcard/designer.php:348
-msgid "Align vertical centers"
-msgstr "Выравнивание по центру, по вертикали"
-
-#: application/views/qslpostcard/designer.php:349
-msgid "Align bottom"
-msgstr "Выравнивание по нижнему краю"
-
-#: application/views/qslpostcard/designer.php:351
-msgid "Distribute horizontally"
-msgstr "Распределение по горизонтали"
-
-#: application/views/qslpostcard/designer.php:352
-msgid "Distribute vertically"
-msgstr "Распределение по вертикали"
-
-#: application/views/qslpostcard/designer.php:354
-msgid "Center on page (horizontal)"
-msgstr "Центрирование на странице (по горизонтали)"
-
-#: application/views/qslpostcard/designer.php:355
-msgid "Center on page (vertical)"
-msgstr "Центрирование на странице (по вертикали)"
 
 #: application/views/qslprint/index.php:4
 msgid "Please select at least one row"
@@ -20044,7 +20370,7 @@ msgstr "Показ сводки по континентам"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr "Показ сводки для квадратам QTH локатора"
+msgstr "Показ сводки для квадратам QTH-локатора"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
@@ -20076,7 +20402,7 @@ msgstr "Тип прохождения должен быть 'SAT', чтобы п
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr "Для показа сводки нужно заполнить квадрат QTH локатора!"
+msgstr "Для показа сводки нужно заполнить квадрат QTH-локатора!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
@@ -20085,7 +20411,7 @@ msgstr "Сводка отображается только для первого
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
 msgstr ""
-"Сводка отображается только для первого введенного квадрата QTH локатора."
+"Сводка отображается только для первого введенного квадрата QTH -локатора."
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
@@ -20217,11 +20543,11 @@ msgstr "Укажите мощность в Ваттах (только цифры
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
-msgstr "Используется для мультиквадратов QTH локатора VUCC"
+msgstr "Используется для мультиквадратов QTH-локатора VUCC"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "VUCC Gridsquare"
-msgstr "Квадрат QTH локатора VUCC"
+msgstr "Квадрат QTH-локатора VUCC"
 
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:552
 msgid "Antenna Path"
@@ -20732,6 +21058,8 @@ msgstr "Посмотр карты с траекториями полета сп�
 msgid ""
 "Active station location does not have a gridsquare configured. Please check"
 msgstr ""
+"Для активного профиля QTH не задан квадрат QTH-локатора. Пожалуйста, "
+"проверьте"
 
 #: application/views/satellite/flightpath.php:57
 msgid ""
@@ -20959,7 +21287,7 @@ msgstr "Не было найдено ни одного QSO с незаверше
 
 #: application/views/search/main.php:26
 msgid "Callsign / Gridsquare"
-msgstr "Позывной / Квадрат QTH локатора"
+msgstr "Позывной / Квадрат QTH-локатора"
 
 #: application/views/search/result.php:2
 #, php-format
@@ -20983,7 +21311,7 @@ msgstr "Не сработано"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
-"Квадрат QTH локатора автоматически получен из колбука и, вероятно, неверен"
+"Квадрат QTH-локатора автоматически получен из колбука и, вероятно, неверен"
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
@@ -21344,8 +21672,8 @@ msgstr "Контрольные номера"
 #: application/views/simplefle/syntax_help.php:67
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
-"Контрольные номера в соревнованиях; порядковые номера QSO или другой вариант "
-"— или даже оба варианта разом:"
+"Контрольные номера; порядковые номера QSO или другой вариант — или даже оба "
+"варианта разом:"
 
 #: application/views/simplefle/syntax_help.php:74
 #, php-format
@@ -21509,12 +21837,12 @@ msgstr "Если вы не знаете свою зону ITU, то %s, чтоб
 #: application/views/station_profile/edit.php:187
 #: application/views/station_profile/edit.php:190
 msgid "Station Gridsquare"
-msgstr "Квадрат QTH локатора"
+msgstr "Квадрат QTH-локатора"
 
 #: application/views/station_profile/create.php:172
 #: application/views/station_profile/edit.php:194
 msgid "Get Gridsquare"
-msgstr "Получить квадрат QTH локатора"
+msgstr "Получить квадрат QTH-локатора"
 
 #: application/views/station_profile/create.php:175
 #: application/views/station_profile/edit.php:197
@@ -21524,8 +21852,8 @@ msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
 msgstr ""
-"Квадрат QTH локатора станции, например: HM54AP. Если вы не знаете свой "
-"квадрат QTH локатора, то %s!"
+"Квадрат QTH-локатора станции, например: HM54AP. Если вы не знаете свой "
+"квадрат QTH-локатора, то %s!"
 
 #: application/views/station_profile/create.php:176
 #: application/views/station_profile/edit.php:198
@@ -21533,8 +21861,8 @@ msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
-"Если вы располагаетесь на границе квадратов QTH локатора, то укажите "
-"квадраты QTH локатора через запятую, к примеру: IO77,IO78,IO87,IO88."
+"Если вы располагаетесь на границе квадратов QTH-локатора, то укажите "
+"квадраты QTH-локатора через запятую, к примеру: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:177
 #: application/views/station_profile/edit.php:199
@@ -21543,6 +21871,9 @@ msgid ""
 "distance statistics and more. Make sure to fill in the gridsquare if you "
 "want to use those features"
 msgstr ""
+"Это необходимо для всех функций, основанных на текущем местоположении — "
+"например карты, статистики расстояний и других. Обязательно заполните "
+"квадрат QTH-локатора, если хотите использовать эти возможности"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:222
@@ -21811,7 +22142,7 @@ msgstr "Оверлей зон CQ"
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr "Наложение квадратов QTH локатора"
+msgstr "Наложение квадратов QTH-локатора"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
@@ -22064,20 +22395,20 @@ msgstr "Возвышение"
 
 #: application/views/statistics/antennaanalytics.php:87
 msgid "Radar"
-msgstr ""
+msgstr "Радар"
 
 #: application/views/statistics/antennaanalytics.php:101
 msgid "QSOs per degree of azimuth"
-msgstr ""
+msgstr "QSO на градус азимута"
 
 #: application/views/statistics/antennaanalytics.php:102
 #, php-format
 msgid "25 / 50 / 75 % of peak"
-msgstr ""
+msgstr "25 / 50 / 75 % от максимума"
 
 #: application/views/statistics/antennaanalytics.php:103
 msgid "Marker every 5°"
-msgstr ""
+msgstr "Маркер каждые 5°"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:101
@@ -22152,7 +22483,7 @@ msgstr "."
 
 #: application/views/statistics/index.php:167
 msgid "Unique Grids"
-msgstr "Уникальных квадратов QTH локатора"
+msgstr "Уникальных квадратов QTH-локатора"
 
 #: application/views/statistics/initialresult.php:44
 #: application/views/statistics/initials.php:40
@@ -22650,11 +22981,11 @@ msgstr "Автозаполнение QTH."
 
 #: application/views/user/edit.php:479
 msgid "If set, gridsquare is fetched based on location name."
-msgstr "Если включено, QTH локатор будет определён на основе названия QTH."
+msgstr "Если включено, QTH-локатор будет определён на основе названия QTH."
 
 #: application/views/user/edit.php:490
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr "Автозаполнение квадрата QTH локатора и названия SOTA."
+msgstr "Автозаполнение квадрата QTH-локатора и названия SOTA."
 
 #: application/views/user/edit.php:491 application/views/user/edit.php:503
 #: application/views/user/edit.php:515
@@ -22662,16 +22993,16 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
-"Если включено, название и квадрат QTH локатора запрашиваются по API и "
-"записываются в поля QTH и QTH локатор."
+"Если включено, название и квадрат QTH-локатора запрашиваются по API и "
+"записываются в поля QTH и QTH-локатор."
 
 #: application/views/user/edit.php:502
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr "Автозаполнение QTH локатора и названия референции по WWFF."
+msgstr "Автозаполнение QTH-локатора и названия референции по WWFF."
 
 #: application/views/user/edit.php:514
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr "Автозаполнение QTH локатора и названия парка по POTA."
+msgstr "Автозаполнение QTH-локатора и названия парка по POTA."
 
 #: application/views/user/edit.php:519
 msgid "Number of previous contacts displayed on QSO page."
@@ -22789,7 +23120,7 @@ msgstr "(Цвет для несбработанных зон)"
 
 #: application/views/user/edit.php:705
 msgid "Show Locator"
-msgstr "Показывать QTH локатор"
+msgstr "Показывать QTH-локатор"
 
 #: application/views/user/edit.php:709
 msgid "Map Tile Style"
@@ -23169,7 +23500,7 @@ msgid ""
 "hams.at account. Requires private feed key to be set."
 msgstr ""
 "Если включено, показывает только пригодные для работы витки, основываясь на "
-"квадрате QTH локатора, установленном в вашем аккаунте на hams.at. Требуется "
+"квадрате QTH-локатора, установленном в вашем аккаунте на hams.at. Требуется "
 "указание приватного ключа потока."
 
 #: application/views/user/edit.php:1360
@@ -23633,8 +23964,8 @@ msgid ""
 "A single gridsquare was entered into the VUCC gridsquares field which should "
 "contain two or four gridsquares instead of a single grid."
 msgstr ""
-"В поле VUCC gridsquares был введён один квадрат QTH локатора, должно быть "
-"введено два или четыре квадрата QTH локатора вместо одного."
+"В поле VUCC gridsquares был введён один квадрат QTH-локатора, должно быть "
+"введено два или четыре квадрата QTH-локатора вместо одного."
 
 #: application/views/view_log/qso.php:143
 #: application/views/view_log/qso.php:156
@@ -23934,7 +24265,7 @@ msgstr "Получено"
 
 #: application/views/zonechecker/index.php:7
 msgid "Gridsquare Zone identification"
-msgstr "Идентификация зоны по квадратам QTH локатора"
+msgstr "Идентификация зоны по квадратам QTH-локатора"
 
 #: application/views/zonechecker/index.php:21
 msgid "Zone Type"

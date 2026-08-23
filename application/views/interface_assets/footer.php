@@ -2894,13 +2894,19 @@ function viewEqsl(picture, callsign) {
 
     function displayStateCountiesList(state, type) {
         var baseURL= "<?php echo base_url(); ?>";
+        var titles = {
+            worked: "<?php echo __("Worked counties for state:"); ?>",
+            confirmed: "<?php echo __("Confirmed counties for state:"); ?>",
+            target: "<?php echo __("Counties in state:"); ?>",
+            needed: "<?php echo __("Needed counties for state:"); ?>"
+        };
         $.ajax({
             url: baseURL + 'index.php/awards/counties_list_ajax',
             type: 'post',
             data: $.extend({'State': state, 'Type': type }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
-                    title: (type === 'confirmed' ? "<?php echo __("Confirmed counties for state:"); ?>" : "<?php echo __("Worked counties for state:"); ?>") + " " +state,
+                    title: (titles[type] || titles.worked) + " " +state,
                     size: BootstrapDialog.SIZE_WIDE,
                     cssClass: 'counties-list-dialog',
                     nl2br: false,

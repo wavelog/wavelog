@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 08:05+0000\n"
-"PO-Revision-Date: 2026-08-16 05:44+0000\n"
+"POT-Creation-Date: 2026-08-23 16:43+0000\n"
+"PO-Revision-Date: 2026-08-22 10:16+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -181,6 +181,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Hrdlog.php:40
 #: application/controllers/Kmlexport.php:17
 #: application/controllers/Kmlexport.php:32
+#: application/controllers/Labeldesigner.php:14
 #: application/controllers/Labels.php:25
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
@@ -254,8 +255,8 @@ msgid "Activated Gridsquare Map"
 msgstr "Kaart met geactiveerde Locator-vakken"
 
 #: application/controllers/Activated_gridmap.php:33
-#: application/controllers/Awards.php:1476
-#: application/controllers/Awards.php:1512
+#: application/controllers/Awards.php:1486
+#: application/controllers/Awards.php:1522
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
@@ -285,6 +286,7 @@ msgstr "Totaal geactiveerde locator-vakken"
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:538
+#: application/views/labeldesigner/designer.php:187
 #: application/views/qslpostcard/designer.php:151
 msgid "Fields"
 msgstr "Vakken"
@@ -319,7 +321,7 @@ msgid "Zones"
 msgstr "Zones"
 
 #: application/controllers/Activationplanner.php:33
-#: application/controllers/Awards.php:2610
+#: application/controllers/Awards.php:2620
 #: application/views/awards/itu/index.php:27
 msgid "ITU Zones"
 msgstr "ITU Zones"
@@ -508,17 +510,17 @@ msgstr "Awards"
 #: application/controllers/Awards.php:1250
 #: application/controllers/Awards.php:1335
 #: application/controllers/Awards.php:1368
-#: application/controllers/Awards.php:1497
-#: application/controllers/Awards.php:1703
-#: application/controllers/Awards.php:1854
-#: application/controllers/Awards.php:1905
-#: application/controllers/Awards.php:2461
-#: application/controllers/Awards.php:2610
-#: application/controllers/Awards.php:2740
-#: application/controllers/Awards.php:2814
-#: application/controllers/Awards.php:2827
-#: application/controllers/Awards.php:2902
-#: application/controllers/Awards.php:3044
+#: application/controllers/Awards.php:1507
+#: application/controllers/Awards.php:1713
+#: application/controllers/Awards.php:1864
+#: application/controllers/Awards.php:1915
+#: application/controllers/Awards.php:2471
+#: application/controllers/Awards.php:2620
+#: application/controllers/Awards.php:2750
+#: application/controllers/Awards.php:2824
+#: application/controllers/Awards.php:2837
+#: application/controllers/Awards.php:2912
+#: application/controllers/Awards.php:3054
 #, php-format
 msgid "Awards - %s"
 msgstr "Awards - %s"
@@ -775,39 +777,39 @@ msgstr "IOTA (Island On The Air)"
 msgid "US Counties"
 msgstr "US Counties"
 
-#: application/controllers/Awards.php:1442
+#: application/controllers/Awards.php:1452
 msgid "Log View - Counties"
 msgstr "Logweergave - Counties"
 
-#: application/controllers/Awards.php:1458
+#: application/controllers/Awards.php:1468
 msgid "Awards - "
 msgstr "Awards - "
 
-#: application/controllers/Awards.php:1477
-#: application/controllers/Awards.php:1513
+#: application/controllers/Awards.php:1487
+#: application/controllers/Awards.php:1523
 msgid "Gridsquares worked"
 msgstr "Gewerkte locatorvakken"
 
-#: application/controllers/Awards.php:1478
-#: application/controllers/Awards.php:1514
+#: application/controllers/Awards.php:1488
+#: application/controllers/Awards.php:1524
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Door LoTW bevestigde locatorvakken"
 
-#: application/controllers/Awards.php:1479
-#: application/controllers/Awards.php:1515
+#: application/controllers/Awards.php:1489
+#: application/controllers/Awards.php:1525
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Door papieren QSL bevestigde locatorvakken"
 
-#: application/controllers/Awards.php:1480
-#: application/controllers/Awards.php:1516
+#: application/controllers/Awards.php:1490
+#: application/controllers/Awards.php:1526
 msgid "Total Gridsquares worked"
 msgstr "Totaal locator aantal vakken gewerkt"
 
-#: application/controllers/Awards.php:1497
+#: application/controllers/Awards.php:1507
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
-#: application/controllers/Awards.php:1703
+#: application/controllers/Awards.php:1713
 #: application/views/interface_assets/header.php:204
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
@@ -819,53 +821,53 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 msgid "SIG"
 msgstr "SIG"
 
-#: application/controllers/Awards.php:1722
+#: application/controllers/Awards.php:1732
 msgid "Awards - SIG - "
 msgstr "Awards - SIG - "
 
-#: application/controllers/Awards.php:1854 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1864 application/views/bands/index.php:60
 msgid "WAP"
 msgstr "WAP"
 
-#: application/controllers/Awards.php:1905
+#: application/controllers/Awards.php:1915
 #: application/views/interface_assets/header.php:263
 msgid "WAIP"
 msgstr "WAIP"
 
-#: application/controllers/Awards.php:2740
+#: application/controllers/Awards.php:2750
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:210
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
-#: application/controllers/Awards.php:2814
+#: application/controllers/Awards.php:2824
 msgid "WAE"
 msgstr "WAE"
 
-#: application/controllers/Awards.php:2827
+#: application/controllers/Awards.php:2837
 #: application/views/interface_assets/header.php:220
 msgid "73 on 73"
 msgstr "73 op 73"
 
-#: application/controllers/Awards.php:2902
+#: application/controllers/Awards.php:2912
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:3044
+#: application/controllers/Awards.php:3054
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:285
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Award"
 
-#: application/controllers/Awards.php:3088
+#: application/controllers/Awards.php:3098
 msgid "Awards - AMSAT Rover"
 msgstr "Awards - AMSAT Rover"
 
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Azimutkaart"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:359
@@ -1264,7 +1266,7 @@ msgstr "Continenten"
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Tel QSO's op basis van ..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1476
@@ -1291,7 +1293,7 @@ msgstr ""
 #: application/views/dbtools/showUpdateResult.php:47
 #: application/views/dbtools/showUpdateResult.php:110
 #: application/views/gridmap/index.php:226
-#: application/views/labels/index.php:126
+#: application/views/labels/index.php:127
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:12
 #: application/views/logbookadvanced/index.php:403
@@ -1384,7 +1386,7 @@ msgstr "CQ Zone"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "POTA Referentie"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:163
@@ -1522,10 +1524,30 @@ msgstr "Draait niet"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV-export"
 
-#: application/controllers/Dashboard.php:179
+#: application/controllers/Dashboard.php:172
 #: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Dashboard"
+
+#: application/controllers/Dashboard.php:219
+msgid "HF"
+msgstr ""
+
+#: application/controllers/Dashboard.php:219
+#: application/views/dashboard/index.php:684
+#: application/views/distances/index.php:27
+#: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/qslprint.php:87
+#: application/views/qslprint/qsolist.php:49
+#: application/views/qslprint/qsolist.php:51
+#: application/views/qslprint/qsolist.php:58
+#: application/views/qslprint/qsolist.php:60
+msgid "SAT"
+msgstr "SAT"
+
+#: application/controllers/Dashboard.php:219
+msgid "VHF+"
+msgstr ""
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1676,8 +1698,8 @@ msgid "DX Calendar"
 msgstr "DX-kalender"
 
 #: application/controllers/Eqsl.php:45
-#: application/views/dashboard/index.php:573
-#: application/views/dashboard/index.php:576
+#: application/views/dashboard/index.php:589
+#: application/views/dashboard/index.php:592
 #: application/views/eqslcard/index.php:3
 #: application/views/visitor/index.php:308
 msgid "eQSL Cards"
@@ -1873,6 +1895,62 @@ msgstr "Geen QSO's gevonden om te uploaden."
 msgid "KML Export"
 msgstr "KML-export"
 
+#: application/controllers/Labeldesigner.php:22
+#: application/views/labels/index.php:36
+msgid "Label Designer"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:114
+#: application/controllers/Labels.php:213
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
+msgid "Template not found"
+msgstr "Sjabloon niet gevonden"
+
+#: application/controllers/Labeldesigner.php:120
+#: application/controllers/Labels.php:219
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
+msgid "Template JSON is invalid"
+msgstr "Sjabloon JSON is ongeldig"
+
+#: application/controllers/Labeldesigner.php:125
+msgid "Template has no elements"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:131
+msgid "Label type not found"
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:136
+#: application/controllers/Labels.php:225
+#: application/controllers/Labels.php:315
+#: application/controllers/Labels.php:318
+msgid "You need to assign a paperType to the label before printing"
+msgstr "Je moet een papiertype aan het label toewijzen voordat je gaat printen"
+
+#: application/controllers/Labeldesigner.php:149
+#: application/controllers/Qslpostcard.php:207
+msgid "No QSOs returned by get_sample_qsos()"
+msgstr "Geen QSO's geretourneerd door get_sample_qsos()"
+
+#: application/controllers/Labeldesigner.php:156
+#: application/controllers/Qslpostcard.php:217
+msgid "PDF file was not created"
+msgstr "PDF-bestand werd niet aangemaakt"
+
+#: application/controllers/Labeldesigner.php:165
+msgid "Label PDF failed: "
+msgstr ""
+
+#: application/controllers/Labeldesigner.php:180
+msgid ""
+"The label type of this template no longer exists. Please select another one "
+"before exporting."
+msgstr ""
+
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
 msgstr "QSL-kaartlabels"
@@ -1881,59 +1959,59 @@ msgstr "QSL-kaartlabels"
 msgid "Create Label Type"
 msgstr "Labeltype maken"
 
-#: application/controllers/Labels.php:77 application/controllers/Labels.php:435
+#: application/controllers/Labels.php:77 application/controllers/Labels.php:534
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "Labelnaam"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:436
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:535
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:77
+#: application/views/labels/index.php:78
 msgid "Paper Type"
 msgstr "Papier Type"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:437
-#: application/views/labels/index.php:43 application/views/labels/index.php:78
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:536
+#: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Measurement"
 msgstr "Afmetingen"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:438
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:537
 msgid "Top Margin"
 msgstr "Bovenmarge"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:439
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:538
 msgid "Left Margin"
 msgstr "Linkermarge"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:440
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:539
 msgid "QSLs Horizontally"
 msgstr "QSL's horizontaal"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:441
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:540
 msgid "QSLs Vertically"
 msgstr "QSL's verticaal"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:442
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:541
 msgid "Horizontal Space"
 msgstr "Horizontale ruimte"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:443
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:542
 msgid "Vertical Space"
 msgstr "Verticale ruimte"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:444
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:543
 msgid "Label width"
 msgstr "Labelbreedte"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:445
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:544
 msgid "Label height"
 msgstr "Labelhoogte"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:446
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:545
 msgid "Size of Font"
 msgstr "Lettergrootte"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:447
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:546
 msgid "Number of QSOs on label"
 msgstr "Aantal QSO's op label"
 
@@ -1942,22 +2020,22 @@ msgid "Create Paper Type"
 msgstr "Papier type maken"
 
 #: application/controllers/Labels.php:118
-#: application/controllers/Labels.php:494
+#: application/controllers/Labels.php:599
 msgid "Paper Name"
 msgstr "Papiernaam"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:495
+#: application/controllers/Labels.php:600
 msgid "Paper Width"
 msgstr "Papierbreedte"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:496
+#: application/controllers/Labels.php:601
 msgid "Paper Height"
 msgstr "Papierhoogte"
 
 #: application/controllers/Labels.php:131
-#: application/controllers/Labels.php:504
+#: application/controllers/Labels.php:609
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -1970,18 +2048,15 @@ msgstr ""
 msgid "No QSOs were selected"
 msgstr "Er zijn geen QSO's geselecteerd"
 
-#: application/controllers/Labels.php:216
-#: application/controllers/Labels.php:219
-msgid "You need to assign a paperType to the label before printing"
-msgstr "Je moet een papiertype aan het label toewijzen voordat je gaat printen"
+#: application/controllers/Labels.php:230
+#: application/controllers/Labels.php:366
+msgid "0 QSOs found for print!"
+msgstr "Geen QSO's gevonden om te printen!"
 
-#: application/controllers/Labels.php:226
-#: application/controllers/Labels.php:229
-msgid "You need to create a label and set it to be used for print."
-msgstr "Je moet een label maken en instellen om te printen."
-
-#: application/controllers/Labels.php:236
-#: application/controllers/Labels.php:239
+#: application/controllers/Labels.php:237
+#: application/controllers/Labels.php:244
+#: application/controllers/Labels.php:335
+#: application/controllers/Labels.php:338
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -1989,31 +2064,32 @@ msgstr ""
 "Er is iets misgegaan! Het label kon niet worden gegenereerd. Controleer de "
 "labelgrootte en lettergrootte."
 
-#: application/controllers/Labels.php:267
-msgid "0 QSOs found for print!"
-msgstr "Geen QSO's gevonden om te printen!"
+#: application/controllers/Labels.php:325
+#: application/controllers/Labels.php:328
+msgid "You need to create a label and set it to be used for print."
+msgstr "Je moet een label maken en instellen om te printen."
 
-#: application/controllers/Labels.php:424
+#: application/controllers/Labels.php:523
 msgid "Edit Label"
 msgstr "Label bewerken"
 
-#: application/controllers/Labels.php:453
+#: application/controllers/Labels.php:552
 msgid "Label was saved."
 msgstr "Label is opgeslagen."
 
-#: application/controllers/Labels.php:461
+#: application/controllers/Labels.php:560
 msgid "Label was deleted."
 msgstr "Label is verwijderd."
 
-#: application/controllers/Labels.php:483
+#: application/controllers/Labels.php:588
 msgid "Edit Paper"
 msgstr "Papier bewerken"
 
-#: application/controllers/Labels.php:508
+#: application/controllers/Labels.php:613
 msgid "Paper was saved."
 msgstr "Papier is opgeslagen."
 
-#: application/controllers/Labels.php:521
+#: application/controllers/Labels.php:626
 msgid "Paper was deleted."
 msgstr "Papier is verwijderd."
 
@@ -2103,7 +2179,7 @@ msgstr "QSL"
 #: application/views/awards/wwff/index.php:101
 #: application/views/calltester/call_info.php:80
 #: application/views/countqsoby/index.php:170
-#: application/views/dashboard/index.php:496
+#: application/views/dashboard/index.php:508
 #: application/views/dbtools/checkresult.php:107
 #: application/views/dbtools/checkresult.php:165
 #: application/views/dbtools/checkresult.php:393
@@ -3124,9 +3200,9 @@ msgstr "QRZ QSL importeren"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF Informatie"
 
-#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:495
-#: application/views/dashboard/index.php:510
-#: application/views/dashboard/index.php:513
+#: application/controllers/Qsl.php:24 application/views/dashboard/index.php:507
+#: application/views/dashboard/index.php:526
+#: application/views/dashboard/index.php:529
 #: application/views/qslcard/index.php:3
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
@@ -3170,26 +3246,6 @@ msgstr "QSL Ansichtkaart Ontwerper"
 #: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "Niet genoeg vrije schijfruimte om de QSL-achtergrond op te slaan."
-
-#: application/controllers/Qslpostcard.php:186
-#: application/controllers/Qslpostcard.php:243
-#: application/controllers/Qslpostcard.php:302
-msgid "Template not found"
-msgstr "Sjabloon niet gevonden"
-
-#: application/controllers/Qslpostcard.php:192
-#: application/controllers/Qslpostcard.php:249
-#: application/controllers/Qslpostcard.php:308
-msgid "Template JSON is invalid"
-msgstr "Sjabloon JSON is ongeldig"
-
-#: application/controllers/Qslpostcard.php:207
-msgid "No QSOs returned by get_sample_qsos()"
-msgstr "Geen QSO's geretourneerd door get_sample_qsos()"
-
-#: application/controllers/Qslpostcard.php:217
-msgid "PDF file was not created"
-msgstr "PDF-bestand werd niet aangemaakt"
 
 #: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
@@ -3316,7 +3372,7 @@ msgstr "laatst bijgewerkt"
 #: application/views/cron/index.php:80
 #: application/views/interface_assets/footer.php:698
 #: application/views/interface_assets/footer.php:707
-#: application/views/labels/index.php:48 application/views/labels/index.php:84
+#: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:892
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:58
@@ -3343,7 +3399,9 @@ msgstr "Bewerken"
 #: application/views/interface_assets/footer.php:2667
 #: application/views/interface_assets/footer.php:2686
 #: application/views/interface_assets/footer.php:2704
-#: application/views/labels/index.php:49 application/views/labels/index.php:85
+#: application/views/labeldesigner/designer.php:413
+#: application/views/labeldesigner/designer.php:452
+#: application/views/labels/index.php:50 application/views/labels/index.php:86
 #: application/views/logbookadvanced/index.php:910
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
@@ -3550,6 +3608,7 @@ msgstr "Niet toegestaan"
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
+#: application/views/labeldesigner/designer.php:60
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
 #: application/views/widgets/lotw_upload.php:123
@@ -3694,6 +3753,7 @@ msgid "Empty Log"
 msgstr "Leeg logboek"
 
 #: application/controllers/Stationsetup.php:409
+#: application/models/Labeldesigner_model.php:74
 #: application/models/Qslpostcard_model.php:78
 #: application/views/stationsetup/stationsetup.php:163
 #: application/views/stationsetup/stationsetup.php:203
@@ -4409,15 +4469,15 @@ msgstr "Contest-sessie verwijderen"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Lees logboeken"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Maak en werk logboeken bij"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Verwijder logboeken"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -4601,6 +4661,18 @@ msgstr "HRDlog: Geen stationprofielen met HRDlog-gegevens gevonden."
 msgid "Deleted"
 msgstr "Verwijderd"
 
+#: application/models/Labeldesigner_model.php:158
+msgid "Imported"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:182
+msgid "Imported paper"
+msgstr ""
+
+#: application/models/Labeldesigner_model.php:244
+msgid "Imported label type"
+msgstr ""
+
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
 msgstr "Station niet toegankelijk"
@@ -4618,7 +4690,7 @@ msgstr "Geen roepnaam gegeven"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
-#: application/models/Logbook_model.php:4894
+#: application/models/Logbook_model.php:4930
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4626,7 +4698,7 @@ msgstr ""
 "Verkeerde stationsroepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:4902
+#: application/models/Logbook_model.php:4938
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4635,7 +4707,7 @@ msgstr ""
 "Verschillend locatorvak %s bij het importeren van QSO met %s voor station "
 "locator %s: OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:4918
+#: application/models/Logbook_model.php:4954
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4643,7 +4715,7 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder geldige datum. Deze QSO is "
 "niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:4928
+#: application/models/Logbook_model.php:4964
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4652,7 +4724,7 @@ msgstr ""
 "QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
 "CALL. Dit QSO is niet geïmporteerd. Het is ongeldig,"
 
-#: application/models/Logbook_model.php:4935
+#: application/models/Logbook_model.php:4971
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4661,7 +4733,7 @@ msgstr ""
 "QSO op %s: Je probeerde een QSO te importeren met een ongeldig CALL. Dit QSO "
 "is niet geïmporteerd. De ongeldige invoer is '%s'."
 
-#: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5041
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4670,7 +4742,7 @@ msgstr ""
 "QSO op %s: Band '%s' staat niet in de bandconfiguratie. Deze QSO is niet "
 "geïmporteerd."
 
-#: application/models/Logbook_model.php:5012
+#: application/models/Logbook_model.php:5048
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4679,63 +4751,63 @@ msgstr ""
 "QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
 "band. Dit QSO is niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:5286
+#: application/models/Logbook_model.php:5322
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5297
+#: application/models/Logbook_model.php:5333
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5358
+#: application/models/Logbook_model.php:5394
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5734
+#: application/models/Logbook_model.php:5770
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
-#: application/models/Logbook_model.php:5801
-#: application/models/Logbook_model.php:5901
+#: application/models/Logbook_model.php:5837
+#: application/models/Logbook_model.php:5937
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
-#: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5845
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5815
+#: application/models/Logbook_model.php:5851
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
-#: application/models/Logbook_model.php:5819
+#: application/models/Logbook_model.php:5855
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
-#: application/models/Logbook_model.php:5823
+#: application/models/Logbook_model.php:5859
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
-#: application/models/Logbook_model.php:5826
+#: application/models/Logbook_model.php:5862
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:5829
+#: application/models/Logbook_model.php:5865
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "onbekend"
 
-#: application/models/Logbook_model.php:5904
+#: application/models/Logbook_model.php:5940
 msgid "POTA reference already in log"
 msgstr "POTA-referentie al in logboek"
 
-#: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5943
 msgid "QSO updated"
 msgstr "QSO bijgewerkt"
 
-#: application/models/Logbook_model.php:6326
+#: application/models/Logbook_model.php:6362
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4793,7 +4865,7 @@ msgstr "Antennes"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "In de categorie Contacten moeten de titels van de notities uniek zijn."
 
-#: application/models/Qslpostcard_model.php:440
+#: application/models/Qslpostcard_model.php:442
 msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!! GEEN VERZENDBAAR ADRES GEVONDEN !!!"
@@ -4967,7 +5039,7 @@ msgstr "Verschil"
 #: application/views/csv/index.php:21 application/views/csv/index.php:33
 #: application/views/csv/index.php:44 application/views/csv/index.php:60
 #: application/views/csv/index.php:82 application/views/csv/index.php:94
-#: application/views/dashboard/index.php:667
+#: application/views/dashboard/index.php:683
 #: application/views/distances/index.php:25
 #: application/views/distances/index.php:40
 #: application/views/distances/index.php:50
@@ -5321,7 +5393,7 @@ msgstr "Referentie"
 #: application/views/contesting/manager/components/session_modal.php:122
 #: application/views/contesting/manager/export_cbr.php:252
 #: application/views/dashboard/index.php:19
-#: application/views/labels/index.php:42 application/views/labels/index.php:76
+#: application/views/labels/index.php:43 application/views/labels/index.php:77
 #: application/views/logbookadvanced/index.php:964
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:91
@@ -5373,6 +5445,7 @@ msgid "Tracking"
 msgstr "Volgen"
 
 #: application/views/activationplanner/index.php:33
+#: application/views/labeldesigner/designer.php:290
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
 msgid "Field"
@@ -5414,7 +5487,7 @@ msgstr "Referenties in dit locatorvak"
 #: application/views/calltester/call_info.php:30
 #: application/views/countqsoby/index.php:7
 #: application/views/dbtools/statecheckresult.php:16
-#: application/views/labels/index.php:82
+#: application/views/labels/index.php:83
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
@@ -5557,9 +5630,10 @@ msgstr "Minimum aantal"
 
 #: application/views/activators/index.php:82
 #: application/views/awards/73on73/index.php:71
-#: application/views/awards/counties/details_ajax.php:23
+#: application/views/awards/counties/counties_simple_ajax.php:21
+#: application/views/awards/counties/details_ajax.php:24
 #: application/views/awards/counties/index.php:230
-#: application/views/awards/counties/state_ajax.php:40
+#: application/views/awards/counties/state_ajax.php:47
 #: application/views/awards/cq/index.php:273
 #: application/views/awards/dok/index.php:202
 #: application/views/awards/helvetia/index.php:204
@@ -5623,7 +5697,7 @@ msgstr "Niets gevonden!"
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:35
-#: application/views/labels/index.php:124
+#: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:42
@@ -6362,12 +6436,13 @@ msgstr "POTA REF in ADIF"
 #: application/views/awards/amsat_rover/index.php:159
 #: application/views/contesting/manager/index.php:31
 #: application/views/cron/index.php:76
-#: application/views/dashboard/index.php:516
-#: application/views/dashboard/index.php:550
-#: application/views/dashboard/index.php:579
-#: application/views/dashboard/index.php:608
-#: application/views/dashboard/index.php:637
-#: application/views/dashboard/index.php:666
+#: application/views/dashboard/index.php:490
+#: application/views/dashboard/index.php:532
+#: application/views/dashboard/index.php:566
+#: application/views/dashboard/index.php:595
+#: application/views/dashboard/index.php:624
+#: application/views/dashboard/index.php:653
+#: application/views/dashboard/index.php:682
 #: application/views/logbookadvanced/attachContest.php:11
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:48
@@ -6429,7 +6504,7 @@ msgstr "Volgende AOS"
 
 #: application/views/amsatstatus/index.php:115
 msgid "Hours ago (left-most: now)"
-msgstr ""
+msgstr "Uren geleden (meest links: nu)"
 
 #: application/views/amsatstatus/index.php:135
 #, php-format
@@ -6612,6 +6687,7 @@ msgstr "Eenvoudige naam om te beschrijven waarvoor je deze API gebruikt."
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
 #: application/views/interface_assets/footer.php:693
+#: application/views/labeldesigner/designer.php:101
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
 #: application/views/options/appearance.php:64
@@ -7171,6 +7247,7 @@ msgstr "Kopieer naar klembord"
 msgid "Download CSV"
 msgstr "Download CSV"
 
+#: application/views/awards/counties/counties_simple_ajax.php:7
 #: application/views/awards/counties/details_ajax.php:9
 #: application/views/awards/counties/index.php:8
 #: application/views/awards/counties/state_ajax.php:7
@@ -7181,9 +7258,14 @@ msgstr "Download CSV"
 msgid "County"
 msgstr "County"
 
+#: application/views/awards/counties/details_ajax.php:14
+#: application/views/awards/counties/state_ajax.php:26
+msgid "Not in USA-CA county list"
+msgstr ""
+
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
-msgstr ""
+msgstr "Zweef over een countynaam"
 
 #: application/views/awards/counties/index.php:42
 msgid "US County Award"
@@ -7249,6 +7331,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:41
 #: application/views/awards/wwff/index.php:39
+#: application/views/labeldesigner/designer.php:47
 msgid "Table"
 msgstr "Tabel"
 
@@ -7284,11 +7367,11 @@ msgstr "Kaart"
 
 #: application/views/awards/counties/index.php:71
 msgid "Show Counties Map"
-msgstr ""
+msgstr "Counties-kaart tonen"
 
 #: application/views/awards/counties/index.php:78
 msgid "Count QSO as Confirmed via"
-msgstr ""
+msgstr "Tel QSO als Bevestigd via"
 
 #: application/views/awards/counties/index.php:153
 msgid "Worked Counties"
@@ -7339,8 +7422,8 @@ msgstr "%s%% totaal bevestigd"
 #: application/views/countqsoby/index.php:8
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:489
-#: application/views/dashboard/index.php:672
+#: application/views/dashboard/index.php:498
+#: application/views/dashboard/index.php:688
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -7362,8 +7445,8 @@ msgstr "Gewerkt"
 #: application/views/countqsoby/index.php:9
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
-#: application/views/dashboard/index.php:493
-#: application/views/dashboard/index.php:677
+#: application/views/dashboard/index.php:504
+#: application/views/dashboard/index.php:693
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -7389,7 +7472,7 @@ msgid "Confirmed Progress"
 msgstr "Voortgang bevestigd"
 
 #: application/views/awards/counties/index.php:218
-#: application/views/awards/counties/state_ajax.php:32
+#: application/views/awards/counties/state_ajax.php:39
 #: application/views/awards/dok/index.php:182
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:251
@@ -7400,11 +7483,11 @@ msgstr "Voortgang bevestigd"
 #: application/views/awards/wapc/index.php:193
 #: application/views/awards/was/index.php:185
 #: application/views/awards/wpx/index.php:176
-#: application/views/dashboard/index.php:517
-#: application/views/dashboard/index.php:551
-#: application/views/dashboard/index.php:580
-#: application/views/dashboard/index.php:609
-#: application/views/dashboard/index.php:638
+#: application/views/dashboard/index.php:533
+#: application/views/dashboard/index.php:567
+#: application/views/dashboard/index.php:596
+#: application/views/dashboard/index.php:625
+#: application/views/dashboard/index.php:654
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:59
 #: application/views/statistics/qsotable.php:10
@@ -7513,11 +7596,11 @@ msgstr "Datumvoorkeuren"
 #: application/views/awards/wwff/index.php:57
 #: application/views/contestcalendar/index.php:44
 #: application/views/countqsoby/index.php:35
-#: application/views/dashboard/index.php:518
-#: application/views/dashboard/index.php:552
-#: application/views/dashboard/index.php:581
-#: application/views/dashboard/index.php:610
-#: application/views/dashboard/index.php:639
+#: application/views/dashboard/index.php:534
+#: application/views/dashboard/index.php:568
+#: application/views/dashboard/index.php:597
+#: application/views/dashboard/index.php:626
+#: application/views/dashboard/index.php:655
 #: application/views/gridmap/index.php:47
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:61
@@ -8508,7 +8591,7 @@ msgstr "Bevestigde QSO's exporteren"
 
 #: application/views/awards/jcc/index.php:46
 msgid "QSL Type"
-msgstr ""
+msgstr "QSL-type"
 
 #: application/views/awards/jcc/index.php:72
 msgid "Deleted cities"
@@ -8530,17 +8613,21 @@ msgstr "Niet gewerkt"
 
 #: application/views/awards/jcc/index.php:169
 msgid "JCC progress"
-msgstr ""
+msgstr "JCC voortgang"
 
 #: application/views/awards/jcc/index.php:179
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
 msgstr ""
+"Let op! Wavelog controleert niet of een QSO heeft plaatsgevonden vóór de "
+"verwijderingsdatum van de entiteit."
 
 #: application/views/awards/jcc/index.php:185
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
+"Er zijn geen gewerkte of bevestigde JCC-slots die overeenkomen met de "
+"huidige filters."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -9551,51 +9638,53 @@ msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Er is geen locatorvak ingesteld voor je actieve stationlocatie, dus de kaart "
+"kan niet gecentreerd worden."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Azimutale kaart gecentreerd op de locatie van je actieve station"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Projectie"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Azimutale equidistant"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Lambert-oppervlaktegetrouw"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Afstandsringen"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Maidenhead (Locatorvak) velden"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
-msgstr ""
+msgstr "CQ-zones"
 
 #: application/views/azimuthal/index.php:53
 msgid "ITU zones"
-msgstr ""
+msgstr "ITU-zones"
 
 #: application/views/azimuthal/index.php:58
 msgid "DXCC prefixes"
-msgstr ""
+msgstr "DXCC-prefixen"
 
 #: application/views/azimuthal/index.php:61
 msgid "Download PNG"
-msgstr ""
+msgstr "Download PNG"
 
 #: application/views/azimuthal/index.php:65
 #: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Azimutkaart"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -10917,7 +11006,7 @@ msgstr "Roepnaam DXCC-identificatie"
 #: application/views/contesting/manager/components/session_modal.php:63
 #: application/views/csv/index.php:19 application/views/dbtools/index.php:28
 #: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:125
+#: application/views/labels/index.php:126
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/qslprint/index.php:34 application/views/qso/index.php:139
 #: application/views/qso/index.php:402
@@ -12088,6 +12177,7 @@ msgstr "Onbekende fout"
 #: application/views/debug/index.php:205 application/views/debug/index.php:216
 #: application/views/debug/index.php:228
 #: application/views/interface_assets/footer.php:39
+#: application/views/labeldesigner/designer.php:59
 #: application/views/qslpostcard/designer.php:46
 msgid "Success"
 msgstr "Succes"
@@ -13061,19 +13151,19 @@ msgstr "QSO-gegevens"
 
 #: application/views/countqsoby/index.php:10
 msgid "QSOs total"
-msgstr ""
+msgstr "QSO's totaal"
 
 #: application/views/countqsoby/index.php:27
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: application/views/countqsoby/index.php:33
 msgid "Date presets"
-msgstr ""
+msgstr "Datumvoorkeuren"
 
 #: application/views/countqsoby/index.php:63
 msgid "Count QSOs by"
-msgstr ""
+msgstr "Tel QSO's op basis van"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -13482,21 +13572,21 @@ msgstr "Details"
 msgid "DXCCs Breakdown"
 msgstr "DXCC's overzicht"
 
-#: application/views/dashboard/index.php:490
+#: application/views/dashboard/index.php:500
 #: application/views/visitor/index.php:267
 msgid "Deleted DXCCs"
 msgstr "Verwijderde DXCC's"
 
-#: application/views/dashboard/index.php:500
+#: application/views/dashboard/index.php:513
 #: application/views/visitor/index.php:277
 msgid "Needed"
 msgstr "Nodig"
 
-#: application/views/dashboard/index.php:522
-#: application/views/dashboard/index.php:556
-#: application/views/dashboard/index.php:585
-#: application/views/dashboard/index.php:614
-#: application/views/dashboard/index.php:643
+#: application/views/dashboard/index.php:538
+#: application/views/dashboard/index.php:572
+#: application/views/dashboard/index.php:601
+#: application/views/dashboard/index.php:630
+#: application/views/dashboard/index.php:659
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:84
@@ -13530,11 +13620,11 @@ msgstr "Nodig"
 msgid "Sent"
 msgstr "Verzonden"
 
-#: application/views/dashboard/index.php:527
-#: application/views/dashboard/index.php:561
-#: application/views/dashboard/index.php:590
-#: application/views/dashboard/index.php:619
-#: application/views/dashboard/index.php:648
+#: application/views/dashboard/index.php:543
+#: application/views/dashboard/index.php:577
+#: application/views/dashboard/index.php:606
+#: application/views/dashboard/index.php:635
+#: application/views/dashboard/index.php:664
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:126
@@ -13567,7 +13657,7 @@ msgstr "Verzonden"
 msgid "Received"
 msgstr "Ontvangen"
 
-#: application/views/dashboard/index.php:532
+#: application/views/dashboard/index.php:548
 #: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/edit.php:189
 #: application/views/logbookadvanced/edit.php:215
@@ -13612,32 +13702,21 @@ msgstr "Ontvangen"
 msgid "Requested"
 msgstr "Aangevraagd"
 
-#: application/views/dashboard/index.php:544
-#: application/views/dashboard/index.php:547
+#: application/views/dashboard/index.php:560
+#: application/views/dashboard/index.php:563
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of The World"
 
-#: application/views/dashboard/index.php:634
+#: application/views/dashboard/index.php:650
 #: application/views/user/edit.php:1121
 msgid "Club Log"
 msgstr "Club Log"
 
-#: application/views/dashboard/index.php:660
-#: application/views/dashboard/index.php:663
+#: application/views/dashboard/index.php:676
+#: application/views/dashboard/index.php:679
 msgid "VUCC-Grids"
 msgstr "VUCC-Vakken"
-
-#: application/views/dashboard/index.php:668
-#: application/views/distances/index.php:27
-#: application/views/qslprint/qslprint.php:86
-#: application/views/qslprint/qslprint.php:87
-#: application/views/qslprint/qsolist.php:49
-#: application/views/qslprint/qsolist.php:51
-#: application/views/qslprint/qsolist.php:58
-#: application/views/qslprint/qsolist.php:60
-msgid "SAT"
-msgstr "SAT"
 
 #: application/views/dashboard/solar_data.php:6
 msgid "Solar Data & Propagation"
@@ -15651,6 +15730,8 @@ msgid "Duplication is disabled for Contacts notes"
 msgstr "Duplicatie is uitgeschakeld voor Contactnotities"
 
 #: application/views/interface_assets/footer.php:71
+#: application/views/labeldesigner/designer.php:410
+#: application/views/labeldesigner/designer.php:426
 #: application/views/qslpostcard/designer.php:318
 #: application/views/qslpostcard/designer.php:334
 msgid "Duplicate"
@@ -16139,13 +16220,21 @@ msgstr "Er is iets misgegaan. Probeer het opnieuw!"
 msgid "US Counties for state"
 msgstr "Amerikaanse county's voor staat"
 
-#: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2898
+msgid "Worked counties for state:"
+msgstr "Gewerkte counties voor staat:"
+
+#: application/views/interface_assets/footer.php:2899
 msgid "Confirmed counties for state:"
 msgstr "Bevestigde counties voor staat:"
 
-#: application/views/interface_assets/footer.php:2903
-msgid "Worked counties for state:"
-msgstr "Gewerkte counties voor staat:"
+#: application/views/interface_assets/footer.php:2900
+msgid "Counties in state:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2901
+msgid "Needed counties for state:"
+msgstr ""
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16467,6 +16556,546 @@ msgid "Export your logbook to a KML file for use in Google Earth."
 msgstr ""
 "Exporteer je logboek naar een KML-bestand voor gebruik in Google Earth."
 
+#: application/views/labeldesigner/designer.php:7
+#: application/views/qslpostcard/designer.php:6
+msgid "QSO Core"
+msgstr "QSO Kern"
+
+#: application/views/labeldesigner/designer.php:8
+#: application/views/qslpostcard/designer.php:7
+msgid "Date & Time"
+msgstr "Datum & Tijd"
+
+#: application/views/labeldesigner/designer.php:9
+#: application/views/qslpostcard/designer.php:8
+msgid "Station & Equipment"
+msgstr "Station & Apparatuur"
+
+#: application/views/labeldesigner/designer.php:10
+#: application/views/qslpostcard/designer.php:9
+msgid "My References"
+msgstr "Mijn referenties"
+
+#: application/views/labeldesigner/designer.php:11
+#: application/views/qslpostcard/designer.php:10
+msgid "Markers"
+msgstr "Markers"
+
+#: application/views/labeldesigner/designer.php:12
+#: application/views/qslpostcard/designer.php:11
+#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
+msgid "Other"
+msgstr "Andere"
+
+#: application/views/labeldesigner/designer.php:45
+#: application/views/qslpostcard/designer.php:34
+msgid "Custom Text"
+msgstr "Eigen tekst"
+
+#: application/views/labeldesigner/designer.php:46
+msgid "Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:48
+#: application/views/qslpostcard/designer.php:35
+msgid "Untitled"
+msgstr "Naamloos"
+
+#: application/views/labeldesigner/designer.php:49
+#: application/views/qslpostcard/designer.php:36
+msgid "Save failed"
+msgstr "Opslaan mislukt"
+
+#: application/views/labeldesigner/designer.php:50
+#: application/views/qslpostcard/designer.php:37
+msgid "Template saved."
+msgstr "Sjabloon opgeslagen."
+
+#: application/views/labeldesigner/designer.php:51
+#: application/views/qslpostcard/designer.php:38
+msgid "Delete Template?"
+msgstr "Sjabloon verwijderen?"
+
+#: application/views/labeldesigner/designer.php:52
+#: application/views/qslpostcard/designer.php:39
+msgid ""
+"Are you sure you want to delete this template? This action cannot be undone."
+msgstr ""
+"Weet je zeker dat je deze sjabloon wilt verwijderen? Deze actie kan niet "
+"ongedaan worden gemaakt."
+
+#: application/views/labeldesigner/designer.php:53
+#: application/views/qslpostcard/designer.php:40
+msgid "Delete failed"
+msgstr "Verwijderen mislukt"
+
+#: application/views/labeldesigner/designer.php:54
+#: application/views/qslpostcard/designer.php:41
+msgid "Template deleted successfully!"
+msgstr "Sjabloon succesvol verwijderd!"
+
+#: application/views/labeldesigner/designer.php:55
+#: application/views/qslpostcard/designer.php:42
+msgid "Please select a template to delete."
+msgstr "Selecteer een sjabloon om te verwijderen."
+
+#: application/views/labeldesigner/designer.php:56
+#: application/views/qslpostcard/designer.php:43
+msgid "Copy failed"
+msgstr "Kopiëren mislukt"
+
+#: application/views/labeldesigner/designer.php:57
+#: application/views/qslpostcard/designer.php:44
+msgid "Template copied."
+msgstr "Sjabloon gekopieerd."
+
+#: application/views/labeldesigner/designer.php:58
+#: application/views/qslpostcard/designer.php:45
+msgid "Please select a template to copy."
+msgstr "Selecteer een sjabloon om te kopiëren."
+
+#: application/views/labeldesigner/designer.php:61
+#: application/views/qslpostcard/designer.php:48
+msgid "selected"
+msgstr "geselecteerd"
+
+#: application/views/labeldesigner/designer.php:62
+msgid "Please select a label type first."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:63
+msgid ""
+"The label type of this template no longer exists. Please select another one."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:64
+#: application/views/qslpostcard/designer.php:49
+msgid "Unsaved changes"
+msgstr "Niet-opgeslagen wijzigingen"
+
+#: application/views/labeldesigner/designer.php:65
+#: application/views/qslpostcard/designer.php:50
+msgid ""
+"Your current design has unsaved changes. Loading a different template will "
+"replace it. Continue?"
+msgstr ""
+"Je huidige ontwerp heeft niet-opgeslagen wijzigingen. Het laden van een "
+"ander sjabloon zal het vervangen. Doorgaan?"
+
+#: application/views/labeldesigner/designer.php:66
+#: application/views/qslpostcard/designer.php:51
+msgid ""
+"Your current design has unsaved changes. If you leave the page, those "
+"changes will be lost. Leave anyway?"
+msgstr ""
+"Uw huidige ontwerp heeft niet-opgeslagen wijzigingen. Als u de pagina "
+"verlaat, gaan deze wijzigingen verloren. Toch verlaten?"
+
+#: application/views/labeldesigner/designer.php:67
+#: application/views/qslpostcard/designer.php:52
+msgid "Discard changes"
+msgstr "Wijzigingen negeren"
+
+#: application/views/labeldesigner/designer.php:68
+#: application/views/qslpostcard/designer.php:53
+msgid "Keep editing"
+msgstr "Blijf bewerken"
+
+#: application/views/labeldesigner/designer.php:69
+#: application/views/qslpostcard/designer.php:54
+msgid "Leave page"
+msgstr "Pagina verlaten"
+
+#: application/views/labeldesigner/designer.php:70
+msgid "Import failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:71
+msgid "Export failed"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:72
+msgid "Template imported."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:73
+msgid "Please select a template to export."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:74
+msgid "File is too large."
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:75
+#: application/views/labeldesigner/designer.php:126
+#: application/views/labels/index.php:94
+msgid "No paper assigned"
+msgstr "Geen papier toegewezen"
+
+#: application/views/labeldesigner/designer.php:91
+#: application/views/logbookadvanced/printQsl.php:9
+#: application/views/qslpostcard/designer.php:67
+#: application/views/qslpostcard/printqueue.php:8
+#: application/views/qslpostcard/printqueue_selected.php:10
+#: application/views/qslprint/printqsl.php:9
+msgid "Template"
+msgstr "Sjabloon"
+
+#: application/views/labeldesigner/designer.php:94
+#: application/views/qslpostcard/designer.php:70
+msgid "(new)"
+msgstr "(nieuw)"
+
+#: application/views/labeldesigner/designer.php:99
+#: application/views/qslpostcard/designer.php:75
+msgid "Template name"
+msgstr "Sjabloonnaam"
+
+#: application/views/labeldesigner/designer.php:100
+#: application/views/qslpostcard/designer.php:76
+msgid "Save Template"
+msgstr "Sjabloon opslaan"
+
+#: application/views/labeldesigner/designer.php:103
+#: application/views/qslpostcard/designer.php:79
+msgid "Copy Template"
+msgstr "Sjabloon kopiëren"
+
+#: application/views/labeldesigner/designer.php:106
+#: application/views/qslpostcard/designer.php:82
+msgid "Delete Template"
+msgstr "Sjabloon verwijderen"
+
+#: application/views/labeldesigner/designer.php:109
+msgid "Export Template"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:112
+msgid "Import Template"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:121
+msgid "Label type"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:124
+msgid "(select label type)"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:130
+msgid "Generate sample PDF with your latest QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:131
+#: application/views/qslpostcard/designer.php:95
+msgid "PDF"
+msgstr "PDF"
+
+#: application/views/labeldesigner/designer.php:135
+#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/qslpostcard/designer.php:99
+#: application/views/qslpostcard/printqueue.php:26
+#: application/views/qslpostcard/printqueue_selected.php:34
+#: application/views/qslprint/printqsl.php:34
+msgid "Save PDF"
+msgstr "PDF opslaan"
+
+#: application/views/labeldesigner/designer.php:143
+#: application/views/qslpostcard/designer.php:107
+msgid "History"
+msgstr "Geschiedenis"
+
+#: application/views/labeldesigner/designer.php:145
+#: application/views/qslpostcard/designer.php:109
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: application/views/labeldesigner/designer.php:146
+#: application/views/qslpostcard/designer.php:110
+msgid "Redo"
+msgstr "Opnieuw doen"
+
+#: application/views/labeldesigner/designer.php:152
+#: application/views/qslpostcard/designer.php:116
+msgid "Zoom"
+msgstr "In- of uitzoomen"
+
+#: application/views/labeldesigner/designer.php:162
+#: application/views/qslpostcard/designer.php:126
+msgid ""
+"Tip: After a test print, adjust global offsets rather than moving every "
+"field."
+msgstr ""
+"Tip: Na een proefdruk kun je beter de globale offsets aanpassen dan elk veld "
+"afzonderlijk te verplaatsen."
+
+#: application/views/labeldesigner/designer.php:163
+#: application/views/qslpostcard/designer.php:127
+msgid "Print offset"
+msgstr "Printoffset"
+
+#: application/views/labeldesigner/designer.php:192
+#: application/views/qslpostcard/designer.php:156
+msgid "Search fields…"
+msgstr "Zoek velden…"
+
+#: application/views/labeldesigner/designer.php:196
+#: application/views/qslpostcard/designer.php:160
+msgid "Add Custom Text"
+msgstr "Eigen tekst toevoegen"
+
+#: application/views/labeldesigner/designer.php:200
+msgid ""
+"Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
+"QSO row"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:201
+msgid "Horizontal Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:203
+msgid "Vertical rule — place at column edges to build a table grid"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:204
+msgid "Vertical Line"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:208
+msgid ""
+"Table grid — drag the corner to resize, drag the column markers to adjust "
+"column widths"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:209
+msgid "Add Table"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:224
+#: application/views/qslpostcard/designer.php:175
+msgid "No fields match your search."
+msgstr "Geen van de velden komen overeen met je zoekopdracht."
+
+#: application/views/labeldesigner/designer.php:232
+msgid "Label Canvas"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:233
+msgid "drag fields onto the label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:254
+#: application/views/qslpostcard/designer.php:205
+msgid "Template Options"
+msgstr "Sjabloonopties"
+
+#: application/views/labeldesigner/designer.php:258
+msgid "Number of QSOs per label"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:262
+#: application/views/qslpostcard/designer.php:213
+msgid "Row spacing"
+msgstr "Rijafstand"
+
+#: application/views/labeldesigner/designer.php:267
+msgid ""
+"Draws a rule between the QSO rows automatically, like the classic label "
+"layout"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:267
+msgid "Separator lines between QSO rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:270
+msgid "Separator thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:279
+#: application/views/qslpostcard/designer.php:230
+msgid "Properties"
+msgstr "Eigenschappen"
+
+#: application/views/labeldesigner/designer.php:284
+#: application/views/qslpostcard/designer.php:235
+msgid "Select a field on the canvas to edit it."
+msgstr "Selecteer een veld op het canvas om het te bewerken."
+
+#: application/views/labeldesigner/designer.php:285
+#: application/views/qslpostcard/designer.php:236
+msgid "Right-click a field for more actions."
+msgstr "Klik met de rechtermuisknop op een veld voor meer acties."
+
+#: application/views/labeldesigner/designer.php:295
+#: application/views/qslpostcard/designer.php:246
+msgid "Text"
+msgstr "Tekst"
+
+#: application/views/labeldesigner/designer.php:300
+#: application/views/qslpostcard/designer.php:251
+msgid "Frequency format"
+msgstr "Frequentieformaat"
+
+#: application/views/labeldesigner/designer.php:308
+#: application/views/qslpostcard/designer.php:259
+msgid "Omit unit"
+msgstr "Eenheid weglaten"
+
+#: application/views/labeldesigner/designer.php:314
+#: application/views/qslpostcard/designer.php:265
+msgid "X"
+msgstr "X"
+
+#: application/views/labeldesigner/designer.php:318
+#: application/views/qslpostcard/designer.php:269
+msgid "Y"
+msgstr "Y"
+
+#: application/views/labeldesigner/designer.php:326
+msgid "Rows"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:330
+msgid "Columns"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:336
+#: application/views/labels/index.php:45 application/views/labels/index.php:80
+msgid "Width"
+msgstr "Breedte"
+
+#: application/views/labeldesigner/designer.php:340
+#: application/views/labels/index.php:46 application/views/labels/index.php:81
+msgid "Height"
+msgstr "Hoogte"
+
+#: application/views/labeldesigner/designer.php:344
+#: application/views/labeldesigner/designer.php:360
+msgid "Thickness"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:349
+#: application/views/labels/index.php:48
+msgid "Orientation"
+msgstr "Oriëntatie"
+
+#: application/views/labeldesigner/designer.php:351
+msgid "Horizontal"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:352
+msgid "Vertical"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:356
+msgid "Length"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:367
+#: application/views/qslpostcard/designer.php:275
+msgid "Font"
+msgstr "Lettertype"
+
+#: application/views/labeldesigner/designer.php:377
+#: application/views/labels/create.php:105
+#: application/views/labels/edit.php:107 application/views/labels/index.php:82
+#: application/views/qslpostcard/designer.php:285
+msgid "Font Size"
+msgstr "Lettergrootte"
+
+#: application/views/labeldesigner/designer.php:383
+#: application/views/qslpostcard/designer.php:291
+msgid "Bold"
+msgstr "Vetgedrukt"
+
+#: application/views/labeldesigner/designer.php:389
+#: application/views/qslpostcard/designer.php:297
+msgid "Color"
+msgstr "Kleur"
+
+#: application/views/labeldesigner/designer.php:394
+#: application/views/qslpostcard/designer.php:302
+msgid "Wrap width"
+msgstr "Breedte omhullen"
+
+#: application/views/labeldesigner/designer.php:399
+msgid "Print this field once per QSO if a label holds multiple QSOs"
+msgstr ""
+
+#: application/views/labeldesigner/designer.php:400
+#: application/views/qslpostcard/designer.php:308
+msgid "Repeats per QSO"
+msgstr "Herhaald per QSO"
+
+#: application/views/labeldesigner/designer.php:404
+#: application/views/qslpostcard/designer.php:312
+msgid "Move this element freely without snapping to the grid or other elements"
+msgstr ""
+"Verplaats dit element vrij zonder vast te klikken aan het raster of andere "
+"elementen"
+
+#: application/views/labeldesigner/designer.php:405
+#: application/views/qslpostcard/designer.php:313
+msgid "Disable Auto-Snap"
+msgstr "Automatisch vastklikken uitschakelen"
+
+#: application/views/labeldesigner/designer.php:431
+#: application/views/qslpostcard/designer.php:339
+msgid "Align & distribute"
+msgstr "Uitlijnen & verdelen"
+
+#: application/views/labeldesigner/designer.php:435
+#: application/views/qslpostcard/designer.php:343
+msgid "Align left"
+msgstr "Links uitlijnen"
+
+#: application/views/labeldesigner/designer.php:436
+#: application/views/qslpostcard/designer.php:344
+msgid "Align horizontal centers"
+msgstr "Horizontale middens uitlijnen"
+
+#: application/views/labeldesigner/designer.php:437
+#: application/views/qslpostcard/designer.php:345
+msgid "Align right"
+msgstr "Rechts uitlijnen"
+
+#: application/views/labeldesigner/designer.php:439
+#: application/views/qslpostcard/designer.php:347
+msgid "Align top"
+msgstr "Naar boven uitlijnen"
+
+#: application/views/labeldesigner/designer.php:440
+#: application/views/qslpostcard/designer.php:348
+msgid "Align vertical centers"
+msgstr "Verticale middens uitlijnen"
+
+#: application/views/labeldesigner/designer.php:441
+#: application/views/qslpostcard/designer.php:349
+msgid "Align bottom"
+msgstr "Naar onder uitlijnen"
+
+#: application/views/labeldesigner/designer.php:443
+#: application/views/qslpostcard/designer.php:351
+msgid "Distribute horizontally"
+msgstr "Horizontaal verdelen"
+
+#: application/views/labeldesigner/designer.php:444
+#: application/views/qslpostcard/designer.php:352
+msgid "Distribute vertically"
+msgstr "Verticaal verdelen"
+
+#: application/views/labeldesigner/designer.php:446
+#: application/views/qslpostcard/designer.php:354
+msgid "Center on page (horizontal)"
+msgstr "Centreren op pagina (horizontaal)"
+
+#: application/views/labeldesigner/designer.php:447
+#: application/views/qslpostcard/designer.php:355
+msgid "Center on page (vertical)"
+msgstr "Centreren op pagina (verticaal)"
+
 #: application/views/labels/create.php:24
 msgid ""
 "Label name used for display purposes, so pick something meaningful, perhaps "
@@ -16561,12 +17190,6 @@ msgstr "Hoogte van het etiket"
 msgid "Total height of one label"
 msgstr "Totale hoogte van één etiket"
 
-#: application/views/labels/create.php:105
-#: application/views/labels/edit.php:107 application/views/labels/index.php:81
-#: application/views/qslpostcard/designer.php:285
-msgid "Font Size"
-msgstr "Lettergrootte"
-
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
@@ -16621,14 +17244,14 @@ msgstr "Oriëntatie van papier"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr "Landschap"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:61
+#: application/views/labels/index.php:62
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr "Portret"
@@ -16647,13 +17270,13 @@ msgstr ""
 "de labelstijl."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:104
-#: application/views/qslprint/printlabel.php:117
+#: application/views/logbookadvanced/startatform.php:125
+#: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
 msgid "Mark QSL as printed"
 msgstr "Markeer QSL als gedrukt"
 
-#: application/views/labels/index.php:3 application/views/labels/index.php:129
+#: application/views/labels/index.php:3 application/views/labels/index.php:130
 #: application/views/qslprint/index.php:77
 msgid "Print"
 msgstr "Afdrukken"
@@ -16671,98 +17294,101 @@ msgstr "Nieuw labeltype maken"
 msgid "Create New Paper Type"
 msgstr "Nieuw papiersoort maken"
 
-#: application/views/labels/index.php:38
+#: application/views/labels/index.php:39
 msgid "Paper types"
 msgstr "Papiersoorten"
 
-#: application/views/labels/index.php:44 application/views/labels/index.php:79
-msgid "Width"
-msgstr "Breedte"
-
-#: application/views/labels/index.php:45 application/views/labels/index.php:80
-msgid "Height"
-msgstr "Hoogte"
-
-#: application/views/labels/index.php:46
+#: application/views/labels/index.php:47
 msgid "Used by labels"
 msgstr "Gebruikt door labels"
 
-#: application/views/labels/index.php:47
-msgid "Orientation"
-msgstr "Oriëntatie"
-
-#: application/views/labels/index.php:72
+#: application/views/labels/index.php:73
 msgid "Label types"
 msgstr "Labeltypen"
 
-#: application/views/labels/index.php:83
+#: application/views/labels/index.php:84
 msgid "Use For Print"
 msgstr "Gebruik voor print"
 
-#: application/views/labels/index.php:93
-msgid "No paper assigned"
-msgstr "Geen papier toegewezen"
-
-#: application/views/labels/index.php:118
+#: application/views/labels/index.php:119
 msgid "QSL Card Labels Pending"
 msgstr "QSL-kaartlabels in behandeling"
 
-#: application/views/labels/index.php:127
+#: application/views/labels/index.php:128
 msgid "QSOs Waiting"
 msgstr "QSO's wachten"
 
-#: application/views/labels/index.php:128
+#: application/views/labels/index.php:129
 msgid "View QSOs"
 msgstr "Bekijk QSO's"
 
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
+msgid "Label layout"
+msgstr ""
+
+#: application/views/labels/startatform.php:24
+#: application/views/logbookadvanced/startatform.php:23
+#: application/views/qslprint/printlabel.php:23
+msgid "Standard"
+msgstr ""
+
+#: application/views/labels/startatform.php:30
+#: application/views/logbookadvanced/startatform.php:29
+#: application/views/qslprint/printlabel.php:29
+msgid ""
+"Designed label templates use their own layout and ignore the options below."
+msgstr ""
+
+#: application/views/labels/startatform.php:41
+#: application/views/logbookadvanced/startatform.php:40
+#: application/views/qslprint/printlabel.php:40
 msgid "Include my call?"
 msgstr "Voeg mijn roepnaam toe?"
 
-#: application/views/labels/startatform.php:33
-#: application/views/logbookadvanced/startatform.php:32
-#: application/views/qslprint/printlabel.php:32
+#: application/views/labels/startatform.php:53
+#: application/views/logbookadvanced/startatform.php:52
+#: application/views/qslprint/printlabel.php:52
 msgid "Include OP-Call? (if filled)"
 msgstr "OP-Call meenemen? (indien ingevuld)"
 
-#: application/views/labels/startatform.php:45
-#: application/views/logbookadvanced/startatform.php:44
-#: application/views/qslprint/printlabel.php:44
+#: application/views/labels/startatform.php:65
+#: application/views/logbookadvanced/startatform.php:64
+#: application/views/qslprint/printlabel.php:64
 msgid "Include Grid?"
 msgstr "Vak opnemen?"
 
-#: application/views/labels/startatform.php:57
-#: application/views/logbookadvanced/startatform.php:56
-#: application/views/qslprint/printlabel.php:56
+#: application/views/labels/startatform.php:77
+#: application/views/logbookadvanced/startatform.php:76
+#: application/views/qslprint/printlabel.php:76
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
 "Referentie opnemen? (SIG, SOTA, POTA, IOTA, WWFF; indien beschikbaar op "
 "locatie)"
 
-#: application/views/labels/startatform.php:69
+#: application/views/labels/startatform.php:89
 msgid "Include Via (if filled)?"
 msgstr "Via opnemen (indien ingevuld)?"
 
-#: application/views/labels/startatform.php:81
+#: application/views/labels/startatform.php:101
 msgid "Include QSLMSG (if filled)?"
 msgstr "Inclusief QSLMSG (indien ingevuld)?"
 
-#: application/views/labels/startatform.php:93
+#: application/views/labels/startatform.php:113
 msgid "Include TNX message?"
 msgstr "Inclusief TNX-bericht?"
 
-#: application/views/labels/startatform.php:106
-#: application/views/logbookadvanced/startatform.php:117
-#: application/views/qslprint/printlabel.php:105
+#: application/views/labels/startatform.php:128
+#: application/views/logbookadvanced/startatform.php:138
+#: application/views/qslprint/printlabel.php:126
 msgid "Start printing at?"
 msgstr "Begin met afdrukken om?"
 
-#: application/views/labels/startatform.php:112
-#: application/views/logbookadvanced/startatform.php:123
-#: application/views/qslprint/printlabel.php:111
+#: application/views/labels/startatform.php:134
+#: application/views/logbookadvanced/startatform.php:144
+#: application/views/qslprint/printlabel.php:132
 msgid "Enter the starting position for label printing"
 msgstr "Voer de startpositie in voor het etiketteren"
 
@@ -16795,7 +17421,7 @@ msgstr "Zoek naar duplicaten met:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "Stem QSO's binnen het geselecteerde tijdsvenster op elkaar af"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
@@ -17191,7 +17817,7 @@ msgstr "Tijdvenster:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "aanpasbaar, 1 tot 60 minuten (standaard 30 minuten)"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -17922,7 +18548,7 @@ msgstr "Maak ADIF"
 
 #: application/views/logbookadvanced/index.php:850
 #: application/views/qslprint/index.php:5
-#: application/views/qslprint/printlabel.php:116
+#: application/views/qslprint/printlabel.php:137
 msgid "Print Label"
 msgstr "Label afdrukken"
 
@@ -18052,14 +18678,6 @@ msgstr ""
 "De geselecteerde velden worden samengevoegd in het primaire QSO. Je kunt "
 "verschillende velden uit elk QSO selecteren."
 
-#: application/views/logbookadvanced/printQsl.php:9
-#: application/views/qslpostcard/designer.php:67
-#: application/views/qslpostcard/printqueue.php:8
-#: application/views/qslpostcard/printqueue_selected.php:10
-#: application/views/qslprint/printqsl.php:9
-msgid "Template"
-msgstr "Sjabloon"
-
 #: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
@@ -18077,14 +18695,6 @@ msgstr ""
 #: application/views/qslprint/printqsl.php:30
 msgid "Generate Postcard PDF"
 msgstr "Genereer ansichtkaart PDF"
-
-#: application/views/logbookadvanced/printQsl.php:34
-#: application/views/qslpostcard/designer.php:99
-#: application/views/qslpostcard/printqueue.php:26
-#: application/views/qslpostcard/printqueue_selected.php:34
-#: application/views/qslprint/printqsl.php:34
-msgid "Save PDF"
-msgstr "PDF opslaan"
 
 #: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
@@ -18112,18 +18722,18 @@ msgstr "Vorige"
 msgid "Next"
 msgstr "Volgende"
 
-#: application/views/logbookadvanced/startatform.php:68
-#: application/views/qslprint/printlabel.php:68
+#: application/views/logbookadvanced/startatform.php:88
+#: application/views/qslprint/printlabel.php:88
 msgid "Include Via"
 msgstr "Inclusief Via"
 
-#: application/views/logbookadvanced/startatform.php:80
-#: application/views/qslprint/printlabel.php:80
+#: application/views/logbookadvanced/startatform.php:100
+#: application/views/qslprint/printlabel.php:100
 msgid "Include QSLMSG"
 msgstr "Inclusief QSLMSG"
 
-#: application/views/logbookadvanced/startatform.php:92
-#: application/views/qslprint/printlabel.php:92
+#: application/views/logbookadvanced/startatform.php:112
+#: application/views/qslprint/printlabel.php:112
 msgid "Include TNX message"
 msgstr "Inclusief TNX-bericht"
 
@@ -19461,31 +20071,6 @@ msgstr "Toevoegen aan QSL"
 msgid "Address"
 msgstr "Adres"
 
-#: application/views/qslpostcard/designer.php:6
-msgid "QSO Core"
-msgstr "QSO Kern"
-
-#: application/views/qslpostcard/designer.php:7
-msgid "Date & Time"
-msgstr "Datum & Tijd"
-
-#: application/views/qslpostcard/designer.php:8
-msgid "Station & Equipment"
-msgstr "Station & Apparatuur"
-
-#: application/views/qslpostcard/designer.php:9
-msgid "My References"
-msgstr "Mijn referenties"
-
-#: application/views/qslpostcard/designer.php:10
-msgid "Markers"
-msgstr "Markers"
-
-#: application/views/qslpostcard/designer.php:11
-#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:556
-msgid "Other"
-msgstr "Andere"
-
 #: application/views/qslpostcard/designer.php:29
 msgid "Please choose an image first."
 msgstr "Kies eerst een afbeelding."
@@ -19502,113 +20087,6 @@ msgstr "Onbekende fout"
 msgid "Preview image uploaded."
 msgstr "Voorbeeldafbeelding geüpload."
 
-#: application/views/qslpostcard/designer.php:34
-msgid "Custom Text"
-msgstr "Eigen tekst"
-
-#: application/views/qslpostcard/designer.php:35
-msgid "Untitled"
-msgstr "Naamloos"
-
-#: application/views/qslpostcard/designer.php:36
-msgid "Save failed"
-msgstr "Opslaan mislukt"
-
-#: application/views/qslpostcard/designer.php:37
-msgid "Template saved."
-msgstr "Sjabloon opgeslagen."
-
-#: application/views/qslpostcard/designer.php:38
-msgid "Delete Template?"
-msgstr "Sjabloon verwijderen?"
-
-#: application/views/qslpostcard/designer.php:39
-msgid ""
-"Are you sure you want to delete this template? This action cannot be undone."
-msgstr ""
-"Weet je zeker dat je deze sjabloon wilt verwijderen? Deze actie kan niet "
-"ongedaan worden gemaakt."
-
-#: application/views/qslpostcard/designer.php:40
-msgid "Delete failed"
-msgstr "Verwijderen mislukt"
-
-#: application/views/qslpostcard/designer.php:41
-msgid "Template deleted successfully!"
-msgstr "Sjabloon succesvol verwijderd!"
-
-#: application/views/qslpostcard/designer.php:42
-msgid "Please select a template to delete."
-msgstr "Selecteer een sjabloon om te verwijderen."
-
-#: application/views/qslpostcard/designer.php:43
-msgid "Copy failed"
-msgstr "Kopiëren mislukt"
-
-#: application/views/qslpostcard/designer.php:44
-msgid "Template copied."
-msgstr "Sjabloon gekopieerd."
-
-#: application/views/qslpostcard/designer.php:45
-msgid "Please select a template to copy."
-msgstr "Selecteer een sjabloon om te kopiëren."
-
-#: application/views/qslpostcard/designer.php:48
-msgid "selected"
-msgstr "geselecteerd"
-
-#: application/views/qslpostcard/designer.php:49
-msgid "Unsaved changes"
-msgstr "Niet-opgeslagen wijzigingen"
-
-#: application/views/qslpostcard/designer.php:50
-msgid ""
-"Your current design has unsaved changes. Loading a different template will "
-"replace it. Continue?"
-msgstr ""
-"Je huidige ontwerp heeft niet-opgeslagen wijzigingen. Het laden van een "
-"ander sjabloon zal het vervangen. Doorgaan?"
-
-#: application/views/qslpostcard/designer.php:51
-msgid ""
-"Your current design has unsaved changes. If you leave the page, those "
-"changes will be lost. Leave anyway?"
-msgstr ""
-"Uw huidige ontwerp heeft niet-opgeslagen wijzigingen. Als u de pagina "
-"verlaat, gaan deze wijzigingen verloren. Toch verlaten?"
-
-#: application/views/qslpostcard/designer.php:52
-msgid "Discard changes"
-msgstr "Wijzigingen negeren"
-
-#: application/views/qslpostcard/designer.php:53
-msgid "Keep editing"
-msgstr "Blijf bewerken"
-
-#: application/views/qslpostcard/designer.php:54
-msgid "Leave page"
-msgstr "Pagina verlaten"
-
-#: application/views/qslpostcard/designer.php:70
-msgid "(new)"
-msgstr "(nieuw)"
-
-#: application/views/qslpostcard/designer.php:75
-msgid "Template name"
-msgstr "Sjabloonnaam"
-
-#: application/views/qslpostcard/designer.php:76
-msgid "Save Template"
-msgstr "Sjabloon opslaan"
-
-#: application/views/qslpostcard/designer.php:79
-msgid "Copy Template"
-msgstr "Sjabloon kopiëren"
-
-#: application/views/qslpostcard/designer.php:82
-msgid "Delete Template"
-msgstr "Sjabloon verwijderen"
-
 #: application/views/qslpostcard/designer.php:90
 msgid "Background image"
 msgstr "Achtergrondafbeelding"
@@ -19616,50 +20094,6 @@ msgstr "Achtergrondafbeelding"
 #: application/views/qslpostcard/designer.php:94
 msgid "Generate PDF (demo)"
 msgstr "PDF genereren (demo)"
-
-#: application/views/qslpostcard/designer.php:95
-msgid "PDF"
-msgstr "PDF"
-
-#: application/views/qslpostcard/designer.php:107
-msgid "History"
-msgstr "Geschiedenis"
-
-#: application/views/qslpostcard/designer.php:109
-msgid "Undo"
-msgstr "Ongedaan maken"
-
-#: application/views/qslpostcard/designer.php:110
-msgid "Redo"
-msgstr "Opnieuw doen"
-
-#: application/views/qslpostcard/designer.php:116
-msgid "Zoom"
-msgstr "In- of uitzoomen"
-
-#: application/views/qslpostcard/designer.php:126
-msgid ""
-"Tip: After a test print, adjust global offsets rather than moving every "
-"field."
-msgstr ""
-"Tip: Na een proefdruk kun je beter de globale offsets aanpassen dan elk veld "
-"afzonderlijk te verplaatsen."
-
-#: application/views/qslpostcard/designer.php:127
-msgid "Print offset"
-msgstr "Printoffset"
-
-#: application/views/qslpostcard/designer.php:156
-msgid "Search fields…"
-msgstr "Zoek velden…"
-
-#: application/views/qslpostcard/designer.php:160
-msgid "Add Custom Text"
-msgstr "Eigen tekst toevoegen"
-
-#: application/views/qslpostcard/designer.php:175
-msgid "No fields match your search."
-msgstr "Geen van de velden komen overeen met je zoekopdracht."
 
 #: application/views/qslpostcard/designer.php:183
 msgid "Postcard Canvas"
@@ -19669,17 +20103,9 @@ msgstr "Ansichtkaart Canvas"
 msgid "drag fields onto the postcard"
 msgstr "sleep velden op de ansichtkaart"
 
-#: application/views/qslpostcard/designer.php:205
-msgid "Template Options"
-msgstr "Sjabloonopties"
-
 #: application/views/qslpostcard/designer.php:209
 msgid "Number of QSOs per QSL card"
 msgstr "Aantal QSO's per QSL-kaart"
-
-#: application/views/qslpostcard/designer.php:213
-msgid "Row spacing"
-msgstr "Rijafstand"
 
 #: application/views/qslpostcard/designer.php:218
 msgid "Print background image (uncheck for pre-printed cards)"
@@ -19690,115 +20116,9 @@ msgstr ""
 msgid "Skip address printing (for printing on regular QSL cards)"
 msgstr "Adresafdrukken overslaan (voor afdrukken op gewone QSL-kaarten)"
 
-#: application/views/qslpostcard/designer.php:230
-msgid "Properties"
-msgstr "Eigenschappen"
-
-#: application/views/qslpostcard/designer.php:235
-msgid "Select a field on the canvas to edit it."
-msgstr "Selecteer een veld op het canvas om het te bewerken."
-
-#: application/views/qslpostcard/designer.php:236
-msgid "Right-click a field for more actions."
-msgstr "Klik met de rechtermuisknop op een veld voor meer acties."
-
-#: application/views/qslpostcard/designer.php:246
-msgid "Text"
-msgstr "Tekst"
-
-#: application/views/qslpostcard/designer.php:251
-msgid "Frequency format"
-msgstr "Frequentieformaat"
-
-#: application/views/qslpostcard/designer.php:259
-msgid "Omit unit"
-msgstr "Eenheid weglaten"
-
-#: application/views/qslpostcard/designer.php:265
-msgid "X"
-msgstr "X"
-
-#: application/views/qslpostcard/designer.php:269
-msgid "Y"
-msgstr "Y"
-
-#: application/views/qslpostcard/designer.php:275
-msgid "Font"
-msgstr "Lettertype"
-
-#: application/views/qslpostcard/designer.php:291
-msgid "Bold"
-msgstr "Vetgedrukt"
-
-#: application/views/qslpostcard/designer.php:297
-msgid "Color"
-msgstr "Kleur"
-
-#: application/views/qslpostcard/designer.php:302
-msgid "Wrap width"
-msgstr "Breedte omhullen"
-
 #: application/views/qslpostcard/designer.php:307
 msgid "Print this field once per QSO when a card holds multiple QSOs"
 msgstr "Print dit veld één keer per QSO wanneer een kaart meerdere QSO's bevat"
-
-#: application/views/qslpostcard/designer.php:308
-msgid "Repeats per QSO"
-msgstr "Herhaald per QSO"
-
-#: application/views/qslpostcard/designer.php:312
-msgid "Move this element freely without snapping to the grid or other elements"
-msgstr ""
-"Verplaats dit element vrij zonder vast te klikken aan het raster of andere "
-"elementen"
-
-#: application/views/qslpostcard/designer.php:313
-msgid "Disable Auto-Snap"
-msgstr "Automatisch vastklikken uitschakelen"
-
-#: application/views/qslpostcard/designer.php:339
-msgid "Align & distribute"
-msgstr "Uitlijnen & verdelen"
-
-#: application/views/qslpostcard/designer.php:343
-msgid "Align left"
-msgstr "Links uitlijnen"
-
-#: application/views/qslpostcard/designer.php:344
-msgid "Align horizontal centers"
-msgstr "Horizontale middens uitlijnen"
-
-#: application/views/qslpostcard/designer.php:345
-msgid "Align right"
-msgstr "Rechts uitlijnen"
-
-#: application/views/qslpostcard/designer.php:347
-msgid "Align top"
-msgstr "Naar boven uitlijnen"
-
-#: application/views/qslpostcard/designer.php:348
-msgid "Align vertical centers"
-msgstr "Verticale middens uitlijnen"
-
-#: application/views/qslpostcard/designer.php:349
-msgid "Align bottom"
-msgstr "Naar onder uitlijnen"
-
-#: application/views/qslpostcard/designer.php:351
-msgid "Distribute horizontally"
-msgstr "Horizontaal verdelen"
-
-#: application/views/qslpostcard/designer.php:352
-msgid "Distribute vertically"
-msgstr "Verticaal verdelen"
-
-#: application/views/qslpostcard/designer.php:354
-msgid "Center on page (horizontal)"
-msgstr "Centreren op pagina (horizontaal)"
-
-#: application/views/qslpostcard/designer.php:355
-msgid "Center on page (vertical)"
-msgstr "Centreren op pagina (verticaal)"
 
 #: application/views/qslprint/index.php:4
 msgid "Please select at least one row"
@@ -22015,20 +22335,20 @@ msgstr "Hoogte"
 
 #: application/views/statistics/antennaanalytics.php:87
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: application/views/statistics/antennaanalytics.php:101
 msgid "QSOs per degree of azimuth"
-msgstr ""
+msgstr "QSO's per graad van azimut"
 
 #: application/views/statistics/antennaanalytics.php:102
 #, php-format
 msgid "25 / 50 / 75 % of peak"
-msgstr ""
+msgstr "25 / 50 / 75 % of piek"
 
 #: application/views/statistics/antennaanalytics.php:103
 msgid "Marker every 5°"
-msgstr ""
+msgstr "Marker elke 5°"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:101
