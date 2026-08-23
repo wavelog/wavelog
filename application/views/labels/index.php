@@ -33,6 +33,7 @@
 	<div class="card-body">
 	<a href="<?php echo site_url('labels/create'); ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"> </i> <?= __("Create New Label Type"); ?></a>
 	<a href="<?php echo site_url('labels/createpaper'); ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"> </i> <?= __("Create New Paper Type"); ?></a>
+	<a href="<?php echo site_url('labeldesigner'); ?>" class="btn btn-primary btn-sm"><i class="fas fa-pen-ruler"> </i> <?= __("Label Designer"); ?></a>
 <br><br>
 	<?php if ($papertypes) { ?>
 		<h4><?= __("Paper types"); ?></h4>
