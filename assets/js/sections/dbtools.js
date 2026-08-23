@@ -5,6 +5,63 @@
  * became its own page (Tools -> Database Tools).
  */
 
+// Shared DataTable init for all dbtools result tables.
+// opts.ordering: enable ordering (default false)
+// opts.textExtractor: fn($cell) -> string, custom cell text for filter options
+// opts.onInit: fn, called at the end of initComplete
+function initDbtoolsTable(tableSelector, opts) {
+	opts = opts || {};
+	$(tableSelector).DataTable({
+		"pageLength": 25,
+		responsive: false,
+		ordering: !!opts.ordering,
+		"scrollY": "510px",
+		"scrollCollapse": true,
+		"paging": false,
+		"scrollX": false,
+		"language": {
+			url: getDataTablesLanguageUrl(),
+		},
+		initComplete: function () {
+			this.api()
+				.columns('.select-filter')
+				.every(function () {
+					var column = this;
+					var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+						.appendTo($(column.footer()).empty())
+						.on('change', function () {
+							var val = $.fn.dataTable.util.escapeRegex($(this).val());
+							// Search in rendered content, not just data
+							column.search(val ? val : '', true, false).draw();
+						});
+
+					// Count occurrences of each unique value
+					var counts = {};
+					column.nodes().flatten().to$().each(function () {
+						var $cell = $(this);
+						var text = opts.textExtractor ? opts.textExtractor($cell) : $cell.text().trim();
+						if (text) {
+							counts[text] = (counts[text] || 0) + 1;
+						}
+					});
+
+					// Add options with counts
+					for (var text in counts) {
+						if (!select.find('option[value="' + text + '"]').length) {
+							select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
+						}
+					}
+
+					// Sort options
+					select.find('option:not(:first)').sort(function(a, b) {
+						return a.text.localeCompare(b.text);
+					}).appendTo(select);
+				});
+			if (opts.onInit) opts.onInit();
+		},
+	});
+}
+
 function checkUpdateDistances() {
 	$('#checkUpdateDistancesBtn').prop("disabled", true).addClass("running");
 
@@ -296,53 +353,9 @@ function checkDxcc() {
 		success: function(response) {
 			$('#checkDxccBtn').prop("disabled", false).removeClass("running");
 			$('.result').html(response);
-			$('#dxccCheckTable').DataTable({
-				"pageLength": 25,
-				responsive: false,
+			initDbtoolsTable('#dxccCheckTable', {
 				ordering: true,
-				"scrollY": "510px",
-				"scrollCollapse": true,
-				"paging": false,
-				"scrollX": false,
-				"language": {
-					url: getDataTablesLanguageUrl(),
-				},
-				initComplete: function () {
-					this.api()
-						.columns('.select-filter')
-						.every(function () {
-							var column = this;
-							var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
-								.appendTo($(column.footer()).empty())
-								.on('change', function () {
-									var val = $.fn.dataTable.util.escapeRegex($(this).val());
-									// Search in rendered content, not just data
-									column.search(val ? val : '', true, false).draw();
-								});
-
-							// Count occurrences of each unique value
-							var counts = {};
-							column.nodes().flatten().to$().each(function () {
-								var text = $(this).text().trim();
-								if (text) {
-									counts[text] = (counts[text] || 0) + 1;
-								}
-							});
-
-							// Add options with counts
-							for (var text in counts) {
-								if (!select.find('option[value="' + text + '"]').length) {
-									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
-								}
-							}
-
-							// Sort options
-							select.find('option:not(:first)').sort(function(a, b) {
-								return a.text.localeCompare(b.text);
-							}).appendTo(select);
-						});
-						rebind_checkbox_trigger_dxcc();
-				},
+				onInit: rebind_checkbox_trigger_dxcc,
 			});
 		},
 		error: function(xhr, status, error) {
@@ -365,59 +378,16 @@ function checkIncorrectCqZones() {
 		success: function(response) {
 			$('#checkIncorrectCqZonesBtn').prop("disabled", false).removeClass("running");
 			$('.result').html(response);
-			$('#incorrectcqzonetable').DataTable({
-				"pageLength": 25,
-				responsive: false,
-				ordering: false,
-				"scrollY": "510px",
-				"scrollCollapse": true,
-				"paging": false,
-				"scrollX": false,
-				"language": {
-					url: getDataTablesLanguageUrl(),
-				},
-				initComplete: function () {
-					this.api()
-						.columns('.select-filter')
-						.every(function () {
-							var column = this;
-							var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
-								.appendTo($(column.footer()).empty())
-								.on('change', function () {
-									var val = $.fn.dataTable.util.escapeRegex($(this).val());
-									// Search in rendered content, not just data
-									column.search(val ? val : '', true, false).draw();
-								});
+			initDbtoolsTable('#incorrectcqzonetable', {
+				onInit: function () {
+					rebind_checkbox_trigger_cq_zone();
 
-							// Count occurrences of each unique value
-							var counts = {};
-							column.nodes().flatten().to$().each(function () {
-								var text = $(this).text().trim();
-								if (text) {
-									counts[text] = (counts[text] || 0) + 1;
-								}
-							});
-
-							// Add options with counts
-							for (var text in counts) {
-								if (!select.find('option[value="' + text + '"]').length) {
-									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
-								}
-							}
-
-							// Sort options
-							select.find('option:not(:first)').sort(function(a, b) {
-								return a.text.localeCompare(b.text);
-							}).appendTo(select);
-						});
-						rebind_checkbox_trigger_cq_zone();
-
-						$('#forceMultiZoneUpdateCq').on('change', function() {
-							$('#incorrectcqzonetable').DataTable().column(8).search('').draw();
-							$('#checkBoxAllCqZones').prop('checked', false);
-							$('#incorrectcqzonetable tbody input[type="checkbox"]').prop('checked', false);
-							$('#incorrectcqzonetable tbody tr.activeRow').removeClass('activeRow');
-						});
+					$('#forceMultiZoneUpdateCq').on('change', function() {
+						$('#incorrectcqzonetable').DataTable().column(8).search('').draw();
+						$('#checkBoxAllCqZones').prop('checked', false);
+						$('#incorrectcqzonetable tbody input[type="checkbox"]').prop('checked', false);
+						$('#incorrectcqzonetable tbody tr.activeRow').removeClass('activeRow');
+					});
 				},
 			});
 		},
@@ -441,53 +411,8 @@ function checkIncorrectItuZones() {
 		success: function(response) {
 			$('#checkIncorrectItuZonesBtn').prop("disabled", false).removeClass("running");
 			$('.result').html(response);
-			$('#incorrectituzonetable').DataTable({
-				"pageLength": 25,
-				responsive: false,
-				ordering: false,
-				"scrollY": "510px",
-				"scrollCollapse": true,
-				"paging": false,
-				"scrollX": false,
-				"language": {
-					url: getDataTablesLanguageUrl(),
-				},
-				initComplete: function () {
-					this.api()
-						.columns('.select-filter')
-						.every(function () {
-							var column = this;
-							var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
-								.appendTo($(column.footer()).empty())
-								.on('change', function () {
-									var val = $.fn.dataTable.util.escapeRegex($(this).val());
-									// Search in rendered content, not just data
-									column.search(val ? val : '', true, false).draw();
-								});
-
-							// Count occurrences of each unique value
-							var counts = {};
-							column.nodes().flatten().to$().each(function () {
-								var text = $(this).text().trim();
-								if (text) {
-									counts[text] = (counts[text] || 0) + 1;
-								}
-							});
-
-							// Add options with counts
-							for (var text in counts) {
-								if (!select.find('option[value="' + text + '"]').length) {
-									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
-								}
-							}
-
-							// Sort options
-							select.find('option:not(:first)').sort(function(a, b) {
-								return a.text.localeCompare(b.text);
-							}).appendTo(select);
-						});
-						rebind_checkbox_trigger_itu_zone();
-				},
+			initDbtoolsTable('#incorrectituzonetable', {
+				onInit: rebind_checkbox_trigger_itu_zone,
 			});
 
 			$('#forceMultiZoneUpdate').on('change', function() {
@@ -629,53 +554,7 @@ function checkIncorrectGridsquares() {
 		success: function(response) {
 			$('#checkIncorrectGridsquaresBtn').prop("disabled", false).removeClass("running");
 			$('.result').html(response);
-			$('#gridsquareCheckTable').DataTable({
-				"pageLength": 25,
-				responsive: false,
-				ordering: false,
-				"scrollY": "510px",
-				"scrollCollapse": true,
-				"paging": false,
-				"scrollX": false,
-				"language": {
-					url: getDataTablesLanguageUrl(),
-				},
-				initComplete: function () {
-					this.api()
-						.columns('.select-filter')
-						.every(function () {
-							var column = this;
-							var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
-								.appendTo($(column.footer()).empty())
-								.on('change', function () {
-									var val = $.fn.dataTable.util.escapeRegex($(this).val());
-									// Search in rendered content, not just data
-									column.search(val ? val : '', true, false).draw();
-								});
-
-							// Count occurrences of each unique value
-							var counts = {};
-							column.nodes().flatten().to$().each(function () {
-								var text = $(this).text().trim();
-								if (text) {
-									counts[text] = (counts[text] || 0) + 1;
-								}
-							});
-
-							// Add options with counts
-							for (var text in counts) {
-								if (!select.find('option[value="' + text + '"]').length) {
-									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
-								}
-							}
-
-							// Sort options
-							select.find('option:not(:first)').sort(function(a, b) {
-								return a.text.localeCompare(b.text);
-							}).appendTo(select);
-						});
-				},
-			});
+			initDbtoolsTable('#gridsquareCheckTable');
 		},
 		error: function(xhr, status, error) {
 			$('#checkIncorrectGridsquaresBtn').prop("disabled", false).removeClass("running");
@@ -810,55 +689,13 @@ function checkIota() {
 			$('#checkIotaBtn').prop("disabled", false).removeClass("running");
 
 			$('.result').html(response);
-			$('#iotaCheckTable').DataTable({
-				"pageLength": 25,
-				responsive: false,
-				ordering: false,
-				"scrollY": "510px",
-				"scrollCollapse": true,
-				"paging": false,
-				"scrollX": false,
-				"language": {
-					url: getDataTablesLanguageUrl(),
-				},
-				initComplete: function () {
-					this.api()
-						.columns('.select-filter')
-						.every(function () {
-							var column = this;
-							var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
-								.appendTo($(column.footer()).empty())
-								.on('change', function () {
-									var val = $.fn.dataTable.util.escapeRegex($(this).val());
-									// Search in rendered content, not just data
-									column.search(val ? val : '', true, false).draw();
-								});
-
-							// Count occurrences of each unique value
-							var counts = {};
-							column.nodes().flatten().to$().each(function () {
-								// Get text from the first anchor link which contains the IOTA reference
-								var $anchor = $(this).find('a').first();
-								var text = $anchor.length ? $anchor.text().trim() : $(this).text().trim();
-								// Remove any extra whitespace
-								text = text.split(/\s+/)[0];
-								if (text) {
-									counts[text] = (counts[text] || 0) + 1;
-								}
-							});
-
-							// Add options with counts
-							for (var text in counts) {
-								if (!select.find('option[value="' + text + '"]').length) {
-									select.append($('<option/>', { value: text }).text(text + ' (' + counts[text] + ')'));
-								}
-							}
-
-							// Sort options
-							select.find('option:not(:first)').sort(function(a, b) {
-								return a.text.localeCompare(b.text);
-							}).appendTo(select);
-						});
+			initDbtoolsTable('#iotaCheckTable', {
+				textExtractor: function ($cell) {
+					// Get text from the first anchor link which contains the IOTA reference
+					var $anchor = $cell.find('a').first();
+					var text = $anchor.length ? $anchor.text().trim() : $cell.text().trim();
+					// Remove any extra whitespace
+					return text.split(/\s+/)[0];
 				},
 			});
 		},
