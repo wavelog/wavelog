@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-21 09:31+0000\n"
+"POT-Creation-Date: 2026-08-23 07:13+0000\n"
 "PO-Revision-Date: 2026-07-29 08:14+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -204,7 +204,7 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Qrz.php:231 application/controllers/Qrz.php:295
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:47 application/controllers/Qsl.php:54
-#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:130
+#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:132
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
@@ -1953,7 +1953,7 @@ msgstr ""
 "samej nazwy jak już istniejące typy."
 
 #: application/controllers/Labels.php:144
-#: application/controllers/Qslpostcard.php:282
+#: application/controllers/Qslpostcard.php:285
 msgid "No QSOs were selected"
 msgstr "Nie wybrano żadnych QSO"
 
@@ -3138,12 +3138,12 @@ msgstr "Karty QSL"
 msgid "Upload QSL Cards"
 msgstr "Prześlij karty QSL"
 
-#: application/controllers/Qsl.php:93 application/controllers/Qsl.php:140
+#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
 msgid "Not enough free disk space to store the QSL card."
 msgstr "Brak miejsca na dysku, aby zapisać kartę eQSL."
 
-#: application/controllers/Qsl.php:110 application/controllers/Qsl.php:157
-#: application/controllers/Qslpostcard.php:86
+#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr "Wgrany plik nie jest prawidłowym plikiem obrazu."
 
@@ -3168,58 +3168,58 @@ msgstr ""
 msgid "QSL Postcard Designer"
 msgstr "Projektant Kart QSL"
 
-#: application/controllers/Qslpostcard.php:61
+#: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
 msgstr "Brakuje miejsca na dysku, aby zapisać tło karty QSL."
 
-#: application/controllers/Qslpostcard.php:183
-#: application/controllers/Qslpostcard.php:240
-#: application/controllers/Qslpostcard.php:299
+#: application/controllers/Qslpostcard.php:186
+#: application/controllers/Qslpostcard.php:243
+#: application/controllers/Qslpostcard.php:302
 msgid "Template not found"
 msgstr "Template nie odnaleziony"
 
-#: application/controllers/Qslpostcard.php:189
-#: application/controllers/Qslpostcard.php:246
-#: application/controllers/Qslpostcard.php:305
+#: application/controllers/Qslpostcard.php:192
+#: application/controllers/Qslpostcard.php:249
+#: application/controllers/Qslpostcard.php:308
 msgid "Template JSON is invalid"
 msgstr "Template JSON jest nieprawidłowy"
 
-#: application/controllers/Qslpostcard.php:204
+#: application/controllers/Qslpostcard.php:207
 msgid "No QSOs returned by get_sample_qsos()"
 msgstr "Funkcja get_sample_qsos() nie zwróciła żadnych QSO"
 
-#: application/controllers/Qslpostcard.php:214
+#: application/controllers/Qslpostcard.php:217
 msgid "PDF file was not created"
 msgstr "Plik PDF nie został utworzony"
 
-#: application/controllers/Qslpostcard.php:223
+#: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
 msgstr "Błąd generowania PDF karty QSL: "
 
-#: application/controllers/Qslpostcard.php:228
+#: application/controllers/Qslpostcard.php:231
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
 msgstr "Drukuj karty QSL"
 
-#: application/controllers/Qslpostcard.php:259
-#: application/controllers/Qslpostcard.php:318
+#: application/controllers/Qslpostcard.php:262
+#: application/controllers/Qslpostcard.php:321
 msgid "No QSOs found for postcard printing"
 msgstr "Nie znaleziono QSO do wydruku kart"
 
-#: application/controllers/Qslpostcard.php:274
+#: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "Błąd generowania PDF kolejki kart QSL: "
 
-#: application/controllers/Qslpostcard.php:286
+#: application/controllers/Qslpostcard.php:289
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
 msgstr "Drukuj wybrane karty QSL"
 
-#: application/controllers/Qslpostcard.php:311
+#: application/controllers/Qslpostcard.php:314
 msgid "No selected QSO IDs were provided"
 msgstr "Nie podano identyfikatorów wybranych QSO"
 
-#: application/controllers/Qslpostcard.php:336
+#: application/controllers/Qslpostcard.php:339
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Błąd generowania PDF wybranych kart QSL: "
 
