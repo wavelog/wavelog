@@ -396,7 +396,7 @@ foreach (($labels ?? []) as $l) {
 					</div>
 
 					<div class="mb-3 form-check" id="propRepeatRow" style="display:none;">
-						<input class="form-check-input" type="checkbox" id="propRepeat" title="<?= __("Print this field once per QSO when a label holds multiple QSOs"); ?>">
+						<input class="form-check-input" type="checkbox" id="propRepeat" title="<?= __("Print this field once per QSO if a label holds multiple QSOs"); ?>">
 						<label class="form-check-label small" for="propRepeat"><?= __("Repeats per QSO"); ?></label>
 					</div>
 
