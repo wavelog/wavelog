@@ -241,6 +241,7 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84 application/controllers/Qsl.php:132
+#: application/controllers/Dbtools.php:13
 msgid "You're not allowed to do that!"
 msgstr "Bunu yapmanıza izin verilmiyor!"
 
@@ -365,6 +366,7 @@ msgstr "tarih yanlış"
 
 #: application/controllers/Adif.php:264
 #: application/views/interface_assets/header.php:529
+#: application/views/interface_assets/header.php:533
 msgid "ADIF Import / Export"
 msgstr "ADIF İçe / Dışa Aktarma"
 
@@ -553,6 +555,7 @@ msgstr "Ödüller - %s"
 #: application/views/qso/edit_ajax.php:387 application/views/qso/index.php:365
 #: application/views/qso/index.php:647 application/views/user/edit.php:875
 #: application/views/view_log/qso.php:406
+#: application/views/logbookadvanced/index.php:1021
 msgid "DOK"
 msgstr "DOK (Almanya Bölge İşletme Kodu)"
 
@@ -589,6 +592,13 @@ msgstr "DOK (Almanya Bölge İşletme Kodu)"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/views/dbtools/checkresult.php:167
+#: application/views/dbtools/checkresult.php:250
+#: application/views/dbtools/checkresult.php:326
+#: application/views/dbtools/showStateQsos.php:27
+#: application/views/dbtools/showUpdateResult.php:87
+#: application/views/dbtools/statecheckresult.php:15
+#: application/views/logbookadvanced/index.php:997
 msgid "DXCC"
 msgstr "DXCC (Ülke)"
 
@@ -761,6 +771,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/logbookadvanced/index.php:1015
 msgid "POTA"
 msgstr "POTA"
 
@@ -908,6 +919,7 @@ msgstr "Azimut Harita"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:355
+#: application/views/interface_assets/header.php:359
 msgid "Backup"
 msgstr "Yedekleme"
 
@@ -921,6 +933,7 @@ msgstr "Notlar - Yedekleme"
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 #: application/views/statistics/qsltable.php:115
+#: application/views/interface_assets/header.php:500
 msgid "Bands"
 msgstr "Bandlar"
 
@@ -1358,6 +1371,13 @@ msgstr "QSO'ları şuna göre say..."
 #: application/views/view_log/qso.php:621
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/dbtools/checkresult.php:168
+#: application/views/dbtools/checkresult.php:247
+#: application/views/dbtools/checkresult.php:323
+#: application/views/dbtools/showStateQsos.php:26
+#: application/views/dbtools/showUpdateResult.php:47
+#: application/views/dbtools/showUpdateResult.php:110
+#: application/views/logbookadvanced/index.php:961
 msgid "Gridsquare"
 msgstr "Grid Karesi"
 
@@ -1381,6 +1401,8 @@ msgstr "Grid Karesi"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/dbtools/checkresult.php:324
+#: application/views/logbookadvanced/index.php:1009
 msgid "ITU Zone"
 msgstr "ITU Bölgesi"
 
@@ -1410,6 +1432,8 @@ msgstr "ITU Bölgesi"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/dbtools/checkresult.php:248
+#: application/views/logbookadvanced/index.php:1006
 msgid "CQ Zone"
 msgstr "CQ Bölgesi"
 
@@ -1452,6 +1476,7 @@ msgstr "WWFF Referansı"
 
 #: application/controllers/Cron.php:37
 #: application/views/interface_assets/header.php:359
+#: application/views/interface_assets/header.php:363
 msgid "Cron Manager"
 msgstr "Cron Yöneticisi"
 
@@ -1550,6 +1575,7 @@ msgstr "Çalışmıyor"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:538
+#: application/views/interface_assets/header.php:542
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV Dışa Aktarma"
 
@@ -1579,6 +1605,7 @@ msgstr "DCL Anahtar İçe Aktarma"
 #: application/views/view_log/partial/log_ajax.php:163
 #: application/views/view_log/qso.php:521
 #: application/views/view_log/qso.php:526
+#: application/views/logbookadvanced/index.php:988
 msgid "DCL"
 msgstr "DCL"
 
@@ -1683,6 +1710,7 @@ msgstr "ve propagasyon"
 
 #: application/controllers/Dxatlas.php:18
 #: application/views/interface_assets/header.php:536
+#: application/views/interface_assets/header.php:540
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas Grid Karesi Dışa Aktarma"
 
@@ -1888,6 +1916,7 @@ msgstr "Yüklenecek QSO bulunamadı."
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:534
 #: application/views/kml/index.php:3
+#: application/views/interface_assets/header.php:538
 msgid "KML Export"
 msgstr "KML Dışa Aktarma"
 
@@ -2091,6 +2120,7 @@ msgstr "Kayıt defteri"
 #: application/views/timeline/index.php:62 application/views/user/edit.php:735
 #: application/views/user/edit.php:1003 application/views/visitor/mini.php:187
 #: application/views/awards/counties/index.php:82
+#: application/views/logbookadvanced/index.php:976
 msgid "QSL"
 msgstr "QSL"
 
@@ -2142,6 +2172,9 @@ msgstr "QSL"
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
 #: application/views/awards/counties/index.php:86
+#: application/views/dbtools/checkresult.php:107
+#: application/views/dbtools/checkresult.php:165
+#: application/views/dbtools/checkresult.php:393
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2298,6 +2331,13 @@ msgstr "Tüm çağrı defteri sorguları başarısız oldu veya sonuç döndürm
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/views/awards/counties/index.php:113
+#: application/views/dbtools/checkresult.php:106
+#: application/views/dbtools/checkresult.php:164
+#: application/views/dbtools/checkresult.php:245
+#: application/views/dbtools/checkresult.php:321
+#: application/views/dbtools/checkresult.php:392
+#: application/views/dbtools/showStateQsos.php:23
+#: application/views/logbookadvanced/index.php:946
 msgid "Mode"
 msgstr "Mod"
 
@@ -2325,6 +2365,7 @@ msgstr "Mod"
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/views/logbookadvanced/index.php:949
 msgid "RST (S)"
 msgstr "RST (G)"
 
@@ -2353,6 +2394,7 @@ msgstr "RST (G)"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/views/logbookadvanced/index.php:952
 msgid "RST (R)"
 msgstr "RST (A)"
 
@@ -2407,6 +2449,8 @@ msgstr "Ülke"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/dbtools/checkresult.php:396
+#: application/views/logbookadvanced/index.php:1012
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2439,6 +2483,8 @@ msgstr "IOTA"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
 #: application/views/awards/counties/index.php:184
+#: application/views/dbtools/showStateQsos.php:25
+#: application/views/logbookadvanced/index.php:1000
 msgid "State"
 msgstr "Eyalet"
 
@@ -2471,6 +2517,7 @@ msgstr "Eyalet"
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/views/logbookadvanced/index.php:1054
 msgid "Distance"
 msgstr "Mesafe"
 
@@ -2582,6 +2629,13 @@ msgstr "Mesafe"
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
 #: application/views/awards/counties/index.php:103
+#: application/views/dbtools/checkresult.php:105
+#: application/views/dbtools/checkresult.php:163
+#: application/views/dbtools/checkresult.php:246
+#: application/views/dbtools/checkresult.php:322
+#: application/views/dbtools/checkresult.php:391
+#: application/views/dbtools/showStateQsos.php:24
+#: application/views/logbookadvanced/index.php:955
 msgid "Band"
 msgstr "Band"
 
@@ -2612,6 +2666,7 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/views/logbookadvanced/index.php:958
 msgid "Frequency"
 msgstr "Frekans"
 
@@ -2638,6 +2693,7 @@ msgstr "Frekans"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:642
 #: application/views/visitor/index.php:39
+#: application/views/logbookadvanced/index.php:1036
 msgid "Operator"
 msgstr "Operatör"
 
@@ -2676,11 +2732,13 @@ msgid "Advanced logbook"
 msgstr "Gelişmiş Kayıt Defteri"
 
 #: application/controllers/Logbookadvanced.php:1019
+#: application/controllers/Dbtools.php:158
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC %d QSO için güncellendi."
 
 #: application/controllers/Logbookadvanced.php:1035
+#: application/controllers/Dbtools.php:174
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "DXCC %s ve grid karesi %s için harita."
@@ -2696,6 +2754,7 @@ msgstr "Hızlı Sorgu"
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1067 application/views/visitor/index.php:326
+#: application/views/interface_assets/header.php:578
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2793,6 +2852,8 @@ msgstr "QSO Haritası"
 #: application/views/mode/index.php:27
 #: application/views/statistics/qsltable.php:111
 #: application/views/usermode/index.php:25
+#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:502
 msgid "Modes"
 msgstr "Modlar"
 
@@ -3068,6 +3129,7 @@ msgstr "Geçersiz istasyon etiketi"
 
 #: application/controllers/Oqrs.php:180
 #: application/views/interface_assets/header.php:559
+#: application/views/interface_assets/header.php:563
 msgid "OQRS Requests"
 msgstr "OQRS Talepleri"
 
@@ -3137,6 +3199,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:212
 #: application/views/interface_assets/header.php:577
+#: application/views/interface_assets/header.php:581
 msgid "QRZ Logbook"
 msgstr "QRZ Logbook"
 
@@ -3191,6 +3254,7 @@ msgstr ""
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:568
+#: application/views/interface_assets/header.php:572
 msgid "QSL Postcard Designer"
 msgstr "QSL Kart Tasarımcısı"
 
@@ -3298,6 +3362,7 @@ msgstr "Çağrı Transferi"
 
 #: application/controllers/Radio.php:16
 #: application/views/interface_assets/header.php:591
+#: application/views/interface_assets/header.php:595
 msgid "Hardware Interfaces"
 msgstr "Donanım Arayüzleri"
 
@@ -3405,6 +3470,7 @@ msgstr "Düzenle"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:719
 #: application/views/view_log/qso.php:727
+#: application/views/logbookadvanced/index.php:910
 msgid "Delete"
 msgstr "Sil"
 
@@ -3439,6 +3505,7 @@ msgstr "Radyo başarıyla kaldırıldı"
 #: application/views/statistics/index.php:90
 #: application/views/statistics/index.php:158
 #: application/views/statistics/qsltable.php:120
+#: application/views/interface_assets/header.php:355
 msgid "Satellites"
 msgstr "Uydular"
 
@@ -3507,6 +3574,8 @@ msgstr "Mevcut ön ayar yok"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/interface_assets/header.php:415
+#: application/views/interface_assets/header.php:422
 msgid "Search"
 msgstr "Ara"
 
@@ -3573,6 +3642,9 @@ msgstr "Lütfen grid konumu (%s) değerini kontrol edin"
 #: application/views/interface_assets/header.php:495
 #: application/views/interface_assets/header.php:527
 #: application/views/interface_assets/header.php:675
+#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:531
+#: application/views/interface_assets/header.php:679
 msgid "Station Setup"
 msgstr "İstasyon Kurulumu"
 
@@ -3649,6 +3721,7 @@ msgstr "Aktif Kayıt Defteri Olarak Ayarla"
 #: application/views/interface_assets/header.php:673
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
+#: application/views/interface_assets/header.php:677
 msgid "Active Logbook"
 msgstr "Aktif Kayıt Defteri"
 
@@ -3802,6 +3875,9 @@ msgstr "Dünya-Ay-Dünya (EME) İletişimi"
 #: application/views/interface_assets/header.php:353
 #: application/views/interface_assets/header.php:449
 #: application/views/interface_assets/header.php:451
+#: application/views/interface_assets/header.php:357
+#: application/views/interface_assets/header.php:453
+#: application/views/interface_assets/header.php:455
 msgid "Themes"
 msgstr "Temalar"
 
@@ -3951,6 +4027,7 @@ msgstr "VUCC Grid dosyası güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/User.php:51
 #: application/views/interface_assets/header.php:343
+#: application/views/interface_assets/header.php:347
 msgid "User Accounts"
 msgstr "Kullanıcı Hesapları"
 
@@ -4055,6 +4132,7 @@ msgstr "Oturum açma başarısız oldu. Tekrar deneyin."
 #: application/views/interface_assets/header.php:431
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
+#: application/views/interface_assets/header.php:435
 msgid "Login"
 msgstr "Giriş"
 
@@ -4265,6 +4343,7 @@ msgstr "Haritayı Dışa Aktar"
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
 #: application/views/interface_assets/header.php:578
+#: application/views/interface_assets/header.php:582
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club'a Yükle"
 
@@ -4786,10 +4865,12 @@ msgid "Bearing"
 msgstr "Yön"
 
 #: application/models/Logbookadvanced_model.php:1877
+#: application/models/Dbtools_model.php:120
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids tablosu boş. Lütfen önce VUCC grid verilerini içe aktarın."
 
 #: application/models/Logbookadvanced_model.php:2547
+#: application/models/Logbookadvanced_model.php:1782
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -4797,14 +4878,17 @@ msgstr ""
 
 #: application/models/Logbookadvanced_model.php:2557
 #: application/views/view_log/qso.php:868
+#: application/models/Logbookadvanced_model.php:1792
 msgid "QSO not found"
 msgstr "QSO bulunamadı"
 
 #: application/models/Logbookadvanced_model.php:2643
+#: application/models/Logbookadvanced_model.php:1878
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
 
 #: application/models/Logbookadvanced_model.php:2656
+#: application/models/Logbookadvanced_model.php:1891
 msgid "QSOs merged successfully"
 msgstr ""
 
@@ -5122,6 +5206,7 @@ msgstr "Dönem"
 #: application/views/timeline/index.php:85 application/views/user/edit.php:405
 #: application/views/view_log/partial/log_ajax.php:22
 #: application/views/view_log/qso.php:235
+#: application/views/logbookadvanced/index.php:1042
 msgid "Propagation"
 msgstr "Propagasyon"
 
@@ -5377,6 +5462,7 @@ msgstr "Referans"
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:219
 #: application/views/view_log/qso.php:616
+#: application/views/logbookadvanced/index.php:964
 msgid "Name"
 msgstr "Ad"
 
@@ -5452,6 +5538,7 @@ msgstr ""
 #: application/views/logbookadvanced/statecheckresult.php:16
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
+#: application/views/dbtools/statecheckresult.php:16
 msgid "QSOs"
 msgstr "QSO'lar"
 
@@ -5686,6 +5773,13 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/visitor/mini.php:183
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
+#: application/views/dbtools/checkresult.php:103
+#: application/views/dbtools/checkresult.php:161
+#: application/views/dbtools/checkresult.php:242
+#: application/views/dbtools/checkresult.php:318
+#: application/views/dbtools/checkresult.php:389
+#: application/views/dbtools/showUpdateResult.php:46
+#: application/views/dbtools/showUpdateResult.php:109
 msgid "Callsign"
 msgstr "Çağrı işareti"
 
@@ -5742,6 +5836,7 @@ msgstr "Eşleşmeyen QSO’lar"
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 #: application/views/logbookadvanced/showUpdateResult.php:88
+#: application/views/dbtools/showUpdateResult.php:88
 msgid "QSOs updated"
 msgstr "Güncellenen QSO’lar"
 
@@ -5797,6 +5892,8 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/dbtools/checkresult.php:243
+#: application/views/dbtools/checkresult.php:319
 msgid "Date"
 msgstr "Tarih"
 
@@ -5833,6 +5930,8 @@ msgstr "Tarih"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/dbtools/checkresult.php:244
+#: application/views/dbtools/checkresult.php:320
 msgid "Time"
 msgstr "Saat"
 
@@ -5855,6 +5954,7 @@ msgstr "Saat"
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/dbtools/showStateQsos.php:21
 msgid "Call"
 msgstr "QSO"
 
@@ -6580,6 +6680,8 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:883
+#: application/views/logbookadvanced/index.php:914
+#: application/views/logbookadvanced/index.php:915
 msgid "Reset"
 msgstr "Sıfırla"
 
@@ -7192,6 +7294,7 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:187
 #: application/views/stationsetup/locationlist.php:20
 #: application/views/awards/counties/index.php:8
+#: application/views/logbookadvanced/index.php:1003
 msgid "County"
 msgstr "İdari Bölge"
 
@@ -7500,6 +7603,7 @@ msgstr "Tablo"
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
 #: application/views/awards/counties/index.php:59
+#: application/views/dbtools/checkresult.php:170
 msgid "Map"
 msgstr "Harita"
 
@@ -8148,6 +8252,7 @@ msgstr ""
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:490
 #: application/views/view_log/qso.php:288
+#: application/views/logbookadvanced/index.php:1051
 msgid "Continent"
 msgstr "Kıta"
 
@@ -8175,6 +8280,7 @@ msgstr "DXCC Adı"
 #: application/views/logbookadvanced/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
+#: application/views/dbtools/statecheckresult.php:14
 msgid "Prefix"
 msgstr "Prefix"
 
@@ -8754,6 +8860,7 @@ msgstr "band Kategorileri"
 #: application/views/awards/pl_polska/index.php:375
 #: application/views/logbookadvanced/dbtoolsdialog.php:77
 #: application/views/logbookadvanced/index.php:854
+#: application/views/dbtools/index.php:88
 msgid "Fix State"
 msgstr "Durumu düzelt"
 
@@ -8985,6 +9092,8 @@ msgstr "QSO Listesi"
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
+#: application/views/dbtools/showStateQsos.php:22
+#: application/views/logbookadvanced/index.php:931
 msgid "Date/Time"
 msgstr "Tarih/Saat"
 
@@ -9497,6 +9606,9 @@ msgstr "Band / Uydu / Yörünge"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:65
+#: application/views/dbtools/checkresult.php:104
+#: application/views/dbtools/checkresult.php:162
+#: application/views/dbtools/checkresult.php:390
 msgid "QSO Date"
 msgstr "QSO Tarihi"
 
@@ -9969,6 +10081,7 @@ msgstr "Yeni spot (< 5 dakika önce)"
 #: application/views/logbookadvanced/useroptions.php:296
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
+#: application/views/logbookadvanced/index.php:1045
 msgid "Contest"
 msgstr "Yarışma"
 
@@ -10086,6 +10199,7 @@ msgstr "Spotter"
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:390
 #: application/views/view_log/qso.php:227
+#: application/views/logbookadvanced/index.php:1039
 msgid "Comment"
 msgstr "Yorum"
 
@@ -10854,6 +10968,9 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:164
 #: application/views/logbookadvanced/checkresult.php:392
 #: application/views/zonechecker/result.php:67
+#: application/views/dbtools/checkresult.php:108
+#: application/views/dbtools/checkresult.php:166
+#: application/views/dbtools/checkresult.php:394
 msgid "Station Profile"
 msgstr "İstasyon Profili"
 
@@ -10862,6 +10979,7 @@ msgstr "İstasyon Profili"
 #: application/views/calltester/comparison_result.php:180
 #: application/views/calltester/result.php:56
 #: application/views/logbookadvanced/checkresult.php:107
+#: application/views/dbtools/checkresult.php:109
 msgid "Existing DXCC"
 msgstr "Mevcut DXCC"
 
@@ -10877,6 +10995,7 @@ msgstr "Mevcut ADIF"
 #: application/views/calltester/comparison_result.php:182
 #: application/views/calltester/result.php:58
 #: application/views/logbookadvanced/checkresult.php:108
+#: application/views/dbtools/checkresult.php:110
 msgid "Result DXCC"
 msgstr "Sonuç DXCC"
 
@@ -10931,6 +11050,7 @@ msgstr "Çağrı işareti DXCC tanımlaması"
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:11
+#: application/views/dbtools/index.php:28
 msgid "Station Location"
 msgstr "İstasyon Konumu"
 
@@ -10938,6 +11058,7 @@ msgstr "İstasyon Konumu"
 #: application/views/interface_assets/footer.php:894
 #: application/views/logbookadvanced/index.php:876
 #: application/views/zonechecker/index.php:16
+#: application/views/dbtools/index.php:33
 msgid "Callsign: "
 msgstr "Çağrı işareti: "
 
@@ -11022,6 +11143,7 @@ msgstr "Mevcut Yetkiler"
 #: application/views/club/permissions.php:36
 #: application/views/eqsl/download.php:45
 #: application/views/logbookadvanced/statecheckresult.php:17
+#: application/views/dbtools/statecheckresult.php:17
 msgid "Action"
 msgstr "Eylem"
 
@@ -11276,6 +11398,7 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:44
 #: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
+#: application/views/logbookadvanced/index.php:1063
 msgid "Profile name"
 msgstr "Profil adı"
 
@@ -11529,6 +11652,7 @@ msgstr "ADIF Adı"
 #: application/views/stationsetup/locationlist.php:10
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:656
 msgid "Active"
 msgstr "Aktif"
 
@@ -12054,6 +12178,9 @@ msgstr "Yörünge Güzergahı"
 #: application/views/view_log/qso.php:684
 #: application/views/view_log/qso.php:691
 #: application/views/view_log/qso.php:696
+#: application/views/dbtools/checkresult.php:251
+#: application/views/dbtools/checkresult.php:327
+#: application/views/dbtools/showStateQsos.php:28
 msgid "Station"
 msgstr "İstasyon"
 
@@ -12109,6 +12236,7 @@ msgstr ""
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
 #: application/views/interface_assets/header.php:617
+#: application/views/interface_assets/header.php:621
 msgid "Switch Operator"
 msgstr ""
 
@@ -12356,6 +12484,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:970
 #: application/views/logbookadvanced/useroptions.php:97
 #: application/views/qso/edit_ajax.php:177
+#: application/views/logbookadvanced/index.php:967
 msgid "QTH"
 msgstr "QTH"
 
@@ -12453,6 +12582,7 @@ msgstr ""
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:540
+#: application/views/interface_assets/header.php:544
 msgid "Cabrillo Export"
 msgstr "Cabrillo Formatında Dışa Aktar"
 
@@ -12591,6 +12721,9 @@ msgstr ""
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1206
+#: application/views/dbtools/checkresult.php:121
+#: application/views/dbtools/checkresult.php:180
+#: application/views/dbtools/checkresult.php:407
 msgid "Yes"
 msgstr "Evet"
 
@@ -12654,6 +12787,9 @@ msgstr "Evet"
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:676 application/views/user/edit.php:680
 #: application/views/user/edit.php:770
+#: application/views/dbtools/checkresult.php:121
+#: application/views/dbtools/checkresult.php:180
+#: application/views/dbtools/checkresult.php:407
 msgid "No"
 msgstr "Hayır"
 
@@ -12698,6 +12834,7 @@ msgstr ""
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:542
+#: application/views/interface_assets/header.php:546
 msgid "EDI Export"
 msgstr "EDI Formatında Dışa Aktar"
 
@@ -12891,6 +13028,7 @@ msgstr ""
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:349
+#: application/views/interface_assets/header.php:353
 msgid "Contests"
 msgstr "Yarışmalar"
 
@@ -14208,6 +14346,9 @@ msgstr "Yeni sürümü kontrol et"
 #: application/views/logbookadvanced/checkresult.php:68
 #: application/views/logbookadvanced/checkresult.php:78
 #: application/views/logbookadvanced/index.php:57
+#: application/views/dbtools/checkresult.php:52
+#: application/views/dbtools/checkresult.php:68
+#: application/views/dbtools/checkresult.php:79
 msgid "Update now"
 msgstr "Şimdi güncelle"
 
@@ -15448,6 +15589,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:223
 #: application/views/interface_assets/header.php:605
 #: application/views/options/tabs.php:37
+#: application/views/interface_assets/header.php:609
 msgid "Version Info"
 msgstr "Sürüm Bilgisi"
 
@@ -15790,26 +15932,32 @@ msgstr "Uydu Geçişi"
 
 #: application/views/interface_assets/header.php:340
 #: application/views/stationsetup/stationsetup.php:146
+#: application/views/interface_assets/header.php:344
 msgid "Admin"
 msgstr "Yönetici"
 
 #: application/views/interface_assets/header.php:345
+#: application/views/interface_assets/header.php:349
 msgid "Global Options"
 msgstr "Genel Ayarlar"
 
 #: application/views/interface_assets/header.php:357
+#: application/views/interface_assets/header.php:361
 msgid "Update Country Files"
 msgstr "Ülke Dosyalarını Güncelle"
 
 #: application/views/interface_assets/header.php:361
+#: application/views/interface_assets/header.php:365
 msgid "Debug Information"
 msgstr "Hata Ayıklama Bilgisi"
 
 #: application/views/interface_assets/header.php:408
+#: application/views/interface_assets/header.php:412
 msgid "Add/Search Callsign"
 msgstr "Çağrı işareti ekle/ara"
 
 #: application/views/interface_assets/header.php:410
+#: application/views/interface_assets/header.php:414
 msgid "Log"
 msgstr "Kayıt"
 
@@ -15817,10 +15965,12 @@ msgstr "Kayıt"
 #: application/views/logbookadvanced/index.php:777
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:579
 #: application/views/visitor/layout/header.php:95
+#: application/views/interface_assets/header.php:421
 msgid "Search Callsign"
 msgstr "Çağrı İşareti Ara"
 
 #: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:485
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
@@ -15828,79 +15978,97 @@ msgstr "Op: %s"
 
 #: application/views/interface_assets/header.php:491
 #: application/views/user/edit.php:58
+#: application/views/interface_assets/header.php:495
 msgid "Account"
 msgstr "Hesap"
 
 #: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:501
 msgid "Band Edges"
 msgstr "Band Aralıkları"
 
 #: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:507
 msgid "Switch to Clubstation:"
 msgstr "Kulüp istasyonuna geç:"
 
 #: application/views/interface_assets/header.php:507
 #: application/views/user/modals/first_login_wizard.php:119
 #: application/views/user/modals/first_login_wizard.php:133
+#: application/views/interface_assets/header.php:511
 #, php-format
 msgid "Switch to %s"
 msgstr "%s değiştir"
 
 #: application/views/interface_assets/header.php:511
+#: application/views/interface_assets/header.php:515
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "%s’i Yönet"
 
 #: application/views/interface_assets/header.php:520
+#: application/views/interface_assets/header.php:524
 msgid "No Clubstations available"
 msgstr "Mevcut kulüp istasyonu yok"
 
 #: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:536
 msgid "Other Export Options"
 msgstr "Diğer Dışa Aktarma Seçenekleri"
 
 #: application/views/interface_assets/header.php:564
+#: application/views/interface_assets/header.php:568
 msgid "QSL Queue"
 msgstr "QSL Kuyruğu"
 
 #: application/views/interface_assets/header.php:565
+#: application/views/interface_assets/header.php:569
 msgid "Labels"
 msgstr "Etiketler"
 
 #: application/views/interface_assets/header.php:572
+#: application/views/interface_assets/header.php:576
 msgid "Third-Party Services"
 msgstr "Üçüncü Taraf Hizmetler"
 
 #: application/views/interface_assets/header.php:575
+#: application/views/interface_assets/header.php:579
 msgid "eQSL Import / Export"
 msgstr "eQSL İçe Aktarma / Dışa Aktarma"
 
 #: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:580
 msgid "HRDLog Logbook"
 msgstr "HRDLog Logbook"
 
 #: application/views/interface_assets/header.php:579
+#: application/views/interface_assets/header.php:583
 msgid "Clublog Import / Export"
 msgstr "Clublog İçe Aktarma / Dışa Aktarma"
 
 #: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:586
 msgid "DCL Export"
 msgstr "DCL Dışa Aktar"
 
 #: application/views/interface_assets/header.php:590
+#: application/views/interface_assets/header.php:594
 msgid "API Keys"
 msgstr "API Anahtarları"
 
 #: application/views/interface_assets/header.php:595
+#: application/views/interface_assets/header.php:599
 msgid "Internal tools"
 msgstr ""
 
 #: application/views/interface_assets/header.php:597
+#: application/views/interface_assets/header.php:601
 msgid "Callsign DXCC checker"
 msgstr ""
 
 #: application/views/interface_assets/header.php:598
+#: application/views/interface_assets/header.php:602
 msgid "GeoJSON QSO Map"
 msgstr ""
 
@@ -15910,42 +16078,52 @@ msgstr "Grid Karesi Bölge kontrolcüsü"
 
 #: application/views/interface_assets/header.php:606
 #: application/views/logbookadvanced/index.php:920
+#: application/views/interface_assets/header.php:610
+#: application/views/logbookadvanced/index.php:917
 msgid "Help"
 msgstr "Yardım"
 
 #: application/views/interface_assets/header.php:607
+#: application/views/interface_assets/header.php:611
 msgid "Forum"
 msgstr "Forum"
 
 #: application/views/interface_assets/header.php:611
+#: application/views/interface_assets/header.php:615
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Temsil etmeyi durdur ve tekrar %s olarak devam et"
 
 #: application/views/interface_assets/header.php:612
+#: application/views/interface_assets/header.php:616
 #, php-format
 msgid "Switch back to %s"
 msgstr "%s olarak devam et"
 
 #: application/views/interface_assets/header.php:619
+#: application/views/interface_assets/header.php:623
 msgid "Logout"
 msgstr "Oturumu kapat"
 
 #: application/views/interface_assets/header.php:625
+#: application/views/interface_assets/header.php:629
 msgid "Station locations and logbooks"
 msgstr ""
 
 #: application/views/interface_assets/header.php:627
+#: application/views/interface_assets/header.php:631
 msgid "Select a Location"
 msgstr "Konum Seçiniz"
 
 #: application/views/interface_assets/header.php:675
+#: application/views/interface_assets/header.php:679
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Burada istasyon konumlarını göremiyor musunuz? İstasyon kurulumuna gidip "
 "favorilere ekleyin"
 
 #: application/views/interface_assets/header.php:712
+#: application/views/interface_assets/header.php:716
 msgid "Extras"
 msgstr "Ek Özellikler"
 
@@ -16266,17 +16444,22 @@ msgid ""
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:42
+#: application/views/dbtools/checkresult.php:42
 msgid "Distance Check Results"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:43
 #: application/views/logbookadvanced/checkresult.php:59
 #: application/views/logbookadvanced/checkresult.php:75
+#: application/views/dbtools/checkresult.php:43
+#: application/views/dbtools/checkresult.php:59
+#: application/views/dbtools/checkresult.php:75
 msgid "QSOs to update found:"
 msgstr "Güncellenmesi gereken QSO/QSO'lar bulundu:"
 
 #: application/views/logbookadvanced/checkresult.php:46
 #: application/views/logbookadvanced/distancedialog.php:2
+#: application/views/dbtools/checkresult.php:46
 msgid ""
 "Update all QSOs with the distance based on your gridsquare set in the "
 "station profile, and the gridsquare of the QSO partner. Distance will be "
@@ -16288,29 +16471,35 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:47
 #: application/views/logbookadvanced/distancedialog.php:3
+#: application/views/dbtools/checkresult.php:47
 msgid "This is useful if you have imported QSOs without distance information."
 msgstr "Bu, mesafe bilgisi olmadan QSO’ları içe aktardıysanız faydalıdır."
 
 #: application/views/logbookadvanced/checkresult.php:48
 #: application/views/logbookadvanced/distancedialog.php:4
+#: application/views/dbtools/checkresult.php:48
 msgid "Update will only set the distance for QSOs where the distance is empty."
 msgstr ""
 "Güncelleme sadece mesafenin boş olduğu QSO'lar için mesafeyi ayarlayacaktır."
 
 #: application/views/logbookadvanced/checkresult.php:58
+#: application/views/dbtools/checkresult.php:58
 msgid "Continent Check Results"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:62
+#: application/views/dbtools/checkresult.php:62
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
 msgstr "Tüm QSO’ları, QSO’nun DXCC ülkesine göre kıta bilgisi ile güncelle."
 
 #: application/views/logbookadvanced/checkresult.php:63
+#: application/views/dbtools/checkresult.php:63
 msgid "This is useful if you have imported QSOs without continent information."
 msgstr "Bu, kıta bilgisi olmadan QSO’ları içe aktardıysanız faydalıdır."
 
 #: application/views/logbookadvanced/checkresult.php:64
+#: application/views/dbtools/checkresult.php:64
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
 msgstr ""
@@ -16323,24 +16512,31 @@ msgid "Gridsquare Check Results"
 msgstr "Grid Karesi Kontrol Sonuçları"
 
 #: application/views/logbookadvanced/checkresult.php:83
+#: application/views/dbtools/checkresult.php:85
 msgid "DXCC Check Results"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:85
+#: application/views/dbtools/checkresult.php:87
 msgid "Callsigns tested: "
 msgstr "Çağrı işaretleri test edildi: "
 
 #: application/views/logbookadvanced/checkresult.php:86
+#: application/views/dbtools/checkresult.php:88
 msgid "Execution time: "
 msgstr "Çalışma süresi: "
 
 #: application/views/logbookadvanced/checkresult.php:87
+#: application/views/dbtools/checkresult.php:89
 msgid "Number of potential QSOs with wrong DXCC: "
 msgstr "Yanlış DXCC ile potansiyel QSO sayısı: "
 
 #: application/views/logbookadvanced/checkresult.php:92
 #: application/views/logbookadvanced/checkresult.php:234
 #: application/views/logbookadvanced/checkresult.php:310
+#: application/views/dbtools/checkresult.php:94
+#: application/views/dbtools/checkresult.php:236
+#: application/views/dbtools/checkresult.php:312
 msgid "Update selected"
 msgstr "Seçilenleri güncelle"
 
@@ -16362,10 +16558,13 @@ msgstr "DXCC Grid Karesi"
 
 #: application/views/logbookadvanced/checkresult.php:191
 #: application/views/logbookadvanced/index.php:77
+#: application/views/dbtools/checkresult.php:193
+#: application/views/dbtools/index.php:6
 msgid "Show more"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:197
+#: application/views/dbtools/checkresult.php:199
 msgid "View on map"
 msgstr ""
 
@@ -16401,29 +16600,36 @@ msgstr ""
 "kılar, ancak yanlış verilere yol açabilir. Dikkatle kullanın!"
 
 #: application/views/logbookadvanced/checkresult.php:247
+#: application/views/dbtools/checkresult.php:249
 msgid "DXCC CQ Zone"
 msgstr "DXCC CQ Bölgesi"
 
 #: application/views/logbookadvanced/checkresult.php:293
 #: application/views/logbookadvanced/checkresult.php:369
+#: application/views/dbtools/checkresult.php:295
+#: application/views/dbtools/checkresult.php:371
 msgid "No incorrect CQ Zones were found."
 msgstr "Hatalı CQ Bölgesi bulunamadı."
 
 #: application/views/logbookadvanced/checkresult.php:298
+#: application/views/dbtools/checkresult.php:300
 msgid "ITU Zone Check Results"
 msgstr "ITU Bölge Kontrol Sonuçları"
 
 #: application/views/logbookadvanced/checkresult.php:300
+#: application/views/dbtools/checkresult.php:302
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:305
+#: application/views/dbtools/checkresult.php:307
 msgid "Force update even if DXCC covers multiple ITU zones"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:306
+#: application/views/dbtools/checkresult.php:308
 msgid ""
 "The update function can only set the main ITU zone which is assigned to the "
 "DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
@@ -16433,46 +16639,56 @@ msgid ""
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:323
+#: application/views/dbtools/checkresult.php:325
 msgid "DXCC ITU Zone"
 msgstr "DXCC ITU Bölgesi"
 
 #: application/views/logbookadvanced/checkresult.php:374
+#: application/views/dbtools/checkresult.php:376
 msgid "IOTA Check Results"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:381
+#: application/views/dbtools/checkresult.php:383
 msgid "These QSOs MAY have an incorrect IOTA reference."
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:382
+#: application/views/dbtools/checkresult.php:384
 msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:393
+#: application/views/dbtools/checkresult.php:395
 msgid "QSO DXCC"
 msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:395
+#: application/views/dbtools/checkresult.php:397
 msgid "IOTA DXCC"
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
+#: application/views/dbtools/index.php:24
 msgid "Data Repair Tools"
 msgstr "Veri Onarım Araçları"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:6
+#: application/views/dbtools/index.php:17
 msgid "Wiki Help"
 msgstr "Wiki Yardım"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:8
+#: application/views/dbtools/index.php:20
 msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:19
+#: application/views/dbtools/index.php:30
 msgid "All Station Locations"
 msgstr ""
 
@@ -16493,14 +16709,25 @@ msgstr "Wavelog'u kullanarak tüm QSQ'ların DXCC'sini belirle."
 #: application/views/logbookadvanced/dbtoolsdialog.php:104
 #: application/views/logbookadvanced/dbtoolsdialog.php:117
 #: application/views/logbookadvanced/dbtoolsdialog.php:129
+#: application/views/dbtools/index.php:48
+#: application/views/dbtools/index.php:59
+#: application/views/dbtools/index.php:70
+#: application/views/dbtools/index.php:81
+#: application/views/dbtools/index.php:92
+#: application/views/dbtools/index.php:103
+#: application/views/dbtools/index.php:114
+#: application/views/dbtools/index.php:127
+#: application/views/dbtools/index.php:139
 msgid "Check"
 msgstr "Kontrol Et"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:44
+#: application/views/dbtools/index.php:55
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:45
+#: application/views/dbtools/index.php:56
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
 msgstr ""
 
@@ -16513,31 +16740,38 @@ msgid "Check gridsquares that does not match the DXCC"
 msgstr "DXCC ile uyuşmayan grid karelerini kontrol et"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:66
+#: application/views/dbtools/index.php:77
 msgid "Fix Continent"
 msgstr "Kıtayı Düzelt"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:67
+#: application/views/dbtools/index.php:78
 msgid "Update missing or incorrect continent information"
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:78
+#: application/views/dbtools/index.php:89
 msgid "Update missing state/province information"
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:88
 #: application/views/logbookadvanced/index.php:68
+#: application/views/dbtools/index.php:99
 msgid "Update Distances"
 msgstr "Mesafeleri Güncelle"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:89
+#: application/views/dbtools/index.php:100
 msgid "Calculate and update distance information for QSOs"
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:99
+#: application/views/dbtools/index.php:110
 msgid "Check all QSOs in the logbook for incorrect DXCC"
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:100
+#: application/views/dbtools/index.php:111
 msgid "Use Wavelog to determine DXCC for all QSOs."
 msgstr "Wavelog'u kullanarak tüm QSQ'ların DXCC'sini belirle."
 
@@ -16550,14 +16784,17 @@ msgid "Use callbook lookup to set gridsquare"
 msgstr "Grid karesini ayarlamak için çağrı defteri sorgusu kullan"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:113
+#: application/views/dbtools/index.php:124
 msgid "This is limited to 150 callsigns for each run!"
 msgstr "Bu, her çalıştırma için 150 çağrı işaretleri ile sınırlıdır!"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:124
+#: application/views/dbtools/index.php:135
 msgid "Check IOTA against DXCC"
 msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:125
+#: application/views/dbtools/index.php:136
 msgid "Use Wavelog to check IOTA against DXCC"
 msgstr ""
 
@@ -16621,6 +16858,7 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:263
 #: application/views/map/qso_map.php:22 application/views/qso/edit_ajax.php:313
 #: application/views/qso/index.php:503 application/views/view_log/qso.php:421
+#: application/views/logbookadvanced/index.php:1033
 msgid "Region"
 msgstr "Bölge"
 
@@ -16696,6 +16934,7 @@ msgstr "QSL Gönderim Yöntemi"
 #: application/views/logbookadvanced/index.php:725
 #: application/views/logbookadvanced/index.php:973
 #: application/views/logbookadvanced/useroptions.php:103
+#: application/views/logbookadvanced/index.php:970
 msgid "QSL via"
 msgstr "QSL Bilgisi"
 
@@ -17200,7 +17439,7 @@ msgid "SUCCESS"
 msgstr "BAŞARI"
 
 #: application/views/logbookadvanced/index.php:52
-#: application/views/qslprint/index.php:3
+#: application/views/qslprint/index.php:3 application/views/dbtools/index.php:4
 msgid "INFO"
 msgstr "BİLGİ"
 
@@ -17217,6 +17456,7 @@ msgstr ""
 "tanımladığınızdan ve baskıya hazır olarak ayarlandığından emin olun!"
 
 #: application/views/logbookadvanced/index.php:60
+#: application/views/dbtools/index.php:5
 msgid "You need to select a least 1 row!"
 msgstr "En az 1 satır seçmeniz gerekiyor!"
 
@@ -17271,6 +17511,7 @@ msgstr ""
 "misiniz? Bu işlem geri alınamaz."
 
 #: application/views/logbookadvanced/index.php:78
+#: application/views/dbtools/index.php:7
 msgid "Show less"
 msgstr ""
 
@@ -17385,6 +17626,7 @@ msgstr "to"
 #: application/views/logbookadvanced/index.php:372
 #: application/views/logbookadvanced/index.php:946
 #: application/views/logbookadvanced/useroptions.php:40
+#: application/views/logbookadvanced/index.php:943
 msgid "Dx"
 msgstr "Çağrı İşareti (A)"
 
@@ -17407,6 +17649,7 @@ msgstr ""
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:43
+#: application/views/logbookadvanced/index.php:934
 msgid "Duration"
 msgstr "Süre"
 
@@ -17732,16 +17975,20 @@ msgid "Globe map"
 msgstr "3D Harita"
 
 #: application/views/logbookadvanced/index.php:908
+#: application/controllers/Dbtools.php:22
+#: application/views/interface_assets/header.php:337
 msgid "Database Tools"
 msgstr "Veritabanı Araçları"
 
 #: application/views/logbookadvanced/index.php:940
 #: application/views/logbookadvanced/useroptions.php:349
+#: application/views/logbookadvanced/index.php:937
 msgid "Last modified"
 msgstr "Son değişiklik"
 
 #: application/views/logbookadvanced/index.php:943
 #: application/views/logbookadvanced/useroptions.php:34
+#: application/views/logbookadvanced/index.php:940
 msgid "De"
 msgstr "De"
 
@@ -17749,18 +17996,21 @@ msgstr "De"
 #: application/views/logbookadvanced/useroptions.php:142
 #: application/views/qso/edit_ajax.php:414
 #: application/views/timeline/index.php:78 application/views/user/edit.php:738
+#: application/views/logbookadvanced/index.php:985
 msgid "QRZ"
 msgstr "QRZ"
 
 #: application/views/logbookadvanced/index.php:994
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/qso/edit_ajax.php:513
+#: application/views/logbookadvanced/index.php:991
 msgid "QSL Msg (S)"
 msgstr "QSL Mesajı (G)"
 
 #: application/views/logbookadvanced/index.php:997
 #: application/views/logbookadvanced/useroptions.php:160
 #: application/views/qso/edit_ajax.php:522
+#: application/views/logbookadvanced/index.php:994
 msgid "QSL Msg (R)"
 msgstr "QSL Mesajı (A)"
 
@@ -17770,34 +18020,41 @@ msgstr "QSL Mesajı (A)"
 #: application/views/stationsetup/locationlist.php:27
 #: application/views/user/edit.php:871 application/views/view_log/qso.php:387
 #: application/views/view_log/qso.php:696
+#: application/views/logbookadvanced/index.php:1030
 msgid "SIG Info"
 msgstr "SIG (Special Interest Group) Bilgisi"
 
 #: application/views/logbookadvanced/index.php:1051
 #: application/views/logbookadvanced/useroptions.php:302
+#: application/views/logbookadvanced/index.php:1048
 msgid "My Refs"
 msgstr "Konumum"
 
 #: application/views/logbookadvanced/index.php:1060
+#: application/views/logbookadvanced/index.php:1057
 msgid "Ant az"
 msgstr "Anten Azimut"
 
 #: application/views/logbookadvanced/index.php:1060
 #: application/views/logbookadvanced/useroptions.php:324
+#: application/views/logbookadvanced/index.php:1057
 msgid "Antenna azimuth"
 msgstr "Anten Yönü (Azimut)"
 
 #: application/views/logbookadvanced/index.php:1063
+#: application/views/logbookadvanced/index.php:1060
 msgid "Ant el"
 msgstr "Anten Yüksekliği"
 
 #: application/views/logbookadvanced/index.php:1063
 #: application/views/logbookadvanced/useroptions.php:330
+#: application/views/logbookadvanced/index.php:1060
 msgid "Antenna elevation"
 msgstr "Anten Yüksekliği"
 
 #: application/views/logbookadvanced/index.php:1069
 #: application/views/logbookadvanced/useroptions.php:342
+#: application/views/logbookadvanced/index.php:1066
 msgid "Station power"
 msgstr "İstasyon Gücü"
 
@@ -17882,26 +18139,34 @@ msgid "Next"
 msgstr "Sonraki"
 
 #: application/views/logbookadvanced/showStateQsos.php:16
+#: application/views/dbtools/showStateQsos.php:16
 #, php-format
 msgid "Found %s QSO(s) missing state information for DXCC %s."
 msgstr "DXCC %s için durum bilgisi eksik olan %s QSO bulundu."
 
 #: application/views/logbookadvanced/showStateQsos.php:49
+#: application/views/dbtools/showStateQsos.php:49
 msgid "No Issues Found"
 msgstr "Sorun Bulunamadı"
 
 #: application/views/logbookadvanced/showUpdateResult.php:25
 #: application/views/logbookadvanced/showUpdateResult.php:75
+#: application/views/dbtools/showUpdateResult.php:25
+#: application/views/dbtools/showUpdateResult.php:75
 msgid "Results for state update:"
 msgstr "Eyalet güncellemesinin sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:27
 #: application/views/logbookadvanced/showUpdateResult.php:29
+#: application/views/dbtools/showUpdateResult.php:27
+#: application/views/dbtools/showUpdateResult.php:29
 msgid "The number of QSOs updated for state/province in"
 msgstr "Eyalet/il için güncellenen QSO sayısı"
 
 #: application/views/logbookadvanced/showUpdateResult.php:41
 #: application/views/logbookadvanced/showUpdateResult.php:104
+#: application/views/dbtools/showUpdateResult.php:41
+#: application/views/dbtools/showUpdateResult.php:104
 msgid "These QSOs could not be updated:"
 msgstr "Bu QSO'lar güncellenemedi:"
 
@@ -17909,44 +18174,57 @@ msgstr "Bu QSO'lar güncellenemedi:"
 #: application/views/logbookadvanced/showUpdateResult.php:111
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/statistics/antennaanalytics.php:104
+#: application/views/dbtools/showUpdateResult.php:48
+#: application/views/dbtools/showUpdateResult.php:111
 msgid "Station location"
 msgstr "İstasyon Konumu"
 
 #: application/views/logbookadvanced/showUpdateResult.php:49
 #: application/views/logbookadvanced/showUpdateResult.php:112
+#: application/views/dbtools/showUpdateResult.php:49
+#: application/views/dbtools/showUpdateResult.php:112
 msgid "Reason"
 msgstr "Sebep"
 
 #: application/views/logbookadvanced/showUpdateResult.php:77
 #: application/views/logbookadvanced/showUpdateResult.php:79
+#: application/views/dbtools/showUpdateResult.php:77
+#: application/views/dbtools/showUpdateResult.php:79
 msgid "The number of QSOs updated for state/province across all DXCCs is"
 msgstr ""
 
 #: application/views/logbookadvanced/showUpdateResult.php:79
+#: application/views/dbtools/showUpdateResult.php:79
 msgid "DXCCs processed"
 msgstr ""
 
 #: application/views/logbookadvanced/showUpdateResult.php:131
+#: application/views/dbtools/showUpdateResult.php:131
 msgid "Results for continent update:"
 msgstr "Kıta güncellemesinin sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:132
+#: application/views/dbtools/showUpdateResult.php:132
 msgid "The number of QSOs updated for continent is"
 msgstr "Kıta için güncellenen QSO sayısı şöyledir"
 
 #: application/views/logbookadvanced/showUpdateResult.php:136
+#: application/views/dbtools/showUpdateResult.php:136
 msgid "Results for distance update:"
 msgstr "Mesafe güncellemesinin sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:137
+#: application/views/dbtools/showUpdateResult.php:137
 msgid "The number of QSOs updated for distance is"
 msgstr "Mesafe için güncellenen QSO sayısı"
 
 #: application/views/logbookadvanced/showUpdateResult.php:141
+#: application/views/dbtools/showUpdateResult.php:141
 msgid "Results for gridsquare update:"
 msgstr "Grid karesi güncelleme sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:142
+#: application/views/dbtools/showUpdateResult.php:142
 msgid "The number of QSOs updated for gridsquare is"
 msgstr "Grid karesi için güncellenen QSO sayısı şöyledir"
 
@@ -17967,10 +18245,13 @@ msgstr "Teşekkür mesajını dahil et"
 
 #: application/views/logbookadvanced/statecheckresult.php:3
 #: application/views/logbookadvanced/statecheckresult.php:46
+#: application/views/dbtools/statecheckresult.php:3
+#: application/views/dbtools/statecheckresult.php:46
 msgid "State Check Results"
 msgstr "Eyalet Kontrol Sonuçları"
 
 #: application/views/logbookadvanced/statecheckresult.php:4
+#: application/views/dbtools/statecheckresult.php:4
 msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
@@ -17979,14 +18260,17 @@ msgstr ""
 "karakter içeren grid karelerine sahip QSO'lar bulundu:"
 
 #: application/views/logbookadvanced/statecheckresult.php:7
+#: application/views/dbtools/statecheckresult.php:7
 msgid "Fix all DXCCs"
 msgstr ""
 
 #: application/views/logbookadvanced/statecheckresult.php:34
+#: application/views/dbtools/statecheckresult.php:34
 msgid "Run fix"
 msgstr "Düzeltmeyi çalıştır"
 
 #: application/views/logbookadvanced/statecheckresult.php:47
+#: application/views/dbtools/statecheckresult.php:47
 msgid "No QSOs were found where state information can be fixed."
 msgstr "Durum bilgisinin sabitlenebildiği hiçbir QSO bulunamadı."
 

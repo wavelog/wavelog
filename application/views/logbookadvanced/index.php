@@ -905,9 +905,6 @@ $options = json_decode($options);
 					<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
 						<i class="fas fa-cog"></i>
 					</button>
-					<button type="button" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="dbtools" style="white-space: nowrap;" aria-label="<?= __("Database Tools"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Database Tools"); ?>">
-						<i class="fas fa-wrench"></i>
-					</button>
 				<?php } ?>
 				<?php if(clubaccess_check(3)) { ?>
 					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
