@@ -739,7 +739,7 @@ class Lotw extends CI_Controller {
 
 					$config['upload_path'] = './uploads/';
 					$file = $config['upload_path'] . 'lotwreport_download_'.$user->user_id.'_auto.adi';
-					if (file_exists($file) && ! is_writable($file)) {
+					if (file_exists($file) && ! is_writable($file) && ! @unlink($file)) {
 						$result = "Temporary download file ".$file." is not writable. Aborting!";
 						continue;
 					}
@@ -784,15 +784,19 @@ class Lotw extends CI_Controller {
 						log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
 						continue;
 					}
-					file_put_contents($file, $content);
-					if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
+					if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
 						$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
 						log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
 						continue;
 					}
+					file_put_contents($file, $content);
 
 					ini_set('memory_limit', '-1');
-					$result = $this->loadFromFile($file, $station_ids, false);
+					try {
+						$result = $this->loadFromFile($file, $station_ids, false);
+					} finally {
+						@unlink($file);
+					}
 				}
 				return $result;
 			} else {
@@ -812,7 +816,7 @@ class Lotw extends CI_Controller {
 
 				$config['upload_path'] = './uploads/';
 				$file = $config['upload_path'] . 'lotwreport_download_'.$user->user_id.'_auto.adi';
-				if (file_exists($file) && ! is_writable($file)) {
+				if (file_exists($file) && ! is_writable($file) && ! @unlink($file)) {
 					log_message("Error","LoTW Multidownload: UID: ".$user->user_id." - Temporary download file ".$file." is not writable. Aborting!");
 					continue;
 				}
@@ -892,13 +896,17 @@ class Lotw extends CI_Controller {
 						} else if (str_contains(substr($content, 0, 2000), "Page Request Limit!</B>")) {
 							log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
 						} else {
-							file_put_contents($file, $content);
-							if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
+							if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
 								log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
 							} else {
+								file_put_contents($file, $content);
 								ini_set('memory_limit', '-1');
 								log_message('debug', 'LoTW parallel download passing to loadFromFile for UID '.$user->user_id.' ('.$user->user_lotw_name.')');
-								$this->loadFromFile($file, $station_ids, false);
+								try {
+									$this->loadFromFile($file, $station_ids, false);
+								} finally {
+									@unlink($file);
+								}
 							}
 						}
 					}
@@ -1089,6 +1097,11 @@ class Lotw extends CI_Controller {
 					print "LoTW download failed for user ".$data['user_lotw_name'].": unexpected HTTP status ".$http_code.".";
 				} else if (str_contains($content,"Username/password incorrect</I>")) {
 					print "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
+				} else if (str_contains($content,"Page Request Limit!</B>")) {
+					print "LoTW download hit a rate limit for user ".$data['user_lotw_name'];
+				} else if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
+					print "Downloaded LoTW report for user ".$data['user_lotw_name']." is invalid. Check your credentials.";
+					log_message('error', 'Downloaded LoTW report is invalid for user '.$data['user_lotw_name']);
 				} else {
 					file_put_contents($file, $content);
 					ini_set('memory_limit', '-1');
