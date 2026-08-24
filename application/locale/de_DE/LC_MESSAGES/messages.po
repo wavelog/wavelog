@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 16:43+0000\n"
-"PO-Revision-Date: 2026-08-22 10:16+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"POT-Creation-Date: 2026-08-23 14:30+0000\n"
+"PO-Revision-Date: 2026-08-24 06:33+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -273,8 +273,8 @@ msgid "Activated Gridsquare Map"
 msgstr "Karte der aktivierten Locator"
 
 #: application/controllers/Activated_gridmap.php:33
-#: application/controllers/Awards.php:1486
-#: application/controllers/Awards.php:1522
+#: application/controllers/Awards.php:1476
+#: application/controllers/Awards.php:1512
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:533
 #: application/views/activators/index.php:107
@@ -282,6 +282,8 @@ msgstr "Karte der aktivierten Locator"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1486
+#: application/controllers/Awards.php:1522
 msgid "Gridsquares"
 msgstr "Locator"
 
@@ -339,8 +341,9 @@ msgid "Zones"
 msgstr "Zonen"
 
 #: application/controllers/Activationplanner.php:33
-#: application/controllers/Awards.php:2620
+#: application/controllers/Awards.php:2610
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2620
 msgid "ITU Zones"
 msgstr "ITU-Zonen"
 
@@ -528,6 +531,17 @@ msgstr "Diplome"
 #: application/controllers/Awards.php:1250
 #: application/controllers/Awards.php:1335
 #: application/controllers/Awards.php:1368
+#: application/controllers/Awards.php:1497
+#: application/controllers/Awards.php:1703
+#: application/controllers/Awards.php:1854
+#: application/controllers/Awards.php:1905
+#: application/controllers/Awards.php:2461
+#: application/controllers/Awards.php:2610
+#: application/controllers/Awards.php:2740
+#: application/controllers/Awards.php:2814
+#: application/controllers/Awards.php:2827
+#: application/controllers/Awards.php:2902
+#: application/controllers/Awards.php:3044
 #: application/controllers/Awards.php:1507
 #: application/controllers/Awards.php:1713
 #: application/controllers/Awards.php:1864
@@ -795,39 +809,50 @@ msgstr "IOTA (Islands On The Air)"
 msgid "US Counties"
 msgstr "US Counties"
 
+#: application/controllers/Awards.php:1442
 #: application/controllers/Awards.php:1452
 msgid "Log View - Counties"
 msgstr "Log Ansicht – Counties"
 
+#: application/controllers/Awards.php:1458
 #: application/controllers/Awards.php:1468
 msgid "Awards - "
 msgstr "Diplome - "
 
+#: application/controllers/Awards.php:1477
+#: application/controllers/Awards.php:1513
 #: application/controllers/Awards.php:1487
 #: application/controllers/Awards.php:1523
 msgid "Gridsquares worked"
 msgstr "Gearbeitete Locator"
 
+#: application/controllers/Awards.php:1478
+#: application/controllers/Awards.php:1514
 #: application/controllers/Awards.php:1488
 #: application/controllers/Awards.php:1524
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Auf LoTW bestätigte Locator"
 
+#: application/controllers/Awards.php:1479
+#: application/controllers/Awards.php:1515
 #: application/controllers/Awards.php:1489
 #: application/controllers/Awards.php:1525
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Per Papier QSL bestätigte Locator"
 
+#: application/controllers/Awards.php:1480
+#: application/controllers/Awards.php:1516
 #: application/controllers/Awards.php:1490
 #: application/controllers/Awards.php:1526
 msgid "Total Gridsquares worked"
 msgstr "Summe gearbeiteter Locator"
 
+#: application/controllers/Awards.php:1497
 #: application/controllers/Awards.php:1507
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
-#: application/controllers/Awards.php:1713
+#: application/controllers/Awards.php:1703
 #: application/views/interface_assets/header.php:204
 #: application/views/logbookadvanced/edit.php:256
 #: application/views/logbookadvanced/useroptions.php:250
@@ -836,48 +861,58 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/stationsetup/locationlist.php:26
 #: application/views/user/edit.php:871 application/views/view_log/qso.php:371
 #: application/views/view_log/qso.php:691
+#: application/controllers/Awards.php:1713
 msgid "SIG"
 msgstr "SIG"
 
+#: application/controllers/Awards.php:1722
 #: application/controllers/Awards.php:1732
 msgid "Awards - SIG - "
 msgstr "Diplome - SIG - "
 
-#: application/controllers/Awards.php:1864 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1854 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1864
 msgid "WAP"
 msgstr "WAP"
 
-#: application/controllers/Awards.php:1915
+#: application/controllers/Awards.php:1905
 #: application/views/interface_assets/header.php:263
+#: application/controllers/Awards.php:1915
 msgid "WAIP"
 msgstr "WAIP"
 
-#: application/controllers/Awards.php:2750
+#: application/controllers/Awards.php:2740
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:210
+#: application/controllers/Awards.php:2750
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
+#: application/controllers/Awards.php:2814
 #: application/controllers/Awards.php:2824
 msgid "WAE"
 msgstr "WAE"
 
-#: application/controllers/Awards.php:2837
+#: application/controllers/Awards.php:2827
 #: application/views/interface_assets/header.php:220
+#: application/controllers/Awards.php:2837
 msgid "73 on 73"
 msgstr "73 on 73"
 
-#: application/controllers/Awards.php:2912
+#: application/controllers/Awards.php:2902
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2912
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:3054
+#: application/controllers/Awards.php:3044
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:285
+#: application/controllers/Awards.php:3054
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Diplom"
 
+#: application/controllers/Awards.php:3088
 #: application/controllers/Awards.php:3098
 msgid "Awards - AMSAT Rover"
 msgstr "Diplome - AMSAT Rover"
@@ -1551,7 +1586,7 @@ msgstr "Dashboard"
 
 #: application/controllers/Dashboard.php:219
 msgid "HF"
-msgstr ""
+msgstr "KW"
 
 #: application/controllers/Dashboard.php:219
 #: application/views/dashboard/index.php:684
@@ -1567,7 +1602,7 @@ msgstr "SAT"
 
 #: application/controllers/Dashboard.php:219
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1921,7 +1956,7 @@ msgstr "KML-Export"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "Label Designer"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1941,11 +1976,11 @@ msgstr "Vorlagen-JSON ist ungültig"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Vorlage hat keine Elemente"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Labeltyp nicht gefunden"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1967,13 +2002,15 @@ msgstr "PDF-Datei wurde nicht erstellt"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Label PDF fehlgeschlaten: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Der Labeltyp für diese Vorlage existiert nicht mehr. Bitte wähle vor dem "
+"Export eine andere aus."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -3260,8 +3297,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:572
@@ -4702,15 +4739,15 @@ msgstr "Gelöscht"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "Importiert"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "Importiertes Papier"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "Importierter Labeltyp"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -5671,10 +5708,9 @@ msgstr "Minimale Anzahl"
 
 #: application/views/activators/index.php:82
 #: application/views/awards/73on73/index.php:71
-#: application/views/awards/counties/counties_simple_ajax.php:21
-#: application/views/awards/counties/details_ajax.php:24
+#: application/views/awards/counties/details_ajax.php:23
 #: application/views/awards/counties/index.php:230
-#: application/views/awards/counties/state_ajax.php:47
+#: application/views/awards/counties/state_ajax.php:40
 #: application/views/awards/cq/index.php:273
 #: application/views/awards/dok/index.php:202
 #: application/views/awards/helvetia/index.php:204
@@ -5701,6 +5737,9 @@ msgstr "Minimale Anzahl"
 #: application/views/qrz/export.php:65
 #: application/views/statistics/qsltable.php:162
 #: application/views/timeline/index.php:149
+#: application/views/awards/counties/counties_simple_ajax.php:21
+#: application/views/awards/counties/details_ajax.php:24
+#: application/views/awards/counties/state_ajax.php:47
 msgid "Nothing found!"
 msgstr "Nichts gefunden!"
 
@@ -7304,7 +7343,6 @@ msgstr "In Zwischenablage kopieren"
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
-#: application/views/awards/counties/counties_simple_ajax.php:7
 #: application/views/awards/counties/details_ajax.php:9
 #: application/views/awards/counties/index.php:8
 #: application/views/awards/counties/state_ajax.php:7
@@ -7312,13 +7350,9 @@ msgstr "CSV herunterladen"
 #: application/views/logbookadvanced/index.php:1003
 #: application/views/logbookadvanced/useroptions.php:187
 #: application/views/stationsetup/locationlist.php:20
+#: application/views/awards/counties/counties_simple_ajax.php:7
 msgid "County"
 msgstr "County"
-
-#: application/views/awards/counties/details_ajax.php:14
-#: application/views/awards/counties/state_ajax.php:26
-msgid "Not in USA-CA county list"
-msgstr ""
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
@@ -7531,7 +7565,7 @@ msgid "Confirmed Progress"
 msgstr "Fortschritt Bestätigt"
 
 #: application/views/awards/counties/index.php:218
-#: application/views/awards/counties/state_ajax.php:39
+#: application/views/awards/counties/state_ajax.php:32
 #: application/views/awards/dok/index.php:182
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:251
@@ -7560,6 +7594,7 @@ msgstr "Fortschritt Bestätigt"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/counties/state_ajax.php:39
 msgid "Total"
 msgstr "Gesamt"
 
@@ -15491,8 +15526,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -16317,21 +16352,15 @@ msgstr "Etwas ist schiefgelaufen. Bitte versuche es erneut!"
 msgid "US Counties for state"
 msgstr "US Bezirk für Bundesstaat"
 
-#: application/views/interface_assets/footer.php:2898
-msgid "Worked counties for state:"
-msgstr "Gearbeitete Bezirke für Bundesstaat:"
-
+#: application/views/interface_assets/footer.php:2903
 #: application/views/interface_assets/footer.php:2899
 msgid "Confirmed counties for state:"
 msgstr "Bestätigte Bezirke für Bundesstaat:"
 
-#: application/views/interface_assets/footer.php:2900
-msgid "Counties in state:"
-msgstr ""
-
-#: application/views/interface_assets/footer.php:2901
-msgid "Needed counties for state:"
-msgstr ""
+#: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2898
+msgid "Worked counties for state:"
+msgstr "Gearbeitete Bezirke für Bundesstaat:"
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16691,7 +16720,7 @@ msgstr "Freitext"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Linie"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16758,12 +16787,14 @@ msgstr "ausgewählt"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "Bitte zuerst einen Labeltyp auswählen."
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"Der Labeltyp dieser Vorlage existiert nicht mehr. Bitte wähle eine andere "
+"aus."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -16805,23 +16836,23 @@ msgstr "Seite verlassen"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "Import fehlgeschlagen"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "Export fehlgeschlagen"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "Vorlage importiert."
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "Bitte wähle eine Vorlage zum Export aus."
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "Datei ist zu groß."
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -16865,23 +16896,23 @@ msgstr "Lösche Vorlage"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "Exportiere Vorlage"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "Importiere Vorlage"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "Labeltyp"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "(wähle Labeltyp)"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "Generiere Beispiel-PDF mit deinen letztes QSOs"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -16946,28 +16977,34 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"Horizontale Linie - aktiviere 'Wiederholungen pro QSO', um unter jeder QSO-"
+"Zeile eine Trennlinie zu zeichnen"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Horizontale Linie"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
 msgstr ""
+"Vertikale Linie — Platziere an Spaltenenden, um ein Tabellenlayout zu "
+"erzeugen"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "Vertikale Linie"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"Tabellenlayout — Ziehe die Ecke für Größenänderung, ziehe die Spaltenmarker, "
+"um Spaltenbreite zu adjustieren"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "Füge Tabelle hinzu"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -16976,11 +17013,11 @@ msgstr "Kein entsprechendes Feld gefunden."
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "Labelleinwand"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "ziehe Felder auf das Label"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -16989,7 +17026,7 @@ msgstr "Vorlagenoptionen"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "Anzahl QSOs pro Label"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -17001,14 +17038,15 @@ msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
+"Zeichnet automatisch eine Linie zwischen den QSOs wie im klassischen Layout"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "Trennlinien zwischen QSO-Zeilen"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "Dicke der Trennlinie"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -17052,11 +17090,11 @@ msgstr "Y"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "Zeilen"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "Spalten"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -17071,7 +17109,7 @@ msgstr "Höhe"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "Breite"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -17080,15 +17118,15 @@ msgstr "Ausrichtung"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikal"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "Länge"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -17118,8 +17156,8 @@ msgid "Wrap width"
 msgstr "Umbruch"
 
 #: application/views/labeldesigner/designer.php:399
-msgid "Print this field once per QSO if a label holds multiple QSOs"
-msgstr ""
+msgid "Print this field once per QSO when a label holds multiple QSOs"
+msgstr "Drucke dieses Feld pro QSO, wenn ein Label mehrere QSOs enthält"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17423,13 +17461,13 @@ msgstr "QSOs ansehen"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "Labellayout"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -17437,6 +17475,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"Entworfene Labellayouts verwenden ihr eigenes Layout und die Optionen unten "
+"werden ignoriert."
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
@@ -19530,8 +19570,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -21628,8 +21668,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -22684,9 +22724,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -24405,6 +24445,23 @@ msgstr "Clublog Logsuche"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Nutzer. Letzter Upload vom "
+
+#: application/views/labeldesigner/designer.php:399
+msgid "Print this field once per QSO if a label holds multiple QSOs"
+msgstr "Drucke dieses Feld pro QSO, wenn ein Label mehrere QSOs enthält"
+
+#: application/views/awards/counties/details_ajax.php:14
+#: application/views/awards/counties/state_ajax.php:26
+msgid "Not in USA-CA county list"
+msgstr "Nicht in der USA-CA County-Liste"
+
+#: application/views/interface_assets/footer.php:2900
+msgid "Counties in state:"
+msgstr "Counties im Bundesstaat:"
+
+#: application/views/interface_assets/footer.php:2901
+msgid "Needed counties for state:"
+msgstr "Benötigte Counties für Bundesstaat:"
 
 #~ msgid "Counties Progress"
 #~ msgstr "Fortschritt Bezirke"
