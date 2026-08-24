@@ -299,7 +299,7 @@ if ($dxcc_list->result() > 0) {
 					<div class="mb-3">
 						<label for="qrzApiKey">QRZ.com Logbook API Key</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp" value="<?php if(isset($qrzapikey)) { echo htmlspecialchars((string)$qrzapikey); } ?>">
+							<input type="text" class="form-control" name="qrzapikey" pattern="^\s*([A-F0-9]{4}-){3}[A-F0-9]{4}\s*$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp" value="<?php if(isset($qrzapikey)) { echo htmlspecialchars((string)$qrzapikey); } ?>">
 							<button class="btn btn-secondary" type="button" id="qrz_apitest_btn"><?= __("Test API-Key"); ?></button>
 						</div>
 						<div class="alert mt-3" style="display: none;" id="qrz_apitest_msg"></div>
