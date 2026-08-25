@@ -232,6 +232,9 @@ $render_pota_progress = function ($count, $idPrefix, $verbText) use ($pota_award
 							</select>
 						</div>
 					</div>
+					<div class="d-flex justify-content-center mt-3">
+						<button type="button" onclick="applyPotaFilters();" class="btn btn-sm btn-primary"><?= __("Apply Filters") ?></button>
+					</div>
 				</div>
 			</div>
 			</div>

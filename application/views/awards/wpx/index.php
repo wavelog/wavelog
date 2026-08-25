@@ -147,6 +147,9 @@
 
 						</div>
 					</div>
+					<div class="d-flex justify-content-center mt-3">
+						<button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Apply"); ?></button>
+					</div>
 				</div>
 				<div class="mb-4 text-center">
 					<button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
