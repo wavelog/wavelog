@@ -143,7 +143,7 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-center mt-3">
-						<button type="button" onclick="applyWwffFilters();" class="btn btn-sm btn-primary"><?= __("Apply Filters") ?></button>
+						<button type="button" onclick="applyWwffFilters();" class="btn btn-sm btn-primary"><?= __("Apply") ?></button>
 					</div>
 				</div>
 			</div>
