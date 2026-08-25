@@ -770,7 +770,7 @@ class Lotw extends CI_Controller {
 						$result = "LoTW download failed for user ".$user->user_lotw_name.": unexpected HTTP status ".$http_code.".";
 						log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
 						continue;
-					} else if(str_contains(substr($content,0 , 2000),"Username/password incorrect</I>")) {
+					} else if(str_contains(substr($content,0 , 6000),"Username/password incorrect</I>")) {
 						$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
 						log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
 						if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
@@ -779,7 +779,7 @@ class Lotw extends CI_Controller {
 							log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
 						}
 						continue;
-					} else if (str_contains(substr($content, 0, 2000),"Page Request Limit!</B>")) {
+					} else if (str_contains(substr($content, 0, 6000),"Page Request Limit!</B>")) {
 						$result = "LoTW download hit a rate limit for user ".$user->user_lotw_name;
 						log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
 						continue;
@@ -886,14 +886,14 @@ class Lotw extends CI_Controller {
 
 						if ($http_code !== 200) {
 							log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
-						} else if (str_contains(substr($content, 0, 2000), "Username/password incorrect</I>")) {
+						} else if (str_contains(substr($content, 0, 6000), "Username/password incorrect</I>")) {
 							log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
 							if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
 								log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
 							} else {
 								log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
 							}
-						} else if (str_contains(substr($content, 0, 2000), "Page Request Limit!</B>")) {
+						} else if (str_contains(substr($content, 0, 6000), "Page Request Limit!</B>")) {
 							log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
 						} else {
 							if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
