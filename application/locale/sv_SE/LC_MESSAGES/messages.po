@@ -238,7 +238,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Lotw.php:943
+#: application/controllers/Lotw.php:1029
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -2788,36 +2789,36 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-information"
 
-#: application/controllers/Lotw.php:992
+#: application/controllers/Lotw.php:992 application/controllers/Lotw.php:1000
 msgid "Connection to LoTW failed."
 msgstr "Anslutning till LoTW misslyckades."
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:997 application/controllers/Lotw.php:1005
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-inloggning misslyckades för användare %s: %s."
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:997 application/controllers/Lotw.php:1005
 msgid "Username/password incorrect"
 msgstr "Användarnamn/lösenord felaktigt"
 
-#: application/controllers/Lotw.php:1000
+#: application/controllers/Lotw.php:1000 application/controllers/Lotw.php:1008
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW är för närvarande inte tillgänglig. Försök igen senare."
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1004 application/controllers/Lotw.php:1012
 msgid "LoTW login OK!"
 msgstr "LoTW-inloggning OK!"
 
-#: application/controllers/Lotw.php:1010
+#: application/controllers/Lotw.php:1010 application/controllers/Lotw.php:1018
 msgid "No LoTW credentials provided."
 msgstr "Inga LoTW detaljer angivna."
 
-#: application/controllers/Lotw.php:1027
+#: application/controllers/Lotw.php:1027 application/controllers/Lotw.php:1035
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
 
-#: application/controllers/Lotw.php:1054
+#: application/controllers/Lotw.php:1054 application/controllers/Lotw.php:1062
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du har inte angivit dina ARRL LoTW-uppgifter!"
 
@@ -7785,6 +7786,7 @@ msgstr "QSL-kort"
 #: application/views/awards/itu/index.php:195
 #: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:202
+#: application/views/lookup/result.php:28
 msgid "Legend:"
 msgstr "Legend:"
 
@@ -7793,6 +7795,7 @@ msgstr "Legend:"
 #: application/views/awards/itu/index.php:196
 #: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:203
+#: application/views/lookup/result.php:29
 msgid "(Q)SL-Paper-Card"
 msgstr "(Q)SL-papperskort"
 
@@ -7801,6 +7804,7 @@ msgstr "(Q)SL-papperskort"
 #: application/views/awards/itu/index.php:197
 #: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:204
+#: application/views/lookup/result.php:30
 msgid "(L)oTW"
 msgstr "(L)oTW"
 
@@ -7809,6 +7813,7 @@ msgstr "(L)oTW"
 #: application/views/awards/itu/index.php:198
 #: application/views/awards/wac/index.php:137
 #: application/views/awards/wae/index.php:205
+#: application/views/lookup/result.php:31
 msgid "(e)QSL"
 msgstr "(e)QSL"
 
@@ -7817,6 +7822,7 @@ msgstr "(e)QSL"
 #: application/views/awards/itu/index.php:199
 #: application/views/awards/wac/index.php:138
 #: application/views/awards/wae/index.php:206
+#: application/views/lookup/result.php:32
 msgid "QR(Z)-\"confirmation\""
 msgstr "QR(Z)-\"bekräftelse\""
 
@@ -7825,6 +7831,7 @@ msgstr "QR(Z)-\"bekräftelse\""
 #: application/views/awards/itu/index.php:200
 #: application/views/awards/wac/index.php:139
 #: application/views/awards/wae/index.php:207
+#: application/views/lookup/result.php:33
 msgid "(C)lublog"
 msgstr "(C)lublog"
 
@@ -7833,6 +7840,7 @@ msgstr "(C)lublog"
 #: application/views/awards/itu/index.php:201
 #: application/views/awards/wac/index.php:140
 #: application/views/awards/wae/index.php:208
+#: application/views/lookup/result.php:34
 msgid "(W)orked"
 msgstr "(W) Kontaktad"
 
@@ -9446,8 +9454,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -17328,8 +17336,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -22486,8 +22494,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"

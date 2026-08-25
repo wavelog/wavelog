@@ -37,7 +37,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 16:43+0000\n"
+"POT-Creation-Date: 2026-08-25 09:55+0000\n"
 "PO-Revision-Date: 2026-08-23 07:14+0000\n"
 "Last-Translator: BI7BLA <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -214,7 +214,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:88 application/controllers/Lotw.php:113
 #: application/controllers/Lotw.php:410 application/controllers/Lotw.php:432
-#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:1021
+#: application/controllers/Lotw.php:943 application/controllers/Lotw.php:1029
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -2790,36 +2790,36 @@ msgstr "从文件 %s 中提取证书的私钥时发生一般错误。"
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:992
+#: application/controllers/Lotw.php:1000
 msgid "Connection to LoTW failed."
 msgstr "连接到 LoTW 失败。"
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:1005
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW 用户 %s 登录失败：%s。"
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:1005
 msgid "Username/password incorrect"
 msgstr "用户名/密码不正确"
 
-#: application/controllers/Lotw.php:1000
+#: application/controllers/Lotw.php:1008
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW当前不可用。请稍后再试。"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1012
 msgid "LoTW login OK!"
 msgstr "LoTW 登录成功！"
 
-#: application/controllers/Lotw.php:1010
+#: application/controllers/Lotw.php:1018
 msgid "No LoTW credentials provided."
 msgstr "没有提供 LoTW 证书。"
 
-#: application/controllers/Lotw.php:1027
+#: application/controllers/Lotw.php:1035
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:1054
+#: application/controllers/Lotw.php:1062
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
@@ -7666,6 +7666,7 @@ msgstr "QSL 卡片"
 #: application/views/awards/itu/index.php:195
 #: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:202
+#: application/views/lookup/result.php:28
 msgid "Legend:"
 msgstr "图例:"
 
@@ -7674,6 +7675,7 @@ msgstr "图例:"
 #: application/views/awards/itu/index.php:196
 #: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:203
+#: application/views/lookup/result.php:29
 msgid "(Q)SL-Paper-Card"
 msgstr "纸质QSL卡片(Q)"
 
@@ -7682,6 +7684,7 @@ msgstr "纸质QSL卡片(Q)"
 #: application/views/awards/itu/index.php:197
 #: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:204
+#: application/views/lookup/result.php:30
 msgid "(L)oTW"
 msgstr "LoTW(L)"
 
@@ -7690,6 +7693,7 @@ msgstr "LoTW(L)"
 #: application/views/awards/itu/index.php:198
 #: application/views/awards/wac/index.php:137
 #: application/views/awards/wae/index.php:205
+#: application/views/lookup/result.php:31
 msgid "(e)QSL"
 msgstr "eQSL(e)"
 
@@ -7698,6 +7702,7 @@ msgstr "eQSL(e)"
 #: application/views/awards/itu/index.php:199
 #: application/views/awards/wac/index.php:138
 #: application/views/awards/wae/index.php:206
+#: application/views/lookup/result.php:32
 msgid "QR(Z)-\"confirmation\""
 msgstr "QRZ确认(Z)"
 
@@ -7706,6 +7711,7 @@ msgstr "QRZ确认(Z)"
 #: application/views/awards/itu/index.php:200
 #: application/views/awards/wac/index.php:139
 #: application/views/awards/wae/index.php:207
+#: application/views/lookup/result.php:33
 msgid "(C)lublog"
 msgstr "Clublog(C)"
 
@@ -7714,6 +7720,7 @@ msgstr "Clublog(C)"
 #: application/views/awards/itu/index.php:201
 #: application/views/awards/wac/index.php:140
 #: application/views/awards/wae/index.php:208
+#: application/views/lookup/result.php:34
 msgid "(W)orked"
 msgstr "已通联 (W)"
 
