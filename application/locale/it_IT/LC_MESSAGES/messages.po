@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-25 17:26+0000\n"
-"PO-Revision-Date: 2026-08-24 22:42+0000\n"
+"PO-Revision-Date: 2026-08-26 05:25+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -1922,11 +1922,11 @@ msgstr "Il modello JSON non è valido"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Il modello non ha elementi"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Tipo di etichetta non trovato"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1947,14 +1947,18 @@ msgid "PDF file was not created"
 msgstr "Il file PDF non è stato creato"
 
 #: application/controllers/Labeldesigner.php:165
+#, fuzzy
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Errore nel PDF dell'etichetta: "
 
 #: application/controllers/Labeldesigner.php:180
+#, fuzzy
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Il tipo di etichetta di questo modello non esiste più. Seleziona un altro "
+"tipo prima di esportare."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -4680,15 +4684,15 @@ msgstr "Eliminato"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "Importato"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "Carta importata"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "Tipo di etichetta importato"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -7275,7 +7279,7 @@ msgstr "Contea"
 #: application/views/awards/counties/details_ajax.php:14
 #: application/views/awards/counties/state_ajax.php:26
 msgid "Not in USA-CA county list"
-msgstr ""
+msgstr "Non nella lista delle contee USA-CA"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
@@ -7408,7 +7412,7 @@ msgstr "Conta QSO come confermato via"
 #: application/views/awards/wpx/index.php:151
 #: application/views/awards/wwff/index.php:146
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #: application/views/awards/counties/index.php:156
 msgid "Worked Counties"
@@ -16316,11 +16320,11 @@ msgstr "Contee confermate per lo stato:"
 
 #: application/views/interface_assets/footer.php:2900
 msgid "Counties in state:"
-msgstr ""
+msgstr "Contee nello stato:"
 
 #: application/views/interface_assets/footer.php:2901
 msgid "Needed counties for state:"
-msgstr ""
+msgstr "Contee necessarie per lo stato:"
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16679,7 +16683,7 @@ msgstr "Testo personalizzato"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16746,12 +16750,14 @@ msgstr "selezionato"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "Si prega di selezionare innanzitutto un tipo di etichetta."
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"Il tipo di etichetta di questo modello non esiste più. Si prega di "
+"selezionarne un altro."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -16793,23 +16799,23 @@ msgstr "Lascia la pagina"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "Importazione fallita"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "Esportazione fallita"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "Template importato."
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "Per favore seleziona un modello da esportare."
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "Il file è troppo grande."
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -16853,23 +16859,23 @@ msgstr "Elimina modello"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "Esporta Modello"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "Importa Modello"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "Tipo di etichetta"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "(seleziona un tipo di etichetta)"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "Genera un PDF di esempio con i tuoi ultimi QSO"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -16937,7 +16943,7 @@ msgstr ""
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Linea Orizzontale"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
@@ -16945,7 +16951,7 @@ msgstr ""
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "Linea Verticale"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
@@ -16955,7 +16961,7 @@ msgstr ""
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "Aggiungi Tabella"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -16968,7 +16974,7 @@ msgstr ""
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "trascina i campi sull'etichetta"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -16996,7 +17002,7 @@ msgstr ""
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "Spessore del separatore"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -17059,7 +17065,7 @@ msgstr "Altezza"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "Spessore"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -17076,7 +17082,7 @@ msgstr "Verticale"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "Lunghezza"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
