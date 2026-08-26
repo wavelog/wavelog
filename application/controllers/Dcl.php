@@ -362,19 +362,86 @@ class Dcl extends CI_Controller {
 		return $result;
 	}
 
-	public function import() {	// Manual download of DCL confirmations. Cron uses "dcl_sync". File-based import lives at ADIF-Import (tab DCL).
+	public function import() {	// Manual import of DCL confirmations: file upload (DOKs) or fetch from DCL. Cron uses "dcl_sync".
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit(); }
 		$this->load->library('Permissions');
 
 		$data['page_title'] = __("DCL Import");
 
-		if ($this->input->post('dclimport') == 'fetch' && !($this->config->item('disable_manual_dcl') ?? false)) {
-			$data['dcl_result'] = $this->dcl_download($this->session->userdata('user_id'), xss_clean($this->input->post('from')));
-		}
+		if ($this->input->post('dclimport') == 'upload') {
+			// File based import of DCL confirmations (DOK update)
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'adi|ADI|adif|ADIF';
 
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('dcl_views/import', $data);
-		$this->load->view('interface_assets/footer');
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload()) {
+				$data['error'] = $this->upload->display_errors();
+
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('dcl_views/import', $data);
+				$this->load->view('interface_assets/footer');
+			} else {
+				$upload_data = $this->upload->data();
+
+				ini_set('memory_limit', '-1');
+				set_time_limit(0);
+
+				$this->load->model('logbook_model');
+
+				if (!$this->load->is_loaded('adif_parser')) {
+					$this->load->library('adif_parser');
+				}
+
+				$filepath = $upload_data['full_path'];
+				$error_count = array(0, 0, 0);
+				$custom_errors = "";
+
+				try {
+					$this->adif_parser->load_from_file($filepath);
+					$this->adif_parser->initialize();
+
+					while ($record = $this->adif_parser->get_record()) {
+						if (count($record) == 0) {
+							break;
+						};
+
+						$dok_result = $this->logbook_model->update_dok($record, xss_clean($this->input->post('ignoreAmbiguous')), xss_clean($this->input->post('onlyConfirmed')), xss_clean($this->input->post('overwriteDok')));
+						if (!empty($dok_result)) {
+							switch ($dok_result[0]) {
+							case 0:
+								$error_count[0]++;
+								break;
+							case 1:
+								$custom_errors .= $dok_result[1];
+								$error_count[1]++;
+								break;
+							case 2:
+								$custom_errors .= $dok_result[1];
+								$error_count[2]++;
+							}
+						}
+					}
+				} finally {
+					@unlink($filepath);	// Never leave an orphaned upload behind
+				}
+
+				$data['dcl_error_count'] = $error_count;
+				$data['dcl_errors'] = $custom_errors;
+				$data['page_title'] = __("DCL Data Imported");
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('dcl_views/dcl_success');
+				$this->load->view('interface_assets/footer');
+			}
+		} else {
+			if ($this->input->post('dclimport') == 'fetch' && !($this->config->item('disable_manual_dcl') ?? false)) {
+				$data['dcl_result'] = $this->dcl_download($this->session->userdata('user_id'), xss_clean($this->input->post('from')));
+			}
+
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('dcl_views/import', $data);
+			$this->load->view('interface_assets/footer');
+		}
 	}
 
 } // end class
