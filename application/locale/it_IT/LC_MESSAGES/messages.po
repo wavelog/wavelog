@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-25 17:26+0000\n"
-"PO-Revision-Date: 2026-08-26 05:25+0000\n"
+"PO-Revision-Date: 2026-08-26 11:05+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -1947,12 +1947,10 @@ msgid "PDF file was not created"
 msgstr "Il file PDF non è stato creato"
 
 #: application/controllers/Labeldesigner.php:165
-#, fuzzy
 msgid "Label PDF failed: "
-msgstr "Errore nel PDF dell'etichetta: "
+msgstr "Errore nell'etichetta PDF: "
 
 #: application/controllers/Labeldesigner.php:180
-#, fuzzy
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
@@ -16940,6 +16938,8 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"Linea orizzontale — abilita 'Ripetizioni per QSO' per inserire un separatore "
+"sotto ogni riga di QSO"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
@@ -16948,6 +16948,8 @@ msgstr "Linea Orizzontale"
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
 msgstr ""
+"Linea verticale — posiziona ai bordi delle colonne per costruire la griglia "
+"di una tabella"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
@@ -16958,6 +16960,8 @@ msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"Griglia della tabella — trascina l'angolo per ridimensionare, trascina i "
+"segnaposto delle colonne per regolare le larghezze delle colonne"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
@@ -16970,7 +16974,7 @@ msgstr "Nessun campo corrisponde alla tua ricerca."
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "Canvas etichetta"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
@@ -16995,10 +16999,12 @@ msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
+"Tra le righe dei QSO inserisce automaticamente una linea, come nel layout "
+"classico delle etichette"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "Linee di separazione tra le righe dei QSO"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
@@ -17114,6 +17120,7 @@ msgstr "Larghezza di regolazione"
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
 msgstr ""
+"Stampa questo campo una volta per ogni QSO se un'etichetta contiene più QSO"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17421,7 +17428,7 @@ msgstr "Visualizza QSO"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "Layout etichetta"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
@@ -17435,6 +17442,8 @@ msgstr "Standard"
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"I template delle etichette progettate usano il loro layout e ignorano le "
+"opzioni sottostanti."
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
