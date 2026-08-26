@@ -199,6 +199,13 @@ class Qsl_model extends CI_Model {
 				WHERE station_id IN ($location_list) AND col_clublog_qso_download_date IS NOT NULL AND coalesce(col_clublog_qso_download_date, '') <> '' AND col_clublog_qso_download_status = 'Y'
 			";
 		}
+		if (in_array('dcl', $confirmationtype)) {
+			$sql_parts[] = "
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_gridsquare, col_vucc_grids, col_sat_name, col_dcl_qslrdate AS rxdate, 'DCL' AS type, 0 as qslcount
+				FROM $table
+				WHERE station_id IN ($location_list) AND col_dcl_qslrdate IS NOT NULL AND coalesce(col_dcl_qslrdate, '') <> '' AND col_dcl_qsl_rcvd = 'Y'
+			";
+		}
 
 		if (count($sql_parts) == 0) {
 			return array();
