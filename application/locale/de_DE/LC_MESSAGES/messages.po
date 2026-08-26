@@ -1928,6 +1928,7 @@ msgstr "Label Designer"
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
 #: application/controllers/Qslpostcard.php:302
+#: application/controllers/Qslpostcard.php:307
 msgid "Template not found"
 msgstr "Vorlage nicht gefunden"
 
@@ -1936,6 +1937,7 @@ msgstr "Vorlage nicht gefunden"
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
 #: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:313
 msgid "Template JSON is invalid"
 msgstr "Vorlagen-JSON ist ungültig"
 
@@ -2071,6 +2073,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:290
 msgid "No QSOs were selected"
 msgstr "Keine QSOs wurden ausgewählt"
 
@@ -3262,8 +3265,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:572
@@ -3287,6 +3290,7 @@ msgstr "QSL-Postkarten drucken"
 
 #: application/controllers/Qslpostcard.php:262
 #: application/controllers/Qslpostcard.php:321
+#: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
 msgstr "Keine QSOs für den Postkartendruck gefunden"
 
@@ -3296,14 +3300,17 @@ msgstr "QSL-Postkarten-Warteschlange PDF fehlgeschlagen: "
 
 #: application/controllers/Qslpostcard.php:289
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:294
 msgid "Print Selected QSL Postcards"
 msgstr "Drucke ausgewählte QSL-Karten"
 
 #: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
 msgstr "Es wurden keine QSOs ausgewählt"
 
 #: application/controllers/Qslpostcard.php:339
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Generierung des PDFs für ausgewählte QSL-Karten fehlgeschalgen: "
 
@@ -15522,8 +15529,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -16927,6 +16934,7 @@ msgstr "PDF"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:34
 #: application/views/qslprint/printqsl.php:34
+#: application/views/qslpostcard/printqueue_selected.php:32
 msgid "Save PDF"
 msgstr "Speichere PDF"
 
@@ -18838,6 +18846,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:30
 #: application/views/qslprint/printqsl.php:30
+#: application/views/qslpostcard/printqueue_selected.php:28
 msgid "Generate Postcard PDF"
 msgstr "PDF der Postkarte erstellen"
 
@@ -18845,6 +18854,7 @@ msgstr "PDF der Postkarte erstellen"
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:41
 #: application/views/qslprint/printqsl.php:42
+#: application/views/qslpostcard/printqueue_selected.php:39
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -19572,8 +19582,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -21670,8 +21680,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -22726,9 +22736,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"

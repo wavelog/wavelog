@@ -1901,6 +1901,7 @@ msgstr "Etiket Tasarımcısı"
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
 #: application/controllers/Qslpostcard.php:302
+#: application/controllers/Qslpostcard.php:307
 msgid "Template not found"
 msgstr "Şablon bulunamadı"
 
@@ -1909,6 +1910,7 @@ msgstr "Şablon bulunamadı"
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
 #: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:313
 msgid "Template JSON is invalid"
 msgstr "Şablon JSON geçersiz"
 
@@ -2042,6 +2044,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:290
 msgid "No QSOs were selected"
 msgstr "Hiçbir QSO seçilmedi"
 
@@ -3250,6 +3253,7 @@ msgstr "QSL Kartları Yazdır"
 
 #: application/controllers/Qslpostcard.php:262
 #: application/controllers/Qslpostcard.php:321
+#: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
 msgstr "QSL Kart yazdırma için QSO bulunamadı"
 
@@ -3259,14 +3263,17 @@ msgstr "QSL Kart Kuyruğu PDF'i başarısız oldu: "
 
 #: application/controllers/Qslpostcard.php:289
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:294
 msgid "Print Selected QSL Postcards"
 msgstr "Seçili QSL Kartları Yazdır"
 
 #: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
 msgstr "Hiçbir seçili QSO ID sağlanmadı"
 
 #: application/controllers/Qslpostcard.php:339
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Seçilen QSL Kart PDF'i başarısız oldu: "
 
@@ -16788,6 +16795,7 @@ msgstr "PDF"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:34
 #: application/views/qslprint/printqsl.php:34
+#: application/views/qslpostcard/printqueue_selected.php:32
 msgid "Save PDF"
 msgstr "PDF Kaydet"
 
@@ -18691,6 +18699,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:30
 #: application/views/qslprint/printqsl.php:30
+#: application/views/qslpostcard/printqueue_selected.php:28
 msgid "Generate Postcard PDF"
 msgstr "Kartpostal PDF Oluştur"
 
@@ -18698,6 +18707,7 @@ msgstr "Kartpostal PDF Oluştur"
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:41
 #: application/views/qslprint/printqsl.php:42
+#: application/views/qslpostcard/printqueue_selected.php:39
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."

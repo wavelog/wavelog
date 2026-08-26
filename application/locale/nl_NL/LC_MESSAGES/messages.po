@@ -1905,6 +1905,7 @@ msgstr "Labelontwerper"
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
 #: application/controllers/Qslpostcard.php:302
+#: application/controllers/Qslpostcard.php:307
 msgid "Template not found"
 msgstr "Sjabloon niet gevonden"
 
@@ -1913,6 +1914,7 @@ msgstr "Sjabloon niet gevonden"
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
 #: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:313
 msgid "Template JSON is invalid"
 msgstr "Sjabloon JSON is ongeldig"
 
@@ -2047,6 +2049,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:290
 msgid "No QSOs were selected"
 msgstr "Er zijn geen QSO's geselecteerd"
 
@@ -3260,6 +3263,7 @@ msgstr "QSL-kaarten afdrukken"
 
 #: application/controllers/Qslpostcard.php:262
 #: application/controllers/Qslpostcard.php:321
+#: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
 msgstr "Geen QSO's gevonden voor het afdrukken van ansichtkaarten"
 
@@ -3269,14 +3273,17 @@ msgstr "QSL-ansichtkaartwachtrij PDF mislukt: "
 
 #: application/controllers/Qslpostcard.php:289
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:294
 msgid "Print Selected QSL Postcards"
 msgstr "Geselecteerde QSL-kaarten afdrukken"
 
 #: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
 msgstr "Er zijn geen geselecteerde QSO-ID's opgegeven"
 
 #: application/controllers/Qslpostcard.php:339
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Geselecteerde QSL-ansichtkaart PDF mislukt: "
 
@@ -16830,6 +16837,7 @@ msgstr "PDF"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:34
 #: application/views/qslprint/printqsl.php:34
+#: application/views/qslpostcard/printqueue_selected.php:32
 msgid "Save PDF"
 msgstr "PDF opslaan"
 
@@ -18734,6 +18742,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:30
 #: application/views/qslprint/printqsl.php:30
+#: application/views/qslpostcard/printqueue_selected.php:28
 msgid "Generate Postcard PDF"
 msgstr "Genereer ansichtkaart PDF"
 
@@ -18741,6 +18750,7 @@ msgstr "Genereer ansichtkaart PDF"
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:41
 #: application/views/qslprint/printqsl.php:42
+#: application/views/qslpostcard/printqueue_selected.php:39
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -21667,8 +21677,8 @@ msgid ""
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
 "Ontvangen berichten moeten worden voorafgegaan door een punt %s, verzonden "
-"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - d.w."
-"z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
+"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - "
+"d.w.z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
 "bovenstaande regels toont een type uitwisseling (alleen serie, alleen tekst "
 "of beide); merk op dat de verzonden uitwisseling 'sticky' is: eenmaal "
 "ingesteld, wordt deze automatisch meegenomen in de volgende QSO's (wanneer "

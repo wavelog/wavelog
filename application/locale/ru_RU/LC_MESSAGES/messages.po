@@ -1913,6 +1913,7 @@ msgstr "Редактор наклеек"
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
 #: application/controllers/Qslpostcard.php:302
+#: application/controllers/Qslpostcard.php:307
 msgid "Template not found"
 msgstr "Шаблон не найден"
 
@@ -1921,6 +1922,7 @@ msgstr "Шаблон не найден"
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
 #: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:313
 msgid "Template JSON is invalid"
 msgstr "JSON шаблона некорректен"
 
@@ -2055,6 +2057,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:290
 msgid "No QSOs were selected"
 msgstr "QSO не выбраны"
 
@@ -3268,6 +3271,7 @@ msgstr "Печать QSL карточек"
 
 #: application/controllers/Qslpostcard.php:262
 #: application/controllers/Qslpostcard.php:321
+#: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
 msgstr "Не найдены QSO для печати QSL карточек"
 
@@ -3277,14 +3281,17 @@ msgstr "Ошибка очереди печати QSL карточек в PDF: "
 
 #: application/controllers/Qslpostcard.php:289
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:294
 msgid "Print Selected QSL Postcards"
 msgstr "Напечатать выбранные QSL"
 
 #: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
 msgstr "QSO ID не выбраны"
 
 #: application/controllers/Qslpostcard.php:339
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Не удалось создать PDF для выбранной QSL карточки: "
 
@@ -16892,6 +16899,7 @@ msgstr "PDF"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:34
 #: application/views/qslprint/printqsl.php:34
+#: application/views/qslpostcard/printqueue_selected.php:32
 msgid "Save PDF"
 msgstr "Сохранить PDF"
 
@@ -17125,7 +17133,8 @@ msgstr "Ширина переноса"
 
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
-msgstr "Печать этого поля для каждого QSO, если наклейка содержит несколько QSO"
+msgstr ""
+"Печать этого поля для каждого QSO, если наклейка содержит несколько QSO"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -18804,6 +18813,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:30
 #: application/views/qslprint/printqsl.php:30
+#: application/views/qslpostcard/printqueue_selected.php:28
 msgid "Generate Postcard PDF"
 msgstr "Создать PDF QSL-карточки"
 
@@ -18811,6 +18821,7 @@ msgstr "Создать PDF QSL-карточки"
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:41
 #: application/views/qslprint/printqsl.php:42
+#: application/views/qslpostcard/printqueue_selected.php:39
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -22671,8 +22682,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23007,8 +23019,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:466
 msgid ""

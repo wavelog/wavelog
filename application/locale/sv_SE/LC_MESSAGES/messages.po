@@ -1895,6 +1895,7 @@ msgstr "Etikett Designer"
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
 #: application/controllers/Qslpostcard.php:302
+#: application/controllers/Qslpostcard.php:307
 msgid "Template not found"
 msgstr "Mall hittades inte"
 
@@ -1903,6 +1904,7 @@ msgstr "Mall hittades inte"
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
 #: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:313
 msgid "Template JSON is invalid"
 msgstr "Mall-JSON är ogiltig"
 
@@ -2037,6 +2039,7 @@ msgstr ""
 
 #: application/controllers/Labels.php:144
 #: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:290
 msgid "No QSOs were selected"
 msgstr "Inga QSOs valda"
 
@@ -3247,6 +3250,7 @@ msgstr "Skriv ut QSL-vykort"
 
 #: application/controllers/Qslpostcard.php:262
 #: application/controllers/Qslpostcard.php:321
+#: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
 msgstr "Inga QSOs hittades för vykortsutskrift"
 
@@ -3256,14 +3260,17 @@ msgstr "QSL-vykortskö PDF misslyckades: "
 
 #: application/controllers/Qslpostcard.php:289
 #: application/views/qslpostcard/printqueue_selected.php:2
+#: application/controllers/Qslpostcard.php:294
 msgid "Print Selected QSL Postcards"
 msgstr "Skriv ut valda QSL-vykort"
 
 #: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
 msgstr "Inga angivna QSO-ID:n"
 
 #: application/controllers/Qslpostcard.php:339
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Valt QSL-vykort PDF misslyckades: "
 
@@ -9477,8 +9484,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -16751,6 +16758,7 @@ msgstr "PDF"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:34
 #: application/views/qslprint/printqsl.php:34
+#: application/views/qslpostcard/printqueue_selected.php:32
 msgid "Save PDF"
 msgstr "Spara PDF"
 
@@ -16812,7 +16820,8 @@ msgstr "Horisontell linje"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
-msgstr "Vertikal regel — placera vid kolumnkanterna för att bygga ett tabellnät"
+msgstr ""
+"Vertikal regel — placera vid kolumnkanterna för att bygga ett tabellnät"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
@@ -17367,8 +17376,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -18654,6 +18663,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:30
 #: application/views/qslprint/printqsl.php:30
+#: application/views/qslpostcard/printqueue_selected.php:28
 msgid "Generate Postcard PDF"
 msgstr "Generera vykort PDF"
 
@@ -18661,6 +18671,7 @@ msgstr "Generera vykort PDF"
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:41
 #: application/views/qslprint/printqsl.php:42
+#: application/views/qslpostcard/printqueue_selected.php:39
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -22525,8 +22536,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
