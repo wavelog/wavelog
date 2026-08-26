@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-25 17:26+0000\n"
-"PO-Revision-Date: 2026-08-24 22:42+0000\n"
+"PO-Revision-Date: 2026-08-26 05:25+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -1930,7 +1930,7 @@ msgstr "Шаблон не содержит элементов"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Тип наклейки не найден"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1951,13 +1951,15 @@ msgstr "PDF файл не был создан"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Не удалось создать PDF наклейки: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Тип наклейки этого шаблона больше не существует. Пожалуйста, выберите другой "
+"перед экспортом."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -4682,15 +4684,15 @@ msgstr "Удалено"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "Импортировано"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "Импортированный тип бумаги"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "Импортированный тип наклейки"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -7282,7 +7284,7 @@ msgstr "Район"
 #: application/views/awards/counties/details_ajax.php:14
 #: application/views/awards/counties/state_ajax.php:26
 msgid "Not in USA-CA county list"
-msgstr ""
+msgstr "Не в списке округов США-Калифорнии"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
@@ -7414,7 +7416,7 @@ msgstr "Подсчитать QSO, подтверждённые через"
 #: application/views/awards/wpx/index.php:151
 #: application/views/awards/wwff/index.php:146
 msgid "Apply"
-msgstr ""
+msgstr "Применить"
 
 #: application/views/awards/counties/index.php:156
 msgid "Worked Counties"
@@ -16324,11 +16326,11 @@ msgstr "Подтверждённые округа для штата:"
 
 #: application/views/interface_assets/footer.php:2900
 msgid "Counties in state:"
-msgstr ""
+msgstr "Округи в штате:"
 
 #: application/views/interface_assets/footer.php:2901
 msgid "Needed counties for state:"
-msgstr ""
+msgstr "Необходимые округи для штата:"
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16687,7 +16689,7 @@ msgstr "Пользовательский текст"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Линия"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16753,12 +16755,13 @@ msgstr "выбрано"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "Сначала выберите тип наклейки, пожалуйста."
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"Тип наклейки этого шаблона больше не существует. Пожалуйста, выберите другой."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -16800,23 +16803,23 @@ msgstr "Покинуть страницу"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "Импорт не удался"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "Экспорт не удался"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "Шаблон импортирован."
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "Выберите шаблон для экспорта, пожалуйста."
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "Файл слишком большой."
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -16860,23 +16863,23 @@ msgstr "Удалить шаблон"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "Экспорт шаблона"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "Импорт шаблона"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "Тип наклеек"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "(выберите тип наклейки)"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "Создание примера PDF с вашими последними QSO"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -16941,28 +16944,34 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"Горизонтальная линия — включите «Повторы на QSO», чтобы провести разделитель "
+"под каждой строкой с QSO"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Горизонтальная линия"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
 msgstr ""
+"Вертикальная линия — разместите по краям столбцов, чтобы создать сетку "
+"таблицы"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "Вертикальная линия"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"Сетка таблицы — перетащите угол, чтобы изменить размер, перетащите метки "
+"столбцов, чтобы изменить ширину столбцов"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "Добавить таблицу"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -16971,11 +16980,11 @@ msgstr "Нет полей, соответствующих вашему запр�
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "Границы наклейки"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "перетащите поля на наклейку"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -16984,7 +16993,7 @@ msgstr "Параметры шаблона"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "Количество QSO на каждой наклейке"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -16996,14 +17005,16 @@ msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
+"Проводит линию между строками QSO автоматически, как в классичном макете "
+"наклейки"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "Линии разделителя между строками QSO"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "Толщина разделителя"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -17047,11 +17058,11 @@ msgstr "У"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "Строки"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "Столбцы"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -17066,7 +17077,7 @@ msgstr "Высота"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "Толщина"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -17075,15 +17086,15 @@ msgstr "Ориентация"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "Горизонтально"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикально"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "Длина"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -17114,7 +17125,7 @@ msgstr "Ширина переноса"
 
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
-msgstr ""
+msgstr "Печать этого поля для каждого QSO, если наклейка содержит несколько QSO"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17193,7 +17204,7 @@ msgid ""
 "Label name used for display purposes, so pick something meaningful, perhaps "
 "the label style."
 msgstr ""
-"Названия наклеек используется для отображения, поэтому выберите что-то "
+"Название наклеек используется для отображения, поэтому выберите что-то "
 "осмысленное, к примеру, стиль наклейки."
 
 #: application/views/labels/create.php:39
@@ -17420,13 +17431,13 @@ msgstr "Просмотр QSO"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "Макет наклейки"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "Стандартно"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -17434,6 +17445,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"Заранее созданные шаблоны наклеек используют свой собственный макет и "
+"игнорируют нижеприведенные настройки."
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
