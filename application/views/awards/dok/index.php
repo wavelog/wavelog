@@ -140,6 +140,9 @@
                </div>
             </div>
 
+                	<div class="d-flex justify-content-center mt-3">
+                		<button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Apply"); ?></button>
+                	</div>
                 </div>
             </div>
             </div>

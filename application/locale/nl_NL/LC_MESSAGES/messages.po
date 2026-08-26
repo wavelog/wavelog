@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 16:43+0000\n"
-"PO-Revision-Date: 2026-08-22 10:16+0000\n"
+"POT-Creation-Date: 2026-08-25 17:26+0000\n"
+"PO-Revision-Date: 2026-08-24 22:42+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -187,7 +187,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:88 application/controllers/Lotw.php:113
 #: application/controllers/Lotw.php:410 application/controllers/Lotw.php:432
-#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:1021
+#: application/controllers/Lotw.php:943 application/controllers/Lotw.php:1029
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -526,7 +526,7 @@ msgid "Awards - %s"
 msgstr "Awards - %s"
 
 #: application/controllers/Awards.php:100
-#: application/views/awards/dok/index.php:157
+#: application/views/awards/dok/index.php:160
 #: application/views/bands/index.php:49
 #: application/views/contesting/manager/components/session_modal.php:119
 #: application/views/interface_assets/header.php:249
@@ -1334,7 +1334,7 @@ msgstr "Locatorvak"
 #: application/controllers/Countqsoby.php:75
 #: application/views/activationplanner/index.php:121
 #: application/views/awards/itu/index.php:3
-#: application/views/awards/itu/index.php:207
+#: application/views/awards/itu/index.php:210
 #: application/views/countqsoby/index.php:14
 #: application/views/countqsoby/index.php:68
 #: application/views/dbtools/checkresult.php:324
@@ -1357,7 +1357,7 @@ msgstr "ITU-zone"
 #: application/controllers/Countqsoby.php:76
 #: application/views/activationplanner/index.php:120
 #: application/views/awards/cq/index.php:3
-#: application/views/awards/cq/index.php:205
+#: application/views/awards/cq/index.php:208
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
@@ -1389,7 +1389,7 @@ msgid "POTA Reference"
 msgstr "POTA Referentie"
 
 #: application/controllers/Countqsoby.php:78
-#: application/views/awards/sota/index.php:163
+#: application/views/awards/sota/index.php:166
 #: application/views/countqsoby/index.php:71
 #: application/views/qso/index.php:313 application/views/qso/index.php:595
 #: application/views/station_profile/create.php:215
@@ -1410,7 +1410,7 @@ msgid "IOTA Reference"
 msgstr "IOTA Referentie"
 
 #: application/controllers/Countqsoby.php:80
-#: application/views/awards/wwff/index.php:163
+#: application/views/awards/wwff/index.php:166
 #: application/views/countqsoby/index.php:73
 #: application/views/qso/index.php:325 application/views/qso/index.php:608
 #: application/views/station_profile/create.php:229
@@ -1531,7 +1531,7 @@ msgstr "Dashboard"
 
 #: application/controllers/Dashboard.php:219
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:219
 #: application/views/dashboard/index.php:684
@@ -1547,7 +1547,7 @@ msgstr "SAT"
 
 #: application/controllers/Dashboard.php:219
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1898,7 +1898,7 @@ msgstr "KML-export"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "Labelontwerper"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1918,11 +1918,11 @@ msgstr "Sjabloon JSON is ongeldig"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Sjabloon heeft geen elementen"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Labeltype niet gevonden"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1943,13 +1943,15 @@ msgstr "PDF-bestand werd niet aangemaakt"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Label PDF mislukt: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Het labeltype van deze sjabloon bestaat niet meer. Selecteer een ander "
+"voordat u exporteert."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -2361,9 +2363,9 @@ msgstr "Modus"
 
 #: application/controllers/Logbook.php:1468
 #: application/views/awards/73on73/index.php:43
-#: application/views/awards/pota/index.php:258
-#: application/views/awards/sota/index.php:168
-#: application/views/awards/wwff/index.php:168
+#: application/views/awards/pota/index.php:261
+#: application/views/awards/sota/index.php:171
+#: application/views/awards/wwff/index.php:171
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:949
 #: application/views/logbookadvanced/useroptions.php:52
@@ -2388,9 +2390,9 @@ msgstr "RST (S)"
 
 #: application/controllers/Logbook.php:1469
 #: application/views/awards/73on73/index.php:42
-#: application/views/awards/pota/index.php:259
-#: application/views/awards/sota/index.php:169
-#: application/views/awards/wwff/index.php:169
+#: application/views/awards/pota/index.php:262
+#: application/views/awards/sota/index.php:172
+#: application/views/awards/wwff/index.php:172
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/index.php:952
 #: application/views/logbookadvanced/useroptions.php:58
@@ -2437,7 +2439,7 @@ msgstr "Land"
 
 #: application/controllers/Logbook.php:1471
 #: application/views/activationplanner/index.php:98
-#: application/views/awards/iota/index.php:208
+#: application/views/awards/iota/index.php:211
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
 #: application/views/dbtools/checkresult.php:396
@@ -2470,9 +2472,9 @@ msgstr "IOTA"
 
 #: application/controllers/Logbook.php:1475
 #: application/views/awards/counties/details_ajax.php:8
-#: application/views/awards/counties/index.php:184
-#: application/views/awards/rac/index.php:156
-#: application/views/awards/was/index.php:156
+#: application/views/awards/counties/index.php:187
+#: application/views/awards/rac/index.php:159
+#: application/views/awards/was/index.php:159
 #: application/views/contesting/manager/components/session_modal.php:124
 #: application/views/dashboard/index.php:13
 #: application/views/dbtools/showStateQsos.php:25
@@ -2541,17 +2543,17 @@ msgstr "Afstand"
 #: application/views/awards/cq/index.php:137
 #: application/views/awards/dok/index.php:108
 #: application/views/awards/dxcc/index.php:180
-#: application/views/awards/dxcc/index.php:297
+#: application/views/awards/dxcc/index.php:300
 #: application/views/awards/helvetia/index.php:102
 #: application/views/awards/iota/index.php:146
 #: application/views/awards/itu/index.php:139
 #: application/views/awards/jcc/index.php:82
 #: application/views/awards/pota/index.php:209
-#: application/views/awards/pota/index.php:257
+#: application/views/awards/pota/index.php:260
 #: application/views/awards/rac/index.php:95
 #: application/views/awards/sig/qso_list.php:17
 #: application/views/awards/sota/index.php:119
-#: application/views/awards/sota/index.php:167
+#: application/views/awards/sota/index.php:170
 #: application/views/awards/vucc/index.php:26
 #: application/views/awards/wab/index.php:24
 #: application/views/awards/wac/index.php:53
@@ -2564,7 +2566,7 @@ msgstr "Afstand"
 #: application/views/awards/wpx/index.php:83
 #: application/views/awards/wpx/wpx_details.php:22
 #: application/views/awards/wwff/index.php:119
-#: application/views/awards/wwff/index.php:167
+#: application/views/awards/wwff/index.php:170
 #: application/views/bandmap/list.php:103
 #: application/views/bandmap/list.php:174
 #: application/views/bandmap/list.php:372
@@ -2701,8 +2703,8 @@ msgstr "Operator"
 #: application/controllers/Logbook.php:1501
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:91
-#: application/views/awards/dxcc/index.php:471
-#: application/views/awards/wae/index.php:231
+#: application/views/awards/dxcc/index.php:474
+#: application/views/awards/wae/index.php:234
 #: application/views/countqsoby/index.php:16 application/views/csv/index.php:65
 #: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
@@ -2798,36 +2800,36 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Informatie"
 
-#: application/controllers/Lotw.php:992
+#: application/controllers/Lotw.php:1000
 msgid "Connection to LoTW failed."
 msgstr "Verbinding met LoTW mislukt."
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:1005
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-login mislukt voor gebruiker %s: %s."
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:1005
 msgid "Username/password incorrect"
 msgstr "Gebruikersnaam/wachtwoord onjuist"
 
-#: application/controllers/Lotw.php:1000
+#: application/controllers/Lotw.php:1008
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW momenteel niet beschikbaar. Probeer het later opnieuw."
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1012
 msgid "LoTW login OK!"
 msgstr "LoTW login oké!"
 
-#: application/controllers/Lotw.php:1010
+#: application/controllers/Lotw.php:1018
 msgid "No LoTW credentials provided."
 msgstr "Geen LoTW-gegevens verstrekt."
 
-#: application/controllers/Lotw.php:1027
+#: application/controllers/Lotw.php:1035
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF importeren"
 
-#: application/controllers/Lotw.php:1054
+#: application/controllers/Lotw.php:1062
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Je hebt je ARRL LoTW-gegevens niet gedefinieerd!"
 
@@ -4655,23 +4657,23 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Geen stationprofielen met HRDlog-gegevens gevonden."
 
 #: application/models/Jcc_model.php:209 application/models/Jcc_model.php:210
-#: application/views/awards/iota/index.php:212
-#: application/views/awards/jcc/index.php:141
-#: application/views/awards/jcc/index.php:163
+#: application/views/awards/iota/index.php:215
+#: application/views/awards/jcc/index.php:144
+#: application/views/awards/jcc/index.php:166
 msgid "Deleted"
 msgstr "Verwijderd"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "Geïmporteerd"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "Geïmporteerd papier"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "Geïmporteerd labeltype"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -4983,7 +4985,7 @@ msgstr "Verschil"
 #: application/views/activated_gridmap/index.php:46
 #: application/views/activators/index.php:20
 #: application/views/adif/import.php:271
-#: application/views/awards/counties/index.php:245
+#: application/views/awards/counties/index.php:248
 #: application/views/awards/cq/index.php:153
 #: application/views/awards/dok/index.php:125
 #: application/views/awards/dxcc/index.php:197
@@ -5387,7 +5389,7 @@ msgstr "Referentie"
 
 #: application/views/activationplanner/index.php:28
 #: application/views/api/index.php:135
-#: application/views/awards/iota/index.php:210
+#: application/views/awards/iota/index.php:213
 #: application/views/contest_admin/add.php:34
 #: application/views/contest_admin/create.php:24
 #: application/views/contesting/manager/components/session_modal.php:122
@@ -5632,28 +5634,28 @@ msgstr "Minimum aantal"
 #: application/views/awards/73on73/index.php:71
 #: application/views/awards/counties/counties_simple_ajax.php:21
 #: application/views/awards/counties/details_ajax.php:24
-#: application/views/awards/counties/index.php:230
+#: application/views/awards/counties/index.php:233
 #: application/views/awards/counties/state_ajax.php:47
-#: application/views/awards/cq/index.php:273
-#: application/views/awards/dok/index.php:202
-#: application/views/awards/helvetia/index.php:204
-#: application/views/awards/iota/index.php:315
-#: application/views/awards/itu/index.php:275
-#: application/views/awards/pl_polska/index.php:380
-#: application/views/awards/pota/index.php:286
-#: application/views/awards/rac/index.php:204
+#: application/views/awards/cq/index.php:276
+#: application/views/awards/dok/index.php:205
+#: application/views/awards/helvetia/index.php:207
+#: application/views/awards/iota/index.php:318
+#: application/views/awards/itu/index.php:278
+#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pota/index.php:289
+#: application/views/awards/rac/index.php:207
 #: application/views/awards/sig/index.php:42
 #: application/views/awards/sig/qso_list.php:38
-#: application/views/awards/sota/index.php:193
+#: application/views/awards/sota/index.php:196
 #: application/views/awards/vucc/band.php:45
 #: application/views/awards/vucc/index.php:43
-#: application/views/awards/wae/index.php:313
-#: application/views/awards/waja/index.php:205
-#: application/views/awards/wap/index.php:202
-#: application/views/awards/wapc/index.php:214
-#: application/views/awards/was/index.php:206
-#: application/views/awards/wpx/index.php:233
-#: application/views/awards/wwff/index.php:193
+#: application/views/awards/wae/index.php:316
+#: application/views/awards/waja/index.php:208
+#: application/views/awards/wap/index.php:205
+#: application/views/awards/wapc/index.php:217
+#: application/views/awards/was/index.php:209
+#: application/views/awards/wpx/index.php:236
+#: application/views/awards/wwff/index.php:196
 #: application/views/callstats/index.php:118
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
@@ -5667,11 +5669,11 @@ msgstr "Niets gevonden!"
 #: application/views/adif/import.php:104 application/views/adif/import.php:278
 #: application/views/awards/73on73/index.php:40
 #: application/views/awards/amsat_rover/index.php:228
-#: application/views/awards/pota/index.php:256
+#: application/views/awards/pota/index.php:259
 #: application/views/awards/sig/qso_list.php:15
-#: application/views/awards/sota/index.php:166
+#: application/views/awards/sota/index.php:169
 #: application/views/awards/wpx/wpx_details.php:20
-#: application/views/awards/wwff/index.php:166
+#: application/views/awards/wwff/index.php:169
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:171
 #: application/views/bandmap/list.php:567
 #: application/views/callstats/index.php:139
@@ -5799,9 +5801,9 @@ msgstr ""
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
 #: application/views/awards/73on73/index.php:38
-#: application/views/awards/pota/index.php:254
-#: application/views/awards/sota/index.php:164
-#: application/views/awards/wwff/index.php:164
+#: application/views/awards/pota/index.php:257
+#: application/views/awards/sota/index.php:167
+#: application/views/awards/wwff/index.php:167
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
@@ -5844,9 +5846,9 @@ msgstr "Datum"
 #: application/views/adif/dcl_success.php:30
 #: application/views/adif/pota_success.php:30
 #: application/views/awards/73on73/index.php:39
-#: application/views/awards/pota/index.php:255
-#: application/views/awards/sota/index.php:165
-#: application/views/awards/wwff/index.php:165
+#: application/views/awards/pota/index.php:258
+#: application/views/awards/sota/index.php:168
+#: application/views/awards/wwff/index.php:168
 #: application/views/bandmap/list.php:142
 #: application/views/calltester/call_info.php:56
 #: application/views/contesting/logger/components/qso-form.php:146
@@ -6623,7 +6625,7 @@ msgstr ""
 "gebruiken en wij selecteren de scopes voor jou."
 
 #: application/views/api/components/create_token_modal.php:78
-#: application/views/awards/wpx/index.php:152
+#: application/views/awards/wpx/index.php:155
 #: application/views/continents/index.php:55
 #: application/views/logbookadvanced/index.php:914
 #: application/views/logbookadvanced/index.php:915
@@ -6821,7 +6823,7 @@ msgid "Permissions"
 msgstr "Machtigingen"
 
 #: application/views/api/index.php:38 application/views/api/index.php:142
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 #: application/views/club/permissions.php:288
 #: application/views/clublog/export.php:39
 #: application/views/contesting/manager/index.php:38
@@ -7007,7 +7009,7 @@ msgid "73 on 73 QSO List"
 msgstr "73 op 73 QSO-lijst"
 
 #: application/views/awards/73on73/index.php:37
-#: application/views/awards/waja/index.php:158
+#: application/views/awards/waja/index.php:161
 #: application/views/distancerecords/index.php:17
 msgid "Number"
 msgstr "Nummer"
@@ -7140,7 +7142,7 @@ msgid "Total Points"
 msgstr "Totaal aantal punten"
 
 #: application/views/awards/amsat_rover/index.php:152
-#: application/views/awards/counties/index.php:187
+#: application/views/awards/counties/index.php:190
 msgid "Target"
 msgstr "Doel"
 
@@ -7261,7 +7263,7 @@ msgstr "County"
 #: application/views/awards/counties/details_ajax.php:14
 #: application/views/awards/counties/state_ajax.php:26
 msgid "Not in USA-CA county list"
-msgstr ""
+msgstr "Niet in de USA-CA county lijst"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
@@ -7373,51 +7375,73 @@ msgstr "Counties-kaart tonen"
 msgid "Count QSO as Confirmed via"
 msgstr "Tel QSO als Bevestigd via"
 
-#: application/views/awards/counties/index.php:153
+#: application/views/awards/counties/index.php:123
+#: application/views/awards/cq/index.php:171
+#: application/views/awards/dok/index.php:144
+#: application/views/awards/dxcc/index.php:259
+#: application/views/awards/helvetia/index.php:137
+#: application/views/awards/iota/index.php:182
+#: application/views/awards/itu/index.php:173
+#: application/views/awards/jcc/index.php:115
+#: application/views/awards/pl_polska/index.php:117
+#: application/views/awards/pota/index.php:236
+#: application/views/awards/rac/index.php:131
+#: application/views/awards/sota/index.php:146
+#: application/views/awards/wae/index.php:193
+#: application/views/awards/waja/index.php:141
+#: application/views/awards/wap/index.php:135
+#: application/views/awards/wapc/index.php:143
+#: application/views/awards/was/index.php:138
+#: application/views/awards/wpx/index.php:151
+#: application/views/awards/wwff/index.php:146
+msgid "Apply"
+msgstr ""
+
+#: application/views/awards/counties/index.php:156
 msgid "Worked Counties"
 msgstr "Gewerkte counties"
 
-#: application/views/awards/counties/index.php:155
+#: application/views/awards/counties/index.php:158
 #, php-format
 msgid "of %s known counties"
 msgstr "van %s bekende counties"
 
-#: application/views/awards/counties/index.php:160
+#: application/views/awards/counties/index.php:163
 msgid "Confirmed Counties"
 msgstr "Bevestigde counties"
 
-#: application/views/awards/counties/index.php:162
+#: application/views/awards/counties/index.php:165
 #, php-format
 msgid "%s%% of worked"
 msgstr "%s%% gewerkt"
 
-#: application/views/awards/counties/index.php:167
+#: application/views/awards/counties/index.php:170
 msgid "Remaining Counties"
 msgstr "Resterende counties"
 
-#: application/views/awards/counties/index.php:169
+#: application/views/awards/counties/index.php:172
 msgid "Based on current worked count"
 msgstr "Gebaseerd op het huidige aantal gewerkte"
 
-#: application/views/awards/counties/index.php:174
+#: application/views/awards/counties/index.php:177
 #: application/views/awards/dxcc/index.php:41
 #: application/views/awards/waip/index.php:41
 #: application/views/awards/waip/index.php:63
 msgid "Progress"
 msgstr "Voortgang"
 
-#: application/views/awards/counties/index.php:176
+#: application/views/awards/counties/index.php:179
 #, php-format
 msgid "%s%% confirmed overall"
 msgstr "%s%% totaal bevestigd"
 
-#: application/views/awards/counties/index.php:185
+#: application/views/awards/counties/index.php:188
 #: application/views/awards/cq/index.php:93
-#: application/views/awards/dxcc/index.php:298
-#: application/views/awards/dxcc/index.php:371
+#: application/views/awards/dxcc/index.php:301
+#: application/views/awards/dxcc/index.php:374
 #: application/views/awards/dxcc/progress.php:5
 #: application/views/awards/itu/index.php:95
-#: application/views/awards/jcc/index.php:131
+#: application/views/awards/jcc/index.php:134
 #: application/views/bandmap/list.php:91 application/views/bandmap/list.php:306
 #: application/views/countqsoby/index.php:8
 #: application/views/dashboard/index.php:429
@@ -7429,14 +7453,14 @@ msgstr "%s%% totaal bevestigd"
 msgid "Worked"
 msgstr "Gewerkt"
 
-#: application/views/awards/counties/index.php:186
+#: application/views/awards/counties/index.php:189
 #: application/views/awards/cq/index.php:93
-#: application/views/awards/dxcc/index.php:299
-#: application/views/awards/dxcc/index.php:372
+#: application/views/awards/dxcc/index.php:302
+#: application/views/awards/dxcc/index.php:375
 #: application/views/awards/dxcc/progress.php:5
 #: application/views/awards/itu/index.php:95
-#: application/views/awards/jcc/index.php:126
-#: application/views/awards/jcc/index.php:150
+#: application/views/awards/jcc/index.php:129
+#: application/views/awards/jcc/index.php:153
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/waip/index.php:41
 #: application/views/awards/waip/index.php:63
@@ -7453,36 +7477,36 @@ msgstr "Gewerkt"
 msgid "Confirmed"
 msgstr "Bevestigd"
 
-#: application/views/awards/counties/index.php:188
+#: application/views/awards/counties/index.php:191
 msgid "Remaining"
 msgstr "Resterend"
 
-#: application/views/awards/counties/index.php:189
-#: application/views/awards/dxcc/index.php:300
-#: application/views/awards/dxcc/index.php:373
+#: application/views/awards/counties/index.php:192
+#: application/views/awards/dxcc/index.php:303
+#: application/views/awards/dxcc/index.php:376
 #: application/views/awards/dxcc/progress.php:5
 msgid "Worked Progress"
 msgstr "Voortgang gewerkt"
 
-#: application/views/awards/counties/index.php:190
-#: application/views/awards/dxcc/index.php:301
-#: application/views/awards/dxcc/index.php:374
+#: application/views/awards/counties/index.php:193
+#: application/views/awards/dxcc/index.php:304
+#: application/views/awards/dxcc/index.php:377
 #: application/views/awards/dxcc/progress.php:5
 msgid "Confirmed Progress"
 msgstr "Voortgang bevestigd"
 
-#: application/views/awards/counties/index.php:218
+#: application/views/awards/counties/index.php:221
 #: application/views/awards/counties/state_ajax.php:39
-#: application/views/awards/dok/index.php:182
-#: application/views/awards/helvetia/index.php:183
-#: application/views/awards/iota/index.php:251
-#: application/views/awards/jcc/index.php:136
-#: application/views/awards/rac/index.php:184
-#: application/views/awards/waja/index.php:183
-#: application/views/awards/wap/index.php:181
-#: application/views/awards/wapc/index.php:193
-#: application/views/awards/was/index.php:185
-#: application/views/awards/wpx/index.php:176
+#: application/views/awards/dok/index.php:185
+#: application/views/awards/helvetia/index.php:186
+#: application/views/awards/iota/index.php:254
+#: application/views/awards/jcc/index.php:139
+#: application/views/awards/rac/index.php:187
+#: application/views/awards/waja/index.php:186
+#: application/views/awards/wap/index.php:184
+#: application/views/awards/wapc/index.php:196
+#: application/views/awards/was/index.php:188
+#: application/views/awards/wpx/index.php:179
 #: application/views/dashboard/index.php:533
 #: application/views/dashboard/index.php:567
 #: application/views/dashboard/index.php:596
@@ -7504,7 +7528,7 @@ msgstr "Voortgang bevestigd"
 msgid "Total"
 msgstr "Totaal"
 
-#: application/views/awards/counties/index.php:244
+#: application/views/awards/counties/index.php:247
 #: application/views/awards/dok/index.php:111
 #: application/views/awards/helvetia/index.php:105
 #: application/views/awards/jcc/index.php:85
@@ -7813,121 +7837,128 @@ msgstr "Toon QSO met QSL-type"
 msgid "QSL Card"
 msgstr "QSL-kaart"
 
-#: application/views/awards/cq/index.php:193
-#: application/views/awards/dxcc/index.php:443
-#: application/views/awards/itu/index.php:195
-#: application/views/awards/wac/index.php:134
-#: application/views/awards/wae/index.php:202
-msgid "Legend:"
-msgstr "Legenda:"
-
-#: application/views/awards/cq/index.php:194
-#: application/views/awards/dxcc/index.php:444
-#: application/views/awards/itu/index.php:196
-#: application/views/awards/wac/index.php:135
-#: application/views/awards/wae/index.php:203
-msgid "(Q)SL-Paper-Card"
-msgstr "(Q)SL-papieren-kaart"
-
-#: application/views/awards/cq/index.php:195
-#: application/views/awards/dxcc/index.php:445
-#: application/views/awards/itu/index.php:197
-#: application/views/awards/wac/index.php:136
-#: application/views/awards/wae/index.php:204
-msgid "(L)oTW"
-msgstr "(L)oTW"
-
 #: application/views/awards/cq/index.php:196
 #: application/views/awards/dxcc/index.php:446
 #: application/views/awards/itu/index.php:198
-#: application/views/awards/wac/index.php:137
+#: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:205
-msgid "(e)QSL"
-msgstr "(e)QSL"
+#: application/views/lookup/result.php:28
+msgid "Legend:"
+msgstr "Legenda:"
 
 #: application/views/awards/cq/index.php:197
 #: application/views/awards/dxcc/index.php:447
 #: application/views/awards/itu/index.php:199
-#: application/views/awards/wac/index.php:138
+#: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:206
-msgid "QR(Z)-\"confirmation\""
-msgstr "QR(Z)-\"bevestiging\""
+#: application/views/lookup/result.php:29
+msgid "(Q)SL-Paper-Card"
+msgstr "(Q)SL-papieren-kaart"
 
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dxcc/index.php:448
 #: application/views/awards/itu/index.php:200
-#: application/views/awards/wac/index.php:139
+#: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:207
-msgid "(C)lublog"
-msgstr "(C)lublog"
+#: application/views/lookup/result.php:30
+msgid "(L)oTW"
+msgstr "(L)oTW"
 
 #: application/views/awards/cq/index.php:199
 #: application/views/awards/dxcc/index.php:449
 #: application/views/awards/itu/index.php:201
-#: application/views/awards/wac/index.php:140
+#: application/views/awards/wac/index.php:137
 #: application/views/awards/wae/index.php:208
+#: application/views/lookup/result.php:31
+msgid "(e)QSL"
+msgstr "(e)QSL"
+
+#: application/views/awards/cq/index.php:200
+#: application/views/awards/dxcc/index.php:450
+#: application/views/awards/itu/index.php:202
+#: application/views/awards/wac/index.php:138
+#: application/views/awards/wae/index.php:209
+#: application/views/lookup/result.php:32
+msgid "QR(Z)-\"confirmation\""
+msgstr "QR(Z)-\"bevestiging\""
+
+#: application/views/awards/cq/index.php:201
+#: application/views/awards/dxcc/index.php:451
+#: application/views/awards/itu/index.php:203
+#: application/views/awards/wac/index.php:139
+#: application/views/awards/wae/index.php:210
+#: application/views/lookup/result.php:33
+msgid "(C)lublog"
+msgstr "(C)lublog"
+
+#: application/views/awards/cq/index.php:202
+#: application/views/awards/dxcc/index.php:452
+#: application/views/awards/itu/index.php:204
+#: application/views/awards/wac/index.php:140
+#: application/views/awards/wae/index.php:211
+#: application/views/lookup/result.php:34
 msgid "(W)orked"
 msgstr "Ge(w)erkt"
 
-#: application/views/awards/cq/index.php:225
-#: application/views/awards/dok/index.php:173
-#: application/views/awards/dxcc/index.php:483
-#: application/views/awards/helvetia/index.php:174
-#: application/views/awards/iota/index.php:238
-#: application/views/awards/itu/index.php:227
-#: application/views/awards/rac/index.php:175
+#: application/views/awards/cq/index.php:228
+#: application/views/awards/dok/index.php:176
+#: application/views/awards/dxcc/index.php:486
+#: application/views/awards/helvetia/index.php:177
+#: application/views/awards/iota/index.php:241
+#: application/views/awards/itu/index.php:230
+#: application/views/awards/rac/index.php:178
 #: application/views/awards/wac/index.php:168
-#: application/views/awards/wae/index.php:244
-#: application/views/awards/waja/index.php:174
-#: application/views/awards/wap/index.php:172
-#: application/views/awards/wapc/index.php:184
-#: application/views/awards/was/index.php:176
-#: application/views/awards/wpx/index.php:162
+#: application/views/awards/wae/index.php:247
+#: application/views/awards/waja/index.php:177
+#: application/views/awards/wap/index.php:175
+#: application/views/awards/wapc/index.php:187
+#: application/views/awards/was/index.php:179
+#: application/views/awards/wpx/index.php:165
 msgid "Summary"
 msgstr "Samenvatting"
 
-#: application/views/awards/cq/index.php:238
-#: application/views/awards/dxcc/index.php:349
-#: application/views/awards/dxcc/index.php:496
-#: application/views/awards/itu/index.php:240
+#: application/views/awards/cq/index.php:241
+#: application/views/awards/dxcc/index.php:352
+#: application/views/awards/dxcc/index.php:499
+#: application/views/awards/itu/index.php:243
 #: application/views/awards/wac/index.php:181
-#: application/views/awards/wae/index.php:257
+#: application/views/awards/wae/index.php:260
 msgid "Total (ex SAT)"
 msgstr "Totaal (excl SAT)"
 
-#: application/views/awards/cq/index.php:244
-#: application/views/awards/dok/index.php:186
-#: application/views/awards/dxcc/index.php:506
-#: application/views/awards/helvetia/index.php:187
-#: application/views/awards/iota/index.php:259
-#: application/views/awards/itu/index.php:246
-#: application/views/awards/rac/index.php:188
+#: application/views/awards/cq/index.php:247
+#: application/views/awards/dok/index.php:189
+#: application/views/awards/dxcc/index.php:509
+#: application/views/awards/helvetia/index.php:190
+#: application/views/awards/iota/index.php:262
+#: application/views/awards/itu/index.php:249
+#: application/views/awards/rac/index.php:191
 #: application/views/awards/wac/index.php:188
-#: application/views/awards/wae/index.php:264
-#: application/views/awards/waja/index.php:188
-#: application/views/awards/wap/index.php:185
-#: application/views/awards/wapc/index.php:198
-#: application/views/awards/was/index.php:189
-#: application/views/awards/wpx/index.php:187
+#: application/views/awards/wae/index.php:267
+#: application/views/awards/waja/index.php:191
+#: application/views/awards/wap/index.php:188
+#: application/views/awards/wapc/index.php:201
+#: application/views/awards/was/index.php:192
+#: application/views/awards/wpx/index.php:190
 msgid "Total worked"
 msgstr "Totaal gewerkt"
 
-#: application/views/awards/cq/index.php:257
-#: application/views/awards/dok/index.php:193
-#: application/views/awards/dxcc/index.php:531
-#: application/views/awards/helvetia/index.php:194
-#: application/views/awards/iota/index.php:285
-#: application/views/awards/itu/index.php:259
-#: application/views/awards/rac/index.php:195
+#: application/views/awards/cq/index.php:260
+#: application/views/awards/dok/index.php:196
+#: application/views/awards/dxcc/index.php:534
+#: application/views/awards/helvetia/index.php:197
+#: application/views/awards/iota/index.php:288
+#: application/views/awards/itu/index.php:262
+#: application/views/awards/rac/index.php:198
 #: application/views/awards/wac/index.php:208
-#: application/views/awards/wae/index.php:286
+#: application/views/awards/wae/index.php:289
 #: application/views/awards/waip/index.php:149
 #: application/views/awards/waip/index.php:213
-#: application/views/awards/waja/index.php:195
-#: application/views/awards/wap/index.php:192
-#: application/views/awards/wapc/index.php:205
-#: application/views/awards/was/index.php:196
-#: application/views/awards/wpx/index.php:208
+#: application/views/awards/waja/index.php:198
+#: application/views/awards/wap/index.php:195
+#: application/views/awards/wapc/index.php:208
+#: application/views/awards/was/index.php:199
+#: application/views/awards/wpx/index.php:211
 msgid "Total confirmed"
 msgstr "Totaal bevestigd"
 
@@ -8179,21 +8210,21 @@ msgstr "Zuid-Amerika"
 msgid "Oceania"
 msgstr "Oceanië"
 
-#: application/views/awards/dxcc/index.php:281
+#: application/views/awards/dxcc/index.php:284
 #: application/views/awards/waip/index.php:61
 #: application/views/awards/waip/index.php:98
 msgid "By Band"
 msgstr "Per band"
 
-#: application/views/awards/dxcc/index.php:284
+#: application/views/awards/dxcc/index.php:287
 msgid "By Continent"
 msgstr "Per continent"
 
-#: application/views/awards/dxcc/index.php:287
+#: application/views/awards/dxcc/index.php:290
 msgid "By Mode"
 msgstr "Per modus"
 
-#: application/views/awards/dxcc/index.php:370
+#: application/views/awards/dxcc/index.php:373
 #: application/views/awards/wac/index.php:147
 #: application/views/bandmap/list.php:105
 #: application/views/bandmap/list.php:568
@@ -8209,38 +8240,38 @@ msgstr "Per modus"
 msgid "Continent"
 msgstr "Continent"
 
-#: application/views/awards/dxcc/index.php:417
+#: application/views/awards/dxcc/index.php:420
 msgid "No continent data available."
 msgstr "Geen continentgegevens beschikbaar."
 
-#: application/views/awards/dxcc/index.php:426
+#: application/views/awards/dxcc/index.php:429
 #: application/views/contesting/logger/components/scp.php:52
 #: application/views/debug/index.php:169
 msgid "Loading..."
 msgstr "Bezig met laden..."
 
-#: application/views/awards/dxcc/index.php:428
+#: application/views/awards/dxcc/index.php:431
 msgid "Loading progress data..."
 msgstr "Bezig met laden van voortgangsgegevens..."
 
-#: application/views/awards/dxcc/index.php:455
+#: application/views/awards/dxcc/index.php:458
 msgid "DXCC Name"
 msgstr "DXCC-naam"
 
-#: application/views/awards/dxcc/index.php:456
-#: application/views/awards/iota/index.php:209
-#: application/views/awards/wae/index.php:216
+#: application/views/awards/dxcc/index.php:459
+#: application/views/awards/iota/index.php:212
+#: application/views/awards/wae/index.php:219
 #: application/views/dbtools/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
 msgid "Prefix"
 msgstr "Voorvoegsel"
 
-#: application/views/awards/dxcc/index.php:499
+#: application/views/awards/dxcc/index.php:502
 msgid "Slots"
 msgstr "Combinaties"
 
-#: application/views/awards/dxcc/index.php:562
+#: application/views/awards/dxcc/index.php:565
 msgid "No results found for your search criteria. Please try again."
 msgstr "Geen resultaten gevonden voor je zoekcriteria. Probeer het opnieuw."
 
@@ -8435,7 +8466,7 @@ msgstr ""
 msgid "Show Helvetia Map"
 msgstr "Toon Helvetia/Zwitserland kaart"
 
-#: application/views/awards/helvetia/index.php:155
+#: application/views/awards/helvetia/index.php:158
 msgid "Canton"
 msgstr "Kanton"
 
@@ -8597,12 +8628,12 @@ msgstr "QSL-type"
 msgid "Deleted cities"
 msgstr "Verwijderde steden"
 
-#: application/views/awards/jcc/index.php:154
+#: application/views/awards/jcc/index.php:157
 #: application/views/interface_assets/footer.php:50
 msgid "Worked not confirmed"
 msgstr "Gewerkt maar niet bevestigd"
 
-#: application/views/awards/jcc/index.php:158
+#: application/views/awards/jcc/index.php:161
 #: application/views/bandmap/list.php:90 application/views/bandmap/list.php:305
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
@@ -8611,11 +8642,11 @@ msgstr "Gewerkt maar niet bevestigd"
 msgid "Not worked"
 msgstr "Niet gewerkt"
 
-#: application/views/awards/jcc/index.php:169
+#: application/views/awards/jcc/index.php:172
 msgid "JCC progress"
 msgstr "JCC voortgang"
 
-#: application/views/awards/jcc/index.php:179
+#: application/views/awards/jcc/index.php:182
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
@@ -8623,7 +8654,7 @@ msgstr ""
 "Let op! Wavelog controleert niet of een QSO heeft plaatsgevonden vóór de "
 "verwijderingsdatum van de entiteit."
 
-#: application/views/awards/jcc/index.php:185
+#: application/views/awards/jcc/index.php:188
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
 "Er zijn geen gewerkte of bevestigde JCC-slots die overeenkomen met de "
@@ -8700,11 +8731,11 @@ msgstr ""
 "bevestigingen geaccepteerd voor awardaanvragen. Andere digitale "
 "bevestigingen worden hier alleen ter controle getoond."
 
-#: application/views/awards/pl_polska/index.php:128
+#: application/views/awards/pl_polska/index.php:131
 msgid "Award Categories"
 msgstr "Award categorieën"
 
-#: application/views/awards/pl_polska/index.php:130
+#: application/views/awards/pl_polska/index.php:133
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
@@ -8712,123 +8743,123 @@ msgstr ""
 "Polska Award-categorieën zijn gebaseerd op het minimum aantal bevestigde "
 "QSO's met elk van de 16 woiwodschappen:"
 
-#: application/views/awards/pl_polska/index.php:134
+#: application/views/awards/pl_polska/index.php:137
 msgid "1 QSO per voivodeship"
 msgstr "1 QSO per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:134
+#: application/views/awards/pl_polska/index.php:137
 msgid "Basic Class"
 msgstr "Basis Klasse"
 
-#: application/views/awards/pl_polska/index.php:135
+#: application/views/awards/pl_polska/index.php:138
 msgid "3 QSOs per voivodeship"
 msgstr "3 QSO's per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:135
+#: application/views/awards/pl_polska/index.php:138
 msgid "Bronze Class (3rd)"
 msgstr "Bronzen klasse (3e)"
 
-#: application/views/awards/pl_polska/index.php:140
+#: application/views/awards/pl_polska/index.php:143
 msgid "7 QSOs per voivodeship"
 msgstr "7 QSOs per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:140
+#: application/views/awards/pl_polska/index.php:143
 msgid "Silver Class (2nd)"
 msgstr "Zilveren klasse (2e)"
 
-#: application/views/awards/pl_polska/index.php:141
+#: application/views/awards/pl_polska/index.php:144
 msgid "12 QSOs per voivodeship"
 msgstr "12 QSO's per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:141
+#: application/views/awards/pl_polska/index.php:144
 msgid "Gold Class (1st)"
 msgstr "Gouden Klasse (1e)"
 
-#: application/views/awards/pl_polska/index.php:166
+#: application/views/awards/pl_polska/index.php:169
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"
 
-#: application/views/awards/pl_polska/index.php:167
+#: application/views/awards/pl_polska/index.php:170
 msgid "You are entitled to the following award categories"
 msgstr "Je hebt recht op de volgende award-categorieën"
 
-#: application/views/awards/pl_polska/index.php:205
-#: application/views/awards/pl_polska/index.php:276
+#: application/views/awards/pl_polska/index.php:208
+#: application/views/awards/pl_polska/index.php:279
 msgid "Voivodeship"
 msgstr "Woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:206
-#: application/views/awards/pl_polska/index.php:277
+#: application/views/awards/pl_polska/index.php:209
+#: application/views/awards/pl_polska/index.php:280
 #: application/views/awards/waip/index.php:114
 #: application/views/awards/waip/index.php:172
-#: application/views/awards/wapc/index.php:167
+#: application/views/awards/wapc/index.php:170
 msgid "Code"
 msgstr "Code"
 
-#: application/views/awards/pl_polska/index.php:207
-#: application/views/awards/pl_polska/index.php:348
+#: application/views/awards/pl_polska/index.php:210
+#: application/views/awards/pl_polska/index.php:351
 #: application/views/awards/waip/index.php:115
 msgid "MIXED"
 msgstr "GEMENGD"
 
-#: application/views/awards/pl_polska/index.php:208
-#: application/views/awards/pl_polska/index.php:349
+#: application/views/awards/pl_polska/index.php:211
+#: application/views/awards/pl_polska/index.php:352
 #: application/views/awards/waip/index.php:116
 msgid "PHONE"
 msgstr "PHONE"
 
-#: application/views/awards/pl_polska/index.php:209
-#: application/views/awards/pl_polska/index.php:350
+#: application/views/awards/pl_polska/index.php:212
+#: application/views/awards/pl_polska/index.php:353
 #: application/views/awards/waip/index.php:117
 #: application/views/bandmap/list.php:314
 #: application/views/components/dxwaterfall.php:33
 msgid "CW"
 msgstr "CW"
 
-#: application/views/awards/pl_polska/index.php:210
-#: application/views/awards/pl_polska/index.php:351
+#: application/views/awards/pl_polska/index.php:213
+#: application/views/awards/pl_polska/index.php:354
 #: application/views/awards/waip/index.php:118
 msgid "DIGI"
 msgstr "DIGI"
 
-#: application/views/awards/pl_polska/index.php:241
-#: application/views/awards/pl_polska/index.php:313
+#: application/views/awards/pl_polska/index.php:244
+#: application/views/awards/pl_polska/index.php:316
 msgid "Total voivodeships"
 msgstr "Totaal aantal woiwodschappen"
 
-#: application/views/awards/pl_polska/index.php:255
-#: application/views/awards/pl_polska/index.php:327
+#: application/views/awards/pl_polska/index.php:258
+#: application/views/awards/pl_polska/index.php:330
 msgid "Bravo! You are entitled to"
 msgstr "Bravo! Je bent gerechtigd tot"
 
-#: application/views/awards/pl_polska/index.php:255
-#: application/views/awards/pl_polska/index.php:327
+#: application/views/awards/pl_polska/index.php:258
+#: application/views/awards/pl_polska/index.php:330
 msgid "category award!"
 msgstr "categorie award!"
 
-#: application/views/awards/pl_polska/index.php:345
+#: application/views/awards/pl_polska/index.php:348
 msgid "Award Category:"
 msgstr "Award Categorie:"
 
-#: application/views/awards/pl_polska/index.php:347
+#: application/views/awards/pl_polska/index.php:350
 msgid "Mode Categories"
 msgstr "Moduscategorieën"
 
-#: application/views/awards/pl_polska/index.php:353
+#: application/views/awards/pl_polska/index.php:356
 msgid "Band Categories"
 msgstr "Banden Categorieën"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 #: application/views/dbtools/index.php:88
 #: application/views/logbookadvanced/index.php:854
 msgid "Fix State"
 msgstr "Herstel Staat/Provincie"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "Logbook Advanced"
 msgstr "Logboek Geavanceerd"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
@@ -8836,15 +8867,15 @@ msgstr ""
 "Deze award maakt gebruik van het veld 'Staat' uit je logboek. Zorg ervoor "
 "dat dit veld is ingevuld voor alle SP (Polen) contacten."
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "Tip:"
 msgstr "Tip:"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "Use"
 msgstr "Gebruik"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "to auto-populate states from Maidenhead locators."
 msgstr "om automatisch staten vanuit Maidenhead-locators in te vullen."
 
@@ -8955,7 +8986,7 @@ msgstr "verschillende parken gejaagd"
 msgid "Apply Filters"
 msgstr "Filters toepassen"
 
-#: application/views/awards/pota/index.php:253
+#: application/views/awards/pota/index.php:256
 #: application/views/qso/index.php:337 application/views/qso/index.php:621
 #: application/views/station_profile/create.php:243
 #: application/views/station_profile/edit.php:265
@@ -9266,7 +9297,7 @@ msgstr "Velden voor deze Award: Regio, DXCC"
 msgid "View progress of WAE awards"
 msgstr "Bekijk de voortgang van WAE-awards"
 
-#: application/views/awards/wae/index.php:215
+#: application/views/awards/wae/index.php:218
 msgid "WAE Name"
 msgstr "WAE Naam"
 
@@ -9341,8 +9372,8 @@ msgstr "Per modus categorie"
 
 #: application/views/awards/waip/index.php:113
 #: application/views/awards/waip/index.php:171
-#: application/views/awards/wap/index.php:153
-#: application/views/awards/wapc/index.php:168
+#: application/views/awards/wap/index.php:156
+#: application/views/awards/wapc/index.php:171
 msgid "Province"
 msgstr "Provincie"
 
@@ -9395,7 +9426,7 @@ msgstr ""
 msgid "Show WAJA Map"
 msgstr "Toon WAJA-kaart"
 
-#: application/views/awards/waja/index.php:159
+#: application/views/awards/waja/index.php:162
 #: application/views/timeline/index.php:236
 msgid "Prefecture"
 msgstr "Prefectuur"
@@ -9513,7 +9544,7 @@ msgid "Hover over a state"
 msgstr "Zweef over een staat"
 
 #: application/views/awards/was/index.php:5
-#: application/views/awards/was/index.php:165
+#: application/views/awards/was/index.php:168
 msgid "inc."
 msgstr "incl."
 
@@ -16230,11 +16261,11 @@ msgstr "Bevestigde counties voor staat:"
 
 #: application/views/interface_assets/footer.php:2900
 msgid "Counties in state:"
-msgstr ""
+msgstr "Counties in staat:"
 
 #: application/views/interface_assets/footer.php:2901
 msgid "Needed counties for state:"
-msgstr ""
+msgstr "Benodigde counties voor de staat:"
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16594,7 +16625,7 @@ msgstr "Eigen tekst"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Lijn"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16661,12 +16692,14 @@ msgstr "geselecteerd"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "Selecteer eerst een labeltype."
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"Het labeltype van deze sjabloon bestaat niet meer. Selecteer alstublieft een "
+"andere."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -16708,23 +16741,23 @@ msgstr "Pagina verlaten"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "Importeren mislukt"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "Exporteren mislukt"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "Sjabloon geïmporteerd."
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "Selecteer een sjabloon om te exporteren."
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "Bestand is te groot."
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -16768,23 +16801,23 @@ msgstr "Sjabloon verwijderen"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "Exporteer sjabloon"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "Importeer sjabloon"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "Labeltype"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "(selecteer labeltype)"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "Genereer een voorbeeld-PDF met je laatste QSO's"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -16849,28 +16882,32 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"Horizontale lijn — schakel 'Herhalingen per QSO' in om een scheidingslijn "
+"onder elke QSO-rij te tekenen"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Horizontale lijn"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
-msgstr ""
+msgstr "Verticale lijn — plaats aan de kolomranden om een tabelraster te maken"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "Verticale lijn"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"Tabelraster — sleep de hoek om te schalen, sleep de kolommarkeringen om de "
+"kolombreedtes aan te passen"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "Tabel toevoegen"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -16879,11 +16916,11 @@ msgstr "Geen van de velden komen overeen met je zoekopdracht."
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "Label Canvas"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "sleep velden op het etiket"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -16892,7 +16929,7 @@ msgstr "Sjabloonopties"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "Aantal QSO's per label"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -16904,14 +16941,16 @@ msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
+"Trekt automatisch een lijn tussen de QSO-regels, zoals de klassieke "
+"labelindeling"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "Scheidingslijnen tussen QSO-rijen"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "Dikte van de scheidingslijn"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -16955,11 +16994,11 @@ msgstr "Y"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "Rijen"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "Kolommen"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -16974,7 +17013,7 @@ msgstr "Hoogte"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "Dikte"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -16983,15 +17022,15 @@ msgstr "Oriëntatie"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaal"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "Verticaal"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "Lengte"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -17022,7 +17061,7 @@ msgstr "Breedte omhullen"
 
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
-msgstr ""
+msgstr "Print dit veld één keer per QSO als een etiket meerdere QSO's bevat"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17326,13 +17365,13 @@ msgstr "Bekijk QSO's"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "Labelindeling"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "Standaard"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -17340,6 +17379,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"Ontworpen label sjablonen gebruiken hun eigen lay-out en negeren de "
+"onderstaande opties."
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40

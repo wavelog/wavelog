@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-23 16:43+0000\n"
-"PO-Revision-Date: 2026-08-22 10:17+0000\n"
+"POT-Creation-Date: 2026-08-25 17:26+0000\n"
+"PO-Revision-Date: 2026-08-23 22:44+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -189,7 +189,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:88 application/controllers/Lotw.php:113
 #: application/controllers/Lotw.php:410 application/controllers/Lotw.php:432
-#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:1021
+#: application/controllers/Lotw.php:943 application/controllers/Lotw.php:1029
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -528,7 +528,7 @@ msgid "Awards - %s"
 msgstr "アワード - %s"
 
 #: application/controllers/Awards.php:100
-#: application/views/awards/dok/index.php:157
+#: application/views/awards/dok/index.php:160
 #: application/views/bands/index.php:49
 #: application/views/contesting/manager/components/session_modal.php:119
 #: application/views/interface_assets/header.php:249
@@ -1330,7 +1330,7 @@ msgstr "グリッドスクエア"
 #: application/controllers/Countqsoby.php:75
 #: application/views/activationplanner/index.php:121
 #: application/views/awards/itu/index.php:3
-#: application/views/awards/itu/index.php:207
+#: application/views/awards/itu/index.php:210
 #: application/views/countqsoby/index.php:14
 #: application/views/countqsoby/index.php:68
 #: application/views/dbtools/checkresult.php:324
@@ -1353,7 +1353,7 @@ msgstr "ITU ゾーン"
 #: application/controllers/Countqsoby.php:76
 #: application/views/activationplanner/index.php:120
 #: application/views/awards/cq/index.php:3
-#: application/views/awards/cq/index.php:205
+#: application/views/awards/cq/index.php:208
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
@@ -1385,7 +1385,7 @@ msgid "POTA Reference"
 msgstr "POTA参照"
 
 #: application/controllers/Countqsoby.php:78
-#: application/views/awards/sota/index.php:163
+#: application/views/awards/sota/index.php:166
 #: application/views/countqsoby/index.php:71
 #: application/views/qso/index.php:313 application/views/qso/index.php:595
 #: application/views/station_profile/create.php:215
@@ -1406,7 +1406,7 @@ msgid "IOTA Reference"
 msgstr "IOTAリファレンス"
 
 #: application/controllers/Countqsoby.php:80
-#: application/views/awards/wwff/index.php:163
+#: application/views/awards/wwff/index.php:166
 #: application/views/countqsoby/index.php:73
 #: application/views/qso/index.php:325 application/views/qso/index.php:608
 #: application/views/station_profile/create.php:229
@@ -1526,7 +1526,7 @@ msgstr "ダッシュボード"
 
 #: application/controllers/Dashboard.php:219
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:219
 #: application/views/dashboard/index.php:684
@@ -1542,7 +1542,7 @@ msgstr "衛星"
 
 #: application/controllers/Dashboard.php:219
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1894,7 +1894,7 @@ msgstr "KMLエクスポート"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "ラベルデザイナー"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1914,11 +1914,11 @@ msgstr "テンプレートJSONが無効です"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "テンプレートには要素がありません"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "ラベルタイプが見つかりません"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1939,13 +1939,15 @@ msgstr "PDFファイルは作成されませんでした"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "PDFラベルの失敗: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"このテンプレートのラベルタイプは現在存在しません。エクスポートする前に別のラ"
+"ベルタイプを選択してください。"
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -2357,9 +2359,9 @@ msgstr "モード"
 
 #: application/controllers/Logbook.php:1468
 #: application/views/awards/73on73/index.php:43
-#: application/views/awards/pota/index.php:258
-#: application/views/awards/sota/index.php:168
-#: application/views/awards/wwff/index.php:168
+#: application/views/awards/pota/index.php:261
+#: application/views/awards/sota/index.php:171
+#: application/views/awards/wwff/index.php:171
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:949
 #: application/views/logbookadvanced/useroptions.php:52
@@ -2384,9 +2386,9 @@ msgstr "RST (S)"
 
 #: application/controllers/Logbook.php:1469
 #: application/views/awards/73on73/index.php:42
-#: application/views/awards/pota/index.php:259
-#: application/views/awards/sota/index.php:169
-#: application/views/awards/wwff/index.php:169
+#: application/views/awards/pota/index.php:262
+#: application/views/awards/sota/index.php:172
+#: application/views/awards/wwff/index.php:172
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/index.php:952
 #: application/views/logbookadvanced/useroptions.php:58
@@ -2433,7 +2435,7 @@ msgstr "国"
 
 #: application/controllers/Logbook.php:1471
 #: application/views/activationplanner/index.php:98
-#: application/views/awards/iota/index.php:208
+#: application/views/awards/iota/index.php:211
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
 #: application/views/dbtools/checkresult.php:396
@@ -2466,9 +2468,9 @@ msgstr "IOTA"
 
 #: application/controllers/Logbook.php:1475
 #: application/views/awards/counties/details_ajax.php:8
-#: application/views/awards/counties/index.php:184
-#: application/views/awards/rac/index.php:156
-#: application/views/awards/was/index.php:156
+#: application/views/awards/counties/index.php:187
+#: application/views/awards/rac/index.php:159
+#: application/views/awards/was/index.php:159
 #: application/views/contesting/manager/components/session_modal.php:124
 #: application/views/dashboard/index.php:13
 #: application/views/dbtools/showStateQsos.php:25
@@ -2537,17 +2539,17 @@ msgstr "距離"
 #: application/views/awards/cq/index.php:137
 #: application/views/awards/dok/index.php:108
 #: application/views/awards/dxcc/index.php:180
-#: application/views/awards/dxcc/index.php:297
+#: application/views/awards/dxcc/index.php:300
 #: application/views/awards/helvetia/index.php:102
 #: application/views/awards/iota/index.php:146
 #: application/views/awards/itu/index.php:139
 #: application/views/awards/jcc/index.php:82
 #: application/views/awards/pota/index.php:209
-#: application/views/awards/pota/index.php:257
+#: application/views/awards/pota/index.php:260
 #: application/views/awards/rac/index.php:95
 #: application/views/awards/sig/qso_list.php:17
 #: application/views/awards/sota/index.php:119
-#: application/views/awards/sota/index.php:167
+#: application/views/awards/sota/index.php:170
 #: application/views/awards/vucc/index.php:26
 #: application/views/awards/wab/index.php:24
 #: application/views/awards/wac/index.php:53
@@ -2560,7 +2562,7 @@ msgstr "距離"
 #: application/views/awards/wpx/index.php:83
 #: application/views/awards/wpx/wpx_details.php:22
 #: application/views/awards/wwff/index.php:119
-#: application/views/awards/wwff/index.php:167
+#: application/views/awards/wwff/index.php:170
 #: application/views/bandmap/list.php:103
 #: application/views/bandmap/list.php:174
 #: application/views/bandmap/list.php:372
@@ -2697,8 +2699,8 @@ msgstr "オペレーター"
 #: application/controllers/Logbook.php:1501
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:91
-#: application/views/awards/dxcc/index.php:471
-#: application/views/awards/wae/index.php:231
+#: application/views/awards/dxcc/index.php:474
+#: application/views/awards/wae/index.php:234
 #: application/views/countqsoby/index.php:16 application/views/csv/index.php:65
 #: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
@@ -2792,37 +2794,37 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF情報"
 
-#: application/controllers/Lotw.php:992
+#: application/controllers/Lotw.php:1000
 msgid "Connection to LoTW failed."
 msgstr "LoTWへの接続に失敗しました。"
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:1005
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTWへのログインがユーザー %s で失敗しました: %s."
 
-#: application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:1005
 msgid "Username/password incorrect"
 msgstr "ユーザー名/パスワードが間違っています"
 
-#: application/controllers/Lotw.php:1000
+#: application/controllers/Lotw.php:1008
 msgid "LoTW currently not available. Try again later."
 msgstr ""
 "LoTWは現在ご利用いただけません。しばらくしてからもう一度お試しください。"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1012
 msgid "LoTW login OK!"
 msgstr "LoTWログインOK！"
 
-#: application/controllers/Lotw.php:1010
+#: application/controllers/Lotw.php:1018
 msgid "No LoTW credentials provided."
 msgstr "LoTWの認証情報が提供されていません。"
 
-#: application/controllers/Lotw.php:1027
+#: application/controllers/Lotw.php:1035
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF インポート"
 
-#: application/controllers/Lotw.php:1054
+#: application/controllers/Lotw.php:1062
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "ARRL LoTWの認証情報を設定していません！"
 
@@ -4642,23 +4644,23 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: HRDlog 資格情報を持つ無線局プロファイルが見つかりません。"
 
 #: application/models/Jcc_model.php:209 application/models/Jcc_model.php:210
-#: application/views/awards/iota/index.php:212
-#: application/views/awards/jcc/index.php:141
-#: application/views/awards/jcc/index.php:163
+#: application/views/awards/iota/index.php:215
+#: application/views/awards/jcc/index.php:144
+#: application/views/awards/jcc/index.php:166
 msgid "Deleted"
 msgstr "削除済み"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "輸入品"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "輸入紙"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "輸入ラベルタイプ"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -4966,7 +4968,7 @@ msgstr "違い"
 #: application/views/activated_gridmap/index.php:46
 #: application/views/activators/index.php:20
 #: application/views/adif/import.php:271
-#: application/views/awards/counties/index.php:245
+#: application/views/awards/counties/index.php:248
 #: application/views/awards/cq/index.php:153
 #: application/views/awards/dok/index.php:125
 #: application/views/awards/dxcc/index.php:197
@@ -5370,7 +5372,7 @@ msgstr "参照"
 
 #: application/views/activationplanner/index.php:28
 #: application/views/api/index.php:135
-#: application/views/awards/iota/index.php:210
+#: application/views/awards/iota/index.php:213
 #: application/views/contest_admin/add.php:34
 #: application/views/contest_admin/create.php:24
 #: application/views/contesting/manager/components/session_modal.php:122
@@ -5615,28 +5617,28 @@ msgstr "最小数"
 #: application/views/awards/73on73/index.php:71
 #: application/views/awards/counties/counties_simple_ajax.php:21
 #: application/views/awards/counties/details_ajax.php:24
-#: application/views/awards/counties/index.php:230
+#: application/views/awards/counties/index.php:233
 #: application/views/awards/counties/state_ajax.php:47
-#: application/views/awards/cq/index.php:273
-#: application/views/awards/dok/index.php:202
-#: application/views/awards/helvetia/index.php:204
-#: application/views/awards/iota/index.php:315
-#: application/views/awards/itu/index.php:275
-#: application/views/awards/pl_polska/index.php:380
-#: application/views/awards/pota/index.php:286
-#: application/views/awards/rac/index.php:204
+#: application/views/awards/cq/index.php:276
+#: application/views/awards/dok/index.php:205
+#: application/views/awards/helvetia/index.php:207
+#: application/views/awards/iota/index.php:318
+#: application/views/awards/itu/index.php:278
+#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pota/index.php:289
+#: application/views/awards/rac/index.php:207
 #: application/views/awards/sig/index.php:42
 #: application/views/awards/sig/qso_list.php:38
-#: application/views/awards/sota/index.php:193
+#: application/views/awards/sota/index.php:196
 #: application/views/awards/vucc/band.php:45
 #: application/views/awards/vucc/index.php:43
-#: application/views/awards/wae/index.php:313
-#: application/views/awards/waja/index.php:205
-#: application/views/awards/wap/index.php:202
-#: application/views/awards/wapc/index.php:214
-#: application/views/awards/was/index.php:206
-#: application/views/awards/wpx/index.php:233
-#: application/views/awards/wwff/index.php:193
+#: application/views/awards/wae/index.php:316
+#: application/views/awards/waja/index.php:208
+#: application/views/awards/wap/index.php:205
+#: application/views/awards/wapc/index.php:217
+#: application/views/awards/was/index.php:209
+#: application/views/awards/wpx/index.php:236
+#: application/views/awards/wwff/index.php:196
 #: application/views/callstats/index.php:118
 #: application/views/clublog/export.php:60
 #: application/views/public_search/empty.php:3
@@ -5650,11 +5652,11 @@ msgstr "何も見つかりません!"
 #: application/views/adif/import.php:104 application/views/adif/import.php:278
 #: application/views/awards/73on73/index.php:40
 #: application/views/awards/amsat_rover/index.php:228
-#: application/views/awards/pota/index.php:256
+#: application/views/awards/pota/index.php:259
 #: application/views/awards/sig/qso_list.php:15
-#: application/views/awards/sota/index.php:166
+#: application/views/awards/sota/index.php:169
 #: application/views/awards/wpx/wpx_details.php:20
-#: application/views/awards/wwff/index.php:166
+#: application/views/awards/wwff/index.php:169
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:171
 #: application/views/bandmap/list.php:567
 #: application/views/callstats/index.php:139
@@ -5782,9 +5784,9 @@ msgstr ""
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
 #: application/views/awards/73on73/index.php:38
-#: application/views/awards/pota/index.php:254
-#: application/views/awards/sota/index.php:164
-#: application/views/awards/wwff/index.php:164
+#: application/views/awards/pota/index.php:257
+#: application/views/awards/sota/index.php:167
+#: application/views/awards/wwff/index.php:167
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
@@ -5827,9 +5829,9 @@ msgstr "日付"
 #: application/views/adif/dcl_success.php:30
 #: application/views/adif/pota_success.php:30
 #: application/views/awards/73on73/index.php:39
-#: application/views/awards/pota/index.php:255
-#: application/views/awards/sota/index.php:165
-#: application/views/awards/wwff/index.php:165
+#: application/views/awards/pota/index.php:258
+#: application/views/awards/sota/index.php:168
+#: application/views/awards/wwff/index.php:168
 #: application/views/bandmap/list.php:142
 #: application/views/calltester/call_info.php:56
 #: application/views/contesting/logger/components/qso-form.php:146
@@ -6594,7 +6596,7 @@ msgstr ""
 "コープを選定します。"
 
 #: application/views/api/components/create_token_modal.php:78
-#: application/views/awards/wpx/index.php:152
+#: application/views/awards/wpx/index.php:155
 #: application/views/continents/index.php:55
 #: application/views/logbookadvanced/index.php:914
 #: application/views/logbookadvanced/index.php:915
@@ -6791,7 +6793,7 @@ msgid "Permissions"
 msgstr "権限"
 
 #: application/views/api/index.php:38 application/views/api/index.php:142
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 #: application/views/club/permissions.php:288
 #: application/views/clublog/export.php:39
 #: application/views/contesting/manager/index.php:38
@@ -6978,7 +6980,7 @@ msgid "73 on 73 QSO List"
 msgstr "73回の交信リスト"
 
 #: application/views/awards/73on73/index.php:37
-#: application/views/awards/waja/index.php:158
+#: application/views/awards/waja/index.php:161
 #: application/views/distancerecords/index.php:17
 msgid "Number"
 msgstr "番号"
@@ -7111,7 +7113,7 @@ msgid "Total Points"
 msgstr "合計ポイント"
 
 #: application/views/awards/amsat_rover/index.php:152
-#: application/views/awards/counties/index.php:187
+#: application/views/awards/counties/index.php:190
 msgid "Target"
 msgstr "ターゲット"
 
@@ -7230,7 +7232,7 @@ msgstr "郡"
 #: application/views/awards/counties/details_ajax.php:14
 #: application/views/awards/counties/state_ajax.php:26
 msgid "Not in USA-CA county list"
-msgstr ""
+msgstr "米国カリフォルニア州の郡リストには含まれていません"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
@@ -7341,51 +7343,73 @@ msgstr "郡の地図を表示"
 msgid "Count QSO as Confirmed via"
 msgstr "QSOを確定としてカウントする"
 
-#: application/views/awards/counties/index.php:153
+#: application/views/awards/counties/index.php:123
+#: application/views/awards/cq/index.php:171
+#: application/views/awards/dok/index.php:144
+#: application/views/awards/dxcc/index.php:259
+#: application/views/awards/helvetia/index.php:137
+#: application/views/awards/iota/index.php:182
+#: application/views/awards/itu/index.php:173
+#: application/views/awards/jcc/index.php:115
+#: application/views/awards/pl_polska/index.php:117
+#: application/views/awards/pota/index.php:236
+#: application/views/awards/rac/index.php:131
+#: application/views/awards/sota/index.php:146
+#: application/views/awards/wae/index.php:193
+#: application/views/awards/waja/index.php:141
+#: application/views/awards/wap/index.php:135
+#: application/views/awards/wapc/index.php:143
+#: application/views/awards/was/index.php:138
+#: application/views/awards/wpx/index.php:151
+#: application/views/awards/wwff/index.php:146
+msgid "Apply"
+msgstr ""
+
+#: application/views/awards/counties/index.php:156
 msgid "Worked Counties"
 msgstr "Worked Counties"
 
-#: application/views/awards/counties/index.php:155
+#: application/views/awards/counties/index.php:158
 #, php-format
 msgid "of %s known counties"
 msgstr "of %s known counties"
 
-#: application/views/awards/counties/index.php:160
+#: application/views/awards/counties/index.php:163
 msgid "Confirmed Counties"
 msgstr "確認済みの郡"
 
-#: application/views/awards/counties/index.php:162
+#: application/views/awards/counties/index.php:165
 #, php-format
 msgid "%s%% of worked"
 msgstr "%s 割合 働いた人の"
 
-#: application/views/awards/counties/index.php:167
+#: application/views/awards/counties/index.php:170
 msgid "Remaining Counties"
 msgstr "残りの郡"
 
-#: application/views/awards/counties/index.php:169
+#: application/views/awards/counties/index.php:172
 msgid "Based on current worked count"
 msgstr "現在の作業件数に基づく"
 
-#: application/views/awards/counties/index.php:174
+#: application/views/awards/counties/index.php:177
 #: application/views/awards/dxcc/index.php:41
 #: application/views/awards/waip/index.php:41
 #: application/views/awards/waip/index.php:63
 msgid "Progress"
 msgstr "進捗"
 
-#: application/views/awards/counties/index.php:176
+#: application/views/awards/counties/index.php:179
 #, php-format
 msgid "%s%% confirmed overall"
 msgstr "%s %%が 全体で確認済み"
 
-#: application/views/awards/counties/index.php:185
+#: application/views/awards/counties/index.php:188
 #: application/views/awards/cq/index.php:93
-#: application/views/awards/dxcc/index.php:298
-#: application/views/awards/dxcc/index.php:371
+#: application/views/awards/dxcc/index.php:301
+#: application/views/awards/dxcc/index.php:374
 #: application/views/awards/dxcc/progress.php:5
 #: application/views/awards/itu/index.php:95
-#: application/views/awards/jcc/index.php:131
+#: application/views/awards/jcc/index.php:134
 #: application/views/bandmap/list.php:91 application/views/bandmap/list.php:306
 #: application/views/countqsoby/index.php:8
 #: application/views/dashboard/index.php:429
@@ -7397,14 +7421,14 @@ msgstr "%s %%が 全体で確認済み"
 msgid "Worked"
 msgstr "交信済"
 
-#: application/views/awards/counties/index.php:186
+#: application/views/awards/counties/index.php:189
 #: application/views/awards/cq/index.php:93
-#: application/views/awards/dxcc/index.php:299
-#: application/views/awards/dxcc/index.php:372
+#: application/views/awards/dxcc/index.php:302
+#: application/views/awards/dxcc/index.php:375
 #: application/views/awards/dxcc/progress.php:5
 #: application/views/awards/itu/index.php:95
-#: application/views/awards/jcc/index.php:126
-#: application/views/awards/jcc/index.php:150
+#: application/views/awards/jcc/index.php:129
+#: application/views/awards/jcc/index.php:153
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/waip/index.php:41
 #: application/views/awards/waip/index.php:63
@@ -7421,36 +7445,36 @@ msgstr "交信済"
 msgid "Confirmed"
 msgstr "確認済み"
 
-#: application/views/awards/counties/index.php:188
+#: application/views/awards/counties/index.php:191
 msgid "Remaining"
 msgstr "残り"
 
-#: application/views/awards/counties/index.php:189
-#: application/views/awards/dxcc/index.php:300
-#: application/views/awards/dxcc/index.php:373
+#: application/views/awards/counties/index.php:192
+#: application/views/awards/dxcc/index.php:303
+#: application/views/awards/dxcc/index.php:376
 #: application/views/awards/dxcc/progress.php:5
 msgid "Worked Progress"
 msgstr "作業進捗状況"
 
-#: application/views/awards/counties/index.php:190
-#: application/views/awards/dxcc/index.php:301
-#: application/views/awards/dxcc/index.php:374
+#: application/views/awards/counties/index.php:193
+#: application/views/awards/dxcc/index.php:304
+#: application/views/awards/dxcc/index.php:377
 #: application/views/awards/dxcc/progress.php:5
 msgid "Confirmed Progress"
 msgstr "進捗状況を確認済み"
 
-#: application/views/awards/counties/index.php:218
+#: application/views/awards/counties/index.php:221
 #: application/views/awards/counties/state_ajax.php:39
-#: application/views/awards/dok/index.php:182
-#: application/views/awards/helvetia/index.php:183
-#: application/views/awards/iota/index.php:251
-#: application/views/awards/jcc/index.php:136
-#: application/views/awards/rac/index.php:184
-#: application/views/awards/waja/index.php:183
-#: application/views/awards/wap/index.php:181
-#: application/views/awards/wapc/index.php:193
-#: application/views/awards/was/index.php:185
-#: application/views/awards/wpx/index.php:176
+#: application/views/awards/dok/index.php:185
+#: application/views/awards/helvetia/index.php:186
+#: application/views/awards/iota/index.php:254
+#: application/views/awards/jcc/index.php:139
+#: application/views/awards/rac/index.php:187
+#: application/views/awards/waja/index.php:186
+#: application/views/awards/wap/index.php:184
+#: application/views/awards/wapc/index.php:196
+#: application/views/awards/was/index.php:188
+#: application/views/awards/wpx/index.php:179
 #: application/views/dashboard/index.php:533
 #: application/views/dashboard/index.php:567
 #: application/views/dashboard/index.php:596
@@ -7472,7 +7496,7 @@ msgstr "進捗状況を確認済み"
 msgid "Total"
 msgstr "合計"
 
-#: application/views/awards/counties/index.php:244
+#: application/views/awards/counties/index.php:247
 #: application/views/awards/dok/index.php:111
 #: application/views/awards/helvetia/index.php:105
 #: application/views/awards/jcc/index.php:85
@@ -7779,121 +7803,128 @@ msgstr "QSLタイプでQSOを表示"
 msgid "QSL Card"
 msgstr "QSLカード"
 
-#: application/views/awards/cq/index.php:193
-#: application/views/awards/dxcc/index.php:443
-#: application/views/awards/itu/index.php:195
-#: application/views/awards/wac/index.php:134
-#: application/views/awards/wae/index.php:202
-msgid "Legend:"
-msgstr "凡例："
-
-#: application/views/awards/cq/index.php:194
-#: application/views/awards/dxcc/index.php:444
-#: application/views/awards/itu/index.php:196
-#: application/views/awards/wac/index.php:135
-#: application/views/awards/wae/index.php:203
-msgid "(Q)SL-Paper-Card"
-msgstr "(Q)SL-紙カード"
-
-#: application/views/awards/cq/index.php:195
-#: application/views/awards/dxcc/index.php:445
-#: application/views/awards/itu/index.php:197
-#: application/views/awards/wac/index.php:136
-#: application/views/awards/wae/index.php:204
-msgid "(L)oTW"
-msgstr "(L)oTW"
-
 #: application/views/awards/cq/index.php:196
 #: application/views/awards/dxcc/index.php:446
 #: application/views/awards/itu/index.php:198
-#: application/views/awards/wac/index.php:137
+#: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:205
-msgid "(e)QSL"
-msgstr "(e)QSL"
+#: application/views/lookup/result.php:28
+msgid "Legend:"
+msgstr "凡例："
 
 #: application/views/awards/cq/index.php:197
 #: application/views/awards/dxcc/index.php:447
 #: application/views/awards/itu/index.php:199
-#: application/views/awards/wac/index.php:138
+#: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:206
-msgid "QR(Z)-\"confirmation\""
-msgstr "QR(Z)-「確認」"
+#: application/views/lookup/result.php:29
+msgid "(Q)SL-Paper-Card"
+msgstr "(Q)SL-紙カード"
 
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dxcc/index.php:448
 #: application/views/awards/itu/index.php:200
-#: application/views/awards/wac/index.php:139
+#: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:207
-msgid "(C)lublog"
-msgstr "(C)lublog"
+#: application/views/lookup/result.php:30
+msgid "(L)oTW"
+msgstr "(L)oTW"
 
 #: application/views/awards/cq/index.php:199
 #: application/views/awards/dxcc/index.php:449
 #: application/views/awards/itu/index.php:201
-#: application/views/awards/wac/index.php:140
+#: application/views/awards/wac/index.php:137
 #: application/views/awards/wae/index.php:208
+#: application/views/lookup/result.php:31
+msgid "(e)QSL"
+msgstr "(e)QSL"
+
+#: application/views/awards/cq/index.php:200
+#: application/views/awards/dxcc/index.php:450
+#: application/views/awards/itu/index.php:202
+#: application/views/awards/wac/index.php:138
+#: application/views/awards/wae/index.php:209
+#: application/views/lookup/result.php:32
+msgid "QR(Z)-\"confirmation\""
+msgstr "QR(Z)-「確認」"
+
+#: application/views/awards/cq/index.php:201
+#: application/views/awards/dxcc/index.php:451
+#: application/views/awards/itu/index.php:203
+#: application/views/awards/wac/index.php:139
+#: application/views/awards/wae/index.php:210
+#: application/views/lookup/result.php:33
+msgid "(C)lublog"
+msgstr "(C)lublog"
+
+#: application/views/awards/cq/index.php:202
+#: application/views/awards/dxcc/index.php:452
+#: application/views/awards/itu/index.php:204
+#: application/views/awards/wac/index.php:140
+#: application/views/awards/wae/index.php:211
+#: application/views/lookup/result.php:34
 msgid "(W)orked"
 msgstr "(W)作業した"
 
-#: application/views/awards/cq/index.php:225
-#: application/views/awards/dok/index.php:173
-#: application/views/awards/dxcc/index.php:483
-#: application/views/awards/helvetia/index.php:174
-#: application/views/awards/iota/index.php:238
-#: application/views/awards/itu/index.php:227
-#: application/views/awards/rac/index.php:175
+#: application/views/awards/cq/index.php:228
+#: application/views/awards/dok/index.php:176
+#: application/views/awards/dxcc/index.php:486
+#: application/views/awards/helvetia/index.php:177
+#: application/views/awards/iota/index.php:241
+#: application/views/awards/itu/index.php:230
+#: application/views/awards/rac/index.php:178
 #: application/views/awards/wac/index.php:168
-#: application/views/awards/wae/index.php:244
-#: application/views/awards/waja/index.php:174
-#: application/views/awards/wap/index.php:172
-#: application/views/awards/wapc/index.php:184
-#: application/views/awards/was/index.php:176
-#: application/views/awards/wpx/index.php:162
+#: application/views/awards/wae/index.php:247
+#: application/views/awards/waja/index.php:177
+#: application/views/awards/wap/index.php:175
+#: application/views/awards/wapc/index.php:187
+#: application/views/awards/was/index.php:179
+#: application/views/awards/wpx/index.php:165
 msgid "Summary"
 msgstr "サマリー"
 
-#: application/views/awards/cq/index.php:238
-#: application/views/awards/dxcc/index.php:349
-#: application/views/awards/dxcc/index.php:496
-#: application/views/awards/itu/index.php:240
+#: application/views/awards/cq/index.php:241
+#: application/views/awards/dxcc/index.php:352
+#: application/views/awards/dxcc/index.php:499
+#: application/views/awards/itu/index.php:243
 #: application/views/awards/wac/index.php:181
-#: application/views/awards/wae/index.php:257
+#: application/views/awards/wae/index.php:260
 msgid "Total (ex SAT)"
 msgstr "合計（SATを除く）"
 
-#: application/views/awards/cq/index.php:244
-#: application/views/awards/dok/index.php:186
-#: application/views/awards/dxcc/index.php:506
-#: application/views/awards/helvetia/index.php:187
-#: application/views/awards/iota/index.php:259
-#: application/views/awards/itu/index.php:246
-#: application/views/awards/rac/index.php:188
+#: application/views/awards/cq/index.php:247
+#: application/views/awards/dok/index.php:189
+#: application/views/awards/dxcc/index.php:509
+#: application/views/awards/helvetia/index.php:190
+#: application/views/awards/iota/index.php:262
+#: application/views/awards/itu/index.php:249
+#: application/views/awards/rac/index.php:191
 #: application/views/awards/wac/index.php:188
-#: application/views/awards/wae/index.php:264
-#: application/views/awards/waja/index.php:188
-#: application/views/awards/wap/index.php:185
-#: application/views/awards/wapc/index.php:198
-#: application/views/awards/was/index.php:189
-#: application/views/awards/wpx/index.php:187
+#: application/views/awards/wae/index.php:267
+#: application/views/awards/waja/index.php:191
+#: application/views/awards/wap/index.php:188
+#: application/views/awards/wapc/index.php:201
+#: application/views/awards/was/index.php:192
+#: application/views/awards/wpx/index.php:190
 msgid "Total worked"
 msgstr "合計交信数"
 
-#: application/views/awards/cq/index.php:257
-#: application/views/awards/dok/index.php:193
-#: application/views/awards/dxcc/index.php:531
-#: application/views/awards/helvetia/index.php:194
-#: application/views/awards/iota/index.php:285
-#: application/views/awards/itu/index.php:259
-#: application/views/awards/rac/index.php:195
+#: application/views/awards/cq/index.php:260
+#: application/views/awards/dok/index.php:196
+#: application/views/awards/dxcc/index.php:534
+#: application/views/awards/helvetia/index.php:197
+#: application/views/awards/iota/index.php:288
+#: application/views/awards/itu/index.php:262
+#: application/views/awards/rac/index.php:198
 #: application/views/awards/wac/index.php:208
-#: application/views/awards/wae/index.php:286
+#: application/views/awards/wae/index.php:289
 #: application/views/awards/waip/index.php:149
 #: application/views/awards/waip/index.php:213
-#: application/views/awards/waja/index.php:195
-#: application/views/awards/wap/index.php:192
-#: application/views/awards/wapc/index.php:205
-#: application/views/awards/was/index.php:196
-#: application/views/awards/wpx/index.php:208
+#: application/views/awards/waja/index.php:198
+#: application/views/awards/wap/index.php:195
+#: application/views/awards/wapc/index.php:208
+#: application/views/awards/was/index.php:199
+#: application/views/awards/wpx/index.php:211
 msgid "Total confirmed"
 msgstr "確認された合計"
 
@@ -8141,21 +8172,21 @@ msgstr "南アメリカ"
 msgid "Oceania"
 msgstr "オセアニア"
 
-#: application/views/awards/dxcc/index.php:281
+#: application/views/awards/dxcc/index.php:284
 #: application/views/awards/waip/index.php:61
 #: application/views/awards/waip/index.php:98
 msgid "By Band"
 msgstr "バンド別"
 
-#: application/views/awards/dxcc/index.php:284
+#: application/views/awards/dxcc/index.php:287
 msgid "By Continent"
 msgstr "大陸別"
 
-#: application/views/awards/dxcc/index.php:287
+#: application/views/awards/dxcc/index.php:290
 msgid "By Mode"
 msgstr "モード別"
 
-#: application/views/awards/dxcc/index.php:370
+#: application/views/awards/dxcc/index.php:373
 #: application/views/awards/wac/index.php:147
 #: application/views/bandmap/list.php:105
 #: application/views/bandmap/list.php:568
@@ -8171,38 +8202,38 @@ msgstr "モード別"
 msgid "Continent"
 msgstr "大陸"
 
-#: application/views/awards/dxcc/index.php:417
+#: application/views/awards/dxcc/index.php:420
 msgid "No continent data available."
 msgstr "大陸データは利用できません。"
 
-#: application/views/awards/dxcc/index.php:426
+#: application/views/awards/dxcc/index.php:429
 #: application/views/contesting/logger/components/scp.php:52
 #: application/views/debug/index.php:169
 msgid "Loading..."
 msgstr "読み込み中…"
 
-#: application/views/awards/dxcc/index.php:428
+#: application/views/awards/dxcc/index.php:431
 msgid "Loading progress data..."
 msgstr "進捗状況データを読み込んでいます..."
 
-#: application/views/awards/dxcc/index.php:455
+#: application/views/awards/dxcc/index.php:458
 msgid "DXCC Name"
 msgstr "DXCC 名称"
 
-#: application/views/awards/dxcc/index.php:456
-#: application/views/awards/iota/index.php:209
-#: application/views/awards/wae/index.php:216
+#: application/views/awards/dxcc/index.php:459
+#: application/views/awards/iota/index.php:212
+#: application/views/awards/wae/index.php:219
 #: application/views/dbtools/statecheckresult.php:14
 #: application/views/timeline/index.php:192
 #: application/views/timeline/index.php:308
 msgid "Prefix"
 msgstr "Prefix"
 
-#: application/views/awards/dxcc/index.php:499
+#: application/views/awards/dxcc/index.php:502
 msgid "Slots"
 msgstr "スロット"
 
-#: application/views/awards/dxcc/index.php:562
+#: application/views/awards/dxcc/index.php:565
 msgid "No results found for your search criteria. Please try again."
 msgstr "検索条件に一致する結果は見つかりませんでした。もう一度お試しください。"
 
@@ -8391,7 +8422,7 @@ msgstr ""
 msgid "Show Helvetia Map"
 msgstr "ヘルベティア地図を表示"
 
-#: application/views/awards/helvetia/index.php:155
+#: application/views/awards/helvetia/index.php:158
 msgid "Canton"
 msgstr "カントン"
 
@@ -8546,12 +8577,12 @@ msgstr "QSLカードの種類"
 msgid "Deleted cities"
 msgstr "削除された都市"
 
-#: application/views/awards/jcc/index.php:154
+#: application/views/awards/jcc/index.php:157
 #: application/views/interface_assets/footer.php:50
 msgid "Worked not confirmed"
 msgstr "動作確認はされていません"
 
-#: application/views/awards/jcc/index.php:158
+#: application/views/awards/jcc/index.php:161
 #: application/views/bandmap/list.php:90 application/views/bandmap/list.php:305
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
@@ -8560,11 +8591,11 @@ msgstr "動作確認はされていません"
 msgid "Not worked"
 msgstr "未交信"
 
-#: application/views/awards/jcc/index.php:169
+#: application/views/awards/jcc/index.php:172
 msgid "JCC progress"
 msgstr "JCCの進捗状況"
 
-#: application/views/awards/jcc/index.php:179
+#: application/views/awards/jcc/index.php:182
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
@@ -8572,7 +8603,7 @@ msgstr ""
 "注意！Wavelogは、QSOがエンティティ削除日より前に発生したかどうかを検証しませ"
 "ん。"
 
-#: application/views/awards/jcc/index.php:185
+#: application/views/awards/jcc/index.php:188
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
 "現在のフィルター条件に一致する、処理済みまたは確認済みのJCCスロットはありませ"
@@ -8648,11 +8679,11 @@ msgstr ""
 "公式のアワード規則に従い、アワード申請には紙のQSLカードまたはLoTW確認書が受け"
 "付けられます。その他のデジタル確認書は、追跡目的でのみここに表示されます。"
 
-#: application/views/awards/pl_polska/index.php:128
+#: application/views/awards/pl_polska/index.php:131
 msgid "Award Categories"
 msgstr "アワードのカテゴリー"
 
-#: application/views/awards/pl_polska/index.php:130
+#: application/views/awards/pl_polska/index.php:133
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
@@ -8660,123 +8691,123 @@ msgstr ""
 "Polska アワード のカテゴリーは、全 16 の県との確認済み QSO の最小数に基づいて"
 "います。"
 
-#: application/views/awards/pl_polska/index.php:134
+#: application/views/awards/pl_polska/index.php:137
 msgid "1 QSO per voivodeship"
 msgstr "県ごとに1回のQSO"
 
-#: application/views/awards/pl_polska/index.php:134
+#: application/views/awards/pl_polska/index.php:137
 msgid "Basic Class"
 msgstr "基本クラス"
 
-#: application/views/awards/pl_polska/index.php:135
+#: application/views/awards/pl_polska/index.php:138
 msgid "3 QSOs per voivodeship"
 msgstr "県ごとに3回のQSO"
 
-#: application/views/awards/pl_polska/index.php:135
+#: application/views/awards/pl_polska/index.php:138
 msgid "Bronze Class (3rd)"
 msgstr "ブロンズクラス（3位）"
 
-#: application/views/awards/pl_polska/index.php:140
+#: application/views/awards/pl_polska/index.php:143
 msgid "7 QSOs per voivodeship"
 msgstr "県ごとに7回のQSO"
 
-#: application/views/awards/pl_polska/index.php:140
+#: application/views/awards/pl_polska/index.php:143
 msgid "Silver Class (2nd)"
 msgstr "シルバークラス（2位）"
 
-#: application/views/awards/pl_polska/index.php:141
+#: application/views/awards/pl_polska/index.php:144
 msgid "12 QSOs per voivodeship"
 msgstr "県ごとに12回のQSO"
 
-#: application/views/awards/pl_polska/index.php:141
+#: application/views/awards/pl_polska/index.php:144
 msgid "Gold Class (1st)"
 msgstr "ゴールドクラス（1位）"
 
-#: application/views/awards/pl_polska/index.php:166
+#: application/views/awards/pl_polska/index.php:169
 msgid "Congratulations!"
 msgstr "おめでとう！"
 
-#: application/views/awards/pl_polska/index.php:167
+#: application/views/awards/pl_polska/index.php:170
 msgid "You are entitled to the following award categories"
 msgstr "以下のアワードのカテゴリーに応募できます"
 
-#: application/views/awards/pl_polska/index.php:205
-#: application/views/awards/pl_polska/index.php:276
+#: application/views/awards/pl_polska/index.php:208
+#: application/views/awards/pl_polska/index.php:279
 msgid "Voivodeship"
 msgstr "県"
 
-#: application/views/awards/pl_polska/index.php:206
-#: application/views/awards/pl_polska/index.php:277
+#: application/views/awards/pl_polska/index.php:209
+#: application/views/awards/pl_polska/index.php:280
 #: application/views/awards/waip/index.php:114
 #: application/views/awards/waip/index.php:172
-#: application/views/awards/wapc/index.php:167
+#: application/views/awards/wapc/index.php:170
 msgid "Code"
 msgstr "コード"
 
-#: application/views/awards/pl_polska/index.php:207
-#: application/views/awards/pl_polska/index.php:348
+#: application/views/awards/pl_polska/index.php:210
+#: application/views/awards/pl_polska/index.php:351
 #: application/views/awards/waip/index.php:115
 msgid "MIXED"
 msgstr "MIXED"
 
-#: application/views/awards/pl_polska/index.php:208
-#: application/views/awards/pl_polska/index.php:349
+#: application/views/awards/pl_polska/index.php:211
+#: application/views/awards/pl_polska/index.php:352
 #: application/views/awards/waip/index.php:116
 msgid "PHONE"
 msgstr "PHONE"
 
-#: application/views/awards/pl_polska/index.php:209
-#: application/views/awards/pl_polska/index.php:350
+#: application/views/awards/pl_polska/index.php:212
+#: application/views/awards/pl_polska/index.php:353
 #: application/views/awards/waip/index.php:117
 #: application/views/bandmap/list.php:314
 #: application/views/components/dxwaterfall.php:33
 msgid "CW"
 msgstr "CW"
 
-#: application/views/awards/pl_polska/index.php:210
-#: application/views/awards/pl_polska/index.php:351
+#: application/views/awards/pl_polska/index.php:213
+#: application/views/awards/pl_polska/index.php:354
 #: application/views/awards/waip/index.php:118
 msgid "DIGI"
 msgstr "DIGI"
 
-#: application/views/awards/pl_polska/index.php:241
-#: application/views/awards/pl_polska/index.php:313
+#: application/views/awards/pl_polska/index.php:244
+#: application/views/awards/pl_polska/index.php:316
 msgid "Total voivodeships"
 msgstr "県の総数"
 
-#: application/views/awards/pl_polska/index.php:255
-#: application/views/awards/pl_polska/index.php:327
+#: application/views/awards/pl_polska/index.php:258
+#: application/views/awards/pl_polska/index.php:330
 msgid "Bravo! You are entitled to"
 msgstr "ブラボー！あなたには"
 
-#: application/views/awards/pl_polska/index.php:255
-#: application/views/awards/pl_polska/index.php:327
+#: application/views/awards/pl_polska/index.php:258
+#: application/views/awards/pl_polska/index.php:330
 msgid "category award!"
 msgstr "部門賞受賞！"
 
-#: application/views/awards/pl_polska/index.php:345
+#: application/views/awards/pl_polska/index.php:348
 msgid "Award Category:"
 msgstr "アワードのカテゴリー:"
 
-#: application/views/awards/pl_polska/index.php:347
+#: application/views/awards/pl_polska/index.php:350
 msgid "Mode Categories"
 msgstr "モードカテゴリ"
 
-#: application/views/awards/pl_polska/index.php:353
+#: application/views/awards/pl_polska/index.php:356
 msgid "Band Categories"
 msgstr "バンドカテゴリー"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 #: application/views/dbtools/index.php:88
 #: application/views/logbookadvanced/index.php:854
 msgid "Fix State"
 msgstr "状態を修正"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "Logbook Advanced"
 msgstr "ログブック アドバンス"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
@@ -8784,15 +8815,15 @@ msgstr ""
 "このアワードは、ログブックの「州」フィールドを使用します。SP（ポーランド）の"
 "すべての連絡先でこのフィールドが入力されていることを確認してください。"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "Tip:"
 msgstr "ヒント："
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "Use"
 msgstr "使用"
 
-#: application/views/awards/pl_polska/index.php:375
+#: application/views/awards/pl_polska/index.php:378
 msgid "to auto-populate states from Maidenhead locators."
 msgstr "メイデンヘッドのロケーターから州を自動入力します。"
 
@@ -8900,7 +8931,7 @@ msgstr "異なる公園で狩猟"
 msgid "Apply Filters"
 msgstr "フィルターを適用する"
 
-#: application/views/awards/pota/index.php:253
+#: application/views/awards/pota/index.php:256
 #: application/views/qso/index.php:337 application/views/qso/index.php:621
 #: application/views/station_profile/create.php:243
 #: application/views/station_profile/edit.php:265
@@ -9208,7 +9239,7 @@ msgstr "この賞の対象となる分野: 地域、DXCC"
 msgid "View progress of WAE awards"
 msgstr "WAEアワードの進捗状況を見る"
 
-#: application/views/awards/wae/index.php:215
+#: application/views/awards/wae/index.php:218
 msgid "WAE Name"
 msgstr "WAE 名称"
 
@@ -9281,8 +9312,8 @@ msgstr "モードカテゴリ別"
 
 #: application/views/awards/waip/index.php:113
 #: application/views/awards/waip/index.php:171
-#: application/views/awards/wap/index.php:153
-#: application/views/awards/wapc/index.php:168
+#: application/views/awards/wap/index.php:156
+#: application/views/awards/wapc/index.php:171
 msgid "Province"
 msgstr "州"
 
@@ -9334,7 +9365,7 @@ msgstr ""
 msgid "Show WAJA Map"
 msgstr "WAJAマップを表示"
 
-#: application/views/awards/waja/index.php:159
+#: application/views/awards/waja/index.php:162
 #: application/views/timeline/index.php:236
 msgid "Prefecture"
 msgstr "都道府県"
@@ -9447,7 +9478,7 @@ msgid "Hover over a state"
 msgstr "州にマウスを合わせると"
 
 #: application/views/awards/was/index.php:5
-#: application/views/awards/was/index.php:165
+#: application/views/awards/was/index.php:168
 msgid "inc."
 msgstr "含む"
 
@@ -16127,11 +16158,11 @@ msgstr "州として確認された郡："
 
 #: application/views/interface_assets/footer.php:2900
 msgid "Counties in state:"
-msgstr ""
+msgstr "州内の郡："
 
 #: application/views/interface_assets/footer.php:2901
 msgid "Needed counties for state:"
-msgstr ""
+msgstr "州に必要な郡数："
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16492,7 +16523,7 @@ msgstr "カスタムテキスト"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Line"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16557,12 +16588,14 @@ msgstr "選択済み"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "まずラベルの種類を選択してください。"
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"このテンプレートのラベルタイプは現在存在しません。別のラベルタイプを選択して"
+"ください。"
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -16604,23 +16637,23 @@ msgstr "ページを離れる"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "インポートに失敗しました"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "エクスポートに失敗しました"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "テンプレートがインポートされました。"
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "エクスポートするテンプレートを選択してください。"
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "ファイルサイズが大きすぎます。"
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -16664,23 +16697,23 @@ msgstr "テンプレートを削除"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "エクスポートテンプレート"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "テンプレートのインポート"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "ラベルの種類"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "（ラベルの種類を選択してください）"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "最新の交信記録を含むサンプルPDFを生成します"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -16745,28 +16778,32 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"水平線 — 「QSOごとの繰り返し回数」を有効にすると、各QSO行の下に区切り線が描画"
+"されます"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "水平線"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
-msgstr ""
+msgstr "縦線 — 列の端に配置して表のグリッドを作成します"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "垂直線"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"テーブルグリッド - 角をドラッグしてサイズを変更し、列マーカーをドラッグして列"
+"幅を調整します"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "テーブルを追加"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -16775,11 +16812,11 @@ msgstr "検索条件に一致する項目が見つかりませんでした。"
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "ラベルキャンバス"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "フィールドをラベルにドラッグする"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -16788,7 +16825,7 @@ msgstr "テンプレートオプション"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "ラベルごとの交信数"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -16799,15 +16836,15 @@ msgstr "行間"
 msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
-msgstr ""
+msgstr "従来のラベルレイアウトのように、QSO行間に自動的にルールを描画します"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "QSO行間の区切り線"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "セパレーターの厚さ"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -16851,11 +16888,11 @@ msgstr "Y"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "行"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "コラム"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -16870,7 +16907,7 @@ msgstr "高さ"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "厚さ"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -16879,15 +16916,15 @@ msgstr "オリエンテーション"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "水平"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "垂直"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "長さ"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -16919,6 +16956,8 @@ msgstr "幅をつめる"
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
 msgstr ""
+"ラベルに複数のQSOが含まれている場合は、QSOごとにこのフィールドを1回印刷してく"
+"ださい"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17221,13 +17260,13 @@ msgstr "QSOを表示"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "ラベルレイアウト"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "標準"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -17235,6 +17274,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"デザイン済みのラベルテンプレートは独自のレイアウトを使用するため、以下のオプ"
+"ションは無視されます。"
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
