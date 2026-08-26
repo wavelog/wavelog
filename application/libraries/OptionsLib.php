@@ -34,6 +34,10 @@ class OptionsLib {
             $option_name = substr($option_name, 7);
         }
 
+        if ($option_name === 'map_tile_server' && $this->CI->config->item('map_tile_cache')) {
+            return base_url('tiles/{z}/{x}/{y}.png');
+        }
+
         if (!array_key_exists($option_name, $this->cache)) {
             $this->cache[$option_name] = $this->CI->options_model->item($option_name);
         }

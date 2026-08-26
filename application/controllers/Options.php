@@ -362,7 +362,7 @@ class Options extends CI_Controller {
 		$data['sub_heading'] = __("Maptiles Server");
 		$data['active_tab'] = 'maptiles';
 
-		$data['maptile_server_url'] = $this->optionslib->get_option('map_tile_server') ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		$data['maptile_server_url'] = $this->options_model->item('map_tile_server') ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		$data['maptile_server_url_dark'] = $this->optionslib->get_option('map_tile_server_dark') ?? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
 		$data['subdomain_system'] = $this->optionslib->get_option('map_tile_subdomains') ?? 'abc';
 		$map_tile_server_copyright = $this->optionslib->get_option('map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';

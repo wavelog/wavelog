@@ -164,7 +164,7 @@ class Staticmap_model extends CI_Model {
             $attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
             $subdomains = $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';
             if ($thememode == 'light') {
-                $server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
+                $server_url = $this->options_model->item('map_tile_server') ?? '';
                 if ($server_url == '') {
                     $server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
                     $this->optionslib->update('map_tile_server', $server_url);

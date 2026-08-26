@@ -25,7 +25,7 @@ class TileLayer {
         if ($r == 'dark') {
             $server =  'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
         } else {
-            $server =  $CI->optionslib->get_option('option_map_tile_server');
+            $server =  $CI->options_model->item('map_tile_server');
         }
         $attribution = $CI->optionslib->get_option('option_map_tile_server_copyright');
         return new TileLayer($server, $attribution, $r);
