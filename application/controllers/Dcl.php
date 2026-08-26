@@ -273,7 +273,7 @@ class Dcl extends CI_Controller {
 		$result = '';
 
 		//The URL that returns stored QSOs as ADIF. Untested endpoint - adjust here if DCL API differs.
-		$url = 'https://api.dcl.darc.de/api/v1/adi-export';
+		$url = 'https://dings.dcl.darc.de/api/adiexport';
 
 		foreach ($user_ids as $user_id) {
 			$token = $this->Dcl_model->get_token($user_id);
@@ -294,7 +294,7 @@ class Dcl extends CI_Controller {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
-			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(array('key' => $token, 'cnf_only' => 'T', 'qsl_since' => $qsl_since, 'limit' => 4294967295)));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(array('key' => $token, 'cnf_only' => 'T', 'qsl_since' => $qsl_since, 'limit' => 400000)));
 
 			$content = curl_exec($ch);
 			$errno = curl_errno($ch);
