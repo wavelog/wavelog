@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-25 17:26+0000\n"
+"POT-Creation-Date: 2026-08-26 11:05+0000\n"
 "PO-Revision-Date: 2026-08-23 22:44+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1900,7 +1900,7 @@ msgstr "ラベルデザイナー"
 #: application/controllers/Labels.php:213
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
-#: application/controllers/Qslpostcard.php:302
+#: application/controllers/Qslpostcard.php:307
 msgid "Template not found"
 msgstr "テンプレートが見つかりません"
 
@@ -1908,7 +1908,7 @@ msgstr "テンプレートが見つかりません"
 #: application/controllers/Labels.php:219
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
-#: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:313
 msgid "Template JSON is invalid"
 msgstr "テンプレートJSONが無効です"
 
@@ -2042,7 +2042,7 @@ msgstr ""
 "ません。"
 
 #: application/controllers/Labels.php:144
-#: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:290
 msgid "No QSOs were selected"
 msgstr "交信は選択されませんでした"
 
@@ -3247,7 +3247,7 @@ msgid "Print QSL Postcards"
 msgstr "QSLポストカードを印刷する"
 
 #: application/controllers/Qslpostcard.php:262
-#: application/controllers/Qslpostcard.php:321
+#: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
 msgstr "ポストカード印刷用のQSOは見つかりませんでした"
 
@@ -3255,16 +3255,16 @@ msgstr "ポストカード印刷用のQSOは見つかりませんでした"
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSLポストカードキューのPDF処理に失敗しました。 "
 
-#: application/controllers/Qslpostcard.php:289
+#: application/controllers/Qslpostcard.php:294
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
 msgstr "選択したQSLポストカードを印刷する"
 
-#: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
 msgstr "選択されたQSO IDは提供されていません"
 
-#: application/controllers/Qslpostcard.php:339
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "選択したQSLポストカードのPDFファイルが正常に処理されませんでした。 "
 
@@ -16724,7 +16724,7 @@ msgstr "PDF"
 #: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
-#: application/views/qslpostcard/printqueue_selected.php:34
+#: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
 msgid "Save PDF"
 msgstr "PDFで保存"
@@ -18614,14 +18614,14 @@ msgstr ""
 
 #: application/views/logbookadvanced/printQsl.php:30
 #: application/views/qslpostcard/printqueue.php:22
-#: application/views/qslpostcard/printqueue_selected.php:30
+#: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
 msgid "Generate Postcard PDF"
 msgstr "ポストカードのPDFを生成する"
 
 #: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
-#: application/views/qslpostcard/printqueue_selected.php:41
+#: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
