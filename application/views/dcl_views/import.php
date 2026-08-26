@@ -22,6 +22,39 @@
 				</div>
 			<?php } ?>
 
+			<?php if (isset($dcl_details) && !empty($dcl_details)) { ?>
+				<div class="table-responsive">
+					<table class="table table-sm table-striped">
+						<thead>
+							<tr>
+								<th><?= __("Date"); ?></th>
+								<th><?= __("Time"); ?></th>
+								<th><?= __("Call"); ?></th>
+								<th><?= __("Band"); ?></th>
+								<th><?= __("Mode"); ?></th>
+								<th><?= __("DOK in DCL"); ?></th>
+								<th><?= __("QSL Date"); ?></th>
+								<th><?= __("Status"); ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($dcl_details as $dcl_qso) { ?>
+								<tr<?= $dcl_qso['matched'] ? '' : ' class="table-danger"' ?>>
+									<td><?= html_escape(date($date_format ?? 'd/m/Y', strtotime($dcl_qso['date']))); ?></td>
+									<td><?= html_escape($dcl_qso['time']); ?></td>
+									<td class="callsign"><?= html_escape($dcl_qso['call']); ?></td>
+									<td><?= html_escape($dcl_qso['band']); ?></td>
+									<td><?= html_escape($dcl_qso['mode'] ?? ''); ?></td>
+									<td><?= html_escape($dcl_qso['dok']); ?></td>
+									<td><?= html_escape($dcl_qso['qsl_date']); ?></td>
+									<td><?= $dcl_qso['matched'] ? __("Confirmed") : __("QSO could not be matched"); ?></td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				</div>
+			<?php } ?>
+
 			<?php echo form_open_multipart('dcl/import'); ?>
 
 			<div class="form-check">

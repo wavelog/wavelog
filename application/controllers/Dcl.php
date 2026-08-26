@@ -240,10 +240,11 @@ class Dcl extends CI_Controller {
 	|	$sync_user_id = null: all users with DCL key (cron)
 	|	$sync_user_id set: only this user
 	|	$since set (Y-m-d): override "confirmed since" date
+	|	$details array passed by reference: filled with per-QSO result data for display
 	|
 	|	Works entirely in memory, no tempfiles.
 	 */
-	function dcl_download($sync_user_id = null, $since = null) {
+	function dcl_download($sync_user_id = null, $since = null, &$details = null) {
 		if ($this->session->userdata('user_id') != '') {	// Called from browser/session: auth-check and never sync foreign users
 			if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit; }
 			if ($sync_user_id == null) {
@@ -347,8 +348,32 @@ class Dcl extends CI_Controller {
 				if ($status[0] == "Found") {
 					$this->logbook_model->dcl_update($status[1], $qsl_date, $record['darc_dok'] ?? '', $station_ids);
 					$confirmed++;
+					if ($details !== null) {
+						$details[] = array(
+							'date' => date('Y-m-d', strtotime($record['qso_date'])),
+							'time' => date('H:i', strtotime($record['time_on'])),
+							'call' => $record['call'],
+							'band' => (strtoupper(trim($record['prop_mode'] ?? '')) == 'SAT' && strtoupper(trim($record['sat_name'] ?? '')) != '') ? strtoupper(trim($record['sat_name'])) : strtoupper($record['band'] ?? ''),
+							'mode' => $record['mode'] ?? '',
+							'dok' => strtoupper(trim($record['darc_dok'] ?? '')),
+							'qsl_date' => date('Y-m-d', strtotime($record['dcl_qslrdate'] ?? 'now')),
+							'matched' => true,
+						);
+					}
 				} else {
 					$not_matched++;
+					if ($details !== null) {
+						$details[] = array(
+							'date' => date('Y-m-d', strtotime($record['qso_date'])),
+							'time' => date('H:i', strtotime($record['time_on'])),
+							'call' => $record['call'],
+							'band' => (strtoupper(trim($record['prop_mode'] ?? '')) == 'SAT' && strtoupper(trim($record['sat_name'] ?? '')) != '') ? strtoupper(trim($record['sat_name'])) : strtoupper($record['band'] ?? ''),
+							'mode' => $record['mode'] ?? '',
+							'dok' => strtoupper(trim($record['darc_dok'] ?? '')),
+							'qsl_date' => date('Y-m-d', strtotime($record['dcl_qslrdate'] ?? 'now')),
+							'matched' => false,
+						);
+					}
 				}
 			}
 
@@ -367,6 +392,7 @@ class Dcl extends CI_Controller {
 		$this->load->library('Permissions');
 
 		$data['page_title'] = __("DCL Import");
+		$data['date_format'] = $this->session->userdata('user_date_format') ?? $this->config->item('qso_date_format');
 
 		if ($this->input->post('dclimport') == 'upload') {
 			// File based import of DCL confirmations (DOK update)
@@ -435,7 +461,9 @@ class Dcl extends CI_Controller {
 			}
 		} else {
 			if ($this->input->post('dclimport') == 'fetch' && !($this->config->item('disable_manual_dcl') ?? false)) {
-				$data['dcl_result'] = $this->dcl_download($this->session->userdata('user_id'), xss_clean($this->input->post('from')));
+				$data['dcl_details'] = [];
+				$data['dcl_result'] = $this->dcl_download($this->session->userdata('user_id'), xss_clean($this->input->post('from')), $data['dcl_details']);
+				usort($data['dcl_details'], fn($a, $b) => strcmp($b['qsl_date'], $a['qsl_date']));
 			}
 
 			$this->load->view('interface_assets/header', $data);

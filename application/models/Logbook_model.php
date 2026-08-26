@@ -4791,7 +4791,7 @@ class Logbook_model extends CI_Model {
 	function dcl_last_qsl_date($user_id) {
 		$sql = "SELECT MAX(COALESCE(COL_DCL_QSLRDATE, '1900-01-01 00:00:00')) MAXDATE, COUNT(1) as QSOS
 		    FROM " . $this->config->item('table_name') . " INNER JOIN station_profile ON (" . $this->config->item('table_name') . ".station_id = station_profile.station_id)
-		    WHERE station_profile.user_id=?";
+		    WHERE COL_DCL_QSL_RCVD='Y' and station_profile.user_id=?";
 		$query = $this->db->query($sql, array($user_id));
 		$row = $query->row();
 
