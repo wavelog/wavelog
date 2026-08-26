@@ -42,46 +42,56 @@
                         <!-- Dropdown Menu with Filter Content -->
                         <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
                             <div class="card-body filterbody">
+						<div class="d-flex justify-content-between align-items-center mb-1">
+							<h5><i class="fas fa-filter me-1"></i> <?= __("Filters"); ?></h5>
+							<span><?= __("Press 'Apply' to update the table"); ?></span>
+						</div>
+                                <div class="filter-section">
                                 <div class="mb-3 row">
-                                    <div class="col-md-2"><?= __("QSL Type"); ?></div>
+                                    <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-envelope-open-text"></i><?= __("Confirmation"); ?></div>
                                     <div class="col-md-10">
                                         <div class="form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if (($postdata['qsl'] ?? null) == 1) echo ' checked="checked"'; ?> >
-                                            <label class="form-check-label" for="qsl"><?= __("QSL"); ?></label>
+                                            <input class="btn-check" type="checkbox" name="qsl" value="1" id="qsl" <?php if (($postdata['qsl'] ?? null) == 1) echo ' checked="checked"'; ?> >
+                                            <label class="btn btn-outline-primary btn-sm" for="qsl"><?= __("QSL"); ?></label>
                                         </div>
                                         <div class="form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if (($postdata['lotw'] ?? null) == 1) echo ' checked="checked"'; ?> >
-                                            <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
+                                            <input class="btn-check" type="checkbox" name="lotw" value="1" id="lotw" <?php if (($postdata['lotw'] ?? null) == 1) echo ' checked="checked"'; ?> >
+                                            <label class="btn btn-outline-primary btn-sm" for="lotw"><?= __("LoTW"); ?></label>
                                         </div>
                                         <div class="form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if (($postdata['eqsl'] ?? null) == 1) echo ' checked="checked"'; ?> >
-                                            <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
+                                            <input class="btn-check" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if (($postdata['eqsl'] ?? null) == 1) echo ' checked="checked"'; ?> >
+                                            <label class="btn btn-outline-primary btn-sm" for="eqsl"><?= __("eQSL"); ?></label>
                                         </div>
                                         <div class="form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if (($postdata['qrz'] ?? null) == 1) echo ' checked="checked"'; ?> >
-                                            <label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
+                                            <input class="btn-check" type="checkbox" name="qrz" value="1" id="qrz" <?php if (($postdata['qrz'] ?? null) == 1) echo ' checked="checked"'; ?> >
+                                            <label class="btn btn-outline-primary btn-sm" for="qrz"><?= __("QRZ.com"); ?></label>
                                         </div>
                                         <div class="form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if (($postdata['clublog'] ?? null) == 1) echo ' checked="checked"'; ?> >
-                                            <label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
+                                            <input class="btn-check" type="checkbox" name="clublog" value="1" id="clublog" <?php if (($postdata['clublog'] ?? null) == 1) echo ' checked="checked"'; ?> >
+                                            <label class="btn btn-outline-primary btn-sm" for="clublog"><?= __("Clublog"); ?></label>
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="filter-section">
                                 <div class="mb-3 row">
-                                    <div class="col-md-2"><?= __("Deleted cities"); ?></div>
+                                    <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-circle-check"></i><?= __("Status"); ?></div>
                                     <div class="col-md-10">
                                         <div class="form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="includedeleted" value="1" id="includedeleted" <?php if (($postdata['includedeleted'] ?? null) == 1) echo ' checked="checked"'; ?> >
-                                            <label class="form-check-label" for="includedeleted"><?= __("Include deleted"); ?></label>
+                                            <input class="btn-check" type="checkbox" name="includedeleted" value="1" id="includedeleted" <?php if (($postdata['includedeleted'] ?? null) == 1) echo ' checked="checked"'; ?> >
+                                            <label class="btn btn-outline-warning btn-sm" for="includedeleted"><?= __("Include deleted"); ?></label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="mb-3 row">
-                                    <label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
-                                    <div class="col-md-4">
-                                        <select id="band2" name="band" class="form-select form-select-sm">
+                                </div>
+                                </div>
+				<div class="filter-section">
+                                					<div class="mb-3 row">
+						<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-tower-broadcast"></i><?= __("Band & Mode"); ?></div>
+						<div class="col-sm-6 mb-2">
+							<label class="form-label mb-1" for="band2"><?= __("Band"); ?></label>
+							<select id="band2" name="band" class="form-select form-select-sm">
                                             <option value="All" <?php if (($postdata['band'] ?? 'All') == 'All') echo ' selected'; ?>><?= __("Every band"); ?></option>
                                             <?php foreach ($worked_bands as $band) {
                                                 echo '<option value="' . $band . '"';
@@ -91,13 +101,10 @@
                                                 echo '>' . $band . '</option>' . "\n";
                                             } ?>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3 row">
-                                    <label class="col-md-2 control-label" for="mode"><?= __("Mode"); ?></label>
-                                    <div class="col-md-4">
-                                        <select id="mode" name="mode" class="form-select form-select-sm">
+						</div>
+						<div class="col-sm-6">
+							<label class="form-label mb-1" for="mode"><?= __("Mode"); ?></label>
+							<select id="mode" name="mode" class="form-select form-select-sm">
                                             <option value="All" <?php if (($postdata['mode'] ?? 'All') == 'All') echo ' selected'; ?>><?= __("All"); ?></option>
                                             <?php
                                             foreach ($modes as $mode) {
@@ -109,10 +116,14 @@
 											}
                                             ?>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Apply"); ?></button>
+						</div>
+					</div>
+					
+
+                                
+				</div>
+                                <div class="d-grid gap-2 mt-3">
+                                    <button type="submit" name="button1id" class="btn btn-primary"><i class="fas fa-check me-1"></i> <?= __("Apply"); ?></button>
                                 </div>
                             </div>
                         </div>

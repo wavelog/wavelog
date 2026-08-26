@@ -6,25 +6,6 @@
 		height: calc(100vh - 300px) !important;
 		max-height: 900px !important;
 	}
-
-	.dropdown-filters-responsive {
-		width: min(850px, 90vw);
-		min-width: min(600px, 90vw);
-		max-height: calc(100vh - 150px);
-		overflow-y: auto;
-	}
-
-	.filterbody .form-check-inline {
-		margin-right: 0.25rem;
-    }
-	.filter-section {
-		background-color: rgba(var(--bs-body-color-rgb, 128,128,128), 0.05);
-		border: 1px solid rgba(var(--bs-body-color-rgb, 128,128,128), 0.15);
-		border-radius: 0.5rem;
-		padding: 0.75rem 0.75rem 0;
-		margin-bottom: 1rem;
-	}
-
 </style>
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 	<!-- Award Info Box -->

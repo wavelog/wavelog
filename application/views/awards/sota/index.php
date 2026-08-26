@@ -51,73 +51,87 @@
 
 			<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="sotaFilterDropdown">
 				<div class="card-body filterbody">
+						<div class="d-flex justify-content-between align-items-center mb-1">
+							<h5><i class="fas fa-filter me-1"></i> <?= __("Filters"); ?></h5>
+							<span><?= __("Press 'Apply' to update the table"); ?></span>
+						</div>
+				<div class="filter-section">
 					<div class="row mb-3">
-						<label class="form-label"><?= __("Date Presets") . ": " ?></label>
-						<div class="d-flex gap-1 flex-wrap">
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastyear')"><?= __("Last Year") ?></button>
-							<button type="button" class="btn btn-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("Clear") ?></button>
+						<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-calendar-days"></i><?= __("Date Range"); ?></div>
+						<div class="d-flex flex-wrap gap-1 mb-3">
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('lastyear')"><?= __("Last Year") ?></button>
+							<button type="button" class="btn btn-outline-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("Clear") ?></button>
 						</div>
 					</div>
 
-					<div class="mb-3 row">
-						<div class="col-md-2 control-label"><?= __("Date from"); ?></div>
-						<div class="col-md-10"><input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary"></div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-md-2 control-label"><?= __("Date to"); ?></div>
-						<div class="col-md-10"><input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary"></div>
+										<div class="mb-3 row">
+						<div class="col-sm-6 mb-2">
+							<label class="form-label mb-1" for="dateFrom"><?= __("Date from"); ?></label>
+							<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm">
+						</div>
+						<div class="col-sm-6">
+							<label class="form-label mb-1" for="dateTo"><?= __("Date to"); ?></label>
+							<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm">
+						</div>
 					</div>
 
+				</div>
+				<div class="filter-section">
 					<div class="mb-3 row">
-						<div class="col-md-2"><?= __("Worked / Confirmed"); ?></div>
+						<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-circle-check"></i><?= __("Status"); ?></div>
 						<div class="col-md-10">
 							<div class="form-check-inline">
-								<input class="form-check-input" type="checkbox" id="worked" checked>
-								<label class="form-check-label" for="worked"><?= __("Show worked"); ?></label>
+								<input class="btn-check" type="checkbox" id="worked" checked>
+								<label class="btn btn-outline-primary btn-sm" for="worked"><?= __("Show worked"); ?></label>
 							</div>
 							<div class="form-check-inline">
-								<input class="form-check-input" type="checkbox" id="confirmed" checked>
-								<label class="form-check-label" for="confirmed"><?= __("Show confirmed"); ?></label>
+								<input class="btn-check" type="checkbox" id="confirmed" checked>
+								<label class="btn btn-outline-primary btn-sm" for="confirmed"><?= __("Show confirmed"); ?></label>
 							</div>
 						</div>
 					</div>
 
+					</div>
+					<div class="filter-section">
 					<div class="mb-3 row">
-						<div class="col-md-2"><?= __("Show QSO with QSL Type"); ?></div>
+						<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-envelope-open-text"></i><?= __("Confirmation"); ?></div>
 						<div class="col-md-10">
 							<div class="form-check-inline">
-								<input class="form-check-input" type="checkbox" id="qsl" checked>
-								<label class="form-check-label" for="qsl"><?= __("QSL"); ?></label>
+								<input class="btn-check" type="checkbox" id="qsl" checked>
+								<label class="btn btn-outline-primary btn-sm" for="qsl"><?= __("QSL"); ?></label>
 							</div>
 							<div class="form-check-inline">
-								<input class="form-check-input" type="checkbox" id="lotw" checked>
-								<label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
+								<input class="btn-check" type="checkbox" id="lotw" checked>
+								<label class="btn btn-outline-primary btn-sm" for="lotw"><?= __("LoTW"); ?></label>
 							</div>
 							<div class="form-check-inline">
-								<input class="form-check-input" type="checkbox" id="eqsl">
-								<label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
+								<input class="btn-check" type="checkbox" id="eqsl">
+								<label class="btn btn-outline-primary btn-sm" for="eqsl"><?= __("eQSL"); ?></label>
 							</div>
 							<div class="form-check-inline">
-								<input class="form-check-input" type="checkbox" id="qrz">
-								<label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
+								<input class="btn-check" type="checkbox" id="qrz">
+								<label class="btn btn-outline-primary btn-sm" for="qrz"><?= __("QRZ.com"); ?></label>
 							</div>
 							<div class="form-check-inline">
-								<input class="form-check-input" type="checkbox" id="clublog">
-								<label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
+								<input class="btn-check" type="checkbox" id="clublog">
+								<label class="btn btn-outline-primary btn-sm" for="clublog"><?= __("Clublog"); ?></label>
 							</div>
 						</div>
 					</div>
 
-					<div class="mb-3 row">
-						<label class="col-md-2 control-label" for="band"><?= __("Band"); ?></label>
-						<div class="col-md-4">
+				</div>
+				<div class="filter-section">
+										<div class="mb-3 row">
+						<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-tower-broadcast"></i><?= __("Band & Mode"); ?></div>
+						<div class="col-sm-6 mb-2">
+							<label class="form-label mb-1" for="band"><?= __("Band"); ?></label>
 							<select id="band" class="form-select form-select-sm">
 								<option value="All" selected><?= __("Every band (w/o SAT)"); ?></option>
 								<?php if (!empty($worked_bands)) { foreach ($worked_bands as $wb) {
@@ -125,12 +139,9 @@
 								} } ?>
 							</select>
 						</div>
-					</div>
-
-					<div class="mb-3 row">
-						<label class="col-md-2 control-label" for="mode"><?= __("Mode"); ?></label>
-						<div class="col-md-4">
-							<select id="mode" class="form-select form-select-sm">
+						<div class="col-sm-6">
+						<label class="form-label mb-1" for="mode"><?= __("Mode"); ?></label>
+						<select id="mode" class="form-select form-select-sm">
 								<option value="All" selected><?= __("All"); ?></option>
 								<?php if (!empty($modes)) { foreach ($modes->result() as $mode_row) {
 									if ($mode_row->submode == null) {
@@ -140,10 +151,11 @@
 									}
 								} } ?>
 							</select>
-						</div>
 					</div>
-					<div class="d-flex justify-content-center mt-3">
-						<button type="button" onclick="applySotaFilters();" class="btn btn-sm btn-primary"><?= __("Apply") ?></button>
+					</div>
+				</div>
+					<div class="d-grid gap-2 mt-3">
+						<button type="button" onclick="applySotaFilters();" class="btn btn-primary"><i class="fas fa-check me-1"></i> <?= __("Apply") ?></button>
 					</div>
 				</div>
 			</div>
