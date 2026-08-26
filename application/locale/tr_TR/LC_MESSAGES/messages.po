@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-25 17:26+0000\n"
+"POT-Creation-Date: 2026-08-26 11:05+0000\n"
 "PO-Revision-Date: 2026-08-24 22:42+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1900,7 +1900,7 @@ msgstr "Etiket Tasarımcısı"
 #: application/controllers/Labels.php:213
 #: application/controllers/Qslpostcard.php:186
 #: application/controllers/Qslpostcard.php:243
-#: application/controllers/Qslpostcard.php:302
+#: application/controllers/Qslpostcard.php:307
 msgid "Template not found"
 msgstr "Şablon bulunamadı"
 
@@ -1908,7 +1908,7 @@ msgstr "Şablon bulunamadı"
 #: application/controllers/Labels.php:219
 #: application/controllers/Qslpostcard.php:192
 #: application/controllers/Qslpostcard.php:249
-#: application/controllers/Qslpostcard.php:308
+#: application/controllers/Qslpostcard.php:313
 msgid "Template JSON is invalid"
 msgstr "Şablon JSON geçersiz"
 
@@ -2041,7 +2041,7 @@ msgstr ""
 "Belge kaydedilemedi. Yeni belgenin adı, mevcut belge türleriyle aynı olamaz."
 
 #: application/controllers/Labels.php:144
-#: application/controllers/Qslpostcard.php:285
+#: application/controllers/Qslpostcard.php:290
 msgid "No QSOs were selected"
 msgstr "Hiçbir QSO seçilmedi"
 
@@ -3249,7 +3249,7 @@ msgid "Print QSL Postcards"
 msgstr "QSL Kartları Yazdır"
 
 #: application/controllers/Qslpostcard.php:262
-#: application/controllers/Qslpostcard.php:321
+#: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
 msgstr "QSL Kart yazdırma için QSO bulunamadı"
 
@@ -3257,16 +3257,16 @@ msgstr "QSL Kart yazdırma için QSO bulunamadı"
 msgid "QSL Postcard Queue PDF failed: "
 msgstr "QSL Kart Kuyruğu PDF'i başarısız oldu: "
 
-#: application/controllers/Qslpostcard.php:289
+#: application/controllers/Qslpostcard.php:294
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
 msgstr "Seçili QSL Kartları Yazdır"
 
-#: application/controllers/Qslpostcard.php:314
+#: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
 msgstr "Hiçbir seçili QSO ID sağlanmadı"
 
-#: application/controllers/Qslpostcard.php:339
+#: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
 msgstr "Seçilen QSL Kart PDF'i başarısız oldu: "
 
@@ -16786,7 +16786,7 @@ msgstr "PDF"
 #: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
-#: application/views/qslpostcard/printqueue_selected.php:34
+#: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
 msgid "Save PDF"
 msgstr "PDF Kaydet"
@@ -18689,14 +18689,14 @@ msgstr ""
 
 #: application/views/logbookadvanced/printQsl.php:30
 #: application/views/qslpostcard/printqueue.php:22
-#: application/views/qslpostcard/printqueue_selected.php:30
+#: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
 msgid "Generate Postcard PDF"
 msgstr "Kartpostal PDF Oluştur"
 
 #: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
-#: application/views/qslpostcard/printqueue_selected.php:41
+#: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
