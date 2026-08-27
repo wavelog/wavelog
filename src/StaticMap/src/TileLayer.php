@@ -14,8 +14,6 @@ use DantSu\PHPImageEditor\Image;
  */
 class TileLayer {
 
-    public const TILE_TTL = 2592000;
-
     /**
      * Default tile server. OpenStreetMaps with related attribution text
      * @return TileLayer default tile server
@@ -24,7 +22,7 @@ class TileLayer {
         $CI = &get_instance();
         $CI->load->model('themes_model');
 		$r =  $CI->themes_model->get_theme_mode($CI->optionslib->get_option('option_theme'));
-        $server =  $CI->options_model->item('map_tile_server') ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        $server =  $CI->options_model->item('map_tile_server') ?? \MaptileCache::DEFAULT_SERVER;
         $attribution = $CI->optionslib->get_option('option_map_tile_server_copyright');
         return new TileLayer($server, $attribution, $r);
     }
@@ -197,14 +195,7 @@ class TileLayer {
         }
 
         $CI = &get_instance();
-        $CI->load->driver('cache', [
-            'adapter' => $CI->config->item('cache_adapter') ?? 'file',
-            'backup' => $CI->config->item('cache_backup') ?? 'file',
-            'key_prefix' => $CI->config->item('cache_key_prefix') ?? '',
-        ]);
-
-        $key = 'tile:' . md5($this->url) . ':' . $z . ':' . (int)$x . ':' . (int)$y;
-        $png = $CI->cache->get($key);
+        $png = \MaptileCache::get($this->url, $z, (int)$x, (int)$y);
 
         if ($png === false) {
             $legacy = ($CI->config->item('cache_path') ?: APPPATH . 'cache/') . 'tilecache';
@@ -220,7 +211,7 @@ class TileLayer {
                 log_message('error', 'StaticMap: failed to fetch tile ' . $this->getTileUrl($x, $y, $z) . '. Serving blank tile.');
                 return Image::newCanvas($tileSize, $tileSize);
             }
-            $CI->cache->save($key, $tile->getDataPNG(), self::TILE_TTL);
+            \MaptileCache::save($this->url, $z, (int)$x, (int)$y, $tile->getDataPNG());
         } else {
             $tile = Image::fromData($png);
         }
