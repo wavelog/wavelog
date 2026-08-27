@@ -137,7 +137,7 @@ class Predict_TLE
      * Accepts single object, list, or JSON string.
      * @throws Predict_Exception on invalid JSON or missing mean elements
      */
-    public static function fromOmmJson($omm)
+    public static function fromOmmJson($omm, $name = null)
     {
         if (is_string($omm)) {
             $decoded = json_decode(trim($omm), true);
@@ -163,7 +163,8 @@ class Predict_TLE
 
         $t = new Predict_TLE();
 
-        $name          = isset($omm['OBJECT_NAME']) ? $omm['OBJECT_NAME'] : '';
+        //$name          = isset($omm['OBJECT_NAME']) ? $omm['OBJECT_NAME'] : '';
+        //Do not use object name of TLEs but prefer ham frienly name given as parameter
         $t->header     = $name;
         $t->sat_name   = $name;
         $t->catnr      = isset($omm['NORAD_CAT_ID']) ? (int) $omm['NORAD_CAT_ID'] : 0;
