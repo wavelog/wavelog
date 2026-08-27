@@ -58,87 +58,93 @@
 		<!-- Dropdown Menu with Filter Content -->
 		<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
 			<div class="card-body filterbody">
+						<div class="d-flex justify-content-between align-items-center mb-1">
+							<h5><i class="fas fa-filter me-1"></i> <?= __("Filters"); ?></h5>
+							<span><?= __("Press 'Apply' to update the table"); ?></span>
+						</div>
+				<div class="filter-section">
 				<div class="row mb-3">
-					<label class="form-label" for="checkboxes"><?= __("Date Presets") . ": " ?></label>
-						<div class="d-flex gap-1 d-flex flex-wrap">
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
-							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastyear')"><?= __("Last Year") ?></button>
-							<button type="button" class="btn btn-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("Clear") ?></button>
+					<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-calendar-days"></i><?= __("Date Range"); ?></div>
+						<div class="d-flex flex-wrap gap-1 mb-3">
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
+							<button type="button" class="btn btn-outline-primary btn-sm flex-shrink-0" onclick="applyPreset('lastyear')"><?= __("Last Year") ?></button>
+							<button type="button" class="btn btn-outline-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("Clear") ?></button>
 						</div>
 				</div>
 
-				<div class="mb-3 row">
-					<div class="col-md-2 control-label" for="checkboxes"><?= __("Date from"); ?></div>
-					<div class="col-md-10">
-						<div class="form-check-inline">
-							<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateFrom', TRUE)) echo 'value="' . $this->input->post('dateFrom', TRUE) . '"'; ?>>
+									<div class="mb-3 row">
+						<div class="col-sm-6 mb-2">
+							<label class="form-label mb-1" for="dateFrom"><?= __("Date from"); ?></label>
+							<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm" <?php if ($this->input->post('dateFrom', TRUE)) echo 'value="' . $this->input->post('dateFrom', TRUE) . '"'; ?>>
+						</div>
+						<div class="col-sm-6">
+							<label class="form-label mb-1" for="dateTo"><?= __("Date to"); ?></label>
+							<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm" <?php if ($this->input->post('dateTo', TRUE)) echo 'value="' . $this->input->post('dateTo', TRUE) . '"'; ?>>
 						</div>
 					</div>
-				</div>
-				<div class="mb-3 row">
-					<div class="col-md-2 control-label" for="checkboxes"><?= __("Date to"); ?></div>
-					<div class="col-md-10">
-						<div class="form-check-inline">
-							<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateTo', TRUE)) echo 'value="' . $this->input->post('dateTo', TRUE) . '"'; ?>>
-						</div>
-					</div>
-				</div>
 
 				<!-- Multiple Checkboxes (inline) -->
+				</div>
+				<div class="filter-section">
 				<div class="mb-3 row">
-					<div class="col-md-2" for="checkboxes"><?= __("Worked") . ' / ' . __("Confirmed")?></div>
+					<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-circle-check"></i><?= __("Status"); ?></div>
 					<div class="col-md-10">
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="worked" id="worked" value="1" <?php if ($this->input->post('worked', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="worked"><?= __("Show worked"); ?></label>
+							<input class="btn-check" type="checkbox" name="worked" id="worked" value="1" <?php if ($this->input->post('worked', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="worked"><?= __("Show worked"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="confirmed" id="confirmed" value="1" <?php if ($this->input->post('confirmed', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="confirmed"><?= __("Show confirmed"); ?></label>
+							<input class="btn-check" type="checkbox" name="confirmed" id="confirmed" value="1" <?php if ($this->input->post('confirmed', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="confirmed"><?= __("Show confirmed"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="notworked"><?= __("Show not worked"); ?></label>
+							<input class="btn-check" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="notworked"><?= __("Show not worked"); ?></label>
 						</div>
 					</div>
 				</div>
 
+				</div>
+				<div class="filter-section">
 				<div class="mb-3 row">
-					<div class="col-md-2"><?= __("Show QSO with QSL Type"); ?></div>
+					<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-envelope-open-text"></i><?= __("Confirmation"); ?></div>
 					<div class="col-md-10">
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="qsl"><?= __("QSL Card"); ?></label>
+							<input class="btn-check" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="qsl"><?= __("QSL Card"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
+							<input class="btn-check" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="lotw"><?= __("LoTW"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl', TRUE)) echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
+							<input class="btn-check" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl', TRUE)) echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="eqsl"><?= __("eQSL"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz', TRUE)) echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
+							<input class="btn-check" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz', TRUE)) echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="qrz"><?= __("QRZ.com"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog', TRUE)) echo ' checked="checked"'; ?> >
-							<label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
+							<input class="btn-check" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog', TRUE)) echo ' checked="checked"'; ?> >
+							<label class="btn btn-outline-primary btn-sm" for="clublog"><?= __("Clublog"); ?></label>
 						</div>
 					</div>
 				</div>
 
-				<div class="mb-3 row">
-					<label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
-					<div class="col-md-3">
-						<select id="band2" name="band" class="form-select form-select-sm">
+				</div>
+				<div class="filter-section">
+									<div class="mb-3 row">
+						<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-tower-broadcast"></i><?= __("Band & Mode"); ?></div>
+						<div class="col-sm-6 mb-2">
+							<label class="form-label mb-1" for="band2"><?= __("Band"); ?></label>
+							<select id="band2" name="band" class="form-select form-select-sm">
 							<option value="All" <?php if ($this->input->post('band', TRUE) == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band (w/o SAT)"); ?></option>
 							<?php foreach($worked_bands as $band) {
 								echo '<option value="' . $band . '"';
@@ -146,12 +152,10 @@
 								echo '>' . $band . '</option>'."\n";
 							} ?>
 						</select>
-					</div>
-				</div>
-				<div class="mb-3 row">
-					<label class="col-md-2 control-label" for="mode"><?= __("Mode"); ?></label>
-					<div class="col-md-3">
-						<select id="mode" name="mode" class="form-select form-select-sm">
+						</div>
+						<div class="col-sm-6">
+							<label class="form-label mb-1" for="mode"><?= __("Mode"); ?></label>
+							<select id="mode" name="mode" class="form-select form-select-sm">
 							<option value="All" <?php if ($this->input->post('mode', TRUE) == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>><?= __("All"); ?></option>
 							<?php
 							foreach($modes->result() as $mode){
@@ -167,10 +171,13 @@
 							}
 							?>
 						</select>
+						</div>
 					</div>
+					
+				
 				</div>
-				<div class="d-flex justify-content-center mt-3">
-					<button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Apply"); ?></button>
+				<div class="d-grid gap-2 mt-3">
+					<button type="submit" name="button1id" class="btn btn-primary"><i class="fas fa-check me-1"></i> <?= __("Apply"); ?></button>
 				</div>
 			</div>
 		</div>

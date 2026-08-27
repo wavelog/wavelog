@@ -166,7 +166,7 @@ function plot_azimuth() {
 				dataQso.push(0);
 			}
 			$.each(tmp, function () {
-				dataQso[this.azimuth] = +this.qsos || 0; // JSON may deliver the counts as strings
+				dataQso[((this.azimuth % 360) + 360) % 360] += +this.qsos || 0; // JSON may deliver the counts as strings; wrap out-of-range bearings into 0-359
 			});
 
 			lastAzCounts = dataQso;
