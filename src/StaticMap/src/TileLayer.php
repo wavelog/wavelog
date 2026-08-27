@@ -24,11 +24,7 @@ class TileLayer {
         $CI = &get_instance();
         $CI->load->model('themes_model');
 		$r =  $CI->themes_model->get_theme_mode($CI->optionslib->get_option('option_theme'));
-        if ($r == 'dark') {
-            $server =  'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
-        } else {
-            $server =  $CI->options_model->item('map_tile_server');
-        }
+        $server =  $CI->options_model->item('map_tile_server') ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         $attribution = $CI->optionslib->get_option('option_map_tile_server_copyright');
         return new TileLayer($server, $attribution, $r);
     }
@@ -196,6 +192,10 @@ class TileLayer {
      * @throws \Exception
      */
     public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
+        if ($this->opacity == 0) {
+            return Image::newCanvas($tileSize, $tileSize);
+        }
+
         $CI = &get_instance();
         $CI->load->driver('cache', [
             'adapter' => $CI->config->item('cache_adapter') ?? 'file',
@@ -216,19 +216,26 @@ class TileLayer {
                 log_message('info', 'Removed legacy tilecache directory: ' . $legacy);
             }
             $tile = Image::fromCurl($this->getTileUrl($x, $y, $z), $this->curlOptions, $this->failCurlOnError);
+            if (!$tile->isImageDefined() || $tile->getWidth() == 0) {
+                log_message('error', 'StaticMap: failed to fetch tile ' . $this->getTileUrl($x, $y, $z) . '. Serving blank tile.');
+                return Image::newCanvas($tileSize, $tileSize);
+            }
             $CI->cache->save($key, $tile->getDataPNG(), self::TILE_TTL);
         } else {
             $tile = Image::fromData($png);
         }
 
-        if ($this->opacity == 0) {
-            return Image::newCanvas($tileSize, $tileSize);
+        if ($this->thememode === 'dark') {
+            $gd = $tile->getImage();
+            imagefilter($gd, IMG_FILTER_NEGATE);
+            imagefilter($gd, IMG_FILTER_GRAYSCALE);
+            imagefilter($gd, IMG_FILTER_BRIGHTNESS, 30);
         }
-    
+
         if ($this->opacity > 0 && $this->opacity < 1) {
             $tile->setOpacity($this->opacity);
         }
-    
+
         return $tile;
     }
 }
