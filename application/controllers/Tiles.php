@@ -2,6 +2,13 @@
 
 class Tiles extends CI_Controller {
 
+	public function __construct() {
+		parent::__construct();
+		// no session stuff here, so directly release the session lock
+		session_write_close();
+	}
+
+
 	public function _remap() {
 		$this->require_session_cookie();
 
