@@ -190,11 +190,11 @@ class Qra {
 	 */
 
 	function getCenterLatLng($coordinates) {
-		$x = $y = $z = 0;
-		$n = count($coordinates);
+		$x = $y = $z = $n = 0;
 		foreach ($coordinates as $point)
 		{
 			if (isset($point[0]) && isset($point[1])) {
+				$n++;
 				$lt = $point[0] * pi() / 180;
 				$lg = $point[1] * pi() / 180;
 				$x += cos($lt) * cos($lg);
