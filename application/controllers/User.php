@@ -240,6 +240,7 @@ class User extends CI_Controller {
 				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 				$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 				$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority') ?? 'Y';
+				$data['user_callbook_prefill'] = $this->input->post('user_callbook_prefill', true) ?? 'default';
 				$data['user_quicklog'] = $this->input->post('user_quicklog');
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
@@ -336,6 +337,7 @@ class User extends CI_Controller {
 				$this->input->post('user_dxwaterfall_enable') ?? 'N',
 				$this->input->post('user_qso_show_map') ?? 1,
 				$this->input->post('last_lotw_upload_widget_enabled'),
+				$this->input->post('user_callbook_prefill', true) ?? 'default',
 				$this->input->post('clubstation') == '1' ? true : false)
 			) {
 				// Check for errors
@@ -710,6 +712,9 @@ class User extends CI_Controller {
 			} else {
 				$data['user_previous_qsl_type'] = $q->user_previous_qsl_type;
 			}
+
+			$data['user_callbook_prefill'] = $this->input->post('user_callbook_prefill', true)
+				?? $this->user_options_model->get_options('qso', array('option_name' => 'callbook_prefill', 'option_key' => 'setting'), $this->uri->segment(3))->row()->option_value ?? 'default';
 
 			if($this->input->post('user_amsat_status_upload')) {
 				$data['user_amsat_status_upload'] = $this->input->post('user_amsat_status_upload', false);
@@ -1114,6 +1119,7 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
+					$this->user_options_model->set_option('qso', 'callbook_prefill', array('setting' => in_array($p = $this->input->post('user_callbook_prefill', true), array('default', 'logbook', 'none'), true) ? $p : 'default'), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_kpi_stats', array('boolean'=>($this->input->post('user_dashboard_show_kpi_stats') == '1' ? '1' : '0')), $user_id);
@@ -1182,6 +1188,7 @@ class User extends CI_Controller {
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
 			$data['oqrs_delivery_method'] = $this->input->post('oqrs_delivery_method', true);
 			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', true);
+			$data['user_callbook_prefill'] = $this->input->post('user_callbook_prefill', true) ?? 'default';
 			$data['last_lotw_upload_widget_enabled'] = $this->input->post('last_lotw_upload_widget_enabled', true);
 
 			$this->load->view('user/edit', $data);

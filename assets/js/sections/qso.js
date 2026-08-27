@@ -1583,7 +1583,7 @@ $("#callsign").on("focusout", function () {
 		const stationProfile = $('#stationProfile').val();
 
 		find_callsign = find_callsign.replace(/\//g, "-");
-		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}`;
+		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}?ctx=live`;
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(url, async function (result) {
