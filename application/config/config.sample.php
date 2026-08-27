@@ -455,19 +455,6 @@ $config['cache_key_prefix'] = '';
 
 /*
 |--------------------------------------------------------------------------
-| Map Tile Cache
-|--------------------------------------------------------------------------
-|
-| If TRUE, browser map tile requests are routed through this Wavelog
-| instance (/tiles/{z}/{x}/{y}.png) and cached server-side with the
-| configured cache adapter for 7 days. Visitor maps keep working:
-| any prior page load issues a session cookie.
-|
-*/
-$config['map_tile_cache'] = false;
-
-/*
-|--------------------------------------------------------------------------
 | Cache Include Query String
 |--------------------------------------------------------------------------
 |
