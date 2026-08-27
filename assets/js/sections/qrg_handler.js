@@ -148,7 +148,7 @@ async function set_new_qrg() {
 
 	$('#frequency').val(qrg_hz);
 	$('#freq_calculated').val(parsed_qrg);
-	if (new_band) { $('#band').val(new_band); }
+	if (new_band) { $('#band').val(new_band).trigger('change'); }
 
 	// Clear the manual update flag
 	window.user_updating_frequency = false;
