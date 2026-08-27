@@ -1,8 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once FCPATH . 'src/StaticMap/src/TileLayer.php';
+
 class Tiles extends CI_Controller {
 
-	private const TILE_TTL = 604800;
 	private const DEFAULT_TILE_SERVER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 	public function _remap() {
@@ -38,12 +39,12 @@ class Tiles extends CI_Controller {
 			if ($png === null) {
 				$this->bail(404);
 			}
-			$this->cache->save($key, $png, self::TILE_TTL);
+			$this->cache->save($key, $png, \Wavelog\StaticMapImage\TileLayer::TILE_TTL);
 		}
 
 		$this->output
 			->set_header('Content-Type: image/png')
-			->set_header('Cache-Control: public, max-age=' . self::TILE_TTL)
+			->set_header('Cache-Control: public, max-age=' . \Wavelog\StaticMapImage\TileLayer::TILE_TTL)
 			->set_output($png);
 	}
 

@@ -14,6 +14,8 @@ use DantSu\PHPImageEditor\Image;
  */
 class TileLayer {
 
+    public const TILE_TTL = 2592000;
+
     /**
      * Default tile server. OpenStreetMaps with related attribution text
      * @return TileLayer default tile server
@@ -195,22 +197,30 @@ class TileLayer {
      */
     public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
         $CI = &get_instance();
-        $namehash = substr(md5($x . $y . $z . $centerMap . $this->thememode), 0, 16);
-        $cacheKey = $namehash . ".png";
-        $cacheConfig = $CI->config->item('cache_path') == '' ? APPPATH . 'cache/' : $CI->config->item('cache_path');
-        $cacheDir = $cacheConfig . "tilecache/" . $z . "/" . $y . "/" . $x . "/";
-        $cachePath = $cacheDir . $cacheKey;
-    
-        if (!is_dir($cacheDir)) {
-            mkdir($cacheDir, 0755, true);
-        }
-    
-        if (file_exists($cachePath)) {
-            $tile = Image::fromPath($cachePath);
-        } else {
+        $CI->load->driver('cache', [
+            'adapter' => $CI->config->item('cache_adapter') ?? 'file',
+            'backup' => $CI->config->item('cache_backup') ?? 'file',
+            'key_prefix' => $CI->config->item('cache_key_prefix') ?? '',
+        ]);
+
+        $key = 'tile:' . md5($this->url) . ':' . $z . ':' . (int)$x . ':' . (int)$y;
+        $png = $CI->cache->get($key);
+
+        if ($png === false) {
+            $legacy = ($CI->config->item('cache_path') ?: APPPATH . 'cache/') . 'tilecache';
+            if (is_dir($legacy)) {
+                foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($legacy, \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::CHILD_FIRST) as $f) {
+                    $f->isDir() ? rmdir($f->getPathname()) : unlink($f->getPathname());
+                }
+                rmdir($legacy);
+                log_message('info', 'Removed legacy tilecache directory: ' . $legacy);
+            }
             $tile = Image::fromCurl($this->getTileUrl($x, $y, $z), $this->curlOptions, $this->failCurlOnError);
-            $tile->savePNG($cachePath);
+            $CI->cache->save($key, $tile->getDataPNG(), self::TILE_TTL);
+        } else {
+            $tile = Image::fromData($png);
         }
+
         if ($this->opacity == 0) {
             return Image::newCanvas($tileSize, $tileSize);
         }
