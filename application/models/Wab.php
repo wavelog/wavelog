@@ -40,46 +40,6 @@ class Wab extends CI_Model {
 		return $wabarray;
 	}
 
-	function get_wab_list($location_list, $postdata) {
-		$wabarray = array();
-
-		$workedGridArray = array();
-		$worked = $this->getWabWorked($location_list, $postdata);
-		foreach ($worked as $w) {
-			array_push($workedGridArray, $w->col_sig_info);
-			$wabarray += array(
-				$w->col_sig_info => 'W'
-			);
-		}
-
-		// Confirmed squares carry the confirming QSL systems as letters
-		// (Q=QSL, L=LoTW, E=eQSL, Z=QRZ, C=Clublog) instead of just 'C'
-		$confirmedGridArray = array();
-		$confirmed = $this->getWabConfirmedSystems($location_list, $postdata);
-		foreach ($confirmed as $c) {
-			array_push($confirmedGridArray, $c->col_sig_info);
-
-			$letters = '';
-			if ($c->qsl) { $letters .= 'Q'; }
-			if ($c->lotw) { $letters .= 'L'; }
-			if ($c->eqsl) { $letters .= 'E'; }
-			if ($c->qrz) { $letters .= 'Z'; }
-			if ($c->clublog) { $letters .= 'C'; }
-
-			if(array_key_exists($c->col_sig_info, $wabarray)){
-				$wabarray[$c->col_sig_info] = $letters;
-			} else {
-				$wabarray += array(
-					$c->col_sig_info => $letters
-				);
-			}
-		}
-
-		ksort($wabarray);
-
-		return $wabarray;
-	}
-
 	/*
 	 * Function returns all worked, but not confirmed states
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
@@ -138,49 +98,6 @@ class Wab extends CI_Model {
 		$sql .= $this->addOrbitToQuery($postdata['orbit'],$bindings);
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
-		$query = $this->db->query($sql,$bindings);
-
-		return $query->result();
-	}
-
-	/*
-	 * Function returns the worked squares with a flag per QSL system that
-	 * confirmed them (Q=QSL, L=LoTW, E=eQSL, Z=QRZ, C=Clublog), so the WAB
-	 * list can show how each square is confirmed. Applies the same filters
-	 * as getWabConfirmed().
-	 */
-	function getWabConfirmedSystems($location_list, $postdata) {
-		$bindings=[];
-		$sql = "select col_sig_info,
-				max(col_qsl_rcvd = 'Y') as qsl,
-				max(col_lotw_qsl_rcvd = 'Y') as lotw,
-				max(col_eqsl_qsl_rcvd = 'Y') as eqsl,
-				max(COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y') as qrz,
-				max(COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y') as clublog
-			from " . $this->config->item('table_name') . " thcv
-			where station_id in (" . $location_list . ") and col_sig = 'WAB' and coalesce(col_sig_info, '') <> ''";
-
-		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$bindings);
-
-		if ($postdata['band'] == 'SAT') {
-			if ($postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
-			}
-		}
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= $this->addOrbitToQuery($postdata['orbit'],$bindings);
-
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
-		$sql .= " group by col_sig_info";
 
 		$query = $this->db->query($sql,$bindings);
 
