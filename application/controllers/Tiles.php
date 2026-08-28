@@ -41,6 +41,8 @@ class Tiles extends CI_Controller {
 		$this->output
 			->set_header('Content-Type: image/png')
 			->set_header('Cache-Control: public, max-age=' . MaptileCache::TILE_TTL)
+			->set_header('Pragma: public')
+			->set_header('Expires: ' . gmdate('D, d M Y H:i:s', time() + MaptileCache::TILE_TTL) . ' GMT')
 			->set_output($png);
 	}
 
