@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-28 09:06+0000\n"
+"POT-Creation-Date: 2026-08-28 09:44+0000\n"
 "PO-Revision-Date: 2026-08-27 10:19+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -552,11 +552,11 @@ msgstr "DOK (Almanya Bölge İşletme Kodu)"
 #: application/views/countqsoby/index.php:12
 #: application/views/countqsoby/index.php:66 application/views/csv/index.php:58
 #: application/views/dashboard/index.php:416
-#: application/views/dbtools/checkresult.php:167
-#: application/views/dbtools/checkresult.php:250
-#: application/views/dbtools/checkresult.php:326
+#: application/views/dbtools/checkresult.php:153
+#: application/views/dbtools/checkresult.php:236
+#: application/views/dbtools/checkresult.php:312
 #: application/views/dbtools/showStateQsos.php:27
-#: application/views/dbtools/showUpdateResult.php:87
+#: application/views/dbtools/showUpdateResult.php:84
 #: application/views/dbtools/statecheckresult.php:15
 #: application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:16
@@ -1311,12 +1311,12 @@ msgstr "QSO'ları şuna göre say..."
 #: application/views/countqsoby/index.php:11
 #: application/views/countqsoby/index.php:67
 #: application/views/dashboard/index.php:14
-#: application/views/dbtools/checkresult.php:168
-#: application/views/dbtools/checkresult.php:247
-#: application/views/dbtools/checkresult.php:323
+#: application/views/dbtools/checkresult.php:154
+#: application/views/dbtools/checkresult.php:233
+#: application/views/dbtools/checkresult.php:309
 #: application/views/dbtools/showStateQsos.php:26
-#: application/views/dbtools/showUpdateResult.php:47
-#: application/views/dbtools/showUpdateResult.php:110
+#: application/views/dbtools/showUpdateResult.php:44
+#: application/views/dbtools/showUpdateResult.php:107
 #: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:127
 #: application/views/logbookadvanced/edit.php:32
@@ -1362,7 +1362,7 @@ msgstr "Grid Karesi"
 #: application/views/awards/itu/index.php:217
 #: application/views/countqsoby/index.php:14
 #: application/views/countqsoby/index.php:68
-#: application/views/dbtools/checkresult.php:324
+#: application/views/dbtools/checkresult.php:310
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/edit.php:34
 #: application/views/logbookadvanced/index.php:21
@@ -1387,7 +1387,7 @@ msgstr "ITU Bölgesi"
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
 #: application/views/countqsoby/index.php:69 application/views/csv/index.php:80
-#: application/views/dbtools/checkresult.php:248
+#: application/views/dbtools/checkresult.php:234
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:29
@@ -1585,12 +1585,12 @@ msgstr "QSO Yapılan Günler"
 msgid "Database Tools"
 msgstr "Veritabanı Araçları"
 
-#: application/controllers/Dbtools.php:158
+#: application/controllers/Dbtools.php:169
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC %d QSO için güncellendi."
 
-#: application/controllers/Dbtools.php:174
+#: application/controllers/Dbtools.php:185
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "DXCC %s ve grid karesi %s için harita."
@@ -2207,9 +2207,10 @@ msgstr "QSL"
 #: application/views/calltester/call_info.php:80
 #: application/views/countqsoby/index.php:170
 #: application/views/dashboard/index.php:508
-#: application/views/dbtools/checkresult.php:107
-#: application/views/dbtools/checkresult.php:165
-#: application/views/dbtools/checkresult.php:393
+#: application/views/dbtools/checkresult.php:93
+#: application/views/dbtools/checkresult.php:151
+#: application/views/dbtools/checkresult.php:379
+#: application/views/dbtools/missinggridlist.php:59
 #: application/views/gridmap/index.php:182
 #: application/views/logbookadvanced/useroptions.php:136
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
@@ -2255,6 +2256,7 @@ msgstr "LoTW"
 #: application/views/awards/wwff/index.php:112
 #: application/views/calltester/call_info.php:81
 #: application/views/countqsoby/index.php:178
+#: application/views/dbtools/missinggridlist.php:60
 #: application/views/gridmap/index.php:190
 #: application/views/logbookadvanced/useroptions.php:130
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -2322,11 +2324,12 @@ msgstr "Tüm çağrı defteri sorguları başarısız oldu veya sonuç döndürm
 #: application/views/continents/index.php:44
 #: application/views/countqsoby/index.php:128
 #: application/views/csv/index.php:42 application/views/dashboard/index.php:5
-#: application/views/dbtools/checkresult.php:106
-#: application/views/dbtools/checkresult.php:164
-#: application/views/dbtools/checkresult.php:245
-#: application/views/dbtools/checkresult.php:321
-#: application/views/dbtools/checkresult.php:392
+#: application/views/dbtools/checkresult.php:92
+#: application/views/dbtools/checkresult.php:150
+#: application/views/dbtools/checkresult.php:231
+#: application/views/dbtools/checkresult.php:307
+#: application/views/dbtools/checkresult.php:378
+#: application/views/dbtools/missinggridlist.php:46
 #: application/views/dbtools/showStateQsos.php:23
 #: application/views/debug/index.php:808
 #: application/views/distancerecords/index.php:23
@@ -2467,7 +2470,7 @@ msgstr "Ülke"
 #: application/views/awards/iota/index.php:218
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:9
-#: application/views/dbtools/checkresult.php:396
+#: application/views/dbtools/checkresult.php:382
 #: application/views/interface_assets/header.php:229
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:501
@@ -2611,11 +2614,12 @@ msgstr "Mesafe"
 #: application/views/continents/index.php:35
 #: application/views/countqsoby/index.php:76 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
-#: application/views/dbtools/checkresult.php:105
-#: application/views/dbtools/checkresult.php:163
-#: application/views/dbtools/checkresult.php:246
-#: application/views/dbtools/checkresult.php:322
-#: application/views/dbtools/checkresult.php:391
+#: application/views/dbtools/checkresult.php:91
+#: application/views/dbtools/checkresult.php:149
+#: application/views/dbtools/checkresult.php:232
+#: application/views/dbtools/checkresult.php:308
+#: application/views/dbtools/checkresult.php:377
+#: application/views/dbtools/missinggridlist.php:47
 #: application/views/dbtools/showStateQsos.php:24
 #: application/views/debug/index.php:809 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
@@ -3630,6 +3634,7 @@ msgstr "İzin verilmiyor"
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
+#: application/views/dbtools/missinggridlist.php:20
 #: application/views/labeldesigner/designer.php:60
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
@@ -4625,7 +4630,7 @@ msgstr ""
 msgid "Officers must edit contests."
 msgstr "Yarışmaları yalnızca yöneticiler düzenleyebilir."
 
-#: application/models/Dbtools_model.php:120
+#: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids tablosu boş. Lütfen önce VUCC grid verilerini içe aktarın."
 
@@ -5730,13 +5735,13 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/contesting/logger/components/qso-form.php:66
 #: application/views/contesting/logger/components/qso-form.php:147
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:343
-#: application/views/dbtools/checkresult.php:103
-#: application/views/dbtools/checkresult.php:161
-#: application/views/dbtools/checkresult.php:242
-#: application/views/dbtools/checkresult.php:318
-#: application/views/dbtools/checkresult.php:389
-#: application/views/dbtools/showUpdateResult.php:46
-#: application/views/dbtools/showUpdateResult.php:109
+#: application/views/dbtools/checkresult.php:89
+#: application/views/dbtools/checkresult.php:147
+#: application/views/dbtools/checkresult.php:228
+#: application/views/dbtools/checkresult.php:304
+#: application/views/dbtools/checkresult.php:375
+#: application/views/dbtools/showUpdateResult.php:43
+#: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
@@ -5825,7 +5830,7 @@ msgstr "Eşleşmeyen QSO’lar"
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
-#: application/views/dbtools/showUpdateResult.php:88
+#: application/views/dbtools/showUpdateResult.php:85
 msgid "QSOs updated"
 msgstr "Güncellenen QSO’lar"
 
@@ -5851,8 +5856,8 @@ msgstr ""
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:145
 #: application/views/dashboard/index.php:339
-#: application/views/dbtools/checkresult.php:243
-#: application/views/dbtools/checkresult.php:319
+#: application/views/dbtools/checkresult.php:229
+#: application/views/dbtools/checkresult.php:305
 #: application/views/debug/index.php:805
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
@@ -5898,8 +5903,8 @@ msgstr "Tarih"
 #: application/views/contesting/logger/components/qso-form.php:146
 #: application/views/contesting/manager/export_cbr.php:158
 #: application/views/dashboard/index.php:341
-#: application/views/dbtools/checkresult.php:244
-#: application/views/dbtools/checkresult.php:320
+#: application/views/dbtools/checkresult.php:230
+#: application/views/dbtools/checkresult.php:306
 #: application/views/debug/index.php:806
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
@@ -5927,6 +5932,7 @@ msgstr "Saat"
 #: application/views/adif/pota_success.php:31
 #: application/views/awards/vucc/band.php:23
 #: application/views/dashboard/index.php:415
+#: application/views/dbtools/missinggridlist.php:44
 #: application/views/dbtools/showStateQsos.php:21
 #: application/views/dcl_views/key_import.php:45
 #: application/views/debug/index.php:807 application/views/debug/index.php:842
@@ -7441,7 +7447,7 @@ msgstr "Tablo"
 #: application/views/dashboard/index.php:308
 #: application/views/dashboard/index.php:323
 #: application/views/dashboard/index.php:393
-#: application/views/dbtools/checkresult.php:170
+#: application/views/dbtools/checkresult.php:156
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
@@ -7589,6 +7595,7 @@ msgstr "Çalışılan"
 #: application/views/dashboard/index.php:438
 #: application/views/dashboard/index.php:504
 #: application/views/dashboard/index.php:693
+#: application/views/dbtools/missinggridlist.php:49
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -9133,6 +9140,7 @@ msgid "QSO List"
 msgstr "QSO Listesi"
 
 #: application/views/awards/sig/qso_list.php:14
+#: application/views/dbtools/missinggridlist.php:45
 #: application/views/dbtools/showStateQsos.php:22
 #: application/views/logbookadvanced/index.php:931
 #: application/views/logbookadvanced/mergedialog.php:27
@@ -9319,9 +9327,9 @@ msgstr "WAB Karesi"
 #: application/views/awards/wab/list.php:37
 #: application/views/contesting/manager/export_cbr.php:222
 #: application/views/contesting/manager/export_cbr.php:233
-#: application/views/dbtools/checkresult.php:121
-#: application/views/dbtools/checkresult.php:180
-#: application/views/dbtools/checkresult.php:407
+#: application/views/dbtools/checkresult.php:107
+#: application/views/dbtools/checkresult.php:166
+#: application/views/dbtools/checkresult.php:393
 #: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/edit.php:188
 #: application/views/logbookadvanced/edit.php:196
@@ -9757,9 +9765,9 @@ msgstr "WPX ödüllerinin ilerlemesini görüntüle"
 #: application/views/calltester/comparison_result.php:127
 #: application/views/calltester/comparison_result.php:176
 #: application/views/calltester/result.php:52
-#: application/views/dbtools/checkresult.php:104
-#: application/views/dbtools/checkresult.php:162
-#: application/views/dbtools/checkresult.php:390
+#: application/views/dbtools/checkresult.php:90
+#: application/views/dbtools/checkresult.php:148
+#: application/views/dbtools/checkresult.php:376
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:65
@@ -11059,6 +11067,7 @@ msgid "Location"
 msgstr "Konum"
 
 #: application/views/calltester/call_info.php:79
+#: application/views/dbtools/missinggridlist.php:58
 msgid "QSL card"
 msgstr "QSL kartı"
 
@@ -11122,9 +11131,9 @@ msgstr ""
 #: application/views/calltester/comparison_result.php:128
 #: application/views/calltester/comparison_result.php:177
 #: application/views/calltester/result.php:53
-#: application/views/dbtools/checkresult.php:108
-#: application/views/dbtools/checkresult.php:166
-#: application/views/dbtools/checkresult.php:394
+#: application/views/dbtools/checkresult.php:94
+#: application/views/dbtools/checkresult.php:152
+#: application/views/dbtools/checkresult.php:380
 #: application/views/zonechecker/result.php:67
 msgid "Station Profile"
 msgstr "İstasyon Profili"
@@ -11133,7 +11142,7 @@ msgstr "İstasyon Profili"
 #: application/views/calltester/comparison_result.php:131
 #: application/views/calltester/comparison_result.php:180
 #: application/views/calltester/result.php:56
-#: application/views/dbtools/checkresult.php:109
+#: application/views/dbtools/checkresult.php:95
 msgid "Existing DXCC"
 msgstr "Mevcut DXCC"
 
@@ -11148,7 +11157,7 @@ msgstr "Mevcut ADIF"
 #: application/views/calltester/comparison_result.php:133
 #: application/views/calltester/comparison_result.php:182
 #: application/views/calltester/result.php:58
-#: application/views/dbtools/checkresult.php:110
+#: application/views/dbtools/checkresult.php:96
 msgid "Result DXCC"
 msgstr "Sonuç DXCC"
 
@@ -12312,8 +12321,9 @@ msgstr "Yörünge Güzergahı"
 #: application/views/contesting/manager/export_cbr.php:132
 #: application/views/contesting/manager/import_legacy.php:39
 #: application/views/contesting/manager/index.php:35
-#: application/views/dbtools/checkresult.php:251
-#: application/views/dbtools/checkresult.php:327
+#: application/views/dbtools/checkresult.php:237
+#: application/views/dbtools/checkresult.php:313
+#: application/views/dbtools/missinggridlist.php:48
 #: application/views/dbtools/showStateQsos.php:28
 #: application/views/logbookadvanced/attachContest.php:15
 #: application/views/logbookadvanced/mergedialog.php:31
@@ -12847,9 +12857,9 @@ msgstr "Uygunsanız yarışma sponsorundan kağıt sertifika talep edin."
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
-#: application/views/dbtools/checkresult.php:121
-#: application/views/dbtools/checkresult.php:180
-#: application/views/dbtools/checkresult.php:407
+#: application/views/dbtools/checkresult.php:107
+#: application/views/dbtools/checkresult.php:166
+#: application/views/dbtools/checkresult.php:393
 #: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/edit.php:187
 #: application/views/logbookadvanced/edit.php:195
@@ -13993,17 +14003,16 @@ msgstr ""
 msgid "No current streak found!"
 msgstr "Devam eden bir seri bulunamadı!"
 
-#: application/views/dbtools/checkresult.php:42
+#: application/views/dbtools/checkresult.php:39
 msgid "Distance Check Results"
 msgstr "Mesafe Kontrolü Sonuçları"
 
-#: application/views/dbtools/checkresult.php:43
-#: application/views/dbtools/checkresult.php:59
-#: application/views/dbtools/checkresult.php:75
+#: application/views/dbtools/checkresult.php:40
+#: application/views/dbtools/checkresult.php:56
 msgid "QSOs to update found:"
 msgstr "Güncellenmesi gereken QSO/QSO'lar bulundu:"
 
-#: application/views/dbtools/checkresult.php:46
+#: application/views/dbtools/checkresult.php:43
 #: application/views/logbookadvanced/distancedialog.php:2
 msgid ""
 "Update all QSOs with the distance based on your gridsquare set in the "
@@ -14014,77 +14023,75 @@ msgstr ""
 "karesi bilgisine göre mesafeyi ayarlayarak güncelle. Mesafe, kısa yol veya "
 "uzun yol seçimine göre hesaplanır."
 
-#: application/views/dbtools/checkresult.php:47
+#: application/views/dbtools/checkresult.php:44
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
 msgstr "Bu, mesafe bilgisi olmadan QSO’ları içe aktardıysanız faydalıdır."
 
-#: application/views/dbtools/checkresult.php:48
+#: application/views/dbtools/checkresult.php:45
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
 msgstr ""
 "Güncelleme sadece mesafenin boş olduğu QSO'lar için mesafeyi ayarlayacaktır."
 
-#: application/views/dbtools/checkresult.php:52
-#: application/views/dbtools/checkresult.php:68
-#: application/views/dbtools/checkresult.php:79
+#: application/views/dbtools/checkresult.php:49
+#: application/views/dbtools/checkresult.php:65
 #: application/views/debug/index.php:689
 #: application/views/logbookadvanced/index.php:57
 msgid "Update now"
 msgstr "Şimdi güncelle"
 
-#: application/views/dbtools/checkresult.php:58
+#: application/views/dbtools/checkresult.php:55
 msgid "Continent Check Results"
 msgstr "Kıta Kontrolü Sonuçları"
 
-#: application/views/dbtools/checkresult.php:62
+#: application/views/dbtools/checkresult.php:59
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
 msgstr "Tüm QSO’ları, QSO’nun DXCC ülkesine göre kıta bilgisi ile güncelle."
 
-#: application/views/dbtools/checkresult.php:63
+#: application/views/dbtools/checkresult.php:60
 msgid "This is useful if you have imported QSOs without continent information."
 msgstr "Bu, kıta bilgisi olmadan QSO’ları içe aktardıysanız faydalıdır."
 
-#: application/views/dbtools/checkresult.php:64
+#: application/views/dbtools/checkresult.php:61
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
 msgstr ""
 "Güncelleme, yalnızca kıta bilgisi boş olan QSO’lar için kıtayı "
 "ayarlayacaktır."
 
-#: application/views/dbtools/checkresult.php:74
-#: application/views/dbtools/checkresult.php:148
-msgid "Gridsquare Check Results"
-msgstr "Grid Karesi Kontrol Sonuçları"
-
-#: application/views/dbtools/checkresult.php:85
+#: application/views/dbtools/checkresult.php:71
 msgid "DXCC Check Results"
 msgstr "DXCC Kontrolü Sonuçları"
 
-#: application/views/dbtools/checkresult.php:87
+#: application/views/dbtools/checkresult.php:73
 msgid "Callsigns tested: "
 msgstr "Çağrı işaretleri test edildi: "
 
-#: application/views/dbtools/checkresult.php:88
+#: application/views/dbtools/checkresult.php:74
 msgid "Execution time: "
 msgstr "Çalışma süresi: "
 
-#: application/views/dbtools/checkresult.php:89
+#: application/views/dbtools/checkresult.php:75
 msgid "Number of potential QSOs with wrong DXCC: "
 msgstr "Yanlış DXCC ile potansiyel QSO sayısı: "
 
-#: application/views/dbtools/checkresult.php:94
-#: application/views/dbtools/checkresult.php:236
-#: application/views/dbtools/checkresult.php:312
+#: application/views/dbtools/checkresult.php:80
+#: application/views/dbtools/checkresult.php:222
+#: application/views/dbtools/checkresult.php:298
 msgid "Update selected"
 msgstr "Seçilenleri güncelle"
 
-#: application/views/dbtools/checkresult.php:155
+#: application/views/dbtools/checkresult.php:134
+msgid "Gridsquare Check Results"
+msgstr "Grid Karesi Kontrol Sonuçları"
+
+#: application/views/dbtools/checkresult.php:141
 msgid "These QSOs MAY have incorrect gridsquares."
 msgstr "Bu QSQ'lar hatalı grid karelerine sahip OLABİLİR."
 
-#: application/views/dbtools/checkresult.php:156
+#: application/views/dbtools/checkresult.php:142
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
@@ -14092,25 +14099,25 @@ msgstr ""
 "Sonuçlar doğru DXCC'ye bağlıdır. Grid karesi listesi TQSL grid karesi "
 "veritabanından gelmektedir."
 
-#: application/views/dbtools/checkresult.php:169
+#: application/views/dbtools/checkresult.php:155
 msgid "DXCC Gridsquare"
 msgstr "DXCC Grid Karesi"
 
-#: application/views/dbtools/checkresult.php:193
+#: application/views/dbtools/checkresult.php:179
 #: application/views/dbtools/index.php:6
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
 msgstr "Daha fazla göster"
 
-#: application/views/dbtools/checkresult.php:199
+#: application/views/dbtools/checkresult.php:185
 msgid "View on map"
 msgstr "Haritada görüntüle"
 
-#: application/views/dbtools/checkresult.php:224
+#: application/views/dbtools/checkresult.php:210
 msgid "CQ Zone Check Results"
 msgstr "CQ Bölgesi Kontrol Sonuçları"
 
-#: application/views/dbtools/checkresult.php:226
+#: application/views/dbtools/checkresult.php:212
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
@@ -14119,11 +14126,11 @@ msgstr ""
 "bir CQ bölgesine sahip olduğu tespit edildi (en fazla 5000 QSO "
 "gösterilmektedir):"
 
-#: application/views/dbtools/checkresult.php:231
+#: application/views/dbtools/checkresult.php:217
 msgid "Force update even if DXCC covers multiple CQ zones"
 msgstr "DXCC birden fazla CQ bölgesini kapsasa bile güncellemeyi zorla"
 
-#: application/views/dbtools/checkresult.php:232
+#: application/views/dbtools/checkresult.php:218
 msgid ""
 "The update function can only set the main CQ zone which is assigned to the "
 "DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
@@ -14137,20 +14144,20 @@ msgstr ""
 "kapsayan DXCC'lere ait QSO'lar güncellenir. Bu onay kutusu bunu geçersiz "
 "kılar, ancak yanlış verilere yol açabilir. Dikkatle kullanın!"
 
-#: application/views/dbtools/checkresult.php:249
+#: application/views/dbtools/checkresult.php:235
 msgid "DXCC CQ Zone"
 msgstr "DXCC CQ Bölgesi"
 
-#: application/views/dbtools/checkresult.php:295
-#: application/views/dbtools/checkresult.php:371
+#: application/views/dbtools/checkresult.php:281
+#: application/views/dbtools/checkresult.php:357
 msgid "No incorrect CQ Zones were found."
 msgstr "Hatalı CQ Bölgesi bulunamadı."
 
-#: application/views/dbtools/checkresult.php:300
+#: application/views/dbtools/checkresult.php:286
 msgid "ITU Zone Check Results"
 msgstr "ITU Bölge Kontrol Sonuçları"
 
-#: application/views/dbtools/checkresult.php:302
+#: application/views/dbtools/checkresult.php:288
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
@@ -14159,11 +14166,11 @@ msgstr ""
 "farklı bir ITU bölgesine sahip olduğu tespit edildi (en fazla 5000 QSO "
 "gösterilir):"
 
-#: application/views/dbtools/checkresult.php:307
+#: application/views/dbtools/checkresult.php:293
 msgid "Force update even if DXCC covers multiple ITU zones"
 msgstr "DXCC birden fazla ITU bölgesini kapsasa bile güncellemeyi zorla"
 
-#: application/views/dbtools/checkresult.php:308
+#: application/views/dbtools/checkresult.php:294
 msgid ""
 "The update function can only set the main ITU zone which is assigned to the "
 "DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
@@ -14177,19 +14184,19 @@ msgstr ""
 "kapsayan DXCC'lere sahip QSO'lar güncellenir. Bu onay kutusu bunu geçersiz "
 "kılar ancak yanlış verilere yol açabilir. Dikkatli kullanın!"
 
-#: application/views/dbtools/checkresult.php:325
+#: application/views/dbtools/checkresult.php:311
 msgid "DXCC ITU Zone"
 msgstr "DXCC ITU Bölgesi"
 
-#: application/views/dbtools/checkresult.php:376
+#: application/views/dbtools/checkresult.php:362
 msgid "IOTA Check Results"
 msgstr "IOTA Kontrolü Sonuçları"
 
-#: application/views/dbtools/checkresult.php:383
+#: application/views/dbtools/checkresult.php:369
 msgid "These QSOs MAY have an incorrect IOTA reference."
 msgstr "Bu QSO'ların IOTA referansı hatalı OLABİLİR."
 
-#: application/views/dbtools/checkresult.php:384
+#: application/views/dbtools/checkresult.php:370
 msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
@@ -14197,11 +14204,11 @@ msgstr ""
 "Sonuçlar doğru DXCC'ye bağlıdır ve yalnızca mevcut DXCC'ye göre kontrol "
 "edilecektir. Yanlış pozitif sonuçlar oluşabilir."
 
-#: application/views/dbtools/checkresult.php:395
+#: application/views/dbtools/checkresult.php:381
 msgid "QSO DXCC"
 msgstr "QSO DXCC"
 
-#: application/views/dbtools/checkresult.php:397
+#: application/views/dbtools/checkresult.php:383
 msgid "IOTA DXCC"
 msgstr "IOTA DXCC"
 
@@ -14266,8 +14273,7 @@ msgstr "Wavelog'u kullanarak tüm QSQ'ların DXCC'sini belirle."
 #: application/views/dbtools/index.php:92
 #: application/views/dbtools/index.php:103
 #: application/views/dbtools/index.php:114
-#: application/views/dbtools/index.php:127
-#: application/views/dbtools/index.php:139
+#: application/views/dbtools/index.php:138
 msgid "Check"
 msgstr "Kontrol Et"
 
@@ -14324,86 +14330,144 @@ msgstr "Çağrı defterinde eksik grid karesi bilgisine sahip QSO'ları sorgula"
 msgid "Use callbook lookup to set gridsquare"
 msgstr "Grid karesini ayarlamak için çağrı defteri sorgusu kullan"
 
-#: application/views/dbtools/index.php:124
-msgid "This is limited to 150 callsigns for each run!"
-msgstr "Bu, her çalıştırma için 150 çağrı işareti ile sınırlıdır!"
+#: application/views/dbtools/index.php:126
+msgid "Lookup"
+msgstr ""
 
-#: application/views/dbtools/index.php:135
+#: application/views/dbtools/index.php:134
 msgid "Check IOTA against DXCC"
 msgstr "IOTA'yı DXCC'ye göre kontrol et"
 
-#: application/views/dbtools/index.php:136
+#: application/views/dbtools/index.php:135
 msgid "Use Wavelog to check IOTA against DXCC"
 msgstr "IOTA'yı DXCC'ye göre kontrol etmek için Wavelog'u kullan"
+
+#: application/views/dbtools/missinggridlist.php:12
+#, php-format
+msgid "%s QSO(s) selected"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:13
+#, php-format
+msgid "%s QSO(s) remaining"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:14
+#, php-format
+msgid "Updated: %s"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:15
+#, php-format
+msgid "Not found: %s"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:16
+#, php-format
+msgid "Errors: %s"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:17
+msgid "Retrieving callbook data..."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:18
+msgid "Not found in callbook"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:19
+#: application/views/logbookadvanced/index.php:39
+msgid "Skipped"
+msgstr "Atlandı"
+
+#: application/views/dbtools/missinggridlist.php:21
+#, php-format
+msgid "Lookup finished: %s gridsquare(s) set, %s not found, %s error(s)."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:22
+msgid "Lookup cancelled."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:32
+msgid "Only unconfirmed QSOs"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:36
+#, php-format
+msgid "Found %s QSO(s) with missing gridsquare."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:37
+msgid "Uncheck the QSOs you want to skip, then start the lookup."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:50
+#: application/views/view_log/partial/log_ajax.php:129
+msgid "Result"
+msgstr "Sonuç"
+
+#: application/views/dbtools/missinggridlist.php:79
+#: application/views/dbtools/showStateQsos.php:49
+msgid "No Issues Found"
+msgstr "Sorun Bulunamadı"
 
 #: application/views/dbtools/showStateQsos.php:16
 #, php-format
 msgid "Found %s QSO(s) missing state information for DXCC %s."
 msgstr "DXCC %s için durum bilgisi eksik olan %s QSO bulundu."
 
-#: application/views/dbtools/showStateQsos.php:49
-msgid "No Issues Found"
-msgstr "Sorun Bulunamadı"
-
-#: application/views/dbtools/showUpdateResult.php:25
-#: application/views/dbtools/showUpdateResult.php:75
+#: application/views/dbtools/showUpdateResult.php:22
+#: application/views/dbtools/showUpdateResult.php:72
 msgid "Results for state update:"
 msgstr "Eyalet güncellemesinin sonuçları:"
 
-#: application/views/dbtools/showUpdateResult.php:27
-#: application/views/dbtools/showUpdateResult.php:29
+#: application/views/dbtools/showUpdateResult.php:24
+#: application/views/dbtools/showUpdateResult.php:26
 msgid "The number of QSOs updated for state/province in"
 msgstr "Eyalet/il için güncellenen QSO sayısı"
 
-#: application/views/dbtools/showUpdateResult.php:41
-#: application/views/dbtools/showUpdateResult.php:104
+#: application/views/dbtools/showUpdateResult.php:38
+#: application/views/dbtools/showUpdateResult.php:101
 msgid "These QSOs could not be updated:"
 msgstr "Bu QSO'lar güncellenemedi:"
 
-#: application/views/dbtools/showUpdateResult.php:48
-#: application/views/dbtools/showUpdateResult.php:111
+#: application/views/dbtools/showUpdateResult.php:45
+#: application/views/dbtools/showUpdateResult.php:108
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/statistics/antennaanalytics.php:104
 msgid "Station location"
 msgstr "İstasyon Konumu"
 
-#: application/views/dbtools/showUpdateResult.php:49
-#: application/views/dbtools/showUpdateResult.php:112
+#: application/views/dbtools/showUpdateResult.php:46
+#: application/views/dbtools/showUpdateResult.php:109
 msgid "Reason"
 msgstr "Sebep"
 
-#: application/views/dbtools/showUpdateResult.php:77
-#: application/views/dbtools/showUpdateResult.php:79
+#: application/views/dbtools/showUpdateResult.php:74
+#: application/views/dbtools/showUpdateResult.php:76
 msgid "The number of QSOs updated for state/province across all DXCCs is"
 msgstr "Tüm DXCC'ler genelinde eyalet/il için güncellenen QSO sayısı"
 
-#: application/views/dbtools/showUpdateResult.php:79
+#: application/views/dbtools/showUpdateResult.php:76
 msgid "DXCCs processed"
 msgstr "İşlenen DXCC'ler"
 
-#: application/views/dbtools/showUpdateResult.php:131
+#: application/views/dbtools/showUpdateResult.php:128
 msgid "Results for continent update:"
 msgstr "Kıta güncellemesinin sonuçları:"
 
-#: application/views/dbtools/showUpdateResult.php:132
+#: application/views/dbtools/showUpdateResult.php:129
 msgid "The number of QSOs updated for continent is"
 msgstr "Kıta için güncellenen QSO sayısı şöyledir"
 
-#: application/views/dbtools/showUpdateResult.php:136
+#: application/views/dbtools/showUpdateResult.php:133
 msgid "Results for distance update:"
 msgstr "Mesafe güncellemesinin sonuçları:"
 
-#: application/views/dbtools/showUpdateResult.php:137
+#: application/views/dbtools/showUpdateResult.php:134
 msgid "The number of QSOs updated for distance is"
 msgstr "Mesafe için güncellenen QSO sayısı"
-
-#: application/views/dbtools/showUpdateResult.php:141
-msgid "Results for gridsquare update:"
-msgstr "Grid karesi güncelleme sonuçları:"
-
-#: application/views/dbtools/showUpdateResult.php:142
-msgid "The number of QSOs updated for gridsquare is"
-msgstr "Grid karesi için güncellenen QSO sayısı şöyledir"
 
 #: application/views/dbtools/statecheckresult.php:3
 #: application/views/dbtools/statecheckresult.php:46
@@ -18132,10 +18196,6 @@ msgstr "Düzeltildi"
 #, php-format
 msgid "Fixed: %s"
 msgstr "Düzeltildi: %s"
-
-#: application/views/logbookadvanced/index.php:39
-msgid "Skipped"
-msgstr "Atlandı"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
@@ -23990,10 +24050,6 @@ msgstr ""
 "Bu kayıt defterine bağlı olan istasyon konumlarının, tüm QSO'ları "
 "gösteriliyor"
 
-#: application/views/view_log/partial/log_ajax.php:129
-msgid "Result"
-msgstr "Sonuç"
-
 #: application/views/view_log/partial/log_ajax.php:448
 #: application/views/view_log/partial/log_ajax.php:505
 #: src/QSLManager/QSO.php:604 src/QSLManager/QSO.php:750
@@ -24387,6 +24443,15 @@ msgstr "Clublog Log Arama"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Kullanıcısı. Son yükleme "
+
+#~ msgid "This is limited to 150 callsigns for each run!"
+#~ msgstr "Bu, her çalıştırma için 150 çağrı işareti ile sınırlıdır!"
+
+#~ msgid "Results for gridsquare update:"
+#~ msgstr "Grid karesi güncelleme sonuçları:"
+
+#~ msgid "The number of QSOs updated for gridsquare is"
+#~ msgstr "Grid karesi için güncellenen QSO sayısı şöyledir"
 
 #~ msgid "Count QSO as Confirmed via"
 #~ msgstr "QSO'yu Şu Yolla Onaylı Say"

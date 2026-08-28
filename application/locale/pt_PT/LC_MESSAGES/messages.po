@@ -585,6 +585,10 @@ msgstr "DOK"
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
 #: application/views/awards/wab/list.php:5
+#: application/views/dbtools/checkresult.php:153
+#: application/views/dbtools/checkresult.php:236
+#: application/views/dbtools/checkresult.php:312
+#: application/views/dbtools/showUpdateResult.php:84
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -1347,6 +1351,11 @@ msgstr "Contar QSOs por..."
 #: application/views/zonechecker/result.php:68
 #: application/views/awards/wab/index.php:188
 #: application/views/awards/wab/list.php:7
+#: application/views/dbtools/checkresult.php:154
+#: application/views/dbtools/checkresult.php:233
+#: application/views/dbtools/checkresult.php:309
+#: application/views/dbtools/showUpdateResult.php:44
+#: application/views/dbtools/showUpdateResult.php:107
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -1370,6 +1379,7 @@ msgstr "Gridsquare"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/dbtools/checkresult.php:310
 msgid "ITU Zone"
 msgstr "Zona ITU"
 
@@ -1399,6 +1409,7 @@ msgstr "Zona ITU"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/dbtools/checkresult.php:234
 msgid "CQ Zone"
 msgstr "Zona CQ"
 
@@ -1580,11 +1591,13 @@ msgid "Database Tools"
 msgstr "Ferramentas de Banco de Dados"
 
 #: application/controllers/Dbtools.php:158
+#: application/controllers/Dbtools.php:169
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC atualizado para %d QSO(s)."
 
 #: application/controllers/Dbtools.php:174
+#: application/controllers/Dbtools.php:185
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "Mapa para DXCC %s e quadrícula %s."
@@ -2226,6 +2239,10 @@ msgstr "QSL"
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
 #: application/views/awards/wab/index.php:128
+#: application/views/dbtools/checkresult.php:93
+#: application/views/dbtools/checkresult.php:151
+#: application/views/dbtools/checkresult.php:379
+#: application/views/dbtools/missinggridlist.php:59
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2269,6 +2286,7 @@ msgstr "LoTW"
 #: application/views/timeline/index.php:70 application/views/user/edit.php:755
 #: application/views/user/edit.php:1039 application/views/user/edit.php:1113
 #: application/views/awards/wab/index.php:136
+#: application/views/dbtools/missinggridlist.php:60
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2384,6 +2402,12 @@ msgstr "Todas as consultas ao callbook falharam ou não forneceram resultados."
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/views/awards/wab/index.php:69
 #: application/views/awards/wab/list.php:11
+#: application/views/dbtools/checkresult.php:92
+#: application/views/dbtools/checkresult.php:150
+#: application/views/dbtools/checkresult.php:231
+#: application/views/dbtools/checkresult.php:307
+#: application/views/dbtools/checkresult.php:378
+#: application/views/dbtools/missinggridlist.php:46
 msgid "Mode"
 msgstr "Modo"
 
@@ -2493,6 +2517,7 @@ msgstr "País"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/dbtools/checkresult.php:382
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2669,6 +2694,12 @@ msgstr "Distância"
 #: application/views/zonechecker/result.php:69
 #: application/views/awards/wab/index.php:60
 #: application/views/awards/wab/list.php:10
+#: application/views/dbtools/checkresult.php:91
+#: application/views/dbtools/checkresult.php:149
+#: application/views/dbtools/checkresult.php:232
+#: application/views/dbtools/checkresult.php:308
+#: application/views/dbtools/checkresult.php:377
+#: application/views/dbtools/missinggridlist.php:47
 msgid "Band"
 msgstr "Banda"
 
@@ -3644,6 +3675,7 @@ msgstr "Não autorizado"
 #: application/views/widgets/lotw_upload.php:123
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/dbtools/missinggridlist.php:20
 msgid "Error"
 msgstr "Erro"
 
@@ -4638,6 +4670,7 @@ msgid "Officers must edit contests."
 msgstr "Os oficiais devem editar concursos."
 
 #: application/models/Dbtools_model.php:120
+#: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
 "A tabela VuccGrids está vazia. Por favor, importa primeiro os dados das "
@@ -5797,6 +5830,13 @@ msgstr "Nada encontrado!"
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
 #: application/views/awards/wab/list.php:8
+#: application/views/dbtools/checkresult.php:89
+#: application/views/dbtools/checkresult.php:147
+#: application/views/dbtools/checkresult.php:228
+#: application/views/dbtools/checkresult.php:304
+#: application/views/dbtools/checkresult.php:375
+#: application/views/dbtools/showUpdateResult.php:43
+#: application/views/dbtools/showUpdateResult.php:106
 msgid "Callsign"
 msgstr "Indicativo"
 
@@ -5853,6 +5893,7 @@ msgstr "Contactos sem correspondência"
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 #: application/views/dbtools/showUpdateResult.php:88
+#: application/views/dbtools/showUpdateResult.php:85
 msgid "QSOs updated"
 msgstr "Contactos atualizados"
 
@@ -5911,6 +5952,8 @@ msgstr ""
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
 #: application/views/awards/wab/list.php:9
+#: application/views/dbtools/checkresult.php:229
+#: application/views/dbtools/checkresult.php:305
 msgid "Date"
 msgstr "Data"
 
@@ -5947,6 +5990,8 @@ msgstr "Data"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/dbtools/checkresult.php:230
+#: application/views/dbtools/checkresult.php:306
 msgid "Time"
 msgstr "Tempo"
 
@@ -5969,6 +6014,7 @@ msgstr "Tempo"
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/dbtools/missinggridlist.php:44
 msgid "Call"
 msgstr "Chamada"
 
@@ -7479,6 +7525,7 @@ msgstr "Tabela"
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
 #: application/views/awards/wab/index.php:168
+#: application/views/dbtools/checkresult.php:156
 msgid "Map"
 msgstr "Mapa"
 
@@ -7625,6 +7672,7 @@ msgstr "Contactado"
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 #: application/views/awards/wab/list.php:12
+#: application/views/dbtools/missinggridlist.php:49
 msgid "Confirmed"
 msgstr "Confirmado"
 
@@ -9187,6 +9235,7 @@ msgstr "Lista de contacto"
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
+#: application/views/dbtools/missinggridlist.php:45
 msgid "Date/Time"
 msgstr "Data/Hora"
 
@@ -9731,6 +9780,9 @@ msgstr "Ver progresso dos prémios WPX"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:65
+#: application/views/dbtools/checkresult.php:90
+#: application/views/dbtools/checkresult.php:148
+#: application/views/dbtools/checkresult.php:376
 msgid "QSO Date"
 msgstr "Data do contacto"
 
@@ -11028,6 +11080,7 @@ msgid "Location"
 msgstr "Localização"
 
 #: application/views/calltester/call_info.php:79
+#: application/views/dbtools/missinggridlist.php:58
 msgid "QSL card"
 msgstr "Cartão QSL"
 
@@ -11095,6 +11148,9 @@ msgstr ""
 #: application/views/dbtools/checkresult.php:166
 #: application/views/dbtools/checkresult.php:394
 #: application/views/zonechecker/result.php:67
+#: application/views/dbtools/checkresult.php:94
+#: application/views/dbtools/checkresult.php:152
+#: application/views/dbtools/checkresult.php:380
 msgid "Station Profile"
 msgstr "Perfil da Estação"
 
@@ -11103,6 +11159,7 @@ msgstr "Perfil da Estação"
 #: application/views/calltester/comparison_result.php:180
 #: application/views/calltester/result.php:56
 #: application/views/dbtools/checkresult.php:109
+#: application/views/dbtools/checkresult.php:95
 msgid "Existing DXCC"
 msgstr "DXCC existente"
 
@@ -11118,6 +11175,7 @@ msgstr "ADIF existente"
 #: application/views/calltester/comparison_result.php:182
 #: application/views/calltester/result.php:58
 #: application/views/dbtools/checkresult.php:110
+#: application/views/dbtools/checkresult.php:96
 msgid "Result DXCC"
 msgstr "Resultado DXCC"
 
@@ -12317,6 +12375,9 @@ msgstr "Caminho"
 #: application/views/view_log/qso.php:684
 #: application/views/view_log/qso.php:691
 #: application/views/view_log/qso.php:696
+#: application/views/dbtools/checkresult.php:237
+#: application/views/dbtools/checkresult.php:313
+#: application/views/dbtools/missinggridlist.php:48
 msgid "Station"
 msgstr "Estação"
 
@@ -12890,6 +12951,9 @@ msgstr ""
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1224
+#: application/views/dbtools/checkresult.php:107
+#: application/views/dbtools/checkresult.php:166
+#: application/views/dbtools/checkresult.php:393
 msgid "Yes"
 msgstr "Sim"
 
@@ -12953,6 +13017,9 @@ msgstr "Sim"
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:694 application/views/user/edit.php:698
 #: application/views/user/edit.php:788 application/views/awards/wab/list.php:37
+#: application/views/dbtools/checkresult.php:107
+#: application/views/dbtools/checkresult.php:166
+#: application/views/dbtools/checkresult.php:393
 msgid "No"
 msgstr "Não"
 
@@ -14049,17 +14116,21 @@ msgid "No current streak found!"
 msgstr "Não foi encontrada nenhuma série atual!"
 
 #: application/views/dbtools/checkresult.php:42
+#: application/views/dbtools/checkresult.php:39
 msgid "Distance Check Results"
 msgstr "Resultados da Verificação de Distância"
 
 #: application/views/dbtools/checkresult.php:43
 #: application/views/dbtools/checkresult.php:59
 #: application/views/dbtools/checkresult.php:75
+#: application/views/dbtools/checkresult.php:40
+#: application/views/dbtools/checkresult.php:56
 msgid "QSOs to update found:"
 msgstr "QSOs para atualizar encontrados:"
 
 #: application/views/dbtools/checkresult.php:46
 #: application/views/logbookadvanced/distancedialog.php:2
+#: application/views/dbtools/checkresult.php:43
 msgid ""
 "Update all QSOs with the distance based on your gridsquare set in the "
 "station profile, and the gridsquare of the QSO partner. Distance will be "
@@ -14071,11 +14142,13 @@ msgstr ""
 
 #: application/views/dbtools/checkresult.php:47
 #: application/views/logbookadvanced/distancedialog.php:3
+#: application/views/dbtools/checkresult.php:44
 msgid "This is useful if you have imported QSOs without distance information."
 msgstr "Isso é útil se importou QSOs sem informações de distância."
 
 #: application/views/dbtools/checkresult.php:48
 #: application/views/logbookadvanced/distancedialog.php:4
+#: application/views/dbtools/checkresult.php:45
 msgid "Update will only set the distance for QSOs where the distance is empty."
 msgstr ""
 "A atualização só definirá a distância para QSOs onde a distância estiver "
@@ -14086,23 +14159,29 @@ msgstr ""
 #: application/views/dbtools/checkresult.php:79
 #: application/views/debug/index.php:689
 #: application/views/logbookadvanced/index.php:57
+#: application/views/dbtools/checkresult.php:49
+#: application/views/dbtools/checkresult.php:65
 msgid "Update now"
 msgstr "Atualizar agora"
 
 #: application/views/dbtools/checkresult.php:58
+#: application/views/dbtools/checkresult.php:55
 msgid "Continent Check Results"
 msgstr "Resultados da Verificação do Continente"
 
 #: application/views/dbtools/checkresult.php:62
+#: application/views/dbtools/checkresult.php:59
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
 msgstr "Atualizar todos os QSOs com o continente com base no país DXCC do QSO."
 
 #: application/views/dbtools/checkresult.php:63
+#: application/views/dbtools/checkresult.php:60
 msgid "This is useful if you have imported QSOs without continent information."
 msgstr "Isto é útil se tiver importado QSOs sem informação sobre o continente."
 
 #: application/views/dbtools/checkresult.php:64
+#: application/views/dbtools/checkresult.php:61
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
 msgstr ""
@@ -14111,36 +14190,46 @@ msgstr ""
 
 #: application/views/dbtools/checkresult.php:74
 #: application/views/dbtools/checkresult.php:148
+#: application/views/dbtools/checkresult.php:134
 msgid "Gridsquare Check Results"
 msgstr "Resultados da Verificação do Grid Square"
 
 #: application/views/dbtools/checkresult.php:85
+#: application/views/dbtools/checkresult.php:71
 msgid "DXCC Check Results"
 msgstr "Resultados da Verificação do DXCC"
 
 #: application/views/dbtools/checkresult.php:87
+#: application/views/dbtools/checkresult.php:73
 msgid "Callsigns tested: "
 msgstr "Indicativos testados: "
 
 #: application/views/dbtools/checkresult.php:88
+#: application/views/dbtools/checkresult.php:74
 msgid "Execution time: "
 msgstr "Tempo de execução: "
 
 #: application/views/dbtools/checkresult.php:89
+#: application/views/dbtools/checkresult.php:75
 msgid "Number of potential QSOs with wrong DXCC: "
 msgstr "Número de QSOs potenciais com DXCC incorreto: "
 
 #: application/views/dbtools/checkresult.php:94
 #: application/views/dbtools/checkresult.php:236
 #: application/views/dbtools/checkresult.php:312
+#: application/views/dbtools/checkresult.php:80
+#: application/views/dbtools/checkresult.php:222
+#: application/views/dbtools/checkresult.php:298
 msgid "Update selected"
 msgstr "Atualização selecionada"
 
 #: application/views/dbtools/checkresult.php:155
+#: application/views/dbtools/checkresult.php:141
 msgid "These QSOs MAY have incorrect gridsquares."
 msgstr "Estes QSOs PODEM ter quadrículas incorretas."
 
 #: application/views/dbtools/checkresult.php:156
+#: application/views/dbtools/checkresult.php:142
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
@@ -14149,24 +14238,29 @@ msgstr ""
 "dados de gridsquare do TQSL."
 
 #: application/views/dbtools/checkresult.php:169
+#: application/views/dbtools/checkresult.php:155
 msgid "DXCC Gridsquare"
 msgstr "Quadrícula do DXCC"
 
 #: application/views/dbtools/checkresult.php:193
 #: application/views/dbtools/index.php:6
 #: application/views/logbookadvanced/index.php:77
+#: application/views/dbtools/checkresult.php:179
 msgid "Show more"
 msgstr "Mostrar mais"
 
 #: application/views/dbtools/checkresult.php:199
+#: application/views/dbtools/checkresult.php:185
 msgid "View on map"
 msgstr "Ver no mapa"
 
 #: application/views/dbtools/checkresult.php:224
+#: application/views/dbtools/checkresult.php:210
 msgid "CQ Zone Check Results"
 msgstr "Resultados da verificação da zona CQ"
 
 #: application/views/dbtools/checkresult.php:226
+#: application/views/dbtools/checkresult.php:212
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
@@ -14175,10 +14269,12 @@ msgstr ""
 "DXCC normalmente tem (um máximo de 5000 QSOs são mostrados):"
 
 #: application/views/dbtools/checkresult.php:231
+#: application/views/dbtools/checkresult.php:217
 msgid "Force update even if DXCC covers multiple CQ zones"
 msgstr "Forçar a actualização mesmo que DXCC cubra várias zonas CQ"
 
 #: application/views/dbtools/checkresult.php:232
+#: application/views/dbtools/checkresult.php:218
 msgid ""
 "The update function can only set the main CQ zone which is assigned to the "
 "DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
@@ -14193,19 +14289,24 @@ msgstr ""
 "em dados incorretos. Use com cuidado!"
 
 #: application/views/dbtools/checkresult.php:249
+#: application/views/dbtools/checkresult.php:235
 msgid "DXCC CQ Zone"
 msgstr "Zona CQ DXCC"
 
 #: application/views/dbtools/checkresult.php:295
 #: application/views/dbtools/checkresult.php:371
+#: application/views/dbtools/checkresult.php:281
+#: application/views/dbtools/checkresult.php:357
 msgid "No incorrect CQ Zones were found."
 msgstr "Não foram encontradas Zonas CQ incorretas."
 
 #: application/views/dbtools/checkresult.php:300
+#: application/views/dbtools/checkresult.php:286
 msgid "ITU Zone Check Results"
 msgstr "Resultados da Verificação da Zona ITU"
 
 #: application/views/dbtools/checkresult.php:302
+#: application/views/dbtools/checkresult.php:288
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
@@ -14214,10 +14315,12 @@ msgstr ""
 "este DXCC normalmente tem (um máximo de 5000 QSOs são mostrados):"
 
 #: application/views/dbtools/checkresult.php:307
+#: application/views/dbtools/checkresult.php:293
 msgid "Force update even if DXCC covers multiple ITU zones"
 msgstr "Forçar atualização mesmo que o DXCC cubra múltiplas zonas ITU"
 
 #: application/views/dbtools/checkresult.php:308
+#: application/views/dbtools/checkresult.php:294
 msgid ""
 "The update function can only set the main ITU zone which is assigned to the "
 "DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
@@ -14232,18 +14335,22 @@ msgstr ""
 "em dados incorretos. Use com cuidado!"
 
 #: application/views/dbtools/checkresult.php:325
+#: application/views/dbtools/checkresult.php:311
 msgid "DXCC ITU Zone"
 msgstr "DXCC da zona ITU"
 
 #: application/views/dbtools/checkresult.php:376
+#: application/views/dbtools/checkresult.php:362
 msgid "IOTA Check Results"
 msgstr "Resultados do Check IOTA"
 
 #: application/views/dbtools/checkresult.php:383
+#: application/views/dbtools/checkresult.php:369
 msgid "These QSOs MAY have an incorrect IOTA reference."
 msgstr "Esses QSOs PODEM ter uma referência IOTA incorreta."
 
 #: application/views/dbtools/checkresult.php:384
+#: application/views/dbtools/checkresult.php:370
 msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
@@ -14252,10 +14359,12 @@ msgstr ""
 "DXCC atual. Podem ocorrer falsos positivos."
 
 #: application/views/dbtools/checkresult.php:395
+#: application/views/dbtools/checkresult.php:381
 msgid "QSO DXCC"
 msgstr "QSO DXCC"
 
 #: application/views/dbtools/checkresult.php:397
+#: application/views/dbtools/checkresult.php:383
 msgid "IOTA DXCC"
 msgstr "IOTA DXCC"
 
@@ -14322,6 +14431,7 @@ msgstr "Use o Wavelog para determinar a CQ Zone para todos os QSOs."
 #: application/views/dbtools/index.php:114
 #: application/views/dbtools/index.php:127
 #: application/views/dbtools/index.php:139
+#: application/views/dbtools/index.php:138
 msgid "Check"
 msgstr "Verificar"
 
@@ -14383,10 +14493,12 @@ msgid "This is limited to 150 callsigns for each run!"
 msgstr "Isto é limitado a 150 indicativos de chamada para cada execução!"
 
 #: application/views/dbtools/index.php:135
+#: application/views/dbtools/index.php:134
 msgid "Check IOTA against DXCC"
 msgstr "Verificar IOTA contra DXCC"
 
 #: application/views/dbtools/index.php:136
+#: application/views/dbtools/index.php:135
 msgid "Use Wavelog to check IOTA against DXCC"
 msgstr "Use o Wavelog para verificar o IOTA em relação ao DXCC"
 
@@ -14397,21 +14509,28 @@ msgstr ""
 "Foram encontrados %s QSO(s) com informação de estado em falta para DXCC %s."
 
 #: application/views/dbtools/showStateQsos.php:49
+#: application/views/dbtools/missinggridlist.php:79
 msgid "No Issues Found"
 msgstr "Nenhum problema encontrado"
 
 #: application/views/dbtools/showUpdateResult.php:25
 #: application/views/dbtools/showUpdateResult.php:75
+#: application/views/dbtools/showUpdateResult.php:22
+#: application/views/dbtools/showUpdateResult.php:72
 msgid "Results for state update:"
 msgstr "Resultados da atualização do estado:"
 
 #: application/views/dbtools/showUpdateResult.php:27
 #: application/views/dbtools/showUpdateResult.php:29
+#: application/views/dbtools/showUpdateResult.php:24
+#: application/views/dbtools/showUpdateResult.php:26
 msgid "The number of QSOs updated for state/province in"
 msgstr "O número de QSOs atualizado para o estado/província em"
 
 #: application/views/dbtools/showUpdateResult.php:41
 #: application/views/dbtools/showUpdateResult.php:104
+#: application/views/dbtools/showUpdateResult.php:38
+#: application/views/dbtools/showUpdateResult.php:101
 msgid "These QSOs could not be updated:"
 msgstr "Estes QSOs não puderam ser atualizados:"
 
@@ -14419,11 +14538,15 @@ msgstr "Estes QSOs não puderam ser atualizados:"
 #: application/views/dbtools/showUpdateResult.php:111
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/statistics/antennaanalytics.php:104
+#: application/views/dbtools/showUpdateResult.php:45
+#: application/views/dbtools/showUpdateResult.php:108
 msgid "Station location"
 msgstr "Localização da estação"
 
 #: application/views/dbtools/showUpdateResult.php:49
 #: application/views/dbtools/showUpdateResult.php:112
+#: application/views/dbtools/showUpdateResult.php:46
+#: application/views/dbtools/showUpdateResult.php:109
 msgid "Reason"
 msgstr "Razão"
 
@@ -14437,18 +14560,22 @@ msgid "DXCCs processed"
 msgstr "DXCCs processados"
 
 #: application/views/dbtools/showUpdateResult.php:131
+#: application/views/dbtools/showUpdateResult.php:128
 msgid "Results for continent update:"
 msgstr "Resultados da atualização do continente:"
 
 #: application/views/dbtools/showUpdateResult.php:132
+#: application/views/dbtools/showUpdateResult.php:129
 msgid "The number of QSOs updated for continent is"
 msgstr "O número de QSOs atualizado para o continente é"
 
 #: application/views/dbtools/showUpdateResult.php:136
+#: application/views/dbtools/showUpdateResult.php:133
 msgid "Results for distance update:"
 msgstr "Resultados para atualização de distância:"
 
 #: application/views/dbtools/showUpdateResult.php:137
+#: application/views/dbtools/showUpdateResult.php:134
 msgid "The number of QSOs updated for distance is"
 msgstr "O número de QSOs atualizado para a distância é"
 
@@ -18216,6 +18343,7 @@ msgid "Fixed: %s"
 msgstr "Reparado: %s"
 
 #: application/views/logbookadvanced/index.php:39
+#: application/views/dbtools/missinggridlist.php:19
 msgid "Skipped"
 msgstr "Ignorado"
 
@@ -24118,6 +24246,7 @@ msgstr ""
 "Mostrar todos os contactos das estações que estão ligadas a este logbook"
 
 #: application/views/view_log/partial/log_ajax.php:129
+#: application/views/dbtools/missinggridlist.php:50
 msgid "Result"
 msgstr "Resultado"
 
@@ -24572,6 +24701,65 @@ msgstr ""
 
 #: application/views/awards/wab/list.php:37
 msgid "Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
+msgstr ""
+
+#: application/views/dbtools/index.php:126
+msgid "Lookup"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:12
+#, php-format
+msgid "%s QSO(s) selected"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:13
+#, php-format
+msgid "%s QSO(s) remaining"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:14
+#, php-format
+msgid "Updated: %s"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:15
+#, php-format
+msgid "Not found: %s"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:16
+#, php-format
+msgid "Errors: %s"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:17
+msgid "Retrieving callbook data..."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:18
+msgid "Not found in callbook"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:21
+#, php-format
+msgid "Lookup finished: %s gridsquare(s) set, %s not found, %s error(s)."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:22
+msgid "Lookup cancelled."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:32
+msgid "Only unconfirmed QSOs"
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:36
+#, php-format
+msgid "Found %s QSO(s) with missing gridsquare."
+msgstr ""
+
+#: application/views/dbtools/missinggridlist.php:37
+msgid "Uncheck the QSOs you want to skip, then start the lookup."
 msgstr ""
 
 #~ msgid "Worked / Confirmed"

@@ -298,19 +298,23 @@ function runContinentFix(dialogItself) {
 	});
 }
 
+let missingGridDialog = null;
+let inMissingGridLookup = false;
+let missingGridLookupFinished = false;
+let missingGridStats = { updated: 0, notfound: 0, error: 0 };
+
 function checkGrids() {
 	$('#checkGridsBtn').prop("disabled", true).addClass("running");
 
 	$.ajax({
-		url: base_url + 'index.php/dbtools/checkDb',
+		url: base_url + 'index.php/dbtools/missingGridList',
 		data: {
-			type: 'checkgrids',
 			stationid: $('#dbtools_station_id').val()
 		},
 		type: 'POST',
 		success: function(response) {
 			$('#checkGridsBtn').prop("disabled", false).removeClass("running");
-			$('.result').html(response);
+			showMissingGridDialog(response);
 		},
 		error: function(xhr, status, error) {
 			$('#checkGridsBtn').prop("disabled", false).removeClass("running");
@@ -320,24 +324,186 @@ function checkGrids() {
 	});
 }
 
-function fixMissingGrids() {
-	$('#updateGridsBtn').prop("disabled", true).addClass("running");
+function showMissingGridDialog(html) {
+	// Reset the state of any previous run when the dialog is (re)opened
+	inMissingGridLookup = false;
+	missingGridLookupFinished = false;
+	missingGridStats = { updated: 0, notfound: 0, error: 0 };
+
+	missingGridDialog = BootstrapDialog.show({
+		title: 'Callbook lookup',
+		size: BootstrapDialog.SIZE_WIDE,
+		cssClass: 'options',
+		nl2br: false,
+		message: html,
+		onhide: function(dialogRef) {
+			// Closing the dialog also stops a running lookup
+			inMissingGridLookup = false;
+		},
+		buttons: [
+		{
+			label: 'Cancel',
+			cssClass: 'btn-sm btn-secondary',
+			id: 'missingGridCancelBtn',
+			action: function(dialog) {
+				if (inMissingGridLookup) {
+					finishMissingGridLookup(true);
+				}
+			}
+		},
+		{
+			label: 'Start lookup',
+			cssClass: 'btn-sm btn-primary',
+			id: 'missingGridStartBtn',
+			action: function(dialog) {
+				startMissingGridLookup();
+			}
+		},
+		{
+			label: lang_admin_close,
+			cssClass: 'btn-sm btn-secondary',
+			id: 'closeButton',
+			action: function(dialogItself) {
+				dialogItself.close();
+			}
+		}]
+	});
+
+	// Cancel is only meaningful while the lookup is running
+	missingGridDialog.getButton('missingGridCancelBtn').disable();
+
+	updateMissingGridCounter();
+
+	$('#checkBoxAllMissingGrids').change(function (event) {
+		$('#missingGridTable tbody .row-check').prop('checked', this.checked);
+		updateMissingGridCounter();
+	});
+
+	$('#missingGridTable').on('change', 'input.row-check', function () {
+		updateMissingGridCounter();
+	});
+
+	$('#missingGridUnconfirmedOnly').change(function (event) {
+		if (this.checked) {
+			// Hide the confirmed QSOs and take them out of the lookup queue
+			$('#missingGridTable tbody tr[data-confirmed="1"]').each(function () {
+				$(this).hide().find('.row-check').prop('checked', false);
+			});
+		} else {
+			$('#missingGridTable tbody tr[data-confirmed="1"]').show();
+		}
+		updateMissingGridCounter();
+	});
+}
+
+function updateMissingGridCounter() {
+	var count = $('#missingGridTable tbody input.row-check:checked').length;
+	var template = (inMissingGridLookup || missingGridLookupFinished) ? 'msgRemaining' : 'msgSelected';
+	$('#missingGridCounter').text(missingGridMessage(template).replace('%s', count));
+
+	if (missingGridStats.updated + missingGridStats.notfound + missingGridStats.error > 0) {
+		$('#missingGridCounterStats').html(
+			'<span class="badge rounded-pill text-bg-success">' + escapeHtml(missingGridMessage('msgStatUpdated').replace('%s', missingGridStats.updated)) + '</span> ' +
+			'<span class="badge rounded-pill text-bg-secondary">' + escapeHtml(missingGridMessage('msgStatNotfound').replace('%s', missingGridStats.notfound)) + '</span> ' +
+			'<span class="badge rounded-pill text-bg-danger">' + escapeHtml(missingGridMessage('msgStatError').replace('%s', missingGridStats.error)) + '</span>'
+		);
+	} else {
+		$('#missingGridCounterStats').empty();
+	}
+}
+
+function missingGridMessage(key) {
+	return $('#missingGridDialogContent').data(key);
+}
+
+function startMissingGridLookup() {
+	inMissingGridLookup = true;
+	missingGridLookupFinished = false;
+	missingGridStats = { updated: 0, notfound: 0, error: 0 };
+
+	missingGridDialog.getButton('missingGridStartBtn').disable();
+	missingGridDialog.getButton('missingGridCancelBtn').enable();
+
+	$('#missingGridStatus').text(missingGridMessage('msgRunning'));
+	updateMissingGridCounter();
+
+	processNextMissingGridItem();
+}
+
+function processNextMissingGridItem() {
+	if (!inMissingGridLookup) return;
+
+	var elements = $('#missingGridTable tbody input.row-check:checked');
+	var remaining = elements.length;
+
+	if (remaining == 0) {
+		finishMissingGridLookup(false);
+		return;
+	}
+
+	var row = elements.first().closest('tr');
+	var id = row.attr('id')?.replace(/\D/g, ''); // Removes non-numeric characters
+
+	updateMissingGridCounter();
+	row.find('.lookupResult').html('<i class="fa fa-spinner fa-spin"></i>');
+
 	$.ajax({
-		url: base_url + 'index.php/dbtools/fixMissingGrids',
+		url: base_url + 'index.php/dbtools/lookupMissingGrid',
+		type: 'post',
 		data: {
-			type: 'grids',
-			stationid: $('#dbtools_station_id').val()
+			qsoID: id
 		},
-		type: 'POST',
-		success: function (response) {
-			$('#updateGridsBtn').prop("disabled", false).removeClass("running");
-			$('.result').html(response);
+		dataType: 'json',
+		success: function (data) {
+			updateMissingGridResultRow(row, data ?? {});
+			row.find('.row-check').prop('checked', false);
+			setTimeout(processNextMissingGridItem, 50);
 		},
-		error: function(xhr, status, error) {
-			$('#updateGridsBtn').prop("disabled", false).removeClass("running");
-			$('.result').html(error);
+		error: function () {
+			updateMissingGridResultRow(row, { status: 'error' });
+			row.find('.row-check').prop('checked', false);
+			setTimeout(processNextMissingGridItem, 50);
 		}
 	});
+}
+
+function updateMissingGridResultRow(row, data) {
+	var result = row.find('.lookupResult');
+	if (data.status == 'updated') {
+		missingGridStats.updated++;
+		result.html('<span class="text-success"><i class="fa fa-check"></i> ' + escapeHtml(data.gridsquare) + '</span>');
+	} else if (data.status == 'error') {
+		missingGridStats.error++;
+		result.html('<span class="text-danger">' + escapeHtml(missingGridMessage('msgError')) + '</span>');
+	} else if (data.status == 'skipped') {
+		missingGridStats.notfound++;
+		result.html('<span class="text-muted">' + escapeHtml(missingGridMessage('msgSkipped')) + '</span>');
+	} else {
+		missingGridStats.notfound++;
+		result.html('<span class="text-muted">' + escapeHtml(missingGridMessage('msgNotfound')) + '</span>');
+	}
+
+	updateMissingGridCounter();
+}
+
+function finishMissingGridLookup(cancelled) {
+	inMissingGridLookup = false;
+	missingGridLookupFinished = true;
+
+	updateMissingGridCounter();
+
+	var summary = missingGridMessage('msgFinished')
+		.replace('%s', missingGridStats.updated)
+		.replace('%s', missingGridStats.notfound)
+		.replace('%s', missingGridStats.error);
+
+	if (cancelled) {
+		summary = missingGridMessage('msgCancelled') + ' ' + summary;
+	}
+
+	$('#missingGridStatus').text(summary);
+
+	missingGridDialog.getButton('missingGridCancelBtn').disable();
 }
 
 function checkDxcc() {
