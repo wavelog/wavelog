@@ -97,7 +97,7 @@ async function set_new_qrg() {
 		return;
 	}
 
-	let unit = $('#qrg_unit').html();
+	let unit = window.__qrg_unit_focus || $('#qrg_unit').html();
 
 	// check if the input contains a unit and parse the qrg
 	if (/^\d+(\.\d+)?\s*(hz|h)$/i.test(new_qrg)) {
@@ -148,7 +148,7 @@ async function set_new_qrg() {
 
 	$('#frequency').val(qrg_hz);
 	$('#freq_calculated').val(parsed_qrg);
-	$('#band').val(new_band);
+	if (new_band) { $('#band').val(new_band).trigger('change'); }
 
 	// Clear the manual update flag
 	window.user_updating_frequency = false;
@@ -164,5 +164,9 @@ $('#frequency').on('change', function () {
 
 $('#freq_calculated').on('input', function () {
 	$(this).val($(this).val().replace(',', '.'));
+});
+
+$('#freq_calculated').on('focusin', function () {
+	window.__qrg_unit_focus = $('#qrg_unit').html();
 });
 
