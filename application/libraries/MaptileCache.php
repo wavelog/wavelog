@@ -26,9 +26,13 @@ class MaptileCache {
 			return $cache;
 		}
 		$CI = &get_instance();
+		$cache_adapter = $CI->config->item('cache_adapter') ?? 'file';
+		$cache_backup = $CI->config->item('cache_backup') ?? 'file';
+		// apcu has a default limit of 32MB which is too small for storing map tiles
+		// so we fall back to file. redis is also a good option if available.
 		$CI->load->driver('cache', [
-			'adapter' => $CI->config->item('cache_adapter') ?? 'file',
-			'backup' => $CI->config->item('cache_backup') ?? 'file',
+			'adapter' => $cache_adapter === 'apcu' ? 'file' : $cache_adapter,
+			'backup' => $cache_backup === 'apcu' ? 'file' : $cache_backup,
 			'key_prefix' => $CI->config->item('cache_key_prefix') ?? '',
 		]);
 		$cache = $CI->cache;
