@@ -126,8 +126,11 @@ class Dashboard extends CI_Controller {
 
 		$data['almost_current_streak'] = $data['current_streak'];
 
-		// Load Dashboard stats (countries + QSL stats in one query)
-		$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array);
+		// Load Dashboard stats (countries + QSL stats in one query).
+		// DXCC groups are band-based: HF only counts bands the user checked
+		// for the DXCC award, VHF+ is derived from the band's group.
+		$this->load->model('bands');
+		$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array, $this->bands->get_user_bands('dxcc'));
 
 		// Country stats
 		$data['unique_callsigns'] = $stats['Unique_Callsigns'];
