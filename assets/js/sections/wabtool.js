@@ -93,10 +93,12 @@ function wabtoolRenderApplyResult(data) {
 	$('.applyresult').html(html);
 }
 
-function wabtoolStartScan() {
+function wabtoolStartScan(clearApplyResult) {
 	$('#startScan').addClass('running').prop('disabled', true);
 	$('.scanresult').html('');
-	$('.applyresult').html('');
+	if (clearApplyResult !== false) {
+		$('.applyresult').html('');
+	}
 	$('#applyWab').addClass('d-none');
 	$.ajax({
 		url: site_url + '/wabtool/scan',
@@ -231,7 +233,8 @@ function bindWabTool() {
 					},
 					success: function(data) {
 						wabtoolRenderApplyResult(data);
-						wabtoolStartScan(); // refresh the preview table
+						// refresh the preview table, keep the result alert visible
+						wabtoolStartScan(false);
 					},
 					error: function() {
 						wabtoolRenderApplyResult(null);
