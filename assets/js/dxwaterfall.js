@@ -6267,6 +6267,11 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     // The change event will trigger set_qrg() which updates freq_calculated display
     $('#frequency').val(frequencyInKHz * 1000);
 
+    var wfBand = frequencyToBand(frequencyInKHz * 1000);
+    if (wfBand && $('#band').val() != wfBand) {
+        $('#band').val(wfBand).trigger('change');
+    }
+
     // Trigger change event to update calculated fields and unit display
     // Skip trigger when called from waterfall to prevent recursive updates
     // Exception: If no radio is selected, update display even when called from waterfall
