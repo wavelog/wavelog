@@ -4338,8 +4338,13 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
-	/* Return combined countries breakdown + QSL stats in one query */
-	function dashboard_stats_batch($StationLocationsArray = null) {
+	/* Return combined countries breakdown + QSL stats in one query
+	 *
+	 * $dxcc_bands: band names that count toward the HF DXCC group (the user's
+	 * bandxuser bands checked for the DXCC award). When null (Visitor, API)
+	 * the band-based DXCC grouping is skipped entirely.
+	 */
+	function dashboard_stats_batch($StationLocationsArray = null, $dxcc_bands = null) {
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -4399,37 +4404,49 @@ class Logbook_model extends CI_Model {
 
 			$query = $this->db->query($sql);
 
-			// HF / SAT / VHF+ DXCC split, based on propagation mode and frequency
+			// Band-based DXCC split: SAT by propagation mode, VHF+ by the
+			// band's group, HF by the user's DXCC award bands. QSOs on other
+			// bands (unchecked, unknown or empty COL_BAND) belong to no group.
 			$dxcc_groups = [];
-			$sql_groups = "SELECT
-				CASE WHEN t.COL_PROP_MODE = 'SAT' THEN 'sat'
-					WHEN COALESCE(t.COL_FREQ, 0) >= 50000000 THEN 'vhf'
-					ELSE 'hf' END as grp,
-				COUNT(*) as qsos,
-				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as worked,
-				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted,
-				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as qsl,
-				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_qsl,
-				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as lotw,
-				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_lotw,
-				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as confirmed
-				FROM " . $this->config->item('table_name') . " t
-				LEFT JOIN dxcc_entities d ON d.adif = t.col_dxcc
-				WHERE t.station_id IN (" . $location_list . ")
-				GROUP BY grp";
+			if (is_array($dxcc_bands)) {
+				$bindings = [];
+				$sql_groups = "SELECT
+					CASE WHEN t.COL_PROP_MODE = 'SAT' THEN 'sat'
+						WHEN b.bandgroup IN ('vhf','uhf','shf') THEN 'vhf'
+						" . (empty($dxcc_bands) ? '' : "WHEN UPPER(t.COL_BAND) IN (" . implode(',', array_fill(0, count($dxcc_bands), '?')) . ") THEN 'hf'") . "
+						ELSE NULL END as grp,
+					COUNT(*) as qsos,
+					COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as worked,
+					COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted,
+					COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as qsl,
+					COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_qsl,
+					COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as lotw,
+					COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_lotw,
+					COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as confirmed
+					FROM " . $this->config->item('table_name') . " t
+					LEFT JOIN dxcc_entities d ON d.adif = t.col_dxcc
+					LEFT JOIN bands b ON b.band = t.COL_BAND
+					WHERE t.station_id IN (" . $location_list . ")
+					GROUP BY grp
+					HAVING grp IS NOT NULL";
 
-			$query_groups = $this->db->query($sql_groups);
-			foreach ($query_groups->result() as $group_row) {
-				$dxcc_groups[$group_row->grp] = [
-					'qsos' => (int) $group_row->qsos,
-					'worked' => (int) $group_row->worked,
-					'deleted' => (int) $group_row->deleted,
-					'qsl' => (int) $group_row->qsl,
-					'deleted_qsl' => (int) $group_row->deleted_qsl,
-					'lotw' => (int) $group_row->lotw,
-					'deleted_lotw' => (int) $group_row->deleted_lotw,
-					'confirmed' => (int) $group_row->confirmed,
-				];
+				foreach ($dxcc_bands as $band) {
+					$bindings[] = strtoupper($band);
+				}
+
+				$query_groups = $this->db->query($sql_groups, $bindings);
+				foreach ($query_groups->result() as $group_row) {
+					$dxcc_groups[$group_row->grp] = [
+						'qsos' => (int) $group_row->qsos,
+						'worked' => (int) $group_row->worked,
+						'deleted' => (int) $group_row->deleted,
+						'qsl' => (int) $group_row->qsl,
+						'deleted_qsl' => (int) $group_row->deleted_qsl,
+						'lotw' => (int) $group_row->lotw,
+						'deleted_lotw' => (int) $group_row->deleted_lotw,
+						'confirmed' => (int) $group_row->confirmed,
+					];
+				}
 			}
 
 			if ($query->num_rows() > 0) {

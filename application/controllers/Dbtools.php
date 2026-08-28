@@ -134,18 +134,29 @@ class Dbtools extends CI_Controller {
 		$this->load->view('dbtools/showStateQsos', $data);
 	}
 
-	public function fixMissingGrids() {
+	// Fetches the QSOs with missing gridsquare and renders the list used by the callbook lookup dialog
+	public function missingGridList() {
 		if(!clubaccess_check(9)) return;
 
-		$type = $this->input->post('type', true);
-		$stationid = $this->input->post('stationid', true);
 		$this->load->model('dbtools_model');
-		$result = $this->dbtools_model->check_missing_grid($stationid);
 
-		$data['result'] = $result;
-		$data['type'] = $type;
+		$data['stationid'] = $this->input->post('stationid', true);
+		$data['qsos'] = $this->dbtools_model->getMissingGridQsos($data['stationid']);
 
-		$this->load->view('dbtools/showUpdateResult', $data);
+		$this->load->view('dbtools/missinggridlist', $data);
+	}
+
+	// Does the callbook lookup for a single QSO and sets the gridsquare if one is found.
+	// Called one QSO at a time from the dialog, so progress can be shown and the run can be cancelled.
+	public function lookupMissingGrid() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('dbtools_model');
+
+		$result = $this->dbtools_model->lookup_missing_grid((int)$this->input->post('qsoID', true));
+
+		header("Content-Type: application/json");
+		print json_encode($result);
 	}
 
 	function fixDxccSelected() {

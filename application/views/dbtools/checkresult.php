@@ -15,9 +15,6 @@ switch ($type) {
 	case 'checkcontinent':
 		check_qsos_missing_continent($result);
 		break;
-	case 'checkgrids':
-		check_missing_grids($result);
-		break;
 	case 'checkdxcc':
 		check_dxcc($result, $custom_date_format);
 		break;
@@ -69,17 +66,6 @@ function check_qsos_missing_continent($result) { ?>
 	</button>
 	<?php }
 }
-
-function check_missing_grids($result) { ?>
-	<h5><?= __("Gridsquare Check Results") ?></h5>
-	<?= __("QSOs to update found:"); ?> <?php echo count($result); ?>
-	<br/>
-	<?php if (count($result) > 0) { ?>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateGridsBtn" onclick="fixMissingGrids()">
-		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
-	</button>
-	<?php } ?>
-<?php }
 
 function check_dxcc($result, $custom_date_format) { ?>
 	<h5><?= __("DXCC Check Results") ?></h5>
