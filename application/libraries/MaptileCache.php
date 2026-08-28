@@ -4,10 +4,14 @@ class MaptileCache {
 
 	public const TILE_TTL = 2592000;
 
+	public const CONFIG_TTL = 60;
+
+	public const CONFIG_KEY = 'maptile:config';
+
 	public const DEFAULT_SERVER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 	public static function key(string $template, int $z, int $x, int $y): string {
-		return 'tile:' . md5($template) . ':' . $z . ':' . $x . ':' . $y;
+		return 'tile:' . hash('xxh128', $template) . ':' . $z . ':' . $x . ':' . $y;
 	}
 
 	// Same rotation as Leaflet's own TileLayer.getSubdomain() and Wavelog\StaticMapImage\TileLayer::getSubdomain()
@@ -37,5 +41,34 @@ class MaptileCache {
 
 	public static function save(string $template, int $z, int $x, int $y, string $png): bool {
 		return self::driver()->save(self::key($template, $z, $x, $y), $png, self::TILE_TTL);
+	}
+
+	public static function config(): array {
+		$cache = self::driver();
+		$config = $cache->get(self::CONFIG_KEY);
+		if ($config === false) {
+			$CI = &get_instance();
+			$CI->load->is_loaded('options_model') ?: $CI->load->model('options_model');
+			$config = [
+				$CI->options_model->item('map_tile_server') ?? self::DEFAULT_SERVER,
+				$CI->options_model->item('map_tile_subdomains') ?? 'abc',
+			];
+			$cache->save(self::CONFIG_KEY, $config, self::CONFIG_TTL);
+		}
+		return $config;
+	}
+
+	public static function flush_config(): void {
+		self::driver()->delete(self::CONFIG_KEY);
+	}
+
+	public static function client_url(): string {
+		static $url = null;
+		if ($url === null) {
+			[$upstream, $subdomains] = self::config();
+			$version = substr(hash('xxh128', $upstream . $subdomains), 0, 8);
+			$url = base_url('tiles/{z}/{x}/{y}.png?provider=' . $version);
+		}
+		return $url;
 	}
 }

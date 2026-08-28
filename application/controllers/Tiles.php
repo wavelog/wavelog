@@ -24,10 +24,8 @@ class Tiles extends CI_Controller {
 			$this->bail(404);
 		}
 
-		$this->load->model('options_model');
 		$this->load->library('MaptileCache');
-		$upstream = $this->options_model->item('map_tile_server') ?? MaptileCache::DEFAULT_SERVER;
-		$subdomains = $this->options_model->item('map_tile_subdomains') ?? 'abc';
+		[$upstream, $subdomains] = MaptileCache::config();
 
 		$png = MaptileCache::get($upstream, $z, $x, $y);
 

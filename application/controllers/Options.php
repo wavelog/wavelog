@@ -407,6 +407,7 @@ class Options extends CI_Controller {
 				$saved = $this->optionslib->update('map_tile_subdomains', $this->input->post('subdomain_system', false));
 			}
 			$saved = $this->optionslib->update('map_tile_server_copyright', $map_tile_server_copyright);
+			MaptileCache::flush_config();
 
 			// Also clean up static map images
 			if (!$this->load->is_loaded('staticmap_model')) {

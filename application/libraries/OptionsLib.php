@@ -35,7 +35,8 @@ class OptionsLib {
         }
 
         if ($option_name === 'map_tile_server') {
-            return base_url('tiles/{z}/{x}/{y}.png');
+            $this->CI->load->is_loaded('MaptileCache') ?: $this->CI->load->library('MaptileCache');
+            return \MaptileCache::client_url();
         }
 
         if (!array_key_exists($option_name, $this->cache)) {
