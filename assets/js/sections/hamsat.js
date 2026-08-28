@@ -131,6 +131,17 @@ function loadActivationsTable(rows, show_workable_only) {
 		} else {
 			callstring = "<span class=\"callsign\">"+activation.callsign+"</span>";
 		}
+		var lotw_hint = "";
+		if (activation.last_lotw_upload != null) {
+			if (activation.last_lotw_upload > 365) {
+				lotw_hint = "lotw_info_red";
+			} else if (activation.last_lotw_upload > 30) {
+				lotw_hint = "lotw_info_orange";
+			} else if (activation.last_lotw_upload > 7) {
+				lotw_hint = "lotw_info_yellow";
+			}
+			callstring = callstring + " <a href=\"https://lotw.arrl.org/lotwuser/act?act="+activation.callsign+"\" target=\"_blank\"><small id=\"lotw_info\" class=\"badge bg-success "+lotw_hint+"\" data-bs-toggle=\"tooltip\" title=\""+lang_last_lotw_upload+" "+activation.last_lotw_upload+"\">L</small></a>";
+		}
 		callstring = callstring + " <a target=\"_blank\" href=\"https://www.qrz.com/db/"+activation.callsign+"\"><img width=\"16\" height=\"16\" src=\""+base_url+"images/icons/qrz.png\" alt=\""+lang_qrz_lookup+"\"></a>";
 		data.push(callstring);
 		data.push(activation.comment);
