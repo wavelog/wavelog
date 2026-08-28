@@ -323,6 +323,7 @@ msgstr "Zones"
 #: application/controllers/Activationplanner.php:33
 #: application/controllers/Awards.php:2620
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2664
 msgid "ITU Zones"
 msgstr "ITU Zones"
 
@@ -521,6 +522,13 @@ msgstr "Awards"
 #: application/controllers/Awards.php:2837
 #: application/controllers/Awards.php:2912
 #: application/controllers/Awards.php:3054
+#: application/controllers/Awards.php:2472
+#: application/controllers/Awards.php:2664
+#: application/controllers/Awards.php:2794
+#: application/controllers/Awards.php:2868
+#: application/controllers/Awards.php:2881
+#: application/controllers/Awards.php:2956
+#: application/controllers/Awards.php:3098
 #, php-format
 msgid "Awards - %s"
 msgstr "Awards - %s"
@@ -574,6 +582,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/views/awards/wab/list.php:5
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -837,30 +846,36 @@ msgstr "WAIP"
 #: application/controllers/Awards.php:2750
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:210
+#: application/controllers/Awards.php:2794
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2824
+#: application/controllers/Awards.php:2868
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2837
 #: application/views/interface_assets/header.php:220
+#: application/controllers/Awards.php:2881
 msgid "73 on 73"
 msgstr "73 op 73"
 
 #: application/controllers/Awards.php:2912
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2956
 msgid "WPX"
 msgstr "WPX"
 
 #: application/controllers/Awards.php:3054
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:285
+#: application/controllers/Awards.php:3098
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:3098
+#: application/controllers/Awards.php:3142
 msgid "Awards - AMSAT Rover"
 msgstr "Awards - AMSAT Rover"
 
@@ -1090,6 +1105,7 @@ msgstr "Geen gebruiker heeft Clublog geconfigureerd."
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:511
 #: application/views/view_log/qso.php:516
+#: application/views/awards/wab/index.php:152
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1328,6 +1344,8 @@ msgstr "Tel QSO's op basis van ..."
 #: application/views/view_log/qso.php:621
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/awards/wab/index.php:188
+#: application/views/awards/wab/list.php:7
 msgid "Gridsquare"
 msgstr "Locatorvak"
 
@@ -2151,6 +2169,7 @@ msgstr "Logboek"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:62 application/views/user/edit.php:753
 #: application/views/user/edit.php:1021 application/views/visitor/mini.php:187
+#: application/views/awards/wab/index.php:120
 msgid "QSL"
 msgstr "QSL"
 
@@ -2202,6 +2221,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:482
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/views/awards/wab/index.php:128
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2244,6 +2264,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:299
 #: application/views/timeline/index.php:70 application/views/user/edit.php:755
 #: application/views/user/edit.php:1039 application/views/user/edit.php:1113
+#: application/views/awards/wab/index.php:136
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2357,6 +2378,8 @@ msgstr "Alle callbook opzoekingen zijn mislukt of leverden geen resultaten op."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/awards/wab/index.php:69
+#: application/views/awards/wab/list.php:11
 msgid "Mode"
 msgstr "Modus"
 
@@ -2640,6 +2663,8 @@ msgstr "Afstand"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/awards/wab/index.php:60
+#: application/views/awards/wab/list.php:10
 msgid "Band"
 msgstr "Band"
 
@@ -5109,6 +5134,10 @@ msgstr "Verschil"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1005
 #: application/views/visitor/layout/footer.php:168
+#: application/views/awards/wab/index.php:62
+#: application/views/awards/wab/index.php:71
+#: application/views/awards/wab/index.php:87
+#: application/views/awards/wab/index.php:99
 msgid "All"
 msgstr "Alles"
 
@@ -5256,6 +5285,7 @@ msgstr "Geactiveerde locatorvakken"
 #: application/views/timeline/index.php:310
 #: application/views/timeline/index.php:346
 #: application/views/timeline/index.php:381
+#: application/views/awards/wab/index.php:85
 msgid "Satellite"
 msgstr "Satelliet"
 
@@ -5276,6 +5306,7 @@ msgstr "Satelliet"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:72
 #: application/views/statistics/antennaanalytics.php:126
+#: application/views/awards/wab/index.php:97
 msgid "Orbit"
 msgstr "Baan"
 
@@ -5303,6 +5334,7 @@ msgstr "Baan"
 #: application/views/countqsoby/index.php:154
 #: application/views/gridmap/index.php:165
 #: application/views/timeline/index.php:58
+#: application/views/awards/wab/index.php:112
 msgid "Confirmation"
 msgstr "Bevestiging"
 
@@ -5330,6 +5362,7 @@ msgstr "Bevestiging"
 #: application/views/awards/wwff/index.php:116
 #: application/views/countqsoby/index.php:186
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1047
+#: application/views/awards/wab/index.php:144
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -5351,6 +5384,7 @@ msgstr "Markeringen wissen"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/awards/wab/index.php:186
 msgid "Latitude"
 msgstr "Breedtegraad"
 
@@ -5362,6 +5396,7 @@ msgstr "Breedtegraad"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/awards/wab/index.php:187
 msgid "Longitude"
 msgstr "Lengtegraad"
 
@@ -5603,6 +5638,7 @@ msgstr "Ga"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:358
 #: application/views/qso/index.php:757 application/views/user/edit.php:1385
+#: application/views/awards/wab/index.php:45
 msgid "Clear"
 msgstr "Wissen"
 
@@ -5743,6 +5779,7 @@ msgstr "Niets gevonden!"
 #: application/views/visitor/mini.php:183
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
+#: application/views/awards/wab/list.php:8
 msgid "Callsign"
 msgstr "Roepnaam"
 
@@ -5856,6 +5893,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/awards/wab/list.php:9
 msgid "Date"
 msgstr "Datum"
 
@@ -7002,6 +7040,8 @@ msgstr ""
 #: application/views/awards/was/index.php:34
 #: application/views/awards/wwff/index.php:19
 #: application/views/awards/wwff/index.php:27
+#: application/views/awards/wab/index.php:13
+#: application/views/awards/wab/index.php:29
 msgid "Award Info"
 msgstr "Award informatie"
 
@@ -7024,6 +7064,7 @@ msgstr ""
 #: application/views/awards/wab/index.php:16
 #: application/views/awards/waja/index.php:29
 #: application/views/awards/wwff/index.php:23
+#: application/views/awards/wab/index.php:17
 #, php-format
 msgid "For more information, please visit: %s."
 msgstr "Voor meer informatie, bezoek: %s."
@@ -7128,6 +7169,8 @@ msgstr "Ga naar Stationprofiel"
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:342
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
+#: application/views/awards/wab/index.php:41
+#: application/views/awards/wab/index.php:52
 msgid "Filters"
 msgstr "Filters"
 
@@ -7417,6 +7460,7 @@ msgstr "Tabel"
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
+#: application/views/awards/wab/index.php:168
 msgid "Map"
 msgstr "Kaart"
 
@@ -7442,6 +7486,7 @@ msgstr "Counties-kaart tonen"
 #: application/views/awards/wapc/index.php:63
 #: application/views/awards/was/index.php:63
 #: application/views/awards/wpx/index.php:25
+#: application/views/awards/wab/index.php:53
 msgid "Press 'Apply' to update the table"
 msgstr "Druk op 'Toepassen' om de tabel te updaten"
 
@@ -7464,6 +7509,7 @@ msgstr "Druk op 'Toepassen' om de tabel te updaten"
 #: application/views/awards/was/index.php:112
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wwff/index.php:128
+#: application/views/awards/wab/index.php:58
 msgid "Band & Mode"
 msgstr "Band & Modus"
 
@@ -7486,6 +7532,7 @@ msgstr "Band & Modus"
 #: application/views/awards/was/index.php:149
 #: application/views/awards/wpx/index.php:142
 #: application/views/awards/wwff/index.php:156
+#: application/views/awards/wab/index.php:159
 msgid "Apply"
 msgstr "Toepassen"
 
@@ -7562,6 +7609,7 @@ msgstr "Gewerkt"
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/awards/wab/list.php:12
 msgid "Confirmed"
 msgstr "Bevestigd"
 
@@ -8005,6 +8053,7 @@ msgstr "Totaal (excl SAT)"
 #: application/views/awards/wapc/index.php:212
 #: application/views/awards/was/index.php:203
 #: application/views/awards/wpx/index.php:181
+#: application/views/awards/wab/index.php:20
 msgid "Total worked"
 msgstr "Totaal gewerkt"
 
@@ -9235,10 +9284,12 @@ msgid "Grids Confirmed"
 msgstr "Locatorvakken bevestigd"
 
 #: application/views/awards/wab/index.php:13
+#: application/views/awards/wab/index.php:14
 msgid "WAB - Worked All Britain Award"
 msgstr "WAB - Worked All Britain Award"
 
 #: application/views/awards/wab/index.php:14
+#: application/views/awards/wab/index.php:15
 msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
@@ -9247,6 +9298,7 @@ msgstr ""
 "radioamateurs aan om alle vierkanten in Groot-Brittannië te werken."
 
 #: application/views/awards/wab/index.php:15
+#: application/views/awards/wab/index.php:16
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
@@ -9256,6 +9308,7 @@ msgstr ""
 "pagina die hieronder is gelinkt."
 
 #: application/views/awards/wab/index.php:17
+#: application/views/awards/wab/index.php:18
 msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
@@ -9264,10 +9317,12 @@ msgstr ""
 "geldige WAB-locatorvak bevatten)"
 
 #: application/views/awards/wab/index.php:28
+#: application/views/awards/wab/index.php:171
 msgid "List"
 msgstr "Lijst"
 
 #: application/views/awards/wab/list.php:5
+#: application/views/awards/wab/list.php:6
 msgid "WAB Square"
 msgstr "WAB-vierkant"
 
@@ -12863,7 +12918,7 @@ msgstr "Ja"
 #: application/views/stationsetup/locationlist.php:47
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:694 application/views/user/edit.php:698
-#: application/views/user/edit.php:788
+#: application/views/user/edit.php:788 application/views/awards/wab/list.php:37
 msgid "No"
 msgstr "Nee"
 
@@ -21714,8 +21769,8 @@ msgid ""
 "does not work on its own line). To deactivate, use %s:"
 msgstr ""
 "Ontvangen berichten moeten worden voorafgegaan door een punt %s, verzonden "
-"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - d.w."
-"z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
+"berichten met een komma %s. De laatste twee regels zijn gelijkwaardig - "
+"d.w.z. spaties maken niet uit en de volgorde evenmin. Elk van de vier "
 "bovenstaande regels toont een type uitwisseling (alleen serie, alleen tekst "
 "of beide); merk op dat de verzonden uitwisseling 'sticky' is: eenmaal "
 "ingesteld, wordt deze automatisch meegenomen in de volgende QSO's (wanneer "
@@ -24403,6 +24458,63 @@ msgstr "Clublog Log Zoekopdracht"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-gebruiker. Laatste upload was "
+
+#: application/controllers/Awards.php:2572
+msgid "England"
+msgstr ""
+
+#: application/controllers/Awards.php:2573
+msgid "Isle of Man"
+msgstr ""
+
+#: application/controllers/Awards.php:2574
+msgid "Northern Ireland"
+msgstr ""
+
+#: application/controllers/Awards.php:2575
+msgid "Jersey"
+msgstr ""
+
+#: application/controllers/Awards.php:2576
+msgid "Scotland"
+msgstr ""
+
+#: application/controllers/Awards.php:2577
+msgid "Guernsey"
+msgstr ""
+
+#: application/controllers/Awards.php:2578
+msgid "Wales"
+msgstr ""
+
+#: application/views/awards/wab/index.php:19
+msgid "Total squares"
+msgstr ""
+
+#: application/views/awards/wab/index.php:21
+msgid "Squares by DXCC"
+msgstr ""
+
+#: application/views/awards/wab/index.php:22
+#: application/views/awards/wab/index.php:44
+msgid "Go to square"
+msgstr ""
+
+#: application/views/awards/wab/index.php:23
+msgid "WAB square not found"
+msgstr ""
+
+#: application/views/awards/wab/index.php:34
+msgid "View a map of worked / confirmed WAB squares"
+msgstr ""
+
+#: application/views/awards/wab/index.php:43
+msgid "WAB square"
+msgstr ""
+
+#: application/views/awards/wab/list.php:37
+msgid "Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
+msgstr ""
 
 #~ msgid "Count QSO as Confirmed via"
 #~ msgstr "Tel QSO als Bevestigd via"

@@ -2464,6 +2464,7 @@ class Awards extends CI_Controller {
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
+		    'assets/js/leaflet/geocoding.js',
 		    'assets/js/sections/wab.js'
 	    ];
 
@@ -2526,13 +2527,56 @@ class Awards extends CI_Controller {
 
 	    if ($logbooks_locations_array) {
 		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
-		    $wab_array = $this->wab->get_wab_list($location_list, $postdata);
+		    $qsos = $this->wab->get_wab_qsos($location_list, $postdata);
 	    } else {
-		    $location_list = null;
-		    $wab_array = null;
+		    $qsos = array();
 	    }
 
-	    $data['wab_array'] = $wab_array;
+	    // WAB square -> DXCC prefix from the generated mapping (assign_wab_dxcc.php)
+	    $dxcc_map = array();
+	    $dxcc_file = FCPATH . 'assets/js/sections/wab_dxcc.json';
+	    if (is_readable($dxcc_file)) {
+		    $dxcc_map = json_decode(file_get_contents($dxcc_file), true) ?: array();
+	    }
+	    foreach ($qsos as $qso) {
+		    $qso->dxcc = $dxcc_map[strtoupper($qso->col_sig_info)] ?? '';
+	    }
+
+	    // Order by DXCC, then WAB square, then QSO date
+	    $dxcc_order = array('G', 'GD', 'GI', 'GJ', 'GM', 'GU', 'GW', '');
+	    usort($qsos, function ($a, $b) use ($dxcc_order) {
+		    $oa = array_search($a->dxcc, $dxcc_order, true);
+		    $ob = array_search($b->dxcc, $dxcc_order, true);
+		    $oa = ($oa === false) ? count($dxcc_order) : $oa;
+		    $ob = ($ob === false) ? count($dxcc_order) : $ob;
+		    if ($oa !== $ob) {
+			    return $oa <=> $ob;
+		    }
+		    $cmp = strcmp($a->col_sig_info, $b->col_sig_info);
+		    if ($cmp !== 0) {
+			    return $cmp;
+		    }
+		    return strcmp($a->col_time_on, $b->col_time_on);
+	    });
+
+	    // Date format from user settings, falling back to the global config
+	    if ($this->session->userdata('user_date_format')) {
+		    $date_format = $this->session->userdata('user_date_format');
+	    } else {
+		    $date_format = $this->config->item('qso_date_format');
+	    }
+	    $data['date_format'] = $date_format;
+
+	    $data['qsos'] = $qsos;
+	    $data['dxcc_names'] = array(
+		    'G' => __("England"),
+		    'GD' => __("Isle of Man"),
+		    'GI' => __("Northern Ireland"),
+		    'GJ' => __("Jersey"),
+		    'GM' => __("Scotland"),
+		    'GU' => __("Guernsey"),
+		    'GW' => __("Wales"),
+	    );
 	    $data['postdata']['band'] = $postdata['band'];
 	    $data['postdata']['mode'] = $postdata['mode'];
 	    $data['postdata']['sat'] = $postdata['sat'];
