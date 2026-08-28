@@ -167,10 +167,10 @@ class Wabtool extends CI_Controller {
 			return;
 		}
 
-		// extent of the grid: 6-char subsquare 5'x2.5', 8-char extended 0.5'x0.25'
+		// half-extent of the grid: 6-char subsquare 5'x2.5', 8-char extended 0.5'x0.25'
 		if (strlen($result['grid']) === 8) {
-			$dLng = 0.5 / 60;
-			$dLat = 0.25 / 60;
+			$dLng = 0.25 / 60;
+			$dLat = 0.125 / 60;
 		} else {
 			$dLng = 2.5 / 60;
 			$dLat = 1.25 / 60;
