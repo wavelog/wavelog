@@ -76,6 +76,7 @@ function applyWwffFilters() {
 	if ($('#wwffmaptab').hasClass('active')) {
 		refresh_wwff_map();
 	}
+	bootstrap.Dropdown.getOrCreateInstance(document.getElementById('wwffFilterDropdown')).hide();
 }
 
 function load_wwff_map2(data) {

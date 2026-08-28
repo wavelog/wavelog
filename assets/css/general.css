@@ -2646,7 +2646,21 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 /* Sizing for the centered filter dropdown shared by the award pages */
 .dropdown-filters-responsive {
 	width: min(850px, 90vw);
-	min-width: 600px;
+	min-width: min(600px, 90vw);
+}
+
+/* Chip spacing inside award filter dropdowns */
+.filterbody .form-check-inline {
+	margin-right: 0.25rem;
+}
+
+/* Grouped sections inside award filter dropdowns */
+.filter-section {
+	background-color: rgba(var(--bs-body-color-rgb, 128,128,128), 0.05);
+	border: 1px solid rgba(var(--bs-body-color-rgb, 128,128,128), 0.15);
+	border-radius: 0.5rem;
+	padding: 0.75rem 0.75rem 0;
+	margin-bottom: 1rem;
 }
 
 /* Summary legend swatches above the prefecture grid */
