@@ -238,14 +238,13 @@ class Wab extends CI_Model {
 	}
 
 	/*
-	 * WAB tool: QSOs with a gridsquare (>= 6 chars) that have no SIG set
-	 * (or are marked WAB with an empty square). QSOs carrying another SIG
-	 * (e.g. SOTA) are never returned.
+	 * WAB tool: shared WHERE for the candidate queries. QSOs with a
+	 * gridsquare (>= 6 chars) that have no SIG set (or are marked WAB with
+	 * an empty square). QSOs carrying another SIG (e.g. SOTA) are never
+	 * returned. $search filters on callsign and gridsquare.
 	 */
-	function get_wab_candidates($station_id = null, $dxcc_ids = null) {
-		$bindings=[];
-		$sql = "select col_primary_key, col_call, col_time_on, col_band, col_gridsquare, station_profile.station_profile_name
-			from " . $this->config->item('table_name') . " thcv
+	private function wab_candidates_sql($station_id, $dxcc_ids, $search, &$bindings) {
+		$sql = "from " . $this->config->item('table_name') . " thcv
 			join station_profile on thcv.station_id = station_profile.station_id
 			where station_profile.user_id = ?
 			and length(col_gridsquare) >= 6
@@ -262,11 +261,74 @@ class Wab extends CI_Model {
 			$bindings = array_merge($bindings, array_map('intval', $dxcc_ids));
 		}
 
-		$sql .= " order by col_time_on desc";
+		if ($search !== '') {
+			$sql .= " and (col_call like ? or col_gridsquare like ?)";
+			$bindings[] = '%' . $search . '%';
+			$bindings[] = '%' . $search . '%';
+		}
+
+		return $sql;
+	}
+
+	/*
+	 * WAB tool: candidate rows for the paginated scan table. $order_col is
+	 * the DataTables column index (1 = date/time, 2 = callsign, 3 = band,
+	 * 4 = grid, 6 = station); the checkbox and square columns are not
+	 * sortable server side. $limit/$offset page the result. A null $limit
+	 * returns everything (bulk apply).
+	 */
+	function get_wab_candidates($station_id = null, $dxcc_ids = null, $search = '', $order_col = 1, $order_dir = 'desc', $limit = null, $offset = 0) {
+		$bindings=[];
+		$sql = "select col_primary_key, col_call, col_time_on, col_band, col_gridsquare, station_profile.station_profile_name
+			" . $this->wab_candidates_sql($station_id, $dxcc_ids, $search, $bindings);
+
+		$sortable = array(1 => 'col_time_on', 2 => 'col_call', 3 => 'col_band', 4 => 'col_gridsquare', 6 => 'station_profile.station_profile_name');
+		$order_by = $sortable[(int)$order_col] ?? 'col_time_on';
+		$order_dir = strtolower((string)$order_dir) === 'asc' ? 'asc' : 'desc';
+		// col_primary_key tiebreaker keeps the order stable across pages
+		$sql .= " order by " . $order_by . " " . $order_dir . ", col_primary_key " . $order_dir;
+
+		if ($limit !== null) {
+			// limit/offset are int-cast inline: CI3 query bindings are escaped
+			// as values, so they cannot be bound as placeholders
+			$sql .= " limit " . (int)$limit . " offset " . (int)$offset;
+		}
 
 		$query = $this->db->query($sql,$bindings);
 
 		return $query;
+	}
+
+	/*
+	 * WAB tool: number of candidate rows (without/with the search filter),
+	 * for the DataTables recordsTotal / recordsFiltered counters
+	 */
+	function count_wab_candidates($station_id = null, $dxcc_ids = null, $search = '') {
+		$bindings=[];
+		$sql = "select count(*) as n " . $this->wab_candidates_sql($station_id, $dxcc_ids, $search, $bindings);
+
+		$query = $this->db->query($sql,$bindings);
+
+		return (int)$query->row()->n;
+	}
+
+	/*
+	 * WAB tool: distinct normalized gridsquares among the candidates, so the
+	 * scan summary can be computed per grid instead of per QSO row
+	 */
+	function get_wab_candidate_grids($station_id = null, $dxcc_ids = null) {
+		$bindings=[];
+		$sql = "select distinct upper(left(trim(col_gridsquare), 8)) as grid
+			" . $this->wab_candidates_sql($station_id, $dxcc_ids, '', $bindings) . "
+			order by grid";
+
+		$query = $this->db->query($sql,$bindings);
+
+		$grids = array();
+		foreach ($query->result() as $row) {
+			$grids[] = $row->grid;
+		}
+		return $grids;
 	}
 
 /*

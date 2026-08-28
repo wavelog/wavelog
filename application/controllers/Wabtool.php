@@ -48,26 +48,44 @@ class Wabtool extends CI_Controller {
 	}
 
 	/*
-	 * AJAX: list QSOs with a gridsquare (>= 6 chars) but no WAB square,
-	 * resolved against the WAB square outlines in wab_geojson.js
+	 * AJAX: one page of QSOs with a gridsquare (>= 6 chars) but no WAB
+	 * square, resolved against the WAB square outlines in wab_geojson.js.
+	 * Speaks the DataTables server-side protocol (draw/start/length/order/
+	 * search) so the log-scale candidate set is never sent in one piece.
+	 * When wabtool_summary is posted (initial scan only), the response also
+	 * carries a whole-log summary computed per distinct grid.
 	 */
 	public function scan() {
 		set_time_limit(3600);
 		header('Content-Type: application/json');
 
 		$station_id = $this->input->post('station_id', true);
+		$station_id = ($station_id !== null && $station_id !== 'all') ? $station_id : null;
+		$search = $this->postSearchTerm();
+
+		// DataTables server-side parameters
+		$draw = (int)$this->input->post('draw', true);
+		$start = max(0, (int)$this->input->post('start', true));
+		$length = (int)$this->input->post('length', true);
+		if ($length <= 0) {
+			$length = 25;
+		}
+		$length = min($length, 200); // keep one page bounded no matter what the client asks for
+
+		$order = $this->input->post('order', true);
+		$orderCol = is_array($order) && isset($order[0]['column']) ? (int)$order[0]['column'] : 1;
+		$orderDir = is_array($order) && isset($order[0]['dir']) ? strtolower($order[0]['dir']) : 'desc';
 
 		$this->load->model('wab');
-		$query = $this->wab->get_wab_candidates(($station_id !== null && $station_id !== 'all') ? $station_id : null, $this->wabDxccIds);
+
+		$filtered = $this->wab->count_wab_candidates($station_id, $this->wabDxccIds, $search);
+		$total = ($search === '') ? $filtered : $this->wab->count_wab_candidates($station_id, $this->wabDxccIds);
+
+		$query = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search, $orderCol, $orderDir, $length, $start);
 
 		$rows = array();
-		$summary = array('qsos_scanned' => 0, 'unique_grids' => 0, 'matched' => 0, 'unmatched' => 0, 'ambiguous' => 0);
-		$seenGrids = array();
-
 		foreach ($query->result() as $qso) {
-			$summary['qsos_scanned']++;
 			$grid = strtoupper(substr(trim($qso->col_gridsquare), 0, 8));
-			$seenGrids[$grid] = true;
 
 			$resolved = $this->resolveGrid($qso->col_gridsquare);
 
@@ -78,15 +96,6 @@ class Wabtool extends CI_Controller {
 				$square = $resolved['square'];
 				$ambiguous = $resolved['ambiguous'];
 				$cornerSquares = $resolved['corner_squares'];
-			}
-
-			if ($square === null) {
-				$summary['unmatched']++;
-			} else {
-				$summary['matched']++;
-				if ($ambiguous) {
-					$summary['ambiguous']++;
-				}
 			}
 
 			$rows[] = array(
@@ -102,32 +111,46 @@ class Wabtool extends CI_Controller {
 			);
 		}
 
-		$summary['unique_grids'] = count($seenGrids);
+		$response = array(
+			'draw' => $draw,
+			'recordsTotal' => $total,
+			'recordsFiltered' => $filtered,
+			'data' => $rows,
+		);
 
-		echo json_encode(array('summary' => $summary, 'rows' => $rows));
+		if ($this->input->post('wabtool_summary') !== null) {
+			$summary = array('qsos_scanned' => $total, 'unique_grids' => 0, 'matched' => 0, 'unmatched' => 0, 'ambiguous' => 0);
+			foreach ($this->wab->get_wab_candidate_grids($station_id, $this->wabDxccIds) as $grid) {
+				$summary['unique_grids']++;
+
+				$resolved = $this->resolveGrid($grid);
+
+				if ($resolved === null || $resolved['square'] === null) {
+					$summary['unmatched']++;
+				} else {
+					$summary['matched']++;
+					if ($resolved['ambiguous']) {
+						$summary['ambiguous']++;
+					}
+				}
+			}
+			$response['summary'] = $summary;
+		}
+
+		echo json_encode($response);
 	}
 
 	/*
 	 * AJAX: write the WAB square into the selected QSOs. Squares are always
 	 * recomputed server side; ownership and the empty-SIG policy are re-checked.
+	 * ids is either a JSON array of primary keys (page/manual selection) or
+	 * the literal string 'ALL' for "everything the scan matches": then the
+	 * candidate set is enumerated server side (station_id + search mirror
+	 * the scan request), so the client never has to ship thousands of ids.
 	 */
 	public function apply() {
 		set_time_limit(3600);
 		header('Content-Type: application/json');
-
-		$ids = $this->input->post('ids');
-		if (is_string($ids)) {
-			$ids = json_decode($ids, true);
-		}
-		if (!is_array($ids) || count($ids) === 0) {
-			echo json_encode(array('error' => __("No QSOs selected")));
-			return;
-		}
-		$ids = array_values(array_filter(array_unique(array_map('intval', $ids))));
-		if (count($ids) === 0) {
-			echo json_encode(array('error' => __("No QSOs selected")));
-			return;
-		}
 
 		$this->load->model('wab');
 		$user_station_ids = array_filter(array_map('intval', explode(',', (string)$this->stations->all_station_ids_of_user())));
@@ -136,27 +159,79 @@ class Wabtool extends CI_Controller {
 			return;
 		}
 
-		$qsos = $this->wab->get_wab_candidates_by_ids($ids, $user_station_ids, $this->wabDxccIds);
-		$skipped = count($ids) - count($qsos);
+		$ids = $this->input->post('ids');
+		if (is_string($ids) && $ids !== 'ALL') {
+			$ids = json_decode($ids, true);
+		}
 
-		$idsBySquare = array();
-		foreach ($qsos as $qso) {
-			$resolved = $this->resolveGrid($qso->col_gridsquare);
-			if ($resolved === null || $resolved['square'] === null) {
-				$skipped++;
-				continue;
+		$skipped = 0;
+
+		if ($ids === 'ALL') {
+			// the candidates query itself enforces ownership, the DXCC
+			// whitelist and the empty-SIG policy
+			$station_id = $this->input->post('station_id', true);
+			$station_id = ($station_id !== null && $station_id !== 'all') ? $station_id : null;
+			$search = $this->postSearchTerm();
+
+			$qsos = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search);
+
+			$idsBySquare = array();
+			foreach ($qsos->result() as $qso) {
+				$resolved = $this->resolveGrid($qso->col_gridsquare);
+				if ($resolved === null || $resolved['square'] === null) {
+					$skipped++;
+					continue;
+				}
+				$idsBySquare[$resolved['square']][] = (int)$qso->col_primary_key;
 			}
-			$idsBySquare[$resolved['square']][] = (int)$qso->col_primary_key;
+		} elseif (is_array($ids) && count($ids) > 0) {
+			$ids = array_values(array_filter(array_unique(array_map('intval', $ids))));
+			if (count($ids) === 0) {
+				echo json_encode(array('error' => __("No QSOs selected")));
+				return;
+			}
+
+			$qsos = $this->wab->get_wab_candidates_by_ids($ids, $user_station_ids, $this->wabDxccIds);
+			$skipped = count($ids) - count($qsos);
+
+			$idsBySquare = array();
+			foreach ($qsos as $qso) {
+				$resolved = $this->resolveGrid($qso->col_gridsquare);
+				if ($resolved === null || $resolved['square'] === null) {
+					$skipped++;
+					continue;
+				}
+				$idsBySquare[$resolved['square']][] = (int)$qso->col_primary_key;
+			}
+		} else {
+			echo json_encode(array('error' => __("No QSOs selected")));
+			return;
 		}
 
 		$updated = 0;
 		$squares = array();
 		foreach ($idsBySquare as $square => $squareIds) {
-			$updated += $this->wab->apply_wab_square($square, $squareIds, $user_station_ids);
+			// chunk the updates so even a very large log never produces one
+			// huge IN (...) statement
+			foreach (array_chunk($squareIds, 1000) as $chunk) {
+				$updated += $this->wab->apply_wab_square($square, $chunk, $user_station_ids);
+			}
 			$squares[$square] = count($squareIds);
 		}
 
 		echo json_encode(array('updated' => $updated, 'skipped' => $skipped, 'squares' => $squares));
+	}
+
+	/*
+	 * The table search term: DataTables posts it as search[value] (an array),
+	 * the bulk apply posts it as a plain string
+	 */
+	private function postSearchTerm() {
+		$search = $this->input->post('search');
+		if (is_array($search)) {
+			$search = (string)($search['value'] ?? '');
+		}
+		return trim((string)$search);
 	}
 
 	/*
