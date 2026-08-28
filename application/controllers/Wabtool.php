@@ -8,6 +8,7 @@ class Wabtool extends CI_Controller {
 	private $wabIndex = null;
 	private $globalBbox = null;
 	private $gridCache = array(); // uppercased grid => resolveGrid() result
+	private $bins = null; // 'latCell:lngCell' bin key => [square names]
 
 	// ADIF DXCC entity numbers valid for WAB: G England, GI Northern Ireland,
 	// GJ Jersey, GM Scotland, GD Isle of Man, GU Guernsey, GW Wales.
@@ -19,6 +20,12 @@ class Wabtool extends CI_Controller {
 	// sliver snap to the nearest ring within this distance.
 	const SNAP_METERS = 50;
 	const SNAP_BBOX_DEGREES = 0.001;
+
+	// Spatial bin size (degrees) for square lookups: every square is
+	// registered in each bin its padded bbox overlaps, so a point lookup only
+	// tests the handful of squares registered in the point's own bin
+	const BIN_LNG = 0.25;
+	const BIN_LAT = 0.25;
 
 	function __construct() {
 		parent::__construct();
@@ -225,20 +232,42 @@ class Wabtool extends CI_Controller {
 	// ============================================================================
 
 	/*
-	 * Build a lookup index from the WAB square outlines in wab_geojson.js.
-	 * Each square is stored with its (closed) ring and bounding box; the
-	 * centroid Point features are skipped.
+	 * Build a lookup index from the WAB square outlines in wab_geojson.js:
+	 * per square the (closed) ring and bounding box, plus lat/lng bins for
+	 * fast point lookups (the centroid Point features are skipped). The
+	 * compact index is cached across requests; the cache key includes the
+	 * file's mtime and size, so edits to wab_geojson.js invalidate it.
 	 */
 	private function loadWabIndex() {
 		if ($this->wabIndex !== null) {
 			return;
 		}
 
-		$this->load->library('geojson');
-		$geojson = $this->geojson->loadGeoJsonFile('assets/js/sections/wab_geojson.js');
-
 		$this->wabIndex = array();
+		$this->bins = array();
 		$this->globalBbox = null;
+
+		$file = 'assets/js/sections/wab_geojson.js';
+		$mtime = @filemtime(FCPATH . $file);
+		$size = ($mtime !== false) ? @filesize(FCPATH . $file) : false;
+		$cacheKey = 'wabtool_geoindex_v1_' . md5($file . '|' . $mtime . '|' . $size);
+
+		$this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
+		$cached = $this->cache->get($cacheKey);
+		if (is_array($cached) && isset($cached['squares'], $cached['bins']) && is_array($cached['bbox'])) {
+			$this->wabIndex = $cached['squares'];
+			$this->bins = $cached['bins'];
+			$this->globalBbox = $cached['bbox'];
+			return;
+		}
+
+		$this->load->library('geojson');
+		$geojson = $this->geojson->loadGeoJsonFile($file);
 
 		if (!is_array($geojson) || !isset($geojson['features'])) {
 			return;
@@ -276,6 +305,29 @@ class Wabtool extends CI_Controller {
 				);
 			}
 		}
+
+		unset($geojson); // the decoded source is large; drop it before caching
+
+		if ($this->globalBbox === null) {
+			return; // nothing usable parsed, do not cache an empty index
+		}
+
+		// Register each square in every bin its padded bbox overlaps, so a
+		// point lookup never misses a square that could contain or snap to it
+		foreach ($this->wabIndex as $name => $square) {
+			$b = $square['bbox'];
+			for ($cy = (int)floor(($b[1] - self::SNAP_BBOX_DEGREES) / self::BIN_LAT); $cy <= (int)floor(($b[3] + self::SNAP_BBOX_DEGREES) / self::BIN_LAT); $cy++) {
+				for ($cx = (int)floor(($b[0] - self::SNAP_BBOX_DEGREES) / self::BIN_LNG); $cx <= (int)floor(($b[2] + self::SNAP_BBOX_DEGREES) / self::BIN_LNG); $cx++) {
+					$this->bins[$cy . ':' . $cx][] = $name;
+				}
+			}
+		}
+
+		$this->cache->save($cacheKey, array(
+			'squares' => $this->wabIndex,
+			'bins' => $this->bins,
+			'bbox' => $this->globalBbox,
+		), 60 * 60 * 24 * 7);
 	}
 
 	/*
@@ -292,7 +344,9 @@ class Wabtool extends CI_Controller {
 		}
 
 		$candidates = array();
-		foreach ($this->wabIndex as $name => $square) {
+		$bin = $this->bins[(int)floor($lat / self::BIN_LAT) . ':' . (int)floor($lng / self::BIN_LNG)] ?? array();
+		foreach ($bin as $name) {
+			$square = $this->wabIndex[$name];
 			$bbox = $square['bbox'];
 			if ($lng < $bbox[0] - self::SNAP_BBOX_DEGREES || $lat < $bbox[1] - self::SNAP_BBOX_DEGREES ||
 				$lng > $bbox[2] + self::SNAP_BBOX_DEGREES || $lat > $bbox[3] + self::SNAP_BBOX_DEGREES) {
