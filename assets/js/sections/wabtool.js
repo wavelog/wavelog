@@ -227,7 +227,7 @@ function bindWabTool() {
 					type: 'POST',
 					dataType: 'json',
 					data: {
-						ids: ids
+						ids: JSON.stringify(ids)
 					},
 					success: function(data) {
 						wabtoolRenderApplyResult(data);

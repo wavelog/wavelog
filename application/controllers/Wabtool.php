@@ -108,7 +108,10 @@ class Wabtool extends CI_Controller {
 		set_time_limit(3600);
 		header('Content-Type: application/json');
 
-		$ids = $this->input->post('ids', true);
+		$ids = $this->input->post('ids');
+		if (is_string($ids)) {
+			$ids = json_decode($ids, true);
+		}
 		if (!is_array($ids) || count($ids) === 0) {
 			echo json_encode(array('error' => __("No QSOs selected")));
 			return;
