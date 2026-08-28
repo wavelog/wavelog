@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-28 10:27+0000\n"
-"PO-Revision-Date: 2026-08-26 21:25+0000\n"
+"POT-Creation-Date: 2026-08-28 10:44+0000\n"
+"PO-Revision-Date: 2026-08-27 18:59+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -1554,16 +1554,16 @@ msgstr "Draait niet"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV-export"
 
-#: application/controllers/Dashboard.php:172
+#: application/controllers/Dashboard.php:175
 #: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 msgid "HF"
 msgstr "HF"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:684
 #: application/views/distances/index.php:27
 #: application/views/qslprint/qslprint.php:86
@@ -1575,7 +1575,7 @@ msgstr "HF"
 msgid "SAT"
 msgstr "SAT"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 msgid "VHF+"
 msgstr "VHF+"
 
@@ -4727,7 +4727,7 @@ msgstr "Geen roepnaam gegeven"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
-#: application/models/Logbook_model.php:4930
+#: application/models/Logbook_model.php:4947
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4735,7 +4735,7 @@ msgstr ""
 "Verkeerde stationsroepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4955
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4744,7 +4744,7 @@ msgstr ""
 "Verschillend locatorvak %s bij het importeren van QSO met %s voor station "
 "locator %s: OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4971
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4752,7 +4752,7 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder geldige datum. Deze QSO is "
 "niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:4964
+#: application/models/Logbook_model.php:4981
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4761,7 +4761,7 @@ msgstr ""
 "QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
 "CALL. Dit QSO is niet geïmporteerd. Het is ongeldig,"
 
-#: application/models/Logbook_model.php:4971
+#: application/models/Logbook_model.php:4988
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4770,7 +4770,7 @@ msgstr ""
 "QSO op %s: Je probeerde een QSO te importeren met een ongeldig CALL. Dit QSO "
 "is niet geïmporteerd. De ongeldige invoer is '%s'."
 
-#: application/models/Logbook_model.php:5041
+#: application/models/Logbook_model.php:5058
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4779,7 +4779,7 @@ msgstr ""
 "QSO op %s: Band '%s' staat niet in de bandconfiguratie. Deze QSO is niet "
 "geïmporteerd."
 
-#: application/models/Logbook_model.php:5048
+#: application/models/Logbook_model.php:5065
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4788,63 +4788,63 @@ msgstr ""
 "QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
 "band. Dit QSO is niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:5322
+#: application/models/Logbook_model.php:5339
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5333
+#: application/models/Logbook_model.php:5350
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5394
+#: application/models/Logbook_model.php:5411
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5770
+#: application/models/Logbook_model.php:5787
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
-#: application/models/Logbook_model.php:5837
-#: application/models/Logbook_model.php:5937
+#: application/models/Logbook_model.php:5854
+#: application/models/Logbook_model.php:5954
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
-#: application/models/Logbook_model.php:5845
+#: application/models/Logbook_model.php:5862
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5851
+#: application/models/Logbook_model.php:5868
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
-#: application/models/Logbook_model.php:5855
+#: application/models/Logbook_model.php:5872
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
-#: application/models/Logbook_model.php:5859
+#: application/models/Logbook_model.php:5876
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
-#: application/models/Logbook_model.php:5862
+#: application/models/Logbook_model.php:5879
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:5865
+#: application/models/Logbook_model.php:5882
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "onbekend"
 
-#: application/models/Logbook_model.php:5940
+#: application/models/Logbook_model.php:5957
 msgid "POTA reference already in log"
 msgstr "POTA-referentie al in logboek"
 
-#: application/models/Logbook_model.php:5943
+#: application/models/Logbook_model.php:5960
 msgid "QSO updated"
 msgstr "QSO bijgewerkt"
 
-#: application/models/Logbook_model.php:6362
+#: application/models/Logbook_model.php:6379
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -23128,7 +23128,7 @@ msgstr ""
 
 #: application/views/user/edit.php:459
 msgid "Prefill fields from callbook while logging"
-msgstr ""
+msgstr "Vul de velden al in vanuit callbook tijdens het loggen"
 
 #: application/views/user/edit.php:460
 msgid ""
@@ -23136,18 +23136,21 @@ msgid ""
 "when entering a callsign. DXCC lookup, the previous QSOs table and the "
 "callbook profile panel are always shown."
 msgstr ""
+"Bepaalt welke bronnen de QSO-velden (naam, QTH, locator, enz.) invullen bij "
+"het invoeren van een roepnaam. Opzoeken van DXCC, de vorige QSO's tabel en "
+"het callbook-profielpaneel worden altijd weergegeven."
 
 #: application/views/user/edit.php:463
 msgid "Callbook and previous QSOs (default)"
-msgstr ""
+msgstr "Callbook en eerdere QSO's (standaard)"
 
 #: application/views/user/edit.php:467
 msgid "Only previous QSOs"
-msgstr ""
+msgstr "Alleen eerdere QSO's"
 
 #: application/views/user/edit.php:471
 msgid "No prefill"
-msgstr ""
+msgstr "Geen vooraf invullen"
 
 #: application/views/user/edit.php:483
 msgid ""

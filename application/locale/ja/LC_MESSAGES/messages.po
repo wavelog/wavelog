@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-28 10:27+0000\n"
-"PO-Revision-Date: 2026-08-27 11:59+0000\n"
+"POT-Creation-Date: 2026-08-28 10:44+0000\n"
+"PO-Revision-Date: 2026-08-28 10:27+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -838,31 +838,31 @@ msgstr "WAIP"
 
 #: application/controllers/Awards.php:2572
 msgid "England"
-msgstr ""
+msgstr "イングランド"
 
 #: application/controllers/Awards.php:2573
 msgid "Isle of Man"
-msgstr ""
+msgstr "マン島"
 
 #: application/controllers/Awards.php:2574
 msgid "Northern Ireland"
-msgstr ""
+msgstr "北アイルランド"
 
 #: application/controllers/Awards.php:2575
 msgid "Jersey"
-msgstr ""
+msgstr "ジャージー"
 
 #: application/controllers/Awards.php:2576
 msgid "Scotland"
-msgstr ""
+msgstr "スコットランド"
 
 #: application/controllers/Awards.php:2577
 msgid "Guernsey"
-msgstr ""
+msgstr "ガーンジー"
 
 #: application/controllers/Awards.php:2578
 msgid "Wales"
-msgstr ""
+msgstr "ウェールズ"
 
 #: application/controllers/Awards.php:2794
 #: application/views/awards/wac/index.php:7
@@ -1549,16 +1549,16 @@ msgstr "実行されていません"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSVエクスポート"
 
-#: application/controllers/Dashboard.php:172
+#: application/controllers/Dashboard.php:175
 #: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 msgid "HF"
 msgstr "HF"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:684
 #: application/views/distances/index.php:27
 #: application/views/qslprint/qslprint.php:86
@@ -1570,7 +1570,7 @@ msgstr "HF"
 msgid "SAT"
 msgstr "衛星"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 msgid "VHF+"
 msgstr "VHF+"
 
@@ -4714,7 +4714,7 @@ msgstr "コールなし"
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4930
+#: application/models/Logbook_model.php:4947
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4722,7 +4722,7 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4955
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4731,7 +4731,7 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4971
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4739,7 +4739,7 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4964
+#: application/models/Logbook_model.php:4981
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4748,7 +4748,7 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:4971
+#: application/models/Logbook_model.php:4988
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4757,7 +4757,7 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:5041
+#: application/models/Logbook_model.php:5058
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4766,7 +4766,7 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:5048
+#: application/models/Logbook_model.php:5065
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4775,63 +4775,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5322
+#: application/models/Logbook_model.php:5339
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5333
+#: application/models/Logbook_model.php:5350
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5394
+#: application/models/Logbook_model.php:5411
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5770
+#: application/models/Logbook_model.php:5787
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5837
-#: application/models/Logbook_model.php:5937
+#: application/models/Logbook_model.php:5854
+#: application/models/Logbook_model.php:5954
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5845
+#: application/models/Logbook_model.php:5862
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5851
+#: application/models/Logbook_model.php:5868
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5855
+#: application/models/Logbook_model.php:5872
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5859
+#: application/models/Logbook_model.php:5876
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5862
+#: application/models/Logbook_model.php:5879
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5865
+#: application/models/Logbook_model.php:5882
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5940
+#: application/models/Logbook_model.php:5957
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5943
+#: application/models/Logbook_model.php:5960
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6362
+#: application/models/Logbook_model.php:6379
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -9257,28 +9257,28 @@ msgstr ""
 
 #: application/views/awards/wab/index.php:19
 msgid "Total squares"
-msgstr ""
+msgstr "総平方数"
 
 #: application/views/awards/wab/index.php:21
 msgid "Squares by DXCC"
-msgstr ""
+msgstr "DXCCによるスクエア"
 
 #: application/views/awards/wab/index.php:22
 #: application/views/awards/wab/index.php:44
 msgid "Go to square"
-msgstr ""
+msgstr "スクエアへ"
 
 #: application/views/awards/wab/index.php:23
 msgid "WAB square not found"
-msgstr ""
+msgstr "WAB スクエアが見つかりません"
 
 #: application/views/awards/wab/index.php:34
 msgid "View a map of worked / confirmed WAB squares"
-msgstr ""
+msgstr "作業済み/確認済みのWABマス目の地図を見る"
 
 #: application/views/awards/wab/index.php:43
 msgid "WAB square"
-msgstr ""
+msgstr "WABスクエア"
 
 #: application/views/awards/wab/index.php:171
 msgid "List"
@@ -9354,7 +9354,7 @@ msgstr "いいえ"
 
 #: application/views/awards/wab/list.php:37
 msgid "Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
-msgstr ""
+msgstr "Q = QSLカード、L = LoTW、E = eQSL、Z = QRZ.com、C = Clublog"
 
 #: application/views/awards/wac/index.php:8
 msgid ""
@@ -14281,7 +14281,7 @@ msgstr "コールブック検索を使用してグリッドスクエアを設定
 
 #: application/views/dbtools/index.php:126
 msgid "Lookup"
-msgstr ""
+msgstr "見上げる"
 
 #: application/views/dbtools/index.php:134
 msgid "Check IOTA against DXCC"
@@ -14294,35 +14294,35 @@ msgstr "Wavelogを使用してIOTAとDXCCをチェックする"
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
 msgid "%s QSO(s) selected"
-msgstr ""
+msgstr "%s件の 交信が選択されました"
 
 #: application/views/dbtools/missinggridlist.php:13
 #, php-format
 msgid "%s QSO(s) remaining"
-msgstr ""
+msgstr "残り%s回の 交信"
 
 #: application/views/dbtools/missinggridlist.php:14
 #, php-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "更新日: %s"
 
 #: application/views/dbtools/missinggridlist.php:15
 #, php-format
 msgid "Not found: %s"
-msgstr ""
+msgstr "見つかりません： %s"
 
 #: application/views/dbtools/missinggridlist.php:16
 #, php-format
 msgid "Errors: %s"
-msgstr ""
+msgstr "エラー: %s"
 
 #: application/views/dbtools/missinggridlist.php:17
 msgid "Retrieving callbook data..."
-msgstr ""
+msgstr "通話記録データを取得しています..."
 
 #: application/views/dbtools/missinggridlist.php:18
 msgid "Not found in callbook"
-msgstr ""
+msgstr "通話記録に見つかりません"
 
 #: application/views/dbtools/missinggridlist.php:19
 #: application/views/logbookadvanced/index.php:39
@@ -14333,23 +14333,25 @@ msgstr "スキップ"
 #, php-format
 msgid "Lookup finished: %s gridsquare(s) set, %s not found, %s error(s)."
 msgstr ""
+"検索が完了しました: %s個の グリッドマスが設定されました。%s が 見つかりません"
+"でした。%s個の エラーが発生しました。"
 
 #: application/views/dbtools/missinggridlist.php:22
 msgid "Lookup cancelled."
-msgstr ""
+msgstr "検索がキャンセルされました。"
 
 #: application/views/dbtools/missinggridlist.php:32
 msgid "Only unconfirmed QSOs"
-msgstr ""
+msgstr "未確認の交信のみ"
 
 #: application/views/dbtools/missinggridlist.php:36
 #, php-format
 msgid "Found %s QSO(s) with missing gridsquare."
-msgstr ""
+msgstr "グリッドスクエアが未入力のQSOが％s件見つかりました。"
 
 #: application/views/dbtools/missinggridlist.php:37
 msgid "Uncheck the QSOs you want to skip, then start the lookup."
-msgstr ""
+msgstr "スキップしたい交信のチェックを外してから、検索を開始してください。"
 
 #: application/views/dbtools/missinggridlist.php:50
 #: application/views/view_log/partial/log_ajax.php:129

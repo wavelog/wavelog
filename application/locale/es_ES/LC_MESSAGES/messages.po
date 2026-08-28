@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-28 10:27+0000\n"
-"PO-Revision-Date: 2026-08-03 12:17+0000\n"
+"POT-Creation-Date: 2026-08-28 10:44+0000\n"
+"PO-Revision-Date: 2026-08-27 17:14+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/es/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -340,7 +340,7 @@ msgstr "Estados / Provincias"
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "Planificador de Activación"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -414,13 +414,15 @@ msgstr "Datos de POTA importados"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"El servicio de estado de AMSAT no está disponible actualmente. Por favor, "
+"inténtalo de nuevo más tarde."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Estado de Satélite AMSAT"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -900,7 +902,7 @@ msgstr "Premios - AMSAT Rover"
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Mapa Azimutal"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:359
@@ -1142,7 +1144,7 @@ msgstr "Actualizar Concurso"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Concurso %s actualizado"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:322
@@ -1296,7 +1298,7 @@ msgstr "Continentes"
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Contar QSOs por..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1491
@@ -1418,7 +1420,7 @@ msgstr "Zona CQ"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "Referencia POTA"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
@@ -1555,16 +1557,16 @@ msgstr "No funciona"
 msgid "SOTA CSV Export"
 msgstr "Exportar CSV de SOTA"
 
-#: application/controllers/Dashboard.php:172
+#: application/controllers/Dashboard.php:175
 #: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "Panel de control"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:684
 #: application/views/distances/index.php:27
 #: application/views/qslprint/qslprint.php:86
@@ -1576,9 +1578,9 @@ msgstr ""
 msgid "SAT"
 msgstr "SAT"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1935,7 +1937,7 @@ msgstr "Exportación KML"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "Diseñador de etiquetas"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1955,11 +1957,11 @@ msgstr "El JSON de plantilla es inválido"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "La plantilla no tiene elementos"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Tipo de etiqueta no encontrado"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1980,13 +1982,15 @@ msgstr "El archivo PDF no fue creado"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Error al generar el PDF de la etiqueta: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"El tipo de etiqueta de esta plantilla ya no existe. Por favor, selecciona "
+"otro antes de exportar."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -2892,7 +2896,7 @@ msgstr "Modo de edición"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr ""
+msgstr "Modo %s actualizado"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3338,12 +3342,12 @@ msgstr "No se pudo guardar el QSO"
 #: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr ""
+msgstr "Por favor, verifica el valor para el grid cuadrícula (%s)"
 
 #: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr ""
+msgstr "Por favor, verifica el valor para el grid cuadrícula VUCC (%s)"
 
 #: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
@@ -3616,7 +3620,7 @@ msgstr "Editar Localización de Estación: "
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr ""
+msgstr "Ubicación de la estación %s actualizada"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
@@ -3983,11 +3987,11 @@ msgstr "Actualización de POTA fallida. Resultado: "
 
 #: application/controllers/Update.php:616
 msgid "POTA boundaries update complete. Result: "
-msgstr ""
+msgstr "Actualización de los límites de POTA completada. Resultado: "
 
 #: application/controllers/Update.php:618
 msgid "POTA boundaries update failed. Result: "
-msgstr ""
+msgstr "La actualización de los límites de POTA falló. Resultado: "
 
 #: application/controllers/Update.php:635
 msgid "TLE Update complete. Result: "
@@ -4369,7 +4373,7 @@ msgstr ""
 
 #: application/controllers/Widgets.php:282
 msgid "User has disabled the LoTW upload widget"
-msgstr ""
+msgstr "El usuario ha desactivado el widget de carga de LoTW"
 
 #: application/controllers/Widgets.php:540
 msgid "User not found by slug"
@@ -4511,31 +4515,31 @@ msgstr "Eliminar miembros del club"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "Leer confirmaciones QSL"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
-msgstr ""
+msgstr "Leer sesiones de concursos"
 
 #: application/libraries/api_v2/Contest_resource.php:56
 msgid "Create and update contest sessions"
-msgstr ""
+msgstr "Crear y actualizar sesiones de concursos"
 
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
-msgstr ""
+msgstr "Eliminar sesiones de concursos"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Leer libros de registro"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Crear y actualizar libros de registro"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Eliminar libros de registro"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -4727,15 +4731,15 @@ msgstr "Eliminado"
 
 #: application/models/Labeldesigner_model.php:158
 msgid "Imported"
-msgstr ""
+msgstr "Importado"
 
 #: application/models/Labeldesigner_model.php:182
 msgid "Imported paper"
-msgstr ""
+msgstr "Papel importado"
 
 #: application/models/Labeldesigner_model.php:244
 msgid "Imported label type"
-msgstr ""
+msgstr "Tipo de etiqueta importada"
 
 #: application/models/Logbook_model.php:357
 msgid "Station not accessible"
@@ -4754,14 +4758,14 @@ msgstr "Ningún indicativo dado"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tiene que ser numérico"
 
-#: application/models/Logbook_model.php:4930
+#: application/models/Logbook_model.php:4947
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Distinto indicativo de estación %s al importar QSO con %s para %s: OMITIDO"
 
-#: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4955
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4770,7 +4774,7 @@ msgstr ""
 "Diferente localizador %s al importar QSO con %s para el localizador de "
 "estación %s: OMITIDO"
 
-#: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4971
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4778,7 +4782,7 @@ msgstr ""
 "Intentaste importar un QSO sin una fecha valida. Este QSO no fue importado. "
 "Es invalido"
 
-#: application/models/Logbook_model.php:4964
+#: application/models/Logbook_model.php:4981
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4787,7 +4791,7 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO sin un indicativo proporcionado. Este "
 "QSO no fue importado. Es inválido."
 
-#: application/models/Logbook_model.php:4971
+#: application/models/Logbook_model.php:4988
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4796,7 +4800,7 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO con un CALL no válido. Este QSO no fue "
 "importado. La entrada no válida es '%s'."
 
-#: application/models/Logbook_model.php:5041
+#: application/models/Logbook_model.php:5058
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4805,7 +4809,7 @@ msgstr ""
 "QSO en %s: La banda '%s' no está en la configuración de bandas. Este QSO no "
 "fue importado."
 
-#: application/models/Logbook_model.php:5048
+#: application/models/Logbook_model.php:5065
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4814,63 +4818,63 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO sin la banda. Este QSO no fue "
 "importado. Es inválido"
 
-#: application/models/Logbook_model.php:5322
+#: application/models/Logbook_model.php:5339
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrfecha es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5333
+#: application/models/Logbook_model.php:5350
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslfecha es inválida (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5394
+#: application/models/Logbook_model.php:5411
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la fecha de carga de clublog_qso es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5770
+#: application/models/Logbook_model.php:5787
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:5837
-#: application/models/Logbook_model.php:5937
+#: application/models/Logbook_model.php:5854
+#: application/models/Logbook_model.php:5954
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
-#: application/models/Logbook_model.php:5845
+#: application/models/Logbook_model.php:5862
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
-#: application/models/Logbook_model.php:5851
+#: application/models/Logbook_model.php:5868
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
-#: application/models/Logbook_model.php:5855
+#: application/models/Logbook_model.php:5872
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
-#: application/models/Logbook_model.php:5859
+#: application/models/Logbook_model.php:5876
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
-#: application/models/Logbook_model.php:5862
+#: application/models/Logbook_model.php:5879
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
-#: application/models/Logbook_model.php:5865
+#: application/models/Logbook_model.php:5882
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "desconocido"
 
-#: application/models/Logbook_model.php:5940
+#: application/models/Logbook_model.php:5957
 msgid "POTA reference already in log"
 msgstr "La referencia POTA ya se encuentra en el log"
 
-#: application/models/Logbook_model.php:5943
+#: application/models/Logbook_model.php:5960
 msgid "QSO updated"
 msgstr "QSO actualizado"
 
-#: application/models/Logbook_model.php:6362
+#: application/models/Logbook_model.php:6379
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5444,17 +5448,17 @@ msgstr "Pasos de satélites"
 
 #: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "Bordes de cuadrícula"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:82
 msgid "Nearby refs"
-msgstr ""
+msgstr "Referencias cercanas"
 
 #: application/views/activationplanner/index.php:25
 #, php-format
 msgid "References within %s of the gridsquare"
-msgstr ""
+msgstr "Referencias dentro de %s del cuadrícula"
 
 #: application/views/activationplanner/index.php:26
 #: application/views/qslcard/confirmationresult.php:21
@@ -5525,7 +5529,7 @@ msgstr "Cerrar"
 
 #: application/views/activationplanner/index.php:32
 msgid "Tracking"
-msgstr ""
+msgstr "Rastreo"
 
 #: application/views/activationplanner/index.php:33
 #: application/views/labeldesigner/designer.php:290
@@ -5536,35 +5540,35 @@ msgstr "Campo"
 
 #: application/views/activationplanner/index.php:34
 msgid "Square"
-msgstr ""
+msgstr "Cuadrado"
 
 #: application/views/activationplanner/index.php:35
 msgid "Subsquare"
-msgstr ""
+msgstr "Subcuadrado"
 
 #: application/views/activationplanner/index.php:36
 msgid "Locating…"
-msgstr ""
+msgstr "Localizando…"
 
 #: application/views/activationplanner/index.php:37
 msgid "Location access denied."
-msgstr ""
+msgstr "Acceso a la ubicación denegado."
 
 #: application/views/activationplanner/index.php:38
 msgid "Location unavailable."
-msgstr ""
+msgstr "Ubicación no disponible."
 
 #: application/views/activationplanner/index.php:39
 msgid "Location request timed out."
-msgstr ""
+msgstr "La solicitud de ubicación ha expirado."
 
 #: application/views/activationplanner/index.php:41
 msgid "Create station location"
-msgstr ""
+msgstr "Crear Localización de Estación"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
-msgstr ""
+msgstr "Referencias en esta cuadrícula"
 
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
@@ -5578,15 +5582,15 @@ msgstr "QSOs"
 
 #: application/views/activationplanner/index.php:44
 msgid "last"
-msgstr ""
+msgstr "último"
 
 #: application/views/activationplanner/index.php:45
 msgid "Inactive"
-msgstr ""
+msgstr "Inactivo"
 
 #: application/views/activationplanner/index.php:46
 msgid "valid"
-msgstr ""
+msgstr "válido"
 
 #: application/views/activationplanner/index.php:48
 #: application/views/view_log/qso.php:602
@@ -5595,41 +5599,41 @@ msgstr "Compartir"
 
 #: application/views/activationplanner/index.php:49
 msgid "Share activation"
-msgstr ""
+msgstr "Compartir activación"
 
 #: application/views/activationplanner/index.php:50
 #, php-format
 msgid "📻 Planning an activation from %s"
-msgstr ""
+msgstr "📻 Planificando una activación desde %s"
 
 #: application/views/activationplanner/index.php:51
 #: application/views/activationplanner/index.php:87
 msgid "Search references…"
-msgstr ""
+msgstr "Buscar referencias…"
 
 #: application/views/activationplanner/index.php:52
 msgid "No matches"
-msgstr ""
+msgstr "Sin coincidencias"
 
 #: application/views/activationplanner/index.php:53
 msgid "Loading…"
-msgstr ""
+msgstr "Cargando…"
 
 #: application/views/activationplanner/index.php:54
 msgid "References"
-msgstr ""
+msgstr "Referencias"
 
 #: application/views/activationplanner/index.php:55
 msgid "Places"
-msgstr ""
+msgstr "Lugares"
 
 #: application/views/activationplanner/index.php:56
 msgid "Press Enter to search places"
-msgstr ""
+msgstr "Presiona Enter para buscar lugares"
 
 #: application/views/activationplanner/index.php:66
 msgid "Plan your activity here"
-msgstr ""
+msgstr "Planifica tu actividad aquí"
 
 #: application/views/activationplanner/index.php:74
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
@@ -5674,17 +5678,19 @@ msgstr "Claro"
 
 #: application/views/activationplanner/index.php:81
 msgid "Find my location and gridsquare"
-msgstr ""
+msgstr "Encuentra mi ubicación y cuadrícula"
 
 #: application/views/activationplanner/index.php:81
 msgid "Locate me"
-msgstr ""
+msgstr "Ubícame"
 
 #: application/views/activationplanner/index.php:87
 msgid ""
 "Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place "
 "names (OpenStreetMap)"
 msgstr ""
+"Buscar WWFF / POTA / SOTA / IOTA por nombre o referencia — Enter busca "
+"nombres de lugares (OpenStreetMap)"
 
 #: application/views/activationplanner/index.php:92
 #: application/views/simplefle/index.php:162
@@ -5698,7 +5704,7 @@ msgstr "Más opciones"
 
 #: application/views/activationplanner/index.php:106
 msgid "Hide options"
-msgstr ""
+msgstr "Ocultar opciones"
 
 #: application/views/activators/index.php:33
 msgctxt "Orbiter LEO or GEO"
@@ -6565,72 +6571,74 @@ msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
+"Estado de la última escucha en las últimas 24 horas. Fuente de datos: %s (en "
+"caché por 15 minutos)."
 
 #: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
-msgstr ""
+msgstr "No hay informes de estado disponibles."
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "Activo la última hora"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
-msgstr ""
+msgstr "escuchado o tripulación activa"
 
 #: application/views/amsatstatus/index.php:83
 msgid "Next pass"
-msgstr ""
+msgstr "Próximo paso"
 
 #: application/views/amsatstatus/index.php:89
 msgid "no upcoming pass"
-msgstr ""
+msgstr "sin pases próximos"
 
 #: application/views/amsatstatus/index.php:96
 msgid "Status legend"
-msgstr ""
+msgstr "Leyenda de estado"
 
 #: application/views/amsatstatus/index.php:102
 #: application/views/amsatstatus/index.php:164
 #: application/views/amsatstatus/index.php:199
 msgid "No report"
-msgstr ""
+msgstr "Sin informe"
 
 #: application/views/amsatstatus/index.php:108
 msgid "AMSAT Satellite Status (Last 24h)"
-msgstr ""
+msgstr "Estado del satélite AMSAT (Últimas 24h)"
 
 #: application/views/amsatstatus/index.php:114
 msgid "Next AOS"
-msgstr ""
+msgstr "Próximo AOS"
 
 #: application/views/amsatstatus/index.php:115
 msgid "Hours ago (left-most: now)"
-msgstr ""
+msgstr "Horas atrás (más a la izquierda: ahora)"
 
 #: application/views/amsatstatus/index.php:135
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d informe en 24h"
+msgstr[1] "%d informes en 24h"
 
 #: application/views/amsatstatus/index.php:158
 #, php-format
 msgid "%d hours ago"
-msgstr ""
+msgstr "%d horas atrás"
 
 #: application/views/amsatstatus/index.php:158
 #: application/views/amsatstatus/index.php:201
 msgid "now"
-msgstr ""
+msgstr "ahora"
 
 #: application/views/amsatstatus/index.php:185
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d informe"
+msgstr[1] "%d informes"
 
 #: application/views/amsatstatus/index.php:195
 #: application/views/qso/index.php:34
@@ -7385,11 +7393,11 @@ msgstr "Condado"
 #: application/views/awards/counties/details_ajax.php:14
 #: application/views/awards/counties/state_ajax.php:26
 msgid "Not in USA-CA county list"
-msgstr ""
+msgstr "No está en la lista de condados de EE.UU.-CA"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
-msgstr ""
+msgstr "Pasa el ratón sobre un condado"
 
 #: application/views/awards/counties/index.php:42
 msgid "US County Award"
@@ -7494,7 +7502,7 @@ msgstr "Mapa"
 
 #: application/views/awards/counties/index.php:71
 msgid "Show Counties Map"
-msgstr ""
+msgstr "Mostrar mapa de condados"
 
 #: application/views/awards/counties/index.php:79
 #: application/views/awards/cq/index.php:61
@@ -7516,7 +7524,7 @@ msgstr ""
 #: application/views/awards/was/index.php:63
 #: application/views/awards/wpx/index.php:25
 msgid "Press 'Apply' to update the table"
-msgstr ""
+msgstr "Presiona 'Aplicar' para actualizar la tabla"
 
 #: application/views/awards/counties/index.php:110
 #: application/views/awards/cq/index.php:142
@@ -7538,7 +7546,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wwff/index.php:128
 msgid "Band & Mode"
-msgstr ""
+msgstr "Banda y modo"
 
 #: application/views/awards/counties/index.php:130
 #: application/views/awards/cq/index.php:178
@@ -7561,7 +7569,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:142
 #: application/views/awards/wwff/index.php:156
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #: application/views/awards/counties/index.php:163
 msgid "Worked Counties"
@@ -7771,7 +7779,7 @@ msgstr "Mostrar mapa de zona CQ"
 #: application/views/awards/wae/index.php:55
 #: application/views/awards/wwff/index.php:56
 msgid "Date Range"
-msgstr ""
+msgstr "Rango de fechas"
 
 #: application/views/awards/cq/index.php:67
 #: application/views/awards/dxcc/index.php:61
@@ -8762,17 +8770,21 @@ msgstr "No logrados"
 
 #: application/views/awards/jcc/index.php:183
 msgid "JCC progress"
-msgstr ""
+msgstr "Progreso de JCC"
 
 #: application/views/awards/jcc/index.php:193
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
 msgstr ""
+"¡Atención! Wavelog no verifica si un QSO ocurrió antes de la fecha de "
+"eliminación de la entidad."
 
 #: application/views/awards/jcc/index.php:199
 msgid "No worked or confirmed JCC slots match the current filters."
 msgstr ""
+"No hay franjas de JCC trabajadas o confirmadas que coincidan con los filtros "
+"actuales."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -8996,17 +9008,19 @@ msgstr "para autocompletar estados desde localizadores Maidenhead."
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "Error al cargar los datos del mapa POTA"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "No se trabajaron referencias POTA para estos filtros."
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
 msgstr ""
+"Directorio POTA no cargado - faltan coordenadas. Ejecute el trabajo cron "
+"update_pota."
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/sota/index.php:7
@@ -9057,41 +9071,41 @@ msgstr ""
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "Todavía no hay diplomas"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "Progreso a %s"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "%d más parque(s) diferente(s) para el próximo premio"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "¡Has alcanzado el nivel más alto del premio POTA!"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "Mostrar todos los niveles"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "Diplomas Avanzados"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "Diplomas Estándar"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "Progreso del cazador POTA"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "diferentes parques cazados"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/sota/index.php:50
@@ -9217,17 +9231,19 @@ msgstr "Exportar QSOs a ADIF"
 
 #: application/views/awards/sota/index.php:4
 msgid "Error loading SOTA map data"
-msgstr ""
+msgstr "Error al cargar los datos del mapa SOTA"
 
 #: application/views/awards/sota/index.php:5
 msgid "No SOTA references worked for these filters."
-msgstr ""
+msgstr "Ninguna referencia SOTA funcionó para estos filtros."
 
 #: application/views/awards/sota/index.php:6
 msgid ""
 "SOTA directory not loaded - coordinates missing. Run the update_sota cron "
 "job."
 msgstr ""
+"Directorio SOTA no cargado - coordenadas faltantes. Ejecuta el trabajo cron "
+"update_sota."
 
 #: application/views/awards/sota/index.php:24
 msgid "SOTA Awards"
@@ -9881,58 +9897,60 @@ msgstr "Campos tomados para este premio: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:52
 msgid "Press ''Apply'' to update the table"
-msgstr ""
+msgstr "Presione ''Aplicar'' para actualizar la tabla"
 
 #: application/views/azimuthal/index.php:16
 msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"No se ha establecido un cuadrícula para la ubicación de tu estación activa, "
+"por lo que el mapa no puede centrarse."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Mapa azimutal centrado en la ubicación de tu estación activa"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Proyección"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Equidistante azimutal"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Lambert de área igual"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Anillos de distancia"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Campos de Maidenhead"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
-msgstr ""
+msgstr "Zonas CQ"
 
 #: application/views/azimuthal/index.php:53
 msgid "ITU zones"
-msgstr ""
+msgstr "Zonas ITU"
 
 #: application/views/azimuthal/index.php:58
 msgid "DXCC prefixes"
-msgstr ""
+msgstr "Prefijos DXCC"
 
 #: application/views/azimuthal/index.php:61
 msgid "Download PNG"
-msgstr ""
+msgstr "Descargar PNG"
 
 #: application/views/azimuthal/index.php:65
 #: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Mapa azimutal"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -13361,19 +13379,19 @@ msgstr "Datos QSO"
 
 #: application/views/countqsoby/index.php:10
 msgid "QSOs total"
-msgstr ""
+msgstr "Total de QSOs"
 
 #: application/views/countqsoby/index.php:27
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
 #: application/views/countqsoby/index.php:33
 msgid "Date presets"
-msgstr ""
+msgstr "Ajustes preestablecidos de fecha"
 
 #: application/views/countqsoby/index.php:63
 msgid "Count QSOs by"
-msgstr ""
+msgstr "Contar QSOs por"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -13515,7 +13533,7 @@ msgstr "ID"
 
 #: application/views/cron/index.php:77
 msgid "Interval"
-msgstr ""
+msgstr "Intervalo"
 
 #: application/views/cron/index.php:78
 msgid "Last Run"
@@ -13791,7 +13809,7 @@ msgstr "Desglose de DXCCs"
 #: application/views/dashboard/index.php:500
 #: application/views/visitor/index.php:267
 msgid "Deleted DXCCs"
-msgstr ""
+msgstr "DXCCs eliminados"
 
 #: application/views/dashboard/index.php:513
 #: application/views/visitor/index.php:277
@@ -14550,10 +14568,11 @@ msgstr "Razón"
 #: application/views/dbtools/showUpdateResult.php:76
 msgid "The number of QSOs updated for state/province across all DXCCs is"
 msgstr ""
+"El número de QSOs actualizados para estado/provincia en todos los DXCCs es"
 
 #: application/views/dbtools/showUpdateResult.php:76
 msgid "DXCCs processed"
-msgstr ""
+msgstr "DXCCs procesados"
 
 #: application/views/dbtools/showUpdateResult.php:128
 msgid "Results for continent update:"
@@ -14586,7 +14605,7 @@ msgstr ""
 
 #: application/views/dbtools/statecheckresult.php:7
 msgid "Fix all DXCCs"
-msgstr ""
+msgstr "Arreglar todos los DXCCs"
 
 #: application/views/dbtools/statecheckresult.php:34
 msgid "Run fix"
@@ -15110,7 +15129,7 @@ msgstr "Descarga de archivo POTA"
 
 #: application/views/debug/index.php:741
 msgid "POTA park boundaries (GeoJSON)"
-msgstr ""
+msgstr "Límites del parque POTA (GeoJSON)"
 
 #: application/views/debug/index.php:747
 msgid "SCP file download"
@@ -15993,6 +16012,9 @@ msgid ""
 "At least one of the locators is empty. Calculation not possible. Possibly "
 "missing locator in station location. Please check."
 msgstr ""
+"Al menos uno de los localizadores está vacío. Cálculo no posible. "
+"Posiblemente falta un localizador en la ubicación de la estación. Por favor "
+"verifica."
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -16533,11 +16555,11 @@ msgstr "Condados confirmados para el estado:"
 
 #: application/views/interface_assets/footer.php:2902
 msgid "Counties in state:"
-msgstr ""
+msgstr "Condados en el estado:"
 
 #: application/views/interface_assets/footer.php:2903
 msgid "Needed counties for state:"
-msgstr ""
+msgstr "Condados necesarios para el estado:"
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -16897,7 +16919,7 @@ msgstr "Texto personalizado"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Línea"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -16964,12 +16986,14 @@ msgstr "seleccionado"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "Por favor, selecciona un tipo de etiqueta primero."
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
 msgstr ""
+"El tipo de etiqueta de esta plantilla ya no existe. Por favor, selecciona "
+"otra."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -17011,23 +17035,23 @@ msgstr "Salir de la página"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "La importación falló"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "La exportación falló"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "Plantilla importada."
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "Por favor, selecciona una plantilla para exportar."
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "El archivo es demasiado grande."
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -17071,23 +17095,23 @@ msgstr "Eliminar plantilla"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "Exportar plantilla"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "Importar plantilla"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "Tipo de etiqueta"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "(seleccionar tipo de etiqueta)"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "Genera un PDF de muestra con tus QSOs más recientes"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -17152,28 +17176,34 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"Regla horizontal — active 'Repeticiones por QSO' para dibujar un separador "
+"debajo de cada fila de QSO"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Línea horizontal"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
 msgstr ""
+"Regla vertical — coláquela en los bordes de las columnas para construir una "
+"cuadrícula de tabla"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "Línea vertical"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"Cuadrícula de tabla — arrastre la esquina para cambiar el tamaño, arrastre "
+"los marcadores de columna para ajustar los anchos de las columnas"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "Agregar tabla"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -17182,11 +17212,11 @@ msgstr "Ningún campo coincide con su búsqueda."
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "Lienzo de etiquetas"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "arrastra campos sobre la etiqueta"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -17195,7 +17225,7 @@ msgstr "Opciones de plantilla"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "Número de QSOs por etiqueta"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -17207,14 +17237,16 @@ msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
+"Traza una línea entre las filas de QSOs automáticamente, como el diseño "
+"clásico de etiquetas"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "Líneas de separación entre las filas de QSOs"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "Grosor del separador"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -17258,11 +17290,11 @@ msgstr "Y"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "Filas"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "Columnas"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -17277,7 +17309,7 @@ msgstr "Altura"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "Grosor"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -17286,15 +17318,15 @@ msgstr "Orientación"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "Longitud"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -17326,6 +17358,7 @@ msgstr "Ancho de ajuste"
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
 msgstr ""
+"Imprimir este campo una vez por QSO si una etiqueta contiene múltiples QSOs"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -17631,13 +17664,13 @@ msgstr "Ver QSOs"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "Diseño de la etiqueta"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "Estándar"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -17645,6 +17678,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"Los modelos de etiquetas diseñados utilizan su propio diseño e ignoran las "
+"opciones a continuación."
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
@@ -17726,7 +17761,7 @@ msgstr "Buscar duplicados usando:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "Coincidir QSOs dentro de la ventana de tiempo seleccionada entre ellos"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
@@ -18123,7 +18158,7 @@ msgstr "Ventana de tiempo:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "ajustable, de 1 a 60 minutos (por defecto 30 minutos)"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -18875,7 +18910,7 @@ msgstr "Desconectar del Concurso"
 
 #: application/views/logbookadvanced/index.php:860
 msgid "Export to CSV"
-msgstr ""
+msgstr "Exportar a CSV"
 
 #: application/views/logbookadvanced/index.php:864
 #: application/views/oqrs/showrequests.php:63
@@ -20687,11 +20722,11 @@ msgstr "Toot en Mastodon"
 
 #: application/views/qso/components/share_modal.php:14
 msgid "Share on Telegram"
-msgstr ""
+msgstr "Compartir en Telegram"
 
 #: application/views/qso/components/share_modal.php:17
 msgid "Share on Whatsapp"
-msgstr ""
+msgstr "Compartir en Whatsapp"
 
 #: application/views/qso/components/winkeysettings.php:15
 #: application/views/qso/components/winkeysettings.php:32
@@ -21302,6 +21337,8 @@ msgstr "Ver un mapa con las rutas de vuelo de satélites"
 msgid ""
 "Active station location does not have a gridsquare configured. Please check"
 msgstr ""
+"La ubicación de la estación activa no tiene un cuadrícula configurada. Por "
+"favor, verifique"
 
 #: application/views/satellite/flightpath.php:57
 msgid ""
@@ -22124,6 +22161,9 @@ msgid ""
 "distance statistics and more. Make sure to fill in the gridsquare if you "
 "want to use those features"
 msgstr ""
+"Esto es necesario para todas las funciones basadas en la ubicación actual, "
+"como mapas, estadísticas de distancia y más. Asegúrate de completar el "
+"cuadrícula si deseas usar esas funciones"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:222
@@ -22659,20 +22699,20 @@ msgstr "Elevación"
 
 #: application/views/statistics/antennaanalytics.php:87
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: application/views/statistics/antennaanalytics.php:101
 msgid "QSOs per degree of azimuth"
-msgstr ""
+msgstr "QSOs por grado de acimut"
 
 #: application/views/statistics/antennaanalytics.php:102
 #, php-format
 msgid "25 / 50 / 75 % of peak"
-msgstr ""
+msgstr "25 / 50 / 75 % de pico"
 
 #: application/views/statistics/antennaanalytics.php:103
 msgid "Marker every 5°"
-msgstr ""
+msgstr "Marcador cada 5°"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:101
@@ -23232,7 +23272,7 @@ msgstr ""
 
 #: application/views/user/edit.php:459
 msgid "Prefill fields from callbook while logging"
-msgstr ""
+msgstr "Rellenar campos desde el callbook mientras se registra"
 
 #: application/views/user/edit.php:460
 msgid ""
@@ -23240,18 +23280,21 @@ msgid ""
 "when entering a callsign. DXCC lookup, the previous QSOs table and the "
 "callbook profile panel are always shown."
 msgstr ""
+"Controla qué fuentes rellenan los campos QSO (nombre, QTH, localizador, "
+"etc.) al introducir un indicativo. La búsqueda de DXCC, la tabla de QSOs "
+"anteriores y el panel de perfil del callbook siempre se muestran."
 
 #: application/views/user/edit.php:463
 msgid "Callbook and previous QSOs (default)"
-msgstr ""
+msgstr "Callbook y QSOs anteriores (predeterminado)"
 
 #: application/views/user/edit.php:467
 msgid "Only previous QSOs"
-msgstr ""
+msgstr "Solo QSOs anteriores"
 
 #: application/views/user/edit.php:471
 msgid "No prefill"
-msgstr ""
+msgstr "Sin autocompletar"
 
 #: application/views/user/edit.php:483
 msgid ""
@@ -23691,13 +23734,15 @@ msgstr ""
 
 #: application/views/user/edit.php:1216
 msgid "Display radio name"
-msgstr ""
+msgstr "Mostrar el nombre de la radio"
 
 #: application/views/user/edit.php:1217
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
 msgstr ""
+"Esta configuración controla si el nombre de la radio se muestra en el widget "
+"o no."
 
 #: application/views/user/edit.php:1221
 msgid "Display only most recently updated radio"
@@ -23737,7 +23782,7 @@ msgstr ""
 
 #: application/views/user/edit.php:1258
 msgid "Last LoTW Upload widget"
-msgstr ""
+msgstr "Widget de la Última Carga de LoTW"
 
 #: application/views/user/edit.php:1287
 msgid "Miscellaneous"
@@ -24500,11 +24545,11 @@ msgstr "Los QSOs están marcados como exportados al QO-100 Dx Club."
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
-msgstr ""
+msgstr "Últimas Cargas de LoTW"
 
 #: application/views/widgets/lotw_upload.php:98
 msgid "Last Upload (UTC)"
-msgstr ""
+msgstr "Última Carga (UTC)"
 
 #: application/views/widgets/on_air.php:159
 #: application/views/widgets/on_air.php:217
@@ -24512,33 +24557,33 @@ msgstr ""
 #, php-format
 msgctxt "on air status test: callsign is on-air/off-air"
 msgid "%s is %s"
-msgstr ""
+msgstr "%s está %s"
 
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:198
 #, php-format
 msgid "Updated: %s (%s)"
-msgstr ""
+msgstr "Actualizado: %s (%s)"
 
 #: application/views/widgets/on_air.php:181
 msgid "auto-refreshed every 60s"
-msgstr ""
+msgstr "se actualiza automáticamente cada 60s"
 
 #: application/views/widgets/on_air.php:198
 msgid "auto-refreshed by QRZ.com every 60s"
-msgstr ""
+msgstr "se actualiza automáticamente por QRZ.com cada 60s"
 
 #: application/views/widgets/on_air.php:242
 #, php-format
 msgid "Last updated: %s"
-msgstr ""
+msgstr "Última actualización: %s"
 
 #: application/views/widgets/on_air.php:318
 #: application/views/widgets/on_air.php:322
 #: application/views/widgets/on_air.php:325
 #: application/views/widgets/on_air.php:333
 msgid "Last updated:"
-msgstr ""
+msgstr "Última actualización:"
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
@@ -24622,20 +24667,20 @@ msgstr ""
 #: src/QSLManager/QSO.php:898
 #, php-format
 msgid "Lookup %s on QRZ.com"
-msgstr ""
+msgstr "Buscar %s en QRZ.com"
 
 #: src/QSLManager/QSO.php:899
 #, php-format
 msgid "Lookup %s on HamQTH"
-msgstr ""
+msgstr "Buscar %s en HamQTH"
 
 #: src/QSLManager/QSO.php:900
 msgid "Clublog Log Search"
-msgstr ""
+msgstr "Búsqueda de registros en Clublog"
 
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
-msgstr ""
+msgstr "Usuario de LoTW. La última carga fue "
 
 #~ msgid "This is limited to 150 callsigns for each run!"
 #~ msgstr "¡Esto está limitado a 150 indicativos por cada ejecución!"
