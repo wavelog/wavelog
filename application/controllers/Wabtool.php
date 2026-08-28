@@ -83,6 +83,13 @@ class Wabtool extends CI_Controller {
 
 		$query = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search, $orderCol, $orderDir, $length, $start);
 
+		// Get Date format
+		if ($this->session->userdata('user_date_format')) {
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
 		$rows = array();
 		foreach ($query->result() as $qso) {
 			$grid = strtoupper(substr(trim($qso->col_gridsquare), 0, 8));
@@ -98,16 +105,27 @@ class Wabtool extends CI_Controller {
 				$cornerSquares = $resolved['corner_squares'];
 			}
 
+			// confirmation letters, one per QSL system:
+			// Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog
+			$letters = '';
+			if ($qso->col_qsl_rcvd === 'Y') { $letters .= 'Q'; }
+			if ($qso->col_lotw_qsl_rcvd === 'Y') { $letters .= 'L'; }
+			if ($qso->col_eqsl_qsl_rcvd === 'Y') { $letters .= 'E'; }
+			if ($qso->qrz === 'Y') { $letters .= 'Z'; }
+			if ($qso->clublog === 'Y') { $letters .= 'C'; }
+
 			$rows[] = array(
 				'id' => (int)$qso->col_primary_key,
 				'callsign' => $qso->col_call,
-				'datetime' => $qso->col_time_on,
+				'datetime' => date($custom_date_format, strtotime($qso->col_time_on)) . date(' H:i', strtotime($qso->col_time_on)),
 				'band' => $qso->col_band,
+				'sat' => $qso->col_sat_name,
 				'grid' => $grid,
 				'square' => $square,
 				'ambiguous' => $ambiguous,
 				'corner_squares' => array_values($cornerSquares),
 				'station' => $qso->station_profile_name,
+				'confirmed' => $letters,
 			);
 		}
 

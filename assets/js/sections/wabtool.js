@@ -66,7 +66,7 @@ function wabtoolInitTable() {
 		+ '<div class="table-responsive"><table class="table table-sm table-striped" id="wabtoolTable">'
 		+ '<thead><tr>'
 		+ '<th style="width: 2rem;"><input type="checkbox" id="wabtoolSelectAll"></th>'
-		+ '<th>Date/Time</th><th>Callsign</th><th>Band</th><th>Grid</th><th>WAB Square</th><th>Station</th>'
+		+ '<th>Date/Time</th><th>Callsign</th><th>Band</th><th>Grid</th><th>WAB Square</th><th>Station</th><th>Confirmed</th>'
 		+ '</tr></thead><tbody></tbody></table></div>';
 
 	$('.scanresult').html(html);
@@ -110,8 +110,29 @@ function wabtoolInitTable() {
 				}
 			},
 			{ data: 'datetime', render: wabtoolRenderCell },
-			{ data: 'callsign', render: wabtoolRenderCell, className: 'callsign' },
-			{ data: 'band', render: wabtoolRenderCell },
+			{
+				data: 'callsign',
+				className: 'callsign',
+				render: function(data, type, row) {
+					if (type !== 'display') {
+						return data;
+					}
+					return '<a href="#" class="wabtool-qso" data-id="' + row.id + '">' + wabtoolEscapeHtml(data) + '</a>';
+				}
+			},
+			{
+				data: 'band',
+				render: function(data, type, row) {
+					if (type !== 'display') {
+						return data;
+					}
+					// sat QSOs: show the satellite instead of the bare 'SAT' band
+					if (row.sat) {
+						return '<a href="https://db.satnogs.org/search/?q=' + wabtoolEscapeHtml(row.sat) + '" target="_blank">' + wabtoolEscapeHtml(row.sat) + '</a>';
+					}
+					return wabtoolEscapeHtml(data);
+				}
+			},
 			{ data: 'grid', render: wabtoolRenderCell },
 			{
 				data: 'square',
@@ -130,7 +151,25 @@ function wabtoolInitTable() {
 					return html;
 				}
 			},
-			{ data: 'station', render: wabtoolRenderCell }
+			{ data: 'station', render: wabtoolRenderCell },
+			{
+				data: 'confirmed',
+				orderable: false,
+				searchable: false,
+				render: function(data, type) {
+					if (type !== 'display') {
+						return data || '';
+					}
+					if (!data) {
+						return '<span class="text-muted">&mdash;</span>';
+					}
+					// one badge per letter: Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog
+					var badges = data.split('').map(function(l) {
+						return '<span class="badge bg-success">' + l + '</span>';
+					}).join(' ');
+					return '<span data-bs-toggle="tooltip" title="Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog">' + badges + '</span>';
+				}
+			}
 		],
 		createdRow: function(row) {
 			$(row).find('[data-bs-toggle="tooltip"]').tooltip();
@@ -412,6 +451,12 @@ function bindWabTool() {
 	$(document).on('click', '.wabtool-map', function(e) {
 		e.preventDefault();
 		wabtoolOpenMap($(this).attr('data-grid'));
+	});
+
+	// QSO detail dialog per callsign (delegated so it survives re-rendering)
+	$(document).on('click', '.wabtool-qso', function(e) {
+		e.preventDefault();
+		displayQso($(this).attr('data-id'));
 	});
 }
 

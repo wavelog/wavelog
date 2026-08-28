@@ -1,3 +1,10 @@
+<style>
+	/* general.css and the theme overrides center every DataTable header; keep the scan table left aligned */
+	#wabtoolTable thead th {
+		text-align: left !important;
+	}
+</style>
+
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 
 	<h2><?php echo $page_title; ?></h2>

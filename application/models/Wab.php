@@ -196,7 +196,10 @@ class Wab extends CI_Model {
 	 */
 	function get_wab_candidates($station_id = null, $dxcc_ids = null, $search = '', $order_col = 1, $order_dir = 'desc', $limit = null, $offset = 0) {
 		$bindings=[];
-		$sql = "select col_primary_key, col_call, col_time_on, col_band, col_gridsquare, station_profile.station_profile_name
+		$sql = "select col_primary_key, col_call, col_time_on, col_band, col_gridsquare, col_sat_name, station_profile.station_profile_name,
+			col_qsl_rcvd, col_lotw_qsl_rcvd, col_eqsl_qsl_rcvd,
+			COL_QRZCOM_QSO_DOWNLOAD_STATUS as qrz,
+			COL_CLUBLOG_QSO_DOWNLOAD_STATUS as clublog
 			" . $this->wab_candidates_sql($station_id, $dxcc_ids, $search, $bindings);
 
 		$sortable = array(1 => 'col_time_on', 2 => 'col_call', 3 => 'col_band', 4 => 'col_gridsquare', 6 => 'station_profile.station_profile_name');
