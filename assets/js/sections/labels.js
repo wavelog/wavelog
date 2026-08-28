@@ -46,6 +46,11 @@ function printat(stationid) {
 				message: html,
 				onshown: function(dialog) {
 					dialog.getButton('button_markprint').disable()
+					// A designed label template has its own layout — hide the
+					// classic text-layout options while one is selected.
+					$('#pform').on('change', '#print_template', function() {
+						$('#classicOptions').toggle(!this.value);
+					});
 				},
 				buttons: [
 				{

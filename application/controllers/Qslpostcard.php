@@ -279,7 +279,12 @@ class Qslpostcard extends CI_Controller {
     }
 
     public function printqueue_selected() {
+        // Accept the ids as a JSON string (one POST var, immune to
+        // max_input_vars) or as a classic selected_qsos[] array.
         $selected_ids = $this->input->post('selected_qsos');
+        if (is_string($selected_ids)) {
+            $selected_ids = xss_clean(json_decode($selected_ids, true));
+        }
 
         if (!is_array($selected_ids) || empty($selected_ids)) {
             show_error(__("No QSOs were selected"));
@@ -309,7 +314,12 @@ class Qslpostcard extends CI_Controller {
                 return;
             }
 
+            // Accept the ids as a JSON string (one POST var, immune to
+            // max_input_vars) or as a classic selected_ids[] array.
             $selected_ids = $this->input->post('selected_ids');
+            if (is_string($selected_ids)) {
+                $selected_ids = xss_clean(json_decode($selected_ids, true));
+            }
             if (!is_array($selected_ids) || empty($selected_ids)) {
                 show_error(__("No selected QSO IDs were provided"));
                 return;

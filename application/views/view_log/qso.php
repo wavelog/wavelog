@@ -203,7 +203,7 @@
                     <?php if($row->COL_STATE != null) { ?>
                     <tr>
                         <th scope="row"><?php echo $primary_subdivision ?>:</th>
-                        <td><?php if ($row->subdivision != '') { echo $row->subdivision.' ('.$row->COL_STATE.')'; } else { echo html_escape($row->COL_STATE); } ?></td>
+                        <td><?php if ($row->subdivision != '') { echo $row->subdivision.' ('.strtoupper($row->COL_STATE).')'; } else { echo html_escape(strtoupper($row->COL_STATE)); } ?></td>
                     </tr>
                     <?php } ?>
 

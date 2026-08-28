@@ -303,9 +303,20 @@
 		return { x: (clientX - rect.left) / zoom, y: (clientY - rect.top) / zoom };
 	}
 
+	// The mousedown handlers below preventDefault() (to stop text selection
+	// while dragging), which also stops the browser from moving focus. Without
+	// this, focus lingers on the last-used control (toolbar dropdowns,
+	// property inputs) and its keydown handler eats the arrow keys — or worse,
+	// arrows change a focused dropdown. Give the canvas keyboard focus back.
+	function blurActiveControl() {
+		const ae = document.activeElement;
+		if (ae && ae !== document.body && typeof ae.blur === 'function') ae.blur();
+	}
+
 	function onElementMouseDown(e, id) {
 		if (e.button !== 0) return;
 		e.preventDefault();
+		blurActiveControl();
 
 		const additive = e.shiftKey || e.ctrlKey || e.metaKey;
 		if (additive) {
@@ -773,6 +784,7 @@
 	stage.addEventListener('mousedown', e => {
 		if (e.button !== 0 || e.target !== stage) return; // only the empty canvas area
 		e.preventDefault();
+		blurActiveControl();
 		const p = clientToStagePx(e.clientX, e.clientY);
 		const additive = e.shiftKey || e.ctrlKey || e.metaKey;
 		if (!additive) setSelection([]);

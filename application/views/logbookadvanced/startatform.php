@@ -13,6 +13,26 @@
 <form method="post" class="col-md">
     <div class="card shadow-sm">
         <div class="card-body">
+            <?php if (!empty($label_templates)) { ?>
+            <div class="mb-3">
+                <label for="print_template" class="form-label fw-bold d-flex align-items-center">
+                    <i class="fas fa-pen-ruler me-2 text-secondary" style="width: 20px;"></i>
+                    <?= __("Label layout"); ?>
+                </label>
+                <select class="form-select" id="print_template" name="print_template">
+                    <option value=""><?= __("Standard"); ?></option>
+                    <?php foreach ($label_templates as $t) {
+                        $tname = htmlentities($t['name']) . (($t['label_name'] ?? '') !== '' ? ' (' . htmlentities($t['label_name']) . ')' : '');
+                        echo '<option value="' . (int)$t['id'] . '">' . $tname . '</option>';
+                    } ?>
+                </select>
+                <small class="form-text text-muted"><?= __("Designed label templates use their own layout and ignore the options below."); ?></small>
+            </div>
+
+            <hr class="my-4">
+            <?php } ?>
+
+            <div id="classicOptions">
             <div class="option-item mb-3">
                 <i class="fas fa-broadcast-tower text-primary mt-1"></i>
                 <div>
@@ -95,6 +115,7 @@
                 <div class="form-check form-switch switch-container">
                     <input class="form-check-input" type="checkbox" name="tnxmsg" id="tnxmsg" checked style="width: 3em; height: 1.5em;">
                 </div>
+            </div>
             </div>
 
             <div class="option-item mb-3">

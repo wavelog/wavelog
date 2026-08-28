@@ -556,6 +556,11 @@ function printDialog(printType, printAll = false) {
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
+					// A designed label template has its own layout — hide the
+					// classic text-layout options while one is selected.
+					$('#print_template').on('change', function() {
+						$('#classicOptions').toggle(!this.value);
+					});
 				},
 				buttons: [
 					{
@@ -611,9 +616,7 @@ function printSelectedQsos(printAll) {
 		let $container = $('#qslcard_selected_ids');
 		if (id_list.length) {
 			$container.empty();
-			$.each(id_list, function (i, id) {
-				$('<input>').attr({ type: 'hidden', name: 'selected_ids[]' }).val(id).appendTo($container);
-			});
+			$('<input>').attr({ type: 'hidden', name: 'selected_ids' }).val(JSON.stringify(id_list)).appendTo($container);
 		}
 		let tplId = $('#qslcard_template_id').val();
 		if (!tplId) {
@@ -635,9 +638,7 @@ function saveAndPrintSelectedQsos(printAll) {
 		let $container = $('#qslcard_selected_ids');
 		if (id_list.length) {
 			$container.empty();
-			$.each(id_list, function (i, id) {
-				$('<input>').attr({ type: 'hidden', name: 'selected_ids[]' }).val(id).appendTo($container);
-			});
+			$('<input>').attr({ type: 'hidden', name: 'selected_ids' }).val(JSON.stringify(id_list)).appendTo($container);
 		}
 		var tplId = $('#qslcard_template_id').val();
 		if (!tplId) {
@@ -672,7 +673,8 @@ function printLabel(printAll) {
 			'qslmsg': $('#qslmsg')[0].checked,
 			'reference': $('#reference')[0].checked,
 			'mycall': $('#mycall')[0].checked,
-			'opcall': $('#opcall')[0].checked
+			'opcall': $('#opcall')[0].checked,
+			'print_template': $('#print_template').length ? $('#print_template').val() : ''
 		};
 	let url, postData;
 	if (printAll == true) {

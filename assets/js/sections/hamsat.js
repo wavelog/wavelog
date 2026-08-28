@@ -123,14 +123,28 @@ function loadActivationsTable(rows, show_workable_only) {
 		}
 
 		var data = [];
-		data.push(activation.aos_at_date);
-		data.push(activation.aos_to_los);
+		data.push(escapeHtml(activation.aos_at_date));
+		data.push(escapeHtml(activation.aos_to_los));
+		var callstring = '';
 		if (activation.callsign_wkd == 1) {;
-			data.push("<span class=\"text-success callsign\">"+activation.callsign+"</span>");
+			callstring = "<span class=\"text-success callsign\">"+escapeHtml(activation.callsign)+"</span>";
 		} else {
-			data.push('<span class="callsign">'+activation.callsign+'</span>');
+			callstring = "<span class=\"callsign\">"+escapeHtml(activation.callsign)+"</span>";
 		}
-		data.push(activation.comment);
+		var lotw_hint = "";
+		if (activation.last_lotw_upload != null) {
+			if (activation.last_lotw_upload > 365) {
+				lotw_hint = "lotw_info_red";
+			} else if (activation.last_lotw_upload > 30) {
+				lotw_hint = "lotw_info_orange";
+			} else if (activation.last_lotw_upload > 7) {
+				lotw_hint = "lotw_info_yellow";
+			}
+			callstring = callstring + " <a href=\"https://lotw.arrl.org/lotwuser/act?act="+escapeHtml(activation.callsign)+"\" target=\"_blank\"><small id=\"lotw_info\" class=\"badge bg-success "+lotw_hint+"\" data-bs-toggle=\"tooltip\" title=\""+lang_last_lotw_upload+" "+activation.last_lotw_upload+"\">L</small></a>";
+		}
+		callstring = callstring + " <a target=\"_blank\" href=\"https://www.qrz.com/db/"+escapeHtml(activation.callsign)+"\"><img width=\"16\" height=\"16\" src=\""+base_url+"images/icons/qrz.png\" alt=\""+lang_qrz_lookup+"\"></a>";
+		data.push(callstring);
+		data.push(escapeHtml(activation.comment));
 		if (activation.satellite.name != activation.sat_export_name) {
 			sat = activation.sat_export_name;
 		} else {
@@ -144,23 +158,23 @@ function loadActivationsTable(rows, show_workable_only) {
 			} else if (activation.mhz_direction == "down") {
 				dir = '&darr;';
 			}
-			data.push("<span data-bs-toggle=\"tooltip\" data-bs-original-title=\""+freq+" MHz "+dir+"\">"+sat+"</span>");
+			data.push("<span data-bs-toggle=\"tooltip\" data-bs-original-title=\""+escapeHtml(freq)+" MHz "+dir+"\">"+escapeHtml(sat)+"</span>");
 		} else {
-			data.push(sat);
+			data.push(escapeHtml(sat));
 		}
-		data.push("<span title=\""+activation.mode+"\" class=\"badge "+activation.mode_class+"\">"+activation.mode+"</span>");
+		data.push("<span title=\""+escapeHtml(activation.mode)+"\" class=\"badge "+activation.mode_class+"\">"+escapeHtml(activation.mode)+"</span>");
 		grids = [];
 		for (var j=0; j < activation.grids_wkd.length; j++) {
 			if (!grids.some(str => str.includes(activation.grids[j].substring(0, 4)))) {
 				switch (activation.grids_wkd[j]) {
 					case 1:
-						grids.push("<a href=\"javascript:displayContacts('"+activation.grids[j].substring(0, 4)+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-warning\">"+activation.grids[j].substring(0, 4)+"</span></a>")
+						grids.push("<a href=\"javascript:displayContacts('"+escapeHtml(activation.grids[j].substring(0, 4))+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-warning\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span></a>")
 						break;
 					case 2:
-						grids.push("<a href=\"javascript:displayContacts('"+activation.grids[j].substring(0, 4)+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Confirmed\" class=\"badge bg-success\">"+activation.grids[j].substring(0, 4)+"</span></a>")
+						grids.push("<a href=\"javascript:displayContacts('"+escapeHtml(activation.grids[j].substring(0, 4))+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Confirmed\" class=\"badge bg-success\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span></a>")
 						break;
 					default:
-						grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j].substring(0, 4)+"</span>")
+						grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span>")
 						break;
 				}
 			}

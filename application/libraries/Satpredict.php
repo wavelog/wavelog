@@ -16,13 +16,14 @@ class Satpredict {
 	public function build_tle($sat_tle) {
 		$raw = isset($sat_tle->tle) ? trim($sat_tle->tle) : '';
 
-		if (Predict_TLE::isOmmJson($raw)) {
-			return Predict_TLE::fromOmmJson($raw);
-		}
-
 		$name = (isset($sat_tle->satellite) && $sat_tle->satellite)
 			? $sat_tle->satellite
 			: (isset($sat_tle->displayname) ? $sat_tle->displayname : '');
+
+		if (Predict_TLE::isOmmJson($raw)) {
+			return Predict_TLE::fromOmmJson($raw, $name);
+		}
+
 		$temp = preg_split('/\n/', $sat_tle->tle);
 		return new Predict_TLE($name, $temp[0], $temp[1]);
 	}

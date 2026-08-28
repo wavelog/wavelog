@@ -1408,33 +1408,43 @@ class Awards extends CI_Controller {
     private function counties_postdata() {
         $postdata = array();
         foreach (array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog') as $source) {
-            $postdata[$source] = $this->input->post($source) ? 1 : NULL;
+            $postdata[$source] = $this->input->post($source, true) ? 1 : NULL;
         }
 
-        $band = $this->input->post('band');
-        $postdata['band'] = empty($band) ? 'All' : $this->security->xss_clean($band);
+        $band = $this->input->post('band', true);
+        $postdata['band'] = empty($band) ? 'All' : $band;
 
-        $mode = $this->input->post('mode');
-        $postdata['mode'] = empty($mode) ? 'All' : $this->security->xss_clean($mode);
+        $mode = $this->input->post('mode', true);
+        $postdata['mode'] = empty($mode) ? 'All' : $mode;
 
         return $postdata;
     }
 
+    // Type: 'worked'|'confirmed' (from log), 'target' (all), 'needed' (not worked)
     public function counties_list_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
-        $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
-        $data['type'] = $type;
-        $this->load->view('awards/counties/details_ajax', $data);
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $type  = str_replace('"', "", $this->input->post("Type", true));
+
+        if ($type == 'target') {
+            $data['counties_array'] = $this->counties->get_counties_list($state);
+            $this->load->view('awards/counties/counties_simple_ajax', $data);
+        } else if ($type == 'needed') {
+            $data['counties_array'] = $this->counties->get_counties_needed($state, $this->counties_postdata());
+            $this->load->view('awards/counties/counties_simple_ajax', $data);
+        } else {
+            $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
+            $data['type'] = $type;
+            $this->load->view('awards/counties/details_ajax', $data);
+        }
     }
 
     public function counties_details_ajax() {
         $this->load->model('logbook_model');
         $this->load->model('counties');
 
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $county = str_replace('"', "", $this->input->post("County", true));
         $data['results'] = $this->logbook_model->county_qso_details($state, $county, $this->counties_postdata());
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
@@ -1447,7 +1457,7 @@ class Awards extends CI_Controller {
 
     public function counties_state_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
+        $state = str_replace('"', "", $this->input->post("State", true));
         $data['counties_array'] = $this->counties->get_county_counts($state, $this->counties_postdata());
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);
@@ -2454,6 +2464,7 @@ class Awards extends CI_Controller {
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
+		    'assets/js/leaflet/geocoding.js',
 		    'assets/js/sections/wab.js'
 	    ];
 
@@ -2516,13 +2527,56 @@ class Awards extends CI_Controller {
 
 	    if ($logbooks_locations_array) {
 		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
-		    $wab_array = $this->wab->get_wab_list($location_list, $postdata);
+		    $qsos = $this->wab->get_wab_qsos($location_list, $postdata);
 	    } else {
-		    $location_list = null;
-		    $wab_array = null;
+		    $qsos = array();
 	    }
 
-	    $data['wab_array'] = $wab_array;
+	    // WAB square -> DXCC prefix from the generated mapping (assign_wab_dxcc.php)
+	    $dxcc_map = array();
+	    $dxcc_file = FCPATH . 'assets/js/sections/wab_dxcc.json';
+	    if (is_readable($dxcc_file)) {
+		    $dxcc_map = json_decode(file_get_contents($dxcc_file), true) ?: array();
+	    }
+	    foreach ($qsos as $qso) {
+		    $qso->dxcc = $dxcc_map[strtoupper($qso->col_sig_info)] ?? '';
+	    }
+
+	    // Order by DXCC, then WAB square, then QSO date
+	    $dxcc_order = array('G', 'GD', 'GI', 'GJ', 'GM', 'GU', 'GW', '');
+	    usort($qsos, function ($a, $b) use ($dxcc_order) {
+		    $oa = array_search($a->dxcc, $dxcc_order, true);
+		    $ob = array_search($b->dxcc, $dxcc_order, true);
+		    $oa = ($oa === false) ? count($dxcc_order) : $oa;
+		    $ob = ($ob === false) ? count($dxcc_order) : $ob;
+		    if ($oa !== $ob) {
+			    return $oa <=> $ob;
+		    }
+		    $cmp = strcmp($a->col_sig_info, $b->col_sig_info);
+		    if ($cmp !== 0) {
+			    return $cmp;
+		    }
+		    return strcmp($a->col_time_on, $b->col_time_on);
+	    });
+
+	    // Date format from user settings, falling back to the global config
+	    if ($this->session->userdata('user_date_format')) {
+		    $date_format = $this->session->userdata('user_date_format');
+	    } else {
+		    $date_format = $this->config->item('qso_date_format');
+	    }
+	    $data['date_format'] = $date_format;
+
+	    $data['qsos'] = $qsos;
+	    $data['dxcc_names'] = array(
+		    'G' => __("England"),
+		    'GD' => __("Isle of Man"),
+		    'GI' => __("Northern Ireland"),
+		    'GJ' => __("Jersey"),
+		    'GM' => __("Scotland"),
+		    'GU' => __("Guernsey"),
+		    'GW' => __("Wales"),
+	    );
 	    $data['postdata']['band'] = $postdata['band'];
 	    $data['postdata']['mode'] = $postdata['mode'];
 	    $data['postdata']['sat'] = $postdata['sat'];

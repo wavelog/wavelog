@@ -20,10 +20,11 @@ echo '<table style="width:100%" class="table-sm table table-bordered table-hover
 foreach ($result as $key => $val) {
 	$tdClass = '';
 	$content = $val;
-	$linkinfo = "<a href='javascript:displayContacts(\"".strtoupper($callsign)."\",\"SAT\",\"$key\",\"All\",\"All\",\"SAT\")'>$val</a>";
+	$qslParam = ($val == 'W' || $val == '-') ? '' : ",\"$val\"";
+	$linkinfo = "<a href='javascript:displayContacts(\"".strtoupper($callsign)."\",\"SAT\",\"$key\",\"All\",\"All\",\"SAT\"$qslParam)'>$val</a>";
 	if ($val == 'W') {
 		$content = "<div class='bg-danger awardsBgDanger'>$linkinfo</div>";
-	} elseif ($val === 'C') {
+	} elseif ($val != '-') {
 		$content = "<div class='bg-success awardsBgSuccess'>$linkinfo</div>";
 	}
 	echo "<td $tdClass><b>$key</b><br />$content</td>";

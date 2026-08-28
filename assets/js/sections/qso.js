@@ -236,6 +236,7 @@ $('#stationProfile').on('change', function () {
 	});
 	// [eQSL default msg] change value on change station profle //
 	qso_set_eqsl_qslmsg(stationProfile, false, '.qso_panel');
+	panMap(stationProfile);
 });
 
 // [eQSL default msg] change value on clic //
@@ -1017,7 +1018,8 @@ if (qso_manual == 0) {
 			setTimeout(() => {
 				if (ev.data.frequency != null) {
 					$('#frequency').val(ev.data.frequency).trigger("change");
-					$("#band").val(frequencyToBand(ev.data.frequency));
+					var bmBand = frequencyToBand(ev.data.frequency);
+					if (bmBand) $("#band").val(bmBand).trigger('change');
 				}
 				if (ev.data.frequency_rx != "") {
 					$('#frequency_rx').val(ev.data.frequency_rx);
@@ -1582,7 +1584,7 @@ $("#callsign").on("focusout", function () {
 		const stationProfile = $('#stationProfile').val();
 
 		find_callsign = find_callsign.replace(/\//g, "-");
-		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}`;
+		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}?ctx=live`;
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(url, async function (result) {
@@ -2744,7 +2746,7 @@ $('.mode').on('change', function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').on('change', function () {
-	if ($('#radio').val() == 0) {
+	if (frequencyToBand($('#frequency').val()) != $(this).val()) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
 
@@ -2841,7 +2843,7 @@ $("#locator").on("input focus", function () {
 					// Set Map to Lat/Long
 					result = JSON.parse(data);
 					markers.clearLayers();
-					if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+					if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined" && $('#locator').val().toUpperCase() == qra) {
 						var redIcon = L.icon({
 							iconUrl: icon_dot_url,
 							iconSize: [18, 18], // size of the icon

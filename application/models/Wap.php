@@ -195,7 +195,7 @@ class wap extends CI_Model {
 	 */
 	function getwapWorked($location_list, $band, $postdata) {
 		$bindings=[];
-		$sql = "SELECT distinct col_state FROM " . $this->config->item('table_name') . " thcv
+		$sql = "SELECT distinct UPPER(col_state) as col_state FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ")";
 
 		if ($postdata['mode'] != 'All') {
@@ -237,7 +237,7 @@ class wap extends CI_Model {
 	 */
 	function getwapConfirmed($location_list, $band, $postdata) {
 		$bindings=[];
-		$sql = "SELECT distinct col_state FROM " . $this->config->item('table_name') . " thcv
+		$sql = "SELECT distinct UPPER(col_state) as col_state FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ")";
 
 		if ($postdata['mode'] != 'All') {
@@ -249,7 +249,6 @@ class wap extends CI_Model {
 		$sql .= $this->addStateToQuery();
 
 		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$query = $this->db->query($sql,$bindings);
