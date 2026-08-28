@@ -27,11 +27,12 @@ class Tiles extends CI_Controller {
 		$this->load->model('options_model');
 		$this->load->library('MaptileCache');
 		$upstream = $this->options_model->item('map_tile_server') ?? MaptileCache::DEFAULT_SERVER;
+		$subdomains = $this->options_model->item('map_tile_subdomains') ?? 'abc';
 
 		$png = MaptileCache::get($upstream, $z, $x, $y);
 
 		if ($png === false) {
-			$png = $this->fetch_upstream($upstream, $x, $y, $z);
+			$png = $this->fetch_upstream($upstream, $subdomains, $x, $y, $z);
 			if ($png === null) {
 				$this->bail(404);
 			}
@@ -53,11 +54,11 @@ class Tiles extends CI_Controller {
 		}
 	}
 
-	private function fetch_upstream(string $template, int $x, int $y, int $z): ?string {
-		$url = str_replace(['{s}', '{r}', '{x}', '{y}', '{z}'], ['a', '', $x, $y, $z], $template);
+	private function fetch_upstream(string $template, string $subdomains, int $x, int $y, int $z): ?string {
+		$url = str_replace(['{s}', '{r}', '{x}', '{y}', '{z}'], [MaptileCache::subdomain($subdomains, $x, $y), '', $x, $y, $z], $template);
 
 		if (str_starts_with($url, base_url())) {
-			$url = str_replace(['{s}', '{r}', '{x}', '{y}', '{z}'], ['a', '', $x, $y, $z], MaptileCache::DEFAULT_SERVER);
+			$url = str_replace(['{s}', '{r}', '{x}', '{y}', '{z}'], [MaptileCache::subdomain('abc', $x, $y), '', $x, $y, $z], MaptileCache::DEFAULT_SERVER);
 		}
 
 		$ch = curl_init($url);

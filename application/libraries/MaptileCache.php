@@ -10,6 +10,12 @@ class MaptileCache {
 		return 'tile:' . md5($template) . ':' . $z . ':' . $x . ':' . $y;
 	}
 
+	// Same rotation as Leaflet's own TileLayer.getSubdomain() and Wavelog\StaticMapImage\TileLayer::getSubdomain()
+	public static function subdomain(string $subdomains, int $x, int $y): string {
+		$letters = str_split($subdomains) ?: ['a'];
+		return $letters[abs($x + $y) % count($letters)];
+	}
+
 	private static function driver() {
 		static $cache = null;
 		if ($cache !== null) {
