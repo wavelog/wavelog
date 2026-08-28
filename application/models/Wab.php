@@ -236,6 +236,18 @@ class Wab extends CI_Model {
 
 		return $sql;
 	}
+  
+  	// Adds orbit type to query
+	function addOrbitToQuery($orbit,&$binding) {
+		$sql = '';
+		if ($orbit != 'All') {
+			$sql .= ' AND satellite.orbit = ?';
+			$binding[]=$orbit;
+		}
+
+		return $sql;
+	}
+
 
 	/*
 	 * WAB tool: QSOs with a gridsquare (>= 6 chars) that have no SIG set
@@ -269,7 +281,7 @@ class Wab extends CI_Model {
 		return $query;
 	}
 
-	/*
+/*
 	 * WAB tool: re-fetch candidate QSOs by primary key. Ownership, the
 	 * empty-SIG policy and the valid-DXCC check are re-applied so apply()
 	 * can recompute squares server side without trusting anything submitted

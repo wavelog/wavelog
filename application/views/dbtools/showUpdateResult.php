@@ -13,9 +13,6 @@ switch ($type) {
 	case 'distance':
 		showDistanceUpdateResult($result);
 		break;
-	case 'grids':
-		showGridUpdateResult($result);
-		break;
 	default:
 		// Invalid type
 		break;
@@ -135,9 +132,4 @@ function showContinentUpdateResult($result) {
 function showDistanceUpdateResult($result) {
 	echo '<h5>' . __("Results for distance update:") . '</h5>';
 	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for distance is") . ': %d', $result) . '</div>';
-}
-
-function showGridUpdateResult($result) {
-	echo '<h5>' . __("Results for gridsquare update:") . '</h5>';
-	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for gridsquare is") . ': %d', $result) . '</div>';
 }

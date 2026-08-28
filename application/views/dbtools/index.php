@@ -121,10 +121,9 @@
 						<div>
 							<h6 class="mb-1"><?= __("Lookup QSOs with missing grid in callbook") ?></h6>
 							<p class="mb-0 small text-muted"><?= __("Use callbook lookup to set gridsquare") ?></p>
-							<p class="mb-0 small text-danger"><?= __("This is limited to 150 callsigns for each run!") ?></p>
 						</div>
 						<button type="button" class="btn btn-sm btn-success ld-ext-right flex-shrink-0" id="checkGridsBtn" onclick="checkGrids()">
-							<?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
+							<?= __("Lookup") ?><div class="ld ld-ring ld-spin"></div>
 						</button>
 					</div>
 				</div>
