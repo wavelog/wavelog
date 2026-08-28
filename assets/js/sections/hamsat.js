@@ -125,11 +125,14 @@ function loadActivationsTable(rows, show_workable_only) {
 		var data = [];
 		data.push(activation.aos_at_date);
 		data.push(activation.aos_to_los);
+		var callstring = '';
 		if (activation.callsign_wkd == 1) {;
-			data.push("<span class=\"text-success callsign\">"+activation.callsign+"</span>");
+			callstring = "<span class=\"text-success callsign\">"+activation.callsign+"</span>";
 		} else {
-			data.push('<span class="callsign">'+activation.callsign+'</span>');
+			callstring = "<span class=\"callsign\">"+activation.callsign+"</span>";
 		}
+		callstring = callstring + " <a target=\"_blank\" href=\"https://www.qrz.com/db/"+activation.callsign+"\"><img width=\"16\" height=\"16\" src=\""+base_url+"images/icons/qrz.png\" alt=\""+lang_qrz_lookup+"\"></a>";
+		data.push(callstring);
 		data.push(activation.comment);
 		if (activation.satellite.name != activation.sat_export_name) {
 			sat = activation.sat_export_name;
