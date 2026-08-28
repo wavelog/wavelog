@@ -72,12 +72,12 @@ class Countychecker extends CI_Controller {
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			left outer join lotw_users on lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call
 			where station_profile.user_id = ?
-			and length(col_gridsquare) >= 6';
-		if ($include_missing) {
-			// QSOs with a logged county, plus US-DXCC QSOs without one (whose
-			// county could be backfilled from the gridsquare)
-			$sql .= ' and (coalesce(col_cnty, \'\') <> \'\' or col_dxcc in (\'291\', \'6\', \'110\'))';
-		} else {
+			and length(col_gridsquare) >= 6
+			and col_dxcc in (' . implode(',', self::$countyFiles) . ')';
+		if (!$include_missing) {
+			// Only QSOs with a logged county; with $include_missing, DXCCs
+			// 291/6/110 without one are included too (their county can be
+			// backfilled from the gridsquare)
 			$sql .= ' and coalesce(col_cnty, \'\') <> \'\'';
 		}
 		$params[] = $this->session->userdata('user_id');
@@ -106,6 +106,7 @@ class Countychecker extends CI_Controller {
 		$not_found = 0;
 		$missing = 0;
 		$result = array();
+		$not_found_list = array();
 		$this->gridsquareCache = array(); // Reset cache
 
 		$callarray = $this->getQsos($de, $include_missing)->result();
@@ -150,17 +151,28 @@ class Countychecker extends CI_Controller {
 				$hits++;
 			}
 
-			// Gridsquare resolved to water/nowhere with a county polygon - skip
-			if (!isset($county['state'])) {
-				$not_found++;
-				continue;
-			}
-
 			// COL_CNTY is "STATE,COUNTY" (ADIF); fall back to COL_STATE when
 			// the county was logged without the state prefix.
 			$parts = explode(',', (string)$qso->col_cnty, 2);
 			$logged_county = trim($parts[count($parts) - 1]);
 			$logged_state = strtoupper(trim(count($parts) == 2 ? $parts[0] : (string)$qso->col_state));
+
+			// Gridsquare resolved to water/nowhere with a county polygon -
+			// collect for the informational "no polygon" table
+			if (!isset($county['state'])) {
+				$not_found++;
+				$not_found_list[] = [
+					'id' => $qso->col_primary_key,
+					'qso_date' => $qso->col_time_on,
+					'callsign' => $qso->col_call,
+					'station_profile' => $qso->station_profile_name,
+					'gridsquare' => $qso->col_gridsquare,
+					'band' => $qso->col_band,
+					'logged_state' => $logged_state,
+					'logged_county' => $logged_county,
+				];
+				continue;
+			}
 
 			if ($logged_county === '') {
 				// No county logged but the gridsquare resolves to one - a
@@ -223,6 +235,7 @@ class Countychecker extends CI_Controller {
 		$data['execution_time'] = $execution_time;
 		$data['calls_tested'] = $i;
 		$data['not_found'] = $not_found;
+		$data['not_found_list'] = $not_found_list;
 		$data['missing'] = $missing;
 		$data['cache_hits'] = $hits;
 		$data['cache_misses'] = $misses;
