@@ -2387,6 +2387,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/hamsat/index.php:40
 msgid "Mode"
 msgstr "モード"
 
@@ -4163,8 +4164,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1548
 msgid "Station setup failed! Please set up your station manually."
@@ -5276,6 +5277,7 @@ msgstr "アクティブ化されたグリッドスクエア"
 #: application/views/timeline/index.php:310
 #: application/views/timeline/index.php:346
 #: application/views/timeline/index.php:381
+#: application/views/hamsat/index.php:39
 msgid "Satellite"
 msgstr "衛星"
 
@@ -5767,6 +5769,7 @@ msgstr "何も見つかりません!"
 #: application/views/visitor/mini.php:183
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
+#: application/views/hamsat/index.php:37
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -5881,6 +5884,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/hamsat/index.php:35
 msgid "Date"
 msgstr "日付"
 
@@ -5917,6 +5921,7 @@ msgstr "日付"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/hamsat/index.php:36
 msgid "Time"
 msgstr "時間"
 
@@ -10314,7 +10319,7 @@ msgstr "スポッター"
 #: application/views/logbookadvanced/index.php:1039
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:390
-#: application/views/view_log/qso.php:227
+#: application/views/view_log/qso.php:227 application/views/hamsat/index.php:38
 msgid "Comment"
 msgstr "コメント"
 
@@ -11025,6 +11030,7 @@ msgstr "QSLカード"
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:634
 #: application/views/zonechecker/result.php:88
+#: application/views/hamsat/index.php:17
 msgid "Lookup on QRZ.com"
 msgstr "QRZ.comで検索"
 
@@ -15657,7 +15663,7 @@ msgstr "Hamsat - Satellite Rovers"
 msgid "Satellite Rovers"
 msgstr "衛星探査機"
 
-#: application/views/hamsat/index.php:27
+#: application/views/hamsat/index.php:27 application/views/hamsat/index.php:29
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
@@ -15666,15 +15672,15 @@ msgstr ""
 "プライベート フィード キーがない場合、有効なパスだけをフィルタリングできませ"
 "ん。%s にフィード キーを設定してください。"
 
-#: application/views/hamsat/index.php:27
+#: application/views/hamsat/index.php:27 application/views/hamsat/index.php:29
 msgid "your profile"
 msgstr "あなたのプロフィール"
 
-#: application/views/hamsat/index.php:39
+#: application/views/hamsat/index.php:39 application/views/hamsat/index.php:41
 msgid "Gridsquare(s)"
 msgstr "グリッドスクエア"
 
-#: application/views/hamsat/index.php:40
+#: application/views/hamsat/index.php:40 application/views/hamsat/index.php:42
 msgid "Workable"
 msgstr "交信可能"
 
@@ -24323,6 +24329,10 @@ msgstr "Clublog Log を検索"
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
 
+#: application/views/hamsat/index.php:18
+msgid "LoTW User. Days since last upload: "
+msgstr ""
+
 #~ msgid "This is limited to 150 callsigns for each run!"
 #~ msgstr "実行ごとに 150 のコールサインに制限されます！"
 
@@ -25199,9 +25209,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -25532,8 +25542,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

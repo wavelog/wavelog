@@ -2404,6 +2404,7 @@ msgstr "Alle callbook opzoekingen zijn mislukt of leverden geen resultaten op."
 #: application/views/dbtools/checkresult.php:307
 #: application/views/dbtools/checkresult.php:378
 #: application/views/dbtools/missinggridlist.php:46
+#: application/views/hamsat/index.php:40
 msgid "Mode"
 msgstr "Modus"
 
@@ -5319,6 +5320,7 @@ msgstr "Geactiveerde locatorvakken"
 #: application/views/timeline/index.php:346
 #: application/views/timeline/index.php:381
 #: application/views/awards/wab/index.php:85
+#: application/views/hamsat/index.php:39
 msgid "Satellite"
 msgstr "Satelliet"
 
@@ -5820,6 +5822,7 @@ msgstr "Niets gevonden!"
 #: application/views/dbtools/checkresult.php:375
 #: application/views/dbtools/showUpdateResult.php:43
 #: application/views/dbtools/showUpdateResult.php:106
+#: application/views/hamsat/index.php:37
 msgid "Callsign"
 msgstr "Roepnaam"
 
@@ -5937,6 +5940,7 @@ msgstr ""
 #: application/views/awards/wab/list.php:9
 #: application/views/dbtools/checkresult.php:229
 #: application/views/dbtools/checkresult.php:305
+#: application/views/hamsat/index.php:35
 msgid "Date"
 msgstr "Datum"
 
@@ -5975,6 +5979,7 @@ msgstr "Datum"
 #: application/views/zonechecker/result.php:66
 #: application/views/dbtools/checkresult.php:230
 #: application/views/dbtools/checkresult.php:306
+#: application/views/hamsat/index.php:36
 msgid "Time"
 msgstr "Tijd"
 
@@ -10354,7 +10359,7 @@ msgstr "Spotter"
 #: application/views/logbookadvanced/index.php:1039
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:390
-#: application/views/view_log/qso.php:227
+#: application/views/view_log/qso.php:227 application/views/hamsat/index.php:38
 msgid "Comment"
 msgstr "Opmerking"
 
@@ -11066,6 +11071,7 @@ msgstr "QSL-kaart"
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:634
 #: application/views/zonechecker/result.php:88
+#: application/views/hamsat/index.php:17
 msgid "Lookup on QRZ.com"
 msgstr "Opzoeken op QRZ.com"
 
@@ -15803,7 +15809,7 @@ msgstr "Hamsat - Satellietrovers"
 msgid "Satellite Rovers"
 msgstr "Satellietrovers"
 
-#: application/views/hamsat/index.php:27
+#: application/views/hamsat/index.php:27 application/views/hamsat/index.php:29
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
@@ -15812,15 +15818,15 @@ msgstr ""
 "Kan werkbare passages alleen niet filteren zonder privésleutel voor de feed. "
 "Stel de feed-sleutel in %s in."
 
-#: application/views/hamsat/index.php:27
+#: application/views/hamsat/index.php:27 application/views/hamsat/index.php:29
 msgid "your profile"
 msgstr "je profiel"
 
-#: application/views/hamsat/index.php:39
+#: application/views/hamsat/index.php:39 application/views/hamsat/index.php:41
 msgid "Gridsquare(s)"
 msgstr "Locatorvak(ken)"
 
-#: application/views/hamsat/index.php:40
+#: application/views/hamsat/index.php:40 application/views/hamsat/index.php:42
 msgid "Workable"
 msgstr "Werkbaar"
 
@@ -24705,6 +24711,10 @@ msgstr ""
 
 #: application/views/dbtools/missinggridlist.php:37
 msgid "Uncheck the QSOs you want to skip, then start the lookup."
+msgstr ""
+
+#: application/views/hamsat/index.php:18
+msgid "LoTW User. Days since last upload: "
 msgstr ""
 
 #~ msgid "Count QSO as Confirmed via"
