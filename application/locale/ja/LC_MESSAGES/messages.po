@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-28 09:44+0000\n"
+"POT-Creation-Date: 2026-08-28 10:44+0000\n"
 "PO-Revision-Date: 2026-08-28 10:27+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1549,18 +1549,16 @@ msgstr "実行されていません"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSVエクスポート"
 
-#: application/controllers/Dashboard.php:172
-#: application/controllers/Visitor.php:131
 #: application/controllers/Dashboard.php:175
+#: application/controllers/Visitor.php:131
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: application/controllers/Dashboard.php:219
 #: application/controllers/Dashboard.php:222
 msgid "HF"
 msgstr "HF"
 
-#: application/controllers/Dashboard.php:219
+#: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:684
 #: application/views/distances/index.php:27
 #: application/views/qslprint/qslprint.php:86
@@ -1569,11 +1567,9 @@ msgstr "HF"
 #: application/views/qslprint/qsolist.php:51
 #: application/views/qslprint/qsolist.php:58
 #: application/views/qslprint/qsolist.php:60
-#: application/controllers/Dashboard.php:222
 msgid "SAT"
 msgstr "衛星"
 
-#: application/controllers/Dashboard.php:219
 #: application/controllers/Dashboard.php:222
 msgid "VHF+"
 msgstr "VHF+"
@@ -2344,7 +2340,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/eqsl/download.php:39 application/views/eqsl/result.php:36
 #: application/views/eqslcard/index.php:33
 #: application/views/gridmap/index.php:138
-#: application/views/hamsat/index.php:38
+#: application/views/hamsat/index.php:40
 #: application/views/interface_assets/footer.php:126
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/dupesearchdialog.php:34
@@ -2391,7 +2387,6 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
-#: application/views/hamsat/index.php:40
 msgid "Mode"
 msgstr "モード"
 
@@ -4168,8 +4163,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
-"%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
+"は、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1548
 msgid "Station setup failed! Please set up your station manually."
@@ -4719,7 +4714,6 @@ msgstr "コールなし"
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4930
 #: application/models/Logbook_model.php:4947
 #, php-format
 msgid ""
@@ -4728,7 +4722,6 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:4938
 #: application/models/Logbook_model.php:4955
 #, php-format
 msgid ""
@@ -4738,7 +4731,6 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:4954
 #: application/models/Logbook_model.php:4971
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -4747,7 +4739,6 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4964
 #: application/models/Logbook_model.php:4981
 #, php-format
 msgid ""
@@ -4757,7 +4748,6 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:4971
 #: application/models/Logbook_model.php:4988
 #, php-format
 msgid ""
@@ -4767,7 +4757,6 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:5041
 #: application/models/Logbook_model.php:5058
 #, php-format
 msgid ""
@@ -4777,7 +4766,6 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:5048
 #: application/models/Logbook_model.php:5065
 #, php-format
 msgid ""
@@ -4787,77 +4775,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5322
 #: application/models/Logbook_model.php:5339
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5333
 #: application/models/Logbook_model.php:5350
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5394
 #: application/models/Logbook_model.php:5411
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5770
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5787
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5837
-#: application/models/Logbook_model.php:5937
 #: application/models/Logbook_model.php:5854
 #: application/models/Logbook_model.php:5954
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5845
 #: application/models/Logbook_model.php:5862
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5851
 #: application/models/Logbook_model.php:5868
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5855
 #: application/models/Logbook_model.php:5872
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5859
 #: application/models/Logbook_model.php:5876
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5862
 #: application/models/Logbook_model.php:5879
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5865
+#: application/models/Logbook_model.php:5882
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:5882
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5940
 #: application/models/Logbook_model.php:5957
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5943
 #: application/models/Logbook_model.php:5960
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6362
+#: application/models/Logbook_model.php:6379
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4870,7 +4844,6 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6379
 msgid "Bearing"
 msgstr "方位"
 
@@ -5284,7 +5257,7 @@ msgstr "アクティブ化されたグリッドスクエア"
 #: application/views/distancerecords/index.php:18
 #: application/views/distances/index.php:38
 #: application/views/gridmap/index.php:107
-#: application/views/hamsat/index.php:37
+#: application/views/hamsat/index.php:39
 #: application/views/interface_assets/header.php:218
 #: application/views/logbookadvanced/dupesearchdialog.php:64
 #: application/views/logbookadvanced/edit.php:22
@@ -5303,7 +5276,6 @@ msgstr "アクティブ化されたグリッドスクエア"
 #: application/views/timeline/index.php:310
 #: application/views/timeline/index.php:346
 #: application/views/timeline/index.php:381
-#: application/views/hamsat/index.php:39
 msgid "Satellite"
 msgstr "衛星"
 
@@ -5766,7 +5738,7 @@ msgstr "何も見つかりません!"
 #: application/views/distancerecords/index.php:22
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:32
-#: application/views/gridmap/index.php:71 application/views/hamsat/index.php:35
+#: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
@@ -5795,7 +5767,6 @@ msgstr "何も見つかりません!"
 #: application/views/visitor/mini.php:183
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
-#: application/views/hamsat/index.php:37
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -5884,7 +5855,7 @@ msgstr ""
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:34
-#: application/views/hamsat/index.php:33
+#: application/views/hamsat/index.php:35
 #: application/views/logbookadvanced/dupesearchdialog.php:12
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/oqrs/notinlogform.php:10
@@ -5910,7 +5881,6 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
-#: application/views/hamsat/index.php:35
 msgid "Date"
 msgstr "日付"
 
@@ -5932,7 +5902,7 @@ msgstr "日付"
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:35
-#: application/views/hamsat/index.php:34 application/views/oqrs/qsolist.php:8
+#: application/views/hamsat/index.php:36 application/views/oqrs/qsolist.php:8
 #: application/views/qslcard/index.php:46
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:36
@@ -5947,7 +5917,6 @@ msgstr "日付"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
-#: application/views/hamsat/index.php:36
 msgid "Time"
 msgstr "時間"
 
@@ -10338,14 +10307,14 @@ msgstr "スポッター"
 
 #: application/views/bandmap/list.php:140
 #: application/views/contesting/manager/index.php:36
-#: application/views/hamsat/index.php:36
+#: application/views/hamsat/index.php:38
 #: application/views/logbookadvanced/attachContest.php:16
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:542
 #: application/views/logbookadvanced/index.php:1039
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:390
-#: application/views/view_log/qso.php:227 application/views/hamsat/index.php:38
+#: application/views/view_log/qso.php:227
 msgid "Comment"
 msgstr "コメント"
 
@@ -11053,10 +11022,10 @@ msgstr "QSLカード"
 #: application/views/calltester/comparison_result.php:146
 #: application/views/calltester/comparison_result.php:195
 #: application/views/calltester/result.php:71
+#: application/views/hamsat/index.php:17
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:634
 #: application/views/zonechecker/result.php:88
-#: application/views/hamsat/index.php:17
 msgid "Lookup on QRZ.com"
 msgstr "QRZ.comで検索"
 
@@ -15689,7 +15658,11 @@ msgstr "Hamsat - Satellite Rovers"
 msgid "Satellite Rovers"
 msgstr "衛星探査機"
 
-#: application/views/hamsat/index.php:27 application/views/hamsat/index.php:29
+#: application/views/hamsat/index.php:18
+msgid "LoTW User. Days since last upload: "
+msgstr ""
+
+#: application/views/hamsat/index.php:29
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
@@ -15698,15 +15671,15 @@ msgstr ""
 "プライベート フィード キーがない場合、有効なパスだけをフィルタリングできませ"
 "ん。%s にフィード キーを設定してください。"
 
-#: application/views/hamsat/index.php:27 application/views/hamsat/index.php:29
+#: application/views/hamsat/index.php:29
 msgid "your profile"
 msgstr "あなたのプロフィール"
 
-#: application/views/hamsat/index.php:39 application/views/hamsat/index.php:41
+#: application/views/hamsat/index.php:41
 msgid "Gridsquare(s)"
 msgstr "グリッドスクエア"
 
-#: application/views/hamsat/index.php:40 application/views/hamsat/index.php:42
+#: application/views/hamsat/index.php:42
 msgid "Workable"
 msgstr "交信可能"
 
@@ -24355,10 +24328,6 @@ msgstr "Clublog Log を検索"
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
 
-#: application/views/hamsat/index.php:18
-msgid "LoTW User. Days since last upload: "
-msgstr ""
-
 #~ msgid "This is limited to 150 callsigns for each run!"
 #~ msgstr "実行ごとに 150 のコールサインに制限されます！"
 
@@ -25235,9 +25204,9 @@ msgstr ""
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
-#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
-#~ "なしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
+#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
+#~ "ワードなしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -25568,8 +25537,8 @@ msgstr ""
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
-#~ "%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
+#~ "は、%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
