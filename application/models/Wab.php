@@ -236,18 +236,6 @@ class Wab extends CI_Model {
 
 		return $sql;
 	}
-  
-  	// Adds orbit type to query
-	function addOrbitToQuery($orbit,&$binding) {
-		$sql = '';
-		if ($orbit != 'All') {
-			$sql .= ' AND satellite.orbit = ?';
-			$binding[]=$orbit;
-		}
-
-		return $sql;
-	}
-
 
 	/*
 	 * WAB tool: QSOs with a gridsquare (>= 6 chars) that have no SIG set
