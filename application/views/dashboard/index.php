@@ -523,7 +523,7 @@ function echo_table_header_col($name) {
 		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'dxccOptsMenu','target_id'=>'dxcc-card']); ?>
 		<?php } ?>
 
-		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_qsl_sent != 0 || $total_qsl_rcvd != 0 || $total_qsl_requested != 0)) && !empty($dashboard_show_qslcards)) { ?>
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_qslcards)) { ?>
 		<div class="card mb-3" id="qsl-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-envelope"></i> <?= __("QSL Cards"); ?></h6>
@@ -558,7 +558,7 @@ function echo_table_header_col($name) {
 		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'qslOptsMenu','target_id'=>'qsl-card']); ?>
 		<?php } ?>
 
-		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_lotw_sent != 0 || $total_lotw_rcvd != 0)) && !empty($dashboard_show_lotw)) { ?>
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_lotw)) { ?>
 		<div class="card mb-3" id="lotw-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> <?= _pgettext("Probably no translation needed as this is a name.","Logbook of the World"); ?></h6>
@@ -588,7 +588,7 @@ function echo_table_header_col($name) {
 		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'lotwOptsMenu','target_id'=>'lotw-card']); ?>
 		<?php } ?>
 
-		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_eqsl_sent != 0 || $total_eqsl_rcvd != 0)) && !empty($dashboard_show_eqsl)) { ?>
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_eqsl)) { ?>
 		<div class="card mb-3" id="eqsl-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-address-card"></i> <?= __("eQSL Cards"); ?></h6>
@@ -618,7 +618,7 @@ function echo_table_header_col($name) {
 		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'eqslOptsMenu','target_id'=>'eqsl-card']); ?>
 		<?php } ?>
 
-		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_qrz_sent != 0 || $total_qrz_rcvd != 0)) && !empty($dashboard_show_qrz)) { ?>
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_qrz)) { ?>
 		<div class="card mb-3" id="qrz-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> QRZ.com</h6>
@@ -648,7 +648,7 @@ function echo_table_header_col($name) {
 		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'qrzOptsMenu','target_id'=>'qrz-card']); ?>
 		<?php } ?>
 
-		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_clublog_sent != 0 || $total_clublog_rcvd != 0)) && !empty($dashboard_show_clublog)) { ?>
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_clublog)) { ?>
 		<div class="card mb-3" id="clublog-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> Club Log</h6>
