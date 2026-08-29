@@ -190,7 +190,7 @@ class Staticmap extends CI_Controller {
             }
         }
 
-        if ($this->staticmap_model->validate_cached_image($filepath, $cacheDir, $maxAge, $slug)) {
+        if ($this->staticmap_model->validate_cached_image($filepath, $cacheDir, $maxAge, $slug, $day)) {
             log_message('debug', 'Static map image found in cache: ' . $filename);
             header('Content-Type: image/png');
             readfile($filepath);

@@ -251,7 +251,7 @@ class User_Model extends CI_Model {
 		$user_winkey, $on_air_widget_enabled, $on_air_widget_display_last_seen, $on_air_widget_show_only_most_recent_radio, $on_air_widget_display_radio_name,
 		$qso_widget_display_qso_time, $dashboard_banner, $dashboard_solar, $global_oqrs_text, $oqrs_grouped_search,
 		$oqrs_grouped_search_show_station_name, $oqrs_auto_matching, $oqrs_direct_auto_matching,$user_dxwaterfall_enable, $user_qso_show_map,
-		$last_lotw_upload_widget_enabled, $clubstation = 0, $external_account = null) {
+		$last_lotw_upload_widget_enabled, $user_callbook_prefill = 'default', $clubstation = 0, $external_account = null) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -345,6 +345,7 @@ class User_Model extends CI_Model {
 				['qso_db_search_priority', 'enable',      'boolean',                       $user_qso_db_search_priority ?? 'Y'],
 				['dxwaterfall', 'enable',                 'boolean',                       $user_dxwaterfall_enable     ?? 'N'],
 				['widget',     'last_lotw_upload',        'enabled',                       $last_lotw_upload_widget_enabled            ?? 'false'],
+				['qso',        'callbook_prefill',        'setting',                       in_array($user_callbook_prefill, ['default', 'logbook', 'none'], true) ? $user_callbook_prefill : 'default'],
 			];
 
 			foreach ($user_options as [$type, $name, $key, $value]) {

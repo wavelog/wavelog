@@ -166,6 +166,17 @@ class Logbook extends CI_Controller {
 
 		// Consolidated callsign lookup - reduces queries from 11 to 2
 		$callsign_info = $this->logbook_model->get_callsign_all_info($callsign);
+
+		// Prefill mode (user setting): 'default' = callbook + previous QSOs, 'logbook' = previous QSOs only, 'none' = no prefill.
+		// Only applied for the live lookup while logging (?ctx=live); explicit lookups (edit modal etc.) stay unaffected.
+		$prefill_mode = 'default';
+		if ($this->input->get('ctx') === 'live') {
+			$prefill_mode = $this->user_options_model->get_options('qso', array('option_name' => 'callbook_prefill', 'option_key' => 'setting'))->row()->option_value ?? 'default';
+		}
+		$_callbook = $callbook;
+		if ($prefill_mode !== 'default') { $callbook = []; }
+		if ($prefill_mode === 'none') { $callsign_info = array_fill_keys(array_keys($callsign_info), ''); }
+
 		$return['callsign_name'] 		= $this->nval($callsign_info['name'], $callbook['name'] ?? '', $lookup_priority);
 		$return['callsign_qra'] 		= $this->nval($callsign_info['qra'], $callbook['gridsquare'] ?? '', $lookup_priority);
 		$return['callsign_geoloc'] 		= $callbook['geoloc'] ?? '';
@@ -180,6 +191,10 @@ class Logbook extends CI_Controller {
 		$return['callsign_cqz'] 	= $this->nval($callsign_info['cqz'], $callbook['cqz'] ?? '', $lookup_priority);
 		// call_darc_dok remains separate due to different query pattern (uses logbooks_relationships)
 		$return['callsign_darc_dok'] 		= $this->nval($this->logbook_model->call_darc_dok($callsign), $callbook['darc_dok'] ?? '', $lookup_priority);
+
+		// Restore original callbook data (used by profile panel below) 
+		$callbook = $_callbook;
+		if ($prefill_mode === 'none') { $return['callsign_darc_dok'] = ''; }
 		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
 		$return['confirmed'] 			= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
 		$return['timesWorked'] 			= $this->logbook_model->times_worked($lookupcall);

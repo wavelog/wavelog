@@ -94,8 +94,6 @@ class Dbtools_model extends CI_Model {
 				return $this->check_dxcc($stationid);
 			case 'checkstate':
 				return $this->check_missing_state($stationid);
-			case 'checkgrids':
-				return $this->getMissingGridQsos($stationid);
 			case 'checkincorrectgridsquares':
 				return $this->getIncorrectGridsquares($stationid);
 			case 'checkincorrectcqzones':
@@ -409,54 +407,54 @@ class Dbtools_model extends CI_Model {
 	/*
 		Another function moved from update to the advanced logbook, to be used in the dbtools section.
 		It did not have filter on user or location.
-		This function will check all QSOs with missing grid square and try to fill them using the callbook lookup.
+		The callbook lookup for QSOs with missing grid square is triggered from the dbtools UI one QSO
+		at a time (like the callbook lookup in the advanced logbook), so progress can be shown and the
+		run can be cancelled by the user.
 	*/
-	public function check_missing_grid($stationid = 'All') {
-		$result = $this->getMissingGridQsos($stationid);
+	public function lookup_missing_grid($qsoID) {
+		$sql = "SELECT qsos.col_primary_key, qsos.col_call FROM " . $this->config->item('table_name') . " qsos
+				JOIN station_profile ON qsos.station_id = station_profile.station_id
+				WHERE qsos.col_primary_key = ? AND station_profile.user_id = ?
+				AND (qsos.COL_GRIDSQUARE IS NULL OR qsos.COL_GRIDSQUARE = '')
+				AND (qsos.COL_VUCC_GRIDS IS NULL OR qsos.COL_VUCC_GRIDS = '')";
 
-		$count = 0;
-		$batch_updates = [];
+		$bindings[] = $qsoID;
+		$bindings[] = $this->session->userdata('user_id');
 
-		$this->db->trans_start();
+		$query = $this->db->query($sql, $bindings);
+		$row = $query->row();
 
-		if (count($result) > 0) {
-			if (!$this->load->is_loaded('callbook')) {
-				$this->load->library('callbook');
+		// QSO does not exist, belongs to another user, or is no longer missing a gridsquare
+		if ($row === null) {
+			return ['status' => 'skipped'];
+		}
+
+		if (!$this->load->is_loaded('callbook')) {
+			$this->load->library('callbook');
+		}
+
+		$callbook = $this->callbook->getCallbookData($row->col_call);
+
+		if (isset($callbook)) {
+			if (isset($callbook['error'])) {
+				log_message('error', "Error: " . $callbook['error']);
+				return ['status' => 'error', 'message' => $callbook['error']];
 			}
 
-			foreach ($result as $row) {
-				$callsign = $row->col_call;
-				$callbook = $this->callbook->getCallbookData($callsign);
+			if (isset($callbook['gridsquare']) && $callbook['gridsquare'] != '') {
+				$this->db->set('COL_GRIDSQUARE', $callbook['gridsquare']);
+				$this->db->where('COL_PRIMARY_KEY', $qsoID);
+				$this->db->update($this->config->item('table_name'));
 
-				if (isset($callbook)) {
-					if (isset($callbook['error'])) {
-						log_message('error', "Error: " . $callbook['error']);
-					} else {
-						if (isset($callbook['gridsquare']) && $callbook['gridsquare'] != '') {
-							// Prepare data for batch update
-							$batch_updates[] = [
-								'COL_PRIMARY_KEY' => $row->col_primary_key,
-								'COL_GRIDSQUARE' => $callbook['gridsquare']
-							];
-						}
-					}
-				}
-			}
-
-			// Perform batch update if there are any updates
-			if (!empty($batch_updates)) {
-				$this->db->update_batch($this->config->item('table_name'), $batch_updates, 'COL_PRIMARY_KEY');
-				$count = count($batch_updates);
+				return ['status' => 'updated', 'gridsquare' => $callbook['gridsquare']];
 			}
 		}
 
-		$this->db->trans_complete();
-
-		return $count;
+		return ['status' => 'notfound'];
 	}
 
 	public function getMissingGridQsos($stationid) {
-		$sql = "SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare, station_profile.station_profile_name FROM " . $this->config->item('table_name') . " qsos
+		$sql = "SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare, col_qsl_rcvd, col_lotw_qsl_rcvd, col_eqsl_qsl_rcvd, station_profile.station_profile_name FROM " . $this->config->item('table_name') . " qsos
 				JOIN station_profile ON qsos.station_id = station_profile.station_id
 				WHERE station_profile.user_id = ?
 				AND (qsos.COL_GRIDSQUARE IS NULL OR qsos.COL_GRIDSQUARE = '')
@@ -469,7 +467,7 @@ class Dbtools_model extends CI_Model {
 			$params[] = $stationid;
 		}
 
-		$sql .= " ORDER BY COL_TIME_ON DESC limit 150";
+		$sql .= " ORDER BY COL_TIME_ON DESC";
 
 		$query = $this->db->query($sql, $params);
 

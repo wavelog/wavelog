@@ -454,8 +454,26 @@
 											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __('When set to "Yes", callsign lookup will first use data from your previous QSOs before querying external services. Set to "No" to always use external lookup services instead.'); ?></small>
 										</div>
 									</div>
-									<hr />
-									<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
+								<?php if(!isset($user_callbook_prefill)) { $user_callbook_prefill='default'; }?>
+								<div class="mb-3">
+									<label class="d-block mb-1"><?= __("Prefill fields from callbook while logging"); ?></label>
+									<small class="form-text text-muted d-block mb-2"><?= __('Controls which sources populate the QSO fields (name, QTH, locator, etc.) when entering a callsign. DXCC lookup, the previous QSOs table and the callbook profile panel are always shown.'); ?></small>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="user_callbook_prefill" id="callbook_prefill_default" value="default" <?php if ($user_callbook_prefill == 'default') { echo 'checked'; } ?>>
+										<label class="form-check-label" for="callbook_prefill_default"><?= __("Callbook and previous QSOs (default)"); ?></label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="user_callbook_prefill" id="callbook_prefill_logbook" value="logbook" <?php if ($user_callbook_prefill == 'logbook') { echo 'checked'; } ?>>
+										<label class="form-check-label" for="callbook_prefill_logbook"><?= __("Only previous QSOs"); ?></label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="user_callbook_prefill" id="callbook_prefill_none" value="none" <?php if ($user_callbook_prefill == 'none') { echo 'checked'; } ?>>
+										<label class="form-check-label" for="callbook_prefill_none"><?= __("No prefill"); ?></label>
+									</div>
+								</div>
+
+								<hr />
+								<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
 									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_show_profile_image" value="0">
 										<div class="form-check form-switch mt-1">

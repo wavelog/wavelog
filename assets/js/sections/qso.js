@@ -1018,7 +1018,8 @@ if (qso_manual == 0) {
 			setTimeout(() => {
 				if (ev.data.frequency != null) {
 					$('#frequency').val(ev.data.frequency).trigger("change");
-					$("#band").val(frequencyToBand(ev.data.frequency));
+					var bmBand = frequencyToBand(ev.data.frequency);
+					if (bmBand) $("#band").val(bmBand).trigger('change');
 				}
 				if (ev.data.frequency_rx != "") {
 					$('#frequency_rx').val(ev.data.frequency_rx);
@@ -1583,7 +1584,7 @@ $("#callsign").on("focusout", function () {
 		const stationProfile = $('#stationProfile').val();
 
 		find_callsign = find_callsign.replace(/\//g, "-");
-		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}`;
+		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}?ctx=live`;
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(url, async function (result) {
@@ -2745,7 +2746,7 @@ $('.mode').on('change', function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').on('change', function () {
-	if ($('#radio').val() == 0) {
+	if (frequencyToBand($('#frequency').val()) != $(this).val()) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
 
