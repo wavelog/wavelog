@@ -53,99 +53,105 @@
             <!-- Dropdown Menu with Filter Content -->
             <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
                 <div class="card-body filterbody">
+						<div class="d-flex justify-content-between align-items-center mb-1">
+							<h5><i class="fas fa-filter me-1"></i> <?= __("Filters"); ?></h5>
+							<span><?= __("Press 'Apply' to update the table"); ?></span>
+						</div>
 
+<div class="filter-section">
             <div class="mb-3 row">
-                <div class="col-md-2 control-label" for="checkboxes"><?= __("Deleted IOTA"); ?></div>
+                <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-circle-check"></i><?= __("Status"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="includedeleted" id="includedeleted" value="1" <?php if ($this->input->post('includedeleted')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="includedeleted"><?= __("Include deleted"); ?></label>
+                        <input class="btn-check" type="checkbox" name="worked" id="worked" value="1" <?php if ($this->input->post('worked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="worked"><?= __("Show worked"); ?></label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="btn-check" type="checkbox" name="confirmed" id="confirmed" value="1" <?php if ($this->input->post('confirmed') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="confirmed"><?= __("Show confirmed"); ?></label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="btn-check" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="notworked"><?= __("Show not worked"); ?></label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="btn-check" type="checkbox" name="includedeleted" id="includedeleted" value="1" <?php if ($this->input->post('includedeleted')) echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-warning btn-sm" for="includedeleted"><?= __("Include deleted"); ?></label>
                     </div>
                 </div>
             </div>
 
+				</div>
+				<div class="filter-section">
             <div class="mb-3 row">
-                <div class="col-md-2" for="checkboxes"><?= __("Worked / Confirmed"); ?></div>
+                <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-envelope-open-text"></i><?= __("Confirmation"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="worked" id="worked" value="1" <?php if ($this->input->post('worked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="worked"><?= __("Show worked"); ?></label>
+                        <input class="btn-check" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="qsl"><?= __("QSL Card"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="confirmed" id="confirmed" value="1" <?php if ($this->input->post('confirmed') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="confirmed"><?= __("Show confirmed"); ?></label>
-                    </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="notworked"><?= __("Show not worked"); ?></label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <div class="col-md-2"><?= __("Show QSO with QSL Type"); ?></div>
-                <div class="col-md-10">
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qsl"><?= __("QSL Card"); ?></label>
-                    </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
+                        <input class="btn-check" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="lotw"><?= __("LoTW"); ?></label>
                     </div>
                    <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
+                        <input class="btn-check" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="eqsl"><?= __("eQSL"); ?></label>
                     </div>
                    <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
+                        <input class="btn-check" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="qrz"><?= __("QRZ.com"); ?></label>
                     </div>
                      <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
+                        <input class="btn-check" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="clublog"><?= __("Clublog"); ?></label>
                     </div>
                 </div>
             </div>
 
+				</div>
+				<div class="filter-section">
             <div class="mb-3 row">
-                <div class="col-md-2"><?= __("Continents"); ?></div>
+                <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-globe-americas"></i><?= __("Continents"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="Antarctica" id="Antarctica" value="1" <?php if ($this->input->post('Antarctica') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="Antarctica"><?= __("Antarctica"); ?></label>
+                        <input class="btn-check" type="checkbox" name="Antarctica" id="Antarctica" value="1" <?php if ($this->input->post('Antarctica') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="Antarctica"><?= __("Antarctica"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input"  type="checkbox" name="Africa" id="Africa" value="1" <?php if ($this->input->post('Africa') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="Africa"><?= __("Africa"); ?></label>
+                        <input class="btn-check"  type="checkbox" name="Africa" id="Africa" value="1" <?php if ($this->input->post('Africa') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="Africa"><?= __("Africa"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input"  type="checkbox" name="Asia" id="Asia" value="1" <?php if ($this->input->post('Asia') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="Asia"><?= __("Asia"); ?></label>
+                        <input class="btn-check"  type="checkbox" name="Asia" id="Asia" value="1" <?php if ($this->input->post('Asia') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="Asia"><?= __("Asia"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input"  type="checkbox" name="Europe" id="Europe" value="1" <?php if ($this->input->post('Europe') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="Europe"><?= __("Europe"); ?></label>
+                        <input class="btn-check"  type="checkbox" name="Europe" id="Europe" value="1" <?php if ($this->input->post('Europe') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="Europe"><?= __("Europe"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input"  type="checkbox" name="NorthAmerica" id="NorthAmerica" value="1" <?php if ($this->input->post('NorthAmerica') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="NorthAmerica"><?= __("North America"); ?></label>
+                        <input class="btn-check"  type="checkbox" name="NorthAmerica" id="NorthAmerica" value="1" <?php if ($this->input->post('NorthAmerica') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="NorthAmerica"><?= __("North America"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input"  type="checkbox" name="SouthAmerica" id="SouthAmerica" value="1" <?php if ($this->input->post('SouthAmerica') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="SouthAmerica"><?= __("South America"); ?></label>
+                        <input class="btn-check"  type="checkbox" name="SouthAmerica" id="SouthAmerica" value="1" <?php if ($this->input->post('SouthAmerica') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="SouthAmerica"><?= __("South America"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input"  type="checkbox" name="Oceania" id="Oceania" value="1" <?php if ($this->input->post('Oceania') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="Oceania"><?= __("Oceania"); ?></label>
+                        <input class="btn-check"  type="checkbox" name="Oceania" id="Oceania" value="1" <?php if ($this->input->post('Oceania') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="btn btn-outline-primary btn-sm" for="Oceania"><?= __("Oceania"); ?></label>
                     </div>
                 </div>
             </div>
 
-            <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
-                <div class="col-md-2">
-                    <select id="band2" name="band" class="form-select form-select-sm">
+				</div>
+				<div class="filter-section">
+            					<div class="mb-3 row">
+						<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-tower-broadcast"></i><?= __("Band & Mode"); ?></div>
+						<div class="col-sm-6 mb-2">
+							<label class="form-label mb-1" for="band2"><?= __("Band"); ?></label>
+							<select id="band2" name="band" class="form-select form-select-sm">
                         <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band (w/o SAT)"); ?></option>
                         <?php foreach($worked_bands as $band) {
                             echo '<option value="' . $band . '"';
@@ -153,13 +159,10 @@
                             echo '>' . $band . '</option>'."\n";
                         } ?>
                     </select>
-                </div>
-            </div>
-
-			<div class="mb-3 row">
-				<label class="col-md-2 control-label" for="mode"><?= __("Mode"); ?></label>
-				<div class="col-md-2">
-					<select id="mode" name="mode" class="form-select form-select-sm">
+						</div>
+						<div class="col-sm-6">
+							<label class="form-label mb-1" for="mode"><?= __("Mode"); ?></label>
+							<select id="mode" name="mode" class="form-select form-select-sm">
 						<option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>><?= __("All"); ?></option>
 						<?php
 						foreach($modes->result() as $mode){
@@ -175,11 +178,15 @@
 						}
 						?>
 					</select>
-				</div>
-			</div>
+						</div>
+					</div>
+					
 
-                	<div class="d-flex justify-content-center mt-3">
-                		<button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Apply"); ?></button>
+			
+
+				</div>
+                	<div class="d-grid gap-2 mt-3">
+                		<button type="submit" name="button1id" class="btn btn-primary"><i class="fas fa-check me-1"></i> <?= __("Apply"); ?></button>
                 	</div>
                 </div>
             </div>

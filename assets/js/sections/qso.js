@@ -236,6 +236,7 @@ $('#stationProfile').on('change', function () {
 	});
 	// [eQSL default msg] change value on change station profle //
 	qso_set_eqsl_qslmsg(stationProfile, false, '.qso_panel');
+	panMap(stationProfile);
 });
 
 // [eQSL default msg] change value on clic //
@@ -2841,7 +2842,7 @@ $("#locator").on("input focus", function () {
 					// Set Map to Lat/Long
 					result = JSON.parse(data);
 					markers.clearLayers();
-					if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+					if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined" && $('#locator').val().toUpperCase() == qra) {
 						var redIcon = L.icon({
 							iconUrl: icon_dot_url,
 							iconSize: [18, 18], // size of the icon

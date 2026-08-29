@@ -616,9 +616,7 @@ function printSelectedQsos(printAll) {
 		let $container = $('#qslcard_selected_ids');
 		if (id_list.length) {
 			$container.empty();
-			$.each(id_list, function (i, id) {
-				$('<input>').attr({ type: 'hidden', name: 'selected_ids[]' }).val(id).appendTo($container);
-			});
+			$('<input>').attr({ type: 'hidden', name: 'selected_ids' }).val(JSON.stringify(id_list)).appendTo($container);
 		}
 		let tplId = $('#qslcard_template_id').val();
 		if (!tplId) {
@@ -640,9 +638,7 @@ function saveAndPrintSelectedQsos(printAll) {
 		let $container = $('#qslcard_selected_ids');
 		if (id_list.length) {
 			$container.empty();
-			$.each(id_list, function (i, id) {
-				$('<input>').attr({ type: 'hidden', name: 'selected_ids[]' }).val(id).appendTo($container);
-			});
+			$('<input>').attr({ type: 'hidden', name: 'selected_ids' }).val(JSON.stringify(id_list)).appendTo($container);
 		}
 		var tplId = $('#qslcard_template_id').val();
 		if (!tplId) {

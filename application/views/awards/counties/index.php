@@ -74,44 +74,50 @@
                 <!-- Dropdown Menu with Filter Content -->
                 <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="countiesFilterDropdown">
                     <div class="card-body filterbody">
+						<div class="d-flex justify-content-between align-items-center mb-1">
+							<h5><i class="fas fa-filter me-1"></i> <?= __("Filters"); ?></h5>
+							<span><?= __("Press 'Apply' to update the table"); ?></span>
+						</div>
+                        <div class="filter-section">
                         <div class="mb-3 row">
-                            <div class="col-md-3"><?= __("Count QSO as Confirmed via"); ?></div>
+                            <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-envelope-open-text"></i><?= __("Confirmation"); ?></div>
                             <div class="col-md-9">
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="qsl" value="1" id="countiesQsl" <?php if ($postdata['qsl']) echo ' checked="checked"'; ?>>
-                                    <label class="form-check-label" for="countiesQsl"><?= __("QSL"); ?></label>
+                                    <input class="btn-check" type="checkbox" name="qsl" value="1" id="countiesQsl" <?php if ($postdata['qsl']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesQsl"><?= __("QSL"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="lotw" value="1" id="countiesLotw" <?php if ($postdata['lotw']) echo ' checked="checked"'; ?>>
-                                    <label class="form-check-label" for="countiesLotw"><?= __("LoTW"); ?></label>
+                                    <input class="btn-check" type="checkbox" name="lotw" value="1" id="countiesLotw" <?php if ($postdata['lotw']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesLotw"><?= __("LoTW"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="countiesEqsl" <?php if ($postdata['eqsl']) echo ' checked="checked"'; ?>>
-                                    <label class="form-check-label" for="countiesEqsl"><?= __("eQSL"); ?></label>
+                                    <input class="btn-check" type="checkbox" name="eqsl" value="1" id="countiesEqsl" <?php if ($postdata['eqsl']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesEqsl"><?= __("eQSL"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="qrz" value="1" id="countiesQrz" <?php if ($postdata['qrz']) echo ' checked="checked"'; ?>>
-                                    <label class="form-check-label" for="countiesQrz"><?= __("QRZ.com"); ?></label>
+                                    <input class="btn-check" type="checkbox" name="qrz" value="1" id="countiesQrz" <?php if ($postdata['qrz']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesQrz"><?= __("QRZ.com"); ?></label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="clublog" value="1" id="countiesClublog" <?php if ($postdata['clublog']) echo ' checked="checked"'; ?>>
-                                    <label class="form-check-label" for="countiesClublog"><?= __("Clublog"); ?></label>
+                                    <input class="btn-check" type="checkbox" name="clublog" value="1" id="countiesClublog" <?php if ($postdata['clublog']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesClublog"><?= __("Clublog"); ?></label>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                        <div class="filter-section">
                         <div class="mb-3 row">
-                            <div class="col-md-3"><label class="control-label" for="countiesBand"><?= __("Band"); ?></label></div>
-                            <div class="col-md-9">
+                            <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-tower-broadcast"></i><?= __("Band & Mode"); ?></div>
+                            <div class="col-sm-6 mb-2">
+                                <label class="form-label mb-1" for="countiesBand"><?= __("Band"); ?></label>
                                 <select id="countiesBand" name="band[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($worked_bands as $band) { ?>
                                     <option value="<?= html_escape($band); ?>" <?php if ($postdata['band'] === 'All' ? $band !== 'SAT' : in_array($band, (array)$postdata['band'])) echo ' selected'; ?>><?= html_escape($band); ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-md-3"><label class="control-label" for="countiesMode"><?= __("Mode"); ?></label></div>
-                            <div class="col-md-9">
+                            <div class="col-sm-6">
+                                <label class="form-label mb-1" for="countiesMode"><?= __("Mode"); ?></label>
                                 <select id="countiesMode" name="mode[]" multiple class="form-select form-select-sm">
                                     <?php foreach ($modes as $value) { ?>
                                     <option value="<?= html_escape($value); ?>" <?php if ($postdata['mode'] === 'All' || in_array($value, (array)$postdata['mode'])) echo ' selected'; ?>><?= html_escape($value); ?></option>
@@ -119,8 +125,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center mt-3">
-                            <button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Apply"); ?></button>
+                    </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" name="button1id" class="btn btn-primary"><i class="fas fa-check me-1"></i> <?= __("Apply"); ?></button>
                         </div>
                     </div>
                 </div>

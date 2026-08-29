@@ -2144,13 +2144,11 @@ $(document).ready(function () {
 						// PDF endpoint (qslpostcard/pdfselected) receives them. The
 						// form owns the action button: it picks the chosen template
 						// and POSTs the ids to render the PDF download.
-						var $ids = $('#qslcard_selected_ids');
-						if ($ids.length) {
-							$ids.empty();
-							$.each(id_list, function (i, id) {
-								$('<input>').attr({ type: 'hidden', name: 'selected_ids[]' }).val(id).appendTo($ids);
-							});
-						}
+					var $ids = $('#qslcard_selected_ids');
+					if ($ids.length) {
+						$ids.empty();
+						$('<input>').attr({ type: 'hidden', name: 'selected_ids' }).val(JSON.stringify(id_list)).appendTo($ids);
+					}
 						$('#btnPrintQslCard').off('click').on('click', function () {
 							var tplId = $('#qslcard_template_id').val();
 							if (!tplId) {

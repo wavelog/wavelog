@@ -1136,13 +1136,15 @@ mymap.on('mousemove', onQsoMapMove);
         result = JSON.parse(data);
         if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
            mymap.panTo([result[0], result[1]]);
+           pos = result;
         }
      },
      error: function() {
      },
   });
 <?php } else if (($active_station_info->dxcc_lat ?? '') != '' && ($active_station_info->dxcc_lon ?? '') != '') { ?>
-     mymap.panTo([<?= $active_station_info->dxcc_lat;?> , <?= $active_station_info->dxcc_lon; ?>]);
+     pos = [<?= $active_station_info->dxcc_lat;?> , <?= $active_station_info->dxcc_lon; ?>];
+     mymap.panTo(pos);
 <?php } else if (($this->config->item('locator') ?? '') != '') { ?>
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',

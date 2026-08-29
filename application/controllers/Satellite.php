@@ -283,7 +283,7 @@ class Satellite extends CI_Controller {
 			$date = $this->security->xss_clean($this->input->post('date'));
 			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
-			$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
+			$data = $this->calcPasses($tles, $yourgrid, $date, $mintime, $minelevation);
 
 			$this->load->view('satellite/passtable', $data);
 		}
