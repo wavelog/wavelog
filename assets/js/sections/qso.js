@@ -385,7 +385,13 @@ $("#qso_input").off('submit').on('submit', function (e) {
 							.replace('%s', contactCallsign)
 							.replace('%s', operatorCallsign);
 
-						showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
+					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
+
+					// Show realtime export failures (QRZ, ClubLog, HRDLog) if any
+					if (result.export_errors?.length) {
+						var failedExports = result.export_errors.map(e => e.provider + ': ' + e.message).join('; ');
+						showToast(lang_general_word_warning, lang_qso_realtime_export_failed.replace('%s', failedExports), 'bg-warning text-dark', 8000);
+					}
 
 						// Send QSO data via WebSocket if CAT is enabled via WebSocket
 						if (typeof sendQSOViaWebSocket === 'function') {

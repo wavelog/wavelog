@@ -246,6 +246,10 @@ class QSO extends CI_Controller {
 				$returner['adif'] = $saveresult['adif'];
 			}
 
+			if (!empty($saveresult['export_errors'])) {
+				$returner['export_errors'] = $saveresult['export_errors'];
+			}
+
 			header('Content-Type: application/json; charset=utf-8');
 			echo json_encode($returner);
 		}
