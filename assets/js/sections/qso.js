@@ -726,10 +726,7 @@ $(document).on("click", "#fav_del", function (event) {
 });
 
 $(document).on("click", "#fav_recall", function (event) {
-	$('#sat_name').val(favs[this.innerText].sat_name);
-	if (favs[this.innerText].sat_name) {
-		$("#sat_name").change();
-	}
+	$('#sat_name').val(favs[this.innerText].sat_name).trigger('change');
 	$('#sat_mode').val(favs[this.innerText].sat_mode);
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
@@ -1032,9 +1029,11 @@ if (qso_manual == 0) {
 
 				// Clear satellite/propagation fields when clicking bandmap spots (HF DX spots)
 				$("#selectPropagation").val("");
-				$("#sat_name").val("");
 				$("#sat_mode").val("");
-				stop_az_ele_ticker();    // Stop satellite position ticker if running
+				if ($("#sat_name").val() != "") {
+					$("#sat_name").val("");
+					stop_az_ele_ticker();
+				}
 
 				// Store sequence for validation in populatePendingReferences
 				$("#callsign").data('expected-refs-seq', seq);
@@ -2745,7 +2744,7 @@ $('.mode').on('change', function () {
 
 /* Calculate Frequency */
 /* on band change */
-$('#band').on('change', function () {
+$('#band').on('change', function (e) {
 	if (frequencyToBand($('#frequency').val()) != $(this).val()) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
@@ -2766,14 +2765,19 @@ $('#band').on('change', function () {
 			}
 		});
 	}
-	$('#frequency_rx').val("");
-	$('#band_rx').val("");
-	$("#selectPropagation").val("");
-	$("#sat_name").val("");
-	$("#sat_mode").val("");
+	// Only wipe sat/propagation info when the user switches bands manually.
+	// Programmatic changes (frequency entry, CAT, bandmap) must not discard that data.
+	if (e.originalEvent) {
+		$('#frequency_rx').val("");
+		$('#band_rx').val("");
+		var had_sat = $("#sat_name").val() != "";
+		$("#selectPropagation").val("");
+		$("#sat_name").val("");
+		$("#sat_mode").val("");
+		if (had_sat) { stop_az_ele_ticker(); }
+	}
 	set_qrg();
 	$("#callsign").blur();
-	stop_az_ele_ticker();
 });
 
 /* On Key up Calculate Bearing and Distance */
