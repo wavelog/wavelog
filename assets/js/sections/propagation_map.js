@@ -6,6 +6,75 @@ let heardMeRequest = null;
 let mufLayer = null;
 let mufRequest = null;
 
+function escapeHtml(value) {
+    return $('<div>').text(value === null || value === undefined ? '' : String(value)).html();
+}
+
+function messageWithCount(message, count) {
+    return message.replace('%d', count);
+}
+
+function setPropagationStatus(elementId, type, message) {
+    $('#' + elementId)
+        .removeClass('d-none alert-info alert-success alert-warning alert-danger alert-secondary')
+        .addClass('alert-' + type)
+        .text(message);
+}
+
+function clearPropagationStatus(elementId) {
+    $('#' + elementId).addClass('d-none').text('');
+}
+
+function propagationBand(frequency) {
+    const mhz = Number(frequency) / 1000000;
+    const bands = [
+        { min: 1.8, max: 2.0, name: '160m', color: '#6f42c1' },
+        { min: 3.5, max: 4.0, name: '80m', color: '#0d6efd' },
+        { min: 5.0, max: 5.5, name: '60m', color: '#20c997' },
+        { min: 7.0, max: 7.3, name: '40m', color: '#198754' },
+        { min: 10.1, max: 10.15, name: '30m', color: '#84cc16' },
+        { min: 14.0, max: 14.35, name: '20m', color: '#ffc107' },
+        { min: 18.068, max: 18.168, name: '17m', color: '#fd7e14' },
+        { min: 21.0, max: 21.45, name: '15m', color: '#dc3545' },
+        { min: 24.89, max: 24.99, name: '12m', color: '#d63384' },
+        { min: 28.0, max: 29.7, name: '10m', color: '#e83e8c' },
+        { min: 50.0, max: 54.0, name: '6m', color: '#6610f2' },
+        { min: 70.0, max: 71.0, name: '4m', color: '#6c757d' },
+        { min: 144.0, max: 148.0, name: '2m', color: '#212529' }
+    ];
+
+    return bands.find(band => mhz >= band.min && mhz <= band.max) || {
+        name: 'Other',
+        color: '#6c757d'
+    };
+}
+
+function addPropagationBandLegend() {
+    const legendBands = [
+        propagationBand(1900000),
+        propagationBand(3700000),
+        propagationBand(7100000),
+        propagationBand(14100000),
+        propagationBand(18100000),
+        propagationBand(21100000),
+        propagationBand(24920000),
+        propagationBand(28100000),
+        propagationBand(50100000),
+        propagationBand(145000000)
+    ];
+    const legend = L.control({ position: 'bottomright' });
+
+    legend.onAdd = function () {
+        const container = L.DomUtil.create('div', 'propagation-band-legend');
+        container.innerHTML = '<strong>Bands</strong><br>' + legendBands.map(function (band) {
+            return '<span style="background:' + band.color + '"></span>' + band.name;
+        }).join(' &nbsp;');
+        return container;
+    };
+
+    legend.addTo(propagationMap);
+}
+
 function maidenheadToLatLng(locator) {
     locator = locator.trim().toUpperCase();
 
@@ -51,6 +120,8 @@ function initPropagationMap() {
         maxZoom: 18,
         attribution: option_map_tile_server_copyright
     }).addTo(propagationMap);
+
+    addPropagationBandLegend();
 
     // Day / Night terminator
     if (typeof L.terminator === 'function') {
@@ -98,6 +169,8 @@ function initPropagationMap() {
             if (heardMeLayer && propagationMap.hasLayer(heardMeLayer)) {
                 propagationMap.removeLayer(heardMeLayer);
             }
+
+            clearPropagationStatus('heardMeStatus');
         }
     });
 
@@ -114,6 +187,8 @@ function initPropagationMap() {
             if (mufLayer && propagationMap.hasLayer(mufLayer)) {
                 propagationMap.removeLayer(mufLayer);
             }
+
+            clearPropagationStatus('mufStatus');
         }
     });
 
@@ -151,6 +226,7 @@ function loadMuf() {
     }
 
     mufRequest = new AbortController();
+    setPropagationStatus('mufStatus', 'info', propagationMessages.muf_loading);
 
     fetch('/index.php/map/get_muf', {
         signal: mufRequest.signal
@@ -179,8 +255,20 @@ function loadMuf() {
 
             if (data.error) {
                 console.error('MUF API error:', data.error);
+                setPropagationStatus('mufStatus', 'danger', propagationMessages.muf_error);
                 return;
             }
+
+            if (!data.points || data.points.length === 0) {
+                setPropagationStatus('mufStatus', 'secondary', propagationMessages.muf_empty);
+                return;
+            }
+
+            setPropagationStatus(
+                'mufStatus',
+                'success',
+                messageWithCount(propagationMessages.muf_loaded, data.points.length)
+            );
 
             (data.points || []).forEach(point => {
                 const value = Number(point.muf);
@@ -221,6 +309,7 @@ function loadMuf() {
             }
 
             console.error('MUF error:', error);
+            setPropagationStatus('mufStatus', 'danger', propagationMessages.muf_error);
         });
 }
 
@@ -251,7 +340,7 @@ if (!center) {
         })
         .bindPopup(
             '<strong>Station</strong><br>' +
-            'Grid: ' + locator
+            'Grid: ' + escapeHtml(locator)
         )
         .addTo(propagationMap);
 
@@ -276,6 +365,7 @@ function loadHeardMe() {
     }
 
     heardMeRequest = new AbortController();
+    setPropagationStatus('heardMeStatus', 'info', propagationMessages.heard_loading);
 
     /*
      * Use a relative URL here.
@@ -321,6 +411,7 @@ function loadHeardMe() {
                     'Heard Me API error:',
                     data.error
                 );
+                setPropagationStatus('heardMeStatus', 'danger', propagationMessages.heard_error);
                 return;
             }
 
@@ -331,6 +422,8 @@ function loadHeardMe() {
                     'No Heard Me reports'
                 );
 
+                setPropagationStatus('heardMeStatus', 'secondary', propagationMessages.heard_empty);
+
                 return;
             }
 
@@ -338,6 +431,16 @@ function loadHeardMe() {
                 'Heard Me reports:',
                 data.reports.length
             );
+
+            if (data.reports.length >= 500) {
+                setPropagationStatus('heardMeStatus', 'warning', propagationMessages.heard_limited);
+            } else {
+                setPropagationStatus(
+                    'heardMeStatus',
+                    'success',
+                    messageWithCount(propagationMessages.heard_loaded, data.reports.length)
+                );
+            }
 
             data.reports.forEach(report => {
 
@@ -358,6 +461,9 @@ if (!center) {
     return;
 }
 
+                const frequencyHz = Number(report.frequency) || 0;
+                const band = propagationBand(frequencyHz);
+
 
                 /*
                  * Draw propagation path from our
@@ -373,6 +479,7 @@ if (!center) {
                             center
                         ],
                         {
+                            color: band.color,
                             weight: 1,
                             opacity: 0.4,
                             dashArray: '4,6'
@@ -391,13 +498,19 @@ if (!center) {
                         : report.snr + ' dB';
 
                 const frequency =
-                    report.frequency
-                        ? (report.frequency /
+                    frequencyHz
+                        ? (frequencyHz /
                            1000000).toFixed(3) +
                           ' MHz'
                         : 'n/a';
 
+                const mode = report.mode
+                    ? escapeHtml(report.mode)
+                    : 'n/a';
+
                 L.circleMarker(center, {
+                    color: band.color,
+                    fillColor: band.color,
                     radius: 6,
                     weight: 2,
                     fillOpacity: 0.8
@@ -406,11 +519,19 @@ if (!center) {
                 .bindPopup(
 
                     '<strong>' +
-                    report.receiver_callsign +
+                    escapeHtml(report.receiver_callsign) +
                     '</strong><br>' +
 
                     'Grid: ' +
-                    report.receiver_locator +
+                    escapeHtml(report.receiver_locator) +
+                    '<br>' +
+
+                    'Band: ' +
+                    escapeHtml(band.name) +
+                    '<br>' +
+
+                    'Mode: ' +
+                    mode +
                     '<br>' +
 
                     'SNR: ' +
@@ -437,6 +558,8 @@ if (!center) {
                 'Heard Me error:',
                 error
             );
+
+            setPropagationStatus('heardMeStatus', 'danger', propagationMessages.heard_error);
 
         });
 }

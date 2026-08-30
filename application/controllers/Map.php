@@ -73,11 +73,6 @@ class Map extends CI_Controller {
  * Propagation map
  */
 public function propagation() {
-        if (!$this->user_model->authorize(99)) {
-                $this->session->set_flashdata('error', __("You're not allowed to do that!"));
-                redirect('dashboard');
-        }
-
         $this->load->model('stations');
 
         $data['homegrid'] = explode(',', $this->stations->find_gridsquare());
