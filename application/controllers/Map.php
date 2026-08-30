@@ -295,6 +295,25 @@ public function propagation() {
                         $minutes = 15;
                 }
 
+                $this->load->driver('cache', [
+                        'adapter' => $this->config->item('cache_adapter') ?? 'file',
+                        'backup' => $this->config->item('cache_backup') ?? 'file',
+                        'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+                ]);
+
+                $cache_key = 'psk_reporter_heard_me_' . md5(
+                        $callsign . '|' . $minutes . '|FT8|28000000-29700000'
+                );
+                $cached_response = $this->cache->get($cache_key);
+
+                if (is_array($cached_response)) {
+                        $cached_response['cached'] = true;
+
+                        return $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode($cached_response));
+                }
+
                 $query = http_build_query([
                         'senderCallsign'   => $callsign,
                         'flowStartSeconds' => -($minutes * 60),
@@ -360,13 +379,18 @@ public function propagation() {
                         ];
                 }
 
+                $response = [
+                        'callsign' => $callsign,
+                        'minutes'  => $minutes,
+                        'cached'   => false,
+                        'reports'  => $reports
+                ];
+
+                $this->cache->save($cache_key, $response, 60);
+
                 return $this->output
                         ->set_content_type('application/json')
-                        ->set_output(json_encode([
-                                'callsign' => $callsign,
-                                'minutes'  => $minutes,
-                                'reports'  => $reports
-                        ]));
+                        ->set_output(json_encode($response));
         }
 
 }
