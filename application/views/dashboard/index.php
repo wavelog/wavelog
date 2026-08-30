@@ -224,6 +224,13 @@ function echo_table_header_col($name) {
 
 <?php } ?>
 <?php $this->load->view('layout/messages'); ?>
+
+	<div class="d-flex justify-content-end mt-3">
+		<a class="btn btn-primary" href="<?= site_url('map/propagation'); ?>">
+			<i class="fas fa-broadcast-tower" aria-hidden="true"></i>
+			<?= __("Propagation Map"); ?>
+		</a>
+	</div>
 </div>
 
 <?php if (!empty($dashboard_show_kpi_stats)) : ?>
