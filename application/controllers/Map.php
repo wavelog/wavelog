@@ -302,7 +302,7 @@ public function propagation() {
                 ]);
 
                 $cache_key = 'psk_reporter_heard_me_' . md5(
-                        $callsign . '|' . $minutes . '|FT8|28000000-29700000'
+                        $callsign . '|' . $minutes . '|all-modes|all-bands'
                 );
                 $cached_response = $this->cache->get($cache_key);
 
@@ -317,8 +317,6 @@ public function propagation() {
                 $query = http_build_query([
                         'senderCallsign'   => $callsign,
                         'flowStartSeconds' => -($minutes * 60),
-                        'mode'             => 'FT8',
-                        'frange'           => '28000000-29700000',
                         'rptlimit'         => 500,
                         'rronly'           => 1,
                         'noactive'         => 1
@@ -387,6 +385,88 @@ public function propagation() {
                 ];
 
                 $this->cache->save($cache_key, $response, 60);
+
+                return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode($response));
+        }
+
+        public function get_muf() {
+                $this->load->driver('cache', [
+                        'adapter' => $this->config->item('cache_adapter') ?? 'file',
+                        'backup' => $this->config->item('cache_backup') ?? 'file',
+                        'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+                ]);
+
+                $cache_key = 'propagation_muf_points';
+                $cached_response = $this->cache->get($cache_key);
+
+                if (is_array($cached_response)) {
+                        $cached_response['cached'] = true;
+
+                        return $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode($cached_response));
+                }
+
+                $url = 'https://prop.kc2g.com/api/stations.json?maxage=2700';
+                $context = stream_context_create([
+                        'http' => [
+                                'timeout' => 15,
+                                'user_agent' => 'Wavelog Propagation Map'
+                        ]
+                ]);
+                $json = @file_get_contents($url, false, $context);
+
+                if ($json === false) {
+                        return $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode([
+                                        'error' => 'Could not retrieve MUF data'
+                                ]));
+                }
+
+                $stations = json_decode($json, true);
+
+                if (!is_array($stations)) {
+                        return $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode([
+                                        'error' => 'Invalid MUF data response'
+                                ]));
+                }
+
+                $points = [];
+
+                foreach ($stations as $entry) {
+                        $station = $entry['station'] ?? [];
+                        $latitude = filter_var($station['latitude'] ?? null, FILTER_VALIDATE_FLOAT);
+                        $longitude = filter_var($station['longitude'] ?? null, FILTER_VALIDATE_FLOAT);
+                        $muf = filter_var($entry['mufd'] ?? null, FILTER_VALIDATE_FLOAT);
+
+                        if ($latitude === false || $longitude === false || $muf === false || $muf <= 0) {
+                                continue;
+                        }
+
+                        if ($longitude > 180) {
+                                $longitude -= 360;
+                        }
+
+                        $points[] = [
+                                'station'   => (string) ($station['name'] ?? $station['code'] ?? ''),
+                                'latitude'  => $latitude,
+                                'longitude' => $longitude,
+                                'muf'       => $muf,
+                                'time'      => (string) ($entry['time'] ?? '')
+                        ];
+                }
+
+                $response = [
+                        'cached' => false,
+                        'points' => $points
+                ];
+
+                $this->cache->save($cache_key, $response, 900);
 
                 return $this->output
                         ->set_content_type('application/json')

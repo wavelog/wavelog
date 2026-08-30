@@ -3,6 +3,8 @@ let propagationTerminatorLayer = null;
 let propagationHomeMarker = null;
 let heardMeLayer = null;
 let heardMeRequest = null;
+let mufLayer = null;
+let mufRequest = null;
 
 function maidenheadToLatLng(locator) {
     locator = locator.trim().toUpperCase();
@@ -64,6 +66,11 @@ function initPropagationMap() {
         loadHeardMe();
     }
 
+    // QLog-style MUF station values
+    if ($('#propMuf').is(':checked')) {
+        loadMuf();
+    }
+
     // Day / Night checkbox
     $('#propTerminator').on('change', function () {
 
@@ -94,12 +101,127 @@ function initPropagationMap() {
         }
     });
 
+    // MUF layer
+    $('#propMuf').on('change', function () {
+        if ($(this).is(':checked')) {
+            loadMuf();
+        } else {
+            if (mufRequest) {
+                mufRequest.abort();
+                mufRequest = null;
+            }
+
+            if (mufLayer && propagationMap.hasLayer(mufLayer)) {
+                propagationMap.removeLayer(mufLayer);
+            }
+        }
+    });
+
     // Reload the layer for the selected time range when it is enabled.
     $('#propTimeRange').on('change', function () {
         if ($('#propHeardMe').is(':checked')) {
             loadHeardMe();
         }
     });
+}
+
+
+function mufColor(value) {
+    const low = [0, 131, 255];
+    const medium = [255, 162, 0];
+    const high = [255, 255, 0];
+    const normalized = Math.max(0, Math.min(1, value / 50));
+    const start = normalized < 0.5 ? low : medium;
+    const end = normalized < 0.5 ? medium : high;
+    const amount = normalized < 0.5
+        ? normalized * 2
+        : (normalized - 0.5) * 2;
+
+    const color = start.map(function (channel, index) {
+        return Math.round(channel + (end[index] - channel) * amount);
+    });
+
+    return 'rgb(' + color.join(',') + ')';
+}
+
+
+function loadMuf() {
+    if (mufRequest) {
+        mufRequest.abort();
+    }
+
+    mufRequest = new AbortController();
+
+    fetch('/index.php/map/get_muf', {
+        signal: mufRequest.signal
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error ' + response.status);
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            if (!mufLayer) {
+                mufLayer = L.layerGroup();
+            }
+
+            if (!$('#propMuf').is(':checked')) {
+                return;
+            }
+
+            if (!propagationMap.hasLayer(mufLayer)) {
+                mufLayer.addTo(propagationMap);
+            }
+
+            mufLayer.clearLayers();
+
+            if (data.error) {
+                console.error('MUF API error:', data.error);
+                return;
+            }
+
+            (data.points || []).forEach(point => {
+                const value = Number(point.muf);
+
+                if (!Number.isFinite(value)) {
+                    return;
+                }
+
+                const label = Math.round(value) + ' MHz';
+                const marker = L.circleMarker(
+                    [point.latitude, point.longitude],
+                    {
+                        radius: 1,
+                        opacity: 0,
+                        fillOpacity: 0
+                    }
+                );
+
+                marker.bindTooltip(
+                    '<span class="muf-value" style="background-color:' +
+                    mufColor(value) +
+                    '">' +
+                    label +
+                    '</span>',
+                    {
+                        permanent: true,
+                        direction: 'bottom',
+                        className: 'muf-tooltip'
+                    }
+                );
+
+                marker.addTo(mufLayer);
+            });
+        })
+        .catch(error => {
+            if (error.name === 'AbortError') {
+                return;
+            }
+
+            console.error('MUF error:', error);
+        });
 }
 
 

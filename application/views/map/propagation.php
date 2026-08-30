@@ -35,6 +35,17 @@ const propagationHomegrid = "<?php echo strtoupper($homegrid[0]); ?>";
                     </label>
                 </div>
 
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           id="propMuf"
+                           checked>
+
+                    <label class="form-check-label" for="propMuf">
+                        <?= __("MUF"); ?>
+                    </label>
+                </div>
+
                 <div class="form-group d-inline-flex align-items-center mb-0 ml-2">
                     <label class="mb-0 mr-2" for="propTimeRange">
                         <?= __("Time range"); ?>
@@ -60,5 +71,21 @@ const propagationHomegrid = "<?php echo strtoupper($homegrid[0]); ?>";
     width: 100%;
     height: calc(100vh - 260px);
     min-height: 500px;
+}
+
+.leaflet-tooltip.muf-tooltip {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.muf-value {
+    border-radius: 20px;
+    color: #18202a;
+    display: inline-block;
+    font-weight: bold;
+    padding: 5px 7px;
+    white-space: nowrap;
 }
 </style>
