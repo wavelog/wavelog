@@ -2,6 +2,7 @@ let propagationMap = null;
 let propagationTerminatorLayer = null;
 let propagationHomeMarker = null;
 let heardMeLayer = null;
+let heardMeRequest = null;
 
 function maidenheadToLatLng(locator) {
     locator = locator.trim().toUpperCase();
@@ -59,7 +60,9 @@ function initPropagationMap() {
     addPropagationHomeMarker();
 
     // PSK Reporter "Heard Me"
-    loadHeardMe();
+    if ($('#propHeardMe').is(':checked')) {
+        loadHeardMe();
+    }
 
     // Day / Night checkbox
     $('#propTerminator').on('change', function () {
@@ -72,6 +75,29 @@ function initPropagationMap() {
             propagationTerminatorLayer.addTo(propagationMap);
         } else {
             propagationMap.removeLayer(propagationTerminatorLayer);
+        }
+    });
+
+    // Heard Me layer
+    $('#propHeardMe').on('change', function () {
+        if ($(this).is(':checked')) {
+            loadHeardMe();
+        } else {
+            if (heardMeRequest) {
+                heardMeRequest.abort();
+                heardMeRequest = null;
+            }
+
+            if (heardMeLayer && propagationMap.hasLayer(heardMeLayer)) {
+                propagationMap.removeLayer(heardMeLayer);
+            }
+        }
+    });
+
+    // Reload the layer for the selected time range when it is enabled.
+    $('#propTimeRange').on('change', function () {
+        if ($('#propHeardMe').is(':checked')) {
+            loadHeardMe();
         }
     });
 }
@@ -121,13 +147,25 @@ if (!center) {
 
 function loadHeardMe() {
 
+    const minutes = $('#propTimeRange').val() || '15';
+
+    if (heardMeRequest) {
+        heardMeRequest.abort();
+    }
+
+    heardMeRequest = new AbortController();
+
     /*
      * Use a relative URL here.
      *
      * base_url is not available on the propagation view,
      * while /index.php/... works with our current Wavelog setup.
      */
-    fetch('/index.php/map/get_heard_me')
+    fetch(
+        '/index.php/map/get_heard_me?minutes=' +
+        encodeURIComponent(minutes),
+        { signal: heardMeRequest.signal }
+    )
 
         .then(response => {
 
@@ -143,8 +181,15 @@ function loadHeardMe() {
         .then(data => {
 
             if (!heardMeLayer) {
-                heardMeLayer = L.layerGroup()
-                    .addTo(propagationMap);
+                heardMeLayer = L.layerGroup();
+            }
+
+            if (!$('#propHeardMe').is(':checked')) {
+                return;
+            }
+
+            if (!propagationMap.hasLayer(heardMeLayer)) {
+                heardMeLayer.addTo(propagationMap);
             }
 
             heardMeLayer.clearLayers();
@@ -261,6 +306,10 @@ if (!center) {
         })
 
         .catch(error => {
+
+            if (error.name === 'AbortError') {
+                return;
+            }
 
             console.error(
                 'Heard Me error:',

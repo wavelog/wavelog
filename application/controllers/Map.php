@@ -288,9 +288,16 @@ public function propagation() {
 
                 $callsign = strtoupper(trim($station->station_callsign));
 
+                $minutes = (int) $this->input->get('minutes', true);
+                $allowed_minutes = [15, 30, 60];
+
+                if (!in_array($minutes, $allowed_minutes, true)) {
+                        $minutes = 15;
+                }
+
                 $query = http_build_query([
                         'senderCallsign'   => $callsign,
-                        'flowStartSeconds' => -900,
+                        'flowStartSeconds' => -($minutes * 60),
                         'mode'             => 'FT8',
                         'frange'           => '28000000-29700000',
                         'rptlimit'         => 500,
@@ -357,6 +364,7 @@ public function propagation() {
                         ->set_content_type('application/json')
                         ->set_output(json_encode([
                                 'callsign' => $callsign,
+                                'minutes'  => $minutes,
                                 'reports'  => $reports
                         ]));
         }
