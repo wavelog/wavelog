@@ -17,9 +17,9 @@ class Map extends CI_Controller {
 		redirect('dashboard');
     }
 
-	/**
-	 * QSO Map with country selection and OpenStreetMap
-	 */
+/**
+ * QSO Map with country selection and OpenStreetMap
+ */
 	public function qso_map() {
 		if (!$this->user_model->authorize(99)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
@@ -68,6 +68,32 @@ class Map extends CI_Controller {
 		$this->load->view('map/qso_map');
 		$this->load->view('interface_assets/footer', $footerData);
 	}
+
+	/**
+ * Propagation map
+ */
+public function propagation() {
+        if (!$this->user_model->authorize(99)) {
+                $this->session->set_flashdata('error', __("You're not allowed to do that!"));
+                redirect('dashboard');
+        }
+
+        $this->load->model('stations');
+
+        $data['homegrid'] = explode(',', $this->stations->find_gridsquare());
+        $data['page_title'] = __("Propagation Map");
+
+        $footerData = [];
+        $footerData['scripts'] = [
+                'assets/js/leaflet/L.Maidenhead.js',
+                'assets/js/leaflet/L.Terminator.js',
+                'assets/js/sections/propagation_map.js',
+        ];
+
+        $this->load->view('interface_assets/header', $data);
+        $this->load->view('map/propagation');
+        $this->load->view('interface_assets/footer', $footerData);
+}
 
 	/**
 	 * AJAX endpoint to get QSO data for a specific country
@@ -237,5 +263,102 @@ class Map extends CI_Controller {
 		header('Content-Type: application/json; charset=utf-8');
 		echo json_encode(array_merge($plot_array, $station_array));
 	}
+        public function get_heard_me() {
+                $this->load->model('stations');
+
+                $active_id = $this->stations->find_active();
+
+                if ($active_id === "0") {
+                        return $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode([
+                                        'error' => 'No active station profile'
+                                ]));
+                }
+
+                $station = $this->stations->profile($active_id)->row();
+
+                if (!$station || empty($station->station_callsign)) {
+                        return $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode([
+                                        'error' => 'No callsign configured for active station'
+                                ]));
+                }
+
+                $callsign = strtoupper(trim($station->station_callsign));
+
+                $query = http_build_query([
+                        'senderCallsign'   => $callsign,
+                        'flowStartSeconds' => -900,
+                        'mode'             => 'FT8',
+                        'frange'           => '28000000-29700000',
+                        'rptlimit'         => 500,
+                        'rronly'           => 1,
+                        'noactive'         => 1
+                ]);
+
+                $url = 'https://retrieve.pskreporter.info/query?' . $query;
+
+                $context = stream_context_create([
+                        'http' => [
+                                'timeout' => 10,
+                                'user_agent' => 'Wavelog Propagation Map'
+                        ]
+                ]);
+	
+	$xml = @file_get_contents($url, false, $context);
+
+	if ($xml === false) {
+        $last_error = error_get_last();
+
+        return $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                        'error' => 'Could not retrieve PSK Reporter data',
+                        'detail' => $last_error['message'] ?? 'Unknown error',
+                        'url' => $url
+                ]));
+}
+		             
+
+                libxml_use_internal_errors(true);
+                $data = simplexml_load_string($xml);
+
+                if ($data === false) {
+                        return $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode([
+                                        'error' => 'Invalid PSK Reporter response'
+                                ]));
+                }
+
+                $reports = [];
+
+                foreach ($data->receptionReport as $report) {
+                        $a = $report->attributes();
+
+                        if (empty($a['receiverLocator'])) {
+                                continue;
+                        }
+
+                        $reports[] = [
+                                'receiver_callsign' => (string) $a['receiverCallsign'],
+                                'receiver_locator'  => (string) $a['receiverLocator'],
+                                'sender_callsign'   => (string) $a['senderCallsign'],
+                                'frequency'         => (int) $a['frequency'],
+                                'snr'               => isset($a['sNR']) ? (int) $a['sNR'] : null,
+                                'mode'              => isset($a['mode']) ? (string) $a['mode'] : '',
+                                'timestamp'         => (int) $a['flowStartSeconds']
+                        ];
+                }
+
+                return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode([
+                                'callsign' => $callsign,
+                                'reports'  => $reports
+                        ]));
+        }
 
 }
