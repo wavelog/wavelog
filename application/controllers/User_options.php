@@ -28,6 +28,8 @@ class User_Options extends CI_Controller {
 	}
 
 	public function get_fav() {
+		session_write_close();
+
 		$result=$this->user_options_model->get_options('Favourite');
 		$jsonout=[];
 		foreach($result->result() as $options) {
@@ -55,7 +57,7 @@ class User_Options extends CI_Controller {
 
 	/**
 	 * Save a dashboard layout preference from the dashboard context menu.
-	 * Body: {"pref":"kpi|solar","value":...}
+	 * Body: {"pref":"kpi|solar|map|dxpeditions|contests","value":...}
 	 */
 	public function save_dashboard_pref() {
 		$obj = json_decode(file_get_contents("php://input"), true);
@@ -68,6 +70,15 @@ class User_Options extends CI_Controller {
 		} elseif ($pref === 'solar' && in_array($value, ['top', 'bottom', 'N'], true)) {
 			$this->user_options_model->set_option('dashboard', 'show_dashboard_solar', array('boolean' => $value));
 			$this->session->set_userdata('user_dashboard_solar', $value);
+		} elseif ($pref === 'map' && in_array($value, ['Y', 'map_at_left', 'map_at_right', 'N'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_map', array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_map', $value);
+		} elseif ($pref === 'dxpeditions' && in_array($value, ['1', '0'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_show_dxpeditions', $value);
+		} elseif ($pref === 'contests' && in_array($value, ['1', '0'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_show_contests', $value);
 		} else {
 			header('Content-Type: application/json');
 			echo json_encode(['success' => 0, 'error' => 'Invalid data']);
@@ -126,6 +137,7 @@ class User_Options extends CI_Controller {
 	}
 
 	public function get_qrg_units() {
+		session_write_close();
 
 		$qrg_units = [];
 

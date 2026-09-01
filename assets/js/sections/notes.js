@@ -92,18 +92,6 @@ if (typeof EasyMDE !== 'undefined') {
 
 // Main notes page functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Replace 0 with Ø in inputTitle as user types
-    var inputTitle = document.getElementById('inputTitle');
-    if (inputTitle) {
-        inputTitle.addEventListener('input', function() {
-            var caret = inputTitle.selectionStart;
-            var newValue = inputTitle.value.replace(/0/g, 'Ø');
-            if (inputTitle.value !== newValue) {
-                inputTitle.value = newValue;
-                inputTitle.setSelectionRange(caret, caret);
-            }
-        });
-    }
     // Early exit if we're not on a notes page
     var notesTableBody = document.querySelector('#notesTable tbody');
     var isNotesMainPage = notesTableBody !== null;
@@ -238,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					data.forEach(function(note) {
 						tbody += '<tr>' +
 							'<td>' + (note.cat ? note.cat : '') + '</td>' +
-							'<td><a href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '">' + (note.title ? note.title : '') + '</a></td>' +
+							'<td><a ' + (note.cat === 'Contacts' ? 'class="callsign"' : '') + ' href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '">' + (note.title ? note.title : '') + '</a></td>' +
 							'<td>' + (note.last_modified ? note.last_modified : '') + '</td>' +
 						'</tr>';
 					});
@@ -392,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var preview = plainContent.length > 100 ? plainContent.substring(0, 100) + '…' : plainContent;
                     tbody += '<tr>' +
                         '<td class="text-center">' + getTranslatedCategory(note.cat) + '</td>' +
-                        '<td class="text-start"><a href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '" title="' + preview.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" data-bs-toggle="tooltip">' + (note.title ? note.title : '') + '</a></td>' +
+                        '<td class="text-start"><a ' + (note.cat === 'Contacts' ? 'class="callsign"' : '') + ' href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '" title="' + preview.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" data-bs-toggle="tooltip">' + (note.title ? note.title : '') + '</a></td>' +
                         '<td class="text-center" data-utc="' + (note.creation_date ? note.creation_date : '') + '"></td>' +
                         '<td class="text-center" data-utc="' + (note.last_modified ? note.last_modified : '') + '"></td>' +
                         '<td class="text-center">' +
@@ -574,30 +562,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial render - only if we have the necessary elements
     if (domCache.notesTableBody) {
         performNotesSearch();
-    }
-
-    // Add stroked zero (Ø) to search box
-    var addStrokedZeroBtn = document.getElementById('notesAddStrokedZero');
-    if (addStrokedZeroBtn) {
-        addStrokedZeroBtn.addEventListener('click', function() {
-            var searchBox = domCache.searchBox;
-            if (searchBox) {
-                var currentValue = searchBox.value;
-                var cursorPos = searchBox.selectionStart;
-
-                // Insert Ø at cursor position
-                var newValue = currentValue.slice(0, cursorPos) + 'Ø' + currentValue.slice(cursorPos);
-                searchBox.value = newValue;
-
-                // Set cursor position after the inserted character
-                searchBox.focus();
-                searchBox.setSelectionRange(cursorPos + 1, cursorPos + 1);
-
-                // Trigger search if minimum length is met
-                if (newValue.length >= SEARCH_MIN_LENGTH) {
-                    performNotesSearch();
-                }
-            }
-        });
     }
 });

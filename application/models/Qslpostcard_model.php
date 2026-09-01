@@ -252,7 +252,9 @@ class Qslpostcard_model extends CI_Model {
         $this->cache->save('callbook_cache_' . md5($callsign), $data, 60 * 60 * 24 * 20); // cache for 20 days
     }
 
-    private function normalize_qso_datetime($qso) {
+    // Public (not private) so the Label Designer model can reuse the shared
+    // QSO-field resolution instead of duplicating it.
+    public function normalize_qso_datetime($qso) {
         $rawDate = trim($qso['COL_QSO_DATE'] ?? $qso['qso_date'] ?? '');
         $rawTime = trim($qso['COL_TIME_ON'] ?? $qso['time_on'] ?? '');
 
@@ -299,7 +301,7 @@ class Qslpostcard_model extends CI_Model {
         return null;
     }
 
-    private function try_parse_datetime($raw) {
+    public function try_parse_datetime($raw) {
         $raw = trim($raw);
         if ($raw === '') return null;
 
@@ -331,7 +333,7 @@ class Qslpostcard_model extends CI_Model {
         return null;
     }
 
-    private const FONT_MAP = [
+    public const FONT_MAP = [
         'Helvetica' => 'DejaVuSans',
         'Times'     => 'DejaVuSerif',
         'Courier'   => 'DejaVuSansMono',
@@ -507,7 +509,7 @@ class Qslpostcard_model extends CI_Model {
     }
 
     // "#rrggbb" (or "#rgb") → [r, g, b]; falls back to black on anything malformed.
-    private function hex_to_rgb($hex) {
+    public function hex_to_rgb($hex) {
         $hex = ltrim((string)$hex, '#');
         if (strlen($hex) === 3) {
             $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
@@ -598,11 +600,11 @@ class Qslpostcard_model extends CI_Model {
         return $q->result_array();
     }
 
-    private function pretty_sat_mode($sat_mode) {
+    public function pretty_sat_mode($sat_mode) {
         return (strlen($sat_mode ?? '') == 2) ? (strtoupper($sat_mode[0]) . '/' . strtoupper($sat_mode[1])) : strtoupper($sat_mode ?? '');
     }
 
-    private function resolve_band($qso) {
+    public function resolve_band($qso) {
         $prop = strtoupper(trim($qso['COL_PROP_MODE'] ?? ''));
         $sat  = trim($qso['COL_SAT_NAME'] ?? '');
         if ($prop === 'SAT' && $sat !== '') {
@@ -612,12 +614,12 @@ class Qslpostcard_model extends CI_Model {
         return $qso['COL_BAND'] ?? $qso['band'] ?? '';
     }
 
-    private function resolve_mode($qso) {
+    public function resolve_mode($qso) {
         $sub = trim($qso['COL_SUBMODE'] ?? '');
         return $sub !== '' ? $sub : ($qso['COL_MODE'] ?? $qso['mode'] ?? '');
     }
 
-    private function resolve_field($field, $qso, $addr, $el = []) {
+    public function resolve_field($field, $qso, $addr, $el = []) {
 
         // Address computed fields
         if ($field === 'addr.source') {

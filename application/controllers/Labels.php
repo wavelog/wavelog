@@ -155,6 +155,13 @@ class Labels extends CI_Controller {
 		$this->load->model('labels_model');
 		$result = $this->labels_model->export_printrequestedids($ids);
 
+		// A Label Designer template overrides the classic text layout
+		$print_template = (int)($this->input->post('print_template') ?? 0);
+		if ($print_template > 0) {
+			$this->printDesignedLabel($print_template, $result, $offset, true);
+			return;
+		}
+
 		$this->prepareLabel($result, true, $offset, $grid, $via, $reference, $qslmsg, $tnxmsg, $mycall, $opcall);
 	}
 
@@ -173,10 +180,102 @@ class Labels extends CI_Controller {
 			$this->load->model('labels_model');
 			$result = $this->labels_model->export_printrequested($clean_id);
 
+			// A Label Designer template overrides the classic text layout
+			$print_template = (int)($this->input->post('print_template') ?? 0);
+			if ($print_template > 0) {
+				$this->printDesignedLabel($print_template, $result, $offset);
+				return;
+			}
+
 			$this->prepareLabel($result, false, $offset, $grid, $via, $reference, $qslmsg, $tnxmsg, $mycall, $opcall);
 		} else {
 			redirect('labels');
 		}
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Function: printDesignedLabel
+	|--------------------------------------------------------------------------
+	|
+	| Renders the pending QSOs with a Label Designer template (visual layout)
+	| instead of the classic text-based layout.
+	|
+	 */
+	// $jscall: the request came from an ajax print dialog (labels/printids) —
+	// report errors as JSON with a 500 status so the caller's error handler
+	// fires, instead of a flashdata redirect meant for form posts.
+	private function printDesignedLabel($template_id, $qsos, $offset = 1, $jscall = false) {
+		$this->load->model('Labeldesigner_model');
+		try {
+			$tpl = $this->Labeldesigner_model->get_template((int)$template_id);
+			if (!$tpl) {
+				$this->designedLabelError(__('Template not found'), $jscall);
+				return;
+			}
+
+			$layout = json_decode($tpl['layout_json'], true);
+			if (!is_array($layout)) {
+				$this->designedLabelError(__('Template JSON is invalid'), $jscall);
+				return;
+			}
+
+			$label = $this->Labeldesigner_model->get_label_with_paper($tpl['label_type_id']);
+			if (!$label || ($label->paper_id ?? '') == '') {
+				$this->designedLabelError(__('You need to assign a paperType to the label before printing'), $jscall);
+				return;
+			}
+
+			if ($qsos->num_rows() == 0) {
+				$this->designedLabelError(__('0 QSOs found for print!'), $jscall);
+				return;
+			}
+
+			$pdfPath = $this->Labeldesigner_model->render_label_pdf_from_layout($layout, $label, $qsos->result_array(), max(1, (int)$offset));
+
+			if (!$pdfPath || !file_exists($pdfPath)) {
+				$this->designedLabelError(__('Something went wrong! The label could not be generated. Check label size and font size.'), $jscall);
+				return;
+			}
+
+			$this->streamLabelPdf($pdfPath, $tpl);
+		} catch (\Throwable $th) {
+			log_message('error', 'LABELS printDesignedLabel() failed: ' . $th->getMessage());
+			$this->designedLabelError(__('Something went wrong! The label could not be generated. Check label size and font size.'), $jscall);
+		}
+	}
+
+	private function designedLabelError(string $message, bool $jscall): void {
+		if ($jscall) {
+			$this->output
+				->set_status_header(500)
+				->set_content_type('application/json')
+				->set_output(json_encode(['message' => $message]));
+			return;
+		}
+		$this->session->set_flashdata('error', $message);
+		redirect('labels');
+	}
+
+	private function streamLabelPdf(string $pdfPath, array $tpl): void {
+		session_write_close();
+
+		$name = preg_replace('/[^A-Za-z0-9_-]/', '_', $tpl['name'] ?? '');
+		if ($name === '') {
+			$name = 'tpl_' . ($tpl['id'] ?? 'x');
+		}
+		$filename = 'qsl_labels_' . $name . '_' . date('Ymd-Hi') . '.pdf';
+
+		header('Content-Type: application/pdf');
+		header('Content-Disposition: inline; filename="' . $filename . '"');
+		if (!ini_get('zlib.output_compression')) {
+			header('Content-Length: ' . filesize($pdfPath));
+		}
+		readfile($pdfPath);
+		if (!@unlink($pdfPath)) {
+			log_message('error', 'LABELS: temp PDF unlink failed: ' . $pdfPath);
+		}
+		exit;
 	}
 
 	function prepareLabel($qsos, $jscall = false, $offset = 1, $grid = false, $via = false, $reference = false, $qslmsg = false, $tnxmsg = true, $mycall = false, $opcall = false) {
@@ -400,7 +499,7 @@ class Labels extends CI_Controller {
 			if ($ref_avail == true) {$text .= $ref_text."\n";}
 		}
 		if ($qslmsg) {
-		    if (!empty($qso['qslmsg'])) { $text .= $qso['qslmsg']."\n";}
+		    if (!empty($qso['qslmsg'])) { $text .= html_entity_decode($qso['qslmsg'])."\n";}
 		}
 		if ($tnxmsg) {
 		    $text .= "Thanks for the QSO".($numofqsos>1 ? 's' : '');
@@ -470,6 +569,12 @@ class Labels extends CI_Controller {
 
 	public function startAtLabel() {
 		$data['stationid'] = xss_clean($this->input->post('stationid'));
+
+		// Offer any Label Designer templates as an alternative to the classic
+		// text layout in the print dialog.
+		$this->load->model('Labeldesigner_model');
+		$data['label_templates'] = $this->Labeldesigner_model->list_templates();
+
 		$this->load->view('labels/startatform', $data);
 	}
 

@@ -952,7 +952,7 @@ var DX_WATERFALL_UTILS = {
 
             // Populate the callsign input field
             var callsignInput = $('#callsign');
-            var formattedCallsign = spotData.callsign.toUpperCase().replace(/0/g, 'Ø');
+            var formattedCallsign = spotData.callsign.toUpperCase();
             callsignInput.val(formattedCallsign);
 
             // Set the mode if available - determine the actual radio mode
@@ -980,8 +980,8 @@ var DX_WATERFALL_UTILS = {
                 // Set up one-time event listener for when callsign lookup completes
                 $(document).one('callsignLookupComplete', function() {
                     // SAFETY CHECK: Validate callsign hasn't been manually changed
-                    var currentCallsign = $('#callsign').val().toUpperCase().replace(/0/g, 'Ø');
-                    var originalCallsign = spotData.callsign.toUpperCase().replace(/0/g, 'Ø');
+                    var currentCallsign = $('#callsign').val().toUpperCase();
+                    var originalCallsign = spotData.callsign.toUpperCase();
 
                     if (currentCallsign !== originalCallsign) {
                         // User changed the callsign - don't apply park references from original spot
@@ -6266,6 +6266,11 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     // Write to frequency field in Hz (single source of truth)
     // The change event will trigger set_qrg() which updates freq_calculated display
     $('#frequency').val(frequencyInKHz * 1000);
+
+    var wfBand = frequencyToBand(frequencyInKHz * 1000);
+    if (wfBand && $('#band').val() != wfBand) {
+        $('#band').val(wfBand).trigger('change');
+    }
 
     // Trigger change event to update calculated fields and unit display
     // Skip trigger when called from waterfall to prevent recursive updates

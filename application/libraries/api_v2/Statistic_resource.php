@@ -115,6 +115,19 @@ class Statistic_resource extends Api_v2_resource {
 	 * QSO analytics for the token owner: total, activity (today/month/year),
 	 * band/mode breakdown, confirmation and DXCC totals. Scoped to the owner's
 	 * station locations, so the numbers are the user's own, not the instance.
+	 *
+	 * DXCC semantics (mirrors the dashboard DXCC card):
+	 * - worked: unique valid DXCC entities worked in the log
+	 * - confirmed: DXCC entities confirmed by paper QSL OR LoTW (combined,
+	 *   deduped) — the Needed numerator; the card itself shows the split below
+	 * - confirmed_paper / confirmed_lotw: the paper-QSL / LoTW split the card
+	 *   displays in its Confirmed row
+	 * - available: current DXCC entities in the active DXCC list
+	 * - deleted: DXCC entities worked but since deleted from the active list
+	 *   (worked plus the same paper/LoTW confirmation split), shown in brackets
+	 *
+	 * eQSL remains visible in the dashboard/UI and in the confirmations topic,
+	 * but it is intentionally excluded from dxcc.confirmed.
 	 */
 	protected function qso_topic() {
 		$this->CI->load->model('logbook_model');
@@ -126,9 +139,9 @@ class Statistic_resource extends Api_v2_resource {
 
 		$counts = $this->CI->logbook_model->get_qso_counts($scope);
 
-		// dashboard_stats_batch() already computes confirmation (QSL/eQSL/LoTW
-		// received) and DXCC worked/confirmed totals for a given set of station
-		// locations, so we reuse it instead of duplicating those queries.
+		// dashboard_stats_batch() already computes confirmation counts and DXCC
+		// worked/confirmed totals for a given set of station locations, so we
+		// reuse it instead of duplicating those queries.
 		$batch = $this->CI->logbook_model->dashboard_stats_batch($scope);
 
 		return [
@@ -143,9 +156,16 @@ class Statistic_resource extends Api_v2_resource {
 				'by_mode' => $this->shape_counts($this->CI->logbook_model->total_modes(null, null, $scope, 12), 'mode'),
 			],
 			'dxcc' => [
-				'worked'    => (int) $batch['Countries_Worked'],
-				'confirmed' => (int) $batch['Countries_Worked_Confirmed'],
-				'available' => $this->CI->logbook_model->count_dxcc_entities(),
+				'worked'          => (int) $batch['Countries_Worked'],
+				'confirmed'       => (int) $batch['Countries_Worked_Confirmed'],
+				'confirmed_paper' => (int) $batch['Countries_Worked_QSL'],
+				'confirmed_lotw'  => (int) $batch['Countries_Worked_LOTW'],
+				'available'       => $this->CI->logbook_model->count_dxcc_entities(),
+				'deleted' => [
+					'worked'          => (int) $batch['Countries_Deleted_Worked'],
+					'confirmed_paper' => (int) $batch['Countries_Deleted_Worked_QSL'],
+					'confirmed_lotw'  => (int) $batch['Countries_Deleted_Worked_LOTW'],
+				],
 			],
 		];
 	}

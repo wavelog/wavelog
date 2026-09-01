@@ -1034,7 +1034,7 @@ $(document).ready(function() {
                     $frequency.trigger('change'); // Trigger for other event handlers
                     const newBand = frequencyToBand(d);
                     // Auto-update band based on frequency
-                    if ($band.val() != newBand) {
+                    if (newBand && $band.val() != newBand) {
                         $band.val(newBand).trigger('change'); // Trigger band change
                         // Update callsign status when band changes via CAT
                         if ($('#callsign').val().length >= 3) {
@@ -1048,8 +1048,9 @@ $(document).ready(function() {
             cat2UI($frequency,data.frequency,false,true,function(d){
                 $frequency.trigger('change');
                 // Auto-update band based on frequency
-                if ($band.val() != frequencyToBand(d)) {
-                    $band.val(frequencyToBand(d)).trigger('change');
+                var nb = frequencyToBand(d);
+                if (nb && $band.val() != nb) {
+                    $band.val(nb).trigger('change');
                     // Update callsign status when band changes via CAT
                     if ($('#callsign').val().length >= 3) {
                         $('#callsign').blur();

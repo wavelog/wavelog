@@ -126,16 +126,14 @@ class Dashboard extends CI_Controller {
 
 		$data['almost_current_streak'] = $data['current_streak'];
 
-		// Load Dashboard stats (countries + QSL stats in one query)
-		$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array);
+		// Load Dashboard stats (countries + QSL stats in one query).
+		// DXCC groups are band-based: HF only counts bands the user checked
+		// for the DXCC award, VHF+ is derived from the band's group.
+		$this->load->model('bands');
+		$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array, $this->bands->get_user_bands('dxcc'));
 
 		// Country stats
-		$data['total_countries'] = $stats['Countries_Worked'];
-			$data['unique_callsigns'] = $stats['Unique_Callsigns'];
-		$data['total_countries_confirmed_paper'] = $stats['Countries_Worked_QSL'];
-		$data['total_countries_confirmed_eqsl'] = $stats['Countries_Worked_EQSL'];
-		$data['total_countries_confirmed_lotw'] = $stats['Countries_Worked_LOTW'];
-		$current = $stats['Countries_Current'];
+		$data['unique_callsigns'] = $stats['Unique_Callsigns'];
 
 		// QSL stats
 		$data['total_qsl_sent'] = $stats['QSL_Sent'];
@@ -216,7 +214,20 @@ class Dashboard extends CI_Controller {
 			$data['firstloginwizard'] = $this->load->view('user/modals/first_login_wizard', $viewdata, true);
 		}
 
-		$data['total_countries_needed'] = count($dxcc->result()) - $current;
+		// DXCC breakdown sections: HF always, SAT/VHF+ only when such QSOs exist
+		$groups = $stats['DXCC_Groups'] ?? [];
+		$current_count = count($dxcc->result());
+		$zero_group = ['qsos' => 0, 'worked' => 0, 'deleted' => 0, 'qsl' => 0, 'deleted_qsl' => 0, 'lotw' => 0, 'deleted_lotw' => 0, 'confirmed' => 0];
+		$data['dxcc_sections'] = [];
+		foreach (['hf' => __("HF"), 'sat' => __("SAT"), 'vhf' => __("VHF+")] as $key => $label) {
+			$group = array_merge($zero_group, $groups[$key] ?? []);
+			if ($key != 'hf' && $group['qsos'] == 0) {
+				continue;
+			}
+			$group['label'] = $label;
+			$group['needed'] = max(0, $current_count - $group['confirmed']);
+			$data['dxcc_sections'][$key] = $group;
+		}
 
 		// Check user preferrence to show Solar Data on Dashboard and load data if yes
 		// Default to not show
@@ -254,6 +265,8 @@ class Dashboard extends CI_Controller {
 	}
 
 	function radio_display_component() {
+		session_write_close();
+
 		$this->load->model('cat');
 
 		$data['radio_status'] = $this->cat->recent_status();

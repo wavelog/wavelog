@@ -78,6 +78,7 @@ function applyPotaFilters() {
 	if ($('#potamaptab').hasClass('active')) {
 		refresh_pota_map();
 	}
+	bootstrap.Dropdown.getOrCreateInstance(document.getElementById('potaFilterDropdown')).hide();
 }
 
 function load_pota_map2(data) {

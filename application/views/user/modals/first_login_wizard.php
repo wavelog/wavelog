@@ -93,7 +93,7 @@
                                         <label for="station_locator" class="form-label mb-0"><?= __("Station Locator"); ?></label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control uppercase" id="station_locator" name="station_locator" placeholder="HM45AP" required>
+                                        <input type="text" class="form-control uppercase" id="station_locator" name="station_locator" placeholder="HM54AP" required>
                                     </div>
                                 </div>
                             </div>

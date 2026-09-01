@@ -120,6 +120,7 @@ class Debug extends CI_Controller
 		$data['dok_update'] = $this->cron_model->cron('update_update_dok')->row();
 		$data['lotw_user_update'] = $this->cron_model->cron('update_lotw_users')->row();
 		$data['pota_update'] = $this->cron_model->cron('update_update_pota')->row();
+		$data['pota_boundaries_update'] = $this->cron_model->cron('update_pota_boundaries')->row();
 		$data['scp_update'] = $this->cron_model->cron('update_update_clublog_scp')->row();
 		$data['sota_update'] = $this->cron_model->cron('update_update_sota')->row();
 		$data['wwff_update'] = $this->cron_model->cron('update_update_wwff')->row();

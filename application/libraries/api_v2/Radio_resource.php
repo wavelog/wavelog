@@ -73,6 +73,13 @@ class Radio_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'Missing required field(s): radio', 400, ['missing' => ['radio']]);
 		}
 
+		// Shared shape validation with the legacy v1 endpoint (Cat::update()
+		// column limits). Casts numeric fields to int in place.
+		$invalid = $this->CI->cat->validate_radio_payload($body);
+		if (!empty($invalid)) {
+			throw new Api_v2_exception('validation_error', 'Invalid field(s): ' . implode(', ', $invalid), 400, ['invalid' => $invalid]);
+		}
+
 		// Clubmode: a member token (owner != creator) logs under the creator as
 		// operator, mirroring Api::radio(). Otherwise operator == owner.
 		$operator = ($this->auth['user_id'] != $this->auth['created_by'])

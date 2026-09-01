@@ -67,31 +67,33 @@ function onMapMove(event) {
 	$('#lngDeg').html(LatLng2.lngDeg);
 	var locator = latLngToLocator(lat,lng);
 	$('#locator').html(locator);
-	var distance = bearingDistance(homegrid, locator);
+	if (homegrid != '') {
+		var distance = bearingDistance(homegrid, locator);
 
-	let unit;
+		let unit;
 
-	switch (measurement_base) {
-		case 'M':
-			distance.distance = distance.distance * 3959;
-			unit = 'mi';
-			break;
-		case 'K':
-			distance.distance = distance.distance * 6371;
-			unit = 'km';
-			break;
-		case 'N':
-			distance.distance = distance.distance * 3440;
-			unit = 'nmi';
-			break;
-		default:
-			distance.distance = distance.distance * 6371;
-			unit = 'km';
-			break;
+		switch (measurement_base) {
+			case 'M':
+				distance.distance = distance.distance * 3959;
+				unit = 'mi';
+				break;
+			case 'K':
+				distance.distance = distance.distance * 6371;
+				unit = 'km';
+				break;
+			case 'N':
+				distance.distance = distance.distance * 3440;
+				unit = 'nmi';
+				break;
+			default:
+				distance.distance = distance.distance * 6371;
+				unit = 'km';
+				break;
+		}
+
+		$('#bearing').html(distance.deg + '°');
+		$('#distance').html(Math.round(distance.distance * 10) / 10 + ' ' +unit);
 	}
-
-	$('#bearing').html(distance.deg + '°');
-	$('#distance').html(Math.round(distance.distance * 10) / 10 + ' ' +unit);
 
 	if (typeof zonestuff !== 'undefined' && zonestuff) {
 		const cqZone = findCQZone(event.latlng);

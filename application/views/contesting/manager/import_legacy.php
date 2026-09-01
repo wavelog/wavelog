@@ -57,7 +57,7 @@
 										<td><?= htmlspecialchars($row['contest_name']) ?></td>
 										<td><code><?= htmlspecialchars($row['adif_name']) ?></code></td>
 										<td><?= (int)$row['contest_year'] ?></td>
-										<td><?= htmlspecialchars($row['station_callsign']) ?></td>
+										<td class="callsign"><?= htmlspecialchars($row['station_callsign']) ?></td>
 										<td><?= !empty($row['time_start']) ? date('Y-m-d H:i', strtotime($row['time_start'])) : '-' ?></td>
 										<td><?= !empty($row['time_end'])   ? date('Y-m-d H:i', strtotime($row['time_end']))   : '-' ?></td>
 										<td><?= (int)$row['qso_count'] ?></td>

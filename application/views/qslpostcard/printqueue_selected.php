@@ -21,9 +21,7 @@
 					<?= __("Print options (QSOs per card, background image, address printing) are set per template in the QSL Postcard Designer."); ?>
 				</div>
 
-				<?php foreach ($selected_ids as $id): ?>
-					<input type="hidden" name="selected_ids[]" value="<?= (int)$id ?>">
-				<?php endforeach; ?>
+				<input type="hidden" name="selected_ids" value="<?= htmlentities(json_encode($selected_ids)) ?>">
 
 			<div class="btn-group" role="group">
 				<button type="button" id="btnPrintSelected" class="btn btn-success">

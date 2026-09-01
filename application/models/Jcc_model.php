@@ -2,492 +2,350 @@
 
 class Jcc_model extends CI_Model {
 
+	// Station locations of the active logbook as a SQL IN list ("'1','2'")
+	protected $location_list = '';
 
-	private $location_list=null;
+	// Japan reference data loaded from assets/json/japan_award/
+	protected $ja_prefectures = [];   // "01" => ["name" => "Hokkaido", ...]
+	protected $ja_cities = [];        // "1001" => ["name" => ..., "deleted" => ...]
+	protected $ja_kus = [];           // ward numbers of designated cities ("131013" => [...])
+
 	function __construct() {
-		$this->load->library('Genfunctions');
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-		$this->location_list = "'".implode("','",$logbooks_locations_array)."'";
-		$this->load_jcc_data_from_json();
-		$this->load_ku_data_from_json();
+		$this->location_list = "'" . implode("','", $logbooks_locations_array) . "'";
+
+		$this->ja_prefectures = $this->load_json('pref_list.json');
+		$this->ja_cities = $this->load_json('jcc_list.json');
+		$this->ja_kus = $this->load_json('ku_list.json');
 	}
 
-	// The list of JCC cities and KU areas, loaded from JSON files in assets/json/japan_award/
-	public $ja_cities = array();
-	public $ja_kus = array();
-
-	/**
-	 * Load JCC data from JSON file into $this->ja_cities
-	 */
-	private function load_jcc_data_from_json() {
-		$this->ja_cities = json_decode(file_get_contents(FCPATH . 'assets/json/japan_award/jcc_list.json'), true);
+	private function load_json($filename) {
+		return json_decode(file_get_contents(FCPATH . 'assets/json/japan_award/' . $filename), true) ?? [];
 	}
 
 	/**
-	 * Load KU data from JSON file into $this->ja_kus
+	 * The cities to show: all of them, minus the deleted ones unless
+	 * "include deleted" is checked.
 	 */
-	private function load_ku_data_from_json() {
-		$this->ja_kus = json_decode(file_get_contents(FCPATH . 'assets/json/japan_award/ku_list.json'), true);
-	}
-
-	/**
-	 * Filters out entities(cities or kus) that are marked as deleted
-	 * 
-	 * @param array $entity_data The list of entities to filter, usually ja_cities, ja_guns or ja_kus
-	 * @param array $postdata The postdata containing filter options
-	 * @return array The filtered list of entities
-	 */
-	private function filter_entity_data($entity_data, $postdata) {
+	private function jcc_cities($postdata) {
 		if (($postdata['includedeleted'] ?? null) != null) {
-			return $entity_data;
+			return $this->ja_cities;
 		}
-
-		return array_filter($entity_data, function ($entity) {
-			return !(isset($entity['deleted']) && $entity['deleted'] == true);
+		return array_filter($this->ja_cities, function ($city) {
+			return empty($city['deleted']);
 		});
 	}
 
-	/**
-	 * Build SQL expression for key_col based on band
-	 * 
-	 * SAT is treated as a separate "band" in wavelog award system, which is a little strange
-	 * 
-	 * @return string The SQL expression for key_col
-	 */
-	private function build_band_key_expr() {
-		return "case
-			when col_prop_mode = 'SAT' then 'SAT'
-			else col_band
-		end";
+	private function prefecture_name($prefecture_code) {
+		return $this->ja_prefectures[$prefecture_code]['name'] ?? $prefecture_code;
 	}
 
 	/**
-	 * Build SQL expression for key_col based on mode
-	 * 
-	 * Based on JARL supported mode endorsements
-	 * Note: This function is not been used in current implementation.
-	 * 
-	 * @return string The SQL expression for key_col
+	 * SQL condition selecting QSOs confirmed by any of the checked
+	 * confirmation methods, e.g. "col_qsl_rcvd = 'Y' or col_lotw_qsl_rcvd = 'Y'".
+	 * Returns "1=0" when nothing is checked (so nothing counts as confirmed).
 	 */
-	private function build_mode_key_expr() {
-		return "case
-			when col_submode = 'DSTAR' then 'DSTAR'
-			when col_mode in ('AM', 'FM', 'CW', 'SSB', 'ATV', 'FAX', 'SSTV', 'DIGITALVOICE') then col_mode
-			else 'DIGITAL'
-		end";
-	}
-
-	/**
-	 * Build SQL condition for confirmation based on postdata
-	 *  cond1 OR cond2 OR cond3 ...
-	 * 
-	 * Similar to Genfunctions->addQslToQuery, but without an 'AND' prefix
-	 * May be moved to Genfunctions in the future
-	 * 
-	 * @param array $postdata The postdata containing filter options
-	 * @return string The SQL condition expr
-	 */
-	private function get_qsl_condition_sql($postdata) {
-		$qsl = array();
+	private function qsl_condition($postdata) {
+		$conditions = [];
 		if (($postdata['qsl'] ?? null) == 1) {
-			$qsl[] = "col_qsl_rcvd = 'Y'";
+			$conditions[] = "col_qsl_rcvd = 'Y'";
 		}
 		if (($postdata['lotw'] ?? null) == 1) {
-			$qsl[] = "col_lotw_qsl_rcvd = 'Y'";
+			$conditions[] = "col_lotw_qsl_rcvd = 'Y'";
 		}
 		if (($postdata['eqsl'] ?? null) == 1) {
-			$qsl[] = "col_eqsl_qsl_rcvd = 'Y'";
+			$conditions[] = "col_eqsl_qsl_rcvd = 'Y'";
 		}
 		if (($postdata['qrz'] ?? null) == 1) {
-			$qsl[] = "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'";
+			$conditions[] = "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'";
 		}
 		if (($postdata['clublog'] ?? null) == 1) {
-			$qsl[] = "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y'";
+			$conditions[] = "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y'";
 		}
-		if (($postdata['dcl'] ?? null) == 1) {
-			$qsl[] = "COL_DCL_QSL_RCVD = 'Y'";
-		}
-
-		return count($qsl) > 0 ? implode(' or ', $qsl) : '1=0';
+		return $conditions ? implode(' or ', $conditions) : '1=0';
 	}
 
 	/**
-	 * Build SQL expression for confirmation based on postdata
-	 * 	CASE WHEN (cond1 OR cond2 OR cond3 ...) THEN 1 ELSE 0 END
-	 * 
-	 * @param array $postdata The postdata containing filter options
-	 * @return string The SQL expression for confirmed
+	 * SQL IN list of quoted reference numbers: "'0101','1001',...".
+	 * COL_CNTY is a varchar column, so quoted values compare as strings -
+	 * unquoted numbers would force a numeric cast on every row and could
+	 * false-match values like '1001A'.
 	 */
-	private function get_qsl_confirmed_expr($postdata) {
-		return 'case when (' . $this->get_qsl_condition_sql($postdata) . ') then 1 else 0 end';
+	private function quoted_in_list($keys) {
+		return "'" . implode("','", array_map('strval', $keys)) . "'";
 	}
 
 	/**
-	 * Build SQL for entity(cities, guns or kus) IN (list)
-	 * 	id1, id2, id3 ...
-	 * 
-	 * @param array $entity_data The list of entities to build IN clause for
-	 * @return string The SQL string for IN clause
+	 * COL_CNTY holds either a city number ("1001") or the ward number of a
+	 * designated city ("131013"). Wards count for their city, so map ward
+	 * numbers down to their first four digits.
 	 */
-	private function build_entity_in_list_sql($entity_data) {
-		$keys = array_map(function ($key) {
-			return $this->db->escape((string) $key);
-		}, array_keys($entity_data));
-
-		return implode(',', $keys);
+	private function entity_expr() {
+		return "case when col_cnty in (" . $this->quoted_in_list(array_keys($this->ja_kus)) . ") then left(col_cnty, 4) else col_cnty end";
 	}
 
 	/**
-	 * Build SQL WHERE clause for entity status query based on postdata
-	 * 
-	 * @param string $entity_in_list_sql The SQL string for entity IN clause
-	 * @param array $postdata The postdata containing filter options
-	 * @param array $bindings The array to store query bindings for prepared statement
-	 * @param bool $confirmed_only Whether to include only confirmed QSOs in the condition
-	 * @return string The SQL string for WHERE clause
+	 * WHERE clause shared by the status and export queries: Japanese QSOs
+	 * (DXCC 339) whose COL_CNTY holds a known city or ward number, in the
+	 * active logbook, honoring the band/mode/propagation filters.
 	 */
-	private function build_entity_query_where_sql($entity_in_list_sql, $postdata, &$bindings, $confirmed_only = false) {
+	private function matching_where($postdata, &$bindings) {
+		$in_list = $this->quoted_in_list(array_merge(array_keys($this->jcc_cities($postdata)), array_keys($this->ja_kus)));
+
+		$where = "col_dxcc in ('339')
+			and col_cnty in (" . $in_list . ")
+			and station_id in (" . $this->location_list . ")";
+
 		$band = $postdata['band'] ?? 'All';
-		$mode = $postdata['mode'] ?? 'All';
-		$prop_mode = $postdata['prop_mode'] ?? 'All';
-
-		$where = array(
-			"col_dxcc in ('339')",
-			"col_cnty in (" . $entity_in_list_sql . ")",
-			"station_id in (" . $this->location_list . ")",
-		);
 		if ($band != 'All') {
-			if ($band === 'SAT') {
-				$where[] = "(col_prop_mode = ?)";
-				$bindings[] = $band;
+			if ($band == 'SAT') {
+				$where .= " and col_prop_mode = ?";
 			} else {
-				$where[] = "(col_band = ?)";
-				$bindings[] = $band;
+				$where .= " and col_band = ?";
 			}
+			$bindings[] = $band;
 		}
+
+		$mode = $postdata['mode'] ?? 'All';
 		if ($mode != 'All') {
-			$where[] = "(col_mode = ? or col_submode = ?)";
+			$where .= " and (col_mode = ? or col_submode = ?)";
 			$bindings[] = $mode;
 			$bindings[] = $mode;
 		}
+
+		$prop_mode = $postdata['prop_mode'] ?? 'All';
 		if ($prop_mode != 'All') {
-			$where[] = "(col_prop_mode = ?)";
+			$where .= " and col_prop_mode = ?";
 			$bindings[] = $prop_mode;
 		}
-		if ($confirmed_only) {
-			$where[] = '(' . $this->get_qsl_condition_sql($postdata) . ')';
+
+		return $where;
+	}
+
+	/**
+	 * Worked/confirmed status per city. Returns rows of
+	 * ['entity' => city number, 'confirmed' => 0|1] - one row per worked
+	 * city, confirmed is 1 when at least one matching QSO meets the
+	 * confirmation filter.
+	 */
+	function query_jcc_entity_status($postdata) {
+		$bindings = [];
+		$sql = "select entity, max(confirmed) as confirmed
+			from (
+				select " . $this->entity_expr() . " as entity,
+					case when (" . $this->qsl_condition($postdata) . ") then 1 else 0 end as confirmed
+				from " . $this->config->item('table_name') . " thcv
+				where " . $this->matching_where($postdata, $bindings) . "
+			) slots
+			group by entity";
+		return $this->db->query($sql, $bindings)->result_array();
+	}
+
+	/**
+	 * The grouped slot data for the results grid: prefectures with their
+	 * cities rendered as status pills (see render_slot()). Cities come
+	 * sorted by number, so prefectures and slots end up in order.
+	 */
+	function get_jcc_grouped_slot($postdata, $entity_status = null) {
+		$entity_status = $entity_status ?? $this->query_jcc_entity_status($postdata);
+		$cities = $this->jcc_cities($postdata);
+		ksort($cities, SORT_STRING);
+
+		$status = [];
+		foreach ($cities as $number => $city) {
+			$status[$number] = '-';
 		}
-
-		return implode(" and ", $where);
-	}
-
-	/**
-	 * Build the base SQL query for entity status
-	 * The query turns eligible QSOs into rows of (entity, key_col and confirmed) for further group and aggregation
-	 * 
-	 * @param string $entity_expr The SQL expression for entity, e.g. col_cnty or left(col_cnty, 4)
-	 * @param string $entity_in_list_sql The SQL string for entity IN clause
-	 * @param string $key_col The column to use as key_col in the result, can be 'band', 'mode' or 'none'
-	 * @param array $postdata The postdata containing filter options
-	 * @param array $bindings The array to store query bindings for prepared statement
-	 * @return string The SQL string for the base query
-	 */
-	private function build_entity_status_base_query($entity_expr, $entity_in_list_sql, $key_col, $postdata, &$bindings) {
-		$confirmed_expr = $this->get_qsl_confirmed_expr($postdata);
-
-		$select = array(
-			$entity_expr . ' as entity',
-			$confirmed_expr . ' as confirmed',
-		);
-		if ($key_col === 'band') {
-			$select[] = $this->build_band_key_expr() . ' as key_col';
-		} else if ($key_col === 'mode') {
-			$select[] = $this->build_mode_key_expr() . ' as key_col';
-		} else {
-			$select[] = "'All' as key_col";
-			// No additional bindings needed since key_col is a constant in this case
-		}
-		$select_str = implode(", ", $select);
-
-		$from = $this->config->item('table_name') . " thcv";
-
-		$where_str = $this->build_entity_query_where_sql($entity_in_list_sql, $postdata, $bindings);
-
-		$sql = "select " . $select_str . " from " . $from . " where " . $where_str;
-
-		return $sql;
-	}
-
-	/**
-	 * Build SQL to group the base query by entity and key_col, and aggregate confirmed
-	 * 
-	 * @param string $source_sql The SQL string for the source query to group and aggregate
-	 * @return string The SQL string for the grouped and aggregated query
-	 */
-	private function build_entity_status_max_confirmed_group_by_sql($source_sql) {
-		return "select entity, key_col, max(confirmed) as confirmed from (" . $source_sql . ") entity_status group by entity, key_col";
-	}
-
-	/**
-	 * Build SQL to union all two entity status queries
-	 * 
-	 * @param string $left_sql The SQL string for the left query
-	 * @param string $right_sql The SQL string for the right query
-	 * @return string The SQL string for the union all query
-	 */
-	private function build_entity_status_union_all_sql($left_sql, $right_sql) {
-		return $left_sql . " union all " . $right_sql;
-	}
-
-	/**
-	 * Query the entity status based on postdata and key_col
-	 * Return rows of (entity, key_col and confirmed)
-	 * The row exists if the slot is worked, and confirmed is 1 if the slot is confirmed
-	 * 
-	 * @param array $postdata The postdata containing filter options
-	 * @param string $key_col The column to use as key_col in the result, can be 'band', 'mode' or 'none'
-	 * @return array The result set as an array of rows
-	 */
-	function query_entity_status($postdata, $key_col = "none") {
-		$jcc_data = $this->filter_entity_data($this->ja_cities, $postdata);
-		$ku_data = $this->filter_entity_data($this->ja_kus, $postdata);
-		$jcc_in_list = $this->build_entity_in_list_sql($jcc_data);
-		$ku_in_list = $this->build_entity_in_list_sql($ku_data);
-
-		$bindings = array();
-
-		// Query QSOs with any JCCs, group by city and key_col
-		$jcc_source_sql = $this->build_entity_status_base_query('col_cnty', $jcc_in_list, $key_col, $postdata, $bindings);
-		$jcc_group_sql = $this->build_entity_status_max_confirmed_group_by_sql($jcc_source_sql);
-
-		// Query QSOs with any Kus, classify to cities, group by city and key_col
-		$ku_source_sql = $this->build_entity_status_base_query('left(col_cnty, 4)', $ku_in_list, $key_col, $postdata, $bindings);
-		$ku_group_sql = $this->build_entity_status_max_confirmed_group_by_sql($ku_source_sql);
-
-		// Union the two queries, then group again
-		$union_sql = $this->build_entity_status_union_all_sql($jcc_group_sql, $ku_group_sql);
-		$final_sql = $this->build_entity_status_max_confirmed_group_by_sql($union_sql);
-
-		$query = $this->db->query($final_sql, $bindings);
-		$rows = $query->result_array();
-
-		return $rows;
-	}
-
-	/**
-	 * Get the JCC status array for display on the table
-	 * 	array[city][band] = 'C' if confirmed, 'W' if worked but not confirmed, '-' if not worked
-	 * 
-	 * @param array $bands The list of bands to include in the result
-	 * @param array $postdata The postdata containing filter options
-	 * @param array|null $entity_status The pre-query entity status to use
-	 */
-	function get_jcc_array($bands, $postdata, $entity_status = null) {
-		if ($entity_status === null) {
-			$entity_status = $this->query_entity_status($postdata, 'band');
-		}
-
-		$jcc_list = $this->filter_entity_data($this->ja_cities, $postdata);
-
-		$cities = array();
-		// Initializing the array with all cities and bands
-		foreach ($jcc_list as $city => $city_data) {
-			$cities[$city]['Number'] = $city;
-			$cities[$city]['City'] = $city_data['name'];
-			$cities[$city]['count'] = 0;
-			foreach ($bands as $band) {
-				// Sets all to dash to indicate no result
-				$cities[$city][$band] = '-';
-			}
-		}
-
 		foreach ($entity_status as $row) {
-			if ($row['confirmed'] == 1) {
-				if ($postdata['confirmed'] != NULL) {
-					$cities[$row['entity']][$row['key_col']] = 'C';
-					$cities[$row['entity']]['count'] += 1;
-				}
-			} else {
-				if ($postdata['worked'] != NULL) {
-					$cities[$row['entity']][$row['key_col']] = 'W';
-					$cities[$row['entity']]['count'] += 1;
-				}
-			}
+			$status[$row['entity']] = $row['confirmed'] ? 'C' : 'W';
 		}
 
-		if ($postdata['notworked'] == NULL) {
-			foreach ($cities as $city => $city_data) {
-				if ($city_data['count'] == 0) {
-					unset($cities[$city]);
-				}
+		$groups = [];
+		foreach ($cities as $number => $city) {
+			$prefecture_code = substr((string) $number, 0, 2);
+			if (!isset($groups[$prefecture_code])) {
+				$groups[$prefecture_code] = [
+					'prefecture_code' => $prefecture_code,
+					'prefecture_name' => $this->prefecture_name($prefecture_code),
+					'slots' => [],
+				];
 			}
+			$groups[$prefecture_code]['slots'][] = $this->render_slot($number, $city, $status[$number] ?? '-', $postdata);
 		}
 
-		if (!empty($cities)) {
-			return $cities;
-		} else {
-			return 0;
-		}
+		return $groups;
 	}
 
-
 	/**
-	 * Get the JCC summary array for display on the table
-	 * 	array['worked'][band] = count of worked cities for the band
-	 * 	array['confirmed'][band] = count of confirmed cities for the band
-	 * 
-	 * @param array $bands The list of bands to include in the result
-	 * @param array $postdata The postdata containing filter options
-	 * @param array|null $entity_status The pre-query entity status to use
+	 * Render one city as a status pill for the results grid: worked and
+	 * confirmed cities link to the matching QSO list, the rest are plain
+	 * spans. Deleted cities get a hatch overlay.
 	 */
-	function get_jcc_summary($bands, $postdata, $entity_status = null) {
-		if ($entity_status === null) {
-			$entity_status = $this->query_entity_status($postdata, 'band');
+	private function render_slot($number, $city, $status, $postdata) {
+		$classes = 'award-grid-slot btn border d-inline-flex align-items-center justify-content-center ';
+		if ($status === 'C') {
+			$classes .= 'btn-success';
+		} elseif ($status === 'W') {
+			$classes .= 'btn-danger';
+		} else {
+			$classes .= 'btn-secondary';
+		}
+		if (!empty($city['deleted'])) {
+			$classes .= ' award-grid-slot-deleted';
 		}
 
-		$summary = array(
-			'worked' => array(),
-			'confirmed' => array(),
-		);
+		// City pills show the number's last two digits; Tokyo's 23 wards
+		// (six-digit numbers 100101+) show their ward number instead
+		$label = html_escape(substr((string) $number, strlen((string) $number) > 4 ? 4 : 2));
 
-		// $worked_by_band = array();
-		// $confirmed_by_band = array();
-		foreach ($bands as $band) {
-			$summary['worked'][$band] = 0;
-			$summary['confirmed'][$band] = 0;
+		// Tooltip shows the full number, the city name and "Deleted"
+		$tooltip = '<strong>' . html_escape($number) . '</strong>';
+		$title = (string) $number;
+		if (!empty($city['name'])) {
+			$tooltip .= '<br>' . html_escape($city['name']);
+			$title .= ' - ' . $city['name'];
+		}
+		if (!empty($city['deleted'])) {
+			$tooltip .= '<br>' . html_escape(__("Deleted"));
+			$title .= ' - ' . __("Deleted");
+		}
+		$attributes = ' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true"'
+			. ' data-bs-title="' . html_escape($tooltip) . '"'
+			. ' title="' . html_escape($title) . '"'
+			. ' aria-label="' . html_escape($title) . '"';
+
+		if ($status === 'W' || $status === 'C') {
+			$href = $this->display_contacts_href(
+				$number,
+				$postdata['band'] ?? 'All',
+				$postdata['mode'] ?? 'All',
+				'JCC',
+				$status === 'C' ? $this->qsl_string($postdata) : ''
+			);
+			return '<a class="' . $classes . '" href="' . html_escape($href) . '"' . $attributes . '>' . $label . '</a>';
 		}
 
-		$worked_total = array();
-		$confirmed_total = array();
-
-		foreach ($entity_status as $row) {
-			$worked_total[$row['entity']] = true;
-			$summary['worked'][$row['key_col']] += 1;
-			if ($row['confirmed'] == 1) {
-				$confirmed_total[$row['entity']] = true;
-				$summary['confirmed'][$row['key_col']] += 1;
-			}
-		}
-
-		$summary['worked']['Total'] = count($worked_total);
-		$summary['confirmed']['Total'] = count($confirmed_total);
-
-		// make sure SAT is after Total
-		// I don't know why, but the origin design is such.
-		if (isset($summary['worked']['SAT']) && isset($summary['confirmed']['SAT'])) {
-			$summary_worked_sat = $summary['worked']['SAT'];
-			$summary_confirmed_sat = $summary['confirmed']['SAT'];
-
-			unset($summary['worked']['SAT']);
-			unset($summary['confirmed']['SAT']);
-
-			$summary['worked']['SAT'] = $summary_worked_sat;
-			$summary['confirmed']['SAT'] = $summary_confirmed_sat;
-		}
-
-		return $summary;
+		return '<span class="' . $classes . '"' . $attributes . '>' . $label . '</span>';
 	}
 
 	/**
-	 * Get the JCC map array for display on the map
-	 * 	array[city] = [worked, confirmed]
-	 * 
-	 * @param array $postdata The postdata containing filter options
-	 * @param array|null $entity_status The pre-query entity status to use
-	 * @return array The JCC map array for display on the map
+	 * The QSL types behind a confirmed slot as a string of letters (Q, L,
+	 * E, C, Z) - see displayContacts() in views/interface_assets/footer.php
+	 * and qso_details_ajax() in controllers/Awards.php.
+	 */
+	private function qsl_string($postdata) {
+		$qsl = '';
+		if (($postdata['qsl'] ?? null) == 1) {
+			$qsl .= 'Q';
+		}
+		if (($postdata['lotw'] ?? null) == 1) {
+			$qsl .= 'L';
+		}
+		if (($postdata['eqsl'] ?? null) == 1) {
+			$qsl .= 'E';
+		}
+		if (($postdata['clublog'] ?? null) == 1) {
+			$qsl .= 'C';
+		}
+		if (($postdata['qrz'] ?? null) == 1) {
+			$qsl .= 'Z';
+		}
+		return $qsl;
+	}
+
+	/**
+	 * javascript: URL that opens the QSO list behind a slot via
+	 * displayContacts() in views/interface_assets/footer.php.
+	 */
+	private function display_contacts_href($searchphrase, $band, $mode, $type, $qsl = '') {
+		$args = [
+			(string) $searchphrase,
+			(string) $band,
+			'All',   // satellite
+			'All',   // orbit
+			(string) $mode,
+			(string) $type,
+			(string) $qsl,
+			'',      // date from
+			'',      // date to
+		];
+		return 'javascript:displayContacts(' . implode(',', array_map('json_encode', $args)) . ')';
+	}
+
+	/**
+	 * Summary numbers for the progress bar: worked / confirmed / deleted
+	 * cities and their percentages.
+	 */
+	function get_jcc_summary($postdata, $entity_status = null) {
+		$entity_status = $entity_status ?? $this->query_jcc_entity_status($postdata);
+		$cities = $this->jcc_cities($postdata);
+
+		$confirmed = 0;
+		foreach ($entity_status as $row) {
+			if ($row['confirmed']) {
+				$confirmed += 1;
+			}
+		}
+
+		$deleted = 0;
+		foreach ($cities as $city) {
+			if (!empty($city['deleted'])) {
+				$deleted += 1;
+			}
+		}
+
+		$total = count($cities);
+		$worked = count($entity_status);
+		$worked_only = max(0, $worked - $confirmed);
+
+		return [
+			'deleted' => $deleted,
+			'total' => $total,
+			'worked' => $worked,
+			'confirmed' => $confirmed,
+			'worked_only' => $worked_only,
+			'worked_percent' => $total > 0 ? round(($worked / $total) * 100, 1) : 0,
+			'confirmed_percent' => $total > 0 ? round(($confirmed / $total) * 100, 1) : 0,
+			'worked_only_percent' => $total > 0 ? round(($worked_only / $total) * 100, 1) : 0,
+		];
+	}
+
+	/**
+	 * Status per city for the map: city number => [worked, confirmed].
 	 */
 	function get_jcc_map_array($postdata, $entity_status = null) {
-		if ($entity_status === null) {
-			$entity_status = $this->query_entity_status($postdata, 'none');
-		}
+		$entity_status = $entity_status ?? $this->query_jcc_entity_status($postdata);
 
-		$jccs = array();
+		$jccs = [];
 		foreach ($entity_status as $row) {
-			$entity = $row['entity'];
-			if (!isset($jccs[$entity])) {
-				$jccs[$entity] = array(1, 0);
-			}
-
-			if ($row['confirmed'] == 1) {
-				$jccs[$entity][1] = 1;
-			}
+			$jccs[$row['entity']] = [1, $row['confirmed'] ? 1 : 0];
 		}
-
 		ksort($jccs, SORT_STRING);
 
 		return $jccs;
 	}
 
 	/**
-	 * Build the base SQL query for exporting QSOs for entities(cities or kus)
-	 * The query selects eligible QSOs for further processing
-	 * 
-	 * @param string $entity_expr The SQL expression for entity, e.g. col_cnty or left(col_cnty, 4)
-	 * @param string $entity_in_list_sql The SQL string for entity IN clause
-	 * @param array $postdata The postdata containing filter options
-	 * @param array $bindings The array to store query bindings for prepared statement
-	 * @return string The SQL string for the export query
-	 */
-	private function build_export_entity_source_query($entity_expr, $entity_in_list_sql, $postdata, &$bindings) {
-		$select = array(
-			$entity_expr . ' as entity',
-			'COL_PRIMARY_KEY',
-			'COL_CALL',
-			'COL_TIME_ON',
-			'COL_BAND',
-			'COL_MODE',
-			'COL_PROP_MODE',
-		);
-
-		$select_str = implode(", ", $select);
-
-		$from = $this->config->item('table_name') . " thcv";
-
-		$where_str = $this->build_entity_query_where_sql($entity_in_list_sql, $postdata, $bindings, true);
-
-		return 'select ' . $select_str . ' from ' . $from . ' where ' . $where_str;
-	}
-
-	/**
-	 * Export QSOs for entities(cities or kus) based on postdata
-	 * Return first confirmed QSO for each entity, with QSO details
-	 * 
-	 * @param array $postdata The postdata containing filter options
-	 * @return array The result set as an array of rows with QSO details
-	 */
-	function query_export_qsos($postdata) {
-		$jcc_data = $this->filter_entity_data($this->ja_cities, $postdata);
-		$ku_data = $this->filter_entity_data($this->ja_kus, $postdata);
-		$jcc_in_list = $this->build_entity_in_list_sql($jcc_data);
-		$ku_in_list = $this->build_entity_in_list_sql($ku_data);
-
-		$bindings = array();
-
-		// Query QSOs with any JCCs or Kus, then union the results
-		$jcc_source_sql = $this->build_export_entity_source_query('col_cnty', $jcc_in_list, $postdata, $bindings);
-		$ku_source_sql = $this->build_export_entity_source_query('left(col_cnty, 4)', $ku_in_list, $postdata, $bindings);
-		$source_sql = $this->build_entity_status_union_all_sql($jcc_source_sql, $ku_source_sql);
-
-		// Rank the QSOs for each entity by time and primary key, then select the first one for each entity
-		$ranked_sql = 'select source.*, row_number() over (partition by entity order by COL_TIME_ON asc, COL_PRIMARY_KEY asc) as rn from (' . $source_sql . ') source';
-		$final_sql = 'select entity, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE from (' . $ranked_sql . ') ranked where rn = 1 order by entity asc';
-
-		$query = $this->db->query($final_sql, $bindings);
-		$rows = $query->result_array();
-
-		return $rows;
-	}
-
-	/**
-	 * Export QSOs for JCC award based on postdata
-	 * Return first confirmed QSO for each city, with QSO details and city name
-	 * 
-	 * @param array $postdata The postdata containing filter options
-	 * @return array The result set as an array of rows with QSO details and city name
+	 * QSOs for the award application CSV: the first confirmed QSO per city,
+	 * with the city name attached.
 	 */
 	function get_jcc_export($postdata) {
-		$rows = $this->query_export_qsos($postdata);
+		$bindings = [];
+		$sql = "select entity, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE
+			from (
+				select entity, COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE,
+					row_number() over (partition by entity order by COL_TIME_ON asc, COL_PRIMARY_KEY asc) as rn
+				from (
+					select " . $this->entity_expr() . " as entity,
+						COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE
+					from " . $this->config->item('table_name') . " thcv
+					where " . $this->matching_where($postdata, $bindings) . "
+						and (" . $this->qsl_condition($postdata) . ")
+				) confirmed_qsos
+			) ranked
+			where rn = 1
+			order by entity";
+		$rows = $this->db->query($sql, $bindings)->result_array();
 
 		foreach ($rows as &$row) {
 			$row['entity_name'] = $this->ja_cities[$row['entity']]['name'] ?? '';

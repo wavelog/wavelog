@@ -73,7 +73,7 @@ class Contest_admin extends CI_Controller {
 		{
 			$this->Contest_admin_model->edit($item_id_clean);
 
-			$data['notice'] = "Contest ".$this->security->xss_clean($this->input->post('name', true))." Updated";
+			$data['notice'] = sprintf(__("Contest %s updated"), $this->input->post('name', true));
 
 			redirect('contest_admin/add');
 		}

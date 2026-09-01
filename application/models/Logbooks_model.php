@@ -2,16 +2,18 @@
 
 class Logbooks_model extends CI_Model {
 
-	function show_all() {
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+	function show_all($user_id = null) {
+		$this->db->where('user_id', $user_id ?? $this->session->userdata('user_id'));	// Fallback to session-uid, if userid is omitted
 		return $this->db->get('station_logbooks');
 	}
 
-	function add($logbook_name = '') {
+	function add($logbook_name = '', $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
+
 		// Create data array with field values
-		if ($logbook_name ?? '' != '') {
+		if (($logbook_name ?? '') !== '') {
 			$data = array(
-				'user_id' => $this->session->userdata('user_id'),
+				'user_id' => $user_id,
 				'logbook_name' =>  $logbook_name,
 			);
 
@@ -20,12 +22,14 @@ class Logbooks_model extends CI_Model {
 			$logbook_id = $this->db->insert_id();
 
 			// check if user has no active logbook yet
-			if ($this->session->userdata('active_station_logbook') === null) {
+			if (empty($this->find_active_station_logbook_from_userid($user_id))) {
 				// set logbook active
-				$this->set_logbook_active($logbook_id);
+				$this->set_logbook_active($logbook_id, $user_id);
 
-				// update user session data
-				$this->user_model->update_session($this->session->userdata('user_id'));
+				// update user session data (only a web request has one)
+				if ($this->session->userdata('user_id') == $user_id) {
+					$this->user_model->update_session($user_id);
+				}
 			}
 			return $logbook_id;
 		} else {
@@ -33,11 +37,25 @@ class Logbooks_model extends CI_Model {
 		}
 	}
 
-	function delete($clean_id) {
+	function rename($logbook_id, $logbook_name, $user_id = null) {
+		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
+
+		$this->db->where('user_id', $user_id);
+		$this->db->where('logbook_id', $logbook_id);
+		$this->db->update('station_logbooks', array('logbook_name' => $logbook_name));
+	}
+
+	function delete($clean_id, $user_id = null) {
 		// Clean ID
+		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
+
+		// be sure that logbook belongs to user, the deletes below span two tables
+		if (!$this->check_logbook_is_accessible($clean_id, $user_id)) {
+			return;
+		}
 
 		// do not delete active logbook
-		if ($this->session->userdata('active_station_logbook') === $clean_id) {
+		if ($this->find_active_station_logbook_from_userid($user_id) == $clean_id) {
 			return;
 		}
 
@@ -47,19 +65,23 @@ class Logbooks_model extends CI_Model {
 		}
 		$this->staticmap_model->remove_static_map_image(null, $clean_id);
 
+		// Drop the station location links, they are meaningless without the logbook
+		$this->db->where('station_logbook_id', $clean_id);
+		$this->db->delete('station_logbooks_relationship');
+
 		// Delete logbook
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id);
 		$this->db->where('logbook_id', $clean_id);
 		$this->db->delete('station_logbooks');
 	}
 
 	function edit() {
 		$data = array(
-			'logbook_name' => xss_clean($this->input->post('station_logbook_name', true)),
+			'logbook_name' => $this->input->post('station_logbook_name', true),
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', xss_clean($this->input->post('logbook_id', true)));
+		$this->db->where('logbook_id', $this->input->post('logbook_id', true));
 		$this->db->update('station_logbooks', $data);
 	}
 
@@ -75,7 +97,7 @@ class Logbooks_model extends CI_Model {
 		}
 
 		// be sure that logbook belongs to user
-		if (!$this->check_logbook_is_accessible($cleanId)) {
+		if (!$this->check_logbook_is_accessible($cleanId, $user_id)) {
 			return;
 		}
 
@@ -87,11 +109,11 @@ class Logbooks_model extends CI_Model {
 		$this->db->update('users', $data);
 	}
 
-	function logbook($id) {
+	function logbook($id, $user_id = null) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id ?? $this->session->userdata('user_id'));	// Fallback to session-uid, if userid is omitted
 		$this->db->where('logbook_id', $clean_id);
 		return $this->db->get('station_logbooks');
 	}
@@ -113,19 +135,20 @@ class Logbooks_model extends CI_Model {
 	}
 
 	// Creates relationship between a logbook and a station location
-	function create_logbook_location_link($logbook_id, $location_id) {
+	function create_logbook_location_link($logbook_id, $location_id, $user_id = null) {
 		// Clean ID
 		$clean_logbook_id = $this->security->xss_clean($logbook_id);
 		$clean_location_id = $this->security->xss_clean($location_id);
+		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
 
 		// be sure that logbook belongs to user
-		if (!$this->check_logbook_is_accessible($clean_logbook_id)) {
+		if (!$this->check_logbook_is_accessible($clean_logbook_id, $user_id)) {
 			return;
 		}
 
 		// be sure that station belongs to user
 		$this->load->model('Stations');
-		if (!$this->Stations->check_station_is_accessible($clean_location_id)) {
+		if (!$this->Stations->check_station_against_user($clean_location_id, $user_id)) {
 			return;
 		}
 
@@ -137,6 +160,23 @@ class Logbooks_model extends CI_Model {
 
 		// Insert Record
 		$this->db->insert('station_logbooks_relationship', $data);
+	}
+
+	// Removes the relationship between a logbook and a station location
+	function remove_logbook_location_link($logbook_id, $location_id, $user_id = null) {
+		// Clean ID
+		$clean_logbook_id = $this->security->xss_clean($logbook_id);
+		$clean_location_id = $this->security->xss_clean($location_id);
+		$user_id = $user_id ?? $this->session->userdata('user_id');	// Fallback to session-uid, if userid is omitted
+
+		// be sure that logbook belongs to user
+		if (!$this->check_logbook_is_accessible($clean_logbook_id, $user_id)) {
+			return;
+		}
+
+		$this->db->where('station_logbook_id', $clean_logbook_id);
+		$this->db->where('station_location_id', $clean_location_id);
+		$this->db->delete('station_logbooks_relationship');
 	}
 
 
@@ -246,10 +286,10 @@ class Logbooks_model extends CI_Model {
 		}
 	}
 
-	public function check_logbook_is_accessible($id) {
+	public function check_logbook_is_accessible($id, $user_id = null) {
 		// check if logbook belongs to user
 		$this->db->select('logbook_id');
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id ?? $this->session->userdata('user_id'));	// Fallback to session-uid, if userid is omitted
 		$this->db->where('logbook_id', $id);
 		$query = $this->db->get('station_logbooks');
 		if ($query->num_rows() == 1) {
@@ -278,6 +318,29 @@ class Logbooks_model extends CI_Model {
 		$query = $this->db->get('station_logbooks');
 
 		return $query->result_array()[0]['public_search'];
+	}
+
+	/*
+	 * The station_location_ids linked to a logbook, as a plain int array.
+	 * Unlike list_logbook_relationships() this returns an empty array when
+	 * nothing is linked; that one's [-1] sentinel is relied on by its callers.
+	 */
+	function get_linked_station_ids($logbook_id) {
+		$rows = $this->db->select('station_location_id')
+			->where('station_logbook_id', (int) $logbook_id)
+			->get('station_logbooks_relationship')
+			->result();
+		return array_map(fn($r) => (int) $r->station_location_id, $rows);
+	}
+
+	/*
+	 * Whether $user_id already has a logbook of that name. The name is compared
+	 * exactly as it will be stored, so the caller has to clean it first.
+	 */
+	function logbook_name_exists($logbook_name, $user_id = null) {
+		$this->db->where('user_id', $user_id ?? $this->session->userdata('user_id'));	// Fallback to session-uid, if userid is omitted
+		$this->db->where('logbook_name', $logbook_name);
+		return $this->db->get('station_logbooks')->num_rows() > 0;
 	}
 }
 ?>

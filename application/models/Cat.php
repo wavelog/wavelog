@@ -25,7 +25,53 @@
 			return self::MODE_OVERRIDES[strtoupper($mode)] ?? $mode;
 		}
 
-		function update($result, $user_id, $operator) {
+		/**
+	 * Validate a radio status payload (v1 Api::radio() and API v2 share this).
+	 *
+	 * Absent / null / '' / 'NULL' values are tolerated (legacy compatibility);
+	 * present values must match the cat table column shapes. Numeric fields
+	 * that pass are cast to int in place.
+	 *
+	 * @param array $result Decoded payload, modified by reference.
+	 * @return array List of invalid field names (empty = valid).
+	 */
+	function validate_radio_payload(&$result) {
+		$invalid = [];
+
+		if (!isset($result['radio']) || !is_string($result['radio']) || trim($result['radio']) == '' || strlen($result['radio']) > 250) {
+			$invalid[] = 'radio';
+		}
+
+		$numeric_fields = ['frequency', 'frequency_rx', 'uplink_freq', 'downlink_freq', 'power'];
+		foreach ($numeric_fields as $field) {
+			if (isset($result[$field]) && $result[$field] !== null && $result[$field] !== '' && $result[$field] !== 'NULL') {
+				if (!is_numeric($result[$field]) || (int) $result[$field] != $result[$field]) {
+					$invalid[] = $field;
+				} else {
+					$result[$field] = (int) $result[$field];
+				}
+			}
+		}
+
+		$string_limits = ['mode' => 10, 'mode_rx' => 10, 'uplink_mode' => 10, 'downlink_mode' => 10, 'prop_mode' => 10, 'sat_name' => 255];
+		foreach ($string_limits as $field => $limit) {
+			if (isset($result[$field]) && $result[$field] !== null && $result[$field] !== '' && $result[$field] !== 'NULL') {
+				if (!is_string($result[$field]) || strlen($result[$field]) > $limit) {
+					$invalid[] = $field;
+				}
+			}
+		}
+
+		if (isset($result['cat_url']) && $result['cat_url'] !== null && $result['cat_url'] !== '' && $result['cat_url'] !== 'NULL') {
+			if (!is_string($result['cat_url']) || !filter_var($result['cat_url'], FILTER_VALIDATE_URL) || !preg_match('/^https?:\/\//', $result['cat_url'])) {
+				$invalid[] = 'cat_url';
+			}
+		}
+
+		return $invalid;
+	}
+
+	function update($result, $user_id, $operator) {
 			$timestamp = gmdate("Y-m-d H:i:s");
 
 			if (isset($result['prop_mode'])) {

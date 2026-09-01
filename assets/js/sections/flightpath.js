@@ -465,7 +465,10 @@ function getBearing(lat1, lng1, lat2, lng2) {
 			icon: saticon,
 			zIndex: 1000,
 		}
-	).addTo(leafletMap).on('click', displayUpComingPasses);
+	).addTo(leafletMap);
+	if (homegrid != '') {
+		satmarker.on('click', displayUpComingPasses);
+	}
 
 	pastmarker = L.marker(
 		[0, 0], {
@@ -492,13 +495,15 @@ function getBearing(lat1, lng1, lat2, lng2) {
 		className: "satellite-label" // Optional: Custom CSS
 	});
 
-	L.marker(
-		[homelat, homelon], {
-			icon: homeicon,
-			title: 'Home',
-			zIndex: 1000,
-		}
-	).addTo(leafletMap);
+	if (homegrid != '' && homelat != '' && homelon != '') {
+		L.marker(
+			[homelat, homelon], {
+				icon: homeicon,
+				title: 'Home',
+				zIndex: 1000,
+			}
+		).addTo(leafletMap);
+	}
 
 	/*Legend specific*/
     let legend = L.control({ position: "topright" });
@@ -510,12 +515,16 @@ function getBearing(lat1, lng1, lat2, lng2) {
         html += '<tr><td><span>Satellite</span></td><td align="right"><span id="satname"></span></td></tr>';
         html += '<tr><td><span>Orbit</span></td><td align="right"><span id="satorbit"></span></td></tr>';
         html += '<tr><td><span>Altitude</span></td><td align="right"><span id="satalt"></span></td></tr>';
-        html += '<tr><td><span>Azimuth</span></td><td align="right"><span id="az"></span></td></tr>';
-        html += '<tr><td><span>Elevation</span></td><td align="right"><span id="ele"></span></td></tr>';
-		html += '<tr><td><span>Gridsquare</span></td><td align="right"><span id="grid"></span></td></tr>';
-		html += '<tr><td><span>Status</span></td><td align="right"><span id="status"></span></td></tr>';
-		html += '<tr><td><span id="LAOS">AOS Az</span></td><td align="right"><span id="osaz"></span></td></tr>';
-		html += '<tr><td><span>Visible</span></td><td align="right"><span id="visibility"></span></td></tr>';
+        if (homegrid != '' && homelat != '' && homelon != '') {
+            html += '<tr><td><span>Azimuth</span></td><td align="right"><span id="az"></span></td></tr>';
+            html += '<tr><td><span>Elevation</span></td><td align="right"><span id="ele"></span></td></tr>';
+        }
+        html += '<tr><td><span>Gridsquare</span></td><td align="right"><span id="grid"></span></td></tr>';
+        if (homegrid != '' && homelat != '' && homelon != '') {
+           html += '<tr><td><span>Status</span></td><td align="right"><span id="status"></span></td></tr>';
+           html += '<tr><td><span id="LAOS">AOS Az</span></td><td align="right"><span id="osaz"></span></td></tr>';
+           html += '<tr><td><span>Visible</span></td><td align="right"><span id="visibility"></span></td></tr>';
+        }
         html += '<tr><td><input type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"></td><td><span> ' + lang_gen_hamradio_gridsquares + '</span></td></tr>';
         html += "</table>";
         div.innerHTML = html;

@@ -249,7 +249,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
                 <p class="<?php echo $text_size_class ?>"><?= __("Error") ?></p>
             </div>
             <div class="bottom-right mt-3">
-                <p class="<?php echo $text_size_class ?>"><?php echo htmlspecialchars($error) ?></p>
+                <p class="<?php echo $text_size_class ?>"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8', false) ?></p>
            </div>
         </div>
      <?php } ?>

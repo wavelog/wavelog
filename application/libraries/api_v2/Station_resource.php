@@ -82,6 +82,10 @@ class Station_resource extends Api_v2_resource {
 	/**
 	 * POST /api/v2/station
 	 * Create a station location. Required body fields: see REQUIRED_FIELDS.
+	 *
+	 * There is no dedicated "clone" mode: the GET representation is symmetric
+	 * with the writable fields, so a client duplicates a location by sending a
+	 * GET result back with a new name.
 	 */
 	public function create() {
 		$this->require_write();
@@ -122,6 +126,11 @@ class Station_resource extends Api_v2_resource {
 	/**
 	 * PATCH /api/v2/station/{id}
 	 * Partial update: only the fields present in the body are changed.
+	 *
+	 * `set_active: true` additionally makes this the owner's active station
+	 * location. It is deliberately a different key from the read-only `active`
+	 * in the response: a client can send a GET result straight back through
+	 * PATCH without silently reassigning the active location.
 	 */
 	public function update($id) {
 		$this->apply_update($id);
@@ -175,14 +184,28 @@ class Station_resource extends Api_v2_resource {
 		$this->require_not_cleared($body, self::REQUIRED_FIELDS);
 		$this->validate_grid($body);
 
+		$set_active = !empty($body['set_active']);
 		$data = $this->build_columns($body, false, (int) $current->station_dxcc);
-		if (empty($data)) {
+		if (empty($data) && !$set_active) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
-		$this->CI->stationsetup_model->update_location((int) $id, $data, $this->user_id());
+		if (!empty($data)) {
+			$this->CI->stationsetup_model->update_location((int) $id, $data, $this->user_id());
+		}
+		if ($set_active) {
+			// Same call the web UI makes (Stationsetup::setActiveStation_json),
+			// with the owner passed in instead of read from the session.
+			$this->CI->stations->set_active(
+				$this->CI->stations->find_active($this->user_id()),
+				(int) $id,
+				$this->user_id()
+			);
+		}
 
-		$this->CI->api_v2_response->respond($this->format_station($this->CI->stations->profile_clean($id)));
+		// profile() rather than profile_clean(): only that one joins the DXCC
+		// entity, so the response carries `country` like index() and show() do.
+		$this->CI->api_v2_response->respond($this->format_station($this->CI->stations->profile($id)->row()));
 	}
 
 	/**

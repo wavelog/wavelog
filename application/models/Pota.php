@@ -66,11 +66,10 @@ class Pota extends CI_Model {
 	 * Rows without coordinates are skipped because they can't be plotted.
 	 */
 	function get_directory() {
-		$sql = "SELECT reference, name, lat, lon
+		$sql = "SELECT reference, name, lat, lon, active
 				FROM pota_directory
 				WHERE lat IS NOT NULL
 				AND lon IS NOT NULL
-				AND active = 1
 				ORDER BY reference ASC";
 		$query = $this->db->query($sql);
 
@@ -81,6 +80,7 @@ class Pota extends CI_Model {
 				'name'      => $row->name,
 				'lat'       => (float) $row->lat,
 				'lon'       => (float) $row->lon,
+				'inactive'  => ((string) $row->active === '0'),
 			];
 		}
 
@@ -171,16 +171,17 @@ class Pota extends CI_Model {
 		$dirMap = [];
 		$refs = array_keys($perRef);
 		if ($refs) {
-			$q = $this->db->select('reference, name, lat, lon')
+			$q = $this->db->select('reference, name, lat, lon, active')
 				->from('pota_directory')
 				->where_in('reference', $refs)
 				->get();
 			foreach ($q->result() as $r) {
 				if ($r->lat !== null && $r->lon !== null) {
 					$dirMap[$r->reference] = [
-						'name' => $r->name,
-						'lat'  => (float) $r->lat,
-						'lon'  => (float) $r->lon,
+						'name'     => $r->name,
+						'lat'      => (float) $r->lat,
+						'lon'      => (float) $r->lon,
+						'inactive' => ((string) $r->active === '0'),
 					];
 				}
 			}
@@ -193,12 +194,13 @@ class Pota extends CI_Model {
 			if ($status == 'C' && ($postdata['confirmed'] ?? null) != 1) continue;
 			if ($status == 'W' && ($postdata['worked'] ?? null) != 1) continue;
 
-			$coords = $dirMap[$reference] ?? ['name' => null, 'lat' => null, 'lon' => null];
+			$coords = $dirMap[$reference] ?? ['name' => null, 'lat' => null, 'lon' => null, 'inactive' => false];
 			$result[] = [
 				'reference' => $reference,
 				'name'      => $coords['name'],
 				'lat'       => $coords['lat'],
 				'lon'       => $coords['lon'],
+				'inactive'  => $coords['inactive'],
 				'status'    => $status,
 			];
 		}
@@ -342,6 +344,45 @@ class Pota extends CI_Model {
 				['name' => 'Tasmanian Devil', 'threshold' => 20000],
 			],
 		];
+	}
+
+	/*
+	 * Distinct POTA references the user has ACTIVATED (as activator, i.e.
+	 * COL_MY_POTA_REF), across the active logbook's station locations.
+	 * Multi-park QSOs store "K-1234,K-5678" in one column, so each row's
+	 * value is split and counted per-park in PHP (mirrors the explode idiom
+	 * in count_unique_references()). Returns [{reference, last, qso_count}].
+	 */
+	function activated_references() {
+		$this->load->model('logbooks_model');
+		$locs = $this->logbooks_model->list_logbook_relationships(
+			$this->session->userdata('active_station_logbook'));
+		if (!$locs || $locs[0] === -1) {
+			return [];
+		}
+
+		$this->db->select('COL_MY_POTA_REF ref, COL_TIME_ON last');
+		$this->db->where_in('station_id', $locs);
+		$this->db->where('COL_MY_POTA_REF IS NOT NULL');
+		$this->db->where('COL_MY_POTA_REF !=', '');
+		$q = $this->db->get($this->config->item('table_name'));
+
+		$out = [];
+		foreach ($q->result() as $r) {
+			$last = $r->last ?: '';
+			foreach (explode(',', (string) $r->ref) as $sub) {
+				$sub = trim($sub);
+				if ($sub === '') { continue; }
+				if (!isset($out[$sub])) {
+					$out[$sub] = ['reference' => $sub, 'last' => $last, 'qso_count' => 0];
+				}
+				$out[$sub]['qso_count']++;
+				if ($last && (!$out[$sub]['last'] || strtotime($last) > strtotime($out[$sub]['last']))) {
+					$out[$sub]['last'] = $last;
+				}
+			}
+		}
+		return array_values($out);
 	}
 
 	/*

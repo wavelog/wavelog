@@ -821,6 +821,7 @@ class Contesting extends CI_Controller {
 		}
 
 		header('Content-Type: application/json');
+		session_write_close();
 
 		try {
 			$payload = json_decode($this->input->raw_input_stream, true);
@@ -944,6 +945,7 @@ class Contesting extends CI_Controller {
 		}
 
 		header('Content-Type: application/json');
+		session_write_close();
 
 		try {
 			$payload = json_decode($this->input->raw_input_stream, true);
@@ -1480,6 +1482,8 @@ class Contesting extends CI_Controller {
 			return;
 		}
 
+		session_write_close();
+
 		try {
 			$this->load->model('user_options_model');
 			$result = $this->user_options_model->get_options('contest_logger_layout');
@@ -1528,6 +1532,8 @@ class Contesting extends CI_Controller {
 			return;
 		}
 
+		session_write_close();
+
 		try {
 			$json_input = $this->input->raw_input_stream;
 			$payload = json_decode($json_input, true);
@@ -1573,6 +1579,8 @@ class Contesting extends CI_Controller {
 			return;
 		}
 
+		session_write_close();
+
 		try {
 			$payload = json_decode($this->input->raw_input_stream, true);
 			if (!is_array($payload)) {
@@ -1616,6 +1624,8 @@ class Contesting extends CI_Controller {
 			$this->_teapot();
 			return;
 		}
+
+		session_write_close();
 
 		try {
 			$json_input = $this->input->raw_input_stream;
@@ -1664,6 +1674,8 @@ class Contesting extends CI_Controller {
 			$this->_teapot();
 			return;
 		}
+
+		session_write_close();
 
 		try {
 			$json_input = $this->input->raw_input_stream;
@@ -1717,6 +1729,8 @@ class Contesting extends CI_Controller {
 			return;
 		}
 
+		session_write_close();
+
 		try {
 			$json_input = $this->input->raw_input_stream;
 			$payload = json_decode($json_input, true);
@@ -1756,6 +1770,8 @@ class Contesting extends CI_Controller {
 	 * the callbook has more specific data. Result is cached server-side for 4 hours.
 	 */
 	public function callbook() {
+		session_write_close();
+
 		$this->load->library('callbook');
 		$call = $this->input->get('call', TRUE);
 		if (!$call || strlen($call) < 3) {

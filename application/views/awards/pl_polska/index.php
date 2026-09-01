@@ -85,33 +85,39 @@
 					<!-- Dropdown Menu with Filter Content -->
 					<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown">
 						<div class="card-body filterbody">
+						<div class="d-flex justify-content-between align-items-center mb-1">
+							<h5><i class="fas fa-filter me-1"></i> <?= __("Filters"); ?></h5>
+							<span><?= __("Press 'Apply' to update the table"); ?></span>
+						</div>
+							<div class="filter-section">
 							<div class="mb-3 row">
-								<div class="col-md-2">
-									<?= __("Confirmation methods"); ?>
-									<i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="<?= __("According to official award rules, paper QSL cards or LoTW confirmations are accepted for award applications. Other digital confirmations are shown here for tracking purposes only."); ?>"></i>
-								</div>
+								<div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-envelope-open-text"></i><?= __("Confirmation methods"); ?> <i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="<?= __("According to official award rules, paper QSL cards or LoTW confirmations are accepted for award applications. Other digital confirmations are shown here for tracking purposes only."); ?>"></i></div>
 								<div class="col-md-10">
 									<div class="form-check-inline">
-										<input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-										<label class="form-check-label" for="qsl"><?= __("QSL"); ?></label>
+										<input class="btn-check" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+										<label class="btn btn-outline-primary btn-sm" for="qsl"><?= __("QSL"); ?></label>
 									</div>
 									<div class="form-check-inline">
-										<input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-										<label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
+										<input class="btn-check" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+										<label class="btn btn-outline-primary btn-sm" for="lotw"><?= __("LoTW"); ?></label>
 									</div>
 									<div class="form-check-inline">
-										<input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
-										<label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
+										<input class="btn-check" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
+										<label class="btn btn-outline-primary btn-sm" for="eqsl"><?= __("eQSL"); ?></label>
 									</div>
 									<div class="form-check-inline">
-										<input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
-										<label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
+										<input class="btn-check" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
+										<label class="btn btn-outline-primary btn-sm" for="qrz"><?= __("QRZ.com"); ?></label>
 									</div>
 									<div class="form-check-inline">
-										<input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
-										<label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
+										<input class="btn-check" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
+										<label class="btn btn-outline-primary btn-sm" for="clublog"><?= __("Clublog"); ?></label>
 									</div>
 								</div>
+							</div>
+							</div>
+							<div class="d-grid gap-2 mt-3">
+								<button type="submit" name="button1id" class="btn btn-primary"><i class="fas fa-check me-1"></i> <?= __("Apply"); ?></button>
 							</div>
 						</div>
 					</div>

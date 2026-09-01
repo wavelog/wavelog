@@ -27,13 +27,17 @@
 	<?php } ?>
 
 	<?php if (($this->uri->segment(1) == "awards")) {
-		$colors = json_decode($user_map_custom);?>
+		$colors = json_decode($user_map_custom);
+		$_hex = function($c) { return preg_match('/^#[0-9a-fA-F]{6}$/', $c ?? '') ? $c : '#000000'; };
+		$_qsoconfirm = $_hex($colors->qsoconfirm->color ?? '');
+		$_qso = $_hex($colors->qso->color ?? '');
+		?>
 		<style>
 			.awardsBgSuccess {
-				background-color: <?php echo $colors->qsoconfirm->color; ?> !important;
+				background-color: <?php echo $_qsoconfirm; ?> !important;
 			}
 			.awardsBgWarning {
-				background-color: <?php echo $colors->qso->color; ?> !important;
+				background-color: <?php echo $_qso; ?> !important;
 			}
 		</style>
 	<?php } ?>
@@ -59,10 +63,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/loading.min.css'); ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/ldbtn.min.css'); ?>" />
 
-
-	<?php if ($this->uri->segment(1) == "sattimers") { ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/sattimers.css'); ?>" />
-	<?php } ?>
 
 	<?php if (file_exists(APPPATH . '../assets/css/custom.css')) { ?>
 		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/custom.css'); ?>" />
@@ -98,10 +98,10 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo $this->paths->cache_buster('/assets/logo/'. $this->optionslib->get_logo('header_logo').'.png'); ?>" alt="<?= __("Wavelog home"); ?>" /></a>
-			<?php if (ENVIRONMENT == "development") { ?>
+			<?php if (ENVIRONMENT == "development" || (ENVIRONMENT == "docker" && filter_var($_ENV['DOCKER_DEVELOPMENT'] ?? false, FILTER_VALIDATE_BOOLEAN))) { ?>
 				<span class="badge text-bg-danger me-1"><?= __("Developer Mode"); ?></span>
 			<?php } ?>
-			<?php if (ENVIRONMENT == "maintenance") { ?>
+			<?php if (MAINTENANCE_MODE) { ?>
 				<span class="badge text-bg-info me-1"><?= __("Maintenance Mode"); ?></span>
 			<?php } ?>
 			<?php if ($this->session->userdata('clubstation') == '1' && $this->session->userdata('impersonate') == '1') { ?>
@@ -186,6 +186,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('callstats'); ?>" title="Callsign Statistics"><i class="fas fa-chart-area"></i> <?= __("Callsign Statistics"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('statistics/initials'); ?>" title="EME Initials"><i class="fas fa-chart-area"></i> <?= __("EME Initials"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('countqsoby'); ?>" title="Count QSOs by..."><i class="fas fa-chart-area"></i> <?= __("Count QSOs by..."); ?></a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"> <!-- AWARDS -->
@@ -289,7 +291,7 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
 									</ul>
 								</li>
-							    <li><hr class="dropdown-divider"></li>
+								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇳🇱️ <?= __("The Netherlands"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/wap'); ?>"><i class="fas fa-trophy"></i> <?= __("WAP Worked All Provinces"); ?></a></li>
@@ -321,8 +323,6 @@
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?= __("SAT Timers"); ?></a></li>
-								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('amsatstatus'); ?>" title="AMSAT Satellite Status"><i class="fas fa-satellite-dish"></i> <?= __("AMSAT Satellite Status"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Show Satellite Flight Path"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?></a></li>
@@ -330,6 +330,12 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('activationplanner'); ?>" title="Plan an activation"><i class="fas fa-map-marked-alt"></i> <?= __("Activation Planner"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('azimuthal'); ?>" title="Azimuthal Map"><i class="fas fa-compass"></i> <?= __("Azimuthal Map"); ?></a></li>
+								<?php if (clubaccess_check(9)) { ?>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('dbtools'); ?>" title="Database Tools"><i class="fas fa-database"></i> <?= __("Database Tools"); ?></a></li>
+								<?php } ?>
 							</ul>
 						</li>
 					<?php } ?>
@@ -473,14 +479,14 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
 								<?php if ($this->session->userdata('clubstation') == 1) {
-									echo '<i class="fas fa-users"></i> '
-										. '<b>' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))) . '</b>'
-										. ' <br><small>'
-										. sprintf(_pgettext("Operator: Callsign", "Op: %s"), str_replace("0","&Oslash;", strtoupper($this->session->userdata('operator_callsign'))))
-										. '</small>';
-								} else {
-									echo '<i class="fas fa-user"></i> ' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign')));
-								} ?>
+								echo '<i class="fas fa-users"></i> '
+									. '<b class="callsign">' . strtoupper($this->session->userdata('user_callsign')) . '</b>'
+									. ' <br><small>'
+									. sprintf(_pgettext("Operator: Callsign", "Op: %s"), '<span class="callsign">' . strtoupper($this->session->userdata('operator_callsign')) . '</span>')
+									. '</small>';
+							} else {
+								echo '<i class="fas fa-user"></i> <span class="callsign">' . strtoupper($this->session->userdata('user_callsign')) . '</span>';
+							} ?>
 							</a>
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
@@ -503,7 +509,7 @@
 											<li>
 												<div class="btn-group w-100" role="group">
 													<button class="dropdown-item text-start" style="flex: 1;" title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>" onclick="clubswitch_modal('<?php echo $clubstation->user_id; ?>', '<?php echo $clubstation->user_callsign; ?>')">
-														<i class="fas fa-exchange-alt"></i> <?php echo $clubstation->user_callsign; ?>
+														<i class="fas fa-exchange-alt"></i> <span class="callsign"><?php echo $clubstation->user_callsign; ?></span>
 													</button>
 													<?php if ($clubstation->p_level >= 9 || $this->session->userdata('user_type') == 99) { ?>
 														<a class="dropdown-item text-end" style="flex: 0 0 50px;" title="<?= sprintf(_pgettext("Managing a Club Callsign", "Manage %s"), $clubstation->user_callsign); ?>" aria-label="<?= sprintf(_pgettext("Managing a Club Callsign", "Manage %s"), $clubstation->user_callsign); ?>" href="<?php echo site_url('club/permissions/' . $clubstation->user_id); ?>">
@@ -690,7 +696,7 @@
 						// The menu items will be displayed to the top right under extras.
 						//
 						// Example:
-						// INSERT INTO options (option_name,option_value,autoload) VALUES
+						// INSERT INTO options (option_name,option_value) VALUES
 						// 	('menuitems','[
 						// {
 						// 		"url":"gridmap",
@@ -702,7 +708,7 @@
 						// 		"text":"Gallery",
 						// 		"icon":"fa-globe-europe"
 						// }
-						// ]','yes');
+						// ]');
 						$menuitems = $this->optionslib->get_option('menuitems');
 
 						if ($menuitems) { ?>

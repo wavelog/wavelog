@@ -103,8 +103,7 @@ class Lookup extends CI_Controller {
 		$query = $this->logbook_model->get_callsigns($uppercase_callsign);
 
 		foreach ($query->result() as $row) {
-			$normalized_call = str_replace('0', 'Ø', $row->COL_CALL);
-			$arCalls[$normalized_call] = true;
+			$arCalls[$row->COL_CALL] = true;
 		}
 
 		// SCP results from Club Log master scp db
@@ -115,8 +114,7 @@ class Lookup extends CI_Controller {
 			$input = preg_quote($uppercase_callsign, '~');
 			$result = preg_grep('~' . $input . '~', $lines, 0);
 			foreach ($result as $value) {
-				$normalized_call = str_replace('0', 'Ø', $value);
-				$arCalls[$normalized_call] = true;
+				$arCalls[$value] = true;
 			}
 		} else {
 			$src = 'assets/resources/clublog_scp.txt';
@@ -136,8 +134,7 @@ class Lookup extends CI_Controller {
 			$input = preg_quote($uppercase_callsign, '~');
 			$result = preg_grep('~' . $input . '~', $lines, 0);
 			foreach ($result as $value) {
-				$normalized_call = str_replace('0', 'Ø', $value);
-				$arCalls[$normalized_call] = true;
+				$arCalls[$value] = true;
 			}
 		} else {
 			$src = 'assets/resources/MASTER.SCP';
@@ -177,6 +174,8 @@ class Lookup extends CI_Controller {
 	}
 
 	public function get_state_list() {
+		session_write_close();
+
 		$this->load->library('subdivisions');
 
 		$dxcc = xss_clean($this->input->post('dxcc'));

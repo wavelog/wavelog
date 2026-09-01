@@ -22,6 +22,9 @@ class Distances extends CI_Controller {
         $data['user_default_band'] = $this->session->userdata('user_default_band');
         $data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
+        $this->load->model('distances_model');
+        $data['modes'] = $this->distances_model->get_worked_modes();
+
         $this->load->view('interface_assets/header', $data);
         $this->load->view('distances/index');
         $this->load->view('interface_assets/footer');
@@ -71,12 +74,13 @@ class Distances extends CI_Controller {
 	public function getDistanceQsos(){
 		$this->load->model('distances_model');
 
-		$distance = $this->security->xss_clean($this->input->post('distance'));
-		$band = $this->security->xss_clean($this->input->post('band'));
-		$sat = $this->security->xss_clean($this->input->post('sat'));
-		$propagation = $this->security->xss_clean($this->input->post('propagation'));
+		$distance = $this->input->post('distance', true);
+		$band = $this->input->post('band', true);
+		$sat = $this->input->post('sat', true);
+		$propagation = $this->input->post('propagation', true);
+		$mode = $this->input->post('mode', true);
 
-		$data['results'] = $this->distances_model->qso_details($distance, $band, $sat, $propagation);
+		$data['results'] = $this->distances_model->qso_details($distance, $band, $sat, $propagation, $mode);
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		// Render Page

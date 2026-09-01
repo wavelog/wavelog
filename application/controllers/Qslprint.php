@@ -210,6 +210,10 @@ class QSLPrint extends CI_Controller {
 		$data['printAll'] = $this->input->post('printAll', true);
 
 		if ($data['type'] === 'label') {
+			// Offer Label Designer templates as an alternative to the classic
+			// text layout in the dialog.
+			$this->load->model('Labeldesigner_model');
+			$data['label_templates'] = $this->Labeldesigner_model->list_templates();
 			$this->load->view('qslprint/printlabel', $data);
 		} else {
 			$this->load->model('Qslpostcard_model');

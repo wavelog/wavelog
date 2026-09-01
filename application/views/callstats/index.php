@@ -15,9 +15,9 @@
 							<option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?= __("All"); ?></option>
 							<?php
 							foreach ($worked_bands as $band) {
-								echo '<option value="' . $band . '"';
+								echo '<option value="' . html_escape($band) . '"';
 								if ($bandselect == $band) echo ' selected';
-								echo '>' . $band . '</option>' . "\n";
+								echo '>' . html_escape($band) . '</option>' . "\n";
 							}
 							?>
 						</select>
@@ -29,9 +29,9 @@
 							<option value="All"><?= __("All") ?></option>
 							<?php
 							foreach ($sats as $sat) {
-								echo '<option value="' . $sat . '"';
+								echo '<option value="' . html_escape($sat) . '"';
 								if ($satselect == $sat) echo ' selected';
-								echo '>' . $sat . '</option>' . "\n";
+								echo '>' . html_escape($sat) . '</option>' . "\n";
 							}
 							?>
 						</select>
@@ -43,9 +43,9 @@
 							<option value="All"><?= __("All") ?></option>
 							<?php
 							foreach ($orbits as $orbitval) {
-								echo '<option value="' . $orbitval . '"';
+								echo '<option value="' . html_escape($orbitval) . '"';
 								if ($orbit == $orbitval) echo ' selected';
-								echo '>' . strtoupper($orbitval) . '</option>' . "\n";
+								echo '>' . html_escape(strtoupper($orbitval)) . '</option>' . "\n";
 							}
 							?>
 						</select>
@@ -58,9 +58,9 @@
 							<?php
 							foreach ($worked_modes as $mode) {
 								if ($mode->submode ?? '' == '') {
-									echo '<option value="' . $mode . '"';
+									echo '<option value="' . html_escape($mode) . '"';
 									if ($modeselect == $mode) echo ' selected';
-									echo '>' . strtoupper($mode) . '</option>' . "\n";
+									echo '>' . html_escape(strtoupper($mode)) . '</option>' . "\n";
 								}
 							}
 							?>
@@ -160,11 +160,11 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
     foreach ($activators as $line) {
         echo '<tr>
                 <td>' . $i++ . '</td>
-                <td>' . $line[1] . '</td>
+                <td class="callsign">' . html_escape($line[1]) . '</td>
                 <td>' . $line[0] . '</td>
 				<td>' . $line[2] . '</td>
 				<td>' . $line[3] . '</td>
-                <td><a href=javascript:displayCallstatsContacts("' . $line[1] . '","' . $band . '","' . $mode . '","' . $sat . '","' . $orbit . '","' . $propagation .  '")><i class="fas fa-list"></i></a></td>
+                <td><a href=\'javascript:displayCallstatsContacts(' . js_escape($line[1]) . ',' . js_escape($band) . ',' . js_escape($mode) . ',' . js_escape($sat) . ',' . js_escape($orbit) . ',' . js_escape($propagation) . ')\'><i class="fas fa-list"></i></a></td>
 			</tr>';
     }
     echo '</tfoot></table></div>';

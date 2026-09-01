@@ -155,6 +155,10 @@ class Qsl_model extends CI_Model {
 			return null;
 		}
 
+		if (!is_array($confirmationtype)) {
+			$confirmationtype = ($confirmationtype === null || $confirmationtype === '') ? [] : [$confirmationtype];
+		}
+
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 		$table = $this->config->item('table_name');
 		$sql_parts = array();

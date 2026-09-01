@@ -180,7 +180,7 @@
 			<td>
 				<?php echo $row->station_profile_name;?><br>
 			</td>
-			<td><?php echo str_replace('0', 'Ø', $row->station_callsign);?></td>
+			<td class="callsign"><?php echo $row->station_callsign;?></td>
 			<td><?php echo $row->station_country == '' ? __("Please select one") : $row->station_country; if ($row->dxcc_end != NULL) { echo ' <span class="badge bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
 			<td><?php echo $row->station_gridsquare;?></td>
 			<td></td>

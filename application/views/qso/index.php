@@ -740,9 +740,9 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
            <div class="mb-3">
             <label for="qslmsg"><?= __("QSL MSG"); ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>" aria-label="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt" aria-hidden="true"></i></button></label>
 						<span class="position-absolute end-0 mb-2 me-3" id="charsLeft" aria-live="polite"> </span>
-            <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qslmsg; ?></textarea>
+            <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo html_escape($qslmsg); ?></textarea>
             <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
-            <div id="qslmsg_hide" style="display:none;"><?php echo $qslmsg; ?></div>
+            <div id="qslmsg_hide" style="display:none;"><?php echo html_escape($qslmsg); ?></div>
             </div>
           </div>
         </div>

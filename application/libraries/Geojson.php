@@ -120,8 +120,13 @@ class Geojson {
             return null;
         }
 
-        if ($this->geojsonFile === null) {
-			$this->geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
+        // Reload the boundary file when a different DXCC is requested. The
+        // library is a singleton per request (load->library() won't re-run the
+        // constructor), so without this a multi-DXCC pass would keep using the
+        // first DXCC's polygons for every subsequent lookup.
+        $expectedFile = "assets/json/geojson/states_{$dxcc}.geojson";
+        if ($this->geojsonFile !== $expectedFile) {
+			$this->geojsonFile = $expectedFile;
 			$this->geojsonData = $this->loadGeoJsonFile($this->geojsonFile);
 		}
 

@@ -137,6 +137,7 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 		$subpath = $LC_CATEGORIES[$category] . "/$domain.mo";
 		$locale_names = get_list_of_locales($locale);
 		$input = null;
+		$cache_key = null;
 		foreach($locale_names as $locale) {
 			$is_en = false;
 			if (strpos($locale, 'en') === 0) {
@@ -146,6 +147,8 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 			// log_message('error', 'full path: '. $full_path);
 			if (file_exists($full_path)) {
 				$input = new FileReader($full_path);
+				// mtime in the key invalidates the cache automatically after an update
+				$cache_key = 'gettext_'.$domain.'_'.$locale.'_'.filemtime($full_path);
 				break;
 			} else {
 				if(!$is_en) {
@@ -161,7 +164,7 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 			$text_domains[$domain] = new domain();
 		}
 
-		$text_domains[$domain]->l10n = new gettext_reader($input, $enable_cache);
+		$text_domains[$domain]->l10n = new gettext_reader($input, $enable_cache, $cache_key);
 	}
 
 	return $text_domains[$domain]->l10n;

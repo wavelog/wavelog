@@ -26,7 +26,7 @@ function calculateLocalTime(gmtOffset) {
 function checkProfileInfoVisibility() {
 	if ($('#callsign-image').is(':visible') && $('#callsign-image-info').html().trim() !== '') {
 		// Additional validation: check if profile data matches current callsign
-		let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+		let currentCallsign = $('#callsign').val().toUpperCase();
 		let profileCallsign = $('#callsign-image').attr('data-profile-callsign') || '';
 
 		if (currentCallsign !== profileCallsign) {
@@ -236,6 +236,7 @@ $('#stationProfile').on('change', function () {
 	});
 	// [eQSL default msg] change value on change station profle //
 	qso_set_eqsl_qslmsg(stationProfile, false, '.qso_panel');
+	panMap(stationProfile);
 });
 
 // [eQSL default msg] change value on clic //
@@ -275,7 +276,6 @@ $('#callsign').on('input', function () {
 	if (this.isComposing) return;
 
 	$(this).val($(this).val().replace(/\s/g, ''));
-	$(this).val($(this).val().replace(/0/g, 'Ø'));
 	$(this).val($(this).val().replace(/\./g, '/P'));
 	$(this).val($(this).val().replace(/\ /g, ''));
 });
@@ -336,7 +336,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 		return false;
 	}
 
-	var _cs = $("#callsign").val().trim().toUpperCase().replaceAll('Ø', '0');
+	var _cs = $("#callsign").val().trim().toUpperCase();
 	if (_cs !== '' && !window.wlIsValidCallsign(_cs)) {
 		showToast(lang_general_word_error, lang_invalid_callsign, 'bg-danger text-white', 5000);
 		return false;
@@ -385,7 +385,13 @@ $("#qso_input").off('submit').on('submit', function (e) {
 							.replace('%s', contactCallsign)
 							.replace('%s', operatorCallsign);
 
-						showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
+					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
+
+					// Show realtime export failures (QRZ, ClubLog, HRDLog) if any
+					if (result.export_errors?.length) {
+						var failedExports = result.export_errors.map(e => e.provider + ': ' + e.message).join('; ');
+						showToast(lang_general_word_warning, lang_qso_realtime_export_failed.replace('%s', failedExports), 'bg-warning text-dark', 8000);
+					}
 
 						// Send QSO data via WebSocket if CAT is enabled via WebSocket
 						if (typeof sendQSOViaWebSocket === 'function') {
@@ -726,10 +732,7 @@ $(document).on("click", "#fav_del", function (event) {
 });
 
 $(document).on("click", "#fav_recall", function (event) {
-	$('#sat_name').val(favs[this.innerText].sat_name);
-	if (favs[this.innerText].sat_name) {
-		$("#sat_name").change();
-	}
+	$('#sat_name').val(favs[this.innerText].sat_name).trigger('change');
 	$('#sat_mode').val(favs[this.innerText].sat_mode);
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
@@ -1018,7 +1021,8 @@ if (qso_manual == 0) {
 			setTimeout(() => {
 				if (ev.data.frequency != null) {
 					$('#frequency').val(ev.data.frequency).trigger("change");
-					$("#band").val(frequencyToBand(ev.data.frequency));
+					var bmBand = frequencyToBand(ev.data.frequency);
+					if (bmBand) $("#band").val(bmBand).trigger('change');
 				}
 				if (ev.data.frequency_rx != "") {
 					$('#frequency_rx').val(ev.data.frequency_rx);
@@ -1031,9 +1035,11 @@ if (qso_manual == 0) {
 
 				// Clear satellite/propagation fields when clicking bandmap spots (HF DX spots)
 				$("#selectPropagation").val("");
-				$("#sat_name").val("");
 				$("#sat_mode").val("");
-				stop_az_ele_ticker();    // Stop satellite position ticker if running
+				if ($("#sat_name").val() != "") {
+					$("#sat_name").val("");
+					stop_az_ele_ticker();
+				}
 
 				// Store sequence for validation in populatePendingReferences
 				$("#callsign").data('expected-refs-seq', seq);
@@ -1532,7 +1538,7 @@ function get_note_status(callsign){
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
-		var currentCallsign = $(this).val().toUpperCase().replaceAll('Ø', '0');
+		var currentCallsign = $(this).val().toUpperCase();
 
 		// Prevent duplicate lookups for the same callsign if already in progress
 		if (lookupInProgress || lastLookupCallsign === currentCallsign) {
@@ -1583,14 +1589,13 @@ $("#callsign").on("focusout", function () {
 		const stationProfile = $('#stationProfile').val();
 
 		find_callsign = find_callsign.replace(/\//g, "-");
-		find_callsign = find_callsign.replaceAll('Ø', '0');
-		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}`;
+		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}?ctx=live`;
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(url, async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val().toUpperCase().replaceAll('Ø', '0') == result.callsign) {
+			if ($('#callsign').val().toUpperCase() == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
@@ -1691,7 +1696,7 @@ $("#callsign").on("focusout", function () {
 					} else if (result.lotw_days > 7) {
 						$('#lotw_info').addClass('lotw_info_yellow');
 					}
-					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign.replace('Ø', '0'));
+					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign);
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
 					if (result.lotw_days == 1) {
@@ -1701,10 +1706,10 @@ $("#callsign").on("focusout", function () {
 					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
-				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
+				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
 				$('#qrz_info').attr('title', decodeHtml(lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'qrz.com'))).removeClass('d-none');
 				$('#qrz_info').show();
-				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
+				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
 				$('#hamqth_info').attr('title', decodeHtml(lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'hamqth.com'))).removeClass('d-none');
 				$('#hamqth_info').show();
 
@@ -1721,7 +1726,7 @@ $("#callsign").on("focusout", function () {
 					dok_selectize.clear();
 				}
 
-				$.getJSON(base_url + 'index.php/lookup/ham_of_note/' + $('#callsign').val().toUpperCase().replaceAll('Ø', '0').replaceAll('/','-'), function (result) {
+				$.getJSON(base_url + 'index.php/lookup/ham_of_note/' + $('#callsign').val().toUpperCase().replaceAll('/','-'), function (result) {
 					if (result && result.length > 0) {
 						var html = '';
 						$.each(result, function(i, entry) {
@@ -1868,7 +1873,7 @@ $("#callsign").on("focusout", function () {
 			/* Find Operators E-mail */
 			if ($('#email').val() == "") {
 				// Validate that we're setting email for the correct callsign
-				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let currentCallsign = $('#callsign').val().toUpperCase();
 				let resultCallsign = result.callsign.toUpperCase();
 
 				if (currentCallsign === resultCallsign) {
@@ -1879,7 +1884,7 @@ $("#callsign").on("focusout", function () {
 			// Show email icon if email is available
 			if (result.callsign_email && result.callsign_email.trim() !== "") {
 				// Validate callsign match before showing email icon
-				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let currentCallsign = $('#callsign').val().toUpperCase();
 				let resultCallsign = result.callsign.toUpperCase();
 
 				if (currentCallsign === resultCallsign) {
@@ -1898,7 +1903,7 @@ $("#callsign").on("focusout", function () {
 			/* Find link to qrz.com picture */
 			if (result.image != "n/a") {
 				// Verify that the result still matches the current callsign to prevent stale data
-				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let currentCallsign = $('#callsign').val().toUpperCase();
 				let resultCallsign = result.callsign.toUpperCase();
 
 				if (currentCallsign !== resultCallsign) {
@@ -2410,7 +2415,7 @@ function getSatResult() {
 		url: base_url + 'index.php/lookup/sat',
 		type: 'post',
 		data: {
-			callsign: $('#callsign').val().replace('Ø', '0'),
+			callsign: $('#callsign').val(),
 		},
 		success: function (html) {
 			$('#sat-summary').append(lang_summary_sat + ' ' + $('#callsign').val().toUpperCase() + '.');
@@ -2745,8 +2750,8 @@ $('.mode').on('change', function () {
 
 /* Calculate Frequency */
 /* on band change */
-$('#band').on('change', function () {
-	if ($('#radio').val() == 0) {
+$('#band').on('change', function (e) {
+	if (frequencyToBand($('#frequency').val()) != $(this).val()) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
 
@@ -2766,14 +2771,19 @@ $('#band').on('change', function () {
 			}
 		});
 	}
-	$('#frequency_rx').val("");
-	$('#band_rx').val("");
-	$("#selectPropagation").val("");
-	$("#sat_name").val("");
-	$("#sat_mode").val("");
+	// Only wipe sat/propagation info when the user switches bands manually.
+	// Programmatic changes (frequency entry, CAT, bandmap) must not discard that data.
+	if (e.originalEvent) {
+		$('#frequency_rx').val("");
+		$('#band_rx').val("");
+		var had_sat = $("#sat_name").val() != "";
+		$("#selectPropagation").val("");
+		$("#sat_name").val("");
+		$("#sat_mode").val("");
+		if (had_sat) { stop_az_ele_ticker(); }
+	}
 	set_qrg();
 	$("#callsign").blur();
-	stop_az_ele_ticker();
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -2843,7 +2853,7 @@ $("#locator").on("input focus", function () {
 					// Set Map to Lat/Long
 					result = JSON.parse(data);
 					markers.clearLayers();
-					if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+					if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined" && $('#locator').val().toUpperCase() == qra) {
 						var redIcon = L.icon({
 							iconUrl: icon_dot_url,
 							iconSize: [18, 18], // size of the icon
@@ -2998,7 +3008,7 @@ $("#callsign").on("input focus", function () {
 	var ccall = $(this).val();
 	if ($(this).val().length >= 3) {
 		$('.callsign-suggest').show();
-		$callsign = $(this).val().replace('Ø', '0');
+		$callsign = $(this).val();
 		if (scps.filter((call => call.includes($(this).val().toUpperCase()))).length <= 0) {
 			$.ajax({
 				url: 'lookup/scp',

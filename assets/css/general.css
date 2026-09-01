@@ -1,3 +1,36 @@
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('../fonts/JetBrainsMono/JetBrainsMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('../fonts/JetBrainsMono/JetBrainsMono-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+.callsign {
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
+}
+
+/* Callsign input fields — slashed-zero font while typing */
+input[name="callsign"],
+input[id="callsign"],
+select[name="callsign"],
+select[name="callsign"] option,
+input[name="qsl_via"],
+input[name$="_callsign"],
+input[id^="dt-search-"] {
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
+}
+
 body {
 	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
 }
@@ -1100,6 +1133,68 @@ label {
 	margin: 0 8px 0 0;
 }
 
+/* WAB award map legend */
+.legend .wab-legend-title {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	opacity: .8;
+	margin: 2px 0 5px;
+}
+.legend .wab-legend-divider {
+	height: 1px;
+	background: rgba(255, 255, 255, .18);
+	margin: 10px 0 7px;
+}
+.legend .wab-legend-table {
+	border-collapse: separate;
+	border-spacing: 0 3px;
+}
+.legend .wab-legend-table td {
+	white-space: nowrap;
+	padding: 0;
+	line-height: 20px;
+}
+.legend .wab-legend-table td.wab-legend-lead {
+	width: 26px;
+}
+.legend .wab-legend-table td:nth-child(2) {
+	padding-left: 8px;
+}
+.legend .wab-legend-table td:last-child {
+	padding-left: 14px;
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+.legend .wab-legend-table i {
+	float: none;
+	display: inline-block;
+	vertical-align: middle;
+	width: 26px;
+	height: 18px;
+	margin: 0;
+	border-radius: 4px;
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+.legend .wab-legend-pfx {
+	position: static;
+	display: block;
+	width: 26px;
+	text-align: center;
+	border: 1px solid rgba(255, 255, 255, .3);
+	border-radius: 4px;
+	background: rgba(255, 255, 255, .08);
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 16px;
+}
+.legend .wab-legend-total td {
+	border-top: 1px solid rgba(255, 255, 255, .18);
+	padding-top: 5px;
+	font-weight: bold;
+}
+
 /* Permanent region labels on the activation planner zone/state overlays */
 .leaflet-tooltip.overlay-region-label {
 	background: rgba(0, 0, 0, 0.55);
@@ -1175,6 +1270,36 @@ a.ref-popup-ref .fas { font-size: 0.7rem; opacity: 0.7; }
 
 /* Reference map markers reuse the .ref-menu-dot swatch inside a divIcon */
 .ref-map-icon { background: transparent; border: none; }
+
+/* "Already activated" POTA marker: gold swatch with a check badge. */
+.ref-menu-dot.is-activated { background: #ffd60a; color: #1f1f1f; position: relative; }
+.ref-menu-dot.is-activated .ref-activated-check {
+	position: absolute;
+	right: -3px;
+	bottom: -3px;
+	font-size: 0.6rem;
+	color: #198754;
+	background: #fff;
+	border-radius: 50%;
+	padding: 1px;
+	line-height: 1;
+}
+.ref-popup-row.is-activated { color: #198754; font-weight: 600; }
+.ref-popup-row.is-activated .fas { opacity: 1; color: #198754; }
+
+/* IOTA tag labels (clickable) drawn at the centre of each rectangle overlay */
+.iota-label {
+	background: rgba(23, 162, 184, 0.9);
+	color: #fff;
+	font-size: 9px;
+	font-weight: 700;
+	line-height: 14px;
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid rgba(255, 255, 255, 0.45);
+	white-space: nowrap;
+	cursor: pointer;
+}
 
 /* Blocking loading overlay for the activation planner map */
 .gl-loading {
@@ -1580,7 +1705,11 @@ svg text.month { fill: #AAA; }
 }
 
 #gridsquare_map {
-	height: calc(100vh - 350px) !important; 
+	height: calc(100vh - 350px) !important;
+}
+
+#wabmap {
+	height: calc(100vh - 350px) !important;
 }
 
 .lbatable thead tr th:nth-child(1),
@@ -1939,6 +2068,146 @@ svg text.month { fill: #AAA; }
 	display: block;
 }
 
+/* ===================================================================
+   Label Designer
+   Same editor components as the postcard designer, but the canvas
+   (stage, rulers, guides) is sized dynamically from the selected
+   label type instead of the postcard's fixed 5.5 × 3.5 in. JS sets
+   the three --lbl-* custom properties; these scoped rules override
+   the fixed postcard dimensions only inside #lblDesigner.
+   =================================================================== */
+#lblDesigner {
+	--lbl-stage-w: 600px;
+	--lbl-stage-h: 300px;
+	--lbl-grid: 28.75px;
+}
+
+#lblDesigner #stageZoom,
+#lblDesigner #rulerWrap {
+	width: calc(var(--lbl-stage-w) + 40px);
+	height: calc(var(--lbl-stage-h) + 40px);
+}
+
+#lblDesigner #rulerTop {
+	width: var(--lbl-stage-w);
+}
+
+#lblDesigner #rulerLeft {
+	height: var(--lbl-stage-h);
+}
+
+#lblDesigner #stage {
+	width: var(--lbl-stage-w);
+	height: var(--lbl-stage-h);
+	background-size: var(--lbl-grid) var(--lbl-grid);
+}
+
+#lblDesigner .qsl-guide-v {
+	height: var(--lbl-stage-h);
+}
+
+#lblDesigner .qsl-guide-h {
+	width: var(--lbl-stage-w);
+}
+
+/* --- Ruled line elements (grid separators between QSO details) --- */
+/* Thin filled bars; selection/hover use outline so it doesn't change the
+   line's on-screen size (which maps to its printed thickness). */
+#lblDesigner .qsl_designer_placed.qsl-line-h,
+#lblDesigner .qsl_designer_placed.qsl-line-v {
+	padding: 0;
+	background: #000000; /* JS sets the element color inline */
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	white-space: normal;
+}
+
+#lblDesigner .qsl_designer_placed.qsl-line-h:hover,
+#lblDesigner .qsl_designer_placed.qsl-line-v:hover,
+#lblDesigner .qsl_designer_placed.qsl-line-h.selected,
+#lblDesigner .qsl_designer_placed.qsl-line-v.selected {
+	outline: 1px solid #ff7a00;
+	outline-offset: 1px;
+}
+
+#lblDesigner .qsl_designer_ghost.qsl-line-h,
+#lblDesigner .qsl_designer_ghost.qsl-line-v {
+	opacity: .35;
+}
+
+/* Resize handle at a selected line's end (drag to change its length) */
+#lblDesigner .qsl-line-handle {
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: #ff7a00;
+	border: 1px solid #ffffff;
+	border-radius: 2px;
+	z-index: 80;
+}
+
+#lblDesigner .qsl-line-handle.ew {
+	cursor: ew-resize;
+}
+
+#lblDesigner .qsl-line-handle.ns {
+	cursor: ns-resize;
+}
+
+/* --- Table element (rows × columns grid) --- */
+/* The container draws the outer border (JS sets color/thickness inline);
+   child divs are the internal column/row rules and never catch events. */
+#lblDesigner .qsl_designer_placed.qsl-table {
+	padding: 0;
+	background: transparent;
+	border-style: solid;
+	box-shadow: none;
+	white-space: normal;
+}
+
+#lblDesigner .qsl-table .qsl-tbl-v,
+#lblDesigner .qsl-table .qsl-tbl-h {
+	position: absolute;
+	pointer-events: none;
+}
+
+#lblDesigner .qsl-table.selected {
+	outline: 1px solid #ff7a00;
+	outline-offset: 1px;
+}
+
+/* Corner resize (whole table, one handle per corner) + column-boundary resize */
+#lblDesigner .qsl-tbl-handle {
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: #ff7a00;
+	border: 1px solid #ffffff;
+	border-radius: 2px;
+	z-index: 80;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-nw {
+	cursor: nw-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-ne {
+	cursor: ne-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-sw {
+	cursor: sw-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-se {
+	cursor: se-resize;
+}
+
+#lblDesigner .qsl-tbl-handle.qsl-tbl-col {
+	cursor: col-resize;
+}
+
 /* ============================================================
    Custom map tile styles (user-selectable; override active theme)
    Body class = user_options map_custom.tile.style (see custom_map_style_helper).
@@ -2059,12 +2328,92 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	#glControls:not(.gl-expanded) .gl-secondary { display: none !important; }
 	#glControls .gl-input { flex: 0 0 100%; max-width: 100%; }
 	#glControls .gl-refsrow { flex: 0 0 100%; }
+	#glControls .gl-search-wrap { flex: 0 0 100%; }
 	.gl-more {
 		flex: 0 0 100%;
 		border-radius: 0;
 		text-align: left;
 		padding-left: 0;
 	}
+}
+
+/* Activation planner reference search box. The input inherits its chrome from
+   Bootstrap's .form-control-sm; .gl-search-* only adds the icon, dropdown and
+   type-badge rows (the badge reuses .ref-menu-dot verbatim). */
+.gl-search-wrap {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	flex: 0 0 auto;          /* don't stretch across the toolbar */
+	width: 240px;            /* desktop width; mobile goes full-width via the media query */
+	max-width: 100%;
+}
+.gl-search-icon {
+	position: absolute;
+	top: 50%;                /* vertically centre inside the input */
+	left: .55rem;
+	transform: translateY(-50%);
+	color: var(--bs-secondary-color, #6c757d);
+	font-size: .8rem;
+	pointer-events: none;
+	z-index: 2;
+}
+/* Specificity (#id .class) beats the theme overrides.css `.form-control` padding
+   shorthand (loaded after general.css), so the icon's left padding survives. */
+#glControls .gl-search-input { padding-left: 1.75rem; }
+.gl-search-results {
+	position: absolute;
+	top: calc(100% + 2px);
+	left: 0;
+	min-width: 100%;
+	max-width: 26rem;
+	max-height: 60vh;
+	overflow-y: auto;
+	z-index: 1000;
+	background: var(--bs-body-bg, #fff);
+	color: var(--bs-body-color, #212529);
+	border: 1px solid var(--bs-border-color, #dee2e6);
+	border-radius: .375rem;
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+	padding: .25rem;
+}
+.gl-search-header {
+	padding: .25rem .5rem;
+	font-size: .7rem;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	color: var(--bs-secondary-color, #6c757d);
+}
+.gl-search-item {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	padding: .3rem .5rem;
+	border-radius: .25rem;
+	cursor: pointer;
+}
+.gl-search-item:hover,
+.gl-search-item.is-active {
+	background: var(--bs-primary, #0d6efd);
+	color: #fff;
+}
+.gl-search-item:hover .gl-search-sub,
+.gl-search-item.is-active .gl-search-sub { color: rgba(255, 255, 255, .8); }
+.gl-search-ref { font-weight: 600; white-space: nowrap; }
+.gl-search-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1 1 auto; }
+.gl-search-sub { font-size: .72rem; color: var(--bs-secondary-color, #6c757d); white-space: nowrap; }
+.gl-search-empty,
+.gl-search-loading {
+	padding: .5rem .75rem;
+	font-size: .85rem;
+	color: var(--bs-secondary-color, #6c757d);
+}
+.gl-search-footer {
+	padding: .3rem .5rem;
+	font-size: .72rem;
+	color: var(--bs-secondary-color, #6c757d);
+	border-top: 1px solid var(--bs-border-color, #dee2e6);
+	margin-top: .25rem;
 }
 
 /* Compass grid-border readout panel (Leaflet control). Neutral rgba tints
@@ -2211,12 +2560,14 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .gl-pop-refs { margin-top: .4rem; padding-top: .4rem; border-top: 1px solid rgba(255, 255, 255, .25); }
 .gl-pop-refs-title { font-size: .65rem; letter-spacing: .07em; text-transform: uppercase; opacity: .6; margin-bottom: .25rem; }
 .gl-pop-ref-group { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .4rem; margin-bottom: .25rem; font-size: .8rem; }
-.gl-pop-ref-type { font-weight: 700; font-size: .65rem; padding: 0 .35rem; border-radius: .25rem; color: #fff; }
+.gl-pop-ref-type { display: inline-block; font-weight: 700; font-size: .65rem; padding: 0 .35rem; border-radius: .25rem; color: #fff; }
 .gl-pop-ref-group.is-pota .gl-pop-ref-type { background: #238b45; }
 .gl-pop-ref-group.is-sota .gl-pop-ref-type { background: #d95f0e; }
 .gl-pop-ref-group.is-wwff .gl-pop-ref-type { background: #2b8cbe; }
 .gl-pop-ref { line-height: 1.3; }
 .gl-pop-ref-more { opacity: .6; }
+/* Fixed column widths so every nearby-refs band table lines up. */
+.gl-nearby-table { table-layout: fixed; width: 100%; }
 
 /* Two-grid QRB: tone down every Maidenhead grid label so the two tinted
    squares are the focus. Toggled via .gl-dim-labels on the map container. */
@@ -2237,15 +2588,11 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 /* ============================================================
    AMSAT Satellite Status (application/views/amsatstatus)
    Scoped under .amsat-status. Vivid status colors (green/amber/
-   blue/red); each cell's hue is reinforced by the icon+label
-   legend and the per-cell tooltip -- never color alone.
+   blue/red); each pill's hue is reinforced by the icon+label
+   legend and the per-pill tooltip -- never color alone.
    ============================================================ */
 .amsat-status {
 	--ams-heard: #22c55e;
-	--ams-gap: 2px;
-	--ams-name-w: 176px;
-	--ams-aos-w: 134px;
-	--ams-cell-w: 30px;
 }
 
 /* ---- KPI tiles ---- */
@@ -2271,69 +2618,190 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 .amsat-lgnd { display: inline-flex; align-items: center; gap: .4rem; }
 .amsat-lgnd i { font-size: .85rem; }
 
-/* ---- Heatmap table ---- */
-.amsat-heat {
-	border-collapse: separate;
-	border-spacing: var(--ams-gap);
-	width: 100%;
-	margin: 0 0 .5rem; /* keep left/top at 0 so the sticky name column still aligns */
-	font-size: .82rem;
+/* Fixed-width name column so every satellite's pills start aligned */
+.amsat-status .award-grid-prefecture {
+	width: 14rem;
+	font-size: .85rem; /* name size, between the .78rem AOS line and body text */
 }
-.amsat-heat th, .amsat-heat td {
-	background-color: var(--bs-card-bg, var(--bs-body-bg));
-	vertical-align: middle;
-	font-weight: bold;
+/* Tight row rhythm: 2px above and below each satellite block */
+.amsat-status .amsat-sat {
+	padding-top: .125rem;
+	padding-bottom: .125rem;
 }
-.amsat-heat thead th {
-	position: sticky; 
-	top: var(--ams-gap); 
-	z-index: 2;
-	color: var(--bs-secondary-color);
-	padding: .35rem 0; 
-	text-align: center;
+@media (max-width: 991.98px) {
+	.amsat-status .award-grid-prefecture {
+		width: auto;
+	}
 }
-/* Frozen satellite-name column */
-.amsat-heat .h-name, .amsat-heat .c-name {
-	position: sticky; left: var(--ams-gap); z-index: 3;
-	width: var(--ams-name-w); min-width: var(--ams-name-w); max-width: var(--ams-name-w);
-	text-align: left; padding: .35rem .7rem; white-space: nowrap;
+/* Pill strip: a grid that soaks up whatever width is left after the
+   name and AOS columns and spreads it between the pills. Capped at
+   56rem so wide themes only gain a little air (~5px gaps); when space
+   is tight the .1rem gap is the minimum and pills wrap onto the next
+   grid row. */
+.amsat-status .amsat-pills {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 2rem);
+	gap: .1rem;
+	justify-content: space-between;
+	flex: 1 1 auto;
+	max-width: 56rem;
+	min-width: 0; /* allow the grid to shrink so tracks wrap, instead of overflowing */
 }
-.amsat-heat thead .h-name { z-index: 5; }
-/* Frozen next-AOS column */
-.amsat-heat .h-aos, .amsat-heat .c-aos {
-	position: sticky; left: calc(var(--ams-name-w) + var(--ams-gap) * 2); z-index: 3;
-	width: var(--ams-aos-w); min-width: var(--ams-aos-w); max-width: var(--ams-aos-w);
-	text-align: left; padding: .35rem .5rem; white-space: nowrap;
+/* Mobile: name and AOS share the first line (section wraps instead of
+   stacking); the pill strip gets its own full-width line below them */
+@media (max-width: 991.98px) {
+	.amsat-status .amsat-pills {
+		flex: 1 1 100%;
+	}
 }
-.amsat-heat thead .h-aos { z-index: 5; }
-
-.amsat-heat .c-name { font-weight: 600; }
-.amsat-heat .c-name-txt { display: inline-block; max-width: 118px; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; }
-.amsat-heat .c-name a { text-decoration: none; }
-.amsat-heat .c-name a:hover { text-decoration: underline; }
-.amsat-heat .c-name-cnt {
+.amsat-status .amsat-sat-aos {
+	font-size: .78rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/* AOS column between the name and the pills: fixed width so the pill
+   strips still align across satellites. The section centers its
+   columns (align-items-lg-center) so name, AOS and pills share one line. */
+@media (min-width: 992px) {
+	.amsat-status .amsat-sat-aos {
+		width: 6rem;
+	}
+}
+.amsat-status .amsat-sat-aos strong { font-weight: 600; }
+.amsat-status .amsat-sat-cnt {
 	display: inline-block; min-width: 1.3em; text-align: center;
 	font-size: .68rem; font-weight: 600; color: var(--bs-secondary-color);
 	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 14%, transparent);
-	border-radius: 999px; padding: 0 .35rem; margin-left: .35rem; vertical-align: middle;
+	border-radius: 999px; padding: 0 .35rem;
 }
-.amsat-heat .c-aos-time { font-weight: 600; }
-.amsat-heat .h-hr { width: var(--ams-cell-w); min-width: var(--ams-cell-w); }
-.amsat-heat thead .h-hr[data-now] { color: var(--bs-body-color, inherit); font-weight: 700; }
 
-/* Heatmap cells: status tint over the surface, lift to solid on hover */
-.amsat-heat .cell {
-	width: var(--ams-cell-w); min-width: var(--ams-cell-w); height: 28px;
-	border-radius: 5px; cursor: help;
+/* Hour pill base: a perfect square (overrides award-grid-slot's 3x2rem).
+   The .btn class supplies radius and the body text colour; the white
+   border comes from award-grid-slot. */
+.amsat-status .amsat-slot {
+	width: 2rem;
+	height: 2rem;
+	padding: .15rem .2rem;
+	font-size: .7rem; font-weight: 600;
+	cursor: help;
 	background-color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 25%, transparent);
 }
-.amsat-heat .cell[data-st] {
+
+/* Status tint over the surface, lift to solid on hover */
+.amsat-status .amsat-slot[data-st] {
 	background-color: color-mix(in srgb, var(--cell) 82%, transparent);
 }
-.amsat-heat .cell[data-st]:hover {
+.amsat-status .amsat-slot[data-st]:hover {
 	background-color: var(--cell);
 	box-shadow: 0 2px 7px rgba(0,0,0,.22);
 	transform: translateY(-1px);
 }
 @media (hover: none) { .amsat-heat .cell[data-st]:hover { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .amsat-heat .cell[data-st]:hover { transform: none; } }
+
+/* ============================================================
+   JCC award (application/views/awards/jcc)
+   ============================================================ */
+
+#jccmap {
+	height: calc(100vh - 300px) !important;
+	max-height: 900px !important;
+}
+
+/* Sizing for the centered filter dropdown shared by the award pages */
+.dropdown-filters-responsive {
+	width: min(850px, 90vw);
+	min-width: min(600px, 90vw);
+}
+
+/* Chip spacing inside award filter dropdowns */
+.filterbody .form-check-inline {
+	margin-right: 0.25rem;
+}
+
+/* Grouped sections inside award filter dropdowns */
+.filter-section {
+	background-color: rgba(var(--bs-body-color-rgb, 128,128,128), 0.05);
+	border: 1px solid rgba(var(--bs-body-color-rgb, 128,128,128), 0.15);
+	border-radius: 0.5rem;
+	padding: 0.75rem 0.75rem 0;
+	margin-bottom: 1rem;
+}
+
+/* Summary legend swatches above the prefecture grid */
+.award-grid-legend-swatch {
+	width: 1rem;
+	height: 1rem;
+	display: inline-block;
+}
+
+/* Prefecture column left of each slot row */
+.award-grid-prefecture {
+	min-width: 12rem;
+}
+
+@media (max-width: 991.98px) {
+	.award-grid-prefecture {
+		min-width: 0;
+	}
+}
+
+/* Status pills. The !important beats Bootstrap's own .border !important
+   (general.css loads after the theme's bootstrap.min.css). */
+.award-grid-slot {
+	width: 3rem;
+	height: 2rem;
+	border: var(--bs-border-width) solid rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Deleted-city hatch overlay */
+.award-grid-slot-deleted {
+	background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 2px, transparent 2px, transparent 6px);
+}
+
+/* JCC map legend: layer toggles merged into the legend box */
+.legend .legend-layers-sep {
+	margin: 6px 0;
+	border: none;
+	border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.legend .legend-layer-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+}
+
+.legend .legend-layer-row input {
+	margin: 0;
+	flex-shrink: 0;
+@media (hover: none) { .amsat-status .amsat-slot[data-st]:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .amsat-status .amsat-slot[data-st]:hover { transform: none; } }
+.amsat-grid-pill {
+	width: 3rem;
+	height: 2rem;
+	border: var(--bs-border-width) solid rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Dupe search dialog: larger, high-contrast checkboxes on colored card headers */
+.dupe-search-dialog .form-check-input {
+	width: 1.5em;
+	height: 1.5em;
+	margin-top: 0.125em;
+	margin-right: 0.3em;
+	border: 2px solid rgba(255, 255, 255, 0.9);
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
+.dupe-search-dialog .form-check-input:checked {
+	background-color: #fff;
+	border-color: #fff;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23212529' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.dupe-search-dialog .form-check-input:focus {
+	border-color: #fff;
+	box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5);
+}

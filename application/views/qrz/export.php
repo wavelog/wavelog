@@ -47,7 +47,7 @@
                 foreach ($station_profile->result() as $station) {      // Fills the table with the data
                 echo '<tr>';
                     echo '<td>' . $station->station_profile_name . '</td>';
-                    echo '<td>' . $station->station_callsign . '</td>';
+                    echo '<td><span class="callsign">' . $station->station_callsign . '</span></td>';
                     echo '<td id ="modcount'.$station->station_id.'">' . $station->modcount . '</td>';
                     echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
                     echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
@@ -87,7 +87,7 @@
 		<div class="tab-pane fade" id="mark" role="tabpanel" aria-labelledby="home-tab">
 
 				<form class="form" action="<?php echo site_url('qrz/mark_qrz'); ?>" method="post" enctype="multipart/form-data">
-					<select name="station_profile" class="form-select mb-4 me-sm-4" style="width: 30%;">
+					<select name="station_profile" class="form-select mb-4 me-sm-4 callsign" style="width: 30%;">
 						<option disabled value="0"><?= __("Select Station Location"); ?></option>
 						<?php foreach ($station_profiles->result() as $station) { ?>
 							<option <?php if ($station->station_active) { echo "selected "; } ?>value="<?php echo $station->station_id; ?>">Callsign: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>

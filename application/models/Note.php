@@ -23,6 +23,7 @@ class Note extends CI_Model {
 		if ($category === 'Contacts') {
 			$this->load->library('callbook'); // Used for callsign parsing
 			$check_title = strtoupper($this->callbook->get_plaincall($title));
+			// Legacy notes may have been stored with Ø instead of 0; match both forms.
 			$check_title_slashed = str_replace('0', 'Ø', $check_title);
 		}
 		$sql = "SELECT id FROM notes WHERE cat = ? AND user_id = ? AND (title = ? OR title = ?) LIMIT 1";
@@ -57,7 +58,7 @@ class Note extends CI_Model {
 		$check_title = $title;
 		if ($category === 'Contacts') {
 			$check_title = trim(strtoupper($title));
-			$title = str_replace('0', 'Ø', $check_title);
+			$title = $check_title;
 		}
 		// Check for existing note with same title in Contacts category
 		if ($this->get_note_id_by_category($user_id, $category, $check_title) && $category === 'Contacts') {
@@ -87,7 +88,7 @@ class Note extends CI_Model {
 
 		if ($category === 'Contacts') {
 			$check_title = trim(strtoupper($title));
-			$title = str_replace('0', 'Ø', $check_title);
+			$title = $check_title;
 		}
 		// Check for existing note with same title in Contacts category
 		$existing_id = $this->get_note_id_by_category($user_id, $category, $check_title);

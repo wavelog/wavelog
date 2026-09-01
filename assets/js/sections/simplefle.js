@@ -503,7 +503,7 @@ function handleInput() {
 			const tableRow = $(`<tr>
 			<td>${utcDate}</td>
 			<td>${utcTime}</td>
-			<td>${callsign}</td>
+			<td class="callsign">${callsign}</td>
 			<td><span data-bs-toggle="tooltip" data-placement="left" title="${freq}">${band}</span></td>
 			<td>${mode}</td>
 			<td>${rst_s} ${stx_info}</td>

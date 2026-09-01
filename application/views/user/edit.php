@@ -454,8 +454,26 @@
 											<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __('When set to "Yes", callsign lookup will first use data from your previous QSOs before querying external services. Set to "No" to always use external lookup services instead.'); ?></small>
 										</div>
 									</div>
-									<hr />
-									<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
+								<?php if(!isset($user_callbook_prefill)) { $user_callbook_prefill='default'; }?>
+								<div class="mb-3">
+									<label class="d-block mb-1"><?= __("Prefill fields from callbook while logging"); ?></label>
+									<small class="form-text text-muted d-block mb-2"><?= __('Controls which sources populate the QSO fields (name, QTH, locator, etc.) when entering a callsign. DXCC lookup, the previous QSOs table and the callbook profile panel are always shown.'); ?></small>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="user_callbook_prefill" id="callbook_prefill_default" value="default" <?php if ($user_callbook_prefill == 'default') { echo 'checked'; } ?>>
+										<label class="form-check-label" for="callbook_prefill_default"><?= __("Callbook and previous QSOs (default)"); ?></label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="user_callbook_prefill" id="callbook_prefill_logbook" value="logbook" <?php if ($user_callbook_prefill == 'logbook') { echo 'checked'; } ?>>
+										<label class="form-check-label" for="callbook_prefill_logbook"><?= __("Only previous QSOs"); ?></label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="user_callbook_prefill" id="callbook_prefill_none" value="none" <?php if ($user_callbook_prefill == 'none') { echo 'checked'; } ?>>
+										<label class="form-check-label" for="callbook_prefill_none"><?= __("No prefill"); ?></label>
+									</div>
+								</div>
+
+								<hr />
+								<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
 									<div class="d-flex align-items-start gap-2 mb-3">
 										<input type="hidden" name="user_show_profile_image" value="0">
 										<div class="form-check form-switch mt-1">
@@ -634,8 +652,8 @@
 										<div class="mb-3 col-md-3">
 											<label><?= __("Icon"); ?></label><br/>
 											<div class="icon_selectBox" data-boxcontent="station">
-												<input type="hidden" name="user_map_station_icon" value="<?php echo $user_map_station_icon; ?>">
-												<div class="form-select icon_overSelect"><?php echo (($user_map_station_icon=="0")?substr(__("Not display"),0,10).'.':("<i class='".$user_map_station_icon."'></i>")); ?></div>
+											<input type="hidden" name="user_map_station_icon" value="<?php echo html_escape($user_map_station_icon); ?>">
+											<div class="form-select icon_overSelect"><?php echo (($user_map_station_icon=="0")?substr(__("Not display"),0,10).'.':("<i class='".html_escape($user_map_station_icon)."'></i>")); ?></div>
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="station">
 												<?php foreach($map_icon_select['station'] as $val) {
@@ -644,7 +662,7 @@
 											</div>
 										</div>
 										<div class="mb-3 col-md-2">
-											<label><?= __("Colors"); ?></label><br/><input type="color" class="form-control user_icon_color" name="user_map_station_color" id="user_map_station_color" value="<?php echo $user_map_station_color; ?>" style="padding:initial;<?php echo ($user_map_station_icon=="0")?'display:none;':''; ?>" data-icon="station" /></div>
+											<label><?= __("Colors"); ?></label><br/><input type="color" class="form-control user_icon_color" name="user_map_station_color" id="user_map_station_color" value="<?php echo html_escape($user_map_station_color); ?>" style="padding:initial;<?php echo ($user_map_station_icon=="0")?'display:none;':''; ?>" data-icon="station" /></div>
 									</div>
 									<div class="row"> <!-- QSO (default) -->
 										<div class="mb-3 col-md-4">
@@ -652,8 +670,8 @@
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qso">
-												<input type="hidden" name="user_map_qso_icon" value="<?php echo $user_map_qso_icon ?? "fas fa-dot-circle"; ?>">
-												<div class="form-select icon_overSelect"><?php echo "<i class='".($user_map_qso_icon ?? "fas fa-dot-circle")."'></i>"; ?></div>
+											<input type="hidden" name="user_map_qso_icon" value="<?php echo html_escape($user_map_qso_icon ?? "fas fa-dot-circle"); ?>">
+											<div class="form-select icon_overSelect"><?php echo "<i class='".html_escape($user_map_qso_icon ?? "fas fa-dot-circle")."'></i>"; ?></div>
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qso">
 												<?php foreach($map_icon_select['qso'] as $val) {
@@ -662,7 +680,7 @@
 											</div>
 										</div>
 										<div class="mb-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_qso_color" id="user_map_qso_color" value="<?php echo $user_map_qso_color ?? "#E5A50A"; ?>" style="padding:initial;" data-icon="qso" />
+											<input type="color" class="form-control user_icon_color" name="user_map_qso_color" id="user_map_qso_color" value="<?php echo html_escape($user_map_qso_color ?? "#E5A50A"); ?>" style="padding:initial;" data-icon="qso" />
 										</div>
 									</div>
 									<div class="row"> <!-- QSO (confirmed) -->
@@ -672,8 +690,8 @@
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
-												<input type="hidden" name="user_map_qsoconfirm_icon" value="<?php echo $user_map_qsoconfirm_icon ?? "0"; ?>">
-												<div class="form-select icon_overSelect"><?php echo ((!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?__("No"):("<i class='".($user_map_qsoconfirm_icon ?? "")."'></i>")); ?></div>
+											<input type="hidden" name="user_map_qsoconfirm_icon" value="<?php echo html_escape($user_map_qsoconfirm_icon ?? "0"); ?>">
+											<div class="form-select icon_overSelect"><?php echo ((!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?__("No"):("<i class='".html_escape($user_map_qsoconfirm_icon ?? "")."'></i>")); ?></div>
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qsoconfirm">
 												<?php foreach($map_icon_select['qsoconfirm'] as $val) {
@@ -682,7 +700,7 @@
 											</div>
 										</div>
 										<div class="md-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo $user_map_qsoconfirm_color ?? "#90EE90"; ?>" style="padding:initial;<?php echo (!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
+											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo html_escape($user_map_qsoconfirm_color ?? "#90EE90"); ?>" style="padding:initial;<?php echo (!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
 										</div>
 									</div>
 									<div class="row"> <!-- Unworked (zones) color -->
@@ -693,7 +711,7 @@
 										<div class="mb-3 col-md-3">
 										</div>
 										<div class="md-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? "#CC372D"; ?>" style="padding:initial;" data-icon="unworked" />
+											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo html_escape($user_map_unworked_color ?? "#CC372D"); ?>" style="padding:initial;" data-icon="unworked" />
 										</div>
 									</div>
 									<?php if(!isset($user_map_gridsquare_show)) { $user_map_gridsquare_show='1'; }?>
@@ -1172,7 +1190,7 @@
 												<?php if (isset($on_air_widget_url)) {
 													// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here
 													print("<br>");
-													printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
+													printf(__("If enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
 												} ?>
 											</small>
 										</div>
@@ -1227,6 +1245,32 @@
 										<div>
 											<label class="d-block mb-0"><?= __('Display exact QSO time'); ?></label>
 											<small class="form-text text-muted"><?= __("This setting control whether exact QSO time should displayed in the QSO widget or not."); ?></small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<!-- Last LoTW Upload Widget Settings -->
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?= __("Last LoTW Upload widget"); ?></div>
+								<div class="card-body">
+									<?php if(!isset($last_lotw_upload_widget_enabled)) { $last_lotw_upload_widget_enabled='false'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="last_lotw_upload_widget_enabled" value="false">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="last_lotw_upload_widget_enabled" name="last_lotw_upload_widget_enabled" value="true" <?php if ($last_lotw_upload_widget_enabled == 'true') { echo 'checked'; } ?>>
+										</div>
+										<div>
+											<label class="d-block mb-0"><?= __("Enabled"); ?></label>
+											<small class="form-text text-muted">
+												<?php if (isset($last_lotw_upload_widget_url)) {
+													// when adding user, the $last_lotw_upload_widget_url url is not yet availalable, hence the if condition here
+													printf(__("If enabled, widget will be available at %s."), "<a href='$last_lotw_upload_widget_url' target='_blank'>$last_lotw_upload_widget_url</a>");
+												} ?>
+											</small>
 										</div>
 									</div>
 								</div>

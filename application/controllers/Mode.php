@@ -73,7 +73,7 @@ class Mode extends CI_Controller {
         {
             $this->modes->edit();
 
-            $data['notice'] = "Mode ".$this->security->xss_clean($this->input->post('mode', true))." Updated";
+			$data['notice'] = sprintf(__("Mode %s updated"), $this->input->post('mode', true));
 
             redirect('mode');
         }

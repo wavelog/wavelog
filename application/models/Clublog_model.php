@@ -247,7 +247,7 @@ class Clublog_model extends CI_Model
 
 	function mark_qsos_sent($station_id) {
 		$data = array(
-			'COL_CLUBLOG_QSO_UPLOAD_DATE' => date('Y-m-d'),
+			'COL_CLUBLOG_QSO_UPLOAD_DATE' => date('Y-m-d H:i:s'),
 			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "Y",
 		);
 

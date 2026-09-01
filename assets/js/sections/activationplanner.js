@@ -12,9 +12,13 @@
 	let stateUrl        = cfg.stateUrl || '';
 	let wwffUrl         = cfg.wwffUrl || '';
 	let potaUrl         = cfg.potaUrl || '';
+	let activatedPotaUrl = cfg.activatedPotaUrl || '';
+	let potaBoundaryUrl = cfg.potaBoundaryUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
+	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
 	let satPassUrl      = cfg.satPassUrl || '';
+	let refsNearbyUrl   = cfg.refsNearbyUrl || '';
 	let satPassLbl      = decodeHtml(cfg.satPassLbl) || 'Satellite passes';
 	let locatingMsg     = decodeHtml(cfg.locatingMsg) || 'Locating…';
 	let geoDenied       = decodeHtml(cfg.geoDenied) || 'Location access denied.';
@@ -30,11 +34,27 @@
 	let createStationUrl = cfg.createStationUrl || '';
 	let newStationLocLbl = decodeHtml(cfg.newStationLocLbl) || 'Create station location';
 	let refsTitleLbl     = decodeHtml(cfg.refsTitleLbl) || 'References in this grid';
+	let activatedLbl     = decodeHtml(cfg.activatedLbl) || 'QSOs';
+	let lastLbl          = decodeHtml(cfg.lastLbl) || 'last';
+	let inactiveLbl      = decodeHtml(cfg.inactiveLbl) || 'Inactive';
+	let validRangeLbl    = decodeHtml(cfg.validRangeLbl) || 'valid';
 	let userDxcc         = cfg.userDxcc != null ? cfg.userDxcc : null;
 	let shareLbl         = decodeHtml(cfg.shareLbl) || 'Share';
 	let shareActivationTitleLbl = decodeHtml(cfg.shareActivationTitleLbl) || 'Share activation';
 	let planningActivationLbl   = decodeHtml(cfg.planningActivationLbl) || '📻 Planning an activation from %s';
+	let searchPlaceholderLbl = decodeHtml(cfg.searchPlaceholderLbl) || 'Search references…';
+	let searchNoMatchesLbl   = decodeHtml(cfg.searchNoMatchesLbl) || 'No matches';
+	let searchLoadingLbl     = decodeHtml(cfg.searchLoadingLbl) || 'Loading…';
+	let searchRefsHeaderLbl  = decodeHtml(cfg.searchRefsHeaderLbl) || 'References';
+	let searchPlacesLbl      = decodeHtml(cfg.searchPlacesLbl) || 'Places';
+	let searchEnterHintLbl   = decodeHtml(cfg.searchEnterHintLbl) || 'Press Enter to search places';
 	let gridLbl         = decodeHtml(cfg.gridLbl) || 'Gridsquare';
+	let nearbyRefsLbl   = decodeHtml(cfg.nearbyRefsLbl) || 'Nearby refs';
+	let nearbyRefsRadiusLbl = decodeHtml(cfg.nearbyRefsRadiusLbl) || 'References within %s of the gridsquare';
+	let colTypeLbl      = decodeHtml(cfg.colTypeLbl) || 'Type';
+	let colReferenceLbl = decodeHtml(cfg.colReferenceLbl) || 'Reference';
+	let colNameLbl      = decodeHtml(cfg.colNameLbl) || 'Name';
+	let colDistanceLbl  = decodeHtml(cfg.colDistanceLbl) || 'Distance';
 
 	let PALETTE = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#17becf', '#bcbd22', '#393b79'];
 	let overlayCfg = {};     // id -> overlay config
@@ -43,7 +63,10 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, bordersControl, bordersOverlay, refOverlay, trackTimer = null;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, iotaLayer, bordersControl, bordersOverlay, refOverlay, searchOverlay, localGridLayer, localGridPoint, trackTimer = null;
+	// Drawn POTA park boundaries, keyed by reference (ref -> L.geoJSON layer).
+	// Populated on demand when a marker is clicked; cleared by clearAll().
+	let boundaryLayers = {};
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -105,6 +128,28 @@
 		if (m == null || m === '' || isNaN(m)) { return ''; }
 		let val = measurementBase === 'K' ? Math.round(Number(m)) : Math.round(Number(m) * 3.28084);
 		return groupThousands(val) + (measurementBase === 'K' ? ' m' : ' ft');
+	}
+
+	/* Trim a DATETIME string (e.g. "2024-07-31 14:05:00") to its YYYY-MM-DD
+	 * date for the "last activated" popup row. COL_TIME_ON is stored in UTC,
+	 * so the date is taken straight from the string — never run through a
+	 * Date object, which would reinterpret it in the viewer's local timezone
+	 * and shift the day. Returns '' on bad/empty input. */
+	function formatActivatedDate(s) {
+		s = String(s || '').trim();
+		return /^\d{4}-\d{2}-\d{2}/.test(s) ? s.slice(0, 10) : '';
+	}
+
+	/* Suffix for the "Inactive" popup row: when the directory carries
+	 * valid_from/valid_till (SOTA + WWFF), append the closed/open range so
+	 * the user sees *when* it was active. POTA has only a boolean flag, so
+	 * both stay empty and just the "Inactive" label is shown. Open bounds
+	 * render as '?' (e.g. '? – 2020-12-31' or '2010-01-01 – ?'). */
+	function inactiveRange(D) {
+		let from = formatActivatedDate(D.valid_from);
+		let till = formatActivatedDate(D.valid_till);
+		if (!from && !till) { return ''; }
+		return ' &middot; ' + esc(validRangeLbl) + ' ' + esc(from || '?') + ' – ' + esc(till || '?');
 	}
 
 	function deg2rad(d) { return d * Math.PI / 180; }
@@ -175,6 +220,14 @@
 
 	/* Short unit label for the user's measurement base: km / mi / nm. */
 	function unitLabel(u) { return u === 'K' ? 'km' : u === 'N' ? 'nm' : 'mi'; }
+
+	/* km → the user's display unit, using the same factors as calcDistance so
+	   server-given km distances reconcile with distances computed client-side. */
+	function kmToUnit(km, unit) {
+		let mi = km / 1.609344;                                        // km → statute miles (calcDistance base)
+		let v = unit === 'K' ? km : unit === 'N' ? mi * 0.8684 : mi;   // M → mi
+		return Math.round(v * 10) / 10;                                // 1-decimal precision, like calcDistance
+	}
 
 	/*
 	 * Distance + bearing from [lat,lng] to each side of its 4-character
@@ -277,6 +330,8 @@
 		hideBordersPanel();
 		clearArrows();
 		setLabelsDim(false);
+		if (localGridLayer) { localGridLayer.clearLayers(); }   // selection's local mesh
+		localGridPoint = null;
 	}
 
 	/*
@@ -311,6 +366,54 @@
 	}
 
 	/*
+	 * Local Maidenhead mesh for a selection: the 3×3 block of 4-char squares
+	 * around the selected one, drawn by the selection itself (click / locate /
+	 * Go) so the grid context appears with the spot and clears with it — the
+	 * global Gridsquare overlay stays off. Skipped (and cleared) while the global
+	 * overlay is active, so the two meshes never double up. Cells and labels use
+	 * the L.maidenheadqrb overlay's exact constructs (grid-rectangle outlines,
+	 * my-div-icon / grid-text labels), so the per-theme body.map-* styling in
+	 * general.css applies here too and both meshes look identical.
+	 */
+	function drawLocalGrid(lat, lng) {
+		localGridPoint = [lat, lng];
+		if (!localGridLayer) { return; }
+		localGridLayer.clearLayers();
+		if (gridOverlay && map.hasLayer(gridOverlay)) { return; }   // global mesh already up
+		let sq = locatorToCell(latLngToLocator(lat, lng, 2));       // selected 4-char square
+		if (!sq) { return; }
+		let west = sq.sw[1] - 2, east = sq.ne[1] + 2;       // one square out each side (2° columns)
+		let south = sq.sw[0] - 1, north = sq.ne[0] + 1;     // ... and 1° rows
+
+		// Label font sizes per zoom — the same table L.maidenheadqrb indexes.
+		let sizes = [0, 10, 14, 16, 6, 13, 14, 16, 24, 36, 12, 14, 20, 36, 60, 12, 20, 36, 60, 12, 24];
+		let fpx = sizes[map.getZoom()] || 14;
+
+		for (let x = west; x < east - 1e-9; x += 2) {
+			for (let y = south; y < north - 1e-9; y += 1) {
+				// Cell outline — same rectangle style the overlay draws per cell.
+				localGridLayer.addLayer(L.rectangle([[y, x], [y + 1, x + 2]], {
+					className: 'grid-rectangle',
+					color: 'rgba(255, 0, 0, 0.4)',
+					weight: 1,
+					fill: false,
+					interactive: false
+				}));
+				// Cell name — same divIcon markup the overlay's labels use, so the
+				// themed grid-text CSS restyles it identically. Nudged up-left of the
+				// centre (the divIcon anchors at its top-left corner).
+				let name = latLngToLocator(y + 0.6, x + 0.7, 2);
+				let html = '<span class="grid-text" style="cursor: default;"><font style="color:rgba(255, 0, 0, 0.4); font-size:' + fpx + 'px; font-weight: 900;">' + esc(name) + '</font></span>';
+				localGridLayer.addLayer(L.marker([y + 0.5, x + 0.9], {
+					icon: L.divIcon({ className: 'my-div-icon', html: html }),
+					interactive: false,
+					keyboard: false
+				}));
+			}
+		}
+	}
+
+	/*
 	 * On-map direction arrows: a spoke from the selected point to each side of
 	 * its square (the four edges + four corners), tipped with a label naming the
 	 * neighbouring grid and the distance/bearing. Spatial, so it scales to any
@@ -321,6 +424,7 @@
 		bordersOverlay.clearLayers();
 
 		drawSquareTint(lat, lng);   // 4-char grid square outline + tint the arrows point to
+		drawLocalGrid(lat, lng);    // 3×3 mesh of neighbouring squares for context
 
 		let b = squareBorders(lat, lng);
 		let order = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
@@ -385,14 +489,17 @@
 	}
 
 	/*
-	 * POTA/SOTA/WWFF reference lookup for the clicked 6-character (subsquare) grid.
-	 * The full directories (reference, name, lat, lon) are fetched once from the
-	 * existing endpoints, cached, then filtered by the square's bounds.
+	 * WWFF/POTA/SOTA/IOTA directory lookup for the clicked 6-character
+	 * (subsquare) grid and the search box. The full directories (reference,
+	 * name, lat, lon — or a bounding box for IOTA) are fetched once from the
+	 * existing endpoints, cached, then filtered by the square's bounds. The
+	 * IOTA overlay fetches independently in enableIota(); this only powers the
+	 * search index.
 	 */
-	let refDirs = { wwff: null, pota: null, sota: null };
+	let refDirs = { wwff: null, pota: null, sota: null, iota: null };
 	function loadRefDir(type) {
 		if (refDirs[type] !== null) { return Promise.resolve(refDirs[type]); }   // array done, or in-flight promise
-		let url = type === 'wwff' ? wwffUrl : type === 'pota' ? potaUrl : type === 'sota' ? sotaUrl : '';
+		let url = type === 'wwff' ? wwffUrl : type === 'pota' ? potaUrl : type === 'sota' ? sotaUrl : type === 'iota' ? iotaUrl : '';
 		if (!url) { refDirs[type] = []; return Promise.resolve([]); }
 		let p = fetch(url).then(function (r) { return r.json(); }).then(function (d) {
 			refDirs[type] = Array.isArray(d) ? d : [];
@@ -402,18 +509,44 @@
 		return p;
 	}
 
+	/*
+	 * Set of POTA references the user has activated in the past, plus per-ref
+	 * {last, qso_count}. Fetched lazily only when the POTA overlay is enabled,
+	 * so users who leave it off pay nothing. Failed/off → empty set.
+	 */
+	let activatedPota = null;
+	function loadActivatedPota() {
+		if (activatedPota !== null) { return Promise.resolve(activatedPota); }
+		if (!activatedPotaUrl) { activatedPota = new Map(); return Promise.resolve(activatedPota); }
+		let p = fetch(activatedPotaUrl).then(function (r) { return r.json(); }).then(function (d) {
+			activatedPota = new Map();
+			(Array.isArray(d) ? d : []).forEach(function (a) {
+				if (a && a.reference) { activatedPota.set(a.reference, a); }
+			});
+			return activatedPota;
+		}).catch(function (err) { console.warn('activated POTA load failed:', err); activatedPota = new Map(); return activatedPota; });
+		activatedPota = p;
+		return p;
+	}
+
 	/* Resolved {wwff, pota, sota} arrays of references inside the 6-char grid. */
 	function refsInSquare(lat, lng) {
-		let sq = locatorToCell(latLngToLocator(lat, lng, 3));
-		if (!sq) { return Promise.resolve({ wwff: [], pota: [], sota: [] }); }
-		function inSq(r) {
-			return r && r.lat != null && r.lon != null &&
-				r.lat >= sq.sw[0] && r.lat <= sq.ne[0] && r.lon >= sq.sw[1] && r.lon <= sq.ne[1];
+		// 20 km radius, matching the "Nearby refs" dialog. A coarse bounding-box
+		// prefilter (cheap) then exact haversine. loadRefDir returns the cached
+		// directories (the same ones the Refs overlays use), so the markers carry
+		// the full data needed for the rich popups.
+		let radius = 20, latDeg = radius / 110.0,
+			lonDeg = latDeg / Math.max(0.2, Math.cos(Math.abs(lat) * Math.PI / 180));
+		function within(r) {
+			if (!r || r.lat == null || r.lon == null) { return false; }
+			if (r.inactive) { return false; }   // active-only, matching the nearby button
+			if (Math.abs(r.lat - lat) > latDeg || Math.abs(r.lon - lng) > lonDeg) { return false; }
+			return calcDistance(lat, lng, r.lat, r.lon, 'K') <= radius;
 		}
 		return Promise.all([
-			loadRefDir('wwff').then(function (d) { return d.filter(inSq); }),
-			loadRefDir('pota').then(function (d) { return d.filter(inSq); }),
-			loadRefDir('sota').then(function (d) { return d.filter(inSq); })
+			loadRefDir('wwff').then(function (d) { return d.filter(within); }),
+			loadRefDir('pota').then(function (d) { return d.filter(within); }),
+			loadRefDir('sota').then(function (d) { return d.filter(within); })
 		]).then(function (r) { return { wwff: r[0], pota: r[1], sota: r[2] }; });
 	}
 
@@ -439,22 +572,23 @@
 		return '<div class="gl-pop-refs"><div class="gl-pop-refs-title">' + esc(refsTitleLbl) + '</div>' + html + '</div>';
 	}
 
-	/* Plot the references (from refsInSquare) on the map, coloured by type. */
+	/* Plot the references (from refsInSquare) on the map, using the same lettered
+	 * divIcon markers and rich popups as the Refs-dropdown overlays. */
 	function drawRefs(refs) {
 		if (!refOverlay) { return; }
 		refOverlay.clearLayers();
 		let groups = [
-			{ items: refs.pota, color: '#238b45', label: 'POTA' },
-			{ items: refs.sota, color: '#d95f0e', label: 'SOTA' },
-			{ items: refs.wwff, color: '#2b8cbe', label: 'WWFF' }
+			{ items: refs.pota, color: '#238b45', label: 'POTA', letter: 'P' },
+			{ items: refs.sota, color: '#d95f0e', label: 'SOTA', letter: 'S' },
+			{ items: refs.wwff, color: '#2b8cbe', label: 'WWFF', letter: 'W' }
 		];
 		groups.forEach(function (g) {
 			(g.items || []).forEach(function (r) {
 				if (r.lat == null || r.lon == null) { return; }
-				let m = L.circleMarker([r.lat, r.lon], {
-					radius: 7, weight: 1, color: '#fff', fillColor: g.color, fillOpacity: 0.9
-				});
-				m.bindTooltip(g.label + ' ' + esc(r.reference) + (r.name ? ' - ' + esc(r.name) : ''));
+				let icon = r.activated ? refIconActivated(g.letter) : refIcon(g.color, g.letter);
+				let m = L.marker([r.lat, r.lon], { icon: icon });
+				m.refType = g.label; m.refData = r; m.refColor = g.color;
+				m.bindPopup(refPopupRich);
 				refOverlay.addLayer(m);
 			});
 		});
@@ -491,7 +625,7 @@
 		// modal) or create a station location here (location pre-filled).
 		let actions =
 			'<div class="gl-pop-actions">' +
-				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
 				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
 			'</div>';
 
@@ -505,6 +639,51 @@
 			(metaLines.length ? '<div class="gl-pop-meta">' + metaLines.map(esc).join('<br>') + '</div>' : '') +
 			(satPassUrl ? '<div class="gl-pop-link"><a href="' + esc(satPassUrl + '?gridsquare=' + encodeURIComponent(loc)) + '" target="_blank" rel="noopener noreferrer"><i class="fas fa-satellite"></i> ' + esc(satPassLbl) + '</a></div>' : '') +
 			'</div>';
+	}
+
+	/*
+	 * "Nearby refs" dialog: WWFF/POTA/SOTA references within 5/10/15/20 km of the
+	 * given gridsquare, fetched server-side and shown grouped by distance band.
+	 */
+	function showNearbyModal(loc, rows) {
+		let u = measurementBase, ul = unitLabel(u);
+		// Bands are fixed 5 km quadrants of the (server-side, km) query; the km
+		// boundary values are converted to the user's unit only for the labels,
+		// so bucketing stays exact while the readout matches the page's unit.
+		let bv = [5, 10, 15, 20].map(function (k) { return kmToUnit(k, u); });
+		let bands = [
+			{ label: 'Within ' + bv[0] + ' ' + ul, rows: [] },
+			{ label: bv[0] + '-' + bv[1] + ' ' + ul, rows: [] },
+			{ label: bv[1] + '-' + bv[2] + ' ' + ul, rows: [] },
+			{ label: bv[2] + '-' + bv[3] + ' ' + ul, rows: [] }
+		];
+		(rows || []).forEach(function (r) {
+			bands[Math.min(bands.length - 1, Math.floor(r.dist / 5))].rows.push(r);
+		});
+
+		let body = bands.map(function (b) {
+			let trs = b.rows.map(function (r) {
+				let col = r.type === 'POTA' ? '#238b45' : r.type === 'SOTA' ? '#d95f0e' : '#2b8cbe';
+				return '<tr><td><span class="gl-pop-ref-type" style="background:' + col + '">' + esc(r.type) + '</span></td><td>' + esc(r.ref) + '</td><td>' +
+					esc(r.name || '') + '</td><td class="text-end">' + groupThousands(kmToUnit(r.dist, u)) + ' ' + ul + '</td></tr>';
+			}).join('');
+			return '<h6 class="mt-3 mb-1">' + esc(b.label) + ' <span class="badge bg-secondary">' + b.rows.length + '</span></h6>' +
+				'<table class="table table-sm table-striped mb-0 gl-nearby-table">' +
+				'<thead><tr>' +
+				'<th style="width:70px">' + esc(colTypeLbl) + '</th>' +
+				'<th style="width:120px">' + esc(colReferenceLbl) + '</th>' +
+				'<th>' + esc(colNameLbl) + '</th>' +
+				'<th class="text-end" style="width:90px">' + esc(colDistanceLbl) + '</th></tr></thead>' +
+				'<tbody>' + (trs || '<tr><td colspan="4" class="text-muted">—</td></tr>') + '</tbody></table>';
+		}).join('');
+
+		BootstrapDialog.show({
+			title: nearbyRefsLbl + ' · ' + loc,
+			message: body,
+			size: BootstrapDialog.SIZE_WIDE,
+			nl2br: false,
+			buttons: [{ label: closeLbl, action: function (dialog) { dialog.close(); } }]
+		});
 	}
 
 	/*
@@ -688,11 +867,13 @@
 			'<a class="ref-popup-ref" href="' + esc(refUrl(type, D.reference)) + '" target="_blank" rel="noopener noreferrer">' + esc(D.reference) + ' <i class="fas fa-up-right-from-square"></i></a>' +
 			'</div>' +
 			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.inactive ? '<div class="ref-popup-row is-inactive"><i class="fas fa-circle-exclamation"></i><span>' + esc(inactiveLbl) + inactiveRange(D) + '</span></div>' : '') +
+			(D.activated ? '<div class="ref-popup-row is-activated"><i class="fas fa-circle-check"></i><span>' + esc(activatedLbl) + ': ' + D.activated.qso_count + ' &middot; ' + esc(lastLbl) + ' ' + esc(formatActivatedDate(D.activated.last)) + '</span></div>' : '') +
 			(D.altitude != null && D.altitude !== '' ? '<div class="ref-popup-row"><i class="fas fa-mountain"></i><span>' + fmtAltitude(D.altitude) + '</span></div>' : '') +
 			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(D.lat, D.lon, 3)) + '</span></div>' +
 			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(D.lat) + ', ' + fmtLng(D.lon) + '</span></div>' +
 			((createHref || spotText) ? '<div class="gl-pop-actions">' +
-				(spotText ? '<a class="gl-pop-action gl-share" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
 				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
 			'</div>' : '') +
 			'</div>';
@@ -731,6 +912,19 @@
 		return L.divIcon({
 			className: 'ref-map-icon',
 			html: '<span class="ref-menu-dot" style="background:' + esc(color) + '">' + esc(letter) + '</span>',
+			iconSize: [18, 18],
+			iconAnchor: [9, 9],
+			popupAnchor: [0, -10]
+		});
+	}
+
+	/* "Already activated" variant: gold ring + check over the letter. Reuses
+	 * .ref-menu-dot so sizing stays consistent with the plain marker. */
+	function refIconActivated(letter) {
+		return L.divIcon({
+			className: 'ref-map-icon',
+			html: '<span class="ref-menu-dot is-activated">' + esc(letter) +
+				'<i class="fas fa-check ref-activated-check"></i></span>',
 			iconSize: [18, 18],
 			iconAnchor: [9, 9],
 			popupAnchor: [0, -10]
@@ -791,13 +985,51 @@
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
 	}
+
+	function drawParkBoundary(ref, fit) {
+		if (!potaBoundaryUrl || !ref || boundaryLayers[ref]) { return; }
+		if (!/^(DE|AT|CH|CZ|DK|LU|LI)-/.test(ref)) { return; }
+		boundaryLayers[ref] = true; // sentinel: in-flight / done, prevents refetch
+		fetch(potaBoundaryUrl + encodeURIComponent(ref))
+			.then(function (r) {
+				if (!r.ok) { return null; }
+				return r.json();
+			})
+			.then(function (feature) {
+				if (!feature || !feature.geometry) { return; }
+				let layer = L.geoJSON(feature, {
+					style: { color: '#238b45', weight: 2, fillColor: '#238b45', fillOpacity: 0.15 }
+				}).addTo(map);
+				boundaryLayers[ref] = layer;
+				if (fit) { map.fitBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 13 }); }
+			})
+			.catch(function () { /* 404 / network: leave the point marker as-is */ });
+	}
+
+	/* Remove every drawn park-boundary layer and forget the per-ref cache so
+	 * the next popup re-fetches. Used by disablePota() and clearAll(). */
+	function clearBoundaries() {
+		for (const ref in boundaryLayers) {
+			const l = boundaryLayers[ref];
+			if (l && l.remove) { map.removeLayer(l); }
+		}
+		boundaryLayers = {};
+	}
+
 	function enablePota() {
 		if (!potaUrl) { return; }
 		if (potaCluster) { map.addLayer(potaCluster); return; }      // cached after first load
 		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
 
 		mapLoadingStart();
-		loadRefDir('pota').then(function (data) {
+		// Resolve the user's activated-refs set in parallel with the directory so
+		// the marker loop can tint already-activated parks in a single pass.
+		Promise.all([
+			loadRefDir('pota'),
+			loadActivatedPota()
+		]).then(function (res) {
+			let data = res[0];
+			let activated = res[1] || new Map();
 			potaCluster = L.markerClusterGroup({
 				chunkedLoading: true,
 				maxClusterRadius: 50,
@@ -806,9 +1038,13 @@
 			for (let i = 0; i < data.length; i++) {
 				let D = data[i];
 				if (D.lat == null || D.lon == null) { continue; }
-				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#238b45', 'P') });
+				let act = activated.get(D.reference);
+				if (act) { D.activated = act; }
+				let icon = act ? refIconActivated('P') : refIcon('#238b45', 'P');
+				let dot = L.marker([D.lat, D.lon], { icon: icon });
 				dot.refType = 'POTA'; dot.refData = D; dot.refColor = '#238b45';
 				dot.bindPopup(refPopupRich);
+				dot.on('popupopen', function () { drawParkBoundary(D.reference); });
 				potaCluster.addLayer(dot);
 			}
 			map.addLayer(potaCluster);
@@ -817,6 +1053,7 @@
 	}
 	function disablePota() {
 		if (potaCluster) { map.removeLayer(potaCluster); }
+		clearBoundaries();
 	}
 	function enableSota() {
 		if (!sotaUrl) { return; }
@@ -844,6 +1081,358 @@
 	}
 	function disableSota() {
 		if (sotaCluster) { map.removeLayer(sotaCluster); }
+	}
+
+	/* ---- IOTA reference directory overlay ---- */
+	/* IOTA references are bounding-box rectangles, not points. Drawn as a flat
+	 * layer of polygons in one colour; click a rectangle for its details. Loads
+	 * lazily and is cached. NB: the table stores latitudes sign-reversed, and a
+	 * few islands wrap the antimeridian — both handled in iotaRect (mirrors
+	 * assets/js/sections/iotamap.js). */
+	function enableIota() {
+		if (!iotaUrl) { return; }
+		if (iotaLayer) { map.addLayer(iotaLayer); return; }       // cached after first load
+
+		mapLoadingStart();
+		fetch(iotaUrl)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				iotaLayer = L.layerGroup();
+				// Tag labels cluster when zoomed out (the rectangles stay plain layers).
+				let cluster = L.markerClusterGroup({
+					chunkedLoading: true,
+					maxClusterRadius: 50,
+					showCoverageOnHover: false
+				});
+				for (let i = 0; i < data.length; i++) {
+					let D = data[i];
+					if (D.lat1 == null || D.lon1 == null || D.lat2 == null || D.lon2 == null) { continue; }
+					let g = iotaGeometry(D);   // antimeridian-adjusted longitudes
+					// The rectangle is purely visual: non-interactive, so map clicks
+					// pass straight through it. The tag label is the click target.
+					iotaLayer.addLayer(L.polygon(
+						[[-D.lat1, g.lon1], [-D.lat2, g.lon1], [-D.lat2, g.lon2], [-D.lat1, g.lon2]],
+						{ interactive: false, color: '#17a2b8', weight: 1, fillColor: '#17a2b8', fillOpacity: 0.12 }
+					));
+					let cLat = -(Number(D.lat1) + Number(D.lat2)) / 2;
+					let cLng = (g.lon1 + g.lon2) / 2;
+					let m = L.marker([cLat, cLng], { icon: iotaIcon(D.tag) });
+					m.refData = D;
+					m.bindPopup(iotaPopupRich);
+					cluster.addLayer(m);
+				}
+				iotaLayer.addLayer(cluster);   // cluster rides inside the group → atomic add/remove
+				map.addLayer(iotaLayer);
+				mapLoadingDone();
+			})
+			.catch(function (err) { console.error('IOTA directory load failed:', err); mapLoadingDone(); });
+	}
+	function disableIota() {
+		if (iotaLayer) { map.removeLayer(iotaLayer); }
+	}
+	/* Antimeridian unwrap for islands spanning ±180° (AN-016 is special-cased). */
+	function iotaGeometry(D) {
+		let lon1 = Number(D.lon1), lon2 = Number(D.lon2);
+		if (D.tag !== 'AN-016') {
+			if (lon1 > 0 && lon2 < 0 && lon1 - lon2 > 180) { lon2 += 360; }
+			if (lon1 < 0 && lon2 > 0 && lon2 - lon1 > 180) { lon1 += 360; }
+		}
+		return { lon1: lon1, lon2: lon2 };
+	}
+	/* Clickable tag label (e.g. EU-001) shown centred on each rectangle. */
+	function iotaIcon(tag) {
+		return L.divIcon({
+			className: 'iota-label',
+			html: esc(tag),
+			iconSize: [48, 14],
+			iconAnchor: [24, 7]
+		});
+	}
+	/* IOTA popup, styled like the WWFF/POTA/SOTA reference popups. The tag links
+	 * to its iota-world.org map page; grid + coords are the rectangle's centre. */
+	function iotaPopup(D, lat, lng, createHref, spotText) {
+		return '<div class="ref-popup" style="border-left-color:#17a2b8">' +
+			'<div class="ref-popup-top">' +
+			'<span class="ref-popup-type" style="background:#17a2b8">IOTA</span>' +
+			'<a class="ref-popup-ref" href="https://www.iota-world.org/iotamaps/?grpref=' + encodeURIComponent(D.tag) + '" target="_blank" rel="noopener noreferrer">' + esc(D.tag) + ' <i class="fas fa-up-right-from-square"></i></a>' +
+			'</div>' +
+			(D.name ? '<div class="ref-popup-name">' + esc(D.name) + '</div>' : '') +
+			(D.prefix ? '<div class="ref-popup-row"><i class="fas fa-broadcast-tower"></i><span>' + esc(D.prefix) + '</span></div>' : '') +
+			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(lat, lng, 3)) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(lat) + ', ' + fmtLng(lng) + '</span></div>' +
+			((createHref || spotText) ? '<div class="gl-pop-actions">' +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>' : '') +
+			'</div>';
+	}
+	/*
+	 * Open-time popup builder for an IOTA tag marker. Reads the stashed refData,
+	 * renders the popup immediately with create + share actions (sync), then
+	 * enriches both with DXCC/CQ/ITU/state once resolvePointMeta settles — the
+	 * same recipe as refPopupRich. The marker sits at the rectangle's centre
+	 * (antimeridian-unwrapped in enableIota), so its latLng is reused.
+	 */
+	function iotaPopupRich(layer) {
+		let D = layer.refData;
+		if (!D) { return ''; }
+		let ll = layer.getLatLng();
+		let cLat = ll.lat, cLng = ll.lng, loc = latLngToLocator(cLat, cLng, 3);
+		let extra = { iota: D.tag };
+		let locDesc = D.tag + ' (' + loc + ')';
+		let extraHash = '#IOTA ' + D.tag;
+		let baseHref = buildCreateHref(loc, null, extra);
+		let baseSpot = buildSpotText(locDesc, null, extraHash);
+		resolvePointMeta(cLat, cLng, loc).then(function (meta) {
+			if (layer.isPopupOpen && layer.isPopupOpen()) {
+				layer.setPopupContent(iotaPopup(D, cLat, cLng, buildCreateHref(loc, meta, extra), buildSpotText(locDesc, meta, extraHash)));
+			}
+		}).catch(function () { /* leave sync create + share in place */ });
+		return iotaPopup(D, cLat, cLng, baseHref, baseSpot);
+	}
+
+	/* ---- Reference search (WWFF / POTA / SOTA / IOTA by name or reference) ---- */
+	/*
+	 * Unified free-text search across the four cached directories. The lowercased
+	 * search index per directory is built lazily on first search (so toggling an
+	 * overlay but never searching costs nothing), then reused for the session.
+	 * Match is a case-insensitive substring on the reference/tag AND the name.
+	 */
+	let SEARCH_TYPES = [
+		{ type: 'wwff', label: 'WWFF', letter: 'W', color: '#2b8cbe' },
+		{ type: 'pota', label: 'POTA', letter: 'P', color: '#238b45' },
+		{ type: 'sota', label: 'SOTA', letter: 'S', color: '#d95f0e' },
+		{ type: 'iota', label: 'IOTA', letter: 'I', color: '#17a2b8' }
+	];
+	let SEARCH_PER_TYPE = 8, SEARCH_TOTAL = 30, SEARCH_MIN = 2, SEARCH_DEBOUNCE = 180;
+	let searchIndexes = null;     // {wwff,pota,sota,iota} -> [{a,b,r}], built once
+	let searchTimer = null;       // debounce handle
+	let searchActiveIdx = -1;     // keyboard-highlighted row
+	let searchCurrent = [];       // current result rows [{type,label,letter,color,r}]
+
+	/* The identifying code of a directory entry: 'reference' for point dirs, 'tag' for IOTA. */
+	function refKeyOf(r, type) { return type === 'iota' ? (r.tag || '') : (r.reference || ''); }
+
+	/* Build the lowercased index for one directory from its cached array. */
+	function buildSearchIndex(type) {
+		let data = refDirs[type];
+		if (!Array.isArray(data)) { return []; }
+		let out = new Array(data.length);
+		for (let i = 0; i < data.length; i++) {
+			let r = data[i];
+			out[i] = { a: refKeyOf(r, type).toLowerCase(), b: (r.name || '').toLowerCase(), r: r };
+		}
+		return out;
+	}
+
+	/* Load all four directories (cached) and build their indexes once. */
+	function ensureSearchIndexes() {
+		if (searchIndexes) { return Promise.resolve(searchIndexes); }
+		return Promise.all([loadRefDir('wwff'), loadRefDir('pota'), loadRefDir('sota'), loadRefDir('iota')]).then(function () {
+			searchIndexes = {};
+			SEARCH_TYPES.forEach(function (t) { searchIndexes[t.type] = buildSearchIndex(t.type); });
+			return searchIndexes;
+		});
+	}
+
+	/* Substring match across all types, capping per-type and total, early-exiting each type. */
+	function runSearch(q) {
+		q = q.toLowerCase();
+		let out = [];
+		for (let ti = 0; ti < SEARCH_TYPES.length; ti++) {
+			let t = SEARCH_TYPES[ti];
+			let idx = searchIndexes ? searchIndexes[t.type] : null;
+			if (!idx) { continue; }
+			let typeCount = 0;
+			for (let i = 0; i < idx.length && typeCount < SEARCH_PER_TYPE && out.length < SEARCH_TOTAL; i++) {
+				let e = idx[i];
+				if (e.a.indexOf(q) > -1 || e.b.indexOf(q) > -1) {
+					out.push({ type: t.type, label: t.label, letter: t.letter, color: t.color, group: 'refs', r: e.r });
+					typeCount++;
+				}
+			}
+		}
+		return out;
+	}
+
+	/* A short locator string for a result row (subsquare grid), for the row's right side. */
+	function refSubGrid(row) {
+		let r = row.r;
+		if (row.type === 'iota') {
+			let g = iotaGeometry(r);
+			let cLat = -(Number(r.lat1) + Number(r.lat2)) / 2;
+			let cLng = (g.lon1 + g.lon2) / 2;
+			return latLngToLocator(cLat, cLng, 3);
+		}
+		if (r.lat != null && r.lon != null) { return latLngToLocator(r.lat, r.lon, 3); }
+		return '';
+	}
+
+	function showSearchLoading() {
+		let box = document.getElementById('glRefSearchResults');
+		if (!box) { return; }
+		box.innerHTML = '<div class="gl-search-loading">' + esc(searchLoadingLbl) + '</div>';
+		box.hidden = false;
+	}
+	function hideSearchResults() {
+		let box = document.getElementById('glRefSearchResults');
+		if (box) { box.hidden = true; box.innerHTML = ''; }
+		searchActiveIdx = -1;
+		searchCurrent = [];
+	}
+	function highlightSearchRow() {
+		let box = document.getElementById('glRefSearchResults');
+		if (!box) { return; }
+		let rows = box.querySelectorAll('.gl-search-item');
+		rows.forEach(function (el, i) { el.classList.toggle('is-active', i === searchActiveIdx); });
+		let active = rows[searchActiveIdx];
+		if (active && active.scrollIntoView) { active.scrollIntoView({ block: 'nearest' }); }
+	}
+	/*
+	 * Render the dropdown. Rows are grouped ('refs' from the local directories,
+	 * 'places' from Nominatim); a header is emitted on each group change. Places
+	 * use a pin badge instead of a directory letter. Pseudo-rows {loading} and
+	 * {empty} render status lines inside their group. The footer carries the
+	 * Enter hint (before any place search) or the OSM credit once places show.
+	 */
+	function renderResults(rows) {
+		let box = document.getElementById('glRefSearchResults');
+		if (!box) { return; }
+		searchCurrent = rows;
+		searchActiveIdx = -1;
+		if (!rows.length) {
+			box.innerHTML = '<div class="gl-search-empty">' + esc(searchNoMatchesLbl) + '</div>';
+			box.hidden = false;
+			return;
+		}
+		let counts = {};
+		rows.forEach(function (row) { if (!row.loading && !row.empty) { counts[row.group] = (counts[row.group] || 0) + 1; } });
+		let lastGroup = null, html = '';
+		rows.forEach(function (row, i) {
+			if (row.group !== lastGroup) {
+				lastGroup = row.group;
+				let lbl = row.group === 'places' ? searchPlacesLbl : searchRefsHeaderLbl;
+				html += '<div class="gl-search-header">' + esc(lbl) +
+					(counts[row.group] ? ' <span class="badge bg-secondary">' + counts[row.group] +
+					(row.group === 'refs' && counts[row.group] >= SEARCH_TOTAL ? '+' : '') + '</span>' : '') +
+					'</div>';
+			}
+			if (row.loading) { html += '<div class="gl-search-loading">' + esc(searchLoadingLbl) + '</div>'; return; }
+			if (row.empty)  { html += '<div class="gl-search-empty">' + esc(searchNoMatchesLbl) + '</div>'; return; }
+			let r = row.r, sub = refSubGrid(row);
+			let badge = row.type === 'place' ? '<i class="fas fa-location-dot"></i>' : esc(row.letter);
+			html += '<div class="gl-search-item" data-idx="' + i + '">' +
+				'<span class="ref-menu-dot" style="background:' + esc(row.color) + '">' + badge + '</span>' +
+				'<span class="gl-search-ref">' + esc(refKeyOf(r, row.type)) + '</span>' +
+				'<span class="gl-search-name">' + esc(r.name || '') + '</span>' +
+				(sub ? '<span class="gl-search-sub">' + esc(sub) + '</span>' : '') +
+				'</div>';
+		});
+		html += '<div class="gl-search-footer">' +
+			(lastGroup === 'places' ? '&copy; OpenStreetMap contributors' : esc(searchEnterHintLbl) + ' &middot; &copy; OpenStreetMap') +
+			'</div>';
+		box.innerHTML = html;
+		box.hidden = false;
+	}
+
+	/*
+	 * Place-name search (geocoding) via OSM's Nominatim — client-side fetch, no
+	 * proxy. Fired by Enter (not per keystroke) so the public service's max
+	 * 1 request/second policy is respected. Results are appended to the current
+	 * reference matches as a "Places" group; selecting one reuses selectPoint
+	 * (grid square, local mesh, zones, popup) and fits the result's bounding box.
+	 */
+	let NOMINATIM_URL = 'https://nominatim.openstreetmap.org/search';
+	let placeAbort = null;
+	function searchPlaces(q) {
+		let localRows = searchCurrent.filter(function (row) { return row.group === 'refs'; });
+		renderResults(localRows.concat([{ group: 'places', loading: true }]));
+		if (placeAbort) { placeAbort.abort(); }
+		let ctl = new AbortController();
+		placeAbort = ctl;
+		let timer = setTimeout(function () { ctl.abort(); }, 8000);   // don't hang on offline LANs
+		fetch(NOMINATIM_URL + '?q=' + encodeURIComponent(q) + '&format=jsonv2&limit=5', { signal: ctl.signal })
+			.then(function (res) { return res.json(); })
+			.then(function (rows) {
+				let places = (Array.isArray(rows) ? rows : []).map(function (p) {
+					let parts = String(p.display_name || '').split(', ');
+					return {
+						type: 'place', label: 'Place', group: 'places', color: '#6c757d',
+						r: {
+							reference: parts.shift() || '—',             // primary name (bold slot)
+							name: parts.join(', '),                      // remainder of display_name
+							lat: Number(p.lat), lon: Number(p.lon),
+							bbox: Array.isArray(p.boundingbox) ? p.boundingbox.map(Number) : null
+						}
+					};
+				});
+				renderResults(localRows.concat(places.length ? places : [{ group: 'places', empty: true }]));
+			})
+			.catch(function () {   // offline / timeout / aborted → quiet "no matches"
+				renderResults(localRows.concat([{ group: 'places', empty: true }]));
+			})
+			.finally(function () { clearTimeout(timer); });
+	}
+
+	/*
+	 * Fly to the selected reference and drop its marker into searchOverlay (kept
+	 * separate from refOverlay, which Nearby/Clear/Go wipe). Point refs reuse the
+	 * drawRefs marker recipe + refPopupRich; IOTA reuses enableIota's recipe +
+	 * iotaPopupRich and fits its (antimeridian-unwrapped) rectangle.
+	 */
+	function onSearchSelect(row) {
+		if (!row) { return; }
+		let r = row.r;
+		hideSearchResults();
+		if (searchOverlay) { searchOverlay.clearLayers(); }
+		clearBoundaries();   // drop any park outline drawn by a previous selection / the POTA overlay
+
+		if (row.type === 'place') {
+			// Reuse the full selection machinery (grid square, local mesh, zones,
+			// arrows, popup), then frame the result's extent when it has one.
+			selectPoint(r.lat, r.lon);
+			if (r.bbox && r.bbox.length === 4) {
+				map.fitBounds([[r.bbox[0], r.bbox[2]], [r.bbox[1], r.bbox[3]]], { padding: [40, 40], maxZoom: 13 });
+			}
+			return;
+		}
+
+		if (row.type === 'iota') {
+			let g = iotaGeometry(r);                       // unwrap longitudes (AN-016 special-cased)
+			let lat1 = -Number(r.lat1), lat2 = -Number(r.lat2);   // stored sign-reversed
+			let cLat = (lat1 + lat2) / 2;
+			let cLng = (g.lon1 + g.lon2) / 2;
+			// Draw the island's bounding-box rectangle (same style as the IOTA overlay).
+			searchOverlay.addLayer(L.polygon(
+				[[lat1, g.lon1], [lat2, g.lon1], [lat2, g.lon2], [lat1, g.lon2]],
+				{ interactive: false, color: '#17a2b8', weight: 1, fillColor: '#17a2b8', fillOpacity: 0.12 }
+			));
+			let m = L.marker([cLat, cLng], { icon: iotaIcon(r.tag) });
+			m.refData = r;
+			m.bindPopup(iotaPopupRich);
+			searchOverlay.addLayer(m);
+			if (g.lon2 - g.lon1 > 180 || g.lon1 > g.lon2) { // spanning / unwrapped box → centre, not a world-spanning fit
+				map.flyTo([cLat, cLng], 9);
+			} else {
+				map.fitBounds([[Math.min(lat1, lat2), g.lon1], [Math.max(lat1, lat2), g.lon2]], { padding: [40, 40], maxZoom: 11 });
+			}
+			m.openPopup();
+			return;
+		}
+
+		if (r.lat == null || r.lon == null) { return; }
+		let m = L.marker([r.lat, r.lon], { icon: refIcon(row.color, row.letter) });
+		m.refType = row.label; m.refData = r; m.refColor = row.color;
+		m.bindPopup(refPopupRich);
+		searchOverlay.addLayer(m);
+		if (row.type === 'pota') {
+			// Draw the park outline; drawParkBoundary fits the map to it once the
+			// boundary resolves (supported country prefixes). flyTo below gives an
+			// immediate zoom while the outline loads, then the fit settles on the area.
+			drawParkBoundary(r.reference, true);
+		}
+		map.flyTo([r.lat, r.lon], 13);
+		m.openPopup();
 	}
 
 	/* ---- CQ / ITU zone resolution (coordinate -> zone, client-side) ---- */
@@ -1017,8 +1606,10 @@
 
 		L.control.scale({ imperial: false, metric: true }).addTo(map);
 
+		// Build the Maidenhead grid layer but leave it OFF until the Refs → Gridsquare
+		// checkbox is toggled on (it defaults to off on page load).
 		if (typeof L.maidenheadqrb === 'function') {
-			gridOverlay = L.maidenheadqrb().addTo(map);
+			gridOverlay = L.maidenheadqrb();
 		}
 
 		L.control.fullscreen && L.control.fullscreen().addTo(map);
@@ -1065,8 +1656,16 @@
 		// Layer group holding the on-map direction arrows (see drawArrows).
 		bordersOverlay = L.layerGroup().addTo(map);
 
+		// Layer group holding the selection's local Maidenhead mesh (see drawLocalGrid).
+		localGridLayer = L.layerGroup().addTo(map);
+
 		// Layer group holding the POTA/SOTA/WWFF markers near a click (see drawRefs).
 		refOverlay = L.layerGroup().addTo(map);
+
+		// Layer group holding markers dropped by a reference search (see onSearchSelect).
+		// Kept separate from refOverlay, which Nearby/Clear/Go wipe — so a search
+		// marker survives those actions until a new search or a Clear replaces it.
+		searchOverlay = L.layerGroup().addTo(map);
 
 		document.getElementById('glGo').addEventListener('click', go);
 		document.getElementById('glClear').addEventListener('click', clearAll);
@@ -1076,6 +1675,23 @@
 			// Hide the button entirely when geolocation is unavailable (e.g. plain
 			// HTTP on a LAN IP) so users never see a dead control.
 			if (!('geolocation' in navigator)) { locateBtn.style.display = 'none'; }
+		}
+		// "Nearby refs": list WWFF/POTA/SOTA references within 20 km of the grid.
+		let nearbyBtn = document.getElementById('glNearby');
+		if (nearbyBtn) {
+			// Tooltip follows the user's unit (e.g. "References within 12.4 mi …").
+			nearbyBtn.title = nearbyRefsRadiusLbl.replace('%s', kmToUnit(20, measurementBase) + ' ' + unitLabel(measurementBase));
+			nearbyBtn.addEventListener('click', function () {
+				let raw = (document.getElementById('glGrid').value || '').trim();
+				let cell = locatorToCell(raw);
+				if (!cell) { showToast(errorLbl, esc(invalidMsg), 'bg-warning text-dark', 3000); return; }
+				nearbyBtn.disabled = true;
+				fetch(refsNearbyUrl + '?lat=' + cell.center[0] + '&lng=' + cell.center[1])
+					.then(function (r) { return r.json(); })
+					.then(function (rows) { showNearbyModal(raw.toUpperCase(), rows || []); })
+					.catch(function () { showToast(errorLbl, 'Failed to load nearby references', 'bg-danger text-white', 3000); })
+					.finally(function () { nearbyBtn.disabled = false; });
+			});
 		}
 
 		// Mobile "More options" disclosure: toggles a class on the toolbar that
@@ -1090,7 +1706,18 @@
 		}
 		document.getElementById('glGridOverlay').addEventListener('change', function () {
 			if (!gridOverlay) return;
-			if (this.checked) { gridOverlay.addTo(map); } else { map.removeLayer(gridOverlay); }
+			if (this.checked) {
+				gridOverlay.addTo(map);
+				// The local selection mesh only shows while the global overlay is
+				// off: turning the overlay on clears it.
+				if (localGridLayer) { localGridLayer.clearLayers(); }
+			} else {
+				map.removeLayer(gridOverlay);
+				// Turning it off restores the mesh around the current selection (if any).
+				if (localGridPoint) {
+					drawLocalGrid(localGridPoint[0], localGridPoint[1]);
+				}
+			}
 		});
 
 		// Optional WWFF reference directory overlay. Built lazily on first toggle
@@ -1113,6 +1740,12 @@
 				if (this.checked) { enableSota(); } else { disableSota(); }
 			});
 		}
+		let iotaCb = document.getElementById('glIotaDir');
+		if (iotaCb) {
+			iotaCb.addEventListener('change', function () {
+				if (this.checked) { enableIota(); } else { disableIota(); }
+			});
+		}
 
 		// Reflect Refs/Overlays dropdown state on their toggle buttons.
 		let refsDrop = document.querySelector('.gl-refs');
@@ -1121,7 +1754,7 @@
 			let refsMenu = refsDrop.querySelector('.dropdown-menu');
 			if (refsBtn && refsMenu) {
 				refsMenu.addEventListener('change', function () { syncToggleActive(refsMenu, refsBtn); });
-				syncToggleActive(refsMenu, refsBtn);   // gridsquare is on by default -> active
+				syncToggleActive(refsMenu, refsBtn);   // nothing checked by default -> inactive
 			}
 		}
 
@@ -1141,6 +1774,66 @@
 		input2.addEventListener('keydown', function (e) {
 			if (e.key === 'Enter') { e.preventDefault(); go(); }
 		});
+
+		// Reference search: debounced substring match across the four cached
+		// directories. Indexes are built lazily on the first qualifying keystroke.
+		let searchInput = document.getElementById('glRefSearch');
+		if (searchInput) {
+			searchInput.addEventListener('input', function () {
+				let q = searchInput.value.trim();
+				if (q.length < SEARCH_MIN) { hideSearchResults(); return; }
+				if (searchTimer) { clearTimeout(searchTimer); }
+				searchTimer = setTimeout(function () {
+					if (searchIndexes) { renderResults(runSearch(q)); return; }
+					showSearchLoading();
+					ensureSearchIndexes().then(function () {
+						let cur = searchInput.value.trim();      // re-read: user may have kept typing
+						if (cur.length < SEARCH_MIN) { hideSearchResults(); return; }
+						renderResults(runSearch(cur));
+					});
+				}, SEARCH_DEBOUNCE);
+			});
+			searchInput.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape') { hideSearchResults(); searchInput.blur(); return; }
+				if (e.key === 'Enter') {
+					e.preventDefault();
+					if (searchActiveIdx >= 0 && searchActiveIdx < searchCurrent.length) {
+						onSearchSelect(searchCurrent[searchActiveIdx]);   // highlighted row
+					} else {
+						let q = searchInput.value.trim();
+						if (q.length >= SEARCH_MIN) { searchPlaces(q); } // place-name geocoding
+					}
+					return;
+				}
+				if (!searchCurrent.length) { return; }
+				if (e.key === 'ArrowDown') {
+					e.preventDefault();
+					searchActiveIdx = (searchActiveIdx + 1) % searchCurrent.length;
+					highlightSearchRow();
+				} else if (e.key === 'ArrowUp') {
+					e.preventDefault();
+					searchActiveIdx = (searchActiveIdx - 1 + searchCurrent.length) % searchCurrent.length;
+					highlightSearchRow();
+				}
+			});
+			// Clicking a result row selects it. mousedown prevention keeps focus on
+			// the input so the row's click registers before any blur.
+			let searchBox = document.getElementById('glRefSearchResults');
+			if (searchBox) {
+				searchBox.addEventListener('mousedown', function (e) { e.preventDefault(); });
+				searchBox.addEventListener('click', function (e) {
+					let item = e.target.closest ? e.target.closest('.gl-search-item') : null;
+					if (!item) { return; }
+					let idx = parseInt(item.dataset.idx, 10);
+					if (!isNaN(idx) && searchCurrent[idx]) { onSearchSelect(searchCurrent[idx]); }
+				});
+			}
+			// Dismiss the dropdown on any click outside the search wrapper.
+			document.addEventListener('click', function (e) {
+				let wrap = searchInput.closest('.gl-search-wrap');
+				if (wrap && !wrap.contains(e.target)) { hideSearchResults(); }
+			});
+		}
 
 		// Click the map to drop a marker showing the gridsquare + coordinates.
 		map.on('click', onMapClick);
@@ -1194,6 +1887,7 @@
 		if (clickSquare) { map.removeLayer(clickSquare); clickSquare = null; }
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (refOverlay)  { refOverlay.clearLayers(); }   // nearby POTA/SOTA/WWFF markers
+		clearBoundaries();                               // drawn park boundaries
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
 		stopTracking();  // stop autotracking, restore the Locate button
@@ -1204,6 +1898,12 @@
 		document.getElementById('glGrid').value = '';
 		document.getElementById('glGrid2').value = '';
 		document.getElementById('glInfo').textContent = '';
+
+		// Reference search: clear its field, dismiss the dropdown, drop its marker.
+		let searchInput = document.getElementById('glRefSearch');
+		if (searchInput) { searchInput.value = ''; }
+		hideSearchResults();
+		if (searchOverlay) { searchOverlay.clearLayers(); }
 	}
 
 	function onMapClick(e) {
@@ -1228,6 +1928,9 @@
 	function selectPoint(lat, lng, loc) {
 		loc = loc || latLngToLocator(lat, lng, 3);   // 6-character gridsquare
 		let cell = locatorToCell(loc);              // exact bounds of that grid cell
+
+		// Fill the gridsquare box so Go / QRB can be used from the clicked point.
+		document.getElementById('glGrid').value = loc;
 
 		// Only one click marker + square at a time: drop the previous ones.
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }

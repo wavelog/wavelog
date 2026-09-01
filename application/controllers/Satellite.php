@@ -82,7 +82,7 @@ class Satellite extends CI_Controller {
 
 		$this->load->model('satellite_model');
 
-		$id = $this->security->xss_clean($this->input->post('id', true));
+		$id = $this->input->post('id', true);
 		$satellite['name'] 	= $this->security->xss_clean($this->input->post('name'));
 		$satellite['displayname'] 	= $this->security->xss_clean($this->input->post('displayname'));
 		$satellite['orbit'] 	= $this->security->xss_clean($this->input->post('orbit'));
@@ -157,6 +157,7 @@ class Satellite extends CI_Controller {
 	}
 
 	public function satellite_data() {
+		session_write_close();
 
 		$this->load->model('satellite_model');
 		$satellite_data = $this->satellite_model->satellite_data();
@@ -282,7 +283,7 @@ class Satellite extends CI_Controller {
 			$date = $this->security->xss_clean($this->input->post('date'));
 			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
-			$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
+			$data = $this->calcPasses($tles, $yourgrid, $date, $mintime, $minelevation);
 
 			$this->load->view('satellite/passtable', $data);
 		}
@@ -524,7 +525,7 @@ class Satellite extends CI_Controller {
 
 		$data['custom_date_format'] = $custom_date_format;
 
-		$satname = $this->security->xss_clean($this->input->post('sat', true));
+		$satname = $this->input->post('sat', true);
 		$this->load->model('satellite_model');
 
 		$data['satinfo'] = $this->satellite_model->get_satellite_information($satname);
@@ -543,7 +544,7 @@ class Satellite extends CI_Controller {
 
 		$data['custom_date_format'] = $custom_date_format;
 
-		$id = $this->security->xss_clean($this->input->post('id', true));
+		$id = $this->input->post('id', true);
 		$this->load->model('satellite_model');
 
 		$data['satinfo'] = $this->satellite_model->getsatellite($id)->result();

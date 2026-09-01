@@ -9,73 +9,82 @@ class Counties extends CI_Model
             'backup'  => $this->config->item('cache_backup')  ?? 'file',
             'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
         ]);
+        $this->load->library('Genfunctions');
     }
 
     /*
-     * Returns a result of worked/confirmed US Counties, grouped by STATE
-     * QSL card and EQSL is valid for award. Satellite does not count.
-     * No band split, as it only count the number of counties in the award.
+     * Band condition for this award: Genfunctions::addBandToQuery(), except
+     * that satellite QSOs never count for USA-CA unless 'SAT' is selected.
      */
-    function get_counties_summary() {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+    function band_condition($bands, &$binding) {
+        $condition = $this->genfunctions->addBandToQuery($bands, $binding);
 
-        if ($logbooks_locations_array[0] === -1) {
-            return null;
+        if ($condition == '' && !in_array('SAT', (array)$bands, true)) {
+            $condition = " and (col_prop_mode != 'SAT' or col_prop_mode is NULL)";
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
-        $this->load->model('bands');
-
-		$bandslots = $this->bands->get_worked_bands('uscounties');
-
-		$bandslots_list = "'".implode("','",$bandslots)."'";
-
-        $sql = "select count(distinct COL_CNTY) countycountworked, coalesce(x.countycountconfirmed, 0) countycountconfirmed, thcv.COL_STATE
-                from " . $this->config->item('table_name') . " thcv
-                 left outer join (
-                        select count(distinct COL_CNTY) countycountconfirmed, COL_STATE
-                        from " . $this->config->item('table_name') .
-            " where station_id in (" . $location_list . ")" .
-            " and col_band in (" . $bandslots_list . ")" .
-            " and COL_DXCC in ('291', '6', '110')
-                    and coalesce(COL_CNTY, '') <> ''
-                    and COL_BAND != 'SAT'
-                    and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y')
-                    group by COL_STATE
-                    order by COL_STATE
-                ) x on thcv.COL_STATE = x.COL_STATE
-                 where station_id in (" . $location_list . ")" .
-                 " and col_band in (" . $bandslots_list . ")" .
-            " and COL_DXCC in ('291', '6', '110')
-                and coalesce(COL_CNTY, '') <> ''
-                and COL_BAND != 'SAT'
-                group by thcv.COL_STATE, countycountconfirmed
-                order by thcv.COL_STATE";
-
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        return $condition;
     }
 
     /*
-    * Makes a list of all counties in given state
-    */
-    function counties_details($state, $type) {
+     * Returns the bare county name from a "STATE,COUNTY" COL_CNTY value;
+     * bare names pass through unchanged.
+     */
+    function bare_county($county) {
+        return trim(preg_replace('/^.*,/', '', $county));
+    }
+
+    private function placeholders($values) {
+        if (empty($values)) {
+            return "''";
+        }
+        return implode(',', array_fill(0, count($values), '?'));
+    }
+
+
+    /*
+     * Worked/confirmed counties of a state for the detail dialogs. CSV
+     * counties come first (canonical name, case variants merged), counties
+     * only present in the log follow after and are flagged not_in_list.
+     */
+    function counties_details($state, $type, $postdata) {
         if ($type == 'worked') {
-            $counties = $this->get_counties($state, 'none');
+            $counties = $this->get_counties($state, 'none', $postdata);
         } else if ($type == 'confirmed') {
-            $counties = $this->get_counties($state, 'confirmed');
+            $counties = $this->get_counties($state, 'confirmed', $postdata);
         }
         if (!isset($counties)) {
             return 0;
-        } else {
-            ksort($counties);
-            return $counties;
         }
+
+        $canonical = array();
+        foreach ($this->get_counties_list($state) as $name) {
+            $canonical[strtoupper($name)] = $name;
+        }
+
+        $result = array();
+        $extras = array();
+        $seen = array();
+        foreach ($counties as $row) {
+            $bare = strtoupper($this->bare_county($row['COL_CNTY']));
+            if (isset($canonical[$bare])) {
+                if (!isset($seen[$bare])) {
+                    $seen[$bare] = true;
+                    $result[] = array('COL_CNTY' => $canonical[$bare], 'COL_STATE' => $row['COL_STATE']);
+                }
+            } else {
+                $row['not_in_list'] = true;
+                $extras[] = $row;
+            }
+        }
+
+        $by_name = function ($a, $b) { return strcasecmp($a['COL_CNTY'], $b['COL_CNTY']); };
+        usort($result, $by_name);
+        usort($extras, $by_name);
+        return array_merge($result, $extras);
     }
 
-    function get_counties($state, $confirmationtype) {
+    function get_counties($state, $confirmationtype, $postdata) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -83,23 +92,25 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
         $this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
 
-		$binding = [];
+		$binding = array_merge($logbooks_locations_array, $bandslots);
+		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
+		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
 
         $sql = "select distinct COL_CNTY, COL_STATE
 		from " . $this->config->item('table_name') . " thcv
-		where station_id in (" . $location_list . ")" .
-		" and col_band in (" . $bandslots_list . ")" .
+		where station_id in (" . $location_placeholders . ")" .
+		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in ('291', '6', '110')
-		and coalesce(COL_CNTY, '') <> ''
-		and COL_BAND != 'SAT'";
+		and coalesce(TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1)), '') <> ''
+		" . $band_condition . "
+		" . $mode_condition;
 
         if ($state != 'All') {
 			$sql .= " and COL_STATE = ?";
@@ -107,7 +118,7 @@ class Counties extends CI_Model
         }
 
         if ($confirmationtype != 'none') {
-            $sql .= " and (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y')";
+            $sql .= $this->genfunctions->addQslToQuery($postdata);
         }
 
         $sql .= " order by thcv.COL_STATE";
@@ -119,9 +130,12 @@ class Counties extends CI_Model
     /*
     * Returns worked and confirmed QSO counts per county for a given state.
     * Uses the same band/DXCC/SAT rules as get_counties() so the counts match
-    * what counts toward the USA-CA award.
+    * what counts toward the USA-CA award. Every county of the state is listed
+    * (worked or not); worked counties missing from US_counties.csv are
+    * appended after them. Names are the bare county names, matched
+    * case-insensitively.
     */
-    function get_county_counts($state) {
+    function get_county_counts($state, $postdata) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -129,32 +143,114 @@ class Counties extends CI_Model
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
 		$this->load->model('bands');
 
 		$bandslots = $this->bands->get_worked_bands('uscounties');
 
-		$bandslots_list = "'".implode("','",$bandslots)."'";
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
 
-		$binding = [];
+		$confirmed_condition = $this->genfunctions->addQslToQuery($postdata, true);
 
-        $sql = "select COL_CNTY,
+		$binding = array_merge($logbooks_locations_array, $bandslots);
+		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
+		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
+
+        // COL_CNTY is stored as "STATE,COUNTY" for US QSOs (ADIF format),
+        // but the counties are listed by their bare name.
+        $cnty_name = "TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1))";
+
+        $sql = "select $cnty_name as COL_CNTY,
 			count(*) as worked,
-			sum(case when (col_qsl_rcvd='Y' or col_eqsl_qsl_rcvd='Y') then 1 else 0 end) as confirmed
+			sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
 		from " . $this->config->item('table_name') . " thcv
-		where station_id in (" . $location_list . ")" .
-		" and col_band in (" . $bandslots_list . ")" .
+		where station_id in (" . $location_placeholders . ")" .
+		" and col_band in (" . $bandslots_placeholders . ")" .
 		" and COL_DXCC in ('291', '6', '110')
-		and coalesce(COL_CNTY, '') <> ''
-		and COL_BAND != 'SAT'";
+		and coalesce(TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1)), '') <> ''
+		" . $band_condition . "
+		" . $mode_condition;
 
 		if ($state != 'All') {
 			$sql .= " and COL_STATE = ?";
 			$binding[] = $state;
 		}
 
-		$sql .= " group by COL_CNTY order by COL_CNTY";
+		$sql .= " group by $cnty_name order by $cnty_name";
+
+		$query = $this->db->query($sql, $binding);
+
+        $worked = array();
+        foreach ($query->result_array() as $row) {
+            $worked[strtoupper($row['COL_CNTY'])] = $row;
+        }
+
+        $result = array();
+        foreach ($this->get_counties_list($state) as $county) {
+            $row = $worked[strtoupper($county)] ?? null;
+            $result[] = array(
+                'COL_CNTY'   => $county,
+                'worked'     => $row ? (int) $row['worked'] : 0,
+                'confirmed'  => $row ? (int) $row['confirmed'] : 0,
+            );
+            unset($worked[strtoupper($county)]);
+        }
+
+        // Counties in the log but not in US_counties.csv keep their counts
+        foreach ($worked as $row) {
+            $result[] = array(
+                'COL_CNTY'   => $row['COL_CNTY'],
+                'worked'     => (int) $row['worked'],
+                'confirmed'  => (int) $row['confirmed'],
+                'not_in_list' => true,
+            );
+        }
+
+        return $result;
+    }
+
+    /*
+     * Returns worked/confirmed QSO counts per county across every state in
+     * one query, for the counties map. Unlike get_county_counts(), this
+     * keeps COL_STATE and COL_CNTY together so same-named counties from
+     * different states don't collide.
+     */
+    function get_counties_map($postdata) {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        if ($logbooks_locations_array[0] === -1) {
+            return null;
+        }
+
+		$this->load->model('bands');
+
+		$bandslots = $this->bands->get_worked_bands('uscounties');
+
+		$location_placeholders = $this->placeholders($logbooks_locations_array);
+		$bandslots_placeholders = $this->placeholders($bandslots);
+
+		$confirmed_condition = $this->genfunctions->addQslToQuery($postdata, true);
+
+		$binding = array_merge($logbooks_locations_array, $bandslots);
+		$band_condition = $this->band_condition($postdata['band'] ?? 'All', $binding);
+		$mode_condition = $this->genfunctions->addModeToQuery($postdata['mode'] ?? 'All', $binding);
+
+        // COL_CNTY is stored as "STATE,COUNTY" for US QSOs (ADIF format),
+        // but the map keys on the bare name.
+        $cnty_name = "TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1))";
+
+        $sql = "select COL_STATE, $cnty_name as COL_CNTY,
+				count(*) as worked,
+				sum(case when " . $confirmed_condition . " then 1 else 0 end) as confirmed
+			from " . $this->config->item('table_name') . " thcv
+			where station_id in (" . $location_placeholders . ")" .
+			" and col_band in (" . $bandslots_placeholders . ")" .
+			" and COL_DXCC in ('291', '6', '110')
+			and coalesce(TRIM(SUBSTRING_INDEX(COL_CNTY, ',', -1)), '') <> ''
+			" . $band_condition . "
+			" . $mode_condition . "
+			group by COL_STATE, $cnty_name order by COL_STATE, $cnty_name";
 
 		$query = $this->db->query($sql, $binding);
         return $query->result_array();
@@ -167,6 +263,7 @@ class Counties extends CI_Model
     private $us_state_codes = array(
         'Alabama' => 'AL', 'Alaska' => 'AK', 'Arizona' => 'AZ', 'Arkansas' => 'AR',
         'California' => 'CA', 'Colorado' => 'CO', 'Connecticut' => 'CT', 'Delaware' => 'DE',
+        'District of Columbia' => 'DC',
         'Florida' => 'FL', 'Georgia' => 'GA', 'Hawaii' => 'HI', 'Idaho' => 'ID',
         'Illinois' => 'IL', 'Indiana' => 'IN', 'Iowa' => 'IA', 'Kansas' => 'KS',
         'Kentucky' => 'KY', 'Louisiana' => 'LA', 'Maine' => 'ME', 'Maryland' => 'MD',
@@ -180,66 +277,100 @@ class Counties extends CI_Model
         'Wisconsin' => 'WI', 'Wyoming' => 'WY',
     );
 
-    /*
-     * Returns the total number of counties per state (the "target") taken from
-     * assets/json/US_counties.csv, keyed by the 2-letter state code.
-     */
-    function get_counties_targets() {
-	    $cache_key = 'UsCountiesTargets';
+    // Parsed US_counties.csv map: state code => county names. Cached 24h.
+    private function parse_us_counties_csv() {
+	    $cache_key = 'UsCountiesList';
 
-	    if (!$targets = $this->cache->get($cache_key)) {
-		    $targets = array();
+	    if (!$counties = $this->cache->get($cache_key)) {
+		    $counties = array();
 		    $file = 'assets/json/US_counties.csv';
 
 		    if (is_readable($file) && ($handle = fopen($file, 'r')) !== false) {
 			    while (($row = fgetcsv($handle, 1000, ",", '"', '\\')) !== false) {
-				    if (count($row) < 1) {
+				    if (count($row) < 2) {
 					    continue;
 				    }
-				    $name = $row[0];
-				    $code = isset($this->us_state_codes[$name]) ? $this->us_state_codes[$name] : null;
+				    $code = isset($this->us_state_codes[$row[0]]) ? $this->us_state_codes[$row[0]] : null;
 				    if ($code !== null) {
-					    if (!isset($targets[$code])) {
-						    $targets[$code] = 0;
-					    }
-					    $targets[$code]++;
+					    $counties[$code][] = $row[1];
 				    }
 			    }
 			    fclose($handle);
 		    }
 
-		    ksort($targets);
-		    $this->cache->save($cache_key, $targets, (60 * 60 * 24));
+		    $this->cache->save($cache_key, $counties, (60 * 60 * 24));
 	    }
 
-	    return $targets;
+	    return $counties;
+    }
+
+    // All county names of a state (the "target" list)
+    function get_counties_list($state) {
+	    $counties = $this->parse_us_counties_csv();
+	    return isset($counties[$state]) ? $counties[$state] : array();
     }
 
     /*
-     * Returns worked/confirmed/target progress per US state, keyed by the
-     * 2-letter state code. Every state present in US_counties.csv is included,
-     * even if nothing has been worked there yet.
+     * Returns the counties of a state that count toward the target but are not
+     * worked yet: the US_counties.csv list minus the worked counties of the
+     * log. Names are compared case-insensitively, as a QSO's county can be
+     * typed or imported in any case.
      */
-    function get_counties_progress() {
-        $targets = $this->get_counties_targets();
-        $worked = $this->get_counties_summary();
+    function get_counties_needed($state, $postdata) {
+        $needed = array();
+        $worked = $this->get_counties($state, 'none', $postdata);
 
         $worked_map = array();
         if (isset($worked)) {
             foreach ($worked as $row) {
-                $worked_map[$row['COL_STATE']] = array(
-                    'worked'     => (int) $row['countycountworked'],
-                    'confirmed'  => (int) $row['countycountconfirmed'],
+                $worked_map[strtoupper($this->bare_county($row['COL_CNTY']))] = true;
+            }
+        }
+
+        foreach ($this->get_counties_list($state) as $county) {
+            if (!isset($worked_map[strtoupper($county)])) {
+                $needed[] = $county;
+            }
+        }
+
+        return $needed;
+    }
+
+    /*
+     * Returns worked/confirmed/target progress per US state, keyed by the
+     * 2-letter state code. Only counties present in US_counties.csv count;
+     * every such state is included, even if nothing has been worked there.
+     */
+    function get_counties_progress($postdata) {
+        $counties = $this->parse_us_counties_csv();
+        $county_counts = $this->get_counties_map($postdata);
+
+        // Keyed by uppercase "STATE|COUNTY", like counties_map()
+        $worked_map = array();
+        if (isset($county_counts)) {
+            foreach ($county_counts as $row) {
+                $worked_map[strtoupper($row['COL_STATE'] . '|' . trim($row['COL_CNTY']))] = array(
+                    'worked'    => (int) $row['worked'],
+                    'confirmed' => (int) $row['confirmed'],
                 );
             }
         }
 
         $progress = array();
-        foreach ($targets as $code => $target) {
+        foreach ($counties as $code => $names) {
+            $worked = 0;
+            $confirmed = 0;
+            foreach ($names as $name) {
+                $entry = $worked_map[strtoupper($code . '|' . $name)] ?? null;
+                if ($entry) {
+                    $worked += ($entry['worked'] > 0) ? 1 : 0;
+                    $confirmed += ($entry['confirmed'] > 0) ? 1 : 0;
+                }
+            }
             $progress[$code] = array(
-                'worked'     => isset($worked_map[$code]) ? $worked_map[$code]['worked'] : 0,
-                'confirmed'  => isset($worked_map[$code]) ? $worked_map[$code]['confirmed'] : 0,
-                'target'     => $target,
+                'worked'    => $worked,
+                'confirmed' => $confirmed,
+                'target'    => count($names),
             );
         }
 

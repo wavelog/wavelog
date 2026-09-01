@@ -84,6 +84,8 @@ class Qsl extends CI_Controller {
 
         $config['upload_path']          = $this->paths->getUserdataPath('qsl_card', 'p');
         $config['allowed_types']        = 'jpg|gif|png|jpeg|JPG|PNG';
+        // Align the filename's extension with the file's real content (JPEGs named .png etc.)
+        $this->upload_guard->normalize_image_ext('qslcardfront');
         $array = explode(".", $_FILES['qslcardfront']['name']);
         $ext = end($array);
         $config['file_name'] = $qsoid . '_' . time() . '_' . bin2hex(random_bytes(8)) . '.' . $ext;
@@ -132,6 +134,8 @@ class Qsl extends CI_Controller {
 
         $config['upload_path']          = $this->paths->getUserdataPath('qsl_card', 'p');
         $config['allowed_types']        = 'jpg|gif|png|jpeg|JPG|PNG';
+        // Align the filename's extension with the file's real content (JPEGs named .png etc.)
+        $this->upload_guard->normalize_image_ext('qslcardback');
         $array = explode(".", $_FILES['qslcardback']['name']);
         $ext = end($array);
         $config['file_name'] = $qsoid . '_' . time() . '_' . bin2hex(random_bytes(8)) . '.' . $ext;

@@ -47,46 +47,46 @@ function echo_table_col($row, $name)
 	switch ($name) {
 		case 'Mode':
 			echo '<td>';
-			echo $row->COL_SUBMODE == null ? $row->COL_MODE : $row->COL_SUBMODE . '</td>';
+			echo html_escape($row->COL_SUBMODE == null ? $row->COL_MODE : $row->COL_SUBMODE) . '</td>';
 			break;
 		case 'RSTS':
-			echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT;
+			echo '<td class="d-none d-sm-table-cell">' . html_escape($row->COL_RST_SENT);
 			if ($row->COL_STX) {
-				echo ' <span data-bs-toggle="tooltip" title="' . ($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">';
+				echo ' <span data-bs-toggle="tooltip" title="' . html_escape($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">';
 				printf("%03d", $row->COL_STX);
 				echo '</span>';
 			}
 			if ($row->COL_STX_STRING) {
-				echo ' <span data-bs-toggle="tooltip" title="' . ($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';
+				echo ' <span data-bs-toggle="tooltip" title="' . html_escape($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';
 			}
 			echo '</td>';
 			break;
 		case 'RSTR':
-			echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD;
+			echo '<td class="d-none d-sm-table-cell">' . html_escape($row->COL_RST_RCVD);
 			if ($row->COL_SRX) {
-				echo ' <span data-bs-toggle="tooltip" title="' . ($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">';
+				echo ' <span data-bs-toggle="tooltip" title="' . html_escape($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">';
 				printf("%03d", $row->COL_SRX);
 				echo '</span>';
 			}
 			if ($row->COL_SRX_STRING) {
-				echo ' <span data-bs-toggle="tooltip" title="' . ($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';
+				echo ' <span data-bs-toggle="tooltip" title="' . html_escape($row->COL_CONTEST_ID != "" ? $row->COL_CONTEST_ID : "n/a") . '" class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';
 			}
 			echo '</td>';
 			break;
 		case 'Country':
-			echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))) . '</td>';
+			echo '<td>' . html_escape(ucwords(strtolower(($row->COL_COUNTRY)))) . '</td>';
 			break;
 		case 'IOTA':
-			echo '<td>' . ($row->COL_IOTA) . '</td>';
+			echo '<td>' . html_escape($row->COL_IOTA) . '</td>';
 			break;
 		case 'SOTA':
-			echo '<td>' . ($row->COL_SOTA_REF) . '</td>';
+			echo '<td>' . html_escape($row->COL_SOTA_REF) . '</td>';
 			break;
 		case 'WWFF':
-			echo '<td>' . ($row->COL_WWFF_REF) . '</td>';
+			echo '<td>' . html_escape($row->COL_WWFF_REF) . '</td>';
 			break;
 		case 'POTA':
-			echo '<td>' . ($row->COL_POTA_REF) . '</td>';
+			echo '<td>' . html_escape($row->COL_POTA_REF) . '</td>';
 			break;
 		case 'Grid':
 			$CI->load->library('qra');
@@ -98,30 +98,30 @@ function echo_table_col($row, $name)
 		case 'Band':
 			echo '<td>';
 			if ($row->COL_SAT_NAME != null) {
-				echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.$row->COL_SAT_NAME.'</span></a></td>';
+				echo '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank"><span data-bs-toggle="tooltip" title="'.html_escape($row->COL_BAND ?? '').'">'.html_escape($row->COL_SAT_NAME).'</span></a></td>';
 			} else {
-				echo strtolower($row->COL_BAND);
+				echo html_escape(strtolower($row->COL_BAND));
 			}
 			echo '</td>';
 			break;
 		case 'Frequency':
 			echo '<td>';
 			if ($row->COL_SAT_NAME ?? '' != '') {
-				echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($CI->frequency->qrg_conversion($row->COL_FREQ ?? 0)).'">'.$row->COL_SAT_NAME.'</span></a></td>';
+				echo '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank"><span data-bs-toggle="tooltip" title="'.($CI->frequency->qrg_conversion($row->COL_FREQ ?? 0)).'">'.html_escape($row->COL_SAT_NAME).'</span></a></td>';
 			} else {
 				if ($row->COL_FREQ != null) {
 					echo $CI->frequency->qrg_conversion($row->COL_FREQ ?? 0);
 				} else {
-					echo strtolower($row->COL_BAND);
+					echo html_escape(strtolower($row->COL_BAND));
 				}
 			}
 			echo '</td>';
 			break;
 		case 'State':
-			echo '<td>' . ($row->COL_STATE) . '</td>';
+			echo '<td>' . html_escape($row->COL_STATE) . '</td>';
 			break;
 		case 'Operator':
-			echo '<td>' . ($row->COL_OPERATOR) . '</td>';
+			echo '<td>' . html_escape($row->COL_OPERATOR) . '</td>';
 			break;
 	}
 }
@@ -189,8 +189,8 @@ if ($public_maps_option == 'true') { ?>
 										echo date('H:i', $timestamp); ?></td>
 
 								<?php } ?>
-								<td>
-									<?php echo str_replace("0", "&Oslash;", strtoupper($row->COL_CALL)); ?>
+								<td class="callsign">
+									<?php echo html_escape(strtoupper($row->COL_CALL)); ?>
 								</td>
 								<?php
 								echo_table_col($row, $this->session->userdata('user_column1') == "" ? 'Mode' : $this->session->userdata('user_column1'));
@@ -264,17 +264,15 @@ if ($public_maps_option == 'true') { ?>
 
 					<tr>
 						<td width="50%"><?= __("Worked"); ?></td>
-						<td width="50%"><?php echo $total_countries; ?></td>
+                  <td width="50%"><?php echo $total_countries; ?> <?php echo (isset($total_deleted_countries) && $total_deleted_countries > 0) ? "<span title=\"". __("Deleted DXCCs") ."\" aria-label=\"i". __("Deleted DXCCs") .": ".$total_deleted_countries."\" data-bs-toggle=\"tooltip\">(".$total_deleted_countries.")</span>" : ''; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
+						<td width="50%"><?= __("Confirmed"); ?></td>
 						<td width="50%">
-							<?php echo $total_countries_confirmed_paper; ?> /
-							<?php echo $total_countries_confirmed_eqsl; ?> /
-							<?php echo $total_countries_confirmed_lotw; ?>
+							<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $total_countries_confirmed_paper; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?></span> /
+							<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $total_countries_confirmed_lotw; ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?></span>
 						</td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Needed"); ?></td>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>

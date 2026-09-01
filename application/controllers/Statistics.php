@@ -63,8 +63,8 @@ class Statistics extends CI_Controller {
 	public function get_year_month() {
 		$this->load->model('logbook_model');
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 
 		// get data
 		$totals_month = $this->logbook_model->totals_year_month($dateFrom, $dateTo);
@@ -85,8 +85,8 @@ class Statistics extends CI_Controller {
 
 	public function get_mode() {
 		$this->load->model('logbook_model');
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 
 		$modestats = array();
 
@@ -128,8 +128,8 @@ class Statistics extends CI_Controller {
 
 		$bandstats = array();
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 		$total_bands = $this->logbook_model->total_bands($dateFrom, $dateTo);
 
 		$i = 0;
@@ -154,8 +154,8 @@ class Statistics extends CI_Controller {
 		$operatorstats = array();
 
 		//get date range if present
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 
 		//load stats
 		$total_operators = $this->logbook_model->total_operators($dateFrom, $dateTo);
@@ -180,8 +180,8 @@ class Statistics extends CI_Controller {
 
 		$satstats = array();
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 		$total_sat = $this->logbook_model->total_sat($dateFrom, $dateTo);
 		$i = 0;
 
@@ -201,8 +201,8 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 		$result = $this->stats->unique_sat_callsigns($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['satunique'] = $result['satunique'];
@@ -219,8 +219,8 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 		$result = $this->stats->unique_sat_grids($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['satunique'] = $result['satunique'];
@@ -237,8 +237,8 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 		$result = $this->stats->unique_callsigns($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandunique'] = $result['bandunique'];
@@ -254,8 +254,8 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 		$result = $this->stats->total_sat_qsos($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['sattotal'] = $result['sattotal'];
@@ -271,8 +271,8 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 		$result = $this->stats->total_qsos($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandtotal'] = $result['bandtotal'];
@@ -284,14 +284,24 @@ class Statistics extends CI_Controller {
 
 	public function qslstats() {
 		$this->load->model('stats');
+		$this->load->model('timeline_model');
 
 		$total_qsos = array();
 
-		$result = $this->stats->total_qsls();
+		$year = $this->input->get('year', true);
+		if (!ctype_digit((string) $year) || strlen((string) $year) != 4) {
+			$year = null;
+		}
+		$dateFrom = $year !== null ? $year . '-01-01' : null;
+		$dateTo = $year !== null ? $year . '-12-31' : null;
+
+		$result = $this->stats->total_qsls($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['qsosatarray'] = $result['qsoSatView'];
-		$total_qsos['bands'] = $this->stats->get_bands();
-		$total_qsos['sats'] = $this->stats->get_sats();
+		$total_qsos['bands'] = $this->stats->get_bands($dateFrom, $dateTo);
+		$total_qsos['sats'] = $this->stats->get_sats($dateFrom, $dateTo);
+		$total_qsos['years'] = $this->timeline_model->get_years();
+		$total_qsos['selected_year'] = $year;
 
 		// Set Page Title
 		$data['page_title'] = __("QSL Statistics");
@@ -320,9 +330,25 @@ class Statistics extends CI_Controller {
 		$data['sats'] = $this->bands->get_worked_sats();
 		$data['orbits'] = $this->bands->get_worked_orbits();
 
+		// Center for the azimuthal map: active station location's gridsquare
+		$this->load->library('qra');
+		$data['home_lat'] = null;
+		$data['home_lng'] = null;
+		$data['homegrid'] = '';
+		$homegrid = explode(',', $this->stations->find_gridsquare());
+		if ($homegrid && isset($homegrid[0]) && $homegrid[0] != '0') {
+			$latlng = $this->qra->qra2latlong($homegrid[0]);
+			if ($latlng !== false) {
+				$data['home_lat'] = round((float)$latlng[0], 6);
+				$data['home_lng'] = round((float)$latlng[1], 6);
+				$data['homegrid'] = strtoupper($homegrid[0]);
+			}
+		}
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/chart.js',
+			'assets/js/d3.min.js',
 			'assets/js/sections/antennastats.js',
 			'assets/js/bootstrap-multiselect.js',
 		];
@@ -334,12 +360,12 @@ class Statistics extends CI_Controller {
 	}
 
 	public function get_azimuth_data() {
-		$band = xss_clean($this->input->post('band'));
-		$mode = xss_clean($this->input->post('mode'));
-		$sat = xss_clean($this->input->post('sat'));
-		$orbit = xss_clean($this->input->post('orbit'));
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$band = $this->input->post('band', true);
+		$mode = $this->input->post('mode', true);
+		$sat = $this->input->post('sat', true);
+		$orbit = $this->input->post('orbit', true);
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 
 		$this->load->model('stats');
 		$azimutharray = $this->stats->azimuthdata($band, $mode, $sat, $orbit, $dateFrom, $dateTo);
@@ -349,10 +375,10 @@ class Statistics extends CI_Controller {
 	}
 
 	public function get_elevation_data() {
-		$sat = xss_clean($this->input->post('sat'));
-		$orbit = xss_clean($this->input->post('orbit'));
-		$dateFrom = xss_clean($this->input->post('dateFrom'));
-		$dateTo = xss_clean($this->input->post('dateTo'));
+		$sat = $this->input->post('sat', true);
+		$orbit = $this->input->post('orbit', true);
+		$dateFrom = $this->input->post('dateFrom', true);
+		$dateTo = $this->input->post('dateTo', true);
 
 		$this->load->model('stats');
 		$elevationarray = $this->stats->elevationdata($sat, $orbit, $dateFrom, $dateTo);
@@ -364,10 +390,10 @@ class Statistics extends CI_Controller {
 	public function sat_qsos_ajax() {
 		$this->load->model('stats');
 
-		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
-		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
-		$dateFrom = $this->security->xss_clean($this->input->post("dateFrom"));
-		$dateTo = $this->security->xss_clean($this->input->post("dateTo"));
+		$sat = str_replace('"', "", $this->input->post("Sat", true));
+		$mode = str_replace('"', "", $this->input->post("Mode", true));
+		$dateFrom = $this->input->post("dateFrom", true);
+		$dateTo = $this->input->post("dateTo", true);
 		$data['results'] = $this->stats->sat_qsos($sat,$dateFrom,$dateTo,$mode);
 
 		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
@@ -401,8 +427,8 @@ class Statistics extends CI_Controller {
 	}
 
 	public function getInitials() {
-		$band = xss_clean($this->input->post('band'));
-		$mode = xss_clean($this->input->post('mode'));
+		$band = $this->input->post('band', true);
+		$mode = $this->input->post('mode', true);
 
 		if ($this->session->userdata('user_measurement_base') == NULL) {
 			$measurement_base = $this->config->item('measurement_base');

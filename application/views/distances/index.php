@@ -39,7 +39,7 @@
                 <select class="form-select my-1 me-sm-2 w-auto"  id="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
                     <option value="All"><?= __("All")?></option>
                     <?php foreach($sats_available as $sat) {
-                        echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
+                        echo '<option value="' . html_escape($sat) . '"' . '>' . html_escape($sat) . '</option>'."\n";
                     } ?>
                 </select>
             <?php } else { ?>
@@ -55,16 +55,21 @@
                     ?>
             </select>
 			<label class="my-1 me-2" for="propmode"><?= __("Propagation"); ?></label>
-                <div class="my-1 me-2">
-                    <select class="form-select w-auto" name="propmode" id="propmode">
-                        <option value="All"><?= __("All"); ?></option>
-                        <option value="NoSAT"><?= __("All but SAT"); ?></option>
-                        <option value="None"><?= __("None/Empty"); ?></option>
-                        <?php foreach ($adif_propmodes as $mode => $desc) {
-                           echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
-                        } ?>
-                    </select>
-                </div>
+                <select class="form-select my-1 me-sm-2 w-auto" name="propmode" id="propmode" style="max-width: 12rem;">
+                    <option value="All"><?= __("All"); ?></option>
+                    <option value="NoSAT"><?= __("All but SAT"); ?></option>
+                    <option value="None"><?= __("None/Empty"); ?></option>
+                    <?php foreach ($adif_propmodes as $mode => $desc) {
+                       echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
+                    } ?>
+                </select>
+            <label class="my-1 me-2" for="distplot_mode"><?= __("Mode"); ?></label>
+            <select class="form-select my-1 me-sm-2 w-auto" id="distplot_mode">
+                <option value="All"><?= __("All"); ?></option>
+                <?php foreach ($modes as $mode) {
+                    echo '<option value="' . $mode . '">' . strtoupper($mode) . '</option>' . "\n";
+                } ?>
+            </select>
             <button id="plot" type="button" name="plot" class="btn btn-primary ld-ext-right ld-ext-right-plot" onclick="distPlot(this.form)"><?= __("Show")?><div class="ld ld-ring ld-spin"></div></button>
         </form>
     </div>

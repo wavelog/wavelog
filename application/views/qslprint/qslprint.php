@@ -72,22 +72,22 @@ if ($qsos->result() != NULL) { ?>
 		echo '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" name="selected_qsos[]" value="'.$qsl->COL_PRIMARY_KEY.'" /></div></td>';
                 ?><td style='text-align: center' data-search="<?php echo htmlspecialchars(strtoupper($qsl->COL_CALL), ENT_QUOTES); ?>">
 				<span class="qso_call d-flex align-items-center justify-content-between">
-					<a id="edit_qso" href="javascript:displayQso(<?php echo $qsl->COL_PRIMARY_KEY; ?>);"><?php echo str_replace("0","&Oslash;",strtoupper($qsl->COL_CALL)); ?></a>
+					<a id="edit_qso" class="callsign" href="javascript:displayQso(<?php echo (int) $qsl->COL_PRIMARY_KEY; ?>);"><?php echo html_escape(strtoupper($qsl->COL_CALL)); ?></a>
 					<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">
-						<a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on QRZ.com"></a>
-						<a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on HamQTH"></a>
-						<a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on eQSL.cc"></a>
+						<a target="_blank" href="https://www.qrz.com/db/<?php echo html_escape(strtoupper($qsl->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo html_escape(strtoupper($qsl->COL_CALL)); ?> on QRZ.com"></a>
+						<a target="_blank" href="https://www.hamqth.com/<?php echo html_escape(strtoupper($qsl->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo html_escape(strtoupper($qsl->COL_CALL)); ?> on HamQTH"></a>
+						<a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo html_escape(strtoupper($qsl->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo html_escape(strtoupper($qsl->COL_CALL)); ?> on eQSL.cc"></a>
 					</span>
 				</span>
 			</td><?php
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
-		echo '<td style=\'text-align: center\'>'; echo $qsl->COL_SUBMODE==null?$qsl->COL_MODE:$qsl->COL_SUBMODE; echo '</td>';
-		echo '<td class=\'col-band\' style=\'text-align: center\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . $qsl->COL_SAT_NAME . ' '. strtolower($qsl->COL_BAND) . '/' . strtolower($qsl->COL_BAND_RX); } else { echo strtolower($qsl->COL_BAND); }; echo '</td>';
-		echo '<td class=\'col-freq\' style=\'text-align: center;display:none;\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . $qsl->COL_SAT_NAME . ' ' . $ci->frequency->qrg_conversion($qsl->frequency) . '/' . $ci->frequency->qrg_conversion($qsl->frequency_rx); } else { echo $ci->frequency->qrg_conversion($qsl->frequency); }; echo '</td>';
-		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_SENT . '</td>';
-		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_RCVD . '</td>';
-		echo '<td style=\'text-align: center\'>' . $qsl->COL_QSL_VIA . '</td>';
+		echo '<td style=\'text-align: center\'>'; echo $qsl->COL_SUBMODE==null?html_escape($qsl->COL_MODE):html_escape($qsl->COL_SUBMODE); echo '</td>';
+		echo '<td class=\'col-band\' style=\'text-align: center\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . html_escape($qsl->COL_SAT_NAME) . ' '. html_escape(strtolower($qsl->COL_BAND)) . '/' . html_escape(strtolower($qsl->COL_BAND_RX)); } else { echo html_escape(strtolower($qsl->COL_BAND)); }; echo '</td>';
+		echo '<td class=\'col-freq\' style=\'text-align: center;display:none;\'>'; if($qsl->COL_SAT_NAME != null) { echo __("SAT") . ' ' . html_escape($qsl->COL_SAT_NAME) . ' ' . $ci->frequency->qrg_conversion($qsl->frequency) . '/' . $ci->frequency->qrg_conversion($qsl->frequency_rx); } else { echo $ci->frequency->qrg_conversion($qsl->frequency); }; echo '</td>';
+		echo '<td style=\'text-align: center\'>' . html_escape($qsl->COL_RST_SENT) . '</td>';
+		echo '<td style=\'text-align: center\'>' . html_escape($qsl->COL_RST_RCVD) . '</td>';
+		echo '<td style=\'text-align: center\'><span class="callsign">' . html_escape($qsl->COL_QSL_VIA) . '</span></td>';
 		echo '<td style=\'text-align: center\' data-search="' . htmlspecialchars($qsl->station_callsign, ENT_QUOTES) . '"><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->station_profile_name . '</span></td>';
 		echo '<td class=\'send-method\' style=\'text-align: center\'>'; echo_qsl_sent_via($qsl->COL_QSL_SENT_VIA); echo '</td>';
@@ -99,7 +99,7 @@ if ($qsos->result() != NULL) { ?>
 		echo '<td style=\'text-align: center; white-space: nowrap;\'><div class="d-inline-flex align-items-center gap-1">';
 		echo '<button type="button" onclick="mark_qsl_sent(\''.$qsl->COL_PRIMARY_KEY.'\', \''. $qsl->COL_QSL_SENT_VIA. '\')" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-title="' . __("Mark as sent") . '"><i class="fa fa-check"></i></button>';
 		echo '<button type="button" onclick="deleteFromQslQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-title="' . __("Remove") . '"><i class="fas fa-trash-alt"></i></button>';
-		echo '<button type="button" onclick="openQsoList(\''.$qsl->COL_CALL.'\')" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-title="' . __("QSO List") . '"><i class="fas fa-search"></i></button>';
+		echo '<button type="button" onclick="openQsoList(\''.html_escape($qsl->COL_CALL).'\')" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-title="' . __("QSO List") . '"><i class="fas fa-search"></i></button>';
 		echo '</div></td>';
 		echo '</tr>';
 	}

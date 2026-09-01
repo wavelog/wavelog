@@ -32,6 +32,9 @@ $(document).ready(function() {
 });
 
 function searchpasses() {
+	if ($("#yourgrid").val() != '') {
+		$('#nogridhint').attr('style', 'display: none;');
+	}
 	localStorage.setItem(`user_${user_id}_selectedsatellites`, $('#satlist').val());
 	if ($("#satlist").val().length > 0) {;
 		$(".ld-ext-right-plot").addClass('running');

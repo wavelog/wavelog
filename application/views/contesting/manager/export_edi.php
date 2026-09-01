@@ -18,7 +18,7 @@ function edi_selected($reg1testsettings, $key, $value, $default = '') {
 	</div>
 
 	<p class="text-muted">
-		<?php echo htmlspecialchars($session_info['station_callsign']) ?>
+		<?php echo '<span class="callsign">' . htmlspecialchars($session_info['station_callsign']) . '</span>'; ?>
 		&bull;
 		<?php echo htmlspecialchars(date('Y-m-d H:i', strtotime($session_info['time_start']))) ?>
 		&ndash;

@@ -18,12 +18,14 @@ class Distances_model extends CI_Model
 		}
 
 		$result = array();
+		$station_grid_found = 0;
 
 		foreach ($logbooks_locations_array as $station_id) {
 
 			$station_gridsquare = $this->find_gridsquare($station_id);
 
 			if ($station_gridsquare != null) {
+				$station_grid_found = 1;
 				$gridsquare = explode(',', $station_gridsquare); // We need to convert to an array, since a user can enter several gridsquares
 
 				$table = $this->config->item('table_name');
@@ -70,6 +72,12 @@ class Distances_model extends CI_Model
 					$params[] = $clean_postdata['propagation'];
 				}
 
+				if (!empty($clean_postdata['mode']) && $clean_postdata['mode'] != 'All') {
+					$sql .= " AND (col_mode = ? OR col_submode = ?)";
+					$params[] = $clean_postdata['mode'];
+					$params[] = $clean_postdata['mode'];
+				}
+
 				$queryresult = $this->db->query($sql, $params);
 
 				if ($queryresult->result_array()) {
@@ -88,8 +96,13 @@ class Distances_model extends CI_Model
 			echo json_encode($result);
 		}
 		else {
-			header('Content-Type: application/json');
-			echo json_encode(array('Error' => 'No QSOs found to plot.'));
+			if ($station_grid_found == 0) {
+				header('Content-Type: application/json');
+				echo json_encode(array('Error' => 'No station gridsquare(s) found in active logbook. Please check.'));
+			} else {
+				header('Content-Type: application/json');
+				echo json_encode(array('Error' => 'No QSOs found to plot.'));
+			}
 		}
 
 	}
@@ -146,6 +159,43 @@ class Distances_model extends CI_Model
 		}
 
 		return null;
+	}
+
+	/*
+	 * Returns every mode/submode worked in the active logbook, lowercased and
+	 * sorted. Used to populate the mode filter dropdown.
+	 */
+	function get_worked_modes() {
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if ($logbooks_locations_array[0] === -1) {
+			return array();
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		// get all worked modes from database
+		$data = $this->db->query(
+			"SELECT distinct LOWER(`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id in (" . $location_list . ") order by COL_MODE ASC"
+		);
+		$results = array();
+		foreach ($data->result() as $row) {
+			array_push($results, $row->COL_MODE);
+		}
+
+		$data = $this->db->query(
+			"SELECT distinct LOWER(`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id in (" . $location_list . ") and coalesce(COL_SUBMODE, '') <> '' order by COL_SUBMODE ASC"
+		);
+		foreach ($data->result() as $row) {
+			if (!in_array($row, $results)) {
+				array_push($results, $row->COL_SUBMODE);
+			}
+		}
+		asort($results);
+
+		return $results;
 	}
 
     // This functions takes query result from the database and extracts grids from the qso,
@@ -357,7 +407,7 @@ class Distances_model extends CI_Model
     /*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($distance, $band, $sat, $propagation){
+	public function qso_details($distance, $band, $sat, $propagation, $mode = 'All'){
 		$distarray = $this->getdistparams($distance);
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -417,6 +467,12 @@ class Distances_model extends CI_Model
 		} else {				// Propmode set, take care of it
 			$sql .= " AND col_prop_mode = ?";
 			$params[] = $propagation;
+		}
+
+		if ($mode != 'All' && $mode != '') {
+			$sql .= " AND (col_mode = ? OR col_submode = ?)";
+			$params[] = $mode;
+			$params[] = $mode;
 		}
 
 		$sql .= " ORDER BY COL_TIME_ON DESC";
