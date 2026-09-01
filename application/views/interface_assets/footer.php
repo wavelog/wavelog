@@ -82,6 +82,7 @@
     var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
     var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
     var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
+    var lang_qso_realtime_export_failed = "<?= __("Realtime upload failed: %s"); ?>";
     var lang_qso_added_to_backlog = "<?= __("QSO Added to Backlog"); ?>";
     var lang_qso_send_email_to = "<?= __("Send email to %s"); ?>";
     var lang_qso_callsign_confirmed = "<?= __("Callsign was already worked and confirmed in the past on this band and mode!"); ?>";
