@@ -5,12 +5,13 @@
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024, 2025.
 # Juuso_W <oh1jw@tuta.io>, 2026.
 # "Juuso W." <oh1jw@tuta.io>, 2026.
+# Miko Savolainen <oh3cyt@oh3cyt.com>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-01 10:50+0000\n"
-"PO-Revision-Date: 2026-06-29 12:11+0000\n"
-"Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
+"PO-Revision-Date: 2026-09-01 12:38+0000\n"
+"Last-Translator: Miko Savolainen <oh3cyt@oh3cyt.com>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
 "Language: fi_FI\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -328,7 +329,7 @@ msgstr "ITU-vyöhykkeet"
 
 #: application/controllers/Activationplanner.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Osavaltio / Provinssi"
 
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
@@ -407,13 +408,15 @@ msgstr "POTA-tiedot tuotu"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"AMSAT-tilapalvelu ei ole juuri nyt käytettävissä. Ole hyvä ja yritä "
+"myöhemmin uudelleen."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "AMSAT-satelliittien tila"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -466,27 +469,27 @@ msgstr "API-avain %s on poistettu"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Ole hyvä ja anna tunnisteen nimi"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Valitse vähintään yksi oikeus"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "API-tunniste luotu"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "API-tunnisteen luonti epäonnistui"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Virheellinen API-tunniste"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "API-tunniste on poistettu"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:194
@@ -834,31 +837,31 @@ msgstr "WAIP"
 
 #: application/controllers/Awards.php:2572
 msgid "England"
-msgstr ""
+msgstr "Englanti"
 
 #: application/controllers/Awards.php:2573
 msgid "Isle of Man"
-msgstr ""
+msgstr "Mansaari"
 
 #: application/controllers/Awards.php:2574
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Pohjois-Irlanti"
 
 #: application/controllers/Awards.php:2575
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: application/controllers/Awards.php:2576
 msgid "Scotland"
-msgstr ""
+msgstr "Skotlanti"
 
 #: application/controllers/Awards.php:2577
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2578
 msgid "Wales"
-msgstr ""
+msgstr "Wales"
 
 #: application/controllers/Awards.php:2794
 #: application/views/awards/wac/index.php:7
@@ -893,7 +896,7 @@ msgstr "Awardi - AMSAT Rover"
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Atsimutaalinen kartta"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:359
@@ -1027,47 +1030,49 @@ msgstr "Käyttäjää ei voitu poistaa kerhosta."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Jäseniä ei ole valittu."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Yksikään valituista käyttäjistä ei ole tämän kerhon jäsen."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Ei voida jatkaa: tämä poistaisi kerhon viimeisen virkailijan. Instanssin "
+"ylläpitäjän on suoritettava tämä toiminto."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Kerhon jäsenen oikeuksien päivittäminen epäonnistui."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Yhtään jäsentä ei päivitetty."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d jäsen päivitetty."
+msgstr[1] "%d jäsentä päivitetty."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Käyttäjien poistaminen kerhosta epäonnistui."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Yhtään jäsentä ei poistettu."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d jäsen poistettu."
+msgstr[1] "%d jäsentä poistettu."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1132,7 +1137,7 @@ msgstr "Päivitä kilpailu"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Kilpailu %s päivitetty"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:322
@@ -1208,22 +1213,22 @@ msgstr "Tapahtui virhe kilpailusession poistamisessa. Yritä uudelleen."
 #: application/controllers/Contesting.php:782
 #: application/models/Contesting_model.php:291
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "Vain kerhoaseman virkailijat voivat poistaa."
 
 #: application/controllers/Contesting.php:790
 msgid "No contest sessions selected."
-msgstr ""
+msgstr "Yhtään kilpailujaksoa ei ole valittu."
 
 #: application/controllers/Contesting.php:798
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d kilpailujakso poistettu."
+msgstr[1] "%d kilpailujaksoa poistettu."
 
 #: application/controllers/Contesting.php:800
 msgid "There was an error deleting the contest sessions. Please try again."
-msgstr ""
+msgstr "Kilpailujaksojen poistamisessa tapahtui virhe. Yritä uudelleen."
 
 #: application/controllers/Contesting.php:1016
 msgid "Operator switching is disabled."
@@ -1282,7 +1287,7 @@ msgstr "Mantereet"
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Laske QSO:t per..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1491
@@ -1404,7 +1409,7 @@ msgstr "CQ-alue"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "POTA Referenssi"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
@@ -1445,27 +1450,27 @@ msgstr "Cron manageri"
 
 #: application/controllers/Cron.php:176
 msgid "Manual execution of cronjobs is disabled."
-msgstr ""
+msgstr "Cron-töiden manuaalinen suorittaminen on poistettu käytöstä."
 
 #: application/controllers/Cron.php:186
 msgid "Cronjob not found."
-msgstr ""
+msgstr "Cron-työtä ei löytynyt."
 
 #: application/controllers/Cron.php:192
 msgid "Disabled cronjobs cannot be run."
-msgstr ""
+msgstr "Käytöstä poistettuja cron-töitä ei voi suorittaa."
 
 #: application/controllers/Cron.php:200
 msgid "Cronjob is already running."
-msgstr ""
+msgstr "Cron-työ on jo käynnissä."
 
 #: application/controllers/Cron.php:206
 msgid "Cronjob executed successfully."
-msgstr ""
+msgstr "Cron-työ suoritettu onnistuneesti."
 
 #: application/controllers/Cron.php:210
 msgid "Cronjob execution failed."
-msgstr ""
+msgstr "Cron-työn suoritus epäonnistui."
 
 #: application/controllers/Cron.php:222 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
@@ -1506,7 +1511,7 @@ msgstr "poistettu käytöstä"
 #: application/controllers/Cron.php:332 application/views/cron/index.php:81
 #: application/views/cron/index.php:113
 msgid "Run Now"
-msgstr ""
+msgstr "Suorita nyt"
 
 #: application/controllers/Cron.php:425
 #: application/views/interface_assets/footer.php:45
@@ -1548,7 +1553,7 @@ msgstr "Hallintapaneeli"
 
 #: application/controllers/Dashboard.php:222
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:684
@@ -1564,7 +1569,7 @@ msgstr "SAT"
 
 #: application/controllers/Dashboard.php:222
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1936,7 +1941,7 @@ msgstr "Mallipohjan JSON on virheellinen"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Mallissa ei ole elementtejä"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
@@ -3150,11 +3155,11 @@ msgstr "OQRS Pyynnöt"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Syötä kelvollinen päivämäärä."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Syötä kelvollinen aika."
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -3298,7 +3303,7 @@ msgstr "Valittuja QSO-tunnuksia (QSO-ID) ei annettu"
 
 #: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "Valitun QSL-postikortin PDF-tiedoston luonti epäonnistui: "
 
 #: application/controllers/Qslprint.php:42
 msgid "Print Requested QSLs"
@@ -3310,7 +3315,7 @@ msgstr "Lisää QSO"
 
 #: application/controllers/Qso.php:229
 msgid "QSO could not be saved"
-msgstr ""
+msgstr "QSO:n tallennus epäonnistui"
 
 #: application/controllers/Qso.php:838 application/controllers/Qso.php:861
 #, php-format
