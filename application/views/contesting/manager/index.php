@@ -62,7 +62,7 @@
                                         <td><?php echo !empty($row['time_start']) ? date($custom_date_format . ' H:i', strtotime($row['time_start'])) : '-'; ?></td>
                                         <td><?php echo !empty($row['time_end']) ? date($custom_date_format . ' H:i', strtotime($row['time_end'])) : '-'; ?></td>
                                         <td><?php echo $row['display_name'] ?></td>
-                                        <td><?php echo isset($row['station']) ? $row['station'] : '-'; ?></td>
+                                        <td class="callsign"><?php echo isset($row['station']) ? $row['station'] : '-'; ?></td>
                                         <td><?php echo isset($row['comment']) ? $row['comment'] : '-'; ?></td>
                                         <td><?php echo isset($row['qso_count']) ? $row['qso_count'] : '0'; ?></td>
                                         <td>

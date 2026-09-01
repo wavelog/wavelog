@@ -142,7 +142,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 			$save_path = array(
 				'host'    => $matches[1],
 				'port'    => empty($matches[2]) ? NULL : $matches[2],
-				'timeout' => NULL // We always pass this to Redis::connect(), so it needs to exist
+				'timeout' => 0.0 // We always pass this to Redis::connect(), so it needs to exist
 			);
 		}
 		else
@@ -156,7 +156,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 			{
 				$save_path['password'] = preg_match('#auth=([^\s&]+)#', $matches['options'], $match) ? $match[1] : NULL;
 				$save_path['database'] = preg_match('#database=(\d+)#', $matches['options'], $match) ? (int) $match[1] : NULL;
-				$save_path['timeout']  = preg_match('#timeout=(\d+\.\d+)#', $matches['options'], $match) ? (float) $match[1] : NULL;
+				$save_path['timeout']  = preg_match('#timeout=(\d+\.\d+)#', $matches['options'], $match) ? (float) $match[1] : 0.0;
 
 				preg_match('#prefix=([^\s&]+)#', $matches['options'], $match) && $this->_key_prefix = $match[1];
 			}
@@ -216,9 +216,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 		}
 		else
 		{
-			$this->_redis = $redis;
-			$this->php5_validate_id();
-			return $this->_success;
+			log_message('error', 'Session: Unable to connect to Redis with the configured settings.');
 		}
 
 		return $this->_failure;
@@ -414,21 +412,27 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 			return $this->_redis->{$this->_setTimeout_name}($this->_lock_key, 300);
 		}
 
-		// 30 attempts to obtain a lock, in case another request already has it
+		// Wavelog: upstream CI3 polled with sleep(1), so every waiting request paid a full
+		// second even when the lock was released milliseconds later. With several parallel
+		// AJAX requests per page this produced a 1s/2s/3s staircase. Polling at 100ms keeps
+		// the total wait ceiling at 30s while picking up a released lock almost immediately.
+		$retry_interval = 100000; // microseconds
+		$max_attempts = 300;
+
 		$lock_key = $this->_key_prefix.$session_id.':lock';
 		$attempt = 0;
 		do
 		{
 			if (($ttl = $this->_redis->ttl($lock_key)) > 0)
 			{
-				sleep(1);
+				usleep($retry_interval);
 				continue;
 			}
 
 			if ($ttl === -2 && ! $this->_redis->set($lock_key, time(), array('nx', 'ex' => 300)))
 			{
-				// Sleep for 1s to wait for lock releases.
-				sleep(1);
+				// Wait for the lock to be released.
+				usleep($retry_interval);
 				continue;
 			}
 			elseif ( ! $this->_redis->setex($lock_key, 300, time()))
@@ -440,11 +444,11 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 			$this->_lock_key = $lock_key;
 			break;
 		}
-		while (++$attempt < 30);
+		while (++$attempt < $max_attempts);
 
-		if ($attempt === 30)
+		if ($attempt === $max_attempts)
 		{
-			log_message('error', 'Session: Unable to obtain lock for '.$this->_key_prefix.$session_id.' after 30 attempts, aborting.');
+			log_message('error', 'Session: Unable to obtain lock for '.$this->_key_prefix.$session_id.' after '.$max_attempts.' attempts, aborting.');
 			return FALSE;
 		}
 		elseif ($ttl === -1)

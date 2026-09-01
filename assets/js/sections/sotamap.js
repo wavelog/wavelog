@@ -76,6 +76,7 @@ function applySotaFilters() {
 	if ($('#sotamaptab').hasClass('active')) {
 		refresh_sota_map();
 	}
+	bootstrap.Dropdown.getOrCreateInstance(document.getElementById('sotaFilterDropdown')).hide();
 }
 
 function load_sota_map2(data) {

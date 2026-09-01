@@ -275,19 +275,6 @@ $(document).ready(function(){
 		}).getModalHeader().find('.modal-title').after('<i class="fas fa-spinner fa-spin fa-2x"></i>');
 
 	});
-
-	var target = document.body;
-	var observer = new MutationObserver(function() {
-		$('input[type="search"]').on('keyup', function (e) {
-			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
-			$(this).val(tocrappyzero);
-			$(this).trigger("input");
-		});
-	});
-	var config = { childList: true, subtree: true};
-
-	// pass in the target node, as well as the observer options
-	observer.observe(target, config);
 });
 
 /*

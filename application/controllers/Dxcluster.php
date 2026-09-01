@@ -15,6 +15,8 @@ class Dxcluster extends CI_Controller {
 
 
 	public function spots($band, $age = '', $de = '', $mode = 'All') {
+		session_write_close();
+
 		// Sanitize inputs
 		$band = $this->security->xss_clean($band);
 		$mode = $this->security->xss_clean($mode);

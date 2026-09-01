@@ -102,63 +102,52 @@
             <span class="amsat-lgnd" role="listitem"><i class="fa-solid fa-square" style="color: color-mix(in srgb, var(--bs-secondary-color, #6c757d) 25%, transparent);"></i> <?= htmlspecialchars(__("No report")); ?></span>
         </div>
 
-        <!-- Heatmap -->
+        <!-- Hour pill grid (same layout as the JCC award grid:
+             satellite left, status pills for each hour right) -->
         <div class="card amsat-card">
-            <div class="card-header d-flex justify-content-between align-items-center" id="amsatStatusCardHeader">
-                <span><?= __("AMSAT Satellite Status (Last 24h)"); ?></span>
-            </div>
-            <div class="card-body p-2">
-                <div class="table-responsive">
-                    <table class="amsat-heat" aria-labelledby="amsatStatusCardHeader">
-                        <caption class="visually-hidden"><?= __("Satellite status by hour for the past 24 hours. Each cell is coloured by its winning status; hover for the report breakdown."); ?></caption>
-                        <thead>
-                            <tr>
-                                <th class="h-name" scope="col"><?= __("Satellite"); ?></th>
-                                <th class="h-aos" scope="col"><?= __("Next AOS"); ?></th>
-                                <?php for ($col = 0; $col < 24; $col++):
-                                    $age = $col;
-                                    $show = ($age % 3 == 0);
-                                    $label = $show ? ($age == 0 ? __("now") : sprintf(_ngettext('%dh', '%dh', $age), $age)) : '';
-                                ?>
-                                    <th class="h-hr" scope="col" <?= $age === 0 ? 'data-now' : ''; ?> title="<?= htmlspecialchars(sprintf(__('%d hours ago'), $age)); ?>"><?= htmlspecialchars($label); ?></th>
-                                <?php endfor; ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($sat_order as $name):
-                            $display    = $display_names[$name] ?? $name;
-                            $display_esc = htmlspecialchars($display);
-                            $name_esc   = htmlspecialchars($name);
-                            $row        = $matrix[$name] ?? [];
+            <div class="card-header" id="amsatStatusCardHeader"><?= __("AMSAT Satellite Status (Last 24h)"); ?></div>
+            <div class="card-body">
+                <div>
+                    <!-- Column headers, mirroring the section layout -->
+                    <div class="d-none d-lg-flex align-items-end gap-3 pb-1 mb-1 text-muted">
+                        <div class="award-grid-prefecture flex-shrink-0 small fw-bold"><?= __("Satellite"); ?></div>
+                        <div class="amsat-sat-aos flex-shrink-0 small fw-bold"><?= __("Next AOS"); ?></div>
+                        <div class="small"><?= __("Hours ago (left-most: now)"); ?></div>
+                    </div>
+                    <?php foreach ($sat_order as $name):
+                        $display     = $display_names[$name] ?? $name;
+                        $display_esc = htmlspecialchars($display);
+                        $row         = $matrix[$name] ?? [];
 
-                            $row_total = 0;
-                            foreach ($row as $cell) { if ($cell !== null) { $row_total += $cell['total']; } }
-                        ?>
-                            <tr>
-                                <th class="c-name" scope="row" title="<?= $name_esc; ?>">
-                                    <span class="c-name-txt"><?php
+                        $row_total = 0;
+                        foreach ($row as $cell) { if ($cell !== null) { $row_total += $cell['total']; } }
+                    ?>
+                        <section class="amsat-sat d-flex flex-wrap flex-lg-nowrap align-items-lg-center gap-3">
+                            <div class="award-grid-prefecture flex-shrink-0">
+                                <div class="d-flex align-items-center flex-wrap gap-2">
+                                    <span class="fw-bold"><?php
                                         if (isset($wl_link[$name])) {
                                             echo '<a href="' . site_url('satellite/flightpath/' . $wl_link[$name]) . '" target="_blank" rel="noopener">' . $display_esc . '</a>';
                                         } else {
                                             echo $display_esc;
                                         }
                                     ?></span><?php if ($row_total > 0) { ?>
-                                        <span class="c-name-cnt" title="<?= htmlspecialchars(sprintf(_ngettext('%d report in 24h', '%d reports in 24h', $row_total), $row_total)); ?>"><?= (int)$row_total; ?></span>
+                                        <span class="amsat-sat-cnt" title="<?= htmlspecialchars(sprintf(_ngettext('%d report in 24h', '%d reports in 24h', $row_total), $row_total)); ?>"><?= (int)$row_total; ?></span>
                                     <?php } ?>
-                                </th>
-                                <td class="c-aos"><?php
-                                    if (isset($next_pass[$name])) {
-                                        $np = $next_pass[$name];
-                                        echo '<span class="c-aos-time">' . htmlspecialchars($np['time']) . '</span>';
-                                        echo '&nbsp;<span class="text-muted small">UTC</span>';
-                                        if ($np['maxel'] !== null) {
-                                            echo '&nbsp;<span class="text-muted">&middot; ' . (int)$np['maxel'] . '&deg;</span>';
-                                        }
-                                    } else {
-                                        echo '<span class="text-muted">&mdash;</span>';
+                                </div>
+                            </div>
+                            <div class="amsat-sat-aos flex-shrink-0"><?php
+                                if (isset($next_pass[$name])) {
+                                    $np = $next_pass[$name];
+                                    echo '<strong>' . htmlspecialchars($np['time']) . '</strong>&nbsp;<span class="text-muted">UTC</span>';
+                                    if ($np['maxel'] !== null) {
+                                        echo '&nbsp;<span class="text-muted">&middot; ' . (int)$np['maxel'] . '&deg;</span>';
                                     }
-                                ?></td>
-
+                                } else {
+                                    echo '<span class="text-muted">&mdash;</span>';
+                                }
+                            ?></div>
+                            <div class="amsat-pills">
                                 <?php for ($col = 0; $col < 24; $col++):
                                     $age  = $col;
                                     $cell = $row[$col] ?? null;
@@ -166,10 +155,14 @@
                                     $end_epoch   = $now - $age * 3600;
                                     $start_epoch = $end_epoch - 3600;
                                     $window_lbl  = gmdate('M d, H:00', $start_epoch) . '&ndash;' . gmdate('H:i', $end_epoch) . ' UTC';
+                                    $age_lbl     = $age === 0 ? __("now") : sprintf(__('%d hours ago'), $age);
 
-                                    if ($cell === null) { ?>
-                                        <td class="cell" title="<?= htmlspecialchars($display_esc . ' &middot; ' . $window_lbl . ' &middot; ' . __("No report")); ?>"></td>
-                                    <?php } else {
+                                    if ($cell === null) {
+                                        $winning = null;
+                                        $tip  = '<strong>' . $display_esc . '</strong><br>';
+                                        $tip .= '<small>' . $window_lbl . '</small><br>';
+                                        $tip .= '<hr class="my-1"><span>' . htmlspecialchars(__("No report")) . '</span>';
+                                    } else {
                                         $winning = $cell['winning'];
                                         $hex     = $status_hex[$winning] ?? '#6c757d';
 
@@ -202,14 +195,14 @@
                                                 $tip .= '<span>+' . (int)$more . ' ' . htmlspecialchars(__('more')) . '</span><br>';
                                             }
                                         }
-                                    ?>
-                                        <td class="cell" data-st="" style="--cell: <?= $hex; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" data-bs-title="<?= htmlspecialchars($tip, ENT_QUOTES); ?>"></td>
-                                    <?php } ?>
+                                    }
+                                    $aria = $display_esc . ', ' . htmlspecialchars($age_lbl) . ', ' . htmlspecialchars($winning !== null ? __($winning) : __("No report"));
+                                ?>
+                                    <span class="amsat-grid-pill btn border d-inline-flex align-items-center justify-content-center amsat-slot"<?= $cell !== null ? ' data-st="" style="--cell: ' . $hex . '"' : ''; ?><?= $age === 0 ? ' data-now' : ''; ?> data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" data-bs-title="<?= htmlspecialchars($tip, ENT_QUOTES); ?>" aria-label="<?= $aria; ?>"><?= htmlspecialchars($age === 0 ? __("now") : $age); ?></span>
                                 <?php endfor; ?>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </div>
+                        </section>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

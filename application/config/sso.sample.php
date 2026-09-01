@@ -16,7 +16,7 @@
  * Debug Mode
  * --------------------------------------------------------------------------
  * 
- * When enabled, the decoded JWT token will be logged on every login attempt.
+ * If enabled, the decoded JWT token will be logged on every login attempt.
  * This is useful for troubleshooting claim mapping and token forwarding issues.
  * Requires 'log_threshold' to be set to 2 (debug) or higher in config.php.
  * 
@@ -30,7 +30,7 @@ $config['auth_header_debug_jwt'] = false;
  * Automatic User Creation
  *--------------------------------------------------------------------------
  *
- * When enabled, Wavelog will automatically create a local user account the
+ * If enabled, Wavelog will automatically create a local user account the
  * first time a valid JWT token is received for an unknown user. The account
  * is created with a random password.
  *
@@ -63,7 +63,7 @@ $config['auth_header_allow_direct_login'] = false;
  * Hide Password Field in User Profile
  * --------------------------------------------------------------------------
  * 
- * When enabled, the password field in the user profile edit page is hidden for users authenticated through SSO.
+ * If enabled, the password field in the user profile edit page is hidden for users authenticated through SSO.
  * While there are legit use cases for allowing users to set a local password (e.g. as a backup login method), 
  * hiding the password field can help avoid confusion and reinforce the idea that the account is managed through the identity provider.
  */

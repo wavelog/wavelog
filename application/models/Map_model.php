@@ -115,9 +115,9 @@ class Map_model extends CI_Model {
 			$table .= '<div class="flag">' . htmlspecialchars($dxccFlag) . '</div>';
 		}
 
-		// Replace zeros with Ø in callsign
-		$callsign = str_replace('0', 'Ø', $qso['COL_CALL']);
-		$table .= '<a id="edit_qso" href="javascript:displayQso(' . $qso['COL_PRIMARY_KEY'] . ')">' . htmlspecialchars($callsign) . '</a></div>';
+		// Callsign rendered via .callsign font (slashed-zero) in CSS
+		$callsign = $qso['COL_CALL'];
+		$table .= '<a id="edit_qso" class="callsign" href="javascript:displayQso(' . $qso['COL_PRIMARY_KEY'] . ')">' . htmlspecialchars($callsign) . '</a></div>';
 		$table .= '</td>';
 		$table .= '</tr>';
 

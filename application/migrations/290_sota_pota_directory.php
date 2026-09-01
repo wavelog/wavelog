@@ -77,25 +77,6 @@ class Migration_sota_pota_directory extends CI_Migration {
 		));
 		$this->dbforge->add_key('reference', TRUE);
 		$this->dbforge->create_table('sota_directory', TRUE);
-
-		// Populate the table immediately so autocomplete works out of the box
-		// before the admin/cron runs the update. Best-effort: a network failure
-		// must never break this migration (it runs on every login), so swallow
-		// any error and leave filling to the normal update path.
-		$CI =& get_instance();
-		$CI->load->model('update_model');
-		try {
-			$result = $CI->update_model->pota();
-			if (strncmp($result, 'DONE', 4) !== 0) {
-				log_message('error', 'POTA initial import during migration 290: ' . $result);
-			}
-			$result = $CI->update_model->sota();
-			if (strncmp($result, 'DONE', 4) !== 0) {
-				log_message('error', 'SOTA initial import during migration 290: ' . $result);
-			}
-		} catch (\Throwable $e) {
-			log_message('error', 'SOTA or POTA initial import (migration 290) failed: ' . $e->getMessage());
-		}
 	}
 
 	public function down() {

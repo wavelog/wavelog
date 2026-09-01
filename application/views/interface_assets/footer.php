@@ -58,6 +58,7 @@
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
+    var lang_qrbcalc_empty_loc = '<?= __("At least one of the locators is empty. Calculation not possible. Possibly missing locator in station location. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
@@ -81,6 +82,7 @@
     var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
     var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
     var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
+    var lang_qso_realtime_export_failed = "<?= __("Realtime upload failed: %s"); ?>";
     var lang_qso_added_to_backlog = "<?= __("QSO Added to Backlog"); ?>";
     var lang_qso_send_email_to = "<?= __("Send email to %s"); ?>";
     var lang_qso_callsign_confirmed = "<?= __("Callsign was already worked and confirmed in the past on this band and mode!"); ?>";
@@ -215,11 +217,11 @@ if ($lang_code !== 'en' && file_exists(FCPATH . "assets/json/datatables_language
 if($this->session->userdata('user_id') != null) {
     $versionDialog = $this->optionslib->get_option('version_dialog');
     if (empty($versionDialog)) {
-        $this->optionslib->update('version_dialog', 'release_notes', 'yes');
+        $this->optionslib->update('version_dialog', 'release_notes');
     }
     $versionDialogHeader = $this->optionslib->get_option('version_dialog_header');
     if (empty($versionDialogHeader)) {
-        $this->optionslib->update('version_dialog_header', __("Version Info"), 'yes');
+        $this->optionslib->update('version_dialog_header', __("Version Info"));
     }
     if($versionDialog != "disabled" && !($is_first_login ?? false)) {
         $confirmed = $this->user_options_model->get_options('version_dialog', array('option_name'=>'confirmed'))->result();
@@ -298,13 +300,6 @@ function stopImpersonate_modal() {
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
-    // Replace all Ã˜ in the searchbar
-    $('#nav-bar-search-input').on('input', function () {
-        $(this).val($(this).val().replace(/0/g, 'Ã˜'));
-    });
-</script>
-
-<script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
     quickswitcher_show_activebadge(current_active_location);
 </script>
@@ -373,7 +368,7 @@ function stopImpersonate_modal() {
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/continents.js'); ?>"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "adif" || $this->uri->segment(1) == "qrz" || $this->uri->segment(1) == "hrdlog" || $this->uri->segment(1) == "webadif" || $this->uri->segment(1) == "sattimers") { ?>
+<?php if ($this->uri->segment(1) == "adif" || $this->uri->segment(1) == "qrz" || $this->uri->segment(1) == "hrdlog" || $this->uri->segment(1) == "webadif") { ?>
     <!-- Javascript used for ADIF Import and Export Areas -->
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
 <?php } ?>
@@ -897,7 +892,7 @@ function showActivatorsMap(call, count, grids, grid_color) {
     let re = /,/g;
     grids = grids.replace(re, ', ');
 
-    var result = '<?= __("Callsign: "); ?>'+call.replace('0', '&Oslash;')+"<br />";
+    var result = '<?= __("Callsign: "); ?>'+'<span class="callsign">'+call+'</span>'+"<br />";
     result +=    '<?= __("Count: "); ?>'+count+"<br/>";
     result +=    '<?= __("Grids: "); ?>'+grids+"<br/><br />";
 
@@ -1027,7 +1022,7 @@ function searchButtonPress() {
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
-        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ã˜', '0'), function() {
+        $('#partial_view').load("logbook/search_result/" + fixedcall, function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -1101,13 +1096,6 @@ $($('#callsign')).on('keypress',function(e) {
     $active_station_id = $this->stations->find_active();
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
-
-    if (strpos(($active_station_info->station_gridsquare ?? ''), ',') !== false) {
-        $gridsquareArray = explode(',', $active_station_info->station_gridsquare);
-        $user_gridsquare = $gridsquareArray[0];
-    } else {
-        $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
-    }
 ?>
 <style>
 .grid-text {
@@ -1132,24 +1120,18 @@ $($('#callsign')).on('keypress',function(e) {
   var mymap = L.map('qsomap', {
     fullscreenControl: true,
     fullscreenControlOptions: {
-			position: 'topleft'
-		},
-}).setView(pos, 12);
+      position: 'topleft'
+    },
+  }).setView(pos, 12);
 
 maidenhead = L.maidenheadqrb().addTo(mymap);
 mymap.on('mousemove', onQsoMapMove);
+<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
      data: {
-<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
-        qra: '<?php echo $user_gridsquare; ?>',
-<?php } else if (null !== $this->config->item('locator')) { ?>
-        qra: '<?php echo $this->config->item('locator'); ?>',
-<?php } else { ?>
-        // Fallback to London in case all else fails
-        qra: 'IO91WM',
-<?php } ?>
+        qra: "<?=$active_station_info->station_gridsquare; ?>",
      },
      success: function(data) {
         result = JSON.parse(data);
@@ -1161,6 +1143,27 @@ mymap.on('mousemove', onQsoMapMove);
      error: function() {
      },
   });
+<?php } else if (($active_station_info->dxcc_lat ?? '') != '' && ($active_station_info->dxcc_lon ?? '') != '') { ?>
+     pos = [<?= $active_station_info->dxcc_lat;?> , <?= $active_station_info->dxcc_lon; ?>];
+     mymap.panTo(pos);
+<?php } else if (($this->config->item('locator') ?? '') != '') { ?>
+  $.ajax({
+     url: base_url + 'index.php/logbook/qralatlngjson',
+     type: 'post',
+     data: {
+     qra: "<?= $this->config->item('locator'); ?>",
+     },
+     success: function(data) {
+        result = JSON.parse(data);
+        if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+           mymap.panTo([result[0], result[1]]);
+           pos = result;
+        }
+     },
+     error: function() {
+     },
+  });
+<?php } ?>
 
   L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
@@ -1723,6 +1726,10 @@ $(document).ready(function(){
     <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/offline-exporting.js'); ?>"></script>
     <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/export-data.js'); ?>"></script>
 	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/distances.js'); ?>"></script>
+<?php } ?>
+
+<?php if ($this->uri->segment(1) == "countqsoby") { ?>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/countqsoby.js'); ?>"></script>
 <?php } ?>
 
 
@@ -2375,19 +2382,6 @@ $('#sats').change(function(){
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
         }
-	$(document).ready(function() {
-		var target = document.body;
-		var observer = new MutationObserver(function() {
-			$('#dt-search-0').on('keyup', function (e) {
-				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
-				$(this).val(tocrappyzero);
-				$(this).trigger("input");
-			});
-		});
-		var config = { childList: true, subtree: true};
-		// pass in the target node, as well as the observer options
-		observer.observe(target, config);
-	});
 
     </script>
 <?php } ?>
@@ -2403,7 +2397,7 @@ function viewQsl(picture, callsign) {
             if (callsign == null) {
                 title = "<?= __("QSL Card"); ?>";
             } else {
-                title = "<?= __("QSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
+                title = "<?= __("QSL Card for "); ?>" + '<span class="callsign">'+callsign+'</span>';
             }
 
             BootstrapDialog.show({
@@ -2465,7 +2459,7 @@ function viewEqsl(picture, callsign) {
             if (callsign == null) {
                 title = "<?= __("eQSL Card"); ?>";
             } else {
-                title = "<?= __("eQSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
+                title = "<?= __("eQSL Card for "); ?>" + '<span class="callsign">'+callsign+'</span>';
             }
 
             BootstrapDialog.show({
@@ -2553,20 +2547,8 @@ function viewEqsl(picture, callsign) {
                         $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
                             showQsoActionsMenu($(this).closest('.dropdown'));
                         });
-
-                       var target = document.body;
-                       var observer = new MutationObserver(function() {
-                               $('#dt-search-0').on('keyup', function (e) {
-                                       tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
-                                       $(this).val(tocrappyzero);
-                                       $(this).trigger("input");
-                               });
-                       });
-                       var config = { childList: true, subtree: true};
-                       // pass in the target node, as well as the observer options
-                       observer.observe(target, config);
-                    },
-                    buttons: [{
+                     },
+                     buttons: [{
                         label: lang_admin_close,
                         action: function (dialogItself) {
                             dialogItself.close();
@@ -2824,7 +2806,7 @@ function viewEqsl(picture, callsign) {
         $.ajax({
             url: baseURL + 'index.php/awards/counties_details_ajax',
             type: 'post',
-            data: {'State': state, 'County': county },
+            data: $.extend({'State': state, 'County': county }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
                     title: lang_general_word_qso_data,
@@ -2846,12 +2828,26 @@ function viewEqsl(picture, callsign) {
         });
     }
 
+    function countiesQslFilterData() {
+        var sources = ['qsl', 'lotw', 'eqsl', 'qrz', 'clublog'];
+        var data = {};
+        var $qslCheckbox = $('#countiesQsl');
+        if ($qslCheckbox.length) {
+            sources.forEach(function(source) {
+                data[source] = $('#counties' + source.charAt(0).toUpperCase() + source.slice(1)).is(':checked') ? 1 : 0;
+            });
+            data['band'] = $('#countiesBand').val() || [];
+            data['mode'] = $('#countiesMode').val() || [];
+        }
+        return data;
+    }
+
     function displayStateCounties(state) {
         var baseURL= "<?php echo base_url(); ?>";
         $.ajax({
             url: baseURL + 'index.php/awards/counties_state_ajax',
             type: 'post',
-            data: {'State': state },
+            data: $.extend({'State': state }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
                     title: "<?php echo __("US Counties for state"); ?>" + ': ' + state,
@@ -2901,13 +2897,19 @@ function viewEqsl(picture, callsign) {
 
     function displayStateCountiesList(state, type) {
         var baseURL= "<?php echo base_url(); ?>";
+        var titles = {
+            worked: "<?php echo __("Worked counties for state:"); ?>",
+            confirmed: "<?php echo __("Confirmed counties for state:"); ?>",
+            target: "<?php echo __("Counties in state:"); ?>",
+            needed: "<?php echo __("Needed counties for state:"); ?>"
+        };
         $.ajax({
             url: baseURL + 'index.php/awards/counties_list_ajax',
             type: 'post',
-            data: {'State': state, 'Type': type },
+            data: $.extend({'State': state, 'Type': type }, countiesQslFilterData()),
             success: function(html) {
                 BootstrapDialog.show({
-                    title: (type === 'confirmed' ? "<?php echo __("Confirmed counties for state:"); ?>" : "<?php echo __("Worked counties for state:"); ?>") + " " +state,
+                    title: (titles[type] || titles.worked) + " " +state,
                     size: BootstrapDialog.SIZE_WIDE,
                     cssClass: 'counties-list-dialog',
                     nl2br: false,
@@ -3103,21 +3105,6 @@ function viewEqsl(picture, callsign) {
     }
 
     ?>
-    <script>
-    	    $(document).ready(function() {
-		    var target = document.body;
-		    var observer = new MutationObserver(function() {
-			    $('#dt-search-1').on('keyup', function (e) {
-				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ã˜');
-				    $(this).val(tocrappyzero);
-				    $(this).trigger("input");
-			    });
-		    });
-		    var config = { childList: true, subtree: true};
-		    // pass in the target node, as well as the observer options
-		    observer.observe(target, config);
-	    });
-    </script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
     <?php if ($this->uri->segment(2) == "wwff") { ?>

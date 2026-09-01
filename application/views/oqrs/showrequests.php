@@ -45,7 +45,7 @@
 						</div>
 						<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 							<label class="form-label" for="dx"><?= __("Request callsign"); ?></label>
-							<input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
+							<input type="text" name="dx" id="dx" class="form-control form-control-sm callsign" value="">
 						</div>
 
 						<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">

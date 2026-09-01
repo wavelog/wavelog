@@ -81,7 +81,7 @@
 
                     <tr>
                         <th scope="row"><?= __("Callsign"); ?></th>
-                        <td><b><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a>
+                        <td><b class="callsign"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo html_escape(strtoupper($row->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo html_escape(strtoupper($row->COL_CALL)); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo html_escape(strtoupper($row->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo html_escape(strtoupper($row->COL_CALL)); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo html_escape(strtoupper($row->COL_CALL)); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo html_escape(strtoupper($row->COL_CALL)); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo html_escape(strtoupper($row->COL_CALL)); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a>
                         <?php if (!empty($contacts_note_id) && $this->session->userdata('user_show_notes')==1) { ?>
                             <a href="<?php echo base_url(); ?>index.php/notes/view/<?php echo $contacts_note_id; ?>" target="_blank" title="<?= __("View note for this callsign"); ?>" style="margin-left:2px;vertical-align:middle;">
                                 <i class="fa fa-sticky-note text-info" style="font-size:16px;vertical-align:middle;"></i>
@@ -92,7 +92,7 @@
 
                     <tr>
                         <th scope="row"><?= __("Band"); ?></th>
-                        <td><?php echo $row->COL_BAND; ?></td>
+                        <td><?php echo html_escape($row->COL_BAND); ?></td>
                     </tr>
 
                     <?php if($this->config->item('display_freq') == true) { ?>
@@ -112,71 +112,20 @@
 
                     <tr>
                         <th scope="row"><?= __("Mode"); ?></th>
-                        <td><?php echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; ?></td>
+                        <td><?php echo html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE); ?></td>
                     </tr>
 
                     <tr>
                         <th scope="row"><?= __("RST (S)"); ?></th>
-                        <td><?php echo $row->COL_RST_SENT; ?> <?php if ($row->COL_STX) { ?>(<?php printf("%03d", $row->COL_STX);?>)<?php } ?> <?php if ($row->COL_STX_STRING) { ?>(<?php echo $row->COL_STX_STRING;?>)<?php } ?></td>
+                        <td><?php echo html_escape($row->COL_RST_SENT); ?> <?php if ($row->COL_STX) { ?>(<?php printf("%03d", $row->COL_STX);?>)<?php } ?> <?php if ($row->COL_STX_STRING) { ?>(<?php echo html_escape($row->COL_STX_STRING);?>)<?php } ?></td>
                     </tr>
 
                     <tr>
                         <th scope="row"><?= __("RST (R)"); ?></th>
-                        <td><?php echo $row->COL_RST_RCVD; ?> <?php if ($row->COL_SRX) { ?>(<?php printf("%03d", $row->COL_SRX);?>)<?php } ?> <?php if ($row->COL_SRX_STRING) { ?>(<?php echo $row->COL_SRX_STRING;?>)<?php } ?></td>
+                        <td><?php echo html_escape($row->COL_RST_RCVD); ?> <?php if ($row->COL_SRX) { ?>(<?php printf("%03d", $row->COL_SRX);?>)<?php } ?> <?php if ($row->COL_SRX_STRING) { ?>(<?php echo html_escape($row->COL_SRX_STRING);?>)<?php } ?></td>
                     </tr>
 
-                    <?php if($row->COL_GRIDSQUARE != null) { ?>
-                    <tr>
-                        <th scope="row"><?= __("Gridsquare"); ?>:</th>
-                        <td><?php echo $row->COL_GRIDSQUARE; ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick="spawnQrbCalculator('<?php echo $row->station_gridsquare . '\',\'' . $row->COL_GRIDSQUARE; ?>')" aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button></td>
-                    </tr>
-                    <?php } ?>
-
-                    <?php if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) { ?>
-                    <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
-                    <tr>
-                        <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
-                        <td>
-                            <?php
-                                // Cacluate Distance if COL_DISTANCE is not set
-                                $ant_path = $row->COL_ANT_PATH ?? null;
-                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
-                                switch ($measurement_base) {
-                                    case 'M':
-                                        $distance .= " mi";
-                                        break;
-                                    case 'K':
-                                        $distance .= " km";
-                                        break;
-                                    case 'N':
-                                        $distance .= " nmi";
-                                        break;
-                                }
-
-                                if ($ant_path != null) {
-                                    switch ($row->COL_ANT_PATH) {
-                                        case "S":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
-                                            break;
-                                        case "L":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
-                                            break;
-                                        case "O":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
-                                            break;
-                                        case "G":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                echo $distance;
-                            ?>
-                        </td>
-                    </tr>
-                    <?php } ?>
-
+                    <?php $ant_path = $row->COL_ANT_PATH ?? null; ?>
                     <?php if($row->COL_VUCC_GRIDS != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Gridsquare"); ?> (Multi):</th>
@@ -185,52 +134,90 @@
                            if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
                               echo "<span class='fw-bolder text-warning'>";
                            }
-                           echo $row->COL_VUCC_GRIDS;
+                           echo html_escape($row->COL_VUCC_GRIDS);
                            if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
                               echo " <i class='fa fa-question-circle' aria-hidden='true' data-bs-toggle='tooltip' title='".__("A single gridsquare was entered into the VUCC gridsquares field which should contain two or four gridsquares instead of a single grid.")."'></i>";
                               echo "</span>";
                            }
-                           echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
+                           if (!empty($row->station_gridsquare)) {
+                              echo " <button type='button' class='btn btn-link text-decoration-none p-0 align-baseline' onclick='spawnQrbCalculator(".js_escape($row->station_gridsquare).", ".js_escape($row->COL_VUCC_GRIDS).")' aria-label='".__("Calculate distance/bearing")."'><i class='fas fa-globe' aria-hidden='true'></i></button>";
+                           }
                         ?>
                         </td>
                             <?php
                                 // Cacluate Distance
                                 $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base, $row->COL_ANT_PATH ?? null);
-
-                                switch ($measurement_base) {
-                                    case 'M':
-                                        $distance .= " mi";
-                                        break;
-                                    case 'K':
-                                        $distance .= " km";
-                                        break;
-                                    case 'N':
-                                        $distance .= " nmi";
-                                        break;
-                                }
-                                echo $distance;
                             ?>
                     </tr>
+
+                    <?php } else if($row->COL_GRIDSQUARE != null) { ?>
+                    <tr>
+                        <th scope="row"><?= __("Gridsquare"); ?>:</th>
+                        <td><?php echo html_escape($row->COL_GRIDSQUARE); ?> <button type="button" class="btn btn-link text-decoration-none p-0 align-baseline" onclick='spawnQrbCalculator(<?php echo js_escape($row->station_gridsquare); ?>, <?php echo js_escape($row->COL_GRIDSQUARE); ?>)' aria-label="<?= __("Calculate distance/bearing"); ?>"><i class="fas fa-globe" aria-hidden="true"></i></button></td>
+                        <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
+                        <?php $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $row->COL_ANT_PATH ?? null); ?>
+                    </tr>
+                    <?php } ?>
+
+                    <?php
+                        if (isset($distance) && $distance != false) { ?>
+                            <tr>
+                                <th scope="row"><?= __("Total Distance"); //Total distance ?></th>
+                                <td>
+                                    <?php
+                                        switch ($measurement_base) {
+                                            case 'M':
+                                                $distance .= " mi";
+                                                break;
+                                            case 'K':
+                                                $distance .= " km";
+                                                break;
+                                            case 'N':
+                                                $distance .= " nmi";
+                                                break;
+                                        }
+                                        if ($ant_path != null) {
+                                            switch ($row->COL_ANT_PATH) {
+                                                case "S":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
+                                                    break;
+                                                case "L":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
+                                                    break;
+                                                case "O":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
+                                                    break;
+                                                case "G":
+                                                    $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                        echo $distance;
+                                    ?>
+                                </td>
+                            </tr>
                     <?php } ?>
 
                     <?php if($row->COL_STATE != null) { ?>
                     <tr>
                         <th scope="row"><?php echo $primary_subdivision ?>:</th>
-                        <td><?php if ($row->subdivision != '') { echo $row->subdivision.' ('.$row->COL_STATE.')'; } else { echo $row->COL_STATE; } ?></td>
+                        <td><?php if ($row->subdivision != '') { echo $row->subdivision.' ('.strtoupper($row->COL_STATE).')'; } else { echo html_escape(strtoupper($row->COL_STATE)); } ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_CNTY != null && $row->COL_CNTY != ",") { ?>
                     <tr>
                         <th scope="row"><?php echo $secondary_subdivision ?>:</th>
-                        <td><?php echo $row->COL_CNTY; ?></td>
+                        <td><?php echo html_escape($row->COL_CNTY); ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_NAME != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Name"); ?></th>
-                        <td><?php echo $row->COL_NAME; ?></td>
+                        <td><?php echo html_escape($row->COL_NAME); ?></td>
                     </tr>
                     <?php } ?>
 
@@ -238,7 +225,7 @@
                     <?php if($row->COL_COMMENT != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Comment"); ?></th>
-                        <td><?php echo $row->COL_COMMENT; ?></td>
+                        <td><?php echo html_escape($row->COL_COMMENT); ?></td>
                     </tr>
                     <?php } ?>
                     <?php } ?>
@@ -253,11 +240,11 @@
                     <?php if($row->COL_SAT_NAME != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Satellite Name"); ?></th>
-                        <td><a href="https://db.satnogs.org/search/?q=<?php echo $row->COL_SAT_NAME; ?>" target="_blank">
+                        <td><a href="https://db.satnogs.org/search/?q=<?php echo html_escape($row->COL_SAT_NAME); ?>" target="_blank">
                         <?php if ($row->sat_displayname != null) {
-                                 echo $row->COL_SAT_NAME." (".$row->sat_displayname.")";
+                                 echo html_escape($row->COL_SAT_NAME." (".$row->sat_displayname.")");
                             } else {
-                                 echo $row->COL_SAT_NAME;
+                                 echo html_escape($row->COL_SAT_NAME);
                             }
                         ?>
                         </a></td>
@@ -267,7 +254,7 @@
                     <?php if($row->COL_SAT_MODE != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Satellite Mode"); ?></th>
-                        <td><?php echo (strlen($row->COL_SAT_MODE) == 2 ? (strtoupper($row->COL_SAT_MODE[0]).'/'.strtoupper($row->COL_SAT_MODE[1])) : strtoupper($row->COL_SAT_MODE)); ?></td>
+                        <td><?php echo html_escape(strlen($row->COL_SAT_MODE) == 2 ? strtoupper($row->COL_SAT_MODE[0]).'/'.strtoupper($row->COL_SAT_MODE[1]) : strtoupper($row->COL_SAT_MODE)); ?></td>
                     </tr>
                     <?php } ?>
 
@@ -339,21 +326,21 @@
                     <?php if($row->COL_IOTA != null) { ?>
                     <tr>
                         <th scope="row"><?= __("IOTA Reference"); ?></th>
-                        <td><a href="https://www.iota-world.org/iotamaps/?grpref=<?php echo $row->COL_IOTA; ?>" target="_blank"><?php echo $row->COL_IOTA; ?></a></td>
+                        <td><a href="https://www.iota-world.org/iotamaps/?grpref=<?php echo html_escape($row->COL_IOTA); ?>" target="_blank"><?php echo html_escape($row->COL_IOTA); ?></a></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_SOTA_REF != null) { ?>
                     <tr>
                         <th scope="row"><?= __("SOTA Reference"); ?></th>
-                        <td><a href="https://summits.sota.org.uk/summit/<?php echo $row->COL_SOTA_REF; ?>" target="_blank"><?php echo $row->COL_SOTA_REF; ?></a></td>
+                        <td><a href="https://summits.sota.org.uk/summit/<?php echo html_escape($row->COL_SOTA_REF); ?>" target="_blank"><?php echo html_escape($row->COL_SOTA_REF); ?></a></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_WWFF_REF != null) { ?>
                     <tr>
                         <th scope="row"><?= __("WWFF Reference"); ?></th>
-                        <td><a href="https://www.cqgma.org/zinfo.php?ref=<?php echo $row->COL_WWFF_REF; ?>" target="_blank"><?php echo $row->COL_WWFF_REF; ?></a></td>
+                        <td><a href="https://www.cqgma.org/zinfo.php?ref=<?php echo html_escape($row->COL_WWFF_REF); ?>" target="_blank"><?php echo html_escape($row->COL_WWFF_REF); ?></a></td>
                     </tr>
                     <?php } ?>
 
@@ -385,10 +372,10 @@
                         <?php
                         switch ($row->COL_SIG) {
                         case "GMA":
-                           echo "<td><a href=\"https://cqgma.org/\" target=\"_blank\">".$row->COL_SIG."</a></td>";
+                           echo "<td><a href=\"https://cqgma.org/\" target=\"_blank\">".html_escape($row->COL_SIG)."</a></td>";
                            break;
                         default:
-                           echo "<td>".$row->COL_SIG."</td>";
+                           echo "<td>".html_escape($row->COL_SIG)."</td>";
                            break;
                         }
                         ?>
@@ -401,13 +388,13 @@
                         <?php
                         switch ($row->COL_SIG) {
                         case "GMA":
-                           echo "<td><a href=\"https://www.cqgma.org/zinfo.php?ref=".$row->COL_SIG_INFO."\" target=\"_blank\">".$row->COL_SIG_INFO."</a></td>";
+                           echo "<td><a href=\"https://www.cqgma.org/zinfo.php?ref=".html_escape($row->COL_SIG_INFO)."\" target=\"_blank\">".html_escape($row->COL_SIG_INFO)."</a></td>";
                            break;
                         case "MQC":
-                           echo "<td><a href=\"https://www.mountainqrp.it/awards/referenza.php?ref=".$row->COL_SIG_INFO."\" target=\"_blank\">".$row->COL_SIG_INFO."</a></td>";
+                           echo "<td><a href=\"https://www.mountainqrp.it/awards/referenza.php?ref=".html_escape($row->COL_SIG_INFO)."\" target=\"_blank\">".html_escape($row->COL_SIG_INFO)."</a></td>";
                            break;
                         default:
-                           echo "<td>".$row->COL_SIG_INFO."</td>";
+                           echo "<td>".html_escape($row->COL_SIG_INFO)."</td>";
                            break;
                         }
                         ?>
@@ -418,13 +405,13 @@
                     <tr>
                         <th scope="row"><?= __("DOK"); ?></th>
                         <?php if (preg_match('/^[A-Y]\d{2}$/', $row->COL_DARC_DOK)) { ?>
-                        <td><a href="https://www.darc.de/<?php echo $row->COL_DARC_DOK; ?>" target="_blank"><?php echo $row->COL_DARC_DOK; ?></a></td>
+                        <td><a href="https://www.darc.de/<?php echo html_escape($row->COL_DARC_DOK); ?>" target="_blank"><?php echo html_escape($row->COL_DARC_DOK); ?></a></td>
                         <?php } else if (preg_match('/^DV[ABCDEFGHIKLMNOPQRSTUVWXY]$/', $row->COL_DARC_DOK)) { ?>
-                        <td><a href="https://www.darc.de/der-club/distrikte/<?php echo strtolower(substr($row->COL_DARC_DOK, 2, 1)); ?>" target="_blank"><?php echo $row->COL_DARC_DOK; ?></a></td>
+                        <td><a href="https://www.darc.de/der-club/distrikte/<?php echo strtolower(substr($row->COL_DARC_DOK, 2, 1)); ?>" target="_blank"><?php echo html_escape($row->COL_DARC_DOK); ?></a></td>
                         <?php } else if (preg_match('/^Z\d{2}$/', $row->COL_DARC_DOK)) { ?>
-                        <td><a href="https://<?php echo $row->COL_DARC_DOK; ?>.vfdb.org" target="_blank"><?php echo $row->COL_DARC_DOK; ?></a></td>
+                        <td><a href="https://<?php echo html_escape($row->COL_DARC_DOK); ?>.vfdb.org" target="_blank"><?php echo html_escape($row->COL_DARC_DOK); ?></a></td>
                         <?php } else { ?>
-                        <td><?php echo $row->COL_DARC_DOK; ?></td>
+                        <td><?php echo html_escape($row->COL_DARC_DOK); ?></td>
                         <?php } ?>
                     </tr>
                     <?php } ?>
@@ -432,14 +419,14 @@
                     <?php if($row->COL_REGION != null) { ?>
                     <tr>
                         <th scope="row"><?= __("Region"); ?></th>
-                        <td><?php echo $this->logbook_model->getLongRegion($row->COL_REGION).' ('.$row->COL_REGION.')'; ?></td>
+                        <td><?php echo html_escape($this->logbook_model->getLongRegion($row->COL_REGION)).' ('.html_escape($row->COL_REGION).')'; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_EMAIL != null) { ?>
                     <tr>
                         <th scope="row"><?= __("E-mail"); ?></th>
-                        <td><a href="mailto:<?php echo $row->COL_EMAIL; ?>"><?php echo $row->COL_EMAIL; ?></a></td>
+                        <td><a href="mailto:<?php echo html_escape($row->COL_EMAIL); ?>"><?php echo html_escape($row->COL_EMAIL); ?></a></td>
                     </tr>
                     <?php } ?>
 
@@ -483,7 +470,7 @@
 
                 <?php } ?>
                     <?php if($row->lotwuser != null) { ?>
-                    <br /><p><?= __("This station uses LoTW."); ?> <a href="https://lotw.arrl.org/lotwuser/act?act=<?php echo $row->COL_CALL;?>" target="_blank"><?= __("Last Upload").'</a>: '; ?><?php $timestamp = strtotime($row->lastupload); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->lastupload); echo " ".date('H:i', $timestamp);?> UTC.</p>
+                    <br /><p><?= __("This station uses LoTW."); ?> <a href="https://lotw.arrl.org/lotwuser/act?act=<?php echo html_escape($row->COL_CALL);?>" target="_blank"><?= __("Last Upload").'</a>: '; ?><?php $timestamp = strtotime($row->lastupload); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->lastupload); echo " ".date('H:i', $timestamp);?> UTC.</p>
                     <?php } ?>
 
                     <?php if($row->COL_LOTW_QSL_RCVD == "Y" && $row->COL_LOTW_QSLRDATE != null) { ?>
@@ -548,9 +535,9 @@
                     <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
                         <br>
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
-                            <div style="display: inline-block;"><p class="editButton"><a class="btn btn-primary" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit" aria-hidden="true"></i> <?= __("Edit QSO"); ?></a></p></div>
+                            <div style="display: inline-block;"><p class="editButton"><a class="btn btn-primary" id="edit_qso" href="javascript:qso_edit(<?php echo html_escape($row->COL_PRIMARY_KEY); ?>)"><i class="fas fa-edit" aria-hidden="true"></i> <?= __("Edit QSO"); ?></a></p></div>
                             <?php } ?>
-                            <div style="display: inline-block;"><form method="POST" action="<?php echo site_url('search'); ?>"><input type="hidden" value="<?php echo strtoupper($row->COL_CALL); ?>" name="callsign"><button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i> <?= __("More QSOs"); ?></button></form></div>
+                            <div style="display: inline-block;"><form method="POST" action="<?php echo site_url('search'); ?>"><input type="hidden" value="<?php echo html_escape(strtoupper($row->COL_CALL)); ?>" name="callsign"><button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i> <?= __("More QSOs"); ?></button></form></div>
                     <?php } ?>
 
                     <?php
@@ -612,7 +599,7 @@
                             $twitter_string .= $distancestring." on ".$twitter_band_sat." using ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)." ".$hashtags;
                         }
                     ?>
-                    <button class="btn btn-primary" onClick='shareModal(<?php echo json_encode(['qso' => $row, 'twitter_string' => $twitter_string], JSON_HEX_APOS | JSON_HEX_QUOT); ?>);'><i class="fas fa-share-square"></i> <?= __("Share"); ?></button>
+                    <button class="btn btn-primary" onClick='shareModal(<?php echo js_escape(['qso' => $row, 'twitter_string' => $twitter_string]); ?>);'><i class="fas fa-share-square"></i> <?= __("Share"); ?></button>
                 </div>
             </div>
         </div>
@@ -623,16 +610,18 @@
             <table width="100%" aria-label="<?= __("Station") . ' ' . __("Details"); ?>">
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Callsign"); ?></th>
-                        <td><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></td>
+                        <td class="callsign"><?php echo strtoupper($row->station_callsign); ?></td>
                     </tr>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Name"); ?></th>
                         <td><?php echo $row->station_profile_name; ?></td>
                     </tr>
+                    <?php if (!empty($row->station_gridsquare)) { ?>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Gridsquare"); ?></th>
                         <td><?php echo $row->station_gridsquare; ?></td>
                     </tr>
+                    <?php } ?>
 
                     <?php if($row->station_city) { ?>
                     <tr>
@@ -651,21 +640,21 @@
                     <?php if($row->COL_OPERATOR) { ?>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Operator"); ?></th>
-                        <td><?php echo $row->COL_OPERATOR; ?></td>
+                        <td><?php echo html_escape($row->COL_OPERATOR); ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_TX_PWR) { ?>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Transmit Power (W)"); ?></th>
-                        <td><?php echo $row->COL_TX_PWR; ?> W</td>
+                        <td><?php echo html_escape($row->COL_TX_PWR); ?> W</td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_MY_RIG && (($row->COL_MY_RIG ?? '') != '')) { ?>
                     <tr>
                         <th scope="row"><?= __("Station") . ' ' . __("Radio"); ?></th>
-                        <td><?php echo $row->COL_MY_RIG; ?></td>
+                        <td><?php echo html_escape($row->COL_MY_RIG); ?></td>
                     </tr>
                     <?php } ?>
 
@@ -713,7 +702,7 @@
 
         <div class="tab-pane fade" id="notesdetails" role="tabpanel" aria-labelledby="notes-tab">
             <h3><?= __("Notes"); ?></h3>
-            <?php if (isset($row->COL_NOTES)) { echo nl2br($row->COL_NOTES); } ?>
+            <?php if (isset($row->COL_NOTES)) { echo nl2br(html_escape($row->COL_NOTES)); } ?>
         </div>
 
         <?php
@@ -756,7 +745,7 @@
                                 <input class="form-control" type="file" id="qslcardfront" name="qslcardfront" accept="image/*" >
                             </div>
 
-                            <input type="hidden" class="form-control" id="qsoinputid" name="qsoid" value="<?php echo $row->COL_PRIMARY_KEY; ?>">
+                            <input type="hidden" class="form-control" id="qsoinputid" name="qsoid" value="<?php echo html_escape($row->COL_PRIMARY_KEY); ?>">
                             <button type="button" onclick="uploadQsl();" id="button1id"  name="button1id" class="btn btn-primary"><?= __("Upload QSL Card image"); ?></button>
 
                 </div>
@@ -774,21 +763,21 @@
             <p>
             <div class="row">
                 <div class="col-md">
-                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B');" id="qslrxb"  name="qslrxb" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-B"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_rcvd(<?php echo html_escape($row->COL_PRIMARY_KEY); ?>, 'B');" id="qslrxb"  name="qslrxb" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-B"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D');" id="qslrxd"  name="qslrxd" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-D"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_rcvd(<?php echo html_escape($row->COL_PRIMARY_KEY); ?>, 'D');" id="qslrxd"  name="qslrxd" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-D"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'E');" id="qslrxe"  name="qslrxe" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-E"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Electronic)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_rcvd(<?php echo html_escape($row->COL_PRIMARY_KEY); ?>, 'E');" id="qslrxe"  name="qslrxe" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-E"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Electronic)"); ?> <div class="ld ld-ring ld-spin"></div></button>
                 </div>
             </div>
             <p>
             <div class="row">
                 <div class="col-md">
-                        <button type="button" onclick="qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B');" id="qsltxb"  name="qsltxb" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-B"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_requested(<?php echo html_escape($row->COL_PRIMARY_KEY); ?>, 'B');" id="qsltxb"  name="qsltxb" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-B"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D');" id="qsltxd"  name="qsltxd" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-D"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_requested(<?php echo html_escape($row->COL_PRIMARY_KEY); ?>, 'D');" id="qsltxd"  name="qsltxd" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-D"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'I');" id="qsltxi"  name="qsltxi" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-ignore"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Not Required"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_ignore(<?php echo html_escape($row->COL_PRIMARY_KEY); ?>, 'I');" id="qsltxi"  name="qsltxi" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-ignore"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Not Required"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
                 </div>
             </div>
@@ -814,9 +803,22 @@
 <?php
    if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
       $stn_loc = $this->qra->qra2latlong(trim($row->COL_GRIDSQUARE));
-      if($stn_loc[0] != 0) {
-         $lat = $stn_loc[0];
-         $lng = $stn_loc[1];
+      if ($stn_loc != false) {
+         if($stn_loc[0] != 0) {
+            $lat = $stn_loc[0];
+            $lng = $stn_loc[1];
+         }
+      } else {
+         if (isset($row->lat)) {
+            $lat = $row->lat;
+         } else {
+            $lat = 0;
+         }
+         if (isset($row->long)) {
+            $lng = $row->long;
+         } else {
+            $lng = 0;
+         }
       }
    } else if ($row->COL_VUCC_GRIDS != null) {
       $midpoint = $this->qra->qra2latlong($row->COL_VUCC_GRIDS);
@@ -853,13 +855,13 @@
 <script>
 var lat = <?php echo $lat; ?>;
 var long = <?php echo $lng; ?>;
-var callsign = "<?php echo $row->COL_CALL; ?>";
+var callsign = <?php echo js_escape($row->COL_CALL); ?>;
 </script>
-    <div hidden id ='dxcc'><?php echo $row->COL_DXCC; ?></div>
+    <div hidden id ='dxcc'><?php echo html_escape($row->COL_DXCC); ?></div>
     <div hidden id ='lat'><?php echo $lat; ?></div>
     <div hidden id ='lng'><?php echo $lng; ?></div>
-    <div hidden id ='callsign'><?php echo $row->COL_CALL; ?></div>
-    <div hidden id ='qsoid'><?php echo $row->COL_PRIMARY_KEY; ?></div>
+    <div hidden id ='callsign'><?php echo html_escape($row->COL_CALL); ?></div>
+    <div hidden id ='qsoid'><?php echo html_escape($row->COL_PRIMARY_KEY); ?></div>
 
 <?php }
 	} else {

@@ -8,13 +8,16 @@ COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensi
 
 # system packages
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends cron \
+    && apt-get install -y --no-install-recommends cron curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # php extensions
 RUN install-php-extensions \
+        curl \
         mysqli \
+        mbstring \
+        xml \
         zip \
         redis \
         memcached \

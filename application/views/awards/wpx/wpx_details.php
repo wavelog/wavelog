@@ -1,4 +1,4 @@
-<h3><?php echo sprintf("%s – %s", ucfirst($status), $band); ?></h3>
+<h3><?php echo sprintf("%s – %s", html_escape(ucfirst($status)), html_escape($band)); ?></h3>
 
 <?php
 
@@ -30,18 +30,18 @@ if ($this->session->userdata('user_date_format')) {
 			?>
             <tr>
 				<td><?php echo $i++; ?></td>
-				<td><?php echo $qso->wpx_prefix; ?></td>
-				<td><a href="javascript:displayQso(<?php echo $qso->col_primary_key; ?>)"><?php echo $qso->col_call; ?></a></td>
+			<td class="callsign"><?php echo html_escape($qso->wpx_prefix); ?></td>
+			<td><a class="callsign" href="javascript:displayQso(<?php echo (int) $qso->col_primary_key; ?>)"><?php echo html_escape($qso->col_call); ?></a></td>
 				<td><?php echo date($custom_date_format, $qsotimestamp) . ' ' . date('H:i', $qsotimestamp); ?></td>
-				<td><?php echo getFormattedBand($qso->col_band, $qso->col_sat_name); ?></td>
-				<td><?php echo (($qso->col_submode ?? '') == '') ? $qso->col_mode : $qso->col_submode; ?></td>
+<td><?php echo html_escape(getFormattedBand($qso->col_band, $qso->col_sat_name)); ?></td>
+			<td><?php echo html_escape((($qso->col_submode ?? '') == '') ? $qso->col_mode : $qso->col_submode); ?></td>
 				<td><?php echo cf_type($qso->col_qsl_rcvd, $qso->col_lotw_qsl_rcvd, $qso->col_eqsl_qsl_rcvd, $qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS, $qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS); ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
     </table>
 <?php else: ?>
-    <div class="alert alert-warning">No QSOs found for <?php echo $band; ?>.</div>
+    <div class="alert alert-warning">No QSOs found for <?php echo html_escape($band); ?>.</div>
 <?php endif;
 
 

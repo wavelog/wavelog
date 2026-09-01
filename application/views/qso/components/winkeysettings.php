@@ -46,7 +46,7 @@
 		<label class="form-check-label fw-bold" for="esm_enabled"><?= __("ESM (Enter Sends Message)") ?></label>
 	</div>
 	<div class="text-muted mb-2" style="font-size:0.8rem">
-		<?= __("When enabled, the Enter key drives the QSO: empty call sends CQ, an unclear call (with \"?\") asks again, a full call without exchange sends the report, and a complete QSO is logged with a TU. In S&P mode the first Enter sends only your own call, and logging sends your report instead of a TU. Alt+Enter logs without sending.") ?>
+		<?= __("If enabled, the Enter key drives the QSO: empty call sends CQ, an unclear call (with \"?\") asks again, a full call without exchange sends the report, and a complete QSO is logged with a TU. In S&P mode the first Enter sends only your own call, and logging sends your report instead of a TU. Alt+Enter logs without sending.") ?>
 	</div>
 	<div class="row g-2">
 		<?php

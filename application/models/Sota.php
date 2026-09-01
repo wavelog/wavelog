@@ -53,39 +53,61 @@ class Sota extends CI_Model {
 	}
 
 	/*
-	 * The full SOTA reference directory with coordinates only — no QSO or
-	 * worked/confirmed status. Powers the optional clustered overlay on the
-	 * Activation Planner map, where it's used to look up where a reference sits.
-	 * Rows without coordinates are skipped because they can't be plotted.
+	 * Cheap content signature for the plotted directory rows. Changes only
+	 * when summits are added/removed/renamed/re-activated — i.e. only after
+	 * the update_sota cron runs. Powers the weak ETag so 304s short-circuit
+	 * before any row is touched.
 	 */
-	function get_directory() {
-		$sql = "SELECT reference, name, lat, lon, altitude
-		FROM sota_directory
-		WHERE lat IS NOT null
-		AND lon IS NOT null
-		ORDER by reference";
+	function directory_signature() {
+		$sql = "SELECT COUNT(*) AS c,
+				COALESCE(MAX(reference), '')     AS mr,
+				COALESCE(MAX(valid_till), '')    AS vt,
+				COALESCE(MAX(last_activated), '') AS la
+			FROM sota_directory
+			WHERE lat IS NOT NULL AND lon IS NOT NULL";
+		$r = $this->db->query($sql)->row();
+		return 'sota-dir-' . $r->c . '-' . substr(md5($r->mr . '|' . $r->vt . '|' . $r->la), 0, 16);
+	}
+
+	/*
+	 * Stream the plotted directory as a JSON array straight to stdout. Rows
+	 * are fetched one at a time via unbuffered_row() so peak memory stays
+	 * flat regardless of directory size (~140k SOTA summits). Body shape is
+	 * identical to the previous array-returning get_directory() — frontend
+	 * parsing is unchanged.
+	 */
+	function stream_directory_json() {
+		$sql = "SELECT reference, name, lat, lon, altitude, valid_from, valid_till
+			FROM sota_directory
+			WHERE lat IS NOT NULL AND lon IS NOT NULL
+			ORDER BY reference";
 
 		$query = $this->db->query($sql);
 
-		$result = [];
-		foreach ($query->result() as $row) {
-			$result[] = [
-				'reference' => $row->reference,
-				'name'      => $row->name,
-				'lat'       => (float) $row->lat,
-				'lon'       => (float) $row->lon,
-				'altitude'  => $row->altitude
-			];
+		echo '[';
+		$first = true;
+		while ($row = $query->unbuffered_row('object')) {
+			echo ($first ? '' : ','), json_encode([
+				'reference'  => $row->reference,
+				'name'       => $row->name,
+				'lat'        => (float) $row->lat,
+				'lon'        => (float) $row->lon,
+				'altitude'   => $row->altitude,
+				'inactive'   => $this->_inactive($row->valid_from, $row->valid_till),
+				'valid_from' => $row->valid_from,
+				'valid_till' => $row->valid_till,
+			]);
+			$first = false;
 		}
-
-		return $result;
+		echo ']';
 	}
 
 	function get_map_data($postdata, $location_list) {
 		$bindings = [];
 
 		$sql = "SELECT thcv.COL_SOTA_REF AS reference,
-				MAX(sd.lat) AS lat, MAX(sd.lon) AS lon, MAX(sd.name) AS name, MAX(sd.altitude) AS altitude,
+			MAX(sd.lat) AS lat, MAX(sd.lon) AS lon, MAX(sd.name) AS name, MAX(sd.altitude) AS altitude,
+			MAX(sd.valid_from) AS valid_from, MAX(sd.valid_till) AS valid_till,
 				MAX(CASE WHEN thcv.COL_QSL_RCVD = 'Y' THEN 1 ELSE 0 END) AS qsl,
 				MAX(CASE WHEN thcv.COL_LOTW_QSL_RCVD = 'Y' THEN 1 ELSE 0 END) AS lotw,
 				MAX(CASE WHEN thcv.COL_EQSL_QSL_RCVD = 'Y' THEN 1 ELSE 0 END) AS eqsl,
@@ -151,6 +173,7 @@ class Sota extends CI_Model {
 				'lat'       => $row->lat !== null ? (float) $row->lat : null,
 				'lon'       => $row->lon !== null ? (float) $row->lon : null,
 				'altitude'  => $row->altitude !== null ? (int) $row->altitude : null,
+				'inactive'  => $this->_inactive($row->valid_from, $row->valid_till),
 				'status'    => $status,
 			];
 		}
@@ -222,6 +245,20 @@ class Sota extends CI_Model {
 		}
 
 		return $result;
+	}
+
+	// A summit is inactive when today falls outside [valid_from, valid_till].
+	// A NULL bound means "no constraint" on that side, and the closing day
+	// (today == valid_till) still counts as active.
+	private function _inactive($valid_from, $valid_till) {
+		$today = date('Y-m-d');
+		if ($valid_from !== null && $today < $valid_from) {
+			return true;
+		}
+		if ($valid_till !== null && $today > $valid_till) {
+			return true;
+		}
+		return false;
 	}
 }
 

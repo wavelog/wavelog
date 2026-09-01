@@ -1,3 +1,39 @@
+<?php
+    $colors = json_decode($user_map_custom);
+    $colorCnfm = $colors->qsoconfirm->color;
+    $colorWkd = $colors->qso->color;
+?>
+<script>
+    var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>";
+    var lang_usa_county = "<?= __("County"); ?>";
+    var lang_hover_over_a_county = "<?= __("Hover over a county"); ?>";
+</script>
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
+<style>
+    #countiesmap {
+        height: calc(100vh - 300px) !important;
+        max-height: 900px !important;
+    }
+
+    .dropdown-filters-responsive {
+        width: min(850px, 90vw);
+        min-width: 600px;
+    }
+
+    /* Ensure label sits above multiselect, not beside it (overrides span.multiselect-native-select) */
+    span.multiselect-native-select {
+        display: block !important;
+        width: 100% !important;
+    }
+    span.multiselect-native-select .btn-group {
+        width: 100% !important;
+    }
+    span.multiselect-native-select .multiselect {
+        text-align: left !important;
+    }
+</style>
 <div class="container px-3 px-lg-4 mt-3 mb-3">
         <!-- Award Info Box -->
         <div id="awardInfoButton">
@@ -15,9 +51,91 @@
         <!-- End of Award Info Box -->
     <div class="card">
         <div class="card-header">
-            <?= __("Counties Progress"); ?>
+            <ul class="nav nav-tabs card-header-tabs" id="countiesTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="counties-table-tab" data-bs-toggle="tab" href="#countiestable" role="tab" aria-controls="countiestable" aria-selected="true"><i class="fas fa-table"></i> <?= __("Table"); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="counties-map-tab" onclick="load_counties_map();" data-bs-toggle="tab" href="#countiesmaptab" role="tab" aria-controls="countiesmaptab" aria-selected="false"><i class="fas fa-map"></i> <?= __("Map"); ?></a>
+                </li>
+            </ul>
         </div>
         <div class="card-body">
+    <form class="form" action="<?php echo site_url('awards/counties'); ?>" method="post">
+        <div class="mb-4 text-center">
+            <div class="dropdown">
+                <?php /* data-bs-auto-close="false" needed on the toggle itself, or Bootstrap 5 closes the Filters panel when the nested Band/Mode multiselect dropdowns open */ ?>
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="countiesFilterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"><?= __("Filters") ?></button>
+                <button type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                <?php if ($counties_progress) { ?>
+                <button type="button" onclick="load_counties_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show Counties Map"); ?></button>
+                <?php } ?>
+
+                <!-- Dropdown Menu with Filter Content -->
+                <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="countiesFilterDropdown">
+                    <div class="card-body filterbody">
+						<div class="d-flex justify-content-between align-items-center mb-1">
+							<h5><i class="fas fa-filter me-1"></i> <?= __("Filters"); ?></h5>
+							<span><?= __("Press 'Apply' to update the table"); ?></span>
+						</div>
+                        <div class="filter-section">
+                        <div class="mb-3 row">
+                            <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-envelope-open-text"></i><?= __("Confirmation"); ?></div>
+                            <div class="col-md-9">
+                                <div class="form-check-inline">
+                                    <input class="btn-check" type="checkbox" name="qsl" value="1" id="countiesQsl" <?php if ($postdata['qsl']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesQsl"><?= __("QSL"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="btn-check" type="checkbox" name="lotw" value="1" id="countiesLotw" <?php if ($postdata['lotw']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesLotw"><?= __("LoTW"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="btn-check" type="checkbox" name="eqsl" value="1" id="countiesEqsl" <?php if ($postdata['eqsl']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesEqsl"><?= __("eQSL"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="btn-check" type="checkbox" name="qrz" value="1" id="countiesQrz" <?php if ($postdata['qrz']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesQrz"><?= __("QRZ.com"); ?></label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="btn-check" type="checkbox" name="clublog" value="1" id="countiesClublog" <?php if ($postdata['clublog']) echo ' checked="checked"'; ?>>
+                                    <label class="btn btn-outline-primary btn-sm" for="countiesClublog"><?= __("Clublog"); ?></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="filter-section">
+                        <div class="mb-3 row">
+                            <div class="w-100 d-flex align-items-center gap-2 mb-2"><i class="fas fa-tower-broadcast"></i><?= __("Band & Mode"); ?></div>
+                            <div class="col-sm-6 mb-2">
+                                <label class="form-label mb-1" for="countiesBand"><?= __("Band"); ?></label>
+                                <select id="countiesBand" name="band[]" multiple class="form-select form-select-sm">
+                                    <?php foreach ($worked_bands as $band) { ?>
+                                    <option value="<?= html_escape($band); ?>" <?php if ($postdata['band'] === 'All' ? $band !== 'SAT' : in_array($band, (array)$postdata['band'])) echo ' selected'; ?>><?= html_escape($band); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label mb-1" for="countiesMode"><?= __("Mode"); ?></label>
+                                <select id="countiesMode" name="mode[]" multiple class="form-select form-select-sm">
+                                    <?php foreach ($modes as $value) { ?>
+                                    <option value="<?= html_escape($value); ?>" <?php if ($postdata['mode'] === 'All' || in_array($value, (array)$postdata['mode'])) echo ' selected'; ?>><?= html_escape($value); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" name="button1id" class="btn btn-primary"><i class="fas fa-check me-1"></i> <?= __("Apply"); ?></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="countiesTabContent">
+        <div class="tab-pane fade show active" id="countiestable" role="tabpanel" aria-labelledby="counties-table-tab">
     <?php if ($counties_progress) {
         $progress_bar = function ($pct, $color) {
             return '<div class="progress" style="height: 20px; position: relative;">'
@@ -96,10 +214,10 @@
             echo '<td><a href="javascript:displayStateCounties(\'' . $state . '\')">' . $state . '</a></td>';
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'worked\')">' . $worked . '</a></td>';
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'confirmed\')">' . $confirmed . '</a></td>';
-            echo '<td>' . $target . '</td>';
-            echo '<td>' . $remaining . '</td>';
-            echo '<td>' . $progress_bar($worked_pct, '#fd7e14') . '</td>';
-            echo '<td>' . $progress_bar($confirmed_pct, '#198754') . '</td>';
+            echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'target\')">' . $target . '</a></td>';
+            echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'needed\')">' . $remaining . '</a></td>';
+            echo '<td>' . $progress_bar($worked_pct, $colorWkd) . '</td>';
+            echo '<td>' . $progress_bar($confirmed_pct, $colorCnfm) . '</td>';
             echo '</tr>';
         }
         ?>
@@ -112,8 +230,8 @@
         echo '<td>' . $total_confirmed . '</td>';
         echo '<td>' . $total_target . '</td>';
         echo '<td>' . $total_remaining . '</td>';
-        echo '<td>' . $progress_bar($total_worked_pct, '#fd7e14') . '</td>';
-        echo '<td>' . $progress_bar($total_confirmed_pct, '#198754') . '</td>';
+        echo '<td>' . $progress_bar($total_worked_pct, $colorWkd) . '</td>';
+        echo '<td>' . $progress_bar($total_confirmed_pct, $colorCnfm) . '</td>';
         echo '</tr>';
         ?>
         </tfoot>
@@ -123,5 +241,16 @@
     }
     ?>
         </div>
+
+        <div class="tab-pane fade" id="countiesmaptab" role="tabpanel" aria-labelledby="counties-map-tab">
+            <div id="countiesmap" class="map-leaflet"></div>
+        </div>
+        </div>
+    </form>
+        </div>
     </div>
 </div>
+<script>
+    var lang_counties_every_band = "<?= __("Every band"); ?>";
+    var lang_counties_every_mode = "<?= __("All"); ?>";
+</script>

@@ -62,7 +62,8 @@
 
 /* QSO log table typography */
 #qso-tbody {
-	font-family: 'Courier New', monospace;
+	font-family: 'JetBrains Mono', 'Consolas', 'SF Mono', monospace;
+	font-variant-numeric: slashed-zero;
 }
 
 /* Edit-mode row: .form-select-sm has no min-height (unlike .form-control-sm), so the

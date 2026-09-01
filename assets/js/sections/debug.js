@@ -149,7 +149,7 @@ $(document).ready(function () {
 	function showTable()       { $('#worker-status-container').empty(); $('#worker-status').show(); }
 
 	function setBadge(degraded) {
-		$('#ws-state').text(degraded ? cfg.msg.degraded : cfg.msg.online);
+		$('#ws-state').html(degraded ? cfg.msg.degraded : cfg.msg.online);
 		$('#ws-badge').removeClass('text-bg-success text-bg-warning').addClass(degraded ? 'text-bg-warning' : 'text-bg-success');
 	}
 

@@ -166,6 +166,17 @@ class Logbook extends CI_Controller {
 
 		// Consolidated callsign lookup - reduces queries from 11 to 2
 		$callsign_info = $this->logbook_model->get_callsign_all_info($callsign);
+
+		// Prefill mode (user setting): 'default' = callbook + previous QSOs, 'logbook' = previous QSOs only, 'none' = no prefill.
+		// Only applied for the live lookup while logging (?ctx=live); explicit lookups (edit modal etc.) stay unaffected.
+		$prefill_mode = 'default';
+		if ($this->input->get('ctx') === 'live') {
+			$prefill_mode = $this->user_options_model->get_options('qso', array('option_name' => 'callbook_prefill', 'option_key' => 'setting'))->row()->option_value ?? 'default';
+		}
+		$_callbook = $callbook;
+		if ($prefill_mode !== 'default') { $callbook = []; }
+		if ($prefill_mode === 'none') { $callsign_info = array_fill_keys(array_keys($callsign_info), ''); }
+
 		$return['callsign_name'] 		= $this->nval($callsign_info['name'], $callbook['name'] ?? '', $lookup_priority);
 		$return['callsign_qra'] 		= $this->nval($callsign_info['qra'], $callbook['gridsquare'] ?? '', $lookup_priority);
 		$return['callsign_geoloc'] 		= $callbook['geoloc'] ?? '';
@@ -180,6 +191,10 @@ class Logbook extends CI_Controller {
 		$return['callsign_cqz'] 	= $this->nval($callsign_info['cqz'], $callbook['cqz'] ?? '', $lookup_priority);
 		// call_darc_dok remains separate due to different query pattern (uses logbooks_relationships)
 		$return['callsign_darc_dok'] 		= $this->nval($this->logbook_model->call_darc_dok($callsign), $callbook['darc_dok'] ?? '', $lookup_priority);
+
+		// Restore original callbook data (used by profile panel below) 
+		$callbook = $_callbook;
+		if ($prefill_mode === 'none') { $return['callsign_darc_dok'] = ''; }
 		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
 		$return['confirmed'] 			= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
 		$return['timesWorked'] 			= $this->logbook_model->times_worked($lookupcall);
@@ -430,6 +445,12 @@ class Logbook extends CI_Controller {
 			}
 			$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
 		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+			if ($extrawhere!='') {
+				$extrawhere.=" OR";
+			}
+			$extrawhere.=" COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
+		}
 
 		if($type == "SAT") {
 			$this->db->where('COL_PROP_MODE', 'SAT');
@@ -519,6 +540,12 @@ class Logbook extends CI_Controller {
 					$extrawhere.=" OR";
 				}
 				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
 			}
 
 
@@ -621,6 +648,12 @@ class Logbook extends CI_Controller {
 					$extrawhere.=" OR";
 				}
 				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
 			}
 
 
@@ -816,7 +849,7 @@ class Logbook extends CI_Controller {
 				$timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00');
 				$html .= "<tr>";
 					$html .= "<td>".date($custom_date_format, $timestamp). date(' H:i',strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00')) . "</td>";
-					$html .= "<td><a id='edit_qso' href='javascript:displayQso(" . $row->COL_PRIMARY_KEY . ");'>" . str_replace('0','&Oslash;',strtoupper($row->COL_CALL)) . "</a></td>";
+					$html .= "<td><a id='edit_qso' class='callsign' href='javascript:displayQso(" . (int) $row->COL_PRIMARY_KEY . ");'>" . html_escape(strtoupper($row->COL_CALL)) . "</a></td>";
 					$html .= $this->part_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
 					$html .= $this->part_table_col($row, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
 					$html .= $this->part_table_col($row, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
@@ -1433,6 +1466,8 @@ class Logbook extends CI_Controller {
 	function qralatlngjson() {
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
+		session_write_close();
+
 		$qra = xss_clean($this->input->post('qra'));
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
@@ -1465,9 +1500,9 @@ class Logbook extends CI_Controller {
 	function part_QrbCalcLink($mygrid, $grid, $vucc) {
 		$ret='';
 		if (!empty($grid)) {
-			$ret.= $grid . ' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>';
+			$ret.= html_escape($grid) . ' <a href=\'javascript:spawnQrbCalculator(' . js_escape($mygrid) . ',' . js_escape($grid) . ')\'><i class="fas fa-globe"></i></a>';
 		} else if (!empty($vucc)) {
-			$ret.= $vucc .' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>';
+			$ret.= html_escape($vucc) .' <a href=\'javascript:spawnQrbCalculator(' . js_escape($mygrid) . ',' . js_escape($vucc) . ')\'><i class="fas fa-globe"></i></a>';
 		}
 		return $ret;
 	}
@@ -1475,20 +1510,20 @@ class Logbook extends CI_Controller {
 	function part_table_col($row, $name) {
 		$ret='';
 		switch($name) {
-		case 'Mode':    $ret.= '<td>'; $ret.= $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
-		case 'RSTS':    $ret.= '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_STX); $ret.= '</span>';} if ($row->COL_STX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} $ret.= '</td>'; break;
-		case 'RSTR':    $ret.= '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_SRX); $ret.= '</span>';} if ($row->COL_SRX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} $ret.= '</td>'; break;
-		case 'Country': $ret.= '<td>' . ucwords(strtolower(($row->COL_COUNTRY ?? ''))); if ($row->end ?? '' != '') $ret.= ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
-		case 'IOTA':    $ret.= '<td>' . ($row->COL_IOTA) . '</td>'; break;
-		case 'SOTA':    $ret.= '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
-		case 'WWFF':    $ret.= '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
-		case 'POTA':    $ret.= '<td>' . ($row->COL_POTA_REF) . '</td>'; break;
+		case 'Mode':    $ret.= '<td>'; $ret.= html_escape($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE) . '</td>'; break;
+		case 'RSTS':    $ret.= '<td class="d-none d-sm-table-cell">' . html_escape($row->COL_RST_SENT); if ($row->COL_STX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_STX); $ret.= '</span>';} if ($row->COL_STX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . html_escape($row->COL_STX_STRING) . '</span>';} $ret.= '</td>'; break;
+		case 'RSTR':    $ret.= '<td class="d-none d-sm-table-cell">' . html_escape($row->COL_RST_RCVD); if ($row->COL_SRX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_SRX); $ret.= '</span>';} if ($row->COL_SRX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.html_escape($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . html_escape($row->COL_SRX_STRING) . '</span>';} $ret.= '</td>'; break;
+		case 'Country': $ret.= '<td>' . html_escape(ucwords(strtolower(($row->COL_COUNTRY ?? '')))); if ($row->end ?? '' != '') $ret.= ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
+		case 'IOTA':    $ret.= '<td>' . html_escape($row->COL_IOTA) . '</td>'; break;
+		case 'SOTA':    $ret.= '<td>' . html_escape($row->COL_SOTA_REF) . '</td>'; break;
+		case 'WWFF':    $ret.= '<td>' . html_escape($row->COL_WWFF_REF) . '</td>'; break;
+		case 'POTA':    $ret.= '<td>' . html_escape($row->COL_POTA_REF) . '</td>'; break;
 		case 'Grid':    $ret.= '<td>' . $this->part_QrbCalcLink($row->COL_MY_GRIDSQUARE, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE) . '</td>'; break;
 		case 'Distance':    $ret.= '<td>' . (($row->COL_DISTANCE ?? '' != '') ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
-      case 'Band':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</a></td>'; } else { $ret.= strtolower($row->COL_BAND); } $ret.= '</td>'; break;
-      case 'Frequency':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</a></td>'; } else { if($row->COL_FREQ != null) { $ret.= $this->frequency->qrg_conversion($row->COL_FREQ); } else { $ret.= strtolower($row->COL_BAND); } } $ret.= '</td>'; break;
-		case 'State':   $ret.= '<td>' . ($row->COL_STATE) . '</td>'; break;
-		case 'Operator': $ret.= '<td>' . ($row->COL_OPERATOR) . '</td>'; break;
+      case 'Band':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank">'.html_escape($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</a></td>'; } else { $ret.= html_escape(strtolower($row->COL_BAND)); } $ret.= '</td>'; break;
+      case 'Frequency':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank">'.html_escape($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</a></td>'; } else { if($row->COL_FREQ != null) { $ret.= $this->frequency->qrg_conversion($row->COL_FREQ); } else { $ret.= html_escape(strtolower($row->COL_BAND)); } } $ret.= '</td>'; break;
+		case 'State':   $ret.= '<td>' . html_escape($row->COL_STATE) . '</td>'; break;
+		case 'Operator': $ret.= '<td>' . html_escape($row->COL_OPERATOR) . '</td>'; break;
 		}
 		return $ret;
 	}

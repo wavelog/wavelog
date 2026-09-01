@@ -84,7 +84,7 @@ class Header_auth extends CI_Controller {
         $isNewUser = false;
 
         if (!$query || $query->num_rows() !== 1) {
-            if (ENVIRONMENT == 'maintenance') {
+            if (MAINTENANCE_MODE) {
                 $this->_sso_error(__("Sorry. This instance is currently in maintenance mode."));
                 return;
             } elseif ($this->config->item('auth_header_create', 'sso')) {
@@ -111,19 +111,19 @@ class Header_auth extends CI_Controller {
         }
 
         // Maintenance mode check (admin only allowed)  
-        if (ENVIRONMENT === 'maintenance' && (int)$user->user_type !== 99) {
+        if (MAINTENANCE_MODE && (int)$user->user_type !== 99) {
             $this->_sso_error(__("Sorry. This instance is currently in maintenance mode. Only administrators are currently allowed to log in."));
         }
 
         // Check if club station before update
         // Don't update fields in maintenance mode
-        if (ENVIRONMENT !== 'maintenance') {
+        if (!MAINTENANCE_MODE) {
             // Update fields from JWT claims where override_on_update is enabled
             $this->_update_user_from_claims($user->user_id, $mapped);
         }
 
         // Clubstation
-        if (!empty($claim_groups_key) && ENVIRONMENT !== 'maintenance') {
+        if (!empty($claim_groups_key) && !MAINTENANCE_MODE) {
             $groups = $claims[$claim_groups_key] ?? [];
             $this -> _update_club_membership($user->user_id, $groups, $isNewUser);
         }
@@ -345,8 +345,10 @@ class Header_auth extends CI_Controller {
             $mapped['oqrs_direct_auto_matching']              ?? '',
             $mapped['user_dxwaterfall_enable']                ?? '',
             $mapped['user_qso_show_map']                      ?? '',
+            $mapped['last_lotw_upload_widget_enabled']        ?? '',
+            $mapped['user_callbook_prefill']                  ?? 'default',
             0,                                                   // clubstation
-            $external_identifier,                                       // external_account
+            $external_identifier,                                // external_account
         );
 
         switch ($result) {

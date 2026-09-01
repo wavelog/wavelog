@@ -15,11 +15,11 @@ class Stationsetup_model extends CI_Model {
 
 	function saveContainer() {
 		$data = array(
-			'logbook_name' => xss_clean($this->input->post('name', true)),
+			'logbook_name' => $this->input->post('name', true),
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', xss_clean($this->input->post('id', true)));
+		$this->db->where('logbook_id', $this->input->post('id', true));
 		$this->db->update('station_logbooks', $data);
 	}
 
@@ -300,7 +300,7 @@ class Stationsetup_model extends CI_Model {
 				'station_pota'          => ((isset($loc['station_pota']) && $loc['station_pota'] != "") ? xss_clean($loc['station_pota']) : null),
 				'state'                 => ((isset($loc['state']) && $loc['state'] != "") ? xss_clean($loc['state']) : null),
 				'station_cnty'          => ((isset($loc['station_cnty']) && $loc['station_cnty'] != "") ? xss_clean($loc['station_cnty']) : null),
-				'qrzapikey'             => ((isset($loc['qrzapikey']) && $loc['qrzapikey'] != "") ? xss_clean($loc['qrzapikey']) : null),
+				'qrzapikey'             => ((isset($loc['qrzapikey']) && $loc['qrzapikey'] != "") ? trim(xss_clean($loc['qrzapikey'])) : null),
 				'qrzrealtime'           => ((isset($loc['qrzrealtime']) && $loc['qrzrealtime'] != "") ? xss_clean($loc['qrzrealtime']) : 0),
 				'oqrs'                  => ((isset($loc['oqrs']) && $loc['oqrs'] != "") ? xss_clean($loc['oqrs']) : 0),
 				'oqrs_text'             => ((isset($loc['oqrs_text']) && $loc['oqrs_text'] != "") ? xss_clean($loc['oqrs_text']) : null),

@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        <strong><?= __("QSO"); ?> #<?php echo $qso1->COL_PRIMARY_KEY ?></strong>
+                        <strong><?= __("QSO"); ?> #<?php echo html_escape($qso1->COL_PRIMARY_KEY) ?></strong>
                         <label class="float-end">
                             <input type="radio" name="primaryQsoRadio" value="<?php echo $qsoIds[0] ?>"
 								onclick="selectAllQso1Fields()"
@@ -24,11 +24,11 @@
                     </div>
                     <div class="card-body">
                         <small>
-                            <strong><?= __("Date/Time"); ?>:</strong> <?php echo $qso1->COL_TIME_ON ?><br>
-                            <strong><?= __("Call"); ?>:</strong> <?php echo $qso1->COL_CALL ?><br>
-                            <strong><?= __("Mode"); ?>:</strong> <?php echo $qso1->COL_MODE ?> <?php echo $qso1->COL_SUBMODE ?? '' ?><br>
-                            <strong><?= __("Band"); ?>:</strong> <?php echo $qso1->COL_BAND ?><br>
-                            <strong><?= __("Station"); ?>:</strong> <?php echo $qso1->COL_STATION_CALLSIGN ?>
+                            <strong><?= __("Date/Time"); ?>:</strong> <?php echo html_escape($qso1->COL_TIME_ON) ?><br>
+                            <strong><?= __("Call"); ?>:</strong> <?php echo html_escape($qso1->COL_CALL) ?><br>
+                            <strong><?= __("Mode"); ?>:</strong> <?php echo html_escape($qso1->COL_MODE) ?> <?php echo html_escape($qso1->COL_SUBMODE ?? '') ?><br>
+                            <strong><?= __("Band"); ?>:</strong> <?php echo html_escape($qso1->COL_BAND) ?><br>
+                            <strong><?= __("Station"); ?>:</strong> <?php echo html_escape($qso1->COL_STATION_CALLSIGN) ?>
                         </small>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-secondary text-white">
-                        <strong><?= __("QSO"); ?> #<?php echo $qso2->COL_PRIMARY_KEY ?></strong>
+                        <strong><?= __("QSO"); ?> #<?php echo html_escape($qso2->COL_PRIMARY_KEY) ?></strong>
                         <label class="float-end">
                             <input type="radio" name="secondaryQsoRadio" value="<?php echo $qsoIds[1] ?>"
 								onclick="selectAllQso2Fields()"
@@ -47,11 +47,11 @@
                     </div>
                     <div class="card-body">
                         <small>
-                            <strong><?= __("Date/Time"); ?>:</strong> <?php echo $qso2->COL_TIME_ON ?><br>
-                            <strong><?= __("Call"); ?>:</strong> <?php echo $qso2->COL_CALL ?><br>
-                            <strong><?= __("Mode"); ?>:</strong> <?php echo $qso2->COL_MODE ?> <?php echo $qso2->COL_SUBMODE ?? '' ?><br>
-                            <strong><?= __("Band"); ?>:</strong> <?php echo $qso2->COL_BAND ?><br>
-                            <strong><?= __("Station"); ?>:</strong> <?php echo $qso2->COL_STATION_CALLSIGN ?>
+                            <strong><?= __("Date/Time"); ?>:</strong> <?php echo html_escape($qso2->COL_TIME_ON) ?><br>
+                            <strong><?= __("Call"); ?>:</strong> <?php echo html_escape($qso2->COL_CALL) ?><br>
+                            <strong><?= __("Mode"); ?>:</strong> <?php echo html_escape($qso2->COL_MODE) ?> <?php echo html_escape($qso2->COL_SUBMODE ?? '') ?><br>
+                            <strong><?= __("Band"); ?>:</strong> <?php echo html_escape($qso2->COL_BAND) ?><br>
+                            <strong><?= __("Station"); ?>:</strong> <?php echo html_escape($qso2->COL_STATION_CALLSIGN) ?>
                         </small>
                     </div>
                 </div>
@@ -69,8 +69,8 @@
                     <thead>
                         <tr>
                             <th style="width: 30%"><?= __("Field"); ?></th>
-                            <th style="width: 35%"><?= __("QSO"); ?> #<?php echo $qso1->COL_PRIMARY_KEY; ?></th>
-                            <th style="width: 35%"><?= __("QSO"); ?> #<?php echo $qso2->COL_PRIMARY_KEY; ?></th>
+                            <th style="width: 35%"><?= __("QSO"); ?> #<?php echo html_escape($qso1->COL_PRIMARY_KEY); ?></th>
+                            <th style="width: 35%"><?= __("QSO"); ?> #<?php echo html_escape($qso2->COL_PRIMARY_KEY); ?></th>
                         </tr>
                     </thead>
                     <tbody>

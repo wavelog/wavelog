@@ -254,7 +254,7 @@
 										<td><?php echo htmlspecialchars($act['confirmation']); ?></td>
 										<td><?php echo htmlspecialchars($act['satellite'] ?? 'N/A'); ?></td>
 										<td><?php echo date('Y-m-d H:i', strtotime($act['date'])); ?> UTC</td>
-										<td><a href="<?php echo $lotw_url; ?>" target="_blank"><?php echo htmlspecialchars($act['call_worked']); ?></a></td>
+										<td class="callsign"><a href="<?php echo $lotw_url; ?>" target="_blank"><?php echo htmlspecialchars($act['call_worked']); ?></a></td>
 									</tr>
 									<?php endforeach; ?>
 								</tbody>

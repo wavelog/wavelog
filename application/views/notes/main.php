@@ -50,11 +50,8 @@
 				<div class="col-md-5 col-12">
 					<!-- Search box and reset button -->
 					<div class="input-group">
-						<input type="text" id="notesSearchBox" class="form-control form-control-sm" maxlength="50" placeholder="<?= __("Search notes (min. 3 chars)") ?>">
-						<button class="btn btn-outline-secondary btn-sm btn-light" id="notesAddStrokedZero" type="button" title="<?= __("Add stroked zero (Ø)") ?>" data-bs-toggle="tooltip">
-							Ø
-						</button>
-						<button class="btn btn-outline-secondary btn-sm btn-light" id="notesSearchReset" type="button" title="<?= __("Reset search") ?>">
+					<input type="text" id="notesSearchBox" class="form-control form-control-sm" maxlength="50" placeholder="<?= __("Search notes (min. 3 chars)") ?>">
+					<button class="btn btn-outline-secondary btn-sm btn-light" id="notesSearchReset" type="button" title="<?= __("Reset search") ?>">
 							<i class="fa fa-times"></i>
 						</button>
 					</div>

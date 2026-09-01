@@ -1,3 +1,11 @@
+<style>
+	#azimuthal_svg {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+</style>
+
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 	<h2><?= __("Antenna Analytics"); ?></h2>
 	<div class="card">
@@ -74,13 +82,29 @@
 								</div>
 
 
+							<div class="btn-group" id="azimuth_view_toggle" role="group" aria-label="<?= __("View"); ?>">
+								<button type="button" class="btn btn-sm btn-outline-primary active" data-view="map"><?= __("Map") ?></button>
+								<button type="button" class="btn btn-sm btn-outline-primary" data-view="radar"><?= __("Radar") ?></button>
+							</div>
+
 							<div class="w-auto">
 								<button id="button1id" type="button" name="button1id" class="btn btn-sm btn-primary" onclick="plot_azimuth()"><?= __("Show") ?></button>
 							</div>
 						</div>
 
 					</form>
-					<canvas id="azimuthchart"></canvas>
+					<div id="azimuthal_wrap" class="d-flex justify-content-center position-relative">
+						<svg id="azimuthal_svg" role="img" aria-label="<?= __("Azimuthal map"); ?>"></svg>
+						<div class="legend" style="position:absolute; top:10px; right:10px; z-index:500; pointer-events:none; font-size:12px; line-height:18px;">
+							<h4 id="azimuthal_peak"><?= __("Azimuth"); ?></h4>
+							<div id="azimuthal_center" style="text-align:center; margin: 0 0 6px;"></div>
+							<i style="background:rgba(54,162,235,0.35); border:1px solid rgba(54,162,235,1);"></i><span><?= __("QSOs per degree of azimuth"); ?></span><br>
+							<i style="background:none; height:0; border-top:2px dashed rgba(255,255,255,0.7); margin-top:8px;"></i><span><?= __("25 / 50 / 75 % of peak"); ?></span><br>
+							<i class="rounded-circle" style="background:rgba(54,162,235,1); width:12px; height:12px; margin-top:3px;"></i><span><?= __("Marker every 5°"); ?></span><br>
+							<i class="rounded-circle" style="background:#dc3545; width:12px; height:12px; margin-top:3px;"></i><span><?= __("Station location"); ?></span>
+						</div>
+					</div>
+					<canvas id="azimuthchart" hidden></canvas>
 				</div>
 
 				<div class="tab-pane fade show" id="elevation" role="tabpanel" aria-labelledby="elevation-tab"><br />
@@ -123,3 +147,8 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	var ant_center = <?php echo json_encode(['lat' => $home_lat, 'lng' => $home_lng], JSON_HEX_TAG | JSON_HEX_APOS); ?>;
+	var ant_homegrid = <?php echo json_encode($homegrid, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
+</script>

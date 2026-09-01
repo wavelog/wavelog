@@ -1,15 +1,15 @@
 <div class="card-body">
-<h2><?= sprintf(__("Results for %s"), str_replace('0', 'Ø', $lookupcall)); ?></h2>
+<h2><?= sprintf(__("Results for %s"), '<span class="callsign">' . htmlspecialchars($lookupcall) . '</span>'); ?></h2>
 
-<p><?= sprintf(__("Sorry, but we didn't find any past QSOs with %s"), str_replace('0', 'Ø', $lookupcall)); ?></p>
+<p><?= sprintf(__("Sorry, but we didn't find any past QSOs with %s"), '<span class="callsign">' . htmlspecialchars($lookupcall) . '</span>'); ?></p>
 
-<h3><?= sprintf(__("Callbook Search for %s"), str_replace('0', 'Ø', $realcall)); ?></h3>
+<h3><?= sprintf(__("Callbook Search for %s"), '<span class="callsign">' . htmlspecialchars($realcall) . '</span>'); ?></h3>
 <?php if(isset($callsign['callsign'])) { ?>
 <table>
 
 <tr>
 	<td align="left"><?= __("Callsign"); ?></td>
-   <td style="padding: 0.3em 0 0.3em 0.5em;" align="left"><?php echo str_replace("0","&Oslash;",strtoupper($callsign['callsign'])); ?> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($callsign['callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($callsign['callsign']); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($callsign['callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($callsign['callsign']); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo strtoupper($callsign['callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($callsign['callsign']); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($callsign['callsign']); ?>&call=<?php echo strtoupper($this->session->userdata()['user_callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a></td>
+   <td style="padding: 0.3em 0 0.3em 0.5em;" align="left"><span class="callsign"><?php echo strtoupper($callsign['callsign']); ?></span> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($callsign['callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($callsign['callsign']); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($callsign['callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($callsign['callsign']); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo strtoupper($callsign['callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($callsign['callsign']); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($callsign['callsign']); ?>&call=<?php echo strtoupper($this->session->userdata()['user_callsign']); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a></td>
 </tr>
 
 <tr>

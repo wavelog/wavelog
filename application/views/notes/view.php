@@ -35,7 +35,7 @@
                 <?php endif; ?>
               </span>
             </div>
-            <h4 class="fw-bold mb-0"><?php echo htmlspecialchars($row->title); ?></h4>
+            <h4 class="fw-bold mb-0 <?= ($row->cat == 'Contacts') ? 'callsign' : '' ?>"><?= htmlspecialchars($row->title); ?></h4>
           </div>
         </div>
         <!-- Note contents -->

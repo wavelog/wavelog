@@ -54,9 +54,9 @@
 
 			foreach ($qslarray->result() as $qsl) {
 				echo '<tr>';
-				echo '<td style=\'text-align: center\'>'.str_replace("0", "&Oslash;", $qsl->COL_CALL).'</td>';
+				echo '<td style=\'text-align: center\' class=\'callsign\'>'.html_escape($qsl->COL_CALL).'</td>';
 				echo '<td style=\'text-align: center\'>';
-				echo $qsl->COL_SUBMODE == null ? $qsl->COL_MODE : $qsl->COL_SUBMODE;
+				echo $qsl->COL_SUBMODE == null ? html_escape($qsl->COL_MODE) : html_escape($qsl->COL_SUBMODE);
 				echo '</td>';
 				echo '<td style=\'text-align: center\'>';
 				$timestamp = strtotime($qsl->COL_TIME_ON);
@@ -68,9 +68,9 @@
 				echo '</td>';
 				echo '<td style=\'text-align: center\'>';
 				if ($qsl->COL_SAT_NAME != null) {
-					echo $qsl->COL_SAT_NAME;
+					echo html_escape($qsl->COL_SAT_NAME);
 				} else {
-					echo strtolower($qsl->COL_BAND);
+					echo html_escape(strtolower($qsl->COL_BAND));
 				};
 				echo '</td>';
 				echo '<td style=\'text-align: center\'>';
@@ -78,7 +78,7 @@
 				echo date($custom_date_format, $timestamp);
 				echo '</td>';
 				echo '<td id="'.$qsl->id.'" style=\'text-align: center\'><button onclick="deleteQsl(\''.$qsl->id.'\')" class="btn btn-sm btn-danger">' . __("Delete") . '</button></td>';
-				echo '<td style=\'text-align: center\'><button onclick="viewQsl(\''.$qsl->filename.'\', \''.$qsl->COL_CALL.'\')" class="btn btn-sm btn-success">' . __("View") . '</button></td>';
+				echo '<td style=\'text-align: center\'><button onclick="viewQsl(\''.$qsl->filename.'\', \''.html_escape($qsl->COL_CALL).'\')" class="btn btn-sm btn-success">' . __("View") . '</button></td>';
 				echo '<td style=\'text-align: center\'><button onclick="addQsosToQsl(\''.$qsl->filename.'\')" class="btn btn-sm btn-success">' . __("Add Qsos") . '</button></td>';
 				echo '</tr>';
 			}
@@ -114,12 +114,12 @@
 					<div class="waterfall-item">
 						<div class="card h-100">
 							<div class="card-img-container">
-								<img src="<?= $image_path ?>" class="card-img-top qsl-card-img" alt="QSL Card from <?= str_replace("0", "&Oslash;", $qsl->COL_CALL) ?>" onclick="viewQsl('<?= $qsl->filename ?>', '<?= str_replace("0", "&Oslash;", $qsl->COL_CALL) ?>')">
-							</div>
-							<div class="card-body">
-								<h5 class="card-title"><?= str_replace("0", "&Oslash;", $qsl->COL_CALL) ?></h5>
+							<img src="<?= $image_path ?>" class="card-img-top qsl-card-img" alt="QSL Card from <?= html_escape($qsl->COL_CALL) ?>" onclick="viewQsl('<?= $qsl->filename ?>', '<?= html_escape($qsl->COL_CALL) ?>')">
+						</div>
+						<div class="card-body">
+							<h5 class="card-title callsign"><?= html_escape($qsl->COL_CALL) ?></h5>
 								<p class="card-text">
-									<?= $mode ?> | <?= $band ?><br>
+									<?= html_escape($mode) ?> | <?= html_escape($band) ?><br>
 									<?= date($custom_date_format, $timestamp) ?> <?= date('H:i', $timestamp) ?><br>
 									<?= $qslDate == '' ? '' : __("QSL Date") . ': ' . $qslDate ?>
 								</p>

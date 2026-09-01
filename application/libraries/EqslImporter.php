@@ -188,7 +188,7 @@ class EqslImporter
 
 			$qsos[] = array(
 				'date' => $time_on,
-				'call' => str_replace("0", "&Oslash;", $record['call']),
+				'call' => $record['call'],
 				'mode' => $record['mode'],
 				'submode' => $record['submode'] ?? null,
 				'eqsl_qslrdate' => $eqsl_qslrdate ?? null,

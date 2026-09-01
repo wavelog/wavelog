@@ -129,7 +129,7 @@ $config['auth_level'][99] = 'Administrator';
 |--------------------------------------------------------------------------
 |
 | Enable SSO support via a trusted HTTP header containing a JWT access token.
-| When enabled, a sso.php config file is required (see sso.sample.php).
+| If enabled, a sso.php config file is required (see sso.sample.php).
 |
 | Documentation: https://docs.wavelog.org/admin-guide/configuration/thirdparty-authentication/
 */
@@ -490,7 +490,13 @@ $config['encryption_key'] = 'flossie1234555541';
 |
 | 'sess_driver'
 |
-|	The storage driver to use: files, database, redis, memcached
+|	The storage driver to use: files, database, redis, redis2, memcached
+|
+|	'redis2' is Wavelog's own Redis driver. It behaves like 'redis' but waits
+|	for the session lock with BLPOP instead of polling, so parallel AJAX
+|	requests of the same user are no longer delayed by up to a second each.
+|	When redis is needed, use 'redis2' instead of 'redis' for better performance
+|   unless you have a really good reason to use the original 'redis' driver.
 |
 | 'sess_cookie_name'
 |
@@ -629,7 +635,7 @@ $config['csrf_exclude_uris'] = array();
 | Output Compression
 |--------------------------------------------------------------------------
 |
-| Enables Gzip output compression for faster page loads.  When enabled,
+| Enables Gzip output compression for faster page loads.  If enabled,
 | the output class will test whether your server supports Gzip.
 | Even if it does, however, not all browsers support compression
 | so enable only if you are reasonably sure your visitors can handle it.

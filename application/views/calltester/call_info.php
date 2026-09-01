@@ -25,7 +25,7 @@ if ($count > 0) {
 		$dxcc_value .= ' (' . htmlspecialchars($info['dxcc_adif'], ENT_QUOTES) . ')';
 	}
 	$stats = [
-		['label' => __("Callsign"),  'value' => htmlspecialchars(str_replace('0', 'Ø', $call), ENT_QUOTES), 'color' => 'primary'],
+		['label' => __("Callsign"),  'value' => '<span class="callsign">' . htmlspecialchars($call, ENT_QUOTES) . '</span>', 'color' => 'primary'],
 		['label' => __("DXCC"),      'value' => $dxcc_value !== '' ? $dxcc_value : '—',                       'color' => 'info'],
 		['label' => __("QSOs"),      'value' => $count,                                                        'color' => 'success'],
 	];
@@ -44,7 +44,7 @@ if ($count > 0) {
 
 if ($count == 0) { ?>
 <div class="alert alert-info mb-0">
-	<?= sprintf(__("No QSOs with %s found in your logbook."), str_replace('0', 'Ø', $call)); ?>
+	<?= sprintf(__("No QSOs with %s found in your logbook."), '<span class="callsign">' . htmlspecialchars($call, ENT_QUOTES) . '</span>'); ?>
 </div>
 <?php } else { ?>
 <div class="table-responsive" style="max-height:60vh; overflow:auto;">
@@ -87,7 +87,7 @@ if ($count == 0) { ?>
 					<?php if ($show_time) { ?><td><?php echo date('H:i', strtotime($row->COL_TIME_ON)); ?></td><?php } ?>
 					<td>
 						<div class="d-flex align-items-center justify-content-between">
-							<a href="javascript:void(0)" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo htmlspecialchars(str_replace('0', 'Ø', strtoupper($row->COL_CALL))); ?></a>
+							<a class="callsign" href="javascript:void(0)" onclick="displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo htmlspecialchars(strtoupper($row->COL_CALL)); ?></a>
 							<a href="https://www.qrz.com/db/<?php echo htmlspecialchars($base_call, ENT_QUOTES); ?>" target="_blank" rel="noopener" data-bs-toggle="tooltip" title="<?= __("Lookup on QRZ.com"); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="<?= __("Lookup on QRZ.com"); ?>"></a>
 						</div>
 					</td>

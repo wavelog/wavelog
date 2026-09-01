@@ -42,7 +42,7 @@
                 foreach ($station_profile->result() as $station) {      // Fills the table with the data
                 echo '<tr>';
                     echo '<td>' . $station->station_profile_name . '</td>';
-                    echo '<td>' . $station->station_callsign . '</td>';
+                    echo '<td><span class="callsign">' . $station->station_callsign . '</span></td>';
                     echo '<td id ="modcount'.$station->station_id.'">' . $station->modcount . '</td>';
                     echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
                     echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';

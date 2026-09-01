@@ -8,6 +8,20 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 });
 
+$('#band2').change(function(){
+  if ($('#band2').val() != 'SAT') {
+    $("#sats").val('All');
+    $("#orbits").val('All');
+    $("#satrow").hide();
+    $("#orbitrow").hide();
+  } else {
+    $("#satrow").show();
+    $("#orbitrow").show();
+  }
+});
+
+$('#band2').change();	// trigger the change on fresh-load to hide/show SAT-Params
+
 function wpxLoadDetails(status, band) {
 	$('.showWpxResults').empty();
 	$.ajax({

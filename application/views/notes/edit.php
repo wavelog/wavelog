@@ -35,7 +35,7 @@
       <form method="post" action="<?php echo site_url('notes/edit'); ?>/<?php echo $id; ?>" name="notes_add" id="notes_add">
         <div class="mb-3">
           <label for="inputTitle"><?= __("Title"); ?></label>
-          <input type="text" name="title" class="form-control" value="<?php echo isset($suggested_title) && $suggested_title ? $suggested_title : set_value('title', $row->title); ?>" id="inputTitle">
+          <input type="text" name="title" class="form-control <?= ($row->cat === 'Contacts') ? 'callsign' : '' ?>" value="<?php echo isset($suggested_title) && $suggested_title ? $suggested_title : set_value('title', $row->title); ?>" id="inputTitle">
         </div>
         <div class="mb-3">
           <label for="catSelect">
@@ -69,4 +69,15 @@
   </div>
 <?php } ?>
 </div>
+<script>
+  (function() {
+    var sel = document.getElementById('catSelect');
+    var inp = document.getElementById('inputTitle');
+    if (sel && inp) {
+      sel.addEventListener('change', function() {
+        inp.classList.toggle('callsign', sel.value === 'Contacts');
+      });
+    }
+  })();
+</script>
 

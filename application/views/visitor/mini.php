@@ -191,9 +191,9 @@ tr:hover td {
         <?php foreach ($results as $row): ?>
         <tr>
           <td><?php echo date('Y-m-d', strtotime($row->COL_TIME_ON)); ?></td>
-          <td><?php echo str_replace("0", "&Oslash;", strtoupper($row->COL_CALL)); ?></td>
-          <td><?php echo $row->COL_PROP_MODE == 'SAT' ? $row->COL_SAT_NAME : strtolower($row->COL_BAND); ?></td>
-          <td><?php echo $row->COL_SUBMODE ?? $row->COL_MODE; ?></td>
+          <td class="callsign"><?php echo html_escape(strtoupper($row->COL_CALL)); ?></td>
+          <td><?php echo $row->COL_PROP_MODE == 'SAT' ? html_escape($row->COL_SAT_NAME) : html_escape(strtolower($row->COL_BAND)); ?></td>
+          <td><?php echo html_escape($row->COL_SUBMODE ?? $row->COL_MODE); ?></td>
           <td>
             <div class="status-icons">
               <div class="triangle-up <?php echo ($row->COL_LOTW_QSL_SENT == 'Y') ? 'green' : 'red'; ?>"></div>

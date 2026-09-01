@@ -127,6 +127,13 @@ class Staticmap extends CI_Controller {
             $ituzones = $r == 'true' ? true : false;
         }
 
+        // Custom map center (gridsquare) for the static map, if provided by the user.
+        $this->load->is_loaded('Qra') ?: $this->load->library('Qra');
+        $custom_center = strtoupper($this->input->get('center', TRUE) ?? '');
+        if (strlen($custom_center) < 4 || !$this->qra->validate_grid($custom_center, 'grid')) {
+            $custom_center = NULL;
+        }
+
         // Watermark
         $watermark = $this->input->get('wm', TRUE) ?? '';
         if ($watermark == '' || ($watermark != 1 && $watermark != 0)) {
@@ -167,7 +174,8 @@ class Staticmap extends CI_Controller {
                      . $start_date
                      . $end_date
                      . $day
-                     . $watermark;
+                     . $watermark
+                     . ($custom_center ?? '');
 
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
@@ -182,7 +190,7 @@ class Staticmap extends CI_Controller {
             }
         }
 
-        if ($this->staticmap_model->validate_cached_image($filepath, $cacheDir, $maxAge, $slug)) {
+        if ($this->staticmap_model->validate_cached_image($filepath, $cacheDir, $maxAge, $slug, $day)) {
             log_message('debug', 'Static map image found in cache: ' . $filename);
             header('Content-Type: image/png');
             readfile($filepath);
@@ -207,6 +215,7 @@ class Staticmap extends CI_Controller {
                 if (!$this->load->is_loaded('logbook_model')) {
                     $this->load->model('logbook_model');
                 }
+
                 $grids = [];
                 foreach ($logbooks_locations_array as $location) {
                     $station_info = $this->logbook_model->check_station($location);
@@ -214,14 +223,17 @@ class Staticmap extends CI_Controller {
                         $grids[] = $station_info['station_gridsquare'];
                     }
                 }
-                if (!$this->load->is_loaded('Qra')) {
-                    $this->load->library('Qra');
-                }
+                
                 $coordinates = [];
                 foreach ($grids as $grid) {
                     $coordinates[] = $this->qra->qra2latlong($grid);
                 }
-                $centerMap = $this->qra->getCenterLatLng($coordinates);
+
+                if ($custom_center) {
+                    $centerMap = $this->qra->qra2latlong($custom_center);
+                } else {
+                    $centerMap = $this->qra->getCenterLatLng($coordinates);
+                }
 
                 $qsos = $this->visitor_model->get_qsos(
                     $qsocount, 

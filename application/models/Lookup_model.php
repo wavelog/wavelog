@@ -7,17 +7,18 @@ class Lookup_model extends CI_Model{
 		foreach ($queryinfo['sats'] as $sat) {
 			$resultArray[$sat] = '-';
 		}
-		$sql = "SELECT DISTINCT(COL_SAT_NAME) FROM ".$this->config->item('table_name')." WHERE COL_PROP_MODE = 'SAT' AND COL_CALL = ?;";
-		$binds[] = $queryinfo['callsign'];
-		$query = $this->db->query($sql,$binds);
-		foreach ($query->result() as $workedsat) {
-			$resultArray[$workedsat->COL_SAT_NAME] = 'W';
-		}
-		$sql = "SELECT DISTINCT(COL_SAT_NAME) FROM ".$this->config->item('table_name')." WHERE COL_PROP_MODE = 'SAT' AND COL_CALL = ?";
-		$sql .= $this->buildConfirmationString('confirmed');
-		$query = $this->db->query($sql,$binds);
-		foreach ($query->result() as $confirmedsat) {
-			$resultArray[$confirmedsat->COL_SAT_NAME] = 'C';
+		$sql = "SELECT COL_SAT_NAME,
+			MAX(case when col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,
+			MAX(case when col_lotw_qsl_rcvd = 'Y' then 1 else 0 end) as lotw,
+			MAX(case when col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,
+			MAX(case when col_qrzcom_qso_download_status = 'Y' then 1 else 0 end) as qrz,
+			MAX(case when col_clublog_qso_download_status = 'Y' then 1 else 0 end) as clublog
+			FROM ".$this->config->item('table_name')." WHERE COL_PROP_MODE = 'SAT' AND COL_CALL = ?
+			GROUP BY COL_SAT_NAME";
+		$query = $this->db->query($sql, [$queryinfo['callsign']]);
+		foreach ($query->result() as $sat) {
+			$letters = ($sat->qsl ? 'Q' : '').($sat->lotw ? 'L' : '').($sat->eqsl ? 'E' : '').($sat->qrz ? 'Z' : '').($sat->clublog ? 'C' : '');
+			$resultArray[$sat->COL_SAT_NAME] = $letters ?: 'W';
 		}
 		return $resultArray;
 	}
@@ -67,19 +68,11 @@ class Lookup_model extends CI_Model{
 			}
 		}
 
-		// Populating array with worked band/mode combinations
-		$worked = $this->getQueryData($queryinfo, 'worked');
-		foreach ($worked as $w) {
-			if(in_array($w->col_band, $queryinfo['bands'])) {
-				$resultArray[$w->col_mode][$w->col_band] = 'W';
-			}
-		}
-
-		// Populating array with confirmed band/mode combinations
-		$confirmed = $this->getQueryData($queryinfo, 'confirmed');
-		foreach ($confirmed as $c) {
-			if(in_array($c->col_band, $queryinfo['bands'])) {
-				$resultArray[$c->col_mode][$c->col_band] = 'C';
+		// Populating array with worked/confirmed band/mode combinations (Q/L/E/Z/C letters like the DXCC award table)
+		foreach ($this->getQueryData($queryinfo) as $r) {
+			if (in_array($r->col_band, $queryinfo['bands'])) {
+				$letters = ($r->qsl ? 'Q' : '').($r->lotw ? 'L' : '').($r->eqsl ? 'E' : '').($r->qrz ? 'Z' : '').($r->clublog ? 'C' : '');
+				$resultArray[$r->col_mode][$r->col_band] = $letters ?: 'W';
 			}
 		}
 
@@ -151,108 +144,29 @@ class Lookup_model extends CI_Model{
 	}
 
 	/*
-	 * Builds query depending on what we are searching for
+	 * Builds query depending on what we are searching for.
+	 * One row per band/mode, MAX-flags per confirmation type (same logic as the DXCC award table).
 	 */
-	function getQueryData($queryinfo, $confirmedtype) {
-		// If user inputs longer grid than 4 chars, we use only the first 4
+	function getQueryData($queryinfo) {
 		$binds = [];
 
-		$sqlquerytypestring = '';
-		$sqlqueryconfirmationstring = $this->buildConfirmationString($confirmedtype);
-
-		// Fetching info for all modes and bands except satellite
-		$sql = "SELECT distinct col_band, lower(col_mode) as col_mode FROM " . $this->config->item('table_name') . " thcv";
-
-		$sql .= " where station_id in (" . $queryinfo['location_list'] . ")";
-
-		$sql .= " and coalesce(col_submode, '') = ''";
-
-		$sql .= " and col_prop_mode != 'SAT'";
+		$sql = "SELECT CASE WHEN col_prop_mode = 'SAT' THEN 'SAT' ELSE col_band END as col_band,
+			LOWER(COALESCE(NULLIF(col_submode, ''), col_mode)) as col_mode,
+			MAX(case when col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,
+			MAX(case when col_lotw_qsl_rcvd = 'Y' then 1 else 0 end) as lotw,
+			MAX(case when col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,
+			MAX(case when col_qrzcom_qso_download_status = 'Y' then 1 else 0 end) as qrz,
+			MAX(case when col_clublog_qso_download_status = 'Y' then 1 else 0 end) as clublog
+			FROM " . $this->config->item('table_name') . " thcv
+			where station_id in (" . $queryinfo['location_list'] . ")";
 
 		$sql .= $this->build_info_query($queryinfo,$binds);
 
-		$sql .= $sqlqueryconfirmationstring;
-
-		// Fetching info for all sub_modes and bands except satellite
-		$sql .= " union SELECT distinct col_band, lower(col_submode) as col_mode FROM " . $this->config->item('table_name') . " thcv";
-
-		$sql .= " where station_id in (" . $queryinfo['location_list'] . ")";
-
-		$sql .= " and coalesce(col_submode, '') <> ''";
-
-		$sql .= " and col_prop_mode != 'SAT'";
-
-		$sql .= $this->build_info_query($queryinfo,$binds);
-
-		$sql .= $sqlqueryconfirmationstring;
-
-		// Fetching info for all modes on satellite
-		$sql .= " union SELECT distinct 'SAT' col_band, lower(col_mode) as col_mode FROM " . $this->config->item('table_name') . " thcv";
-
-		$sql .= " where station_id in (" . $queryinfo['location_list'] . ")";
-
-		$sql .= " and coalesce(col_submode, '') = ''";
-
-		$sql .= " and col_prop_mode = 'SAT'";
-
-		$sql .= $this->build_info_query($queryinfo,$binds);
-
-		$sql .= $sqlqueryconfirmationstring;
-
-		// Fetching info for all sub_modes on satellite
-		$sql .= " union SELECT distinct 'SAT' col_band, lower(col_submode) as col_mode FROM " . $this->config->item('table_name') . " thcv";
-
-		$sql .= " where station_id in (" . $queryinfo['location_list'] . ")";
-
-		$sql .= " and coalesce(col_submode, '') <> ''";
-
-		$sql .= " and col_prop_mode = 'SAT'";
-
-		$sql .= $this->build_info_query($queryinfo,$binds);
-
-		$sql .= $sqlqueryconfirmationstring;
+		$sql .= " GROUP BY 1, 2";
 
 		$query = $this->db->query($sql,$binds);
 
 		return $query->result();
-	}
-
-	function buildConfirmationString ($confirmedtype) {
-		if ($confirmedtype == 'confirmed') {
-			$user_default_confirmation = $this->session->userdata('user_default_confirmation');
-			$extrawhere='';
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
-				$extrawhere="COL_QSL_RCVD='Y'";
-			}
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
-				if ($extrawhere!='') {
-					$extrawhere.=" OR";
-				}
-				$extrawhere.=" COL_LOTW_QSL_RCVD='Y'";
-			}
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
-				if ($extrawhere!='') {
-					$extrawhere.=" OR";
-				}
-				$extrawhere.=" COL_EQSL_QSL_RCVD='Y'";
-			}
-
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
-				if ($extrawhere!='') {
-					$extrawhere.=" OR";
-				}
-				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
-			}
-
-			if (($confirmedtype == 'confirmed') && ($extrawhere != '')){
-				$sqlqueryconfirmationstring = " and (".$extrawhere.")";
-			} else {
-				$sqlqueryconfirmationstring = ' and (1=0)';
-			}
-		} else {
-			$sqlqueryconfirmationstring = '';
-		}
-		return $sqlqueryconfirmationstring;
 	}
 
 	/*

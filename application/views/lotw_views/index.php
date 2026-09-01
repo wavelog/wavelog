@@ -55,7 +55,7 @@
 						<?php $current_date = date('Y-m-d H:i:s'); ?>
 						<?php foreach ($lotw_cert_results->result() as $row) { ?>
 							<tr>
-								<td><?php echo $row->callsign; ?></td>
+								<td><span class="callsign"><?php echo $row->callsign; ?></span></td>
 								<td><?php echo $row->cert_dxcc == '' ? '- NONE -' : ucfirst($row->cert_dxcc); if ($row->cert_dxcc_end != NULL) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
 								<td><?php
 									if (isset($row->qso_start_date)) {

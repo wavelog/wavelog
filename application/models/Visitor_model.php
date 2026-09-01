@@ -94,21 +94,24 @@ class Visitor_model extends CI_Model {
 
 	function qso_is_confirmed($qso, $user_default_confirmation) {
 		$confirmed = false;
+		if (!is_string($user_default_confirmation) || $user_default_confirmation === '') {
+			return false;
+		}
 		$qso = (array) $qso;
 		if (strpos($user_default_confirmation, 'Q') !== false) { // QSL
-			if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+			if (($qso['COL_QSL_RCVD'] ?? null) === 'Y') { $confirmed = true; }
 		}
 		if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
-			if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+			if (($qso['COL_LOTW_QSL_RCVD'] ?? null) === 'Y') { $confirmed = true; }
 		}
 		if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
-			if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+			if (($qso['COL_EQSL_QSL_RCVD'] ?? null) === 'Y') { $confirmed = true; }
 		}
 		if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
-			if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+			if (($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] ?? null) === 'Y') { $confirmed = true; }
 		}
 		if (strpos($user_default_confirmation, 'C') !== false) { // Clublog
-			if ($qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+			if (($qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] ?? null) === 'Y') { $confirmed = true; }
 		}
 		return $confirmed;
 	}

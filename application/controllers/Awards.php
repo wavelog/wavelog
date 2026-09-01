@@ -481,23 +481,19 @@ class Awards extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/sections/jcc.js',
-			'assets/js/sections/jccmap.js'
+			'assets/js/sections/jccmap.js',
 		];
 
-		$this->load->helper('awards');
 		$this->load->model('jcc_model');
-		$this->load->model('modes');
+		$this->load->model('logbookadvanced_model');
 		$this->load->model('bands');
 
-		if($this->input->method() === 'post') {
+		if ($this->input->method() === 'post') {
 			$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
 			$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
 			$postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
 			$postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
 			$postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
-			$postdata['worked'] = ($this->input->post('worked', true) ?? 0) == 0 ? null : 1;
-			$postdata['confirmed'] = ($this->input->post('confirmed', true) ?? 0) == 0 ? null : 1;
-			$postdata['notworked'] = ($this->input->post('notworked', true) ?? 0) == 0 ? null : 1;
 			$postdata['includedeleted'] = ($this->input->post('includedeleted', true) ?? 0) == 0 ? null : 1;
 			$postdata['band'] = $this->input->post('band', true) ?? 'All';
 			$postdata['mode'] = $this->input->post('mode', true) ?? 'All';
@@ -509,9 +505,6 @@ class Awards extends CI_Controller {
 			$postdata['eqsl'] = 1;
 			$postdata['qrz'] = null;
 			$postdata['clublog'] = null;
-			$postdata['worked'] = 1;
-			$postdata['confirmed'] = 1;
-			$postdata['notworked'] = null;
 			$postdata['includedeleted'] = null;
 			$postdata['band'] = 'All';
 			$postdata['mode'] = 'All';
@@ -520,24 +513,14 @@ class Awards extends CI_Controller {
 		$data['postdata'] = $postdata;
 
 		$data['worked_bands'] = $this->bands->get_worked_bands('jcc');
-		$data['modes'] = $this->modes->active();
+		$data['modes'] = $this->logbookadvanced_model->get_modes();
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
-		// If "All" is selected, show all bands that have been worked. Otherwise, just the selected band.
-		if ($postdata['band'] == 'All') {
-			$bands = $data['worked_bands'];
-		} else {
-			$bands = [$postdata['band']];
-		}
-		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+		$jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata);
+		$data['jcc_groups'] = $this->jcc_model->get_jcc_grouped_slot($postdata, $jcc_entity_status);
+		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($postdata, $jcc_entity_status);
+		$data['has_active_slots'] = ($data['jcc_summary']['worked'] ?? 0) > 0;
 
-		// Query the database for JCC status
-		$jcc_entity_status = $this->jcc_model->query_entity_status($postdata, 'band');
-
-		$data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata, $jcc_entity_status);
-		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata, $jcc_entity_status);
-
-		// Render Page
 		$data['page_title'] = sprintf(__("Awards - %s"), __("JCC"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/jcc/index');
@@ -1355,45 +1338,127 @@ class Awards extends CI_Controller {
 	    $this->load->view('interface_assets/footer');
     }
 
-    public function counties()	{
+    public function counties() {
+        $footerData = [];
+        $footerData['scripts'] = [
+            'assets/js/bootstrap-multiselect.js',
+            'assets/js/sections/countiesmap.js',
+            'assets/js/leaflet/L.Maidenhead.js',
+        ];
+
         $this->load->model('counties');
-        $data['counties_progress'] = $this->counties->get_counties_progress();
-		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+        $this->load->model('logbookadvanced_model');
+        $this->load->model('bands');
+
+        $postdata = $this->counties_postdata();
+        if ($this->input->method() !== 'post') {   // Default QSL + LoTW at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+        }
+
+        $data['counties_progress'] = $this->counties->get_counties_progress($postdata);
+        $data['postdata'] = $postdata;
+        $data['worked_bands'] = $this->bands->get_worked_bands('uscounties');
+        $data['modes'] = $this->logbookadvanced_model->get_modes();
+        $data['user_map_custom'] = $this->optionslib->get_map_custom();
+
+        //$bodyData['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
         $data['page_title'] = sprintf(__("Awards - %s"), __("US Counties"));
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/counties/index');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('awards/counties/index'); //, $bodyData);
+        $this->load->view('interface_assets/footer', $footerData);
     }
 
+    /*
+        function counties_map
+
+        AJAX endpoint backing the counties map: returns a JSON map of
+        "STATE|County" -> 'C' (confirmed), 'W' (worked, not confirmed) or
+        omitted (not worked), mirroring was_map()'s status-map convention.
+    */
+    public function counties_map() {
+        $this->load->model('counties');
+        $county_counts = $this->counties->get_counties_map($this->counties_postdata());
+
+        // Keys are uppercased because a QSO's county name can be typed or
+        // imported in any case; countiesmap.js uppercases the GeoJSON
+        // feature ids to match.
+        $statuses = array();
+        if (isset($county_counts)) {
+            foreach ($county_counts as $row) {
+                $key = strtoupper($row['COL_STATE'] . '|' . trim($row['COL_CNTY']));
+                $status = ((int) $row['confirmed'] > 0) ? 'C' : 'W';
+                if ($status === 'C' || !isset($statuses[$key])) {
+                    $statuses[$key] = $status;
+                }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($statuses);
+    }
+
+    /*
+     * Builds the filter postdata for the counties award, like the other
+     * award pages: qsl/lotw/eqsl/qrz/clublog checkboxes plus band/mode
+     * multi-selects ('All' when nothing is selected).
+     */
+    private function counties_postdata() {
+        $postdata = array();
+        foreach (array('qsl', 'lotw', 'eqsl', 'qrz', 'clublog') as $source) {
+            $postdata[$source] = $this->input->post($source, true) ? 1 : NULL;
+        }
+
+        $band = $this->input->post('band', true);
+        $postdata['band'] = empty($band) ? 'All' : $band;
+
+        $mode = $this->input->post('mode', true);
+        $postdata['mode'] = empty($mode) ? 'All' : $mode;
+
+        return $postdata;
+    }
+
+    // Type: 'worked'|'confirmed' (from log), 'target' (all), 'needed' (not worked)
     public function counties_list_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $type  = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
-        $data['counties_array'] = $this->counties->counties_details($state, $type);
-        $data['type'] = $type;
-        $this->load->view('awards/counties/details_ajax', $data);
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $type  = str_replace('"', "", $this->input->post("Type", true));
+
+        if ($type == 'target') {
+            $data['counties_array'] = $this->counties->get_counties_list($state);
+            $this->load->view('awards/counties/counties_simple_ajax', $data);
+        } else if ($type == 'needed') {
+            $data['counties_array'] = $this->counties->get_counties_needed($state, $this->counties_postdata());
+            $this->load->view('awards/counties/counties_simple_ajax', $data);
+        } else {
+            $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
+            $data['type'] = $type;
+            $this->load->view('awards/counties/details_ajax', $data);
+        }
     }
 
     public function counties_details_ajax() {
         $this->load->model('logbook_model');
+        $this->load->model('counties');
 
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $county = str_replace('"', "", $this->security->xss_clean($this->input->post("County")));
-        $data['results'] = $this->logbook_model->county_qso_details($state, $county);
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $county = str_replace('"', "", $this->input->post("County", true));
+        $data['results'] = $this->logbook_model->county_qso_details($state, $county, $this->counties_postdata());
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         // Render Page
         $data['page_title'] = __("Log View - Counties");
-        $data['filter'] = "county " . $state;
+        // $county may arrive bare (map click) or "STATE,COUNTY"-prefixed (state list dialog)
+        $data['filter'] = "county " . $this->counties->bare_county($county) . ", " . $state;
         $this->load->view('awards/details', $data);
     }
 
     public function counties_state_ajax() {
         $this->load->model('counties');
-        $state = str_replace('"', "", $this->security->xss_clean($this->input->post("State")));
-        $data['counties_array'] = $this->counties->get_county_counts($state);
+        $state = str_replace('"', "", $this->input->post("State", true));
+        $data['counties_array'] = $this->counties->get_county_counts($state, $this->counties_postdata());
         $data['state'] = $state;
         $this->load->view('awards/counties/state_ajax', $data);
     }
@@ -2285,29 +2350,23 @@ class Awards extends CI_Controller {
 	 * Provide data for AJAX to render the JCC map
 	 */
     public function jcc_map() {
-	    $this->load->model('jcc_model');
-	    $this->load->model('bands');
+		$this->load->model('jcc_model');
 
-	    $bands[] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
+		$postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
+		$postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
+		$postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
+		$postdata['includedeleted'] = ($this->input->post('includedeleted', true) ?? 0) == 0 ? null : 1;
+		$postdata['band'] = $this->input->post('band', true) ?? 'All';
+		$postdata['mode'] = $this->input->post('mode', true) ?? 'All';
+		$postdata['prop_mode'] = $this->input->post('prop_mode', true) ?? 'All';
 
-	    $postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? null : 1;
-	    $postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? null : 1;
-	    $postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? null : 1;
-	    $postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? null : 1;
-	    $postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? null : 1;
-	    $postdata['worked'] = ($this->input->post('worked', true) ?? 0) == 0 ? null : 1;
-	    $postdata['confirmed'] = ($this->input->post('confirmed', true) ?? 0) == 0 ? null : 1;
-	    $postdata['notworked'] = ($this->input->post('notworked', true) ?? 0) == 0 ? null : 1;
-	    $postdata['includedeleted'] = ($this->input->post('includedeleted', true) ?? 0) == 0 ? null : 1;
-	    $postdata['band'] = $this->input->post('band', true) ?? 'All';
-	    $postdata['mode'] = $this->input->post('mode', true) ?? 'All';
-	    $postdata['prop_mode'] = $this->input->post('prop_mode', true) ?? 'All';
+		$jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata);
+		$jccs = $this->jcc_model->get_jcc_map_array($postdata, $jcc_entity_status);
 
-	    $jcc_entity_status = $this->jcc_model->query_entity_status($postdata, 'none');
-	    $jccs = $this->jcc_model->get_jcc_map_array($postdata, $jcc_entity_status);
-
-	    header('Content-Type: application/json');
-	    echo json_encode($jccs);
+		header('Content-Type: application/json');
+		echo json_encode($jccs);
     }
 
     /*
@@ -2405,6 +2464,7 @@ class Awards extends CI_Controller {
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
+		    'assets/js/leaflet/geocoding.js',
 		    'assets/js/sections/wab.js'
 	    ];
 
@@ -2467,13 +2527,56 @@ class Awards extends CI_Controller {
 
 	    if ($logbooks_locations_array) {
 		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
-		    $wab_array = $this->wab->get_wab_list($location_list, $postdata);
+		    $qsos = $this->wab->get_wab_qsos($location_list, $postdata);
 	    } else {
-		    $location_list = null;
-		    $wab_array = null;
+		    $qsos = array();
 	    }
 
-	    $data['wab_array'] = $wab_array;
+	    // WAB square -> DXCC prefix from the generated mapping (assign_wab_dxcc.php)
+	    $dxcc_map = array();
+	    $dxcc_file = FCPATH . 'assets/js/sections/wab_dxcc.json';
+	    if (is_readable($dxcc_file)) {
+		    $dxcc_map = json_decode(file_get_contents($dxcc_file), true) ?: array();
+	    }
+	    foreach ($qsos as $qso) {
+		    $qso->dxcc = $dxcc_map[strtoupper($qso->col_sig_info)] ?? '';
+	    }
+
+	    // Order by DXCC, then WAB square, then QSO date
+	    $dxcc_order = array('G', 'GD', 'GI', 'GJ', 'GM', 'GU', 'GW', '');
+	    usort($qsos, function ($a, $b) use ($dxcc_order) {
+		    $oa = array_search($a->dxcc, $dxcc_order, true);
+		    $ob = array_search($b->dxcc, $dxcc_order, true);
+		    $oa = ($oa === false) ? count($dxcc_order) : $oa;
+		    $ob = ($ob === false) ? count($dxcc_order) : $ob;
+		    if ($oa !== $ob) {
+			    return $oa <=> $ob;
+		    }
+		    $cmp = strcmp($a->col_sig_info, $b->col_sig_info);
+		    if ($cmp !== 0) {
+			    return $cmp;
+		    }
+		    return strcmp($a->col_time_on, $b->col_time_on);
+	    });
+
+	    // Date format from user settings, falling back to the global config
+	    if ($this->session->userdata('user_date_format')) {
+		    $date_format = $this->session->userdata('user_date_format');
+	    } else {
+		    $date_format = $this->config->item('qso_date_format');
+	    }
+	    $data['date_format'] = $date_format;
+
+	    $data['qsos'] = $qsos;
+	    $data['dxcc_names'] = array(
+		    'G' => __("England"),
+		    'GD' => __("Isle of Man"),
+		    'GI' => __("Northern Ireland"),
+		    'GJ' => __("Jersey"),
+		    'GM' => __("Scotland"),
+		    'GU' => __("Guernsey"),
+		    'GW' => __("Wales"),
+	    );
 	    $data['postdata']['band'] = $postdata['band'];
 	    $data['postdata']['mode'] = $postdata['mode'];
 	    $data['postdata']['sat'] = $postdata['sat'];

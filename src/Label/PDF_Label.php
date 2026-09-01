@@ -132,8 +132,11 @@ class PDF_Label extends tfpdf {
         $this->SetFontSize($pt);
     }
 
-    // Print a label
-    function Add_Label($text,$orientation = 'P') {
+    // Advance to the next label cell and return its raw top-left corner in
+    // document units, WITHOUT the padding and without rendering anything.
+    // Cell stepping and page-break behaviour are identical to Add_Label().
+    // Used by the Label Designer to place individual elements inside a cell.
+    function Next_Label($orientation = 'P') {
         $this->_COUNTX++;
         if ($this->_COUNTX == $this->_X_Number) {
             // Row full, we start a new one
@@ -146,9 +149,16 @@ class PDF_Label extends tfpdf {
             }
         }
 
-        $_PosX = $this->_Margin_Left + $this->_COUNTX*($this->_Width+$this->_X_Space) + $this->_Padding;
-        $_PosY = $this->_Margin_Top + $this->_COUNTY*($this->_Height+$this->_Y_Space) + $this->_Padding;
-        $this->SetXY($_PosX, $_PosY);
+        return array(
+            'x' => $this->_Margin_Left + $this->_COUNTX*($this->_Width+$this->_X_Space),
+            'y' => $this->_Margin_Top + $this->_COUNTY*($this->_Height+$this->_Y_Space),
+        );
+    }
+
+    // Print a label
+    function Add_Label($text,$orientation = 'P') {
+        $pos = $this->Next_Label($orientation);
+        $this->SetXY($pos['x'] + $this->_Padding, $pos['y'] + $this->_Padding);
         $this->MultiCell($this->_Width - $this->_Padding, $this->_Line_Height, $text, 0, 'L');
     }
 

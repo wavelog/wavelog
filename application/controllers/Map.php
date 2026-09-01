@@ -222,6 +222,8 @@ class Map extends CI_Controller {
 
 	// Generic fonction for return Json for MAP //
 	public function map_plot_json() {
+		session_write_close();
+
 		$this->load->model('Stations');
 		$this->load->model('logbook_model');
 

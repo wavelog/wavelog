@@ -240,6 +240,7 @@ class User extends CI_Controller {
 				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 				$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 				$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority') ?? 'Y';
+				$data['user_callbook_prefill'] = $this->input->post('user_callbook_prefill', true) ?? 'default';
 				$data['user_quicklog'] = $this->input->post('user_quicklog');
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
@@ -333,8 +334,10 @@ class User extends CI_Controller {
 				$this->input->post('oqrs_grouped_search_show_station_name') ?? 'off',
 				$this->input->post('oqrs_auto_matching') ?? 'on',
 				$this->input->post('oqrs_direct_auto_matching') ?? 'on',
-        			$this->input->post('user_dxwaterfall_enable') ?? 'N',
+				$this->input->post('user_dxwaterfall_enable') ?? 'N',
 				$this->input->post('user_qso_show_map') ?? 1,
+				$this->input->post('last_lotw_upload_widget_enabled'),
+				$this->input->post('user_callbook_prefill', true) ?? 'default',
 				$this->input->post('clubstation') == '1' ? true : false)
 			) {
 				// Check for errors
@@ -710,6 +713,9 @@ class User extends CI_Controller {
 				$data['user_previous_qsl_type'] = $q->user_previous_qsl_type;
 			}
 
+			$data['user_callbook_prefill'] = $this->input->post('user_callbook_prefill', true)
+				?? $this->user_options_model->get_options('qso', array('option_name' => 'callbook_prefill', 'option_key' => 'setting'), $this->uri->segment(3))->row()->option_value ?? 'default';
+
 			if($this->input->post('user_amsat_status_upload')) {
 				$data['user_amsat_status_upload'] = $this->input->post('user_amsat_status_upload', false);
 			} else {
@@ -1008,6 +1014,8 @@ class User extends CI_Controller {
 			$data['on_air_widget_display_radio_name'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_radio_name'), $this->uri->segment(3))->row()->option_value ?? "false");
 			$data['on_air_widget_url'] = site_url('widgets/on_air/' . $q->slug);
 			$data['qso_widget_display_qso_time'] = ($this->user_options_model->get_options('widget', array('option_name'=>'qso', 'option_key' => 'display_qso_time'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['last_lotw_upload_widget_enabled'] = ($this->user_options_model->get_options('widget', array('option_name'=>'last_lotw_upload', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['last_lotw_upload_widget_url'] = site_url('widgets/lotw_upload/' . $q->slug);
 			$data['csrf_token'] = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 
 			$this->load->view('interface_assets/header', $data);
@@ -1057,27 +1065,53 @@ class User extends CI_Controller {
 
 					$user_id = $this->input->post('id', true);
 
-					// [MAP Custom] ADD to user options //
-					$array_icon = array('station','qso','qsoconfirm', 'unworked');
-					foreach ($array_icon as $icon) {
-						$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
-						$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
-					}
-					if (!empty($data_options['user_map_qso_icon'])) {
-						foreach ($array_icon as $icon) {
-							$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
-							$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
-						}
-						$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))), $user_id);
-						$this->user_options_model->set_option('map_custom','tile',array('style' => xss_clean($this->input->post('user_map_tile_style', true))),$user_id);
+				// [MAP Custom] ADD to user options //
+				$array_icon = array('station','qso','qsoconfirm', 'unworked');
+				$_icon_allow = $data['map_icon_select'];
+				$_icon_defaults = array(
+					'station'    => '0',
+					'qso'        => 'fas fa-dot-circle',
+					'qsoconfirm' => '0',
+					'unworked'   => '0',
+				);
+				$_color_defaults = array(
+					'station'    => '#0000FF',
+					'qso'        => '#E5A50A',
+					'qsoconfirm' => '#90EE90',
+					'unworked'   => '#CC372D',
+				);
+				$_hex_re = '/^#[0-9a-fA-F]{6}$/';
+				foreach ($array_icon as $icon) {
+					$_raw_icon  = $this->input->post('user_map_'.$icon.'_icon', true);
+					$_raw_color = $this->input->post('user_map_'.$icon.'_color', true);
+					if (isset($_icon_allow[$icon]) && is_array($_icon_allow[$icon])) {
+						$_icon = in_array($_raw_icon, $_icon_allow[$icon], true) ? $_raw_icon : $_icon_defaults[$icon];
 					} else {
-						$this->user_options_model->del_option('map_custom','icon', null, $user_id);
-						$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
-						$this->user_options_model->del_option('map_custom','tile', null, $user_id);
+						$_icon = $_icon_defaults[$icon];
 					}
-					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
-					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
-					$this->user_options_model->set_option('header_menu', 'quick_theme_switcher', array('boolean'=>xss_clean($this->input->post('user_quick_theme_switcher', true))), $user_id);
+					$_color = preg_match($_hex_re, $_raw_color ?? '') ? $_raw_color : $_color_defaults[$icon];
+					$data_options['user_map_'.$icon.'_icon']  = $_icon;
+					$data_options['user_map_'.$icon.'_color'] = $_color;
+				}
+				if (!empty($data_options['user_map_qso_icon'])) {
+					foreach ($array_icon as $icon) {
+						$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
+						$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
+					}
+					$_gridshow = $this->input->post('user_map_gridsquare_show', true);
+					$_gridshow = ($_gridshow === '1' || $_gridshow === 1) ? '1' : '0';
+					$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>$_gridshow), $user_id);
+					$_tile = $this->input->post('user_map_tile_style', true);
+					$_tile = array_key_exists($_tile, map_style_options()) ? $_tile : 'map-follow';
+					$this->user_options_model->set_option('map_custom','tile',array('style' => $_tile),$user_id);
+				} else {
+					$this->user_options_model->del_option('map_custom','icon', null, $user_id);
+					$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
+					$this->user_options_model->del_option('map_custom','tile', null, $user_id);
+				}
+					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>$this->input->post('user_locations_quickswitch', true)), $user_id);
+					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>$this->input->post('user_utc_headermenu', true)), $user_id);
+					$this->user_options_model->set_option('header_menu', 'quick_theme_switcher', array('boolean'=>$this->input->post('user_quick_theme_switcher', true)), $user_id);
 
 					$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)), $user_id);
@@ -1085,6 +1119,7 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
+					$this->user_options_model->set_option('qso', 'callbook_prefill', array('setting' => in_array($p = $this->input->post('user_callbook_prefill', true), array('default', 'logbook', 'none'), true) ? $p : 'default'), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_kpi_stats', array('boolean'=>($this->input->post('user_dashboard_show_kpi_stats') == '1' ? '1' : '0')), $user_id);
@@ -1153,6 +1188,8 @@ class User extends CI_Controller {
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
 			$data['oqrs_delivery_method'] = $this->input->post('oqrs_delivery_method', true);
 			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', true);
+			$data['user_callbook_prefill'] = $this->input->post('user_callbook_prefill', true) ?? 'default';
+			$data['last_lotw_upload_widget_enabled'] = $this->input->post('last_lotw_upload_widget_enabled', true);
 
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
@@ -1327,7 +1364,7 @@ class User extends CI_Controller {
 				if ($this->user_model->check_keep_hash($a, $b)) {
 
 					// check if maintenance mode is active or the user is an admin
-					if (ENVIRONMENT != 'maintenance' || $user_type == 99) {
+					if (!MAINTENANCE_MODE || $user_type == 99) {
 
 						// if everything is fine we can log in the user
 						$this->user_model->update_session($uid);
@@ -1428,7 +1465,7 @@ class User extends CI_Controller {
 				$this->session->set_flashdata('warning', __("Your account is locked, due to too many failed login-attempts. Please reset your password."));
 				redirect('user/login');
 			} else {
-				if(ENVIRONMENT == 'maintenance') {
+				if(MAINTENANCE_MODE) {
 					$this->session->set_flashdata('notice', __("Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."));
 					redirect('user/login');
 				} else {

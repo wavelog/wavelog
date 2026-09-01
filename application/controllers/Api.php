@@ -1071,6 +1071,11 @@ class API extends CI_Controller {
 
 		// Decode JSON and store
 		$obj = json_decode(file_get_contents("php://input"), true);
+		if (!is_array($obj)) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			die();
+		}
 
 		// Check rate limit
 		$identifier = isset($obj['key']) ? $obj['key'] : null;
@@ -1094,6 +1099,13 @@ class API extends CI_Controller {
 			die();
 		}
 
+		$invalid_fields = $this->cat->validate_radio_payload($obj);
+		if (!empty($invalid_fields)) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "invalid field(s): " . implode(', ', $invalid_fields)]);
+			die();
+		}
+
 		$this->api_model->update_last_used($obj['key']);
 
 		$user_id = $this->api_model->key_userid($obj['key']);
@@ -1108,10 +1120,7 @@ class API extends CI_Controller {
 
 		// Handle optional cat_url
 		if (isset($obj['cat_url']) && !empty($obj['cat_url'])) {
-			$cat_url = $this->sanitize_cat_url($obj['cat_url']);
-			if ($cat_url !== false) {
-				$obj['cat_url'] = $cat_url;
-			}
+			$obj['cat_url'] = $this->sanitize_cat_url($obj['cat_url']);
 		}
 
 		// Store Result to Database

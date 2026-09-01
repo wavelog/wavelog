@@ -127,18 +127,18 @@ class Satellite_model extends CI_Model {
 
 	function add() {
 		$data = array(
-			'name' 			=> xss_clean($this->input->post('name', true)),
-			'displayname' 	=> xss_clean($this->input->post('displayname', true)),
-			'orbit' 		=> xss_clean($this->input->post('orbit', true)),
+			'name' 			=> $this->input->post('name', true),
+			'displayname' 	=> $this->input->post('displayname', true),
+			'orbit' 		=> $this->input->post('orbit', true),
 		);
-		if (xss_clean($this->input->post('lotw', true)) == 'Y') {
+		if ($this->input->post('lotw', true) == 'Y') {
 			$data['lotw'] = 'Y';
 		} else {
 			$data['lotw'] = 'N';
 		}
 
-		$this->db->where('name', xss_clean($this->input->post('name', true)));
-		$this->db->where('displayname', xss_clean($this->input->post('displayname', true)));
+		$this->db->where('name', $this->input->post('name', true));
+		$this->db->where('displayname', $this->input->post('displayname', true));
 		$result = $this->db->get('satellite');
 
 		if ($result->num_rows() == 0) {
@@ -146,12 +146,12 @@ class Satellite_model extends CI_Model {
 			$insert_id = $this->db->insert_id();
 
 			$data = array(
-				'name' 				=> xss_clean($this->input->post('modename', true)),
+				'name' 				=> $this->input->post('modename', true),
 				'satelliteid' 		=> $insert_id,
-				'uplink_mode'		=> xss_clean($this->input->post('uplinkmode', true)),
-				'uplink_freq'		=> xss_clean($this->input->post('uplinkfrequency', true)),
-				'downlink_mode'		=> xss_clean($this->input->post('downlinkmode', true)),
-				'downlink_freq'		=> xss_clean($this->input->post('downlinkfrequency', true)),
+				'uplink_mode'		=> $this->input->post('uplinkmode', true),
+				'uplink_freq'		=> $this->input->post('uplinkfrequency', true),
+				'downlink_mode'		=> $this->input->post('downlinkmode', true),
+				'downlink_freq'		=> $this->input->post('downlinkfrequency', true),
 			);
 
 			$this->db->insert('satellitemode', $data);
@@ -173,12 +173,12 @@ class Satellite_model extends CI_Model {
 
 	function insertSatelliteMode() {
 		$data = array(
-			'name' 				=> xss_clean($this->input->post('name', true)),
-			'satelliteid' 		=> xss_clean($this->input->post('id', true)),
-			'uplink_mode'		=> xss_clean($this->input->post('uplink_mode', true)),
-			'uplink_freq'		=> xss_clean($this->input->post('uplink_freq', true)),
-			'downlink_mode'		=> xss_clean($this->input->post('downlink_mode', true)),
-			'downlink_freq'		=> xss_clean($this->input->post('downlink_freq', true)),
+			'name' 				=> $this->input->post('name', true),
+			'satelliteid' 		=> $this->input->post('id', true),
+			'uplink_mode'		=> $this->input->post('uplink_mode', true),
+			'uplink_freq'		=> $this->input->post('uplink_freq', true),
+			'downlink_mode'		=> $this->input->post('downlink_mode', true),
+			'downlink_freq'		=> $this->input->post('downlink_freq', true),
 		);
 		$this->db->insert('satellitemode', $data);
 		$insert_id = $this->db->insert_id();

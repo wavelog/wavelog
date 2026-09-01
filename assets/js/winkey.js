@@ -528,7 +528,7 @@ window.initWinkeyer = function() {
 
 	//When the send button is pressed
 	function clickSend() {
-		writeToStream(sendText.value.replaceAll('Ø', '0')).then(function() {
+		writeToStream(sendText.value).then(function() {
 			// writeToStream("\r");
 			//and clear the input field, so it's clear it has been sent
 			$('#sendText').val('');
@@ -675,7 +675,7 @@ window.initWinkeyer = function() {
 
 		const val = id => id ? (document.getElementById(id)?.value || '') : '';
 
-		let CALL      = val(callsignId).toUpperCase().replaceAll('Ø', '0');
+		let CALL      = val(callsignId).toUpperCase();
 		let RSTS      = val(rstId);
 		let RSTR      = val(rstRId);
 		let SERIAL    = val(serialId);
@@ -685,7 +685,6 @@ window.initWinkeyer = function() {
 		let GRID      = val(gridId);
 		let GRIDR     = val(gridRId);
 
-		my_call = my_call.replaceAll('Ø', '0');
 		let newString = macrotext.replace(/\[MYCALL\]/g,    station_callsign);
 		newString = newString.replace(/\[CALL\]/g,      CALL);
 		newString = newString.replace(/\[RSTS\]/g,      RSTS);

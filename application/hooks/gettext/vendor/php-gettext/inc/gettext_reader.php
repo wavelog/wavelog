@@ -45,7 +45,7 @@ class gettext_reader
 	var $BYTEORDER = 0; // 0: low endian, 1: big endian
 	var $STREAM = NULL;
 	var $short_circuit = false;
-	var $enable_cache = false;
+	var $enable_cache = true;
 	var $originals = NULL; // offset of original table
 	var $translations = NULL; // offset of translation table
 	var $pluralheader = NULL; // cache header field for plural forms
@@ -53,6 +53,7 @@ class gettext_reader
 	var $table_originals = NULL; // table for original strings (offsets)
 	var $table_translations = NULL; // table for translated strings (offsets)
 	var $cache_translations = NULL; // original -> translation mapping
+	var $cache_key = NULL; // key for the persistent cache, NULL disables it
 	/* Methods */
 	/**
 	 * Reads a 32bit Integer from the Stream
@@ -110,9 +111,11 @@ class gettext_reader
 	 *
 	 * @param object Reader the StreamReader object
 	 * @param boolean enable_cache Enable or disable caching of strings (default on)
+	 * @param string cache_key key used to keep the parsed table in the CI cache
 	 */
-	function __construct($Reader, $enable_cache = true)
+	function __construct($Reader, $enable_cache = true, $cache_key = NULL)
 	{
+		$this->cache_key = $cache_key;
 
 		// If there isn't a StreamReader, turn on short circuit mode.
 
@@ -156,6 +159,15 @@ class gettext_reader
 	 */
 	function load_tables()
 	{
+		/* in cached mode the translation table is all the lookups need */
+		if ($this->enable_cache && is_array($this->cache_translations)) return;
+
+		/* try the persistent cache first, parsing the MO file is expensive */
+		if ($this->enable_cache && ($cache = $this->ci_cache()) && is_array($cached = $cache->get($this->cache_key))) {
+			$this->cache_translations = $cached;
+			return;
+		}
+
 		if (is_array($this->cache_translations) && is_array($this->table_originals) && is_array($this->table_translations)) return;
 		/* get original and translations tables */
 		if (!is_array($this->table_originals)) {
@@ -178,7 +190,34 @@ class gettext_reader
 				$translation = $this->STREAM->read($this->table_translations[$i * 2 + 1]);
 				$this->cache_translations[$original] = $translation;
 			}
+
+			if ($cache = $this->ci_cache()) {
+				$cache->save($this->cache_key, $this->cache_translations, 86400);
+			}
 		}
+	}
+
+	/**
+	 * Returns the CodeIgniter cache driver, or NULL when it is unavailable.
+	 * Without a cache key (no MO file found) caching is skipped entirely.
+	 *
+	 * @access private
+	 * @return object|NULL
+	 */
+	function ci_cache()
+	{
+		if ($this->cache_key === NULL OR ! function_exists('get_instance')) return NULL;
+
+		$CI =& get_instance();
+		if ( ! is_object($CI)) return NULL;
+
+		$CI->load->is_loaded('cache') ?: $CI->load->driver('cache', [
+			'adapter' => $CI->config->item('cache_adapter') ?? 'file',
+			'backup' => $CI->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $CI->config->item('cache_key_prefix') ?? ''
+		]);
+
+		return isset($CI->cache) ? $CI->cache : NULL;
 	}
 
 	/**

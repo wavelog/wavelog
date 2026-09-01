@@ -1,9 +1,9 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 <script>
-	const homelat = "<?php echo $latlng[0]; ?>";
-	const homelon = "<?php echo $latlng[1]; ?>";
-	const homegrid = "<?php echo $homegrid; ?>";
+	const homelat = "<?php echo $latlng[0] ?? ''; ?>";
+	const homelon = "<?php echo $latlng[1] ?? ''; ?>";
+	const homegrid = "<?php echo $homegrid ?? ''; ?>";
 	var icon_home_url = "<?php echo $this->paths->cache_buster('/assets/images/dot.png'); ?>";
 	var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>";
 </script>
@@ -38,6 +38,9 @@
 			<?= __("View a map with satellite flightpaths"); ?>
 		</div>
 		<div class="card-body">
+			<?php if ($homegrid == '') { ?>
+				<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("Active station location does not have a gridsquare configured. Please check"); ?></p>
+			<?php } ?>
 			<?php if ($satellites) { ?>
 				<form class="d-flex align-items-center">
 					<label class="my-1 me-2" id="satslabel" for="distplot_sats"><?= __("Satellite"); ?></label>

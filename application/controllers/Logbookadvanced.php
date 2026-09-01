@@ -105,7 +105,6 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/globe/globe.gl.js',
 			'assets/js/bootstrap-multiselect.js',
-			'assets/js/leaflet/L.MaidenheadColouredGridMap.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
@@ -155,6 +154,7 @@ class Logbookadvanced extends CI_Controller {
 			'dupemode' => xss_clean($this->input->post('dupemode')),
 			'dupeband' => xss_clean($this->input->post('dupeband')),
 			'dupesat' => xss_clean($this->input->post('dupesat')),
+			'dupedateval' => xss_clean($this->input->post('dupedateval')),
 			'operator' => xss_clean($this->input->post('operator')),
 			'contest' => xss_clean($this->input->post('contest')),
 			'invalid' => xss_clean($this->input->post('invalid')),
@@ -323,7 +323,11 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function startAtLabel() {
-		$this->load->view('logbookadvanced/startatform');
+		// Offer Label Designer templates as an alternative to the classic
+		// text layout in the dialog.
+		$this->load->model('Labeldesigner_model');
+		$data['label_templates'] = $this->Labeldesigner_model->list_templates();
+		$this->load->view('logbookadvanced/startatform', $data);
 	}
 
 	public function printQslForm() {
@@ -394,19 +398,19 @@ class Logbookadvanced extends CI_Controller {
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
-		$this->prepareMappedQSos($result);
+		$this->prepareMappedQsos($result);
 	}
 
 	public function mapQsos() {
-        $this->load->model('logbookadvanced_model');
+		$this->load->model('logbookadvanced_model');
 
 		$searchCriteria = $this->mapParameters();
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
-		$this->prepareMappedQSos($result);
+		$this->prepareMappedQsos($result);
 	}
 
-	public function prepareMappedQSos($qsos) {
+	public function prepareMappedQsos($qsos) {
 		if ($this->session->userdata('user_measurement_base') == NULL) {
 			$measurement_base = $this->config->item('measurement_base');
 		}
@@ -440,7 +444,7 @@ class Logbookadvanced extends CI_Controller {
 
 		$mappedcoordinates = array();
 		foreach ($qsos as $qso) {
-			if (!empty($qso['station_gridsquare']) && $this->isValidMaidenheadGrid($qso['station_gridsquare'])) {
+			if ($this->isValidMaidenheadGrid($qso['station_gridsquare']) || empty($qso['station_gridsquare'])) {
 				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
 					$mappedcoordinates[] = $this->calculate($qso, ($qso['station_gridsquare'] ?? ''), ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
 				} else {
@@ -490,24 +494,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-
-		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
-		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
-		$latlng1 = $this->qra->qra2latlong($locator1);
-		$latlng2 = $this->qra->qra2latlong($locator2);
-		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
-		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
-		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
-		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
-
-		$data['latlng1'] = $latlng1;
-		$data['latlng2'] = $latlng2;
-
 		$data['callsign'] = $qso['COL_CALL'];
 		$data['band'] = $qso['COL_BAND'];
 		$data['mode'] = $qso['COL_MODE'];
 		$data['gridsquare'] = $locator2;
-		$data['mygridsquare'] = $locator1;
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
@@ -515,6 +505,23 @@ class Logbookadvanced extends CI_Controller {
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
 		$data['id'] = $qso['COL_PRIMARY_KEY'];
+
+		$latlng2 = $this->qra->qra2latlong($locator2);
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+		$data['latlng2'] = $latlng2;
+
+		if (!empty($locator1)) {
+			$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
+			$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
+			$latlng1 = $this->qra->qra2latlong($locator1);
+			$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+			$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+
+			$data['latlng1'] = $latlng1;
+
+			$data['mygridsquare'] = $locator1;
+		}
 
 		return $data;
 	}
@@ -526,16 +533,17 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-
-		$latlng1 = $this->qra->qra2latlong($mygrid);
+		if (!empty($mygrid)) {
+			$latlng1 = $this->qra->qra2latlong($mygrid);
+			$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+			$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+			$data['latlng1'] = $latlng1;
+		}
 		$latlng2[0] = $lat;
 		$latlng2[1] = $long;
-		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
-		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
 		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
 		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
 
-		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
 		$data['callsign'] = $qso['COL_CALL'];
 		$data['band'] = $qso['COL_BAND'];
@@ -842,19 +850,6 @@ class Logbookadvanced extends CI_Controller {
 		print json_encode($result);
 	}
 
-	public function fixContinent() {
-		$this->load->model('logbookadvanced_model');
-
-		$stationid = $this->input->post('stationid', true);
-		$result = $this->logbookadvanced_model->check_missing_continent($stationid);
-
-		$data['result'] = $result;
-
-		$data['type'] = 'continent';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
 	public function fixStateProgress() {
 		if(!clubaccess_check(9)) return;
 
@@ -890,131 +885,14 @@ class Logbookadvanced extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	public function updateDistances() {
-		if(!clubaccess_check(9)) return;
-
-		$stationid = $this->input->post('stationid', true);
-
-		$this->load->model('logbookadvanced_model');
-		$result = $this->logbookadvanced_model->update_distances_batch($stationid);
-
-		$data['result'] = $result;
-
-		$data['type'] = 'distance';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
 	public function callbookDialog() {
 		$this->load->view('logbookadvanced/callbookdialog');
-	}
-
-	public function dbtoolsDialog() {
-		$this->load->model('stations');
-		$data['station_profile'] = $this->stations->all_of_user();
-
-		$this->load->view('logbookadvanced/dbtoolsdialog', $data);
-	}
-
-	public function checkDb() {
-		if(!clubaccess_check(9)) return;
-
-		$type = $this->input->post('type', true);
-		$stationid = $this->input->post('stationid', true);
-		$this->load->model('logbookadvanced_model');
-
-		$data['result'] = $this->logbookadvanced_model->runCheckDb($type, $stationid);
-		if ($type == 'checkstate') {
-			$this->load->view('logbookadvanced/statecheckresult', $data);
-		} else {
-			$data['type'] = $type;
-			$this->load->view('logbookadvanced/checkresult', $data);
-		}
-
-	}
-
-	public function fixStateBatch() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbook_model');
-		$this->load->model('logbookadvanced_model');
-
-		$dxcc = $this->input->post('dxcc', true);
-		$stationid = $this->input->post('stationid', true);
-		$data['country'] = $this->input->post('country', true);
-
-		// Process for batch QSO state fix
-		$result = $this->logbookadvanced_model->fixStateBatch($dxcc, $stationid);
-
-		$data['result'] = $result;
-
-		$data['type'] = 'state';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
-	public function openStateList() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbookadvanced_model');
-
-		$data['dxcc'] = $this->input->post('dxcc', true);
-		$data['country'] = $this->input->post('country', true);
-		$data['stationid'] = $this->input->post('stationid', true);
-
-		// Process for batch QSO state fix
-		$data['qsos'] = $this->logbookadvanced_model->getStateListQsos($data['dxcc'], $data['stationid']);
-
-		$this->load->view('logbookadvanced/showStateQsos', $data);
-	}
-
-	public function fixMissingGrids() {
-		if(!clubaccess_check(9)) return;
-
-		$type = $this->input->post('type', true);
-		$stationid = $this->input->post('stationid', true);
-		$this->load->model('logbookadvanced_model');
-		$result = $this->logbookadvanced_model->check_missing_grid($stationid);
-
-		$data['result'] = $result;
-		$data['type'] = $type;
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	function dupeSearchDialog() {
 		if(!clubaccess_check(9)) return;
 
 		$this->load->view('logbookadvanced/dupesearchdialog');
-	}
-
-	function fixDxccSelected() {
-		if(!clubaccess_check(9)) return;
-
-		$ids = xss_clean($this->input->post('ids'));
-
-		$this->load->model('logbookadvanced_model');
-		$result = $this->logbookadvanced_model->fixDxccSelected($ids);
-		$result['message'] = '<div class="alert alert-' . ($result['count'] == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("DXCC updated for %d QSO(s)."), $result['count']) . '</div>';
-
-		header("Content-Type: application/json");
-		print json_encode($result);
-	}
-
-	function showMapForIncorrectGrid() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbookadvanced_model');
-		$dxcc = $this->input->post('dxcc', true);
-
-		$data['grids'] = $this->logbookadvanced_model->getGridsForDxcc($dxcc);
-		$data['dxcc'] = $dxcc;
-		$data['gridsquare'] = $this->input->post('gridsquare', true);
-		$dxccname = $this->input->post('dxccname', true);
-		$data['title'] = sprintf(__("Map for DXCC %s and gridsquare %s."), $dxccname, $data['gridsquare']);
-
-		header("Content-Type: application/json");
-		print json_encode($data);
 	}
 
 	function getQsos() {

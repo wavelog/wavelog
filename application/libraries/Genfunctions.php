@@ -5,16 +5,19 @@
  */
 class Genfunctions
 {
-	function addQslToQuery($postdata) {
-		$sql = '';
+	/*
+	 * Builds the QSL confirmation condition from $postdata. With $bare = true
+	 * the condition is returned without the leading ' and ', for use inside
+	 * sum(case when ...).
+	 */
+	function addQslToQuery($postdata, $bare = false) {
 		$qsl = array();
-		if ( (($postdata['clublog'] ?? '') != '') || 
-			(($postdata['qrz'] ?? '') != '') || 
-			(($postdata['lotw'] ?? '') != '') || 
+		if ( (($postdata['clublog'] ?? '') != '') ||
+			(($postdata['qrz'] ?? '') != '') ||
+			(($postdata['lotw'] ?? '') != '') ||
 			(($postdata['qsl'] ?? '') != '') ||
 			(($postdata['dcl'] ?? '') != '') ||
 			(($postdata['eqsl'] ?? '') != '') ) {
-			$sql .= ' and (';
 			if (($postdata['qsl'] ?? '') != '') {
 				array_push($qsl, "col_qsl_rcvd = 'Y'");
 			}
@@ -34,30 +37,77 @@ class Genfunctions
 				array_push($qsl, "COL_DCL_QSL_RCVD = 'Y'");
 			}
 			if (count($qsl) > 0) {
-				$sql .= implode(' or ', $qsl);
+				$condition = '(' . implode(' or ', $qsl) . ')';
 			} else {
-				$sql .= '1=0';
+				$condition = '1=0';
 			}
-			$sql .= ')';
 		} else {
-			$sql.=' and 1=0';
+			$condition = '1=0';
+		}
+		return $bare ? $condition : ' and ' . $condition;
+	}
+
+	/*
+	 * Builds the band condition. $band is either a single band string, as
+	 * used by the award pages, or an array of bands (multi-select). 'SAT' is
+	 * matched against col_prop_mode, not col_band.
+	 */
+	function addBandToQuery($band, &$binding) {
+		$sql = '';
+		if (is_array($band)) {
+			if (in_array('All', $band, true) || empty($band)) {
+				return '';
+			}
+			$sat_selected = in_array('SAT', $band, true);
+			$bands = array_values(array_diff($band, array('SAT')));
+			if ($sat_selected && empty($bands)) {
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = 'SAT';
+			} else if ($sat_selected) {
+				$sql .= " and (col_band in (" . implode(',', array_fill(0, count($bands), '?')) . ") or col_prop_mode = ?)";
+				foreach ($bands as $b) {
+					$binding[] = $b;
+				}
+				$binding[] = 'SAT';
+			} else {
+				$sql .= " and (col_prop_mode !='SAT' or col_prop_mode is NULL)";
+				$sql .= " and col_band in (" . implode(',', array_fill(0, count($bands), '?')) . ")";
+				foreach ($bands as $b) {
+					$binding[] = $b;
+				}
+			}
+		} else if ($band != 'All') {
+			if ($band == 'SAT') {
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
+			} else {
+				$sql .= " and (col_prop_mode !='SAT' or col_prop_mode is NULL)";
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
+			}
 		}
 		return $sql;
 	}
 
-	function addBandToQuery($band,&$binding) {
-		$sql = '';
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode = ?";
-				$binding[]=$band;
-			} else {
-				$sql .= " and (col_prop_mode !='SAT' or col_prop_mode is NULL)";
-				$sql .= " and col_band = ?";
-				$binding[]=$band;
-			}
+	/*
+	 * Builds the mode condition from a single mode or an array of modes
+	 * (multi-select), matching col_mode or col_submode. 'All' adds no
+	 * condition.
+	 */
+	function addModeToQuery($mode, &$binding) {
+		if (empty($mode) || $mode == 'All') {
+			return '';
 		}
-		return $sql;
+		if (!is_array($mode)) {
+			$mode = array($mode);
+		}
+		$conditions = array();
+		foreach ($mode as $m) {
+			$binding[] = $m;
+			$binding[] = $m;
+			$conditions[] = "(col_mode = ? or col_submode = ?)";
+		}
+		return ' and (' . implode(' or ', $conditions) . ')';
 	}
 
 	function gen_qsl_from_postdata($postdata) {
@@ -250,9 +300,6 @@ class Genfunctions
 
 			// Sleep to make sure the file is available in the next run.
 			usleep(100000); // 100ms
-
-			// Clean up
-			imagedestroy($im);
 
 			return $icon;
 

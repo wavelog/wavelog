@@ -428,7 +428,7 @@ class Oqrs_model extends CI_Model {
 		$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
 				'COL_QSL_SENT' => 'R',
-				'COL_QSL_SENT_VIA ' => $method
+				'COL_QSL_SENT_VIA' => $method
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $qso_id);

@@ -59,7 +59,7 @@
 						<li><?= __("Satellite"); ?></li>
 					</ul>
 					<hr>
-					<p class="mb-0"><strong><?= __("Time window:"); ?></strong> <span class="badge bg-secondary me-4 fs-6 p-2">1500 <?= __("seconds"); ?></span></p>
+					<p class="mb-0"><strong><?= __("Time window:"); ?></strong> <span class="badge bg-secondary me-4 fs-6 p-2"><?= __("adjustable, 1 to 60 minutes (default 30 minutes)"); ?></span></p>
 				</div>
 			</div>
 		</div>

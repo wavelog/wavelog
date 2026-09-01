@@ -799,7 +799,7 @@ function totalOperatorQsos() {
 					var $row = $('<tr></tr>');
 
 					var $iterator = $('<td></td>').html(i++);
-					var $type = $('<td></td>').html(row.operator);
+					var $type = $('<td class="callsign"></td>').html(row.operator);
 					var $content = $('<td></td>').html(row.count);
 
 					$row.append($iterator, $type, $content);
