@@ -274,7 +274,7 @@ class Dcl extends CI_Controller {
 		$result = '';
 
 		//The URL that returns stored QSOs as ADIF. Untested endpoint - adjust here if DCL API differs.
-		$url = 'https://dings.dcl.darc.de/api/adiexport';
+		$url = 'https://api.dcl.darc.de/api/v1/adif-export';
 
 		foreach ($user_ids as $user_id) {
 			$token = $this->Dcl_model->get_token($user_id);
