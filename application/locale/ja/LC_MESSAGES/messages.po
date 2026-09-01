@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-08-28 10:44+0000\n"
+"POT-Creation-Date: 2026-09-01 10:50+0000\n"
 "PO-Revision-Date: 2026-08-31 23:18+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -203,9 +203,9 @@ msgstr "対流圏ダクト"
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
-#: application/controllers/Qso.php:20 application/controllers/Qso.php:477
-#: application/controllers/Qso.php:499 application/controllers/Qso.php:527
-#: application/controllers/Qso.php:799 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:20 application/controllers/Qso.php:481
+#: application/controllers/Qso.php:503 application/controllers/Qso.php:531
+#: application/controllers/Qso.php:803 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -443,7 +443,7 @@ msgstr "APIキー %s の 説明が更新されました。"
 
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:27
-#: application/controllers/Api_token.php:80 application/controllers/Qso.php:622
+#: application/controllers/Api_token.php:80 application/controllers/Qso.php:626
 msgid "Invalid request method"
 msgstr "無効なリクエストメソッド"
 
@@ -967,7 +967,7 @@ msgid "Call Tester"
 msgstr "コールテスター"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:888
+#: application/controllers/Qso.php:892
 msgid "No callsign provided."
 msgstr "コールサインが提供されていません。"
 
@@ -2167,7 +2167,7 @@ msgstr "ログブック"
 #: application/views/countqsoby/index.php:162
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
-#: application/views/interface_assets/footer.php:111
+#: application/views/interface_assets/footer.php:112
 #: application/views/logbookadvanced/index.php:976
 #: application/views/logbookadvanced/useroptions.php:124
 #: application/views/oqrs/qsolist.php:12
@@ -2341,7 +2341,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/eqslcard/index.php:33
 #: application/views/gridmap/index.php:138
 #: application/views/hamsat/index.php:40
-#: application/views/interface_assets/footer.php:126
+#: application/views/interface_assets/footer.php:127
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 #: application/views/logbookadvanced/edit.php:17
@@ -2738,7 +2738,7 @@ msgstr "オペレーター"
 #: application/views/countqsoby/index.php:16 application/views/csv/index.php:65
 #: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:838
+#: application/views/interface_assets/footer.php:839
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:389
 #: application/views/lookup/index.php:47
@@ -2971,8 +2971,8 @@ msgstr ""
 "力してください。"
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:97
-#: application/models/Logbook_model.php:1440
+#: application/models/Logbook_model.php:98
+#: application/models/Logbook_model.php:1461
 #: application/views/contesting/logger/components/qso-form.php:43
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -3314,21 +3314,21 @@ msgstr "QSOを追加"
 msgid "QSO could not be saved"
 msgstr "交信を保存できませんでした"
 
-#: application/controllers/Qso.php:834 application/controllers/Qso.php:857
+#: application/controllers/Qso.php:838 application/controllers/Qso.php:861
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr "gridsquare の値を確認してください ( %s )"
 
-#: application/controllers/Qso.php:846
+#: application/controllers/Qso.php:850
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr "VUCC gridsquare の値を確認してください ( %s )"
 
-#: application/controllers/Qso.php:875
+#: application/controllers/Qso.php:879
 msgid "You have to be logged in to access this URL."
 msgstr "この URL にアクセスするにはログインする必要があります。"
 
-#: application/controllers/Qso.php:881
+#: application/controllers/Qso.php:885
 msgid "Call Transfer"
 msgstr "通話転送"
 
@@ -3394,8 +3394,8 @@ msgstr "最終更新日"
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
-#: application/views/interface_assets/footer.php:698
-#: application/views/interface_assets/footer.php:707
+#: application/views/interface_assets/footer.php:699
+#: application/views/interface_assets/footer.php:708
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:892
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -3419,10 +3419,10 @@ msgstr "編集"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:70
-#: application/views/interface_assets/footer.php:2651
-#: application/views/interface_assets/footer.php:2669
-#: application/views/interface_assets/footer.php:2688
-#: application/views/interface_assets/footer.php:2706
+#: application/views/interface_assets/footer.php:2652
+#: application/views/interface_assets/footer.php:2670
+#: application/views/interface_assets/footer.php:2689
+#: application/views/interface_assets/footer.php:2707
 #: application/views/labeldesigner/designer.php:413
 #: application/views/labeldesigner/designer.php:452
 #: application/views/labels/index.php:50 application/views/labels/index.php:86
@@ -4697,24 +4697,28 @@ msgstr "輸入紙"
 msgid "Imported label type"
 msgstr "輸入ラベルタイプ"
 
-#: application/models/Logbook_model.php:357
+#: application/models/Logbook_model.php:358
 msgid "Station not accessible"
 msgstr "利用できない無線局"
 
-#: application/models/Logbook_model.php:1430
+#: application/models/Logbook_model.php:993
+msgid "Realtime upload disabled"
+msgstr ""
+
+#: application/models/Logbook_model.php:1451
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
-#: application/models/Logbook_model.php:1435
+#: application/models/Logbook_model.php:1456
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1510
-#: application/models/Logbook_model.php:1728
+#: application/models/Logbook_model.php:1531
+#: application/models/Logbook_model.php:1749
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4947
+#: application/models/Logbook_model.php:4968
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -4722,7 +4726,7 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:4955
+#: application/models/Logbook_model.php:4976
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4731,7 +4735,7 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:4971
+#: application/models/Logbook_model.php:4992
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -4739,7 +4743,7 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4981
+#: application/models/Logbook_model.php:5002
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -4748,7 +4752,7 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:4988
+#: application/models/Logbook_model.php:5009
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -4757,7 +4761,7 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:5058
+#: application/models/Logbook_model.php:5079
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -4766,7 +4770,7 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:5065
+#: application/models/Logbook_model.php:5086
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -4775,63 +4779,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5339
+#: application/models/Logbook_model.php:5360
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5350
+#: application/models/Logbook_model.php:5371
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5411
+#: application/models/Logbook_model.php:5432
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5787
+#: application/models/Logbook_model.php:5808
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5854
-#: application/models/Logbook_model.php:5954
+#: application/models/Logbook_model.php:5875
+#: application/models/Logbook_model.php:5975
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5862
+#: application/models/Logbook_model.php:5883
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5868
+#: application/models/Logbook_model.php:5889
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5872
+#: application/models/Logbook_model.php:5893
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5876
+#: application/models/Logbook_model.php:5897
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5879
+#: application/models/Logbook_model.php:5900
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5882
+#: application/models/Logbook_model.php:5903
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5957
+#: application/models/Logbook_model.php:5978
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5960
+#: application/models/Logbook_model.php:5981
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6379
+#: application/models/Logbook_model.php:6400
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -4871,7 +4875,7 @@ msgid "Contacts"
 msgstr "連絡先"
 
 #: application/models/Note.php:8
-#: application/views/interface_assets/footer.php:115
+#: application/views/interface_assets/footer.php:116
 #: application/views/qso/index.php:103
 #: application/views/statistics/index.php:86
 #: application/views/user/edit.php:221
@@ -5078,8 +5082,8 @@ msgstr "違い"
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1548
-#: application/views/interface_assets/footer.php:1687
+#: application/views/interface_assets/footer.php:1549
+#: application/views/interface_assets/footer.php:1688
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -6061,8 +6065,8 @@ msgstr ""
 
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:658
-#: application/views/interface_assets/footer.php:2418
+#: application/views/interface_assets/footer.php:659
+#: application/views/interface_assets/footer.php:2419
 msgid "DANGER"
 msgstr "危険"
 
@@ -6733,7 +6737,7 @@ msgstr "この API の用途を説明する簡単な名前。"
 #: application/views/contesting/logger/components/qso-form.php:37
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
-#: application/views/interface_assets/footer.php:693
+#: application/views/interface_assets/footer.php:694
 #: application/views/labeldesigner/designer.php:101
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
@@ -7907,7 +7911,7 @@ msgstr "未交信を表示"
 #: application/views/awards/iota/index.php:91
 #: application/views/awards/itu/index.php:120
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2397
+#: application/views/interface_assets/footer.php:2398
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
@@ -11163,7 +11167,7 @@ msgstr "局の所在地"
 
 #: application/views/calltester/index.php:16
 #: application/views/dbtools/index.php:33
-#: application/views/interface_assets/footer.php:894
+#: application/views/interface_assets/footer.php:895
 #: application/views/logbookadvanced/index.php:876
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
@@ -12740,7 +12744,7 @@ msgid "Light/Laser"
 msgstr "光/レーザー"
 
 #: application/views/contesting/manager/export_cbr.php:117
-#: application/views/interface_assets/footer.php:127
+#: application/views/interface_assets/footer.php:128
 #: application/views/stationsetup/locationlist.php:19
 msgid "Power"
 msgstr "出力"
@@ -15605,10 +15609,10 @@ msgid "QSL Date"
 msgstr "QSL日付"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2652
-#: application/views/interface_assets/footer.php:2670
-#: application/views/interface_assets/footer.php:2689
-#: application/views/interface_assets/footer.php:2707
+#: application/views/interface_assets/footer.php:2653
+#: application/views/interface_assets/footer.php:2671
+#: application/views/interface_assets/footer.php:2690
+#: application/views/interface_assets/footer.php:2708
 #: application/views/qslcard/index.php:81
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:720
@@ -15914,155 +15918,160 @@ msgid "QSO with %s by %s was added to logbook."
 msgstr "%s による %s とのQSOがログブックに追加されました。"
 
 #: application/views/interface_assets/footer.php:85
+#, php-format
+msgid "Realtime upload failed: %s"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:86
 msgid "QSO Added to Backlog"
 msgstr "QSOがバックログに追加されました"
 
-#: application/views/interface_assets/footer.php:86
+#: application/views/interface_assets/footer.php:87
 #, php-format
 msgid "Send email to %s"
 msgstr "%s 宛てにメールを送信"
 
-#: application/views/interface_assets/footer.php:87
+#: application/views/interface_assets/footer.php:88
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
 msgstr "コールサインは、過去にこのバンドとモードで交信済かつ確認済です！"
 
-#: application/views/interface_assets/footer.php:88
+#: application/views/interface_assets/footer.php:89
 msgid "Callsign was already worked in the past on this band and mode!"
 msgstr "コールサインは、このバンドとモードで過去にすでに交信されていました！"
 
-#: application/views/interface_assets/footer.php:89
+#: application/views/interface_assets/footer.php:90
 msgid "New Callsign!"
 msgstr "新しいコールサイン！"
 
-#: application/views/interface_assets/footer.php:90
+#: application/views/interface_assets/footer.php:91
 msgid "Grid was already worked and confirmed in the past"
 msgstr "グリッドは、すでに過去に交信済かつ確認済である"
 
-#: application/views/interface_assets/footer.php:91
+#: application/views/interface_assets/footer.php:92
 msgid "Grid was already worked in the past"
 msgstr "グリッドは、過去にすでに交信済"
 
-#: application/views/interface_assets/footer.php:92
+#: application/views/interface_assets/footer.php:93
 msgid "New grid!"
 msgstr "新しいグリッド！"
 
-#: application/views/interface_assets/footer.php:93
+#: application/views/interface_assets/footer.php:94
 msgid "Are you sure to delete Fav?"
 msgstr "本当にお気に入りを削除しますか?"
 
-#: application/views/interface_assets/footer.php:94
+#: application/views/interface_assets/footer.php:95
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
 msgstr "DXCC は過去にこのバンドとモードですでに交信済かつ確認済です！"
 
-#: application/views/interface_assets/footer.php:95
+#: application/views/interface_assets/footer.php:96
 msgid "DXCC was already worked in the past on this band and mode!"
 msgstr "DXCC は、過去にこのバンドとモードですでに交信済！"
 
-#: application/views/interface_assets/footer.php:96
+#: application/views/interface_assets/footer.php:97
 msgid "New DXCC, not worked on this band and mode!"
 msgstr "新しい DXCC ですが、このバンドとモードでは未交信です！"
 
-#: application/views/interface_assets/footer.php:97
+#: application/views/interface_assets/footer.php:98
 #, php-format
 msgid "Lookup %s info on %s"
 msgstr "%s の %s に関する情報を検索"
 
-#: application/views/interface_assets/footer.php:98
+#: application/views/interface_assets/footer.php:99
 #, php-format
 msgid "Lookup %s summit info on %s"
 msgstr "%s のサミット情報を %s で検索"
 
-#: application/views/interface_assets/footer.php:99
+#: application/views/interface_assets/footer.php:100
 #, php-format
 msgid "Lookup %s reference info on %s"
 msgstr "%s の %s に関する参照情報を検索する"
 
-#: application/views/interface_assets/footer.php:100
+#: application/views/interface_assets/footer.php:101
 msgid "Error loading bearing!"
 msgstr "ベアリングのロード中にエラーが発生しました！"
 
-#: application/views/interface_assets/footer.php:101
+#: application/views/interface_assets/footer.php:102
 msgid "Aliases"
 msgstr "エイリアス"
 
-#: application/views/interface_assets/footer.php:102
+#: application/views/interface_assets/footer.php:103
 msgid "Previously"
 msgstr "以前"
 
-#: application/views/interface_assets/footer.php:103
+#: application/views/interface_assets/footer.php:104
 msgid "Born"
 msgstr "生まれ"
 
-#: application/views/interface_assets/footer.php:104
+#: application/views/interface_assets/footer.php:105
 msgid "years old"
 msgstr "歳"
 
-#: application/views/interface_assets/footer.php:105
+#: application/views/interface_assets/footer.php:106
 msgid "License"
 msgstr "ライセンス"
 
-#: application/views/interface_assets/footer.php:106
+#: application/views/interface_assets/footer.php:107
 msgid "from"
 msgstr "から"
 
-#: application/views/interface_assets/footer.php:107
+#: application/views/interface_assets/footer.php:108
 msgid "years"
 msgstr "年"
 
-#: application/views/interface_assets/footer.php:108
+#: application/views/interface_assets/footer.php:109
 msgid "expired on"
 msgstr "有効期限"
 
-#: application/views/interface_assets/footer.php:109
+#: application/views/interface_assets/footer.php:110
 msgid "Website"
 msgstr "Webサイト"
 
-#: application/views/interface_assets/footer.php:110
+#: application/views/interface_assets/footer.php:111
 msgid "Local time"
 msgstr "現地時間"
 
-#: application/views/interface_assets/footer.php:112
+#: application/views/interface_assets/footer.php:113
 msgid "View location on Google Maps (Satellite)"
 msgstr "Googleマップで所在地を表示（衛星写真）"
 
-#: application/views/interface_assets/footer.php:113
+#: application/views/interface_assets/footer.php:114
 msgid "Novice"
 msgstr "初心者"
 
-#: application/views/interface_assets/footer.php:114
+#: application/views/interface_assets/footer.php:115
 msgid "Technician"
 msgstr "技術者"
 
-#: application/views/interface_assets/footer.php:116
+#: application/views/interface_assets/footer.php:117
 #: application/views/interface_assets/header.php:120
 msgid "Advanced"
 msgstr "詳細表示"
 
-#: application/views/interface_assets/footer.php:117
+#: application/views/interface_assets/footer.php:118
 msgid "Extra"
 msgstr "余分な"
 
-#: application/views/interface_assets/footer.php:118
+#: application/views/interface_assets/footer.php:119
 msgid "Gridsquare Formatting"
 msgstr "グリッドスクエアの書式設定"
 
-#: application/views/interface_assets/footer.php:119
+#: application/views/interface_assets/footer.php:120
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
 "複数の（4桁の）グリッドをコンマで区切って入力してください。例：IO77,IO78"
 
-#: application/views/interface_assets/footer.php:120
+#: application/views/interface_assets/footer.php:121
 msgid "live"
 msgstr "ライブ"
 
-#: application/views/interface_assets/footer.php:121
+#: application/views/interface_assets/footer.php:122
 msgid "polling"
 msgstr "ポーリング"
 
-#: application/views/interface_assets/footer.php:122
+#: application/views/interface_assets/footer.php:123
 msgid ""
 "Note: Periodic polling is slow. When operating locally, WebSockets are a "
 "more convenient way to control your radio in real-time."
@@ -16070,80 +16079,80 @@ msgstr ""
 "注: 定期的なポーリングは時間がかかります。ローカルで操作する場合は、"
 "WebSocket を使用する方が無線機をリアルタイムで制御するのに便利です。"
 
-#: application/views/interface_assets/footer.php:123
+#: application/views/interface_assets/footer.php:124
 msgid "TX"
 msgstr "テキサス州"
 
-#: application/views/interface_assets/footer.php:124
+#: application/views/interface_assets/footer.php:125
 msgid "RX"
 msgstr "受信"
 
-#: application/views/interface_assets/footer.php:125
+#: application/views/interface_assets/footer.php:126
 msgid "TX/RX"
 msgstr "送信/受信"
 
-#: application/views/interface_assets/footer.php:128
+#: application/views/interface_assets/footer.php:129
 msgid "Radio connection error"
 msgstr "無線機接続エラー"
 
-#: application/views/interface_assets/footer.php:129
+#: application/views/interface_assets/footer.php:130
 msgid "Connection lost, please select another radio."
 msgstr "接続が失われました。別の無線を選択してください。"
 
-#: application/views/interface_assets/footer.php:130
+#: application/views/interface_assets/footer.php:131
 msgid "Radio connection timeout"
 msgstr "無線機接続タイムアウト"
 
-#: application/views/interface_assets/footer.php:131
+#: application/views/interface_assets/footer.php:132
 msgid "Data is stale, please select another radio."
 msgstr "データが古いため、別の無線を選択してください。"
 
-#: application/views/interface_assets/footer.php:132
+#: application/views/interface_assets/footer.php:133
 msgid "You're not logged in. Please log in."
 msgstr "ログインされていません。ログインしてください。"
 
-#: application/views/interface_assets/footer.php:133
+#: application/views/interface_assets/footer.php:134
 msgid "Radio Tuning Failed"
 msgstr "無線機のチューニングに失敗しました"
 
-#: application/views/interface_assets/footer.php:134
+#: application/views/interface_assets/footer.php:135
 msgid "Failed to tune radio to"
 msgstr "無線機をチューニングできませんでした"
 
-#: application/views/interface_assets/footer.php:135
+#: application/views/interface_assets/footer.php:136
 msgid "CAT interface not responding. Please check your radio connection."
 msgstr "CATインターフェースが応答しません。無線機接続を確認してください。"
 
-#: application/views/interface_assets/footer.php:136
+#: application/views/interface_assets/footer.php:137
 msgid "No CAT URL configured for this radio"
 msgstr "この無線機にはCAT URLが設定されていません"
 
-#: application/views/interface_assets/footer.php:137
+#: application/views/interface_assets/footer.php:138
 msgid "WebSocket Radio"
 msgstr "WebSocket Radio"
 
-#: application/views/interface_assets/footer.php:138
+#: application/views/interface_assets/footer.php:139
 msgid "Location is fetched from provided gridsquare"
 msgstr "所在地はグリッドスクエアから取得されます"
 
-#: application/views/interface_assets/footer.php:139
+#: application/views/interface_assets/footer.php:140
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
 msgstr "位置は DXCC 座標から取得されます (グリッド スクエアは提供されません)"
 
-#: application/views/interface_assets/footer.php:140
+#: application/views/interface_assets/footer.php:141
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr "グリッドスクエアが空で、DXCCが-NONE-であるため、位置を特定できません"
 
-#: application/views/interface_assets/footer.php:141
+#: application/views/interface_assets/footer.php:142
 msgid "Error saving operator callsign. Please try again."
 msgstr "コールサインを保存できません。再度、保存して下さい。"
 
-#: application/views/interface_assets/footer.php:144
+#: application/views/interface_assets/footer.php:145
 msgid "Working without CAT connection"
 msgstr "CAT接続なしで作業する"
 
-#: application/views/interface_assets/footer.php:145
+#: application/views/interface_assets/footer.php:146
 msgid ""
 "CAT connection is currently disabled. Enable CAT connection to work in "
 "online mode with your radio."
@@ -16151,7 +16160,7 @@ msgstr ""
 "CAT接続は現在無効になっています。無線機をオンラインモードで動作させるには、"
 "CAT接続を有効にしてください。"
 
-#: application/views/interface_assets/footer.php:146
+#: application/views/interface_assets/footer.php:147
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
@@ -16159,87 +16168,87 @@ msgstr ""
 "無線機を Wavelog に接続するには、Wavelog Wiki でセットアップ手順を参照してく"
 "ださい。"
 
-#: application/views/interface_assets/footer.php:223
+#: application/views/interface_assets/footer.php:224
 #: application/views/interface_assets/header.php:609
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "バージョン情報"
 
-#: application/views/interface_assets/footer.php:276
-#: application/views/interface_assets/footer.php:291
+#: application/views/interface_assets/footer.php:277
+#: application/views/interface_assets/footer.php:292
 msgid "Failed to load the modal. Please try again."
 msgstr "モーダルの読み込みに失敗しました。もう一度お試しください。"
 
-#: application/views/interface_assets/footer.php:548
+#: application/views/interface_assets/footer.php:549
 msgid "Description:"
 msgstr "説明："
 
-#: application/views/interface_assets/footer.php:551
+#: application/views/interface_assets/footer.php:552
 msgid "Query description"
 msgstr "クエリの説明"
 
-#: application/views/interface_assets/footer.php:567
+#: application/views/interface_assets/footer.php:568
 msgid "Your query has been saved!"
 msgstr "クエリが保存されました!"
 
-#: application/views/interface_assets/footer.php:569
+#: application/views/interface_assets/footer.php:570
 #: application/views/search/filter.php:43
 msgid "Edit queries"
 msgstr "クエリを編集する"
 
-#: application/views/interface_assets/footer.php:571
+#: application/views/interface_assets/footer.php:572
 msgid "Stored queries:"
 msgstr "保存されたクエリ:"
 
-#: application/views/interface_assets/footer.php:576
+#: application/views/interface_assets/footer.php:577
 #: application/views/search/filter.php:57
 msgid "Run Query"
 msgstr "クエリを実行"
 
-#: application/views/interface_assets/footer.php:588
-#: application/views/interface_assets/footer.php:724
-#: application/views/interface_assets/footer.php:794
+#: application/views/interface_assets/footer.php:589
+#: application/views/interface_assets/footer.php:725
+#: application/views/interface_assets/footer.php:795
 msgid "Stored Queries"
 msgstr "保存されたクエリ"
 
-#: application/views/interface_assets/footer.php:593
-#: application/views/interface_assets/footer.php:799
+#: application/views/interface_assets/footer.php:594
+#: application/views/interface_assets/footer.php:800
 msgid "You need to make a query before you search!"
 msgstr "検索する前にクエリを作成する必要があります!"
 
-#: application/views/interface_assets/footer.php:614
-#: application/views/interface_assets/footer.php:751
+#: application/views/interface_assets/footer.php:615
+#: application/views/interface_assets/footer.php:752
 #: application/views/search/filter.php:76
 msgid "Export to ADIF"
 msgstr "ADIFへのエクスポート"
 
-#: application/views/interface_assets/footer.php:615
-#: application/views/interface_assets/footer.php:752
+#: application/views/interface_assets/footer.php:616
+#: application/views/interface_assets/footer.php:753
 #: application/views/search/main.php:32
 msgid "Open in the Advanced Logbook"
 msgstr "詳細ログブックで開く"
 
-#: application/views/interface_assets/footer.php:659
+#: application/views/interface_assets/footer.php:660
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "警告! この保存されたクエリを削除してもよろしいですか?"
 
-#: application/views/interface_assets/footer.php:673
+#: application/views/interface_assets/footer.php:674
 msgid "The stored query has been deleted!"
 msgstr "保存されたクエリが削除されました!"
 
-#: application/views/interface_assets/footer.php:682
+#: application/views/interface_assets/footer.php:683
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "保存されたクエリを削除できませんでした。もう一度お試しください!"
 
-#: application/views/interface_assets/footer.php:708
+#: application/views/interface_assets/footer.php:709
 msgid "The query description has been updated!"
 msgstr "クエリの説明が更新されました!"
 
-#: application/views/interface_assets/footer.php:712
+#: application/views/interface_assets/footer.php:713
 msgid "Something went wrong with the save. Please try again!"
 msgstr "保存中にエラーが発生しました。もう一度お試しください!"
 
-#: application/views/interface_assets/footer.php:841
+#: application/views/interface_assets/footer.php:842
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -16249,15 +16258,15 @@ msgstr ""
 "場所のDXCCが正しいかご確認ください。間違いがなければ、この警告は無視してくだ"
 "さい。"
 
-#: application/views/interface_assets/footer.php:895
+#: application/views/interface_assets/footer.php:896
 msgid "Count: "
 msgstr "カウント： "
 
-#: application/views/interface_assets/footer.php:896
+#: application/views/interface_assets/footer.php:897
 msgid "Grids: "
 msgstr "グリッド: "
 
-#: application/views/interface_assets/footer.php:1115
+#: application/views/interface_assets/footer.php:1116
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
@@ -16265,90 +16274,90 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "グリッドスクエア"
 
-#: application/views/interface_assets/footer.php:1324
+#: application/views/interface_assets/footer.php:1325
 msgid "Location Lookup failed. Please check browser console."
 msgstr "所在地の検索に失敗しました。ブラウザのコンソールを確認してください。"
 
-#: application/views/interface_assets/footer.php:1475
-#: application/views/interface_assets/footer.php:1479
-#: application/views/interface_assets/footer.php:1482
-#: application/views/interface_assets/footer.php:1619
-#: application/views/interface_assets/footer.php:1623
-#: application/views/interface_assets/footer.php:1626
+#: application/views/interface_assets/footer.php:1476
+#: application/views/interface_assets/footer.php:1480
+#: application/views/interface_assets/footer.php:1483
+#: application/views/interface_assets/footer.php:1620
+#: application/views/interface_assets/footer.php:1624
+#: application/views/interface_assets/footer.php:1627
 msgid "grid square"
 msgstr "グリッドスクエア"
 
-#: application/views/interface_assets/footer.php:1482
-#: application/views/interface_assets/footer.php:1626
+#: application/views/interface_assets/footer.php:1483
+#: application/views/interface_assets/footer.php:1627
 msgid "Total count"
 msgstr "合計数"
 
-#: application/views/interface_assets/footer.php:2399
+#: application/views/interface_assets/footer.php:2400
 msgid "QSL Card for "
 msgstr "QSLカード "
 
-#: application/views/interface_assets/footer.php:2419
+#: application/views/interface_assets/footer.php:2420
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "警告! このQSLカードを削除してもよろしいですか?"
 
-#: application/views/interface_assets/footer.php:2459
+#: application/views/interface_assets/footer.php:2460
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSLカード"
 
-#: application/views/interface_assets/footer.php:2461
+#: application/views/interface_assets/footer.php:2462
 msgid "eQSL Card for "
 msgstr "eQSLカード "
 
-#: application/views/interface_assets/footer.php:2663
-#: application/views/interface_assets/footer.php:2700
+#: application/views/interface_assets/footer.php:2664
+#: application/views/interface_assets/footer.php:2701
 #: application/views/view_log/qso.php:718
 msgid "QSL image file"
 msgstr "QSL画像ファイル"
 
-#: application/views/interface_assets/footer.php:2682
+#: application/views/interface_assets/footer.php:2683
 msgid "Front QSL Card"
 msgstr "QSLカード（表側）"
 
-#: application/views/interface_assets/footer.php:2718
+#: application/views/interface_assets/footer.php:2719
 msgid "Back QSL Card"
 msgstr "裏面QSLカード"
 
-#: application/views/interface_assets/footer.php:2722
+#: application/views/interface_assets/footer.php:2723
 msgid "The QSL card upload could not be completed."
 msgstr "QSLカードのアップロードを完了できませんでした。"
 
-#: application/views/interface_assets/footer.php:2722
+#: application/views/interface_assets/footer.php:2723
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
 msgstr "アップロードに失敗しました"
 
-#: application/views/interface_assets/footer.php:2730
-#: application/views/interface_assets/footer.php:2755
+#: application/views/interface_assets/footer.php:2731
+#: application/views/interface_assets/footer.php:2756
 msgid "Add additional QSOs to a QSL Card"
 msgstr "QSLカードにQSOを追加する"
 
-#: application/views/interface_assets/footer.php:2766
+#: application/views/interface_assets/footer.php:2767
 msgid "Something went wrong. Please try again!"
 msgstr "問題が発生しました。もう一度お試しください!"
 
-#: application/views/interface_assets/footer.php:2852
+#: application/views/interface_assets/footer.php:2853
 msgid "US Counties for state"
 msgstr "米国の州別郡"
 
-#: application/views/interface_assets/footer.php:2900
+#: application/views/interface_assets/footer.php:2901
 msgid "Worked counties for state:"
 msgstr "州のために郡レベルで働いた経験："
 
-#: application/views/interface_assets/footer.php:2901
+#: application/views/interface_assets/footer.php:2902
 msgid "Confirmed counties for state:"
 msgstr "州として確認された郡："
 
-#: application/views/interface_assets/footer.php:2902
+#: application/views/interface_assets/footer.php:2903
 msgid "Counties in state:"
 msgstr "州内の郡："
 
-#: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2904
 msgid "Needed counties for state:"
 msgstr "州に必要な郡数："
 
