@@ -9,6 +9,7 @@ class Logbook_model extends CI_Model {
 	private $station_result = [];
 	private $spot_status_cache = []; // In-memory cache for DX cluster spot statuses
 	private $dxcc_object;
+	public $last_export_errors = [];
 
 	// QSL confirmation sources, mapping the public API type name to its received
 	// flag and the date that confirmation arrived. Single source of truth for the
@@ -463,7 +464,8 @@ class Logbook_model extends CI_Model {
 		$this->notify_qso_change($station['user_id'] ?? $this->session->userdata('user_id'));
 		return [
 			'qso_id' => $qso_id,
-			'adif' => $this->adifhelper->getAdifLine($qso[0])
+			'adif' => $this->adifhelper->getAdifLine($qso[0]),
+			'export_errors' => $this->last_export_errors,
 		];
 	}
 
@@ -951,6 +953,7 @@ class Logbook_model extends CI_Model {
 
 			// No point in fetching hrdlog code or qrz api key and qrzrealtime setting if we're skipping the export
 			if (!$skipexport) {
+				$export_errors = [];
 
 				// Fetch all credentials in a single query (optimization: reduces 4 queries to 1)
 				$creds = $this->get_all_export_credentials($data['station_id']);
@@ -984,6 +987,12 @@ class Logbook_model extends CI_Model {
 					$result = $this->clublog_model->push_qso_to_clublog($creds->ucn, $creds->ucp, $data['COL_STATION_CALLSIGN'], $adif, $data['station_id']);
 					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
+					} else {
+						$msg = $this->sanitize_export_error($result['status']);
+						if (str_contains($msg, 'Login rejected')) {
+							$msg .= ' — ' . __('Realtime upload disabled');
+						}
+						$export_errors[] = ['provider' => 'ClubLog', 'message' => $msg];
 					}
 				}
 
@@ -998,6 +1007,9 @@ class Logbook_model extends CI_Model {
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error'))) {
 						$this->mark_hrdlog_qsos_sent($last_id);
 					}
+					if (in_array(($result['status'] ?? ''), ['error', 'auth_error'], true)) {
+						$export_errors[] = ['provider' => 'HRDLog.net', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
+					}
 				}
 
 				// QRZ export
@@ -1010,6 +1022,8 @@ class Logbook_model extends CI_Model {
 					$result = $this->push_qso_to_qrz($creds->qrzapikey, $adif);
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') && ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED='))) {
 						$this->mark_qrz_qsos_sent($last_id);
+					} else {
+						$export_errors[] = ['provider' => 'QRZ.com', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
 					}
 				}
 
@@ -1030,6 +1044,8 @@ class Logbook_model extends CI_Model {
 						$this->mark_webadif_qsos_sent([$last_id]);
 					}
 				}
+
+				$this->last_export_errors = $export_errors;
 			}
 
 			// Invalidate DXCluster cache for this callsign
@@ -1040,9 +1056,14 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	private function sanitize_export_error($msg) {
+		$msg = preg_replace('/\s+/', ' ', strip_tags((string)$msg));
+		return mb_substr(htmlspecialchars($msg), 0, 120) . (mb_strlen($msg) > 120 ? '…' : '');
+	}
+
 	/*
-   * Function checks if a HRDLog Code and Username exists in the table with the given station id
-   */
+	 * Function checks if a HRDLog Code and Username exists in the table with the given station id
+	 */
 	function exists_hrdlog_credentials($station_id) {
 
 		//checks only disabled state
