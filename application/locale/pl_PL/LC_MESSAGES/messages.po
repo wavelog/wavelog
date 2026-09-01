@@ -13,12 +13,13 @@
 # Szymon <sp9spm@cqops.com>, 2025, 2026.
 # notzaleewa <zaleewa@outlook.com>, 2025.
 # Dariusz Koryto <dariusz@koryto.eu>, 2025, 2026.
+# Piotr S <sp9lop@pm.me>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-08-28 10:44+0000\n"
-"PO-Revision-Date: 2026-07-29 08:14+0000\n"
-"Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
+"PO-Revision-Date: 2026-08-30 21:12+0000\n"
+"Last-Translator: Piotr S <sp9lop@pm.me>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
 "Language: pl_PL\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -319,7 +320,7 @@ msgstr "Suma zaliczonych pól"
 
 #: application/controllers/Activationplanner.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "Strefy CQ"
 
 #: application/controllers/Activationplanner.php:32
 #: application/controllers/Activationplanner.php:33
@@ -336,12 +337,12 @@ msgstr "Strefy ITU"
 
 #: application/controllers/Activationplanner.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Stany / Prowincje"
 
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:332
 msgid "Activation Planner"
-msgstr ""
+msgstr "Planer aktywacji"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -414,14 +415,14 @@ msgstr "Zaimportowano dane POTA"
 #: application/controllers/Amsatstatus.php:30
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
-msgstr ""
+msgstr "Serwis AMSAT jest aktualnie niedostępny. Spróbuj później."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:326
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Status satelitów AMSAT"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -474,27 +475,27 @@ msgstr "Klucz API %s został usunięty"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Podaj nazwę tokenu"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Proszę wybrać co najmniej jeden zakres"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "Token API wygenerowany"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "Nie udało się wygenerować tokena API"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Nieprawidłowy token API"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "Token API został usunięty"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:194
@@ -842,31 +843,31 @@ msgstr "WAIP"
 
 #: application/controllers/Awards.php:2572
 msgid "England"
-msgstr ""
+msgstr "Anglia"
 
 #: application/controllers/Awards.php:2573
 msgid "Isle of Man"
-msgstr ""
+msgstr "Wyspa Man"
 
 #: application/controllers/Awards.php:2574
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Północna Irlandia"
 
 #: application/controllers/Awards.php:2575
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: application/controllers/Awards.php:2576
 msgid "Scotland"
-msgstr ""
+msgstr "Szkocja"
 
 #: application/controllers/Awards.php:2577
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2578
 msgid "Wales"
-msgstr ""
+msgstr "Walia"
 
 #: application/controllers/Awards.php:2794
 #: application/views/awards/wac/index.php:7
@@ -901,7 +902,7 @@ msgstr "Nagrody - AMSAT Rover"
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:334
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Mapa azymutalna"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:359
@@ -1035,49 +1036,51 @@ msgstr "Nie udało się usunąć użytkownika z klubu."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Nie wybrano żadnych członków."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Żaden z wybranych użytkowników nie jest członkiem tego klubu."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Nie można kontynuować: spowodowałoby to usunięcie ostatniego członka władz "
+"klubu. Tę czynność musi wykonać administrator."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Nie udało się zaktualizować uprawnień członka klubu."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Nie zaktualizowano żadnych członków."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Zaktualizowano jednego członka."
+msgstr[1] "Zaktualizowano %d członków."
+msgstr[2] "Zaktualizowano %d członków."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Użytkownicy nie mogą zostać usunięci z klubu."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Żaden członek nie został usunięty."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Użytkownik usunięty."
+msgstr[1] "%d użytkowników usuniętych."
+msgstr[2] "%d użytkowników usuniętych."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1142,7 +1145,7 @@ msgstr "Aktualizuj zawody"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Konkurs %s zaktualizowany"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:322
@@ -1295,7 +1298,7 @@ msgstr "Kontynenty"
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Zlicz QSO według..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1491
@@ -1417,7 +1420,7 @@ msgstr "Strefa CQ"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
 msgid "POTA Reference"
-msgstr ""
+msgstr "Referencja POTA"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
@@ -1561,7 +1564,7 @@ msgstr "Panel użytkownika"
 
 #: application/controllers/Dashboard.php:222
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:684
@@ -1577,7 +1580,7 @@ msgstr "SAT"
 
 #: application/controllers/Dashboard.php:222
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1930,7 +1933,7 @@ msgstr "Eksport KML"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "Projektant etykiet"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1950,11 +1953,11 @@ msgstr "Template JSON jest nieprawidłowy"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Szablon nie ma żadnych elementów"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Nie znaleziono typu etykiety"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -1974,14 +1977,16 @@ msgid "PDF file was not created"
 msgstr "Plik PDF nie został utworzony"
 
 #: application/controllers/Labeldesigner.php:165
+#, fuzzy
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Etykietowanie PDF nie powiodło się "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Typ etykiety tego szablonu już nie istnieje. Przed eksportem wybierz inny."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -2887,7 +2892,7 @@ msgstr "Edytuj emisję"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr ""
+msgstr "Tryb %s zaktualizowany"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3165,11 +3170,11 @@ msgstr "Żądania OQRS"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Proszę podać prawidłową datę."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Proszę podać prawidłowy czas."
 
 #: application/controllers/Oqrs.php:414
 msgid "QSO match deleted successfully."
@@ -3333,12 +3338,12 @@ msgstr "Nie udało się zapisać QSO"
 #: application/controllers/Qso.php:834 application/controllers/Qso.php:857
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr ""
+msgstr "Proszę sprawdzić wartość dla grida (%s)"
 
 #: application/controllers/Qso.php:846
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr ""
+msgstr "Proszę sprawdzić wartość dla grida VUCC (%s)"
 
 #: application/controllers/Qso.php:875
 msgid "You have to be logged in to access this URL."
@@ -3610,7 +3615,7 @@ msgstr "Edytuj lokalizację stacji: "
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr ""
+msgstr "Zaktualizowano lokalizację stacji %s"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
@@ -3975,11 +3980,11 @@ msgstr "POTA aktualizacja zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:616
 msgid "POTA boundaries update complete. Result: "
-msgstr ""
+msgstr "Aktualizacja granic POTA zakończona. Wynik: "
 
 #: application/controllers/Update.php:618
 msgid "POTA boundaries update failed. Result: "
-msgstr ""
+msgstr "Aktualizacja granic POTA nie powiodła się. Wynik: "
 
 #: application/controllers/Update.php:635
 msgid "TLE Update complete. Result: "
@@ -4358,7 +4363,7 @@ msgstr ""
 
 #: application/controllers/Widgets.php:282
 msgid "User has disabled the LoTW upload widget"
-msgstr ""
+msgstr "Użytkownik wyłączył widget przesyłania do LoTW"
 
 #: application/controllers/Widgets.php:540
 msgid "User not found by slug"
@@ -4486,19 +4491,19 @@ msgstr "Miasto / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "Pokaż członków klubu"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Zarządzaj uprawnieniami członków klubu"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Usuń członków z klubu"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "Przeczytaj potwierdzenia QSL"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
@@ -4514,15 +4519,15 @@ msgstr ""
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Przeczytaj dzienniki"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Tworzenie i aktualizowanie dzienników"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Usuń dzienniki"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -4530,15 +4535,15 @@ msgstr ""
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "Przeczytaj QSOs"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "Tworzenie i aktualizowanie QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "Usuń QSOs"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
@@ -13691,7 +13696,7 @@ msgstr "Szczegóły"
 #: application/views/dashboard/index.php:487
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr "Rozbicie DXCC"
+msgstr "Zestawienie DXCC"
 
 #: application/views/dashboard/index.php:500
 #: application/views/visitor/index.php:267
