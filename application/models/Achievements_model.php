@@ -137,13 +137,18 @@ class Achievements_model extends CI_Model
 			$this->band_trophy($bands, $warc_bands, 'bands_warc.svg', 'WARC Bands', '30m, 17m and 12m'),
 		);
 
+		$sat = $this->sat_stats($station_ids);
+		$band_trophies[] = $this->sat_trophy('bands_sat_linear.svg', 'First Linear SAT QSO', $sat['lin_count'], $sat['lin_first']);
+		$band_trophies[] = $this->sat_trophy('bands_sat_fm.svg', 'First FM SAT QSO', $sat['fm_count'], $sat['fm_first']);
+		$band_trophies[] = $this->sat_trophy('bands_sat_leo.svg', 'First LEO SAT QSO', $sat['leo_count'], $sat['leo_first'], $sat['leo_sats']);
+
 		$lotw_trophies = array(
 			$this->trophy('lotw_first.svg', 'First LoTW Confirmation', array(), $lotw_date !== null, $lotw_date, 0, 0, '',
 				$lotw_date !== null ? array(array('label' => __('Confirmed on'), 'value' => $this->format_day($lotw_date))) : array()),
 		);
 
 		$ratio_levels = array(
-			array('ratio_tomato.svg', 'Rotten Tomato', 0.1),
+			array('ratio_mouse.svg', 'Mouse-Operator', 0.1),
 			array('ratio_bronze.svg', 'Balanced Operator', 1),
 			array('ratio_silver.svg', 'Classic Enthusiast', 2),
 			array('ratio_gold.svg', 'Classic Champion', 5),
@@ -183,7 +188,8 @@ class Achievements_model extends CI_Model
 		$modes_subtitle = $modes_subtitle_parts ? implode(' · ', $modes_subtitle_parts) : null;
 
 		$bands_subtitle = sprintf(__('HF: %s/%s'), $band_trophies[0]['progress_now'], $band_trophies[0]['progress_target'])
-			. ' · ' . sprintf(__('WARC: %s/%s'), $band_trophies[1]['progress_now'], $band_trophies[1]['progress_target']);
+			. ' · ' . sprintf(__('WARC: %s/%s'), $band_trophies[1]['progress_now'], $band_trophies[1]['progress_target'])
+			. ' · ' . sprintf(__('SAT: %s'), number_format($sat['total']));
 
 		$lotw_subtitle = $lotw_date !== null ? sprintf(__('First confirmation: %s'), $this->format_day($lotw_date)) : __('No LoTW confirmation yet');
 
@@ -283,6 +289,61 @@ class Achievements_model extends CI_Model
 			$format = $this->config->item('qso_date_format');
 		}
 		return date($format, strtotime($ymd));
+	}
+
+	/*
+	 * SAT QSO aggregates for the satellite trophies, following the AMSAT
+	 * mode semantics also used by Amsat_rover: FM is FM, SSB/CW (via a
+	 * linear transponder) is Linear; digital modes (e.g. PKT) count for
+	 * neither. LEO is decided by the satellite table's orbit column, so
+	 * QSOs with unknown satellite names are not LEO. One query.
+	 */
+	private function sat_stats($station_ids) {
+		$table = $this->config->item('table_name');
+		$mode_expr = "UPPER(COALESCE(NULLIF($table.col_submode, ''), $table.col_mode))";
+		$params = array();
+		$sql = "SELECT
+				COUNT(*) AS total,
+				SUM(CASE WHEN $mode_expr = 'FM' THEN 1 ELSE 0 END) AS fm_count,
+				MIN(CASE WHEN $mode_expr = 'FM' THEN $table.col_time_on END) AS fm_first,
+				SUM(CASE WHEN $mode_expr IN ('SSB','USB','LSB','CW') THEN 1 ELSE 0 END) AS lin_count,
+				MIN(CASE WHEN $mode_expr IN ('SSB','USB','LSB','CW') THEN $table.col_time_on END) AS lin_first,
+				SUM(CASE WHEN satellite.orbit = 'LEO' THEN 1 ELSE 0 END) AS leo_count,
+				MIN(CASE WHEN satellite.orbit = 'LEO' THEN $table.col_time_on END) AS leo_first,
+				COUNT(DISTINCT CASE WHEN satellite.orbit = 'LEO' THEN $table.col_sat_name END) AS leo_sats
+			FROM $table
+			LEFT OUTER JOIN satellite
+				ON $table.col_prop_mode = 'SAT'
+				AND ($table.col_sat_name = satellite.name
+					OR (satellite.displayname != '' AND $table.col_sat_name = satellite.displayname))
+			WHERE $table.col_prop_mode = 'SAT' AND " . $this->station_in($station_ids, $params);
+		$row = $this->db->query($sql, $params)->row();
+
+		return array(
+			'total' => (int) ($row->total ?? 0),
+			'fm_count' => (int) ($row->fm_count ?? 0),
+			'fm_first' => $row->fm_first !== null ? substr($row->fm_first, 0, 10) : null,
+			'lin_count' => (int) ($row->lin_count ?? 0),
+			'lin_first' => $row->lin_first !== null ? substr($row->lin_first, 0, 10) : null,
+			'leo_count' => (int) ($row->leo_count ?? 0),
+			'leo_first' => $row->leo_first !== null ? substr($row->leo_first, 0, 10) : null,
+			'leo_sats' => (int) ($row->leo_sats ?? 0),
+		);
+	}
+
+	/*
+	 * Binary satellite trophy: unlock state and date from the first QSO
+	 * of that kind, KPIs with QSO count and (for LEO) satellite count.
+	 */
+	private function sat_trophy($icon, $title_key, $count, $first, $sats = null) {
+		$detail = array(array('label' => __('SAT QSOs'), 'value' => number_format($count)));
+		if ($first !== null) {
+			$detail[] = array('label' => __('First QSO on'), 'value' => $this->format_day($first));
+		}
+		if ($sats > 0) {
+			$detail[] = array('label' => __('Different satellites'), 'value' => number_format($sats));
+		}
+		return $this->trophy($icon, $title_key, array(), $count > 0, $first, 0, 0, '', $detail);
 	}
 
 	/*
