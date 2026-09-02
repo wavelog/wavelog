@@ -4,6 +4,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Achievements_model extends CI_Model
 {
 	/*
+	 * Streak trophy levels: day count => tier. Single source for the
+	 * trophy catalog and the streak walk.
+	 */
+	private static $streak_levels = array(
+		7 => 'bronze', 30 => 'bronze',
+		100 => 'silver', 365 => 'silver',
+		500 => 'gold', 1000 => 'gold',
+		2500 => 'platinum', 5000 => 'platinum',
+	);
+
+	/*
 	 * Volume trophy levels: QSO count => array(tier, title). Single
 	 * source for both the trophy catalog and the Nth-QSO query.
 	 */
@@ -76,10 +87,9 @@ class Achievements_model extends CI_Model
 				$days_conf[] = $row->d;
 			}
 		}
-		$streak_levels = array(7, 30, 100, 365, 500, 1000, 2500, 5000);
 		$streak = array(
-			'all' => $this->walk_streak($days_all, $streak_levels),
-			'confirmed' => $this->walk_streak($days_conf, $streak_levels),
+			'all' => $this->walk_streak($days_all, array_keys(self::$streak_levels)),
+			'confirmed' => $this->walk_streak($days_conf, array_keys(self::$streak_levels)),
 		);
 
 		// Nth QSO dates for the volume levels, both variants in one window query
@@ -159,14 +169,8 @@ class Achievements_model extends CI_Model
 		$ft = ($modes['FT8']['count'] ?? 0) + ($modes['FT4']['count'] ?? 0);
 		$ratio = $ft > 0 ? $classic / $ft : ($classic > 0 ? INF : 0);
 
-		$streak_levels = array(
-			7 => 'bronze', 30 => 'bronze',
-			100 => 'silver', 365 => 'silver',
-			500 => 'gold', 1000 => 'gold',
-			2500 => 'platinum', 5000 => 'platinum',
-		);
 		$streak_trophies = array();
-		foreach ($streak_levels as $level => $tier) {
+		foreach (self::$streak_levels as $level => $tier) {
 			$detail = array(
 				array('label' => __('Longest streak'), 'value' => sprintf(_ngettext('%s day', '%s days', $streak['longest']), number_format($streak['longest']))),
 				array('label' => __('Current streak'), 'value' => sprintf(_ngettext('%s day', '%s days', $streak['current']), number_format($streak['current']))),
@@ -452,7 +456,7 @@ class Achievements_model extends CI_Model
 				}
 			}
 		}
-		if ($prev !== null && strtotime($prev) >= strtotime(date('Y-m-d') . ' -1 day')) {
+		if ($prev !== null && strtotime($prev) >= strtotime(gmdate('Y-m-d') . ' -1 day')) {
 			$current = $run;
 		}
 
