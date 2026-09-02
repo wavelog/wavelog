@@ -56,6 +56,7 @@
 			.trophy-sub {
 				display: block;
 				max-width: 98px;
+				font-size: .68rem;
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -100,11 +101,12 @@
 						if ($trophy['progress_target'] > 0) {
 							$pct = (int) min(100, round(100 * $trophy['progress_now'] / $trophy['progress_target']));
 						}
+						$unlock_display = $trophy['unlock_date'] !== null ? date($custom_date_format, strtotime($trophy['unlock_date'])) : null;
 						$payload = array(
 							'u' => $this->paths->cache_buster('/assets/svg/achievements/' . $trophy['icon']),
 							't' => $trophy['title'],
 							'ok' => (bool) $trophy['unlocked'],
-							'd' => $trophy['unlock_date'] !== null ? date($custom_date_format, strtotime($trophy['unlock_date'])) : null,
+							'd' => $unlock_display,
 							'pct' => $pct,
 							'pl' => $trophy['progress_label'],
 							'kpi' => $trophy['detail'],
@@ -117,9 +119,9 @@
 							<img src="<?= $this->paths->cache_buster('/assets/svg/achievements/' . $trophy['icon']); ?>" alt="<?= html_escape($trophy['title']); ?>" loading="lazy" />
 							<div class="trophy-title mx-auto"><?= html_escape($trophy['title']); ?></div>
 							<?php if (!$locked && $trophy['unlock_date'] !== null) { ?>
-								<small class="trophy-sub text-success" style="font-size: .68rem;"><?= html_escape(date($custom_date_format, strtotime($trophy['unlock_date']))); ?></small>
+								<small class="trophy-sub text-success"><?= html_escape($unlock_display); ?></small>
 							<?php } elseif (!$locked) { ?>
-								<small class="trophy-sub text-success" style="font-size: .68rem;"><?= __("Unlocked"); ?></small>
+								<small class="trophy-sub text-success"><?= __("Unlocked"); ?></small>
 							<?php } elseif ($trophy['progress_target'] > 0) { ?>
 								<div class="progress mt-1 w-100" role="progressbar" aria-valuenow="<?= (int) $pct; ?>" aria-valuemin="0" aria-valuemax="100">
 									<div class="progress-bar" style="width: <?= (int) $pct; ?>%;"></div>

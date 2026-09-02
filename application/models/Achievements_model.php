@@ -284,12 +284,6 @@ class Achievements_model extends CI_Model
 			array('ratio_platinum.svg', 'Classic Legend', 100),
 		);
 		$ratio_trophies = array();
-		$next_ratio = null;
-		foreach (array_reverse($ratio_levels) as $meta) {
-			if ($ratio < $meta[2]) {
-				$next_ratio = $meta[2];
-			}
-		}
 		foreach ($ratio_levels as $meta) {
 			$ratio_trophies[] = $this->trophy(
 				$meta[0], __($meta[1]), array(),
@@ -301,7 +295,6 @@ class Achievements_model extends CI_Model
 					array('label' => __('FT8 and FT4 QSOs'), 'value' => number_format($ft)),
 					array('label' => __('Current ratio'), 'value' => is_infinite($ratio) ? '∞ : 1' : round($ratio, 2) . ' : 1'),
 					array('label' => __('Needed ratio'), 'value' => $meta[2] . ' : 1'),
-					array('label' => __('Next threshold'), 'value' => $next_ratio !== null ? $next_ratio . ' : 1' : '—'),
 				)
 			);
 		}
