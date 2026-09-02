@@ -37,7 +37,9 @@ class Achievements_model extends CI_Model
 
 		$station_ids = $this->scoped_station_ids();
 
-		$cache_key = 'achievements_u' . (int) $this->session->userdata('user_id');
+		$lang = $this->config->item('current_language')['code'] ?? 'en';
+		$date_fmt = (string) ($this->session->userdata('user_date_format') ?: $this->config->item('qso_date_format'));
+		$cache_key = 'achievements_u' . (int) $this->session->userdata('user_id') . '_' . $lang . '_' . md5($date_fmt);
 
 		if ($station_ids === null) {
 			$this->cache->delete($cache_key);
