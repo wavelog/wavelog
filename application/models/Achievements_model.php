@@ -8,11 +8,11 @@ class Achievements_model extends CI_Model
 	 * source for both the trophy catalog and the Nth-QSO query.
 	 */
 	private static $volume_levels = array(
-		100 => array('bronze', '100 QSOs'),
-		1000 => array('silver', '1,000 QSOs'),
-		10000 => array('gold', '10,000 QSOs'),
-		25000 => array('platinum', '25,000 QSOs'),
-		50000 => array('platinum', '50,000 QSOs'),
+		100 => 'bronze',
+		1000 => 'silver',
+		10000 => 'gold',
+		25000 => 'platinum',
+		50000 => 'platinum',
 	);
 
 	public function get_trophies($confirmed_only = false) {
@@ -168,42 +168,42 @@ class Achievements_model extends CI_Model
 		$streak_trophies = array();
 		foreach ($streak_levels as $level => $tier) {
 			$detail = array(
-				array('label' => __('Longest streak'), 'value' => number_format($streak['longest']) . ' ' . __('days')),
-				array('label' => __('Current streak'), 'value' => number_format($streak['current']) . ' ' . __('days')),
-				array('label' => __('Target'), 'value' => number_format($level) . ' ' . __('days')),
+				array('label' => __('Longest streak'), 'value' => sprintf(_ngettext('%s day', '%s days', $streak['longest']), number_format($streak['longest']))),
+				array('label' => __('Current streak'), 'value' => sprintf(_ngettext('%s day', '%s days', $streak['current']), number_format($streak['current']))),
+				array('label' => __('Target'), 'value' => sprintf(_ngettext('%s day', '%s days', $level), number_format($level))),
 			);
 			if (isset($streak['crossings'][$level])) {
 				$detail[] = array('label' => __('Reached on'), 'value' => $this->format_day($streak['crossings'][$level]));
 			}
 			$streak_trophies[] = $this->trophy(
 				'streak_' . $tier . '.svg',
-				'%d Day Streak', array($level),
+				__('%d Day Streak'), array($level),
 				$streak['longest'] >= $level,
 				$streak['crossings'][$level] ?? null,
 				$streak['longest'], $level,
-				number_format($streak['longest']) . ' / ' . number_format($level) . ' ' . __('days'),
+				sprintf(_ngettext('%s / %s day', '%s / %s days', $level), number_format($streak['longest']), number_format($level)),
 				$detail
 			);
 		}
 
 		$volume_trophies = array();
-		foreach (self::$volume_levels as $level => $meta) {
+		foreach (self::$volume_levels as $level => $tier) {
 			$unlocked = $totals >= $level;
 			$nth_date = $unlocked ? ($nth[$level] ?? null) : null;
 			$detail = array(
 				array('label' => __('QSOs in log'), 'value' => number_format($totals)),
-				array('label' => __('Target'), 'value' => number_format($level) . ' ' . __('QSOs')),
+				array('label' => __('Target'), 'value' => sprintf(_ngettext('%s QSO', '%s QSOs', $level), number_format($level))),
 			);
 			if ($nth_date !== null) {
 				$detail[] = array('label' => __('Unlocked on'), 'value' => $this->format_day($nth_date));
 			}
 			$volume_trophies[] = $this->trophy(
-				'volume_' . $meta[0] . '.svg',
-				$meta[1], array(),
+				'volume_' . $tier . '.svg',
+				_ngettext('%s QSO', '%s QSOs', $level), array(number_format($level)),
 				$unlocked,
 				$nth_date,
 				$totals, $level,
-				number_format($totals) . ' / ' . number_format($level) . ' ' . __('QSOs'),
+				sprintf(_ngettext('%s / %s QSO', '%s / %s QSOs', $level), number_format($totals), number_format($level)),
 				$detail
 			);
 		}
@@ -241,15 +241,15 @@ class Achievements_model extends CI_Model
 			$digi_detail[] = array('label' => __('Top classic mode'), 'value' => $digi_top . ' (' . number_format($digi_top_count) . ')');
 		}
 		$mode_trophies = array(
-			$this->trophy('mode_cw.svg', 'First CW QSO', array(), isset($modes['CW']), $modes['CW']['first'] ?? null, 0, 0, '',
+			$this->trophy('mode_cw.svg', __('First CW QSO'), array(), isset($modes['CW']), $modes['CW']['first'] ?? null, 0, 0, '',
 				$this->mode_detail('CW', $modes)),
-			$this->trophy('mode_ssb.svg', 'First SSB QSO', array(), isset($modes['SSB']), $modes['SSB']['first'] ?? null, 0, 0, '',
+			$this->trophy('mode_ssb.svg', __('First SSB QSO'), array(), isset($modes['SSB']), $modes['SSB']['first'] ?? null, 0, 0, '',
 				$this->mode_detail('SSB', $modes)),
-			$this->trophy('mode_ft8.svg', 'First FT8 QSO', array(), isset($modes['FT8']), $modes['FT8']['first'] ?? null, 0, 0, '',
+			$this->trophy('mode_ft8.svg', __('First FT8 QSO'), array(), isset($modes['FT8']), $modes['FT8']['first'] ?? null, 0, 0, '',
 				$this->mode_detail('FT8', $modes)),
-			$this->trophy('mode_digi.svg', 'First Classic Digimode QSO', array(), $digi_count > 0, $digi_first, 0, 0, '', $digi_detail),
-			$this->trophy('mode_triple.svg', 'Triple Threat', array(), $modes_present >= 3, $modes_present >= 3 ? max($mode_first_dates) : null,
-				$modes_present, 3, $modes_present . ' / 3 ' . __('modes'),
+			$this->trophy('mode_digi.svg', __('First Classic Digimode QSO'), array(), $digi_count > 0, $digi_first, 0, 0, '', $digi_detail),
+			$this->trophy('mode_triple.svg', __('Triple Threat'), array(), $modes_present >= 3, $modes_present >= 3 ? max($mode_first_dates) : null,
+				$modes_present, 3, sprintf(_ngettext('%s / 3 mode', '%s / 3 modes', $modes_present), $modes_present),
 				array(
 					array('label' => __('Worked modes'), 'value' => $mode_first_dates ? implode(', ', array_keys($mode_first_dates)) : '—'),
 					array('label' => __('Missing modes'), 'value' => $missing_modes ? implode(', ', $missing_modes) : '—'),
@@ -268,7 +268,7 @@ class Achievements_model extends CI_Model
 		$band_trophies[] = $this->sat_trophy('bands_sat_leo.svg', 'First LEO SAT QSO', $sat['leo_count'], $sat['leo_first'], $sat['leo_sats']);
 
 		$lotw_trophies = array(
-			$this->trophy('lotw_first.svg', 'First LoTW Confirmation', array(), $lotw_date !== null, $lotw_date, 0, 0, '',
+			$this->trophy('lotw_first.svg', __('First LoTW Confirmation'), array(), $lotw_date !== null, $lotw_date, 0, 0, '',
 				$lotw_date !== null ? array(array('label' => __('Confirmed on'), 'value' => $this->format_day($lotw_date))) : array()),
 		);
 
@@ -288,7 +288,7 @@ class Achievements_model extends CI_Model
 		}
 		foreach ($ratio_levels as $meta) {
 			$ratio_trophies[] = $this->trophy(
-				$meta[0], $meta[1], array(),
+				$meta[0], __($meta[1]), array(),
 				$ratio >= $meta[2], null,
 				is_finite($ratio) ? $ratio : $meta[2], $meta[2],
 				$this->ratio_label($classic, $ft, $ratio),
@@ -340,7 +340,7 @@ class Achievements_model extends CI_Model
 	private function trophy($icon, $title_key, $title_args, $unlocked, $unlock_date, $progress_now, $progress_target, $progress_label, $detail = array()) {
 		return array(
 			'icon' => $icon,
-			'title' => vsprintf(__($title_key), $title_args),
+			'title' => vsprintf($title_key, $title_args),
 			'unlocked' => $unlocked,
 			'unlock_date' => $unlock_date,
 			'progress_now' => $progress_now,
@@ -381,8 +381,8 @@ class Achievements_model extends CI_Model
 		if ($first !== null) {
 			$detail[] = array('label' => __('Completed on'), 'value' => $this->format_day($first));
 		}
-		return $this->trophy($icon, $title_key, array(), $unlocked, $first, $present, count($required),
-			$present . ' / ' . count($required) . ' ' . __('bands'), $detail);
+		return $this->trophy($icon, __($title_key), array(), $unlocked, $first, $present, count($required),
+			sprintf(_ngettext('%s / %s band', '%s / %s bands', count($required)), $present, count($required)), $detail);
 	}
 
 	/*
@@ -397,13 +397,13 @@ class Achievements_model extends CI_Model
 		if ($sats > 0) {
 			$detail[] = array('label' => __('Different satellites'), 'value' => number_format($sats));
 		}
-		return $this->trophy($icon, $title_key, array(), $count > 0, $first, 0, 0, '', $detail);
+		return $this->trophy($icon, __($title_key), array(), $count > 0, $first, 0, 0, '', $detail);
 	}
 
 	private function streak_subtitle($streak) {
-		$parts = array(sprintf(__("Longest streak: %s days"), number_format($streak['longest'])));
+		$parts = array(sprintf(_ngettext('Longest streak: %s day', 'Longest streak: %s days', $streak['longest']), number_format($streak['longest'])));
 		if ($streak['current'] > 0) {
-			$parts[] = sprintf(__("Current streak: %s days"), number_format($streak['current']));
+			$parts[] = sprintf(_ngettext('Current streak: %s day', 'Current streak: %s days', $streak['current']), number_format($streak['current']));
 		}
 		return implode(' · ', $parts);
 	}
