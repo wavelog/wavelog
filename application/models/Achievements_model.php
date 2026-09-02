@@ -11,10 +11,32 @@ class Achievements_model extends CI_Model
 	 */
 	public function get_trophies() {
 		$this->load->model('logbooks_model');
+
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
 		$station_ids = $this->scoped_station_ids();
 
+		$cache_key = 'achievements_u' . (int) $this->session->userdata('user_id');
+
 		if ($station_ids === null) {
+			$this->cache->delete($cache_key);
 			return null;
+		}
+
+		/*
+		 * Tier 1 caching via the CI cache adapter: a cheap fingerprint
+		 * (one indexed aggregate) detects inserts, deletes, logbook
+		 * switches and LoTW syncs, so the heavy computation only runs
+		 * on real changes; pure edits fall back to the TTL.
+		 */
+		$fingerprint = $this->fingerprint($station_ids);
+		$cached = $this->cache->get($cache_key);
+		if ($cached !== false && ($cached['fingerprint'] ?? '') === $fingerprint) {
+			return array('families' => $cached['families'], 'cached_at' => $cached['generated']);
 		}
 
 		$totals = $this->qso_totals($station_ids);
@@ -195,16 +217,32 @@ class Achievements_model extends CI_Model
 
 		$ratio_subtitle = __('CW and SSB versus FT8 and FT4') . ' — ' . (is_infinite($ratio) ? '∞' : round($ratio, 2)) . ' : 1';
 
-		return array(
-			'families' => array(
-				array('title' => __('Streak'), 'subtitle' => $this->streak_subtitle($streak), 'trophies' => $streak_trophies),
-				array('title' => __('Volume'), 'subtitle' => $volume_subtitle, 'trophies' => $volume_trophies),
-				array('title' => __('Modes'), 'subtitle' => $modes_subtitle, 'trophies' => $mode_trophies),
-				array('title' => __('Bands'), 'subtitle' => $bands_subtitle, 'trophies' => $band_trophies),
-				array('title' => __('LoTW'), 'subtitle' => $lotw_subtitle, 'trophies' => $lotw_trophies),
-				array('title' => __('Classic Mode Ratio'), 'subtitle' => $ratio_subtitle, 'trophies' => $ratio_trophies),
-			),
+		$families = array(
+			array('title' => __('Streak'), 'subtitle' => $this->streak_subtitle($streak), 'trophies' => $streak_trophies),
+			array('title' => __('Volume'), 'subtitle' => $volume_subtitle, 'trophies' => $volume_trophies),
+			array('title' => __('Modes'), 'subtitle' => $modes_subtitle, 'trophies' => $mode_trophies),
+			array('title' => __('Bands'), 'subtitle' => $bands_subtitle, 'trophies' => $band_trophies),
+			array('title' => __('LoTW'), 'subtitle' => $lotw_subtitle, 'trophies' => $lotw_trophies),
+			array('title' => __('Classic Mode Ratio'), 'subtitle' => $ratio_subtitle, 'trophies' => $ratio_trophies),
 		);
+
+		$this->cache->save($cache_key, array('fingerprint' => $fingerprint, 'generated' => time(), 'families' => $families), 60 * 60 * 24);
+
+		return array('families' => $families, 'cached_at' => null);
+	}
+
+	/*
+	 * Cheap change detector for the trophy cache: one indexed aggregate
+	 * over the scoped station locations, hashed together with the
+	 * station id list so switching logbooks also invalidates.
+	 */
+	private function fingerprint($station_ids) {
+		$params = array();
+		$sql = 'SELECT COUNT(*) AS c, IFNULL(MAX(COL_PRIMARY_KEY), 0) AS m, IFNULL(SUM(COL_PRIMARY_KEY), 0) AS s,'
+			. " COALESCE(MAX(col_lotw_qslrdate), '') AS lotw FROM " . $this->config->item('table_name')
+			. ' WHERE ' . $this->station_in($station_ids, $params);
+		$row = $this->db->query($sql, $params)->row();
+		return md5(implode(',', $station_ids) . '|' . $row->c . '|' . $row->m . '|' . $row->s . '|' . $row->lotw);
 	}
 
 	/*

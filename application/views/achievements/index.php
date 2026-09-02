@@ -61,7 +61,12 @@
 
 		<div class="d-flex align-items-baseline justify-content-between flex-wrap">
 			<h1 class="h4 mb-0"><?= __("Achievements"); ?></h1>
-			<small class="text-muted"><?= sprintf(__("You have unlocked %s of %s trophies."), (int) $unlocked_total, (int) $total); ?></small>
+			<small class="text-muted">
+				<?= sprintf(__("You have unlocked %s of %s trophies."), (int) $unlocked_total, (int) $total); ?>
+				<?php if (!empty($trophies['cached_at'])) { ?>
+					· <?= sprintf(__("Cached data as of %s"), html_escape(date($custom_date_format . ' H:i', (int) $trophies['cached_at']))); ?>
+				<?php } ?>
+			</small>
 		</div>
 
 		<?php foreach ($trophies['families'] as $family) { ?>
