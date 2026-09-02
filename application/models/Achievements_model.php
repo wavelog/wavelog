@@ -48,16 +48,19 @@ class Achievements_model extends CI_Model
 
 		$fingerprint = $this->fingerprint($station_ids);
 		$cached = $this->cache->get($cache_key);
-		if ($cached !== false && ($cached['fingerprint'] ?? '') === $fingerprint && isset($cached['stats'])) {
-			$stats = $cached['stats'];
-			$generated = $cached['generated'];
-		} else {
-			$stats = $this->collect_stats($station_ids);
-			$generated = time();
-			$this->cache->save($cache_key, array('fingerprint' => $fingerprint, 'generated' => $generated, 'stats' => $stats), 60 * 60 * 24);
+		if ($cached !== false && ($cached['fingerprint'] ?? '') === $fingerprint) {
+			return array('families' => $cached['variants'][$variant], 'cached_at' => $cached['generated']);
 		}
 
-		return array('families' => $this->build_families($stats, $variant), 'cached_at' => $generated);
+		$stats = $this->collect_stats($station_ids);
+		$variants = array(
+			'all' => $this->build_families($stats, 'all'),
+			'confirmed' => $this->build_families($stats, 'confirmed'),
+		);
+
+		$this->cache->save($cache_key, array('fingerprint' => $fingerprint, 'generated' => time(), 'variants' => $variants), 60 * 60 * 24);
+
+		return array('families' => $variants[$variant], 'cached_at' => null);
 	}
 
 	private function collect_stats($station_ids) {
