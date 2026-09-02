@@ -812,12 +812,12 @@
          if (isset($row->lat)) {
             $lat = $row->lat;
          } else {
-            $lat = 0;
+            $lat = null;
          }
          if (isset($row->long)) {
             $lng = $row->long;
          } else {
-            $lng = 0;
+            $lng = null;
          }
       }
    } else if ($row->COL_VUCC_GRIDS != null) {
@@ -829,25 +829,25 @@
          if(isset($row->lat)) {
             $lat = $row->lat;
          } else {
-            $lat = 0;
+            $lat = null;
          }
          if(isset($row->long)) {
             $lng = $row->long;
          } else {
-            $lng = 0;
+            $lng = null;
          }
       }
    } else {
       if(isset($row->lat)) {
          $lat = $row->lat;
       } else {
-         $lat = 0;
+         $lat = null;
       }
 
       if(isset($row->long)) {
          $lng = $row->long;
       } else {
-         $lng = 0;
+         $lng = null;
       }
    }
 ?>
