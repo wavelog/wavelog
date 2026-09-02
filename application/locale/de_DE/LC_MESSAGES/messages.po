@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-02 14:14+0000\n"
+"POT-Creation-Date: 2026-09-02 15:38+0000\n"
 "PO-Revision-Date: 2026-09-02 14:33+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -932,7 +932,7 @@ msgid "Notes - Backup"
 msgstr "Notizen - Backup"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
-#: application/models/Achievements_model.php:325
+#: application/models/Achievements_model.php:322
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:502
 #: application/views/statistics/index.php:17
@@ -2216,7 +2216,7 @@ msgid "QSL"
 msgstr "QSL"
 
 #: application/controllers/Logbook.php:821
-#: application/models/Achievements_model.php:326
+#: application/models/Achievements_model.php:323
 #: application/views/activated_gridmap/index.php:69
 #: application/views/awards/amsat_rover/index.php:47
 #: application/views/awards/counties/index.php:91
@@ -2907,7 +2907,7 @@ msgid "QSO Map"
 msgstr "QSO-Karte"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/models/Achievements_model.php:324
+#: application/models/Achievements_model.php:321
 #: application/views/interface_assets/header.php:353
 #: application/views/interface_assets/header.php:504
 #: application/views/mode/index.php:27
@@ -4598,148 +4598,148 @@ msgstr "Stationsstandorte löschen"
 msgid "Read statistics"
 msgstr "Statistiken abfragen"
 
-#: application/models/Achievements_model.php:175
-#: application/models/Achievements_model.php:176
-#: application/models/Achievements_model.php:177
+#: application/models/Achievements_model.php:172
+#: application/models/Achievements_model.php:173
+#: application/models/Achievements_model.php:174
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s Tag"
 msgstr[1] "%s Tage"
 
-#: application/models/Achievements_model.php:175
+#: application/models/Achievements_model.php:172
 msgid "Longest streak"
 msgstr "Längste Serie"
 
-#: application/models/Achievements_model.php:176
+#: application/models/Achievements_model.php:173
 msgid "Current streak"
 msgstr "Aktuelle Serie"
 
-#: application/models/Achievements_model.php:177
-#: application/models/Achievements_model.php:199
+#: application/models/Achievements_model.php:174
+#: application/models/Achievements_model.php:196
 #: application/views/awards/amsat_rover/index.php:152
 #: application/views/awards/counties/index.php:197
 msgid "Target"
 msgstr "Ziel"
 
-#: application/models/Achievements_model.php:180
+#: application/models/Achievements_model.php:177
 msgid "Reached on"
 msgstr "Erreicht am"
 
-#: application/models/Achievements_model.php:184
+#: application/models/Achievements_model.php:181
 #, php-format
 msgid "%d Day Streak"
 msgstr "%d Tage-Serie"
 
-#: application/models/Achievements_model.php:188
+#: application/models/Achievements_model.php:185
 #, php-format
 msgid "%s / %s day"
 msgid_plural "%s / %s days"
 msgstr[0] "%s / %s Tag"
 msgstr[1] "%s / %s Tagen"
 
-#: application/models/Achievements_model.php:198
+#: application/models/Achievements_model.php:195
 msgid "QSOs in log"
 msgstr "QSOs im Log"
 
-#: application/models/Achievements_model.php:199
-#: application/models/Achievements_model.php:206
+#: application/models/Achievements_model.php:196
+#: application/models/Achievements_model.php:203
 #, php-format
 msgid "%s QSO"
 msgid_plural "%s QSOs"
 msgstr[0] "%s QSO"
 msgstr[1] "%s QSOs"
 
-#: application/models/Achievements_model.php:202
+#: application/models/Achievements_model.php:199
 msgid "Unlocked on"
 msgstr "Erreicht am"
 
-#: application/models/Achievements_model.php:210
+#: application/models/Achievements_model.php:207
 #, php-format
 msgid "%s / %s QSO"
 msgid_plural "%s / %s QSOs"
 msgstr[0] "%s / %s QSO"
 msgstr[1] "%s / %s QSOs"
 
-#: application/models/Achievements_model.php:240
+#: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
 msgstr "QSOS in klassischen Digimodes"
 
-#: application/models/Achievements_model.php:242
-#: application/models/Achievements_model.php:359
-#: application/models/Achievements_model.php:392
+#: application/models/Achievements_model.php:239
+#: application/models/Achievements_model.php:356
+#: application/models/Achievements_model.php:389
 msgid "First QSO on"
 msgstr "Erstes QSO am"
 
-#: application/models/Achievements_model.php:245
+#: application/models/Achievements_model.php:242
 msgid "Top classic mode"
 msgstr "Häufigster klassischer Mode"
 
-#: application/models/Achievements_model.php:248
+#: application/models/Achievements_model.php:245
 msgid "First CW QSO"
 msgstr "Erstes CW QSO"
 
-#: application/models/Achievements_model.php:250
+#: application/models/Achievements_model.php:247
 msgid "First SSB QSO"
 msgstr "Erstes SSB QSO"
 
-#: application/models/Achievements_model.php:252
+#: application/models/Achievements_model.php:249
 msgid "First FT8 QSO"
 msgstr "Erstes FT8 QSO"
 
-#: application/models/Achievements_model.php:254
+#: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
 msgstr "Ersters QSO in klassischem Digimode"
 
-#: application/models/Achievements_model.php:255
+#: application/models/Achievements_model.php:252
 msgid "Triple Threat"
 msgstr "Alle drei"
 
-#: application/models/Achievements_model.php:256
+#: application/models/Achievements_model.php:253
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
 msgstr[0] "%s / 3 Mode"
 msgstr[1] "%s / 3 Modes"
 
-#: application/models/Achievements_model.php:258
+#: application/models/Achievements_model.php:255
 msgid "Worked modes"
 msgstr "Gearbeitete Modes"
 
-#: application/models/Achievements_model.php:259
+#: application/models/Achievements_model.php:256
 msgid "Missing modes"
 msgstr "Fehlende Modes"
 
-#: application/models/Achievements_model.php:275
+#: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
 msgstr "Erste LoTW Bestätigung"
 
-#: application/models/Achievements_model.php:276
+#: application/models/Achievements_model.php:273
 msgid "Confirmed on"
 msgstr "Bestätigt am"
 
-#: application/models/Achievements_model.php:294
+#: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
 msgstr "CW und SSB QSOs"
 
-#: application/models/Achievements_model.php:295
+#: application/models/Achievements_model.php:292
 msgid "FT8 and FT4 QSOs"
 msgstr "FT8 und FT4 QSOs"
 
-#: application/models/Achievements_model.php:296
+#: application/models/Achievements_model.php:293
 msgid "Current ratio"
 msgstr "Aktuelles Verhältnis"
 
-#: application/models/Achievements_model.php:297
+#: application/models/Achievements_model.php:294
 msgid "Needed ratio"
 msgstr "Benötigtes Verhältnis"
 
-#: application/models/Achievements_model.php:302
+#: application/models/Achievements_model.php:299
 #, php-format
 msgid "Total: %s QSOs"
 msgstr "Gesamt: %s QSOs"
 
-#: application/models/Achievements_model.php:306
+#: application/models/Achievements_model.php:303
 #: application/views/awards/counties/index.php:195
 #: application/views/awards/dxcc/index.php:294
 #: application/views/awards/dxcc/index.php:367
@@ -4756,106 +4756,106 @@ msgstr "Gesamt: %s QSOs"
 msgid "Worked"
 msgstr "Gearbeitet"
 
-#: application/models/Achievements_model.php:309
+#: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
 msgstr "Klassische Digimodes"
 
-#: application/models/Achievements_model.php:313
+#: application/models/Achievements_model.php:310
 #, php-format
 msgid "HF: %s/%s"
 msgstr "KW: %s/%s"
 
-#: application/models/Achievements_model.php:314
+#: application/models/Achievements_model.php:311
 #, php-format
 msgid "WARC: %s/%s"
 msgstr "WARC: %s/%s"
 
-#: application/models/Achievements_model.php:315
+#: application/models/Achievements_model.php:312
 #, php-format
 msgid "SAT: %s"
 msgstr "SAT: %s"
 
-#: application/models/Achievements_model.php:317
+#: application/models/Achievements_model.php:314
 #, php-format
 msgid "First confirmation: %s"
 msgstr "Erste Bestätigung: %s"
 
-#: application/models/Achievements_model.php:317
+#: application/models/Achievements_model.php:314
 msgid "No LoTW confirmation yet"
 msgstr "Noch keine LoTW-Bestätigung"
 
-#: application/models/Achievements_model.php:319
+#: application/models/Achievements_model.php:316
 msgid "CW and SSB versus FT8 and FT4"
 msgstr "CW u. SSB zu FT8 u. FT4"
 
-#: application/models/Achievements_model.php:322
+#: application/models/Achievements_model.php:319
 msgid "Streak"
 msgstr "Serie"
 
-#: application/models/Achievements_model.php:323
+#: application/models/Achievements_model.php:320
 msgid "Volume"
 msgstr "Anzahl QSOs"
 
-#: application/models/Achievements_model.php:327
+#: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
 msgstr "Verhältnis klassische Modes"
 
-#: application/models/Achievements_model.php:356
+#: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
 msgstr "QSOs in diesem Mode"
 
-#: application/models/Achievements_model.php:374
+#: application/models/Achievements_model.php:371
 msgid "Bands worked"
 msgstr "Gearbeitete Bänder"
 
-#: application/models/Achievements_model.php:375
+#: application/models/Achievements_model.php:372
 msgid "Missing bands"
 msgstr "Fehlende Bänder"
 
-#: application/models/Achievements_model.php:376
+#: application/models/Achievements_model.php:373
 msgid "Range"
 msgstr "Bereich"
 
-#: application/models/Achievements_model.php:379
+#: application/models/Achievements_model.php:376
 msgid "Completed on"
 msgstr "Vollständig am"
 
-#: application/models/Achievements_model.php:382
+#: application/models/Achievements_model.php:379
 #, php-format
 msgid "%s / %s band"
 msgid_plural "%s / %s bands"
 msgstr[0] "%s / %s Band"
 msgstr[1] "%s / %s Bändern"
 
-#: application/models/Achievements_model.php:390
+#: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
 msgstr "SAT QSOs"
 
-#: application/models/Achievements_model.php:395
+#: application/models/Achievements_model.php:392
 msgid "Different satellites"
 msgstr "Unterschiedliche Satelliten"
 
-#: application/models/Achievements_model.php:401
+#: application/models/Achievements_model.php:398
 #, php-format
 msgid "Longest streak: %s day"
 msgid_plural "Longest streak: %s days"
 msgstr[0] "Längste Serie: %s Tag"
 msgstr[1] "Längste Serie: %s Tage"
 
-#: application/models/Achievements_model.php:403
+#: application/models/Achievements_model.php:400
 #, php-format
 msgid "Current streak: %s day"
 msgid_plural "Current streak: %s days"
 msgstr[0] "Aktuelle Serie: %s Tag"
 msgstr[1] "Aktuelle Serie: %s Tage"
 
-#: application/models/Achievements_model.php:410
+#: application/models/Achievements_model.php:407
 #: application/views/visitor/mini.php:214
 msgid "No QSOs yet"
 msgstr "Noch keine QSOs"
 
-#: application/models/Achievements_model.php:413
-#: application/models/Achievements_model.php:415
+#: application/models/Achievements_model.php:410
+#: application/models/Achievements_model.php:412
 msgid "classic"
 msgstr "Klassisch"
 
