@@ -6,6 +6,8 @@
 		$custom_date_format = $this->config->item('qso_date_format');
 	}
 
+	$dec = fn($s) => html_entity_decode((string) $s, ENT_QUOTES, 'UTF-8');
+
 	if ($trophies === null) {
 		?>
 		<div class="alert alert-warning" role="alert"><?= __("No station locations are linked to your active logbook. Trophies need at least one linked station location."); ?></div>
@@ -89,9 +91,9 @@
 		<?php foreach ($trophies['families'] as $family) { ?>
 			<div class="mt-3">
 				<h5 class="mb-1">
-					<?= html_escape($family['title']); ?>
+					<?= $family['title']; ?>
 					<?php if (!empty($family['subtitle'])) { ?>
-						<small class="text-muted fw-normal"><?= html_escape($family['subtitle']); ?></small>
+						<small class="text-muted fw-normal"><?= htmlspecialchars($dec($family['subtitle']), ENT_QUOTES, 'UTF-8'); ?></small>
 					<?php } ?>
 				</h5>
 				<div class="trophy-grid">
@@ -104,20 +106,20 @@
 						$unlock_display = $trophy['unlock_date'] !== null ? date($custom_date_format, strtotime($trophy['unlock_date'])) : null;
 						$payload = array(
 							'u' => $this->paths->cache_buster('/assets/svg/achievements/' . $trophy['icon']),
-							't' => $trophy['title'],
+							't' => $dec($trophy['title']),
 							'ok' => (bool) $trophy['unlocked'],
 							'd' => $unlock_display,
 							'pct' => $pct,
-							'pl' => $trophy['progress_label'],
-							'kpi' => $trophy['detail'],
+							'pl' => $dec($trophy['progress_label']),
+							'kpi' => array_map(fn($p) => array('label' => $dec($p['label']), 'value' => $dec($p['value'])), $trophy['detail']),
 						);
 						?>
 						<button type="button" class="trophy-card text-center border rounded-3 bg-body <?= $locked ? 'trophy-locked' : ''; ?>"
 							data-bs-toggle="modal" data-bs-target="#trophyModal"
 							data-trophy="<?= htmlspecialchars(json_encode($payload), ENT_QUOTES, 'UTF-8'); ?>"
-							title="<?= html_escape($trophy['title']); ?>">
-							<img src="<?= $this->paths->cache_buster('/assets/svg/achievements/' . $trophy['icon']); ?>" alt="<?= html_escape($trophy['title']); ?>" loading="lazy" />
-							<div class="trophy-title mx-auto"><?= html_escape($trophy['title']); ?></div>
+							title="<?= $trophy['title']; ?>">
+							<img src="<?= $this->paths->cache_buster('/assets/svg/achievements/' . $trophy['icon']); ?>" alt="<?= $trophy['title']; ?>" loading="lazy" />
+							<div class="trophy-title mx-auto"><?= $trophy['title']; ?></div>
 							<?php if (!$locked && $trophy['unlock_date'] !== null) { ?>
 								<small class="trophy-sub text-success"><?= html_escape($unlock_display); ?></small>
 							<?php } elseif (!$locked) { ?>
@@ -186,7 +188,7 @@
 		document.getElementById('trophyModalName').textContent = data.t || '';
 
 		var badge = document.getElementById('trophyModalBadge');
-		badge.textContent = data.ok ? <?= json_encode(__("Unlocked")); ?> : <?= json_encode(__("Locked")); ?>;
+		badge.textContent = data.ok ? <?= json_encode($dec(__("Unlocked"))); ?> : <?= json_encode($dec(__("Locked"))); ?>;
 		badge.className = 'badge ' + (data.ok ? 'bg-success' : 'bg-secondary');
 
 		document.getElementById('trophyModalDate').textContent = (data.ok && data.d) ? data.d : '';
