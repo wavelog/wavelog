@@ -92,6 +92,28 @@ class Achievements_model extends CI_Model
 			}
 		}
 		$missing_modes = array_values(array_diff($all_modes, array_keys($mode_first_dates)));
+		$classic_digi_modes = array('RTTY', 'PSK', 'PSK31', 'PSK63', 'PSK125', 'PSKR', 'FSK', 'OLIVIA', 'OPERA', 'PAX', 'PAX2', 'PKT', 'Q15', 'ROS', 'T10', 'THOR', 'THRB', 'TOR', 'VARA');
+		$digi_count = 0;
+		$digi_first = null;
+		$digi_top = null;
+		$digi_top_count = 0;
+		foreach (array_intersect($classic_digi_modes, array_keys($modes)) as $digi_mode) {
+			$digi_count += $modes[$digi_mode]['count'];
+			if ($digi_first === null || $modes[$digi_mode]['first'] < $digi_first) {
+				$digi_first = $modes[$digi_mode]['first'];
+			}
+			if ($modes[$digi_mode]['count'] > $digi_top_count) {
+				$digi_top = $digi_mode;
+				$digi_top_count = $modes[$digi_mode]['count'];
+			}
+		}
+		$digi_detail = array(array('label' => __('QSOs in classic digimodes'), 'value' => number_format($digi_count)));
+		if ($digi_first !== null) {
+			$digi_detail[] = array('label' => __('First QSO on'), 'value' => $this->format_day($digi_first));
+		}
+		if ($digi_top !== null) {
+			$digi_detail[] = array('label' => __('Top classic mode'), 'value' => $digi_top . ' (' . number_format($digi_top_count) . ')');
+		}
 		$mode_trophies = array(
 			$this->trophy('mode_cw.svg', 'First CW QSO', array(), isset($modes['CW']), $modes['CW']['first'] ?? null, 0, 0, '',
 				$this->mode_detail('CW', $modes)),
@@ -99,6 +121,7 @@ class Achievements_model extends CI_Model
 				$this->mode_detail('SSB', $modes)),
 			$this->trophy('mode_ft8.svg', 'First FT8 QSO', array(), isset($modes['FT8']), $modes['FT8']['first'] ?? null, 0, 0, '',
 				$this->mode_detail('FT8', $modes)),
+			$this->trophy('mode_digi.svg', 'First Classic Digimode QSO', array(), $digi_count > 0, $digi_first, 0, 0, '', $digi_detail),
 			$this->trophy('mode_triple.svg', 'Triple Threat', array(), $modes_present >= 3, $modes_present >= 3 ? max($mode_first_dates) : null,
 				$modes_present, 3, $modes_present . ' / 3 ' . __('modes'),
 				array(
@@ -142,6 +165,7 @@ class Achievements_model extends CI_Model
 					array('label' => __('CW and SSB QSOs'), 'value' => number_format($classic)),
 					array('label' => __('FT8 and FT4 QSOs'), 'value' => number_format($ft)),
 					array('label' => __('Current ratio'), 'value' => is_infinite($ratio) ? '∞ : 1' : round($ratio, 2) . ' : 1'),
+					array('label' => __('Needed ratio'), 'value' => $meta[2] . ' : 1'),
 					array('label' => __('Next threshold'), 'value' => $next_ratio !== null ? $next_ratio . ' : 1' : '—'),
 				)
 			);
