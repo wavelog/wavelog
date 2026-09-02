@@ -886,6 +886,7 @@ class Logbookadvanced_model extends CI_Model {
 			}
 
 			$sql = "UPDATE " . $this->config->item('table_name') ."
+				JOIN station_profile ON " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 				SET
 				COL_QSLSDATE = CURRENT_TIMESTAMP,
 				COL_QSL_SENT = ?,
@@ -902,9 +903,11 @@ class Logbookadvanced_model extends CI_Model {
 					WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
 					ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
 				END
-				WHERE COL_PRIMARY_KEY IN (".implode(',', $sanitized_ids).")";
+				WHERE " . $this->config->item('table_name') . ".COL_PRIMARY_KEY IN (".implode(',', $sanitized_ids).")
+				AND station_profile.user_id = ?";
 			$binding[] = $sent;
 			$binding[] = $method ?? '';
+			$binding[] = $user_id;
 			$this->db->query($sql, $binding);
 
 			return array('message' => 'OK');
@@ -932,6 +935,7 @@ class Logbookadvanced_model extends CI_Model {
 			}
 
 			$sql = "UPDATE " . $this->config->item('table_name') ."
+				JOIN station_profile ON " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 				SET
 				COL_QSLRDATE = CURRENT_TIMESTAMP,
 				COL_QSL_RCVD = ?,
@@ -944,9 +948,11 @@ class Logbookadvanced_model extends CI_Model {
 				WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
 				ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
 				END
-				WHERE COL_PRIMARY_KEY IN (".implode(',', $sanitized_ids).")";
+				WHERE " . $this->config->item('table_name') . ".COL_PRIMARY_KEY IN (".implode(',', $sanitized_ids).")
+				AND station_profile.user_id = ?";
 			$binding[] = $sent;
 			$binding[] = $method;
+			$binding[] = $user_id;
 			$this->db->query($sql, $binding);
 			return array('message' => 'OK');
 		}
@@ -1221,6 +1227,9 @@ class Logbookadvanced_model extends CI_Model {
 			$this->load->model('stations');
 			// Need to copy over from station profile to my_columns
 			$station_profile = $this->stations->profile_clean($value);
+			if ($station_profile === null || $station_profile->user_id != $this->session->userdata('user_id')) {
+				return;
+			}
 			$stationid = $value;
 			$stationCallsign = $station_profile->station_callsign;
 			$iotaRef = $station_profile->station_iota ?? '';
@@ -1559,6 +1568,7 @@ class Logbookadvanced_model extends CI_Model {
 		$this->db->trans_start();
 		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, COL_ANT_PATH, station_gridsquare");
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 
 		$this->db->where("COL_GRIDSQUARE is NOT NULL");
 		$this->db->where("COL_GRIDSQUARE != ''");
