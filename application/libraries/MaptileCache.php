@@ -71,7 +71,7 @@ class MaptileCache {
 		if ($url === null) {
 			[$upstream, $subdomains] = self::config();
 			$version = substr(hash('xxh128', $upstream . $subdomains), 0, 8);
-			$url = base_url('tiles/{z}/{x}/{y}.png?provider=' . $version);
+			$url = site_url('tiles/{z}/{x}/{y}.png?provider=' . $version);
 		}
 		return $url;
 	}
