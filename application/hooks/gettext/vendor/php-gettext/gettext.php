@@ -214,7 +214,7 @@ function _encode($text)
 		if ($source_encoding != $target_encoding) $text = mb_convert_encoding($text, $target_encoding, $source_encoding);
 	}
 
-	return htmlentities($text);
+	return $text;
 }
 
 // Custom implementation of the standard gettext related functions
