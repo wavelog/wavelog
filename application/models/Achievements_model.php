@@ -37,9 +37,7 @@ class Achievements_model extends CI_Model
 
 		$station_ids = $this->scoped_station_ids();
 
-		$lang = $this->config->item('current_language')['code'] ?? 'en';
-		$date_fmt = (string) ($this->session->userdata('user_date_format') ?: $this->config->item('qso_date_format'));
-		$cache_key = 'achievements_u' . (int) $this->session->userdata('user_id') . '_' . $lang . '_' . md5($date_fmt);
+		$cache_key = 'achievements_u' . (int) $this->session->userdata('user_id');
 
 		if ($station_ids === null) {
 			$this->cache->delete($cache_key);
@@ -50,19 +48,16 @@ class Achievements_model extends CI_Model
 
 		$fingerprint = $this->fingerprint($station_ids);
 		$cached = $this->cache->get($cache_key);
-		if ($cached !== false && ($cached['fingerprint'] ?? '') === $fingerprint) {
-			return array('families' => $cached['variants'][$variant], 'cached_at' => $cached['generated']);
+		if ($cached !== false && ($cached['fingerprint'] ?? '') === $fingerprint && isset($cached['stats'])) {
+			$stats = $cached['stats'];
+			$generated = $cached['generated'];
+		} else {
+			$stats = $this->collect_stats($station_ids);
+			$generated = time();
+			$this->cache->save($cache_key, array('fingerprint' => $fingerprint, 'generated' => $generated, 'stats' => $stats), 60 * 60 * 24);
 		}
 
-		$stats = $this->collect_stats($station_ids);
-		$variants = array(
-			'all' => $this->build_families($stats, 'all'),
-			'confirmed' => $this->build_families($stats, 'confirmed'),
-		);
-
-		$this->cache->save($cache_key, array('fingerprint' => $fingerprint, 'generated' => time(), 'variants' => $variants), 60 * 60 * 24);
-
-		return array('families' => $variants[$variant], 'cached_at' => null);
+		return array('families' => $this->build_families($stats, $variant), 'cached_at' => $generated);
 	}
 
 	private function collect_stats($station_ids) {
