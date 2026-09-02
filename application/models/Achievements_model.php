@@ -4,12 +4,18 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Achievements_model extends CI_Model
 {
 	/*
-	 * Builds the full trophy catalog for the session user's active station
-	 * logbook: unlock state, progress and unlock date (derived from the log
-	 * itself, nothing is persisted). Returns null when no valid logbook/
-	 * station scope exists, so the controller can bail out early.
+	 * Volume trophy levels: QSO count => array(tier, title). Single
+	 * source for both the trophy catalog and the Nth-QSO query.
 	 */
-	public function get_trophies() {
+	private static $volume_levels = array(
+		100 => array('bronze', '100 QSOs'),
+		1000 => array('silver', '1,000 QSOs'),
+		10000 => array('gold', '10,000 QSOs'),
+		25000 => array('platinum', '25,000 QSOs'),
+		50000 => array('platinum', '50,000 QSOs'),
+	);
+
+	public function get_trophies($confirmed_only = false) {
 		$this->load->model('logbooks_model');
 
 		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
@@ -27,23 +33,127 @@ class Achievements_model extends CI_Model
 			return null;
 		}
 
-		/*
-		 * Tier 1 caching via the CI cache adapter: a cheap fingerprint
-		 * (one indexed aggregate) detects inserts, deletes, logbook
-		 * switches and LoTW syncs, so the heavy computation only runs
-		 * on real changes; pure edits fall back to the TTL.
-		 */
+		$variant = $confirmed_only ? 'confirmed' : 'all';
+
 		$fingerprint = $this->fingerprint($station_ids);
 		$cached = $this->cache->get($cache_key);
 		if ($cached !== false && ($cached['fingerprint'] ?? '') === $fingerprint) {
-			return array('families' => $cached['families'], 'cached_at' => $cached['generated']);
+			return array('families' => $cached['variants'][$variant], 'cached_at' => $cached['generated']);
 		}
 
-		$totals = $this->qso_totals($station_ids);
-		$streak = $this->streak_stats($station_ids, array(7, 30, 100, 365, 500, 1000, 2500, 5000));
-		$modes = $this->mode_stats($station_ids);
-		$bands = $this->band_stats($station_ids);
-		$lotw_date = $this->lotw_first_confirmed($station_ids);
+		$stats = $this->collect_stats($station_ids);
+		$variants = array(
+			'all' => $this->build_families($stats, 'all'),
+			'confirmed' => $this->build_families($stats, 'confirmed'),
+		);
+
+		$this->cache->save($cache_key, array('fingerprint' => $fingerprint, 'generated' => time(), 'variants' => $variants), 60 * 60 * 24);
+
+		return array('families' => $variants[$variant], 'cached_at' => null);
+	}
+
+	private function collect_stats($station_ids) {
+		$table = $this->config->item('table_name');
+		$conf = "($table.col_lotw_qsl_rcvd = 'Y' OR $table.col_qsl_rcvd = 'Y')";
+		$mode_expr = "UPPER(COALESCE(NULLIF($table.col_submode, ''), $table.col_mode))";
+
+		// Totals
+		$params = array();
+		$row = $this->db->query('SELECT COUNT(*) AS c, COALESCE(SUM(' . $conf . '), 0) AS cc FROM ' . $table
+			. ' WHERE ' . $this->station_in($station_ids, $params), $params)->row();
+		$totals = array('all' => (int) $row->c, 'confirmed' => (int) $row->cc);
+
+		// Streak: one row per day with a flag whether any QSO that day is confirmed
+		$params = array();
+		$rows = $this->db->query('SELECT CAST(col_time_on AS DATE) AS d, MAX(' . $conf . ') AS c FROM ' . $table
+			. ' WHERE col_time_on IS NOT NULL AND ' . $this->station_in($station_ids, $params)
+			. ' GROUP BY d ORDER BY d ASC', $params)->result();
+		$days_all = array();
+		$days_conf = array();
+		foreach ($rows as $row) {
+			$days_all[] = $row->d;
+			if ($row->c == 1) {
+				$days_conf[] = $row->d;
+			}
+		}
+		$streak_levels = array(7, 30, 100, 365, 500, 1000, 2500, 5000);
+		$streak = array(
+			'all' => $this->walk_streak($days_all, $streak_levels),
+			'confirmed' => $this->walk_streak($days_conf, $streak_levels),
+		);
+
+		// Nth QSO dates for the volume levels, both variants in one window query
+		$nth = $this->nth_qso_dates($station_ids, array_keys(self::$volume_levels), $conf);
+
+		// Modes: canonical mode (submode wins), USB/LSB folded into SSB, FT4 into FT8
+		$params = array();
+		$rows = $this->db->query('SELECT ' . $mode_expr . ' AS m, COUNT(*) AS c, COALESCE(SUM(' . $conf . '), 0) AS cc,'
+			. ' MIN(col_time_on) AS f, MIN(CASE WHEN ' . $conf . ' THEN col_time_on END) AS fc FROM ' . $table
+			. ' WHERE ' . $this->station_in($station_ids, $params) . ' GROUP BY m', $params)->result();
+		$modes = array();
+		foreach ($rows as $row) {
+			$group = $row->m;
+			if ($group == 'USB' || $group == 'LSB') {
+				$group = 'SSB';
+			}
+			if ($group == 'FT4') {
+				$group = 'FT8';
+			}
+			foreach (array('all' => array('c' => $row->c, 'f' => $row->f), 'confirmed' => array('c' => $row->cc, 'f' => $row->fc)) as $v => $vals) {
+				$existing = $modes[$group][$v] ?? array('count' => 0, 'first' => null);
+				$first = $vals['f'] !== null ? substr($vals['f'], 0, 10) : null;
+				$modes[$group][$v] = array(
+					'count' => $existing['count'] + (int) $vals['c'],
+					'first' => $first !== null && ($existing['first'] === null || $first < $existing['first']) ? $first : $existing['first'],
+				);
+			}
+		}
+
+		// Bands
+		$params = array();
+		$rows = $this->db->query('SELECT UPPER(col_band) AS b, MIN(col_time_on) AS f, MIN(CASE WHEN ' . $conf . ' THEN col_time_on END) AS fc FROM ' . $table
+			. " WHERE col_band IS NOT NULL AND col_band <> '' AND " . $this->station_in($station_ids, $params)
+			. ' GROUP BY b', $params)->result();
+		$bands = array();
+		foreach ($rows as $row) {
+			$bands[$row->b] = array(
+				'all' => $row->f !== null ? substr($row->f, 0, 10) : null,
+				'confirmed' => $row->fc !== null ? substr($row->fc, 0, 10) : null,
+			);
+		}
+
+		// SAT aggregates, FM/Linear/LEO with confirm twins
+		$sat = $this->sat_stats($station_ids, $conf);
+
+		// LoTW (definitionally confirmed, same for both variants)
+		$params = array();
+		$row = $this->db->query('SELECT MIN(col_lotw_qslrdate) AS d FROM ' . $table
+			. " WHERE col_lotw_qsl_rcvd = 'Y' AND " . $this->station_in($station_ids, $params), $params)->row();
+		$lotw_date = ($row && $row->d !== null) ? substr($row->d, 0, 10) : null;
+
+		return compact('totals', 'streak', 'nth', 'modes', 'bands', 'sat', 'lotw_date');
+	}
+
+	/*
+	 * Builds one trophy family tree for the requested variant from the
+	 * combined stats. Trophy structure and KPIs are identical between
+	 * variants, only the underlying numbers differ.
+	 */
+	private function build_families($stats, $v) {
+		$totals = $stats['totals'][$v];
+		$streak = $stats['streak'][$v];
+		$nth = $stats['nth'][$v];
+		$lotw_date = $stats['lotw_date'];
+		$sat = $stats['sat'][$v];
+
+		$modes = array();
+		foreach ($stats['modes'] as $group => $pair) {
+			$modes[$group] = $pair[$v];
+		}
+		$bands = array();
+		foreach ($stats['bands'] as $band => $pair) {
+			$bands[$band] = array('first' => $pair[$v]);
+		}
 
 		$classic = ($modes['CW']['count'] ?? 0) + ($modes['SSB']['count'] ?? 0);
 		$ft = ($modes['FT8']['count'] ?? 0) + ($modes['FT4']['count'] ?? 0);
@@ -76,28 +186,22 @@ class Achievements_model extends CI_Model
 			);
 		}
 
-		$volume_levels = array(
-			100 => array('bronze', '100 QSOs'),
-			1000 => array('silver', '1,000 QSOs'),
-			10000 => array('gold', '10,000 QSOs'),
-			25000 => array('platinum', '25,000 QSOs'),
-		);
 		$volume_trophies = array();
-		foreach ($volume_levels as $level => $meta) {
+		foreach (self::$volume_levels as $level => $meta) {
 			$unlocked = $totals >= $level;
-			$nth = $unlocked ? $this->nth_qso_date($station_ids, $level) : null;
+			$nth_date = $unlocked ? ($nth[$level] ?? null) : null;
 			$detail = array(
 				array('label' => __('QSOs in log'), 'value' => number_format($totals)),
 				array('label' => __('Target'), 'value' => number_format($level) . ' ' . __('QSOs')),
 			);
-			if ($nth !== null) {
-				$detail[] = array('label' => __('Unlocked on'), 'value' => $this->format_day($nth));
+			if ($nth_date !== null) {
+				$detail[] = array('label' => __('Unlocked on'), 'value' => $this->format_day($nth_date));
 			}
 			$volume_trophies[] = $this->trophy(
 				'volume_' . $meta[0] . '.svg',
 				$meta[1], array(),
 				$unlocked,
-				$nth,
+				$nth_date,
 				$totals, $level,
 				number_format($totals) . ' / ' . number_format($level) . ' ' . __('QSOs'),
 				$detail
@@ -159,7 +263,6 @@ class Achievements_model extends CI_Model
 			$this->band_trophy($bands, $warc_bands, 'bands_warc.svg', 'WARC Bands', '30m, 17m and 12m'),
 		);
 
-		$sat = $this->sat_stats($station_ids);
 		$band_trophies[] = $this->sat_trophy('bands_sat_linear.svg', 'First Linear SAT QSO', $sat['lin_count'], $sat['lin_first']);
 		$band_trophies[] = $this->sat_trophy('bands_sat_fm.svg', 'First FM SAT QSO', $sat['fm_count'], $sat['fm_first']);
 		$band_trophies[] = $this->sat_trophy('bands_sat_leo.svg', 'First LEO SAT QSO', $sat['leo_count'], $sat['leo_first'], $sat['leo_sats']);
@@ -174,6 +277,7 @@ class Achievements_model extends CI_Model
 			array('ratio_bronze.svg', 'Balanced Operator', 1),
 			array('ratio_silver.svg', 'Classic Enthusiast', 2),
 			array('ratio_gold.svg', 'Classic Champion', 5),
+			array('ratio_platinum.svg', 'Classic Legend', 100),
 		);
 		$ratio_trophies = array();
 		$next_ratio = null;
@@ -217,7 +321,7 @@ class Achievements_model extends CI_Model
 
 		$ratio_subtitle = __('CW and SSB versus FT8 and FT4') . ' — ' . (is_infinite($ratio) ? '∞' : round($ratio, 2)) . ' : 1';
 
-		$families = array(
+		return array(
 			array('title' => __('Streak'), 'subtitle' => $this->streak_subtitle($streak), 'trophies' => $streak_trophies),
 			array('title' => __('Volume'), 'subtitle' => $volume_subtitle, 'trophies' => $volume_trophies),
 			array('title' => __('Modes'), 'subtitle' => $modes_subtitle, 'trophies' => $mode_trophies),
@@ -225,24 +329,6 @@ class Achievements_model extends CI_Model
 			array('title' => __('LoTW'), 'subtitle' => $lotw_subtitle, 'trophies' => $lotw_trophies),
 			array('title' => __('Classic Mode Ratio'), 'subtitle' => $ratio_subtitle, 'trophies' => $ratio_trophies),
 		);
-
-		$this->cache->save($cache_key, array('fingerprint' => $fingerprint, 'generated' => time(), 'families' => $families), 60 * 60 * 24);
-
-		return array('families' => $families, 'cached_at' => null);
-	}
-
-	/*
-	 * Cheap change detector for the trophy cache: one indexed aggregate
-	 * over the scoped station locations, hashed together with the
-	 * station id list so switching logbooks also invalidates.
-	 */
-	private function fingerprint($station_ids) {
-		$params = array();
-		$sql = 'SELECT COUNT(*) AS c, IFNULL(MAX(COL_PRIMARY_KEY), 0) AS m, IFNULL(SUM(COL_PRIMARY_KEY), 0) AS s,'
-			. " COALESCE(MAX(col_lotw_qslrdate), '') AS lotw FROM " . $this->config->item('table_name')
-			. ' WHERE ' . $this->station_in($station_ids, $params);
-		$row = $this->db->query($sql, $params)->row();
-		return md5(implode(',', $station_ids) . '|' . $row->c . '|' . $row->m . '|' . $row->s . '|' . $row->lotw);
 	}
 
 	/*
@@ -299,6 +385,21 @@ class Achievements_model extends CI_Model
 			$present . ' / ' . count($required) . ' ' . __('bands'), $detail);
 	}
 
+	/*
+	 * Binary satellite trophy: unlock state and date from the first QSO
+	 * of that kind, KPIs with QSO count and (for LEO) satellite count.
+	 */
+	private function sat_trophy($icon, $title_key, $count, $first, $sats = null) {
+		$detail = array(array('label' => __('SAT QSOs'), 'value' => number_format($count)));
+		if ($first !== null) {
+			$detail[] = array('label' => __('First QSO on'), 'value' => $this->format_day($first));
+		}
+		if ($sats > 0) {
+			$detail[] = array('label' => __('Different satellites'), 'value' => number_format($sats));
+		}
+		return $this->trophy($icon, $title_key, array(), $count > 0, $first, 0, 0, '', $detail);
+	}
+
 	private function streak_subtitle($streak) {
 		$parts = array(sprintf(__("Longest streak: %s days"), number_format($streak['longest'])));
 		if ($streak['current'] > 0) {
@@ -330,78 +431,16 @@ class Achievements_model extends CI_Model
 	}
 
 	/*
-	 * SAT QSO aggregates for the satellite trophies, following the AMSAT
-	 * mode semantics also used by Amsat_rover: FM is FM, SSB/CW (via a
-	 * linear transponder) is Linear; digital modes (e.g. PKT) count for
-	 * neither. LEO is decided by the satellite table's orbit column, so
-	 * QSOs with unknown satellite names are not LEO. One query.
+	 * Longest streak, current streak and the date each threshold was
+	 * reached, computed in PHP from a list of consecutive-day candidates.
 	 */
-	private function sat_stats($station_ids) {
-		$table = $this->config->item('table_name');
-		$mode_expr = "UPPER(COALESCE(NULLIF($table.col_submode, ''), $table.col_mode))";
-		$params = array();
-		$sql = "SELECT
-				COUNT(*) AS total,
-				SUM(CASE WHEN $mode_expr = 'FM' THEN 1 ELSE 0 END) AS fm_count,
-				MIN(CASE WHEN $mode_expr = 'FM' THEN $table.col_time_on END) AS fm_first,
-				SUM(CASE WHEN $mode_expr IN ('SSB','USB','LSB','CW') THEN 1 ELSE 0 END) AS lin_count,
-				MIN(CASE WHEN $mode_expr IN ('SSB','USB','LSB','CW') THEN $table.col_time_on END) AS lin_first,
-				SUM(CASE WHEN satellite.orbit = 'LEO' THEN 1 ELSE 0 END) AS leo_count,
-				MIN(CASE WHEN satellite.orbit = 'LEO' THEN $table.col_time_on END) AS leo_first,
-				COUNT(DISTINCT CASE WHEN satellite.orbit = 'LEO' THEN $table.col_sat_name END) AS leo_sats
-			FROM $table
-			LEFT OUTER JOIN satellite
-				ON $table.col_prop_mode = 'SAT'
-				AND ($table.col_sat_name = satellite.name
-					OR (satellite.displayname != '' AND $table.col_sat_name = satellite.displayname))
-			WHERE $table.col_prop_mode = 'SAT' AND " . $this->station_in($station_ids, $params);
-		$row = $this->db->query($sql, $params)->row();
-
-		return array(
-			'total' => (int) ($row->total ?? 0),
-			'fm_count' => (int) ($row->fm_count ?? 0),
-			'fm_first' => $row->fm_first !== null ? substr($row->fm_first, 0, 10) : null,
-			'lin_count' => (int) ($row->lin_count ?? 0),
-			'lin_first' => $row->lin_first !== null ? substr($row->lin_first, 0, 10) : null,
-			'leo_count' => (int) ($row->leo_count ?? 0),
-			'leo_first' => $row->leo_first !== null ? substr($row->leo_first, 0, 10) : null,
-			'leo_sats' => (int) ($row->leo_sats ?? 0),
-		);
-	}
-
-	/*
-	 * Binary satellite trophy: unlock state and date from the first QSO
-	 * of that kind, KPIs with QSO count and (for LEO) satellite count.
-	 */
-	private function sat_trophy($icon, $title_key, $count, $first, $sats = null) {
-		$detail = array(array('label' => __('SAT QSOs'), 'value' => number_format($count)));
-		if ($first !== null) {
-			$detail[] = array('label' => __('First QSO on'), 'value' => $this->format_day($first));
-		}
-		if ($sats > 0) {
-			$detail[] = array('label' => __('Different satellites'), 'value' => number_format($sats));
-		}
-		return $this->trophy($icon, $title_key, array(), $count > 0, $first, 0, 0, '', $detail);
-	}
-
-	/*
-	 * Longest streak, current streak and the date each threshold was first
-	 * reached, computed from the distinct QSO dates in PHP (one query).
-	 */
-	private function streak_stats($station_ids, $levels) {
-		$params = array();
-		$sql = 'SELECT DISTINCT CAST(col_time_on AS DATE) AS d FROM ' . $this->config->item('table_name')
-			. ' WHERE col_time_on IS NOT NULL AND ' . $this->station_in($station_ids, $params)
-			. ' ORDER BY d ASC';
-		$rows = $this->db->query($sql, $params)->result();
-
+	private function walk_streak($days, $levels) {
 		$longest = 0;
 		$current = 0;
 		$crossings = array();
 		$run = 0;
 		$prev = null;
-		foreach ($rows as $row) {
-			$day = $row->d;
+		foreach ($days as $day) {
 			$run = ($prev !== null && date_create($prev)->diff(date_create($day))->format('%a') == 1) ? $run + 1 : 1;
 			$prev = $day;
 			if ($run > $longest) {
@@ -420,75 +459,107 @@ class Achievements_model extends CI_Model
 		return array('longest' => $longest, 'current' => $current, 'crossings' => $crossings);
 	}
 
-	private function qso_totals($station_ids) {
-		$params = array();
-		$sql = 'SELECT COUNT(*) AS c FROM ' . $this->config->item('table_name')
-			. ' WHERE ' . $this->station_in($station_ids, $params);
-		return (int) $this->db->query($sql, $params)->row()->c;
-	}
-
 	/*
-	 * Date of the Nth QSO in chronological order (used as the unlock date
-	 * of the volume trophies). Only called for already unlocked levels.
+	 * Date of the Nth QSO in chronological order for every requested
+	 * level, for both variants, in one window-function query: rn is the
+	 * overall rank, cr the running count of confirmed QSOs (the rank
+	 * among confirmed QSOs on confirmed rows).
 	 */
-	private function nth_qso_date($station_ids, $n) {
+	private function nth_qso_dates($station_ids, $levels, $conf) {
+		$table = $this->config->item('table_name');
 		$params = array();
-		$sql = 'SELECT col_time_on AS t FROM ' . $this->config->item('table_name')
+
+		$columns = array();
+		foreach ($levels as $level) {
+			$columns[] = "MAX(CASE WHEN rn = $level THEN d END) AS a$level";
+			$columns[] = "MAX(CASE WHEN cf = 1 AND cr = $level THEN d END) AS c$level";
+		}
+
+		$sql = 'SELECT ' . implode(', ', $columns) . ' FROM ('
+			. " SELECT CAST(col_time_on AS DATE) AS d, CASE WHEN $conf THEN 1 ELSE 0 END AS cf,"
+			. ' ROW_NUMBER() OVER (ORDER BY col_time_on, COL_PRIMARY_KEY) AS rn,'
+			. " COUNT(CASE WHEN $conf THEN 1 END) OVER (ORDER BY col_time_on, COL_PRIMARY_KEY ROWS UNBOUNDED PRECEDING) AS cr"
+			. ' FROM ' . $table
 			. ' WHERE col_time_on IS NOT NULL AND ' . $this->station_in($station_ids, $params)
-			. ' ORDER BY col_time_on ASC LIMIT 1 OFFSET ' . (int) ($n - 1);
+			. ') t';
+
 		$row = $this->db->query($sql, $params)->row();
-		return $row ? substr($row->t, 0, 10) : null;
+
+		$result = array('all' => array(), 'confirmed' => array());
+		foreach ($levels as $level) {
+			$all_col = 'a' . $level;
+			$conf_col = 'c' . $level;
+			if ($row->$all_col !== null) {
+				$result['all'][(int) $level] = $row->$all_col;
+			}
+			if ($row->$conf_col !== null) {
+				$result['confirmed'][(int) $level] = $row->$conf_col;
+			}
+		}
+		return $result;
 	}
 
 	/*
-	 * Per canonical mode (submode wins over mode, as elsewhere in the
-	 * codebase): QSO count and date of the first QSO. SSB also matches
-	 * USB/LSB, FT8 group matches FT8/FT4.
+	 * SAT QSO aggregates for the satellite trophies, following the AMSAT
+	 * mode semantics also used by Amsat_rover: FM is FM, SSB/CW (via a
+	 * linear transponder) is Linear; digital modes (e.g. PKT) count for
+	 * neither. LEO is decided by the satellite table's orbit column, so
+	 * QSOs with unknown satellite names are not LEO. Both confirm
+	 * variants in one query.
 	 */
-	private function mode_stats($station_ids) {
+	private function sat_stats($station_ids, $conf) {
+		$table = $this->config->item('table_name');
+		$mode_expr = "UPPER(COALESCE(NULLIF($table.col_submode, ''), $table.col_mode))";
+		$fm = "$mode_expr = 'FM'";
+		$lin = "$mode_expr IN ('SSB','USB','LSB','CW')";
+		$leo = "satellite.orbit = 'LEO'";
 		$params = array();
-		$mode_expr = "UPPER(COALESCE(NULLIF(col_submode, ''), col_mode))";
-		$sql = 'SELECT ' . $mode_expr . ' AS m, COUNT(*) AS c, MIN(col_time_on) AS first FROM ' . $this->config->item('table_name')
-			. ' WHERE ' . $this->station_in($station_ids, $params) . ' GROUP BY m';
-		$rows = $this->db->query($sql, $params)->result();
 
-		$result = array();
-		foreach ($rows as $row) {
-			if ($row->m == 'USB' || $row->m == 'LSB') {
-				$row->m = 'SSB';
-			}
-			if ($row->m == 'FT4') {
-				$row->m = 'FT8';
-			}
-			if (!isset($result[$row->m]) || $row->first < $result[$row->m]['first']) {
-				$result[$row->m] = array('count' => ($result[$row->m]['count'] ?? 0) + $row->c, 'first' => substr($row->first, 0, 10));
-			} else {
-				$result[$row->m]['count'] += $row->c;
-			}
-		}
-		return $result;
-	}
-
-	private function band_stats($station_ids) {
-		$params = array();
-		$sql = 'SELECT UPPER(col_band) AS b, MIN(col_time_on) AS first FROM ' . $this->config->item('table_name')
-			. " WHERE col_band IS NOT NULL AND col_band <> '' AND " . $this->station_in($station_ids, $params)
-			. ' GROUP BY b';
-		$rows = $this->db->query($sql, $params)->result();
-
-		$result = array();
-		foreach ($rows as $row) {
-			$result[$row->b] = array('first' => substr($row->first, 0, 10));
-		}
-		return $result;
-	}
-
-	private function lotw_first_confirmed($station_ids) {
-		$params = array();
-		$sql = 'SELECT MIN(col_lotw_qslrdate) AS d FROM ' . $this->config->item('table_name')
-			. " WHERE col_lotw_qsl_rcvd = 'Y' AND " . $this->station_in($station_ids, $params);
+		$sql = "SELECT
+				COUNT(*) AS total, COALESCE(SUM($conf), 0) AS total_c,
+				SUM(CASE WHEN $fm THEN 1 ELSE 0 END) AS fm_count, MIN(CASE WHEN $fm THEN $table.col_time_on END) AS fm_first,
+				SUM(CASE WHEN $fm AND $conf THEN 1 ELSE 0 END) AS fm_count_c, MIN(CASE WHEN $fm AND $conf THEN $table.col_time_on END) AS fm_first_c,
+				SUM(CASE WHEN $lin THEN 1 ELSE 0 END) AS lin_count, MIN(CASE WHEN $lin THEN $table.col_time_on END) AS lin_first,
+				SUM(CASE WHEN $lin AND $conf THEN 1 ELSE 0 END) AS lin_count_c, MIN(CASE WHEN $lin AND $conf THEN $table.col_time_on END) AS lin_first_c,
+				SUM(CASE WHEN $leo THEN 1 ELSE 0 END) AS leo_count, MIN(CASE WHEN $leo THEN $table.col_time_on END) AS leo_first,
+				SUM(CASE WHEN $leo AND $conf THEN 1 ELSE 0 END) AS leo_count_c, MIN(CASE WHEN $leo AND $conf THEN $table.col_time_on END) AS leo_first_c,
+				COUNT(DISTINCT CASE WHEN $leo THEN $table.col_sat_name END) AS leo_sats,
+				COUNT(DISTINCT CASE WHEN $leo AND $conf THEN $table.col_sat_name END) AS leo_sats_c
+			FROM $table
+			LEFT OUTER JOIN satellite
+				ON $table.col_prop_mode = 'SAT'
+				AND ($table.col_sat_name = satellite.name
+					OR (satellite.displayname != '' AND $table.col_sat_name = satellite.displayname))
+			WHERE $table.col_prop_mode = 'SAT' AND " . $this->station_in($station_ids, $params);
 		$row = $this->db->query($sql, $params)->row();
-		return ($row && $row->d !== null) ? substr($row->d, 0, 10) : null;
+
+		$make = fn($r, $suffix) => array(
+			'total' => (int) ($r->{'total' . $suffix} ?? 0),
+			'fm_count' => (int) ($r->{'fm_count' . $suffix} ?? 0),
+			'fm_first' => $r->{'fm_first' . $suffix} !== null ? substr($r->{'fm_first' . $suffix}, 0, 10) : null,
+			'lin_count' => (int) ($r->{'lin_count' . $suffix} ?? 0),
+			'lin_first' => $r->{'lin_first' . $suffix} !== null ? substr($r->{'lin_first' . $suffix}, 0, 10) : null,
+			'leo_count' => (int) ($r->{'leo_count' . $suffix} ?? 0),
+			'leo_first' => $r->{'leo_first' . $suffix} !== null ? substr($r->{'leo_first' . $suffix}, 0, 10) : null,
+			'leo_sats' => (int) ($r->{'leo_sats' . $suffix} ?? 0),
+		);
+
+		return array('all' => $make($row, ''), 'confirmed' => $make($row, '_c'));
+	}
+
+	/*
+	 * Cheap change detector for the trophy cache: one indexed aggregate
+	 * over the scoped station locations, hashed together with the
+	 * station id list so switching logbooks also invalidates. The two
+	 * confirmation counters catch LoTW/paper syncs in both directions.
+	 */
+	private function fingerprint($station_ids) {
+		$params = array();
+		$sql = 'SELECT COUNT(*) AS c, IFNULL(MAX(COL_PRIMARY_KEY), 0) AS m, IFNULL(SUM(COL_PRIMARY_KEY), 0) AS s,'
+			. " COALESCE(SUM(col_lotw_qsl_rcvd = 'Y'), 0) AS lotw, COALESCE(SUM(col_qsl_rcvd = 'Y'), 0) AS qsl FROM " . $this->config->item('table_name')
+			. ' WHERE ' . $this->station_in($station_ids, $params);
+		$row = $this->db->query($sql, $params)->row();
+		return md5(implode(',', $station_ids) . '|' . $row->c . '|' . $row->m . '|' . $row->s . '|' . $row->lotw . '|' . $row->qsl);
 	}
 
 	/*

@@ -69,14 +69,20 @@
 			}
 		</style>
 
-		<div class="d-flex align-items-baseline justify-content-between flex-wrap">
+		<div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2">
 			<h1 class="h4 mb-0"><?= __("Achievements"); ?></h1>
-			<small class="text-muted">
-				<?= sprintf(__("You have unlocked %s of %s trophies."), (int) $unlocked_total, (int) $total); ?>
-				<?php if (!empty($trophies['cached_at'])) { ?>
-					· <?= sprintf(__("Cached data as of %s"), html_escape(date($custom_date_format . ' H:i', (int) $trophies['cached_at']))); ?>
-				<?php } ?>
-			</small>
+			<div class="d-flex align-items-center gap-2 flex-wrap">
+				<div class="btn-group btn-group-sm" role="group" aria-label="<?= __("QSO filter"); ?>">
+					<a href="<?= site_url('achievements'); ?>" class="btn <?= $confirmed_mode ? 'btn-outline-primary' : 'btn-primary'; ?>"><?= __("All QSOs"); ?></a>
+					<a href="<?= site_url('achievements'); ?>?confirmed=1" class="btn <?= $confirmed_mode ? 'btn-primary' : 'btn-outline-primary'; ?>" title="<?= __("Count only QSOs confirmed by LoTW or paper card"); ?>"><?= __("Confirmed only"); ?></a>
+				</div>
+				<small class="text-muted">
+					<?= sprintf(__("You have unlocked %s of %s trophies."), (int) $unlocked_total, (int) $total); ?>
+					<?php if (!empty($trophies['cached_at'])) { ?>
+						· <?= sprintf(__("Cached data as of %s"), html_escape(date($custom_date_format . ' H:i', (int) $trophies['cached_at']))); ?>
+					<?php } ?>
+				</small>
+			</div>
 		</div>
 
 		<?php foreach ($trophies['families'] as $family) { ?>

@@ -12,7 +12,9 @@ class Achievements extends CI_Controller {
 	public function index() {
 		$this->load->model('achievements_model');
 
-		$data['trophies'] = $this->achievements_model->get_trophies();
+		$confirmed_mode = $this->input->get('confirmed', true) === '1';
+		$data['trophies'] = $this->achievements_model->get_trophies($confirmed_mode);
+		$data['confirmed_mode'] = $confirmed_mode;
 		$data['page_title'] = __("Achievements");
 
 		$this->load->view('interface_assets/header', $data);
