@@ -171,14 +171,32 @@ class Achievements_model extends CI_Model
 			);
 		}
 
+		$volume_subtitle = sprintf(__('Total: %s QSOs'), number_format($totals));
+
+		$modes_subtitle_parts = array();
+		if ($mode_first_dates) {
+			$modes_subtitle_parts[] = __('Worked') . ': ' . implode(', ', array_keys($mode_first_dates));
+		}
+		if ($digi_count > 0) {
+			$modes_subtitle_parts[] = __('Classic digimodes') . ': ' . number_format($digi_count);
+		}
+		$modes_subtitle = $modes_subtitle_parts ? implode(' · ', $modes_subtitle_parts) : null;
+
+		$bands_subtitle = sprintf(__('HF: %s/%s'), $band_trophies[0]['progress_now'], $band_trophies[0]['progress_target'])
+			. ' · ' . sprintf(__('WARC: %s/%s'), $band_trophies[1]['progress_now'], $band_trophies[1]['progress_target']);
+
+		$lotw_subtitle = $lotw_date !== null ? sprintf(__('First confirmation: %s'), $this->format_day($lotw_date)) : __('No LoTW confirmation yet');
+
+		$ratio_subtitle = __('CW and SSB versus FT8 and FT4') . ' — ' . (is_infinite($ratio) ? '∞' : round($ratio, 2)) . ' : 1';
+
 		return array(
 			'families' => array(
 				array('title' => __('Streak'), 'subtitle' => $this->streak_subtitle($streak), 'trophies' => $streak_trophies),
-				array('title' => __('Volume'), 'subtitle' => null, 'trophies' => $volume_trophies),
-				array('title' => __('Modes'), 'subtitle' => null, 'trophies' => $mode_trophies),
-				array('title' => __('Bands'), 'subtitle' => null, 'trophies' => $band_trophies),
-				array('title' => __('LoTW'), 'subtitle' => null, 'trophies' => $lotw_trophies),
-				array('title' => __('Classic Mode Ratio'), 'subtitle' => __('CW and SSB versus FT8 and FT4'), 'trophies' => $ratio_trophies),
+				array('title' => __('Volume'), 'subtitle' => $volume_subtitle, 'trophies' => $volume_trophies),
+				array('title' => __('Modes'), 'subtitle' => $modes_subtitle, 'trophies' => $mode_trophies),
+				array('title' => __('Bands'), 'subtitle' => $bands_subtitle, 'trophies' => $band_trophies),
+				array('title' => __('LoTW'), 'subtitle' => $lotw_subtitle, 'trophies' => $lotw_trophies),
+				array('title' => __('Classic Mode Ratio'), 'subtitle' => $ratio_subtitle, 'trophies' => $ratio_trophies),
 			),
 		);
 	}
