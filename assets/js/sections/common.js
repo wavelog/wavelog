@@ -212,6 +212,7 @@ function displayQso(id) {
                     $(".editButton").html('<a class="btn btn-primary" id="edit_qso" href="javascript:qso_edit('+qsoid+')"><i class="fas fa-edit"></i>'+lang_general_edit_qso+'</a>');
                     var lat = $("#lat").text();
                     var lng = $("#lng").text();
+                    var grid_show = $("#grid_show").text();
                     var dxcc = $("#dxcc").text();
                     var callsign = $("#callsign").text();
                     var zoom = 5;
@@ -226,6 +227,9 @@ function displayQso(id) {
                     }).addTo(mymap);
                     var maidenhead = L.maidenhead();
                     var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead }).addTo(mymap);
+                    if (typeof grid_show !== 'undefined' && grid_show == 1) {
+                        maidenhead.addTo(mymap);
+                    }
 
                     var printer = L.easyPrint({
                         tileLayer: tiles,

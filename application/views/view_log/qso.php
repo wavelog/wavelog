@@ -860,6 +860,7 @@ var callsign = <?php echo js_escape($row->COL_CALL); ?>;
     <div hidden id ='dxcc'><?php echo html_escape($row->COL_DXCC); ?></div>
     <div hidden id ='lat'><?php echo $lat; ?></div>
     <div hidden id ='lng'><?php echo $lng; ?></div>
+    <div hidden id ='grid_show'><?php echo $grid_show; ?></div>
     <div hidden id ='callsign'><?php echo html_escape($row->COL_CALL); ?></div>
     <div hidden id ='qsoid'><?php echo html_escape($row->COL_PRIMARY_KEY); ?></div>
 
