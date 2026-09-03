@@ -731,6 +731,10 @@ class Logbook extends CI_Controller {
 			$data['secondary_subdivision'] = $this->subdivisions->get_secondary_subdivision_name($data['query']->result()[0]->COL_DXCC);
 			$data['max_upload'] = ini_get('upload_max_filesize');
 		}
+
+		$map_custom = json_decode($this->optionslib->get_map_custom());
+		$data['grid_show'] = $map_custom->{'gridsquare_show'};
+
 		$this->load->view('interface_assets/mini_header', $data);
 		$this->load->view('view_log/qso');
 		$this->load->view('interface_assets/footer');
