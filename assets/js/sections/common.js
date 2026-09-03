@@ -224,7 +224,7 @@ function displayQso(id) {
                         maxZoom: 18,
                         attribution: option_map_tile_server_copyright,
                     }).addTo(mymap);
-
+                    var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead() }).addTo(mymap);
 
                     var printer = L.easyPrint({
                         tileLayer: tiles,
