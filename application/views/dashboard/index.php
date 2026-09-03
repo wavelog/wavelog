@@ -479,7 +479,8 @@ function echo_table_header_col($name) {
 			</div>
 			<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'contestsOptsMenu','target_id'=>'contests-card']); ?>
 		<?php } ?>
-		<div class="card mb-3">
+		<?php if (!empty($dashboard_show_dxcc)) { ?>
+		<div class="card mb-3" id="dxcc-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?> <a href="<?php echo site_url('awards/dxcc'); ?>" aria-label="<?= __("DXCCs Breakdown"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 			</div>
@@ -519,9 +520,11 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'dxccOptsMenu','target_id'=>'dxcc-card']); ?>
+		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_qsl_sent != 0 || $total_qsl_rcvd != 0 || $total_qsl_requested != 0)) { ?>
-		<div class="card mb-3">
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_qslcards)) { ?>
+		<div class="card mb-3" id="qsl-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-envelope"></i> <?= __("QSL Cards"); ?></h6>
 			</div>
@@ -552,10 +555,11 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'qslOptsMenu','target_id'=>'qsl-card']); ?>
 		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_lotw_sent != 0 || $total_lotw_rcvd != 0)) { ?>
-		<div class="card mb-3">
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_lotw)) { ?>
+		<div class="card mb-3" id="lotw-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> <?= _pgettext("Probably no translation needed as this is a name.","Logbook of the World"); ?></h6>
 			</div>
@@ -581,10 +585,11 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'lotwOptsMenu','target_id'=>'lotw-card']); ?>
 		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_eqsl_sent != 0 || $total_eqsl_rcvd != 0)) { ?>
-		<div class="card mb-3">
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_eqsl)) { ?>
+		<div class="card mb-3" id="eqsl-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-address-card"></i> <?= __("eQSL Cards"); ?></h6>
 			</div>
@@ -610,10 +615,11 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'eqslOptsMenu','target_id'=>'eqsl-card']); ?>
 		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_qrz_sent != 0 || $total_qrz_rcvd != 0)) { ?>
-		<div class="card mb-3">
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_qrz)) { ?>
+		<div class="card mb-3" id="qrz-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> QRZ.com</h6>
 			</div>
@@ -639,10 +645,11 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'qrzOptsMenu','target_id'=>'qrz-card']); ?>
 		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_clublog_sent != 0 || $total_clublog_rcvd != 0)) { ?>
-		<div class="card mb-3">
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_clublog)) { ?>
+		<div class="card mb-3" id="clublog-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> Club Log</h6>
 			</div>
@@ -668,10 +675,11 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'clublogOptsMenu','target_id'=>'clublog-card']); ?>
 		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) { ?>
-		<div class="card mb-3">
+		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_vucc)) { ?>
+		<div class="card mb-3" id="vucc-card" title="<?= __("Right-click for options"); ?>">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("VUCC-Grids"); ?> <a href="<?php echo site_url('awards/vucc'); ?>" aria-label="<?= __("VUCC-Grids"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 			</div>
@@ -697,6 +705,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
+		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'vuccOptsMenu','target_id'=>'vucc-card']); ?>
 		<?php } ?>
 
 		<?php if (in_array(($dashboard_solar ?? 'N'), ['bottom', 'Y'], true)) { $this->load->view('dashboard/solar_data'); } ?>

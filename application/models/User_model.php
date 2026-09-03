@@ -451,6 +451,9 @@ class User_Model extends CI_Model {
 				$this->session->set_userdata('user_dashboard_show_dxpeditions',xss_clean($fields['user_dashboard_show_dxpeditions'] ?? '1'));
 				$this->session->set_userdata('user_dashboard_show_contests',xss_clean($fields['user_dashboard_show_contests'] ?? '1'));
 				$this->session->set_userdata('user_dashboard_show_kpi_stats',xss_clean($fields['user_dashboard_show_kpi_stats'] ?? '1'));
+				foreach (['dxcc', 'vucc', 'qslcards', 'eqsl', 'qrz', 'clublog', 'lotw'] as $__card) {
+					$this->session->set_userdata('user_dashboard_show_' . $__card, xss_clean($fields['user_dashboard_show_' . $__card] ?? '1'));
+				}
 				$this->session->set_userdata('user_dxwaterfall_enable',xss_clean($fields['user_dxwaterfall_enable'] ?? 'N'));
 				$this->session->set_userdata('user_stations_active_log_only',xss_clean($fields['user_stations_active_log_only'] ?? '0'));
 
@@ -639,6 +642,13 @@ class User_Model extends CI_Model {
 			'user_dashboard_show_dxpeditions' => array_key_exists('user_dashboard_show_dxpeditions', $sess) ? $sess['user_dashboard_show_dxpeditions'] : ($user_options['dashboard']['show_dxpeditions']['boolean'] ?? '0'),
 			'user_dashboard_show_contests' 	=> array_key_exists('user_dashboard_show_contests', $sess) ? $sess['user_dashboard_show_contests'] : ($user_options['dashboard']['show_contests']['boolean'] ?? '0'),
 			'user_dashboard_show_kpi_stats'	=> array_key_exists('user_dashboard_show_kpi_stats', $sess) ? $sess['user_dashboard_show_kpi_stats'] : ($user_options['dashboard']['show_kpi_stats']['boolean'] ?? '1'),
+			'user_dashboard_show_dxcc' 		=> array_key_exists('user_dashboard_show_dxcc', $sess) ? $sess['user_dashboard_show_dxcc'] : ($user_options['dashboard']['show_dxcc']['boolean'] ?? '1'),
+			'user_dashboard_show_vucc' 		=> array_key_exists('user_dashboard_show_vucc', $sess) ? $sess['user_dashboard_show_vucc'] : ($user_options['dashboard']['show_vucc']['boolean'] ?? '1'),
+			'user_dashboard_show_qslcards' 	=> array_key_exists('user_dashboard_show_qslcards', $sess) ? $sess['user_dashboard_show_qslcards'] : ($user_options['dashboard']['show_qslcards']['boolean'] ?? '1'),
+			'user_dashboard_show_eqsl' 		=> array_key_exists('user_dashboard_show_eqsl', $sess) ? $sess['user_dashboard_show_eqsl'] : ($user_options['dashboard']['show_eqsl']['boolean'] ?? '1'),
+			'user_dashboard_show_qrz' 		=> array_key_exists('user_dashboard_show_qrz', $sess) ? $sess['user_dashboard_show_qrz'] : ($user_options['dashboard']['show_qrz']['boolean'] ?? '1'),
+			'user_dashboard_show_clublog' 	=> array_key_exists('user_dashboard_show_clublog', $sess) ? $sess['user_dashboard_show_clublog'] : ($user_options['dashboard']['show_clublog']['boolean'] ?? '1'),
+			'user_dashboard_show_lotw' 		=> array_key_exists('user_dashboard_show_lotw', $sess) ? $sess['user_dashboard_show_lotw'] : ($user_options['dashboard']['show_lotw']['boolean'] ?? '1'),
 			'user_qso_db_search_priority' 	=> array_key_exists('user_qso_db_search_priority', $sess) ? $sess['user_qso_db_search_priority'] : ($user_options['qso_db_search_priority']['enable']['boolean'] ?? 'Y'),
 			'user_dxwaterfall_enable' 		=> array_key_exists('user_dxwaterfall_enable', $sess) ? $sess['user_dxwaterfall_enable'] : ($user_options['dxwaterfall']['enable']['boolean'] ?? 'N'),
 			'user_date_format' 				=> $u->user_date_format,

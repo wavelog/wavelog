@@ -847,6 +847,26 @@
 												<small id="dashboardShowKpiStats_Help" class="form-text text-muted"><?= __("This switches the display of the KPI statistics (Total QSOs, QSOs this year/month/today, Current Streak, Unique callsigns) on the dashboard."); ?></small>
 											</div>
 										</div>
+										<?php foreach ([
+											'dxcc'     => __("DXCCs Breakdown"),
+											'vucc'     => __("VUCC-Grids"),
+											'qslcards' => __("QSL Cards"),
+											'eqsl'     => __("eQSL Cards"),
+											'qrz'      => 'QRZ.com',
+											'clublog'  => __("Club Log"),
+											'lotw'     => __("LoTW"),
+										] as $__pref => $__label): ?>
+											<?php if(!isset(${'user_dashboard_show_'.$__pref})) { ${'user_dashboard_show_'.$__pref} = '1'; } ?>
+											<div class="d-flex align-items-start gap-2 mb-3">
+												<input type="hidden" name="user_dashboard_show_<?php echo $__pref; ?>" value="0">
+												<div class="form-check form-switch mt-1">
+													<input class="form-check-input" type="checkbox" role="switch" id="dashboardShow<?php echo ucfirst($__pref); ?>" name="user_dashboard_show_<?php echo $__pref; ?>" value="1" <?php if (${'user_dashboard_show_'.$__pref} == 1) { echo 'checked'; } ?>>
+												</div>
+												<div>
+													<label class="d-block mb-0" for="dashboardShow<?php echo ucfirst($__pref); ?>"><?php echo $__label; ?></label>
+												</div>
+											</div>
+										<?php endforeach; ?>
 									</div>
 								</div>
 							</div>
