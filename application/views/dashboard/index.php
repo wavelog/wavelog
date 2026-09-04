@@ -525,6 +525,14 @@ function echo_table_header_col($name) {
 							<?php } ?>
 						</tr>
 						<tr>
+							<th scope="row"><?= __("Awaiting confirmation"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td>
+								<?php echo ($section['worked'] - $section['confirmed']); ?> <?php echo (($section['deleted'] - $section['deleted_confirmed']) > 0) ? "(".($section['deleted'] - $section['deleted_confirmed']).")" : ""; ?>
+							</td>
+							<?php } ?>
+						</tr>
+						<tr>
 							<th scope="row"><?= __("Needed"); ?></th>
 							<?php foreach ($dxcc_sections as $section) { ?>
 							<td><?php echo $section['needed']; ?></td>
