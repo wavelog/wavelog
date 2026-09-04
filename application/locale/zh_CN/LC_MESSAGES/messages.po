@@ -37,11 +37,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-04 16:13+0000\n"
-"PO-Revision-Date: 2026-09-02 14:14+0000\n"
+"POT-Creation-Date: 2026-09-03 11:27+0000\n"
+"PO-Revision-Date: 2026-09-04 07:51+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -280,7 +280,7 @@ msgstr "统计汇总"
 #: application/views/achievements/index.php:76
 #: application/views/interface_assets/header.php:192
 msgid "Achievements"
-msgstr ""
+msgstr "成就"
 
 #: application/controllers/Activated_gridmap.php:12
 #: application/views/activated_gridmap/index.php:6
@@ -703,7 +703,7 @@ msgid " and "
 msgstr " 和 "
 
 #: application/controllers/Awards.php:696
-#: application/controllers/Logbook.php:1494
+#: application/controllers/Logbook.php:1491
 #: application/views/activationplanner/index.php:97
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
@@ -730,11 +730,12 @@ msgstr " 和 "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1494
 msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:794
-#: application/controllers/Logbook.php:1495
+#: application/controllers/Logbook.php:1492
 #: application/views/activationplanner/index.php:95
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
@@ -753,11 +754,12 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1495
 msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:894
-#: application/controllers/Logbook.php:1496
+#: application/controllers/Logbook.php:1493
 #: application/views/activationplanner/index.php:96
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
@@ -778,6 +780,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/controllers/Logbook.php:1496
 msgid "POTA"
 msgstr "POTA"
 
@@ -1316,7 +1319,7 @@ msgid "Count QSOs by..."
 msgstr "按…统计 QSO"
 
 #: application/controllers/Countqsoby.php:74
-#: application/controllers/Logbook.php:1498
+#: application/controllers/Logbook.php:1495
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:71
@@ -1377,6 +1380,7 @@ msgstr "按…统计 QSO"
 #: application/views/view_log/qso.php:621
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/controllers/Logbook.php:1498
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -2287,7 +2291,7 @@ msgstr "eQSL"
 msgid "All callbook lookups failed or provided no results."
 msgstr "所有呼号簿的查询均失败或没有结果。"
 
-#: application/controllers/Logbook.php:1489
+#: application/controllers/Logbook.php:1486
 #: application/controllers/Radio.php:56
 #: application/views/accumulate/index.php:37
 #: application/views/activated_gridmap/index.php:44
@@ -2395,10 +2399,11 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/controllers/Logbook.php:1489
 msgid "Mode"
 msgstr "模式"
 
-#: application/controllers/Logbook.php:1490
+#: application/controllers/Logbook.php:1487
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:273
 #: application/views/awards/sota/index.php:183
@@ -2422,10 +2427,11 @@ msgstr "模式"
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1490
 msgid "RST (S)"
 msgstr "我收对方"
 
-#: application/controllers/Logbook.php:1491
+#: application/controllers/Logbook.php:1488
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:274
 #: application/views/awards/sota/index.php:184
@@ -2450,10 +2456,11 @@ msgstr "我收对方"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1491
 msgid "RST (R)"
 msgstr "对方收我"
 
-#: application/controllers/Logbook.php:1492
+#: application/controllers/Logbook.php:1489
 #: application/views/contesting/manager/export_cbr.php:282
 #: application/views/dashboard/index.php:8
 #: application/views/qslcard/searchresult.php:15
@@ -2471,10 +2478,11 @@ msgstr "对方收我"
 #: application/views/view_log/qso.php:277
 #: application/views/view_log/qso.php:635
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1492
 msgid "Country"
 msgstr "DXCC 实体"
 
-#: application/controllers/Logbook.php:1493
+#: application/controllers/Logbook.php:1490
 #: application/views/activationplanner/index.php:98
 #: application/views/awards/iota/index.php:218
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
@@ -2504,10 +2512,11 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1493
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1497
+#: application/controllers/Logbook.php:1494
 #: application/views/awards/counties/details_ajax.php:8
 #: application/views/awards/counties/index.php:194
 #: application/views/awards/rac/index.php:170
@@ -2535,10 +2544,11 @@ msgstr "IOTA"
 #: application/views/user/edit.php:374 application/views/user/edit.php:398
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1497
 msgid "State"
 msgstr "州"
 
-#: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1496
 #: application/views/activated_gridmap/index.php:108
 #: application/views/activationplanner/index.php:29
 #: application/views/awards/ffma/index.php:40
@@ -2567,10 +2577,11 @@ msgstr "州"
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1499
 msgid "Distance"
 msgstr "距离"
 
-#: application/controllers/Logbook.php:1500
+#: application/controllers/Logbook.php:1497
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
 #: application/views/activators/index.php:17
@@ -2680,10 +2691,11 @@ msgstr "距离"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/controllers/Logbook.php:1500
 msgid "Band"
 msgstr "频段"
 
-#: application/controllers/Logbook.php:1501
+#: application/controllers/Logbook.php:1498
 #: application/controllers/Radio.php:55 application/views/bandmap/list.php:172
 #: application/views/bandmap/list.php:562
 #: application/views/bandmap/list.php:602
@@ -2710,10 +2722,11 @@ msgstr "频段"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1501
 msgid "Frequency"
 msgstr "频率"
 
-#: application/controllers/Logbook.php:1502
+#: application/controllers/Logbook.php:1499
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/qso-form.php:157
 #: application/views/contesting/manager/export_cbr.php:61
@@ -2736,10 +2749,11 @@ msgstr "频率"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:642
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1502
 msgid "Operator"
 msgstr "操作员"
 
-#: application/controllers/Logbook.php:1523
+#: application/controllers/Logbook.php:1520
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:467
 #: application/views/awards/wae/index.php:239
@@ -2765,6 +2779,7 @@ msgstr "操作员"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:281
 #: application/views/view_log/qso.php:636
+#: application/controllers/Logbook.php:1523
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -4512,15 +4527,15 @@ msgstr "读取统计数据"
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
+msgstr[0] "%s 天"
 
 #: application/models/Achievements_model.php:172
 msgid "Longest streak"
-msgstr ""
+msgstr "最长连胜"
 
 #: application/models/Achievements_model.php:173
 msgid "Current streak"
-msgstr ""
+msgstr "当前连胜"
 
 #: application/models/Achievements_model.php:174
 #: application/models/Achievements_model.php:196
@@ -4531,116 +4546,116 @@ msgstr "目标"
 
 #: application/models/Achievements_model.php:177
 msgid "Reached on"
-msgstr ""
+msgstr "取得于"
 
 #: application/models/Achievements_model.php:181
 #, php-format
 msgid "%d Day Streak"
-msgstr ""
+msgstr "%d 日连胜"
 
 #: application/models/Achievements_model.php:185
 #, php-format
 msgid "%s / %s day"
 msgid_plural "%s / %s days"
-msgstr[0] ""
+msgstr[0] "%s / %s 天"
 
 #: application/models/Achievements_model.php:195
 msgid "QSOs in log"
-msgstr ""
+msgstr "日志中的 QSO"
 
 #: application/models/Achievements_model.php:196
 #: application/models/Achievements_model.php:203
 #, php-format
 msgid "%s QSO"
 msgid_plural "%s QSOs"
-msgstr[0] ""
+msgstr[0] "%s 个 QSO"
 
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
-msgstr ""
+msgstr "已解锁于"
 
 #: application/models/Achievements_model.php:207
 #, php-format
 msgid "%s / %s QSO"
 msgid_plural "%s / %s QSOs"
-msgstr[0] ""
+msgstr[0] "%s / %s 个QSO"
 
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
-msgstr ""
+msgstr "传统数字模式中的 QSO"
 
 #: application/models/Achievements_model.php:239
 #: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:389
 msgid "First QSO on"
-msgstr ""
+msgstr "首次 QSO 于"
 
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
-msgstr ""
+msgstr "通联最多的传统数字模式"
 
 #: application/models/Achievements_model.php:245
 msgid "First CW QSO"
-msgstr ""
+msgstr "首次 CW QSO"
 
 #: application/models/Achievements_model.php:247
 msgid "First SSB QSO"
-msgstr ""
+msgstr "首次 SSB QSO"
 
 #: application/models/Achievements_model.php:249
 msgid "First FT8 QSO"
-msgstr ""
+msgstr "首次 FT8 QSO"
 
 #: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
-msgstr ""
+msgstr "首次传统数字模式 QSO"
 
 #: application/models/Achievements_model.php:252
 msgid "Triple Threat"
-msgstr ""
+msgstr "三项全能"
 
 #: application/models/Achievements_model.php:253
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
-msgstr[0] ""
+msgstr[0] "%s / 3 种模式"
 
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
-msgstr ""
+msgstr "通联过的模式"
 
 #: application/models/Achievements_model.php:256
 msgid "Missing modes"
-msgstr ""
+msgstr "缺少的模式"
 
 #: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
-msgstr ""
+msgstr "首个 LoTW 确认"
 
 #: application/models/Achievements_model.php:273
 msgid "Confirmed on"
-msgstr ""
+msgstr "已确认于"
 
 #: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
-msgstr ""
+msgstr "CW 和 SSB QSO"
 
 #: application/models/Achievements_model.php:292
 msgid "FT8 and FT4 QSOs"
-msgstr ""
+msgstr "FT8 和 FT4 QSO"
 
 #: application/models/Achievements_model.php:293
 msgid "Current ratio"
-msgstr ""
+msgstr "当前比率"
 
 #: application/models/Achievements_model.php:294
 msgid "Needed ratio"
-msgstr ""
+msgstr "要求比率"
 
 #: application/models/Achievements_model.php:299
 #, php-format
 msgid "Total: %s QSOs"
-msgstr ""
+msgstr "总计：%s QSO"
 
 #: application/models/Achievements_model.php:303
 #: application/views/awards/counties/index.php:195
@@ -4661,93 +4676,93 @@ msgstr "已通联"
 
 #: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
-msgstr ""
+msgstr "传统数字模式"
 
 #: application/models/Achievements_model.php:310
 #, php-format
 msgid "HF: %s/%s"
-msgstr ""
+msgstr "HF: %s/%s"
 
 #: application/models/Achievements_model.php:311
 #, php-format
 msgid "WARC: %s/%s"
-msgstr ""
+msgstr "WARC: %s/%s"
 
 #: application/models/Achievements_model.php:312
 #, php-format
 msgid "SAT: %s"
-msgstr ""
+msgstr "SAT: %s"
 
 #: application/models/Achievements_model.php:314
 #, php-format
 msgid "First confirmation: %s"
-msgstr ""
+msgstr "首次确认：%s"
 
 #: application/models/Achievements_model.php:314
 msgid "No LoTW confirmation yet"
-msgstr ""
+msgstr "还没有 LoTW 确认"
 
 #: application/models/Achievements_model.php:316
 msgid "CW and SSB versus FT8 and FT4"
-msgstr ""
+msgstr "CW 和 SSB 比 FT8 和 FT4"
 
 #: application/models/Achievements_model.php:319
 msgid "Streak"
-msgstr ""
+msgstr "连胜"
 
 #: application/models/Achievements_model.php:320
 msgid "Volume"
-msgstr ""
+msgstr "通联数量"
 
 #: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
-msgstr ""
+msgstr "传统模式比例"
 
 #: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
-msgstr ""
+msgstr "此模式下的 QSO"
 
 #: application/models/Achievements_model.php:371
 msgid "Bands worked"
-msgstr ""
+msgstr "通联过的波段"
 
 #: application/models/Achievements_model.php:372
 msgid "Missing bands"
-msgstr ""
+msgstr "缺失的波段"
 
 #: application/models/Achievements_model.php:373
 msgid "Range"
-msgstr ""
+msgstr "范围"
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
-msgstr ""
+msgstr "完成于"
 
 #: application/models/Achievements_model.php:379
 #, php-format
 msgid "%s / %s band"
 msgid_plural "%s / %s bands"
-msgstr[0] ""
+msgstr[0] "%s / %s 频段"
 
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
-msgstr ""
+msgstr "卫星 QSOs"
 
 #: application/models/Achievements_model.php:392
 msgid "Different satellites"
-msgstr ""
+msgstr "不同卫星"
 
 #: application/models/Achievements_model.php:398
 #, php-format
 msgid "Longest streak: %s day"
 msgid_plural "Longest streak: %s days"
-msgstr[0] ""
+msgstr[0] "最长连胜：%s 天"
 
 #: application/models/Achievements_model.php:400
 #, php-format
 msgid "Current streak: %s day"
 msgid_plural "Current streak: %s days"
-msgstr[0] ""
+msgstr[0] "当前连胜：%s 天"
 
 #: application/models/Achievements_model.php:407
 #: application/views/visitor/mini.php:214
@@ -4757,7 +4772,7 @@ msgstr "还没有 QSO"
 #: application/models/Achievements_model.php:410
 #: application/models/Achievements_model.php:412
 msgid "classic"
-msgstr ""
+msgstr "传统"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
@@ -5033,7 +5048,7 @@ msgstr "日志中已存在 POTA 编号"
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:6402
+#: application/models/Logbook_model.php:6400
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5046,6 +5061,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6402
 msgid "Bearing"
 msgstr "方位角"
 
@@ -5445,42 +5461,42 @@ msgstr "显示"
 msgid ""
 "No station locations are linked to your active logbook. Trophies need at "
 "least one linked station location."
-msgstr ""
+msgstr "关联到您活动日志簿的台站位置为空。奖杯需要至少一个关联的台站位置。"
 
 #: application/views/achievements/index.php:78
 msgid "QSO filter"
-msgstr ""
+msgstr "QSO 筛选器"
 
 #: application/views/achievements/index.php:79
 msgid "All QSOs"
-msgstr ""
+msgstr "所有 QSO"
 
 #: application/views/achievements/index.php:80
 msgid "Confirmed only"
-msgstr ""
+msgstr "仅已确认"
 
 #: application/views/achievements/index.php:80
 msgid "Count only QSOs confirmed by LoTW or paper card"
-msgstr ""
+msgstr "只计入由 LoTW 或纸质 QSL 卡确认的 QSO"
 
 #: application/views/achievements/index.php:83
 #, php-format
 msgid "You have unlocked %s of %s trophies."
-msgstr ""
+msgstr "您已解锁 %s / %s 个奖杯。"
 
 #: application/views/achievements/index.php:85
 #, php-format
 msgid "Cached data as of %s"
-msgstr ""
+msgstr "缓存数据时间点 %s"
 
 #: application/views/achievements/index.php:126
 #: application/views/achievements/index.php:191
 msgid "Unlocked"
-msgstr ""
+msgstr "已解锁"
 
 #: application/views/achievements/index.php:145
 msgid "Trophy"
-msgstr ""
+msgstr "奖杯"
 
 #: application/views/achievements/index.php:146
 #: application/views/activationplanner/index.php:30
@@ -5508,7 +5524,7 @@ msgstr "关闭"
 
 #: application/views/achievements/index.php:191
 msgid "Locked"
-msgstr ""
+msgstr "已锁定"
 
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:168
@@ -9166,8 +9182,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -22379,8 +22395,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -25540,8 +25556,8 @@ msgstr "LoTW 用户。最后上传于 "
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

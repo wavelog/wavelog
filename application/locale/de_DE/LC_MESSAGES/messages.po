@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-04 16:13+0000\n"
-"PO-Revision-Date: 2026-09-02 14:33+0000\n"
+"POT-Creation-Date: 2026-09-02 14:14+0000\n"
+"PO-Revision-Date: 2026-09-02 14:59+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -268,8 +268,9 @@ msgid "Accumulated Statistics"
 msgstr "Kumulierte Statistiken"
 
 #: application/controllers/Achievements.php:18
-#: application/views/achievements/index.php:76
+#: application/views/achievements/index.php:74
 #: application/views/interface_assets/header.php:192
+#: application/views/achievements/index.php:76
 msgid "Achievements"
 msgstr "Erfolge"
 
@@ -696,7 +697,7 @@ msgid " and "
 msgstr " und "
 
 #: application/controllers/Awards.php:696
-#: application/controllers/Logbook.php:1494
+#: application/controllers/Logbook.php:1487
 #: application/views/activationplanner/index.php:97
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
@@ -723,11 +724,13 @@ msgstr " und "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1491
+#: application/controllers/Logbook.php:1494
 msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:794
-#: application/controllers/Logbook.php:1495
+#: application/controllers/Logbook.php:1488
 #: application/views/activationplanner/index.php:95
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
@@ -746,11 +749,13 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1492
+#: application/controllers/Logbook.php:1495
 msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:894
-#: application/controllers/Logbook.php:1496
+#: application/controllers/Logbook.php:1489
 #: application/views/activationplanner/index.php:96
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
@@ -771,6 +776,8 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/controllers/Logbook.php:1493
+#: application/controllers/Logbook.php:1496
 msgid "POTA"
 msgstr "POTA"
 
@@ -932,12 +939,13 @@ msgid "Notes - Backup"
 msgstr "Notizen - Backup"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:40
-#: application/models/Achievements_model.php:322
+#: application/models/Achievements_model.php:325
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:502
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:110
 #: application/views/statistics/qsltable.php:115
+#: application/models/Achievements_model.php:322
 msgid "Bands"
 msgstr "Bänder"
 
@@ -1115,7 +1123,7 @@ msgid "No user has configured Clublog."
 msgstr "Kein Benutzer hat Clublog konfiguriert."
 
 #: application/controllers/Clublog.php:93
-#: application/controllers/Logbook.php:834
+#: application/controllers/Logbook.php:830
 #: application/views/awards/counties/index.php:103
 #: application/views/awards/cq/index.php:134
 #: application/views/awards/dok/index.php:111
@@ -1145,6 +1153,7 @@ msgstr "Kein Benutzer hat Clublog konfiguriert."
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:511
 #: application/views/view_log/qso.php:516
+#: application/controllers/Logbook.php:834
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1326,7 +1335,7 @@ msgid "Count QSOs by..."
 msgstr "Zähle QSOs nach..."
 
 #: application/controllers/Countqsoby.php:74
-#: application/controllers/Logbook.php:1498
+#: application/controllers/Logbook.php:1491
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:71
@@ -1387,6 +1396,8 @@ msgstr "Zähle QSOs nach..."
 #: application/views/view_log/qso.php:621
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/controllers/Logbook.php:1495
+#: application/controllers/Logbook.php:1498
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -2176,8 +2187,8 @@ msgstr "Stationslogbücher"
 msgid "Logbook"
 msgstr "Logbuch"
 
-#: application/controllers/Logbook.php:822
-#: application/controllers/Logbook.php:837
+#: application/controllers/Logbook.php:818
+#: application/controllers/Logbook.php:833
 #: application/views/activated_gridmap/index.php:61
 #: application/views/awards/amsat_rover/index.php:52
 #: application/views/awards/counties/index.php:87
@@ -2212,11 +2223,13 @@ msgstr "Logbuch"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:62 application/views/user/edit.php:753
 #: application/views/user/edit.php:1021 application/views/visitor/mini.php:187
+#: application/controllers/Logbook.php:822
+#: application/controllers/Logbook.php:837
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:825
-#: application/models/Achievements_model.php:323
+#: application/controllers/Logbook.php:821
+#: application/models/Achievements_model.php:326
 #: application/views/activated_gridmap/index.php:69
 #: application/views/awards/amsat_rover/index.php:47
 #: application/views/awards/counties/index.php:91
@@ -2265,10 +2278,12 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:482
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/models/Achievements_model.php:323
+#: application/controllers/Logbook.php:825
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:828
+#: application/controllers/Logbook.php:824
 #: application/views/activated_gridmap/index.php:77
 #: application/views/awards/counties/index.php:95
 #: application/views/awards/cq/index.php:126
@@ -2308,16 +2323,18 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:299
 #: application/views/timeline/index.php:70 application/views/user/edit.php:755
 #: application/views/user/edit.php:1039 application/views/user/edit.php:1113
+#: application/controllers/Logbook.php:828
 msgid "eQSL"
 msgstr "eQSL"
 
+#: application/controllers/Logbook.php:1027
 #: application/controllers/Logbook.php:1031
 msgid "All callbook lookups failed or provided no results."
 msgstr ""
 "Alle Rufzeichenlistensuchen sind fehlgeschlagen oder lieferten keine "
 "Ergebnisse."
 
-#: application/controllers/Logbook.php:1489
+#: application/controllers/Logbook.php:1482
 #: application/controllers/Radio.php:56
 #: application/views/accumulate/index.php:37
 #: application/views/activated_gridmap/index.php:44
@@ -2425,10 +2442,12 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/controllers/Logbook.php:1486
+#: application/controllers/Logbook.php:1489
 msgid "Mode"
 msgstr "Mode"
 
-#: application/controllers/Logbook.php:1490
+#: application/controllers/Logbook.php:1483
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:273
 #: application/views/awards/sota/index.php:183
@@ -2452,10 +2471,12 @@ msgstr "Mode"
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1487
+#: application/controllers/Logbook.php:1490
 msgid "RST (S)"
 msgstr "RST (S)"
 
-#: application/controllers/Logbook.php:1491
+#: application/controllers/Logbook.php:1484
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:274
 #: application/views/awards/sota/index.php:184
@@ -2480,10 +2501,12 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1488
+#: application/controllers/Logbook.php:1491
 msgid "RST (R)"
 msgstr "RST (R)"
 
-#: application/controllers/Logbook.php:1492
+#: application/controllers/Logbook.php:1485
 #: application/views/contesting/manager/export_cbr.php:282
 #: application/views/dashboard/index.php:8
 #: application/views/qslcard/searchresult.php:15
@@ -2501,10 +2524,12 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:277
 #: application/views/view_log/qso.php:635
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1489
+#: application/controllers/Logbook.php:1492
 msgid "Country"
 msgstr "Land"
 
-#: application/controllers/Logbook.php:1493
+#: application/controllers/Logbook.php:1486
 #: application/views/activationplanner/index.php:98
 #: application/views/awards/iota/index.php:218
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
@@ -2534,10 +2559,12 @@ msgstr "Land"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1490
+#: application/controllers/Logbook.php:1493
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1497
+#: application/controllers/Logbook.php:1490
 #: application/views/awards/counties/details_ajax.php:8
 #: application/views/awards/counties/index.php:194
 #: application/views/awards/rac/index.php:170
@@ -2565,10 +2592,12 @@ msgstr "IOTA"
 #: application/views/user/edit.php:374 application/views/user/edit.php:398
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1494
+#: application/controllers/Logbook.php:1497
 msgid "State"
 msgstr "Staat"
 
-#: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1492
 #: application/views/activated_gridmap/index.php:108
 #: application/views/activationplanner/index.php:29
 #: application/views/awards/ffma/index.php:40
@@ -2597,10 +2626,12 @@ msgstr "Staat"
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1496
+#: application/controllers/Logbook.php:1499
 msgid "Distance"
 msgstr "Distanz"
 
-#: application/controllers/Logbook.php:1500
+#: application/controllers/Logbook.php:1493
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
 #: application/views/activators/index.php:17
@@ -2710,10 +2741,12 @@ msgstr "Distanz"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/controllers/Logbook.php:1497
+#: application/controllers/Logbook.php:1500
 msgid "Band"
 msgstr "Band"
 
-#: application/controllers/Logbook.php:1501
+#: application/controllers/Logbook.php:1494
 #: application/controllers/Radio.php:55 application/views/bandmap/list.php:172
 #: application/views/bandmap/list.php:562
 #: application/views/bandmap/list.php:602
@@ -2740,10 +2773,12 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1498
+#: application/controllers/Logbook.php:1501
 msgid "Frequency"
 msgstr "Frequenz"
 
-#: application/controllers/Logbook.php:1502
+#: application/controllers/Logbook.php:1495
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/qso-form.php:157
 #: application/views/contesting/manager/export_cbr.php:61
@@ -2766,10 +2801,12 @@ msgstr "Frequenz"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:642
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1502
 msgid "Operator"
 msgstr "Operator"
 
-#: application/controllers/Logbook.php:1523
+#: application/controllers/Logbook.php:1516
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:467
 #: application/views/awards/wae/index.php:239
@@ -2795,6 +2832,8 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:281
 #: application/views/view_log/qso.php:636
+#: application/controllers/Logbook.php:1520
+#: application/controllers/Logbook.php:1523
 msgid "Deleted DXCC"
 msgstr "Gelöschtes DXCC"
 
@@ -2907,12 +2946,13 @@ msgid "QSO Map"
 msgstr "QSO-Karte"
 
 #: application/controllers/Mode.php:24 application/controllers/Usermode.php:22
-#: application/models/Achievements_model.php:321
+#: application/models/Achievements_model.php:324
 #: application/views/interface_assets/header.php:353
 #: application/views/interface_assets/header.php:504
 #: application/views/mode/index.php:27
 #: application/views/statistics/qsltable.php:111
 #: application/views/usermode/index.php:25
+#: application/models/Achievements_model.php:321
 msgid "Modes"
 msgstr "Mode"
 
@@ -3298,8 +3338,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:574
@@ -3460,10 +3500,10 @@ msgstr "Bearbeiten"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:70
-#: application/views/interface_assets/footer.php:2654
-#: application/views/interface_assets/footer.php:2672
-#: application/views/interface_assets/footer.php:2691
-#: application/views/interface_assets/footer.php:2709
+#: application/views/interface_assets/footer.php:2652
+#: application/views/interface_assets/footer.php:2670
+#: application/views/interface_assets/footer.php:2689
+#: application/views/interface_assets/footer.php:2707
 #: application/views/labeldesigner/designer.php:413
 #: application/views/labeldesigner/designer.php:452
 #: application/views/labels/index.php:50 application/views/labels/index.php:86
@@ -3484,6 +3524,10 @@ msgstr "Bearbeiten"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:719
 #: application/views/view_log/qso.php:727
+#: application/views/interface_assets/footer.php:2654
+#: application/views/interface_assets/footer.php:2672
+#: application/views/interface_assets/footer.php:2691
+#: application/views/interface_assets/footer.php:2709
 msgid "Delete"
 msgstr "Löschen"
 
@@ -4598,6 +4642,9 @@ msgstr "Stationsstandorte löschen"
 msgid "Read statistics"
 msgstr "Statistiken abfragen"
 
+#: application/models/Achievements_model.php:175
+#: application/models/Achievements_model.php:176
+#: application/models/Achievements_model.php:177
 #: application/models/Achievements_model.php:172
 #: application/models/Achievements_model.php:173
 #: application/models/Achievements_model.php:174
@@ -4607,30 +4654,37 @@ msgid_plural "%s days"
 msgstr[0] "%s Tag"
 msgstr[1] "%s Tage"
 
+#: application/models/Achievements_model.php:175
 #: application/models/Achievements_model.php:172
 msgid "Longest streak"
 msgstr "Längste Serie"
 
+#: application/models/Achievements_model.php:176
 #: application/models/Achievements_model.php:173
 msgid "Current streak"
 msgstr "Aktuelle Serie"
 
-#: application/models/Achievements_model.php:174
-#: application/models/Achievements_model.php:196
+#: application/models/Achievements_model.php:177
+#: application/models/Achievements_model.php:199
 #: application/views/awards/amsat_rover/index.php:152
 #: application/views/awards/counties/index.php:197
+#: application/models/Achievements_model.php:174
+#: application/models/Achievements_model.php:196
 msgid "Target"
 msgstr "Ziel"
 
+#: application/models/Achievements_model.php:180
 #: application/models/Achievements_model.php:177
 msgid "Reached on"
 msgstr "Erreicht am"
 
+#: application/models/Achievements_model.php:184
 #: application/models/Achievements_model.php:181
 #, php-format
 msgid "%d Day Streak"
 msgstr "%d Tage-Serie"
 
+#: application/models/Achievements_model.php:188
 #: application/models/Achievements_model.php:185
 #, php-format
 msgid "%s / %s day"
@@ -4638,10 +4692,13 @@ msgid_plural "%s / %s days"
 msgstr[0] "%s / %s Tag"
 msgstr[1] "%s / %s Tagen"
 
+#: application/models/Achievements_model.php:198
 #: application/models/Achievements_model.php:195
 msgid "QSOs in log"
 msgstr "QSOs im Log"
 
+#: application/models/Achievements_model.php:199
+#: application/models/Achievements_model.php:206
 #: application/models/Achievements_model.php:196
 #: application/models/Achievements_model.php:203
 #, php-format
@@ -4650,10 +4707,12 @@ msgid_plural "%s QSOs"
 msgstr[0] "%s QSO"
 msgstr[1] "%s QSOs"
 
+#: application/models/Achievements_model.php:202
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
 msgstr "Erreicht am"
 
+#: application/models/Achievements_model.php:210
 #: application/models/Achievements_model.php:207
 #, php-format
 msgid "%s / %s QSO"
@@ -4661,40 +4720,51 @@ msgid_plural "%s / %s QSOs"
 msgstr[0] "%s / %s QSO"
 msgstr[1] "%s / %s QSOs"
 
+#: application/models/Achievements_model.php:240
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
 msgstr "QSOS in klassischen Digimodes"
 
+#: application/models/Achievements_model.php:242
+#: application/models/Achievements_model.php:359
+#: application/models/Achievements_model.php:392
 #: application/models/Achievements_model.php:239
 #: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:389
 msgid "First QSO on"
 msgstr "Erstes QSO am"
 
+#: application/models/Achievements_model.php:245
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
 msgstr "Häufigster klassischer Mode"
 
+#: application/models/Achievements_model.php:248
 #: application/models/Achievements_model.php:245
 msgid "First CW QSO"
 msgstr "Erstes CW QSO"
 
+#: application/models/Achievements_model.php:250
 #: application/models/Achievements_model.php:247
 msgid "First SSB QSO"
 msgstr "Erstes SSB QSO"
 
+#: application/models/Achievements_model.php:252
 #: application/models/Achievements_model.php:249
 msgid "First FT8 QSO"
 msgstr "Erstes FT8 QSO"
 
+#: application/models/Achievements_model.php:254
 #: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
-msgstr "Ersters QSO in klassischem Digimode"
+msgstr "Erstes QSO in klassischem Digimode"
 
+#: application/models/Achievements_model.php:255
 #: application/models/Achievements_model.php:252
 msgid "Triple Threat"
 msgstr "Alle drei"
 
+#: application/models/Achievements_model.php:256
 #: application/models/Achievements_model.php:253
 #, php-format
 msgid "%s / 3 mode"
@@ -4702,44 +4772,53 @@ msgid_plural "%s / 3 modes"
 msgstr[0] "%s / 3 Mode"
 msgstr[1] "%s / 3 Modes"
 
+#: application/models/Achievements_model.php:258
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
 msgstr "Gearbeitete Modes"
 
+#: application/models/Achievements_model.php:259
 #: application/models/Achievements_model.php:256
 msgid "Missing modes"
 msgstr "Fehlende Modes"
 
+#: application/models/Achievements_model.php:275
 #: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
 msgstr "Erste LoTW Bestätigung"
 
+#: application/models/Achievements_model.php:276
 #: application/models/Achievements_model.php:273
 msgid "Confirmed on"
 msgstr "Bestätigt am"
 
+#: application/models/Achievements_model.php:294
 #: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
 msgstr "CW und SSB QSOs"
 
+#: application/models/Achievements_model.php:295
 #: application/models/Achievements_model.php:292
 msgid "FT8 and FT4 QSOs"
 msgstr "FT8 und FT4 QSOs"
 
+#: application/models/Achievements_model.php:296
 #: application/models/Achievements_model.php:293
 msgid "Current ratio"
 msgstr "Aktuelles Verhältnis"
 
+#: application/models/Achievements_model.php:297
 #: application/models/Achievements_model.php:294
 msgid "Needed ratio"
 msgstr "Benötigtes Verhältnis"
 
+#: application/models/Achievements_model.php:302
 #: application/models/Achievements_model.php:299
 #, php-format
 msgid "Total: %s QSOs"
 msgstr "Gesamt: %s QSOs"
 
-#: application/models/Achievements_model.php:303
+#: application/models/Achievements_model.php:306
 #: application/views/awards/counties/index.php:195
 #: application/views/awards/dxcc/index.php:294
 #: application/views/awards/dxcc/index.php:367
@@ -4753,73 +4832,90 @@ msgstr "Gesamt: %s QSOs"
 #: application/views/dashboard/index.php:688
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/models/Achievements_model.php:303
 msgid "Worked"
 msgstr "Gearbeitet"
 
+#: application/models/Achievements_model.php:309
 #: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
 msgstr "Klassische Digimodes"
 
+#: application/models/Achievements_model.php:313
 #: application/models/Achievements_model.php:310
 #, php-format
 msgid "HF: %s/%s"
 msgstr "KW: %s/%s"
 
+#: application/models/Achievements_model.php:314
 #: application/models/Achievements_model.php:311
 #, php-format
 msgid "WARC: %s/%s"
 msgstr "WARC: %s/%s"
 
+#: application/models/Achievements_model.php:315
 #: application/models/Achievements_model.php:312
 #, php-format
 msgid "SAT: %s"
 msgstr "SAT: %s"
 
+#: application/models/Achievements_model.php:317
 #: application/models/Achievements_model.php:314
 #, php-format
 msgid "First confirmation: %s"
 msgstr "Erste Bestätigung: %s"
 
+#: application/models/Achievements_model.php:317
 #: application/models/Achievements_model.php:314
 msgid "No LoTW confirmation yet"
 msgstr "Noch keine LoTW-Bestätigung"
 
+#: application/models/Achievements_model.php:319
 #: application/models/Achievements_model.php:316
 msgid "CW and SSB versus FT8 and FT4"
 msgstr "CW u. SSB zu FT8 u. FT4"
 
+#: application/models/Achievements_model.php:322
 #: application/models/Achievements_model.php:319
 msgid "Streak"
 msgstr "Serie"
 
+#: application/models/Achievements_model.php:323
 #: application/models/Achievements_model.php:320
 msgid "Volume"
 msgstr "Anzahl QSOs"
 
+#: application/models/Achievements_model.php:327
 #: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
 msgstr "Verhältnis klassische Modes"
 
+#: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
 msgstr "QSOs in diesem Mode"
 
+#: application/models/Achievements_model.php:374
 #: application/models/Achievements_model.php:371
 msgid "Bands worked"
 msgstr "Gearbeitete Bänder"
 
+#: application/models/Achievements_model.php:375
 #: application/models/Achievements_model.php:372
 msgid "Missing bands"
 msgstr "Fehlende Bänder"
 
+#: application/models/Achievements_model.php:376
 #: application/models/Achievements_model.php:373
 msgid "Range"
 msgstr "Bereich"
 
+#: application/models/Achievements_model.php:379
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
 msgstr "Vollständig am"
 
+#: application/models/Achievements_model.php:382
 #: application/models/Achievements_model.php:379
 #, php-format
 msgid "%s / %s band"
@@ -4827,14 +4923,17 @@ msgid_plural "%s / %s bands"
 msgstr[0] "%s / %s Band"
 msgstr[1] "%s / %s Bändern"
 
+#: application/models/Achievements_model.php:390
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
 msgstr "SAT QSOs"
 
+#: application/models/Achievements_model.php:395
 #: application/models/Achievements_model.php:392
 msgid "Different satellites"
 msgstr "Unterschiedliche Satelliten"
 
+#: application/models/Achievements_model.php:401
 #: application/models/Achievements_model.php:398
 #, php-format
 msgid "Longest streak: %s day"
@@ -4842,6 +4941,7 @@ msgid_plural "Longest streak: %s days"
 msgstr[0] "Längste Serie: %s Tag"
 msgstr[1] "Längste Serie: %s Tage"
 
+#: application/models/Achievements_model.php:403
 #: application/models/Achievements_model.php:400
 #, php-format
 msgid "Current streak: %s day"
@@ -4849,11 +4949,14 @@ msgid_plural "Current streak: %s days"
 msgstr[0] "Aktuelle Serie: %s Tag"
 msgstr[1] "Aktuelle Serie: %s Tage"
 
-#: application/models/Achievements_model.php:407
+#: application/models/Achievements_model.php:410
 #: application/views/visitor/mini.php:214
+#: application/models/Achievements_model.php:407
 msgid "No QSOs yet"
 msgstr "Noch keine QSOs"
 
+#: application/models/Achievements_model.php:413
+#: application/models/Achievements_model.php:415
 #: application/models/Achievements_model.php:410
 #: application/models/Achievements_model.php:412
 msgid "classic"
@@ -5150,7 +5253,7 @@ msgstr "POTA Referenz bereits im Log"
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
-#: application/models/Logbook_model.php:6402
+#: application/models/Logbook_model.php:6400
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5163,6 +5266,7 @@ msgstr "QSO aktualisiert"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6402
 msgid "Bearing"
 msgstr "Peilung"
 
@@ -5175,6 +5279,7 @@ msgstr ""
 "QSOs"
 
 #: application/models/Logbookadvanced_model.php:1802
+#: application/views/view_log/qso.php:868
 #: application/views/view_log/qso.php:869
 msgid "QSO not found"
 msgstr "QSO nicht gefunden"
@@ -5403,8 +5508,8 @@ msgstr "Differenz"
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1551
-#: application/views/interface_assets/footer.php:1690
+#: application/views/interface_assets/footer.php:1549
+#: application/views/interface_assets/footer.php:1688
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -5454,6 +5559,8 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1005
 #: application/views/visitor/layout/footer.php:168
+#: application/views/interface_assets/footer.php:1551
+#: application/views/interface_assets/footer.php:1690
 msgid "All"
 msgstr "Alle"
 
@@ -5564,6 +5671,7 @@ msgstr "Keine/Leer"
 msgid "Show"
 msgstr "Anzeigen"
 
+#: application/views/achievements/index.php:11
 #: application/views/achievements/index.php:13
 msgid ""
 "No station locations are linked to your active logbook. Trophies need at "
@@ -5572,42 +5680,51 @@ msgstr ""
 "Du hast keinen Stationsstandort zu Deinem Logbuch hinzugefügt. Um Erfolge "
 "anzuzeigen, verlinke mindestens einen Standort."
 
+#: application/views/achievements/index.php:76
 #: application/views/achievements/index.php:78
 msgid "QSO filter"
 msgstr "QSO-Filter"
 
+#: application/views/achievements/index.php:77
 #: application/views/achievements/index.php:79
 msgid "All QSOs"
 msgstr "Alle QSOs"
 
+#: application/views/achievements/index.php:78
 #: application/views/achievements/index.php:80
 msgid "Confirmed only"
 msgstr "Nur Bestätigte"
 
+#: application/views/achievements/index.php:78
 #: application/views/achievements/index.php:80
 msgid "Count only QSOs confirmed by LoTW or paper card"
 msgstr "Zähle nur QSOs die entweder per QSL-Karte oder LoTW bestätigt wurden"
 
+#: application/views/achievements/index.php:81
 #: application/views/achievements/index.php:83
 #, php-format
 msgid "You have unlocked %s of %s trophies."
 msgstr "Du hast %s von %s Trophäen freigeschaltet."
 
+#: application/views/achievements/index.php:83
 #: application/views/achievements/index.php:85
 #, php-format
 msgid "Cached data as of %s"
 msgstr "Zwischengespeicherte Daten vom %s"
 
+#: application/views/achievements/index.php:124
+#: application/views/achievements/index.php:189
 #: application/views/achievements/index.php:126
 #: application/views/achievements/index.php:191
 msgid "Unlocked"
 msgstr "Freigeschaltet"
 
+#: application/views/achievements/index.php:143
 #: application/views/achievements/index.php:145
 msgid "Trophy"
 msgstr "Trophäe"
 
-#: application/views/achievements/index.php:146
+#: application/views/achievements/index.php:144
 #: application/views/activationplanner/index.php:30
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
@@ -5628,9 +5745,11 @@ msgstr "Trophäe"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/achievements/index.php:146
 msgid "Close"
 msgstr "Schließen"
 
+#: application/views/achievements/index.php:189
 #: application/views/achievements/index.php:191
 msgid "Locked"
 msgstr "Gesperrt"
@@ -6438,6 +6557,7 @@ msgstr ""
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:659
+#: application/views/interface_assets/footer.php:2419
 #: application/views/interface_assets/footer.php:2421
 msgid "DANGER"
 msgstr "GEFAHR"
@@ -8294,10 +8414,11 @@ msgstr "Zeige nicht gearbeitete"
 #: application/views/awards/iota/index.php:91
 #: application/views/awards/itu/index.php:120
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2400
+#: application/views/interface_assets/footer.php:2398
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2400
 msgid "QSL Card"
 msgstr "QSL-Karte"
 
@@ -15992,8 +16113,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -16078,14 +16199,18 @@ msgid "QSL Date"
 msgstr "QSL-Datum"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2655
-#: application/views/interface_assets/footer.php:2673
-#: application/views/interface_assets/footer.php:2692
-#: application/views/interface_assets/footer.php:2710
+#: application/views/interface_assets/footer.php:2653
+#: application/views/interface_assets/footer.php:2671
+#: application/views/interface_assets/footer.php:2690
+#: application/views/interface_assets/footer.php:2708
 #: application/views/qslcard/index.php:81
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:720
 #: application/views/view_log/qso.php:728
+#: application/views/interface_assets/footer.php:2655
+#: application/views/interface_assets/footer.php:2673
+#: application/views/interface_assets/footer.php:2692
+#: application/views/interface_assets/footer.php:2710
 msgid "View"
 msgstr "Ansicht"
 
@@ -16753,19 +16878,27 @@ msgstr "Anzahl: "
 msgid "Grids: "
 msgstr "Locator: "
 
-#: application/views/interface_assets/footer.php:1118
+#: application/views/interface_assets/footer.php:1116
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
+#: application/views/interface_assets/footer.php:1118
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Locator"
 
+#: application/views/interface_assets/footer.php:1325
 #: application/views/interface_assets/footer.php:1327
 msgid "Location Lookup failed. Please check browser console."
 msgstr ""
 "Fehler beim Nachschlagen des Standortes. Bitte prüfe die Browserkonsole."
 
+#: application/views/interface_assets/footer.php:1476
+#: application/views/interface_assets/footer.php:1480
+#: application/views/interface_assets/footer.php:1483
+#: application/views/interface_assets/footer.php:1620
+#: application/views/interface_assets/footer.php:1624
+#: application/views/interface_assets/footer.php:1627
 #: application/views/interface_assets/footer.php:1478
 #: application/views/interface_assets/footer.php:1482
 #: application/views/interface_assets/footer.php:1485
@@ -16775,76 +16908,96 @@ msgstr ""
 msgid "grid square"
 msgstr "Locator"
 
+#: application/views/interface_assets/footer.php:1483
+#: application/views/interface_assets/footer.php:1627
 #: application/views/interface_assets/footer.php:1485
 #: application/views/interface_assets/footer.php:1629
 msgid "Total count"
 msgstr "Summe"
 
+#: application/views/interface_assets/footer.php:2400
 #: application/views/interface_assets/footer.php:2402
 msgid "QSL Card for "
 msgstr "QSL-Karte für "
 
+#: application/views/interface_assets/footer.php:2420
 #: application/views/interface_assets/footer.php:2422
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Warnung! Bist du sicher, dass du diese QSL-Karte löschen möchtest?"
 
-#: application/views/interface_assets/footer.php:2462
+#: application/views/interface_assets/footer.php:2460
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2462
 msgid "eQSL Card"
 msgstr "eQSL-Karte"
 
+#: application/views/interface_assets/footer.php:2462
 #: application/views/interface_assets/footer.php:2464
 msgid "eQSL Card for "
 msgstr "eQSL-Karte für "
 
+#: application/views/interface_assets/footer.php:2664
+#: application/views/interface_assets/footer.php:2701
+#: application/views/view_log/qso.php:718
 #: application/views/interface_assets/footer.php:2666
 #: application/views/interface_assets/footer.php:2703
-#: application/views/view_log/qso.php:718
 msgid "QSL image file"
 msgstr "QSL-Bilddatei"
 
+#: application/views/interface_assets/footer.php:2683
 #: application/views/interface_assets/footer.php:2685
 msgid "Front QSL Card"
 msgstr "Vorderseite der QSL-Karte"
 
+#: application/views/interface_assets/footer.php:2719
 #: application/views/interface_assets/footer.php:2721
 msgid "Back QSL Card"
 msgstr "Rückseite QSL-Karte"
 
+#: application/views/interface_assets/footer.php:2723
 #: application/views/interface_assets/footer.php:2725
 msgid "The QSL card upload could not be completed."
 msgstr "Der Upload der QSL-Karte konnte nicht abgeschlossen werden."
 
-#: application/views/interface_assets/footer.php:2725
+#: application/views/interface_assets/footer.php:2723
 #: application/views/qslpostcard/designer.php:31
+#: application/views/interface_assets/footer.php:2725
 msgid "Upload failed"
 msgstr "Upload fehlgeschlagen"
 
+#: application/views/interface_assets/footer.php:2731
+#: application/views/interface_assets/footer.php:2756
 #: application/views/interface_assets/footer.php:2733
 #: application/views/interface_assets/footer.php:2758
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Weitere QSOs zu einer QSL-Karte hinzufügen"
 
+#: application/views/interface_assets/footer.php:2767
 #: application/views/interface_assets/footer.php:2769
 msgid "Something went wrong. Please try again!"
 msgstr "Etwas ist schiefgelaufen. Bitte versuche es erneut!"
 
+#: application/views/interface_assets/footer.php:2853
 #: application/views/interface_assets/footer.php:2855
 msgid "US Counties for state"
 msgstr "US Bezirk für Bundesstaat"
 
+#: application/views/interface_assets/footer.php:2901
 #: application/views/interface_assets/footer.php:2903
 msgid "Worked counties for state:"
 msgstr "Gearbeitete Bezirke für Bundesstaat:"
 
+#: application/views/interface_assets/footer.php:2902
 #: application/views/interface_assets/footer.php:2904
 msgid "Confirmed counties for state:"
 msgstr "Bestätigte Bezirke für Bundesstaat:"
 
+#: application/views/interface_assets/footer.php:2903
 #: application/views/interface_assets/footer.php:2905
 msgid "Counties in state:"
 msgstr "Counties im Bundesstaat:"
 
+#: application/views/interface_assets/footer.php:2904
 #: application/views/interface_assets/footer.php:2906
 msgid "Needed counties for state:"
 msgstr "Benötigte Counties für Bundesstaat:"
@@ -20052,8 +20205,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -22138,8 +22291,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -23194,9 +23347,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
