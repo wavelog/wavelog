@@ -853,8 +853,8 @@
 ?>
 
 <script>
-var lat = <?php echo $lat; ?>;
-var long = <?php echo $lng; ?>;
+var lat = <?php echo $lat ?? 'null'; ?>;
+var long = <?php echo $lng ?? 'null'; ?>;
 var callsign = <?php echo js_escape($row->COL_CALL); ?>;
 </script>
     <div hidden id ='dxcc'><?php echo html_escape($row->COL_DXCC); ?></div>
