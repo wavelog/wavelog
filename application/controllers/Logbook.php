@@ -733,7 +733,7 @@ class Logbook extends CI_Controller {
 		}
 
 		$map_custom = json_decode($this->optionslib->get_map_custom());
-		$data['grid_show'] = $map_custom->{'gridsquare_show'};
+		$data['grid_show'] = $map_custom->{'gridsquare_show'} ?? 0;
 
 		$this->load->view('interface_assets/mini_header', $data);
 		$this->load->view('view_log/qso');
