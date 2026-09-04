@@ -1,4 +1,4 @@
-let map;
+var map;
 let grid_four = '';
 let grid_four_lotw = '';
 let grid_four_paper = '';
