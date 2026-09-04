@@ -20,9 +20,9 @@ class Migration_dxcc_none_null_coordinates extends CI_Migration {
 
 	public function down()
 	{
+		$this->dbtry("UPDATE {$this->table_name} SET `long` = 0, `lat` = 0 WHERE {$this->table_name}.`adif` = 0;");
 		$this->dbtry("ALTER TABLE {$this->table_name} CHANGE `long` `long` FLOAT NOT NULL;");
 		$this->dbtry("ALTER TABLE {$this->table_name} CHANGE `lat` `lat` FLOAT NOT NULL;");
-		$this->dbtry("UPDATE {$this->table_name} SET `long` = 0, `lat` = 0 WHERE {$this->table_name}.`adif` = 0;");
 	}
 
 	function dbtry($what) {
