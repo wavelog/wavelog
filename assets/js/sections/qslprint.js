@@ -155,8 +155,8 @@ function initQslprintTable() {
 			],
 			pageLength: 25,
 			lengthMenu: [
-				[10, 25, 50, 100, -1],
-				[10, 25, 50, 100, lang_export_qslprint_pagination_all]
+				[10, 25, 50, 100, 500, 1000, -1],
+				[10, 25, 50, 100, 500, 1000, lang_export_qslprint_pagination_all]
 			],
 			paging: 'pagination',
 			language: {
