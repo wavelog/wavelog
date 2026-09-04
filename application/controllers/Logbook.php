@@ -1150,12 +1150,13 @@ class Logbook extends CI_Controller {
 			LEFT OUTER JOIN `lotw_users` ON `lotw_users`.`callsign` = qsos.`col_call`
 			LEFT OUTER JOIN satellite ON qsos.col_prop_mode='SAT' and qsos.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
 			WHERE ( qsos.COL_CALL LIKE ? ESCAPE '!' OR qsos.COL_GRIDSQUARE LIKE ? ESCAPE '!' OR qsos.COL_VUCC_GRIDS LIKE ? ESCAPE '!')
-			AND station_profile.user_id = ".$this->session->userdata('user_id')."
+			AND station_profile.user_id = ?
 			" . $stationsactivelogonly_sql . "
 			ORDER BY COL_TIME_ON DESC;";
 		$binding[] = '%'.$id.'%';
 		$binding[] = '%'.$id.'%';
 		$binding[] = '%'.$id.'%';
+		$binding[] = $this->session->userdata('user_id');
 		return $this->db->query($sql, $binding);
 	}
 
@@ -1191,18 +1192,20 @@ class Logbook extends CI_Controller {
 
 		$location_list = "'".implode("','",$station_ids)."'";
 
+		$binding = array();
 		$sql = 'select COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND, COL_TIME_ON, lotw_users.lastupload from ' . $this->config->item('table_name') .
 			' join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			join lotw_users on ' . $this->config->item('table_name') . '.col_call = lotw_users.callsign
 			where ' . $this->config->item('table_name') .'.station_id in ('. $location_list . ')';
 
 		if ($clean_station_id != 'All') {
-			$sql .= ' and station_profile.station_id = ' . $clean_station_id;
+			$sql .= ' and station_profile.station_id = ?';
+			$binding[] = (int)$clean_station_id;
 		}
 
 		$sql .= " and COL_LOTW_QSL_RCVD <> 'Y' and " . $this->config->item('table_name') . ".COL_TIME_ON < lotw_users.lastupload";
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $binding);
 
 		$data['qsos'] = $query;
 

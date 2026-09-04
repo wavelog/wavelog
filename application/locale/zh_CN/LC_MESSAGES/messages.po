@@ -730,6 +730,7 @@ msgstr " 和 "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1494
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -753,6 +754,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1495
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -778,6 +780,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/controllers/Logbook.php:1496
 msgid "POTA"
 msgstr "POTA"
 
@@ -1377,6 +1380,7 @@ msgstr "按…统计 QSO"
 #: application/views/view_log/qso.php:621
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/controllers/Logbook.php:1498
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -2395,6 +2399,7 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/controllers/Logbook.php:1489
 msgid "Mode"
 msgstr "模式"
 
@@ -2422,6 +2427,7 @@ msgstr "模式"
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1490
 msgid "RST (S)"
 msgstr "我收对方"
 
@@ -2450,6 +2456,7 @@ msgstr "我收对方"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1491
 msgid "RST (R)"
 msgstr "对方收我"
 
@@ -2471,6 +2478,7 @@ msgstr "对方收我"
 #: application/views/view_log/qso.php:277
 #: application/views/view_log/qso.php:635
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1492
 msgid "Country"
 msgstr "DXCC 实体"
 
@@ -2504,6 +2512,7 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1493
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2535,6 +2544,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:374 application/views/user/edit.php:398
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1497
 msgid "State"
 msgstr "州"
 
@@ -2567,6 +2577,7 @@ msgstr "州"
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1499
 msgid "Distance"
 msgstr "距离"
 
@@ -2680,6 +2691,7 @@ msgstr "距离"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/controllers/Logbook.php:1500
 msgid "Band"
 msgstr "频段"
 
@@ -2710,6 +2722,7 @@ msgstr "频段"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1501
 msgid "Frequency"
 msgstr "频率"
 
@@ -2736,6 +2749,7 @@ msgstr "频率"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:642
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1502
 msgid "Operator"
 msgstr "操作员"
 
@@ -2765,6 +2779,7 @@ msgstr "操作员"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:281
 #: application/views/view_log/qso.php:636
+#: application/controllers/Logbook.php:1523
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -9166,8 +9181,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -22379,8 +22394,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -25540,8 +25555,8 @@ msgstr "LoTW 用户。最后上传于 "
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
