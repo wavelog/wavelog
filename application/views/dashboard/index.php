@@ -501,11 +501,26 @@ function echo_table_header_col($name) {
 							<?php } ?>
 						</tr>
 						<tr>
+							<th scope="row"><?= __("QSL Cards"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td>
+								<?php echo $section['qsl']; ?> <?php echo ($section['deleted_qsl'] > 0) ? "(".$section['deleted_qsl'].")" : ""; ?>
+							</td>
+							<?php } ?>
+						</tr>
+						<tr>
+							<th scope="row"><?= __("LoTW"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td>
+								<?php echo $section['lotw']; ?> <?php echo ($section['deleted_lotw'] > 0) ? "(".$section['deleted_lotw'].")" : ""; ?>
+							</td>
+							<?php } ?>
+						</tr>
+						<tr>
 							<th scope="row"><?= __("Confirmed"); ?></th>
 							<?php foreach ($dxcc_sections as $section) { ?>
 							<td>
-								<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $section['qsl']; ?>" data-bs-toggle="tooltip"><?php echo $section['qsl']; ?> <?php echo ($section['deleted_qsl'] > 0) ? "(".$section['deleted_qsl'].")" : ""; ?></span> /
-								<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $section['lotw']; ?>" data-bs-toggle="tooltip"><?php echo $section['lotw']; ?> <?php echo ($section['deleted_lotw'] > 0) ? "(".$section['deleted_lotw'].")" : ""; ?></span>
+								<?php echo $section['confirmed']; ?> <?php echo ($section['deleted_confirmed'] > 0) ? "(".$section['deleted_confirmed'].")" : ""; ?>
 							</td>
 							<?php } ?>
 						</tr>
