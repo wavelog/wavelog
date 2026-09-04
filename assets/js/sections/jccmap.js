@@ -1,4 +1,4 @@
-let osmUrl = tileUrl;
+var osmUrl = tileUrl;
 let confirmedColor = 'rgba(144,238,144)';
 if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
       confirmedColor = user_map_custom.qsoconfirm.color;

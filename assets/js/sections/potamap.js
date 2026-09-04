@@ -7,7 +7,7 @@ if (typeof(user_map_custom.qso) !== 'undefined') {
 	workedColor = user_map_custom.qso.color;
 }
 
-let osmUrl = $('#potamapjs').attr("tileUrl");
+var osmUrl = $('#potamapjs').attr("tileUrl");
 
 // Holds the current Leaflet map instance so we can dispose of it properly
 // before rebuilding. See load_pota_map2().
