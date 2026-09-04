@@ -216,7 +216,7 @@ function displayQso(id) {
                     var dxcc = $("#dxcc").text();
                     var callsign = $("#callsign").text();
                     var zoom = 5;
-                    if (dxcc == 0) {
+                    if (dxcc == 0 && lat == '' && lng == '') {
                         zoom = 1;
                     }
                     var mymap = L.map('mapqso').setView([lat,lng], zoom);
@@ -239,7 +239,7 @@ function displayQso(id) {
                         hideControlContainer: true
                     }).addTo(mymap);
 
-                    if (dxcc != 0) {
+                    if (lat != '' && lng != '') {
                         var redIcon = L.icon({
                             iconUrl: icon_dot_url,
                             iconSize:     [18, 18], // size of the icon
