@@ -6394,6 +6394,8 @@ class Logbook_model extends CI_Model {
 			} else {
 				if (isset($row->lat) && isset($row->long)) {
 					$stn_loc = array($row->lat, $row->long);
+				} else {
+					continue;
 				}
 			}
 			if (isset($xbearing)) {

@@ -79,8 +79,8 @@ class Update extends CI_Controller {
 			'ituz' => 0,
 			'cqz' => 0,
 			'cont' => '',
-			'long' => 0,
-			'lat' => 0,
+			'long' => null,
+			'lat' => null,
 			'start' => null,
 			'end' => null,
 		];
