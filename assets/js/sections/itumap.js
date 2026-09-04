@@ -1,7 +1,7 @@
-let osmUrl = tileUrl;
+var osmUrl = tileUrl;
 let ituz;
 let geojson;
-let map;
+var map;
 let info;
 
 let confirmedColor = 'rgba(144,238,144)';

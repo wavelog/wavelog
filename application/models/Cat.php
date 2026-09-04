@@ -8,7 +8,8 @@
 		 * (USB-D/LSB-D...). Applied to every radio update via normalize_mode().
 		 */
 		const MODE_OVERRIDES = [
-			'CW-U'   => 'CW',   'CW-L'   => 'CW',   'CW-R'   => 'CW', 'CWU' => 'CW', 'CWL' => 'CW',
+			'CW-U'   => 'CW',   'CW-L'   => 'CW',   'CW-R'   => 'CW', 'CWU' => 'CW', 'CWL' => 'CW', 'CWN' => 'CW',
+			'FMN'    => 'FM',   'AMN'    => 'AM',
 			'RTTY-L' => 'RTTY', 'RTTY-U' => 'RTTY', 'RTTY-R' => 'RTTY',
 			'USB-D'  => 'USB',  'USB-D1' => 'USB',
 			'LSB-D'  => 'LSB',  'LSB-D1' => 'LSB',

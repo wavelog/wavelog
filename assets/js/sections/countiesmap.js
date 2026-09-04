@@ -16,7 +16,7 @@ $(document).ready(function() {
     $('#countiesMode').multiselect($.extend({}, multiselectOptions, {nonSelectedText: lang_counties_every_mode}));
 });
 
-let osmUrl = tileUrl;
+var osmUrl = tileUrl;
 let countyStatus;
 let countiesGeojsonLayer;
 let countiesMap;
