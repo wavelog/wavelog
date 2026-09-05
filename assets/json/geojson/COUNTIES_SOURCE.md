@@ -17,11 +17,23 @@ detailed of the Census Bureau's standard cartographic boundary resolutions
 scale, which produced visibly blocky/faceted county outlines - 500k fixes
 that while still being far lighter than the full-resolution TIGER/Line data.
 
-Because this is the 2022 vintage, it already reflects Connecticut's 2022
-switch from 8 counties to 9 "planning regions" and Alaska's 2015/2019 renames
-and boundary changes (Wade Hampton -> Kusilvak Census Area, Valdez-Cordova
-split into Chugach and Copper River Census Areas), so no separate/newer
-source or manual simplification was needed for those two states this time.
+Because this is the 2022 vintage, it already reflects Alaska's 2015/2019
+renames and boundary changes (Wade Hampton -> Kusilvak Census Area,
+Valdez-Cordova split into Chugach and Copper River Census Areas), so no
+separate/newer source or manual simplification was needed for Alaska.
+
+**Connecticut is the one exception.** The 2022 vintage also reflects CT's
+2022 switch from 8 counties to 9 "planning regions" (which share the same
+boundaries as CT's Councils of Government) - but nobody logs QSOs against
+planning-region names, and `US_counties.csv` still lists CT's 8 traditional
+counties (matching LOTW/QRZ/eQSL/ARRL/MARAC data), so the 9 planning-region
+polygons could never match a logged county and rendered the whole state
+permanently unworked (wavelog/wavelog#3781). CT's 8 `counties_291.geojson`
+features (and its dissolved entry in `counties_state_outline_291.geojson`)
+are instead sourced from the Census Bureau's pre-2022
+`cb_2021_us_county_500k` vintage (same 500k resolution, just one year
+earlier), which still has the traditional county boundaries. This is scoped
+to CT only - no other state was reverted to a pre-2022 vintage.
 
 All boundary data originates from the US Census Bureau and is in the public
 domain in the United States (17 U.S.C. § 105 - works of the US government are
