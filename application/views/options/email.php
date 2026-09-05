@@ -5,25 +5,27 @@
 		<div class="card-body">
 			<?php $this->load->view('layout/messages'); ?>
 
-			<?php echo form_open('options/email_save'); ?>
+			<?php echo form_open('options/email_save', 'id="emailSettingsForm"'); ?>
 
 				<div class="mb-3">
 					<label for="emailProtocol"><?= __("Outgoing Protocol"); ?></label>
 					<select name="emailProtocol" class="form-select" id="emailProtocol">
-						<option value="sendmail" <?php if($this->optionslib->get_option('emailProtocol')== "sendmail") { echo "selected=\"selected\""; } ?>>Sendmail</option>
 						<option value="smtp" <?php if($this->optionslib->get_option('emailProtocol')== "smtp") { echo "selected=\"selected\""; } ?>>SMTP</option>
+						<option value="sendmail" <?php if($this->optionslib->get_option('emailProtocol')== "sendmail") { echo "selected=\"selected\""; } ?>><?= __("Local mailer (PHP mail)"); ?></option>
 					</select>
-					<small class="form-text text-muted"><?= __("The protocol that will be used to send out emails."); ?></small>
+					<small class="form-text text-muted"><?= __("The protocol that will be used to send out emails. The local mailer hands the message to PHP's mail() function and therefore needs a mail transfer agent installed on the host - the official Docker image does not ship one, so use SMTP there."); ?></small>
 				</div>
 
-				<div class="mb-3">
-					<label for="smtpEncryption"><?= __("SMTP Encryption"); ?></label>
-					<select name="smtpEncryption" class="form-select" id="smtpEncryption">
-						<option value="" <?php if($this->optionslib->get_option('smtpEncryption') == "") { echo "selected=\"selected\""; } ?>><?= __("No Encryption"); ?></option>
-						<option value="tls" <?php if($this->optionslib->get_option('smtpEncryption') == "tls") { echo "selected=\"selected\""; } ?>>TLS</option>
-						<option value="ssl" <?php if($this->optionslib->get_option('smtpEncryption') == "ssl") { echo "selected=\"selected\""; } ?>>SSL</option>
-					</select>
-					<small class="form-text text-muted"><?= __("Choose whether emails should be sent with TLS or SSL."); ?></small>
+				<div class="mb-3 row">
+					<label for="smtpEncryption" class="col-sm-2 col-form-label"><?= __("SMTP Encryption"); ?></label>
+					<div class="col-sm-10">
+						<select name="smtpEncryption" class="form-select" id="smtpEncryption">
+							<option value="" <?php if($this->optionslib->get_option('smtpEncryption') == "") { echo "selected=\"selected\""; } ?>><?= __("No Encryption"); ?></option>
+							<option value="tls" <?php if($this->optionslib->get_option('smtpEncryption') == "tls") { echo "selected=\"selected\""; } ?>>TLS</option>
+							<option value="ssl" <?php if($this->optionslib->get_option('smtpEncryption') == "ssl") { echo "selected=\"selected\""; } ?>>SSL</option>
+						</select>
+						<small class="form-text text-muted"><?= __("Choose whether emails should be sent with TLS or SSL."); ?></small>
+					</div>
 				</div>
 
 				<div class="mb-3 row">
@@ -59,6 +61,14 @@
 				</div>
 
 				<div class="mb-3 row">
+					<label for="smtpTimeout" class="col-sm-2 col-form-label"><?= __("SMTP Timeout"); ?></label>
+					<div class="col-sm-10">
+						<input type="number" name="smtpTimeout" class="form-control" id="smtpTimeout" min="5" max="120" value="<?php echo $this->optionslib->get_option('smtpTimeout') ?: 30; ?>">
+						<small class="form-text text-muted"><?= __("How many seconds to wait for a reply from the mail server, between 5 and 120. Raise this if mails are delivered but reported as failed: some servers scan or greylist a message before they acknowledge it."); ?></small>
+					</div>
+				</div>
+
+				<div class="mb-3 row">
 					<label for="smtpUsername" class="col-sm-2 col-form-label"><?= __("SMTP Username"); ?></label>
 					<div class="col-sm-10">
 						<input type="text" name="smtpUsername" class="form-control" id="smtpUsername" value="<?php if($this->optionslib->get_option('smtpUsername') != "") { echo $this->optionslib->get_option('smtpUsername'); } ?>">
@@ -69,19 +79,26 @@
 				<div class="mb-3 row">
 					<label for="smtpPassword" class="col-sm-2 col-form-label"><?= __("SMTP Password"); ?></label>
 					<div class="col-sm-10">
-						<input type="password" name="smtpPassword" class="form-control" id="smtpPassword"  value="<?php if($this->optionslib->get_option('smtpPassword') != "") { echo $this->optionslib->get_option('smtpPassword'); } ?>">
+						<div class="d-flex align-items-center gap-3">
+							<input type="password" name="smtpPassword" class="form-control" id="smtpPassword" value="" placeholder="<?php if($this->optionslib->get_option('smtpPassword') != "") { echo __("Leave empty to keep current password"); } ?>">
+							<?php if($this->optionslib->get_option('smtpPassword') != "") { ?>
+								<div class="form-check mb-0 flex-shrink-0">
+									<input type="checkbox" name="smtpPasswordClear" class="form-check-input" id="smtpPasswordClear" value="1">
+									<label class="form-check-label text-nowrap" for="smtpPasswordClear"><?= __("Remove the stored password"); ?></label>
+								</div>
+							<?php } ?>
+						</div>
 						<small class="form-text text-muted"><?= __("The password to log in to the mail server."); ?></small>
 					</div>
 				</div>
 
 				<!-- Save the Form -->
-				<input class="btn btn-primary" type="submit" value="<?= __("Save"); ?>" />
+				<button class="btn btn-primary" type="submit" id="emailSettingsSave"><?= __("Save"); ?></button>
 			</form>
 			<br>
-			<?php echo form_open('options/sendTestMail'); ?>
-				<input class="btn btn-primary" type="submit" value="<?= __("Send Test-Mail"); ?>" />
-				<small class="form-text text-muted"><?= __("The email will be sent to the address defined in your account settings."); ?></small>
-			</form>
+			<button class="btn btn-primary" type="button" id="sendTestMail"><?= __("Send Test-Mail"); ?></button>
+			<small class="form-text text-muted"><?= __("The email will be sent to the address defined in your account settings."); ?></small>
+			<pre id="testmailDetail" class="mt-3 p-2 border rounded d-none" style="white-space: pre-wrap;"></pre>
 		</div>
 	</div>
 </div>

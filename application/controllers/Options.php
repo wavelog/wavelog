@@ -236,29 +236,31 @@ class Options extends CI_Controller {
 		$data['sub_heading'] = __("Email");
 		$data['active_tab'] = 'email';
 
+		$footerData['scripts'] = [
+			'assets/js/sections/options_email.js'
+		];
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('options/email');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	// Handles saving the radio options to the options system.
+	// Handles saving the email options to the options system. Answers the AJAX call
+	// from assets/js/sections/options_email.js, the result is shown as a toast.
 	function email_save() {
-
-		$data['page_title'] = __("Wavelog Options");
-		$data['sub_heading'] = __("Email");
-		$data['active_tab'] = 'email';
-
-		$this->load->helper(array('form', 'url'));
 
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('emailProtocol', 'Email Protocol', 'required');
 
+		header('Content-Type: application/json');
+
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('options/email');
-			$this->load->view('interface_assets/footer');
+			echo json_encode([
+				'success' => false,
+				'message' => trim(strip_tags(validation_errors())) ?: __("Something went wrong with saving the settings. Try again.")
+			]);
 		}
 		else
 		{
@@ -285,11 +287,29 @@ class Options extends CI_Controller {
 			// Update smtpPort choice within the options system
 			$smtpPortupdate = $this->optionslib->update('smtpPort', $this->input->post('smtpPort', true));
 
+			// Update smtpTimeout choice within the options system
+			$smtpTimeout_value = (int) $this->input->post('smtpTimeout');
+			if ($smtpTimeout_value < 5 || $smtpTimeout_value > 120) {
+				$smtpTimeout_value = 30;
+			}
+			// Options_model::update() reports FALSE when it has to create the row instead
+			// of updating it. Create it up front so the return value stays meaningful.
+			$this->optionslib->update('smtpTimeout', $smtpTimeout_value);
+			$smtpTimeoutupdate = $this->optionslib->update('smtpTimeout', $smtpTimeout_value);
+
 			// Update smtpUsername choice within the options system
 			$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername', false));
 
-			// Update smtpPassword choice within the options system
-			$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $this->input->post('smtpPassword', false));
+			// Update smtpPassword choice within the options system - an empty field keeps the
+			// stored password, the clear checkbox removes it
+			$smtpPassword_value = (string) $this->input->post('smtpPassword', false);
+			if ($this->input->post('smtpPasswordClear') !== null) {
+				$smtpPasswordupdate = $this->optionslib->update('smtpPassword', '');
+			} else if ($smtpPassword_value === '') {
+				$smtpPasswordupdate = true;
+			} else {
+				$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $smtpPassword_value);
+			}
 
 			// Check if all updates are successful
 			$updateSuccessful = $emailProtocolupdate &&
@@ -298,62 +318,60 @@ class Options extends CI_Controller {
 				$emailAddressupdate &&
 				$smtpHostupdate &&
 				$smtpPortupdate &&
+				$smtpTimeoutupdate &&
 				$smtpUsernameupdate &&
 				$smtpPasswordupdate;
 
-			// Set flash session based on update success
 			if ($updateSuccessful) {
-				$this->session->set_flashdata('success', __("The settings were saved successfully."));
+				echo json_encode([
+					'success' => true,
+					'message' => __("The settings were saved successfully.")
+				]);
 			} else {
-				$this->session->set_flashdata('saveFailed', __("Something went wrong with saving the settings. Try again."));
+				echo json_encode([
+					'success' => false,
+					'message' => __("Something went wrong with saving the settings. Try again.")
+				]);
 			}
-
-			// Redirect back to /email
-			redirect('/options/email');
 		}
 	}
 
+	// Sends a test mail to the address of the logged in user. Answers the AJAX call
+	// from assets/js/sections/options_email.js, the result is shown as a toast.
 	function sendTestMail() {
 		$id = $this->session->userdata('user_id');
 
 		$email = $this->user_model->get_user_email_by_id($id);
 
-		if($email != "") {
+		header('Content-Type: application/json');
 
-			$this->load->library('email');
-
-			if($this->optionslib->get_option('emailProtocol') == "smtp") {
-				$config = Array(
-					'protocol' => $this->optionslib->get_option('emailProtocol'),
-					'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-					'smtp_host' => $this->optionslib->get_option('smtpHost'),
-					'smtp_port' => $this->optionslib->get_option('smtpPort'),
-					'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-					'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-					'crlf' => "\r\n",
-					'newline' => "\r\n"
-				);
-
-				$this->email->initialize($config);
-			}
-
-			$message = $this->email->load('email/testmail', NULL);
-
-			$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-			$this->email->to($email);
-			$this->email->subject($message['subject']);
-			$this->email->message($message['body']);
-
-			if (! $this->email->send()){
-				$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));
-			} else {
-				$this->session->set_flashdata('testmailSuccess', __("Testmail sent. Email settings seem to be correct."));
-			}
-		} else {
-			$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));
+		if ($email == "") {
+			echo json_encode([
+				'success' => false,
+				'message' => __("Testmail failed. Something went wrong."),
+				'detail' => __("There is no email address set in your account settings.")
+			]);
+			return;
 		}
 
-		redirect('/options/email');
+		$this->load->helper('mailer');
+
+		$result = mailer_send('email/testmail', $email);
+
+		if ($result['success']) {
+			echo json_encode([
+				'success' => true,
+				'message' => __("Testmail sent. Email settings seem to be correct.")
+			]);
+		} else {
+			// The mailer debug output is handed over separately: it can be several lines
+			// of SMTP dialogue, which is too much for a toast.
+			echo json_encode([
+				'success' => false,
+				'message' => __("Testmail failed. Something went wrong."),
+				'detail' => $result['error']
+			]);
+		}
 	}
 
 	// function used to display the /maptiles url in global options
