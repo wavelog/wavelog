@@ -1420,17 +1420,20 @@ class Awards extends CI_Controller {
         return $postdata;
     }
 
-    // Type: 'worked'|'confirmed' (from log), 'target' (all), 'needed' (not worked)
+    // Type: 'worked'|'confirmed' (from log), 'target' (all), 'needed' (not worked), 'unmatched' (logged but UNSCORED)
     public function counties_list_ajax() {
         $this->load->model('counties');
         $state = str_replace('"', "", $this->input->post("State", true));
         $type  = str_replace('"', "", $this->input->post("Type", true));
 
         if ($type == 'target') {
-            $data['counties_array'] = $this->counties->get_counties_list($state);
+            $data['counties_array'] = $this->counties->get_scoring_targets($state);
             $this->load->view('awards/counties/counties_simple_ajax', $data);
         } else if ($type == 'needed') {
             $data['counties_array'] = $this->counties->get_counties_needed($state, $this->counties_postdata());
+            $this->load->view('awards/counties/counties_simple_ajax', $data);
+        } else if ($type == 'unmatched') {
+            $data['counties_array'] = $this->counties->get_counties_unmatched($state, $this->counties_postdata());
             $this->load->view('awards/counties/counties_simple_ajax', $data);
         } else {
             $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());

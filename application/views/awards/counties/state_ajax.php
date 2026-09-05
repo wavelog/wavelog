@@ -13,7 +13,18 @@ if ($counties_array) {
     $i = 1;
     $total_worked = 0;
     $total_confirmed = 0;
+    $prev_group = null;
     foreach ($counties_array as $county) {
+        $group = $county['group'] ?? null;
+        if ($group !== null && $group !== $prev_group) {
+            // 4 separate cells, not colspan - DataTables (initialized on this table
+            // in footer.php) indexes cells by column and misreads a colspan row.
+            // Borders removed inline so the row reads as one merged bar.
+            $cell = ' style="border:none"';
+            echo '<tr class="table-secondary"><th'. $cell .'></th><th'. $cell .' class="text-uppercase">'. html_escape($group) .'</th><th'. $cell .'></th><th'. $cell .'></th></tr>';
+        }
+        $prev_group = $group;
+
         $worked = (int) $county['worked'];
         $confirmed = (int) $county['confirmed'];
         $total_worked += $worked;

@@ -44,8 +44,10 @@ class Counties extends CI_Model
 
     /*
      * Worked/confirmed counties of a state for the detail dialogs. CSV
-     * counties come first (canonical name, case variants merged), counties
-     * only present in the log follow after and are flagged not_in_list.
+     * counties come first (canonical name, case variants merged), sorted by
+     * scoring_group so a multi-member group (Alaska's judicial districts)
+     * lists together instead of plain alphabetical; counties only present in
+     * the log follow after and are flagged not_in_list.
      */
     function counties_details($state, $type, $postdata) {
         if ($type == 'worked') {
@@ -61,6 +63,8 @@ class Counties extends CI_Model
         foreach ($this->get_counties_list($state) as $name) {
             $canonical[strtoupper($name)] = $name;
         }
+        $group_map = $this->group_map($state);
+        $group_sizes = $this->group_sizes($state);
 
         $result = array();
         $extras = array();
@@ -70,7 +74,12 @@ class Counties extends CI_Model
             if (isset($canonical[$bare])) {
                 if (!isset($seen[$bare])) {
                     $seen[$bare] = true;
-                    $result[] = array('COL_CNTY' => $canonical[$bare], 'COL_STATE' => $row['COL_STATE']);
+                    $group = $group_map[$bare] ?? null;
+                    $result[] = array(
+                        'COL_CNTY'  => $canonical[$bare],
+                        'COL_STATE' => $row['COL_STATE'],
+                        'group'     => ($group_sizes[$group] ?? 0) > 1 ? $group : null,
+                    );
                 }
             } else {
                 $row['not_in_list'] = true;
@@ -78,8 +87,13 @@ class Counties extends CI_Model
             }
         }
 
+        usort($result, function ($a, $b) {
+            if ($a['group'] !== $b['group']) {
+                return $this->group_sort_key($a['group']) <=> $this->group_sort_key($b['group']);
+            }
+            return strcasecmp($a['COL_CNTY'], $b['COL_CNTY']);
+        });
         $by_name = function ($a, $b) { return strcasecmp($a['COL_CNTY'], $b['COL_CNTY']); };
-        usort($result, $by_name);
         usort($extras, $by_name);
         return array_merge($result, $extras);
     }
@@ -185,11 +199,23 @@ class Counties extends CI_Model
             $worked[strtoupper($row['COL_CNTY'])] = $row;
         }
 
+        // Ordered by scoring_group (group_sort_key()) so a multi-member group
+        // (Alaska's judicial districts) lists together instead of plain
+        // alphabetical; every other state is unaffected since it has no such
+        // grouping (group_sizes()[group] is always 1 there).
+        $group_sizes = $this->group_sizes($state);
+        $rows_by_state = $this->parse_us_counties_csv()[$state] ?? array();
+        usort($rows_by_state, function ($a, $b) {
+            return $this->group_sort_key($a['group']) <=> $this->group_sort_key($b['group']);
+        });
+
         $result = array();
-        foreach ($this->get_counties_list($state) as $county) {
+        foreach ($rows_by_state as $csv_row) {
+            $county = $csv_row['name'];
             $row = $worked[strtoupper($county)] ?? null;
             $result[] = array(
                 'COL_CNTY'   => $county,
+                'group'      => ($group_sizes[$csv_row['group']] ?? 0) > 1 ? $csv_row['group'] : null,
                 'worked'     => $row ? (int) $row['worked'] : 0,
                 'confirmed'  => $row ? (int) $row['confirmed'] : 0,
             );
@@ -277,9 +303,16 @@ class Counties extends CI_Model
         'Wisconsin' => 'WI', 'Wyoming' => 'WY',
     );
 
-    // Parsed US_counties.csv map: state code => county names. Cached 24h.
+    // US_counties.csv rows that don't count toward any USA-CA target: independent
+    // cities, DC, and Carson City NV. See assets/json/US_COUNTIES_SOURCE.md.
+    const UNSCORED = 'UNSCORED';
+
+    // Parsed US_counties.csv map: state code => array of ['name' => bare ARRL
+    // name, 'group' => USA-CA scoring_group]. Cached 24h. Cache key bumped to
+    // v2 for the added 'group' column (wavelog/wavelog#3782) so a stale
+    // pre-upgrade cache entry can't be read with the old flat-string shape.
     private function parse_us_counties_csv() {
-	    $cache_key = 'UsCountiesList';
+	    $cache_key = 'UsCountiesListV2';
 
 	    if (!$counties = $this->cache->get($cache_key)) {
 		    $counties = array();
@@ -292,7 +325,10 @@ class Counties extends CI_Model
 				    }
 				    $code = isset($this->us_state_codes[$row[0]]) ? $this->us_state_codes[$row[0]] : null;
 				    if ($code !== null) {
-					    $counties[$code][] = $row[1];
+					    $counties[$code][] = array(
+						    'name'  => $row[1],
+						    'group' => $row[3] ?? $row[1],
+					    );
 				    }
 			    }
 			    fclose($handle);
@@ -304,32 +340,96 @@ class Counties extends CI_Model
 	    return $counties;
     }
 
-    // All county names of a state (the "target" list)
+    // Raw bare county names of a state, as logged (matches COL_CNTY exactly).
+    // Used by the worked/confirmed detail dialogs, which are unaffected by
+    // USA-CA scoring grouping.
     function get_counties_list($state) {
-	    $counties = $this->parse_us_counties_csv();
-	    return isset($counties[$state]) ? $counties[$state] : array();
+	    $rows = $this->parse_us_counties_csv();
+	    return array_column($rows[$state] ?? array(), 'name');
+    }
+
+    // Uppercase raw name => scoring_group map for a state.
+    private function group_map($state) {
+	    $map = array();
+	    foreach ($this->parse_us_counties_csv()[$state] ?? array() as $row) {
+		    $map[strtoupper($row['name'])] = $row['group'];
+	    }
+	    return $map;
+    }
+
+    // scoring_group => member count for a state, UNSCORED rows excluded -
+    // used to tell an actual grouping (Alaska's judicial districts) apart
+    // from every other state's trivial one-row-per-group case.
+    private function group_sizes($state) {
+	    $sizes = array();
+	    foreach ($this->parse_us_counties_csv()[$state] ?? array() as $row) {
+		    if ($row['group'] !== self::UNSCORED) {
+			    $sizes[$row['group']] = ($sizes[$row['group']] ?? 0) + 1;
+		    }
+	    }
+	    return $sizes;
+    }
+
+    // Sort key for a scoring_group name: Alaska's 4 judicial districts sort
+    // in natural 1st-4th order; everything else (a plain county name) sorts
+    // alphabetically after them, which is irrelevant since those groups never
+    // sit next to each other in a mixed sort anyway.
+    private function group_sort_key($group) {
+	    static $ak_jd_order = array(
+		    'First JD (SE)' => 1, 'Second JD (NW)' => 2, 'Third JD (SC)' => 3, 'Fourth JD (C)' => 4,
+	    );
+	    return $ak_jd_order[$group] ?? $group;
     }
 
     /*
-     * Returns the counties of a state that count toward the target but are not
-     * worked yet: the US_counties.csv list minus the worked counties of the
-     * log. Names are compared case-insensitively, as a QSO's county can be
-     * typed or imported in any case.
+     * The actual USA-CA award targets of a state: US_counties.csv rows deduped
+     * by scoring_group ('name'), each with its underlying raw 'members' -
+     * more than one only for Alaska's judicial districts, so callers can show
+     * which boroughs count toward it. UNSCORED rows excluded. Matches MARAC's
+     * 3,077-county list. Ordered by group_sort_key() (Alaska's JDs in 1st-4th
+     * order; everywhere else, alphabetical - same as before this existed).
+     */
+    function get_scoring_targets($state) {
+	    $groups = array();
+	    foreach ($this->parse_us_counties_csv()[$state] ?? array() as $row) {
+		    if ($row['group'] !== self::UNSCORED) {
+			    $groups[$row['group']][] = $row['name'];
+		    }
+	    }
+	    $targets = array();
+	    foreach ($groups as $name => $members) {
+		    $targets[] = array('name' => $name, 'members' => $members);
+	    }
+	    usort($targets, function ($a, $b) {
+		    return $this->group_sort_key($a['name']) <=> $this->group_sort_key($b['name']);
+	    });
+	    return $targets;
+    }
+
+    /*
+     * Returns the USA-CA targets of a state that are not worked yet: the
+     * state's scoring targets minus the worked ones. A worked raw county
+     * name counts toward whichever scoring_group it belongs to (e.g. any
+     * Alaska borough worked satisfies its judicial district).
      */
     function get_counties_needed($state, $postdata) {
         $needed = array();
         $worked = $this->get_counties($state, 'none', $postdata);
+        $group_map = $this->group_map($state);
 
-        $worked_map = array();
+        $worked_groups = array();
         if (isset($worked)) {
             foreach ($worked as $row) {
-                $worked_map[strtoupper($this->bare_county($row['COL_CNTY']))] = true;
+                $group = $group_map[strtoupper($this->bare_county($row['COL_CNTY']))] ?? null;
+                if ($group !== null && $group !== self::UNSCORED) {
+                    $worked_groups[$group] = true;
+                }
             }
         }
 
-        foreach ($this->get_counties_list($state) as $county) {
-            if (!isset($worked_map[strtoupper($county)])) {
-                $needed[] = $county;
+        foreach ($this->get_scoring_targets($state) as $target) {
+            if (!isset($worked_groups[$target['name']])) {
+                $needed[] = $target;
             }
         }
 
@@ -337,15 +437,43 @@ class Counties extends CI_Model
     }
 
     /*
-     * Returns worked/confirmed/target progress per US state, keyed by the
-     * 2-letter state code. Only counties present in US_counties.csv count;
-     * every such state is included, even if nothing has been worked there.
+     * Logged county names that don't count toward any USA-CA target -
+     * independent cities, DC, Carson City NV (UNSCORED in US_counties.csv,
+     * see US_COUNTIES_SOURCE.md) - surfaced instead of silently dropped from
+     * Worked/Confirmed/Target (wavelog/wavelog#3782).
+     */
+    function get_counties_unmatched($state, $postdata) {
+        $worked = $this->get_counties($state, 'none', $postdata);
+        if (!isset($worked)) {
+            return array();
+        }
+
+        $group_map = $this->group_map($state);
+        $unmatched = array();
+        foreach ($worked as $row) {
+            $bare = $this->bare_county($row['COL_CNTY']);
+            if (($group_map[strtoupper($bare)] ?? null) === self::UNSCORED) {
+                $unmatched[$bare] = true;
+            }
+        }
+
+        $result = array_keys($unmatched);
+        sort($result, SORT_STRING | SORT_FLAG_CASE);
+        return $result;
+    }
+
+    /*
+     * Returns worked/confirmed/target/unmatched progress per US state, keyed
+     * by the 2-letter state code. worked/confirmed/target count distinct
+     * USA-CA scoring groups, not raw county rows (wavelog/wavelog#3782) -
+     * see US_COUNTIES_SOURCE.md. unmatched lists logged UNSCORED county
+     * names (independent cities etc.) instead of silently dropping them.
      */
     function get_counties_progress($postdata) {
         $counties = $this->parse_us_counties_csv();
         $county_counts = $this->get_counties_map($postdata);
 
-        // Keyed by uppercase "STATE|COUNTY", like counties_map()
+        // Keyed by uppercase "STATE|COUNTY" raw name, like counties_map()
         $worked_map = array();
         if (isset($county_counts)) {
             foreach ($county_counts as $row) {
@@ -357,20 +485,42 @@ class Counties extends CI_Model
         }
 
         $progress = array();
-        foreach ($counties as $code => $names) {
-            $worked = 0;
-            $confirmed = 0;
-            foreach ($names as $name) {
-                $entry = $worked_map[strtoupper($code . '|' . $name)] ?? null;
-                if ($entry) {
-                    $worked += ($entry['worked'] > 0) ? 1 : 0;
-                    $confirmed += ($entry['confirmed'] > 0) ? 1 : 0;
+        foreach ($counties as $code => $rows) {
+            $worked_groups = array();
+            $confirmed_groups = array();
+            $target_groups = array();
+            $unmatched = array();
+
+            foreach ($rows as $row) {
+                if ($row['group'] !== self::UNSCORED) {
+                    $target_groups[$row['group']] = true;
+                }
+
+                $entry = $worked_map[strtoupper($code . '|' . $row['name'])] ?? null;
+                if (!$entry) {
+                    continue;
+                }
+
+                if ($row['group'] === self::UNSCORED) {
+                    if ($entry['worked'] > 0) {
+                        $unmatched[] = $row['name'];
+                    }
+                    continue;
+                }
+
+                if ($entry['worked'] > 0) {
+                    $worked_groups[$row['group']] = true;
+                }
+                if ($entry['confirmed'] > 0) {
+                    $confirmed_groups[$row['group']] = true;
                 }
             }
+
             $progress[$code] = array(
-                'worked'    => $worked,
-                'confirmed' => $confirmed,
-                'target'    => count($names),
+                'worked'    => count($worked_groups),
+                'confirmed' => count($confirmed_groups),
+                'target'    => count($target_groups),
+                'unmatched' => $unmatched,
             );
         }
 

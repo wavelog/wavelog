@@ -2903,7 +2903,8 @@ function viewEqsl(picture, callsign) {
             worked: "<?php echo __("Worked counties for state:"); ?>",
             confirmed: "<?php echo __("Confirmed counties for state:"); ?>",
             target: "<?php echo __("Counties in state:"); ?>",
-            needed: "<?php echo __("Needed counties for state:"); ?>"
+            needed: "<?php echo __("Needed counties for state:"); ?>",
+            unmatched: "<?php echo __("Unmatched counties for state:"); ?>"
         };
         $.ajax({
             url: baseURL + 'index.php/awards/counties_list_ajax',

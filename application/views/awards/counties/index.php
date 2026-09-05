@@ -162,7 +162,7 @@
             <div class="border rounded p-3 h-100 text-center">
                 <div class="text-uppercase text-muted small fw-bold"><?= __("Worked Counties"); ?></div>
                 <div class="fs-3 fw-bold lh-1 my-2"><?= $total_worked; ?></div>
-                <div class="text-muted small"><?= sprintf(__("of %s known counties"), $total_target); ?></div>
+                <div class="text-muted small"><?= sprintf(__("of %s counties"), $total_target); ?></div>
             </div>
         </div>
         <div class="col-6 col-md-3">
@@ -198,14 +198,18 @@
             <td><?= __("Remaining"); ?></td>
             <td><?= __("Worked Progress"); ?></td>
             <td><?= __("Confirmed Progress"); ?></td>
+            <td><?= __("Unmatched"); ?></td>
         </tr>
         </thead>
         <tbody>
         <?php
+        $total_unmatched = 0;
         foreach ($counties_progress as $state => $counties) {
             $worked = $counties['worked'];
             $confirmed = $counties['confirmed'];
             $target = $counties['target'];
+            $unmatched = count($counties['unmatched']);
+            $total_unmatched += $unmatched;
             $remaining = max($target - $worked, 0);
             $worked_pct = $target > 0 ? ($worked / $target) * 100 : 0;
             $confirmed_pct = $target > 0 ? ($confirmed / $target) * 100 : 0;
@@ -218,6 +222,9 @@
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'needed\')">' . $remaining . '</a></td>';
             echo '<td>' . $progress_bar($worked_pct, $colorWkd) . '</td>';
             echo '<td>' . $progress_bar($confirmed_pct, $colorCnfm) . '</td>';
+            echo $unmatched > 0
+                ? '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'unmatched\')">' . $unmatched . '</a></td>'
+                : '<td>' . $unmatched . '</td>';
             echo '</tr>';
         }
         ?>
@@ -232,6 +239,7 @@
         echo '<td>' . $total_remaining . '</td>';
         echo '<td>' . $progress_bar($total_worked_pct, $colorWkd) . '</td>';
         echo '<td>' . $progress_bar($total_confirmed_pct, $colorCnfm) . '</td>';
+        echo '<td>' . $total_unmatched . '</td>';
         echo '</tr>';
         ?>
         </tfoot>
