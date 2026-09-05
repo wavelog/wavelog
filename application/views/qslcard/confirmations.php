@@ -19,6 +19,7 @@
 					<option value="eqsl" <?php if (isset($confirmation_type) && $confirmation_type === 'eqsl') { echo "selected"; } elseif (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) { echo "selected"; } ?>>eQSL</option>
 					<option value="qrz" <?php if (isset($confirmation_type) && $confirmation_type === 'qrz') { echo "selected"; } elseif (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) { echo "selected"; } ?>>QRZ.com</option>
 					<option value="clublog" <?php if (isset($confirmation_type) && $confirmation_type === 'clublog') { echo "selected"; } elseif (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) { echo "selected"; } ?>>Clublog</option>
+				<option value="dcl" <?php if (isset($confirmation_type) && $confirmation_type === 'dcl') { echo "selected"; } elseif (isset($user_default_confirmation) && strpos($user_default_confirmation, 'D') !== false) { echo "selected"; } ?>>DCL</option>
 				</select>
 			</div>
 			<button id="confirmationbutton" type="button" name="plot" class="w-auto btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-plot" onclick="getConfirmations(this.form,'false')"><?= __("Show"); ?><div class="ld ld-ring ld-spin"></div></button>

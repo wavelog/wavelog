@@ -76,6 +76,14 @@ class Dcl extends CI_Controller {
 	public function dcl_upload() {
 		// Called as User: Upload for User (if manual sync isn't disabled
 		// Called from cron / without Session: iterate through stations, check for DCL-Key and upload
+
+		$this->load->helper('cronauth');
+		if (!cronauth_allowed(2)) {
+			// return a 403
+			$this->output->set_status_header(403);
+			exit();
+		}
+
 		ini_set('memory_limit', '-1');
 
 		$this->load->model('Dcl_model');
@@ -209,7 +217,7 @@ class Dcl extends CI_Controller {
 		} else {
 			$sync_user_id=null;
 		}
-		// echo $this->dcl_download($sync_user_id);
+		echo $this->dcl_download($sync_user_id);
 	}
 
 	public function delete_key() {
@@ -227,28 +235,241 @@ class Dcl extends CI_Controller {
 	|--------------------------------------------------------------------------
 	|
 	|	Collects users with DCL tokens and runs through them
-	|	downloading matching QSOs.
+	|	downloading matching QSOs (DCL confirmations + DOK).
 	|
+	|	$sync_user_id = null: all users with DCL key (cron)
+	|	$sync_user_id set: only this user
+	|	$since set (Y-m-d): override "confirmed since" date
+	|	$details array passed by reference: filled with per-QSO result data for display
+	|
+	|	Works entirely in memory, no tempfiles.
 	 */
-	function dcl_download($sync_user_id = null) {
+	function dcl_download($sync_user_id = null, $since = null, &$details = null) {
+		if ($this->session->userdata('user_id') != '') {	// Called from browser/session: auth-check and never sync foreign users
+			if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit; }
+			if ($sync_user_id == null) {
+				$sync_user_id = $this->session->userdata('user_id');
+			}
+		}
+
 		$this->load->model('logbook_model');
 		$this->load->model('Stations');
+		$this->load->model('Dcl_model');
 
-		// Needs complete refactoring. Pseudocode:
-		// Loop through all users with token present (find_key at Dcl_model) or only single_users if sync_user_is has been provided
-		// Fetch data for call from DCL (todo: which URL? Where?)
-		// Mark as received
-		// all on the fly (no tempfiles)
+		ini_set('memory_limit', '-1');
+
+		if (!$this->load->is_loaded('adif_parser')) {
+			$this->load->library('adif_parser');
+		}
+
+		if ($sync_user_id != null) {
+			$user_ids = array($sync_user_id);
+		} else {
+			$user_ids = array();
+			foreach ($this->Dcl_model->dcl_user_ids() as $dcl_user) {
+				$user_ids[] = $dcl_user->user_id;
+			}
+		}
+
+		$result = '';
+
+		//The URL that returns stored QSOs as ADIF. Untested endpoint - adjust here if DCL API differs.
+		$url = 'https://api.dcl.darc.de/api/v1/adif-export';
+
+		foreach ($user_ids as $user_id) {
+			$token = $this->Dcl_model->get_token($user_id);
+			if (($token ?? '') == '') { continue; }
+
+			$station_ids = $this->Stations->all_station_ids_of_user($user_id);
+			if (($station_ids ?? '') == '') { continue; }
+
+			if (($since ?? '') != '') {
+				$qsl_since = date('Y-m-d', strtotime($since));
+			} else {
+				$qsl_since = date('Y-m-d', strtotime($this->logbook_model->dcl_last_qsl_date($user_id)));
+			}
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(array('key' => $token, 'cnf_only' => 'T', 'qsl_since' => $qsl_since, 'limit' => 400000)));
+
+			$content = curl_exec($ch);
+			$errno = curl_errno($ch);
+			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+
+			if ($errno) {
+				log_message('error', 'DCL download failed for user_id '.$user_id.': '.curl_strerror($errno).' ('.$errno.')');
+				if ($sync_user_id != null) { $result .= __("DCL download failed").": ".curl_strerror($errno)." (".$errno.")\n"; }
+				continue;
+			}
+			if ($httpcode !== 200) {
+				log_message('error', 'DCL download failed for user_id '.$user_id.': unexpected HTTP status '.$httpcode.($httpcode == 401 ? ' (invalid DCL key?)' : ''));
+				if ($sync_user_id != null) { $result .= __("DCL download failed")." - ".__("Errorcode").": ".$httpcode."\n"; }
+				continue;
+			}
+
+			$json = json_decode($content ?? '', true);
+			if (!is_array($json) || (($json['status'] ?? '') != 'ok')) {
+				log_message('error', 'DCL download failed for user_id '.$user_id.': invalid response');
+				if ($sync_user_id != null) { $result .= __("DCL download failed").": ".__("Invalid response from DCL")."\n"; }
+				continue;
+			}
+
+			if (trim((string)($json['adif'] ?? '')) == '') {
+				if ($sync_user_id != null) { $result .= "DCL: ".__("No QSOs to import").".\n"; }
+				continue;
+			}
+
+			$this->adif_parser->feed($json['adif']);
+			$this->adif_parser->initialize();
+
+			$confirmed = 0;
+			$not_matched = 0;
+
+			while ($record = $this->adif_parser->get_record()) {
+				if (count($record) == 0) { break; }
+
+				// Only confirmed QSOs carry DCL_QSL_RCVD
+				if (($record['dcl_qsl_rcvd'] ?? '') != 'Y') { continue; }
+				if (($record['call'] ?? '') == '') { continue; }
+				if (($record['station_callsign'] ?? '') == '') { continue; }
+
+				$time_on = date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i', strtotime($record['time_on']));
+
+				$qsl_date = (($record['dcl_qslrdate'] ?? '') != '') ? date('Y-m-d H:i', strtotime($record['dcl_qslrdate'])) : date('Y-m-d H:i');
+
+				$status = $this->logbook_model->import_check($time_on, $record['call'], strtolower($record['band'] ?? ''), $record['mode'] ?? '', $record['prop_mode'] ?? null, $record['sat_name'] ?? null, $record['station_callsign'], $station_ids);
+
+				if ($status[0] == "Found") {
+					$this->logbook_model->dcl_update($status[1], $qsl_date, $record['darc_dok'] ?? '', $station_ids);
+					$confirmed++;
+					if ($details !== null) {
+						$details[] = array(
+							'date' => date('Y-m-d', strtotime($record['qso_date'])),
+							'time' => date('H:i', strtotime($record['time_on'])),
+							'call' => $record['call'],
+							'band' => (strtoupper(trim($record['prop_mode'] ?? '')) == 'SAT' && strtoupper(trim($record['sat_name'] ?? '')) != '') ? strtoupper(trim($record['sat_name'])) : strtoupper($record['band'] ?? ''),
+							'mode' => $record['mode'] ?? '',
+							'dok' => strtoupper(trim($record['darc_dok'] ?? '')),
+							'qsl_date' => date('Y-m-d', strtotime($record['dcl_qslrdate'] ?? 'now')),
+							'matched' => true,
+						);
+					}
+				} else {
+					$not_matched++;
+					if ($details !== null) {
+						$details[] = array(
+							'date' => date('Y-m-d', strtotime($record['qso_date'])),
+							'time' => date('H:i', strtotime($record['time_on'])),
+							'call' => $record['call'],
+							'band' => (strtoupper(trim($record['prop_mode'] ?? '')) == 'SAT' && strtoupper(trim($record['sat_name'] ?? '')) != '') ? strtoupper(trim($record['sat_name'])) : strtoupper($record['band'] ?? ''),
+							'mode' => $record['mode'] ?? '',
+							'dok' => strtoupper(trim($record['darc_dok'] ?? '')),
+							'qsl_date' => date('Y-m-d', strtotime($record['dcl_qslrdate'] ?? 'now')),
+							'matched' => false,
+						);
+					}
+				}
+			}
+
+			if ($sync_user_id != null) {
+				$result .= "DCL: ".$confirmed." ".__("QSOs confirmed").", ".$not_matched." ".__("not matched")." (".__("since")." ".$qsl_since.")\n";
+			} else {
+				log_message('debug', 'DCL download for user_id '.$user_id.': '.$confirmed.' confirmed, '.$not_matched.' not matched (since '.$qsl_since.')');
+			}
+		}
+
+		return $result;
 	}
 
-	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
-		$this->load->model('Stations');
-		if(!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
-			exit();
+	public function import() {	// Manual import of DCL confirmations: file upload (DOKs) or fetch from DCL. Cron uses "dcl_sync".
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit(); }
+		$this->load->library('Permissions');
+
+		$data['page_title'] = __("DCL Import");
+		$data['date_format'] = $this->session->userdata('user_date_format') ?? $this->config->item('qso_date_format');
+
+		if ($this->input->post('dclimport') == 'upload') {
+			// File based import of DCL confirmations (DOK update)
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'adi|ADI|adif|ADIF';
+
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload()) {
+				$data['error'] = $this->upload->display_errors();
+
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('dcl_views/import', $data);
+				$this->load->view('interface_assets/footer');
+			} else {
+				$upload_data = $this->upload->data();
+
+				ini_set('memory_limit', '-1');
+				set_time_limit(0);
+
+				$this->load->model('logbook_model');
+
+				if (!$this->load->is_loaded('adif_parser')) {
+					$this->load->library('adif_parser');
+				}
+
+				$filepath = $upload_data['full_path'];
+				$error_count = array(0, 0, 0);
+				$custom_errors = "";
+
+				try {
+					$this->adif_parser->load_from_file($filepath);
+					$this->adif_parser->initialize();
+
+					while ($record = $this->adif_parser->get_record()) {
+						if (count($record) == 0) {
+							break;
+						};
+
+						$dok_result = $this->logbook_model->update_dok($record, xss_clean($this->input->post('ignoreAmbiguous')), xss_clean($this->input->post('onlyConfirmed')), xss_clean($this->input->post('overwriteDok')));
+						if (!empty($dok_result)) {
+							switch ($dok_result[0]) {
+							case 0:
+								$error_count[0]++;
+								break;
+							case 1:
+								$custom_errors .= $dok_result[1];
+								$error_count[1]++;
+								break;
+							case 2:
+								$custom_errors .= $dok_result[1];
+								$error_count[2]++;
+							}
+						}
+					}
+				} finally {
+					@unlink($filepath);	// Never leave an orphaned upload behind
+				}
+
+				$data['dcl_error_count'] = $error_count;
+				$data['dcl_errors'] = $custom_errors;
+				$data['page_title'] = __("DCL Data Imported");
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('dcl_views/dcl_success');
+				$this->load->view('interface_assets/footer');
+			}
+		} else {
+			if ($this->input->post('dclimport') == 'fetch' && !($this->config->item('disable_manual_dcl') ?? false)) {
+				$data['dcl_details'] = [];
+				$data['dcl_result'] = $this->dcl_download($this->session->userdata('user_id'), xss_clean($this->input->post('from')), $data['dcl_details']);
+				usort($data['dcl_details'], fn($a, $b) => strcmp($b['qsl_date'], $a['qsl_date']));
+			}
+
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('dcl_views/import', $data);
+			$this->load->view('interface_assets/footer');
 		}
-		// Refactoring needed. This function provides manual download (via uploaded file into Wavelog) of DCL-Confirmations as well as triggering dcl_download
-	} 
+	}
 
 } // end class

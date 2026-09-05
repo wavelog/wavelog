@@ -4785,6 +4785,64 @@ class Logbook_model extends CI_Model {
 		return '1900-01-01 00:00:00.000';
 	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| Function: dcl_update
+	|--------------------------------------------------------------------------
+	|
+	|	Updates a single QSO with DCL confirmation data (DCL_QSLRDATE, DCL_QSL_RCVD,
+	|	DCL_QSL_SENT) and the DOK of the counterparty.
+	|
+	|	$darc_dok is always written when non-empty (overwrite policy).
+	|
+	*/
+	function dcl_update($qsoid, $qsl_date, $darc_dok, $station_ids) {
+
+		$data = array(
+			'COL_DCL_QSLRDATE' => $qsl_date,
+			'COL_DCL_QSL_RCVD' => 'Y',
+			'COL_DCL_QSL_SENT' => 'Y',
+		);
+
+		$dok = strtoupper(trim($darc_dok ?? ''));
+		if ($dok != '') {
+			$data['COL_DARC_DOK'] = $dok;
+		}
+
+		$this->db->where('COL_PRIMARY_KEY', $qsoid);
+		$this->db->where_in('station_id', array_map('intval', array_filter(explode(',', $station_ids))));
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Function: dcl_last_qsl_date
+	|--------------------------------------------------------------------------
+	|
+	|	Returns the date of the last DCL confirmation of a user, used to
+	|	download only newer confirmations from DCL.
+	|
+	*/
+	function dcl_last_qsl_date($user_id) {
+		$sql = "SELECT MAX(COALESCE(COL_DCL_QSLRDATE, '1900-01-01 00:00:00')) MAXDATE, COUNT(1) as QSOS
+		    FROM " . $this->config->item('table_name') . " INNER JOIN station_profile ON (" . $this->config->item('table_name') . ".station_id = station_profile.station_id)
+		    WHERE COL_DCL_QSL_RCVD='Y' and station_profile.user_id=?";
+		$query = $this->db->query($sql, array($user_id));
+		$row = $query->row();
+
+		if ($row->QSOS == 0) {
+			return '2100-01-01 00:00:00.000';	// No QSO in Log, set since to future, otherwise this user blocks download
+		}
+		if ($row->MAXDATE != null) {
+			return $row->MAXDATE;
+		}
+
+		return '1900-01-01 00:00:00.000';
+	}
+
 	/**
 	 * Get grid value from one ADIF record
 	 * According to ADIF standard, my_gridsquare, my_gridsquare_ext and my_vucc_grids are used.
