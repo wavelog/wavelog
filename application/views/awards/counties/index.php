@@ -222,7 +222,11 @@
             echo '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'needed\')">' . $remaining . '</a></td>';
             echo '<td>' . $progress_bar($worked_pct, $colorWkd) . '</td>';
             echo '<td>' . $progress_bar($confirmed_pct, $colorCnfm) . '</td>';
-            echo $unmatched > 0
+            // Linked whenever the state has any logged UNSCORED entity, even
+            // if it's since been credited (count dropped to 0) - otherwise
+            // there'd be no way back into the dialog to review or change a
+            // credit already made (wavelog/wavelog#3798).
+            echo !empty($counties['has_unscored'])
                 ? '<td><a href="javascript:displayStateCountiesList(\'' . $state . '\',\'unmatched\')">' . $unmatched . '</a></td>'
                 : '<td>' . $unmatched . '</td>';
             echo '</tr>';

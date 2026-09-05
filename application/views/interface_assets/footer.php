@@ -2945,6 +2945,48 @@ function viewEqsl(picture, callsign) {
                         if (isDarkModeTheme()) {
                             $(".buttons-csv").css("color", "white");
                         }
+
+                        if (type === 'unmatched') {
+                            // Selecting an option only stages the change - Save commits it.
+                            // Keeps the "which adjoining county?" pick reviewable/changeable
+                            // before anything is persisted (wavelog/wavelog#3798).
+                            $('.county-credit-select').on('change', function() {
+                                var $select = $(this);
+                                var $save = $select.closest('div').find('.county-credit-save');
+                                $save.prop('disabled', $select.val() === ($select.data('assigned') || ''));
+                            });
+
+                            $('.county-credit-save').on('click', function() {
+                                var $save = $(this);
+                                var $select = $save.closest('div').find('.county-credit-select');
+                                var county = $select.data('county');
+                                var target = $select.val();
+                                $select.prop('disabled', true);
+                                $save.prop('disabled', true);
+                                $.ajax({
+                                    url: baseURL + 'index.php/awards/counties_assign_ajax',
+                                    type: 'post',
+                                    data: { State: state, County: county, Target: target },
+                                    success: function(resp) {
+                                        if (resp && resp.success) {
+                                            // Worked/Confirmed/Unmatched counts on the main
+                                            // table changed - resubmit the filter form to
+                                            // refresh everything with the current filters.
+                                            $('form.form')[0].submit();
+                                        } else {
+                                            $select.prop('disabled', false);
+                                            $save.prop('disabled', false);
+                                            alert("<?php echo __("Could not save that assignment."); ?>");
+                                        }
+                                    },
+                                    error: function() {
+                                        $select.prop('disabled', false);
+                                        $save.prop('disabled', false);
+                                        alert("<?php echo __("Could not save that assignment."); ?>");
+                                    }
+                                });
+                            });
+                        }
                     },
                     buttons: [{
                         label: lang_admin_close,

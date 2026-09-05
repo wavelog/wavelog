@@ -109,6 +109,47 @@ award's issuer):
      exact name) - so they keep `scoring_group` = themselves, unlike every
      other VA row ending in "City".
 
+## `US_counties_adjoining.json` (wavelog/wavelog#3798)
+
+Rule C.5 lets the operator credit an `UNSCORED` independent city/DC/Carson City
+QSO to any *adjoining* county, but leaves the choice up to the operator - see
+`Counties.php`'s `assign_credit()`/`get_county_credits()` and the "Unmatched"
+dialog's assignment dropdown. `US_counties_adjoining.json` supplies that
+dropdown's candidate list: `"<state>|<bare name from column 2>"` ->
+`["<state>|<scoring_group name>", ...]` for every real, adjoining county. Each
+entry carries its own state because DC's neighbors span two different states
+(Maryland and Virginia) - a credit has to be added to the correct state's
+progress, not the state of the UNSCORED entity being credited.
+
+Adjoining counties were computed geometrically, not guessed or hand-curated,
+using the same polygon data as the counties map
+(`assets/json/geojson/counties_291.geojson`): each `UNSCORED` entity's polygon
+was buffered by ~50m (to bridge small gaps introduced by the boundary data's
+500k-scale vertex simplification between what should be touching edges) and
+tested for intersection against every non-`UNSCORED` county polygon in the
+same state. This directly matches rule C.5's "adjoining counties" language and
+is independently verifiable/reproducible, unlike a hand-picked list.
+
+Two entities have no usable polygon in that dataset and were resolved from
+undisputed public geography instead:
+
+- **District of Columbia** isn't present in `counties_291.geojson` at all (the
+  Census cartographic county layer used to build it omits DC as a
+  county-equivalent feature). Its real-world neighbors - Montgomery County and
+  Prince George's County, MD, and Arlington County and Fairfax County, VA -
+  are well-established and not in dispute.
+- **Bedford City, VA** merged into Bedford County in 2013 and has no separate
+  boundary in this (2022-vintage) data any more; it now lies entirely within
+  Bedford County, so `Bedford` is its only adjoining entry.
+
+Four Virginia independent cities - **Chesapeake City, Norfolk City,
+Portsmouth City, and Virginia Beach City** - geometrically border only *other*
+independent cities (the Hampton Roads/Tidewater cluster), not any actual
+county. Their entries in the file are empty arrays: under a literal reading of
+rule C.5 there is no adjoining county to credit, so the assignment dropdown
+has nothing to offer for these four and QSOs logged against them stay
+permanently unmatched.
+
 ## Verification
 
 Every row's `scoring_group` was computed programmatically against the parsed

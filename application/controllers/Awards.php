@@ -1428,18 +1428,43 @@ class Awards extends CI_Controller {
 
         if ($type == 'target') {
             $data['counties_array'] = $this->counties->get_scoring_targets($state);
+            $data['type'] = $type;
             $this->load->view('awards/counties/counties_simple_ajax', $data);
         } else if ($type == 'needed') {
             $data['counties_array'] = $this->counties->get_counties_needed($state, $this->counties_postdata());
+            $data['type'] = $type;
             $this->load->view('awards/counties/counties_simple_ajax', $data);
         } else if ($type == 'unmatched') {
             $data['counties_array'] = $this->counties->get_counties_unmatched($state, $this->counties_postdata());
+            $data['type'] = $type;
+            $data['state'] = $state;
             $this->load->view('awards/counties/counties_simple_ajax', $data);
         } else {
             $data['counties_array'] = $this->counties->counties_details($state, $type, $this->counties_postdata());
             $data['type'] = $type;
             $this->load->view('awards/counties/details_ajax', $data);
         }
+    }
+
+    /*
+     * Saves (or clears, if Target is empty) this user's chosen adjoining-
+     * county credit for an UNSCORED value, per rule C.5 (wavelog/wavelog#3798).
+     * Server-side validates Target against Counties::get_adjoining_counties()
+     * so an arbitrary/non-adjoining county can't be saved.
+     */
+    public function counties_assign_ajax() {
+        $this->load->model('counties');
+
+        $state  = str_replace('"', "", $this->input->post("State", true));
+        $county = str_replace('"', "", $this->input->post("County", true));
+        $target = str_replace('"', "", $this->input->post("Target", true));
+
+        $success = ($target === '')
+            ? $this->counties->clear_county_credit($state, $county)
+            : $this->counties->assign_county_credit($state, $county, $target);
+
+        header('Content-Type: application/json');
+        echo json_encode(array('success' => (bool) $success));
     }
 
     public function counties_details_ajax() {
