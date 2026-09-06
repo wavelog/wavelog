@@ -1270,12 +1270,6 @@ class QsoFormComponent {
 		console.debug(`QSO Form: QSO ${qso.id} state changed from ${oldState} to ${newState}`);
 	}
 
-	_escapeHtml(value) {
-		const div = document.createElement('div');
-		div.textContent = value ?? '';
-		return div.innerHTML;
-	}
-
 	getStatusIndicator(state, message = '') {
 		if (state === 'pending') {
 			return `<span title="${lang_status_new}" style="color: orange;">&#9679;</span>`;
@@ -1283,7 +1277,7 @@ class QsoFormComponent {
 			return `<span title="${lang_status_synced}" style="color: green;">&#9679;</span>`;
 		} else if (state === 'error') {
 			const title = message ? `${lang_status_error}: ${message}` : lang_status_error;
-			return `<span title="${this._escapeHtml(title)}" style="color: red;">&#9679;</span>`;
+			return `<span title="${escapeHtml(title)}" style="color: red;">&#9679;</span>`;
 		} else {
 			return `<span title="${lang_status_unknown}" style="color: gray;">&#9679;</span>`;
 		}
@@ -1558,7 +1552,7 @@ class QsoFormComponent {
 
 			this.windowmanager.showToast(
 				lang_error,
-				this._escapeHtml(`${lang_qso_save_failed} ${qso.callsign}: ${failed.error}`),
+				escapeHtml(`${lang_qso_save_failed} ${qso.callsign}: ${failed.error}`),
 				'bg-danger text-white',
 				8000
 			);
