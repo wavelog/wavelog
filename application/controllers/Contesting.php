@@ -1177,6 +1177,7 @@ class Contesting extends CI_Controller {
 				'commands_processed' => 0,
 				'data' => [
 					'saved_qsos' => [],
+					'failed_qsos' => [],
 					'needs_resync' => false,
 					'all_qsos' => null,
 					'changed_qsos' => []
@@ -1191,6 +1192,13 @@ class Contesting extends CI_Controller {
 						$response['commands_processed'] += $this->_processCommand($command, $session_info);
 					} catch (Exception $e) {
 						$response['errors'][] = $e->getMessage();
+
+						if (($command['type'] ?? '') === 'save_qso' && !empty($command['data']['tmp_id'])) {
+							$response['data']['failed_qsos'][] = [
+								'tmp_id' => $command['data']['tmp_id'],
+								'error' => $e->getMessage()
+							];
+						}
 					}
 				}
 			}
@@ -1241,6 +1249,26 @@ class Contesting extends CI_Controller {
 				$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
 				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
+				$operator = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
+
+				$existing = $this->contesting_model->find_session_qso(
+					$session_info['contest_session_id'],
+					$session_info['station_id'],
+					$command['data']['callsign'],
+					trim(($command['data']['date'] ?? '') . ' ' . ($command['data']['time'] ?? '')),
+					$operator
+				);
+
+				if ($existing) {
+					$this->new_qsos[] = [
+						'tmp_id' => $command['data']['tmp_id'],
+						'server_id' => (int) $existing['qso_id'],
+						'last_modified_ms' => (int) $existing['last_modified_ms']
+					];
+
+					return 1;
+				}
+
 				// Prepare QSO data for saving
 				$qso_data = [
 					'manual' => 0, // work always as non-manual entry; TODO: Implement something like POST CONTEST LOGGING
@@ -1264,7 +1292,7 @@ class Contesting extends CI_Controller {
 					'continent' => $command['data']['continent'] ?? NULL,
 					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,
 					'cqz' => $command['data']['cqz'] ?? NULL,
-					'operator_callsign' => strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign'))),
+					'operator_callsign' => $operator,
 					'station_profile' => $session_info['station_id'],
 					'contestname' => $session_info['contest_adifname'],
 					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange',
