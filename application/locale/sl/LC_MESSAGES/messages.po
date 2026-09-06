@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-06 09:28+0000\n"
+"POT-Creation-Date: 2026-09-06 15:25+0000\n"
 "PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -674,7 +674,7 @@ msgid " and "
 msgstr " in "
 
 #: application/controllers/Awards.php:696
-#: application/controllers/Logbook.php:1494
+#: application/controllers/Logbook.php:1512
 #: application/views/activationplanner/index.php:97
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:57
@@ -705,7 +705,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:794
-#: application/controllers/Logbook.php:1495
+#: application/controllers/Logbook.php:1513
 #: application/views/activationplanner/index.php:95
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:11
@@ -728,7 +728,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:894
-#: application/controllers/Logbook.php:1496
+#: application/controllers/Logbook.php:1514
 #: application/views/activationplanner/index.php:96
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:54
@@ -1093,7 +1093,7 @@ msgid "No user has configured Clublog."
 msgstr "Noben od uporabnikov nima konfiguriranega Clublog-a."
 
 #: application/controllers/Clublog.php:93
-#: application/controllers/Logbook.php:834
+#: application/controllers/Logbook.php:852
 #: application/views/awards/counties/index.php:103
 #: application/views/awards/cq/index.php:134
 #: application/views/awards/dok/index.php:111
@@ -1296,7 +1296,7 @@ msgid "Count QSOs by..."
 msgstr ""
 
 #: application/controllers/Countqsoby.php:74
-#: application/controllers/Logbook.php:1498
+#: application/controllers/Logbook.php:1516
 #: application/views/activated_gridmap/index.php:107
 #: application/views/activationplanner/index.php:23
 #: application/views/activationplanner/index.php:71
@@ -2144,8 +2144,8 @@ msgstr "Dnevniki postaje"
 msgid "Logbook"
 msgstr "Dnevnik"
 
-#: application/controllers/Logbook.php:822
-#: application/controllers/Logbook.php:837
+#: application/controllers/Logbook.php:840
+#: application/controllers/Logbook.php:855
 #: application/views/activated_gridmap/index.php:61
 #: application/views/awards/amsat_rover/index.php:52
 #: application/views/awards/counties/index.php:87
@@ -2183,7 +2183,7 @@ msgstr "Dnevnik"
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:825
+#: application/controllers/Logbook.php:843
 #: application/models/Achievements_model.php:323
 #: application/views/activated_gridmap/index.php:69
 #: application/views/awards/amsat_rover/index.php:47
@@ -2236,7 +2236,7 @@ msgstr "QSL"
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:828
+#: application/controllers/Logbook.php:846
 #: application/views/activated_gridmap/index.php:77
 #: application/views/awards/counties/index.php:95
 #: application/views/awards/cq/index.php:126
@@ -2279,11 +2279,11 @@ msgstr "LoTW"
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:1031
+#: application/controllers/Logbook.php:1049
 msgid "All callbook lookups failed or provided no results."
 msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 
-#: application/controllers/Logbook.php:1489
+#: application/controllers/Logbook.php:1507
 #: application/controllers/Radio.php:56
 #: application/views/accumulate/index.php:37
 #: application/views/activated_gridmap/index.php:44
@@ -2394,7 +2394,7 @@ msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 msgid "Mode"
 msgstr "Vrsta dela"
 
-#: application/controllers/Logbook.php:1490
+#: application/controllers/Logbook.php:1508
 #: application/views/awards/73on73/index.php:43
 #: application/views/awards/pota/index.php:273
 #: application/views/awards/sota/index.php:183
@@ -2421,7 +2421,7 @@ msgstr "Vrsta dela"
 msgid "RST (S)"
 msgstr "RST (S)"
 
-#: application/controllers/Logbook.php:1491
+#: application/controllers/Logbook.php:1509
 #: application/views/awards/73on73/index.php:42
 #: application/views/awards/pota/index.php:274
 #: application/views/awards/sota/index.php:184
@@ -2449,7 +2449,7 @@ msgstr "RST (S)"
 msgid "RST (R)"
 msgstr "RST (R)"
 
-#: application/controllers/Logbook.php:1492
+#: application/controllers/Logbook.php:1510
 #: application/views/contesting/manager/export_cbr.php:282
 #: application/views/dashboard/index.php:8
 #: application/views/qslcard/searchresult.php:15
@@ -2470,7 +2470,7 @@ msgstr "RST (R)"
 msgid "Country"
 msgstr "Država"
 
-#: application/controllers/Logbook.php:1493
+#: application/controllers/Logbook.php:1511
 #: application/views/activationplanner/index.php:98
 #: application/views/awards/iota/index.php:218
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:52
@@ -2503,7 +2503,7 @@ msgstr "Država"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1497
+#: application/controllers/Logbook.php:1515
 #: application/views/awards/counties/details_ajax.php:8
 #: application/views/awards/counties/index.php:194
 #: application/views/awards/rac/index.php:170
@@ -2534,7 +2534,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "Država (state)"
 
-#: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1517
 #: application/views/activated_gridmap/index.php:108
 #: application/views/activationplanner/index.php:29
 #: application/views/awards/ffma/index.php:40
@@ -2566,7 +2566,7 @@ msgstr "Država (state)"
 msgid "Distance"
 msgstr "Razdalja"
 
-#: application/controllers/Logbook.php:1500
+#: application/controllers/Logbook.php:1518
 #: application/views/accumulate/index.php:27
 #: application/views/activated_gridmap/index.php:15
 #: application/views/activators/index.php:17
@@ -2679,7 +2679,7 @@ msgstr "Razdalja"
 msgid "Band"
 msgstr "Band"
 
-#: application/controllers/Logbook.php:1501
+#: application/controllers/Logbook.php:1519
 #: application/controllers/Radio.php:55 application/views/bandmap/list.php:172
 #: application/views/bandmap/list.php:562
 #: application/views/bandmap/list.php:602
@@ -2709,7 +2709,7 @@ msgstr "Band"
 msgid "Frequency"
 msgstr "Frekvenca"
 
-#: application/controllers/Logbook.php:1502
+#: application/controllers/Logbook.php:1520
 #: application/controllers/Radio.php:53
 #: application/views/contesting/logger/components/qso-form.php:158
 #: application/views/contesting/manager/export_cbr.php:61
@@ -2735,7 +2735,7 @@ msgstr "Frekvenca"
 msgid "Operator"
 msgstr "Operator"
 
-#: application/controllers/Logbook.php:1523
+#: application/controllers/Logbook.php:1541
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:467
 #: application/views/awards/wae/index.php:239

@@ -731,6 +731,7 @@ msgstr " 和 "
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
 #: application/controllers/Logbook.php:1494
+#: application/controllers/Logbook.php:1512
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -755,6 +756,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/controllers/Logbook.php:1495
+#: application/controllers/Logbook.php:1513
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -781,6 +783,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/controllers/Logbook.php:1496
+#: application/controllers/Logbook.php:1514
 msgid "POTA"
 msgstr "POTA"
 
@@ -1149,6 +1152,7 @@ msgstr "未找到配置 Clublog 的用户。"
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:511
 #: application/views/view_log/qso.php:516
+#: application/controllers/Logbook.php:852
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1381,6 +1385,7 @@ msgstr "按…统计 QSO"
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
 #: application/controllers/Logbook.php:1498
+#: application/controllers/Logbook.php:1516
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -2188,6 +2193,8 @@ msgstr "日志簿"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:62 application/views/user/edit.php:753
 #: application/views/user/edit.php:1021 application/views/visitor/mini.php:187
+#: application/controllers/Logbook.php:840
+#: application/controllers/Logbook.php:855
 msgid "QSL"
 msgstr "QSL"
 
@@ -2241,6 +2248,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:482
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/controllers/Logbook.php:843
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2284,10 +2292,12 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:299
 #: application/views/timeline/index.php:70 application/views/user/edit.php:755
 #: application/views/user/edit.php:1039 application/views/user/edit.php:1113
+#: application/controllers/Logbook.php:846
 msgid "eQSL"
 msgstr "eQSL"
 
 #: application/controllers/Logbook.php:1031
+#: application/controllers/Logbook.php:1049
 msgid "All callbook lookups failed or provided no results."
 msgstr "所有呼号簿的查询均失败或没有结果。"
 
@@ -2401,6 +2411,7 @@ msgstr "所有呼号簿的查询均失败或没有结果。"
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/controllers/Logbook.php:1489
 #: application/views/contesting/logger/components/qso-form.php:151
+#: application/controllers/Logbook.php:1507
 msgid "Mode"
 msgstr "模式"
 
@@ -2429,6 +2440,7 @@ msgstr "模式"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
 #: application/controllers/Logbook.php:1490
+#: application/controllers/Logbook.php:1508
 msgid "RST (S)"
 msgstr "我收对方"
 
@@ -2458,6 +2470,7 @@ msgstr "我收对方"
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
 #: application/controllers/Logbook.php:1491
+#: application/controllers/Logbook.php:1509
 msgid "RST (R)"
 msgstr "对方收我"
 
@@ -2480,6 +2493,7 @@ msgstr "对方收我"
 #: application/views/view_log/qso.php:635
 #: application/views/visitor/index.php:15
 #: application/controllers/Logbook.php:1492
+#: application/controllers/Logbook.php:1510
 msgid "Country"
 msgstr "DXCC 实体"
 
@@ -2514,6 +2528,7 @@ msgstr "DXCC 实体"
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
 #: application/controllers/Logbook.php:1493
+#: application/controllers/Logbook.php:1511
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2546,6 +2561,7 @@ msgstr "IOTA"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
 #: application/controllers/Logbook.php:1497
+#: application/controllers/Logbook.php:1515
 msgid "State"
 msgstr "州"
 
@@ -2579,6 +2595,7 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
 #: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1517
 msgid "Distance"
 msgstr "距离"
 
@@ -2694,6 +2711,7 @@ msgstr "距离"
 #: application/views/zonechecker/result.php:69
 #: application/controllers/Logbook.php:1500
 #: application/views/contesting/logger/components/qso-form.php:150
+#: application/controllers/Logbook.php:1518
 msgid "Band"
 msgstr "频段"
 
@@ -2726,6 +2744,7 @@ msgstr "频段"
 #: application/views/visitor/index.php:36
 #: application/controllers/Logbook.php:1501
 #: application/views/contesting/logger/components/qso-form.php:149
+#: application/controllers/Logbook.php:1519
 msgid "Frequency"
 msgstr "频率"
 
@@ -2754,6 +2773,7 @@ msgstr "频率"
 #: application/views/visitor/index.php:39
 #: application/controllers/Logbook.php:1502
 #: application/views/contesting/logger/components/qso-form.php:158
+#: application/controllers/Logbook.php:1520
 msgid "Operator"
 msgstr "操作员"
 
@@ -2784,6 +2804,7 @@ msgstr "操作员"
 #: application/views/view_log/qso.php:281
 #: application/views/view_log/qso.php:636
 #: application/controllers/Logbook.php:1523
+#: application/controllers/Logbook.php:1541
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 

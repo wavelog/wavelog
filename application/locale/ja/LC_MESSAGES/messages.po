@@ -709,6 +709,7 @@ msgstr " 及び "
 #: application/views/visitor/index.php:21
 #: application/controllers/Logbook.php:1491
 #: application/controllers/Logbook.php:1494
+#: application/controllers/Logbook.php:1512
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -734,6 +735,7 @@ msgstr "SOTA"
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/controllers/Logbook.php:1492
 #: application/controllers/Logbook.php:1495
+#: application/controllers/Logbook.php:1513
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -761,6 +763,7 @@ msgstr "WWFF"
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/controllers/Logbook.php:1493
 #: application/controllers/Logbook.php:1496
+#: application/controllers/Logbook.php:1514
 msgid "POTA"
 msgstr "POTA"
 
@@ -1132,6 +1135,7 @@ msgstr "Clublog を設定しているユーザーはいません。"
 #: application/views/view_log/qso.php:511
 #: application/views/view_log/qso.php:516
 #: application/controllers/Logbook.php:834
+#: application/controllers/Logbook.php:852
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1371,6 +1375,7 @@ msgstr "交信数をカウントする..."
 #: application/views/zonechecker/result.php:68
 #: application/controllers/Logbook.php:1495
 #: application/controllers/Logbook.php:1498
+#: application/controllers/Logbook.php:1516
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -2196,6 +2201,8 @@ msgstr "ログブック"
 #: application/views/user/edit.php:1021 application/views/visitor/mini.php:187
 #: application/controllers/Logbook.php:822
 #: application/controllers/Logbook.php:837
+#: application/controllers/Logbook.php:840
+#: application/controllers/Logbook.php:855
 msgid "QSL"
 msgstr "QSL"
 
@@ -2250,6 +2257,7 @@ msgstr "QSL"
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
 #: application/controllers/Logbook.php:825
+#: application/controllers/Logbook.php:843
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2294,11 +2302,13 @@ msgstr "LoTW"
 #: application/views/timeline/index.php:70 application/views/user/edit.php:755
 #: application/views/user/edit.php:1039 application/views/user/edit.php:1113
 #: application/controllers/Logbook.php:828
+#: application/controllers/Logbook.php:846
 msgid "eQSL"
 msgstr "eQSL"
 
 #: application/controllers/Logbook.php:1027
 #: application/controllers/Logbook.php:1031
+#: application/controllers/Logbook.php:1049
 msgid "All callbook lookups failed or provided no results."
 msgstr "すべてのコールブック検索が失敗したか、結果が提供されませんでした。"
 
@@ -2413,6 +2423,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/controllers/Logbook.php:1486
 #: application/controllers/Logbook.php:1489
 #: application/views/contesting/logger/components/qso-form.php:151
+#: application/controllers/Logbook.php:1507
 msgid "Mode"
 msgstr "モード"
 
@@ -2442,6 +2453,7 @@ msgstr "モード"
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
 #: application/controllers/Logbook.php:1487
 #: application/controllers/Logbook.php:1490
+#: application/controllers/Logbook.php:1508
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -2472,6 +2484,7 @@ msgstr "RST (S)"
 #: application/views/visitor/index.php:12
 #: application/controllers/Logbook.php:1488
 #: application/controllers/Logbook.php:1491
+#: application/controllers/Logbook.php:1509
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -2495,6 +2508,7 @@ msgstr "RST (R)"
 #: application/views/visitor/index.php:15
 #: application/controllers/Logbook.php:1489
 #: application/controllers/Logbook.php:1492
+#: application/controllers/Logbook.php:1510
 msgid "Country"
 msgstr "国"
 
@@ -2530,6 +2544,7 @@ msgstr "国"
 #: application/views/visitor/index.php:18
 #: application/controllers/Logbook.php:1490
 #: application/controllers/Logbook.php:1493
+#: application/controllers/Logbook.php:1511
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2563,6 +2578,7 @@ msgstr "IOTA"
 #: application/views/visitor/index.php:24
 #: application/controllers/Logbook.php:1494
 #: application/controllers/Logbook.php:1497
+#: application/controllers/Logbook.php:1515
 msgid "State"
 msgstr "州"
 
@@ -2597,6 +2613,7 @@ msgstr "州"
 #: application/views/visitor/index.php:30
 #: application/controllers/Logbook.php:1496
 #: application/controllers/Logbook.php:1499
+#: application/controllers/Logbook.php:1517
 msgid "Distance"
 msgstr "距離"
 
@@ -2713,6 +2730,7 @@ msgstr "距離"
 #: application/controllers/Logbook.php:1497
 #: application/controllers/Logbook.php:1500
 #: application/views/contesting/logger/components/qso-form.php:150
+#: application/controllers/Logbook.php:1518
 msgid "Band"
 msgstr "バンド"
 
@@ -2746,6 +2764,7 @@ msgstr "バンド"
 #: application/controllers/Logbook.php:1498
 #: application/controllers/Logbook.php:1501
 #: application/views/contesting/logger/components/qso-form.php:149
+#: application/controllers/Logbook.php:1519
 msgid "Frequency"
 msgstr "周波数"
 
@@ -2775,6 +2794,7 @@ msgstr "周波数"
 #: application/controllers/Logbook.php:1499
 #: application/controllers/Logbook.php:1502
 #: application/views/contesting/logger/components/qso-form.php:158
+#: application/controllers/Logbook.php:1520
 msgid "Operator"
 msgstr "オペレーター"
 
@@ -2806,6 +2826,7 @@ msgstr "オペレーター"
 #: application/views/view_log/qso.php:636
 #: application/controllers/Logbook.php:1520
 #: application/controllers/Logbook.php:1523
+#: application/controllers/Logbook.php:1541
 msgid "Deleted DXCC"
 msgstr "DXCCを削除しました"
 
