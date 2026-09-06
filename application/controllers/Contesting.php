@@ -1297,7 +1297,7 @@ class Contesting extends CI_Controller {
 						log_message('debug', 'published sync_required for contest session ' . $session_info['contest_session_id']);
 					}
 				} else {
-					throw new Exception('Failed to save QSO');;
+					throw new Exception('Failed to save QSO');
 				}
 
 				// Store mapping of tmp_id to real ID for client response
