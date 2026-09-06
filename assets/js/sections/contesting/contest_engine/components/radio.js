@@ -330,17 +330,6 @@ class RadioComponent {
 	}
 
 	/**
-	 * Escape HTML for safe rendering
-	 * @param {string} text
-	 * @returns {string}
-	 */
-	escapeHtml(text) {
-		const div = document.createElement('div');
-		div.textContent = text;
-		return div.innerHTML;
-	}
-
-	/**
 	 * Get current frequency in Hz
 	 * @returns {number|null}
 	 */
