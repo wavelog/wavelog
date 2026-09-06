@@ -2405,6 +2405,7 @@ msgstr "Tutte le ricerche del nominativo non hanno prodotto alcun risultato."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/contesting/logger/components/qso-form.php:151
 msgid "Mode"
 msgstr "Modo"
 
@@ -2690,6 +2691,7 @@ msgstr "Distanza"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/contesting/logger/components/qso-form.php:150
 msgid "Band"
 msgstr "Banda"
 
@@ -2720,6 +2722,7 @@ msgstr "Banda"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/views/contesting/logger/components/qso-form.php:149
 msgid "Frequency"
 msgstr "Frequenza"
 
@@ -2746,6 +2749,7 @@ msgstr "Frequenza"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:642
 #: application/views/visitor/index.php:39
+#: application/views/contesting/logger/components/qso-form.php:158
 msgid "Operator"
 msgstr "Operatore"
 
@@ -2995,6 +2999,7 @@ msgstr ""
 #: application/models/Logbook_model.php:1461
 #: application/views/contesting/logger/components/qso-form.php:43
 #: application/views/qso/index.php:40
+#: application/views/contesting/logger/components/qso-form.php:44
 msgid "Invalid callsign"
 msgstr "callsign non valido"
 
@@ -3277,8 +3282,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Per favore, confronta il tuo attuale config.php con l'ultimo config.sample."
-"php e aggiornalo di conseguenza."
+"Per favore, confronta il tuo attuale config.php con l'ultimo "
+"config.sample.php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:574
@@ -3423,6 +3428,7 @@ msgstr "ultimo aggiornamento"
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/contesting/logger/components/qso-form.php:39
 msgid "Edit"
 msgstr "Modifica"
 
@@ -3461,6 +3467,7 @@ msgstr "Modifica"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:719
 #: application/views/view_log/qso.php:727
+#: application/views/contesting/logger/components/qso-form.php:40
 msgid "Delete"
 msgstr "Elimina"
 
@@ -6112,6 +6119,8 @@ msgstr "Non ho trovato nulla!"
 #: application/views/visitor/mini.php:183
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
+#: application/views/contesting/logger/components/qso-form.php:67
+#: application/views/contesting/logger/components/qso-form.php:148
 msgid "Callsign"
 msgstr "Nominativo"
 
@@ -6226,6 +6235,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/contesting/logger/components/qso-form.php:146
 msgid "Date"
 msgstr "Data"
 
@@ -6262,6 +6272,7 @@ msgstr "Data"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/contesting/logger/components/qso-form.php:147
 msgid "Time"
 msgstr "Orario"
 
@@ -7064,6 +7075,7 @@ msgstr ""
 #: application/views/satellite/pass.php:187
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/contesting/logger/components/qso-form.php:41
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -7103,6 +7115,7 @@ msgstr "Nome semplice per descrivere per cosa usi questa API."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:188
 #: application/views/simplefle/index.php:22
+#: application/views/contesting/logger/components/qso-form.php:38
 msgid "Save"
 msgstr "Salva"
 
@@ -7599,6 +7612,7 @@ msgstr "Locatori attivati"
 #: application/views/contesting/logger/components/qso-form.php:154
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
+#: application/views/contesting/logger/components/qso-form.php:155
 msgid "Grid"
 msgstr "Locatore"
 
@@ -11396,11 +11410,13 @@ msgstr "ITUz"
 
 #: application/views/calltester/call_info.php:64
 #: application/views/contesting/logger/components/qso-form.php:85
+#: application/views/contesting/logger/components/qso-form.php:86
 msgid "RST S"
 msgstr "RST S"
 
 #: application/views/calltester/call_info.php:65
 #: application/views/contesting/logger/components/qso-form.php:89
+#: application/views/contesting/logger/components/qso-form.php:90
 msgid "RST R"
 msgstr "RST R"
 
@@ -12328,27 +12344,34 @@ msgid "Synced"
 msgstr "Sincronizzato"
 
 #: application/views/contesting/logger/components/qso-form.php:36
+#: application/views/contesting/logger/components/qso-form.php:37
 msgid "Delete this QSO?"
 msgstr "Eliminare questo QSO?"
 
 #: application/views/contesting/logger/components/qso-form.php:41
+#: application/views/contesting/logger/components/qso-form.php:42
 msgid "You can only edit your own QSOs"
 msgstr "Puoi modificare solo i tuoi QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:42
+#: application/views/contesting/logger/components/qso-form.php:43
 msgid "Failed to delete QSO:"
 msgstr "Impossibile eliminare il QSO:"
 
 #: application/views/contesting/logger/components/qso-form.php:44
+#: application/views/contesting/logger/components/qso-form.php:45
 msgid "Callbook lookup failed"
 msgstr "Ricerca nel callbook fallita"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:152
+#: application/views/contesting/logger/components/qso-form.php:96
+#: application/views/contesting/logger/components/qso-form.php:153
 msgid "Nr. S"
 msgstr "Nr. S"
 
 #: application/views/contesting/logger/components/qso-form.php:95
+#: application/views/contesting/logger/components/qso-form.php:96
 msgctxt ""
 "Count serial number in contesting per Band; is an option in contesting "
 "manager."
@@ -12356,6 +12379,7 @@ msgid "per band"
 msgstr "per banda"
 
 #: application/views/contesting/logger/components/qso-form.php:95
+#: application/views/contesting/logger/components/qso-form.php:96
 msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
@@ -12363,27 +12387,34 @@ msgid "per op"
 msgstr "per operatore"
 
 #: application/views/contesting/logger/components/qso-form.php:96
+#: application/views/contesting/logger/components/qso-form.php:97
 msgid "Red: preview only. Green: this number is reserved for you."
 msgstr "Rosso: solo anteprima. Verde: questo numero è riservato per te."
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
+#: application/views/contesting/logger/components/qso-form.php:100
+#: application/views/contesting/logger/components/qso-form.php:154
 msgid "Nr. R"
 msgstr "Nr. R"
 
 #: application/views/contesting/logger/components/qso-form.php:105
+#: application/views/contesting/logger/components/qso-form.php:106
 msgid "Grid S"
 msgstr "Grid S"
 
 #: application/views/contesting/logger/components/qso-form.php:109
+#: application/views/contesting/logger/components/qso-form.php:110
 msgid "Grid R"
 msgstr "Grid R"
 
 #: application/views/contesting/logger/components/qso-form.php:115
+#: application/views/contesting/logger/components/qso-form.php:116
 msgid "Exch S"
 msgstr "Exch S"
 
 #: application/views/contesting/logger/components/qso-form.php:119
+#: application/views/contesting/logger/components/qso-form.php:120
 msgid "Exch R"
 msgstr "Exch R"
 
@@ -12391,14 +12422,17 @@ msgstr "Exch R"
 #: application/views/dashboard/index.php:332
 #: application/views/dashboard/index.php:336
 #: application/views/view_log/index.php:26
+#: application/views/contesting/logger/components/qso-form.php:138
 msgid "Recent QSOs"
 msgstr "QSO recenti"
 
 #: application/views/contesting/logger/components/qso-form.php:151
+#: application/views/contesting/logger/components/qso-form.php:152
 msgid "RST"
 msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:155
+#: application/views/contesting/logger/components/qso-form.php:156
 msgid "Exch"
 msgstr "Exch"
 
@@ -23156,8 +23190,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -24894,6 +24929,10 @@ msgstr "Ricerca Log Clublog"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "Utente LoTW. L'ultimo caricamento è stato "
+
+#: application/views/contesting/logger/components/qso-form.php:36
+msgid "QSO could not be saved:"
+msgstr ""
 
 #, php-format
 #~ msgid ""

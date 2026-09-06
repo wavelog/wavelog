@@ -2411,6 +2411,7 @@ msgstr "Tüm çağrı defteri sorguları başarısız oldu veya sonuç döndürm
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/controllers/Logbook.php:1486
 #: application/controllers/Logbook.php:1489
+#: application/views/contesting/logger/components/qso-form.php:151
 msgid "Mode"
 msgstr "Mod"
 
@@ -2710,6 +2711,7 @@ msgstr "Mesafe"
 #: application/views/zonechecker/result.php:69
 #: application/controllers/Logbook.php:1497
 #: application/controllers/Logbook.php:1500
+#: application/views/contesting/logger/components/qso-form.php:150
 msgid "Band"
 msgstr "Bant"
 
@@ -2742,6 +2744,7 @@ msgstr "Bant"
 #: application/views/visitor/index.php:36
 #: application/controllers/Logbook.php:1498
 #: application/controllers/Logbook.php:1501
+#: application/views/contesting/logger/components/qso-form.php:149
 msgid "Frequency"
 msgstr "Frekans"
 
@@ -2770,6 +2773,7 @@ msgstr "Frekans"
 #: application/views/visitor/index.php:39
 #: application/controllers/Logbook.php:1499
 #: application/controllers/Logbook.php:1502
+#: application/views/contesting/logger/components/qso-form.php:158
 msgid "Operator"
 msgstr "Operatör"
 
@@ -3020,6 +3024,7 @@ msgstr ""
 #: application/models/Logbook_model.php:1461
 #: application/views/contesting/logger/components/qso-form.php:43
 #: application/views/qso/index.php:40
+#: application/views/contesting/logger/components/qso-form.php:44
 msgid "Invalid callsign"
 msgstr "Geçersiz çağrı işareti"
 
@@ -3447,6 +3452,7 @@ msgstr "son kullanılan"
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/contesting/logger/components/qso-form.php:39
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -3489,6 +3495,7 @@ msgstr "Düzenle"
 #: application/views/interface_assets/footer.php:2672
 #: application/views/interface_assets/footer.php:2691
 #: application/views/interface_assets/footer.php:2709
+#: application/views/contesting/logger/components/qso-form.php:40
 msgid "Delete"
 msgstr "Sil"
 
@@ -6136,6 +6143,8 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/visitor/mini.php:183
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
+#: application/views/contesting/logger/components/qso-form.php:67
+#: application/views/contesting/logger/components/qso-form.php:148
 msgid "Callsign"
 msgstr "Çağrı işareti"
 
@@ -6250,6 +6259,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/contesting/logger/components/qso-form.php:146
 msgid "Date"
 msgstr "Tarih"
 
@@ -6286,6 +6296,7 @@ msgstr "Tarih"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/contesting/logger/components/qso-form.php:147
 msgid "Time"
 msgstr "Saat"
 
@@ -7090,6 +7101,7 @@ msgstr ""
 #: application/views/satellite/pass.php:187
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/contesting/logger/components/qso-form.php:41
 msgid "Cancel"
 msgstr "Vazgeç"
 
@@ -7129,6 +7141,7 @@ msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama.
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:188
 #: application/views/simplefle/index.php:22
+#: application/views/contesting/logger/components/qso-form.php:38
 msgid "Save"
 msgstr "Kaydet"
 
@@ -7624,6 +7637,7 @@ msgstr "Grid Aktivasyonları"
 #: application/views/contesting/logger/components/qso-form.php:154
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
+#: application/views/contesting/logger/components/qso-form.php:155
 msgid "Grid"
 msgstr "Grid"
 
@@ -11390,11 +11404,13 @@ msgstr "ITUz"
 
 #: application/views/calltester/call_info.php:64
 #: application/views/contesting/logger/components/qso-form.php:85
+#: application/views/contesting/logger/components/qso-form.php:86
 msgid "RST S"
 msgstr "RST S"
 
 #: application/views/calltester/call_info.php:65
 #: application/views/contesting/logger/components/qso-form.php:89
+#: application/views/contesting/logger/components/qso-form.php:90
 msgid "RST R"
 msgstr "RST R"
 
@@ -12318,27 +12334,34 @@ msgid "Synced"
 msgstr "Senkronize"
 
 #: application/views/contesting/logger/components/qso-form.php:36
+#: application/views/contesting/logger/components/qso-form.php:37
 msgid "Delete this QSO?"
 msgstr "Bu QSO silinsin mi?"
 
 #: application/views/contesting/logger/components/qso-form.php:41
+#: application/views/contesting/logger/components/qso-form.php:42
 msgid "You can only edit your own QSOs"
 msgstr "Yalnızca kendi QSO'larınızı düzenleyebilirsiniz"
 
 #: application/views/contesting/logger/components/qso-form.php:42
+#: application/views/contesting/logger/components/qso-form.php:43
 msgid "Failed to delete QSO:"
 msgstr "QSO silinemedi:"
 
 #: application/views/contesting/logger/components/qso-form.php:44
+#: application/views/contesting/logger/components/qso-form.php:45
 msgid "Callbook lookup failed"
 msgstr "Çağrı defteri sorgusu başarısız oldu"
 
 #: application/views/contesting/logger/components/qso-form.php:95
 #: application/views/contesting/logger/components/qso-form.php:152
+#: application/views/contesting/logger/components/qso-form.php:96
+#: application/views/contesting/logger/components/qso-form.php:153
 msgid "Nr. S"
 msgstr "No. S"
 
 #: application/views/contesting/logger/components/qso-form.php:95
+#: application/views/contesting/logger/components/qso-form.php:96
 msgctxt ""
 "Count serial number in contesting per Band; is an option in contesting "
 "manager."
@@ -12346,6 +12369,7 @@ msgid "per band"
 msgstr "banda göre"
 
 #: application/views/contesting/logger/components/qso-form.php:95
+#: application/views/contesting/logger/components/qso-form.php:96
 msgctxt ""
 "Count serial number in contesting per Operator; is an option in contesting "
 "manager."
@@ -12353,27 +12377,34 @@ msgid "per op"
 msgstr "operatöre göre"
 
 #: application/views/contesting/logger/components/qso-form.php:96
+#: application/views/contesting/logger/components/qso-form.php:97
 msgid "Red: preview only. Green: this number is reserved for you."
 msgstr "Kırmızı: yalnızca önizleme. Yeşil: bu numara sizin için ayrılmıştır."
 
 #: application/views/contesting/logger/components/qso-form.php:99
 #: application/views/contesting/logger/components/qso-form.php:153
+#: application/views/contesting/logger/components/qso-form.php:100
+#: application/views/contesting/logger/components/qso-form.php:154
 msgid "Nr. R"
 msgstr "No. R"
 
 #: application/views/contesting/logger/components/qso-form.php:105
+#: application/views/contesting/logger/components/qso-form.php:106
 msgid "Grid S"
 msgstr "Grid S"
 
 #: application/views/contesting/logger/components/qso-form.php:109
+#: application/views/contesting/logger/components/qso-form.php:110
 msgid "Grid R"
 msgstr "Grid R"
 
 #: application/views/contesting/logger/components/qso-form.php:115
+#: application/views/contesting/logger/components/qso-form.php:116
 msgid "Exch S"
 msgstr "Exch S"
 
 #: application/views/contesting/logger/components/qso-form.php:119
+#: application/views/contesting/logger/components/qso-form.php:120
 msgid "Exch R"
 msgstr "Exch R"
 
@@ -12381,14 +12412,17 @@ msgstr "Exch R"
 #: application/views/dashboard/index.php:332
 #: application/views/dashboard/index.php:336
 #: application/views/view_log/index.php:26
+#: application/views/contesting/logger/components/qso-form.php:138
 msgid "Recent QSOs"
 msgstr "Son QSO'lar"
 
 #: application/views/contesting/logger/components/qso-form.php:151
+#: application/views/contesting/logger/components/qso-form.php:152
 msgid "RST"
 msgstr "RST"
 
 #: application/views/contesting/logger/components/qso-form.php:155
+#: application/views/contesting/logger/components/qso-form.php:156
 msgid "Exch"
 msgstr "Exch"
 
@@ -24817,6 +24851,10 @@ msgstr "Clublog Log Arama"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Kullanıcısı. Son yükleme "
+
+#: application/views/contesting/logger/components/qso-form.php:36
+msgid "QSO could not be saved:"
+msgstr ""
 
 #, php-format
 #~ msgid ""
