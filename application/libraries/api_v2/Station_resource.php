@@ -283,7 +283,7 @@ class Station_resource extends Api_v2_resource {
 			case 'int_or_null':
 				return is_numeric($value) ? (int) $value : null;
 			case 'power':
-				return is_numeric($value) ? (float) $value : null;
+				return is_numeric($value) ? round((float) $value, 3) : null;
 			case 'string':
 			default:
 				return xss_clean((string) $value);

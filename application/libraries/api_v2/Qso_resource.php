@@ -723,7 +723,7 @@ class Qso_resource extends Api_v2_resource {
 				if ($tx_pwr === false) {
 					throw new Api_v2_exception('validation_error', 'Invalid tx_pwr value', 400, ['field' => 'tx_pwr']);
 				}
-				$data['COL_TX_PWR'] = $tx_pwr;
+				$data['COL_TX_PWR'] = round($tx_pwr, 3);
 			} else {
 				$data['COL_TX_PWR'] = null;
 			}

@@ -59,7 +59,7 @@
 			if (!is_numeric($result['power'])) {
 				$invalid[] = 'power';
 			} else {
-				$result['power'] = (float) $result['power'];
+				$result['power'] = round((float) $result['power'], 3);
 			}
 		}
 
