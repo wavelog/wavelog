@@ -164,7 +164,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		$contestid = $qso_data['contestname'] ?? NULL;
-		$tx_power = filter_var(($qso_data['transmit_power'] ?? NULL), FILTER_VALIDATE_FLOAT) ?? NULL;
+		$tx_power = filter_var(($qso_data['transmit_power'] ?? NULL), FILTER_VALIDATE_FLOAT);
+		if ($tx_power === false) $tx_power = NULL;
 
 
 		if (($qso_data['radio'] ?? '') == 'ws') {	// WebSocket
@@ -1479,8 +1480,9 @@ class Logbook_model extends CI_Model {
 			$submode = $this->input->post('mode');
 		}
 
-		if ($this->input->post('transmit_power')) {
-			$txpower = $this->input->post('transmit_power');
+		if ($this->input->post('transmit_power') !== null && $this->input->post('transmit_power') !== '') {
+			$txpower = filter_var($this->input->post('transmit_power'), FILTER_VALIDATE_FLOAT);
+			if ($txpower === false) $txpower = null;
 		} else {
 			$txpower = null;
 		}

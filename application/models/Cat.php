@@ -43,7 +43,7 @@
 			$invalid[] = 'radio';
 		}
 
-		$numeric_fields = ['frequency', 'frequency_rx', 'uplink_freq', 'downlink_freq', 'power'];
+		$numeric_fields = ['frequency', 'frequency_rx', 'uplink_freq', 'downlink_freq'];
 		foreach ($numeric_fields as $field) {
 			if (isset($result[$field]) && $result[$field] !== null && $result[$field] !== '' && $result[$field] !== 'NULL') {
 				if (!is_numeric($result[$field]) || (int) $result[$field] != $result[$field]) {
@@ -51,6 +51,15 @@
 				} else {
 					$result[$field] = (int) $result[$field];
 				}
+			}
+		}
+
+		// Power may be fractional (double column), so it only needs to be numeric.
+		if (isset($result['power']) && $result['power'] !== null && $result['power'] !== '' && $result['power'] !== 'NULL') {
+			if (!is_numeric($result['power'])) {
+				$invalid[] = 'power';
+			} else {
+				$result['power'] = (float) $result['power'];
 			}
 		}
 

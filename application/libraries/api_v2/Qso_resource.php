@@ -716,6 +716,19 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
+		// TX power is a double column: must be a valid float, null clears it.
+		if (array_key_exists('tx_pwr', $body)) {
+			if ($body['tx_pwr'] !== null) {
+				$tx_pwr = filter_var($body['tx_pwr'], FILTER_VALIDATE_FLOAT);
+				if ($tx_pwr === false) {
+					throw new Api_v2_exception('validation_error', 'Invalid tx_pwr value', 400, ['field' => 'tx_pwr']);
+				}
+				$data['COL_TX_PWR'] = $tx_pwr;
+			} else {
+				$data['COL_TX_PWR'] = null;
+			}
+		}
+
 		if (array_key_exists('call', $body) && !$this->CI->logbook_model->is_valid_callsign($body['call'])) {
 			throw new Api_v2_exception('validation_error', 'Invalid callsign', 400, ['field' => 'call']);
 		}
@@ -751,7 +764,6 @@ class Qso_resource extends Api_v2_resource {
 			'comment'    => ['COL_COMMENT', false],
 			'notes'      => ['COL_NOTES', false],
 			'qth'        => ['COL_QTH', false],
-			'tx_pwr'     => ['COL_TX_PWR', false],
 			'prop_mode'  => ['COL_PROP_MODE', false],
 			'sat_name'   => ['COL_SAT_NAME', true],
 			'sat_mode'   => ['COL_SAT_MODE', true],
