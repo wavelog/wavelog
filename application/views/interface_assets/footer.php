@@ -1017,12 +1017,28 @@ function findlotwunconfirmed(){
     });
 }
 
-function searchButtonPress() {
+function searchButtonPress(searchDxcc) {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
         $('#partial_view').load("logbook/search_result/" + fixedcall, function() {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+            $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
+                showQsoActionsMenu($(this).closest('.dropdown'));
+            });
+        });
+    } else if (searchDxcc) {
+        $('#partial_view').load("<?php echo site_url('search/search_result'); ?>", {
+            search: JSON.stringify({
+                condition: "AND",
+                rules: [{
+                    field: "COL_DXCC",
+                    operator: "equal",
+                    value: searchDxcc
+                }]
+            })
+        }, function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -1035,6 +1051,9 @@ $(document).ready(function(){
     <?php if($this->input->post('callsign') != "") { ?>
         $('#callsign').val('<?php echo $this->input->post('callsign'); ?>');
         searchButtonPress();
+    <?php } ?>
+    <?php if($this->input->post('dxcc') !== null && is_numeric($this->input->post('dxcc'))) { ?>
+        searchButtonPress(<?php echo (int) $this->input->post('dxcc'); ?>);
     <?php } ?>
 
 $($('#callsign')).on('keypress',function(e) {
