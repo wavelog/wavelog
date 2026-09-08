@@ -241,7 +241,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Dcl.php:214
+#: application/controllers/Dcl.php:245
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -1621,27 +1622,28 @@ msgstr "DCLキーのインポート"
 msgid "DCL"
 msgstr "DCL"
 
-#: application/controllers/Dcl.php:131
+#: application/controllers/Dcl.php:131 application/controllers/Dcl.php:130
 msgid "No QSOs to upload."
 msgstr "アップロードする交信記録はありません。"
 
 #: application/controllers/Dcl.php:178 application/controllers/Dcl.php:190
+#: application/controllers/Dcl.php:177 application/controllers/Dcl.php:189
 msgid "Upload Failed"
 msgstr "アップロードに失敗しました"
 
-#: application/controllers/Dcl.php:180
+#: application/controllers/Dcl.php:180 application/controllers/Dcl.php:179
 msgid "Timeout reached. Stopping subsequent uploads."
 msgstr "タイムアウトになりました。以降のアップロードを停止します。"
 
-#: application/controllers/Dcl.php:193
+#: application/controllers/Dcl.php:193 application/controllers/Dcl.php:192
 msgid "Upload Successful"
 msgstr "アップロード成功"
 
-#: application/controllers/Dcl.php:203
+#: application/controllers/Dcl.php:203 application/controllers/Dcl.php:201
 msgid "No Station Profiles found to upload to DCL"
 msgstr "DCL にアップロードする無線局プロファイルが見つかりません"
 
-#: application/controllers/Dcl.php:219
+#: application/controllers/Dcl.php:219 application/controllers/Dcl.php:217
 msgid "Key(s) Deleted."
 msgstr "キーが削除されました。"
 
@@ -4165,8 +4167,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1548
 msgid "Station setup failed! Please set up your station manually."
@@ -25512,9 +25514,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -25845,8 +25847,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
