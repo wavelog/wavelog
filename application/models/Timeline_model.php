@@ -340,7 +340,7 @@ class Timeline_model extends CI_Model {
 		if ($clublog) { $cols[] = "nullif(col_clublog_qso_download_date, '0000-00-00')"; }
 		if ($qrz)     { $cols[] = "nullif(col_qrzcom_qso_download_date, '0000-00-00')"; }
 		if (!$cols)   { return null; }
-		return 'COALESCE(' . implode(', ', $cols) . ', col_time_on)';
+		return 'COALESCE(' . implode(', ', $cols) . ', DATE(col_time_on))';
 	}
 
 	function confirm_date_selects($qsl, $lotw, $eqsl, $clublog, $qrz) {
