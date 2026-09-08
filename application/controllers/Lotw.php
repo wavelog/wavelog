@@ -211,14 +211,13 @@ class Lotw extends CI_Controller {
 			$sync_user_id=null;
 		}
 
-		// Array of QSO IDs being Uploaded
-
-		$qso_id_array = array();
-
 		// Build TQ8 Outputs
 		if ($station_profiles->num_rows() >= 1) {
 
 			foreach ($station_profiles->result() as $station_profile) {
+
+				// Array of QSO IDs being Uploaded
+				$qso_id_array = array();
 
 				// Get Certificate Data
 				$this->load->model('Lotw_model');

@@ -82,6 +82,7 @@
     var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
     var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
     var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
+    var lang_qso_realtime_export_failed = "<?= __("Realtime upload failed: %s"); ?>";
     var lang_qso_added_to_backlog = "<?= __("QSO Added to Backlog"); ?>";
     var lang_qso_send_email_to = "<?= __("Send email to %s"); ?>";
     var lang_qso_callsign_confirmed = "<?= __("Callsign was already worked and confirmed in the past on this band and mode!"); ?>";
@@ -1016,12 +1017,28 @@ function findlotwunconfirmed(){
     });
 }
 
-function searchButtonPress() {
+function searchButtonPress(searchDxcc) {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
         $('#partial_view').load("logbook/search_result/" + fixedcall, function() {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+            $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
+                showQsoActionsMenu($(this).closest('.dropdown'));
+            });
+        });
+    } else if (searchDxcc) {
+        $('#partial_view').load("<?php echo site_url('search/search_result'); ?>", {
+            search: JSON.stringify({
+                condition: "AND",
+                rules: [{
+                    field: "COL_DXCC",
+                    operator: "equal",
+                    value: searchDxcc
+                }]
+            })
+        }, function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -1034,6 +1051,9 @@ $(document).ready(function(){
     <?php if($this->input->post('callsign') != "") { ?>
         $('#callsign').val('<?php echo $this->input->post('callsign'); ?>');
         searchButtonPress();
+    <?php } ?>
+    <?php if($this->input->post('dxcc') !== null && is_numeric($this->input->post('dxcc'))) { ?>
+        searchButtonPress(<?php echo (int) $this->input->post('dxcc'); ?>);
     <?php } ?>
 
 $($('#callsign')).on('keypress',function(e) {
@@ -1048,9 +1068,11 @@ $($('#callsign')).on('keypress',function(e) {
 </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view" && $this->optionslib->get_option('logbook_map') != "false") { ?>
+<?php if ($this->uri->segment(1) == "logbook" || $this->uri->segment(1) == "logbookadvanced" || $this->uri->segment(1) == "eqsl" || $this->uri->segment(1) == "generic_qsl" || $this->uri->segment(1) == "activators" || $this->uri->segment(1) == "distances" || $this->uri->segment(1) == "distancerecords" || $this->uri->segment(1) == "timeline" || $this->uri->segment(1) == "callstats" || $this->uri->segment(1) == "statistics" || $this->uri->segment(1) == "countqsoby" || $this->uri->segment(1) == "awards" || $this->uri->segment(1) == "calltester" || $this->uri->segment(1) == "zonechecker" || $this->uri->segment(1) == "qslprint" || $this->uri->segment(1) == "qso" || $this->uri->segment(1) == "dbtools" || $this->uri->segment(1) == "qsl" || $this->uri->segment(1) == "search" || $this->uri->segment(1) == "adif" || $this->uri->segment(1) == "lotw" || $this->uri->segment(1) == "qrz") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+<?php } ?>
+<?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view" && $this->optionslib->get_option('logbook_map') != "false") { ?>
     <script type="text/javascript">
       $(function () {
          $('[data-bs-toggle="tooltip"]').tooltip()
@@ -2221,6 +2243,20 @@ $('#sats').change(function(){
                     url: getDataTablesLanguageUrl(),
                 },
                 dom: 'Bfrtip',
+                initComplete: function() {
+                    document.querySelectorAll('.timelinetable [data-bs-toggle="tooltip"]').forEach(el => {
+                        new bootstrap.Tooltip(el, {
+                            container: 'body',
+                            html: true,
+                            placement: 'right',
+                            fallbackPlacements: ['right', 'top'],
+                            trigger: 'hover',
+                            offset: [0, 2],
+                            customClass: 'tooltip-tl',
+                            delay: { show: 200, hide: 150 }
+                        });
+                    });
+                },
                 buttons: [
                     {
 						extend: 'csv',

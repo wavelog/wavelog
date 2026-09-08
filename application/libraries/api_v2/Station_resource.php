@@ -283,7 +283,7 @@ class Station_resource extends Api_v2_resource {
 			case 'int_or_null':
 				return is_numeric($value) ? (int) $value : null;
 			case 'power':
-				return is_numeric($value) ? xss_clean((string) $value) : null;
+				return is_numeric($value) ? round((float) $value, 3) : null;
 			case 'string':
 			default:
 				return xss_clean((string) $value);
@@ -407,7 +407,7 @@ class Station_resource extends Api_v2_resource {
 			'pota'       => $row->station_pota ?? null,
 			'sig'        => $row->station_sig ?? null,
 			'sig_info'   => $row->station_sig_info ?? null,
-			'power'      => isset($row->station_power) && is_numeric($row->station_power) ? (int) $row->station_power : null,
+			'power'      => isset($row->station_power) && is_numeric($row->station_power) ? (float) $row->station_power : null,
 			'active'     => isset($row->station_active) && $row->station_active == 1,
 		];
 	}
