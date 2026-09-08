@@ -192,9 +192,12 @@ function filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew, $c
     });
 }
 
+function timeline_confirm_order() {
+    return array('lotw', 'qsl', 'eqsl', 'clublog', 'qrz');
+}
+
 function timeline_primary_confirm($line, $assoc = false) {
-    $order = array('lotw', 'qsl', 'eqsl', 'clublog', 'qrz');
-    foreach ($order as $m) {
+    foreach (timeline_confirm_order() as $m) {
         $k = $m . '_date';
         $v = $assoc ? ($line[$k] ?? null) : ($line->$k ?? null);
         if ($v) { return array($m, $v); }
@@ -203,20 +206,23 @@ function timeline_primary_confirm($line, $assoc = false) {
 }
 
 function write_confirm_cell($line, $custom_date_format, $assoc = false) {
-    $primary = timeline_primary_confirm($line, $assoc);
+    $labels = array('lotw' => 'LoTW', 'qsl' => 'QSL', 'eqsl' => 'eQSL', 'clublog' => 'Club Log', 'qrz' => 'QRZ');
+    $primary = null;
+    $tips = array();
+    foreach (timeline_confirm_order() as $m) {
+        $k = $m . '_date';
+        $v = $assoc ? ($line[$k] ?? null) : ($line->$k ?? null);
+        if ($v) {
+            $tips[] = $labels[$m] . ': ' . html_escape(date($custom_date_format, strtotime($v)));
+            if ($primary === null) { $primary = $v; }
+        }
+    }
     if ($primary === null) {
         echo '<td>-</td>';
         return;
     }
-    $labels = array('lotw' => 'LoTW', 'qsl' => 'QSL', 'eqsl' => 'eQSL', 'clublog' => 'Club Log', 'qrz' => 'QRZ');
-    $tips = array();
-    foreach (array('lotw', 'qsl', 'eqsl', 'clublog', 'qrz') as $m) {
-        $k = $m . '_date';
-        $v = $assoc ? ($line[$k] ?? null) : ($line->$k ?? null);
-        if ($v) { $tips[] = $labels[$m] . ': ' . date($custom_date_format, strtotime($v)); }
-    }
-    $title = $tips ? ' data-bs-toggle="tooltip" title="' . implode('<br>', $tips) . '"' : '';
-    echo '<td' . $title . '>' . date($custom_date_format, strtotime($primary[1])) . '</td>';
+    $title = ' data-bs-toggle="tooltip" title="' . implode('<br>', $tips) . '"';
+    echo '<td><span' . $title . '>' . html_escape(date($custom_date_format, strtotime($primary))) . '</span></td>';
 }
 
 

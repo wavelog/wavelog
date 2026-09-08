@@ -2244,14 +2244,16 @@ $('#sats').change(function(){
                 },
                 dom: 'Bfrtip',
                 initComplete: function() {
-                    document.querySelectorAll('.timelinetable td[data-bs-toggle="tooltip"]').forEach(el => {
+                    document.querySelectorAll('.timelinetable [data-bs-toggle="tooltip"]').forEach(el => {
                         new bootstrap.Tooltip(el, {
                             container: 'body',
                             html: true,
                             placement: 'right',
-                            offset: [0, -150],
+                            fallbackPlacements: ['right', 'top'],
+                            trigger: 'hover',
+                            offset: [0, 2],
                             customClass: 'tooltip-tl',
-                            delay: { show: 200, hide: 0 }
+                            delay: { show: 200, hide: 150 }
                         });
                     });
                 },
