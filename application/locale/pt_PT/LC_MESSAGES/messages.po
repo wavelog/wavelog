@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-06 15:25+0000\n"
+"POT-Creation-Date: 2026-09-08 03:25+0000\n"
 "PO-Revision-Date: 2026-08-27 17:14+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -2990,7 +2990,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1461
+#: application/models/Logbook_model.php:1462
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4992,35 +4992,35 @@ msgstr "Papel importado"
 msgid "Imported label type"
 msgstr "Tipo de etiqueta importada"
 
-#: application/models/Logbook_model.php:358
+#: application/models/Logbook_model.php:359
 msgid "Station not accessible"
 msgstr "Estação inacessível"
 
-#: application/models/Logbook_model.php:993
+#: application/models/Logbook_model.php:994
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1451
+#: application/models/Logbook_model.php:1452
 msgid "Station ID not allowed"
 msgstr "Identificação da estação não permitida"
 
-#: application/models/Logbook_model.php:1456
+#: application/models/Logbook_model.php:1457
 msgid "No Call given"
 msgstr "Nenhum indicativo fornecido"
 
-#: application/models/Logbook_model.php:1531
-#: application/models/Logbook_model.php:1749
+#: application/models/Logbook_model.php:1533
+#: application/models/Logbook_model.php:1751
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
-#: application/models/Logbook_model.php:4968
+#: application/models/Logbook_model.php:4970
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4978
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5029,7 +5029,7 @@ msgstr ""
 "Locator divergente %s ao importar QSO com %s para o localizador da estação "
 "%s: IGNORADO"
 
-#: application/models/Logbook_model.php:4992
+#: application/models/Logbook_model.php:4994
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5037,7 +5037,7 @@ msgstr ""
 "Tentaste importar um QSO sem data válida. Este QSO não foi importado. É "
 "inválido"
 
-#: application/models/Logbook_model.php:5002
+#: application/models/Logbook_model.php:5004
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5046,7 +5046,7 @@ msgstr ""
 "QSO no %s: Tentou importar um QSO sem qualquer INDICATIVO fornecido. Este "
 "QSO não foi importado. É inválido."
 
-#: application/models/Logbook_model.php:5009
+#: application/models/Logbook_model.php:5011
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5055,7 +5055,7 @@ msgstr ""
 "QSO em %s: Tentou importar um QSO com um INDICATIVO inválido. Este QSO não "
 "foi importado. A entrada inválida é '%s'."
 
-#: application/models/Logbook_model.php:5079
+#: application/models/Logbook_model.php:5081
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5064,7 +5064,7 @@ msgstr ""
 "QSO em %s: A banda '%s' não está na configuração de bandas. Este QSO não foi "
 "importado."
 
-#: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5088
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5073,63 +5073,63 @@ msgstr ""
 "QSO em %s: Você tentou importar um QSO sem banda alguma. Este QSO não foi "
 "importado. É inválido"
 
-#: application/models/Logbook_model.php:5360
+#: application/models/Logbook_model.php:5363
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5371
+#: application/models/Logbook_model.php:5374
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5432
+#: application/models/Logbook_model.php:5435
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5808
+#: application/models/Logbook_model.php:5811
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:5875
-#: application/models/Logbook_model.php:5975
+#: application/models/Logbook_model.php:5878
+#: application/models/Logbook_model.php:5978
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:5883
+#: application/models/Logbook_model.php:5886
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5889
+#: application/models/Logbook_model.php:5892
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:5893
+#: application/models/Logbook_model.php:5896
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5900
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:5900
+#: application/models/Logbook_model.php:5903
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5906
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "desconhecido"
 
-#: application/models/Logbook_model.php:5978
+#: application/models/Logbook_model.php:5981
 msgid "POTA reference already in log"
 msgstr "Referência POTA já no log"
 
-#: application/models/Logbook_model.php:5981
+#: application/models/Logbook_model.php:5984
 msgid "QSO updated"
 msgstr "QSO atualizado"
 
-#: application/models/Logbook_model.php:6402
+#: application/models/Logbook_model.php:6405
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5145,24 +5145,24 @@ msgstr "QSO atualizado"
 msgid "Bearing"
 msgstr "Direção"
 
-#: application/models/Logbookadvanced_model.php:1792
+#: application/models/Logbookadvanced_model.php:1794
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr ""
 "ID de QSO primário inválido, ou não tem permissão para aceder a um dos QSOs"
 
-#: application/models/Logbookadvanced_model.php:1802
+#: application/models/Logbookadvanced_model.php:1804
 #: application/views/view_log/qso.php:869
 msgid "QSO not found"
 msgstr "QSO não encontrado"
 
-#: application/models/Logbookadvanced_model.php:1888
+#: application/models/Logbookadvanced_model.php:1890
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
 "Nenhuns campos selecionados para fundir ou nenhuma diferença entre QSOs"
 
-#: application/models/Logbookadvanced_model.php:1901
+#: application/models/Logbookadvanced_model.php:1903
 msgid "QSOs merged successfully"
 msgstr "QSOs fundidos com sucesso"
 

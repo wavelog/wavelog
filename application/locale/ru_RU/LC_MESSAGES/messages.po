@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-06 15:25+0000\n"
+"POT-Creation-Date: 2026-09-08 03:25+0000\n"
 "PO-Revision-Date: 2026-08-31 23:18+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2992,7 +2992,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1461
+#: application/models/Logbook_model.php:1462
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -5000,34 +5000,34 @@ msgstr "Импортированный тип бумаги"
 msgid "Imported label type"
 msgstr "Импортированный тип наклейки"
 
-#: application/models/Logbook_model.php:358
+#: application/models/Logbook_model.php:359
 msgid "Station not accessible"
 msgstr "Станция недоступна"
 
-#: application/models/Logbook_model.php:993
+#: application/models/Logbook_model.php:994
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1451
+#: application/models/Logbook_model.php:1452
 msgid "Station ID not allowed"
 msgstr "Недопустимый ID станции"
 
-#: application/models/Logbook_model.php:1456
+#: application/models/Logbook_model.php:1457
 msgid "No Call given"
 msgstr "Не указан позывной"
 
-#: application/models/Logbook_model.php:1531
-#: application/models/Logbook_model.php:1749
+#: application/models/Logbook_model.php:1533
+#: application/models/Logbook_model.php:1751
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
-#: application/models/Logbook_model.php:4968
+#: application/models/Logbook_model.php:4970
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Отличающийся позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4978
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5036,7 +5036,7 @@ msgstr ""
 "Отличающийся QTH-локатор %s при импорте QSO с %s от QTH-локатора в профиле "
 "QTH %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4992
+#: application/models/Logbook_model.php:4994
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5044,7 +5044,7 @@ msgstr ""
 "Вы пытались импортировать QSO без действительной даты. Это QSO не "
 "действительно и не было импортировано"
 
-#: application/models/Logbook_model.php:5002
+#: application/models/Logbook_model.php:5004
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5053,7 +5053,7 @@ msgstr ""
 "QSO в %s: Вы пытались импортировать QSO без указания позывного. Это QSO не "
 "было импортировано. Оно недействительно."
 
-#: application/models/Logbook_model.php:5009
+#: application/models/Logbook_model.php:5011
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5062,7 +5062,7 @@ msgstr ""
 "QSO в %s: Вы пытались импортировать QSO с недопустимым позывным. Это QSO не "
 "было импортировано. Недопустимый ввод — '%s'."
 
-#: application/models/Logbook_model.php:5079
+#: application/models/Logbook_model.php:5081
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5071,7 +5071,7 @@ msgstr ""
 "QSO нв %s: диапазон '%s' отсутствует в конфигурации диапазонов. Этот QSO не "
 "было импортировано."
 
-#: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5088
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5080,63 +5080,63 @@ msgstr ""
 "QSO в %s: Вы пыталсь импортировать QSO без информации о диапазоне. Это QSO "
 "некорректно, импорт отклонён.imported. It's invalid"
 
-#: application/models/Logbook_model.php:5360
+#: application/models/Logbook_model.php:5363
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5371
+#: application/models/Logbook_model.php:5374
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5432
+#: application/models/Logbook_model.php:5435
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5808
+#: application/models/Logbook_model.php:5811
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:5875
-#: application/models/Logbook_model.php:5975
+#: application/models/Logbook_model.php:5878
+#: application/models/Logbook_model.php:5978
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:5883
+#: application/models/Logbook_model.php:5886
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5889
+#: application/models/Logbook_model.php:5892
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:5893
+#: application/models/Logbook_model.php:5896
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5900
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:5900
+#: application/models/Logbook_model.php:5903
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5906
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5978
+#: application/models/Logbook_model.php:5981
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
-#: application/models/Logbook_model.php:5981
+#: application/models/Logbook_model.php:5984
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
-#: application/models/Logbook_model.php:6402
+#: application/models/Logbook_model.php:6405
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5152,7 +5152,7 @@ msgstr "QSO обновлено"
 msgid "Bearing"
 msgstr "Направление"
 
-#: application/models/Logbookadvanced_model.php:1792
+#: application/models/Logbookadvanced_model.php:1794
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -5160,16 +5160,16 @@ msgstr ""
 "Недействительный первичный идентификатор QSO или у вас нет прав доступа к "
 "одному из QSO"
 
-#: application/models/Logbookadvanced_model.php:1802
+#: application/models/Logbookadvanced_model.php:1804
 #: application/views/view_log/qso.php:869
 msgid "QSO not found"
 msgstr "QSO не найдено"
 
-#: application/models/Logbookadvanced_model.php:1888
+#: application/models/Logbookadvanced_model.php:1890
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "Поля для объединения не выбраны или отсутствуют различия между QSO"
 
-#: application/models/Logbookadvanced_model.php:1901
+#: application/models/Logbookadvanced_model.php:1903
 msgid "QSOs merged successfully"
 msgstr "QSO успешно объединены"
 

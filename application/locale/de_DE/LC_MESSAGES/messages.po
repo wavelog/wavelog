@@ -3082,6 +3082,7 @@ msgstr ""
 #: application/views/contesting/logger/components/qso-form.php:43
 #: application/views/qso/index.php:40
 #: application/views/contesting/logger/components/qso-form.php:44
+#: application/models/Logbook_model.php:1462
 msgid "Invalid callsign"
 msgstr "Ungültiges Rufzeichen"
 
@@ -5144,27 +5145,34 @@ msgid "Imported label type"
 msgstr "Importierter Labeltyp"
 
 #: application/models/Logbook_model.php:358
+#: application/models/Logbook_model.php:359
 msgid "Station not accessible"
 msgstr "Station nicht verfügbar"
 
 #: application/models/Logbook_model.php:993
+#: application/models/Logbook_model.php:994
 msgid "Realtime upload disabled"
 msgstr "Echtzeit-Upload deaktiviert"
 
 #: application/models/Logbook_model.php:1451
+#: application/models/Logbook_model.php:1452
 msgid "Station ID not allowed"
 msgstr "Stations ID nicht erlaubt"
 
 #: application/models/Logbook_model.php:1456
+#: application/models/Logbook_model.php:1457
 msgid "No Call given"
 msgstr "Kein Rufzeichen angegeben"
 
 #: application/models/Logbook_model.php:1531
 #: application/models/Logbook_model.php:1749
+#: application/models/Logbook_model.php:1533
+#: application/models/Logbook_model.php:1751
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
 #: application/models/Logbook_model.php:4968
+#: application/models/Logbook_model.php:4970
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5173,6 +5181,7 @@ msgstr ""
 "ÜBERSPRUNGEN"
 
 #: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4978
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5182,6 +5191,7 @@ msgstr ""
 "Stationsplanquadrat %s: ÜBERSPRUNGEN"
 
 #: application/models/Logbook_model.php:4992
+#: application/models/Logbook_model.php:4994
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5190,6 +5200,7 @@ msgstr ""
 "wurde nicht importiert. Es ist ungültig"
 
 #: application/models/Logbook_model.php:5002
+#: application/models/Logbook_model.php:5004
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5199,6 +5210,7 @@ msgstr ""
 "Dieses QSO wurde nicht importiert. Es ist ungültig."
 
 #: application/models/Logbook_model.php:5009
+#: application/models/Logbook_model.php:5011
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5208,6 +5220,7 @@ msgstr ""
 "importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist '%s'."
 
 #: application/models/Logbook_model.php:5079
+#: application/models/Logbook_model.php:5081
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5217,6 +5230,7 @@ msgstr ""
 "nicht importiert."
 
 #: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5088
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5226,58 +5240,72 @@ msgstr ""
 "Dieses QSO wurde nicht importiert. Es ist ungültig"
 
 #: application/models/Logbook_model.php:5360
+#: application/models/Logbook_model.php:5363
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:5371
+#: application/models/Logbook_model.php:5374
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:5432
+#: application/models/Logbook_model.php:5435
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:5808
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5811
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
 #: application/models/Logbook_model.php:5875
 #: application/models/Logbook_model.php:5975
+#: application/models/Logbook_model.php:5878
+#: application/models/Logbook_model.php:5978
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
 #: application/models/Logbook_model.php:5883
+#: application/models/Logbook_model.php:5886
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5889
+#: application/models/Logbook_model.php:5892
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
 #: application/models/Logbook_model.php:5893
+#: application/models/Logbook_model.php:5896
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
 #: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5900
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
 #: application/models/Logbook_model.php:5900
+#: application/models/Logbook_model.php:5903
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
 #: application/models/Logbook_model.php:5903
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5906
 msgid "unknown"
 msgstr "unbekannt"
 
 #: application/models/Logbook_model.php:5978
+#: application/models/Logbook_model.php:5981
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
 #: application/models/Logbook_model.php:5981
+#: application/models/Logbook_model.php:5984
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
@@ -5295,10 +5323,12 @@ msgstr "QSO aktualisiert"
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/models/Logbook_model.php:6402
+#: application/models/Logbook_model.php:6405
 msgid "Bearing"
 msgstr "Peilung"
 
 #: application/models/Logbookadvanced_model.php:1792
+#: application/models/Logbookadvanced_model.php:1794
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -5309,16 +5339,19 @@ msgstr ""
 #: application/models/Logbookadvanced_model.php:1802
 #: application/views/view_log/qso.php:868
 #: application/views/view_log/qso.php:869
+#: application/models/Logbookadvanced_model.php:1804
 msgid "QSO not found"
 msgstr "QSO nicht gefunden"
 
 #: application/models/Logbookadvanced_model.php:1888
+#: application/models/Logbookadvanced_model.php:1890
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
 "Keine Felder für die Zusammenführung ausgewählt oder es exisitieren keine "
 "Unterschiede zwischen den QSOs"
 
 #: application/models/Logbookadvanced_model.php:1901
+#: application/models/Logbookadvanced_model.php:1903
 msgid "QSOs merged successfully"
 msgstr "QSOs erfolgreich zusammengeführt"
 

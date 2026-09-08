@@ -2979,7 +2979,7 @@ msgstr ""
 #: application/models/Logbook_model.php:98
 #: application/models/Logbook_model.php:1461
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1462
 msgid "Invalid callsign"
 msgstr "Ogiltigt anropssignal"
 
@@ -4961,33 +4961,41 @@ msgid "Imported label type"
 msgstr "Importerad etikett typ"
 
 #: application/models/Logbook_model.php:358
+#: application/models/Logbook_model.php:359
 msgid "Station not accessible"
 msgstr "Stationen är inte tillgänglig"
 
 #: application/models/Logbook_model.php:993
+#: application/models/Logbook_model.php:994
 msgid "Realtime upload disabled"
 msgstr ""
 
 #: application/models/Logbook_model.php:1451
+#: application/models/Logbook_model.php:1452
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
 #: application/models/Logbook_model.php:1456
+#: application/models/Logbook_model.php:1457
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
 #: application/models/Logbook_model.php:1531
 #: application/models/Logbook_model.php:1749
+#: application/models/Logbook_model.php:1533
+#: application/models/Logbook_model.php:1751
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
 #: application/models/Logbook_model.php:4968
+#: application/models/Logbook_model.php:4970
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4978
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -4996,6 +5004,7 @@ msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:4992
+#: application/models/Logbook_model.php:4994
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5004,6 +5013,7 @@ msgstr ""
 "inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:5002
+#: application/models/Logbook_model.php:5004
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5013,6 +5023,7 @@ msgstr ""
 "QSO importerades inte. Det är ogiltigt."
 
 #: application/models/Logbook_model.php:5009
+#: application/models/Logbook_model.php:5011
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5022,6 +5033,7 @@ msgstr ""
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
 #: application/models/Logbook_model.php:5079
+#: application/models/Logbook_model.php:5081
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5031,6 +5043,7 @@ msgstr ""
 "inte."
 
 #: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5088
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5040,58 +5053,72 @@ msgstr ""
 "importerades inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:5360
+#: application/models/Logbook_model.php:5363
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5371
+#: application/models/Logbook_model.php:5374
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5432
+#: application/models/Logbook_model.php:5435
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5808
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5811
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
 #: application/models/Logbook_model.php:5875
 #: application/models/Logbook_model.php:5975
+#: application/models/Logbook_model.php:5878
+#: application/models/Logbook_model.php:5978
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
 #: application/models/Logbook_model.php:5883
+#: application/models/Logbook_model.php:5886
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
 #: application/models/Logbook_model.php:5889
+#: application/models/Logbook_model.php:5892
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
 #: application/models/Logbook_model.php:5893
+#: application/models/Logbook_model.php:5896
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
 #: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5900
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
 #: application/models/Logbook_model.php:5900
+#: application/models/Logbook_model.php:5903
 msgid "unconfirmed"
 msgstr "obekräftad"
 
 #: application/models/Logbook_model.php:5903
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5906
 msgid "unknown"
 msgstr "Okänd"
 
 #: application/models/Logbook_model.php:5978
+#: application/models/Logbook_model.php:5981
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
 #: application/models/Logbook_model.php:5981
+#: application/models/Logbook_model.php:5984
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
@@ -5108,10 +5135,12 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6405
 msgid "Bearing"
 msgstr "Bäring"
 
 #: application/models/Logbookadvanced_model.php:1792
+#: application/models/Logbookadvanced_model.php:1794
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -5121,14 +5150,17 @@ msgstr ""
 
 #: application/models/Logbookadvanced_model.php:1802
 #: application/views/view_log/qso.php:869
+#: application/models/Logbookadvanced_model.php:1804
 msgid "QSO not found"
 msgstr "QSO hittades inte"
 
 #: application/models/Logbookadvanced_model.php:1888
+#: application/models/Logbookadvanced_model.php:1890
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "Inga fält valda för sammanslagning eller inga skillnader mellan QSOs"
 
 #: application/models/Logbookadvanced_model.php:1901
+#: application/models/Logbookadvanced_model.php:1903
 msgid "QSOs merged successfully"
 msgstr "QSO:erna slogs ihop framgångsrikt"
 
@@ -9952,8 +9984,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -17857,8 +17889,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -22999,8 +23031,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
