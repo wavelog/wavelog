@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+	<defs>
+		<linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset=".45" stop-color="#bde9f5"/>
+			<stop offset="1" stop-color="#5fb7d4"/>
+		</linearGradient>
+		<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset=".5" stop-color="#cfe9f2"/>
+			<stop offset="1" stop-color="#8fc3d9"/>
+		</linearGradient>
+	</defs>
+	<ellipse cx="60" cy="111" rx="30" ry="5" fill="#1f2933" opacity=".15"/>
+	<path d="M32,8 L34.5,14.5 L41,17 L34.5,19.5 L32,26 L29.5,19.5 L23,17 L29.5,14.5 Z" fill="#eaf6fa" stroke="#2f5a6b" stroke-width="2" stroke-linejoin="round"/>
+	<path d="M90,6 L92.5,12.5 L99,15 L92.5,17.5 L90,24 L87.5,17.5 L81,15 L87.5,12.5 Z" fill="#eaf6fa" stroke="#2f5a6b" stroke-width="2" stroke-linejoin="round"/>
+	<circle cx="16" cy="34" r="2.6" fill="#8fc3d9"/>
+	<circle cx="104" cy="36" r="2.2" fill="#8fc3d9"/>
+	<circle cx="22" cy="56" r="2" fill="#8fc3d9"/>
+	<circle cx="98" cy="58" r="2.6" fill="#8fc3d9"/>
+	<path d="M34,22 C42,34 47,39 47,48 C47,56 42,61 34,61 C27,61 21,56 21,48 C21,39 26,34 34,22 Z" fill="url(#flame)" stroke="#2f5a6b" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M86,22 C94,34 99,39 99,48 C99,56 94,61 86,61 C79,61 73,56 73,48 C73,39 78,34 86,22 Z" fill="url(#flame)" stroke="#2f5a6b" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M60,2 C72,21 81,28 81,41 C81,54 71,62 60,62 C49,62 39,54 39,41 C39,28 48,21 60,2 Z" fill="url(#flame)" stroke="#2f5a6b" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M60,26 C64,33 68,37 68,44 C68,50 64,54 60,54 C56,54 52,50 52,44 C52,37 56,33 60,26 Z" fill="#ffffff"/>
+	<rect x="44" y="60" width="32" height="8" rx="3" fill="#b8dbe8" stroke="#2f5a6b" stroke-width="3"/>
+	<path d="M42,68 L78,68 L73,92 L47,92 Z" fill="url(#metal)" stroke="#2f5a6b" stroke-width="3" stroke-linejoin="round"/>
+	<rect x="53" y="90" width="14" height="14" rx="3" fill="url(#metal)" stroke="#2f5a6b" stroke-width="3"/>
+	<ellipse cx="60" cy="107" rx="19" ry="5" fill="#8fc3d9" stroke="#2f5a6b" stroke-width="3"/>
+	<path d="M49,72 L51,88" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+</svg>

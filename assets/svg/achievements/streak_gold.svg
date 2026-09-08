@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+	<defs>
+		<linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#ffe482"/>
+			<stop offset=".55" stop-color="#ff8c42"/>
+			<stop offset="1" stop-color="#e03e1f"/>
+		</linearGradient>
+		<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#fff3b0"/>
+			<stop offset=".5" stop-color="#ffd75e"/>
+			<stop offset="1" stop-color="#d4a017"/>
+		</linearGradient>
+	</defs>
+	<ellipse cx="60" cy="111" rx="30" ry="5" fill="#1f2933" opacity=".15"/>
+	<circle cx="24" cy="20" r="2.6" fill="#ff8c42"/>
+	<circle cx="96" cy="24" r="2.2" fill="#ff8c42"/>
+	<circle cx="18" cy="42" r="2" fill="#ff8c42"/>
+	<circle cx="102" cy="44" r="2.6" fill="#ff8c42"/>
+	<path d="M34,26 C41,36 46,41 46,49 C46,56 41,61 34,61 C27,61 22,56 22,49 C22,41 27,36 34,26 Z" fill="url(#flame)" stroke="#8a2f14" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M86,26 C93,36 98,41 98,49 C98,56 93,61 86,61 C79,61 74,56 74,49 C74,41 79,36 86,26 Z" fill="url(#flame)" stroke="#8a2f14" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M60,6 C71,23 80,30 80,42 C80,54 70,62 60,62 C50,62 40,54 40,42 C40,30 49,23 60,6 Z" fill="url(#flame)" stroke="#8a2f14" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M60,29 C64,35 68,39 68,45 C68,51 64,55 60,55 C56,55 52,51 52,45 C52,39 56,35 60,29 Z" fill="#ffd75e"/>
+	<rect x="44" y="60" width="32" height="8" rx="3" fill="#f4c430" stroke="#7a5c00" stroke-width="3"/>
+	<path d="M42,68 L78,68 L73,92 L47,92 Z" fill="url(#metal)" stroke="#7a5c00" stroke-width="3" stroke-linejoin="round"/>
+	<rect x="53" y="90" width="14" height="14" rx="3" fill="url(#metal)" stroke="#7a5c00" stroke-width="3"/>
+	<ellipse cx="60" cy="107" rx="19" ry="5" fill="#d4a017" stroke="#7a5c00" stroke-width="3"/>
+	<path d="M49,72 L51,88" stroke="#fff3b0" stroke-width="3" stroke-linecap="round"/>
+</svg>

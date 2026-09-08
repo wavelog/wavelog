@@ -278,7 +278,13 @@
                         <td><?php if ($row->adif == '0') {
                                      echo $row->name;
                                   } else {
-                                     echo ucwords(strtolower(($row->name)), "- (/"); if ($dxccFlag != null) { echo " ".$dxccFlag; } if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; }
+                                     echo ucwords(strtolower(($row->name)), "- (/");
+                                     if ($dxccFlag != null) {
+                                         echo '<form method="POST" action="'.site_url('search').'" style="display: inline;">';
+                                         echo '<input type="hidden" name="dxcc" value="'.(int) $row->COL_DXCC.'">';
+                                         echo '<button type="submit" class="btn btn-link text-decoration-none p-0 align-baseline" title="'.html_escape(__("Show all QSOs with this DXCC")).'">'.$dxccFlag.'</button></form>';
+                                     }
+                                     if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; }
                                   } ?></td>
                     </tr>
                     <?php } ?>
@@ -812,12 +818,12 @@
          if (isset($row->lat)) {
             $lat = $row->lat;
          } else {
-            $lat = 0;
+            $lat = null;
          }
          if (isset($row->long)) {
             $lng = $row->long;
          } else {
-            $lng = 0;
+            $lng = null;
          }
       }
    } else if ($row->COL_VUCC_GRIDS != null) {
@@ -829,37 +835,38 @@
          if(isset($row->lat)) {
             $lat = $row->lat;
          } else {
-            $lat = 0;
+            $lat = null;
          }
          if(isset($row->long)) {
             $lng = $row->long;
          } else {
-            $lng = 0;
+            $lng = null;
          }
       }
    } else {
       if(isset($row->lat)) {
          $lat = $row->lat;
       } else {
-         $lat = 0;
+         $lat = null;
       }
 
       if(isset($row->long)) {
          $lng = $row->long;
       } else {
-         $lng = 0;
+         $lng = null;
       }
    }
 ?>
 
 <script>
-var lat = <?php echo $lat; ?>;
-var long = <?php echo $lng; ?>;
+var lat = <?php echo $lat ?? 'null'; ?>;
+var long = <?php echo $lng ?? 'null'; ?>;
 var callsign = <?php echo js_escape($row->COL_CALL); ?>;
 </script>
     <div hidden id ='dxcc'><?php echo html_escape($row->COL_DXCC); ?></div>
     <div hidden id ='lat'><?php echo $lat; ?></div>
     <div hidden id ='lng'><?php echo $lng; ?></div>
+    <div hidden id ='grid_show'><?php echo $grid_show; ?></div>
     <div hidden id ='callsign'><?php echo html_escape($row->COL_CALL); ?></div>
     <div hidden id ='qsoid'><?php echo html_escape($row->COL_PRIMARY_KEY); ?></div>
 

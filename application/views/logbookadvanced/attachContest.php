@@ -39,7 +39,7 @@
                         <td><?php echo $status; ?></td>
                         <td><?php echo !empty($row['time_start']) ? date($custom_date_format . ' H:i', strtotime($row['time_start'])) : '-'; ?></td>
                         <td><?php echo !empty($row['time_end']) ? date($custom_date_format . ' H:i', strtotime($row['time_end'])) : '-'; ?></td>
-                        <td><?php echo isset($row['contestname']) ? $row['contestname'] : '-'; ?></td>
+                        <td><?php echo !empty($row['custom_name']) ? htmlspecialchars($row['custom_name']) . ' <span class="text-muted">(' . htmlspecialchars($row['contestname']) . ')</span>' : htmlspecialchars($row['contestname'] ?? '-'); ?></td>
                         <td><?php echo isset($row['station']) ? $row['station'] : '-'; ?></td>
                         <td><?php echo isset($row['comment']) ? $row['comment'] : '-'; ?></td>
                         <td><?php echo isset($row['qso_count']) ? $row['qso_count'] : '0'; ?></td>
