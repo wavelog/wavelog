@@ -2225,7 +2225,7 @@ $('#sats').change(function(){
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
          $.fn.dataTable.ext.buttons.clear = {
-               className: 'buttons-clear',
+               className: 'buttons-clear btn-sm',
                action: function ( e, dt, node, config ) {
                   dt.search('');
                   dt.draw();
@@ -2260,7 +2260,7 @@ $('#sats').change(function(){
                 buttons: [
                     {
 						extend: 'csv',
-						className: 'mb-1 btn btn-primary', // Bootstrap classes
+						className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 							init: function(api, node, config) {
 								$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 						},
