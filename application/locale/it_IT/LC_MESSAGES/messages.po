@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-06 15:25+0000\n"
-"PO-Revision-Date: 2026-08-29 04:04+0000\n"
+"POT-Creation-Date: 2026-09-08 03:25+0000\n"
+"PO-Revision-Date: 2026-09-07 13:57+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -255,7 +255,7 @@ msgstr "Statistiche cumulative"
 #: application/views/achievements/index.php:76
 #: application/views/interface_assets/header.php:192
 msgid "Achievements"
-msgstr ""
+msgstr "Obiettivi"
 
 #: application/controllers/Activated_gridmap.php:12
 #: application/views/activated_gridmap/index.php:6
@@ -2992,7 +2992,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1461
+#: application/models/Logbook_model.php:1462
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4582,16 +4582,16 @@ msgstr "Leggi le statistiche"
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s giorno"
+msgstr[1] "%s giorni"
 
 #: application/models/Achievements_model.php:172
 msgid "Longest streak"
-msgstr ""
+msgstr "Serie più lunga"
 
 #: application/models/Achievements_model.php:173
 msgid "Current streak"
-msgstr ""
+msgstr "Serie attuale"
 
 #: application/models/Achievements_model.php:174
 #: application/models/Achievements_model.php:196
@@ -4602,52 +4602,52 @@ msgstr "Obiettivo"
 
 #: application/models/Achievements_model.php:177
 msgid "Reached on"
-msgstr ""
+msgstr "Raggiunto il"
 
 #: application/models/Achievements_model.php:181
 #, php-format
 msgid "%d Day Streak"
-msgstr ""
+msgstr "serie di %d giorni"
 
 #: application/models/Achievements_model.php:185
-#, php-format
+#, fuzzy, php-format
 msgid "%s / %s day"
 msgid_plural "%s / %s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / %s giorno"
+msgstr[1] "%s / %s giorni"
 
 #: application/models/Achievements_model.php:195
 msgid "QSOs in log"
-msgstr ""
+msgstr "QSO nel log"
 
 #: application/models/Achievements_model.php:196
 #: application/models/Achievements_model.php:203
 #, php-format
 msgid "%s QSO"
 msgid_plural "%s QSOs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s QSO"
+msgstr[1] "%s QSO"
 
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
-msgstr ""
+msgstr "Sbloccato il"
 
 #: application/models/Achievements_model.php:207
 #, php-format
 msgid "%s / %s QSO"
 msgid_plural "%s / %s QSOs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / %s QSO"
+msgstr[1] "%s / %s QSO"
 
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
-msgstr ""
+msgstr "QSO in modalità digitali classiche"
 
 #: application/models/Achievements_model.php:239
 #: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:389
 msgid "First QSO on"
-msgstr ""
+msgstr "Primo QSO il"
 
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
@@ -4655,19 +4655,19 @@ msgstr ""
 
 #: application/models/Achievements_model.php:245
 msgid "First CW QSO"
-msgstr ""
+msgstr "Primo QSO CW"
 
 #: application/models/Achievements_model.php:247
 msgid "First SSB QSO"
-msgstr ""
+msgstr "Primo QSO SSB"
 
 #: application/models/Achievements_model.php:249
 msgid "First FT8 QSO"
-msgstr ""
+msgstr "Primo QSO FT8"
 
 #: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
-msgstr ""
+msgstr "Primo QSO in modalità digitale classica"
 
 #: application/models/Achievements_model.php:252
 msgid "Triple Threat"
@@ -4677,45 +4677,45 @@ msgstr ""
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / 3 modi"
+msgstr[1] "%s / 3 modi"
 
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
-msgstr ""
+msgstr "Modalità operate"
 
 #: application/models/Achievements_model.php:256
 msgid "Missing modes"
-msgstr ""
+msgstr "Modalità mancanti"
 
 #: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
-msgstr ""
+msgstr "Prima conferma LoTW"
 
 #: application/models/Achievements_model.php:273
 msgid "Confirmed on"
-msgstr ""
+msgstr "Confermato il"
 
 #: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
-msgstr ""
+msgstr "QSO CW e SSB"
 
 #: application/models/Achievements_model.php:292
 msgid "FT8 and FT4 QSOs"
-msgstr ""
+msgstr "QSO FT8 e FT4"
 
 #: application/models/Achievements_model.php:293
 msgid "Current ratio"
-msgstr ""
+msgstr "Rapporto corrente"
 
 #: application/models/Achievements_model.php:294
 msgid "Needed ratio"
-msgstr ""
+msgstr "Rapporto necessario"
 
 #: application/models/Achievements_model.php:299
 #, php-format
 msgid "Total: %s QSOs"
-msgstr ""
+msgstr "Totale: %s QSO"
 
 #: application/models/Achievements_model.php:303
 #: application/views/awards/counties/index.php:195
@@ -4736,59 +4736,59 @@ msgstr "Collegato"
 
 #: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
-msgstr ""
+msgstr "Modalità digitali classiche"
 
 #: application/models/Achievements_model.php:310
 #, php-format
 msgid "HF: %s/%s"
-msgstr ""
+msgstr "HF: %s/%s"
 
 #: application/models/Achievements_model.php:311
 #, php-format
 msgid "WARC: %s/%s"
-msgstr ""
+msgstr "WARC: %s/%s"
 
 #: application/models/Achievements_model.php:312
 #, php-format
 msgid "SAT: %s"
-msgstr ""
+msgstr "SAT: %s"
 
 #: application/models/Achievements_model.php:314
 #, php-format
 msgid "First confirmation: %s"
-msgstr ""
+msgstr "Prima conferma: %s"
 
 #: application/models/Achievements_model.php:314
 msgid "No LoTW confirmation yet"
-msgstr ""
+msgstr "Ancora nessuna conferma LoTW"
 
 #: application/models/Achievements_model.php:316
 msgid "CW and SSB versus FT8 and FT4"
-msgstr ""
+msgstr "CW e SSB contro FT8 e FT4"
 
 #: application/models/Achievements_model.php:319
 msgid "Streak"
-msgstr ""
+msgstr "Serie"
 
 #: application/models/Achievements_model.php:320
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
-msgstr ""
+msgstr "Rapporto modalità classica"
 
 #: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
-msgstr ""
+msgstr "QSOs in questa modalità"
 
 #: application/models/Achievements_model.php:371
 msgid "Bands worked"
-msgstr ""
+msgstr "Bande lavorate"
 
 #: application/models/Achievements_model.php:372
 msgid "Missing bands"
-msgstr ""
+msgstr "Bande mancanti"
 
 #: application/models/Achievements_model.php:373
 msgid "Range"
@@ -4796,36 +4796,36 @@ msgstr ""
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
-msgstr ""
+msgstr "Completato il"
 
 #: application/models/Achievements_model.php:379
 #, php-format
 msgid "%s / %s band"
 msgid_plural "%s / %s bands"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / %s bande"
+msgstr[1] "%s / %s bande"
 
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
-msgstr ""
+msgstr "QSO SAT"
 
 #: application/models/Achievements_model.php:392
 msgid "Different satellites"
-msgstr ""
+msgstr "Diversi satelliti"
 
 #: application/models/Achievements_model.php:398
-#, php-format
+#, fuzzy, php-format
 msgid "Longest streak: %s day"
 msgid_plural "Longest streak: %s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Serie più lunga: %s giorno"
+msgstr[1] "Serie più lunga: %s giorni"
 
 #: application/models/Achievements_model.php:400
 #, php-format
 msgid "Current streak: %s day"
 msgid_plural "Current streak: %s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Serie attuale: %s giorno"
+msgstr[1] "Serie attuale: %s giorni"
 
 #: application/models/Achievements_model.php:407
 #: application/views/visitor/mini.php:214
@@ -4835,7 +4835,7 @@ msgstr "Ancora nessun QSO"
 #: application/models/Achievements_model.php:410
 #: application/models/Achievements_model.php:412
 msgid "classic"
-msgstr ""
+msgstr "classico"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
@@ -4990,28 +4990,28 @@ msgstr "Carta importata"
 msgid "Imported label type"
 msgstr "Tipo di etichetta importato"
 
-#: application/models/Logbook_model.php:358
+#: application/models/Logbook_model.php:359
 msgid "Station not accessible"
 msgstr "Stazione non accessibile"
 
-#: application/models/Logbook_model.php:993
+#: application/models/Logbook_model.php:994
 msgid "Realtime upload disabled"
-msgstr ""
+msgstr "Caricamento in tempo reale disabilitato"
 
-#: application/models/Logbook_model.php:1451
+#: application/models/Logbook_model.php:1452
 msgid "Station ID not allowed"
 msgstr "ID stazione non consentito"
 
-#: application/models/Logbook_model.php:1456
+#: application/models/Logbook_model.php:1457
 msgid "No Call given"
 msgstr "Nessun nominatio fornito"
 
-#: application/models/Logbook_model.php:1531
-#: application/models/Logbook_model.php:1749
+#: application/models/Logbook_model.php:1533
+#: application/models/Logbook_model.php:1751
 msgid "DXCC has to be Numeric"
 msgstr "DXCC deve essere numerico"
 
-#: application/models/Logbook_model.php:4968
+#: application/models/Logbook_model.php:4970
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5019,7 +5019,7 @@ msgstr ""
 "Callsign della stazione errato ( %s) durante l'importazione di QSO con %s "
 "per %s: SALTATO"
 
-#: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4978
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5028,7 +5028,7 @@ msgstr ""
 "Locatore diverso %s durante l'importazione del QSO con %s per il locatore "
 "della stazione %s: SALTATO"
 
-#: application/models/Logbook_model.php:4992
+#: application/models/Logbook_model.php:4994
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5036,7 +5036,7 @@ msgstr ""
 "Hai cercato di importare un QSO senza una data valida. Questo QSO non è "
 "stato importato. Non è valido"
 
-#: application/models/Logbook_model.php:5002
+#: application/models/Logbook_model.php:5004
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5045,7 +5045,7 @@ msgstr ""
 "QSO su %s: Hai cercato di importare un QSO senza alcun CALL specificato. "
 "Questo QSO non è stato importato. Non è valido."
 
-#: application/models/Logbook_model.php:5009
+#: application/models/Logbook_model.php:5011
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5054,7 +5054,7 @@ msgstr ""
 "QSO su %s: Hai provato a importare un QSO con un CALL non valido. Questo QSO "
 "non è stato importato. L'input non valido è '%s'."
 
-#: application/models/Logbook_model.php:5079
+#: application/models/Logbook_model.php:5081
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5063,7 +5063,7 @@ msgstr ""
 "QSO su %s: La banda '%s' non è nella configurazione delle bande. Questo QSO "
 "non è stato importato."
 
-#: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5088
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5072,63 +5072,63 @@ msgstr ""
 "QSO su %s: Hai provato a importare un QSO senza una banda specificata. "
 "Questo QSO non è stato importato. È non valido"
 
-#: application/models/Logbook_model.php:5360
+#: application/models/Logbook_model.php:5363
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5371
+#: application/models/Logbook_model.php:5374
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5432
+#: application/models/Logbook_model.php:5435
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "La data di upload Clublog non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5808
+#: application/models/Logbook_model.php:5811
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicata"
 
-#: application/models/Logbook_model.php:5875
-#: application/models/Logbook_model.php:5975
+#: application/models/Logbook_model.php:5878
+#: application/models/Logbook_model.php:5978
 msgid "QSO could not be matched"
 msgstr "Impossibile abbinare QSO"
 
-#: application/models/Logbook_model.php:5883
+#: application/models/Logbook_model.php:5886
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confermato da LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5889
+#: application/models/Logbook_model.php:5892
 msgid "confirmed by award manager"
 msgstr "confermato dal responsabile del diploma"
 
-#: application/models/Logbook_model.php:5893
+#: application/models/Logbook_model.php:5896
 msgid "confirmed by cross-check of DCL data"
 msgstr "confermato dal controllo incrociato dei dati DCL"
 
-#: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5900
 msgid "confirmation pending"
 msgstr "Conferma in sospeso"
 
-#: application/models/Logbook_model.php:5900
+#: application/models/Logbook_model.php:5903
 msgid "unconfirmed"
 msgstr "Non confermato"
 
-#: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5906
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "sconosciuto"
 
-#: application/models/Logbook_model.php:5978
+#: application/models/Logbook_model.php:5981
 msgid "POTA reference already in log"
 msgstr "Riferimento POTA già presente nel registro di stazione"
 
-#: application/models/Logbook_model.php:5981
+#: application/models/Logbook_model.php:5984
 msgid "QSO updated"
 msgstr "QSO aggiornato"
 
-#: application/models/Logbook_model.php:6402
+#: application/models/Logbook_model.php:6405
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5144,7 +5144,7 @@ msgstr "QSO aggiornato"
 msgid "Bearing"
 msgstr "Direzione"
 
-#: application/models/Logbookadvanced_model.php:1792
+#: application/models/Logbookadvanced_model.php:1794
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -5152,16 +5152,16 @@ msgstr ""
 "ID QSO primario non valido, oppure non hai il permesso di accedere a uno dei "
 "QSO"
 
-#: application/models/Logbookadvanced_model.php:1802
+#: application/models/Logbookadvanced_model.php:1804
 #: application/views/view_log/qso.php:869
 msgid "QSO not found"
 msgstr "QSO non trovato"
 
-#: application/models/Logbookadvanced_model.php:1888
+#: application/models/Logbookadvanced_model.php:1890
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "Nessun campo selezionato per l'unione o nessuna differenza tra i QSO"
 
-#: application/models/Logbookadvanced_model.php:1901
+#: application/models/Logbookadvanced_model.php:1903
 msgid "QSOs merged successfully"
 msgstr "QSOs uniti con successo"
 
@@ -5544,41 +5544,43 @@ msgid ""
 "No station locations are linked to your active logbook. Trophies need at "
 "least one linked station location."
 msgstr ""
+"Nessuna posizione di stazione è collegata al tuo logbook attivo. I trofei "
+"richiedono almeno una posizione di stazione collegata."
 
 #: application/views/achievements/index.php:78
 msgid "QSO filter"
-msgstr ""
+msgstr "filtro QSO"
 
 #: application/views/achievements/index.php:79
 msgid "All QSOs"
-msgstr ""
+msgstr "Tutti i QSO"
 
 #: application/views/achievements/index.php:80
 msgid "Confirmed only"
-msgstr ""
+msgstr "Solo confermati"
 
 #: application/views/achievements/index.php:80
 msgid "Count only QSOs confirmed by LoTW or paper card"
-msgstr ""
+msgstr "Conta solo i QSO confermati da LoTW o con QSL cartacea"
 
 #: application/views/achievements/index.php:83
 #, php-format
 msgid "You have unlocked %s of %s trophies."
-msgstr ""
+msgstr "Hai sbloccato %s di %s trofei."
 
 #: application/views/achievements/index.php:85
 #, php-format
 msgid "Cached data as of %s"
-msgstr ""
+msgstr "Dati memorizzati a partire da %s"
 
 #: application/views/achievements/index.php:126
 #: application/views/achievements/index.php:191
 msgid "Unlocked"
-msgstr ""
+msgstr "Sbloccato"
 
 #: application/views/achievements/index.php:145
 msgid "Trophy"
-msgstr ""
+msgstr "Trofeo"
 
 #: application/views/achievements/index.php:146
 #: application/views/activationplanner/index.php:30
@@ -5606,7 +5608,7 @@ msgstr "Chiudi"
 
 #: application/views/achievements/index.php:191
 msgid "Locked"
-msgstr ""
+msgstr "Bloccato"
 
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:168
@@ -12329,7 +12331,7 @@ msgstr "Sincronizzato"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "QSO could not be saved:"
-msgstr ""
+msgstr "Il QSO non può essere salvato:"
 
 #: application/views/contesting/logger/components/qso-form.php:37
 msgid "Delete this QSO?"
@@ -16358,7 +16360,7 @@ msgstr "QSO con %s di %s è stato aggiunto al logbook."
 #: application/views/interface_assets/footer.php:85
 #, php-format
 msgid "Realtime upload failed: %s"
-msgstr ""
+msgstr "Caricamento in tempo reale non riuscito: %s"
 
 #: application/views/interface_assets/footer.php:86
 msgid "QSO Added to Backlog"
