@@ -785,12 +785,13 @@ function spawnQrbCalculator(locator1, locator2) {
 		type: 'post',
 		success: function (html) {
 			BootstrapDialog.show({
-				title: lang_qrbcalc_title,
+				title: '<i class="fas fa-compass me-2"></i>' + lang_qrbcalc_title,
 				size: BootstrapDialog.SIZE_WIDE,
-				cssClass: 'lookup-dialog bg-black bg-opacity-50',
+				cssClass: 'qrb-dialog lookup-dialog bg-black bg-opacity-50',
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
+					$(window).off('resize', sizeQrbMap).on('resize', sizeQrbMap);
 					if (locator1 !== undefined) {
 						$("#qrbcalc_locator1").val(locator1);
 					}
@@ -798,6 +799,7 @@ function spawnQrbCalculator(locator1, locator2) {
 						$("#qrbcalc_locator2").val(locator2);
 						calculateQrb();
 					}
+					sizeQrbMap();
 				},
 				buttons: [{
 					label: lang_admin_close,
@@ -848,24 +850,206 @@ function calculateQrb() {
             data: {'locator1': locator1,
                     'locator2': locator2},
             success: function (html) {
-
-                var result = "<h5>" + html['latlong_info_text'] + "<br><br>";
-                result += html['text_latlng1'] + '<br>';
-                result += html['text_latlng2'] + '<br><br>';
-                result += html['distance'] + ' ';
-                result += html['bearing'] + '</h5>';
-
-                $(".qrbResult").html(result);
+                renderQrbResult(html, locator1, locator2);
+                $("#mapqrb").show();
+                sizeQrbMap();
                 newpath(html['latlng1'], html['latlng2'], locator1, locator2);
             }
         });
     } else if (locator1 == '' || locator2 == '') {
-        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_empty_loc + '</div>');
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger d-flex align-items-center gap-2 m-3" role="alert"><i class="fas fa-triangle-exclamation"></i><div>' + lang_qrbcalc_empty_loc + '</div></div>');
         $("#mapqrb").hide();
     } else {
         $("#mapqrb").hide();
-        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_errmsg + '</div>');
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger d-flex align-items-center gap-2 m-3" role="alert"><i class="fas fa-triangle-exclamation"></i><div>' + lang_qrbcalc_errmsg + '</div></div>');
     }
+}
+
+function resetQrbForm(form) {
+    form.reset();
+    $(".qrbResult").empty();
+    $("#mapqrb").hide();
+}
+
+// Size the QRB map to the remaining viewport height below it. Done in JS
+// (instead of pure CSS flex) so theme-specific modal styles can't break it.
+function sizeQrbMap() {
+    var mapDiv = document.getElementById('mapqrb');
+    if (!mapDiv || mapDiv.offsetParent === null || window.innerWidth < 992) {
+        return;
+    }
+    var content = mapDiv.closest('.modal-content');
+    var dialogEl = mapDiv.closest('.modal-dialog');
+    var modalEl = mapDiv.closest('.modal');
+    var body = mapDiv.closest('.modal-body');
+    if (!content || !dialogEl || !modalEl || !body) {
+        return;
+    }
+    var footer = content.querySelector('.modal-footer');
+    var bodyPadding = parseFloat(getComputedStyle(body).paddingBottom) || 0;
+    var dialogMargin = parseFloat(getComputedStyle(dialogEl).marginBottom) || 0;
+    var mapTop = mapDiv.getBoundingClientRect().top;
+    var modalBottom = modalEl.getBoundingClientRect().bottom;
+    var reserved = (footer ? footer.offsetHeight : 0) + bodyPadding + dialogMargin + 8;
+    var available = modalBottom - mapTop - reserved;
+
+    // Themes cap .modal-body with a max-height (e.g. calc(100vh - 200px)) and let
+    // it scroll internally — the map must fit inside that cap as well, or the
+    // scrollbar simply moves into the modal body
+    var bodyMaxStyle = getComputedStyle(body).maxHeight;
+    var bodyMax = /px$/.test(bodyMaxStyle) ? parseFloat(bodyMaxStyle) : NaN;
+    if (!isNaN(bodyMax)) {
+        var bodyAvail = bodyMax - (mapTop - body.getBoundingClientRect().top) - bodyPadding - 4;
+        available = Math.min(available, bodyAvail);
+    }
+    mapDiv.style.height = Math.max(available, 200) + 'px';
+
+    // Self-correct against the real rendered geometry until neither the modal
+    // body nor the modal itself overflows (scrollHeight is reliable here: the
+    // map is the last in-flow element and carries no bottom margin)
+    var tries = 0;
+    while (mapDiv.offsetHeight > 200 && tries++ < 60) {
+        var bodyOverflows = body.scrollHeight > body.clientHeight + 0.5;
+        var dialogOverflows = dialogEl.getBoundingClientRect().bottom + dialogMargin > modalBottom + 0.5;
+        if (!bodyOverflows && !dialogOverflows) {
+            break;
+        }
+        mapDiv.style.height = (mapDiv.offsetHeight - 4) + 'px';
+    }
+
+    if (window.qrbMap) {
+        window.qrbMap.invalidateSize();
+    }
+}
+
+function qrbCardinal(bearing) {
+    var dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+    return dirs[Math.round((((bearing % 360) + 360) % 360) / 22.5) % 16];
+}
+
+function qrbCoordinate(value, isLatitude) {
+    var val = Number(value);
+    var hemisphere = isLatitude ? (val >= 0 ? 'N' : 'S') : (val >= 0 ? 'E' : 'W');
+    return Math.abs(val).toFixed(3) + '° ' + hemisphere;
+}
+
+// Resolve the theme's actual rendered colors so the result card also works
+// with themes that don't define the Bootstrap 5.3 CSS variables.
+function qrbThemeColors() {
+    var fallback = {
+        bg: '#ffffff',
+        text: '#212529',
+        input: '#ffffff',
+        border: 'rgba(0, 0, 0, 0.175)',
+        danger: '#dc3545',
+    };
+    try {
+        var probe = document.createElement('div');
+        probe.style.display = 'none';
+        document.body.appendChild(probe);
+
+        probe.className = 'card';
+        var cardStyle = getComputedStyle(probe);
+        var colors = {
+            bg: cardStyle.backgroundColor || fallback.bg,
+            text: cardStyle.color || fallback.text,
+            border: cardStyle.borderColor || fallback.border,
+            danger: cardStyle.getPropertyValue('--bs-danger').trim() || fallback.danger,
+        };
+
+        probe.className = 'form-control';
+        colors.input = getComputedStyle(probe).backgroundColor || colors.bg;
+
+        probe.remove();
+        return colors;
+    } catch (e) {
+        return fallback;
+    }
+}
+
+function qrbCompassSvg(bearing, colors) {
+    var ticks = '';
+    for (var angle = 0; angle < 360; angle += 15) {
+        var major = angle % 45 === 0;
+        var rad = (angle - 90) * Math.PI / 180;
+        var inner = major ? 43 : 47;
+        ticks += '<line x1="' + (60 + inner * Math.cos(rad)).toFixed(1)
+            + '" y1="' + (60 + inner * Math.sin(rad)).toFixed(1)
+            + '" x2="' + (60 + 52 * Math.cos(rad)).toFixed(1)
+            + '" y2="' + (60 + 52 * Math.sin(rad)).toFixed(1)
+            + '" style="stroke: ' + colors.text + ';" stroke-width="' + (major ? 2 : 1) + '"'
+            + (major ? ' opacity="0.8"' : ' opacity="0.45"') + '/>';
+    }
+
+    var letterStyle = 'style="fill: ' + colors.text + ';" opacity="0.55"';
+    var nStyle = 'style="fill: ' + colors.danger + ';"';
+
+    return '<svg class="qrb-compass" width="132" height="132" viewBox="0 0 120 120" role="img" aria-label="' + Math.round(bearing) + '°">'
+        + '<circle cx="60" cy="60" r="54" style="fill: ' + colors.bg + '; stroke: ' + colors.border + '; stroke-width: 2;"/>'
+        + ticks
+        + '<text x="60" y="24" text-anchor="middle" dominant-baseline="central" ' + nStyle + '>N</text>'
+        + '<text x="96" y="60" text-anchor="middle" dominant-baseline="central" ' + letterStyle + '>E</text>'
+        + '<text x="60" y="96" text-anchor="middle" dominant-baseline="central" ' + letterStyle + '>S</text>'
+        + '<text x="24" y="60" text-anchor="middle" dominant-baseline="central" ' + letterStyle + '>W</text>'
+        + '<g transform="rotate(' + Math.round(bearing) + ' 60 60)">'
+        + '<polygon points="60,32 64.5,60 55.5,60" style="fill: ' + colors.danger + ';"/>'
+        + '<polygon points="60,88 64.5,60 55.5,60" style="fill: ' + colors.text + ';" opacity="0.6"/>'
+        + '</g>'
+        + '<circle cx="60" cy="60" r="4" style="fill: ' + colors.text + ';"/>'
+        + '<circle cx="60" cy="60" r="1.5" style="fill: ' + colors.bg + ';"/>'
+        + '</svg>';
+}
+
+function qrbResultChip(locator, latlng, colors) {
+    return '<span class="qrb-chip d-inline-flex align-items-center gap-2 px-2 py-1" style="background-color: ' + colors.input + '; border: 1px solid ' + colors.border + ';">'
+        + '<span class="font-monospace fw-bold">' + locator.toUpperCase() + '</span>'
+        + '<span class="small" style="opacity: 0.7;">' + qrbCoordinate(latlng[0], true) + ', ' + qrbCoordinate(latlng[1], false) + '</span>'
+        + '</span>';
+}
+
+function renderQrbResult(data, locator1, locator2) {
+    var bearing = Number(data['bearing_value']);
+    var distance = Number(data['distance_value']);
+
+    // Fall back to the plain server-side sentences if no numeric values are available
+    if (isNaN(bearing) || isNaN(distance)) {
+        var fallback = '<div class="p-3"><h5>' + data['latlong_info_text'] + "<br><br>";
+        fallback += data['text_latlng1'] + '<br>';
+        fallback += data['text_latlng2'] + '<br><br>';
+        fallback += data['distance'] + ' ';
+        fallback += data['bearing'] + '</h5></div>';
+        $(".qrbResult").html(fallback);
+        return;
+    }
+
+    var cardinal = qrbCardinal(bearing);
+    var reverseBearing = Number(data['reverse_bearing_value']);
+    if (isNaN(reverseBearing)) {
+        reverseBearing = (bearing + 180) % 360;
+    }
+    var colors = qrbThemeColors();
+    var distanceText = distance >= 100
+        ? Math.round(distance).toLocaleString()
+        : (Math.round(distance * 10) / 10).toLocaleString();
+
+    var result = '<div class="d-flex align-items-center gap-4 flex-wrap p-3 flex-grow-1">'
+        + qrbCompassSvg(bearing, colors)
+        + '<div class="flex-grow-1">'
+        + '<div class="text-body-secondary text-uppercase small fw-semibold mb-1">' + lang_qrbcalc_distance + '</div>'
+        + '<div class="fs-1 fw-bold lh-1">' + distanceText + ' <span class="fs-4 fw-normal text-body-secondary">' + data['unit'] + '</span></div>'
+        + '<div class="text-body-secondary text-uppercase small fw-semibold mt-3 mb-1">' + lang_qrbcalc_bearing + '</div>'
+        + '<div class="fs-4 fw-semibold lh-1">' + Math.round(bearing) + '° <span class="fw-normal text-body-secondary">' + cardinal + '</span></div>'
+        + '<div class="mt-1"><span class="text-body-secondary">' + lang_qrbcalc_reverse_bearing + ':</span> <span class="fw-semibold">' + Math.round(reverseBearing) + '° ' + qrbCardinal(reverseBearing) + '</span></div>'
+        + '</div>'
+        + '</div>'
+        + '<div class="d-flex align-items-center gap-2 flex-wrap p-3 pt-0">'
+        + qrbResultChip(locator1, data['latlng1'], colors)
+        + '<i class="fas fa-arrow-right" style="opacity: 0.7;"></i>'
+        + qrbResultChip(locator2, data['latlng2'], colors)
+        + '</div>'
+        + '<div class="small text-body-secondary px-3 pb-2">' + data['latlong_info_text'] + '</div>';
+
+    $(".qrbResult").html(result);
 }
 
 function validateLocator(locator) {
@@ -1273,6 +1457,49 @@ function set_map_height(extra_height = 0) {
     // console.log('#gridsquare_map: ' + gridsquareMapHeight);
 }
 
+// Bounds [[south, west], [north, east]] of a locator's 4-char grid square.
+// Returns null for anything that isn't at least a valid 4-char locator.
+function qrbGridSquareBounds(locator) {
+    var loc = String(locator || '').trim().toUpperCase();
+    if (!/^[A-R]{2}[0-9]{2}/.test(loc)) {
+        return null;
+    }
+    var lon = (loc.charCodeAt(0) - 65) * 20 - 180 + (loc.charCodeAt(2) - 48) * 2;
+    var lat = (loc.charCodeAt(1) - 65) * 10 - 90 + (loc.charCodeAt(3) - 48);
+    return [[lat, lon], [lat + 1, lon + 2]];
+}
+
+// Highlight the locator squares and dim the surrounding grid labels — the same
+// treatment the Activation Planner's two-grid QRB view uses (the .gl-dim-labels
+// class and its CSS live in general.css and are shared with the planner).
+function qrbHighlightSquares(map, locator1, locator2) {
+    var container = map.getContainer();
+    if (container) {
+        container.classList.add('gl-dim-labels');
+    }
+    var sqColor = (typeof isDarkModeTheme === 'function' && isDarkModeTheme()) ? '#ffd60a' : '#ff1900';
+    var drawn = {};
+    [locator1, locator2].forEach(function (locator) {
+        String(locator).split(',').forEach(function (part) {
+            var key = part.trim().toUpperCase().substring(0, 4);
+            if (key.length === 4 && !drawn[key]) {
+                drawn[key] = true;
+                var sq = qrbGridSquareBounds(key);
+                if (sq) {
+                    map.addLayer(L.rectangle(sq, {
+                        color: sqColor,
+                        weight: 2,
+                        dashArray: '8,5',
+                        fillColor: sqColor,
+                        fillOpacity: 0.1,
+                        interactive: false
+                    }));
+                }
+            }
+        });
+    });
+}
+
 function newpath(latlng1, latlng2, locator1, locator2) {
     // If map is already initialized
     var container = L.DomUtil.get('mapqrbcontainer');
@@ -1280,7 +1507,7 @@ function newpath(latlng1, latlng2, locator1, locator2) {
     if(container != null){
         container._leaflet_id = null;
         container.remove();
-        $("#mapqrb").append('<div id="mapqrbcontainer" style="Height: 500px"></div>');
+        $("#mapqrb").append('<div id="mapqrbcontainer"></div>');
     }
 
     var map = new L.Map('mapqrbcontainer', {
@@ -1289,6 +1516,8 @@ function newpath(latlng1, latlng2, locator1, locator2) {
           position: 'topleft'
         },
       }).setView([30, 0], 1.5);
+
+    window.qrbMap = map;
 
     if (locator1.toUpperCase() != locator2.toUpperCase()) {
 
@@ -1360,6 +1589,8 @@ function newpath(latlng1, latlng2, locator1, locator2) {
         map.addLayer(osm);
         var marker = L.marker([latlng1[0], latlng1[1]], {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(locator1);
     }
+
+    qrbHighlightSquares(map, locator1, locator2);
 }
 
 function disableMap() {

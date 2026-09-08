@@ -1,25 +1,51 @@
-<form class="form col-md-12" enctype="multipart/form-data">
-    <div class="mb-3 row">
-        <div class="col-md-2 control-label" for="input"><?= __("Locator 1"); ?></div>
-        <div class="col-md-4">
-            <input class="form-control input-group-sm uppercase" id="qrbcalc_locator1" type="text" name="locator1" placeholder="" value="<?php if ($station_locator != "0") echo $station_locator; ?>" aria-label="locator1">  
-        </div>
-    </div>
+<style>
+	.qrb-input {
+		letter-spacing: .08em;
+	}
 
-    <div class="mb-3 row">
-        <div class="col-md-2 control-label" for="input"><?= __("Locator 2"); ?></div>
-        <div class="col-md-4">
-        <input class="form-control input-group-sm uppercase" id="qrbcalc_locator2" type="text" name="locator2" placeholder="" aria-label="locator2">
-        </div>
-    </div>
+	.qrb-compass text {
+		font-size: 11px;
+		font-weight: 600;
+	}
 
-    <div class="mb-3 row">
-        <label class="col-md-2 control-label" for="button1id"></label>
-        <div class="col-md-4">
-            <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
-            <button id="button1id" type="button" onclick="calculateQrb();" name="button1id" class="btn btn-sm btn-primary"><?= __("Calculate"); ?></button>
-        </div>
-    </div>
-</form>
-<div class="qrbResult"></div>
-<div id="mapqrb"><div id="mapqrbcontainer" style="Height: 500px"></div></div>
+	#mapqrb {
+		height: 430px;
+	}
+
+	#mapqrbcontainer {
+		width: 100%;
+		height: 100%;
+	}
+
+	/* Give the two-column layout and the map some room on desktop */
+	@media (min-width: 992px) {
+		.qrb-dialog .modal-lg {
+			max-width: min(1050px, 95vw);
+		}
+	}
+</style>
+
+<div class="row g-4 mb-3">
+	<div class="col-12 col-md-5 col-lg-4">
+		<form onsubmit="calculateQrb(); return false;" class="card card-body shadow-sm h-100">
+			<div class="mb-1">
+				<label for="qrbcalc_locator1" class="form-label small text-uppercase fw-semibold text-body-secondary mb-1 ps-1"><?= __("Locator 1"); ?></label>
+				<input class="form-control form-control-sm qrb-input uppercase font-monospace text-center" id="qrbcalc_locator1" type="text" name="locator1" placeholder="JO01AB" value="<?php if ($station_locator != "0") echo $station_locator; ?>" aria-label="<?= __("Locator 1"); ?>" autocomplete="off" spellcheck="false">
+			</div>
+			<div class="mb-3">
+				<label for="qrbcalc_locator2" class="form-label small text-uppercase fw-semibold text-body-secondary mb-1 ps-1"><?= __("Locator 2"); ?></label>
+				<input class="form-control form-control-sm qrb-input uppercase font-monospace text-center" id="qrbcalc_locator2" type="text" name="locator2" placeholder="JO02CD" aria-label="<?= __("Locator 2"); ?>" autocomplete="off" spellcheck="false">
+			</div>
+			<div class="d-flex gap-2">
+				<button type="button" class="btn btn-outline-primary btn-sm qrb-btn" onclick="resetQrbForm(this.form)"><i class="fas fa-undo me-1"></i><?= __("Reset"); ?></button>
+				<button type="submit" class="btn btn-primary btn-sm qrb-btn flex-grow-1"><i class="fas fa-calculator me-1"></i><?= __("Calculate"); ?></button>
+			</div>
+		</form>
+	</div>
+	<div class="col-12 col-md-7 col-lg-8">
+		<div class="card shadow-sm h-100 overflow-hidden">
+			<div class="qrbResult h-100 d-flex flex-column"></div>
+		</div>
+	</div>
+</div>
+<div id="mapqrb"><div id="mapqrbcontainer"></div></div>
