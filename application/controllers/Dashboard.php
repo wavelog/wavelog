@@ -225,7 +225,7 @@ class Dashboard extends CI_Controller {
 				continue;
 			}
 			$group['label'] = $label;
-			$group['needed'] = max(0, $current_count - $group['confirmed']);
+			$group['needed'] = max(0, $current_count - $group['worked']);
 			$data['dxcc_sections'][$key] = $group;
 		}
 
