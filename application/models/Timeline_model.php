@@ -334,22 +334,22 @@ class Timeline_model extends CI_Model {
 
 	function confirm_date_expr($qsl, $lotw, $eqsl, $clublog, $qrz) {
 		$cols = [];
-		if ($lotw)    { $cols[] = "nullif(col_lotw_qslrdate, '0000-00-00')"; }
-		if ($qsl)     { $cols[] = "nullif(col_qslrdate, '0000-00-00')"; }
-		if ($eqsl)    { $cols[] = "nullif(col_eqsl_qslrdate, '0000-00-00')"; }
-		if ($clublog) { $cols[] = "nullif(col_clublog_qso_download_date, '0000-00-00')"; }
-		if ($qrz)     { $cols[] = "nullif(col_qrzcom_qso_download_date, '0000-00-00')"; }
+		if ($lotw)    { $cols[] = "if(col_lotw_qslrdate > '0001-01-01', col_lotw_qslrdate, null)"; }
+		if ($qsl)     { $cols[] = "if(col_qslrdate > '0001-01-01', col_qslrdate, null)"; }
+		if ($eqsl)    { $cols[] = "if(col_eqsl_qslrdate > '0001-01-01', col_eqsl_qslrdate, null)"; }
+		if ($clublog) { $cols[] = "if(col_clublog_qso_download_date > '0001-01-01', col_clublog_qso_download_date, null)"; }
+		if ($qrz)     { $cols[] = "if(col_qrzcom_qso_download_date > '0001-01-01', col_qrzcom_qso_download_date, null)"; }
 		if (!$cols)   { return null; }
 		return 'COALESCE(' . implode(', ', $cols) . ', DATE(col_time_on))';
 	}
 
 	function confirm_date_selects($qsl, $lotw, $eqsl, $clublog, $qrz) {
 		$selects = '';
-		if ($lotw)    { $selects .= ", nullif(col_lotw_qslrdate, '0000-00-00') AS lotw_date"; }
-		if ($qsl)     { $selects .= ", nullif(col_qslrdate, '0000-00-00') AS qsl_date"; }
-		if ($eqsl)    { $selects .= ", nullif(col_eqsl_qslrdate, '0000-00-00') AS eqsl_date"; }
-		if ($clublog) { $selects .= ", nullif(col_clublog_qso_download_date, '0000-00-00') AS clublog_date"; }
-		if ($qrz)     { $selects .= ", nullif(col_qrzcom_qso_download_date, '0000-00-00') AS qrz_date"; }
+		if ($lotw)    { $selects .= ", if(col_lotw_qslrdate > '0001-01-01', col_lotw_qslrdate, null) AS lotw_date"; }
+		if ($qsl)     { $selects .= ", if(col_qslrdate > '0001-01-01', col_qslrdate, null) AS qsl_date"; }
+		if ($eqsl)    { $selects .= ", if(col_eqsl_qslrdate > '0001-01-01', col_eqsl_qslrdate, null) AS eqsl_date"; }
+		if ($clublog) { $selects .= ", if(col_clublog_qso_download_date > '0001-01-01', col_clublog_qso_download_date, null) AS clublog_date"; }
+		if ($qrz)     { $selects .= ", if(col_qrzcom_qso_download_date > '0001-01-01', col_qrzcom_qso_download_date, null) AS qrz_date"; }
 		return $selects;
 	}
 
