@@ -137,12 +137,12 @@
 
     if ($timeline_array) {
         switch ($this->input->post('award')) {
-            case 'dxcc': $result = write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew); break;
-            case 'was':  $result = write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew); break;
-            case 'iota': $result = write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew); break;
-            case 'waz':  $result = write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew); break;
-            case 'vucc':  $result = write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew); break;
-            case 'waja':  $result = write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew); break;
+            case 'dxcc': $result = write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew, $confirm); break;
+            case 'was':  $result = write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew, $confirm); break;
+            case 'iota': $result = write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew, $confirm); break;
+            case 'waz':  $result = write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew, $confirm); break;
+            case 'vucc':  $result = write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew, $confirm); break;
+            case 'waja':  $result = write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award'), $selectedyear, $onlynew, $confirm); break;
         }
     }
     else {
@@ -156,39 +156,80 @@
 
 <?php
 
-function filter_timeline_array($timeline_array, $selectedyear, $onlynew) {
+function filter_timeline_array($timeline_array, $selectedyear, $onlynew, $confirm) {
     // Filter the timeline array
-    return array_filter($timeline_array, function($line) use ($selectedyear, $onlynew) {
+    return array_filter($timeline_array, function($line) use ($selectedyear, $onlynew, $confirm) {
         if ($onlynew == "1") {
-            $entry_year = date('Y', strtotime($line->date ?? '1970-01-01 00:00:00'));
+            if ($confirm) {
+                $primary = timeline_primary_confirm($line);
+                if ($primary === null) { return false; }
+                $check = $primary[1];
+            } else {
+                $check = $line->date ?? '1970-01-01 00:00:00';
+            }
+            $entry_year = date('Y', strtotime($check));
             return $entry_year == $selectedyear; // Include only rows matching the year
         }
         return true; // Include all rows if $onlynew is not 1
     });
 }
 
-function filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew) {
+function filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew, $confirm) {
     // Filter the timeline array
-    return array_filter($timeline_array, function($line) use ($selectedyear, $onlynew) {
+    return array_filter($timeline_array, function($line) use ($selectedyear, $onlynew, $confirm) {
         if ($onlynew == "1") {
-            $entry_year = date('Y', strtotime($line['date'] ?? '1970-01-01 00:00:00')); // Use array key 'date'
+            if ($confirm) {
+                $primary = timeline_primary_confirm($line, true);
+                if ($primary === null) { return false; }
+                $check = $primary[1];
+            } else {
+                $check = $line['date'] ?? '1970-01-01 00:00:00';
+            }
+            $entry_year = date('Y', strtotime($check)); // Use array key 'date'
             return $entry_year == $selectedyear; // Include only rows matching the year
         }
         return true; // Include all rows if $onlynew is not 1
     });
 }
 
+function timeline_primary_confirm($line, $assoc = false) {
+    $order = array('lotw', 'qsl', 'eqsl', 'clublog', 'qrz');
+    foreach ($order as $m) {
+        $k = $m . '_date';
+        $v = $assoc ? ($line[$k] ?? null) : ($line->$k ?? null);
+        if ($v) { return array($m, $v); }
+    }
+    return null;
+}
 
-function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
+function write_confirm_cell($line, $custom_date_format, $assoc = false) {
+    $primary = timeline_primary_confirm($line, $assoc);
+    if ($primary === null) {
+        echo '<td>-</td>';
+        return;
+    }
+    $labels = array('lotw' => 'LoTW', 'qsl' => 'QSL', 'eqsl' => 'eQSL', 'clublog' => 'Club Log', 'qrz' => 'QRZ');
+    $tips = array();
+    foreach (array('lotw', 'qsl', 'eqsl', 'clublog', 'qrz') as $m) {
+        $k = $m . '_date';
+        $v = $assoc ? ($line[$k] ?? null) : ($line->$k ?? null);
+        if ($v) { $tips[] = $labels[$m] . ': ' . date($custom_date_format, strtotime($v)); }
+    }
+    $title = $tips ? ' data-bs-toggle="tooltip" title="' . implode('<br>', $tips) . '"' : '';
+    echo '<td' . $title . '>' . date($custom_date_format, strtotime($primary[1])) . '</td>';
+}
+
+
+function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew, $confirm) {
     // Apply filtering to the timeline array
-    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew, $confirm);
     $i = count($filtered_timeline); // General counter for all entries
 
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>' . __("Date") . '</td>
+                        <td>' . __("Date") . '</td>' . ($confirm ? '<td>' . __("Confirmation Date") . '</td>' : '') . '
                         <td>' . __("Prefix") . '</td>
                         <td>' . __("Country") . '</td>';
     if ($propmode == 'SAT' || $propmode == 'All') {
@@ -205,8 +246,9 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
         $date_as_timestamp = strtotime($line->date ?? '1970-01-01 00:00:00');
         echo '<tr>
                 <td>' . $i-- . '</td>
-                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td class="callsign">' . $line->prefix . '</td>
+                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>';
+        if ($confirm) { write_confirm_cell($line, $custom_date_format); }
+        echo '                <td class="callsign">' . $line->prefix . '</td>
                 <td>' . ucwords(strtolower($line->dxcc_name)) . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
             echo '<td>'.html_escape($line->sat_name).'</td>';
@@ -222,17 +264,17 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
     echo '</tbody></table>';
 }
 
-function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
+function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew, $confirm) {
     $CI = &get_instance();
     $CI->load->model("Waja");
     // Apply filtering to the timeline array
-    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew, $confirm);
     $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.__("Date").'</td>
+                        <td>'.__("Date").'</td>' . ($confirm ? '<td>'.__("Confirmation Date").'</td>' : '') . '
                         <td>'.__("Prefecture").'</td>';
     if ($propmode == 'SAT' || $propmode == 'All') {
         echo '          <td>'.__("Satellite").'</td>';
@@ -247,8 +289,9 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
 
         echo '<tr>
                 <td>' . $i-- . '</td>
-                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . html_escape($CI->Waja->jaPrefectures[$line->col_state]) . ' ('.html_escape($line->col_state).')</td>';
+                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>';
+        if ($confirm) { write_confirm_cell($line, $custom_date_format); }
+        echo '                <td>' . html_escape($CI->Waja->jaPrefectures[$line->col_state]) . ' ('.html_escape($line->col_state).')</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
             echo '<td>'.html_escape($line->sat_name).'</td>';
         }
@@ -258,15 +301,15 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
     echo '</tfoot></table></div>';
 }
 
-function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
+function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew, $confirm) {
     // Apply filtering to the timeline array
-    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew, $confirm);
     $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>' . __("Date") . '</td>
+                        <td>' . __("Date") . '</td>' . ($confirm ? '<td>' . __("Confirmation Date") . '</td>' : '') . '
                         <td>' . __("State") . '</td>';
     if ($propmode == 'SAT' || $propmode == 'All') {
         echo '          <td>'.__("Satellite").'</td>';
@@ -281,8 +324,9 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
 
         echo '<tr>
                 <td>' . $i-- . '</td>
-                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . html_escape($line->col_state) . '</td>';
+                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>';
+        if ($confirm) { write_confirm_cell($line, $custom_date_format); }
+        echo '                <td>' . html_escape($line->col_state) . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
            echo '<td>' . html_escape($line->sat_name) . '</td>';
         }
@@ -294,15 +338,15 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
 
 
 
-function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
+function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew, $confirm) {
     // Apply filtering to the timeline array
-    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew, $confirm);
     $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.__("Date").'</td>
+                        <td>'.__("Date").'</td>' . ($confirm ? '<td>'.__("Confirmation Date").'</td>' : '') . '
                         <td>'.__("IOTA").'</td>
                         <td>'.__("Name").'</td>
                         <td>'.__("Prefix").'</td>';
@@ -319,8 +363,9 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
 
         echo '<tr>
                 <td>' . $i-- . '</td>
-                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . html_escape($line->col_iota) . '</td>
+                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>';
+        if ($confirm) { write_confirm_cell($line, $custom_date_format); }
+        echo '                <td>' . html_escape($line->col_iota) . '</td>
                 <td>' . $line->name . '</td>
                 <td class="callsign">' . $line->prefix . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
@@ -332,15 +377,15 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
     echo '</tfoot></table></div>';
 }
 
-function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
+function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew, $confirm) {
     // Apply filtering to the timeline array
-    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew, $confirm);
     $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.__("Date").'</td>
+                        <td>'.__("Date").'</td>' . ($confirm ? '<td>'.__("Confirmation Date").'</td>' : '') . '
                         <td>'.__("CQ Zone").'</td>';
     if ($propmode == 'SAT' || $propmode == 'All') {
         echo '          <td>'.__("Satellite").'</td>';
@@ -355,8 +400,9 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
 
         echo '<tr>
                 <td>' . $i-- . '</td>
-                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->col_cqz . '</td>';
+                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>';
+        if ($confirm) { write_confirm_cell($line, $custom_date_format); }
+        echo '                <td>' . $line->col_cqz . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
            echo '<td>' . html_escape($line->sat_name) . '</td>';
         }
@@ -366,16 +412,15 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
     echo '</tfoot></table></div>';
 }
 
-function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect,  $propmode, $award, $selectedyear, $onlynew) {
+function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect,  $propmode, $award, $selectedyear, $onlynew, $confirm) {
     // Apply filtering to the timeline array
-    $filtered_timeline = filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew);
+    $filtered_timeline = filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew, $confirm);
     $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.__("Date").'</td>
-                        <td>'.__("Time").'</td>
+                        <td>'.__("Date").'</td>' . ($confirm ? '<td>'.__("Confirmation Date").'</td>' : '') . '
                         <td>'.__("Gridsquare").'</td>';
     if ($propmode == 'SAT' || $propmode == 'All') {
         echo '          <td>'.__("Satellite").'</td>';
@@ -390,9 +435,9 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
 
         echo '<tr>
                 <td>' . $i-- . '</td>
-                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . date('H:i', $date_as_timestamp) . '</td>
-                <td>' . html_escape($line['gridsquare']) . '</td>';
+                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>';
+        if ($confirm) { write_confirm_cell($line, $custom_date_format, true); }
+        echo '                <td>' . html_escape($line['gridsquare']) . '</td>';
         if ($propmode == 'SAT' || $propmode == 'All') {
             echo '<td>'.html_escape($line['sat_name']).'</td>';
         }
