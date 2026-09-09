@@ -5,6 +5,7 @@ if (isset($filtered)) {
 				<tr id="toptable">
 					<th>' . __("Satellite") . ' <i class="fa-solid fa-satellite"></i></th>
 					<th>' . __("AOS Time") . '</th>
+					<th>' . __("TCA Time") . '</th>
 					<th>' . __("LOS Time") . '</th>
 					<th>' . __("Duration") . '</th>
 					<th style="white-space: nowrap">' . __("Path") . '</th>
@@ -30,6 +31,7 @@ if (isset($filtered)) {
 				echo '<tr>';
 				echo '<td>' . ($pass->satname != '' ? $pass->satname : $pass->displayname) . ' <i class="satelliteinfo fa fa-info-circle"></i></td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
+				echo '<td>' . Predict_Time::daynum2readable($pass->tca, $zone, $format) . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->los, $zone, $format) . '</td>';
 				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->aos, $zone, $format), Predict_Time::daynum2readable($pass->los, $zone, $format), $format) . '</td>';
 				echo '<td><a href="flightpath/'.$pass->satname.'" target="_blank"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
