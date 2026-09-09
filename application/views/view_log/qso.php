@@ -278,12 +278,14 @@
                         <td><?php if ($row->adif == '0') {
                                      echo $row->name;
                                   } else {
-                                     echo ucwords(strtolower(($row->name)), "- (/");
+                                     $dxccName = ucwords(strtolower(($row->name)), '- (/');
+                                     echo '<form method="POST" action="'.site_url('search').'" style="display: inline;">';
+                                     echo '<input type="hidden" name="dxcc" value="'.(int) $row->COL_DXCC.'">';
+                                     echo '<button type="submit" class="btn btn-link text-decoration-none p-0 align-baseline" style="font-size: inherit; font-weight: inherit;" title="'.html_escape(__("Show all QSOs with this DXCC")).'">'.html_escape($dxccName);
                                      if ($dxccFlag != null) {
-                                         echo '<form method="POST" action="'.site_url('search').'" style="display: inline;">';
-                                         echo '<input type="hidden" name="dxcc" value="'.(int) $row->COL_DXCC.'">';
-                                         echo '<button type="submit" class="btn btn-link text-decoration-none p-0 align-baseline" title="'.html_escape(__("Show all QSOs with this DXCC")).'">'.$dxccFlag.'</button></form>';
+                                         echo ' '.$dxccFlag;
                                      }
+                                     echo '</button></form>';
                                      if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; }
                                   } ?></td>
                     </tr>
