@@ -1879,23 +1879,28 @@ msgid "Hamsat - Satellite Roving"
 msgstr "Hamsat — охота на спутники"
 
 #: application/controllers/Header_auth.php:22
+#: application/controllers/Header_auth.php:26
 msgid "SSO Authentication is disabled."
 msgstr "Аутентификация через SSO отключена."
 
 #: application/controllers/Header_auth.php:36
+#: application/controllers/Header_auth.php:40
 msgid "SSO Authentication is disabled. Check your configuration."
 msgstr "Аутентификация через SSO отключена. Проверьте вашу конфигурацию."
 
 #: application/controllers/Header_auth.php:88
+#: application/controllers/Header_auth.php:92
 msgid "Sorry. This instance is currently in maintenance mode."
 msgstr "Извините. Эта сервер сейчас находится в режиме обслуживания."
 
 #: application/controllers/Header_auth.php:95
+#: application/controllers/Header_auth.php:99
 msgid "User not found."
 msgstr "Пользователь не найден."
 
 #: application/controllers/Header_auth.php:110
 #: application/controllers/User.php:1462
+#: application/controllers/Header_auth.php:114
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
@@ -1903,6 +1908,7 @@ msgstr ""
 "вместо этого свой личный аккаунт."
 
 #: application/controllers/Header_auth.php:115
+#: application/controllers/Header_auth.php:119
 msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
@@ -1912,10 +1918,12 @@ msgstr ""
 
 #: application/controllers/Header_auth.php:357
 #: application/controllers/Header_auth.php:361
+#: application/controllers/Header_auth.php:365
 msgid "Something went terribly wrong. Check the error log."
 msgstr "Что-то пошло не так. Проверьте журнал ошибок."
 
 #: application/controllers/Header_auth.php:437
+#: application/controllers/Header_auth.php:441
 msgid "SSO Config Error. Check error log."
 msgstr "Ошибка конфигурации SSO. Проверьте журнал ошибок."
 
@@ -23156,8 +23164,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23527,8 +23536,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:484
 msgid ""

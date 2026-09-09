@@ -1895,23 +1895,28 @@ msgid "Hamsat - Satellite Roving"
 msgstr "Hamsat - Satellite Roving"
 
 #: application/controllers/Header_auth.php:22
+#: application/controllers/Header_auth.php:26
 msgid "SSO Authentication is disabled."
 msgstr "SSO-Authentifizierung ist deaktiviert."
 
 #: application/controllers/Header_auth.php:36
+#: application/controllers/Header_auth.php:40
 msgid "SSO Authentication is disabled. Check your configuration."
 msgstr "SSO-Authentifizierung ist deaktiviert. Überprüfe deine Konfiguration."
 
 #: application/controllers/Header_auth.php:88
+#: application/controllers/Header_auth.php:92
 msgid "Sorry. This instance is currently in maintenance mode."
 msgstr "Entschuldigung. Diese Instanz befindet sich derzeit im Wartungsmodus."
 
 #: application/controllers/Header_auth.php:95
+#: application/controllers/Header_auth.php:99
 msgid "User not found."
 msgstr "Benutzer nicht gefunden."
 
 #: application/controllers/Header_auth.php:110
 #: application/controllers/User.php:1462
+#: application/controllers/Header_auth.php:114
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
@@ -1919,6 +1924,7 @@ msgstr ""
 "stattdessen deinen persönlichen Account."
 
 #: application/controllers/Header_auth.php:115
+#: application/controllers/Header_auth.php:119
 msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
@@ -1928,10 +1934,12 @@ msgstr ""
 
 #: application/controllers/Header_auth.php:357
 #: application/controllers/Header_auth.php:361
+#: application/controllers/Header_auth.php:365
 msgid "Something went terribly wrong. Check the error log."
 msgstr "Etwas ist schiefgelaufen. Überprüfe das Fehlerprotokoll."
 
 #: application/controllers/Header_auth.php:437
+#: application/controllers/Header_auth.php:441
 msgid "SSO Config Error. Check error log."
 msgstr "SSO-Konfigurationsfehler. Prüfe Fehlerprotokoll."
 
@@ -3298,8 +3306,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:574
@@ -15995,8 +16003,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -20055,8 +20063,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -22141,8 +22149,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -23197,9 +23205,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
