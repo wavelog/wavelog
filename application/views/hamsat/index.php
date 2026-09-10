@@ -14,6 +14,8 @@
     <script type="text/javascript">
        var workable_preset = <?php echo $user_hamsat_workable_only; ?>;
        var feed_key_set = <?php echo strlen($user_hamsat_key); ?>;
+       var lang_qrz_lookup = "<?= __("Lookup on QRZ.com"); ?>";
+       var lang_last_lotw_upload = "<?= __("LoTW User. Days since last upload: "); ?>";
     </script>
     <?php if ($user_hamsat_key != '') { ?>
     <span id="workable_hint">

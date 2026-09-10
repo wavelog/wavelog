@@ -14,17 +14,12 @@
 						<?= sprintf(__("You can find a list of tested settings and all default values in the %sWavelog Wiki%s."), '<a href="https://docs.wavelog.org/admin-guide/configuration/maptile-server/" target="_blank"><u>', '</u></a>'); ?>
 					</p>
 				<?php } ?>
-				<div class="mb-3">
-					<label for="maptile_server_url"><?= __("Maptiles Server URL"); ?></label>
-					<input type="text" name="maptile_server_url" class="form-control" id="maptile_server_url" aria-describedby="maptile_server_urlHelp" value="<?php echo $maptile_server_url; ?>">
-					<small id="maptile_server_urlHelp" class="form-text text-muted"><?= __("URL of the map server which serves the maptiles."); ?></small>
-				</div>
-				<div class="mb-3">
-					<label for="maptile_server_url_dark"><?= __("Maptiles Server URL for Dark Tiles - ONLY Static Map API"); ?></label>
-					<input type="text" name="maptile_server_url_dark" class="form-control" id="maptile_server_url_dark" aria-describedby="maptile_server_url_darkHelp" value="<?php echo $maptile_server_url_dark; ?>">
-					<small id="maptile_server_url_darkHelp" class="form-text text-muted"><?= __("URL of the map server which serves the dark maptiles. Only used for Static Map."); ?></small>
-				</div>
-				<div class="mb-3">
+			<div class="mb-3">
+				<label for="maptile_server_url"><?= __("Maptiles Server URL"); ?></label>
+				<input type="text" name="maptile_server_url" class="form-control" id="maptile_server_url" aria-describedby="maptile_server_urlHelp" value="<?php echo $maptile_server_url; ?>">
+				<small id="maptile_server_urlHelp" class="form-text text-muted"><?= __("URL of the map server which serves the maptiles."); ?></small>
+			</div>
+			<div class="mb-3">
 					<label for="subdomain_system"><?= __("Subdomain System of Maptile Server"); ?></label>
 					<input type="text" name="subdomain_system" class="form-control" id="subdomain_system" aria-describedby="subdomain_systemHelp" value="<?php echo $subdomain_system; ?>">
 					<small id="subdomain_systemHelp" class="form-text text-muted"><?= __("System of the subdomains at this server ({s} in the URL). They are used for loadbalancing."); ?></small>

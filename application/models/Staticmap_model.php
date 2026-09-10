@@ -29,6 +29,7 @@ class Staticmap_model extends CI_Model {
 
         $this->load->model('Stations');
         $this->load->model('stationsetup_model');
+        $this->load->library('MaptileCache');
 
         if (!$this->load->is_loaded('Qra')) {
             $this->load->library('Qra');
@@ -160,26 +161,15 @@ class Staticmap_model extends CI_Model {
         //===============================================================================================================================
 
         // Set the tile layer
-        if ($thememode != null) {
+        if ($thememode == 'light' || $thememode == 'dark') {
             $attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
             $subdomains = $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';
-            if ($thememode == 'light') {
-                $server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
-                if ($server_url == '') {
-                    $server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-                    $this->optionslib->update('map_tile_server', $server_url);
-                }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
-            } elseif ($thememode == 'dark') {
-                $server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
-                if ($server_url == '') {
-                    $server_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-                    $this->optionslib->update('map_tile_server_dark', $server_url);
-                }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
-            } else {
-                $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+            $server_url = $this->options_model->item('map_tile_server') ?? '';
+            if ($server_url == '') {
+                $server_url = \MaptileCache::DEFAULT_SERVER;
+                $this->optionslib->update('map_tile_server', $server_url);
             }
+            $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
         } else {
             $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
         }
@@ -720,7 +710,7 @@ class Staticmap_model extends CI_Model {
      * @return bool  True if the file is valid, false if not
      */
 
-    function validate_cached_image($file, $cacheDir, $maxAge, $slug) {
+    function validate_cached_image($file, $cacheDir, $maxAge, $slug, $day) {
 
         $realPath = realpath($file);
         $filename = basename($file);
@@ -770,6 +760,14 @@ class Staticmap_model extends CI_Model {
 
         if (time() - filemtime($file) > $maxAge) {
             log_message('debug', "Cached static map image has expired. Deleting old cache file...");
+            if (!unlink($file)) {
+                log_message('error', "Failed to delete invalid cached static map image file: " . $file);
+            }
+            return false;
+        }
+
+        if (($day != '') && (strtotime('today+00:00') > filemtime($file))) {
+            log_message('debug', "Cached static map image for today/yesterday has expired. Deleting old cache file...");
             if (!unlink($file)) {
                 log_message('error', "Failed to delete invalid cached static map image file: " . $file);
             }

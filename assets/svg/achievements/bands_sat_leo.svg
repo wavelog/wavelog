@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+	<defs>
+		<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#6db9dd"/>
+			<stop offset="1" stop-color="#3d8fbf"/>
+		</linearGradient>
+		<linearGradient id="bus" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#f2f5f7"/>
+			<stop offset=".5" stop-color="#d8dde2"/>
+			<stop offset="1" stop-color="#9aa5b1"/>
+		</linearGradient>
+	</defs>
+	<path d="M36,12 L38.2,18 L44,20.2 L38.2,22.4 L36,28 L33.8,22.4 L28,20.2 L33.8,18 Z" fill="#f8f9fa" stroke="#1f2933" stroke-width="1.5" stroke-linejoin="round"/>
+	<circle cx="100" cy="44" r="2.2" fill="#f8f9fa" opacity=".8"/>
+	<circle cx="20" cy="60" r="1.8" fill="#f8f9fa" opacity=".6"/>
+	<circle cx="60" cy="112" r="40" fill="url(#sea)" stroke="#1f2933" stroke-width="3.5"/>
+	<path d="M28,98 A34,34 0 0 0 92,98" fill="none" stroke="#1f2933" stroke-width="2" opacity=".4"/>
+	<path d="M38,110 A26,26 0 0 0 82,110" fill="none" stroke="#1f2933" stroke-width="2" opacity=".4"/>
+	<path d="M14,86 A50,50 0 0 1 106,86" fill="none" stroke="#9aa5b1" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1,9"/>
+	<g stroke="#1f2933" stroke-width="3" stroke-linecap="round">
+		<line x1="52" y1="38" x2="47" y2="38" stroke-width="2.5"/>
+		<line x1="68" y1="38" x2="73" y2="38" stroke-width="2.5"/>
+	</g>
+	<g fill="#4fa3d1" stroke="#1f2933" stroke-width="2.5">
+		<rect x="36" y="32" width="11" height="12" rx="2"/>
+		<rect x="73" y="32" width="11" height="12" rx="2"/>
+	</g>
+	<rect x="50" y="30" width="20" height="16" rx="3" fill="url(#bus)" stroke="#1f2933" stroke-width="3"/>
+	<path d="M54,33 L54,43" stroke="#f8f9fa" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
+</svg>

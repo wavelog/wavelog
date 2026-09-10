@@ -9,6 +9,7 @@ class Logbook_model extends CI_Model {
 	private $station_result = [];
 	private $spot_status_cache = []; // In-memory cache for DX cluster spot statuses
 	private $dxcc_object;
+	public $last_export_errors = [];
 
 	// QSL confirmation sources, mapping the public API type name to its received
 	// flag and the date that confirmation arrived. Single source of truth for the
@@ -163,7 +164,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		$contestid = $qso_data['contestname'] ?? NULL;
-		$tx_power = filter_var(($qso_data['transmit_power'] ?? NULL), FILTER_VALIDATE_FLOAT) ?? NULL;
+		$tx_power = filter_var(($qso_data['transmit_power'] ?? NULL), FILTER_VALIDATE_FLOAT);
+		$tx_power = ($tx_power === false) ? NULL : round($tx_power, 3);
 
 
 		if (($qso_data['radio'] ?? '') == 'ws') {	// WebSocket
@@ -463,7 +465,8 @@ class Logbook_model extends CI_Model {
 		$this->notify_qso_change($station['user_id'] ?? $this->session->userdata('user_id'));
 		return [
 			'qso_id' => $qso_id,
-			'adif' => $this->adifhelper->getAdifLine($qso[0])
+			'adif' => $this->adifhelper->getAdifLine($qso[0]),
+			'export_errors' => $this->last_export_errors,
 		];
 	}
 
@@ -951,6 +954,7 @@ class Logbook_model extends CI_Model {
 
 			// No point in fetching hrdlog code or qrz api key and qrzrealtime setting if we're skipping the export
 			if (!$skipexport) {
+				$export_errors = [];
 
 				// Fetch all credentials in a single query (optimization: reduces 4 queries to 1)
 				$creds = $this->get_all_export_credentials($data['station_id']);
@@ -984,6 +988,12 @@ class Logbook_model extends CI_Model {
 					$result = $this->clublog_model->push_qso_to_clublog($creds->ucn, $creds->ucp, $data['COL_STATION_CALLSIGN'], $adif, $data['station_id']);
 					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
+					} else {
+						$msg = $this->sanitize_export_error($result['status']);
+						if (str_contains($msg, 'Login rejected')) {
+							$msg .= ' — ' . __('Realtime upload disabled');
+						}
+						$export_errors[] = ['provider' => 'ClubLog', 'message' => $msg];
 					}
 				}
 
@@ -998,6 +1008,9 @@ class Logbook_model extends CI_Model {
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error'))) {
 						$this->mark_hrdlog_qsos_sent($last_id);
 					}
+					if (in_array(($result['status'] ?? ''), ['error', 'auth_error'], true)) {
+						$export_errors[] = ['provider' => 'HRDLog.net', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
+					}
 				}
 
 				// QRZ export
@@ -1010,6 +1023,8 @@ class Logbook_model extends CI_Model {
 					$result = $this->push_qso_to_qrz($creds->qrzapikey, $adif);
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') && ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED='))) {
 						$this->mark_qrz_qsos_sent($last_id);
+					} else {
+						$export_errors[] = ['provider' => 'QRZ.com', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
 					}
 				}
 
@@ -1030,6 +1045,8 @@ class Logbook_model extends CI_Model {
 						$this->mark_webadif_qsos_sent([$last_id]);
 					}
 				}
+
+				$this->last_export_errors = $export_errors;
 			}
 
 			// Invalidate DXCluster cache for this callsign
@@ -1040,9 +1057,14 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	private function sanitize_export_error($msg) {
+		$msg = preg_replace('/\s+/', ' ', strip_tags((string)$msg));
+		return mb_substr(htmlspecialchars($msg), 0, 120) . (mb_strlen($msg) > 120 ? '…' : '');
+	}
+
 	/*
-   * Function checks if a HRDLog Code and Username exists in the table with the given station id
-   */
+	 * Function checks if a HRDLog Code and Username exists in the table with the given station id
+	 */
 	function exists_hrdlog_credentials($station_id) {
 
 		//checks only disabled state
@@ -1458,8 +1480,9 @@ class Logbook_model extends CI_Model {
 			$submode = $this->input->post('mode');
 		}
 
-		if ($this->input->post('transmit_power')) {
-			$txpower = $this->input->post('transmit_power');
+		if ($this->input->post('transmit_power') !== null && $this->input->post('transmit_power') !== '') {
+			$txpower = filter_var($this->input->post('transmit_power'), FILTER_VALIDATE_FLOAT);
+			$txpower = ($txpower === false) ? null : round($txpower, 3);
 		} else {
 			$txpower = null;
 		}
@@ -4338,8 +4361,13 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
-	/* Return combined countries breakdown + QSL stats in one query */
-	function dashboard_stats_batch($StationLocationsArray = null) {
+	/* Return combined countries breakdown + QSL stats in one query
+	 *
+	 * $dxcc_bands: band names that count toward the HF DXCC group (the user's
+	 * bandxuser bands checked for the DXCC award). When null (Visitor, API)
+	 * the band-based DXCC grouping is skipped entirely.
+	 */
+	function dashboard_stats_batch($StationLocationsArray = null, $dxcc_bands = null) {
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -4399,37 +4427,49 @@ class Logbook_model extends CI_Model {
 
 			$query = $this->db->query($sql);
 
-			// HF / SAT / VHF+ DXCC split, based on propagation mode and frequency
+			// Band-based DXCC split: SAT by propagation mode, VHF+ by the
+			// band's group, HF by the user's DXCC award bands. QSOs on other
+			// bands (unchecked, unknown or empty COL_BAND) belong to no group.
 			$dxcc_groups = [];
-			$sql_groups = "SELECT
-				CASE WHEN t.COL_PROP_MODE = 'SAT' THEN 'sat'
-					WHEN COALESCE(t.COL_FREQ, 0) >= 50000000 THEN 'vhf'
-					ELSE 'hf' END as grp,
-				COUNT(*) as qsos,
-				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as worked,
-				COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted,
-				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as qsl,
-				COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_qsl,
-				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as lotw,
-				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_lotw,
-				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as confirmed
-				FROM " . $this->config->item('table_name') . " t
-				LEFT JOIN dxcc_entities d ON d.adif = t.col_dxcc
-				WHERE t.station_id IN (" . $location_list . ")
-				GROUP BY grp";
+			if (is_array($dxcc_bands)) {
+				$bindings = [];
+				$sql_groups = "SELECT
+					CASE WHEN t.COL_PROP_MODE = 'SAT' THEN 'sat'
+						WHEN b.bandgroup IN ('vhf','uhf','shf') THEN 'vhf'
+						" . (empty($dxcc_bands) ? '' : "WHEN UPPER(t.COL_BAND) IN (" . implode(',', array_fill(0, count($dxcc_bands), '?')) . ") THEN 'hf'") . "
+						ELSE NULL END as grp,
+					COUNT(*) as qsos,
+					COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as worked,
+					COUNT(DISTINCT CASE WHEN t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted,
+					COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as qsl,
+					COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_qsl,
+					COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as lotw,
+					COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_lotw,
+					COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as confirmed
+					FROM " . $this->config->item('table_name') . " t
+					LEFT JOIN dxcc_entities d ON d.adif = t.col_dxcc
+					LEFT JOIN bands b ON b.band = t.COL_BAND
+					WHERE t.station_id IN (" . $location_list . ")
+					GROUP BY grp
+					HAVING grp IS NOT NULL";
 
-			$query_groups = $this->db->query($sql_groups);
-			foreach ($query_groups->result() as $group_row) {
-				$dxcc_groups[$group_row->grp] = [
-					'qsos' => (int) $group_row->qsos,
-					'worked' => (int) $group_row->worked,
-					'deleted' => (int) $group_row->deleted,
-					'qsl' => (int) $group_row->qsl,
-					'deleted_qsl' => (int) $group_row->deleted_qsl,
-					'lotw' => (int) $group_row->lotw,
-					'deleted_lotw' => (int) $group_row->deleted_lotw,
-					'confirmed' => (int) $group_row->confirmed,
-				];
+				foreach ($dxcc_bands as $band) {
+					$bindings[] = strtoupper($band);
+				}
+
+				$query_groups = $this->db->query($sql_groups, $bindings);
+				foreach ($query_groups->result() as $group_row) {
+					$dxcc_groups[$group_row->grp] = [
+						'qsos' => (int) $group_row->qsos,
+						'worked' => (int) $group_row->worked,
+						'deleted' => (int) $group_row->deleted,
+						'qsl' => (int) $group_row->qsl,
+						'deleted_qsl' => (int) $group_row->deleted_qsl,
+						'lotw' => (int) $group_row->lotw,
+						'deleted_lotw' => (int) $group_row->deleted_lotw,
+						'confirmed' => (int) $group_row->confirmed,
+					];
+				}
 			}
 
 			if ($query->num_rows() > 0) {
@@ -5245,6 +5285,7 @@ class Logbook_model extends CI_Model {
 			// Sanitise TX_POWER
 			if (isset($record['tx_pwr'])) {
 				$tx_pwr = filter_var($record['tx_pwr'], FILTER_VALIDATE_FLOAT);
+				$tx_pwr = ($tx_pwr === false) ? false : round($tx_pwr, 3);
 			} else {
 				$tx_pwr = $station_profile->station_power ?? NULL;
 			}
@@ -6356,6 +6397,8 @@ class Logbook_model extends CI_Model {
 			} else {
 				if (isset($row->lat) && isset($row->long)) {
 					$stn_loc = array($row->lat, $row->long);
+				} else {
+					continue;
 				}
 			}
 			if (isset($xbearing)) {

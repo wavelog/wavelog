@@ -3,6 +3,10 @@
 use Firebase\JWT\JWT;
 use Firebase\JWT\JWK;
 
+require_once APPPATH . '../src/jwt/src/JWTExceptionWithPayloadInterface.php';
+require_once APPPATH . '../src/jwt/src/BeforeValidException.php';
+require_once APPPATH . '../src/jwt/src/ExpiredException.php';
+require_once APPPATH . '../src/jwt/src/SignatureInvalidException.php';
 require_once APPPATH . '../src/jwt/src/JWT.php';
 require_once APPPATH . '../src/jwt/src/Key.php';
 require_once APPPATH . '../src/jwt/src/JWK.php';
@@ -346,6 +350,7 @@ class Header_auth extends CI_Controller {
             $mapped['user_dxwaterfall_enable']                ?? '',
             $mapped['user_qso_show_map']                      ?? '',
             $mapped['last_lotw_upload_widget_enabled']        ?? '',
+            $mapped['user_callbook_prefill']                  ?? 'default',
             0,                                                   // clubstation
             $external_identifier,                                // external_account
         );

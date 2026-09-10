@@ -31,6 +31,7 @@
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
  * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
+ * @copyright	Copyright (c) 2026 - today, Wavelog (https://www.wavelog.org/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 2.0
@@ -96,19 +97,38 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function save($id, $data, $ttl = 60, $raw = FALSE)
 	{
+		$path = $this->_path($id);
+		$dir = dirname($path);
+
+		if ( ! is_dir($dir) && ! @mkdir($dir, 0750, TRUE) && ! is_dir($dir))
+		{
+			return FALSE;
+		}
+
 		$contents = array(
 			'time'		=> time(),
 			'ttl'		=> $ttl,
 			'data'		=> $data
 		);
 
-		if (write_file($this->_cache_path.$id, serialize($contents)))
+		// Write to a temp file in the same directory and rename it into place.
+		// rename() is atomic, so readers never see a half-written file.
+		$tmp = $path.'.'.getmypid().'.tmp';
+
+		if (file_put_contents($tmp, serialize($contents)) === FALSE)
 		{
-			chmod($this->_cache_path.$id, 0640);
-			return TRUE;
+			return FALSE;
 		}
 
-		return FALSE;
+		@chmod($tmp, 0640);
+
+		if ( ! @rename($tmp, $path))
+		{
+			@unlink($tmp);
+			return FALSE;
+		}
+
+		return TRUE;
 	}
 
 	// ------------------------------------------------------------------------
@@ -121,7 +141,7 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function delete($id)
 	{
-		return is_file($this->_cache_path.$id) ? unlink($this->_cache_path.$id) : FALSE;
+		return @unlink($this->_path($id));
 	}
 
 	// ------------------------------------------------------------------------
@@ -217,29 +237,24 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function get_metadata($id)
 	{
-		if ( ! is_file($this->_cache_path.$id))
+		$path = $this->_path($id);
+
+		if (($raw = @file_get_contents($path)) === FALSE)
 		{
 			return FALSE;
 		}
 
-		$data = unserialize(file_get_contents($this->_cache_path.$id));
+		$data = @unserialize($raw);
 
-		if (is_array($data))
+		if ( ! is_array($data) OR ! isset($data['ttl'], $data['time']))
 		{
-			$mtime = filemtime($this->_cache_path.$id);
-
-			if ( ! isset($data['ttl'], $data['time']))
-			{
-				return FALSE;
-			}
-
-			return array(
-				'expire' => $data['time'] + $data['ttl'],
-				'mtime'	 => $mtime
-			);
+			return FALSE;
 		}
 
-		return FALSE;
+		return array(
+			'expire' => $data['time'] + $data['ttl'],
+			'mtime'	 => filemtime($path)
+		);
 	}
 
 	// ------------------------------------------------------------------------
@@ -268,20 +283,48 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	protected function _get($id)
 	{
-		if ( ! is_file($this->_cache_path.$id))
+		$path = $this->_path($id);
+
+		if (($raw = @file_get_contents($path)) === FALSE)
 		{
 			return FALSE;
 		}
 
-		$data = unserialize(file_get_contents($this->_cache_path.$id));
+		$data = @unserialize($raw);
+
+		if ( ! is_array($data) OR ! isset($data['time'], $data['ttl']))
+		{
+			@unlink($path);
+			return FALSE;
+		}
 
 		if ($data['ttl'] > 0 && time() > $data['time'] + $data['ttl'])
 		{
-			file_exists($this->_cache_path.$id) && unlink($this->_cache_path.$id);
+			@unlink($path);
 			return FALSE;
 		}
 
 		return $data;
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * Build the sharded path for a cache ID
+	 *
+	 * The ID is hashed so it can never influence the path (cache keys may contain
+	 * slashes, e.g. portable callsigns) and the files are spread over 65536
+	 * buckets instead of piling up in a single directory.
+	 *
+	 * @param	string	$id	Cache ID
+	 * @return	string	Absolute path of the cache file
+	 */
+	protected function _path($id)
+	{
+		$hash = hash('xxh128', $id);
+
+		return $this->_cache_path.substr($hash, 0, 2).DIRECTORY_SEPARATOR
+			.substr($hash, 2, 2).DIRECTORY_SEPARATOR.$hash;
 	}
 
 }
