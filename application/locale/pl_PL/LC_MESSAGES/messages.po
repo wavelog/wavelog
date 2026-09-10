@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-10 09:03+0000\n"
+"POT-Creation-Date: 2026-09-10 19:24+0000\n"
 "PO-Revision-Date: 2026-08-30 21:12+0000\n"
 "Last-Translator: Piotr S <sp9lop@pm.me>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -195,9 +195,9 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Labels.php:25
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
-#: application/controllers/Lotw.php:88 application/controllers/Lotw.php:113
-#: application/controllers/Lotw.php:409 application/controllers/Lotw.php:431
-#: application/controllers/Lotw.php:942 application/controllers/Lotw.php:1028
+#: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
+#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -2787,8 +2787,8 @@ msgstr "Zaawansowany dziennik łączności"
 msgid "Quick Lookup"
 msgstr "Szybkie wyszukiwanie"
 
-#: application/controllers/Lotw.php:63 application/controllers/Lotw.php:94
-#: application/controllers/Lotw.php:133
+#: application/controllers/Lotw.php:68 application/controllers/Lotw.php:99
+#: application/controllers/Lotw.php:138
 #: application/views/interface_assets/header.php:580
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
@@ -2797,19 +2797,19 @@ msgstr "Szybkie wyszukiwanie"
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:158
+#: application/controllers/Lotw.php:163
 msgid "Certificate Imported."
 msgstr "Zaimportowano certyfikat."
 
-#: application/controllers/Lotw.php:165
+#: application/controllers/Lotw.php:170
 msgid "Certificate Updated."
 msgstr "Zaktualizowano certyfikat."
 
-#: application/controllers/Lotw.php:415
+#: application/controllers/Lotw.php:420
 msgid "Certificate Deleted."
 msgstr "Usunięto certyfikat."
 
-#: application/controllers/Lotw.php:442
+#: application/controllers/Lotw.php:447
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2821,7 +2821,7 @@ msgstr ""
 "%s Upewnij się, że eksportujesz certyfikat LoTW z aplikacji tqsl bez hasła!"
 "%s Aby uzyskać więcej informacji, odwiedź stronę %sLoTW FAQ%s w Wiki Wavelog."
 
-#: application/controllers/Lotw.php:444
+#: application/controllers/Lotw.php:449
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2832,51 +2832,51 @@ msgstr ""
 "zawiera „tylko klucz\", zazwyczaj oznacza to, że jest to żądanie "
 "certyfikatu, które nie zostało jeszcze przetworzone przez LoTW."
 
-#: application/controllers/Lotw.php:451
+#: application/controllers/Lotw.php:456
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr "Ogólny błąd podczas przetwarzania certyfikatu w pliku %s."
 
-#: application/controllers/Lotw.php:463
+#: application/controllers/Lotw.php:468
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
 "Błąd ogólny podczas wyodrębniania klucza prywatnego z certyfikatu w pliku %s."
 
-#: application/controllers/Lotw.php:679
+#: application/controllers/Lotw.php:684
 msgid "LoTW ADIF Information"
 msgstr "Informacje ADIF LoTW"
 
-#: application/controllers/Lotw.php:999
+#: application/controllers/Lotw.php:1004
 msgid "Connection to LoTW failed."
 msgstr "Połączenie z LoTW nieudane."
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1009
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Dla użytkownika %s: %s logowanie do LoTW nie powiodło się."
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1009
 msgid "Username/password incorrect"
 msgstr "Nieprawidłowa nazwa użytkownika/hasło"
 
-#: application/controllers/Lotw.php:1007
+#: application/controllers/Lotw.php:1012
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW jest obecnie niedostępne. Spróbuj ponownie później."
 
-#: application/controllers/Lotw.php:1011
+#: application/controllers/Lotw.php:1016
 msgid "LoTW login OK!"
 msgstr "Logowanie do LoTW OK!"
 
-#: application/controllers/Lotw.php:1017
+#: application/controllers/Lotw.php:1022
 msgid "No LoTW credentials provided."
 msgstr "Nie podano danych uwierzytelniających LoTW."
 
-#: application/controllers/Lotw.php:1034
+#: application/controllers/Lotw.php:1039
 msgid "LoTW ADIF Import"
 msgstr "Import ADIF LoTW"
 
-#: application/controllers/Lotw.php:1061
+#: application/controllers/Lotw.php:1066
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Nie zdefiniowano danych logowania ARRL LoTW!"
 
