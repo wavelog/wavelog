@@ -261,6 +261,16 @@ $config['languages'] = array(
 		'code'      => 'cnr',
 		'flag'      => 'me',
 	),
+	'norwegian_bokmal' => array(
+		'name'      => 'Norsk bokmål',
+		'name_en'   => 'Norwegian Bokmål',
+		'folder'    => 'norwegian_bokmal',
+		'locale'    => 'nb-NO',
+		'gettext'   => 'nb_NO',
+		'direction' => 'ltr',
+		'code'      => 'nb',
+		'flag'      => 'no',
+	),
 	'polish' => array(
 		'name'      => 'Polski',
 		'name_en'   => 'Polish',
