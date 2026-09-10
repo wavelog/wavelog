@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-09 15:48+0000\n"
+"POT-Creation-Date: 2026-09-09 18:48+0000\n"
 "PO-Revision-Date: 2026-09-09 18:48+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -196,8 +196,8 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
 #: application/controllers/Oqrs.php:429 application/controllers/Qrbcalc.php:12
-#: application/controllers/Qrz.php:28 application/controllers/Qrz.php:208
-#: application/controllers/Qrz.php:231 application/controllers/Qrz.php:295
+#: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
+#: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:47 application/controllers/Qsl.php:54
 #: application/controllers/Qsl.php:82 application/controllers/Qsl.php:132
@@ -241,8 +241,7 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Qrz.php:293
-#: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "Non ti è permesso farlo!"
 
@@ -3230,17 +3229,16 @@ msgstr ""
 "Le latitudini negative si trovano a sud dell'equatore, mentre le longitudini "
 "negative si trovano a ovest di Greenwich."
 
-#: application/controllers/Qrz.php:212
-#: application/views/interface_assets/header.php:583
 #: application/controllers/Qrz.php:297
+#: application/views/interface_assets/header.php:583
 msgid "QRZ Logbook"
 msgstr "Registro QRZ"
 
-#: application/controllers/Qrz.php:297 application/controllers/Qrz.php:382
+#: application/controllers/Qrz.php:382
 msgid "QRZ QSL Import"
 msgstr "Importazione QSL da QRZ"
 
-#: application/controllers/Qrz.php:358 application/controllers/Qrz.php:443
+#: application/controllers/Qrz.php:443
 msgid "QRZ ADIF Information"
 msgstr "Informazioni ADIF QRZ"
 
@@ -3279,8 +3277,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Per favore, confronta il tuo attuale config.php con l'ultimo "
-"config.sample.php e aggiornalo di conseguenza."
+"Per favore, confronta il tuo attuale config.php con l'ultimo config.sample."
+"php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:574
@@ -23163,9 +23161,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file "
-"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
-"di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
+"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
