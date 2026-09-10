@@ -54,9 +54,9 @@ class Station_resource extends Api_v2_resource {
 	 * have a handful of station profiles.
 	 */
 	public function index() {
-		$dkey_opt=$this->CI->user_options_model->get_options('stations',array('option_name'=>'active_log_only','option_key'=>'boolean'), $this->user_id())->result();
-		$user_stations_active_log_only = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
-		if($user_stations_active_log_only) {
+		$dkey_opt = $this->CI->user_options_model->get_options('stations', array('option_name' => 'active_log_only', 'option_key' => 'boolean'), $this->user_id())->result();
+		$user_stations_active_log_only = (count($dkey_opt) > 0 && $dkey_opt[0]->option_value) ? true : false;
+		if ($user_stations_active_log_only) {
 			$query = $this->CI->logbooks_model->list_logbooks_linked($this->CI->logbooks_model->find_active_station_logbook_from_userid($this->user_id()));
 		} else {
 			$query = $this->CI->stations->all_of_user($this->user_id());
