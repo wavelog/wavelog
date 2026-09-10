@@ -1306,27 +1306,46 @@ class Lotw extends CI_Controller {
 	}
 
 	function lotw_cert_status ($serial) {
+		
+	//skip if no serial
 		if (($serial ?? '') != '' && is_numeric($serial)) {
+			
+			//define API call
 			$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+			
+			//execute API call and check for HTTP errors
 			$result = curl_exec($ch);
 			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-			if (curl_errno($ch) || $http_code !== 200) {
-				log_message(
-					'error',
-					'Error fetching LoTW CRL: HTTP '.$http_code.' / '.curl_error($ch)
-				);
+			// Check for cURL errors or non-2xx HTTP response
+			if (curl_errno($ch) || $http_code < 200 || $http_code >= 300) {
+				log_message('error', 'Error fetching LoTW CRL: HTTP '.$http_code.' / '.curl_error($ch));
 				return 99;
 			}
-			$xml = new SimpleXMLElement($result);
+
+			//check if result is empty or not a string
+			if (!is_string($result) || trim($result) === '') {
+				log_message('error', 'LoTW CRL returned an empty response.');
+				return 98;
+			}
+
+			//try parsing the result
+			try {
+				$xml = new SimpleXMLElement($result);
+			} catch (Exception $e) {
+				log_message('error', 'Error parsing LoTW CRL result: '.$e->getMessage());
+				return 98;
+			}
 			if (!isset($xml->Status)) {
 				log_message('error', 'Error parsing LoTW CRL result: '.$result);
 				return 98;
 			}
+
+			//react to status inside xml
 			switch ((string)$xml->Status) {
 			case 'Superceded':
 				return 1;
