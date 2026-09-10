@@ -50,6 +50,11 @@ class Lotw extends CI_Controller {
 		foreach ($certcheck->result() as $row) {
 			if ($row->serial != null) {
 				$status = $this->lotw_cert_status($row->serial);
+				if ($status == 95) {
+					// LoTW seems down or unreachable. No sense to check subsequent certs. So cancel loop here.
+					log_message('error', 'LoTW seems unreachable. Cancelled subsequent cert checks.');
+					break;
+				}
 				if ($status != 99 && $status != $row->status) {
 					$this->Lotw_model->update_cert_status($row->lotw_cert_id, $status);
 				}
@@ -1326,7 +1331,7 @@ class Lotw extends CI_Controller {
 		// Check for cURL errors or non-2xx HTTP response
 		if (curl_errno($ch) || $http_code < 200 || $http_code >= 300) {
 			log_message('error', 'Error fetching LoTW CRL: HTTP '.$http_code.' / '.curl_error($ch));
-			return 99;
+			return 95;
 		}
 
 		//check if result is empty or not a string
