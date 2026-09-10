@@ -1340,11 +1340,11 @@ class Lotw extends CI_Controller {
 			$xml = new SimpleXMLElement($result);
 		} catch (Exception $e) {
 			log_message('error', 'Error parsing LoTW CRL result: '.$e->getMessage());
-			return 98;
+			return 99;
 		}
 		if (!isset($xml->Status)) {
 			log_message('error', 'Error parsing LoTW CRL result: '.$result);
-			return 98;
+			return 99;
 		}
 
 		//react to status inside xml
