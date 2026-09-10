@@ -306,43 +306,20 @@ class Oqrs extends CI_Controller {
 
 			if($email != "" && $sendEmail == "1") {
 
-				$this->load->library('email');
-
-				if($this->optionslib->get_option('emailProtocol') == "smtp") {
-					if ($this->optionslib->get_option('smtpHost') == '') {
-						log_message('error', 'OQRS request email message failed. Email settings are not configured properly.');
-						return;
-					}
-
-					$config = Array(
-						'protocol' => $this->optionslib->get_option('emailProtocol'),
-						'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-						'smtp_host' => $this->optionslib->get_option('smtpHost'),
-						'smtp_port' => $this->optionslib->get_option('smtpPort'),
-						'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-						'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-						'crlf' => "\r\n",
-						'newline' => "\r\n"
-					);
-
-					$this->email->initialize($config);
-				}
+				$this->load->helper('mailer');
 
 				$data['callsign'] = $this->security->xss_clean($postdata['callsign']);
 				$data['usermessage'] = $this->security->xss_clean($postdata['message']);
 
 				$this->load->model('Stations');
 				$uid = $this->Stations->profile($id)->row()->user_id;
-				$message = $this->email->load('email/oqrs_request', $data,  $this->user_model->get_by_id($uid)->row()->user_language);
 
-				$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-				$this->email->to($email);
-				$this->email->reply_to($this->security->xss_clean($postdata['email']), strtoupper($data['callsign']));
+				// The requester's address goes into Reply-To, so the station owner can answer directly
+				$result = mailer_send('email/oqrs_request', $email, $data,
+					$this->user_model->get_by_id($uid)->row()->user_language,
+					$this->security->xss_clean($postdata['email']), strtoupper($data['callsign']));
 
-				$this->email->subject($message['subject']);
-				$this->email->message($message['body']);
-
-				if (! $this->email->send()) {
+				if (! $result['success']) {
 					log_message('error', 'OQRS Alert! Email settings are incorrect.');
 				} else {
 					log_message('debug', 'An OQRS request is made.');

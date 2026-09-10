@@ -1598,32 +1598,11 @@ class User extends CI_Controller {
 					// Send email with reset code
 
 					$this->data['reset_code'] = $reset_code;
-					$this->load->library('email');
+					$this->load->helper('mailer');
 
-					if($this->optionslib->get_option('emailProtocol') == "smtp") {
-						$config = Array(
-							'protocol' => $this->optionslib->get_option('emailProtocol'),
-							'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-							'smtp_host' => $this->optionslib->get_option('smtpHost'),
-							'smtp_port' => $this->optionslib->get_option('smtpPort'),
-							'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-							'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-							'crlf' => "\r\n",
-							'newline' => "\r\n"
-						);
+					$result = mailer_send('email/forgot_password', $email, $this->data, $this->user_model->get_by_email($email)->row()->user_language);
 
-						$this->email->initialize($config);
-					}
-
-					$message = $this->email->load('email/forgot_password', $this->data, $this->user_model->get_by_email($email)->row()->user_language);
-
-					$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-					$this->email->to($email);
-
-					$this->email->subject($message['subject']);
-					$this->email->message($message['body']);
-
-					if (! $this->email->send())
+					if (! $result['success'])
 					{
 						// Redirect to login page with message
 						$this->session->set_flashdata('warning', __("Email settings are incorrect."));
@@ -1691,31 +1670,11 @@ class User extends CI_Controller {
 						$this->data['user_firstname'] = $data->user_firstname; // We can call the user by his first name in the E-Mail
 						$this->data['user_callsign'] = $data->user_callsign;
 						$this->data['user_name'] = $data->user_name;
-						$this->load->library('email');
+						$this->load->helper('mailer');
 
-						if($this->optionslib->get_option('emailProtocol') == "smtp") {
-							$config = Array(
-								'protocol' => $this->optionslib->get_option('emailProtocol'),
-								'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-								'smtp_host' => $this->optionslib->get_option('smtpHost'),
-								'smtp_port' => $this->optionslib->get_option('smtpPort'),
-								'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-								'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-								'crlf' => "\r\n",
-								'newline' => "\r\n"
-							);
+						$result = mailer_send('email/admin_reset_password', $data->user_email, $this->data, $data->user_language);
 
-							$this->email->initialize($config);
-						}
-
-						$message = $this->email->load('email/admin_reset_password', $this->data,  $data->user_language);
-
-						$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-						$this->email->to($data->user_email);
-						$this->email->subject($message['subject']);
-						$this->email->message($message['body']);
-
-						if (! $this->email->send())
+						if (! $result['success'])
 						{
         					echo json_encode(false);
 						} else {
