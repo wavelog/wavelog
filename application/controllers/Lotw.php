@@ -1332,7 +1332,7 @@ class Lotw extends CI_Controller {
 		//check if result is empty or not a string
 		if (!is_string($result) || trim($result) === '') {
 			log_message('error', 'LoTW CRL returned an empty response.');
-			return 98;
+			return 99;
 		}
 
 		//try parsing the result
