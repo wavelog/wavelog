@@ -1017,12 +1017,28 @@ function findlotwunconfirmed(){
     });
 }
 
-function searchButtonPress() {
+function searchButtonPress(searchDxcc) {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
         $('#partial_view').load("logbook/search_result/" + fixedcall, function() {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+            $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
+                showQsoActionsMenu($(this).closest('.dropdown'));
+            });
+        });
+    } else if (searchDxcc) {
+        $('#partial_view').load("<?php echo site_url('search/search_result'); ?>", {
+            search: JSON.stringify({
+                condition: "AND",
+                rules: [{
+                    field: "COL_DXCC",
+                    operator: "equal",
+                    value: searchDxcc
+                }]
+            })
+        }, function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -1035,6 +1051,9 @@ $(document).ready(function(){
     <?php if($this->input->post('callsign') != "") { ?>
         $('#callsign').val('<?php echo $this->input->post('callsign'); ?>');
         searchButtonPress();
+    <?php } ?>
+    <?php if($this->input->post('dxcc') !== null && is_numeric($this->input->post('dxcc'))) { ?>
+        searchButtonPress(<?php echo (int) $this->input->post('dxcc'); ?>);
     <?php } ?>
 
 $($('#callsign')).on('keypress',function(e) {
@@ -2206,7 +2225,7 @@ $('#sats').change(function(){
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
          $.fn.dataTable.ext.buttons.clear = {
-               className: 'buttons-clear',
+               className: 'buttons-clear btn-sm',
                action: function ( e, dt, node, config ) {
                   dt.search('');
                   dt.draw();
@@ -2224,10 +2243,24 @@ $('#sats').change(function(){
                     url: getDataTablesLanguageUrl(),
                 },
                 dom: 'Bfrtip',
+                initComplete: function() {
+                    document.querySelectorAll('.timelinetable [data-bs-toggle="tooltip"]').forEach(el => {
+                        new bootstrap.Tooltip(el, {
+                            container: 'body',
+                            html: true,
+                            placement: 'right',
+                            fallbackPlacements: ['right', 'top'],
+                            trigger: 'hover',
+                            offset: [0, 2],
+                            customClass: 'tooltip-tl',
+                            delay: { show: 200, hide: 150 }
+                        });
+                    });
+                },
                 buttons: [
                     {
 						extend: 'csv',
-						className: 'mb-1 btn btn-primary', // Bootstrap classes
+						className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 							init: function(api, node, config) {
 								$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 						},

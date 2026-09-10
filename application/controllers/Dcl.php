@@ -113,13 +113,12 @@ class Dcl extends CI_Controller {
 			$sync_user_id=null;
 		}
 
-		// Array of QSO IDs being Uploaded
-
-		$qso_id_array = array();
-
 		if ($station_profiles->num_rows() >= 1) {
 
 			foreach ($station_profiles->result() as $station_profile) {
+
+				// Array of QSO IDs being Uploaded
+				$qso_id_array = array();
 
 				// Get Certificate Data
 				$data['station_profile'] = $station_profile;
@@ -205,7 +204,6 @@ class Dcl extends CI_Controller {
 						$this->Logbook_model->mark_dcl_sent($qso_number);
 					}
 				}
-				$qso_id_array=[];
 			}
 		} else {
 			echo __("No Station Profiles found to upload to DCL");
