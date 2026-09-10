@@ -63,7 +63,7 @@ class Station_resource extends Api_v2_resource {
 		}
 
 		$stations = [];
-		foreach ($query->result() as $row) {
+		foreach ($query ? $query->result() : [] as $row) {
 			$stations[] = $this->format_station($row);
 		}
 
