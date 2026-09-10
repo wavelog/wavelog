@@ -1313,8 +1313,13 @@ class Lotw extends CI_Controller {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			$result = curl_exec($ch);
-			if(curl_errno($ch)){
-				log_message('error', 'Error fetch LoTW CRL results: '.curl_strerror(curl_errno($ch)));
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+			if (curl_errno($ch) || $http_code !== 200) {
+				log_message(
+					'error',
+					'Error fetching LoTW CRL: HTTP '.$http_code.' / '.curl_error($ch)
+				);
 				return 99;
 			}
 			$xml = new SimpleXMLElement($result);
