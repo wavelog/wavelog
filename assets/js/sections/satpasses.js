@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    loadPassSettingsList();
+	loadPassSettingsList();
 
 	$('#satlist').multiselect({
 		// template is needed for bs5 support
@@ -73,6 +73,9 @@ function loadPasses() {
 			$('.satelliteinfo').click(function (event) {
 				getSatelliteInfo(this);
 			});
+			$('.hamsatposting').click(function (event) {
+				prepHamsAtPosting(this);
+			});
 		},
 		error: function(e) {
 			modalloading=false;
@@ -106,6 +109,42 @@ function getSatelliteInfo(element) {
 
         }
     });
+}
+
+function prepHamsAtPosting(element) {
+	var satname = $(element).closest('td').contents().first().text().trim();
+	var aos = $(element).parent().parent().find('#aos').contents().text().trim();
+	var tca = $(element).parent().parent().find('#tca').contents().text().trim();
+	var los = $(element).parent().parent().find('#los').contents().text().trim();
+	var duration = $(element).parent().parent().find('#duration').contents().text().trim();
+	$.ajax({
+		url: base_url + 'index.php/satellite/prepHamsAtPosting',
+		type: 'post',
+		data: {
+			'sat': satname,
+			'aos': aos,
+			'tca': tca,
+			'los': los,
+			'duration': duration,
+		},
+		success: function (html) {
+			BootstrapDialog.show({
+				title: lang_gen_hamradio_sat_hamsat_post,
+				size: BootstrapDialog.SIZE_WIDE,
+				cssClass: 'preparehamsat-dialog bg-opacity-50',
+				nl2br: false,
+				message: html,
+				buttons: [{
+					label: lang_admin_close,
+					action: function (dialogItself) {
+						dialogItself.close();
+					}
+				}]
+			});
+		},
+		error: function(e) {
+		}
+	});
 }
 
 function loadSkedPasses() {
@@ -246,4 +285,13 @@ function loadPassSettingsList() {
             console.log(e);
         }
     });
+}
+
+function toggleRxTx(dir) {
+   console.log("toggleRxTx");
+   if (dir == 'up') {
+      $("#tpx_center_freq").html($("#uplink_freq").val());
+   } else if (dir == 'down') {
+      $("#tpx_center_freq").html($("#downlink_freq").val());
+   }
 }
