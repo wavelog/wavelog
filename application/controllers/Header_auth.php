@@ -3,6 +3,10 @@
 use Firebase\JWT\JWT;
 use Firebase\JWT\JWK;
 
+require_once APPPATH . '../src/jwt/src/JWTExceptionWithPayloadInterface.php';
+require_once APPPATH . '../src/jwt/src/BeforeValidException.php';
+require_once APPPATH . '../src/jwt/src/ExpiredException.php';
+require_once APPPATH . '../src/jwt/src/SignatureInvalidException.php';
 require_once APPPATH . '../src/jwt/src/JWT.php';
 require_once APPPATH . '../src/jwt/src/Key.php';
 require_once APPPATH . '../src/jwt/src/JWK.php';
