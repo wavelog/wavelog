@@ -849,12 +849,12 @@
 										</div>
 										<?php foreach ([
 											'dxcc'     => __("DXCCs Breakdown"),
-											'vucc'     => __("VUCC-Grids"),
 											'qslcards' => __("QSL Cards"),
+											'lotw'     => __("LoTW"),
 											'eqsl'     => __("eQSL Cards"),
 											'qrz'      => 'QRZ.com',
 											'clublog'  => __("Club Log"),
-											'lotw'     => __("LoTW"),
+											'vucc'     => __("VUCC-Grids"),
 										] as $__pref => $__label): ?>
 											<?php if(!isset(${'user_dashboard_show_'.$__pref})) { ${'user_dashboard_show_'.$__pref} = '1'; } ?>
 											<div class="d-flex align-items-start gap-2 mb-3">
