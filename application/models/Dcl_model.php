@@ -52,6 +52,39 @@ class Dcl_model extends CI_Model {
 		$this->user_options_model->del_option('dcl', 'dcl_key',array('option_key' => 'key'));
 	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| Function: dcl_user_ids
+	|--------------------------------------------------------------------------
+	|
+	| Returns the user_ids of all users which have a DCL key stored
+	|
+	*/
+	function dcl_user_ids() {
+		$sql = 'SELECT DISTINCT user_id FROM user_options WHERE option_type = ? AND option_name = ?';
+		return $this->db->query($sql, array('dcl', 'dcl_key'))->result();
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Function: get_token
+	|--------------------------------------------------------------------------
+	|
+	| Returns the DCL API token of a user or '' if none is stored
+	|
+	*/
+	function get_token($user_id) {
+		$this->load->model('user_options_model');
+		$userkeys = $this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key','option_key'=>'key'), $user_id)->result();
+		foreach ($userkeys as $raw_key) {
+			$skey = json_decode($raw_key->option_value ?? '', true);
+			if (isset($skey['UserKeys']['token']) && $skey['UserKeys']['token'] != '') {
+				return $skey['UserKeys']['token'];
+			}
+		}
+		return '';
+	}
+
 	function get_dcl_info($token) {
 		if (($token ?? '') != '') {
 			try {

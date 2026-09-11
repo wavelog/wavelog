@@ -721,6 +721,7 @@ $config['userdata'] = 'userdata';
 */
 
 $config['disable_manual_lotw'] = false;
+$config['disable_manual_dcl'] = false;
 $config['disable_manual_eqsl'] = false;
 $config['disable_manual_hrdlog'] = false;
 $config['disable_manual_qrz'] = false;

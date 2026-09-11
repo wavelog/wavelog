@@ -30,7 +30,7 @@
             <ul class="nav nav-tabs card-header-tabs pull-right" role="tablist">
                 <?php
                 // Define all available tabs
-                $all_tabs = ['import', 'export', 'lotw', 'dcl', 'pota', 'cbr'];
+                $all_tabs = ['import', 'export', 'lotw', 'pota', 'cbr'];
 
                 // Use allowed_tabs if set, otherwise show all tabs
                 $tabs_to_show = isset($allowed_tabs) ? $allowed_tabs : $all_tabs;
@@ -47,14 +47,6 @@
                 <?php if (in_array('export', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link" id="export-tab" data-bs-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="false"><?= __("ADIF Export") ?></a>
-                </li>
-                <?php endif; ?>
-
-                <?php if (in_array('dcl', $tabs_to_show)): ?>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($showtab == 'dcl') { echo 'active'; } ?>"
-						id="dcl-tab" data-bs-toggle="tab" href="#dcl" role="tab" aria-controls="dcl"
-						aria-selected="<?php if ($showtab == 'dcl') { echo 'true'; } else { echo 'false'; } ?>"><?= __("DARC DCL") ?></a>
                 </li>
                 <?php endif; ?>
 
@@ -334,54 +326,6 @@
                     <p><a href="<?php echo site_url('adif/exportsat'); ?>" title="Export All Satellite Contacts" target="_blank" class="btn btn-sm btn-primary"><?= __("Export All Satellite QSOs") ?></a></p>
 
                     <p><a href="<?php echo site_url('adif/exportsatlotw'); ?>" title="Export All Satellite QSOs Confirmed on LoTW" target="_blank" class="btn btn-sm btn-primary"><?= __("Export All Satellite QSOs Confirmed on LoTW") ?></a></p>
-                </div>
-                <?php endif; ?>
-
-                <?php if (in_array('dcl', $tabs_to_show)): ?>
-                <div class="tab-pane <?php if ($showtab == 'dcl') {
-                                                    echo 'active';
-                                                } else {
-                                                    echo 'fade';
-                                                } ?>" id="dcl" role="tabpanel" aria-labelledby="dcl-tab">
-                    <?php if (isset($error) && $showtab == 'dcl') { ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?php echo $error; ?>
-                        </div>
-                    <?php } ?>
-
-                    <p class="card-text"><?= sprintf(__("Go to %s and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put 'DL' into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info."), "<a href='https://dcl.darc.de/dml/export_adif_form.php' target='_blank'>" . __("DARC DCL") . "</a>") ?> <?= sprintf(__("More information regarding the confirmation status in DCL can be found on the %sDCL Confluence page%s."), '<a target="_blank" href="https://confluence.darc.de/pages/viewpage.action?pageId=21037270">', '</a>'); ?></p>
-                    <form class="form" action="<?php echo site_url('adif/dcl'); ?>" method="post" enctype="multipart/form-data">
-
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="onlyConfirmed" value="1" id="onlyConfirmed" checked>
-                                    <label class="form-check-label" for="onlyConfirmed"><?= __("Only import DOK data from QSOs confirmed on DCL.") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("Uncheck if you also want to update DOK with data from unconfirmed QSOs in DCL.") ?></div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="overwriteDok" value="1" id="overwriteDok">
-                                    <label class="form-check-label" for="overwriteDok"><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Overwrites exisiting DOK in log by DCL (if different).") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log.") ?></div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="ignoreAmbiguous" value="1" id="ignoreAmbiguous" checked>
-                                    <label class="form-check-label" for="ignoreAmbiguous"><?= __("Ignore QSOs that cannot be matched.") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("If unchecked, information about QSOs which could not be found in Wavelog will be displayed.") ?></div>
-                            </div>
-                        </div>
-                        <input class="form-control w-auto mb-2 me-sm-2" type="file" name="userfile" size="20" accept=".adi,.ADI,.adif,.ADIF" />
-                        <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
-                    </form>
                 </div>
                 <?php endif; ?>
 
