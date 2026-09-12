@@ -1439,7 +1439,15 @@ class Logbook_model extends CI_Model {
 	function edit() {
 		$retvals=[];
 		$retvals['success']=false;
-		$qso = $this->get_qso($this->input->post('id'))->row();
+		$qso_id = $this->input->post('id');
+		$qso = $this->get_qso($qso_id)->row();
+
+		// Club Members and Club Member ADIF users can only edit their own QSOs,
+        // unless the club allows members to edit each other's logs. Officers are not affected.
+		if (!clubaccess_check(3, $qso_id, 'edit')) {
+			$retvals['detail'] = __('You are not allowed to edit this QSO');
+			return $retvals;
+		}
 
 		$entity = $this->get_entity($this->input->post('dxcc_id'));
 		$stationId = $this->input->post('station_profile');

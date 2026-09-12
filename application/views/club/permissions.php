@@ -195,6 +195,52 @@
             </div>
         </div>
     </div>
+    <?php if ($is_instance_admin) { ?>
+    <div class="card mt-3">
+        <div class="card-header">
+            <?= __("Direct Login"); ?>
+        </div>
+        <div class="card-body">
+            <p><?= sprintf(__("If you want users to log in directly into %s, you can enable this option. This can be useful for club stations, where there is a lot of people, or where the policy of the club allows guests to make QSOs under club's callsign."), '<span class="callsign">' . htmlspecialchars($club->user_callsign) . '</span>'); ?></p>
+             <form action="<?= site_url('club/update_direct_login'); ?>" method="post">
+                <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="direct_login_enabled" name="direct_login_enabled" value="1" <?php if ($club->direct_login_enabled == 1) { echo 'checked'; } ?>>
+                    <label class="form-check-label" for="direct_login_enabled"><?= sprintf(__("Allow direct login to %s"), '<span class="callsign">' . htmlspecialchars($club->user_callsign) . '</span>'); ?></label>
+                </div>
+                <div class="mb-3" style="max-width: 400px;">
+                    <label class="form-label" for="direct_login_p_level"><?= __("Permission level granted on direct login"); ?></label>
+                    <select class="form-select" id="direct_login_p_level" name="direct_login_p_level">
+                        <option value="3" <?php if ($club->direct_login_p_level == 3) { echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
+                        <option value="6" <?php if ($club->direct_login_p_level == 6) { echo 'selected'; } ?>><?php echo $permissions[6]; ?></option>
+                        <option value="9" <?php if ($club->direct_login_p_level == 9) { echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success ld-ext-right"><?= __("Save"); ?><div class="ld ld-ring ld-spin"></div></button>
+            </form>
+        </div>
+    </div>
+    <?php } ?>
+    <div class="card mt-3">
+        <div class="card-header">
+            <?= __("Cross-Operator Access"); ?>
+        </div>
+        <div class="card-body">
+            <p><?= sprintf(__("By default, Club Member and Club Member ADIF can only edit or delete QSOs they logged themselves under %s; Club Officers can always touch any QSO. Enable the switches below to let non-Officer members edit or delete QSOs logged by other operators too."), '<span class="callsign">' . htmlspecialchars($club->user_callsign) . '</span>'); ?></p>
+            <form action="<?= site_url('club/update_cross_operator_access'); ?>" method="post">
+                <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="allow_cross_operator_edit" name="allow_cross_operator_edit" value="1" <?php if ($club->allow_cross_operator_edit == 1) { echo 'checked'; } ?>>
+                    <label class="form-check-label" for="allow_cross_operator_edit"><?= __("Allow editing QSOs logged by other operators"); ?></label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="allow_cross_operator_delete" name="allow_cross_operator_delete" value="1" <?php if ($club->allow_cross_operator_delete == 1) { echo 'checked'; } ?>>
+                    <label class="form-check-label" for="allow_cross_operator_delete"><?= __("Allow deleting QSOs logged by other operators"); ?></label>
+                </div>
+                <button type="submit" class="btn btn-success ld-ext-right"><?= __("Save"); ?><div class="ld ld-ring ld-spin"></div></button>
+            </form>
+        </div>
+    </div>
     <div class="card mt-3">
         <div class="card-header">
             <?= __("Users with Permissions"); ?>

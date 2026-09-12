@@ -670,6 +670,8 @@ class User_Model extends CI_Model {
 			'hasQrzKey' 					=> $this->hasQrzKey($u->user_id),
 			'impersonate' 					=> $sess['impersonate'] ?? false,
 			'clubstation' 					=> $u->clubstation,
+			'allow_cross_operator_edit' 	=> $u->allow_cross_operator_edit ?? 0,
+			'allow_cross_operator_delete' 	=> $u->allow_cross_operator_delete ?? 0,
 			'dashboard_last_qso_count' 		=> ($sess['dashboard_last_qso_count'] ?? '') == '' ? ($user_options['dashboard']['last_qso_count']['count'] ?? '') : $sess['dashboard_last_qso_count'],
 			'qso_page_last_qso_count' 		=> ($sess['qso_page_last_qso_count'] ?? '') == '' ? ($user_options['qso_tab']['last_qso_count']['count'] ?? '') : $sess['qso_page_last_qso_count'],
 			'source_uid' 					=> $sess['source_uid'] ?? ''
@@ -702,6 +704,12 @@ class User_Model extends CI_Model {
 		}
 		if ($userdata['clubstation'] == 1) {
 			$userdata['available_clubstations'] = 'none';
+			// Direct logins (sessions not created by switching from a user account)
+            // do not have a club membership row to check permissions.
+            // Use the permission level configured for this club station instead.
+			if (!$impersonate) {
+				$userdata['cd_p_level'] = (int) ($u->direct_login_p_level ?? 9);
+			}
 		}
 		if (isset($custom_data)) {
 			foreach ($custom_data as $key => $value) {
@@ -763,8 +771,9 @@ class User_Model extends CI_Model {
 	function authenticate($username, $password) {
 		$u = $this->get($username);
 		if($u->num_rows() != 0) {
-			// direct login to clubstations are not allowed
-			if ($u->row()->clubstation == 1 && !($this->config->item('club_direct') ?? false)) {
+			// direct login to clubstations are not allowed, unless enabled per-club
+			// (GUI toggle in Club Permissions) or via the legacy global config flag
+			if ($u->row()->clubstation == 1 && !$u->row()->direct_login_enabled && !($this->config->item('club_direct') ?? false)) {
 				$uid = $u->row()->user_id;
 				log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt.");
 				return 2;
