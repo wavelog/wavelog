@@ -7149,6 +7149,7 @@ msgstr ""
 #: application/views/satellite/pass.php:187
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/contesting/logger/index.php:196
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -11904,6 +11905,7 @@ msgstr "Nachname"
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:47 application/views/user/login.php:59
 #: application/views/user/login.php:60 application/views/user/profile.php:14
+#: application/views/contesting/logger/index.php:180
 msgid "Username"
 msgstr "Benutzername"
 
@@ -12867,6 +12869,8 @@ msgstr "Jetzt neu laden"
 #: application/views/contesting/logger/index.php:163
 #: application/views/contesting/logger/index.php:190
 #: application/views/interface_assets/header.php:623
+#: application/views/contesting/logger/index.php:171
+#: application/views/contesting/logger/index.php:198
 msgid "Switch Operator"
 msgstr "Operator wechseln"
 
@@ -12939,10 +12943,12 @@ msgid "Bottom"
 msgstr "Unten"
 
 #: application/views/contesting/logger/index.php:168
+#: application/views/contesting/logger/index.php:176
 msgid "Current Operator:"
 msgstr "Aktueller Operator:"
 
 #: application/views/contesting/logger/index.php:170
+#: application/views/contesting/logger/index.php:178
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
@@ -12956,11 +12962,13 @@ msgstr ""
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
+#: application/views/contesting/logger/index.php:184
 msgid "Password"
 msgstr "Passwort"
 
 #: application/views/contesting/logger/index.php:180
 #: application/views/operator/index.php:14
+#: application/views/contesting/logger/index.php:188
 msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
 "and exported with correct operator information."
@@ -12970,6 +12978,7 @@ msgstr ""
 
 #: application/views/contesting/logger/index.php:182
 #: application/views/operator/index.php:18
+#: application/views/contesting/logger/index.php:190
 msgid "Your personal Callsign:"
 msgstr "Dein persönliches Rufzeichen:"
 
@@ -25055,6 +25064,15 @@ msgstr "Clublog Logsuche"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Nutzer. Letzter Upload vom "
+
+#: application/views/contesting/logger/index.php:143
+msgid "Clear Call on QSY"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:143
+msgid ""
+"Clears the callsign field when the frequency changes by more than 500 Hz"
+msgstr ""
 
 #, php-format
 #~ msgid ""
