@@ -58,6 +58,7 @@ class QsoFormComponent {
 		this.loadExistingQSOs();
 		this.applyRstDefaults();
 		this._setupBandmapListener();
+		this._setupQsyClear();
 	}
 
 	// Show the current operator as a badge in this window's header (club stations only).
@@ -101,6 +102,26 @@ class QsoFormComponent {
 		bcWin.onmessage = (ev) => {
 			if (ev.data === 'ping') bcWin.postMessage('pong');
 		};
+	}
+
+	_setupQsyClear() {
+		this.clearCallOnQsy = localStorage.getItem('clearCallOnQsy') === '1';
+
+		const toggle = document.getElementById('clearCallOnQsyToggle');
+		if (toggle) {
+			toggle.checked = this.clearCallOnQsy;
+			toggle.addEventListener('change', () => {
+				this.clearCallOnQsy = toggle.checked;
+				localStorage.setItem('clearCallOnQsy', toggle.checked ? '1' : '0');
+			});
+		}
+
+		window.addEventListener('contest:qsy', () => {
+			if (!this.clearCallOnQsy) return;
+			const callsignInput = this.container.querySelector('#qso-callsign');
+			if (!callsignInput || !callsignInput.value.trim()) return;
+			this.clearForm(false);
+		});
 	}
 
 	defaultRst() {
