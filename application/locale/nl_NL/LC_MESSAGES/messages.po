@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-11 19:30+0000\n"
+"POT-Creation-Date: 2026-09-12 05:11+0000\n"
 "PO-Revision-Date: 2026-08-28 20:04+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -7043,7 +7043,7 @@ msgstr ""
 #: application/views/club/permissions.php:432
 #: application/views/club/permissions.php:454
 #: application/views/contesting/logger/components/qso-form.php:41
-#: application/views/contesting/logger/index.php:188
+#: application/views/contesting/logger/index.php:196
 #: application/views/contesting/manager/components/confirm_delete.php:24
 #: application/views/contesting/manager/components/session_modal.php:160
 #: application/views/contesting/manager/import_legacy.php:80
@@ -11778,7 +11778,7 @@ msgid "Lastname"
 msgstr "Achternaam"
 
 #: application/views/club/permissions.php:285
-#: application/views/contesting/logger/index.php:172
+#: application/views/contesting/logger/index.php:180
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:47 application/views/user/login.php:59
 #: application/views/user/login.php:60 application/views/user/profile.php:14
@@ -12734,8 +12734,8 @@ msgstr "Nu herladen"
 
 #: application/views/contesting/logger/index.php:68
 #: application/views/contesting/logger/index.php:104
-#: application/views/contesting/logger/index.php:163
-#: application/views/contesting/logger/index.php:190
+#: application/views/contesting/logger/index.php:171
+#: application/views/contesting/logger/index.php:198
 #: application/views/interface_assets/header.php:623
 msgid "Switch Operator"
 msgstr "Wissel operator"
@@ -12808,11 +12808,20 @@ msgstr "Bovenkant"
 msgid "Bottom"
 msgstr "Onderkant"
 
-#: application/views/contesting/logger/index.php:168
+#: application/views/contesting/logger/index.php:143
+msgid "Clear Call on QSY"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:143
+msgid ""
+"Clears the callsign field when the frequency changes by more than 500 Hz"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:176
 msgid "Current Operator:"
 msgstr "Huidige Operator:"
 
-#: application/views/contesting/logger/index.php:170
+#: application/views/contesting/logger/index.php:178
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
@@ -12820,7 +12829,7 @@ msgstr ""
 "Log in met het account van een andere operator om deze contest-sessie onder "
 "hun roepnaam voort te zetten."
 
-#: application/views/contesting/logger/index.php:176
+#: application/views/contesting/logger/index.php:184
 #: application/views/user/edit.php:96 application/views/user/login.php:48
 #: application/views/user/login.php:63 application/views/user/login.php:64
 #: application/views/user/reset_password.php:21
@@ -12829,7 +12838,7 @@ msgstr ""
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: application/views/contesting/logger/index.php:180
+#: application/views/contesting/logger/index.php:188
 #: application/views/operator/index.php:14
 msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
@@ -12838,7 +12847,7 @@ msgstr ""
 "Geef je persoonlijke roepnaam op. Dit zorgt ervoor dat QSO's worden gelogd "
 "en geëxporteerd met de juiste operatorinformatie."
 
-#: application/views/contesting/logger/index.php:182
+#: application/views/contesting/logger/index.php:190
 #: application/views/operator/index.php:18
 msgid "Your personal Callsign:"
 msgstr "Je persoonlijke roepnaam:"

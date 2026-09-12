@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-11 19:30+0000\n"
+"POT-Creation-Date: 2026-09-12 05:11+0000\n"
 "PO-Revision-Date: 2026-09-09 11:39+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -7036,7 +7036,7 @@ msgstr ""
 #: application/views/club/permissions.php:432
 #: application/views/club/permissions.php:454
 #: application/views/contesting/logger/components/qso-form.php:41
-#: application/views/contesting/logger/index.php:188
+#: application/views/contesting/logger/index.php:196
 #: application/views/contesting/manager/components/confirm_delete.php:24
 #: application/views/contesting/manager/components/session_modal.php:160
 #: application/views/contesting/manager/import_legacy.php:80
@@ -11763,7 +11763,7 @@ msgid "Lastname"
 msgstr "Soyisim"
 
 #: application/views/club/permissions.php:285
-#: application/views/contesting/logger/index.php:172
+#: application/views/contesting/logger/index.php:180
 #: application/views/user/edit.php:70 application/views/user/index.php:152
 #: application/views/user/login.php:47 application/views/user/login.php:59
 #: application/views/user/login.php:60 application/views/user/profile.php:14
@@ -12713,8 +12713,8 @@ msgstr "Şimdi yeniden yükle"
 
 #: application/views/contesting/logger/index.php:68
 #: application/views/contesting/logger/index.php:104
-#: application/views/contesting/logger/index.php:163
-#: application/views/contesting/logger/index.php:190
+#: application/views/contesting/logger/index.php:171
+#: application/views/contesting/logger/index.php:198
 #: application/views/interface_assets/header.php:623
 msgid "Switch Operator"
 msgstr "Operatör Değiştir"
@@ -12787,11 +12787,20 @@ msgstr "Üst"
 msgid "Bottom"
 msgstr "Alt"
 
-#: application/views/contesting/logger/index.php:168
+#: application/views/contesting/logger/index.php:143
+msgid "Clear Call on QSY"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:143
+msgid ""
+"Clears the callsign field when the frequency changes by more than 500 Hz"
+msgstr ""
+
+#: application/views/contesting/logger/index.php:176
 msgid "Current Operator:"
 msgstr "Mevcut Operatör:"
 
-#: application/views/contesting/logger/index.php:170
+#: application/views/contesting/logger/index.php:178
 msgid ""
 "Log in with another operator's account to continue this contest session "
 "under their callsign."
@@ -12799,7 +12808,7 @@ msgstr ""
 "Bu yarışma oturumuna onların çağrı işaretiyle devam etmek için başka bir "
 "operatörün hesabıyla giriş yapın."
 
-#: application/views/contesting/logger/index.php:176
+#: application/views/contesting/logger/index.php:184
 #: application/views/user/edit.php:96 application/views/user/login.php:48
 #: application/views/user/login.php:63 application/views/user/login.php:64
 #: application/views/user/reset_password.php:21
@@ -12808,7 +12817,7 @@ msgstr ""
 msgid "Password"
 msgstr "Şifre"
 
-#: application/views/contesting/logger/index.php:180
+#: application/views/contesting/logger/index.php:188
 #: application/views/operator/index.php:14
 msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
@@ -12817,7 +12826,7 @@ msgstr ""
 "Lütfen kişisel çağrı işaretinizi girin. Bu, QSO'ların doğru operatör "
 "bilgisiyle kaydedilmesini ve dışa aktarılmasını sağlar."
 
-#: application/views/contesting/logger/index.php:182
+#: application/views/contesting/logger/index.php:190
 #: application/views/operator/index.php:18
 msgid "Your personal Callsign:"
 msgstr "Kişisel Çağrı İşaretiniz:"
