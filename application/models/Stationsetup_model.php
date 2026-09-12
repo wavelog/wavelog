@@ -290,7 +290,7 @@ class Stationsetup_model extends CI_Model {
 				'station_iota'          => ((isset($loc['station_iota']) && $loc['station_iota'] != "") ? xss_clean($loc['station_iota']) : ''),
 				'station_sota'          => ((isset($loc['station_sota']) && $loc['station_sota'] != "") ? xss_clean($loc['station_sota']) : ''),
 				'station_callsign'      => ((isset($loc['station_callsign']) && $loc['station_callsign'] != "") ? xss_clean($loc['station_callsign']) : ''),
-				'station_power'         => ((isset($loc['station_power']) && $loc['station_power'] != "") ? xss_clean($loc['station_power']) : null),
+				'station_power'         => ((isset($loc['station_power']) && is_numeric($loc['station_power'])) ? round((float) $loc['station_power'], 3) : null),
 				'station_dxcc'          => ((isset($loc['station_dxcc']) && $loc['station_dxcc'] != "") ? xss_clean($loc['station_dxcc']) : null),
 				'station_cq'            => ((isset($loc['station_cq']) && $loc['station_cq'] != "") ? xss_clean($loc['station_cq']) : null),
 				'station_itu'           => ((isset($loc['station_itu']) && $loc['station_itu'] != "") ? xss_clean($loc['station_itu']) : null),

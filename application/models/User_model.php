@@ -451,6 +451,9 @@ class User_Model extends CI_Model {
 				$this->session->set_userdata('user_dashboard_show_dxpeditions',xss_clean($fields['user_dashboard_show_dxpeditions'] ?? '1'));
 				$this->session->set_userdata('user_dashboard_show_contests',xss_clean($fields['user_dashboard_show_contests'] ?? '1'));
 				$this->session->set_userdata('user_dashboard_show_kpi_stats',xss_clean($fields['user_dashboard_show_kpi_stats'] ?? '1'));
+				foreach (['dxcc', 'vucc', 'qslcards', 'eqsl', 'qrz', 'clublog', 'lotw'] as $__card) {
+					$this->session->set_userdata('user_dashboard_show_' . $__card, xss_clean($fields['user_dashboard_show_' . $__card] ?? '1'));
+				}
 				$this->session->set_userdata('user_dxwaterfall_enable',xss_clean($fields['user_dxwaterfall_enable'] ?? 'N'));
 				$this->session->set_userdata('user_stations_active_log_only',xss_clean($fields['user_stations_active_log_only'] ?? '0'));
 
@@ -633,14 +636,21 @@ class User_Model extends CI_Model {
 			'radio' 						=> ((($sess['radio'] ?? '') == '') ? ($user_options['cat']['default_radio']['radio_id'] ?? '') : $sess['radio']),
 			'station_profile_id' 			=> $sess['station_profile_id'] ?? '',
 			'user_measurement_base' 		=> $u->user_measurement_base,
-			'user_dashboard_map' 			=> array_key_exists('user_dashboard_map', $sess) ? $sess['user_dashboard_map'] : ($user_options['dashboard']['show_map']['boolean'] ?? 'Y'),
-			'user_dashboard_banner' 		=> array_key_exists('user_dashboard_banner', $sess) ? $sess['user_dashboard_banner'] : ($user_options['dashboard']['show_dashboard_banner']['boolean'] ?? 'Y'),
-			'user_dashboard_solar' 			=> array_key_exists('user_dashboard_solar', $sess) ? $sess['user_dashboard_solar'] : ($user_options['dashboard']['show_dashboard_solar']['boolean'] ?? 'N'),
-			'user_dashboard_show_dxpeditions' => array_key_exists('user_dashboard_show_dxpeditions', $sess) ? $sess['user_dashboard_show_dxpeditions'] : ($user_options['dashboard']['show_dxpeditions']['boolean'] ?? '0'),
-			'user_dashboard_show_contests' 	=> array_key_exists('user_dashboard_show_contests', $sess) ? $sess['user_dashboard_show_contests'] : ($user_options['dashboard']['show_contests']['boolean'] ?? '0'),
-			'user_dashboard_show_kpi_stats'	=> array_key_exists('user_dashboard_show_kpi_stats', $sess) ? $sess['user_dashboard_show_kpi_stats'] : ($user_options['dashboard']['show_kpi_stats']['boolean'] ?? '1'),
-			'user_qso_db_search_priority' 	=> array_key_exists('user_qso_db_search_priority', $sess) ? $sess['user_qso_db_search_priority'] : ($user_options['qso_db_search_priority']['enable']['boolean'] ?? 'Y'),
-			'user_dxwaterfall_enable' 		=> array_key_exists('user_dxwaterfall_enable', $sess) ? $sess['user_dxwaterfall_enable'] : ($user_options['dxwaterfall']['enable']['boolean'] ?? 'N'),
+			'user_dashboard_map' 			=> $user_options['dashboard']['show_map']['boolean'] ?? 'Y',
+			'user_dashboard_banner' 		=> $user_options['dashboard']['show_dashboard_banner']['boolean'] ?? 'Y',
+			'user_dashboard_solar' 			=> $user_options['dashboard']['show_dashboard_solar']['boolean'] ?? 'N',
+			'user_dashboard_show_dxpeditions' => $user_options['dashboard']['show_dxpeditions']['boolean'] ?? '0',
+			'user_dashboard_show_contests' 	=> $user_options['dashboard']['show_contests']['boolean'] ?? '0',
+			'user_dashboard_show_kpi_stats'	=> $user_options['dashboard']['show_kpi_stats']['boolean'] ?? '1',
+			'user_dashboard_show_dxcc' 		=> $user_options['dashboard']['show_dxcc']['boolean'] ?? '1',
+			'user_dashboard_show_vucc' 		=> $user_options['dashboard']['show_vucc']['boolean'] ?? '1',
+			'user_dashboard_show_qslcards' 	=> $user_options['dashboard']['show_qslcards']['boolean'] ?? '1',
+			'user_dashboard_show_eqsl' 		=> $user_options['dashboard']['show_eqsl']['boolean'] ?? '1',
+			'user_dashboard_show_qrz' 		=> $user_options['dashboard']['show_qrz']['boolean'] ?? '1',
+			'user_dashboard_show_clublog' 	=> $user_options['dashboard']['show_clublog']['boolean'] ?? '1',
+			'user_dashboard_show_lotw' 		=> $user_options['dashboard']['show_lotw']['boolean'] ?? '1',
+			'user_qso_db_search_priority' 	=> $user_options['qso_db_search_priority']['enable']['boolean'] ?? 'Y',
+			'user_dxwaterfall_enable' 		=> $user_options['dxwaterfall']['enable']['boolean'] ?? 'N',
 			'user_date_format' 				=> $u->user_date_format,
 			'user_stylesheet' 				=> $u->user_stylesheet,
 			'user_qth_lookup' 				=> isset($u->user_qth_lookup) ? $u->user_qth_lookup : 0,
@@ -663,7 +673,7 @@ class User_Model extends CI_Model {
 			'user_quicklog' 				=> isset($u->user_quicklog) ? $u->user_quicklog : 1,
 			'user_quicklog_enter' 			=> isset($u->user_quicklog_enter) ? $u->user_quicklog_enter : 1,
 			'active_station_logbook' 		=> $u->active_station_logbook,
-			'user_stations_active_log_only' => array_key_exists('user_stations_active_log_only', $sess) ? $sess['user_stations_active_log_only'] : ($user_options['stations']['active_log_only']['boolean'] ?? '0'),
+			'user_stations_active_log_only' => $user_options['stations']['active_log_only']['boolean'] ?? '0',
 			'user_language' 				=> isset($u->user_language) ? $u->user_language: 'english',
 			'isWinkeyEnabled' 				=> $u->winkey,
 			'FirstLoginWizard' 				=> ((($sess['FirstLoginWizard'] ?? '') == '') ? ($user_options['FirstLoginWizard']['showed']['boolean'] ?? null) : $sess['FirstLoginWizard']),

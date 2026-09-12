@@ -54,10 +54,16 @@ class Station_resource extends Api_v2_resource {
 	 * have a handful of station profiles.
 	 */
 	public function index() {
-		$query = $this->CI->stations->all_of_user($this->user_id());
+		$dkey_opt = $this->CI->user_options_model->get_options('stations', array('option_name' => 'active_log_only', 'option_key' => 'boolean'), $this->user_id())->result();
+		$user_stations_active_log_only = (count($dkey_opt) > 0 && $dkey_opt[0]->option_value) ? true : false;
+		if ($user_stations_active_log_only) {
+			$query = $this->CI->logbooks_model->list_logbooks_linked($this->CI->logbooks_model->find_active_station_logbook_from_userid($this->user_id()));
+		} else {
+			$query = $this->CI->stations->all_of_user($this->user_id());
+		}
 
 		$stations = [];
-		foreach ($query->result() as $row) {
+		foreach ($query ? $query->result() : [] as $row) {
 			$stations[] = $this->format_station($row);
 		}
 
@@ -283,7 +289,7 @@ class Station_resource extends Api_v2_resource {
 			case 'int_or_null':
 				return is_numeric($value) ? (int) $value : null;
 			case 'power':
-				return is_numeric($value) ? xss_clean((string) $value) : null;
+				return is_numeric($value) ? round((float) $value, 3) : null;
 			case 'string':
 			default:
 				return xss_clean((string) $value);
@@ -407,7 +413,7 @@ class Station_resource extends Api_v2_resource {
 			'pota'       => $row->station_pota ?? null,
 			'sig'        => $row->station_sig ?? null,
 			'sig_info'   => $row->station_sig_info ?? null,
-			'power'      => isset($row->station_power) && is_numeric($row->station_power) ? (int) $row->station_power : null,
+			'power'      => isset($row->station_power) && is_numeric($row->station_power) ? (float) $row->station_power : null,
 			'active'     => isset($row->station_active) && $row->station_active == 1,
 		];
 	}
