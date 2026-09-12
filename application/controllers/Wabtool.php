@@ -52,6 +52,8 @@ class Wabtool extends CI_Controller {
 	 * square, resolved against the WAB square outlines in wab_geojson.js.
 	 * Speaks the DataTables server-side protocol (draw/start/length/order/
 	 * search) so the log-scale candidate set is never sent in one piece.
+	 * When only_full is posted, rows are limited to "100% matches": grids
+	 * that resolve unambiguously to a single WAB square.
 	 * When wabtool_summary is posted (initial scan only), the response also
 	 * carries a whole-log summary computed per distinct grid.
 	 */
@@ -78,10 +80,17 @@ class Wabtool extends CI_Controller {
 
 		$this->load->model('wab');
 
-		$filtered = $this->wab->count_wab_candidates($station_id, $this->wabDxccIds, $search);
-		$total = ($search === '') ? $filtered : $this->wab->count_wab_candidates($station_id, $this->wabDxccIds);
+		// "100% matches" only: grids whose center resolves to a square and
+		// whose corners all stay inside that same square
+		$full_grids = null;
+		if ((string)$this->input->post('only_full', true) === '1') {
+			$full_grids = $this->fullMatchGrids($station_id);
+		}
 
-		$query = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search, $orderCol, $orderDir, $length, $start);
+		$filtered = $this->wab->count_wab_candidates($station_id, $this->wabDxccIds, $search, $full_grids);
+		$total = ($search === '') ? $filtered : $this->wab->count_wab_candidates($station_id, $this->wabDxccIds, '', $full_grids);
+
+		$query = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search, $orderCol, $orderDir, $length, $start, $full_grids);
 
 		// Get Date format
 		if ($this->session->userdata('user_date_format')) {
@@ -163,8 +172,9 @@ class Wabtool extends CI_Controller {
 	 * recomputed server side; ownership and the empty-SIG policy are re-checked.
 	 * ids is either a JSON array of primary keys (page/manual selection) or
 	 * the literal string 'ALL' for "everything the scan matches": then the
-	 * candidate set is enumerated server side (station_id + search mirror
-	 * the scan request), so the client never has to ship thousands of ids.
+	 * candidate set is enumerated server side (station_id + search +
+	 * only_full mirror the scan request), so the client never has to ship
+	 * thousands of ids.
 	 */
 	public function apply() {
 		set_time_limit(3600);
@@ -190,13 +200,14 @@ class Wabtool extends CI_Controller {
 			$station_id = $this->input->post('station_id', true);
 			$station_id = ($station_id !== null && $station_id !== 'all') ? $station_id : null;
 			$search = $this->postSearchTerm();
+			$only_full = (string)$this->input->post('only_full', true) === '1';
 
 			$qsos = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search);
 
 			$idsBySquare = array();
 			foreach ($qsos->result() as $qso) {
 				$resolved = $this->resolveGrid($qso->col_gridsquare);
-				if ($resolved === null || $resolved['square'] === null) {
+				if ($resolved === null || $resolved['square'] === null || ($only_full && $resolved['ambiguous'])) {
 					$skipped++;
 					continue;
 				}
@@ -250,6 +261,23 @@ class Wabtool extends CI_Controller {
 			$search = (string)($search['value'] ?? '');
 		}
 		return trim((string)$search);
+	}
+
+	/*
+	 * Normalized grids among the candidates that resolve unambiguously to a
+	 * single WAB square (center and all four corners inside it): the
+	 * "100% match" set behind the only_full filter. Ambiguity is a property
+	 * of the grid alone, so this is computed per distinct grid, never per QSO.
+	 */
+	private function fullMatchGrids($station_id) {
+		$full = array();
+		foreach ($this->wab->get_wab_candidate_grids($station_id, $this->wabDxccIds) as $grid) {
+			$resolved = $this->resolveGrid($grid);
+			if ($resolved !== null && $resolved['square'] !== null && !$resolved['ambiguous']) {
+				$full[] = $grid;
+			}
+		}
+		return $full;
 	}
 
 	/*

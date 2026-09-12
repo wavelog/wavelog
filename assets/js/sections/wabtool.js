@@ -4,11 +4,15 @@
 // The preview table is a server-side DataTable: the candidate set can reach
 // log size (tens of thousands of rows), so only one page is ever fetched
 // and rendered. Selection state lives in wabtoolSelected (per id) plus the
-// wabtoolAllMatching flag ("apply everything the scan matches").
+// wabtoolAllMatching flag ("apply everything the scan matches"). The
+// wabtoolOnlyFull flag filters the scan server side down to "100% matches"
+// (grids fully inside one WAB square); select-all and the bulk apply
+// follow that filter.
 
 var wabtoolTable = null; // DataTables API instance of the preview table
 var wabtoolSelected = {}; // qso id -> 1, rows checked by the user
 var wabtoolAllMatching = false; // apply every matching QSO, not just checked ones
+var wabtoolOnlyFull = false; // only gridsquares fully inside a single WAB square
 var wabtoolRecordsFiltered = 0; // rows matching the current table filter
 var wabtoolSummaryPending = false; // request the one-time scan summary on the next ajax
 
@@ -38,8 +42,10 @@ function wabtoolRenderSummary(summary) {
 		}
 		html += '</p>';
 	}
+	html += '<button type="button" class="btn btn-sm btn-outline-success mb-2 me-2" id="wabtoolOnlyFull" data-bs-toggle="tooltip" title="Hide gridsquares that straddle a WAB square boundary (or fall outside WAB coverage)">Only 100% matches</button>';
 	html += '<button type="button" class="btn btn-sm btn-outline-primary mb-2" id="wabtoolSelectAllMatching"></button>';
 	$('.wabtool-summary').html(html);
+	$('#wabtoolOnlyFull').tooltip();
 }
 
 function wabtoolUpdateSelectAllButton() {
@@ -51,7 +57,8 @@ function wabtoolUpdateSelectAllButton() {
 		btn.text('Clear selection (' + wabtoolRecordsFiltered + ' selected)');
 	} else {
 		var n = wabtoolRecordsFiltered;
-		btn.text(n ? 'Select all ' + n + ' matching QSOs' : 'Select all matching QSOs');
+		var what = wabtoolOnlyFull ? ' 100% matching QSOs' : ' matching QSOs';
+		btn.text(n ? 'Select all ' + n + what : 'Select all matching QSOs');
 	}
 }
 
@@ -79,6 +86,9 @@ function wabtoolInitTable() {
 			type: 'POST',
 			data: function(d) {
 				d.station_id = $('#de').val();
+				if (wabtoolOnlyFull) {
+					d.only_full = 1;
+				}
 				if (wabtoolSummaryPending) {
 					// whole-log summary only on the first load after a scan
 					d.wabtool_summary = 1;
@@ -250,6 +260,7 @@ function wabtoolStartScan(clearApplyResult) {
 
 	wabtoolSelected = {};
 	wabtoolAllMatching = false;
+	wabtoolOnlyFull = false;
 	wabtoolRecordsFiltered = 0;
 	wabtoolSummaryPending = true;
 
@@ -350,6 +361,9 @@ function bindWabTool() {
 				station_id: $('#de').val(),
 				search: wabtoolTable !== null ? wabtoolTable.search() : ''
 			};
+			if (wabtoolOnlyFull) {
+				searchData.only_full = 1; // mirror the table filter
+			}
 		} else {
 			var ids = Object.keys(wabtoolSelected);
 			if (!ids.length) {
@@ -445,6 +459,21 @@ function bindWabTool() {
 		$('.wabtool-row').prop('checked', wabtoolAllMatching);
 		wabtoolSyncHeaderCheckbox();
 		wabtoolUpdateSelectAllButton();
+	});
+
+	// "Only 100% matches": refetch the table without gridsquares that
+	// straddle a square boundary. Select-all and the bulk apply follow the
+	// filter, so "select all matching" then selects exactly the 100% matches.
+	$(document).on('click', '#wabtoolOnlyFull', function() {
+		wabtoolOnlyFull = !wabtoolOnlyFull;
+		$(this).toggleClass('active', wabtoolOnlyFull).attr('aria-pressed', String(wabtoolOnlyFull));
+		if (!wabtoolAllMatching) {
+			// rows about to be hidden by the filter must not stay selected
+			wabtoolSelected = {};
+		}
+		if (wabtoolTable !== null) {
+			wabtoolTable.ajax.reload(); // reset paging: the row set changes
+		}
 	});
 
 	// Map popup per preview row (delegated so it survives re-rendering)
