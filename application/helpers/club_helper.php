@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   */
 
 if (!function_exists('clubaccess_check')) {
-    function clubaccess_check($required_level, $qso_id = 0) {
+    function clubaccess_check($required_level, $qso_id = 0, $action = 'edit') {
 
         $CI =& get_instance();
         if (!$CI->load->is_loaded('session')) {
@@ -38,8 +38,12 @@ if (!function_exists('clubaccess_check')) {
                         // Officers can access any QSO
                         return true;
                     } elseif ($user_level >= $required_level) {
-                        // ClubMemberADIF and regular members can only access their own QSOs
-                        return $qso->COL_OPERATOR == $operator_callsign;
+                        if ($qso->COL_OPERATOR == $operator_callsign) {
+                            return true;
+                        }
+                        // Below Officer level, this club may still have opted in to
+                        // let members touch each other's QSOs for this action.
+                        return clubaccess_cross_operator_allowed($action);
                     } else {
                         // Lower levels (shouldn't reach here for ADIF access)
                         return false;
@@ -54,6 +58,29 @@ if (!function_exists('clubaccess_check')) {
             // return always true if the special callsign mode is disabled, so there is no change in behaviour
             return true;
         }
+    }
+}
+
+/**
+ * Checks if the current club station session allows basic Club Members
+ * (including ADIF users below Officer rank) to modify QSOs logged by
+ * other operators.
+ *
+ * @param string $action 'edit' or 'delete'
+ *
+ * @return boolean
+ */
+if (!function_exists('clubaccess_cross_operator_allowed')) {
+    function clubaccess_cross_operator_allowed($action = 'edit') {
+
+        $CI =& get_instance();
+        if (!$CI->load->is_loaded('session')) {
+            $CI->load->library('session');
+        }
+
+        $field = $action === 'delete' ? 'allow_cross_operator_delete' : 'allow_cross_operator_edit';
+
+        return ($CI->session->userdata($field) ?? 0) == 1;
     }
 }
 
@@ -73,7 +100,7 @@ if (!function_exists('clubaccess_check')) {
  * is safe against arbitrary/foreign IDs 
  */
 if (!function_exists('clubaccess_filter_qso_ids')) {
-	function clubaccess_filter_qso_ids(array $ids): array {
+	function clubaccess_filter_qso_ids(array $ids, $action = 'edit'): array {
 
 		$CI =& get_instance();
 		if (!$CI->load->is_loaded('session')) {
@@ -103,6 +130,11 @@ if (!function_exists('clubaccess_filter_qso_ids')) {
 		// Below Club Member: no write access at all
 		if ($user_level < 3) {
 			return [];
+		}
+
+		// This club may allowed members to modify QSOs created by other users.
+		if (clubaccess_cross_operator_allowed($action)) {
+			return array_values($ids);
 		}
 
 		// Club Member (3) / Club Member ADIF (6): keep only own QSOs

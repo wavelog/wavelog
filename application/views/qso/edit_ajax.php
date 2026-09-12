@@ -711,7 +711,13 @@
                                 <input type="hidden" name="id" value="<?php echo html_escape($qso->COL_PRIMARY_KEY); ?>" />
 
                                 <div class="actions">
+                                    <?php if (clubaccess_check(3, $qso->COL_PRIMARY_KEY, 'delete')) { ?>
                                     <a class="btn btn-danger" href='javascript:qso_delete(<?php echo (int) $qso->COL_PRIMARY_KEY; ?>, <?php echo js_escape($qso->COL_CALL); ?>)'><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+                                    <?php } else {?>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Deletion of QSOs is disabled."); ?>">
+                                        <a class="btn btn-danger disabled"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+                                    </span>
+                                    <?php }?>
 									<button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
                                     <div class="float-end">
                                         <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>

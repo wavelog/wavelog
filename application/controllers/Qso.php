@@ -636,7 +636,7 @@ class QSO extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if ($this->logbook_model->check_qso_is_accessible($id)) {
+		if ($this->logbook_model->check_qso_is_accessible($id) && clubaccess_check(3, $id, 'delete')) {
 			$this->logbook_model->delete($id);
 			$this->session->set_flashdata('notice', 'QSO Deleted Successfully');
 			$data['message_title'] = "Deleted";
@@ -650,7 +650,7 @@ class QSO extends CI_Controller {
 		$id = str_replace('"', "", $this->input->post("id", TRUE));
 
 		$this->load->model('logbook_model');
-		if ($this->logbook_model->check_qso_is_accessible($id)) {
+		if ($this->logbook_model->check_qso_is_accessible($id) && clubaccess_check(3, $id, 'delete')) {
 			$this->logbook_model->delete($id);
 			header('Content-Type: application/json');
 			echo json_encode(array('message' => 'OK'));

@@ -56,6 +56,7 @@ class Club extends CI_Controller
 		$data['club_members'] = $this->club_model->get_club_members($cid);
 		$data['permissions'] = $this->permissions;
 		$data['sso_managed'] = $ssoManaged;
+		$data['is_instance_admin'] = $this->user_model->authorize(99) == 1;
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -283,6 +284,81 @@ class Club extends CI_Controller
 		}
 
 		$this->session->set_flashdata('success', sprintf(_ngettext("%d member removed.", "%d members removed.", $result), $result));
+		redirect('club/permissions/' . $club_id);
+	}
+
+	/**
+	* Enable or disable direct login for a club station and set the permission
+	* level for this type of session. Only instance admins can use this, because it
+	* controls how the club accounts itself can log in.
+	* Endpoint: POST /club/update_direct_login
+	*/
+	public function update_direct_login() {
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$club_id = $this->input->post('club_id', true);
+
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard');
+		}
+
+		$enabled = $this->input->post('direct_login_enabled', true) == '1';
+		$p_level = $this->input->post('direct_login_p_level', true);
+
+		if (!in_array((int) $p_level, [3, 6, 9], true)) {
+			$this->session->set_flashdata('error', __("Invalid Permission Level!"));
+			redirect('club/permissions/' . $club_id);
+		}
+
+		if ($this->club_model->update_direct_login($club_id, $enabled, $p_level)) {
+			$this->session->set_flashdata('success', __("Direct login settings have been updated."));
+		} else {
+			$this->session->set_flashdata('error', __("Direct login settings could not be updated."));
+		}
+		redirect('club/permissions/' . $club_id);
+	}
+
+	/**
+	 * Enable/disable letting Club Member / Club Member ADIF edit or delete
+	 * QSOs logged by other operators of this club. Officer(9) or instance
+	 * admin(99) only - same gate as the rest of this page's member management.
+	 * Endpoint: POST /club/update_cross_operator_access
+	 */
+	public function update_cross_operator_access() {
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$club_id = $this->input->post('club_id', true);
+
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard');
+		}
+
+		$allow_edit = $this->input->post('allow_cross_operator_edit', true) == '1';
+		$allow_delete = $this->input->post('allow_cross_operator_delete', true) == '1';
+
+		if ($this->club_model->update_cross_operator_access($club_id, $allow_edit, $allow_delete)) {
+			$this->session->set_flashdata('success', __("Cross-operator access settings have been updated."));
+		} else {
+			$this->session->set_flashdata('error', __("Cross-operator access settings could not be updated."));
+		}
 		redirect('club/permissions/' . $club_id);
 	}
 

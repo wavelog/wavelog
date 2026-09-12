@@ -1206,6 +1206,11 @@ mymap.on('mousemove', onQsoMapMove);
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div id="qsomapgrid"></div>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
+        // Without this, clicks inside the legend (e.g. the checkbox) bubble up to
+        // the map's own click handler, which sets #locator from whatever lat/lng
+        // is under the legend's fixed screen position - moving the QSO location
+        // every time the checkbox is toggled.
+        L.DomEvent.disableClickPropagation(div);
         return div;
     };
 

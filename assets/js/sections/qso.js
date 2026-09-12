@@ -2860,9 +2860,11 @@ $("#locator").on("input focus", function () {
 						});
 
 						var marker = L.marker([result[0], result[1]], { icon: redIcon });
-						mymap.setZoom(8);
-						mymap.panTo([result[0], result[1]]);
-						mymap.setView([result[0], result[1]], 8);
+						// Do not zoom out beyond the user's current zoom level. This handler
+                        // also runs when clicking a map location (which sets #locator and
+                        // triggers 'input'). Resetting to a fixed zoom level would lose precision
+                        // and cause the pin to move away every time the user clicks to fine-tune it.
+						mymap.setView([result[0], result[1]], Math.max(mymap.getZoom(), 8));
 						markers.addLayer(marker).addTo(mymap);
 						bannerText = "📡 "+lang_qso_location_is_fetched_from_provided_gridsquare+": " + qra.toUpperCase();
 						window.mapBanner.addTo(mymap);
