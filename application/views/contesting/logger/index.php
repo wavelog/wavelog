@@ -138,6 +138,14 @@
                         </select>
                     </div>
                 </div>
+                <div class="list-group-item bg-dark text-white border-secondary">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span title="<?= __("Clears the callsign field when the frequency changes by more than 500 Hz"); ?>"><?= __("Clear Call on QSY"); ?></span>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="clearCallOnQsyToggle">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
