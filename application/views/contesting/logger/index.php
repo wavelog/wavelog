@@ -1,6 +1,6 @@
-<?php // Contest Logger Engine - Main Layout Body 
+<?php // Contest Logger Engine - Main Layout Body
 ?>
-<?php // We need to init some variables for the JS app 
+<?php // We need to init some variables for the JS app
 ?>
 <script type="text/javascript">
     window.ContestLoggerConfig = {
@@ -115,10 +115,10 @@
         <div class="mb-4">
             <h6 class="text-muted mb-3"><i class="fas fa-palette"></i> <?= __("User Layouts"); ?></h6>
             <div class="list-group mb-2">
-                <button class="list-group-item list-group-item-action" id="saveNewLayoutBtn">
+                <button class="list-group-item list-group-item-action border-secondary" id="saveNewLayoutBtn">
                     <i class="fas fa-save"></i> <?= __("Save New Layout"); ?>
                 </button>
-                <button class="list-group-item list-group-item-action" id="resetLayoutBtn">
+                <button class="list-group-item list-group-item-action border-secondary" id="resetLayoutBtn">
                     <i class="fas fa-undo"></i> <?= __("Reset to Default Layout"); ?>
                 </button>
             </div>
@@ -127,7 +127,7 @@
         <div class="mb-4">
             <h6 class="text-muted mb-3"><i class="fas fa-cog"></i> <?= __("Settings"); ?></h6>
             <div class="list-group">
-                <div class="list-group-item">
+                <div class="list-group-item border-secondary">
                     <div class="d-flex justify-content-between align-items-center">
                         <span><?= __("Panel Position"); ?></span>
                         <select class="form-select form-select-sm w-auto" id="panelPositionSelect">
@@ -138,7 +138,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="list-group-item bg-dark text-white border-secondary">
+                <div class="list-group-item border-secondary">
                     <div class="d-flex justify-content-between align-items-center">
                         <span title="<?= __("Clears the callsign field when the frequency changes by more than 500 Hz"); ?>"><?= __("Clear Call on QSY"); ?></span>
                         <div class="form-check form-switch">
