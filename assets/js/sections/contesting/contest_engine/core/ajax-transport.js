@@ -10,7 +10,7 @@ export class AjaxTransport extends TransportAdapter {
 		this.endpoint = base_url + 'index.php/contesting/heartbeat';
 		this.retryCount = 0;
 		this.maxRetries = 3;
-		this.timeout = 4000;
+		this.timeout = 10000; // only meant to be an emergency exit
 	}
 
 	/**

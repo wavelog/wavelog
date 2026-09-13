@@ -63,7 +63,7 @@ if ($dxcc_list->result() > 0) {
 					</div>
 					<div class="mb-3">
 						<label for="stationPowerInput"><?= __("Station Power (W)"); ?></label>
-						<input type="number" class="form-control" name="station_power" id="stationPowerInput" step="1" aria-describedby="stationPowerInputHelp" placeholder="10" value="<?php if(isset($station_power)) { echo htmlspecialchars((string)$station_power); } ?>">
+						<input type="number" class="form-control" name="station_power" id="stationPowerInput" step="0.001" aria-describedby="stationPowerInputHelp" placeholder="10" value="<?php if(isset($station_power)) { echo htmlspecialchars((string)$station_power); } ?>">
 						<small id="stationPowerInputHelp" class="form-text text-muted"><?= __("Default station power in Watt. Overwritten by CAT."); ?></small>
 					</div>
 				</div>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+	<defs>
+		<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#6db9dd"/>
+			<stop offset="1" stop-color="#3d8fbf"/>
+		</linearGradient>
+		<linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#f2f5f7"/>
+			<stop offset=".5" stop-color="#d8dde2"/>
+			<stop offset="1" stop-color="#9aa5b1"/>
+		</linearGradient>
+	</defs>
+	<circle cx="60" cy="82" r="28" fill="url(#sea)" stroke="#1f2933" stroke-width="3.5"/>
+	<ellipse cx="60" cy="82" rx="28" ry="10" fill="none" stroke="#1f2933" stroke-width="2" opacity=".5"/>
+	<ellipse cx="60" cy="82" rx="11" ry="28" fill="none" stroke="#1f2933" stroke-width="2" opacity=".5"/>
+	<line x1="32" y1="82" x2="88" y2="82" stroke="#1f2933" stroke-width="2" opacity=".5"/>
+	<path d="M34,14 A34,34 0 0 1 86,14" fill="none" stroke="#f4c430" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+	<path d="M24,6 A44,44 0 0 1 96,6" fill="none" stroke="#f4c430" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+	<line x1="20" y1="42" x2="100" y2="42" stroke="url(#steel)" stroke-width="5" stroke-linecap="round"/>
+	<rect x="40" y="36" width="5" height="12" rx="2" fill="#ffd75e" stroke="#7a5c00" stroke-width="2"/>
+	<rect x="75" y="36" width="5" height="12" rx="2" fill="#ffd75e" stroke="#7a5c00" stroke-width="2"/>
+	<line x1="60" y1="42" x2="60" y2="58" stroke="#9aa5b1" stroke-width="4" stroke-linecap="round"/>
+	<circle cx="60" cy="60" r="4" fill="#ffd75e" stroke="#7a5c00" stroke-width="2"/>
+	<path d="M40,92 A22,22 0 0 0 80,92" fill="none" stroke="#f8f9fa" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+</svg>

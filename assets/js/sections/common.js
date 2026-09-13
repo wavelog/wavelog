@@ -212,10 +212,11 @@ function displayQso(id) {
                     $(".editButton").html('<a class="btn btn-primary" id="edit_qso" href="javascript:qso_edit('+qsoid+')"><i class="fas fa-edit"></i>'+lang_general_edit_qso+'</a>');
                     var lat = $("#lat").text();
                     var lng = $("#lng").text();
+                    var grid_show = $("#grid_show").text();
                     var dxcc = $("#dxcc").text();
                     var callsign = $("#callsign").text();
                     var zoom = 5;
-                    if (dxcc == 0) {
+                    if (dxcc == 0 && lat == '' && lng == '') {
                         zoom = 1;
                     }
                     var mymap = L.map('mapqso').setView([lat,lng], zoom);
@@ -224,7 +225,11 @@ function displayQso(id) {
                         maxZoom: 18,
                         attribution: option_map_tile_server_copyright,
                     }).addTo(mymap);
-
+                    var maidenhead = L.maidenhead();
+                    var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead }).addTo(mymap);
+                    if (typeof grid_show !== 'undefined' && grid_show == 1) {
+                        maidenhead.addTo(mymap);
+                    }
 
                     var printer = L.easyPrint({
                         tileLayer: tiles,
@@ -234,7 +239,7 @@ function displayQso(id) {
                         hideControlContainer: true
                     }).addTo(mymap);
 
-                    if (dxcc != 0) {
+                    if (lat != '' && lng != '') {
                         var redIcon = L.icon({
                             iconUrl: icon_dot_url,
                             iconSize:     [18, 18], // size of the icon

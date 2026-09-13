@@ -58,6 +58,7 @@ class QsoFormComponent {
 		this.loadExistingQSOs();
 		this.applyRstDefaults();
 		this._setupBandmapListener();
+		this._setupQsyClear();
 	}
 
 	// Show the current operator as a badge in this window's header (club stations only).
@@ -101,6 +102,26 @@ class QsoFormComponent {
 		bcWin.onmessage = (ev) => {
 			if (ev.data === 'ping') bcWin.postMessage('pong');
 		};
+	}
+
+	_setupQsyClear() {
+		this.clearCallOnQsy = localStorage.getItem('clearCallOnQsy') === '1';
+
+		const toggle = document.getElementById('clearCallOnQsyToggle');
+		if (toggle) {
+			toggle.checked = this.clearCallOnQsy;
+			toggle.addEventListener('change', () => {
+				this.clearCallOnQsy = toggle.checked;
+				localStorage.setItem('clearCallOnQsy', toggle.checked ? '1' : '0');
+			});
+		}
+
+		window.addEventListener('contest:qsy', () => {
+			if (!this.clearCallOnQsy) return;
+			const callsignInput = this.container.querySelector('#qso-callsign');
+			if (!callsignInput || !callsignInput.value.trim()) return;
+			this.clearForm(false);
+		});
 	}
 
 	defaultRst() {
@@ -489,17 +510,19 @@ class QsoFormComponent {
 		});
 	}
 
-	_renderQsoDropdown(enabled = true) {
-		if (!enabled) {
+	_renderQsoDropdown(enabled = true, deleteOnly = false) {
+		if (!enabled && !deleteOnly) {
 			return `<span title="${lang_qso_not_own}" style="display:inline-flex;">` +
 				`<div class="btn btn-secondary py-0 px-1" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center; opacity:0.4; cursor:not-allowed; pointer-events:none;">&#9776;</div>` +
 				`</span>`;
 		}
+		// A rejected QSO has no server id, so it can only be deleted locally
+		const editItem = deleteOnly ? '' : `<a class="dropdown-item qso-action-edit" href="#"><i class="fas fa-edit me-1"></i>${lang_qso_edit}</a>
+				<div class="dropdown-divider"></div>`;
 		return `<div class="dropdown d-inline-block ms-1">
 			<div class="btn btn-secondary py-0 px-1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center;">&#9776;</div>
 			<div class="dropdown-menu dropdown-menu-end">
-				<a class="dropdown-item qso-action-edit" href="#"><i class="fas fa-edit me-1"></i>${lang_qso_edit}</a>
-				<div class="dropdown-divider"></div>
+				${editItem}
 				<a class="dropdown-item text-danger qso-action-delete" href="#"><i class="fas fa-trash me-1"></i>${lang_qso_delete}</a>
 			</div>
 		</div>`;
@@ -791,12 +814,13 @@ class QsoFormComponent {
 
 		const qsoOperator = (qso.operator ?? '').toUpperCase();
 		const isEditable = !!qso.serverId && qsoOperator === this.currentOperator;
+		const isFailed = qso.state === 'error';
 		if (isEditable) row.style.cursor = 'pointer';
 
 		row.innerHTML = `
 			${this._buildDataCells(qso, false)}
-			<td class="text-nowrap text-end">${qso.serverId ? this._renderQsoDropdown(isEditable) : ''}</td>
-			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state)}</td>
+			<td class="text-nowrap text-end">${(qso.serverId || isFailed) ? this._renderQsoDropdown(isEditable, isFailed) : ''}</td>
+			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state, qso.error)}</td>
 		`;
 	}
 
@@ -1267,13 +1291,14 @@ class QsoFormComponent {
 		console.debug(`QSO Form: QSO ${qso.id} state changed from ${oldState} to ${newState}`);
 	}
 
-	getStatusIndicator(state) {
+	getStatusIndicator(state, message = '') {
 		if (state === 'pending') {
 			return `<span title="${lang_status_new}" style="color: orange;">&#9679;</span>`;
 		} else if (state === 'synced') {
 			return `<span title="${lang_status_synced}" style="color: green;">&#9679;</span>`;
 		} else if (state === 'error') {
-			return `<span title="${lang_status_error}" style="color: red;">&#9679;</span>`;
+			const title = message ? `${lang_status_error}: ${message}` : lang_status_error;
+			return `<span title="${escapeHtml(title)}" style="color: red;">&#9679;</span>`;
 		} else {
 			return `<span title="${lang_status_unknown}" style="color: gray;">&#9679;</span>`;
 		}
@@ -1333,14 +1358,15 @@ class QsoFormComponent {
 
 		// Show pointer cursor once the QSO is editable (synced + own operator)
 		const isEditable = !!qso.serverId && (qso.operator ?? '').toUpperCase() === this.currentOperator;
+		const isFailed = qso.state === 'error';
 		existingRow.style.cursor = isEditable ? 'pointer' : '';
 
 		// Update dropdown and status indicator in their respective cells
 		const cells = existingRow.querySelectorAll('td');
 		const statusCell   = cells[cells.length - 1];
 		const dropdownCell = cells[cells.length - 2];
-		if (statusCell)   statusCell.innerHTML   = this.getStatusIndicator(qso.state);
-		if (dropdownCell) dropdownCell.innerHTML = qso.serverId ? this._renderQsoDropdown(isEditable) : '';
+		if (statusCell)   statusCell.innerHTML   = this.getStatusIndicator(qso.state, qso.error);
+		if (dropdownCell) dropdownCell.innerHTML = (qso.serverId || isFailed) ? this._renderQsoDropdown(isEditable, isFailed) : '';
 	}
 
 	clearTable() {
@@ -1504,6 +1530,10 @@ class QsoFormComponent {
 			}
 		}
 
+		if (responseData.failed_qsos && responseData.failed_qsos.length > 0) {
+			this.processFailedQsos(responseData.failed_qsos, dataStore);
+		}
+
 		if (responseData.saved_qsos && responseData.saved_qsos.length > 0) {
 			this.processSavedQsos(responseData.saved_qsos, dataStore);
 			console.debug(`QSO Form: ${responseData.saved_qsos.length} QSO(s) saved to server`);
@@ -1518,6 +1548,38 @@ class QsoFormComponent {
 			// Normal case: apply only the QSOs changed since our watermark.
 			this.applyDelta(responseData.changed_qsos, dataStore);
 		}
+	}
+
+	/**
+	 * Marks QSOs the server rejected as 'error'. buildQsoCommands() only sends
+	 * QSOs in state 'pending', so this is what stops an endless resend loop.
+	 */
+	processFailedQsos(failedQsos, dataStore) {
+		failedQsos.forEach(failed => {
+			const qso = dataStore.get(`qso.${failed.tmp_id}`);
+			if (!qso || qso.state === 'error') return;
+
+			const oldState = qso.state;
+			const updated = { ...qso, state: 'error', error: failed.error };
+
+			// setLocal: the server already answered, this must not trigger a new sync
+			dataStore.setLocal(`qso.${failed.tmp_id}`, updated);
+
+			dataStore.emit('qso_state_changed', {
+				qso: updated,
+				oldState,
+				newState: 'error'
+			});
+
+			this.windowmanager.showToast(
+				lang_error,
+				escapeHtml(`${lang_qso_save_failed} ${qso.callsign}: ${failed.error}`),
+				'bg-danger text-white',
+				8000
+			);
+
+			console.warn(`QSO Form: QSO ${failed.tmp_id} rejected by server: ${failed.error}`);
+		});
 	}
 
 	processSavedQsos(savedQsos, dataStore) {

@@ -249,6 +249,10 @@ class Dashboard extends CI_Controller {
 		$data['dashboard_show_dxpeditions'] = ($this->session->userdata('user_dashboard_show_dxpeditions') ?? '0') == '1' ? true : false;
 		$data['dashboard_show_contests'] = ($this->session->userdata('user_dashboard_show_contests') ?? '0') == '1' ? true : false;
 		$data['dashboard_show_kpi_stats'] = ($this->session->userdata('user_dashboard_show_kpi_stats') ?? '1') == '1' ? true : false;
+		// Dashboard right column cards (default to shown)
+		foreach (['dxcc', 'vucc', 'qslcards', 'eqsl', 'qrz', 'clublog', 'lotw'] as $__card) {
+			$data['dashboard_show_' . $__card] = ($this->session->userdata('user_dashboard_show_' . $__card) ?? '1') == '1' ? true : false;
+		}
 		$data['active_dxpeditions'] = false;
 		$data['active_contests'] = false;
 

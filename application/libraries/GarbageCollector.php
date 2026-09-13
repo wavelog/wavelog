@@ -129,10 +129,22 @@ class GarbageCollector {
 			'.htaccess'
 		];
 
-		$deleted = 0;
-		$current_time = time();
+		return $this->_gc_dir($cache_path, time(), $ignore_files);
+	}
 
-		if ($handle = opendir($cache_path))
+	/**
+	 * Delete expired cache files in a single directory, recursing into shard directories.
+	 *
+	 * @param	string	$dir			Directory to scan, with trailing slash
+	 * @param	int		$current_time	Timestamp to compare the TTLs against
+	 * @param	array	$ignore_files	Filenames to skip
+	 * @return	int		Number of deleted files
+	 */
+	private function _gc_dir($dir, $current_time, $ignore_files)
+	{
+		$deleted = 0;
+
+		if ($handle = opendir($dir))
 		{
 			while (($file = readdir($handle)) !== FALSE)
 			{
@@ -141,21 +153,29 @@ class GarbageCollector {
 					continue;
 				}
 
-				$filepath = $cache_path.$file;
+				$filepath = $dir.$file;
 
-				if (is_file($filepath))
+				// only recurse into directories that match the shard pattern (two hex characters)
+				if (is_dir($filepath))
 				{
-					$data = @unserialize(file_get_contents($filepath));
-
-					if (is_array($data) && isset($data['time'], $data['ttl']))
+					if (preg_match('/^[0-9a-f]{2}$/', $file))
 					{
-						// Check if TTL is set and file has expired
-						if ($data['ttl'] > 0 && $current_time > $data['time'] + $data['ttl'])
+						$deleted += $this->_gc_dir($filepath.DIRECTORY_SEPARATOR, $current_time, $ignore_files);
+					}
+
+					continue;
+				}
+
+				$data = @unserialize(file_get_contents($filepath));
+
+				if (is_array($data) && isset($data['time'], $data['ttl']))
+				{
+					// Check if TTL is set and file has expired
+					if ($data['ttl'] > 0 && $current_time > $data['time'] + $data['ttl'])
+					{
+						if (unlink($filepath))
 						{
-							if (unlink($filepath))
-							{
-								$deleted++;
-							}
+							$deleted++;
 						}
 					}
 				}

@@ -34,6 +34,11 @@ class OptionsLib {
             $option_name = substr($option_name, 7);
         }
 
+        if ($option_name === 'map_tile_server') {
+            $this->CI->load->is_loaded('MaptileCache') ?: $this->CI->load->library('MaptileCache');
+            return \MaptileCache::client_url();
+        }
+
         if (!array_key_exists($option_name, $this->cache)) {
             $this->cache[$option_name] = $this->CI->options_model->item($option_name);
         }

@@ -76,6 +76,7 @@
 		<?= __("Latvian"); ?>
 		<?= __("Lithuanian"); ?>
 		<?= __("Montenegrin"); ?>
+		<?= __("Norwegian (Bokmål)"); ?>
 		<?= __("Polish"); ?>
 		<?= __("Portuguese"); ?>
 		<?= __("Romanian"); ?>

@@ -17,7 +17,7 @@ if (!function_exists('cronauth_token')) {
 if (!function_exists('cronauth_mark_active')) {
 	function cronauth_mark_active() {
 		$CI = &get_instance();
-		$CI->load->driver('cache', [
+		$CI->load->is_loaded('cache') ?: $CI->load->driver('cache', [
 			'adapter' => $CI->config->item('cache_adapter') ?? 'file',
 			'backup' => $CI->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $CI->config->item('cache_key_prefix') ?? ''
@@ -35,7 +35,7 @@ if (!function_exists('cronauth_allowed')) {
 			return true;
 		}
 
-		$CI->load->driver('cache', [
+		$CI->load->is_loaded('cache') ?: $CI->load->driver('cache', [
 			'adapter' => $CI->config->item('cache_adapter') ?? 'file',
 			'backup' => $CI->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $CI->config->item('cache_key_prefix') ?? ''
