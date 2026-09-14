@@ -660,7 +660,6 @@ class Stations extends CI_Model {
 	public function get_station_refs($stationid) {
 		$sql = "SELECT `station_iota`, `station_sota`, `station_sig`, `station_sig_info`, `station_wwff`, `station_pota` FROM `station_profile` WHERE station_id = ?;";
 		$query = $this->db->query($sql, $stationid);
-		$row = $query->row();
 		if($query->num_rows() >= 1) {
 			$row = $query->row(); // only one result expected
 			return [
