@@ -50,6 +50,11 @@ class Lotw extends CI_Controller {
 		foreach ($certcheck->result() as $row) {
 			if ($row->serial != null) {
 				$status = $this->lotw_cert_status($row->serial);
+				if ($status == 95) {
+					// LoTW seems down or unreachable. No sense to check subsequent certs. So cancel loop here.
+					log_message('error', 'LoTW seems unreachable. Cancelled subsequent cert checks.');
+					break;
+				}
 				if ($status != 99 && $status != $row->status) {
 					$this->Lotw_model->update_cert_status($row->lotw_cert_id, $status);
 				}
@@ -1306,33 +1311,57 @@ class Lotw extends CI_Controller {
 	}
 
 	function lotw_cert_status ($serial) {
-		if (($serial ?? '') != '' && is_numeric($serial)) {
-			$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-			$result = curl_exec($ch);
-			if(curl_errno($ch)){
-				log_message('error', 'Error fetch LoTW CRL results: '.curl_strerror(curl_errno($ch)));
-				return 99;
-			}
-			$xml = new SimpleXMLElement($result);
-			if (!isset($xml->Status)) {
-				log_message('error', 'Error parsing LoTW CRL result: '.$result);
-				return 98;
-			}
-			switch ((string)$xml->Status) {
-			case 'Superceded':
-				return 1;
-			case 'Unrevoked':
-				return 0;
-			default:
-				log_message('error', 'Unknown LotW CRL status: '.(string)$xml->Status);
-				return 97;
-			}
+		
+		//skip if no serial
+		if (($serial ?? '') == '' || !is_numeric($serial)) {
+			return 99;
 		}
-		return 99;
+		
+		//define API call
+		$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+		
+		//execute API call and check for HTTP errors
+		$result = curl_exec($ch);
+		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		// Check for cURL errors or non-2xx HTTP response
+		if (curl_errno($ch) || $http_code < 200 || $http_code >= 300) {
+			log_message('error', 'Error fetching LoTW CRL: HTTP '.$http_code.' / '.curl_error($ch));
+			return 95;
+		}
+
+		//check if result is empty or not a string
+		if (!is_string($result) || trim($result) === '') {
+			log_message('error', 'LoTW CRL returned an empty response.');
+			return 99;
+		}
+
+		//try parsing the result
+		try {
+			$xml = new SimpleXMLElement($result);
+		} catch (Exception $e) {
+			log_message('error', 'Error parsing LoTW CRL result: '.$e->getMessage());
+			return 99;
+		}
+		if (!isset($xml->Status)) {
+			log_message('error', 'Error parsing LoTW CRL result: '.$result);
+			return 99;
+		}
+
+		//react to status inside xml
+		switch ((string)$xml->Status) {
+		case 'Superceded':
+			return 1;
+		case 'Unrevoked':
+			return 0;
+		default:
+			log_message('error', 'Unknown LotW CRL status: '.(string)$xml->Status);
+			return 97;
+		}
 	}
 
 } // end class
