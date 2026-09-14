@@ -501,34 +501,10 @@ function echo_table_header_col($name) {
 							<?php } ?>
 						</tr>
 						<tr>
-							<th scope="row"><?= __("QSL Cards"); ?></th>
-							<?php foreach ($dxcc_sections as $section) { ?>
-							<td>
-								<?php echo $section['qsl']; ?> <?php echo ($section['deleted_qsl'] > 0) ? "(".$section['deleted_qsl'].")" : ""; ?>
-							</td>
-							<?php } ?>
-						</tr>
-						<tr>
-							<th scope="row"><?= __("LoTW"); ?></th>
-							<?php foreach ($dxcc_sections as $section) { ?>
-							<td>
-								<?php echo $section['lotw']; ?> <?php echo ($section['deleted_lotw'] > 0) ? "(".$section['deleted_lotw'].")" : ""; ?>
-							</td>
-							<?php } ?>
-						</tr>
-						<tr>
 							<th scope="row"><?= __("Confirmed"); ?></th>
 							<?php foreach ($dxcc_sections as $section) { ?>
 							<td>
-								<?php echo $section['confirmed']; ?> <?php echo ($section['deleted_confirmed'] > 0) ? "(".$section['deleted_confirmed'].")" : ""; ?>
-							</td>
-							<?php } ?>
-						</tr>
-						<tr>
-							<th scope="row"><?= __("Awaiting confirmation"); ?></th>
-							<?php foreach ($dxcc_sections as $section) { ?>
-							<td>
-								<?php echo ($section['worked'] - $section['confirmed']); ?> <?php echo (($section['deleted'] - $section['deleted_confirmed']) > 0) ? "(".($section['deleted'] - $section['deleted_confirmed']).")" : ""; ?>
+								<span title="<?php echo __("QSL Cards").": ".$section['qsl']; echo ($section['deleted_qsl'] > 0) ? " (".$section['deleted_qsl'].")" : ""; echo "<br />"; echo __("LoTW").": ".$section['lotw']; echo ($section['deleted_lotw'] > 0) ? " (".$section['deleted_lotw'].")" : ""; ?>" aria-label="<?= __("QSL Cards"); ?> <?php echo $section['qsl']; ?>" data-bs-toggle="tooltip" data-bs-html="true"><?php echo $section['confirmed']; ?> <?php echo ($section['deleted_confirmed'] > 0) ? "(".$section['deleted_confirmed'].")" : ""; ?></span>
 							</td>
 							<?php } ?>
 						</tr>
@@ -536,6 +512,14 @@ function echo_table_header_col($name) {
 							<th scope="row"><?= __("Needed"); ?></th>
 							<?php foreach ($dxcc_sections as $section) { ?>
 							<td><?php echo $section['needed']; ?></td>
+							<?php } ?>
+						</tr>
+						<tr>
+							<th scope="row"><?= __("Awaiting Confirmation"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td>
+								<span title="<?php echo __("QSL Cards").": ".($section['worked'] - $section['qsl']); echo "<br />"; echo __("LoTW").": ".($section['worked'] - $section['lotw']); ?>" aria-label="<?= __("Awaiting Confirmation"); ?> <?php echo $section['qsl']; ?>" data-bs-toggle="tooltip" data-bs-html="true"><?php echo ($section['worked'] - $section['confirmed']); ?></span>
+							</td>
 							<?php } ?>
 						</tr>
 					</tbody>
