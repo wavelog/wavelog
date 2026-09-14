@@ -288,7 +288,6 @@ function loadPassSettingsList() {
 }
 
 function toggleRxTx(dir) {
-   console.log("toggleRxTx");
    if (dir == 'up') {
       $("#tpx_center_freq").html($("#uplink_freq").val());
    } else if (dir == 'down') {
