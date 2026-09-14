@@ -70,7 +70,7 @@ class Tiles extends CI_Controller {
 		$body = curl_exec($ch);
 		$status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-		if ($body === false || $status !== 200 || strncmp($body, "\x89PNG", 4) !== 0) {
+		if ($body === false || $status !== 200 || (strncmp($body, "\x89PNG", 4) !== 0 || strncmp($body, "\xFF\xD8\xFF\xE0", 4) !== 0)) {
 			return null;
 		}
 
