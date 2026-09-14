@@ -15,8 +15,8 @@ class Rate_limit {
 
     public function __construct() {
         $this->CI =& get_instance();
-        $this->CI->load->driver('cache', [
-			'adapter' => $this->CI->config->item('cache_adapter') ?? 'file', 
+        $this->CI->load->is_loaded('cache') ?: $this->CI->load->driver('cache', [
+			'adapter' => $this->CI->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->CI->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $this->CI->config->item('cache_key_prefix') ?? ''
 		]);

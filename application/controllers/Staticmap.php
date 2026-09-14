@@ -51,7 +51,7 @@ class Staticmap extends CI_Controller {
         // Contest: validate against the known contest adifnames (cached for 24h)
         $contest = strtoupper($this->input->get('contest', TRUE) ?? '');
         if ($contest != '') {
-            $this->load->driver('cache', [
+            $this->load->is_loaded('cache') ?: $this->load->driver('cache', [
                 'adapter' => $this->config->item('cache_adapter') ?? 'file',
                 'backup' => $this->config->item('cache_backup') ?? 'file',
                 'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
@@ -223,7 +223,7 @@ class Staticmap extends CI_Controller {
                         $grids[] = $station_info['station_gridsquare'];
                     }
                 }
-                
+
                 $coordinates = [];
                 foreach ($grids as $grid) {
                     $coordinates[] = $this->qra->qra2latlong($grid);
@@ -236,11 +236,11 @@ class Staticmap extends CI_Controller {
                 }
 
                 $qsos = $this->visitor_model->get_qsos(
-                    $qsocount, 
-                    $logbooks_locations_array, 
-                    $band == 'nbf' ? '' : $band, 
-                    $continent == 'nC' ? '' : $continent, 
-                    $orbit == 'nOrb' ? '' : $orbit, 
+                    $qsocount,
+                    $logbooks_locations_array,
+                    $band == 'nbf' ? '' : $band,
+                    $continent == 'nC' ? '' : $continent,
+                    $orbit == 'nOrb' ? '' : $orbit,
                     $contest == 'nContest' ? '' : $contest,
                     $start_date == 'noStart' ? '' : $start_date,
                     $end_date == 'noEnd' ? '' : $end_date,

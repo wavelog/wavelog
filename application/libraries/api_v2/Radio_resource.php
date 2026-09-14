@@ -74,7 +74,7 @@ class Radio_resource extends Api_v2_resource {
 		}
 
 		// Shared shape validation with the legacy v1 endpoint (Cat::update()
-		// column limits). Casts numeric fields to int in place.
+		// column limits). Casts numeric fields to int/float in place.
 		$invalid = $this->CI->cat->validate_radio_payload($body);
 		if (!empty($invalid)) {
 			throw new Api_v2_exception('validation_error', 'Invalid field(s): ' . implode(', ', $invalid), 400, ['invalid' => $invalid]);
@@ -168,7 +168,7 @@ class Radio_resource extends Api_v2_resource {
 			'frequency_rx' => isset($row->frequency_rx) && is_numeric($row->frequency_rx) ? (int) $row->frequency_rx : null,
 			'mode'         => (isset($row->mode) && $row->mode !== '' && $row->mode !== 'non') ? $row->mode : null,
 			'mode_rx'      => (isset($row->mode_rx) && $row->mode_rx !== '' && $row->mode_rx !== 'non') ? $row->mode_rx : null,
-			'power'        => isset($row->power) && is_numeric($row->power) ? (int) $row->power : null,
+			'power'        => isset($row->power) && is_numeric($row->power) ? (float) $row->power : null,
 			'prop_mode'    => $row->prop_mode ?? null,
 			'sat_name'     => (isset($row->sat_name) && $row->sat_name !== '') ? $row->sat_name : null,
 			'updated_at'   => $row->timestamp ?? null,

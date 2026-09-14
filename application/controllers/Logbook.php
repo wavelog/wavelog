@@ -247,6 +247,24 @@ class Logbook extends CI_Controller {
 			$mylocator = $this->my_locator($station_id);
 			$bearing_deg = ($mylocator === false) ? false : $this->qra->get_bearing($mylocator, $return['callsign_qra']);
 			$return['bearing_deg'] = ($bearing_deg === false) ? null : (int)$bearing_deg;
+
+		} elseif (!empty($return['dxcc']['adif']) && !empty($return['dxcc']['lat']) && !empty($return['dxcc']['long'])) {
+			// no grid known for this call, fall back to DXCC reference coords (center of the country) so
+			// at least an estimate is shown
+			if( !$this->load->is_loaded('Qra') ) {
+				$this->load->library('Qra');
+			}
+			$mylocator = $this->my_locator($station_id);
+			$mylatlng = ($mylocator === false) ? false : $this->qra->qra2latlong($mylocator);
+			if ($mylatlng !== false) {
+				$dxcc_lat = (float) $return['dxcc']['lat'];
+				$dxcc_long = (float) $return['dxcc']['long'];
+				$return['latlng'] = [$dxcc_lat, $dxcc_long];
+				$return['bearing'] = bearing($mylatlng[0], $mylatlng[1], $dxcc_lat, $dxcc_long, $measurement_base);
+				$bearing_deg = get_bearing($mylatlng[0], $mylatlng[1], $dxcc_lat, $dxcc_long);
+				$return['bearing_deg'] = ($bearing_deg === false) ? null : (int)$bearing_deg;
+				$return['callsign_distance'] = calc_distance($mylatlng[0], $mylatlng[1], $dxcc_lat, $dxcc_long, 'K');
+			}
 		}
 		$return['callbook_source'] = $callbook['source'] ?? '';
 

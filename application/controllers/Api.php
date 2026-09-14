@@ -1565,7 +1565,7 @@ class API extends CI_Controller {
 		}
 
 		// Load cache driver
-		$this->load->driver('cache', [
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
 			'adapter' => $this->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->config->item('cache_backup')	 ?? 'file',
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''

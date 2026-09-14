@@ -25,6 +25,7 @@ class RadioComponent {
 		this._wsReconnectAttempts = 0;
 		this._wsHasTriedFallback = false;
 		this._radioWsTransport = null;
+		this._lastFreq = null;
 
 		// Cache DOM elements
 		this.qrgUnitElement = document.getElementById('qrg_unit');
@@ -255,8 +256,17 @@ class RadioComponent {
 		}
 
 		this.frequency.value = freq;
+		this.checkQsy(parseInt(freq, 10));
 		this.set_qrg();
 		this.updateBandButtons(this.selectedBand, false);
+	}
+
+	checkQsy(hz) {
+		if (!Number.isFinite(hz)) return;
+		if (this._lastFreq !== null && Math.abs(hz - this._lastFreq) > 500) {
+			window.dispatchEvent(new CustomEvent('contest:qsy', { detail: { from: this._lastFreq, to: hz } }));
+		}
+		this._lastFreq = hz;
 	}
 
 	/**
@@ -327,17 +337,6 @@ class RadioComponent {
 
 		const mhz = freqNum / 1000000;
 		return mhz.toFixed(3);
-	}
-
-	/**
-	 * Escape HTML for safe rendering
-	 * @param {string} text
-	 * @returns {string}
-	 */
-	escapeHtml(text) {
-		const div = document.createElement('div');
-		div.textContent = text;
-		return div.innerHTML;
 	}
 
 	/**
@@ -451,6 +450,7 @@ class RadioComponent {
 
 			if (freqHz) {
 				this.frequency.value = freqHz;
+				this.checkQsy(Math.round(freqHz));
 				await this.set_qrg();
 				return;
 			}
@@ -469,6 +469,7 @@ class RadioComponent {
 			if (result) {
 				const freqHz = parseInt(result);
 				this.frequency.value = freqHz;
+				this.checkQsy(freqHz);
 				await this.set_qrg();
 			}
 		} catch (error) {
@@ -599,6 +600,7 @@ class RadioComponent {
 		localStorage.setItem('qrgunit_' + new_band, unit);
 
 		this.frequency.value = qrg_hz;
+		this.checkQsy(Math.round(qrg_hz));
 		this.freqCalculated.value = parsed_qrg;
 		this.selectedBand = new_band;
 
