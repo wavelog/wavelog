@@ -271,6 +271,7 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/waja'); ?>"><i class="fas fa-trophy"></i> <?= __("WAJA"); ?></a></li>
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/jcc'); ?>"><i class="fas fa-trophy"></i> <?= __("JCC"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/jcg'); ?>"><i class="fas fa-trophy"></i> <?= __("JCG"); ?></a></li>
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/ja'); ?>"><i class="fas fa-trophy"></i> <?= __("JA Gridmaster"); ?></a></li>
 									</ul>

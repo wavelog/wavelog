@@ -1,0 +1,209 @@
+let osmUrl = tileUrl;
+let confirmedColor = 'rgba(144,238,144)';
+if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
+      confirmedColor = user_map_custom.qsoconfirm.color;
+}
+let workedColor = 'rgba(229, 165, 10)';
+if (typeof(user_map_custom.qso) !== 'undefined') {
+      workedColor = user_map_custom.qso.color;
+}
+let unworkedColor = 'rgba(204, 55, 45)';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+   unworkedColor = user_map_custom.unworked.color;
+}
+
+function load_jcg_map() {
+    const map_tab = document.getElementById('jcg-map-tab');
+    if (map_tab && typeof bootstrap !== 'undefined') {
+        bootstrap.Tab.getOrCreateInstance(map_tab).show();
+    }
+
+    $.ajax({
+        url: base_url + 'index.php/awards/jcg_map',
+        type: 'post',
+        data: {
+            band: $('#band2').val(),
+            mode: $('#mode').val(),
+            qsl: +$('#qsl').prop('checked'),
+            lotw: +$('#lotw').prop('checked'),
+            qrz: +$('#qrz').prop('checked'),
+            clublog: +$('#clublog').prop('checked'),
+            eqsl: +$('#eqsl').prop('checked'),
+			includedeleted: +$('#includedeleted').prop('checked'),
+        },
+        success: function(data) {
+			load_jcg_map2(data);
+        },
+        error: function() {
+
+        },
+    });
+}
+
+function load_jcg_map2(data) {
+	const include_deleted = $('#includedeleted').prop('checked');
+
+    // If map is already initialized
+    var container = L.DomUtil.get('jcgmap');
+
+    if(container != null){
+        container._leaflet_id = null;
+        container.remove();
+        $("#jcg-map-panel").append('<div id="jcgmap" class="map-leaflet" ></div>');
+    }
+
+    var map = new L.Map('jcgmap', {
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+          position: 'topleft'
+        },
+      });
+
+    L.tileLayer(
+        osmUrl,
+        {
+            attribution: option_map_tile_server_copyright,
+            maxZoom: 18
+        }
+    ).addTo(map);
+
+    const confirmed_layer = L.layerGroup().addTo(map);
+    const worked_layer = L.layerGroup().addTo(map);
+    const notworked_layer = L.layerGroup();
+
+    var notworkedcount = 0;
+    var confirmedcount = 0;
+    var workednotconfirmedcount = 0;
+
+    var jcgstuff = {};
+    $.ajax({
+       dataType: "json",
+         url: base_url + 'assets/json/japan_award/jcg_list.json',
+       async: false,
+       success: function(result) {
+          for (var item in result) {
+             if (!include_deleted && result[item]['deleted']) {
+                continue;
+             }
+             var name = item.toString();
+             jcgstuff[name] = [result[item]['name'], result[item]['lat'], result[item]['lon']];
+          }
+       }
+    });
+    for (const [key, value] of Object.entries(jcgstuff)) {
+       var D = [];
+         let mapColor = null;
+       if (key in data) {
+           if (data[key][1] == 1) {
+              mapColor = confirmedColor;
+              D['prefix'] = key;
+              D['name'] = value[0];
+              D['lat'] = value[1];
+              D['long'] = value[2];
+			  addMarker(L, D, mapColor, confirmed_layer);
+              confirmedcount++;
+              continue;
+           }
+
+           mapColor = workedColor;
+           D['prefix'] = key;
+           D['name'] = value[0];
+           D['lat'] = value[1];
+           D['long'] = value[2];
+           addMarker(L, D, mapColor, worked_layer);
+           workednotconfirmedcount++;
+       } else {
+           mapColor = unworkedColor;
+           D['prefix'] = key;
+           D['name'] = value[0];
+           D['lat'] = value[1];
+           D['long'] = value[2];
+           addMarker(L, D, mapColor, notworked_layer);
+           notworkedcount++;
+       }
+    };
+
+    // Single topright box: colors legend with the layer toggles beneath it
+    var legend = L.control({ position: 'topright' });
+
+    legend.onAdd = function() {
+        var div = L.DomUtil.create('div', 'legend');
+        L.DomEvent.disableClickPropagation(div);
+
+        div.innerHTML += '<h4>' + lang_general_word_colors + '</h4>';
+        div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + "</span><br>";
+        div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + "</span><br>";
+        div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + "</span><br>";
+
+        L.DomUtil.create('hr', 'legend-layers-sep', div);
+
+        [
+            { label: lang_general_word_confirmed + ' (' + confirmedcount + ')', layer: confirmed_layer, checked: true },
+            { label: lang_general_word_worked_not_confirmed + ' (' + workednotconfirmedcount + ')', layer: worked_layer, checked: true },
+            { label: lang_general_word_not_worked + ' (' + notworkedcount + ')', layer: notworked_layer, checked: false },
+        ].forEach(function(entry) {
+            var row = L.DomUtil.create('label', 'legend-layer-row', div);
+            var box = L.DomUtil.create('input', '', row);
+            box.type = 'checkbox';
+            box.checked = entry.checked;
+            row.appendChild(document.createTextNode(entry.label));
+            box.addEventListener('change', function() {
+                if (box.checked) {
+                    map.addLayer(entry.layer);
+                } else {
+                    map.removeLayer(entry.layer);
+                }
+            });
+        });
+
+        return div;
+    };
+
+    legend.addTo(map);
+
+    map.setView([37.460, 139.452], 5);
+}
+
+function addMarker(L, D, mapColor, layer) {
+    var title = '<span><font style="color: ' +mapColor+ '; text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;font-size: 14px; font-weight: 900;">' + D['prefix'] + '</font></span>';
+    var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+
+    const markerHtmlStyles = `
+    background-color: ${mapColor};
+    width: 1rem;
+    height: 1rem;
+    display: block;
+    position: relative;
+    border-radius: 3rem 3rem 0;
+    transform: rotate(45deg);
+    border: 1px solid #FFFFFF`
+
+    const icon = L.divIcon({
+        className: "my-custom-pin",
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
+        html: `<span style="${markerHtmlStyles}" />`
+    })
+
+    L.marker(
+    [D['lat'], D['long']], {
+        icon: myIcon,
+        prefix: D['prefix'],
+        title: D['prefix'] + ' - ' + D['name'],
+    }
+    ).addTo(layer).on('click', onClick);
+
+    L.marker(
+        [D['lat'], D['long']], {
+            icon: icon,
+            prefix: D['prefix'],
+            title: D['prefix'] + ' - ' + D['name'],
+        }
+        ).addTo(layer).on('click', onClick);
+}
+
+function onClick(e) {
+    var marker = e.target;
+    displayContactsOnMap($("#jcgmap"), marker.options.prefix, $('#band2').val(), 'All', 'All', $('#mode').val(), 'JCG');
+}
