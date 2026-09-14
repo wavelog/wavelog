@@ -585,7 +585,7 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('clublog/export'); ?>" title="Upload to Clublog"><i class="fas fa-sync"></i> <?= __("Clublog Import / Export"); ?></a></li>
 										<?php
 										if ($this->config->item('enable_dcl_interface') ?? false) { ?>
-										<li><a class="dropdown-item" href="<?php echo site_url('dcl'); ?>" title="Upload to DCL"><i class="fas fa-sync"></i> <?= __("DCL Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('dcl'); ?>" title="DCL"><i class="fas fa-sync"></i> <?= __("DCL"); ?></a></li>
 										<?php } ?>
 									</ul>
 								</li>
