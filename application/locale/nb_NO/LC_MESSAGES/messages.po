@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-15 15:16+0000\n"
-"PO-Revision-Date: 2026-09-14 14:25+0000\n"
+"POT-Creation-Date: 2026-09-14 14:25+0000\n"
+"PO-Revision-Date: 2026-09-15 14:41+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/nb_NO/>\n"
@@ -77,7 +77,7 @@ msgstr "Internett-assistert"
 #: application/config/adif_propmodes.php:18
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "Ionoscatter"
 
 #: application/config/adif_propmodes.php:19
 msgctxt "Propagation Mode"
@@ -112,12 +112,12 @@ msgstr "Satellitt"
 #: application/config/adif_propmodes.php:25
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Trans-ekvatorial"
 
 #: application/config/adif_propmodes.php:26
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "Troposfærisk kanalisering"
 
 #: application/controllers/Accumulated.php:11
 #: application/controllers/Achievements.php:9
@@ -250,13 +250,13 @@ msgstr ""
 #: application/views/achievements/index.php:76
 #: application/views/interface_assets/header.php:192
 msgid "Achievements"
-msgstr ""
+msgstr "Prestasjoner"
 
 #: application/controllers/Activated_gridmap.php:12
 #: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
 msgid "Activated Gridsquare Map"
-msgstr ""
+msgstr "Aktivert rutenettkart"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Awards.php:1486
@@ -269,23 +269,23 @@ msgstr ""
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr ""
+msgstr "Rutenett"
 
 #: application/controllers/Activated_gridmap.php:34
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:533
 msgid "Gridsquares confirmed"
-msgstr ""
+msgstr "Ruter bekreftet"
 
 #: application/controllers/Activated_gridmap.php:35
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:534
 msgid "Gridsquares not confirmed"
-msgstr ""
+msgstr "Ruter ikke bekreftet"
 
 #: application/controllers/Activated_gridmap.php:36
 msgid "Total gridsquares activated"
-msgstr ""
+msgstr "Totalt antall aktiverte ruter"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
@@ -293,13 +293,13 @@ msgstr ""
 #: application/views/labeldesigner/designer.php:187
 #: application/views/qslpostcard/designer.php:151
 msgid "Fields"
-msgstr ""
+msgstr "Felter"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:538
 msgid "Fields confirmed"
-msgstr ""
+msgstr "Felter bekreftet"
 
 #: application/controllers/Activated_gridmap.php:40
 #: application/controllers/Gridmap.php:41
@@ -332,12 +332,12 @@ msgstr "ITU Soner"
 
 #: application/controllers/Activationplanner.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Stater / Provinser"
 
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:334
 msgid "Activation Planner"
-msgstr ""
+msgstr "Aktiveringsplanlegger"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -353,11 +353,11 @@ msgstr ""
 
 #: application/controllers/Adif.php:60 application/controllers/Adif.php:72
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "Du har ikke tilgang til denne funksjonen!"
 
 #: application/controllers/Adif.php:79
 msgid "valid date"
-msgstr ""
+msgstr "gyldig dato"
 
 #: application/controllers/Adif.php:81
 msgid "date incorrect"
@@ -371,20 +371,20 @@ msgstr "ADIF Import / Eksport"
 #: application/controllers/Adif.php:309 application/views/adif/import.php:43
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
-msgstr ""
+msgstr "ADIF-import"
 
 #: application/controllers/Adif.php:366
 msgid "Unsupported Filetype"
-msgstr ""
+msgstr "Ikke-støttet filtype"
 
 #: application/controllers/Adif.php:447
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "ADIF-import feilet!"
 
 #: application/controllers/Adif.php:461
 msgid "Station Profile not valid for User"
-msgstr ""
+msgstr "Stasjonsprofil ikke gyldig for bruker"
 
 #: application/controllers/Adif.php:471
 #: application/views/adif/import_success.php:12
@@ -393,31 +393,32 @@ msgstr "ADIF Importert"
 
 #: application/controllers/Adif.php:485
 msgid "DCL Import"
-msgstr ""
+msgstr "DCL-import"
 
 #: application/controllers/Adif.php:551
 msgid "DCL Data Imported"
-msgstr ""
+msgstr "DCL-data importert"
 
 #: application/controllers/Adif.php:565
 msgid "POTA Import"
-msgstr ""
+msgstr "POTA-import"
 
 #: application/controllers/Adif.php:630
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "POTA-data importert"
 
 #: application/controllers/Amsatstatus.php:30
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"AMSAT tjenesten er for øyeblikket utilgjengelig. Vennligst prøv igjen senere."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:328
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "AMSAT satellittstatus"
 
 #: application/controllers/Api.php:46
 msgid "API"
@@ -430,30 +431,30 @@ msgstr "API beskrivelse"
 
 #: application/controllers/Api.php:90
 msgid "API Key is required. Do not change this field"
-msgstr ""
+msgstr "API-nøkkel er nødvendig. Ikke endre dette feltet"
 
 #: application/controllers/Api.php:95
 msgid "Edit API Description"
-msgstr ""
+msgstr "Rediger API-beskrivelse"
 
 #: application/controllers/Api.php:105
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "Beskrivelsen for API-nøkkel %s har blitt oppdatert."
 
 #: application/controllers/Api.php:115 application/controllers/Api.php:149
 #: application/controllers/Api_token.php:27
 #: application/controllers/Api_token.php:80 application/controllers/Qso.php:626
 msgid "Invalid request method"
-msgstr ""
+msgstr "Ugyldig forespørselsmetode"
 
 #: application/controllers/Api.php:125
 msgid "Invalid API rights"
-msgstr ""
+msgstr "Ugyldige API-rettigheter"
 
 #: application/controllers/Api.php:139
 msgid "API Key generated"
-msgstr ""
+msgstr "API-nøkkel generert"
 
 #: application/controllers/Api.php:141
 msgid "API Key could not be generated"
@@ -1242,7 +1243,7 @@ msgstr ""
 #: application/controllers/Contesting.php:1054
 #: application/controllers/User.php:1485
 msgid "Incorrect username or password!"
-msgstr ""
+msgstr "Feil brukernavn eller passord!"
 
 #: application/controllers/Contesting.php:1063
 msgid "A club account cannot be used as an operator."
@@ -1762,7 +1763,7 @@ msgstr ""
 
 #: application/controllers/Eqsl.php:355
 msgid "eQSL password not configured for this user"
-msgstr ""
+msgstr "eQSL-passordet er ikke konfigurert for denne brukeren"
 
 #: application/controllers/Eqsl.php:372
 msgid "Failed to fetch eQSL image data"
@@ -2777,6 +2778,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Sertifikatet funnet i filen %s inneholder et passord og kan ikke behandles. "
+"%sVennligst sørg for at du eksporterer LoTW-sertifikatet fra tqsl-appen uten "
+"passord!%s For mer informasjon, vennligst besøk %sLoTW FAQ-siden%s i Wavelog "
+"Wiki."
 
 #: application/controllers/Lotw.php:449
 #, php-format
@@ -2811,7 +2816,7 @@ msgstr ""
 
 #: application/controllers/Lotw.php:1009
 msgid "Username/password incorrect"
-msgstr ""
+msgstr "Brukernavn/passord er feil"
 
 #: application/controllers/Lotw.php:1012
 msgid "LoTW currently not available. Try again later."
@@ -3379,10 +3384,10 @@ msgstr ""
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:70
-#: application/views/interface_assets/footer.php:2692
-#: application/views/interface_assets/footer.php:2710
-#: application/views/interface_assets/footer.php:2729
-#: application/views/interface_assets/footer.php:2747
+#: application/views/interface_assets/footer.php:2687
+#: application/views/interface_assets/footer.php:2705
+#: application/views/interface_assets/footer.php:2724
+#: application/views/interface_assets/footer.php:2742
 #: application/views/labeldesigner/designer.php:413
 #: application/views/labeldesigner/designer.php:452
 #: application/views/labels/index.php:50 application/views/labels/index.php:86
@@ -3403,6 +3408,10 @@ msgstr ""
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:727
 #: application/views/view_log/qso.php:735
+#: application/views/interface_assets/footer.php:2692
+#: application/views/interface_assets/footer.php:2710
+#: application/views/interface_assets/footer.php:2729
+#: application/views/interface_assets/footer.php:2747
 msgid "Delete"
 msgstr ""
 
@@ -3975,7 +3984,7 @@ msgstr ""
 #: application/controllers/User.php:345
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "Brukernavnet %s er allerede i bruk!"
 
 #: application/controllers/User.php:348
 #, php-format
@@ -3984,7 +3993,7 @@ msgstr ""
 
 #: application/controllers/User.php:351
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Ugyldig passord!"
 
 #: application/controllers/User.php:355
 #, php-format
@@ -4056,6 +4065,8 @@ msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
+"Kontoen din er låst på grunn av for mange mislykkede innloggingsforsøk. "
+"Vennligst tilbakestill passordet ditt."
 
 #: application/controllers/User.php:1482
 msgid ""
@@ -4118,11 +4129,11 @@ msgstr ""
 
 #: application/controllers/User.php:1578
 msgid "Password Reset is disabled on the Demo!"
-msgstr ""
+msgstr "Tilbakestilling av passord er deaktivert for demo-konto!"
 
 #: application/controllers/User.php:1592
 msgid "Forgot Password"
-msgstr ""
+msgstr "Glemt passord"
 
 #: application/controllers/User.php:1642
 #: application/views/user/modals/more_actions_modal.php:88
@@ -4131,20 +4142,22 @@ msgstr ""
 
 #: application/controllers/User.php:1646 application/controllers/User.php:1651
 msgid "Password Reset Processed."
-msgstr ""
+msgstr "Tilbakestilling av passordet er utført."
 
 #: application/controllers/User.php:1757
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
-msgstr ""
+msgstr "Tilbakestill passord"
 
 #: application/controllers/User.php:1777
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"Kunne ikke sette kontoen til dette brukernavnet. Vennligst prøv et annet enn "
+"\"%s\"."
 
 #: application/controllers/User.php:1786
 #, php-format
@@ -4811,7 +4824,7 @@ msgstr ""
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
-msgstr ""
+msgstr "Brukernavnet og/eller passordet ditt for eQSL er feil."
 
 #: application/models/Eqslmethods_model.php:296
 msgid "Something went wrong with eQSL.cc!"
@@ -5245,8 +5258,8 @@ msgstr ""
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1575
-#: application/views/interface_assets/footer.php:1714
+#: application/views/interface_assets/footer.php:1570
+#: application/views/interface_assets/footer.php:1709
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -5296,6 +5309,8 @@ msgstr ""
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/interface_assets/footer.php:1575
+#: application/views/interface_assets/footer.php:1714
 msgid "All"
 msgstr ""
 
@@ -6265,6 +6280,7 @@ msgstr ""
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:659
+#: application/views/interface_assets/footer.php:2454
 #: application/views/interface_assets/footer.php:2459
 msgid "DANGER"
 msgstr ""
@@ -7980,10 +7996,11 @@ msgstr ""
 #: application/views/awards/iota/index.php:91
 #: application/views/awards/itu/index.php:120
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2438
+#: application/views/interface_assets/footer.php:2433
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2438
 msgid "QSL Card"
 msgstr ""
 
@@ -11230,7 +11247,7 @@ msgstr ""
 #: application/views/user/login.php:47 application/views/user/login.php:59
 #: application/views/user/login.php:60 application/views/user/profile.php:14
 msgid "Username"
-msgstr ""
+msgstr "Brukernavn"
 
 #: application/views/club/permissions.php:286
 #: application/views/contesting/manager/export_cbr.php:257
@@ -11320,6 +11337,8 @@ msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
 msgstr ""
+"Du må sette et brukernavn og passord på brukerkontoen din. Du må også "
+"aktivere opplasting på hver stasjonsprofil."
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
@@ -12255,7 +12274,7 @@ msgstr ""
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
 msgid "Password"
-msgstr ""
+msgstr "Passord"
 
 #: application/views/contesting/logger/index.php:188
 #: application/views/operator/index.php:14
@@ -14477,6 +14496,9 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
+"Endre verdien %s til en ny krypteringsnøkkel i stedet for "
+"'flossie1234555541'. Velg et trygt og langt passord. (Anbefales på det "
+"sterkeste)"
 
 #: application/views/debug/index.php:273
 msgid "You do not use the default encryption key"
@@ -14930,7 +14952,7 @@ msgstr ""
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Tilbakestill passordet Wavelog kontoen"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
@@ -14940,11 +14962,13 @@ msgstr ""
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
 msgstr ""
+"En administrator startet en tilbakestilling av passordet på Wavelog-kontoen "
+"din."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "Ditt brukernavn er: %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
@@ -14961,6 +14985,12 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Hvis du ikke har bedt om en tilbakestillling av passordet, se bort fra denne "
+"e-posten og kontakt administratoren av din Wavelog-instans.\n"
+"\n"
+"Vennlig hilsen,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/modified_member.php:3
 #, php-format
@@ -15016,6 +15046,10 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Hei,\n"
+"\n"
+"Du eller noen andre har anmodet en tilbakestilling av passordet på din "
+"Wavelog-konto."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -15239,14 +15273,18 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2693
-#: application/views/interface_assets/footer.php:2711
-#: application/views/interface_assets/footer.php:2730
-#: application/views/interface_assets/footer.php:2748
+#: application/views/interface_assets/footer.php:2688
+#: application/views/interface_assets/footer.php:2706
+#: application/views/interface_assets/footer.php:2725
+#: application/views/interface_assets/footer.php:2743
 #: application/views/qslcard/index.php:81
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:736
+#: application/views/interface_assets/footer.php:2693
+#: application/views/interface_assets/footer.php:2711
+#: application/views/interface_assets/footer.php:2730
+#: application/views/interface_assets/footer.php:2748
 msgid "View"
 msgstr ""
 
@@ -15880,10 +15918,17 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:1346
 #: application/views/interface_assets/footer.php:1351
 msgid "Location Lookup failed. Please check browser console."
 msgstr ""
 
+#: application/views/interface_assets/footer.php:1497
+#: application/views/interface_assets/footer.php:1501
+#: application/views/interface_assets/footer.php:1504
+#: application/views/interface_assets/footer.php:1641
+#: application/views/interface_assets/footer.php:1645
+#: application/views/interface_assets/footer.php:1648
 #: application/views/interface_assets/footer.php:1502
 #: application/views/interface_assets/footer.php:1506
 #: application/views/interface_assets/footer.php:1509
@@ -15893,76 +15938,96 @@ msgstr ""
 msgid "grid square"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:1504
+#: application/views/interface_assets/footer.php:1648
 #: application/views/interface_assets/footer.php:1509
 #: application/views/interface_assets/footer.php:1653
 msgid "Total count"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2435
 #: application/views/interface_assets/footer.php:2440
 msgid "QSL Card for "
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2455
 #: application/views/interface_assets/footer.php:2460
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2500
+#: application/views/interface_assets/footer.php:2495
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2500
 msgid "eQSL Card"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2497
 #: application/views/interface_assets/footer.php:2502
 msgid "eQSL Card for "
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2699
+#: application/views/interface_assets/footer.php:2736
+#: application/views/view_log/qso.php:726
 #: application/views/interface_assets/footer.php:2704
 #: application/views/interface_assets/footer.php:2741
-#: application/views/view_log/qso.php:726
 msgid "QSL image file"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2718
 #: application/views/interface_assets/footer.php:2723
 msgid "Front QSL Card"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2754
 #: application/views/interface_assets/footer.php:2759
 msgid "Back QSL Card"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2758
 #: application/views/interface_assets/footer.php:2763
 msgid "The QSL card upload could not be completed."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2763
+#: application/views/interface_assets/footer.php:2758
 #: application/views/qslpostcard/designer.php:31
+#: application/views/interface_assets/footer.php:2763
 msgid "Upload failed"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2766
+#: application/views/interface_assets/footer.php:2791
 #: application/views/interface_assets/footer.php:2771
 #: application/views/interface_assets/footer.php:2796
 msgid "Add additional QSOs to a QSL Card"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2802
 #: application/views/interface_assets/footer.php:2807
 msgid "Something went wrong. Please try again!"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2888
 #: application/views/interface_assets/footer.php:2893
 msgid "US Counties for state"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2936
 #: application/views/interface_assets/footer.php:2941
 msgid "Worked counties for state:"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2937
 #: application/views/interface_assets/footer.php:2942
 msgid "Confirmed counties for state:"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2938
 #: application/views/interface_assets/footer.php:2943
 msgid "Counties in state:"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:2939
 #: application/views/interface_assets/footer.php:2944
 msgid "Needed counties for state:"
 msgstr ""
@@ -18542,6 +18607,10 @@ msgid ""
 "have all confirmations since chosen date, or since your last LoTW "
 "confirmation (fetched from your log), up until now."
 msgstr ""
+"Wavelog vil bruke LoTW brukernavnet og passordet lagret i din brukerprofil "
+"for å laste ned en rapport fra LoTW for deg. Rapporten Wavelog laster ned "
+"vil ha alle bekreftelser siden valgt dato, eller siden din siste LoTW-"
+"bekreftelse (hentet fra loggen din), fram til nå."
 
 #: application/views/lotw/import.php:66
 msgid "Import LoTW Matches"
@@ -18666,7 +18735,7 @@ msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "Ikke legg til et passord"
 
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
@@ -19071,21 +19140,23 @@ msgstr ""
 
 #: application/views/options/email.php:62
 msgid "SMTP Username"
-msgstr ""
+msgstr "SMTP-brukernavn"
 
 #: application/views/options/email.php:65
 msgid ""
 "The username to log in to the mail server, usually this is the email address "
 "that is used."
 msgstr ""
+"Brukernavnet for å logge inn på mailserveren, vanligvis er dette e-"
+"postadressen som brukes."
 
 #: application/views/options/email.php:70
 msgid "SMTP Password"
-msgstr ""
+msgstr "SMTP-passord"
 
 #: application/views/options/email.php:73
 msgid "The password to log in to the mail server."
-msgstr ""
+msgstr "Passordet for å logge inn på e-postserveren."
 
 #: application/views/options/email.php:82
 msgid "Send Test-Mail"
@@ -19580,6 +19651,7 @@ msgstr ""
 msgid "Confirmation date"
 msgstr ""
 
+#: application/views/qslcard/confirmationresult.php:54
 #: application/views/qslcard/confirmationresult.php:51
 msgid "No confirmations found."
 msgstr ""
@@ -21390,13 +21462,15 @@ msgstr ""
 #: application/views/station_profile/create.php:354
 #: application/views/station_profile/edit.php:376
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "HRDLog.net brukernavn"
 
 #: application/views/station_profile/create.php:356
 #: application/views/station_profile/edit.php:378
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
+"Brukernavnet du er registrert med hos HRDlog.net (vanligvis ditt "
+"kallesignal)."
 
 #: application/views/station_profile/create.php:359
 #: application/views/station_profile/edit.php:381
@@ -21568,7 +21642,7 @@ msgstr ""
 
 #: application/views/stationsetup/locationlist.php:38
 msgid "HRDLog username"
-msgstr ""
+msgstr "HRDLog-brukernavn"
 
 #: application/views/stationsetup/locationlist.php:39
 msgid "Created"
@@ -22139,11 +22213,11 @@ msgstr ""
 
 #: application/views/user/edit.php:102
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Ikke del dette passordet med operatører!"
 
 #: application/views/user/edit.php:113
 msgid "User Role"
-msgstr ""
+msgstr "Brukerrolle"
 
 #: application/views/user/edit.php:142
 msgid "Callsign Owner"
@@ -22622,11 +22696,11 @@ msgstr ""
 
 #: application/views/user/edit.php:1109
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Logbook of The World (LoTW)-brukernavn"
 
 #: application/views/user/edit.php:1115
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "Logbook of The World (LoTW) passord"
 
 #: application/views/user/edit.php:1119
 msgid "Test Login"
@@ -22634,11 +22708,11 @@ msgstr ""
 
 #: application/views/user/edit.php:1137
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "eQSL.cc brukernavn"
 
 #: application/views/user/edit.php:1143
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "eQSL.cc-passord"
 
 #: application/views/user/edit.php:1163
 msgid "Club Log Email"
@@ -22646,7 +22720,7 @@ msgstr ""
 
 #: application/views/user/edit.php:1169
 msgid "Club Log Password"
-msgstr ""
+msgstr "Club Log passord"
 
 #: application/views/user/edit.php:1174
 #, php-format
@@ -22654,6 +22728,9 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Hvis du har aktivert 2FA på Clublog, må du generere et app-passord for å "
+"bruke Clublog i Wavelog. Besøk %sinnstillingssiden for clublog%s for å gjøre "
+"dette."
 
 #: application/views/user/edit.php:1191
 msgid "Widgets"
@@ -22802,12 +22879,12 @@ msgstr ""
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Glemt passord?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "Du kan tilbakestille passordet ditt her."
 
 #: application/views/user/index.php:11
 msgid "User List"
@@ -22834,6 +22911,10 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Med knappen for tilbakestilling av passord kan du sende en bruker en e-post "
+"som inneholder en lenke for å tilbakestille passordet deres. For å oppnå "
+"dette, må du forsikre deg om at e-postinnstillingene i de globale "
+"innstillingene er konfigurert riktig."
 
 #: application/views/user/index.php:19
 msgid "Create user"
@@ -22919,7 +23000,7 @@ msgstr ""
 
 #: application/views/user/login.php:69
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Har du glemt passordet ditt?"
 
 #: application/views/user/login.php:75
 msgid "Keep me logged in"
@@ -22946,7 +23027,7 @@ msgstr ""
 #: application/views/user/modals/admin_impersonate_modal.php:14
 #: application/views/user/modals/more_actions_modal.php:12
 msgid "Username:"
-msgstr ""
+msgstr "Brukernavn:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:18
 #: application/views/user/modals/more_actions_modal.php:16
@@ -23035,7 +23116,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Send en lenke for tilbakestilling av passord via e-post"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
@@ -23069,22 +23150,30 @@ msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"E-post for tilbakestilling av passord ble sendt til brukeren. Du kan lukke "
+"dette vinduet.."
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"E-post for tilbakestilling av passord kunne ikke sendes til brukeren. Er e-"
+"postinnstillingene i de globale innstillingene konfigurert riktig?"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Du er i ferd med å sende en lenke for tilbakestilling av passord til "
+"brukeren. Brukeren vil kunne tilbakestille passordet sitt ved å klikke på "
+"lenken i e-posten."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
 msgstr ""
+"Ønsker du å sende e-post for tilbakestilling av passord til denne brukeren?"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
@@ -23155,7 +23244,7 @@ msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr ""
+msgstr "Bekreft passord"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
@@ -23546,7 +23635,7 @@ msgstr ""
 #: src/QSLManager/QSO.php:899
 #, php-format
 msgid "Lookup %s on HamQTH"
-msgstr ""
+msgstr "Slå opp %s på HamQTH"
 
 #: src/QSLManager/QSO.php:900
 msgid "Clublog Log Search"
