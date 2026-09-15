@@ -286,6 +286,41 @@ class Club extends CI_Controller
 		redirect('club/permissions/' . $club_id);
 	}
 
+	/**
+	 * Enable/disable letting Club Member / Club Member ADIF edit or delete
+	 * QSOs logged by other operators of this club. Officer(9) or instance
+	 * admin(99) only - same gate as the rest of this page's member management.
+	 * Endpoint: POST /club/update_cross_operator_access
+	 */
+	public function update_cross_operator_access() {
+
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method."));
+			redirect('dashboard');
+		}
+
+		$club_id = $this->input->post('club_id', true);
+
+		if(!$this->user_model->authorize(99) && (!$this->user_model->authorize(3) || !$this->club_model->club_authorize(9, $club_id))) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard');
+		}
+
+		$allow_edit = $this->input->post('allow_cross_operator_edit', true) == '1';
+		$allow_delete = $this->input->post('allow_cross_operator_delete', true) == '1';
+
+		if ($this->club_model->update_cross_operator_access($club_id, $allow_edit, $allow_delete)) {
+			$this->session->set_flashdata('success', __("Cross-operator access settings have been updated."));
+		} else {
+			$this->session->set_flashdata('error', __("Cross-operator access settings could not be updated."));
+		}
+		redirect('club/permissions/' . $club_id);
+	}
+
 	public function switch_modal() {
 
 		$this->load->library('encryption');

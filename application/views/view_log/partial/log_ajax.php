@@ -635,7 +635,7 @@ function getDistance($distance) {
 
                             <a class="dropdown-item" href="https://www.hamqth.com/<?php echo html_escape($row->COL_CALL); ?>" target="_blank"><i class="fas fa-question" aria-hidden="true"></i> <?= __("Lookup on HamQTH"); ?></a>
 
-                            <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
+                            <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY, 'delete')) { ?>
                             <div class="dropdown-divider"></div>
                             <button type="button" class="dropdown-item" onclick='qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo js_escape($row->COL_CALL); ?>)'><i class="fas fa-trash-alt" aria-hidden="true"></i> <?= __("Delete QSO"); ?></button>
                             <?php } ?>
