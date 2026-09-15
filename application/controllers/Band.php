@@ -148,6 +148,7 @@ class Band extends CI_Controller {
 		$band['helvetia'] 	= $this->input->post('helvetia', true);
 		$band['iota'] 		= $this->input->post('iota', true);
 		$band['jcc'] 		= $this->input->post('jcc', true);
+		$band['jcg'] 		= $this->input->post('jcg', true);
 		$band['pota'] 		= $this->input->post('pota', true);
 		$band['rac'] 		= $this->input->post('rac', true);
 		$band['sig'] 		= $this->input->post('sig', true);
