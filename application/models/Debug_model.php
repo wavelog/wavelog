@@ -238,8 +238,8 @@ class Debug_model extends CI_Model
         }
 
         // Load cache driver
-		$this->load->driver('cache', [
-			'adapter' => $cache_adapter, 
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $cache_adapter,
 			'backup' => $cache_backup,
 			'key_prefix' => $cache_key_prefix
 		]);
@@ -251,7 +251,7 @@ class Debug_model extends CI_Model
         // Get cache details
         $cache_size = $this->get_cache_size();
         $cache_keys_count = $this->get_cache_keys_count();
-        
+
         $response['details']['size'] = $this->format_bytes($cache_size);
         $response['details']['size_bytes'] = $cache_size;
         $response['details']['keys_count'] = $cache_keys_count;
@@ -275,7 +275,7 @@ class Debug_model extends CI_Model
         $cache_backup = $this->config->item('cache_backup') ?? 'file';
         $cache_key_prefix = $this->config->item('cache_key_prefix') ?? '';
 
-		$this->load->driver('cache', [
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
 			'adapter' => $cache_adapter,
 			'backup' => $cache_backup,
 			'key_prefix' => $cache_key_prefix
@@ -295,20 +295,20 @@ class Debug_model extends CI_Model
             case 'file':
                 $cache_path = $this->config->item('cache_path') ?: 'application/cache';
                 $cache_path = realpath(APPPATH . '../') . '/' . $cache_path;
-                
+
                 if (!is_dir($cache_path)) {
                     return 0;
                 }
 
                 $size = 0;
                 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
-                
+
                 foreach ($files as $file) {
                     if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
                         $size += $file->getSize();
                     }
                 }
-                
+
                 return $size;
 
             case 'redis':
@@ -326,7 +326,7 @@ class Debug_model extends CI_Model
             case 'memcached':
                 if ($this->cache->is_supported('memcached')) {
                     $memcached_info = $this->cache->cache_info('memcached');
-                    
+
                     // Memcached returns array of servers, each with stats
                     if (is_array($memcached_info)) {
                         $total_bytes = 0;
@@ -340,12 +340,12 @@ class Debug_model extends CI_Model
                         }
                         return $total_bytes;
                     }
-                    
+
                     // Fallback for single server format
                     if (isset($memcached_info['bytes'])) {
                         return (int) $memcached_info['bytes'];
                     }
-                    
+
                     return 0;
                 }
                 return 0;
@@ -369,20 +369,20 @@ class Debug_model extends CI_Model
             case 'file':
                 $cache_path = $this->config->item('cache_path') ?: 'application/cache';
                 $cache_path = realpath(APPPATH . '../') . '/' . $cache_path;
-                
+
                 if (!is_dir($cache_path)) {
                     return 0;
                 }
 
                 $count = 0;
                 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
-                
+
                 foreach ($files as $file) {
                     if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
                         $count++;
                     }
                 }
-                
+
                 return $count;
 
             case 'redis':
@@ -432,7 +432,7 @@ class Debug_model extends CI_Model
             default:
                 return 0;
         }
-        
+
     }
 
     function format_bytes($bytes, $precision = 2) {

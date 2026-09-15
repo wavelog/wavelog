@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+	<defs>
+		<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+			<feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.2"/>
+		</filter>
+		<linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+			<stop offset="0%" stop-color="#FAF6EE"/>
+			<stop offset="70%" stop-color="#E2D9C5"/>
+			<stop offset="100%" stop-color="#C8BC9D"/>
+		</linearGradient>
+		<linearGradient id="leftBtnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop offset="0%" stop-color="#FDFBFA"/>
+			<stop offset="100%" stop-color="#D9CEB8"/>
+		</linearGradient>
+		<linearGradient id="rightBtnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop offset="0%" stop-color="#F5F0E4"/>
+			<stop offset="100%" stop-color="#D0C4AC"/>
+		</linearGradient>
+		<linearGradient id="cableGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+			<stop offset="0%" stop-color="#A39B88"/>
+			<stop offset="50%" stop-color="#D1C9B6"/>
+			<stop offset="100%" stop-color="#7A7263"/>
+		</linearGradient>
+	</defs>
+	<g transform="translate(50,15)">
+		<path d="M 200 90 C 200 40, 100 20, 80 0" fill="none" stroke="url(#cableGrad)" stroke-width="14" stroke-linecap="round"/>
+		<path d="M 200 90 C 200 40, 100 20, 80 0" fill="none" stroke="#524C40" stroke-width="5" stroke-dasharray="8,30" stroke-linecap="round"/>
+		<path d="M 190 85 L 210 85 L 205 125 L 195 125 Z" fill="#7A7263"/>
+		<path d="M 193 95 L 207 95 M 194 105 L 206 105 M 194 115 L 206 115" stroke="#524C40" stroke-width="4"/>
+		<path d="M 130 130
+				C 110 160, 100 250, 115 380
+				C 125 430, 275 430, 285 380
+				C 300 250, 290 160, 270 130
+				C 250 110, 150 110, 130 130 Z"
+			fill="url(#bodyGrad)" filter="url(#shadow)" stroke="#A39B88" stroke-width="5"/>
+		<path d="M 133 133
+				C 114 161, 104 250, 118 378
+				C 127 425, 273 425, 282 378
+				C 296 250, 286 161, 267 133"
+			fill="none" stroke="#FFF8ED" stroke-width="4" opacity="0.7"/>
+		<path d="M 132 133
+				C 148 118, 198 118, 200 118
+				L 200 280
+				L 124 275
+				C 121 210, 124 165, 132 133 Z"
+			fill="url(#leftBtnGrad)" stroke="#B5A993" stroke-width="4"/>
+		<path d="M 268 133
+				C 252 118, 202 118, 200 118
+				L 200 280
+				L 276 275
+				C 279 210, 276 165, 268 133 Z"
+			fill="url(#rightBtnGrad)" stroke="#B5A993" stroke-width="4"/>
+		<line x1="200" y1="120" x2="200" y2="278" stroke="#9E927D" stroke-width="6"/>
+		<line x1="198" y1="120" x2="198" y2="278" stroke="#6E6454" stroke-width="2"/>
+		<path d="M 124 275 Q 200 283 276 275" fill="none" stroke="#9E927D" stroke-width="5"/>
+		<path d="M 124 276 Q 200 284 276 276" fill="none" stroke="#6E6454" stroke-width="2"/>
+		<rect x="170" y="315" width="60" height="26" rx="4" fill="#D4CBBA" stroke="#A39B88" stroke-width="3"/>
+		<line x1="182" y1="323" x2="218" y2="323" stroke="#6E6454" stroke-width="3"/>
+		<line x1="182" y1="332" x2="218" y2="332" stroke="#6E6454" stroke-width="3"/>
+	</g>
+</svg>

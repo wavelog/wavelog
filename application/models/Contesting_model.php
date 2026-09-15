@@ -696,6 +696,39 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
+	 * Looks up a QSO already logged in this session under the same natural key so it's idempotent.
+	 *
+	 * @param int $contest_session_id
+	 * @param int $station_id
+	 * @param string $callsign
+	 * @param string $time_on Y-m-d H:i:s
+	 * @param string $operator
+	 * @return array|null ['qso_id' => int, 'last_modified_ms' => int]
+	 */
+	function find_session_qso($contest_session_id, $station_id, $callsign, $time_on, $operator) {
+		$sql = "SELECT cq.qso_id, UNIX_TIMESTAMP(lb.last_modified) * 1000 AS last_modified_ms
+				FROM " . $this->config->item('table_name') . " lb
+				JOIN contest_qsos cq ON cq.qso_id = lb.COL_PRIMARY_KEY
+				WHERE lb.station_id   = ?
+				  AND lb.COL_CALL     = ?
+				  AND lb.COL_TIME_ON  = ?
+				  AND lb.COL_OPERATOR = ?
+				  AND cq.contest_session_id = ?
+				LIMIT 1";
+
+		$bindings = [
+			(int) $station_id,
+			$callsign,
+			$time_on,
+			$operator,
+			(int) $contest_session_id
+		];
+
+		$row = $this->db->query($sql, $bindings)->row_array();
+		return $row ?: null;
+	}
+
+	/**
 	 * Retrieves the total QSO count for a contest session.
 	 *
 	 * @param int $contest_session_id The ID of the contest session.

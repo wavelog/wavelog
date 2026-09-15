@@ -816,6 +816,18 @@
 											</div>
 										</div>
 
+										<?php if(!isset($user_dashboard_show_kpi_stats)) { $user_dashboard_show_kpi_stats='1'; }?>
+										<div class="d-flex align-items-start gap-2 mb-3">
+											<input type="hidden" name="user_dashboard_show_kpi_stats" value="0">
+											<div class="form-check form-switch mt-1">
+												<input class="form-check-input" type="checkbox" role="switch" id="dashboardShowKpiStats" name="user_dashboard_show_kpi_stats" value="1" <?php if ($user_dashboard_show_kpi_stats == 1) { echo 'checked'; } ?>>
+											</div>
+											<div>
+												<label class="d-block mb-0" for="dashboardShowKpiStats"><?= __("Dashboard KPI statistics"); ?></label>
+												<small id="dashboardShowKpiStats_Help" class="form-text text-muted"><?= __("This switches the display of the KPI statistics (Total QSOs, QSOs this year/month/today, Current Streak, Unique callsigns) on the dashboard."); ?></small>
+											</div>
+										</div>
+
 										<?php if(!isset($user_dashboard_show_dxpeditions)) { $user_dashboard_show_dxpeditions='1'; }?>
 										<div class="d-flex align-items-start gap-2 mb-3">
 											<input type="hidden" name="user_dashboard_show_dxpeditions" value="0">
@@ -836,17 +848,26 @@
 												<label class="d-block mb-0" for="dashboardShowContests"><?= __("Active Contests"); ?></label>
 											</div>
 										</div>
-										<?php if(!isset($user_dashboard_show_kpi_stats)) { $user_dashboard_show_kpi_stats='1'; }?>
-										<div class="d-flex align-items-start gap-2 mb-3">
-											<input type="hidden" name="user_dashboard_show_kpi_stats" value="0">
-											<div class="form-check form-switch mt-1">
-												<input class="form-check-input" type="checkbox" role="switch" id="dashboardShowKpiStats" name="user_dashboard_show_kpi_stats" value="1" <?php if ($user_dashboard_show_kpi_stats == 1) { echo 'checked'; } ?>>
+										<?php foreach ([
+											'dxcc'     => __("DXCCs Breakdown"),
+											'qslcards' => __("QSL Cards"),
+											'lotw'     => __("LoTW"),
+											'eqsl'     => __("eQSL Cards"),
+											'qrz'      => 'QRZ.com',
+											'clublog'  => __("Club Log"),
+											'vucc'     => __("VUCC-Grids"),
+										] as $__pref => $__label): ?>
+											<?php if(!isset(${'user_dashboard_show_'.$__pref})) { ${'user_dashboard_show_'.$__pref} = '1'; } ?>
+											<div class="d-flex align-items-start gap-2 mb-3">
+												<input type="hidden" name="user_dashboard_show_<?php echo $__pref; ?>" value="0">
+												<div class="form-check form-switch mt-1">
+													<input class="form-check-input" type="checkbox" role="switch" id="dashboardShow<?php echo ucfirst($__pref); ?>" name="user_dashboard_show_<?php echo $__pref; ?>" value="1" <?php if (${'user_dashboard_show_'.$__pref} == 1) { echo 'checked'; } ?>>
+												</div>
+												<div>
+													<label class="d-block mb-0" for="dashboardShow<?php echo ucfirst($__pref); ?>"><?php echo $__label; ?></label>
+												</div>
 											</div>
-											<div>
-												<label class="d-block mb-0" for="dashboardShowKpiStats"><?= __("Dashboard KPI statistics"); ?></label>
-												<small id="dashboardShowKpiStats_Help" class="form-text text-muted"><?= __("This switches the display of the KPI statistics (Total QSOs, QSOs this year/month/today, Current Streak, Unique callsigns) on the dashboard."); ?></small>
-											</div>
-										</div>
+										<?php endforeach; ?>
 									</div>
 								</div>
 							</div>

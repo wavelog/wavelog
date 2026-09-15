@@ -165,9 +165,10 @@ class Waip extends CI_Model {
 	/**
 	 * Add band filter to query
 	 */
-	private function addBandFilter($sql, $band) {
+	private function addBandFilter($sql, $band, &$binding) {
 		if ($band != 'All') {
-			$sql .= " AND COL_BAND = '" . $band . "'";
+			$sql .= " AND COL_BAND = ?";
+			$binding[] = $band;
 		}
 		return $sql;
 	}
@@ -207,8 +208,9 @@ class Waip extends CI_Model {
 		$withCount = isset($options['withCount']) ? $options['withCount'] : false;
 		$postdata = isset($options['postdata']) ? $options['postdata'] : array();
 
+		$binding = array();
 		$sql = $this->buildBaseQuery($location_list, $withCount);
-		$sql = $this->addBandFilter($sql, $band);
+		$sql = $this->addBandFilter($sql, $band, $binding);
 
 		if ($mode_category) {
 			$sql = $this->addModeCategoryFilter($sql, $mode_category);
@@ -220,7 +222,7 @@ class Waip extends CI_Model {
 
 		$sql = $this->finalizeQuery($sql, $withCount);
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $binding);
 		return $query->result();
 	}
 

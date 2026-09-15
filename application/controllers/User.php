@@ -839,6 +839,16 @@ class User extends CI_Controller {
 				$data['user_dashboard_show_kpi_stats'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : '1';
 			}
 
+			// Dashboard right column cards (DXCC, VUCC, QSL, eQSL, QRZ, Club Log, LoTW)
+			foreach (['dxcc', 'vucc', 'qslcards', 'eqsl', 'qrz', 'clublog', 'lotw'] as $__card) {
+				if($this->input->post('user_dashboard_show_' . $__card) !== null) {
+					$data['user_dashboard_show_' . $__card] = $this->input->post('user_dashboard_show_' . $__card, false);
+				} else {
+					$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_'.$__card,'option_key'=>'boolean'), $this->uri->segment(3))->result();
+					$data['user_dashboard_show_' . $__card] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : '1';
+				}
+			}
+
 			// DX Waterfall enable option
 			if($this->input->post('user_dxwaterfall_enable')) {
 				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable', false);
@@ -1123,6 +1133,9 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') == '1' ? '1' : '0')), $user_id);
 					$this->user_options_model->set_option('dashboard', 'show_kpi_stats', array('boolean'=>($this->input->post('user_dashboard_show_kpi_stats') == '1' ? '1' : '0')), $user_id);
+					foreach (['dxcc', 'vucc', 'qslcards', 'eqsl', 'qrz', 'clublog', 'lotw'] as $__card) {
+						$this->user_options_model->set_option('dashboard', 'show_'.$__card, array('boolean'=>($this->input->post('user_dashboard_show_' . $__card) == '1' ? '1' : '0')), $user_id);
+					}
 					$this->user_options_model->set_option('stations', 'active_log_only', array('boolean'=>($this->input->post('user_stations_active_log_only') == '1' ? '1' : '0')), $user_id);
 
 					if($this->session->userdata('user_id') == $user_id) {

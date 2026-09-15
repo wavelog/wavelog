@@ -8,7 +8,7 @@ class Qslpostcard_model extends CI_Model {
     const MAX_BG_IMAGE_BYTES = 5 * 1024 * 1024; // 5 MB
 
     function __construct() {
-        $this->load->driver('cache', [
+        $this->load->is_loaded('cache') ?: $this->load->driver('cache', [
 			'adapter' => $this->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''

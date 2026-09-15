@@ -448,10 +448,10 @@ function displaySavedLayouts(layouts, windowManager) {
 
     layouts.forEach(layout => {
         const item = document.createElement('div');
-        item.className = 'list-group-item bg-dark text-white border-secondary d-flex justify-content-between align-items-center';
+        item.className = 'list-group-item d-flex justify-content-between align-items-center';
 
         const nameBtn = document.createElement('button');
-        nameBtn.className = 'btn btn-sm btn-link text-white text-start flex-grow-1 text-decoration-none';
+        nameBtn.className = 'btn btn-sm btn-link text-start flex-grow-1 text-decoration-none';
         const defaultBadge = layout.is_default ? '<span class="badge bg-warning text-dark ms-2">' + lang_layout_default_name + '</span>' : '';
         nameBtn.innerHTML = `<i class="fas fa-layer-group"></i> ${layout.name}${defaultBadge}`;
         nameBtn.onclick = function () {

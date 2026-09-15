@@ -33,6 +33,7 @@ $config = [
 	let lang_status_synced = "<?= __("Synced") ?>";
 	let lang_status_error = "<?= __("Error") ?>";
 	let lang_status_unknown = "<?= __("Unknown") ?>";
+	let lang_qso_save_failed = "<?= __("QSO could not be saved:") ?>";
 	let lang_delete_qso_confirm = decodeHtml("<?= __("Delete this QSO?") ?>");
 	let lang_qso_save = "<?= __("Save") ?>";
 	let lang_qso_edit = "<?= __("Edit") ?>";

@@ -188,6 +188,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('statistics/initials'); ?>" title="EME Initials"><i class="fas fa-chart-area"></i> <?= __("EME Initials"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('countqsoby'); ?>" title="Count QSOs by..."><i class="fas fa-chart-area"></i> <?= __("Count QSOs by..."); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('achievements'); ?>" title="Achievements"><i class="fas fa-trophy"></i> <?= __("Achievements"); ?></a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"> <!-- AWARDS -->

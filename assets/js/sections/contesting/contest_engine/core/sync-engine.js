@@ -17,7 +17,7 @@ export class SyncEngine {
 		this.isPending = false; // Track if a sync request is currently in-flight
 		this.lastHeartbeatTime = 0; // Track when last request was sent
 		this.heartbeatStartTime = 0; // Track when heartbeat request started
-		this.heartbeatMaxDuration = 4000; // Maximum acceptable duration is 4 seconds (no parallel requests possible)
+		this.heartbeatMaxDuration = 3000; // Warning threshold only - must stay below the transport timeout
 		this._workerDriven  = false; // When true, heartbeat only fires on triggerNow(), not on a timer
 		this._pendingTrigger = false; // A triggerNow() arrived while a request was in-flight
 
@@ -154,7 +154,7 @@ export class SyncEngine {
 					.then(response => {
 						// Measure heartbeat duration
 						const duration = Date.now() - this.heartbeatStartTime;
-						if (duration > this.heartbeatMaxDuration && this.windowManager) {
+						if (response?.success && duration > this.heartbeatMaxDuration && this.windowManager) {
 							this.windowManager.showToast(
 								lang_heartbeat_warning,
 								lang_heartbeat_slow.replace('%1', duration).replace('%2', this.heartbeatMaxDuration),

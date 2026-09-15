@@ -98,6 +98,7 @@ class Timeline extends CI_Controller {
 		$data['user_default_band'] = $this->session->userdata('user_default_band');
 		$data['years'] = $this->Timeline_model->get_years();
 		$data['onlynew'] = $onlynew;
+		$data['confirm'] = ($qsl == '1' || $lotw == '1' || $eqsl == '1' || $clublog == '1' || $qrz == '1');
 		$data['selectedyear'] = $year;
 		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 

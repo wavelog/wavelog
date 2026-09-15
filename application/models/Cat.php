@@ -8,7 +8,8 @@
 		 * (USB-D/LSB-D...). Applied to every radio update via normalize_mode().
 		 */
 		const MODE_OVERRIDES = [
-			'CW-U'   => 'CW',   'CW-L'   => 'CW',   'CW-R'   => 'CW', 'CWU' => 'CW', 'CWL' => 'CW',
+			'CW-U'   => 'CW',   'CW-L'   => 'CW',   'CW-R'   => 'CW', 'CWU' => 'CW', 'CWL' => 'CW', 'CWN' => 'CW',
+			'FMN'    => 'FM',   'AMN'    => 'AM',
 			'RTTY-L' => 'RTTY', 'RTTY-U' => 'RTTY', 'RTTY-R' => 'RTTY',
 			'USB-D'  => 'USB',  'USB-D1' => 'USB',
 			'LSB-D'  => 'LSB',  'LSB-D1' => 'LSB',
@@ -42,7 +43,7 @@
 			$invalid[] = 'radio';
 		}
 
-		$numeric_fields = ['frequency', 'frequency_rx', 'uplink_freq', 'downlink_freq', 'power'];
+		$numeric_fields = ['frequency', 'frequency_rx', 'uplink_freq', 'downlink_freq'];
 		foreach ($numeric_fields as $field) {
 			if (isset($result[$field]) && $result[$field] !== null && $result[$field] !== '' && $result[$field] !== 'NULL') {
 				if (!is_numeric($result[$field]) || (int) $result[$field] != $result[$field]) {
@@ -50,6 +51,15 @@
 				} else {
 					$result[$field] = (int) $result[$field];
 				}
+			}
+		}
+
+		// Power may be fractional (double column), so it only needs to be numeric.
+		if (isset($result['power']) && $result['power'] !== null && $result['power'] !== '' && $result['power'] !== 'NULL') {
+			if (!is_numeric($result['power'])) {
+				$invalid[] = 'power';
+			} else {
+				$result['power'] = round((float) $result['power'], 3);
 			}
 		}
 

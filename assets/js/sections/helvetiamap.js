@@ -1,7 +1,7 @@
-let osmUrl = tileUrl;
+var osmUrl = tileUrl;
 let province;
 let geojson;
-let map;
+var map;
 let info;
 let clickmarkers = [];
 
