@@ -135,7 +135,17 @@ function prepHamsAtPosting(element) {
 				nl2br: false,
 				message: html,
 				buttons: [{
+					icon: 'fas fa-arrow-up-right-from-square',
+					label: lang_admin_post,
+					autospin: true,
+					cssClass: 'btn-primary',
+					action: function () {
+						post_hamsat();
+					},
+				},
+				{
 					label: lang_admin_close,
+					cssClass: 'btn-secondary',
 					action: function (dialogItself) {
 						dialogItself.close();
 					}

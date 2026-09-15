@@ -137,7 +137,6 @@ $los_time = date_create($los);
 <input type="hidden" name="lon" value="<?= $lon; ?>" />
 <input type="hidden" name="downlink_freq" id="downlink_freq" value="<?= $satinfo[0]->downlink_freq; ?>" />
 <input type="hidden" name="uplink_freq" id="uplink_freq" value="<?= $satinfo[0]->uplink_freq; ?>" />
-<button id="post" type="button" name="post" class="btn btn-primary" onclick="post_hamsat();"><i class="fas fa-arrow-up-right-from-square"></i> <?= __("Post");?></button>
 <form>
 
 </body>
