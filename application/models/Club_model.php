@@ -193,6 +193,36 @@ class Club_model extends CI_Model {
     }
 
     /**
+    * Enable or disable direct login for a club station (logging in with the
+    * club station's own credentials instead of switching from a member account)
+    * and set the permission level for that session.
+    * Restricted to instance admins only (enforced in the controller).
+    *
+    * @param int  $club_id
+    * @param bool $enabled
+    * @param int  $p_level 3|6|9
+    *
+    * @return boolean
+    */
+    function update_direct_login($club_id, $enabled, $p_level) {
+
+        if ($club_id == 0 || !is_numeric($club_id)) {
+            return false;
+        }
+
+        if (!in_array((int) $p_level, [3, 6, 9], true)) {
+            return false;
+        }
+
+        $this->db->where('user_id', (int) $club_id);
+        $this->db->where('clubstation', 1);
+        return $this->db->update('users', [
+            'direct_login_enabled' => $enabled ? 1 : 0,
+            'direct_login_p_level' => (int) $p_level,
+        ]);
+    }
+
+    /**
      * Get every Clubstation on this instance with its number of members.
      *
      * @return array

@@ -770,6 +770,26 @@ $config['special_callsign'] = false;
 
 /*
 |--------------------------------------------------------------------------
+| Clubstation Direct Login (legacy and instance-wide)
+|--------------------------------------------------------------------------
+|
+| Normally you cannot log in into a clubstation account because members switch
+| to it from their personal account instead. This flag was the only way before
+| to allow this feature.
+|
+| Now this is depricated. You have per-clubstation toggle (and default permission
+| level) in "Direct Login" section on Club Permissions page, so instance
+| admins can change it without editing this file. We keep this config flag
+| only for old setups (backward compatibility). You can still use it to achieve
+| system wide clubstation direct login, but it is prefered to use the GUI insted.
+|
+*/
+
+// $config['club_direct'] = false;
+
+
+/*
+|--------------------------------------------------------------------------
 | Impersonate
 |--------------------------------------------------------------------------
 |
