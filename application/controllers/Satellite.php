@@ -284,6 +284,8 @@ class Satellite extends CI_Controller {
 			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
 			$data = $this->calcPasses($tles, $yourgrid, $date, $mintime, $minelevation);
+			$hkey_opt = $this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'api'))->result();
+			$data['hamsat_key'] = $hkey_opt[0]->option_value ?? '';
 
 			$this->load->view('satellite/passtable', $data);
 		}
@@ -533,6 +535,32 @@ class Satellite extends CI_Controller {
 		$this->load->view('satellite/satinfo', $data);
 	}
 
+	public function prepHamsAtPosting() {
+		if ($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+		$data['custom_date_format'] = $custom_date_format;
+		$satname = $this->input->post('sat', true);
+		$data['aos'] = $this->input->post('aos', true);
+		$data['tca'] = $this->input->post('tca', true);
+		$data['los'] = $this->input->post('los', true);
+		$data['duration'] = $this->input->post('duration', true);
+		$this->load->model('satellite_model');
+		$data['satinfo'] = $this->satellite_model->get_satellite_information($satname);
+		$this->load->model('stations');
+		$active_station_id = $this->stations->find_active();
+		$data['homegrid'] = $this->stations->gridsquare_from_station($active_station_id);
+		$data['callsign'] = $this->stations->get_station_power($active_station_id)['station_callsign'];
+		$this->load->library('Qra');
+		[$data['lat'], $data['lon']] = $this->qra->qra2latlong($data['homegrid']);
+		$data['refs'] = $this->stations->get_station_refs($active_station_id);
+		$this->load->view('satellite/hamsatpost', $data);
+	}
+
 	public function editTleDialog() {
 		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
@@ -570,5 +598,59 @@ class Satellite extends CI_Controller {
 		$this->load->model('satellite_model');
 
 		$this->satellite_model->saveTle($id, $tle);
+	}
+
+	public function post_hams_at() {
+		$ci = & get_instance();
+		$tca = $this->input->post('tca', true);
+		$mode = $this->input->post('mode', true);
+		$catnr = $this->input->post('catnr', true);
+		$lat = (float)$this->input->post('lat', true);
+		$lon = (float)$this->input->post('lon', true);
+		$callsign = $this->input->post('callsign', true);
+		$comment = $this->input->post('comment', true);
+		$grid0 = $this->input->post('grid0', true);
+		$grid1 = $this->input->post('grid1', true);
+		$grid2 = $this->input->post('grid2', true);
+		$grid3 = $this->input->post('grid3', true);
+		$chat = $this->input->post('chat', true);
+		$mhz = $this->input->post('mhz', true);
+		$mhz_direction = $this->input->post('mhz_direction', true);
+		$data = array(
+			'mode' => $mode,
+			'comment' => $comment,
+			// Remove before push/merge!
+			'test' => true,
+			'satellite_number' => $catnr,
+			'callsign' => $callsign,
+			'chat_enabled' => $chat == 'true' ? true : false,
+			'grids' => [$grid0, $grid1, $grid2, $grid3],
+			'max_at' => $tca,
+			'mhz' => $mhz,
+			'mhz_direction' => $mhz_direction,
+			'observer_lat' => $lat,
+			'observer_lon' => $lon,
+		);
+		$jsondata = json_encode($data);
+		$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'api'))->result();
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'https://hams.at/api/alerts');
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: Bearer '.$hkey_opt[0]->option_value));
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,$jsondata);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$result = json_decode(curl_exec($ch), true);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		if ($httpcode == 422) {
+			log_message('error', 'Error posting to hams.at: '.$result['errors'][0]);
+			$this->output->set_status_header(422);
+			print __("Generic error posting to hams.at. Please check the input values.");
+		} else if ($httpcode == 401) {
+			log_message('error', 'Error authenticating to hams.at: '.$result['errors'][0]);
+			$this->output->set_status_header(401);
+			print __("Error authenticating to hams.at. Please check API key.");
+		}
+
 	}
 }

@@ -4,6 +4,7 @@
 class Predict_Pass
 {
     public $satname;  /*!< satellite name */
+    public $catnr;    /*!< Norad ID of satellite*/
     public $aos;      /*!< AOS time in "jul_utc" */
     public $tca;      /*!< TCA time in "jul_utc" */
     public $los;      /*!< LOS time in "jul_utc" */
