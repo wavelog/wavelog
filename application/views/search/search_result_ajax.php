@@ -483,7 +483,7 @@ $ci =& get_instance();
 
                             <a class="dropdown-item" href="https://www.hamqth.com/<?php echo html_escape($row->COL_CALL); ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on HamQTH"); ?></a>
 
-                            <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
+                            <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY, 'delete')) { ?>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href='javascript:qso_delete(<?php echo (int) $row->COL_PRIMARY_KEY; ?>, <?php echo js_escape($row->COL_CALL); ?>)'><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                             <?php } ?>

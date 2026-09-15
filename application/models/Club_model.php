@@ -193,6 +193,31 @@ class Club_model extends CI_Model {
     }
 
     /**
+     * Enable/disable letting Club Member / Club Member ADIF (below Officer)
+     * edit or delete QSOs logged by other operators of this club. Officers
+     * can already do this regardless of these flags.
+     *
+     * @param int  $club_id
+     * @param bool $allow_edit
+     * @param bool $allow_delete
+     *
+     * @return boolean
+     */
+    function update_cross_operator_access($club_id, $allow_edit, $allow_delete) {
+
+        if ($club_id == 0 || !is_numeric($club_id)) {
+            return false;
+        }
+
+        $this->db->where('user_id', (int) $club_id);
+        $this->db->where('clubstation', 1);
+        return $this->db->update('users', [
+            'allow_cross_operator_edit' => $allow_edit ? 1 : 0,
+            'allow_cross_operator_delete' => $allow_delete ? 1 : 0,
+        ]);
+    }
+
+    /**
      * Get every Clubstation on this instance with its number of members.
      *
      * @return array
