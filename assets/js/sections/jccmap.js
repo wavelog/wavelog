@@ -155,6 +155,7 @@ function load_jcc_map2(data) {
                 }
             });
         });
+        L.DomEvent.disableClickPropagation(div);
 
         return div;
     };

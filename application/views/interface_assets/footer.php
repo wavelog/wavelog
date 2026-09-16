@@ -1206,6 +1206,7 @@ mymap.on('mousemove', onQsoMapMove);
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div id="qsomapgrid"></div>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
+        L.DomEvent.disableClickPropagation(div);
         return div;
     };
 

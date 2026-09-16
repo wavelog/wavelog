@@ -2860,9 +2860,7 @@ $("#locator").on("input focus", function () {
 						});
 
 						var marker = L.marker([result[0], result[1]], { icon: redIcon });
-						mymap.setZoom(8);
-						mymap.panTo([result[0], result[1]]);
-						mymap.setView([result[0], result[1]], 8);
+						mymap.setView([result[0], result[1]], Math.max(mymap.getZoom(), 8));
 						markers.addLayer(marker).addTo(mymap);
 						bannerText = "📡 "+lang_qso_location_is_fetched_from_provided_gridsquare+": " + qra.toUpperCase();
 						window.mapBanner.addTo(mymap);
