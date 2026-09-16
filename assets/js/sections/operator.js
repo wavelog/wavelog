@@ -1,8 +1,5 @@
 $(document).ready(function () {
-	// Event delegation is used here because #operator_callsign is loaded later
-	// via AJAX inside a modal, so a direct event listener would not work yet.
-	// this was done to allow pressing "enter" on the "Enter personal call" modal
-	// that pops up for club station users.
+	// bug fix for pressing Enter when operator callsign modal is displayed.
 	$(document).on("keydown", "#operator_callsign", function (event) {
 		if (event.which == 13) {
 			event.preventDefault();
