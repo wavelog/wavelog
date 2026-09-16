@@ -3,7 +3,6 @@
 $aos_time = date_create($aos);
 $tca_time = date_create($tca);
 $los_time = date_create($los);
-//echo "TEST: ".date_format($tca_time, 'Y-m-d\TH:i:sp');
 ?>
 </head>
 <body class="container-fluidx">
@@ -15,7 +14,7 @@ $los_time = date_create($los);
             <label for="sat_name"><?= __("Satellite"); ?></label>
          </div>
          <div class="mb-3 col-sm-4">
-            <span><?= $satinfo[0]->satname; ?></span>
+            <span><?= $satinfo[0]->satname." (".$satinfo[0]->displayname.")"; ?></span>
          </div>
       </div>
       <div class="row">
