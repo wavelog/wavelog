@@ -44,7 +44,7 @@ $los_time = date_create($los);
                   $sat_modes[] = $sat->uplink_mode;
                }
             ?>
-            <select id ="mode" name="mode" tabindex="1" class="form-select" <?php echo (count($sat_modes) == 1 && ($sat_modes[0] == 'FM' || $sat_modes[0] == 'PKT')) ? 'disabled' : ''; ?>>
+            <select id ="mode" name="mode" tabindex="1" class="form-select" <?php echo (count($sat_modes) == 1 && ($sat_modes[0] == 'FM' || $sat_modes[0] == 'PKT')) ? 'disabled' : ''; ?> onchange="toggleTpx()">
             <?php if (in_array('FM', $sat_modes)) { ?>
                   <option value="Data">FM</option>
             <?php } ?>
@@ -64,12 +64,12 @@ $los_time = date_create($los);
             <label for="callsign"><?= __("Frequency"); ?></label>
          </div>
          <div class="mb-3 col-sm-2">
-            <input class="form-control" type="text" name="mhz" placeholder="<?= __("Optional"); ?>"/>
-            <small><?= __("Center"); ?>: <span id="tpx_center_freq"><?= $satinfo[0]->downlink_freq; ?></span></small>
+            <input class="form-control" type="text" id="mhz" name="mhz" placeholder="<?= __("Optional"); ?>"/>
+            <small><span id="tpx_hint"><?= __("Center").": "; ?><span id="tpx_center_freq"></span></span></small>
          </div>
          <div class="mb-3 col-sm-2">
-            <input type="radio" value="up" name="mhz_direction" onClick="toggleRxTx('up')"> <?= __("Uplink"); ?>
-            <input type="radio" value="down" name="mhz_direction" checked onClick="toggleRxTx('down')"> <?= __("Downlink"); ?>
+            <input type="radio" value="up" id="mhz_direction_up" name="mhz_direction" onClick="toggleTpx()"> <?= __("Uplink"); ?>
+            <input type="radio" value="down" id="mhz_direction_down" name="mhz_direction" checked onClick="toggleTpx()"> <?= __("Downlink"); ?>
          </div>
       </div>
       <?php } ?>
@@ -136,6 +136,7 @@ $los_time = date_create($los);
 <input type="hidden" name="lon" value="<?= $lon; ?>" />
 <input type="hidden" name="downlink_freq" id="downlink_freq" value="<?= $satinfo[0]->downlink_freq; ?>" />
 <input type="hidden" name="uplink_freq" id="uplink_freq" value="<?= $satinfo[0]->uplink_freq; ?>" />
+<input type="hidden" name="tpxdata" id="tpxdata" value='<?= json_encode($satinfo); ?> ' />
 <form>
-
+</script> 
 </body>

@@ -134,6 +134,9 @@ function prepHamsAtPosting(element) {
 				cssClass: 'preparehamsat-dialog bg-opacity-50',
 				nl2br: false,
 				message: html,
+				onshown: function(){
+					toggleTpx();
+				},
 				buttons: [{
 					icon: 'fas fa-arrow-up-right-from-square',
 					label: lang_admin_post,
@@ -297,10 +300,74 @@ function loadPassSettingsList() {
     });
 }
 
-function toggleRxTx(dir) {
-   if (dir == 'up') {
-      $("#tpx_center_freq").html($("#uplink_freq").val());
-   } else if (dir == 'down') {
-      $("#tpx_center_freq").html($("#downlink_freq").val());
+function toggleTpx() {
+   mode = $("#mode option:selected").text();
+   dir = $("input[name='mhz_direction']:checked").val();
+   let tpxdata = JSON.parse($("#tpxdata").val());
+
+   for (tpx of tpxdata) {
+      if (mode == 'Data') {
+         if (dir == 'up') {
+            if (tpx.uplink_mode == 'PKT' || tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
+               $("#tpx_center_freq").html(tpx.uplink_freq);
+               if (tpx.uplink_freq == tpx.downlink_freq) {
+                  $("#mhz").prop('disabled', true);
+                  $("#mhz_direction_down").prop('checked', true);
+                  $("#mhz_direction_up").prop('disabled', true);
+                  $("#mhz_direction_down").prop('disabled', true);
+               } else {
+                  $("#mhz").prop('disabled', false);
+                  $("#mhz_direction_up").prop('disabled', false);
+                  $("#mhz_direction_down").prop('disabled', false);
+               }
+            }
+         } else if (dir == 'down') {
+            if (tpx.downlink_mode == 'PKT' || tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
+               $("#tpx_center_freq").html(tpx.downlink_freq);
+               if (tpx.uplink_freq == tpx.downlink_freq) {
+                  $("#mhz").prop('disabled', true);
+                  $("#mhz_direction_down").prop('checked', true);
+                  $("#mhz_direction_up").prop('disabled', true);
+                  $("#mhz_direction_down").prop('disabled', true);
+               } else {
+                  $("#mhz").prop('disabled', false);
+                  $("#mhz_direction_up").prop('disabled', false);
+                  $("#mhz_direction_down").prop('disabled', false);
+               }
+            }
+         }
+      } else if (mode == 'FM') {
+         if (dir == 'up') {
+            if (tpx.uplink_mode == 'FM') {
+               $("#tpx_center_freq").html(tpx.uplink_freq);
+               $("#mhz").prop('disabled', false);
+               $("#mhz_direction_up").prop('disabled', false);
+               $("#mhz_direction_down").prop('disabled', false);
+            }
+         } else if (dir == 'down') {
+            if (tpx.downlink_mode == 'FM') {
+               $("#tpx_center_freq").html(tpx.downlink_freq);
+               $("#mhz").prop('disabled', false);
+               $("#mhz_direction_up").prop('disabled', false);
+               $("#mhz_direction_down").prop('disabled', false);
+            }
+         }
+      } else if (mode == 'SSB' || mode == 'CW') {
+         if (dir == 'up') {
+            if (tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
+               $("#tpx_center_freq").html(tpx.uplink_freq);
+               $("#mhz").prop('disabled', false);
+               $("#mhz_direction_up").prop('disabled', false);
+               $("#mhz_direction_down").prop('disabled', false);
+            }
+         } else if (dir == 'down') {
+            if (tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
+               $("#tpx_center_freq").html(tpx.downlink_freq);
+               $("#mhz").prop('disabled', false);
+               $("#mhz_direction_up").prop('disabled', false);
+               $("#mhz_direction_down").prop('disabled', false);
+            }
+         }
+      }
    }
 }
