@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-14 14:25+0000\n"
-"PO-Revision-Date: 2026-09-15 14:40+0000\n"
-"Last-Translator: \"Luoyu (BG7QBL)\" <i@luotianyi.eu>\n"
+"PO-Revision-Date: 2026-09-17 10:02+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -77,7 +77,7 @@ msgstr "EchoLink"
 #: application/config/adif_propmodes.php:12
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr "EME月面反射"
+msgstr "EME 月面反射"
 
 #: application/config/adif_propmodes.php:13
 msgctxt "Propagation Mode"
@@ -142,7 +142,7 @@ msgstr "Satellite"
 #: application/config/adif_propmodes.php:25
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr "TE跨赤道传播"
+msgstr "TE 跨赤道传播"
 
 #: application/config/adif_propmodes.php:26
 msgctxt "Propagation Mode"
@@ -2573,7 +2573,7 @@ msgstr "对方收我"
 #: application/views/view_log/qso.php:643
 #: application/views/visitor/index.php:15
 msgid "Country"
-msgstr "DXCC 实体"
+msgstr "国家"
 
 #: application/controllers/Logbook.php:1511
 #: application/views/activationplanner/index.php:98
@@ -10424,7 +10424,7 @@ msgstr "新大洲"
 
 #: application/views/bandmap/list.php:97 application/views/bandmap/list.php:326
 msgid "New Country"
-msgstr "新 DXCC 实体"
+msgstr "新国家"
 
 #: application/views/bandmap/list.php:98
 msgid "Worked Before"
@@ -12670,12 +12670,12 @@ msgstr "底部"
 
 #: application/views/contesting/logger/index.php:143
 msgid "Clear Call on QSY"
-msgstr ""
+msgstr "QSY 时清除呼号"
 
 #: application/views/contesting/logger/index.php:143
 msgid ""
 "Clears the callsign field when the frequency changes by more than 500 Hz"
-msgstr ""
+msgstr "频率变化超过 500 Hz 时候清除呼号"
 
 #: application/views/contesting/logger/index.php:176
 msgid "Current Operator:"
@@ -16740,7 +16740,7 @@ msgstr "全局选项"
 #: application/views/interface_assets/header.php:363
 #: application/views/interface_assets/header.php:365
 msgid "Update Country Files"
-msgstr "更新 DXCC 实体文件"
+msgstr "更新国别文件"
 
 #: application/views/interface_assets/header.php:367
 #: application/views/interface_assets/header.php:369
@@ -19368,11 +19368,11 @@ msgstr "解析响应时出错:"
 
 #: application/views/map/qso_map.php:14
 msgid "Outside country boundaries"
-msgstr "在 DXCC 实体边界之外"
+msgstr "在国家边界外"
 
 #: application/views/map/qso_map.php:15
 msgid "Inside country boundaries"
-msgstr "在 DXCC 实体边界内"
+msgstr "在国家边界内"
 
 #: application/views/map/qso_map.php:16
 msgid "Legend"
@@ -19388,7 +19388,7 @@ msgstr "外部边界"
 
 #: application/views/map/qso_map.php:19
 msgid "Country/State boundaries"
-msgstr "DXCC 实体/州边界"
+msgstr "国家/州边界"
 
 #: application/views/map/qso_map.php:20
 #, php-format
@@ -19418,11 +19418,11 @@ msgstr "显示QSO列表"
 
 #: application/views/map/qso_map.php:48
 msgid "Select Country:"
-msgstr "选择 DXCC 实体："
+msgstr "选择国家："
 
 #: application/views/map/qso_map.php:50
 msgid "Choose a country..."
-msgstr "选择一个 DXCC 实体…"
+msgstr "选择一个国家…"
 
 #: application/views/map/qso_map.php:60
 msgid "Location:"
@@ -21659,7 +21659,7 @@ msgstr "重新加载 QSO 列表"
 
 #: application/views/simplefle/index.php:182
 msgid "Save in Wavelog"
-msgstr "保存 QSO 列表"
+msgstr "保存在 Wavelog"
 
 #: application/views/simplefle/index.php:183
 msgid "Clear Logging Session"
@@ -22905,7 +22905,7 @@ msgstr "名 (Last Name)"
 
 #: application/views/user/edit.php:175
 msgid "Ham Radio"
-msgstr "HAM 信息"
+msgstr "业余无线电"
 
 #: application/views/user/edit.php:179
 msgid "Special/Club Callsign"
@@ -24341,11 +24341,11 @@ msgstr "LoTW 用户。最后上传于 "
 #: application/controllers/Awards.php:612 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:275
 msgid "JCG"
-msgstr ""
+msgstr "JCG"
 
 #: application/views/awards/jcg/index.php:11
 msgid "JCG - Japan Century Gun/County Award"
-msgstr ""
+msgstr "JCG - 日本世纪郡奖状"
 
 #: application/views/awards/jcg/index.php:12
 msgid ""
@@ -24354,30 +24354,32 @@ msgid ""
 "received a QSL card from an amateur station located in each of a number of "
 "different guns of Japan."
 msgstr ""
+"JCG 的附带奖状，覆盖日本的郡及同等不是城市的乡村地区。要求是与位于日本多个不"
+"同郡的专业台站通联（或收听到），并收到QSL卡。"
 
 #: application/views/awards/jcg/index.php:13
 msgid ""
 "A list of QSL cards should be arranged in order of JCG reference number, "
 "however names of gun may be omitted."
-msgstr ""
+msgstr "QSL 卡列表应按 JCG 参考号排列，但可省略郡名称。"
 
 #: application/views/awards/jcg/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "JCG reference!)"
-msgstr ""
+msgstr "本奖项所需要的字段：DXCC（日本）和郡（必须包含有效 JCG 编号）"
 
 #: application/views/awards/jcg/index.php:39
 msgid "Show JCG Map"
-msgstr ""
+msgstr "显示 JCG 地图"
 
 #: application/views/awards/jcg/index.php:183
 msgid "JCG progress"
-msgstr ""
+msgstr "JCG 进度"
 
 #: application/views/awards/jcg/index.php:199
 msgid "No worked or confirmed JCG slots match the current filters."
-msgstr ""
+msgstr "没有通联过或已确认的 JCG 匹配当前筛选器。"
 
 #, php-format
 #~ msgid ""
