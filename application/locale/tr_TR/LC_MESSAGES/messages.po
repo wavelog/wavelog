@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-14 14:25+0000\n"
-"PO-Revision-Date: 2026-09-16 05:26+0000\n"
+"PO-Revision-Date: 2026-09-17 10:02+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -4717,7 +4717,7 @@ msgstr "Hedef"
 
 #: application/models/Achievements_model.php:177
 msgid "Reached on"
-msgstr "Ulaşıldı:"
+msgstr "Ulaşılan tarih"
 
 #: application/models/Achievements_model.php:181
 #, php-format
@@ -4745,7 +4745,7 @@ msgstr[1] "%s QSO"
 
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
-msgstr "Kazanıldı:"
+msgstr "Kazanılan tarih"
 
 #: application/models/Achievements_model.php:207
 #, php-format
@@ -4762,7 +4762,7 @@ msgstr "Klasik Dijital Modlardaki QSO'lar"
 #: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:389
 msgid "First QSO on"
-msgstr "İlk QSO:"
+msgstr "İlk QSO tarihi"
 
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
@@ -4809,7 +4809,7 @@ msgstr "İlk LoTW Onayı"
 
 #: application/models/Achievements_model.php:273
 msgid "Confirmed on"
-msgstr "Onaylandı:"
+msgstr "Onaylanma tarihi"
 
 #: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
@@ -4912,7 +4912,7 @@ msgstr "Aralık"
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
-msgstr "Tamamlandı:"
+msgstr "Tamamlanma tarihi"
 
 #: application/models/Achievements_model.php:379
 #, php-format
@@ -14249,7 +14249,7 @@ msgstr "Geriye Kalan"
 #: application/views/dashboard/index.php:519
 #: application/views/dashboard/index.php:522
 msgid "Awaiting Confirmation"
-msgstr "Onay Bekleniyor"
+msgstr "Onay Bekleyen"
 
 #: application/views/dashboard/index.php:548
 #: application/views/dashboard/index.php:583
@@ -25111,11 +25111,11 @@ msgstr "LoTW Kullanıcısı. Son yükleme "
 #: application/controllers/Awards.php:612 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:275
 msgid "JCG"
-msgstr ""
+msgstr "JCG"
 
 #: application/views/awards/jcg/index.php:11
 msgid "JCG - Japan Century Gun/County Award"
-msgstr ""
+msgstr "JCG - Japan Century Gun (İdari Bölge) Ödülü"
 
 #: application/views/awards/jcg/index.php:12
 msgid ""
@@ -25124,30 +25124,40 @@ msgid ""
 "received a QSL card from an amateur station located in each of a number of "
 "different guns of Japan."
 msgstr ""
+"JCG'ye eşlik eden ödül, Japonya'nın şehirlerden ziyade \"gun\"ları (idari "
+"bölgeleri) ve eşdeğer kırsal varlıkları kapsar. Japonya'nın farklı "
+"\"gun\"larından birinde bulunan bir amatör istasyonla temas kurup (ya da "
+"dinleyerek) bir QSL kartı alanlar için talep edilir."
 
 #: application/views/awards/jcg/index.php:13
 msgid ""
 "A list of QSL cards should be arranged in order of JCG reference number, "
 "however names of gun may be omitted."
 msgstr ""
+"JCG referans numarasına göre bir QSL kart listesi düzenlenmelidir, ancak "
+"\"gun\" isimleri atlanabilir."
 
 #: application/views/awards/jcg/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "JCG reference!)"
 msgstr ""
+"Bu Ödül için dikkate alınan alanlar: DXCC (Japonya) ve İdari Bölge (Geçerli "
+"bir JCG referansı içermelidir!)"
 
 #: application/views/awards/jcg/index.php:39
 msgid "Show JCG Map"
-msgstr ""
+msgstr "JCG Haritasını Göster"
 
 #: application/views/awards/jcg/index.php:183
 msgid "JCG progress"
-msgstr ""
+msgstr "JCG ilerlemesi"
 
 #: application/views/awards/jcg/index.php:199
 msgid "No worked or confirmed JCG slots match the current filters."
 msgstr ""
+"Herhangi bir çalışılmış ya da onaylanmış JCG slotu mevcut filtrelerle "
+"eşleşmiyor."
 
 #, php-format
 #~ msgid ""
