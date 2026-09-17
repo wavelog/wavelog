@@ -619,8 +619,6 @@ class Satellite extends CI_Controller {
 		$data = array(
 			'mode' => $mode,
 			'comment' => $comment,
-			// Remove before push/merge!
-			'test' => true,
 			'satellite_number' => $catnr,
 			'callsign' => $callsign,
 			'chat_enabled' => $chat == 'true' ? true : false,
@@ -631,6 +629,9 @@ class Satellite extends CI_Controller {
 			'observer_lat' => $lat,
 			'observer_lon' => $lon,
 		);
+		if (ENVIRONMENT == "development" || (ENVIRONMENT == "docker" && filter_var($_ENV['DOCKER_DEVELOPMENT'] ?? false, FILTER_VALIDATE_BOOLEAN))) {
+			$data['test'] = true;
+		}
 		$jsondata = json_encode($data);
 		$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'api'))->result();
 		$ch = curl_init();
