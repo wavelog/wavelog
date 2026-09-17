@@ -113,10 +113,11 @@ function getSatelliteInfo(element) {
 
 function prepHamsAtPosting(element) {
 	var satname = $(element).closest('td').contents().first().text().trim();
-	var aos = $(element).parent().parent().find('#aos').contents().text().trim();
-	var tca = $(element).parent().parent().find('#tca').contents().text().trim();
-	var los = $(element).parent().parent().find('#los').contents().text().trim();
-	var duration = $(element).parent().parent().find('#duration').contents().text().trim();
+	var row = $(element).closest('tr');
+	var aos = row.find('.aos').data('aos');
+	var tca = row.find('.tca').data('tca');
+	var los = row.find('.los').data('los');
+	var duration = row.find('.duration').contents().text().trim();
 	$.ajax({
 		url: base_url + 'index.php/satellite/prepHamsAtPosting',
 		type: 'post',
@@ -301,73 +302,31 @@ function loadPassSettingsList() {
 }
 
 function toggleTpx() {
-   mode = $("#mode option:selected").text();
-   dir = $("input[name='mhz_direction']:checked").val();
-   let tpxdata = JSON.parse($("#tpxdata").val());
-
-   for (tpx of tpxdata) {
-      if (mode == 'Data') {
-         if (dir == 'up') {
-            if (tpx.uplink_mode == 'PKT' || tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
-               $("#tpx_center_freq").html(tpx.uplink_freq);
-               if (tpx.uplink_freq == tpx.downlink_freq) {
-                  $("#mhz").prop('disabled', true);
-                  $("#mhz_direction_down").prop('checked', true);
-                  $("#mhz_direction_up").prop('disabled', true);
-                  $("#mhz_direction_down").prop('disabled', true);
-               } else {
-                  $("#mhz").prop('disabled', false);
-                  $("#mhz_direction_up").prop('disabled', false);
-                  $("#mhz_direction_down").prop('disabled', false);
-               }
-            }
-         } else if (dir == 'down') {
-            if (tpx.downlink_mode == 'PKT' || tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
-               $("#tpx_center_freq").html(tpx.downlink_freq);
-               if (tpx.uplink_freq == tpx.downlink_freq) {
-                  $("#mhz").prop('disabled', true);
-                  $("#mhz_direction_down").prop('checked', true);
-                  $("#mhz_direction_up").prop('disabled', true);
-                  $("#mhz_direction_down").prop('disabled', true);
-               } else {
-                  $("#mhz").prop('disabled', false);
-                  $("#mhz_direction_up").prop('disabled', false);
-                  $("#mhz_direction_down").prop('disabled', false);
-               }
-            }
-         }
-      } else if (mode == 'FM') {
-         if (dir == 'up') {
-            if (tpx.uplink_mode == 'FM') {
-               $("#tpx_center_freq").html(tpx.uplink_freq);
-               $("#mhz").prop('disabled', false);
-               $("#mhz_direction_up").prop('disabled', false);
-               $("#mhz_direction_down").prop('disabled', false);
-            }
-         } else if (dir == 'down') {
-            if (tpx.downlink_mode == 'FM') {
-               $("#tpx_center_freq").html(tpx.downlink_freq);
-               $("#mhz").prop('disabled', false);
-               $("#mhz_direction_up").prop('disabled', false);
-               $("#mhz_direction_down").prop('disabled', false);
-            }
-         }
-      } else if (mode == 'SSB' || mode == 'CW') {
-         if (dir == 'up') {
-            if (tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
-               $("#tpx_center_freq").html(tpx.uplink_freq);
-               $("#mhz").prop('disabled', false);
-               $("#mhz_direction_up").prop('disabled', false);
-               $("#mhz_direction_down").prop('disabled', false);
-            }
-         } else if (dir == 'down') {
-            if (tpx.uplink_mode == 'SSB' || tpx.uplink_mode == 'USB' || tpx.uplink_mode == 'LSB') {
-               $("#tpx_center_freq").html(tpx.downlink_freq);
-               $("#mhz").prop('disabled', false);
-               $("#mhz_direction_up").prop('disabled', false);
-               $("#mhz_direction_down").prop('disabled', false);
-            }
-         }
-      }
-   }
+	const mode = $("#mode option:selected").text();
+	const dir = $("input[name='mhz_direction']:checked").val();
+	const ssb = ['SSB', 'USB', 'LSB'];
+	const matchers = {
+		Data: {
+			up: t => t.uplink_mode == 'PKT' || ssb.includes(t.uplink_mode),
+			down: t => t.downlink_mode == 'PKT' || ssb.includes(t.uplink_mode),
+		},
+		FM: {
+			up: t => t.uplink_mode == 'FM',
+			down: t => t.downlink_mode == 'FM',
+		},
+	};
+	matchers.SSB = matchers.CW = { up: t => ssb.includes(t.uplink_mode), down: t => ssb.includes(t.uplink_mode) };
+	for (const tpx of JSON.parse($("#tpxdata").val())) {
+		if (!matchers[mode] || !matchers[mode][dir] || !matchers[mode][dir](tpx)) {
+			continue;
+		}
+		$("#tpx_center_freq").html(dir == 'up' ? tpx.uplink_freq : tpx.downlink_freq);
+		const fixed = mode == 'Data' && tpx.uplink_freq == tpx.downlink_freq;
+		$("#mhz").prop('disabled', fixed);
+		$("#mhz_direction_up").prop('disabled', fixed);
+		$("#mhz_direction_down").prop('disabled', fixed);
+		if (fixed) {
+			$("#mhz_direction_down").prop('checked', true);
+		}
+	}
 }
