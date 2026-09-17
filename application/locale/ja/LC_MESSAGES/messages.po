@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-17 10:02+0000\n"
-"PO-Revision-Date: 2026-09-17 10:02+0000\n"
+"PO-Revision-Date: 2026-09-18 05:26+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -3550,15 +3550,17 @@ msgstr "プリセットはありません"
 
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
-msgstr ""
+msgstr "hams.atへの投稿時に一般的なエラーが発生しました。入力値を確認してください。"
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
-msgstr ""
+msgstr "hams.atへの認証中にエラーが発生しました。APIキーを確認してください。"
 
 #: application/controllers/Satellite.php:659
 msgid "Generic error posting to hams.at. Please try again later."
 msgstr ""
+"hams.atへの投稿中に一般的なエラーが発生しました。しばらくしてからもう一度お試"
+"しください。"
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -16227,7 +16229,7 @@ msgstr "色"
 
 #: application/views/interface_assets/footer.php:57
 msgid "Post"
-msgstr ""
+msgstr "役職"
 
 #: application/views/interface_assets/footer.php:58
 #: application/views/qso/edit_ajax.php:198
@@ -16277,7 +16279,7 @@ msgstr "衛星情報"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Prepare hams.at Activation Posting"
-msgstr ""
+msgstr "hams.atを準備します。アクティベーション投稿"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Error loading notes"
@@ -21509,31 +21511,31 @@ msgstr ""
 
 #: application/views/satellite/hamsatpost.php:27
 msgid "Pass Time"
-msgstr ""
+msgstr "暇つぶし"
 
 #: application/views/satellite/hamsatpost.php:65
 msgid "Center"
-msgstr ""
+msgstr "中心"
 
 #: application/views/satellite/hamsatpost.php:68
 msgid "Uplink"
-msgstr ""
+msgstr "アップリンク"
 
 #: application/views/satellite/hamsatpost.php:69
 msgid "Downlink"
-msgstr ""
+msgstr "ダウンリンク"
 
 #: application/views/satellite/hamsatpost.php:117
 msgid "Max 50 characters"
-msgstr ""
+msgstr "最大50文字"
 
 #: application/views/satellite/hamsatpost.php:122
 msgid "Realtime chat enabled"
-msgstr ""
+msgstr "リアルタイムチャット対応"
 
 #: application/views/satellite/hamsatpost.php:126
 msgid "Chat is open until 1 day after the pass ends"
-msgstr ""
+msgstr "チャットはパスの有効期限が切れてから1日後まで利用可能です"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
@@ -21622,7 +21624,7 @@ msgstr "AOS時間"
 
 #: application/views/satellite/passtable.php:8
 msgid "TCA Time"
-msgstr ""
+msgstr "TCA時間"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:46
