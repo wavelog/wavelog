@@ -636,20 +636,26 @@ class Satellite extends CI_Controller {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'https://hams.at/api/alerts');
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: Bearer '.$hkey_opt[0]->option_value));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: Bearer '.($hkey_opt[0]->option_value ?? '')));
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS,$jsondata);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 		$result = json_decode(curl_exec($ch), true);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($httpcode == 422) {
-			log_message('error', 'Error posting to hams.at: '.$result['errors'][0]);
+			log_message('error', 'Error posting to hams.at: '.($result['errors'][0] ?? 'unknown'));
 			$this->output->set_status_header(422);
 			print __("Generic error posting to hams.at. Please check the input values.");
 		} else if ($httpcode == 401) {
-			log_message('error', 'Error authenticating to hams.at: '.$result['errors'][0]);
+			log_message('error', 'Error authenticating to hams.at: '.($result['errors'][0] ?? 'unknown'));
 			$this->output->set_status_header(401);
 			print __("Error authenticating to hams.at. Please check API key.");
+		} else if ($httpcode < 200 || $httpcode > 299) {
+			log_message('error', 'Error posting to hams.at: HTTP '.$httpcode);
+			$this->output->set_status_header(500);
+			print __("Generic error posting to hams.at. Please try again later.");
 		}
 
 	}

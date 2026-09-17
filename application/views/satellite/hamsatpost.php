@@ -1,11 +1,8 @@
-<head>
 <?php
 $aos_time = date_create($aos);
 $tca_time = date_create($tca);
 $los_time = date_create($los);
 ?>
-</head>
-<body class="container-fluidx">
 <div id="error-messages-hamsat-post"></div>
 <form name="hamsatpost" id="hamsatform">
    <div class="container-fluid">
@@ -137,6 +134,4 @@ $los_time = date_create($los);
 <input type="hidden" name="downlink_freq" id="downlink_freq" value="<?= $satinfo[0]->downlink_freq; ?>" />
 <input type="hidden" name="uplink_freq" id="uplink_freq" value="<?= $satinfo[0]->uplink_freq; ?>" />
 <input type="hidden" name="tpxdata" id="tpxdata" value='<?= json_encode($satinfo); ?> ' />
-<form>
-</script> 
-</body>
+</form>
