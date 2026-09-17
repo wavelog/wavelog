@@ -1608,7 +1608,6 @@ function copyToClipboard(text, targetElement) {
 function copyTwitterString(xString) {
    var xButton = $('#xButton');
    copyToClipboard(xString, xButton);
-   console.log("TEST: "+xString);
 }
 
 // Fetch an HTML fragment and swap it into a target element, then reinit tooltips.
