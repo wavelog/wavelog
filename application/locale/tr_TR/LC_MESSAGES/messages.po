@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-16 19:20+0000\n"
+"POT-Creation-Date: 2026-09-17 10:02+0000\n"
 "PO-Revision-Date: 2026-09-12 14:30+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -221,8 +221,8 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Satellite.php:117
 #: application/controllers/Satellite.php:131
 #: application/controllers/Satellite.php:149
-#: application/controllers/Satellite.php:557
-#: application/controllers/Satellite.php:566
+#: application/controllers/Satellite.php:585
+#: application/controllers/Satellite.php:594
 #: application/controllers/Search.php:9 application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:16
 #: application/controllers/Stationsetup.php:15
@@ -2183,7 +2183,7 @@ msgstr "Kayıt defteri"
 #: application/views/countqsoby/index.php:162
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
-#: application/views/interface_assets/footer.php:112
+#: application/views/interface_assets/footer.php:114
 #: application/views/logbookadvanced/index.php:976
 #: application/views/logbookadvanced/useroptions.php:124
 #: application/views/oqrs/qsolist.php:12
@@ -2364,7 +2364,7 @@ msgstr "Tüm çağrı defteri sorguları başarısız oldu veya sonuç döndürm
 #: application/views/eqslcard/index.php:33
 #: application/views/gridmap/index.php:138
 #: application/views/hamsat/index.php:40
-#: application/views/interface_assets/footer.php:127
+#: application/views/interface_assets/footer.php:129
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 #: application/views/logbookadvanced/edit.php:17
@@ -2392,6 +2392,7 @@ msgstr "Tüm çağrı defteri sorguları başarısız oldu veya sonuç döndürm
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:121 application/views/qso/index.php:233
+#: application/views/satellite/hamsatpost.php:35
 #: application/views/satellite/satinfo.php:7
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/search_result_ajax.php:4
@@ -2719,6 +2720,7 @@ msgstr "Bant"
 #: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
 #: application/views/qso/edit_ajax.php:73 application/views/qso/index.php:266
+#: application/views/satellite/hamsatpost.php:61
 #: application/views/search/search_result_ajax.php:16
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:342 application/views/user/edit.php:365
@@ -2762,7 +2764,7 @@ msgstr "Operatör"
 #: application/views/countqsoby/index.php:16 application/views/csv/index.php:65
 #: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:839
+#: application/views/interface_assets/footer.php:841
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:389
 #: application/views/lookup/index.php:47
@@ -3419,8 +3421,8 @@ msgstr "son kullanılan"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
-#: application/views/interface_assets/footer.php:699
-#: application/views/interface_assets/footer.php:708
+#: application/views/interface_assets/footer.php:701
+#: application/views/interface_assets/footer.php:710
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:892
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -3443,11 +3445,11 @@ msgstr "Düzenle"
 #: application/views/contest_admin/add.php:71
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/manager/index.php:79
-#: application/views/interface_assets/footer.php:70
-#: application/views/interface_assets/footer.php:2688
-#: application/views/interface_assets/footer.php:2706
-#: application/views/interface_assets/footer.php:2725
-#: application/views/interface_assets/footer.php:2743
+#: application/views/interface_assets/footer.php:72
+#: application/views/interface_assets/footer.php:2690
+#: application/views/interface_assets/footer.php:2708
+#: application/views/interface_assets/footer.php:2727
+#: application/views/interface_assets/footer.php:2745
 #: application/views/labeldesigner/designer.php:413
 #: application/views/labeldesigner/designer.php:452
 #: application/views/labels/index.php:50 application/views/labels/index.php:86
@@ -3522,33 +3524,45 @@ msgstr "Uydu Yörüngesi"
 msgid "Satellite pass"
 msgstr "Uydu Geçişi"
 
-#: application/controllers/Satellite.php:329
+#: application/controllers/Satellite.php:331
 msgid "Failed to save pass settings!"
 msgstr "Geçiş ayarları kaydedilirken hata oluştu!"
 
-#: application/controllers/Satellite.php:332
+#: application/controllers/Satellite.php:334
 msgid "Pass settings saved!"
 msgstr "Geçiş ayarları başarıyla kaydedildi!"
 
-#: application/controllers/Satellite.php:345
+#: application/controllers/Satellite.php:347
 msgid "No settings found!"
 msgstr "Hiç ayar bulunamadı!"
 
-#: application/controllers/Satellite.php:359
+#: application/controllers/Satellite.php:361
 msgid "Failed to delete pass settings!"
 msgstr "Geçiş ayarları silinemedi!"
 
-#: application/controllers/Satellite.php:361
+#: application/controllers/Satellite.php:363
 msgid "Pass settings deleted!"
 msgstr "Geçiş ayarları başarıyla silindi!"
 
-#: application/controllers/Satellite.php:371
+#: application/controllers/Satellite.php:373
 msgid "Saved Pass Settings"
 msgstr "Kaydedilen Geçiş Ayarları"
 
-#: application/controllers/Satellite.php:388
+#: application/controllers/Satellite.php:390
 msgid "No presets available"
 msgstr "Mevcut ön ayar yok"
+
+#: application/controllers/Satellite.php:651
+msgid "Generic error posting to hams.at. Please check the input values."
+msgstr ""
+
+#: application/controllers/Satellite.php:655
+msgid "Error authenticating to hams.at. Please check API key."
+msgstr ""
+
+#: application/controllers/Satellite.php:659
+msgid "Generic error posting to hams.at. Please try again later."
+msgstr ""
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -5170,7 +5184,7 @@ msgid "Contacts"
 msgstr "Kişiler"
 
 #: application/models/Note.php:8
-#: application/views/interface_assets/footer.php:116
+#: application/views/interface_assets/footer.php:118
 #: application/views/qso/index.php:103
 #: application/views/statistics/index.php:86
 #: application/views/user/edit.php:221
@@ -5379,8 +5393,8 @@ msgstr "Fark"
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1571
-#: application/views/interface_assets/footer.php:1710
+#: application/views/interface_assets/footer.php:1573
+#: application/views/interface_assets/footer.php:1712
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -5638,6 +5652,7 @@ msgstr "Aktive edilmiş grid kareleri"
 #: application/views/logbookadvanced/index.php:429
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:46
+#: application/views/satellite/hamsatpost.php:11
 #: application/views/satellite/pass.php:125
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
@@ -6104,6 +6119,7 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/qslprint/qslprint.php:34
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:218
+#: application/views/satellite/hamsatpost.php:75
 #: application/views/search/lotw_unconfirmed.php:32
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
@@ -6218,7 +6234,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:158
-#: application/views/qso/index.php:194 application/views/satellite/pass.php:135
+#: application/views/qso/index.php:194
+#: application/views/satellite/hamsatpost.php:19
+#: application/views/satellite/pass.php:135
 #: application/views/satellite/skedtable.php:12
 #: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
@@ -6413,8 +6431,8 @@ msgstr ""
 
 #: application/views/adif/import.php:159 application/views/adif/import.php:166
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:659
-#: application/views/interface_assets/footer.php:2455
+#: application/views/interface_assets/footer.php:661
+#: application/views/interface_assets/footer.php:2457
 msgid "DANGER"
 msgstr "TEHLİKE"
 
@@ -6679,6 +6697,8 @@ msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Yarışma Adı (sadece CBR'daki Yarışma Kimliği farklıysa yazın)"
 
 #: application/views/adif/import.php:428
+#: application/views/satellite/hamsatpost.php:64
+#: application/views/satellite/hamsatpost.php:116
 msgid "Optional"
 msgstr "İsteğe bağlı"
 
@@ -7096,7 +7116,7 @@ msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama.
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:55
-#: application/views/interface_assets/footer.php:694
+#: application/views/interface_assets/footer.php:696
 #: application/views/labeldesigner/designer.php:101
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
@@ -8268,7 +8288,7 @@ msgstr "Çalışılmamışları Göster"
 #: application/views/awards/iota/index.php:91
 #: application/views/awards/itu/index.php:120
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2434
+#: application/views/interface_assets/footer.php:2436
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
@@ -10743,6 +10763,7 @@ msgstr "Spotter"
 #: application/views/logbookadvanced/index.php:1039
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:390
+#: application/views/satellite/hamsatpost.php:113
 #: application/views/view_log/qso.php:227
 msgid "Comment"
 msgstr "Yorum"
@@ -11597,7 +11618,7 @@ msgstr "İstasyon Konumu"
 
 #: application/views/calltester/index.php:16
 #: application/views/dbtools/index.php:33
-#: application/views/interface_assets/footer.php:895
+#: application/views/interface_assets/footer.php:897
 #: application/views/logbookadvanced/index.php:876
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
@@ -12696,7 +12717,7 @@ msgid "Night"
 msgstr "Gece"
 
 #: application/views/contesting/logger/index.php:54
-#: application/views/satellite/passtable.php:10
+#: application/views/satellite/passtable.php:11
 msgid "Path"
 msgstr "Yörünge Güzergahı"
 
@@ -13185,7 +13206,7 @@ msgid "Light/Laser"
 msgstr "Işık/Lazer"
 
 #: application/views/contesting/manager/export_cbr.php:117
-#: application/views/interface_assets/footer.php:128
+#: application/views/interface_assets/footer.php:130
 #: application/views/stationsetup/locationlist.php:19
 msgid "Power"
 msgstr "Güç"
@@ -16079,10 +16100,10 @@ msgid "QSL Date"
 msgstr "QSL Tarihi"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2689
-#: application/views/interface_assets/footer.php:2707
-#: application/views/interface_assets/footer.php:2726
-#: application/views/interface_assets/footer.php:2744
+#: application/views/interface_assets/footer.php:2691
+#: application/views/interface_assets/footer.php:2709
+#: application/views/interface_assets/footer.php:2728
+#: application/views/interface_assets/footer.php:2746
 #: application/views/qslcard/index.php:81
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
@@ -16150,6 +16171,7 @@ msgid "your profile"
 msgstr "Profiliniz"
 
 #: application/views/hamsat/index.php:41
+#: application/views/satellite/hamsatpost.php:83
 msgid "Gridsquare(s)"
 msgstr "Grid kareleri"
 
@@ -16267,6 +16289,10 @@ msgid "Colors"
 msgstr "Renkler"
 
 #: application/views/interface_assets/footer.php:57
+msgid "Post"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:58
 #: application/views/qso/edit_ajax.php:198
 #: application/views/qso/edit_ajax.php:554
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
@@ -16274,19 +16300,19 @@ msgstr ""
 "LoTW tarafından bu propagasyon modu desteklenmiyor. LoTW QSL alanları devre "
 "dışı bırakıldı."
 
-#: application/views/interface_assets/footer.php:58
+#: application/views/interface_assets/footer.php:59
 msgid "No states for this DXCC available"
 msgstr "Bu DXCC için eyalet bilgisi bulunmamaktadır"
 
-#: application/views/interface_assets/footer.php:59
+#: application/views/interface_assets/footer.php:60
 msgid "Compute QRB and QTF"
 msgstr "QRB ve QTF’yi Hesapla"
 
-#: application/views/interface_assets/footer.php:60
+#: application/views/interface_assets/footer.php:61
 msgid "Error in locators. Please check."
 msgstr "Locator bilgilerinde hata var. Lütfen kontrol edin."
 
-#: application/views/interface_assets/footer.php:61
+#: application/views/interface_assets/footer.php:62
 msgid ""
 "At least one of the locators is empty. Calculation not possible. Possibly "
 "missing locator in station location. Please check."
@@ -16294,38 +16320,42 @@ msgstr ""
 "Lokatörlerden en az biri boş. Hesaplama yapılamıyor. İstasyon konumunda "
 "lokatör eksik olabilir. Lütfen kontrol edin."
 
-#: application/views/interface_assets/footer.php:62
+#: application/views/interface_assets/footer.php:63
 #: application/views/user/index.php:20 application/views/user/index.php:144
 msgid "Refresh List"
 msgstr "Listeyi Yenile"
 
-#: application/views/interface_assets/footer.php:63
+#: application/views/interface_assets/footer.php:64
 msgid "Please Wait ..."
 msgstr "Lütfen bekleyin..."
 
-#: application/views/interface_assets/footer.php:64
+#: application/views/interface_assets/footer.php:65
 msgctxt ""
 "Word for country states that are deprecated but kept for legacy reasons."
 msgid "deprecated"
 msgstr "Kullanımdan Kaldırıldı"
 
-#: application/views/interface_assets/footer.php:65
+#: application/views/interface_assets/footer.php:66
 msgid "Satellite Information"
 msgstr "Uydu Bilgileri"
 
 #: application/views/interface_assets/footer.php:67
+msgid "Prepare hams.at Activation Posting"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:69
 msgid "Error loading notes"
 msgstr "Notlar yüklenirken hata oluştu"
 
-#: application/views/interface_assets/footer.php:68
+#: application/views/interface_assets/footer.php:70
 msgid "Sorting"
 msgstr "Sıralama"
 
-#: application/views/interface_assets/footer.php:69
+#: application/views/interface_assets/footer.php:71
 msgid "Duplication is disabled for Contacts notes"
 msgstr "Kişi notları için kopyalama devre dışı bırakılmıştır"
 
-#: application/views/interface_assets/footer.php:71
+#: application/views/interface_assets/footer.php:73
 #: application/views/labeldesigner/designer.php:410
 #: application/views/labeldesigner/designer.php:426
 #: application/views/qslpostcard/designer.php:318
@@ -16333,216 +16363,216 @@ msgstr "Kişi notları için kopyalama devre dışı bırakılmıştır"
 msgid "Duplicate"
 msgstr "Çoğalt"
 
-#: application/views/interface_assets/footer.php:72
+#: application/views/interface_assets/footer.php:74
 #: application/views/notes/view.php:48
 msgid "Delete Note"
 msgstr "Notu sil"
 
-#: application/views/interface_assets/footer.php:73
+#: application/views/interface_assets/footer.php:75
 msgid "Duplicate Note"
 msgstr "Notu Çoğalt"
 
-#: application/views/interface_assets/footer.php:74
+#: application/views/interface_assets/footer.php:76
 msgid "Delete this note?"
 msgstr "Notu silmek istediğinize emin misiniz?"
 
-#: application/views/interface_assets/footer.php:75
+#: application/views/interface_assets/footer.php:77
 msgid "Duplicate this note?"
 msgstr "Bu notu çoğaltmak istiyor musunuz?"
 
-#: application/views/interface_assets/footer.php:76
+#: application/views/interface_assets/footer.php:78
 msgid "Duplication Disabled"
 msgstr "Çoğaltma Devre Dışı"
 
-#: application/views/interface_assets/footer.php:77
+#: application/views/interface_assets/footer.php:79
 msgid "No notes were found"
 msgstr "Hiç not bulunamadı"
 
-#: application/views/interface_assets/footer.php:78
+#: application/views/interface_assets/footer.php:80
 msgid "No notes for this callsign"
 msgstr "Bu çağrı işareti için not yok"
 
-#: application/views/interface_assets/footer.php:79
+#: application/views/interface_assets/footer.php:81
 msgid "Callsign Note"
 msgstr "Çağrı işareti notu"
 
-#: application/views/interface_assets/footer.php:80
+#: application/views/interface_assets/footer.php:82
 msgid "Note deleted successfully"
 msgstr "Not başarıyla silindi"
 
-#: application/views/interface_assets/footer.php:81
+#: application/views/interface_assets/footer.php:83
 msgid "Note created successfully"
 msgstr "Not başarıyla oluşturuldu"
 
-#: application/views/interface_assets/footer.php:82
+#: application/views/interface_assets/footer.php:84
 msgid "Note saved successfully"
 msgstr "Not kaydedildi"
 
-#: application/views/interface_assets/footer.php:83
+#: application/views/interface_assets/footer.php:85
 msgid "Error saving note"
 msgstr "Not kaydedilemedi"
 
-#: application/views/interface_assets/footer.php:84
+#: application/views/interface_assets/footer.php:86
 #, php-format
 msgid "QSO with %s by %s was added to logbook."
 msgstr "%s ile %s arasındaki QSO kayıt defterine eklendi."
 
-#: application/views/interface_assets/footer.php:85
+#: application/views/interface_assets/footer.php:87
 #, php-format
 msgid "Realtime upload failed: %s"
 msgstr "Gerçek zamanlı yükleme başarısız: %s"
 
-#: application/views/interface_assets/footer.php:86
+#: application/views/interface_assets/footer.php:88
 msgid "QSO Added to Backlog"
 msgstr "QSO Bekleme Listesi'ne Eklendi"
 
-#: application/views/interface_assets/footer.php:87
+#: application/views/interface_assets/footer.php:89
 #, php-format
 msgid "Send email to %s"
 msgstr "%s'ye e-posta gönder"
 
-#: application/views/interface_assets/footer.php:88
+#: application/views/interface_assets/footer.php:90
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
 msgstr ""
 "Bu çağrı işareti bu bant ve modda geçmişte zaten çalışılmış ve onaylanmıştı!"
 
-#: application/views/interface_assets/footer.php:89
+#: application/views/interface_assets/footer.php:91
 msgid "Callsign was already worked in the past on this band and mode!"
 msgstr "Çağrı işareti bu bant ve modda geçmişte zaten çalışmıştı!"
 
-#: application/views/interface_assets/footer.php:90
+#: application/views/interface_assets/footer.php:92
 msgid "New Callsign!"
 msgstr "Yeni Çağrı İşareti!"
 
-#: application/views/interface_assets/footer.php:91
+#: application/views/interface_assets/footer.php:93
 msgid "Grid was already worked and confirmed in the past"
 msgstr "Bu grid ile zaten bir kayıt ve onay bulunuyor"
 
-#: application/views/interface_assets/footer.php:92
+#: application/views/interface_assets/footer.php:94
 msgid "Grid was already worked in the past"
 msgstr "Grid geçmişte zaten çalışmıştı"
 
-#: application/views/interface_assets/footer.php:93
+#: application/views/interface_assets/footer.php:95
 msgid "New grid!"
 msgstr "Yeni Grid!"
 
-#: application/views/interface_assets/footer.php:94
+#: application/views/interface_assets/footer.php:96
 msgid "Are you sure to delete Fav?"
 msgstr "Favoriyi silmek istediğinize emin misiniz?"
 
-#: application/views/interface_assets/footer.php:95
+#: application/views/interface_assets/footer.php:97
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
 msgstr "Bu DXCC ile bu bant ve modda geçmişte zaten çalışıldı ve onaylandı!"
 
-#: application/views/interface_assets/footer.php:96
+#: application/views/interface_assets/footer.php:98
 msgid "DXCC was already worked in the past on this band and mode!"
 msgstr "Bu DXCC ile bu bant ve modda zaten daha önce çalışılmış!"
 
-#: application/views/interface_assets/footer.php:97
+#: application/views/interface_assets/footer.php:99
 msgid "New DXCC, not worked on this band and mode!"
 msgstr "Yeni DXCC, bu bant ve modda çalışılmadı!"
 
-#: application/views/interface_assets/footer.php:98
+#: application/views/interface_assets/footer.php:100
 #, php-format
 msgid "Lookup %s info on %s"
 msgstr "%s hakkında %s bilgisini ara"
 
-#: application/views/interface_assets/footer.php:99
+#: application/views/interface_assets/footer.php:101
 #, php-format
 msgid "Lookup %s summit info on %s"
 msgstr "%s hakkında %s zirve bilgilerini ara"
 
-#: application/views/interface_assets/footer.php:100
+#: application/views/interface_assets/footer.php:102
 #, php-format
 msgid "Lookup %s reference info on %s"
 msgstr "%s referans bilgilerini %s'de ara"
 
-#: application/views/interface_assets/footer.php:101
+#: application/views/interface_assets/footer.php:103
 msgid "Error loading bearing!"
 msgstr "Bağlantı yüklenirken hata oluştu!"
 
-#: application/views/interface_assets/footer.php:102
+#: application/views/interface_assets/footer.php:104
 msgid "Aliases"
 msgstr "Takma adlar"
 
-#: application/views/interface_assets/footer.php:103
+#: application/views/interface_assets/footer.php:105
 msgid "Previously"
 msgstr "Önceden"
 
-#: application/views/interface_assets/footer.php:104
+#: application/views/interface_assets/footer.php:106
 msgid "Born"
 msgstr "Doğum"
 
-#: application/views/interface_assets/footer.php:105
+#: application/views/interface_assets/footer.php:107
 msgid "years old"
 msgstr "yaşında"
 
-#: application/views/interface_assets/footer.php:106
+#: application/views/interface_assets/footer.php:108
 msgid "License"
 msgstr "Lisans"
 
-#: application/views/interface_assets/footer.php:107
+#: application/views/interface_assets/footer.php:109
 msgid "from"
 msgstr "-dan"
 
-#: application/views/interface_assets/footer.php:108
+#: application/views/interface_assets/footer.php:110
 msgid "years"
 msgstr "yıl"
 
-#: application/views/interface_assets/footer.php:109
+#: application/views/interface_assets/footer.php:111
 msgid "expired on"
 msgstr "süresi doldu"
 
-#: application/views/interface_assets/footer.php:110
+#: application/views/interface_assets/footer.php:112
 msgid "Website"
 msgstr "Web Sitesi"
 
-#: application/views/interface_assets/footer.php:111
+#: application/views/interface_assets/footer.php:113
 msgid "Local time"
 msgstr "Yerel saat"
 
-#: application/views/interface_assets/footer.php:113
+#: application/views/interface_assets/footer.php:115
 msgid "View location on Google Maps (Satellite)"
 msgstr "Google Haritalar'da konumu görüntüle (Uydu)"
 
-#: application/views/interface_assets/footer.php:114
+#: application/views/interface_assets/footer.php:116
 msgid "Novice"
 msgstr "Buralarda Yeni"
 
-#: application/views/interface_assets/footer.php:115
+#: application/views/interface_assets/footer.php:117
 msgid "Technician"
 msgstr "C Sınıfı"
 
-#: application/views/interface_assets/footer.php:117
+#: application/views/interface_assets/footer.php:119
 #: application/views/interface_assets/header.php:120
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: application/views/interface_assets/footer.php:118
+#: application/views/interface_assets/footer.php:120
 msgid "Extra"
 msgstr "A Sınıfı"
 
-#: application/views/interface_assets/footer.php:119
+#: application/views/interface_assets/footer.php:121
 msgid "Gridsquare Formatting"
 msgstr "Grid Karesi Biçimlendirme"
 
-#: application/views/interface_assets/footer.php:120
+#: application/views/interface_assets/footer.php:122
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
 "Virgülle ayrılmış birden fazla (4 basamaklı) ızgara girin. Örneğin: IO77,IO78"
 
-#: application/views/interface_assets/footer.php:121
+#: application/views/interface_assets/footer.php:123
 msgid "live"
 msgstr "Canlı"
 
-#: application/views/interface_assets/footer.php:122
+#: application/views/interface_assets/footer.php:124
 msgid "polling"
 msgstr "periyodik sorgulama"
 
-#: application/views/interface_assets/footer.php:123
+#: application/views/interface_assets/footer.php:125
 msgid ""
 "Note: Periodic polling is slow. When operating locally, WebSockets are a "
 "more convenient way to control your radio in real-time."
@@ -16550,81 +16580,81 @@ msgstr ""
 "Not: Periyodik sorgulama yavaştır. Yerel olarak çalışırken, WebSocket’ler "
 "telsizinizi gerçek zamanlı kontrol etmek için daha kullanışlı bir yoldur."
 
-#: application/views/interface_assets/footer.php:124
+#: application/views/interface_assets/footer.php:126
 msgid "TX"
 msgstr "TX"
 
-#: application/views/interface_assets/footer.php:125
+#: application/views/interface_assets/footer.php:127
 msgid "RX"
 msgstr "RX"
 
-#: application/views/interface_assets/footer.php:126
+#: application/views/interface_assets/footer.php:128
 msgid "TX/RX"
 msgstr "TX/RX"
 
-#: application/views/interface_assets/footer.php:129
+#: application/views/interface_assets/footer.php:131
 msgid "Radio connection error"
 msgstr "Radyo bağlantı hatası"
 
-#: application/views/interface_assets/footer.php:130
+#: application/views/interface_assets/footer.php:132
 msgid "Connection lost, please select another radio."
 msgstr "Bağlantı kesildi, lütfen başka bir radyo seçin."
 
-#: application/views/interface_assets/footer.php:131
+#: application/views/interface_assets/footer.php:133
 msgid "Radio connection timeout"
 msgstr "Telsiz bağlantısı zaman aşımına uğradı"
 
-#: application/views/interface_assets/footer.php:132
+#: application/views/interface_assets/footer.php:134
 msgid "Data is stale, please select another radio."
 msgstr "Veriler güncel değil, lütfen başka bir radyo seçin."
 
-#: application/views/interface_assets/footer.php:133
+#: application/views/interface_assets/footer.php:135
 msgid "You're not logged in. Please log in."
 msgstr "Giriş yapmadınız. Lütfen giriş yapın."
 
-#: application/views/interface_assets/footer.php:134
+#: application/views/interface_assets/footer.php:136
 msgid "Radio Tuning Failed"
 msgstr "Telsiz Ayarı Başarısız"
 
-#: application/views/interface_assets/footer.php:135
+#: application/views/interface_assets/footer.php:137
 msgid "Failed to tune radio to"
 msgstr "Telsiz şu frekansa ayarlanamadı:"
 
-#: application/views/interface_assets/footer.php:136
+#: application/views/interface_assets/footer.php:138
 msgid "CAT interface not responding. Please check your radio connection."
 msgstr "CAT arayüzü yanıt vermiyor. Lütfen telsiz bağlantınızı kontrol edin."
 
-#: application/views/interface_assets/footer.php:137
+#: application/views/interface_assets/footer.php:139
 msgid "No CAT URL configured for this radio"
 msgstr "Bu telsiz için CAT URL'si yapılandırılmamış"
 
-#: application/views/interface_assets/footer.php:138
+#: application/views/interface_assets/footer.php:140
 msgid "WebSocket Radio"
 msgstr "WebSocket Telsiz"
 
-#: application/views/interface_assets/footer.php:139
+#: application/views/interface_assets/footer.php:141
 msgid "Location is fetched from provided gridsquare"
 msgstr "Konum, istayon tarafından sağlanan grid karesinden alındı"
 
-#: application/views/interface_assets/footer.php:140
+#: application/views/interface_assets/footer.php:142
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
 msgstr "Konum DXCC koordinatlarından alındı (grid karesi bilgisi yok)"
 
-#: application/views/interface_assets/footer.php:141
+#: application/views/interface_assets/footer.php:143
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr "Konum belirlenemedi çünkü grid karesi boş ve DXCC bilgisi yok"
 
-#: application/views/interface_assets/footer.php:142
+#: application/views/interface_assets/footer.php:144
 msgid "Error saving operator callsign. Please try again."
 msgstr ""
 "Operatör çağrı işareti kaydedilirken hata oluştu. Lütfen tekrar deneyin."
 
-#: application/views/interface_assets/footer.php:145
+#: application/views/interface_assets/footer.php:147
 msgid "Working without CAT connection"
 msgstr "CAT bağlantısı olmadan çalışıyor"
 
-#: application/views/interface_assets/footer.php:146
+#: application/views/interface_assets/footer.php:148
 msgid ""
 "CAT connection is currently disabled. Enable CAT connection to work in "
 "online mode with your radio."
@@ -16632,7 +16662,7 @@ msgstr ""
 "CAT bağlantısı şu anda devre dışı. Telsizinizle çevrimiçi modda çalışmak "
 "için CAT bağlantısını etkinleştirin."
 
-#: application/views/interface_assets/footer.php:147
+#: application/views/interface_assets/footer.php:149
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
@@ -16640,88 +16670,88 @@ msgstr ""
 "Telsizinizi Wavelog’a bağlamak için kurulum talimatları için Wavelog Wiki "
 "sayfasını ziyaret edin."
 
-#: application/views/interface_assets/footer.php:224
+#: application/views/interface_assets/footer.php:226
 #: application/views/interface_assets/header.php:613
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Sürüm Bilgisi"
 
-#: application/views/interface_assets/footer.php:277
-#: application/views/interface_assets/footer.php:292
+#: application/views/interface_assets/footer.php:279
+#: application/views/interface_assets/footer.php:294
 msgid "Failed to load the modal. Please try again."
 msgstr "Modal yüklenemedi. Lütfen tekrar deneyin."
 
-#: application/views/interface_assets/footer.php:549
+#: application/views/interface_assets/footer.php:551
 msgid "Description:"
 msgstr "Açıklama:"
 
-#: application/views/interface_assets/footer.php:552
+#: application/views/interface_assets/footer.php:554
 msgid "Query description"
 msgstr "Sorgu Açıklaması"
 
-#: application/views/interface_assets/footer.php:568
+#: application/views/interface_assets/footer.php:570
 msgid "Your query has been saved!"
 msgstr "Sorgunuz kaydedildi!"
 
-#: application/views/interface_assets/footer.php:570
+#: application/views/interface_assets/footer.php:572
 #: application/views/search/filter.php:43
 msgid "Edit queries"
 msgstr "Sorguları Düzenle"
 
-#: application/views/interface_assets/footer.php:572
+#: application/views/interface_assets/footer.php:574
 msgid "Stored queries:"
 msgstr "Kaydedilmiş sorgular:"
 
-#: application/views/interface_assets/footer.php:577
+#: application/views/interface_assets/footer.php:579
 #: application/views/search/filter.php:57
 msgid "Run Query"
 msgstr "Sorguyu Çalıştır"
 
-#: application/views/interface_assets/footer.php:589
-#: application/views/interface_assets/footer.php:725
-#: application/views/interface_assets/footer.php:795
+#: application/views/interface_assets/footer.php:591
+#: application/views/interface_assets/footer.php:727
+#: application/views/interface_assets/footer.php:797
 msgid "Stored Queries"
 msgstr "Kaydedilmiş sorgular"
 
-#: application/views/interface_assets/footer.php:594
-#: application/views/interface_assets/footer.php:800
+#: application/views/interface_assets/footer.php:596
+#: application/views/interface_assets/footer.php:802
 msgid "You need to make a query before you search!"
 msgstr "Arama yapmadan önce bir sorgu oluşturmanız gerekiyor!"
 
-#: application/views/interface_assets/footer.php:615
-#: application/views/interface_assets/footer.php:752
+#: application/views/interface_assets/footer.php:617
+#: application/views/interface_assets/footer.php:754
 #: application/views/search/filter.php:76
 msgid "Export to ADIF"
 msgstr "ADIF'e aktar"
 
-#: application/views/interface_assets/footer.php:616
-#: application/views/interface_assets/footer.php:753
+#: application/views/interface_assets/footer.php:618
+#: application/views/interface_assets/footer.php:755
 #: application/views/search/main.php:32
 msgid "Open in the Advanced Logbook"
 msgstr "Gelişmiş Kayıt Defterinde Aç"
 
-#: application/views/interface_assets/footer.php:660
+#: application/views/interface_assets/footer.php:662
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Uyarı! Bu kayıtlı sorguyu silmek istediğinizden emin misiniz?"
 
-#: application/views/interface_assets/footer.php:674
+#: application/views/interface_assets/footer.php:676
 msgid "The stored query has been deleted!"
 msgstr "Kaydedilmiş sorgu silindi!"
 
-#: application/views/interface_assets/footer.php:683
+#: application/views/interface_assets/footer.php:685
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Kaydedilmiş sorgu silinemedi. Lütfen tekrar deneyin!"
 
-#: application/views/interface_assets/footer.php:709
+#: application/views/interface_assets/footer.php:711
 msgid "The query description has been updated!"
 msgstr "Sorgu açıklaması güncellendi!"
 
-#: application/views/interface_assets/footer.php:713
+#: application/views/interface_assets/footer.php:715
 msgid "Something went wrong with the save. Please try again!"
 msgstr ""
 "Kaydetme işlemi sırasında bir şeyler yanlış gitti. Lütfen tekrar deneyin!"
 
-#: application/views/interface_assets/footer.php:842
+#: application/views/interface_assets/footer.php:844
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -16731,15 +16761,15 @@ msgstr ""
 "için doğru DXCC’yi kontrol edin. Eğer eminseniz, bu uyarıyı yok "
 "sayabilirsiniz."
 
-#: application/views/interface_assets/footer.php:896
+#: application/views/interface_assets/footer.php:898
 msgid "Count: "
 msgstr "Adet: "
 
-#: application/views/interface_assets/footer.php:897
+#: application/views/interface_assets/footer.php:899
 msgid "Grids: "
 msgstr "Grid: "
 
-#: application/views/interface_assets/footer.php:1137
+#: application/views/interface_assets/footer.php:1139
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
@@ -16747,91 +16777,91 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Grid Karesi"
 
-#: application/views/interface_assets/footer.php:1347
+#: application/views/interface_assets/footer.php:1349
 msgid "Location Lookup failed. Please check browser console."
 msgstr ""
 "Konum sorgulama başarısız oldu. Lütfen tarayıcı konsolunu kontrol edin."
 
-#: application/views/interface_assets/footer.php:1498
-#: application/views/interface_assets/footer.php:1502
-#: application/views/interface_assets/footer.php:1505
-#: application/views/interface_assets/footer.php:1642
-#: application/views/interface_assets/footer.php:1646
-#: application/views/interface_assets/footer.php:1649
+#: application/views/interface_assets/footer.php:1500
+#: application/views/interface_assets/footer.php:1504
+#: application/views/interface_assets/footer.php:1507
+#: application/views/interface_assets/footer.php:1644
+#: application/views/interface_assets/footer.php:1648
+#: application/views/interface_assets/footer.php:1651
 msgid "grid square"
 msgstr "grid karesi"
 
-#: application/views/interface_assets/footer.php:1505
-#: application/views/interface_assets/footer.php:1649
+#: application/views/interface_assets/footer.php:1507
+#: application/views/interface_assets/footer.php:1651
 msgid "Total count"
 msgstr "Toplam Sayı"
 
-#: application/views/interface_assets/footer.php:2436
+#: application/views/interface_assets/footer.php:2438
 msgid "QSL Card for "
 msgstr "QSL Kartın Alıcısı: "
 
-#: application/views/interface_assets/footer.php:2456
+#: application/views/interface_assets/footer.php:2458
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Uyarı! Bu QSL kartını silmek istediğinizden emin misiniz?"
 
-#: application/views/interface_assets/footer.php:2496
+#: application/views/interface_assets/footer.php:2498
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL Kartı"
 
-#: application/views/interface_assets/footer.php:2498
+#: application/views/interface_assets/footer.php:2500
 msgid "eQSL Card for "
 msgstr "eQSL Kartın Alıcısı: "
 
-#: application/views/interface_assets/footer.php:2700
-#: application/views/interface_assets/footer.php:2737
+#: application/views/interface_assets/footer.php:2702
+#: application/views/interface_assets/footer.php:2739
 #: application/views/view_log/qso.php:726
 msgid "QSL image file"
 msgstr "QSL kart görüntüsü"
 
-#: application/views/interface_assets/footer.php:2719
+#: application/views/interface_assets/footer.php:2721
 msgid "Front QSL Card"
 msgstr "QSL Kartı Ön Yüzü"
 
-#: application/views/interface_assets/footer.php:2755
+#: application/views/interface_assets/footer.php:2757
 msgid "Back QSL Card"
 msgstr "QSL Kartı Arka Yüzü"
 
-#: application/views/interface_assets/footer.php:2759
+#: application/views/interface_assets/footer.php:2761
 msgid "The QSL card upload could not be completed."
 msgstr "QSL kartı yüklemesi tamamlanamadı."
 
-#: application/views/interface_assets/footer.php:2759
+#: application/views/interface_assets/footer.php:2761
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
 msgstr "Yükleme başarısız oldu"
 
-#: application/views/interface_assets/footer.php:2767
-#: application/views/interface_assets/footer.php:2792
+#: application/views/interface_assets/footer.php:2769
+#: application/views/interface_assets/footer.php:2794
 msgid "Add additional QSOs to a QSL Card"
 msgstr "QSL Kartına ek QSO ekle"
 
-#: application/views/interface_assets/footer.php:2803
+#: application/views/interface_assets/footer.php:2805
 msgid "Something went wrong. Please try again!"
 msgstr "Bir şeyler ters gitti. Lütfen tekrar deneyin!"
 
-#: application/views/interface_assets/footer.php:2889
+#: application/views/interface_assets/footer.php:2891
 msgid "US Counties for state"
 msgstr "Eyalet için ABD County'leri"
 
-#: application/views/interface_assets/footer.php:2937
+#: application/views/interface_assets/footer.php:2939
 msgid "Worked counties for state:"
 msgstr "Eyalet için çalışılan county'ler:"
 
-#: application/views/interface_assets/footer.php:2938
+#: application/views/interface_assets/footer.php:2940
 msgid "Confirmed counties for state:"
 msgstr "Eyalet için onaylanan county'ler:"
 
-#: application/views/interface_assets/footer.php:2939
+#: application/views/interface_assets/footer.php:2941
 msgid "Counties in state:"
 msgstr "Eyaletteki county'ler:"
 
-#: application/views/interface_assets/footer.php:2940
+#: application/views/interface_assets/footer.php:2942
 msgid "Needed counties for state:"
 msgstr "Eyalet için gereken county'ler:"
 
@@ -18856,7 +18886,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:550
 #: application/views/logbookadvanced/index.php:934
 #: application/views/logbookadvanced/useroptions.php:28
-#: application/views/satellite/passtable.php:9
+#: application/views/satellite/passtable.php:10
 #: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:43
 msgid "Duration"
@@ -21571,6 +21601,34 @@ msgstr ""
 "sayfası üzerinden güncelleyin. Eğer bunu yapmaya erişiminiz yoksa, "
 "yöneticinize başvurun!"
 
+#: application/views/satellite/hamsatpost.php:27
+msgid "Pass Time"
+msgstr ""
+
+#: application/views/satellite/hamsatpost.php:65
+msgid "Center"
+msgstr ""
+
+#: application/views/satellite/hamsatpost.php:68
+msgid "Uplink"
+msgstr ""
+
+#: application/views/satellite/hamsatpost.php:69
+msgid "Downlink"
+msgstr ""
+
+#: application/views/satellite/hamsatpost.php:117
+msgid "Max 50 characters"
+msgstr ""
+
+#: application/views/satellite/hamsatpost.php:122
+msgid "Realtime chat enabled"
+msgstr ""
+
+#: application/views/satellite/hamsatpost.php:126
+msgid "Chat is open until 1 day after the pass ends"
+msgstr ""
+
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
 msgstr "Bir uydu ekle"
@@ -21658,34 +21716,38 @@ msgid "AOS Time"
 msgstr "AOS Zamanı (İrtibat Başlangıç Zamanı)"
 
 #: application/views/satellite/passtable.php:8
+msgid "TCA Time"
+msgstr ""
+
+#: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr "LOS Zamanı (İrtibat Sonu Zamanı)"
 
-#: application/views/satellite/passtable.php:11
+#: application/views/satellite/passtable.php:12
 msgid "Max Elevation (Azimuth)"
 msgstr "Maksimum Yükseklik (Azimut)"
 
-#: application/views/satellite/passtable.php:12
+#: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr "AOS Azimut (İrtibat Başlangıç Açısı)"
 
-#: application/views/satellite/passtable.php:13
+#: application/views/satellite/passtable.php:14
 #: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr "LOS Azimut (İrtibat Sonu Açısı)"
 
-#: application/views/satellite/passtable.php:55
+#: application/views/satellite/passtable.php:64
 #: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr "Arama başarısız!"
 
-#: application/views/satellite/passtable.php:56
+#: application/views/satellite/passtable.php:65
 msgid "No passes found. Please check the input parameters."
 msgstr "Geçiş bulunamadı. Lütfen giriş parametrelerini kontrol edin."
 
-#: application/views/satellite/passtable.php:73
+#: application/views/satellite/passtable.php:82
 #: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr "dak."
