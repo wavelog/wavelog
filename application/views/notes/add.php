@@ -29,7 +29,7 @@
       <form method="post" action="<?php echo site_url('notes/add'); ?>" name="notes_add" id="notes_add">
         <div class="mb-3">
           <label for="inputTitle"><?= __("Title"); ?></label>
-      <input type="text" name="title" class="form-control <?= ($selected_category === 'Contacts') ? 'callsign' : '' ?>" id="inputTitle" value="<?php
+      <input type="text" name="title" class="form-control <?= (($selected_category ?? '') === 'Contacts') ? 'callsign' : '' ?>" id="inputTitle" value="<?php
       // Priority: suggested_title > POST value > prefill_title > ''
       if (isset($suggested_title) && $suggested_title) {
         echo $suggested_title;

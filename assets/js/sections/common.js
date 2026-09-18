@@ -684,6 +684,25 @@ function qso_save() {
     });
 }
 
+function post_hamsat() {
+    let myform = $("#hamsatform")[0];
+    let fd = new FormData(myform);
+    $.ajax({
+        url: base_url + 'index.php/satellite/post_hams_at',
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function () {
+           $(".preparehamsat-dialog").modal('hide');
+        },
+        error: function(xhr, status, error) {
+           $("#error-messages-hamsat-post").html('<div class="alert alert-danger alert-dismissible fade show" role="alert">'+xhr.responseText+'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+        }
+    });
+}
+
 function selectize_usa_county(state_field, county_field) {
     $(county_field).selectize()[0].selectize.destroy();
     $(county_field).selectize({

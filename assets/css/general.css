@@ -2711,6 +2711,15 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	max-height: 900px !important;
 }
 
+/* ============================================================
+   JCG award (application/views/awards/jcg)
+   ============================================================ */
+
+#jcgmap {
+	height: calc(100vh - 300px) !important;
+	max-height: 900px !important;
+}
+
 /* Sizing for the centered filter dropdown shared by the award pages */
 .dropdown-filters-responsive {
 	width: min(850px, 90vw);

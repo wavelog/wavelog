@@ -698,6 +698,12 @@ class Logbook_model extends CI_Model {
 				}
 				$this->db->where('COL_DXCC', '339');
 				break;
+			case 'JCG':
+				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
+				// designated city" variant, so COL_CNTY is matched directly.
+				$this->db->where('COL_CNTY', $searchphrase);
+				$this->db->where('COL_DXCC', '339');
+				break;
 			case 'SOTA':
 				$this->db->where('COL_SOTA_REF', $searchphrase);
 				break;

@@ -5,6 +5,7 @@ $dxcc = 0;
 $helvetia = 0;
 $iota = 0;
 $jcc = 0;
+$jcg = 0;
 $pota = 0;
 $rac = 0;
 $sig = 0;
@@ -51,6 +52,7 @@ $wwff = 0;
 							<th><?= __("H26"); ?></th>
 							<th><?= __("IOTA"); ?></th>
 							<th><?= __("JCC"); ?></th>
+							<th><?= __("JCG"); ?></th>
 							<th><?= __("POTA"); ?></th>
 							<th><?= __("RAC"); ?></th>
 							<th><?= __("Sig"); ?></th>
@@ -84,6 +86,7 @@ $wwff = 0;
 								<td style="text-align: center; vertical-align: middle;" class='helvetia_<?php echo $band->id ?>'><input type="checkbox" <?php if (isset($band->helvetia) && $band->helvetia == 1) {echo 'checked'; $helvetia++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='iota_<?php echo $band->id ?>'><input type="checkbox" <?php if (isset($band->iota) && $band->iota == 1) {echo 'checked'; $iota++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='jcc_<?php echo $band->id ?>'><input type="checkbox" <?php if (isset($band->jcc) && $band->jcc == 1) {echo 'checked'; $jcc++;}?>></td>
+								<td style="text-align: center; vertical-align: middle;" class='jcg_<?php echo $band->id ?>'><input type="checkbox" <?php if (isset($band->jcg) && $band->jcg == 1) {echo 'checked'; $jcg++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='pota_<?php echo $band->id ?>'><input type="checkbox" <?php if (isset($band->pota) && $band->pota == 1) {echo 'checked'; $pota++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='rac_<?php echo $band->id ?>'><input type="checkbox" <?php if (isset($band->rac) && $band->rac == 1) {echo 'checked'; $rac++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='sig_<?php echo $band->id ?>'><input type="checkbox" <?php if (isset($band->sig) && $band->sig == 1) {echo 'checked'; $sig++;}?>></td>
@@ -128,6 +131,7 @@ $wwff = 0;
 						<th class="master_helvetia"><input type="checkbox" <?php if ($helvetia > 0) echo 'checked';?>></th>
 						<th class="master_iota"><input type="checkbox" <?php if ($iota > 0) echo 'checked';?>></th>
 						<th class="master_jcc"><input type="checkbox" <?php if ($jcc > 0) echo 'checked';?>></th>
+						<th class="master_jcg"><input type="checkbox" <?php if ($jcg > 0) echo 'checked';?>></th>
 						<th class="master_pota"><input type="checkbox" <?php if ($pota > 0) echo 'checked';?>></th>
 						<th class="master_rac"><input type="checkbox" <?php if ($rac > 0) echo 'checked';?>></th>
 						<th class="master_sig"><input type="checkbox" <?php if ($sig > 0) echo 'checked';?>></th>
