@@ -1414,6 +1414,9 @@ function shareModal(qso_data, title) {
                 cssClass: 'bg-black bg-opacity-50',
                 nl2br: false,
                 message: html,
+                onshown: function (dialog) {
+                    dialog.getModalBody().find('[data-bs-toggle="tooltip"]').tooltip();
+                },
                 buttons: [{
                     label: lang_admin_close,
                     action: function (dialogItself) {
@@ -1605,10 +1608,9 @@ function copyToClipboard(text, targetElement) {
    }
 }
 
-function copyTwitterString(xString) {
-   var xButton = $('#xButton');
-   copyToClipboard(xString, xButton);
-}
+$(document).on('click', '#xButton', function () {
+   copyToClipboard($(this).data('twitter-string'), $(this));
+});
 
 // Fetch an HTML fragment and swap it into a target element, then reinit tooltips.
 // Replaces the former htmx hx-get / hx-target mechanism.
