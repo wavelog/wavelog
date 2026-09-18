@@ -680,6 +680,8 @@ class User_Model extends CI_Model {
 			'hasQrzKey' 					=> $this->hasQrzKey($u->user_id),
 			'impersonate' 					=> $sess['impersonate'] ?? false,
 			'clubstation' 					=> $u->clubstation,
+			'allow_cross_operator_edit' 	=> $u->allow_cross_operator_edit ?? 0,
+			'allow_cross_operator_delete' 	=> $u->allow_cross_operator_delete ?? 0,
 			'dashboard_last_qso_count' 		=> $user_options['dashboard']['last_qso_count']['count'] ?? DASHBOARD_DEFAULT_QSOS_COUNT,
 			'qso_page_last_qso_count' 		=> $user_options['qso_tab']['last_qso_count']['count'] ?? QSO_PAGE_DEFAULT_QSOS_COUNT,
 			'source_uid' 					=> $sess['source_uid'] ?? ''
