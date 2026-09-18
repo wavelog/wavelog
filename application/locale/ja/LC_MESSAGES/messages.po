@@ -3550,7 +3550,8 @@ msgstr "プリセットはありません"
 
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
-msgstr "hams.atへの投稿時に一般的なエラーが発生しました。入力値を確認してください。"
+msgstr ""
+"hams.atへの投稿時に一般的なエラーが発生しました。入力値を確認してください。"
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
@@ -4200,8 +4201,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1561
 msgid "Station setup failed! Please set up your station manually."
@@ -7125,6 +7126,7 @@ msgstr "APIトークン"
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/api/index.php:125 application/views/cron/index.php:36
 #: application/views/debug/index.php:60
+#: application/views/qso/components/share_modal.php:19
 msgid "Copy to clipboard"
 msgstr "クリップボードにコピー"
 
@@ -25697,9 +25699,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -26030,8 +26032,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
