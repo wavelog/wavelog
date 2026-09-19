@@ -1536,6 +1536,21 @@ function get_note_status(callsign){
 
 // Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
+	// Numeric input + CAT active = QSY: entry in kHz, either as full frequency (if it maps to a known band) or as offset added to the integer-MHz part of the current CAT frequency
+	var qsyInput = $(this).val().replace(',', '.');
+	if (isCATAvailable() && /^\d+(\.\d+)?$/.test(qsyInput) && window.catState && window.catState.frequency) {
+		var curHz = window.catState.frequency;
+		var entryHz = parseFloat(qsyInput) * 1000;
+		var fullBand = frequencyToBand(entryHz);
+		var offHz = Math.floor(curHz / 1e6) * 1e6 + entryHz;
+		var newHz = fullBand ? entryHz : (frequencyToBand(offHz) === frequencyToBand(curHz) ? offHz : null);
+		if (newHz) {
+			$(this).val('');
+			$(this).focus();
+			window.tuneRadioToFrequency(null, newHz, determineRadioMode($('#mode').val(), newHz));
+			return;
+		}
+	}
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
 		var currentCallsign = $(this).val().toUpperCase();
