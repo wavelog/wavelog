@@ -396,6 +396,11 @@ class QsoFormComponent {
 				if (e.key !== 'Enter') return;
 				// ESM (Enter Sends Message): let the winkeyer drive the QSO when active
 				if (window.winkeyEsmEnter && window.winkeyEsmEnter(e)) return;
+				if (input.id === 'qso-callsign' && /^\d+([.,]\d+)?$/.test(input.value.trim())) {
+					e.preventDefault();
+					this.tryNumericQsy(input);
+					return;
+				}
 				this.logQso();
 			});
 		});
@@ -456,8 +461,8 @@ class QsoFormComponent {
 				const el = e.target;
 				// Only A-Z/0-9 and the special chars "/", "?" are allowed.
 				const clean = (s) => {
-					let out = s.toUpperCase().replace(/[^A-Z0-9/?.]/g, '');
-					if (/[A-Z/?]/.test(out)) out = out.replace(/\./g, '');
+				let out = s.toUpperCase().replace(/[^A-Z0-9/?,.]/g, '');
+				if (/[A-Z/?]/.test(out)) out = out.replace(/[.,]/g, '');
 					return out;
 				};
 				const caret = clean(el.value.slice(0, el.selectionStart)).length;
@@ -959,6 +964,25 @@ class QsoFormComponent {
 		this.dataStore?.emit('qso_location_updated', null);
 	}
 
+	tryNumericQsy(el) {
+		const rc = this.radioComponent;
+		const v = el.value.trim().replace(',', '.');
+		if (!rc || rc.isManualMode() || !/^\d+(\.\d+)?$/.test(v)) return false;
+		const curHz = rc.getFrequency();
+		const entryHz = Math.round(parseFloat(v) * 1000);
+		const fullBand = rc.frequencyToBand(entryHz);
+		const offHz = (curHz !== null) ? Math.floor(curHz / 1e6) * 1e6 + entryHz : null;
+		const newHz = fullBand ? entryHz : ((offHz !== null && rc.frequencyToBand(offHz) === rc.frequencyToBand(curHz)) ? offHz : null);
+		if (newHz) {
+			el.value = '';
+			el.focus();
+			rc.tune(newHz);
+			this.resetLookupState();
+			return true;
+		}
+		return false;
+	}
+
 	async handleCallsignBlur(e) {
 		const callsign = e.target.value.trim().toUpperCase();
 		if (!callsign) {
@@ -967,21 +991,7 @@ class QsoFormComponent {
 			return;
 		}
 
-		const rc = this.radioComponent;
-		if (rc && !rc.isManualMode() && /^\d+(\.\d+)?$/.test(callsign)) {
-			const curHz = rc.getFrequency();
-			const entryHz = parseFloat(callsign) * 1000;
-			const fullBand = rc.frequencyToBand(entryHz);
-			const offHz = (curHz !== null) ? Math.floor(curHz / 1e6) * 1e6 + entryHz : null;
-			const newHz = fullBand ? entryHz : ((offHz !== null && rc.frequencyToBand(offHz) === rc.frequencyToBand(curHz)) ? offHz : null);
-			if (newHz) {
-				e.target.value = '';
-				e.target.focus();
-				rc.tune(newHz);
-				this.resetLookupState();
-				return;
-			}
-		}
+		if (this.tryNumericQsy(e.target)) return;
 
 		// Skip the lookup silently for malformed calls (too short, wildcards, ...)
 		if (!this.isCallsignLookupReady(callsign)) {
