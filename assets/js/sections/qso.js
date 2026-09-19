@@ -275,9 +275,9 @@ $('#callsign').on('input', function () {
 	// Prevent checking when the user's composing in IME
 	if (this.isComposing) return;
 
-	$(this).val($(this).val().replace(/\s/g, ''));
-	$(this).val($(this).val().replace(/\./g, '/P'));
-	$(this).val($(this).val().replace(/\ /g, ''));
+	var v = $(this).val().replace(/\s/g, '');
+	if (!/^[0-9.]*$/.test(v)) v = v.replace(/\./g, '/P');
+	$(this).val(v);
 });
 
 $('#locator').on('input', function () {
@@ -1534,8 +1534,27 @@ function get_note_status(callsign){
 		);
 }
 
+function tryNumericQsy($el) {
+	var qsyInput = $el.val().replace(',', '.');
+	if (typeof isCATAvailable === 'function' && isCATAvailable() && /^\d+(\.\d+)?$/.test(qsyInput) && window.catState && window.catState.frequency) {
+		var curHz = window.catState.frequency;
+		var entryHz = Math.round(parseFloat(qsyInput) * 1000);
+		var fullBand = frequencyToBand(entryHz);
+		var offHz = Math.floor(curHz / 1e6) * 1e6 + entryHz;
+		var newHz = fullBand ? entryHz : (frequencyToBand(offHz) === frequencyToBand(curHz) ? offHz : null);
+		if (newHz) {
+			$el.val('');
+			$el.focus();
+			window.tuneRadioToFrequency(null, newHz, determineRadioMode($('#mode').val(), newHz));
+			return true;
+		}
+	}
+	return false;
+}
+
 // Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
+	if (tryNumericQsy($(this))) return;
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
 		var currentCallsign = $(this).val().toUpperCase();
@@ -2998,6 +3017,10 @@ $("#callsign").on("keydown", function (e) {
 	if (e.which == 32) {
 		$("#name").trigger("focus");
 		e.preventDefault(); //Eliminate space char
+	}
+	if (e.key === 'Enter' && /^\d+([.,]\d+)?$/.test($(this).val().trim().replace(',', '.'))) {
+		e.preventDefault();
+		tryNumericQsy($(this));
 	}
 });
 
