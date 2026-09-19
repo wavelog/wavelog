@@ -1537,9 +1537,9 @@ function get_note_status(callsign){
 // Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
 	var qsyInput = $(this).val().replace(',', '.');
-	if (isCATAvailable() && /^\d+(\.\d+)?$/.test(qsyInput) && window.catState && window.catState.frequency) {
+	if (typeof isCATAvailable === 'function' && isCATAvailable() && /^\d+(\.\d+)?$/.test(qsyInput) && window.catState && window.catState.frequency) {
 		var curHz = window.catState.frequency;
-		var entryHz = parseFloat(qsyInput) * 1000;
+		var entryHz = Math.round(parseFloat(qsyInput) * 1000);
 		var fullBand = frequencyToBand(entryHz);
 		var offHz = Math.floor(curHz / 1e6) * 1e6 + entryHz;
 		var newHz = fullBand ? entryHz : (frequencyToBand(offHz) === frequencyToBand(curHz) ? offHz : null);
