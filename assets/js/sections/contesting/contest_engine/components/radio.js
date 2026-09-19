@@ -374,6 +374,29 @@ class RadioComponent {
 		return this.manualMode;
 	}
 
+	async tune(hz) {
+		if (this.manualMode || !this.selectedRadio || !Number.isFinite(hz)) return false;
+		try {
+			let catUrl = 'http://127.0.0.1:54321';
+			if (this.selectedRadio !== 'ws') {
+				const r = await fetch(base_url + 'index.php/radio/json/' + this.selectedRadio);
+				catUrl = r.ok ? (await r.json()).cat_url : null;
+			}
+			if (!catUrl) return false;
+			const mode = ({ cw: 'cw', fm: 'fm', am: 'am', rtty: 'rtty', lsb: 'lsb', usb: 'usb' })[(this.mode?.value || '').toLowerCase()]
+				|| (hz < 10000000 ? 'lsb' : 'usb');
+			const altUrl = catUrl.startsWith('https://') ? catUrl.replace('https://', 'http://') : catUrl.replace('http://', 'https://');
+			for (const base of new Set([catUrl, altUrl])) {
+				try {
+					if ((await fetch(`${base}/${Math.round(hz)}/${mode}`)).ok) return true;
+				} catch (_) {}
+			}
+		} catch (e) {
+			console.warn('RadioComponent: tune failed', e);
+		}
+		return false;
+	}
+
 	/**
 	 * Determine band from frequency in Hz
 	 * Ported from radiohelpers.js frequencyToBand()

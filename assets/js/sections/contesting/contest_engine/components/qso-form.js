@@ -455,7 +455,11 @@ class QsoFormComponent {
 			callsignInput.addEventListener('input', (e) => {
 				const el = e.target;
 				// Only A-Z/0-9 and the special chars "/", "?" are allowed.
-				const clean = (s) => s.toUpperCase().replace(/[^A-Z0-9/?]/g, '');
+				const clean = (s) => {
+					let out = s.toUpperCase().replace(/[^A-Z0-9/?.]/g, '');
+					if (/[A-Z/?]/.test(out)) out = out.replace(/\./g, '');
+					return out;
+				};
 				const caret = clean(el.value.slice(0, el.selectionStart)).length;
 				el.value = clean(el.value);
 				el.setSelectionRange(caret, caret);
@@ -961,6 +965,22 @@ class QsoFormComponent {
 			this.resetLookupState();
 			this.updateWorkedBeforeWarning('');
 			return;
+		}
+
+		const rc = this.radioComponent;
+		if (rc && !rc.isManualMode() && /^\d+(\.\d+)?$/.test(callsign)) {
+			const curHz = rc.getFrequency();
+			const entryHz = parseFloat(callsign) * 1000;
+			const fullBand = rc.frequencyToBand(entryHz);
+			const offHz = (curHz !== null) ? Math.floor(curHz / 1e6) * 1e6 + entryHz : null;
+			const newHz = fullBand ? entryHz : ((offHz !== null && rc.frequencyToBand(offHz) === rc.frequencyToBand(curHz)) ? offHz : null);
+			if (newHz) {
+				e.target.value = '';
+				e.target.focus();
+				rc.tune(newHz);
+				this.resetLookupState();
+				return;
+			}
 		}
 
 		// Skip the lookup silently for malformed calls (too short, wildcards, ...)

@@ -1536,7 +1536,6 @@ function get_note_status(callsign){
 
 // Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
-	// Numeric input + CAT active = QSY: entry in kHz, either as full frequency (if it maps to a known band) or as offset added to the integer-MHz part of the current CAT frequency
 	var qsyInput = $(this).val().replace(',', '.');
 	if (isCATAvailable() && /^\d+(\.\d+)?$/.test(qsyInput) && window.catState && window.catState.frequency) {
 		var curHz = window.catState.frequency;
