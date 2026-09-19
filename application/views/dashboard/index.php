@@ -292,7 +292,7 @@ function echo_table_header_col($name) {
 		</div>
 	</div>
 	</div>
-<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'kpiOptsMenu','target_id'=>'kpi-cards']); ?>
+<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'kpiOptsMenu','target_id'=>'kpi-cards']); } ?>
 <?php endif; ?>
 
 <div class="container dashboard px-3 px-lg-4 mt-3 mb-3">
@@ -447,7 +447,7 @@ function echo_table_header_col($name) {
 					</table>
 				</div>
 			</div>
-			<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'dxpeditionsOptsMenu','target_id'=>'dxpeditions-card']); ?>
+			<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'dxpeditionsOptsMenu','target_id'=>'dxpeditions-card']); } ?>
 		<?php } ?>
 
 			<?php if (!empty($active_contests) && $active_contests !== false) { ?>
@@ -477,7 +477,7 @@ function echo_table_header_col($name) {
 					</table>
 				</div>
 			</div>
-			<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'contestsOptsMenu','target_id'=>'contests-card']); ?>
+			<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'contestsOptsMenu','target_id'=>'contests-card']); } ?>
 		<?php } ?>
 		<?php if (!empty($dashboard_show_dxcc)) { ?>
 		<div class="card mb-3" id="dxcc-card" title="<?= __("Right-click for options"); ?>">
@@ -527,7 +527,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'dxccOptsMenu','target_id'=>'dxcc-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'dxccOptsMenu','target_id'=>'dxcc-card']); } ?>
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_qslcards)) { ?>
@@ -562,7 +562,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'qslOptsMenu','target_id'=>'qsl-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'qslOptsMenu','target_id'=>'qsl-card']); } ?>
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_lotw)) { ?>
@@ -592,7 +592,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'lotwOptsMenu','target_id'=>'lotw-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'lotwOptsMenu','target_id'=>'lotw-card']); } ?>
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_eqsl)) { ?>
@@ -622,7 +622,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'eqslOptsMenu','target_id'=>'eqsl-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'eqslOptsMenu','target_id'=>'eqsl-card']); } ?>
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_qrz)) { ?>
@@ -652,7 +652,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'qrzOptsMenu','target_id'=>'qrz-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'qrzOptsMenu','target_id'=>'qrz-card']); } ?>
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_clublog)) { ?>
@@ -682,7 +682,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'clublogOptsMenu','target_id'=>'clublog-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'clublogOptsMenu','target_id'=>'clublog-card']); } ?>
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_vucc)) { ?>
@@ -712,7 +712,7 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'vuccOptsMenu','target_id'=>'vucc-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'vuccOptsMenu','target_id'=>'vucc-card']); } ?>
 		<?php } ?>
 
 		<?php if (in_array(($dashboard_solar ?? 'N'), ['bottom', 'Y'], true)) { $this->load->view('dashboard/solar_data'); } ?>
@@ -720,6 +720,6 @@ function echo_table_header_col($name) {
 	</div>
 
 </div>
-<?php if($dashboard_map != "N") { $this->load->view('dashboard/_options_menu', ['menu_id'=>'mapOptsMenu','target_id'=>'map-card']); } ?>
+<?php if (clubaccess_check(9) && $dashboard_map != "N") { $this->load->view('dashboard/_options_menu', ['menu_id'=>'mapOptsMenu','target_id'=>'map-card']); } ?>
 <?php echo $firstloginwizard; ?>
 </div>
