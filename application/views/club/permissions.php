@@ -197,6 +197,26 @@
     </div>
     <div class="card mt-3">
         <div class="card-header">
+            <?= __("Cross-Operator Access"); ?>
+        </div>
+        <div class="card-body">
+            <p><?= sprintf(__("By default, Club Member and Club Member ADIF can only edit or delete QSOs they logged themselves under %s; Club Officers can always touch any QSO. Enable the switches below to let non-Officer members edit or delete QSOs logged by other operators too."), '<span class="callsign">' . htmlspecialchars($club->user_callsign) . '</span>'); ?></p>
+            <form action="<?= site_url('club/update_cross_operator_access'); ?>" method="post">
+                <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="allow_cross_operator_edit" name="allow_cross_operator_edit" value="1" <?php if ($club->allow_cross_operator_edit == 1) { echo 'checked'; } ?>>
+                    <label class="form-check-label" for="allow_cross_operator_edit"><?= __("Allow editing QSOs logged by other operators"); ?></label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="allow_cross_operator_delete" name="allow_cross_operator_delete" value="1" <?php if ($club->allow_cross_operator_delete == 1) { echo 'checked'; } ?>>
+                    <label class="form-check-label" for="allow_cross_operator_delete"><?= __("Allow deleting QSOs logged by other operators"); ?></label>
+                </div>
+                <button type="submit" class="btn btn-success ld-ext-right"><?= __("Save"); ?><div class="ld ld-ring ld-spin"></div></button>
+            </form>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-header">
             <?= __("Users with Permissions"); ?>
             <?php if ($sso_managed == true) { ?>
                 <span class="badge bg-light ms-1"><i class="fa fa-lock"></i> Managed by Identity Provider</span>

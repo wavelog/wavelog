@@ -730,8 +730,8 @@ class Logbookadvanced extends CI_Controller {
 		$ids = xss_clean($this->input->post('ids'));
 
 		$requested_ids = json_decode($ids, true) ?? [];
-		// Club Member (3/6) may only delete QSOs he made himself; officers and normal users are unaffected 
-		$ids_array = clubaccess_filter_qso_ids($requested_ids);
+		// Club Member (3/6) may only delete QSOs he made himself, unless the admin enabled cross-operator delete in club settings; officers and normal users are unaffected
+		$ids_array = clubaccess_filter_qso_ids($requested_ids, 'delete');
 		if (!empty($ids_array)) {
 			$this->load->model('logbookadvanced_model');
 			$this->logbookadvanced_model->deleteQsos(json_encode($ids_array));
