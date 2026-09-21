@@ -11,9 +11,57 @@ if ($usermessage != '') {
     $um_formatted = __("The user did not enter any additional message.") . "\n\n";
 }
 
-$message['body'] = sprintf( __("Hi,
+$qsoinfo = '';
 
-You got an OQRS request from %s."), strtoupper($callsign)) . "\n\n" .
+if (isset($qsos) && is_array($qsos) && count($qsos) > 0) {
+
+    $qsoinfo .= "Requested QSOs:\n\n";
+
+    foreach ($qsos as $qso) {
+
+        $qsoinfo .= sprintf(
+            "%s %s UTC  %s  %s %s %s %s %s\n",
+            $qso[0] ?? '',
+            $qso[1] ?? '',
+            $qso[2] ?? '',
+            $qso[3] ?? '',
+            $qso[4] ?? '',
+            $qso[5] ?? '',
+            $qso[6] ?? '',
+            $qso[7] ?? ''
+
+
+
+        );
+    }
+
+    $qsoinfo .= "\n";
+}
+
+
+
+
+
+$route = '';
+
+if (!empty($qslroute)) {
+    $route = ($qslroute == 'D') ? 'Direct' : (($qslroute == 'B') ? 'Bureau' : $qslroute);
+}
+
+$message['body'] =
+sprintf(
+    __("Hi,
+
+You got an OQRS request from %s."),
+    strtoupper($callsign)
+) . "\n\n" .
+
+"Callsign: " . strtoupper($callsign) . "\n" .
+"Email: " . $email . "\n" .
+"Route: " . $route . "\n" .
+"DXCALL:   "    .   $dxcallsigns    .   "\n\n" .
+
+$qsoinfo .
 
 $um_formatted .
 

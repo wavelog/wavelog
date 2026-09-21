@@ -32,7 +32,6 @@ class Oqrs_model extends CI_Model {
 
     function get_qsos($station_id, $callsign, $bands){
 		$modes = $this->get_worked_modes($station_id);
-		$resultArray = [];
 
 		// Creating an empty array with all the bands and modes from the database
 		foreach ($modes as $mode) {
@@ -396,23 +395,6 @@ class Oqrs_model extends CI_Model {
 		return null;
 	}
 
-	function normalize_time($raw) {
-		if (preg_match('/^(\d{1,2}):?(\d{2})$/', trim((string)$raw), $m)
-			&& $m[1] < 24 && $m[2] < 60) {
-			return sprintf('%02d:%02d', $m[1], $m[2]);
-		}
-		return null;
-	}
-
-	function normalize_date($raw) {
-		if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', trim((string)$raw), $m)
-			&& $m[1] >= 1900 && $m[1] <= (int)date('Y') + 1
-			&& checkdate((int)$m[2], (int)$m[3], (int)$m[1])) {
-			return $m[1].'-'.$m[2].'-'.$m[3];
-		}
-		return null;
-	}
-
 	function add_oqrs_to_print_queue($id) {
 		$sql = 'SELECT * FROM oqrs join station_profile on oqrs.station_id = station_profile.station_id WHERE oqrs.id = ? AND station_profile.user_id = ?';
 		$binding = [$id, $this->session->userdata('user_id')];
@@ -428,7 +410,7 @@ class Oqrs_model extends CI_Model {
 		$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
 				'COL_QSL_SENT' => 'R',
-				'COL_QSL_SENT_VIA' => $method
+				'COL_QSL_SENT_VIA ' => $method
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $qso_id);
@@ -478,15 +460,13 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function mark_oqrs_line_as_done($id) {
-		// Scope the update to the session user's stations to prevent cross-user IDOR
-		$sql = 'UPDATE oqrs
-			JOIN station_profile ON station_profile.station_id = oqrs.station_id
-			SET oqrs.status = 2
-			WHERE oqrs.id = ?
-			AND station_profile.user_id = ?';
-		$binding = [$id, $this->session->userdata('user_id')];
+		$data = array(
+			'status' => '2',
+	   );
 
-		$this->db->query($sql, $binding);
+	   $this->db->where('id', $id);
+
+	   $this->db->update('oqrs', $data);
 	}
 
 	function getQslInfo($station_id) {
