@@ -299,6 +299,9 @@ class Debug_model extends CI_Model
                 if (!is_dir($cache_path)) {
                     return 0;
                 }
+                if (!is_readable($cache_path)) {
+                   return 0;
+                }
 
                 $size = 0;
                 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
@@ -372,6 +375,9 @@ class Debug_model extends CI_Model
 
                 if (!is_dir($cache_path)) {
                     return 0;
+                }
+                if (!is_readable($cache_path)) {
+                   return 0;
                 }
 
                 $count = 0;
