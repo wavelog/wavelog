@@ -907,7 +907,9 @@ function showActivatorsMap(call, count, grids, grid_color) {
         container._leaflet_id = null;
     }
 
-    const map = new L.map('mapactivators').setView([30, 0], 1.5);
+    const map = new L.map('mapactivators', {
+        fullscreenControl: true,
+    }).setView([30, 0], 1.5);
 
     var grid_four = grids.split(', ');
 
