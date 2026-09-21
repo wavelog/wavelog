@@ -73,17 +73,8 @@ class Map extends CI_Controller {
  * Propagation map
  */
 public function propagation() {
-        $this->load->model('stations');
-
-        $data['homegrid'] = explode(',', $this->stations->find_gridsquare());
         $data['page_title'] = __("Propagation Map");
-
         $footerData = [];
-        $footerData['scripts'] = [
-                'assets/js/leaflet/L.Maidenhead.js',
-                'assets/js/leaflet/L.Terminator.js',
-                'assets/js/sections/propagation_map.js',
-        ];
 
         $this->load->view('interface_assets/header', $data);
         $this->load->view('map/propagation');
