@@ -3472,6 +3472,10 @@ msgstr "Muokkaa"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:727
 #: application/views/view_log/qso.php:735
+#: application/views/interface_assets/footer.php:2692
+#: application/views/interface_assets/footer.php:2710
+#: application/views/interface_assets/footer.php:2729
+#: application/views/interface_assets/footer.php:2747
 msgid "Delete"
 msgstr "Poista"
 
@@ -5430,6 +5434,8 @@ msgstr "Ero"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/interface_assets/footer.php:1575
+#: application/views/interface_assets/footer.php:1714
 msgid "All"
 msgstr "Kaikki"
 
@@ -6413,6 +6419,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:661
 #: application/views/interface_assets/footer.php:2457
+#: application/views/interface_assets/footer.php:2459
 msgid "DANGER"
 msgstr "VAARA"
 
@@ -8245,6 +8252,7 @@ msgstr "Näytä workkimattomat"
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2438
 msgid "QSL Card"
 msgstr "QSL-kortti"
 
@@ -9555,8 +9563,8 @@ msgstr ""
 "on oma yhdistyksensä, joka määrittelee kyseisen yhdistyksen SOTA-huiput. "
 "Jokaisesta huipusta saa aktivaattoreille ja hunttereille pisteitä, jotka "
 "liittyvät huipun korkeuteen. Erilaisista pistemääristä saa todistuksia, "
-"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' -"
-"palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
+"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' "
+"-palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
 "SOTAn online-tietokannassa."
 
 #: application/views/awards/sota/index.php:28
@@ -14521,8 +14529,8 @@ msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
 msgstr ""
-"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä DXCC:"
-"tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
+"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä "
+"DXCC:tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
 
 #: application/views/dbtools/checkresult.php:381
 msgid "QSO DXCC"
@@ -15988,6 +15996,10 @@ msgstr "QSL-päivämäärä"
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:736
+#: application/views/interface_assets/footer.php:2693
+#: application/views/interface_assets/footer.php:2711
+#: application/views/interface_assets/footer.php:2730
+#: application/views/interface_assets/footer.php:2748
 msgid "View"
 msgstr "Näytä"
 
@@ -16445,8 +16457,8 @@ msgstr "Lokaattorin muotoilu"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: IO77,"
-"IO78"
+"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:123
 msgid "live"
@@ -16528,8 +16540,8 @@ msgstr "Sijainti haetaan DXCC-koordinaateista (ei lokaattoria annettu)"
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
-"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on -"
-"NONE-"
+"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on "
+"-NONE-"
 
 #: application/views/interface_assets/footer.php:144
 msgid "Error saving operator callsign. Please try again."
@@ -16656,11 +16668,13 @@ msgstr "Lokaattoriruudut: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
+#: application/views/interface_assets/footer.php:1141
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokaattoriruudut"
 
 #: application/views/interface_assets/footer.php:1349
+#: application/views/interface_assets/footer.php:1351
 msgid "Location Lookup failed. Please check browser console."
 msgstr "Sijainnin haku epäonnistui. Tarkista selainkonsoli."
 
@@ -16670,80 +16684,106 @@ msgstr "Sijainnin haku epäonnistui. Tarkista selainkonsoli."
 #: application/views/interface_assets/footer.php:1644
 #: application/views/interface_assets/footer.php:1648
 #: application/views/interface_assets/footer.php:1651
+#: application/views/interface_assets/footer.php:1502
+#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1509
+#: application/views/interface_assets/footer.php:1646
+#: application/views/interface_assets/footer.php:1650
+#: application/views/interface_assets/footer.php:1653
 msgid "grid square"
 msgstr "Lokaattori"
 
 #: application/views/interface_assets/footer.php:1507
 #: application/views/interface_assets/footer.php:1651
+#: application/views/interface_assets/footer.php:1509
+#: application/views/interface_assets/footer.php:1653
 msgid "Total count"
 msgstr "Yhteensä"
 
 #: application/views/interface_assets/footer.php:2438
+#: application/views/interface_assets/footer.php:2440
 msgid "QSL Card for "
 msgstr "QSL-kortti "
 
 #: application/views/interface_assets/footer.php:2458
+#: application/views/interface_assets/footer.php:2460
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varoitus! Haluatko varmasti poistaa tämän QSL-kortin?"
 
 #: application/views/interface_assets/footer.php:2498
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2500
 msgid "eQSL Card"
 msgstr "eQSL-kortti"
 
 #: application/views/interface_assets/footer.php:2500
+#: application/views/interface_assets/footer.php:2502
 msgid "eQSL Card for "
 msgstr "eQSL-kortti "
 
 #: application/views/interface_assets/footer.php:2702
 #: application/views/interface_assets/footer.php:2739
 #: application/views/view_log/qso.php:726
+#: application/views/interface_assets/footer.php:2704
+#: application/views/interface_assets/footer.php:2741
 msgid "QSL image file"
 msgstr "QSL-kuvatiedosto"
 
 #: application/views/interface_assets/footer.php:2721
+#: application/views/interface_assets/footer.php:2723
 msgid "Front QSL Card"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2757
+#: application/views/interface_assets/footer.php:2759
 msgid "Back QSL Card"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2761
+#: application/views/interface_assets/footer.php:2763
 msgid "The QSL card upload could not be completed."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2761
 #: application/views/qslpostcard/designer.php:31
+#: application/views/interface_assets/footer.php:2763
 msgid "Upload failed"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2769
 #: application/views/interface_assets/footer.php:2794
+#: application/views/interface_assets/footer.php:2771
+#: application/views/interface_assets/footer.php:2796
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Liitä muita QSOja QSL-korttiin"
 
 #: application/views/interface_assets/footer.php:2805
+#: application/views/interface_assets/footer.php:2807
 msgid "Something went wrong. Please try again!"
 msgstr "Jokin meni pieleen. Yritä uudelleen!"
 
 #: application/views/interface_assets/footer.php:2891
+#: application/views/interface_assets/footer.php:2893
 msgid "US Counties for state"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2939
+#: application/views/interface_assets/footer.php:2941
 msgid "Worked counties for state:"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2940
+#: application/views/interface_assets/footer.php:2942
 msgid "Confirmed counties for state:"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2941
+#: application/views/interface_assets/footer.php:2943
 msgid "Counties in state:"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:2942
+#: application/views/interface_assets/footer.php:2944
 msgid "Needed counties for state:"
 msgstr ""
 
@@ -23988,8 +24028,8 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
-"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu -"
-"tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
+"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu "
+"-tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
 "tavallinen käyttäjätili, jossa on joitakin erityistoimintoja ja rajoituksia."
 
 #: application/views/user/index.php:143

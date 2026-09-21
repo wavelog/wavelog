@@ -3298,8 +3298,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Por favor, compare o seu atual config.php com o mais recente config.sample."
-"php e atualize em conformidade."
+"Por favor, compare o seu atual config.php com o mais recente "
+"config.sample.php e atualize em conformidade."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:576
@@ -3484,6 +3484,10 @@ msgstr "Editar"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:727
 #: application/views/view_log/qso.php:735
+#: application/views/interface_assets/footer.php:2692
+#: application/views/interface_assets/footer.php:2710
+#: application/views/interface_assets/footer.php:2729
+#: application/views/interface_assets/footer.php:2747
 msgid "Delete"
 msgstr "Apagar"
 
@@ -5469,6 +5473,8 @@ msgstr "Diferença"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/interface_assets/footer.php:1575
+#: application/views/interface_assets/footer.php:1714
 msgid "All"
 msgstr "Todos"
 
@@ -6456,6 +6462,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:661
 #: application/views/interface_assets/footer.php:2457
+#: application/views/interface_assets/footer.php:2459
 msgid "DANGER"
 msgstr "PERIGO"
 
@@ -8317,6 +8324,7 @@ msgstr "Mostrar não contactados"
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2438
 msgid "QSL Card"
 msgstr "Cartão QSL"
 
@@ -10194,8 +10202,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos considerados para este diploma: DXCC (Deve ser um dos E.U.A., Alasca "
-"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos E.U."
-"A.!)"
+"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos "
+"E.U.A.!)"
 
 #: application/views/awards/was/index.php:55
 msgid "Show WAS Map"
@@ -16182,6 +16190,10 @@ msgstr "Data QSL"
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:736
+#: application/views/interface_assets/footer.php:2693
+#: application/views/interface_assets/footer.php:2711
+#: application/views/interface_assets/footer.php:2730
+#: application/views/interface_assets/footer.php:2748
 msgid "View"
 msgstr "Vista"
 
@@ -16642,8 +16654,8 @@ msgstr "Formatação de quadrícula"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: IO77,"
-"IO78"
+"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:123
 msgid "live"
@@ -16859,11 +16871,13 @@ msgstr "Grelhas: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
+#: application/views/interface_assets/footer.php:1141
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Gridsquares"
 
 #: application/views/interface_assets/footer.php:1349
+#: application/views/interface_assets/footer.php:1351
 msgid "Location Lookup failed. Please check browser console."
 msgstr ""
 "Falha na procura de localização. Por favor, verifique a consola do navegador."
@@ -16874,80 +16888,106 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1644
 #: application/views/interface_assets/footer.php:1648
 #: application/views/interface_assets/footer.php:1651
+#: application/views/interface_assets/footer.php:1502
+#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1509
+#: application/views/interface_assets/footer.php:1646
+#: application/views/interface_assets/footer.php:1650
+#: application/views/interface_assets/footer.php:1653
 msgid "grid square"
 msgstr "quadrícula"
 
 #: application/views/interface_assets/footer.php:1507
 #: application/views/interface_assets/footer.php:1651
+#: application/views/interface_assets/footer.php:1509
+#: application/views/interface_assets/footer.php:1653
 msgid "Total count"
 msgstr "Número total"
 
 #: application/views/interface_assets/footer.php:2438
+#: application/views/interface_assets/footer.php:2440
 msgid "QSL Card for "
 msgstr "Cartão QSL para "
 
 #: application/views/interface_assets/footer.php:2458
+#: application/views/interface_assets/footer.php:2460
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Aviso! Tem a certeza de que quer eliminar este cartão QSL?"
 
 #: application/views/interface_assets/footer.php:2498
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2500
 msgid "eQSL Card"
 msgstr "Cartão eQSL"
 
 #: application/views/interface_assets/footer.php:2500
+#: application/views/interface_assets/footer.php:2502
 msgid "eQSL Card for "
 msgstr "Cartão eQSL para "
 
 #: application/views/interface_assets/footer.php:2702
 #: application/views/interface_assets/footer.php:2739
 #: application/views/view_log/qso.php:726
+#: application/views/interface_assets/footer.php:2704
+#: application/views/interface_assets/footer.php:2741
 msgid "QSL image file"
 msgstr "Ficheiro de imagem QSL"
 
 #: application/views/interface_assets/footer.php:2721
+#: application/views/interface_assets/footer.php:2723
 msgid "Front QSL Card"
 msgstr "Frente do Cartão QSL"
 
 #: application/views/interface_assets/footer.php:2757
+#: application/views/interface_assets/footer.php:2759
 msgid "Back QSL Card"
 msgstr "Parte traseira do Cartão QSL"
 
 #: application/views/interface_assets/footer.php:2761
+#: application/views/interface_assets/footer.php:2763
 msgid "The QSL card upload could not be completed."
 msgstr "O carregamento do cartão QSL não pôde ser concluído."
 
 #: application/views/interface_assets/footer.php:2761
 #: application/views/qslpostcard/designer.php:31
+#: application/views/interface_assets/footer.php:2763
 msgid "Upload failed"
 msgstr "Carregamento falhou"
 
 #: application/views/interface_assets/footer.php:2769
 #: application/views/interface_assets/footer.php:2794
+#: application/views/interface_assets/footer.php:2771
+#: application/views/interface_assets/footer.php:2796
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Adicionar QSOs adicionais a um Cartão QSL"
 
 #: application/views/interface_assets/footer.php:2805
+#: application/views/interface_assets/footer.php:2807
 msgid "Something went wrong. Please try again!"
 msgstr "Algo correu mal. Por favor, tente novamente!"
 
 #: application/views/interface_assets/footer.php:2891
+#: application/views/interface_assets/footer.php:2893
 msgid "US Counties for state"
 msgstr "Condados dos EUA para o estado"
 
 #: application/views/interface_assets/footer.php:2939
+#: application/views/interface_assets/footer.php:2941
 msgid "Worked counties for state:"
 msgstr "Condados trabalhados para o estado:"
 
 #: application/views/interface_assets/footer.php:2940
+#: application/views/interface_assets/footer.php:2942
 msgid "Confirmed counties for state:"
 msgstr "Condados confirmados para o estado:"
 
 #: application/views/interface_assets/footer.php:2941
+#: application/views/interface_assets/footer.php:2943
 msgid "Counties in state:"
 msgstr "Municípios no estado:"
 
 #: application/views/interface_assets/footer.php:2942
+#: application/views/interface_assets/footer.php:2944
 msgid "Needed counties for state:"
 msgstr "Concelhos necessários para o estado:"
 
@@ -20165,8 +20205,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” "
+"(sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:54
 msgid "SMTP Port"
@@ -23321,8 +23361,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23696,8 +23737,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:484
 msgid ""
