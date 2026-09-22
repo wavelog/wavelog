@@ -52,6 +52,7 @@ class Callbook {
 	private $logbook_not_configured;
 	private $error_obtaining_sessionkey;
 	private $error_caching_sessionkey;
+	private $error_reading_cached_sessionkey;
 
 	public function __construct() {
 		$this->ci = & get_instance();
@@ -71,6 +72,7 @@ class Callbook {
 		$this->logbook_not_configured = __("Lookup not configured. Please review configuration.");
 		$this->error_obtaining_sessionkey = __("Error obtaining a session key for callbook. Error: %s");
 		$this->error_caching_sessionkey = __("Generic error storing the callbook session key in cache.");
+		$this->error_reading_cached_sessionkey = __("Generic error reading the cached callbook session key.");
 	}
 
 	// TODO:
@@ -173,7 +175,14 @@ class Callbook {
 				}
 			}
 
-			$callbook = $this->ci->qrz->search($callsign, $this->ci->cache->get($this->qrz_session_cachekey), $fullname);
+			$cached_qrz_session_key = $this->ci->cache->get($this->qrz_session_cachekey) ?? '';
+			if ($cached_qrz_session_key != '') {
+				$callbook = $this->ci->qrz->search($callsign, $cached_qrz_session_key, $fullname);
+			} else {
+				log_message('error', 'Error reading cached qrz.com session key from cache');
+				$callbook['error'] = $this->error_reading_cached_sessionkey;
+				return $callbook;
+			}
 
 			if ($callbook['error'] ?? '' == 'Invalid session key') {
 				$qrz_session_key = $this->ci->qrz->session($username, $password);
@@ -187,7 +196,14 @@ class Callbook {
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
-				$callbook = $this->ci->qrz->search($callsign, $this->ci->cache->get($this->qrz_session_cachekey), $fullname);
+				$cached_qrz_session_key = $this->ci->cache->get($this->qrz_session_cachekey) ?? '';
+				if ($cached_qrz_session_key != '') {
+					$callbook = $this->ci->qrz->search($callsign, $cached_qrz_session_key, $fullname);
+				} else {
+					log_message('error', 'Error reading cached qrz.com session key from cache');
+					$callbook['error'] = $this->error_reading_cached_sessionkey;
+					return $callbook;
+				}
 			}
 
 			if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
@@ -230,7 +246,14 @@ class Callbook {
 				}
 			}
 
-			$callbook = $this->ci->qrzcq->search($callsign, $this->ci->cache->get($this->qrzcq_session_cachekey));
+			$cached_qrzcq_session_key = $this->ci->cache->get($this->qrzcq_session_cachekey) ?? '';
+			if ($cached_qrzcq_session_key != '') {
+				$callbook = $this->ci->qrzcq->search($callsign, $cached_qrzcq_session_key);
+			} else {
+				log_message('error', 'Error reading cached qrzru session key from cache');
+				$callbook['error'] = $this->error_reading_cached_sessionkey;
+				return $callbook;
+			}
 
 			if ($callbook['error'] ?? '' == 'Invalid session key') {
 				$qrzcq_session_key = $this->ci->qrzcq->session($username, $password);
@@ -244,7 +267,14 @@ class Callbook {
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
-				$callbook = $this->ci->qrzcq->search($callsign, $this->ci->cache->get($this->qrzcq_session_cachekey));
+				$cached_qrzcq_session_key = $this->ci->cache->get($this->qrzcq_session_cachekey) ?? '';
+				if ($cached_qrzcq_session_key != '') {
+					$callbook = $this->ci->qrzcq->search($callsign, $cached_qrzcq_session_key);
+				} else {
+					log_message('error', 'Error reading cached qrzru session key from cache');
+					$callbook['error'] = $this->error_reading_cached_sessionkey;
+					return $callbook;
+				}
 			}
 
 			if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
@@ -283,7 +313,14 @@ class Callbook {
 				}
 			}
 
-			$callbook = $this->ci->hamqth->search($callsign, $this->ci->cache->get($this->hamqth_session_cachekey));
+			$cached_hamqth_session_key = $this->ci->cache->get($this->hamqth_session_cachekey) ?? '';
+			if ($hamqth_session_cachekey != '') {
+				$callbook = $this->ci->hamqth->search($callsign, $cached_hamqth_session_key);
+			} else {
+				log_message('error', 'Error reading cached hamqth session key from cache');
+				$callbook['error'] = $this->error_reading_cached_sessionkey;
+				return $callbook;
+			}
 
 			// If HamQTH session has expired, start a new session and retry the search.
 			if ($callbook['error'] == "Session does not exist or expired") {
@@ -298,7 +335,14 @@ class Callbook {
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
-				$callbook = $this->ci->hamqth->search($callsign, $this->ci->cache->get($this->hamqth_session_cachekey));
+				$cached_hamqth_session_key = $this->ci->cache->get($this->hamqth_session_cachekey) ?? '';
+				if ($hamqth_session_cachekey != '') {
+					$callbook = $this->ci->hamqth->search($callsign, $cached_hamqth_session_key);
+				} else {
+					log_message('error', 'Error reading cached hamqth session key from cache');
+					$callbook['error'] = $this->error_reading_cached_sessionkey;
+					return $callbook;
+				}
 			}
 
 			if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
@@ -336,7 +380,14 @@ class Callbook {
 				}
 			}
 
-			$callbook = $this->ci->qrzru->search($callsign, $this->ci->cache->get($this->qrzru_session_cachekey));
+			$cached_qrzru_session_key = $this->ci->cache->get($this->qrzru_session_cachekey) ?? '';
+			if ($cached_qrzru_session_key != '') {
+				$callbook = $this->ci->qrzru->search($callsign, $cached_qrzru_session_key);
+			} else {
+				log_message('error', 'Error reading cached qrzru session key from cache');
+				$callbook['error'] = $this->error_reading_cached_sessionkey;
+				return $callbook;
+			}
 
 			if ($callbook['error'] ?? '' == 'Session does not exist or expired') {
 				$qrzru_session_key = $this->ci->qrzru->session($username, $password);
@@ -350,7 +401,14 @@ class Callbook {
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
-				$callbook = $this->ci->qrzru->search($callsign, $this->ci->cache->get($this->qrzru_session_cachekey));
+				$cached_qrzru_session_key = $this->ci->cache->get($this->qrzru_session_cachekey) ?? '';
+				if ($cached_qrzru_session_key != '') {
+					$callbook = $this->ci->qrzru->search($callsign, $cached_qrzru_session_key);
+				} else {
+					log_message('error', 'Error reading cached qrzru session key from cache');
+					$callbook['error'] = $this->error_reading_cached_sessionkey;
+					return $callbook;
+				}
 			}
 
 			if (strpos($callbook['error'] ?? '', 'Callsign not found') !== false && strpos($callsign, "/") !== false) {
