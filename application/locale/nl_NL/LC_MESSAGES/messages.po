@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-22 09:14+0000\n"
+"POT-Creation-Date: 2026-09-22 21:15+0000\n"
 "PO-Revision-Date: 2026-09-15 14:40+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -193,7 +193,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
-#: application/controllers/Oqrs.php:429 application/controllers/Qrbcalc.php:12
+#: application/controllers/Oqrs.php:459 application/controllers/Qrbcalc.php:12
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
 #: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
@@ -3190,11 +3190,11 @@ msgstr "Voer alstublieft een geldige datum in."
 msgid "Please enter a valid time."
 msgstr "Voer alstublieft een geldige tijd in."
 
-#: application/controllers/Oqrs.php:414
+#: application/controllers/Oqrs.php:444
 msgid "QSO match deleted successfully."
 msgstr "Overeenkomstige QSO succesvol verwijderd."
 
-#: application/controllers/Oqrs.php:424
+#: application/controllers/Oqrs.php:454
 msgid "QSO match added successfully."
 msgstr "Overeenkomstige QSO met succes toegevoegd."
 
@@ -15907,7 +15907,7 @@ msgstr "De gebruiker heeft het volgende bericht ingevoerd: "
 msgid "The user did not enter any additional message."
 msgstr "De gebruiker heeft geen extra bericht ingevoerd."
 
-#: application/views/email/oqrs_request.php:14
+#: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
 "Hi,\n"
@@ -15918,7 +15918,7 @@ msgstr ""
 "\n"
 "Je hebt een OQRS-verzoek van %s ontvangen."
 
-#: application/views/email/oqrs_request.php:20
+#: application/views/email/oqrs_request.php:65
 msgid ""
 "Please log into your Wavelog and process it.\n"
 "\n"
