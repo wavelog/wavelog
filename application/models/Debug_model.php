@@ -410,10 +410,15 @@ class Debug_model extends CI_Model
                 $size = 0;
                 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
 
-                foreach ($files as $file) {
-                    if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
-                        $size += $file->getSize();
+                try {
+                    foreach ($files as $file) {
+                        if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
+                            $size += $file->getSize();
+                        }
                     }
+                } catch (Exception $e) {
+                    log_message('error', 'Error accessing cache directory: '.$e->getMessage());
+                    return 0;
                 }
 
                 return $size;
@@ -484,10 +489,15 @@ class Debug_model extends CI_Model
                 $count = 0;
                 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
 
-                foreach ($files as $file) {
-                    if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
-                        $count++;
+                try {
+                    foreach ($files as $file) {
+                        if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
+                            $count++;
+                        }
                     }
+                } catch (Exception $e) {
+                    log_message('error', 'Error accessing cache directory: '.$e->getMessage());
+                    return 0;
                 }
 
                 return $count;
