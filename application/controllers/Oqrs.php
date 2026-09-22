@@ -296,8 +296,7 @@ class Oqrs extends CI_Controller {
 	}
 
 	private function _alert_oqrs_request($postdata, $station_ids) {
-        
-        $this->load->model('Stations');	
+    	
         $callsigns = [];	
         foreach ($station_ids as $sid) {	
             $station = $this->Stations->profile($sid)->row();	
@@ -308,6 +307,9 @@ class Oqrs extends CI_Controller {
         $dxcallsigns = implode(', ', array_unique($callsigns));
         // send email 1 only
         $station_ids = array_values(array_unique($station_ids));
+        if (empty($station_ids)) {
+        return;
+        }
         $id = $station_ids[0];
         
 		//foreach ($station_ids as $id) {
@@ -346,8 +348,7 @@ class Oqrs extends CI_Controller {
 				$data['callsign'] = $this->security->xss_clean($postdata['callsign']);
 				$data['usermessage'] = $this->security->xss_clean($postdata['message']);
                 $data['email'] = $this->security->xss_clean($postdata['email']);	
-                $data['qslroute'] = $this->security->xss_clean($postdata['qslroute']);	
-                $this->load->model('Stations');
+                $data['qslroute'] = $this->security->xss_clean($postdata['qslroute'] ?? '');
 
                 foreach ($postdata['qsos'] as &$qso) {
                     if (isset($qso[4]) && is_numeric($qso[4])) {
@@ -359,12 +360,8 @@ class Oqrs extends CI_Controller {
                 }
                 unset($qso);
                 $data['qsos'] = $postdata['qsos'];
-                $data['dxcallsigns'] = $dxcallsigns;
+                $data['dxcallsigns'] = $dxcallsigns;            
 
-                
-                
-
-				$this->load->model('Stations');
 				$uid = $this->Stations->profile($id)->row()->user_id;
 				$message = $this->email->load('email/oqrs_request', $data,  $this->user_model->get_by_id($uid)->row()->user_language);
 

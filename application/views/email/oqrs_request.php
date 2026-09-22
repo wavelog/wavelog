@@ -29,9 +29,6 @@ if (isset($qsos) && is_array($qsos) && count($qsos) > 0) {
             $qso[5] ?? '',
             $qso[6] ?? '',
             $qso[7] ?? ''
-
-
-
         );
     }
 
