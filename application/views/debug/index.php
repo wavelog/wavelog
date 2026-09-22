@@ -143,7 +143,7 @@
                     <?php if ($worker_legacy_config ?? false) { ?>
                     <div class="alert alert-warning mb-3" role="alert">
                         <p><i class="fas fa-exclamation-triangle"></i> <b><?= __("Worker configuration has changed"); ?></b></p>
-                        <p><?= sprintf(__("%s and %s are deprecated and will be removed in Wavelog 1.0.0. Please set %s in your worker config instead."), '<strong>worker_vip</strong>', '<strong>worker_urls</strong>', '<strong>worker_url</strong>'); ?></p>
+                        <p><?= sprintf(__("%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please set %s in your worker config instead."), '<strong>worker_vip</strong>', '<strong>worker_urls</strong>', '<strong>worker_url</strong>'); ?></p>
                         <p class="mb-0"><?= __("Everything keeps working until then."); ?> <?= sprintf(__("Check this wiki article %shere%s for more information."), '<u><a href="https://docs.wavelog.org/wavelog-worker/wavelog-integration/#upgrading-to-worker_url" target="_blank">', '</a></u>'); ?></p>
                     </div>
                     <?php } ?>
