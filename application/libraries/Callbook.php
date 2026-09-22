@@ -51,7 +51,7 @@ class Callbook {
 	// Some generic stuff
 	private $logbook_not_configured;
 	private $error_obtaining_sessionkey;
-	private $error_caching_sessionkey;
+	private $error_caching_qrz_sessionkey;
 
 	public function __construct() {
 		$this->ci = & get_instance();
@@ -70,7 +70,7 @@ class Callbook {
 
 		$this->logbook_not_configured = __("Lookup not configured. Please review configuration.");
 		$this->error_obtaining_sessionkey = __("Error obtaining a session key for callbook. Error: %s");
-		$this->error_caching_sessionkey = __("Generic error storing the session key in cache.");
+		$this->error_caching_qrz_sessionkey = __("Generic error storing the qrz.com session key in cache.");
 	}
 
 	// TODO:
@@ -167,8 +167,8 @@ class Callbook {
 					return $callbook;
 				}
 				if ($this->ci->cache->save($this->qrz_session_cachekey, $qrz_session_key, self::QRZ_SESSION_DURATION)) {
-					log_message('error', 'Error storing session key in cache');
-					$callbook['error'] = $this->error_caching_sessionkey;
+					log_message('error', 'Error storing qrz.com session key in cache');
+					$callbook['error'] = $this->error_caching_qrz_sessionkey;
 					return $callbook;
 				}
 			}
@@ -183,8 +183,8 @@ class Callbook {
 					return $callbook;
 				}
 				if ($this->ci->cache->save($this->qrz_session_cachekey, $qrz_session_key, self::QRZ_SESSION_DURATION)) {
-					log_message('error', 'Error storing session key in cache');
-					$callbook['error'] = $this->error_caching_sessionkey;
+					log_message('error', 'Error storing qrz.com session key in cache');
+					$callbook['error'] = $this->error_caching_qrz_sessionkey;
 					return $callbook;
 				}
 				$callbook = $this->ci->qrz->search($callsign, $this->ci->cache->get($this->qrz_session_cachekey), $fullname);
