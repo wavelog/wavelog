@@ -129,7 +129,7 @@ $(document).ready(function () {
 	var cfg = window.workerStatusLive;
 	if (!cfg) { return; }
 
-	var cluster = cfg.nodesTotal > 1;
+	var cluster = false; // known once the backend roster arrives
 	var uptimeBase = null, uptimeAt = 0, tickT = null;
 
 	function val(x) { return x != null ? x : '—'; }
@@ -174,7 +174,8 @@ $(document).ready(function () {
 	function renderCluster(data) {
 		if (!data || !data.success || data.disabled) { return; }
 		var workers = data.workers || [];
-		if (!workers.length) { return; }
+		cluster = workers.length > 1;
+		if (!cluster) { return; } // single instance: no x/y column, badge stays "Online"
 		var online = workers.filter(function (w) { return w.alive; }).length;
 		$('#ws-cluster-head, #ws-cluster').show();
 		$('#ws-cluster').text(online + '/' + workers.length);
@@ -190,8 +191,9 @@ $(document).ready(function () {
 		return;
 	}
 
-	// Cluster node x/y comes from the backend (9001 reachability), polled.
-	if (cluster) { loadCluster(); setInterval(loadCluster, 10000); }
+	// Cluster node x/y comes from the backend (worker roster, or per-URL reachability
+	// for workers < 0.3.0), polled.
+	loadCluster(); setInterval(loadCluster, 10000);
 
 	// WS status unavailable (never connected, or connected but silent) → ask the
 	// backend (9001): worker reachable = too old for the status feed → update hint;
