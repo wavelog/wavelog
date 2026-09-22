@@ -299,7 +299,7 @@ class Oqrs extends CI_Controller {
     	
         $callsigns = [];	
         foreach ($station_ids as $sid) {	
-            $station = $this->Stations->profile($sid)->row();	
+            $station = $this->stations->profile($sid)->row();	
             if ($station) {	
                 $callsigns[] = $station->station_callsign;	
             }	
@@ -352,7 +352,7 @@ class Oqrs extends CI_Controller {
 
                 foreach ($postdata['qsos'] as &$qso) {
                     if (isset($qso[4]) && is_numeric($qso[4])) {
-                        $station = $this->Stations->profile($qso[4])->row();
+                        $station = $this->stations->profile($qso[4])->row();
                         if ($station) {
                             $qso[4] = $station->station_callsign;
                         }
@@ -362,7 +362,7 @@ class Oqrs extends CI_Controller {
                 $data['qsos'] = $postdata['qsos'];
                 $data['dxcallsigns'] = $dxcallsigns;            
 
-				$uid = $this->Stations->profile($id)->row()->user_id;
+				$uid = $this->stations->profile($id)->row()->user_id;
 				$message = $this->email->load('email/oqrs_request', $data,  $this->user_model->get_by_id($uid)->row()->user_language);
 
 				$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
