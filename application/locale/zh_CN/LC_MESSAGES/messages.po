@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-22 09:14+0000\n"
+"POT-Creation-Date: 2026-09-22 21:15+0000\n"
 "PO-Revision-Date: 2026-09-22 09:14+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -221,7 +221,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
-#: application/controllers/Oqrs.php:429 application/controllers/Qrbcalc.php:12
+#: application/controllers/Oqrs.php:459 application/controllers/Qrbcalc.php:12
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
 #: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
@@ -3173,11 +3173,11 @@ msgstr "请输入一个有效的日期。"
 msgid "Please enter a valid time."
 msgstr "请输入一个有效的时间。"
 
-#: application/controllers/Oqrs.php:414
+#: application/controllers/Oqrs.php:444
 msgid "QSO match deleted successfully."
 msgstr "QSO 匹配已成功删除。"
 
-#: application/controllers/Oqrs.php:424
+#: application/controllers/Oqrs.php:454
 msgid "QSO match added successfully."
 msgstr "QSO 匹配已成功添加。"
 
@@ -15446,7 +15446,7 @@ msgstr "用户输入了如下信息： "
 msgid "The user did not enter any additional message."
 msgstr "用户未提供附加信息。"
 
-#: application/views/email/oqrs_request.php:14
+#: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
 "Hi,\n"
@@ -15457,7 +15457,7 @@ msgstr ""
 "\n"
 "你收到来自 %s 的 OQRS 请求。"
 
-#: application/views/email/oqrs_request.php:20
+#: application/views/email/oqrs_request.php:65
 msgid ""
 "Please log into your Wavelog and process it.\n"
 "\n"

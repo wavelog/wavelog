@@ -257,7 +257,7 @@ msgstr "troposphärisches Ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Oqrs.php:459
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -3214,11 +3214,11 @@ msgstr "Bitte ein gültiges Datum eingeben."
 msgid "Please enter a valid time."
 msgstr "Bitte eine gültige Zeit eingeben."
 
-#: application/controllers/Oqrs.php:414
+#: application/controllers/Oqrs.php:414 application/controllers/Oqrs.php:444
 msgid "QSO match deleted successfully."
 msgstr "QSO-Übereinstimmung erfolgreich gelöscht."
 
-#: application/controllers/Oqrs.php:424
+#: application/controllers/Oqrs.php:424 application/controllers/Oqrs.php:454
 msgid "QSO match added successfully."
 msgstr "QSO-Übereinstimmung erfolgreich hinzugefügt."
 
@@ -3319,8 +3319,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
-"php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten "
+"config.sample.php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:576
@@ -16006,6 +16006,7 @@ msgid "The user did not enter any additional message."
 msgstr "Der Benutzer hat keine zusätzliche Nachricht eingegeben."
 
 #: application/views/email/oqrs_request.php:14
+#: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
 "Hi,\n"
@@ -16017,6 +16018,7 @@ msgstr ""
 "Du hast eine OQRS-Anfrage von %s erhalten."
 
 #: application/views/email/oqrs_request.php:20
+#: application/views/email/oqrs_request.php:65
 msgid ""
 "Please log into your Wavelog and process it.\n"
 "\n"
@@ -16163,8 +16165,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -20232,8 +20234,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -22350,8 +22352,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -23406,9 +23408,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"

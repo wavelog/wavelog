@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-22 09:14+0000\n"
+"POT-Creation-Date: 2026-09-22 21:15+0000\n"
 "PO-Revision-Date: 2026-07-29 08:13+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -194,7 +194,7 @@ msgstr "Troposférické vedení"
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
-#: application/controllers/Oqrs.php:429 application/controllers/Qrbcalc.php:12
+#: application/controllers/Oqrs.php:459 application/controllers/Qrbcalc.php:12
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
 #: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
@@ -3177,11 +3177,11 @@ msgstr ""
 msgid "Please enter a valid time."
 msgstr ""
 
-#: application/controllers/Oqrs.php:414
+#: application/controllers/Oqrs.php:444
 msgid "QSO match deleted successfully."
 msgstr "Shoda QSO úspěšně smazána."
 
-#: application/controllers/Oqrs.php:424
+#: application/controllers/Oqrs.php:454
 msgid "QSO match added successfully."
 msgstr "Shoda QSO úspěšně přidána."
 
@@ -15778,7 +15778,7 @@ msgstr "Uživatel zadal následující zprávu: "
 msgid "The user did not enter any additional message."
 msgstr "Uživatel nezadal žádnou další zprávu."
 
-#: application/views/email/oqrs_request.php:14
+#: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
 "Hi,\n"
@@ -15789,7 +15789,7 @@ msgstr ""
 "\n"
 "Obdrželi jste OQRS požadavek od %s."
 
-#: application/views/email/oqrs_request.php:20
+#: application/views/email/oqrs_request.php:65
 msgid ""
 "Please log into your Wavelog and process it.\n"
 "\n"
