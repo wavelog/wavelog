@@ -440,17 +440,7 @@ class Update_model extends CI_Model {
          set_time_limit(0);                       // 7 files, the big ones are slow
 
         // Peak is ~24 MB on the largest file (DE, 1436 parks), so 256M is ample.
-        // Raise-only: never shrink a host that is already configured higher.
-        $cur = trim((string) ini_get('memory_limit'));
-        if ($cur !== '' && $cur !== '-1') {
-            $bytes = (int) $cur;
-            switch (strtolower(substr($cur, -1))) {
-                case 'g': $bytes *= 1024 * 1024 * 1024; break;
-                case 'm': $bytes *= 1024 * 1024; break;
-                case 'k': $bytes *= 1024; break;
-            }
-            if ($bytes < 256 * 1024 * 1024) { ini_set('memory_limit', '256M'); }
-        }
+        $this->_raise_memory_limit(256 * 1024 * 1024);
 
         $total = 0;
         $errors = [];
@@ -559,16 +549,7 @@ class Update_model extends CI_Model {
 
         set_time_limit(0);
 
-        $cur = trim((string) ini_get('memory_limit'));
-        if ($cur !== '' && $cur !== '-1') {
-            $bytes = (int) $cur;
-            switch (strtolower(substr($cur, -1))) {
-                case 'g': $bytes *= 1024 * 1024 * 1024; break;
-                case 'm': $bytes *= 1024 * 1024; break;
-                case 'k': $bytes *= 1024; break;
-            }
-            if ($bytes < 256 * 1024 * 1024) { ini_set('memory_limit', '256M'); }
-        }
+        $this->_raise_memory_limit(256 * 1024 * 1024);
 
         $total = 0;
         $errors = [];
@@ -673,6 +654,20 @@ class Update_model extends CI_Model {
             foreach ($arr as &$sub) { $this->_strip_z($sub); }
         } elseif (count($arr) > 2) {
             $arr = [$arr[0], $arr[1]];
+        }
+    }
+
+    /* Raise-only memory_limit guard: never shrinks a host configured higher. */
+    private function _raise_memory_limit($min_bytes) {
+        $cur = trim((string) ini_get('memory_limit'));
+        if ($cur !== '' && $cur !== '-1') {
+            $bytes = (int) $cur;
+            switch (strtolower(substr($cur, -1))) {
+                case 'g': $bytes *= 1024 * 1024 * 1024; break;
+                case 'm': $bytes *= 1024 * 1024; break;
+                case 'k': $bytes *= 1024; break;
+            }
+            if ($bytes < $min_bytes) { ini_set('memory_limit', (int) ($min_bytes / 1024 / 1024) . 'M'); }
         }
     }
 

@@ -1016,12 +1016,15 @@
 
 	/* Remove every drawn park-boundary layer and forget the per-ref cache so
 	 * the next popup re-fetches. Used by disablePota() and clearAll(). */
-	function clearBoundaries() {
-		for (const ref in boundaryLayers) {
-			const l = boundaryLayers[ref];
+	function clearBoundaryCache(cache) {
+		for (const ref in cache) {
+			const l = cache[ref];
 			if (l && l.remove) { map.removeLayer(l); }
 		}
-		boundaryLayers = {};
+		return {};
+	}
+	function clearBoundaries() {
+		boundaryLayers = clearBoundaryCache(boundaryLayers);
 	}
 
 	function loadWwffBoundaryRefs() {
@@ -1061,11 +1064,7 @@
 	}
 
 	function clearWwffBoundaries() {
-		for (const ref in wwffBoundaryLayers) {
-			const l = wwffBoundaryLayers[ref];
-			if (l && l.remove) { map.removeLayer(l); }
-		}
-		wwffBoundaryLayers = {};
+		wwffBoundaryLayers = clearBoundaryCache(wwffBoundaryLayers);
 	}
 
 	function enablePota() {
