@@ -548,6 +548,24 @@
                                 </tr>
                             </table>
                         </div>
+                        <div class="col-md-12">
+                            <br/><p><u><?= __("Round-Trip Test (write - read - delete)"); ?></u></p>
+                            <table width="100%">
+                                <?php foreach ($cache_roundtrip as $rt_adapter => $rt) { ?>
+                                <tr>
+                                    <td width="20%"><?= htmlspecialchars(ucfirst($rt_adapter), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td>
+                                        <?php if ($rt['ok']) { ?>
+                                            <span class="badge text-bg-success"><?= __("Working"); ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+                                            <div class="small text-danger"><?php echo htmlspecialchars($rt['error'], ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </table>
+                        </div>
                         <div class="ms-2 me-2">
                             <?php if (!$using_backup) { ?>
                                 <div class="alert alert-success mt-2 mb-0" role="alert">

@@ -115,6 +115,7 @@ class Debug extends CI_Controller
 		$data['using_backup'] = !empty($cache_info['active']['using_backup']);
 		$data['details_cache_size'] = $cache_info['details']['size'] ?? '0 B';
 		$data['details_cache_keys_count'] = $cache_info['details']['keys_count'] ?? 0;
+		$data['cache_roundtrip'] = $this->Debug_model->test_cache_roundtrip();
 		
 		$data['dxcc_update'] = $this->cron_model->cron('update_dxcc')->row();
 		$data['dok_update'] = $this->cron_model->cron('update_update_dok')->row();
