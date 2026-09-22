@@ -135,8 +135,7 @@ class Debug extends CI_Controller
 		$data['worker_status_topic'] = '';
 		$data['worker_status_token'] = '';
 		$data['worker_enabled'] = $this->worker->is_enabled();
-		$urls = $this->config->item('worker_urls', 'worker');
-		$data['worker_nodes_total'] = is_array($urls) ? count($urls) : 0;
+		$data['worker_legacy_config'] = $this->worker->is_legacy_config();
 		if ($data['worker_enabled'] && $this->worker->client_url() !== '') {
 			$debug_topic = 'worker.status';
 			$data['worker_status_topic'] = $debug_topic;
