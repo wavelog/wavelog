@@ -14,6 +14,8 @@
 	let potaUrl         = cfg.potaUrl || '';
 	let activatedPotaUrl = cfg.activatedPotaUrl || '';
 	let potaBoundaryUrl = cfg.potaBoundaryUrl || '';
+	let wwffBoundaryUrl = cfg.wwffBoundaryUrl || '';
+	let wwffBoundaryRefsUrl = cfg.wwffBoundaryRefsUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
 	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
@@ -67,6 +69,10 @@
 	// Drawn POTA park boundaries, keyed by reference (ref -> L.geoJSON layer).
 	// Populated on demand when a marker is clicked; cleared by clearAll().
 	let boundaryLayers = {};
+	// Same, plus the set of refs that have a dataset (gates the fetch).
+	let wwffBoundaryLayers = {};
+	let wwffBoundaryRefsSet = null;
+	let wwffBoundaryRefsPromise = null;
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -976,6 +982,7 @@
 				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
 				dot.refType = 'WWFF'; dot.refData = D; dot.refColor = '#2b8cbe';
 				dot.bindPopup(refPopupRich);
+				dot.on('popupopen', function () { drawWwffBoundary(D.reference); });
 				wwffCluster.addLayer(dot);
 			}
 			map.addLayer(wwffCluster);
@@ -984,6 +991,7 @@
 	}
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
+		clearWwffBoundaries();
 	}
 
 	function drawParkBoundary(ref, fit) {
@@ -1014,6 +1022,50 @@
 			if (l && l.remove) { map.removeLayer(l); }
 		}
 		boundaryLayers = {};
+	}
+
+	function loadWwffBoundaryRefs() {
+		if (wwffBoundaryRefsSet) { return Promise.resolve(wwffBoundaryRefsSet); }
+		if (wwffBoundaryRefsPromise) { return wwffBoundaryRefsPromise; }
+		if (!wwffBoundaryRefsUrl) { return Promise.resolve(null); }
+		wwffBoundaryRefsPromise = fetch(wwffBoundaryRefsUrl)
+			.then(function (r) { return r.ok ? r.json() : null; })
+			.then(function (list) {
+				wwffBoundaryRefsSet = new Set(Array.isArray(list) ? list : []);
+				return wwffBoundaryRefsSet;
+			})
+			.catch(function () { wwffBoundaryRefsPromise = null; return null; });
+		return wwffBoundaryRefsPromise;
+	}
+
+	function drawWwffBoundary(ref, fit) {
+		if (!wwffBoundaryUrl || !ref || wwffBoundaryLayers[ref]) { return; }
+		wwffBoundaryLayers[ref] = true; // sentinel: in-flight / done, prevents refetch
+		loadWwffBoundaryRefs().then(function (set) {
+			if (!set || !set.has(ref)) { return; }
+			fetch(wwffBoundaryUrl + encodeURIComponent(ref))
+				.then(function (r) {
+					if (!r.ok) { return null; }
+					return r.json();
+				})
+				.then(function (feature) {
+					if (!feature || !feature.geometry) { return; }
+					let layer = L.geoJSON(feature, {
+						style: { color: '#2b8cbe', weight: 2, fillColor: '#2b8cbe', fillOpacity: 0.15 }
+					}).addTo(map);
+					wwffBoundaryLayers[ref] = layer;
+					if (fit) { map.fitBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 13 }); }
+				})
+				.catch(function () { /* 404 / network: keep the point marker */ });
+		});
+	}
+
+	function clearWwffBoundaries() {
+		for (const ref in wwffBoundaryLayers) {
+			const l = wwffBoundaryLayers[ref];
+			if (l && l.remove) { map.removeLayer(l); }
+		}
+		wwffBoundaryLayers = {};
 	}
 
 	function enablePota() {
@@ -1430,6 +1482,9 @@
 			// boundary resolves (supported country prefixes). flyTo below gives an
 			// immediate zoom while the outline loads, then the fit settles on the area.
 			drawParkBoundary(r.reference, true);
+		}
+		if (row.type === 'wwff') {
+			drawWwffBoundary(r.reference, true);
 		}
 		map.flyTo([r.lat, r.lon], 13);
 		m.openPopup();
@@ -1888,6 +1943,7 @@
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (refOverlay)  { refOverlay.clearLayers(); }   // nearby POTA/SOTA/WWFF markers
 		clearBoundaries();                               // drawn park boundaries
+		clearWwffBoundaries();                           // drawn DLFF boundaries
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
 		stopTracking();  // stop autotracking, restore the Locate button

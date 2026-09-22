@@ -243,6 +243,68 @@ class Activationplanner extends CI_Controller {
 		echo $json;
 	}
 
+	/* AJAX: boundary polygon(s) for one WWFF reference (same as pota_boundary). */
+	public function wwff_boundary($reference = '') {
+		$reference = preg_replace('/[^A-Za-z0-9\-]/', '', (string) $reference);
+		if ($reference === '') {
+			$this->output->set_status_header(404);
+			return;
+		}
+		$rows = $this->db->query('SELECT geom FROM wwff_boundaries WHERE reference = ?', [$reference])->result();
+		if (!$rows) {
+			$this->output->set_status_header(404);
+			return;
+		}
+
+		$geoms = [];
+		foreach ($rows as $r) {
+			$g = json_decode($r->geom, true);
+			if (is_array($g)) { $geoms[] = $g; }
+		}
+		$geometry = count($geoms) === 1
+			? $geoms[0]
+			: ['type' => 'GeometryCollection', 'geometries' => $geoms];
+
+		$feature = [
+			'type'       => 'Feature',
+			'geometry'   => $geometry,
+			'properties' => ['reference' => $reference],
+		];
+		$json = json_encode($feature);
+		$etag = '"' . md5($json) . '"';
+		session_write_close();
+		header('Pragma: private');
+		header('Cache-Control: private, max-age=31536000');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT');
+		header('ETag: ' . $etag);
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304);
+			return;
+		}
+		header('Content-Type: application/geo+json');
+		echo $json;
+	}
+
+	/* AJAX: the WWFF references that have boundary data (gates client-side drawing). */
+	public function wwff_boundary_refs() {
+		$rows = $this->db->query('SELECT DISTINCT reference FROM wwff_boundaries ORDER BY reference')->result_array();
+		$json = json_encode(array_column($rows, 'reference'));
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();
+		header('Pragma: private');
+		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304);
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
 	public function sota_directory() {
 		$this->load->model('sota');
 
