@@ -338,6 +338,7 @@ class Eqslmethods_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 		curl_setopt($ch, CURLOPT_URL, $adif);
 
 		return $ch;
@@ -410,7 +411,6 @@ class Eqslmethods_model extends CI_Model {
 				$result = curl_multi_getcontent($ch);
 				$chi = curl_getinfo($ch);
 				$status = $this->map_eqsl_response($result, $chi, $qsl, $ch);
-				curl_close($ch);
 				$statuses[$qsl['COL_PRIMARY_KEY']] = $status;
 
 				if ($status == 'Login Error') {
