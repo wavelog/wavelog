@@ -32,10 +32,7 @@ if ($result) { ?>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo html_escape($qso->col_submode == null ? $qso->col_mode : $qso->col_submode);?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php if($qso->col_sat_name != null) { echo html_escape($qso->col_sat_name); } else { echo html_escape(strtolower($qso->col_band)); };?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php if($qso->col_vucc_grids != null) { echo html_escape($qso->col_vucc_grids); } else { echo html_escape($qso->col_gridsquare); } ;?></td>
-						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $confirmationtimestamp);
-						if (date('H:i:s', $confirmationtimestamp) !== '00:00:00') {
-							echo ' ' . date('H:i', $confirmationtimestamp);
-						}
+						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $confirmationtimestamp)." ".date('H:i', $confirmationtimestamp);
 						if ($qso->qslcount ?? 0 != 0) {
 							echo ' <a href="javascript:displayQsl('.$qso->col_primary_key.');"><i class="fa fa-id-card"></i></a>';
 						}

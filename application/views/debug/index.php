@@ -140,6 +140,13 @@
             <div class="card">
                 <div class="card-header"><?= __("Wavelog Worker Backend"); ?></div>
                 <div class="card-body">
+                    <?php if ($worker_legacy_config ?? false) { ?>
+                    <div class="alert alert-warning mb-3" role="alert">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b><?= __("Worker configuration has changed"); ?></b></p>
+                        <p><?= sprintf(__("%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please set %s in your worker config instead."), '<strong>worker_vip</strong>', '<strong>worker_urls</strong>', '<strong>worker_url</strong>'); ?></p>
+                        <p class="mb-0"><?= __("Everything keeps working until then."); ?> <?= sprintf(__("Check this wiki article %shere%s for more information."), '<u><a href="https://docs.wavelog.org/wavelog-worker/wavelog-integration/#upgrading-to-worker_url" target="_blank">', '</a></u>'); ?></p>
+                    </div>
+                    <?php } ?>
                     <div id="worker-status" style="display: none;">
                         <table class="table table-sm mb-0">
                             <thead><tr>
@@ -548,6 +555,24 @@
                                 </tr>
                             </table>
                         </div>
+                        <div class="col-md-12">
+                            <br/><p><u><?= __("Round-Trip Test (write - read - delete)"); ?></u></p>
+                            <table width="100%">
+                                <?php foreach ($cache_roundtrip as $rt_adapter => $rt) { ?>
+                                <tr>
+                                    <td width="20%"><?= htmlspecialchars(ucfirst($rt_adapter), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td>
+                                        <?php if ($rt['ok']) { ?>
+                                            <span class="badge text-bg-success"><?= __("Working"); ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+                                            <div class="small text-danger"><?php echo htmlspecialchars($rt['error'], ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </table>
+                        </div>
                         <div class="ms-2 me-2">
                             <?php if (!$using_backup) { ?>
                                 <div class="alert alert-success mt-2 mb-0" role="alert">
@@ -875,7 +900,6 @@
         'enabled'     => (bool)($worker_enabled ?? false),
         'topic'       => $worker_status_topic ?? '',
         'token'       => $worker_status_token ?? '',
-        'nodesTotal'  => (int)($worker_nodes_total ?? 0),
         'snapshotUrl' => site_url('debug/worker_status'),
         'msg'         => [
             'online'      => __("Online"),
