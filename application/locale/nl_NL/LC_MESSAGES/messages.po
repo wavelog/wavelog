@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
+"POT-Creation-Date: 2026-09-23 11:44+0000\n"
 "PO-Revision-Date: 2026-09-15 14:40+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -173,10 +173,10 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:278
+#: application/controllers/Eqsl.php:316 application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
+#: application/controllers/Eqsl.php:662
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -187,8 +187,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:961 application/controllers/Lotw.php:1047
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -1780,68 +1780,68 @@ msgstr "eQSL QSO Upload"
 msgid "User/Pass wrong for eQSL"
 msgstr "Gebruikersnaam/wachtwoord onjuist voor eQSL"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:217
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Geen eQSL QTH Bijnaam: %s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:332
 msgid "QSO not found or not accessible"
 msgstr "QSO niet gevonden of niet toegankelijk"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:350
 msgid "User not found"
 msgstr "Gebruiker niet gevonden"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:359
 msgid "eQSL password not configured for this user"
 msgstr "eQSL-wachtwoord niet geconfigureerd voor deze gebruiker"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:376
 msgid "Failed to fetch eQSL image data"
 msgstr "Het ophalen van eQSL-afbeeldingsgegevens is mislukt"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:395
 msgid "eQSL image not available"
 msgstr "eQSL-afbeelding niet beschikbaar"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:413
 msgid "Failed to download eQSL image"
 msgstr "Kon niet eQSL-afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:423 application/controllers/Eqsl.php:576
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Niet genoeg vrije schijfruimte om de eQSL-kaart op te slaan"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:447
 msgid "Failed to load cached eQSL image"
 msgstr "Kan de gecachte eQSL-afbeelding niet laden"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:593
 msgid "eQSL Tools"
 msgstr "eQSL-hulpmiddelen"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:622
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Beperkt tot de eerste 150 QSO's voor dit verzoek. Voer opnieuw uit."
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid " / Errors: "
 msgstr " / Fouten: "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid "Successfully downloaded: "
 msgstr "Succesvol gedownload: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:635
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "eQSL limiet bereikt. Wacht even voordat je het opnieuw probeert."
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:647
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kaart afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:670
 msgid "All eQSLs marked as uploaded"
 msgstr "Alle eQSL's gemarkeerd als geüpload"
 
@@ -2821,7 +2821,7 @@ msgstr "Certificaat bijgewerkt."
 msgid "Certificate Deleted."
 msgstr "Certificaat verwijderd."
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:461
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2834,7 +2834,7 @@ msgstr ""
 "zonder wachtwoord exporteert!%s Voor meer informatie bezoek de %sLoTW FAQ-"
 "pagina%s in de Wavelog Wiki."
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:463
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2845,52 +2845,52 @@ msgstr ""
 "bestandsnaam 'key-only' bevat, is dit meestal een certificaataanvraag die "
 "nog niet door LoTW is verwerkt."
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:470
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr "Generieke fout bij het verwerken van het certificaat in bestand %s."
 
-#: application/controllers/Lotw.php:468
+#: application/controllers/Lotw.php:482
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
 "Algemene fout bij het extraheren van de privésleutel uit certificaat in "
 "bestand %s."
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:698
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Informatie"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1018
 msgid "Connection to LoTW failed."
 msgstr "Verbinding met LoTW mislukt."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-login mislukt voor gebruiker %s: %s."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 msgid "Username/password incorrect"
 msgstr "Gebruikersnaam/wachtwoord onjuist"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1026
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW momenteel niet beschikbaar. Probeer het later opnieuw."
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1030
 msgid "LoTW login OK!"
 msgstr "LoTW login oké!"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1036
 msgid "No LoTW credentials provided."
 msgstr "Geen LoTW-gegevens verstrekt."
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1053
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF importeren"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1080
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Je hebt je ARRL LoTW-gegevens niet gedefinieerd!"
 
@@ -3080,6 +3080,7 @@ msgstr "Radio Time-out waarschuwing gewijzigd in "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "E-mail"
@@ -4407,16 +4408,24 @@ msgstr "GeoJSON-gegevens niet beschikbaar"
 msgid "Invalid gridsquare"
 msgstr "Ongeldige locatorvak"
 
-#: application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
 msgstr "Lookup niet geconfigureerd. Controleer de configuratie."
 
-#: application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:73
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Fout bij het verkrijgen van een sessiesleutel voor callbook. Fout: %s"
 
-#: application/libraries/Callbook.php:214
+#: application/libraries/Callbook.php:74
+msgid "Generic error storing the callbook session key in cache."
+msgstr ""
+
+#: application/libraries/Callbook.php:75
+msgid "Generic error reading the cached callbook session key."
+msgstr ""
+
+#: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
 msgstr "QRZCQ Fout"
 
@@ -5011,37 +5020,41 @@ msgstr ""
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Eqslmethods_model.php:313
+msgid "Empty response from eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Je eQSL-gebruikersnaam en/of wachtwoord is onjuist."
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:326
 msgid "Something went wrong with eQSL.cc!"
 msgstr "Er is iets misgegaan met eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:337
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "QTH-bijnaam bestaat niet bij eQSL"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:345
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL.cc ondervindt problemen. Probeer later QSO's te exporteren."
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:350
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr ""
 "Er was een fout in een van de QSO's. Je zou ze handmatig kunnen uploaden."
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:355
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Het lijkt erop dat de eQSL-site is veranderd. Open alsjeblieft een issue op "
 "GitHub."
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:361
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
@@ -6183,8 +6196,9 @@ msgstr "Niets gevonden!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15988,6 +16002,10 @@ msgstr "De gebruiker heeft het volgende bericht ingevoerd: "
 msgid "The user did not enter any additional message."
 msgstr "De gebruiker heeft geen extra bericht ingevoerd."
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15998,6 +16016,16 @@ msgstr ""
 "Hoi,\n"
 "\n"
 "Je hebt een OQRS-verzoek van %s ontvangen."
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSL-route"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -20532,11 +20560,6 @@ msgid ""
 msgstr ""
 "De volgende QSO('s) zijn gevonden. Vul alstublieft de datum en tijd in en "
 "dien uw verzoek in."
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSL-route"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59

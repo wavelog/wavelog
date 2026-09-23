@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
-"PO-Revision-Date: 2026-09-18 05:26+0000\n"
+"POT-Creation-Date: 2026-09-23 11:44+0000\n"
+"PO-Revision-Date: 2026-09-23 07:32+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -176,10 +176,10 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:278
+#: application/controllers/Eqsl.php:316 application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
+#: application/controllers/Eqsl.php:662
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -190,8 +190,8 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:961 application/controllers/Lotw.php:1047
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -1775,69 +1775,69 @@ msgstr "eQSL QSO Yükleme"
 msgid "User/Pass wrong for eQSL"
 msgstr "eQSL kullanıcı adı veya şifre yanlış"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:217
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Belirtilen eQSL QTH Takma Adı bulunamadı: %s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:332
 msgid "QSO not found or not accessible"
 msgstr "QSO bulunamadı veya erişilemez"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:350
 msgid "User not found"
 msgstr "Kullanıcı bulunamadı"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:359
 msgid "eQSL password not configured for this user"
 msgstr "Bu kullanıcı için eQSL şifresi yapılandırılmamış"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:376
 msgid "Failed to fetch eQSL image data"
 msgstr "eQSL resim verisi alınamadı"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:395
 msgid "eQSL image not available"
 msgstr "eQSL resmi mevcut değil"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:413
 msgid "Failed to download eQSL image"
 msgstr "eQSL resmi indirilemedi"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:423 application/controllers/Eqsl.php:576
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "eQSL kartını saklamak için yeterli boş disk alanı yok"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:447
 msgid "Failed to load cached eQSL image"
 msgstr "Önbelleğe alınmış eQSL görüntüsü yüklenemedi"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:593
 msgid "eQSL Tools"
 msgstr "eQSL Araçları"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:622
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Bu istek için ilk 150 görüşme ile sınırlıdır. Lütfen tekrar deneyin."
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid " / Errors: "
 msgstr " / Hatalar: "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid "Successfully downloaded: "
 msgstr "Başarıyla indirildi: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:635
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 "eQSL Sınır değerine ulaşıldı. Lütfen tekrar çalıştırmadan önce bekleyin."
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:647
 msgid "eQSL Card Image Download"
 msgstr "eQSL Kart Görüntüsü İndirme"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:670
 msgid "All eQSLs marked as uploaded"
 msgstr "Tüm eQSL’ler yüklendi olarak işaretlendi"
 
@@ -2816,7 +2816,7 @@ msgstr "Sertifika Güncellendi."
 msgid "Certificate Deleted."
 msgstr "Sertifika Silindi."
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:461
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2829,7 +2829,7 @@ msgstr ""
 "emin olun!%s Daha fazla bilgi için lütfen Wavelog Wiki'deki %sLoTW SSS "
 "sayfasını%s ziyaret edin."
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:463
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2840,51 +2840,51 @@ msgstr ""
 "only' içeriyorsa, bu genellikle LoTW tarafından henüz işlenmemiş bir "
 "sertifika isteğidir."
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:470
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr "%s dosyasındaki sertifikanın işlenmesinde genel bir hata oluştu."
 
-#: application/controllers/Lotw.php:468
+#: application/controllers/Lotw.php:482
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
 "%s dosyasındaki sertifikadan özel anahtarı çıkarırken genel bir hata oluştu."
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:698
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Bilgileri"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1018
 msgid "Connection to LoTW failed."
 msgstr "LoTW bağlantısı başarısız oldu."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW girişi başarısız oldu, kullanıcı %s: %s."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 msgid "Username/password incorrect"
 msgstr "Kullanıcı adı veya şifre yanlış"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1026
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW şu anda kullanılamıyor. Daha sonra tekrar deneyin."
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1030
 msgid "LoTW login OK!"
 msgstr "LoTW girişi başarılı!"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1036
 msgid "No LoTW credentials provided."
 msgstr "LoTW kullanıcı adı ve şifre girilmedi."
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1053
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF İçe Aktarma"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1080
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "ARRL LoTW kimlik bilgilerinizi tanımlamadınız!"
 
@@ -3074,6 +3074,7 @@ msgstr "Telsiz Zaman Aşımı Uyarısı değiştirildi. "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "E-posta"
@@ -4403,16 +4404,24 @@ msgstr "GeoJSON verileri kullanılamıyor"
 msgid "Invalid gridsquare"
 msgstr "Geçersiz grid karesi"
 
-#: application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
 msgstr "Arama yapılandırılmadı. Lütfen yapılandırmayı gözden geçirin."
 
-#: application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:73
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Çağrı defteri için oturum anahtarı alınırken hata oluştu. Hata: %s"
 
-#: application/libraries/Callbook.php:214
+#: application/libraries/Callbook.php:74
+msgid "Generic error storing the callbook session key in cache."
+msgstr ""
+
+#: application/libraries/Callbook.php:75
+msgid "Generic error reading the cached callbook session key."
+msgstr ""
+
+#: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
 msgstr "QRZCQ Hatası"
 
@@ -4939,93 +4948,105 @@ msgstr "VuccGrids tablosu boş. Lütfen önce VUCC grid verilerini içe aktarın
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Çalışan bir adaptör yok - önbellek no-op 'dummy' sürücüsünde çalışıyor."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Adaptör desteklenmiyor."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s adaptörü bir istisna fırlattı: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "'%s' PHP uzantısı yüklenmedi."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Önbellek dizini yazılabilir değil: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Redis sunucusuna ulaşılamıyor - application/config/redis.php altındaki "
+"ayarları kontrol edin."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Hiçbir Memcached sunucusu yanıt vermedi - application/config/memcached.php "
+"altındaki ayarları kontrol edin."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
-msgstr ""
+msgstr "APCu yüklendi ama bu PHP arayüzünde kullanılamıyor (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "%s önbellek dizinine yazılamıyor - izinleri kontrol edin."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
-msgstr ""
+msgstr "Redis yazma başarısız oldu - sunucu çalışmıyor ya da maxmemory doldu?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Memcached yazma başarısız oldu - sunucu çalışmıyor?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "APCu yazma başarısız oldu - paylaşılan bellek dolu?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Yazma başarılı oldu ancak okuma başarısız - önbellek dizini okunabilir?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"Yazma başarılı oldu ancak okuma başarısız - anahtar Redis tarafından "
+"çıkarıldı?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Yazma başarılı oldu ancak okuma başarısız."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
+msgstr "Test anahtarı silinemedi - izinleri/erişimi kontrol edin."
+
+#: application/models/Eqslmethods_model.php:313
+msgid "Empty response from eQSL.cc!"
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "eQSL kullanıcı adı ve/veya şifreniz yanlış."
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:326
 msgid "Something went wrong with eQSL.cc!"
 msgstr "eQSL.cc ile ilgili bir sorun oluştu!"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:337
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "QTH Takma Adı eQSL’de mevcut değil"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:345
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
 "eQSL.cc’de sorunlar yaşanıyor. Lütfen QSO'ları daha sonra dışa aktarın."
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:350
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
@@ -5033,12 +5054,12 @@ msgstr ""
 "QSO'ların birinde hata oluştu. Bunları manuel olarak yüklemeyi "
 "deneyebilirsiniz."
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:355
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr "Görünüşe göre eQSL sitesi değişmiş. Lütfen GitHub'da bunu bildir."
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:361
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
@@ -6178,8 +6199,9 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15244,7 +15266,7 @@ msgstr "Wavelog Worker Arka Ucu"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "İşçi yapılandırması değişti"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15252,10 +15274,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s ve %s kullanım dışıdır ve Wavelog Worker 1.0.0 sürümünde kaldırılacaktır. "
+"Bunun yerine işçi yapılandırmanıza %s ayarlayın."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Her şey o zamana kadar çalışmaya devam edecek."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15433,11 +15457,11 @@ msgstr "Anahtar Sayısı"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Gidiş Dönüş (Round-Trip) Testi - (yazma - okuma - silme)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Çalışıyor"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -15969,6 +15993,10 @@ msgstr "Kullanıcı aşağıdaki mesajı girdi: "
 msgid "The user did not enter any additional message."
 msgstr "Kullanıcı herhangi bir ek mesaj girmedi."
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15979,6 +16007,16 @@ msgstr ""
 "Merhaba,\n"
 "\n"
 "%s’den bir OQRS talebi aldınız."
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSL Gönderim Metodu"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -20492,11 +20530,6 @@ msgid ""
 msgstr ""
 "Aşağıdaki QSO(lar) bulundu. Lütfen tarih ve saati doldurun ve talebinizi "
 "gönderin."
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSL Gönderim Metodu"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59

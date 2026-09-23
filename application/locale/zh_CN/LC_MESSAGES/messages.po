@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
+"POT-Creation-Date: 2026-09-23 11:44+0000\n"
 "PO-Revision-Date: 2026-09-22 09:14+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -201,10 +201,10 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:278
+#: application/controllers/Eqsl.php:316 application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
+#: application/controllers/Eqsl.php:662
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -215,8 +215,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:961 application/controllers/Lotw.php:1047
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -1789,68 +1789,68 @@ msgstr "eQSL QSO 上传"
 msgid "User/Pass wrong for eQSL"
 msgstr "eQSL 的用户名或密码错误"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:217
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "不存在该eQSL QTH昵称：%s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:332
 msgid "QSO not found or not accessible"
 msgstr "QSO 找不到或无法访问"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:350
 msgid "User not found"
 msgstr "用户未找到"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:359
 msgid "eQSL password not configured for this user"
 msgstr "eQSL 未为该用户配置密码"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:376
 msgid "Failed to fetch eQSL image data"
 msgstr "未能获取 eQSL 图片数据"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:395
 msgid "eQSL image not available"
 msgstr "eQSL 图片不可用"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:413
 msgid "Failed to download eQSL image"
 msgstr "未能下载 eQSL 图片"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:423 application/controllers/Eqsl.php:576
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "磁盘空间不足，无法存储eQSL卡"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:447
 msgid "Failed to load cached eQSL image"
 msgstr "未能加载缓存的 eQSL 图像"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:593
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:622
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "此请求限于前150个 QSO。请再次运行。"
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:635
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "已达到 eQSL 访问次数限制。请等待后再运行。"
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:647
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图片下载"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:670
 msgid "All eQSLs marked as uploaded"
 msgstr "所有 eQSL 已标记为已上传"
 
@@ -2817,7 +2817,7 @@ msgstr "呼号证书已更新。"
 msgid "Certificate Deleted."
 msgstr "呼号证书已删除。"
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:461
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2828,7 +2828,7 @@ msgstr ""
 "文件%s中的证书包含密码，无法处理。%s请确保从 tqsl 应用程序导出 LoTW 证书时不"
 "带密码！%s如需更多信息，请访问 Wavelog Wiki 中的 %sLoTW FAQ 页面%s。"
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:463
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2838,50 +2838,50 @@ msgstr ""
 "从文件 %s 提取证书时发生一般错误。如果文件名包含“key-only”，通常这是一个尚未"
 "被 LoTW 处理的证书请求。"
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:470
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr "在文件 %s 中处理证书时出现一般错误。"
 
-#: application/controllers/Lotw.php:468
+#: application/controllers/Lotw.php:482
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr "从文件 %s 中提取证书的私钥时发生一般错误。"
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:698
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1018
 msgid "Connection to LoTW failed."
 msgstr "连接到 LoTW 失败。"
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW 用户 %s 登录失败：%s。"
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 msgid "Username/password incorrect"
 msgstr "用户名/密码不正确"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1026
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW当前不可用。请稍后再试。"
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1030
 msgid "LoTW login OK!"
 msgstr "LoTW 登录成功！"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1036
 msgid "No LoTW credentials provided."
 msgstr "没有提供 LoTW 证书。"
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1053
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1080
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
@@ -3065,6 +3065,7 @@ msgstr "无线电超时警告更改为 "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "电子邮件"
@@ -4352,16 +4353,24 @@ msgstr "GeoJSON 数据不可用"
 msgid "Invalid gridsquare"
 msgstr "无效的网格"
 
-#: application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
 msgstr "查找功能未配置，请检查配置。"
 
-#: application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:73
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "获取呼号簿会话密钥时出错：%s"
 
-#: application/libraries/Callbook.php:214
+#: application/libraries/Callbook.php:74
+msgid "Generic error storing the callbook session key in cache."
+msgstr ""
+
+#: application/libraries/Callbook.php:75
+msgid "Generic error reading the cached callbook session key."
+msgstr ""
+
+#: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
 msgstr "QRZCQ 错误"
 
@@ -4948,34 +4957,38 @@ msgstr ""
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Eqslmethods_model.php:313
+msgid "Empty response from eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "你的 eQSL 用户名或密码错误。"
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:326
 msgid "Something went wrong with eQSL.cc!"
 msgstr "eQSL 服务异常！"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:337
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "QTH 昵称在 eQSL 中不存在"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:345
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL 网站出了一些问题，请稍后重试。"
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:350
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "上传的 QSO 有问题，你可能需要手动录入。"
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:355
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr "eQSL 网站似乎更改了地址，请在 GitHub 上创建一个 issue。"
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:361
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr "上传 QSO 时发生未捕获的错误。也许 eQSL 出现了问题"
@@ -6096,8 +6109,9 @@ msgstr "未找到！"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15527,6 +15541,10 @@ msgstr "用户输入了如下信息： "
 msgid "The user did not enter any additional message."
 msgstr "用户未提供附加信息。"
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15537,6 +15555,16 @@ msgstr ""
 "你好，\n"
 "\n"
 "你收到来自 %s 的 OQRS 请求。"
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSL 路径"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -19905,11 +19933,6 @@ msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
 msgstr "为你找到如下 QSO，请填写日期与时间然后提交请求。"
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSL 路径"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59

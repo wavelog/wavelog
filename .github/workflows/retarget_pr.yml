@@ -1,0 +1,23 @@
+name: Retarget PRs to dev
+
+on:
+  pull_request_target:
+    types: [opened]
+    branches: [master]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  retarget:
+    if: ${{ !contains(fromJSON('["phl0", "int2001", "HB9HIL", "AndreasK79"]'), github.event.pull_request.user.login) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Leave a note for the user (do not retarget yet)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          # gh pr edit "$PR" --repo "$REPO" --base dev
+          gh pr comment "$PR" --repo "$REPO" --body "Pull requests must target the \`dev\` branch. Please change the base branch of this PR to \`dev\` and make sure your branch is based on \`dev\`, otherwise the diff may contain unrelated changes and could cause merge conflicts."

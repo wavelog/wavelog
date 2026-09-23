@@ -15,7 +15,7 @@ $qsoinfo = '';
 
 if (isset($qsos) && is_array($qsos) && count($qsos) > 0) {
 
-    $qsoinfo .= "Requested QSOs:\n\n";
+    $qsoinfo .= __("Requested QSOs").":\n\n";
 
     foreach ($qsos as $qso) {
 
@@ -53,10 +53,10 @@ You got an OQRS request from %s."),
     strtoupper($callsign)
 ) . "\n\n" .
 
-"Callsign: " . strtoupper($callsign) . "\n" .
-"Email: " . $email . "\n" .
-"Route: " . $route . "\n" .
-"DXCALL:   "    .   $dxcallsigns    .   "\n\n" .
+__("Callsign").": " . strtoupper($callsign) . "\n" .
+__("Email").": " . $email . "\n" .
+__("QSL Route").": " . $route . "\n" .
+__("DX Callsign").": "    .   $dxcallsigns    .   "\n\n" .
 
 $qsoinfo .
 

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
-"PO-Revision-Date: 2026-09-18 23:21+0000\n"
+"POT-Creation-Date: 2026-09-23 11:44+0000\n"
+"PO-Revision-Date: 2026-09-23 11:25+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -178,10 +178,10 @@ msgstr "Тропосферное прохождение"
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:278
+#: application/controllers/Eqsl.php:316 application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
+#: application/controllers/Eqsl.php:662
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -192,8 +192,8 @@ msgstr "Тропосферное прохождение"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:961 application/controllers/Lotw.php:1047
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -1785,70 +1785,70 @@ msgstr "загрузка QSO в eQSL"
 msgid "User/Pass wrong for eQSL"
 msgstr "Неправильный логин/пароль для eQSL"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:217
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Нет такого псевдонима eQSL QTH: %s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:332
 msgid "QSO not found or not accessible"
 msgstr "QSO не найдено или недоступно"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:350
 msgid "User not found"
 msgstr "Пользователь не найден"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:359
 msgid "eQSL password not configured for this user"
 msgstr "Для этого пользователя не задан пароль eQSL"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:376
 msgid "Failed to fetch eQSL image data"
 msgstr "Не удалось получить изображение eQSL"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:395
 msgid "eQSL image not available"
 msgstr "Изображение eQSL недоступно"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:413
 msgid "Failed to download eQSL image"
 msgstr "Не удалось скачать изображение eQSL"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:423 application/controllers/Eqsl.php:576
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Недостаточно свободного места на диске для сохранения eQSL-карточки"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:447
 msgid "Failed to load cached eQSL image"
 msgstr "Не удалось загрузить кэшированное изображение eQSL"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:593
 msgid "eQSL Tools"
 msgstr "инструменты eQSL"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:622
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Запрос ограничен первыми 150 QSO. Пожалуйста, запустите снова."
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid " / Errors: "
 msgstr " / Ошибки: "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid "Successfully downloaded: "
 msgstr "Успешно скачано: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:635
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 "Достигнут лимит запросов к eQSL. Пожалуйста, подождите перед следующим "
 "запуском."
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:647
 msgid "eQSL Card Image Download"
 msgstr "скачать изображения eQSL"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:670
 msgid "All eQSLs marked as uploaded"
 msgstr "Все eQSL отмечены как загруженные"
 
@@ -2829,7 +2829,7 @@ msgstr "Сертификат обновлен."
 msgid "Certificate Deleted."
 msgstr "Сертификат удален."
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:461
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2842,7 +2842,7 @@ msgstr ""
 "%s Для получения дополнительной информации, пожалуйста, посетите %sстраницу "
 "FAQ LoTW%s в Wavelog Wiki."
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:463
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2852,50 +2852,50 @@ msgstr ""
 "Ошибка при извлечении сертификата из файла %s. Если имя файла содержит 'key-"
 "only', это обычно запрос сертификата, который еще не обработан LoTW."
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:470
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr "При обработке сертификата в файле %s произошла ошибка."
 
-#: application/controllers/Lotw.php:468
+#: application/controllers/Lotw.php:482
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr "Ошибка извлечения закрытого ключа из сертификата в файле %s."
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:698
 msgid "LoTW ADIF Information"
 msgstr "LoTW. Информация ADIF"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1018
 msgid "Connection to LoTW failed."
 msgstr "Не удалось подключиться к LoTW."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Пользователю %s (%s) не удалось войти в LoTW."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 msgid "Username/password incorrect"
 msgstr "Имя пользователя/пароль неверны"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1026
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW в настоящее время недоступен. Попробуйте позже."
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1030
 msgid "LoTW login OK!"
 msgstr "Вход в LoTW выполнен успешно!"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1036
 msgid "No LoTW credentials provided."
 msgstr "Отсутствуют учетные данные LoTW."
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1053
 msgid "LoTW ADIF Import"
 msgstr "LoTW. Импорт ADIF"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1080
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Вы не указали свои учетные данные ARRL LoTW!"
 
@@ -3085,6 +3085,7 @@ msgstr "Значение таймаута радиостанции измене�
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "Электронная почта"
@@ -3574,14 +3575,15 @@ msgstr "Нет доступных предустановок"
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
 msgstr ""
+"Ошибка при отправке на hams.at. Пожалуйста, проверьте вводимые значения."
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
-msgstr ""
+msgstr "Ошибка авторизации на hams.at. Пожалуйста, проверьте ключ API."
 
 #: application/controllers/Satellite.php:659
 msgid "Generic error posting to hams.at. Please try again later."
-msgstr ""
+msgstr "Ошибка при отправке на hams.at. Пожалуйста, попробуйте позже."
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -4421,16 +4423,24 @@ msgstr "Данные GeoJSON недоступны"
 msgid "Invalid gridsquare"
 msgstr "Неверный квадрат QTH-локатора"
 
-#: application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
 msgstr "Поиск не настроен. Пожалуйста, проверьте конфигурацию."
 
-#: application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:73
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Ошибка при получении ключа сеанса для колбука. Ошибка: %s"
 
-#: application/libraries/Callbook.php:214
+#: application/libraries/Callbook.php:74
+msgid "Generic error storing the callbook session key in cache."
+msgstr "Ошибка при сохранении ключа сессии колбука в кэше."
+
+#: application/libraries/Callbook.php:75
+msgid "Generic error reading the cached callbook session key."
+msgstr "Ошибка при чтении кэшированного ключа сессии колбука."
+
+#: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
 msgstr "Ошибка QRZCQ"
 
@@ -4915,7 +4925,7 @@ msgstr "Руководитель коллективной станции"
 
 #: application/models/Club_model.php:13
 msgid "Club Member ADIF"
-msgstr "ADIF оператора коллективной станции"
+msgstr "ADIF-оператор коллективной станции"
 
 #: application/models/Club_model.php:14
 msgid "Club Member"
@@ -4968,93 +4978,106 @@ msgstr ""
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Нет доступных работающих адаптеров — кэширование (не)работает на драйвере "
+"\"заглушке\"."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Адаптер не поддерживается."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s адаптер выдал исключение: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "Расширение PHP '%s' не загружено."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Каталог кэша не доступен для записи: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Недоступен сервер Redis — проверьте настройки в application/config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Не отвечает сервер Memcached — проверьте настройки в application/config/"
+"memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu загружен, но не может быть использован в этом PHP интерфейсе (apc."
+"enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "Не удаётся записать в каталог кэша %s — проверьте доступ."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Запись в Redis не удалась — сервер отключен или достигнут предел maxmemory?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Запись в Memcached не удалась — сервер отключен?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Запись в APCu не удалась — общая память заполнена?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Запись удалась, но чтение не удалось — каталог кэша доступен для чтения?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
-msgstr ""
+msgstr "Запись успешна, но чтение не удалось — ключ удалён Redis?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Запись удалась, но чтение не удалось."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
+msgstr "Тестовый ключ не удалось удалить — проверьте разрешения/доступ."
+
+#: application/models/Eqslmethods_model.php:313
+msgid "Empty response from eQSL.cc!"
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль для eQSL неверны."
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:326
 msgid "Something went wrong with eQSL.cc!"
 msgstr "С eQSL.cc что-то пошло не так!"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:337
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "Псевдоним QTH не существует на eQSL"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:345
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
 "eQSL.cc испытывает проблемы. Пожалуйста, попробуйте экспортировать QSO позже."
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:350
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
@@ -5062,14 +5085,14 @@ msgstr ""
 "При загрузке одного из QSO произошла ошибка. Возможно, вам стоит произвести "
 "загрузку вручную."
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:355
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Похоже, что сайт eQSL изменился. Пожалуйста, создайте сообщение о проблеме "
 "на GitHub."
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:361
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
@@ -6211,8 +6234,9 @@ msgstr "Не найдено!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15349,7 +15373,7 @@ msgstr "Сервер обработки Wavelog"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "Конфигурация обработчика была изменена"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15357,10 +15381,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s и %s устарели и будут удалены в Wavelog Worker 1.0.0. Пожалуйста, "
+"установите %s в конфигурации вашего обработчика."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Всё будет работать до того момента."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15538,11 +15564,11 @@ msgstr "Количество ключей"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Тест цикла обмена (запись - чтение - удаление)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Работает"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -16072,6 +16098,10 @@ msgstr "Пользователь ввел следующее сообщение:
 msgid "The user did not enter any additional message."
 msgstr "Пользователь не ввел дополнительного сообщения."
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr "Запрошенные QSO"
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -16082,6 +16112,16 @@ msgstr ""
 "Привет,\n"
 "\n"
 "Вы получили запрос OQRS от %s."
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "Маршрут QSL"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr "Позывной DX"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -16506,7 +16546,7 @@ msgstr "Цвета"
 
 #: application/views/interface_assets/footer.php:57
 msgid "Post"
-msgstr ""
+msgstr "Отправить"
 
 #: application/views/interface_assets/footer.php:58
 #: application/views/qso/edit_ajax.php:198
@@ -16555,7 +16595,7 @@ msgstr "Информация о спутнике"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Prepare hams.at Activation Posting"
-msgstr ""
+msgstr "Подготовьте отправку активации на hams.at"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Error loading notes"
@@ -20624,11 +20664,6 @@ msgid ""
 msgstr ""
 "Найдены следующие QSO. Пожалуйста, заполните дату и время и отправьте запрос."
 
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "Маршрут QSL"
-
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59
 msgid "Direct (write address in message below)"
@@ -21849,31 +21884,31 @@ msgstr ""
 
 #: application/views/satellite/hamsatpost.php:27
 msgid "Pass Time"
-msgstr ""
+msgstr "Время пролёта"
 
 #: application/views/satellite/hamsatpost.php:65
 msgid "Center"
-msgstr ""
+msgstr "Центр"
 
 #: application/views/satellite/hamsatpost.php:68
 msgid "Uplink"
-msgstr ""
+msgstr "Аплинк"
 
 #: application/views/satellite/hamsatpost.php:69
 msgid "Downlink"
-msgstr ""
+msgstr "Даунлинк"
 
 #: application/views/satellite/hamsatpost.php:117
 msgid "Max 50 characters"
-msgstr ""
+msgstr "Максимум 50 символов"
 
 #: application/views/satellite/hamsatpost.php:122
 msgid "Realtime chat enabled"
-msgstr ""
+msgstr "Чат в реальном времени включен"
 
 #: application/views/satellite/hamsatpost.php:126
 msgid "Chat is open until 1 day after the pass ends"
-msgstr ""
+msgstr "Чат открыт в течение 1 дня после окончания пролёта"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
@@ -21962,7 +21997,7 @@ msgstr "Время AOS"
 
 #: application/views/satellite/passtable.php:8
 msgid "TCA Time"
-msgstr ""
+msgstr "Время TCA"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:46
