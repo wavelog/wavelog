@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 04:44+0000\n"
+"POT-Creation-Date: 2026-09-23 05:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4838,70 +4838,71 @@ msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
 
-#: application/models/Debug_model.php:346
+#: application/models/Debug_model.php:322
+#: application/models/Debug_model.php:370
+msgid "Adapter not supported."
+msgstr ""
+
+#: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
 msgstr ""
 
-#: application/models/Debug_model.php:353
+#: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
 msgstr ""
 
-#: application/models/Debug_model.php:357
+#: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
 msgstr ""
 
-#: application/models/Debug_model.php:359
+#: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
 
-#: application/models/Debug_model.php:361
+#: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
 
-#: application/models/Debug_model.php:363
+#: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
 
-#: application/models/Debug_model.php:365
-msgid "Adapter not supported."
-msgstr ""
-
-#: application/models/Debug_model.php:372
+#: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
 msgstr ""
 
-#: application/models/Debug_model.php:374
+#: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
 
-#: application/models/Debug_model.php:376
+#: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
 msgstr ""
 
-#: application/models/Debug_model.php:378
+#: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
 msgstr ""
 
-#: application/models/Debug_model.php:384
+#: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
 
-#: application/models/Debug_model.php:386
+#: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
 
-#: application/models/Debug_model.php:388
+#: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
 msgstr ""
 
-#: application/models/Debug_model.php:390
+#: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
 
