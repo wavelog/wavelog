@@ -1414,6 +1414,9 @@ function shareModal(qso_data, title) {
                 cssClass: 'bg-black bg-opacity-50',
                 nl2br: false,
                 message: html,
+                onshown: function (dialog) {
+                    dialog.getModalBody().find('[data-bs-toggle="tooltip"]').tooltip();
+                },
                 buttons: [{
                     label: lang_admin_close,
                     action: function (dialogItself) {
@@ -1574,6 +1577,40 @@ function LatLng2Loc(y, x, num) {
 	if (num >= 10) qthloc+=String.fromCharCode(yn[8] + 0x61) + String.fromCharCode(yn[9] + 0x61);
 	return qthloc;
 }
+
+// API page clipboard functions
+
+function copyToClipboard(text, targetElement) {
+   if (navigator.clipboard && navigator.clipboard.writeText) {
+      // Modern Clipboard API
+      navigator.clipboard.writeText(text).then(function() {
+         targetElement.addClass('flash-copy')
+            .delay('1000').queue(function() {
+               targetElement.removeClass('flash-copy').dequeue();
+            });
+      }).catch(function(err) {
+         console.error('Failed to copy: ', err);
+         alert('Failed to copy to clipboard');
+      });
+   } else {
+      // Fallback for browsers that don't support clipboard API
+      var tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      targetElement.addClass('flash-copy')
+         .delay('1000').queue(function() {
+            targetElement.removeClass('flash-copy').dequeue();
+         });
+   }
+}
+
+$(document).on('click', '#xButton', function () {
+   copyToClipboard($(this).data('twitter-string'), $(this));
+});
 
 // Fetch an HTML fragment and swap it into a target element, then reinit tooltips.
 // Replaces the former htmx hx-get / hx-target mechanism.
