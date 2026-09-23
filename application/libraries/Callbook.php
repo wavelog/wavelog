@@ -314,7 +314,7 @@ class Callbook {
 			}
 
 			$cached_hamqth_session_key = $this->ci->cache->get($this->hamqth_session_cachekey) ?? '';
-			if ($cached_hamqth_session_cachekey != '') {
+			if ($cached_hamqth_session_key != '') {
 				$callbook = $this->ci->hamqth->search($callsign, $cached_hamqth_session_key);
 			} else {
 				log_message('error', 'Error reading cached hamqth session key from cache');
@@ -336,7 +336,7 @@ class Callbook {
 					return $callbook;
 				}
 				$cached_hamqth_session_key = $this->ci->cache->get($this->hamqth_session_cachekey) ?? '';
-				if ($cached_hamqth_session_cachekey != '') {
+				if ($cached_hamqth_session_key != '') {
 					$callbook = $this->ci->hamqth->search($callsign, $cached_hamqth_session_key);
 				} else {
 					log_message('error', 'Error reading cached hamqth session key from cache');
