@@ -32,7 +32,7 @@ Thanks for contributing to Wavelog! Please fill out this template so we can revi
 - [ ] Comments are kept to a minimum and are written in English
 - [ ] New or changed functions have a PHPDoc block
 - [ ] No MO/PO files (gettext) are committed (they are generated automatically; for translations check https://translate.wavelog.org)
-- [ ] I have tested the change on a running Wavelog instance (with at least the mentioned in the [README[(https://github.com/wavelog/wavelog#setup))
+- [ ] I have tested the change on a running Wavelog instance (with at least the mentioned in the [README](https://github.com/wavelog/wavelog#setup))
 
 ## AI usage
 
