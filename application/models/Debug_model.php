@@ -318,6 +318,11 @@ class Debug_model extends CI_Model
 		    return $result;
 	    }
 
+	    if (!in_array($adapter, ['apcu', 'dummy', 'file', 'memcached', 'redis'])) {
+		    $result['error'] = __("Adapter not supported.");
+		    return $result;
+	    }
+
 	    if (!$this->cache->is_supported($adapter)) {
 		    $result['error'] = $this->roundtrip_error_unsupported($adapter);
 		    return $result;
@@ -408,9 +413,9 @@ class Debug_model extends CI_Model
                 }
 
                 $size = 0;
-                $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
 
                 try {
+                    $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
                     foreach ($files as $file) {
                         if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
                             $size += $file->getSize();
@@ -487,9 +492,9 @@ class Debug_model extends CI_Model
                 }
 
                 $count = 0;
-                $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
 
                 try {
+                    $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
                     foreach ($files as $file) {
                         if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
                             $count++;
