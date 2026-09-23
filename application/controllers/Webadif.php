@@ -69,11 +69,13 @@ class Webadif extends CI_Controller {
 				$adif = $this->adifhelper->getAdifLine($qso);
 				$result = $this->logbook_model->push_qso_to_webadif($webadif_api_url, $webadif_api_key, $adif);
 
-				if ($result) {
+				if (($result['status'] ?? '') == 'OK') {
 					$this->logbook_model->mark_webadif_qsos_sent([$qso->COL_PRIMARY_KEY]);
 					$i++;
 				} else {
-					$errorMessage = 'QO-100 Dx Club upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
+					$reason = $result['message'] ?? 'unknown error';
+					$this->logbook_model->mark_webadif_qsos_failed([$qso->COL_PRIMARY_KEY], $reason);
+					$errorMessage = 'QO-100 Dx Club upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' Reason: ' . $reason;
 					log_message('error', $errorMessage);
 					$errormessages[] = $errorMessage;
 				}
@@ -99,15 +101,24 @@ class Webadif extends CI_Controller {
 		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('stations');
+		$this->load->model('logbook_model');
 
 		$data['page_title'] = __("QO-100 Dx Club Upload");
 
 		$data['station_profiles'] = $this->stations->stations_with_webadif_api_key();
 		$data['station_profile'] = $this->stations->stations_with_webadif_api_key();
 
+		$data['rejected_qsos'] = [];
+		foreach ($data['station_profiles']->result() as $station) {
+			$rejected = $this->logbook_model->get_webadif_rejected_qsos($station->station_id);
+			if ($rejected) {
+				$data['rejected_qsos'][$station->station_id] = $rejected;
+			}
+		}
+
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('webadif/export');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('webadif/export', $data);
+		$this->load->view('interface_assets/footer', $data);
 	}
 
 	/*
@@ -127,6 +138,12 @@ class Webadif extends CI_Controller {
 		$webadif_api_url = $result->webadifapiurl;
 		header('Content-type: application/json');
 		$result = $this->mass_upload_qsos($postData['station_id'], $webadif_api_key, $webadif_api_url);
+		$rejected_html = '';
+		$rejected = $this->logbook_model->get_webadif_rejected_qsos($postData['station_id']);
+		if ($rejected) {
+			$station_info = $this->stations->profile($postData['station_id'])->row();
+			$rejected_html = $this->load->view('webadif/rejected', ['station' => $station_info, 'rejected' => $rejected], TRUE);
+		}
 		if ($result['status'] == 'OK') {
 			$stationinfo = $this->stations->stations_with_webadif_api_key();
 			$info = $stationinfo->result();
@@ -135,13 +152,33 @@ class Webadif extends CI_Controller {
 			$data['info'] = $info;
 			$data['infomessage'] = $result['count'] . " QSOs are now uploaded to QO-100 Dx Club";
 			$data['errormessages'] = $result['errormessages'];
+			$data['rejected_html'] = $rejected_html;
 			echo json_encode($data);
 		} else {
 			$data['status'] = 'Error';
 			$data['info'] = 'Error: No QSOs found to upload.';
 			$data['errormessages'] = $result['errormessages'];
+			$data['rejected_html'] = $rejected_html;
 			echo json_encode($data);
 		}
+	}
+
+	/*
+	 * Used for ajax-function to reset QSOs that were rejected by the webADIF consumer.
+	 * The rejection markers are deleted, so the next upload picks the QSOs up again.
+	 */
+	public function reset_rejected() {
+		$postData = $this->input->post();
+		$this->load->model('stations');
+		if (!isset($postData['station_id']) || !$this->stations->check_station_is_accessible($postData['station_id'])) {
+			return;
+		}
+
+		$this->load->model('logbook_model');
+		$this->logbook_model->reset_webadif_rejected_qsos($postData['station_id']);
+
+		header('Content-type: application/json');
+		echo json_encode(['status' => 'OK', 'message' => __("Rejected QSOs were reset. They will be picked up by the next upload.")]);
 	}
 
 	public function mark_webadif() {

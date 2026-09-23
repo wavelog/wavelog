@@ -10,6 +10,25 @@ $(document).ready(function(){
 	})
 });
 
+function ResetWebADIFRejected(station_id) {
+	$(".ld-ext-right-rejected-"+station_id).addClass('running');
+	$(".ld-ext-right-rejected-"+station_id).prop('disabled', true);
+
+	$.ajax({
+		url: base_url + 'index.php/webadif/reset_rejected',
+		type: 'post',
+		data: {'station_id': station_id},
+		success: function (data) {
+			$(".ld-ext-right-rejected-"+station_id).removeClass('running');
+			$(".ld-ext-right-rejected-"+station_id).prop('disabled', false);
+			if (data.status == 'OK') {
+				$("#webadif-rejected-"+station_id).remove();
+				$(".card-body").append('<div class="alert alert-success" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + data.message + '</div>');
+			}
+		}
+	});
+}
+
 function ExportWebADIF(station_id) {
 	if ($(".alert").length > 0) {
 		$(".alert").remove();
@@ -38,8 +57,12 @@ function ExportWebADIF(station_id) {
 				$(".card-body").append('<div class="alert alert-danger" role="alert">' + data.info + '</div>');
 			}
 
+			if (data.rejected_html !== undefined && $("#webadif-rejected-wrap").length) {
+				$("#webadif-rejected-wrap").html(data.rejected_html);
+			}
+
 			if (data.errormessages.length > 0) {
-				$("#adif_import").append(
+				var $errorcard = $(
 					'<div class="errormessages">\n' +
 					'    <div class="card mt-2">\n' +
 					'        <div class="card-header bg-danger">\n' +
@@ -51,8 +74,9 @@ function ExportWebADIF(station_id) {
 					'    </div>\n' +
 					'</div>'
 				);
+				$("#export").append($errorcard);
 				$.each(data.errormessages, function (index, value) {
-					$(".errors").append('<li>' + value);
+					$errorcard.find(".errors").append($('<li>').text(value));
 				});
 			}
 		}
