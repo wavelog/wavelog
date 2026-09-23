@@ -26,13 +26,13 @@
             "1": "Vis 1 rad"
         },
         "print": "Skriv ut",
-        "copyKeys": "Press Ctrl or u2318 + C to copy the table data to your system clipboard.<br /><br />To cancel, click this message or press Escape.",
+        "copyKeys": "Trykk Ctrl eller u2318 + C for å kopiere tabelldataene til systemets utklippstavle.<br /><br />For å avbryte, klikk på denne meldingen eller trykk Escape.",
         "copySuccess": {
             "1": "Kopierte 1 rad til utklippstavlen",
             "_": "Kopierte %d rader til utklippstavlen"
         },
-        "createState": "Create state",
-        "removeAllStates": "Remove all states",
+        "createState": "Opprett visning",
+        "removeAllStates": "Fjern alle visninger",
         "removeState": "Fjern",
         "renameState": "Gi nytt navn",
         "stateRestore": "Status %d",
@@ -43,15 +43,15 @@
     },
     "searchBuilder": {
         "button": {
-            "0": "Search builder",
-            "_": "Search builder (%d)"
+            "0": "Avansert søk",
+            "_": "Avansert søk (%d)"
         },
         "clearAll": "Fjern alt",
         "condition": "Tilstand",
         "data": "Data",
         "title": {
             "0": "Søkebygger",
-            "_": "Search builder (%d)"
+            "_": "Avansert søk (%d)"
         },
         "value": "Verdi",
         "conditions": {
@@ -98,11 +98,11 @@
                 "without": "Uten"
             }
         },
-        "add": "Add condition",
-        "deleteTitle": "Delete filtering rule",
+        "add": "Legg til betingelse",
+        "deleteTitle": "Slett filtreringsregel",
         "logicAnd": "Og",
         "logicOr": "Eller",
-        "leftTitle": "Outdent criteria",
+        "leftTitle": "Reduser innrykk for kriterium",
         "rightTitle": "Innrykk kriterie"
     },
     "searchPanes": {
@@ -113,11 +113,11 @@
         },
         "count": "{total}",
         "countFiltered": "{shown} ({total})",
-        "emptyPanes": "No search panes",
+        "emptyPanes": "Ingen søkepaneler",
         "loadMessage": "Laster inn søkepaneler...",
         "showMessage": "Vis alle",
-        "collapseMessage": "Collapse all",
-        "title": "Filters active - %d"
+        "collapseMessage": "Skjul alle",
+        "title": "Aktive filtre - %d"
     },
     "infoThousands": ",",
     "thousands": ",",
@@ -170,77 +170,77 @@
         },
         "multi": {
             "restore": "Angre endringer",
-            "title": "Multiple values",
+            "title": "Flere verdier",
             "noMulti": "Dette feltet kan redigeres individuelt, men ikke som en del av en gruppe.",
             "info": "De valgte elementene har forskjellige verdier for dette feltet. For å redigere og sette alle elementene for dette feltet til samme verdi, klikk eller trykk her, ellers vil de beholde sine individuelle verdier."
         },
         "remove": {
             "button": "Slett",
-            "submit": "Delete",
-            "title": "Delete",
+            "submit": "Slett",
+            "title": "Slett",
             "confirm": {
-                "_": "Are you sure you wish to delete %d rows?",
-                "1": "Are you sure you wish to delete 1 row?"
+                "_": "Er du sikker på at du vil slette %d rader?",
+                "1": "Er du sikker på at du vil slette 1 rad?"
             }
         },
         "error": {
-            "system": "A system error has occurred (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">More information&lt;\\/a&gt;).</a>"
+            "system": "Det har oppstått en systemfeil (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Mer informasjon&lt;\\/a&gt;).</a>"
         }
     },
     "loadingRecords": "Laster inn...",
-    "processing": "Processing...",
+    "processing": "Behandler...",
     "decimal": ".",
-    "emptyTable": "No data available in table",
+    "emptyTable": "Ingen data tilgjengelig i tabellen",
     "select": {
         "cells": {
-            "1": "1 cell selected",
-            "_": "%d cells selected"
+            "1": "1 celle valgt",
+            "_": "%d celler valgt"
         },
         "columns": {
-            "1": "1 column selected",
-            "_": "%d columns selected"
+            "1": "1 kolonne er valgt",
+            "_": "%d kolonner er valgt"
         },
         "rows": {
-            "1": "1 row selected",
-            "_": "%d rows selected"
+            "1": "1 rad valgt",
+            "_": "%d rader valgt"
         }
     },
-    "zeroRecords": "No matching records found",
+    "zeroRecords": "Ingen treff funnet",
     "stateRestore": {
         "creationModal": {
-            "button": "Create",
+            "button": "Opprett",
             "columns": {
-                "search": "Column search",
-                "visible": "Column visibility"
+                "search": "Kolonnesøk",
+                "visible": "Vis kolonner"
             },
-            "name": "Name:",
-            "order": "Sorting",
-            "paging": "Paging",
-            "search": "Search",
-            "searchBuilder": "Search builder",
-            "select": "Select",
-            "title": "Create new state",
-            "toggleLabel": "Include:",
-            "scroller": "Scroll position"
+            "name": "Navn:",
+            "order": "Sortering",
+            "paging": "Paginering",
+            "search": "Søk",
+            "searchBuilder": "Søkebygger",
+            "select": "Velg",
+            "title": "Opprett nytt utvalg",
+            "toggleLabel": "Inkluder:",
+            "scroller": "Rulleposisjon"
         },
-        "duplicateError": "A state with this name already exists.",
-        "emptyError": "Name cannot be empty.",
-        "emptyStates": "No saved states",
-        "removeConfirm": "Are you sure you want to remove %s?",
-        "removeError": "Failed to remove state.",
-        "removeJoiner": "and",
-        "removeSubmit": "Remove",
-        "removeTitle": "Remove state",
-        "renameButton": "Rename",
-        "renameLabel": "New name for %s:",
-        "renameTitle": "Rename state"
+        "duplicateError": "Et oppsett med dette navnet finnes allerede.",
+        "emptyError": "Navn kan ikke være tomt.",
+        "emptyStates": "Ingen lagrede oppsett",
+        "removeConfirm": "Er du sikker på at du vil fjerne %s?",
+        "removeError": "Kunne ikke fjerne oppsettet.",
+        "removeJoiner": "og",
+        "removeSubmit": "Fjern",
+        "removeTitle": "Slett oppsett",
+        "renameButton": "Gi nytt navn",
+        "renameLabel": "Nytt navn for %s:",
+        "renameTitle": "Gi nytt navn på oppsettet"
     },
-    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-    "infoEmpty": "Showing 0 to 0 of 0 entries",
-    "infoFiltered": "(filtered from _MAX_ total entries)",
-    "lengthMenu": "Show _MENU_ entries",
+    "info": "Viser _START_ til _END_ av _TOTAL_ oppføringer",
+    "infoEmpty": "Viser 0 til 0 av 0 oppføringer",
+    "infoFiltered": "(filtrert fra totalt _MAX_ oppføringer)",
+    "lengthMenu": "Vis _MENU_ oppføringer",
     "aria": {
-        "sortAscending": ": activate to sort column ascending",
+        "sortAscending": ": aktiver for å sortere kolonnen stigende",
         "sortDescending": ": aktiver for å sortere kolonnen synkende"
     }
 }
