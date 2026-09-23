@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-22 09:14+0000\n"
-"PO-Revision-Date: 2026-09-22 21:16+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2026-09-23 05:37+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -25182,61 +25182,69 @@ msgstr "LoTW Nutzer. Letzter Upload vom "
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Kein funktionierender Cache-Adapter verfügbar - Cache läuft auf 'dummy'-"
+"Treiber."
 
 #: application/models/Debug_model.php:346
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s Adapter hat einen Fehler gemeldet: %s"
 
 #: application/models/Debug_model.php:353
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "PHP Erweiterung '%s' nicht geladen."
 
 #: application/models/Debug_model.php:357
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Das Cache-Verzeichnis (/application/cache) ist nicht beschreibbar: %s"
 
 #: application/models/Debug_model.php:359
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
-msgstr ""
+msgstr "Der Redis-Server ist nicht erreichbar - prüfe die Einstellungen."
 
 #: application/models/Debug_model.php:361
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Memecached ist nicht erreichbat - prüfe die Einstellungen in application/"
+"config/."
 
 #: application/models/Debug_model.php:363
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
-msgstr ""
+msgstr "APCu ist geladen aber nicht nutzbar via php (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:365
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Adapter wird nicht unterstützt."
 
 #: application/models/Debug_model.php:372
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
 msgstr ""
+"Das Cache-Directory %s ist nicht beschreibbar - prüfe die Berechtigungen."
 
 #: application/models/Debug_model.php:374
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Kann nicht in Redis schreiben - Redis nicht heruntergefahren, oder an der "
+"Kapazitätsgrenze?"
 
 #: application/models/Debug_model.php:376
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Kann nicht nach Memcached schreiben - Server heruntergefahren?"
 
 #: application/models/Debug_model.php:378
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Kann nicht nach APCu schreiben - Speicher voll?"
 
 #: application/models/Debug_model.php:384
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Schreiben erfolgreich, aber Lesen nicht - Ist das Cacheverzeichnis lesbar?"
 
 #: application/models/Debug_model.php:386
 msgid "Write succeeded but read failed - key evicted by Redis?"
@@ -25244,19 +25252,21 @@ msgstr ""
 
 #: application/models/Debug_model.php:388
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Schreiben erfolgreich, Lesen schlägt fehl."
 
 #: application/models/Debug_model.php:390
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
+"Der Testwert im Cache kann nicht gelöscht werden. Prüfe Berechtigungen/"
+"Zugriffseinstellung des Caches."
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Schreiben - Lesen - Löschen Test für Cache"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Funktioniert"
 
 #, php-format
 #~ msgid ""
