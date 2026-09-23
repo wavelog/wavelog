@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-23 08:23+0000\n"
-"PO-Revision-Date: 2026-09-18 23:21+0000\n"
+"PO-Revision-Date: 2026-09-23 10:14+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -3575,14 +3575,15 @@ msgstr "Нет доступных предустановок"
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
 msgstr ""
+"Ошибка при отправке на hams.at. Пожалуйста, проверьте вводимые значения."
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
-msgstr ""
+msgstr "Ошибка авторизации на hams.at. Пожалуйста, проверьте ключ API."
 
 #: application/controllers/Satellite.php:659
 msgid "Generic error posting to hams.at. Please try again later."
-msgstr ""
+msgstr "Ошибка при отправке на hams.at. Пожалуйста, попробуйте позже."
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -4916,7 +4917,7 @@ msgstr "Руководитель коллективной станции"
 
 #: application/models/Club_model.php:13
 msgid "Club Member ADIF"
-msgstr "ADIF оператора коллективной станции"
+msgstr "ADIF-оператор коллективной станции"
 
 #: application/models/Club_model.php:14
 msgid "Club Member"
@@ -4969,50 +4970,58 @@ msgstr ""
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Нет доступных работающих адаптеров — кэширование (не)работает на драйвере "
+"\"заглушке\"."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Адаптер не поддерживается."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s адаптер выдал исключение: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "Расширение PHP '%s' не загружено."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Каталог кэша не доступен для записи: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Недоступен сервер Redis — проверьте настройки в application/config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Не отвечает сервер Memcached — проверьте настройки в application/config/"
+"memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu загружен, но не может быть использован в этом PHP интерфейсе "
+"(apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "Не удаётся записать в каталог кэша %s — проверьте доступ."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Запись в Redis не удалась — сервер отключен или достигнут предел maxmemory?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
