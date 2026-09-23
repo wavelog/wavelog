@@ -169,7 +169,7 @@ class Callbook {
 					return $callbook;
 				}
 				if (!$this->ci->cache->save($this->qrz_session_cachekey, $qrz_session_key, self::QRZ_SESSION_DURATION)) {
-					log_message('error', 'Error storing qrz.com session key in cache');
+					log_message('error', 'Error storing qrz session key in cache');
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
@@ -179,7 +179,7 @@ class Callbook {
 			if ($cached_qrz_session_key != '') {
 				$callbook = $this->ci->qrz->search($callsign, $cached_qrz_session_key, $fullname);
 			} else {
-				log_message('error', 'Error reading cached qrz.com session key from cache');
+				log_message('error', 'Error reading cached qrz session key from cache');
 				$callbook['error'] = $this->error_reading_cached_sessionkey;
 				return $callbook;
 			}
@@ -192,7 +192,7 @@ class Callbook {
 					return $callbook;
 				}
 				if (!$this->ci->cache->save($this->qrz_session_cachekey, $qrz_session_key, self::QRZ_SESSION_DURATION)) {
-					log_message('error', 'Error storing qrz.com session key in cache');
+					log_message('error', 'Error storing qrz session key in cache');
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
@@ -200,7 +200,7 @@ class Callbook {
 				if ($cached_qrz_session_key != '') {
 					$callbook = $this->ci->qrz->search($callsign, $cached_qrz_session_key, $fullname);
 				} else {
-					log_message('error', 'Error reading cached qrz.com session key from cache');
+					log_message('error', 'Error reading cached qrz session key from cache');
 					$callbook['error'] = $this->error_reading_cached_sessionkey;
 					return $callbook;
 				}
@@ -250,7 +250,7 @@ class Callbook {
 			if ($cached_qrzcq_session_key != '') {
 				$callbook = $this->ci->qrzcq->search($callsign, $cached_qrzcq_session_key);
 			} else {
-				log_message('error', 'Error reading cached qrzru session key from cache');
+				log_message('error', 'Error reading cached qrzcq session key from cache');
 				$callbook['error'] = $this->error_reading_cached_sessionkey;
 				return $callbook;
 			}
@@ -271,7 +271,7 @@ class Callbook {
 				if ($cached_qrzcq_session_key != '') {
 					$callbook = $this->ci->qrzcq->search($callsign, $cached_qrzcq_session_key);
 				} else {
-					log_message('error', 'Error reading cached qrzru session key from cache');
+					log_message('error', 'Error reading cached qrzcq session key from cache');
 					$callbook['error'] = $this->error_reading_cached_sessionkey;
 					return $callbook;
 				}
@@ -306,7 +306,7 @@ class Callbook {
 					return $callbook;
 				} else {
 					if (!$this->ci->cache->save($this->hamqth_session_cachekey, $hamqth_session_key, self::HAMQTH_SESSION_DURATION)) {
-						log_message('error', 'Error storing hamqth.com session key in cache');
+						log_message('error', 'Error storing hamqth session key in cache');
 						$callbook['error'] = $this->error_caching_sessionkey;
 						return $callbook;
 					}
@@ -314,7 +314,7 @@ class Callbook {
 			}
 
 			$cached_hamqth_session_key = $this->ci->cache->get($this->hamqth_session_cachekey) ?? '';
-			if ($hamqth_session_cachekey != '') {
+			if ($cached_hamqth_session_cachekey != '') {
 				$callbook = $this->ci->hamqth->search($callsign, $cached_hamqth_session_key);
 			} else {
 				log_message('error', 'Error reading cached hamqth session key from cache');
@@ -331,12 +331,12 @@ class Callbook {
 					return $callbook;
 				}
 				if (!$this->ci->cache->save($this->hamqth_session_cachekey, $hamqth_session_key, self::HAMQTH_SESSION_DURATION)) {
-					log_message('error', 'Error storing hamqth.com session key in cache');
+					log_message('error', 'Error storing hamqth session key in cache');
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
 				$cached_hamqth_session_key = $this->ci->cache->get($this->hamqth_session_cachekey) ?? '';
-				if ($hamqth_session_cachekey != '') {
+				if ($cached_hamqth_session_cachekey != '') {
 					$callbook = $this->ci->hamqth->search($callsign, $cached_hamqth_session_key);
 				} else {
 					log_message('error', 'Error reading cached hamqth session key from cache');
@@ -374,7 +374,7 @@ class Callbook {
 					return $callbook;
 				}
 				if (!$this->ci->cache->save($this->qrzru_session_cachekey, $result, self::QRZRU_SESSION_DURATION)) {
-					log_message('error', 'Error storing qrzru.com session key in cache');
+					log_message('error', 'Error storing qrzru session key in cache');
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
@@ -397,7 +397,7 @@ class Callbook {
 					return $callbook;
 				}
 				if (!$this->ci->cache->save($this->qrzru_session_cachekey, $qrzru_session_key, self::QRZRU_SESSION_DURATION)) {
-					log_message('error', 'Error storing qrzru.com session key in cache');
+					log_message('error', 'Error storing qrzru session key in cache');
 					$callbook['error'] = $this->error_caching_sessionkey;
 					return $callbook;
 				}
