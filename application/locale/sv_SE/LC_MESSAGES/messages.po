@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-23 10:14+0000\n"
-"PO-Revision-Date: 2026-09-18 05:26+0000\n"
+"PO-Revision-Date: 2026-09-23 11:25+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -478,7 +478,7 @@ msgstr "Var god och ange ett token-namn"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr "Var god välj minst en räckvidd"
+msgstr "Var god välj minst en behörighet"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
@@ -4411,10 +4411,11 @@ msgstr "Fel vid erhållande av sessionsnyckel för callbook. Fel: %s"
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
 msgstr ""
+"Generiskt fel vid lagring av sessionsnyckeln för callbook i cacheminnet."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
-msgstr ""
+msgstr "Generiskt fel vid läsning av den cachade sessionsnyckeln för callbook."
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4942,74 +4943,85 @@ msgstr "VuccLokator-tabellen är tom. Importera VUCC-lokatordata först."
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Ingen fungerande adapter tillgänglig - cacheminnet körs på den inaktiva "
+"'dummy'-drivrutinen."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Inget stöd för denna adapter."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s adapter krashade: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "PHP-tillägget '%s' är inte laddad."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Cachekatalogen är inte skrivbar: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Redis-servern är otillgänglig - kontrollera inställningarna i application/"
+"config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Ingen Memcached-server svarade - kontrollera inställningarna i application/"
+"config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu är laddad men inte användbar i detta PHP-gränssnitt (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "Kan inte skriva till cachekatalogen %s - kontrollera behörigheter."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Misslyckades med att skriva till Redis - är servern nere eller har maxminne "
+"nåtts?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Misslyckades med att skriva till Memcached - är servern nere?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Misslyckades med att skriva till APCu - är det delade minnet fullt?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Skrivningen lyckades men läsningen misslyckades - är cachekatalogen läsbar?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"Skrivningen lyckades men läsningen misslyckades - nyckeln borttagen av Redis?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Skrivningen lyckades men läsningen misslyckades."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
-msgstr ""
+msgstr "Testnyckeln kunde inte raderas - kontrollera behörigheter/åtkomst."
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -7044,8 +7056,8 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
-"Skapa en token med detaljerade behörigheter (räckvidder). Token visas bara "
-"en gång när den skapas, så kopiera den omedelbart."
+"Skapa en token med detaljerade behörigheter. Token visas bara en gång när "
+"den skapas, så kopiera den omedelbart."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
@@ -7097,7 +7109,7 @@ msgstr ""
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr "Räckvidder"
+msgstr "Behörigheter"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
@@ -7105,7 +7117,7 @@ msgstr "Välj vilka delar av API v2 som denna token kan få åtkomst till."
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr "Vänligen välj minst en räckvidd."
+msgstr "Vänligen välj minst en behörighet."
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:152
@@ -7117,8 +7129,8 @@ msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
-"Vet du inte vilken räckvidd du behöver? Välj verktyget du vill använda så "
-"väljer vi räckvidden åt dig."
+"Vet du inte vilken behörighet du behöver? Välj verktyget du vill använda så "
+"väljer vi behörigheter åt dig."
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:146
@@ -7137,7 +7149,7 @@ msgid ""
 "afterwards."
 msgstr ""
 "En förinställning ersätter ditt aktuella val. Du kan fortfarande justera "
-"räckvidden i efterhand."
+"behörigheten i efterhand."
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -7378,9 +7390,8 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
-"API-tokens ger åtkomst till REST API v2 med detaljerade behörigheter "
-"(räckvidder). Token visas endast en gång när den skapas, så kopiera den "
-"direkt."
+"API-tokens ger åtkomst till REST API v2 med detaljerade behörigheter. Token "
+"visas endast en gång när den skapas, så kopiera den direkt."
 
 #: application/views/api/index.php:124
 #, php-format
@@ -15213,7 +15224,7 @@ msgstr "Wavelog Worker Backend"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "Worker konfigurationen har ändrats"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15221,10 +15232,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s och %s är föråldrade och kommer att tas bort i Wavelog Worker 1.0.0. "
+"Vänligen sätt %s i din worker-konfiguration istället."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Allt fortsätter att fungera tills dess."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15402,11 +15415,11 @@ msgstr "Antal cache-nycklar"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Round-Trip Test (skriv - läs - radera)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Arbetar"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -15936,7 +15949,7 @@ msgstr "Användaren angav inget ytterligare meddelande."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "Begärda QSOs"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -15957,7 +15970,7 @@ msgstr "QSL-väg"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "DX-anropssignal"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
