@@ -1541,7 +1541,11 @@ function tryNumericQsy($el) {
 		var entryHz = Math.round(parseFloat(qsyInput) * 1000);
 		var fullBand = frequencyToBand(entryHz);
 		var offHz = Math.floor(curHz / 1e6) * 1e6 + entryHz;
-		var newHz = fullBand ? entryHz : (frequencyToBand(offHz) === frequencyToBand(curHz) ? offHz : null);
+		var offHz2 = Math.floor(curHz / 1e5) * 1e5 + entryHz;
+		var curBand = frequencyToBand(curHz);
+		var newHz = fullBand ? entryHz
+			: (frequencyToBand(offHz) === curBand ? offHz
+			: (frequencyToBand(offHz2) === curBand ? offHz2 : null));
 		if (newHz) {
 			$el.val('');
 			$el.focus();
