@@ -25,6 +25,7 @@ class RadioComponent {
 		this._wsReconnectAttempts = 0;
 		this._wsHasTriedFallback = false;
 		this._radioWsTransport = null;
+		this._lastFreq = null;
 
 		// Cache DOM elements
 		this.qrgUnitElement = document.getElementById('qrg_unit');
@@ -255,8 +256,17 @@ class RadioComponent {
 		}
 
 		this.frequency.value = freq;
+		this.checkQsy(parseInt(freq, 10));
 		this.set_qrg();
 		this.updateBandButtons(this.selectedBand, false);
+	}
+
+	checkQsy(hz) {
+		if (!Number.isFinite(hz)) return;
+		if (this._lastFreq !== null && Math.abs(hz - this._lastFreq) > 500) {
+			window.dispatchEvent(new CustomEvent('contest:qsy', { detail: { from: this._lastFreq, to: hz } }));
+		}
+		this._lastFreq = hz;
 	}
 
 	/**
@@ -364,6 +374,29 @@ class RadioComponent {
 		return this.manualMode;
 	}
 
+	async tune(hz) {
+		if (this.manualMode || !this.selectedRadio || !Number.isFinite(hz)) return false;
+		try {
+			let catUrl = 'http://127.0.0.1:54321';
+			if (this.selectedRadio !== 'ws') {
+				const r = await fetch(base_url + 'index.php/radio/json/' + this.selectedRadio);
+				catUrl = r.ok ? (await r.json()).cat_url : null;
+			}
+			if (!catUrl) return false;
+			const mode = ({ cw: 'cw', fm: 'fm', am: 'am', rtty: 'rtty', lsb: 'lsb', usb: 'usb' })[(this.mode?.value || '').toLowerCase()]
+				|| (hz < 10000000 ? 'lsb' : 'usb');
+			const altUrl = catUrl.startsWith('https://') ? catUrl.replace('https://', 'http://') : catUrl.replace('http://', 'https://');
+			for (const base of new Set([catUrl, altUrl])) {
+				try {
+					if ((await fetch(`${base}/${Math.round(hz)}/${mode}`)).ok) return true;
+				} catch (_) {}
+			}
+		} catch (e) {
+			console.warn('RadioComponent: tune failed', e);
+		}
+		return false;
+	}
+
 	/**
 	 * Determine band from frequency in Hz
 	 * Ported from radiohelpers.js frequencyToBand()
@@ -440,6 +473,7 @@ class RadioComponent {
 
 			if (freqHz) {
 				this.frequency.value = freqHz;
+				this.checkQsy(Math.round(freqHz));
 				await this.set_qrg();
 				return;
 			}
@@ -458,6 +492,7 @@ class RadioComponent {
 			if (result) {
 				const freqHz = parseInt(result);
 				this.frequency.value = freqHz;
+				this.checkQsy(freqHz);
 				await this.set_qrg();
 			}
 		} catch (error) {
@@ -588,6 +623,7 @@ class RadioComponent {
 		localStorage.setItem('qrgunit_' + new_band, unit);
 
 		this.frequency.value = qrg_hz;
+		this.checkQsy(Math.round(qrg_hz));
 		this.freqCalculated.value = parsed_qrg;
 		this.selectedBand = new_band;
 

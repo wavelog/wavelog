@@ -18,21 +18,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['worker_enabled'] = false;
 
 /**
- * Optional VIP/load-balancer URL shown as a connectivity check in the debug page.
- * Leave empty for single-instance setups.
+ * Internal URL of the Worker (PHP -> Worker, HTTP).
+ * Single instance: the URL of your worker.
+ * Cluster: the URL of your load balancer service in front of the workers.
+ * The cluster nodes are discovered automatically (Worker Version 0.3.0 or newer).
+ * A cluster needs a Redis / Valkey instance, see the
+ * wavelog_worker sample config.yaml.
  */
-$config['worker_vip'] = '';
+$config['worker_url'] = 'http://127.0.0.1:9001';
 
 /**
- * Internal URLs of wavelog_worker instances (PHP -> Worker, HTTP).
- * Single instance: one entry. Cluster: one entry per node.
- * PHP publishes to the first entry; the debug page shows status of all nodes.
- * Keep in Mind: If you enter more than one worker url, it means you run a cluster. In this case you need 
- * a Redis / Valkey instance. More info you can find in the wavelog_worker sample config.yaml.
+ * Deprecated, will be removed in Wavelog 1.0.0: worker_vip and worker_urls.
+ * Both are still read when worker_url is empty. Use worker_url instead
+ * (worker_vip -> worker_url, or the first worker_urls entry -> worker_url).
+ * Listing every node in worker_urls is only needed with Workers older than 0.3.0.
  */
-$config['worker_urls'] = [
-    'http://127.0.0.1:9001',
-];
+// $config['worker_vip'] = '';
+// $config['worker_urls'] = [
+//     'http://127.0.0.1:9001',
+// ];
 
 /**
  * Shared secret — must match worker_secret in the worker's config.yaml.

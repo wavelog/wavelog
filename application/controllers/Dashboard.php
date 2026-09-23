@@ -217,7 +217,7 @@ class Dashboard extends CI_Controller {
 		// DXCC breakdown sections: HF always, SAT/VHF+ only when such QSOs exist
 		$groups = $stats['DXCC_Groups'] ?? [];
 		$current_count = count($dxcc->result());
-		$zero_group = ['qsos' => 0, 'worked' => 0, 'deleted' => 0, 'qsl' => 0, 'deleted_qsl' => 0, 'lotw' => 0, 'deleted_lotw' => 0, 'confirmed' => 0];
+		$zero_group = ['qsos' => 0, 'worked' => 0, 'deleted' => 0, 'qsl' => 0, 'deleted_qsl' => 0, 'lotw' => 0, 'deleted_lotw' => 0, 'confirmed' => 0, 'deleted_confirmed' => 0];
 		$data['dxcc_sections'] = [];
 		foreach (['hf' => __("HF"), 'sat' => __("SAT"), 'vhf' => __("VHF+")] as $key => $label) {
 			$group = array_merge($zero_group, $groups[$key] ?? []);
@@ -225,7 +225,7 @@ class Dashboard extends CI_Controller {
 				continue;
 			}
 			$group['label'] = $label;
-			$group['needed'] = max(0, $current_count - $group['confirmed']);
+			$group['needed'] = max(0, $current_count - $group['worked']);
 			$data['dxcc_sections'][$key] = $group;
 		}
 

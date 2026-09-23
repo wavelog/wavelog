@@ -54,6 +54,7 @@
     var lang_admin_close = "<?= __("Close"); ?>";
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";
+    var lang_admin_post = "<?= __("Post"); ?>";
     var lang_lotw_propmode_hint = "<?= __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); ?>";
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
@@ -63,6 +64,7 @@
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
     var lang_gen_hamradio_sat_info = "<?= __("Satellite Information"); ?>";
+    var lang_gen_hamradio_sat_hamsat_post = "<?= __("Prepare hams.at Activation Posting"); ?>";
 
     var lang_notes_error_loading = "<?= __("Error loading notes"); ?>";
     var lang_notes_sort = "<?= __("Sorting"); ?>";
@@ -905,7 +907,9 @@ function showActivatorsMap(call, count, grids, grid_color) {
         container._leaflet_id = null;
     }
 
-    const map = new L.map('mapactivators').setView([30, 0], 1.5);
+    const map = new L.map('mapactivators', {
+        fullscreenControl: true,
+    }).setView([30, 0], 1.5);
 
     var grid_four = grids.split(', ');
 
@@ -1206,6 +1210,7 @@ mymap.on('mousemove', onQsoMapMove);
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div id="qsomapgrid"></div>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
+        L.DomEvent.disableClickPropagation(div);
         return div;
     };
 
