@@ -423,16 +423,30 @@ class Lotw extends CI_Controller {
     }
 
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: decrypt_key
-	|--------------------------------------------------------------------------
-	|
-	| Accepts p12 file and optional password and encrypts the file returning
-	| the required fields for LoTW and the PEM Key
-	|
-	*/
-	public function decrypt_key($file, $password = "") {
+	/**
+	 * Reads a LoTW PKCS#12 (.p12) certificate file and extracts the data needed for signing uploads.
+	 *
+	 * The private key is re-exported as a PEM key encrypted with the default password "wavelog".
+	 * On any error the uploaded file is deleted, a flash warning is set and the user is
+	 * redirected to /lotw (this function does not return in that case).
+	 *
+	 * @param string $file     Absolute path to the uploaded .p12 file
+	 * @param string $password Password of the .p12 file (TQSL exports normally have none)
+	 *
+	 * @return array{
+	 *     general_cert: string,
+	 *     pem_key: string,
+	 *     serialNumber: string,
+	 *     issued_callsign: string,
+	 *     issued_name: string,
+	 *     validFrom: string,
+	 *     validTo_Date: string,
+	 *     'qso-first-date': string,
+	 *     'qso-end-date': string,
+	 *     'dxcc-id': string
+	 * } Certificate data; dates validFrom/validTo_Date as 'Y-m-d H:i:s'
+	 */
+	private function decrypt_key($file, $password = "") {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$results = array();
