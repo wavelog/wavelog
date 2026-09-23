@@ -288,6 +288,113 @@ class Debug_model extends CI_Model
         return false;
     }
 
+    public function test_cache_roundtrip() {
+	    $this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+		    'adapter' => $this->config->item('cache_adapter') ?? 'file',
+		    'backup' => $this->config->item('cache_backup') ?? 'file',
+		    'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+	    ]);
+
+	    $adapters = array_unique([
+		    $this->config->item('cache_adapter') ?: 'file',
+		    $this->config->item('cache_backup') ?: 'file'
+	    ]);
+
+	    $results = [];
+	    foreach ($adapters as $adapter) {
+		    $results[$adapter] = $this->roundtrip_adapter($adapter);
+		    if (!$results[$adapter]['ok']) {
+			    log_message('error', 'Cache round-trip test failed for adapter "'.$adapter.'": '.$results[$adapter]['error']);
+		    }
+	    }
+	    return $results;
+    }
+
+    private function roundtrip_adapter($adapter) {
+	    $result = ['ok' => false, 'error' => ''];
+
+	    if ($adapter == 'dummy') {
+		    $result['error'] = __("No working adapter available - cache is running on the no-op 'dummy' driver.");
+		    return $result;
+	    }
+
+	    if (!$this->cache->is_supported($adapter)) {
+		    $result['error'] = $this->roundtrip_error_unsupported($adapter);
+		    return $result;
+	    }
+
+	    try {
+		    $key = 'debug_rt_' . bin2hex(random_bytes(4));
+		    $driver = $this->cache->{$adapter};
+		    $value = 'wavelog-roundtrip-test';
+
+		    if (!$driver->save($key, $value, 60)) {
+			    $result['error'] = $this->roundtrip_error_stage('save', $adapter);
+			    return $result;
+		    }
+		    if ($driver->get($key) !== $value) {
+			    $driver->delete($key);
+			    $result['error'] = $this->roundtrip_error_stage('get', $adapter);
+			    return $result;
+		    }
+		    if (!$driver->delete($key)) {
+			    $result['error'] = $this->roundtrip_error_stage('delete', $adapter);
+			    return $result;
+		    }
+		    $result['ok'] = true;
+	    } catch (Throwable $e) {
+		    $result['error'] = sprintf(__("%s adapter threw an exception: %s"), ucfirst($adapter), $e->getMessage());
+	    }
+	    return $result;
+    }
+
+    private function roundtrip_error_unsupported($adapter) {
+        if (in_array($adapter, ['redis', 'memcached', 'apcu']) && !extension_loaded($adapter)) {
+            return sprintf(__("PHP extension '%s' is not loaded."), $adapter);
+        }
+        switch ($adapter) {
+            case 'file':
+                return sprintf(__("Cache directory is not writable: %s"), $this->cache_file_path());
+            case 'redis':
+                return __("Redis server unreachable - check settings in application/config/redis.php.");
+            case 'memcached':
+                return __("No Memcached server responded - check settings in application/config/memcached.php.");
+            case 'apcu':
+                return __("APCu loaded but not usable in this PHP interface (apc.enabled=0?).");
+        }
+        return __("Adapter not supported.");
+    }
+
+    private function roundtrip_error_stage($stage, $adapter) {
+        if ($stage == 'save') {
+            switch ($adapter) {
+                case 'file':
+                    return sprintf(__("Cannot write to cache directory %s - check permissions."), $this->cache_file_path());
+                case 'redis':
+                    return __("Redis write failed - server down or maxmemory reached?");
+                case 'memcached':
+                    return __("Memcached write failed - server down?");
+                case 'apcu':
+                    return __("APCu write failed - shared memory full?");
+            }
+        }
+        if ($stage == 'get') {
+            switch ($adapter) {
+                case 'file':
+                    return __("Write succeeded but read failed - cache directory readable?");
+                case 'redis':
+                    return __("Write succeeded but read failed - key evicted by Redis?");
+            }
+            return __("Write succeeded but read failed.");
+        }
+        return __("Test key could not be deleted - check permissions/access.");
+    }
+
+    private function cache_file_path() {
+        $cache_path = $this->config->item('cache_path') ?: 'application/cache';
+        return realpath(APPPATH . '../') . '/' . $cache_path;
+    }
+
     function get_cache_size($adapter = NULL) {
         $cache_adapter = $adapter ?? ($this->config->item('cache_adapter') ?? 'file');
 
@@ -303,10 +410,15 @@ class Debug_model extends CI_Model
                 $size = 0;
                 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
 
-                foreach ($files as $file) {
-                    if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
-                        $size += $file->getSize();
+                try {
+                    foreach ($files as $file) {
+                        if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
+                            $size += $file->getSize();
+                        }
                     }
+                } catch (Exception $e) {
+                    log_message('error', 'Error accessing cache directory: '.$e->getMessage());
+                    return 0;
                 }
 
                 return $size;
@@ -377,10 +489,15 @@ class Debug_model extends CI_Model
                 $count = 0;
                 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($cache_path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
 
-                foreach ($files as $file) {
-                    if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
-                        $count++;
+                try {
+                    foreach ($files as $file) {
+                        if ($file->isFile() && !in_array($file->getFilename(), ['index.html', '.htaccess'])) {
+                            $count++;
+                        }
                     }
+                } catch (Exception $e) {
+                    log_message('error', 'Error accessing cache directory: '.$e->getMessage());
+                    return 0;
                 }
 
                 return $count;
