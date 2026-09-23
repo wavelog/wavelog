@@ -4423,16 +4423,17 @@ msgstr "Данные GeoJSON недоступны"
 msgid "Invalid gridsquare"
 msgstr "Неверный квадрат QTH-локатора"
 
-#: application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:70 application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
 msgstr "Поиск не настроен. Пожалуйста, проверьте конфигурацию."
 
-#: application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:71 application/libraries/Callbook.php:73
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Ошибка при получении ключа сеанса для колбука. Ошибка: %s"
 
 #: application/libraries/Callbook.php:214
+#: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
 msgstr "Ошибка QRZCQ"
 
@@ -23458,8 +23459,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23829,8 +23831,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:484
 msgid ""
@@ -25192,6 +25194,14 @@ msgstr "Поиск лога на Clublog"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "Пользователь LoTW. Последняя загрузка была "
+
+#: application/libraries/Callbook.php:74
+msgid "Generic error storing the callbook session key in cache."
+msgstr ""
+
+#: application/libraries/Callbook.php:75
+msgid "Generic error reading the cached callbook session key."
+msgstr ""
 
 #, php-format
 #~ msgid ""
