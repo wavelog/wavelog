@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-23 08:23+0000\n"
-"PO-Revision-Date: 2026-09-23 10:14+0000\n"
+"PO-Revision-Date: 2026-09-23 11:25+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -5026,27 +5026,28 @@ msgstr ""
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Запись в Memcached не удалась — сервер отключен?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Запись в APCu не удалась — общая память заполнена?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Запись удалась, но чтение не удалось — каталог кэша доступен для чтения?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
-msgstr ""
+msgstr "Запись успешна, но чтение не удалось — ключ удалён Redis?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Запись удалась, но чтение не удалось."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
-msgstr ""
+msgstr "Тестовый ключ не удалось удалить — проверьте разрешения/доступ."
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -15361,7 +15362,7 @@ msgstr "Сервер обработки Wavelog"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "Конфигурация обработчика была изменена"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15369,10 +15370,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s и %s устарели и будут удалены в Wavelog Worker 1.0.0. Пожалуйста, "
+"установите %s в конфигурации вашего обработчика."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Всё будет работать до того момента."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15550,11 +15553,11 @@ msgstr "Количество ключей"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Тест цикла обмена (запись - чтение - удаление)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Работает"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -16086,7 +16089,7 @@ msgstr "Пользователь не ввел дополнительного с
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "Запрошенные QSO"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -16107,7 +16110,7 @@ msgstr "Маршрут QSL"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "Позывной DX"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -16532,7 +16535,7 @@ msgstr "Цвета"
 
 #: application/views/interface_assets/footer.php:57
 msgid "Post"
-msgstr ""
+msgstr "Отправить"
 
 #: application/views/interface_assets/footer.php:58
 #: application/views/qso/edit_ajax.php:198
@@ -16581,7 +16584,7 @@ msgstr "Информация о спутнике"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Prepare hams.at Activation Posting"
-msgstr ""
+msgstr "Подготовьте отправку активации на hams.at"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Error loading notes"
@@ -21870,31 +21873,31 @@ msgstr ""
 
 #: application/views/satellite/hamsatpost.php:27
 msgid "Pass Time"
-msgstr ""
+msgstr "Время пролёта"
 
 #: application/views/satellite/hamsatpost.php:65
 msgid "Center"
-msgstr ""
+msgstr "Центр"
 
 #: application/views/satellite/hamsatpost.php:68
 msgid "Uplink"
-msgstr ""
+msgstr "Аплинк"
 
 #: application/views/satellite/hamsatpost.php:69
 msgid "Downlink"
-msgstr ""
+msgstr "Даунлинк"
 
 #: application/views/satellite/hamsatpost.php:117
 msgid "Max 50 characters"
-msgstr ""
+msgstr "Максимум 50 символов"
 
 #: application/views/satellite/hamsatpost.php:122
 msgid "Realtime chat enabled"
-msgstr ""
+msgstr "Чат в реальном времени включен"
 
 #: application/views/satellite/hamsatpost.php:126
 msgid "Chat is open until 1 day after the pass ends"
-msgstr ""
+msgstr "Чат открыт в течение 1 дня после окончания пролёта"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
@@ -21983,7 +21986,7 @@ msgstr "Время AOS"
 
 #: application/views/satellite/passtable.php:8
 msgid "TCA Time"
-msgstr ""
+msgstr "Время TCA"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:46
@@ -25197,11 +25200,11 @@ msgstr "Пользователь LoTW. Последняя загрузка бы�
 
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
-msgstr ""
+msgstr "Ошибка при сохранении ключа сессии колбука в кэше."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
-msgstr ""
+msgstr "Ошибка при чтении кэшированного ключа сессии колбука."
 
 #, php-format
 #~ msgid ""
