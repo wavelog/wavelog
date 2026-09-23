@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
+"POT-Creation-Date: 2026-09-23 08:23+0000\n"
 "PO-Revision-Date: 2026-09-18 05:26+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3075,6 +3075,7 @@ msgstr "無線機のタイムアウト警告が次のように変更されまし
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "メール"
@@ -6161,8 +6162,9 @@ msgstr "何も見つかりません!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15896,6 +15898,10 @@ msgstr "ユーザーは次のようなメッセージを入力しました: "
 msgid "The user did not enter any additional message."
 msgstr "ユーザーは追加のメッセージを入力しませんでした。"
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15906,6 +15912,16 @@ msgstr ""
 "こんにちは、\n"
 "\n"
 "%sからOQRSリクエストを受け取りました。"
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSLルート"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -20400,11 +20416,6 @@ msgid ""
 "submit your request."
 msgstr ""
 "以下のQSOが見つかりました。日時を入力してリクエストを送信してください。"
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSLルート"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
+"POT-Creation-Date: 2026-09-23 08:23+0000\n"
 "PO-Revision-Date: 2026-09-15 14:40+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3080,6 +3080,7 @@ msgstr "Radio Time-out waarschuwing gewijzigd in "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "E-mail"
@@ -6183,8 +6184,9 @@ msgstr "Niets gevonden!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15988,6 +15990,10 @@ msgstr "De gebruiker heeft het volgende bericht ingevoerd: "
 msgid "The user did not enter any additional message."
 msgstr "De gebruiker heeft geen extra bericht ingevoerd."
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15998,6 +16004,16 @@ msgstr ""
 "Hoi,\n"
 "\n"
 "Je hebt een OQRS-verzoek van %s ontvangen."
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSL-route"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -20532,11 +20548,6 @@ msgid ""
 msgstr ""
 "De volgende QSO('s) zijn gevonden. Vul alstublieft de datum en tijd in en "
 "dien uw verzoek in."
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSL-route"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59

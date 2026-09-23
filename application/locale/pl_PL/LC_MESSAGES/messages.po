@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
+"POT-Creation-Date: 2026-09-23 08:23+0000\n"
 "PO-Revision-Date: 2026-08-30 21:12+0000\n"
 "Last-Translator: Piotr S <sp9lop@pm.me>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3084,6 +3084,7 @@ msgstr "Ostrzeżenie o przekroczeniu limitu czasu radiostacji zmieniono na "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "Email"
@@ -6192,8 +6193,9 @@ msgstr "Nie znaleziono!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15961,6 +15963,10 @@ msgstr "Użytkownik wpisał następującą wiadomość: "
 msgid "The user did not enter any additional message."
 msgstr "Użytkownik nie wpisał żadnej dodatkowej wiadomości."
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15971,6 +15977,16 @@ msgstr ""
 "Cześć,\n"
 "\n"
 "Otrzymałeś żądanie OQRS od %s."
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "Trasa QSL"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -20480,11 +20496,6 @@ msgid ""
 msgstr ""
 "Znaleziono następujące QSO. Należy uzupełnić datę i godzinę oraz przesłać "
 "zgłoszenie."
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "Trasa QSL"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59

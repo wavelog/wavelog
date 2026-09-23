@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
+"POT-Creation-Date: 2026-09-23 08:23+0000\n"
 "PO-Revision-Date: 2026-09-23 07:32+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3074,6 +3074,7 @@ msgstr "Telsiz Zaman Aşımı Uyarısı değiştirildi. "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "E-posta"
@@ -4938,7 +4939,8 @@ msgstr "VuccGrids tablosu boş. Lütfen önce VUCC grid verilerini içe aktarın
 #: application/models/Debug_model.php:317
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
-msgstr "Çalışan bir adaptör yok - önbellek no-op 'dummy' sürücüsünde çalışıyor."
+msgstr ""
+"Çalışan bir adaptör yok - önbellek no-op 'dummy' sürücüsünde çalışıyor."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
@@ -4998,7 +5000,8 @@ msgstr "APCu yazma başarısız oldu - paylaşılan bellek dolu?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
-msgstr "Yazma başarılı oldu ancak okuma başarısız - önbellek dizini okunabilir?"
+msgstr ""
+"Yazma başarılı oldu ancak okuma başarısız - önbellek dizini okunabilir?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
@@ -6184,8 +6187,9 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15977,6 +15981,10 @@ msgstr "Kullanıcı aşağıdaki mesajı girdi: "
 msgid "The user did not enter any additional message."
 msgstr "Kullanıcı herhangi bir ek mesaj girmedi."
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15987,6 +15995,16 @@ msgstr ""
 "Merhaba,\n"
 "\n"
 "%s’den bir OQRS talebi aldınız."
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSL Gönderim Metodu"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -20500,11 +20518,6 @@ msgid ""
 msgstr ""
 "Aşağıdaki QSO(lar) bulundu. Lütfen tarih ve saati doldurun ve talebinizi "
 "gönderin."
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSL Gönderim Metodu"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59

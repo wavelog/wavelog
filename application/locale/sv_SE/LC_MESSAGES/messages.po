@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 05:36+0000\n"
+"POT-Creation-Date: 2026-09-23 08:23+0000\n"
 "PO-Revision-Date: 2026-09-18 05:26+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3070,6 +3070,7 @@ msgstr "Radio Timeout Warning ändras till "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "E-post"
@@ -6167,8 +6168,9 @@ msgstr "Inget hittades!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -15924,6 +15926,10 @@ msgstr "Användaren skrev följande meddelande: "
 msgid "The user did not enter any additional message."
 msgstr "Användaren angav inget ytterligare meddelande."
 
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
 #: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
@@ -15934,6 +15940,16 @@ msgstr ""
 "Hej,\n"
 "\n"
 "Du har fått en OQRS-förfrågan från %s."
+
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSL-väg"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -20446,11 +20462,6 @@ msgid ""
 msgstr ""
 "Följande QSO hittades. Vänligen fyll i datum och tid och skicka in din "
 "förfrågan."
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSL-väg"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59
