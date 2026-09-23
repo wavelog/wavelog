@@ -39,12 +39,16 @@ class Eqslmethods_model extends CI_Model {
 		}
 	}
 
+	/*
+	 * Uploads all pending eQSL QSOs of a user (used by cron). Stops on errors.
+	 */
 	function uploadUser($userid, $username, $password) {
 		$data['user_eqsl_name'] = $this->security->xss_clean($username);
 		$data['user_eqsl_password'] = $password;
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$qslsnotsent = $this->eqsl_not_yet_sent($clean_userid);
+		$uncaught = 0;
 
 		foreach ($qslsnotsent->result_array() as $qsl) {
 			$data['user_eqsl_name'] = $qsl['station_callsign'];
@@ -63,6 +67,14 @@ class Eqslmethods_model extends CI_Model {
 				log_message('error', 'eQSL credentials error (user, pass or QTH Nickname) for '.$data['user_eqsl_name'].'. Login will be disabled!');
 				$this->disable_eqsl_uid($userid);
 				break;
+			} elseif ($status == '') {
+				$uncaught++;
+				if ($uncaught >= 3) {
+					log_message('error', 'eQSL: 3 uncaught responses for '.$data['user_eqsl_name'].'. Aborting upload for this user to avoid hammering eQSL.');
+					break;
+				}
+			} else {
+				$uncaught = 0;
 			}
 		}
 	}
@@ -256,6 +268,9 @@ class Eqslmethods_model extends CI_Model {
 		return $adif;
 	}
 
+	/*
+	 * Uploads a single QSO to eQSL via importADIF and maps the response to a status string.
+	 */
 	function uploadQso($adif, $qsl) {
 		$status = "";
 
@@ -307,9 +322,10 @@ class Eqslmethods_model extends CI_Model {
 					$msg = __("QTH Nickname does not exist at eQSL");
 					$this->session->set_flashdata('warning', $msg);
 					$status = "Nick Error";
-				} else {
-					log_message("Error","eQSL: Uncaught exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']);
-				}
+			} else {
+				$snippet = substr(trim(preg_replace('/\s+/', ' ', strip_tags((string)$result))), -300);
+				log_message("Error","eQSL: Uncaught exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']." Response: ".$snippet);
+			}
 			}
 		} else {
 			if ($chi['http_code'] == "500") {
@@ -328,12 +344,13 @@ class Eqslmethods_model extends CI_Model {
 				$this->session->set_flashdata('warning', $msg);
 				$status = "Error";
 			} else {
-				log_message("Error","eQSL: Uncaught HTTP-exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']);
+				log_message("Error","eQSL: Uncaught HTTP-exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']." HTTP-Code: ".$chi['http_code']." cURL: ".curl_error($ch));
 				$msg = __("An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups");
 				$this->session->set_flashdata('warning', $msg);
 				$status= "Error";
 			}
 		}
+		curl_close($ch);
 		return $status;
 	}
 
