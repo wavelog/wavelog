@@ -22,7 +22,8 @@ RUN install-php-extensions \
         redis \
         memcached \
         apcu \
-        gd
+        gd \
+        imap
 
 # dedicated non-root user for files and cronjob
 # (apache itself keeps running as root)

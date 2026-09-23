@@ -600,6 +600,25 @@ class Qslpostcard_model extends CI_Model {
         return $q->result_array();
     }
 
+    public function get_oqrs_requests_for_qsos(array $ids): array {
+        $ids = array_values(array_unique(array_filter(array_map('intval', $ids))));
+        if (!$ids) {
+            return [];
+        }
+
+        $table = $this->config->item('table_name');
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+        $sql = "SELECT oqrs.id, oqrs.qsoid, oqrs.email, oqrs.requestcallsign
+            FROM oqrs
+            INNER JOIN {$table} log ON log.COL_PRIMARY_KEY = oqrs.qsoid
+            INNER JOIN station_profile station ON station.station_id = log.station_id
+                AND station.station_id = oqrs.station_id
+            WHERE station.user_id = ? AND oqrs.qsoid IN ({$placeholders})
+            ORDER BY oqrs.id";
+        $params = array_merge([$this->session->userdata('user_id')], $ids);
+        return $this->db->query($sql, $params)->result_array();
+    }
+
     public function pretty_sat_mode($sat_mode) {
         return (strlen($sat_mode ?? '') == 2) ? (strtoupper($sat_mode[0]) . '/' . strtoupper($sat_mode[1])) : strtoupper($sat_mode ?? '');
     }

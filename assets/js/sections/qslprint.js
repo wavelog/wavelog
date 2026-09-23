@@ -652,6 +652,35 @@ function saveAndPrintSelectedQsos(printAll) {
 	}
 }
 
+function createOqrsPostcardDrafts(printAll) {
+	const templateId = $('#qslcard_template_id').val();
+	const ids = printAll ? [] : getSelectedIds();
+	if (!templateId || (!printAll && ids.length === 0)) {
+		BootstrapDialog.alert('Select at least one QSO.');
+		return;
+	}
+	const $button = $('.dropdown-menu button[onclick^="createOqrsPostcardDrafts"]');
+	$button.prop('disabled', true);
+	$.ajax({
+		url: base_url + 'index.php/qslpostcard/create_oqrs_drafts/' + templateId,
+		method: 'POST',
+		dataType: 'json',
+		data: { print_all: printAll ? '1' : '0', selected_ids: JSON.stringify(ids), draft_token: $('#postcard_draft_token').val() }
+	}).done(function(result) {
+		if (result.webmail_url) {
+			window.location.href = result.webmail_url;
+		} else {
+			BootstrapDialog.alert(result.created + ' Mailcow draft(s) created. Open Drafts in SOGo to review and send.');
+		}
+	}).fail(function(xhr) {
+		const result = xhr.responseJSON || {};
+		const partial = result.created ? result.created + ' draft(s) were already created. ' : '';
+		BootstrapDialog.alert(partial + (result.message || 'Could not create Mailcow drafts.'));
+	}).always(function() {
+		$button.prop('disabled', false);
+	});
+}
+
 function printLabel(printAll) {
 	const id_list = getSelectedIds();
 	if (printAll != true && id_list.length === 0) {

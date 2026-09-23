@@ -350,6 +350,108 @@ class Qslpostcard extends CI_Controller {
         }
     }
 
+    public function create_oqrs_drafts($template_id) {
+        if (strtoupper($this->input->method()) !== 'POST') {
+            return $this->draft_response(405, 'POST required');
+        }
+        $token = (string)$this->session->userdata('postcard_draft_token');
+        if ($token === '' || !hash_equals($token, (string)$this->input->post('draft_token'))) {
+            return $this->draft_response(403, 'Invalid draft request token');
+        }
+
+        $created = 0;
+        try {
+            $tpl = $this->Qslpostcard_model->get_template((int)$template_id);
+            $layout = $tpl ? json_decode($tpl['layout_json'], true) : null;
+            if (!is_array($layout)) {
+                throw new InvalidArgumentException('Postcard template not found');
+            }
+
+            $all = $this->input->post('print_all') === '1';
+            if ($all) {
+                $qsos = $this->Qslpostcard_model->get_qsl_queue_qsos();
+            } else {
+                $ids = json_decode((string)$this->input->post('selected_ids'), true);
+                if (!is_array($ids) || count($ids) > 100 || !$ids) {
+                    throw new InvalidArgumentException('Select 1 to 100 QSOs');
+                }
+                $qsos = $this->Qslpostcard_model->get_qsos_by_ids($ids);
+                if (count($qsos) !== count(array_unique(array_map('intval', $ids)))) {
+                    throw new InvalidArgumentException('Some selected QSOs are unavailable');
+                }
+            }
+
+            if (!$qsos || count($qsos) > 100) {
+                throw new InvalidArgumentException('Select 1 to 100 QSOs');
+            }
+
+            $byId = [];
+            foreach ($qsos as $qso) {
+                $byId[(int)$qso['COL_PRIMARY_KEY']] = $qso;
+            }
+            $requests = $this->Qslpostcard_model->get_oqrs_requests_for_qsos(array_keys($byId));
+            if ($all) {
+                // The print queue can also contain paper QSLs without OQRS requests.
+                $byId = array_intersect_key(
+                    $byId, array_fill_keys(array_column($requests, 'qsoid'), true)
+                );
+            }
+            if (!$requests || count($requests) !== count($byId)) {
+                throw new InvalidArgumentException('Every selected QSO must have exactly one OQRS request');
+            }
+            foreach ($requests as $request) {
+                if (!isset($byId[(int)$request['qsoid']])
+                    || !filter_var($request['email'], FILTER_VALIDATE_EMAIL)) {
+                    throw new InvalidArgumentException('An OQRS request has no valid email address');
+                }
+            }
+
+            $this->load->library('Postcard_draft_mailbox');
+            $opts = $layout['options'] ?? [];
+            $background = !empty($opts['print_background']) ? $tpl['preview_image'] : null;
+            $noaddress = !empty($opts['skip_address']);
+            foreach ($requests as $request) {
+                $qso = $byId[(int)$request['qsoid']];
+                $pdfPath = $this->Qslpostcard_model->render_pdf_from_layout(
+                    $layout, [$qso], false, $background, $noaddress
+                );
+                if (!$pdfPath || !is_file($pdfPath)) {
+                    throw new RuntimeException('QSL PDF could not be generated');
+                }
+                try {
+                    $this->postcard_draft_mailbox->append(
+                        $request['email'], $request['requestcallsign'], $pdfPath
+                    );
+                    $created++;
+                } finally {
+                    @unlink($pdfPath);
+                }
+            }
+
+            return $this->draft_response(200, 'Drafts saved in Mailcow', $created);
+        } catch (Throwable $e) {
+            log_message('error', 'QSLPOSTCARD create_oqrs_drafts failed: ' . $e->getMessage());
+            return $this->draft_response(
+                $e instanceof InvalidArgumentException ? 400 : 500,
+                $e->getMessage(), $created
+            );
+        }
+    }
+
+    private function draft_response(int $status, string $message, int $created = 0): void {
+        $webmailUrl = (string)(getenv('WAVELOG_DRAFTS_WEBMAIL_URL')
+            ?: $this->config->item('postcard_drafts_webmail_url'));
+        if (!filter_var($webmailUrl, FILTER_VALIDATE_URL)
+            || parse_url($webmailUrl, PHP_URL_SCHEME) !== 'https') {
+            $webmailUrl = '';
+        }
+        $this->output->set_status_header($status)
+            ->set_content_type('application/json')
+            ->set_output(json_encode([
+                'message' => $message, 'created' => $created, 'webmail_url' => $webmailUrl
+            ]));
+    }
+
     private function _json_error($msg, $code = 400) {
         $this->output
             ->set_status_header($code)

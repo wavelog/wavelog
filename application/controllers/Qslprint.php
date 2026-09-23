@@ -216,6 +216,9 @@ class QSLPrint extends CI_Controller {
 			$data['label_templates'] = $this->Labeldesigner_model->list_templates();
 			$this->load->view('qslprint/printlabel', $data);
 		} else {
+			if (!$this->session->userdata('postcard_draft_token')) {
+				$this->session->set_userdata('postcard_draft_token', bin2hex(random_bytes(32)));
+			}
 			$this->load->model('Qslpostcard_model');
 			$data['templates'] = $this->Qslpostcard_model->list_templates();
 			$this->load->view('qslprint/printqsl', $data);

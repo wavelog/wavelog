@@ -2,6 +2,7 @@
     <div class="card-body">
         <?php if (!empty($templates)) { ?>
             <form id="printQslCardForm" method="post">
+                <input type="hidden" id="postcard_draft_token" value="<?= html_escape($this->session->userdata('postcard_draft_token')); ?>">
 
                 <div class="mb-3">
                     <label for="qslcard_template_id" class="form-label fw-bold d-flex align-items-center">
@@ -32,6 +33,7 @@
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
                     <ul class="dropdown-menu">
                         <li><button type="button" onclick="saveAndPrintSelectedQsos(<?php echo $printAll; ?>)" class="dropdown-item" href="#" id="btnPrintQslCardSave"><i class="fas fa-download me-1"></i> <?= __("Save PDF"); ?></button></li>
+                        <li><button type="button" onclick="createOqrsPostcardDrafts(<?php echo $printAll; ?>)" class="dropdown-item"><i class="fas fa-envelope me-1"></i> <?= __("Create Mailcow drafts for OQRS requests"); ?></button></li>
                     </ul>
                 </div>
 				<button type="button" class="btn btn-secondary btn-sm me-3 ld-ext-right" id="button_markprint" onclick="markQslPrinted(<?php echo $printAll; ?>)"><i class="fas fa-check me-1"></i> <?= __("Mark QSL as printed"); ?></button>

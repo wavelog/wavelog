@@ -44,6 +44,17 @@ $config['locator'] = '';
 $config['display_freq'] = true;
 
 /*
+| Mailcow/SOGo drafts for OQRS postcards. The IMAP user is the sending mailbox.
+| Keep the password in the server environment. The folder must be the mailbox's
+| actual IMAP Drafts folder. Leave the webmail URL empty to stay in Wavelog.
+*/
+$config['postcard_drafts_imap_host'] = getenv('WAVELOG_DRAFTS_IMAP_HOST') ?: '';
+$config['postcard_drafts_imap_user'] = getenv('WAVELOG_DRAFTS_IMAP_USER') ?: '';
+$config['postcard_drafts_imap_password'] = getenv('WAVELOG_DRAFTS_IMAP_PASSWORD') ?: '';
+$config['postcard_drafts_imap_folder'] = getenv('WAVELOG_DRAFTS_IMAP_FOLDER') ?: 'Drafts';
+$config['postcard_drafts_webmail_url'] = getenv('WAVELOG_DRAFTS_WEBMAIL_URL') ?: '';
+
+/*
 |--------------------------------------------------------------------------
 | QRZ Login Options
 |--------------------------------------------------------------------------
