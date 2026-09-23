@@ -8,9 +8,9 @@ body:
         ## 
         ### 👋 Hello and welcome
         Thanks for reporting a bug! To fix issues efficiently, we need complete information. Incomplete reports often make it impossible to reproduce or solve the problem.
-        
-        ⏱️ Please fill out all required fields carefully. The few minutes you invest here save hours of back-and-forth questions later.
-        
+
+        ⏱️ Please fill out all required fields carefully. The few minutes you invest here save hours of back-and-forth questions later. In any case please attach a screenshot of the debug page (render confidential information unrecognizable if applicable).
+
         ---
   - type: checkboxes
     id: prerequisites
@@ -121,3 +121,14 @@ body:
     attributes:
       label: Additional Context
       description: Any other relevant information
+
+  - type: textarea
+    id: debugpage
+    attributes:
+      label: Screenshot of Debug Page
+      description: |
+        Add screenshot of debug page here
+        Tipp: You can paste images directly
+      placeholder: Drag & drop images here
+    validations:
+      required: true

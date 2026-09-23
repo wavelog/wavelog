@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-22 09:14+0000\n"
+"POT-Creation-Date: 2026-09-23 11:44+0000\n"
 "PO-Revision-Date: 2026-09-15 14:40+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -173,10 +173,10 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:278
+#: application/controllers/Eqsl.php:316 application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
+#: application/controllers/Eqsl.php:662
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -187,13 +187,13 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:961 application/controllers/Lotw.php:1047
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
-#: application/controllers/Oqrs.php:429 application/controllers/Qrbcalc.php:12
+#: application/controllers/Oqrs.php:459 application/controllers/Qrbcalc.php:12
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
 #: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
@@ -1500,13 +1500,13 @@ msgstr "Cronjob bewerken"
 
 #: application/controllers/Cron.php:293 application/controllers/Cron.php:294
 #: application/views/cron/index.php:106 application/views/cron/index.php:108
-#: application/views/cron/index.php:110 application/views/debug/index.php:725
-#: application/views/debug/index.php:732 application/views/debug/index.php:738
-#: application/views/debug/index.php:744 application/views/debug/index.php:750
-#: application/views/debug/index.php:756 application/views/debug/index.php:762
-#: application/views/debug/index.php:768 application/views/debug/index.php:774
-#: application/views/debug/index.php:780 application/views/debug/index.php:786
-#: application/views/debug/index.php:792
+#: application/views/cron/index.php:110 application/views/debug/index.php:743
+#: application/views/debug/index.php:750 application/views/debug/index.php:756
+#: application/views/debug/index.php:762 application/views/debug/index.php:768
+#: application/views/debug/index.php:774 application/views/debug/index.php:780
+#: application/views/debug/index.php:786 application/views/debug/index.php:792
+#: application/views/debug/index.php:798 application/views/debug/index.php:804
+#: application/views/debug/index.php:810
 msgid "never"
 msgstr "nooit"
 
@@ -1661,35 +1661,35 @@ msgstr "Sleutel(s) verwijderd."
 msgid "(empty)"
 msgstr "(leeg)"
 
-#: application/controllers/Debug.php:132
+#: application/controllers/Debug.php:133
 msgid "Debug"
 msgstr "Debug"
 
-#: application/controllers/Debug.php:183
+#: application/controllers/Debug.php:184
 msgid "Migrate data now"
 msgstr "Gegevens nu migreren"
 
-#: application/controllers/Debug.php:186
+#: application/controllers/Debug.php:187
 msgid "Migration already done. Run again?"
 msgstr "Migratie al voltooid. Opnieuw uitvoeren?"
 
-#: application/controllers/Debug.php:190
+#: application/controllers/Debug.php:191
 msgid "No data to migrate"
 msgstr "Geen gegevens om te migreren"
 
-#: application/controllers/Debug.php:194 application/controllers/Debug.php:199
+#: application/controllers/Debug.php:195 application/controllers/Debug.php:200
 msgid "No migration possible"
 msgstr "Geen migratie mogelijk"
 
-#: application/controllers/Debug.php:264
+#: application/controllers/Debug.php:265
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog is succesvol bijgewerkt!"
 
-#: application/controllers/Debug.php:282
+#: application/controllers/Debug.php:283
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() niet beschikbaar. Controleer het foutlogboek."
 
-#: application/controllers/Debug.php:341
+#: application/controllers/Debug.php:342
 msgid ""
 "File Migration was successful, but please check also manually. If everything "
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
@@ -1699,7 +1699,7 @@ msgstr ""
 "goed lijkt, kun je de directories 'assets/qslcard' en 'images/"
 "eqsl_card_images' verwijderen."
 
-#: application/controllers/Debug.php:344
+#: application/controllers/Debug.php:345
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Bestandsoverdracht mislukt. Controleer het foutlogboek."
 
@@ -1780,68 +1780,68 @@ msgstr "eQSL QSO Upload"
 msgid "User/Pass wrong for eQSL"
 msgstr "Gebruikersnaam/wachtwoord onjuist voor eQSL"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:217
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Geen eQSL QTH Bijnaam: %s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:332
 msgid "QSO not found or not accessible"
 msgstr "QSO niet gevonden of niet toegankelijk"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:350
 msgid "User not found"
 msgstr "Gebruiker niet gevonden"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:359
 msgid "eQSL password not configured for this user"
 msgstr "eQSL-wachtwoord niet geconfigureerd voor deze gebruiker"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:376
 msgid "Failed to fetch eQSL image data"
 msgstr "Het ophalen van eQSL-afbeeldingsgegevens is mislukt"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:395
 msgid "eQSL image not available"
 msgstr "eQSL-afbeelding niet beschikbaar"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:413
 msgid "Failed to download eQSL image"
 msgstr "Kon niet eQSL-afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:423 application/controllers/Eqsl.php:576
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Niet genoeg vrije schijfruimte om de eQSL-kaart op te slaan"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:447
 msgid "Failed to load cached eQSL image"
 msgstr "Kan de gecachte eQSL-afbeelding niet laden"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:593
 msgid "eQSL Tools"
 msgstr "eQSL-hulpmiddelen"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:622
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Beperkt tot de eerste 150 QSO's voor dit verzoek. Voer opnieuw uit."
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid " / Errors: "
 msgstr " / Fouten: "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:628
 msgid "Successfully downloaded: "
 msgstr "Succesvol gedownload: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:635
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "eQSL limiet bereikt. Wacht even voordat je het opnieuw probeert."
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:647
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kaart afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:670
 msgid "All eQSLs marked as uploaded"
 msgstr "Alle eQSL's gemarkeerd als geüpload"
 
@@ -2360,7 +2360,7 @@ msgstr "Alle callbook opzoekingen zijn mislukt of leverden geen resultaten op."
 #: application/views/dbtools/checkresult.php:378
 #: application/views/dbtools/missinggridlist.php:46
 #: application/views/dbtools/showStateQsos.php:23
-#: application/views/debug/index.php:815
+#: application/views/debug/index.php:833
 #: application/views/distancerecords/index.php:23
 #: application/views/distances/index.php:66
 #: application/views/dxatlas/index.php:42
@@ -2652,7 +2652,7 @@ msgstr "Afstand"
 #: application/views/dbtools/checkresult.php:377
 #: application/views/dbtools/missinggridlist.php:47
 #: application/views/dbtools/showStateQsos.php:24
-#: application/views/debug/index.php:816 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:834 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:36
 #: application/views/gridmap/index.php:78 application/views/kml/index.php:19
@@ -2821,7 +2821,7 @@ msgstr "Certificaat bijgewerkt."
 msgid "Certificate Deleted."
 msgstr "Certificaat verwijderd."
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:461
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2834,7 +2834,7 @@ msgstr ""
 "zonder wachtwoord exporteert!%s Voor meer informatie bezoek de %sLoTW FAQ-"
 "pagina%s in de Wavelog Wiki."
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:463
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2845,52 +2845,52 @@ msgstr ""
 "bestandsnaam 'key-only' bevat, is dit meestal een certificaataanvraag die "
 "nog niet door LoTW is verwerkt."
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:470
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr "Generieke fout bij het verwerken van het certificaat in bestand %s."
 
-#: application/controllers/Lotw.php:468
+#: application/controllers/Lotw.php:482
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
 "Algemene fout bij het extraheren van de privésleutel uit certificaat in "
 "bestand %s."
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:698
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Informatie"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1018
 msgid "Connection to LoTW failed."
 msgstr "Verbinding met LoTW mislukt."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-login mislukt voor gebruiker %s: %s."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1023
 msgid "Username/password incorrect"
 msgstr "Gebruikersnaam/wachtwoord onjuist"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1026
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW momenteel niet beschikbaar. Probeer het later opnieuw."
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1030
 msgid "LoTW login OK!"
 msgstr "LoTW login oké!"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1036
 msgid "No LoTW credentials provided."
 msgstr "Geen LoTW-gegevens verstrekt."
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1053
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF importeren"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1080
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Je hebt je ARRL LoTW-gegevens niet gedefinieerd!"
 
@@ -3080,6 +3080,7 @@ msgstr "Radio Time-out waarschuwing gewijzigd in "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:248
+#: application/views/email/oqrs_request.php:57
 #: application/views/options/tabs.php:17
 msgid "Email"
 msgstr "E-mail"
@@ -3190,11 +3191,11 @@ msgstr "Voer alstublieft een geldige datum in."
 msgid "Please enter a valid time."
 msgstr "Voer alstublieft een geldige tijd in."
 
-#: application/controllers/Oqrs.php:414
+#: application/controllers/Oqrs.php:444
 msgid "QSO match deleted successfully."
 msgstr "Overeenkomstige QSO succesvol verwijderd."
 
-#: application/controllers/Oqrs.php:424
+#: application/controllers/Oqrs.php:454
 msgid "QSO match added successfully."
 msgstr "Overeenkomstige QSO met succes toegevoegd."
 
@@ -3711,7 +3712,7 @@ msgid "Error. Link is already in use!"
 msgstr "Fout. Link is al in gebruik!"
 
 #: application/controllers/Stationsetup.php:278
-#: application/views/debug/index.php:889
+#: application/views/debug/index.php:907
 #: application/views/options/appearance.php:31
 #: application/views/options/appearance.php:40
 #: application/views/options/appearance.php:49
@@ -4177,7 +4178,7 @@ msgstr "Gebruiker %s heeft zich afgemeld."
 msgid "Station Name"
 msgstr "Stationsnaam"
 
-#: application/controllers/User.php:1533 application/views/debug/index.php:817
+#: application/controllers/User.php:1533 application/views/debug/index.php:835
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
@@ -4407,16 +4408,24 @@ msgstr "GeoJSON-gegevens niet beschikbaar"
 msgid "Invalid gridsquare"
 msgstr "Ongeldige locatorvak"
 
-#: application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
 msgstr "Lookup niet geconfigureerd. Controleer de configuratie."
 
-#: application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:73
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Fout bij het verkrijgen van een sessiesleutel voor callbook. Fout: %s"
 
-#: application/libraries/Callbook.php:214
+#: application/libraries/Callbook.php:74
+msgid "Generic error storing the callbook session key in cache."
+msgstr ""
+
+#: application/libraries/Callbook.php:75
+msgid "Generic error reading the cached callbook session key."
+msgstr ""
+
+#: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
 msgstr "QRZCQ Fout"
 
@@ -4938,37 +4947,114 @@ msgstr "Officials moeten contesten bewerken."
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids-tabel is leeg. Importeer eerst de VUCC-gridsgegevens."
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Debug_model.php:317
+msgid ""
+"No working adapter available - cache is running on the no-op 'dummy' driver."
+msgstr ""
+
+#: application/models/Debug_model.php:322
+#: application/models/Debug_model.php:370
+msgid "Adapter not supported."
+msgstr ""
+
+#: application/models/Debug_model.php:351
+#, php-format
+msgid "%s adapter threw an exception: %s"
+msgstr ""
+
+#: application/models/Debug_model.php:358
+#, php-format
+msgid "PHP extension '%s' is not loaded."
+msgstr ""
+
+#: application/models/Debug_model.php:362
+#, php-format
+msgid "Cache directory is not writable: %s"
+msgstr ""
+
+#: application/models/Debug_model.php:364
+msgid ""
+"Redis server unreachable - check settings in application/config/redis.php."
+msgstr ""
+
+#: application/models/Debug_model.php:366
+msgid ""
+"No Memcached server responded - check settings in application/config/"
+"memcached.php."
+msgstr ""
+
+#: application/models/Debug_model.php:368
+msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
+msgstr ""
+
+#: application/models/Debug_model.php:377
+#, php-format
+msgid "Cannot write to cache directory %s - check permissions."
+msgstr ""
+
+#: application/models/Debug_model.php:379
+msgid "Redis write failed - server down or maxmemory reached?"
+msgstr ""
+
+#: application/models/Debug_model.php:381
+msgid "Memcached write failed - server down?"
+msgstr ""
+
+#: application/models/Debug_model.php:383
+msgid "APCu write failed - shared memory full?"
+msgstr ""
+
+#: application/models/Debug_model.php:389
+msgid "Write succeeded but read failed - cache directory readable?"
+msgstr ""
+
+#: application/models/Debug_model.php:391
+msgid "Write succeeded but read failed - key evicted by Redis?"
+msgstr ""
+
+#: application/models/Debug_model.php:393
+msgid "Write succeeded but read failed."
+msgstr ""
+
+#: application/models/Debug_model.php:395
+msgid "Test key could not be deleted - check permissions/access."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:313
+msgid "Empty response from eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Je eQSL-gebruikersnaam en/of wachtwoord is onjuist."
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:326
 msgid "Something went wrong with eQSL.cc!"
 msgstr "Er is iets misgegaan met eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:337
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "QTH-bijnaam bestaat niet bij eQSL"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:345
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL.cc ondervindt problemen. Probeer later QSO's te exporteren."
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:350
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr ""
 "Er was een fout in een van de QSO's. Je zou ze handmatig kunnen uploaden."
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:355
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Het lijkt erop dat de eQSL-site is veranderd. Open alsjeblieft een issue op "
 "GitHub."
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:361
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
@@ -6110,8 +6196,9 @@ msgstr "Niets gevonden!"
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:22
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:32
+#: application/views/dxatlas/index.php:23
+#: application/views/email/oqrs_request.php:56
+#: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
@@ -6225,7 +6312,7 @@ msgstr ""
 #: application/views/dashboard/index.php:339
 #: application/views/dbtools/checkresult.php:229
 #: application/views/dbtools/checkresult.php:305
-#: application/views/debug/index.php:812
+#: application/views/debug/index.php:830
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -6274,7 +6361,7 @@ msgstr "Datum"
 #: application/views/dashboard/index.php:341
 #: application/views/dbtools/checkresult.php:230
 #: application/views/dbtools/checkresult.php:306
-#: application/views/debug/index.php:813
+#: application/views/debug/index.php:831
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -6303,7 +6390,7 @@ msgstr "Tijd"
 #: application/views/dbtools/missinggridlist.php:44
 #: application/views/dbtools/showStateQsos.php:21
 #: application/views/dcl_views/key_import.php:45
-#: application/views/debug/index.php:814 application/views/debug/index.php:849
+#: application/views/debug/index.php:832 application/views/debug/index.php:867
 #: application/views/dxcalendar/index.php:17
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -6367,7 +6454,7 @@ msgstr "Maximale bestandsgrootte voor uploaden is "
 #: application/views/clublog/export.php:70
 #: application/views/contesting/logger/index.php:59
 #: application/views/debug/index.php:253 application/views/debug/index.php:270
-#: application/views/debug/index.php:804 application/views/hrdlog/export.php:25
+#: application/views/debug/index.php:822 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:38
 #: application/views/notes/add.php:23 application/views/notes/edit.php:29
@@ -14498,7 +14585,7 @@ msgstr ""
 
 #: application/views/dbtools/checkresult.php:49
 #: application/views/dbtools/checkresult.php:65
-#: application/views/debug/index.php:696
+#: application/views/debug/index.php:714
 #: application/views/logbookadvanced/index.php:57
 msgid "Update now"
 msgstr "Nu bijwerken"
@@ -15226,7 +15313,7 @@ msgstr "Clusternodes"
 msgid "Uptime"
 msgstr "Uptime"
 
-#: application/views/debug/index.php:163 application/views/debug/index.php:887
+#: application/views/debug/index.php:163 application/views/debug/index.php:905
 msgid "Online"
 msgstr "Online"
 
@@ -15245,7 +15332,7 @@ msgstr ""
 #: application/views/debug/index.php:192 application/views/debug/index.php:203
 #: application/views/debug/index.php:214 application/views/debug/index.php:225
 #: application/views/debug/index.php:237 application/views/debug/index.php:516
-#: application/views/debug/index.php:527
+#: application/views/debug/index.php:527 application/views/debug/index.php:568
 msgid "Failed"
 msgstr "Mislukt"
 
@@ -15380,11 +15467,19 @@ msgctxt "Cache Key"
 msgid "Number of Keys"
 msgstr "Aantal sleutels"
 
-#: application/views/debug/index.php:561
+#: application/views/debug/index.php:559
+msgid "Round-Trip Test (write - read - delete)"
+msgstr ""
+
+#: application/views/debug/index.php:566
+msgid "Working"
+msgstr ""
+
+#: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
 msgstr "De cache werkt goed. Alles in orde!"
 
-#: application/views/debug/index.php:565
+#: application/views/debug/index.php:583
 msgid ""
 "Cache is currently using the backup adapter because the primary is "
 "unavailable. Check your file permissions, PHP extensions, and/or your "
@@ -15394,7 +15489,7 @@ msgstr ""
 "beschikbaar is. Controleer je bestandsrechten, PHP-extensies en/of je "
 "netwerkverbinding met de diensten (als je redis/memcached gebruikt)."
 
-#: application/views/debug/index.php:569
+#: application/views/debug/index.php:587
 #, php-format
 msgid ""
 "Cache does not work! Currently the system is using a %s adapter. Check your "
@@ -15407,120 +15502,120 @@ msgstr ""
 "(als je redis/memcached gebruikt). Je kunt Wavelog blijven gebruiken, maar "
 "er zullen geen waarden worden gecachet (wat slecht is)."
 
-#: application/views/debug/index.php:577
+#: application/views/debug/index.php:595
 msgid "Available Adapters"
 msgstr "Beschikbare adapters"
 
-#: application/views/debug/index.php:594
+#: application/views/debug/index.php:612
 msgid "Clear Cache"
 msgstr "Cache wissen"
 
-#: application/views/debug/index.php:642
+#: application/views/debug/index.php:660
 msgid "Git Information"
 msgstr "Git Informatie"
 
-#: application/views/debug/index.php:646
+#: application/views/debug/index.php:664
 msgid "Branch"
 msgstr "Branch"
 
-#: application/views/debug/index.php:657 application/views/debug/index.php:668
-#: application/views/debug/index.php:678
+#: application/views/debug/index.php:675 application/views/debug/index.php:686
+#: application/views/debug/index.php:696
 #: application/views/lotw_views/index.php:104
 #: application/views/widgets/lotw_upload.php:106
 msgid "n/a"
 msgstr "n.v.t."
 
-#: application/views/debug/index.php:663
+#: application/views/debug/index.php:681
 msgid "Commit"
 msgstr "Commit"
 
-#: application/views/debug/index.php:673
+#: application/views/debug/index.php:691
 msgid "Tag"
 msgstr "Tag"
 
-#: application/views/debug/index.php:683
+#: application/views/debug/index.php:701
 msgid "Last Fetch"
 msgstr "Laatste Fetch"
 
-#: application/views/debug/index.php:695
+#: application/views/debug/index.php:713
 msgid "Check for new version"
 msgstr "Controleer op nieuwe versie"
 
-#: application/views/debug/index.php:714
+#: application/views/debug/index.php:732
 msgid "File download date"
 msgstr "Downloaddatum bestand"
 
-#: application/views/debug/index.php:718
+#: application/views/debug/index.php:736
 msgid "File"
 msgstr "Bestand"
 
-#: application/views/debug/index.php:719
+#: application/views/debug/index.php:737
 msgid "Last update"
 msgstr "Laatste update"
 
-#: application/views/debug/index.php:723
+#: application/views/debug/index.php:741
 msgid "DXCC update from Club Log"
 msgstr "DXCC-update van Club Log"
 
-#: application/views/debug/index.php:726 application/views/debug/index.php:733
-#: application/views/debug/index.php:739 application/views/debug/index.php:745
-#: application/views/debug/index.php:751 application/views/debug/index.php:757
-#: application/views/debug/index.php:763 application/views/debug/index.php:769
-#: application/views/debug/index.php:775 application/views/debug/index.php:781
-#: application/views/debug/index.php:787 application/views/debug/index.php:793
+#: application/views/debug/index.php:744 application/views/debug/index.php:751
+#: application/views/debug/index.php:757 application/views/debug/index.php:763
+#: application/views/debug/index.php:769 application/views/debug/index.php:775
+#: application/views/debug/index.php:781 application/views/debug/index.php:787
+#: application/views/debug/index.php:793 application/views/debug/index.php:799
+#: application/views/debug/index.php:805 application/views/debug/index.php:811
 #: application/views/station_profile/edit.php:53
 msgid "Update"
 msgstr "Bijwerken"
 
-#: application/views/debug/index.php:730
+#: application/views/debug/index.php:748
 msgid "DOK file download"
 msgstr "DOK-bestand downloaden"
 
-#: application/views/debug/index.php:736
+#: application/views/debug/index.php:754
 msgid "LoTW users download"
 msgstr "LoTW-gebruikers downloaden"
 
-#: application/views/debug/index.php:742
+#: application/views/debug/index.php:760
 msgid "POTA file download"
 msgstr "POTA-bestandsdownload"
 
-#: application/views/debug/index.php:748
+#: application/views/debug/index.php:766
 msgid "POTA park boundaries (GeoJSON)"
 msgstr "POTA parkgrenzen (GeoJSON)"
 
-#: application/views/debug/index.php:754
+#: application/views/debug/index.php:772
 msgid "SCP file download"
 msgstr "SCP-bestand downloaden"
 
-#: application/views/debug/index.php:760
+#: application/views/debug/index.php:778
 msgid "SOTA file download"
 msgstr "SOTA-bestand downloaden"
 
-#: application/views/debug/index.php:766
+#: application/views/debug/index.php:784
 msgid "WWFF file download"
 msgstr "WWFF-bestandsdownload"
 
-#: application/views/debug/index.php:772
+#: application/views/debug/index.php:790
 msgid "TLE update"
 msgstr "TLE-update"
 
-#: application/views/debug/index.php:778
+#: application/views/debug/index.php:796
 msgid "Hams Of Note update"
 msgstr "Radioamateurs van belang update"
 
-#: application/views/debug/index.php:784
+#: application/views/debug/index.php:802
 msgid "HAMqsl"
 msgstr "HAMqsl"
 
-#: application/views/debug/index.php:790
+#: application/views/debug/index.php:808
 msgid "VUCC Grids"
 msgstr "VUCC-Vakken"
 
-#: application/views/debug/index.php:800
+#: application/views/debug/index.php:818
 msgid "QSO-DB Maintenance"
 msgstr "QSO-DB Onderhoud"
 
-#: application/views/debug/index.php:804
+#: application/views/debug/index.php:822
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -15528,181 +15623,181 @@ msgid_plural ""
 msgstr[0] "De database bevat %d QSO zonder een stationsprofiel (locatie)"
 msgstr[1] "De database bevat %d QSO's zonder een station-profiel (locatie)"
 
-#: application/views/debug/index.php:842
+#: application/views/debug/index.php:860
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 "Markeer QSO's en wijs ze opnieuw toe aan een bestaande stationslocatie:"
 
-#: application/views/debug/index.php:850
+#: application/views/debug/index.php:868
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "Doellocatie"
 
-#: application/views/debug/index.php:851 application/views/debug/index.php:862
+#: application/views/debug/index.php:869 application/views/debug/index.php:880
 msgid "Reassign"
 msgstr "Opnieuw toewijzen"
 
-#: application/views/debug/index.php:871
+#: application/views/debug/index.php:889
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 "Elke QSO in je database is toegewezen aan een stationsprofiel (locatie)"
 
-#: application/views/debug/index.php:871
+#: application/views/debug/index.php:889
 msgid "Everything ok"
 msgstr "Alles oké"
 
-#: application/views/debug/index.php:888
+#: application/views/debug/index.php:906
 msgid "Degraded"
 msgstr "Gedegradeerd"
 
-#: application/views/debug/index.php:889
+#: application/views/debug/index.php:907
 msgid "Worker backend is not configured."
 msgstr "Worker-backend is niet geconfigureerd."
 
-#: application/views/debug/index.php:890
+#: application/views/debug/index.php:908
 msgid "Unreachable"
 msgstr "Onbereikbaar"
 
-#: application/views/debug/index.php:890
+#: application/views/debug/index.php:908
 msgid "Worker is configured but did not respond."
 msgstr "Worker is geconfigureerd maar reageerde niet."
 
-#: application/views/debug/index.php:891
+#: application/views/debug/index.php:909
 msgid "Outdated"
 msgstr "Verouderd"
 
-#: application/views/debug/index.php:891
+#: application/views/debug/index.php:909
 msgid ""
 "Please update your Wavelog Worker to version 0.2.0 or newer to see the "
 "status."
 msgstr ""
 "Werk je Wavelog Worker bij naar versie 0.2.0 of nieuwer om de status te zien."
 
-#: application/views/debug/index.php:910
+#: application/views/debug/index.php:928
 msgid "Albanian"
 msgstr "Albanees"
 
-#: application/views/debug/index.php:911
+#: application/views/debug/index.php:929
 msgid "Armenian"
 msgstr "Armeens"
 
-#: application/views/debug/index.php:912
+#: application/views/debug/index.php:930
 msgid "Bosnian"
 msgstr "Bosnisch"
 
-#: application/views/debug/index.php:913
+#: application/views/debug/index.php:931
 msgid "Bulgarian"
 msgstr "Bulgaars"
 
-#: application/views/debug/index.php:914
+#: application/views/debug/index.php:932
 msgid "Chinese (Simplified)"
 msgstr "Chinees (Vereenvoudigd)"
 
-#: application/views/debug/index.php:915
+#: application/views/debug/index.php:933
 msgid "Croatian"
 msgstr "Kroatisch"
 
-#: application/views/debug/index.php:916
+#: application/views/debug/index.php:934
 msgid "Czech"
 msgstr "Tsjechisch"
 
-#: application/views/debug/index.php:917
+#: application/views/debug/index.php:935
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: application/views/debug/index.php:918
+#: application/views/debug/index.php:936
 msgid "English"
 msgstr "Engels"
 
-#: application/views/debug/index.php:919
+#: application/views/debug/index.php:937
 msgid "Estonian"
 msgstr "Estisch"
 
-#: application/views/debug/index.php:920
+#: application/views/debug/index.php:938
 msgid "Finnish"
 msgstr "Fins"
 
-#: application/views/debug/index.php:921
+#: application/views/debug/index.php:939
 msgid "French"
 msgstr "Frans"
 
-#: application/views/debug/index.php:922
+#: application/views/debug/index.php:940
 msgid "German"
 msgstr "Duits"
 
-#: application/views/debug/index.php:923
+#: application/views/debug/index.php:941
 msgid "Greek"
 msgstr "Grieks"
 
-#: application/views/debug/index.php:924
+#: application/views/debug/index.php:942
 msgid "Hungarian"
 msgstr "Hongaars"
 
-#: application/views/debug/index.php:925
+#: application/views/debug/index.php:943
 msgid "Italian"
 msgstr "Italiaans"
 
-#: application/views/debug/index.php:926
+#: application/views/debug/index.php:944
 msgid "Japanese"
 msgstr "Japans"
 
-#: application/views/debug/index.php:927
+#: application/views/debug/index.php:945
 msgid "Latvian"
 msgstr "Lets"
 
-#: application/views/debug/index.php:928
+#: application/views/debug/index.php:946
 msgid "Lithuanian"
 msgstr "Litouws"
 
-#: application/views/debug/index.php:929
+#: application/views/debug/index.php:947
 msgid "Montenegrin"
 msgstr "Montenegrijnse"
 
-#: application/views/debug/index.php:930
+#: application/views/debug/index.php:948
 msgid "Norwegian (Bokmål)"
 msgstr "Noors (Bokmål)"
 
-#: application/views/debug/index.php:931
+#: application/views/debug/index.php:949
 msgid "Polish"
 msgstr "Pools"
 
-#: application/views/debug/index.php:932
+#: application/views/debug/index.php:950
 msgid "Portuguese"
 msgstr "Portugees"
 
-#: application/views/debug/index.php:933
+#: application/views/debug/index.php:951
 msgid "Romanian"
 msgstr "Roemeens"
 
-#: application/views/debug/index.php:934
+#: application/views/debug/index.php:952
 msgid "Russian"
 msgstr "Russisch"
 
-#: application/views/debug/index.php:935
+#: application/views/debug/index.php:953
 msgid "Serbian"
 msgstr "Servisch"
 
-#: application/views/debug/index.php:936
+#: application/views/debug/index.php:954
 msgid "Slovak"
 msgstr "Slowaaks"
 
-#: application/views/debug/index.php:937
+#: application/views/debug/index.php:955
 msgid "Slovenian"
 msgstr "Sloveens"
 
-#: application/views/debug/index.php:938
+#: application/views/debug/index.php:956
 msgid "Spanish"
 msgstr "Spaans"
 
-#: application/views/debug/index.php:939
+#: application/views/debug/index.php:957
 msgid "Swedish"
 msgstr "Zweeds"
 
-#: application/views/debug/index.php:940
+#: application/views/debug/index.php:958
 msgid "Turkish"
 msgstr "Turks"
 
-#: application/views/debug/index.php:941
+#: application/views/debug/index.php:959
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
@@ -15907,7 +16002,11 @@ msgstr "De gebruiker heeft het volgende bericht ingevoerd: "
 msgid "The user did not enter any additional message."
 msgstr "De gebruiker heeft geen extra bericht ingevoerd."
 
-#: application/views/email/oqrs_request.php:14
+#: application/views/email/oqrs_request.php:18
+msgid "Requested QSOs"
+msgstr ""
+
+#: application/views/email/oqrs_request.php:50
 #, php-format
 msgid ""
 "Hi,\n"
@@ -15918,7 +16017,17 @@ msgstr ""
 "\n"
 "Je hebt een OQRS-verzoek van %s ontvangen."
 
-#: application/views/email/oqrs_request.php:20
+#: application/views/email/oqrs_request.php:58
+#: application/views/oqrs/request.php:42
+#: application/views/oqrs/request_grouped.php:46
+msgid "QSL Route"
+msgstr "QSL-route"
+
+#: application/views/email/oqrs_request.php:59
+msgid "DX Callsign"
+msgstr ""
+
+#: application/views/email/oqrs_request.php:65
 msgid ""
 "Please log into your Wavelog and process it.\n"
 "\n"
@@ -20451,11 +20560,6 @@ msgid ""
 msgstr ""
 "De volgende QSO('s) zijn gevonden. Vul alstublieft de datum en tijd in en "
 "dien uw verzoek in."
-
-#: application/views/oqrs/request.php:42
-#: application/views/oqrs/request_grouped.php:46
-msgid "QSL Route"
-msgstr "QSL-route"
 
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59
