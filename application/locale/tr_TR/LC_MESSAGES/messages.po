@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-23 05:36+0000\n"
-"PO-Revision-Date: 2026-09-18 05:26+0000\n"
+"PO-Revision-Date: 2026-09-23 07:32+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -4938,75 +4938,81 @@ msgstr "VuccGrids tablosu boş. Lütfen önce VUCC grid verilerini içe aktarın
 #: application/models/Debug_model.php:317
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
-msgstr ""
+msgstr "Çalışan bir adaptör yok - önbellek no-op 'dummy' sürücüsünde çalışıyor."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Adaptör desteklenmiyor."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s adaptörü bir istisna fırlattı: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "'%s' PHP uzantısı yüklenmedi."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Önbellek dizini yazılabilir değil: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Redis sunucusuna ulaşılamıyor - application/config/redis.php altındaki "
+"ayarları kontrol edin."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Hiçbir Memcached sunucusu yanıt vermedi - application/config/memcached.php "
+"altındaki ayarları kontrol edin."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
-msgstr ""
+msgstr "APCu yüklendi ama bu PHP arayüzünde kullanılamıyor (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "%s önbellek dizinine yazılamıyor - izinleri kontrol edin."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
-msgstr ""
+msgstr "Redis yazma başarısız oldu - sunucu çalışmıyor ya da maxmemory doldu?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Memcached yazma başarısız oldu - sunucu çalışmıyor?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "APCu yazma başarısız oldu - paylaşılan bellek dolu?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
-msgstr ""
+msgstr "Yazma başarılı oldu ancak okuma başarısız - önbellek dizini okunabilir?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"Yazma başarılı oldu ancak okuma başarısız - anahtar Redis tarafından "
+"çıkarıldı?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Yazma başarılı oldu ancak okuma başarısız."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
-msgstr ""
+msgstr "Test anahtarı silinemedi - izinleri/erişimi kontrol edin."
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
@@ -15244,7 +15250,7 @@ msgstr "Wavelog Worker Arka Ucu"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "İşçi yapılandırması değişti"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15252,10 +15258,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s ve %s kullanım dışıdır ve Wavelog Worker 1.0.0 sürümünde kaldırılacaktır. "
+"Bunun yerine işçi yapılandırmanıza %s ayarlayın."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Her şey o zamana kadar çalışmaya devam edecek."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15433,11 +15441,11 @@ msgstr "Anahtar Sayısı"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Gidiş Dönüş (Round-Trip) Testi - (yazma - okuma - silme)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Çalışıyor"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
