@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-23 11:44+0000\n"
-"PO-Revision-Date: 2026-09-18 05:26+0000\n"
+"PO-Revision-Date: 2026-09-24 05:05+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -4408,10 +4408,14 @@ msgstr "コールブックのセッションキーの取得中にエラーが発
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
 msgstr ""
+"コールブックセッションキーをキャッシュに保存する際に一般的なエラーが発生しま"
+"した。"
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
 msgstr ""
+"キャッシュされたコールブックセッションキーの読み取り中に一般的なエラーが発生"
+"しました。"
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4934,78 +4938,92 @@ msgstr ""
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"動作するアダプタがありません。キャッシュは、何もしない「ダミー」ドライバ上で"
+"実行されています。"
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "アダプターはサポートされていません。"
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s アダプターで例外が発生しました: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "PHP拡張機能' %s ' はロードされていません。"
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "キャッシュディレクトリは書き込み不可です。 %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Redisサーバーに接続できません。application/config/redis.phpの設定を確認してく"
+"ださい。"
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Memcachedサーバーからの応答がありませんでした。application/config/"
+"memcached.phpの設定を確認してください。"
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCuはロードされていますが、このPHPインターフェースでは使用できません（"
+"apc.enabled=0?）。"
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "キャッシュディレクトリに書き込めません %s - 権限を確認してください。"
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Redisへの書き込みに失敗しました - サーバーがダウンしているか、最大メモリ容量"
+"に達しましたか？"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Memcachedの書き込みに失敗しました - サーバーがダウンしているのでしょうか？"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "APCu書き込みに失敗しました - 共有メモリがいっぱいですか？"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"書き込みは成功しましたが、読み取りに失敗しました - キャッシュディレクトリは読"
+"み取り可能ですか？"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"書き込みは成功しましたが、読み取りに失敗しました - Redisによってキーが削除さ"
+"れましたか？"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "書き込みは成功しましたが、読み込みに失敗しました。"
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
-msgstr ""
+msgstr "テストキーを削除できませんでした。権限/アクセス権限を確認してください。"
 
 #: application/models/Eqslmethods_model.php:313
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "eQSL.ccからの応答がありませんでした！"
 
 #: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
@@ -15192,7 +15210,7 @@ msgstr "Wavelogワーカーバックエンド"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "ワーカー構成が変更されました"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15200,10 +15218,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s および %s は非推奨となっており、Wavelog Worker 1.0.0 で削除される予定です"
+"。代わりに、ワーカーの設定で %s を設定してください。"
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "それまではすべて正常に機能し続けます。"
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15377,11 +15397,11 @@ msgstr "キーの数"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "往復テスト（書き込み - 読み取り - 削除）"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "働く"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -15912,7 +15932,7 @@ msgstr "ユーザーは追加のメッセージを入力しませんでした。
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "リクエストされたQSO"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -15933,7 +15953,7 @@ msgstr "QSLルート"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "DXコールサイン"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
