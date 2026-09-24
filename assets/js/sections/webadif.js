@@ -23,7 +23,7 @@ function ResetWebADIFRejected(station_id) {
 			$(".ld-ext-right-rejected-"+station_id).prop('disabled', false);
 			if (data.status == 'OK') {
 				$("#webadif-rejected-"+station_id).remove();
-				$(".card-body").append('<div class="alert alert-success" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + data.message + '</div>');
+				showToast(lang_general_word_success, data.message, 'bg-success text-white', 5000);
 			}
 		}
 	});
@@ -51,10 +51,10 @@ function ExportWebADIF(station_id) {
 					$('#notcount'+value.station_id).html(value.notcount);
 					$('#totcount'+value.station_id).html(value.totcount);
 				});
-				$(".card-body").append('<div class="alert alert-success" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + data.infomessage + '</div>');
+				showToast(lang_general_word_success, data.infomessage, 'bg-success text-white', 5000);
 			}
 			else {
-				$(".card-body").append('<div class="alert alert-danger" role="alert">' + data.info + '</div>');
+				showToast(lang_general_word_error, data.info, 'bg-danger text-white', 0, false);
 			}
 
 			if (data.rejected_html !== undefined && $("#webadif-rejected-wrap").length) {
