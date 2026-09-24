@@ -1549,6 +1549,8 @@ function tryNumericQsy($el) {
 		if (newHz) {
 			$el.val('');
 			$el.focus();
+			window.qsyRefocusPending = true;
+			setTimeout(function() { window.qsyRefocusPending = false; }, 5000);
 			window.tuneRadioToFrequency(null, newHz, determineRadioMode($('#mode').val(), newHz));
 			return true;
 		}
@@ -2806,7 +2808,12 @@ $('#band').on('change', function (e) {
 		if (had_sat) { stop_az_ele_ticker(); }
 	}
 	set_qrg();
-	$("#callsign").blur();
+	if (window.qsyRefocusPending) {
+		window.qsyRefocusPending = false;
+		$("#callsign").focus();
+	} else {
+		$("#callsign").blur();
+	}
 });
 
 /* On Key up Calculate Bearing and Distance */
