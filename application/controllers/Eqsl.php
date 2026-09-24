@@ -158,6 +158,12 @@ class eqsl extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	/**
+	 * Shows the eQSL upload page. On POST (eqslexport == "export") all pending QSOs
+	 * of the user are uploaded in parallel and the per-QSO status is rendered afterwards.
+	 *
+	 * @return void
+	 */
 	public function export() {
 		if (!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
@@ -191,29 +197,26 @@ class eqsl extends CI_Controller {
 			}
 
 			$rows = '';
-			// Grab the list of QSOs to send information about
-			// perform an HTTP get on each one, and grab the status back
+			// Grab the list of QSOs to send information about,
+			// upload them in parallel and render the per-QSO status afterwards
 			$qslsnotsent = $this->eqslmethods_model->eqsl_not_yet_sent();
+			$qsls = $qslsnotsent->result_array();
 
-			foreach ($qslsnotsent->result_array() as $qsl) {
+			$statuses = $this->eqslmethods_model->uploadQsosParallel($qsls, $data, $this->session->userdata('user_id'));
+
+			foreach ($qsls as $qsl) {
+				$status = $statuses[$qsl['COL_PRIMARY_KEY']] ?? null;
+				if ($status === null) {
+					break;	// Upload was aborted before this QSO was sent
+				}
+
 				$rows .= "<tr>";
-				// eQSL username changes for linked account.
-				// i.e. when operating /P it must be callsign/p
-				// the password, however, is always the same as the main account
-				$data['user_eqsl_name'] = $qsl['station_callsign'];
-				$adif = $this->eqslmethods_model->generateAdif($qsl, $data);
-
-				$status = $this->eqslmethods_model->uploadQso($adif, $qsl);
 
 				if ($status == 'Login Error') {
-					log_message('error', 'eQSL Credentials-Error for '.$data['user_eqsl_name'].'. Login will be disabled!');
-					$this->eqslmethods_model->disable_eqsl_uid($this->session->userdata('user_id'));
 					$status=__("User/Pass wrong for eQSL");
 					$rows .= "<td colspan='6'>".html_escape($status)."</td></tr>";
 					break;
 				} elseif ($status == 'Nick Error') {
-					log_message('error', 'eQSL error for user '.$data['user_eqsl_name'].' with QTH Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile '.($qsl['eqsl_station_id'] ?? '').'. eQSL QTH Nickname will be removed from station location!');
-					$this->eqslmethods_model->disable_eqsl_station_id($this->session->userdata('user_id'),$qsl['eqsl_station_id']);
 					$status=sprintf(__("No such eQSL QTH Nickname: %s"), $qsl['eqslqthnickname'] ?? '');
 					$rows .= "<td colspan='6'>".html_escape($status)."</td></tr>";
 					break;
