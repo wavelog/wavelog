@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 11:44+0000\n"
+"POT-Creation-Date: 2026-09-24 06:17+0000\n"
 "PO-Revision-Date: 2026-09-24 05:05+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -190,7 +190,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
-#: application/controllers/Lotw.php:961 application/controllers/Lotw.php:1047
+#: application/controllers/Lotw.php:962 application/controllers/Lotw.php:1048
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -239,11 +239,9 @@ msgstr "対流圏ダクト"
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:99
-#: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Lotw.php:962
-#: application/controllers/Lotw.php:1048
 #: application/controllers/Webadif.php:101
+#: application/controllers/Zonechecker.php:16
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -2819,75 +2817,74 @@ msgstr "証明書が更新されました。"
 msgid "Certificate Deleted."
 msgstr "証明書が削除されました。"
 
-#: application/controllers/Lotw.php:461
+#: application/controllers/Lotw.php:462
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
 "processed. %sPlease make sure you export the LoTW certificate from tqsl "
 "application without password!%s For further information please visit the "
-"%sLoTW FAQ page%s in the Wavelog Wiki."
+"%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"ファイル %s 内の証明書にはパスワードが含まれており、処理できません。%sパス"
-"ワードなしで tqsl アプリケーションから LoTW 証明書をエクスポートしてくださ"
-"い！%s詳細については、Wavelog Wiki の %sLoTW FAQ ページ%s をご覧ください。"
 
-#: application/controllers/Lotw.php:463
+#: application/controllers/Lotw.php:464
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
 "contains 'key-only' this is typically a certificate request which has not "
-"been processed by LoTW yet."
+"been processed by LoTW yet. For further information please visit the %sLoTW "
+"troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"ファイルから証明書を抽出する際の一般的なエラー %s 。ファイル名に「key-only」"
-"が含まれている場合、これは通常、LoTW によってまだ処理されていない証明書要求で"
-"す。"
 
-#: application/controllers/Lotw.php:470
+#: application/controllers/Lotw.php:471
 #, php-format
-msgid "Generic error processing the certificate in file %s."
-msgstr "ファイル内の証明書の処理中に一般的なエラーが発生しました %s 。"
-
-#: application/controllers/Lotw.php:482
-#, php-format
-msgid "Generic error extracting the private key from certificate in file %s."
+msgid ""
+"Generic error processing the certificate in file %s. For further information "
+"please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"ファイル内の証明書から秘密鍵を抽出する際に一般的なエラーが発生しました %s 。"
 
-#: application/controllers/Lotw.php:698 application/controllers/Lotw.php:699
+#: application/controllers/Lotw.php:483
+#, php-format
+msgid ""
+"Generic error extracting the private key from certificate in file %s. For "
+"further information please visit the %sLoTW troubleshooting page%s in the "
+"Wavelog Wiki."
+msgstr ""
+
+#: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF情報"
 
-#: application/controllers/Lotw.php:1018 application/controllers/Lotw.php:1019
+#: application/controllers/Lotw.php:1019
 msgid "Connection to LoTW failed."
 msgstr "LoTWへの接続に失敗しました。"
 
-#: application/controllers/Lotw.php:1023 application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1024
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTWへのログインがユーザー %s で失敗しました: %s."
 
-#: application/controllers/Lotw.php:1023 application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1024
 msgid "Username/password incorrect"
 msgstr "ユーザー名/パスワードが間違っています"
 
-#: application/controllers/Lotw.php:1026 application/controllers/Lotw.php:1027
+#: application/controllers/Lotw.php:1027
 msgid "LoTW currently not available. Try again later."
 msgstr ""
 "LoTWは現在ご利用いただけません。しばらくしてからもう一度お試しください。"
 
-#: application/controllers/Lotw.php:1030 application/controllers/Lotw.php:1031
+#: application/controllers/Lotw.php:1031
 msgid "LoTW login OK!"
 msgstr "LoTWログインOK！"
 
-#: application/controllers/Lotw.php:1036 application/controllers/Lotw.php:1037
+#: application/controllers/Lotw.php:1037
 msgid "No LoTW credentials provided."
 msgstr "LoTWの認証情報が提供されていません。"
 
-#: application/controllers/Lotw.php:1053 application/controllers/Lotw.php:1054
+#: application/controllers/Lotw.php:1054
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF インポート"
 
-#: application/controllers/Lotw.php:1080 application/controllers/Lotw.php:1081
+#: application/controllers/Lotw.php:1081
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "ARRL LoTWの認証情報を設定していません！"
 
@@ -3002,9 +2999,9 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1468
+#: application/models/Logbook_model.php:1547
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:1547
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr "無効なコールサイン"
 
@@ -4204,8 +4201,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
-"%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
+"は、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1561
 msgid "Station setup failed! Please set up your station manually."
@@ -4341,13 +4338,16 @@ msgstr "パブリックサーチ"
 msgid "Export Map"
 msgstr "マップをエクスポート"
 
-#: application/controllers/Webadif.php:103
-#: application/controllers/Webadif.php:150
-#: application/views/interface_assets/header.php:586
 #: application/controllers/Webadif.php:106
 #: application/controllers/Webadif.php:187
+#: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dxクラブアップロード"
+
+#: application/controllers/Webadif.php:181
+msgid ""
+"Rejected QSOs were reset. They will be picked up again by the next upload."
+msgstr ""
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4977,14 +4977,14 @@ msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
-"Memcachedサーバーからの応答がありませんでした。application/config/"
-"memcached.phpの設定を確認してください。"
+"Memcachedサーバーからの応答がありませんでした。application/config/memcached."
+"phpの設定を確認してください。"
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
-"APCuはロードされていますが、このPHPインターフェースでは使用できません"
-"（apc.enabled=0?）。"
+"APCuはロードされていますが、このPHPインターフェースでは使用できません（apc."
+"enabled=0?）。"
 
 #: application/models/Debug_model.php:377
 #, php-format
@@ -5110,24 +5110,19 @@ msgstr "利用できない無線局"
 msgid "Realtime upload disabled"
 msgstr "リアルタイムアップロードが無効になっています"
 
-#: application/models/Logbook_model.php:1458
 #: application/models/Logbook_model.php:1537
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
-#: application/models/Logbook_model.php:1463
 #: application/models/Logbook_model.php:1542
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1539
-#: application/models/Logbook_model.php:1757
 #: application/models/Logbook_model.php:1618
 #: application/models/Logbook_model.php:1836
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4981
 #: application/models/Logbook_model.php:5060
 #, php-format
 msgid ""
@@ -5136,7 +5131,6 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:4989
 #: application/models/Logbook_model.php:5068
 #, php-format
 msgid ""
@@ -5146,7 +5140,6 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:5005
 #: application/models/Logbook_model.php:5084
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -5155,7 +5148,6 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:5015
 #: application/models/Logbook_model.php:5094
 #, php-format
 msgid ""
@@ -5165,7 +5157,6 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:5022
 #: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
@@ -5175,7 +5166,6 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:5092
 #: application/models/Logbook_model.php:5171
 #, php-format
 msgid ""
@@ -5185,7 +5175,6 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:5099
 #: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
@@ -5195,77 +5184,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5374
 #: application/models/Logbook_model.php:5453
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5385
 #: application/models/Logbook_model.php:5464
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5446
 #: application/models/Logbook_model.php:5525
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5822
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5901
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5889
-#: application/models/Logbook_model.php:5989
 #: application/models/Logbook_model.php:5968
 #: application/models/Logbook_model.php:6068
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5897
 #: application/models/Logbook_model.php:5976
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5903
 #: application/models/Logbook_model.php:5982
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5907
 #: application/models/Logbook_model.php:5986
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5911
 #: application/models/Logbook_model.php:5990
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5914
 #: application/models/Logbook_model.php:5993
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5917
+#: application/models/Logbook_model.php:5996
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:5996
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5992
 #: application/models/Logbook_model.php:6071
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5995
 #: application/models/Logbook_model.php:6074
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6416
+#: application/models/Logbook_model.php:6495
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5278,7 +5253,6 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6495
 msgid "Bearing"
 msgstr "方位"
 
@@ -6407,8 +6381,8 @@ msgstr "日付"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
-#: application/views/zonechecker/result.php:66
 #: application/views/webadif/rejected.php:10
+#: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "時間"
 
@@ -6431,8 +6405,8 @@ msgstr "時間"
 #: application/views/search/search_result_ajax.php:93
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
-#: application/views/widgets/qsos.php:17
 #: application/views/webadif/rejected.php:9
+#: application/views/widgets/qsos.php:17
 msgid "Call"
 msgstr "コールサイン"
 
@@ -6497,7 +6471,6 @@ msgstr "最大ファイルアップロードサイズは "
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
-#: application/views/webadif/export.php:94
 #: application/views/webadif/export.php:104
 msgid "Warning"
 msgstr "警告"
@@ -6505,7 +6478,6 @@ msgstr "警告"
 #: application/views/adif/import.php:98 application/views/adif/import.php:100
 #: application/views/adif/import.php:267 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
-#: application/views/webadif/export.php:89
 #: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "無線局を選択してください"
@@ -6676,8 +6648,7 @@ msgstr ""
 #: application/views/dxatlas/index.php:103
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
-#: application/views/qrz/export.php:99 application/views/webadif/export.php:97
-#: application/views/webadif/export.php:107
+#: application/views/qrz/export.php:99 application/views/webadif/export.php:107
 msgid "From date"
 msgstr "開始日"
 
@@ -6685,7 +6656,6 @@ msgstr "開始日"
 #: application/views/dxatlas/index.php:108
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
-#: application/views/webadif/export.php:102
 #: application/views/webadif/export.php:112
 msgid "To date"
 msgstr "現在まで"
@@ -11701,9 +11671,8 @@ msgstr "コールサインDXCC識別"
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
-#: application/views/zonechecker/index.php:11
 #: application/views/webadif/export.php:125
+#: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "局の所在地"
 
@@ -16342,7 +16311,6 @@ msgstr ""
 "情報を確認してください!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
-#: application/views/webadif/export.php:94
 #: application/views/webadif/export.php:104
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "日付範囲が選択されていない場合は、すべての QSO がマークされます！"
@@ -24798,7 +24766,6 @@ msgid "Go ahead and turn on your QO-100 station!"
 msgstr "さあ、QO-100 局をオンにしましょう!"
 
 #: application/views/webadif/export.php:73
-#: application/views/webadif/export.php:113
 #: application/views/webadif/export.php:123
 msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
@@ -24808,13 +24775,11 @@ msgstr ""
 "されていません。"
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
 #: application/views/webadif/export.php:124
 msgid "QO-100 Dx Club"
 msgstr "QO-100 DXクラブ"
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
 #: application/views/webadif/export.php:124
 #, php-format
 msgid ""
@@ -24825,7 +24790,6 @@ msgstr ""
 "を作成してください。"
 
 #: application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
 #: application/views/webadif/export.php:125
 #, php-format
 msgid ""
@@ -24834,7 +24798,6 @@ msgid ""
 msgstr ""
 "次に、 %s にアクセスし、クラブで作成したキーを使用して無線局を構成します。"
 
-#: application/views/webadif/export.php:83
 #: application/views/webadif/export.php:93
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
@@ -24843,7 +24806,6 @@ msgstr ""
 "ここでは、これまで QO-100 Dx クラブにアップロードされていない QSO をアップ"
 "ロード済みとしてマークできます。"
 
-#: application/views/webadif/export.php:107
 #: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
 msgstr "QSOをQO-100 Dxクラブにエクスポートしたとしてマークする"
@@ -24851,6 +24813,24 @@ msgstr "QSOをQO-100 Dxクラブにエクスポートしたとしてマークす
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSO は QO-100 Dx クラブにエクスポートされたものとしてマークされます。"
+
+#: application/views/webadif/rejected.php:3
+msgid "Rejected by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:5
+msgid ""
+"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
+"is not retried automatically."
+msgstr ""
+
+#: application/views/webadif/rejected.php:11
+msgid "Reason for rejection by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:24
+msgid "Retry Upload"
+msgstr ""
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
@@ -24991,61 +24971,37 @@ msgstr "Clublog Log を検索"
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
 
-#: application/controllers/Lotw.php:462
 #, php-format
-msgid ""
-"The certificate found in file %s contains a password and cannot be "
-"processed. %sPlease make sure you export the LoTW certificate from tqsl "
-"application without password!%s For further information please visit the "
-"%sLoTW troubleshooting page%s in the Wavelog Wiki."
-msgstr ""
+#~ msgid ""
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %sPlease make sure you export the LoTW certificate from tqsl "
+#~ "application without password!%s For further information please visit the "
+#~ "%sLoTW FAQ page%s in the Wavelog Wiki."
+#~ msgstr ""
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。%sパス"
+#~ "ワードなしで tqsl アプリケーションから LoTW 証明書をエクスポートしてくださ"
+#~ "い！%s詳細については、Wavelog Wiki の %sLoTW FAQ ページ%s をご覧ください。"
 
-#: application/controllers/Lotw.php:464
 #, php-format
-msgid ""
-"Generic error extracting the certificate from file %s. If the filename "
-"contains 'key-only' this is typically a certificate request which has not "
-"been processed by LoTW yet. For further information please visit the %sLoTW "
-"troubleshooting page%s in the Wavelog Wiki."
-msgstr ""
+#~ msgid ""
+#~ "Generic error extracting the certificate from file %s. If the filename "
+#~ "contains 'key-only' this is typically a certificate request which has not "
+#~ "been processed by LoTW yet."
+#~ msgstr ""
+#~ "ファイルから証明書を抽出する際の一般的なエラー %s 。ファイル名に「key-"
+#~ "only」が含まれている場合、これは通常、LoTW によってまだ処理されていない証"
+#~ "明書要求です。"
 
-#: application/controllers/Lotw.php:471
 #, php-format
-msgid ""
-"Generic error processing the certificate in file %s. For further information "
-"please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
-msgstr ""
+#~ msgid "Generic error processing the certificate in file %s."
+#~ msgstr "ファイル内の証明書の処理中に一般的なエラーが発生しました %s 。"
 
-#: application/controllers/Lotw.php:483
 #, php-format
-msgid ""
-"Generic error extracting the private key from certificate in file %s. For "
-"further information please visit the %sLoTW troubleshooting page%s in the "
-"Wavelog Wiki."
-msgstr ""
-
-#: application/controllers/Webadif.php:181
-msgid ""
-"Rejected QSOs were reset. They will be picked up again by the next upload."
-msgstr ""
-
-#: application/views/webadif/rejected.php:3
-msgid "Rejected by QO-100 Dx Club"
-msgstr ""
-
-#: application/views/webadif/rejected.php:5
-msgid ""
-"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
-"is not retried automatically."
-msgstr ""
-
-#: application/views/webadif/rejected.php:11
-msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
-
-#: application/views/webadif/rejected.php:24
-msgid "Retry Upload"
-msgstr ""
+#~ msgid ""
+#~ "Generic error extracting the private key from certificate in file %s."
+#~ msgstr ""
+#~ "ファイル内の証明書から秘密鍵を抽出する際に一般的なエラーが発生しました "
+#~ "%s 。"
 
 #, php-format
 #~ msgid ""
@@ -25940,9 +25896,9 @@ msgstr ""
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
-#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
-#~ "なしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
+#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
+#~ "ワードなしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -26273,8 +26229,8 @@ msgstr ""
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
-#~ "%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
+#~ "は、%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
