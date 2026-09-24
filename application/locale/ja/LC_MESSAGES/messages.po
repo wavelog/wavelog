@@ -243,6 +243,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84 application/controllers/Lotw.php:962
 #: application/controllers/Lotw.php:1048
+#: application/controllers/Webadif.php:101
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -3003,7 +3004,7 @@ msgstr ""
 #: application/models/Logbook_model.php:98
 #: application/models/Logbook_model.php:1468
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1547
 msgid "Invalid callsign"
 msgstr "無効なコールサイン"
 
@@ -4343,6 +4344,8 @@ msgstr "マップをエクスポート"
 #: application/controllers/Webadif.php:103
 #: application/controllers/Webadif.php:150
 #: application/views/interface_assets/header.php:586
+#: application/controllers/Webadif.php:106
+#: application/controllers/Webadif.php:187
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dxクラブアップロード"
 
@@ -5108,19 +5111,24 @@ msgid "Realtime upload disabled"
 msgstr "リアルタイムアップロードが無効になっています"
 
 #: application/models/Logbook_model.php:1458
+#: application/models/Logbook_model.php:1537
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
 #: application/models/Logbook_model.php:1463
+#: application/models/Logbook_model.php:1542
 msgid "No Call given"
 msgstr "コールなし"
 
 #: application/models/Logbook_model.php:1539
 #: application/models/Logbook_model.php:1757
+#: application/models/Logbook_model.php:1618
+#: application/models/Logbook_model.php:1836
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
 #: application/models/Logbook_model.php:4981
+#: application/models/Logbook_model.php:5060
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5129,6 +5137,7 @@ msgstr ""
 "れました"
 
 #: application/models/Logbook_model.php:4989
+#: application/models/Logbook_model.php:5068
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5138,6 +5147,7 @@ msgstr ""
 "た：スキップしました"
 
 #: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5084
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5146,6 +5156,7 @@ msgstr ""
 "んでした。無効です"
 
 #: application/models/Logbook_model.php:5015
+#: application/models/Logbook_model.php:5094
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5155,6 +5166,7 @@ msgstr ""
 "はインポートされませんでした。無効です。"
 
 #: application/models/Logbook_model.php:5022
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5164,6 +5176,7 @@ msgstr ""
 "はインポートされませんでした。無効な入力は '%s '。"
 
 #: application/models/Logbook_model.php:5092
+#: application/models/Logbook_model.php:5171
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5173,6 +5186,7 @@ msgstr ""
 "されませんでした。"
 
 #: application/models/Logbook_model.php:5099
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5182,58 +5196,72 @@ msgstr ""
 "はインポートされませんでした。無効です"
 
 #: application/models/Logbook_model.php:5374
+#: application/models/Logbook_model.php:5453
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5385
+#: application/models/Logbook_model.php:5464
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5446
+#: application/models/Logbook_model.php:5525
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5822
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5901
 msgid "Duplicate for"
 msgstr "複製用"
 
 #: application/models/Logbook_model.php:5889
 #: application/models/Logbook_model.php:5989
+#: application/models/Logbook_model.php:5968
+#: application/models/Logbook_model.php:6068
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
 #: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5976
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
 #: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5982
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
 #: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5986
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
 #: application/models/Logbook_model.php:5911
+#: application/models/Logbook_model.php:5990
 msgid "confirmation pending"
 msgstr "確認中"
 
 #: application/models/Logbook_model.php:5914
+#: application/models/Logbook_model.php:5993
 msgid "unconfirmed"
 msgstr "未確認"
 
 #: application/models/Logbook_model.php:5917
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5996
 msgid "unknown"
 msgstr "不明"
 
 #: application/models/Logbook_model.php:5992
+#: application/models/Logbook_model.php:6071
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
 #: application/models/Logbook_model.php:5995
+#: application/models/Logbook_model.php:6074
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
@@ -5250,6 +5278,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6495
 msgid "Bearing"
 msgstr "方位"
 
@@ -6379,6 +6408,7 @@ msgstr "日付"
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
 #: application/views/zonechecker/result.php:66
+#: application/views/webadif/rejected.php:10
 msgid "Time"
 msgstr "時間"
 
@@ -6402,6 +6432,7 @@ msgstr "時間"
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/webadif/rejected.php:9
 msgid "Call"
 msgstr "コールサイン"
 
@@ -6467,6 +6498,7 @@ msgstr "最大ファイルアップロードサイズは "
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "Warning"
 msgstr "警告"
 
@@ -6474,6 +6506,7 @@ msgstr "警告"
 #: application/views/adif/import.php:267 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
 #: application/views/webadif/export.php:89
+#: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "無線局を選択してください"
 
@@ -6644,6 +6677,7 @@ msgstr ""
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/webadif/export.php:107
 msgid "From date"
 msgstr "開始日"
 
@@ -6652,6 +6686,7 @@ msgstr "開始日"
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
+#: application/views/webadif/export.php:112
 msgid "To date"
 msgstr "現在まで"
 
@@ -11668,6 +11703,7 @@ msgstr "コールサインDXCC識別"
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:11
+#: application/views/webadif/export.php:125
 msgid "Station Location"
 msgstr "局の所在地"
 
@@ -16307,6 +16343,7 @@ msgstr ""
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
 #: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "日付範囲が選択されていない場合は、すべての QSO がマークされます！"
 
@@ -24762,6 +24799,7 @@ msgstr "さあ、QO-100 局をオンにしましょう!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
+#: application/views/webadif/export.php:123
 msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
@@ -24771,11 +24809,13 @@ msgstr ""
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 msgid "QO-100 Dx Club"
 msgstr "QO-100 DXクラブ"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 #, php-format
 msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
@@ -24786,6 +24826,7 @@ msgstr ""
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #, php-format
 msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
@@ -24794,6 +24835,7 @@ msgstr ""
 "次に、 %s にアクセスし、クラブで作成したキーを使用して無線局を構成します。"
 
 #: application/views/webadif/export.php:83
+#: application/views/webadif/export.php:93
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
@@ -24802,6 +24844,7 @@ msgstr ""
 "ロード済みとしてマークできます。"
 
 #: application/views/webadif/export.php:107
+#: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
 msgstr "QSOをQO-100 Dxクラブにエクスポートしたとしてマークする"
 
@@ -24979,6 +25022,29 @@ msgid ""
 "Generic error extracting the private key from certificate in file %s. For "
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
+msgstr ""
+
+#: application/controllers/Webadif.php:181
+msgid ""
+"Rejected QSOs were reset. They will be picked up again by the next upload."
+msgstr ""
+
+#: application/views/webadif/rejected.php:3
+msgid "Rejected by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:5
+msgid ""
+"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
+"is not retried automatically."
+msgstr ""
+
+#: application/views/webadif/rejected.php:11
+msgid "Reason for rejection by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:24
+msgid "Retry Upload"
 msgstr ""
 
 #, php-format

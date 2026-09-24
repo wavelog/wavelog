@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-24 05:05+0000\n"
+"POT-Creation-Date: 2026-09-24 06:17+0000\n"
 "PO-Revision-Date: 2026-09-21 15:22+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -239,7 +239,7 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:99
+#: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
@@ -3007,7 +3007,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1468
+#: application/models/Logbook_model.php:1547
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4363,11 +4363,16 @@ msgstr "Ricerca pubblica"
 msgid "Export Map"
 msgstr "Esporta mappa"
 
-#: application/controllers/Webadif.php:103
-#: application/controllers/Webadif.php:150
+#: application/controllers/Webadif.php:106
+#: application/controllers/Webadif.php:187
 #: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "Caricamento QO-100 Dx Club"
+
+#: application/controllers/Webadif.php:181
+msgid ""
+"Rejected QSOs were reset. They will be picked up again by the next upload."
+msgstr ""
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -5122,20 +5127,20 @@ msgstr "Stazione non accessibile"
 msgid "Realtime upload disabled"
 msgstr "Caricamento in tempo reale disabilitato"
 
-#: application/models/Logbook_model.php:1458
+#: application/models/Logbook_model.php:1537
 msgid "Station ID not allowed"
 msgstr "ID stazione non consentito"
 
-#: application/models/Logbook_model.php:1463
+#: application/models/Logbook_model.php:1542
 msgid "No Call given"
 msgstr "Nessun nominatio fornito"
 
-#: application/models/Logbook_model.php:1539
-#: application/models/Logbook_model.php:1757
+#: application/models/Logbook_model.php:1618
+#: application/models/Logbook_model.php:1836
 msgid "DXCC has to be Numeric"
 msgstr "DXCC deve essere numerico"
 
-#: application/models/Logbook_model.php:4981
+#: application/models/Logbook_model.php:5060
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5143,7 +5148,7 @@ msgstr ""
 "Callsign della stazione errato ( %s) durante l'importazione di QSO con %s "
 "per %s: SALTATO"
 
-#: application/models/Logbook_model.php:4989
+#: application/models/Logbook_model.php:5068
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5152,7 +5157,7 @@ msgstr ""
 "Locatore diverso %s durante l'importazione del QSO con %s per il locatore "
 "della stazione %s: SALTATO"
 
-#: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5084
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5160,7 +5165,7 @@ msgstr ""
 "Hai cercato di importare un QSO senza una data valida. Questo QSO non è "
 "stato importato. Non è valido"
 
-#: application/models/Logbook_model.php:5015
+#: application/models/Logbook_model.php:5094
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5169,7 +5174,7 @@ msgstr ""
 "QSO su %s: Hai cercato di importare un QSO senza alcun CALL specificato. "
 "Questo QSO non è stato importato. Non è valido."
 
-#: application/models/Logbook_model.php:5022
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5178,7 +5183,7 @@ msgstr ""
 "QSO su %s: Hai provato a importare un QSO con un CALL non valido. Questo QSO "
 "non è stato importato. L'input non valido è '%s'."
 
-#: application/models/Logbook_model.php:5092
+#: application/models/Logbook_model.php:5171
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5187,7 +5192,7 @@ msgstr ""
 "QSO su %s: La banda '%s' non è nella configurazione delle bande. Questo QSO "
 "non è stato importato."
 
-#: application/models/Logbook_model.php:5099
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5196,63 +5201,63 @@ msgstr ""
 "QSO su %s: Hai provato a importare un QSO senza una banda specificata. "
 "Questo QSO non è stato importato. È non valido"
 
-#: application/models/Logbook_model.php:5374
+#: application/models/Logbook_model.php:5453
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5385
+#: application/models/Logbook_model.php:5464
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5446
+#: application/models/Logbook_model.php:5525
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "La data di upload Clublog non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5822
+#: application/models/Logbook_model.php:5901
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicata"
 
-#: application/models/Logbook_model.php:5889
-#: application/models/Logbook_model.php:5989
+#: application/models/Logbook_model.php:5968
+#: application/models/Logbook_model.php:6068
 msgid "QSO could not be matched"
 msgstr "Impossibile abbinare QSO"
 
-#: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5976
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confermato da LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5982
 msgid "confirmed by award manager"
 msgstr "confermato dal responsabile del diploma"
 
-#: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5986
 msgid "confirmed by cross-check of DCL data"
 msgstr "confermato dal controllo incrociato dei dati DCL"
 
-#: application/models/Logbook_model.php:5911
+#: application/models/Logbook_model.php:5990
 msgid "confirmation pending"
 msgstr "Conferma in sospeso"
 
-#: application/models/Logbook_model.php:5914
+#: application/models/Logbook_model.php:5993
 msgid "unconfirmed"
 msgstr "Non confermato"
 
-#: application/models/Logbook_model.php:5917
+#: application/models/Logbook_model.php:5996
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "sconosciuto"
 
-#: application/models/Logbook_model.php:5992
+#: application/models/Logbook_model.php:6071
 msgid "POTA reference already in log"
 msgstr "Riferimento POTA già presente nel registro di stazione"
 
-#: application/models/Logbook_model.php:5995
+#: application/models/Logbook_model.php:6074
 msgid "QSO updated"
 msgstr "QSO aggiornato"
 
-#: application/models/Logbook_model.php:6416
+#: application/models/Logbook_model.php:6495
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -6395,6 +6400,7 @@ msgstr "Data"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
+#: application/views/webadif/rejected.php:10
 #: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "Orario"
@@ -6418,6 +6424,7 @@ msgstr "Orario"
 #: application/views/search/search_result_ajax.php:93
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
+#: application/views/webadif/rejected.php:9
 #: application/views/widgets/qsos.php:17
 msgid "Call"
 msgstr "Nominativo"
@@ -6483,14 +6490,14 @@ msgstr "Dimensione massima del file caricabile: "
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "Warning"
 msgstr "Avviso"
 
 #: application/views/adif/import.php:98 application/views/adif/import.php:100
 #: application/views/adif/import.php:267 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
-#: application/views/webadif/export.php:89
+#: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "Seleziona posizione stazione"
 
@@ -6659,7 +6666,7 @@ msgstr ""
 #: application/views/dxatlas/index.php:103
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
-#: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/qrz/export.php:99 application/views/webadif/export.php:107
 msgid "From date"
 msgstr "Dalla data"
 
@@ -6667,7 +6674,7 @@ msgstr "Dalla data"
 #: application/views/dxatlas/index.php:108
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
-#: application/views/webadif/export.php:102
+#: application/views/webadif/export.php:112
 msgid "To date"
 msgstr "Alla data"
 
@@ -11761,7 +11768,7 @@ msgstr "Identificazione del DXCC relativo al nominativo"
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "Luogo Stazione"
@@ -16433,7 +16440,7 @@ msgstr ""
 "stazione!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 "Se non viene selezionato un intervallo di date, tutti i QSO verranno "
@@ -25029,7 +25036,7 @@ msgid "Go ahead and turn on your QO-100 station!"
 msgstr "Accendi la tua stazione QO-100!"
 
 #: application/views/webadif/export.php:73
-#: application/views/webadif/export.php:113
+#: application/views/webadif/export.php:123
 msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
@@ -25038,12 +25045,12 @@ msgstr ""
 "all'API del QO-100 Dx Club."
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 msgid "QO-100 Dx Club"
 msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 #, php-format
 msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
@@ -25053,7 +25060,7 @@ msgstr ""
 "%s una chiave API."
 
 #: application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #, php-format
 msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
@@ -25062,7 +25069,7 @@ msgstr ""
 "Quindi, naviga verso il tuo %s e configura la tua stazione con la chiave che "
 "hai creato al club."
 
-#: application/views/webadif/export.php:83
+#: application/views/webadif/export.php:93
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
@@ -25070,13 +25077,31 @@ msgstr ""
 "Qui puoi contrassegnare come caricati i tuoi QSO che non sono stati "
 "precedentemente caricati su QO-100 Dx Club."
 
-#: application/views/webadif/export.php:107
+#: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
 msgstr "Segna i QSO come esportati al QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "I QSO sono contrassegnati come esportati al QO-100 Dx Club."
+
+#: application/views/webadif/rejected.php:3
+msgid "Rejected by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:5
+msgid ""
+"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
+"is not retried automatically."
+msgstr ""
+
+#: application/views/webadif/rejected.php:11
+msgid "Reason for rejection by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:24
+msgid "Retry Upload"
+msgstr ""
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
