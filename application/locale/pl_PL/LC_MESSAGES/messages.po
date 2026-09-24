@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-24 06:17+0000\n"
+"POT-Creation-Date: 2026-09-24 06:59+0000\n"
 "PO-Revision-Date: 2026-08-30 21:12+0000\n"
 "Last-Translator: Piotr S <sp9lop@pm.me>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -181,11 +181,11 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/Dxatlas.php:105
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
-#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:278
-#: application/controllers/Eqsl.php:316 application/controllers/Eqsl.php:518
-#: application/controllers/Eqsl.php:589 application/controllers/Eqsl.php:604
-#: application/controllers/Eqsl.php:662
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
+#: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
+#: application/controllers/Eqsl.php:319 application/controllers/Eqsl.php:521
+#: application/controllers/Eqsl.php:592 application/controllers/Eqsl.php:607
+#: application/controllers/Eqsl.php:665
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -1759,11 +1759,11 @@ msgstr "Karty eQSL"
 msgid "Showing %d to %d of %d entries"
 msgstr "Pokazywanie %d do %d z %d wpisów"
 
-#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:170
+#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "Pseudonimy eQSL w profilach stacji nie są zdefiniowane!"
 
-#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:189
+#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "Nie zdefiniowano danych logowania eQSL.cc!"
 
@@ -1775,77 +1775,77 @@ msgstr "Import eQSL"
 msgid "eQSL Import Information"
 msgstr "Import informacji eQSL"
 
-#: application/controllers/Eqsl.php:177
+#: application/controllers/Eqsl.php:183
 msgid "eQSL QSO Upload"
 msgstr "Przesyłanie QSO eQSL"
 
-#: application/controllers/Eqsl.php:211
+#: application/controllers/Eqsl.php:216
 msgid "User/Pass wrong for eQSL"
 msgstr "Nieprawidłowy użytkownik lub hasło dla eQSL"
 
-#: application/controllers/Eqsl.php:217
+#: application/controllers/Eqsl.php:220
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Nie ma takiego pseudonimu eQSL QTH: %s"
 
-#: application/controllers/Eqsl.php:332
+#: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
 msgstr "QSO nie zostało znalezione lub jest niedostępne"
 
-#: application/controllers/Eqsl.php:350
+#: application/controllers/Eqsl.php:353
 msgid "User not found"
 msgstr "Użytkownik nie znaleziony"
 
-#: application/controllers/Eqsl.php:359
+#: application/controllers/Eqsl.php:362
 msgid "eQSL password not configured for this user"
 msgstr "Hasło eQSL nie zostało skonfigurowane dla tego użytkownika"
 
-#: application/controllers/Eqsl.php:376
+#: application/controllers/Eqsl.php:379
 msgid "Failed to fetch eQSL image data"
 msgstr "Nie udało się pobrać danych obrazu eQSL"
 
-#: application/controllers/Eqsl.php:395
+#: application/controllers/Eqsl.php:398
 msgid "eQSL image not available"
 msgstr "Obraz eQSL niedostępny"
 
-#: application/controllers/Eqsl.php:413
+#: application/controllers/Eqsl.php:416
 msgid "Failed to download eQSL image"
 msgstr "Nie udało się pobrać obrazu eQSL"
 
-#: application/controllers/Eqsl.php:423 application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:579
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Brak miejsca na dysku, aby zapisać kartę eQSL"
 
-#: application/controllers/Eqsl.php:447
+#: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
 msgstr "Nie udało się załadować zbuforowanego obrazu eQSL"
 
-#: application/controllers/Eqsl.php:593
+#: application/controllers/Eqsl.php:596
 msgid "eQSL Tools"
 msgstr "Narzędzia eQSL"
 
-#: application/controllers/Eqsl.php:622
+#: application/controllers/Eqsl.php:625
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
 "Ograniczono do pierwszych 150 QSO tego żądania. Należy uruchomić ponownie."
 
-#: application/controllers/Eqsl.php:628
+#: application/controllers/Eqsl.php:631
 msgid " / Errors: "
 msgstr " / Błędy: "
 
-#: application/controllers/Eqsl.php:628
+#: application/controllers/Eqsl.php:631
 msgid "Successfully downloaded: "
 msgstr "Pomyślnie pobrano: "
 
-#: application/controllers/Eqsl.php:635
+#: application/controllers/Eqsl.php:638
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "Osiągnięto limit eQSL. Proszę poczekać przed ponownym uruchomieniem."
 
-#: application/controllers/Eqsl.php:647
+#: application/controllers/Eqsl.php:650
 msgid "eQSL Card Image Download"
 msgstr "Pobieranie obrazów kart eQSL"
 
-#: application/controllers/Eqsl.php:670
+#: application/controllers/Eqsl.php:673
 msgid "All eQSLs marked as uploaded"
 msgstr "Wszystkie eQSL zaznaczone jako przesłane"
 
@@ -5042,40 +5042,40 @@ msgstr ""
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:313
+#: application/models/Eqslmethods_model.php:270
 msgid "Empty response from eQSL.cc!"
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Nazwa użytkownika i/lub hasło eQSL jest niepoprawna."
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:283
 msgid "Something went wrong with eQSL.cc!"
 msgstr "Coś poszło nie tak z eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:337
+#: application/models/Eqslmethods_model.php:294
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "Nazwa QTH nie istnieje w eQSL"
 
-#: application/models/Eqslmethods_model.php:345
+#: application/models/Eqslmethods_model.php:302
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL.cc ma problemy. Spróbuj wyeksportować QSO później."
 
-#: application/models/Eqslmethods_model.php:350
+#: application/models/Eqslmethods_model.php:307
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "W jednym z QSO wystąpił błąd. Spróbuj przesłać je ręcznie."
 
-#: application/models/Eqslmethods_model.php:355
+#: application/models/Eqslmethods_model.php:312
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Wygląda na to, że strona eQSL się zmieniła. Należy otworzyć zgłoszenie na "
 "GitHubie."
 
-#: application/models/Eqslmethods_model.php:361
+#: application/models/Eqslmethods_model.php:318
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
