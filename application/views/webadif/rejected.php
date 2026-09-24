@@ -8,7 +8,7 @@
 			<tr>
 				<td><?= __("Call"); ?></td>
 				<td><?= __("Time"); ?></td>
-				<td><?= __("Reason QO100DXClub gave us"); ?></td>
+				<td><?= __("Reason for rejection by QO-100 Dx Club"); ?></td>
 			</tr>
 			</thead>
 			<tbody>
