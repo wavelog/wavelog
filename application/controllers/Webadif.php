@@ -178,7 +178,7 @@ class Webadif extends CI_Controller {
 		$this->logbook_model->reset_webadif_rejected_qsos($postData['station_id']);
 
 		header('Content-type: application/json');
-		echo json_encode(['status' => 'OK', 'message' => __("Rejected QSOs were reset. They will be picked up by the next upload.")]);
+		echo json_encode(['status' => 'OK', 'message' => __("Rejected QSOs were reset. They will be picked up again by the next upload.")]);
 	}
 
 	public function mark_webadif() {
