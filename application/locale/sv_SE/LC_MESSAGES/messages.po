@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-24 06:59+0000\n"
-"PO-Revision-Date: 2026-09-24 05:05+0000\n"
+"PO-Revision-Date: 2026-09-25 08:16+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -2819,6 +2819,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Certifikatet som hittades i filen %s innehåller ett lösenord och kan inte "
+"bearbetas. %sSe till att du exporterar LoTW-certifikatet från tqsl-"
+"applikationen utan lösenord!%s För mer information vänligen besök %sLoTW "
+"felsökningssida%s i Wavelog Wiki."
 
 #: application/controllers/Lotw.php:464
 #, php-format
@@ -2828,6 +2832,10 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Generellt fel vid extrahering av certifikatet från filen %s. Om filnamnet "
+"innehåller 'endast-nyckel' är detta vanligtvis en certifikatförfrågan som "
+"inte har behandlats av LoTW ännu. För mer information vänligen besök %sLoTW "
+"felsökningssida%s i Wavelog Wiki."
 
 #: application/controllers/Lotw.php:471
 #, php-format
@@ -2835,6 +2843,8 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Generellt fel vid bearbetning av certifikatet i filen %s. För mer "
+"information vänligen besök %sLoTW felsökningssida%s i Wavelog Wiki."
 
 #: application/controllers/Lotw.php:483
 #, php-format
@@ -2843,6 +2853,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Generellt fel vid extrahering av den privata nyckeln från certifikatet i "
+"filen %s. För mer information vänligen besök %sLoTW felsökningssida%s i "
+"Wavelog Wiki."
 
 #: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
@@ -4348,6 +4361,8 @@ msgstr "QO-100 Dx Club Ladda upp"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"Avvisade QSOs har återställts. De kommer att tas med igen vid nästa "
+"uppladdning."
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -24881,21 +24896,23 @@ msgstr "QSOs är markerade som exporterade till QO-100 Dx Club."
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "Avvisad av QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
+"Dessa QSOs avvisades av QO-100 Dx Club API och kommer inte att tas med vid "
+"nästa automatiskt uppladdning."
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "Anledningen till avvisningen av QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "Försök att ladda upp igen"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
