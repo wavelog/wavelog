@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-24 05:05+0000\n"
-"PO-Revision-Date: 2026-09-23 11:29+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2026-09-24 06:17+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -2854,6 +2854,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Das in der Datei %s gefundene Zertifikat enthält ein Passwort und kann nicht "
+"verarbeitet werden. %sBitte stelle sicher, dass Du das LoTW-Zertifikat aus "
+"der tqsl-Anwendung ohne Passwort exportierst!%s Weitere Informationen "
+"findest Du auf der %sLoTW-Fehlerbehebungsseite%s im Wavelog-Wiki."
 
 #: application/controllers/Lotw.php:464
 #, php-format
@@ -2863,6 +2867,11 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Allgemeiner Fehler beim Extrahieren des Zertifikats aus der Datei %s. Wenn "
+"der Dateiname „key-only“ enthält, handelt es sich in der Regel um eine "
+"Zertifikatsanforderung, die von LoTW noch nicht bearbeitet wurde. Weitere "
+"Informationen findest Du auf der %sLoTW-Fehlerbehebungsseite%s im Wavelog-"
+"Wiki."
 
 #: application/controllers/Lotw.php:471
 #, php-format
@@ -2870,6 +2879,9 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Allgemeiner Fehler bei der Verarbeitung des Zertifikats in der Datei %s. "
+"Weitere Informationen findest Du auf der Seite %sLoTW-Fehlerbehebung%s im "
+"Wavelog-Wiki."
 
 #: application/controllers/Lotw.php:483
 #, php-format
@@ -2878,6 +2890,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Allgemeiner Fehler beim Extrahieren des privaten Schlüssels aus dem "
+"Zertifikat in der Datei %s. Weitere Informationen findest Du auf der Seite "
+"%sLoTW-Fehlerbehebung%s im Wavelog-Wiki."
 
 #: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
@@ -5074,7 +5089,7 @@ msgstr ""
 
 #: application/models/Eqslmethods_model.php:313
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "Leere Antwort von eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
