@@ -2,7 +2,7 @@
 <div class="card mt-3 border-danger" id="webadif-rejected-<?php echo $station->station_id; ?>">
 	<div class="card-header bg-danger text-white"><?= __("Rejected by QO-100 Dx Club"); ?>: <?php echo htmlspecialchars((string)$station->station_callsign); ?></div>
 	<div class="card-body">
-		<p><?= __("These QSOs were rejected by the QO-100 Dx Club API and are not retried automatically."); ?></p>
+		<p><?= __("These QSOs were rejected by the QO-100 Dx Club API and the upload of those is not retried automatically."); ?></p>
 		<table class="table table-bordered table-hover table-striped table-condensed">
 			<thead>
 			<tr>
