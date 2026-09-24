@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-24 06:17+0000\n"
-"PO-Revision-Date: 2026-09-23 11:25+0000\n"
+"POT-Creation-Date: 2026-09-23 11:44+0000\n"
+"PO-Revision-Date: 2026-09-24 05:05+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -188,7 +188,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
-#: application/controllers/Lotw.php:962 application/controllers/Lotw.php:1048
+#: application/controllers/Lotw.php:961 application/controllers/Lotw.php:1047
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -237,9 +237,11 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:101
+#: application/controllers/Webadif.php:99
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Lotw.php:962
+#: application/controllers/Lotw.php:1048
+#: application/controllers/Webadif.php:101
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -2811,73 +2813,76 @@ msgstr "Certifikat uppdaterat."
 msgid "Certificate Deleted."
 msgstr "Certifikat raderat."
 
-#: application/controllers/Lotw.php:462
+#: application/controllers/Lotw.php:461
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
 "processed. %sPlease make sure you export the LoTW certificate from tqsl "
 "application without password!%s For further information please visit the "
-"%sLoTW troubleshooting page%s in the Wavelog Wiki."
+"%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Certifikatet som hittas i filen %s innehåller ett lösenord och kan inte "
+"behandlas. %sVar vänlig se till att du exporterar LoTW-certifikatet från "
+"tqsl-applikationen utan lösenord!%s För mer information, vänligen besök "
+"%sLoTW FAQ-sidan%s i Wavelog Wiki."
 
-#: application/controllers/Lotw.php:464
+#: application/controllers/Lotw.php:463
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
 "contains 'key-only' this is typically a certificate request which has not "
-"been processed by LoTW yet. For further information please visit the %sLoTW "
-"troubleshooting page%s in the Wavelog Wiki."
+"been processed by LoTW yet."
 msgstr ""
+"Allmänt fel vid extrahering av certifikatet från filen %s. Om filnamnet "
+"innehåller 'key-only' är det vanligtvis en certifikatbegäran som ännu inte "
+"har behandlats av LoTW."
 
-#: application/controllers/Lotw.php:471
+#: application/controllers/Lotw.php:470
 #, php-format
-msgid ""
-"Generic error processing the certificate in file %s. For further information "
-"please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
-msgstr ""
+msgid "Generic error processing the certificate in file %s."
+msgstr "Generiskt fel vid bearbetning av certifikatet i filen %s."
 
-#: application/controllers/Lotw.php:483
+#: application/controllers/Lotw.php:482
 #, php-format
-msgid ""
-"Generic error extracting the private key from certificate in file %s. For "
-"further information please visit the %sLoTW troubleshooting page%s in the "
-"Wavelog Wiki."
+msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Generiskt fel vid extrahering av den privata nyckeln från certifikatet i "
+"filen %s."
 
-#: application/controllers/Lotw.php:699
+#: application/controllers/Lotw.php:698 application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-information"
 
-#: application/controllers/Lotw.php:1019
+#: application/controllers/Lotw.php:1018 application/controllers/Lotw.php:1019
 msgid "Connection to LoTW failed."
 msgstr "Anslutning till LoTW misslyckades."
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1023 application/controllers/Lotw.php:1024
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-inloggning misslyckades för användare %s: %s."
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1023 application/controllers/Lotw.php:1024
 msgid "Username/password incorrect"
 msgstr "Användarnamn/lösenord felaktigt"
 
-#: application/controllers/Lotw.php:1027
+#: application/controllers/Lotw.php:1026 application/controllers/Lotw.php:1027
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW är för närvarande inte tillgänglig. Försök igen senare."
 
-#: application/controllers/Lotw.php:1031
+#: application/controllers/Lotw.php:1030 application/controllers/Lotw.php:1031
 msgid "LoTW login OK!"
 msgstr "LoTW-inloggning OK!"
 
-#: application/controllers/Lotw.php:1037
+#: application/controllers/Lotw.php:1036 application/controllers/Lotw.php:1037
 msgid "No LoTW credentials provided."
 msgstr "Inga LoTW detaljer angivna."
 
-#: application/controllers/Lotw.php:1054
+#: application/controllers/Lotw.php:1053 application/controllers/Lotw.php:1054
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
 
-#: application/controllers/Lotw.php:1081
+#: application/controllers/Lotw.php:1080 application/controllers/Lotw.php:1081
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du har inte angivit dina ARRL LoTW-uppgifter!"
 
@@ -2992,9 +2997,9 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1547
+#: application/models/Logbook_model.php:1468
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1547
 msgid "Invalid callsign"
 msgstr "Ogiltigt anropssignal"
 
@@ -4338,16 +4343,13 @@ msgstr "Offentlig sökning"
 msgid "Export Map"
 msgstr "Exportera karta"
 
+#: application/controllers/Webadif.php:103
+#: application/controllers/Webadif.php:150
+#: application/views/interface_assets/header.php:586
 #: application/controllers/Webadif.php:106
 #: application/controllers/Webadif.php:187
-#: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Ladda upp"
-
-#: application/controllers/Webadif.php:181
-msgid ""
-"Rejected QSOs were reset. They will be picked up again by the next upload."
-msgstr ""
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -5027,7 +5029,7 @@ msgstr "Testnyckeln kunde inte raderas - kontrollera behörigheter/åtkomst."
 
 #: application/models/Eqslmethods_model.php:313
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "Tomt svar från eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:321
 msgid "Your eQSL username and/or password is incorrect."
@@ -5107,25 +5109,31 @@ msgstr "Stationen är inte tillgänglig"
 msgid "Realtime upload disabled"
 msgstr "Direktuppladdning inaktiverad"
 
+#: application/models/Logbook_model.php:1458
 #: application/models/Logbook_model.php:1537
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
+#: application/models/Logbook_model.php:1463
 #: application/models/Logbook_model.php:1542
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
+#: application/models/Logbook_model.php:1539
+#: application/models/Logbook_model.php:1757
 #: application/models/Logbook_model.php:1618
 #: application/models/Logbook_model.php:1836
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
+#: application/models/Logbook_model.php:4981
 #: application/models/Logbook_model.php:5060
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
+#: application/models/Logbook_model.php:4989
 #: application/models/Logbook_model.php:5068
 #, php-format
 msgid ""
@@ -5134,6 +5142,7 @@ msgid ""
 msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
+#: application/models/Logbook_model.php:5005
 #: application/models/Logbook_model.php:5084
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -5142,6 +5151,7 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
+#: application/models/Logbook_model.php:5015
 #: application/models/Logbook_model.php:5094
 #, php-format
 msgid ""
@@ -5151,6 +5161,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan en angiven anropssignal. Detta "
 "QSO importerades inte. Det är ogiltigt."
 
+#: application/models/Logbook_model.php:5022
 #: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
@@ -5160,6 +5171,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO med en ogiltig anropssignal. Detta "
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
+#: application/models/Logbook_model.php:5092
 #: application/models/Logbook_model.php:5171
 #, php-format
 msgid ""
@@ -5169,6 +5181,7 @@ msgstr ""
 "QSO på %s: Bandet '%s' är inte i bandkonfigurationen. Detta QSO importerades "
 "inte."
 
+#: application/models/Logbook_model.php:5099
 #: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
@@ -5178,63 +5191,77 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
+#: application/models/Logbook_model.php:5374
 #: application/models/Logbook_model.php:5453
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:5385
 #: application/models/Logbook_model.php:5464
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:5446
 #: application/models/Logbook_model.php:5525
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5901
+#: application/models/Logbook_model.php:5822
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5901
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
+#: application/models/Logbook_model.php:5889
+#: application/models/Logbook_model.php:5989
 #: application/models/Logbook_model.php:5968
 #: application/models/Logbook_model.php:6068
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
+#: application/models/Logbook_model.php:5897
 #: application/models/Logbook_model.php:5976
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
+#: application/models/Logbook_model.php:5903
 #: application/models/Logbook_model.php:5982
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
+#: application/models/Logbook_model.php:5907
 #: application/models/Logbook_model.php:5986
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
+#: application/models/Logbook_model.php:5911
 #: application/models/Logbook_model.php:5990
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
+#: application/models/Logbook_model.php:5914
 #: application/models/Logbook_model.php:5993
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:5996
+#: application/models/Logbook_model.php:5917
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5996
 msgid "unknown"
 msgstr "Okänd"
 
+#: application/models/Logbook_model.php:5992
 #: application/models/Logbook_model.php:6071
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
+#: application/models/Logbook_model.php:5995
 #: application/models/Logbook_model.php:6074
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6495
+#: application/models/Logbook_model.php:6416
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5247,6 +5274,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6495
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -6377,8 +6405,8 @@ msgstr "Datum"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
-#: application/views/webadif/rejected.php:10
 #: application/views/zonechecker/result.php:66
+#: application/views/webadif/rejected.php:10
 msgid "Time"
 msgstr "Tid"
 
@@ -6401,8 +6429,8 @@ msgstr "Tid"
 #: application/views/search/search_result_ajax.php:93
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
-#: application/views/webadif/rejected.php:9
 #: application/views/widgets/qsos.php:17
+#: application/views/webadif/rejected.php:9
 msgid "Call"
 msgstr "Signal"
 
@@ -6467,6 +6495,7 @@ msgstr "Maximal filuppladdningsstorlek är "
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
+#: application/views/webadif/export.php:94
 #: application/views/webadif/export.php:104
 msgid "Warning"
 msgstr "Varning"
@@ -6474,6 +6503,7 @@ msgstr "Varning"
 #: application/views/adif/import.php:98 application/views/adif/import.php:100
 #: application/views/adif/import.php:267 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
+#: application/views/webadif/export.php:89
 #: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "Välj stationsplats"
@@ -6642,7 +6672,8 @@ msgstr "Allt är begränsat till stationsplatser kopplade till aktiv loggbok"
 #: application/views/dxatlas/index.php:103
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
-#: application/views/qrz/export.php:99 application/views/webadif/export.php:107
+#: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/webadif/export.php:107
 msgid "From date"
 msgstr "Från datum"
 
@@ -6650,6 +6681,7 @@ msgstr "Från datum"
 #: application/views/dxatlas/index.php:108
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
+#: application/views/webadif/export.php:102
 #: application/views/webadif/export.php:112
 msgid "To date"
 msgstr "Hittills"
@@ -10170,8 +10202,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -11690,8 +11722,9 @@ msgstr "Anropssignal DXCC-identifiering"
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:125
+#: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:11
+#: application/views/webadif/export.php:125
 msgid "Station Location"
 msgstr "Stationsplats"
 
@@ -16329,6 +16362,7 @@ msgstr ""
 "HRDlog-uppgifterna i stationsplatsinställningarna!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
+#: application/views/webadif/export.php:94
 #: application/views/webadif/export.php:104
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Om ett datumintervall inte är valt kommer alla QSOs att markeras!"
@@ -18153,8 +18187,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -23322,8 +23356,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -24830,6 +24864,7 @@ msgid "Go ahead and turn on your QO-100 station!"
 msgstr "Starta din QO-100-station!"
 
 #: application/views/webadif/export.php:73
+#: application/views/webadif/export.php:113
 #: application/views/webadif/export.php:123
 msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
@@ -24839,11 +24874,13 @@ msgstr ""
 "Dx Club's API."
 
 #: application/views/webadif/export.php:74
+#: application/views/webadif/export.php:114
 #: application/views/webadif/export.php:124
 msgid "QO-100 Dx Club"
 msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
+#: application/views/webadif/export.php:114
 #: application/views/webadif/export.php:124
 #, php-format
 msgid ""
@@ -24854,6 +24891,7 @@ msgstr ""
 "Skapa %s en API-nyckel."
 
 #: application/views/webadif/export.php:75
+#: application/views/webadif/export.php:115
 #: application/views/webadif/export.php:125
 #, php-format
 msgid ""
@@ -24863,6 +24901,7 @@ msgstr ""
 "Navigera sedan till din %s och konfigurera din station med nyckeln du har "
 "skapat på klubben."
 
+#: application/views/webadif/export.php:83
 #: application/views/webadif/export.php:93
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
@@ -24871,6 +24910,7 @@ msgstr ""
 "Här kan du markera som uppladdade dina QSOs som inte tidigare har laddats "
 "upp till QO-100 Dx Club."
 
+#: application/views/webadif/export.php:107
 #: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
 msgstr "Markera QSOs som exporterade till QO-100 Dx Club"
@@ -24878,24 +24918,6 @@ msgstr "Markera QSOs som exporterade till QO-100 Dx Club"
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSOs är markerade som exporterade till QO-100 Dx Club."
-
-#: application/views/webadif/rejected.php:3
-msgid "Rejected by QO-100 Dx Club"
-msgstr ""
-
-#: application/views/webadif/rejected.php:5
-msgid ""
-"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
-"is not retried automatically."
-msgstr ""
-
-#: application/views/webadif/rejected.php:11
-msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
-
-#: application/views/webadif/rejected.php:24
-msgid "Retry Upload"
-msgstr ""
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
@@ -25034,38 +25056,61 @@ msgstr "Clublog Loggsökning"
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-användare. Senaste uppladdningen var "
 
+#: application/controllers/Lotw.php:462
 #, php-format
-#~ msgid ""
-#~ "The certificate found in file %s contains a password and cannot be "
-#~ "processed. %sPlease make sure you export the LoTW certificate from tqsl "
-#~ "application without password!%s For further information please visit the "
-#~ "%sLoTW FAQ page%s in the Wavelog Wiki."
-#~ msgstr ""
-#~ "Certifikatet som hittas i filen %s innehåller ett lösenord och kan inte "
-#~ "behandlas. %sVar vänlig se till att du exporterar LoTW-certifikatet från "
-#~ "tqsl-applikationen utan lösenord!%s För mer information, vänligen besök "
-#~ "%sLoTW FAQ-sidan%s i Wavelog Wiki."
+msgid ""
+"The certificate found in file %s contains a password and cannot be "
+"processed. %sPlease make sure you export the LoTW certificate from tqsl "
+"application without password!%s For further information please visit the "
+"%sLoTW troubleshooting page%s in the Wavelog Wiki."
+msgstr ""
 
+#: application/controllers/Lotw.php:464
 #, php-format
-#~ msgid ""
-#~ "Generic error extracting the certificate from file %s. If the filename "
-#~ "contains 'key-only' this is typically a certificate request which has not "
-#~ "been processed by LoTW yet."
-#~ msgstr ""
-#~ "Allmänt fel vid extrahering av certifikatet från filen %s. Om filnamnet "
-#~ "innehåller 'key-only' är det vanligtvis en certifikatbegäran som ännu "
-#~ "inte har behandlats av LoTW."
+msgid ""
+"Generic error extracting the certificate from file %s. If the filename "
+"contains 'key-only' this is typically a certificate request which has not "
+"been processed by LoTW yet. For further information please visit the %sLoTW "
+"troubleshooting page%s in the Wavelog Wiki."
+msgstr ""
 
+#: application/controllers/Lotw.php:471
 #, php-format
-#~ msgid "Generic error processing the certificate in file %s."
-#~ msgstr "Generiskt fel vid bearbetning av certifikatet i filen %s."
+msgid ""
+"Generic error processing the certificate in file %s. For further information "
+"please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
+msgstr ""
 
+#: application/controllers/Lotw.php:483
 #, php-format
-#~ msgid ""
-#~ "Generic error extracting the private key from certificate in file %s."
-#~ msgstr ""
-#~ "Generiskt fel vid extrahering av den privata nyckeln från certifikatet i "
-#~ "filen %s."
+msgid ""
+"Generic error extracting the private key from certificate in file %s. For "
+"further information please visit the %sLoTW troubleshooting page%s in the "
+"Wavelog Wiki."
+msgstr ""
+
+#: application/controllers/Webadif.php:181
+msgid ""
+"Rejected QSOs were reset. They will be picked up again by the next upload."
+msgstr ""
+
+#: application/views/webadif/rejected.php:3
+msgid "Rejected by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:5
+msgid ""
+"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
+"is not retried automatically."
+msgstr ""
+
+#: application/views/webadif/rejected.php:11
+msgid "Reason for rejection by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:24
+msgid "Retry Upload"
+msgstr ""
 
 #, php-format
 #~ msgid ""
