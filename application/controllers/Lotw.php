@@ -454,20 +454,21 @@ class Lotw extends CI_Controller {
 		$worked = openssl_pkcs12_read($filename, $results, $password);
 		$openssl_error_pkcs12_read = openssl_error_string();
 		if (!$worked || $openssl_error_pkcs12_read) {
-			log_message('error', 'OpenSSL reading LoTW cert file resulted in error: '.$openssl_error_pkcs12_read);
+			log_message('error', 'OpenSSL reading LoTW cert file '.$file.' resulted in error: '.$openssl_error_pkcs12_read);
 			unlink($file);
 			// OpenSSL error:11800071:PKCS12 routines::mac verify failure is most likely an (unknown) password set on the exported certificate
+			// Can also happen if the cert is extracted from platforms with ancient SSL libs. See https://docs.wavelog.org/troubleshooting/lotw-p12-upload/
 			if (str_contains($openssl_error_pkcs12_read, 'mac verify failure')) {
-				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %sPlease make sure you export the LoTW certificate from tqsl application without password!%s For further information please visit the %sLoTW FAQ page%s in the Wavelog Wiki."), basename($file), '<b>', '</b>', '<a target="_blank" href="https://docs.wavelog.org/user-guide/qsl/lotw/">', '</a>'));
+				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %sPlease make sure you export the LoTW certificate from tqsl application without password!%s For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<b>', '</b>', '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 			} else {
-				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet."), basename($file)));
+				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 			}
 			redirect('lotw');
 		} else {
 			if (!array_key_exists('cert', $results)) {
 				log_message('error', 'Generic error processing the certificate from file '.$file);
 				unlink($file);
-				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s."), basename($file)));
+				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 				redirect('lotw');
 			} else {
 				$data['general_cert'] = $results['cert'];
@@ -478,8 +479,8 @@ class Lotw extends CI_Controller {
 				$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
 				$openssl_error_pkey_export = openssl_error_string();
 				if (!$worked || $openssl_error_pkey_export) {
-					log_message('error', 'OpenSSL reading LoTW private key resulted in error: '.$openssl_error_pkey_export);
-					$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the private key from certificate in file %s."), basename($file)));
+					log_message('error', 'OpenSSL reading LoTW private key from file '.$file.' resulted in error: '.$openssl_error_pkey_export);
+					$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the private key from certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 					unlink($file);
 					redirect('lotw');
 				} else {
