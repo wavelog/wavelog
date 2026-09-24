@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-24 06:59+0000\n"
-"PO-Revision-Date: 2026-09-24 05:05+0000\n"
+"PO-Revision-Date: 2026-09-25 08:16+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -1231,7 +1231,7 @@ msgstr ""
 #: application/controllers/Contesting.php:782
 #: application/models/Contesting_model.php:291
 msgid "Only clubstation officers can delete."
-msgstr "クラブシャック の役員のみが削除できます。"
+msgstr "クラブ局 の役員のみが削除できます。"
 
 #: application/controllers/Contesting.php:790
 msgid "No contest sessions selected."
@@ -1254,7 +1254,7 @@ msgstr "オペレーターの切り替えは無効になっています。"
 
 #: application/controllers/Contesting.php:1036
 msgid "Operator switching is only available in club stations."
-msgstr "オペレーターの切り替えは、クラブシャック でのみ利用可能です。"
+msgstr "オペレーターの切り替えは、クラブ局でのみ利用可能です。"
 
 #: application/controllers/Contesting.php:1046
 msgid "Access denied"
@@ -1897,8 +1897,8 @@ msgstr "ユーザーが見つかりません。"
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
-"clubstation に直接ログインすることはできません。代わりに個人アカウントをご利"
-"用ください。"
+"クラブ局に直接ログインすることはできません。代わりに個人アカウントをご利用く"
+"ださい。"
 
 #: application/controllers/Header_auth.php:119
 msgid ""
@@ -2825,6 +2825,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"ファイル %s にある証明書にはパスワードが含まれているため、処理できません"
+"。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワードを"
+"含めないようにしてください！%s 詳細については、Wavelog Wiki の %sLoTW "
+"トラブルシューティングページ%s をご覧ください。"
 
 #: application/controllers/Lotw.php:464
 #, php-format
@@ -2834,6 +2838,10 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"ファイル %s から証明書を抽出する際に一般的なエラーが発生しました。ファイル名"
+"に「key-only」が含まれている場合、これは通常、LoTW によってまだ処理されていな"
+"い証明書リクエストです。詳細については、Wavelog Wiki の %sLoTW "
+"トラブルシューティングページ%s をご覧ください。"
 
 #: application/controllers/Lotw.php:471
 #, php-format
@@ -2841,6 +2849,8 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"ファイル %s 内の証明書の処理中に一般的なエラーが発生しました。詳細については"
+"、Wavelog Wiki の %sLoTW トラブルシューティングページ%s をご覧ください。"
 
 #: application/controllers/Lotw.php:483
 #, php-format
@@ -2849,6 +2859,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"ファイル %s 内の証明書から秘密鍵を抽出する際に、一般的なエラーが発生しました"
+"。詳細については、Wavelog Wiki の %sLoTW トラブルシューティングページ%s をご"
+"覧ください。"
 
 #: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
@@ -3165,7 +3178,7 @@ msgstr "無効な無線局ID"
 
 #: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
-msgstr "シャック 名に無効な文字が有る"
+msgstr "局名に無効な文字が有る"
 
 #: application/controllers/Oqrs.php:180
 #: application/views/interface_assets/header.php:567
@@ -3631,7 +3644,7 @@ msgstr "局の所在地を編集: "
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr "シャックの位置 %s が 更新されました"
+msgstr "局の位置 %s が 更新されました"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
@@ -3771,8 +3784,7 @@ msgstr "エクスポートマップオプションを編集"
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
-msgstr ""
-"無線局プロファイル %s をアクティブなシャック に設定してもよろしいですか？"
+msgstr "無線局プロファイル %s をアクティブな局に設定してもよろしいですか？"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:189
@@ -4348,6 +4360,8 @@ msgstr "QO-100 Dxクラブアップロード"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"拒否された交信データはリセットされました。次回アップロード時に再度取得されま"
+"す。"
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4587,15 +4601,15 @@ msgstr "ラジオボタンを削除する"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr "シャックの位置を確認する"
+msgstr "局の位置を確認する"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr "シャックの場所を作成および更新する"
+msgstr "局の場所を作成および更新する"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr "シャックの場所を削除する"
+msgstr "局の場所を削除する"
 
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
@@ -5979,7 +5993,7 @@ msgstr "位置情報のリクエストがタイムアウトしました。"
 
 #: application/views/activationplanner/index.php:41
 msgid "Create station location"
-msgstr "シャックの場所を作成する"
+msgstr "局の場所を作成する"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
@@ -6640,8 +6654,7 @@ msgstr ""
 #: application/views/adif/import.php:268
 #: application/views/search/lotw_unconfirmed.php:24
 msgid "All is limited to station locations linked to active logbook"
-msgstr ""
-"すべてはアクティブなログブックにリンクされたシャック の場所に限定されます"
+msgstr "すべてはアクティブなログブックにリンクされた局の場所に限定されます"
 
 #: application/views/adif/import.php:289
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
@@ -7313,8 +7326,8 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
-"Clubstationsでは、APIキーは個人のものであり、共有されません。Clubstationユー"
-"ザーは自分のキーのみ確認できます。"
+"クラブ局では、APIキーは個人のものであり、共有されません。クラブ局ユーザーは自"
+"分のキーのみ確認できます。"
 
 #: application/views/api/index.php:30
 msgid "API Key"
@@ -7415,8 +7428,8 @@ msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
-"Clubstationでは、APIトークンは個人専用であり、共有されません。Clubstationユー"
-"ザーは自分のトークンのみを表示できます。"
+"クラブ局では、APIトークンは個人専用であり、共有されません。クラブ局ユーザーは"
+"自分のトークンのみを表示できます。"
 
 #: application/views/api/index.php:138
 msgid "Expires"
@@ -7565,12 +7578,12 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
-"グリッドアクティベーションを正しく計算するために、シャック プロファイルでホー"
-"ムグリッドスクエアを設定してください。"
+"グリッドアクティベーションを正しく計算するために、局プロファイルで"
+"ホームグリッドスクエアを設定してください。"
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
-msgstr "シャック プロフィールへ"
+msgstr "局プロフィールへ"
 
 #: application/views/awards/amsat_rover/index.php:39
 #: application/views/awards/counties/index.php:68
@@ -11040,7 +11053,7 @@ msgstr "大陸スポット"
 
 #: application/views/bandmap/list.php:358
 msgid "Spotted Station Continent"
-msgstr "Spotted Station Continent"
+msgstr "スポッテッドステーション大陸"
 
 #: application/views/bandmap/list.php:433
 msgid "Filter Favorites"
@@ -11708,7 +11721,7 @@ msgstr ""
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
-msgstr "Clubstationに切り替える"
+msgstr "クラブ局に切り替える"
 
 #: application/views/club/clubswitch_modal.php:9
 #, php-format
@@ -11862,8 +11875,8 @@ msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
-"%s Clubstation にユーザーを追加するには、そのユーザーが既にこの Wavelog サー"
-"バーに存在している必要があります。"
+"%s クラブ局にユーザーを追加するには、そのユーザーが既にこの Wavelog サーバー"
+"に存在している必要があります。"
 
 #: application/views/club/permissions.php:220
 msgid ""
@@ -11935,7 +11948,7 @@ msgstr "Wavelog管理者"
 
 #: application/views/club/permissions.php:326
 msgid "You can modify the users permission level for this Clubstation."
-msgstr "この Clubstation のユーザーの権限レベルを変更できます。"
+msgstr "このクラブ局のユーザーの権限レベルを変更できます。"
 
 #: application/views/club/permissions.php:333
 msgid "User Callsign"
@@ -13011,7 +13024,7 @@ msgstr "終了日時: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:15
 msgid "Station: "
-msgstr "シャック ： "
+msgstr "局： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
@@ -13093,11 +13106,11 @@ msgstr "セッションはいつ終了すべきですか？"
 
 #: application/views/contesting/manager/components/session_modal.php:65
 msgid "Please select a station"
-msgstr "シャック を選択してください"
+msgstr "局を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:81
 msgid "Choose one of your stations"
-msgstr "いずれかのシャック を選択してください"
+msgstr "いずれかの局を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Exchange Fields"
@@ -13242,8 +13255,7 @@ msgstr ""
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
-msgstr ""
-"ファイルのエクスポート権限がありません。シャック 員に連絡してください。"
+msgstr "ファイルのエクスポート権限がありません。局担当に連絡してください。"
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:548
@@ -13518,7 +13530,7 @@ msgstr "オペレーターの電話番号"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr "追加のシャック 説明"
+msgstr "追加の局説明"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -15842,7 +15854,7 @@ msgstr ""
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr "Clubstation %s におけるあなたの権限レベルが変更されました"
+msgstr "クラブ局 %s におけるあなたの権限レベルが変更されました"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -15854,8 +15866,8 @@ msgid ""
 msgstr ""
 "%s 様、\n"
 "\n"
-"Clubstation %s におけるご自身のアクセス権限が変更されました。このコールサイン"
-"には、%s のアカウントからアクセス可能です。"
+"クラブ局 %s におけるご自身のアクセス権限が変更されました。このコールサインに"
+"は、%s のアカウントからアクセス可能です。"
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
@@ -17156,7 +17168,7 @@ msgstr "バンドエッジ"
 
 #: application/views/interface_assets/header.php:511
 msgid "Switch to Clubstation:"
-msgstr "Clubstationに切り替える:"
+msgstr "クラブ局に切り替える:"
 
 #: application/views/interface_assets/header.php:515
 #: application/views/user/modals/first_login_wizard.php:119
@@ -17252,7 +17264,7 @@ msgstr "ログアウト"
 
 #: application/views/interface_assets/header.php:633
 msgid "Station locations and logbooks"
-msgstr "シャックの位置と記録簿"
+msgstr "局の位置と記録簿"
 
 #: application/views/interface_assets/header.php:635
 msgid "Select a Location"
@@ -17287,7 +17299,7 @@ msgstr "日時"
 #: application/views/labeldesigner/designer.php:9
 #: application/views/qslpostcard/designer.php:8
 msgid "Station & Equipment"
-msgstr "シャック と設備"
+msgstr "局と設備"
 
 #: application/views/labeldesigner/designer.php:10
 #: application/views/qslpostcard/designer.php:9
@@ -21860,8 +21872,7 @@ msgstr "LoTWでのQSOは未確認"
 
 #: application/views/search/filter.php:31 application/views/search/main.php:23
 msgid "Search is limited to station locations linked to active logbook"
-msgstr ""
-"検索対象は、アクティブなログブックにリンクされたシャックの場所に限定されます"
+msgstr "検索対象は、アクティブなログブックにリンクされた局の場所に限定されます"
 
 #: application/views/search/filter.php:40
 msgid "Save query"
@@ -22135,8 +22146,8 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
-"新しい拠点から交信を開始する場合、まず新しい「%sStation Location%s」を作成し"
-"てください"
+"新しい拠点から交信を開始する場合、まず新しい「%s 局の場所 %s」を作成してくだ"
+"さい"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
@@ -22780,7 +22791,7 @@ msgstr "局の所在地のリンクを解除"
 
 #: application/views/stationsetup/locationlist.php:3
 msgid "Limited to station locations linked to active logbook"
-msgstr "アクティブなログブックにリンクされたシャックの場所に限定されます"
+msgstr "アクティブなログブックにリンクされた局の場所に限定されます"
 
 #: application/views/stationsetup/locationlist.php:11
 msgid "QSO Count"
@@ -22855,11 +22866,11 @@ msgstr "リンクされた所在地を編集"
 
 #: application/views/stationsetup/stationsetup.php:9
 msgid "Create a New Station Logbook"
-msgstr "新しいシャック ログブックを作成する"
+msgstr "新しい局ログブックを作成する"
 
 #: application/views/stationsetup/stationsetup.php:10
 msgid "Create a New Station Location"
-msgstr "新しいシャック の場所を作成する"
+msgstr "新しい局の場所を作成する"
 
 #: application/views/stationsetup/stationsetup.php:33
 msgid ""
@@ -23415,7 +23426,7 @@ msgstr "はい、このユーザーを削除します"
 
 #: application/views/user/edit.php:7
 msgid "Create Clubstation Account"
-msgstr "Clubstationアカウントを作成する"
+msgstr "クラブ局のアカウントを作成する"
 
 #: application/views/user/edit.php:9
 msgid "Create User Account"
@@ -23535,12 +23546,11 @@ msgstr "列5を選択（ログブックのみ）"
 
 #: application/views/user/edit.php:412
 msgid "Station Location Options"
-msgstr "シャック の設置場所オプション"
+msgstr "局の設置場所オプション"
 
 #: application/views/user/edit.php:421
 msgid "Only show station locations linked to active logbook"
-msgstr ""
-"アクティブなログブックにリンクされているシャック の場所のみを表示します"
+msgstr "アクティブなログブックにリンクされている局の場所のみを表示します"
 
 #: application/views/user/edit.php:431
 msgid "QSO Logging Options"
@@ -24254,7 +24264,7 @@ msgstr "最後のオペレーター"
 
 #: application/views/user/index.php:243
 msgid "No Clubstations configures yet."
-msgstr "Clubstationsの設定はまだ行われていません。"
+msgstr "クラブ局の設定はまだ行われていません。"
 
 #: application/views/user/login.php:25
 msgid "MAINTENANCE MODE"
@@ -24377,7 +24387,7 @@ msgstr "%s検索%s"
 #: application/views/user/modals/first_login_wizard.php:112
 #: application/views/user/modals/first_login_wizard.php:134
 msgid "Skip and Open Clubstation"
-msgstr "スキップしてクラブシャック を開く"
+msgstr "スキップしてクラブ局を開く"
 
 #: application/views/user/modals/first_login_wizard.php:141
 msgid "Save and Start Logging"
@@ -24816,21 +24826,23 @@ msgstr "QSO は QO-100 Dx クラブにエクスポートされたものとして
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dxクラブにより却下されました"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
+"これらの交信データはQO-100 Dx Club APIによって拒否されたため、自動的に再試行"
+"されることはありません。"
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Clubによる却下理由"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "アップロードを再試行"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
