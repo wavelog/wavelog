@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-24 06:59+0000\n"
-"PO-Revision-Date: 2026-09-24 05:05+0000\n"
+"PO-Revision-Date: 2026-09-25 21:34+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -2824,6 +2824,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Dosya %s içinde bulunan sertifika bir şifre içeriyor ve işlenemez. %sLütfen "
+"LoTW sertifikasını tqsl uygulamasından şifresiz olarak dışa aktardığınızdan "
+"emin olun!%s Daha fazla bilgi için lütfen Wavelog Wiki'deki %sLoTW sorun "
+"giderme sayfasını%s ziyaret edin."
 
 #: application/controllers/Lotw.php:464
 #, php-format
@@ -2833,6 +2837,10 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Dosya %s içinden sertifika çıkarılırken genel bir hata oluştu. Dosya adı "
+"'key-only' içeriyorsa, bu genellikle LoTW tarafından henüz işlenmemiş bir "
+"sertifika isteğidir. Daha fazla bilgi için lütfen Wavelog Wiki'deki %sLoTW "
+"sorun giderme sayfasını%s ziyaret edin."
 
 #: application/controllers/Lotw.php:471
 #, php-format
@@ -2840,6 +2848,9 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Dosya %s içinde sertifika işlenmesi sırasında genel bir hata oluştu. Daha "
+"fazla bilgi için lütfen Wavelog Wiki'deki %sLoTW sorun giderme sayfasını%s "
+"ziyaret edin."
 
 #: application/controllers/Lotw.php:483
 #, php-format
@@ -2848,6 +2859,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Dosya %s içindeki sertifikadan özel anahtar çıkarılırken genel bir hata "
+"oluştu. Daha fazla bilgi için lütfen Wavelog Wiki'deki %sLoTW sorun giderme "
+"sayfasını%s ziyaret edin."
 
 #: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
@@ -4353,6 +4367,8 @@ msgstr "QO-100 Dx Club'a Yükle"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"Reddedilen QSO'lar sıfırlandı. Bir sonraki yükleme ile tekrar "
+"değerlendirilecekler."
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -24943,21 +24959,23 @@ msgstr "QSO’lar QO-100 Dx Club’a aktarılmış olarak işaretlendi."
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Club tarafından reddedildi"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
+"Bu QSO'lar, QO-100 Dx Club API tarafından reddedildi ve bu yüklemeler "
+"otomatik olarak tekrar denenmeyecek."
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Club tarafından reddedilme nedeni"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "Yüklemeyi Tekrar Dene"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
