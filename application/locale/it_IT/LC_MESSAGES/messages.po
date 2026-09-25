@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-24 06:59+0000\n"
-"PO-Revision-Date: 2026-09-21 15:22+0000\n"
+"PO-Revision-Date: 2026-09-25 21:34+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -2834,6 +2834,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Il certificato trovato nel file %s contiene una password e non può essere "
+"elaborato. %sAssicurati di esportare il certificato LoTW dall'applicazione "
+"tqsl senza password!%s Per ulteriori informazioni visita la %spagina delle "
+"FAQ di LoTW%s nel Wavelog Wiki."
 
 #: application/controllers/Lotw.php:464
 #, php-format
@@ -2843,6 +2847,10 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Errore generico durante l'estrazione del certificato dal file %s. Se il nome "
+"del file contiene 'key-only', si tratta tipicamente di una richiesta di "
+"certificato che non è stata ancora elaborata da LoTW. Per ulteriori "
+"informazioni, visita la %spagina delle FAQ di LoTW%s nel Wavelog Wiki."
 
 #: application/controllers/Lotw.php:471
 #, php-format
@@ -2850,6 +2858,8 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Errore generico nell'elaborazione del certificato nel file %s. Per ulteriori "
+"informazioni, visita la %spagina delle FAQ di LoTW%s nel Wavelog Wiki."
 
 #: application/controllers/Lotw.php:483
 #, php-format
@@ -2858,6 +2868,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Errore generico durante l'estrazione della chiave privata dal certificato "
+"nel file %s. Per ulteriori informazioni, visita la %spagina delle FAQ di "
+"LoTW%s nel Wavelog Wiki."
 
 #: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
@@ -4373,6 +4386,8 @@ msgstr "Caricamento QO-100 Dx Club"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"I QSO rifiutati sono stati reimpostati. Verranno nuovamente inclusi nel "
+"prossimo caricamento."
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4440,10 +4455,14 @@ msgstr ""
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
 msgstr ""
+"Errore generico durante la memorizzazione della chiave di sessione del "
+"callbook nella cache."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
 msgstr ""
+"Errore generico durante la lettura della chiave di sessione del callbook "
+"memorizzata nella cache."
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4840,8 +4859,9 @@ msgid "Missing bands"
 msgstr "Bande mancanti"
 
 #: application/models/Achievements_model.php:373
+#, fuzzy
 msgid "Range"
-msgstr ""
+msgstr "Range"
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
@@ -4987,64 +5007,73 @@ msgstr ""
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "L'estensione PHP '%s' non è caricata."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "La directory della cache non è scrivibile: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Server Redis irraggiungibile - verifica le impostazioni in application/"
+"config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Nessun server Memcached ha risposto - controlla le impostazioni in "
+"application/config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu caricato ma non utilizzabile in questa interfaccia PHP (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
 msgstr ""
+"Impossibile scrivere nella directory della cache %s - controlla i permessi."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Scrittura su Redis fallita - server down o raggiunta la massima memoria?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Scrittura su Memcached fallita - server down?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Scrittura su APCu fallita - memoria condivisa piena?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Scrittura riuscita ma lettura fallita - la directory della cache è leggibile?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
-msgstr ""
+msgstr "Scrittura riuscita ma lettura fallita - chiave espulsa da Redis?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Scrittura riuscita ma lettura fallita."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
+"La chiave di test non può essere eliminata - controlla i permessi/accesso."
 
 #: application/models/Eqslmethods_model.php:270
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "Risposta vuota da eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
@@ -15332,7 +15361,7 @@ msgstr "Wavelog Worker Backend"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "La configurazione del worker è cambiata"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15340,10 +15369,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s e %s sono deprecati e verranno rimossi in Wavelog Worker 1.0.0. Si prega "
+"di impostare %s nella configurazione del tuo worker."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Tutto continuerà a funzionare fino ad allora."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15521,11 +15552,11 @@ msgstr "Numero di tasti"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Test di andata e ritorno (scrivi - leggi - elimina)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Funzionante"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -16063,7 +16094,7 @@ msgstr "L'utente non ha inserito alcun messaggio aggiuntivo."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "QSOs richiesti"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -16084,7 +16115,7 @@ msgstr "Percorso QSL"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "Nominativo DX"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -25087,21 +25118,23 @@ msgstr "I QSO sono contrassegnati come esportati al QO-100 Dx Club."
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "Rifiutato dal QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
+"Questi QSOs sono stati rifiutati dall'API del QO-100 Dx Club e il "
+"caricamento di questi non viene ritentato automaticamente."
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "Motivo del rifiuto da parte del QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "Riprova il caricamento"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
