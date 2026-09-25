@@ -15,7 +15,7 @@ class Cabrillo extends CI_Controller {
 		//load user stations
 		$this->load->model('stations');
 		$data['station_profile'] = $this->stations->all_of_user();
-		$data['allowed_tabs'] = ['import', 'export', 'lotw', 'dcl', 'pota', 'cbr'];
+		$data['allowed_tabs'] = ['import', 'export', 'lotw', 'pota', 'cbr'];
 		$data['stations_active_log_only'] = !empty($this->session->userdata('user_stations_active_log_only'));
 		$data['cd_p_level'] = ($this->session->userdata('cd_p_level') ?? 0);
 		$this->load->model('contest_admin_model');
