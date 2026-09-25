@@ -114,69 +114,55 @@ class Lotw extends CI_Controller {
 	|
 	*/
 	public function do_cert_upload() {
-		$this->load->model('dxcc');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		// create folder to store certs while processing
-    	if (!file_exists('./uploads/lotw/certs')) {
-		    mkdir('./uploads/lotw/certs', 0755, true);
+		// Process the p12 directly from the PHP upload temp file - nothing is stored inside the webroot
+		$file = $_FILES['userfile'] ?? null;
+		$valid = $file !== null
+			&& ($file['error'] ?? null) === UPLOAD_ERR_OK
+			&& ($file['size'] ?? 0) > 0
+			&& is_uploaded_file($file['tmp_name'] ?? '')
+			&& str_ends_with(strtolower($file['name'] ?? ''), '.p12');
+
+		if (!$valid) {
+			$this->session->set_flashdata('warning', __("The uploaded file is invalid. Please upload a Logbook of the World .p12 certificate file."));
+			redirect('lotw/cert_upload');
 		}
 
-		$config['upload_path']          = './uploads/lotw/certs';
-    	$config['allowed_types']        = 'p12';
+		$p12_data = file_get_contents($file['tmp_name']);
+		if ($p12_data === false || $p12_data === '') {
+			$this->session->set_flashdata('warning', __("The uploaded file could not be read."));
+			redirect('lotw/cert_upload');
+		}
 
-		$this->load->library('upload', $config);
+		// Load database queries
+		$this->load->model('Lotw_model');
 
-        if ( ! $this->upload->do_upload('userfile')) {
-        	// Upload of P12 Failed
-            $error = array('error' => $this->upload->display_errors());
+		$info = $this->decrypt_key($p12_data, $file['name']);
 
-			// Load DXCC Countrys List
-			$data['dxcc_list'] = $this->dxcc->list();
+		// Check to see if certificate is already in the system
+		$new_certificate = $this->Lotw_model->find_cert($info['issued_callsign'], $info['dxcc-id'], $this->session->userdata('user_id'));
 
-			// Set Page Title
-			$data['page_title'] = __("Logbook of the World");
+		if($new_certificate == 0) {
+			// New Certificate Store in Database
 
-			// Load Views
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('lotw_views/upload_cert', $error);
-			$this->load->view('interface_assets/footer');
-        } else {
-        	// Load database queries
-        	$this->load->model('Lotw_model');
+			// Store Certificate Data into MySQL
+			$this->Lotw_model->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert'], $info['serialNumber']);
 
-        	//Upload of P12 successful
-        	$data = array('upload_data' => $this->upload->data());
+			// Cert success flash message
+			$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Imported."));
+		} else {
+			// Certificate is in the system time to update
 
-        	$info = $this->decrypt_key($data['upload_data']['full_path']);
+			$this->Lotw_model->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert'], $info['serialNumber']);
 
-			// Check to see if certificate is already in the system
-			$new_certificate = $this->Lotw_model->find_cert($info['issued_callsign'], $info['dxcc-id'], $this->session->userdata('user_id'));
+			// Cert success flash message
+			$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Updated."));
 
-        	if($new_certificate == 0) {
-        		// New Certificate Store in Database
+		}
 
-        		// Store Certificate Data into MySQL
-            $this->Lotw_model->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert'], $info['serialNumber']);
-
-        		// Cert success flash message
-        		$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Imported."));
-        	} else {
-        		// Certificate is in the system time to update
-
-				$this->Lotw_model->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert'], $info['serialNumber']);
-
-        		// Cert success flash message
-        		$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Updated."));
-
-        	}
-
-        	// p12 certificate processed time to delete the file
-        	unlink($data['upload_data']['full_path']);
-
-	        redirect('lotw');
-        }
-    }
+		redirect('lotw');
+	}
 
     /*
 	|--------------------------------------------------------------------------
@@ -424,13 +410,15 @@ class Lotw extends CI_Controller {
 
 
 	/**
-	 * Reads a LoTW PKCS#12 (.p12) certificate file and extracts the data needed for signing uploads.
+	 * Parses a LoTW PKCS#12 (.p12) certificate blob and extracts the data needed for signing uploads.
 	 *
-	 * The private key is re-exported as a PEM key encrypted with the default password "wavelog".
-	 * On any error the uploaded file is deleted, a flash warning is set and the user is
-	 * redirected to /lotw (this function does not return in that case).
+	 * Works purely on the in-memory certificate data, no file is written or read. The private key
+	 * is re-exported as a PEM key encrypted with the default password "wavelog".
+	 * On any error a flash warning is set and the user is redirected to /lotw
+	 * (this function does not return in that case).
 	 *
-	 * @param string $file     Absolute path to the uploaded .p12 file
+	 * @param string $p12_data Raw content of the uploaded .p12 file
+	 * @param string $orig_name Original filename of the upload, used in user messages only
 	 * @param string $password Password of the .p12 file (TQSL exports normally have none)
 	 *
 	 * @return array{
@@ -446,29 +434,28 @@ class Lotw extends CI_Controller {
 	 *     'dxcc-id': string
 	 * } Certificate data; dates validFrom/validTo_Date as 'Y-m-d H:i:s'
 	 */
-	private function decrypt_key($file, $password = "") {
+	private function decrypt_key($p12_data, $orig_name, $password = "") {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
+		$orig_name = htmlspecialchars(basename($orig_name), ENT_QUOTES, 'UTF-8');
+
 		$results = array();
-		$filename = file_get_contents('file://'.$file);
-		$worked = openssl_pkcs12_read($filename, $results, $password);
+		$worked = openssl_pkcs12_read($p12_data, $results, $password);
 		$openssl_error_pkcs12_read = openssl_error_string();
 		if (!$worked || $openssl_error_pkcs12_read) {
-			log_message('error', 'OpenSSL reading LoTW cert file '.$file.' resulted in error: '.$openssl_error_pkcs12_read);
-			unlink($file);
+			log_message('error', 'OpenSSL reading LoTW cert file '.$orig_name.' resulted in error: '.$openssl_error_pkcs12_read);
 			// OpenSSL error:11800071:PKCS12 routines::mac verify failure is most likely an (unknown) password set on the exported certificate
 			// Can also happen if the cert is extracted from platforms with ancient SSL libs. See https://docs.wavelog.org/troubleshooting/lotw-p12-upload/
 			if (str_contains($openssl_error_pkcs12_read, 'mac verify failure')) {
-				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %sPlease make sure you export the LoTW certificate from tqsl application without password!%s For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<b>', '</b>', '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
+				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %sPlease make sure you export the LoTW certificate from tqsl application without password!%s For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), $orig_name, '<b>', '</b>', '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 			} else {
-				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
+				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), $orig_name, '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 			}
 			redirect('lotw');
 		} else {
 			if (!array_key_exists('cert', $results)) {
-				log_message('error', 'Generic error processing the certificate from file '.$file);
-				unlink($file);
-				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
+				log_message('error', 'Generic error processing the certificate from file '.$orig_name);
+				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), $orig_name, '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 				redirect('lotw');
 			} else {
 				$data['general_cert'] = $results['cert'];
@@ -479,9 +466,8 @@ class Lotw extends CI_Controller {
 				$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
 				$openssl_error_pkey_export = openssl_error_string();
 				if (!$worked || $openssl_error_pkey_export) {
-					log_message('error', 'OpenSSL reading LoTW private key from file '.$file.' resulted in error: '.$openssl_error_pkey_export);
-					$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the private key from certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
-					unlink($file);
+					log_message('error', 'OpenSSL reading LoTW private key from file '.$orig_name.' resulted in error: '.$openssl_error_pkey_export);
+					$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the private key from certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), $orig_name, '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 					redirect('lotw');
 				} else {
 					// Store PEM Key in Array
