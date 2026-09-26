@@ -3013,7 +3013,8 @@ msgstr ""
 #: application/models/Logbook_model.php:98
 #: application/models/Logbook_model.php:1547
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:109
+#: application/models/Logbook_model.php:1588
 msgid "Invalid callsign"
 msgstr "Geçersiz çağrı işareti"
 
@@ -5121,27 +5122,34 @@ msgid "Imported label type"
 msgstr "İçe aktarılan etiket türü"
 
 #: application/models/Logbook_model.php:359
+#: application/models/Logbook_model.php:370
 msgid "Station not accessible"
 msgstr "İstasyona erişilemiyor"
 
 #: application/models/Logbook_model.php:1000
+#: application/models/Logbook_model.php:1041
 msgid "Realtime upload disabled"
 msgstr "Gerçek zamanlı yükleme devre dışı"
 
 #: application/models/Logbook_model.php:1537
+#: application/models/Logbook_model.php:1578
 msgid "Station ID not allowed"
 msgstr "İstasyon ID’sine izin verilmiyor"
 
 #: application/models/Logbook_model.php:1542
+#: application/models/Logbook_model.php:1583
 msgid "No Call given"
 msgstr "Çağrı işareti girilmedi"
 
 #: application/models/Logbook_model.php:1618
 #: application/models/Logbook_model.php:1836
+#: application/models/Logbook_model.php:1659
+#: application/models/Logbook_model.php:1877
 msgid "DXCC has to be Numeric"
 msgstr "DXCC sayısal olmalıdır"
 
 #: application/models/Logbook_model.php:5060
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5150,6 +5158,7 @@ msgstr ""
 "için ATLANDI"
 
 #: application/models/Logbook_model.php:5068
+#: application/models/Logbook_model.php:5109
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5159,6 +5168,7 @@ msgstr ""
 "lokatörü için ATLANDI"
 
 #: application/models/Logbook_model.php:5084
+#: application/models/Logbook_model.php:5125
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5167,6 +5177,7 @@ msgstr ""
 "aktarılmadı."
 
 #: application/models/Logbook_model.php:5094
+#: application/models/Logbook_model.php:5135
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5176,6 +5187,7 @@ msgstr ""
 "çalıştınız. Bu QSO içe aktarılmadı. Geçersiz."
 
 #: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5142
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5185,6 +5197,7 @@ msgstr ""
 "Bu QSO içe aktarılmadı. Geçersiz giriş: '%s'."
 
 #: application/models/Logbook_model.php:5171
+#: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5194,6 +5207,7 @@ msgstr ""
 "aktarılmadı."
 
 #: application/models/Logbook_model.php:5178
+#: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5203,58 +5217,72 @@ msgstr ""
 "QSO içe aktarılmadı, geçersiz."
 
 #: application/models/Logbook_model.php:5453
+#: application/models/Logbook_model.php:5494
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate geçersiz (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5464
+#: application/models/Logbook_model.php:5505
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate geçersiz (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5525
+#: application/models/Logbook_model.php:5566
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
 #: application/models/Logbook_model.php:5901
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5942
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
 #: application/models/Logbook_model.php:5968
 #: application/models/Logbook_model.php:6068
+#: application/models/Logbook_model.php:6009
+#: application/models/Logbook_model.php:6109
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
 #: application/models/Logbook_model.php:5976
+#: application/models/Logbook_model.php:6017
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
 #: application/models/Logbook_model.php:5982
+#: application/models/Logbook_model.php:6023
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
 #: application/models/Logbook_model.php:5986
+#: application/models/Logbook_model.php:6027
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
 #: application/models/Logbook_model.php:5990
+#: application/models/Logbook_model.php:6031
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
 #: application/models/Logbook_model.php:5993
+#: application/models/Logbook_model.php:6034
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
 #: application/models/Logbook_model.php:5996
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:6037
 msgid "unknown"
 msgstr "Bilinmiyor"
 
 #: application/models/Logbook_model.php:6071
+#: application/models/Logbook_model.php:6112
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
 #: application/models/Logbook_model.php:6074
+#: application/models/Logbook_model.php:6115
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
@@ -5271,6 +5299,7 @@ msgstr "QSO güncellendi"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6536
 msgid "Bearing"
 msgstr "Yön"
 
