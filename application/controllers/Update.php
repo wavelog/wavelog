@@ -65,9 +65,9 @@ class Update extends CI_Controller {
 
 			// Insert in batches for better performance
 			if ($count % $batch_size === 0) {
-				$this->db->insert_batch('dxcc_entities', $a_data);
+				$this->db->insert_batch('dxcc_entities_new', $a_data);
 				$a_data = []; // Clear batch data
-				$this->update_status(__("Preparing DXCC-Entries: ") . $count);
+				$this->update_status(__("Preparing DXCC-Entries: ") . $count, "_new");
 			}
 		}
 
@@ -87,10 +87,10 @@ class Update extends CI_Controller {
 
 		// Insert remaining data
 		if (!empty($a_data)) {
-			$this->db->insert_batch('dxcc_entities', $a_data);
+			$this->db->insert_batch('dxcc_entities_new', $a_data);
 		}
 
-		$this->update_status(); // Final status update
+		$this->update_status("", "_new"); // Final status update
 		return $count;
 	}
 
@@ -126,18 +126,18 @@ class Update extends CI_Controller {
 
 			// Insert in batches for better performance
 			if ($count % $batch_size === 0) {
-				$this->db->insert_batch('dxcc_exceptions', $a_data);
+				$this->db->insert_batch('dxcc_exceptions_new', $a_data);
 				$a_data = []; // Clear batch data
-				$this->update_status(__("Preparing DXCC Exceptions: ") . $count);
+				$this->update_status(__("Preparing DXCC Exceptions: ") . $count, "_new");
 			}
 		}
 
 		// Insert any remaining records
 		if (!empty($a_data)) {
-			$this->db->insert_batch('dxcc_exceptions', $a_data);
+			$this->db->insert_batch('dxcc_exceptions_new', $a_data);
 		}
 
-		$this->update_status(); // Final status update
+		$this->update_status("", "_new"); // Final status update
 		return $count;
 	}
 
@@ -173,18 +173,18 @@ class Update extends CI_Controller {
 
 			// Insert in batches to avoid memory overload
 			if ($count % $batch_size === 0) {
-				$this->db->insert_batch('dxcc_prefixes', $a_data);
+				$this->db->insert_batch('dxcc_prefixes_new', $a_data);
 				$a_data = []; // Clear the batch array
-				$this->update_status(__("Preparing DXCC Prefixes: ") . $count);
+				$this->update_status(__("Preparing DXCC Prefixes: ") . $count, "_new");
 			}
 		}
 
 		// Insert any remaining records
 		if (!empty($a_data)) {
-			$this->db->insert_batch('dxcc_prefixes', $a_data);
+			$this->db->insert_batch('dxcc_prefixes_new', $a_data);
 		}
 
-		$this->update_status(); // Clear the status message
+		$this->update_status("", "_new"); // Clear the status message
 		return $count;
 	}
 
@@ -244,23 +244,47 @@ class Update extends CI_Controller {
 				exit();
 			}
 
-			// Clear the tables, ready for new data
-			$this->db->query("TRUNCATE TABLE dxcc_entities");
-			$this->db->query("TRUNCATE TABLE dxcc_exceptions");
-			$this->db->query("TRUNCATE TABLE dxcc_prefixes");
-			$this->update_status();
-
-			// Parse the three sections of the file and update the tables
-			$this->db->trans_start();
 			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+			if ($xml_data === false) {
+				$this->update_status("FAILED: Could not parse cty.xml file");
+				log_message('error', 'DXCC UPDATE FAILED: Could not parse cty.xml file');
+				exit();
+			}
+
+			// Build the new data in shadow tables, the live tables stay untouched until the swap
+			foreach (['dxcc_entities', 'dxcc_exceptions', 'dxcc_prefixes'] as $table) {
+				$this->db->query("DROP TABLE IF EXISTS {$table}_new, {$table}_old");
+				$this->db->query("CREATE TABLE {$table}_new LIKE {$table}");
+			}
+			$this->update_status("", "_new");
+
+			// Parse the three sections of the file and fill the shadow tables
+			$this->db->trans_start();
 			$this->dxcc_exceptions($xml_data);
 			$this->dxcc_entities($xml_data);
 			$this->dxcc_prefixes($xml_data);
-			$sql = "update dxcc_entities
-				join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
-				set dxcc_entities.ituz = dxcc_temp.ituz;";
+			$sql = "update dxcc_entities_new
+				join dxcc_temp on dxcc_entities_new.adif = dxcc_temp.adif
+				set dxcc_entities_new.ituz = dxcc_temp.ituz;";
 			$this->db->query($sql);
 			$this->db->trans_complete();
+			if ($this->db->trans_status() === false) {
+				$this->update_status("FAILED: Could not import DXCC data");
+				log_message('error', 'DXCC UPDATE FAILED: Could not import DXCC data');
+				exit();
+			}
+
+			// Atomic swap of all three tables
+			$this->db->query("RENAME TABLE
+				dxcc_entities TO dxcc_entities_old,
+				dxcc_entities_new TO dxcc_entities,
+				dxcc_exceptions TO dxcc_exceptions_old,
+				dxcc_exceptions_new TO dxcc_exceptions,
+				dxcc_prefixes TO dxcc_prefixes_old,
+				dxcc_prefixes_new TO dxcc_prefixes");
+			$this->db->query("DROP TABLE dxcc_entities_old");
+			$this->db->query("DROP TABLE dxcc_exceptions_old");
+			$this->db->query("DROP TABLE dxcc_prefixes_old");
 
 			$this->_invalidate_dxcc_cache();
 
@@ -304,7 +328,7 @@ class Update extends CI_Controller {
 		}
 	}
 
-	private function update_status($done=""){
+	private function update_status($done="", $suffix=""){
 
 		if ($done != "Downloading file"){
 			// Check that everything is done?
@@ -312,9 +336,9 @@ class Update extends CI_Controller {
 				$done = __("Updating...");
 			}
 			$html = $done."<br/>";
-			$html .= __("Dxcc Entities:")." ".$this->db->count_all('dxcc_entities')."<br/>";
-			$html .= __("Dxcc Exceptions:")." ".$this->db->count_all('dxcc_exceptions')."<br/>";
-			$html .= __("Dxcc Prefixes:")." ".$this->db->count_all('dxcc_prefixes')."<br/>";
+			$html .= __("Dxcc Entities:")." ".$this->db->count_all('dxcc_entities'.$suffix)."<br/>";
+			$html .= __("Dxcc Exceptions:")." ".$this->db->count_all('dxcc_exceptions'.$suffix)."<br/>";
+			$html .= __("Dxcc Prefixes:")." ".$this->db->count_all('dxcc_prefixes'.$suffix)."<br/>";
 		} else {
 			$html = $done."....<br/>";
 		}
