@@ -33,9 +33,12 @@ class Update extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	/*
-	* Load the DXCC entities
-	*/
+	/**
+	 * Import the DXCC entities from cty.xml into dxcc_entities_new
+	 *
+	 * @param SimpleXMLElement|null $xml_data Parsed cty.xml, loaded from disk if null
+	 * @return int Number of imported entities
+	 */
 	private function dxcc_entities($xml_data = null) {
 
 		// Load XML data if not provided
@@ -94,9 +97,12 @@ class Update extends CI_Controller {
 		return $count;
 	}
 
-	/*
-     * Load the dxcc prefixes
-     */
+	/**
+	 * Import the DXCC exceptions from cty.xml into dxcc_exceptions_new
+	 *
+	 * @param SimpleXMLElement|null $xml_data Parsed cty.xml, loaded from disk if null
+	 * @return int Number of imported exceptions
+	 */
 	private function dxcc_exceptions($xml_data = null) {
 
 		// Load XML data if not provided
@@ -141,9 +147,12 @@ class Update extends CI_Controller {
 		return $count;
 	}
 
-	/*
-     * Load the dxcc prefixes
-     */
+	/**
+	 * Import the DXCC prefixes from cty.xml into dxcc_prefixes_new
+	 *
+	 * @param SimpleXMLElement|null $xml_data Parsed cty.xml, loaded from disk if null
+	 * @return int Number of imported prefixes
+	 */
 	private function dxcc_prefixes($xml_data = null) {
 
 		// Load XML data if not provided
@@ -188,7 +197,14 @@ class Update extends CI_Controller {
 		return $count;
 	}
 
-	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
+	/**
+	 * Update DXCC entities, exceptions and prefixes from the Club Log cty.xml
+	 *
+	 * Data is imported into *_new shadow tables and swapped in atomically with a
+	 * single RENAME TABLE, so the live tables are never empty or partially filled.
+	 *
+	 * @return void Echoes 'success' or 'locked - running'
+	 */
 	public function dxcc() {
 		$lockfilename='/tmp/.update_dxcc_running';
 		if (!file_exists($lockfilename)) {
@@ -328,6 +344,13 @@ class Update extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Write the DXCC update progress to updates/status.html
+	 *
+	 * @param string $done   Status message, defaults to "Updating..."
+	 * @param string $suffix Table suffix to count, '_new' while importing, '' for the live tables
+	 * @return void
+	 */
 	private function update_status($done="", $suffix=""){
 
 		if ($done != "Downloading file"){
