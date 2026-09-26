@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-24 06:59+0000\n"
+"POT-Creation-Date: 2026-09-26 08:28+0000\n"
 "PO-Revision-Date: 2026-09-25 08:16+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2825,10 +2825,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"ファイル %s にある証明書にはパスワードが含まれているため、処理できません。"
-"%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワードを含"
-"めないようにしてください！%s 詳細については、Wavelog Wiki の %sLoTW トラブル"
-"シューティングページ%s をご覧ください。"
+"ファイル %s にある証明書にはパスワードが含まれているため、処理できませ"
+"ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+"を含めないようにしてください！%s 詳細については、Wavelog Wiki の %sLoTW トラ"
+"ブルシューティングページ%s をご覧ください。"
 
 #: application/controllers/Lotw.php:464
 #, php-format
@@ -3011,11 +3011,10 @@ msgstr ""
 "力してください。"
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1547
-#: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:109
+#: application/models/Logbook_model.php:109
 #: application/models/Logbook_model.php:1588
+#: application/views/contesting/logger/components/qso-form.php:44
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr "無効なコールサイン"
 
@@ -3918,151 +3917,122 @@ msgstr "タイムプロッター"
 msgid "Updates"
 msgstr "アップデート"
 
-#: application/controllers/Update.php:70 application/controllers/Update.php:73
+#: application/controllers/Update.php:73
 msgid "Preparing DXCC-Entries: "
 msgstr "DXCCエントリの準備： "
 
-#: application/controllers/Update.php:131
 #: application/controllers/Update.php:137
 msgid "Preparing DXCC Exceptions: "
 msgstr "DXCC例外の準備： "
 
-#: application/controllers/Update.php:178
 #: application/controllers/Update.php:187
 msgid "Preparing DXCC Prefixes: "
 msgstr "DXCC プレフィックスの準備: "
 
-#: application/controllers/Update.php:267
 #: application/controllers/Update.php:307
 msgid "DONE"
 msgstr "終了"
 
-#: application/controllers/Update.php:312
 #: application/controllers/Update.php:359
 msgid "Updating..."
 msgstr "更新中..."
 
-#: application/controllers/Update.php:315
 #: application/controllers/Update.php:362
 msgid "Dxcc Entities:"
 msgstr "Dxcc エンティティ:"
 
-#: application/controllers/Update.php:316
 #: application/controllers/Update.php:363
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc 例外:"
 
-#: application/controllers/Update.php:317
 #: application/controllers/Update.php:364
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc プレフィックス:"
 
-#: application/controllers/Update.php:348
 #: application/controllers/Update.php:395
 msgid "SCP Update complete. Result: "
 msgstr "SCP 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:350
 #: application/controllers/Update.php:397
 msgid "SCP Update failed. Result: "
 msgstr "SCP 更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:387
 #: application/controllers/Update.php:434
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTWユーザーのアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:389
 #: application/controllers/Update.php:436
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTWユーザーの更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:424
 #: application/controllers/Update.php:471
 msgid "DOK Update complete. Result: "
 msgstr "DOK 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:426
 #: application/controllers/Update.php:473
 msgid "DOK Update failed. Result: "
 msgstr "DOK 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:459
 #: application/controllers/Update.php:506
 msgid "SOTA Update complete. Result: "
 msgstr "SOTAアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:461
 #: application/controllers/Update.php:508
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA アップデートに失敗しました。結果: "
 
-#: application/controllers/Update.php:494
 #: application/controllers/Update.php:541
 msgid "WWFF Update complete. Result: "
 msgstr "WWFFアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:496
 #: application/controllers/Update.php:543
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF アップデートに失敗しました。結果: "
 
-#: application/controllers/Update.php:530
 #: application/controllers/Update.php:577
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl 更新完了。結果： "
 
-#: application/controllers/Update.php:532
 #: application/controllers/Update.php:579
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl 更新に失敗しました。結果： "
 
-#: application/controllers/Update.php:565
 #: application/controllers/Update.php:612
 msgid "POTA Update complete. Result: "
 msgstr "POTA 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:567
 #: application/controllers/Update.php:614
 msgid "POTA Update failed. Result: "
 msgstr "POTA 更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:616
 #: application/controllers/Update.php:663
 msgid "POTA boundaries update complete. Result: "
 msgstr "POTA境界の更新が完了しました。結果： "
 
-#: application/controllers/Update.php:618
 #: application/controllers/Update.php:665
 msgid "POTA boundaries update failed. Result: "
 msgstr "POTA境界の更新に失敗しました。結果： "
 
-#: application/controllers/Update.php:635
 #: application/controllers/Update.php:682
 msgid "TLE Update complete. Result: "
 msgstr "TLEアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:637
 #: application/controllers/Update.php:684
 msgid "TLE Update failed. Result: "
 msgstr "TLE 更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:664
 #: application/controllers/Update.php:711
 msgid "LoTW SAT Update"
 msgstr "LoTW SATアップデート"
 
-#: application/controllers/Update.php:692
 #: application/controllers/Update.php:739
 msgid "Update of Hams of Note"
 msgstr "注目のハムの最新情報"
 
-#: application/controllers/Update.php:732
 #: application/controllers/Update.php:779
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCCグリッドファイルの更新が完了しました。結果: "
 
-#: application/controllers/Update.php:734
 #: application/controllers/Update.php:781
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC グリッドファイルの更新に失敗しました。結果: "
@@ -4243,8 +4213,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
-"%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
+"は、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1561
 msgid "Station setup failed! Please set up your station manually."
@@ -5021,14 +4991,14 @@ msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
-"Memcachedサーバーからの応答がありませんでした。application/config/"
-"memcached.phpの設定を確認してください。"
+"Memcachedサーバーからの応答がありませんでした。application/config/memcached."
+"phpの設定を確認してください。"
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
-"APCuはロードされていますが、このPHPインターフェースでは使用できません"
-"（apc.enabled=0?）。"
+"APCuはロードされていますが、このPHPインターフェースでは使用できません（apc."
+"enabled=0?）。"
 
 #: application/models/Debug_model.php:377
 #, php-format
@@ -5146,34 +5116,27 @@ msgstr "輸入紙"
 msgid "Imported label type"
 msgstr "輸入ラベルタイプ"
 
-#: application/models/Logbook_model.php:359
 #: application/models/Logbook_model.php:370
 msgid "Station not accessible"
 msgstr "利用できない無線局"
 
-#: application/models/Logbook_model.php:1000
 #: application/models/Logbook_model.php:1041
 msgid "Realtime upload disabled"
 msgstr "リアルタイムアップロードが無効になっています"
 
-#: application/models/Logbook_model.php:1537
 #: application/models/Logbook_model.php:1578
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
-#: application/models/Logbook_model.php:1542
 #: application/models/Logbook_model.php:1583
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1618
-#: application/models/Logbook_model.php:1836
 #: application/models/Logbook_model.php:1659
 #: application/models/Logbook_model.php:1877
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:5060
 #: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
@@ -5182,7 +5145,6 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:5068
 #: application/models/Logbook_model.php:5109
 #, php-format
 msgid ""
@@ -5192,7 +5154,6 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:5084
 #: application/models/Logbook_model.php:5125
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -5201,7 +5162,6 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:5094
 #: application/models/Logbook_model.php:5135
 #, php-format
 msgid ""
@@ -5211,7 +5171,6 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:5101
 #: application/models/Logbook_model.php:5142
 #, php-format
 msgid ""
@@ -5221,7 +5180,6 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:5171
 #: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
@@ -5231,7 +5189,6 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:5178
 #: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
@@ -5241,77 +5198,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5453
 #: application/models/Logbook_model.php:5494
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5464
 #: application/models/Logbook_model.php:5505
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5525
 #: application/models/Logbook_model.php:5566
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5901
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5942
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5968
-#: application/models/Logbook_model.php:6068
 #: application/models/Logbook_model.php:6009
 #: application/models/Logbook_model.php:6109
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5976
 #: application/models/Logbook_model.php:6017
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5982
 #: application/models/Logbook_model.php:6023
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5986
 #: application/models/Logbook_model.php:6027
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5990
 #: application/models/Logbook_model.php:6031
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5993
 #: application/models/Logbook_model.php:6034
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5996
+#: application/models/Logbook_model.php:6037
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:6037
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:6071
 #: application/models/Logbook_model.php:6112
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:6074
 #: application/models/Logbook_model.php:6115
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6495
+#: application/models/Logbook_model.php:6536
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5324,7 +5267,6 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6536
 msgid "Bearing"
 msgstr "方位"
 
@@ -25966,9 +25908,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
-#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
-#~ "なしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
+#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
+#~ "ワードなしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -26299,8 +26241,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
-#~ "%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
+#~ "は、%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

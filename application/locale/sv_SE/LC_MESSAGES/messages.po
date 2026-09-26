@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-24 06:59+0000\n"
+"POT-Creation-Date: 2026-09-26 08:28+0000\n"
 "PO-Revision-Date: 2026-09-25 08:16+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3004,11 +3004,10 @@ msgstr ""
 "unik anropssignal."
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1547
-#: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:109
+#: application/models/Logbook_model.php:109
 #: application/models/Logbook_model.php:1588
+#: application/views/contesting/logger/components/qso-form.php:44
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr "Ogiltigt anropssignal"
 
@@ -3920,151 +3919,122 @@ msgstr "Tidplotter"
 msgid "Updates"
 msgstr "Uppdateringar"
 
-#: application/controllers/Update.php:70 application/controllers/Update.php:73
+#: application/controllers/Update.php:73
 msgid "Preparing DXCC-Entries: "
 msgstr "Förbereder DXCC-poster: "
 
-#: application/controllers/Update.php:131
 #: application/controllers/Update.php:137
 msgid "Preparing DXCC Exceptions: "
 msgstr "Förbereder DXCC-undantag: "
 
-#: application/controllers/Update.php:178
 #: application/controllers/Update.php:187
 msgid "Preparing DXCC Prefixes: "
 msgstr "Förbereder DXCC-prefix: "
 
-#: application/controllers/Update.php:267
 #: application/controllers/Update.php:307
 msgid "DONE"
 msgstr "KLAR"
 
-#: application/controllers/Update.php:312
 #: application/controllers/Update.php:359
 msgid "Updating..."
 msgstr "Uppdaterar..."
 
-#: application/controllers/Update.php:315
 #: application/controllers/Update.php:362
 msgid "Dxcc Entities:"
 msgstr "DXCC-entiteter:"
 
-#: application/controllers/Update.php:316
 #: application/controllers/Update.php:363
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc-undantag:"
 
-#: application/controllers/Update.php:317
 #: application/controllers/Update.php:364
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc-prefix:"
 
-#: application/controllers/Update.php:348
 #: application/controllers/Update.php:395
 msgid "SCP Update complete. Result: "
 msgstr "SCP-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:350
 #: application/controllers/Update.php:397
 msgid "SCP Update failed. Result: "
 msgstr "SCP-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:387
 #: application/controllers/Update.php:434
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-användaruppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:389
 #: application/controllers/Update.php:436
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-användaruppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:424
 #: application/controllers/Update.php:471
 msgid "DOK Update complete. Result: "
 msgstr "DOK-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:426
 #: application/controllers/Update.php:473
 msgid "DOK Update failed. Result: "
 msgstr "DOK-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:459
 #: application/controllers/Update.php:506
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:461
 #: application/controllers/Update.php:508
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:494
 #: application/controllers/Update.php:541
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:496
 #: application/controllers/Update.php:543
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:530
 #: application/controllers/Update.php:577
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl-uppdatering klar. Resultat: "
 
-#: application/controllers/Update.php:532
 #: application/controllers/Update.php:579
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:565
 #: application/controllers/Update.php:612
 msgid "POTA Update complete. Result: "
 msgstr "POTA-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:567
 #: application/controllers/Update.php:614
 msgid "POTA Update failed. Result: "
 msgstr "POTA-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:616
 #: application/controllers/Update.php:663
 msgid "POTA boundaries update complete. Result: "
 msgstr "POTA-gränser uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:618
 #: application/controllers/Update.php:665
 msgid "POTA boundaries update failed. Result: "
 msgstr "Uppdateringen av POTA-gränser misslyckades. Resultat: "
 
-#: application/controllers/Update.php:635
 #: application/controllers/Update.php:682
 msgid "TLE Update complete. Result: "
 msgstr "TLE-uppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:637
 #: application/controllers/Update.php:684
 msgid "TLE Update failed. Result: "
 msgstr "TLE-uppdatering misslyckades. Resultat: "
 
-#: application/controllers/Update.php:664
 #: application/controllers/Update.php:711
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT-uppdatering"
 
-#: application/controllers/Update.php:692
 #: application/controllers/Update.php:739
 msgid "Update of Hams of Note"
 msgstr "Uppdatering av Hams of Note"
 
-#: application/controllers/Update.php:732
 #: application/controllers/Update.php:779
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC-lokatorfiluppdatering slutförd. Resultat: "
 
-#: application/controllers/Update.php:734
 #: application/controllers/Update.php:781
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC-lokatorfiluppdatering misslyckades. Resultat: "
@@ -5144,41 +5114,33 @@ msgstr "Importerat papper"
 msgid "Imported label type"
 msgstr "Importerad etikett typ"
 
-#: application/models/Logbook_model.php:359
 #: application/models/Logbook_model.php:370
 msgid "Station not accessible"
 msgstr "Stationen är inte tillgänglig"
 
-#: application/models/Logbook_model.php:1000
 #: application/models/Logbook_model.php:1041
 msgid "Realtime upload disabled"
 msgstr "Direktuppladdning inaktiverad"
 
-#: application/models/Logbook_model.php:1537
 #: application/models/Logbook_model.php:1578
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
-#: application/models/Logbook_model.php:1542
 #: application/models/Logbook_model.php:1583
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
-#: application/models/Logbook_model.php:1618
-#: application/models/Logbook_model.php:1836
 #: application/models/Logbook_model.php:1659
 #: application/models/Logbook_model.php:1877
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
-#: application/models/Logbook_model.php:5060
 #: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:5068
 #: application/models/Logbook_model.php:5109
 #, php-format
 msgid ""
@@ -5187,7 +5149,6 @@ msgid ""
 msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:5084
 #: application/models/Logbook_model.php:5125
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -5196,7 +5157,6 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:5094
 #: application/models/Logbook_model.php:5135
 #, php-format
 msgid ""
@@ -5206,7 +5166,6 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan en angiven anropssignal. Detta "
 "QSO importerades inte. Det är ogiltigt."
 
-#: application/models/Logbook_model.php:5101
 #: application/models/Logbook_model.php:5142
 #, php-format
 msgid ""
@@ -5216,7 +5175,6 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO med en ogiltig anropssignal. Detta "
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
-#: application/models/Logbook_model.php:5171
 #: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
@@ -5226,7 +5184,6 @@ msgstr ""
 "QSO på %s: Bandet '%s' är inte i bandkonfigurationen. Detta QSO importerades "
 "inte."
 
-#: application/models/Logbook_model.php:5178
 #: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
@@ -5236,77 +5193,63 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:5453
 #: application/models/Logbook_model.php:5494
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5464
 #: application/models/Logbook_model.php:5505
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5525
 #: application/models/Logbook_model.php:5566
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5901
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5942
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
-#: application/models/Logbook_model.php:5968
-#: application/models/Logbook_model.php:6068
 #: application/models/Logbook_model.php:6009
 #: application/models/Logbook_model.php:6109
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
-#: application/models/Logbook_model.php:5976
 #: application/models/Logbook_model.php:6017
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
-#: application/models/Logbook_model.php:5982
 #: application/models/Logbook_model.php:6023
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
-#: application/models/Logbook_model.php:5986
 #: application/models/Logbook_model.php:6027
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
-#: application/models/Logbook_model.php:5990
 #: application/models/Logbook_model.php:6031
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
-#: application/models/Logbook_model.php:5993
 #: application/models/Logbook_model.php:6034
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:5996
+#: application/models/Logbook_model.php:6037
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:6037
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:6071
 #: application/models/Logbook_model.php:6112
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
-#: application/models/Logbook_model.php:6074
 #: application/models/Logbook_model.php:6115
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6495
+#: application/models/Logbook_model.php:6536
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5319,7 +5262,6 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6536
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -10243,8 +10185,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
-"506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
+"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -18226,8 +18168,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
-"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
+"ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -23395,8 +23337,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
-"(t.ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
+"ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
