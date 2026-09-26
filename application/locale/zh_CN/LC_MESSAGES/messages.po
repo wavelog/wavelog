@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 10:14+0000\n"
+"POT-Creation-Date: 2026-09-24 06:59+0000\n"
 "PO-Revision-Date: 2026-09-22 09:14+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -200,11 +200,11 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Dxatlas.php:105
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
-#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
+#: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
+#: application/controllers/Eqsl.php:319 application/controllers/Eqsl.php:521
+#: application/controllers/Eqsl.php:592 application/controllers/Eqsl.php:607
+#: application/controllers/Eqsl.php:665
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -215,8 +215,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:962 application/controllers/Lotw.php:1048
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -265,7 +265,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:99
+#: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
@@ -1765,11 +1765,11 @@ msgstr "eQSL 卡片"
 msgid "Showing %d to %d of %d entries"
 msgstr "显示 %d 到 %d，共 %d 条目"
 
-#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:170
+#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "电台站配置中未定义 eQSL 昵称！"
 
-#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:189
+#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "你尚未配置 eQSL.cc 账号信息！"
 
@@ -1781,76 +1781,76 @@ msgstr "eQSL 导入"
 msgid "eQSL Import Information"
 msgstr "eQSL 导入信息"
 
-#: application/controllers/Eqsl.php:177
+#: application/controllers/Eqsl.php:183
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO 上传"
 
-#: application/controllers/Eqsl.php:211
+#: application/controllers/Eqsl.php:216
 msgid "User/Pass wrong for eQSL"
 msgstr "eQSL 的用户名或密码错误"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:220
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "不存在该eQSL QTH昵称：%s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
 msgstr "QSO 找不到或无法访问"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:353
 msgid "User not found"
 msgstr "用户未找到"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:362
 msgid "eQSL password not configured for this user"
 msgstr "eQSL 未为该用户配置密码"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:379
 msgid "Failed to fetch eQSL image data"
 msgstr "未能获取 eQSL 图片数据"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:398
 msgid "eQSL image not available"
 msgstr "eQSL 图片不可用"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:416
 msgid "Failed to download eQSL image"
 msgstr "未能下载 eQSL 图片"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:579
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "磁盘空间不足，无法存储eQSL卡"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
 msgstr "未能加载缓存的 eQSL 图像"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:596
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:625
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "此请求限于前150个 QSO。请再次运行。"
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:631
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:631
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:638
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "已达到 eQSL 访问次数限制。请等待后再运行。"
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:650
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图片下载"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:673
 msgid "All eQSLs marked as uploaded"
 msgstr "所有 eQSL 已标记为已上传"
 
@@ -2817,71 +2817,73 @@ msgstr "呼号证书已更新。"
 msgid "Certificate Deleted."
 msgstr "呼号证书已删除。"
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:462
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
 "processed. %sPlease make sure you export the LoTW certificate from tqsl "
 "application without password!%s For further information please visit the "
-"%sLoTW FAQ page%s in the Wavelog Wiki."
+"%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"文件%s中的证书包含密码，无法处理。%s请确保从 tqsl 应用程序导出 LoTW 证书时不"
-"带密码！%s如需更多信息，请访问 Wavelog Wiki 中的 %sLoTW FAQ 页面%s。"
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:464
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
 "contains 'key-only' this is typically a certificate request which has not "
-"been processed by LoTW yet."
+"been processed by LoTW yet. For further information please visit the %sLoTW "
+"troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"从文件 %s 提取证书时发生一般错误。如果文件名包含“key-only”，通常这是一个尚未"
-"被 LoTW 处理的证书请求。"
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:471
 #, php-format
-msgid "Generic error processing the certificate in file %s."
-msgstr "在文件 %s 中处理证书时出现一般错误。"
+msgid ""
+"Generic error processing the certificate in file %s. For further information "
+"please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
+msgstr ""
 
-#: application/controllers/Lotw.php:468
+#: application/controllers/Lotw.php:483
 #, php-format
-msgid "Generic error extracting the private key from certificate in file %s."
-msgstr "从文件 %s 中提取证书的私钥时发生一般错误。"
+msgid ""
+"Generic error extracting the private key from certificate in file %s. For "
+"further information please visit the %sLoTW troubleshooting page%s in the "
+"Wavelog Wiki."
+msgstr ""
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1019
 msgid "Connection to LoTW failed."
 msgstr "连接到 LoTW 失败。"
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1024
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW 用户 %s 登录失败：%s。"
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1024
 msgid "Username/password incorrect"
 msgstr "用户名/密码不正确"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1027
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW当前不可用。请稍后再试。"
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1031
 msgid "LoTW login OK!"
 msgstr "LoTW 登录成功！"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1037
 msgid "No LoTW credentials provided."
 msgstr "没有提供 LoTW 证书。"
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1054
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1081
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
@@ -2990,7 +2992,7 @@ msgstr "通讯录中已存在带有此呼号的笔记。请输入一个唯一的
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1468
+#: application/models/Logbook_model.php:1547
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4298,11 +4300,16 @@ msgstr "公开搜索"
 msgid "Export Map"
 msgstr "导出地图"
 
-#: application/controllers/Webadif.php:103
-#: application/controllers/Webadif.php:150
+#: application/controllers/Webadif.php:106
+#: application/controllers/Webadif.php:187
 #: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
+
+#: application/controllers/Webadif.php:181
+msgid ""
+"Rejected QSOs were reset. They will be picked up again by the next upload."
+msgstr ""
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4957,34 +4964,38 @@ msgstr ""
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Eqslmethods_model.php:270
+msgid "Empty response from eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "你的 eQSL 用户名或密码错误。"
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:283
 msgid "Something went wrong with eQSL.cc!"
 msgstr "eQSL 服务异常！"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:294
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "QTH 昵称在 eQSL 中不存在"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:302
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL 网站出了一些问题，请稍后重试。"
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:307
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "上传的 QSO 有问题，你可能需要手动录入。"
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:312
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr "eQSL 网站似乎更改了地址，请在 GitHub 上创建一个 issue。"
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:318
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr "上传 QSO 时发生未捕获的错误。也许 eQSL 出现了问题"
@@ -5032,20 +5043,20 @@ msgstr "台站不可用"
 msgid "Realtime upload disabled"
 msgstr "实时上传已禁用"
 
-#: application/models/Logbook_model.php:1458
+#: application/models/Logbook_model.php:1537
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
-#: application/models/Logbook_model.php:1463
+#: application/models/Logbook_model.php:1542
 msgid "No Call given"
 msgstr "未提供呼号"
 
-#: application/models/Logbook_model.php:1539
-#: application/models/Logbook_model.php:1757
+#: application/models/Logbook_model.php:1618
+#: application/models/Logbook_model.php:1836
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:4981
+#: application/models/Logbook_model.php:5060
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5053,7 +5064,7 @@ msgstr ""
 "导入的本台呼号 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的呼号"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:4989
+#: application/models/Logbook_model.php:5068
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5062,34 +5073,34 @@ msgstr ""
 "导入的本台网格 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的网格"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5084
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
-#: application/models/Logbook_model.php:5015
+#: application/models/Logbook_model.php:5094
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
-#: application/models/Logbook_model.php:5022
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
-#: application/models/Logbook_model.php:5092
+#: application/models/Logbook_model.php:5171
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
-#: application/models/Logbook_model.php:5099
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5097,63 +5108,63 @@ msgid ""
 msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
-#: application/models/Logbook_model.php:5374
+#: application/models/Logbook_model.php:5453
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5385
+#: application/models/Logbook_model.php:5464
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5446
+#: application/models/Logbook_model.php:5525
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5822
+#: application/models/Logbook_model.php:5901
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:5889
-#: application/models/Logbook_model.php:5989
+#: application/models/Logbook_model.php:5968
+#: application/models/Logbook_model.php:6068
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5976
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5982
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5986
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:5911
+#: application/models/Logbook_model.php:5990
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:5914
+#: application/models/Logbook_model.php:5993
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:5917
+#: application/models/Logbook_model.php:5996
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5992
+#: application/models/Logbook_model.php:6071
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
-#: application/models/Logbook_model.php:5995
+#: application/models/Logbook_model.php:6074
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:6416
+#: application/models/Logbook_model.php:6495
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -6288,6 +6299,7 @@ msgstr "日期"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
+#: application/views/webadif/rejected.php:10
 #: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "时间"
@@ -6311,6 +6323,7 @@ msgstr "时间"
 #: application/views/search/search_result_ajax.php:93
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
+#: application/views/webadif/rejected.php:9
 #: application/views/widgets/qsos.php:17
 msgid "Call"
 msgstr "呼号"
@@ -6376,14 +6389,14 @@ msgstr "最大上传文件大小是 "
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "Warning"
 msgstr "注意"
 
 #: application/views/adif/import.php:98 application/views/adif/import.php:100
 #: application/views/adif/import.php:267 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
-#: application/views/webadif/export.php:89
+#: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "选择台站位置"
 
@@ -6539,7 +6552,7 @@ msgstr "“全部”仅限绑定到已激活日志簿的台站地址"
 #: application/views/dxatlas/index.php:103
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
-#: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/qrz/export.php:99 application/views/webadif/export.php:107
 msgid "From date"
 msgstr "起始日期"
 
@@ -6547,7 +6560,7 @@ msgstr "起始日期"
 #: application/views/dxatlas/index.php:108
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
-#: application/views/webadif/export.php:102
+#: application/views/webadif/export.php:112
 msgid "To date"
 msgstr "终止日期"
 
@@ -11404,7 +11417,7 @@ msgstr "呼号 DXCC 识别"
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "电台站地址"
@@ -15892,7 +15905,7 @@ msgid ""
 msgstr "无有效的 HRDLog 台站信息，请在台站配置页面设置 HRDLog 的凭据！"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "如果未选择日期范围，则所有 QSO 都将被标记！"
 
@@ -24102,19 +24115,19 @@ msgid "Go ahead and turn on your QO-100 station!"
 msgstr "请开始 QO-100 通联！"
 
 #: application/views/webadif/export.php:73
-#: application/views/webadif/export.php:113
+#: application/views/webadif/export.php:123
 msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr "日志簿未配置导出到 QO-100 Dx Club。"
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 msgid "QO-100 Dx Club"
 msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 #, php-format
 msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
@@ -24122,26 +24135,44 @@ msgid ""
 msgstr "你需要在 %s 和 %s 创建 %s API Key。"
 
 #: application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #, php-format
 msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr "然后前往 %s 并配置台站，连接至 club。"
 
-#: application/views/webadif/export.php:83
+#: application/views/webadif/export.php:93
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr "在这里你可以将未上传至 QO-100 Dx Club 的 QSO 标记为已上传。"
 
-#: application/views/webadif/export.php:107
+#: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
 msgstr "标记 QSO 以导出至 QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSO 已被标记成导出至 QO-100 Dx Club。"
+
+#: application/views/webadif/rejected.php:3
+msgid "Rejected by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:5
+msgid ""
+"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
+"is not retried automatically."
+msgstr ""
+
+#: application/views/webadif/rejected.php:11
+msgid "Reason for rejection by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:24
+msgid "Retry Upload"
+msgstr ""
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
@@ -24279,6 +24310,34 @@ msgstr "Clublog 日志搜索"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW 用户。最后上传于 "
+
+#, php-format
+#~ msgid ""
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %sPlease make sure you export the LoTW certificate from tqsl "
+#~ "application without password!%s For further information please visit the "
+#~ "%sLoTW FAQ page%s in the Wavelog Wiki."
+#~ msgstr ""
+#~ "文件%s中的证书包含密码，无法处理。%s请确保从 tqsl 应用程序导出 LoTW 证书时"
+#~ "不带密码！%s如需更多信息，请访问 Wavelog Wiki 中的 %sLoTW FAQ 页面%s。"
+
+#, php-format
+#~ msgid ""
+#~ "Generic error extracting the certificate from file %s. If the filename "
+#~ "contains 'key-only' this is typically a certificate request which has not "
+#~ "been processed by LoTW yet."
+#~ msgstr ""
+#~ "从文件 %s 提取证书时发生一般错误。如果文件名包含“key-only”，通常这是一个尚"
+#~ "未被 LoTW 处理的证书请求。"
+
+#, php-format
+#~ msgid "Generic error processing the certificate in file %s."
+#~ msgstr "在文件 %s 中处理证书时出现一般错误。"
+
+#, php-format
+#~ msgid ""
+#~ "Generic error extracting the private key from certificate in file %s."
+#~ msgstr "从文件 %s 中提取证书的私钥时发生一般错误。"
 
 #, php-format
 #~ msgid ""

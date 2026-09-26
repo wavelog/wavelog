@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 10:14+0000\n"
-"PO-Revision-Date: 2026-09-18 05:26+0000\n"
+"POT-Creation-Date: 2026-09-24 06:59+0000\n"
+"PO-Revision-Date: 2026-09-24 05:05+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -172,11 +172,11 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Dxatlas.php:105
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
-#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
+#: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
+#: application/controllers/Eqsl.php:319 application/controllers/Eqsl.php:521
+#: application/controllers/Eqsl.php:592 application/controllers/Eqsl.php:607
+#: application/controllers/Eqsl.php:665
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -187,8 +187,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:962 application/controllers/Lotw.php:1048
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -237,7 +237,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:99
+#: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
@@ -478,7 +478,7 @@ msgstr "Var god och ange ett token-namn"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr "Var god välj minst en räckvidd"
+msgstr "Var god välj minst en behörighet"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
@@ -1746,11 +1746,11 @@ msgstr "eQSL-kort"
 msgid "Showing %d to %d of %d entries"
 msgstr "Visar %d till %d av %d poster"
 
-#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:170
+#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "eQSL-smeknamn i stationsprofiler är inte definierade!"
 
-#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:189
+#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "Du har inte definierat dina eQSL.cc-uppgifter!"
 
@@ -1762,76 +1762,76 @@ msgstr "eQSL-import"
 msgid "eQSL Import Information"
 msgstr "eQSL Importinformation"
 
-#: application/controllers/Eqsl.php:177
+#: application/controllers/Eqsl.php:183
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO-uppladdning"
 
-#: application/controllers/Eqsl.php:211
+#: application/controllers/Eqsl.php:216
 msgid "User/Pass wrong for eQSL"
 msgstr "Användarnamn/lösenord fel för eQSL"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:220
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Inget sådant eQSL QTH Smeknamn: %s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
 msgstr "QSO hittades inte eller är inte tillgängligt"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:353
 msgid "User not found"
 msgstr "Användare hittades inte"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:362
 msgid "eQSL password not configured for this user"
 msgstr "eQSL-lösenord är inte konfigurerat för den här användaren"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:379
 msgid "Failed to fetch eQSL image data"
 msgstr "Det gick inte att hämta eQSL-bilddata"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:398
 msgid "eQSL image not available"
 msgstr "eQSL-bild inte tillgänglig"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:416
 msgid "Failed to download eQSL image"
 msgstr "Det gick inte att ladda ner eQSL-bild"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:579
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Inte tillräckligt med ledigt diskutrymme för att lagra eQSL-kortet"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
 msgstr "Det gick inte att ladda cachad eQSL-bild"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:596
 msgid "eQSL Tools"
 msgstr "eQSL-verktyg"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:625
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Denna begäran är begränsat till 150 QSOs. Vänligen kör igen."
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:631
 msgid " / Errors: "
 msgstr " / Fel: "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:631
 msgid "Successfully downloaded: "
 msgstr "Framgångsrikt nedladdad: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:638
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "eQSL-gräns nådd. Vänta en stund innan du kör igen."
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:650
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kortbildnedladdning"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:673
 msgid "All eQSLs marked as uploaded"
 msgstr "Alla eQSLs markerade som uppladdade"
 
@@ -2811,76 +2811,73 @@ msgstr "Certifikat uppdaterat."
 msgid "Certificate Deleted."
 msgstr "Certifikat raderat."
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:462
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
 "processed. %sPlease make sure you export the LoTW certificate from tqsl "
 "application without password!%s For further information please visit the "
-"%sLoTW FAQ page%s in the Wavelog Wiki."
+"%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"Certifikatet som hittas i filen %s innehåller ett lösenord och kan inte "
-"behandlas. %sVar vänlig se till att du exporterar LoTW-certifikatet från "
-"tqsl-applikationen utan lösenord!%s För mer information, vänligen besök "
-"%sLoTW FAQ-sidan%s i Wavelog Wiki."
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:464
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
 "contains 'key-only' this is typically a certificate request which has not "
-"been processed by LoTW yet."
+"been processed by LoTW yet. For further information please visit the %sLoTW "
+"troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"Allmänt fel vid extrahering av certifikatet från filen %s. Om filnamnet "
-"innehåller 'key-only' är det vanligtvis en certifikatbegäran som ännu inte "
-"har behandlats av LoTW."
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:471
 #, php-format
-msgid "Generic error processing the certificate in file %s."
-msgstr "Generiskt fel vid bearbetning av certifikatet i filen %s."
-
-#: application/controllers/Lotw.php:468
-#, php-format
-msgid "Generic error extracting the private key from certificate in file %s."
+msgid ""
+"Generic error processing the certificate in file %s. For further information "
+"please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"Generiskt fel vid extrahering av den privata nyckeln från certifikatet i "
-"filen %s."
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:483
+#, php-format
+msgid ""
+"Generic error extracting the private key from certificate in file %s. For "
+"further information please visit the %sLoTW troubleshooting page%s in the "
+"Wavelog Wiki."
+msgstr ""
+
+#: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-information"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1019
 msgid "Connection to LoTW failed."
 msgstr "Anslutning till LoTW misslyckades."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1024
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-inloggning misslyckades för användare %s: %s."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1024
 msgid "Username/password incorrect"
 msgstr "Användarnamn/lösenord felaktigt"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1027
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW är för närvarande inte tillgänglig. Försök igen senare."
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1031
 msgid "LoTW login OK!"
 msgstr "LoTW-inloggning OK!"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1037
 msgid "No LoTW credentials provided."
 msgstr "Inga LoTW detaljer angivna."
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1054
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1081
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du har inte angivit dina ARRL LoTW-uppgifter!"
 
@@ -2995,7 +2992,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1468
+#: application/models/Logbook_model.php:1547
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4341,11 +4338,16 @@ msgstr "Offentlig sökning"
 msgid "Export Map"
 msgstr "Exportera karta"
 
-#: application/controllers/Webadif.php:103
-#: application/controllers/Webadif.php:150
+#: application/controllers/Webadif.php:106
+#: application/controllers/Webadif.php:187
 #: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Ladda upp"
+
+#: application/controllers/Webadif.php:181
+msgid ""
+"Rejected QSOs were reset. They will be picked up again by the next upload."
+msgstr ""
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4411,10 +4413,11 @@ msgstr "Fel vid erhållande av sessionsnyckel för callbook. Fel: %s"
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
 msgstr ""
+"Generiskt fel vid lagring av sessionsnyckeln för callbook i cacheminnet."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
-msgstr ""
+msgstr "Generiskt fel vid läsning av den cachade sessionsnyckeln för callbook."
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4942,105 +4945,120 @@ msgstr "VuccLokator-tabellen är tom. Importera VUCC-lokatordata först."
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Ingen fungerande adapter tillgänglig - cacheminnet körs på den inaktiva "
+"'dummy'-drivrutinen."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Inget stöd för denna adapter."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s adapter krashade: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "PHP-tillägget '%s' är inte laddad."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Cachekatalogen är inte skrivbar: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Redis-servern är otillgänglig - kontrollera inställningarna i application/"
+"config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Ingen Memcached-server svarade - kontrollera inställningarna i application/"
+"config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu är laddad men inte användbar i detta PHP-gränssnitt (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "Kan inte skriva till cachekatalogen %s - kontrollera behörigheter."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Misslyckades med att skriva till Redis - är servern nere eller har maxminne "
+"nåtts?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Misslyckades med att skriva till Memcached - är servern nere?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Misslyckades med att skriva till APCu - är det delade minnet fullt?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Skrivningen lyckades men läsningen misslyckades - är cachekatalogen läsbar?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"Skrivningen lyckades men läsningen misslyckades - nyckeln borttagen av Redis?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Skrivningen lyckades men läsningen misslyckades."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
-msgstr ""
+msgstr "Testnyckeln kunde inte raderas - kontrollera behörigheter/åtkomst."
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Eqslmethods_model.php:270
+msgid "Empty response from eQSL.cc!"
+msgstr "Tomt svar från eQSL.cc!"
+
+#: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Ditt eQSL-användarnamn och/eller lösenord är felaktigt."
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:283
 msgid "Something went wrong with eQSL.cc!"
 msgstr "Något gick fel med eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:294
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "QTH-smeknamn finns inte definierat på eQSL kontot"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:302
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL.cc har problem. Försök exportera QSO senare."
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:307
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "Det var fel i ett QSO. Du kanske vill ladda upp dem manuellt."
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:312
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Det verkar som att eQSL-sidan har ändrats. Vänligen öppna ett ärende på "
 "GitHub."
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:318
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr "Ett okänt fel inträffade vid uppladdning av QSO. Kanske har eQSL hicka"
@@ -5089,26 +5107,26 @@ msgstr "Stationen är inte tillgänglig"
 msgid "Realtime upload disabled"
 msgstr "Direktuppladdning inaktiverad"
 
-#: application/models/Logbook_model.php:1458
+#: application/models/Logbook_model.php:1537
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
-#: application/models/Logbook_model.php:1463
+#: application/models/Logbook_model.php:1542
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
-#: application/models/Logbook_model.php:1539
-#: application/models/Logbook_model.php:1757
+#: application/models/Logbook_model.php:1618
+#: application/models/Logbook_model.php:1836
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
-#: application/models/Logbook_model.php:4981
+#: application/models/Logbook_model.php:5060
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:4989
+#: application/models/Logbook_model.php:5068
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5116,7 +5134,7 @@ msgid ""
 msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5084
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5124,7 +5142,7 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:5015
+#: application/models/Logbook_model.php:5094
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5133,7 +5151,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan en angiven anropssignal. Detta "
 "QSO importerades inte. Det är ogiltigt."
 
-#: application/models/Logbook_model.php:5022
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5142,7 +5160,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO med en ogiltig anropssignal. Detta "
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
-#: application/models/Logbook_model.php:5092
+#: application/models/Logbook_model.php:5171
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5151,7 +5169,7 @@ msgstr ""
 "QSO på %s: Bandet '%s' är inte i bandkonfigurationen. Detta QSO importerades "
 "inte."
 
-#: application/models/Logbook_model.php:5099
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5160,63 +5178,63 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:5374
+#: application/models/Logbook_model.php:5453
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5385
+#: application/models/Logbook_model.php:5464
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5446
+#: application/models/Logbook_model.php:5525
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5822
+#: application/models/Logbook_model.php:5901
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
-#: application/models/Logbook_model.php:5889
-#: application/models/Logbook_model.php:5989
+#: application/models/Logbook_model.php:5968
+#: application/models/Logbook_model.php:6068
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
-#: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5976
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
-#: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5982
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
-#: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5986
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
-#: application/models/Logbook_model.php:5911
+#: application/models/Logbook_model.php:5990
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
-#: application/models/Logbook_model.php:5914
+#: application/models/Logbook_model.php:5993
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:5917
+#: application/models/Logbook_model.php:5996
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:5992
+#: application/models/Logbook_model.php:6071
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
-#: application/models/Logbook_model.php:5995
+#: application/models/Logbook_model.php:6074
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6416
+#: application/models/Logbook_model.php:6495
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -6359,6 +6377,7 @@ msgstr "Datum"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
+#: application/views/webadif/rejected.php:10
 #: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "Tid"
@@ -6382,6 +6401,7 @@ msgstr "Tid"
 #: application/views/search/search_result_ajax.php:93
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
+#: application/views/webadif/rejected.php:9
 #: application/views/widgets/qsos.php:17
 msgid "Call"
 msgstr "Signal"
@@ -6447,14 +6467,14 @@ msgstr "Maximal filuppladdningsstorlek är "
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "Warning"
 msgstr "Varning"
 
 #: application/views/adif/import.php:98 application/views/adif/import.php:100
 #: application/views/adif/import.php:267 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
-#: application/views/webadif/export.php:89
+#: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "Välj stationsplats"
 
@@ -6622,7 +6642,7 @@ msgstr "Allt är begränsat till stationsplatser kopplade till aktiv loggbok"
 #: application/views/dxatlas/index.php:103
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
-#: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/qrz/export.php:99 application/views/webadif/export.php:107
 msgid "From date"
 msgstr "Från datum"
 
@@ -6630,7 +6650,7 @@ msgstr "Från datum"
 #: application/views/dxatlas/index.php:108
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
-#: application/views/webadif/export.php:102
+#: application/views/webadif/export.php:112
 msgid "To date"
 msgstr "Hittills"
 
@@ -7044,8 +7064,8 @@ msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
-"Skapa en token med detaljerade behörigheter (räckvidder). Token visas bara "
-"en gång när den skapas, så kopiera den omedelbart."
+"Skapa en token med detaljerade behörigheter. Token visas bara en gång när "
+"den skapas, så kopiera den omedelbart."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
@@ -7097,7 +7117,7 @@ msgstr ""
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr "Räckvidder"
+msgstr "Behörigheter"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
@@ -7105,7 +7125,7 @@ msgstr "Välj vilka delar av API v2 som denna token kan få åtkomst till."
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr "Vänligen välj minst en räckvidd."
+msgstr "Vänligen välj minst en behörighet."
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:152
@@ -7117,8 +7137,8 @@ msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
-"Vet du inte vilken räckvidd du behöver? Välj verktyget du vill använda så "
-"väljer vi räckvidden åt dig."
+"Vet du inte vilken behörighet du behöver? Välj verktyget du vill använda så "
+"väljer vi behörigheter åt dig."
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:146
@@ -7137,7 +7157,7 @@ msgid ""
 "afterwards."
 msgstr ""
 "En förinställning ersätter ditt aktuella val. Du kan fortfarande justera "
-"räckvidden i efterhand."
+"behörigheten i efterhand."
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -7378,9 +7398,8 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
-"API-tokens ger åtkomst till REST API v2 med detaljerade behörigheter "
-"(räckvidder). Token visas endast en gång när den skapas, så kopiera den "
-"direkt."
+"API-tokens ger åtkomst till REST API v2 med detaljerade behörigheter. Token "
+"visas endast en gång när den skapas, så kopiera den direkt."
 
 #: application/views/api/index.php:124
 #, php-format
@@ -11671,7 +11690,7 @@ msgstr "Anropssignal DXCC-identifiering"
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "Stationsplats"
@@ -15213,7 +15232,7 @@ msgstr "Wavelog Worker Backend"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "Worker konfigurationen har ändrats"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15221,10 +15240,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s och %s är föråldrade och kommer att tas bort i Wavelog Worker 1.0.0. "
+"Vänligen sätt %s i din worker-konfiguration istället."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Allt fortsätter att fungera tills dess."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15402,11 +15423,11 @@ msgstr "Antal cache-nycklar"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Round-Trip Test (skriv - läs - radera)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Arbetar"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -15936,7 +15957,7 @@ msgstr "Användaren angav inget ytterligare meddelande."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "Begärda QSOs"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -15957,7 +15978,7 @@ msgstr "QSL-väg"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "DX-anropssignal"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -16308,7 +16329,7 @@ msgstr ""
 "HRDlog-uppgifterna i stationsplatsinställningarna!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Om ett datumintervall inte är valt kommer alla QSOs att markeras!"
 
@@ -24809,7 +24830,7 @@ msgid "Go ahead and turn on your QO-100 station!"
 msgstr "Starta din QO-100-station!"
 
 #: application/views/webadif/export.php:73
-#: application/views/webadif/export.php:113
+#: application/views/webadif/export.php:123
 msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
@@ -24818,12 +24839,12 @@ msgstr ""
 "Dx Club's API."
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 msgid "QO-100 Dx Club"
 msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 #, php-format
 msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
@@ -24833,7 +24854,7 @@ msgstr ""
 "Skapa %s en API-nyckel."
 
 #: application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #, php-format
 msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
@@ -24842,7 +24863,7 @@ msgstr ""
 "Navigera sedan till din %s och konfigurera din station med nyckeln du har "
 "skapat på klubben."
 
-#: application/views/webadif/export.php:83
+#: application/views/webadif/export.php:93
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
@@ -24850,13 +24871,31 @@ msgstr ""
 "Här kan du markera som uppladdade dina QSOs som inte tidigare har laddats "
 "upp till QO-100 Dx Club."
 
-#: application/views/webadif/export.php:107
+#: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
 msgstr "Markera QSOs som exporterade till QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSOs är markerade som exporterade till QO-100 Dx Club."
+
+#: application/views/webadif/rejected.php:3
+msgid "Rejected by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:5
+msgid ""
+"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
+"is not retried automatically."
+msgstr ""
+
+#: application/views/webadif/rejected.php:11
+msgid "Reason for rejection by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:24
+msgid "Retry Upload"
+msgstr ""
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
@@ -24994,6 +25033,39 @@ msgstr "Clublog Loggsökning"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-användare. Senaste uppladdningen var "
+
+#, php-format
+#~ msgid ""
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %sPlease make sure you export the LoTW certificate from tqsl "
+#~ "application without password!%s For further information please visit the "
+#~ "%sLoTW FAQ page%s in the Wavelog Wiki."
+#~ msgstr ""
+#~ "Certifikatet som hittas i filen %s innehåller ett lösenord och kan inte "
+#~ "behandlas. %sVar vänlig se till att du exporterar LoTW-certifikatet från "
+#~ "tqsl-applikationen utan lösenord!%s För mer information, vänligen besök "
+#~ "%sLoTW FAQ-sidan%s i Wavelog Wiki."
+
+#, php-format
+#~ msgid ""
+#~ "Generic error extracting the certificate from file %s. If the filename "
+#~ "contains 'key-only' this is typically a certificate request which has not "
+#~ "been processed by LoTW yet."
+#~ msgstr ""
+#~ "Allmänt fel vid extrahering av certifikatet från filen %s. Om filnamnet "
+#~ "innehåller 'key-only' är det vanligtvis en certifikatbegäran som ännu "
+#~ "inte har behandlats av LoTW."
+
+#, php-format
+#~ msgid "Generic error processing the certificate in file %s."
+#~ msgstr "Generiskt fel vid bearbetning av certifikatet i filen %s."
+
+#, php-format
+#~ msgid ""
+#~ "Generic error extracting the private key from certificate in file %s."
+#~ msgstr ""
+#~ "Generiskt fel vid extrahering av den privata nyckeln från certifikatet i "
+#~ "filen %s."
 
 #, php-format
 #~ msgid ""

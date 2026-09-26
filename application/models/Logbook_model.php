@@ -1047,8 +1047,11 @@ class Logbook_model extends CI_Model {
 						$adif
 					);
 
-					if ($result) {
+					if (($result['status'] ?? '') == 'OK') {
 						$this->mark_webadif_qsos_sent([$last_id]);
+					} else {
+						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
+						$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
 					}
 				}
 
@@ -1251,9 +1254,15 @@ class Logbook_model extends CI_Model {
 
 	/*
 	 * Function uploads a QSO to WebADIF consumer with the API given.
-	 * $adif contains a line with the QSO in the ADIF format.
+	 *
+	 * @param string $url    URL of the webADIF API endpoint.
+	 * @param string $apikey API key for the webADIF consumer.
+	 * @param string $adif   Line with the QSO in the ADIF format, ending with <EOR>.
+	 *
+	 * @return array ['status' => 'OK'] on success (HTTP 200),
+	 *               ['status' => 'error', 'message' => sanitized reason] otherwise.
 	 */
-	function push_qso_to_webadif($url, $apikey, $adif): bool {
+	function push_qso_to_webadif($url, $apikey, $adif): array {
 
 		$headers = array(
 			'Content-Type: text/plain',
@@ -1274,10 +1283,19 @@ class Logbook_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
-		$content = curl_exec($ch); // TODO: better error handling
+		$content = curl_exec($ch);
 		$errors = curl_error($ch);
 		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		return $response === 200;
+
+		if ($response === 200) {
+			return ['status' => 'OK'];
+		}
+
+		$message = 'HTTP ' . $response . ': ' . trim(strip_tags((string)$content));
+		if ($errors !== '') {
+			$message .= ' (' . $errors . ')';
+		}
+		return ['status' => 'error', 'message' => mb_substr($message, 0, 255)];
 	}
 
 	/*
@@ -1342,10 +1360,71 @@ class Logbook_model extends CI_Model {
 		foreach ($qsoIDs as $qsoID) {
 			$data[] = [
 				'upload_date' => $now,
+				'status' => 'Y',
 				'qso_id' => $qsoID,
 			];
 		}
 		$this->db->insert_batch('webadif', $data);
+		return true;
+	}
+
+	/*
+	 * Function marks QSOs as rejected by the WebADIF consumer.
+	 * The rejection reason is stored for later display. Rejected QSOs carry an
+	 * upload_date, so get_webadif_qsos() does not pick them up again.
+	 *
+	 * @param array  $qsoIDs  Array of unique ids (COL_PRIMARY_KEY) of the QSOs in the logbook.
+	 * @param string $message Sanitized rejection reason from the WebADIF consumer.
+	 *
+	 * @return bool true on success.
+	 */
+	function mark_webadif_qsos_failed(array $qsoIDs, string $message = '') {
+		$data = [];
+		$now = date("Y-m-d H:i:s", strtotime("now"));
+		foreach ($qsoIDs as $qsoID) {
+			$data[] = [
+				'upload_date' => $now,
+				'status' => 'I',
+				'message' => $message,
+				'qso_id' => $qsoID,
+			];
+		}
+		$this->db->insert_batch('webadif', $data);
+		return true;
+	}
+
+	/*
+	 * Function returns the QSOs of a station that were rejected by the WebADIF consumer.
+	 *
+	 * @param int $station_id Station id the QSOs belong to.
+	 *
+	 * @return array List of rejected QSOs with call, datetime and rejection reason.
+	 */
+	function get_webadif_rejected_qsos($station_id) {
+		$sql = 'SELECT qsos.COL_CALL, qsos.COL_TIME_ON, webadif.message
+			FROM ' . $this->config->item('table_name') . ' qsos
+			INNER JOIN webadif ON qsos.COL_PRIMARY_KEY = webadif.qso_id
+			WHERE qsos.station_id = ?
+			AND webadif.status = \'I\'
+			ORDER BY qsos.COL_TIME_ON';
+		$query = $this->db->query($sql, [$station_id]);
+		return $query->result();
+	}
+
+	/*
+	 * Function deletes the rejection markers of a station, so its QSOs are picked
+	 * up again by the next WebADIF upload.
+	 *
+	 * @param int $station_id Station id the rejected QSOs belong to.
+	 *
+	 * @return bool true on success.
+	 */
+	function reset_webadif_rejected_qsos($station_id) {
+		$sql = 'DELETE webadif FROM webadif
+			INNER JOIN ' . $this->config->item('table_name') . ' qsos ON qsos.COL_PRIMARY_KEY = webadif.qso_id
+			WHERE qsos.station_id = ?
+			AND webadif.status = \'I\'';
+		$this->db->query($sql, [$station_id]);
 		return true;
 	}
 

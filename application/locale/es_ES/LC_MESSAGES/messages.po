@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-23 10:14+0000\n"
+"POT-Creation-Date: 2026-09-24 06:59+0000\n"
 "PO-Revision-Date: 2026-09-19 10:21+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -180,11 +180,11 @@ msgstr "Ducting troposférico"
 #: application/controllers/Dxatlas.php:105
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
-#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:163
-#: application/controllers/Eqsl.php:251 application/controllers/Eqsl.php:274
-#: application/controllers/Eqsl.php:312 application/controllers/Eqsl.php:514
-#: application/controllers/Eqsl.php:585 application/controllers/Eqsl.php:600
-#: application/controllers/Eqsl.php:658
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
+#: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
+#: application/controllers/Eqsl.php:319 application/controllers/Eqsl.php:521
+#: application/controllers/Eqsl.php:592 application/controllers/Eqsl.php:607
+#: application/controllers/Eqsl.php:665
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -195,8 +195,8 @@ msgstr "Ducting troposférico"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:436
-#: application/controllers/Lotw.php:947 application/controllers/Lotw.php:1033
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
+#: application/controllers/Lotw.php:962 application/controllers/Lotw.php:1048
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -245,7 +245,7 @@ msgstr "Ducting troposférico"
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:99
+#: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
@@ -1761,11 +1761,11 @@ msgstr "Tarjetas eQSL"
 msgid "Showing %d to %d of %d entries"
 msgstr "Mostrando %d a %d de %d entradas"
 
-#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:170
+#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "¡Los apodos de eQSL en los perfiles de estación no están definidos!"
 
-#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:189
+#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "¡No has definido tus credenciales de eQSL.cc!"
 
@@ -1777,81 +1777,81 @@ msgstr "Importar eQSL"
 msgid "eQSL Import Information"
 msgstr "Información de importación de eQSL"
 
-#: application/controllers/Eqsl.php:177
+#: application/controllers/Eqsl.php:183
 msgid "eQSL QSO Upload"
 msgstr "Carga de QSO en eQSL"
 
-#: application/controllers/Eqsl.php:211
+#: application/controllers/Eqsl.php:216
 msgid "User/Pass wrong for eQSL"
 msgstr "Usuario/Contraseña incorrectos para eQSL"
 
-#: application/controllers/Eqsl.php:215
+#: application/controllers/Eqsl.php:220
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "No existe tal apodo de QTH en eQSL: %s"
 
-#: application/controllers/Eqsl.php:328
+#: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
 msgstr "QSO no encontrado o no accesible"
 
-#: application/controllers/Eqsl.php:346
+#: application/controllers/Eqsl.php:353
 msgid "User not found"
 msgstr "Usuario no encontrado"
 
-#: application/controllers/Eqsl.php:355
+#: application/controllers/Eqsl.php:362
 msgid "eQSL password not configured for this user"
 msgstr "Contraseña de eQSL no configurada para este usuario"
 
-#: application/controllers/Eqsl.php:372
+#: application/controllers/Eqsl.php:379
 msgid "Failed to fetch eQSL image data"
 msgstr "Fallo al obtener los datos de la imagen de eQSL"
 
-#: application/controllers/Eqsl.php:391
+#: application/controllers/Eqsl.php:398
 msgid "eQSL image not available"
 msgstr "Imagen de eQSL no disponible"
 
-#: application/controllers/Eqsl.php:409
+#: application/controllers/Eqsl.php:416
 msgid "Failed to download eQSL image"
 msgstr "Falló la descarga de la imagen de eQSL"
 
-#: application/controllers/Eqsl.php:419 application/controllers/Eqsl.php:572
+#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:579
 msgid "Not enough free disk space to store the eQSL card"
 msgstr ""
 "No hay suficiente espacio libre en el disco para almacenar la tarjeta eQSL"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:450
 msgid "Failed to load cached eQSL image"
 msgstr "Fallo al cargar el cache de imagen de eQSL"
 
-#: application/controllers/Eqsl.php:589
+#: application/controllers/Eqsl.php:596
 msgid "eQSL Tools"
 msgstr "Herramientas de eQSL"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:625
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
 "Limitado a los primeros 150 QSOs para esta solicitud. Por favor ejecute "
 "nuevamente."
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:631
 msgid " / Errors: "
 msgstr " / Errores: "
 
-#: application/controllers/Eqsl.php:624
+#: application/controllers/Eqsl.php:631
 msgid "Successfully downloaded: "
 msgstr "Descargado satisfactoriamente: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:638
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 "Alcanzado el limite de solicitudes a eQSL. Por favor espere para ejecutar "
 "nuevamente."
 
-#: application/controllers/Eqsl.php:643
+#: application/controllers/Eqsl.php:650
 msgid "eQSL Card Image Download"
 msgstr "Descargar Imagen de Tarjeta eQSL"
 
-#: application/controllers/Eqsl.php:666
+#: application/controllers/Eqsl.php:673
 msgid "All eQSLs marked as uploaded"
 msgstr "Todas las eQSLs marcadas como cargadas"
 
@@ -2832,75 +2832,73 @@ msgstr "Certificado actualizado."
 msgid "Certificate Deleted."
 msgstr "Certificado eliminado."
 
-#: application/controllers/Lotw.php:447
+#: application/controllers/Lotw.php:462
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
 "processed. %sPlease make sure you export the LoTW certificate from tqsl "
 "application without password!%s For further information please visit the "
-"%sLoTW FAQ page%s in the Wavelog Wiki."
+"%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"El certificado encontrado en el archivo %s contiene una contraseña que no "
-"puede ser procesada. %s Por favor asegúrese de que exporto el certificado de "
-"la aplicación tqsl sin contraseña!%s Para mas información por favor visite "
-"el sitio %sLoTW FAQ%s en la Wiki de Wavelog."
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:464
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
 "contains 'key-only' this is typically a certificate request which has not "
-"been processed by LoTW yet."
+"been processed by LoTW yet. For further information please visit the %sLoTW "
+"troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"Error genérico extrayendo el certificado del archivo %s. Si el nombre del "
-"archivo contiene 'key-only' se debe generalmente a una solicitud de "
-"certificado que no ha sido procesada por LoTW aun."
 
-#: application/controllers/Lotw.php:456
+#: application/controllers/Lotw.php:471
 #, php-format
-msgid "Generic error processing the certificate in file %s."
-msgstr "Error genérico procesando el certificado en el archivo %s."
-
-#: application/controllers/Lotw.php:468
-#, php-format
-msgid "Generic error extracting the private key from certificate in file %s."
+msgid ""
+"Generic error processing the certificate in file %s. For further information "
+"please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"Error genérico extrayendo la llave privada del certificado en el archivo %s."
 
-#: application/controllers/Lotw.php:684
+#: application/controllers/Lotw.php:483
+#, php-format
+msgid ""
+"Generic error extracting the private key from certificate in file %s. For "
+"further information please visit the %sLoTW troubleshooting page%s in the "
+"Wavelog Wiki."
+msgstr ""
+
+#: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
 msgstr "Información ADIF de LoTW"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1019
 msgid "Connection to LoTW failed."
 msgstr "Falló la conexión a LoTW."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1024
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Error de inicio de sesión en LoTW para el usuario %s: %s."
 
-#: application/controllers/Lotw.php:1009
+#: application/controllers/Lotw.php:1024
 msgid "Username/password incorrect"
 msgstr "Nombre de usuario/contraseña incorrectos"
 
-#: application/controllers/Lotw.php:1012
+#: application/controllers/Lotw.php:1027
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW no está disponible actualmente. Inténtalo de nuevo más tarde."
 
-#: application/controllers/Lotw.php:1016
+#: application/controllers/Lotw.php:1031
 msgid "LoTW login OK!"
 msgstr "¡Inicio de sesión en LoTW correcto!"
 
-#: application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1037
 msgid "No LoTW credentials provided."
 msgstr "No se proporcionaron credenciales de LoTW."
 
-#: application/controllers/Lotw.php:1039
+#: application/controllers/Lotw.php:1054
 msgid "LoTW ADIF Import"
 msgstr "Importación ADIF de LoTW"
 
-#: application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1081
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "¡No has definido tus credenciales de ARRL LoTW!"
 
@@ -3015,7 +3013,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1468
+#: application/models/Logbook_model.php:1547
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4373,11 +4371,16 @@ msgstr "Búsqueda Pública"
 msgid "Export Map"
 msgstr "Exportar mapa"
 
-#: application/controllers/Webadif.php:103
-#: application/controllers/Webadif.php:150
+#: application/controllers/Webadif.php:106
+#: application/controllers/Webadif.php:187
 #: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "Subida del Club Dx QO-100"
+
+#: application/controllers/Webadif.php:181
+msgid ""
+"Rejected QSOs were reset. They will be picked up again by the next upload."
+msgstr ""
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -5048,38 +5051,42 @@ msgstr ""
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
 
-#: application/models/Eqslmethods_model.php:291
+#: application/models/Eqslmethods_model.php:270
+msgid "Empty response from eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Tu nombre de usuario y/o contraseña de eQSL es incorrecto."
 
-#: application/models/Eqslmethods_model.php:296
+#: application/models/Eqslmethods_model.php:283
 msgid "Something went wrong with eQSL.cc!"
 msgstr "¡Algo salió mal con eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:307
+#: application/models/Eqslmethods_model.php:294
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "El apodo de QTH no existe en eQSL"
 
-#: application/models/Eqslmethods_model.php:316
+#: application/models/Eqslmethods_model.php:302
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
 "eQSL.cc está experimentando problemas. Por favor, intenta exportar los QSOs "
 "más tarde."
 
-#: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:307
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "Hubo un error en uno de los QSOs. Podrías querer subirlos manualmente."
 
-#: application/models/Eqslmethods_model.php:326
+#: application/models/Eqslmethods_model.php:312
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Parece que el sitio de eQSL ha cambiado. Por favor, abre un problema en "
 "GitHub."
 
-#: application/models/Eqslmethods_model.php:332
+#: application/models/Eqslmethods_model.php:318
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
@@ -5132,27 +5139,27 @@ msgstr "Estación no accesible"
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1458
+#: application/models/Logbook_model.php:1537
 msgid "Station ID not allowed"
 msgstr "ID de estación no permitida"
 
-#: application/models/Logbook_model.php:1463
+#: application/models/Logbook_model.php:1542
 msgid "No Call given"
 msgstr "Ningún indicativo dado"
 
-#: application/models/Logbook_model.php:1539
-#: application/models/Logbook_model.php:1757
+#: application/models/Logbook_model.php:1618
+#: application/models/Logbook_model.php:1836
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tiene que ser numérico"
 
-#: application/models/Logbook_model.php:4981
+#: application/models/Logbook_model.php:5060
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Distinto indicativo de estación %s al importar QSO con %s para %s: OMITIDO"
 
-#: application/models/Logbook_model.php:4989
+#: application/models/Logbook_model.php:5068
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5161,7 +5168,7 @@ msgstr ""
 "Diferente localizador %s al importar QSO con %s para el localizador de "
 "estación %s: OMITIDO"
 
-#: application/models/Logbook_model.php:5005
+#: application/models/Logbook_model.php:5084
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5169,7 +5176,7 @@ msgstr ""
 "Intentaste importar un QSO sin una fecha valida. Este QSO no fue importado. "
 "Es invalido"
 
-#: application/models/Logbook_model.php:5015
+#: application/models/Logbook_model.php:5094
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5178,7 +5185,7 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO sin un indicativo proporcionado. Este "
 "QSO no fue importado. Es inválido."
 
-#: application/models/Logbook_model.php:5022
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5187,7 +5194,7 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO con un CALL no válido. Este QSO no fue "
 "importado. La entrada no válida es '%s'."
 
-#: application/models/Logbook_model.php:5092
+#: application/models/Logbook_model.php:5171
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5196,7 +5203,7 @@ msgstr ""
 "QSO en %s: La banda '%s' no está en la configuración de bandas. Este QSO no "
 "fue importado."
 
-#: application/models/Logbook_model.php:5099
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5205,63 +5212,63 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO sin la banda. Este QSO no fue "
 "importado. Es inválido"
 
-#: application/models/Logbook_model.php:5374
+#: application/models/Logbook_model.php:5453
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrfecha es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5385
+#: application/models/Logbook_model.php:5464
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslfecha es inválida (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5446
+#: application/models/Logbook_model.php:5525
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la fecha de carga de clublog_qso es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5822
+#: application/models/Logbook_model.php:5901
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:5889
-#: application/models/Logbook_model.php:5989
+#: application/models/Logbook_model.php:5968
+#: application/models/Logbook_model.php:6068
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
-#: application/models/Logbook_model.php:5897
+#: application/models/Logbook_model.php:5976
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
-#: application/models/Logbook_model.php:5903
+#: application/models/Logbook_model.php:5982
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
-#: application/models/Logbook_model.php:5907
+#: application/models/Logbook_model.php:5986
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
-#: application/models/Logbook_model.php:5911
+#: application/models/Logbook_model.php:5990
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
-#: application/models/Logbook_model.php:5914
+#: application/models/Logbook_model.php:5993
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
-#: application/models/Logbook_model.php:5917
+#: application/models/Logbook_model.php:5996
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "desconocido"
 
-#: application/models/Logbook_model.php:5992
+#: application/models/Logbook_model.php:6071
 msgid "POTA reference already in log"
 msgstr "La referencia POTA ya se encuentra en el log"
 
-#: application/models/Logbook_model.php:5995
+#: application/models/Logbook_model.php:6074
 msgid "QSO updated"
 msgstr "QSO actualizado"
 
-#: application/models/Logbook_model.php:6416
+#: application/models/Logbook_model.php:6495
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -6405,6 +6412,7 @@ msgstr "Fecha"
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log_ajax.php:136
 #: application/views/visitor/index.php:154
+#: application/views/webadif/rejected.php:10
 #: application/views/zonechecker/result.php:66
 msgid "Time"
 msgstr "Tiempo Test"
@@ -6428,6 +6436,7 @@ msgstr "Tiempo Test"
 #: application/views/search/search_result_ajax.php:93
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
+#: application/views/webadif/rejected.php:9
 #: application/views/widgets/qsos.php:17
 msgid "Call"
 msgstr "Indicativo"
@@ -6493,14 +6502,14 @@ msgstr "El tamaño máximo del archivo subido es "
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "Warning"
 msgstr "Advertencia"
 
 #: application/views/adif/import.php:98 application/views/adif/import.php:100
 #: application/views/adif/import.php:267 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
-#: application/views/webadif/export.php:89
+#: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "Seleccione la Localización de la Estación"
 
@@ -6672,7 +6681,7 @@ msgstr ""
 #: application/views/dxatlas/index.php:103
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
-#: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/qrz/export.php:99 application/views/webadif/export.php:107
 msgid "From date"
 msgstr "Desde la fecha"
 
@@ -6680,7 +6689,7 @@ msgstr "Desde la fecha"
 #: application/views/dxatlas/index.php:108
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
-#: application/views/webadif/export.php:102
+#: application/views/webadif/export.php:112
 msgid "To date"
 msgstr "Hasta la fecha"
 
@@ -11776,7 +11785,7 @@ msgstr "Identificación de indicativo DXCC"
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "Perfil de estación"
@@ -16467,7 +16476,7 @@ msgstr ""
 "ubicación de la estación!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:104
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 "¡Si no selecciona un rango de fechas entonces todos los QSOs serán marcados!"
@@ -25081,7 +25090,7 @@ msgid "Go ahead and turn on your QO-100 station!"
 msgstr "¡Adelante y enciende tu estación QO-100!"
 
 #: application/views/webadif/export.php:73
-#: application/views/webadif/export.php:113
+#: application/views/webadif/export.php:123
 msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
@@ -25090,12 +25099,12 @@ msgstr ""
 "API del QO-100 Dx Club."
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 msgid "QO-100 Dx Club"
 msgstr "Club de Dx QO-100"
 
 #: application/views/webadif/export.php:74
-#: application/views/webadif/export.php:114
+#: application/views/webadif/export.php:124
 #, php-format
 msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
@@ -25105,7 +25114,7 @@ msgstr ""
 "una clave API."
 
 #: application/views/webadif/export.php:75
-#: application/views/webadif/export.php:115
+#: application/views/webadif/export.php:125
 #, php-format
 msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
@@ -25114,7 +25123,7 @@ msgstr ""
 "Luego, navega a tu %s y configura tu estación con la clave que has creado en "
 "el club."
 
-#: application/views/webadif/export.php:83
+#: application/views/webadif/export.php:93
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
@@ -25122,13 +25131,31 @@ msgstr ""
 "Aquí puedes marcar como subidas tus QSOs que no han sido subidos previamente "
 "al QO-100 Dx Club."
 
-#: application/views/webadif/export.php:107
+#: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
 msgstr "Marcar QSOs como exportados al QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "Los QSOs están marcados como exportados al QO-100 Dx Club."
+
+#: application/views/webadif/rejected.php:3
+msgid "Rejected by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:5
+msgid ""
+"These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
+"is not retried automatically."
+msgstr ""
+
+#: application/views/webadif/rejected.php:11
+msgid "Reason for rejection by QO-100 Dx Club"
+msgstr ""
+
+#: application/views/webadif/rejected.php:24
+msgid "Retry Upload"
+msgstr ""
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
@@ -25268,6 +25295,39 @@ msgstr "Búsqueda de registros en Clublog"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "Usuario de LoTW. La última carga fue "
+
+#, php-format
+#~ msgid ""
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %sPlease make sure you export the LoTW certificate from tqsl "
+#~ "application without password!%s For further information please visit the "
+#~ "%sLoTW FAQ page%s in the Wavelog Wiki."
+#~ msgstr ""
+#~ "El certificado encontrado en el archivo %s contiene una contraseña que no "
+#~ "puede ser procesada. %s Por favor asegúrese de que exporto el certificado "
+#~ "de la aplicación tqsl sin contraseña!%s Para mas información por favor "
+#~ "visite el sitio %sLoTW FAQ%s en la Wiki de Wavelog."
+
+#, php-format
+#~ msgid ""
+#~ "Generic error extracting the certificate from file %s. If the filename "
+#~ "contains 'key-only' this is typically a certificate request which has not "
+#~ "been processed by LoTW yet."
+#~ msgstr ""
+#~ "Error genérico extrayendo el certificado del archivo %s. Si el nombre del "
+#~ "archivo contiene 'key-only' se debe generalmente a una solicitud de "
+#~ "certificado que no ha sido procesada por LoTW aun."
+
+#, php-format
+#~ msgid "Generic error processing the certificate in file %s."
+#~ msgstr "Error genérico procesando el certificado en el archivo %s."
+
+#, php-format
+#~ msgid ""
+#~ "Generic error extracting the private key from certificate in file %s."
+#~ msgstr ""
+#~ "Error genérico extrayendo la llave privada del certificado en el archivo "
+#~ "%s."
 
 #, php-format
 #~ msgid ""
