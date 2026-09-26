@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-24 06:59+0000\n"
+"POT-Creation-Date: 2026-09-26 08:06+0000\n"
 "PO-Revision-Date: 2026-09-22 09:14+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2991,8 +2991,8 @@ msgid ""
 msgstr "通讯录中已存在带有此呼号的笔记。请输入一个唯一的呼号。"
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1547
+#: application/models/Logbook_model.php:109
+#: application/models/Logbook_model.php:1588
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -5035,28 +5035,28 @@ msgstr "导入的纸张类型"
 msgid "Imported label type"
 msgstr "导入的标签类型"
 
-#: application/models/Logbook_model.php:359
+#: application/models/Logbook_model.php:370
 msgid "Station not accessible"
 msgstr "台站不可用"
 
-#: application/models/Logbook_model.php:1000
+#: application/models/Logbook_model.php:1041
 msgid "Realtime upload disabled"
 msgstr "实时上传已禁用"
 
-#: application/models/Logbook_model.php:1537
+#: application/models/Logbook_model.php:1578
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
-#: application/models/Logbook_model.php:1542
+#: application/models/Logbook_model.php:1583
 msgid "No Call given"
 msgstr "未提供呼号"
 
-#: application/models/Logbook_model.php:1618
-#: application/models/Logbook_model.php:1836
+#: application/models/Logbook_model.php:1659
+#: application/models/Logbook_model.php:1877
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:5060
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5064,7 +5064,7 @@ msgstr ""
 "导入的本台呼号 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的呼号"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:5068
+#: application/models/Logbook_model.php:5109
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5073,34 +5073,34 @@ msgstr ""
 "导入的本台网格 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的网格"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:5084
+#: application/models/Logbook_model.php:5125
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
-#: application/models/Logbook_model.php:5094
+#: application/models/Logbook_model.php:5135
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
-#: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5142
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
-#: application/models/Logbook_model.php:5171
+#: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
-#: application/models/Logbook_model.php:5178
+#: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5108,63 +5108,63 @@ msgid ""
 msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
-#: application/models/Logbook_model.php:5453
+#: application/models/Logbook_model.php:5494
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5464
+#: application/models/Logbook_model.php:5505
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5525
+#: application/models/Logbook_model.php:5566
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5901
+#: application/models/Logbook_model.php:5942
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:5968
-#: application/models/Logbook_model.php:6068
+#: application/models/Logbook_model.php:6009
+#: application/models/Logbook_model.php:6109
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:5976
+#: application/models/Logbook_model.php:6017
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:5982
+#: application/models/Logbook_model.php:6023
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:5986
+#: application/models/Logbook_model.php:6027
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:5990
+#: application/models/Logbook_model.php:6031
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:5993
+#: application/models/Logbook_model.php:6034
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:5996
+#: application/models/Logbook_model.php:6037
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:6071
+#: application/models/Logbook_model.php:6112
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
-#: application/models/Logbook_model.php:6074
+#: application/models/Logbook_model.php:6115
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:6495
+#: application/models/Logbook_model.php:6536
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
