@@ -202,13 +202,15 @@ class Activationplanner extends CI_Controller {
 		echo $json;
 	}
 
-	public function pota_boundary($reference = '') {
+	/* Shared body of pota_boundary / wwff_boundary: emit one reference's
+	 * boundary polygon(s) as a cached GeoJSON Feature (404 when unknown). */
+	private function _boundary_geojson($table, $reference = '') {
 		$reference = preg_replace('/[^A-Za-z0-9\-]/', '', (string) $reference);
 		if ($reference === '') {
 			$this->output->set_status_header(404);
 			return;
 		}
-		$rows = $this->db->query('SELECT geom FROM pota_boundaries WHERE reference = ?', [$reference])->result();
+		$rows = $this->db->query('SELECT geom FROM ' . $table . ' WHERE reference = ?', [$reference])->result();
 		if (!$rows) {
 			$this->output->set_status_header(404);
 			return;
@@ -240,6 +242,34 @@ class Activationplanner extends CI_Controller {
 			return;
 		}
 		header('Content-Type: application/geo+json');
+		echo $json;
+	}
+
+	public function pota_boundary($reference = '') {
+		$this->_boundary_geojson('pota_boundaries', $reference);
+	}
+
+	public function wwff_boundary($reference = '') {
+		$this->_boundary_geojson('wwff_boundaries', $reference);
+	}
+
+	/* AJAX: the WWFF references that have boundary data (gates client-side drawing). */
+	public function wwff_boundary_refs() {
+		$rows = $this->db->query('SELECT DISTINCT reference FROM wwff_boundaries ORDER BY reference')->result_array();
+		$json = json_encode(array_column($rows, 'reference'));
+
+		$etag = '"' . md5($json) . '"';
+		session_write_close();
+		header('Pragma: private');
+		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304);
+			return;
+		}
+		header('Content-Type: application/json');
 		echo $json;
 	}
 
