@@ -349,14 +349,18 @@ function wabtoolRenderMap(data, dialog) {
 	};
 	legend.addTo(map);
 
-	var fitBounds = gridBounds;
-	try { fitBounds = fitBounds.extend(squareLayer.getBounds()); } catch (e) { /* no square features */ }
 
-	try {
-		map.fitBounds(fitBounds.pad(0.3));
-	} catch (e) { /* invalid bounds */ }
+	var fitBounds = squareLayer.getBounds().extend(gridBounds);
+	if (!fitBounds.isValid()) {
+		fitBounds = gridBounds;
+	}
 
-	setTimeout(function() { map.invalidateSize(); }, 120);
+	setTimeout(function() {
+		map.invalidateSize();
+		try {
+			map.fitBounds(fitBounds.pad(0.3));
+		} catch (e) { /* invalid bounds */ }
+	}, 120);
 }
 
 // Bind the WAB tool handlers (defined once, bound once jQuery is available)
