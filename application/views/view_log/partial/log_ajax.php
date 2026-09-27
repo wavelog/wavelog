@@ -162,6 +162,9 @@ function getDistance($distance) {
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false  ) { ?>
                         <th scope="col"><?= __("DCL"); ?></th>
                     <?php } ?>
+    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'S') !== false  ) { ?>
+                        <th scope="col"><?= __("award.srr"); ?></th>
+                    <?php } ?>
                 <?php } ?>
                         <th scope="col"><?= __("Station"); ?></th>
                 <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
@@ -580,6 +583,57 @@ function getDistance($distance) {
                        }
                        if (!empty($row->COL_DCL_QSLRDATE)) {
                             $timestamp = strtotime($row->COL_DCL_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                       }
+                     } else { echo "class=\"qsl-red"; }
+                        echo "\">&#9660;</span>"; ?>
+                </td>
+                <?php } ?>
+
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'S') !== false ) { ?>
+                <td class="srr">
+                <span <?php if (($row->COL_SRR_QSL_SENT ?? 'N') != "N") {
+                       switch ($row->COL_SRR_QSL_SENT ?? 'N') {
+                       case "Y":
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
+                          break;
+                       case "Q":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+                          break;
+                       case "R":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+                          break;
+                       case "I":
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+                          break;
+                       default:
+                          echo "class=\"qsl-red";
+                          break;
+                       }
+                        if (!empty($row->COL_SRR_QSLSDATE)) {
+                            $timestamp = strtotime($row->COL_SRR_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                        }
+                     } else { echo "class=\"qsl-red"; }
+                        echo "\">&#9650;</span>"; ?>
+                <span <?php if (($row->COL_SRR_QSL_RCVD ?? 'N') != "N") {
+                       switch ($row->COL_SRR_QSL_RCVD ?? 'N') {
+                       case "Y":
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
+                          break;
+                       case "Q":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+                          break;
+                       case "R":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+                          break;
+                       case "I":
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+                          break;
+                       default:
+                          echo "class=\"qsl-red";
+                          break;
+                       }
+                       if (!empty($row->COL_SRR_QSLRDATE)) {
+                            $timestamp = strtotime($row->COL_SRR_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                        }
                      } else { echo "class=\"qsl-red"; }
                         echo "\">&#9660;</span>"; ?>

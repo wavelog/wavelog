@@ -249,6 +249,16 @@
 										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
 									</div>
 								</div>
+
+								<div class="mb-3 row">
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markSrr" value="1" id="markSrrImport">
+											<label class="form-check-label" for="markSrrImport"><?= __("Mark imported QSOs as uploaded to award.srr") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+									</div>
+								</div>
 								<button type="button" class="btn mb-2 btn-sm btn-success" onclick="toggleAll(this)"><?= __("Toggle all checkboxes") ?></button>
 							</div>
 						</div>

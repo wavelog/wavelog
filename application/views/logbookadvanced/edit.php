@@ -45,6 +45,8 @@
 				<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
 				<option value="dclsent"><?= __("DCL Sent"); ?></option>
 				<option value="dclreceived"><?= __("DCL Received"); ?></option>
+				<option value="srrsent"><?= __("award.srr Sent"); ?></option>
+				<option value="srrreceived"><?= __("award.srr Received"); ?></option>
 				<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 				<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
 				<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
@@ -201,6 +203,12 @@
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editSrr"  name="srr">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editEqsl"  name="eqsl">

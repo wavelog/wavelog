@@ -157,6 +157,7 @@
             \"qth\":{\"show\":\"true\"},
             \"frequency\":{\"show\":\"true\"},
             \"dcl\":{\"show\":\"true\"},
+            \"srr\":{\"show\":\"true\"},
             \"last_modification\":{\"show\":\"false\"},
             \"duration\":{\"show\":\"false\"},
         }";
@@ -269,6 +270,10 @@
     }
     if (!isset($current_opts->dcl)) {
         echo "\nvar o_template = { dcl: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->srr)) {
+        echo "\nvar o_template = { srr: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
     if (!isset($current_opts->last_modification)) {
@@ -720,6 +725,24 @@ $options = json_decode($options);
                                             <option value="I"><?= __("Invalid (Ignore)"); ?></option>
                                         </select>
                                     </div>
+                                    <div <?php if (($options->srr->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                                        <label for="srrSent"><?= __("award.srr sent"); ?></label>
+                                        <select id="srrSent" name="srrSent" class="form-select form-select-sm border border-secondary filter-field">
+                                            <option value=""><?= __("All"); ?></option>
+                                            <option value="Y"><?= __("Yes"); ?></option>
+                                            <option value="N"><?= __("No"); ?></option>
+                                            <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                                        </select>
+                                    </div>
+                                    <div <?php if (($options->srr->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                                        <label for="srrReceived"><?= __("award.srr received"); ?></label>
+                                        <select id="srrReceived" name="srrReceived" class="form-select form-select-sm border border-secondary filter-field">
+                                            <option value=""><?= __("All"); ?></option>
+                                            <option value="Y"><?= __("Yes"); ?></option>
+                                            <option value="N"><?= __("No"); ?></option>
+                                            <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                                        </select>
+                                    </div>
 								</div>
                                 <div class="row">
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -987,6 +1010,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->dcl->show ?? "true") == "true") {
                         echo '<th>' . __("DCL") . '</th>';
+                    } ?>
+                    <?php if (($options->srr->show ?? "true") == "true") {
+                        echo '<th>' . __("award.srr") . '</th>';
                     } ?>
                     <?php if (($options->qslmsgs->show ?? "false") == "true") {
                         echo '<th>' . __("QSL Msg (S)") . '</th>';

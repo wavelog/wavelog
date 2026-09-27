@@ -142,6 +142,8 @@ class Logbookadvanced extends CI_Controller {
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
 			'dclSent' => xss_clean($this->input->post('dclSent')),
 			'dclReceived' => xss_clean($this->input->post('dclReceived')),
+			'srrSent' => xss_clean($this->input->post('srrSent')),
+			'srrReceived' => xss_clean($this->input->post('srrReceived')),
 			'clublogSent' => xss_clean($this->input->post('clublogSent')),
 			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
@@ -387,6 +389,8 @@ class Logbookadvanced extends CI_Controller {
 			'eqslReceived' => '',
 			'dclSent' => '',
 			'dclReceived' => '',
+			'srrSent' => '',
+			'srrReceived' => '',
 			'clublogSent' => '',
 			'clublogReceived' => '',
 			'qslvia' => '*',
@@ -641,6 +645,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qth']['show'] = $this->def_boolean($this->input->post('qth'));
 		$json_string['frequency']['show'] = $this->def_boolean($this->input->post('frequency'));
 		$json_string['dcl']['show'] = $this->def_boolean($this->input->post('dcl'));
+		$json_string['srr']['show'] = $this->def_boolean($this->input->post('srr'));
 		$json_string['last_modification']['show'] = $this->def_boolean($this->input->post('last_modification'));
 		$json_string['duration']['show'] = $this->def_boolean($this->input->post('duration'));
 

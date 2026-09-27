@@ -850,6 +850,15 @@ $config['enable_eqsl_massdownload'] = false;
 
 /*
 |--------------------------------------------------------------------------
+| Enable award.srr Interface
+| Set this to true if your Users and you want to connect your instance to award.srr.ru
+|--------------------------------------------------------------------------
+ */
+
+ $config['enable_srr_interface'] = true;
+
+/*
+|--------------------------------------------------------------------------
 | DXCluster File Cache
 |--------------------------------------------------------------------------
 |

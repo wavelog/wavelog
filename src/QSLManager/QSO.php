@@ -78,6 +78,7 @@ class QSO
 	private string $clublog;
 	private string $qrz;
 	private string $dcl;
+	private string $srr;
 	/** Lotw callsign info **/
 	private string $callsign;
 	private string $lastupload;
@@ -103,6 +104,10 @@ class QSO
 	private string $dcl_qsl_rcvd;
 	private ?DateTime $dcl_qslsdate;
 	private string $dcl_qsl_sent;
+	private ?DateTime $srr_qslrdate;
+	private string $srr_qsl_rcvd;
+	private ?DateTime $srr_qslsdate;
+	private string $srr_qsl_sent;
 	private string $morse_key_info;
 	private string $morse_key_type;
 	private string $qslmsg_rcvd;
@@ -249,6 +254,10 @@ class QSO
 		$this->dcl_qslrdate = ($data['COL_DCL_QSLRDATE'] === null) ? null : DateTime::createFromFormat("Y-m-d H:i:s", $data['COL_DCL_QSLRDATE'], new DateTimeZone('UTC'));
 		$this->dcl_qsl_sent = $data['COL_DCL_QSL_SENT'] ?? '';
 		$this->dcl_qslsdate = ($data['COL_DCL_QSLSDATE'] === null) ? null : DateTime::createFromFormat("Y-m-d H:i:s", $data['COL_DCL_QSLSDATE'], new DateTimeZone('UTC'));
+		$this->srr_qsl_rcvd = $data['COL_SRR_QSL_RCVD'] ?? '';
+		$this->srr_qslrdate = ($data['COL_SRR_QSLRDATE'] === null) ? null : DateTime::createFromFormat("Y-m-d H:i:s", $data['COL_SRR_QSLRDATE'], new DateTimeZone('UTC'));
+		$this->srr_qsl_sent = $data['COL_SRR_QSL_SENT'] ?? '';
+		$this->srr_qslsdate = ($data['COL_SRR_QSLSDATE'] === null) ? null : DateTime::createFromFormat("Y-m-d H:i:s", $data['COL_SRR_QSLSDATE'], new DateTimeZone('UTC'));
 		$this->morse_key_info = $data['COL_KEY_INFO'] ?? '';
 		$this->morse_key_type = $data['COL_MORSE_KEY_TYPE'] ?? '';
 		$this->qslmsg_rcvd = $data['COL_QSLMSG_RCVD'] ?? '';
@@ -259,6 +268,7 @@ class QSO
 		$this->clublog = $this->getClublogString($data, $custom_date_format);
 		$this->qrz = $this->getQrzString($data, $custom_date_format);
 		$this->dcl = $this->getDclString($data, $custom_date_format);
+		$this->srr = $this->getSrrString($data, $custom_date_format);
 
 		$this->cqzone = $data['COL_CQZ'] === null ? '' : $this->getCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] === null ? '' : $this->getItuLink($data['COL_ITUZ']);
@@ -712,6 +722,68 @@ class QSO
 			}
 			$dclstring .= '">&#9660;</span>';
 		return $dclstring;
+	}
+
+	/**
+	 * @return string
+	 */
+	function getSrrString($data, $custom_date_format): string {
+		$srrstring = '<span ';
+
+		if ($data['COL_SRR_QSL_SENT'] != "N") {
+			switch ($data['COL_SRR_QSL_SENT']) {
+			case "Y":
+				$srrstring .= "class=\"qrz-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
+				break;
+			case "Q":
+				$srrstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+				break;
+			case "R":
+				$srrstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+				break;
+			case "I":
+				$srrstring .= "class=\"qrz-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+				break;
+			default:
+			$srrstring .= "class=\"qrz-red";
+				break;
+			}
+			if ($data['COL_SRR_QSLSDATE'] != null) {
+				$timestamp = strtotime($data['COL_SRR_QSLSDATE']);
+				$srrstring .= " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+			}
+		} else {
+			$srrstring .= "class=\"qrz-red";
+		}
+			$srrstring .= '">&#9650;</span><span ';
+
+			if ($data['COL_SRR_QSL_RCVD'] != "N") {
+				switch ($data['COL_SRR_QSL_RCVD']) {
+					case "Y":
+						$srrstring .= "class=\"qrz-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
+					break;
+					case "Q":
+						$srrstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+					break;
+					case "R":
+						$srrstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+					break;
+					case "I":
+						$srrstring .= "class=\"qrz-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+					break;
+					default:
+					$srrstring .= "class=\"qrz-red";
+					break;
+				}
+				if ($data['COL_SRR_QSLRDATE'] != null) {
+					$timestamp = strtotime($data['COL_SRR_QSLRDATE']);
+					$srrstring .= " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+				}
+			} else {
+				$srrstring .= "class=\"qrz-red";
+			}
+			$srrstring .= '">&#9660;</span>';
+		return $srrstring;
 	}
 
 	function getQrzString($data, $custom_date_format): string {
@@ -1255,6 +1327,14 @@ class QSO
 	/**
 	 * @return string
 	 */
+	public function getsrr(): string
+	{
+		return $this->srr;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getqrz(): string
 	{
 		return $this->qrz;
@@ -1335,6 +1415,7 @@ class QSO
 			'clublog' => $this->getclublog(),
 			'qrz' => $this->getqrz(),
 			'dcl' => $this->getdcl(),
+			'srr' => $this->getsrr(),
 			'qslMessage' => $this->getQSLMsg(),
 			'qslMessageR' => $this->getQSLMsgRcvd(),
 			'name' => $this->getName(),

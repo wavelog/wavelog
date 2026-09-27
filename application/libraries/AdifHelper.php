@@ -110,7 +110,9 @@ class AdifHelper {
 			'MORSE_KEY_TYPE',
 			'QSLMSG_RCVD',
 			'DCL_QSL_RCVD',
-			'DCL_QSL_SENT'
+			'DCL_QSL_SENT',
+			'SRR_QSL_RCVD',
+			'SRR_QSL_SENT'
 		);
 
 		$dateFields = array(
@@ -125,7 +127,9 @@ class AdifHelper {
 			'QRZCOM_QSO_UPLOAD_DATE',
 			'QRZCOM_QSO_DOWNLOAD_DATE',
 			'DCL_QSLRDATE',
-			'DCL_QSLSDATE'
+			'DCL_QSLSDATE',
+			'SRR_QSLRDATE',
+			'SRR_QSLSDATE'
 		);
 
 	/**

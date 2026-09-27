@@ -456,6 +456,7 @@ class WPX extends CI_Model {
 			(($postdata['lotw'] ?? '') != '') ||
 			(($postdata['qsl'] ?? '') != '') ||
 			(($postdata['dcl'] ?? '') != '') ||
+			(($postdata['srr'] ?? '') != '') ||
 			(($postdata['eqsl'] ?? '') != '') ) {
 			$sql .= ' and (';
 			if (($postdata['qsl'] ?? '') != '') {
@@ -475,6 +476,9 @@ class WPX extends CI_Model {
 			}
 			if (($postdata['dcl'] ?? '') != '') {
 				array_push($qsl, "COL_DCL_QSL_RCVD = 'Y'");
+			}
+			if (($postdata['srr'] ?? '') != '') {
+				array_push($qsl, "COL_SRR_QSL_RCVD = 'Y'");
 			}
 			if (count($qsl) > 0) {
 				$sql .= implode(' or ', $qsl);

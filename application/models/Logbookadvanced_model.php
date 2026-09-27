@@ -451,6 +451,24 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = $condition;
 			$binding[] = $searchCriteria['dclReceived'];
 		}
+		if ($searchCriteria['srrSent'] !== '') {
+			$condition = "COL_SRR_QSL_SENT = ?";
+			if ($searchCriteria['srrSent'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_SRR_QSL_SENT IS NULL OR COL_SRR_QSL_SENT = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['srrSent'];
+		}
+		if ($searchCriteria['srrReceived'] !== '') {
+			$condition = "COL_SRR_QSL_RCVD = ?";
+			if ($searchCriteria['srrReceived'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_SRR_QSL_RCVD IS NULL OR COL_SRR_QSL_RCVD = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['srrReceived'];
+		}
 
 		if ($searchCriteria['qrzSent'] !== '') {
 			$condition = "COL_QRZCOM_QSO_UPLOAD_STATUS = ?";
@@ -1227,6 +1245,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "eqslreceived": $column = 'COL_EQSL_QSL_RCVD'; break;
 			case "dclsent": $column = 'COL_DCL_QSL_SENT'; break;
 			case "dclreceived": $column = 'COL_DCL_QSL_RCVD'; break;
+			case "srrsent": $column = 'COL_SRR_QSL_SENT'; break;
+			case "srrreceived": $column = 'COL_SRR_QSL_RCVD'; break;
 			case "stationpower": $column = 'COL_TX_PWR'; break;
 			case "clublogsent": $column = 'COL_CLUBLOG_QSO_UPLOAD_STATUS'; break;
 			case "clublogreceived": $column = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS'; break;
@@ -1449,6 +1469,22 @@ class Logbookadvanced_model extends CI_Model {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_DCL_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_DCL_QSLRDATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_SRR_QSL_SENT') {
+			$skipqrzupdate = true;
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_SRR_QSL_SENT = ?, " . $this->config->item('table_name').".COL_SRR_QSLSDATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_SRR_QSL_RCVD') {
+			$skipqrzupdate = true;
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_SRR_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_SRR_QSLRDATE = now()" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
@@ -1862,6 +1898,8 @@ class Logbookadvanced_model extends CI_Model {
 			'COL_HRDLOG_QSO_UPLOAD_STATUS', 'COL_HRDLOG_QSO_UPLOAD_DATE',
 			'COL_DCL_QSL_SENT', 'COL_DCL_QSL_RCVD',
 			'COL_DCL_QSLSDATE', 'COL_DCL_QSLRDATE',
+			'COL_SRR_QSL_SENT', 'COL_SRR_QSL_RCVD',
+			'COL_SRR_QSLSDATE', 'COL_SRR_QSLRDATE',
 			'COL_OPERATOR', 'COL_OWNER_CALLSIGN', 'COL_STATION_CALLSIGN',
 			'COL_MY_DXCC', 'COL_MY_COUNTRY', 'COL_MY_STATE',
 			'COL_MY_CNTY', 'COL_MY_CNTY_ALT', 'COL_MY_CQ_ZONE', 'COL_MY_ITU_ZONE',

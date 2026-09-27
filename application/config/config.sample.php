@@ -851,6 +851,15 @@ $config['max_login_attempts'] = 3;
 
 /*
 |--------------------------------------------------------------------------
+| Enable award.srr Interface
+| Set this to true if your Users and you want to connect your instance to award.srr.ru
+|--------------------------------------------------------------------------
+ */
+
+ $config['enable_srr_interface'] = true;
+
+/*
+|--------------------------------------------------------------------------
 | DXCluster File Cache
 |--------------------------------------------------------------------------
 |

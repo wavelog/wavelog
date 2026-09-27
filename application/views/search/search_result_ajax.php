@@ -126,6 +126,9 @@ $ci =& get_instance();
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false  ) { ?>
                     <th><?= __("DCL"); ?></th>
                 <?php } ?>
+		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'S') !== false  ) { ?>
+                    <th><?= __("award.srr"); ?></th>
+                <?php } ?>
             <?php } ?>
                 <th><?= __("Station"); ?></th>
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
@@ -432,6 +435,42 @@ $ci =& get_instance();
                 }
                 echo ' class="dcl-';
                 echo ($row->COL_DCL_QSL_RCVD=='Y')?'green':'red';
+                echo '">&#9660;</span>';
+                echo '</td>';
+                } ?>
+
+		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'S') !== false  ) {
+                echo '<td style=\'text-align: center\' class="srr">';
+                echo '<span ';
+                if ($row->COL_SRR_QSL_SENT == "Y") {
+                   echo "title=\"award.srr ".__("Sent");
+                   if ($row->COL_SRR_QSLSDATE != null) {
+                     $timestamp = strtotime($row->COL_SRR_QSLSDATE);
+                     echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                   }
+                   echo "\" data-bs-toggle=\"tooltip\"";
+                }
+                echo ' class="srr-';
+       		if ($row->COL_SRR_QSL_SENT=='Y') {
+			echo "green";
+		} elseif ($row->COL_SRR_QSL_SENT=='M') {
+			echo "yellow";
+		} else {
+			echo "red";
+		}
+                echo '">&#9650;</span>';
+
+                echo '<span ';
+                if ($row->COL_SRR_QSL_RCVD == "Y") {
+                   echo "title=\"award.srr ".__("Received");
+                   if ($row->COL_SRR_QSLRDATE != null) {
+                      $timestamp = strtotime($row->COL_SRR_QSLRDATE);
+                      echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                   }
+                   echo "\" data-bs-toggle=\"tooltip\"";
+                }
+                echo ' class="srr-';
+                echo ($row->COL_SRR_QSL_RCVD=='Y')?'green':'red';
                 echo '">&#9660;</span>';
                 echo '</td>';
                 } ?>
