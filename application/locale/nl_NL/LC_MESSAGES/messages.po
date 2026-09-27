@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-26 08:28+0000\n"
-"PO-Revision-Date: 2026-09-15 14:40+0000\n"
+"PO-Revision-Date: 2026-09-28 08:54+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -601,7 +601,7 @@ msgstr "JCC"
 #: application/controllers/Awards.php:612 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:275
 msgid "JCG"
-msgstr ""
+msgstr "JCG"
 
 #: application/controllers/Awards.php:662 application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:208
@@ -2829,6 +2829,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Het certificaat in bestand %s bevat een wachtwoord en kan niet verwerkt "
+"worden. %sZorg ervoor dat je het LoTW-certificaat uit de tqsl-toepassing "
+"zonder wachtwoord exporteert!%s Voor meer informatie bezoek de %sLoTW FAQ-"
+"pagina%s in de Wavelog Wiki."
 
 #: application/controllers/Lotw.php:464
 #, php-format
@@ -2838,6 +2842,11 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Algemene fout bij het uitlezen van het certificaat uit het bestand %s. Als "
+"de bestandsnaam ‘key-only’ bevat, gaat het doorgaans om een "
+"certificaataanvraag die nog niet door LoTW is verwerkt. Ga voor meer "
+"informatie naar de %sLoTW-pagina met oplossingen voor problemen%s in de "
+"Wavelog Wiki."
 
 #: application/controllers/Lotw.php:471
 #, php-format
@@ -2845,6 +2854,9 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Algemene fout bij het verwerken van het certificaat in het bestand %s. Ga "
+"voor meer informatie naar de %sLoTW-pagina met oplossingen voor problemen%s "
+"in de Wavelog Wiki."
 
 #: application/controllers/Lotw.php:483
 #, php-format
@@ -2853,6 +2865,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Algemene fout bij het uitlezen van de privésleutel uit het certificaat in "
+"het bestand %s. Ga voor meer informatie naar de %sLoTW-pagina met "
+"oplossingen voor problemen%s in de Wavelog Wiki."
 
 #: application/controllers/Lotw.php:699
 msgid "LoTW ADIF Information"
@@ -3561,14 +3576,18 @@ msgstr "Geen voorkeuze beschikbaar"
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
 msgstr ""
+"Algemene fout bij het plaatsen van een bericht op hams.at. Controleer de "
+"ingevoerde waarden."
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
-msgstr ""
+msgstr "Fout bij het authenticeren bij hams.at. Controleer de API-sleutel."
 
 #: application/controllers/Satellite.php:659
 msgid "Generic error posting to hams.at. Please try again later."
 msgstr ""
+"Er is een algemene fout opgetreden bij het plaatsen op hams.at. Probeer het "
+"later nog eens."
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -4358,6 +4377,8 @@ msgstr "QO-100 Dx Club Upload"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"Afgewezen QSO’s zijn gereset. Ze worden bij de volgende upload opnieuw "
+"verwerkt."
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4422,10 +4443,14 @@ msgstr "Fout bij het verkrijgen van een sessiesleutel voor callbook. Fout: %s"
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
 msgstr ""
+"Algemene fout bij het opslaan van de sessiesleutel van het adresboek in de "
+"cache."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
 msgstr ""
+"Algemene fout bij het lezen van de in de cache opgeslagen sessiesleutel van "
+"het callbook."
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4953,78 +4978,92 @@ msgstr "VuccGrids-tabel is leeg. Importeer eerst de VUCC-gridsgegevens."
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Er is geen werkende adapter beschikbaar – de cache draait op het ‘dummy’-"
+"stuurprogramma dat geen actie uitvoert."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Adapter wordt niet ondersteund."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "De %s-adapter heeft een uitzondering gegenereerd: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "De PHP-extensie ‘%s’ is niet geladen."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "De cache directory is niet beschrijfbaar: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Redis-server niet bereikbaar – controleer de instellingen in application/"
+"config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Er reageerde geen Memcached-server – controleer de instellingen in "
+"application/config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu is geladen, maar kan niet worden gebruikt in deze PHP-interface "
+"(apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
 msgstr ""
+"Kan niet schrijven naar de cache directory %s – controleer de machtigingen."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
-msgstr ""
+msgstr "Schrijffout in Redis – server offline of maxmemory bereikt?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Memcached-schrijfbewerking mislukt – server offline?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "APCu-schrijfbewerking mislukt – gedeeld geheugen vol?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Schrijven is gelukt, maar lezen is mislukt – is de cache directory leesbaar?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"Schrijven is gelukt, maar lezen is mislukt – is de sleutel door Redis "
+"verwijderd?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Het schrijven is gelukt, maar het lezen is mislukt."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
+"De testsleutel kon niet worden verwijderd – controleer de machtigingen/"
+"toegangsrechten."
 
 #: application/models/Eqslmethods_model.php:270
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "Lege reactie van eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
@@ -9198,7 +9237,7 @@ msgstr ""
 
 #: application/views/awards/jcg/index.php:11
 msgid "JCG - Japan Century Gun/County Award"
-msgstr ""
+msgstr "JCG - Japan Century Gun/County Award"
 
 #: application/views/awards/jcg/index.php:12
 msgid ""
@@ -9207,30 +9246,41 @@ msgid ""
 "received a QSL card from an amateur station located in each of a number of "
 "different guns of Japan."
 msgstr ""
+"Aanvullende onderscheiding voor JCG, die betrekking heeft op de Japanse „gun"
+"“ (districten) en vergelijkbare plattelandsgebieden, in plaats van op "
+"steden. Wordt toegekend aan wie contact heeft gelegd (ontvangen) en een QSL-"
+"kaart heeft ontvangen van een amateurstation dat zich in elk van een aantal "
+"verschillende „gun“ in Japan bevindt."
 
 #: application/views/awards/jcg/index.php:13
 msgid ""
 "A list of QSL cards should be arranged in order of JCG reference number, "
 "however names of gun may be omitted."
 msgstr ""
+"Een lijst met QSL-kaarten moet worden gerangschikt op JCG-referentienummer, "
+"maar de namen van de \"gun\" mogen worden weggelaten."
 
 #: application/views/awards/jcg/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "JCG reference!)"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Japan) en County (Moet een geldige "
+"referentie bevatten!)"
 
 #: application/views/awards/jcg/index.php:39
 msgid "Show JCG Map"
-msgstr ""
+msgstr "Toon JCG-kaart"
 
 #: application/views/awards/jcg/index.php:183
 msgid "JCG progress"
-msgstr ""
+msgstr "JCG voortgang"
 
 #: application/views/awards/jcg/index.php:199
 msgid "No worked or confirmed JCG slots match the current filters."
 msgstr ""
+"Er zijn geen gewerkte of bevestigde JCG-slots die overeenkomen met de "
+"huidige filters."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -9805,24 +9855,24 @@ msgstr ""
 
 #: application/views/awards/wab/index.php:21
 msgid "Squares by DXCC"
-msgstr ""
+msgstr "Locatorvakken per DXCC"
 
 #: application/views/awards/wab/index.php:22
 #: application/views/awards/wab/index.php:44
 msgid "Go to square"
-msgstr ""
+msgstr "Ga naar locatorvak"
 
 #: application/views/awards/wab/index.php:23
 msgid "WAB square not found"
-msgstr ""
+msgstr "WAB locatorvak niet gevonden"
 
 #: application/views/awards/wab/index.php:34
 msgid "View a map of worked / confirmed WAB squares"
-msgstr ""
+msgstr "Bekijk een kaart met bewerkte / bevestigde WAB locatorvakken"
 
 #: application/views/awards/wab/index.php:43
 msgid "WAB square"
-msgstr ""
+msgstr "WAB locatorvak"
 
 #: application/views/awards/wab/index.php:171
 msgid "List"
@@ -15292,10 +15342,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s en %s zijn verouderd en zullen in Wavelog Worker 1.0.0 worden verwijderd. "
+"Stel in plaats daarvan %s in je worker-configuratie in."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Tot die tijd blijft alles gewoon werken."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15473,11 +15525,11 @@ msgstr "Aantal sleutels"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Retourtest (schrijven – lezen – verwijderen)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Functioneert"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -16008,7 +16060,7 @@ msgstr "De gebruiker heeft geen extra bericht ingevoerd."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "Opgevraagde QSO's"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -16029,7 +16081,7 @@ msgstr "QSL-route"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "DX Roepletters"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
