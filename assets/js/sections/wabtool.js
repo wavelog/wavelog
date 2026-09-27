@@ -1,18 +1,10 @@
 // WAB from Gridsquare tool: batch assign WAB squares from logged gridsquares
 // (functions are prefixed wabtool* because section scripts share the global scope)
-//
-// The preview table is a server-side DataTable: the candidate set can reach
-// log size (tens of thousands of rows), so only one page is ever fetched
-// and rendered. Selection state lives in wabtoolSelected (per id) plus the
-// wabtoolAllMatching flag ("apply everything the scan matches"). The
-// wabtoolOnlyFull flag filters the scan server side down to "100% matches"
-// (grids fully inside one WAB square); select-all and the bulk apply
-// follow that filter.
 
 var wabtoolTable = null; // DataTables API instance of the preview table
 var wabtoolSelected = {}; // qso id -> 1, rows checked by the user
 var wabtoolAllMatching = false; // apply every matching QSO, not just checked ones
-var wabtoolOnlyFull = false; // only gridsquares fully inside a single WAB square
+var wabtoolOnlyFull = true; // only gridsquares fully inside a single WAB square; on by default
 var wabtoolRecordsFiltered = 0; // rows matching the current table filter
 var wabtoolSummaryPending = false; // request the one-time scan summary on the next ajax
 
@@ -42,7 +34,7 @@ function wabtoolRenderSummary(summary) {
 		}
 		html += '</p>';
 	}
-	html += '<button type="button" class="btn btn-sm btn-outline-success mb-2 me-2" id="wabtoolOnlyFull" data-bs-toggle="tooltip" title="Hide gridsquares that straddle a WAB square boundary (or fall outside WAB coverage)">Only 100% matches</button>';
+	html += '<button type="button" class="btn btn-sm btn-outline-success mb-2 me-2' + (wabtoolOnlyFull ? ' active' : '') + '" id="wabtoolOnlyFull" aria-pressed="' + wabtoolOnlyFull + '" data-bs-toggle="tooltip" title="Hide gridsquares that straddle a WAB square boundary (or fall outside WAB coverage)">Only 100% matches</button>';
 	html += '<button type="button" class="btn btn-sm btn-outline-primary mb-2" id="wabtoolSelectAllMatching"></button>';
 	$('.wabtool-summary').html(html);
 	$('#wabtoolOnlyFull').tooltip();
@@ -138,7 +130,7 @@ function wabtoolInitTable() {
 					}
 					// sat QSOs: show the satellite instead of the bare 'SAT' band
 					if (row.sat) {
-						return '<a href="https://db.satnogs.org/search/?q=' + wabtoolEscapeHtml(row.sat) + '" target="_blank">' + wabtoolEscapeHtml(row.sat) + '</a>';
+						return wabtoolEscapeHtml(row.sat);
 					}
 					return wabtoolEscapeHtml(data);
 				}
@@ -194,13 +186,20 @@ function wabtoolInitTable() {
 		}
 		wabtoolRecordsFiltered = json.recordsFiltered || 0;
 
+		// the apply button tracks the current filter on every response, not
+		// just the one carrying the summary
+		$('#applyWab').toggleClass('d-none', json.recordsTotal === 0);
+
 		if (json.summary !== undefined) {
 			if (json.recordsTotal > 0) {
 				wabtoolRenderSummary(json.summary);
-				$('#applyWab').removeClass('d-none');
+			} else if (wabtoolOnlyFull) {
+				// everything was filtered out: keep the summary rendered so
+				// the filter switch stays reachable
+				wabtoolRenderSummary(json.summary);
+				$('.wabtool-summary').prepend('<div class="alert alert-info mb-2">No 100% matching QSOs &mdash; switch off &quot;Only 100% matches&quot; to see all candidates.</div>');
 			} else {
 				$('.wabtool-summary').html('<div class="alert alert-info mb-2">No QSOs found that need a WAB square.</div>');
-				$('#applyWab').addClass('d-none');
 			}
 		}
 		wabtoolUpdateSelectAllButton();
@@ -260,7 +259,7 @@ function wabtoolStartScan(clearApplyResult) {
 
 	wabtoolSelected = {};
 	wabtoolAllMatching = false;
-	wabtoolOnlyFull = false;
+	wabtoolOnlyFull = true; // the list opens on "only 100% matches"
 	wabtoolRecordsFiltered = 0;
 	wabtoolSummaryPending = true;
 
@@ -331,6 +330,24 @@ function wabtoolRenderMap(data, dialog) {
 	L.marker([data.lat, data.lng]).addTo(map).bindPopup(
 		'<b>' + wabtoolEscapeHtml(data.grid) + '</b><br>WAB: ' + (data.square ? wabtoolEscapeHtml(data.square) : '&mdash;')
 	).openPopup();
+
+	// legend for the outlines (swatch styles mirror the layer styles above);
+	// the corner-squares row only appears when the grid straddles a boundary
+	var hasCornerSquares = (data.features || []).some(function(feature) {
+		return feature.properties.role === 'corner';
+	});
+	var legend = L.control({ position: 'topright' });
+	legend.onAdd = function() {
+		var div = L.DomUtil.create('div', 'legend');
+		var html = '<table border="0">'
+			+ '<tr><td><i style="border:2px solid #2196f3; background:rgba(33,150,243,0.15)"></i><span>Assigned WAB square</span></td></tr>'
+			+ (hasCornerSquares ? '<tr><td><i style="border:2px dashed #ff9800; background:rgba(255,152,0,0.1)"></i><span>Corner squares</span></td></tr>' : '')
+			+ '<tr><td><i style="border:2px dashed #ff4136; background:rgba(255,65,54,0.08)"></i><span>Gridsquare</span></td></tr>'
+			+ '</table>';
+		div.innerHTML = html;
+		return div;
+	};
+	legend.addTo(map);
 
 	var fitBounds = gridBounds;
 	try { fitBounds = fitBounds.extend(squareLayer.getBounds()); } catch (e) { /* no square features */ }
