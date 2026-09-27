@@ -10,20 +10,17 @@ class Wabtool extends CI_Controller {
 	private $gridCache = array(); // uppercased grid => resolveGrid() result
 	private $bins = null; // 'latCell:lngCell' bin key => [square names]
 
-	// ADIF DXCC entity numbers valid for WAB: G England, GI Northern Ireland,
-	// GJ Jersey, GM Scotland, GD Isle of Man, GU Guernsey, GW Wales.
-	// The entity numbers also cover the regional call areas (M/2E, MM, MW, ...).
+	// ADIF DXCC entity numbers valid for WAB (G, GI, GJ, GM, GD, GU, GW,
+	// including their regional call areas M/2E, MM, MW, ...)
 	private $wabDxccIds = array(223, 265, 122, 279, 114, 106, 294);
 
-	// Adjacent square outlines in the source data do not share exact vertices,
-	// leaving slivers a few metres wide between them. Points falling into a
-	// sliver snap to the nearest ring within this distance.
+	// adjacent rings in the source data leave slivers a few metres wide;
+	// points in a sliver snap to the nearest ring within this distance
 	const SNAP_METERS = 50;
 	const SNAP_BBOX_DEGREES = 0.001;
 
-	// Spatial bin size (degrees) for square lookups: every square is
-	// registered in each bin its padded bbox overlaps, so a point lookup only
-	// tests the handful of squares registered in the point's own bin
+	// spatial bin size (degrees); a point lookup only tests the squares
+	// registered in the point's own bin
 	const BIN_LNG = 0.25;
 	const BIN_LAT = 0.25;
 
@@ -48,14 +45,9 @@ class Wabtool extends CI_Controller {
 	}
 
 	/*
-	 * AJAX: one page of QSOs with a gridsquare (>= 6 chars) but no WAB
-	 * square, resolved against the WAB square outlines in wab_geojson.js.
-	 * Speaks the DataTables server-side protocol (draw/start/length/order/
-	 * search) so the log-scale candidate set is never sent in one piece.
-	 * When only_full is posted, rows are limited to "100% matches": grids
-	 * that resolve unambiguously to a single WAB square.
-	 * When wabtool_summary is posted (initial scan only), the response also
-	 * carries a whole-log summary computed per distinct grid.
+	 * AJAX: one page of gridsquare candidates as DataTables server-side JSON.
+	 * only_full limits rows to "100% matches" (single-square grids);
+	 * wabtool_summary (initial scan) adds a whole-log summary per grid.
 	 */
 	public function scan() {
 		set_time_limit(3600);
@@ -169,12 +161,10 @@ class Wabtool extends CI_Controller {
 
 	/*
 	 * AJAX: write the WAB square into the selected QSOs. Squares are always
-	 * recomputed server side; ownership and the empty-SIG policy are re-checked.
-	 * ids is either a JSON array of primary keys (page/manual selection) or
-	 * the literal string 'ALL' for "everything the scan matches": then the
-	 * candidate set is enumerated server side (station_id + search +
-	 * only_full mirror the scan request), so the client never has to ship
-	 * thousands of ids.
+	 * recomputed server side; ownership, confirmation state and the empty-SIG
+	 * policy are re-checked. ids is a JSON array of primary keys or the
+	 * literal 'ALL' (candidates enumerated server side, mirroring the scan
+	 * filters, so the client never ships thousands of ids).
 	 */
 	public function apply() {
 		set_time_limit(3600);
@@ -368,27 +358,9 @@ class Wabtool extends CI_Controller {
 		$this->bins = array();
 		$this->globalBbox = null;
 
-		$file = 'assets/js/sections/wab_geojson.js';
-		$mtime = @filemtime(FCPATH . $file);
-		$size = ($mtime !== false) ? @filesize(FCPATH . $file) : false;
-		$cacheKey = 'wabtool_geoindex_v1_' . md5($file . '|' . $mtime . '|' . $size);
-
-		$this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file',
-			'backup' => $this->config->item('cache_backup') ?? 'file',
-			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-		]);
-
-		$cached = $this->cache->get($cacheKey);
-		if (is_array($cached) && isset($cached['squares'], $cached['bins']) && is_array($cached['bbox'])) {
-			$this->wabIndex = $cached['squares'];
-			$this->bins = $cached['bins'];
-			$this->globalBbox = $cached['bbox'];
-			return;
-		}
-
 		$this->load->library('geojson');
-		$geojson = $this->geojson->loadGeoJsonFile($file);
+
+		$geojson = $this->geojson->loadGeoJsonFile('assets/js/sections/wab_geojson.js');
 
 		if (!is_array($geojson) || !isset($geojson['features'])) {
 			return;
@@ -443,12 +415,6 @@ class Wabtool extends CI_Controller {
 				}
 			}
 		}
-
-		$this->cache->save($cacheKey, array(
-			'squares' => $this->wabIndex,
-			'bins' => $this->bins,
-			'bbox' => $this->globalBbox,
-		), 60 * 60 * 24 * 7);
 	}
 
 	/*

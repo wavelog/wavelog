@@ -105,10 +105,9 @@ class Wab extends CI_Model {
 	}
 
 	/*
-	 * Function returns one row per WAB QSO, for the WAB list. Applies the
-	 * same band/sat/mode/orbit filters as getWabWorked(), but no
-	 * confirmation filter: the list shows every QSO with its own
-	 * confirmation state per QSL system.
+	 * Function returns one row per WAB QSO, for the WAB list. Same filters
+	 * as getWabWorked() but no confirmation filter: each row carries its own
+	 * per-QSL-system confirmation state.
 	 */
 	function get_wab_qsos($location_list, $postdata) {
 		$bindings=[];
@@ -155,12 +154,10 @@ class Wab extends CI_Model {
 	}
 
 	/*
-	 * WAB tool: shared WHERE for the candidate queries. QSOs with a
-	 * gridsquare (>= 6 chars) that have no SIG set (or are marked WAB with
-	 * an empty square). QSOs carrying another SIG (e.g. SOTA) are never
-	 * returned. $search filters on callsign and gridsquare. $full_grids,
-	 * when an array, restricts the rows to QSOs whose normalized grid is in
-	 * the list (the "100% match" filter; an empty array matches nothing).
+	 * WAB tool: shared WHERE for the candidate queries — gridsquare >= 6
+	 * chars and no foreign SIG (empty, or WAB with empty square). $search
+	 * filters callsign/grid; $full_grids (array) restricts to the given
+	 * normalized grids (empty array matches nothing).
 	 */
 	private function wab_candidates_sql($station_id, $dxcc_ids, $search, &$bindings, $full_grids = null) {
 		$sql = "from " . $this->config->item('table_name') . " thcv
@@ -201,11 +198,9 @@ class Wab extends CI_Model {
 	}
 
 	/*
-	 * WAB tool: candidate rows for the paginated scan table. $order_col is
-	 * the DataTables column index (1 = date/time, 2 = callsign, 3 = band,
-	 * 4 = grid, 6 = station); the checkbox and square columns are not
-	 * sortable server side. $limit/$offset page the result. A null $limit
-	 * returns everything (bulk apply).
+	 * WAB tool: candidate rows for the paginated scan table. $order_col is a
+	 * DataTables column index (see $sortable below); null $limit = everything
+	 * (bulk apply).
 	 */
 	function get_wab_candidates($station_id = null, $dxcc_ids = null, $search = '', $order_col = 1, $order_dir = 'desc', $limit = null, $offset = 0, $full_grids = null) {
 		$bindings=[];
@@ -232,10 +227,7 @@ class Wab extends CI_Model {
 		return $query;
 	}
 
-	/*
-	 * WAB tool: number of candidate rows (without/with the search filter),
-	 * for the DataTables recordsTotal / recordsFiltered counters
-	 */
+	// WAB tool: candidate row count, for recordsTotal / recordsFiltered
 	function count_wab_candidates($station_id = null, $dxcc_ids = null, $search = '', $full_grids = null) {
 		$bindings=[];
 		$sql = "select count(*) as n " . $this->wab_candidates_sql($station_id, $dxcc_ids, $search, $bindings, $full_grids);
@@ -264,11 +256,10 @@ class Wab extends CI_Model {
 		return $grids;
 	}
 
-/*
-	 * WAB tool: re-fetch candidate QSOs by primary key. Ownership, the
-	 * empty-SIG policy and the valid-DXCC check are re-applied so apply()
-	 * can recompute squares server side without trusting anything submitted
-	 * by the client.
+	/*
+	 * WAB tool: re-fetch candidates by primary key. Ownership, empty-SIG
+	 * policy and the DXCC check are re-applied, so apply() never trusts the
+	 * client-submitted id list.
 	 */
 	function get_wab_candidates_by_ids($ids, $user_station_ids, $dxcc_ids) {
 		$bindings=[];
