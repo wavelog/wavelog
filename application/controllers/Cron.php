@@ -54,8 +54,8 @@ class cron extends CI_Controller {
 		// This is the main function, which handles all crons, runs them if enabled and writes the 'next run' timestamp to the database
 
 		// Rate limit: this function may only be triggered once every minute. To prevent attack vectors we lock the cron runner for 30 seconds after it's last run.
-		$this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
 		]);
@@ -356,7 +356,7 @@ class cron extends CI_Controller {
 
 		// Prevent manual and scheduled executions of the same cronjob from overlapping.
 		// Load cache driver for locking mechanism.
-		$this->load->driver('cache', [
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
 			'adapter' => $this->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''

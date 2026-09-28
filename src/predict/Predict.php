@@ -238,6 +238,7 @@ class Predict
                 $pass->maxel_az = 0.0;
                 $pass->vis      = '---';
                 $pass->satname  = $sat->nickname;
+                $pass->catnr    = $sat->catnr;
                 $pass->details  = array();
 
                 /* iterate over each time step */

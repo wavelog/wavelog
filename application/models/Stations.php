@@ -157,7 +157,7 @@ class Stations extends CI_Model {
 			'station_sig' =>  xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' =>  xss_clean(strtoupper($this->input->post('sig_info', true))),
 			'station_callsign' =>  str_replace('Ø', '0', trim(xss_clean(strtoupper($this->input->post('station_callsign', true))))),
-			'station_power' => is_numeric($this->input->post('station_power', true)) ? $this->input->post('station_power', true) : NULL,
+			'station_power' => is_numeric($this->input->post('station_power', true)) ? round((float) $this->input->post('station_power', true), 3) : NULL,
 			'station_dxcc' =>  $this->input->post('dxcc', true),
 			'station_cnty' =>  $county,
 			'station_cq' =>  $this->input->post('station_cq', true),
@@ -237,7 +237,7 @@ class Stations extends CI_Model {
 			'station_sig' => xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' => xss_clean(strtoupper($this->input->post('sig_info', true))),
 			'station_callsign' => str_replace('Ø', '0', trim(xss_clean(strtoupper($this->input->post('station_callsign', true))))),
-			'station_power' => is_numeric($this->input->post('station_power', true)) ? $this->input->post('station_power', true) : NULL,
+			'station_power' => is_numeric($this->input->post('station_power', true)) ? round((float) $this->input->post('station_power', true), 3) : NULL,
 			'station_dxcc' => $this->input->post('dxcc', true),
 			'station_cnty' =>  $county,
 			'station_cq' => $this->input->post('station_cq', true),
@@ -655,6 +655,24 @@ class Stations extends CI_Model {
 			}
 		}
 		return false;
+	}
+
+	public function get_station_refs($stationid) {
+		$sql = "SELECT `station_iota`, `station_sota`, `station_sig`, `station_sig_info`, `station_wwff`, `station_pota` FROM `station_profile` WHERE station_id = ?;";
+		$query = $this->db->query($sql, $stationid);
+		if($query->num_rows() >= 1) {
+			$row = $query->row(); // only one result expected
+			return [
+				'iota' => $row->station_iota,
+				'sota' => $row->station_sota,
+				'sig' => $row->station_sig,
+				'sig_info' => $row->station_sig_info,
+				'wwff' => $row->station_wwff,
+				'pota' => $row->station_pota,
+			];
+		} else {
+			return null;
+		}
 	}
 }
 

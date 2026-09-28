@@ -246,6 +246,10 @@ class QSO extends CI_Controller {
 				$returner['adif'] = $saveresult['adif'];
 			}
 
+			if (!empty($saveresult['export_errors'])) {
+				$returner['export_errors'] = $saveresult['export_errors'];
+			}
+
 			header('Content-Type: application/json; charset=utf-8');
 			echo json_encode($returner);
 		}
@@ -330,7 +334,7 @@ class QSO extends CI_Controller {
 			'distance' => $this->input->post('distance', TRUE) ?? TRUE
 		];
 
-		$result = $this->logbook_model->create_qso($qso_data);
+		$result = $this->logbook_model->create_qso($qso_data, true, true);
 
 		return json_encode($result, JSON_PRETTY_PRINT);
 	}

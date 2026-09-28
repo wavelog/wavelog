@@ -2,6 +2,8 @@
 
 class Eqslmethods_model extends CI_Model {
 
+	const EQSL_UPLOAD_PARALLEL = 3;	// eQSL.cc is throttle-happy, keep the sliding window small
+
 	function sync() {
 
 		ini_set('memory_limit', '-1');
@@ -39,32 +41,22 @@ class Eqslmethods_model extends CI_Model {
 		}
 	}
 
+	/**
+	 * Uploads all pending eQSL QSOs of a user (used by cron) in parallel. Stops on errors.
+	 *
+	 * @param string $userid   User-ID whose QSOs are uploaded
+	 * @param string $username eQSL username (base callsign of the account)
+	 * @param string $password eQSL password of the account
+	 *
+	 * @return void
+	 */
 	function uploadUser($userid, $username, $password) {
 		$data['user_eqsl_name'] = $this->security->xss_clean($username);
 		$data['user_eqsl_password'] = $password;
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$qslsnotsent = $this->eqsl_not_yet_sent($clean_userid);
-
-		foreach ($qslsnotsent->result_array() as $qsl) {
-			$data['user_eqsl_name'] = $qsl['station_callsign'];
-			$adif = $this->generateAdif($qsl, $data);
-
-			$status = $this->uploadQso($adif, $qsl);
-
-			if ($status == 'Error') {
-				log_message('error', 'eQSL Error for '.$data['user_eqsl_name']);
-				break;
-			} elseif ($status == 'Nick Error') {
-				log_message('error', 'eQSL error for user '.$data['user_eqsl_name'].' with QTH Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile '.($qsl['eqsl_station_id'] ?? '').'. eQSL QTH Nickname will be removed from station location!');
-				$this->disable_eqsl_station_id($userid,$qsl['eqsl_station_id']);
-				break;
-			} elseif ($status == 'Login Error') {
-				log_message('error', 'eQSL credentials error (user, pass or QTH Nickname) for '.$data['user_eqsl_name'].'. Login will be disabled!');
-				$this->disable_eqsl_uid($userid);
-				break;
-			}
-		}
+		$this->uploadQsosParallel($qslsnotsent->result_array(), $data, $clean_userid);
 	}
 
 	// Build out the ADIF info string according to specs https://eqsl.cc/qslcard/ADIFContentSpecs.cfm
@@ -100,7 +92,7 @@ class Eqslmethods_model extends CI_Model {
 		$adifhead .= "%3A";
 		$adifhead .= strlen($data['user_eqsl_name']);
 		$adifhead .= "%3E";
-		$adifhead .= $data['user_eqsl_name'];
+		$adifhead .= rawurlencode($data['user_eqsl_name']);
 		$adifhead .= "%20";
 
 		$adifhead .= "%3C";
@@ -138,7 +130,7 @@ class Eqslmethods_model extends CI_Model {
 		$adif .= "%3A";
 		$adif .= strlen($qsl['COL_CALL']);
 		$adif .= "%3E";
-		$adif .= $qsl['COL_CALL'];
+		$adif .= rawurlencode($qsl['COL_CALL']);
 		$adif .= "%20";
 
 		$adif .= "%3C";
@@ -146,7 +138,7 @@ class Eqslmethods_model extends CI_Model {
 		$adif .= "%3A";
 		$adif .= strlen($qsl['COL_MODE']);
 		$adif .= "%3E";
-		$adif .= $qsl['COL_MODE'];
+		$adif .= rawurlencode($qsl['COL_MODE']);
 		$adif .= "%20";
 
 		if (isset($qsl['COL_SUBMODE'])) {
@@ -155,7 +147,7 @@ class Eqslmethods_model extends CI_Model {
 			$adif .= "%3A";
 			$adif .= strlen($qsl['COL_SUBMODE']);
 			$adif .= "%3E";
-			$adif .= $qsl['COL_SUBMODE'];
+			$adif .= rawurlencode($qsl['COL_SUBMODE']);
 			$adif .= "%20";
 		}
 
@@ -164,7 +156,7 @@ class Eqslmethods_model extends CI_Model {
 		$adif .= "%3A";
 		$adif .= strlen($qsl['COL_BAND']);
 		$adif .= "%3E";
-		$adif .= $qsl['COL_BAND'];
+		$adif .= rawurlencode($qsl['COL_BAND']);
 		$adif .= "%20";
 
 		# End all the required fields
@@ -196,7 +188,7 @@ class Eqslmethods_model extends CI_Model {
 			$adif .= "%3A";
 			$adif .= strlen($qsl['COL_SAT_NAME']);
 			$adif .= "%3E";
-			$adif .= str_replace('-', '%2D', $qsl['COL_SAT_NAME']);
+			$adif .= rawurlencode($qsl['COL_SAT_NAME']);
 			$adif .= "%20";
 		}
 
@@ -207,7 +199,7 @@ class Eqslmethods_model extends CI_Model {
 			$adif .= "%3A";
 			$adif .= strlen($qsl['COL_SAT_MODE']);
 			$adif .= "%3E";
-			$adif .= $qsl['COL_SAT_MODE'];
+			$adif .= rawurlencode($qsl['COL_SAT_MODE']);
 			$adif .= "%20";
 		}
 
@@ -229,7 +221,7 @@ class Eqslmethods_model extends CI_Model {
 			$adif .= "%3A";
 			$adif .= strlen($qsl['eqslqthnickname']);
 			$adif .= "%3E";
-			$adif .= $qsl['eqslqthnickname'];
+			$adif .= rawurlencode($qsl['eqslqthnickname']);
 			$adif .= "%20";
 		}
 
@@ -240,7 +232,7 @@ class Eqslmethods_model extends CI_Model {
 			$adif .= "%3A";
 			$adif .= strlen($qsl['station_gridsquare']);
 			$adif .= "%3E";
-			$adif .= $qsl['station_gridsquare'];
+			$adif .= rawurlencode($qsl['station_gridsquare']);
 			$adif .= "%20";
 		}
 
@@ -256,60 +248,54 @@ class Eqslmethods_model extends CI_Model {
 		return $adif;
 	}
 
-	function uploadQso($adif, $qsl) {
+	/**
+	 * Classifies a raw eQSL importADIF response and applies the matching state change
+	 * (mark sent/invalid, flashdata).
+	 *
+	 * @param string   $result Raw response incl. HTTP headers (CURLOPT_HEADER = 1)
+	 * @param array    $chi    curl_getinfo() array of the finished handle
+	 * @param array    $qsl    QSO row from eqsl_not_yet_sent()
+	 * @param resource $ch     cURL handle (still open, used for curl_error())
+	 *
+	 * @return string Status: Sent|Duplicate|Invalid|Login Error|Nick Error|Error|'' (uncaught)
+	 */
+	private function map_eqsl_response($result, $chi, $qsl, $ch) {
 		$status = "";
 
-		// begin script
-		$ch = curl_init();
-
-		// basic curl options for all requests
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-
-		// use the URL we built
-		curl_setopt($ch, CURLOPT_URL, $adif);
-
-		$result = curl_exec($ch);
-		$chi = curl_getinfo($ch);
-
-	/*  Time for some error handling
-			Things we might get back
-			Result: 0 out of 0 records added -> eQSL didn't understand the format
-			Result: 1 out of 1 records added -> Fantastic
-			Error: No match on eQSL_User/eQSL_Pswd -> eQSL credentials probably wrong
-			Warning: Y=2013 M=08 D=11 F6ARS 15M JT65 Bad record: Duplicate
-			Result: 0 out of 1 records added -> Dupe, OM!
-	 */
-
 		if ($chi['http_code'] == "200") {
-			if (stristr($result, "Result: 1 out of 1 records added")) {
+			// Strip headers and HTML tags to get the plain response body
+			$rawbody = (($_pos = strpos((string)$result, "\r\n\r\n")) !== false) ? substr((string)$result, $_pos + 4) : (string)$result;
+			$body = trim(preg_replace('/\s+/', ' ', strip_tags($rawbody)));
+			if ($body == '') {
+				$msg = __("Empty response from eQSL.cc!");
+				log_message('error', 'eQSL: Empty response at QSO-ID: '.$qsl['COL_PRIMARY_KEY']);
+				$this->session->set_flashdata('warning', $msg);
+				$status = "Error";
+			} elseif (stristr($result, "Result: 1 out of 1 records added")) {
 				$status = "Sent";
 				$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
+			} elseif (stristr($result, "Error: No match on eQSL_User/eQSL_Pswd")) {
+				$msg = __("Your eQSL username and/or password is incorrect.");
+				log_message('error', 'eQSL: '.$msg);
+				$this->session->set_flashdata('warning', $msg);
+				$status = "Login Error";
+			} elseif (stristr($result, "Result: 0 out of 0 records added")) {
+				$msg = __("Something went wrong with eQSL.cc!");
+				log_message('error', 'eQSL at QSO-ID: '.$qsl['COL_PRIMARY_KEY']); // No leftover-Debug, but Find the faulty QSO for not known errors!
+				$this->session->set_flashdata('warning', $msg);
+				$status = "Error";
+			} elseif (stristr($result, "Bad record: Duplicate")) {
+				$status = "Duplicate";
+				$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
+			} elseif (stristr($result, "Result: 0 out of 1 records added")) {
+				$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
+				$status = "Invalid";
+			} elseif (stristr($result, "No match on APP_EQSL_QTH_NICKNAME")) {
+				$msg = __("QTH Nickname does not exist at eQSL");
+				$this->session->set_flashdata('warning', $msg);
+				$status = "Nick Error";
 			} else {
-				if (stristr($result, "Error: No match on eQSL_User/eQSL_Pswd")) {
-					$msg = __("Your eQSL username and/or password is incorrect.");
-					log_message('error', 'eQSL: '.$msg);
-					$this->session->set_flashdata('warning', $msg);
-					$status = "Login Error";
-				} elseif (stristr($result, "Result: 0 out of 0 records added")) {
-					$msg = __("Something went wrong with eQSL.cc!");
-					log_message('error', 'eQSL at QSO-ID: '.$qsl['COL_PRIMARY_KEY']); // No leftover-Debug, but Find the faulty QSO for not known errors!
-					$this->session->set_flashdata('warning', $msg);
-					$status = "Error";
-				} elseif (stristr($result, "Bad record: Duplicate")) {
-					$status = "Duplicate";
-					$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
-				} elseif (stristr($result, "Result: 0 out of 1 records added")) {
-					$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
-					$status = "Invalid";
-				} elseif (stristr($result, "No match on APP_EQSL_QTH_NICKNAME")) {
-					$msg = __("QTH Nickname does not exist at eQSL");
-					$this->session->set_flashdata('warning', $msg);
-					$status = "Nick Error";
-				} else {
-					log_message("Error","eQSL: Uncaught exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']);
-				}
+				log_message("Error","eQSL: Uncaught exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']." Response: ".substr($body, -300));
 			}
 		} else {
 			if ($chi['http_code'] == "500") {
@@ -328,13 +314,143 @@ class Eqslmethods_model extends CI_Model {
 				$this->session->set_flashdata('warning', $msg);
 				$status = "Error";
 			} else {
-				log_message("Error","eQSL: Uncaught HTTP-exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']);
+				log_message("Error","eQSL: Uncaught HTTP-exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']." HTTP-Code: ".$chi['http_code']." cURL: ".curl_error($ch));
 				$msg = __("An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups");
 				$this->session->set_flashdata('warning', $msg);
 				$status= "Error";
 			}
 		}
+
 		return $status;
+	}
+
+	/**
+	 * Builds a cURL handle for a single eQSL importADIF GET request.
+	 *
+	 * @param string $adif Fully built request URL from generateAdif()
+	 *
+	 * @return resource cURL handle
+	 */
+	private function eqsl_upload_handle($adif) {
+		$ch = curl_init();
+
+		// basic curl options for all requests
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+		curl_setopt($ch, CURLOPT_URL, $adif);
+
+		return $ch;
+	}
+
+	/**
+	 * Uploads an array of pending eQSL QSOs in parallel (curl_multi, sliding window,
+	 * same pattern as the QRZ.com mass upload). Pre-flight checks the callsign and
+	 * marks invalid QSOs without sending them.
+	 * On Login Error / Nick Error the credentials or QTH nickname are disabled and
+	 * no further requests are queued (in-flight ones are still drained and classified).
+	 * Aborts after 3 uncaught responses to avoid hammering eQSL.
+	 *
+	 * @param array  $qsls   QSO rows from eqsl_not_yet_sent()
+	 * @param array  $data   Must contain user_eqsl_password; user_eqsl_name is overridden per QSO with the station callsign
+	 * @param string $userid User-ID used for disabling credentials/nickname on Login/Nick Error
+	 *
+	 * @return array Map of COL_PRIMARY_KEY => status string for all handled QSOs
+	 */
+	function uploadQsosParallel($qsls, $data, $userid) {
+		$this->load->model('logbook_model');
+
+		$statuses = array();
+		$queue = array();
+		foreach ($qsls as $qsl) {
+			// Pre-flight: a broken callsign would corrupt the whole eQSL request URL
+			if (!$this->logbook_model->is_valid_callsign($qsl['COL_CALL'])) {
+				log_message('error', 'eQSL: invalid COL_CALL "'.trim((string)$qsl['COL_CALL']).'" at QSO-ID '.$qsl['COL_PRIMARY_KEY'].' - marked invalid');
+				$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
+				$statuses[$qsl['COL_PRIMARY_KEY']] = 'Invalid';
+			} else {
+				// eQSL username changes for linked account.
+				// i.e. when operating /P it must be callsign/p
+				// the password, however, is always the same as the main account
+				$qsl_data = $data;
+				$qsl_data['user_eqsl_name'] = $qsl['station_callsign'];
+				$queue[] = array('adif' => $this->generateAdif($qsl, $qsl_data), 'qsl' => $qsl);
+			}
+		}
+
+		$queue_count = count($queue);
+		if ($queue_count == 0) {
+			return $statuses;
+		}
+
+		$mh = curl_multi_init();
+		$active_handles = array();
+		$queue_index = 0;
+		$aborted = false;
+		$uncaught = 0;
+
+		while ($queue_index < $queue_count && count($active_handles) < self::EQSL_UPLOAD_PARALLEL) {
+			$entry = $queue[$queue_index];
+			$ch = $this->eqsl_upload_handle($entry['adif']);
+			curl_multi_add_handle($mh, $ch);
+			$active_handles[(int)$ch] = array('ch' => $ch, 'qsl' => $entry['qsl']);
+			$queue_index++;
+		}
+
+		while (count($active_handles) > 0) {
+			curl_multi_exec($mh, $running);
+
+			while ($info = curl_multi_info_read($mh)) {
+				$ch = $info['handle'];
+				$entry = $active_handles[(int)$ch];
+				unset($active_handles[(int)$ch]);
+				curl_multi_remove_handle($mh, $ch);
+
+				$qsl = $entry['qsl'];
+				$result = curl_multi_getcontent($ch);
+				$chi = curl_getinfo($ch);
+				$status = $this->map_eqsl_response($result, $chi, $qsl, $ch);
+				$statuses[$qsl['COL_PRIMARY_KEY']] = $status;
+
+				if ($status == 'Login Error') {
+					log_message('error', 'eQSL credentials error (user, pass or QTH Nickname) for '.$qsl['station_callsign'].'. Login will be disabled!');
+					$this->disable_eqsl_uid($userid);
+					$aborted = true;
+				} elseif ($status == 'Nick Error') {
+					log_message('error', 'eQSL error for user '.$qsl['station_callsign'].' with QTH Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile '.($qsl['eqsl_station_id'] ?? '').'. eQSL QTH Nickname will be removed from station location!');
+					$this->disable_eqsl_station_id($userid, $qsl['eqsl_station_id']);
+					$aborted = true;
+				} elseif ($status == 'Error') {
+					log_message('error', 'eQSL Error for '.$qsl['station_callsign']);
+					$aborted = true;
+				} elseif ($status == '') {
+					$uncaught++;
+					if ($uncaught >= 3) {
+						log_message('error', 'eQSL: 3 uncaught responses for '.$qsl['station_callsign'].'. Aborting upload for this user to avoid hammering eQSL.');
+						$aborted = true;
+					}
+				} else {
+					$uncaught = 0;
+				}
+
+				if (!$aborted && $queue_index < $queue_count) {
+					$entry = $queue[$queue_index];
+					$new_ch = $this->eqsl_upload_handle($entry['adif']);
+					curl_multi_add_handle($mh, $new_ch);
+					$active_handles[(int)$new_ch] = array('ch' => $new_ch, 'qsl' => $entry['qsl']);
+					$queue_index++;
+				}
+			}
+
+			if (count($active_handles) > 0) {
+				curl_multi_select($mh, 1.0);
+			}
+		}
+
+		curl_multi_close($mh);
+
+		return $statuses;
 	}
 
 	function mark_all_as_sent() {

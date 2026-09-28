@@ -22,11 +22,7 @@ class TileLayer {
         $CI = &get_instance();
         $CI->load->model('themes_model');
 		$r =  $CI->themes_model->get_theme_mode($CI->optionslib->get_option('option_theme'));
-        if ($r == 'dark') {
-            $server =  'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
-        } else {
-            $server =  $CI->optionslib->get_option('option_map_tile_server');
-        }
+        $server =  $CI->options_model->item('map_tile_server') ?? \MaptileCache::DEFAULT_SERVER;
         $attribution = $CI->optionslib->get_option('option_map_tile_server_copyright');
         return new TileLayer($server, $attribution, $r);
     }
@@ -194,31 +190,43 @@ class TileLayer {
      * @throws \Exception
      */
     public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
-        $CI = &get_instance();
-        $namehash = substr(md5($x . $y . $z . $centerMap . $this->thememode), 0, 16);
-        $cacheKey = $namehash . ".png";
-        $cacheConfig = $CI->config->item('cache_path') == '' ? APPPATH . 'cache/' : $CI->config->item('cache_path');
-        $cacheDir = $cacheConfig . "tilecache/" . $z . "/" . $y . "/" . $x . "/";
-        $cachePath = $cacheDir . $cacheKey;
-    
-        if (!is_dir($cacheDir)) {
-            mkdir($cacheDir, 0755, true);
-        }
-    
-        if (file_exists($cachePath)) {
-            $tile = Image::fromPath($cachePath);
-        } else {
-            $tile = Image::fromCurl($this->getTileUrl($x, $y, $z), $this->curlOptions, $this->failCurlOnError);
-            $tile->savePNG($cachePath);
-        }
         if ($this->opacity == 0) {
             return Image::newCanvas($tileSize, $tileSize);
         }
-    
+
+        $CI = &get_instance();
+        $png = \MaptileCache::get($this->url, $z, (int)$x, (int)$y);
+
+        if ($png === false) {
+            $legacy = ($CI->config->item('cache_path') ?: APPPATH . 'cache/') . 'tilecache';
+            if (is_dir($legacy)) {
+                foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($legacy, \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::CHILD_FIRST) as $f) {
+                    $f->isDir() ? rmdir($f->getPathname()) : unlink($f->getPathname());
+                }
+                rmdir($legacy);
+                log_message('info', 'Removed legacy tilecache directory: ' . $legacy);
+            }
+            $tile = Image::fromCurl($this->getTileUrl($x, $y, $z), $this->curlOptions, $this->failCurlOnError);
+            if (!$tile->isImageDefined() || $tile->getWidth() == 0) {
+                log_message('error', 'StaticMap: failed to fetch tile ' . $this->getTileUrl($x, $y, $z) . '. Serving blank tile.');
+                return Image::newCanvas($tileSize, $tileSize);
+            }
+            \MaptileCache::save($this->url, $z, (int)$x, (int)$y, $tile->getDataPNG());
+        } else {
+            $tile = Image::fromData($png);
+        }
+
+        if ($this->thememode === 'dark') {
+            $gd = $tile->getImage();
+            imagefilter($gd, IMG_FILTER_NEGATE);
+            imagefilter($gd, IMG_FILTER_GRAYSCALE);
+            imagefilter($gd, IMG_FILTER_BRIGHTNESS, 30);
+        }
+
         if ($this->opacity > 0 && $this->opacity < 1) {
             $tile->setOpacity($this->opacity);
         }
-    
+
         return $tile;
     }
 }

@@ -1,7 +1,7 @@
-let osmUrl = tileUrl;
+var osmUrl = tileUrl;
 let prefectures;
 let geojson;
-let map;
+var map;
 let info;
 let clickmarkers = [];
 
@@ -155,6 +155,7 @@ function load_waja_map2(data) {
 	  div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
 	  div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
 	  div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
+	  L.DomEvent.disableClickPropagation(div);
 	  return div;
   };
 
@@ -165,6 +166,7 @@ function load_waja_map2(data) {
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
     this.update();
+    L.DomEvent.disableClickPropagation(this._div);
     return this._div;
 };
 

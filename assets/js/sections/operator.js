@@ -1,6 +1,8 @@
 $(document).ready(function () {
-	$("#operator_callsign").on("keydown", function (event) {
+	// bug fix for pressing Enter when operator callsign modal is displayed.
+	$(document).on("keydown", "#operator_callsign", function (event) {
 		if (event.which == 13) {
+			event.preventDefault();
 			saveOperator();
 		}
 	});

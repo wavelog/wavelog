@@ -7,7 +7,7 @@ if (typeof(user_map_custom.qso) !== 'undefined') {
 	workedColor = user_map_custom.qso.color;
 }
 
-let osmUrl = $('#potamapjs').attr("tileUrl");
+var osmUrl = $('#potamapjs').attr("tileUrl");
 
 // Holds the current Leaflet map instance so we can dispose of it properly
 // before rebuilding. See load_pota_map2().
@@ -158,6 +158,7 @@ function load_pota_map2(data) {
 		div.innerHTML += '<i style="background: ' + confirmedColor + '"></i><span>' + lang_general_word_confirmed + ' (' + confirmedCount + ')</span><br>';
 		div.innerHTML += '<i style="background: ' + workedColor + '"></i><span>' + lang_general_word_worked_not_confirmed + ' (' + workedNotConfirmedCount + ')</span><br>';
 		div.innerHTML += '<i style="background: #999"></i><span>' + lang_pota_without_coordinates + ' (' + withoutCoords + ')</span><br>';
+		L.DomEvent.disableClickPropagation(div);
 		return div;
 	};
 

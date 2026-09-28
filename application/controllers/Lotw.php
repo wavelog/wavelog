@@ -50,6 +50,11 @@ class Lotw extends CI_Controller {
 		foreach ($certcheck->result() as $row) {
 			if ($row->serial != null) {
 				$status = $this->lotw_cert_status($row->serial);
+				if ($status == 95) {
+					// LoTW seems down or unreachable. No sense to check subsequent certs. So cancel loop here.
+					log_message('error', 'LoTW seems unreachable. Cancelled subsequent cert checks.');
+					break;
+				}
 				if ($status != 99 && $status != $row->status) {
 					$this->Lotw_model->update_cert_status($row->lotw_cert_id, $status);
 				}
@@ -211,14 +216,13 @@ class Lotw extends CI_Controller {
 			$sync_user_id=null;
 		}
 
-		// Array of QSO IDs being Uploaded
-
-		$qso_id_array = array();
-
 		// Build TQ8 Outputs
 		if ($station_profiles->num_rows() >= 1) {
 
 			foreach ($station_profiles->result() as $station_profile) {
+
+				// Array of QSO IDs being Uploaded
+				$qso_id_array = array();
 
 				// Get Certificate Data
 				$this->load->model('Lotw_model');
@@ -419,16 +423,30 @@ class Lotw extends CI_Controller {
     }
 
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: decrypt_key
-	|--------------------------------------------------------------------------
-	|
-	| Accepts p12 file and optional password and encrypts the file returning
-	| the required fields for LoTW and the PEM Key
-	|
-	*/
-	public function decrypt_key($file, $password = "") {
+	/**
+	 * Reads a LoTW PKCS#12 (.p12) certificate file and extracts the data needed for signing uploads.
+	 *
+	 * The private key is re-exported as a PEM key encrypted with the default password "wavelog".
+	 * On any error the uploaded file is deleted, a flash warning is set and the user is
+	 * redirected to /lotw (this function does not return in that case).
+	 *
+	 * @param string $file     Absolute path to the uploaded .p12 file
+	 * @param string $password Password of the .p12 file (TQSL exports normally have none)
+	 *
+	 * @return array{
+	 *     general_cert: string,
+	 *     pem_key: string,
+	 *     serialNumber: string,
+	 *     issued_callsign: string,
+	 *     issued_name: string,
+	 *     validFrom: string,
+	 *     validTo_Date: string,
+	 *     'qso-first-date': string,
+	 *     'qso-end-date': string,
+	 *     'dxcc-id': string
+	 * } Certificate data; dates validFrom/validTo_Date as 'Y-m-d H:i:s'
+	 */
+	private function decrypt_key($file, $password = "") {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$results = array();
@@ -436,20 +454,21 @@ class Lotw extends CI_Controller {
 		$worked = openssl_pkcs12_read($filename, $results, $password);
 		$openssl_error_pkcs12_read = openssl_error_string();
 		if (!$worked || $openssl_error_pkcs12_read) {
-			log_message('error', 'OpenSSL reading LoTW cert file resulted in error: '.$openssl_error_pkcs12_read);
+			log_message('error', 'OpenSSL reading LoTW cert file '.$file.' resulted in error: '.$openssl_error_pkcs12_read);
 			unlink($file);
 			// OpenSSL error:11800071:PKCS12 routines::mac verify failure is most likely an (unknown) password set on the exported certificate
+			// Can also happen if the cert is extracted from platforms with ancient SSL libs. See https://docs.wavelog.org/troubleshooting/lotw-p12-upload/
 			if (str_contains($openssl_error_pkcs12_read, 'mac verify failure')) {
-				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %sPlease make sure you export the LoTW certificate from tqsl application without password!%s For further information please visit the %sLoTW FAQ page%s in the Wavelog Wiki."), basename($file), '<b>', '</b>', '<a target="_blank" href="https://docs.wavelog.org/user-guide/qsl/lotw/">', '</a>'));
+				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %sPlease make sure you export the LoTW certificate from tqsl application without password!%s For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<b>', '</b>', '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 			} else {
-				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet."), basename($file)));
+				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 			}
 			redirect('lotw');
 		} else {
 			if (!array_key_exists('cert', $results)) {
 				log_message('error', 'Generic error processing the certificate from file '.$file);
 				unlink($file);
-				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s."), basename($file)));
+				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 				redirect('lotw');
 			} else {
 				$data['general_cert'] = $results['cert'];
@@ -460,8 +479,8 @@ class Lotw extends CI_Controller {
 				$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
 				$openssl_error_pkey_export = openssl_error_string();
 				if (!$worked || $openssl_error_pkey_export) {
-					log_message('error', 'OpenSSL reading LoTW private key resulted in error: '.$openssl_error_pkey_export);
-					$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the private key from certificate in file %s."), basename($file)));
+					log_message('error', 'OpenSSL reading LoTW private key from file '.$file.' resulted in error: '.$openssl_error_pkey_export);
+					$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the private key from certificate in file %s. For further information please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."), basename($file), '<a target="_blank" href="https://docs.wavelog.org/troubleshooting/lotw-p12-upload/">', '</a>'));
 					unlink($file);
 					redirect('lotw');
 				} else {
@@ -546,7 +565,7 @@ class Lotw extends CI_Controller {
 			}
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
-			$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));
+			$qsl_date = date('Y-m-d H:i:s', strtotime($record['app_lotw_rxqsl']));
 
 			if (isset($record['time_off'])) {
 				$time_off = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_off']));
@@ -1307,33 +1326,57 @@ class Lotw extends CI_Controller {
 	}
 
 	function lotw_cert_status ($serial) {
-		if (($serial ?? '') != '' && is_numeric($serial)) {
-			$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-			$result = curl_exec($ch);
-			if(curl_errno($ch)){
-				log_message('error', 'Error fetch LoTW CRL results: '.curl_strerror(curl_errno($ch)));
-				return 99;
-			}
-			$xml = new SimpleXMLElement($result);
-			if (!isset($xml->Status)) {
-				log_message('error', 'Error parsing LoTW CRL result: '.$result);
-				return 98;
-			}
-			switch ((string)$xml->Status) {
-			case 'Superceded':
-				return 1;
-			case 'Unrevoked':
-				return 0;
-			default:
-				log_message('error', 'Unknown LotW CRL status: '.(string)$xml->Status);
-				return 97;
-			}
+		
+		//skip if no serial
+		if (($serial ?? '') == '' || !is_numeric($serial)) {
+			return 99;
 		}
-		return 99;
+		
+		//define API call
+		$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+		
+		//execute API call and check for HTTP errors
+		$result = curl_exec($ch);
+		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		// Check for cURL errors or non-2xx HTTP response
+		if (curl_errno($ch) || $http_code < 200 || $http_code >= 300) {
+			log_message('error', 'Error fetching LoTW CRL: HTTP '.$http_code.' / '.curl_error($ch));
+			return 95;
+		}
+
+		//check if result is empty or not a string
+		if (!is_string($result) || trim($result) === '') {
+			log_message('error', 'LoTW CRL returned an empty response.');
+			return 99;
+		}
+
+		//try parsing the result
+		try {
+			$xml = new SimpleXMLElement($result);
+		} catch (Exception $e) {
+			log_message('error', 'Error parsing LoTW CRL result: '.$e->getMessage());
+			return 99;
+		}
+		if (!isset($xml->Status)) {
+			log_message('error', 'Error parsing LoTW CRL result: '.$result);
+			return 99;
+		}
+
+		//react to status inside xml
+		switch ((string)$xml->Status) {
+		case 'Superceded':
+			return 1;
+		case 'Unrevoked':
+			return 0;
+		default:
+			log_message('error', 'Unknown LotW CRL status: '.(string)$xml->Status);
+			return 97;
+		}
 	}
 
 } // end class

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+	<defs>
+		<linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#ffe482"/>
+			<stop offset=".55" stop-color="#ff8c42"/>
+			<stop offset="1" stop-color="#e03e1f"/>
+		</linearGradient>
+		<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#e8a878"/>
+			<stop offset=".5" stop-color="#d9885f"/>
+			<stop offset="1" stop-color="#a05a2c"/>
+		</linearGradient>
+	</defs>
+	<ellipse cx="60" cy="111" rx="30" ry="5" fill="#1f2933" opacity=".15"/>
+	<path d="M60,10 C70,25 78,32 78,43 C78,54 69,61 60,61 C51,61 42,54 42,43 C42,32 50,25 60,10 Z" fill="url(#flame)" stroke="#8a2f14" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M60,31 C64,37 68,41 68,46 C68,52 64,56 60,56 C56,56 52,52 52,46 C52,41 56,37 60,31 Z" fill="#ffd75e"/>
+	<rect x="44" y="60" width="32" height="8" rx="3" fill="#b96f45" stroke="#5d3317" stroke-width="3"/>
+	<path d="M42,68 L78,68 L73,92 L47,92 Z" fill="url(#metal)" stroke="#5d3317" stroke-width="3" stroke-linejoin="round"/>
+	<rect x="53" y="90" width="14" height="14" rx="3" fill="url(#metal)" stroke="#5d3317" stroke-width="3"/>
+	<ellipse cx="60" cy="107" rx="19" ry="5" fill="#a05a2c" stroke="#5d3317" stroke-width="3"/>
+	<path d="M49,72 L51,88" stroke="#f8f9fa" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+</svg>

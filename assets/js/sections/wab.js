@@ -348,6 +348,7 @@ function wabmap(data) {
         html += row("", lang_wab_total_squares, totalsquares, "wab-legend-total");
         html += "</table>";
         div.innerHTML = html;
+        L.DomEvent.disableClickPropagation(div);
         return div;
     };
 

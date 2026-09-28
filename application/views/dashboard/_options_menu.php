@@ -11,6 +11,15 @@ $__solar_opts = [['v'=>'top','l'=>__("Top")],['v'=>'bottom','l'=>__("Bottom")],[
 $__map_cur = $dashboard_map ?? 'Y';
 if (!in_array($__map_cur, ['Y','map_at_left','map_at_right','N'], true)) { $__map_cur = 'Y'; }
 $__map_opts = [['v'=>'Y','l'=>__("Map on top")],['v'=>'map_at_left','l'=>__("Map at left")],['v'=>'map_at_right','l'=>__("Map at right")],['v'=>'N','l'=>__("Off")]];
+$__card_toggles = [
+	['pref'=>'dxcc',     'on'=>!empty($dashboard_show_dxcc),     'label'=>__("DXCCs Breakdown")],
+	['pref'=>'vucc',     'on'=>!empty($dashboard_show_vucc),     'label'=>__("VUCC-Grids")],
+	['pref'=>'qslcards', 'on'=>!empty($dashboard_show_qslcards), 'label'=>__("QSL Cards")],
+	['pref'=>'eqsl',     'on'=>!empty($dashboard_show_eqsl),     'label'=>__("eQSL Cards")],
+	['pref'=>'qrz',      'on'=>!empty($dashboard_show_qrz),      'label'=>'QRZ.com'],
+	['pref'=>'clublog',  'on'=>!empty($dashboard_show_clublog),  'label'=>__("Club Log")],
+	['pref'=>'lotw',     'on'=>!empty($dashboard_show_lotw),     'label'=>__("LoTW")],
+];
 $__save_url = site_url('user_options/save_dashboard_pref');
 ?>
 <div id="<?php echo $menu_id; ?>" class="dropdown-menu shadow" style="min-width:14rem;display:none;z-index:1080;">
@@ -24,6 +33,12 @@ $__save_url = site_url('user_options/save_dashboard_pref');
 	<button class="dropdown-item d-flex align-items-center gap-2" type="button" data-contests-pref="<?php echo $__cont_val; ?>">
 		<i class="fas fa-check" style="width:1rem;<?= $__cont_on ? '' : 'visibility:hidden;'; ?>"></i> <?= __("Active Contests"); ?>
 	</button>
+	<div class="dropdown-divider"></div>
+	<?php foreach ($__card_toggles as $__t): ?>
+	<button class="dropdown-item d-flex align-items-center gap-2" type="button" data-<?php echo $__t['pref']; ?>-pref="<?php echo $__t['on'] ? '0' : '1'; ?>">
+		<i class="fas fa-check" style="width:1rem;<?= $__t['on'] ? '' : 'visibility:hidden;'; ?>"></i> <?php echo $__t['label']; ?>
+	</button>
+	<?php endforeach; ?>
 	<div class="dropdown-divider"></div>
 	<h6 class="dropdown-header"><?= __("Solar data"); ?></h6>
 	<?php foreach ($__solar_opts as $__o): ?>
@@ -80,6 +95,11 @@ $__save_url = site_url('user_options/save_dashboard_pref');
 	});
 	menu.querySelectorAll('[data-contests-pref]').forEach(function(b){
 		b.addEventListener('click', function(){ save('contests', b.getAttribute('data-contests-pref')); });
+	});
+	['dxcc','vucc','qslcards','eqsl','qrz','clublog','lotw'].forEach(function(p){
+		menu.querySelectorAll('[data-'+p+'-pref]').forEach(function(b){
+			b.addEventListener('click', function(){ save(p, b.getAttribute('data-'+p+'-pref')); });
+		});
 	});
 })();
 </script>

@@ -1667,6 +1667,8 @@ svg text.month { fill: #AAA; }
     z-index: 9999 !important;
 }
 
+.tooltip-tl { --bs-tooltip-bg: rgba(0, 0, 0, 0.75); --bs-tooltip-color: #fff; pointer-events: none; }
+
 .qso_icons {
 	user-select: none;
 }
@@ -2705,6 +2707,15 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
    ============================================================ */
 
 #jccmap {
+	height: calc(100vh - 300px) !important;
+	max-height: 900px !important;
+}
+
+/* ============================================================
+   JCG award (application/views/awards/jcg)
+   ============================================================ */
+
+#jcgmap {
 	height: calc(100vh - 300px) !important;
 	max-height: 900px !important;
 }

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+	<defs>
+		<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#fff3b0"/>
+			<stop offset=".5" stop-color="#ffd75e"/>
+			<stop offset="1" stop-color="#d4a017"/>
+		</linearGradient>
+		<linearGradient id="silver" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#f2f5f7"/>
+			<stop offset=".5" stop-color="#d8dde2"/>
+			<stop offset="1" stop-color="#9aa5b1"/>
+		</linearGradient>
+		<linearGradient id="bronze" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#e8a878"/>
+			<stop offset=".5" stop-color="#d9885f"/>
+			<stop offset="1" stop-color="#a05a2c"/>
+		</linearGradient>
+	</defs>
+	<path d="M14,96 C8,80 8,62 18,46" fill="none" stroke="#3e8e41" stroke-width="4.5" stroke-linecap="round"/>
+	<path d="M106,96 C112,80 112,62 102,46" fill="none" stroke="#3e8e41" stroke-width="4.5" stroke-linecap="round"/>
+	<g fill="#3e8e41" stroke="#1f2933" stroke-width="1.5">
+		<ellipse cx="12" cy="88" rx="6" ry="3.5" transform="rotate(-30 12 88)"/>
+		<ellipse cx="11" cy="76" rx="6" ry="3.5" transform="rotate(-20 11 76)"/>
+		<ellipse cx="13" cy="64" rx="6" ry="3.5" transform="rotate(-35 13 64)"/>
+		<ellipse cx="19" cy="53" rx="6" ry="3.5" transform="rotate(-50 19 53)"/>
+		<ellipse cx="108" cy="88" rx="6" ry="3.5" transform="rotate(30 108 88)"/>
+		<ellipse cx="109" cy="76" rx="6" ry="3.5" transform="rotate(20 109 76)"/>
+		<ellipse cx="107" cy="64" rx="6" ry="3.5" transform="rotate(35 107 64)"/>
+		<ellipse cx="101" cy="53" rx="6" ry="3.5" transform="rotate(50 101 53)"/>
+	</g>
+	<circle cx="40" cy="46" r="17" fill="url(#gold)" stroke="#7a5c00" stroke-width="3"/>
+	<circle cx="80" cy="46" r="17" fill="url(#silver)" stroke="#4a5560" stroke-width="3"/>
+	<circle cx="60" cy="76" r="17" fill="url(#bronze)" stroke="#5d3317" stroke-width="3"/>
+	<g stroke="#1f2933" stroke-width="3" stroke-linecap="round">
+		<line x1="30" y1="46" x2="38" y2="46"/>
+		<circle cx="43" cy="46" r="2" fill="#1f2933" stroke="none"/>
+		<line x1="47" y1="46" x2="51" y2="46"/>
+		<polyline points="52,76 56,70 60,80 64,68 68,76" fill="none" stroke-linejoin="round"/>
+	</g>
+	<rect x="75" y="37" width="10" height="13" rx="5" fill="none" stroke="#1f2933" stroke-width="3"/>
+	<line x1="80" y1="50" x2="80" y2="54" stroke="#1f2933" stroke-width="3" stroke-linecap="round"/>
+	<path d="M33,39 A15,15 0 0 1 45,34" fill="none" stroke="#fff3b0" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+	<path d="M73,39 A15,15 0 0 1 85,34" fill="none" stroke="#f8f9fa" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+	<path d="M53,69 A15,15 0 0 1 65,64" fill="none" stroke="#e8a878" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+</svg>

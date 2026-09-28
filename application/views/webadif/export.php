@@ -78,6 +78,16 @@
         }
         ?>
 
+				<div id="webadif-rejected-wrap">
+				<?php
+				foreach ($station_profile->result() as $station) {
+					if (isset($rejected_qsos[$station->station_id])) {
+						$this->load->view('webadif/rejected', ['station' => $station, 'rejected' => $rejected_qsos[$station->station_id]]);
+					}
+				}
+				?>
+				</div>
+
         </div>
 				<div class="tab-pane fade" id="mark" role="tabpanel" aria-labelledby="home-tab">
 					<p><?= __("Here you can mark as uploaded your QSOs which have not been previously uploaded to QO-100 Dx Club."); ?></p>
