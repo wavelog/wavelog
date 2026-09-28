@@ -180,7 +180,7 @@
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="R"><?= __("Requested"); ?></option>
-			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editLoTW"  name="lotw">
@@ -188,32 +188,32 @@
 			<option value="N"><?= __("No"); ?></option>
 			<option value="R"><?= __("Requested"); ?></option>
 			<option value="Q"><?= __("Queued"); ?></option>
-			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
-			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editDcl"  name="dcl">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
-			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editEqsl"  name="eqsl">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
-			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editClublog"  name="clublog">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="R"><?= __("Requested"); ?></option>
-			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
 			<option value="V"><?= __("Verified"); ?></option>
 		</select>
 
