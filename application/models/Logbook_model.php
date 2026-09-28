@@ -6552,11 +6552,28 @@ class Logbook_model extends CI_Model {
 		return "Updated";
 	}
 
-	function srr_update($primarykey, $qsl_date) {
+	function srr_update($primarykey, $qsl_date, $cnty = '') {
 
 		$data = array(
 			'COL_SRR_QSLRDATE' => $qsl_date,
 			'COL_SRR_QSL_RCVD' => 'Y',
+		);
+
+		if ($cnty != "") {
+			$data['COL_CNTY'] = $cnty;
+		}
+
+		$this->db->where('COL_PRIMARY_KEY', $primarykey);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
+	}
+
+	function srr_update_cnty($primarykey, $cnty) {
+
+		$data = array(
+			'COL_CNTY' => $cnty,
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $primarykey);

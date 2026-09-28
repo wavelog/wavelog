@@ -106,7 +106,7 @@ class Srr_model extends CI_Model {
 			$user_id = $this->session->userdata('user_id');
 		}
 		$bindings=[];
-		$sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, station_profile.station_city, modc.modcount, notc.notcount, totc.totcount
+		$sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, totc.totcount
 			FROM station_profile
 			LEFT OUTER JOIN (
 				SELECT count(*) modcount, station_id
@@ -141,13 +141,14 @@ class Srr_model extends CI_Model {
 	|--------------------------------------------------------------------------
 	|
 	| Uploads all not yet uploaded QSOs of a station profile to award.srr.
-	| The RDA district of the station (station city) is sent as MY_CNTY. If the
-	| station has no valid RDA nothing is uploaded (status "rda") so the user
-	| can decide. With $without_rda the QSOs are sent without MY_CNTY.
 	| QSOs on 2m and above need a PROP_MODE. If there are QSOs without one,
 	| nothing is uploaded and the QSOs are returned (status "propmode") so the
 	| user can decide. With $propmode_los these QSOs are sent with PROP_MODE LOS.
-	| Without user interaction (cron) the station or these QSOs are skipped.
+	| The RDA district of each QSO (MY_CNTY) is checked against the award.srr
+	| RDA list. If there are QSOs without a valid RDA, nothing is uploaded and
+	| the QSOs are returned (status "rda") so the user can decide. With
+	| $without_rda these QSOs are sent without MY_CNTY.
+	| Without user interaction (cron) these QSOs are skipped.
 	|
 	*/
 	function upload_station($station_profile, $key, $propmode_los = false, $interactive = true, $without_rda = false) {
@@ -159,21 +160,6 @@ class Srr_model extends CI_Model {
 			$result['status'] = 'Error';
 			$result['errormessages'][] = $station_text.__("Could not load the RDA list from award.srr.");
 			return $result;
-		}
-
-		$rda = strtoupper(trim($station_profile->station_city ?? ''));
-		if (!$this->rda_valid($rda, $rda_list)) {
-			if ($without_rda) {
-				$rda = '';
-			} elseif ($interactive) {
-				$result['status'] = 'rda';
-				$result['station_city'] = trim($station_profile->station_city ?? '');
-				return $result;
-			} else {
-				$result['status'] = 'Error';
-				$result['errormessages'][] = $station_text.__("The station has no valid RDA district in the field 'Station City'. The QSOs were not uploaded.");
-				return $result;
-			}
 		}
 
 		$this->load->model('Logbook_model');
@@ -228,10 +214,47 @@ class Srr_model extends CI_Model {
 			$result['errormessages'][] = $station_text.sprintf(__("%d QSO(s) on 2m and above have no propagation mode and were not uploaded."), $skipped);
 		}
 
+		// The RDA district of the QSO is sent as MY_CNTY
+		$result['rda_qsos'] = array();
+		$rda_qsos = $upload_qsos;
+		$upload_qsos = array();
+		$skipped = 0;
+		foreach ($rda_qsos as $qso) {
+			$qso->srr_rda = strtoupper(trim($qso->COL_MY_CNTY ?? ''));
+			if (!$this->rda_valid($qso->srr_rda, $rda_list)) {
+				if ($without_rda) {
+					$qso->srr_rda = '';
+				} elseif ($interactive) {
+					$result['rda_qsos'][] = array(
+						'call' => $qso->COL_CALL,
+						'date' => date('Y-m-d H:i', strtotime($qso->COL_TIME_ON)),
+						'band' => $qso->COL_BAND,
+						'mode' => ($qso->COL_SUBMODE ?? '') != '' ? $qso->COL_SUBMODE : $qso->COL_MODE,
+						'rda' => $qso->COL_MY_CNTY ?? '',
+					);
+					continue;
+				} else {
+					$skipped++;
+					continue;
+				}
+			}
+			$upload_qsos[] = $qso;
+		}
+		$rda_qsos = '';
+
+		if (count($result['rda_qsos']) > 0) {
+			$result['status'] = 'rda';
+			return $result;
+		}
+
+		if ($skipped > 0) {
+			$result['errormessages'][] = $station_text.sprintf(__("%d QSO(s) have no valid RDA district and were not uploaded."), $skipped);
+		}
+
 		$uploaded = 0;
 		$failed = 0;
 		foreach (array_chunk($upload_qsos, 100) as $chunk) {
-			$records = $this->build_records($chunk, $rda);
+			$records = $this->build_records($chunk);
 
 			$response = $this->post_qsos($records, $key);
 			if ($response['error'] != '') {
@@ -290,8 +313,9 @@ class Srr_model extends CI_Model {
 	|--------------------------------------------------------------------------
 	|
 	| Downloads the confirmations of a user from award.srr and marks the
-	| matching QSOs as received. Without $from the confirmations since the
-	| last received award.srr confirmation are downloaded.
+	| matching QSOs as received. The RDA district of the worked station (CNTY)
+	| is stored in the QSO. Without $from the confirmations since the last
+	| received award.srr confirmation are downloaded.
 	|
 	*/
 	function download_user($user_id, $key, $from = null) {
@@ -353,22 +377,26 @@ class Srr_model extends CI_Model {
 					continue;
 				}
 
+				$cnty = strtoupper(trim($record['cnty'] ?? ''));
 				$qso = $this->Logbook_model->get_qso($status[1])->row();
 				if (($qso->COL_SRR_QSL_RCVD ?? '') == 'Y') {
+					if (($cnty != '') && ($cnty != ($qso->COL_CNTY ?? ''))) {
+						$this->Logbook_model->srr_update_cnty($status[1], $cnty);
+					}
 					$known++;
 					continue;
 				}
 
 				$qsl_date = (($record['qslrdate'] ?? '') != '') ? date('Y-m-d', strtotime($record['qslrdate'])) : date('Y-m-d');
-				$this->Logbook_model->srr_update($status[1], $qsl_date);
+				$this->Logbook_model->srr_update($status[1], $qsl_date, $cnty);
 				$updated++;
-				$table .= "<tr><td>".$record['station_callsign']."</td><td>".$time_on."</td><td>".$record['call']."</td><td>".$record['band']."</td><td>".$record['mode']."</td><td>".$qsl_date."</td></tr>";
+				$table .= "<tr><td>".$record['station_callsign']."</td><td>".$time_on."</td><td>".$record['call']."</td><td>".$record['band']."</td><td>".$record['mode']."</td><td>".$cnty."</td><td>".$qsl_date."</td></tr>";
 			}
 		}
 
 		$r = sprintf(__("%d confirmation(s) downloaded from award.srr, %d already known, %d QSO(s) not found in the logbook."), $updated, $known, $not_found);
 		if ($table != '') {
-			$r .= '<table class="table table-sm table-striped mt-2"><thead><tr><th>'.__("Station callsign").'</th><th>'.__("Date").'</th><th>'.__("Callsign").'</th><th>'.__("Band").'</th><th>'.__("Mode").'</th><th>'.__("QSL Date").'</th></tr></thead><tbody>'.$table.'</tbody></table>';
+			$r .= '<table class="table table-sm table-striped mt-2"><thead><tr><th>'.__("Station callsign").'</th><th>'.__("Date").'</th><th>'.__("Callsign").'</th><th>'.__("Band").'</th><th>'.__("Mode").'</th><th>'.__("RDA").'</th><th>'.__("QSL Date").'</th></tr></thead><tbody>'.$table.'</tbody></table>';
 		}
 		return $r;
 	}
@@ -386,9 +414,9 @@ class Srr_model extends CI_Model {
 
 	/*
 	 * Builds the QSO array for the award.srr API out of the ADIF lines of the QSOs.
-	 * The RDA of the station is sent as MY_CNTY. Without RDA no MY_CNTY is sent.
+	 * The RDA of the QSO is sent as MY_CNTY. Without RDA no MY_CNTY is sent.
 	 */
-	private function build_records($qsos, $rda) {
+	private function build_records($qsos) {
 		$adif = '';
 		foreach ($qsos as $qso) {
 			$adif .= $this->adifhelper->getAdifLine($qso);
@@ -403,8 +431,8 @@ class Srr_model extends CI_Model {
 			foreach ($parser->get_record() as $field => $value) {
 				$record[strtoupper($field)] = $value;
 			}
-			if ($rda != '') {
-				$record['MY_CNTY'] = $rda;
+			if ($qso->srr_rda != '') {
+				$record['MY_CNTY'] = $qso->srr_rda;
 			} else {
 				unset($record['MY_CNTY']);
 			}

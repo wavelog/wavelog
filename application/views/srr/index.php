@@ -88,7 +88,7 @@
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
 			<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with award.srr will happen at: ").$next_run." UTC</p>"; } ?>
 			<p><?= __("Here you can see all QSOs which have not been previously uploaded to award.srr."); ?></p>
-			<p><?= __("The RDA district of your station (e.g. SP-19) has to be entered in the field 'Station City' of the station location."); ?></p>
+			<p><?= __("The RDA district of your station (e.g. SP-19) has to be entered in the field 'Station County' of the station location. It is stored in every QSO as MY_CNTY."); ?></p>
 <?php
 			if ($station_profile->result()) {
 			echo '
@@ -151,7 +151,8 @@
 	var lang_srr_propmode_cancel = "<?= __("Cancel"); ?>";
 	var lang_srr_rda_title = "<?= __("RDA district missing"); ?>";
 	var lang_srr_rda_warning = "<?= __("WARNING: If the QSOs were made from the territory of the Russian Federation, the RDA district must be specified for them to count towards awards."); ?>";
-	var lang_srr_rda_station_city = "<?= __("The field 'Station City' of this station location contains no valid RDA district (e.g. SP-19):"); ?>";
+	var lang_srr_rda_message = "<?= __("The following QSOs have no valid RDA district (e.g. SP-19) in the field 'My County' (MY_CNTY):"); ?>";
+	var lang_srr_rda = "<?= __("RDA"); ?>";
 	var lang_srr_rda_upload = "<?= __("Upload without RDA"); ?>";
 	var lang_srr_callsign = "<?= __("Callsign"); ?>";
 	var lang_srr_date = "<?= __("Date"); ?>";

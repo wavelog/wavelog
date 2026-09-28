@@ -21,7 +21,7 @@ function ExportSrr(station_id, propmode_los, without_rda) {
 				$('#totcount'+value.station_id).html(value.totcount);
 			});
 			if (data.status == 'rda') {
-				RdaSrr(station_id, propmode_los, data.station_city);
+				RdaSrr(station_id, propmode_los, data.rda_qsos);
 				return;
 			}
 			if (data.status == 'propmode') {
@@ -53,9 +53,15 @@ function ExportSrr(station_id, propmode_los, without_rda) {
 	});
 }
 
-function RdaSrr(station_id, propmode_los, station_city) {
+function RdaSrr(station_id, propmode_los, qsos) {
 	let message = '<p>' + lang_srr_rda_warning + '</p>' +
-		'<p>' + lang_srr_rda_station_city + ' <b>' + $('<div>').text(station_city).html() + '</b></p>';
+		'<p>' + lang_srr_rda_message + '</p>' +
+		'<table class="table table-sm table-striped">' +
+		'<thead><tr><th>' + lang_srr_callsign + '</th><th>' + lang_srr_date + '</th><th>' + lang_srr_band + '</th><th>' + lang_srr_mode + '</th><th>' + lang_srr_rda + '</th></tr></thead><tbody>';
+	$.each(qsos, function (index, qso) {
+		message += '<tr><td>' + qso.call + '</td><td>' + qso.date + '</td><td>' + qso.band + '</td><td>' + qso.mode + '</td><td>' + $('<div>').text(qso.rda).html() + '</td></tr>';
+	});
+	message += '</tbody></table>';
 
 	BootstrapDialog.show({
 		title: lang_srr_rda_title,
@@ -65,16 +71,16 @@ function RdaSrr(station_id, propmode_los, station_city) {
 		nl2br: false,
 		message: message,
 		buttons: [{
-			label: lang_srr_rda_upload,
+			label: lang_srr_propmode_cancel,
 			cssClass: 'btn-primary',
 			action: function(dialogItself) {
 				dialogItself.close();
-				ExportSrr(station_id, propmode_los, true);
 			}
 		}, {
-			label: lang_srr_propmode_cancel,
+			label: lang_srr_rda_upload,
 			action: function(dialogItself) {
 				dialogItself.close();
+				ExportSrr(station_id, propmode_los, true);
 			}
 		}]
 	});
