@@ -177,6 +177,7 @@ class Stations extends CI_Model {
 			'webadifapikey' => $this->input->post('webadifapikey', true),
 			'webadifapiurl' => 'https://qo100dx.club/api',
 			'webadifrealtime' => $this->input->post('webadifrealtime', true),
+			'openhamclockrealtime' => $this->input->post('openhamclockrealtime', true) ?? '0',
 			'station_uuid' => $this->db->query("SELECT UUID() as uuid")->row()->uuid,
 		);
 
@@ -257,6 +258,7 @@ class Stations extends CI_Model {
 			'webadifapikey' => $this->input->post('webadifapikey', true),
 			'webadifapiurl' => 'https://qo100dx.club/api',
 			'webadifrealtime' => $this->input->post('webadifrealtime', true),
+			'openhamclockrealtime' => $this->input->post('openhamclockrealtime', true) ?? '0',
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));

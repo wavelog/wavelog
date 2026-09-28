@@ -1180,6 +1180,31 @@
 								</div>
 							</div>
 						</div>
+
+						<?php if (!isset($user_add)) { ?>
+						<!-- OpenHamClock -->
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?= __("OpenHamClock"); ?></div>
+								<div class="card-body">
+									<div class="mb-3">
+										<label><?= __("OpenHamClock URL"); ?></label>
+										<input class="form-control" type="url" name="user_openhamclock_url" value="<?php if(isset($user_openhamclock_url)) { echo $user_openhamclock_url; } ?>" placeholder="http://openhamclock.local:3000" />
+										<small class="form-text text-muted"><?= __("URL of your self-hosted OpenHamClock instance."); ?></small>
+									</div>
+
+									<div class="mb-3">
+										<label><?= __("OpenHamClock API Key"); ?></label>
+										<div class="input-group">
+											<input class="form-control" type="password" name="user_openhamclock_api_key" value="<?php if(isset($user_openhamclock_api_key)) { echo $user_openhamclock_api_key; } ?>" />
+											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+										</div>
+										<small class="form-text text-muted"><?= __("Optional. Required only when API_WRITE_KEY is configured in OpenHamClock."); ?></small>
+									</div>
+								</div>
+							</div>
+						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>

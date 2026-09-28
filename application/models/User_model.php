@@ -378,6 +378,7 @@ class User_Model extends CI_Model {
 					'user_lotw_name' => xss_clean($fields['user_lotw_name']),
 					'user_eqsl_name' => xss_clean($fields['user_eqsl_name']),
 					'user_clublog_name' => xss_clean($fields['user_clublog_name']),
+					'user_openhamclock_url' => xss_clean($fields['user_openhamclock_url']),
 					'user_measurement_base' => xss_clean($fields['user_measurement_base']),
 					'user_date_format' => xss_clean($fields['user_date_format']),
 					'user_stylesheet' => xss_clean($fields['user_stylesheet']),
@@ -507,7 +508,16 @@ class User_Model extends CI_Model {
 					$data['user_clublog_password'] = NULL;
 				}
 
-				if($fields['user_eqsl_password'] != '')
+				if($fields['user_openhamclock_api_key'] != '')
+				{
+					if ($fields['user_openhamclock_api_key'] !== $pwd_placeholder) {
+						$data['user_openhamclock_api_key'] = $fields['user_openhamclock_api_key'];
+					}
+				} else {
+					$data['user_openhamclock_api_key'] = NULL;
+				}
+
+			if($fields['user_eqsl_password'] != '')
 				{
 					if ($fields['user_eqsl_password'] !== $pwd_placeholder) {
 						$data['user_eqsl_password'] = $fields['user_eqsl_password'];

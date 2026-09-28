@@ -62,6 +62,7 @@ class Station extends CI_Controller
 			$data['qrzrealtime'] = $this->input->post('qrzrealtime');
 			$data['webadifapikey'] = $this->input->post('webadifapikey');
 			$data['webadifrealtime'] = $this->input->post('webadifrealtime');
+			$data['openhamclockrealtime'] = $this->input->post('openhamclockrealtime');
 			$data['oqrs'] = $this->input->post('oqrs');
 			$data['oqrsemail'] = $this->input->post('oqrsemail');
 			$data['oqrstext'] = $this->input->post('oqrstext');

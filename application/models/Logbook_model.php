@@ -1003,17 +1003,18 @@ class Logbook_model extends CI_Model {
 			if (!$skipexport) {
 				$export_errors = [];
 
-				// Fetch all credentials in a single query (optimization: reduces 4 queries to 1)
+				// Fetch all realtime export credentials in a single query
 				$creds = $this->get_all_export_credentials($data['station_id']);
 
-				// Cache QSO data once if any real-time export is enabled (avoids 4 identical queries with 8 joins each)
+				// Cache QSO data once if any realtime export is enabled
 				$qso = null;
 				$needs_qso_lookup = (
 					$creds && (
 					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogrealtime == 1) ||
 					(isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) ||
 					(isset($creds->qrzapikey) && $creds->qrzrealtime == 1) ||
-					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1)
+					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1) ||
+					(!empty($creds->user_openhamclock_url) && $creds->openhamclockrealtime == 1)
 					)
 				);
 
@@ -1093,6 +1094,22 @@ class Logbook_model extends CI_Model {
 					} else {
 						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
 						$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
+					}
+				}
+
+				// OpenHamClock export
+				if ($creds && !empty($qso) && !empty($creds->user_openhamclock_url) && $creds->openhamclockrealtime == 1) {
+					$result = $this->push_qso_to_openhamclock(
+						$creds->user_openhamclock_url,
+						$creds->user_openhamclock_api_key ?? '',
+						$qso[0]
+					);
+
+					if ($result['status'] === 'error') {
+						$export_errors[] = [
+							'provider' => 'OpenHamClock',
+							'message' => $this->sanitize_export_error($result['message'])
+						];
 					}
 				}
 
@@ -1178,7 +1195,9 @@ class Logbook_model extends CI_Model {
 					prof.qrzapikey, prof.qrzrealtime,
 					prof.webadifapikey, prof.webadifapiurl, prof.webadifrealtime,
 					prof.clublogrealtime,
-					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
+					prof.openhamclockrealtime,
+					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp,
+					auth.user_openhamclock_url, auth.user_openhamclock_api_key
 				FROM station_profile prof
 				INNER JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
 				WHERE prof.station_id = ?';
@@ -1291,6 +1310,69 @@ class Logbook_model extends CI_Model {
 			$result['message'] = 'Curl error: ' . curl_errno($ch);
 			return $result;
 		}
+	}
+
+	/**
+	 * Send a QSO to the OpenHamClock QSO layer.
+	 *
+	 * @param string $url OpenHamClock base URL
+	 * @param string|null $apikey Optional OpenHamClock API write key
+	 * @param object $qso QSO record
+	 * @return array Export status
+	 */
+	function push_qso_to_openhamclock($url, $apikey, $qso) {
+		if (empty($qso->COL_GRIDSQUARE)) {
+			return ['status' => 'skipped'];
+		}
+
+		$payload = array(
+			'call' => $qso->COL_CALL,
+			'grid' => $qso->COL_GRIDSQUARE,
+			'band' => $qso->COL_BAND,
+			'mode' => $qso->COL_MODE,
+			'timestamp' => str_replace(' ', 'T', $qso->COL_TIME_ON) . 'Z'
+		);
+
+		if (!empty($qso->COL_FREQ)) {
+			$payload['freq'] = $qso->COL_FREQ / 1000000;
+		}
+
+		$json = json_encode($payload);
+		if ($json === false) {
+			return ['status' => 'error', 'message' => 'Unable to encode QSO'];
+		}
+
+		$headers = array('Content-Type: application/json');
+		if (!empty($apikey)) {
+			$headers[] = 'Authorization: Bearer ' . $apikey;
+		}
+
+		$ch = curl_init(rtrim($url, '/') . '/api/qso-layer');
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 4);
+
+		$content = curl_exec($ch);
+		if ($content === false) {
+			$error = curl_error($ch);
+			curl_close($ch);
+			return ['status' => 'error', 'message' => $error ?: 'Connection failed'];
+		}
+
+		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		curl_close($ch);
+
+		if ($response >= 200 && $response < 300) {
+			return ['status' => 'OK'];
+		}
+
+		return [
+			'status' => 'error',
+			'message' => 'HTTP ' . $response
+		];
 	}
 
 	/*

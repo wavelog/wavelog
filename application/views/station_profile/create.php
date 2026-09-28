@@ -396,6 +396,25 @@ if ($dxcc_list->result() > 0) {
 		</div>
 	</div>
 
+<!-- OpenHamClock -->
+<div class="row">
+	<div class="col-md">
+		<div class="card">
+			<h5 class="card-header"><?= __("OpenHamClock"); ?></h5>
+			<div class="card-body">
+				<div class="mb-3">
+					<label for="openhamclockrealtime"><?= __("OpenHamClock Realtime Upload"); ?></label>
+					<select class="form-select" id="openhamclockrealtime" name="openhamclockrealtime">
+						<option value="1" <?php if (isset($openhamclockrealtime) && $openhamclockrealtime == 1) { echo ' selected'; } ?>><?= __("Yes"); ?></option>
+						<option value="0" <?php if (!isset($openhamclockrealtime) || $openhamclockrealtime != 1) { echo ' selected'; } ?>><?= __("No"); ?></option>
+					</select>
+					<small class="form-text text-muted"><?= __("Send newly logged QSOs to OpenHamClock from this station location."); ?></small>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
 	<div class="row">
 		<!-- OQRS -->

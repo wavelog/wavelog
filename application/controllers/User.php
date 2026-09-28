@@ -592,6 +592,12 @@ class User extends CI_Controller {
 				$data['user_clublog_name'] = $q->user_clublog_name;
 			}
 
+			if($this->input->post('user_openhamclock_url')) {
+				$data['user_openhamclock_url'] = $this->input->post('user_openhamclock_url', true);
+			} else {
+				$data['user_openhamclock_url'] = $q->user_openhamclock_url;
+			}
+
 			if($this->input->post('user_clublog_password')) {
 				$data['user_clublog_password'] = $this->input->post('user_clublog_password', true);
 			} else {
@@ -599,6 +605,16 @@ class User extends CI_Controller {
 					$data['user_clublog_password'] = $this->pwd_placeholder;
 				} else {
 					$data['user_clublog_password'] = '';
+				}
+			}
+
+			if($this->input->post('user_openhamclock_api_key')) {
+				$data['user_openhamclock_api_key'] = $this->input->post('user_openhamclock_api_key', true);
+			} else {
+				if ($q->user_openhamclock_api_key !== '' && $q->user_openhamclock_api_key !== null) {
+					$data['user_openhamclock_api_key'] = $this->pwd_placeholder;
+				} else {
+					$data['user_openhamclock_api_key'] = '';
 				}
 			}
 
