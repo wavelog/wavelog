@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-24 06:59+0000\n"
-"PO-Revision-Date: 2026-09-21 15:22+0000\n"
+"POT-Creation-Date: 2026-09-28 09:04+0000\n"
+"PO-Revision-Date: 2026-09-25 21:34+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -188,9 +188,9 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/Labels.php:25
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
-#: application/controllers/Lotw.php:93 application/controllers/Lotw.php:118
-#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:450
-#: application/controllers/Lotw.php:962 application/controllers/Lotw.php:1048
+#: application/controllers/Lotw.php:93 application/controllers/Lotw.php:117
+#: application/controllers/Lotw.php:386 application/controllers/Lotw.php:424
+#: application/controllers/Lotw.php:897 application/controllers/Lotw.php:983
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14 application/controllers/Notes.php:9
 #: application/controllers/Operator.php:12
@@ -2805,7 +2805,6 @@ msgid "Quick Lookup"
 msgstr "Ricerca rapida"
 
 #: application/controllers/Lotw.php:68 application/controllers/Lotw.php:99
-#: application/controllers/Lotw.php:138
 #: application/views/interface_assets/header.php:582
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
@@ -2814,19 +2813,29 @@ msgstr "Ricerca rapida"
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:163
+#: application/controllers/Lotw.php:128
+msgid ""
+"The uploaded file is invalid. Please upload a Logbook of the World .p12 "
+"certificate file."
+msgstr ""
+
+#: application/controllers/Lotw.php:134
+msgid "The uploaded file could not be read."
+msgstr ""
+
+#: application/controllers/Lotw.php:153
 msgid "Certificate Imported."
 msgstr "Certificato importato."
 
-#: application/controllers/Lotw.php:170
+#: application/controllers/Lotw.php:160
 msgid "Certificate Updated."
 msgstr "Certificato aggiornato."
 
-#: application/controllers/Lotw.php:420
+#: application/controllers/Lotw.php:392
 msgid "Certificate Deleted."
 msgstr "Certificato cancellato."
 
-#: application/controllers/Lotw.php:462
+#: application/controllers/Lotw.php:436
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2834,8 +2843,12 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Il certificato trovato nel file %s contiene una password e non può essere "
+"elaborato. %sAssicurati di esportare il certificato LoTW dall'applicazione "
+"tqsl senza password!%s Per ulteriori informazioni visita la %spagina delle "
+"FAQ di LoTW%s nel Wavelog Wiki."
 
-#: application/controllers/Lotw.php:464
+#: application/controllers/Lotw.php:438
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2843,56 +2856,65 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Errore generico durante l'estrazione del certificato dal file %s. Se il nome "
+"del file contiene 'key-only', si tratta tipicamente di una richiesta di "
+"certificato che non è stata ancora elaborata da LoTW. Per ulteriori "
+"informazioni, visita la %spagina delle FAQ di LoTW%s nel Wavelog Wiki."
 
-#: application/controllers/Lotw.php:471
+#: application/controllers/Lotw.php:444
 #, php-format
 msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Errore generico nell'elaborazione del certificato nel file %s. Per ulteriori "
+"informazioni, visita la %spagina delle FAQ di LoTW%s nel Wavelog Wiki."
 
-#: application/controllers/Lotw.php:483
+#: application/controllers/Lotw.php:456
 #, php-format
 msgid ""
 "Generic error extracting the private key from certificate in file %s. For "
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Errore generico durante l'estrazione della chiave privata dal certificato "
+"nel file %s. Per ulteriori informazioni, visita la %spagina delle FAQ di "
+"LoTW%s nel Wavelog Wiki."
 
-#: application/controllers/Lotw.php:699
+#: application/controllers/Lotw.php:670
 msgid "LoTW ADIF Information"
 msgstr "Informazioni ADIF LoTW"
 
-#: application/controllers/Lotw.php:1019
+#: application/controllers/Lotw.php:954
 msgid "Connection to LoTW failed."
 msgstr "Connessione a LoTW fallita."
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:959
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Accesso fallito su LoTW per l'utente %s: %s."
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:959
 msgid "Username/password incorrect"
 msgstr "Nome utente o password errati"
 
-#: application/controllers/Lotw.php:1027
+#: application/controllers/Lotw.php:962
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW non è al momento raggiungibile. Riprova più tardi."
 
-#: application/controllers/Lotw.php:1031
+#: application/controllers/Lotw.php:966
 msgid "LoTW login OK!"
 msgstr "Accesso a LoTW completato!"
 
-#: application/controllers/Lotw.php:1037
+#: application/controllers/Lotw.php:972
 msgid "No LoTW credentials provided."
 msgstr "Le credenziali di LoTW non sono state impostate."
 
-#: application/controllers/Lotw.php:1054
+#: application/controllers/Lotw.php:989
 msgid "LoTW ADIF Import"
 msgstr "Importazione ADIF LoTW"
 
-#: application/controllers/Lotw.php:1081
+#: application/controllers/Lotw.php:1014
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Non hai definito le tue credenziali ARRL LoTW!"
 
@@ -3006,8 +3028,8 @@ msgstr ""
 "nominativo univoco."
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:98
-#: application/models/Logbook_model.php:1547
+#: application/models/Logbook_model.php:109
+#: application/models/Logbook_model.php:1588
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -3925,123 +3947,123 @@ msgstr "Timeplotter"
 msgid "Updates"
 msgstr "Aggiornamenti"
 
-#: application/controllers/Update.php:70
+#: application/controllers/Update.php:73
 msgid "Preparing DXCC-Entries: "
 msgstr "Preparazione entità DXCC: "
 
-#: application/controllers/Update.php:131
+#: application/controllers/Update.php:137
 msgid "Preparing DXCC Exceptions: "
 msgstr "Preparazione eccezioni DXCC: "
 
-#: application/controllers/Update.php:178
+#: application/controllers/Update.php:187
 msgid "Preparing DXCC Prefixes: "
 msgstr "Preparazione prefissi DXCC: "
 
-#: application/controllers/Update.php:267
+#: application/controllers/Update.php:307
 msgid "DONE"
 msgstr "COMPLETATO"
 
-#: application/controllers/Update.php:312
+#: application/controllers/Update.php:359
 msgid "Updating..."
 msgstr "Aggiornamento..."
 
-#: application/controllers/Update.php:315
+#: application/controllers/Update.php:362
 msgid "Dxcc Entities:"
 msgstr "Entità DXCC:"
 
-#: application/controllers/Update.php:316
+#: application/controllers/Update.php:363
 msgid "Dxcc Exceptions:"
 msgstr "Eccezioni DXCC:"
 
-#: application/controllers/Update.php:317
+#: application/controllers/Update.php:364
 msgid "Dxcc Prefixes:"
 msgstr "Prefissi DXCC:"
 
-#: application/controllers/Update.php:348
+#: application/controllers/Update.php:395
 msgid "SCP Update complete. Result: "
 msgstr "Aggiornamento SCP completato. Risultato: "
 
-#: application/controllers/Update.php:350
+#: application/controllers/Update.php:397
 msgid "SCP Update failed. Result: "
 msgstr "Aggiornamento SCP fallito. Risultato: "
 
-#: application/controllers/Update.php:387
+#: application/controllers/Update.php:434
 msgid "LoTW Users Update complete. Result: "
 msgstr "Aggiornamento utenti LoTW completato. Risultato: "
 
-#: application/controllers/Update.php:389
+#: application/controllers/Update.php:436
 msgid "LoTW Users Update failed. Result: "
 msgstr "Aggiornamento utenti LoTW fallito. Risultato: "
 
-#: application/controllers/Update.php:424
+#: application/controllers/Update.php:471
 msgid "DOK Update complete. Result: "
 msgstr "Aggiornamento DOK completato. Risultato: "
 
-#: application/controllers/Update.php:426
+#: application/controllers/Update.php:473
 msgid "DOK Update failed. Result: "
 msgstr "Aggiornamento DOK fallito. Risultato: "
 
-#: application/controllers/Update.php:459
+#: application/controllers/Update.php:506
 msgid "SOTA Update complete. Result: "
 msgstr "Aggiornamento SOTA completato. Risultato: "
 
-#: application/controllers/Update.php:461
+#: application/controllers/Update.php:508
 msgid "SOTA Update failed. Result: "
 msgstr "Aggiornamento SOTA fallito. Risultato: "
 
-#: application/controllers/Update.php:494
+#: application/controllers/Update.php:541
 msgid "WWFF Update complete. Result: "
 msgstr "Aggiornamento WWFF completato. Risultato: "
 
-#: application/controllers/Update.php:496
+#: application/controllers/Update.php:543
 msgid "WWFF Update failed. Result: "
 msgstr "Aggiornamento WWFF fallito. Risultato: "
 
-#: application/controllers/Update.php:530
+#: application/controllers/Update.php:577
 msgid "HAMqsl Update complete. Result: "
 msgstr "aggiornamento HAMqsl completato. Risultato: "
 
-#: application/controllers/Update.php:532
+#: application/controllers/Update.php:579
 msgid "HAMqsl Update failed. Result: "
 msgstr "Aggiornamento HAMqsl fallito. Risultato: "
 
-#: application/controllers/Update.php:565
+#: application/controllers/Update.php:612
 msgid "POTA Update complete. Result: "
 msgstr "Aggiornamento POTA completato. Risultato: "
 
-#: application/controllers/Update.php:567
+#: application/controllers/Update.php:614
 msgid "POTA Update failed. Result: "
 msgstr "Aggiornamento POTA fallito. Risultato: "
 
-#: application/controllers/Update.php:616
+#: application/controllers/Update.php:663
 msgid "POTA boundaries update complete. Result: "
 msgstr "Aggiornamento dei confini POTA completato. Risultato: "
 
-#: application/controllers/Update.php:618
+#: application/controllers/Update.php:665
 msgid "POTA boundaries update failed. Result: "
 msgstr "Aggiornamento dei confini POTA fallito. Risultato: "
 
-#: application/controllers/Update.php:635
+#: application/controllers/Update.php:682
 msgid "TLE Update complete. Result: "
 msgstr "Aggiornamento TLE completato. Risultato: "
 
-#: application/controllers/Update.php:637
+#: application/controllers/Update.php:684
 msgid "TLE Update failed. Result: "
 msgstr "Aggiornamento TLE fallito. RIsultato: "
 
-#: application/controllers/Update.php:664
+#: application/controllers/Update.php:711
 msgid "LoTW SAT Update"
 msgstr "Aggiorna LoTW SAT"
 
-#: application/controllers/Update.php:692
+#: application/controllers/Update.php:739
 msgid "Update of Hams of Note"
 msgstr "Aggiornamento di Hams of Note"
 
-#: application/controllers/Update.php:732
+#: application/controllers/Update.php:779
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC Grid file aggiornato. Risultato: "
 
-#: application/controllers/Update.php:734
+#: application/controllers/Update.php:781
 msgid "VUCC Grid file update failed. Result: "
 msgstr "Aggiornamento file Grid VUCC fallito. Risultato: "
 
@@ -4373,6 +4395,8 @@ msgstr "Caricamento QO-100 Dx Club"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"I QSO rifiutati sono stati reimpostati. Verranno nuovamente inclusi nel "
+"prossimo caricamento."
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4440,10 +4464,14 @@ msgstr ""
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
 msgstr ""
+"Errore generico durante la memorizzazione della chiave di sessione del "
+"callbook nella cache."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
 msgstr ""
+"Errore generico durante la lettura della chiave di sessione del callbook "
+"memorizzata nella cache."
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4841,7 +4869,7 @@ msgstr "Bande mancanti"
 
 #: application/models/Achievements_model.php:373
 msgid "Range"
-msgstr ""
+msgstr "Range"
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
@@ -4987,64 +5015,73 @@ msgstr ""
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "L'estensione PHP '%s' non è caricata."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "La directory della cache non è scrivibile: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Server Redis irraggiungibile - verifica le impostazioni in application/"
+"config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Nessun server Memcached ha risposto - controlla le impostazioni in "
+"application/config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu caricato ma non utilizzabile in questa interfaccia PHP (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
 msgstr ""
+"Impossibile scrivere nella directory della cache %s - controlla i permessi."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Scrittura su Redis fallita - server down o raggiunta la massima memoria?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Scrittura su Memcached fallita - server down?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Scrittura su APCu fallita - memoria condivisa piena?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Scrittura riuscita ma lettura fallita - la directory della cache è leggibile?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
-msgstr ""
+msgstr "Scrittura riuscita ma lettura fallita - chiave espulsa da Redis?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Scrittura riuscita ma lettura fallita."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
+"La chiave di test non può essere eliminata - controlla i permessi/accesso."
 
 #: application/models/Eqslmethods_model.php:270
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "Risposta vuota da eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
@@ -5119,28 +5156,28 @@ msgstr "Carta importata"
 msgid "Imported label type"
 msgstr "Tipo di etichetta importato"
 
-#: application/models/Logbook_model.php:359
+#: application/models/Logbook_model.php:370
 msgid "Station not accessible"
 msgstr "Stazione non accessibile"
 
-#: application/models/Logbook_model.php:1000
+#: application/models/Logbook_model.php:1041
 msgid "Realtime upload disabled"
 msgstr "Caricamento in tempo reale disabilitato"
 
-#: application/models/Logbook_model.php:1537
+#: application/models/Logbook_model.php:1578
 msgid "Station ID not allowed"
 msgstr "ID stazione non consentito"
 
-#: application/models/Logbook_model.php:1542
+#: application/models/Logbook_model.php:1583
 msgid "No Call given"
 msgstr "Nessun nominatio fornito"
 
-#: application/models/Logbook_model.php:1618
-#: application/models/Logbook_model.php:1836
+#: application/models/Logbook_model.php:1659
+#: application/models/Logbook_model.php:1877
 msgid "DXCC has to be Numeric"
 msgstr "DXCC deve essere numerico"
 
-#: application/models/Logbook_model.php:5060
+#: application/models/Logbook_model.php:5101
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5148,7 +5185,7 @@ msgstr ""
 "Callsign della stazione errato ( %s) durante l'importazione di QSO con %s "
 "per %s: SALTATO"
 
-#: application/models/Logbook_model.php:5068
+#: application/models/Logbook_model.php:5109
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5157,7 +5194,7 @@ msgstr ""
 "Locatore diverso %s durante l'importazione del QSO con %s per il locatore "
 "della stazione %s: SALTATO"
 
-#: application/models/Logbook_model.php:5084
+#: application/models/Logbook_model.php:5125
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5165,7 +5202,7 @@ msgstr ""
 "Hai cercato di importare un QSO senza una data valida. Questo QSO non è "
 "stato importato. Non è valido"
 
-#: application/models/Logbook_model.php:5094
+#: application/models/Logbook_model.php:5135
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5174,7 +5211,7 @@ msgstr ""
 "QSO su %s: Hai cercato di importare un QSO senza alcun CALL specificato. "
 "Questo QSO non è stato importato. Non è valido."
 
-#: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5142
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5183,7 +5220,7 @@ msgstr ""
 "QSO su %s: Hai provato a importare un QSO con un CALL non valido. Questo QSO "
 "non è stato importato. L'input non valido è '%s'."
 
-#: application/models/Logbook_model.php:5171
+#: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5192,7 +5229,7 @@ msgstr ""
 "QSO su %s: La banda '%s' non è nella configurazione delle bande. Questo QSO "
 "non è stato importato."
 
-#: application/models/Logbook_model.php:5178
+#: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5201,63 +5238,63 @@ msgstr ""
 "QSO su %s: Hai provato a importare un QSO senza una banda specificata. "
 "Questo QSO non è stato importato. È non valido"
 
-#: application/models/Logbook_model.php:5453
+#: application/models/Logbook_model.php:5494
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5464
+#: application/models/Logbook_model.php:5505
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5525
+#: application/models/Logbook_model.php:5566
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "La data di upload Clublog non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5901
+#: application/models/Logbook_model.php:5942
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicata"
 
-#: application/models/Logbook_model.php:5968
-#: application/models/Logbook_model.php:6068
+#: application/models/Logbook_model.php:6009
+#: application/models/Logbook_model.php:6109
 msgid "QSO could not be matched"
 msgstr "Impossibile abbinare QSO"
 
-#: application/models/Logbook_model.php:5976
+#: application/models/Logbook_model.php:6017
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confermato da LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5982
+#: application/models/Logbook_model.php:6023
 msgid "confirmed by award manager"
 msgstr "confermato dal responsabile del diploma"
 
-#: application/models/Logbook_model.php:5986
+#: application/models/Logbook_model.php:6027
 msgid "confirmed by cross-check of DCL data"
 msgstr "confermato dal controllo incrociato dei dati DCL"
 
-#: application/models/Logbook_model.php:5990
+#: application/models/Logbook_model.php:6031
 msgid "confirmation pending"
 msgstr "Conferma in sospeso"
 
-#: application/models/Logbook_model.php:5993
+#: application/models/Logbook_model.php:6034
 msgid "unconfirmed"
 msgstr "Non confermato"
 
-#: application/models/Logbook_model.php:5996
+#: application/models/Logbook_model.php:6037
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "sconosciuto"
 
-#: application/models/Logbook_model.php:6071
+#: application/models/Logbook_model.php:6112
 msgid "POTA reference already in log"
 msgstr "Riferimento POTA già presente nel registro di stazione"
 
-#: application/models/Logbook_model.php:6074
+#: application/models/Logbook_model.php:6115
 msgid "QSO updated"
 msgstr "QSO aggiornato"
 
-#: application/models/Logbook_model.php:6495
+#: application/models/Logbook_model.php:6536
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -15332,7 +15369,7 @@ msgstr "Wavelog Worker Backend"
 
 #: application/views/debug/index.php:145
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "La configurazione del worker è cambiata"
 
 #: application/views/debug/index.php:146
 #, php-format
@@ -15340,10 +15377,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s e %s sono deprecati e verranno rimossi in Wavelog Worker 1.0.0. Si prega "
+"di impostare %s nella configurazione del tuo worker."
 
 #: application/views/debug/index.php:147
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Tutto continuerà a funzionare fino ad allora."
 
 #: application/views/debug/index.php:153
 msgid "Worker"
@@ -15521,11 +15560,11 @@ msgstr "Numero di tasti"
 
 #: application/views/debug/index.php:559
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Test di andata e ritorno (scrivi - leggi - elimina)"
 
 #: application/views/debug/index.php:566
 msgid "Working"
-msgstr ""
+msgstr "Funzionante"
 
 #: application/views/debug/index.php:579
 msgid "Cache is working properly. Everything okay!"
@@ -16063,7 +16102,7 @@ msgstr "L'utente non ha inserito alcun messaggio aggiuntivo."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "QSOs richiesti"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -16084,7 +16123,7 @@ msgstr "Percorso QSL"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "Nominativo DX"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -18454,10 +18493,61 @@ msgstr "Frequenza RX (Hz)"
 #: application/views/logbookadvanced/edit.php:203
 #: application/views/logbookadvanced/edit.php:209
 #: application/views/logbookadvanced/edit.php:216
-#: application/views/logbookadvanced/index.php:536
-#: application/views/logbookadvanced/index.php:888
-msgid "Invalid"
-msgstr "Non valido"
+#: application/views/logbookadvanced/index.php:599
+#: application/views/logbookadvanced/index.php:609
+#: application/views/logbookadvanced/index.php:643
+#: application/views/logbookadvanced/index.php:653
+#: application/views/logbookadvanced/index.php:666
+#: application/views/logbookadvanced/index.php:676
+#: application/views/logbookadvanced/index.php:690
+#: application/views/logbookadvanced/index.php:700
+#: application/views/logbookadvanced/index.php:710
+#: application/views/logbookadvanced/index.php:719
+#: application/views/logbookadvanced/index.php:742
+#: application/views/logbookadvanced/index.php:751
+#: application/views/oqrs/qsolist.php:60 application/views/oqrs/qsolist.php:102
+#: application/views/oqrs/qsolist.php:167
+#: application/views/oqrs/qsolist.php:182
+#: application/views/qslprint/qsolist.php:93
+#: application/views/qslprint/qsolist.php:135
+#: application/views/qslprint/qsolist.php:200
+#: application/views/qslprint/qsolist.php:215
+#: application/views/qso/edit_ajax.php:433
+#: application/views/qso/edit_ajax.php:465
+#: application/views/qso/edit_ajax.php:494
+#: application/views/qso/edit_ajax.php:506
+#: application/views/qso/edit_ajax.php:539
+#: application/views/qso/edit_ajax.php:551
+#: application/views/qso/edit_ajax.php:568
+#: application/views/qso/edit_ajax.php:581
+#: application/views/qso/edit_ajax.php:596
+#: application/views/qso/edit_ajax.php:607
+#: application/views/qso/edit_ajax.php:622
+#: application/views/qso/edit_ajax.php:633 application/views/qso/index.php:715
+#: application/views/search/search_result_ajax.php:192
+#: application/views/search/search_result_ajax.php:234
+#: application/views/search/search_result_ajax.php:308
+#: application/views/search/search_result_ajax.php:323
+#: application/views/view_log/partial/log_ajax.php:229
+#: application/views/view_log/partial/log_ajax.php:267
+#: application/views/view_log/partial/log_ajax.php:309
+#: application/views/view_log/partial/log_ajax.php:340
+#: application/views/view_log/partial/log_ajax.php:376
+#: application/views/view_log/partial/log_ajax.php:407
+#: application/views/view_log/partial/log_ajax.php:438
+#: application/views/view_log/partial/log_ajax.php:469
+#: application/views/view_log/partial/log_ajax.php:495
+#: application/views/view_log/partial/log_ajax.php:526
+#: application/views/view_log/partial/log_ajax.php:552
+#: application/views/view_log/partial/log_ajax.php:575
+#: src/QSLManager/QSO.php:429 src/QSLManager/QSO.php:474
+#: src/QSLManager/QSO.php:525 src/QSLManager/QSO.php:552
+#: src/QSLManager/QSO.php:584 src/QSLManager/QSO.php:633
+#: src/QSLManager/QSO.php:673 src/QSLManager/QSO.php:700
+#: src/QSLManager/QSO.php:730 src/QSLManager/QSO.php:779
+#: src/QSLManager/QSO.php:814 src/QSLManager/QSO.php:843
+msgid "Invalid (Ignore)"
+msgstr "Invalido (Ignora)"
 
 #: application/views/logbookadvanced/edit.php:190
 #: application/views/logbookadvanced/index.php:598
@@ -19121,6 +19211,11 @@ msgctxt "Propagation Mode"
 msgid "None/Empty"
 msgstr "Nessuno/Vuoto"
 
+#: application/views/logbookadvanced/index.php:536
+#: application/views/logbookadvanced/index.php:888
+msgid "Invalid"
+msgstr "Non valido"
+
 #: application/views/logbookadvanced/index.php:546
 msgid ""
 "Distance in kilometers. Search will look for distances greater than or equal "
@@ -19183,62 +19278,6 @@ msgstr "Filtri QSL"
 #: application/views/logbookadvanced/index.php:592
 msgid "QSL sent"
 msgstr "QSL inviata"
-
-#: application/views/logbookadvanced/index.php:599
-#: application/views/logbookadvanced/index.php:609
-#: application/views/logbookadvanced/index.php:643
-#: application/views/logbookadvanced/index.php:653
-#: application/views/logbookadvanced/index.php:666
-#: application/views/logbookadvanced/index.php:676
-#: application/views/logbookadvanced/index.php:690
-#: application/views/logbookadvanced/index.php:700
-#: application/views/logbookadvanced/index.php:710
-#: application/views/logbookadvanced/index.php:719
-#: application/views/logbookadvanced/index.php:742
-#: application/views/logbookadvanced/index.php:751
-#: application/views/oqrs/qsolist.php:60 application/views/oqrs/qsolist.php:102
-#: application/views/oqrs/qsolist.php:167
-#: application/views/oqrs/qsolist.php:182
-#: application/views/qslprint/qsolist.php:93
-#: application/views/qslprint/qsolist.php:135
-#: application/views/qslprint/qsolist.php:200
-#: application/views/qslprint/qsolist.php:215
-#: application/views/qso/edit_ajax.php:433
-#: application/views/qso/edit_ajax.php:465
-#: application/views/qso/edit_ajax.php:494
-#: application/views/qso/edit_ajax.php:506
-#: application/views/qso/edit_ajax.php:539
-#: application/views/qso/edit_ajax.php:551
-#: application/views/qso/edit_ajax.php:568
-#: application/views/qso/edit_ajax.php:581
-#: application/views/qso/edit_ajax.php:596
-#: application/views/qso/edit_ajax.php:607
-#: application/views/qso/edit_ajax.php:622
-#: application/views/qso/edit_ajax.php:633 application/views/qso/index.php:715
-#: application/views/search/search_result_ajax.php:192
-#: application/views/search/search_result_ajax.php:234
-#: application/views/search/search_result_ajax.php:308
-#: application/views/search/search_result_ajax.php:323
-#: application/views/view_log/partial/log_ajax.php:229
-#: application/views/view_log/partial/log_ajax.php:267
-#: application/views/view_log/partial/log_ajax.php:309
-#: application/views/view_log/partial/log_ajax.php:340
-#: application/views/view_log/partial/log_ajax.php:376
-#: application/views/view_log/partial/log_ajax.php:407
-#: application/views/view_log/partial/log_ajax.php:438
-#: application/views/view_log/partial/log_ajax.php:469
-#: application/views/view_log/partial/log_ajax.php:495
-#: application/views/view_log/partial/log_ajax.php:526
-#: application/views/view_log/partial/log_ajax.php:552
-#: application/views/view_log/partial/log_ajax.php:575
-#: src/QSLManager/QSO.php:429 src/QSLManager/QSO.php:474
-#: src/QSLManager/QSO.php:525 src/QSLManager/QSO.php:552
-#: src/QSLManager/QSO.php:584 src/QSLManager/QSO.php:633
-#: src/QSLManager/QSO.php:673 src/QSLManager/QSO.php:700
-#: src/QSLManager/QSO.php:730 src/QSLManager/QSO.php:779
-#: src/QSLManager/QSO.php:814 src/QSLManager/QSO.php:843
-msgid "Invalid (Ignore)"
-msgstr "Invalido (Ignora)"
 
 #: application/views/logbookadvanced/index.php:603
 msgid "QSL received"
@@ -25087,21 +25126,23 @@ msgstr "I QSO sono contrassegnati come esportati al QO-100 Dx Club."
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "Rifiutato dal QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
+"Questi QSOs sono stati rifiutati dall'API del QO-100 Dx Club e il "
+"caricamento di questi non viene ritentato automaticamente."
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "Motivo del rifiuto da parte del QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "Riprova il caricamento"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"

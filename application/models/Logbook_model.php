@@ -67,8 +67,19 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Add QSO to Logbook */
-	function create_qso($qso_data, $use_custom_date_format = true) {
+	/**
+	 * Add QSO to Logbook
+	 *
+	 * Creates a single QSO record from the given input array.
+	 *
+	 * @param array $qso_data QSO input data (form fields, contest data, etc.)
+	 * @param bool $use_custom_date_format TRUE: use user's date format, FALSE: use 'Y-m-d' (contesting)
+	 * @param bool $dupe_check TRUE: skip insert and return existing QSO when an exact duplicate
+	 *                         (station, callsign, band, mode, time-on) is already logged. Used to make
+	 *                         retries/backlog replays idempotent. FALSE (default): always insert.
+	 * @return array|false|string Success: array with qso_id, adif, export_errors; false/string on failure
+	 */
+	function create_qso($qso_data, $use_custom_date_format = true, $dupe_check = false) {
 		// Get user-preferred date format
 		if ($use_custom_date_format) {
 			if ($this->session->userdata('user_date_format')) {
@@ -434,6 +445,36 @@ class Logbook_model extends CI_Model {
 			} else {
 				$data['COL_LOTW_QSL_SENT'] = 'N';
 				$data['COL_LOTW_QSL_RCVD'] = 'N';
+			}
+		}
+
+		// Idempotency for retries/backlog replays: if the exact same QSO (station, callsign,
+		// band, mode, time-on) is already in the log, return it instead of inserting again.
+		if ($dupe_check && !empty($station_id) && !empty($datetime)) {
+			$dupe_sql = "SELECT COL_PRIMARY_KEY FROM " . $this->config->item('table_name') . "
+				WHERE station_id = ? AND COL_CALL = ? AND COL_TIME_ON = ?
+				AND COL_BAND = ? AND COL_MODE = ? AND COL_SUBMODE <=> ?";
+			$dupe_query = $this->db->query($dupe_sql, [
+				$station_id,
+				$data['COL_CALL'],
+				$data['COL_TIME_ON'],
+				$data['COL_BAND'],
+				$data['COL_MODE'],
+				$data['COL_SUBMODE'],
+			]);
+			if ($dupe_query->num_rows() > 0) {
+				$dupe_id = $dupe_query->row()->COL_PRIMARY_KEY;
+				$dupe_qso = $this->get_qso($dupe_id, true)->result();
+				if (empty($dupe_qso)) {
+					return false;
+				}
+				$this->load->is_loaded('AdifHelper') ?: $this->load->library('AdifHelper');
+				return [
+					'qso_id' => $dupe_id,
+					'adif' => $this->adifhelper->getAdifLine($dupe_qso[0]),
+					'export_errors' => [],
+					'duplicate' => true,
+				];
 			}
 		}
 
