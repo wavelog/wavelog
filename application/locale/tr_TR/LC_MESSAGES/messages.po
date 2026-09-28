@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-28 08:54+0000\n"
+"POT-Creation-Date: 2026-09-28 09:04+0000\n"
 "PO-Revision-Date: 2026-09-25 21:34+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -18389,10 +18389,61 @@ msgstr "Frekans RX (Hz)"
 #: application/views/logbookadvanced/edit.php:203
 #: application/views/logbookadvanced/edit.php:209
 #: application/views/logbookadvanced/edit.php:216
-#: application/views/logbookadvanced/index.php:536
-#: application/views/logbookadvanced/index.php:888
-msgid "Invalid"
-msgstr "Geçersiz"
+#: application/views/logbookadvanced/index.php:599
+#: application/views/logbookadvanced/index.php:609
+#: application/views/logbookadvanced/index.php:643
+#: application/views/logbookadvanced/index.php:653
+#: application/views/logbookadvanced/index.php:666
+#: application/views/logbookadvanced/index.php:676
+#: application/views/logbookadvanced/index.php:690
+#: application/views/logbookadvanced/index.php:700
+#: application/views/logbookadvanced/index.php:710
+#: application/views/logbookadvanced/index.php:719
+#: application/views/logbookadvanced/index.php:742
+#: application/views/logbookadvanced/index.php:751
+#: application/views/oqrs/qsolist.php:60 application/views/oqrs/qsolist.php:102
+#: application/views/oqrs/qsolist.php:167
+#: application/views/oqrs/qsolist.php:182
+#: application/views/qslprint/qsolist.php:93
+#: application/views/qslprint/qsolist.php:135
+#: application/views/qslprint/qsolist.php:200
+#: application/views/qslprint/qsolist.php:215
+#: application/views/qso/edit_ajax.php:433
+#: application/views/qso/edit_ajax.php:465
+#: application/views/qso/edit_ajax.php:494
+#: application/views/qso/edit_ajax.php:506
+#: application/views/qso/edit_ajax.php:539
+#: application/views/qso/edit_ajax.php:551
+#: application/views/qso/edit_ajax.php:568
+#: application/views/qso/edit_ajax.php:581
+#: application/views/qso/edit_ajax.php:596
+#: application/views/qso/edit_ajax.php:607
+#: application/views/qso/edit_ajax.php:622
+#: application/views/qso/edit_ajax.php:633 application/views/qso/index.php:715
+#: application/views/search/search_result_ajax.php:192
+#: application/views/search/search_result_ajax.php:234
+#: application/views/search/search_result_ajax.php:308
+#: application/views/search/search_result_ajax.php:323
+#: application/views/view_log/partial/log_ajax.php:229
+#: application/views/view_log/partial/log_ajax.php:267
+#: application/views/view_log/partial/log_ajax.php:309
+#: application/views/view_log/partial/log_ajax.php:340
+#: application/views/view_log/partial/log_ajax.php:376
+#: application/views/view_log/partial/log_ajax.php:407
+#: application/views/view_log/partial/log_ajax.php:438
+#: application/views/view_log/partial/log_ajax.php:469
+#: application/views/view_log/partial/log_ajax.php:495
+#: application/views/view_log/partial/log_ajax.php:526
+#: application/views/view_log/partial/log_ajax.php:552
+#: application/views/view_log/partial/log_ajax.php:575
+#: src/QSLManager/QSO.php:429 src/QSLManager/QSO.php:474
+#: src/QSLManager/QSO.php:525 src/QSLManager/QSO.php:552
+#: src/QSLManager/QSO.php:584 src/QSLManager/QSO.php:633
+#: src/QSLManager/QSO.php:673 src/QSLManager/QSO.php:700
+#: src/QSLManager/QSO.php:730 src/QSLManager/QSO.php:779
+#: src/QSLManager/QSO.php:814 src/QSLManager/QSO.php:843
+msgid "Invalid (Ignore)"
+msgstr "Geçersiz (Yok say)"
 
 #: application/views/logbookadvanced/edit.php:190
 #: application/views/logbookadvanced/index.php:598
@@ -19052,6 +19103,11 @@ msgctxt "Propagation Mode"
 msgid "None/Empty"
 msgstr "Yok/Boş"
 
+#: application/views/logbookadvanced/index.php:536
+#: application/views/logbookadvanced/index.php:888
+msgid "Invalid"
+msgstr "Geçersiz"
+
 #: application/views/logbookadvanced/index.php:546
 msgid ""
 "Distance in kilometers. Search will look for distances greater than or equal "
@@ -19114,62 +19170,6 @@ msgstr "QSL Filtresi"
 #: application/views/logbookadvanced/index.php:592
 msgid "QSL sent"
 msgstr "QSL gönderildi"
-
-#: application/views/logbookadvanced/index.php:599
-#: application/views/logbookadvanced/index.php:609
-#: application/views/logbookadvanced/index.php:643
-#: application/views/logbookadvanced/index.php:653
-#: application/views/logbookadvanced/index.php:666
-#: application/views/logbookadvanced/index.php:676
-#: application/views/logbookadvanced/index.php:690
-#: application/views/logbookadvanced/index.php:700
-#: application/views/logbookadvanced/index.php:710
-#: application/views/logbookadvanced/index.php:719
-#: application/views/logbookadvanced/index.php:742
-#: application/views/logbookadvanced/index.php:751
-#: application/views/oqrs/qsolist.php:60 application/views/oqrs/qsolist.php:102
-#: application/views/oqrs/qsolist.php:167
-#: application/views/oqrs/qsolist.php:182
-#: application/views/qslprint/qsolist.php:93
-#: application/views/qslprint/qsolist.php:135
-#: application/views/qslprint/qsolist.php:200
-#: application/views/qslprint/qsolist.php:215
-#: application/views/qso/edit_ajax.php:433
-#: application/views/qso/edit_ajax.php:465
-#: application/views/qso/edit_ajax.php:494
-#: application/views/qso/edit_ajax.php:506
-#: application/views/qso/edit_ajax.php:539
-#: application/views/qso/edit_ajax.php:551
-#: application/views/qso/edit_ajax.php:568
-#: application/views/qso/edit_ajax.php:581
-#: application/views/qso/edit_ajax.php:596
-#: application/views/qso/edit_ajax.php:607
-#: application/views/qso/edit_ajax.php:622
-#: application/views/qso/edit_ajax.php:633 application/views/qso/index.php:715
-#: application/views/search/search_result_ajax.php:192
-#: application/views/search/search_result_ajax.php:234
-#: application/views/search/search_result_ajax.php:308
-#: application/views/search/search_result_ajax.php:323
-#: application/views/view_log/partial/log_ajax.php:229
-#: application/views/view_log/partial/log_ajax.php:267
-#: application/views/view_log/partial/log_ajax.php:309
-#: application/views/view_log/partial/log_ajax.php:340
-#: application/views/view_log/partial/log_ajax.php:376
-#: application/views/view_log/partial/log_ajax.php:407
-#: application/views/view_log/partial/log_ajax.php:438
-#: application/views/view_log/partial/log_ajax.php:469
-#: application/views/view_log/partial/log_ajax.php:495
-#: application/views/view_log/partial/log_ajax.php:526
-#: application/views/view_log/partial/log_ajax.php:552
-#: application/views/view_log/partial/log_ajax.php:575
-#: src/QSLManager/QSO.php:429 src/QSLManager/QSO.php:474
-#: src/QSLManager/QSO.php:525 src/QSLManager/QSO.php:552
-#: src/QSLManager/QSO.php:584 src/QSLManager/QSO.php:633
-#: src/QSLManager/QSO.php:673 src/QSLManager/QSO.php:700
-#: src/QSLManager/QSO.php:730 src/QSLManager/QSO.php:779
-#: src/QSLManager/QSO.php:814 src/QSLManager/QSO.php:843
-msgid "Invalid (Ignore)"
-msgstr "Geçersiz (Yok say)"
 
 #: application/views/logbookadvanced/index.php:603
 msgid "QSL received"
