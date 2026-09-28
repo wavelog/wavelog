@@ -216,7 +216,7 @@ function displayQso(id) {
                     var dxcc = $("#dxcc").text();
                     var callsign = $("#callsign").text();
                     var zoom = 5;
-                    if (dxcc == 0) {
+                    if (dxcc == 0 && lat == '' && lng == '') {
                         zoom = 1;
                     }
                     var mymap = L.map('mapqso').setView([lat,lng], zoom);
@@ -239,7 +239,7 @@ function displayQso(id) {
                         hideControlContainer: true
                     }).addTo(mymap);
 
-                    if (dxcc != 0) {
+                    if (lat != '' && lng != '') {
                         var redIcon = L.icon({
                             iconUrl: icon_dot_url,
                             iconSize:     [18, 18], // size of the icon
@@ -680,6 +680,25 @@ function qso_save() {
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);
+        }
+    });
+}
+
+function post_hamsat() {
+    let myform = $("#hamsatform")[0];
+    let fd = new FormData(myform);
+    $.ajax({
+        url: base_url + 'index.php/satellite/post_hams_at',
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function () {
+           $(".preparehamsat-dialog").modal('hide');
+        },
+        error: function(xhr, status, error) {
+           $("#error-messages-hamsat-post").html('<div class="alert alert-danger alert-dismissible fade show" role="alert">'+xhr.responseText+'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
         }
     });
 }
@@ -1626,6 +1645,9 @@ function shareModal(qso_data, title) {
                 cssClass: 'bg-black bg-opacity-50',
                 nl2br: false,
                 message: html,
+                onshown: function (dialog) {
+                    dialog.getModalBody().find('[data-bs-toggle="tooltip"]').tooltip();
+                },
                 buttons: [{
                     label: lang_admin_close,
                     action: function (dialogItself) {
@@ -1786,6 +1808,40 @@ function LatLng2Loc(y, x, num) {
 	if (num >= 10) qthloc+=String.fromCharCode(yn[8] + 0x61) + String.fromCharCode(yn[9] + 0x61);
 	return qthloc;
 }
+
+// API page clipboard functions
+
+function copyToClipboard(text, targetElement) {
+   if (navigator.clipboard && navigator.clipboard.writeText) {
+      // Modern Clipboard API
+      navigator.clipboard.writeText(text).then(function() {
+         targetElement.addClass('flash-copy')
+            .delay('1000').queue(function() {
+               targetElement.removeClass('flash-copy').dequeue();
+            });
+      }).catch(function(err) {
+         console.error('Failed to copy: ', err);
+         alert('Failed to copy to clipboard');
+      });
+   } else {
+      // Fallback for browsers that don't support clipboard API
+      var tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      targetElement.addClass('flash-copy')
+         .delay('1000').queue(function() {
+            targetElement.removeClass('flash-copy').dequeue();
+         });
+   }
+}
+
+$(document).on('click', '#xButton', function () {
+   copyToClipboard($(this).data('twitter-string'), $(this));
+});
 
 // Fetch an HTML fragment and swap it into a target element, then reinit tooltips.
 // Replaces the former htmx hx-get / hx-target mechanism.

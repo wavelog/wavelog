@@ -213,7 +213,7 @@ class Oqrs extends CI_Controller {
 	public function save_oqrs_request_grouped() {
 		$postdata = $this->input->post(NULL, TRUE); // index is null means we get all postdata, TRUE means we XSS clean everything
 		$this->load->model('oqrs_model');
-		$err = $this->_validate_oqrs_times($postdata);
+        $err = $this->_validate_oqrs_times($postdata);
 		if ($err !== null) {
 			$this->output->set_status_header(400)->set_content_type('application/json')
 				->set_output(json_encode(['error' => $err]));
@@ -296,7 +296,24 @@ class Oqrs extends CI_Controller {
 	}
 
 	private function _alert_oqrs_request($postdata, $station_ids) {
-		foreach ($station_ids as $id) {
+    	
+        $callsigns = [];	
+        foreach ($station_ids as $sid) {	
+            $station = $this->stations->profile($sid)->row();	
+            if ($station) {	
+                $callsigns[] = $station->station_callsign;	
+            }	
+        }	
+        $dxcallsigns = implode(', ', array_unique($callsigns));
+        // send email 1 only
+        $station_ids = array_values(array_unique($station_ids));
+        if (empty($station_ids)) {
+        return;
+        }
+        $id = $station_ids[0];
+        
+		//foreach ($station_ids as $id) {
+			$this->load->model('user_model');
 
 			$email = $this->user_model->get_email_address($id);
 
@@ -330,9 +347,22 @@ class Oqrs extends CI_Controller {
 
 				$data['callsign'] = $this->security->xss_clean($postdata['callsign']);
 				$data['usermessage'] = $this->security->xss_clean($postdata['message']);
+                $data['email'] = $this->security->xss_clean($postdata['email']);	
+                $data['qslroute'] = $this->security->xss_clean($postdata['qslroute'] ?? '');
 
-				$this->load->model('Stations');
-				$uid = $this->Stations->profile($id)->row()->user_id;
+                foreach ($postdata['qsos'] as &$qso) {
+                    if (isset($qso[4]) && is_numeric($qso[4])) {
+                        $station = $this->stations->profile($qso[4])->row();
+                        if ($station) {
+                            $qso[4] = $station->station_callsign;
+                        }
+                    }
+                }
+                unset($qso);
+                $data['qsos'] = $postdata['qsos'];
+                $data['dxcallsigns'] = $dxcallsigns;            
+
+				$uid = $this->stations->profile($id)->row()->user_id;
 				$message = $this->email->load('email/oqrs_request', $data,  $this->user_model->get_by_id($uid)->row()->user_language);
 
 				$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
@@ -349,7 +379,7 @@ class Oqrs extends CI_Controller {
 				}
 			}
 		}
-	}
+	
 
 	public function add_oqrs_to_print_queue() {
 		$this->_check_auth();

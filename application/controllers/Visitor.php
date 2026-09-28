@@ -110,10 +110,9 @@ class Visitor extends CI_Controller {
 				$data['total_deleted_countries'] = $stats['Countries_Deleted_Worked'];
 				$data['total_countries_confirmed_paper'] = $stats['Countries_Worked_QSL'];
 				$data['total_countries_confirmed_lotw'] = $stats['Countries_Worked_LOTW'];
-				$confirmed = $stats['Countries_Worked_Confirmed'];
 
 				$dxcc = $this->dxcc->list_current();
-				$data['total_countries_needed'] = max(0, count($dxcc->result()) - $confirmed);
+				$data['total_countries_needed'] = max(0, count($dxcc->result()) - $stats['Countries_Worked']);
 
 				// QSL stats
 				$data['total_qsl_sent'] = $stats['QSL_Sent'];

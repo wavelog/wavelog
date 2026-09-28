@@ -275,9 +275,9 @@ $('#callsign').on('input', function () {
 	// Prevent checking when the user's composing in IME
 	if (this.isComposing) return;
 
-	$(this).val($(this).val().replace(/\s/g, ''));
-	$(this).val($(this).val().replace(/\./g, '/P'));
-	$(this).val($(this).val().replace(/\ /g, ''));
+	var v = $(this).val().replace(/\s/g, '');
+	if (!/^[0-9.]*$/.test(v)) v = v.replace(/\./g, '/P');
+	$(this).val(v);
 });
 
 $('#locator').on('input', function () {
@@ -387,7 +387,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 
 					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
 
-					// Show realtime export failures (QRZ, ClubLog, HRDLog) if any
+					// Show realtime export failures (QRZ, ClubLog, HRDLog, QO-100 Dx Club) if any
 					if (result.export_errors?.length) {
 						var failedExports = result.export_errors.map(e => e.provider + ': ' + e.message).join('; ');
 						showToast(lang_general_word_warning, lang_qso_realtime_export_failed.replace('%s', failedExports), 'bg-warning text-dark', 8000);
@@ -1534,8 +1534,33 @@ function get_note_status(callsign){
 		);
 }
 
+function tryNumericQsy($el) {
+	var qsyInput = $el.val().replace(',', '.');
+	if (typeof isCATAvailable === 'function' && isCATAvailable() && /^\d+(\.\d+)?$/.test(qsyInput) && window.catState && window.catState.frequency) {
+		var curHz = window.catState.frequency;
+		var entryHz = Math.round(parseFloat(qsyInput) * 1000);
+		var fullBand = frequencyToBand(entryHz);
+		var offHz = Math.floor(curHz / 1e6) * 1e6 + entryHz;
+		var offHz2 = Math.floor(curHz / 1e5) * 1e5 + entryHz;
+		var curBand = frequencyToBand(curHz);
+		var newHz = fullBand ? entryHz
+			: (frequencyToBand(offHz) === curBand ? offHz
+			: (frequencyToBand(offHz2) === curBand ? offHz2 : null));
+		if (newHz) {
+			$el.val('');
+			$el.focus();
+			window.qsyRefocusPending = true;
+			setTimeout(function() { window.qsyRefocusPending = false; }, 5000);
+			window.tuneRadioToFrequency(null, newHz, determineRadioMode($('#mode').val(), newHz));
+			return true;
+		}
+	}
+	return false;
+}
+
 // Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
+	if (tryNumericQsy($(this))) return;
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
 		var currentCallsign = $(this).val().toUpperCase();
@@ -2783,7 +2808,12 @@ $('#band').on('change', function (e) {
 		if (had_sat) { stop_az_ele_ticker(); }
 	}
 	set_qrg();
-	$("#callsign").blur();
+	if (window.qsyRefocusPending) {
+		window.qsyRefocusPending = false;
+		$("#callsign").focus();
+	} else {
+		$("#callsign").blur();
+	}
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -2860,9 +2890,7 @@ $("#locator").on("input focus", function () {
 						});
 
 						var marker = L.marker([result[0], result[1]], { icon: redIcon });
-						mymap.setZoom(8);
-						mymap.panTo([result[0], result[1]]);
-						mymap.setView([result[0], result[1]], 8);
+						mymap.setView([result[0], result[1]], Math.max(mymap.getZoom(), 8));
 						markers.addLayer(marker).addTo(mymap);
 						bannerText = "📡 "+lang_qso_location_is_fetched_from_provided_gridsquare+": " + qra.toUpperCase();
 						window.mapBanner.addTo(mymap);
@@ -3000,6 +3028,10 @@ $("#callsign").on("keydown", function (e) {
 	if (e.which == 32) {
 		$("#name").trigger("focus");
 		e.preventDefault(); //Eliminate space char
+	}
+	if (e.key === 'Enter' && /^\d+([.,]\d+)?$/.test($(this).val().trim().replace(',', '.'))) {
+		e.preventDefault();
+		tryNumericQsy($(this));
 	}
 });
 

@@ -163,6 +163,7 @@ class Statistic_resource extends Api_v2_resource {
 				'available'       => $this->CI->logbook_model->count_dxcc_entities(),
 				'deleted' => [
 					'worked'          => (int) $batch['Countries_Deleted_Worked'],
+					'confirmed'       => (int) $batch['Countries_Deleted_Confirmed'],
 					'confirmed_paper' => (int) $batch['Countries_Deleted_Worked_QSL'],
 					'confirmed_lotw'  => (int) $batch['Countries_Deleted_Worked_LOTW'],
 				],

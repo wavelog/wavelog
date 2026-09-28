@@ -9,12 +9,12 @@ class Dbtools_model extends CI_Model {
 		// get all records with no COL_CONT
 		$this->db->trans_start();
 		$sql = "UPDATE " . $this->config->item('table_name') . "
-			JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
+			JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = CAST(dxcc_entities.adif AS CHAR)
 			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			SET col_cont = dxcc_entities.cont
 			WHERE (COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = ''  or " . $this->config->item('table_name') . ".col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
 			AND station_profile.user_id = ?
-			AND col_dxcc != 0";
+			AND col_dxcc != '0'";
 
 		$bindings[] = $this->session->userdata('user_id');
 

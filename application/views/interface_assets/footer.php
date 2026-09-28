@@ -54,6 +54,7 @@
     var lang_admin_close = "<?= __("Close"); ?>";
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";
+    var lang_admin_post = "<?= __("Post"); ?>";
     var lang_lotw_propmode_hint = "<?= __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); ?>";
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
@@ -66,6 +67,7 @@
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
     var lang_gen_hamradio_sat_info = "<?= __("Satellite Information"); ?>";
+    var lang_gen_hamradio_sat_hamsat_post = "<?= __("Prepare hams.at Activation Posting"); ?>";
 
     var lang_notes_error_loading = "<?= __("Error loading notes"); ?>";
     var lang_notes_sort = "<?= __("Sorting"); ?>";
@@ -908,7 +910,9 @@ function showActivatorsMap(call, count, grids, grid_color) {
         container._leaflet_id = null;
     }
 
-    const map = new L.map('mapactivators').setView([30, 0], 1.5);
+    const map = new L.map('mapactivators', {
+        fullscreenControl: true,
+    }).setView([30, 0], 1.5);
 
     var grid_four = grids.split(', ');
 
@@ -1020,12 +1024,28 @@ function findlotwunconfirmed(){
     });
 }
 
-function searchButtonPress() {
+function searchButtonPress(searchDxcc) {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
 		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
         $('#partial_view').load("logbook/search_result/" + fixedcall, function() {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+            $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
+                showQsoActionsMenu($(this).closest('.dropdown'));
+            });
+        });
+    } else if (searchDxcc) {
+        $('#partial_view').load("<?php echo site_url('search/search_result'); ?>", {
+            search: JSON.stringify({
+                condition: "AND",
+                rules: [{
+                    field: "COL_DXCC",
+                    operator: "equal",
+                    value: searchDxcc
+                }]
+            })
+        }, function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -1038,6 +1058,9 @@ $(document).ready(function(){
     <?php if($this->input->post('callsign') != "") { ?>
         $('#callsign').val('<?php echo $this->input->post('callsign'); ?>');
         searchButtonPress();
+    <?php } ?>
+    <?php if($this->input->post('dxcc') !== null && is_numeric($this->input->post('dxcc'))) { ?>
+        searchButtonPress(<?php echo (int) $this->input->post('dxcc'); ?>);
     <?php } ?>
 
 $($('#callsign')).on('keypress',function(e) {
@@ -1052,7 +1075,7 @@ $($('#callsign')).on('keypress',function(e) {
 </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "logbook" || $this->uri->segment(1) == "logbookadvanced" || $this->uri->segment(1) == "eqsl" || $this->uri->segment(1) == "generic_qsl" || $this->uri->segment(1) == "activators" || $this->uri->segment(1) == "distancerecords" || $this->uri->segment(1) == "timeline" || $this->uri->segment(1) == "callstats" || $this->uri->segment(1) == "statistics" || $this->uri->segment(1) == "countqsoby" || $this->uri->segment(1) == "awards" || $this->uri->segment(1) == "calltester" || $this->uri->segment(1) == "zonechecker" || $this->uri->segment(1) == "qslprint" || $this->uri->segment(1) == "qso" || $this->uri->segment(1) == "dbtools" || $this->uri->segment(1) == "qsl" || $this->uri->segment(1) == "search") { ?>
+<?php if ($this->uri->segment(1) == "logbook" || $this->uri->segment(1) == "logbookadvanced" || $this->uri->segment(1) == "eqsl" || $this->uri->segment(1) == "generic_qsl" || $this->uri->segment(1) == "activators" || $this->uri->segment(1) == "distances" || $this->uri->segment(1) == "distancerecords" || $this->uri->segment(1) == "timeline" || $this->uri->segment(1) == "callstats" || $this->uri->segment(1) == "statistics" || $this->uri->segment(1) == "countqsoby" || $this->uri->segment(1) == "awards" || $this->uri->segment(1) == "calltester" || $this->uri->segment(1) == "zonechecker" || $this->uri->segment(1) == "qslprint" || $this->uri->segment(1) == "qso" || $this->uri->segment(1) == "dbtools" || $this->uri->segment(1) == "qsl" || $this->uri->segment(1) == "search" || $this->uri->segment(1) == "adif" || $this->uri->segment(1) == "lotw" || $this->uri->segment(1) == "qrz") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
@@ -1190,6 +1213,7 @@ mymap.on('mousemove', onQsoMapMove);
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div id="qsomapgrid"></div>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
+        L.DomEvent.disableClickPropagation(div);
         return div;
     };
 
@@ -2209,7 +2233,7 @@ $('#sats').change(function(){
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
          $.fn.dataTable.ext.buttons.clear = {
-               className: 'buttons-clear',
+               className: 'buttons-clear btn-sm',
                action: function ( e, dt, node, config ) {
                   dt.search('');
                   dt.draw();
@@ -2227,10 +2251,24 @@ $('#sats').change(function(){
                     url: getDataTablesLanguageUrl(),
                 },
                 dom: 'Bfrtip',
+                initComplete: function() {
+                    document.querySelectorAll('.timelinetable [data-bs-toggle="tooltip"]').forEach(el => {
+                        new bootstrap.Tooltip(el, {
+                            container: 'body',
+                            html: true,
+                            placement: 'right',
+                            fallbackPlacements: ['right', 'top'],
+                            trigger: 'hover',
+                            offset: [0, 2],
+                            customClass: 'tooltip-tl',
+                            delay: { show: 200, hide: 150 }
+                        });
+                    });
+                },
                 buttons: [
                     {
 						extend: 'csv',
-						className: 'mb-1 btn btn-primary', // Bootstrap classes
+						className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 							init: function(api, node, config) {
 								$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 						},

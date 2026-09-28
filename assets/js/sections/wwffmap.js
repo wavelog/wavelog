@@ -151,6 +151,7 @@ function load_wwff_map2(data) {
 		div.innerHTML += '<i style="background: ' + confirmedColor + '"></i><span>' + lang_general_word_confirmed + ' (' + confirmedCount + ')</span><br>';
 		div.innerHTML += '<i style="background: ' + workedColor + '"></i><span>' + lang_general_word_worked_not_confirmed + ' (' + workedNotConfirmedCount + ')</span><br>';
 		div.innerHTML += '<i style="background: #999"></i><span>' + lang_wwff_without_coordinates + ' (' + withoutCoords + ')</span><br>';
+		L.DomEvent.disableClickPropagation(div);
 		return div;
 	};
 

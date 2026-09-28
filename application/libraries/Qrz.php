@@ -12,7 +12,7 @@ class Qrz {
 	public function session($username, $password) {
 		// URL to the XML Source
 		$ci = & get_instance();
-		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.$username.';password='.urlencode($password).';agent=wavelog';
+		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.urlencode($username).';password='.urlencode($password).';agent=wavelog';
 
 		// CURL Functions
 		$ch = curl_init();
@@ -37,7 +37,7 @@ class Qrz {
 		$ci = & get_instance();
 
 		// URL to the XML Source
-		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.$username.';password='.urlencode($password).';agent=wavelog';
+		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.urlencode($username).';password='.urlencode($password).';agent=wavelog';
 
 		// CURL Functions
 		$ch = curl_init();

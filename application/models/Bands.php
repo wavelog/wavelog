@@ -296,6 +296,7 @@ class Bands extends CI_Model {
 			'helvetia' 	 => $band['helvetia'] 	== "true" ? '1' : '0',
 			'iota' 		 => $band['iota'] 		== "true" ? '1' : '0',
 			'jcc' 		 => $band['jcc'] 		== "true" ? '1' : '0',
+			'jcg' 		 => $band['jcg'] 		== "true" ? '1' : '0',
 			'pota' 		 => $band['pota'] 		== "true" ? '1' : '0',
 			'rac' 		 => $band['rac'] 		== "true" ? '1' : '0',
 			'sig' 		 => $band['sig'] 		== "true" ? '1' : '0',
@@ -333,7 +334,7 @@ class Bands extends CI_Model {
 
 	function saveBandAward($award, $status) {
 		// Validate award field name to prevent SQL injection
-		$valid_awards = array('cq', 'dok', 'dxcc', 'helvetia', 'iota', 'jcc', 'pota',
+		$valid_awards = array('cq', 'dok', 'dxcc', 'helvetia', 'iota', 'jcc', 'jcg', 'pota',
 			'rac', 'sig', 'sota', 'uscounties', 'vucc', 'wap', 'wapc', 'waja', 'was', 'wwff');
 
 		if (!in_array($award, $valid_awards)) {

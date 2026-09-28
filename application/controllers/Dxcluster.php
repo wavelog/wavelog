@@ -24,8 +24,8 @@ class Dxcluster extends CI_Controller {
 
 		// Only load cache driver if caching is enabled
 		if (($this->config->item('enable_dxcluster_file_cache_band') ?? false) || ($this->config->item('enable_dxcluster_file_cache_worked') ?? false)) {
-			$this->load->driver('cache', [
-				'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+				'adapter' => $this->config->item('cache_adapter') ?? 'file',
 				'backup' => $this->config->item('cache_backup') ?? 'file',
 				'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
 			]);

@@ -217,4 +217,6 @@ $(document).ready(function() {
 	hamsAtTimer = setInterval(function() {
 		loadHamsAt(obj);
 	}, 60000);
+
 });
+

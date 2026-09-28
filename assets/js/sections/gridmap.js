@@ -205,6 +205,7 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 					html += '<tr><td><i style="background: #ffd757"></i><span>' + gridsquares_gridsquares_total_worked + ' ('+(Math.round((grid_four.length / grid_max) * 10000) / 100)+'%):</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+(grid_four.length)+' / '+grid_max+'</span></td></tr>';
 					html += "</table>";
 					div.innerHTML = html;
+					L.DomEvent.disableClickPropagation(div);
 					return div;
 				};
 			} else {
@@ -229,6 +230,7 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 					div.innerHTML += '<i class="grid-confirmed" style="background: ' + confirmedColor + '"></i><span>Fields confirmed ('+grid_two_confirmed.length+')</span><br>';
 					div.innerHTML += '<i class="grid-worked" style="background: ' + workedColor + '"></i><span>Fields not confirmed ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
 					div.innerHTML += '<i></i><span>Total fields worked ('+grid_two.length+')</span><br>';
+					L.DomEvent.disableClickPropagation(div);
 					return div;
 				};
 			}

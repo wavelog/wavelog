@@ -5,6 +5,7 @@ if (isset($filtered)) {
 				<tr id="toptable">
 					<th>' . __("Satellite") . ' <i class="fa-solid fa-satellite"></i></th>
 					<th>' . __("AOS Time") . '</th>
+					<th>' . __("TCA Time") . '</th>
 					<th>' . __("LOS Time") . '</th>
 					<th>' . __("Duration") . '</th>
 					<th style="white-space: nowrap">' . __("Path") . '</th>
@@ -17,8 +18,11 @@ if (isset($filtered)) {
 			foreach ($filtered as $pass) {
 				$aos_az = round($pass->aos_az);
 				$los_az = round($pass->los_az);
-				$aos_ics=Predict_Time::daynum2readable($pass->aos, $zone, 'Y-m-d\TH:i:s\z');
-				$los_ics=Predict_Time::daynum2readable($pass->los, $zone, 'Y-m-d\TH:i:s\z');
+			$aos_ics=Predict_Time::daynum2readable($pass->aos, $zone, 'Y-m-d\TH:i:s\z');
+			$los_ics=Predict_Time::daynum2readable($pass->los, $zone, 'Y-m-d\TH:i:s\z');
+			$aos_iso=Predict_Time::daynum2readable($pass->aos, $zone, 'Y-m-d\TH:i:sP');
+			$tca_iso=Predict_Time::daynum2readable($pass->tca, $zone, 'Y-m-d\TH:i:sP');
+			$los_iso=Predict_Time::daynum2readable($pass->los, $zone, 'Y-m-d\TH:i:sP');
 				$ics='create_ics/'.$pass->satname.'/'.$aos_ics.'/'.$los_ics;
 				$max_el = round($pass->max_el);
 				$max_el_az = round($pass->maxel_az);
@@ -28,10 +32,15 @@ if (isset($filtered)) {
 				$tca=sat2pol($max_el_az,$max_el,$scale);
 				$control = array(2 * $tca[0] - ($aos[0] + $los[0]) / 2, 2 * $tca[1] - ($aos[1] + $los[1]) / 2);	// Calc Controlpoints for Bezier-Curve
 				echo '<tr>';
-				echo '<td>' . ($pass->satname != '' ? $pass->satname : $pass->displayname) . ' <i class="satelliteinfo fa fa-info-circle"></i></td>';
-				echo '<td>' . Predict_Time::daynum2readable($pass->aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
-				echo '<td>' . Predict_Time::daynum2readable($pass->los, $zone, $format) . '</td>';
-				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->aos, $zone, $format), Predict_Time::daynum2readable($pass->los, $zone, $format), $format) . '</td>';
+			echo '<td>' . ($pass->satname != '' ? $pass->satname : $pass->displayname) . ' <i class="satelliteinfo fa fa-info-circle"></i>';
+			if ($hamsat_key) {
+				echo ' <i class="hamsatposting fa fa-bullhorn"></i>';
+			}
+			echo '</td>';
+			echo '<td class="aos" data-aos="' . $aos_iso . '">' . Predict_Time::daynum2readable($pass->aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
+			echo '<td class="tca" data-tca="' . $tca_iso . '">' . Predict_Time::daynum2readable($pass->tca, $zone, $format) . '</td>';
+			echo '<td class="los" data-los="' . $los_iso . '">' . Predict_Time::daynum2readable($pass->los, $zone, $format) . '</td>';
+			echo '<td class="duration">' . returntimediff(Predict_Time::daynum2readable($pass->aos, $zone, $format), Predict_Time::daynum2readable($pass->los, $zone, $format), $format) . '</td>';
 				echo '<td><a href="flightpath/'.$pass->satname.'" target="_blank"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="'.($scale*2).'" height="'.($scale*2).'">
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 9).'" stroke="darkgrey" stroke-width="1" fill="none" />

@@ -22,6 +22,7 @@ class Worker {
 	private int    $timeout_ms;
 	private bool   $enabled;
 	private int    $token_expiration;
+	private bool   $legacy_config;
 
 	public function __construct() {
 		$CI =& get_instance();
@@ -31,15 +32,19 @@ class Worker {
 		$timeout_seconds  = (float)  $CI->config->item('worker_timeout', 'worker');
 		$this->timeout_ms = (int) max(100, $timeout_seconds * 1000);
 
+		$url_cfg   = (string) $CI->config->item('worker_url', 'worker');
 		$vip_cfg   = (string) $CI->config->item('worker_vip', 'worker');
 		$urls_cfg  = $CI->config->item('worker_urls', 'worker');
-		if ($vip_cfg !== '') {
+		if ($url_cfg !== '') {
+			$this->url = rtrim($url_cfg, '/');
+		} elseif ($vip_cfg !== '') {
 			$this->url = rtrim($vip_cfg, '/');
 		} elseif (is_array($urls_cfg) && !empty($urls_cfg)) {
 			$this->url = rtrim($urls_cfg[0], '/');
 		} else {
 			$this->url = '';
 		}
+		$this->legacy_config = $url_cfg === '' && $this->url !== '';
 
 		$this->enabled    = (bool) $CI->config->item('worker_enabled', 'worker')
 		                    && $this->url !== ''
@@ -56,6 +61,14 @@ class Worker {
 	 */
 	public function is_enabled(): bool {
 		return $this->enabled;
+	}
+
+	/**
+	 * Returns true if the worker URL comes from the deprecated worker_vip /
+	 * worker_urls keys instead of worker_url. The debug page shows a hint then.
+	 */
+	public function is_legacy_config(): bool {
+		return $this->legacy_config;
 	}
 
 	/**
@@ -175,18 +188,20 @@ class Worker {
 	}
 
 	/**
-	 * Live status of the worker cluster, fanned out to every configured node's
-	 * /internal/status endpoint. Reused by the debug page and the statistics
-	 * API so the fan-out lives in one place.
+	 * Live status of the worker cluster, shared by the debug page and the
+	 * statistics API. Worker 0.3.0+ reports the whole roster on /internal/status,
+	 * so one request to worker_url is enough; older workers (or Redis down)
+	 * fall back to polling every worker_urls entry.
 	 *
 	 * @return array {
 	 *   enabled: bool,
 	 *   vip: string|null,
 	 *   nodes_total: int,
 	 *   nodes_alive: int,
-	 *   active_topics: int|null,       // cluster sum, null when no node answered
-	 *   connected_clients: int|null,   // cluster sum, null when no node answered
-	 *   nodes: array<int, array{url,alive,version,active_topics,connected_clients,uptime}>
+	 *   active_topics: int|null,       // sum over alive nodes, null when no node answered
+	 *   connected_clients: int|null,   // sum over alive nodes, null when no node answered
+	 *   nodes: array<int, array{name,url,alive,version,active_topics,connected_clients,uptime}>
+	 *          roster path: url is null, alive = heartbeat < 15s; fan-out: alive = HTTP 200
 	 * }
 	 */
 	public function status(): array {
@@ -207,6 +222,28 @@ class Worker {
 			return $result;
 		}
 
+		$primary = $this->fetch_node_status($this->url);
+		if (!empty($primary['nodes'])) {
+			foreach ($primary['nodes'] as $n) {
+				$result['nodes'][] = [
+					'name'              => $n['name'] ?? null,
+					'url'               => null,
+					'alive'             => (bool) ($n['alive'] ?? false),
+					'version'           => $n['version'] ?? null,
+					'active_topics'     => $n['active_topics'] ?? null,
+					'connected_clients' => $n['connected_clients'] ?? null,
+					'uptime'            => $n['uptime'] ?? null,
+				];
+			}
+			$alive = array_filter($result['nodes'], fn($n) => $n['alive']);
+			$result['nodes_total']       = count($result['nodes']);
+			$result['nodes_alive']       = count($alive);
+			$result['active_topics']     = array_sum(array_column($alive, 'active_topics'));
+			$result['connected_clients'] = array_sum(array_column($alive, 'connected_clients'));
+			return $result;
+		}
+
+		// Fan-out path: worker < 0.3.0 or Redis unreachable. Poll every configured URL.
 		$urls_cfg = $CI->config->item('worker_urls', 'worker');
 		$urls = is_array($urls_cfg) ? array_map(fn($u) => rtrim($u, '/'), $urls_cfg) : [];
 		if (empty($urls) && $this->url !== '') {
@@ -218,7 +255,8 @@ class Worker {
 		$clients = 0;
 		$have_metrics = false;
 		foreach ($urls as $url) {
-			$node = $this->fetch_node_status($url);
+			$node = $url === $this->url ? $primary : $this->fetch_node_status($url);
+			unset($node['nodes']);
 			if ($node['alive']) {
 				$result['nodes_alive']++;
 			}
@@ -243,6 +281,7 @@ class Worker {
 	/**
 	 * Query a single worker node's /internal/status. Never throws: an
 	 * unreachable node is reported as alive=false with null metrics.
+	 * 'nodes' carries the cluster roster of worker 0.3.0+, null otherwise.
 	 */
 	private function fetch_node_status(string $url): array {
 		$ch = curl_init($url . '/internal/status');
@@ -258,12 +297,14 @@ class Worker {
 		$stats = ($http_code === 200 && $raw) ? json_decode($raw, true) : null;
 
 		return [
+			'name'              => $url,
 			'url'               => $url,
 			'alive'             => $http_code === 200,
 			'version'           => $stats['version']           ?? null,
 			'active_topics'     => $stats['active_topics']     ?? null,
 			'connected_clients' => $stats['connected_clients'] ?? null,
 			'uptime'            => $stats['uptime']            ?? null,
+			'nodes'             => is_array($stats['nodes'] ?? null) ? $stats['nodes'] : null,
 		];
 	}
 

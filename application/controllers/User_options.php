@@ -57,7 +57,7 @@ class User_Options extends CI_Controller {
 
 	/**
 	 * Save a dashboard layout preference from the dashboard context menu.
-	 * Body: {"pref":"kpi|solar|map|dxpeditions|contests","value":...}
+	 * Body: {"pref":"kpi|solar|map|dxpeditions|contests|dxcc|vucc|qslcards|eqsl|qrz|clublog|lotw","value":...}
 	 */
 	public function save_dashboard_pref() {
 		$obj = json_decode(file_get_contents("php://input"), true);
@@ -79,6 +79,9 @@ class User_Options extends CI_Controller {
 		} elseif ($pref === 'contests' && in_array($value, ['1', '0'], true)) {
 			$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean' => $value));
 			$this->session->set_userdata('user_dashboard_show_contests', $value);
+		} elseif (in_array($pref, ['dxcc', 'vucc', 'qslcards', 'eqsl', 'qrz', 'clublog', 'lotw'], true) && in_array($value, ['1', '0'], true)) {
+			$this->user_options_model->set_option('dashboard', 'show_' . $pref, array('boolean' => $value));
+			$this->session->set_userdata('user_dashboard_show_' . $pref, $value);
 		} else {
 			header('Content-Type: application/json');
 			echo json_encode(['success' => 0, 'error' => 'Invalid data']);
