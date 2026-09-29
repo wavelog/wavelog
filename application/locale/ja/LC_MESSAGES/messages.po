@@ -2809,8 +2809,8 @@ msgid ""
 "The uploaded file is invalid. Please upload a Logbook of the World .p12 "
 "certificate file."
 msgstr ""
-"アップロードされたファイルは無効です。Logbook of the Worldの.p12証明書"
-"ファイルをアップロードしてください。"
+"アップロードされたファイルは無効です。Logbook of the Worldの.p12証明書ファイ"
+"ルをアップロードしてください。"
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
@@ -2836,10 +2836,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"ファイル %s にある証明書にはパスワードが含まれているため、処理できませ"
-"ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
-"を含めないようにしてください！%s 詳細については、Wavelog Wiki の %sLoTW トラ"
-"ブルシューティングページ%s をご覧ください。"
+"ファイル %s にある証明書にはパスワードが含まれているため、処理できません。"
+"%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワードを含"
+"めないようにしてください！%s 詳細については、Wavelog Wiki の %sLoTW トラブル"
+"シューティングページ%s をご覧ください。"
 
 #: application/controllers/Lotw.php:438
 #, php-format
@@ -4224,8 +4224,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1561
 msgid "Station setup failed! Please set up your station manually."
@@ -5002,14 +5002,14 @@ msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
-"Memcachedサーバーからの応答がありませんでした。application/config/memcached."
-"phpの設定を確認してください。"
+"Memcachedサーバーからの応答がありませんでした。application/config/"
+"memcached.phpの設定を確認してください。"
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
-"APCuはロードされていますが、このPHPインターフェースでは使用できません（apc."
-"enabled=0?）。"
+"APCuはロードされていますが、このPHPインターフェースでは使用できません"
+"（apc.enabled=0?）。"
 
 #: application/models/Debug_model.php:377
 #, php-format
@@ -5149,6 +5149,7 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
 #: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5155
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5157,6 +5158,7 @@ msgstr ""
 "れました"
 
 #: application/models/Logbook_model.php:5109
+#: application/models/Logbook_model.php:5163
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5166,6 +5168,7 @@ msgstr ""
 "た：スキップしました"
 
 #: application/models/Logbook_model.php:5125
+#: application/models/Logbook_model.php:5179
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5174,6 +5177,7 @@ msgstr ""
 "んでした。無効です"
 
 #: application/models/Logbook_model.php:5135
+#: application/models/Logbook_model.php:5189
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5183,6 +5187,7 @@ msgstr ""
 "はインポートされませんでした。無効です。"
 
 #: application/models/Logbook_model.php:5142
+#: application/models/Logbook_model.php:5196
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5192,6 +5197,7 @@ msgstr ""
 "はインポートされませんでした。無効な入力は '%s '。"
 
 #: application/models/Logbook_model.php:5212
+#: application/models/Logbook_model.php:5266
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5201,6 +5207,7 @@ msgstr ""
 "されませんでした。"
 
 #: application/models/Logbook_model.php:5219
+#: application/models/Logbook_model.php:5273
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5210,58 +5217,72 @@ msgstr ""
 "はインポートされませんでした。無効です"
 
 #: application/models/Logbook_model.php:5494
+#: application/models/Logbook_model.php:5548
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5505
+#: application/models/Logbook_model.php:5559
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5566
+#: application/models/Logbook_model.php:5620
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5942
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5996
 msgid "Duplicate for"
 msgstr "複製用"
 
 #: application/models/Logbook_model.php:6009
 #: application/models/Logbook_model.php:6109
+#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6163
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
 #: application/models/Logbook_model.php:6017
+#: application/models/Logbook_model.php:6071
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
 #: application/models/Logbook_model.php:6023
+#: application/models/Logbook_model.php:6077
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
 #: application/models/Logbook_model.php:6027
+#: application/models/Logbook_model.php:6081
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
 #: application/models/Logbook_model.php:6031
+#: application/models/Logbook_model.php:6085
 msgid "confirmation pending"
 msgstr "確認中"
 
 #: application/models/Logbook_model.php:6034
+#: application/models/Logbook_model.php:6088
 msgid "unconfirmed"
 msgstr "未確認"
 
 #: application/models/Logbook_model.php:6037
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:6091
 msgid "unknown"
 msgstr "不明"
 
 #: application/models/Logbook_model.php:6112
+#: application/models/Logbook_model.php:6166
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
 #: application/models/Logbook_model.php:6115
+#: application/models/Logbook_model.php:6169
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
@@ -5278,6 +5299,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6590
 msgid "Bearing"
 msgstr "方位"
 
@@ -25919,9 +25941,9 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -26252,8 +26274,8 @@ msgstr "LoTWユーザー。最後のアップロードは "
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
