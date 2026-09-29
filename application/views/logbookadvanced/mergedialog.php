@@ -150,11 +150,11 @@
                             'DCL Received' => 'COL_DCL_QSL_RCVD',
                             'DCL Sent Date' => 'COL_DCL_QSLSDATE',
                             'DCL Received Date' => 'COL_DCL_QSLRDATE',
-                            // award.srr
-                            'award.srr Sent' => 'COL_SRR_QSL_SENT',
-                            'award.srr Received' => 'COL_SRR_QSL_RCVD',
-                            'award.srr Sent Date' => 'COL_SRR_QSLSDATE',
-                            'award.srr Received Date' => 'COL_SRR_QSLRDATE',
+                            // SRR
+                            'SRR Sent' => 'COL_SRR_QSL_SENT',
+                            'SRR Received' => 'COL_SRR_QSL_RCVD',
+                            'SRR Sent Date' => 'COL_SRR_QSLSDATE',
+                            'SRR Received Date' => 'COL_SRR_QSLRDATE',
                             // Station & Operator
                             'Operator' => 'COL_OPERATOR',
                             'Owner Callsign' => 'COL_OWNER_CALLSIGN',

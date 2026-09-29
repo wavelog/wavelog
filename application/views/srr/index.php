@@ -8,7 +8,7 @@
 			<?php if ($srr_key != '') { ?>
 			<a style="margin-left: 1em;" class="btn btn-outline-danger btn-sm float-end" href="<?php echo site_url('srr/delete_key'); ?>" role="button"><i class="far fa-trash-alt"></i> <?= __("Delete Key"); ?></a>
 			<?php } ?>
-			<a class="btn btn-outline-success btn-sm float-end" href="https://award.srr.ru/panel/" target="_blank" rel="noopener" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Request award.srr Key"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("award.srr Key"); ?>
+			<a class="btn btn-outline-success btn-sm float-end" href="https://award.srr.ru/panel/" target="_blank" rel="noopener" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Request SRR Key"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("SRR Key"); ?>
 		</div>
 
 		<div class="key-list">
@@ -51,11 +51,11 @@
 			<?php } else { ?>
 			<div class="card-body">
 				<div class="alert alert-info" role="alert">
-					<?= __("You need to request an award.srr key to use this function. Copy the key from your award.srr panel and paste it here."); ?>
+					<?= __("You need to request an SRR key to use this function. Copy the key from your SRR panel and paste it here."); ?>
 				</div>
 				<form class="row g-2" method="post" action="<?php echo site_url('srr/store_key'); ?>">
 					<div class="col-auto">
-						<input type="text" class="form-control" name="srr_key" id="srr_key" placeholder="<?= __("award.srr API Key"); ?>" required>
+						<input type="text" class="form-control" name="srr_key" id="srr_key" placeholder="<?= __("SRR API Key"); ?>" required>
 					</div>
 					<div class="col-auto">
 						<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?= __("Save"); ?></button>
@@ -86,8 +86,8 @@
 		<div class="card-body">
 			<div class="tab-content">
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
-			<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with award.srr will happen at: ").$next_run." UTC</p>"; } ?>
-			<p><?= __("Here you can see all QSOs which have not been previously uploaded to award.srr."); ?></p>
+			<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with SRR will happen at: ").$next_run." UTC</p>"; } ?>
+			<p><?= __("Here you can see all QSOs which have not been previously uploaded to SRR."); ?></p>
 			<p><?= __("The RDA district of your station (e.g. SP-19) has to be entered in the field 'Station County' of the station location. It is stored in every QSO as MY_CNTY."); ?></p>
 <?php
 			if ($station_profile->result()) {
@@ -134,7 +134,7 @@
 							</div>
 						</div>
 						<br>
-						<button type="button" class="btn btn-sm btn-primary ld-ext-right ld-ext-right-import" onclick="importSrr();"><i class="fas fa-cloud-download-alt"></i> <?= __("Download QSLs from award.srr"); ?><div class="ld ld-ring ld-spin"></div></button>
+						<button type="button" class="btn btn-sm btn-primary ld-ext-right ld-ext-right-import" onclick="importSrr();"><i class="fas fa-cloud-download-alt"></i> <?= __("Download QSLs from SRR"); ?><div class="ld ld-ring ld-spin"></div></button>
 					</form>
 				</div>
 			</div>

@@ -24,14 +24,14 @@ class Srr extends CI_Controller {
 		if ($srr_key != '') {
 			$data['srr_me'] = $this->Srr_model->get_srr_me($srr_key);
 			if ($data['srr_me'] === false) {
-				$data['error'] = __("The stored award.srr key is not valid. Please request a new key.");
+				$data['error'] = __("The stored SRR key is not valid. Please request a new key.");
 			}
 			$data['station_profile'] = $this->Srr_model->stations_with_srr();
 		}
 		$data['srr_key'] = $srr_key;
 
 		// Set Page Title
-		$data['page_title'] = __("award.srr");
+		$data['page_title'] = __("SRR");
 
 		$this->load->model('cron_model');
 		$data['next_run'] = $this->cron_model->get_next_run("sync_srr");
@@ -56,7 +56,7 @@ class Srr extends CI_Controller {
 			$this->Srr_model->store_key($srr_key);
 			$this->session->set_flashdata('success', __("Key stored."));
 		} else {
-			$this->session->set_flashdata('error', __("Received an invalid award.srr key. Please check the key, and try again."));
+			$this->session->set_flashdata('error', __("Received an invalid SRR key. Please check the key, and try again."));
 		}
 		redirect('srr');
 	}
@@ -83,7 +83,7 @@ class Srr extends CI_Controller {
 
 		if ($srr_key == '') {
 			$data['status'] = 'Error';
-			$data['errormessages'] = array(__("You need to store an award.srr key to use this function."));
+			$data['errormessages'] = array(__("You need to store an SRR key to use this function."));
 		} elseif (!$this->Stations->check_station_is_accessible($station_id)) {
 			$data['status'] = 'Error';
 			$data['errormessages'] = array(__("You're not allowed to do that!"));
@@ -105,7 +105,7 @@ class Srr extends CI_Controller {
 
 		$srr_key = $this->Srr_model->srr_key($this->session->userdata('user_id'));
 		if ($srr_key == '') {
-			$r = __("You need to store an award.srr key to use this function.");
+			$r = __("You need to store an SRR key to use this function.");
 		} else {
 			$r = $this->Srr_model->download_user($this->session->userdata('user_id'), $srr_key, $this->input->post('date', true));
 		}
@@ -119,7 +119,7 @@ class Srr extends CI_Controller {
 	| Function: srr_sync
 	|--------------------------------------------------------------------------
 	|
-	|	Called by cron. Uploads the QSOs of all users with an award.srr key
+	|	Called by cron. Uploads the QSOs of all users with an SRR key
 	|	and downloads their confirmations.
 	|
 	 */
@@ -141,7 +141,7 @@ class Srr extends CI_Controller {
 
 		$users = $this->Srr_model->srr_users();
 		if (empty($users)) {
-			echo __("No user has configured award.srr.");
+			echo __("No user has configured SRR.");
 			return;
 		}
 

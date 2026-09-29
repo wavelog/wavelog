@@ -726,7 +726,7 @@ $options = json_decode($options);
                                         </select>
                                     </div>
                                     <div <?php if (($options->srr->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                                        <label for="srrSent"><?= __("award.srr sent"); ?></label>
+                                        <label for="srrSent"><?= __("SRR sent"); ?></label>
                                         <select id="srrSent" name="srrSent" class="form-select form-select-sm border border-secondary filter-field">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
@@ -735,7 +735,7 @@ $options = json_decode($options);
                                         </select>
                                     </div>
                                     <div <?php if (($options->srr->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                                        <label for="srrReceived"><?= __("award.srr received"); ?></label>
+                                        <label for="srrReceived"><?= __("SRR received"); ?></label>
                                         <select id="srrReceived" name="srrReceived" class="form-select form-select-sm border border-secondary filter-field">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
@@ -1012,7 +1012,7 @@ $options = json_decode($options);
                         echo '<th>' . __("DCL") . '</th>';
                     } ?>
                     <?php if (($options->srr->show ?? "true") == "true") {
-                        echo '<th>' . __("award.srr") . '</th>';
+                        echo '<th>' . __("SRR") . '</th>';
                     } ?>
                     <?php if (($options->qslmsgs->show ?? "false") == "true") {
                         echo '<th>' . __("QSL Msg (S)") . '</th>';

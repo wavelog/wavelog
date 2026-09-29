@@ -420,7 +420,7 @@
                                             <a class="nav-link" id="dcl-tab" data-bs-toggle="tab" href="#dcl-edit" role="tab" aria-controls="dcl" aria-selected="false"><?= __("DCL"); ?></a>
                                         </li>
 					<li class="nav-item">
-                                            <a class="nav-link" id="srr-tab" data-bs-toggle="tab" href="#srr-edit" role="tab" aria-controls="srr" aria-selected="false"><?= __("award.srr"); ?></a>
+                                            <a class="nav-link" id="srr-tab" data-bs-toggle="tab" href="#srr-edit" role="tab" aria-controls="srr" aria-selected="false"><?= __("SRR"); ?></a>
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="qsl_edit_tabs">

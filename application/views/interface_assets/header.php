@@ -607,7 +607,7 @@
 										<?php } ?>
 										<?php
 										if ($this->config->item('enable_srr_interface') ?? false) { ?>
-										<li><a class="dropdown-item" href="<?php echo site_url('srr'); ?>" title="award.srr import / export"><i class="fas fa-sync"></i> <?= __("award.srr Import / Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('srr'); ?>" title="SRR import / export"><i class="fas fa-sync"></i> <?= __("SRR Import / Export"); ?></a></li>
 										<?php } ?>
 									</ul>
 								</li>

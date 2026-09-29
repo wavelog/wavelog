@@ -9,7 +9,7 @@ class Srr_model extends CI_Model {
 	| Function: srr_key
 	|--------------------------------------------------------------------------
 	|
-	| Returns the award.srr API key of the user via the $user_id parameter
+	| Returns the SRR API key of the user via the $user_id parameter
 	|
 	*/
 	function srr_key($user_id) {
@@ -23,7 +23,7 @@ class Srr_model extends CI_Model {
 	| Function: srr_users
 	|--------------------------------------------------------------------------
 	|
-	| Returns all users which have stored an award.srr API key
+	| Returns all users which have stored an SRR API key
 	|
 	*/
 	function srr_users() {
@@ -46,7 +46,7 @@ class Srr_model extends CI_Model {
 	| Function: get_srr_me
 	|--------------------------------------------------------------------------
 	|
-	| Checks the key against award.srr and returns the user with his callsigns
+	| Checks the key against SRR and returns the user with his callsigns
 	| or false if the key is invalid
 	|
 	*/
@@ -66,8 +66,8 @@ class Srr_model extends CI_Model {
 	| Function: get_srr_rda
 	|--------------------------------------------------------------------------
 	|
-	| Returns the list of RDA codes from the award.srr info endpoint.
-	| The list is cached as long as award.srr allows it (cache_ttl).
+	| Returns the list of RDA codes from the SRR info endpoint.
+	| The list is cached as long as SRR allows it (cache_ttl).
 	|
 	*/
 	function get_srr_rda($key) {
@@ -140,11 +140,11 @@ class Srr_model extends CI_Model {
 	| Function: upload_station
 	|--------------------------------------------------------------------------
 	|
-	| Uploads all not yet uploaded QSOs of a station profile to award.srr.
+	| Uploads all not yet uploaded QSOs of a station profile to SRR.
 	| QSOs on 2m and above need a PROP_MODE. If there are QSOs without one,
 	| nothing is uploaded and the QSOs are returned (status "propmode") so the
 	| user can decide. With $propmode_los these QSOs are sent with PROP_MODE LOS.
-	| The RDA district of each QSO (MY_CNTY) is checked against the award.srr
+	| The RDA district of each QSO (MY_CNTY) is checked against the SRR
 	| RDA list. If there are QSOs without a valid RDA, nothing is uploaded and
 	| the QSOs are returned (status "rda") so the user can decide. With
 	| $without_rda these QSOs are sent without MY_CNTY.
@@ -158,7 +158,7 @@ class Srr_model extends CI_Model {
 		$rda_list = $this->get_srr_rda($key);
 		if ($rda_list === false) {
 			$result['status'] = 'Error';
-			$result['errormessages'][] = $station_text.__("Could not load the RDA list from award.srr.");
+			$result['errormessages'][] = $station_text.__("Could not load the RDA list from SRR.");
 			return $result;
 		}
 
@@ -268,23 +268,10 @@ class Srr_model extends CI_Model {
 				$qso_errors[$validation_error->index] = $validation_error->message;
 			}
 
-			if (count($response['data']->process->errors ?? array()) > 0) {
-				// The process errors can not be assigned to the QSOs, so the QSOs are sent again one by one
-				foreach ($chunk as $index => $qso) {
-					if (isset($qso_errors[$index])) {
-						continue;
-					}
-					$single = $this->post_qsos(array($records[$index]), $key);
-					if ($single['error'] != '') {
-						$qso_errors[$index] = $single['error'];
-					} elseif (count($single['data']->validation_errors ?? array()) > 0) {
-						$qso_errors[$index] = $single['data']->validation_errors[0]->message;
-					} elseif (count($single['data']->process->errors ?? array()) > 0) {
-						// A duplicate means the QSO is already known by award.srr
-						if (strpos($single['data']->process->errors[0]->message ?? '', 'Duplicate entry') !== 0) {
-							$qso_errors[$index] = $single['data']->process->errors[0]->message;
-						}
-					}
+			foreach (($response['data']->process->errors ?? array()) as $process_error) {
+				// A duplicate means the QSO is already known by SRR
+				if (strpos($process_error->message ?? '', 'Duplicate entry') !== 0) {
+					$qso_errors[$process_error->index] = $process_error->message;
 				}
 			}
 
@@ -302,7 +289,7 @@ class Srr_model extends CI_Model {
 
 		$result['infomessage'] = $station_text.__("Upload Successful")." ".$uploaded." QSOs";
 		if ($failed > 0) {
-			$result['infomessage'] .= ", ".sprintf(__("%d QSO(s) rejected by award.srr and marked as invalid"), $failed);
+			$result['infomessage'] .= ", ".sprintf(__("%d QSO(s) rejected by SRR and marked as invalid"), $failed);
 		}
 		return $result;
 	}
@@ -312,16 +299,16 @@ class Srr_model extends CI_Model {
 	| Function: download_user
 	|--------------------------------------------------------------------------
 	|
-	| Downloads the confirmations of a user from award.srr and marks the
+	| Downloads the confirmations of a user from SRR and marks the
 	| matching QSOs as received. The RDA district of the worked station (CNTY)
 	| is stored in the QSO. Without $from the confirmations since the last
-	| received award.srr confirmation are downloaded.
+	| received SRR confirmation are downloaded.
 	|
 	*/
 	function download_user($user_id, $key, $from = null) {
 		$me = $this->get_srr_me($key);
 		if ($me === false) {
-			return __("The stored award.srr key is not valid. Please request a new key.");
+			return __("The stored SRR key is not valid. Please request a new key.");
 		}
 
 		$this->load->model('Logbook_model');
@@ -341,7 +328,7 @@ class Srr_model extends CI_Model {
 			$qslsince = $this->srr_last_qsl_rcvd_date($user_id);
 		}
 
-		// The export contains all QSOs of the award.srr account, so one request for the own and one for each delegated callsign is enough
+		// The export contains all QSOs of the SRR account, so one request for the own and one for each delegated callsign is enough
 		$callsigns = array();
 		if (isset($me->callsigns[0]->callsign)) {
 			$callsigns[] = $me->callsigns[0]->callsign;
@@ -394,7 +381,7 @@ class Srr_model extends CI_Model {
 			}
 		}
 
-		$r = sprintf(__("%d confirmation(s) downloaded from award.srr, %d already known, %d QSO(s) not found in the logbook."), $updated, $known, $not_found);
+		$r = sprintf(__("%d confirmation(s) downloaded from SRR, %d already known, %d QSO(s) not found in the logbook."), $updated, $known, $not_found);
 		if ($table != '') {
 			$r .= '<table class="table table-sm table-striped mt-2"><thead><tr><th>'.__("Station callsign").'</th><th>'.__("Date").'</th><th>'.__("Callsign").'</th><th>'.__("Band").'</th><th>'.__("Mode").'</th><th>'.__("RDA").'</th><th>'.__("QSL Date").'</th></tr></thead><tbody>'.$table.'</tbody></table>';
 		}
@@ -402,7 +389,7 @@ class Srr_model extends CI_Model {
 	}
 
 	/*
-	 * Returns the date of the last received award.srr confirmation of a user
+	 * Returns the date of the last received SRR confirmation of a user
 	 */
 	function srr_last_qsl_rcvd_date($user_id) {
 		$sql = "SELECT date_format(MAX(COALESCE(COL_SRR_QSLRDATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y%m%d') MAXDATE
@@ -413,7 +400,7 @@ class Srr_model extends CI_Model {
 	}
 
 	/*
-	 * Builds the QSO array for the award.srr API out of the ADIF lines of the QSOs.
+	 * Builds the QSO array for the SRR API out of the ADIF lines of the QSOs.
 	 * The RDA of the QSO is sent as MY_CNTY. Without RDA no MY_CNTY is sent.
 	 */
 	private function build_records($qsos) {

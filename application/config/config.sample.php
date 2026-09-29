@@ -851,8 +851,8 @@ $config['max_login_attempts'] = 3;
 
 /*
 |--------------------------------------------------------------------------
-| Enable award.srr Interface
-| Set this to true if your Users and you want to connect your instance to award.srr.ru
+| Enable SRR Interface
+| Set this to true if your Users and you want to connect your instance to SRR (award.srr.ru)
 |--------------------------------------------------------------------------
  */
 

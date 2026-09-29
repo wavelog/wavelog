@@ -151,7 +151,7 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="form-check">
 						<input class="form-check-input" name="srr" type="checkbox" id="srr" <?php if (($options->srr->show ?? "true") == "true") { echo 'checked'; } ?>>
-						<label class="form-check-label" for="srr"><?= __("award.srr"); ?></label>
+						<label class="form-check-label" for="srr"><?= __("SRR"); ?></label>
 					</div>
 				</div>
 				<div class="col-md-6 col-lg-4">

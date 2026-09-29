@@ -163,7 +163,7 @@ function getDistance($distance) {
                         <th scope="col"><?= __("DCL"); ?></th>
                     <?php } ?>
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'S') !== false  ) { ?>
-                        <th scope="col"><?= __("award.srr"); ?></th>
+                        <th scope="col"><?= __("SRR"); ?></th>
                     <?php } ?>
                 <?php } ?>
                         <th scope="col"><?= __("Station"); ?></th>

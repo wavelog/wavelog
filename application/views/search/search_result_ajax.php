@@ -127,7 +127,7 @@ $ci =& get_instance();
                     <th><?= __("DCL"); ?></th>
                 <?php } ?>
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'S') !== false  ) { ?>
-                    <th><?= __("award.srr"); ?></th>
+                    <th><?= __("SRR"); ?></th>
                 <?php } ?>
             <?php } ?>
                 <th><?= __("Station"); ?></th>
@@ -443,7 +443,7 @@ $ci =& get_instance();
                 echo '<td style=\'text-align: center\' class="srr">';
                 echo '<span ';
                 if ($row->COL_SRR_QSL_SENT == "Y") {
-                   echo "title=\"award.srr ".__("Sent");
+                   echo "title=\"SRR ".__("Sent");
                    if ($row->COL_SRR_QSLSDATE != null) {
                      $timestamp = strtotime($row->COL_SRR_QSLSDATE);
                      echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
@@ -462,7 +462,7 @@ $ci =& get_instance();
 
                 echo '<span ';
                 if ($row->COL_SRR_QSL_RCVD == "Y") {
-                   echo "title=\"award.srr ".__("Received");
+                   echo "title=\"SRR ".__("Received");
                    if ($row->COL_SRR_QSLRDATE != null) {
                       $timestamp = strtotime($row->COL_SRR_QSLRDATE);
                       echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');

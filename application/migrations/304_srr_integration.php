@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
-	Adds the award.srr QSL fields and the award.srr sync cron
+	Adds the SRR QSL fields and the SRR sync cron
 */
 
 class Migration_srr_integration extends CI_Migration {
@@ -29,7 +29,7 @@ class Migration_srr_integration extends CI_Migration {
 					'id' => 'sync_srr',
 					'enabled' => '0',
 					'status' => 'disabled',
-					'description' => 'Sync with award.srr',
+					'description' => 'Sync with SRR',
 					'function' => 'index.php/srr/srr_sync',
 					'expression' => '15 5 * * *',
 					'last_run' => null,
@@ -63,7 +63,7 @@ class Migration_srr_integration extends CI_Migration {
 		try {
 			$this->db->query($what);
 		} catch (Exception $e) {
-			log_message("error", "Something gone wrong while adding award.srr columns: ".$e." // Executing: ".$this->db->last_query());
+			log_message("error", "Something gone wrong while adding SRR columns: ".$e." // Executing: ".$this->db->last_query());
 		}
 	}
 }
