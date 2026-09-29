@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-28 09:04+0000\n"
+"POT-Creation-Date: 2026-09-29 15:22+0000\n"
 "PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -5136,13 +5136,13 @@ msgstr "Ni podanega pozivnega znaka"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC mora biti numeričen"
 
-#: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5155
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Različen klicni znak postaje %s med uvozom QSO z %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:5109
+#: application/models/Logbook_model.php:5163
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5150,7 +5150,7 @@ msgid ""
 msgstr ""
 "Različen lokator %s med uvozom QSO z %s za lokator postaje %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:5125
+#: application/models/Logbook_model.php:5179
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5158,28 +5158,28 @@ msgstr ""
 "Poskušali ste uvoziti QSO brez veljavnega datuma. Ta QSO ni bila uvožena. Je "
 "neveljavna"
 
-#: application/models/Logbook_model.php:5135
+#: application/models/Logbook_model.php:5189
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:5142
+#: application/models/Logbook_model.php:5196
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5212
+#: application/models/Logbook_model.php:5266
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:5219
+#: application/models/Logbook_model.php:5273
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5188,63 +5188,63 @@ msgstr ""
 "Zveza na %s: Poskušali ste uvoziti QSO brez podanega banda. Ta QSO ni bila "
 "uvožena. Je neveljavna"
 
-#: application/models/Logbook_model.php:5494
+#: application/models/Logbook_model.php:5548
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5505
+#: application/models/Logbook_model.php:5559
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5566
+#: application/models/Logbook_model.php:5620
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5942
+#: application/models/Logbook_model.php:5996
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dvojnik za"
 
-#: application/models/Logbook_model.php:6009
-#: application/models/Logbook_model.php:6109
+#: application/models/Logbook_model.php:6063
+#: application/models/Logbook_model.php:6163
 msgid "QSO could not be matched"
 msgstr "QSO ni bilo mogoče najti"
 
-#: application/models/Logbook_model.php:6017
+#: application/models/Logbook_model.php:6071
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potrjeno od LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:6023
+#: application/models/Logbook_model.php:6077
 msgid "confirmed by award manager"
 msgstr "potrjeno od award managerja"
 
-#: application/models/Logbook_model.php:6027
+#: application/models/Logbook_model.php:6081
 msgid "confirmed by cross-check of DCL data"
 msgstr "potrjeno z navzkrižnim preverjanjem podatkov DCL"
 
-#: application/models/Logbook_model.php:6031
+#: application/models/Logbook_model.php:6085
 msgid "confirmation pending"
 msgstr "potrditev čaka na"
 
-#: application/models/Logbook_model.php:6034
+#: application/models/Logbook_model.php:6088
 msgid "unconfirmed"
 msgstr "nepotrjeno"
 
-#: application/models/Logbook_model.php:6037
+#: application/models/Logbook_model.php:6091
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "neznano"
 
-#: application/models/Logbook_model.php:6112
+#: application/models/Logbook_model.php:6166
 msgid "POTA reference already in log"
 msgstr "Referenca POTA je že v dnevniku"
 
-#: application/models/Logbook_model.php:6115
+#: application/models/Logbook_model.php:6169
 msgid "QSO updated"
 msgstr "QSO posodobljena"
 
-#: application/models/Logbook_model.php:6536
+#: application/models/Logbook_model.php:6590
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
