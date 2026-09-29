@@ -3406,6 +3406,60 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Get worked/confirmed status for multiple callsigns and DXCC entities
+	 * using two batched, prepared queries instead of one query per value.
+	 *
+	 * Confirmation semantics match check_if_callsign_cnfmd_in_logbook() /
+	 * check_if_dxcc_cnfmd_in_logbook() (qsl_default_where(), incl. the 1=0
+	 * fallback when no default confirmations are set).
+	 *
+	 * @param array $callsigns List of callsigns to check against the log
+	 * @param array $dxccs List of DXCC ADIF ids to check against the log
+	 * @return array ['call' => [callsign => ['wked' => bool, 'cnfmd' => bool]],
+	 *               'dxcc' => [adif => ['wked' => bool, 'cnfmd' => bool]]]
+	 *               Absent key means not worked (wked/cnfmd both false).
+	 */
+	function get_status_batch($callsigns, $dxccs) {
+		$result = ['call' => [], 'dxcc' => []];
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if ($logbooks_locations_array[0] === -1) {
+			return $result;
+		}
+
+		$extrawhere = $this->qsl_default_where($this->session->userdata('user_default_confirmation'));
+
+		$table = $this->config->item('table_name');
+		$loc_marks = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+
+		if (!empty($callsigns)) {
+			$call_marks = implode(',', array_fill(0, count($callsigns), '?'));
+			$sql = "SELECT COL_CALL AS k, MAX(CASE WHEN (" . $extrawhere . ") THEN 1 ELSE 0 END) AS cnf"
+				. " FROM " . $table
+				. " WHERE station_id IN (" . $loc_marks . ") AND COL_CALL IN (" . $call_marks . ")"
+				. " GROUP BY COL_CALL";
+			foreach ($this->db->query($sql, array_merge($logbooks_locations_array, $callsigns))->result() as $row) {
+				$result['call'][$row->k] = ['wked' => true, 'cnfmd' => $row->cnf == 1];
+			}
+		}
+
+		if (!empty($dxccs)) {
+			$dxcc_marks = implode(',', array_fill(0, count($dxccs), '?'));
+			$sql = "SELECT COL_DXCC AS k, MAX(CASE WHEN (" . $extrawhere . ") THEN 1 ELSE 0 END) AS cnf"
+				. " FROM " . $table
+				. " WHERE station_id IN (" . $loc_marks . ") AND COL_DXCC IN (" . $dxcc_marks . ")"
+				. " GROUP BY COL_DXCC";
+			foreach ($this->db->query($sql, array_merge($logbooks_locations_array, $dxccs))->result() as $row) {
+				$result['dxcc'][$row->k] = ['wked' => true, 'cnfmd' => $row->cnf == 1];
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Batch version - Get statuses for multiple spots in a single query
 	 *
 	 * @param array $spots Array of spots with callsign, dxcc_id, continent
