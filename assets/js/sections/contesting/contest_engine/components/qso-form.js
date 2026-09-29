@@ -972,7 +972,11 @@ class QsoFormComponent {
 		const entryHz = Math.round(parseFloat(v) * 1000);
 		const fullBand = rc.frequencyToBand(entryHz);
 		const offHz = (curHz !== null) ? Math.floor(curHz / 1e6) * 1e6 + entryHz : null;
-		const newHz = fullBand ? entryHz : ((offHz !== null && rc.frequencyToBand(offHz) === rc.frequencyToBand(curHz)) ? offHz : null);
+		const offHz2 = (curHz !== null) ? Math.floor(curHz / 1e5) * 1e5 + entryHz : null;
+		const curBand = rc.frequencyToBand(curHz);
+		const newHz = fullBand ? entryHz
+			: ((offHz !== null && rc.frequencyToBand(offHz) === curBand) ? offHz
+			: ((offHz2 !== null && rc.frequencyToBand(offHz2) === curBand) ? offHz2 : null));
 		if (newHz) {
 			el.value = '';
 			el.focus();

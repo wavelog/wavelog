@@ -67,8 +67,19 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Add QSO to Logbook */
-	function create_qso($qso_data, $use_custom_date_format = true) {
+	/**
+	 * Add QSO to Logbook
+	 *
+	 * Creates a single QSO record from the given input array.
+	 *
+	 * @param array $qso_data QSO input data (form fields, contest data, etc.)
+	 * @param bool $use_custom_date_format TRUE: use user's date format, FALSE: use 'Y-m-d' (contesting)
+	 * @param bool $dupe_check TRUE: skip insert and return existing QSO when an exact duplicate
+	 *                         (station, callsign, band, mode, time-on) is already logged. Used to make
+	 *                         retries/backlog replays idempotent. FALSE (default): always insert.
+	 * @return array|false|string Success: array with qso_id, adif, export_errors; false/string on failure
+	 */
+	function create_qso($qso_data, $use_custom_date_format = true, $dupe_check = false) {
 		// Get user-preferred date format
 		if ($use_custom_date_format) {
 			if ($this->session->userdata('user_date_format')) {
@@ -434,6 +445,36 @@ class Logbook_model extends CI_Model {
 			} else {
 				$data['COL_LOTW_QSL_SENT'] = 'N';
 				$data['COL_LOTW_QSL_RCVD'] = 'N';
+			}
+		}
+
+		// Idempotency for retries/backlog replays: if the exact same QSO (station, callsign,
+		// band, mode, time-on) is already in the log, return it instead of inserting again.
+		if ($dupe_check && !empty($station_id) && !empty($datetime)) {
+			$dupe_sql = "SELECT COL_PRIMARY_KEY FROM " . $this->config->item('table_name') . "
+				WHERE station_id = ? AND COL_CALL = ? AND COL_TIME_ON = ?
+				AND COL_BAND = ? AND COL_MODE = ? AND COL_SUBMODE <=> ?";
+			$dupe_query = $this->db->query($dupe_sql, [
+				$station_id,
+				$data['COL_CALL'],
+				$data['COL_TIME_ON'],
+				$data['COL_BAND'],
+				$data['COL_MODE'],
+				$data['COL_SUBMODE'],
+			]);
+			if ($dupe_query->num_rows() > 0) {
+				$dupe_id = $dupe_query->row()->COL_PRIMARY_KEY;
+				$dupe_qso = $this->get_qso($dupe_id, true)->result();
+				if (empty($dupe_qso)) {
+					return false;
+				}
+				$this->load->is_loaded('AdifHelper') ?: $this->load->library('AdifHelper');
+				return [
+					'qso_id' => $dupe_id,
+					'adif' => $this->adifhelper->getAdifLine($dupe_qso[0]),
+					'export_errors' => [],
+					'duplicate' => true,
+				];
 			}
 		}
 
@@ -1047,8 +1088,11 @@ class Logbook_model extends CI_Model {
 						$adif
 					);
 
-					if ($result) {
+					if (($result['status'] ?? '') == 'OK') {
 						$this->mark_webadif_qsos_sent([$last_id]);
+					} else {
+						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
+						$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
 					}
 				}
 
@@ -1251,9 +1295,15 @@ class Logbook_model extends CI_Model {
 
 	/*
 	 * Function uploads a QSO to WebADIF consumer with the API given.
-	 * $adif contains a line with the QSO in the ADIF format.
+	 *
+	 * @param string $url    URL of the webADIF API endpoint.
+	 * @param string $apikey API key for the webADIF consumer.
+	 * @param string $adif   Line with the QSO in the ADIF format, ending with <EOR>.
+	 *
+	 * @return array ['status' => 'OK'] on success (HTTP 200),
+	 *               ['status' => 'error', 'message' => sanitized reason] otherwise.
 	 */
-	function push_qso_to_webadif($url, $apikey, $adif): bool {
+	function push_qso_to_webadif($url, $apikey, $adif): array {
 
 		$headers = array(
 			'Content-Type: text/plain',
@@ -1274,10 +1324,19 @@ class Logbook_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
-		$content = curl_exec($ch); // TODO: better error handling
+		$content = curl_exec($ch);
 		$errors = curl_error($ch);
 		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		return $response === 200;
+
+		if ($response === 200) {
+			return ['status' => 'OK'];
+		}
+
+		$message = 'HTTP ' . $response . ': ' . trim(strip_tags((string)$content));
+		if ($errors !== '') {
+			$message .= ' (' . $errors . ')';
+		}
+		return ['status' => 'error', 'message' => mb_substr($message, 0, 255)];
 	}
 
 	/*
@@ -1342,10 +1401,71 @@ class Logbook_model extends CI_Model {
 		foreach ($qsoIDs as $qsoID) {
 			$data[] = [
 				'upload_date' => $now,
+				'status' => 'Y',
 				'qso_id' => $qsoID,
 			];
 		}
 		$this->db->insert_batch('webadif', $data);
+		return true;
+	}
+
+	/*
+	 * Function marks QSOs as rejected by the WebADIF consumer.
+	 * The rejection reason is stored for later display. Rejected QSOs carry an
+	 * upload_date, so get_webadif_qsos() does not pick them up again.
+	 *
+	 * @param array  $qsoIDs  Array of unique ids (COL_PRIMARY_KEY) of the QSOs in the logbook.
+	 * @param string $message Sanitized rejection reason from the WebADIF consumer.
+	 *
+	 * @return bool true on success.
+	 */
+	function mark_webadif_qsos_failed(array $qsoIDs, string $message = '') {
+		$data = [];
+		$now = date("Y-m-d H:i:s", strtotime("now"));
+		foreach ($qsoIDs as $qsoID) {
+			$data[] = [
+				'upload_date' => $now,
+				'status' => 'I',
+				'message' => $message,
+				'qso_id' => $qsoID,
+			];
+		}
+		$this->db->insert_batch('webadif', $data);
+		return true;
+	}
+
+	/*
+	 * Function returns the QSOs of a station that were rejected by the WebADIF consumer.
+	 *
+	 * @param int $station_id Station id the QSOs belong to.
+	 *
+	 * @return array List of rejected QSOs with call, datetime and rejection reason.
+	 */
+	function get_webadif_rejected_qsos($station_id) {
+		$sql = 'SELECT qsos.COL_CALL, qsos.COL_TIME_ON, webadif.message
+			FROM ' . $this->config->item('table_name') . ' qsos
+			INNER JOIN webadif ON qsos.COL_PRIMARY_KEY = webadif.qso_id
+			WHERE qsos.station_id = ?
+			AND webadif.status = \'I\'
+			ORDER BY qsos.COL_TIME_ON';
+		$query = $this->db->query($sql, [$station_id]);
+		return $query->result();
+	}
+
+	/*
+	 * Function deletes the rejection markers of a station, so its QSOs are picked
+	 * up again by the next WebADIF upload.
+	 *
+	 * @param int $station_id Station id the rejected QSOs belong to.
+	 *
+	 * @return bool true on success.
+	 */
+	function reset_webadif_rejected_qsos($station_id) {
+		$sql = 'DELETE webadif FROM webadif
+			INNER JOIN ' . $this->config->item('table_name') . ' qsos ON qsos.COL_PRIMARY_KEY = webadif.qso_id
+			WHERE qsos.station_id = ?
+			AND webadif.status = \'I\'';
+		$this->db->query($sql, [$station_id]);
 		return true;
 	}
 
