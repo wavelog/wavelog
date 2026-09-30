@@ -842,12 +842,6 @@ class Logbook_model extends CI_Model {
 					$sql .= ' WHERE `COL_DXCC` IN (386,505)';
 				}
 				else if($searchphrase == 'HI'){
-						->group_start()
-							->where('COL_DXCC', '318')
-							->where('COL_STATE', 'HI')
-						->group_end()
-						->or_where('COL_DXCC', '506')
-					->group_end();
 					$sql .= ' WHERE ((`COL_DXCC` = 318 AND `COL_SATE` = "HI") OR `COL_DXCC` = 506)';
 				}
 				else{
