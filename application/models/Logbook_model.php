@@ -565,7 +565,7 @@ class Logbook_model extends CI_Model {
 				$binding[] = $searchphrase;
 				if ($band == 'SAT' && $type == 'DXCC') {
 					if ($sat != 'All' && $sat != null) {
-						$sql .= ' AND `COL_SAT`NAME` = ?';
+						$sql .= ' AND `COL_SAT_NAME` = ?';
 						$binding[] = $sat;
 					}
 					if ($orbit != 'All' && $orbit != null) {
@@ -604,8 +604,8 @@ class Logbook_model extends CI_Model {
 				break;
 			case 'VUCC':
 				if ($searchmode == 'activated') {
-					$sql .= ' WHERE `station_gridsquare` LIKE ?';
-					$binding[] = $searchphrase;
+					$sql .= ' WHERE `station_gridsquare` LIKE ? ESCAPE "!"';
+					$binding[] = '%'.$searchphrase.'%';
 					if ($band == 'SAT' && $type == 'VUCC') {
 						if ($sat != 'All' && $sat != null) {
 						}
@@ -842,7 +842,7 @@ class Logbook_model extends CI_Model {
 					$sql .= ' WHERE `COL_DXCC` IN (386,505)';
 				}
 				else if($searchphrase == 'HI'){
-					$sql .= ' WHERE ((`COL_DXCC` = 318 AND `COL_SATE` = "HI") OR `COL_DXCC` = 506)';
+					$sql .= ' WHERE ((`COL_DXCC` = 318 AND `COL_STATE` = "HI") OR `COL_DXCC` = 506)';
 				}
 				else{
 					$sql .= ' WHERE `COL_STATE` = ? AND `COL_DXCC` = 318';
