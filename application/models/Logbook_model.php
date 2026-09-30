@@ -917,7 +917,6 @@ class Logbook_model extends CI_Model {
 			if (strpos($qsl, "C") !== false) {
 				$qslfilter[] = '`COL_CLUBLOG_QSO_DOWNLOAD_STATUS` = "Y"';
 			}
-			$sql2 = "(" . implode(' OR ', $qslfilter) . ")";	// harmless, because value is checked b4
 			$sql .= ' AND (' . implode(' OR ', $qslfilter) . ')';
 		}
 
