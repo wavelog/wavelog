@@ -608,8 +608,12 @@ class Logbook_model extends CI_Model {
 					$binding[] = '%'.$searchphrase.'%';
 					if ($band == 'SAT' && $type == 'VUCC') {
 						if ($sat != 'All' && $sat != null) {
+							$sql .= ' AND `COL_SAT_NAME` = ?';
+							$binding[] = $sat;
 						}
 						if ($orbit != 'All' && $orbit != null) {
+							$sql .= ' AND `satellite`.`orbit` = ?';
+							$binding[] = $orbit;
 						}
 					}
 				} else {
