@@ -893,6 +893,14 @@ class Logbook_model extends CI_Model {
 				$binding[] = $band;
 			} else {
 				$sql .= ' AND `COL_PROP_MODE` = "SAT"';
+				if ($sat != 'All' && $sat != null) {
+					$sql .= ' AND `COL_SAT_NAME` = ?';
+					$binding[] = $sat;
+				}
+				if ($orbit != 'All' && $orbit != null) {
+					$sql .= ' AND `satellite`.`orbit` = ?';
+					$binding[] = $orbit;
+				}
 			}
 		}
 
