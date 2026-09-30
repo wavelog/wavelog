@@ -563,32 +563,10 @@ class Logbook_model extends CI_Model {
 			case 'DXCC':
 				$sql .= ' WHERE `COL_COUNTRY` = ?';
 				$binding[] = $searchphrase;
-				if ($band == 'SAT' && $type == 'DXCC') {
-					if ($sat != 'All' && $sat != null) {
-						$sql .= ' AND `COL_SAT_NAME` = ?';
-						$binding[] = $sat;
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$sql .= ' AND `satellite`.`orbit` = ?';
-						$binding[] = $orbit;
-					}
-				}
 				break;
 			case 'DXCC2':
 				$sql .= ' WHERE `COL_DXCC` = ?';
 				$binding[] = $searchphrase;
-				if ($band == 'SAT' && $type == 'DXCC2') {
-					if ($sat != 'All' && $sat != null) {
-						$sql .= ' AND `COL_SAT_NAME` = ?';
-						$binding[] = $sat;
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$sql .= ' AND `satellite`.`orbit` = ?';
-						$binding[] = $orbit;
-					}
-				} else {
-					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
-				}
 				if (($propagation ?? '') == 'None') {
 					$sql .= ' AND (`COL_PROP_MODE` = "" OR `COL_PROP_MODE` IS NULL)';
 				} elseif ($propagation == 'NoSAT') {
@@ -606,16 +584,6 @@ class Logbook_model extends CI_Model {
 				if ($searchmode == 'activated') {
 					$sql .= ' WHERE `station_gridsquare` LIKE ? ESCAPE "!"';
 					$binding[] = '%'.$searchphrase.'%';
-					if ($band == 'SAT' && $type == 'VUCC') {
-						if ($sat != 'All' && $sat != null) {
-							$sql .= ' AND `COL_SAT_NAME` = ?';
-							$binding[] = $sat;
-						}
-						if ($orbit != 'All' && $orbit != null) {
-							$sql .= ' AND `satellite`.`orbit` = ?';
-							$binding[] = $orbit;
-						}
-					}
 				} else {
 					// to avoid unnecessary QSO are returned, when a 2-digit GL is provided
 					// see https://github.com/wavelog/wavelog/pull/992
@@ -629,16 +597,6 @@ class Logbook_model extends CI_Model {
 					$binding[] = '%,'.$searchphrase.'%';
 					$sql .= ' OR `COL_VUCC_GRIDS` LIKE ? ESCAPE "!")';
 					$binding[] = '%,'.$searchphrase.'%';
-					if ($band == 'SAT' && $type == 'VUCC') {
-						if ($sat != 'All' && $sat != null) {
-							$sql .= ' AND `COL_SAT_NAME` = ?';
-							$binding[] = $sat;
-						}
-						if ($orbit != 'All' && $orbit != null) {
-							$sql .= ' AND `satellite`.`orbit` = ?';
-							$binding[] = $orbit;
-						}
-					}
 					if (($propagation ?? '') == 'None') {
 						$sql .= ' AND (`COL_PROP_MODE` = "" OR `COL_PROP_MODE` IS NULL)';
 					} elseif ($propagation == 'NoSAT') {
@@ -659,34 +617,10 @@ class Logbook_model extends CI_Model {
 			case 'CQZone':
 				$sql .= ' WHERE `COL_CQZ` = ?';
 				$binding[] = $searchphrase;
-				if ($band == 'SAT' && $type == 'CQZone') {
-					if ($sat != 'All' && $sat != null) {
-						$sql .= ' AND `COL_SAT_NAME` = ?';
-						$binding[] = $sat;
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$sql .= ' AND `satellite`.`orbit` = ?';
-						$binding[] = $orbit;
-					}
-				} else {
-					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
-				}
 				break;
 			case 'ITUZone':
 				$sql .= ' WHERE `COL_ITUZ` = ?';
 				$binding[] = $searchphrase;
-				if ($band == 'SAT' && $type == 'ITUZone') {
-					if ($sat != 'All' && $sat != null) {
-						$sql .= ' AND `COL_SAT_NAME` = ?';
-						$binding[] = $sat;
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$sql .= ' AND `satellite`.`orbit` = ?';
-						$binding[] = $orbit;
-					}
-				} else {
-					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
-				}
 				break;
 			case 'WAS':
 				$sql .= ' WHERE `COL_STATE` = ?';
