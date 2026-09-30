@@ -722,7 +722,6 @@ class Logbook_model extends CI_Model {
 				$bands = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
 				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
 				$binding = array_merge($binding, $bands);
-				//$binding = array_merge($binding, array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M'));
 
 				// Handle mode categories for Polska Award
 				if (strtoupper($mode) == 'PHONE') {
@@ -730,7 +729,6 @@ class Logbook_model extends CI_Model {
 					$sql .= ' AND (UPPER(`COL_MODE`) IN ('.implode(',', array_fill(0, count($modes), '?')).') OR UPPER(`COL_SUBMODE`) IN ('.implode(',', array_fill(0, count($modes), '?')).'))';
 					$binding = array_merge($binding, $modes);
 					$binding = array_merge($binding, $modes);
-					//$binding = array_merge($binding, array('SSB','USB','LSB','AM','FM','SSTV'));
 					$mode = ''; // Clear mode so it's not processed again later
 				} elseif (strtoupper($mode) == 'DIGI') {
 					$digimodes = array('RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR');
