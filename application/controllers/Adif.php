@@ -285,6 +285,7 @@ class adif extends CI_Controller {
 
 		$data['active_station_info'] = $station_profile->row();
 		$data['active_station_id'] = $active_station_id;
+		$data['no_active_station'] = empty($active_station_id);
 
 		// Pass allowed tabs to view
 		$data['allowed_tabs'] = $this->get_allowed_tabs();
@@ -323,6 +324,17 @@ class adif extends CI_Controller {
 			$data['club_operators'] = $this->club_model->get_club_members($this->session->userdata('user_id'));
 		} else {
 			$data['club_operators'] = false;
+		}
+
+		if (empty($active_station_id)) {
+			if ($this->input->method() === 'post') {
+				redirect('adif/import');
+			}
+			$data['no_active_station'] = true;
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('adif/import', $data);
+			$this->load->view('interface_assets/footer');
+			return;
 		}
 
 		$config['upload_path'] = './uploads/';
@@ -457,9 +469,11 @@ class adif extends CI_Controller {
 					$this->load->view('interface_assets/footer');
 					return;
 				}
-			} else {
-				$custom_errors['errormessage'] = __("Station Profile not valid for User");
-			}
+		} else {
+			$updata = $this->upload->data();
+			unlink('./uploads/'.$updata['file_name']);
+			$custom_errors['errormessage'] = __("Station Profile not valid for User");
+		}
 
 			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors['errormessage'];
