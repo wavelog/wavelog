@@ -318,6 +318,7 @@ class adif extends CI_Controller {
 		$data['contests'] = $this->contest_admin_model->getActiveContests();
 		$data['active_station_id'] = $active_station_id; // local var, set above
 		$data['cd_p_level'] = ($this->session->userdata('cd_p_level') ?? 0);
+		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		if ($this->config->item('special_callsign') && clubaccess_check(9) && $this->session->userdata('clubstation') == 1) {
 			$this->load->model('club_model');
@@ -346,7 +347,6 @@ class adif extends CI_Controller {
 
 		if ( ! $this->upload->do_upload()) {
 			$data['error'] = $this->upload->display_errors();
-			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
