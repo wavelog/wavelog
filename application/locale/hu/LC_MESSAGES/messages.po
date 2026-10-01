@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-29 15:22+0000\n"
+"POT-Creation-Date: 2026-10-01 10:27+0000\n"
 "PO-Revision-Date: 2026-08-03 12:17+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.wavelog.org/projects/wavelog/"
@@ -551,7 +551,7 @@ msgstr "DOK"
 #: application/views/calltester/call_info.php:29
 #: application/views/calltester/call_info.php:61
 #: application/views/countqsoby/index.php:12
-#: application/views/countqsoby/index.php:66 application/views/csv/index.php:58
+#: application/views/countqsoby/index.php:67 application/views/csv/index.php:58
 #: application/views/dashboard/index.php:416
 #: application/views/dbtools/checkresult.php:153
 #: application/views/dbtools/checkresult.php:236
@@ -621,12 +621,12 @@ msgid "Log View"
 msgstr "Napló nézet"
 
 #: application/controllers/Awards.php:745
-#: application/controllers/Countqsoby.php:93
+#: application/controllers/Countqsoby.php:102
 msgid "and"
 msgstr ""
 
 #: application/controllers/Awards.php:746
-#: application/controllers/Countqsoby.php:94
+#: application/controllers/Countqsoby.php:103
 #: application/views/awards/cq/index.php:146
 #: application/views/awards/dxcc/index.php:20
 #: application/views/awards/dxcc/index.php:179
@@ -641,40 +641,40 @@ msgstr ""
 #: application/views/awards/wpx/index.php:83
 #: application/views/awards/wwff/index.php:3
 #: application/views/awards/wwff/index.php:132
-#: application/views/countqsoby/index.php:79
+#: application/views/countqsoby/index.php:81
 msgid "Every band (w/o SAT)"
 msgstr ""
 
 #: application/controllers/Awards.php:746
-#: application/controllers/Countqsoby.php:94
+#: application/controllers/Countqsoby.php:103
 msgid "band"
 msgstr ""
 
 #: application/controllers/Awards.php:749
-#: application/controllers/Countqsoby.php:97
+#: application/controllers/Countqsoby.php:106
 msgid " and satellite "
 msgstr " és műhold "
 
 #: application/controllers/Awards.php:752
 #: application/controllers/Callstats.php:108
-#: application/controllers/Countqsoby.php:100
+#: application/controllers/Countqsoby.php:109
 msgid " and orbit type "
 msgstr " és pályatípus "
 
 #: application/controllers/Awards.php:756
 #: application/controllers/Callstats.php:112
-#: application/controllers/Countqsoby.php:104
+#: application/controllers/Countqsoby.php:113
 msgid " and propagation "
 msgstr " és terjedés "
 
 #: application/controllers/Awards.php:759
 #: application/controllers/Callstats.php:115
-#: application/controllers/Countqsoby.php:107
+#: application/controllers/Countqsoby.php:116
 msgid " and mode "
 msgstr " és mód "
 
 #: application/controllers/Awards.php:762
-#: application/controllers/Countqsoby.php:116
+#: application/controllers/Countqsoby.php:125
 msgid " and "
 msgstr " és "
 
@@ -1115,7 +1115,7 @@ msgstr "Egyetlen felhasználó sem konfigurálta a Clublogot."
 #: application/views/awards/wapc/index.php:108
 #: application/views/awards/wpx/index.php:49
 #: application/views/awards/wwff/index.php:120
-#: application/views/countqsoby/index.php:194
+#: application/views/countqsoby/index.php:196
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:417
 #: application/views/search/search_result_ajax.php:124
@@ -1292,7 +1292,7 @@ msgstr "Kontinensek"
 
 #: application/controllers/Countqsoby.php:13
 #: application/views/countqsoby/index.php:3
-#: application/views/countqsoby/index.php:209
+#: application/views/countqsoby/index.php:211
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
 msgstr ""
@@ -1315,7 +1315,7 @@ msgstr ""
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/countqsoby/index.php:11
-#: application/views/countqsoby/index.php:67
+#: application/views/countqsoby/index.php:68
 #: application/views/dashboard/index.php:14
 #: application/views/dbtools/checkresult.php:154
 #: application/views/dbtools/checkresult.php:233
@@ -1367,7 +1367,7 @@ msgstr ""
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:217
 #: application/views/countqsoby/index.php:14
-#: application/views/countqsoby/index.php:68
+#: application/views/countqsoby/index.php:69
 #: application/views/dbtools/checkresult.php:310
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/edit.php:34
@@ -1392,7 +1392,7 @@ msgstr ""
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
-#: application/views/countqsoby/index.php:69 application/views/csv/index.php:80
+#: application/views/countqsoby/index.php:70 application/views/csv/index.php:80
 #: application/views/dbtools/checkresult.php:234
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
@@ -1415,13 +1415,13 @@ msgid "CQ Zone"
 msgstr ""
 
 #: application/controllers/Countqsoby.php:77
-#: application/views/countqsoby/index.php:70
+#: application/views/countqsoby/index.php:72
 msgid "POTA Reference"
 msgstr ""
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
-#: application/views/countqsoby/index.php:71
+#: application/views/countqsoby/index.php:73
 #: application/views/qso/index.php:313 application/views/qso/index.php:595
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:237
@@ -1431,7 +1431,7 @@ msgid "SOTA Reference"
 msgstr ""
 
 #: application/controllers/Countqsoby.php:79
-#: application/views/countqsoby/index.php:72
+#: application/views/countqsoby/index.php:74
 #: application/views/qso/index.php:297 application/views/qso/index.php:578
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:211
@@ -1442,13 +1442,35 @@ msgstr ""
 
 #: application/controllers/Countqsoby.php:80
 #: application/views/awards/wwff/index.php:176
-#: application/views/countqsoby/index.php:73
+#: application/views/countqsoby/index.php:75
 #: application/views/qso/index.php:325 application/views/qso/index.php:608
 #: application/views/station_profile/create.php:229
 #: application/views/station_profile/edit.php:251
 #: application/views/user/edit.php:902 application/views/view_log/qso.php:350
 #: application/views/view_log/qso.php:685
 msgid "WWFF Reference"
+msgstr ""
+
+#: application/controllers/Countqsoby.php:81
+#: application/views/calltester/index.php:11
+#: application/views/contesting/manager/components/session_modal.php:63
+#: application/views/countqsoby/index.php:16
+#: application/views/countqsoby/index.php:71 application/views/csv/index.php:19
+#: application/views/dbtools/index.php:28
+#: application/views/dxatlas/index.php:19
+#: application/views/labels/index.php:126
+#: application/views/logbookadvanced/edit.php:23
+#: application/views/qslprint/index.php:34 application/views/qso/index.php:139
+#: application/views/qso/index.php:402
+#: application/views/search/search_result_ajax.php:18
+#: application/views/station_profile/create.php:432
+#: application/views/station_profile/edit.php:461
+#: application/views/user/edit.php:403 application/views/user/edit.php:918
+#: application/views/view_log/partial/log_ajax.php:19
+#: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
+#: application/views/webadif/export.php:125
+#: application/views/zonechecker/index.php:11
+msgid "Station Location"
 msgstr ""
 
 #: application/controllers/Cron.php:37
@@ -2155,7 +2177,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:33
 #: application/views/awards/wwff/index.php:104
 #: application/views/calltester/call_info.php:66
-#: application/views/countqsoby/index.php:162
+#: application/views/countqsoby/index.php:164
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:114
@@ -2199,7 +2221,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:37
 #: application/views/awards/wwff/index.php:108
 #: application/views/calltester/call_info.php:80
-#: application/views/countqsoby/index.php:170
+#: application/views/countqsoby/index.php:172
 #: application/views/dashboard/_options_menu.php:21
 #: application/views/dashboard/index.php:508
 #: application/views/dashboard/index.php:522
@@ -2253,7 +2275,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:41
 #: application/views/awards/wwff/index.php:112
 #: application/views/calltester/call_info.php:81
-#: application/views/countqsoby/index.php:178
+#: application/views/countqsoby/index.php:180
 #: application/views/dbtools/missinggridlist.php:60
 #: application/views/gridmap/index.php:190
 #: application/views/logbookadvanced/useroptions.php:130
@@ -2321,7 +2343,7 @@ msgstr ""
 #: application/views/contesting/logger/components/radio.php:73
 #: application/views/contesting/manager/export_cbr.php:106
 #: application/views/continents/index.php:44
-#: application/views/countqsoby/index.php:128
+#: application/views/countqsoby/index.php:130
 #: application/views/csv/index.php:42 application/views/dashboard/index.php:5
 #: application/views/dbtools/checkresult.php:92
 #: application/views/dbtools/checkresult.php:150
@@ -2613,7 +2635,7 @@ msgstr ""
 #: application/views/contesting/logger/components/radio.php:90
 #: application/views/contesting/manager/export_cbr.php:76
 #: application/views/continents/index.php:35
-#: application/views/countqsoby/index.php:76 application/views/csv/index.php:31
+#: application/views/countqsoby/index.php:78 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
 #: application/views/dbtools/checkresult.php:91
 #: application/views/dbtools/checkresult.php:149
@@ -2736,7 +2758,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:467
 #: application/views/awards/wae/index.php:239
-#: application/views/countqsoby/index.php:16 application/views/csv/index.php:65
+#: application/views/countqsoby/index.php:17 application/views/csv/index.php:65
 #: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
 #: application/views/interface_assets/footer.php:841
@@ -2975,7 +2997,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:109
-#: application/models/Logbook_model.php:1588
+#: application/models/Logbook_model.php:1611
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4869,6 +4891,10 @@ msgstr ""
 msgid "Officers must edit contests."
 msgstr ""
 
+#: application/models/Countqsoby_model.php:262
+msgid "Unlinked"
+msgstr ""
+
 #: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
@@ -5021,127 +5047,127 @@ msgstr ""
 msgid "Station not accessible"
 msgstr ""
 
-#: application/models/Logbook_model.php:1041
+#: application/models/Logbook_model.php:1064
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1578
+#: application/models/Logbook_model.php:1601
 msgid "Station ID not allowed"
 msgstr ""
 
-#: application/models/Logbook_model.php:1583
+#: application/models/Logbook_model.php:1606
 msgid "No Call given"
 msgstr ""
 
-#: application/models/Logbook_model.php:1659
-#: application/models/Logbook_model.php:1877
+#: application/models/Logbook_model.php:1682
+#: application/models/Logbook_model.php:1900
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:5155
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:5163
+#: application/models/Logbook_model.php:5186
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5202
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5189
+#: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:5196
+#: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5266
+#: application/models/Logbook_model.php:5289
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:5273
+#: application/models/Logbook_model.php:5296
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5548
+#: application/models/Logbook_model.php:5571
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5559
+#: application/models/Logbook_model.php:5582
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5620
+#: application/models/Logbook_model.php:5643
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5996
+#: application/models/Logbook_model.php:6019
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:6063
-#: application/models/Logbook_model.php:6163
+#: application/models/Logbook_model.php:6086
+#: application/models/Logbook_model.php:6186
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:6071
+#: application/models/Logbook_model.php:6094
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:6077
+#: application/models/Logbook_model.php:6100
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:6081
+#: application/models/Logbook_model.php:6104
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:6085
+#: application/models/Logbook_model.php:6108
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:6088
+#: application/models/Logbook_model.php:6111
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:6091
+#: application/models/Logbook_model.php:6114
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:6166
+#: application/models/Logbook_model.php:6189
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:6169
+#: application/models/Logbook_model.php:6192
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6590
+#: application/models/Logbook_model.php:6613
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5364,10 +5390,10 @@ msgstr ""
 #: application/views/contesting/manager/export_cbr.php:78
 #: application/views/continents/index.php:37
 #: application/views/continents/index.php:46
-#: application/views/countqsoby/index.php:98
-#: application/views/countqsoby/index.php:115
-#: application/views/countqsoby/index.php:131
-#: application/views/countqsoby/index.php:144
+#: application/views/countqsoby/index.php:100
+#: application/views/countqsoby/index.php:117
+#: application/views/countqsoby/index.php:133
+#: application/views/countqsoby/index.php:146
 #: application/views/csv/index.php:21 application/views/csv/index.php:33
 #: application/views/csv/index.php:44 application/views/csv/index.php:60
 #: application/views/csv/index.php:82 application/views/csv/index.php:94
@@ -5481,7 +5507,7 @@ msgstr ""
 #: application/views/accumulate/index.php:86
 #: application/views/awards/dxcc/index.php:239
 #: application/views/callstats/index.php:70
-#: application/views/countqsoby/index.php:141
+#: application/views/countqsoby/index.php:143
 #: application/views/distances/index.php:57
 #: application/views/gridmap/index.php:91
 #: application/views/logbookadvanced/edit.php:19
@@ -5502,7 +5528,7 @@ msgstr ""
 
 #: application/views/accumulate/index.php:91
 #: application/views/callstats/index.php:74
-#: application/views/countqsoby/index.php:145
+#: application/views/countqsoby/index.php:147
 #: application/views/distances/index.php:61
 #: application/views/gridmap/index.php:95
 #: application/views/logbookadvanced/edit.php:221
@@ -5533,7 +5559,7 @@ msgstr ""
 #: application/views/awards/was/index.php:53
 #: application/views/awards/wpx/index.php:18
 #: application/views/callstats/index.php:97
-#: application/views/countqsoby/index.php:200
+#: application/views/countqsoby/index.php:202
 #: application/views/distances/index.php:73
 #: application/views/lookup/index.php:94
 #: application/views/qslcard/confirmations.php:24
@@ -5635,7 +5661,7 @@ msgstr ""
 #: application/views/awards/wae/index.php:168
 #: application/views/awards/wpx/index.php:114
 #: application/views/callstats/index.php:26
-#: application/views/countqsoby/index.php:95
+#: application/views/countqsoby/index.php:97
 #: application/views/distancerecords/index.php:18
 #: application/views/distances/index.php:38
 #: application/views/gridmap/index.php:107
@@ -5669,7 +5695,7 @@ msgstr ""
 #: application/views/awards/wae/index.php:182
 #: application/views/awards/wpx/index.php:128
 #: application/views/callstats/index.php:40
-#: application/views/countqsoby/index.php:112
+#: application/views/countqsoby/index.php:114
 #: application/views/distances/index.php:48
 #: application/views/gridmap/index.php:122
 #: application/views/logbookadvanced/index.php:438
@@ -5704,7 +5730,7 @@ msgstr ""
 #: application/views/awards/was/index.php:88
 #: application/views/awards/wpx/index.php:29
 #: application/views/awards/wwff/index.php:100
-#: application/views/countqsoby/index.php:154
+#: application/views/countqsoby/index.php:156
 #: application/views/gridmap/index.php:165
 #: application/views/timeline/index.php:61
 msgid "Confirmation"
@@ -5733,7 +5759,7 @@ msgstr ""
 #: application/views/awards/was/index.php:104
 #: application/views/awards/wpx/index.php:45
 #: application/views/awards/wwff/index.php:116
-#: application/views/countqsoby/index.php:186
+#: application/views/countqsoby/index.php:188
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1068
 msgid "QRZ.com"
 msgstr ""
@@ -5981,7 +6007,7 @@ msgstr ""
 #: application/views/awards/wab/index.php:45
 #: application/views/awards/wae/index.php:65
 #: application/views/awards/wwff/index.php:66
-#: application/views/countqsoby/index.php:43
+#: application/views/countqsoby/index.php:44
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:358
@@ -7961,7 +7987,7 @@ msgstr ""
 #: application/views/awards/wae/index.php:57
 #: application/views/awards/wwff/index.php:58
 #: application/views/contestcalendar/index.php:44
-#: application/views/countqsoby/index.php:35
+#: application/views/countqsoby/index.php:36
 #: application/views/dashboard/index.php:544
 #: application/views/dashboard/index.php:579
 #: application/views/dashboard/index.php:609
@@ -7980,7 +8006,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:63
 #: application/views/awards/wae/index.php:58
 #: application/views/awards/wwff/index.php:59
-#: application/views/countqsoby/index.php:36
+#: application/views/countqsoby/index.php:37
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:351
 #: application/views/statistics/index.php:62
@@ -7994,7 +8020,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:64
 #: application/views/awards/wae/index.php:59
 #: application/views/awards/wwff/index.php:60
-#: application/views/countqsoby/index.php:37
+#: application/views/countqsoby/index.php:38
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:352
 #: application/views/statistics/index.php:63
@@ -8008,7 +8034,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:65
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:61
-#: application/views/countqsoby/index.php:38
+#: application/views/countqsoby/index.php:39
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:353
 #: application/views/statistics/index.php:64
@@ -8022,7 +8048,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:66
 #: application/views/awards/wae/index.php:61
 #: application/views/awards/wwff/index.php:62
-#: application/views/countqsoby/index.php:39
+#: application/views/countqsoby/index.php:40
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:354
 #: application/views/statistics/index.php:65
@@ -8036,7 +8062,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:67
 #: application/views/awards/wae/index.php:62
 #: application/views/awards/wwff/index.php:63
-#: application/views/countqsoby/index.php:40
+#: application/views/countqsoby/index.php:41
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:355
 #: application/views/statistics/index.php:66
@@ -8050,7 +8076,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:68
 #: application/views/awards/wae/index.php:63
 #: application/views/awards/wwff/index.php:64
-#: application/views/countqsoby/index.php:41
+#: application/views/countqsoby/index.php:42
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:356
 #: application/views/statistics/index.php:67
@@ -8064,7 +8090,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:69
 #: application/views/awards/wae/index.php:64
 #: application/views/awards/wwff/index.php:65
-#: application/views/countqsoby/index.php:42
+#: application/views/countqsoby/index.php:43
 #: application/views/logbookadvanced/index.php:357
 #: application/views/statistics/index.php:68
 msgid "Last Year"
@@ -8077,7 +8103,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:76
 #: application/views/awards/wae/index.php:71
 #: application/views/awards/wwff/index.php:72
-#: application/views/countqsoby/index.php:48
+#: application/views/countqsoby/index.php:49
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
@@ -8091,7 +8117,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:80
 #: application/views/awards/wae/index.php:75
 #: application/views/awards/wwff/index.php:76
-#: application/views/countqsoby/index.php:54
+#: application/views/countqsoby/index.php:55
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
@@ -11195,25 +11221,6 @@ msgstr ""
 msgid "Callsign DXCC identification"
 msgstr ""
 
-#: application/views/calltester/index.php:11
-#: application/views/contesting/manager/components/session_modal.php:63
-#: application/views/csv/index.php:19 application/views/dbtools/index.php:28
-#: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:126
-#: application/views/logbookadvanced/edit.php:23
-#: application/views/qslprint/index.php:34 application/views/qso/index.php:139
-#: application/views/qso/index.php:402
-#: application/views/search/search_result_ajax.php:18
-#: application/views/station_profile/create.php:432
-#: application/views/station_profile/edit.php:461
-#: application/views/user/edit.php:403 application/views/user/edit.php:918
-#: application/views/view_log/partial/log_ajax.php:19
-#: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:125
-#: application/views/zonechecker/index.php:11
-msgid "Station Location"
-msgstr ""
-
 #: application/views/calltester/index.php:16
 #: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:897
@@ -13198,15 +13205,15 @@ msgstr ""
 msgid "QSOs total"
 msgstr ""
 
-#: application/views/countqsoby/index.php:27
+#: application/views/countqsoby/index.php:28
 msgid "Filter"
 msgstr ""
 
-#: application/views/countqsoby/index.php:33
+#: application/views/countqsoby/index.php:34
 msgid "Date presets"
 msgstr ""
 
-#: application/views/countqsoby/index.php:63
+#: application/views/countqsoby/index.php:64
 msgid "Count QSOs by"
 msgstr ""
 

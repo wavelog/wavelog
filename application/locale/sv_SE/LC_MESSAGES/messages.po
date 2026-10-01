@@ -581,6 +581,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/views/countqsoby/index.php:67
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -626,6 +627,7 @@ msgstr "Loggvy"
 
 #: application/controllers/Awards.php:745
 #: application/controllers/Countqsoby.php:93
+#: application/controllers/Countqsoby.php:102
 msgid "and"
 msgstr "och"
 
@@ -646,39 +648,47 @@ msgstr "och"
 #: application/views/awards/wwff/index.php:3
 #: application/views/awards/wwff/index.php:132
 #: application/views/countqsoby/index.php:79
+#: application/controllers/Countqsoby.php:103
+#: application/views/countqsoby/index.php:81
 msgid "Every band (w/o SAT)"
 msgstr "Varje band (utan SAT)"
 
 #: application/controllers/Awards.php:746
 #: application/controllers/Countqsoby.php:94
+#: application/controllers/Countqsoby.php:103
 msgid "band"
 msgstr "band"
 
 #: application/controllers/Awards.php:749
 #: application/controllers/Countqsoby.php:97
+#: application/controllers/Countqsoby.php:106
 msgid " and satellite "
 msgstr " och satellit "
 
 #: application/controllers/Awards.php:752
 #: application/controllers/Callstats.php:108
 #: application/controllers/Countqsoby.php:100
+#: application/controllers/Countqsoby.php:109
 msgid " and orbit type "
 msgstr " och omloppstyp "
 
 #: application/controllers/Awards.php:756
 #: application/controllers/Callstats.php:112
 #: application/controllers/Countqsoby.php:104
+#: application/controllers/Countqsoby.php:113
 msgid " and propagation "
 msgstr " och utbredning "
 
 #: application/controllers/Awards.php:759
 #: application/controllers/Callstats.php:115
 #: application/controllers/Countqsoby.php:107
+#: application/controllers/Countqsoby.php:116
 msgid " and mode "
 msgstr " och trafiksätt "
 
 #: application/controllers/Awards.php:762
 #: application/controllers/Countqsoby.php:116
+#: application/controllers/Countqsoby.php:125
 msgid " and "
 msgstr " och "
 
@@ -1131,6 +1141,7 @@ msgstr "Ingen användare har konfigurerat Clublog."
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:519
 #: application/views/view_log/qso.php:524
+#: application/views/countqsoby/index.php:196
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1299,6 +1310,7 @@ msgstr "Kontinenter"
 #: application/views/countqsoby/index.php:3
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
+#: application/views/countqsoby/index.php:211
 msgid "Count QSOs by..."
 msgstr "Räkna QSOs efter..."
 
@@ -1364,6 +1376,7 @@ msgstr "Räkna QSOs efter..."
 #: application/views/view_log/qso.php:629
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/countqsoby/index.php:68
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -1387,6 +1400,7 @@ msgstr "Lokatorruta"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/countqsoby/index.php:69
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -1416,11 +1430,13 @@ msgstr "ITU-zon"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/countqsoby/index.php:70
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
+#: application/views/countqsoby/index.php:72
 msgid "POTA Reference"
 msgstr "POTA-referens"
 
@@ -1432,6 +1448,7 @@ msgstr "POTA-referens"
 #: application/views/station_profile/edit.php:237
 #: application/views/user/edit.php:898 application/views/view_log/qso.php:343
 #: application/views/view_log/qso.php:678
+#: application/views/countqsoby/index.php:73
 msgid "SOTA Reference"
 msgstr "SOTA-referens"
 
@@ -1442,6 +1459,7 @@ msgstr "SOTA-referens"
 #: application/views/station_profile/edit.php:211
 #: application/views/user/edit.php:894 application/views/view_log/qso.php:336
 #: application/views/view_log/qso.php:671
+#: application/views/countqsoby/index.php:74
 msgid "IOTA Reference"
 msgstr "IOTA-referens"
 
@@ -1453,6 +1471,7 @@ msgstr "IOTA-referens"
 #: application/views/station_profile/edit.php:251
 #: application/views/user/edit.php:902 application/views/view_log/qso.php:350
 #: application/views/view_log/qso.php:685
+#: application/views/countqsoby/index.php:75
 msgid "WWFF Reference"
 msgstr "WWFF-referens"
 
@@ -2188,6 +2207,7 @@ msgstr "Loggbok"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:65 application/views/user/edit.php:753
 #: application/views/user/edit.php:1042 application/views/visitor/mini.php:187
+#: application/views/countqsoby/index.php:164
 msgid "QSL"
 msgstr "QSL"
 
@@ -2245,6 +2265,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:490
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/views/countqsoby/index.php:172
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2289,6 +2310,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:299
 #: application/views/timeline/index.php:73 application/views/user/edit.php:755
 #: application/views/user/edit.php:1060 application/views/user/edit.php:1134
+#: application/views/countqsoby/index.php:180
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2406,6 +2428,7 @@ msgstr "Alla callbook-sökningar misslyckades eller gav inga resultat."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/countqsoby/index.php:130
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -2692,6 +2715,7 @@ msgstr "Avstånd"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/countqsoby/index.php:78
 msgid "Band"
 msgstr "Band"
 
@@ -2778,6 +2802,7 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:289
 #: application/views/view_log/qso.php:644
+#: application/views/countqsoby/index.php:17
 msgid "Deleted DXCC"
 msgstr "Struket DXCC"
 
@@ -3018,7 +3043,7 @@ msgstr ""
 #: application/models/Logbook_model.php:109
 #: application/models/Logbook_model.php:1588
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1611
 msgid "Invalid callsign"
 msgstr "Ogiltigt anropssignal"
 
@@ -5130,29 +5155,36 @@ msgid "Station not accessible"
 msgstr "Stationen är inte tillgänglig"
 
 #: application/models/Logbook_model.php:1041
+#: application/models/Logbook_model.php:1064
 msgid "Realtime upload disabled"
 msgstr "Direktuppladdning inaktiverad"
 
 #: application/models/Logbook_model.php:1578
+#: application/models/Logbook_model.php:1601
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
 #: application/models/Logbook_model.php:1583
+#: application/models/Logbook_model.php:1606
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
 #: application/models/Logbook_model.php:1659
 #: application/models/Logbook_model.php:1877
+#: application/models/Logbook_model.php:1682
+#: application/models/Logbook_model.php:1900
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
 #: application/models/Logbook_model.php:5155
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:5163
+#: application/models/Logbook_model.php:5186
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5161,6 +5193,7 @@ msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5202
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5169,6 +5202,7 @@ msgstr ""
 "inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:5189
+#: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5178,6 +5212,7 @@ msgstr ""
 "QSO importerades inte. Det är ogiltigt."
 
 #: application/models/Logbook_model.php:5196
+#: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5187,6 +5222,7 @@ msgstr ""
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
 #: application/models/Logbook_model.php:5266
+#: application/models/Logbook_model.php:5289
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5196,6 +5232,7 @@ msgstr ""
 "inte."
 
 #: application/models/Logbook_model.php:5273
+#: application/models/Logbook_model.php:5296
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5205,58 +5242,72 @@ msgstr ""
 "importerades inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:5548
+#: application/models/Logbook_model.php:5571
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5559
+#: application/models/Logbook_model.php:5582
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5620
+#: application/models/Logbook_model.php:5643
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5996
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:6019
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
 #: application/models/Logbook_model.php:6063
 #: application/models/Logbook_model.php:6163
+#: application/models/Logbook_model.php:6086
+#: application/models/Logbook_model.php:6186
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
 #: application/models/Logbook_model.php:6071
+#: application/models/Logbook_model.php:6094
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
 #: application/models/Logbook_model.php:6077
+#: application/models/Logbook_model.php:6100
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
 #: application/models/Logbook_model.php:6081
+#: application/models/Logbook_model.php:6104
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
 #: application/models/Logbook_model.php:6085
+#: application/models/Logbook_model.php:6108
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
 #: application/models/Logbook_model.php:6088
+#: application/models/Logbook_model.php:6111
 msgid "unconfirmed"
 msgstr "obekräftad"
 
 #: application/models/Logbook_model.php:6091
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:6114
 msgid "unknown"
 msgstr "Okänd"
 
 #: application/models/Logbook_model.php:6166
+#: application/models/Logbook_model.php:6189
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
 #: application/models/Logbook_model.php:6169
+#: application/models/Logbook_model.php:6192
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
@@ -5273,6 +5324,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6613
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -5562,6 +5614,10 @@ msgstr "Skillnad"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/countqsoby/index.php:100
+#: application/views/countqsoby/index.php:117
+#: application/views/countqsoby/index.php:133
+#: application/views/countqsoby/index.php:146
 msgid "All"
 msgstr "Alla"
 
@@ -5612,6 +5668,7 @@ msgstr "Period"
 #: application/views/timeline/index.php:86 application/views/user/edit.php:405
 #: application/views/view_log/partial/log_ajax.php:22
 #: application/views/view_log/qso.php:235
+#: application/views/countqsoby/index.php:143
 msgid "Propagation"
 msgstr "Utbredning"
 
@@ -5630,6 +5687,7 @@ msgstr "Alla utom SAT"
 #: application/views/logbookadvanced/edit.php:229
 #: application/views/logbookadvanced/index.php:528
 #: application/views/timeline/index.php:91
+#: application/views/countqsoby/index.php:147
 msgid "None/Empty"
 msgstr "Inget"
 
@@ -5670,6 +5728,7 @@ msgstr "Inget"
 #: application/views/timeline/index.php:413
 #: application/views/timeline/index.php:448
 #: application/views/timeplotter/index.php:75
+#: application/views/countqsoby/index.php:202
 msgid "Show"
 msgstr "Visa"
 
@@ -5782,6 +5841,7 @@ msgstr "Aktiverade Lokatorrutor"
 #: application/views/timeline/index.php:358
 #: application/views/timeline/index.php:395
 #: application/views/timeline/index.php:430
+#: application/views/countqsoby/index.php:97
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -5802,6 +5862,7 @@ msgstr "Satellit"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:72
 #: application/views/statistics/antennaanalytics.php:126
+#: application/views/countqsoby/index.php:114
 msgid "Orbit"
 msgstr "Bana"
 
@@ -5830,6 +5891,7 @@ msgstr "Bana"
 #: application/views/countqsoby/index.php:154
 #: application/views/gridmap/index.php:165
 #: application/views/timeline/index.php:61
+#: application/views/countqsoby/index.php:156
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
@@ -5858,6 +5920,7 @@ msgstr "Bekräftelse"
 #: application/views/awards/wwff/index.php:116
 #: application/views/countqsoby/index.php:186
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1068
+#: application/views/countqsoby/index.php:188
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -6110,6 +6173,7 @@ msgstr "Gå"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:358
 #: application/views/qso/index.php:757 application/views/user/edit.php:1406
+#: application/views/countqsoby/index.php:44
 msgid "Clear"
 msgstr "Rensa"
 
@@ -8212,6 +8276,7 @@ msgstr "Datumintervall"
 #: application/views/gridmap/index.php:47
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:61
+#: application/views/countqsoby/index.php:36
 msgid "Today"
 msgstr "Idag"
 
@@ -8226,6 +8291,7 @@ msgstr "Idag"
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:351
 #: application/views/statistics/index.php:62
+#: application/views/countqsoby/index.php:37
 msgid "Yesterday"
 msgstr "Igår"
 
@@ -8240,6 +8306,7 @@ msgstr "Igår"
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:352
 #: application/views/statistics/index.php:63
+#: application/views/countqsoby/index.php:38
 msgid "Last 7 Days"
 msgstr "Senaste 7 dagarna"
 
@@ -8254,6 +8321,7 @@ msgstr "Senaste 7 dagarna"
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:353
 #: application/views/statistics/index.php:64
+#: application/views/countqsoby/index.php:39
 msgid "Last 30 Days"
 msgstr "Senaste 30 dagarna"
 
@@ -8268,6 +8336,7 @@ msgstr "Senaste 30 dagarna"
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:354
 #: application/views/statistics/index.php:65
+#: application/views/countqsoby/index.php:40
 msgid "This Month"
 msgstr "Den här månaden"
 
@@ -8282,6 +8351,7 @@ msgstr "Den här månaden"
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:355
 #: application/views/statistics/index.php:66
+#: application/views/countqsoby/index.php:41
 msgid "Last Month"
 msgstr "Förra månaden"
 
@@ -8296,6 +8366,7 @@ msgstr "Förra månaden"
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:356
 #: application/views/statistics/index.php:67
+#: application/views/countqsoby/index.php:42
 msgid "This Year"
 msgstr "Det här året"
 
@@ -8309,6 +8380,7 @@ msgstr "Det här året"
 #: application/views/countqsoby/index.php:42
 #: application/views/logbookadvanced/index.php:357
 #: application/views/statistics/index.php:68
+#: application/views/countqsoby/index.php:43
 msgid "Last Year"
 msgstr "Förra året"
 
@@ -8323,6 +8395,7 @@ msgstr "Förra året"
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
+#: application/views/countqsoby/index.php:49
 msgid "Date from"
 msgstr "Datum från"
 
@@ -8337,6 +8410,7 @@ msgstr "Datum från"
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
+#: application/views/countqsoby/index.php:55
 msgid "Date to"
 msgstr "Datum till"
 
@@ -10196,8 +10270,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -11718,6 +11792,9 @@ msgstr "Anropssignal DXCC-identifiering"
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
+#: application/controllers/Countqsoby.php:81
+#: application/views/countqsoby/index.php:16
+#: application/views/countqsoby/index.php:71
 msgid "Station Location"
 msgstr "Stationsplats"
 
@@ -13789,14 +13866,17 @@ msgid "QSOs total"
 msgstr "Totalt antal QSOs"
 
 #: application/views/countqsoby/index.php:27
+#: application/views/countqsoby/index.php:28
 msgid "Filter"
 msgstr "Filter"
 
 #: application/views/countqsoby/index.php:33
+#: application/views/countqsoby/index.php:34
 msgid "Date presets"
 msgstr "Datum presets"
 
 #: application/views/countqsoby/index.php:63
+#: application/views/countqsoby/index.php:64
 msgid "Count QSOs by"
 msgstr "Räkna QSOs efter"
 
@@ -18179,8 +18259,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -23348,8 +23428,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -25061,6 +25141,10 @@ msgstr "Clublog Loggsökning"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-användare. Senaste uppladdningen var "
+
+#: application/models/Countqsoby_model.php:262
+msgid "Unlinked"
+msgstr ""
 
 #, php-format
 #~ msgid ""

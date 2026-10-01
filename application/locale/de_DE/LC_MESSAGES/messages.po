@@ -600,6 +600,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/views/countqsoby/index.php:67
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -645,6 +646,7 @@ msgstr "Log-Ansicht"
 
 #: application/controllers/Awards.php:745
 #: application/controllers/Countqsoby.php:93
+#: application/controllers/Countqsoby.php:102
 msgid "and"
 msgstr "und"
 
@@ -665,39 +667,47 @@ msgstr "und"
 #: application/views/awards/wwff/index.php:3
 #: application/views/awards/wwff/index.php:132
 #: application/views/countqsoby/index.php:79
+#: application/controllers/Countqsoby.php:103
+#: application/views/countqsoby/index.php:81
 msgid "Every band (w/o SAT)"
 msgstr "Alle Bänder (ohne SAT)"
 
 #: application/controllers/Awards.php:746
 #: application/controllers/Countqsoby.php:94
+#: application/controllers/Countqsoby.php:103
 msgid "band"
 msgstr "Band"
 
 #: application/controllers/Awards.php:749
 #: application/controllers/Countqsoby.php:97
+#: application/controllers/Countqsoby.php:106
 msgid " and satellite "
 msgstr " und Satellit "
 
 #: application/controllers/Awards.php:752
 #: application/controllers/Callstats.php:108
 #: application/controllers/Countqsoby.php:100
+#: application/controllers/Countqsoby.php:109
 msgid " and orbit type "
 msgstr " und Orbit-Typ "
 
 #: application/controllers/Awards.php:756
 #: application/controllers/Callstats.php:112
 #: application/controllers/Countqsoby.php:104
+#: application/controllers/Countqsoby.php:113
 msgid " and propagation "
 msgstr " und Ausbreitungsart "
 
 #: application/controllers/Awards.php:759
 #: application/controllers/Callstats.php:115
 #: application/controllers/Countqsoby.php:107
+#: application/controllers/Countqsoby.php:116
 msgid " and mode "
 msgstr " und Mode "
 
 #: application/controllers/Awards.php:762
 #: application/controllers/Countqsoby.php:116
+#: application/controllers/Countqsoby.php:125
 msgid " and "
 msgstr " und "
 
@@ -1152,6 +1162,7 @@ msgstr "Kein Benutzer hat Clublog konfiguriert."
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:519
 #: application/views/view_log/qso.php:524
+#: application/views/countqsoby/index.php:196
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1329,6 +1340,7 @@ msgstr "Kontinente"
 #: application/views/countqsoby/index.php:3
 #: application/views/countqsoby/index.php:209
 #: application/views/interface_assets/header.php:190
+#: application/views/countqsoby/index.php:211
 msgid "Count QSOs by..."
 msgstr "Zähle QSOs nach..."
 
@@ -1394,6 +1406,7 @@ msgstr "Zähle QSOs nach..."
 #: application/views/view_log/qso.php:629
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/countqsoby/index.php:68
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -1417,6 +1430,7 @@ msgstr "Locator"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/countqsoby/index.php:69
 msgid "ITU Zone"
 msgstr "ITU Zone"
 
@@ -1446,11 +1460,13 @@ msgstr "ITU Zone"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/countqsoby/index.php:70
 msgid "CQ Zone"
 msgstr "CQ-Zone"
 
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:70
+#: application/views/countqsoby/index.php:72
 msgid "POTA Reference"
 msgstr "POTA Referenz"
 
@@ -1462,6 +1478,7 @@ msgstr "POTA Referenz"
 #: application/views/station_profile/edit.php:237
 #: application/views/user/edit.php:898 application/views/view_log/qso.php:343
 #: application/views/view_log/qso.php:678
+#: application/views/countqsoby/index.php:73
 msgid "SOTA Reference"
 msgstr "SOTA-Referenznummer"
 
@@ -1472,6 +1489,7 @@ msgstr "SOTA-Referenznummer"
 #: application/views/station_profile/edit.php:211
 #: application/views/user/edit.php:894 application/views/view_log/qso.php:336
 #: application/views/view_log/qso.php:671
+#: application/views/countqsoby/index.php:74
 msgid "IOTA Reference"
 msgstr "IOTA-Referenznummer"
 
@@ -1483,6 +1501,7 @@ msgstr "IOTA-Referenznummer"
 #: application/views/station_profile/edit.php:251
 #: application/views/user/edit.php:902 application/views/view_log/qso.php:350
 #: application/views/view_log/qso.php:685
+#: application/views/countqsoby/index.php:75
 msgid "WWFF Reference"
 msgstr "WWFF Referenznummer"
 
@@ -2221,6 +2240,7 @@ msgstr "Logbuch"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
 #: application/views/timeline/index.php:65 application/views/user/edit.php:753
 #: application/views/user/edit.php:1042 application/views/visitor/mini.php:187
+#: application/views/countqsoby/index.php:164
 msgid "QSL"
 msgstr "QSL"
 
@@ -2278,6 +2298,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:490
 #: application/views/visitor/index.php:273
 #: application/views/visitor/mini.php:186
+#: application/views/countqsoby/index.php:172
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2322,6 +2343,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:299
 #: application/views/timeline/index.php:73 application/views/user/edit.php:755
 #: application/views/user/edit.php:1060 application/views/user/edit.php:1134
+#: application/views/countqsoby/index.php:180
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2441,6 +2463,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/countqsoby/index.php:130
 msgid "Mode"
 msgstr "Mode"
 
@@ -2727,6 +2750,7 @@ msgstr "Distanz"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/countqsoby/index.php:78
 msgid "Band"
 msgstr "Band"
 
@@ -2813,6 +2837,7 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:289
 #: application/views/view_log/qso.php:644
+#: application/views/countqsoby/index.php:17
 msgid "Deleted DXCC"
 msgstr "Gelöschtes DXCC"
 
@@ -3055,7 +3080,7 @@ msgstr ""
 #: application/models/Logbook_model.php:109
 #: application/models/Logbook_model.php:1588
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1611
 msgid "Invalid callsign"
 msgstr "Ungültiges Rufzeichen"
 
@@ -5189,24 +5214,30 @@ msgid "Station not accessible"
 msgstr "Station nicht verfügbar"
 
 #: application/models/Logbook_model.php:1041
+#: application/models/Logbook_model.php:1064
 msgid "Realtime upload disabled"
 msgstr "Echtzeit-Upload deaktiviert"
 
 #: application/models/Logbook_model.php:1578
+#: application/models/Logbook_model.php:1601
 msgid "Station ID not allowed"
 msgstr "Stations ID nicht erlaubt"
 
 #: application/models/Logbook_model.php:1583
+#: application/models/Logbook_model.php:1606
 msgid "No Call given"
 msgstr "Kein Rufzeichen angegeben"
 
 #: application/models/Logbook_model.php:1659
 #: application/models/Logbook_model.php:1877
+#: application/models/Logbook_model.php:1682
+#: application/models/Logbook_model.php:1900
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
 #: application/models/Logbook_model.php:5101
 #: application/models/Logbook_model.php:5155
+#: application/models/Logbook_model.php:5178
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5216,6 +5247,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5109
 #: application/models/Logbook_model.php:5163
+#: application/models/Logbook_model.php:5186
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5226,6 +5258,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5125
 #: application/models/Logbook_model.php:5179
+#: application/models/Logbook_model.php:5202
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5235,6 +5268,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5135
 #: application/models/Logbook_model.php:5189
+#: application/models/Logbook_model.php:5212
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5245,6 +5279,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5142
 #: application/models/Logbook_model.php:5196
+#: application/models/Logbook_model.php:5219
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5255,6 +5290,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5212
 #: application/models/Logbook_model.php:5266
+#: application/models/Logbook_model.php:5289
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5265,6 +5301,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5219
 #: application/models/Logbook_model.php:5273
+#: application/models/Logbook_model.php:5296
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5275,22 +5312,26 @@ msgstr ""
 
 #: application/models/Logbook_model.php:5494
 #: application/models/Logbook_model.php:5548
+#: application/models/Logbook_model.php:5571
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:5505
 #: application/models/Logbook_model.php:5559
+#: application/models/Logbook_model.php:5582
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:5566
 #: application/models/Logbook_model.php:5620
+#: application/models/Logbook_model.php:5643
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:5942
 #: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5996
+#: application/models/Logbook_model.php:6019
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
@@ -5298,31 +5339,38 @@ msgstr "Doublette zu"
 #: application/models/Logbook_model.php:6109
 #: application/models/Logbook_model.php:6063
 #: application/models/Logbook_model.php:6163
+#: application/models/Logbook_model.php:6086
+#: application/models/Logbook_model.php:6186
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
 #: application/models/Logbook_model.php:6017
 #: application/models/Logbook_model.php:6071
+#: application/models/Logbook_model.php:6094
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:6023
 #: application/models/Logbook_model.php:6077
+#: application/models/Logbook_model.php:6100
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
 #: application/models/Logbook_model.php:6027
 #: application/models/Logbook_model.php:6081
+#: application/models/Logbook_model.php:6104
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
 #: application/models/Logbook_model.php:6031
 #: application/models/Logbook_model.php:6085
+#: application/models/Logbook_model.php:6108
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
 #: application/models/Logbook_model.php:6034
 #: application/models/Logbook_model.php:6088
+#: application/models/Logbook_model.php:6111
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
@@ -5330,16 +5378,19 @@ msgstr "nicht bestätigt"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/models/Logbook_model.php:6091
+#: application/models/Logbook_model.php:6114
 msgid "unknown"
 msgstr "unbekannt"
 
 #: application/models/Logbook_model.php:6112
 #: application/models/Logbook_model.php:6166
+#: application/models/Logbook_model.php:6189
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
 #: application/models/Logbook_model.php:6115
 #: application/models/Logbook_model.php:6169
+#: application/models/Logbook_model.php:6192
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
@@ -5357,6 +5408,7 @@ msgstr "QSO aktualisiert"
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/models/Logbook_model.php:6590
+#: application/models/Logbook_model.php:6613
 msgid "Bearing"
 msgstr "Peilung"
 
@@ -5649,6 +5701,10 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/countqsoby/index.php:100
+#: application/views/countqsoby/index.php:117
+#: application/views/countqsoby/index.php:133
+#: application/views/countqsoby/index.php:146
 msgid "All"
 msgstr "Alle"
 
@@ -5699,6 +5755,7 @@ msgstr "Zeitraum"
 #: application/views/timeline/index.php:86 application/views/user/edit.php:405
 #: application/views/view_log/partial/log_ajax.php:22
 #: application/views/view_log/qso.php:235
+#: application/views/countqsoby/index.php:143
 msgid "Propagation"
 msgstr "Ausbreitungsart"
 
@@ -5717,6 +5774,7 @@ msgstr "Alle außer SAT"
 #: application/views/logbookadvanced/edit.php:229
 #: application/views/logbookadvanced/index.php:528
 #: application/views/timeline/index.php:91
+#: application/views/countqsoby/index.php:147
 msgid "None/Empty"
 msgstr "Keine/Leer"
 
@@ -5757,6 +5815,7 @@ msgstr "Keine/Leer"
 #: application/views/timeline/index.php:413
 #: application/views/timeline/index.php:448
 #: application/views/timeplotter/index.php:75
+#: application/views/countqsoby/index.php:202
 msgid "Show"
 msgstr "Anzeigen"
 
@@ -5869,6 +5928,7 @@ msgstr "Aktivierte Locator"
 #: application/views/timeline/index.php:358
 #: application/views/timeline/index.php:395
 #: application/views/timeline/index.php:430
+#: application/views/countqsoby/index.php:97
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -5889,6 +5949,7 @@ msgstr "Satellit"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:72
 #: application/views/statistics/antennaanalytics.php:126
+#: application/views/countqsoby/index.php:114
 msgid "Orbit"
 msgstr "Orbit"
 
@@ -5917,6 +5978,7 @@ msgstr "Orbit"
 #: application/views/countqsoby/index.php:154
 #: application/views/gridmap/index.php:165
 #: application/views/timeline/index.php:61
+#: application/views/countqsoby/index.php:156
 msgid "Confirmation"
 msgstr "Bestätigung"
 
@@ -5945,6 +6007,7 @@ msgstr "Bestätigung"
 #: application/views/awards/wwff/index.php:116
 #: application/views/countqsoby/index.php:186
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1068
+#: application/views/countqsoby/index.php:188
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -6198,6 +6261,7 @@ msgstr "Los"
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:358
 #: application/views/qso/index.php:757 application/views/user/edit.php:1406
+#: application/views/countqsoby/index.php:44
 msgid "Clear"
 msgstr "Zurücksetzen"
 
@@ -8333,6 +8397,7 @@ msgstr "Zeitraum"
 #: application/views/gridmap/index.php:47
 #: application/views/logbookadvanced/index.php:350
 #: application/views/statistics/index.php:61
+#: application/views/countqsoby/index.php:36
 msgid "Today"
 msgstr "Heute"
 
@@ -8347,6 +8412,7 @@ msgstr "Heute"
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:351
 #: application/views/statistics/index.php:62
+#: application/views/countqsoby/index.php:37
 msgid "Yesterday"
 msgstr "Gestern"
 
@@ -8361,6 +8427,7 @@ msgstr "Gestern"
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:352
 #: application/views/statistics/index.php:63
+#: application/views/countqsoby/index.php:38
 msgid "Last 7 Days"
 msgstr "Letzte 7 Tage"
 
@@ -8375,6 +8442,7 @@ msgstr "Letzte 7 Tage"
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:353
 #: application/views/statistics/index.php:64
+#: application/views/countqsoby/index.php:39
 msgid "Last 30 Days"
 msgstr "Letzte 30 Tage"
 
@@ -8389,6 +8457,7 @@ msgstr "Letzte 30 Tage"
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:354
 #: application/views/statistics/index.php:65
+#: application/views/countqsoby/index.php:40
 msgid "This Month"
 msgstr "Dieser Monat"
 
@@ -8403,6 +8472,7 @@ msgstr "Dieser Monat"
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:355
 #: application/views/statistics/index.php:66
+#: application/views/countqsoby/index.php:41
 msgid "Last Month"
 msgstr "Letzter Monat"
 
@@ -8417,6 +8487,7 @@ msgstr "Letzter Monat"
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:356
 #: application/views/statistics/index.php:67
+#: application/views/countqsoby/index.php:42
 msgid "This Year"
 msgstr "Dieses Jahr"
 
@@ -8430,6 +8501,7 @@ msgstr "Dieses Jahr"
 #: application/views/countqsoby/index.php:42
 #: application/views/logbookadvanced/index.php:357
 #: application/views/statistics/index.php:68
+#: application/views/countqsoby/index.php:43
 msgid "Last Year"
 msgstr "Letztes Jahr"
 
@@ -8444,6 +8516,7 @@ msgstr "Letztes Jahr"
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
+#: application/views/countqsoby/index.php:49
 msgid "Date from"
 msgstr "Datum von"
 
@@ -8458,6 +8531,7 @@ msgstr "Datum von"
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
+#: application/views/countqsoby/index.php:55
 msgid "Date to"
 msgstr "Datum bis"
 
@@ -11864,6 +11938,9 @@ msgstr "Identifikation des DXCC zum Rufzeichen"
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
+#: application/controllers/Countqsoby.php:81
+#: application/views/countqsoby/index.php:16
+#: application/views/countqsoby/index.php:71
 msgid "Station Location"
 msgstr "Stationsstandort"
 
@@ -13960,14 +14037,17 @@ msgid "QSOs total"
 msgstr "Gesamt QSOs"
 
 #: application/views/countqsoby/index.php:27
+#: application/views/countqsoby/index.php:28
 msgid "Filter"
 msgstr "Filter"
 
 #: application/views/countqsoby/index.php:33
+#: application/views/countqsoby/index.php:34
 msgid "Date presets"
 msgstr "Datumsvorgaben"
 
 #: application/views/countqsoby/index.php:63
+#: application/views/countqsoby/index.php:64
 msgid "Count QSOs by"
 msgstr "Zähle QSOs nach"
 
@@ -25350,6 +25430,10 @@ msgstr "Clublog Logsuche"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Nutzer. Letzter Upload vom "
+
+#: application/models/Countqsoby_model.php:262
+msgid "Unlinked"
+msgstr ""
 
 #, php-format
 #~ msgid ""
