@@ -4,52 +4,55 @@ class Srr_model extends CI_Model {
 
 	private $api_url = 'https://award.srr.ru/api/v1';
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: srr_key
-	|--------------------------------------------------------------------------
-	|
-	| Returns the SRR API key of the user via the $user_id parameter
-	|
-	*/
+	/**
+	 * Returns the stored SRR API key of a user
+	 *
+	 * @param int $user_id User id
+	 * @return string The key, empty if none is stored
+	 */
 	function srr_key($user_id) {
 		$this->load->model('user_options_model');
 		$row = $this->user_options_model->get_options('srr', array('option_name'=>'srr_key','option_key'=>'key'), $user_id)->row();
 		return $row->option_value ?? '';
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: srr_users
-	|--------------------------------------------------------------------------
-	|
-	| Returns all users which have stored an SRR API key
-	|
-	*/
+	/**
+	 * Returns all users which have stored an SRR API key
+	 *
+	 * @return array Rows with user_id and option_value (the key)
+	 */
 	function srr_users() {
 		$sql = "SELECT user_id, option_value FROM user_options WHERE option_type = 'srr' AND option_name = 'srr_key' AND option_key = 'key' AND option_value <> ''";
 		return $this->db->query($sql)->result();
 	}
 
+	/**
+	 * Stores the SRR API key for the logged in user
+	 *
+	 * @param string $key SRR API key
+	 * @return void
+	 */
 	function store_key($key) {
 		$this->load->model('user_options_model');
 		$this->user_options_model->set_option('srr', 'srr_key', array('key'=>$key));
 	}
 
+	/**
+	 * Deletes the SRR API key of the logged in user
+	 *
+	 * @return void
+	 */
 	function delete_key() {
 		$this->load->model('user_options_model');
 		$this->user_options_model->del_option('srr', 'srr_key',array('option_key' => 'key'));
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: get_srr_me
-	|--------------------------------------------------------------------------
-	|
-	| Checks the key against SRR and returns the user with his callsigns
-	| or false if the key is invalid
-	|
-	*/
+	/**
+	 * Checks the key against SRR (/me)
+	 *
+	 * @param string $key SRR API key
+	 * @return object|false The SRR user incl. callsigns, false if the key is invalid
+	 */
 	function get_srr_me($key) {
 		if (($key ?? '') == '') {
 			return false;
@@ -61,15 +64,13 @@ class Srr_model extends CI_Model {
 		return false;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: get_srr_rda
-	|--------------------------------------------------------------------------
-	|
-	| Returns the list of RDA codes from the SRR info endpoint.
-	| The list is cached as long as SRR allows it (cache_ttl).
-	|
-	*/
+	/**
+	 * Returns the list of RDA codes from the SRR info endpoint.
+	 * The list is cached as long as SRR allows it (cache_ttl).
+	 *
+	 * @param string $key SRR API key
+	 * @return array|false Uppercase RDA codes, false if SRR could not be reached
+	 */
 	function get_srr_rda($key) {
 		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
 			'adapter' => $this->config->item('cache_adapter') ?? 'file',
@@ -97,10 +98,24 @@ class Srr_model extends CI_Model {
 		return $rda;
 	}
 
+	/**
+	 * Checks if an RDA code has the format XX-00 and is known by SRR
+	 *
+	 * @param string $rda RDA code
+	 * @param array $rda_list RDA codes from get_srr_rda()
+	 * @return bool
+	 */
 	function rda_valid($rda, $rda_list) {
 		return (preg_match('/^[A-Z]{2}-\d{2}$/', $rda) === 1) && in_array($rda, $rda_list, true);
 	}
 
+	/**
+	 * Returns the station profiles of a user with the counts of modified,
+	 * not uploaded and uploaded QSOs
+	 *
+	 * @param int|null $user_id User id, the logged in user if null
+	 * @return CI_DB_result
+	 */
 	function stations_with_srr($user_id = null) {
 		if ($user_id == null) {
 			$user_id = $this->session->userdata('user_id');
@@ -135,22 +150,23 @@ class Srr_model extends CI_Model {
 		return $query;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: upload_station
-	|--------------------------------------------------------------------------
-	|
-	| Uploads all not yet uploaded QSOs of a station profile to SRR.
-	| QSOs on 2m and above need a PROP_MODE. If there are QSOs without one,
-	| nothing is uploaded and the QSOs are returned (status "propmode") so the
-	| user can decide. With $propmode_los these QSOs are sent with PROP_MODE LOS.
-	| The RDA district of each QSO (MY_CNTY) is checked against the SRR
-	| RDA list. If there are QSOs without a valid RDA, nothing is uploaded and
-	| the QSOs are returned (status "rda") so the user can decide. With
-	| $without_rda these QSOs are sent without MY_CNTY.
-	| Without user interaction (cron) these QSOs are skipped.
-	|
-	*/
+	/**
+	 * Uploads all not yet uploaded QSOs of a station profile to SRR.
+	 *
+	 * QSOs on 2m and above need a PROP_MODE. If there are QSOs without one,
+	 * nothing is uploaded and the QSOs are returned (status "propmode") so the
+	 * user can decide. The RDA district of each QSO (MY_CNTY) is checked against
+	 * the SRR RDA list. If there are QSOs without a valid RDA, nothing is uploaded
+	 * and the QSOs are returned (status "rda") so the user can decide.
+	 * Without user interaction (cron) these QSOs are skipped.
+	 *
+	 * @param object $station_profile Station profile row
+	 * @param string $key SRR API key
+	 * @param bool $propmode_los Send QSOs on 2m and above without PROP_MODE with PROP_MODE LOS
+	 * @param bool $interactive FALSE (cron): skip QSOs instead of returning them for a dialog
+	 * @param bool $without_rda Send QSOs without a valid RDA without MY_CNTY
+	 * @return array status, infomessage, errormessages and the QSOs for the dialogs (qsos, rda_qsos)
+	 */
 	function upload_station($station_profile, $key, $propmode_los = false, $interactive = true, $without_rda = false) {
 		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array());
 		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
@@ -294,17 +310,16 @@ class Srr_model extends CI_Model {
 		return $result;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: download_user
-	|--------------------------------------------------------------------------
-	|
-	| Downloads the confirmations of a user from SRR and marks the
-	| matching QSOs as received. The RDA district of the worked station (CNTY)
-	| is stored in the QSO. Without $from the confirmations since the last
-	| received SRR confirmation are downloaded.
-	|
-	*/
+	/**
+	 * Downloads the confirmations of a user from SRR and marks the
+	 * matching QSOs as received. The RDA district of the worked station (CNTY)
+	 * is stored in the QSO.
+	 *
+	 * @param int $user_id User id
+	 * @param string $key SRR API key
+	 * @param string|null $from Date to download from, since the last received SRR confirmation if null
+	 * @return string Result message with a table of the updated QSOs
+	 */
 	function download_user($user_id, $key, $from = null) {
 		$me = $this->get_srr_me($key);
 		if ($me === false) {
@@ -388,8 +403,11 @@ class Srr_model extends CI_Model {
 		return $r;
 	}
 
-	/*
+	/**
 	 * Returns the date of the last received SRR confirmation of a user
+	 *
+	 * @param int $user_id User id
+	 * @return string Date as Ymd, 19000101 if there is none
 	 */
 	function srr_last_qsl_rcvd_date($user_id) {
 		$sql = "SELECT date_format(MAX(COALESCE(COL_SRR_QSLRDATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y%m%d') MAXDATE
@@ -399,9 +417,12 @@ class Srr_model extends CI_Model {
 		return $query->row()->MAXDATE ?? '19000101';
 	}
 
-	/*
+	/**
 	 * Builds the QSO array for the SRR API out of the ADIF lines of the QSOs.
 	 * The RDA of the QSO is sent as MY_CNTY. Without RDA no MY_CNTY is sent.
+	 *
+	 * @param array $qsos QSO rows with srr_rda set
+	 * @return array One array of uppercase ADIF fields per QSO
 	 */
 	private function build_records($qsos) {
 		$adif = '';
@@ -428,6 +449,13 @@ class Srr_model extends CI_Model {
 		return $records;
 	}
 
+	/**
+	 * Sends QSOs to SRR (POST /qso)
+	 *
+	 * @param array $records QSOs from build_records()
+	 * @param string $key SRR API key
+	 * @return array error (empty on success) and the decoded response (data)
+	 */
 	private function post_qsos($records, $key) {
 		$payload = array(
 			'logger' => array('name' => 'Wavelog', 'version' => $this->optionslib->get_option('version')),
@@ -444,8 +472,11 @@ class Srr_model extends CI_Model {
 		return array('error' => $error, 'data' => $result['data']);
 	}
 
-	/*
+	/**
 	 * Checks if the QSO was made on 2m or above
+	 *
+	 * @param object $qso QSO row
+	 * @return bool
 	 */
 	private function vhf_or_above($qso) {
 		$freq = (float)($qso->COL_FREQ ?? 0);
@@ -455,6 +486,15 @@ class Srr_model extends CI_Model {
 		return $freq >= 144000000;
 	}
 
+	/**
+	 * Sends a request to the SRR API
+	 *
+	 * @param string $method GET or POST
+	 * @param string $path API path incl. query string
+	 * @param string $key SRR API key
+	 * @param array|null $payload Data sent as JSON on POST
+	 * @return array httpcode, error (curl error), raw (response body) and data (decoded JSON)
+	 */
 	private function srr_request($method, $path, $key, $payload = null) {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->api_url.$path);

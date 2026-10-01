@@ -14,6 +14,12 @@ class Srr extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Shows the SRR page with the key management and, if a valid key is stored,
+	 * the upload statistics of all station profiles of the user.
+	 *
+	 * @return void
+	 */
 	public function index() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
@@ -47,6 +53,11 @@ class Srr extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	/**
+	 * Validates the posted SRR key against SRR and stores it for the user.
+	 *
+	 * @return void Redirects to the SRR page
+	 */
 	public function store_key() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->model('Srr_model');
@@ -61,6 +72,11 @@ class Srr extends CI_Controller {
 		redirect('srr');
 	}
 
+	/**
+	 * Deletes the stored SRR key of the user.
+	 *
+	 * @return void Redirects to the SRR page
+	 */
 	public function delete_key() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->model('Srr_model');
@@ -69,6 +85,12 @@ class Srr extends CI_Controller {
 		redirect('srr');
 	}
 
+	/**
+	 * Uploads the QSOs of the posted station profile to SRR. The POST flags
+	 * propmode_los and without_rda are set after the user confirmed a dialog.
+	 *
+	 * @return void Echoes the upload result and the updated statistics as JSON
+	 */
 	public function upload_station() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		ini_set('memory_limit', '-1');
@@ -98,6 +120,11 @@ class Srr extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	/**
+	 * Downloads the SRR confirmations of the user, optionally since the posted date.
+	 *
+	 * @return void Echoes the download result as JSON
+	 */
 	public function download() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
@@ -114,14 +141,11 @@ class Srr extends CI_Controller {
 		echo json_encode($r);
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: srr_sync
-	|--------------------------------------------------------------------------
-	|
-	|	Called by cron. Uploads the QSOs of all users with an SRR key
-	|	and downloads their confirmations.
-	|
+	/**
+	 * Called by cron. Uploads the QSOs of all users with an SRR key
+	 * and downloads their confirmations.
+	 *
+	 * @return void Echoes the result per station profile and user
 	 */
 	public function srr_sync() {
 		$this->load->helper('cronauth');

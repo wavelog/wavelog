@@ -6484,6 +6484,12 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
+	/**
+	 * Returns the QSOs of a station profile which are not yet uploaded to SRR
+	 *
+	 * @param int $station_id Station profile id
+	 * @return CI_DB_result
+	 */
 	function get_srr_qsos_to_upload($station_id) {
 
 		$sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
@@ -6538,6 +6544,13 @@ class Logbook_model extends CI_Model {
 		return "Updated";
 	}
 
+	/**
+	 * Sets the SRR sent state and date of a QSO
+	 *
+	 * @param int $qso_id QSO primary key
+	 * @param string $state Y (uploaded) or I (rejected by SRR)
+	 * @return string
+	 */
 	function mark_srr_sent($qso_id, $state = 'Y') {
 
 		$data = array(
@@ -6552,6 +6565,14 @@ class Logbook_model extends CI_Model {
 		return "Updated";
 	}
 
+	/**
+	 * Marks a QSO as confirmed by SRR
+	 *
+	 * @param int $primarykey QSO primary key
+	 * @param string $qsl_date Date of the confirmation (Y-m-d)
+	 * @param string $cnty RDA district of the worked station, not changed if empty
+	 * @return string
+	 */
 	function srr_update($primarykey, $qsl_date, $cnty = '') {
 
 		$data = array(
@@ -6570,6 +6591,13 @@ class Logbook_model extends CI_Model {
 		return "Updated";
 	}
 
+	/**
+	 * Sets the RDA district of the worked station (CNTY) of a QSO
+	 *
+	 * @param int $primarykey QSO primary key
+	 * @param string $cnty RDA district
+	 * @return string
+	 */
 	function srr_update_cnty($primarykey, $cnty) {
 
 		$data = array(
