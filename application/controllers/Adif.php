@@ -309,7 +309,6 @@ class adif extends CI_Controller {
 
 		$data['page_title'] = __("ADIF Import");
 		$data['tab'] = "adif";
-		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		// Pass allowed tabs to view
 		$data['allowed_tabs'] = $this->get_allowed_tabs();
