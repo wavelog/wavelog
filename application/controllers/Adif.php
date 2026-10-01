@@ -309,6 +309,7 @@ class adif extends CI_Controller {
 
 		$data['page_title'] = __("ADIF Import");
 		$data['tab'] = "adif";
+		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		// Pass allowed tabs to view
 		$data['allowed_tabs'] = $this->get_allowed_tabs();
@@ -346,7 +347,6 @@ class adif extends CI_Controller {
 
 		if ( ! $this->upload->do_upload()) {
 			$data['error'] = $this->upload->display_errors();
-			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
@@ -463,7 +463,6 @@ class adif extends CI_Controller {
 						return;
 					}
 				} else {	// Failure, if no ADIF inside ZIP
-					$data['max_upload'] = ini_get('upload_max_filesize');
 					$this->load->view('interface_assets/header', $data);
 					$this->load->view('adif/import', $data);
 					$this->load->view('interface_assets/footer');
@@ -511,11 +510,10 @@ class adif extends CI_Controller {
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
 
 		$this->load->library('upload', $config);
+		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		if ( ! $this->upload->do_upload()) {
 			$data['error'] = $this->upload->display_errors();
-
-			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
@@ -591,11 +589,10 @@ class adif extends CI_Controller {
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
 
 		$this->load->library('upload', $config);
+		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		if ( ! $this->upload->do_upload()) {
 			$data['error'] = $this->upload->display_errors();
-
-			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
