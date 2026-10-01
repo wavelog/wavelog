@@ -14,7 +14,7 @@ class Countqsoby_model extends CI_Model
 		$type = $clean['type'] ?? 'grid';
 
 		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->scoped_station_ids();
+		$logbooks_locations_array = $this->scoped_station_ids($type);
 
 		if ($logbooks_locations_array === null) {
 			return array('Error' => 'No QSOs found.');
@@ -23,7 +23,9 @@ class Countqsoby_model extends CI_Model
 		$table = $this->config->item('table_name');
 		$conf = $this->confirm_condition($clean);
 
-		if ($type == 'pota') {
+		if ($type == 'station_profile') {
+			$rows = $this->station_profile_counts($table, $conf, $clean);
+		} elseif ($type == 'pota') {
 			$rows = $this->pota_counts($clean, $logbooks_locations_array, $table, $conf);
 		} else {
 			switch ($type) {
@@ -102,9 +104,16 @@ class Countqsoby_model extends CI_Model
 			unset($row);
 		}
 
+		// A station location linked to several logbooks yields one row per
+		// logbook, so the summary must count each location only once.
+		$unique_rows = array();
+		foreach ($rows as $row) {
+			$unique_rows[$row['group_key']] = $row;
+		}
+
 		$confirmed = 0;
 		$total_qsos = 0;
-		foreach ($rows as $row) {
+		foreach ($unique_rows as $row) {
 			if ($row['confirmed_count'] > 0) {
 				$confirmed++;
 			}
@@ -115,7 +124,7 @@ class Countqsoby_model extends CI_Model
 			'ok' => 'OK',
 			'type' => $type,
 			'summary' => array(
-				'distinct' => count($rows),
+				'distinct' => count($unique_rows),
 				'confirmed' => $confirmed,
 				'qsos' => $total_qsos,
 			),
@@ -156,6 +165,103 @@ class Countqsoby_model extends CI_Model
 		usort($result, function ($a, $b) {
 			return $b['qso_count'] <=> $a['qso_count'] ?: $a['group_key'] <=> $b['group_key'];
 		});
+
+		return $result;
+	}
+
+	/*
+	 * Counts QSOs per station location, clustered by the logbooks the
+	 * locations are linked to (station_logbooks_relationship). A location
+	 * linked to several logbooks appears once per logbook; locations
+	 * without any link land in the "Unlinked" cluster and are listed
+	 * even with zero QSOs. Linked clusters only contain locations with
+	 * at least one QSO.
+	 *
+	 * @param string $table name of the QSO log table
+	 * @param string $conf SQL condition deciding which QSOs count as confirmed
+	 * @param array $clean XSS-cleaned postdata (band/sat/orbit/propagation/
+	 *                     mode/date filters + confirmation checkboxes)
+	 * @return array clustered result rows
+	 */
+	private function station_profile_counts($table, $conf, $clean) {
+		$user_id = (int) $this->session->userdata('user_id');
+
+		$locations = $this->db->query('SELECT station_id, station_profile_name, station_callsign
+			FROM station_profile
+			WHERE user_id = ?
+			ORDER BY station_profile_name', array($user_id))->result_array();
+
+		$logbooks = $this->db->query('SELECT logbook_id, logbook_name
+			FROM station_logbooks
+			WHERE user_id = ?
+			ORDER BY logbook_name', array($user_id))->result_array();
+
+		$relations = $this->db->query('SELECT station_logbook_id, station_location_id
+			FROM station_logbooks_relationship
+			JOIN station_logbooks ON station_logbooks.logbook_id = station_logbooks_relationship.station_logbook_id
+			WHERE station_logbooks.user_id = ?', array($user_id))->result_array();
+
+		$by_logbook = array();
+		$linked = array();
+		foreach ($relations as $rel) {
+			$by_logbook[(int) $rel['station_logbook_id']][] = (int) $rel['station_location_id'];
+			$linked[(int) $rel['station_location_id']] = true;
+		}
+
+		$params = array();
+		$sql = 'SELECT ' . $table . '.station_id, COUNT(*) AS qso_count,
+				SUM(CASE WHEN ' . $conf . ' THEN 1 ELSE 0 END) AS confirmed_count
+			FROM ' . $table . '
+			LEFT OUTER JOIN satellite
+				ON ' . $table . ".COL_PROP_MODE = 'SAT'
+				AND (" . $table . '.COL_SAT_NAME = satellite.name
+					OR (satellite.displayname != \'\' AND ' . $table . '.COL_SAT_NAME = satellite.displayname))
+			WHERE ' . $this->station_in(array_column($locations, 'station_id'), $params);
+
+		$this->add_filters($sql, $params, $clean);
+
+		$sql .= ' GROUP BY ' . $table . '.station_id';
+
+		$counts = array();
+		foreach ($this->db->query($sql, $params)->result_array() as $row) {
+			$counts[(int) $row['station_id']] = $row;
+		}
+
+		$name_of = array();
+		foreach ($locations as $loc) {
+			$name_of[(int) $loc['station_id']] = $loc['station_profile_name'] . ' (' . $loc['station_callsign'] . ')';
+		}
+
+		$result = array();
+		$add_row = function ($cluster, $id) use (&$result, $counts, $name_of) {
+			$result[] = array(
+				'group_key' => (string) $id,
+				'group_name' => $name_of[$id],
+				'cluster' => $cluster,
+				'qso_count' => (int) ($counts[$id]['qso_count'] ?? 0),
+				'confirmed_count' => (int) ($counts[$id]['confirmed_count'] ?? 0),
+			);
+		};
+
+		foreach ($logbooks as $lb) {
+			// Linked clusters only list locations that have QSOs.
+			$ids = array_filter(array_unique($by_logbook[(int) $lb['logbook_id']] ?? array()), function ($id) use ($counts, $name_of) {
+				return isset($name_of[$id]) && ($counts[$id]['qso_count'] ?? 0) > 0;
+			});
+			usort($ids, function ($a, $b) use ($counts, $name_of) {
+				return [$counts[$b]['qso_count'], $name_of[$a]] <=> [$counts[$a]['qso_count'], $name_of[$b]];
+			});
+			foreach ($ids as $id) {
+				$add_row($lb['logbook_name'], $id);
+			}
+		}
+
+		foreach ($locations as $loc) {
+			$id = (int) $loc['station_id'];
+			if (empty($linked[$id])) {
+				$add_row(__('Unlinked'), $id);
+			}
+		}
 
 		return $result;
 	}
@@ -257,9 +363,23 @@ class Countqsoby_model extends CI_Model
 	 * that no QSOs of other users can leak into any query of this model:
 	 * 1. the active logbook must belong to the session user
 	 * 2. only station locations owned by that same user are kept
-	 * Returns null when nothing valid is linked.
+	 * Returns null when nothing valid is linked. For type "station_profile"
+	 * the ids span all logbooks of the user plus his unlinked locations,
+	 * because that evaluation is not tied to the active logbook.
 	 */
-	private function scoped_station_ids() {
+	private function scoped_station_ids($type = '') {
+		if ($type == 'station_profile') {
+			$rows = $this->db->query('SELECT station_id FROM station_profile WHERE user_id = ?',
+				array((int) $this->session->userdata('user_id')))->result();
+
+			$ids = array();
+			foreach ($rows as $row) {
+				$ids[] = (int) $row->station_id;
+			}
+
+			return $ids ?: null;
+		}
+
 		$logbook_id = $this->session->userdata('active_station_logbook');
 
 		if (empty($logbook_id) || !$this->logbooks_model->check_logbook_is_accessible($logbook_id)) {
@@ -287,7 +407,7 @@ class Countqsoby_model extends CI_Model
 	 */
 	public function qso_details($type, $group, $band, $sat, $propagation, $mode = 'All', $orbit = 'All', $dateFrom = null, $dateTo = null, $postdata = array()) {
 		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->scoped_station_ids();
+		$logbooks_locations_array = $this->scoped_station_ids($type);
 
 		if ($logbooks_locations_array === null) {
 			return $this->db->query('SELECT 1 FROM DUAL WHERE 1=0');
@@ -325,6 +445,10 @@ class Countqsoby_model extends CI_Model
 		$params[] = (int) $this->session->userdata('user_id');
 
 		switch ($type) {
+			case 'station_profile':
+				$sql .= " AND $table.station_id = ?";
+				$params[] = (int) $group;
+				break;
 			case 'dxcc':
 				$sql .= ' AND col_dxcc = ?';
 				$params[] = $group;
