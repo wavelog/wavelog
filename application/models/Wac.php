@@ -211,7 +211,7 @@ class Wac extends CI_Model{
 					}
 
 					if ($isConfirmed) {
-						$wacMatrix[$wac->col_cont]['SAT'] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","SAT","'.$postdata['sat'].'", "'.$postdata['orbit'].'","'. $postdata['mode'] . '","WAC","'.$qsl.'","","")\'>'.$confirmationLetters.'</a></div>';
+						$wacMatrix[$wac->col_cont]['SAT'] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","SAT",'.js_escape($postdata['sat']).', '.js_escape($postdata['orbit']).','. js_escape($postdata['mode']) . ',"WAC",'.js_escape($qsl).',"","")\'>'.$confirmationLetters.'</a></div>';
 						// Track confirmed continents for summary
 						if (!isset($confirmedContinents['SAT'][$wac->col_cont])) {
 							$confirmedContinents['SAT'][$wac->col_cont] = true;
