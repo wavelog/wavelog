@@ -13,6 +13,8 @@
 		potaUrl:    <?php echo json_encode(site_url('activationplanner/pota_directory')); ?>,
 		activatedPotaUrl: <?php echo json_encode(site_url('activationplanner/activated_pota')); ?>,
 		potaBoundaryUrl: <?php echo json_encode(site_url('activationplanner/pota_boundary') . '/'); ?>,
+		wwffBoundaryUrl: <?php echo json_encode(site_url('activationplanner/wwff_boundary') . '/'); ?>,
+		wwffBoundaryRefsUrl: <?php echo json_encode(site_url('activationplanner/wwff_boundary_refs')); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
