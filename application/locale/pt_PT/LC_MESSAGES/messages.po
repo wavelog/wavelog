@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-09-28 09:04+0000\n"
+"POT-Creation-Date: 2026-10-02 08:48+0000\n"
 "PO-Revision-Date: 2026-09-19 10:21+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -374,42 +374,42 @@ msgstr "data incorrecta"
 msgid "ADIF Import / Export"
 msgstr "Importação / Exportação ADIF"
 
-#: application/controllers/Adif.php:309 application/views/adif/import.php:43
+#: application/controllers/Adif.php:310 application/views/adif/import.php:43
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
 msgstr "Importação ADIF"
 
-#: application/controllers/Adif.php:366
+#: application/controllers/Adif.php:378
 msgid "Unsupported Filetype"
 msgstr "Tipo de ficheiro não suportado"
 
-#: application/controllers/Adif.php:447
+#: application/controllers/Adif.php:459
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "Falha na importação do ADIF!"
 
-#: application/controllers/Adif.php:461
+#: application/controllers/Adif.php:474
 msgid "Station Profile not valid for User"
 msgstr "Perfil da estação não é válido para o utilizador"
 
-#: application/controllers/Adif.php:471
+#: application/controllers/Adif.php:484
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF Importado"
 
-#: application/controllers/Adif.php:485
+#: application/controllers/Adif.php:498
 msgid "DCL Import"
 msgstr "Importação DCL"
 
-#: application/controllers/Adif.php:551
+#: application/controllers/Adif.php:563
 msgid "DCL Data Imported"
 msgstr "Dados DCL importados"
 
-#: application/controllers/Adif.php:565
+#: application/controllers/Adif.php:577
 msgid "POTA Import"
 msgstr "Importação POTA"
 
-#: application/controllers/Adif.php:630
+#: application/controllers/Adif.php:641
 msgid "POTA Data Imported"
 msgstr "Dados POTA importados"
 
@@ -559,7 +559,7 @@ msgstr "DOK"
 #: application/views/calltester/call_info.php:29
 #: application/views/calltester/call_info.php:61
 #: application/views/countqsoby/index.php:12
-#: application/views/countqsoby/index.php:66 application/views/csv/index.php:58
+#: application/views/countqsoby/index.php:67 application/views/csv/index.php:58
 #: application/views/dashboard/index.php:416
 #: application/views/dbtools/checkresult.php:153
 #: application/views/dbtools/checkresult.php:236
@@ -629,12 +629,12 @@ msgid "Log View"
 msgstr "Ver log"
 
 #: application/controllers/Awards.php:745
-#: application/controllers/Countqsoby.php:93
+#: application/controllers/Countqsoby.php:102
 msgid "and"
 msgstr "e"
 
 #: application/controllers/Awards.php:746
-#: application/controllers/Countqsoby.php:94
+#: application/controllers/Countqsoby.php:103
 #: application/views/awards/cq/index.php:146
 #: application/views/awards/dxcc/index.php:20
 #: application/views/awards/dxcc/index.php:179
@@ -649,40 +649,40 @@ msgstr "e"
 #: application/views/awards/wpx/index.php:83
 #: application/views/awards/wwff/index.php:3
 #: application/views/awards/wwff/index.php:132
-#: application/views/countqsoby/index.php:79
+#: application/views/countqsoby/index.php:81
 msgid "Every band (w/o SAT)"
 msgstr "Todas as bandas (exceto SAT)"
 
 #: application/controllers/Awards.php:746
-#: application/controllers/Countqsoby.php:94
+#: application/controllers/Countqsoby.php:103
 msgid "band"
 msgstr "banda"
 
 #: application/controllers/Awards.php:749
-#: application/controllers/Countqsoby.php:97
+#: application/controllers/Countqsoby.php:106
 msgid " and satellite "
 msgstr " e satélite "
 
 #: application/controllers/Awards.php:752
 #: application/controllers/Callstats.php:108
-#: application/controllers/Countqsoby.php:100
+#: application/controllers/Countqsoby.php:109
 msgid " and orbit type "
 msgstr " e tipo de órbita "
 
 #: application/controllers/Awards.php:756
 #: application/controllers/Callstats.php:112
-#: application/controllers/Countqsoby.php:104
+#: application/controllers/Countqsoby.php:113
 msgid " and propagation "
 msgstr " e propagação "
 
 #: application/controllers/Awards.php:759
 #: application/controllers/Callstats.php:115
-#: application/controllers/Countqsoby.php:107
+#: application/controllers/Countqsoby.php:116
 msgid " and mode "
 msgstr " e modo "
 
 #: application/controllers/Awards.php:762
-#: application/controllers/Countqsoby.php:116
+#: application/controllers/Countqsoby.php:125
 msgid " and "
 msgstr " e "
 
@@ -1125,7 +1125,7 @@ msgstr "Nenhum utilizador configurou o Clublog."
 #: application/views/awards/wapc/index.php:108
 #: application/views/awards/wpx/index.php:49
 #: application/views/awards/wwff/index.php:120
-#: application/views/countqsoby/index.php:194
+#: application/views/countqsoby/index.php:196
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:417
 #: application/views/search/search_result_ajax.php:124
@@ -1308,7 +1308,7 @@ msgstr "Continentes"
 
 #: application/controllers/Countqsoby.php:13
 #: application/views/countqsoby/index.php:3
-#: application/views/countqsoby/index.php:209
+#: application/views/countqsoby/index.php:211
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
 msgstr "Contar QSOs por..."
@@ -1331,7 +1331,7 @@ msgstr "Contar QSOs por..."
 #: application/views/calltester/result.php:54
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/countqsoby/index.php:11
-#: application/views/countqsoby/index.php:67
+#: application/views/countqsoby/index.php:68
 #: application/views/dashboard/index.php:14
 #: application/views/dbtools/checkresult.php:154
 #: application/views/dbtools/checkresult.php:233
@@ -1383,7 +1383,7 @@ msgstr "Gridsquare"
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:217
 #: application/views/countqsoby/index.php:14
-#: application/views/countqsoby/index.php:68
+#: application/views/countqsoby/index.php:69
 #: application/views/dbtools/checkresult.php:310
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/edit.php:34
@@ -1408,7 +1408,7 @@ msgstr "Zona ITU"
 #: application/views/bandmap/list.php:569
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
-#: application/views/countqsoby/index.php:69 application/views/csv/index.php:80
+#: application/views/countqsoby/index.php:70 application/views/csv/index.php:80
 #: application/views/dbtools/checkresult.php:234
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
@@ -1431,13 +1431,13 @@ msgid "CQ Zone"
 msgstr "Zona CQ"
 
 #: application/controllers/Countqsoby.php:77
-#: application/views/countqsoby/index.php:70
+#: application/views/countqsoby/index.php:72
 msgid "POTA Reference"
 msgstr "Referência POTA"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
-#: application/views/countqsoby/index.php:71
+#: application/views/countqsoby/index.php:73
 #: application/views/qso/index.php:313 application/views/qso/index.php:595
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:237
@@ -1447,7 +1447,7 @@ msgid "SOTA Reference"
 msgstr "Referência SOTA"
 
 #: application/controllers/Countqsoby.php:79
-#: application/views/countqsoby/index.php:72
+#: application/views/countqsoby/index.php:74
 #: application/views/qso/index.php:297 application/views/qso/index.php:578
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:211
@@ -1458,7 +1458,7 @@ msgstr "Referência IOTA"
 
 #: application/controllers/Countqsoby.php:80
 #: application/views/awards/wwff/index.php:176
-#: application/views/countqsoby/index.php:73
+#: application/views/countqsoby/index.php:75
 #: application/views/qso/index.php:325 application/views/qso/index.php:608
 #: application/views/station_profile/create.php:229
 #: application/views/station_profile/edit.php:251
@@ -1466,6 +1466,28 @@ msgstr "Referência IOTA"
 #: application/views/view_log/qso.php:685
 msgid "WWFF Reference"
 msgstr "Referência WWFF"
+
+#: application/controllers/Countqsoby.php:81
+#: application/views/calltester/index.php:11
+#: application/views/contesting/manager/components/session_modal.php:63
+#: application/views/countqsoby/index.php:16
+#: application/views/countqsoby/index.php:71 application/views/csv/index.php:19
+#: application/views/dbtools/index.php:28
+#: application/views/dxatlas/index.php:19
+#: application/views/labels/index.php:126
+#: application/views/logbookadvanced/edit.php:23
+#: application/views/qslprint/index.php:34 application/views/qso/index.php:139
+#: application/views/qso/index.php:402
+#: application/views/search/search_result_ajax.php:18
+#: application/views/station_profile/create.php:432
+#: application/views/station_profile/edit.php:461
+#: application/views/user/edit.php:403 application/views/user/edit.php:918
+#: application/views/view_log/partial/log_ajax.php:19
+#: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
+#: application/views/webadif/export.php:125
+#: application/views/zonechecker/index.php:11
+msgid "Station Location"
+msgstr "Localização da estação"
 
 #: application/controllers/Cron.php:37
 #: application/views/interface_assets/header.php:367
@@ -2190,7 +2212,7 @@ msgstr "Logbook"
 #: application/views/awards/wpx/index.php:33
 #: application/views/awards/wwff/index.php:104
 #: application/views/calltester/call_info.php:66
-#: application/views/countqsoby/index.php:162
+#: application/views/countqsoby/index.php:164
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:114
@@ -2234,7 +2256,7 @@ msgstr "QSL"
 #: application/views/awards/wpx/index.php:37
 #: application/views/awards/wwff/index.php:108
 #: application/views/calltester/call_info.php:80
-#: application/views/countqsoby/index.php:170
+#: application/views/countqsoby/index.php:172
 #: application/views/dashboard/_options_menu.php:21
 #: application/views/dashboard/index.php:508
 #: application/views/dashboard/index.php:522
@@ -2288,7 +2310,7 @@ msgstr "LoTW"
 #: application/views/awards/wpx/index.php:41
 #: application/views/awards/wwff/index.php:112
 #: application/views/calltester/call_info.php:81
-#: application/views/countqsoby/index.php:178
+#: application/views/countqsoby/index.php:180
 #: application/views/dbtools/missinggridlist.php:60
 #: application/views/gridmap/index.php:190
 #: application/views/logbookadvanced/useroptions.php:130
@@ -2356,7 +2378,7 @@ msgstr "Todas as consultas ao callbook falharam ou não forneceram resultados."
 #: application/views/contesting/logger/components/radio.php:73
 #: application/views/contesting/manager/export_cbr.php:106
 #: application/views/continents/index.php:44
-#: application/views/countqsoby/index.php:128
+#: application/views/countqsoby/index.php:130
 #: application/views/csv/index.php:42 application/views/dashboard/index.php:5
 #: application/views/dbtools/checkresult.php:92
 #: application/views/dbtools/checkresult.php:150
@@ -2648,7 +2670,7 @@ msgstr "Distância"
 #: application/views/contesting/logger/components/radio.php:90
 #: application/views/contesting/manager/export_cbr.php:76
 #: application/views/continents/index.php:35
-#: application/views/countqsoby/index.php:76 application/views/csv/index.php:31
+#: application/views/countqsoby/index.php:78 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
 #: application/views/dbtools/checkresult.php:91
 #: application/views/dbtools/checkresult.php:149
@@ -2771,7 +2793,7 @@ msgstr "Operador"
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:467
 #: application/views/awards/wae/index.php:239
-#: application/views/countqsoby/index.php:16 application/views/csv/index.php:65
+#: application/views/countqsoby/index.php:17 application/views/csv/index.php:65
 #: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
 #: application/views/interface_assets/footer.php:841
@@ -3016,7 +3038,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:109
-#: application/models/Logbook_model.php:1588
+#: application/models/Logbook_model.php:1553
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4968,6 +4990,10 @@ msgstr ""
 msgid "Officers must edit contests."
 msgstr "Os oficiais devem editar concursos."
 
+#: application/models/Countqsoby_model.php:262
+msgid "Unlinked"
+msgstr ""
+
 #: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
@@ -5132,31 +5158,31 @@ msgstr "Tipo de etiqueta importada"
 msgid "Station not accessible"
 msgstr "Estação inacessível"
 
-#: application/models/Logbook_model.php:1041
+#: application/models/Logbook_model.php:1006
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1578
+#: application/models/Logbook_model.php:1543
 msgid "Station ID not allowed"
 msgstr "Identificação da estação não permitida"
 
-#: application/models/Logbook_model.php:1583
+#: application/models/Logbook_model.php:1548
 msgid "No Call given"
 msgstr "Nenhum indicativo fornecido"
 
-#: application/models/Logbook_model.php:1659
-#: application/models/Logbook_model.php:1877
+#: application/models/Logbook_model.php:1624
+#: application/models/Logbook_model.php:1842
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
-#: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5120
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:5109
+#: application/models/Logbook_model.php:5128
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5165,7 +5191,7 @@ msgstr ""
 "Locator divergente %s ao importar QSO com %s para o localizador da estação "
 "%s: IGNORADO"
 
-#: application/models/Logbook_model.php:5125
+#: application/models/Logbook_model.php:5144
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5173,7 +5199,7 @@ msgstr ""
 "Tentaste importar um QSO sem data válida. Este QSO não foi importado. É "
 "inválido"
 
-#: application/models/Logbook_model.php:5135
+#: application/models/Logbook_model.php:5154
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5182,7 +5208,7 @@ msgstr ""
 "QSO no %s: Tentou importar um QSO sem qualquer INDICATIVO fornecido. Este "
 "QSO não foi importado. É inválido."
 
-#: application/models/Logbook_model.php:5142
+#: application/models/Logbook_model.php:5161
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5191,7 +5217,7 @@ msgstr ""
 "QSO em %s: Tentou importar um QSO com um INDICATIVO inválido. Este QSO não "
 "foi importado. A entrada inválida é '%s'."
 
-#: application/models/Logbook_model.php:5212
+#: application/models/Logbook_model.php:5231
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5200,7 +5226,7 @@ msgstr ""
 "QSO em %s: A banda '%s' não está na configuração de bandas. Este QSO não foi "
 "importado."
 
-#: application/models/Logbook_model.php:5219
+#: application/models/Logbook_model.php:5238
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5209,63 +5235,63 @@ msgstr ""
 "QSO em %s: Você tentou importar um QSO sem banda alguma. Este QSO não foi "
 "importado. É inválido"
 
-#: application/models/Logbook_model.php:5494
+#: application/models/Logbook_model.php:5513
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5505
+#: application/models/Logbook_model.php:5524
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5566
+#: application/models/Logbook_model.php:5585
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5942
+#: application/models/Logbook_model.php:5961
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:6009
-#: application/models/Logbook_model.php:6109
+#: application/models/Logbook_model.php:6028
+#: application/models/Logbook_model.php:6128
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:6017
+#: application/models/Logbook_model.php:6036
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:6023
+#: application/models/Logbook_model.php:6042
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:6027
+#: application/models/Logbook_model.php:6046
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:6031
+#: application/models/Logbook_model.php:6050
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:6034
+#: application/models/Logbook_model.php:6053
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:6037
+#: application/models/Logbook_model.php:6056
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "desconhecido"
 
-#: application/models/Logbook_model.php:6112
+#: application/models/Logbook_model.php:6131
 msgid "POTA reference already in log"
 msgstr "Referência POTA já no log"
 
-#: application/models/Logbook_model.php:6115
+#: application/models/Logbook_model.php:6134
 msgid "QSO updated"
 msgstr "QSO atualizado"
 
-#: application/models/Logbook_model.php:6536
+#: application/models/Logbook_model.php:6555
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5439,7 +5465,7 @@ msgstr "Diferença"
 #: application/views/activated_gridmap/index.php:39
 #: application/views/activated_gridmap/index.php:46
 #: application/views/activators/index.php:20
-#: application/views/adif/import.php:271
+#: application/views/adif/import.php:278
 #: application/views/awards/counties/index.php:255
 #: application/views/awards/cq/index.php:157
 #: application/views/awards/dok/index.php:134
@@ -5490,10 +5516,10 @@ msgstr "Diferença"
 #: application/views/contesting/manager/export_cbr.php:78
 #: application/views/continents/index.php:37
 #: application/views/continents/index.php:46
-#: application/views/countqsoby/index.php:98
-#: application/views/countqsoby/index.php:115
-#: application/views/countqsoby/index.php:131
-#: application/views/countqsoby/index.php:144
+#: application/views/countqsoby/index.php:100
+#: application/views/countqsoby/index.php:117
+#: application/views/countqsoby/index.php:133
+#: application/views/countqsoby/index.php:146
 #: application/views/csv/index.php:21 application/views/csv/index.php:33
 #: application/views/csv/index.php:44 application/views/csv/index.php:60
 #: application/views/csv/index.php:82 application/views/csv/index.php:94
@@ -5607,7 +5633,7 @@ msgstr "Período"
 #: application/views/accumulate/index.php:86
 #: application/views/awards/dxcc/index.php:239
 #: application/views/callstats/index.php:70
-#: application/views/countqsoby/index.php:141
+#: application/views/countqsoby/index.php:143
 #: application/views/distances/index.php:57
 #: application/views/gridmap/index.php:91
 #: application/views/logbookadvanced/edit.php:19
@@ -5628,7 +5654,7 @@ msgstr "Todos menos SAT"
 
 #: application/views/accumulate/index.php:91
 #: application/views/callstats/index.php:74
-#: application/views/countqsoby/index.php:145
+#: application/views/countqsoby/index.php:147
 #: application/views/distances/index.php:61
 #: application/views/gridmap/index.php:95
 #: application/views/logbookadvanced/edit.php:221
@@ -5659,7 +5685,7 @@ msgstr "Nenhum/Vazio"
 #: application/views/awards/was/index.php:53
 #: application/views/awards/wpx/index.php:18
 #: application/views/callstats/index.php:97
-#: application/views/countqsoby/index.php:200
+#: application/views/countqsoby/index.php:202
 #: application/views/distances/index.php:73
 #: application/views/lookup/index.php:94
 #: application/views/qslcard/confirmations.php:24
@@ -5761,7 +5787,7 @@ msgstr "Quadrículas Ativadas"
 #: application/views/awards/wae/index.php:168
 #: application/views/awards/wpx/index.php:114
 #: application/views/callstats/index.php:26
-#: application/views/countqsoby/index.php:95
+#: application/views/countqsoby/index.php:97
 #: application/views/distancerecords/index.php:18
 #: application/views/distances/index.php:38
 #: application/views/gridmap/index.php:107
@@ -5795,7 +5821,7 @@ msgstr "Satélite"
 #: application/views/awards/wae/index.php:182
 #: application/views/awards/wpx/index.php:128
 #: application/views/callstats/index.php:40
-#: application/views/countqsoby/index.php:112
+#: application/views/countqsoby/index.php:114
 #: application/views/distances/index.php:48
 #: application/views/gridmap/index.php:122
 #: application/views/logbookadvanced/index.php:438
@@ -5830,7 +5856,7 @@ msgstr "Órbita"
 #: application/views/awards/was/index.php:88
 #: application/views/awards/wpx/index.php:29
 #: application/views/awards/wwff/index.php:100
-#: application/views/countqsoby/index.php:154
+#: application/views/countqsoby/index.php:156
 #: application/views/gridmap/index.php:165
 #: application/views/timeline/index.php:61
 msgid "Confirmation"
@@ -5859,7 +5885,7 @@ msgstr "Confirmação"
 #: application/views/awards/was/index.php:104
 #: application/views/awards/wpx/index.php:45
 #: application/views/awards/wwff/index.php:116
-#: application/views/countqsoby/index.php:186
+#: application/views/countqsoby/index.php:188
 #: application/views/gridmap/index.php:198 application/views/user/edit.php:1068
 msgid "QRZ.com"
 msgstr "QRZ.com"
@@ -6109,7 +6135,7 @@ msgstr "Ir"
 #: application/views/awards/wab/index.php:45
 #: application/views/awards/wae/index.php:65
 #: application/views/awards/wwff/index.php:66
-#: application/views/countqsoby/index.php:43
+#: application/views/countqsoby/index.php:44
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:358
@@ -6193,7 +6219,7 @@ msgid "Nothing found!"
 msgstr "Nada encontrado!"
 
 #: application/views/activators/index.php:105
-#: application/views/adif/import.php:104 application/views/adif/import.php:278
+#: application/views/adif/import.php:111 application/views/adif/import.php:285
 #: application/views/awards/73on73/index.php:40
 #: application/views/awards/amsat_rover/index.php:228
 #: application/views/awards/pota/index.php:271
@@ -6453,7 +6479,7 @@ msgstr "Estado QSL DCL"
 msgid "ADIF Export"
 msgstr "Exportação ADIF"
 
-#: application/views/adif/import.php:57 application/views/adif/import.php:352
+#: application/views/adif/import.php:57 application/views/adif/import.php:359
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -6461,8 +6487,16 @@ msgstr "DARC DCL"
 msgid "CBR Import"
 msgstr "Importar CBR"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:400
-#: application/views/adif/import.php:423 application/views/api/index.php:22
+#: application/views/adif/import.php:92
+msgid "No active station location. ADIF import is disabled."
+msgstr ""
+
+#: application/views/adif/import.php:93
+msgid "Go to Station Setup"
+msgstr ""
+
+#: application/views/adif/import.php:97 application/views/adif/import.php:407
+#: application/views/adif/import.php:430 application/views/api/index.php:22
 #: application/views/api/index.php:127 application/views/cron/index.php:18
 #: application/views/dashboard/index.php:182
 #: application/views/dashboard/index.php:215
@@ -6472,15 +6506,15 @@ msgstr "Importar CBR"
 msgid "Important"
 msgstr "Importante"
 
-#: application/views/adif/import.php:90
+#: application/views/adif/import.php:97
 msgid "Log Files must have the file type *.adi"
 msgstr "Os ficheiros de registo devem ter o tipo de ficheiro *.adi"
 
-#: application/views/adif/import.php:91 application/views/view_log/qso.php:744
+#: application/views/adif/import.php:98 application/views/view_log/qso.php:744
 msgid "Maximum file upload size is "
 msgstr "O tamanho máximo de upload de ficheiro é "
 
-#: application/views/adif/import.php:91 application/views/adif/import.php:368
+#: application/views/adif/import.php:98 application/views/adif/import.php:375
 #: application/views/clublog/export.php:70
 #: application/views/contesting/logger/index.php:59
 #: application/views/debug/index.php:253 application/views/debug/index.php:270
@@ -6501,27 +6535,27 @@ msgstr "O tamanho máximo de upload de ficheiro é "
 msgid "Warning"
 msgstr "Aviso"
 
-#: application/views/adif/import.php:98 application/views/adif/import.php:100
-#: application/views/adif/import.php:267 application/views/eqsl/import.php:37
+#: application/views/adif/import.php:105 application/views/adif/import.php:107
+#: application/views/adif/import.php:274 application/views/eqsl/import.php:37
 #: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
 #: application/views/webadif/export.php:99
 msgid "Select Station Location"
 msgstr "Selecionar Localização da Estação"
 
-#: application/views/adif/import.php:108
+#: application/views/adif/import.php:115
 msgid "Choose ADIF File"
 msgstr "Escolha o Ficheiro ADIF"
 
-#: application/views/adif/import.php:114
+#: application/views/adif/import.php:121
 msgid "Add QSOs to Contest"
 msgstr "Adicionar conctactos ao Concurso"
 
-#: application/views/adif/import.php:116 application/views/adif/import.php:430
+#: application/views/adif/import.php:123 application/views/adif/import.php:437
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Sem Concurso"
 
-#: application/views/adif/import.php:126
+#: application/views/adif/import.php:133
 msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
@@ -6529,23 +6563,23 @@ msgstr ""
 "Digite o indicativo de chamada do operador dos QSOs importados. Deixe em "
 "branco para usar o indicativo de chamada do operador no arquivo ADIF."
 
-#: application/views/adif/import.php:134
+#: application/views/adif/import.php:141
 msgid "Basic Settings"
 msgstr "Configurações Básicas"
 
-#: application/views/adif/import.php:141
+#: application/views/adif/import.php:148
 msgid "Import duplicate QSOs"
 msgstr "Importar contactos duplicados"
 
-#: application/views/adif/import.php:143
+#: application/views/adif/import.php:150
 msgid "Select if QSOs shall be imported, even if they already exist."
 msgstr "Selecione se os QSOs devem ser importados, mesmo que já existam."
 
-#: application/views/adif/import.php:148
+#: application/views/adif/import.php:155
 msgid "Use DXCC information from ADIF"
 msgstr "Usar informações DXCC do ADIF"
 
-#: application/views/adif/import.php:150
+#: application/views/adif/import.php:157
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -6553,18 +6587,18 @@ msgstr ""
 "Se não for selecionado, o Wavelog tentará determinar automaticamente as "
 "informações do DXCC."
 
-#: application/views/adif/import.php:159 application/views/adif/import.php:166
+#: application/views/adif/import.php:166 application/views/adif/import.php:173
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:661
 #: application/views/interface_assets/footer.php:2459
 msgid "DANGER"
 msgstr "PERIGO"
 
-#: application/views/adif/import.php:159
+#: application/views/adif/import.php:166
 msgid "Ignore Station callsign on import"
 msgstr "Ignorar o indicativo da estação na importação"
 
-#: application/views/adif/import.php:161
+#: application/views/adif/import.php:168
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
@@ -6574,11 +6608,11 @@ msgstr ""
 "ficheiro ADIF, independentemente de corresponderem à localização da estação "
 "escolhida."
 
-#: application/views/adif/import.php:166
+#: application/views/adif/import.php:173
 msgid "Ignore grid check on import"
 msgstr "Ignorar a verificação da grelha ao importar"
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:175
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
@@ -6587,66 +6621,66 @@ msgstr ""
 "MY_GRIDSQUARE nos registos ADIF não corresponda ao localizador da "
 "localização da estação escolhida."
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:185
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
 "Utilise sempre o indicativo da conta com sessão iniciada como o indicativo "
 "do operador durante a importação"
 
-#: application/views/adif/import.php:189
+#: application/views/adif/import.php:196
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
 "Marcar contactos como enviados (Isto NÃO envia os contactos para estes "
 "serviços!)"
 
-#: application/views/adif/import.php:196
+#: application/views/adif/import.php:203
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Marcar contactos importados como carregados no LoTW"
 
-#: application/views/adif/import.php:198 application/views/adif/import.php:206
-#: application/views/adif/import.php:216 application/views/adif/import.php:224
-#: application/views/adif/import.php:234 application/views/adif/import.php:242
+#: application/views/adif/import.php:205 application/views/adif/import.php:213
+#: application/views/adif/import.php:223 application/views/adif/import.php:231
+#: application/views/adif/import.php:241 application/views/adif/import.php:249
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Selecione se o ADIF importado não contiver esta informação."
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:211
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Marcar os contactos importados como carregados no Logbook de eQSL"
 
-#: application/views/adif/import.php:214
+#: application/views/adif/import.php:221
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Marcar contactos importados como enviados para o Logbook do HRDLog.net"
 
-#: application/views/adif/import.php:222
+#: application/views/adif/import.php:229
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Marcar contactos importados como enviados para o Logbook do QRZ"
 
-#: application/views/adif/import.php:232
+#: application/views/adif/import.php:239
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Marcar contactos importados como enviados para o Logbook do Clublog"
 
-#: application/views/adif/import.php:240
+#: application/views/adif/import.php:247
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Marcar contacto importados como carregados no DCL Logbook"
 
-#: application/views/adif/import.php:245
+#: application/views/adif/import.php:252
 msgid "Toggle all checkboxes"
 msgstr "Alternar todas as caixas de seleção"
 
-#: application/views/adif/import.php:251 application/views/adif/import.php:383
-#: application/views/adif/import.php:405 application/views/adif/import.php:449
+#: application/views/adif/import.php:258 application/views/adif/import.php:390
+#: application/views/adif/import.php:412 application/views/adif/import.php:456
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Enviar"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:268
 msgid "Take your logbook file anywhere!"
 msgstr "Leva o teu ficheiro de logbook para qualquer lugar!"
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:269
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -6654,7 +6688,7 @@ msgstr ""
 "A exportação de ADIFs permite-lhe importar contactos para aplicações de "
 "terceiros como LoTW, Diplomas ou para manter uma cópia de segurança."
 
-#: application/views/adif/import.php:263
+#: application/views/adif/import.php:270
 #, php-format
 msgctxt ""
 msgid ""
@@ -6664,13 +6698,13 @@ msgstr ""
 "Se precisar de mais filtragem, pode usar %so Logbook avançado%s para filtrar "
 "e exportar!"
 
-#: application/views/adif/import.php:268
+#: application/views/adif/import.php:275
 #: application/views/search/lotw_unconfirmed.php:24
 msgid "All is limited to station locations linked to active logbook"
 msgstr ""
 "Tudo está limitado a locais da estação ligados ao diário de bordo ativo"
 
-#: application/views/adif/import.php:289
+#: application/views/adif/import.php:296
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
 #: application/views/dxatlas/index.php:103
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:88
@@ -6679,7 +6713,7 @@ msgstr ""
 msgid "From date"
 msgstr "A partir da data"
 
-#: application/views/adif/import.php:293 application/views/csv/index.php:109
+#: application/views/adif/import.php:300 application/views/csv/index.php:109
 #: application/views/dxatlas/index.php:108
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:93
 #: application/views/qrz/export.php:104
@@ -6687,35 +6721,35 @@ msgstr "A partir da data"
 msgid "To date"
 msgstr "Até à data"
 
-#: application/views/adif/import.php:304
+#: application/views/adif/import.php:311
 msgid "Export options"
 msgstr "Opções de exportação"
 
-#: application/views/adif/import.php:312
+#: application/views/adif/import.php:319
 msgid "Mark exported QSOs as already uploaded to LoTW"
 msgstr "Marcar QSOs exportados como já carregados no LoTW"
 
-#: application/views/adif/import.php:321
+#: application/views/adif/import.php:328
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Exportar contactos não enviados para o LoTW"
 
-#: application/views/adif/import.php:328
+#: application/views/adif/import.php:335
 msgid "Export QSOs"
 msgstr "Exportar Contactos"
 
-#: application/views/adif/import.php:333
+#: application/views/adif/import.php:340
 msgid "Export Satellite-Only QSOs"
 msgstr "Exportar apenas contactos de Satélite"
 
-#: application/views/adif/import.php:334
+#: application/views/adif/import.php:341
 msgid "Export All Satellite QSOs"
 msgstr "Exportar todos os contactos via satélite"
 
-#: application/views/adif/import.php:336
+#: application/views/adif/import.php:343
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Exportar todos os contactos via satélite confirmados no LoTW"
 
-#: application/views/adif/import.php:352
+#: application/views/adif/import.php:359
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -6728,7 +6762,7 @@ msgstr ""
 "colocar 'DL' na lista prefixos ). O ficheiro ADIF descarregado pode ser "
 "carregado aqui para atualizar os contactos com a informação DOK."
 
-#: application/views/adif/import.php:352
+#: application/views/adif/import.php:359
 #, php-format
 msgid ""
 "More information regarding the confirmation status in DCL can be found on "
@@ -6737,11 +6771,11 @@ msgstr ""
 "Mais informações sobre o estado de confirmação em DCL podem ser encontradas "
 "na %spágina DCL Confluence%s."
 
-#: application/views/adif/import.php:359
+#: application/views/adif/import.php:366
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importar apenas dados DOK de contactos confirmados no DCL."
 
-#: application/views/adif/import.php:361
+#: application/views/adif/import.php:368
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -6749,11 +6783,11 @@ msgstr ""
 "Desmarque se também quiser atualizar o DOK com dados de contactos não "
 "confirmados no DCL."
 
-#: application/views/adif/import.php:368
+#: application/views/adif/import.php:375
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Substitui o DOK existente no log pelo DCL (se diferente)."
 
-#: application/views/adif/import.php:370
+#: application/views/adif/import.php:377
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -6761,11 +6795,11 @@ msgstr ""
 "Se estiver marcado, o Wavelog ira forçar a troca do DOK existente pelo DOK "
 "do registo DCL."
 
-#: application/views/adif/import.php:377
+#: application/views/adif/import.php:384
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignorar contactos que não podem ser correspondidos."
 
-#: application/views/adif/import.php:379
+#: application/views/adif/import.php:386
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -6773,7 +6807,7 @@ msgstr ""
 "Se não estiver selecionado, serão apresentadas informações sobre contactos "
 "que não foram encontrados no Wavelog."
 
-#: application/views/adif/import.php:401
+#: application/views/adif/import.php:408
 #, php-format
 msgid ""
 "An example for a tool to export the POTA hunter log in ADIF format is %s "
@@ -6782,7 +6816,7 @@ msgstr ""
 "Ein Beispiel für ein Tool zum Exportieren des POTA-Hunter-Logs im ADIF-"
 "Format ist %s, erstellt von AF0G und auf GitHub verfügbar."
 
-#: application/views/adif/import.php:422
+#: application/views/adif/import.php:429
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -6796,14 +6830,14 @@ msgstr ""
 "pode fornecer o ficheiro Cabrillo que esse software também fornece para "
 "reescrever esses dados no Wavelog."
 
-#: application/views/adif/import.php:422
+#: application/views/adif/import.php:429
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:169
 msgid "Information"
 msgstr "Informação"
 
-#: application/views/adif/import.php:423
+#: application/views/adif/import.php:430
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -6816,17 +6850,17 @@ msgstr ""
 "que está prestes a carregar para corresponder os contactos e apenas corrigir "
 "os dados relevantes."
 
-#: application/views/adif/import.php:428
+#: application/views/adif/import.php:435
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Nome do Concurso, apenas se o ID do Concurso no CBR for diferente"
 
-#: application/views/adif/import.php:428
+#: application/views/adif/import.php:435
 #: application/views/satellite/hamsatpost.php:64
 #: application/views/satellite/hamsatpost.php:116
 msgid "Optional"
 msgstr "Opcional"
 
-#: application/views/adif/import.php:438
+#: application/views/adif/import.php:445
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
@@ -6834,7 +6868,7 @@ msgstr ""
 "O ficheiro CBR contém um número TRX no final de cada linha QSO (para "
 "estações multi-op)"
 
-#: application/views/adif/import.php:442
+#: application/views/adif/import.php:449
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -6842,7 +6876,7 @@ msgstr ""
 "Um número de série é SEMPRE parte da troca para ambas as partes neste "
 "concurso."
 
-#: application/views/adif/import.php:444
+#: application/views/adif/import.php:451
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -6850,7 +6884,7 @@ msgstr ""
 "Se você ou o seu parceiro só às vezes trocam números de série, por favor, "
 "deixe isto desmarcado."
 
-#: application/views/adif/import.php:445
+#: application/views/adif/import.php:452
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -8223,7 +8257,7 @@ msgstr "Intervalo de Datas"
 #: application/views/awards/wae/index.php:57
 #: application/views/awards/wwff/index.php:58
 #: application/views/contestcalendar/index.php:44
-#: application/views/countqsoby/index.php:35
+#: application/views/countqsoby/index.php:36
 #: application/views/dashboard/index.php:544
 #: application/views/dashboard/index.php:579
 #: application/views/dashboard/index.php:609
@@ -8242,7 +8276,7 @@ msgstr "Hoje"
 #: application/views/awards/sota/index.php:63
 #: application/views/awards/wae/index.php:58
 #: application/views/awards/wwff/index.php:59
-#: application/views/countqsoby/index.php:36
+#: application/views/countqsoby/index.php:37
 #: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:351
 #: application/views/statistics/index.php:62
@@ -8256,7 +8290,7 @@ msgstr "Ontem"
 #: application/views/awards/sota/index.php:64
 #: application/views/awards/wae/index.php:59
 #: application/views/awards/wwff/index.php:60
-#: application/views/countqsoby/index.php:37
+#: application/views/countqsoby/index.php:38
 #: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:352
 #: application/views/statistics/index.php:63
@@ -8270,7 +8304,7 @@ msgstr "Últimos 7 dias"
 #: application/views/awards/sota/index.php:65
 #: application/views/awards/wae/index.php:60
 #: application/views/awards/wwff/index.php:61
-#: application/views/countqsoby/index.php:38
+#: application/views/countqsoby/index.php:39
 #: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:353
 #: application/views/statistics/index.php:64
@@ -8284,7 +8318,7 @@ msgstr "Últimos 30 dias"
 #: application/views/awards/sota/index.php:66
 #: application/views/awards/wae/index.php:61
 #: application/views/awards/wwff/index.php:62
-#: application/views/countqsoby/index.php:39
+#: application/views/countqsoby/index.php:40
 #: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:354
 #: application/views/statistics/index.php:65
@@ -8298,7 +8332,7 @@ msgstr "Este mês"
 #: application/views/awards/sota/index.php:67
 #: application/views/awards/wae/index.php:62
 #: application/views/awards/wwff/index.php:63
-#: application/views/countqsoby/index.php:40
+#: application/views/countqsoby/index.php:41
 #: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:355
 #: application/views/statistics/index.php:66
@@ -8312,7 +8346,7 @@ msgstr "Mês passado"
 #: application/views/awards/sota/index.php:68
 #: application/views/awards/wae/index.php:63
 #: application/views/awards/wwff/index.php:64
-#: application/views/countqsoby/index.php:41
+#: application/views/countqsoby/index.php:42
 #: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:356
 #: application/views/statistics/index.php:67
@@ -8326,7 +8360,7 @@ msgstr "Este ano"
 #: application/views/awards/sota/index.php:69
 #: application/views/awards/wae/index.php:64
 #: application/views/awards/wwff/index.php:65
-#: application/views/countqsoby/index.php:42
+#: application/views/countqsoby/index.php:43
 #: application/views/logbookadvanced/index.php:357
 #: application/views/statistics/index.php:68
 msgid "Last Year"
@@ -8339,7 +8373,7 @@ msgstr "Ano passado"
 #: application/views/awards/sota/index.php:76
 #: application/views/awards/wae/index.php:71
 #: application/views/awards/wwff/index.php:72
-#: application/views/countqsoby/index.php:48
+#: application/views/countqsoby/index.php:49
 #: application/views/dxcalendar/index.php:14
 #: application/views/gridmap/index.php:60
 #: application/views/statistics/index.php:73
@@ -8353,7 +8387,7 @@ msgstr "Data de"
 #: application/views/awards/sota/index.php:80
 #: application/views/awards/wae/index.php:75
 #: application/views/awards/wwff/index.php:76
-#: application/views/countqsoby/index.php:54
+#: application/views/countqsoby/index.php:55
 #: application/views/dxcalendar/index.php:15
 #: application/views/gridmap/index.php:64
 #: application/views/statistics/index.php:77
@@ -11745,25 +11779,6 @@ msgstr ""
 msgid "Callsign DXCC identification"
 msgstr "Identificação do indicativo DXCC"
 
-#: application/views/calltester/index.php:11
-#: application/views/contesting/manager/components/session_modal.php:63
-#: application/views/csv/index.php:19 application/views/dbtools/index.php:28
-#: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:126
-#: application/views/logbookadvanced/edit.php:23
-#: application/views/qslprint/index.php:34 application/views/qso/index.php:139
-#: application/views/qso/index.php:402
-#: application/views/search/search_result_ajax.php:18
-#: application/views/station_profile/create.php:432
-#: application/views/station_profile/edit.php:461
-#: application/views/user/edit.php:403 application/views/user/edit.php:918
-#: application/views/view_log/partial/log_ajax.php:19
-#: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
-#: application/views/webadif/export.php:125
-#: application/views/zonechecker/index.php:11
-msgid "Station Location"
-msgstr "Localização da estação"
-
 #: application/views/calltester/index.php:16
 #: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:897
@@ -13856,15 +13871,15 @@ msgstr "Dados do contacto"
 msgid "QSOs total"
 msgstr "Total de QSOs"
 
-#: application/views/countqsoby/index.php:27
+#: application/views/countqsoby/index.php:28
 msgid "Filter"
 msgstr "Filtro"
 
-#: application/views/countqsoby/index.php:33
+#: application/views/countqsoby/index.php:34
 msgid "Date presets"
 msgstr "Predefinições de data"
 
-#: application/views/countqsoby/index.php:63
+#: application/views/countqsoby/index.php:64
 msgid "Count QSOs by"
 msgstr "Contar QSOs por"
 
