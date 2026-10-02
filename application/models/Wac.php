@@ -219,7 +219,7 @@ class Wac extends CI_Model{
 						}
 					} else {
 						if ($postdata['worked'] != NULL) {
-							$wacMatrix[$wac->col_cont]['SAT'] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","SAT","'.$postdata['sat'].'", "'.$postdata['orbit'].'","'. $postdata['mode'] . '","WAC","","","")\'>W</a></div>';
+							$wacMatrix[$wac->col_cont]['SAT'] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","SAT",'.js_escape($postdata['sat']).', '.js_escape($postdata['orbit']).','. js_escape($postdata['mode']) . ',"WAC","","","")\'>W</a></div>';
 						}
 					}
 
