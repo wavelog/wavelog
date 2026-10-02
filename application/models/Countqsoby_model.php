@@ -259,7 +259,7 @@ class Countqsoby_model extends CI_Model
 		foreach ($locations as $loc) {
 			$id = (int) $loc['station_id'];
 			if (empty($linked[$id])) {
-				$add_row(__('Unlinked'), $id);
+				$add_row(html_entity_decode(__('Unlinked'), ENT_QUOTES, 'UTF-8'), $id);
 			}
 		}
 
