@@ -8,7 +8,16 @@
 
 class API_Model extends CI_Model {
 
-	// GET API Keys
+	/**
+	 * All API v1 keys of the logged-in user.
+	 *
+	 * Clubstation: rows carry the creator's user_callsign. Members below
+	 * officer level only see keys they created themselves (source_uid). On a
+	 * direct club login (club_direct, no source_uid) only keys of the club
+	 * account itself.
+	 *
+	 * @return object CI query result of api rows.
+	 */
 	function keys() {
 		$binding = [];
 		$user_id = $this->session->userdata('user_id');

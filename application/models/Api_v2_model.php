@@ -217,6 +217,8 @@ class Api_v2_model extends CI_Model {
 	/**
 	 * All tokens of the current session user, for the management UI.
 	 * Mirrors the clubstation visibility rules of Api_model::keys().
+	 *
+	 * @return object CI query result of api_token rows, newest first.
 	 */
 	function get_tokens_for_user() {
 		$binding = [];

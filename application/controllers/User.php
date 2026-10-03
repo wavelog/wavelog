@@ -406,6 +406,14 @@ class User extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Show and process the account settings form of user segment(3).
+	 *
+	 * Admins may edit any user, everyone else only their own account.
+	 * On a clubstation only officers (level 9) get access.
+	 *
+	 * @return void Renders the form or redirects after saving.
+	 */
 	function edit() {
 		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		if (!clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
