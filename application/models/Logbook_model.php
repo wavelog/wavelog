@@ -1040,8 +1040,10 @@ class Logbook_model extends CI_Model {
 					}
 				}
 
-				// WebADIF export
-				if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1) {
+			// WebADIF export
+			if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1
+				&& ($data['COL_PROP_MODE'] ?? '') == 'SAT'
+				&& ($data['COL_SAT_NAME'] ?? '') == 'QO-100') {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
