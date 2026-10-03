@@ -69,7 +69,7 @@
 			echo '</td>';
 			echo '<td id="'.$qsl->id.'" style=\'text-align: center\'><button onclick="deleteQsl(\''.$qsl->id.'\')" class="btn btn-sm btn-danger">' . __("Delete") . '</button></td>';
 			echo '<td style=\'text-align: center\'><button onclick="addQsosToQsl(\''.$qsl->filename.'\')" class="btn btn-sm btn-success">' . __("Add Qsos") . '</button></td>';
-			echo '<td style=\'text-align: center\'><a href=\''.$qsl_path.html_escape(basename($qsl->filename)).'\' data-fancybox=\'images\' class=\'btn btn-sm btn-success\'>' . __("View") . '<img loading=\'lazy\' src=\''.site_url('qsl/image/'.$qsl->id).'/160\' height="100px"></a></td>';
+			echo '<td style=\'text-align: center\'><a href=\''.$qsl_path.html_escape(basename($qsl->filename)).'\' data-fancybox=\'images\' class=\'btn btn-sm btn-success\'>' . __("View") . ' <img loading=\'lazy\' src=\''.site_url('qsl/image/'.$qsl->id).'/160\' height="100px"></a></td>';
 			echo '</tr>';
 		}
 
