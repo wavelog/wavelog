@@ -23,7 +23,8 @@ class Contest_admin_model extends CI_Model {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
-		// Delete Contest
+		// Delete Contest, "Other" can't be deleted
+		$this->db->where('id !=', 1);
 		$this->db->delete('contest', array('id' => $clean_id));
 	}
 
@@ -51,6 +52,7 @@ class Contest_admin_model extends CI_Model {
 		);
 
 		$this->db->where('id', $clean_id);
+		$this->db->where('id !=', 1);
 
 		$this->db->update('contest', $data);
 
@@ -100,7 +102,7 @@ class Contest_admin_model extends CI_Model {
 		$data = array(
 			'name' => $this->input->post('name', true),
 			'adifname' => $this->input->post('adifname', true),
-			'active' =>  $this->input->post('active', true),
+			'active' =>  $clean_id == 1 ? 1 : $this->input->post('active', true),
 		);
 
 		$this->db->where('id', $clean_id);
@@ -122,6 +124,7 @@ class Contest_admin_model extends CI_Model {
 			'active' => '0',
 		);
 
+		$this->db->where('id !=', 1);
 		$this->db->update('contest', $data);
 
 		return true;
