@@ -42,7 +42,7 @@ class API extends CI_Controller {
 		$data['token_presets'] = Api_v2_model::preset_registry();
 		// One-time reveal: the plaintext token is shown on the next visit of this page only.
 		$data['new_api_token'] = $this->session->tempdata('new_api_token');
-		$this->session->unset_tempdata('new_api_token');
+		$this->session->unset_userdata('new_api_token');
 		$data['clubmode'] = $this->session->userdata('clubstation') == 1 ? true : false;
 		$data['page_title'] = __("API");
 
