@@ -13,9 +13,8 @@ class API_Model extends CI_Model {
 		$binding = [];
 		$user_id = $this->session->userdata('user_id');
 		$clubstation = $this->session->userdata('clubstation');
-		$impersonate = $this->session->userdata('impersonate');
 
-		if ($clubstation == 1 && $impersonate == 1) {
+		if ($clubstation == 1) {
 			$sql = "SELECT api.*, users.user_callsign
 					FROM api
 					JOIN users ON api.created_by = users.user_id
@@ -24,7 +23,7 @@ class API_Model extends CI_Model {
 
 			if (!clubaccess_check(9)) {
 				$sql .= " AND api.created_by = ?";
-				$binding[] = $this->session->userdata('source_uid');
+				$binding[] = $this->session->userdata('source_uid') ?: $user_id;
 			}
 		} else {
 			$sql = "SELECT * FROM api WHERE user_id = ?";
