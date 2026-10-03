@@ -1111,7 +1111,7 @@ class User extends CI_Controller {
 					$_gridshow = $this->input->post('user_map_gridsquare_show', true);
 					$_gridshow = ($_gridshow === '1' || $_gridshow === 1) ? '1' : '0';
 					$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>$_gridshow), $user_id);
-					$_tile = $this->input->post('user_map_tile_style', true);
+					$_tile = $this->input->post('user_map_tile_style', true) ?? '';
 					$_tile = array_key_exists($_tile, map_style_options()) ? $_tile : 'map-follow';
 					$this->user_options_model->set_option('map_custom','tile',array('style' => $_tile),$user_id);
 				} else {
