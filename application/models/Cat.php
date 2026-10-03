@@ -362,7 +362,7 @@
 			//$this->db->where('radio', $result['radio']);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
-				$this->db->where('operator', $this->session->userdata('source_uid'));
+				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
 			}
 			$query = $this->db->get('cat');
 
@@ -372,7 +372,7 @@
 		function recent_status() {
 			$this->db->where('user_id', $this->session->userdata('user_id'));
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
-				$this->db->where('operator', $this->session->userdata('source_uid'));
+				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
 			}
 			$this->db->where("timestamp > date_sub(UTC_TIMESTAMP(), interval 15 minute)", NULL, FALSE);
 
@@ -385,7 +385,7 @@
 			$this->db->select('id, radio');
 			$this->db->where('user_id', $this->session->userdata('user_id'));
 			if ($only_operator && ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9))) {
-				$this->db->where('operator', $this->session->userdata('source_uid'));
+				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
 			}
 			$query = $this->db->get('cat');
 
@@ -399,7 +399,7 @@
 			$binding[] = $this->session->userdata('user_id');
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
 				$sql .= ' AND operator = ?';
-				$binding[] = $this->session->userdata('source_uid');
+				$binding[] = $this->session->userdata('source_uid') ?: $this->session->userdata('user_id');
 			}
 			return $this->db->query($sql, $binding);
 		}
@@ -410,7 +410,7 @@
 			$binding[] = $this->session->userdata('user_id');
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
 				$sql .= ' AND operator = ?';
-				$binding[] = $this->session->userdata('source_uid');
+				$binding[] = $this->session->userdata('source_uid') ?: $this->session->userdata('user_id');
 			}
 			$sql .= ' ORDER BY timestamp DESC LIMIT 1';
 			return $this->db->query($sql, $binding);
