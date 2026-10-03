@@ -419,6 +419,9 @@
 		function delete($id) {
 			$this->db->where('id', $id);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
+			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+			}
 			$this->db->delete('cat');
 
 			return true;
@@ -427,6 +430,9 @@
 		function updateCatUrl($id,$caturl) {
 			$this->db->where('id', $id);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
+			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+			}
 			$this->db->update('cat',array('cat_url' => $caturl));
 
 			return true;
