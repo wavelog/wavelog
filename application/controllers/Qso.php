@@ -334,7 +334,7 @@ class QSO extends CI_Controller {
 			'distance' => $this->input->post('distance', TRUE) ?? TRUE
 		];
 
-		$result = $this->logbook_model->create_qso($qso_data);
+		$result = $this->logbook_model->create_qso($qso_data, true, true);
 
 		return json_encode($result, JSON_PRETTY_PRINT);
 	}
