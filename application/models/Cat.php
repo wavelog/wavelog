@@ -358,6 +358,15 @@
 			return $query;
 		}
 
+		/**
+		 * All radios of the logged-in user.
+		 *
+		 * Clubstation scope: members below officer level only see the radios
+		 * they registered themselves (source_uid). On a direct club login
+		 * (club_direct, no source_uid) only radios of the club account itself.
+		 *
+		 * @return object CI query result of cat rows.
+		 */
 		function status() {
 			//$this->db->where('radio', $result['radio']);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
@@ -369,6 +378,12 @@
 			return $query;
 		}
 
+		/**
+		 * Radios of the logged-in user updated within the last 15 minutes.
+		 * Same clubstation scope as status().
+		 *
+		 * @return object CI query result of cat rows.
+		 */
 		function recent_status() {
 			$this->db->where('user_id', $this->session->userdata('user_id'));
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
@@ -380,7 +395,12 @@
 			return $query;
 		}
 
-		/* Return list of radios */
+		/**
+		 * List of radios (id, radio) of the logged-in user.
+		 *
+		 * @param bool $only_operator Apply the clubstation scope of status().
+		 * @return object CI query result.
+		 */
 		function radios($only_operator = false) {
 			$this->db->select('id, radio');
 			$this->db->where('user_id', $this->session->userdata('user_id'));
@@ -392,6 +412,12 @@
 			return $query;
 		}
 
+		/**
+		 * Single radio of the logged-in user. Same clubstation scope as status().
+		 *
+		 * @param int|string $id cat row id.
+		 * @return object CI query result (empty when not found/not allowed).
+		 */
 		function radio_status($id) {
 			$binding = [];
 			$sql = 'SELECT * FROM `cat` WHERE id = ? AND user_id = ?';
@@ -404,6 +430,12 @@
 			return $this->db->query($sql, $binding);
 		}
 
+		/**
+		 * Most recently updated radio of the logged-in user.
+		 * Same clubstation scope as status().
+		 *
+		 * @return object CI query result with at most one row.
+		 */
 		function last_updated() {
 			$binding = [];
 			$sql = 'SELECT * FROM cat WHERE user_id = ?';
@@ -416,6 +448,13 @@
 			return $this->db->query($sql, $binding);
 		}
 
+		/**
+		 * Delete a radio of the logged-in user. Same clubstation scope as
+		 * status(), so members can't delete radios of other operators.
+		 *
+		 * @param int|string $id cat row id.
+		 * @return bool Always true, also when nothing matched.
+		 */
 		function delete($id) {
 			$this->db->where('id', $id);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
@@ -427,6 +466,14 @@
 			return true;
 		}
 
+		/**
+		 * Set the CAT callback URL of a radio of the logged-in user.
+		 * Same clubstation scope as status().
+		 *
+		 * @param int|string $id     cat row id.
+		 * @param string     $caturl Callback URL.
+		 * @return bool Always true, also when nothing matched.
+		 */
 		function updateCatUrl($id,$caturl) {
 			$this->db->where('id', $id);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
